@@ -11,6 +11,10 @@ still planned. Current mechanics and verification boundaries are in
 [EQUIPMENT_DESIGNER.md](EQUIPMENT_DESIGNER.md), [AMMUNITION.md](AMMUNITION.md)
 and [AVIATION.md](AVIATION.md).
 
+The art-branch integration is recorded in [ROADMAP.md](ROADMAP.md). It improves
+model presentation and preserves the current mechanics; it does not implement
+the company-owned manufacturing and purchasing direction below.
+
 ## 1. The experience we are building
 
 **Direction update, 7 September:** Ridge now wants company development and

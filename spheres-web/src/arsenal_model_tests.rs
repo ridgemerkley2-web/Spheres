@@ -28,3 +28,61 @@ fn component_illustrations_are_embedded_and_allowlisted() {
     }
     for key in ["../page-art/healthcare-v1.webp","unknown.webp","chassis-v1.webp/extra"] {assert!(page_art_assets::component_asset(key).is_none());}
 }
+
+/// THE SURFACE TREATMENT IS WIRED, AND THE LOSERS ARE STILL THERE.
+///
+/// Three procedural treatments were written and compared on the same meshes.
+/// `weathering` ships because it was the only one that survives a real card:
+/// arsenal3d frames a 34px ledger chip and a 380px inspection view at the SAME
+/// model-space distance, so a treatment carried by high-frequency noise aliases
+/// into speckle at the sizes this game actually draws, while a gravity gradient
+/// downsamples cleanly. The other two stay served because `setSurface` makes
+/// re-judging a one-line swap, and the next art pass should not have to take
+/// that finding on trust.
+#[test]
+fn the_card_renderer_ships_a_surface_treatment() {
+    for (name, src) in [("surface-grain.js", SURFACE_GRAIN_JS),
+        ("surface-wear.js", SURFACE_WEAR_JS), ("surface-material.js", SURFACE_MATERIAL_JS)] {
+        assert!(!src.contains("https://"), "{name} must stay self-contained -- no CDN");
+        assert!(src.contains("vec3 surface(vec3"), "{name} has lost its entry point");
+        // No animation, ever: determinism is iron rule 1, and a shimmering
+        // surface is also motion that reduced-motion could not switch off.
+        assert!(!src.contains("uniform float uTime") && !src.contains("iTime"),
+            "{name} has grown a clock");
+        assert!(INDEX.contains(&format!("<script src=\"/{name}\"></script>")),
+            "{name} is not loaded by the page");
+    }
+    assert!(ARSENAL3D_JS.contains("function setSurface(glsl)")
+        && ARSENAL3D_JS.contains("const DEFAULT_SURFACE ="),
+        "the renderer has lost its swappable surface slot");
+    // Installed, not merely available: a treatment that ships unreferenced is
+    // the same as no treatment at all.
+    assert!(INDEX.contains("function installSurfaceTreatment()")
+        && INDEX.contains("window.Surfacewear"),
+        "nothing installs a treatment, so every card renders flat");
+}
+
+/// A CITY GETS A REPRESENTATIVE BLOCK, AND SAYS SO.
+///
+/// The town mesh is deliberately NOT on the map symbol. At the 24-32 px the
+/// city layer draws, a baked block is a mush and city-detail.js's drawn
+/// isometric icon beats it outright — the roadmap makes the same point about
+/// abstract information staying crisp UI rather than becoming a 3D prop. It
+/// lives on the card instead, which is a deliberate click with room to read.
+///
+/// The caption is the load-bearing part and is asserted here rather than left
+/// to a reviewer: a settlement drawn beside a real place name is exactly where
+/// someone assumes it is that place's streets. It is not, TownMesh says so in
+/// its own description, and the card must keep saying so too.
+#[test]
+fn a_selected_city_shows_representative_buildings_and_admits_it() {
+    assert!(INDEX.contains("function townBlockFor(city)"),
+        "nothing chooses a block for a city");
+    assert!(INDEX.contains("not a street map of"),
+        "the city vignette has lost the caption that stops it reading as a survey");
+    assert!(INDEX.contains("function registerMeshProviders()"),
+        "the mesh providers are no longer registered from one place");
+    // Bounded on purpose: a unique block per city would rebuild 75,000
+    // triangles on every click and cache without limit.
+    assert!(INDEX.contains("% 8"), "the block pool is no longer bounded");
+}

@@ -25,7 +25,7 @@ const helpers = [
   'productionKind', 'productionStatus', 'productionTone', 'productionProvince',
   'productionProgress', 'productionPriorityChoices', 'productionCanCancel',
   'productionRequirements', 'productionCapabilityPairs', 'productionModuleLabel', 'productionNeedHtml',
-  'productionCardHtml', 'productionSummary', 'productionStartAllowed', 'productionBuiltHtml',
+  'productionCardHtml', 'productionSiteStripHtml', 'productionSite3d', 'siteArtReady', 'productionSummary', 'productionStartAllowed', 'productionBuiltHtml',
   'productionFundingLabel', 'productionCatalogHtml', 'productionEligible', 'productionProvinceHtml',
   'constructionMoney', 'constructionBudgetHtml', 'constructionInvalidatePreview', 'constructionPreviewNoticeHtml',
   'constructionSiteContext', 'constructionProvinceRefusal', 'constructionProvinceMatches', 'constructionProvinceChoices', 'constructionRevealProject',

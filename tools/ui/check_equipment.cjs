@@ -338,7 +338,7 @@ function shellFixture(){
     set innerHTML(value){c.mount.innerHTML=value;},get innerHTML(){return c.mount.innerHTML;},querySelectorAll:selector=>c.mount.querySelectorAll(selector)};
   const nodes={'#equipmentRoom':room,'#equipmentRoot':c.mount,'#app':app,'#techBtn':fallback};c.$=selector=>nodes[selector]||null;
   c.document.activeElement=launch;c.document.querySelector=selector=>nodes[selector]||c.mount.querySelector(selector);c.mount.parentElement=room;
-  c.LOGI={open:false};c.stock={open:false};c.tech={open:false,byId:new Map([['radar',0]]),data:[{id:'radar',domain:'Computing'}]};
+  c.LOGI={open:false};c.stock={open:false};c.gov={open:false};c.tech={open:false,byId:new Map([['radar',0]]),data:[{id:'radar',domain:'Computing'}]};
   for(const name of ['closeGlobalMenus','closeTechMenu','closeSheet','closeGameDrawers','closeLogistics','closeProduction','closeStock','closeTech','closeDomination','setKeysCard'])c[name]=()=>c.calls.push(name);
   c.dominationIsOpen=()=>false;c.keysCardIsOpen=()=>false;c.openConstruction=value=>c.calls.push(['construction',plain(value)]);c.openProduction=()=>c.calls.push('manufacture');c.openStock=()=>c.calls.push('resources');
   c.cashFlowNavigate=value=>{c.calls.push(['budget',plain(value)]);return true;};c.openTech=async domain=>{c.calls.push(['tech',domain]);c.tech.open=true;};

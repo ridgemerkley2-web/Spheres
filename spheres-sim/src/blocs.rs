@@ -1034,9 +1034,9 @@ mod tests {
     /// With the switch off the arm leaves no key in the save and the 1990
     /// start hashes to what this tree produced before the arm existed. The
     /// hash is the tree's ACTUAL, measured on the untouched worktree before the
-    /// first commit of this branch (the golden `the_1990_start_is_pinned` is
-    /// deliberately red at this value while BUGS E-3 is open, and its pin is
-    /// not touched). Watched red by removing `skip_serializing_if` from
+    /// first commit of this branch. E-3 has since been repaired and assessed
+    /// in HEADLESS_BASELINE_2026-09-04.md; its correction leaves this initial
+    /// hash unchanged. Watched red by removing `skip_serializing_if` from
     /// `GovState.regime_bloc`: `"regime_bloc" appears in the default 1990
     /// save`. Watched red again with `seed_blocs` ignoring its switch: the
     /// same key check fired, and the twenty-year hashes below moved (seed 0
@@ -1078,10 +1078,15 @@ mod tests {
     }
 
     /// Twenty years, seeds 0..5, default rules: every hash equals the one the
-    /// untouched tree produces. The six constants were measured on the S1 run
-    /// by building origin/feat/hoi4-map-and-tech from `git archive` into a
-    /// separate CARGO_TARGET_DIR and running the same loop there. That is the
-    /// inertness proof: the OFF world is the world the goldens pin.
+    /// pre-merge tree produces. The S1 constants predated the approved E-3
+    /// productivity-reference correction (TECH_REFERENCE_REPAIR.md), whose
+    /// credited-revelation ledger and corrected later economy change the
+    /// monthly baseline. At integration on 2026-09-07, cdfc6c5 was built from
+    /// `git archive` in a separate CARGO_TARGET_DIR; all six complete saves,
+    /// plus the seed-1990 golden, were BYTE-IDENTICAL to the merged world after
+    /// 240 ticks. These strict constants are that independently measured E-3
+    /// baseline, not a relaxation or a change to the political arm. That is
+    /// the inertness proof: the OFF world is the world the goldens pin.
     ///
     /// Then the switch ON against OFF on seed 1990, Libya in the player's
     /// seat in both (so the one sponsor with a movement to back in January
@@ -1142,12 +1147,12 @@ mod tests {
     #[test]
     fn the_bloc_layer_is_inert_over_time() {
         const BASE: [u64; 6] = [
-            0xdb60bf07873b8b58,
-            0xd355b39ba484cd12,
-            0xd6f543b16b90c72b,
-            0x1a27e07d697ecf36,
-            0x8cd02c837ca851a6,
-            0xa03f4942471b2734,
+            0x8834ad709d4bf805,
+            0xbd3f3e335fb6161c,
+            0x9120a2ff805b184f,
+            0xde17f4fdef2c0d7f,
+            0xeb92ae6a6418b12e,
+            0xef75c8dcbe4335b5,
         ];
         for seed in 0..6u64 {
             let mut w = world_1990(GameRules { seed, ..GameRules::default() });

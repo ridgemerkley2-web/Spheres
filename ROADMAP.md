@@ -15,6 +15,33 @@ purchase. Expand to ammunition, existing equipment, imports and nationally
 important firms before extending more equipment on the old public-production
 path. This is planned work: the current aviation release below is unchanged.
 
+## Art integration — shared catalogue, sites and city previews (2026-09-07)
+
+Integration decisions, final test results and remaining art budget limits are
+recorded in [the integration review](docs/INTEGRATION_2026_09_07.md).
+
+This integration combines the gameplay branch through `fc0f0c2`
+(`feat/hoi4-map-and-tech`) with the art branch through `c2e49c6`
+(`feat/art-p0`). It retains the current equipment-state version 8, physical
+ammunition, tactical aviation and financial ownership rules. Company development,
+company-owned stock and government purchases remain the planned direction above,
+not an implemented consequence of importing the art.
+
+The art work adds detailed ground meshes with component-visible geometry and
+levels of detail, a refined 46-model Arsenal catalogue, thirteen composed
+construction-site types, improved card lighting and surface treatment, and a
+representative town block on the selected-city card. City symbols remain map
+symbols; the block is explicitly not a reconstruction of that city's streets.
+The [asset backlog](docs/art/3D_ASSET_BACKLOG.csv) retains completion and
+integration status separately. Generated [art budgets](docs/art/P0_BUDGETS.md)
+record measured geometry limits, including unresolved over-budget cases; they
+are not browser frame-rate acceptance results.
+
+The globe scatter overlay was withdrawn in `c2e49c6` after the scale measurement
+in [SCATTER_SCALE_FINDING.md](docs/art/SCATTER_SCALE_FINDING.md). Its placement
+module remains tested source without a live globe consumer. This merge does not
+restore the overlay or claim terrain objects are shown at their physical scale.
+
 ## Current implementation — first tactical aviation slice (2026-09-07)
 
 The first part of equipment milestone 5 adds two airframes (light attack and

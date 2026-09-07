@@ -16,6 +16,13 @@ Pausing keeps completed work. Cancellation refunds no sunk cost and retains comp
 
 ## Interactive 3D models
 
+The 7 September art integration combines `feat/hoi4-map-and-tech` through
+`fc0f0c2` with `feat/art-p0` through `c2e49c6`. It adds ground-model detail,
+component-visible geometry and levels of detail while retaining the two current
+aircraft and the simulation-owned design, cost and ammunition rules. See the
+[integration record](ROADMAP.md#art-integration--shared-catalogue-sites-and-city-previews-2026-09-07)
+and [asset backlog](docs/art/3D_ASSET_BACKLOG.csv) for the wider art work and limits.
+
 The Designer displays actual WebGL ground-vehicle and aircraft geometry with perspective, lighting, depth and a ground shadow. Drag to orbit, scroll or pinch to zoom, or use the labelled view controls. With the canvas focused, arrow keys rotate, plus/minus zoom and Home resets the view. Auto rotation is optional and stops rendering while the preview is hidden. Clicking a visible part selects its actual geometry and opens the associated specification; the part selector provides a keyboard alternative.
 
 The nine ground platforms have distinct hulls, running gear and mission fittings. Exterior choices change tracks or wheels, turret or weapon station, engine fixtures, armor, weapons, optics, troop access, scout masts, loading equipment and radar. The original models include individual track links, suspension and wheels, bevelled armor, hatches, grilles, stowage and hollow muzzles. Internal ammunition choices affect game ratings and exported metadata; visible ammunition lockers identify the associated specification. These are fictional representations of game components, not engineering models or reproductions of named historical vehicles.

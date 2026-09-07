@@ -243,6 +243,83 @@ test('the actual load action preserves the live campaign until explicit HTML con
     else assert.equal(f.c.S.session_id,'live');
   }
 });
+function governmentFunction(name){
+  const page=source('index.html'),match=new RegExp('(?:async )?function '+name+'\\(').exec(page);
+  assert(match,name);return page.slice(match.index,page.indexOf('\n}',match.index)+2);
+}
+function governmentFixture(){
+  const f=confirmationFixture(),nodes=new Map(),c=f.c;
+  const node=id=>{if(!nodes.has(id))nodes.set(id,{id,style:{},isConnected:true,tabIndex:0,
+    classList:{contains:()=>false,remove(){}},getClientRects:()=>[1],closest:()=>null,
+    focus(){f.doc.activeElement=this;},querySelectorAll:()=>[],contains:()=>false});return nodes.get(id);};
+  const lookup=c.$;c.$=selector=>lookup(selector)||node(selector.slice(1));
+  c.gov={open:true,nation:'USA',data:null,seq:0,lastFocus:null,busy:false,action:null};c.COVERT_ACTION={pending:null};
+  c.COMMAND_CHANNEL={busy:false,pending:null};c.selected='France';c.adopted=[];c.renders=0;c.reads=0;
+  c.renderGovernment=()=>c.renders++;c.govFetch=()=>c.reads++;c.fillCovertDash=()=>c.reads++;
+  c.adopt=async value=>{c.adopted.push(value);};
+  vm.runInContext(['governmentActionBlocked','govAct','covertAct'].map(governmentFunction).join('\n'),c);
+  f.action={label:'Reviewed action',price:5,command:{kind:'covert',target:'France'}};c.gov.data={mine:true,actions:[f.action]};
+  f.run=kind=>kind==='government'?c.govAct(f.action):c.covertAct(f.action,'France');f.node=node;return f;
+}
+for(const kind of ['government','covert']){
+  test(kind+' waits for explicit consent, blocks duplicate clicks and cancels without sending',async()=>{
+    const f=governmentFixture(),pending=f.run(kind);assert.equal(f.calls.length,0);assert(f.dialog().open);
+    await f.run(kind);assert.equal(f.calls.length,0);
+    f.dialog().querySelector('#campaignConfirmCancel').onclick();await pending;
+    assert.equal(f.calls.length,0);assert.equal(f.c.gov.busy,false);assert.equal(f.c.COVERT_ACTION.pending,null);
+  });
+  test(kind+' sends only the captured reviewed command after confirmation',async()=>{
+    const f=governmentFixture(),pending=f.run(kind);f.action.command.target='Japan';f.action.label='Changed action';
+    f.dialog().querySelector('#campaignConfirmAccept').onclick();await pending;
+    assert.equal(f.calls.length,1);assert.equal(f.calls[0].url,'/api/command');
+    assert.deepEqual(JSON.parse(JSON.stringify(f.calls[0].body)),{commands:[{kind:'covert',target:'France'}]});
+    assert.equal(f.c.adopted.length,1);assert.match(f.messages[0],/^Reviewed action/);
+  });
+  test(kind+' refuses a changed campaign, target or pending order after confirmation',async()=>{
+    for(const change of [f=>f.c.S={...f.c.S},f=>kind==='government'?f.c.gov.nation='Japan':f.c.selected='Japan',f=>f.c.COMMAND_CHANNEL.pending={}]){
+      const f=governmentFixture(),pending=f.run(kind);change(f);
+      f.dialog().querySelector('#campaignConfirmAccept').onclick();await pending;assert.equal(f.calls.length,0);
+    }
+  });
+  test(kind+' cannot adopt an old response into a replacement campaign',async()=>{
+    const f=governmentFixture();let finish;f.c.api=()=>new Promise(resolve=>finish=resolve);
+    const pending=f.run(kind);f.dialog().querySelector('#campaignConfirmAccept').onclick();await Promise.resolve();
+    assert.equal(typeof finish,'function');f.c.S={session_id:'replacement',player:'Japan'};
+    finish({session_id:'live',player:'USA'});await pending;assert.equal(f.c.adopted.length,0);assert.equal(f.messages.length,0);
+  });
+}
+test('Government reset clears campaign readers and late reads cannot repopulate the closed room',async()=>{
+  for(const reject of [false,true]){
+    const f=governmentFixture(),c=f.c;vm.runInContext(['closeGovernment','resetGovernment','govFetch'].map(governmentFunction).join('\n'),c);
+    let finish;c.api=()=>new Promise((resolve,fail)=>finish=reject?fail:resolve);
+    const pending=c.govFetch();c.gov.busy=true;c.gov.action={};c.COVERT_ACTION.pending={};const seq=c.gov.seq;
+    c.resetGovernment();assert.equal(c.gov.open,false);assert.equal(c.gov.nation,null);assert.equal(c.gov.data,null);assert(c.gov.seq>seq);
+    assert.equal(c.gov.busy,false);assert.equal(c.gov.action,null);assert.equal(c.COVERT_ACTION.pending,null);
+    finish(reject?Error('old reader'):{mine:true,actions:[]});await pending;
+    assert.equal(c.gov.data,null);assert.equal(c.renders,0);assert(governmentFunction('resetCampaignUi').includes('resetGovernment();'));
+  }
+});
+test('Government shares room navigation and Tab trapping while reopening retains its launcher',()=>{
+  const f=governmentFixture(),c=f.c;c.stock={open:false};c.tech={open:false};c.PROD={open:false};c.LOGI={open:false};
+  for(const name of ['keysCardIsOpen','dominationIsOpen','cabinetIsOpen','techMenuIsOpen'])c[name]=()=>false;
+  for(const name of ['closeTechMenu','closeSheet'])c[name]=()=>{};
+  f.doc.querySelectorAll=()=>[];c.ARCADE_ROOMS={worldFocus:null};
+  vm.runInContext(['arcadeTopRoom','arcadeTrapTab','closeGameDrawers','closeGovernment','openGovernment'].map(governmentFunction).join('\n'),c);
+  const room=f.node('govScreen'),first=f.node('first'),last=f.node('last'),launcher=f.node('govBtn');
+  room.querySelectorAll=()=>[first,last];room.contains=el=>el===first||el===last;
+  assert.equal(c.arcadeTopRoom(),room);f.doc.activeElement=last;let trapped=0;
+  c.arcadeTrapTab({shiftKey:false,preventDefault(){trapped++;}},room);assert.equal(f.doc.activeElement,first);assert.equal(trapped,1);
+  c.gov.lastFocus=launcher;c.openGovernment('USA');assert.equal(c.gov.lastFocus,launcher);assert.equal(c.gov.open,true);
+  c.closeGameDrawers();assert.equal(c.gov.open,false);assert.equal(f.doc.activeElement,launcher);assert.equal(c.arcadeTopRoom(),null);
+});
+test('covert readers cannot attach old actions after campaign replacement',async()=>{
+  for(const reject of [false,true]){
+    const f=governmentFixture(),c=f.c;vm.runInContext(governmentFunction('fillCovertDash'),c);
+    let finish;c.api=()=>new Promise((resolve,fail)=>finish=reject?fail:resolve);
+    const pending=c.fillCovertDash('France');c.S={session_id:'replacement',player:'Japan'};
+    finish(reject?Error('old reader'):{});await pending;assert.equal(f.node('covertDash').textContent,undefined);
+  }
+});
 test('shipped game actions have no blocking browser confirm calls',()=>{
   for(const file of ['index.html','campaign-ui.js','competition-ui.js'])assert.doesNotMatch(source(file),/(?:window\.)?\bconfirm\(/,file);
 });

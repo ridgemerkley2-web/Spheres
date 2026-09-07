@@ -1,0 +1,1962 @@
+{
+  "milestone": "P0",
+  "convention": {
+    "units": "metres",
+    "axes": "+X right, +Y up, +Z forward",
+    "handedness": "right"
+  },
+  "pipeline": {
+    "authoritative_source": "the deterministic JavaScript generators in spheres-web/ui/",
+    "portable_export": "glTF 2.0 .glb via spheres-web/ui/equipment-export.js (equipment platforms only)",
+    "reverse_leg": "spheres-web/ui/equipment-import.js — GLB back into the runtime mesh shape",
+    "runtime_loader": "runtime geometry is generated locally; no GLB asset fetch or build step is required"
+  },
+  "counts": {
+    "vehicles": 11,
+    "sites": 13,
+    "town_blocks": 5
+  },
+  "vehicles": [
+    {
+      "asset_id": "ground.tank_standard.baseline.v1",
+      "display_name": "Original standard tank game model",
+      "kind": "modular platform",
+      "game_id": "tank_standard",
+      "source": "spheres-web/ui/equipment-mesh.js",
+      "generator": "EquipmentMesh.build({platform})",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "glb": "spheres-web/ui/equipment-models/spheres-tank-balanced.glb",
+      "glb_bytes": 5205632,
+      "regenerate": "node tools/ui/build_equipment_models.cjs",
+      "lod": {
+        "LOD0": 47288,
+        "LOD1": 9425,
+        "LOD2": 1164
+      },
+      "parts": 21,
+      "slots": [
+        "armament",
+        "communications",
+        "mobility",
+        "protection",
+        "sensors"
+      ],
+      "materials": 1,
+      "pivot": "hull centreline, ground contact at Y=0",
+      "bounds": {
+        "min": [
+          -2.073,
+          0,
+          -3.22
+        ],
+        "max": [
+          2.073,
+          3.867,
+          5.68
+        ],
+        "size": [
+          4.146,
+          3.867,
+          8.9
+        ]
+      },
+      "basis": "fictional — original game art, not a named real vehicle",
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_equipment_mesh.cjs, check_equipment_model.cjs, check_equipment_export.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "ground.tank_heavy.baseline.v1",
+      "display_name": "Original heavy tank game model",
+      "kind": "modular platform",
+      "game_id": "tank_heavy",
+      "source": "spheres-web/ui/equipment-mesh.js",
+      "generator": "EquipmentMesh.build({platform})",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "glb": "spheres-web/ui/equipment-models/spheres-tank-heavy.glb",
+      "glb_bytes": 5672220,
+      "regenerate": "node tools/ui/build_equipment_models.cjs",
+      "lod": {
+        "LOD0": 50816,
+        "LOD1": 9010,
+        "LOD2": 1200
+      },
+      "parts": 21,
+      "slots": [
+        "armament",
+        "communications",
+        "mobility",
+        "protection",
+        "sensors"
+      ],
+      "materials": 1,
+      "pivot": "hull centreline, ground contact at Y=0",
+      "bounds": {
+        "min": [
+          -2.328,
+          0,
+          -3.63
+        ],
+        "max": [
+          2.328,
+          3.966,
+          5.68
+        ],
+        "size": [
+          4.656,
+          3.966,
+          9.31
+        ]
+      },
+      "basis": "fictional — original game art, not a named real vehicle",
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_equipment_mesh.cjs, check_equipment_model.cjs, check_equipment_export.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "ground.tank_light.baseline.v1",
+      "display_name": "Original light tank game model",
+      "kind": "modular platform",
+      "game_id": "tank_light",
+      "source": "spheres-web/ui/equipment-mesh.js",
+      "generator": "EquipmentMesh.build({platform})",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "glb": "spheres-web/ui/equipment-models/spheres-tank-light.glb",
+      "glb_bytes": 5207036,
+      "regenerate": "node tools/ui/build_equipment_models.cjs",
+      "lod": {
+        "LOD0": 47288,
+        "LOD1": 9425,
+        "LOD2": 1164
+      },
+      "parts": 21,
+      "slots": [
+        "armament",
+        "communications",
+        "mobility",
+        "protection",
+        "sensors"
+      ],
+      "materials": 1,
+      "pivot": "hull centreline, ground contact at Y=0",
+      "bounds": {
+        "min": [
+          -1.658,
+          0,
+          -2.576
+        ],
+        "max": [
+          1.658,
+          3.093,
+          4.544
+        ],
+        "size": [
+          3.317,
+          3.093,
+          7.12
+        ]
+      },
+      "basis": "fictional — original game art, not a named real vehicle",
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_equipment_mesh.cjs, check_equipment_model.cjs, check_equipment_export.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "ground.tank_destroyer.baseline.v1",
+      "display_name": "Original destroyer tank game model",
+      "kind": "modular platform",
+      "game_id": "tank_destroyer",
+      "source": "spheres-web/ui/equipment-mesh.js",
+      "generator": "EquipmentMesh.build({platform})",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "glb": "spheres-web/ui/equipment-models/spheres-tank-destroyer.glb",
+      "glb_bytes": 5150368,
+      "regenerate": "node tools/ui/build_equipment_models.cjs",
+      "lod": {
+        "LOD0": 47288,
+        "LOD1": 9425,
+        "LOD2": 1164
+      },
+      "parts": 21,
+      "slots": [
+        "armament",
+        "communications",
+        "mobility",
+        "protection",
+        "sensors"
+      ],
+      "materials": 1,
+      "pivot": "hull centreline, ground contact at Y=0",
+      "bounds": {
+        "min": [
+          -2.073,
+          0,
+          -3.22
+        ],
+        "max": [
+          2.073,
+          3.867,
+          5.68
+        ],
+        "size": [
+          4.146,
+          3.867,
+          8.9
+        ]
+      },
+      "basis": "fictional — original game art, not a named real vehicle",
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_equipment_mesh.cjs, check_equipment_model.cjs, check_equipment_export.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "ground.ground_ifv.baseline.v1",
+      "display_name": "Visual interpretation of a fictional tracked infantry fighting vehicle",
+      "kind": "modular platform",
+      "game_id": "ground_ifv",
+      "source": "spheres-web/ui/equipment-mesh.js",
+      "generator": "EquipmentMesh.build({platform})",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "glb": "spheres-web/ui/equipment-models/spheres-ground-ifv.glb",
+      "glb_bytes": 2246056,
+      "regenerate": "node tools/ui/build_equipment_models.cjs",
+      "lod": {
+        "LOD0": 20746,
+        "LOD1": 5828,
+        "LOD2": 1120
+      },
+      "parts": 28,
+      "slots": [
+        "active_protection",
+        "ammunition",
+        "armament",
+        "communications",
+        "fire_control",
+        "mobility",
+        "protection",
+        "sensors",
+        "suspension",
+        "tracks",
+        "transmission",
+        "troop_compartment",
+        "turret"
+      ],
+      "materials": 1,
+      "pivot": "hull centreline, ground contact at Y=0",
+      "bounds": {
+        "min": [
+          -1.608,
+          0,
+          -3.095
+        ],
+        "max": [
+          1.608,
+          2.84,
+          3.35
+        ],
+        "size": [
+          3.215,
+          2.84,
+          6.445
+        ]
+      },
+      "basis": "fictional — original game art, not a named real vehicle",
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_equipment_mesh.cjs, check_equipment_model.cjs, check_equipment_export.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "ground.ground_apc.baseline.v1",
+      "display_name": "Visual interpretation of a fictional wheeled armored personnel carrier",
+      "kind": "modular platform",
+      "game_id": "ground_apc",
+      "source": "spheres-web/ui/equipment-mesh.js",
+      "generator": "EquipmentMesh.build({platform})",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "glb": "spheres-web/ui/equipment-models/spheres-ground-apc.glb",
+      "glb_bytes": 2241464,
+      "regenerate": "node tools/ui/build_equipment_models.cjs",
+      "lod": {
+        "LOD0": 20710,
+        "LOD1": 4675,
+        "LOD2": 942
+      },
+      "parts": 22,
+      "slots": [
+        "active_protection",
+        "ammunition",
+        "armament",
+        "communications",
+        "fire_control",
+        "mobility",
+        "protection",
+        "sensors",
+        "suspension",
+        "transmission",
+        "troop_compartment",
+        "turret",
+        "wheels"
+      ],
+      "materials": 1,
+      "pivot": "hull centreline, ground contact at Y=0",
+      "bounds": {
+        "min": [
+          -1.49,
+          0,
+          -2.97
+        ],
+        "max": [
+          1.49,
+          3.015,
+          2.91
+        ],
+        "size": [
+          2.98,
+          3.015,
+          5.88
+        ]
+      },
+      "basis": "fictional — original game art, not a named real vehicle",
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_equipment_mesh.cjs, check_equipment_model.cjs, check_equipment_export.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "ground.ground_recon.baseline.v1",
+      "display_name": "Visual interpretation of a fictional wheeled reconnaissance vehicle",
+      "kind": "modular platform",
+      "game_id": "ground_recon",
+      "source": "spheres-web/ui/equipment-mesh.js",
+      "generator": "EquipmentMesh.build({platform})",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "glb": "spheres-web/ui/equipment-models/spheres-ground-recon.glb",
+      "glb_bytes": 1993904,
+      "regenerate": "node tools/ui/build_equipment_models.cjs",
+      "lod": {
+        "LOD0": 18418,
+        "LOD1": 4984,
+        "LOD2": 932
+      },
+      "parts": 22,
+      "slots": [
+        "active_protection",
+        "ammunition",
+        "armament",
+        "communications",
+        "fire_control",
+        "mobility",
+        "protection",
+        "recon_package",
+        "sensors",
+        "suspension",
+        "transmission",
+        "turret",
+        "wheels"
+      ],
+      "materials": 1,
+      "pivot": "hull centreline, ground contact at Y=0",
+      "bounds": {
+        "min": [
+          -1.36,
+          0,
+          -2.225
+        ],
+        "max": [
+          1.36,
+          2.705,
+          2.385
+        ],
+        "size": [
+          2.72,
+          2.705,
+          4.61
+        ]
+      },
+      "basis": "fictional — original game art, not a named real vehicle",
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_equipment_mesh.cjs, check_equipment_model.cjs, check_equipment_export.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "ground.ground_artillery.baseline.v1",
+      "display_name": "Visual interpretation of a fictional self-propelled artillery",
+      "kind": "modular platform",
+      "game_id": "ground_artillery",
+      "source": "spheres-web/ui/equipment-mesh.js",
+      "generator": "EquipmentMesh.build({platform})",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "glb": "spheres-web/ui/equipment-models/spheres-ground-artillery.glb",
+      "glb_bytes": 2254492,
+      "regenerate": "node tools/ui/build_equipment_models.cjs",
+      "lod": {
+        "LOD0": 20822,
+        "LOD1": 6050,
+        "LOD2": 1092
+      },
+      "parts": 30,
+      "slots": [
+        "active_protection",
+        "ammunition",
+        "armament",
+        "artillery_loader",
+        "communications",
+        "fire_control",
+        "mobility",
+        "protection",
+        "sensors",
+        "suspension",
+        "tracks",
+        "transmission",
+        "turret"
+      ],
+      "materials": 1,
+      "pivot": "hull centreline, ground contact at Y=0",
+      "bounds": {
+        "min": [
+          -1.757,
+          0,
+          -3.675
+        ],
+        "max": [
+          1.758,
+          3.139,
+          3.95
+        ],
+        "size": [
+          3.515,
+          3.139,
+          7.625
+        ]
+      },
+      "basis": "fictional — original game art, not a named real vehicle",
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_equipment_mesh.cjs, check_equipment_model.cjs, check_equipment_export.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "ground.ground_air_defense.baseline.v1",
+      "display_name": "Visual interpretation of a fictional mobile air-defense vehicle",
+      "kind": "modular platform",
+      "game_id": "ground_air_defense",
+      "source": "spheres-web/ui/equipment-mesh.js",
+      "generator": "EquipmentMesh.build({platform})",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "glb": "spheres-web/ui/equipment-models/spheres-ground-air-defense.glb",
+      "glb_bytes": 2052020,
+      "regenerate": "node tools/ui/build_equipment_models.cjs",
+      "lod": {
+        "LOD0": 18950,
+        "LOD1": 5590,
+        "LOD2": 1040
+      },
+      "parts": 28,
+      "slots": [
+        "active_protection",
+        "ammunition",
+        "armament",
+        "communications",
+        "fire_control",
+        "mobility",
+        "protection",
+        "radar",
+        "sensors",
+        "suspension",
+        "tracks",
+        "transmission",
+        "turret"
+      ],
+      "materials": 1,
+      "pivot": "hull centreline, ground contact at Y=0",
+      "bounds": {
+        "min": [
+          -1.608,
+          0,
+          -2.875
+        ],
+        "max": [
+          1.608,
+          3.599,
+          3.06
+        ],
+        "size": [
+          3.215,
+          3.599,
+          5.935
+        ]
+      },
+      "basis": "fictional — original game art, not a named real vehicle",
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_equipment_mesh.cjs, check_equipment_model.cjs, check_equipment_export.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "aviation.air_light_attack.baseline.v1",
+      "display_name": "Visual interpretation of an original light attack aircraft",
+      "kind": "modular platform",
+      "game_id": "air_light_attack",
+      "source": "spheres-web/ui/equipment-mesh.js",
+      "generator": "EquipmentMesh.build({platform})",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "glb": "spheres-web/ui/equipment-models/spheres-air-light-attack.glb",
+      "glb_bytes": 1248352,
+      "regenerate": "node tools/ui/build_equipment_models.cjs",
+      "lod": {
+        "LOD0": 11524
+      },
+      "parts": 16,
+      "slots": [
+        "air_avionics",
+        "air_countermeasures",
+        "air_engine",
+        "air_fuel",
+        "air_hardpoints",
+        "air_payload",
+        "air_radar",
+        "air_wing"
+      ],
+      "materials": 1,
+      "pivot": "airframe centreline, parked landing-gear contact at Y=0",
+      "bounds": {
+        "min": [
+          -5.22,
+          0,
+          -6.092
+        ],
+        "max": [
+          5.22,
+          3.352,
+          6.638
+        ],
+        "size": [
+          10.44,
+          3.352,
+          12.73
+        ]
+      },
+      "basis": "fictional — original game art, not a named real vehicle",
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_equipment_mesh.cjs, check_equipment_model.cjs, check_equipment_export.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "aviation.air_tactical_strike.baseline.v1",
+      "display_name": "Visual interpretation of an original twin-seat tactical strike aircraft",
+      "kind": "modular platform",
+      "game_id": "air_tactical_strike",
+      "source": "spheres-web/ui/equipment-mesh.js",
+      "generator": "EquipmentMesh.build({platform})",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "glb": "spheres-web/ui/equipment-models/spheres-air-tactical-strike.glb",
+      "glb_bytes": 1594104,
+      "regenerate": "node tools/ui/build_equipment_models.cjs",
+      "lod": {
+        "LOD0": 14724
+      },
+      "parts": 17,
+      "slots": [
+        "air_avionics",
+        "air_countermeasures",
+        "air_engine",
+        "air_fuel",
+        "air_hardpoints",
+        "air_payload",
+        "air_radar",
+        "air_wing"
+      ],
+      "materials": 1,
+      "pivot": "airframe centreline, parked landing-gear contact at Y=0",
+      "bounds": {
+        "min": [
+          -6.22,
+          0,
+          -8.542
+        ],
+        "max": [
+          6.22,
+          4.082,
+          9.188
+        ],
+        "size": [
+          12.44,
+          4.082,
+          17.73
+        ]
+      },
+      "basis": "fictional — original game art, not a named real vehicle",
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_equipment_mesh.cjs, check_equipment_model.cjs, check_equipment_export.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    }
+  ],
+  "sites": [
+    {
+      "asset_id": "site.infrastructure.v1",
+      "display_name": "Infrastructure works",
+      "kind": "facility assembly (staged)",
+      "game_id": "infrastructure",
+      "game_id_source": "spheres-sim/src/production.rs PROJECT_KINDS",
+      "source": "spheres-web/ui/site-mesh.js",
+      "generator": "SiteMesh.build(kind, stageOrProgress, {level, status, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'site' provider; card strip in productionCardHtml",
+      "glb": null,
+      "regenerate": "none — built in the browser from source",
+      "stages": [
+        {
+          "key": "site",
+          "name": "Site establishment",
+          "from": 0,
+          "to": 0.12
+        },
+        {
+          "key": "foundation",
+          "name": "Foundations",
+          "from": 0.12,
+          "to": 0.34
+        },
+        {
+          "key": "frame",
+          "name": "Structural frame",
+          "from": 0.34,
+          "to": 0.62
+        },
+        {
+          "key": "enclosed",
+          "name": "Enclosed and commissioning",
+          "from": 0.62,
+          "to": 1
+        },
+        {
+          "key": "complete",
+          "name": "Complete",
+          "from": 1,
+          "to": 1
+        }
+      ],
+      "lod": {
+        "LOD0": {
+          "min": 8846,
+          "max": 23496
+        },
+        "LOD1": {
+          "min": 244,
+          "max": 708
+        }
+      },
+      "parts": 28,
+      "materials": "vertex colour only",
+      "pivot": "footprint centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -32,
+          0,
+          -23
+        ],
+        "max": [
+          32,
+          11.78,
+          23
+        ],
+        "size": [
+          64,
+          11.78,
+          46
+        ]
+      },
+      "basis": "fictional — representative industrial scenery, no sourced building",
+      "placeholder": false,
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_site_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "site.civilian_industry.v1",
+      "display_name": "Civilian industry",
+      "kind": "facility assembly (staged)",
+      "game_id": "civilian_industry",
+      "game_id_source": "spheres-sim/src/production.rs PROJECT_KINDS",
+      "source": "spheres-web/ui/site-mesh.js",
+      "generator": "SiteMesh.build(kind, stageOrProgress, {level, status, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'site' provider; card strip in productionCardHtml",
+      "glb": null,
+      "regenerate": "none — built in the browser from source",
+      "stages": [
+        {
+          "key": "site",
+          "name": "Site establishment",
+          "from": 0,
+          "to": 0.12
+        },
+        {
+          "key": "foundation",
+          "name": "Foundations",
+          "from": 0.12,
+          "to": 0.34
+        },
+        {
+          "key": "frame",
+          "name": "Structural frame",
+          "from": 0.34,
+          "to": 0.62
+        },
+        {
+          "key": "enclosed",
+          "name": "Enclosed and commissioning",
+          "from": 0.62,
+          "to": 1
+        },
+        {
+          "key": "complete",
+          "name": "Complete",
+          "from": 1,
+          "to": 1
+        }
+      ],
+      "lod": {
+        "LOD0": {
+          "min": 8066,
+          "max": 32042
+        },
+        "LOD1": {
+          "min": 180,
+          "max": 546
+        }
+      },
+      "parts": 35,
+      "materials": "vertex colour only",
+      "pivot": "footprint centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -33,
+          0,
+          -23
+        ],
+        "max": [
+          33,
+          14.19,
+          23.16
+        ],
+        "size": [
+          66,
+          14.19,
+          46.16
+        ]
+      },
+      "basis": "fictional — representative industrial scenery, no sourced building",
+      "placeholder": false,
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_site_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "site.power_grid.v1",
+      "display_name": "Power grid",
+      "kind": "facility assembly (staged)",
+      "game_id": "power_grid",
+      "game_id_source": "spheres-sim/src/production.rs PROJECT_KINDS",
+      "source": "spheres-web/ui/site-mesh.js",
+      "generator": "SiteMesh.build(kind, stageOrProgress, {level, status, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'site' provider; card strip in productionCardHtml",
+      "glb": null,
+      "regenerate": "none — built in the browser from source",
+      "stages": [
+        {
+          "key": "site",
+          "name": "Site establishment",
+          "from": 0,
+          "to": 0.12
+        },
+        {
+          "key": "foundation",
+          "name": "Foundations",
+          "from": 0.12,
+          "to": 0.34
+        },
+        {
+          "key": "frame",
+          "name": "Structural frame",
+          "from": 0.34,
+          "to": 0.62
+        },
+        {
+          "key": "enclosed",
+          "name": "Enclosed and commissioning",
+          "from": 0.62,
+          "to": 1
+        },
+        {
+          "key": "complete",
+          "name": "Complete",
+          "from": 1,
+          "to": 1
+        }
+      ],
+      "lod": {
+        "LOD0": {
+          "min": 9390,
+          "max": 31292
+        },
+        "LOD1": {
+          "min": 276,
+          "max": 664
+        }
+      },
+      "parts": 27,
+      "materials": "vertex colour only",
+      "pivot": "footprint centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -33,
+          0,
+          -24
+        ],
+        "max": [
+          33,
+          24.2,
+          24
+        ],
+        "size": [
+          66,
+          24.2,
+          48
+        ]
+      },
+      "basis": "fictional — representative industrial scenery, no sourced building",
+      "placeholder": false,
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_site_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "site.research_center.v1",
+      "display_name": "Research centre",
+      "kind": "facility assembly (staged)",
+      "game_id": "research_center",
+      "game_id_source": "spheres-sim/src/production.rs PROJECT_KINDS",
+      "source": "spheres-web/ui/site-mesh.js",
+      "generator": "SiteMesh.build(kind, stageOrProgress, {level, status, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'site' provider; card strip in productionCardHtml",
+      "glb": null,
+      "regenerate": "none — built in the browser from source",
+      "stages": [
+        {
+          "key": "site",
+          "name": "Site establishment",
+          "from": 0,
+          "to": 0.12
+        },
+        {
+          "key": "foundation",
+          "name": "Foundations",
+          "from": 0.12,
+          "to": 0.34
+        },
+        {
+          "key": "frame",
+          "name": "Structural frame",
+          "from": 0.34,
+          "to": 0.62
+        },
+        {
+          "key": "enclosed",
+          "name": "Enclosed and commissioning",
+          "from": 0.62,
+          "to": 1
+        },
+        {
+          "key": "complete",
+          "name": "Complete",
+          "from": 1,
+          "to": 1
+        }
+      ],
+      "lod": {
+        "LOD0": {
+          "min": 8066,
+          "max": 25520
+        },
+        "LOD1": {
+          "min": 180,
+          "max": 532
+        }
+      },
+      "parts": 27,
+      "materials": "vertex colour only",
+      "pivot": "footprint centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -33,
+          0,
+          -23
+        ],
+        "max": [
+          33,
+          15.7,
+          23.18
+        ],
+        "size": [
+          66,
+          15.7,
+          46.18
+        ]
+      },
+      "basis": "fictional — representative industrial scenery, no sourced building",
+      "placeholder": false,
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_site_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "site.arms_plant.v1",
+      "display_name": "Arms plant",
+      "kind": "facility assembly (staged)",
+      "game_id": "arms_plant",
+      "game_id_source": "spheres-sim/src/production.rs PROJECT_KINDS",
+      "source": "spheres-web/ui/site-mesh.js",
+      "generator": "SiteMesh.build(kind, stageOrProgress, {level, status, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'site' provider; card strip in productionCardHtml",
+      "glb": null,
+      "regenerate": "none — built in the browser from source",
+      "stages": [
+        {
+          "key": "site",
+          "name": "Site establishment",
+          "from": 0,
+          "to": 0.12
+        },
+        {
+          "key": "foundation",
+          "name": "Foundations",
+          "from": 0.12,
+          "to": 0.34
+        },
+        {
+          "key": "frame",
+          "name": "Structural frame",
+          "from": 0.34,
+          "to": 0.62
+        },
+        {
+          "key": "enclosed",
+          "name": "Enclosed and commissioning",
+          "from": 0.62,
+          "to": 1
+        },
+        {
+          "key": "complete",
+          "name": "Complete",
+          "from": 1,
+          "to": 1
+        }
+      ],
+      "lod": {
+        "LOD0": {
+          "min": 8202,
+          "max": 28376
+        },
+        "LOD1": {
+          "min": 180,
+          "max": 422
+        }
+      },
+      "parts": 26,
+      "materials": "vertex colour only",
+      "pivot": "footprint centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -33,
+          0,
+          -24
+        ],
+        "max": [
+          33.2,
+          17.6,
+          24
+        ],
+        "size": [
+          66.2,
+          17.6,
+          48
+        ]
+      },
+      "basis": "fictional — representative industrial scenery, no sourced building",
+      "placeholder": false,
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_site_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "site.machinery_works.v1",
+      "display_name": "Machinery works",
+      "kind": "facility assembly (staged)",
+      "game_id": "machinery_works",
+      "game_id_source": "spheres-sim/src/production.rs PROJECT_KINDS",
+      "source": "spheres-web/ui/site-mesh.js",
+      "generator": "SiteMesh.build(kind, stageOrProgress, {level, status, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'site' provider; card strip in productionCardHtml",
+      "glb": null,
+      "regenerate": "none — built in the browser from source",
+      "stages": [
+        {
+          "key": "site",
+          "name": "Site establishment",
+          "from": 0,
+          "to": 0.12
+        },
+        {
+          "key": "foundation",
+          "name": "Foundations",
+          "from": 0.12,
+          "to": 0.34
+        },
+        {
+          "key": "frame",
+          "name": "Structural frame",
+          "from": 0.34,
+          "to": 0.62
+        },
+        {
+          "key": "enclosed",
+          "name": "Enclosed and commissioning",
+          "from": 0.62,
+          "to": 1
+        },
+        {
+          "key": "complete",
+          "name": "Complete",
+          "from": 1,
+          "to": 1
+        }
+      ],
+      "lod": {
+        "LOD0": {
+          "min": 9366,
+          "max": 30468
+        },
+        "LOD1": {
+          "min": 204,
+          "max": 582
+        }
+      },
+      "parts": 32,
+      "materials": "vertex colour only",
+      "pivot": "footprint centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -33,
+          0,
+          -24
+        ],
+        "max": [
+          33,
+          16.79,
+          24
+        ],
+        "size": [
+          66,
+          16.79,
+          48
+        ]
+      },
+      "basis": "fictional — representative industrial scenery, no sourced building",
+      "placeholder": false,
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_site_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "site.generation.v1",
+      "display_name": "Generation plant",
+      "kind": "facility assembly (staged)",
+      "game_id": "generation",
+      "game_id_source": "spheres-sim/src/production.rs PROJECT_KINDS",
+      "source": "spheres-web/ui/site-mesh.js",
+      "generator": "SiteMesh.build(kind, stageOrProgress, {level, status, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'site' provider; card strip in productionCardHtml",
+      "glb": null,
+      "regenerate": "none — built in the browser from source",
+      "stages": [
+        {
+          "key": "site",
+          "name": "Site establishment",
+          "from": 0,
+          "to": 0.12
+        },
+        {
+          "key": "foundation",
+          "name": "Foundations",
+          "from": 0.12,
+          "to": 0.34
+        },
+        {
+          "key": "frame",
+          "name": "Structural frame",
+          "from": 0.34,
+          "to": 0.62
+        },
+        {
+          "key": "enclosed",
+          "name": "Enclosed and commissioning",
+          "from": 0.62,
+          "to": 1
+        },
+        {
+          "key": "complete",
+          "name": "Complete",
+          "from": 1,
+          "to": 1
+        }
+      ],
+      "lod": {
+        "LOD0": {
+          "min": 8394,
+          "max": 31760
+        },
+        "LOD1": {
+          "min": 196,
+          "max": 648
+        }
+      },
+      "parts": 32,
+      "materials": "vertex colour only",
+      "pivot": "footprint centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -35,
+          0,
+          -25
+        ],
+        "max": [
+          35,
+          22.7,
+          25
+        ],
+        "size": [
+          70,
+          22.7,
+          50
+        ]
+      },
+      "basis": "fictional — representative industrial scenery, no sourced building",
+      "placeholder": false,
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_site_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "site.processing_plant.v1",
+      "display_name": "Processing plant",
+      "kind": "facility assembly (staged)",
+      "game_id": "processing_plant",
+      "game_id_source": "spheres-sim/src/production.rs PROJECT_KINDS",
+      "source": "spheres-web/ui/site-mesh.js",
+      "generator": "SiteMesh.build(kind, stageOrProgress, {level, status, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'site' provider; card strip in productionCardHtml",
+      "glb": null,
+      "regenerate": "none — built in the browser from source",
+      "stages": [
+        {
+          "key": "site",
+          "name": "Site establishment",
+          "from": 0,
+          "to": 0.12
+        },
+        {
+          "key": "foundation",
+          "name": "Foundations",
+          "from": 0.12,
+          "to": 0.34
+        },
+        {
+          "key": "frame",
+          "name": "Structural frame",
+          "from": 0.34,
+          "to": 0.62
+        },
+        {
+          "key": "enclosed",
+          "name": "Enclosed and commissioning",
+          "from": 0.62,
+          "to": 1
+        },
+        {
+          "key": "complete",
+          "name": "Complete",
+          "from": 1,
+          "to": 1
+        }
+      ],
+      "lod": {
+        "LOD0": {
+          "min": 8746,
+          "max": 27510
+        },
+        "LOD1": {
+          "min": 220,
+          "max": 640
+        }
+      },
+      "parts": 28,
+      "materials": "vertex colour only",
+      "pivot": "footprint centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -34,
+          0,
+          -24
+        ],
+        "max": [
+          34,
+          22.7,
+          24
+        ],
+        "size": [
+          68,
+          22.7,
+          48
+        ]
+      },
+      "basis": "fictional — representative industrial scenery, no sourced building",
+      "placeholder": false,
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_site_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "site.freight_terminal.v1",
+      "display_name": "Freight terminal",
+      "kind": "facility assembly (staged)",
+      "game_id": "freight_terminal",
+      "game_id_source": "spheres-sim/src/production.rs PROJECT_KINDS",
+      "source": "spheres-web/ui/site-mesh.js",
+      "generator": "SiteMesh.build(kind, stageOrProgress, {level, status, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'site' provider; card strip in productionCardHtml",
+      "glb": null,
+      "regenerate": "none — built in the browser from source",
+      "stages": [
+        {
+          "key": "site",
+          "name": "Site establishment",
+          "from": 0,
+          "to": 0.12
+        },
+        {
+          "key": "foundation",
+          "name": "Foundations",
+          "from": 0.12,
+          "to": 0.34
+        },
+        {
+          "key": "frame",
+          "name": "Structural frame",
+          "from": 0.34,
+          "to": 0.62
+        },
+        {
+          "key": "enclosed",
+          "name": "Enclosed and commissioning",
+          "from": 0.62,
+          "to": 1
+        },
+        {
+          "key": "complete",
+          "name": "Complete",
+          "from": 1,
+          "to": 1
+        }
+      ],
+      "lod": {
+        "LOD0": {
+          "min": 8802,
+          "max": 29026
+        },
+        "LOD1": {
+          "min": 198,
+          "max": 674
+        }
+      },
+      "parts": 26,
+      "materials": "vertex colour only",
+      "pivot": "footprint centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -36,
+          0,
+          -25
+        ],
+        "max": [
+          36,
+          13.9,
+          25
+        ],
+        "size": [
+          72,
+          13.9,
+          50
+        ]
+      },
+      "basis": "fictional — representative industrial scenery, no sourced building",
+      "placeholder": false,
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_site_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "site.warehouse.v1",
+      "display_name": "Warehouse",
+      "kind": "facility assembly (staged)",
+      "game_id": "warehouse",
+      "game_id_source": "spheres-sim/src/production.rs PROJECT_KINDS",
+      "source": "spheres-web/ui/site-mesh.js",
+      "generator": "SiteMesh.build(kind, stageOrProgress, {level, status, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'site' provider; card strip in productionCardHtml",
+      "glb": null,
+      "regenerate": "none — built in the browser from source",
+      "stages": [
+        {
+          "key": "site",
+          "name": "Site establishment",
+          "from": 0,
+          "to": 0.12
+        },
+        {
+          "key": "foundation",
+          "name": "Foundations",
+          "from": 0.12,
+          "to": 0.34
+        },
+        {
+          "key": "frame",
+          "name": "Structural frame",
+          "from": 0.34,
+          "to": 0.62
+        },
+        {
+          "key": "enclosed",
+          "name": "Enclosed and commissioning",
+          "from": 0.62,
+          "to": 1
+        },
+        {
+          "key": "complete",
+          "name": "Complete",
+          "from": 1,
+          "to": 1
+        }
+      ],
+      "lod": {
+        "LOD0": {
+          "min": 8560,
+          "max": 26746
+        },
+        "LOD1": {
+          "min": 188,
+          "max": 566
+        }
+      },
+      "parts": 25,
+      "materials": "vertex colour only",
+      "pivot": "footprint centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -35,
+          0,
+          -24
+        ],
+        "max": [
+          35,
+          16.39,
+          24
+        ],
+        "size": [
+          70,
+          16.39,
+          48
+        ]
+      },
+      "basis": "fictional — representative industrial scenery, no sourced building",
+      "placeholder": false,
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_site_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "site.automation.v1",
+      "display_name": "Automation retrofit",
+      "kind": "facility assembly (staged)",
+      "game_id": "automation",
+      "game_id_source": "spheres-sim/src/production.rs PROJECT_KINDS",
+      "source": "spheres-web/ui/site-mesh.js",
+      "generator": "SiteMesh.build(kind, stageOrProgress, {level, status, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'site' provider; card strip in productionCardHtml",
+      "glb": null,
+      "regenerate": "none — built in the browser from source",
+      "stages": [
+        {
+          "key": "site",
+          "name": "Site establishment",
+          "from": 0,
+          "to": 0.12
+        },
+        {
+          "key": "foundation",
+          "name": "Foundations",
+          "from": 0.12,
+          "to": 0.34
+        },
+        {
+          "key": "frame",
+          "name": "Structural frame",
+          "from": 0.34,
+          "to": 0.62
+        },
+        {
+          "key": "enclosed",
+          "name": "Enclosed and commissioning",
+          "from": 0.62,
+          "to": 1
+        },
+        {
+          "key": "complete",
+          "name": "Complete",
+          "from": 1,
+          "to": 1
+        }
+      ],
+      "lod": {
+        "LOD0": {
+          "min": 9044,
+          "max": 26056
+        },
+        "LOD1": {
+          "min": 220,
+          "max": 610
+        }
+      },
+      "parts": 27,
+      "materials": "vertex colour only",
+      "pivot": "footprint centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -31,
+          0,
+          -22
+        ],
+        "max": [
+          31,
+          11.78,
+          22
+        ],
+        "size": [
+          62,
+          11.78,
+          44
+        ]
+      },
+      "basis": "fictional — representative industrial scenery, no sourced building",
+      "placeholder": false,
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_site_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "site.efficiency.v1",
+      "display_name": "Efficiency retrofit",
+      "kind": "facility assembly (staged)",
+      "game_id": "efficiency",
+      "game_id_source": "spheres-sim/src/production.rs PROJECT_KINDS",
+      "source": "spheres-web/ui/site-mesh.js",
+      "generator": "SiteMesh.build(kind, stageOrProgress, {level, status, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'site' provider; card strip in productionCardHtml",
+      "glb": null,
+      "regenerate": "none — built in the browser from source",
+      "stages": [
+        {
+          "key": "site",
+          "name": "Site establishment",
+          "from": 0,
+          "to": 0.12
+        },
+        {
+          "key": "foundation",
+          "name": "Foundations",
+          "from": 0.12,
+          "to": 0.34
+        },
+        {
+          "key": "frame",
+          "name": "Structural frame",
+          "from": 0.34,
+          "to": 0.62
+        },
+        {
+          "key": "enclosed",
+          "name": "Enclosed and commissioning",
+          "from": 0.62,
+          "to": 1
+        },
+        {
+          "key": "complete",
+          "name": "Complete",
+          "from": 1,
+          "to": 1
+        }
+      ],
+      "lod": {
+        "LOD0": {
+          "min": 8882,
+          "max": 25796
+        },
+        "LOD1": {
+          "min": 208,
+          "max": 682
+        }
+      },
+      "parts": 30,
+      "materials": "vertex colour only",
+      "pivot": "footprint centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -31,
+          0,
+          -22
+        ],
+        "max": [
+          31,
+          11.78,
+          22
+        ],
+        "size": [
+          62,
+          11.78,
+          44
+        ]
+      },
+      "basis": "fictional — representative industrial scenery, no sourced building",
+      "placeholder": false,
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_site_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "site.starter_industry.v1",
+      "display_name": "Starter industry",
+      "kind": "facility assembly (staged)",
+      "game_id": "starter_industry",
+      "game_id_source": "spheres-sim/src/production.rs PROJECT_KINDS",
+      "source": "spheres-web/ui/site-mesh.js",
+      "generator": "SiteMesh.build(kind, stageOrProgress, {level, status, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'site' provider; card strip in productionCardHtml",
+      "glb": null,
+      "regenerate": "none — built in the browser from source",
+      "stages": [
+        {
+          "key": "site",
+          "name": "Site establishment",
+          "from": 0,
+          "to": 0.12
+        },
+        {
+          "key": "foundation",
+          "name": "Foundations",
+          "from": 0.12,
+          "to": 0.34
+        },
+        {
+          "key": "frame",
+          "name": "Structural frame",
+          "from": 0.34,
+          "to": 0.62
+        },
+        {
+          "key": "enclosed",
+          "name": "Enclosed and commissioning",
+          "from": 0.62,
+          "to": 1
+        },
+        {
+          "key": "complete",
+          "name": "Complete",
+          "from": 1,
+          "to": 1
+        }
+      ],
+      "lod": {
+        "LOD0": {
+          "min": 7250,
+          "max": 22388
+        },
+        "LOD1": {
+          "min": 164,
+          "max": 494
+        }
+      },
+      "parts": 25,
+      "materials": "vertex colour only",
+      "pivot": "footprint centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -25,
+          0,
+          -19
+        ],
+        "max": [
+          25.56,
+          11.78,
+          19
+        ],
+        "size": [
+          50.56,
+          11.78,
+          38
+        ]
+      },
+      "basis": "fictional — representative industrial scenery, no sourced building",
+      "placeholder": false,
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_site_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    }
+  ],
+  "town_blocks": [
+    {
+      "asset_id": "town.temperate.mixed.v1",
+      "display_name": "Temperate town block — mixed",
+      "kind": "scene assembly",
+      "game_id": "visual_only",
+      "source": "spheres-web/ui/town-mesh.js",
+      "generator": "TownMesh.block({id, district, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
+      "glb": null,
+      "lod": {
+        "LOD0": 198462,
+        "LOD1": 3422
+      },
+      "parts": 18,
+      "lots": 16,
+      "materials": "vertex colour only",
+      "pivot": "tile centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -74,
+          0,
+          -52
+        ],
+        "max": [
+          74,
+          15.595,
+          52
+        ],
+        "size": [
+          148,
+          15.595,
+          104
+        ]
+      },
+      "basis": "representative — plausible 1990 temperate massing, not a reconstruction of any real town",
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_town_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "town.temperate.residential.v1",
+      "display_name": "Temperate town block — residential",
+      "kind": "scene assembly",
+      "game_id": "visual_only",
+      "source": "spheres-web/ui/town-mesh.js",
+      "generator": "TownMesh.block({id, district, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
+      "glb": null,
+      "lod": {
+        "LOD0": 212820,
+        "LOD1": 3330
+      },
+      "parts": 17,
+      "lots": 15,
+      "materials": "vertex colour only",
+      "pivot": "tile centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -74,
+          0,
+          -52
+        ],
+        "max": [
+          74,
+          15.155,
+          52
+        ],
+        "size": [
+          148,
+          15.155,
+          104
+        ]
+      },
+      "basis": "representative — plausible 1990 temperate massing, not a reconstruction of any real town",
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_town_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "town.temperate.commercial.v1",
+      "display_name": "Temperate town block — commercial",
+      "kind": "scene assembly",
+      "game_id": "visual_only",
+      "source": "spheres-web/ui/town-mesh.js",
+      "generator": "TownMesh.block({id, district, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
+      "glb": null,
+      "lod": {
+        "LOD0": 132360,
+        "LOD1": 3012
+      },
+      "parts": 16,
+      "lots": 14,
+      "materials": "vertex colour only",
+      "pivot": "tile centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -74,
+          0,
+          -52
+        ],
+        "max": [
+          74,
+          23.68,
+          52
+        ],
+        "size": [
+          148,
+          23.68,
+          104
+        ]
+      },
+      "basis": "representative — plausible 1990 temperate massing, not a reconstruction of any real town",
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_town_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "town.temperate.civic.v1",
+      "display_name": "Temperate town block — civic",
+      "kind": "scene assembly",
+      "game_id": "visual_only",
+      "source": "spheres-web/ui/town-mesh.js",
+      "generator": "TownMesh.block({id, district, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
+      "glb": null,
+      "lod": {
+        "LOD0": 131586,
+        "LOD1": 3124
+      },
+      "parts": 15,
+      "lots": 13,
+      "materials": "vertex colour only",
+      "pivot": "tile centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -74,
+          0,
+          -52
+        ],
+        "max": [
+          74,
+          22.175,
+          52
+        ],
+        "size": [
+          148,
+          22.175,
+          104
+        ]
+      },
+      "basis": "representative — plausible 1990 temperate massing, not a reconstruction of any real town",
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_town_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "town.temperate.industrial.v1",
+      "display_name": "Temperate town block — industrial",
+      "kind": "scene assembly",
+      "game_id": "visual_only",
+      "source": "spheres-web/ui/town-mesh.js",
+      "generator": "TownMesh.block({id, district, lod})",
+      "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
+      "glb": null,
+      "lod": {
+        "LOD0": 91276,
+        "LOD1": 2616
+      },
+      "parts": 14,
+      "lots": 12,
+      "materials": "vertex colour only",
+      "pivot": "tile centre at grade, Y=0",
+      "bounds": {
+        "min": [
+          -74,
+          0,
+          -52
+        ],
+        "max": [
+          74,
+          21.505,
+          52
+        ],
+        "size": [
+          148,
+          21.505,
+          104
+        ]
+      },
+      "basis": "representative — plausible 1990 temperate massing, not a reconstruction of any real town",
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_town_mesh.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    }
+  ]
+}

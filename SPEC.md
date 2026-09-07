@@ -533,3 +533,9 @@ ratings are explicit game assumptions. Fighters/interception, broader multirole
 missions, strategic/support aircraft, helicopters, drones and naval loadouts
 require further operational consumers. Historical presets and broad calibration
 remain separate work; this specification does not certify final release QA.
+
+The 7 September art integration (`fc0f0c2` / `c2e49c6`) changes model and scene
+presentation without changing these financial, inventory or capability owners.
+Selected-city blocks are representative artwork, not sourced street layouts.
+The withdrawn globe scatter overlay remains unserved. [ROADMAP.md](ROADMAP.md)
+records the art scope; company-owned manufacturing remains planned work.
