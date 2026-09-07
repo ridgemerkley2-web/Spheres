@@ -3100,6 +3100,7 @@
 <script src="/site-mesh.js"></script>
 <script src="/town-mesh.js"></script>
 <script src="/city-mesh.js"></script>
+<script src="/city-layer.js"></script>
 <script src="/equipment-import.js"></script>
 <script src="/equipment-ui.js"></script>
 <script src="/agency-ui.js"></script>
@@ -9511,6 +9512,59 @@ void main() {
 }
 `;
 
+/// THE CITY LAYER, drawn by the globe rather than pasted over it.
+///
+/// city-layer.js has already moved the mesh into the SAME sphere space the
+/// terrain surface uses, so this reuses that camera transform verbatim — the
+/// vertex half is terrain-surface.js's own, with a colour added. A city is
+/// therefore depth-tested against the ground it stands on: a hill in front of
+/// it hides it, which is the whole reason for drawing it here instead of as a
+/// sprite on the 2D overlay.
+///
+/// The lighting is deliberately its OWN and much simpler than the map's: the
+/// map shades a height field through ramps and has no idea what a wall is.
+/// Lambert against a sun tilted off the local up, plus an ambient that leans
+/// on how skyward a face is, which is enough to separate a roof from a wall.
+const GLSL_CITY_VS = `#version 300 es
+precision highp float;
+layout(location=0) in vec3 aPos;
+layout(location=1) in vec3 aNormal;
+layout(location=2) in vec3 aColor;
+uniform mat3 uInvRot;
+uniform vec3 uCamera;
+uniform mat3 uRayBasis;
+uniform vec2 uHalf;
+out vec3 vColor;
+out vec3 vNormal;
+out vec3 vWorld;
+void main() {
+  vColor = aColor;
+  vNormal = aNormal;
+  vWorld = aPos;
+  vec3 local = transpose(uInvRot) * aPos;
+  vec3 eye = transpose(uRayBasis) * (local - uCamera);
+  const float nearPlane = 0.001;
+  const float farPlane = 10.0;
+  float A = (farPlane + nearPlane) / (nearPlane - farPlane);
+  float B = 2.0 * farPlane * nearPlane / (nearPlane - farPlane);
+  gl_Position = vec4(eye.xy / uHalf, A * eye.z + B, -eye.z);
+}`;
+const GLSL_CITY_FS = `#version 300 es
+precision highp float;
+in vec3 vColor;
+in vec3 vNormal;
+in vec3 vWorld;
+uniform float uFade;
+out vec4 fragColor;
+void main() {
+  vec3 N = normalize(vNormal);
+  vec3 up = normalize(vWorld);
+  vec3 sun = normalize(up * 0.72 + vec3(-0.42, 0.36, 0.24));
+  float d = max(dot(N, sun), 0.0);
+  float sky = max(dot(N, up), 0.0);
+  vec3 lit = vColor * (0.44 + 0.16 * sky + 0.70 * d);
+  fragColor = vec4(lit, uFade);
+}`;
 const GLSL_MAP = `#version 300 es
 precision highp float;
 precision highp sampler2D;
@@ -10466,6 +10520,123 @@ void main() {
 /// ONE exit. Never throws, never leaves a blank map: the canvas goes away and
 /// one class comes off the svg, which restores #relief and lands the page on
 /// precisely today's rendering with all seven modes intact.
+/// DRAW THE CITIES THAT ARE BIG ENOUGH ON SCREEN TO BE WORTH IT.
+///
+/// The selection is a SCREEN question, not a population one: a city earns its
+/// buffers when it covers enough pixels to read as a city, and below that the
+/// map's own drawn symbol says more for nothing. So the gate is metres per
+/// pixel, the same rule the procedural cover layer uses, and it means the
+/// layer costs nothing at world zoom without needing a zoom threshold of its
+/// own to keep in step with anything.
+///
+/// Each city is uploaded once and kept. They are big — tens of thousands of
+/// triangles — so the cache is bounded by COUNT here and by the budget below;
+/// a player who tours the world would otherwise walk the same unbounded-cache
+/// path arsenal3d had to be rescued from.
+const CITY_LAYER = { minPx: 110, budget: 4, cache: 14 };
+function drawCityLayer(view, cw, ch) {
+  const g = GLR; if (!g || !g.progCity || !window.CityLayer || !window.CityMesh) return;
+  if (!window.CITIES || !window.TerrainSurface) return;
+  const surface = g.surface; if (!surface || !surface.ready) return;
+  let box = null;
+  try { box = TerrainSurface.footprint(view); } catch (e) { return; }
+  if (!box) return;
+
+  // Metres per pixel where the camera is pointed, from the same projection the
+  // rest of the frame uses rather than from a zoom curve.
+  const midLat = (box.north + box.south) / 2, midLon = (box.west + box.east) / 2;
+  const a = GLOBE.projectGeo(midLon, midLat, view, 1.0);
+  const b = GLOBE.projectGeo(midLon + 0.01 / Math.max(Math.cos(midLat * Math.PI / 180), 0.02), midLat, view, 1.0);
+  if (!a || !b) return;
+  const px = Math.hypot(b[0] - a[0], b[1] - a[1]);
+  if (!(px > 0)) return;
+  const mPerPx = 0.01 * 111320 * Math.cos(midLat * Math.PI / 180) / px;
+
+  const picked = CityLayer.select(CITIES, box, { mPerPx, minPx: CITY_LAYER.minPx, budget: CITY_LAYER.budget });
+  if (!picked.length) return;
+
+  const gl = g.gl;
+  gl.useProgram(g.progCity);
+  const u = g.uCity || (g.uCity = {
+    invRot: gl.getUniformLocation(g.progCity, "uInvRot"),
+    camera: gl.getUniformLocation(g.progCity, "uCamera"),
+    rayBasis: gl.getUniformLocation(g.progCity, "uRayBasis"),
+    half: gl.getUniformLocation(g.progCity, "uHalf"),
+    fade: gl.getUniformLocation(g.progCity, "uFade"),
+  });
+  gl.uniformMatrix3fv(u.invRot, false, view.invBasis);
+  gl.uniform3fv(u.camera, view.camera);
+  gl.uniformMatrix3fv(u.rayBasis, false, view.rayBasis);
+  gl.uniform2f(u.half, view.halfTan * (cw / ch), view.halfTan);
+
+  for (const hit of picked) {
+    const entry = cityBuffers(gl, hit);
+    if (!entry) continue;
+    // Fade in over the last stretch rather than appearing whole, so a city
+    // arrives as the ground resolves instead of popping into being.
+    const t = Math.min(1, Math.max(0, (hit.screenPx / CITY_LAYER.minPx - 1) / 0.6));
+    gl.uniform1f(u.fade, t);
+    gl.bindVertexArray(entry.vao);
+    gl.drawArrays(gl.TRIANGLES, 0, entry.count);
+  }
+  gl.bindVertexArray(null);
+}
+
+/// One city's buffers, built once. The mesh is asked for the terrain under it
+/// so it sits on the real ground rather than on a plane at sea level.
+function cityBuffers(gl, hit) {
+  const key = hit.index;
+  const cache = GLR.cityCache;
+  const had = cache.get(key);
+  if (had) { cache.delete(key); cache.set(key, had); return had; }   // LRU touch
+  let placed = null;
+  try {
+    const surface = GLR.surface;
+    const mesh = CityMesh.build(hit.city, {
+      lod: "close",
+      height: (lon, lat) => (surface && surface.ready ? surface.sampleHeight(lon, lat) : null),
+      // THE COAST COMES FROM THE ELEVATION, and it only half works — which is
+      // worth saying rather than discovering. Measured: Sydney reads 0 m and
+      // the Tasman 15 km out reads -104; Amsterdam reads 0 and the North Sea
+      // -23, so an ocean separates cleanly and a city below sea level is not
+      // wrongly drowned. A LAKE does not: Chicago is 190 m and Lake Michigan
+      // is 175, because the model gives a lake a surface height. So a city
+      // stops at an ocean and runs into a lake, at the tiles' own 1,855 m
+      // resolution. coast.png would know the difference and is useless here
+      // for the opposite reason: at 16.7 km per pixel it is one pixel across a
+      // whole city.
+      land: (lon, lat) => {
+        if (!surface || !surface.ready) return true;
+        const e = surface.sampleHeight(lon, lat);
+        return !(Number.isFinite(e) && e < -1);
+      },
+    });
+    placed = CityLayer.place(mesh, hit.city);
+  } catch (e) { placed = null; }
+  if (!placed) return null;
+  const vao = gl.createVertexArray();
+  gl.bindVertexArray(vao);
+  const bufs = [];
+  [[placed.positions, 0], [placed.normals, 1], [placed.colors, 2]].forEach((pair) => {
+    const b = gl.createBuffer(); bufs.push(b);
+    gl.bindBuffer(gl.ARRAY_BUFFER, b);
+    gl.bufferData(gl.ARRAY_BUFFER, pair[0], gl.STATIC_DRAW);
+    gl.enableVertexAttribArray(pair[1]);
+    gl.vertexAttribPointer(pair[1], 3, gl.FLOAT, false, 0, 0);
+  });
+  gl.bindVertexArray(null);
+  const entry = { vao, bufs, count: placed.count, tris: placed.triangleCount };
+  cache.set(key, entry);
+  // Bounded, and the buffers go with the vertex array: deleting the array does
+  // NOT free them, which is the trap arsenal3d's cache had to be taught.
+  while (cache.size > CITY_LAYER.cache) {
+    const oldest = cache.keys().next().value;
+    const dead = cache.get(oldest); cache.delete(oldest);
+    for (const b of dead.bufs) gl.deleteBuffer(b);
+    gl.deleteVertexArray(dead.vao);
+  }
+  return entry;
+}
 function glFail(reason) {
   document.getElementById("mapRenderStatus")?.remove();
   if (!GL.reason) GL.reason = String(reason);
@@ -10836,6 +11007,8 @@ async function glInit() {
 
   const progMap = await ShaderLoader.program(gl, GLSL_VS, GLSL_MAP, "map");
   const progSurface = await ShaderLoader.program(gl, TerrainSurface.vertexSource, GLSL_MAP, "terrain surface");
+  const progCity = window.CityLayer && window.CityMesh
+    ? await ShaderLoader.program(gl, GLSL_CITY_VS, GLSL_CITY_FS, "city layer") : null;
   const progGrid = GL.grid ? glProgram(gl, GLSL_GRID, "grid") : null;
   if (GL.forceFail === "link") throw new Error("forced failure (?glfail=link)");
   if (GL.forceFail === "tex") throw new Error("forced failure (?glfail=tex)");
@@ -10917,7 +11090,7 @@ async function glInit() {
     return o;
   };
   GLR = {
-    gl, progMap, progSurface, progGrid, vao, phys: dec.tex, lake, ramp, seaRamp, heightDetail,
+    gl, progMap, progSurface, progGrid, progCity, cityCache: new Map(), vao, phys: dec.tex, lake, ramp, seaRamp, heightDetail,
     u: U(progMap, ["invRot", "camDist", "half", "res",
       "world", "texPerWorld", "pxPerWorld", "lk", "maxLod",
       "ground", "terrainView", "sat", "shade", "sea", "hazeMax", "shimmer", "time", "ao", "glint",
@@ -11461,6 +11634,7 @@ function glDrawGlobe(view) {
   gl.activeTexture(gl.TEXTURE5); gl.bindTexture(gl.TEXTURE_2D, GLR.lake);
   gl.activeTexture(gl.TEXTURE6); gl.bindTexture(gl.TEXTURE_2D, GLR.heightDetail?.texture || GLR.phys);
   if (isMesh) GLR.surface.draw(GLR.progSurface, view);
+  if (isMesh) drawCityLayer(view, cw, ch);
   else gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
   gl.disable(gl.DEPTH_TEST);

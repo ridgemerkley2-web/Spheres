@@ -128,6 +128,10 @@ const TOWN_MESH_JS: &str = include_str!("../ui/town-mesh.js");
 /// triangles. The primitive here is city massing at roughly 100 m cells, and the
 /// whole city costs less than the single block it replaces.
 const CITY_MESH_JS: &str = include_str!("../ui/city-mesh.js");
+/// Puts the birds-eye city into the globe's OWN sphere space, so the map can
+/// draw a city depth-tested against the ground it stands on rather than
+/// pasted over it. It invents nothing: it is a change of coordinates.
+const CITY_LAYER_JS: &str = include_str!("../ui/city-layer.js");
 /// The reverse leg of the art pipeline: glTF back into the runtime mesh shape.
 const EQUIPMENT_IMPORT_JS: &str = include_str!("../ui/equipment-import.js");
 const ARSENAL3D_CSS: &str = include_str!("../ui/arsenal3d.css");
@@ -6712,6 +6716,7 @@ fn main() {
             (Method::Get, "/site-mesh.js") => Response::from_string(SITE_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/town-mesh.js") => Response::from_string(TOWN_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/city-mesh.js") => Response::from_string(CITY_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/city-layer.js") => Response::from_string(CITY_LAYER_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/equipment-import.js") => Response::from_string(EQUIPMENT_IMPORT_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/arsenal3d.css") => Response::from_string(ARSENAL3D_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, path) if path.starts_with("/art/components/") => {
@@ -11003,11 +11008,19 @@ mod tests {
         );
         // `#version 300 es` must be the first bytes of every shader string -- a leading
         // newline is a silent compile failure, and nothing downstream would report it.
-        assert_eq!(
-            INDEX.matches(" = `#version 300 es").count(),
-            4,
-            "expected four inline GLSL strings, each opening on the version directive"
-        );
+        // DERIVED, not pinned. This used to assert the count was four, which is
+        // a number that has to be edited every time a shader is added -- and an
+        // edit like that is exactly where someone bumps the literal without
+        // checking the thing it stands for. What it guards is that EVERY shader
+        // constant opens on the version directive, so it now counts the
+        // constants and requires the same number to open correctly. A shader
+        // with a leading newline lowers the second count and not the first,
+        // which is the silent compile failure this exists to catch.
+        let declared = INDEX.matches("const GLSL_").count();
+        let opened = INDEX.matches(" = `#version 300 es").count();
+        assert!(declared >= 5, "only {declared} inline GLSL constants found");
+        assert_eq!(opened, declared,
+            "{declared} GLSL constants but {opened} open on the version directive");
         // The one failure exit. It no longer reveals a fallback map, because
         // there is none: it says what happened where the map would have been.
         assert!(INDEX.contains("function glFail("));
