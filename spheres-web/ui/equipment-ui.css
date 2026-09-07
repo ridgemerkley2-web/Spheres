@@ -44,6 +44,13 @@
 .eq-company-specs dt { color:#a9c0c9; }
 .eq-company-specs dd { margin:0; text-align:right; color:#dce4d5; }
 .eq-company-section { margin-top:30px; }
+.eq-ammo-market { margin:24px 0 20px; padding:22px; border:1px solid #c7b88b59; border-radius:12px; background:linear-gradient(120deg,#3441389c,#1b303c); }
+.eq-ammo-market>.eq-section-heading { align-items:start; }
+.eq-ammo-market>.eq-section-heading p:not(.eq-eyebrow) { max-width:760px; }
+.eq-ammo-market .eq-service { margin-bottom:0; background:#172c3280; }
+.eq-ammo-supplier-section,.eq-ammo-section { margin-top:26px; }
+.eq-ammo-supplier-section .eq-company-card { border-color:#b9c8a24d; }
+@media(max-width:480px) { .eq-ammo-market { padding:16px; } .eq-ammo-market>.eq-section-heading { display:block; } .eq-ammo-market>.eq-section-heading>button { margin-top:14px; width:100%; } }
 .eq-company-filter { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px; margin:23px 0 15px; }
 .eq-company-family-buttons { display:flex; gap:7px; flex-wrap:wrap; }
 .eq-company-family-buttons button { display:flex; align-items:center; gap:10px; }

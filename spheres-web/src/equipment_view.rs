@@ -12,6 +12,7 @@ include!("equipment_aviation_view.rs");
 include!("equipment_ammunition_view.rs");
 include!("equipment_ammunition_reserves_view.rs");
 include!("company_view.rs");
+include!("company_ammunition_view.rs");
 
 fn metric(label:&str,value:impl serde::Serialize)->Value {json!({"label":label,"value":value})}
 fn cost(label:&str,amount:f64,period:&str)->Value {json!({"label":label,"amount_bn":amount,"period":period})}

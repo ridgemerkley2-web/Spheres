@@ -385,7 +385,42 @@ sparse credit ledger moves with inherited technology, starts at zero for older
 saves, and excludes no genuine new research. This semantic change is shared by
 daily and monthly simulation; calibration tolerances and historical data stay put.
 
+## Current extension — company ammunition procurement (2026-09-07; accepted)
+
+The domestic supplier route now includes all 23 existing ammunition families,
+requiring a certified compatible revision and an actual maintenance plan. A
+reviewed supply authorization creates a company-owned finite buffer, without a
+new development/tooling fee, factory, public purchase or ammunition activation.
+Initial targets are 1–1,000,000 whole rounds/stores per family; later 0–1,000,000.
+Zero stops new restocking and retains stock and paid claims.
+
+The company buys the existing recipe from the national warehouse and pays its
+fabrication cost. One shared plant packet goes first to unfinished equipment
+development, otherwise to equipment/ammunition in global product order. Finished
+stock is priced at its average paid input/fabrication basis plus 15%. Reviewed
+government purchases use Defense Maintenance & supply after protecting today's
+unpaid upkeep under the active actual maintenance plan. Settlement creates
+spendable supplier revenue; seven accessible days then add the exact family once
+to national stores through a matched receipt. Transit holds property while source
+access is blocked. No vehicle, force, extra GDP or free ammunition is created.
+
+Reserve gaps include existing stock, unfinished public batches and paid company
+inbound stores. Company supply stops new automatic public batches for only that
+family; existing work and saved reserve preferences remain. Targets authorize no
+standing stock purchases. Ammunition cards share server-reviewed commands and
+show stock, compatibility, reserve reasons, prices and arrivals without vehicle
+3D geometry. Company book 3/save envelope 4 is introduced only by first ammunition
+supply; prior book 1/envelope 2 and book 2/envelope 3 states stay unchanged until
+needed. Sparse national supplier receipts preserve existing equipment version 8.
+
+The full non-browser UI batch passes 955 and the final focused equipment run
+passes 110. Rust integration passes 1,192 with 70 ignored; the final release build
+and browser purchase/save/restart/arrival checks pass. [COMPANIES.md](COMPANIES.md#verification)
+records the new milestone separately from the accepted ground/air work below.
+
 ## Current extension — domestic ground and aircraft company procurement (2026-09-07; accepted)
+
+This is the accepted ground/air checkpoint preceding the ammunition extension above.
 
 Ridge's new equipment direction is design → manufacturer development and trials
 → company-owned production and finished stock → government purchase → delivery

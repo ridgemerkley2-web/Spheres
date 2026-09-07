@@ -6535,7 +6535,7 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             district: v.get("district")?.as_str()?.to_string(),
             kit: v.get("kit")?.as_str()?.to_string(),
         },
-        "company_establish" | "company_capitalize" | "company_develop" | "company_purchase" | "company_funding" | "company_inventory" | "company_cancel" => Command::Company {
+        "company_establish" | "company_capitalize" | "company_develop" | "company_purchase" | "company_funding" | "company_inventory" | "company_cancel" | "company_ammo_supply" | "company_ammo_inventory" | "company_ammo_purchase" => Command::Company {
             nation: me,
             order: equipment_view::parse_company_order(v)?,
         },

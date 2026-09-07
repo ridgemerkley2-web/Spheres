@@ -1,8 +1,9 @@
 # Companies & Procurement
 
-7 September 2026 · the accepted domestic tank route now extends to all nine
-implemented ground platforms and both tactical aircraft. Simulator, web, UI and
-browser checks pass. This guide describes the accepted domestic mechanics,
+7 September 2026 · the accepted domestic route covers all nine implemented ground
+platforms and both tactical aircraft. Company-made ammunition now uses the same
+contractor and reviewed stock purchases. That extension is accepted through final
+Rust, UI and browser checks. This guide describes the implemented domestic mechanics,
 not a claim that the full [company roadmap](COMPANIES_AND_PROCUREMENT_PLAN.md)
 has shipped.
 
@@ -54,6 +55,10 @@ and the 3D inspection. The filter uses the model's served family and platform
 catalogue, preserves original purchase identities and leaves supplier accounts
 and paid deliveries visible. Search can further narrow the displayed records.
 
+With ammunition products present, the market shows **All stock** and adds an
+**Ammunition** filter. It shows physical supply offers without inventing a vehicle
+model. Exact vehicle/aircraft previews and unfinished drafts remain separate.
+
 ## Supported equipment
 
 The same contractor can license all **eleven existing designer platforms**:
@@ -73,6 +78,36 @@ to inspect mission stores before purchase. Ground specialist profiles retain the
 existing roles. See [AVIATION.md](AVIATION.md) and
 [EQUIPMENT_DESIGNER.md](EQUIPMENT_DESIGNER.md) for those service rules.
 
+## Company-made ammunition
+
+Open **Ammunition → Manufacturer stock** to authorize supply for a certified
+compatible family, review finished offers and track purchases into national
+stores. All 23 existing families use their current recipes and production rates.
+The same state contractor pays input and fabrication costs using its existing
+capital and one shared plant slot. No new public fee, development contract,
+tooling stage or physical ammunition is granted by authorizing supply.
+
+Set a company buffer of 1–1,000,000 whole rounds or mission stores initially;
+later 0–1,000,000 is allowed. Zero stops restocking and retains unsold stock.
+Equipment development gets first use of the daily plant packet; otherwise the
+contractor serves equipment and ammunition in product order. There is no second
+ammunition factory or simultaneous free output.
+
+Offers explain compatible models and the reserve gap after national stores,
+unfinished public batches and already paid company deliveries. Prices are the
+finished stock's average paid inputs and fabrication plus 15%. Purchases use
+**Maintenance & supply**, protecting today's unpaid actual upkeep under the
+maintenance plan first. The plan must be active before buying. A paid company
+receivable settles once, then seven accessible delivery days put the exact family
+into the existing national magazine with a matching receipt.
+
+Company supply stops new automatic public reserve batches only for that family.
+Saved target/preferences, existing public work and paid deliveries are retained.
+Neither the reserve nor company buffer authorizes automatic government buying.
+Purchased ammunition grants no vehicles or ground activation and follows existing
+combat consumption rules. [AMMUNITION.md](AMMUNITION.md) gives the complete bounds,
+funding and migration rules.
+
 ## What each payment buys
 
 | Payment | Account | Result |
@@ -81,6 +116,7 @@ existing roles. See [AVIATION.md](AVIATION.md) and
 | Development and trials | Government Defense R&D → company engineering expense | Certified frozen model; no saleable prototypes |
 | Tooling, materials and fabrication | Company working capital | Production readiness and company-owned work/stock |
 | Purchase of finished stock | Government Defense procurement → company | One government-owned delivery |
+| Purchase of finished ammunition | Government Maintenance & supply → company, after protecting current upkeep | One paid delivery into the existing ammunition store |
 | Service after arrival | Existing government support and ammunition systems | Actual fleet maintenance, readiness and usable stores |
 
 Public payments consume departmental authority and use the existing daily
@@ -112,13 +148,14 @@ sourced historical-company balances.
   not create a second factory.
 - All eleven implemented ground/air platforms use this route. The company retains up to 32 product
   records and supports one unfinished development contract at a time.
-- Initial stock targets are 1–12 complete units per model. Later targets may be 0–12.
+- Vehicle/aircraft stock targets are initially 1–12 complete units per model. Later targets may be 0–12.
   A zero target stops new replenishment; already started fabrication can finish.
   Targets authorize company inventory, never government purchases.
 - One leased slot performs one daily work packet. An unfinished development
   contract takes priority over restocking existing models. A zero development
   ceiling pauses that contract while preserving its work; finish or cancel it
-  to release that development priority.
+  to release that development priority. Otherwise equipment and ammunition
+  products share that packet in product order.
 - Tooling and manufacture require facility access, company cash and real inputs.
   Existing paid public work retains priority if capacity becomes unavailable.
   Estimates depend on those conditions and are distinct from certification.
@@ -137,6 +174,9 @@ ground or aircraft contract upgrades the company book to **version 2**, requirin
 **save envelope version 3**. This does not rewrite existing tanks, paid work or
 company balances. A loader refuses a mixed-family book disguised as an older
 envelope rather than silently discarding its property or misclassifying aircraft.
+Starting company ammunition supply upgrades to **company version 3/save envelope
+4**, retaining the earlier corporate property and matched ammunition receipts.
+Without that action, tank-only and mixed-equipment books retain their earlier versions.
 These are separate from equipment-state and frozen-profile versions. An unused
 company book remains absent, preserving legacy and equipment-only save shapes.
 
@@ -149,15 +189,55 @@ history. New design actions for all eleven implemented platforms lead to the
 supplier route; existing explicit public work retains its path. Establishment ends only the
 background automatic catalogue buyer, not those explicit or already paid orders.
 
-The wider conversion remains unfinished: company-made ammunition, supplier refit
-services, broader inherited-equipment migration, AI buyers,
+The wider conversion remains unfinished: supplier refit services,
+broader inherited-equipment migration, AI buyers,
 foreign purchases, exports and optional standing purchase plans come later.
 Private/historical firms, competition, civilian companies, lending and corporate
 failure rules need their own data and accounting work.
 
 ## Verification
 
-**Current ground/air expansion: accepted.** The release build, simulator, web, UI
+**Current ammunition-supplier expansion: accepted.** The final release build,
+simulator, web, UI and browser checks pass.
+
+| Check | Result |
+| --- | --- |
+| Full release simulator and CLI integration suites | 941 passed; 67 ignored |
+| Full Rust web suite | 251 passed; 3 ignored |
+| Final affected equipment API checks | 50 passed; focused rerun |
+| Full non-browser Node batch | 955 passed; includes the earlier 109 equipment checks |
+| Final focused equipment UI checks | 110 passed; includes the suspended automatic-preference correction |
+| Focused company-ammunition audit | 12 passed including the explicit QA exporter; 11 ordinary checks overlap the simulator suite |
+
+Combined Rust integration totals are **1,192 passed, 70 ignored**. Focused reruns
+overlap the full suites and are not added to their totals. The full Node batch
+preceded the final localized confirmation-wording correction; the focused
+110-check run verifies that correction without claiming a second full batch.
+
+Browser acceptance bought 20,000 machine-gun rounds and 60 unguided mission stores
+on 7 January in an isolated QA campaign. Saving before fiscal settlement and
+restarting the final executable preserved the two paid deliveries. After
+settlement and seven accessible delivery days, both arrived on 14 January,
+observed in the browser on 15 January. National stores held exactly 20,000 rounds
+and 60 mission stores with two native delivery records. Ground ammunition
+activation remained off.
+
+At 390×844, the page and dialog measured 390 pixels with no horizontal overflow.
+The supplier shelf and reviews remained readable; filtered actions retained the
+exact ammunition identity. The Companies Ammunition filter preserved accounts
+and paid deliveries while showing no vehicle viewer. Final browser console
+errors were zero.
+
+Evidence logs in the parent workspace: `work/company-ammunition-sim-final.log`,
+`work/company-ammo-web-all.log`, `work/company-ammo-web-final.log`,
+`work/company-ammo-node-all.log`, `work/company-ammo-equipment-final.log` and
+`work/company-ammo-build-final.log`. Verified final release SHA256:
+`32B2690F481DEA8B88C09508B6DB9A31459615C19C7372B71927D6DF5F70F55F`.
+Earlier accepted vehicle/aircraft evidence follows separately.
+
+### Previously accepted ground/air expansion
+
+The release build, simulator, web, UI
 and mixed ground/air browser checks pass.
 
 | Check | Result |

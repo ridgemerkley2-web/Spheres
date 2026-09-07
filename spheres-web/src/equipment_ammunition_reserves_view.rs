@@ -3,6 +3,7 @@ fn ammunition_reserve_action(w:&WorldState,me:NationId,family:&str,suggested:u32
     let target=plan.map_or(suggested.max(1).min(eq::MAX_AMMO_RESERVE_TARGET),|p|p.target_rounds);
     let funding=plan.map_or(0.0001,|p|p.daily_limit_bn);
     let automatic=plan.is_some_and(|p|p.automatic);
+    let supplied=companies::ammo_supplier_active(w,me,family);
     let preferred=sites(w,me).first().and_then(|p|p["value"].as_str()).map(str::to_string);
     let default_district=w.districts.iter().find(|(_,owner)|**owner==me).map(|(id,_)|id.as_str()).unwrap_or("");
     let district=plan.map(|p|p.district.clone()).or(preferred).unwrap_or_else(||default_district.to_string());
@@ -12,11 +13,12 @@ fn ammunition_reserve_action(w:&WorldState,me:NationId,family:&str,suggested:u32
     }
     let mut action=intent(if plan.is_some(){"Review reserve plan"}else{"Set ammunition reserve"},json!({"kind":"equipment_ammo_reserve","family":family,"target_rounds":target,"district":district,"daily_budget_mn":funding*1000.0,"automatic":automatic}),vec![
         json!({"key":"target_rounds","label":if family.starts_with("air_bomb_"){"Target mission stores in reserve"}else{"Target rounds in reserve"},"type":"number","value":target,"min":0,"max":eq::MAX_AMMO_RESERVE_TARGET,"step":1}),
-        json!({"key":"automatic","label":"Replenishment","type":"select","value":automatic,"options":[{"value":false,"label":"Manual target · review each order"},{"value":true,"label":"Automatic replenishment · authorize future batches"}]}),
+        json!({"key":"automatic","label":"Replenishment","type":"select","value":automatic,"options":[{"value":false,"label":"Manual target · review each order"},{"value":true,"label":if supplied{"Saved automatic preference · suspended during company supply"}else{"Automatic replenishment · authorize future batches"}}]}),
         json!({"key":"district","label":"Preferred production province","type":"select","value":district,"options":options}),
         json!({"key":"daily_budget_mn","label":"New batch spending ceiling","type":"number","value":funding*1000.0,"min":0,"max":1_000_000,"step":0.01,"unit":"$m / day"}),
     ]);
     action["detail"]=json!("Choose the physical reserve you want to maintain. A manual target only tracks the gap. Automatic replenishment authorizes future finite batches at this site and ceiling, after existing batches finish. Existing stock and unfinished work count before another order is created.");
+    if supplied {action["detail"]=json!("Set the national reserve target used when reviewing supplier purchases. An automatic public-production preference can remain saved, but it is suspended while this company supplies the family. Paid deliveries and existing public batches count toward the gap; existing batch controls remain unchanged.");}
     action
 }
 
@@ -26,14 +28,16 @@ fn ammunition_reserve_cards(w:&WorldState,me:NationId)->Vec<Value> {
         let r=eq::ammo_reserve_status(w,me,family);
         let mut metrics=reserve_metrics(&r);
         metrics.push(metric("Preferred province",spheres_sim::districts::name_of(&p.district).unwrap_or(&p.district)));
-        metrics.push(metric("Automatic review from",if p.automatic{super::settled_day_json(p.authorized_day+1)["label"].clone()}else{json!("Manual review only")}));
+        metrics.push(metric("Automatic review from",if companies::ammo_supplier_active(w,me,family){json!("Suspended · company purchases require review")}else if p.automatic{super::settled_day_json(p.authorized_day+1)["label"].clone()}else{json!("Manual review only")}));
         let mut detail=r.reason.clone();
         if let Some(receipt)=&p.last_review {
             detail.push_str(&format!(" Last review: {}",receipt.reason));
             if let Some(order)=receipt.order_id {detail.push_str(&format!(" Batch {order}: {} {}.",ammo_quantity(receipt.ordered_rounds as f64),if family.starts_with("air_bomb_"){"mission stores"}else{"rounds"}));}
         }
         let mut actions=vec![ammunition_reserve_action(w,me,family,p.target_rounds)];
-        if r.gap>0 {
+        if r.gap>0 && companies::ammo_supplier_active(w,me,family) {
+            actions.push(nav("Review company ammunition stock",json!({"action":"equipment","tab":"ammunition"})));
+        }else if r.gap>0 {
             let mut fill=ammo_order_action(w,me,family,r.gap.min(eq::MAX_AMMO_ORDER));
             fill["command"]["district"]=json!(p.district);
             fill["command"]["daily_budget_mn"]=json!(p.daily_limit_bn*1000.0);
@@ -52,7 +56,7 @@ fn ammunition_reserve_cards(w:&WorldState,me:NationId)->Vec<Value> {
         clear["requires_preview"]=json!(true);
         clear["detail"]=json!("Remove this target and stop its future automatic orders. Already scheduled batches keep their existing funding and must be paused or canceled separately.");
         actions.push(clear);
-        json!({"id":family,"name":format!("{} reserve",eq::ammo_def(family).map_or(family.as_str(),|d|d.name)),"status":if p.automatic{"Automatic replenishment"}else{"Manual target"},"detail":detail,"metrics":metrics,
+        json!({"id":family,"name":format!("{} reserve",eq::ammo_def(family).map_or(family.as_str(),|d|d.name)),"status":if companies::ammo_supplier_active(w,me,family){"Reviewed company purchases"}else if p.automatic{"Automatic replenishment"}else{"Manual target"},"detail":detail,"metrics":metrics,
             "costs":[cost("New batch daily ceiling",p.daily_limit_bn,"existing batches retain their own controls; all share Defense maintenance after upkeep")],
             "receipt_label":p.last_review.as_ref().map(|r|super::settled_day_json(r.day)["label"].clone()),"actions":actions})
     }).collect()
@@ -61,13 +65,15 @@ fn ammunition_reserve_cards(w:&WorldState,me:NationId)->Vec<Value> {
 fn reserve_metrics(r:&eq::AmmoReserveStatus)->Vec<Value> {
     let aircraft=r.family.starts_with("air_bomb_");
     let mut rows=vec![metric("Target reserve",ammo_quantity(r.target_rounds.unwrap_or(0) as f64)),metric(if aircraft{"Mission stores on hand"}else{"Rounds currently in stores"},ammo_quantity(r.stock)),
-        metric("Unfinished batch commitments",ammo_quantity(r.committed as f64)),metric("Stores plus planned output",ammo_quantity(r.projected)),metric(if aircraft{"Additional whole mission stores needed"}else{"Additional whole rounds needed"},ammo_quantity(r.gap as f64))];
+        metric(if aircraft{"Committed mission stores"}else{"Committed rounds"},ammo_quantity(r.committed as f64)),metric("Stores plus committed arrivals",ammo_quantity(r.projected)),metric(if aircraft{"Additional whole mission stores needed"}else{"Additional whole rounds needed"},ammo_quantity(r.gap as f64))];
     if r.paused_committed>0 {rows.push(metric("Of planned output, paused",ammo_quantity(r.paused_committed as f64)));}
+    if r.supplier_inbound>0 {rows.push(metric("Of commitments, purchased company deliveries",ammo_quantity(r.supplier_inbound as f64)));}
     rows
 }
 
 fn ammunition_reserve_preview(w:&WorldState,me:NationId,session:&str,command:&Value,order:&EquipmentOrder)->Value {
-    let label=match order {EquipmentOrder::AmmoReserve{automatic:true,..}=>"Authorize automatic replenishment",EquipmentOrder::AmmoReserve{..}=>"Save manual reserve target",_=>"Clear this reserve plan"};
+    let supplied=match order {EquipmentOrder::AmmoReserve{family,..}|EquipmentOrder::AmmoReserveClear{family}=>companies::ammo_supplier_active(w,me,family),_=>false};
+    let label=match order {EquipmentOrder::AmmoReserve{..} if supplied=>"Save supplier reserve target",EquipmentOrder::AmmoReserve{automatic:true,..}=>"Authorize automatic replenishment",EquipmentOrder::AmmoReserve{..}=>"Save manual reserve target",_=>"Clear this reserve plan"};
     let action=checked(w,me,label,command.clone());
     let blockers:Vec<String>=action["reason"].as_str().map(str::to_string).into_iter().collect();
     let mut metrics=vec![];let mut costs=vec![];let mut timing=vec![];let mut requirements:Vec<String>=vec![];
@@ -82,10 +88,13 @@ fn ammunition_reserve_preview(w:&WorldState,me:NationId,session:&str,command:&Va
                 metrics.push(metric("Next batch size",ammo_quantity(q.status.next_quantity as f64)));
                 costs.push(cost("Next batch fabrication estimate",batch.cost_bn,"raw inputs separate; charged only as actual work progresses"));
             }
-            timing.push(metric("Automatic review begins",if *automatic{super::settled_day_json(q.eligible_from_day)["label"].clone()}else{json!("Disabled · every batch needs manual review")}));
+            timing.push(metric("Automatic review begins",if supplied{json!("Suspended · company purchases require review")}else if *automatic{super::settled_day_json(q.eligible_from_day)["label"].clone()}else{json!("Disabled · every batch needs manual review")}));
             requirements.push("Saving a target creates no rounds, immediate bill or raw-material purchase. Stock and unfinished batches, including paused work, count before ordering more.".into());
             requirements.push("Existing batches retain their frozen quantities, sites and individual spending ceilings. Lowering, disabling or clearing this plan never cancels them.".into());
-            if *automatic {
+            if supplied {
+                requirements.push("Company supply suspends future automatic public batches for this family, even if the automatic preference remains saved. Only reviewed purchases of finished company stock create new incoming supplier ammunition. Existing public batches retain their controls.".into());
+                "This national reserve target guides reviewed supplier purchases. Stock and all committed deliveries count toward the gap; unsold company inventory does not."
+            }else if *automatic {
                 requirements.push("You authorize future finite batches whenever this family is below target and no batch for it remains unfinished. Each batch is at most 1,000,000 rounds. Work begins on a later eligible date and requires real factory access, raw inputs and available Defense maintenance funding.".into());
                 requirements.push("This authorization can repeat while the plan remains automatic. It does not activate physical combat ammunition or purchase missing inputs. Review Resources for supplies and the production list to stop an existing batch.".into());
                 "Automatic replenishment is a standing production instruction. Review the target, site and new-batch ceiling before authorizing repeated orders."

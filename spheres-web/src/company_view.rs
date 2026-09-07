@@ -29,6 +29,15 @@ pub(super) fn parse_company_order(v: &Value) -> Option<CompanyOrder> {
             company: integer("company")?, product: integer("product")?,
             quantity: integer("quantity")?, quote: token()?,
         },
+        "company_ammo_supply" => CompanyOrder::AmmoSupply {
+            company: integer("company")?, family: text("family")?, stock_target: integer("stock_target")?, quote: token()?,
+        },
+        "company_ammo_inventory" => CompanyOrder::AmmoInventory {
+            company: integer("company")?, product: integer("product")?, stock_target: integer("stock_target")?,
+        },
+        "company_ammo_purchase" => CompanyOrder::AmmoPurchase {
+            company: integer("company")?, product: integer("product")?, quantity: integer("quantity")?, quote: token()?,
+        },
         "company_funding" => CompanyOrder::Funding {
             company: integer("company")?, product: integer("product")?, daily_budget_bn: money("daily_budget_mn")?,
         },
@@ -52,6 +61,10 @@ fn company_quote(w: &WorldState, me: NationId, order: &CompanyOrder) -> Option<V
             serde_json::to_value(companies::development_quote(w,me,*company,name,spec,*daily_budget_bn,*stock_target)).ok(),
         CompanyOrder::Purchase {company,product,quantity,..} =>
             serde_json::to_value(companies::purchase_quote(w,me,*company,*product,*quantity)).ok(),
+        CompanyOrder::AmmoSupply {company,family,stock_target,..} =>
+            serde_json::to_value(companies::ammo_supply_quote(w,me,*company,family,*stock_target)).ok(),
+        CompanyOrder::AmmoPurchase {company,product,quantity,..} =>
+            serde_json::to_value(companies::ammo_purchase_quote(w,me,*company,*product,*quantity)).ok(),
         _ => None,
     }
 }
@@ -68,6 +81,7 @@ fn company_preview(w: &WorldState, me: NationId, session: &str, command: &Value,
         CompanyOrder::Funding {..} => ("Apply development funding", "Set the maximum the government can pay each day for actual contracted development work. Zero pauses future work and retains paid progress."),
         CompanyOrder::Inventory {..} => ("Set company stock target", "Set a finite finished-stock target. The state company uses its own cash and facility to replenish it; this does not authorize government equipment purchases."),
         CompanyOrder::CancelDevelopment {..} => ("Cancel unfinished development", "End remaining development work. Completed work and its payment remain recorded; cancellation does not refund spent engineering and trials costs."),
+        CompanyOrder::AmmoSupply {..}|CompanyOrder::AmmoInventory {..}|CompanyOrder::AmmoPurchase {..} => return company_ammunition_preview(w,me,session,command,order),
     };
     let mut action = checked(w,me,label,confirmed);
     let mut blockers: Vec<String> = action["reason"].as_str().map(str::to_string).into_iter().collect();
@@ -94,6 +108,7 @@ fn company_preview(w: &WorldState, me: NationId, session: &str, command: &Value,
         CompanyOrder::Develop{company,..}=>Some((*company,None)),
         CompanyOrder::Purchase{company,product,..}|CompanyOrder::Funding{company,product,..}|
         CompanyOrder::Inventory{company,product,..}|CompanyOrder::CancelDevelopment{company,product}=>Some((*company,Some(*product))),
+        _=>unreachable!("Ammunition has its own review"),
     };
     let selected=identity.and_then(|(id,product)|companies::company(w,me,id).map(|firm|(firm,product.and_then(|id|firm.products.iter().find(|p|p.id==id)))));
     if let Some((firm,product))=selected {
@@ -176,6 +191,7 @@ fn company_preview(w: &WorldState, me: NationId, session: &str, command: &Value,
         },
         CompanyOrder::Inventory {stock_target,..} => {metrics.push(metric("Finished stock target",*stock_target));},
         CompanyOrder::CancelDevelopment {..} => {requirements.push("The frozen design and dated transactions remain part of the record.".into());},
+        _=>unreachable!("Ammunition has its own review"),
     }
     if matches!(order,CompanyOrder::Establish{..}|CompanyOrder::Capitalize{..}|CompanyOrder::Purchase{..}) {
         requirements.push("The existing Defense procurement account funds this transaction once. Company receipts become spendable only when their corresponding public payment is settled.".into());
@@ -293,12 +309,12 @@ fn company_board(w: &WorldState, me: NationId) -> Value {
         let stock: u64=firm["products"].as_array().unwrap_or(&empty).iter().map(|p|company_count(p,"stock")).sum();
         firm_rows.push(json!({"id":id,"name":firm["name"],"status":if block.is_some(){"Facility unavailable"}else{"State contractor"},
             "detail":block.unwrap_or("A separate state-owned business. Its unsold stock adds no military strength and incurs no government fleet maintenance."),
-            "metrics":[metric("Specialty","Ground vehicles and tactical aircraft"),metric("Company cash",company_money(company_amount(firm,"cash_bn"))),
+            "metrics":[metric("Specialty","Ground vehicles, tactical aircraft and ammunition"),metric("Company cash",company_money(company_amount(firm,"cash_bn"))),
                 metric("Awaiting public settlement",company_money(company_amount(firm,"receivable_bn"))),metric("Available equipment",stock),metric("Company inventory at cost",company_money(company_amount(firm,"inventory_cost_bn"))),
                 metric("Leased site",spheres_sim::districts::name_of(district).unwrap_or(district)),metric("Physical capacity","One existing arms-plant slot")],
             "costs":[cost("Capital received",company_amount(firm,"capital_received_bn"),"cumulative investment"),
                 cost("Development receipts",company_amount(firm,"development_revenue_bn"),"cumulative engineering revenue"),
-                cost("Equipment sales",company_amount(firm,"sales_revenue_bn"),"settled sales revenue"),
+                cost("Equipment and ammunition sales",company_amount(firm,"sales_revenue_bn"),"settled sales revenue"),
                 cost("Operating and inventory costs",company_amount(firm,"expenses_bn"),"cumulative company payments; includes unsold inventory")],
             "actions":firm_actions}));
         for p in firm["products"].as_array().unwrap_or(&empty) {
@@ -349,7 +365,7 @@ fn company_board(w: &WorldState, me: NationId) -> Value {
                     cost("Manufacturer unit price",company_amount(p,"unit_price_bn"),if stock>0{"per available vehicle · reviewed before purchase"}else{"indicative per vehicle · stock not yet available"})],"actions":product_actions}));
         }
     }
-    let deliveries: Vec<_>=raw["deliveries"].as_array().unwrap_or(&empty).iter().rev().map(|d| {
+    let mut deliveries: Vec<_>=raw["deliveries"].as_array().unwrap_or(&empty).iter().rev().map(|d| {
         let revision=company_text(d,"revision_id");
         let model=w.nation(me).equipment.as_ref().and_then(|s|s.revisions.get(revision));
         let name=model.map_or(revision,|r|r.name.as_str());
@@ -363,17 +379,20 @@ fn company_board(w: &WorldState, me: NationId) -> Value {
             "actions":[nav("Review fleet in service",json!({"action":"equipment","tab":"service"}))]})
     }).collect();
     let total_stock:u64=product_rows.iter().map(|p|p["availability"]["ready_stock"].as_u64().unwrap_or(0)).sum();
+    let (ammunition_products,ammunition_deliveries)=company_ammo_rows(w,me,&raw);
+    product_rows.extend(ammunition_products);deliveries.extend(ammunition_deliveries);
+    actions.push(nav("Buy ammunition and manage reserves",json!({"action":"equipment","tab":"ammunition"})));
     let total_cash:f64=firms.iter().map(|f|company_amount(f,"cash_bn")).sum();
     let warnings:Vec<_>=raw["reason"].as_str().filter(|r|!r.is_empty()).map(str::to_string).into_iter().collect();
     json!({"overview":{"title":"Companies & Procurement","status":if firms.is_empty(){"Establish your first manufacturer"}else{"Domestic equipment procurement"},
-        "detail":"Design the vehicle. Commission its development. Buy finished stock when your manufacturer has it ready.",
+        "detail":"Design the vehicle and commission its development. Buy finished equipment and compatible ammunition from your manufacturer's stock.",
         "metrics":[metric("Manufacturers",firms.len()),metric("Equipment available to buy",total_stock),metric("Company working capital",company_money(total_cash)),
             metric("Government procurement available",company_money(company_amount(&raw,"procurement_available_bn"))),metric("Government R&D available",company_money(company_amount(&raw,"development_available_bn"))),
             metric("Background catalogue buying",if firms.is_empty(){"Existing procurement mode"}else{"Off · save funds for reviewed purchases"})],
         "roles_title":"Each payment has a purpose","roles":[
             {"label":"Development","value":"Government funds engineering and trials","detail":"The design becomes certified; prototypes do not enter service."},
             {"label":"Manufacturing","value":"Company funds its own finite stock","detail":"Capacity, cash and inputs constrain restocking."},
-            {"label":"Purchase","value":"Government buys completed vehicles","detail":"Ownership transfers once, then delivery makes them available for service."}],
+            {"label":"Purchase","value":"Government buys finished equipment and ammunition","detail":"Vehicle purchases use procurement; ammunition uses Maintenance & supply after fleet upkeep. Delivery makes each purchase available."}],
         "warnings":warnings,"actions":actions},"firms":firm_rows,"products":product_rows,"deliveries":deliveries})
 }
 

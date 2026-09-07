@@ -1,11 +1,18 @@
 # Custom ammunition and aircraft mission stores
 
 The Equipment bureau's **Ammunition** tab connects certified weapon configurations
-to finite manufacture, physical stores and conserved operational consumption.
+to company stock, reviewed purchases, retained public manufacture, physical stores
+and conserved operational consumption.
 Ground weapons have 21 compatible families; tactical aircraft add unguided and
 guided bombs. Inherited catalogue equipment continues to use its share of the
 existing national magazine. Naval loadouts and other air missions remain future
 work; the current aircraft slice is documented in [AVIATION.md](AVIATION.md).
+
+The company-ammunition milestone is accepted through final Rust and browser
+checks. The full non-browser UI batch passes 955; the final focused equipment
+run passes 110. Rust integration passes 1,192 with 70 ignored.
+[COMPANIES.md](COMPANIES.md#verification) records
+this evidence separately from the accepted vehicle/aircraft supplier milestone.
 
 ## Player workflow
 
@@ -13,11 +20,16 @@ work; the current aircraft slice is documented in [AVIATION.md](AVIATION.md).
    ammunition. A changed gun or carried-load specification can require a different
    store family; research alone does not convert existing rounds.
 2. Set an actual maintenance plan in **In service**. Fleet upkeep is paid first.
-   Ammunition manufacture can use the remaining Defense maintenance authority.
-3. In **Ammunition**, review a finite batch, an arms-plant province and its daily
-   payment ceiling. The quote separates fabrication from physical raw inputs.
-4. Source missing inputs through the existing Resources market and reviewed
-   material-purchase assistance. Paid cargo must arrive before factories use it.
+   Ammunition purchases use **Defense Maintenance & supply** after protecting
+   today's unpaid upkeep under that plan. Purchases wait until the plan is active.
+3. In **Ammunition**, review company supply for an already certified compatible
+   family. An existing paid domestic contractor uses its own working capital and
+   shared Arms Plant slot to build a finite buffer. This authorization purchases
+   no ammunition and charges no separate development, tooling or public fee.
+4. Review finished **Manufacturer stock**, its compatible models, national stock,
+   paid incoming deliveries and reserve gap. Buy a whole quantity through a fresh
+   quote. Follow **Purchased ammunition & arrivals**: payment settles first, then
+   seven accessible shipping days put the exact family into national stores.
 5. For ground weapons, prepare stores and review physical ammunition activation.
    It starts on the next eligible date and grants no rounds. This migration
    cannot be toggled off to recover the former shared supply. Custom aircraft
@@ -25,13 +37,55 @@ work; the current aircraft slice is documented in [AVIATION.md](AVIATION.md).
    manufacturing aircraft stores does not activate ground ammunition.
 
 Each family shows completed stock, compatible available vehicles, unfinished
-batches, current operation requirements and supported firing. A planning reserve
+public batches, paid company deliveries, operation requirements and supported firing. A planning reserve
 uses one modeled firing month for all available vehicles. It subtracts stock and
-all active batch commitments before suggesting a new quantity; paused batches
+all active public batch commitments and paid company deliveries before suggesting a new quantity; paused batches
 remain explicitly conditional. It is a planning reference, not a predicted war
 duration or an automatic order.
 
+Existing public ammunition batches remain below the supplier shelf with their
+funding, pause and cancellation controls. Families not converted to company supply
+retain their public supply route. The two paths do not share ownership of output:
+public completed rounds enter national stores, while company output remains on
+the supplier's shelf until a separately paid delivery arrives.
+
+## Manufacturer stock and purchases
+
+The existing contractor may supply any of the 23 current ammunition families once
+a compatible revision is certified and an actual maintenance plan exists. Its
+initial buffer is 1–1,000,000 whole rounds or mission stores per family, adjustable
+later to 0–1,000,000. Zero stops future replenishment and retains finished stock;
+it does not cancel the license, refund past costs or restore automatic public
+production. There is no separate ammunition research or tooling stage.
+
+Company cash buys the recipe from the domestic national warehouse and pays the
+existing fabrication cost. Work creates only whole paid rounds at the family's
+existing rate. The contractor has one shared plant work packet per day: unfinished
+equipment development goes first; otherwise equipment and ammunition products
+use global product order. Earlier restocking can delay an ammunition buffer.
+No cash, raw materials, capacity, GDP or ammunition stock is granted for free.
+
+The supplier's unit price is average paid material and fabrication cost plus the
+existing 15% modeled margin. A purchase transfers only available finished stock
+and spends Maintenance & supply authority once. Today's unpaid actual fleet
+upkeep, bounded by its saved plan and available authority, is protected first.
+Company revenue becomes spendable only after fiscal settlement. The quote shows
+price, quantity, reserve effect, protected upkeep and delivery before confirmation.
+
+Paid shipments count against the same reserve gap as unfinished public batches,
+but supply no weapon before arrival. Transit pauses while the domestic source
+province is inaccessible; ownership is retained. Arrival creates a matched
+supplier receipt and adds the exact ammunition family to the existing magazine
+once. Purchases grant no vehicles, activate no ground ammunition system and
+change no combat rules. Aircraft still require their selected physical stores.
+
 ## Reserve plans and optional replenishment
+
+For a family converted to company supply, the saved reserve preference and target
+remain, while future automatic public batches stop. Existing commissioned public
+batches continue under their own controls. Targets and supplier stock buffers
+authorize no government purchase; automatic supplier buying remains future work.
+The public automatic scheduler described below applies to unconverted families.
 
 Use **Set ammunition reserve** on a compatible family to choose a fixed stock
 target, preferred province and ceiling for new batches. A new plan defaults to
@@ -89,7 +143,7 @@ production rates and firing rates are all explicit game assumptions in
 inventory is invented. This remains an aggregate operational model with no
 projectile trajectories, penetration simulation or detailed damage to components.
 
-## Production and financial ownership
+## Retained public production and financial ownership
 
 A batch reserves one real arms-plant slot, shared with ordinary manufacturing,
 vehicle production and refits. A lost or occupied province, lost plant capacity,
@@ -154,8 +208,17 @@ receipts. Version 7 adds separate optional material-purchasing authority.
 Version 8 adds frozen tactical-aircraft profiles and accepts versions 1–8;
 ground activation remains separate from mandatory aircraft-store use.
 Version 5 introduced physical ammunition.
-Campaigns without reserve plans retain their earlier behavior. Completed
-production must equal current stock plus cumulative consumption for every family.
+Starting the first company ammunition supply upgrades the company book to
+**version 3** and requires `spheres-equipment-save` **envelope version 4**. Its
+supplier receipts remain sparse in the existing equipment-state version 8.
+Tank-only companies retain book 1/envelope 2; mixed ground/air companies retain
+book 2/envelope 3 until ammunition is commissioned. Unused company state remains
+absent. Older envelopes containing ammunition corporate property are refused.
+
+Campaigns without company ammunition or reserve plans retain their earlier
+behavior. Completed public output plus arrived company purchases must equal
+current stock plus cumulative consumption for every family. Supplier production,
+unsold stock, sold quantities and national receipt identities are reconciled too.
 The loader rejects contradictory quantities, payments, raw receipts, dates and
 references rather than creating missing stock.
 
@@ -164,10 +227,14 @@ shared slots and funding, fractional work and raw-stock conservation,
 pause/cancel behavior, fiscal expiry, proportional multi-conflict use, dry and
 partially supplied weapons, independent non-firing roles, unchanged vehicle
 valuation, preview purity and deterministic save/resume. Tactical aircraft extend
-the same ownership to finite bombs; full inherited-weapon conversion, other
+the same ownership to finite bombs. Company integration verification passed
+as recorded above; full inherited-weapon conversion, other
 air/naval loadouts and sourced historical presets remain later milestones.
 
 ## Optional purchases for ammunition production
+
+This section describes raw inputs for public batches. Company buffers buy their
+inputs with company cash and create no public raw-material order.
 
 Use **Review material purchasing plan** to open Production. The shared military
 plan can buy missing raw materials for funded ammunition batches, vehicle orders

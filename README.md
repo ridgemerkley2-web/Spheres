@@ -109,6 +109,16 @@ workflow keeps this slower scan separate from pull-request verification.
 
 ## Current contracts
 
+The current development milestone adds **company-made ammunition** to the
+accepted ground-vehicle and tactical-aircraft supplier loop. In the Equipment
+bureau, **Ammunition** now shows manufacturer stock, reserve needs, reviewed
+purchases and paid arrivals while retaining existing public batch controls.
+It uses the same company cash and real plant slot; licensing supply creates no
+free rounds or automatic government order. The milestone is accepted through
+final Rust, release-build, UI and browser checks, including purchases,
+save/restart and exact-family arrival. [COMPANIES.md](COMPANIES.md#verification)
+records the evidence and remaining company roadmap.
+
 Start with [CURRENT_ARCHITECTURE.md](CURRENT_ARCHITECTURE.md) and
 [DECISIONS.md](DECISIONS.md). Detailed rules live in
 [PLAYER_DECISIONS.md](PLAYER_DECISIONS.md),
@@ -120,7 +130,8 @@ Start with [CURRENT_ARCHITECTURE.md](CURRENT_ARCHITECTURE.md) and
 [EQUIPMENT_DESIGNER.md](EQUIPMENT_DESIGNER.md), [AMMUNITION.md](AMMUNITION.md)
 and [AVIATION.md](AVIATION.md) describe the configurable equipment lifecycle.
 [COMPANIES_AND_PROCUREMENT_PLAN.md](COMPANIES_AND_PROCUREMENT_PLAN.md) describes
-the next planned company-manufacturing and government-purchase model.
+the remaining company and procurement roadmap; [COMPANIES.md](COMPANIES.md)
+describes the implemented supplier mechanics and their verification status.
 [PLAYTEST.md](PLAYTEST.md) gives a short, repeatable usability protocol.
 
 Historical design rulings remain in BIBLE.md, SPEC.md and the domain documents.

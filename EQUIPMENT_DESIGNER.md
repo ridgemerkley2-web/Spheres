@@ -1,6 +1,6 @@
 # Equipment designer — ground vehicles and tactical aviation
 
-Open **Research → Equipment bureau** or the designer link in the manufacturing catalogue. The current implementation has nine ground platforms and two tactical-strike airframes, sixteen component-integration research projects and the paid design-to-service loop from the [military equipment plan](MILITARY_EQUIPMENT_DESIGNER_PLAN.md). New designs across all eleven platforms now lead through **Companies & Procurement**: commission a domestic manufacturer, then purchase its finished stock. This extends the accepted tank supplier loop. Simulator, web, UI and mixed-family browser checks pass; the broader domestic route is accepted. [COMPANIES.md](COMPANIES.md) records the scope and evidence. The Ammunition tab retains compatible physical stores and funded manufacture for ground weapons and aircraft. [AVIATION.md](AVIATION.md) covers the first two-airframe slice; other air missions, naval design, foreign licences, exports and designer AI remain later milestones.
+Open **Research → Equipment bureau** or the designer link in the manufacturing catalogue. The current implementation has nine ground platforms and two tactical-strike airframes, sixteen component-integration research projects and the paid design-to-service loop from the [military equipment plan](MILITARY_EQUIPMENT_DESIGNER_PLAN.md). New designs across all eleven platforms now lead through **Companies & Procurement**: commission a domestic manufacturer, then purchase its finished stock. This extends the accepted tank supplier loop. Simulator, web, UI and mixed-family browser checks pass; the ground/air supplier route is accepted. Company-made ammunition is also accepted through final integration verification. [COMPANIES.md](COMPANIES.md) records the scope and evidence. The Ammunition tab adds reviewed manufacturer stock and paid arrivals alongside compatible physical stores and existing public batches for ground weapons and aircraft. [AVIATION.md](AVIATION.md) covers the first two-airframe slice; other air missions, naval design, foreign licences, exports and designer AI remain later milestones.
 
 ## Play the loop
 
@@ -34,6 +34,20 @@ draft. Aircraft purchase reviews show the frozen air profile, compatible mission
 store family and zero included stores; a link opens that separate supply need.
 See [COMPANIES.md](COMPANIES.md) for settlement, input ownership, margins,
 inventory limits, delays and unfinished parts of the wider company layer.
+
+**Company-made ammunition** is accepted through final Rust and browser checks.
+The Ammunition tab adds supplier offers, compatible-model and
+reserve-gap explanations, reviewed purchases and paid arrivals into the national
+magazine. The same contractor funds existing recipes from its cash and shares
+its plant with equipment work. Supply authorization adds no R&D, tooling fee,
+ammunition activation or free stores. Purchases use Maintenance & supply after
+protecting current upkeep, then settle and ship before ammunition is usable.
+
+Companies adds an Ammunition filter and labels the combined catalogue **All stock**.
+Ammunition never borrows a vehicle's 3D preview. Existing public batches retain
+their controls; conversion stops only future automatic public batches for that
+family and preserves reserve preferences. Standing supplier purchases remain
+future work. [AMMUNITION.md](AMMUNITION.md) records the detailed limits.
 
 ## Interactive 3D models
 
@@ -195,6 +209,14 @@ equipment-state versions below. An unused company book is omitted and preserves
 the earlier raw/legacy or equipment-only save shape. Earlier campaigns receive
 no free company assets. Existing public equipment and paid orders keep their
 original ownership; the company route does not take them and sell them back.
+The first company ammunition supply advances to company book 3/save envelope 4,
+retaining the earlier equipment ownership and adding exact ammunition supplier
+receipts. Untouched company books keep their existing versions. This extension
+passes a 955-check non-browser Node batch and a final focused 110-check equipment
+run. Rust integration passes 1,192 with 70 ignored; final release-build and browser
+acceptance pass, including paid ammunition save/restart and exact-family arrival.
+
+The following counts describe the earlier accepted ground/air milestone.
 The broader ground/air route passes 947 non-browser Node checks and 247 web tests
 (3 ignored), with final focused API/UI reruns passing. Mixed-family browser
 acceptance passed exact-model purchases, save/restart, year-end arrival and service,

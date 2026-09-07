@@ -30,6 +30,7 @@ pub struct AmmoReserveStatus {
     pub target_rounds: Option<u32>,
     pub stock: f64,
     pub committed: u64,
+    pub supplier_inbound: u64,
     pub paused_committed: u64,
     pub projected: f64,
     pub gap: u32,
@@ -134,12 +135,15 @@ fn reserve_status_for(
             }
         }
     }
+    let supplier_inbound = crate::companies::ammo_inbound_units(w, id, family);
+    committed += supplier_inbound;
     let gap = plan.map_or(0, |p| reserve_gap(p.target_rounds, stock, committed));
     let mut out = AmmoReserveStatus {
         family: family.into(),
         target_rounds: plan.map(|p| p.target_rounds),
         stock,
         committed,
+        supplier_inbound,
         paused_committed: paused,
         projected: stock + committed as f64,
         gap,
@@ -151,6 +155,10 @@ fn reserve_status_for(
     let Some(plan) = plan else {
         return out;
     };
+    if crate::companies::ammo_supplier_active(w, id, family) {
+        out.reason = "This family uses reviewed supplier stock purchases. The reserve target remains tracked, and purchased inbound stock and previously commissioned public batches count toward it. New automatic public fabrication is disabled for this family.".into();
+        return out;
+    }
     if gap > 0 {
         out.batch = Some(ammo_order_quote(
             w,
@@ -744,7 +752,9 @@ pub fn validate_ammunition_reserves(n: &Nation) -> Result<(), String> {
                 || fiscal_day.is_none_or(|d| r.day > d)
                 || !r.stock.is_finite()
                 || r.stock < 0.0
-                || r.committed > MAX_AMMO_ORDER as u64 * MAX_AMMO_ORDERS as u64
+                || r.committed
+                    > MAX_AMMO_ORDER as u64
+                        * (MAX_AMMO_ORDERS as u64 + crate::companies::MAX_AMMO_DELIVERIES as u64)
                 || r.gap != reserve_gap(p.target_rounds, r.stock, r.committed)
                 || r.ordered_rounds > r.gap.min(MAX_AMMO_ORDER)
                 || (r.ordered_rounds > 0) != r.order_id.is_some()

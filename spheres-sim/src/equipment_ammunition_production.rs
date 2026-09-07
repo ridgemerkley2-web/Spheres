@@ -334,6 +334,44 @@ pub struct AmmunitionState {
     pub active_from_day: Option<i32>,
     pub last_work_day: Option<i32>,
     pub last_consumption: Option<AmmoConsumptionReceipt>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub supplier_receipts: Vec<AmmoSupplierReceipt>,
+}
+/// A company delivery is a distinct paid source, never a fabricated public
+/// production order. The world validator reconciles this receipt to its sale.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub struct AmmoSupplierReceipt {
+    pub delivery: u32,
+    pub company: u32,
+    pub product: u32,
+    pub family: String,
+    pub quantity: u32,
+    pub delivered_day: i32,
+}
+pub(crate) fn receive_supplier_ammunition(
+    n: &mut Nation,
+    r: AmmoSupplierReceipt,
+) -> Result<(), String> {
+    validate_ammunition(n)?;
+    if n.equipment
+        .as_ref()
+        .and_then(|s| s.maintenance_plan.as_ref())
+        .is_none()
+        || ammo_def(&r.family).is_none()
+        || r.quantity == 0
+        || r.quantity > MAX_AMMO_ORDER
+        || n.equipment
+            .as_ref()
+            .and_then(|s| s.ammunition.as_ref())
+            .is_some_and(|a| a.supplier_receipts.iter().any(|x| x.delivery == r.delivery))
+    {
+        return Err("Ammunition arrival requires an actual maintenance plan and one unique supported supplier receipt.".into());
+    }
+    let a = state_mut(n).ammunition.get_or_insert_with(Default::default);
+    *a.stocks.entry(r.family.clone()).or_default() += r.quantity as f64;
+    a.supplier_receipts.push(r);
+    Ok(())
 }
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 #[serde(deny_unknown_fields)]
@@ -390,7 +428,7 @@ pub fn reserved_ammunition_slots(n: &Nation, district: &str) -> usize {
                 .count()
         })
 }
-fn ammo_actor_refusal(w: &WorldState, id: NationId) -> Option<String> {
+pub(crate) fn ammo_actor_refusal(w: &WorldState, id: NationId) -> Option<String> {
     actor_refusal(w,id).or_else(||(!(w.rules.production_system&&w.rules.resource_market)).then(||"Ammunition fabrication requires physical production and the raw-resource market.".into()))
         .or_else(||w.nation(id).equipment.as_ref().and_then(|s|s.maintenance_plan.as_ref()).is_none().then(||"Set an actual fleet maintenance plan before ordering ammunition. Both use Defense maintenance and supply authority.".into()))
 }
@@ -886,6 +924,25 @@ pub fn validate_ammunition(n: &Nation) -> Result<(), String> {
             return Err(fail());
         }
         *completed.entry(&p.family).or_default() += p.completed_rounds as f64;
+    }
+    let mut supplier_ids = BTreeSet::new();
+    for r in &a.supplier_receipts {
+        if r.delivery == 0
+            || r.company == 0
+            || r.product == 0
+            || !supplier_ids.insert(r.delivery)
+            || ammo_def(&r.family).is_none()
+            || !(1..=MAX_AMMO_ORDER).contains(&r.quantity)
+            || r.delivered_day < plan.from_day
+            || r.delivered_day > command_day
+            || !s.revisions.values().any(|revision| {
+                revision.certified_day.is_some_and(|d| d <= r.delivered_day)
+                    && ammunition_family(&revision.spec) == Some(r.family.as_str())
+            })
+        {
+            return Err(fail());
+        }
+        *completed.entry(&r.family).or_default() += r.quantity as f64;
     }
     for (family, value) in a.stocks.iter().chain(a.consumed.iter()) {
         if ammo_def(family).is_none() || !value.is_finite() || *value < 0.0 {

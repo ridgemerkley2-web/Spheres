@@ -8,15 +8,18 @@ use crate::{
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 
-/// Version one contains only tanks; version two also licenses the implemented
-/// specialist ground and tactical-aircraft profiles. Existing tank books retain
-/// version one until a non-tank contract actually begins.
-pub const VERSION: u32 = 2;
+/// Version one contains tanks; version two adds existing ground/air platforms;
+/// version three adds finite company ammunition and its delivery provenance.
+/// Older books retain their versions until the new feature is actually used.
+pub const VERSION: u32 = 3;
 pub const TANK_VERSION: u32 = 1;
+pub const EQUIPMENT_VERSION: u32 = 2;
 pub const MAX_STOCK: u32 = 12;
 pub const MAX_PRODUCTS: usize = 32;
 pub const DELIVERY_DAYS: u32 = 7;
 pub const MARGIN: f64 = 0.15;
+
+include!("companies_ammunition.rs");
 
 pub fn supported_platform(platform: &str) -> bool {
     equipment::PLATFORMS.iter().any(|p| p.id == platform)
@@ -85,6 +88,23 @@ pub enum CompanyOrder {
         company: u32,
         product: u32,
     },
+    AmmoSupply {
+        company: u32,
+        family: String,
+        stock_target: u32,
+        quote: String,
+    },
+    AmmoInventory {
+        company: u32,
+        product: u32,
+        stock_target: u32,
+    },
+    AmmoPurchase {
+        company: u32,
+        product: u32,
+        quantity: u32,
+        quote: String,
+    },
 }
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]
@@ -93,12 +113,17 @@ pub struct Companies {
     pub next_id: u32,
     pub firms: Vec<Company>,
     pub deliveries: Vec<Delivery>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub ammunition_deliveries: Vec<AmmoDelivery>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub last_tick_day: Option<i32>,
 }
 impl Companies {
     pub fn is_empty(&self) -> bool {
-        self.firms.is_empty() && self.deliveries.is_empty() && self.next_id == 0
+        self.firms.is_empty()
+            && self.deliveries.is_empty()
+            && self.ammunition_deliveries.is_empty()
+            && self.next_id == 0
     }
 }
 
@@ -121,6 +146,8 @@ pub struct Company {
     pub fabrication_expense_bn: f64,
     pub receivables: Vec<Receivable>,
     pub products: Vec<Product>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub ammunition_products: Vec<AmmoProduct>,
     pub transactions: Vec<Transaction>,
     pub last_tick_day: Option<i32>,
 }
@@ -202,11 +229,13 @@ pub struct Quote {
     pub available_units: u32,
     pub maintenance_bn_day: f64,
     pub company_cash_needed_bn: f64,
+    pub protected_maintenance_bn: f64,
+    pub purchase_available_bn: f64,
     pub note: String,
 }
 impl Default for Quote {
     fn default() -> Self {
-        Self {valid:false,reason:None,token:String::new(),cost_bn:0.0,minimum_days:0,eta_days:None,first_stock_days:None,unit_price_bn:0.0,available_units:0,maintenance_bn_day:0.0,company_cash_needed_bn:0.0,note:"Explicit game assumptions. Company capital, development fees and finished-stock purchases are separate payments. Estimates require funding, inputs and continuous facility access.".into()}
+        Self {valid:false,reason:None,token:String::new(),cost_bn:0.0,minimum_days:0,eta_days:None,first_stock_days:None,unit_price_bn:0.0,available_units:0,maintenance_bn_day:0.0,company_cash_needed_bn:0.0,protected_maintenance_bn:0.0,purchase_available_bn:0.0,note:"Explicit game assumptions. Company capital, development fees and finished-stock purchases are separate payments. Estimates require funding, inputs and continuous facility access.".into()}
     }
 }
 
@@ -314,8 +343,17 @@ fn token(w: &WorldState, n: NationId, params: serde_json::Value) -> String {
         &w.districts,
         &w.manufacturing,
         &w.production,
-        nstate.map(|n| (&n.program_budget, &n.equipment)),
+        nstate.map(|n| {
+            (
+                &n.program_budget,
+                &n.equipment,
+                &n.arsenal,
+                &n.treasury_bn,
+                &n.debt_bn,
+            )
+        }),
         w.rules.resource_market,
+        w.rules.production_system,
         w.rules.manufacturing_system,
         w.rules.military_operations,
     ))
@@ -338,7 +376,11 @@ fn finish_quote(w: &WorldState, n: NationId, params: serde_json::Value, mut q: Q
             q.cost_bn,
             q.unit_price_bn,
             q.available_units,
-            q.company_cash_needed_bn
+            q.company_cash_needed_bn,
+            q.protected_maintenance_bn,
+            q.purchase_available_bn,
+            q.eta_days,
+            q.first_stock_days
         ]),
     );
     q
@@ -437,12 +479,15 @@ pub fn development_quote(
         // earlier licensed products before starting this one's tooling. Future
         // sales and their restock buffers are not a fixed, payable order book.
         if c.is_some_and(|c| {
-            c.products.iter().any(|p| {
-                p.cancelled_day.is_none()
-                    && (p.stock < p.stock_target
-                        || p.unit_work_days > 0.0
-                        || p.unit_inputs.iter().any(|v| *v > 0.0))
-            })
+            c.ammunition_products
+                .iter()
+                .any(|p| p.stock < p.stock_target)
+                || c.products.iter().any(|p| {
+                    p.cancelled_day.is_none()
+                        && (p.stock < p.stock_target
+                            || p.unit_work_days > 0.0
+                            || p.unit_inputs.iter().any(|v| *v > 0.0))
+                })
         }) {
             q.first_stock_days = None;
             q.note.push_str(" First stock has no dated estimate while earlier licensed products have unfinished work or unmet stock targets. Their production shares this same plant slot; development completion remains separately estimated.");
@@ -586,6 +631,7 @@ fn apply_inner(w: &mut WorldState, n: NationId, order: &CompanyOrder) -> Result<
                 fabrication_expense_bn: 0.0,
                 receivables: vec![],
                 products: vec![],
+                ammunition_products: vec![],
                 transactions: vec![],
                 last_tick_day: None,
             });
@@ -640,7 +686,7 @@ fn apply_inner(w: &mut WorldState, n: NationId, order: &CompanyOrder) -> Result<
                 },
             );
             if !spec.platform.starts_with("tank_") {
-                w.companies.version = VERSION;
+                w.companies.version = w.companies.version.max(EQUIPMENT_VERSION);
             }
             let id = next_id(w);
             let c = w
@@ -723,6 +769,29 @@ fn apply_inner(w: &mut WorldState, n: NationId, order: &CompanyOrder) -> Result<
             p.status = "cancelled".into();
             p.reason="Future development charges stopped. Previously performed and invoiced work remains payable; no prototypes become saleable units.".into();
         }
+        CompanyOrder::AmmoSupply {
+            company,
+            family,
+            stock_target,
+            quote,
+        } => {
+            start_ammo_supply(w, n, *company, family, *stock_target, quote)?;
+        }
+        CompanyOrder::AmmoInventory {
+            company,
+            product,
+            stock_target,
+        } => {
+            set_ammo_inventory(w, n, *company, *product, *stock_target)?;
+        }
+        CompanyOrder::AmmoPurchase {
+            company,
+            product,
+            quantity,
+            quote,
+        } => {
+            buy_ammo_stock(w, n, *company, *product, *quantity, quote)?;
+        }
     }
     Ok(())
 }
@@ -779,12 +848,26 @@ pub fn settle_receivables(w: &mut WorldState) {
                     c.development_expense_bn += r.amount_bn;
                     c.cash_bn -= r.amount_bn;
                 }
-                "sale" => c.sales_revenue_bn += r.amount_bn,
+                "sale" | "ammo_sale" => c.sales_revenue_bn += r.amount_bn,
                 _ => continue,
             }
             transaction(c, day, &r.kind, r.amount_bn, r.product, 0);
             c.receivables.retain(|x| x.id != r.id);
             if let Some(id) = r.delivery {
+                if r.kind == "ammo_sale" {
+                    if let Some(d) = w
+                        .companies
+                        .ammunition_deliveries
+                        .iter_mut()
+                        .find(|d| d.id == id && d.settled_day.is_none())
+                    {
+                        d.settled_day = Some(day);
+                        d.due_day = Some(day.saturating_add(DELIVERY_DAYS as i32));
+                        d.status = "in_transit".into();
+                        d.reason = "Purchased ammunition is in domestic transit; it cannot be fired before arrival.".into();
+                    }
+                    continue;
+                }
                 if let Some(d) = w
                     .companies
                     .deliveries
@@ -840,6 +923,7 @@ pub fn tick_day(w: &mut WorldState) {
         return;
     }
     w.companies.last_tick_day = Some(day);
+    tick_ammo_deliveries(w, day);
     // Deliveries own their units until this one transfer into Arsenal. They
     // never also occupy the ordinary arsenal order book.
     for i in 0..w.companies.deliveries.len() {
@@ -888,18 +972,8 @@ pub fn tick_day(w: &mut WorldState) {
         let facility = facility_blocker(w, &c);
         // One leased slot, one daily work packet. A development commission
         // temporarily takes priority over replenishing already licensed models.
-        let selected = c
-            .products
-            .iter()
-            .position(|p| p.cancelled_day.is_none() && p.certified_day.is_none())
-            .or_else(|| {
-                c.products.iter().position(|p| {
-                    p.cancelled_day.is_none()
-                        && (p.stock < p.stock_target
-                            || p.unit_work_days > 0.0
-                            || p.unit_inputs.iter().any(|x| *x > 0.0))
-                })
-            });
+        let selected_id = scheduled_product(&c);
+        let selected = c.products.iter().position(|p| Some(p.id) == selected_id);
         for j in 0..c.products.len() {
             if c.products[j].cancelled_day.is_some() {
                 continue;
@@ -914,6 +988,15 @@ pub fn tick_day(w: &mut WorldState) {
                 }
                 .into();
             }
+        }
+        update_ammo_queue(w, i, selected_id);
+        if let Some(j) = c
+            .ammunition_products
+            .iter()
+            .position(|p| Some(p.id) == selected_id)
+        {
+            tick_ammo_manufacturing(w, i, j, day, facility);
+            continue;
         }
         let Some(j) = selected else { continue };
         let p = c.products[j].clone();
@@ -1116,13 +1199,13 @@ pub fn tick_day(w: &mut WorldState) {
 pub fn view(w: &WorldState, n: NationId) -> serde_json::Value {
     let day = clock::absolute_day(w);
     let firms:Vec<_>=w.companies.firms.iter().filter(|c|c.nation==n).map(|c|{
-        let scheduled=c.products.iter().find(|p|p.cancelled_day.is_none()&&p.certified_day.is_none())
-            .or_else(||c.products.iter().find(|p|p.cancelled_day.is_none()&&(p.stock<p.stock_target||p.unit_work_days>0.0||p.unit_inputs.iter().any(|v|*v>0.0)))).map(|p|p.id);
+        let scheduled=scheduled_product(c);
         let mut value=serde_json::to_value(c).unwrap();
         value["facility_blocker"]=serde_json::json!(facility_blocker(w,c));
         value["receivable_bn"]=serde_json::json!(c.receivables.iter().map(|r|r.amount_bn).sum::<f64>());
         value["expenses_bn"]=serde_json::json!(c.development_expense_bn+c.tooling_expense_bn+c.materials_expense_bn+c.fabrication_expense_bn);
-        value["inventory_cost_bn"]=serde_json::json!(c.products.iter().map(|p|p.stock_cost_bn+p.unit_spent_bn).sum::<f64>());
+        value["inventory_cost_bn"]=serde_json::json!(c.products.iter().map(|p|p.stock_cost_bn+p.unit_spent_bn).sum::<f64>()+c.ammunition_products.iter().map(|p|p.stock_cost_bn).sum::<f64>());
+        value["ammunition_products"]=serde_json::json!(c.ammunition_products.iter().map(|p|ammo_product_view(w,c,p)).collect::<Vec<_>>());
         value["products"]=serde_json::json!(c.products.iter().map(|p|{
             let mut v=serde_json::to_value(p).unwrap();
             if let Some(r)=w.nation(n).equipment.as_ref().and_then(|s|s.revisions.get(&p.revision_id)) {
@@ -1133,7 +1216,7 @@ pub fn view(w: &WorldState, n: NationId) -> serde_json::Value {
                 let unit_days=(x.production_days as f64-p.unit_work_days).max(0.0).ceil() as u32;
                 let cash_needed=(x.tooling_cost_bn-p.tooling_spent_bn).max(0.0)+if p.unit_work_days>0.0 {(x.fabrication_cost_bn-(p.unit_spent_bn-p.unit_material_cost_bn)).max(0.0)}else{new_cost};
                 let materials_ready=p.unit_work_days>0.0||resources::ALL.into_iter().all(|commodity|resources::stockpile(w,n,commodity)>=x.recipe[commodity.idx()]);
-                let earlier_backlog=p.certified_day.is_none()&&c.products.iter().take_while(|earlier|earlier.id!=p.id).any(|earlier|earlier.cancelled_day.is_none()&&(earlier.stock<earlier.stock_target||earlier.unit_work_days>0.0||earlier.unit_inputs.iter().any(|v|*v>0.0)));
+                let earlier_backlog=p.certified_day.is_none()&&(c.ammunition_products.iter().any(|earlier|earlier.id<p.id&&earlier.stock<earlier.stock_target)||c.products.iter().take_while(|earlier|earlier.id!=p.id).any(|earlier|equipment_pending(earlier)));
                 let eta=if scheduled!=Some(p.id)||earlier_backlog||p.cancelled_day.is_some()||facility_blocker(w,c).is_some()||c.cash_bn<cash_needed||!materials_ready {None}else{dev_days.map(|d|d.saturating_add(tool_days).saturating_add(unit_days))};
                 v["name"]=serde_json::json!(r.name);v["spec"]=serde_json::json!(r.spec);v["profile"]=serde_json::json!(x);v["source_revision"]=serde_json::json!(r.id);
                 v["platform"]=serde_json::json!(r.spec.platform);v["platform_name"]=serde_json::json!(platform_name(&r.spec.platform));v["family"]=serde_json::json!(product_family(&r.spec.platform));v["unit_label"]=serde_json::json!(unit_label(&r.spec.platform));
@@ -1168,13 +1251,24 @@ pub fn view(w: &WorldState, n: NationId) -> serde_json::Value {
         })
         .collect();
     let sites:Vec<_>=w.districts.iter().filter(|(_,owner)|**owner==n).filter_map(|(district,_)|{let slots=crate::manufacturing::plant_slots(w,district);if slots==0{return None}let used=crate::manufacturing::used_slots(w,n,district);let reason=crate::control::blocker(w,n,district).or_else(||(used>=slots as usize).then(||"All completed Arms Plant slots are assigned.".to_string()));Some(serde_json::json!({"district":district,"slots":slots,"used_slots":used,"available":reason.is_none(),"reason":reason}))}).collect();
-    serde_json::json!({"enabled":actor(w,n).is_none(),"reason":actor(w,n),"day":day,"nation":n.code(),"companies":firms,"deliveries":deliveries,"sites":sites,"procurement_available_bn":programs::available_bn(w,n,BUDGET_DEFENSE,3),"development_available_bn":programs::available_bn(w,n,BUDGET_DEFENSE,4),"legacy_automatic_procurement":!procurement_active(w,n),"max_stock":MAX_STOCK,"supported_platforms":equipment::PLATFORMS.iter().map(|p|serde_json::json!({"id":p.id,"name":p.name,"family":product_family(p.id),"unit_label":unit_label(p.id)})).collect::<Vec<_>>(),"note":"Domestic equipment suppliers: one explicitly capitalized state contractor shares its existing Arms Plant across all implemented ground vehicles and tactical aircraft. Companies pay for tooling, raw inputs and finite stock; aircraft carry no free bombs or basing rights. Establishing a contractor stops background automatic catalogue purchases; explicit public work and already paid deliveries continue. Prices and lead times are game assumptions; no historical firm, balance or extra factory is invented."})
+    let (protected, ammo_available) = ammo_purchase_funding(w, n);
+    serde_json::json!({"enabled":actor(w,n).is_none(),"reason":actor(w,n),"day":day,"nation":n.code(),"companies":firms,"deliveries":deliveries,"ammunition_deliveries":ammo_deliveries_view(w,n),"ammunition_catalog":equipment::ammo_catalog().iter().map(|d|serde_json::json!({"id":d.id,"name":d.name,"unit_label":if d.unit=="stores"{"store"}else{"round"},"rounds_per_day":d.rounds_per_day,"eligible":ammo_refusal(w,n,d.id).is_none(),"reason":ammo_refusal(w,n,d.id),"converted":ammo_supplier_active(w,n,d.id)})).collect::<Vec<_>>(),"protected_maintenance_bn":protected,"ammo_purchase_available_bn":ammo_available,"max_ammo_stock":MAX_AMMO_STOCK,"sites":sites,"procurement_available_bn":programs::available_bn(w,n,BUDGET_DEFENSE,3),"development_available_bn":programs::available_bn(w,n,BUDGET_DEFENSE,4),"legacy_automatic_procurement":!procurement_active(w,n),"max_stock":MAX_STOCK,"supported_platforms":equipment::PLATFORMS.iter().map(|p|serde_json::json!({"id":p.id,"name":p.name,"family":product_family(p.id),"unit_label":unit_label(p.id)})).collect::<Vec<_>>(),"note":"Domestic equipment and ammunition suppliers share one explicitly capitalized state contractor and its existing Arms Plant. Companies pay for raw inputs and finite stock; equipment also requires paid development and tooling. Government stock purchases settle and arrive before military use. Establishing a contractor stops background automatic catalogue purchases, and licensing an ammunition family stops new automatic public reserve batches for that family. Explicit public work and already paid deliveries continue. Prices and lead times are game assumptions; no historical firm, balance or extra factory is invented."})
 }
 
 /// Older saves omit this sparse book. Present state is strict: a malformed
 /// company cannot create money, licensed designs, raw inputs or delivered units.
 pub fn validate_state(w: &WorldState) -> Result<(), String> {
     if w.companies.is_empty() {
+        if w.nations.iter().any(|n| {
+            n.equipment
+                .as_ref()
+                .and_then(|s| s.ammunition.as_ref())
+                .is_some_and(|a| !a.supplier_receipts.is_empty())
+        }) {
+            return Err(
+                "Supplier ammunition receipts require their matching company property book.".into(),
+            );
+        }
         return Ok(());
     }
     let state = &w.companies;
@@ -1189,7 +1283,7 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
     let mut nations = BTreeSet::new();
     let mut revisions = BTreeSet::new();
     let finite = |v: f64| v.is_finite() && v >= 0.0;
-    let near = |a: f64, b: f64| (a - b).abs() <= 1e-8 * a.abs().max(b.abs()).max(1.0);
+    let near = |a: f64, b: f64| (a - b).abs() <= 1e-12 + 1e-10 * a.abs().max(b.abs());
     for c in &state.firms {
         if c.id == 0
             || !identities.insert(c.id)
@@ -1326,9 +1420,17 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
                 || !finite(r.amount_bn)
                 || r.amount_bn == 0.0
                 || r.day > day
-                || !matches!(r.kind.as_str(), "capitalization" | "development" | "sale")
-                || r.product
-                    .is_some_and(|id| !c.products.iter().any(|p| p.id == id))
+                || !matches!(
+                    r.kind.as_str(),
+                    "capitalization" | "development" | "sale" | "ammo_sale"
+                )
+                || r.product.is_some_and(|id| {
+                    if r.kind == "ammo_sale" {
+                        !c.ammunition_products.iter().any(|p| p.id == id)
+                    } else {
+                        !c.products.iter().any(|p| p.id == id)
+                    }
+                })
             {
                 return Err("Invalid corporate receivable.".into());
             }
@@ -1358,9 +1460,25 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
                             })
                         })
                 }
+                "ammo_sale" => {
+                    r.product.is_some()
+                        && r.delivery.is_some_and(|id| {
+                            state.ammunition_deliveries.iter().any(|d| {
+                                d.id == id
+                                    && d.company == c.id
+                                    && Some(d.product) == r.product
+                                    && d.purchased_day == r.day
+                                    && d.settled_day.is_none()
+                                    && near(d.total_price_bn, r.amount_bn)
+                            })
+                        })
+                }
                 _ => false,
             };
-            if !linked || r.kind == "sale" && !purchase_invoices.insert(r.delivery.unwrap()) {
+            if !linked
+                || matches!(r.kind.as_str(), "sale" | "ammo_sale")
+                    && !purchase_invoices.insert(r.delivery.unwrap())
+            {
                 return Err(
                     "Corporate receivable identity does not match its contract or owned purchase."
                         .into(),
@@ -1368,22 +1486,24 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
             }
         }
         if let Some(plan) = w.nation(c.nation).program_budget.as_ref() {
-            for department in [3, 4] {
+            for department in [2, 3, 4] {
                 let pending = c
                     .receivables
                     .iter()
                     .filter(|r| {
-                        if department == 4 {
+                        if department == 2 {
+                            r.kind == "ammo_sale"
+                        } else if department == 4 {
                             r.kind == "development"
                         } else {
-                            r.kind != "development"
+                            r.kind == "sale" || r.kind == "capitalization"
                         }
                     })
                     .map(|r| r.amount_bn)
                     .sum::<f64>();
                 let posted = plan.spent_today_bn[BUDGET_DEFENSE][department]
                     + plan.prepaid_used_today_bn[BUDGET_DEFENSE][department];
-                if pending > posted + 1e-9 {
+                if pending > posted + 1e-12 {
                     return Err(
                         "Corporate invoices exceed actual corresponding departmental expenditure."
                             .into(),
@@ -1407,18 +1527,34 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
             .iter()
             .filter(|d| d.company == c.id && d.settled_day.is_some())
             .map(|d| d.total_price_bn)
-            .sum::<f64>();
+            .sum::<f64>()
+            + state
+                .ammunition_deliveries
+                .iter()
+                .filter(|d| d.company == c.id && d.settled_day.is_some())
+                .map(|d| d.total_price_bn)
+                .sum::<f64>();
         let sold_cost = state
             .deliveries
             .iter()
             .filter(|d| d.company == c.id)
             .map(|d| d.cost_basis_bn)
-            .sum::<f64>();
+            .sum::<f64>()
+            + state
+                .ammunition_deliveries
+                .iter()
+                .filter(|d| d.company == c.id)
+                .map(|d| d.cost_basis_bn)
+                .sum::<f64>();
         let inventory_cost = c
             .products
             .iter()
             .map(|p| p.stock_cost_bn + p.unit_spent_bn)
-            .sum::<f64>();
+            .sum::<f64>()
+            + c.ammunition_products
+                .iter()
+                .map(|p| p.stock_cost_bn)
+                .sum::<f64>();
         if !near(
             c.development_revenue_bn + pending_development,
             c.products.iter().map(|p| p.development_spent_bn).sum(),
@@ -1482,6 +1618,7 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
             return Err("An unsettled purchase has no matching company invoice.".into());
         }
     }
+    validate_ammo_supplier_state(w, &mut identities)?;
     if identities.last().is_some_and(|id| *id >= state.next_id) {
         return Err("Company identity sequence would overwrite recorded property.".into());
     }
@@ -1546,6 +1683,95 @@ mod tests {
         w
     }
     #[test]
+    fn ammunition_license_is_sparse_free_of_stock_and_preserves_old_equipment_schema() {
+        let mut w = supplier_fixture();
+        let company = w.companies.firms[0].id;
+        let day = clock::absolute_day(&w);
+        let spec = equipment::default_spec("ground_apc");
+        let preview = equipment::design_preview(&w, HOME, &spec);
+        w.nation_mut(HOME)
+            .equipment
+            .as_mut()
+            .unwrap()
+            .revisions
+            .insert(
+                "synthetic-certified-apc".into(),
+                equipment::DesignRevision {
+                    id: "synthetic-certified-apc".into(),
+                    name: "Synthetic starting certification".into(),
+                    spec,
+                    profile: preview.profile.unwrap(),
+                    created_day: day,
+                    certified_day: Some(day),
+                    specification_key: preview.specification_key,
+                },
+            );
+        let missing_plan = ammo_supply_quote(&w, HOME, company, "mg_127", 100);
+        assert!(!missing_plan.valid);
+        equipment::set_maintenance_plan(&mut w, HOME, 0.01).unwrap();
+        let national = serde_json::to_value(&w.nations).unwrap();
+        let quote = ammo_supply_quote(&w, HOME, company, "mg_127", 100);
+        assert!(quote.valid, "{:?}", quote.reason);
+        assert_eq!(quote.cost_bn, 0.0);
+        apply(
+            &mut w,
+            HOME,
+            &CompanyOrder::AmmoSupply {
+                company,
+                family: "mg_127".into(),
+                stock_target: 100,
+                quote: quote.token,
+            },
+        )
+        .unwrap();
+        assert_eq!(serde_json::to_value(&w.nations).unwrap(), national);
+        assert_eq!(w.companies.version, VERSION);
+        let p = &w.companies.firms[0].ammunition_products[0];
+        let product = p.id;
+        assert_eq!((p.stock, p.produced_units, p.sold_units), (0, 0, 0));
+        assert_eq!(p.resources_used, [0.0; 12]);
+        assert!(w
+            .nation(HOME)
+            .equipment
+            .as_ref()
+            .unwrap()
+            .ammunition
+            .is_none());
+        let saved = crate::save(&w);
+        assert_eq!(
+            serde_json::from_str::<serde_json::Value>(&saved).unwrap()["version"],
+            4
+        );
+        assert_eq!(crate::save(&crate::load(&saved).unwrap()), saved);
+        let duplicate = ammo_supply_quote(&w, HOME, company, "mg_127", 100);
+        assert!(!duplicate.valid);
+        assert!(apply(
+            &mut w,
+            HOME,
+            &CompanyOrder::AmmoSupply {
+                company,
+                family: "mg_127".into(),
+                stock_target: 100,
+                quote: duplicate.token
+            }
+        )
+        .is_err());
+        assert_eq!(crate::save(&w), saved);
+        apply(
+            &mut w,
+            HOME,
+            &CompanyOrder::AmmoInventory {
+                company,
+                product,
+                stock_target: 0,
+            },
+        )
+        .unwrap();
+        assert_eq!(scheduled_product(&w.companies.firms[0]), None);
+        assert_eq!(w.companies.firms[0].ammunition_products[0].stock_target, 0);
+        assert_eq!(serde_json::to_value(&w.nations).unwrap(), national);
+    }
+    #[test]
     fn all_implemented_families_freeze_the_existing_profile_without_another_factory_or_free_stock()
     {
         let template = supplier_fixture();
@@ -1592,7 +1818,7 @@ mod tests {
                 if platform.id.starts_with("tank_") {
                     TANK_VERSION
                 } else {
-                    VERSION
+                    EQUIPMENT_VERSION
                 }
             );
             assert_eq!(

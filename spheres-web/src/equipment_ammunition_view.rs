@@ -13,6 +13,9 @@ fn ammo_quantity(value:f64)->String {
 }
 
 fn ammo_order_action(w:&WorldState,me:NationId,family:&str,quantity:u32)->Value {
+    if companies::ammo_supplier_active(w,me,family) {
+        return nav("Review company ammunition stock",json!({"action":"equipment","tab":"ammunition"}));
+    }
     let options=sites(w,me);
     let site=options.iter().find(|o|o["value"].as_str().is_some_and(|d|eq::ammo_order_quote(w,me,family,d,quantity,0.0001).valid))
         .or_else(||options.first()).map(|o|o["value"].clone()).unwrap_or(json!(""));
@@ -37,6 +40,7 @@ fn ammunition_board(w:&WorldState,me:NationId)->Value {
         let stock=state.and_then(|s|s.stocks.get(def.id)).copied().unwrap_or(0.0);
         let jobs:Vec<_>=state.into_iter().flat_map(|s|s.orders.iter()).filter(|o|o.family==def.id&&!matches!(o.status,eq::ProjectStatus::Complete|eq::ProjectStatus::Cancelled)).collect();
         let incoming:u64=jobs.iter().map(|o|o.quantity.saturating_sub(o.completed_rounds) as u64).sum();
+        let company_incoming=companies::ammo_inbound_units(w,me,def.id);
         if models.is_empty()&&stock<=0.0&&jobs.is_empty(){continue;}
         let vehicles:u64=n.arsenal.held.iter().filter(|h|h.design_id.as_ref().and_then(|id|equipment.and_then(|s|s.revisions.get(id))).is_some_and(|r|eq::ammunition_family(&r.spec)==Some(def.id)))
             .map(|h|spheres_sim::arsenal::available_design_units(h) as u64).sum();
@@ -44,7 +48,7 @@ fn ammunition_board(w:&WorldState,me:NationId)->Value {
         let reference=if aviation {n.arsenal.held.iter().filter_map(|h|h.design_id.as_ref().and_then(|id|equipment.and_then(|s|s.revisions.get(id))).and_then(|r|r.profile.aviation.as_ref()).filter(|a|a.store_family==def.id).map(|a|spheres_sim::arsenal::available_design_units(h) as f64*a.sorties_per_aircraft_month*a.stores_per_sortie)).sum()}else{vehicles as f64*def.rounds_per_vehicle_month};
         let reserve=equipment.and_then(|s|s.ammunition_reserves.get(def.id));
         let target=reserve.map_or(reference,|p|p.target_rounds as f64);
-        let gap=(target-stock-incoming as f64).max(0.0);
+        let gap=(target-stock-incoming as f64-company_incoming as f64).max(0.0);
         let suggested=if gap>0.0 {gap.ceil().min(eq::MAX_AMMO_ORDER as f64) as u32}else{def.rounds_per_day.ceil().max(1.0).min(eq::MAX_AMMO_ORDER as f64) as u32};
         let usage=reading.families.iter().find(|f|f.family==def.id);
         let required=usage.map_or(0.0,|f|f.required);let used=usage.map_or(0.0,|f|f.used);
@@ -53,6 +57,7 @@ fn ammunition_board(w:&WorldState,me:NationId)->Value {
             metric("Current operations require",format!("{} {unit} this tick",ammo_quantity(required))),metric("Current stores can supply",format!("{} {unit} this tick",ammo_quantity(used))),
             metric("One-month planning reserve",format!("{} {unit}",ammo_quantity(reference))),metric("Reserve gap after all active orders",format!("{} {unit}",ammo_quantity(gap)))];
         if reserve.is_some(){metrics.insert(5,metric("Saved reserve target",ammo_quantity(target)));}
+        metrics.push(metric("Purchased company stock in transit",format!("{} {unit}",ammo_quantity(company_incoming as f64))));
         if let Some(u)=usage.filter(|u|u.required>0.0){metrics.push(metric("Firing demand supported",format!("{:.1}%",u.coverage*100.0)));}
         let mut detail=format!("Compatible certified models: {}. The reserve is a modeled month of firing per available vehicle, not a battle forecast. {}",if models.is_empty(){"none currently available".into()}else{models.join(", ")},if ground_active{"Current operation requirements account for the vehicles deployed and their missions."}else{"These stores will supply custom weapons after physical ammunition activation."});
         if aviation {detail=format!("Compatible aircraft: {}. The planning reserve uses each model's frozen sortie rate and stores per sortie. Aircraft always require their exact physical mission stores, without activating ground ammunition. Actual use depends on supported aircraft, assigned air raids and theatre access.",models.join(", "));}
@@ -102,16 +107,16 @@ fn ammunition_board(w:&WorldState,me:NationId)->Value {
         warnings.push("Custom ground vehicles still use the existing shared magazine until you activate physical ground ammunition. Aircraft always require their compatible mission stores.".to_string());
     }
     if equipment.and_then(|s|s.maintenance_plan.as_ref()).is_none() {
-        warnings.push("An actual maintenance plan is required before ammunition work. It makes the remaining Defense maintenance authority available for paid fabrication.".into());
+        warnings.push("An actual maintenance plan is required before ammunition supply or purchases. Fleet upkeep is protected before the remaining Maintenance & supply funds can pay for ammunition.".into());
         actions.push(nav("Review maintenance plan",json!({"action":"equipment","tab":"service"})));
     }
     warnings.push("Stocks belong to exact weapon families. Wrong-caliber rounds, unfinished batches and refit-reserved vehicles cannot supply firing. Extra rounds do not increase standing force or create extra vehicles.".into());
     actions.push(nav("Review material purchasing plan",json!({"action":"equipment","tab":"production"})));
     actions.push(nav("Review Defense maintenance funding",json!({"action":"budget","ministry":"defense","department":2})));
-    let overview=json!({"title":"Ammunition stores and production","status":status,
-        "detail":if has_aircraft{"Manufacture compatible aircraft mission stores before launching air raids. Aircraft use paid physical stores from their first deployment. Ground ammunition activation is separate. Vehicle upkeep is paid first; store fabrication uses remaining Defense maintenance funding and real arms-plant slots. Consumption is shared across operations and recorded once."}else if ground_active{"Your custom ground fleet now draws from compatible stores. The national plan shares ammunition across operations and records consumption once. Keep manufacturing funded as stores are used. Vehicle upkeep is paid first; ammunition fabrication uses the remaining departmental funds and a real arms-plant slot."}else{"Prepare compatible stores, fund finite manufacture, then activate physical supply for your custom ground fleet. The national plan shares ammunition across operations and records consumption once. Vehicle upkeep is paid first; ammunition fabrication uses the remaining departmental funds and a real arms-plant slot."},
+    let overview=json!({"title":"National ammunition stores","status":status,
+        "detail":if has_aircraft{"Acquire compatible aircraft mission stores before launching air raids. Aircraft need physical stores from their first deployment; ground ammunition activation is separate. Company purchases and public batches deliver into these exact-family stores. Actual consumption is shared across operations and recorded once."}else if ground_active{"Your custom ground fleet draws from compatible physical stores. Review manufacturer stock and existing public batches as rounds are used. The national plan shares ammunition across operations and records consumption once; fleet upkeep is protected before ammunition purchases."}else{"Acquire compatible stores, then review physical ground ammunition activation when ready. Company purchases and existing public batches add actual rounds only on arrival or completion. Fleet upkeep is protected before ammunition purchases; inherited equipment keeps its existing magazine."},
         "metrics":overview_metrics,"warnings":warnings,"actions":actions});
-    json!({"overview":overview,"reserves":ammunition_reserve_cards(w,me),"families":families,"orders":orders})
+    json!({"overview":overview,"supplier_market":company_ammunition_market(w,me),"reserves":ammunition_reserve_cards(w,me),"families":families,"orders":orders})
 }
 
 fn ammunition_preview(w:&WorldState,me:NationId,session:&str,command:&Value,order:&EquipmentOrder)->Value {

@@ -1,6 +1,36 @@
 # SPHERES Roadmap
 
+## Current implementation — company ammunition stock and purchases (2026-09-07; accepted)
+
+The existing domestic contractor can supply all 23 ammunition families after a
+compatible revision is certified. It pays real inputs and fabrication from its
+own working capital, sharing the same single plant work packet with equipment.
+Licensing supply grants no free stock, new factory, ammunition activation or R&D
+project. Reviewed finite purchases use Maintenance & supply after protecting
+today's unpaid actual upkeep, then settle and deliver into the existing national
+magazine after seven accessible days. Company shelf stock remains separate.
+
+The Ammunition tab shows manufacturer stock, compatible equipment, reserve gaps
+net of public batches and paid inbound stores, purchases and arrivals. Companies
+adds an Ammunition filter without inventing 3D models. Existing public batches and
+reserve preferences remain; future automatic public production stops only for a
+converted family. No standing supplier purchases or automatic government buys are added.
+
+The first company ammunition supply upgrades to company book 3/save envelope 4;
+untouched tank-only and mixed-equipment books retain their earlier versions.
+The non-browser UI batch passes 955; the final focused equipment run passes 110.
+Rust integration passes 1,192 with 70 ignored (simulator/CLI 941/67; web 251/3),
+and final affected API checks pass 50. Browser acceptance passed reviewed rounds
+and mission-store purchases, save/restart before settlement, exact-family arrival,
+unchanged ground activation, filters and narrow-screen inspection. The final
+release build and evidence are recorded in
+[COMPANIES.md](COMPANIES.md#verification). [AMMUNITION.md](AMMUNITION.md) records
+the detailed constraints. Supplier refits, imports, AI buyers and sourced firms
+remain future work.
+
 ## Current implementation — suppliers for ground vehicles and tactical aircraft (2026-09-07; accepted)
+
+This records the accepted ground/air checkpoint before the ammunition extension above.
 
 The accepted tank supplier route below now covers all eleven existing designer
 platforms: four tank classes, five ground specialists and two tactical aircraft.

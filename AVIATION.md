@@ -12,6 +12,11 @@ including aircraft purchase, save/restart and exact-model arrival.
 [COMPANIES.md](COMPANIES.md#verification) records acceptance
 separately from the earlier aircraft and tank milestones.
 
+Company manufacture of compatible bombs is accepted through final Rust and
+browser checks. The Ammunition supplier shelf offers
+finished mission stores and paid arrivals into the existing magazine. Authorizing
+company supply creates no bombs; an aircraft purchase still includes none.
+
 ## Build and support an aircraft
 
 Choose **Light attack aircraft** or **Tactical strike aircraft** in the Designer.
@@ -71,6 +76,15 @@ Inspection preserves an unfinished designer draft. Aircraft purchases count towa
 their exact fleet target as paid inbound units; the target authorizes no purchase.
 
 ## Physical mission stores
+
+For a certified aircraft loadout, authorize the existing contractor to supply its
+exact bomb family and buy available finished stores through a separate review.
+The company pays real inputs and fabrication from its working capital on the same
+shared plant slot. Government purchases use Maintenance & supply after protecting
+unpaid actual fleet upkeep, and arrive seven accessible days after settlement.
+National reserve gaps count paid incoming stores and unfinished public batches.
+The target places no automatic purchase. Existing public bomb batches remain;
+future automatic public batches stop only for the family converted to company supply.
 
 Every custom aircraft requires its selected physical bomb family from its first
 deployment. This does **not** activate physical ground ammunition: ground keeps
@@ -144,6 +158,11 @@ then. Old aircraft projects, frozen profiles, paid deliveries and inventory keep
 their owners; this extension does not retroactively sell them through a supplier.
 The envelope prevents older tank-only company loaders from accepting and
 misclassifying mixed ground/air corporate property.
+
+Authorizing the first company ammunition family upgrades to company book 3/save
+envelope 4, with sparse matched supplier receipts in the existing ammunition
+state. The earlier company versions remain until that action. The new ammunition
+route has its own recorded integration acceptance in [COMPANIES.md](COMPANIES.md#verification).
 
 Focused simulation coverage checks pure previews, research and installation
 refusals, fully supplied component effects, both paid aircraft lifecycles,

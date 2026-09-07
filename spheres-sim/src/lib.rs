@@ -1497,14 +1497,14 @@ pub fn save(w: &WorldState) -> String {
         #[derive(Serialize)]
         struct EquipmentSave<'a> { format: &'static str, version: u32, world: &'a WorldState }
         serde_json::to_string_pretty(&EquipmentSave {
-            format: "spheres-equipment-save", version: if w.companies.is_empty() {1}else if w.companies.version==companies::TANK_VERSION {2}else{3}, world: w,
+            format: "spheres-equipment-save", version: if w.companies.is_empty() {1}else if w.companies.version==companies::TANK_VERSION {2}else if w.companies.version==companies::EQUIPMENT_VERSION {3}else{4}, world: w,
         }).expect("serialize equipment save")
     } else { serde_json::to_string_pretty(w).expect("serialize") }
 }
 pub fn load(s: &str) -> Result<WorldState, String> {
     let shape: serde_json::Value = serde_json::from_str(s).map_err(|e| e.to_string())?;
     let mut w: WorldState = if shape.get("format").is_some() {
-        if shape["format"] != "spheres-equipment-save" || !matches!(shape["version"].as_u64(),Some(1..=3)) {
+        if shape["format"] != "spheres-equipment-save" || !matches!(shape["version"].as_u64(),Some(1..=4)) {
             return Err("This equipment save version is not supported by this build.".into());
         }
         #[derive(Deserialize)]
@@ -1512,10 +1512,10 @@ pub fn load(s: &str) -> Result<WorldState, String> {
         serde_json::from_str::<EquipmentSave>(s).map_err(|e| e.to_string())?.world
     } else { serde_json::from_str(s).map_err(|e| e.to_string())? };
     let envelope=shape.get("format").and_then(|_|shape["version"].as_u64()).unwrap_or(0);
-    let expected_company_envelope=match w.companies.version {companies::TANK_VERSION=>2,companies::VERSION=>3,_=>0};
+    let expected_company_envelope=match w.companies.version {companies::TANK_VERSION=>2,companies::EQUIPMENT_VERSION=>3,companies::VERSION=>4,_=>0};
     if (!w.companies.is_empty() && (expected_company_envelope==0||envelope!=expected_company_envelope))
         || (w.companies.is_empty()&&envelope>=2) {
-        return Err("Company property requires its matching version-two tank or version-three equipment save envelope; refusing to discard or silently downgrade corporate assets.".into());
+        return Err("Company property requires its matching tank, equipment or ammunition save envelope; refusing to discard or silently downgrade corporate assets.".into());
     }
     migrate_legacy_wars(&mut w);
     if w.theatres.is_empty() {

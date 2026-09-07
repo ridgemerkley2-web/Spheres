@@ -3,7 +3,8 @@
 7 September 2026 · the first domestic tank implementation is accepted through
 Rust, UI and browser checks. Its extension to all nine ground platforms and both
 tactical aircraft is accepted through simulator, web, UI and mixed-family browser
-checks. The broader company roadmap remains future work.
+checks. Company-made ammunition is now accepted through final Rust, UI and browser
+verification; the broader company roadmap remains future work.
 
 Ridge wants the country to design equipment, put it through development with a
 manufacturer, and buy the manufacturer's finished stock. Important national
@@ -17,8 +18,9 @@ contracted model development, company-funded stock, reviewed purchase and delive
 [COMPANIES.md](COMPANIES.md) is the current player/mechanics guide and verification
 status. This implements a bounded first route, not the entire foundation or all
 acceptance gates below. Coverage of all eleven existing designer platforms is the
-accepted portion of step 4. Private/historical firms, inherited-equipment migration,
-company ammunition and refit services, imports, AI procurement and civilian-company
+accepted portion of step 4. Company ammunition is its current integration milestone.
+Private/historical firms, inherited-equipment migration,
+refit services, imports, AI procurement and civilian-company
 economics remain unimplemented.
 
 ## The player experience
@@ -43,7 +45,8 @@ company manufactures stock → purchase → delivery → service.**
    upkeep and effect on fleet needs, then buy. The company loses that stock and
    the country receives an owned delivery. Only arrival adds usable equipment.
 6. **Support:** existing service, ammunition compatibility, upgrades and retirement
-   continue. Later, manufacturers can also sell ammunition and refit services.
+   continue. Company-made ammunition now uses reviewed stock purchases; supplier
+   refit services remain later work.
 
 Illustrative interaction, not starting data: a company has eight of your tank
 model ready and the fleet needs twenty. Buy eight now or wait for restocking.
@@ -198,6 +201,10 @@ both tactical aircraft and is accepted through simulator, web, UI and browser
 checks. Sourced company data and broader ownership/economic attribution within the foundation
 remain future work, as do the rest of step 4 and steps 5–6.
 
+Company ammunition is an accepted part of step 4. The UI batch passes 955 checks
+and the final focused equipment run passes 110. Full Rust and browser acceptance
+cover its stock purchase and arrival separately from the earlier equipment milestone.
+
 ### 1. Company ownership and funding foundation
 
 Add the registry, explicit capitalization, facility rights and financial/physical
@@ -223,12 +230,20 @@ complete playable milestone, covering steps 1–3 together.
 
 ### 4. Make the procurement loop the default
 
-**Platform coverage accepted; remaining work planned:** new designs for all eleven current
+**Platform coverage and ammunition accepted; wider step incomplete:** new designs for all eleven current
 platforms use the existing company contract, stock purchase and delivery path.
 One real leased Arms Plant slot is shared across the catalogue. Ground/Aircraft
 market filters retain exact specifications and purchase identities. Aircraft
 retain their Air-class, maintenance and compatible-store rules; this creates no
-additional factory, basing right or bomb stock. The remainder below is planned.
+additional factory, basing right or bomb stock.
+
+Company stock manufacture and reviewed purchases now extend to the 23 existing
+ammunition families after a compatible model is certified. Inputs and fabrication
+use company cash and the shared plant. Maintenance & supply funds purchases after
+protecting actual upkeep; settlement and seven accessible delivery days put exact
+stores into the national magazine. Existing public batches and reserve preferences
+remain, with automatic public batches stopped only for converted families.
+Supplier refits, standing stock purchases, imports and AI procurement remain planned.
 
 Carry the same company/purchase path across implemented ground and air equipment.
 Add company-made ammunition, paid refit services and optional stock-buying plans.
@@ -277,7 +292,8 @@ upgrades to company version 2/save envelope 3 without rewriting earlier tanks,
 balances or paid work. Older envelopes cannot contain mixed-family company
 property. Unused companies remain sparse and preserve the earlier
 legacy/equipment-only save shapes. Inherited-equipment conversion remains future
-work.
+work. First company ammunition supply upgrades to book 3/save envelope 4, retaining
+earlier corporate property and adding matched ammunition arrival receipts.
 
 For implementation, require the relevant lifecycle, accounting and supply tests,
 full Rust workspace checks, affected UI checks, and browser verification of
@@ -298,3 +314,8 @@ development save/restart, stock purchase, year-end arrival and service checks.
 [COMPANIES.md](COMPANIES.md#verification) records current and historical evidence
 separately without counting focused reruns twice. The wider company and equipment
 roadmap remains open.
+
+The company-ammunition extension separately passes 955 non-browser Node checks
+and a final focused 110-check equipment run. Rust integration passes 1,192 with
+70 ignored; final release-build and browser acceptance are recorded in
+[COMPANIES.md](COMPANIES.md#verification).
