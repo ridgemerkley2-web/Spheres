@@ -1,5 +1,75 @@
 # SPHERES Roadmap
 
+## Done — cards frame on the silhouette, the globe survives a lost context, and scatter is measured out of the map (2026-09-07)
+
+THE FRAMING WAS STILL HALF WRONG, and the section below is where the other
+half is recorded. Walking the vertices fixed the SIZE of the fit; it went on
+aiming at the bounding-box CENTRE. A construction site is wide, flat and seen
+from above, so under perspective its near ground projects further from centre
+than its far ground and the whole silhouette sits low. Measured on the shipped
+starter-industry card in the running game: NDC -0.942 to +0.298, flush against
+the bottom edge, 37% of the card empty above it. `fitDistance` is now
+`fitFrame` and returns a distance AND a pivot — fit, look at where the
+silhouette actually landed, fit again. On that same card at its real
+1124x102: **fill height 61.7% -> 96.1%, gaps 37/2 -> 2/2**.
+
+Two things that cost real time and are worth not rediscovering. The recentring
+step must be scaled by the VERTEX's distance from the camera, not by the
+viewing distance — scaled by the latter it overshoots on a deep model and the
+pivot oscillates, and five passes left the raven further off centre than three
+did (0.239 against 0.145). Each pass now solves outright for the two extremes
+it can see; it still takes several because moving the pivot hands the extreme
+role to different vertices, and four is the measured minimum at which every
+shipped model settles. And the TURNING distance has to be fitted about the
+RESTING pivot, or a card clips the moment it comes round to an angle whose own
+pivot sat elsewhere — checked over 46 deck models, 26 site meshes, 5 town
+blocks and 5 vehicles at four aspects and every 15 degrees: worst reach 0.9720,
+so nothing clips and the bound is not vacuous. A latent bug fell out of the
+same block: `dist` was assigned only while it was still zero, so a card whose
+frame changed shape kept being drawn from the distance fitted to its previous
+shape.
+
+`tools/ui/check_arsenal3d_framing.cjs` asks all 82 shipped models these
+questions with no GPU — `frameOf` is pure geometry and is exported for exactly
+that. It projects vertices the way the shader will and tests the CONSEQUENCES
+rather than re-implementing the fit, because a test that copied the algorithm
+would agree with a broken one. Its own first draft filtered on `bounds` and
+silently dropped all 46 deck models, which is why the model count is asserted.
+
+A GLOBE THAT CAME BACK INVISIBLE (roadmap 7.8, the in-game context-loss pass).
+`glFail` hides the canvas and appends the `#globeFail` panel; `glBoot` removed
+only the loading status. So after a real loss and restore the globe rebuilt
+itself perfectly and drew into a `display:none` canvas under a stale panel
+saying the browser would not give it WebGL2 — every flag healthy, nothing on
+screen but the 2D labels floating on the void. Nobody had seen it because
+`WEBGL_lose_context.loseContext()` proves only the loss half and never fires
+`webglcontextrestored`; testing only the loss makes the renderer look like it
+cannot recover and hides the real bug, that it recovers invisibly. I made that
+exact mistake first and wrote the globe off before reading the source. The
+regression test pairs each mark with its undo in one place.
+
+SCATTER IS BUILT AND DELIBERATELY NOT ON THE MAP. `world-scatter.js` is a
+finished terrain-following placement pass — stable under pan, samplers injected,
+17 checks including a ten-entry sabotage ledger where each defect must fail on
+its own named bar. It was wired onto the globe as ground dressing and the wiring
+came out the same session: at ZOOM_MAX the ground scale at screen centre is
+**661 m/px** and the visible footprint is still 8.5 x 1.7 degrees, so a 20 m
+tree is 0.03 px and every sprite was about 500x too large. The rule against
+inventing geography covers inventing SCALE. `docs/art/SCATTER_SCALE_FINDING.md`
+carries the numbers, including where the kit does work: a town block is 148x104 m
+and a site 55-77 m, so on a 200 px card an oak is 20-42 px. Town blocks already
+plant themselves (4.1%-6.6% canopy by vertex colour); all thirteen construction
+kinds are at 0.00%, which is the one place the kit is correctly scaled and
+genuinely missing. It is NOT done, because the three tightest kinds have only
+698, 980 and 1,448 triangles of headroom under the section 4 ceiling and
+widening that ceiling is Ridge's call, not mine.
+
+Also from the 7.8 pass, both passing: at 390 px the layout holds, the dock is a
+real horizontal scroller rather than clipped content, the globe canvas tracks
+DPR 2 with matching aspect, and the site card paints without overflowing.
+
+Suite: spheres-web 199 / 0 / 3, node 876 / 0.
+
 ## Done — the equipment deck has models: 46 meshes, one WebGL2 context, and the three surfaces that show them (2026-09-06)
 
 `spheres-web/ui/arsenal-models.js` builds one low-poly mesh for every id in
