@@ -77,6 +77,462 @@ Current workflow and verification boundaries: `EQUIPMENT_DESIGNER.md` and
 `MILITARY_EQUIPMENT_DESIGNER_PLAN.md`; inherited ammunition conversion,
 remaining air/naval design, trade, designer AI and balance remain future milestones.
 Automatic material purchasing followed in the release above.
+## Integrated branch history
+
+The dated records below retain the Arsenal and political-system work from
+`feat/hoi4-map-and-tech`, alongside earlier economic releases. Their suite
+counts, switches and pending-work notes describe those historical snapshots;
+they do not replace the current equipment status or next direction above.
+
+## Done — the equipment deck has models: 46 meshes, one WebGL2 context, and the three surfaces that show them (2026-09-06)
+
+`spheres-web/ui/arsenal-models.js` builds one low-poly mesh for every id in
+`arsenal::DECK` — 46 of them, 20,780 triangles, 452 to a model — and
+`arsenal3d.js` draws them into the Foundry from a single WebGL2 context.
+NOTHING IS LOADED: this page has no build step and no CDN, so a glTF loader and
+forty-six binary payloads were never available, and the meshes are authored the
+way mapgen.rs authors the map — a recipe shipped as source and baked by the
+client. A tank is forty lines and costs the wire nothing.
+
+Wired at three sites, all of them in the manufacturing panel: the equipment
+catalogue's cards (the model takes the 68px band the class glyph's lilac circle
+used to sit in), a running production line's 50px tile, and every row of the
+arsenal ledger — held stock and deliveries in flight — at 34px. The glyph was
+NOT removed from the markup anywhere; `arsenal3d.css` hides one only on a card
+that got a model, so a machine with no WebGL2 keeps the panel it had. That path
+is asserted, as is the parity between the Rust deck and the JavaScript one, in
+both directions and on the name the player reads.
+
+TWO BUGS FOUND BY LOOKING, both invisible to any test that could have been
+written first. GL measures a viewport from the bottom of a framebuffer and
+`drawImage` measures its source rectangle from the top, so rendering at
+`height - h` and copying from `height - h` — the obvious pairing — reads the
+one band nothing was drawn into, and every card came out empty with no error
+anywhere. And framing by the bounding BOX left cards 56% full, because the box
+that contains a tank has corners the tank does not reach; the fit now walks the
+vertices, twice — tight on the angle a card rests at, and pulled back far
+enough that a hovered model stays in frame all the way round. 73-82% fill,
+measured on the live cards.
+
+THE TRAP THAT COST THREE RED TESTS, recorded because it will recur: this
+checkout is `core.autocrlf=true` and `.gitattributes` pins LF for `*.json` and
+nothing else, so `index.html` is CRLF ON DISK — and three key-handling tests
+assert literal `
+` inside it. A whole-file rewrite that normalises to LF
+turns them red while changing not one character git would store. Rewrite
+touched files back to CRLF before believing a red.
+
+Beside the meshes: `tools/arsenal/gallery.html` draws the whole deck from the
+same two files the game loads, at a size the cards never use, and opens
+straight off the filesystem; `tools/arsenal/export_obj.js` runs
+arsenal-models.js under node and dumps every mesh to Wavefront OBJ with vertex
+colours, metres and +Z forward, so the models are not trapped in this page. The
+OBJ output is derived and gitignored. `tools/arsenal/README.md` carries the
+conventions and what to do when a kit is added. Suite: spheres-web 162 / 0 / 2.
+
+## Done — the political arm, the history pass and the calibration pass: M1, R2, M2, R1, R3(d), R3(e) landed; the census re-read; no constant moved; the switch stays OFF (2026-09-06)
+
+Branch `feat/ideology-history` off `origin/feat/hoi4-map-and-tech` (2e164ae),
+Ridge's determinations quoted: "Make determinations for these and continue. I
+want it based on historical data." Seven commits landed the two model pieces
+and the rulings (BUGS H-1..H-5): presence through backing and the sponsors'
+standing programme (M1), the hostile-army annulment (R2), the pay-per-soldier
+arm sized to zero by its own measurement (M2), D4's Nepal and Haiti tables
+under the lens switch (R1), the successor flag on 24 sourced rows with A5
+re-expressed to it (R3(d)), and 1990 personnel and military expenditure in
+125 / 118 nation files (R3(e)); R3(a), (b), (c) are transcribed under
+`docs/political-arm/*-pending*` and stopped as three re-pin questions. The
+calibration pass then read the census at N=60 (34 s) and N=200 (113 s) and
+at 420 months (N=60, 59 s), and MOVED NOTHING: every permitted move for an
+out-of-band anchor is pinned by an existing test (the flat seed and the drift
+constants, the AI's round-table lines, the road lines) or short of the band by
+arithmetic on those pins — the fetched bases for the moves drafted (Benin
+1989-90, Zambia 1990-91, Cambodia 1997) and a four-seed probe of the AI round
+table (16-17 regimes reach discontent 0.40; the largest movement sits at
+0.12-0.25 in all but two) are in BUGS H-6. The N=200 table, per seed
+min/med/max: A1 coups against elected governments 5/6/9, top-3 share 1.00
+(Sao Tome 541, Philippines 447, Comoros 200 of 1252), annulments 0/1/1
+(Algeria 105/200 alone); A2 1/200 by 2000, Algeria annulled 105/200; A3
+117/200 = 0.585, Cambodia alone (2e164ae: 197/200); A4 1/2/3 (Sao Tome and
+South Africa 200/200); A5 0/200; A6 0 in 200/200, 0 in 60/60 at 420 months;
+A7 0.148 (bloc flips 2/2/5 against 11/15/21 takeovers); A8 8/8 in 200/200;
+A9 3472/3472 = 1.000; A10 0.26/0.28/0.32. The four pinned bars re-derived
+from this sample and re-watched red on a fresh build (A6 35..53 route events
+a seed, A8 8/40, A10 0.020; A9 green at 1.000, decorative against the roads
+as its comment says); the six ignored bars carry this tree's readings. THE
+SWITCH: `ideology_takeover` stays OFF — out are A1's concentration arm, A2,
+A3, A4, A5, A7, each with its distance in BUGS H-6. Suite on the tree that
+ships: sim lib 457 / 3 / 25 (the three deliberate reds at unmoved actuals
+0xe26e4bf8d6c60066 and 0xbe94d6125631829c), 28 integration binaries green
+(`bloc_census` 4 pinned bars, 25.9 s), web and cli in the census commit's
+body; digests d1a2cfbf7c6958d7 / 3501 and 39dea3341a7f6e8c / 3983 unmoved.
+The ship pass (BUGS H-7) corrected three overstated sources at their site
+(Powell's abstract, Operation Cyclone's figures, four personnel refusals that
+had been called sourced zeros), recorded the third touched test and the three
+R3 stops plainly, watched the suite from a clean build (839 / 3 / 65, the
+three deliberate reds at the same actuals), re-ran both digests twice, read
+Algeria, Afghanistan and Iraq on seed 7 through the page, and fast-forwarded
+the branch onto `feat/hoi4-map-and-tech`.
+
+## Done — S5 shipped: the skeptics' findings repaired at the root, D4 reverted, the census re-read (2026-09-06)
+
+Branch `feat/ideology-census`, fast-forwarded onto `feat/hoi4-map-and-tech`.
+The A6 bar attributed an uprising by the PRE-TICK `uprising_armed` flag, so
+a crown the movement armed inside the tick was filed beside the bar; it now
+reads the firing site's own clause, the headline (a crowned "the B movement
+takes power" is a route event, "the old regime falls" is the collapse), and
+counts the gap — 165 of 1570 crowns at N=200, none in a 1990 democracy, A6
+still 0 in 200/200 and 0 in 12/12 at 420 months (BUGS S7-1). D4's wiring
+(5086cfa) is REVERTED as a departure from the calibration brief's scope and
+because it narrowed an existing test's assertion while the same pass refused
+the hostile-army annulment on the ground that no existing test is touched;
+the standard is now one, both rulings sit side by side for Ridge in S7-3,
+and the commit stays in history for a cherry-pick. A5's diagnosis gains the
+transcription half: Lithuania's and Hungary's returning parties are
+SocialDemocratic (Western) and three of the six already lead in 1990 (S7-5).
+Every number re-measured on the tree that ships (S7-2, S7-4): N=200 census
+identical seed for seed to the pre-D4 file; the four pinned bars green in
+20 s; every watched red re-run after a fresh watched build (A10 under route 2
+reads 0.24975, not 0.2499). Suite after `cargo clean`: sim lib 452/3/25 (the
+three deliberate reds at unmoved actuals), 28 integration binaries green,
+web 160/0/2, cli 1/0; digests d1a2cfbf7c6958d7 / 3501 and 39dea3341a7f6e8c /
+3983 twice each; live Poland and Iraq at seed 7 read CALIBRATION PENDING with
+live gauges, a year at speed 5 as Iraq with zero console errors (S7-6).
+`ideology_takeover` stays OFF.
+
+## Done — S5 pinned: the N=200 census, four bars, the switch decision (2026-09-06; D4 wired here and reverted in the ship pass, BUGS S7-3)
+
+The census at N=200 (97 s; 137 s with the rebuild after D4), per seed
+min/med/max: A1 coups against elected governments 4/6/9, inside 4..14 and
+degenerate (Sao Tome 545, Philippines 460, Comoros 200 of 1269); A2 Islamist
+takeover by 2000 0/200 seeds; A3 Communist takeover 197/200 seeds, 0/2/4 a
+seed; A4 regimes electoral by end-1996 1/2/3; A5 0/200; A6 route events in
+1990 democracies 0 in 200/200 and 0 in 60/60 at 420 months; A7 ratio 0.16;
+A8 8/8 in 200/200; A9 0.953; A10 0.27/0.33/0.38. Four bars PINNED with n
+derived from that sample and a power statement beside each (BUGS S6-2): A6 an
+invariant over 420 months on 12 seeds, A8 on 40 seeds (decorative against one
+regime falling, said so), A9 on 12 seeds (decorative against the road
+constants, guards the Army-pillar transcription, said so), A10 on 12 seeds;
+each watched red against the lines it guards, or recorded as not red and why.
+Six bars written and `#[ignore]`d at their reading, never widened (A1's
+concentration arm, A2, A3, A4, A5, A7; BUGS S6-3). D4's Nepal and Haiti
+tables were WIRED under the lens switch here (`government::polity_in`, commit
+5086cfa) and REVERTED by the ship pass (BUGS S7-3; P-8, S4-10, R-6 stand) —
+while wired, the default path was byte-identical: both golden actuals
+(0xe26e4bf8d6c60066, 0xbe94d6125631829c) and both headless digests
+(d1a2cfbf7c6958d7 / 3501, 39dea3341a7f6e8c / 3983) unmoved, the inertness
+trio green, the switched-on census moved in one seed of 200. THE SWITCH
+DECISION: `ideology_takeover` stays OFF in the browser — five anchors and one
+arm are out, the list with distances in BUGS S6-5. Suite: sim lib 453/3/25
+(the three deliberate reds at unmoved actuals), 28 integration binaries
+green, web 160/0/2, cli 1/0.
+
+## Done — S5, the bloc census and the first calibration pass (2026-09-06)
+
+`spheres-sim/tests/bloc_census.rs` (`#[ignore]`d, N from `SPHERES_CENSUS_SEEDS`,
+default 60, 27 s in release) reads every anchor of the design's "What history
+it must reproduce" per seed. Two moves kept, both for A3: an unarmed collapse
+is the pre-arm collapse and not a crown (Peru, Georgia gone), and the coercion
+lines read the pillar model's unpaid line 0.35. Final N=60: A1 5/6/8 inside its
+band but degenerate (Sao Tome, Philippines, Comoros), A2 0/60, A3 58/60 seeds
+(Belarus, Cambodia, Ukraine), A4 1/2/3, A5 0/60, A6 0 in 60/60, A7 0.16, A8 8/8,
+A9 0.953, A10 0.33. What blocks the rest is recorded in BUGS S5-1..S5-9: the
+hostile-army annulment is measured (A3 -> 38/60) and red on the Jordan assertion
+of an existing test; every road threshold is pinned as a literal by
+`every_road_reads_closed_while_takeover_is_off`; A2 and A4 need unbuilt design
+pieces, not constants. `ideology_takeover` stays off in the browser. Both golden
+actuals and both headless digests unmoved.
+
+## Done — the political arm, S3/S4 shipped: the web surface, the skeptics' repairs, the census first reading (2026-09-06)
+
+Branch `feat/ideology-roads`, fast-forwarded onto `feat/hoi4-map-and-tech`
+from cd6e2ff: the S3/S4 commits above plus four on this pass — the web
+stage's surface (1cf18de), five repairs each red-checked (933e1c8), a web
+pin (8ce367a) and these docs. Every reading below is this pass's, on the
+final tree, watched in the foreground.
+
+- **The web surface** (1cf18de, the web stage's three files landed as
+  left): the five levers on the government screen with the sim's price,
+  refusal and effects list; `GET /api/covert` and the "Back a movement"
+  card on the target's dossier quoting `statecraft::covert_odds`, the
+  function `covert_action` rolls; the bar's hatched "backed from abroad"
+  row with the sponsor named only once exposed; the watch's served reason
+  and `armed`; the political stems filed and promoted; the header chip's
+  pulse and the dock naming the road from the served `half_armed`.
+- **The repairs** (933e1c8; BUGS R-1..R-5, R-7): a vote never unseats a
+  transcribed holder tied to a pillar (Jordan's Hussein, Morocco's Hassan
+  II keep the office; the chamber's winner is the government of the day);
+  the regime's own coup is `maybe_coup`'s block verbatim under the lens
+  and writes the mover's colour under the roads only, the deposed movement
+  latched so no false "passes a third" prints; the AI's levers ride the
+  deck's ONE 0.02 draw, the lever first; the ban loses its undesigned
+  cabinet arm; `backing_cools` gates on the switch; the web's action pins
+  re-expressed six → eleven (Poland) and five → eight (Iraq). Five new
+  tests, each watched red with its line reverted.
+- **Not repaired, by ruling pending:** D4's wiring (R-6 = S4-10 = P-8).
+- **Suite, watched, release profile after `cargo clean -p spheres-sim -p
+  spheres-web -p spheres-cli --release`** (`cargo test --release
+  --workspace --no-fail-fast`, run twice — once at 04:24 and again at 04:30
+  after the Iraq pin, identical but for that test): spheres-sim lib 452
+  passed / 3 failed / 25 ignored in 157.34 s — the three deliberate reds
+  only: `tests::the_1990_start_is_pinned` at actual 0xe26e4bf8d6c60066,
+  `tests::golden_hash_of_a_known_run` at actual 0xbe94d6125631829c (pins
+  untouched), `tech::tests::the_1990_endowment_does_not_move_year_one_growth`
+  (E-3); P-12's wall-clock bar and `the_resources_row_is_free` green in
+  both runs; spheres-web 160 / 0 / 2 in 43.30 s; spheres-cli 1 / 0; the
+  twenty-seven integration binaries all green (daily 7, daily_balance 10,
+  economic_ai_supply 18, economic_competition 18, economic_sovereignty 9,
+  economic_sphere_intervention 3, industry_planning 13, materials 17,
+  materials_accounting 8, materials_ai_bootstrap 12, materials_ai_timing 5,
+  materials_ai_warehouse 2, materials_planning 4, ministries 19, research
+  10, research_centers 15, small_country_modules 9, starting_industry 11,
+  starting_industry_planning 4, starting_industry_priority 1,
+  strategic_raw_supply 12, treasury 10; the rest ignored-only). Binaries
+  post-date their sources. The inertness trio and the daily identity green
+  in debug beside the goldens (14.51 s).
+- **Digests, market OFF, twice each:** `spheres-cli run 35 1990` →
+  d1a2cfbf7c6958d7 (3501 lines) both passes; `run 35 7` → 39dea3341a7f6e8c
+  (3983 lines) both passes; equal to cd6e2ff.
+- **Live, the release `spheres-web.exe` on port 7910 `--no-open`, killed
+  after:** Poland seed 7 — the suspension 40 PC refused "Poland is not in
+  the crisis a suspension needs: stability 55 (under 45) or a government
+  short of a majority (60% held)", four bans at 18 PC with Solidarity's
+  refused "A government cannot ban the party that leads it", the eleven
+  kinds in order; the watch reads every road CLOSED — CALIBRATION PENDING
+  with live gauges (discontent 0.2917 ≥ 0.25 met on the coup road, army
+  loyalty 1.00, pressure 0), `takeover.half_armed` true on all four roads,
+  the header chip `metric pulse` reading "DISCONTENT 29%" and the dock
+  "watch: coup, uprising, round table, collapse past half"; the government
+  screen on key I renders the levers with twelve effect sentences. The
+  United States seed 7 against Cuba — `/api/covert` works 0.3300 / exposed
+  0.2380, heat 0, six operations at 5 PC, backing the Communist movement
+  refused "You cannot back a government covertly — send aid". Zero console
+  errors on the landing, the map and the government screen.
+- **The census first reading** (the calibration skeptic on a6dbefc, BUGS
+  R-8, recorded and not acted on): 30 seeds × 240 months with both
+  switches on — coups against elected governments median 6 per seed (Sao
+  Tome 87 of 178), annulments median 3 (Ukraine and Belarus in every seed,
+  Algeria 23/30), Communist uprisings 4.87 per seed in 100% of seeds,
+  Islamist 0, states opened by 1996 median 2, the round-table lever and the
+  AI's suspension 0 in every seed. Anchors A2, A3 and A4 badly off; S5 is
+  the calibration, and `ideology_takeover` stays off until it is done.
+
+## Done — the political arm, stage S4: the roads, succession, mortality (2026-09-06)
+
+Branch `feat/ideology-roads`, eight commits on part two (712de08), every one
+inert with the switches off: the golden actuals stand at 0xe26e4bf8d6c60066
+/ 0xbe94d6125631829c, the six BASE hashes and the month-35 pin of
+`the_bloc_layer_is_inert_over_time` are unmoved, and the two market-off
+headless digests read run 35 1990 d1a2cfbf7c6958d7 (3501 lines) and run 35 7 39dea3341a7f6e8c (3983 lines), sha256 of stdout, unchanged from cd6e2ff. BUGS.md S4-1..S4-10 carry the
+coefficients, the readings the design left open, and what is not here.
+`rules.ideology_takeover` is still off everywhere — the browser reads every
+road `calibration pending` with live gauges — and mortality and succession
+ride the lens switch.
+
+- **One break** (`government::regime_break`, d8df9b6): `maybe_coup`'s block
+  verbatim, taking only the authoritarianism rule and the colour from its
+  caller, so the regime's own coup, route 2 and the annulment cannot come
+  apart.
+- **Route 2** (79c2ea8): the electoral branch walks the Army and Security
+  lines of `pillar_targets` (regime_tick's formulas, factored, arithmetic
+  untouched) in a polity whose state holds an Army, accrues pressure at the
+  electoral rate and breaks before the fragile branch; the seam keeps Army
+  and Security through the clearing. Measured: Pakistan unpaid at stability
+  35 crosses 0.35 in month 11 and is removed in month 30 (not "about
+  eighteen": S4-1); paid at 6.2% and stability 70 never in 240 months.
+- **The annulment** (9a6885b): inside `hold_election` between the seats and
+  the formation; the Army live, a Communist or Islamist would-be leader,
+  authoritarianism ≥ 0.35, discontent ≥ 0.25, no court. Measured: Algeria's
+  December 1991 vote the FIS won is annulled with dz_fis banned and the
+  regime Nationalist at 0.80; Jordan's court dismisses and does not annul.
+- **Route 3** (0386136): the politics.rs collapse chain gains an arm under
+  the switch at the same site and the same draw; `blocs::challenger` (W over
+  the winnable blocs — never Regionalist-only, never Western without a
+  table), `coercion_fails`, `uprising_armed`; `government::uprising` sets
+  the winner's authoritarianism, W +0.15, the home pillar 0.80. Measured:
+  Sudan's Communist movement at 0.46 / discontent 0.70 / army 0.30 takes
+  power in month 13; Saudi Arabia's Western bloc cannot win; six democracies
+  on seeds 0..3 see no road in 420 months.
+- **Route 4** (6f4a6d8): the one authoritarianism drift, 0.01 a month to
+  0.55 under Western influence ≥ 0.40, stability 30..70, the Party pillar
+  under 0.55. Measured: Indonesia opens in month 21 and votes in month 39;
+  Saudi Arabia stops at 0.55 as a regime.
+- **The foreign payoff** (e218372): `statecraft::takeover_payoff` off one
+  plan, `caught` factored from `covert_action` verbatim. Measured on Sudan:
+  Moscow +40 then −35 exposed on the spot, −25 with Washington, the
+  democracies −8, the loser's patrons −10.
+- **Succession** (bea4513, D2): `data::Emergent` on the row, `Office::
+  tie_now` read by the ruling bloc and the court; `government::Succession`
+  and `seat_office` on every change of government; term limits by the
+  month. Never a name but the transcribed heir once. Measured: 121 offices
+  changed hands in forty years on the roads (seed 7).
+- **Mortality** (ca41545, D1): `politics::mortality`, last in `SYSTEMS`,
+  q(age) = 0.015·2^((age−65)/7). Measured: 86–96 deaths per seed over forty
+  years, six different first deaths; the daily == monthly identity holds
+  with both switches on and a BackBloc, a BanParty and a ConveneRoundTable
+  on days 10, 20 and 31.
+- **Suite, watched:** spheres-sim lib 446 passed / 4 failed / 25 ignored, run in four
+  exact-name groups (112 / 99 / 103 / 132 in 15.6 s, 41.5 s, 49.1 s and
+  1275.9 s) — the three deliberate reds (E-3's bar and the two goldens at
+  their actuals) plus P-12's wall-clock bar, which read 0.6075 ms/month
+  alone in the debug profile and 0.0651 ms/month alone in the release
+  profile, green there; spheres-web 154 / 0 / 2 in 176.8 s; spheres-cli
+  1 / 0.
+- **Not in this stage:** the web's lever cards, "Back a movement" card,
+  backing hatch, event cards and dock banner (S4-9); D4's wiring (P-8,
+  S4-10); the calibration of every road against 1989-92, which is what
+  keeps `ideology_takeover` off.
+
+## Done — the political arm, stage S3 part two: the five levers, the crackdown arm, the AI political rules (2026-09-06)
+
+Branch `feat/ideology-roads`, three commits on part one (38c1654), every one
+inert with `rules.ideology_blocs` off: the golden actuals stand at
+0xe26e4bf8d6c60066 / 0xbe94d6125631829c, the six BASE hashes and the month-35
+pin of `the_bloc_layer_is_inert_over_time` are unmoved, and the two market-off
+headless digests read run 35 1990 d1a2cfbf7c6958d7 (3501 lines) and run 35 7 39dea3341a7f6e8c (3983 lines), sha256 of stdout, unchanged from cd6e2ff. BUGS.md S3-9..S3-14 carry the
+coefficients, the two readings the design left open, and one re-measurement.
+
+- **The five levers** (`Command::SuspendConstitution` 40 PC, `BanParty` 18,
+  `LegalizeParty` 12, `DeclareProgramme` 35, `ConveneRoundTable` 30, all
+  refusable): each is refusal / plan / arm / effects off ONE plan in
+  `government.rs`, so `lib::world_refusal` refuses with the sim's prose before
+  any state ("This world does not model ideological movements." off, the
+  lever's condition on), the arm writes the plan's numbers and nothing else,
+  and `government::lever_effects` serves the same plan as the card, clamped
+  where the world clamps (rule 8). `seats_from_legal` is the gated wrapper —
+  a banned party keeps its support and holds no seats — and `seats_from` is
+  untouched. The tick's first-elections block is `schedule_first_elections`
+  (18 months from the tick, 6 from the round table), the seam inside it.
+  Measured: Poland suspends to the 0.65 floor and stays Western with its
+  cabinet dormant; the SLD at 55% of the chamber banned holds 0 seats and
+  0.55 of support; China's Western programme moves the Central Committee
+  −0.15, the USSR −15, five Western powers +10; Indonesia's round table seats
+  Golkar 0.556 / PPP 0.333 / PDI 0.111 from the movements, names the
+  Nationalist 10% as lost, and votes in 1990-07.
+- **The Security Crackdown** gains `statecraft::halve_foreign_backing`: every
+  stored backing entry behind a non-ruling bloc halved, the ruling bloc's and
+  patronage gravity untouched, the card from the same rule. Measured: Poland's
+  0.18 of Communist backing → 0.09, the RNG untouched.
+- **The AI** (`government::ai_lever`, pure; the draw beside the deck's in
+  `stratagems::ai_stratagems`, after the choice): suspend at stability < 30 /
+  auth ≥ 0.25 / 55 PC, ban the strongest non-ruling non-Western bloc's largest
+  party at influence ≥ 0.35 / auth ≥ 0.40 / 60 PC, a programme toward the
+  strongest pillar's colour at a ruling movement < 0.30 / 70 PC, a round table
+  at discontent ≥ 0.50 / a 0.35 movement / an armed mean < 0.50 / 60 PC. Each
+  line flips at its own value (measured both sides). Twenty years on seed 7:
+  0 nation-months with a lever to pull, 0 levers — the arm is quiet (S3-12).
+- **Suite, watched:** spheres-sim lib 435 passed / 4 failed / 25 ignored in 1329.86 s under load (the three deliberate reds - E-3's bar and the two goldens at their actuals - plus P-12's wall-clock bar, which read 0.6143 ms/month in the debug suite and alone, and 0.0671 ms/month alone in the release profile, green); spheres-web 154 / 0 / 2; spheres-cli 1 / 0.
+- **Not in this part** (S4, web): the roads, succession and mortality, D4's
+  wiring (P-8), the government screen's lever cards and the "Back a movement"
+  card.
+
+## Done — the political arm, stage S3 part one: movements, foreign backing, the AI covert arm (2026-09-06)
+
+Branch `feat/ideology-roads` off `origin/feat/hoi4-map-and-tech` (cd6e2ff),
+four commits, every one inert with `rules.ideology_blocs` off: the golden
+actuals stand at 0xe26e4bf8d6c60066 / 0xbe94d6125631829c and the six BASE
+hashes of `the_bloc_layer_is_inert_over_time` are unmoved. BUGS.md S3-1..S3-8
+carry the invented coefficients and the two re-expressed bars.
+
+- **Movements move** (`government::drift_movements`): the regime sibling of
+  `drift_support`, same record off the same `pains`, the ruling bloc's loss
+  shared over the present non-ruling blocs by the MEAN appeal of their
+  families, reversion 0.005 toward the flat seed. Quiet settles at 0.713,
+  ruin at 0.158, measured. **The liberalisation seam** seats a dormant table
+  from the movements when the first free elections are scheduled, and names
+  the bloc no party carries. **The surge latch**: "passes a third of the
+  country" once per upward crossing of 0.30.
+- **Foreign backing** (`CovertOp::BackBloc`, `Statecraft.backing`): the
+  fourth covert op on the same rolls and the same costs, a fixed +0.06 per
+  clean op, 0.12 per sponsor, 0.25 per bloc, cooling 0.006 a month; exposure
+  halves and names the sponsor and taints the bloc 0.02. **Gravity**: a
+  patron's bloc counts up to 0.10 in a client it pays, a view of the aid
+  flows. Influence = share + backing; effective army loyalty = loyalty −
+  Nationalist backing. Backing never enters support (asserted bit for bit).
+- **The AI** (`politics::ai_back_bloc_choice`): patrons back their own bloc
+  anywhere and any qualifying bloc in a rival's client on their existing
+  covert draw; the five transcribed ideological sponsors (Saudi Arabia, Iran,
+  Pakistan, Libya, Cuba — `NationDef.ideological_sponsor`) back their bloc
+  only, drawing only when they have something to back.
+- **D4** is transcribed as `government::D4_POLITIES` and NOT wired: wiring it
+  moves the start golden (measured, BUGS P-8). Ridge decides.
+- **Not in this part** (S3 part two, S4, web): the five levers, the Security
+  Crackdown arm, the AI stratagem arms, the roads, succession and mortality,
+  the government screen's cards.
+
+## Done — the political arm, stages S0-S2: the bloc lens, the leader table, the government screen (2026-09-05)
+
+Built on Ridge's approval of "The Political Arm of SPHERES", revision 2, quoted:
+"Go ahead and build it with code." Branch `feat/ideology-blocs` off
+`origin/feat/hoi4-map-and-tech` (ae203ec), pushed as a fast-forward of that
+branch. SPEC §4 carries the design as built; BUGS.md P-1..P-12 carry every
+invented coefficient, every refused row and every disagreement with the page.
+
+- **Five blocs** — Western, Communist, Nationalist, Islamist, Non-Aligned, in
+  that fixed order, ties broken in it everywhere — read off the party tables
+  that already existed: `Family::bloc()` for the default, 37 `.aligned(...)`
+  rows in `POLITIES` for the sourced per-party overrides, `government::bloc_of`
+  as the one answer, and a pillar map (Army Nationalist, Security Non-Aligned,
+  Business Western, Party Communist only where the regime's largest party is,
+  Clergy Islamist where the clergy is Muslim: eight of the twelve).
+- **Shares and the ruling bloc.** Electoral: the sum of party support per
+  bloc, nothing stored; the coalition leader's bloc rules. Regime:
+  `GovState.movements` seeded FLAT from the leader row (ruling 0.60, remainder
+  split over the blocs present, floor 0.002) and `regime_bloc`. Monarchy
+  exception at authoritarianism ≥ 0.40 for a pillar-tied electoral polity —
+  Jordan, the court Non-Aligned over a Brotherhood chamber served as
+  `government_of_the_day`. **Discontent** over the existing `pains`:
+  0.50·order + 0.20·prices + 0.20·growth + 0.10·war, stability 40 alone
+  0.1667, stability 25 alone 0.2917. **Influence** = share + foreign backing,
+  backing empty until S3 and served as zero.
+- **The leader table**, `spheres-sim/data/leaders_1990.json`: who directed the
+  executive on 1 January 1990, one row for each of the 137 roster nations, 339
+  source URLs, every tie resolving against the row's own polity table, every
+  date a fact of that day, no name after the start except heirs and `also`.
+  **132 named, 5 REFUSED** (Chile, Panama, and — on the provenance audit —
+  Comoros, Cyprus, Greece: a row a source does not support is kept nameless
+  with its office and dates and a note that says why, never corrected to a
+  guess; BUGS P-7). The audit sampled 43 rows and roughly 95 URLs; one heir
+  date was corrected to a sourced day, two notes trimmed.
+- **The 1990 census as transcribed**: Western 67, Communist 17, Nationalist 7,
+  Islamist 3, Non-Aligned 43 — pinned. It disagrees with three bars of the
+  design brief (Communist 11-13; Islamist exactly Iran and Sudan; Libya
+  Nationalist); that bar is kept as written and parked `#[ignore]` for Ridge
+  (BUGS P-6).
+- **The takeover watch**, served closed: four roads as gauges with the
+  design's triggers, every road `open: false`, reason "not in this build".
+  The Ideology map's hatch reads threshold gauges at half their trigger — a
+  band has no half and is no longer read (fixed this run; it had hatched
+  every nation by itself) — and STILL covers all 137 living nations at the
+  1990 start on the design's own arithmetic; recorded per gauge and filed
+  (BUGS P-5), not bent.
+- **The surface.** `/api/state` per nation: `ruling_bloc`, `discontent`,
+  `blocs`, `leader`, `government_of_the_day`, `takeover` (null when the arm is
+  off). `GET /api/government?nation=` and the government screen on **I**: the
+  five-segment bar, the chamber grouped by bloc or the pillars with loyalty and
+  coup pressure, the watch, and the four government commands and two political
+  stratagems each with the sim's own `price_of` and `refusal_of` (`refusal_of`
+  is new: it says exactly what `apply_command` would, checked over fourteen
+  commands on Poland and Iraq, eleven refused, state hash unchanged). The
+  DISCONTENT chip (green < 25, amber 25-49, red ≥ 50), the ruling swatch
+  before the nation name, the ninth map mode Ideology. Nothing is computed in
+  JavaScript.
+- **Inert by measurement.** `ideology_blocs` and `ideology_takeover` default
+  false and serialise nothing when false; the browser turns the first on at
+  boot, new and load, the second stays off everywhere. With the switch off the
+  1990 hash is the tree's actual (0xe26e4bf8d6c60066) and twenty-year hashes
+  on six seeds equal the base branch's; with it on, gdp, stability, political
+  capital, authoritarianism, inflation, support, coalitions, pillars and
+  `rng.state` are bit-identical to off for 240 months. Headless digests, market
+  off: `run 35 1990` d1a2cfbf7c6958d7 (3501 lines), `run 35 7` 39dea3341a7f6e8c
+  (3983 lines), unchanged. The two goldens stay red at their unmoved actuals
+  (0xe26e4bf8d6c60066, 0xbe94d6125631829c) while BUGS E-3 is open; the third
+  deliberate red is E-3's own bar.
+- **Still design, not built** (S3-S5): the roads as mechanics, Ban and Back a
+  movement and the other three new commands, movement drift, foreign backing
+  and the regional sponsors flag, the census, leader mortality by the hazard
+  draw. D4's Nepal and Haiti dormant tables are transcribed to
+  `docs/political-arm/nepal-haiti-d4-pending.txt` and not landed (BUGS P-8).
 
 ## Integrated release — AI industrial supply manager (2026-09-04)
 

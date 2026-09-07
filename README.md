@@ -25,6 +25,9 @@ the precise version, branch, source revision, build date and absolute save folde
 Saves use the server's working directory. The packaged launcher selects its own
 folder so moving a shortcut does not move your saves.
 
+The browser includes the strategic map, policy controls, GDP/oil history charts,
+a league table and a dispatch feed. Click a nation to inspect it and act on it.
+
 The clock is HOI4's: it runs by itself until something stops it. Space stops it
 from any screen — the cabinet, the tech screen and the resource board included —
 and starts it again from the map or either of those two boards; 1-5 pick a speed
@@ -114,9 +117,13 @@ Start with [CURRENT_ARCHITECTURE.md](CURRENT_ARCHITECTURE.md) and
 [SECTOR_PROFILES.md](SECTOR_PROFILES.md),
 [MANUFACTURING.md](MANUFACTURING.md) and
 [PROVINCE_ECONOMY.md](PROVINCE_ECONOMY.md).
+[EQUIPMENT_DESIGNER.md](EQUIPMENT_DESIGNER.md), [AMMUNITION.md](AMMUNITION.md)
+and [AVIATION.md](AVIATION.md) describe the configurable equipment lifecycle.
+[COMPANIES_AND_PROCUREMENT_PLAN.md](COMPANIES_AND_PROCUREMENT_PLAN.md) describes
+the next planned company-manufacturing and government-purchase model.
 [PLAYTEST.md](PLAYTEST.md) gives a short, repeatable usability protocol.
 
 Historical design rulings remain in BIBLE.md, SPEC.md and the domain documents.
 They should be read with dated amendments; earlier roadmap statements are not a
 reliable description of the current browser. Missing elections detail, household
-microeconomics and individual military platforms are not implied by this release.
+microeconomics and unimplemented military mission families are not implied by this release.

@@ -24,7 +24,9 @@
   },
   "military": {
     "strength": 0.3,
-    "nuclear": false
+    "nuclear": false,
+    "personnel_1990": 1000,
+    "milex_1990_usd_bn": 0.087356
   },
   "sources": [
     "GDP $12.779bn: World Bank NY.GDP.MKTP.CD, series LUX, 1990 = 12,778,792,854 current US$, retrieved from the World Bank data360 API on 2026-08-16. Against a population of 382,000 that is $33,450 a head, second in this roster only to Switzerland's $269.8bn over 6.72m, or $40,150. WHAT THIS FIGURE DOES NOT MEAN, and it is the standing caveat on every Luxembourg national-accounts number: roughly a fifth of the people working in the Grand Duchy in 1990 commuted in daily from Belgium, France and Germany and are counted in its output but not in its population. GDP per RESIDENT therefore overstates income per WORKER by about that much. The 1990 CIA World Factbook's '$6.3 billion, per capita $17,200' is a 1989 purchasing-power figure on a different basis again and is not the market series.",
@@ -38,7 +40,8 @@
     "Stability 85 and authoritarianism 0.09: a constitutional monarchy under Grand Duke Jean with no political violence in living memory, and a Christian Social People's Party that has been in government continuously since 1979 and for all but five years since 1919. Placed level with Switzerland's 85 and above the Netherlands' 82. The 0.09 is a point above Denmark and Norway because the Grand Duke's constitutional powers in 1990 were still formally real — the sanction of laws was not reduced to promulgation until the constitutional amendment of 2008 — and not because anything about Luxembourg's practice was less free.",
     "Separatism 0.0: Luxembourgish, French and German are all official and every citizen uses all three. There is no regional or linguistic movement of any kind, which for a country of 380,000 people speaking a Moselle Franconian dialect between France and Germany is the whole point of its existence.",
     "Government in January 1990: Jacques Santer's CSV-LSAP coalition, returned at the Chamber of Deputies election of 18 June 1989. The next election was due by June 1994 and was held on 12 June. Party shares in government.rs are from that 1989 election.",
-    "pop_growth_1990 = 0.5994%/yr. Compound annual growth of World Bank SP.POP.TOTL, series LUX (Luxembourg): 365,998 in 1984 to 377,100 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 0.5994%/yr. Compound annual growth of World Bank SP.POP.TOTL, series LUX (Luxembourg): 365,998 in 1984 to 377,100 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "military.personnel_1990 = 1000 and military.milex_1990_usd_bn = 0.087356 ($bn). personnel: World Bank API MS.MIL.TOTL.P1 (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (LUX, 1990) | milex_usd: World Bank API MS.MIL.XPND.CD (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.XPND.CD?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (LUX, 1990). milex entered in billions to six decimals (the nearest $1,000) of the fetched 87,355,712 current US$. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [

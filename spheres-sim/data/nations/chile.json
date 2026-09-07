@@ -25,7 +25,9 @@
   },
   "military": {
     "strength": 9.0,
-    "nuclear": false
+    "nuclear": false,
+    "personnel_1990": 95000,
+    "milex_1990_usd_bn": 1.031476
   },
   "sources": [
     "GDP $33.4bn and 13.4m people (World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, 1990; exact prints $33.429bn and 13,437,176). TFP trend 2.0%/yr: the recovery from the 1982 banking collapse ran at 7% a year from 1986 and is the strongest sustained productivity record in the region.",
@@ -36,7 +38,8 @@
     "Oil 0.01 mbd: ENAP's Magallanes fields, about 12,000 bbl/d, against consumption seven times that.",
     "authoritarianism 0.35 and stability 58: the game opens with Pinochet still president, having lost the plebiscite of 5 October 1988 and the election of 14 December 1989. Patricio Aylwin takes office on 11 March 1990, and Pinochet stays commander-in-chief of the army until 1998 — a transition on the outgoing regime's terms, which is why this is not scored as a settled democracy. Separatism 0.03 is Mapuche land conflict in the Araucania.",
     "pop_growth_1990 = 1.5983%/yr. Compound annual growth of World Bank SP.POP.TOTL, series CHL (Chile): 12,207,733 in 1984 to 13,215,005 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
-    "reserves_bn = 4.331 ($bn). Total reserves including gold, CHL, 1989: US$4331116601.68 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
+    "reserves_bn = 4.331 ($bn). Total reserves including gold, CHL, 1989: US$4331116601.68 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4).",
+    "military.personnel_1990 = 95000 and military.milex_1990_usd_bn = 1.031476 ($bn). personnel: World Bank API MS.MIL.TOTL.P1 (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (CHL, 1990) | milex_usd: World Bank API MS.MIL.XPND.CD (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.XPND.CD?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (CHL, 1990). milex entered in billions to six decimals (the nearest $1,000) of the fetched 1,031,475,584 current US$. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [

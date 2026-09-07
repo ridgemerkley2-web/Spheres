@@ -24,7 +24,9 @@
   },
   "military": {
     "strength": 3.0,
-    "nuclear": false
+    "nuclear": false,
+    "personnel_1990": 18000,
+    "milex_1990_usd_bn": 0.067121
   },
   "sources": [
     "GDP $4.92bn: World Bank NY.GDP.MKTP.CD, series HND, 1990 — the print is $4,923m. THE DISCONTINUITY IN THIS SERIES IS AN EXCHANGE RATE AND NOT AN ECONOMY, and entering the number without saying so would be the kind of confident fiction this file is supposed to avoid. The same series reads $7,877m for 1989 and $4,649m for 1991, a 37% fall and then a further fall, while real GDP grew 2.8% in 1990. The lempira had been fixed at 2.00 to the dollar since 1918. Rafael Callejas devalued and floated it in March 1990, six weeks after taking office, and it settled near 4 to the dollar and then past 5. Everything measured in dollars against Honduras changes shape in 1990 for that reason alone; nothing that happened in Honduras did. The 1990 print is entered because roster consistency requires the same series everywhere, and the caveat is here because the number will otherwise be read as a depression.",
@@ -39,7 +41,8 @@
     "TFP trend 0.003: two decades in which real output per head did not rise. Honduras exported bananas, coffee and, from the mid-1980s, the strategic position; the maquila sector that later became the growth story was legislated for in 1987 and had barely begun.",
     "Stability 52 and authoritarianism 0.28: the highest stability in this branch after Costa Rica and Belize, and it is earned by an absence rather than a presence — Honduras is the only one of the five Central American republics that did not have a war inside its own territory in the 1980s. It hosted two. Rafael Leonardo Callejas of the National Party was inaugurated on 27 January 1990, four weeks into the game's first month, in the second consecutive constitutional transfer of power between parties since the army returned to barracks in 1982. What holds the number down to 52: the army had run the country from 1963 to 1982 and retained a constitutional autonomy the civilians could not touch, Battalion 3-16 had disappeared some 180 people between 1980 and 1984, roughly 12,000 armed Contras were still encamped on Honduran soil and would not finish demobilising until June 1990, and the adjustment package was about to take the lempira and the price of bread with it.",
     "Separatism 0.02: the Miskito of Gracias a Dios and the Garifuna of the north coast are distinct peoples with a real grievance and no secession movement. Entered at Brazil's 0.02.",
-    "pop_growth_1990 = 2.8858%/yr. Compound annual growth of World Bank SP.POP.TOTL, series HND (Honduras): 4,199,850 in 1984 to 4,841,838 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 2.8858%/yr. Compound annual growth of World Bank SP.POP.TOTL, series HND (Honduras): 4,199,850 in 1984 to 4,841,838 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "military.personnel_1990 = 18000 and military.milex_1990_usd_bn = 0.067121 ($bn). personnel: World Bank API MS.MIL.TOTL.P1 (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (HND, 1990) | milex_usd: World Bank API MS.MIL.XPND.CD (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.XPND.CD?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (HND, 1990). milex entered in billions to six decimals (the nearest $1,000) of the fetched 67,120,949 current US$. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [

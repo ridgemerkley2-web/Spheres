@@ -3221,6 +3221,38 @@ pub struct NationDef {
     pub start_1990: bool,
     pub patron: bool,
     pub major: bool,
+    /// The political arm's regional ideological sponsor flag (design D3,
+    /// S3): `Some(bloc)` on the five states that bankrolled a movement abroad
+    /// without keeping clients — the bloc is the one they sponsor. Read ONLY
+    /// by the gated AI covert arm (`politics::ai_statecraft`), never by
+    /// `patrons()` or `PATRON_ORDER`, so an off-world walks exactly the list
+    /// it always did. `None` (the flag off) everywhere else.
+    pub ideological_sponsor: Option<crate::government::Bloc>,
+}
+
+/// The five regional ideological sponsors of 1990 and the bloc each backed
+/// (design D3, approved 2026-09-05): the Saudi, Iranian and Pakistani
+/// services behind Islamist movements from Afghanistan to Algeria, Libya
+/// behind Arab-nationalist and revolutionary movements, Cuba behind the
+/// Communist ones of the Americas and Africa. A transcription of who paid
+/// whom, not a coefficient.
+/// https://en.wikipedia.org/wiki/Operation_Cyclone
+/// https://en.wikipedia.org/wiki/Foreign_relations_of_Libya_under_Muammar_Gaddafi
+/// https://en.wikipedia.org/wiki/Cuban_intervention_in_Angola
+const IDEOLOGICAL_SPONSORS: &[(&str, crate::government::Bloc)] = &[
+    ("SaudiArabia", crate::government::Bloc::Islamist),
+    ("Iran", crate::government::Bloc::Islamist),
+    ("Pakistan", crate::government::Bloc::Islamist),
+    ("Libya", crate::government::Bloc::Nationalist),
+    ("Cuba", crate::government::Bloc::Communist),
+];
+
+/// The ideological sponsors in registry order, for the gated AI arm.
+pub fn ideological_sponsors() -> &'static [NationId] {
+    static S: OnceLock<Vec<NationId>> = OnceLock::new();
+    S.get_or_init(|| {
+        all_nations().iter().copied().filter(|n| n.def().ideological_sponsor.is_some()).collect()
+    })
 }
 
 static REGISTRY: OnceLock<Vec<NationDef>> = OnceLock::new();
@@ -3290,6 +3322,10 @@ fn build_registry() -> Vec<NationDef> {
                 start_1990: r.start_1990,
                 patron: r.patron,
                 major: r.major,
+                ideological_sponsor: IDEOLOGICAL_SPONSORS
+                    .iter()
+                    .find(|(code, _)| *code == r.code)
+                    .map(|(_, b)| *b),
             }
         })
         .collect()

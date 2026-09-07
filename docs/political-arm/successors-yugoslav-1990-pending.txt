@@ -1,0 +1,317 @@
+R3(a) THE YUGOSLAV SUCCESSORS - 1990 republican elections, TRANSCRIBED 2026-09-06
+=================================================================================
+Rule: each successor carries the LAST ELECTION BEFORE ITS OWN BIRTH as its dormant
+table. For all six that is the 1990 republican election, which is what the existing
+POLITIES blocks already hold. Every figure below was fetched THIS RUN from the URL
+on the row; where the fetched figure differs from the figure already in POLITIES the
+difference is stated and the fetched figure is the one written. Existing party ids
+are kept unchanged. Rows marked NEW ROW are additions the integrator may take or
+leave; rows in the NOT ENTERED appendix are refused for the reason given.
+
+Syntax is the existing one: p(id, name, native, Family, start[.aligned(Bloc)]),
+next: (0, 0) for a successor (dormant until birth), term_months 48 as existing.
+
+Vote shares are the FIRST-ROUND / list vote for the chamber named, as a fraction to
+four places, exactly as the fetched page prints them. Seat counts are in comments.
+
+-------------------------------------------------------------------------------
+SLOVENIA - Socio-Political Chamber, 8 April 1990 (80 seats)
+source: https://en.wikipedia.org/wiki/1990_Slovenian_parliamentary_election
+        https://en.wikipedia.org/wiki/DEMOS_(Slovenia)
+        https://en.wikipedia.org/wiki/Party_of_Democratic_Renewal_(Slovenia)
+        https://en.wikipedia.org/wiki/Liberal_Democracy_of_Slovenia
+Fetched table (votes / % / seats):
+  Party of Democratic Renewal (ZKS-SDP)      186,928  17.28  14
+  Alliance of Socialist Youth (ZSMS)          156,843  14.49  12
+  Slovene Christian Democrats (SKD)           140,403  12.98  11   DEMOS
+  Slovenian Peasant Union (SKZ)               135,808  12.55  11   DEMOS
+  Slovenian Democratic Union (SDZ)            102,931   9.51   8   DEMOS
+  Greens of Slovenia (ZS)                      95,640   8.84   8   DEMOS
+  Social Democratic Party of Slovenia (SDSS)   79,951   7.39   6   DEMOS
+  Socialist Alliance of Slovenia               58,082   5.37   5
+  Slovenian Crafts Entrepreneurship Party      38,269   3.54   3
+DEMOS membership per the DEMOS page: SDZ, Social Democrat Alliance, SKD, Farmers'
+Alliance (= Peasant Union), Greens - the five rows marked. Their transcribed sum is
+12.98+12.55+9.51+8.84+7.39 = 51.27% and 44 of 80 seats. The DEMOS page says "DEMOS
+won 54% of the votes" and the election page says "more than 55% of the vote" without
+naming a chamber; neither aggregate reconciles with the per-party chamber rows, so
+the SUM OF THE FETCHED ROWS (0.5127) is written and the 0.540 now in POLITIES is the
+figure it replaces. (Hardest call - see foot.)
+
+    // Slovenia - Socio-Political Chamber, 8 April 1990: DEMOS five parties
+    // 51.27% (44/80) as the sum of SKD 12.98, SKZ 12.55, SDZ 9.51, ZS 8.84,
+    // SDSS 7.39; ZKS-SDP 17.28% (14); ZSMS 14.49% (12); Socialist Alliance
+    // 5.37% (5). Transcribed 2026-09-06.
+    // https://en.wikipedia.org/wiki/1990_Slovenian_parliamentary_election
+    // https://en.wikipedia.org/wiki/DEMOS_(Slovenia)
+    Polity {
+        nation: NationId::Slovenia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            // bloc -> Western: democratic umbrella against the party-state; members SDZ, SDSS, SKD, SKZ, ZS per https://en.wikipedia.org/wiki/DEMOS_(Slovenia) ; share = sum of the five members' chamber rows, https://en.wikipedia.org/wiki/1990_Slovenian_parliamentary_election
+            p("si_demos", "DEMOS", "Demokraticna opozicija Slovenije", Family::BigTent, 0.5127).aligned(Bloc::Western),
+            // successor_of_ruling_party: "is the successor of the League of Communists of Slovenia", renamed ZKS-SDP 4 February 1990. https://en.wikipedia.org/wiki/Party_of_Democratic_Renewal_(Slovenia) ; 17.28% https://en.wikipedia.org/wiki/1990_Slovenian_parliamentary_election
+            p("si_sdp", "Party of Democratic Renewal", "Stranka demokraticne prenove", Family::SocialDemocratic, 0.1728),
+            // The ZSMS list ("Union of Socialist Youth of Slovenia - Liberal Party (later the Liberal Democratic Party)", social-liberal). https://en.wikipedia.org/wiki/Liberal_Democracy_of_Slovenia ; 14.49% https://en.wikipedia.org/wiki/1990_Slovenian_parliamentary_election
+            p("si_ldp", "Liberal Democratic Party", "Liberalno demokratska stranka", Family::Liberal, 0.1449),
+        ],
+        ruling: "the National Assembly",
+        pillars: &[],
+    },
+NOT ENTERED (Slovenia): Socialist Alliance of Slovenia 5.37% and the Crafts
+Entrepreneurship Party 3.54% - no party page fetched this run, family unsourced.
+
+-------------------------------------------------------------------------------
+CROATIA - Socio-Political Council, first round 22-23 April 1990 (80 seats; second
+round 6-7 May)
+source: https://en.wikipedia.org/wiki/1990_Croatian_parliamentary_election
+        https://en.wikipedia.org/wiki/Social_Democratic_Party_of_Croatia
+Fetched first-round table (votes / % / total seats after both rounds):
+  Croatian Democratic Union (HDZ)                        1,200,691  41.76  54
+  SKH-SDP (League of Communists - Party of Dem. Changes)   678,086  23.59  12
+  SKH-SDP / SS-SSH joint candidates                        129,248   4.50   4
+  Coalition of People's Accord (KNS)                       316,023  10.99   3
+  Socialist Alliance - League of Socialists (SS-SSH)       186,726   6.49   2
+  Serb Democratic Party (SDS)                               46,418   1.61   1
+  Croatian Democratic Party (HDS)                          113,544   3.95   0
+  SKH-SDP / SS-SSH / SSOH joint candidates                  86,158   3.00   1
+  Independents                                             118,167   4.11   1
+  total first round                                      2,875,061
+The POLITIES block now reads HDZ 0.419, SDP 0.350, KNS 0.153. The fetched first-round
+figures are 41.76 / 23.59 / 10.99; the SDP's OWN list is 23.59 and it reaches 31.09
+only with its two joint lists added (23.59+4.50+3.00). The party's own page gives "26
+percent of votes" across all three houses. The own-list chamber figure is written.
+
+    // Croatia - Socio-Political Council, first round 22-23 April 1990: HDZ
+    // 41.76% (54/80 after the 6-7 May run-off), SKH-SDP 23.59% own list (12;
+    // 31.09% with its joint lists), KNS 10.99% (3), SS-SSH 6.49% (2), SDS
+    // 1.61% (1). Transcribed 2026-09-06.
+    // https://en.wikipedia.org/wiki/1990_Croatian_parliamentary_election
+    Polity {
+        nation: NationId::Croatia,
+        system: Electoral::TwoRound,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            // 41.76% first round. https://en.wikipedia.org/wiki/1990_Croatian_parliamentary_election
+            p("hr_hdz", "Croatian Democratic Union", "Hrvatska demokratska zajednica", Family::Nationalist, 0.4176),
+            // successor_of_ruling_party: "formed in 1990 as the successor of the League of Communists of Croatia"; renamed SKH-SDP February 1990, dropped SKH 3 November 1990. https://en.wikipedia.org/wiki/Social_Democratic_Party_of_Croatia ; own list 23.59% https://en.wikipedia.org/wiki/1990_Croatian_parliamentary_election
+            p("hr_sdp", "Party of Democratic Reform", "Stranka demokratskih promjena", Family::SocialDemocratic, 0.2359),
+            // 10.99% first round. https://en.wikipedia.org/wiki/1990_Croatian_parliamentary_election
+            p("hr_kns", "Coalition of National Accord", "Koalicija narodnog sporazuma", Family::Liberal, 0.1099),
+        ],
+        ruling: "the Sabor",
+        pillars: &[],
+    },
+NOT ENTERED (Croatia): SS-SSH 6.49%, HDS 3.95%, SDS 1.61% - no party page fetched
+this run, family unsourced. The SDS row matters for the Krajina and should be added
+by whoever fetches its page.
+
+-------------------------------------------------------------------------------
+BOSNIA AND HERZEGOVINA - Chamber of Citizens, 18 November 1990 (130 seats),
+turnout 77.49%
+source: https://en.wikipedia.org/wiki/1990_Bosnian_general_election
+        https://en.wikipedia.org/wiki/Social_Democratic_Party_of_Bosnia_and_Herzegovina
+Fetched table (votes / % / seats):
+  Party of Democratic Action (SDA)            711,075  31.48  43
+  Serb Democratic Party (SDS)                 590,431  26.14  34
+  Croatian Democratic Union (HDZ BiH)         362,855  16.07  21
+  League of Communists (SK BiH-SDP)           278,027  12.31  15
+  Union of Reform Forces of Yugoslavia (SRSJ) 201,018   8.90  12
+  SSO-DSS-DSZ                                  39,982   1.77   2
+  Democratic Socialist Alliance                31,623   1.40   1
+  Muslim Bosniak Organisation (MBO)            25,975   1.15   2
+The POLITIES block now reads 0.358 / 0.300 / 0.184 / 0.060; the fetched Chamber of
+Citizens rows are 31.48 / 26.14 / 16.07 / 12.31, and Markovic's SRSJ at 8.90% is
+missing from the block. Fetched figures written; SRSJ added as a NEW ROW because it
+clears the 5% threshold the block's Proportional system applies.
+
+    // Bosnia and Herzegovina - Chamber of Citizens, 18 November 1990, turnout
+    // 77.49%: SDA 31.48% (43/130), SDS 26.14% (34), HDZ BiH 16.07% (21),
+    // League of Communists 12.31% (15), Union of Reform Forces 8.90% (12).
+    // Transcribed 2026-09-06.
+    // https://en.wikipedia.org/wiki/1990_Bosnian_general_election
+    Polity {
+        nation: NationId::Bosnia,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            // bloc -> Nationalist as already recorded on the row (2026-09-05, Party_of_Democratic_Action). 31.48% https://en.wikipedia.org/wiki/1990_Bosnian_general_election
+            p("ba_sda", "Party of Democratic Action", "Stranka demokratske akcije", Family::Religious, 0.3148).aligned(Bloc::Nationalist),
+            // 26.14% https://en.wikipedia.org/wiki/1990_Bosnian_general_election
+            p("ba_sds", "Serbian Democratic Party", "Srpska demokratska stranka", Family::Nationalist, 0.2614),
+            // 16.07% https://en.wikipedia.org/wiki/1990_Bosnian_general_election
+            p("ba_hdz", "Croatian Democratic Union of BiH", "Hrvatska demokratska zajednica BiH", Family::Nationalist, 0.1607),
+            // successor_of_ruling_party: "considered the successor of the League of Communists of Bosnia and Herzegovina". https://en.wikipedia.org/wiki/Social_Democratic_Party_of_Bosnia_and_Herzegovina ; 12.31% as "League of Communists" https://en.wikipedia.org/wiki/1990_Bosnian_general_election
+            p("ba_sdp", "Social Democratic Party", "Socijaldemokratska partija", Family::SocialDemocratic, 0.1231),
+            // NEW ROW. Ante Markovic's federal reform party, 8.90%; filed Liberal by the same convention the table already applies to me_srsj and mk_srsm (Union of Reform Forces). https://en.wikipedia.org/wiki/1990_Bosnian_general_election
+            p("ba_srsj", "Union of Reform Forces of Yugoslavia", "Savez reformskih snaga Jugoslavije", Family::Liberal, 0.0890),
+        ],
+        ruling: "the Assembly",
+        pillars: &[],
+    },
+NOT ENTERED (Bosnia): SSO-DSS-DSZ 1.77%, Democratic Socialist Alliance 1.40%, MBO
+1.15% - below threshold and no party page fetched.
+
+-------------------------------------------------------------------------------
+MACEDONIA - Assembly, first round 11 November 1990 (120 single-member seats; second
+round 25 November)
+source: https://en.wikipedia.org/wiki/1990_Macedonian_parliamentary_election
+        https://en.wikipedia.org/wiki/Social_Democratic_Union_of_Macedonia
+Fetched first-round table (votes / %):
+  League of Communists of Macedonia - PDP (SKM-PDP)  234,369  21.79
+  Party for Democratic Prosperity (PDP)              165,388  15.38
+  VMRO-DPMNE                                         154,101  14.33
+  Union of Reform Forces (SRSM)                      142,564  13.25
+  Socialist Party of Macedonia (SPM)                  77,123   7.17
+  PDP-NDP                                             62,628   5.82
+  Movement for All-Macedonian Action (MAAK)           42,926   3.99
+  SRS-MDPS                                            32,799   3.05
+  Independents                                        18,157   1.69
+Final seats: VMRO-DPMNE 38, SKM-PDP 31, PDP 22, others the rest.
+The POLITIES block now reads 24.75 / 21.35 / 14.74 / 12.16 / 6.31; the fetched
+first-round rows are 21.79 / 15.38 / 14.33 / 13.25 / 7.17, and the SDSM party page
+gives a third figure (27.70%) for its own 1990 result. Three sources, three sets of
+numbers - the ELECTION PAGE's first-round table is the one written, because it is the
+only one that is a complete table with vote counts. (Hardest call - see foot.)
+
+    // Macedonia - Assembly, first round 11 November 1990: SKM-PDP 21.79%,
+    // PDP 15.38%, VMRO-DPMNE 14.33%, Union of Reform Forces 13.25%, Socialist
+    // Party 7.17%, PDP-NDP 5.82%; the run-off of 25 November gave VMRO-DPMNE
+    // 38 of 120, SKM-PDP 31, PDP 22. Transcribed 2026-09-06.
+    // https://en.wikipedia.org/wiki/1990_Macedonian_parliamentary_election
+    Polity {
+        nation: NationId::Macedonia,
+        system: Electoral::TwoRound,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            // successor_of_ruling_party: SDSM "founded on 20 April 1991 at the 11th Congress of the League of Communists of Macedonia, when it was transformed into the SDSM". https://en.wikipedia.org/wiki/Social_Democratic_Union_of_Macedonia ; 21.79% https://en.wikipedia.org/wiki/1990_Macedonian_parliamentary_election
+            p("mk_skm", "League of Communists - Party for Democratic Change", "Sojuz na komunistite - Partija za demokratska preobrazba", Family::SocialDemocratic, 0.2179),
+            // 14.33% first round, 38 seats after the run-off. https://en.wikipedia.org/wiki/1990_Macedonian_parliamentary_election
+            p("mk_vmro", "VMRO-DPMNE", "Vnatresna makedonska revolucionerna organizacija", Family::Nationalist, 0.1433),
+            // 13.25% https://en.wikipedia.org/wiki/1990_Macedonian_parliamentary_election
+            p("mk_srsm", "Union of Reform Forces", "Sojuz na reformskite sili", Family::Liberal, 0.1325),
+            // Albanian minority party, Nationalist on this axis as already recorded on the row; 15.38%, 22 seats. https://en.wikipedia.org/wiki/1990_Macedonian_parliamentary_election
+            p("mk_pdp", "Party for Democratic Prosperity", "Partija za demokratski prosperitet", Family::Nationalist, 0.1538),
+            // 7.17% https://en.wikipedia.org/wiki/1990_Macedonian_parliamentary_election
+            p("mk_spm", "Socialist Party of Macedonia", "Socijalisticka partija na Makedonija", Family::SocialDemocratic, 0.0717),
+        ],
+        ruling: "the Assembly",
+        pillars: &[],
+    },
+NOT ENTERED (Macedonia): PDP-NDP 5.82%, MAAK 3.99%, SRS-MDPS 3.05% - no party page
+fetched this run, family unsourced.
+
+-------------------------------------------------------------------------------
+SERBIA - National Assembly, first round 9 December 1990 (250 single-member seats;
+second round 23 December), turnout 71.39%
+source: https://en.wikipedia.org/wiki/1990_Serbian_general_election
+        https://en.wikipedia.org/wiki/Socialist_Party_of_Serbia
+Fetched table (% / seats):
+  Socialist Party of Serbia (SPS)              48.15  194
+  Serbian Renewal Movement (SPO)               16.49   19
+  Democratic Party (DS)                         7.78    7
+  DCVH (VMDK, Vojvodina Hungarians)             2.75    8
+  Party of Democratic Action of Sandzak (SDA)   1.75    3
+  Union of Reform Forces for Vojvodina (SRSJV)  1.55    2
+  People's Peasant Party (NSS)                  1.41    1
+  SSSS                                          1.09    2
+  SDS 0.68 (1), UJDI 0.52 (1), DSHV 0.49 (1), PVD 0.46 (1), SJ 0.45 (1), DRSM 0.07 (1)
+  Independents                                  9.47    8
+Presidency: Milosevic 3,285,799 (67.71%), Draskovic 824,674 (16.95%).
+The POLITIES block now reads 46.1 / 15.8 / 7.4; the fetched rows are 48.15 / 16.49 /
+7.78. Fetched figures written.
+
+    // Serbia - National Assembly, first round 9 December 1990, turnout
+    // 71.39%: SPS 48.15% (194/250), SPO 16.49% (19), DS 7.78% (7), VMDK 2.75%
+    // (8), SDA of Sandzak 1.75% (3), independents 9.47% (8). Milosevic took
+    // the presidency with 67.71%. Transcribed 2026-09-06.
+    // https://en.wikipedia.org/wiki/1990_Serbian_general_election
+    Polity {
+        nation: NationId::Serbia,
+        system: Electoral::FirstPastThePost,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            // successor_of_ruling_party: founded 17 July 1990 by merger of the League of Communists of Serbia and the Socialist Alliance of Working People; programme of October 1990 "Serbia as a socialist republic". https://en.wikipedia.org/wiki/Socialist_Party_of_Serbia ; 48.15% https://en.wikipedia.org/wiki/1990_Serbian_general_election . Family kept as the table has it (not re-familied this run).
+            p("rs_sps", "Socialist Party of Serbia", "Socijalisticka partija Srbije", Family::Nationalist, 0.4815),
+            // 16.49% https://en.wikipedia.org/wiki/1990_Serbian_general_election
+            p("rs_spo", "Serbian Renewal Movement", "Srpski pokret obnove", Family::Nationalist, 0.1649),
+            // 7.78% https://en.wikipedia.org/wiki/1990_Serbian_general_election
+            p("rs_ds", "Democratic Party", "Demokratska stranka", Family::Liberal, 0.0778),
+        ],
+        ruling: "the Socialist Party of Serbia",
+        pillars: &[
+            pl(Pillar::Army, "the Yugoslav People's Army"),
+            pl(Pillar::Party, "the Socialist Party"),
+            pl(Pillar::Security, "the State Security Service"),
+        ],
+    },
+NOT ENTERED (Serbia): VMDK 2.75%, SDA Sandzak 1.75%, SRSJV 1.55%, NSS 1.41%, SSSS
+1.09% and the six sub-1% rows - no party pages fetched this run, family unsourced
+(VMDK and SDA Sandzak would be minority-nationality rows on the Bosnia convention if
+someone fetches them).
+
+-------------------------------------------------------------------------------
+MONTENEGRO - Assembly, 9 December 1990 (125 seats; presidential run-off 23 December)
+source: https://en.wikipedia.org/wiki/1990_Montenegrin_general_election
+        https://en.wikipedia.org/wiki/Democratic_Party_of_Socialists_of_Montenegro
+Fetched table (votes / % / seats):
+  League of Communists of Montenegro (SKCG)      171,316  58.29  83
+  Union of Reform Forces of Yugoslavia (SRSJ)     41,364  14.07  17
+  People's Party (NS)                             39,107  13.31  13
+  Democratic Coalition (SDA-DS-SR)                30,760  10.47  12
+  Democratic Party                                 3,442   1.17   0
+  other parties and independents                   8,894   3.02   0
+  total                                          293,883         125
+Presidency run-off: Bulatovic 203,616 (78.13%), Stankovic 56,990 (21.87%).
+The POLITIES block reads 58.3 / 14.1 / 13.3 / 10.5 - agrees with the fetched rows to
+rounding. (The DPS party page gives 56.18% for the same election; the election page's
+table with vote counts is the one written.)
+
+    // Montenegro - Assembly, 9 December 1990: League of Communists 58.29%
+    // (83/125), Union of Reform Forces 14.07% (17), People's Party 13.31%
+    // (13), Democratic Coalition SDA-DS-SR 10.47% (12); Bulatovic 78.13% in
+    // the 23 December run-off. Transcribed 2026-09-06.
+    // https://en.wikipedia.org/wiki/1990_Montenegrin_general_election
+    Polity {
+        nation: NationId::Montenegro,
+        system: Electoral::Proportional,
+        term_months: 48,
+        next: (0, 0),
+        parties: &[
+            // successor_of_ruling_party (the ruling party itself, unrenamed until 22 June 1991 when it became the DPS "as the successor of the League of Communists of Montenegro"). https://en.wikipedia.org/wiki/Democratic_Party_of_Socialists_of_Montenegro ; 58.29% https://en.wikipedia.org/wiki/1990_Montenegrin_general_election
+            p("me_skcg", "League of Communists of Montenegro", "Savez komunista Crne Gore", Family::Communist, 0.5829),
+            // 14.07% https://en.wikipedia.org/wiki/1990_Montenegrin_general_election
+            p("me_srsj", "Union of Reform Forces", "Savez reformskih snaga Jugoslavije", Family::Liberal, 0.1407),
+            // 13.31% https://en.wikipedia.org/wiki/1990_Montenegrin_general_election
+            p("me_ns", "People's Party", "Narodna stranka", Family::Nationalist, 0.1331),
+            // 10.47% https://en.wikipedia.org/wiki/1990_Montenegrin_general_election
+            p("me_dk", "Democratic Coalition", "Demokratska koalicija", Family::Nationalist, 0.1047),
+        ],
+        ruling: "the League of Communists of Montenegro",
+        pillars: &[
+            pl(Pillar::Party, "the League of Communists"),
+            pl(Pillar::Security, "the Republican Security Service"),
+        ],
+    },
+
+-------------------------------------------------------------------------------
+SUCCESSOR FLAGS (R3(d) input, sourced above): si_sdp, hr_sdp, ba_sdp, mk_skm, rs_sps,
+me_skcg are each the legal/organisational successor of the republic's League of
+Communists per the party page cited on the row.
+
+HARDEST CALLS
+1. Slovenia DEMOS share: three figures (51.27 summed rows, 54% DEMOS page, "more than
+   55%" election page prose). Wrote the summed chamber rows; the alternative is to keep
+   0.540 and cite the DEMOS page.
+2. Macedonia: election-page first round (SKM 21.79, VMRO 14.33) vs the existing block
+   (24.75, 21.35) vs the SDSM page (27.70). Wrote the election page; the block's old
+   figures carry the same URL but do not match what it serves today.
+3. Croatia SKH-SDP: own list 23.59 vs 31.09 with joint lists vs the block's 35.0.
+   Wrote the own list; the joint-list rows are recorded so the integrator can fold them.
+4. Bosnia: adding ba_srsj is the one NEW id in this file.

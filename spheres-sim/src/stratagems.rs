@@ -289,6 +289,10 @@ pub const DECK: &[Stratagem] = &[
             for d in democracies {
                 w.shift_relation(d, id, -6.0);
             }
+            // The political arm (S3): the same crackdown halves the foreign
+            // money behind every non-ruling movement. Gated inside the arm,
+            // which returns before reading anything with the arm off.
+            crate::statecraft::halve_foreign_backing(w, id);
             let name = id.name();
             w.headline(format!("{} moves against its own streets.", name));
         },
@@ -385,6 +389,21 @@ pub fn available(w: &WorldState, id: NationId) -> Vec<&'static Stratagem> {
     DECK.iter().filter(|s| (s.available)(w, id)).collect()
 }
 
+/// Why enacting a stratagem would be refused by the world, read without
+/// touching it: the deck does not carry the id, or the condition that opened
+/// the option has closed. The one place the prose lives: `dispatch` asks it
+/// and the government screen serves it.
+pub fn closed_reason(w: &WorldState, id: NationId, stratagem: &str) -> Option<String> {
+    let s = match by_id(stratagem) {
+        Some(s) => s,
+        None => return Some(format!("No such stratagem: {}", stratagem)),
+    };
+    if !(s.available)(w, id) {
+        return Some(format!("{} is no longer open to {}.", s.name, id.name()));
+    }
+    None
+}
+
 /// Look a stratagem up by its stable `id`, or `None` if nothing carries it.
 ///
 /// Saves store the id, so this is also the load path — which is why an id must
@@ -406,7 +425,7 @@ pub fn ai_stratagems(w: &mut WorldState) {
         .filter(|n| n.alive && Some(n.id) != w.player)
         .map(|n| n.id)
         .collect();
-    for id in actors {
+    for id in actors.iter().copied() {
         let held = w.nation(id).political_capital;
         // Keep a reserve. A government that spends to the floor cannot answer
         // the next crisis, and the crisis is what stratagems are for.
@@ -414,21 +433,33 @@ pub fn ai_stratagems(w: &mut WorldState) {
             continue;
         }
         let options = available(w, id);
-        if options.is_empty() {
+        // The political arm's five levers (S3) ride THIS draw — the design's
+        // "on the existing 0.02 monthly stratagem draw" — so the government
+        // module keeps drawing nothing and a month holds one decision, a
+        // lever or a card, never both. `government::ai_lever` is pure and
+        // answers `None` before reading anything with the arm off, so the
+        // off world's stream is untouched, and a switched-on world parts from
+        // it only in a month a government has a lever and no card (the same
+        // finding as the sponsors' draw in `politics`). The lever comes
+        // first because its conditions are the narrower crisis.
+        let lever = crate::government::ai_lever(w, id);
+        if options.is_empty() && lever.is_none() {
             continue;
         }
         // Deck order is the priority order, so the choice is deterministic:
         // the first thing it can afford that its condition genuinely calls for.
         let choice = options.iter().find(|s| s.cost <= held - 20.0).map(|s| s.id);
-        if let Some(sid) = choice {
-            // Rare, because these are decisions of a whole term, not a month.
-            if w.rng.chance(crate::clock::chance(w, 0.02)) {
-                let cmd = crate::Command::EnactStratagem {
-                    nation: id,
-                    id: sid.to_string(),
-                };
-                let _ = crate::apply_command(w, &cmd);
-            }
+        let cmd = match (lever, choice) {
+            (Some(cmd), _) => cmd,
+            (None, Some(sid)) => crate::Command::EnactStratagem {
+                nation: id,
+                id: sid.to_string(),
+            },
+            (None, None) => continue,
+        };
+        // Rare, because these are decisions of a whole term, not a month.
+        if w.rng.chance(crate::clock::chance(w, 0.02)) {
+            let _ = crate::apply_command(w, &cmd);
         }
     }
 }

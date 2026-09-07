@@ -1,0 +1,134 @@
+R3(b) ALGERIA - TRANSCRIBED 2026-09-06
+=======================================
+Sources fetched this run:
+  https://en.wikipedia.org/wiki/1987_Algerian_parliamentary_election
+  https://en.wikipedia.org/wiki/Islamic_Salvation_Front
+  https://en.wikipedia.org/wiki/1991_Algerian_legislative_election
+  https://en.wikipedia.org/wiki/1990_Algerian_local_elections
+  https://en.wikipedia.org/wiki/Algerian_Civil_War
+  https://en.wikipedia.org/wiki/Constitution_of_Algeria
+  https://en.wikipedia.org/wiki/National_Liberation_Front_(Algeria)
+  https://en.wikipedia.org/wiki/Rally_for_Culture_and_Democracy
+  https://en.wikipedia.org/wiki/Socialist_Forces_Front
+  https://en.wikipedia.org/wiki/Socialist_Vanguard_Party_(Algeria)   (serves the MDS page)
+  https://en.wikipedia.org/wiki/Party_of_Algerian_Renewal
+  https://en.wikipedia.org/wiki/National_Party_for_Solidarity_and_Development
+  https://en.wikipedia.org/wiki/Social_Democratic_Party_(Algeria)
+  https://www.hrw.org/reports/1992/algeria/2.htm
+  https://countrystudies.us/algeria/119.htm
+
+FETCHED FACTS
+- 1987 National Assembly: 26 February 1987; FLN sole list, "885 candidates for the
+  295 seats, with voters asked to express their preference by crossing out names";
+  FLN 295/295, 9,910,631 votes, 100%, turnout 87.48%; "only 67 of the 132
+  incumbents who ran for re-election were successful". (1987 election page)
+- Term: deputies "are elected for five-year terms" (countrystudies.us/algeria/119),
+  so the 1987 chamber's constitutional expiry was February 1992.
+- Constitution: amended 3 November 1988 to allow parties other than the FLN
+  (Civil War page); new constitution "approved in a referendum by 73% on 23 February
+  1989", "introduced a multi-party system, removing the FLN from its role as leading
+  party" (Constitution page).
+- FIS: founded 18 February 1989 (Abbassi Madani, Ali Belhadj); "officially
+  recognised" 16 September 1989. (FIS page)
+- Other parties legal by 1 January 1990: RCD "founded 1989", Said Sadi, secularist
+  liberal (RCD page); PSD founded 2 March 1989, applied for registration 19 July
+  1989 (PSD page); PRA "established in 1989", Boukrouh, liberalism (PRA page); PNSD
+  "established in 1989" (PNSD page); PAGS "legalized in 1989", Marxist (MDS page).
+  FFS: page says "Legalised 1990" - so NOT present on 1 January 1990 by that source;
+  not entered (it is also absent from the existing block).
+- What the model must PRODUCE, not be given: local elections 12 June 1990, turnout
+  65.2% (8,366,760 of 12,841,769): FIS 4,331,472 (54.2%, 856 communes, 31 wilayas),
+  FLN 2,245,798 (28.1%, 486 communes), RCD 2.1%, PNSD 1.6%, PSD 1.1%, PRA 0.8%,
+  PAGS 0.3%, independents 11.7% (1990 local page). Legislative first round
+  26 December 1991, turnout 59%: FIS 3,260,222 (47.27%, 188 of the 232 seats
+  decided), FLN 23.38% (16), FFS 7.40% (25); second round due 16 January 1992,
+  cancelled 11 January 1992 (1991 election page, FIS page).
+- Next due: the election was set for 26 June 1991 ("The vote was to have been held
+  on June 26, 1991", HRW) and postponed to December after the FIS strike of May and
+  the state of siege of 5 June 1991 (HRW; Civil War page). NOT SOURCED THIS RUN: the
+  date on which the June 1991 date was first announced, so whether it was already
+  the scheduled date on 1 January 1990 is not established; the constitutional
+  five-year term (expiry February 1992) is the only date that is.
+
+THE BLOCK (replaces the Algeria block in POLITIES; existing ids kept; FIS start 0.0)
+
+    // Algeria - National People's Assembly, 26 February 1987: the last national
+    // vote before the game opens was the FLN's single list, 885 candidates for
+    // 295 seats with voters crossing out names, FLN 295/295 on 9,910,631 votes
+    // (100%), turnout 87.48%. That chamber's five-year term ran to February
+    // 1992; the state set the next election for 26 June 1991 and, after the
+    // FIS strike of May and the state of siege of 5 June 1991, held it on
+    // 26 December 1991.
+    // https://en.wikipedia.org/wiki/1987_Algerian_parliamentary_election
+    // https://countrystudies.us/algeria/119.htm
+    // https://www.hrw.org/reports/1992/algeria/2.htm
+    //
+    // The parties below other than the FLN were legal on 1 January 1990 under
+    // the constitution approved by referendum on 23 February 1989 and had
+    // never contested a national election, so they start at 0.0. The Islamic
+    // Salvation Front was founded on 18 February 1989 and officially
+    // recognised on 16 September 1989.
+    // https://en.wikipedia.org/wiki/Constitution_of_Algeria
+    // https://en.wikipedia.org/wiki/Islamic_Salvation_Front
+    //
+    // CALIBRATION, NOT DATA (iron rule 3): what the model must reproduce from
+    // discontent, an army that is a pillar and a chamber it can overrule is
+    // the FIS's 54.2% of the 12 June 1990 communal vote (FLN 28.1%,
+    // independents 11.7%, turnout 65.2%;
+    // https://en.wikipedia.org/wiki/1990_Algerian_local_elections) and its
+    // 47.27% and 188 of the 232 first-round seats on 26 December 1991 (FLN
+    // 23.38%, FFS 7.40%, turnout 59%;
+    // https://en.wikipedia.org/wiki/1991_Algerian_legislative_election),
+    // followed by the cancellation of the second round on 11 January 1992.
+    // None of it is typed in; nothing here fires on a date.
+    Polity {
+        nation: NationId::Algeria,
+        // Two-round majority in single-member districts, the system the
+        // December 1991 election actually used (232 of 430 decided outright).
+        system: Electoral::TwoRound,
+        term_months: 60,
+        // The date the state set (26 June 1991, HRW). The chamber's
+        // constitutional expiry was February 1992; the announcement date of
+        // the June 1991 poll was not sourced this run - see algeria.txt.
+        next: (1991, 6),
+        parties: &[
+            // The 1987 sole list, 100%. https://en.wikipedia.org/wiki/1987_Algerian_parliamentary_election ; "sole legal and ruling political party of the Algerian state until other parties were legalised in 1989" https://en.wikipedia.org/wiki/National_Liberation_Front_(Algeria)
+            p("dz_fln", "National Liberation Front", "Jabhat al-Tahrir al-Watani", Family::Nationalist, 1.00),
+            // Founded 18 February 1989, officially recognised 16 September 1989; never yet on a national ballot. Family Religious, bloc Islamist (the family default). https://en.wikipedia.org/wiki/Islamic_Salvation_Front
+            p("dz_fis", "Islamic Salvation Front", "al-Jabhah al-Islamiyah lil-Inqadh", Family::Religious, 0.0),
+            // Founded 1989, Said Sadi, secularist, "centre to centre-left". https://en.wikipedia.org/wiki/Rally_for_Culture_and_Democracy
+            p("dz_rcd", "Rally for Culture and Democracy", "Rassemblement pour la Culture et la Democratie", Family::Liberal, 0.0),
+            // "established in 1989"; no ideology on the page, BigTent kept as the table has it. https://en.wikipedia.org/wiki/National_Party_for_Solidarity_and_Development
+            p("dz_pnsd", "National Party for Solidarity and Development", "Parti National pour la Solidarite et le Developpement", Family::BigTent, 0.0),
+            // Founded 2 March 1989, applied for registration 19 July 1989, social democratic. https://en.wikipedia.org/wiki/Social_Democratic_Party_(Algeria)
+            p("dz_psd", "Social Democratic Party", "Parti Social-Democrate", Family::SocialDemocratic, 0.0),
+            // "established in 1989", Noureddine Boukrouh, liberalism. https://en.wikipedia.org/wiki/Party_of_Algerian_Renewal
+            p("dz_pra", "Party of Algerian Renewal", "Parti du Renouveau Algerien", Family::Liberal, 0.0),
+            // Founded 1966, "legalized in 1989", Marxist. https://en.wikipedia.org/wiki/Socialist_Vanguard_Party_(Algeria)
+            p("dz_pags", "Socialist Vanguard Party", "Parti de l'Avant-Garde Socialiste", Family::Communist, 0.0),
+        ],
+        ruling: "the National People's Assembly",
+        // Pillars as before: the electorate can vote and the army can overrule
+        // it, and both were facts about Algeria in 1990.
+        pillars: &[
+            pl(Pillar::Army, "the Armee Nationale Populaire"),
+            pl(Pillar::Security, "the Securite Militaire"),
+            pl(Pillar::Party, "the FLN apparatus"),
+        ],
+    },
+
+NOT ENTERED: FFS (Ait Ahmed) - its page says legalised 1990, so absent on 1 January
+1990 by the only source fetched; it took 7.40% and 25 seats in December 1991, which
+is therefore also something the model cannot reproduce with this table. Anyone with
+a source dating its legalisation to November 1989 should add dz_ffs at 0.0.
+
+HARDEST CALLS
+1. `next`: (1991, 6) is the date the state set; (1992, 2) is the constitutional
+   expiry; the existing block had (1991, 12), which is the date it was HELD and is
+   look-ahead. When the June date was announced is unsourced, so (1991, 6) is a
+   choice, flagged.
+2. FLN at 1.00 with every other party at 0.0 is a one-party seated table on a
+   below-ceiling regime; whether seed_blocs / normalisation handle six 0.0 rows
+   cleanly is for the wiring agent to check - nothing was built here.
+3. PNSD family BigTent is kept from the existing row, not sourced (its page has no
+   ideology).

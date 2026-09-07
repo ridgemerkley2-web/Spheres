@@ -12,10 +12,12 @@ That commit records Claude Opus 5 as co-author and the source branch work as
 `8ec69ee` on `feat/hoi4-map-and-tech`. The integration retains its 46 deterministic
 catalogue meshes, shared WebGL2 renderer and OBJ export tools.
 
-These static catalogue previews are separate from the configurable ground
-designer and its GLB exports. Displaying aircraft and ships here does not add
-aircraft or naval component-design systems. This integration adds no new claim
-of independently verified historical dimensions or engineering fidelity; the
+These static catalogue previews are separate from the configurable ground and
+tactical-aircraft designer and its GLB exports. The first aircraft design slice
+is documented in [AVIATION.md](../../AVIATION.md); displaying other aircraft and
+ships here does not add their mission or naval component-design systems.
+This integration adds no new claim of independently verified historical
+dimensions or engineering fidelity; the
 existing names and dimension annotations are inherited from that source work.
 
 | file | what it is |
@@ -28,10 +30,10 @@ existing names and dimension annotations are inherited from that source work.
 
 ## Why the models are code
 
-This page has **no build step and no CDN** (CLAUDE.md; `main.rs` asserts it).
-That rules out a glTF loader and forty-six binary payloads, so the meshes are
-built the way `mapgen.rs` builds the map: author the recipe, ship the recipe,
-let the client bake it. The whole deck is about **20,800 triangles** and costs
+This static catalogue renderer has **no build step and no CDN** (CLAUDE.md;
+`main.rs` asserts it). It generates its meshes without a glTF loader or
+forty-six binary payloads, the way `mapgen.rs` builds the map: author the recipe,
+ship the recipe, let the client bake it. The whole deck is about **20,800 triangles** and costs
 the wire nothing — `arsenal-models.js` is source, and source gzips.
 
 It also means the models are **diffable**. A tank here is forty lines of

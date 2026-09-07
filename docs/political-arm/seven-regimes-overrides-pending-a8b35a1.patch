@@ -1,0 +1,94 @@
+diff --git a/spheres-sim/data/leaders_1990.json b/spheres-sim/data/leaders_1990.json
+index fe8590a..64f5d0a 100644
+--- a/spheres-sim/data/leaders_1990.json
++++ b/spheres-sim/data/leaders_1990.json
+@@ -70,15 +70,17 @@
+       "since": "1979-09-21",
+       "born": "1942-08-28",
+       "tie": { "party": "ao_mpla" },
+-      "bloc_override": null,
++      "bloc_override": "Communist",
+       "heir": null,
+       "must_leave_by": null,
+       "also": [],
+       "sources": [
+         "https://www.worldstatesmen.org/Angola.html",
+-        "https://en.wikipedia.org/wiki/Jos%C3%A9_Eduardo_dos_Santos"
++        "https://en.wikipedia.org/wiki/Jos%C3%A9_Eduardo_dos_Santos",
++        "https://en.wikipedia.org/wiki/MPLA",
++        "https://en.wikipedia.org/wiki/People%27s_Republic_of_Angola"
+       ],
+-      "note": "worldstatesmen lists 20 Sep 1979, Wikipedia says he took office 21 Sep 1979; the inauguration date is used. No prime minister (post abolished 1978-1991)."
++      "note": "worldstatesmen lists 20 Sep 1979, Wikipedia says he took office 21 Sep 1979; the inauguration date is used. No prime minister (post abolished 1978-1991). bloc_override Communist (R3(c), transcribed 2026-09-06): on 1 January 1990 the MPLA was a Marxist-Leninist ruling party - 'At its first congress in 1977, the MPLA adopted Marxism-Leninism as the party ideology' and 'On its third congress in December 1990, it declared social democracy to be its official ideology' (MPLA page; infobox 1977-1990 Marxism-Leninism, far-left); the People's Republic of Angola a 'Unitary communist state' 1975-1992, its Marxist government abolished 25 August 1992. The dormant ao_mpla row carries the September 1992 share of the party as it then was (social democratic), so the 1 January 1990 reading is carried here and not on the row."
+     },
+     {
+       "nation": "Argentina",
+@@ -791,7 +793,7 @@
+       "since": "1987-12-05",
+       "born": "1920-05-06",
+       "tie": { "party": "fj_alliance" },
+-      "bloc_override": null,
++      "bloc_override": "Nationalist",
+       "heir": null,
+       "must_leave_by": null,
+       "also": [
+@@ -800,9 +802,13 @@
+       "sources": [
+         "https://en.wikipedia.org/wiki/Kamisese_Mara",
+         "https://en.wikipedia.org/wiki/Penaia_Ganilau",
+-        "https://www.worldstatesmen.org/Fiji.html"
++        "https://www.worldstatesmen.org/Fiji.html",
++        "https://en.wikipedia.org/wiki/Sitiveni_Rabuka",
++        "https://en.wikipedia.org/wiki/Alliance_Party_(Fiji)",
++        "https://en.wikipedia.org/wiki/Soqosoqo_ni_Vakavulewa_ni_Taukei",
++        "https://en.wikipedia.org/wiki/Constitution_of_Fiji"
+       ],
+-      "note": "Recalled 5 Dec 1987 to head the post-coup interim administration; Alliance Party leader, so tied to the dormant fj_alliance row rather than to the Army pillar Rabuka commanded. Ganilau's presidential start is 8 Dec 1987 on Wikipedia and 5 Dec 1987 on worldstatesmen; Wikipedia's date is used. Rabuka (RFMF commander, 1987-Apr 1991) omitted from also because no source fetched gave a day-precise start."
++      "note": "Recalled 5 Dec 1987 to head the post-coup interim administration; Alliance Party leader, so tied to the dormant fj_alliance row rather than to the Army pillar Rabuka commanded. Ganilau's presidential start is 8 Dec 1987 on Wikipedia and 5 Dec 1987 on worldstatesmen; Wikipedia's date is used. Rabuka (RFMF commander, 1987-Apr 1991) omitted from also because no source fetched gave a day-precise start. bloc_override Nationalist (R3(c), transcribed 2026-09-06): the regime of 1 January 1990 was the unelected interim administration installed on 5 December 1987 - Rabuka 'remained Commander of the Army and Minister of Home Affairs' - whose 1990 constitution 'guaranteed ethnic Fijian domination of the political system' (37 Fijian, 27 Indian, 5 general, 1 Rotuma seats, the premiership reserved); the Alliance Party the tie names was dissolved in 1987 and the chiefs' vehicle, the SVT, was founded in 1990 'with the declared goal of uniting all indigenous Fijians'. The fj_alliance row stays Conservative for its 1987 share; the 1 January 1990 reading is carried here."
+     },
+     {
+       "nation": "Finland",
+@@ -1972,7 +1978,7 @@
+       "since": "1975-07-12",
+       "born": "1937-08-05",
+       "tie": { "party": "st_mlstp" },
+-      "bloc_override": null,
++      "bloc_override": "Communist",
+       "heir": null,
+       "must_leave_by": null,
+       "also": [
+@@ -1981,9 +1987,11 @@
+       "sources": [
+         "https://www.worldstatesmen.org/Sao_Tome.html",
+         "https://en.wikipedia.org/wiki/Manuel_Pinto_da_Costa",
+-        "https://en.wikipedia.org/wiki/Celestino_Rocha_da_Costa"
++        "https://en.wikipedia.org/wiki/Celestino_Rocha_da_Costa",
++        "https://en.wikipedia.org/wiki/Movement_for_the_Liberation_of_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe_%E2%80%93_Social_Democratic_Party",
++        "https://en.wikipedia.org/wiki/Democratic_Republic_of_S%C3%A3o_Tom%C3%A9_and_Pr%C3%ADncipe"
+       ],
+-      "note": "One-party state on 1 Jan 1990; the polity's party table is the Jan 1991 result and lies dormant. Pinto da Costa was MLSTP secretary-general 1972-Oct 1990 per worldstatesmen (post abolished 10 Sep 1990); the party tie is to the dormant MLSTP row, which the Party pillar (MLSTP Comite Central) also names."
++      "note": "One-party state on 1 Jan 1990; the polity's party table is the Jan 1991 result and lies dormant. Pinto da Costa was MLSTP secretary-general 1972-Oct 1990 per worldstatesmen (post abolished 10 Sep 1990); the party tie is to the dormant MLSTP row, which the Party pillar (MLSTP Comite Central) also names. bloc_override Communist (R3(c), transcribed 2026-09-06): the MLSTP-PSD page's historical ideology is 'Communism, Marxism-Leninism' (position far-left), one-party state from 12 July 1975 with 'strong ties with Cuba, East Germany and the Soviet Union'; the name and social democracy date from the party congress of October 1990, the constitutional referendum from 22 August 1990, and the one-party communist state 'remained in place until 1990'. The dormant st_mlstp row is the January 1991 result of the renamed party, so the 1 January 1990 reading is carried here and not on the row."
+     },
+     {
+       "nation": "SaudiArabia",
+@@ -2090,15 +2098,17 @@
+       "since": "1989-08-15",
+       "born": "1936-03-18",
+       "tie": { "party": "za_np" },
+-      "bloc_override": null,
++      "bloc_override": "Nationalist",
+       "heir": null,
+       "must_leave_by": null,
+       "also": [],
+       "sources": [
+         "https://www.worldstatesmen.org/South_Africa.html",
+-        "https://en.wikipedia.org/wiki/F._W._de_Klerk"
++        "https://en.wikipedia.org/wiki/F._W._de_Klerk",
++        "https://en.wikipedia.org/wiki/National_Party_(South_Africa)",
++        "https://en.wikipedia.org/wiki/1989_South_African_general_election"
+       ],
+-      "note": "Acting State President from 15 Aug 1989, sworn in fully 20 Sep 1989; National Party leader since 2 Feb 1989. The polity's party table is the 1994 result; the NP row is the valid tie."
++      "note": "Acting State President from 15 Aug 1989, sworn in fully 20 Sep 1989; National Party leader since 2 Feb 1989. The polity's party table is the 1994 result; the NP row is the valid tie. bloc_override Nationalist (R3(c), transcribed 2026-09-06): the National Party's page dates its 'Afrikaner nationalism, Segregationism, Anti-communism ... White supremacy' ideology and 'Far-right' position 1948-1990 and its centre-right 'conservative liberalism' 1990-1997, the boundary being the 2 February 1990 address; the 6 September 1989 election was 'the last under apartheid' and 'Black South Africans were entirely excluded from voting'. The za_np row at 0.2039 is the 27 April 1994 party, Conservative as the source dates it, so the 1 January 1990 reading is carried here and not on the row."
+     },
+     {
+       "nation": "SouthKorea",

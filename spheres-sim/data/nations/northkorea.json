@@ -24,7 +24,8 @@
   },
   "military": {
     "strength": 22.0,
-    "nuclear": false
+    "nuclear": false,
+    "personnel_1990": 1200000
   },
   "sources": [
     "There is no honest dollar GDP for the DPRK and there never has been. The World Bank publishes no series for Korea, Dem. People's Rep. The figure entered, $23.1bn for 1990, is the Bank of Korea's estimate — the series the BoK began publishing that year, built by pricing DPRK physical output at South Korean prices, which its own critics say overstates the level while getting the direction right. It is entered because it is the only named, published estimate; treat it as an order of magnitude, not a measurement.",
@@ -38,7 +39,8 @@
     "nuclear false: Yongbyon was operating and the IAEA safeguards fight starts in 1992, but there was no weapon in 1990.",
     "What could not be verified, stated plainly. The World Bank publishes NO series of any kind for Korea, Dem. People's Rep. in 1990 - not GDP, not population, not CPI, not military expenditure - so nothing in this file's economy block sits on the series the rest of this roster uses. The $23.1bn is the Bank of Korea's estimate and the BoK's own method is contested: it prices DPRK physical output at South Korean prices, which is a level its critics say is too high by a wide margin. Every other economic figure here is a construction chosen to keep the model's arithmetic well behaved and is labelled as one above. Treat this file as the least verified in the region and check it first.",
     "What this file exposes about the model. A thirty-year run finishes the DPRK near $110bn, growing about 4.5% a year, against a real 2020 estimate somewhere between $16bn and $30bn - the country contracted by roughly a third across the 1990s and had a famine that killed hundreds of thousands. The negative tfp_trend entered above does not produce that, because tech/mod.rs rewrites tfp_trend every tick, and there is no mechanism anywhere in the sim for the loss of a patron's subsidised trade to become a collapse. This is the single largest divergence from history in the region and it is a missing mechanism, not a wrong number. Flagged for the calibration sweep.",
-    "pop_growth_1990 = 1.4757%/yr. Compound annual growth of World Bank SP.POP.TOTL, series PRK (Korea, Dem. People's Rep.): 19,335,043 in 1984 to 20,804,367 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 1.4757%/yr. Compound annual growth of World Bank SP.POP.TOTL, series PRK (Korea, Dem. People's Rep.): 19,335,043 in 1984 to 20,804,367 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "military.personnel_1990 = 1200000. personnel: World Bank API MS.MIL.TOTL.P1 (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (PRK, 1990) | milex_usd: World Bank API MS.MIL.XPND.CD (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.XPND.CD?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (PRK, 1990). milex: the World Bank series returns 0 for this nation, which is an absent observation and not a budget; the loader admits a positive number or absence, so nothing is entered and the field is absent. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [
