@@ -1,5 +1,51 @@
 # SPHERES Roadmap
 
+## Done — the equipment deck has models: 46 meshes, one WebGL2 context, and the three surfaces that show them (2026-09-06)
+
+`spheres-web/ui/arsenal-models.js` builds one low-poly mesh for every id in
+`arsenal::DECK` — 46 of them, 20,780 triangles, 452 to a model — and
+`arsenal3d.js` draws them into the Foundry from a single WebGL2 context.
+NOTHING IS LOADED: this page has no build step and no CDN, so a glTF loader and
+forty-six binary payloads were never available, and the meshes are authored the
+way mapgen.rs authors the map — a recipe shipped as source and baked by the
+client. A tank is forty lines and costs the wire nothing.
+
+Wired at three sites, all of them in the manufacturing panel: the equipment
+catalogue's cards (the model takes the 68px band the class glyph's lilac circle
+used to sit in), a running production line's 50px tile, and every row of the
+arsenal ledger — held stock and deliveries in flight — at 34px. The glyph was
+NOT removed from the markup anywhere; `arsenal3d.css` hides one only on a card
+that got a model, so a machine with no WebGL2 keeps the panel it had. That path
+is asserted, as is the parity between the Rust deck and the JavaScript one, in
+both directions and on the name the player reads.
+
+TWO BUGS FOUND BY LOOKING, both invisible to any test that could have been
+written first. GL measures a viewport from the bottom of a framebuffer and
+`drawImage` measures its source rectangle from the top, so rendering at
+`height - h` and copying from `height - h` — the obvious pairing — reads the
+one band nothing was drawn into, and every card came out empty with no error
+anywhere. And framing by the bounding BOX left cards 56% full, because the box
+that contains a tank has corners the tank does not reach; the fit now walks the
+vertices, twice — tight on the angle a card rests at, and pulled back far
+enough that a hovered model stays in frame all the way round. 73-82% fill,
+measured on the live cards.
+
+THE TRAP THAT COST THREE RED TESTS, recorded because it will recur: this
+checkout is `core.autocrlf=true` and `.gitattributes` pins LF for `*.json` and
+nothing else, so `index.html` is CRLF ON DISK — and three key-handling tests
+assert literal `
+` inside it. A whole-file rewrite that normalises to LF
+turns them red while changing not one character git would store. Rewrite
+touched files back to CRLF before believing a red.
+
+Beside the meshes: `tools/arsenal/gallery.html` draws the whole deck from the
+same two files the game loads, at a size the cards never use, and opens
+straight off the filesystem; `tools/arsenal/export_obj.js` runs
+arsenal-models.js under node and dumps every mesh to Wavefront OBJ with vertex
+colours, metres and +Z forward, so the models are not trapped in this page. The
+OBJ output is derived and gitignored. `tools/arsenal/README.md` carries the
+conventions and what to do when a kit is added. Suite: spheres-web 162 / 0 / 2.
+
 ## Done — the political arm, the history pass and the calibration pass: M1, R2, M2, R1, R3(d), R3(e) landed; the census re-read; no constant moved; the switch stays OFF (2026-09-06)
 
 Branch `feat/ideology-history` off `origin/feat/hoi4-map-and-tech` (2e164ae),

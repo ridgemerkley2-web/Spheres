@@ -1,0 +1,50 @@
+/* Where the equipment models sit, in both of the panel's two skins.
+ *
+ * THE GLYPH IS NEVER REMOVED FROM THE MARKUP. `MANU_CLASS_MARK`'s six symbols
+ * are still emitted and still styled; these rules only hide one once a model
+ * has actually been drawn over it, which arsenal3d.js signals by putting
+ * `has-kit3d` on the card. A machine with no WebGL2, or a model id the browser
+ * has never heard of, keeps the glyph and loses nothing else. That is the whole
+ * fallback and it is why it needs no JavaScript branch anywhere else.
+ */
+
+/* The canvas is sized by CSS and read back in device pixels by the renderer, so
+ * every rule here has to give it a real width AND height. */
+canvas.kit3d { display: block; background: none; pointer-events: none; }
+
+/* --- the equipment catalogue, compact skin ------------------------------- */
+.equipment-choice.has-kit3d::before { display: none; }
+.equipment-choice canvas.kit3d { position: absolute; left: 5px; top: 6px; width: 34px; height: 34px; }
+
+/* --- the equipment catalogue, arcade skin -------------------------------- */
+/* The card already reserves 91px above its title for the badge. A model fills
+ * that band instead of sitting in a lilac circle in the corner of it, which is
+ * the one place on this panel where a picture is worth the room. */
+#productionPanel .equipment-choice canvas.kit3d {
+  left: 16px; top: 12px; width: calc(100% - 32px); height: 68px;
+}
+#productionPanel .equipment-choice.has-kit3d {
+  background: radial-gradient(120% 74% at 50% 6%, #27384a 0%, #203244 62%);
+}
+#productionPanel .equipment-choice.locked canvas.kit3d { filter: grayscale(.7) brightness(.8); }
+
+/* --- a running production line ------------------------------------------- */
+/* `.work-art` is a 50px tile that held the class glyph. The model takes the
+ * tile, the glyph steps aside, and the tile keeps its own background so the
+ * card's rhythm does not change. */
+.work-art .mark { font: inherit; font-weight: inherit; }
+.work-card.has-kit3d .work-art .mark { display: none; }
+.work-art { position: relative; overflow: hidden; }
+.work-art canvas.kit3d { position: absolute; inset: 2px; width: calc(100% - 4px); height: calc(100% - 4px); }
+
+/* --- the arsenal ledger --------------------------------------------------- */
+/* Held stock and deliveries in flight, one chip per row. Small on purpose: this
+ * is a list of numbers and the picture is there to be recognised, not read. */
+.factory-ledger-row canvas.kit3d {
+  display: inline-block; width: 30px; height: 30px; margin: -2px 7px -8px 0; vertical-align: middle;
+}
+#productionPanel .factory-ledger-row canvas.kit3d { width: 34px; height: 34px; }
+
+/* The hover spin is the only motion these cards have, and it is started from
+ * JavaScript rather than from CSS -- so the reduced-motion preference is read
+ * there, in arsenal3d.js's `reducedMotion`, and there is no rule for it here. */

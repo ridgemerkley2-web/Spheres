@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SPHERES — arsenal models</title>
+<!--
+  A bench for the equipment models. Not part of the game and not served by
+  spheres-web: open this file directly (file:// is enough, it fetches nothing)
+  when a model is being authored or reviewed. It draws the whole deck at a size
+  the cards never use, which is how a mistake gets seen before it ships at 90px.
+
+  The two scripts are the SAME FILES the page loads. If a model looks right here
+  and wrong in the game, the fault is in the card, not in the mesh.
+-->
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; padding: 28px; background: #101820; color: #e6edf3;
+    font: 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  h1 { margin: 0 0 4px; font-size: 22px; letter-spacing: .01em; }
+  p.lede { margin: 0 0 22px; color: #8fa3b4; max-width: 62ch; }
+  .bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .bar button { padding: 7px 14px; border: 1px solid #2b3d4d; border-radius: 999px;
+    background: #16222c; color: #b9c9d6; font: inherit; cursor: pointer; }
+  .bar button.on { background: #2c5f7a; border-color: #48839f; color: #fff; }
+  .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); }
+  .card { padding: 14px; border: 1px solid #22323f; border-radius: 14px; background: #16222c; }
+  .card canvas { display: block; width: 100%; height: 168px; }
+  .card b { display: block; margin-top: 8px; font-size: 15px; }
+  .card span { display: block; color: #8fa3b4; font-size: 12.5px; }
+  .card em { display: block; margin-top: 4px; color: #6f8496; font-size: 12px; font-style: normal; }
+  .warn { padding: 14px; border: 1px solid #6b3030; border-radius: 12px; background: #2a1717; }
+</style>
+</head>
+<body>
+<h1>Arsenal models</h1>
+<p class="lede">Every id in <code>spheres-sim/src/arsenal.rs</code>, built by
+<code>arsenal-models.js</code> and drawn by <code>arsenal3d.js</code> — the same two files the
+game loads. Hover a card to turn it.</p>
+<div class="bar" id="bar"></div>
+<div class="grid" id="grid"></div>
+<script src="../../spheres-web/ui/arsenal-models.js"></script>
+<script src="../../spheres-web/ui/arsenal3d.js"></script>
+<script>
+(function () {
+  const grid = document.getElementById("grid"), bar = document.getElementById("bar");
+  if (!window.Arsenal3D || !Arsenal3D.available) {
+    grid.innerHTML = '<div class="warn">No WebGL2 here, so nothing to show. The game falls back to its class glyphs in exactly this case.</div>';
+    return;
+  }
+  const all = ArsenalModels.ids().map((id) => {
+    const g = ArsenalModels.build(id);
+    return { id, name: g.name, cls: g.cls, tris: g.count / 3, size: g.size };
+  });
+  const classes = ["All"].concat(Array.from(new Set(all.map((k) => k.cls))));
+  let filter = "All";
+  function draw() {
+    grid.innerHTML = all.filter((k) => filter === "All" || k.cls === filter).map((k) =>
+      `<article class="card has-kit3d">
+        <canvas data-kit3d="${k.id}"></canvas>
+        <b>${k.name}</b><span>${k.cls} · <code>${k.id}</code></span>
+        <em>${k.size.map((v) => v.toFixed(1)).join(" × ")} m · ${k.tris} triangles</em>
+      </article>`).join("");
+    Arsenal3D.scan(grid);
+  }
+  bar.innerHTML = classes.map((c) =>
+    `<button data-cls="${c}" class="${c === filter ? "on" : ""}">${c}</button>`).join("");
+  bar.addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-cls]");
+    if (!b) return;
+    filter = b.dataset.cls;
+    bar.querySelectorAll("button").forEach((x) => x.classList.toggle("on", x.dataset.cls === filter));
+    draw();
+  });
+  draw();
+})();
+</script>
+</body>
+</html>
