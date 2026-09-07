@@ -10647,8 +10647,7 @@ mod tests {
     fn every_kit_in_the_deck_has_a_model() {
         for def in spheres_sim::arsenal::registry() {
             assert!(
-                ARSENAL_MODELS_JS.contains(&format!("
-    {}: {{", def.id)),
+                ARSENAL_MODELS_JS.contains(&format!("\n    {}: {{", def.id)),
                 "kit {} is in the deck with no model in arsenal-models.js",
                 def.id
             );
@@ -10662,7 +10661,8 @@ mod tests {
         assert_eq!(
             ARSENAL_MODELS_JS.matches("build(m) {").count(),
             spheres_sim::arsenal::registry().len(),
-            "arsenal-models.js holds a different number of models than the deck              holds kits -- a model has outlived the kit it was drawn for"
+            "arsenal-models.js holds a different number of models than the deck \
+             holds kits -- a model has outlived the kit it was drawn for"
         );
         // Six classes, six fallbacks. A browser handed an id from a newer build
         // than its own must still draw the right KIND of thing.
@@ -10686,18 +10686,21 @@ mod tests {
         // context for the whole page.
         assert!(
             !ARSENAL_MODELS_JS.contains("document.") && !ARSENAL_MODELS_JS.contains("getContext("),
-            "arsenal-models.js has grown a DOM dependency -- it is built and              exported under node by tools/arsenal/export_obj.js and must stay pure"
+            "arsenal-models.js has grown a DOM dependency -- it is built and \
+             exported under node by tools/arsenal/export_obj.js and must stay pure"
         );
         assert_eq!(
             ARSENAL3D_JS.matches("getContext(\"webgl2\"").count(), 1,
-            "arsenal3d.js must keep ONE WebGL2 context for the whole panel; a              context per card is dropped by the browser once a grid gets long"
+            "arsenal3d.js must keep ONE WebGL2 context for the whole panel; a \
+             context per card is dropped by the browser once a grid gets long"
         );
         assert!(INDEX.contains("<script src=\"/arsenal-models.js\"></script>"));
         assert!(INDEX.contains("<script src=\"/arsenal3d.js\"></script>"));
         assert!(INDEX.contains("<link rel=\"stylesheet\" href=\"/arsenal3d.css\">"));
         assert!(
             INDEX.contains("Arsenal3D.scan(body);"),
-            "the manufacturing panel replaces its own innerHTML; without a              re-scan the models are drawn once and never again"
+            "the manufacturing panel replaces its own innerHTML; without a \
+             re-scan the models are drawn once and never again"
         );
         // THE FALLBACK IS THE GLYPH, and it only works while the glyph is still
         // emitted. arsenal3d.css hides it on a card that got a model; a machine
