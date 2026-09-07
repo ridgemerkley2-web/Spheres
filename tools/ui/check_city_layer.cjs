@@ -174,6 +174,20 @@ test("selection is a screen question, and the budget is a hard stop", () => {
   // Far out, nothing is worth drawing — this is what keeps world zoom free.
   assert.equal(CityLayer.select(cities, box, { mPerPx: 5000, minPx: 110, budget: 4 }).length, 0,
     "cities were selected at 5 km per pixel, where none of them covers 110 px");
+
+  // The scale may be a FUNCTION of the city, and it has to be honoured per
+  // city rather than sampled once: measured at a pitched view's footprint
+  // midpoint it read 29.1 m/px where the city itself was at 19.6, which asked
+  // for span 123 where 181 was resolvable. Give two cities different scales and
+  // both the gate and the reported screen size must follow each one's own.
+  const perCity = CityLayer.select(cities, box, {
+    mPerPx: (c) => (c.name === "Mid" ? 5 : 5000), minPx: 110, budget: 4,
+  });
+  assert.equal(perCity.length, 1, "a per-city scale did not gate per city");
+  assert.equal(perCity[0].city.name, "Mid", "the wrong city passed the per-city gate");
+  assert.equal(perCity[0].mPerPx, 5, "the hit does not carry the scale it was measured at");
+  assert.ok(CityLayer.select(cities, box, { mPerPx: () => NaN, minPx: 110, budget: 4 }).length === 0,
+    "a scale that cannot be measured must refuse the city, not place it at NaN");
 });
 
 test("a bad record is refused rather than placed at the origin", () => {

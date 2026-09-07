@@ -10546,17 +10546,22 @@ function drawCityLayer(view, cw, ch) {
   try { box = TerrainSurface.footprint(view); } catch (e) { return; }
   if (!box) return;
 
-  // Metres per pixel where the camera is pointed, from the same projection the
-  // rest of the frame uses rather than from a zoom curve.
-  const midLat = (box.north + box.south) / 2, midLon = (box.west + box.east) / 2;
-  const a = GLOBE.projectGeo(midLon, midLat, view, 1.0);
-  const b = GLOBE.projectGeo(midLon + 0.01 / Math.max(Math.cos(midLat * Math.PI / 180), 0.02), midLat, view, 1.0);
-  if (!a || !b) return;
-  const px = Math.hypot(b[0] - a[0], b[1] - a[1]);
-  if (!(px > 0)) return;
-  const mPerPx = 0.01 * 111320 * Math.cos(midLat * Math.PI / 180) / px;
+  // Metres per pixel AT EACH CITY, from the same projection the rest of the
+  // frame uses. Not once at the footprint midpoint: a pitched footprint's
+  // midpoint is tilted toward the horizon, and it read 29.1 m/px for a view
+  // whose city sat at 19.6 -- which asked Chicago for span 123 where 181 was
+  // resolvable, a 1.5x under-resolution, and would gate a small city out that
+  // was plainly big enough on screen. Four cities at most, so this is cheap.
+  const scaleAt = (c) => {
+    const cosLat = Math.max(Math.cos(c.lat * Math.PI / 180), 0.02);
+    const a = GLOBE.projectGeo(c.lon, c.lat, view, 1.0);
+    const b = GLOBE.projectGeo(c.lon + 0.01 / cosLat, c.lat, view, 1.0);
+    if (!a || !b) return NaN;
+    const px = Math.hypot(b[0] - a[0], b[1] - a[1]);
+    return px > 0 ? 0.01 * 111320 * cosLat / px : NaN;
+  };
 
-  const picked = CityLayer.select(CITIES, box, { mPerPx, minPx: CITY_LAYER.minPx, budget: CITY_LAYER.budget });
+  const picked = CityLayer.select(CITIES, box, { mPerPx: scaleAt, minPx: CITY_LAYER.minPx, budget: CITY_LAYER.budget });
   if (!picked.length) return;
 
   const gl = g.gl;

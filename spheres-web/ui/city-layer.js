@@ -126,10 +126,16 @@
   /// thousands of triangles.
   function select(cities, bounds, options) {
     const o = options || {};
-    const mPerPx = Number(o.mPerPx);
+    // mPerPx is a NUMBER or a FUNCTION of the city. It has to be able to be a
+    // function: measured once at the view's footprint midpoint it read 29.1 m
+    // per pixel for a view whose city sat at 19.6, because the midpoint of a
+    // pitched footprint is tilted toward the horizon. That under-sized Chicago
+    // by 1.5x -- span 123 asked for where 181 was resolvable -- and it would
+    // gate small cities out that were in fact big enough on screen.
+    const scale = typeof o.mPerPx === "function" ? o.mPerPx : () => Number(o.mPerPx);
     const minPx = Number.isFinite(o.minPx) ? o.minPx : 90;
     const budget = Number.isFinite(o.budget) ? o.budget : 6;
-    if (!Array.isArray(cities) || !bounds || !Number.isFinite(mPerPx) || mPerPx <= 0) return [];
+    if (!Array.isArray(cities) || !bounds) return [];
     const { west, east, south, north } = bounds;
     const out = [];
     for (let i = 0; i < cities.length; i += 1) {
@@ -142,8 +148,10 @@
         : (c.lon >= west || c.lon <= east);
       if (!inLon) continue;
       const extent = extentFor(c.pop);
+      const mPerPx = Number(scale(c));
+      if (!Number.isFinite(mPerPx) || mPerPx <= 0) continue;
       if (extent / mPerPx < minPx) continue;
-      out.push({ index: i, city: c, extentMetres: extent, screenPx: extent / mPerPx });
+      out.push({ index: i, city: c, extentMetres: extent, screenPx: extent / mPerPx, mPerPx });
     }
     // Biggest on screen first, so a budget that bites drops the ones that would
     // have said least.
