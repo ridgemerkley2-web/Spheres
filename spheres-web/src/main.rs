@@ -107,6 +107,14 @@ const EQUIPMENT_CSS: &str = include_str!("../ui/equipment-ui.css");
 // Claude's 46 catalogue models, imported from 092569227023ff4278a5d699018af46bd39c7c94.
 const ARSENAL_MODELS_JS: &str = include_str!("../ui/arsenal-models.js");
 const ARSENAL3D_JS: &str = include_str!("../ui/arsenal3d.js");
+/// Three candidate procedural surface treatments, spliced into the card
+/// shader by `Arsenal3D.setSurface`. `weathering` is the one installed; the
+/// other two stay served so the choice can be re-judged on the same meshes
+/// in the same frame, which is the only honest way it was made in the first
+/// place. See `the_card_renderer_ships_a_surface_treatment`.
+const SURFACE_GRAIN_JS: &str = include_str!("../ui/surface-grain.js");
+const SURFACE_WEAR_JS: &str = include_str!("../ui/surface-wear.js");
+const SURFACE_MATERIAL_JS: &str = include_str!("../ui/surface-material.js");
 /// Construction-site geometry: thirteen project kinds, five stages each, driven
 /// by recorded server progress and never by a clock. DOM-free, so node checks it.
 const SITE_MESH_JS: &str = include_str!("../ui/site-mesh.js");
@@ -6691,6 +6699,9 @@ fn main() {
             (Method::Get, "/cash-flow-ui.js") => Response::from_string(CASH_FLOW_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/arsenal-models.js") => Response::from_string(ARSENAL_MODELS_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/arsenal3d.js") => Response::from_string(ARSENAL3D_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/surface-grain.js") => Response::from_string(SURFACE_GRAIN_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/surface-wear.js") => Response::from_string(SURFACE_WEAR_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/surface-material.js") => Response::from_string(SURFACE_MATERIAL_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/site-mesh.js") => Response::from_string(SITE_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/town-mesh.js") => Response::from_string(TOWN_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/equipment-import.js") => Response::from_string(EQUIPMENT_IMPORT_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),

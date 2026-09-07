@@ -3094,6 +3094,9 @@
 <script src="/equipment-model.js"></script>
 <script src="/arsenal-models.js"></script>
 <script src="/arsenal3d.js"></script>
+<script src="/surface-grain.js"></script>
+<script src="/surface-wear.js"></script>
+<script src="/surface-material.js"></script>
 <script src="/site-mesh.js"></script>
 <script src="/town-mesh.js"></script>
 <script src="/equipment-import.js"></script>
@@ -15873,6 +15876,30 @@ async function productionFetch() {
 /// DOM-free by contract — it is built and checked under node — and must not
 /// learn that a GL context exists. It is done lazily and once, so load order
 /// between the three scripts cannot matter.
+/// THE SURFACE TREATMENT THE CARDS SHIP WITH.
+///
+/// Three were written and compared on the same meshes in the same frame.
+/// `weathering` won on three counts: it was the clearest improvement at
+/// inspection size, it was the cheapest measured (within noise of a flat
+/// albedo at 1024x1024), and it is the only one that SURVIVES A REAL CARD.
+/// That last one decided it — arsenal3d frames a 34px ledger chip and a
+/// 380px inspection view at the same model-space distance, so a treatment
+/// whose signal is high-frequency noise aliases into speckle at the sizes
+/// this game actually draws. Weathering leans on a low-frequency gravity
+/// gradient instead, and a gradient downsamples cleanly.
+///
+/// The other two are kept and served, because `Arsenal3D.setSurface` makes
+/// them a one-line swap and the next art pass should be able to re-judge
+/// this rather than take my word for it.
+function installSurfaceTreatment() {
+  if (installSurfaceTreatment.done) return true;
+  if (!(window.Arsenal3D && Arsenal3D.available)) return false;
+  const chosen = window.Surfacewear;
+  if (!chosen) return false;
+  installSurfaceTreatment.done = true;
+  return Arsenal3D.setSurface(chosen.glsl);
+}
+
 function siteArtReady() {
   if (siteArtReady.done) return true;
   if (typeof window === "undefined") return false;
@@ -15890,6 +15917,7 @@ function siteArtReady() {
       return TownMesh.block({ id, district: district || "mixed", lod: lod || "close" });
     });
   }
+  installSurfaceTreatment();
   siteArtReady.done = true;
   return true;
 }
@@ -16200,7 +16228,7 @@ function renderManufacturingPanel() {
   else body.innerHTML = manufacturingLinesHtml();
   operationsRestoreDetails(body, details);
   wireManufacturingPanel();
-  if (typeof window !== "undefined" && window.Arsenal3D) Arsenal3D.scan(body);
+  if (typeof window !== "undefined" && window.Arsenal3D) { installSurfaceTreatment(); Arsenal3D.scan(body); }
 }
 
 function wireManufacturingPanel() {
@@ -16299,7 +16327,7 @@ function renderProductionPanel() {
   operationsRestoreDetails(body,details); body.scrollTop=scroll;
   wireProductionPanel();
   // The panel replaces its own innerHTML, so every canvas in it is a new node.
-  if (typeof window !== "undefined" && window.Arsenal3D) Arsenal3D.scan(body);
+  if (typeof window !== "undefined" && window.Arsenal3D) { installSurfaceTreatment(); Arsenal3D.scan(body); }
   if(focused) {
     const input=body.querySelector("#"+focused.id);
     input?.focus({preventScroll:true});
