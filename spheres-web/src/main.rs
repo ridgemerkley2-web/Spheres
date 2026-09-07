@@ -24,6 +24,7 @@ mod portrait_assets;
 mod page_art_assets;
 mod storage;
 mod equipment_view;
+mod government_view;
 mod transport;
 #[cfg(test)]
 mod performance;
@@ -102,6 +103,9 @@ const INDUSTRY_UI_JS: &str = include_str!("../ui/industry-ui.js");
 const INDUSTRY_CSS: &str = include_str!("../ui/industry-ui.css");
 const CASH_FLOW_UI_JS: &str = include_str!("../ui/cash-flow-ui.js");
 const CASH_FLOW_CSS: &str = include_str!("../ui/cash-flow-ui.css");
+const GOVERNMENT_UI_JS: &str = include_str!("../ui/government-ui.js");
+const GOVERNMENT_UI_CSS: &str = include_str!("../ui/government-ui.css");
+const GOVERNMENT_COUNCIL_PNG: &[u8] = include_bytes!("../ui/government-art/council-v1.png");
 const EQUIPMENT_UI_JS: &str = include_str!("../ui/equipment-ui.js");
 const EQUIPMENT_CSS: &str = include_str!("../ui/equipment-ui.css");
 // Claude's 46 catalogue models, imported from 092569227023ff4278a5d699018af46bd39c7c94.
@@ -1459,7 +1463,7 @@ fn government_json(w: &WorldState, id: NationId) -> serde_json::Value {
     }
 
     let gotd = politics.as_ref().and_then(|p| p.government_of_the_day.clone());
-    serde_json::json!({
+    let mut value = serde_json::json!({
         "nation": format!("{:?}", id),
         "nation_name": id.name(),
         "on": w.rules.ideology_blocs,
@@ -1485,7 +1489,9 @@ fn government_json(w: &WorldState, id: NationId) -> serde_json::Value {
         "next_election": next_election,
         "takeover": politics.as_ref().map(|p| &p.takeover),
         "actions": actions,
-    })
+    });
+    government_view::enrich(w, id, &mut value);
+    value
 }
 
 // ===========================================================================
@@ -7218,6 +7224,9 @@ fn main() {
                 } else { Response::from_string("Not found").with_status_code(404) }
             },
             (Method::Get, "/equipment-ui.css") => Response::from_string(EQUIPMENT_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
+            (Method::Get, "/government-ui.js") => Response::from_string(GOVERNMENT_UI_JS).with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/government-ui.css") => Response::from_string(GOVERNMENT_UI_CSS).with_header(Header::from_bytes("Content-Type", "text/css; charset=utf-8").unwrap()),
+            (Method::Get, "/art/government/council-v1.png") => Response::from_data(GOVERNMENT_COUNCIL_PNG).with_header(Header::from_bytes("Content-Type", "image/png").unwrap()).with_header(Header::from_bytes("Cache-Control", "public, max-age=31536000, immutable").unwrap()),
             (Method::Get, "/equipment-ui.js") => Response::from_string(EQUIPMENT_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/equipment-mesh.js") => Response::from_string(EQUIPMENT_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/equipment-model.js") => Response::from_string(EQUIPMENT_MODEL_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
@@ -7585,6 +7594,23 @@ fn main() {
                         "political_capital": 0.0,
                         "offers": [],
                     })),
+                };
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Post, "/api/government/preview") => {
+                let g = game.lock().unwrap();
+                let asked = match payload.get("nation") {
+                    Some(value) => value.as_str().and_then(NationId::parse),
+                    None => g.world.player,
+                };
+                let r = match asked {
+                    Some(id) => {
+                        let mut value = government_view::preview(&g.world, id, &payload["command"]);
+                        value["session_id"] = serde_json::json!(g.session_id);
+                        json_response(value)
+                    }
+                    None => json_error(400, serde_json::json!({"error":"Choose a valid government to review."})),
                 };
                 let _ = request.respond(r);
                 continue;
@@ -16913,16 +16939,19 @@ mod tests {
         assert!(reader.contains("nation = gov.nation"));
         assert!(reader.contains(r#"api("/api/government?nation=" + encodeURIComponent(nation))"#));
         assert!(reader.contains("S === state && gov.nation === nation"));
-        let screen = page_fn("function renderGovernment() {");
-        for served in ["d.bar", "d.groups", "d.pillars", "d.takeover[k]", "d.actions", "d.strain", "d.upkeep",
-                       "d.next_election", "d.government_seats", "d.coup_pressure", "d.discontent", "d.ruling_bloc",
-                       "b.governing", "b.ruling", "b.banned", "g.progress", "g.met", "r.half_armed", "r.reason",
-                       "a.price", "a.refusal", "p.loyalty"] {
-            assert!(screen.contains(served), "the screen no longer reads the served `{served}`");
+        let host = page_fn("function renderGovernment() {");
+        assert!(host.contains("window.GovernmentUI.render(gov.data"));
+        assert!(INDEX.contains(r#"<script src="/government-ui.js"></script>"#));
+        let screen = GOVERNMENT_UI_JS;
+        for served in ["data.bar", "data.groups", "data.pillars", "data.takeover", "data.actions", "data.strain", "data.upkeep",
+                       "data.next_election", "data.government_seats", "data.coup_pressure", "data.discontent", "data.ruling_bloc",
+                       "item.governing", "item.ruling", "item.banned", "gauge.progress", "gauge.met", "road.half_armed", "road.reason",
+                       "action.price", "action.refusal", "pillar.loyalty"] {
+            assert!(screen.contains(served), "the screen no longer reads the served {served}");
         }
-        for computed in ["g.value / g.trigger", "g.trigger / g.value", "0.50 *", "RULING_SEED",
+        for computed in ["g.value / g.trigger", "g.trigger / g.value", "gauge.value / gauge.trigger", "gauge.trigger / gauge.value", "0.50 *", "RULING_SEED",
                          "ChristianDemocratic", "SocialDemocratic", "BigTent", "discontent = "] {
-            assert!(!INDEX.contains(computed), "the page derives a bloc number of its own: `{computed}`");
+            assert!(!INDEX.contains(computed) && !screen.contains(computed), "the page derives a bloc number of its own: {computed}");
         }
     }
 
@@ -17211,10 +17240,14 @@ mod tests {
         check(&off.world, &v, NationId::Poland);
         // The page: the levers under their own head, the effects list read
         // from the served field, nothing composed.
-        let screen = page_fn("function renderGovernment() {");
-        assert!(screen.contains(r#"const LEVERS = new Set(["suspend", "ban", "legalize", "programme", "round_table"]);"#));
-        assert!(screen.contains("a.effects.map((e) => `<li>${escText(e)}</li>`)"));
-        assert!(screen.contains("The levers"));
+        let screen = GOVERNMENT_UI_JS;
+        assert!(screen.contains("action.category"));
+        assert!(screen.contains("action.effects.map(effect =>"));
+        assert!(screen.contains("esc(textOf(effect))"));
+        assert!(screen.contains("Governing decisions"));
+        for action in levers {
+            assert_eq!(action["category"], "reform");
+        }
     }
 
     /// The covert card on a target's dossier: the three operations and
@@ -17330,11 +17363,13 @@ mod tests {
         assert_eq!(pl["bar"][1]["backing"], 0.03);
         // The page: the hatched row reads the served `backing` and names a
         // sponsor from the served field alone.
-        assert!(INDEX.contains(r#"<div class="govabroad" role="img" aria-label="backed from abroad">"#));
-        let screen = page_fn("function renderGovernment() {");
-        assert!(screen.contains("width:${(b.backing * 100).toFixed(2)}%;--hatch:${blocColor(b.bloc)}"));
-        assert!(screen.contains(r#"e.sponsor ? `${escText(e.sponsor)}, exposed` : "nobody can say from where""#));
-        assert!(INDEX.contains(".govabroad i.exposed { outline:1px solid var(--red);"));
+        // Domestic support and foreign backing are separately labelled. Only an
+        // explicitly exposed sponsor can be named by the extracted renderer.
+        let screen = GOVERNMENT_UI_JS;
+        assert!(screen.contains("Foreign backing · separate from domestic support"));
+        assert!(screen.contains("pct(item.backing)"));
+        assert!(screen.contains("entry.exposed && entry.sponsor"));
+        assert!(screen.contains("Covert backing · sponsor undisclosed"));
     }
 
     /// The takeover watch reads every road closed with the REAL reason — in
@@ -17378,9 +17413,11 @@ mod tests {
         assert!(render.contains(".filter(([k]) => m.takeover[k] && m.takeover[k].half_armed)"));
         assert!(INDEX.contains("@keyframes discontentPulse"));
         assert!(INDEX.contains("#hdrDiscontentChip.pulse { animation:discontentPulse"));
-        let screen = page_fn("function renderGovernment() {");
-        assert!(screen.contains(r#"${r.armed ? ` <span class="armed">\u00b7 every gauge met</span>` : ""}"#));
-        assert!(screen.contains(r#"${r.reason ? ` \u2014 ${escText(r.reason)}` : ""}"#));
+        let screen = GOVERNMENT_UI_JS;
+        assert!(screen.contains("road.armed ?"));
+        assert!(screen.contains("All reported conditions met"));
+        assert!(screen.contains("esc(road.reason)"));
+        assert!(screen.contains("Route closed"));
     }
 
     /// The political arm's headlines are filed and promoted by the sim's own

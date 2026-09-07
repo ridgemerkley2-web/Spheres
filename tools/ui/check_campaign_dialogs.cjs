@@ -323,3 +323,78 @@ test('covert readers cannot attach old actions after campaign replacement',async
 test('shipped game actions have no blocking browser confirm calls',()=>{
   for(const file of ['index.html','campaign-ui.js','competition-ui.js'])assert.doesNotMatch(source(file),/(?:window\.)?\bconfirm\(/,file);
 });
+
+function governmentReviewFixture(){
+  const f=governmentFixture(),c=f.c;
+  c.gov.dataState=c.S;f.node('govReviewTitle').scrollIntoView=()=>{};
+  vm.runInContext(['govSelectTab','govReview'].map(governmentFunction).join('\n'),c);
+  c.api=async(url,body)=>{
+    f.calls.push({url,body});
+    return {session_id:c.S.session_id,valid:true,command:JSON.parse(JSON.stringify(body.command)),price_pc:5,money_cost_bn:0,changes:[]};
+  };
+  return f;
+}
+test('a government review reads exact consequences without sending an order; confirmation sends once without another dialog',async()=>{
+  const f=governmentReviewFixture(),c=f.c;
+  await c.govReview(0);
+  assert.equal(f.calls.length,1);assert.equal(f.calls[0].url,'/api/government/preview');
+  assert.equal(f.calls[0].body.nation,'USA');assert.equal(c.gov.review.loading,false);assert.equal(c.adopted.length,0);
+  assert.equal(f.dialog(),undefined);
+  let finish;c.api=(url,body)=>{f.calls.push({url,body});return new Promise(resolve=>finish=resolve);};
+  const review=c.gov.review,pending=c.govAct(f.action,review);
+  await c.govAct(f.action,review);assert.equal(f.calls.length,2);assert.equal(f.calls[1].url,'/api/command');
+  finish({session_id:c.S.session_id});await pending;assert.equal(c.adopted.length,1);assert.equal(c.gov.review,null);
+});
+test('government preview confirms the captured command at its original action index after filtering',async()=>{
+  const f=governmentReviewFixture(),c=f.c;
+  c.gov.data.actions.unshift({label:'Unavailable first item',refusal:'Unavailable',command:{kind:'ban'}});
+  await c.govReview(1);const review=c.gov.review;assert.equal(review.index,1);
+  f.action.command.target='Japan';c.api=async(url,body)=>{f.calls.push({url,body});return {session_id:c.S.session_id};};
+  await c.govAct(f.action,review);
+  assert.equal(f.calls[1].body.commands[0].target,'France');
+});
+test('late government reviews cannot attach after a world, nation, data or review replacement',async()=>{
+  for(const change of [c=>c.S={...c.S},c=>c.gov.nation='Japan',c=>c.gov.data={...c.gov.data},c=>c.gov.review=null,c=>c.gov.open=false]){
+    const f=governmentReviewFixture(),c=f.c;let finish;
+    c.api=()=>new Promise(resolve=>finish=resolve);const pending=c.govReview(0),review=c.gov.review;
+    change(c);finish({session_id:c.S.session_id,valid:true,command:f.action.command});await pending;
+    assert.equal(review.data,null);assert.equal(c.adopted.length,0);
+  }
+});
+test('government confirms neither stale nor invalid reviews and rejects mismatched session or command responses',async()=>{
+  for(const change of [c=>c.S={...c.S},c=>c.gov.data={...c.gov.data},c=>c.gov.review=null,c=>c.COMMAND_CHANNEL.pending={},c=>c.gov.review.data.valid=false]){
+    const f=governmentReviewFixture(),c=f.c;await c.govReview(0);const review=c.gov.review;change(c);
+    await c.govAct(f.action,review);assert.equal(f.calls.length,1);
+  }
+  for(const response of [{session_id:'other',valid:true},{session_id:'live',valid:true,command:{kind:'other'}}]){
+    const f=governmentReviewFixture(),c=f.c;c.api=async()=>response;await c.govReview(0);
+    assert(c.gov.review.error);assert.equal(c.gov.review.data,null);
+  }
+});
+test('government refuses foreign, blocked, malformed, refused or stale action reviews without ordering',async()=>{
+  for(const change of [c=>c.gov.data.mine=false,c=>c.COMMAND_CHANNEL.pending={},c=>c.gov.data.actions[0].refusal='Not possible',c=>c.gov.dataState={...c.S}]){
+    const f=governmentReviewFixture(),c=f.c;change(c);await c.govReview(0);assert.equal(f.calls.length,0);
+  }
+  const f=governmentReviewFixture();await f.c.govReview(-1);await f.c.govReview(0.5);assert.equal(f.calls.length,0);
+});
+test('government navigation reaches explicit game rooms and never accepts an arbitrary route',()=>{
+  const f=governmentFixture(),c=f.c,routes=[];
+  c.closeGovernment=()=>routes.push('close');c.openConstructionCabinet=tab=>routes.push('cabinet:'+tab);
+  c.openCashFlow=()=>routes.push('cash');c.openConstruction=()=>routes.push('construction');c.openTech=()=>routes.push('research');
+  c.toggleGameDrawer=id=>routes.push(id);c.govShow=id=>routes.push(id);f.node('warsCard').scrollIntoView=()=>routes.push('wars');
+  vm.runInContext(governmentFunction('govNavigate'),c);
+  c.govNavigate('https://example.org');assert.deepEqual(routes,[]);
+  c.govNavigate('budget');assert.deepEqual(routes,['close','cabinet:budget']);routes.length=0;
+  c.govNavigate('military');assert.deepEqual(routes,['close','intelDrawer','wars']);routes.length=0;
+  c.gov.data.mine=false;c.govNavigate('construction');assert.deepEqual(routes,[]);
+  c.govNavigate('mine');assert.deepEqual(routes,['USA']);
+});
+
+test('government party and decision searches stay independent when switching tabs',()=>{
+  const f=governmentFixture(),c=f.c;
+  vm.runInContext(governmentFunction('govSelectTab'),c);
+  c.gov.tab='decisions';c.gov.query='loyalty';c.govSelectTab('politics');assert.equal(c.gov.query,'');
+  c.gov.query='Solidarity';c.govSelectTab('decisions');assert.equal(c.gov.query,'loyalty');
+  c.govSelectTab('politics');assert.equal(c.gov.query,'Solidarity');
+  c.govSelectTab('untrusted');assert.equal(c.gov.tab,'politics');
+});

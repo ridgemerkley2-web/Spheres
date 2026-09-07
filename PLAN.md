@@ -4,6 +4,12 @@
 BUGS.md is what is broken. This is the sequence between here and done, and why
 it is in this order.*
 
+**Government interface update, 7 September 2026:** the illustrated government
+briefing and exact decision reviews are accepted. The room connects existing
+politics to real policy departments and shows immediate command consequences
+before confirmation. It introduces no new simulation or political activation.
+[Government room](docs/government-ui.md) records the implementation and evidence.
+
 **Equipment direction update, 7 September 2026:** the accepted domestic tank
 supplier loop now extends to all nine implemented ground platforms and both
 tactical aircraft. The expansion is accepted through simulator, web, UI and

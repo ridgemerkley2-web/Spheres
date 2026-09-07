@@ -1,5 +1,26 @@
 # SPHERES Roadmap
 
+## Accepted interface — government briefing and reviewed decisions (2026-09-07)
+
+Government now has an illustrated country briefing, governing decisions,
+parliament or regime institutions, and a distinct ideological takeover watch.
+Budget, public finances, construction and diplomacy links open the real game
+rooms. Available/all filters, independent party and decision searches, keyboard
+tabs and preserved focus make the existing political mechanics easier to use.
+
+Before confirming, the player sees the exact immediate result of the command
+on a disposable world copy: political capital, public cash/debt, cabinet seats,
+upkeep, officeholders, loyalty, stability and relations where affected. A changed
+campaign or refreshed reading invalidates the review. Existing orders still use
+the shared receipt channel; no new political rule or save migration was added.
+
+Acceptance: **1,031 UI checks; 263 release web checks passed, three ignored**;
+final government checks **10/10**. Browser checks covered an actual 14 PC /
+$480m institutional payment, a 60% → 82% coalition review, foreign inspection,
+390px layout, keyboard navigation and real budget routing. The active campaign
+was preserved exactly. [Government room](docs/government-ui.md) records the
+contract, generated council artwork, tests and executable hash.
+
 ## Accepted integration — Claude art fixes with company procurement and refits (2026-09-07)
 
 Claude's `ebddf7a` art branch is integrated with the accepted company, ammunition

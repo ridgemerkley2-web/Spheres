@@ -2434,6 +2434,7 @@
 <link rel="stylesheet" href="/industry-ui.css">
 <link rel="stylesheet" href="/cash-flow-ui.css">
 <link rel="stylesheet" href="/equipment-ui.css">
+<link rel="stylesheet" href="/government-ui.css">
 <link rel="stylesheet" href="/arsenal3d.css">
 <link rel="stylesheet" href="/competition.css">
 <link rel="stylesheet" href="/agency.css">
@@ -3119,7 +3120,7 @@
     <span class="ttitle">Government</span>
     <span class="tsub" id="govSub">&mdash;</span>
     <span class="spacer"></span>
-    <button class="x" aria-label="Close government and return to map" onclick="closeGovernment()">close</button>
+    <button class="x" aria-label="Close government and return to map" onclick="closeGovernment()">Back to map</button>
   </div>
   <div id="govBody"></div>
 </div>
@@ -3197,6 +3198,7 @@
 <script src="/town-mesh.js"></script>
 <script src="/equipment-import.js"></script>
 <script src="/equipment-ui.js"></script>
+<script src="/government-ui.js"></script>
 <script src="/agency-ui.js"></script>
 <script src="/operations-ui.js"></script>
 <script>
@@ -14949,12 +14951,13 @@ function governmentActionBlocked() {
 function resetGovernment() {
   closeGovernment();
   gov.nation = null; gov.data = null; gov.busy = false; gov.action = null;
+  gov.review = null; gov.dataState = null; gov.tab = "overview"; gov.query = ""; gov.queries = {}; gov.notice = ""; gov.actionFilter = "available";
   COVERT_ACTION.pending = null;
 }
 function toggleGovernment() { if (gov.open) closeGovernment(); else openGovernment(); }
 function openGovernment(id) {
   if (!S) return;
-  const who = id || gov.nation || selected || S.player;
+  const who = id || S.player || gov.nation || selected;
   if (!who) { banner("Choose a nation first \u2014 click one on the map."); return; }
   const returnFocus = gov.open ? gov.lastFocus : document.activeElement;
   if (LOGI.open) closeLogistics();
@@ -14967,7 +14970,7 @@ function openGovernment(id) {
   closeSheet();
   if (!gov.open) gov.lastFocus = returnFocus;
   gov.open = true;
-  if (gov.nation !== who) gov.data = null;
+  if (gov.nation !== who) { gov.data = null; gov.review = null; gov.tab = "overview"; gov.query = ""; gov.queries = {}; gov.notice = ""; }
   gov.nation = who;
   $("#govScreen").style.display = "block";
   renderGovernment();
@@ -14977,6 +14980,7 @@ function openGovernment(id) {
 function closeGovernment() {
   const wasOpen = gov.open;
   gov.open = false;
+  gov.review = null;
   ++gov.seq;
   $("#govScreen").style.display = "none";
   if (wasOpen) {
@@ -14987,7 +14991,7 @@ function closeGovernment() {
 }
 window.openGovernment = openGovernment;
 window.closeGovernment = closeGovernment;
-function govShow(id) { gov.nation = id; gov.data = null; renderGovernment(); govFetch(); }
+function govShow(id) { gov.nation = id; gov.data = null; gov.review = null; gov.tab = "overview"; gov.query = ""; gov.queries = {}; gov.notice = ""; renderGovernment(); govFetch(); }
 async function govFetch() {
   if (!gov.open || !gov.nation) return;
   const seq = ++gov.seq, state = S, nation = gov.nation;
@@ -14995,9 +14999,12 @@ async function govFetch() {
   try {
     const d = await api("/api/government?nation=" + encodeURIComponent(nation));
     if (!current()) return;
-    gov.data = d;
+    if (d.nation !== nation) throw new Error("The government response belongs to another country. Please refresh.");
+    if (gov.review) { gov.review = null; gov.notice = "Government figures refreshed. Review the decision again before confirming."; }
+    gov.data = d; gov.dataState = state;
   } catch (e) {
     if (!current()) return;
+    gov.review = null;
     gov.data = { error: e.message || String(e) };
   }
   renderGovernment();
@@ -15033,106 +15040,142 @@ function gaugeText(g) {
   return `${f(g.value)} <span class="tiny">${rel} ${target}</span>`;
 }
 
-function govGroupsHtml(groups) {
-  return groups.map((g) => `<div class="govgroup"><div class="govgrouphead"><i class="blocdot" style="background:${blocColor(g.bloc)}"></i>${blocLabel(g.bloc)} <b>${pctText(g.share)}</b>${g.banned ? " \u00b7 banned" : ""}</div>
-    <table class="govtable"><thead><tr><th>party</th><th>support</th><th>seats</th><th>office</th></tr></thead><tbody>
-    ${g.parties.map((p) => `<tr class="${p.leads ? "leads" : p.in_government ? "ingov" : ""}"><td><b>${escText(p.name)}</b>${p.native && p.native !== p.name ? ` <span class="native">${escText(p.native)}</span>` : ""}<span class="tiny"> \u00b7 ${escText(p.family)}</span></td><td>${pctText(p.support)}</td><td>${pctText(p.seats)}</td><td>${p.leads ? "leads the government" : p.in_government ? "in government" : p.pariah ? "pariah" : ""}${p.banned ? " \u00b7 banned" : ""}</td></tr>`).join("")}
-    </tbody></table></div>`).join("");
+function govSelectTab(tab) {
+  if (!["overview","decisions","politics","watch"].includes(tab)) return;
+  gov.queries = gov.queries || {};
+  gov.queries[gov.tab || "overview"] = gov.query || "";
+  gov.tab = tab; gov.query = gov.queries[tab] || "";
 }
 
 function renderGovernment() {
   if (!S) return;
-  const d = gov.data;
-  const n = nationById(gov.nation);
-  $("#govSub").innerHTML = `<select id="govPick" aria-label="Nation">${[...S.nations].sort((a, b) => a.name.localeCompare(b.name)).map((x) =>
-    `<option value="${x.id}"${x.id === gov.nation ? " selected" : ""}>${escText(x.name)}</option>`).join("")}</select>` +
-    (n && n.id === S.player ? `<span>your government</span>` : `<span>spectating</span>`);
+  const body = $("#govBody"), sub = $("#govSub"), active = document.activeElement;
+  const focusId = active?.id, selection = active?.selectionStart;
+  const focusSource = active?.tagName === "SUMMARY" ? active.closest("details[data-gov-detail]") : active;
+  const focusAttr = ["data-gov-search","data-gov-filter","data-gov-review","data-gov-confirm","data-gov-review-close","data-gov-detail","data-gov-refresh","data-gov-retry"].find(attr => focusSource?.hasAttribute?.(attr));
+  const focusValue = focusAttr ? focusSource.getAttribute(focusAttr) : null;
+  const scrollTop = body.scrollTop;
+  const expanded = [...body.querySelectorAll("details[data-gov-detail][open]")].map(el => el.dataset.govDetail);
+  const pickerHtml = `<select id="govPick" aria-label="Government to inspect">${[...S.nations].sort((a,b) => a.name.localeCompare(b.name)).map(x => `<option value="${escText(x.id)}"${x.id === gov.nation ? " selected" : ""}>${escText(x.name)}</option>`).join("")}</select>`;
+  if (gov.pickerHtml !== pickerHtml) { sub.innerHTML = pickerHtml; gov.pickerHtml = pickerHtml; }
   const pick = $("#govPick");
   if (pick) pick.onchange = () => govShow(pick.value);
-  const body = $("#govBody");
-  if (!d) { body.innerHTML = `<div class="govnote">Asking the sim\u2026</div>`; return; }
-  if (d.error) { body.innerHTML = `<div class="govnote">${escText(d.error)}</div>`; return; }
-  if (!d.on) { body.innerHTML = `<div class="govnote">The political arm is off in this world.</div>`; return; }
-  const lead = d.leader || {};
-  const who = lead.name || lead.described || "\u2014";
-  const disc = d.discontent * 100;
-
-  // (1) the five-segment bar, the governing segments outlined, the ruling one
-  // underlined; the office and since beneath.
-  const bar = `<div class="govhead">Who holds power</div>
-    <div class="govbar" role="img" aria-label="bloc shares">${d.bar.map((b) =>
-      `<i class="${b.governing ? "gov" : ""}${b.ruling ? " rule" : ""}" style="width:${(b.share * 100).toFixed(2)}%;background:${blocColor(b.bloc)}" title="${blocLabel(b.bloc)} ${pctText(b.share)}${b.banned ? " \u00b7 banned" : ""}"></i>`).join("")}</div>
-    ${d.bar.some((b) => b.backing > 0) ? `<div class="govabroad" role="img" aria-label="backed from abroad">${d.bar.map((b) =>
-      `<i class="${(b.abroad || []).some((e) => e.kind === "covert" && e.exposed) ? "exposed" : ""}" style="width:${(b.backing * 100).toFixed(2)}%;--hatch:${blocColor(b.bloc)}" title="${blocLabel(b.bloc)} backed from abroad ${pctText(b.backing)}"></i>`).join("")}</div>
-    <div class="govabroadnote">hatched: backed from abroad \u00b7 ${d.bar.filter((b) => b.backing > 0).map((b) => `${blocLabel(b.bloc)} ${pctText(b.backing)} (${(b.abroad || []).map((e) => e.kind === "patronage" ? "patronage" : e.sponsor ? `${escText(e.sponsor)}, exposed` : "nobody can say from where").join("; ")})`).join(" \u00b7 ")}</div>` : ""}
-    <div class="govlegend">${d.bar.map((b) => `<span><i style="background:${blocColor(b.bloc)}"></i>${blocLabel(b.bloc)} <b>${pctText(b.share)}</b>${b.backing ? ` +${pctText(b.backing)} abroad` : ""}${b.ruling ? " \u00b7 rules" : b.governing ? " \u00b7 in government" : ""}${b.banned ? " \u00b7 banned" : ""}</span>`).join("")}</div>
-    <div class="govoffice"><b>${escText(who)}</b>${lead.native && lead.native !== lead.name ? ` <span class="native">${escText(lead.native)}</span>` : ""} \u2014 ${escText(lead.office || "")}${lead.since ? ` \u00b7 since ${escText(lead.since)}` : ""}${d.ruling_bloc ? ` \u00b7 <i class="blocdot" style="background:${blocColor(d.ruling_bloc)}"></i>${blocLabel(d.ruling_bloc)}` : ""}
-      ${d.government_of_the_day ? `<div class="tiny">government of the day: ${escText(d.government_of_the_day_name || d.government_of_the_day)}</div>` : ""}
-      ${lead.heir ? `<div class="tiny">heir: ${escText(lead.heir.name)}, ${escText(lead.heir.office)} since ${escText(lead.heir.since)}</div>` : ""}
-      ${lead.must_leave_by ? `<div class="tiny">must leave by ${escText(lead.must_leave_by)}</div>` : ""}
-      ${(lead.also || []).map((a) => `<div class="tiny">also: ${escText(a.name)}, ${escText(a.office)} since ${escText(a.since)}</div>`).join("")}
-      <div class="tiny">discontent <b class="band-${discontentBand(disc)}">${pctText(d.discontent)}</b> \u00b7 political capital ${d.political_capital.toFixed(0)}</div></div>`;
-
-  // (2) the face: the chamber, or the regime.
-  let face;
-  if (d.electoral) {
-    face = `<div class="govhead">The chamber</div>
-      <div class="govstats"><span>${escText(d.system || "")}</span><span>term <b>${d.term_months}</b> months</span>${d.next_election ? `<span>next election <b>${escText(d.next_election)}</b></span>` : ""}<span>government seats <b>${pctText(d.government_seats)}</b></span><span>in office <b>${d.months_in_office}</b> months</span><span>strain <b>${d.strain.toFixed(2)}</b></span><span>upkeep <b>${d.upkeep.toFixed(2)}</b> PC a month</span></div>
-      ${govGroupsHtml(d.groups)}`;
-  } else {
-    face = `<div class="govhead">The regime</div>
-      <div class="govstats"><span>${escText(d.ruling_institution || "")}</span><span>coup pressure <b>${d.coup_pressure.toFixed(2)}</b></span></div>
-      ${d.pillars.map((p) => `<div class="govpillar"><span class="nm"><i class="blocdot" style="background:${blocColor(p.bloc)}"></i>${escText(p.name)} <span class="tiny">\u00b7 ${escText(p.key)} \u00b7 installs ${blocLabel(p.bloc)}</span></span><span class="v">${pctText(p.loyalty)} loyal</span>
-        <div class="bar"><i style="width:${(p.loyalty * 100).toFixed(1)}%;background:${blocColor(p.bloc)}"></i></div></div>`).join("")}
-      ${d.groups.length ? `<div class="govhead">The dormant table</div>${govGroupsHtml(d.groups)}` : ""}`;
+  if (gov.review && gov.review.world !== S && !gov.busy) {
+    gov.review = null; gov.notice = "The country has changed. Review the decision again to see its current effects.";
   }
-
-  // (3) the takeover watch: four roads, every one closed with its reason in
-  // this build, the gauges served with their progress.
-  const roads = [["coup", "Coup"], ["uprising", "Uprising"], ["round_table", "Round table"], ["collapse", "Collapse"]];
-  const watch = `<div class="govhead">The takeover watch</div><div class="govroads">${roads.map(([k, label]) => {
-    const r = d.takeover[k];
-    return `<div class="govroad${r.half_armed ? " half" : ""}"><div class="rh"><b>${label}</b><span class="closed">${r.open ? "open" : "closed"}${r.reason ? ` \u2014 ${escText(r.reason)}` : ""}${r.armed ? ` <span class="armed">\u00b7 every gauge met</span>` : ""}</span></div>
-      ${r.gauges.map((g) => `<div class="gauge"><span>${escText(g.name)}${g.bloc ? ` (${blocLabel(g.bloc)})` : ""}</span><span class="gv">${gaugeText(g)}</span>
-        <div class="bar"><i style="width:${(Math.min(g.progress, 1) * 100).toFixed(1)}%;background:${g.met ? "var(--red)" : g.progress >= 0.5 ? "var(--amber)" : "var(--dim)"}"></i></div></div>`).join("")}</div>`;
-  }).join("")}</div>`;
-
-  // (4) the actions, each at the sim's price, with the sim's refusal and the
-  // sim's effects list (S3: `effects`, one sentence per arm, served from the
-  // function that charges it). The five levers get their own head.
-  const LEVERS = new Set(["suspend", "ban", "legalize", "programme", "round_table"]);
-  const actHtml = (a, i) => `<div class="govact${a.refusal ? " refused" : ""}"><div><b>${escText(a.label)}</b>${a.detail ? ` <span class="tiny">\u00b7 ${escText(a.detail)}</span>` : ""}${a.blurb ? `<div class="tiny">${escText(a.blurb)}</div>` : ""}${a.refusal ? `<div class="tiny refusal">${escText(a.refusal)}</div>` : ""}${(a.effects || []).length ? `<ul class="fx">${a.effects.map((e) => `<li>${escText(e)}</li>`).join("")}</ul>` : ""}</div>
-      <button data-act="${i}" ${a.refusal || !d.mine || gov.busy ? "disabled" : ""}>${a.price.toFixed(1)} PC</button></div>`;
-  const plain = d.actions.map((a, i) => [a, i]).filter(([a]) => !LEVERS.has(a.kind));
-  const levers = d.actions.map((a, i) => [a, i]).filter(([a]) => LEVERS.has(a.kind));
-  const acts = `<div class="govhead">Actions</div><div class="govacts">${plain.map(([a, i]) => actHtml(a, i)).join("")}
-    ${d.mine ? "" : `<div class="tiny">Only your own government takes orders.</div>`}</div>
-    ${levers.length ? `<div class="govhead">The levers</div><div class="govacts">${levers.map(([a, i]) => actHtml(a, i)).join("")}</div>` : ""}`;
-
-  body.innerHTML = `<div class="govcol">${bar}${face}</div><div class="govcol">${watch}${acts}</div>`;
-  body.querySelectorAll("button[data-act]").forEach((b) => { b.onclick = () => govAct(d.actions[+b.dataset.act]); });
+  body.innerHTML = window.GovernmentUI.render(gov.data, {
+    tab: gov.tab || "overview", actionFilter: gov.actionFilter || "available", query: gov.query || "",
+    review: gov.review || null, notice: gov.notice || "", busy: gov.busy || governmentActionBlocked(),
+  });
+  body.querySelectorAll("[data-gov-tab]").forEach(b => {
+    b.onclick = () => {
+      govSelectTab(b.dataset.govTab); renderGovernment();
+      $("#gov-tab-" + gov.tab)?.focus({preventScroll:true});
+      if (b.getAttribute("role") !== "tab") $("#gov-tab-" + gov.tab)?.scrollIntoView({block:"nearest"});
+    };
+    if (b.getAttribute("role") === "tab") b.onkeydown = e => {
+      if (!["ArrowLeft","ArrowRight","Home","End"].includes(e.key)) return;
+      e.preventDefault();
+      const tabs = ["overview","decisions","politics","watch"], i = tabs.indexOf(gov.tab || "overview");
+      govSelectTab(e.key === "Home" ? tabs[0] : e.key === "End" ? tabs[3] : tabs[(i + (e.key === "ArrowRight" ? 1 : 3)) % 4]);
+      renderGovernment(); $("#gov-tab-" + gov.tab)?.focus({preventScroll:true});
+    };
+  });
+  body.querySelectorAll("[data-gov-filter]").forEach(b => { b.onclick = () => { gov.actionFilter = b.dataset.govFilter; renderGovernment(); }; });
+  body.querySelectorAll("[data-gov-route]").forEach(b => { b.onclick = () => govNavigate(b.dataset.govRoute); });
+  body.querySelectorAll("[data-gov-review]").forEach(b => { b.onclick = () => govReview(Number(b.dataset.govReview)); });
+  body.querySelectorAll("[data-gov-confirm]").forEach(b => { b.onclick = () => {
+    const review = gov.review, index = Number(b.dataset.govConfirm);
+    if (review && review.index === index) govAct(gov.data?.actions?.[index], review);
+  }; });
+  body.querySelectorAll("[data-gov-review-close]").forEach(b => { b.onclick = () => {
+    const index = gov.review?.index; gov.review = null; renderGovernment();
+    body.querySelector(`[data-gov-review="${index}"]`)?.focus({preventScroll:true});
+  }; });
+  body.querySelectorAll("[data-gov-retry]").forEach(b => { b.onclick = () => { if (gov.review) govReview(gov.review.index); }; });
+  body.querySelectorAll("[data-gov-refresh]").forEach(b => { b.onclick = () => govFetch(); });
+  body.querySelectorAll("[data-gov-search]").forEach(input => { input.oninput = () => { gov.query = input.value; renderGovernment(); }; });
+  body.querySelectorAll("details[data-gov-detail]").forEach(el => { if (expanded.includes(el.dataset.govDetail)) el.open = true; });
+  if (focusId || focusAttr) {
+    const restored = focusId ? document.getElementById(focusId) : [...body.querySelectorAll("[" + focusAttr + "]")].find(el => el.getAttribute(focusAttr) === focusValue);
+    if (restored && (body.contains(restored) || sub.contains(restored))) {
+      const focusTarget = active?.tagName === "SUMMARY" ? restored.querySelector("summary") : restored;
+      focusTarget?.focus({preventScroll:true});
+      if (typeof selection === "number" && restored.setSelectionRange) restored.setSelectionRange(selection, selection);
+    }
+  }
+  body.scrollTop = scrollTop;
 }
 
-/// An action takes effect the moment it is pressed — the stratagem route. The
-/// sim re-checks, charges, and refuses with its own sentence.
-async function govAct(a) {
+function govNavigate(route) {
+  if (route === "mine") { if (S?.player) govShow(S.player); return; }
+  if (!gov.data?.mine || !["budget","cash_flow","construction","diplomacy","research","military"].includes(route)) return;
+  closeGovernment();
+  if (route === "budget") openConstructionCabinet("budget");
+  else if (route === "cash_flow") openCashFlow();
+  else if (route === "construction") openConstruction();
+  else if (route === "research") openTech();
+  else {
+    toggleGameDrawer("intelDrawer");
+    if (route === "military") $("#warsCard")?.scrollIntoView({block:"start"});
+  }
+}
+
+async function govReview(index) {
+  const data = gov.data, a = data?.actions?.[index];
+  if (!Number.isInteger(index) || gov.busy || governmentActionBlocked() || !gov.open || !data?.mine || !a?.command || a.refusal) return;
+  if (gov.dataState !== S) { gov.notice = "Refreshing the country before reviewing this decision."; govFetch(); return; }
+  const state = S, nation = gov.nation;
+  const command = JSON.parse(JSON.stringify(a.command));
+  const review = {index, loading:true, data:null, error:"", world:state, source:data, command};
+  gov.review = review; gov.notice = ""; govSelectTab("decisions"); renderGovernment();
+  const current = () => gov.review === review && gov.open && gov.nation === nation && S === state && gov.data === data;
+  try {
+    const result = await api("/api/government/preview", {nation, command});
+    if (!current()) return;
+    if (result.session_id !== state.session_id) throw new Error("The campaign changed. Refresh this government before reviewing again.");
+    if (result.valid && JSON.stringify(result.command) !== JSON.stringify(command)) {
+      // JSON object key order is irrelevant; compare canonical object content.
+      const canonical = value => JSON.stringify(value, Object.keys(value || {}).sort());
+      if (canonical(result.command) !== canonical(command)) throw new Error("The reviewed decision no longer matches. Please refresh.");
+    }
+    review.data = result;
+  } catch (e) {
+    if (!current()) return;
+    review.error = e.message || String(e);
+  } finally {
+    if (current()) {
+      review.loading = false; renderGovernment();
+      $("#govReviewTitle")?.focus({preventScroll:true});
+      $("#govReviewTitle")?.scrollIntoView({block:"nearest"});
+    }
+  }
+}
+
+/// Orders use the same receipt channel as the rest of the campaign. A preview
+/// grants no authority to mutate, and a changed world needs another review.
+async function govAct(a, review = null) {
   if (gov.busy || governmentActionBlocked() || !gov.open || !a || a.refusal || !a.command || !gov.data?.mine || !gov.data.actions.includes(a)) return;
+  if (review && (gov.review !== review || review.loading || review.error || !review.data?.valid || review.world !== S || review.source !== gov.data || gov.data.actions[review.index] !== a)) return;
   const state = S, nation = gov.nation, data = gov.data, action = {};
-  const command = JSON.parse(JSON.stringify(a.command)), label = a.label, price = a.price;
+  const command = JSON.parse(JSON.stringify(review ? review.command : a.command)), label = a.label, price = a.price;
   gov.busy = true; gov.action = action; renderGovernment();
   try {
-    if (!await campaignConfirm(`${label}?\n\nIt costs ${price.toFixed(1)} political capital and takes effect at once.`, { title: "Government action", confirmLabel: label })) return;
+    if (!review && !await campaignConfirm(`${label}?\n\nIt costs ${price.toFixed(1)} political capital and takes effect at once.`, { title: "Government action", confirmLabel: label })) return;
     if (S !== state || gov.action !== action || !gov.open || gov.nation !== nation || gov.data !== data || governmentActionBlocked()) return;
     const r = await api("/api/command", { commands: [command] });
     if (S !== state || gov.action !== action) return;
-    if (r.errors && r.errors.length) banner(r.errors[0]); else banner(label + " \u2014 done.");
+    gov.review = null;
+    gov.notice = r.errors?.length ? r.errors[0] : label + " — completed. The figures now reflect this decision.";
+    banner(r.errors?.length ? r.errors[0] : label + " — done.");
     await adopt(r, false);
   } catch (e) {
-    if (S === state && gov.action === action) { banner(e.message || String(e)); govFetch(); }
+    if (S === state && gov.action === action) { banner(e.message || String(e)); gov.notice = e.message || String(e); govFetch(); }
   } finally {
     if (gov.action === action) { gov.busy = false; gov.action = null; if (gov.open) renderGovernment(); }
   }
 }
+
 
 /* ---------------- contracts and offers ---------------- */
 
