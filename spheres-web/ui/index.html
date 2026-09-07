@@ -15906,6 +15906,21 @@ function productionSiteStripHtml(p) {
   const art = productionSite3d(p);
   return art ? `<div class="work-site" aria-hidden="true">${art}</div>` : "";
 }
+/// THE SAME SITE, AT MAP ZOOM. The marker pass is a 2D context that redraws on
+/// every camera move, so it gets a baked sprite rather than a model: a map-LOD
+/// site is a few hundred triangles, it bakes once, and thereafter this is a Map
+/// lookup and a drawImage. The pixel size is bucketed so a camera drag cannot
+/// mint a new bake per frame, and the status is NOT baked in — the ring around
+/// the marker already carries it, and baking it would double the cache.
+function productionSiteSprite(project, px) {
+  if (!siteArtReady() || !project) return null;
+  const kind = productionKind(project);
+  if (!SiteMesh.kinds().includes(kind)) return null;
+  const stage = SiteMesh.stageFor(kind, productionProgress(project), { status: productionStatus(project) });
+  const level = Number.isFinite(+project.level) ? Math.max(1, Math.min(5, Math.round(+project.level))) : 1;
+  const bucket = px <= 40 ? 64 : px <= 72 ? 96 : 128;
+  return Arsenal3D.sprite(`site:${kind}/${stage.stage}/${level}/building`, bucket, { lod: "map" });
+}
 function productionSite3d(p) {
   if (!siteArtReady()) return "";
   const kind = productionKind(p);
@@ -16425,7 +16440,15 @@ function drawProductionOverlay(ctx, view, globe) {
     ctx.setLineDash(tone === "blocked" ? [2 * r, 3 * r] : tone === "paused" ? [4 * r, 4 * r] : tone === "slowed" ? [5 * r, 2 * r] : []);
     ctx.beginPath(); ctx.arc(p[0], p[1], radius, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
     ctx.fillStyle = colour; ctx.font = `700 ${selected ? 13 : 10}px Inter, system-ui, sans-serif`;
-    ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(project ? (PROD_ICON[productionKind(project)] || "◆") : "✓", p[0], p[1] + .5 * r);
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    // A silhouette of the actual site if one can be baked, the glyph if not.
+    const art = productionSiteSprite(project, radius * 2.1);
+    if (art) {
+      const box = radius * 2.1;
+      ctx.drawImage(art, p[0] - box / 2, p[1] - box / 2, box, box);
+    } else {
+      ctx.fillText(project ? (PROD_ICON[productionKind(project)] || "◆") : "✓", p[0], p[1] + .5 * r);
+    }
     if (selected) {
       const text = productionStatus(project).toUpperCase();
       ctx.font = `700 ${8 * r}px Inter, system-ui, sans-serif`;

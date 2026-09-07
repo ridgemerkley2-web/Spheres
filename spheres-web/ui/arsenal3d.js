@@ -60,9 +60,36 @@
   }`;
 
   let gl = null, prog = null, uMVP = null, uEye = null, glCanvas = null;
+  let lost = false;
+  const sprites = new Map();
   let available = null;
   const vaos = new Map();
 
+  /// Building the program is separate from creating the context, because a
+  /// context can come BACK. On `webglcontextrestored` every shader, program and
+  /// buffer the driver held is gone but the canvas and its listeners are not, so
+  /// the restore path re-runs exactly this and repaints, rather than making a
+  /// second canvas and orphaning the first.
+  function setupGl() {
+    const vs = compile(gl.VERTEX_SHADER, VERT), fs = compile(gl.FRAGMENT_SHADER, FRAG);
+    if (!vs || !fs) return false;
+    prog = gl.createProgram();
+    gl.attachShader(prog, vs); gl.attachShader(prog, fs);
+    gl.bindAttribLocation(prog, 0, "aPos");
+    gl.bindAttribLocation(prog, 1, "aNrm");
+    gl.bindAttribLocation(prog, 2, "aCol");
+    gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return false;
+    uMVP = gl.getUniformLocation(prog, "uMVP");
+    uEye = gl.getUniformLocation(prog, "uEye");
+    gl.enable(gl.DEPTH_TEST);
+    // No back-face culling, deliberately. Three parts of the deck are open
+    // shells — a dish is a paraboloid with no back, a rotodome is a disc, a
+    // solar array is a sheet — and culling would make each of them vanish
+    // from one side. The shader is two-sided for the same reason.
+    gl.disable(gl.CULL_FACE);
+    return true;
+  }
   function init() {
     if (available !== null) return available;
     available = false;
@@ -74,23 +101,21 @@
         alpha: true, antialias: true, premultipliedAlpha: true, depth: true,
       });
       if (!gl) return available;
-      const vs = compile(gl.VERTEX_SHADER, VERT), fs = compile(gl.FRAGMENT_SHADER, FRAG);
-      if (!vs || !fs) return available;
-      prog = gl.createProgram();
-      gl.attachShader(prog, vs); gl.attachShader(prog, fs);
-      gl.bindAttribLocation(prog, 0, "aPos");
-      gl.bindAttribLocation(prog, 1, "aNrm");
-      gl.bindAttribLocation(prog, 2, "aCol");
-      gl.linkProgram(prog);
-      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return available;
-      uMVP = gl.getUniformLocation(prog, "uMVP");
-      uEye = gl.getUniformLocation(prog, "uEye");
-      gl.enable(gl.DEPTH_TEST);
-      // No back-face culling, deliberately. Three parts of the deck are open
-      // shells — a dish is a paraboloid with no back, a rotodome is a disc, a
-      // solar array is a sheet — and culling would make each of them vanish
-      // from one side. The shader is two-sided for the same reason.
-      gl.disable(gl.CULL_FACE);
+      // A lost context is not an error to swallow: preventDefault is what makes
+      // the browser promise a restore, and everything cached is dead the moment
+      // it fires. Cards go quiet rather than drawing from freed handles.
+      glCanvas.addEventListener("webglcontextlost", (event) => {
+        event.preventDefault();
+        lost = true;
+        vaos.clear();
+        sprites.clear();
+      }, false);
+      glCanvas.addEventListener("webglcontextrestored", () => {
+        lost = false;
+        if (!setupGl()) { available = false; return; }
+        mounted.forEach((state, canvas) => { if (canvas.isConnected) { state.aspect = null; paint(canvas, state); } });
+      }, false);
+      if (!setupGl()) return available;
       available = true;
     } catch (e) { available = false; }
     return available;
@@ -264,6 +289,7 @@
   /// the caller the canvas to copy. Nothing is retained between calls except
   /// the buffers.
   function renderTo(id, cls, w, h, yaw, pitch, dist) {
+    if (lost) return null;
     if (!init()) return null;
     const entry = bufferFor(id, cls);
     if (!entry) return null;
@@ -444,6 +470,33 @@
     return n;
   }
 
+  /// A MODEL BAKED FLAT, ONCE, FOR THE 2D LAYERS.
+  ///
+  /// The globe's marker pass is a 2D context. It cannot hold a GL model and it
+  /// redraws on every camera move, so it needs something it can `drawImage` in
+  /// microseconds — and it needs it SYNCHRONOUSLY, which rules out `dataURL`
+  /// and an Image that has to load. A map-LOD site is a few hundred triangles
+  /// and bakes in well under a millisecond; after the first bake this is a Map
+  /// lookup. Failures cache as null too, so a kind with no mesh is not retried
+  /// on every frame of a camera drag.
+  function sprite(id, sizePx, opts) {
+    if (!init() || lost) return null;
+    const size = Math.max(8, Math.min(256, Math.round(sizePx || 64)));
+    const key = `${id}@${size}`;
+    if (sprites.has(key)) return sprites.get(key);
+    const o = opts || {};
+    const out = renderTo(id, o.cls || "", size, size,
+      o.yaw == null ? REST_YAW : o.yaw, o.pitch == null ? REST_PITCH : o.pitch);
+    if (!out) { sprites.set(key, null); return null; }
+    const flat = document.createElement("canvas");
+    flat.width = size; flat.height = size;
+    const ctx = flat.getContext("2d");
+    if (!ctx) { sprites.set(key, null); return null; }
+    ctx.drawImage(glCanvas, 0, out.top, size, size, 0, 0, size, size);
+    sprites.set(key, flat);
+    return flat;
+  }
+
   /// A still of one model as a data URL, for anything that wants a picture
   /// rather than a canvas — a tooltip, a report, the chronicle.
   function dataURL(id, size, opts) {
@@ -483,7 +536,7 @@
   }
 
   root.Arsenal3D = {
-    mount, scan, dataURL, renderTo,
+    mount, scan, dataURL, renderTo, sprite,
     get available() { return init(); },
     register,
     canvasHtml(id, cls) {
