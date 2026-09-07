@@ -93,15 +93,60 @@ function validate(mesh,label,budget){
   assert(mesh.parts.length>=2,`${label}: only ${mesh.parts.length} named parts`);
 }
 
+// The ten pieces added for the backlog's transport rows: tracked plant, a
+// passenger coach, five hulls and a freighter airframe. Named once, here,
+// because six separate tests below ask a different question of the same list.
+const ADDED=['excavator','bulldozer','mobile_crane','coach','barge','container_ship','bulk_carrier',
+  'oil_tanker','ferry','cargo_plane'];
+const HULLS=['barge','container_ship','bulk_carrier','oil_tanker','ferry'];
+
+// WHAT IS ACTUALLY TOUCHING Y=0, as a fraction of the piece's own width and
+// length. `bounds.min[1] === 0` is asserted everywhere in this file and it is
+// worth having, but on its own it cannot fail: `finish` seats the lowest vertex
+// on zero unconditionally, so it is a check on `finish` and not on the piece.
+// A hull authored three metres above its waterline, or a machine with one
+// track left in the air, would still report exactly zero — and would be resting
+// on a funnel or on half its running gear. THIS is the falsifiable half: the
+// thing in contact with the ground has to be the right size and in the right
+// place, and a hull's waterline plane spans its whole beam and nearly its whole
+// length while a mast tip spans nothing.
+// The `bearing` number is the one with teeth: the PLAN AREA of the triangles
+// lying in the ground plane, over the piece's own bounding rectangle. A hull
+// floats on its whole waterplane and scores 0.70 to 0.87. A crawler stands on
+// two long track runs and scores 0.21 to 0.33. Every wheeled piece in this kit
+// scores 0.03 or less, because a tyre touches the ground along a line. One
+// measurement therefore separates a hull from a raft, a track from an axle, and
+// a piece resting on its own bottom from one resting on a fitting.
+const footprint=mesh=>{
+  let x0=Infinity,x1=-Infinity,z0=Infinity,z1=-Infinity,count=0,bearing=0;
+  for(let v=0;v<mesh.positions.length/3;v+=1){
+    if(mesh.positions[v*3+1]>0.01)continue;
+    const x=mesh.positions[v*3],z=mesh.positions[v*3+2];
+    count+=1;
+    if(x<x0)x0=x;if(x>x1)x1=x;if(z<z0)z0=z;if(z>z1)z1=z;
+  }
+  for(let t=0;t<mesh.positions.length;t+=9){
+    if(mesh.positions[t+1]>0.012||mesh.positions[t+4]>0.012||mesh.positions[t+7]>0.012)continue;
+    const ax=mesh.positions[t],az=mesh.positions[t+2];
+    const ux=mesh.positions[t+3]-ax,uz=mesh.positions[t+5]-az;
+    const vx=mesh.positions[t+6]-ax,vz=mesh.positions[t+8]-az;
+    bearing+=Math.abs(ux*vz-uz*vx)/2;
+  }
+  assert(count>0,'nothing is touching Y=0');
+  return {count,across:(x1-x0)/mesh.size[0],along:(z1-z0)/mesh.size[2],
+    bearing:bearing/(mesh.size[0]*mesh.size[2])};
+};
+
 test('the kit covers the piece list the assignment names, in both directions',()=>{
   const keys=prop.pieces();
-  assert.equal(keys.length,25,'twenty-five pieces');
+  assert.equal(keys.length,35,'thirty-five pieces');
   assert.equal(new Set(keys).size,keys.length,'piece keys are unique');
   for(const wanted of ['tractor_unit','trailer_box','trailer_flatbed','trailer_tanker','rigid_box_van',
     'service_van','bus','car','forklift','fuel_bowser','container_20ft','container_40ft','container_stack',
     'pallet_stack','crate_stack','yard_crane','gantry_crane','locomotive','wagon_container','wagon_tank',
-    'wagon_hopper','storage_tank','silo_group','conveyor','light_mast'])
+    'wagon_hopper','storage_tank','silo_group','conveyor','light_mast',...ADDED])
     assert(keys.includes(wanted),`the kit builds ${wanted}`);
+  for(const key of HULLS)assert(keys.includes(key),`${key}: a hull is in the kit`);
   for(const key of keys){
     const meta=prop.meta(key);
     assert(meta&&meta.name&&meta.blurb&&meta.kind,`${key}: described`);
@@ -382,11 +427,21 @@ test('road vehicles stay inside a 1990 road envelope and a trailer never oversai
   // rounding. MIRRORS are the one thing allowed outside the body line, and only
   // on something with a cab to hang them from: a 1990 truck's flat mirrors on
   // tubular arms genuinely take a 2.44 m cab out to about 3.00 m.
+  //
+  // THE MOBILE CRANE IS ASKED THE SAME QUESTION and the tracked plant is not,
+  // and that is a statement about the machines rather than a convenience. A
+  // mobile crane drives to site on its own wheels under the same rules as a
+  // lorry, so a crane wider than a lorry is a modelling error. An excavator or
+  // a dozer 3.4 m over the blade travels on a low-loader and never sees a road
+  // envelope; holding it to one would be inventing a constraint. The passenger
+  // coach is not here either — it answers to a rail gauge instead, and does,
+  // two tests further down.
   const STRUCTURE=2.60,WITH_MIRRORS=3.05;
   // A trailer has no cab and therefore no mirrors, so it gets the body bar.
-  const mirrored=new Set(['tractor_unit','rigid_box_van','service_van','bus','car','fuel_bowser','forklift']);
+  const mirrored=new Set(['tractor_unit','rigid_box_van','service_van','bus','car','fuel_bowser','forklift',
+    'mobile_crane']);
   for(const key of ['tractor_unit','trailer_box','trailer_flatbed','trailer_tanker','rigid_box_van',
-    'service_van','bus','car','fuel_bowser']){
+    'service_van','bus','car','fuel_bowser','mobile_crane']){
     const limit=mirrored.has(key)?WITH_MIRRORS:STRUCTURE;
     const mesh=prop.build(key,{lod:0});
     const width=mesh.bounds.max[0]-mesh.bounds.min[0];
@@ -453,10 +508,51 @@ test('nothing in the kit claims a real vehicle, a measured dimension or a capabi
   assert(prop.meta('gantry_crane').blurb.includes('not a port capacity'));
   assert(prop.meta('wagon_container').blurb.includes('carrying no container'));
   // And nowhere does the source name a manufacturer or a model. Cheap to keep
-  // true, expensive to discover later in a screenshot.
+  // true, expensive to discover later in a screenshot. The list grew with the
+  // kit: adding five hulls, three machines and an airframe added three more
+  // industries whose products are as recognisable, and as owned, as a lorry.
   for(const marque of [/mercedes/i,/scania/i,/volvo/i,/\bman\s+truck/i,/maersk/i,/hanjin/i,/evergreen/i,
-    /caterpillar/i,/\bkomatsu\b/i,/liebherr/i,/kalmar/i,/\bford\b/i,/leyland/i,/kenworth/i])
+    /caterpillar/i,/\bkomatsu\b/i,/liebherr/i,/kalmar/i,/\bford\b/i,/leyland/i,/kenworth/i,
+    // Plant and lifting.
+    /\bjcb\b/i,/hitachi/i,/\bterex\b/i,/\bdemag\b/i,/tadano\b/i,/\bgrove\b/i,/\bdeere\b/i,/\bhyster\b/i,
+    /\bbomag\b/i,/\bcase\s+construction\b/i,
+    // Shipping lines, yards and the size bands that are trade names in all but
+    // registration. "Representative hull" must not quietly become a class.
+    /cosco/i,/hapag/i,/nedlloyd/i,/sealink/i,/\bstena\b/i,/cunard/i,/\bp\s*&\s*o\b/i,
+    /panamax/i,/suezmax/i,/aframax/i,/capesize/i,/handysize/i,/handymax/i,/\bvlcc\b/i,/\bulcc\b/i,
+    /\bexxon\b/i,/\bchevron\b/i,/\btexaco\b/i,
+    // Airframes.
+    /boeing/i,/airbus/i,/antonov/i,/ilyushin/i,/lockheed/i,/\bdouglas\b/i,/\bfokker\b/i,/\bbritten\b/i])
     assert(!marque.test(source),`prop-mesh.js must not name ${marque}`);
+  // A TYPE DESIGNATION IS A NAME TOO. "An-124" and "IL-76" name a real
+  // aircraft as surely as a manufacturer does, and the same shape of token
+  // names a ship class and a plant model. Asked of the catalogue prose rather
+  // than of the whole source, because that is where a designation would be
+  // written and a coordinate literal would not.
+  const prose=prop.pieces().map(key=>{
+    const meta=prop.meta(key),mesh=prop.build(key,{lod:0});
+    return `${meta.name} ${meta.blurb} ${mesh.description}`;
+  }).join('\n');
+  const designation=prose.match(/\b[A-Z]{1,3}-?\d{2,4}\b/g);
+  assert.equal(designation,null,`a type designation in the catalogue: ${designation}`);
+  // AND NOT ONE PERFORMANCE OR CAPACITY FIGURE ANYWHERE. This library is
+  // geometry. A dimension in metres is geometry and is welcome; a speed, a
+  // tonnage, a container count or a range is a claim about a capability the
+  // simulation does not have and the mesh cannot support, and the ships are
+  // where that temptation is strongest.
+  const figure=/\b\d[\d,.]*\s*(?:kt|kts|knots?|tonnes?|tons?|teu|dwt|kg|lbs?|mph|km\/h|kph|hp|kw|mw|nmi)\b/i;
+  const claim=/\bdeadweight\b|\bpayload\b|\bteu\b|\btonnage\b|\bknots?\b|\bhorsepower\b|\bcapacity of\b/i;
+  for(const pattern of [figure,claim]){
+    assert(!pattern.test(source),`prop-mesh.js states a figure it cannot support: ${pattern}`);
+    assert(!pattern.test(prose),`the catalogue states a figure it cannot support: ${pattern}`);
+  }
+  // The new pieces most likely to be read as a capacity refuse it in their own
+  // words, the way the bowser and the storage tank already do.
+  for(const [key,phrase] of [['barge','holds no cargo'],['container_ship','not a manifest'],
+    ['bulk_carrier','hold nothing'],['oil_tanker','carries no liquid'],['ferry','moves nobody'],
+    ['cargo_plane','flies nothing'],['coach','carries no passengers'],['excavator','moves no material'],
+    ['mobile_crane','lifts nothing']])
+    assert(prop.meta(key).blurb.includes(phrase),`${key}: its blurb must refuse "${phrase}"`);
 });
 
 test('no wall clock, no frame counter and no second RNG can reach this geometry',()=>{
@@ -490,6 +586,234 @@ test('the browser global exports the same contract with no dependencies',()=>{
   // The module surface is frozen, so a page cannot monkey-patch a prop into
   // saying something the checks have not read.
   assert(Object.isFrozen(prop),'the exported api is frozen');
+});
+
+// ---------------------------------------------------------------------------
+// The ten pieces the backlog's transport rows added: three machines, a
+// passenger coach, five hulls and a freighter airframe. Everything above
+// already applies to them — they are pieces and the generic tests iterate the
+// catalogue. What follows asks the questions that are only meaningful because
+// these ten are what they are.
+
+test('every added piece builds at both LODs, stands on Y=0, and is fixed in cost',()=>{
+  for(const key of ADDED){
+    const near=prop.build(key,{lod:0}),map=prop.build(key,{lod:1});
+    validate(near,`${key}/near`,[NEAR_MIN,NEAR_MAX]);
+    validate(map,`${key}/map`,[MAP_MIN,MAP_MAX]);
+    // GROUND CONTACT, OR WATERLINE CONTACT, and there is no difference. A hull
+    // is modelled from its waterline up and a machine from its tracks up, so
+    // both put their lowest vertex at exactly zero and a renderer places both
+    // by the same rule. Exact, not a tolerance: the module seats the mesh.
+    assert.equal(near.bounds.min[1],0,`${key}: near mesh sits on Y=0`);
+    assert.equal(map.bounds.min[1],0,`${key}: map mesh sits on Y=0`);
+    // And the RIGHT geometry is doing the touching, at both LODs. A hull rests
+    // on its waterline plane, which is the full beam and nearly the full
+    // length; a crawler rests on two track runs, which is the full width and
+    // most of the length. Both numbers collapse the moment the piece is
+    // resting on something it should not be.
+    for(const [label,mesh] of [['near',near],['map',map]]){
+      const foot=footprint(mesh);
+      if(HULLS.includes(key)){
+        assert(foot.across>0.95&&foot.along>0.75,
+          `${key}/${label}: the waterline contact spans ${(100*foot.across).toFixed(0)}% of beam and `
+          +`${(100*foot.along).toFixed(0)}% of length — this hull is floating on something that is not its bottom`);
+        assert(foot.bearing>0.60,
+          `${key}/${label}: only ${(100*foot.bearing).toFixed(0)}% of the plan is in the water plane — measured 70% to 87%`);
+      }else if(key==='excavator'||key==='bulldozer'){
+        assert(foot.bearing>0.15,
+          `${key}/${label}: ${(100*foot.bearing).toFixed(1)}% of the plan is bearing on the ground — a crawler `
+          +`measures 21% to 33% and a wheeled machine 3% or less, so this one is standing on wheels or on one track`);
+      }
+    }
+    // THE MAP MESH IS A SILHOUETTE, not a slightly cheaper near mesh. The
+    // generic test above only asks that it be cheaper at all, which a 5% saving
+    // would satisfy; these ten are all large objects drawn at a range where the
+    // detail is invisible, and every one of them comes in under a fifth. The
+    // bar is a quarter, and the worst of the ten measures 17.7% (the barge),
+    // so it has room without being decorative. It is NOT asked of the whole
+    // kit: a saloon car legitimately compresses only to 37%, because a car at
+    // map range is already almost nothing but its silhouette.
+    assert(map.triangleCount<=near.triangleCount*0.25,
+      `${key}: map mesh is ${(100*map.triangleCount/near.triangleCount).toFixed(1)}% of the near mesh, over 25%`);
+    // Determinism, asked of these two builds directly rather than inferred
+    // from the catalogue-wide test, so a failure names the piece.
+    for(const lod of [0,1]){
+      assert.equal(digest(prop.build(key,{lod,variant:5})),digest(prop.build(key,{lod,variant:5})),
+        `${key}/lod${lod}: two builds from one seed differ`);
+    }
+    assert(near.parts.length>=4,`${key}: only ${near.parts.length} named parts on the near mesh`);
+  }
+});
+
+test('a piece costs the same triangles whatever variant it is drawn at',()=>{
+  // THE BUDGET IS A PROMISE ABOUT A PIECE, not about a lucky variant of one.
+  // A hash that reached a loop bound rather than only a colour would make the
+  // budget unenforceable — the yard would cost a different number of triangles
+  // on every seed and the near ceiling would be a ceiling for some draws only.
+  // Asked of the whole catalogue, because it was as true of the original
+  // twenty-five as of the ten added and nobody had written it down.
+  for(const key of prop.pieces()){
+    for(const lod of [0,1]){
+      const fixed=prop.build(key,{lod,variant:0}).triangleCount;
+      for(const variant of [1,2,3,7,13,99,512,999])
+        assert.equal(prop.build(key,{lod,variant}).triangleCount,fixed,
+          `${key}/lod${lod}: variant ${variant} costs a different number of triangles`);
+    }
+  }
+});
+
+test('the chassis the brief said to share is measurably shared, and nothing else is',()=>{
+  const reuse=prop.reuse();
+  const uses=(builder,key)=>reuse.byBuilder[builder]&&reuse.byBuilder[builder].includes(key);
+  // THE TRACKED PLANT IS ONE MACHINE FROM THE GROUND UP. One track, one cab,
+  // and the excavator's engine housing is the cranes' machinery house.
+  assert.deepEqual(reuse.byBuilder.trackUnit,['excavator','bulldozer'],
+    'one crawler track under the excavator and the dozer');
+  for(const key of ['excavator','bulldozer','mobile_crane'])
+    assert(uses('plantCab',key),`${key}: does not use the shared plant cab`);
+  assert(reuse.byBuilder.machineHouse.length>=4,'the machinery house serves both cranes and the plant');
+  // AND THE TRACKED PLANT HAS NO ROAD WHEELS. This is the negative half and it
+  // is the one that catches the failure that actually happens: a new tracked
+  // machine copied from a wheeled one keeps its axles, and nothing about the
+  // silhouette says so until somebody looks underneath.
+  for(const key of ['excavator','bulldozer']){
+    for(const wheeled of ['roadWheel','axleSet','ladderChassis'])
+      assert(!uses(wheeled,key),`${key}: a tracked machine must not call ${wheeled}`);
+  }
+  // And the same claim measured off the geometry rather than off the call
+  // graph, because a piece could inline a wheel without going near the shared
+  // builder: everything in the kit that runs on tyres bears on the ground over
+  // 3% of its plan or less, and the two crawlers over 20%.
+  for(const key of ['tractor_unit','rigid_box_van','bus','car','service_van','fuel_bowser','forklift','mobile_crane'])
+    assert(footprint(prop.build(key,{lod:0})).bearing<0.05,`${key}: a wheeled vehicle is bearing like a tracked one`);
+  // The mobile crane is the opposite case and shares the ROAD kit, because it
+  // is a lorry with a superstructure on it.
+  for(const builder of ['roadWheel','axleSet','ladderChassis','roadCab'])
+    assert(uses(builder,'mobile_crane'),`mobile_crane: does not use ${builder}`);
+  // THE COACH IS THE LOCOMOTIVE'S CHASSIS AND BODY. All three builders, and
+  // each of them serving the locomotive too, or "shared" would mean "extracted
+  // for one caller".
+  for(const builder of ['railBogie','railUnderframe','railBodyShell']){
+    assert(uses(builder,'coach'),`coach: does not use ${builder}`);
+    assert(uses(builder,'locomotive'),`${builder}: extracted for the coach but not used by the locomotive`);
+  }
+  // ONE HULL UNDER FIVE VESSELS, and one deckhouse on the four that have one.
+  assert.deepEqual(reuse.byBuilder.hullForm.slice().sort(),HULLS.slice().sort(),
+    'one hull form under every vessel and nothing else');
+  assert.deepEqual(reuse.byBuilder.deckhouse.slice().sort(),
+    ['bulk_carrier','container_ship','ferry','oil_tanker'],'one accommodation block on the four ships that carry one');
+  // No added piece is an orphan, and the freighter is the thinnest case: it
+  // shares the running gear and nothing else, which is stated here rather than
+  // left for somebody to discover.
+  for(const key of ADDED)
+    assert(reuse.pieces[key].length>=1,`${key}: shares nothing with the rest of the kit`);
+  assert.deepEqual(reuse.pieces.cargo_plane,['roadWheel'],
+    'the freighter shares the road fleet\'s wheel and, honestly, nothing else');
+});
+
+// The half-breadth of the WATERLINE BAND, as a fraction of the widest, over a
+// window of the waterline's own fore-and-aft run. The y cut keeps the deck out
+// of it — a deck is fuller than the waterline under it by design, so measuring
+// both together measures neither. The window is a fraction of the run rather
+// than a fixed distance so the same probe reads a 60 m barge and a 232 m
+// tanker, and it is a WINDOW rather than a station because `hullForm` clusters
+// its stations where the hull curves and a point probe would land in a gap.
+const halfBreadth=(mesh,from,to)=>{
+  let z0=Infinity,z1=-Infinity,widest=0;const pts=[];
+  for(let v=0;v<mesh.positions.length/3;v+=1){
+    const x=Math.abs(mesh.positions[v*3]),y=mesh.positions[v*3+1],z=mesh.positions[v*3+2];
+    if(y>1.2)continue;
+    pts.push([x,z]);
+    if(z<z0)z0=z;if(z>z1)z1=z;if(x>widest)widest=x;
+  }
+  assert(widest>0&&z1>z0,'the hull probe found no waterline band to measure');
+  let found=0;const run=z1-z0;
+  for(const [x,z] of pts)if(z>=z0+from*run&&z<=z0+to*run&&x>found)found=x;
+  return found/widest;
+};
+
+test('a hull is a hull: it comes to a stem, it floats at Y=0 and it is not a raft',()=>{
+  for(const key of HULLS){
+    const mesh=prop.build(key,{lod:0});
+    // IT COMES TO A STEM. Over the forwardmost three per cent of its waterline
+    // run a hull has closed to a stem plate; a box that has been given a hull's
+    // name and a hull's budget has not. This is the bar that a broken `shape`
+    // or a lost entrance actually trips, and it is the one bar the five hulls
+    // can share, because they are deliberately not equally fine.
+    const stem=halfBreadth(mesh,0.97,1.0);
+    assert(stem<0.10,`${key}: still ${(100*stem).toFixed(1)}% of full beam at the stem — this is a box, not a hull`);
+    // A hull, not a raft and not a needle. Shape, not a spec: a merchant hull's
+    // beam runs about a seventh to a fifth of its length.
+    const loa=mesh.size[2],beam=mesh.size[0];
+    assert(beam/loa>0.10&&beam/loa<0.22,`${key}: beam is ${(beam/loa).toFixed(3)} of its length`);
+    assert(Math.abs(mesh.bounds.max[0]+mesh.bounds.min[0])<0.05,`${key}: not symmetric about its own centreline`);
+    // Freeboard: something above the waterline, or "the model starts at Y=0"
+    // has been read as "the model IS Y=0".
+    assert(mesh.bounds.max[1]>2.0,`${key}: only ${mesh.bounds.max[1].toFixed(2)} m above the waterline`);
+    assert.equal(mesh.bounds.min[1],0,`${key}: the waterline is not Y=0`);
+  }
+  // FINENESS IS ORDERED, AND THE ORDER IS THE POINT. `hullForm` takes an
+  // `entrance` exponent and the five hulls pass five different values, so the
+  // ferry should close earliest and the barge latest, with the three cargo
+  // hulls between them in order of how full-bodied each is meant to be.
+  //
+  // THIS IS THE BAR THAT PAID FOR ITSELF. The exponent's sense is inverted
+  // from the intuition — the curve is (1 - t^2)^entrance, so a SMALL exponent
+  // holds full beam longest — and the first draft therefore gave the ferry the
+  // fullest bow in the kit and the crude tanker the finest, which is precisely
+  // backwards and which no budget, bound, determinism or symmetry check could
+  // have seen. Measured at the forward sixth, where every hull has stations.
+  const fine=HULLS.map(key=>[key,halfBreadth(prop.build(key,{lod:0}),5/6,1.0)]);
+  const order=['ferry','container_ship','bulk_carrier','oil_tanker','barge'];
+  assert.deepEqual(fine.map(row=>row[0]).sort(),order.slice().sort(),'the fineness probe covers every hull');
+  const at=name=>fine.find(row=>row[0]===name)[1];
+  for(let i=0;i+1<order.length;i+=1){
+    assert(at(order[i])<at(order[i+1])-0.03,
+      `${order[i]} (${(100*at(order[i])).toFixed(1)}%) must have a finer entrance than ${order[i+1]} `
+      +`(${(100*at(order[i+1])).toFixed(1)}%) by a clear margin`);
+  }
+  assert(at('ferry')<0.60,`the ferry's entrance is ${(100*at('ferry')).toFixed(0)}% of beam at the forward sixth — not a fine hull`);
+  assert(at('barge')>0.90,`the barge is ${(100*at('barge')).toFixed(0)}% of beam at the forward sixth — an inland box hull should be nearly full`);
+  // The hulls are five different vessels and not one hull at five scales.
+  const lengths=HULLS.map(key=>prop.build(key,{lod:0}).size[2]);
+  assert.equal(new Set(lengths.map(v=>v.toFixed(1))).size,HULLS.length,'five distinct hull lengths');
+  assert(Math.max(...lengths)/Math.min(...lengths)>3,'the hulls span a real range of size');
+});
+
+test('a rail vehicle fits a rail gauge and a freighter is a freighter',()=>{
+  // THE COACH ANSWERS TO A GAUGE the way the lorries answer to a road envelope,
+  // and for the same reason: a passenger coach 3.4 m wide would not pass a
+  // platform, and nothing about the mesh says so. 3.15 m and 4.35 m are chosen
+  // to sit just outside a generous 1990 continental envelope, so representative
+  // scenery may round a few centimetres and a doubled dimension cannot hide.
+  // The locomotive and the wagons are asked too — they were never asked before.
+  const GAUGE_W=3.15,GAUGE_H=4.35;
+  for(const key of ['coach','locomotive','wagon_container','wagon_tank','wagon_hopper']){
+    const mesh=prop.build(key,{lod:0});
+    const width=mesh.bounds.max[0]-mesh.bounds.min[0];
+    assert(width<=GAUGE_W,`${key}: ${width.toFixed(2)} m wide, outside a ${GAUGE_W} m gauge`);
+    assert(mesh.bounds.max[1]<=GAUGE_H,`${key}: ${mesh.bounds.max[1].toFixed(2)} m tall, outside a ${GAUGE_H} m gauge`);
+    assert(Math.abs(mesh.bounds.max[0]+mesh.bounds.min[0])<0.02,`${key}: not centred on its own centreline`);
+  }
+  // A coach is a coach and not a wagon: it is the longest thing on the rails
+  // here and it carries a glazing band, which is the only part name that says
+  // this vehicle is for people.
+  const coach=prop.build('coach',{lod:0});
+  assert(coach.size[2]>prop.build('locomotive',{lod:0}).size[2],'the coach is longer than the locomotive');
+  assert(coach.parts.some(part=>/glazing/.test(part.name)),'the coach carries a glazing band');
+  // THE AIRFRAME. A freighter is span-and-length, not a tube: assert the wing
+  // is actually there and actually wide. A wing lost to a broken loft would
+  // leave every budget, bound and determinism check green.
+  const plane=prop.build('cargo_plane',{lod:0});
+  const span=plane.size[0],length=plane.size[2];
+  assert(span/length>0.70&&span/length<1.40,`cargo_plane: span/length is ${(span/length).toFixed(2)}`);
+  assert(span>30,`cargo_plane: ${span.toFixed(1)} m of span is not a freighter's wing`);
+  assert(plane.bounds.max[1]>plane.size[2]*0.20,'cargo_plane: the tail is not standing up');
+  assert(Math.abs(plane.bounds.max[0]+plane.bounds.min[0])<0.02,'cargo_plane: wings of different lengths');
+  // And it stands on its gear at Y=0 rather than resting on its belly.
+  let onGround=0;
+  for(let v=0;v<plane.positions.length/3;v+=1)if(plane.positions[v*3+1]<0.05)onGround+=1;
+  assert(onGround>=6,`cargo_plane: only ${onGround} vertices touching the ground`);
 });
 
 test('unknown and malformed input resolves to a stable, honest default',()=>{

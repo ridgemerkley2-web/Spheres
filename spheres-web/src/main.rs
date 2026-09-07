@@ -11915,6 +11915,52 @@ mod tests {
              not run it at some quiet default"
         );
     }
+    /// A GLOBE THAT COMES BACK CLEARS EVERY MARK OF THE FAILURE.
+    ///
+    /// `glFail` does two things to the DOM: it hides the canvas and it appends
+    /// the `#globeFail` panel. `glBoot` used to remove only the loading status,
+    /// so a restored context drew a perfectly correct globe into a
+    /// `display:none` canvas, underneath a stale panel saying the browser would
+    /// not give it WebGL2 -- every flag reading healthy and nothing on screen
+    /// but the 2D labels floating on the void.
+    ///
+    /// Found by losing AND restoring the context in a live campaign. The
+    /// restore half is what nobody had ever run: `loseContext()` on its own
+    /// never fires `webglcontextrestored`, so testing only the loss looks like
+    /// a renderer that cannot recover and hides the bug that it can.
+    #[test]
+    fn a_globe_that_comes_back_clears_every_mark_of_the_failure() {
+        let body = |name: &str| {
+            INDEX
+                .split_once(&format!("function {name}("))
+                .unwrap_or_else(|| panic!("{name} is gone"))
+                .1
+                .split_once("\n}")
+                .unwrap_or_else(|| panic!("{name} is still a function"))
+                .0
+                .to_string()
+        };
+        let fail = body("glFail");
+        let boot = body("glBoot");
+        // Each pair is (what the failure does, what the boot must undo it with).
+        // If glFail grows a third mark, add its undo here and in glBoot -- that
+        // is the whole point of pairing them in one test.
+        for (mark, undo, what) in [
+            ("GLCV.style.display = \"none\"", "GLCV.style.display = \"\"", "the hidden canvas"),
+            ("id = \"globeFail\"", "getElementById(\"globeFail\")?.remove()", "the failure panel"),
+        ] {
+            assert!(
+                fail.contains(mark),
+                "glFail no longer sets {what} ({mark}) -- if that changed on \
+                 purpose, this test's pairing must change with it"
+            );
+            assert!(
+                boot.contains(undo),
+                "glBoot does not undo {what}: a restored context would draw a \
+                 correct globe that nobody can see"
+            );
+        }
+    }
 
     /// The map's click handler must resolve its pick from the POINTERDOWN
     /// target, never from the click's own.

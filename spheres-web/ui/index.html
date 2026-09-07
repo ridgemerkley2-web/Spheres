@@ -11686,6 +11686,17 @@ function glBoot() {
   glInit().then(() => {
     glBooting = false;
     document.getElementById("mapRenderStatus")?.remove();
+    // A BOOT MUST UNDO EVERY MARK A FAILURE LEFT, and glFail leaves two:
+    // it hides the canvas and it appends the explanation panel. Removing
+    // only the loading status left a restored context drawing a correct
+    // globe into a display:none canvas, under a stale panel saying the
+    // browser would not give it WebGL2 -- every flag reading healthy and
+    // nothing on screen but the 2D labels floating on the void. Measured
+    // by losing and restoring the context in a live campaign; the restore
+    // half is what nobody had run, because loseContext() alone never
+    // fires webglcontextrestored.
+    GLCV.style.display = "";
+    document.getElementById("globeFail")?.remove();
     if (GL.shimmer && !GL.shimRaf) GL.shimRaf = requestAnimationFrame(glShimmerTick);
     glSchedule();
     if (GL.proof) setTimeout(glAlignmentProof, 0);

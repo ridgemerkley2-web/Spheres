@@ -103,7 +103,27 @@
   let lost = false;
   const sprites = new Map();
   let available = null;
+  /// THE MODEL CACHE IS BOUNDED, AND IT HAS TO BE.
+  ///
+  /// Every distinct id ever mounted used to keep its GPU buffers for the life
+  /// of the page, and the ONLY thing that ever cleared them was losing the
+  /// context — which is to say the eviction policy was the failure. Measured
+  /// on the live game: the ids a player can actually reach are 40 close town
+  /// blocks (5,926,602 triangles, 610 MiB) and 325 site configurations
+  /// (6,890,594 triangles, 710 MiB). A session that browses cities and
+  /// construction projects walks to 1,320 MiB of buffers nothing frees, and
+  /// the driver drops the context long before that.
+  ///
+  /// Bounded by TRIANGLES rather than by entry count, because these differ by
+  /// a hundredfold: a far-LOD site is 164 triangles and a close town block is
+  /// 214,044. 1.2M triangles is about 124 MiB at the 108 bytes a triangle
+  /// costs here, which holds any view this game builds — the heaviest
+  /// realistic working set is roughly 900k (a city card at 214k, a dozen site
+  /// cards at ~35k each, and the whole 46-model deck at 272k) — with room to
+  /// spare and no thrash.
+  const CACHE_TRIANGLES = 1200000;
   const vaos = new Map();
+  let cachedTriangles = 0;
 
   /// Building the program is separate from creating the context, because a
   /// context can come BACK. On `webglcontextrestored` every shader, program and
@@ -149,6 +169,7 @@
         event.preventDefault();
         lost = true;
         vaos.clear();
+        cachedTriangles = 0;
         sprites.clear();
       }, false);
       glCanvas.addEventListener("webglcontextrestored", () => {
@@ -197,16 +218,56 @@
   /// one of the baked map textures this page already holds. Sites and towns
   /// cache under the id STRING, which is what makes a card cheap on the second
   /// render of a panel that rebuilds its own innerHTML.
+  /// Free one entry outright. Deleting a vertex array does NOT delete the
+  /// buffers attached to it, so those are tracked and deleted by hand; and an
+  /// entry is reachable under more than one key (its own id and the geometry
+  /// id it resolved to), so every alias goes at once. Dropping only one alias
+  /// would leave the other pointing at a deleted vertex array, which draws
+  /// nothing and reports no error.
+  function release(entry) {
+    for (const alias of entry.keys) vaos.delete(alias);
+    cachedTriangles -= entry.tris;
+    if (gl && !lost) {
+      for (const b of entry.bufs) gl.deleteBuffer(b);
+      gl.deleteVertexArray(entry.vao);
+    }
+    entry.geom = null;            // and let the CPU-side arrays go too
+  }
+
+  /// Least-recently-USED, not least-recently-built: a Map iterates in
+  /// insertion order, so touching an entry on every hit and re-inserting it
+  /// keeps the order honest. Without the touch this would evict whatever was
+  /// oldest, which on a panel that repaints every card is the one being drawn.
+  function touch(entry) {
+    for (const alias of entry.keys) { vaos.delete(alias); vaos.set(alias, entry); }
+  }
+
+  function trim(protect) {
+    for (const entry of [...vaos.values()]) {
+      if (cachedTriangles <= CACHE_TRIANGLES) return;
+      if (entry === protect || !vaos.has(entry.keys[0])) continue;
+      release(entry);
+    }
+  }
+
   function bufferFor(id, cls) {
-    if (vaos.has(id)) return vaos.get(id);
+    if (vaos.has(id)) { const hit = vaos.get(id); touch(hit); return hit; }
     const geom = resolveMesh(id, cls);
     if (!geom || !geom.positions || !geom.positions.length) return null;
     const key = geom.id || id;
-    if (vaos.has(key)) { vaos.set(id, vaos.get(key)); return vaos.get(key); }
+    if (vaos.has(key)) {
+      const hit = vaos.get(key);
+      hit.keys.push(id);          // a new alias for the same geometry
+      vaos.set(id, hit);
+      touch(hit);
+      return hit;
+    }
     const vao = gl.createVertexArray();
+    const bufs = [];
     gl.bindVertexArray(vao);
     [[geom.positions, 0], [geom.normals, 1], [geom.colors, 2]].forEach((pair) => {
       const b = gl.createBuffer();
+      bufs.push(b);
       gl.bindBuffer(gl.ARRAY_BUFFER, b);
       gl.bufferData(gl.ARRAY_BUFFER, pair[0], gl.STATIC_DRAW);
       gl.enableVertexAttribArray(pair[1]);
@@ -234,9 +295,15 @@
         geom.positions[i + 2] - centre[2],
       ));
     }
-    const entry = { vao, count, centre, radius: r || 1, fits: new Map(), geom };
+    const keys = key === id ? [key] : [key, id];
+    const entry = { vao, bufs, keys, tris: count / 3,
+      count, centre, radius: r || 1, fits: new Map(), geom };
     vaos.set(key, entry);
     if (key !== id) vaos.set(id, entry);
+    cachedTriangles += entry.tris;
+    // Trimmed AFTER inserting, and the new entry is protected: the caller is
+    // about to draw it, so evicting it here would rebuild it immediately.
+    trim(entry);
     return entry;
   }
 
@@ -291,45 +358,126 @@
   /// largest model in the deck is 3,432 of them, the answer is cached per model
   /// per card shape, and a full revolution of samples costs about a millisecond
   /// once.
-  function fitDistance(entry, aspect, pitch, yaw) {
-    const key = `${aspect.toFixed(3)}|${pitch}|${yaw == null ? "turn" : yaw}`;
+  /// WHERE TO STAND, AND WHAT TO LOOK AT.
+  ///
+  /// The distance alone is not enough, and framing on the model's bounding-box
+  /// centre is what left every card wasting a third of itself. A site is wide,
+  /// flat and seen from above, so under perspective its near ground projects
+  /// further from centre than its far ground does and the silhouette lands LOW.
+  /// Measured on the shipped cards: a starter industry site in a 3.66:1 strip
+  /// spanned NDC -0.942 to +0.298 -- flush against the bottom edge with 37% of
+  /// the card empty above it -- and every site and vehicle tested had an offset
+  /// of the same sign.
+  ///
+  /// So: fit, look at where the silhouette actually IS, fit again. Three passes
+  /// converge because the correction is perpendicular to the view axis and so
+  /// barely moves the depths it was derived from.
+  ///
+  /// The pivot is measured at ONE angle and then used for the turning distance
+  /// too. Recomputing it per angle would make a spinning card wobble; sharing
+  /// it keeps the turn distance a bound on every angle and merely lets the card
+  /// drift a little off-centre as it comes round, which is what a turntable
+  /// does anyway.
+  /// FIVE PASSES, because the exact solve below only settles the extremes it
+  /// can currently SEE. Each pass solves outright for the two vertices that
+  /// are extreme right now, but moving the pivot can hand that role to a
+  /// different pair, so the answer is approached rather than reached in one
+  /// step. Four is the measured minimum at which every shipped model settles
+  /// -- three leaves the wide thin airframes off centre -- and this keeps one
+  /// pass in hand. The fits are cached per model and aspect, so they cost
+  /// nothing after the first paint of a given card shape.
+  const PASSES = 5;
+  function fitFrame(entry, aspect, pitch, yaw, fixed) {
+    const key = `${aspect.toFixed(3)}|${pitch}|${yaw == null ? "turn" : yaw}|${fixed ? "fixed" : ""}`;
     if (entry.fits.has(key)) return entry.fits.get(key);
     const tanV = Math.tan((FOV * Math.PI) / 360), tanH = tanV * aspect;
     const rp = (pitch * Math.PI) / 180;
     const p = entry.geom.positions;
-    const ox = entry.centre[0], oy = entry.centre[1], oz = entry.centre[2];
-    let worst = 0;
-    for (let a = 0; a < 360; a += 10) {
-      const ry = ((yaw == null ? a : yaw) * Math.PI) / 180;
-      const f = [Math.sin(ry) * Math.cos(rp), Math.sin(rp), Math.cos(ry) * Math.cos(rp)];
-      const r = norm(cross([0, 1, 0], f));
-      const u = cross(f, r);
+    let ox = fixed ? fixed[0] : entry.centre[0];
+    let oy = fixed ? fixed[1] : entry.centre[1];
+    let oz = fixed ? fixed[2] : entry.centre[2];
+    const ry0 = ((yaw == null ? 0 : yaw) * Math.PI) / 180;
+    const f0 = [Math.sin(ry0) * Math.cos(rp), Math.sin(rp), Math.cos(ry0) * Math.cos(rp)];
+    const r0 = norm(cross([0, 1, 0], f0));
+    const u0 = cross(f0, r0);
+    let d = 0;
+    for (let pass = 0; pass < PASSES; pass += 1) {
+      let worst = 0;
+      for (let a = 0; a < 360; a += 10) {
+        const ry = ((yaw == null ? a : yaw) * Math.PI) / 180;
+        const f = [Math.sin(ry) * Math.cos(rp), Math.sin(rp), Math.cos(ry) * Math.cos(rp)];
+        const r = norm(cross([0, 1, 0], f));
+        const u = cross(f, r);
+        for (let i = 0; i < p.length; i += 3) {
+          const x = p[i] - ox, y = p[i + 1] - oy, z = p[i + 2] - oz;
+          const depth = x * f[0] + y * f[1] + z * f[2];
+          const lx = Math.abs(x * r[0] + y * r[1] + z * r[2]);
+          const ly = Math.abs(x * u[0] + y * u[1] + z * u[2]);
+          const need = depth + Math.max(lx / tanH, ly / tanV);
+          if (need > worst) worst = need;
+        }
+        if (yaw != null) break;
+      }
+      d = Math.max(worst * 1.03, entry.radius * 0.1);
+      // A pivot handed in is not ours to move: the turning fit must bound
+      // every angle about the SAME point the resting card is drawn around,
+      // or the model clips the moment it comes round to an angle whose own
+      // pivot sat elsewhere.
+      if (fixed || pass === PASSES - 1) break;
+      // The two extremes in each axis, WITH the camera distance of the vertex
+      // that achieved each. That distance is the whole difficulty: a shift of
+      // the pivot moves a near vertex across the frame further than a far one,
+      // so a correction scaled by the viewing distance overshoots on a deep
+      // model and the pivot oscillates instead of settling. Five passes made
+      // the raven WORSE than three -- 0.239 off centre against 0.145 -- which
+      // is what sent me looking for this rather than adding more passes.
+      let mnx = Infinity, mxx = -Infinity, mny = Infinity, mxy = -Infinity;
+      let lxMin = 0, lxMax = 0, zxMin = 1, zxMax = 1;
+      let lyMin = 0, lyMax = 0, zyMin = 1, zyMax = 1;
       for (let i = 0; i < p.length; i += 3) {
         const x = p[i] - ox, y = p[i + 1] - oy, z = p[i + 2] - oz;
-        const depth = x * f[0] + y * f[1] + z * f[2];
-        const lx = Math.abs(x * r[0] + y * r[1] + z * r[2]);
-        const ly = Math.abs(x * u[0] + y * u[1] + z * u[2]);
-        const need = depth + Math.max(lx / tanH, ly / tanV);
-        if (need > worst) worst = need;
+        const zc = d - (x * f0[0] + y * f0[1] + z * f0[2]);
+        if (zc <= 1e-6) continue;
+        const lx = x * r0[0] + y * r0[1] + z * r0[2];
+        const ly = x * u0[0] + y * u0[1] + z * u0[2];
+        const nx = lx / (tanH * zc), ny = ly / (tanV * zc);
+        if (nx < mnx) { mnx = nx; lxMin = lx; zxMin = zc; }
+        if (nx > mxx) { mxx = nx; lxMax = lx; zxMax = zc; }
+        if (ny < mny) { mny = ny; lyMin = ly; zyMin = zc; }
+        if (ny > mxy) { mxy = ny; lyMax = ly; zyMax = zc; }
       }
-      if (yaw != null) break;
+      if (!(mxx > mnx) || !(mxy > mny)) break;
+      // Solve for the sideways shift that makes the two extremes symmetric.
+      // A shift is perpendicular to the view axis, so it does not change any
+      // zc, and (lMin - s)/zMin = -(lMax - s)/zMax has the exact solution
+      // below. It lands in one pass instead of creeping toward the answer.
+      const cx = (lxMin * zxMax + lxMax * zxMin) / (zxMin + zxMax);
+      const cy = (lyMin * zyMax + lyMax * zyMin) / (zyMin + zyMax);
+      ox += cx * r0[0] + cy * u0[0];
+      oy += cx * r0[1] + cy * u0[1];
+      oz += cx * r0[2] + cy * u0[2];
     }
-    const d = Math.max(worst * 1.03, entry.radius * 0.1);
-    entry.fits.set(key, d);
-    return d;
+    const fit = { d, pivot: [ox, oy, oz] };
+    entry.fits.set(key, fit);
+    return fit;
   }
   /// The two distances a card ever uses: tight on the angle it rests at, and
   /// far enough that nothing leaves the frame at any angle it can turn to.
   function fitsFor(id, cls, aspect, pitch, restYaw) {
     const entry = bufferFor(id, cls);
     if (!entry) return null;
-    return [fitDistance(entry, aspect, pitch, restYaw), fitDistance(entry, aspect, pitch, null)];
+    const rest = fitFrame(entry, aspect, pitch, restYaw);
+    // The RESTING pivot is the one that ships -- it is the angle the card
+    // actually sits at -- so the turning distance is fitted about THAT
+    // point rather than one of its own. Reusing it also stops the model
+    // sliding in the frame the moment the pointer arrives.
+    return [rest.d, fitFrame(entry, aspect, pitch, null, rest.pivot).d, rest.pivot];
   }
 
   /// Draw one model into the shared GL canvas at w x h device pixels, then hand
   /// the caller the canvas to copy. Nothing is retained between calls except
   /// the buffers.
-  function renderTo(id, cls, w, h, yaw, pitch, dist) {
+  function renderTo(id, cls, w, h, yaw, pitch, dist, pivot) {
     if (lost) return null;
     if (!init()) return null;
     const entry = bufferFor(id, cls);
@@ -338,7 +486,9 @@
       glCanvas.width = Math.max(glCanvas.width, w);
       glCanvas.height = Math.max(glCanvas.height, h);
     }
-    const d = dist || fitDistance(entry, w / h, pitch, yaw);
+    const own = dist && pivot ? null : fitFrame(entry, w / h, pitch, yaw);
+    const d = dist || own.d;
+    const at = pivot || own.pivot;
     const ry = (yaw * Math.PI) / 180, rp = (pitch * Math.PI) / 180;
     const eye = [
       Math.sin(ry) * Math.cos(rp) * d,
@@ -346,8 +496,10 @@
       Math.cos(ry) * Math.cos(rp) * d,
     ];
     const view = lookAt(eye, [0, 0, 0], [0, 1, 0]);
-    const proj = perspective(FOV, w / h, d * 0.02, d + entry.radius * 2.5);
-    const mvp = mul4(mul4(proj, view), translate([-entry.centre[0], -entry.centre[1], -entry.centre[2]]));
+    // The pivot can sit off the bounding-box centre, so the far plane gets
+    // the radius twice over rather than assuming the model is centred on it.
+    const proj = perspective(FOV, w / h, d * 0.02, d + entry.radius * 3.5);
+    const mvp = mul4(mul4(proj, view), translate([-at[0], -at[1], -at[2]]));
     // The frame is drawn into the BOTTOM-left of the shared canvas and copied
     // from the bottom-left of it. Those are the same corner and two different
     // numbers: GL measures its viewport from the bottom, `drawImage` measures
@@ -361,7 +513,7 @@
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     gl.useProgram(prog);
     gl.uniformMatrix4fv(uMVP, false, mvp);
-    gl.uniform3f(uEye, eye[0] + entry.centre[0], eye[1] + entry.centre[1], eye[2] + entry.centre[2]);
+    gl.uniform3f(uEye, eye[0] + at[0], eye[1] + at[1], eye[2] + at[2]);
     gl.uniform1f(uHeight, entry.geom.bounds ? (entry.geom.bounds.max[1] - entry.geom.bounds.min[1])
       : (entry.geom.max ? entry.geom.max[1] - entry.geom.min[1] : 2.0));
     gl.bindVertexArray(entry.vao);
@@ -394,9 +546,15 @@
       state.aspect = w / h;
       state.distRest = fits[0];
       state.distTurn = fits[1];
-      if (!state.dist) state.dist = fits[0];
+      state.pivot = fits[2];
+      // A RESIZE MUST MOVE THE CAMERA, and this kept the old distance for
+      // ever: `dist` was assigned only while it was still zero, so a card
+      // whose frame changed shape went on being drawn from the distance
+      // fitted to its PREVIOUS shape. Only a card mid-turn keeps its eased
+      // value, because that ease already heads for the new goal.
+      if (!state.dist || canvas !== active) state.dist = state.spinning ? fits[1] : fits[0];
     }
-    const out = renderTo(state.id, state.cls, w, h, state.yaw, state.pitch, state.dist);
+    const out = renderTo(state.id, state.cls, w, h, state.yaw, state.pitch, state.dist, state.pivot);
     const ctx = canvas.getContext("2d");
     if (!ctx) return false;
     ctx.clearRect(0, 0, w, h);
@@ -473,7 +631,7 @@
       rest: o.yaw == null ? REST_YAW : o.yaw,
       yaw: o.yaw == null ? REST_YAW : o.yaw,
       pitch: o.pitch == null ? REST_PITCH : o.pitch,
-      aspect: null, dist: 0, distRest: 0, distTurn: 0, spinning: false,
+      aspect: null, dist: 0, distRest: 0, distTurn: 0, pivot: null, spinning: false,
     };
     if (!bufferFor(id, state.cls)) return false;
     mounted.set(canvas, state);
@@ -633,8 +791,47 @@
     });
   }
 
+  /// THE FRAMING MATHS, WITHOUT A GPU.
+  ///
+  /// `fitFrame` is a pure function of the geometry -- no GL, no DOM, no
+  /// canvas -- and it decides how every card in the game is composed, so it is
+  /// worth testing on every shipped model rather than on whatever happens to
+  /// be on screen. This exposes it over a plain mesh: pass anything with
+  /// `positions` and `bounds` and get back the distance and the pivot a card
+  /// would use.
+  function frameOf(geom, aspect, pitch, yaw, fixed) {
+    // The kits disagree about where they keep their extents: the mesh kits
+    // hand back `bounds.min/max`, the arsenal deck puts `min`/`max` at the top
+    // level. The renderer copes with both, so this must too, or a whole family
+    // silently drops out of any sweep written against it.
+    if (!geom || !geom.positions) return null;
+    const b = geom.bounds || geom;
+    if (!b.min || !b.max) return null;
+    const centre = [0, 1, 2].map((i) => (b.min[i] + b.max[i]) / 2);
+    const p = geom.positions;
+    let radius = 0;
+    for (let i = 0; i < p.length; i += 3) {
+      const d = Math.hypot(p[i] - centre[0], p[i + 1] - centre[1], p[i + 2] - centre[2]);
+      if (d > radius) radius = d;
+    }
+    return fitFrame({ geom, centre, radius: radius || 1, fits: new Map() },
+      aspect, pitch == null ? REST_PITCH : pitch,
+      yaw === undefined ? REST_YAW : yaw, fixed);
+  }
+
   root.Arsenal3D = {
-    mount, scan, dataURL, renderTo, sprite, setSurface,
+    /// What the cache is holding right now, so the bound can be asserted
+    /// rather than believed. `triangles` is the live total, `cap` the ceiling
+    /// it is trimmed to, and `models` the number of distinct geometries (not
+    /// keys: an entry reachable under two aliases is one model).
+    cacheStats() {
+      const seen = new Set();
+      for (const e of vaos.values()) seen.add(e);
+      return { triangles: cachedTriangles, cap: CACHE_TRIANGLES,
+        models: seen.size, keys: vaos.size };
+    },
+    mount, scan, dataURL, renderTo, sprite, setSurface, frameOf,
+    REST_YAW, REST_PITCH, FOV,
     get available() { return init(); },
     register,
     canvasHtml(id, cls) {
@@ -644,4 +841,6 @@
         + ` data-kit3d-class="${String(cls || "").replace(/[^a-z]/gi, "")}"></canvas>`;
     },
   };
+  // Node sees the same object, so the framing can be checked headlessly.
+  if (typeof module === "object" && module.exports) module.exports = root.Arsenal3D;
 })(typeof window !== "undefined" ? window : globalThis);

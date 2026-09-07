@@ -158,8 +158,16 @@ test("the host contract this chunk is written against has not moved", () => {
     "arsenal3d.js must still declare the identity surface with this signature");
   assert.ok(host.includes("surface(vCol, N, vPos, V)"), "the host must still call it with model-space vPos");
   assert.ok(host.includes("vPos = aPos"), "vPos must still be raw model space, Y=0 at ground");
-  assert.ok(host.includes("uniform3f(uEye, eye[0] + entry.centre[0]"),
+  // The camera used to orbit the bounding-box centre; it now orbits the framing
+  // pivot `at`, which is the recentred point the card is composed around. The
+  // PROPERTY this pins is unchanged -- uEye is the eye in model space, and the
+  // model is translated by the same point the eye is offset by -- so only the
+  // name of that point moved.
+  assert.ok(host.includes("uniform3f(uEye, eye[0] + at[0]"),
     "uEye must still be the eye expressed in model space");
+  assert.ok(host.includes("translate([-at[0], -at[1], -at[2]])"),
+    "the model must be translated by the SAME point the eye is offset by, or "
+    + "model-space lighting is computed about a different origin than the camera");
 });
 
 // ------------------------------------------------------- 2. the float32 port

@@ -1,5 +1,29 @@
 # SPHERES Roadmap
 
+## Accepted integration — Claude art fixes with company procurement and refits (2026-09-07)
+
+Claude's `ebddf7a` art branch is integrated with the accepted company, ammunition
+and manufacturer-refit playset. Silhouette framing, bounded model caching,
+context recovery and the gallery's exact geometry/budget labels retain the
+existing equipment and financial lifecycle. Full release verification passes:
+**simulator/CLI 953 passed, 68 ignored; web 256 passed, 3 ignored; combined Rust
+1,209 passed, 71 ignored; Node 986 passed, 0 failed across 51 files**. The new
+cache, framing and gallery checks pass. The art bench retains **30 known budget
+overages and zero stale records**; ceilings are unchanged. Roads, transport
+props and scatter gain no new gameplay consumer.
+
+Merged-browser acceptance showed the globe and Paris town card, a centered
+queued Arms Plant model on desktop and at 390 pixels, and no horizontal overflow
+(page 390 / dialog 372). Exact source/target refit models and the **$1.111m** quote
+were unchanged. Loading the prior partially cancelled active contract and
+advancing one actual day moved work **6 → 7/40**, retaining **one reserved / two
+cancelled** units, **$370.4k escrow**, **$740.7k refunded** and **$265.6k reserved
+labor**. Browser error and warning logs were empty. Context recovery is covered
+by regression checks; this acceptance did not manually force a context loss.
+Verified merged executable SHA256:
+`14EC4CC2F71A3E3424E18BC1942E5245FB859830A8B467A8020B9E6FF9D83B6F`.
+The dated entries below retain each earlier branch's scope and evidence.
+
 ## Current implementation — manufacturer refit services (2026-09-07; accepted)
 
 Existing custom ground vehicles and tactical aircraft can enter a reviewed
@@ -56,6 +80,33 @@ release build and evidence are recorded in
 the detailed constraints. Accepted manufacturer refits are recorded in the entry
 above; imports, AI buyers and sourced firms remain future work.
 
+## Art review bench — exact card measurements and honest budget labels (2026-09-07)
+
+Claude's `ebddf7a` correction makes `tools/arsenal/art-gallery.html` measure the
+same seeded geometry that each card actually draws. Town cards previously
+measured numeric `1990` while the renderer built string `"1990"`; the civic card
+reported 131,586 triangles for geometry that actually contained 106,789. One
+shared identity now drives the measurement and provider.
+
+The gallery now quotes the existing section 4 budget rows instead of its own
+looser limits. It distinguishes over-ceiling, under-floor and ungraded geometry,
+shows all nine ground platforms at all three LODs, and exposes the 30-kind scatter
+kit that was loaded but absent from the gallery. Roads and scenery props receive
+no invented budget band. Claude's corrected gallery records **217 cards: 25 over
+a ceiling, 10 under a floor and 94 without a section 4 grading row**. Those are
+gallery-card measurements; the separate art bench reports 30 over-budget
+configurations across its own sample, so the counts are not interchangeable.
+
+`check_art_gallery.cjs` runs the gallery's actual script against the real mesh
+providers and checks that drawn geometry matches captions, referenced limits
+match the design document and ungraded assets say so. The recorded art-branch
+Node run passed 891 checks; it is historical evidence, not the merged suite's
+result. [BUDGET_DECISION.md](docs/art/BUDGET_DECISION.md) preserves the measured
+budget gaps and rejected town-block trim: using the next lower building tier
+reduced geometry but collapsed the required LOD separation. **No budget ceiling
+or grading band is changed by this merge.** The unresolved choice is documented
+there; importing the rendering and gallery fixes does not decide it.
+
 ## Current implementation — suppliers for ground vehicles and tactical aircraft (2026-09-07; accepted)
 
 This records the accepted ground/air checkpoint before the ammunition extension above.
@@ -87,9 +138,9 @@ draft preservation and narrow-screen inspection. The final simulator/CLI run pas
 929 tests with 66 ignored, giving a combined Rust total of 1,176 passed/69 ignored.
 The overlapping focused company audit passes 24, including two explicit QA exporters.
 [COMPANIES.md](COMPANIES.md#verification) separates that evidence from the
-earlier accepted tank milestone below. Company ammunition, supplier refits,
-standing purchases, imports, AI buyers and sourced
-private/national firms remain future work.
+earlier accepted tank milestone below. Company ammunition and manufacturer
+refits are accepted in the newer entries above. Standing purchases, imports,
+AI buyers and sourced private/national firms remain future work.
 
 ## Current implementation — domestic tank companies and procurement (2026-09-07; accepted)
 
@@ -121,8 +172,143 @@ counts and scope. Browser acceptance passed the development save/restart,
 reviewed stock purchase, year-end arrival, exact-model service and narrow-screen checks.
 [COMPANIES_AND_PROCUREMENT_PLAN.md](COMPANIES_AND_PROCUREMENT_PLAN.md) retains
 the wider ownership, migration and acceptance roadmap. Its domestic steps 1–3
-are accepted for the first domestic tank route. Other equipment, ammunition,
-imports, AI procurement and sourced national firms remain future work.
+are accepted for the first domestic tank route. The newer entries above record
+accepted ground/air coverage, company ammunition and manufacturer refits.
+Imports, AI procurement and sourced national firms remain future work.
+
+## Art branch findings — silhouette framing, context recovery, bounded cache and completed prop kits (2026-09-07)
+
+This entry preserves the art branch findings through `6fb21ab`. Its measurements
+and suite counts describe that branch checkpoint; they do not replace the
+accepted company milestones above or the verification of the current merge.
+
+THE FRAMING WAS STILL HALF WRONG, and the section below is where the other
+half is recorded. Walking the vertices fixed the SIZE of the fit; it went on
+aiming at the bounding-box CENTRE. A construction site is wide, flat and seen
+from above, so under perspective its near ground projects further from centre
+than its far ground and the whole silhouette sits low. Measured on the shipped
+starter-industry card in the running game: NDC -0.942 to +0.298, flush against
+the bottom edge, 37% of the card empty above it. `fitDistance` is now
+`fitFrame` and returns a distance AND a pivot — fit, look at where the
+silhouette actually landed, fit again. On that same card at its real
+1124x102: **fill height 61.7% -> 96.1%, gaps 37/2 -> 2/2**.
+
+Two things that cost real time and are worth not rediscovering. The recentring
+step must be scaled by the VERTEX's distance from the camera, not by the
+viewing distance — scaled by the latter it overshoots on a deep model and the
+pivot oscillates, and five passes left the raven further off centre than three
+did (0.239 against 0.145). Each pass now solves outright for the two extremes
+it can see; it still takes several because moving the pivot hands the extreme
+role to different vertices, and four is the measured minimum at which every
+shipped model settles. And the TURNING distance has to be fitted about the
+RESTING pivot, or a card clips the moment it comes round to an angle whose own
+pivot sat elsewhere — checked over 46 deck models, 26 site meshes, 5 town
+blocks and 5 vehicles at four aspects and every 15 degrees: worst reach 0.9720,
+so nothing clips and the bound is not vacuous. A latent bug fell out of the
+same block: `dist` was assigned only while it was still zero, so a card whose
+frame changed shape kept being drawn from the distance fitted to its previous
+shape.
+
+`tools/ui/check_arsenal3d_framing.cjs` asks all 82 shipped models these
+questions with no GPU — `frameOf` is pure geometry and is exported for exactly
+that. It projects vertices the way the shader will and tests the CONSEQUENCES
+rather than re-implementing the fit, because a test that copied the algorithm
+would agree with a broken one. Its own first draft filtered on `bounds` and
+silently dropped all 46 deck models, which is why the model count is asserted.
+
+A GLOBE THAT CAME BACK INVISIBLE (roadmap 7.8, the in-game context-loss pass).
+`glFail` hides the canvas and appends the `#globeFail` panel; `glBoot` removed
+only the loading status. So after a real loss and restore the globe rebuilt
+itself perfectly and drew into a `display:none` canvas under a stale panel
+saying the browser would not give it WebGL2 — every flag healthy, nothing on
+screen but the 2D labels floating on the void. Nobody had seen it because
+`WEBGL_lose_context.loseContext()` proves only the loss half and never fires
+`webglcontextrestored`; testing only the loss makes the renderer look like it
+cannot recover and hides the real bug, that it recovers invisibly. I made that
+exact mistake first and wrote the globe off before reading the source. The
+regression test pairs each mark with its undo in one place.
+
+SCATTER IS BUILT AND DELIBERATELY NOT ON THE MAP. `world-scatter.js` is a
+finished terrain-following placement pass — stable under pan, samplers injected,
+17 checks including a ten-entry sabotage ledger where each defect must fail on
+its own named bar. It was wired onto the globe as ground dressing and the wiring
+came out the same session: at ZOOM_MAX the ground scale at screen centre is
+**661 m/px** and the visible footprint is still 8.5 x 1.7 degrees, so a 20 m
+tree is 0.03 px and every sprite was about 500x too large. The rule against
+inventing geography covers inventing SCALE. `docs/art/SCATTER_SCALE_FINDING.md`
+carries the numbers, including where the kit does work: a town block is 148x104 m
+and a site 55-77 m, so on a 200 px card an oak is 20-42 px. Town blocks already
+plant themselves (4.1%-6.6% canopy by vertex colour); all thirteen construction
+kinds are at 0.00%, which is the one place the kit is correctly scaled and
+genuinely missing. It is NOT done, because the three tightest kinds have only
+698, 980 and 1,448 triangles of headroom under the section 4 ceiling and
+widening that ceiling is Ridge's call, not mine.
+
+Also from the 7.8 pass, both passing: at 390 px the layout holds, the dock is a
+real horizontal scroller rather than clipped content, the globe canvas tracks
+DPR 2 with matching aspect, and the site card paints without overflowing.
+
+THE MODEL CACHE WAS UNBOUNDED, and this is the one to remember. arsenal3d kept
+every distinct model it had ever been asked for for the life of the page, and
+the only thing that ever cleared them was LOSING the context — the eviction
+policy was the failure mode. Measured on the ids a player can actually reach:
+40 close town blocks at 5,926,602 triangles (610 MiB) and 325 site
+configurations at 6,890,594 (710 MiB), so browsing cities and projects walks to
+**1,320 MiB of GPU buffers nothing frees**. It is very likely what I spent part
+of the night watching as repeated "the globe cannot draw: context lost" in a
+session that had mounted a few hundred models.
+
+Bounded by TRIANGLES rather than entries, because these differ a hundredfold (a
+far-LOD site is 164, a close town block 214,044). The cap is 1.2M, about
+124 MiB at the 108 bytes a triangle costs here, against a heaviest realistic
+working set of roughly 900k. Verified over the exact path: 235 distinct mounts
+peaked at 123.6 MiB and never breached the cap, and an evicted model redrew
+identically on remount. Two details make it correct rather than merely smaller —
+deleting a vertex array does NOT free its buffers, and an entry is reachable
+under two keys, so both aliases must go together.
+
+The alias sabotage PASSED at first and that is the lesson: no shipped provider
+currently creates a second alias, so churning real models left the branch
+untouched and the test slept through the exact trap it was named for. It now
+registers a provider that returns one geometry under two ids and asserts the
+branch ran before asserting anything about it. The designer's own renderer
+(equipment-model.js) was checked and is clean: it frees the previous buffers on
+every upload and holds one mesh at a time.
+
+P1 AND P2 ARE CLOSED, and most of that was bookkeeping rather than building.
+The backlog had 204 rows at `planned`; checking each against the kit that would
+satisfy it found P1's 17 component rows and 40 of P2's 50 already built,
+integrated where they have a consumer, and measured — the ledger was simply
+stale. Urban core turned out to be a 15/15 exact name match with TownMesh,
+terrain detail is covered by all 30 scatter kinds with none spare on either
+side, and site-mesh already draws the five construction-prop kits across its
+157 distinct part names. Each row now carries its OWN evidence, and nothing was
+marked done that could not be evidenced.
+
+The ten rows that were genuinely missing are now built: excavator, bulldozer,
+mobile_crane, coach, barge, container_ship, bulk_carrier, oil_tanker, ferry and
+cargo_plane, taking prop-mesh 25 -> 35 pieces. NO new budget band was needed and
+that is a finding: a merchant hull is mostly flat parallel midbody, so a 218 m
+hull costs about 300 triangles and its deck cargo costs more than the ship. The
+tanker and container ship do sit at 91% and 87% of the near ceiling, which is
+recorded above PIECES so the next session decides with evidence.
+
+Two checks earned their place. `bounds.min[1] === 0` CANNOT FAIL — `finish`
+seats every mesh unconditionally, so it was testing `finish`, not the piece;
+the replacement measures plan area bearing on the ground, and hulls float on
+70-87% of their box where every wheeled piece is under 3%. And a hull fineness
+ordering check caught a real inversion before anything was deliberately broken:
+`(1-t^2)^entrance` means a SMALL exponent gives a FULLER bow, so the fine-lined
+ferry had the fullest bow in the kit and the crude tanker the finest. No budget,
+bound, symmetry or determinism check could have seen that.
+
+What is NOT done, and is the honest state of this phase: roads, scatter and
+props are built and tested and have NO CONSUMER. The art library is largely
+finished; integration is what remains, and the 661 m/px finding above says the
+world map is not the surface for it. Choosing one is a design decision.
+
+Recorded art-branch suite: spheres-web 199 passed / 0 failed / 3 ignored;
+Node 887 passed / 0 failed. The later gallery correction is recorded above.
 
 ## Art integration — shared catalogue, sites and city previews (2026-09-07)
 
