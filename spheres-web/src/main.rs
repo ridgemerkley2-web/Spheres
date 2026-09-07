@@ -121,6 +121,16 @@ const SITE_MESH_JS: &str = include_str!("../ui/site-mesh.js");
 /// The temperate town block kit. Layout varies by a seeded hash of the block id,
 /// never by a random number, so a settlement is the same one every session.
 const TOWN_MESH_JS: &str = include_str!("../ui/town-mesh.js");
+/// The ground-cover kit: trees, scrub and rock, one mesh per kind per biome.
+/// A kind's triangle count is fixed per LOD — a seed varies its sizes, angles
+/// and colours but never its structure, which is what makes its budget a
+/// number rather than an average.
+const SCATTER_MESH_JS: &str = include_str!("../ui/scatter-mesh.js");
+/// Where that kit is allowed to stand. Placement is derived from the baked
+/// vegetation index, latitude and the elevation surface and is deliberately
+/// stable under pan; it is representative scenery and grants no forest,
+/// farmland, timber or forage to the simulation.
+const WORLD_SCATTER_JS: &str = include_str!("../ui/world-scatter.js");
 /// The reverse leg of the art pipeline: glTF back into the runtime mesh shape.
 const EQUIPMENT_IMPORT_JS: &str = include_str!("../ui/equipment-import.js");
 const ARSENAL3D_CSS: &str = include_str!("../ui/arsenal3d.css");
@@ -6704,6 +6714,8 @@ fn main() {
             (Method::Get, "/surface-material.js") => Response::from_string(SURFACE_MATERIAL_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/site-mesh.js") => Response::from_string(SITE_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/town-mesh.js") => Response::from_string(TOWN_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/scatter-mesh.js") => Response::from_string(SCATTER_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/world-scatter.js") => Response::from_string(WORLD_SCATTER_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/equipment-import.js") => Response::from_string(EQUIPMENT_IMPORT_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/arsenal3d.css") => Response::from_string(ARSENAL3D_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, path) if path.starts_with("/art/components/") => {

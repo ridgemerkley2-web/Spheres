@@ -3099,6 +3099,8 @@
 <script src="/surface-material.js"></script>
 <script src="/site-mesh.js"></script>
 <script src="/town-mesh.js"></script>
+<script src="/scatter-mesh.js"></script>
+<script src="/world-scatter.js"></script>
 <script src="/equipment-import.js"></script>
 <script src="/equipment-ui.js"></script>
 <script src="/agency-ui.js"></script>
@@ -15996,8 +15998,8 @@ function registerMeshProviders() {
   }
   if (window.ScatterMesh) {
     Arsenal3D.register("scatter", (rest) => {
-      const [kind, lod, seed] = String(rest).split("/");
-      return ScatterMesh.piece(kind, { lod: lod || "far", seed: Number(seed) || 0 });
+      const [kind, lod, seed, biome] = String(rest).split("/");
+      return ScatterMesh.piece(kind, { lod: lod === "near" ? 0 : "far", seed: Number(seed) || 0, biome });
     });
   }
   if (window.TownMesh) {
@@ -16578,7 +16580,10 @@ document.querySelectorAll("[data-production-mode]").forEach((button) => {
 /// plausible dressing of real terrain rather than a record of what grows there.
 /// The same reasoning that keeps invented roads off this map (see the logistics
 /// note above) applies: nothing here claims to be a source.
-const SCATTER = { zoomIn: 26, budget: 220, seed: 1990, variants: 4 };
+/// zoomIn matches WorldScatter.MIN_ZOOM and the zoom at which city-detail.js
+/// starts drawing a skyline, so ground dressing and buildings arrive together
+/// rather than one floating in ahead of the other.
+const SCATTER = { zoomIn: 32, budget: 220, seed: 1990, variants: 4 };
 function drawScatterOverlay(ctx, view, globe) {
   if (!window.WorldScatter || !window.ScatterMesh) return;
   if (!(window.Arsenal3D && Arsenal3D.available)) return;
@@ -16613,8 +16618,19 @@ function drawScatterOverlay(ctx, view, globe) {
     // The variant is part of the id, which is what makes each one its own
     // cache entry — Arsenal3D.sprite keys on id and size only, so passing a
     // yaw here would silently return the first bake instead of turning it.
-    const variant = (item.variant != null ? item.variant : Math.abs(item.yaw || 0) * 16) | 0;
-    const sprite = Arsenal3D.sprite(`scatter:${item.kind}/far/${variant % SCATTER.variants}`, 64);
+    // The plan hands each slot its own seed; that is the variant. Note the lod
+    // is spelled as a WORD: ScatterMesh.isFar accepts the number 1 but not the
+    // string "1", so putting item.lod straight into an id would quietly bake a
+    // near-LOD tree at map scale.
+    const variant = Math.abs(item.seed || 0) % SCATTER.variants;
+    const lod = item.lod ? "far" : "near";
+    // The biome is part of the id because it is part of the PICTURE: the kinds
+    // shared between biomes take their palette from it, so a boulder or a grass
+    // tuft placed in the Congo is coloured for the Congo and not for a temperate
+    // default. Measured: grass_tuft moves from (0.250,0.393,0.168) to
+    // (0.192,0.438,0.213) between temperate_broadleaf and tropical.
+    const sprite = Arsenal3D.sprite(
+      `scatter:${item.kind}/${lod}/${variant}/${item.biome}`, 64);
     if (!sprite) continue;
     const size = px * (item.scale || 1);
     // Anchored at the foot, not the centre, so a tree stands on its point.
