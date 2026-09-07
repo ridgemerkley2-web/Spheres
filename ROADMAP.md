@@ -95,7 +95,39 @@ branch ran before asserting anything about it. The designer's own renderer
 (equipment-model.js) was checked and is clean: it frees the previous buffers on
 every upload and holds one mesh at a time.
 
-Suite: spheres-web 199 / 0 / 3, node 882 / 0.
+P1 AND P2 ARE CLOSED, and most of that was bookkeeping rather than building.
+The backlog had 204 rows at `planned`; checking each against the kit that would
+satisfy it found P1's 17 component rows and 40 of P2's 50 already built,
+integrated where they have a consumer, and measured — the ledger was simply
+stale. Urban core turned out to be a 15/15 exact name match with TownMesh,
+terrain detail is covered by all 30 scatter kinds with none spare on either
+side, and site-mesh already draws the five construction-prop kits across its
+157 distinct part names. Each row now carries its OWN evidence, and nothing was
+marked done that could not be evidenced.
+
+The ten rows that were genuinely missing are now built: excavator, bulldozer,
+mobile_crane, coach, barge, container_ship, bulk_carrier, oil_tanker, ferry and
+cargo_plane, taking prop-mesh 25 -> 35 pieces. NO new budget band was needed and
+that is a finding: a merchant hull is mostly flat parallel midbody, so a 218 m
+hull costs about 300 triangles and its deck cargo costs more than the ship. The
+tanker and container ship do sit at 91% and 87% of the near ceiling, which is
+recorded above PIECES so the next session decides with evidence.
+
+Two checks earned their place. `bounds.min[1] === 0` CANNOT FAIL — `finish`
+seats every mesh unconditionally, so it was testing `finish`, not the piece;
+the replacement measures plan area bearing on the ground, and hulls float on
+70-87% of their box where every wheeled piece is under 3%. And a hull fineness
+ordering check caught a real inversion before anything was deliberately broken:
+`(1-t^2)^entrance` means a SMALL exponent gives a FULLER bow, so the fine-lined
+ferry had the fullest bow in the kit and the crude tanker the finest. No budget,
+bound, symmetry or determinism check could have seen that.
+
+What is NOT done, and is the honest state of this phase: roads, scatter and
+props are built and tested and have NO CONSUMER. The art library is largely
+finished; integration is what remains, and the 661 m/px finding above says the
+world map is not the surface for it. Choosing one is a design decision.
+
+Suite: spheres-web 199 / 0 / 3, node 887 / 0.
 
 ## Done — the equipment deck has models: 46 meshes, one WebGL2 context, and the three surfaces that show them (2026-09-06)
 
