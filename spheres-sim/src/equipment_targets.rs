@@ -171,6 +171,13 @@ pub fn fleet_target_plans_world(w:&WorldState,nation:NationId)->Vec<FleetTargetP
         let purchased=crate::companies::inbound_units(w,nation,&p.revision) as u64;
         p.incoming=p.incoming.saturating_add(purchased);
         p.projected=p.projected.saturating_add(purchased);
+        let (refit_in,refit_out,blocked_in,blocked_out)=crate::companies::refit_target_flow(w,nation,&p.revision);
+        p.refit_incoming=p.refit_incoming.saturating_add(refit_in);
+        p.refit_outgoing=p.refit_outgoing.saturating_add(refit_out);
+        p.conditional_incoming=p.conditional_incoming.saturating_add(refit_in);
+        p.stalled_incoming=p.stalled_incoming.saturating_add(blocked_in);
+        p.stalled_outgoing=p.stalled_outgoing.saturating_add(blocked_out);
+        p.projected=p.projected.saturating_sub(refit_out).saturating_add(refit_in);
         p.shortfall=p.desired.map_or(0,|goal|(goal as u64).saturating_sub(p.projected));
         p.excess=p.desired.map_or(0,|goal|p.projected.saturating_sub(goal as u64));
     }

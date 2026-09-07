@@ -2,6 +2,10 @@
 
 Open **Research → Equipment bureau** or the designer link in the manufacturing catalogue. The current implementation has nine ground platforms and two tactical-strike airframes, sixteen component-integration research projects and the paid design-to-service loop from the [military equipment plan](MILITARY_EQUIPMENT_DESIGNER_PLAN.md). New designs across all eleven platforms now lead through **Companies & Procurement**: commission a domestic manufacturer, then purchase its finished stock. This extends the accepted tank supplier loop. Simulator, web, UI and mixed-family browser checks pass; the ground/air supplier route is accepted. Company-made ammunition is also accepted through final integration verification. [COMPANIES.md](COMPANIES.md) records the scope and evidence. The Ammunition tab adds reviewed manufacturer stock and paid arrivals alongside compatible physical stores and existing public batches for ground weapons and aircraft. [AVIATION.md](AVIATION.md) covers the first two-airframe slice; other air missions, naval design, foreign licences, exports and designer AI remain later milestones.
 
+The current continuation adds **manufacturer refit services** for already-owned
+custom equipment. Simulator, web, UI, release and browser acceptance checks pass.
+The accepted supplier checkpoints above remain distinct from this new work.
+
 ## Play the loop
 
 1. Choose a vehicle family and a starting configuration. All eleven platforms have valid starting designs using established components. Name the model and open its specification groups: tanks have twelve independent slots, ground specialists thirteen and aircraft eight. Every choice has its own installation load, fabrication price, maintenance requirement and relative rating effects.
@@ -10,9 +14,19 @@ Open **Research → Equipment bureau** or the designer link in the manufacturing
 4. For a new ground vehicle or aircraft design, choose a manufacturer and review its daily development limit and company stock target. If none exists, the Companies page explains the paid establishment and available Arms Plant requirements. Defense R&D funds engineering and trials over time; the contract freezes the model. The suggested stock buffer is four ground vehicles or two aircraft, editable from 1–12 complete units. This authorizes company inventory, not a government purchase.
 5. Certification lets the company fund its tooling and finite stock. Review a purchase when finished units are available; select quantity and inspect total price, delivery, upkeep and fleet need. The company owns unsold equipment and pays manufacturing costs from its separate account. Existing explicit public contracts retain the **Production** tab's reviewed batches, real Arms Plant capacity, inputs and procurement funding.
 6. Purchased supplier equipment enters its own paid delivery record and becomes usable after settlement and seven accessible shipping days. Ground vehicles enter the Armour class and aircraft enter the Air class with their exact frozen profiles. Public production retains its existing Arsenal delivery queue. On arrival, either route contributes through the same supported operations and service rules. The service page shows held and reserved equipment, age, maintenance coverage and suggested modernization.
-7. Develop a compatible revision and review a refit. A refit withdraws real source vehicles, consumes funding and replacement inputs, and returns the converted vehicles at their existing age. Chassis, airframe and main ground-weapon changes require new manufacture in this release.
+7. Develop a compatible revision and review a manufacturer refit in **In service** when the contractor holds its certified license. Compare exact source and target models, price, temporary withdrawal, upkeep and queue before confirming. The fixed procurement advance is held in escrow; company capital funds parts and labor. Each whole conversion returns at its existing age and earns its fixed fee. Chassis, airframe and main ground-weapon changes require new manufacture in this release.
 
 Pausing keeps completed work. Public cancellation refunds no sunk cost and retains completed products; unconverted reserved vehicles return to service. Company development cancellation stops future work and preserves its paid record, without returning the company's leased slot. Project limits share the existing department pool. Increasing a limit cannot bypass engineering time, materials, annual budget renewal or factory space. Existing manufacturing lines retain their occupied slots if provincial capacity falls.
+
+**Manufacturer refit cancellation** releases only unstarted source units and
+refunds their fixed fees after original fiscal settlement. Started work remains
+reserved and finishes; completed upgrades remain unchanged. Refunds do not
+recreate procurement authority. In service and Companies track the same service
+contracts, held funds, returned units and blockers. The read-only **Before refit**
+and **After refit** model controls preserve the unfinished design. A changed
+quantity or target requires a fresh quote; source upkeep continues during work.
+The company plant runs development, refits, then stock. Existing public refits
+retain their own work-funded rules and share the same source reservations.
 
 ## Companies & Procurement
 
@@ -27,7 +41,7 @@ unassigned procurement funding can accrue for reviewed stock purchases. Explicit
 public lines, projects, ammunition work and already paid deliveries continue.
 
 The Companies tab shows manufacturers, development/tooling milestones, finished
-offers and paid deliveries. **All equipment**, **Ground vehicles** and **Aircraft**
+offers, paid deliveries and manufacturer refit contracts. **All equipment**, **Ground vehicles** and **Aircraft**
 filter offers without hiding supplier accounts or paid deliveries. **Inspect 3D
 model** displays the exact filtered product while keeping the designer's unfinished
 draft. Aircraft purchase reviews show the frozen air profile, compatible mission
@@ -215,6 +229,16 @@ receipts. Untouched company books keep their existing versions. This extension
 passes a 955-check non-browser Node batch and a final focused 110-check equipment
 run. Rust integration passes 1,192 with 70 ignored; final release-build and browser
 acceptance pass, including paid ammunition save/restart and exact-family arrival.
+
+The first manufacturer refit uses company ledger 4/save envelope 5 for service
+contracts, escrow, reserved labor and refunds, with matching sparse government
+source claims in equipment-state version 8. Earlier unused and supplier books
+keep their versions until required; later actions never downgrade them. Service
+property in an older envelope is refused. The new refit interface passes 964
+Node checks and the full web suite passes 255 with 3 ignored. Simulator/CLI
+passes 953 with 68 ignored and the final release build passes. Ground conversion
+completion after save/restart and partial cancellation, exact aircraft review,
+narrow layout and empty console logs complete browser acceptance in [COMPANIES.md](COMPANIES.md#verification).
 
 The following counts describe the earlier accepted ground/air milestone.
 The broader ground/air route passes 947 non-browser Node checks and 247 web tests

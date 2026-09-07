@@ -10,16 +10,19 @@ use std::collections::BTreeSet;
 
 /// Version one contains tanks; version two adds existing ground/air platforms;
 /// version three adds finite company ammunition and its delivery provenance.
+/// Version four adds prepaid refit services with separately locked funds.
 /// Older books retain their versions until the new feature is actually used.
-pub const VERSION: u32 = 3;
+pub const VERSION: u32 = 4;
 pub const TANK_VERSION: u32 = 1;
 pub const EQUIPMENT_VERSION: u32 = 2;
+pub const AMMUNITION_VERSION: u32 = 3;
 pub const MAX_STOCK: u32 = 12;
 pub const MAX_PRODUCTS: usize = 32;
 pub const DELIVERY_DAYS: u32 = 7;
 pub const MARGIN: f64 = 0.15;
 
 include!("companies_ammunition.rs");
+include!("companies_refits.rs");
 
 pub fn supported_platform(platform: &str) -> bool {
     equipment::PLATFORMS.iter().any(|p| p.id == platform)
@@ -105,6 +108,18 @@ pub enum CompanyOrder {
         quantity: u32,
         quote: String,
     },
+    Refit {
+        company: u32,
+        source: String,
+        product: u32,
+        quantity: u32,
+        quote: String,
+    },
+    CancelRefit {
+        company: u32,
+        refit: u32,
+        quote: String,
+    },
 }
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]
@@ -148,6 +163,14 @@ pub struct Company {
     pub products: Vec<Product>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub ammunition_products: Vec<AmmoProduct>,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub refits: Vec<RefitContract>,
+    #[serde(default, skip_serializing_if = "zero_refit_money")]
+    pub refit_advances_received_bn: f64,
+    #[serde(default, skip_serializing_if = "zero_refit_money")]
+    pub refit_revenue_bn: f64,
+    #[serde(default, skip_serializing_if = "zero_refit_money")]
+    pub refit_refunds_bn: f64,
     pub transactions: Vec<Transaction>,
     pub last_tick_day: Option<i32>,
 }
@@ -187,6 +210,8 @@ pub struct Receivable {
     pub amount_bn: f64,
     pub product: Option<u32>,
     pub delivery: Option<u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub refit: Option<u32>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct Transaction {
@@ -479,9 +504,10 @@ pub fn development_quote(
         // earlier licensed products before starting this one's tooling. Future
         // sales and their restock buffers are not a fixed, payable order book.
         if c.is_some_and(|c| {
-            c.ammunition_products
-                .iter()
-                .any(|p| p.stock < p.stock_target)
+            c.refits.iter().any(|p| refit_remaining(p) > 0)
+                || c.ammunition_products
+                    .iter()
+                    .any(|p| p.stock < p.stock_target)
                 || c.products.iter().any(|p| {
                     p.cancelled_day.is_none()
                         && (p.stock < p.stock_target
@@ -490,7 +516,7 @@ pub fn development_quote(
                 })
         }) {
             q.first_stock_days = None;
-            q.note.push_str(" First stock has no dated estimate while earlier licensed products have unfinished work or unmet stock targets. Their production shares this same plant slot; development completion remains separately estimated.");
+            q.note.push_str(" First stock has no dated estimate while earlier licensed products have unfinished work or unmet stock targets, or a contracted refit is pending. All work shares this plant slot; development completion remains separately estimated.");
         }
     }
     finish_quote(
@@ -579,6 +605,7 @@ fn receipt(
         amount_bn: amount,
         product,
         delivery,
+        refit: None,
     });
 }
 pub fn apply(w: &mut WorldState, n: NationId, order: &CompanyOrder) -> Result<(), String> {
@@ -632,6 +659,10 @@ fn apply_inner(w: &mut WorldState, n: NationId, order: &CompanyOrder) -> Result<
                 receivables: vec![],
                 products: vec![],
                 ammunition_products: vec![],
+                refits: vec![],
+                refit_advances_received_bn: 0.0,
+                refit_revenue_bn: 0.0,
+                refit_refunds_bn: 0.0,
                 transactions: vec![],
                 last_tick_day: None,
             });
@@ -792,6 +823,22 @@ fn apply_inner(w: &mut WorldState, n: NationId, order: &CompanyOrder) -> Result<
         } => {
             buy_ammo_stock(w, n, *company, *product, *quantity, quote)?;
         }
+        CompanyOrder::Refit {
+            company,
+            source,
+            product,
+            quantity,
+            quote,
+        } => {
+            start_company_refit(w, n, *company, source, *product, *quantity, quote)?;
+        }
+        CompanyOrder::CancelRefit {
+            company,
+            refit,
+            quote,
+        } => {
+            cancel_company_refit(w, n, *company, *refit, quote)?;
+        }
     }
     Ok(())
 }
@@ -839,6 +886,10 @@ pub fn settle_receivables(w: &mut WorldState) {
             .cloned()
             .collect();
         for r in receipts {
+            if r.kind == "refit_advance" {
+                settle_refit_advance(w, i, &r, day);
+                continue;
+            }
             let c = &mut w.companies.firms[i];
             c.cash_bn += r.amount_bn;
             match r.kind.as_str() {
@@ -971,7 +1022,8 @@ pub fn tick_day(w: &mut WorldState) {
         w.companies.firms[i].last_tick_day = Some(day);
         let facility = facility_blocker(w, &c);
         // One leased slot, one daily work packet. A development commission
-        // temporarily takes priority over replenishing already licensed models.
+        // temporarily takes priority over refits and finite inventory. Refit
+        // services take the slot before unpurchased equipment/ammunition stock.
         let selected_id = scheduled_product(&c);
         let selected = c.products.iter().position(|p| Some(p.id) == selected_id);
         for j in 0..c.products.len() {
@@ -990,6 +1042,11 @@ pub fn tick_day(w: &mut WorldState) {
             }
         }
         update_ammo_queue(w, i, selected_id);
+        update_refit_queue(w, i, selected_id);
+        if let Some(j) = c.refits.iter().position(|p| Some(p.id) == selected_id) {
+            tick_company_refit(w, i, j, day, facility);
+            continue;
+        }
         if let Some(j) = c
             .ammunition_products
             .iter()
@@ -1204,6 +1261,8 @@ pub fn view(w: &WorldState, n: NationId) -> serde_json::Value {
         value["facility_blocker"]=serde_json::json!(facility_blocker(w,c));
         value["receivable_bn"]=serde_json::json!(c.receivables.iter().map(|r|r.amount_bn).sum::<f64>());
         value["expenses_bn"]=serde_json::json!(c.development_expense_bn+c.tooling_expense_bn+c.materials_expense_bn+c.fabrication_expense_bn);
+        value["refit_escrow_bn"]=serde_json::json!(c.refits.iter().map(|p|p.escrow_bn).sum::<f64>());
+        value["refit_working_capital_locked_bn"]=serde_json::json!(refit_locked_capital(c));
         value["inventory_cost_bn"]=serde_json::json!(c.products.iter().map(|p|p.stock_cost_bn+p.unit_spent_bn).sum::<f64>()+c.ammunition_products.iter().map(|p|p.stock_cost_bn).sum::<f64>());
         value["ammunition_products"]=serde_json::json!(c.ammunition_products.iter().map(|p|ammo_product_view(w,c,p)).collect::<Vec<_>>());
         value["products"]=serde_json::json!(c.products.iter().map(|p|{
@@ -1216,7 +1275,7 @@ pub fn view(w: &WorldState, n: NationId) -> serde_json::Value {
                 let unit_days=(x.production_days as f64-p.unit_work_days).max(0.0).ceil() as u32;
                 let cash_needed=(x.tooling_cost_bn-p.tooling_spent_bn).max(0.0)+if p.unit_work_days>0.0 {(x.fabrication_cost_bn-(p.unit_spent_bn-p.unit_material_cost_bn)).max(0.0)}else{new_cost};
                 let materials_ready=p.unit_work_days>0.0||resources::ALL.into_iter().all(|commodity|resources::stockpile(w,n,commodity)>=x.recipe[commodity.idx()]);
-                let earlier_backlog=p.certified_day.is_none()&&(c.ammunition_products.iter().any(|earlier|earlier.id<p.id&&earlier.stock<earlier.stock_target)||c.products.iter().take_while(|earlier|earlier.id!=p.id).any(|earlier|equipment_pending(earlier)));
+                let earlier_backlog=p.certified_day.is_none()&&(c.refits.iter().any(|p|refit_remaining(p)>0)||c.ammunition_products.iter().any(|earlier|earlier.id<p.id&&earlier.stock<earlier.stock_target)||c.products.iter().take_while(|earlier|earlier.id!=p.id).any(|earlier|equipment_pending(earlier)));
                 let eta=if scheduled!=Some(p.id)||earlier_backlog||p.cancelled_day.is_some()||facility_blocker(w,c).is_some()||c.cash_bn<cash_needed||!materials_ready {None}else{dev_days.map(|d|d.saturating_add(tool_days).saturating_add(unit_days))};
                 v["name"]=serde_json::json!(r.name);v["spec"]=serde_json::json!(r.spec);v["profile"]=serde_json::json!(x);v["source_revision"]=serde_json::json!(r.id);
                 v["platform"]=serde_json::json!(r.spec.platform);v["platform_name"]=serde_json::json!(platform_name(&r.spec.platform));v["family"]=serde_json::json!(product_family(&r.spec.platform));v["unit_label"]=serde_json::json!(unit_label(&r.spec.platform));
@@ -1252,13 +1311,22 @@ pub fn view(w: &WorldState, n: NationId) -> serde_json::Value {
         .collect();
     let sites:Vec<_>=w.districts.iter().filter(|(_,owner)|**owner==n).filter_map(|(district,_)|{let slots=crate::manufacturing::plant_slots(w,district);if slots==0{return None}let used=crate::manufacturing::used_slots(w,n,district);let reason=crate::control::blocker(w,n,district).or_else(||(used>=slots as usize).then(||"All completed Arms Plant slots are assigned.".to_string()));Some(serde_json::json!({"district":district,"slots":slots,"used_slots":used,"available":reason.is_none(),"reason":reason}))}).collect();
     let (protected, ammo_available) = ammo_purchase_funding(w, n);
-    serde_json::json!({"enabled":actor(w,n).is_none(),"reason":actor(w,n),"day":day,"nation":n.code(),"companies":firms,"deliveries":deliveries,"ammunition_deliveries":ammo_deliveries_view(w,n),"ammunition_catalog":equipment::ammo_catalog().iter().map(|d|serde_json::json!({"id":d.id,"name":d.name,"unit_label":if d.unit=="stores"{"store"}else{"round"},"rounds_per_day":d.rounds_per_day,"eligible":ammo_refusal(w,n,d.id).is_none(),"reason":ammo_refusal(w,n,d.id),"converted":ammo_supplier_active(w,n,d.id)})).collect::<Vec<_>>(),"protected_maintenance_bn":protected,"ammo_purchase_available_bn":ammo_available,"max_ammo_stock":MAX_AMMO_STOCK,"sites":sites,"procurement_available_bn":programs::available_bn(w,n,BUDGET_DEFENSE,3),"development_available_bn":programs::available_bn(w,n,BUDGET_DEFENSE,4),"legacy_automatic_procurement":!procurement_active(w,n),"max_stock":MAX_STOCK,"supported_platforms":equipment::PLATFORMS.iter().map(|p|serde_json::json!({"id":p.id,"name":p.name,"family":product_family(p.id),"unit_label":unit_label(p.id)})).collect::<Vec<_>>(),"note":"Domestic equipment and ammunition suppliers share one explicitly capitalized state contractor and its existing Arms Plant. Companies pay for raw inputs and finite stock; equipment also requires paid development and tooling. Government stock purchases settle and arrive before military use. Establishing a contractor stops background automatic catalogue purchases, and licensing an ammunition family stops new automatic public reserve batches for that family. Explicit public work and already paid deliveries continue. Prices and lead times are game assumptions; no historical firm, balance or extra factory is invented."})
+    serde_json::json!({"enabled":actor(w,n).is_none(),"reason":actor(w,n),"day":day,"nation":n.code(),"companies":firms,"refits":refits_view(w,n),"max_active_refits":MAX_ACTIVE_REFITS,"deliveries":deliveries,"ammunition_deliveries":ammo_deliveries_view(w,n),"ammunition_catalog":equipment::ammo_catalog().iter().map(|d|serde_json::json!({"id":d.id,"name":d.name,"unit_label":if d.unit=="stores"{"store"}else{"round"},"rounds_per_day":d.rounds_per_day,"eligible":ammo_refusal(w,n,d.id).is_none(),"reason":ammo_refusal(w,n,d.id),"converted":ammo_supplier_active(w,n,d.id)})).collect::<Vec<_>>(),"protected_maintenance_bn":protected,"ammo_purchase_available_bn":ammo_available,"max_ammo_stock":MAX_AMMO_STOCK,"sites":sites,"procurement_available_bn":programs::available_bn(w,n,BUDGET_DEFENSE,3),"development_available_bn":programs::available_bn(w,n,BUDGET_DEFENSE,4),"legacy_automatic_procurement":!procurement_active(w,n),"max_stock":MAX_STOCK,"supported_platforms":equipment::PLATFORMS.iter().map(|p|serde_json::json!({"id":p.id,"name":p.name,"family":product_family(p.id),"unit_label":unit_label(p.id)})).collect::<Vec<_>>(),"note":"Domestic equipment and ammunition suppliers share one explicitly capitalized state contractor and its existing Arms Plant. Companies pay for raw inputs and finite stock; equipment also requires paid development and tooling. Government stock purchases settle and arrive before military use. Establishing a contractor stops background automatic catalogue purchases, and licensing an ammunition family stops new automatic public reserve batches for that family. Explicit public work and already paid deliveries continue. Prices and lead times are game assumptions; no historical firm, balance or extra factory is invented."})
 }
 
 /// Older saves omit this sparse book. Present state is strict: a malformed
 /// company cannot create money, licensed designs, raw inputs or delivered units.
 pub fn validate_state(w: &WorldState) -> Result<(), String> {
     if w.companies.is_empty() {
+        if w.nations.iter().any(|n| {
+            n.equipment
+                .as_ref()
+                .is_some_and(|s| !s.company_refits.is_empty())
+        }) {
+            return Err(
+                "Company refit reservations require their matching service contracts.".into(),
+            );
+        }
         if w.nations.iter().any(|n| {
             n.equipment
                 .as_ref()
@@ -1307,13 +1375,16 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
             c.tooling_expense_bn,
             c.materials_expense_bn,
             c.fabrication_expense_bn,
+            c.refit_advances_received_bn,
+            c.refit_revenue_bn,
+            c.refit_refunds_bn,
         ]
         .into_iter()
         .all(finite)
             || !near(c.development_revenue_bn, c.development_expense_bn)
             || !near(
-                c.cash_bn,
-                c.capital_received_bn + c.sales_revenue_bn
+                c.cash_bn + refit_locked_capital(c),
+                c.capital_received_bn + c.sales_revenue_bn + c.refit_revenue_bn
                     - c.tooling_expense_bn
                     - c.materials_expense_bn
                     - c.fabrication_expense_bn,
@@ -1422,7 +1493,7 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
                 || r.day > day
                 || !matches!(
                     r.kind.as_str(),
-                    "capitalization" | "development" | "sale" | "ammo_sale"
+                    "capitalization" | "development" | "sale" | "ammo_sale" | "refit_advance"
                 )
                 || r.product.is_some_and(|id| {
                     if r.kind == "ammo_sale" {
@@ -1445,10 +1516,13 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
                 );
             }
             let linked = match r.kind.as_str() {
-                "capitalization" => r.product.is_none() && r.delivery.is_none(),
-                "development" => r.product.is_some() && r.delivery.is_none(),
+                "capitalization" => {
+                    r.product.is_none() && r.delivery.is_none() && r.refit.is_none()
+                }
+                "development" => r.product.is_some() && r.delivery.is_none() && r.refit.is_none(),
                 "sale" => {
                     r.product.is_some()
+                        && r.refit.is_none()
                         && r.delivery.is_some_and(|id| {
                             state.deliveries.iter().any(|d| {
                                 d.id == id
@@ -1462,6 +1536,7 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
                 }
                 "ammo_sale" => {
                     r.product.is_some()
+                        && r.refit.is_none()
                         && r.delivery.is_some_and(|id| {
                             state.ammunition_deliveries.iter().any(|d| {
                                 d.id == id
@@ -1470,6 +1545,18 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
                                     && d.purchased_day == r.day
                                     && d.settled_day.is_none()
                                     && near(d.total_price_bn, r.amount_bn)
+                            })
+                        })
+                }
+                "refit_advance" => {
+                    r.delivery.is_none()
+                        && r.refit.is_some_and(|id| {
+                            c.refits.iter().any(|p| {
+                                p.id == id
+                                    && Some(p.product) == r.product
+                                    && p.booked_day == r.day
+                                    && p.settled_day.is_none()
+                                    && near(p.total_price_bn, r.amount_bn)
                             })
                         })
                 }
@@ -1496,7 +1583,9 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
                         } else if department == 4 {
                             r.kind == "development"
                         } else {
-                            r.kind == "sale" || r.kind == "capitalization"
+                            r.kind == "sale"
+                                || r.kind == "capitalization"
+                                || r.kind == "refit_advance"
                         }
                     })
                     .map(|r| r.amount_bn)
@@ -1564,7 +1653,7 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
         ) || !near(c.sales_revenue_bn, settled_sales)
             || !near(
                 c.materials_expense_bn + c.fabrication_expense_bn,
-                inventory_cost + sold_cost,
+                inventory_cost + sold_cost + refit_incurred_cost(c),
             )
         {
             return Err("Company cumulative accounts do not reconcile with work, inventory and settled sales.".into());
@@ -1619,6 +1708,7 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
         }
     }
     validate_ammo_supplier_state(w, &mut identities)?;
+    validate_company_refits(w, &mut identities)?;
     if identities.last().is_some_and(|id| *id >= state.next_id) {
         return Err("Company identity sequence would overwrite recorded property.".into());
     }
@@ -1725,7 +1815,7 @@ mod tests {
         )
         .unwrap();
         assert_eq!(serde_json::to_value(&w.nations).unwrap(), national);
-        assert_eq!(w.companies.version, VERSION);
+        assert_eq!(w.companies.version, AMMUNITION_VERSION);
         let p = &w.companies.firms[0].ammunition_products[0];
         let product = p.id;
         assert_eq!((p.stock, p.produced_units, p.sold_units), (0, 0, 0));

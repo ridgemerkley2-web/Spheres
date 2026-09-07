@@ -104,13 +104,20 @@ fn equipment_pending(p: &Product) -> bool {
             || p.unit_work_days > 0.0
             || p.unit_inputs.iter().any(|x| *x > 0.0))
 }
-/// The one development job takes priority. After that, one globally ordered
-/// product (equipment OR ammunition) receives the entire day's plant packet.
+/// The one development job takes priority, followed by paid refit contracts.
+/// Then one globally ordered equipment/ammunition product gets the work packet.
 fn scheduled_product(c: &Company) -> Option<u32> {
     c.products
         .iter()
         .find(|p| p.cancelled_day.is_none() && p.certified_day.is_none())
         .map(|p| p.id)
+        .or_else(|| {
+            c.refits
+                .iter()
+                .filter(|p| refit_remaining(p) > 0)
+                .map(|p| p.id)
+                .min()
+        })
         .or_else(|| {
             c.products
                 .iter()
@@ -253,7 +260,7 @@ fn start_ammo_supply(
     let source_revision = ammo_source(w, n, family).unwrap().id.clone();
     let day = clock::absolute_day(w);
     let product = next_id(w);
-    w.companies.version = VERSION;
+    w.companies.version = w.companies.version.max(AMMUNITION_VERSION);
     let c = w
         .companies
         .firms
@@ -582,9 +589,9 @@ fn validate_ammo_supplier_state(w: &WorldState, ids: &mut BTreeSet<u32>) -> Resu
             .and_then(|s| s.ammunition.as_ref())
             .is_some_and(|a| !a.supplier_receipts.is_empty())
     });
-    if state.version < VERSION
+    if state.version < AMMUNITION_VERSION
         && (has_products || has_receipts || !state.ammunition_deliveries.is_empty())
-        || state.version == VERSION && !has_products
+        || state.version == AMMUNITION_VERSION && !has_products
         || state.ammunition_deliveries.len() > MAX_AMMO_DELIVERIES
     {
         return Err(fail());
@@ -679,7 +686,7 @@ fn validate_ammo_supplier_state(w: &WorldState, ids: &mut BTreeSet<u32>) -> Resu
                 .sum::<f64>();
             if !near(
                 c.fabrication_expense_bn,
-                equipment_fabrication + ammunition_fabrication,
+                equipment_fabrication + ammunition_fabrication + refit_fabrication_cost(c),
             ) || c.materials_expense_bn + 1e-12 < ammunition_materials
             {
                 return Err(fail());

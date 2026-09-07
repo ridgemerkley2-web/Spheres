@@ -38,6 +38,12 @@ pub(super) fn parse_company_order(v: &Value) -> Option<CompanyOrder> {
         "company_ammo_purchase" => CompanyOrder::AmmoPurchase {
             company: integer("company")?, product: integer("product")?, quantity: integer("quantity")?, quote: token()?,
         },
+        "company_refit" => CompanyOrder::Refit {
+            company: integer("company")?, source: text("source")?, product: integer("product")?, quantity: integer("quantity")?, quote: token()?,
+        },
+        "company_refit_cancel" => CompanyOrder::CancelRefit {
+            company: integer("company")?, refit: integer("refit")?, quote: token()?,
+        },
         "company_funding" => CompanyOrder::Funding {
             company: integer("company")?, product: integer("product")?, daily_budget_bn: money("daily_budget_mn")?,
         },
@@ -65,6 +71,10 @@ fn company_quote(w: &WorldState, me: NationId, order: &CompanyOrder) -> Option<V
             serde_json::to_value(companies::ammo_supply_quote(w,me,*company,family,*stock_target)).ok(),
         CompanyOrder::AmmoPurchase {company,product,quantity,..} =>
             serde_json::to_value(companies::ammo_purchase_quote(w,me,*company,*product,*quantity)).ok(),
+        CompanyOrder::Refit {company,source,product,quantity,..} =>
+            serde_json::to_value(companies::refit_quote(w,me,*company,source,*product,*quantity)).ok(),
+        CompanyOrder::CancelRefit {company,refit,..} =>
+            serde_json::to_value(companies::refit_cancel_quote(w,me,*company,*refit)).ok(),
         _ => None,
     }
 }
@@ -82,6 +92,7 @@ fn company_preview(w: &WorldState, me: NationId, session: &str, command: &Value,
         CompanyOrder::Inventory {..} => ("Set company stock target", "Set a finite finished-stock target. The state company uses its own cash and facility to replenish it; this does not authorize government equipment purchases."),
         CompanyOrder::CancelDevelopment {..} => ("Cancel unfinished development", "End remaining development work. Completed work and its payment remain recorded; cancellation does not refund spent engineering and trials costs."),
         CompanyOrder::AmmoSupply {..}|CompanyOrder::AmmoInventory {..}|CompanyOrder::AmmoPurchase {..} => return company_ammunition_preview(w,me,session,command,order),
+        CompanyOrder::Refit {..}|CompanyOrder::CancelRefit {..} => return company_refit_preview(w,me,session,command,order),
     };
     let mut action = checked(w,me,label,confirmed);
     let mut blockers: Vec<String> = action["reason"].as_str().map(str::to_string).into_iter().collect();
@@ -307,14 +318,18 @@ fn company_board(w: &WorldState, me: NationId) -> Value {
         let district=company_text(firm,"district");
         let block=firm["facility_blocker"].as_str();
         let stock: u64=firm["products"].as_array().unwrap_or(&empty).iter().map(|p|company_count(p,"stock")).sum();
+        let service_escrow:f64=firm["refits"].as_array().unwrap_or(&empty).iter().map(|r|company_amount(r,"escrow_bn")).sum();
+        let service_labor:f64=firm["refits"].as_array().unwrap_or(&empty).iter().map(|r|company_amount(r,"working_capital_locked_bn")).sum();
         firm_rows.push(json!({"id":id,"name":firm["name"],"status":if block.is_some(){"Facility unavailable"}else{"State contractor"},
             "detail":block.unwrap_or("A separate state-owned business. Its unsold stock adds no military strength and incurs no government fleet maintenance."),
             "metrics":[metric("Specialty","Ground vehicles, tactical aircraft and ammunition"),metric("Company cash",company_money(company_amount(firm,"cash_bn"))),
                 metric("Awaiting public settlement",company_money(company_amount(firm,"receivable_bn"))),metric("Available equipment",stock),metric("Company inventory at cost",company_money(company_amount(firm,"inventory_cost_bn"))),
-                metric("Leased site",spheres_sim::districts::name_of(district).unwrap_or(district)),metric("Physical capacity","One existing arms-plant slot")],
+                metric("Leased site",spheres_sim::districts::name_of(district).unwrap_or(district)),metric("Physical capacity","One existing arms-plant slot"),
+                metric("Customer refit payments held",company_money(service_escrow)),metric("Company labor capital reserved",company_money(service_labor))],
             "costs":[cost("Capital received",company_amount(firm,"capital_received_bn"),"cumulative investment"),
                 cost("Development receipts",company_amount(firm,"development_revenue_bn"),"cumulative engineering revenue"),
                 cost("Equipment and ammunition sales",company_amount(firm,"sales_revenue_bn"),"settled sales revenue"),
+                cost("Refit service fees earned",company_amount(firm,"refit_revenue_bn"),"only completed conversions · held advances excluded"),
                 cost("Operating and inventory costs",company_amount(firm,"expenses_bn"),"cumulative company payments; includes unsold inventory")],
             "actions":firm_actions}));
         for p in firm["products"].as_array().unwrap_or(&empty) {
@@ -393,7 +408,8 @@ fn company_board(w: &WorldState, me: NationId) -> Value {
             {"label":"Development","value":"Government funds engineering and trials","detail":"The design becomes certified; prototypes do not enter service."},
             {"label":"Manufacturing","value":"Company funds its own finite stock","detail":"Capacity, cash and inputs constrain restocking."},
             {"label":"Purchase","value":"Government buys finished equipment and ammunition","detail":"Vehicle purchases use procurement; ammunition uses Maintenance & supply after fleet upkeep. Delivery makes each purchase available."}],
-        "warnings":warnings,"actions":actions},"firms":firm_rows,"products":product_rows,"deliveries":deliveries})
+        "warnings":warnings,"actions":actions},"firms":firm_rows,"products":product_rows,"deliveries":deliveries,
+        "service_overview":company_service_overview(),"services":company_refit_rows(w,me,&raw)})
 }
 
 #[cfg(test)]

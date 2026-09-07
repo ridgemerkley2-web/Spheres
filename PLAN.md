@@ -11,7 +11,7 @@ mixed-family browser checks. The same paid state contractor develops frozen mode
 stock and sells completed units into government deliveries, sharing one existing
 Arms Plant slot. [COMPANIES.md](COMPANIES.md) records the workflow and evidence.
 
-The current continuation adds company-made ammunition for the existing 23 store
+The previous accepted continuation added company-made ammunition for the existing 23 store
 families. It is accepted through final Rust/browser verification, a 955-check UI
 batch and a final focused 110-check equipment run. Companies buy their inputs and build finite stock;
 government purchases use Maintenance & supply after protecting actual upkeep,
@@ -26,8 +26,19 @@ Establishment stops background automatic catalogue buying while explicit public
 work and paid orders retain ownership. Tank-only company books keep save envelope
 2; the first non-tank contract upgrades to company version 2/save envelope 3.
 The first ammunition supply upgrades to company version 3/save envelope 4.
-Unused companies remain sparse. Next address supplier services, imports,
-AI procurement and sourced national firms. No new aircraft
+Unused companies remain sparse. The current continuation adds fixed-price
+manufacturer refits for existing custom vehicles and aircraft: review exact
+source/target models, reserve real source units, hold the public advance in
+escrow, use company capital and return whole conversions. Cancellation releases
+and refunds only unstarted units; a started conversion finishes. The existing
+plant serves development, then refits, then stock. The first service upgrades to
+company ledger 4/save envelope 5, preserving earlier ownership and sparse unused
+state. The full UI batch passes 964 and the web suite passes 255 with 3 ignored;
+Rust integration totals 1,208 passed/71 ignored and the final release build
+passes. Browser acceptance covers completed ground conversion after
+save/restart and partial cancellation, exact aircraft review, narrow layout and
+empty error/warning logs. Imports, AI procurement and
+sourced national firms remain later work. No new aircraft
 mission, free factory, bomb stock or inherited-equipment conversion is implied.
 
 **Where this came from.** Rewritten 2026-08-18 from a directed audit: ten

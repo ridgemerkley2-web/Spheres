@@ -385,6 +385,38 @@ sparse credit ledger moves with inherited technology, starts at zero for older
 saves, and excludes no genuine new research. This semantic change is shared by
 daily and monthly simulation; calibration tolerances and historical data stay put.
 
+## Current extension — manufacturer refit services (2026-09-07; accepted)
+
+A certified custom source holding may contract conversion to a compatible exact
+revision licensed by its domestic manufacturer. Same-chassis/airframe and main
+ground-weapon constraints remain. The full fixed materials/labor-plus-margin
+quote uses Defense procurement and reserves source units on acceptance. After
+settlement, unearned advance escrow remains separate from company cash. Company
+capital buys actual parts and locks the started unit's labor; each whole returned
+conversion earns its fixed fee. The one leased plant serves development, refits,
+then stock. Source age and upkeep continue during withdrawal; returned units
+acquire target specs and upkeep without a second delivery or new equipment.
+
+Cancellation releases only unstarted units and their fixed fee; a started unit
+finishes. Pre-settlement refunds wait for the original payment to settle and do
+not restore spending authority. Government holdings, public and company refits,
+retirement and fleet targets must count those shared reservations once.
+
+Companies and In service show the same contract records. Reviewed source/target
+specifications and server-compiled profiles feed one read-only 3D viewer without
+mutating the draft. Quantity and target changes require a fresh immutable quote.
+The first manufacturer service upgrades to company ledger 4 and
+`spheres-equipment-save` envelope 5. Sparse equipment-state-8 claims match company
+contracts and conserved source reservations. Earlier books remain valid and
+refit property cannot hide inside an older envelope. The full non-browser Node
+batch passes 964, including 118 equipment UI checks; the web suite passes 255
+with 3 ignored. Simulator/CLI passes 953 with 68 ignored, giving 1,208 passed/71
+ignored across Rust integration; the final release build passes. Browser booking,
+save/restart, partial cancellation and exact ground return pass. Aircraft model
+and price/upkeep review, narrow layout and empty console logs complete acceptance
+as recorded in
+[COMPANIES.md](COMPANIES.md#verification).
+
 ## Current extension — company ammunition procurement (2026-09-07; accepted)
 
 The domestic supplier route now includes all 23 existing ammunition families,

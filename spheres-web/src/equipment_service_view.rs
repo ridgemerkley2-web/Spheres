@@ -34,7 +34,7 @@ fn equipment_service_board(w:&WorldState,me:NationId)->Value {
     let mut warnings=vec![];
     if delivered>0.0&&recorded.is_none(){warnings.push("A support settlement has not yet been recorded for this custom fleet. Review the maintenance allocation before advancing.".to_string());}
     if delivered>0.0&&recorded.is_some_and(|s|s.maintenance_fraction<0.95){warnings.push("The last maintenance settlement did not fully support this fleet. Review Defense maintenance before expanding it; a higher allocation leaves less for other departments.".to_string());}
-    if reserved>0 {warnings.push(format!("{reserved} delivered vehicles are withdrawn for refit. They cannot deploy or be retired until conversion completes or their refit is cancelled."));}
+    if reserved>0 {warnings.push(format!("{reserved} delivered vehicles are withdrawn for refit. They cannot deploy or be retired until conversion completes or their reservation is released. Manufacturer cancellation releases only unstarted vehicles; a started vehicle finishes under its contract."));}
     let mut metrics=vec![metric("Delivered custom vehicles",delivered),metric("Available for operations",available),metric("Withdrawn for refit",reserved),metric("Completed vehicles in transit",incoming),metric("New vehicles awaiting fabrication",fabrication),metric("Current custom maintenance requirement",service_money(requirement))];
     if let Some(s)=recorded {
         metrics.push(metric("Last settled maintenance coverage",format!("{:.1}%",s.maintenance_fraction*100.0)));
@@ -43,6 +43,7 @@ fn equipment_service_board(w:&WorldState,me:NationId)->Value {
     if let Some(days)=deliveries.iter().map(|o|o.due_days.unwrap_or_else(||spheres_sim::clock::days_for_months(w,o.due))).min(){metrics.push(metric("Next delivery",format!("{days} days remaining on its delivery counter")));}
     let mut actions=vec![nav("Review maintenance funding",json!({"action":"budget","ministry":"defense","department":2}))];
     if incoming>0.0||fabrication>0||reserved>0{actions.push(nav("Follow production and deliveries",json!({"action":"equipment","tab":"production"})));}
+    if !w.companies.firms.is_empty(){actions.push(nav("Review manufacturer service contracts",json!({"action":"equipment","tab":"companies"})));}
     actions.push(nav(if s.is_some_and(|s|!s.revisions.is_empty()){"Open equipment library"}else{"Design your first vehicle"},json!({"action":"equipment","tab":if s.is_some_and(|s|!s.revisions.is_empty()){"library"}else{"designer"}})));
     json!({"title":"Your fleet in service","status":if delivered<=0.0&&incoming>0.0{"Awaiting delivery"}else if delivered<=0.0{"No custom vehicles delivered"}else if available==0{"Fleet withdrawn for refit"}else if !warnings.is_empty(){"Review fleet support"}else{"Fleet in service"},
         "detail":"Delivered holdings include refit reservations; available vehicles exclude them. Transit and unfinished production add no fielded capability. Maintenance requirements reflect current holdings, while coverage and payments describe the last settlement. National composition includes inherited equipment and recorded support; these are operational role effects, not per-vehicle ratings or battle predictions.",

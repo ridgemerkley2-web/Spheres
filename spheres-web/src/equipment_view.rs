@@ -13,6 +13,7 @@ include!("equipment_ammunition_view.rs");
 include!("equipment_ammunition_reserves_view.rs");
 include!("company_view.rs");
 include!("company_ammunition_view.rs");
+include!("company_refit_view.rs");
 
 fn metric(label:&str,value:impl serde::Serialize)->Value {json!({"label":label,"value":value})}
 fn cost(label:&str,amount:f64,period:&str)->Value {json!({"label":label,"amount_bn":amount,"period":period})}
@@ -110,9 +111,10 @@ pub fn view(w:&WorldState,me:NationId,session:&str)->Value {
         }
         for h in &n.arsenal.held {
             let Some(id)=h.design_id.as_deref() else{continue;};let Some(r)=s.revisions.get(id)else{continue;};
-            let options:Vec<_>=s.revisions.values().filter(|t|t.id!=r.id&&t.certified_day.is_some()&&t.spec.platform==r.spec.platform&&t.spec.components.get("armament")==r.spec.components.get("armament"))
+            let options:Vec<_>=s.revisions.values().filter(|t|t.id!=r.id&&t.certified_day.is_some()&&t.spec.platform==r.spec.platform&&t.spec.components.get("armament")==r.spec.components.get("armament")&&!company_supplies_revision(w,me,&t.id))
                 .map(|t|json!({"value":t.id,"label":t.name,"enabled":true})).collect();
             let mut actions=vec![];
+            if let Some(action)=company_refit_action(w,me,id,None,1){actions.push(action);}
             if let Some(target)=options.first(){let site_options=sites(w,me);let site=site_options.first().map(|s|s["value"].clone()).unwrap_or(json!(""));
                 actions.push(intent("Review compatible refit",json!({"kind":"equipment_refit","source":id,"target":target["value"],"district":site,"quantity":1,"daily_budget_mn":0.1}),vec![
                     json!({"key":"target","label":"Target revision","type":"select","value":target["value"],"options":options}),
@@ -120,7 +122,7 @@ pub fn view(w:&WorldState,me:NationId,session:&str)->Value {
                     json!({"key":"quantity","label":"Vehicles to withdraw for refit","type":"number","value":1,"min":1,"max":eq::MAX_BATCH,"step":1}),budget_input(0.0001)]));
             }
             actions.push(retirement_action(w,me,id));
-            lots.push(json!({"id":id,"name":r.name,"status":"In service","detail":"Only delivered vehicles contribute. Reserved refit vehicles are withdrawn until conversion or cancellation.",
+            lots.push(json!({"id":id,"name":r.name,"status":"In service","detail":"Only delivered vehicles contribute. Reserved refit vehicles remain withdrawn until conversion completes or their reservation is released.",
                 "metrics":[metric("Vehicles held",h.units),metric("Available for operations",spheres_sim::arsenal::available_design_units(h)),metric("Reserved for refit",h.refit_reserved),metric("Age",format!("{:.1} months",h.age)),metric("Condition",format!("{:.1}%",spheres_sim::arsenal::holding_condition(n,h)*100.0)),metric("Last settled maintenance coverage",if s.last_tick_day.is_some()||s.maintenance_plan.as_ref().is_some_and(|p|p.receipt.is_some()){format!("{:.0}%",s.maintenance_fraction*100.0)}else{"Not yet settled".into()})],
                 "costs":[cost("Maintenance requirement",r.profile.maintenance_bn_day*h.units,"per day")],"actions":actions}));
         }

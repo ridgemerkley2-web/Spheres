@@ -17,6 +17,21 @@ browser checks. The Ammunition supplier shelf offers
 finished mission stores and paid arrivals into the existing magazine. Authorizing
 company supply creates no bombs; an aircraft purchase still includes none.
 
+Manufacturer refit services are implemented and accepted. A company holding
+an aircraft's certified compatible target license can convert available custom
+aircraft under a fixed-price procurement contract. Review all eight source and
+target specifications, exact 3D models, downtime, queue and maintenance effects.
+Aircraft stay government-owned, continue aging and requiring source upkeep,
+and return as whole target revisions; the service grants no bombs or new aircraft.
+Only untouched aircraft can be cancelled for a fixed-fee refund after settlement;
+a started conversion finishes. Switching airframes still requires new manufacture.
+The full UI batch passes 964 and the web suite passes 255 with 3 ignored; final
+simulator/CLI checks pass 953 with 68 ignored and the release build passes.
+Browser acceptance includes the exact three-aircraft service price, selected-quantity
+upkeep and frozen-model comparison, ground completion after save/restart and
+partial cancellation, narrow layout and empty error/warning logs. Evidence is in
+[COMPANIES.md](COMPANIES.md#verification).
+
 ## Build and support an aircraft
 
 Choose **Light attack aircraft** or **Tactical strike aircraft** in the Designer.
@@ -163,6 +178,10 @@ Authorizing the first company ammunition family upgrades to company book 3/save
 envelope 4, with sparse matched supplier receipts in the existing ammunition
 state. The earlier company versions remain until that action. The new ammunition
 route has its own recorded integration acceptance in [COMPANIES.md](COMPANIES.md#verification).
+Manufacturer services use company ledger 4/save envelope 5 from the first refit,
+with preserved source/target identity, held funds and sparse government
+reservations. Aircraft profiles remain unchanged and later actions never
+downgrade the ledger.
 
 Focused simulation coverage checks pure previews, research and installation
 refusals, fully supplied component effects, both paid aircraft lifecycles,

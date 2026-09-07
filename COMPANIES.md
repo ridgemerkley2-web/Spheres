@@ -3,7 +3,8 @@
 7 September 2026 · the accepted domestic route covers all nine implemented ground
 platforms and both tactical aircraft. Company-made ammunition now uses the same
 contractor and reviewed stock purchases. That extension is accepted through final
-Rust, UI and browser checks. This guide describes the implemented domestic mechanics,
+Rust, UI and browser checks. The current continuation adds manufacturer-run
+refit services. Simulator, web, UI, release and browser acceptance checks pass. This guide describes the implemented domestic mechanics,
 not a claim that the full [company roadmap](COMPANIES_AND_PROCUREMENT_PLAN.md)
 has shipped.
 
@@ -53,11 +54,60 @@ unfinished design. Viewpoint, finish and model exports create no orders.
 Use **All equipment**, **Ground vehicles** or **Aircraft** to filter model offers
 and the 3D inspection. The filter uses the model's served family and platform
 catalogue, preserves original purchase identities and leaves supplier accounts
-and paid deliveries visible. Search can further narrow the displayed records.
+and paid deliveries and refit contracts visible. Search can further narrow the displayed records.
 
 With ammunition products present, the market shows **All stock** and adds an
 **Ammunition** filter. It shows physical supply offers without inventing a vehicle
 model. Exact vehicle/aircraft previews and unfinished drafts remain separate.
+
+## Manufacturer refit services
+
+Manufacturer refit services are implemented and accepted. Open **In service** and choose
+**Review manufacturer refit** on an available custom model. The contractor must
+hold a certified license for a compatible target revision. This uses existing
+conversion rules: the same chassis/airframe and main ground weapon, with an
+actual component change. It adds no chassis, models, firms or imported licenses.
+
+1. Choose the certified manufacturer upgrade and 1–1,000 available whole vehicles
+   or aircraft, within the source holding. Reserved units and incoming purchases
+   cannot be used twice. Compare the source and target's exact specifications and
+   frozen profiles, then inspect either model in the read-only 3D viewer. This
+   does not replace an unfinished designer draft.
+2. Review the fixed service price, manufacturer, quantity temporarily unavailable,
+   selected-unit upkeep before and after, national withdrawal effects, company
+   capital needed, shared queue and
+   conditional return estimate. The service quote prices conversion materials
+   and labor plus the existing 15% margin; a new vehicle's fabrication price is
+   not the service invoice. Review again after changing target or quantity.
+3. Confirm the full **Defense procurement** advance. Source vehicles remain
+   government property, reserve immediately and cannot deploy, retire or enter
+   another refit. They continue aging and requiring source-model maintenance.
+   After fiscal settlement, the advance sits in contract escrow, separate from
+   company spending cash and earned revenue.
+4. Follow **Refit service contracts** in In service or Companies. The company pays
+   for actual replacement inputs and locks its own labor funding for the unit
+   it starts. Its one leased plant serves development first, refits second and
+   equipment/ammunition stock last. Earlier work, access, parts and company cash
+   can delay progress; no dated estimate is invented when those conditions are
+   unresolved.
+5. Each complete conversion returns immediately to the same Arsenal as the exact
+   target revision, retaining age. That returned unit earns its fixed company
+   fee and begins using target-model upkeep. There is no extra seven-day shipping
+   stage, newly created vehicle, free ammunition or direct GDP bonus.
+
+**Cancel unstarted vehicles** releases only untouched source units and refunds
+only their fixed fees. A vehicle already started remains reserved and finishes
+using its locked labor funding; completed upgrades remain upgraded. A cancellation
+before fiscal settlement releases untouched vehicles now but waits for the
+original payment to settle before refund. The refund returns treasury cash or
+retires debt once; it does not recreate departmental spending authority. The
+review and contract card distinguish returned, cancelled, still withdrawn and
+started quantities, held funds, earned fees and refund status.
+
+Existing paid public refits retain their own funding, progress and cancellation
+rules. Company services and public work share government source reservations;
+neither may reserve or retire the same vehicle twice. Public ammunition batches,
+company ammunition purchases and saved reserve preferences remain intact.
 
 ## Supported equipment
 
@@ -89,8 +139,8 @@ tooling stage or physical ammunition is granted by authorizing supply.
 
 Set a company buffer of 1–1,000,000 whole rounds or mission stores initially;
 later 0–1,000,000 is allowed. Zero stops restocking and retains unsold stock.
-Equipment development gets first use of the daily plant packet; otherwise the
-contractor serves equipment and ammunition in product order. There is no second
+Equipment development gets first use of the daily plant packet, then contracted
+refits. Equipment and ammunition stock follow in product order. There is no second
 ammunition factory or simultaneous free output.
 
 Offers explain compatible models and the reserve gap after national stores,
@@ -176,7 +226,13 @@ company balances. A loader refuses a mixed-family book disguised as an older
 envelope rather than silently discarding its property or misclassifying aircraft.
 Starting company ammunition supply upgrades to **company version 3/save envelope
 4**, retaining the earlier corporate property and matched ammunition receipts.
-Without that action, tank-only and mixed-equipment books retain their earlier versions.
+Without that action or a refit, tank-only and mixed-equipment books retain their
+earlier versions. The first manufacturer refit advances to **company ledger
+version 4/save envelope version 5**, saving the service contracts, held escrow,
+reserved company labor, refunds and matching government source claims. Later
+ammunition or equipment actions never downgrade that version. Company refit
+property in an older envelope is refused. Equipment-state version 8 remains
+unchanged and the new government claims stay sparse when unused.
 These are separate from equipment-state and frozen-profile versions. An unused
 company book remains absent, preserving legacy and equipment-only save shapes.
 
@@ -189,15 +245,66 @@ history. New design actions for all eleven implemented platforms lead to the
 supplier route; existing explicit public work retains its path. Establishment ends only the
 background automatic catalogue buyer, not those explicit or already paid orders.
 
-The wider conversion remains unfinished: supplier refit services,
-broader inherited-equipment migration, AI buyers,
+The manufacturer-refit extension above is implemented and accepted. The wider conversion
+remains unfinished: broader inherited-equipment migration, AI buyers,
 foreign purchases, exports and optional standing purchase plans come later.
 Private/historical firms, competition, civilian companies, lending and corporate
 failure rules need their own data and accounting work.
 
 ## Verification
 
-**Current ammunition-supplier expansion: accepted.** The final release build,
+**Current manufacturer-refit extension: accepted.**
+The final release build, simulator, web, UI and browser checks pass.
+
+| Check | Result |
+| --- | --- |
+| Full release simulator and CLI integration suites | 953 passed; 68 ignored |
+| Full Rust web suite | 255 passed; 3 ignored |
+| Final focused refit API checks after wording corrections | 4 passed |
+| Full non-browser Node batch | 964 passed, including 118 equipment UI checks |
+| Focused lifecycle audit | 13 passed including the explicit QA exporter; 12 ordinary checks overlap the simulator suite |
+| Focused source-reservation regressions | 5 passed; overlap the simulator suite |
+
+Combined Rust integration totals are **1,208 passed, 71 ignored**. Focused reruns
+and the explicit exporter are not added to full-suite totals. Eight new UI refit
+regressions cover original contract action identities, optional/empty service
+records, fixed-price and cancellation reviews, exact source/target aircraft and
+ground specs, draft preservation, stale quotes, unknown-model safety and the
+transaction bridge. The Node evidence log is `work/company-refit-node-all.log`
+in the parent workspace.
+
+Browser checks reviewed three IFVs for **$1.111m**, switched between the exact
+before/after 3D models and compared observation **1 → 1.12** and the model's daily
+maintenance **$413 → $433**. Changing quantity required a fresh quote. Booking
+three, saving before fiscal settlement and restarting the final executable
+preserved the contract. Seven actual daily clicks reached **6/40 conversion work
+days**, with **$1.111m held escrow** and **$273.7k company labor reserved**.
+Cancelling two untouched IFVs refunded **$740.7k** and left one started conversion
+active. At 390×844, the page measured 390 pixels and the dialog 381, with no
+horizontal overflow.
+
+Final release SHA256:
+`9F7BB228B3DD4D63DFC084965BEA04BB3D2086F26B10744DAECC8E6C7A30097C`.
+Saving the partially cancelled active contract and restarting the final
+executable again preserved its progress and locked funds. **34 further actual
+daily browser advances** returned exactly one upgraded IFV on **31 October
+1990**. The final Arsenal held **three source IFVs and one upgraded IFV**, both
+cohorts aged **130.0 months**, with no refit reservations. Contract escrow and
+reserved labor were zero; earned service revenue was **$370.4k** and the refund
+remained **$740.7k**. The completed contract with its cancelled remainder showed
+100% progress.
+
+Aircraft acceptance reviewed three light-attack planes for **$2.778m total /
+$925.9k each**, with selected-quantity upkeep **$7.62k → $8.13k per day**.
+The exact aircraft 3D model, frozen target fuel/store specifications and aircraft
+profile comparisons were displayed. This was a reviewed aircraft service offer;
+the ground contract above supplied the browser completion and cancellation test.
+Desktop and 390×844 inspection passed. Final browser error and warning logs were
+both empty. Earlier accepted milestones remain recorded separately below.
+
+### Previously accepted ammunition-supplier expansion
+
+**Ammunition-supplier expansion: accepted.** The final release build,
 simulator, web, UI and browser checks pass.
 
 | Check | Result |

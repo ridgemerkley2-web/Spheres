@@ -44,6 +44,18 @@
 .eq-company-specs dt { color:#a9c0c9; }
 .eq-company-specs dd { margin:0; text-align:right; color:#dce4d5; }
 .eq-company-section { margin-top:30px; }
+.eq-company-services { margin:24px 0; padding-top:20px; border-top:1px solid #adc6c544; }
+.eq-refit-review { margin:20px 0; min-width:0; }
+.eq-refit-specs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:14px 0; }
+.eq-refit-specs .eq-panel { min-width:0; padding:14px; }
+.eq-refit-specs h3,.eq-refit-specs p { overflow-wrap:anywhere; }
+.eq-refit-parts { margin:12px 0 0; display:grid; gap:10px; }
+.eq-refit-parts div { display:grid; gap:3px; }
+.eq-refit-parts dt { color:var(--eq-muted); font-size:12px; }
+.eq-refit-parts dd { margin:0; overflow-wrap:anywhere; font-size:13px; }
+.eq-refit-model-switch { display:flex; flex-wrap:wrap; gap:8px; }
+.eq-refit-model-switch button[aria-pressed="true"] { border-color:#e6c584; background:#534835; color:#fff2d1; }
+@media(max-width:680px) { .eq-refit-specs { grid-template-columns:minmax(0,1fr); }.eq-refit-model-switch { width:100%; }.eq-refit-model-switch button { flex:1; } }
 .eq-ammo-market { margin:24px 0 20px; padding:22px; border:1px solid #c7b88b59; border-radius:12px; background:linear-gradient(120deg,#3441389c,#1b303c); }
 .eq-ammo-market>.eq-section-heading { align-items:start; }
 .eq-ammo-market>.eq-section-heading p:not(.eq-eyebrow) { max-width:760px; }

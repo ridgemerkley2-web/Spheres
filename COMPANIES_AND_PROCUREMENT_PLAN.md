@@ -4,7 +4,9 @@
 Rust, UI and browser checks. Its extension to all nine ground platforms and both
 tactical aircraft is accepted through simulator, web, UI and mixed-family browser
 checks. Company-made ammunition is now accepted through final Rust, UI and browser
-verification; the broader company roadmap remains future work.
+verification. Manufacturer refit services are also accepted through simulator,
+web, UI, release and browser checks; the broader company roadmap remains
+future work.
 
 Ridge wants the country to design equipment, put it through development with a
 manufacturer, and buy the manufacturer's finished stock. Important national
@@ -18,10 +20,11 @@ contracted model development, company-funded stock, reviewed purchase and delive
 [COMPANIES.md](COMPANIES.md) is the current player/mechanics guide and verification
 status. This implements a bounded first route, not the entire foundation or all
 acceptance gates below. Coverage of all eleven existing designer platforms is the
-accepted portion of step 4. Company ammunition is its current integration milestone.
-Private/historical firms, inherited-equipment migration,
-refit services, imports, AI procurement and civilian-company
-economics remain unimplemented.
+accepted portion of step 4. Company ammunition is accepted; manufacturer refits
+now extend that step through fixed-price reviewed services, conserved source
+vehicles and company-funded conversion. Private/historical firms, inherited-equipment
+migration, imports, AI procurement and civilian-company economics remain
+unimplemented.
 
 ## The player experience
 
@@ -46,7 +49,8 @@ company manufactures stock → purchase → delivery → service.**
    the country receives an owned delivery. Only arrival adds usable equipment.
 6. **Support:** existing service, ammunition compatibility, upgrades and retirement
    continue. Company-made ammunition now uses reviewed stock purchases; supplier
-   refit services remain later work.
+   refit services are implemented and accepted: choose a certified compatible target, hold
+   a fixed-price advance and track whole conversions returning to service.
 
 Illustrative interaction, not starting data: a company has eight of your tank
 model ready and the fleet needs twenty. Buy eight now or wait for restocking.
@@ -243,7 +247,19 @@ use company cash and the shared plant. Maintenance & supply funds purchases afte
 protecting actual upkeep; settlement and seven accessible delivery days put exact
 stores into the national magazine. Existing public batches and reserve preferences
 remain, with automatic public batches stopped only for converted families.
-Supplier refits, standing stock purchases, imports and AI procurement remain planned.
+Supplier refits are implemented and accepted. They reserve existing
+custom source units, hold a fixed-price procurement advance separately from
+company cash and earn service revenue only on a whole-unit return. Company
+capital funds real replacement inputs and reserved labor. Cancellation releases
+only untouched units and refunds their fixed fee after original settlement; a
+started conversion finishes. The existing plant serves development, refits,
+then stock. Source/target comparisons and service contracts are visible in
+Companies and In service. Full UI verification passes 964 and the web suite
+passes 255 with 3 ignored. Simulator/CLI passes 953 with 68 ignored and the final
+release build passes. Completed ground return after save/restart and partial
+cancellation, exact aircraft review, narrow layout and empty console logs complete
+browser acceptance in [COMPANIES.md](COMPANIES.md#verification).
+Standing stock purchases, imports and AI procurement remain planned.
 
 Carry the same company/purchase path across implemented ground and air equipment.
 Add company-made ammunition, paid refit services and optional stock-buying plans.
@@ -293,7 +309,11 @@ balances or paid work. Older envelopes cannot contain mixed-family company
 property. Unused companies remain sparse and preserve the earlier
 legacy/equipment-only save shapes. Inherited-equipment conversion remains future
 work. First company ammunition supply upgrades to book 3/save envelope 4, retaining
-earlier corporate property and adding matched ammunition arrival receipts.
+earlier corporate property and adding matched ammunition arrival receipts. The
+first manufacturer refit advances to company ledger 4/save envelope 5, retaining
+held escrow, company labor locks, refunds and matching source reservations.
+An older envelope cannot contain that service property; unused claims stay sparse
+in equipment-state version 8. Later actions never downgrade the company ledger.
 
 For implementation, require the relevant lifecycle, accounting and supply tests,
 full Rust workspace checks, affected UI checks, and browser verification of

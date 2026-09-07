@@ -263,6 +263,15 @@ pub struct DesignDraft {
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub struct CompanyRefitClaim {
+    pub company: u32,
+    pub source_revision: String,
+    pub target_revision: String,
+    pub quantity: u32,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct EquipmentState {
     pub version: u32,
     pub next_id: u32,
@@ -292,6 +301,8 @@ pub struct EquipmentState {
     pub ammunition_reserves: BTreeMap<String, AmmoReservePlan>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub supply_automation: Option<EquipmentSupplyAutomation>,
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub company_refits: BTreeMap<u32, CompanyRefitClaim>,
 }
 impl Default for EquipmentState {
     fn default() -> Self {
@@ -319,6 +330,7 @@ impl Default for EquipmentState {
             ammunition: None,
             ammunition_reserves: BTreeMap::new(),
             supply_automation: None,
+            company_refits: BTreeMap::new(),
         }
     }
 }
@@ -917,7 +929,7 @@ pub fn start_production(
     s.projects.push(job);
     Ok(number)
 }
-fn refit_terms(
+pub(crate) fn refit_terms(
     source: &DesignRevision,
     target: &DesignRevision,
 ) -> Result<(f64, u32, [f64; 12]), String> {
@@ -1735,6 +1747,14 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
                     .ok_or_else(|| fail("refit reservation overflow"))?;
             }
         }
+    }
+    for (id,claim) in &s.company_refits {
+        if *id==0 || claim.company==0 || claim.quantity==0 || claim.quantity>MAX_BATCH
+            || certified(n,&claim.source_revision).and_then(|a|certified(n,&claim.target_revision).and_then(|b|refit_terms(a,b))).is_err() {
+            return Err(fail("invalid company refit reservation"));
+        }
+        let amount=reserved.entry(&claim.source_revision).or_default();
+        *amount=amount.checked_add(claim.quantity).ok_or_else(||fail("company refit reservation overflow"))?;
     }
     for h in &n.arsenal.held {
         if let Some(id) = h.design_id.as_deref() {

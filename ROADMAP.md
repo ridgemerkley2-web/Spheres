@@ -1,5 +1,33 @@
 # SPHERES Roadmap
 
+## Current implementation — manufacturer refit services (2026-09-07; accepted)
+
+Existing custom ground vehicles and tactical aircraft can enter a reviewed
+fixed-price conversion at a domestic contractor that holds the certified target
+license. The government retains ownership and reserves the source quantity;
+the advance settles into held escrow. The company purchases replacement inputs
+and reserves its own labor funding, earning a fee only when a whole conversion
+returns at its existing age. Development takes priority over refits, which take
+priority over stock in the same leased plant. No extra delivery stage or factory
+is created. Cancel only unstarted units; started work finishes and any refund
+waits for original settlement without restoring procurement authority.
+
+In service and Companies share service contracts, exact source/target specs,
+read-only model inspection, server profile and upkeep comparisons, withdrawal
+consequences, conditional estimates and cancellation reviews. Existing public
+work and ammunition flows retain their controls. The first service upgrades to
+company ledger 4/save envelope 5, retaining contracts, escrow, reserved labor,
+refunds and government source claims; untouched books keep their earlier versions.
+The full non-browser Node batch passes 964, including 118 equipment UI checks.
+The web suite passes 255 with 3 ignored; simulator/CLI passes 953 with 68 ignored,
+for combined Rust integration of 1,208 passed/71 ignored. The final release build
+passes. Browser booking, save/restart, progress, partial cancellation and narrow
+layout are verified. The started IFV completed after a second save/restart,
+retaining age and exactly accounting for earned revenue and refunded untouched
+units. Exact aircraft review passed and browser error/warning logs were empty.
+The milestone is accepted; see
+[COMPANIES.md](COMPANIES.md#verification).
+
 ## Current implementation — company ammunition stock and purchases (2026-09-07; accepted)
 
 The existing domestic contractor can supply all 23 ammunition families after a
@@ -25,8 +53,8 @@ and mission-store purchases, save/restart before settlement, exact-family arriva
 unchanged ground activation, filters and narrow-screen inspection. The final
 release build and evidence are recorded in
 [COMPANIES.md](COMPANIES.md#verification). [AMMUNITION.md](AMMUNITION.md) records
-the detailed constraints. Supplier refits, imports, AI buyers and sourced firms
-remain future work.
+the detailed constraints. Accepted manufacturer refits are recorded in the entry
+above; imports, AI buyers and sourced firms remain future work.
 
 ## Current implementation — suppliers for ground vehicles and tactical aircraft (2026-09-07; accepted)
 

@@ -14,6 +14,18 @@ run passes 110. Rust integration passes 1,192 with 70 ignored.
 [COMPANIES.md](COMPANIES.md#verification) records
 this evidence separately from the accepted vehicle/aircraft supplier milestone.
 
+Manufacturer refit services are implemented and accepted. They share
+the same company plant: development runs first, refit contracts next, equipment
+and ammunition stock last. A service can therefore delay ammunition restocking.
+Refits use real company-funded replacement inputs, preserve government source
+ownership and grant no ammunition. Reviews show exact source/target components;
+a changed compatible payload can still require a separately purchased store.
+Existing ammunition stock, purchases, public batches and reserve preferences
+retain their rules. Refit simulator, web, UI, release and browser acceptance pass,
+including exact ground return, partial cancellation, aircraft review, narrow
+layout and empty console logs. Evidence is in
+[COMPANIES.md](COMPANIES.md#verification).
+
 ## Player workflow
 
 1. Certify a vehicle. The Designer review and Library show its compatible
@@ -214,6 +226,10 @@ supplier receipts remain sparse in the existing equipment-state version 8.
 Tank-only companies retain book 1/envelope 2; mixed ground/air companies retain
 book 2/envelope 3 until ammunition is commissioned. Unused company state remains
 absent. Older envelopes containing ammunition corporate property are refused.
+The first manufacturer refit advances to company ledger 4/save envelope 5 and
+retains all existing ammunition stock, paid deliveries and receipts. Subsequent
+ammunition supply does not downgrade that service ledger; unused government
+refit claims remain sparse in equipment-state version 8.
 
 Campaigns without company ammunition or reserve plans retain their earlier
 behavior. Completed public output plus arrived company purchases must equal

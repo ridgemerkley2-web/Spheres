@@ -109,15 +109,21 @@ workflow keeps this slower scan separate from pull-request verification.
 
 ## Current contracts
 
-The current development milestone adds **company-made ammunition** to the
-accepted ground-vehicle and tactical-aircraft supplier loop. In the Equipment
-bureau, **Ammunition** now shows manufacturer stock, reserve needs, reviewed
-purchases and paid arrivals while retaining existing public batch controls.
-It uses the same company cash and real plant slot; licensing supply creates no
-free rounds or automatic government order. The milestone is accepted through
-final Rust, release-build, UI and browser checks, including purchases,
-save/restart and exact-family arrival. [COMPANIES.md](COMPANIES.md#verification)
-records the evidence and remaining company roadmap.
+The current development milestone adds **manufacturer-run refit services** for
+existing custom ground vehicles and tactical aircraft. In **In service**, review
+an exact source-to-certified-target conversion, held fixed-price funding and
+temporary loss of availability. The manufacturer funds real parts and labor in
+its existing shared plant, earns its fee as each whole conversion returns, and
+refunds only unstarted vehicles on cancellation. The Companies board tracks the
+same service contracts. Existing public work and accepted company ammunition
+purchases remain available. The first service uses company ledger 4/save envelope
+5; unused and earlier books retain their compatible versions. The full non-browser
+UI batch passes 964; Rust integration passes 1,208 with 71 ignored and the final
+release build passes. Browser booking, save/restart, partial cancellation,
+completed ground return, exact aircraft review and narrow layout are accepted;
+error and warning logs are empty.
+[COMPANIES.md](COMPANIES.md#verification) records current evidence separately from
+the accepted equipment and ammunition supplier checkpoints.
 
 Start with [CURRENT_ARCHITECTURE.md](CURRENT_ARCHITECTURE.md) and
 [DECISIONS.md](DECISIONS.md). Detailed rules live in

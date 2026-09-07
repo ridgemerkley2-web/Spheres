@@ -78,6 +78,13 @@ fn targets_board(w: &WorldState, me: NationId) -> Vec<Value> {
             }
             for candidate in eq::fleet_target_refits_world(w,me, &p.revision).into_iter().take(3) {
                 let source = &s.revisions[&candidate.source_revision];
+                if company_supplies_revision(w,me,&p.revision) {
+                    if let Some(mut action)=company_refit_action(w,me,&source.id,Some(&p.revision),candidate.quantity) {
+                        action["label"]=json!(format!("Review manufacturer refit from {}",source.name));
+                        actions.push(action);
+                    }
+                    continue;
+                }
                 let site = site_options.iter().find(|o| o["value"].as_str().is_some_and(|district| eq::refit_quote(w, me, &source.id, &p.revision, district, candidate.quantity, 0.0001).valid))
                     .or_else(|| site_options.first()).map(|o| o["value"].clone()).unwrap_or(json!(""));
                 let mut action = intent(&format!("Review refit from {}", source.name), json!({"kind":"equipment_refit","source":source.id,"target":p.revision,"district":site,"quantity":candidate.quantity,"daily_budget_mn":0.1}), vec![
