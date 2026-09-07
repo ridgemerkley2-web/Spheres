@@ -12915,6 +12915,21 @@ function renderMapCity() {
   const text = document.createElement('p');
   text.textContent = `${city.capital ? 'Capital · ' : ''}${Math.abs(city.lat).toFixed(2)}°${city.lat<0?'S':'N'} ${Math.abs(city.lon).toFixed(2)}°${city.lon<0?'W':'E'}`;
   const note = document.createElement('p'); note.className = 'map-city-note'; note.textContent = 'City location · zoom to explore the surrounding terrain';
+  // A representative block, not this city's streets. TownMesh says the same in
+  // its own description and the caption says it here, because a settlement
+  // drawn beside a real place name is exactly where someone would assume
+  // otherwise. It is 3,700 triangles at map detail and 75,000 close; this is a
+  // deliberate click on one card, so it gets the close one.
+  let vignette = null;
+  if (registerMeshProviders() && window.TownMesh) {
+    vignette = document.createElement('div');
+    vignette.className = 'map-city-view';
+    vignette.innerHTML = Arsenal3D.canvasHtml(townBlockFor(city));
+    const caption = document.createElement('p');
+    caption.className = 'map-city-caption';
+    caption.textContent = 'Representative buildings for a settlement of this size — not a street map of ' + city.name + '.';
+    vignette.append(caption);
+  }
   const actions = document.createElement('div');
   const focus = document.createElement('button'); focus.textContent = 'Explore city'; focus.onclick = () => selectMapCity(city, true);
   const province = document.createElement('button'); province.textContent = 'Province'; province.onclick = () => {
@@ -12922,7 +12937,12 @@ function renderMapCity() {
     ui.selectedCity = null; renderMapCity(); if (d) selectProvince(d.id,false);
   };
   const close = document.createElement('button'); close.textContent = 'Close'; close.setAttribute('aria-label','Close city'); close.onclick = () => { ui.selectedCity=null; renderMapCity(); GLOBE?.schedule(); };
-  actions.append(focus,province,close); card.append(title,text,note,actions); stage.append(card);
+  actions.append(focus,province,close);
+  card.append(title,text,note);
+  if (vignette) card.append(vignette);
+  card.append(actions);
+  stage.append(card);
+  if (vignette) { installSurfaceTreatment(); Arsenal3D.scan(card); }
 }
 
 /// The keyboard, and the buttons that stand for it. Arrows turn the globe by a
@@ -15900,26 +15920,58 @@ function installSurfaceTreatment() {
   return Arsenal3D.setSurface(chosen.glsl);
 }
 
-function siteArtReady() {
-  if (siteArtReady.done) return true;
-  if (typeof window === "undefined") return false;
-  if (!(window.Arsenal3D && Arsenal3D.available && window.SiteMesh)) return false;
-  Arsenal3D.register("site", (rest) => {
-    const [kind, stage, level, status] = String(rest).split("/");
-    return SiteMesh.build(kind, stage, {
-      level: Number.isFinite(+level) ? +level : 1,
-      status: status || "building",
+/// The mesh providers the card renderer resolves ids through. Registered here
+/// rather than inside the geometry modules, which are DOM-free by contract and
+/// must not learn that a GL context exists. Idempotent, and called from every
+/// site that draws one, because none of them can assume another ran first.
+function registerMeshProviders() {
+  if (registerMeshProviders.done) return true;
+  if (!(window.Arsenal3D && Arsenal3D.available)) return false;
+  if (window.SiteMesh) {
+    Arsenal3D.register("site", (rest) => {
+      const [kind, stage, level, status] = String(rest).split("/");
+      return SiteMesh.build(kind, stage, {
+        level: Number.isFinite(+level) ? +level : 1,
+        status: status || "building",
+      });
     });
-  });
+  }
   if (window.TownMesh) {
     Arsenal3D.register("town", (rest) => {
       const [id, district, lod] = String(rest).split("/");
       return TownMesh.block({ id, district: district || "mixed", lod: lod || "close" });
     });
   }
-  installSurfaceTreatment();
-  siteArtReady.done = true;
+  registerMeshProviders.done = true;
   return true;
+}
+
+/// WHICH REPRESENTATIVE BLOCK A CITY GETS.
+///
+/// Deterministic from the city id, so a place looks the same every time it is
+/// opened, and drawn from a SMALL pool on purpose: a unique block per city
+/// would mean a fresh 75,000-triangle build on every click and an unbounded
+/// cache, where eight layouts across five districts is forty meshes at worst
+/// and instant after the first few.
+function townBlockFor(city) {
+  let h = 2166136261;
+  const key = String((city && (city.id || city.name)) || "city");
+  for (let i = 0; i < key.length; i += 1) { h ^= key.charCodeAt(i); h = Math.imul(h, 16777619); }
+  const layout = (h >>> 0) % 8;
+  const pop = +(city && city.pop) || 0;
+  // Character follows what the source record actually says, and nothing more.
+  const district = city && city.capital ? "civic"
+    : pop > 2000000 ? "commercial"
+    : pop > 400000 ? "mixed"
+    : pop > 90000 ? "residential" : "industrial";
+  return `town:${layout}/${district}/close`;
+}
+
+function siteArtReady() {
+  if (typeof window === "undefined") return false;
+  if (!(window.Arsenal3D && Arsenal3D.available && window.SiteMesh)) return false;
+  installSurfaceTreatment();
+  return registerMeshProviders();
 }
 /// The id is quantised to the STAGE, not to the raw fraction. A project moves
 /// a little every tick and an id built from 0.5137 would mint a new mesh, and

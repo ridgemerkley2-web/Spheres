@@ -65,3 +65,20 @@ canvas.kit3d { display: block; background: none; pointer-events: none; }
 }
 .work-card.blocked .work-site, .work-card.paused .work-site { filter: saturate(.55) brightness(.86); }
 @media (max-width: 760px) { #productionPanel .work-site { height: 84px; } }
+/* --- a representative settlement on the city card ------------------------ */
+/* Shown only when a city is deliberately selected, never as map furniture: at
+ * the 24-32px the map symbol occupies, a baked block is a mush and the drawn
+ * isometric icon beats it outright. Here there is room for it to mean something. */
+/* map-controls.css:42 says `.map-city-card > div { display:flex }`, written for
+ * the button row, and it catches this too — canvas and caption end up side by
+ * side with the text squeezed into a column three words wide. Two classes beat
+ * a class-and-a-type, so this wins whatever order the sheets load in. */
+.map-city-card > .map-city-view { display: block; position: relative; margin: 8px 0 4px; }
+.map-city-view canvas.kit3d {
+  width: 100%; height: 108px; border-radius: 10px;
+  background: radial-gradient(120% 90% at 50% 10%, #22323f 0%, #16222c 70%);
+}
+.map-city-caption {
+  margin: 4px 0 0; font-size: 10.5px; line-height: 1.35; opacity: .75;
+}
+@media (max-width: 760px) { .map-city-view canvas.kit3d { height: 84px; } }

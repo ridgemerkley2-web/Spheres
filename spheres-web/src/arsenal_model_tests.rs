@@ -61,3 +61,28 @@ fn the_card_renderer_ships_a_surface_treatment() {
         && INDEX.contains("window.Surfacewear"),
         "nothing installs a treatment, so every card renders flat");
 }
+
+/// A CITY GETS A REPRESENTATIVE BLOCK, AND SAYS SO.
+///
+/// The town mesh is deliberately NOT on the map symbol. At the 24-32 px the
+/// city layer draws, a baked block is a mush and city-detail.js's drawn
+/// isometric icon beats it outright — the roadmap makes the same point about
+/// abstract information staying crisp UI rather than becoming a 3D prop. It
+/// lives on the card instead, which is a deliberate click with room to read.
+///
+/// The caption is the load-bearing part and is asserted here rather than left
+/// to a reviewer: a settlement drawn beside a real place name is exactly where
+/// someone assumes it is that place's streets. It is not, TownMesh says so in
+/// its own description, and the card must keep saying so too.
+#[test]
+fn a_selected_city_shows_representative_buildings_and_admits_it() {
+    assert!(INDEX.contains("function townBlockFor(city)"),
+        "nothing chooses a block for a city");
+    assert!(INDEX.contains("not a street map of"),
+        "the city vignette has lost the caption that stops it reading as a survey");
+    assert!(INDEX.contains("function registerMeshProviders()"),
+        "the mesh providers are no longer registered from one place");
+    // Bounded on purpose: a unique block per city would rebuild 75,000
+    // triangles on every click and cache without limit.
+    assert!(INDEX.contains("% 8"), "the block pool is no longer bounded");
+}
