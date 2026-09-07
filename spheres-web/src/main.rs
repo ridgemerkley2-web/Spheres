@@ -6535,6 +6535,10 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             district: v.get("district")?.as_str()?.to_string(),
             kit: v.get("kit")?.as_str()?.to_string(),
         },
+        "company_establish" | "company_capitalize" | "company_develop" | "company_purchase" | "company_funding" | "company_inventory" | "company_cancel" => Command::Company {
+            nation: me,
+            order: equipment_view::parse_company_order(v)?,
+        },
         "equipment_research" | "equipment_save" | "equipment_develop" | "equipment_produce" | "equipment_refit" | "equipment_retire" | "equipment_maintenance" | "equipment_supply" | "equipment_supply_policy" | "equipment_supply_policy_clear" | "equipment_target" | "equipment_pause" | "equipment_funding" | "equipment_cancel" | "equipment_ammo_order" | "equipment_ammo_activate" | "equipment_ammo_funding" | "equipment_ammo_pause" | "equipment_ammo_cancel" | "equipment_ammo_reserve" | "equipment_ammo_reserve_clear" => {
             use spheres_sim::EquipmentOrder as E;
             let string=|key:&str|v.get(key)?.as_str().map(str::to_string);

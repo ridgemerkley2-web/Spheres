@@ -120,6 +120,7 @@ pub fn used_slots(w: &WorldState, nation: NationId, district: &str) -> usize {
     lines_for(w, nation)
         .filter(|line| line.district == district)
         .count() + crate::equipment::reserved_site_slots(w.nation(nation), district)
+        + crate::companies::reserved_slots(w, nation, district)
 }
 
 fn priority_weight(priority: Priority) -> f64 {

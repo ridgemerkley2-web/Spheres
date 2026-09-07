@@ -163,6 +163,20 @@ pub fn fleet_target_plans(n: &Nation) -> Vec<FleetTargetPlan> {
         .collect()
 }
 
+/// Publicly owned supplier deliveries count toward the goal; unsold company
+/// stock and company work in progress do not. No second stock ledger is made.
+pub fn fleet_target_plans_world(w:&WorldState,nation:NationId)->Vec<FleetTargetPlan> {
+    let mut plans=fleet_target_plans(w.nation(nation));
+    for p in &mut plans {
+        let purchased=crate::companies::inbound_units(w,nation,&p.revision) as u64;
+        p.incoming=p.incoming.saturating_add(purchased);
+        p.projected=p.projected.saturating_add(purchased);
+        p.shortfall=p.desired.map_or(0,|goal|(goal as u64).saturating_sub(p.projected));
+        p.excess=p.desired.map_or(0,|goal|p.projected.saturating_sub(goal as u64));
+    }
+    plans
+}
+
 #[derive(Clone, Debug, Serialize)]
 pub struct FleetRefitCandidate {
     pub source_revision: String,
@@ -200,6 +214,11 @@ pub fn fleet_target_refits(n: &Nation, revision: &str) -> Vec<FleetRefitCandidat
             })
         })
         .collect()
+}
+
+pub fn fleet_target_refits_world(w:&WorldState,nation:NationId,revision:&str)->Vec<FleetRefitCandidate> {
+    let need=fleet_target_plans_world(w,nation).into_iter().find(|p|p.revision==revision).map_or(0,|p|p.shortfall);
+    fleet_target_refits(w.nation(nation),revision).into_iter().filter_map(|mut c|{c.quantity=(c.quantity as u64).min(need) as u32;(c.quantity>0).then_some(c)}).collect()
 }
 
 #[cfg(test)]

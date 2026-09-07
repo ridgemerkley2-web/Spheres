@@ -2617,6 +2617,7 @@ fn procurement_draw(w: &WorldState, id: NationId) -> [f64; 12] {
     {
         return crate::manufacturing::resource_draw(w, id);
     }
+    if crate::companies::procurement_active(w,id) {return [0.0;12]}
     match crate::arsenal::pick(n) {
         Some(kit) => kit_need(kit, crate::arsenal::line_of(n)),
         None => [0.0; 12],
@@ -2643,6 +2644,7 @@ pub(crate) fn recurring_procurement_draw(w: &WorldState, id: NationId) -> [f64; 
     {
         return crate::manufacturing::recurring_resource_draw(w, id);
     }
+    if crate::companies::procurement_active(w,id) {return [0.0;12]}
     crate::arsenal::pick(nation).map_or([0.0; 12], |kit| {
         kit_need(kit, crate::arsenal::budget_of(nation))
     })
@@ -2673,7 +2675,7 @@ pub fn tick_draw(w: &WorldState, id: NationId) -> [f64; 12] {
         let mut raw = [0.0;12];
         for p in crate::manufacturing::tick_allocations(w,id) { for i in 0..12 { raw[i]+=p.required[i]; } }
         raw
-    } else {
+    } else if crate::companies::procurement_active(w,id) {[0.0;12]} else {
         crate::arsenal::pick(w.nation(id)).map_or([0.0;12], |kit| kit_need(kit, crate::arsenal::tick_line(w,id)))
     };
     let share = if available>0.0 { (claimed/available).clamp(0.0,1.0) } else { 0.0 };
@@ -2691,7 +2693,7 @@ fn tick_draw_inner(w: &WorldState, id: NationId, include_materials: bool) -> [f6
             for c in ALL { need[c.idx()] += plan.required[c.idx()]; }
         }
         need
-    } else {
+    } else if crate::companies::procurement_active(w,id) {[0.0;12]} else {
         crate::arsenal::pick(n).map_or([0.0; 12], |kit| kit_need(kit, crate::arsenal::tick_line(w, id)))
     };
     let civilian = if include_materials { crate::industry::resource_demand_daily(w, id) }
@@ -4827,6 +4829,7 @@ pub fn class_word(c: Class) -> &'static str {
 /// `draw` sizes — as (designation, class word). `None` when nothing is
 /// orderable.
 pub fn needed_by(w: &WorldState, id: NationId) -> Option<(&'static str, &'static str)> {
+    if crate::companies::procurement_active(w,id) {return None}
     let n = w.nation_opt(id)?;
     let kit = crate::arsenal::pick(n)?;
     let def = DECK.get(kit as usize)?;

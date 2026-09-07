@@ -913,6 +913,7 @@ pub fn load_world(
         resources: Default::default(),
         production: Default::default(),
         manufacturing: Default::default(),
+        companies: Default::default(),
         domination: Default::default(),
         logistics: Default::default(),
         daily: Default::default(),

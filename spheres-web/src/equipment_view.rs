@@ -11,6 +11,7 @@ include!("equipment_supply_automation_view.rs");
 include!("equipment_aviation_view.rs");
 include!("equipment_ammunition_view.rs");
 include!("equipment_ammunition_reserves_view.rs");
+include!("company_view.rs");
 
 fn metric(label:&str,value:impl serde::Serialize)->Value {json!({"label":label,"value":value})}
 fn cost(label:&str,amount:f64,period:&str)->Value {json!({"label":label,"amount_bn":amount,"period":period})}
@@ -50,6 +51,7 @@ fn sites(w:&WorldState,me:NationId)->Vec<Value> {
     }).collect()
 }
 fn production_action(w:&WorldState,me:NationId,r:&eq::DesignRevision)->Value {
+    if company_supplies_revision(w,me,&r.id) {return nav("Buy from manufacturer",json!({"action":"equipment","tab":"companies"}));}
     let options=sites(w,me);let site=options.first().map(|o|o["value"].clone()).unwrap_or(json!(""));
     let aircraft=r.profile.aviation.is_some();let quantity=if aircraft{2}else{10};
     intent("Review production order",json!({"kind":"equipment_produce","revision":r.id,"district":site,"quantity":quantity,"daily_budget_mn":0.2}),vec![
@@ -82,7 +84,7 @@ pub fn view(w:&WorldState,me:NationId,session:&str)->Value {
             let mut model_metrics=profile_metrics(&r.profile);
             if r.profile.aviation.is_none(){if let Some(def)=eq::ammunition_family(&r.spec).and_then(eq::ammo_def){model_metrics.push(metric("Compatible ammunition",def.name));}}
             designs.push(json!({"id":r.id,"name":r.name,"spec":r.spec,"editable_spec":eq::editable_spec(&r.spec),"status":if r.certified_day.is_some(){"Certified"}else{"Under development"},
-                "detail":format!("Revision {} is fixed. Use it as a starting point to develop a different configuration.",r.id),"metrics":model_metrics,"costs":profile_costs(&r.profile),
+                "detail":format!("Revision {} is fixed. Use it as a starting point to develop a different configuration.",r.id),"metrics":model_metrics,"costs":if company_supplies_revision(w,me,&r.id){company_design_costs(&r.profile)}else{profile_costs(&r.profile)},
                 "actions":if r.certified_day.is_some(){vec![production_action(w,me,r),target_action(w,me,&r.id)]}else{vec![]}}));
         }
         for p in &s.projects {
@@ -127,7 +129,7 @@ pub fn view(w:&WorldState,me:NationId,session:&str)->Value {
     let comparison_options=comparison_options(&presets,&designs);
     let modernization=modernization_board(w,me);
     json!({"session_id":session,"nation":me,"name":me.name(),"date":w.date_str(),"enabled":spheres_sim::clock::is_daily(w)&&w.rules.military_operations,"reason":"Equipment programmes require daily time and military operations.",
-        "platforms":platforms,"components":components,"presets":presets,"designs":designs,"development":development,"production":production,"lots":lots,"research":research,"comparison_options":comparison_options,"modernization":modernization,"supply":supply,"service":equipment_service_board(w,me),"maintenance":maintenance_board(w,me),"targets":targets_board(w,me),"replenishment":replenishment_board(w,me),"supply_automation":supply_automation_board(w,me),"ammunition":ammunition_board(w,me),"aviation":aviation_board(w,me),
+        "platforms":platforms,"components":components,"presets":presets,"designs":designs,"development":development,"production":production,"lots":lots,"research":research,"comparison_options":comparison_options,"modernization":modernization,"supply":supply,"service":equipment_service_board(w,me),"maintenance":maintenance_board(w,me),"targets":targets_board(w,me),"replenishment":replenishment_board(w,me),"supply_automation":supply_automation_board(w,me),"ammunition":ammunition_board(w,me),"aviation":aviation_board(w,me),"companies":company_board(w,me),
         "funding":{"metrics":[metric("Development","Defense · Research & development"),metric("Production and refit","Defense · Procurement"),metric("Service support","Defense · Maintenance; see the service plan"),metric("Unused development funds",format!("${:.3}m",spheres_sim::programs::available_bn(w,me,BUDGET_DEFENSE,4)*1000.0)),metric("Unused procurement funds",format!("${:.3}m",spheres_sim::programs::available_bn(w,me,BUDGET_DEFENSE,3)*1000.0))]},
         "actions":[nav("Development funding",json!({"action":"budget","ministry":"defense","department":4})),nav("Procurement funding",json!({"action":"budget","ministry":"defense","department":3})),nav("Build an arms plant",json!({"action":"construction","kind":"arms_plant"})),nav("Review raw inputs",json!({"action":"resources"}))]})
 }
@@ -136,7 +138,8 @@ fn spec(v:&Value)->Result<eq::DesignSpec,String>{serde_json::from_value(json!({"
 pub fn preview(w:&WorldState,me:NationId,session:&str,v:&Value)->Result<Value,String> {
     if let Some(command)=v.get("command") {
         let parsed=super::parse_command(w,command,me).ok_or("The equipment order is malformed.")?;
-        let Command::Equipment {ref order,..}=parsed else{return Err("This preview accepts equipment orders only.".into());};
+        if let Command::Company {ref order,..}=parsed {return Ok(company_preview(w,me,session,command,order));}
+        let Command::Equipment {ref order,..}=parsed else{return Err("This preview accepts equipment and company orders only.".into());};
         if matches!(order,EquipmentOrder::SupplyPolicy{..}|EquipmentOrder::SupplyPolicyClear) {return Ok(supply_automation_preview(w,me,session,command,order));}
         if matches!(order,EquipmentOrder::AmmoReserve{..}|EquipmentOrder::AmmoReserveClear{..}) {return Ok(ammunition_reserve_preview(w,me,session,command,order));}
         if matches!(order,EquipmentOrder::AmmoOrder{..}|EquipmentOrder::AmmoActivate|EquipmentOrder::AmmoFunding{..}|EquipmentOrder::AmmoPause{..}|EquipmentOrder::AmmoCancel{..}) {return Ok(ammunition_preview(w,me,session,command,order));}
@@ -165,7 +168,10 @@ pub fn preview(w:&WorldState,me:NationId,session:&str,v:&Value)->Result<Value,St
     }
     let spec=spec(v)?;let name=v.get("name").and_then(Value::as_str).unwrap_or("New vehicle");let p=eq::design_preview(w,me,&spec);
     let mut actions=vec![checked(w,me,"Save design draft",json!({"kind":"equipment_save","name":name,"platform":spec.platform,"components":spec.components}))];
-    if p.valid {actions.push(intent("Review development funding",json!({"kind":"equipment_develop","name":name,"platform":spec.platform,"components":spec.components,"daily_budget_mn":0.5}),vec![budget_input(0.0005)]));}
+    if p.valid {
+        if spec.platform.starts_with("tank_") {actions.push(company_development_action(w,me,name,&spec));}
+        else {actions.push(intent("Review development funding",json!({"kind":"equipment_develop","name":name,"platform":spec.platform,"components":spec.components,"daily_budget_mn":0.5}),vec![budget_input(0.0005)]));}
+    }
     let mut metrics=p.profile.as_ref().map(profile_metrics).unwrap_or_default();
     if !eq::is_aviation_platform(&spec.platform){if let Some(def)=eq::ammunition_family(&spec).and_then(eq::ammo_def){metrics.push(metric("Compatible ammunition",def.name));}}
     if let Some(old)=v.get("source_revision").and_then(Value::as_str).and_then(|id|eq::profile(w.nation(me),id)){if let Some(new)=&p.profile{
@@ -174,7 +180,7 @@ pub fn preview(w:&WorldState,me:NationId,session:&str,v:&Value)->Result<Value,St
         metrics.push(metric("Fabrication cost change",format!("{:+.3}m per vehicle",(new.fabrication_cost_bn-old.fabrication_cost_bn)*1000.0)));
     }}
     let comparison=design_comparison(w,me,v,&spec,p.profile.as_ref());
-    Ok(json!({"session_id":session,"nation":me,"valid":p.valid,"blockers":p.blockers,"metrics":metrics,"costs":p.profile.as_ref().map(profile_costs).unwrap_or_default(),
+    Ok(json!({"session_id":session,"nation":me,"valid":p.valid,"blockers":p.blockers,"metrics":metrics,"costs":p.profile.as_ref().map(|profile|if spec.platform.starts_with("tank_"){company_design_costs(profile)}else{profile_costs(profile)}).unwrap_or_default(),
         "timing":p.profile.as_ref().map(|p|vec![json!({"label":"Development minimum","value":format!("{} days",p.development_days)}),json!({"label":"Per-vehicle production minimum","value":format!("{} days after {} tooling days",p.production_days,p.tooling_days)})]).unwrap_or_default(),
         "comparison":comparison,"requirements":p.notes,"actions":actions,"detail":if eq::is_aviation_platform(&spec.platform){"Research unlocks components. Paid development certifies this exact aircraft. Only delivered, supported aircraft with compatible mission stores and theatre access contribute to tactical air raids. Figures are game assumptions."}else{"Research unlocks components. Paid development certifies this exact revision. Only delivered vehicles affect the country's land forces."}}))
 }
@@ -195,8 +201,9 @@ mod tests {
         let board=view(w,NationId::USA,&g.session_id);
         assert_eq!(board["session_id"],g.session_id);assert_eq!(board["platforms"].as_array().unwrap().len(),eq::PLATFORMS.len());
         let draft=preview(w,NationId::USA,&g.session_id,&design()).unwrap();assert_eq!(draft["valid"],true);
-        let action=&draft["actions"][1];assert_eq!(action["requires_preview"],true);
-        let final_quote=preview(w,NationId::USA,&g.session_id,&json!({"command":action["command"]})).unwrap();
+        assert_eq!(draft["actions"][1]["navigate"]["tab"],"companies","A new tank needs a developing manufacturer");
+        let spec=eq::baseline_spec();
+        let final_quote=preview(w,NationId::USA,&g.session_id,&json!({"command":{"kind":"equipment_develop","name":"Existing public contract","platform":spec.platform,"components":spec.components,"daily_budget_mn":0.5}})).unwrap();
         assert_eq!(final_quote["valid"],true);assert!(final_quote["actions"][0]["inputs"].is_null());
         assert_eq!(final_quote["costs"][0]["amount_bn"],eq::design_preview(w,NationId::USA,&eq::baseline_spec()).profile.unwrap().development_cost_bn);
         assert_eq!(spheres_sim::save(w),before,"Opening and quoting cannot create state or spend funding");
@@ -216,7 +223,9 @@ mod tests {
         for preset in board["presets"].as_array().unwrap(){
             assert_eq!(preset["components"].as_object().unwrap().len(),eq::platform_slots(preset["platform"].as_str().unwrap()).len());
             let quote=preview(&g.world,NationId::USA,&g.session_id,preset).unwrap();assert_eq!(quote["valid"],true,"{}",preset["name"]);
-            assert_eq!(quote["actions"][1]["command"]["components"],preset["components"]);
+            assert_eq!(quote["actions"][0]["command"]["components"],preset["components"],"Saving keeps every independent specification");
+            if preset["platform"].as_str().unwrap().starts_with("tank_") {assert_eq!(quote["actions"][1]["navigate"]["tab"],"companies");}
+            else {assert_eq!(quote["actions"][1]["command"]["components"],preset["components"]);}
         }
         assert_eq!(spheres_sim::save(&g.world),before);
     }

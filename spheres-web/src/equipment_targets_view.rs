@@ -1,7 +1,7 @@
 // Quantity planning reads the same physical stock and programme ledger as the
 // simulation. Suggestions remain ordinary, individually reviewed orders.
 fn target_action(w: &WorldState, me: NationId, revision: &str) -> Value {
-    let plan = eq::fleet_target_plans(w.nation(me))
+    let plan = eq::fleet_target_plans_world(w,me)
         .into_iter()
         .find(|p| p.revision == revision);
     let quantity = plan.as_ref().map_or(0, |p| {
@@ -49,7 +49,7 @@ fn targets_board(w: &WorldState, me: NationId) -> Vec<Value> {
         return vec![];
     };
     let site_options = sites(w, me);
-    eq::fleet_target_plans(n).into_iter().filter(|p| p.desired.is_some()).map(|p| {
+    eq::fleet_target_plans_world(w,me).into_iter().filter(|p| p.desired.is_some()).map(|p| {
         let revision = &s.revisions[&p.revision];
         let mut actions = vec![target_action(w, me, &p.revision)];
         let mut reasons = vec![];
@@ -68,12 +68,15 @@ fn targets_board(w: &WorldState, me: NationId) -> Vec<Value> {
                 json!({"key":"district","label":"Arms plant province","type":"select","value":site,"options":site_options}),
                 json!({"key":"quantity","label":"Vehicles to manufacture","type":"number","value":quantity,"min":1,"max":eq::MAX_BATCH,"step":1}), budget_input(0.0002)]);
             production["detail"] = json!(format!("Your target is {} vehicles short after all active plans. This proposes {} new vehicles; review the site, spending limit and materials before placing the order. Existing plans are not changed.", p.shortfall, quantity));
-            actions.push(production);
+            if company_supplies_revision(w,me,&p.revision) {
+                actions.push(nav("Review manufacturer stock",json!({"action":"equipment","tab":"companies"})));
+                reasons.push("This revision is supplied by a company. Buy its finished stock; a fleet target does not authorize the company to spend government funds.".into());
+            } else {actions.push(production);}
             if site_options.is_empty() {
                 reasons.push("New manufacture or refit needs a completed arms plant with an available slot.".into());
                 actions.push(nav("Build an arms plant", json!({"action":"construction","kind":"arms_plant"})));
             }
-            for candidate in eq::fleet_target_refits(n, &p.revision).into_iter().take(3) {
+            for candidate in eq::fleet_target_refits_world(w,me, &p.revision).into_iter().take(3) {
                 let source = &s.revisions[&candidate.source_revision];
                 let site = site_options.iter().find(|o| o["value"].as_str().is_some_and(|district| eq::refit_quote(w, me, &source.id, &p.revision, district, candidate.quantity, 0.0001).valid))
                     .or_else(|| site_options.first()).map(|o| o["value"].clone()).unwrap_or(json!(""));
@@ -120,7 +123,7 @@ fn target_preview(
         .as_str()
         .map(|reason| vec![reason.to_string()])
         .unwrap_or_default();
-    let plan = eq::fleet_target_plans(w.nation(me))
+    let plan = eq::fleet_target_plans_world(w,me)
         .into_iter()
         .find(|p| p.revision == revision);
     let mut metrics = plan.as_ref().map(target_metrics).unwrap_or_default();
@@ -133,7 +136,7 @@ fn target_preview(
     if blockers.is_empty() {
         let mut proposed = w.clone();
         if spheres_sim::apply_command(&mut proposed, parsed).is_ok() {
-            if let Some(next) = eq::fleet_target_plans(proposed.nation(me))
+            if let Some(next) = eq::fleet_target_plans_world(&proposed,me)
                 .into_iter()
                 .find(|p| p.revision == revision)
             {

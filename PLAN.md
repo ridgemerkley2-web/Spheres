@@ -4,13 +4,19 @@
 BUGS.md is what is broken. This is the sequence between here and done, and why
 it is in this order.*
 
-**Equipment direction update, 7 September 2026:** Ridge wants company-owned
-manufacturing and government purchases from finished stock after contracted
-development. The next equipment milestone is the complete domestic tank supplier
-loop in [COMPANIES_AND_PROCUREMENT_PLAN.md](COMPANIES_AND_PROCUREMENT_PLAN.md),
-before further expansion on the old production path. This is also the foundation
-for the requested national companies layer. It is planned, not implemented;
-the current tactical aviation release remains live.
+**Equipment direction update, 7 September 2026:** the first domestic tank supplier
+loop is implemented and accepted through Rust, UI and browser
+checks. A paid state contractor develops frozen designs, funds its own finite stock and sells
+finished tanks into government deliveries. [COMPANIES.md](COMPANIES.md) records
+the player workflow, ownership and current limits. The domestic portions of
+steps 1–3 in [COMPANIES_AND_PROCUREMENT_PLAN.md](COMPANIES_AND_PROCUREMENT_PLAN.md)
+form the accepted first tank milestone, not completion of the entire companies
+layer. Establishing a contractor stops background automatic catalogue buying;
+explicit public work and already paid orders continue. Company property uses the
+version-2 equipment-save envelope; an unused company book remains sparse.
+Next extend the route to other equipment, ammunition, imports and sourced
+national firms while preserving already paid public work. Existing tactical
+aviation and public contracts retain their current path.
 
 **Where this came from.** Rewritten 2026-08-18 from a directed audit: ten
 independent reads of the tree, five competing plans written from deliberately

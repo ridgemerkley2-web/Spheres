@@ -892,7 +892,11 @@ pub fn tick(w: &mut WorldState) {
         // the pile it kept for exactly this is spent. A player's stated
         // preference stalls and says so; the staff buy the best kit whose
         // inputs are held. In an open world this returns the pick untouched.
-        let (choice, stall) = if directed {
+        // An explicitly established supplier switches residual procurement to
+        // reviewed finished-stock purchases. Already paid deliveries and named
+        // public lines/projects retain their owners and continue below.
+        let supplier_purchasing = crate::companies::procurement_active(w, id);
+        let (choice, stall) = if directed || supplier_purchasing {
             (None, None)
         } else {
             match pick(w.nation(id)) {

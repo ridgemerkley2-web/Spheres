@@ -5602,13 +5602,15 @@ function equipmentExternalPending() {
 }
 async function equipmentCommand(command) {
   if (!S?.player || equipmentExternalPending()) throw new Error("Wait for the current order or turn to finish before confirming equipment work.");
-  if (!command || !["equipment_save","equipment_research","equipment_develop","equipment_produce","equipment_refit","equipment_retire","equipment_maintenance","equipment_supply","equipment_target","equipment_pause","equipment_cancel","equipment_funding","equipment_ammo_order","equipment_ammo_activate","equipment_ammo_funding","equipment_ammo_pause","equipment_ammo_cancel","equipment_ammo_reserve","equipment_ammo_reserve_clear","equipment_supply_policy","equipment_supply_policy_clear"].includes(command.kind)) throw new Error("This is not a reviewed equipment order.");
+  if (!command || !["equipment_save","equipment_research","equipment_develop","equipment_produce","equipment_refit","equipment_retire","equipment_maintenance","equipment_supply","equipment_target","equipment_pause","equipment_cancel","equipment_funding","equipment_ammo_order","equipment_ammo_activate","equipment_ammo_funding","equipment_ammo_pause","equipment_ammo_cancel","equipment_ammo_reserve","equipment_ammo_reserve_clear","equipment_supply_policy","equipment_supply_policy_clear","company_establish","company_capitalize","company_develop","company_purchase","company_funding","company_inventory","company_cancel"].includes(command.kind)) throw new Error("This is not a reviewed equipment order.");
   const session=S.session_id;
   const response=await api("/api/command", {commands:[command]});
   if (session!==S?.session_id) throw new Error("The campaign changed. Review the equipment in the current campaign.");
   if (response.command_pending) throw new Error("The order is awaiting confirmation. Use the pending order controls before sending another.");
   if (response.errors?.length) throw new Error(response.errors.join(" "));
   await adopt(response,false);
+  const companyMessages={company_establish:"Manufacturer established. Its working capital and facility rights are shown in Companies & Procurement.",company_capitalize:"Company funding recorded. Capital remains in the manufacturer’s account for its operations.",company_develop:"Development contract commissioned. Review engineering, trials and first-stock progress in Companies & Procurement.",company_purchase:"Purchase accepted. The paid vehicles are tracked in deliveries and become usable when they arrive.",company_funding:"Development funding limit saved. Future work follows the selected ceiling and available Defense funding.",company_inventory:"Company inventory target saved. The manufacturer funds stock from its own working capital; this places no government purchase.",company_cancel:"Development cancellation recorded. Review the contract’s completed work and payments in Companies & Procurement."};
+  if(companyMessages[command.kind]) { equipmentSelectTab("companies"); return {message:companyMessages[command.kind]}; }
   if(command.kind==="equipment_supply_policy"||command.kind==="equipment_supply_policy_clear") {
     equipmentSelectTab("production");
     return {message:command.kind==="equipment_supply_policy_clear"?"Material purchasing policy cleared. Existing paid shipments remain tracked in Resources.":command.automatic?"Automatic material purchasing enabled. Future reviews follow the saved horizon, spending cap, cash floor and interval.":"Material purchasing policy saved with automatic purchases disabled. Review purchases individually in Production."};
@@ -5624,7 +5626,7 @@ async function equipmentCommand(command) {
 async function equipmentNavigate(action) {
   if (!action || !S?.player || equipmentExternalPending()) return false;
   if (action.action==="equipment") {
-    if (!["research","designer","library","development","production","ammunition","service"].includes(action.tab)) return false;
+    if (!["research","designer","library","companies","development","production","ammunition","service"].includes(action.tab)) return false;
     equipmentSelectTab(action.tab); return true;
   }
   if (action.action==="research" && action.equipment===true) {
@@ -6387,6 +6389,7 @@ function renderTechMenu() {
   const activeDomain = active?.dataset.dom;
   const activeFooter = active?.classList.contains("dfoot");
   const activeEquipment = active?.dataset.equipmentBureau !== undefined;
+  const activeCompanies = active?.dataset.equipmentCompanies !== undefined;
   const activeClose = active?.classList.contains("menu-close");
   const rows = r.domains.map((d) => {
     const star = r.priority === d.domain
@@ -6410,7 +6413,7 @@ function renderTechMenu() {
       </button>`;
   }).join("");
   $("#techMenu").innerHTML = `<button type="button" class="menu-close" aria-label="Close research field chooser" onclick="closeTechMenu()">×</button><h2 class="discovery-menu-title">What comes next?</h2>${globalThis.AreaArt?.html("research", "compact") || ""}${r.acquisition_quota?.migration_hold?`<p class="floorline">${escText(r.acquisition_quota.note)}</p>`:""}` + rows +
-    `<button type="button" class="dfoot"><b>Explore technology</b><span>${r.daily.toFixed(2)} points a day</span></button><button type="button" class="dfoot" data-equipment-bureau><b>Equipment bureau</b><span>Research components · Design a vehicle</span></button>`;
+    `<button type="button" class="dfoot"><b>Explore technology</b><span>${r.daily.toFixed(2)} points a day</span></button><button type="button" class="dfoot" data-equipment-bureau><b>Equipment bureau</b><span>Research components · Design a vehicle</span></button><button type="button" class="dfoot" data-equipment-companies><b>Companies &amp; Procurement</b><span>Manufacturers · Available stock · Deliveries</span></button>`;
   $("#techMenu").querySelectorAll(".drow").forEach((el) => {
     el.onclick = () => {
       const domain=S.research?.domains?.find(d => d.domain===el.dataset.dom);
@@ -6420,8 +6423,9 @@ function renderTechMenu() {
   });
   $("#techMenu").querySelector(".dfoot").onclick = () => openTech(null);
   $("#techMenu").querySelector("[data-equipment-bureau]").onclick = () => openEquipment({tab:"research"});
+  $("#techMenu").querySelectorAll("[data-equipment-companies]").forEach(button => { button.onclick = () => openEquipment({tab:"companies"}); });
   const replacement = activeDomain ? [...$("#techMenu").querySelectorAll(".drow")].find(el => el.dataset.dom === activeDomain)
-    : activeEquipment ? $("#techMenu [data-equipment-bureau]") : activeFooter ? $("#techMenu .dfoot") : activeClose ? $("#techMenu .menu-close") : null;
+    : activeEquipment ? $("#techMenu [data-equipment-bureau]") : activeCompanies ? $("#techMenu [data-equipment-companies]") : activeFooter ? $("#techMenu .dfoot") : activeClose ? $("#techMenu .menu-close") : null;
   replacement?.focus({ preventScroll: true });
 }
 
@@ -16688,7 +16692,7 @@ function manufacturingLinesHtml() {
     empty = `<div class="factory-bridge"><b>Staff procurement is active</b>Your ${capacity} plant slot${capacity === 1 ? " is" : "s are"} ready. Start a line to replace automatic buying with your own equipment plan.</div>`;
   }
   return `${operationsHeroHtml("manufacturing", "Industry with a purpose", "Equip your ambitions.", "Turn funded plant slots into a steady equipment pipeline. Pick a programme, assign a province, and give your most important lines first call on materials.")}
-    <div class="factory-bridge"><b>Your own vehicle programme</b>Choose components, review the design, and follow a named model into service.<button type="button" data-equipment-open>Open equipment designer</button></div>
+    <div class="factory-bridge"><b>Your own vehicle programme</b>Choose components, commission a tank manufacturer, and buy finished stock for your force.<button type="button" data-equipment-companies>Companies &amp; Procurement</button><button type="button" data-equipment-open>Open equipment designer</button></div>
     <div class="manufacturing-hero"><div class="stamp">Daily defense procurement</div><div class="money">${manufacturingBn(finance.procurement_budget_bn_day)} <small>per day</small></div>
       <p>${share.toFixed(0)}% of the defense budget buys equipment. The treasury already carries that spending; imported materials settle through the resource market.</p></div>
     <div class="manufacturing-summary"><span>Plant slots<b>${usedSlots}/${capacity}</b></span><span>Force equipped<b>${Math.round((+summary.adequacy || 0) * 100)}%</b></span><span class="${+summary.blocked ? "warn" : ""}">Pipeline<b>${manufacturingBn(summary.pipeline_value_bn)}</b></span></div>
@@ -16712,7 +16716,7 @@ function manufacturingCatalogHtml() {
   return `${operationsHeroHtml("manufacturing", "Step 1 · Choose a programme", "Make your next move.", "Browse equipment your nation knows how to build. Choose a programme, then place it in a free arms-plant slot.")}
     <div class="production-stamp"><b>Equipment catalogue</b><span>Locked programmes stay tucked away until you need them</span></div>
     ${!(MANU.data?.actions?.start === true && +MANU.data?.summary?.free_slots > 0) ? `<div class="factory-bridge"><b>Explore your next programme</b>You can inspect equipment before a plant is ready. Starting a line requires a free, completed arms-plant slot.<button type="button" data-manu-build-plant>Review arms-plant construction</button></div>` : ""}
-    <div class="factory-bridge"><b>Design ground equipment or aircraft</b>Develop a configuration of your own, then manufacture its certified revision.<button type="button" data-equipment-open>Open equipment designer</button></div>
+    <div class="factory-bridge"><b>Design ground equipment or aircraft</b>Design a model of your own. Tank manufacturers can develop your design and offer finished vehicles for purchase.<button type="button" data-equipment-companies>Companies &amp; Procurement</button><button type="button" data-equipment-open>Open equipment designer</button></div>
     <div class="factory-classes">${classes.map((name) => `<button type="button" data-manu-class="${logisticsEscAttr(name)}" class="${MANU.classFilter === name ? "on" : ""}">${escText(name)}</button>`).join("")}</div>
     <div class="equipment-catalog">${cards || `<div class="production-empty">No equipment in this filter is ready.</div>`}</div>
     ${locked ? `<button type="button" class="built-toggle" data-manu-locked aria-expanded="${MANU.showLocked}"><span>${MANU.showLocked ? "Hide" : "Show"} technology-locked equipment</span><b>${locked}</b></button>` : ""}
@@ -16750,6 +16754,7 @@ function renderManufacturingPanel() {
 function wireManufacturingPanel() {
   const body = $("#productionBody"); if (!body || PROD.mode !== "manufacture") return;
   body.querySelectorAll("[data-equipment-open]").forEach(button => { button.onclick=()=>openEquipment(); });
+  body.querySelectorAll("[data-equipment-companies]").forEach(button => { button.onclick=()=>openEquipment({tab:"companies"}); });
   body.querySelectorAll("[data-manu-line]").forEach((card) => {
     card.onclick = (event) => { if (!event.target.closest("button, details")) manufacturingSelect(card.dataset.manuLine, false); };
     card.onkeydown = (event) => { if (event.target === card && (event.key === "Enter" || event.key === " ")) { event.preventDefault(); manufacturingSelect(card.dataset.manuLine, false); } };

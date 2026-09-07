@@ -23,6 +23,45 @@
 .eq-header-actions,.eq-actions { display:flex; flex-wrap:wrap; gap:9px; align-items:center; }
 .eq-process { display:flex; align-items:center; flex-wrap:wrap; gap:10px; padding:12px 16px; border:1px solid #aec2c331; border-radius:9px; background:#1b30383d; margin:0 0 20px; color:#9fb7c1; font-size:12px; }
 .eq-process span { color:#d3ddd3; }
+.eq-tabs [data-equipment-tab=companies] { border-color:#b6c9b83d; color:#d6dfbf; }
+.eq-company-intro { position:relative; isolation:isolate; overflow:hidden; display:grid; grid-template-columns:minmax(0,1.2fr) minmax(250px,.8fr); gap:30px; padding:30px; margin-bottom:20px; border:1px solid #b9cbaa55; border-radius:14px; background:linear-gradient(90deg,#12252af2,#172b31d9),url('/art/areas/production-v1.webp') center 48%/cover; }
+.eq-company-intro h2 { font-size:clamp(24px,2.7vw,34px); margin-bottom:13px; letter-spacing:-.025em; }
+.eq-company-intro p:not(.eq-eyebrow) { max-width:660px; color:#c3d2d2; }
+.eq-company-intro .eq-actions { margin-top:21px; }
+.eq-company-flow { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:20px; align-content:center; }
+.eq-company-flow li { display:flex; gap:12px; align-items:start; }
+.eq-company-flow b { color:#d7c594; font:500 24px/1 system-ui,sans-serif; }
+.eq-company-flow span { font-weight:650; color:#e2e7d8; }
+.eq-company-flow small { display:block; color:#adc1c7; font:400 12px/1.5 system-ui,sans-serif; margin-top:6px; }
+.eq-company-model { margin:20px 0; display:grid; grid-template-columns:minmax(200px,.65fr) minmax(320px,1.35fr); column-gap:26px; align-items:start; }
+.eq-company-model .eq-visual-heading { display:block; }
+.eq-company-model .eq-visual-heading .eq-status { display:inline-block; margin-top:15px; }
+.eq-company-model .eq-model-viewer { grid-column:2; grid-row:1 / span 2; }
+.eq-company-model .eq-model-canvas { height:260px; }
+.eq-company-model>.eq-details { grid-column:1; align-self:start; margin-top:18px; }
+.eq-company-specs { margin:12px 0 0; }
+.eq-company-specs div { display:grid; grid-template-columns:1fr 1.2fr; gap:15px; padding:7px 0; border-top:1px solid #aac2c220; font-size:11px; }
+.eq-company-specs dt { color:#a9c0c9; }
+.eq-company-specs dd { margin:0; text-align:right; color:#dce4d5; }
+.eq-company-section { margin-top:30px; }
+.eq-company-card .eq-eyebrow { font-size:10px; margin-bottom:5px!important; }
+.eq-company-card .eq-card-header { align-items:start; }
+.eq-company-card .eq-card-header>div { min-width:0; }
+.eq-company-card h3 { overflow-wrap:anywhere; }
+.eq-company-card[data-company-phase=stock] { border-color:#b2d3a76b; background:linear-gradient(135deg,#29473977,#1c303d 72%); }
+.eq-company-card[data-company-phase=stock] .eq-status { color:#d3ecc6; border-color:#a8ce9478; }
+.eq-company-card[data-company-phase=blocked] .eq-status { color:#f1c5a3; }
+.eq-company-availability { padding:2px 14px 14px; margin:15px -1px 0; border:1px solid #a4c3b43b; border-radius:9px; background:#0f252b70; }
+.eq-company-availability .eq-metrics { margin-top:13px; }
+.eq-company-milestones { margin:15px 0 0; padding-top:2px; border-top:1px solid #b0c8cd2a; }
+.eq-company-milestones>div { display:grid; grid-template-columns:1fr 1.4fr; gap:14px; padding:10px 0; border-bottom:1px solid #b0c8cd20; }
+.eq-company-milestones dt { color:#adc1c7; font-size:12px; }
+.eq-company-milestones dd { margin:0; color:#e1e4d7; text-align:right; font-size:12px; }
+.eq-company-milestones small { display:block; margin-top:4px; color:#abc0c5; }
+.eq-company-ownership { margin-top:22px!important; padding-top:18px; border-top:1px solid #b0c8cd2a; }
+.eq-order-inputs label>small { display:block; color:#afc3c9; }
+@media(max-width:850px) { .eq-company-intro { grid-template-columns:1fr; padding:23px; gap:25px; } .eq-company-model { display:block; } .eq-company-model .eq-model-canvas { height:300px; } }
+@media(max-width:480px) { .eq-company-flow { gap:18px 12px; } .eq-company-flow b { font-size:21px; } .eq-company-flow small { font-size:11px; } .eq-company-intro { padding:20px; } .eq-company-model .eq-model-canvas { height:230px; } .eq-company-milestones>div { grid-template-columns:1fr; gap:4px; } .eq-company-milestones dd { text-align:left; } }
 .eq-tabs { display:flex; gap:7px; overflow:auto; margin-bottom:25px; padding:0 0 3px; }
 .eq-tabs button { flex:0 0 auto; background:transparent; border-color:transparent; color:#aebfc8; min-width:108px; }
 .eq-tabs button[aria-selected=true] { background:#33484c; color:#f1efd7; border-color:#b6c9b84d; }

@@ -1,12 +1,21 @@
 # Companies, equipment development and procurement
 
-7 September 2026 · planned direction; no company simulation is implemented yet.
+7 September 2026 · first domestic tank implementation accepted through Rust, UI
+and browser checks. The broader company roadmap remains future work.
 
 Ridge wants the country to design equipment, put it through development with a
 manufacturer, and buy the manufacturer's finished stock. Important national
 companies should become part of the wider economy. This replaces government
 production management as the intended default for new equipment acquisition.
 It takes priority over expanding the aircraft/naval catalogue on the old path.
+
+The domestic portions of delivery steps 1–3 now have simulation and UI code:
+one explicitly capitalized state contractor, an existing leased Arms Plant slot,
+contracted tank development, company-funded stock, reviewed purchase and delivery.
+[COMPANIES.md](COMPANIES.md) is the current player/mechanics guide and verification
+status. This implements a bounded first route, not the entire foundation or all
+acceptance gates below. Private/historical firms, broader equipment migration,
+imports, AI procurement and civilian-company economics remain unimplemented.
 
 ## The player experience
 
@@ -178,6 +187,12 @@ should I buy it?" Factory recipes and accounts belong in expandable explanations
 
 ## Delivery sequence and completion gates
 
+**Current boundary:** the domestic first-contractor portions of steps 1–3 are
+implemented, with Rust/UI checks passed and browser verification pending.
+Do not mark those steps accepted until that evidence is recorded in
+[COMPANIES.md](COMPANIES.md). Sourced company data and broader ownership/economic
+attribution within the foundation remain future work. Steps 4–6 remain planned.
+
 ### 1. Company ownership and funding foundation
 
 Add the registry, explicit capitalization, facility rights and financial/physical
@@ -241,8 +256,23 @@ An unused company system must not perturb the old deterministic path. The live
 USA campaign is disposable at Ridge's request if it blocks development; that does
 not remove the game's obligation to validate saved ownership and paid contracts.
 
+The implemented first route stops background automatic catalogue buying once a
+contractor is established, freeing unassigned procurement authority for reviewed
+stock purchases. Explicit public lines, projects, ammunition and already paid
+deliveries continue. The version-1 company ledger uses a version-2
+`spheres-equipment-save` envelope whenever non-empty; raw/version-1 envelopes
+with corporate property are refused. Unused companies remain sparse and preserve
+the earlier legacy/equipment-only save shapes. Broader product migration remains
+part of the future roadmap.
+
 For implementation, require the relevant lifecycle, accounting and supply tests,
 full Rust workspace checks, affected UI checks, and browser verification of
 design → development → company stock → purchase → arrival → service. Include a
-save/resume in the middle and a second buyer/insufficient-stock case. This planning
-change has not modified runtime mechanics, opening data or the live campaign.
+save/resume in the middle and a second buyer/insufficient-stock case. The first
+domestic implementation changes runtime mechanics without inventing opening
+company assets. Current verification passes 942 non-browser UI checks and 1,168
+Rust tests (68 ignored), plus a focused 19-check company run including the
+explicit QA exporter; [COMPANIES.md](COMPANIES.md#verification) records the scope
+without counting that focused rerun twice. Browser acceptance passed development
+save/restart, reviewed finite-stock purchase, year-end arrival, exact-model service
+and narrow-screen inspection. The wider company and equipment roadmap remains open.

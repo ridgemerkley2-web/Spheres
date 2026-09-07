@@ -385,14 +385,15 @@ sparse credit ledger moves with inherited technology, starts at zero for older
 saves, and excludes no genuine new research. This semantic change is shared by
 daily and monthly simulation; calibration tolerances and historical data stay put.
 
-## Planned direction — company manufacturing and stock procurement (2026-09-07)
+## Current extension — domestic company manufacturing and stock procurement (2026-09-07; accepted)
 
 Ridge's new equipment direction is design → manufacturer development and trials
 → company-owned production and finished stock → government purchase → delivery
 → service. [COMPANIES_AND_PROCUREMENT_PLAN.md](COMPANIES_AND_PROCUREMENT_PLAN.md)
 defines the staged replacement of public production management and the foundation
-for important national companies. This section states intended work; the current
-extensions below still describe the implemented system.
+for important national companies. [COMPANIES.md](COMPANIES.md) describes the first
+domestic tank implementation. Rust and UI integration checks pass; browser
+acceptance is pending. The broader company roadmap remains incomplete.
 
 New company manufacturing must spend company capital and inputs, create only
 company inventory and use existing physical capacity once. Public development
@@ -402,6 +403,44 @@ delivery; unsold company inventory grants no military capability. Corporate cash
 raw inputs, assets and output require explicit ownership and baseline reconciliation.
 Neither company revenue nor reattributed production creates a second copy of GDP.
 Previously paid public work and equipment retain their owners during migration.
+
+The first route supports one player-established state contractor per country,
+with a paid Defense procurement capitalization, an 8-PC establishment command
+and exclusive use of one existing completed Arms Plant slot. One unfinished
+tank development contract takes priority on that slot. Government R&D funds
+actual engineering and trials; certification creates no fielded prototypes.
+Company working capital pays tooling, purchases real inputs from the domestic
+national warehouse and funds finite fabrication. Input sales credit their
+national owner once. Public receipts become company cash only after fiscal
+settlement; development receipts are matched by engineering expense.
+
+Initial per-model stock targets are 1–12, later adjustable to 0–12; they authorize
+no government purchases. A reviewed sale transfers finite stock into one paid
+delivery at average paid material/fabrication cost plus a 15% modeled margin.
+Development and tooling are not charged again per tank. Delivery takes seven
+accessible days after settlement and pauses on lost source access while retaining
+ownership. Arrival enters the frozen revision in the existing Arsenal, including
+its ordinary maintenance and ammunition obligations. World-aware fleet targets
+count company deliveries before suggesting more purchases. These costs, limits
+and lead times are explicit game assumptions.
+
+The sparse version-1 world company book preserves older saves when unused.
+Non-empty corporate property requires the `spheres-equipment-save` envelope
+version 2; raw and version-1 wrappers containing that property are refused so an
+older company-unaware loader cannot silently discard it. Equipment-only saves
+retain their earlier envelope and equipment-state versions.
+
+Establishing the contractor stops background automatic catalogue purchases for
+that country, allowing unassigned procurement authority to accrue for reviewed
+stock purchases. Explicit public lines, projects, ammunition work and paid
+deliveries continue. New tank design actions use this supplier route; other
+equipment families retain explicit public paths. Imports, historical/private companies,
+company-made ammunition, supplier refits, AI procurement and full migration are
+future work, as are corporate macroeconomic attribution and broader failure rules.
+Current code verification is 1,168 Rust passes/68 ignored and 942 Node passes,
+with 19 focused company checks including the explicit QA exporter;
+[COMPANIES.md](COMPANIES.md#verification) records scope and the passing browser
+development save/restart, purchase, delivery, service and responsive-layout checks.
 
 ## Current extension — component-based tank equipment (2026-09-06)
 
@@ -538,4 +577,5 @@ The 7 September art integration (`fc0f0c2` / `c2e49c6`) changes model and scene
 presentation without changing these financial, inventory or capability owners.
 Selected-city blocks are representative artwork, not sourced street layouts.
 The withdrawn globe scatter overlay remains unserved. [ROADMAP.md](ROADMAP.md)
-records the art scope; company-owned manufacturing remains planned work.
+records the art scope; the separate domestic company milestone above introduces
+company-owned manufacturing without changing the art integration's purpose.

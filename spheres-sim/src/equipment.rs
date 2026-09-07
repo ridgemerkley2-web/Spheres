@@ -486,7 +486,7 @@ pub fn design_preview(w: &WorldState, nation: NationId, spec: &DesignSpec) -> De
         "Fabrication payments exclude separately acquired raw inputs. Research and drafts create no equipment or force bonus.".into()]}
 }
 
-fn actor_refusal(w: &WorldState, id: NationId) -> Option<String> {
+pub(crate) fn actor_refusal(w: &WorldState, id: NationId) -> Option<String> {
     if !clock::is_daily(w) {
         return Some("Equipment design requires daily play.".into());
     }
@@ -501,7 +501,7 @@ fn actor_refusal(w: &WorldState, id: NationId) -> Option<String> {
     }
     None
 }
-fn name_refusal(name: &str) -> Option<String> {
+pub(crate) fn name_refusal(name: &str) -> Option<String> {
     (name.trim().is_empty() || name.chars().count() > 80 || name.chars().any(char::is_control))
         .then(|| "Use a model name of 1–80 characters without control characters.".into())
 }
@@ -526,7 +526,7 @@ fn room_refusal(n: &Nation) -> Option<String> {
         }
     })
 }
-fn activation_refusal(n: &Nation) -> Option<String> {
+pub(crate) fn activation_refusal(n: &Nation) -> Option<String> {
     let Some(p) = &n.program_budget else {
         return Some("Activate a departmental budget before funding equipment development.".into());
     };
@@ -539,7 +539,7 @@ fn activation_refusal(n: &Nation) -> Option<String> {
         None
     }
 }
-fn activate(n: &mut Nation, today: i32) {
+pub(crate) fn activate(n: &mut Nation, today: i32) {
     if n.equipment
         .as_ref()
         .is_some_and(|s| s.finance_from_day != i32::MAX)
@@ -804,6 +804,14 @@ pub fn reserved_site_slots(n: &Nation, district: &str) -> usize {
             .count() + reserved_ammunition_slots(n,district)
     })
 }
+
+/// A completed job still consumed its plant's work packet on its completion
+/// date. Lower-priority corporate work cannot reuse it later that same day.
+pub(crate) fn occupied_site_slots_today(n:&Nation,district:&str,day:i32)->usize {
+    n.equipment.as_ref().map_or(0,|s|s.projects.iter().filter(|p|p.district.as_deref()==Some(district)
+        &&(!matches!(p.status,ProjectStatus::Complete|ProjectStatus::Cancelled)||p.completed_day==Some(day)&&p.status==ProjectStatus::Complete)).count()
+        +s.ammunition.as_ref().map_or(0,|a|a.orders.iter().filter(|p|p.district==district&&(!ammunition_ended(p)||p.completed_day==Some(day)&&p.status==ProjectStatus::Complete)).count()))
+}
 pub fn maintenance_allocated_bn(n: &Nation) -> f64 {
     n.equipment
         .as_ref()
@@ -853,6 +861,9 @@ pub fn production_quote(
     }
     if reason.is_none() && !w.rules.resource_market {
         reason = Some("Equipment manufacturing requires the resource market.".into());
+    }
+    if reason.is_none() && crate::companies::licensed_revision(w,id,revision) {
+        reason=Some("This tank revision is licensed to its manufacturer. Buy the company's finished stock instead of creating a second public production line.".into());
     }
     if reason.is_none() {
         reason = site_refusal(w, id, district).or_else(|| room_refusal(w.nation(id)));

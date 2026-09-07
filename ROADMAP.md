@@ -1,6 +1,6 @@
 # SPHERES Roadmap
 
-## Next direction — company-built equipment and procurement (2026-09-07)
+## Current implementation — domestic tank companies and procurement (2026-09-07; accepted)
 
 Ridge wants manufacturers to develop the country's designs, build their own
 finished stock, and sell equipment to the government. The new intended loop is
@@ -8,12 +8,28 @@ design → contracted development → company manufacturing → stock purchase �
 delivery → service. Factory capacity remains a company constraint; the player's
 normal controls become development funding and equipment purchases.
 
-[COMPANIES_AND_PROCUREMENT_PLAN.md](COMPANIES_AND_PROCUREMENT_PLAN.md) records
-the ownership, financing, UI, migration and acceptance plan. First deliver one
-domestic tank contractor through development, company-owned inventory and a real
-purchase. Expand to ammunition, existing equipment, imports and nationally
-important firms before extending more equipment on the old public-production
-path. This is planned work: the current aviation release below is unchanged.
+[COMPANIES.md](COMPANIES.md) describes the implemented first route: one explicitly
+capitalized state contractor per country, one leased existing Arms Plant slot,
+government-funded development, company-funded tooling and finite stock, reviewed
+finished-tank purchases, and seven accessible delivery days after settlement.
+Company and government cash, material stock and vehicles have separate owners.
+New tank design actions lead to the supplier route. Establishing the contractor
+stops background automatic catalogue buying so unassigned procurement funding can
+accrue for reviewed purchases. Explicit public lines, projects, ammunition and
+already paid deliveries retain their owners and controls; other families keep
+their explicit public paths. No historical company assets or extra GDP are granted.
+Corporate property requires the `spheres-equipment-save` version-2 envelope;
+unused company state remains sparse and compatible with earlier save shapes.
+
+The non-browser UI batch passes 942 checks. Rust passes 1,168 tests with 68 ignored
+(simulator/CLI 922/65; web 246/3); the focused company run passes 19, including the
+explicit QA exporter. [COMPANIES.md](COMPANIES.md#verification) separates those
+counts and scope. Browser acceptance passed the development save/restart,
+reviewed stock purchase, year-end arrival, exact-model service and narrow-screen checks.
+[COMPANIES_AND_PROCUREMENT_PLAN.md](COMPANIES_AND_PROCUREMENT_PLAN.md) retains
+the wider ownership, migration and acceptance roadmap. Its domestic steps 1–3
+are accepted for the first domestic tank route. Other equipment, ammunition,
+imports, AI procurement and sourced national firms remain future work.
 
 ## Art integration — shared catalogue, sites and city previews (2026-09-07)
 
@@ -24,8 +40,8 @@ This integration combines the gameplay branch through `fc0f0c2`
 (`feat/hoi4-map-and-tech`) with the art branch through `c2e49c6`
 (`feat/art-p0`). It retains the current equipment-state version 8, physical
 ammunition, tactical aviation and financial ownership rules. Company development,
-company-owned stock and government purchases remain the planned direction above,
-not an implemented consequence of importing the art.
+company-owned stock and government purchases were added separately in the
+domestic contractor milestone above; they are not a consequence of importing art.
 
 The art work adds detailed ground meshes with component-visible geometry and
 levels of detail, a refined 46-model Arsenal catalogue, thirteen composed

@@ -1163,6 +1163,9 @@ pub struct WorldState {
     /// records which completed province plants are directing it.
     #[serde(default, skip_serializing_if = "crate::manufacturing::Manufacturing::is_empty")]
     pub manufacturing: crate::manufacturing::Manufacturing,
+    /// Explicitly capitalized corporate property; absent on the legacy path.
+    #[serde(default, skip_serializing_if = "crate::companies::Companies::is_empty")]
+    pub companies: crate::companies::Companies,
 
     /// The universal world-domination campaign: formal subject hierarchy,
     /// deterministic agenda cards, progress seals and completed legacy. Empty

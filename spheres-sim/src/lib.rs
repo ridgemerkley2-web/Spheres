@@ -6,6 +6,7 @@ pub mod commitment;
 pub mod construction_preview;
 pub mod construction_suggestions;
 pub mod commerce;
+pub mod companies;
 pub mod data;
 pub mod districts;
 pub mod domination;
@@ -77,6 +78,7 @@ pub enum EquipmentOrder {
 /// All player and AI actions flow through the command queue.
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub enum Command {
+    Company { nation: NationId, order: companies::CompanyOrder },
     Equipment { nation: NationId, order: EquipmentOrder },
     SetInterestRate { nation: NationId, rate: f64 },
     BreakCurrencyPeg { nation: NationId },
@@ -392,6 +394,7 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
             (*nation, base + programs::department_price(w, *nation, *fiscal_year, allocations, departments), REFUSABLE)
         }
         Command::SetConstructionBudget { nation, .. } => (*nation, 0.0, REFUSABLE),
+        Command::Company { nation, order } => (*nation, if matches!(order, companies::CompanyOrder::Establish { .. }) {8.0}else{0.0}, REFUSABLE),
         Command::Equipment { nation, order } => (*nation,
             if matches!(order, EquipmentOrder::Research { .. }) { 6.0 } else { 0.0 }, REFUSABLE),
         Command::SetAnnualBudget { nation, fiscal_year, allocations } => {
@@ -643,6 +646,7 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
 /// this returns the sim's own prose rather than composing its own.
 fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
     match c {
+        Command::Company { nation, order } => companies::apply(&mut w.clone(), *nation, order).err(),
         Command::Equipment { nation, order } => apply_equipment_order(&mut w.clone(), *nation, order).err(),
         Command::SetInterestRate { nation, .. } if agency::pegged_rate(w,*nation).is_some() => Some("Exit the currency peg before changing its policy rate.".into()),
         Command::RespondDiplomacy { nation, offer, accept } => agency::response_error(w,*nation,*offer,*accept),
@@ -976,6 +980,7 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
                 n.treasury_bn = Some(crate::data::reserves_1990_bn(*nation).unwrap_or(0.0));
             }
         }
+        Command::Company { nation, order } => companies::apply(w, *nation, order)?,
         Command::Equipment { nation, order } => apply_equipment_order(w, *nation, order)?,
         Command::SetResearchFocus { nation, domain, tech: want } => {
             let di = domain.index();
@@ -1326,6 +1331,7 @@ pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
     // politicians get their turn with it.
     ("tech", tech::tick),
     ("equipment", equipment::tick_day),
+    ("companies", companies::tick_day),
     // Pacts decide who is obliged to join a war and patronage decides who can
     // still afford one, so the standing arrangements are settled before the
     // fighting is worked out.
@@ -1433,6 +1439,7 @@ pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
         }
     }
 
+    companies::settle_receivables(w);
     province_economy::begin_day(w);
     programs::begin_day(w);
     production::tick_day(w);
@@ -1440,6 +1447,7 @@ pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
     if clock::is_daily(w) {
         for (_, system) in SYSTEMS { system(w); }
         programs::finish_day(w);
+        companies::settle_receivables(w);
         province_economy::finish_day(w);
         // Optional spot purchases use cash left after today's incurred fiscal
         // bills. Running this inside SYSTEMS could consume cash those bills
@@ -1485,24 +1493,27 @@ pub fn state_hash(w: &WorldState) -> u64 {
 }
 
 pub fn save(w: &WorldState) -> String {
-    if w.nations.iter().any(|n| n.equipment.is_some()) {
+    if !w.companies.is_empty() || w.nations.iter().any(|n| n.equipment.is_some()) {
         #[derive(Serialize)]
         struct EquipmentSave<'a> { format: &'static str, version: u32, world: &'a WorldState }
         serde_json::to_string_pretty(&EquipmentSave {
-            format: "spheres-equipment-save", version: 1, world: w,
+            format: "spheres-equipment-save", version: if w.companies.is_empty() {1}else{2}, world: w,
         }).expect("serialize equipment save")
     } else { serde_json::to_string_pretty(w).expect("serialize") }
 }
 pub fn load(s: &str) -> Result<WorldState, String> {
     let shape: serde_json::Value = serde_json::from_str(s).map_err(|e| e.to_string())?;
     let mut w: WorldState = if shape.get("format").is_some() {
-        if shape["format"] != "spheres-equipment-save" || shape["version"] != 1 {
+        if shape["format"] != "spheres-equipment-save" || (shape["version"] != 1 && shape["version"] != 2) {
             return Err("This equipment save version is not supported by this build.".into());
         }
         #[derive(Deserialize)]
         struct EquipmentSave { world: WorldState }
         serde_json::from_str::<EquipmentSave>(s).map_err(|e| e.to_string())?.world
     } else { serde_json::from_str(s).map_err(|e| e.to_string())? };
+    if (!w.companies.is_empty()) != (shape.get("format").is_some() && shape["version"] == 2) {
+        return Err("Company property requires the version-two save envelope; refusing to discard or silently downgrade corporate assets.".into());
+    }
     migrate_legacy_wars(&mut w);
     if w.theatres.is_empty() {
         w.theatres = theatre::default_theatres();
@@ -1547,6 +1558,7 @@ pub fn load(s: &str) -> Result<WorldState, String> {
             }
         }
     }
+    companies::validate_state(&w)?;
     Ok(w)
 }
 

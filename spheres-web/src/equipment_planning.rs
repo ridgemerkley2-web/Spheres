@@ -78,7 +78,7 @@ fn profile_rows(p:&eq::CompiledProfile)->Vec<(&'static str,&'static str,f64,&'st
         ("land_factor","Land contribution",p.land_factor,"×","higher"),("firepower","Firepower",p.land,"rating","higher"),
         ("protection","Protection",p.protection,"rating","higher"),("mobility","Mobility",p.mobility,"rating","higher"),("observation","Observation",p.recon,"rating","higher"),
         ("fabrication","Fabrication per vehicle",p.fabrication_cost_bn,"bn","lower"),("development","Development programme",p.development_cost_bn,"bn","lower"),
-        ("tooling","Tooling per batch",p.tooling_cost_bn,"bn","lower"),("maintenance","Maintenance per vehicle / day",p.maintenance_bn_day,"bn","lower"),
+        ("tooling","Initial site tooling",p.tooling_cost_bn,"bn","lower"),("maintenance","Maintenance per vehicle / day",p.maintenance_bn_day,"bn","lower"),
         ("development_days","Minimum development",p.development_days as f64,"days","lower"),("production_days","Minimum fabrication",p.production_days as f64,"days","lower"),
         ("load","Installation load",p.installation_used as f64,"points","neutral"),
     ];
