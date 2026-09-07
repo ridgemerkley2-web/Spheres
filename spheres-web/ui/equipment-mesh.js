@@ -60,6 +60,9 @@
     ground_artillery:{mobility:"engine_diesel_900",turret:"ground_turret_howitzer",armament:"ground_howitzer_122",ammunition:"ground_ammo_he",artillery_loader:"ground_loader_manual"},
     ground_air_defense:{turret:"ground_turret_aa",armament:"ground_aa_gun",ammunition:"ground_ammo_aa",radar:"ground_radar_search"}
   };
+  // The tank ammunition loads name their own stowage. The label is the part's, so
+  // it must read as a thing a crew stows and not as a catalogue id.
+  const AMMO_LABEL = { ammo_mixed: "mixed-purpose", ammo_penetrator: "penetrator", ammo_support: "fire-support" };
   const add = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
   const sub = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
   const mul = (a, n) => [a[0] * n, a[1] * n, a[2] * n];
@@ -606,7 +609,16 @@
           b.face([[side*x-width/2,p.y,p.z],[side*x+width/2,p.y,p.z],[side*x+width/2,q.y,q.z],[side*x-width/2,q.y,q.z]],c.track,inner);
           const radial=cross([1,0,0],p.tangent);
           b.box([side*x,p.y,p.z],[width+.025,b.gauge(.048),perimeter/steps*.82],c.steel,[[1,0,0],radial,p.tangent]);
-          b.box([side*x,p.y+radial[1]*.032,p.z+radial[2]*.032],[width*.63,b.gauge(.034),.07],s.tracks==='tracks_padded'?c.rubber:c.bright,[[1,0,0],radial,p.tangent]);
+          // The shoe face. A padded track is not a steel grouser in a different
+          // colour — it is a rubber block that covers nearly the whole shoe and
+          // stands twice as proud, which is why a padded hull sits higher on its
+          // own belt and reads with a softer edge. The tank belt has drawn the
+          // difference this way since it was written; this is the specialist
+          // hulls catching up with it, and it is the only change here that moves
+          // the whole vehicle rather than adding a fitting to it.
+          const padded=s.tracks==='tracks_padded';
+          b.box([side*x,p.y+radial[1]*(padded?.049:.032),p.z+radial[2]*(padded?.049:.032)],
+            [width*(padded?.94:.63),b.gauge(padded?.064:.034),padded?.105:.07],padded?c.rubber:c.bright,[[1,0,0],radial,p.tangent]);
         }
       });
     }
@@ -625,6 +637,25 @@
         b.cylinder([w-.14,deck-.34,front-1.18-j*.30],[w+.14,deck-.34,front-1.18-j*.30],.09,c.steel,16);
         b.tube([w+.14,deck-.34,front-1.18-j*.30],[w+.24,deck-.23,front-1.18-j*.30],.095,.066,c.steel,16);
       }
+      // AIR CLEANERS, and the reason they are here. Four engines are legal on
+      // these hulls and the only thing that used to separate them was how many
+      // louvres the grille had — a pitch, not a shape, and the coverage report
+      // scored every one of them weak. An air cleaner is the fitting that stands
+      // proud of an engine deck, so the count and the height of the drums is what
+      // now answers the choice: none on the compact, one on the standard, a low
+      // heat exchanger and a fan stack on the managed one, two tall drums on the
+      // high-output. They are drawn under the deck's own maximum, so a coarse
+      // level may cull them without moving the vehicle's extent.
+      const drums=power?2:s.mobility==='engine_diesel_900'?1:0;
+      for(let j=0;j<drums;j++)b.revolve([x-.44,deck+.09,z-.26+j*.52],[0,1,0],[
+        {r:.09,h:0},{r:.185,h:.05,s:1},{r:.20,h:.13,s:1},{r:.20,h:.40,s:1},{r:.175,h:.46,s:1},{r:.085,h:.49}],c.steel,20,.62);
+      if(drums&&b.keep(0.30))for(let j=0;j<drums;j++)
+        b.tube([x-.44,deck+.50,z-.26+j*.52],[x-.30,deck+.52,z-.26+j*.52],.070,.046,c.shade,12);
+      if(managed) {
+        b.revolve([x-.42,deck+.11,z-.10],[0,1,0],[{r:.14,h:0},{r:.21,h:.045,s:1},{r:.21,h:.30,s:1},{r:.17,h:.34}],c.upper,18,.44);
+        b.box([x-.42,deck+.13,z+.36],[.40,.18,.30],c.shade);
+        if(b.keep(0.30))for(let j=0;j<b.many(6,2);j++)b.box([x-.42,deck+.13,z+.24+j*.048],[.36,.13,.020],c.bright);
+      }
       // Cooling-fan cowl and a filler socket. From directly above, the deck used
       // to be a lid with stripes on it and nothing that stood proud.
       if(b.keep(0.30)) {
@@ -634,10 +665,39 @@
       }
     });
     b.part('transmission / forward drive access',()=>{
+      // Three gearboxes, three front ends. The old part changed one plate's width
+      // and depth, which the coverage report scored as a panel growing in place;
+      // a cross-drive and a manual box do not share a nose casting, so they do
+      // not share one here either.
       const automatic=s.transmission!=='transmission_manual',managed=s.transmission==='ground_transmission_electric';
       b.box([0,.91,front-.02],[automatic?1.0:.73,.22,automatic?.19:.12],c.shade);
       if(b.keep(0.30))for(const x of [-.26,.26])b.box([x,.94,front+.08],[.07,.06,.045],c.bright);
-      if(managed)b.box([-.43,1.075,front-.16],[.25,.16,.26],c.upper);
+      if(!automatic) {
+        // Manual: a bolted inspection plate, the shift linkage that runs back
+        // through it, and the hand-crank boss beside it.
+        beveled(b,[0,.99,front+.055],[.62,.26,.10],c.upper,.045);
+        if(b.keep(0.30)) {
+          for(const dx of [-.20,.20])b.rod([dx,.99,front+.06],[dx,.99,front+.13],.030,c.steel,8);
+          b.socket([.31,.86,front+.02],[.31,.86,front+.16],.075,.044,c.steel,14);
+        }
+      } else {
+        // Automatic: a cross-drive housing with a turned final-drive bulge at
+        // each end of it, which is the shape that tells the eye the drive splits
+        // to both tracks at the front.
+        for(const side of [-1,1])b.revolve([side*.60,.88,front-.10],[side,0,0],[
+          {r:.20,h:0},{r:.26,h:.055,s:1},{r:.28,h:.16,s:1},{r:.26,h:.245,s:1},{r:.19,h:.28},{r:0,h:.28}],c.armor,20,.60);
+        if(b.keep(0.30))for(const side of [-1,1])b.studs([side*.60,.88,front-.10],[side,0,0],.215,8,.032,.026,c.bright);
+      }
+      if(managed) {
+        // Managed: the control unit, its cooling module and the loom that leaves
+        // it. The plain automatic has none of this.
+        b.box([-.43,1.075,front-.16],[.25,.16,.26],c.upper);
+        b.box([.34,1.10,front-.24],[.44,.24,.34],c.shade);
+        if(b.keep(0.30)) {
+          for(let j=0;j<b.many(5,2);j++)b.box([.34,1.10,front-.40+j*.055],[.40,.17,.024],c.bright);
+          b.rod([.14,1.05,front-.24],[-.30,1.02,front-.18],.026,c.cable,8);
+        }
+      }
     });
     b.part(`turret / ${mg?'protected weapon station':howitzer?'enclosed howitzer turret':aaMount?'air-defense cradle':'autocannon turret'}`,()=>{
       const radius=mg?.36:howitzer?1.07:aaMount?.78:.63;
@@ -697,13 +757,115 @@
         }
       }
     });
-    b.part(`ammunition / ${label(s.ammunition)} protected stowage`,()=>{
-      // Exterior lockers identify the ammunition bay; payload quantities remain
-      // simulation metadata, not invented visible rounds or performance claims.
-      const x=howitzer?.91:mg?.27:.55,z=mountZ-(howitzer?1.09:mg?.18:.53);
-      b.box([x,mg?mountTop-.09:deck+.40,z],[.30,.27,.40],c.shade);
-      b.box([x,mg?mountTop+.052:deck+.542,z],[.32,.025,.42],c.edge);
-      if(b.keep(0.30))b.rod([x-.06,mg?mountTop+.078:deck+.565,z],[x+.06,mg?mountTop+.078:deck+.565,z],.014,c.bright);
+    b.part(`ammunition / ${label(s.ammunition)} ready stowage`,()=>{
+      // Exterior stowage identifies the ammunition load; payload quantities remain
+      // simulation metadata, not invented performance claims. What this draws is
+      // what a resupply party handles — a ready box, an upright shell rack, a
+      // charge bin, a canister cradle — and the SHAPE of it answers the choice.
+      // The old part drew one locker in the same place for all six ids and read
+      // its label off the selection, which is why the coverage report scored the
+      // whole slot absent: a belt box and a rack of upright projectiles do not
+      // look alike at any distance, and they should not have.
+      const ammo=s.ammunition,tw=howitzer?1.18:aaMount?.83:mg?.50:.75,dk=deck+.065;
+      // A lidded deck locker: body, raised lid, over-centre catches, grab rail.
+      const locker=(cx,cy,cz,size,tint)=>{
+        // The chamfer and the lid rim are inspection detail. At the map pin the
+        // locker is one prism, because a locker's 28 triangles against a prism's
+        // 12 is a quarter of what the LOD2 band has left over on a loaded hull.
+        if(b.level<2)beveled(b,[cx,cy,cz],size,tint,.05);else b.box([cx,cy,cz],size,tint);
+        if(b.keep(0.30))b.box([cx,cy+size[1]/2+.018,cz],[size[0]+.03,.028,size[2]+.03],c.edge);
+        if(b.keep(0.30))for(const dz of [-size[2]*.30,size[2]*.30])b.box([cx+size[0]/2+.014,cy,cz+dz],[.028,.085,.05],c.bright);
+        if(b.keep(0.30))b.rod([cx-size[0]*.22,cy+size[1]/2+.046,cz],[cx+size[0]*.22,cy+size[1]/2+.046,cz],.015,c.bright,8);
+      };
+      // A projectile: turned body, ogive nose. A rack of these reads as rounds;
+      // a rack of plain cylinders reads as pegs.
+      const round=(origin,axis,radius,reach,tint)=>b.revolve(origin,axis,[
+        {r:0,h:0},{r:radius,h:.022},{r:radius,h:reach*.70,s:1},{r:radius*.86,h:reach*.84,s:1},
+        {r:radius*.46,h:reach*.96,s:1},{r:0,h:reach}],tint,12,Math.hypot(radius*2,reach));
+      if(ammo==='ground_ammo_autocannon') {
+        // Belt-fed ready boxes on the turret flanks, with the feed chute to the
+        // breech and a spent-link bag under it.
+        for(const side of [-1,1]) {
+          locker(side*(tw+.28),mountTop-.28,mountZ-.04,[.28,.38,.70],weathered(c.hull,side>0?1:2));
+          if(b.keep(0.30)) {
+            b.box([side*(tw+.10),mountTop-.14,mountZ+.16],[.16,.11,.34],c.steel);
+            for(let j=0;j<b.many(5,2);j++)b.box([side*(tw+.10),mountTop-.14,mountZ+.03+j*.07],[.17,.055,.032],c.bright);
+          }
+        }
+        if(b.keep(0.30)) {
+          b.box([0,mountTop-.44,mountZ-.30],[.42,.26,.30],c.canvas);
+          b.rod([-.20,mountTop-.30,mountZ-.30],[.20,mountTop-.30,mountZ-.30],.018,c.steel,8);
+        }
+      } else if(ammo==='ground_ammo_ball') {
+        // A single belt box on the station bracket and two spare boxes stacked on
+        // the deck: the smallest load in the catalogue, and it should look it.
+        locker(.34,mountTop-.11,mountZ+.04,[.26,.22,.36],c.shade);
+        if(b.keep(0.30))for(let j=0;j<b.many(4,2);j++)b.box([.34,mountTop-.02,mountZ-.13-j*.05],[.17,.045,.030],c.bright);
+        for(let j=0;j<2;j++)locker(w*.56,dk+.13+j*.21,mountZ-.88,[.44,.19,.54],weathered(c.hull,j+1));
+        if(b.keep(0.30))for(const dz of [-.20,.20])b.rod([w*.56-.24,dk+.06,mountZ-.88+dz],[w*.56+.24,dk+.06,mountZ-.88+dz],.020,c.steel,8);
+      } else if(ammo==='ground_ammo_he') {
+        // An upright projectile ready rack on the rear deck, behind the turret,
+        // where a crew actually stands to load. Seven noses in a row is the one
+        // silhouette in this slot that a map pin could still recognise.
+        const z=rear+1.02;
+        b.box([0,dk+.05,z],[1.62,.07,.46],c.steel);
+        for(let i=0;i<b.many(7,3);i++) {
+          const step=b.many(7,3),x=(i-(step-1)/2)*(1.42/Math.max(1,step-1)||0);
+          round([x,dk+.09,z],[0,1,0],.077,.62,i%2?c.shade:c.bright);
+        }
+        if(b.keep(0.30))for(const dz of [-.20,.20]) {
+          b.rod([-.78,dk+.44,z+dz],[.78,dk+.44,z+dz],.018,c.steel,8);
+          for(const dx of [-.78,.78])b.rod([dx,dk+.09,z+dz],[dx,dk+.48,z+dz],.018,c.steel,8);
+        }
+        locker(-w*.60,dk+.20,z-.72,[.46,.34,.52],c.canvas);
+      } else if(ammo==='ground_ammo_guided') {
+        // Three padded canisters lying fore-and-aft in a cradle, with the setting
+        // unit and its umbilical: long horizontal tubes against the high-explosive
+        // load's short upright ones.
+        const z=rear+1.16;
+        b.box([0,dk+.06,z],[1.32,.09,.34],c.steel);
+        for(let i=0;i<b.many(3,2);i++) {
+          const step=b.many(3,2),x=(i-(step-1)/2)*(.82/Math.max(1,step-1)||0);
+          b.cylinder([x,dk+.24,z-.54],[x,dk+.24,z+.50],.105,c.canvas,16);
+          b.always(()=>b.tube([x,dk+.24,z+.48],[x,dk+.24,z+.56],.108,.070,c.steel,16));
+          if(b.keep(0.30))for(const dz of [-.30,.26])b.cylinder([x,dk+.24,z+dz],[x,dk+.24,z+dz+.035],.122,c.bright,16);
+        }
+        if(b.keep(0.30))for(const dz of [-.34,.30])b.box([0,dk+.13,z+dz],[1.28,.10,.055],c.shade);
+        b.box([w*.58,dk+.22,z-.74],[.34,.30,.36],c.upper);
+        b.box([w*.58,dk+.22,z-.74+.19],[.22,.16,.020],c.glass);
+        if(b.keep(0.30))b.rod([w*.58-.14,dk+.10,z-.74],[.44,dk+.10,z-.54],.020,c.cable,8);
+      } else if(ammo==='ground_ammo_aa') {
+        // Twin ready drums flanking the mount, each with its feed chute. A cannon
+        // load is round where the missile load is square.
+        for(const side of [-1,1]) {
+          b.revolve([side*(tw+.16),mountTop-.32,mountZ-.20],[side,0,0],[
+            {r:0,h:0},{r:.28,h:.02},{r:.30,h:.05,s:1},{r:.30,h:.24,s:1},{r:.28,h:.27},{r:0,h:.29}],c.shade,20,.62);
+          if(b.keep(0.30)) {
+            b.studs([side*(tw+.18),mountTop-.32,mountZ-.20],[side,0,0],.20,6,.030,.024,c.bright);
+            b.box([side*(tw+.24),mountTop-.16,mountZ+.06],[.14,.30,.20],c.steel);
+          }
+        }
+        locker(w*.46,dk+.17,mountZ-1.24,[.86,.30,.50],weathered(c.hull,1));
+      } else if(ammo==='ground_ammo_missiles') {
+        // A reload cradle carrying two spare launch canisters on the rear deck,
+        // with the lifting frame that gets them onto the rails.
+        const z=rear+1.34;
+        b.box([0,dk+.07,z],[1.20,.09,1.30],c.steel);
+        for(const side of [-1,1]) {
+          b.box([side*.44,dk+.26,z],[.26,.26,1.46],c.shade);
+          b.box([side*.44,dk+.26,z+.755],[.225,.225,.045],c.black);
+          if(b.keep(0.30))for(const dz of [-.42,.44])b.box([side*.44,dk+.26,z+dz],[.29,.29,.035],c.bright);
+          if(b.keep(0.30))b.rod([side*.44,dk+.41,z-.52],[side*.44,dk+.41,z+.52],.020,c.steel,8);
+        }
+        if(b.keep(0.30))for(const dz of [-.56,.56]) {
+          for(const dx of [-.62,.62])b.rod([dx,dk+.11,z+dz],[dx,dk+.62,z+dz],.024,c.steel,8);
+          b.rod([-.62,dk+.62,z+dz],[.62,dk+.62,z+dz],.024,c.steel,8);
+        }
+      } else {
+        // Any load the mesh does not model yet keeps the plain deck locker rather
+        // than silently drawing nothing.
+        locker(w*.48,dk+.18,mountZ-.60,[.52,.30,.44],c.shade);
+      }
     });
     b.part(`sensors / ${label(s.sensors)} observation fittings`,()=>{
       hatch(-w*.42,deck+.065,front-1.12,.25);
@@ -718,16 +880,62 @@
       const night=s.sensors==='optics_night',thermal=s.sensors==='optics_thermal',y=mg?deck+.17:mountTop;
       b.box([.32,y+.075,mountZ+.15],[thermal?.28:.21,thermal?.16:.12,.24],c.shade);
       b.box([.32,y+.077,mountZ+.276],[thermal?.19:.13,.075,.016],c.lens);
-      if(night)b.cylinder([.40,y+.09,mountZ+.20],[.40,y+.09,mountZ+.37],.083,c.black,20);
+      // Night observation is a SEARCHLIGHT on these hulls, not a slightly larger
+      // drum: a turned housing on its own bracket, with the emitter face and the
+      // hood that keeps the driver's block usable beside it. The old 83 mm drum
+      // scored weak because at any distance it was the same shape as the day
+      // sight it sat next to.
+      if(night) {
+        b.revolve([.44,y+.11,mountZ+.16],[0,0,1],[
+          {r:.09,h:0},{r:.185,h:.045,s:1},{r:.195,h:.20,s:1},{r:.185,h:.30,s:1},{r:.17,h:.32}],c.shade,20,.44);
+        b.revolve([.44,y+.11,mountZ+.16],[0,0,1],[{r:.165,h:.315,s:1},{r:.13,h:.335,s:1},{r:0,h:.345}],c.lens,20,.44);
+        b.box([.44,y-.09,mountZ+.20],[.11,.22,.13],c.steel);
+        if(b.keep(0.30)) {
+          b.studs([.44,y+.11,mountZ+.17],[0,0,1],.175,8,.026,.020,c.bright);
+          b.box([-w*.42,deck+.26,front-.90],[.30,.10,.14],c.shade);
+          b.box([-w*.42,deck+.26,front-.83],[.22,.055,.016],c.glass);
+        }
+      }
       if(thermal)b.always(()=>{b.cylinder([.32,y+.15,mountZ+.15],[.32,y+.38,mountZ+.15],.085,c.steel,20);b.box([.32,y+.44,mountZ+.15],[.32,.15,.24],c.upper);b.box([.32,y+.44,mountZ+.278],[.22,.09,.02],c.lens);})
     });
     b.part(`fire_control / ${label(s.fire_control)} sight and stabilization`,()=>{
+      // Stabilisation is a machine with a stroke, so it is drawn as one: the
+      // elevation actuator and its linkage stand outboard of the mount where the
+      // eye can see them move. Digital control adds the computer case and the
+      // crosswind sensor above it. The old part answered all three choices by
+      // making one grey box 90 mm taller, which is the definition of weak.
       const digital=s.fire_control==='fcs_digital',stabilized=s.fire_control==='fcs_stabilized';
       const x=mg?-.30:-.40,y=mg?mountTop-.12:mountTop-.10;
       b.box([x,y,mountZ+.30],[.14,digital?.19:.10,.24],c.shade);
       b.box([x,y,mountZ+.43],[.095,.065,.018],c.glass);
-      if(stabilized||digital)b.rod([x,gunY-.12,mountZ+.35],[x,gunY-.12,mountZ+.82],.038,c.bright,12);
-      if(digital)b.box([x-.18,y+.06,mountZ+.22],[.18,.13,.24],c.upper);
+      if(stabilized||digital) {
+        b.rod([x,gunY-.12,mountZ+.35],[x,gunY-.12,mountZ+.82],.038,c.bright,12);
+        const ax=x-.24,ay=(gunY+y)/2-.06;
+        b.revolve([ax,ay-.22,mountZ+.14],[0,1,0],[
+          {r:.055,h:0},{r:.098,h:.045,s:1},{r:.098,h:.34,s:1},{r:.072,h:.38,s:1},{r:.072,h:.50,s:1},{r:0,h:.52}],c.steel,18,.56);
+        if(b.keep(0.30)) {
+          b.box([ax,ay-.26,mountZ+.14],[.15,.11,.17],c.shade);
+          b.rod([ax,ay+.30,mountZ+.14],[ax+.16,ay+.34,mountZ+.30],.030,c.bright,8);
+        }
+      }
+      if(digital) {
+        b.box([x-.18,y+.06,mountZ+.22],[.18,.13,.24],c.upper);
+        // The ballistic computer, its display and the laser rangefinder head that
+        // feeds it. All of it sits at mount height and under the vehicle's own
+        // maximum: a mast would have read better and it was drawn and taken out
+        // again, because on the howitzer hull it set the extent, and geometry
+        // that sets the extent has to survive to the map pin, where 60 triangles
+        // is most of what the LOD2 band has left on a loaded vehicle.
+        b.box([x+.10,y+.19,mountZ-.30],[.34,.26,.32],c.shade);
+        b.box([x+.10,y+.19,mountZ-.145],[.24,.15,.020],c.glass);
+        if(b.keep(0.30)) {
+          b.box([x+.10,y+.33,mountZ-.30],[.28,.030,.26],c.edge);
+          b.rod([x+.10,y+.06,mountZ-.30],[x,y-.02,mountZ+.12],.026,c.cable,8);
+        }
+        b.revolve([x+.30,y+.10,mountZ+.28],[0,0,1],[
+          {r:.06,h:0},{r:.115,h:.035,s:1},{r:.115,h:.19,s:1},{r:.098,h:.22}],c.steel,18,.26);
+        b.revolve([x+.30,y+.10,mountZ+.28],[0,0,1],[{r:.092,h:.215,s:1},{r:.070,h:.235,s:1},{r:0,h:.245}],c.lens,18,.26);
+      }
     });
     b.part(`communications / ${label(s.communications)} aerial installation`,()=>{
       const network=s.communications==='ground_comms_network',secure=s.communications==='ground_comms_secure',data=s.communications==='comms_data';
@@ -736,7 +944,20 @@
         b.cylinder([x,deck,z],[x,deck+.14,z],.075,c.black,16);
         b.always(()=>b.rod([x,deck+.14,z],[x,deck+(network?1.31:1.01),z-.08],b.gauge(.013),c.steel,8));
       }
-      if(secure||network)b.box([w-.43,deck+.14,rear+.65],[.32,.19,.37],c.shade);
+      // The secure set is a CASE on a bracket, standing off the deck where the
+      // outline can see it, plus the tuning unit at the aerial foot and the loom
+      // between them. Buried flat against the deck at 320x190x370 it was
+      // measurably invisible — 0.02 m² of changed outline on a hull whose other
+      // choices move a quarter of a square metre.
+      if(secure||network) {
+        beveled(b,[w-.46,deck+.31,rear+.66],[.44,.36,.48],c.shade,.055);
+        b.box([w-.46,deck+.50,rear+.66],[.47,.030,.51],c.edge);
+        if(b.keep(0.30)) {
+          for(const dz of [-.17,.17])b.rod([w-.46,deck+.09,rear+.66+dz],[w-.46,deck+.14,rear+.66+dz],.028,c.steel,8);
+          b.box([w-.35,deck+.20,rear+.58],[.19,.17,.21],c.upper);
+          b.rod([w-.35,deck+.16,rear+.56],[w-.35,deck+.14,rear+.54],.022,c.cable,8);
+        }
+      }
       if(data||network)b.cylinder([w-.43,deck+.20,rear+.65],[w-.43,deck+.32,rear+.65],.19,c.upper,24);
     });
     if(s.active_protection!=='aps_none')b.part(`active_protection / ${label(s.active_protection)} perimeter system`,()=>{
@@ -1393,6 +1614,73 @@
         b.rod([hullWidth - 0.14, 1.59, 0.06], [hullWidth - 0.14, 1.59, 1.21], 0.027, c.canvas, 10);
         b.box([hullWidth - 0.14, 1.59, 1.24], [0.18, 0.052, 0.25], c.steel);
         for (const z of [0.20, 0.95]) b.box([hullWidth - 0.14, 1.626, z], [0.12, 0.035, 0.052], c.bright);
+      }
+    });
+
+    // THE AMMUNITION LOAD, which until this pass had no geometry at all on any
+    // tank: the three ids were metadata, the contract exempted the slot, and a
+    // player who changed the load watched an unchanged model. Roadmap section A
+    // says what it should be — "readable stowage/inspection representation, not
+    // detailed weapon internals" — so this is the bustle magazine a resupply
+    // party sees: a compartment hung on the back of the stowage rack, its roof
+    // carrying the blow-off panels that vent a magazine fire upward, its door
+    // swung open on the ready rack inside. What changes between the three loads
+    // is the SHAPE of that stowage — the depth of the compartment, the run of the
+    // panels, and what is racked in it — never its colour.
+    if(chosen.ammunition)b.part(`ammunition / ${AMMO_LABEL[chosen.ammunition]} ready rack and blow-off panels`,()=>{
+      const pen=chosen.ammunition==='ammo_penetrator',sup=chosen.ammunition==='ammo_support';
+      const rackY=turretY+0.24,bayHalf=turretWidth*(sup?0.72:0.66);
+      const bayBack=pen?-2.62:sup?-2.30:-2.44,bayFront=-2.00,depth=bayFront-bayBack;
+      const bayH=sup?0.50:0.42,bayY=rackY+bayH/2,mid=(bayBack+bayFront)/2,roof=bayY+bayH/2;
+      // THE MAP PIN. At LOD2 the compartment is the only thing here that clears
+      // the cull, and a chamfered prism costs 28 triangles against a prism's 12
+      // on a level whose whole vehicle budget is 1,500. The chamfer is what makes
+      // it read as a machined box at inspection range; at map range nothing can
+      // see it, so it is not drawn.
+      if(b.level<2)beveled(b,[0,bayY,mid],[bayHalf*2,bayH,depth],c.armor,0.06);
+      else b.box([0,bayY,mid],[bayHalf*2,bayH,depth],c.armor);
+      // Blow-off panels. Two long ones over a rack of long rods, four short ones
+      // over a charge bin, three otherwise: the run of the panels is the plan
+      // view's answer to which load is aboard.
+      // Two at the map pin, not one: a single panel spans the whole compartment
+      // roof, which makes it as large as the compartment and pushes it back over
+      // the cull — 12 triangles the LOD2 band does not have to spare.
+      const panels=pen?2:sup?4:3,drawn=b.many(panels,2,2);
+      for(let i=0;i<drawn;i++) {
+        const pitch=bayHalf*2/drawn,x=(i-(drawn-1)/2)*pitch,wide=pitch-0.055;
+        b.box([x,roof+0.028,mid],[wide,0.055,depth-0.10],c.upper);
+        b.box([x,roof+0.062,mid],[wide-0.06,0.024,depth-0.17],c.edge);
+        if(b.keep(0.30))for(const dz of [-depth*0.30,depth*0.30])b.box([x,roof+0.052,mid+dz],[wide*0.72,0.030,0.035],c.bright);
+      }
+      // The door, hinged open to port so the rack behind it is what the eye lands
+      // on. A closed plate would say nothing about the load.
+      const doorH=bayH*0.78,hinge=-bayHalf-0.02;
+      b.box([hinge-doorH*0.42,bayY,bayBack-0.03-depth*0.28],[doorH*0.84,doorH,0.05],c.upper,[[0,0,1],[0,1,0],[1,0,0]]);
+      if(b.keep(0.30)) {
+        for(const dy of [-doorH*0.32,doorH*0.32])b.revolve([hinge,bayY+dy,bayBack-0.03],[0,1,0],[
+          {r:0.042,h:-0.05,s:1},{r:0.042,h:0.05,s:1},{r:0.028,h:0.075}],c.steel,10,0.14);
+        b.rod([hinge-doorH*0.74,bayY-0.09,bayBack-0.02-depth*0.28],[hinge-doorH*0.74,bayY+0.09,bayBack-0.02-depth*0.28],0.022,c.bright,8);
+      }
+      // The ready rack, through the opening. A penetrator load is four long rods
+      // that stand out past the door frame; a mixed load is two tiers of five
+      // shorter rounds; a fire-support load is three fat projectiles under a row
+      // of upright charge canisters, which is the one that changes the roof line.
+      const tiers=pen?[[4,0.055,0.86,0.0]]:sup?[[3,0.084,0.44,0.0]]:[[3,0.052,0.52,-0.10],[2,0.076,0.46,0.10]];
+      for(const [count,radius,reach,lift] of tiers)for(let i=0;i<count;i++) {
+        const x=(i-(count-1)/2)*(bayHalf*1.5/count);
+        b.revolve([x,bayY+lift,bayBack+reach],[0,0,-1],[
+          {r:0,h:0},{r:radius,h:0.022},{r:radius,h:reach*0.70,s:1},{r:radius*0.86,h:reach*0.84,s:1},
+          {r:radius*0.46,h:reach*0.96,s:1},{r:0,h:reach}],pen?c.steel:i%2?c.bright:c.shade,12,Math.hypot(radius*2,reach));
+      }
+      if(sup)for(let i=0;i<b.many(4,2);i++) {
+        const x=(i-1.5)*(bayHalf*0.62);
+        b.revolve([x,roof+0.08,mid],[0,1,0],[{r:0.082,h:0},{r:0.082,h:0.26,s:1},{r:0.062,h:0.30},{r:0,h:0.30}],c.canvas,12,0.34);
+      }
+      // Two brackets down to the engine deck, so the compartment is carried and
+      // not floating behind the turret.
+      if(b.keep(0.30))for(const side of [-1,1]) {
+        b.rod([side*bayHalf*0.78,bayY-bayH/2,bayFront-0.05],[side*bayHalf*0.86,1.60,bayFront-0.34],0.030,c.steel,8);
+        b.box([side*bayHalf*0.86,1.60,bayFront-0.34],[0.13,0.055,0.17],c.shade);
       }
     });
 

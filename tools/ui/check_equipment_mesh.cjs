@@ -258,8 +258,50 @@ check('every new simulation component resolves and exterior choices change the a
     else if(/station_mg|mg_127|ammo_ball/.test(id))platform='ground_apc';
     const original=ground[platform],spec={platform,components:{...original.specification.components,[slot]:id}},snapshot=JSON.stringify(spec),next=build(spec);
     assert.equal(next.specification.components[slot],id);validate(next,true);assert.equal(JSON.stringify(spec),snapshot);
-    if(slot!=='ammunition'&&original.specification.components[slot]!==id)assert.notEqual(digest(next),digest(original),id);
+    // THE AMMUNITION EXEMPTION IS GONE. This line used to read
+    // `if(slot!=='ammunition'&&...)`, which held every slot but one to the bar
+    // that a choice must change the triangles — and the one it let through was
+    // the slot with the least to show for itself. Every ground ammunition id
+    // drew the same locker in the same place and read its label off the
+    // selection, so `docs/art/COMPONENT_COVERAGE.md` scored all six absent while
+    // this file was green. A contract with a hole in it is a contract that
+    // measures where the art already is.
+    if(original.specification.components[slot]!==id)assert.notEqual(digest(next),digest(original),id);
   }
+});
+check('every tank ammunition load draws its own stowage, at the card level too',()=>{
+  // The sweep above covers the ground families. The TANK families were never
+  // swept for this at all, and not because anyone exempted them: the sweep two
+  // checks down reads its slot list from `build({platform})`, whose legacy
+  // five-slot resolution carries no `ammunition` key, so the slot fell out of
+  // the loop before it could be measured. Between that and the exemption just
+  // removed, the whole ammunition catalogue — nine ids across nine hulls — was
+  // outside the contract. This is the other half of the repair.
+  const loads=[...fs.readFileSync(path.resolve(__dirname,'../../spheres-sim/src/equipment_specs.rs'),'utf8')
+    .matchAll(/component!\("([^"]+)","[^"]+","ammunition"/g)].map(m=>m[1]);
+  assert.ok(loads.length>=3,`only ${loads.length} tank ammunition loads scraped`);
+  const seen=new Set();
+  for(const platform of ['tank_standard','tank_heavy','tank_light','tank_destroyer']){
+    for(const load of loads){
+      const spec={platform,components:{...detailed.components,ammunition:load}};
+      const mesh=build(spec);validate(mesh);
+      assert.equal(mesh.specification.components.ammunition,load);
+      const part=mesh.parts.find(p=>p.slot==='ammunition'&&p.name.includes('ready rack'));
+      assert.ok(part,`${platform} ${load} draws no ammunition stowage`);
+      assert.ok(part.count>0&&part.label&&!part.label.includes('ammo_'),`${platform} ${load} label ${part.label}`);
+      // Distinct from every other load on the same hull, and distinct at the
+      // catalogue card too: a difference only the inspection mesh carries is a
+      // difference the player never sees.
+      for(const other of loads){
+        if(other===load)continue;
+        const rival={platform,components:{...detailed.components,ammunition:other}};
+        assert.notEqual(digest(mesh),digest(build(rival)),`${platform} ${load} against ${other}`);
+        assert.notEqual(digest(build({...spec,lod:1})),digest(build({...rival,lod:1})),`${platform} ${load} against ${other} at LOD1`);
+      }
+      seen.add(`${platform}/${load}`);
+    }
+  }
+  assert.equal(seen.size,4*loads.length);
 });
 check('mission upgrades alter observable silhouette, running gear and weapons',()=>{
   const upgrade=(platform,components)=>build({platform,components:{...ground[platform].specification.components,...components}});
@@ -458,6 +500,42 @@ check('the reference exports stay under the byte cap check_equipment_export.cjs 
   ];
   for(const spec of exported)assert.ok(build(spec).triangleCount<tankCap,`${spec.platform} exports ${build(spec).triangleCount} triangles against a ${Math.round(tankCap)} ceiling`);
   for(const platform of groundPlatforms)assert.ok(ground[platform].triangleCount<groundCap,`${platform} exports ${ground[platform].triangleCount} triangles against a ${Math.round(groundCap)} ceiling`);
+});
+
+check('a specialist that fields two ammunition loads shows which one it carries',()=>{
+  // The removed exemption holds each load against the platform DEFAULT. That is
+  // not the same question as whether two loads a player can actually choose
+  // between look different from each other, which is the question the designer
+  // asks: the artillery hull fields a high-explosive and a guided load, and both
+  // could have differed from nothing while being identical to one another.
+  const rival={ground_recon:['ground_ammo_ball','ground_ammo_autocannon'],
+    ground_artillery:['ground_ammo_he','ground_ammo_guided'],
+    ground_air_defense:['ground_ammo_aa','ground_ammo_missiles']};
+  for(const [platform,loads] of Object.entries(rival)){
+    const of=(ammunition,lod)=>build({platform,components:{...ground[platform].specification.components,ammunition},lod});
+    for(const lod of [0,1]){
+      const meshes=loads.map(load=>of(load,lod));
+      assert.notEqual(digest(meshes[0]),digest(meshes[1]),`${platform} ammunition loads at LOD${lod}`);
+    }
+    for(const load of loads){
+      const mesh=of(load,0);validate(mesh,true);
+      const part=mesh.parts.find(p=>p.slot==='ammunition');
+      assert.ok(part&&part.label&&!part.label.includes('ground_'),`${platform} ${load} stowage label`);
+    }
+  }
+});
+check('the committed component coverage report still matches the geometry',()=>{
+  // docs/art/COMPONENT_COVERAGE.md is the only place that says which component
+  // choices actually change the model. A generated document that nothing checks
+  // is a stale document with a build command in its header, so this runs the
+  // generator's own --check: if the art moved and the report did not, this goes
+  // red here rather than being discovered by a player who selected a component
+  // and saw nothing happen.
+  const tool=path.resolve(__dirname,'build_component_coverage.cjs');
+  assert.ok(fs.existsSync(tool),'the coverage generator is missing');
+  const run=require('node:child_process').spawnSync(process.execPath,[tool,'--check'],{encoding:'utf8'});
+  assert.equal(run.status,0,`node tools/ui/build_component_coverage.cjs --check failed:\n${run.stdout}${run.stderr}`);
+  assert.match(run.stdout,/0 weak \/ 0 absent/,`the report still records holes:\n${run.stdout}`);
 });
 
 const smoothedShare = mesh => mesh.smoothing.reduce((sum, entry) => sum + entry.vertices, 0) / (mesh.triangleCount * 3);
