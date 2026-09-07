@@ -310,6 +310,7 @@
 .person-3d-stage canvas:active { cursor:grabbing; }
 .person-3d-toolbar { display:flex; position:relative; z-index:2; justify-content:center; flex-wrap:wrap; gap:8px; padding:10px; border-top:1px solid #b8b99c20; background:#112632a8; }
 .person-3d-dialog .person-3d-help { margin:10px 0; text-align:center; color:#b6c4bd; font-size:12px; }
+.person-3d-dialog .person-3d-detail { margin:0; padding:0 10px 10px; color:#b6c4bd; text-align:center; font-size:11px; background:#112632a8; }
 .person-3d-dialog footer { display:flex; flex-wrap:wrap; align-items:center; gap:14px; justify-content:space-between; padding-top:12px; border-top:1px solid #b6be9d33; }
 .person-3d-dialog .person-3d-credit { flex:1 1 250px; margin:0; max-width:400px; color:#aabfb8; font-size:11px; }
 .person-3d-dialog a { color:#e5cca0; font-size:12px; text-underline-offset:3px; }

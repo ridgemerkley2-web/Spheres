@@ -6,6 +6,11 @@ use spheres_sim::{party_leadership, world::{NationId, WorldState}};
 pub(crate) struct Asset { pub bytes: &'static [u8], pub content_type: &'static str }
 pub(crate) fn asset(name: &str) -> Option<Asset> {
     let bytes: &'static [u8] = match name {
+        "margaret_thatcher_1990_v2.glb" => include_bytes!("../ui/person-models/margaret_thatcher_1990_v2.glb"),
+        "neil_kinnock_1990_v2.glb" => include_bytes!("../ui/person-models/neil_kinnock_1990_v2.glb"),
+        "paddy_ashdown_1990_v2.glb" => include_bytes!("../ui/person-models/paddy_ashdown_1990_v2.glb"),
+        "george_h_w_bush_1990_v2.glb" => include_bytes!("../ui/person-models/george_h_w_bush_1990_v2.glb"),
+        // Retain the previous immutable URLs for already-open character viewers.
         "margaret_thatcher_1990_v1.glb" => include_bytes!("../ui/person-models/margaret_thatcher_1990_v1.glb"),
         "neil_kinnock_1990_v1.glb" => include_bytes!("../ui/person-models/neil_kinnock_1990_v1.glb"),
         "paddy_ashdown_1990_v1.glb" => include_bytes!("../ui/person-models/paddy_ashdown_1990_v1.glb"),
@@ -127,7 +132,7 @@ mod tests {
     use super::*;
     #[test]
     fn avatars_are_exact_people_with_half_open_eras_and_no_national_fallback() {
-        assert_eq!(portrait("margaret_thatcher","1990-01-01")["model_id"],"margaret_thatcher_1990_v1");
+        assert_eq!(portrait("margaret_thatcher","1990-01-01")["model_id"],"margaret_thatcher_1990_v2");
         assert_eq!(portrait("margaret_thatcher","1994-12-31")["method"],"procedural_3d");
         assert!(portrait("margaret_thatcher","1995-01-01").is_null());
         assert!(portrait("margaret_thatcher","1989-12-31").is_null());

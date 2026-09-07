@@ -6,6 +6,8 @@ it is in this order.*
 
 ## Historical party leadership, 7 September 2026
 
+**Character fidelity update:** full-detail character masters now target 100–110k triangles each. The four v2 pilots have continuous facial sculpts, fitted hair, individual fingers, more detailed tailoring, soft portrait lighting and a face close-up. Government and GLB downloads use the same full geometry. The wider roster and final likeness approval remain pending; [the character roadmap](docs/CHARACTER_3D_ROADMAP.md) records counts, export checks and production tiers.
+
 The user chose a 1990–2026 historical reference and gameplay-altered succession from historical candidates. The new catalogue separates immutable people, party roles, dated affiliation evidence and current campaign officeholders. Party term endings and real historical election results never change campaign governments by calendar. Small represented parties, composite rows and collective leadership are included, with explicit gaps for unsupported identities and dates.
 
 New browser campaigns enable the optional party-leadership book; old campaigns remain on their existing rules and can browse historical reference data without migration. New saves use a versioned outer envelope preserving the equipment/company ledger version. Existing bindings are validated against immutable person/role facts; changing those facts requires a deliberate migration. Named successors appear through the shared government-office reading. Their existing annual executive mortality event needs an exact sourced birthday; there is no new party-only mortality scheduler.

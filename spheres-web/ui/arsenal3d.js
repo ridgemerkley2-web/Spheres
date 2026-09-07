@@ -49,6 +49,21 @@
     vec3 N = normalize(vNrm);
     vec3 V = normalize(uEye - vPos);
     if (dot(N, V) < 0.0) N = -N;
+    if (uCharacter > 0.5) {
+      // A broad portrait key and warm fill keep skin soft and tailoring matte.
+      // Equipment retains its own harder lighting and installed surface shader.
+      vec3 portraitKey = normalize(vec3(-0.55, 0.7, 1.0));
+      vec3 portraitFill = normalize(vec3(0.75, 0.2, 0.7));
+      float hemisphere = 0.5 + 0.5 * N.y;
+      vec3 c = vCol * (0.34 + 0.10 * hemisphere);
+      c += vCol * (0.52 * max(dot(N, portraitKey), 0.0));
+      c += vCol * (0.19 * max(dot(N, portraitFill), 0.0)) * vec3(1.0, 0.96, 0.91);
+      float rim = pow(1.0 - max(dot(N, V), 0.0), 3.0);
+      c += rim * 0.055 * vec3(0.74, 0.84, 0.92);
+      c += 0.018 * pow(max(dot(N, normalize(portraitKey + V)), 0.0), 32.0);
+      outColor = vec4(c, 1.0);
+      return;
+    }
     vec3 key = normalize(vec3(-0.45, 0.82, 0.55));
     vec3 fil = normalize(vec3(0.7, 0.15, -0.5));
     float sky = 0.5 + 0.5 * N.y;
@@ -544,13 +559,16 @@
     // Quantize the manual pitch so dragging cannot accumulate unbounded fit
     // entries, or refit every vertex for sub-pixel camera changes.
     const pitch = Number.isFinite(o.pitch) ? Math.round(Math.max(-20,Math.min(34,o.pitch))/2)*2 : 6;
-    const zoom = Number.isFinite(o.zoom) ? Math.max(.75,Math.min(1.8,o.zoom)) : 1;
+    // A portrait phone canvas needs more horizontal room for both ears. The
+    // face preset must remain useful when the modal becomes tall and narrow.
+    const zoomLimit = entry.geom.assetKind === "character" ? Math.min(3,Math.max(1.8,3*w/h)) : 1.8;
+    const zoom = Number.isFinite(o.zoom) ? Math.max(.75,Math.min(zoomLimit,o.zoom)) : 1;
     const fit = fitFrame(entry,w/h,pitch,null);
     const pivot = fit.pivot.slice();
     // Close inspection moves toward the face, keeping the head visible while
     // the lower body leaves the frame as the player zooms in.
     if (entry.geom.assetKind === "character" && zoom > 1) {
-      pivot[1] += (zoom-1) * (entry.geom.bounds.max[1]-entry.geom.bounds.min[1]) * .42;
+      pivot[1] += Math.min(1,(zoom-1)/1.3) * (entry.geom.bounds.max[1]-entry.geom.bounds.min[1]) * .37;
     }
     const out = renderTo(id,"",w,h,yaw,pitch,fit.d/zoom,pivot);
     const ctx = canvas.getContext("2d");

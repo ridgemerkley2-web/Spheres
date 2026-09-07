@@ -9,6 +9,7 @@
   function change(view,action,dx=0,dy=0) {
     const next={...view};
     if(action==="reset")return initial();
+    if(action==="face")return {yaw:12,pitch:2,zoom:3};
     if(action==="left")next.yaw-=25;
     if(action==="right")next.yaw+=25;
     if(action==="in")next.zoom+=.15;
@@ -18,7 +19,7 @@
     if(action==="drag"){next.yaw+=Number.isFinite(dx)?dx*.55:0;next.pitch+=Number.isFinite(dy)?dy*.3:0;}
     next.yaw=((next.yaw%360)+360)%360;
     next.pitch=Math.max(-20,Math.min(35,next.pitch));
-    next.zoom=Math.max(.75,Math.min(1.8,next.zoom));
+    next.zoom=Math.max(.75,Math.min(3,next.zoom));
     return next;
   }
   let dialog=null,disposeDialog=null;
@@ -31,6 +32,8 @@
       frame=0;if(!alive||!canvas.isConnected)return;
       const ok=!!root.Arsenal3D?.draw(canvas,"person:"+id,view);
       stage.classList.toggle("person-3d-ready",ok);
+      const detail=stage.querySelector(".person-3d-detail");
+      if(detail&&ok)detail.textContent=(root.PersonModels?.meta(id)?.triangle_count||0).toLocaleString()+" triangles · Full detail";
       controls.forEach(b=>{b.disabled=!ok;});
       canvas.setAttribute("aria-label",`${root.PersonModels?.meta(id)?.name||"Character"}, 3D view. ${interactive?"Drag or use arrow keys to rotate; plus and minus to zoom; Home to reset.":"Use the rotation buttons below or open the larger viewer."}`);
     };
@@ -72,7 +75,7 @@
     close();
     dialog=root.document.createElement("dialog");dialog.className="person-3d-dialog";
     dialog.setAttribute("aria-labelledby","person-3d-title");
-    dialog.innerHTML='<header><div><p class="person-3d-kicker">Character studio · 3D likeness study</p><h2 id="person-3d-title"></h2></div><button type="button" data-person-close aria-label="Close character viewer">×</button></header><div class="person-3d-stage"><div class="person-3d-fallback">3D is unavailable in this browser. The character file is available below.</div><canvas tabindex="0" role="img"></canvas><div class="person-3d-toolbar" role="group" aria-label="Character camera"><button type="button" data-person-turn="left" aria-label="Rotate left">↶</button><button type="button" data-person-turn="right" aria-label="Rotate right">↷</button><button type="button" data-person-turn="out" aria-label="Zoom out">−</button><button type="button" data-person-turn="in" aria-label="Zoom in">+</button><button type="button" data-person-turn="reset">Reset view</button></div></div><p class="person-3d-help">Drag to rotate · Arrow keys to turn · + / − to zoom</p><footer><p class="person-3d-credit"></p><a download>Download 3D model (.glb)</a></footer>';
+    dialog.innerHTML='<header><div><p class="person-3d-kicker">Character studio · 3D likeness study</p><h2 id="person-3d-title"></h2></div><button type="button" data-person-close aria-label="Close character viewer">×</button></header><div class="person-3d-stage"><div class="person-3d-fallback">3D is unavailable in this browser. The character file is available below.</div><canvas tabindex="0" role="img"></canvas><div class="person-3d-toolbar" role="group" aria-label="Character camera"><button type="button" data-person-turn="left" aria-label="Rotate left">↶</button><button type="button" data-person-turn="right" aria-label="Rotate right">↷</button><button type="button" data-person-turn="out" aria-label="Zoom out">−</button><button type="button" data-person-turn="in" aria-label="Zoom in">+</button><button type="button" data-person-turn="face">Face close-up</button><button type="button" data-person-turn="reset">Full figure</button></div><p class="person-3d-detail"></p></div><p class="person-3d-help">Drag to rotate · Arrow keys to turn · + / − to zoom</p><footer><p class="person-3d-credit"></p><a download>Download 3D model (.glb)</a></footer>';
     dialog.querySelector("h2").textContent=meta.name;
     dialog.querySelector(".person-3d-credit").textContent=meta.credit+" Appearance: "+meta.from.slice(0,4)+"–"+(Number(meta.to.slice(0,4))-1)+".";
     dialog.querySelector("a").href="/art/people/"+id+".glb";

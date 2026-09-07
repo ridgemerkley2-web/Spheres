@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Spheres character art review</title>
+<link rel="stylesheet" href="../../spheres-web/ui/government-ui.css">
+<style>
+body{margin:0;padding:32px;background:#102431;color:#eee7d5;font:15px system-ui}h1{font:36px Georgia}main{max-width:1100px;margin:auto}.characters{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}article{background:#29434b;border:1px solid #60787a;border-radius:12px;padding:16px}canvas{display:block;width:100%;height:340px}button{border:1px solid #ad9c7e;border-radius:6px;background:#25414b;color:#f3deb4;padding:12px;cursor:pointer}small{display:block;margin:10px 0;color:#bdc9c4}p{color:#bdc9c4}output{display:block;white-space:pre-wrap;margin-top:18px}a{color:#dec598}
+</style>
+<main><h1>Character art review</h1><p>Full-detail geometry, shared with Government and the downloadable models. Open a character to inspect the face, tailoring and silhouette from every angle.</p><div class="characters"></div><p><button id="bench">Measure 60 rotation frames</button></p><output id="report" aria-live="polite"></output></main>
+<script src="../../spheres-web/ui/arsenal-models.js"></script><script src="../../spheres-web/ui/arsenal3d.js?review=3"></script>
+<script>
+(async()=>{
+  window.PersonModelData=await (await fetch('../../spheres-web/data/person_models.json',{cache:'no-store'})).json();
+  for(const file of ['person-models.js','person-3d.js'])await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src='../../spheres-web/ui/'+file+'?review='+Date.now();s.onload=resolve;s.onerror=reject;document.head.append(s);});
+  const host=document.querySelector('.characters');
+  for(const id of PersonModels.ids()){
+    const a=document.createElement('article');a.dataset.personModel=id;
+    const heading=document.createElement('h2');heading.textContent=PersonModels.meta(id).name;a.append(heading);
+    const canvas=document.createElement('canvas');canvas.setAttribute('role','img');a.append(canvas);
+    const info=document.createElement('small');const start=performance.now(),mesh=PersonModels.build(id);
+    info.textContent=mesh.triangleCount.toLocaleString()+' triangles · '+Math.round(performance.now()-start)+' ms build';a.append(info);
+    const button=document.createElement('button');button.dataset.personOpen='';button.textContent='Inspect '+PersonModels.meta(id).name;a.append(button);host.append(a);
+  }
+  Person3D.scan(host);
+  host.addEventListener('click',e=>{
+    const button=e.target.closest('[data-person-open]');if(!button)return;
+    const link=document.querySelector('.person-3d-dialog a');
+    if(link)link.href='../../spheres-web/ui/person-models/'+button.closest('[data-person-model]').dataset.personModel+'.glb';
+  });
+  document.querySelector('#bench').onclick=async function(){
+    this.disabled=true;const durations=[],frames=[],canvas=document.createElement('canvas'),id=PersonModels.ids()[0];let last=performance.now();
+    canvas.style.cssText='width:min(650px,100%);height:470px';document.querySelector('#report').before(canvas);
+    for(let i=0;i<60;i++){
+      await new Promise(requestAnimationFrame);const start=performance.now();frames.push(start-last);
+      Arsenal3D.draw(canvas,'person:'+id,{yaw:i*6,pitch:5,zoom:1});durations.push(performance.now()-start);last=start;
+    }
+    const stats=a=>{a.sort((a,b)=>a-b);return 'median '+a[Math.floor(a.length/2)].toFixed(1)+' ms, p95 '+a[Math.floor(a.length*.95)].toFixed(1)+' ms';};
+    document.querySelector('#report').textContent='Canvas: '+canvas.width+' × '+canvas.height+' physical pixels\nCPU draw + canvas copy: '+stats(durations)+'\nAnimation frame intervals: '+stats(frames)+'\nCache: '+JSON.stringify(Arsenal3D.cacheStats());canvas.remove();this.disabled=false;
+  };
+})().catch(e=>{document.querySelector('#report').textContent=e.stack;});
+</script></html>

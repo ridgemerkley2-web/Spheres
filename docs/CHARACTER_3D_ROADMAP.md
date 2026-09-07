@@ -6,9 +6,20 @@ The requested direction is **actual rotatable 3D cartoon characters**. This supe
 
 Four authored models cover Margaret Thatcher, Neil Kinnock, Paddy Ashdown and George H. W. Bush, using an explicitly limited early-1990s appearance window. They are labelled **likeness studies**, not finished portrait sculptures or approved likenesses. These are physical triangle meshes with sculpted facial features, hair, jackets, hands, shoes and individual accessories. They have no skeleton, facial animation or automatic ageing yet.
 
-Government displays compact models with left/right controls. The larger viewer supports pointer/touch rotation, arrow keys, zoom buttons, +/−, Home/reset and a downloadable GLB. The viewer does not send campaign commands. Missing people and out-of-era appearances retain a clearly labelled pending avatar instead of being assigned somebody else's face.
+Government displays compact models with left/right controls. The larger viewer supports pointer/touch rotation, arrow keys, zoom buttons, +/−, a face close-up, Home/full-figure reset and a downloadable GLB. It reports the actual mesh triangle count. The viewer does not send campaign commands. Missing people and out-of-era appearances retain a clearly labelled pending avatar instead of being assigned somebody else's face.
 
-The existing Arsenal3D renderer supplies one shared WebGL2 context, a bounded geometry cache and studio lighting. Character materials bypass vehicle weathering. Each card uses a 2D canvas copy of a real 3D render, while manual rotation and the larger viewer redraw the underlying geometry. There is no idle spinning or WebGL context per party. Camera listeners, observers and scheduled frames are disposed on Government redraw/close.
+The user's requested full-detail standard is **approximately 100,000 triangles per character**. The v2 pilots replace the 24–31k primitive studies with continuous sculpted skin, blended noses and cheekbones, inset almond eyes and shaped lids, iris fibres, contoured lips, fitted scalp shells, swept hair strands, angled ears, separate fingers/thumbs/nails, cloth folds, raised lapels, cuffs, pockets and detailed accessories. Each person has explicit facial proportions as well as a hairstyle and wardrobe. These remain original cartoon likeness studies requiring artistic review; polygon count does not certify a finished likeness.
+
+| Current full-detail model | Triangles | GLB bytes |
+| --- | ---: | ---: |
+| Margaret Thatcher | 104,952 | 11,336,860 |
+| Neil Kinnock | 104,955 | 11,337,076 |
+| Paddy Ashdown | 106,211 | 11,472,884 |
+| George H. W. Bush | 106,523 | 11,506,528 |
+
+The exact same full-detail geometry appears on cards, in the studio and in downloads. There is no subdivision trick, hidden filler object or reduced-detail substitute for the studio. Surface sampling distributes the budget across each person's anatomy, hair and wardrobe; degenerate pole triangles are omitted. Tests require 100–110k real, finite, non-collapsed triangles, normalized normals, correct identity/era metadata and exact agreement with the exported file. Versioned v2 asset URLs avoid stale immutable downloads; v1 URLs remain available for an already-open viewer.
+
+The existing Arsenal3D renderer supplies one shared WebGL2 context and a bounded geometry cache. Characters use softer portrait lighting and matte shading, bypassing vehicle weathering and equipment lighting. Each card uses a 2D canvas copy of a real 3D render, while manual rotation and the larger viewer redraw the underlying geometry. There is no idle spinning or WebGL context per party. Camera listeners, observers and scheduled frames are disposed on Government redraw/close. The four characters occupy 422,641 triangles of the shared 1.2-million-triangle cache.
 
 | File | Responsibility |
 | --- | --- |
@@ -17,9 +28,10 @@ The existing Arsenal3D renderer supplies one shared WebGL2 context, a bounded ge
 | `spheres-web/ui/person-models.js` | Original authored geometry, shared by browser and export |
 | `spheres-web/ui/person-3d.js` | Read-only camera and modal lifecycle |
 | `tools/ui/build_person_models.cjs` | Deterministic physical GLB exports; `--check` proves exact agreement |
+| `tools/ui/character-studio.html` | Local art review page with the production renderer, full-size rotation benchmark and GLB downloads |
 | `spheres-web/ui/person-models/*.glb` | Downloadable geometry with source/era/person metadata and named mesh-part ranges |
 
-Build with `node tools/ui/build_person_models.cjs`. Verify with `node tools/ui/build_person_models.cjs --check` and `node --test tools/ui/check_person_models.cjs`. The exporter preserves equipment's existing default metadata; character exports use Character Studio metadata.
+Build with `node tools/ui/build_person_models.cjs`; this also updates the catalogue's displayed triangle counts. Verify with `node tools/ui/build_person_models.cjs --check` and `node --test tools/ui/check_person_models.cjs`. The exporter preserves equipment's existing default metadata; character exports use Character Studio metadata. Serve the repository root over localhost and visit `/tools/ui/character-studio.html` for visual review. Its benchmark reports CPU submission/canvas-copy time and animation-frame intervals, not a GPU timer or a promise about other machines.
 
 ## Production sequence
 
@@ -29,7 +41,7 @@ Build with `node tools/ui/build_person_models.cjs`. Verify with `node tools/ui/b
 4. **Add a shared rig.** Specify humanoid joints, neutral pose, hand proportions, facial blend shapes and restrained greeting/idle animations. Respect reduced motion. Political party and government role are campaign records, not features embedded in the mesh.
 5. **Add appearance eras.** Research hairstyles, facial hair and ageing references for each person. Use reviewed era variants, not 37 independent guessed annual portraits. Display a variant only inside its documented visual era, even when gameplay keeps a person in office beyond their historical term.
 6. **Scale the catalogue.** Use head/wardrobe/accessory templates with individual face sculpts, source records, stable IDs and a review queue. Prioritize every represented party, including small coalition components. The 624 game-party inventory is not a complete inventory of real-world political organizations.
-7. **Ship performance tiers.** Produce near/card/map LODs, atlas materials, measured triangle/texture budgets and lazy downloads for a large roster. The four current models use roughly 24–31k triangles each and remain inside the existing shared geometry cache; a worldwide roster must not embed full-detail geometry for hundreds of people in the initial page payload.
+7. **Ship performance tiers.** Keep a 100–110k full-detail master for each future character. Produce separate card/map LODs, atlas materials, measured texture budgets and lazy downloads for a large roster. The four current models use full detail everywhere and remain inside the existing shared geometry cache; a worldwide roster must not embed full-detail geometry for hundreds of people in the initial page payload. Rigs, PBR texture sets, automatic LODs and imported artist sculpts are still future production work.
 
 ## Historical foundation and remaining coverage
 
