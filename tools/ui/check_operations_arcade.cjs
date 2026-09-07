@@ -27,8 +27,11 @@ const helpers = [
   'productionRequirements', 'productionCapabilityPairs', 'productionModuleLabel', 'productionNeedHtml',
   'productionCardHtml', 'productionSummary', 'productionStartAllowed', 'productionBuiltHtml',
   'productionFundingLabel', 'productionCatalogHtml', 'productionEligible', 'productionProvinceHtml',
+  'constructionMoney', 'constructionBudgetHtml', 'constructionInvalidatePreview', 'constructionPreviewNoticeHtml',
+  'constructionSiteContext', 'constructionProvinceRefusal', 'constructionProvinceMatches', 'constructionProvinceChoices', 'constructionRevealProject',
+  'constructionSuggestionItems', 'constructionSuggestionsCurrent', 'constructionSuggestionsHtml',
   'manufacturingLines', 'manufacturingCatalog', 'manufacturingProvinces', 'manufacturingHoldings',
-  'manufacturingOrders', 'manufacturingKit', 'manufacturingTone', 'manufacturingClassMark',
+  'manufacturingOrders', 'manufacturingKit', 'manufacturingTone', 'manufacturingClassMark', 'manufacturingKit3d',
   'manufacturingBn', 'manufacturingRequirementHtml', 'manufacturingPriorityChoices',
   'manufacturingCanStop', 'manufacturingLineHtml', 'manufacturingLedgerHtml',
   'manufacturingLinesHtml', 'manufacturingCatalogHtml', 'manufacturingProvinceHtml',
@@ -52,11 +55,12 @@ function fixture(extra = []) {
     classList: { toggle(name, value) { if (value) panelClasses.add(name); else panelClasses.delete(name); },
       add(...names) { names.forEach(name=>panelClasses.add(name)); }, remove(...names) { names.forEach(name=>panelClasses.delete(name)); } } };
   const c = vm.createContext({
-    assert, body, panel, panelClasses, window: {}, calls: [],
+    assert, body, panel, panelClasses, window: {}, calls: [], advancing:false, pendingAdvance:null,
     $: key => key.endsWith('Body') ? body : panel,
     escText: value => String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'),
     clamp: (n, min, max) => Math.min(max, Math.max(min, n)),
     fmtQ: value => String(value),
+    economyMoney: value => Number.isFinite(value) ? `$${value}bn` : '—',
     rglyph: () => '<svg aria-hidden="true"></svg>',
     stockHue: () => '#abc', stockRows: () => [], nationById: () => null,
     closeSheet: () => c.calls.push('close-sheet'),
@@ -79,6 +83,7 @@ function fixture(extra = []) {
     const MANU_CLASS_MARK={armour:'▰'};
     const RES_ALL='all',RESOURCES={},MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     const S={player:'USA',production_summary:{}}; const GLOBE=null; const stock={open:false},tech={open:false};
+    PROD.dataState=S;
     function me(){return {id:'USA',name:'United States'};}
     ${[...new Set([...helpers, ...extra])].map(source).join('\n')}
   `, c);
@@ -105,6 +110,21 @@ test('the entire shipped inline JavaScript remains syntactically valid', () => {
   assert(scripts.length);
   scripts.forEach(script=>new vm.Script(script));
 });
+
+test('manufacturing model markup uses the actual optional renderer bridge in catalog, lines and holdings',()=>{
+  const c=fixture();c.line=line;
+  assert.equal(run(c,'manufacturingKit3d("arm_gen3", "armour")'),'');
+  c.Arsenal3D=c.window.Arsenal3D={available:false,canvasHtml(){throw new Error('Unavailable renderer must not be called');}};
+  assert.equal(run(c,'manufacturingKit3d("arm_gen3", "armour")'),'');
+  const requests=[];c.Arsenal3D=c.window.Arsenal3D={available:true,canvasHtml(kit,cls){requests.push([kit,cls]);return `<canvas data-tested-kit="${kit}" data-tested-class="${cls}"></canvas>`;}};
+  assert.match(run(c,'manufacturingLineHtml(line)'),/<canvas data-tested-kit="arm_gen3" data-tested-class="armour">/);
+  run(c,`MANU.data.catalog=[{id:'arm_gen3',name:'Armour',class:'armour',available:true}];MANU.showLocked=true;
+    MANU.data.stockpile=[{kit:'arm_gen3',name:'Delivered armour',class:'armour',units:3,unit_label:'vehicles'}];
+    MANU.data.orders=[{kit:'arm_gen3',name:'Ordered armour',class:'armour',units:2,unit_label:'vehicles'}];`);
+  assert.match(run(c,'manufacturingCatalogHtml()'),/data-tested-kit="arm_gen3"/);
+  const ledger=run(c,'manufacturingLedgerHtml()');assert.equal((ledger.match(/data-tested-kit="arm_gen3"/g)||[]).length,2);
+  assert.deepEqual(requests,[['arm_gen3','armour'],['arm_gen3','armour'],['arm_gen3','armour'],['arm_gen3','armour']]);
+});
 test('logistics dock announces the same in-transit stock shown visually after refresh',()=>{
   const c=fixture(['renderLogisticsDock']);
   const nodes=Object.fromEntries(['#logisticsDockBtn','#dockLogistics','#logisticsBadge'].map(id=>[id,{textContent:'',attrs:{},classList:{toggle(){}},setAttribute(k,v){this.attrs[k]=v;}}]));
@@ -129,23 +149,24 @@ test('operations styling stays scoped, readable and touch-sized', () => {
 test('production overview keeps one clear start action and exact server progress', () => {
   const c=fixture(['renderProductionPanel']); c.project=project;
   run(c,'PROD.data.queue=[project];renderProductionPanel();');
-  assert.match(c.body.innerHTML,/Build what comes next/);
+  assert.match(c.body.innerHTML,/Your construction queue/);
   assert.equal((c.body.innerHTML.match(/data-prod-new/g)||[]).length,1);
-  assert.match(c.body.innerHTML,/40%/); assert.match(c.body.innerHTML,/60 days left/);
-  assert.match(c.body.innerHTML,/1 of 4 national project slots/);
-  assert.match(c.body.innerHTML,/<details class="operations-details"><summary>Materials &amp; project priority/);
-  assert.match(c.body.innerHTML,/Iron · 8\/20 kt/);
+  assert.match(c.body.innerHTML,/40%/); assert.match(c.body.innerHTML,/60 days remaining/);
+  assert.match(c.body.innerHTML,/1 active project/);
+  assert.match(c.body.innerHTML,/<details class="operations-details"><summary>After completion/);
+  assert.doesNotMatch(c.body.innerHTML,/Iron|national project slots|Materials &amp;/);
   assert.match(c.body.innerHTML,/data-prod-priority="high" data-prod-id="7"/);
   assert.match(c.body.innerHTML,/data-prod-map="7"/);
   run(c,'PROD.selected="7";renderProductionPanel();');
-  assert.match(c.body.innerHTML,/<details class="operations-details" open>/);
+  assert.match(c.body.innerHTML,/<article class="work-card building selected"/);
 });
 test('project catalogue and province choice retain eligibility and authored costs', () => {
   const c=fixture();
-  run(c,`PROD.data.catalog=[{kind:'infrastructure',name:'Infrastructure',base_days:180,pc_cost:8,effect:'More corridor capacity',eligible_provinces:['US-CA']}];
+  run(c,`PROD.data.catalog=[{kind:'infrastructure',name:'Infrastructure',base_days:180,pc_cost:8,funding:{work_cost_bn:.25},effect:'More corridor capacity',eligible_provinces:['US-CA']}];
     PROD.data.provinces=[{id:'US-CA',name:'California'},{id:'US-NY',name:'New York'}];PROD.pickKind='infrastructure';`);
   const catalog=run(c,'productionCatalogHtml()');
-  assert.match(catalog,/data-prod-kind="infrastructure"/);assert.match(catalog,/180 work-days · 8 PC/);
+  assert.match(catalog,/data-prod-kind="infrastructure"/);assert.match(catalog,/180 days/);assert.match(catalog,/\$0\.25bn total project cost/);
+  assert.doesNotMatch(catalog,/8 PC|work-days/);
   const provinces=run(c,'productionProvinceHtml()');
   assert.match(provinces,/data-prod-province="US-CA"/);assert.doesNotMatch(provinces,/US-NY/);
 });
@@ -162,7 +183,9 @@ test('completed fractional workshops stay visible without becoming full-site lev
     PROD.data.provinces=[{id:'US-CA',name:'California',module_capacity:0.012345,
     capabilities:{civilian_industry:0,power_grid:0}}];PROD.pickKind='infrastructure';`);
   const pick=run(c,'productionProvinceHtml()');
-  assert.match(pick,/Starter workshop · 1\.2345% standard capacity/);
+  assert.match(pick,/data-prod-province="US-CA"/);
+  assert.match(pick,/Starter workshop · 1\.2345% standard capacity/,'Province choice identifies the actual installed fractional workshop');
+  assert.doesNotMatch(pick,/civilian industry 1|power grid 1|construction capacity/,'A workshop is not displayed as an invented full site or construction work capacity');
   assert.doesNotMatch(pick,/available ground/);
 });
 test('manufacturing displays actual daily draw without changing it to a monthly recipe', () => {

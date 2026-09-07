@@ -56,10 +56,10 @@ function fixture(names) {
   document.querySelectorAll = selector => {
     if (selector === '.game-drawer.open') return [...elements.values()].filter(e => e.classList.contains('open') && e.id.endsWith('Drawer'));
     if (selector === '[data-drawer]') return [element('economyDock')];
-    if (selector === '[data-cab-tab]') return ['overview', 'budget', 'policy'].map(tab => {
+    if (selector === '[data-cab-tab]') return ['overview', 'budget', 'industry', 'policy'].map(tab => {
       const button = element(`cab-tab-${tab}`); button.dataset.cabTab = tab; return button;
     });
-    if (selector === '.cab-page') return ['overview', 'budget', 'policy'].map(tab => element(`cabinet-${tab}`));
+    if (selector === '.cab-page') return ['overview', 'budget', 'industry', 'policy'].map(tab => element(`cabinet-${tab}`));
     return [];
   };
   const context = vm.createContext({
@@ -107,6 +107,32 @@ function evaluate(context, code) {
 function plain(context, code) {
   return JSON.parse(evaluate(context, `JSON.stringify(${code})`));
 }
+
+test('overview routes annual renewal, building counts and advice without changing the draft', () => {
+  const c = fixture(['cabinetStatusHtml']);
+  const before = plain(c, '({m, queued})');
+  const html = evaluate(c, 'cabinetStatusHtml(m, {active:2, attention:1}, {due:true})');
+  assert.match(html, /Review your yearly budget/);
+  assert.match(html, /data-cab-go="budget"/);
+  assert.match(html, /2 building projects/);
+  assert.match(html, /1 reported needing attention/);
+  assert.match(html, /onclick="openConstruction\(\)"/);
+  assert.match(html, /closeGameDrawers\(\); openAdvisor\(\)/);
+  assert.deepEqual(plain(c, '({m, queued})'), before);
+});
+
+test('overview reflects enacted plans and does not invent a construction count when unavailable', () => {
+  const c = fixture(['cabinetStatusHtml']);
+  evaluate(c, 'm.annual_budget = {fiscal_year:1991, due:false}');
+  const html = evaluate(c, 'cabinetStatusHtml(m, null, {due:false})');
+  assert.match(html, /Yearly budget enacted/);
+  assert.match(html, /FY 1991 is running/);
+  assert.match(html, /Review construction/);
+  assert.doesNotMatch(html, /Choose your next project|0 building/);
+  assert.match(evaluate(c, 'cabinetStatusHtml(m, {active:0}, null)'), /Choose your next project/);
+  assert.match(evaluate(c, 'cabinetStatusHtml(m, {active:1}, null)'), /1 building project →/);
+  assert.match(evaluate(c, 'cabinetStatusHtml({}, {}, null)'), /Set your first budget/);
+});
 
 test('annual drafts adopt the current fiscal year without changing the saved draft', () => {
   const c = fixture(['annualBudgetOf']);
@@ -226,13 +252,13 @@ test('cabinet keyboard navigation wraps tabs and traps focus without consuming n
   assert.equal(evaluate(c, 'prevented'), prevented, 'native controls retain their own keys');
 });
 
-test('cabinet is an accessible modal with three tabs and a gameplay-shortcut guard', () => {
+test('cabinet is an accessible modal with industry and a gameplay-shortcut guard', () => {
   const modal = page.match(/<section\b[^>]*\bid="cabinetDrawer"[^>]*>/);
   assert(modal, 'cabinet has a full-screen section');
   for (const attribute of ['role="dialog"', 'aria-modal="true"', 'aria-labelledby="cabinetTitle"']) {
     assert(modal[0].includes(attribute), `modal must carry ${attribute}`);
   }
-  for (const tab of ['overview', 'budget', 'policy']) {
+  for (const tab of ['overview', 'budget', 'industry', 'policy']) {
     const button = page.match(new RegExp(`<button\\b[^>]*id="cab-tab-${tab}"[^>]*>`));
     assert(button, `${tab} has a tab control`);
     assert(button[0].includes('role="tab"'));
@@ -260,6 +286,125 @@ test('tab selection changes visibility and roving focus, never the pending budge
   evaluate(c, 'selectCabinetTab("not-a-tab")');
   assert.equal(evaluate(c, 'CAB.tab'), 'budget');
   assert.equal(evaluate(c, 'queued[0].health'), 0.04);
+});
+
+test('industry tab delegates opening, mounts once and closes its read lifecycle on departure', () => {
+  const c = fixture(['selectCabinetTab', 'closeGameDrawers']);
+  evaluate(c, `let opened=0,closed=0;
+    function openIndustry(){opened++;selectCabinetTab('industry',true);}
+    function industryClose(){closed++;}
+    queued=[{kind:'tax',value:0.3}];selectCabinetTab('industry');`);
+  assert.equal(evaluate(c, 'opened'), 1);
+  assert.equal(c.element('cabinet-industry').hidden, false);
+  assert.equal(c.element('cabinet-overview').hidden, true);
+  assert.equal(c.element('cab-tab-industry').tabIndex, 0);
+  evaluate(c, 'selectCabinetTab("budget")');
+  assert.equal(evaluate(c, 'closed'), 1);
+  evaluate(c, 'selectCabinetTab("industry"); element("cabinetDrawer").classList.add("open");closeGameDrawers()');
+  assert.equal(evaluate(c, 'closed'), 2);
+  assert.deepEqual(plain(c, 'queued'), [{kind:'tax',value:0.3}]);
+});
+
+test('cash-flow lifecycle follows overview visibility and preserves drafts', () => {
+  const c = fixture(['selectCabinetTab', 'closeGameDrawers', 'cashFlowDraftNotice']);
+  evaluate(c, `let flowClosed=0,flowTabs=0;
+    function cashFlowClose(){flowClosed++;}
+    function cashFlowTabChanged(){flowTabs++;}
+    queued=[{kind:'tax',value:0.3}];
+    selectCabinetTab('industry',true);`);
+  assert.equal(evaluate(c, 'flowClosed'),1,'Industry mounting closes the previous overview read');
+  evaluate(c, 'selectCabinetTab("overview")');
+  assert.equal(evaluate(c, 'flowTabs'),1);
+  assert.match(evaluate(c, 'cashFlowDraftNotice()'),/current enacted plan/);
+  evaluate(c, 'element("cabinetDrawer").classList.add("open");closeGameDrawers()');
+  assert.equal(evaluate(c, 'flowClosed'),2);
+  assert.deepEqual(plain(c, 'queued'),[{kind:'tax',value:0.3}]);
+  evaluate(c, 'queued=[{kind:"research",domain:"Computing"}]');
+  assert.equal(evaluate(c, 'cashFlowDraftNotice()'),'');
+});
+
+test('cash-flow shortcuts navigate to financial controls without changing the plan or issuing orders', () => {
+  const c = fixture(['cashFlowNavigate']);
+  c.document.querySelector = selector => selector.includes('[data-kind="tax"]') ? c.element('actualTaxSlider') : null;
+  evaluate(c, `S.player='USA';let routes=[],busy=false;const PG={department:4};
+    function industryOrdersPending(){return busy;}
+    function openConstructionCabinet(tab){routes.push(['cabinet',tab]);}
+    function openConstruction(options){routes.push(['construction',options]);}
+    function openIndustry(){routes.push(['industry']);}
+    function closeGameDrawers(){routes.push(['close']);}
+    function openStock(){routes.push(['resources']);}
+    function openCompetition(){routes.push(['exchange']);}
+    function competitionSetTab(tab){routes.push(['exchange-tab',tab]);}
+    queued=[{kind:'program_budget',health:0.04}];
+    cashFlowNavigate({action:'budget',ministry:'defense',department:3});`);
+  assert.equal(evaluate(c,'CAB.ministry'),'defense');
+  assert.equal(evaluate(c,'PG.department'),3);
+  assert.equal(c.document.activeElement.id,'pgShare-7-3');
+  evaluate(c, 'cashFlowNavigate({action:"budget",ministry:"pensions"})');
+  assert.equal(evaluate(c,'CAB.ministry'),'pensions');
+  assert.equal(c.document.activeElement.id,'cabinetInspector','A ministry review reveals its funding inspector');
+  assert.equal(evaluate(c,'PG.department'),3,'Reviewing a ministry preserves the department draft selection');
+  evaluate(c, 'cashFlowNavigate({action:"budget",ministry:"invalid"})');
+  assert.equal(evaluate(c,'CAB.ministry'),'pensions');
+  assert.equal(c.document.activeElement.id,'cab-tab-budget');
+  evaluate(c, 'cashFlowNavigate({action:"policy",control:"tax"})');
+  assert.equal(c.document.activeElement.id,'actualTaxSlider');
+  evaluate(c, 'cashFlowNavigate({action:"policy",control:"invalid"})');
+  assert.equal(c.document.activeElement.id,'cab-tab-policy');
+  evaluate(c, `cashFlowNavigate({action:'construction',district:'US-CA',project:2});
+    cashFlowNavigate({action:'industry'});cashFlowNavigate({action:'resources'});cashFlowNavigate({action:'trade'});`);
+  const before=plain(c,'routes');
+  evaluate(c,'busy=true');
+  assert.equal(evaluate(c,'cashFlowNavigate({action:"budget"})'),false);
+  assert.deepEqual(plain(c,'routes'),before);
+  assert.deepEqual(plain(c,'queued'),[{kind:'program_budget',health:0.04}]);
+  assert(before.some(row=>row[0]==='construction'&&row[1].project===2));
+  assert(before.some(row=>row[0]==='exchange-tab'&&row[1]==='trade'));
+});
+
+test('an explicit cash-flow link reveals the summary after reopening the overview', () => {
+  const c=fixture(['openCashFlow']);
+  evaluate(c, `let routes=[];queued=[{kind:'tax',value:0.3}];
+    function openConstructionCabinet(tab){routes.push(['cabinet',tab]);}
+    function cashFlowReveal(){routes.push(['reveal']);}
+    openCashFlow();`);
+  assert.deepEqual(plain(c,'routes'),[['cabinet','overview'],['reveal']]);
+  assert.deepEqual(plain(c,'queued'),[{kind:'tax',value:0.3}]);
+});
+
+test('industry actions reach specific existing controls without making economic orders', () => {
+  const c = fixture(['industryNavigate']);
+  evaluate(c, `S.player='USA'; let routes=[]; const PG={department:4}; const COMP={trade:{good:'intermediates'}}; const PROD={};
+    function openConstruction(options){routes.push(['construction',options]);}
+    function openConstructionCabinet(tab){routes.push(['cabinet',tab]);}
+    function openStock(){routes.push(['resources']);}
+    function openCompetition(){routes.push(['exchange']);}
+    function competitionSetTab(tab){routes.push(['exchange-tab',tab]);}
+    function closeGameDrawers(){routes.push(['close']);}
+    function openTech(){routes.push(['research']);}
+    function openNation(id){routes.push(['nation',id]);}
+    function selectNationView(tab){routes.push(['nation-tab',tab]);}
+    function openProduction(){routes.push(['manufacture',PROD.mode]);}
+    function selectProvince(district,focus){routes.push(['province',district,focus]);}
+    queued=[{kind:'tax',value:0.3}];
+    industryNavigate({action:'budget',ministry:'science',department:0});`);
+  assert.equal(evaluate(c, 'CAB.ministry'), 'science');
+  assert.equal(evaluate(c, 'PG.department'), 0);
+  assert.equal(c.document.activeElement.id, 'pgShare-6-0');
+  evaluate(c, `industryNavigate({action:'construction',district:'US-CA',kind:'generation',project:2});
+    industryNavigate({action:'trade',good:'capital_goods'});
+    industryNavigate({action:'research'});industryNavigate({action:'manufacture'});
+    industryNavigate({action:'province',district:'US-CA'});`);
+  assert.deepEqual(plain(c, 'routes'), [
+    ['cabinet','budget'], ['construction',{province:'US-CA',kind:'generation',project:2}],
+    ['exchange'],['exchange-tab','trade'],['close'],['research'],['manufacture','manufacture'],['close'],['province','US-CA',true]
+  ]);
+  assert.equal(evaluate(c, 'COMP.trade.good'), 'capital_goods');
+  const prior = plain(c, 'routes');
+  evaluate(c, 'pendingAdvance={};');
+  assert.equal(evaluate(c, 'industryNavigate({action:"resources"})'), false);
+  assert.deepEqual(plain(c, 'routes'), prior);
+  assert.deepEqual(plain(c, 'queued'), [{kind:'tax',value:0.3}]);
 });
 
 test('draft summary reacts to queued tax and includes interest exactly once', () => {

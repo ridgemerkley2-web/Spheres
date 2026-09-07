@@ -489,7 +489,11 @@ fn military_industrial_power(w: &WorldState, nation: NationId) -> f64 {
         .filter(|p| w.districts.get(&p.district) == Some(&nation))
         .map(|p| p.arms_plants as f64 * 5.0 + p.civilian_industry as f64 * 2.0)
         .sum();
-    n.mil_strength.max(0.0) + crate::arsenal::book_value(n).max(0.0) * 0.05 + capabilities
+    // A custom component's price is not military strength. Keep the inherited
+    // scoring path exact while valuing custom inventory by physical coverage.
+    let equipment = if n.equipment.is_none() { crate::arsenal::book_value(n) }
+        else { n.arsenal.held.iter().map(|h| crate::arsenal::combat_value(n, h)).sum() };
+    n.mil_strength.max(0.0) + equipment.max(0.0) * 0.05 + capabilities
 }
 
 fn client_influence(w: &WorldState, nation: NationId) -> f64 {
@@ -926,6 +930,31 @@ pub fn tick(w: &mut WorldState) {
 mod tests {
     use super::*;
     use crate::{apply_command, init::world_1990, load, save, Command, GameRules};
+
+    #[test]
+    fn custom_arsenal_prices_do_not_inflate_domination_power() {
+        let mut w = world_1990(GameRules::default());
+        let id = NationId::USA;
+        let original = military_industrial_power(&w, id);
+        let spec = crate::equipment::baseline_spec();
+        let profile = crate::equipment::design_preview(&w, id, &spec).profile.unwrap();
+        let day = crate::clock::absolute_day(&w);
+        let n = w.nation_mut(id);
+        n.equipment = Some(Default::default());
+        n.equipment.as_mut().unwrap().revisions.insert("test".into(), crate::equipment::DesignRevision {
+            id:"test".into(),name:"Test tank".into(),specification_key:crate::equipment::specification_key(&spec),
+            spec,profile,created_day:day,certified_day:Some(day),
+        });
+        assert_eq!(military_industrial_power(&w,id),original,"draft libraries do not change legacy power");
+        crate::arsenal::deliver_design(w.nation_mut(id),"test",10_000,0.0).unwrap();
+        let before = military_industrial_power(&w,id);
+        assert!(before>original);
+        let n=w.nation_mut(id);
+        let book=crate::arsenal::book_value(n);
+        n.equipment.as_mut().unwrap().revisions.get_mut("test").unwrap().profile.unit_cost_bn *= 100.0;
+        assert!(crate::arsenal::book_value(n)>book);
+        assert_eq!(military_industrial_power(&w,id),before);
+    }
 
     #[test]
     fn every_starting_nation_gets_three_deterministic_cards_and_one_direct_card() {

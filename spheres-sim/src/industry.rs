@@ -2,7 +2,7 @@
 //! not claims about historical factories, generating stations or district GDP.
 //! Industrial packs are manufactured goods, not additional mapped minerals.
 //! There is no sales/profit cash or flat GDP multiplier: goods must be used by
-//! real construction. When province GDP is enabled, actual production sends
+//! operating, research or commercial activity. When province GDP is enabled, actual production sends
 //! value-added receipts to that ledger. Only new activity can lack power.
 use crate::{
     clock,
@@ -36,14 +36,19 @@ fn site_index(kind: K) -> usize {
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]
 pub struct Goods {
-    /// Modeled processing packs; one pack feeds one machinery pack, or upgrades.
+    /// Modeled processing packs used by machinery, research and operating lines.
     pub intermediates: f64,
-    /// Modeled machine/tool packs, consumed by new capital projects.
+    /// Modeled machine/tool packs for research, operations and commerce.
     pub capital_goods: f64,
 }
 #[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]
 pub struct ProjectFunding {
     pub spent_bn: f64,
+    /// Frozen total cash contract, including previously paid work.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub contract_cost_bn: Option<f64>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub last_spent_bn: Option<f64>,
     pub goods_used: Goods,
     pub last_day: Option<i32>,
 }
@@ -145,6 +150,7 @@ pub struct Industry {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub last_day: Option<i32>,
     #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    /// Legacy saved workforce receipts; daily construction no longer reads these.
     pub work: BTreeMap<NationId, (i32, f64, f64)>,
     #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
     pub research: BTreeMap<NationId, ResearchProgram>,
@@ -154,20 +160,18 @@ pub struct Industry {
 
 /// Pure raw-material components for the strategic forecast. `operating_daily`
 /// is the installed civilian plan the resource market already attempts each
-/// day. The other rows are whole remaining committed bills and are never
-/// multiplied by a forecast horizon.
+/// day. Construction rows remain zero for compatibility: turnkey projects and
+/// mines no longer place separate physical material claims.
 #[derive(Clone, Copy, Debug, Default, PartialEq)]
 pub struct RawDemandComponents {
     pub operating_daily: [f64; 12],
     pub projects_remaining: [f64; 12],
     pub projects_daily: [f64; 12],
-    /// Σ min(each project's remaining input, its standing daily slice × H),
-    /// for the canonical 30/90/365-day strategic horizons.
+    /// Compatibility rows for the canonical 30/90/365-day horizons, all zero.
     pub projects_horizon: [[f64; 3]; 12],
     pub mines_remaining: [f64; 12],
     pub mines_daily: [f64; 12],
-    /// Per-mine equivalent of `projects_horizon`; rows are never pooled before
-    /// their individual remaining cap is applied.
+    /// Per-mine equivalent of `projects_horizon`, all zero.
     pub mines_horizon: [[f64; 3]; 12],
 }
 impl Industry {
@@ -193,7 +197,7 @@ pub fn catalog(kind: K) -> ProjectSpec {
             for i in 0..12 { recipe[i] += part.recipe[i]; }
         }
         return ProjectSpec {kind, name:"Starter Industry", description:"A proportional industrial estate, generator, local grid and materials-processing line.",
-            effect:"Paid fractional processing capacity, with matching power, inputs and construction support. No stock is granted.",
+            effect:"Paid fractional processing capacity, with matching power and operating inputs. No stock is granted.",
             total_days:1800,political_cost:production::catalog(K::CivilianIndustry).political_cost,
             funding_ministry:BUDGET_INDUSTRY,funding_label:"Industry & Energy",funding_required:0.020,recipe};
     }
@@ -225,7 +229,8 @@ pub fn catalog(kind: K) -> ProjectSpec {
     }
 }
 
-/// Modeled installation/labor bill, $bn, separate from already-bought inputs.
+/// Modeled turnkey construction contract, $bn. Construction buys no separate
+/// raw or manufactured inventory; operating facilities still consume inputs.
 pub fn work_cost_bn(kind: K) -> f64 {
     match kind {
         K::Infrastructure => 0.20,
@@ -246,29 +251,25 @@ pub fn work_cost_bn(kind: K) -> f64 {
 pub fn project_cost_bn(p: &Project) -> f64 {
     work_cost_bn(p.kind) * crate::industrial_modules::scale(p)
 }
-pub fn project_recipe(p: &Project) -> [f64;12] {
-    production::catalog(p.kind).recipe.map(|v| v * crate::industrial_modules::scale(p))
-}
-pub fn goods_recipe(kind: K) -> Goods {
-    match kind {
-        K::FreightTerminal => Goods {
-            intermediates: 20.0,
-            capital_goods: 10.0,
-        },
-        K::Warehouse => Goods {
-            intermediates: 12.0,
-            capital_goods: 5.0,
-        },
-        K::Automation => Goods {
-            intermediates: 5.0,
-            capital_goods: 15.0,
-        },
-        K::Efficiency => Goods {
-            intermediates: 5.0,
-            capital_goods: 8.0,
-        },
-        _ => Goods::default(), // Basic chain bootstraps from the twelve raw lines.
+/// New construction contracts include all installation inputs in their cash price.
+/// Historical material receipts remain saved, but create no future demand.
+pub fn project_recipe(_p: &Project) -> [f64; 12] { [0.0; 12] }
+pub fn goods_recipe(_kind: K) -> Goods { Goods::default() }
+/// Preview the same legacy migration used at the next construction tick. Paid
+/// work is preserved, and only the unfinished fraction retains a future bill.
+fn funding_for(w: &WorldState, p: &Project) -> ProjectFunding {
+    let nominal = project_cost_bn(p);
+    let mut f = w.production.industry.projects.get(&p.id).cloned().unwrap_or_else(|| ProjectFunding {
+        spent_bn: nominal * p.progress_fraction(),
+        ..Default::default()
+    });
+    if f.contract_cost_bn.is_none() {
+        f.contract_cost_bn = Some(f.spent_bn + nominal * (1.0 - p.progress_fraction()));
     }
+    f
+}
+pub fn contract_cost_bn(w: &WorldState, p: &Project) -> f64 {
+    funding_for(w, p).contract_cost_bn.expect("project contract")
 }
 pub fn site_level(w: &WorldState, district: &str, kind: K) -> u8 {
     w.production
@@ -297,17 +298,11 @@ pub fn project_refusal(
     if w.rules.military_operations {
         if let Some(reason) = crate::control::blocker(w, nation, district) { return Some(reason); }
     }
-    if programs::enrolled(w, nation) && resources::district_contested(w, district) {
+    if clock::is_daily(w) && resources::district_contested(w, district) {
         return Some("Construction cannot start in a contested province.".into());
     }
     if !extended(kind) {
         return None;
-    }
-    if !programs::enrolled(w, nation) {
-        return Some(
-            "Enact the five-department budget before commissioning this industrial investment."
-                .into(),
-        );
     }
     if resources::district_contested(w, district) {
         return Some("Construction cannot start in a contested province.".into());
@@ -347,333 +342,82 @@ pub fn project_refusal(
 }
 
 pub fn enroll_projects(w: &mut WorldState, nation: NationId) {
-    for p in w.production.projects.iter().filter(|p| p.nation == nation) {
-        let f = p.progress_fraction();
-        let g = goods_recipe(p.kind);
-        w.production
-            .industry
-            .projects
-            .entry(p.id)
-            .or_insert(ProjectFunding {
-                spent_bn: project_cost_bn(p) * f,
-                goods_used: Goods {
-                    intermediates: g.intermediates * f,
-                    capital_goods: g.capital_goods * f,
-                },
-                last_day: None,
-            });
-    }
+    let rows: Vec<_> = production::projects_for(w, nation)
+        .map(|p| (p.id, funding_for(w, p))).collect();
+    for (id, funding) in rows { w.production.industry.projects.insert(id, funding); }
 }
 
 #[derive(Clone, Debug, Default, Serialize)]
 pub struct WorkPlan {
-    /// Today's scheduled work after construction capacity and department
-    /// authority, before raw/manufactured input scarcity.
+    /// Site lead-time ceiling before the shared construction budget is applied.
     pub target_advance_days: f64,
     pub advance_days: f64,
     pub cash_bn: f64,
     pub required: [f64; 12],
     pub goods: Goods,
     pub reason: Option<String>,
-    /// A temporary capacity/input constraint. Unlike `reason`, this does not
-    /// reject settlement: every physical and financial leg is reduced by the
-    /// same fraction and positive feasible work continues.
+    /// A temporary funding constraint; positive affordable work can settle.
     pub slow_reason: Option<String>,
     pub department_draws_bn: [f64; 5],
 }
 fn q(v: f64) -> f64 {
     (v.max(0.0) * 1e9).round() / 1e9
 }
-fn q_down(v: f64) -> f64 {
-    (v.max(0.0) * 1e9).floor() / 1e9
-}
-fn total_work_weight(w: &WorldState, nation: NationId) -> f64 {
-    production::projects_for(w, nation)
-        .map(|p| p.priority.weight())
-        .sum::<f64>()
-        + w.resources
-            .mine_projects
-            .iter()
-            .filter(|p| {
-                p.started_by == nation
-                    && w.production
-                        .industry
-                        .mines
-                        .contains_key(&mine_key(&p.district, p.commodity))
-            })
-            .count() as f64
-}
-fn allocated_work(w: &WorldState, nation: NationId, weight: f64) -> f64 {
-    let (total, capacity) = w
-        .production
-        .industry
-        .work
-        .get(&nation)
-        .filter(|(day, _, _)| *day == clock::absolute_day(w))
-        .map_or_else(
-            || {
-                (
-                    total_work_weight(w, nation),
-                    production::construction_capacity(w, nation),
-                )
-            },
-            |(_, total, capacity)| (*total, *capacity),
-        );
-    capacity * weight / total.max(1.0)
-}
-
-/// Workforce share for the next unsettled strategic date. Today's frozen work
-/// tuple is an execution receipt, not authority for tomorrow: completions and
-/// projects started later in the same tick must already affect the forecast.
-fn forecast_allocated_work(w: &WorldState, nation: NationId, weight: f64) -> f64 {
-    let forecast_day = resources::forecast_start_day(w);
-    let (total, capacity) = w
-        .production
-        .industry
-        .work
-        .get(&nation)
-        .filter(|(day, _, _)| *day == forecast_day)
-        .map_or_else(
-            || {
-                (
-                    total_work_weight(w, nation),
-                    production::construction_capacity(w, nation),
-                )
-            },
-            |(_, total, capacity)| (*total, *capacity),
-        );
-    capacity * weight / total.max(1.0)
-}
-/// Freeze queue weights before any completion removes a project. Mines and
-/// projects consequently cannot each claim the same national workforce.
+/// Migrate daily projects before settlement, preserving IDs, progress, historical
+/// input receipts and every previously paid dollar. Monthly replay is unchanged.
 pub fn begin_work_day(w: &mut WorldState) {
-    let today = clock::absolute_day(w);
-    let nations: Vec<_> = w
-        .nations
-        .iter()
-        .filter(|n| n.alive && programs::enrolled(w, n.id))
-        .map(|n| n.id)
-        .collect();
-    for nation in nations {
-        if w.production
-            .industry
-            .work
-            .get(&nation)
-            .is_some_and(|(d, _, _)| *d == today)
-        {
-            continue;
-        }
-        let weight = total_work_weight(w, nation);
-        if weight > 0.0 {
-            let capacity = production::construction_capacity(w, nation);
-            w.production
-                .industry
-                .work
-                .insert(nation, (today, weight, capacity));
-        }
-    }
+    if !clock::is_daily(w) { return; }
+    let nations: std::collections::BTreeSet<_> = w.production.projects.iter().map(|p| p.nation).collect();
+    for nation in nations { enroll_projects(w, nation); }
 }
-pub fn project_authority(w: &WorldState, nation: NationId, kind: K) -> f64 {
-    let m = production::catalog(kind).funding_ministry;
-    if kind == K::Infrastructure {
-        (0..4)
-            .map(|d| programs::available_bn(w, nation, m, d))
-            .sum()
-    } else {
-        programs::available_bn(w, nation, m, production::funding_department(kind))
-    }
+pub fn project_authority(w: &WorldState, nation: NationId, _kind: K) -> f64 {
+    programs::construction_available_bn(w, nation)
 }
-/// Pure opening-state allocator. Priority orders scarce authority AND inputs;
-/// each department, resource and good is reserved once across the whole queue.
+/// Pure allocator: project priority then stable ID reserves the shared daily
+/// construction budget once. Parallel sites have independent lead times.
 pub fn project_plans(w: &WorldState) -> BTreeMap<u32, WorkPlan> {
     let mut out = BTreeMap::new();
+    if !clock::is_daily(w) { return out; }
     let mut cash = BTreeMap::new();
-    let mut stocks: BTreeMap<NationId, [f64; 12]> = BTreeMap::new();
-    let mut goods = w.production.industry.goods.clone();
-    let mut queue: Vec<_> = w
-        .production
-        .projects
-        .iter()
-        .filter(|p| w.production.industry.projects.contains_key(&p.id))
-        .collect();
+    let mut queue: Vec<_> = w.production.projects.iter().collect();
     queue.sort_by_key(|p| (p.priority.dispatch_rank(), p.id));
     for p in queue {
-        let f = &w.production.industry.projects[&p.id];
+        let f = funding_for(w, p);
         let mut plan = WorkPlan::default();
-        if !clock::is_daily(w) || !programs::enrolled(w, p.nation) {
-            plan.reason = Some("BLOCKED: daily department funding is not enabled.".into());
+        if !programs::enrolled(w, p.nation) {
+            plan.reason = Some("PAUSED: set a construction budget to fund this project.".into());
         } else if w.districts.get(&p.district) != Some(&p.nation) || !w.nation(p.nation).alive {
-            plan.reason =
-                Some("BLOCKED: sponsoring government no longer controls this province.".into());
+            plan.reason = Some("BLOCKED: sponsoring government no longer controls this province.".into());
         } else if resources::district_contested(w, &p.district) {
             plan.reason = Some("BLOCKED: this province is contested.".into());
-        } else if f.last_day == Some(clock::absolute_day(w)) {
+        } else if w.rules.military_operations {
+            plan.reason = crate::control::blocker(w, p.nation, &p.district).map(|r| format!("BLOCKED: {r}"));
+        }
+        if f.last_day == Some(clock::absolute_day(w)) {
             plan.reason = Some("Today's construction has already settled.".into());
         }
-        if plan.reason.is_some() {
-            out.insert(p.id, plan);
-            continue;
-        }
-        let spec = production::catalog(p.kind);
-        let dept = production::funding_department(p.kind);
-        let departments: Vec<usize> = if p.kind == K::Infrastructure {
-            (0..4).collect()
-        } else {
-            vec![dept]
-        };
-        let balances: Vec<f64> = departments
-            .iter()
-            .map(|d| {
-                *cash
-                    .entry((p.nation, spec.funding_ministry, *d))
-                    .or_insert_with(|| {
-                        programs::available_bn(w, p.nation, spec.funding_ministry, *d)
-                    })
-            })
-            .collect();
-        let balance = balances.iter().sum::<f64>();
-        let cost = project_cost_bn(p);
-        let raw_recipe = project_recipe(p);
+        if plan.reason.is_some() { out.insert(p.id, plan); continue; }
+        let balance = cash.entry(p.nation).or_insert_with(|| programs::construction_available_bn(w, p.nation));
         let remaining = (p.total_days as f64 - p.progress_days).max(0.0);
-        let speed = 1.0 + production::level(w, &p.district, K::Infrastructure) as f64 * 0.10;
-        let capacity = (allocated_work(w, p.nation, p.priority.weight()) * speed).min(1.5);
-        plan.advance_days = crate::industrial_modules::normalized_advance(w, p, capacity)
-            .min(remaining)
-            .min(balance / (cost / p.total_days as f64));
-        plan.target_advance_days = plan.advance_days;
-        if plan.advance_days <= EPS {
-            plan.slow_reason = Some(format!(
-                "PAUSED: {} has no available project authority or construction capacity today; completed work is preserved.",
-                programs::NAMES[spec.funding_ministry][dept]
-            ));
-            out.insert(p.id, plan);
-            continue;
+        let due = (f.contract_cost_bn.expect("frozen contract") - f.spent_bn).max(0.0);
+        let site_work = crate::industrial_modules::normalized_advance(w, p, 1.0).min(remaining);
+        plan.target_advance_days = site_work;
+        if site_work <= EPS && remaining > EPS {
+            plan.slow_reason = Some("PAUSED: this site's commissioning lead time preserves completed work until the next work date.".into());
         }
-        let completes = plan.advance_days + EPS >= remaining;
-        let fraction = plan.advance_days / p.total_days as f64;
-        plan.cash_bn = (if completes {
-            (cost - f.spent_bn).max(0.0)
-        } else {
-            (cost * fraction).min((cost - f.spent_bn).max(0.0))
-        })
-        .min(balance);
-        let mut unassigned = plan.cash_bn;
-        for (index, d) in departments.iter().enumerate() {
-            let part = (if index + 1 == departments.len() {
-                unassigned.max(0.0)
-            } else {
-                (plan.cash_bn * balances[index] / balance).min(unassigned)
-            })
-            .min(balances[index]);
-            plan.department_draws_bn[*d] = part;
-            unassigned -= part;
+        let daily_price = if remaining > EPS { due / remaining } else { 0.0 };
+        plan.advance_days = if daily_price > 0.0 { site_work.min(*balance / daily_price) } else { site_work };
+        plan.cash_bn = if plan.advance_days + EPS >= remaining { due } else { daily_price * plan.advance_days };
+        plan.cash_bn = plan.cash_bn.min(*balance).min(due);
+        // Recompute progress from the exact final cash amount; no underpaid
+        // completion and no second bill after a save or a partial budget day.
+        if daily_price > 0.0 { plan.advance_days = (plan.cash_bn / daily_price).min(site_work); }
+        if plan.advance_days + EPS < site_work {
+            plan.slow_reason = Some(if plan.advance_days <= EPS {
+                "PAUSED: today's construction budget is exhausted; completed work is preserved.".into()
+            } else { "SLOWED: today's construction budget funds part of this site's work.".into() });
         }
-        plan.cash_bn = plan.department_draws_bn.iter().sum();
-        plan.required = std::array::from_fn(|i| {
-            q(if completes {
-                raw_recipe[i] - p.resources_used[i]
-            } else {
-                if p.kind == K::StarterIndustry {
-                    // Cumulative target differences preserve tiny material
-                    // quantities; rounding each day's tiny flow loses inputs.
-                    (q(raw_recipe[i] * (p.progress_days + plan.advance_days) / p.total_days as f64)
-                        - p.resources_used[i]).max(0.0)
-                } else {
-                    (raw_recipe[i] * fraction).min((raw_recipe[i] - p.resources_used[i]).max(0.0))
-                }
-            })
-        });
-        let recipe = goods_recipe(p.kind);
-        plan.goods = Goods {
-            intermediates: q(if completes {
-                (recipe.intermediates - f.goods_used.intermediates).max(0.0)
-            } else {
-                recipe.intermediates * fraction
-            }),
-            capital_goods: q(if completes {
-                (recipe.capital_goods - f.goods_used.capital_goods).max(0.0)
-            } else {
-                recipe.capital_goods * fraction
-            }),
-        };
-        let stock = stocks
-            .entry(p.nation)
-            .or_insert_with(|| std::array::from_fn(|i| resources::stockpile(w, p.nation, ALL[i])));
-        let pile = goods.entry(p.nation).or_default();
-        let mut throughput: f64 = 1.0;
-        let mut limiter: Option<String> = None;
-        for c in ALL {
-            let want = plan.required[c.idx()];
-            if want <= EPS {
-                continue;
-            }
-            let share = if stock[c.idx()] + 1e-12 >= want {
-                1.0
-            } else {
-                (stock[c.idx()] / want).clamp(0.0, 1.0)
-            };
-            if share < throughput {
-                throughput = share;
-                limiter = Some(format!(
-                    "{} supply ({:.3} available for {:.3} at full speed)",
-                    c.name(), stock[c.idx()], want
-                ));
-            }
-        }
-        for (name, have, want) in [
-            ("intermediate packs", pile.intermediates, plan.goods.intermediates),
-            ("capital-goods packs", pile.capital_goods, plan.goods.capital_goods),
-        ] {
-            if want <= EPS {
-                continue;
-            }
-            let share = if have + 1e-12 >= want {
-                1.0
-            } else {
-                (have / want).clamp(0.0, 1.0)
-            };
-            if share < throughput {
-                throughput = share;
-                limiter = Some(format!(
-                    "{name} ({have:.3} available for {want:.3} at full speed)"
-                ));
-            }
-        }
-        if throughput + 1e-12 < 1.0 {
-            plan.slow_reason = Some(if throughput <= EPS {
-                format!(
-                    "PAUSED: {} is empty; the project keeps its completed work and waits for supply.",
-                    limiter.as_deref().unwrap_or("a required input")
-                )
-            } else {
-                format!(
-                    "SLOWED: {} limits today's work to {:.0}% throughput.",
-                    limiter.as_deref().unwrap_or("available inputs"),
-                    throughput * 100.0
-                )
-            });
-            plan.advance_days *= throughput;
-            plan.cash_bn *= throughput;
-            for draw in &mut plan.department_draws_bn {
-                *draw *= throughput;
-            }
-            plan.cash_bn = plan.department_draws_bn.iter().sum();
-            plan.required = resources::scale_bundle(&plan.required, throughput);
-            plan.goods.intermediates = q_down(plan.goods.intermediates * throughput);
-            plan.goods.capital_goods = q_down(plan.goods.capital_goods * throughput);
-        }
-        if plan.reason.is_none() {
-            for d in &departments {
-                *cash
-                    .get_mut(&(p.nation, spec.funding_ministry, *d))
-                    .unwrap() -= plan.department_draws_bn[*d];
-            }
-            for i in 0..12 {
-                stock[i] -= plan.required[i];
-            }
-            pile.intermediates = q(pile.intermediates - plan.goods.intermediates);
-            pile.capital_goods = q(pile.capital_goods - plan.goods.capital_goods);
-        }
+        *balance = (*balance - plan.cash_bn).max(0.0);
         out.insert(p.id, plan);
     }
     out
@@ -687,50 +431,13 @@ pub(crate) fn settle_project(
         return Err(reason.clone());
     }
     if !funding_day_open(w, p.nation) {
-        return Err("BLOCKED: the daily department ledger is not open.".into());
+        return Err("BLOCKED: the daily construction ledger is not open.".into());
     }
-    let ministry = production::catalog(p.kind).funding_ministry;
-    for d in 0..5 {
-        if programs::available_bn(w, p.nation, ministry, d) < plan.department_draws_bn[d] {
-            return Err("PAUSED: department authority was exhausted before settlement.".into());
-        }
-    }
-    let pile = w
-        .production
-        .industry
-        .goods
-        .get(&p.nation)
-        .cloned()
-        .unwrap_or_default();
-    if pile.intermediates < plan.goods.intermediates
-        || pile.capital_goods < plan.goods.capital_goods
-    {
-        return Err("PAUSED: industrial goods are no longer available; completed work is preserved."
-            .into());
-    }
-    resources::consume_stockpile_atomic(w, p.nation, &plan.required)
-        .map_err(|(c, _, _)| {
-            format!(
-                "PAUSED: {} is no longer available; completed work is preserved.",
-                c.name()
-            )
-        })?;
-    for d in 0..5 {
-        if plan.department_draws_bn[d] > 0.0 {
-            programs::spend(w, p.nation, ministry, d, plan.department_draws_bn[d])
-                .expect("preflighted daily department authority");
-        }
-    }
-    if plan.goods.intermediates > 0.0 || plan.goods.capital_goods > 0.0 {
-        let g = w.production.industry.goods.entry(p.nation).or_default();
-        g.intermediates = q(g.intermediates - plan.goods.intermediates);
-        g.capital_goods = q(g.capital_goods - plan.goods.capital_goods);
-    }
+    programs::spend_construction(w, p.nation, plan.cash_bn)?;
     let today = clock::absolute_day(w);
     let f = w.production.industry.projects.get_mut(&p.id).unwrap();
     f.spent_bn += plan.cash_bn;
-    f.goods_used.intermediates = q(f.goods_used.intermediates + plan.goods.intermediates);
-    f.goods_used.capital_goods = q(f.goods_used.capital_goods + plan.goods.capital_goods);
+    f.last_spent_bn = Some(plan.cash_bn);
     f.last_day = Some(today);
     let row = w
         .production
@@ -739,20 +446,15 @@ pub(crate) fn settle_project(
         .find(|row| row.id == p.id)
         .unwrap();
     row.progress_days = (row.progress_days + plan.advance_days).min(row.total_days as f64);
-    for i in 0..12 {
-        row.resources_used[i] += plan.required[i];
-    }
     row.status = if plan.advance_days <= EPS {
         ProjectStatus::Paused
-    } else if plan.slow_reason.is_some() || plan.advance_days < 0.8 {
+    } else if plan.slow_reason.is_some() {
         ProjectStatus::Slowed
     } else {
         ProjectStatus::Building
     };
     row.reason = if let Some(reason) = &plan.slow_reason {
         Some(reason.clone())
-    } else if plan.advance_days < 0.8 {
-        Some("SLOWED: available department authority and shared construction capacity limit today's work.".into())
     } else {
         None
     };
@@ -768,6 +470,8 @@ pub struct ProjectFinanceView {
     pub spent_bn: f64,
     pub remaining_bn: f64,
     pub daily_request_bn: f64,
+    pub daily_budget_bn: f64,
+    pub spent_today_bn: f64,
     pub next_work_days: f64,
     pub goods_recipe: Goods,
     pub goods_used: Goods,
@@ -775,22 +479,21 @@ pub struct ProjectFinanceView {
     pub reason: Option<String>,
 }
 pub fn project_finance(w: &WorldState, p: &Project) -> Option<ProjectFinanceView> {
-    let f = w.production.industry.projects.get(&p.id)?;
+    if !clock::is_daily(w) { return None; }
+    let f = funding_for(w, p);
     let plan = project_plans(w).remove(&p.id).unwrap_or_default();
     let display_reason = plan.reason.clone().or_else(|| plan.slow_reason.clone());
     let d = production::funding_department(p.kind);
     Some(ProjectFinanceView {
         department: d,
-        department_name: if p.kind == K::Infrastructure {
-            "Network works (roads, rail, ports and airports)"
-        } else {
-            programs::NAMES[production::catalog(p.kind).funding_ministry][d]
-        },
+        department_name: "Construction budget",
         department_draws_bn: plan.department_draws_bn,
-        cost_bn: project_cost_bn(p),
+        cost_bn: f.contract_cost_bn.expect("frozen contract"),
         spent_bn: f.spent_bn,
-        remaining_bn: (project_cost_bn(p) - f.spent_bn).max(0.0),
+        remaining_bn: (f.contract_cost_bn.expect("frozen contract") - f.spent_bn).max(0.0),
         daily_request_bn: plan.cash_bn,
+        daily_budget_bn: programs::construction_daily_budget_bn(w, p.nation),
+        spent_today_bn: if f.last_day == Some(clock::absolute_day(w)) { f.last_spent_bn.unwrap_or(0.0) } else { 0.0 },
         next_work_days: plan.advance_days,
         goods_recipe: goods_recipe(p.kind),
         goods_used: f.goods_used.clone(),
@@ -869,29 +572,6 @@ pub(crate) fn automatic_resource_demand_daily(w: &WorldState, nation: NationId) 
     resource_demand_daily_inner(w, nation, false)
 }
 
-fn standing_department_daily(
-    w: &WorldState,
-    nation: NationId,
-    ministry: usize,
-    department: usize,
-) -> f64 {
-    let Some(n) = w.nation_opt(nation) else {
-        return 0.0;
-    };
-    let Some(plan) = &n.program_budget else {
-        return 0.0;
-    };
-    let forecast_year = crate::clock::date_from_day(resources::forecast_start_day(w)).0;
-    if !n.alive || plan.fiscal_year != forecast_year {
-        return 0.0;
-    }
-    n.budget_for(forecast_year).allocations[ministry].max(0.0)
-        * n.gdp.max(0.0)
-        * plan.departments[ministry][department] as f64
-        / 10_000.0
-        / 365.0
-}
-
 /// Dates inside the next-unsettled horizon for which this government's current
 /// enacted department programme still has fiscal authority.
 pub fn funded_days_in_horizon(
@@ -911,76 +591,11 @@ pub fn funded_days_in_horizon(
         .max(0) as f64
 }
 
-fn project_standing_daily_draw(
-    w: &WorldState,
-    project: &Project,
-    authority: f64,
-) -> ([f64; 12], f64) {
-    if w.districts.get(&project.district) != Some(&project.nation)
-        || !w.nation_opt(project.nation).is_some_and(|n| n.alive)
-        || resources::district_contested(w, &project.district)
-    {
-        return ([0.0; 12], 0.0);
-    }
-    let remaining_progress =
-        (project.total_days as f64 - project.progress_days).max(0.0);
-    let daily_cost = project_cost_bn(project) / project.total_days.max(1) as f64;
-    if authority <= EPS || remaining_progress <= EPS || daily_cost <= EPS {
-        return ([0.0; 12], 0.0);
-    }
-    let speed =
-        1.0 + production::level(w, &project.district, K::Infrastructure) as f64 * 0.10;
-    let physical = (forecast_allocated_work(w, project.nation, project.priority.weight()) * speed)
-        .min(1.5)
-        .min(authority / daily_cost);
-    // Strategic horizons begin with the next executable work date. Replaying
-    // `normalized_advance` against today's already-settled Starter calendar
-    // cap would return zero in every stored review, so project its identical
-    // 90-date bound one date ahead without mutating the clock.
-    let scheduled = if project.kind == K::StarterIndustry {
-        let scale = crate::industrial_modules::scale(project);
-        let Some(started) = project.started_day else {
-            return ([0.0; 12], 0.0);
-        };
-        let forecast_start = resources::forecast_start_day(w);
-        if !(scale > 0.0 && scale <= 1.0)
-            || forecast_start < started
-        {
-            return ([0.0; 12], 0.0);
-        }
-        let elapsed_next = forecast_start
-            .saturating_sub(started)
-            .saturating_add(1)
-            .max(0) as f64;
-        let calendar_daily = project.total_days as f64
-            / crate::industrial_modules::MIN_CALENDAR_DAYS as f64;
-        (physical / scale)
-            .min(calendar_daily)
-            .min((calendar_daily * elapsed_next - project.progress_days).max(0.0))
-    } else {
-        physical
-    };
-    let advance = scheduled.min(remaining_progress);
-    if advance <= EPS {
-        return ([0.0; 12], 0.0);
-    }
-    let recipe = project_recipe(project);
-    let draw = std::array::from_fn(|i| {
-        q((recipe[i] - project.resources_used[i]).max(0.0)
-            * advance
-            / remaining_progress)
-    });
-    (draw, (daily_cost * advance).min(authority))
-}
-
 /// Decompose the raw demand already owned by civilian industry. This reads
 /// only committed facilities/projects and cumulative input receipts; it does
 /// not inspect a forecast, market option, or prospective AI project.
 pub fn raw_demand_components(w: &WorldState, nation: NationId) -> RawDemandComponents {
     let mut out = RawDemandComponents::default();
-    let funded_days: [f64; 3] = std::array::from_fn(|h| {
-        funded_days_in_horizon(w, nation, [30, 90, 365][h])
-    });
     if programs::enrolled(w, nation) && w.nation_opt(nation).is_some_and(|n| n.alive) {
         for district in operating_districts(w) {
             if w.districts.get(&district) != Some(&nation)
@@ -1002,123 +617,7 @@ pub fn raw_demand_components(w: &WorldState, nation: NationId) -> RawDemandCompo
         }
     }
 
-    // An active project is a committed bill even while today's funding,
-    // control, or inputs pause it. Count its catalog recipe less material
-    // already consumed, once; do not infer an execution date here.
-    let mut cash = BTreeMap::<(NationId, usize, usize), f64>::new();
-    let mut projects: Vec<_> = production::projects_for(w, nation).collect();
-    projects.sort_by_key(|project| (project.priority.dispatch_rank(), project.id));
-    for project in projects {
-        let recipe = project_recipe(project);
-        let mut remaining = [0.0; 12];
-        for i in 0..12 {
-            remaining[i] = (recipe[i] - project.resources_used[i]).max(0.0);
-            out.projects_remaining[i] += remaining[i];
-        }
-        let spec = production::catalog(project.kind);
-        let departments: Vec<usize> = if project.kind == K::Infrastructure {
-            (0..4).collect()
-        } else {
-            vec![production::funding_department(project.kind)]
-        };
-        let balances: Vec<f64> = departments
-            .iter()
-            .map(|department| {
-                *cash
-                    .entry((nation, spec.funding_ministry, *department))
-                    .or_insert_with(|| {
-                        standing_department_daily(w, nation, spec.funding_ministry, *department)
-                    })
-            })
-            .collect();
-        let authority = balances.iter().sum::<f64>();
-        let (next, spent) = project_standing_daily_draw(w, project, authority);
-        if spent > 0.0 && authority > 0.0 {
-            let mut unassigned = spent;
-            for (index, department) in departments.iter().enumerate() {
-                let part = (if index + 1 == departments.len() {
-                    unassigned.max(0.0)
-                } else {
-                    (spent * balances[index] / authority).min(unassigned)
-                })
-                .min(balances[index]);
-                *cash
-                    .get_mut(&(nation, spec.funding_ministry, *department))
-                    .expect("standing authority row was seeded above") -= part;
-                unassigned -= part;
-            }
-        }
-        for i in 0..12 {
-            out.projects_daily[i] += next[i];
-            for (h, days) in funded_days.into_iter().enumerate() {
-                out.projects_horizon[i][h] += remaining[i].min(next[i] * days);
-            }
-        }
-    }
-
-    // Only program-funded mines consume the modeled installation bundle.
-    // Legacy prepaid mine rows have no MineFunding ledger and therefore no
-    // raw construction claim to forecast.
-    for project in w
-        .resources
-        .mine_projects
-        .iter()
-        .filter(|project| project.started_by == nation)
-    {
-        let Some(funding) = w
-            .production
-            .industry
-            .mines
-            .get(&mine_key(&project.district, project.commodity))
-        else {
-            continue;
-        };
-        let mut remaining = [0.0; 12];
-        for (commodity, total) in [(C::Iron, 20.0), (C::Copper, 4.0), (C::Coal, 8.0)] {
-            remaining[commodity.idx()] =
-                (total - funding.resources_used[commodity.idx()]).max(0.0);
-            out.mines_remaining[commodity.idx()] += remaining[commodity.idx()];
-        }
-        if clock::is_daily(w)
-            && w.districts.get(&project.district) == Some(&nation)
-            && w.nation_opt(nation).is_some_and(|n| n.alive)
-            && !resources::district_contested(w, &project.district)
-        {
-            let daily_cost = project.investment_bn / funding.total_days.max(1) as f64;
-            let authority = *cash
-                .entry((nation, BUDGET_INDUSTRY, 2))
-                .or_insert_with(|| standing_department_daily(w, nation, BUDGET_INDUSTRY, 2));
-            let remaining_progress =
-                (funding.total_days as f64 - funding.progress_days).max(0.0);
-            let advance = forecast_allocated_work(w, nation, 1.0)
-                .min(1.5)
-                .min(remaining_progress)
-                .min(authority / daily_cost.max(EPS));
-            if advance > EPS && remaining_progress > EPS {
-                *cash
-                    .get_mut(&(nation, BUDGET_INDUSTRY, 2))
-                    .expect("mine authority row was seeded above") -=
-                    (daily_cost * advance).min(authority);
-                for (commodity, _total) in
-                    [(C::Iron, 20.0), (C::Copper, 4.0), (C::Coal, 8.0)]
-                {
-                    out.mines_daily[commodity.idx()] += q(
-                        remaining[commodity.idx()]
-                            * advance
-                            / remaining_progress,
-                    );
-                    let next = q(
-                        remaining[commodity.idx()] * advance / remaining_progress,
-                    );
-                    for (h, days) in funded_days.into_iter().enumerate() {
-                        out.mines_horizon[commodity.idx()][h] +=
-                            remaining[commodity.idx()].min(next * days);
-                    }
-                }
-            }
-        }
-    }
-
+    // Turnkey construction creates financial commitments, not raw-stock demand.
     out.operating_daily = out.operating_daily.map(q);
     out.projects_remaining = out.projects_remaining.map(q);
     out.projects_daily = out.projects_daily.map(q);
@@ -1144,52 +643,6 @@ fn resource_demand_daily_inner(w: &WorldState, nation: NationId, include_materia
             for i in 0..12 {
                 out[i] += raw[i];
             }
-        }
-    }
-    // Construction demand is a forecast of attempted work, not a free stock
-    // grant. The resource market explicitly excludes this from legacy cover.
-    for p in production::projects_for(w, nation)
-        .filter(|p| w.production.industry.projects.contains_key(&p.id))
-    {
-        if w.districts.get(&p.district) != Some(&nation)
-            || resources::district_contested(w, &p.district)
-        {
-            continue;
-        }
-        let recipe = project_recipe(p);
-        let speed = 1.0 + production::level(w, &p.district, K::Infrastructure) as f64 * 0.10;
-        let advance = crate::industrial_modules::normalized_advance(w,p,
-            (allocated_work(w, nation, p.priority.weight()) * speed).min(1.5))
-            .min((p.total_days as f64 - p.progress_days).max(0.0));
-        for i in 0..12 {
-            out[i] += q((recipe[i] * advance / p.total_days as f64)
-                .min((recipe[i] - p.resources_used[i]).max(0.0)));
-        }
-    }
-    for p in w
-        .resources
-        .mine_projects
-        .iter()
-        .filter(|p| p.started_by == nation)
-    {
-        let Some(f) = w
-            .production
-            .industry
-            .mines
-            .get(&mine_key(&p.district, p.commodity))
-        else {
-            continue;
-        };
-        if w.districts.get(&p.district) != Some(&nation)
-            || resources::district_contested(w, &p.district)
-        {
-            continue;
-        }
-        let advance = allocated_work(w, nation, 1.0)
-            .min(1.5)
-            .min((f.total_days as f64 - f.progress_days).max(0.0));
-        for (c, amount) in [(C::Iron, 20.0), (C::Copper, 4.0), (C::Coal, 8.0)] {
-            out[c.idx()] += q(amount * advance / f.total_days.max(1) as f64);
         }
     }
     if include_materials {
@@ -1672,7 +1125,7 @@ pub fn snapshot(w: &WorldState, nation: NationId) -> Snapshot {
         note: if crate::province_economy::active(w) {
             "Goods are inventory, not cash. Actual production less intermediate inputs appears as modeled value added in province GDP. No inferred 1990 factories or power stations."
         } else {
-            "Incremental civilian facilities only; no inferred 1990 factories or power stations. Packs are usable construction inventory, not revenue or raw deposits."
+            "Incremental civilian facilities only; no inferred 1990 factories or power stations. Packs supply operating and research activity, not construction payments or raw deposits."
         },
     }
 }
@@ -1689,103 +1142,59 @@ pub fn enroll_mine(w: &mut WorldState, district: &str, c: C, total_days: u32) {
         },
     );
 }
-/// Finance and materials for one already-validated mapped mine. Legacy prepaid
-/// projects have no entry and never call this branch.
+/// Pure mine quote against the remaining shared budget after earlier queue
+/// entries. Legacy prepaid rows have no funding entry and return None.
+pub fn mine_work_plan(w: &WorldState, p: &resources::MineProject, available_bn: f64) -> Option<WorkPlan> {
+    let f = w.production.industry.mines.get(&mine_key(&p.district, p.commodity))?;
+    let mut plan = WorkPlan::default();
+    if !clock::is_daily(w) || !programs::enrolled(w, p.started_by)
+        || w.districts.get(&p.district) != Some(&p.started_by)
+        || !w.nation(p.started_by).alive || resources::district_contested(w, &p.district) {
+        plan.reason = Some("BLOCKED: mine requires its sponsor's controlled, uncontested province and an active construction budget.".into());
+    } else if f.last_day == Some(clock::absolute_day(w)) {
+        plan.reason = Some("Today's mine construction has already settled.".into());
+    }
+    if plan.reason.is_some() { return Some(plan); }
+    let remaining = (f.total_days as f64 - f.progress_days).max(0.0);
+    let due = (p.investment_bn - f.spent_bn).max(0.0);
+    let price = if remaining > EPS { due / remaining } else { 0.0 };
+    let available = available_bn.max(0.0).min(programs::construction_available_bn(w, p.started_by));
+    plan.target_advance_days = remaining.min(1.0);
+    plan.advance_days = if price > 0.0 { plan.target_advance_days.min(available / price) } else { plan.target_advance_days };
+    plan.cash_bn = (if plan.advance_days + EPS >= remaining { due } else { price * plan.advance_days }).min(available).min(due);
+    if price > 0.0 { plan.advance_days = (plan.cash_bn / price).min(plan.target_advance_days); }
+    if plan.advance_days + EPS < plan.target_advance_days {
+        plan.slow_reason = Some(if plan.advance_days <= EPS {
+            "PAUSED: today's construction budget is exhausted; completed mine work is preserved.".into()
+        } else { "SLOWED: today's construction budget funds part of this mine's work.".into() });
+    }
+    Some(plan)
+}
+/// One daily-funded mapped mine. Legacy prepaid rows have no funding entry.
 pub fn advance_mine(w: &mut WorldState, p: &resources::MineProject) -> Option<f64> {
     let key = mine_key(&p.district, p.commodity);
     let f = w.production.industry.mines.get(&key)?.clone();
     let today = clock::absolute_day(w);
-    if f.last_day == Some(today) {
-        return Some(f.progress_days);
-    }
+    if f.last_day == Some(today) { return Some(f.progress_days); }
     let mut next = f.clone();
     next.last_day = Some(today);
-    next.reason = None;
-    if !clock::is_daily(w)
-        || !funding_day_open(w, p.started_by)
-        || w.districts.get(&p.district) != Some(&p.started_by)
-        || !w.nation(p.started_by).alive
-        || resources::district_contested(w, &p.district)
-    {
-        next.reason=Some("BLOCKED: mine requires its sponsor's controlled, uncontested province and daily department budget.".into());
-    }
-    if next.reason.is_none() {
-        let daily_cost = p.investment_bn / f.total_days.max(1) as f64;
-        let planned_advance = allocated_work(w, p.started_by, 1.0)
-            .min(1.5)
-            .min(f.total_days as f64 - f.progress_days)
-            .min(programs::available_bn(w, p.started_by, BUDGET_INDUSTRY, 2) / daily_cost.max(EPS));
-        if planned_advance <= EPS {
-            next.reason = Some("PAUSED: Minerals & processing has no project authority or construction capacity today; completed mine work is preserved.".into());
+    let plan = mine_work_plan(w, p, programs::construction_available_bn(w, p.started_by))?;
+    next.reason = plan.reason.clone().or_else(|| plan.slow_reason.clone());
+    if !funding_day_open(w, p.started_by) {
+        next.reason = Some("BLOCKED: the daily construction ledger is not open.".into());
+    } else if plan.reason.is_none() && plan.advance_days > EPS {
+        if let Err(reason) = programs::spend_construction(w, p.started_by, plan.cash_bn) {
+            next.reason = Some(reason);
         } else {
-            // Modeled mine-installation materials; the work-price excludes raw
-            // input purchases. No commodity output is granted before completion.
-            let mut recipe = [0.0; 12];
-            recipe[C::Iron.idx()] = 20.0;
-            recipe[C::Copper.idx()] = 4.0;
-            recipe[C::Coal.idx()] = 8.0;
-            let completes = f.progress_days + planned_advance + EPS >= f.total_days as f64;
-            let requested = std::array::from_fn(|i| {
-                q(if completes {
-                    recipe[i] - f.resources_used[i]
-                } else {
-                    recipe[i] * planned_advance / f.total_days as f64
-                })
-            });
-            let throughput = resources::bundle_throughput(w, p.started_by, &requested);
-            let limiting = resources::limiting_bundle_input(w, p.started_by, &requested);
-            if throughput <= EPS {
-                next.reason = Some(limiting.map_or_else(
-                    || "PAUSED: mine construction is waiting for installation materials.".into(),
-                    |(commodity, want, have)| format!(
-                        "PAUSED: mine construction is waiting for {}; full-speed work needs {:.3} today and has {:.3}.",
-                        commodity.name(), want, have
-                    ),
-                ));
-                let progress = next.progress_days;
-                w.production.industry.mines.insert(key, next);
-                return Some(progress);
-            }
-            let advance = planned_advance * throughput;
-            let draw = resources::scale_bundle(&requested, throughput);
-            let cash = (if completes && throughput + EPS >= 1.0 {
-                (p.investment_bn - f.spent_bn).max(0.0)
-            } else {
-                daily_cost * advance
-            })
-            .min(programs::available_bn(w, p.started_by, BUDGET_INDUSTRY, 2));
-            if let Err((c, _, _)) = resources::consume_stockpile_atomic(w, p.started_by, &draw) {
-                next.reason = Some(format!(
-                    "PAUSED: mine construction is waiting for {} after its available supply changed.",
-                    c.name()
-                ));
-            } else {
-                programs::spend(w, p.started_by, BUDGET_INDUSTRY, 2, cash)
-                    .expect("preflighted mine authority");
-                next.progress_days = (f.progress_days + advance).min(f.total_days as f64);
-                next.spent_bn += cash;
-                for i in 0..12 {
-                    next.resources_used[i] += draw[i];
-                }
-                if throughput + EPS < 1.0 {
-                    next.reason = Some(limiting.map_or_else(
-                        || format!("SLOWED: mine materials limit today's work to {:.0}% throughput.", throughput * 100.0),
-                        |(commodity, want, have)| format!(
-                            "SLOWED: {} limits today's mine work to {:.0}% throughput; full speed needs {:.3}, with {:.3} available.",
-                            commodity.name(), throughput * 100.0, want, have
-                        ),
-                    ));
-                }
-            }
+            next.progress_days = (f.progress_days + plan.advance_days).min(f.total_days as f64);
+            next.spent_bn += plan.cash_bn;
         }
     }
     let progress = next.progress_days;
     let advance = (next.progress_days - f.progress_days).max(0.0);
     let paid = (next.spent_bn - f.spent_bn).max(0.0);
     w.production.industry.mines.insert(key, next);
-    if advance > 0.0 {
-        crate::gdp_projects::record_mine_construction(w, p, advance, paid, true);
-    }
+    if advance > 0.0 { crate::gdp_projects::record_mine_construction(w, p, advance, paid, true); }
     Some(progress)
 }
 
@@ -1857,7 +1266,10 @@ mod tests {
         let demand = resources::draw(&w, USA);
         let d = districts(&w)[0].clone();
         production::start_project(&mut w, USA, &d, K::Warehouse).unwrap();
-        assert!(resources::draw(&w, USA)[C::Iron.idx()] > demand[C::Iron.idx()]);
+        assert_eq!(resources::draw(&w, USA), demand, "turnkey construction creates no raw demand");
+        let components = raw_demand_components(&w, USA);
+        assert_eq!(components.projects_remaining, [0.0; 12]);
+        assert_eq!(components.projects_horizon, [[0.0; 3]; 12]);
         assert_eq!(ALL.map(|c| resources::stockpile(&w, USA, c)), opening);
         assert!(
             w.resources.market.is_none(),
@@ -1865,144 +1277,75 @@ mod tests {
         );
     }
     #[test]
-    fn whole_queue_reserves_one_department_and_atomic_material_bundles() {
+    fn whole_queue_reserves_one_budget_without_material_or_site_capacity_gates() {
         let mut w = prepared();
         let ds = districts(&w);
-        for d in ds.iter().take(2) {
+        programs::set_construction_budget(&mut w, USA, 0.0001).unwrap();
+        for d in ds.iter().take(6) {
             production::start_project(&mut w, USA, d, K::CivilianIndustry).unwrap();
         }
-        w.nation_mut(USA)
-            .program_budget
-            .as_mut()
-            .unwrap()
-            .available_bn[BUDGET_INDUSTRY][0] = 0.0001;
+        for c in ALL { resources::set_stockpile_for_test(&mut w, USA, c, 0.0); }
+        let raw = w.resources.clone();
+        let first = w.production.projects[0].id;
+        let last = w.production.projects[5].id;
+        production::set_priority(&mut w, USA, last, production::Priority::High).unwrap();
         let before = save(&w);
         let plans = project_plans(&w);
         assert_eq!(save(&w), before, "preview is pure");
-        assert!(
-            plans
-                .values()
-                .filter(|p| p.reason.is_none())
-                .map(|p| p.cash_bn)
-                .sum::<f64>()
-                <= 0.0001
-        );
-        let first = w.production.projects[0].id;
-        let missing = C::Copper;
-        resources::set_stockpile_for_test(&mut w, USA, missing, 0.0);
-        let raw = w.resources.clone();
-        let funds = programs::available_bn(&w, USA, BUDGET_INDUSTRY, 0);
+        near(plans.values().map(|p| p.cash_bn).sum(), 0.0001);
+        assert_eq!(plans[&first].advance_days, 0.0);
+        near(plans[&last].advance_days, 0.3);
         production::tick_day(&mut w);
         assert_eq!(w.resources, raw);
-        near(programs::available_bn(&w, USA, BUDGET_INDUSTRY, 0), funds);
-        assert_eq!(
-            w.production
-                .projects
-                .iter()
-                .find(|p| p.id == first)
-                .unwrap()
-                .progress_days,
-            0.0
-        );
-        resources::set_stockpile_for_test(&mut w, USA, missing, 100.0);
-        production::tick_day(&mut w);
-        assert!(w.production.projects[0].progress_days > 0.0);
-        assert!(
-            w.nation(USA)
-                .program_budget
-                .as_ref()
-                .unwrap()
-                .spent_today_bn[BUDGET_INDUSTRY][0]
-                <= 0.0001
-        );
+        near(w.nation(USA).program_budget.as_ref().unwrap().construction_spent_today_bn, 0.0001);
         let once = save(&w);
         production::tick_day(&mut w);
-        assert_eq!(
-            save(&w),
-            once,
-            "same day cannot double-build or change a successful project's status"
-        );
+        assert_eq!(save(&w), once, "same-day replay cannot double-build");
     }
 
     #[test]
-    fn detailed_project_scales_work_money_raw_inputs_and_goods_by_one_bottleneck() {
+    fn partial_budget_scales_cash_and_work_without_consuming_inputs() {
         let mut w = prepared();
         let d = districts(&w)[0].clone();
-        let kind = K::Warehouse;
-        w.production.industry.goods.insert(
-            USA,
-            Goods {
-                intermediates: 100.0,
-                capital_goods: 100.0,
-            },
-        );
-        let id = production::start_project(&mut w, USA, &d, kind).unwrap();
+        let id = production::start_project(&mut w, USA, &d, K::Warehouse).unwrap();
         let full = project_plans(&w)[&id].clone();
-        assert!(full.advance_days > 0.0 && full.required[C::Iron.idx()] > 0.0);
-        resources::set_stockpile_for_test(
-            &mut w,
-            USA,
-            C::Iron,
-            full.required[C::Iron.idx()] * 0.5,
-        );
+        near(full.advance_days, 1.0);
+        assert_eq!(full.required, [0.0; 12]);
+        assert_eq!(full.goods, Goods::default());
+        programs::set_construction_budget(&mut w, USA, full.cash_bn * 0.5).unwrap();
+        for c in ALL { resources::set_stockpile_for_test(&mut w, USA, c, 0.0); }
+        let raw = w.resources.clone();
         let slowed = project_plans(&w)[&id].clone();
-        near(slowed.advance_days, full.advance_days * 0.5);
+        near(slowed.advance_days, 0.5);
         near(slowed.cash_bn, full.cash_bn * 0.5);
-        near(
-            slowed.goods.intermediates,
-            (full.goods.intermediates * 0.5 * 1e9).floor() / 1e9,
-        );
-        near(
-            slowed.goods.capital_goods,
-            (full.goods.capital_goods * 0.5 * 1e9).floor() / 1e9,
-        );
-        assert!(slowed
-            .slow_reason
-            .as_deref()
-            .is_some_and(|reason| reason.contains("SLOWED") && reason.contains("iron")));
+        assert!(slowed.slow_reason.as_deref().unwrap().contains("budget"));
         production::tick_day(&mut w);
-        let project = w.production.projects.iter().find(|p| p.id == id).unwrap();
-        assert_eq!(project.status, ProjectStatus::Slowed);
-        near(project.progress_days, slowed.advance_days);
-        near(project.resources_used[C::Iron.idx()], slowed.required[C::Iron.idx()]);
-        near(
-            w.production.industry.projects[&id].spent_bn,
-            slowed.cash_bn,
-        );
+        let p = &w.production.projects[0];
+        assert_eq!(p.status, ProjectStatus::Slowed);
+        near(p.progress_days, 0.5);
+        assert_eq!(p.resources_used, [0.0; 12]);
+        assert_eq!(w.resources, raw);
+        near(w.production.industry.projects[&id].spent_bn, slowed.cash_bn);
+        near(project_finance(&w,p).unwrap().spent_today_bn, slowed.cash_bn);
     }
+
     #[test]
-    fn infrastructure_uses_all_four_capital_departments_not_maintenance() {
+    fn construction_uses_pooled_civilian_capital_not_maintenance_or_procurement() {
         let mut w = prepared();
         let d = districts(&w)[0].clone();
-        production::start_project(&mut w, USA, &d, K::Infrastructure).unwrap();
-        let before = w
-            .nation(USA)
-            .program_budget
-            .as_ref()
-            .unwrap()
-            .spent_today_bn;
+        production::start_project(&mut w, USA, &d, K::ArmsPlant).unwrap();
+        let before = w.nation(USA).program_budget.as_ref().unwrap().clone();
         let plan = project_plans(&w).into_values().next().unwrap();
-        assert!(plan.department_draws_bn[..4].iter().all(|v| *v > 0.0));
-        assert_eq!(plan.department_draws_bn[4], 0.0);
+        assert!(plan.cash_bn > 0.0);
         production::tick_day(&mut w);
-        let after = w
-            .nation(USA)
-            .program_budget
-            .as_ref()
-            .unwrap()
-            .spent_today_bn;
-        for d in 0..4 {
-            near(
-                after[crate::world::BUDGET_INFRASTRUCTURE][d]
-                    - before[crate::world::BUDGET_INFRASTRUCTURE][d],
-                plan.department_draws_bn[d],
-            );
-        }
-        near(
-            after[crate::world::BUDGET_INFRASTRUCTURE][4],
-            before[crate::world::BUDGET_INFRASTRUCTURE][4],
-        );
+        let after = w.nation(USA).program_budget.as_ref().unwrap();
+        near(after.construction_spent_today_bn - before.construction_spent_today_bn, plan.cash_bn);
+        near(after.spent_today_bn[crate::world::BUDGET_INFRASTRUCTURE][4], before.spent_today_bn[crate::world::BUDGET_INFRASTRUCTURE][4]);
+        assert_eq!(after.available_bn[crate::world::BUDGET_DEFENSE], before.available_bn[crate::world::BUDGET_DEFENSE]);
+        assert_eq!(after.prepaid_bn, before.prepaid_bn);
+        assert!(after.spent_today_bn[BUDGET_INDUSTRY].iter().sum::<f64>() > before.spent_today_bn[BUDGET_INDUSTRY].iter().sum::<f64>());
     }
+
     #[test]
     fn civilian_chain_conserves_inputs_power_cash_and_produces_real_goods() {
         let mut w = prepared();
@@ -2129,73 +1472,46 @@ mod tests {
         );
     }
     #[test]
-    fn manufactured_goods_are_consumed_by_construction_not_sold_for_fake_profit() {
+    fn manufactured_goods_remain_available_for_operations_during_construction() {
         let mut w = prepared();
         let d = districts(&w)[0].clone();
-        let id = production::start_project(&mut w, USA, &d, K::Warehouse).unwrap();
-        assert!(project_finance(&w, &w.production.projects[0])
-            .unwrap()
-            .reason
-            .unwrap()
-            .contains("intermediate"));
-        w.production.industry.goods.insert(
-            USA,
-            Goods {
-                intermediates: 12.0,
-                capital_goods: 5.0,
-            },
-        );
-        let plan = project_plans(&w)[&id].clone();
+        production::start_project(&mut w, USA, &d, K::Warehouse).unwrap();
+        assert!(project_finance(&w, &w.production.projects[0]).unwrap().reason.is_none());
+        let goods = Goods { intermediates: 12.0, capital_goods: 5.0 };
+        w.production.industry.goods.insert(USA, goods.clone());
         let gdp = w.nation(USA).gdp;
         production::tick_day(&mut w);
-        near(
-            w.production.industry.goods[&USA].intermediates,
-            12.0 - plan.goods.intermediates,
-        );
-        near(
-            w.production.industry.goods[&USA].capital_goods,
-            5.0 - plan.goods.capital_goods,
-        );
+        assert_eq!(w.production.industry.goods[&USA], goods);
         assert_eq!(w.nation(USA).gdp, gdp);
+        assert_eq!(w.production.projects[0].progress_days, 1.0);
     }
+
     #[test]
-    fn completed_project_closes_exact_cash_goods_and_raw_recipe() {
+    fn completed_project_closes_exact_cash_and_preserves_inventory() {
         let mut w = prepared();
         let d = districts(&w)[0].clone();
         let kind = K::Warehouse;
-        let recipe = production::catalog(kind).recipe;
-        w.production.industry.goods.insert(USA, goods_recipe(kind));
-        for c in ALL {
-            if recipe[c.idx()] > 0.0 {
-                resources::set_stockpile_for_test(&mut w, USA, c, recipe[c.idx()]);
-            }
-        }
+        w.production.industry.goods.insert(USA, Goods { intermediates: 12.0, capital_goods: 5.0 });
+        let raw = w.resources.clone();
+        let goods = w.production.industry.goods.clone();
         production::start_project(&mut w, USA, &d, kind).unwrap();
-        for _ in 0..300 {
+        let mut paid = 0.0;
+        for day in 0..240 {
             production::tick_day(&mut w);
-            if w.production.projects.is_empty() {
-                break;
-            }
-            next_day(&mut w);
+            paid += w.nation(USA).program_budget.as_ref().unwrap().construction_spent_today_bn;
+            if day < 239 { assert_eq!(production::level(&w,&d,kind), 0); next_day(&mut w); }
         }
-        assert!(
-            w.production.projects.is_empty(),
-            "{:?}",
-            w.production.projects
-        );
+        assert!(w.production.projects.is_empty());
         assert_eq!(production::level(&w, &d, kind), 1);
         assert!(w.production.industry.projects.is_empty());
-        assert_eq!(w.production.industry.goods[&USA], Goods::default());
-        for c in ALL {
-            if recipe[c.idx()] > 0.0 {
-                near(resources::stockpile(&w, USA, c), 0.0);
-            }
-        }
-        near(
-            w.nation(USA).program_budget.as_ref().unwrap().spent_ytd_bn[BUDGET_INDUSTRY][3],
-            work_cost_bn(kind),
-        );
+        assert_eq!(w.production.industry.goods, goods);
+        assert_eq!(w.resources, raw);
+        near(paid, work_cost_bn(kind));
+        let once = save(&w);
+        production::tick_day(&mut w);
+        assert_eq!(save(&w), once);
     }
+
     #[test]
     fn full_civilian_chain_bootstraps_from_raw_inputs_without_seeded_goods() {
         let mut w = prepared();
@@ -2242,7 +1558,7 @@ mod tests {
             .any(|s| s.kind == K::MachineryWorks && s.output_daily > 0.0));
     }
     #[test]
-    fn new_mines_replace_upfront_debit_and_share_work_with_projects() {
+    fn new_mines_share_funding_but_have_independent_site_lead_times() {
         let mut w = prepared();
         let (d, c) = w
             .districts
@@ -2265,10 +1581,10 @@ mod tests {
         let p = w.resources.mine_projects[0].clone();
         let progress = advance_mine(&mut w, &p).unwrap();
         assert!(progress > 0.0);
-        near(
-            progress + project_plan.advance_days,
-            production::construction_capacity(&w, USA),
-        );
+        near(progress, 1.0);
+        near(project_plan.advance_days, 1.0);
+        near(w.nation(USA).program_budget.as_ref().unwrap().construction_spent_today_bn,
+            project_plan.cash_bn + w.production.industry.mines[&mine_key(&d,c)].spent_bn);
         assert!(w.production.industry.mines[&mine_key(&d, c)].spent_bn > 0.0);
         near(
             resources::mine_investment_bn(&w, USA),
@@ -2287,39 +1603,114 @@ mod tests {
     }
 
     #[test]
-    fn mine_construction_uses_partial_inputs_for_partial_progress() {
+    fn mine_construction_uses_partial_budget_and_no_materials() {
         let mut w = prepared();
-        let (d, c) = w
-            .districts
-            .iter()
-            .filter(|(_, n)| **n == USA)
-            .flat_map(|(d, _)| ALL.map(|c| (d.clone(), c)))
-            .find(|(d, c)| resources::mine_refusal(&w, USA, d, *c).is_none())
-            .unwrap();
-        resources::start_mine(&mut w, USA, &d, c).unwrap();
-        begin_work_day(&mut w);
+        let (d,c) = w.districts.iter().filter(|(_, n)| **n == USA)
+            .flat_map(|(d,_)| ALL.map(|c| (d.clone(),c)))
+            .find(|(d,c)| resources::mine_refusal(&w,USA,d,*c).is_none()).unwrap();
+        resources::start_mine(&mut w,USA,&d,c).unwrap();
         let project = w.resources.mine_projects[0].clone();
-        let funding = w.production.industry.mines[&mine_key(&d, c)].clone();
-        let full_advance = production::construction_capacity(&w, USA)
-            .min(1.5)
-            .min(funding.total_days as f64);
-        let full_iron = (20.0 * full_advance / funding.total_days as f64 * 1e9).round() / 1e9;
-        resources::set_stockpile_for_test(&mut w, USA, C::Iron, full_iron * 0.5);
-
-        let progress = advance_mine(&mut w, &project).unwrap();
-        let settled = &w.production.industry.mines[&mine_key(&d, c)];
-        assert!(progress > 0.0 && progress < full_advance);
-        assert!((progress / full_advance - 0.5).abs() < 2e-8);
-        assert!(settled
-            .reason
-            .as_deref()
-            .is_some_and(|reason| reason.contains("SLOWED") && reason.contains("iron")),
-            "{:?}",
-            settled.reason);
-        near(settled.resources_used[C::Iron.idx()], full_iron * 0.5);
-        near(
-            settled.spent_bn,
-            project.investment_bn / funding.total_days as f64 * progress,
-        );
+        let funding = w.production.industry.mines[&mine_key(&d,c)].clone();
+        let daily_cost = project.investment_bn / funding.total_days as f64;
+        programs::set_construction_budget(&mut w,USA,daily_cost * 0.5).unwrap();
+        for c in ALL { resources::set_stockpile_for_test(&mut w,USA,c,0.0); }
+        let raw = w.resources.clone();
+        let before = save(&w);
+        let preview = mine_work_plan(&w,&project,programs::construction_available_bn(&w,USA)).unwrap();
+        assert_eq!(save(&w),before);
+        near(preview.advance_days,0.5);
+        let progress = advance_mine(&mut w,&project).unwrap();
+        near(progress,preview.advance_days);
+        let settled = &w.production.industry.mines[&mine_key(&d,c)];
+        near(settled.spent_bn,daily_cost*0.5);
+        assert!(settled.reason.as_deref().unwrap().contains("budget"));
+        assert_eq!(settled.resources_used,[0.0;12]);
+        assert_eq!(w.resources,raw);
+        let forecast = raw_demand_components(&w,USA);
+        assert_eq!(forecast.mines_remaining,[0.0;12]);
+        assert_eq!(forecast.mines_horizon,[[0.0;3];12]);
     }
+
+    #[test]
+    fn migrated_contract_preserves_paid_history_and_only_prices_unfinished_work() {
+        let mut w = prepared();
+        let d = districts(&w)[0].clone();
+        let id = production::start_project(&mut w,USA,&d,K::Warehouse).unwrap();
+        w.production.projects[0].progress_days = 120.0;
+        w.production.projects[0].resources_used[C::Iron.idx()] = 9.0;
+        let f = w.production.industry.projects.get_mut(&id).unwrap();
+        f.contract_cost_bn = None; // Save predating frozen contracts.
+        f.spent_bn = 0.012;
+        f.goods_used.intermediates = 3.0;
+        let before = save(&w);
+        let quote = project_finance(&w,&w.production.projects[0]).unwrap();
+        assert_eq!(save(&w),before);
+        near(quote.cost_bn,0.042);
+        near(quote.remaining_bn,0.03);
+        begin_work_day(&mut w);
+        let f = &w.production.industry.projects[&id];
+        near(f.spent_bn,0.012);
+        near(f.goods_used.intermediates,3.0);
+        assert_eq!(w.production.projects[0].progress_days,120.0);
+        assert_eq!(w.production.projects[0].resources_used[C::Iron.idx()],9.0);
+        let mut resumed = load(&save(&w)).unwrap();
+        let mut paid = 0.0;
+        for day in 0..120 {
+            production::tick_day(&mut w);
+            production::tick_day(&mut resumed);
+            paid += w.nation(USA).program_budget.as_ref().unwrap().construction_spent_today_bn;
+            assert_eq!(save(&w),save(&resumed));
+            if day < 119 { next_day(&mut w); next_day(&mut resumed); }
+        }
+        assert!(w.production.projects.is_empty());
+        near(paid,0.03);
+    }
+
+    #[test]
+    fn legacy_daily_rows_gain_financing_and_budget_activation_preserves_sunk_work() {
+        let mut w = prepared();
+        let d = districts(&w)[0].clone();
+        let id = production::start_project(&mut w,USA,&d,K::Warehouse).unwrap();
+        w.production.projects[0].progress_days = 120.0;
+        w.production.projects[0].resources_used[C::Iron.idx()] = 9.0;
+        w.production.industry.projects.remove(&id);
+        w.nation_mut(USA).program_budget = None;
+        let raw = w.resources.clone();
+        production::tick_day(&mut w);
+        near(w.production.projects[0].progress_days,120.0);
+        assert_eq!(w.production.projects[0].status,ProjectStatus::Paused);
+        near(w.production.industry.projects[&id].spent_bn,0.03);
+        near(w.production.industry.projects[&id].contract_cost_bn.unwrap(),0.06);
+        programs::set_construction_budget(&mut w,USA,0.00025).unwrap();
+        programs::begin_day(&mut w);
+        production::tick_day(&mut w);
+        near(w.production.projects[0].progress_days,121.0);
+        near(w.nation(USA).program_budget.as_ref().unwrap().construction_spent_today_bn,0.00025);
+        near(w.production.industry.projects[&id].spent_bn,0.03025);
+        assert_eq!(w.resources,raw);
+        assert_eq!(w.production.projects[0].resources_used[C::Iron.idx()],9.0);
+    }
+
+    #[test]
+    fn mine_preview_reserves_only_budget_left_after_the_building_queue() {
+        let mut w = prepared();
+        let (d,c) = w.districts.iter().filter(|(_, n)| **n == USA)
+            .flat_map(|(d,_)| ALL.map(|c| (d.clone(),c)))
+            .find(|(d,c)| resources::mine_refusal(&w,USA,d,*c).is_none()).unwrap();
+        resources::start_mine(&mut w,USA,&d,c).unwrap();
+        let project = w.resources.mine_projects[0].clone();
+        let other = districts(&w).into_iter().find(|x| *x != d).unwrap();
+        production::start_project(&mut w,USA,&other,K::Warehouse).unwrap();
+        let daily_mine = project.investment_bn / w.production.industry.mines[&mine_key(&d,c)].total_days as f64;
+        let cap = 0.00025 + daily_mine * 0.5;
+        programs::set_construction_budget(&mut w,USA,cap).unwrap();
+        let building = project_plans(&w).into_values().next().unwrap();
+        let preview = mine_work_plan(&w,&project,programs::construction_available_bn(&w,USA)-building.cash_bn).unwrap();
+        near(preview.advance_days,0.5);
+        production::tick_day(&mut w);
+        near(advance_mine(&mut w,&project).unwrap(),preview.advance_days);
+        near(w.nation(USA).program_budget.as_ref().unwrap().construction_spent_today_bn,cap);
+        assert_eq!(programs::construction_available_bn(&w,USA),0.0);
+    }
+
 }

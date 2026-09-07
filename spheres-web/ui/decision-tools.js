@@ -14,14 +14,21 @@
       .sort((a,b)=>(b.focus?1:0)-(a.focus?1:0)||(a.year-b.year)||a.name.localeCompare(b.name));
   }
   function guide(programs,works){
-    if(!programs?.enabled||programs.due)return {step:0,title:"Fund your plan",text:"Review the ten ministry budgets and the full-use funding gap, including debt service. Enact the plan to open this year's project authority.",action:"budget"};
-    const queue=works?.queue||[];
-    const blocked=queue.find(p=>p.status!=="building"||(p.requirements||[]).some(r=>r.shortfall>0));
-    if(blocked)return {step:2,title:"Unblock the supply chain",text:blocked.reason||"Inspect this project's inputs, department funding and prerequisites.",project:blocked,action:"supply"};
-    if(queue.length)return {step:3,title:"Watch work become capacity",text:"Advance a few days, then compare actual work and delivered inputs. The estimate assumes today's throughput continues; it is not a completion promise.",project:queue[0],action:"works"};
-    if((works?.completed||[]).length)return {step:4,title:"Put completed capacity to work",text:"Inspect the completed site's operating status, inputs and actual output. Compare its value added with your opening economy; a building alone does not guarantee production.",action:"economy"};
-    return {step:1,title:"Choose one useful project",text:"Start with a project whose funding and inputs you can sustain. A small economy can obtain a paid, scaled workshop through Exchange. Every project quote shows prerequisites and political cost before you commit.",action:"works"};
+    const budget=works?.construction_budget;
+    if(programs?.due)return {step:0,title:"Renew your yearly budget",text:"The financial year needs a renewed budget. Review your ministry funding before planning more construction.",action:"budget",actionLabel:"Review yearly budget"};
+    if(budget?.enrolled===false || !programs?.enabled && budget?.enrolled!==true)return {step:0,title:"Open construction funding",text:"Apply a daily construction funding limit to open the funding ledger. Your budget pays only for work delivered; unused money is not charged.",action:"works",actionLabel:"Set construction funding"};
+    const queue=[...(works?.queue||[]),...(works?.mine_queue||[])];
+    if(budget?.daily_budget_bn===0)return {step:2,title:"Construction funding is paused",text:"The daily funding limit is zero. Projects keep their progress. Choose a positive limit when you want construction to resume.",project:queue[0],action:"works",actionLabel:"Review daily funding"};
+    const blocked=queue.find(p=>["blocked","paused","slowed"].includes(p.status));
+    if(blocked)return {step:2,title:"Review a project that needs attention",text:blocked.reason||"Check the daily funding limit, available capital funding and this project's prerequisites.",project:blocked,action:"works",actionLabel:"Review this project"};
+    if(queue.length && Number.isFinite(budget?.available_bn) && budget.available_bn<=0)return {step:2,title:"Check available construction funding",text:budget.reason||"No construction funding is available in the current reading. Review the daily limit and available capital funding before adding more projects.",project:queue[0],action:"works",actionLabel:"Review construction funding"};
+    const suggestion=(works?.suggestions?.items||[]).find(item=>item && typeof item.project_kind==="string" && typeof item.district==="string" && item.can_start!==false && item.eligible!==false);
+    if(suggestion)return {step:1,title:`Review ${suggestion.name||"a suggested project"}`,text:suggestion.reason||"Review this project's province and country effects before deciding.",suggestion,action:"suggestion",actionLabel:"Review suggested effects"};
+    if(queue.length)return {step:3,title:"Your funded projects are progressing",text:"Compare spending, remaining cost and progress in the construction queue. Advance a few days when you are ready; estimates follow current funding and project lead times.",project:queue[0],action:"works",actionLabel:"View this project"};
+    if((works?.completed||[]).length)return {step:4,title:"Inspect your completed industry",text:"Compare completed facilities with their actual operating output. Operating facilities still need their normal inputs and running budget.",action:"economy",actionLabel:"Manage industry in Economy"};
+    return {step:1,title:"Choose a useful project",text:works?.suggestions?.note||"Compare a factory, smaller workshop or infrastructure project in Construction. All projects share the daily funding limit.",action:"works",actionLabel:"Explore construction"};
   }
+  function progressText(value){if(!Number.isFinite(value))return "—";const fraction=Math.max(0,Math.min(1,value)),percent=Math.round(fraction*1000)/10;return fraction>0&&percent===0?"<0.1%":`${percent}%`;}
   function causes(policy){return ["war","sanctions","embargo","debt_drag","unrest","oil","bubble","demand_output_now"].map(key=>({key,value:Number.isFinite(policy?.[key])?policy[key]*(["war","sanctions","embargo","debt_drag","unrest"].includes(key)?-1:1):null})).filter(r=>Number.isFinite(r.value)&&r.value!==0).sort((a,b)=>Math.abs(b.value)-Math.abs(a.value)).slice(0,4);}
   function stabilityHtml(policy){
     const s=policy?.stability;if(!s||!Number.isFinite(s.monthly_points_before_bounds))return "";
@@ -32,7 +39,7 @@
     const actions=[...new Set(terms.map(t=>t.action))].filter(a=>Object.hasOwn(labels,a));
     return `<section aria-label="Current stability contributors"><h3>Current economic stability pressure</h3><p><strong>${signed(s.monthly_points_before_bounds)} stability points per month</strong> at current conditions, before the 0–100 bounds.${s.month_fraction<1&&Number.isFinite(s.step_points_before_bounds)?` Today's daily step is ${signed(s.step_points_before_bounds)} points before bounds.`:""}</p><p>The same economic terms and gradual return toward 60 used by the simulation, shown as monthly equivalents. Conditions change during a turn; political events, war outcomes and other direct changes are separate. This does not attribute the change since your last decision.</p>${terms.length?`<ul>${terms.map(t=>`<li>${esc(t.label)}: ${signed(t.monthly_points)} points/month</li>`).join("")}</ul>`:"<p>No current economic pressure.</p>"}<div class="decision-actions">${actions.map(a=>`<button type="button" data-stability-action="${a}">${labels[a]}</button>`).join("")}</div></section>`;
   }
-  return {overlap,search,research,guide,causes,stabilityHtml};
+  return {overlap,search,research,guide,progressText,causes,stabilityHtml};
 });
 
 if(typeof window!=="undefined"){
@@ -76,16 +83,39 @@ if(typeof window!=="undefined"){
     const seq=DTOOLS.seq;
     try{const works=await api("/api/production");if(seq!==DTOOLS.seq||!box.open)return;
       if(S!==state)throw new Error("The campaign changed while advice was loading. Refresh advice to inspect the current state.");
-      const g=DecisionTools.guide(state.programs,works),p=g.project,causes=DecisionTools.causes(state.policy);
-      const steps=["Fund","Choose","Supply","Build","Operate"];
-      const next=p?`<article><h3>${toolsEsc(p.name)} · ${toolsEsc(p.province?.name)}</h3><p>${Math.round((p.progress||0)*100)}% complete · ${p.eta_days==null?"No reliable ETA while blocked":`about ${p.eta_days} days at current throughput`}</p><p>${toolsEsc(p.effect)}</p><ul>${(p.requirements||[]).map(r=>`<li>${toolsEsc(r.name)}: ${r.stock_available} ${toolsEsc(r.unit)} on hand · ${r.incoming_quantity||0} in transit${r.shortfall>0?` · missing ${r.shortfall} for the next work cycle`:""}${r.shortfall>0?` <button data-supply="${toolsEsc(r.commodity)}">Find supplies</button>`:""}</li>`).join("")}</ul><p>Department: ${toolsEsc(p.funding?.ministry_name)}. ${toolsEsc(p.reason||"Ready for funded work.")}</p></article>`:"";
-      box.querySelector(".decision-body").innerHTML=`<ol class="advisor-steps">${steps.map((s,i)=>`<li ${i===g.step?'aria-current="step"':""}>${s}</li>`).join("")}</ol><h3>${g.title}</h3><p>${g.text}</p>${next}<div class="decision-actions"><button id="advisorNext">${g.action==="budget"?"Review budget":g.action==="economy"?"Inspect economic output":"Open National Works"}</button><button id="advisorExchange">Scaled workshops & supply planning</button><button onclick="openAdvisor()">Refresh advice</button></div>${causes.length?`<h3>Largest current growth contributions</h3><p>These are the simulation's current terms, not an attribution of every change since your last decision.</p><ul>${causes.map(c=>`<li>${toolsEsc(c.key.replaceAll("_"," "))}: ${c.value>=0?"+":""}${(c.value*100).toFixed(2)} percentage points / year</li>`).join("")}</ul><button id="advisorCauses">Inspect policies and costs</button>`:""}<p>Optional guidance. You choose and enact every policy.</p><button onclick="openPlaytestFeedback()">Record playtest feedback</button>`;
-      box.querySelector("#advisorNext").onclick=()=>{box.close();if(g.action==="budget"){if(!cabinetIsOpen())toggleGameDrawer("cabinetDrawer");}else if(g.action==="economy"){openNation(S.player);selectNationView("economy");}else openProduction();};
-      box.querySelector("#advisorExchange").onclick=()=>{box.close();openCompetition();};
-      box.querySelector("#advisorCauses")?.addEventListener("click",()=>{box.close();if(!cabinetIsOpen())toggleGameDrawer("cabinetDrawer");});
-      box.querySelector(".decision-body").insertAdjacentHTML("beforeend",DecisionTools.stabilityHtml(state.policy));
-      box.querySelectorAll("[data-stability-action]").forEach(b=>b.onclick=()=>{box.close();if(b.dataset.stabilityAction==="decisions")openAgency();else if(b.dataset.stabilityAction==="world")toggleGameDrawer("intelDrawer");else if(!cabinetIsOpen())toggleGameDrawer("cabinetDrawer");});
-      box.querySelectorAll("[data-supply]").forEach(b=>b.onclick=()=>{box.close();openStock(b.dataset.supply);});
+      const g=DecisionTools.guide(state.programs,works),p=g.project,s=g.suggestion,causes=DecisionTools.causes(state.policy);
+      const project=p?`<h3>${toolsEsc(p.name)} · ${toolsEsc(p.province?.name||p.province?.id||"Province")}</h3><p>${toolsEsc(DecisionTools.progressText(p.progress))} complete · ${Number.isFinite(p.eta_days)?`about ${Math.ceil(p.eta_days)} days at current funding`:"ETA pending funding"}</p><p>Cost ${constructionMoney(p.finance?.cost_bn)} · spent ${constructionMoney(p.finance?.spent_bn)} · remaining ${constructionMoney(p.finance?.remaining_bn)}</p><p>Planned per day: ${constructionMoney(p.finance?.daily_request_bn)}.</p>`:"";
+      const suggestion=s?`<p><strong>${toolsEsc(s.district_name||s.district)}</strong>${s.priority?` · ${toolsEsc(s.priority)}`:""}</p><p><strong>${constructionMoney(s.cost_bn)} total project cost</strong> · ${Number.isFinite(s.minimum_days)?`at least ${Math.ceil(s.minimum_days)} days`:"Lead time available in the effects review"}</p><p>${Number.isFinite(s.eta_days)?`About ${Math.ceil(s.eta_days)} days at current funding.`:"Completion awaits available funding."}</p>${s.caution?`<p>${toolsEsc(s.caution)}</p>`:""}${Array.isArray(s.evidence)&&s.evidence.length?`<details><summary>Supporting evidence</summary><ul>${s.evidence.map(text=>`<li>${toolsEsc(text)}</li>`).join("")}</ul></details>`:""}`:"";
+      const stability=DecisionTools.stabilityHtml(state.policy);
+      const diagnostics=causes.length||stability?`<details class="advisor-diagnostics"><summary>Economic pressures and stability</summary>${causes.length?`<h3>Largest current growth contributions</h3><p>These are the simulation's current terms, not an attribution of every change since your last decision.</p><ul>${causes.map(c=>`<li>${toolsEsc(c.key.replaceAll("_"," "))}: ${c.value>=0?"+":""}${(c.value*100).toFixed(2)} percentage points / year</li>`).join("")}</ul><button id="advisorCauses">Inspect money and policy</button>`:""}${stability}</details>`:"";
+      box.querySelector(".decision-body").innerHTML=`<div class="decision-list"><article><small>Your next step</small><h3>${toolsEsc(g.title)}</h3><p>${toolsEsc(g.text)}</p>${suggestion}${project}<div class="decision-actions"><button id="advisorNext">${toolsEsc(g.actionLabel)}</button></div></article></div><p id="advisorStatus" role="status"></p><div class="decision-actions"><button id="advisorExchange">Explore construction</button><button onclick="openAdvisor()">Refresh advice</button></div>${diagnostics}<p>Optional guidance. You review the effects and choose every order.</p><details><summary>Playtest feedback</summary><button onclick="openPlaytestFeedback()">Record playtest feedback</button></details>`;
+      // Even a read-only destination must retain the campaign and recommendation
+      // the player saw. The effects screen requests a fresh authoritative quote.
+      const current=()=>{
+        if(seq!==DTOOLS.seq||!box.open)return false;
+        if(S!==state){box.querySelector("#advisorStatus").textContent="The world has changed. Refresh advice before following this recommendation.";return false;}
+        return true;
+      };
+      box.querySelector("#advisorNext").onclick=()=>{
+        if(!current())return false;
+        if(g.action==="suggestion" && (typeof advancing!=="undefined" && advancing || typeof pendingAdvance!=="undefined" && pendingAdvance || typeof PROD!=="undefined" && PROD.busy)){
+          box.querySelector("#advisorStatus").textContent="Wait for the current turn or order to finish before reviewing this suggestion. Resolve any pending confirmation first.";
+          return false;
+        }
+        box.close();
+        if(g.action==="budget")openConstructionCabinet("budget");
+        else if(g.action==="economy")openIndustry();
+        else if(g.action==="suggestion"){openConstruction();return constructionPreviewProject(s.project_kind,s.district,s.capacity_micros);}
+        else openConstruction({project:p?.id});
+      };
+      box.querySelector("#advisorExchange").onclick=()=>{if(!current())return false;box.close();openConstruction({catalog:true});};
+      box.querySelector("#advisorCauses")?.addEventListener("click",()=>{if(!current())return false;box.close();openConstructionCabinet("policy");});
+      box.querySelectorAll("[data-stability-action]").forEach(b=>b.onclick=()=>{
+        if(!current())return false;box.close();
+        if(b.dataset.stabilityAction==="decisions")openAgency();
+        else if(b.dataset.stabilityAction==="world")toggleGameDrawer("intelDrawer");
+        else openConstructionCabinet("budget");
+      });
     }catch(error){if(seq===DTOOLS.seq&&box.open)box.querySelector(".decision-body").innerHTML=`<p role="alert">${toolsEsc(error.message)}</p><button onclick="openAdvisor()">Retry</button>`;}
   };
   window.openResearchList=function(){

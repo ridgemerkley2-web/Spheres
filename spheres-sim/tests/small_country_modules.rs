@@ -100,7 +100,7 @@ fn physical_day(w: &mut WorldState, id: NationId) -> f64 {
     }
     programs::begin_day(w);
     production::tick_day(w);
-    let work = w.nation(id).program_budget.as_ref().unwrap().spent_today_bn[BUDGET_INDUSTRY][0];
+    let work = w.nation(id).program_budget.as_ref().unwrap().construction_spent_today_bn;
     industry::tick_day(w);
     let p = w.nation_mut(id).program_budget.as_mut().unwrap();
     p.fiscal_staged = true;
@@ -123,7 +123,7 @@ fn start_recommended(w: &mut WorldState, id: NationId, d: &str) -> u32 {
         },
     )
     .unwrap();
-    assert_eq!(w.nation(id).political_capital, pc - 12.0);
+    assert_eq!(w.nation(id).political_capital, pc);
     assert_eq!(
         modules::capacity(w, d),
         0.0,
@@ -160,16 +160,16 @@ fn all_131_mapped_countries_can_complete_a_paid_productive_module_at_normal_gdp_
         let d = district(&w, id);
         let micros = start_recommended(&mut w, id, &d);
         let q = modules::quote(&w, id, &d, micros);
-        let annual = gdp * original_allocations[BUDGET_INDUSTRY] * 0.6;
+        let annual = programs::construction_default_daily_bn(&w, id) / clock::year_fraction(&w);
         assert!(
             q.cost_bn <= annual,
             "{}: module cost {} must fit actual annual authority {annual}, size {micros}",
             id.name(),
             q.cost_bn
         );
-        assert!(q.nominal_work_days <= 365.0 * production::construction_capacity(&w, id));
+        assert!(q.nominal_work_days <= 365.0);
         // The recommendation sizes against the slowest daily calendar release
-        // as well as workforce; equal monthly appropriations are not 365 equal
+        // as well as the site's lead time; monthly appropriations are not 365 equal
         // daily payments. Both resulting constraints must fit one year.
         assert!(q.cost_bn <= annual * (365.0 / (12.0 * 31.0)));
         let mut cost = 0.0;
@@ -400,25 +400,17 @@ fn frozen_size_and_daily_accounts_replay_across_save_and_batch_boundaries() {
 }
 
 #[test]
-fn no_political_capital_or_raw_inputs_still_means_no_free_progress() {
+fn money_budget_controls_progress_without_political_capital_or_raw_inputs() {
     let id = NationId::Tonga;
     let mut w = prepare(&world(), id);
     let d = district(&w, id);
     let size = modules::recommended_capacity_micros(&w, id);
     w.nation_mut(id).political_capital = 0.0;
-    let before = save(&w);
-    assert!(apply_command(
-        &mut w,
-        &Command::StartIndustryModule {
-            nation: id,
-            district: d.clone(),
-            capacity_micros: size
-        }
-    )
-    .is_err());
-    assert_eq!(save(&w), before);
-    w.nation_mut(id).political_capital = 1000.0;
-    start_recommended(&mut w, id, &d);
+    apply_command(&mut w, &Command::StartIndustryModule {
+        nation: id, district: d.clone(), capacity_micros: size,
+    }).unwrap();
+    assert_eq!(w.nation(id).political_capital, 0.0);
+    programs::set_construction_budget(&mut w, id, 0.0).unwrap();
     w.resources
         .market
         .as_mut()
@@ -437,6 +429,15 @@ fn no_political_capital_or_raw_inputs_still_means_no_free_progress() {
         0.0
     );
     assert_eq!(w.resources.market.as_ref().unwrap().stocks, stocks);
+    let daily = programs::construction_default_daily_bn(&w, id);
+    programs::set_construction_budget(&mut w, id, daily).unwrap();
+    clock::advance_date(&mut w);
+    programs::begin_day(&mut w);
+    production::tick_day(&mut w);
+    assert!(w.production.projects[0].progress_days > 0.0);
+    assert!(w.production.industry.projects[&w.production.projects[0].id].spent_bn > 0.0);
+    assert_eq!(w.resources.market.as_ref().unwrap().stocks, stocks);
+    assert_eq!(w.nation(id).political_capital, 0.0);
 }
 
 #[test]
@@ -508,7 +509,7 @@ fn module_expansion_requires_delivered_demand_not_just_an_offer_or_idle_inventor
     let p = production::projects_for(&w, id).next().unwrap();
     assert_eq!(p.kind, K::StarterIndustry);
     assert_eq!(p.capacity_micros, Some(next));
-    assert_eq!(w.nation(id).political_capital, pc - 12.0);
+    assert_eq!(w.nation(id).political_capital, pc);
     assert_eq!(
         w.production.industry.modules, old,
         "expansion remains unbuilt until funded"
@@ -516,7 +517,7 @@ fn module_expansion_requires_delivered_demand_not_just_an_offer_or_idle_inventor
 }
 
 #[test]
-fn no_factory_authority_does_not_queue_an_unfinishable_minimum_module() {
+fn a_zero_construction_budget_does_not_queue_an_unfinishable_minimum_module() {
     let id = NationId::Tonga;
     let mut w = prepare(&world(), id);
     let d = district(&w, id);
@@ -525,6 +526,9 @@ fn no_factory_authority_does_not_queue_an_unfinishable_minimum_module() {
         .as_mut()
         .unwrap()
         .departments[BUDGET_INDUSTRY] = [0, 2500, 2500, 2500, 2500];
+    assert!(economic_ai::module_order_capacity(&w, id, &d) > 0,
+        "construction can use pooled capital with a zero factory-department share");
+    programs::set_construction_budget(&mut w, id, 0.0).unwrap();
     assert_eq!(economic_ai::module_order_capacity(&w, id, &d), 0);
     assert!(economic_ai::candidate(&w, id)
         .unwrap_err()

@@ -9,8 +9,10 @@ const source=fs.readFileSync(path.join(root,'spheres-web/ui/competition-ui.js'),
 const economySource=fs.readFileSync(path.join(root,'spheres-web/ui/province-economy-ui.js'),'utf8');
 const page=fs.readFileSync(path.join(root,'spheres-web/ui/index.html'),'utf8');
 function fixture() {
-  const sent=[],stored=new Map();
-  const c=vm.createContext({sent,console,Promise,Number,JSON,
+  const sent=[],routes=[],stored=new Map();
+  const c=vm.createContext({sent,routes,console,Promise,Number,JSON,
+    openConstruction: options=>routes.push(JSON.parse(JSON.stringify(options||{}))),
+    openIndustry:()=>routes.push({industry:true}),
     document:{addEventListener(){}},campaignConfirm:async()=>true,
     sessionStorage:{setItem:(k,v)=>stored.set(k,v),getItem:k=>stored.get(k),removeItem:k=>stored.delete(k)},
     economyMoney:n=>`$${n}bn`,nextAdvanceIdentity:()=>({client_id:'test',request_seq:1}),
@@ -180,23 +182,23 @@ test('Inherited-sector context passes through funded, queued and uncovered annua
   assert.match(html,/<details class="comp-inherited-plan">/,'optional context is collapsed by default');
   assert.equal(c.sent.length,0);
 });
-test('Workshop uses served fractional prices and shows data coverage and ongoing paid work honestly',()=>{
+test('Exchange delegates workshops to the shared construction queue and preserves coverage limits',()=>{
   const c=fixture();
   run(c,'COMP.moduleOpen=true;');
   const html=run(c,`competitionModuleHtml({module_board:{provinces:[{id:'TG-1',name:'<unsafe province>'}],selection:{district:'TG-1',quotes:[{label:'Budget fit',district:'TG-1',capacity_micros:5000,scale:.005,cost_bn:.0029,output_daily:.005,lower_bound_days:365,political_cost:12,can_start:true,requirements:[{name:'Iron',required:.00015,stock_available:.00002,unit:'t'}]}]},projects:[],legacy_active:1}})`);
-  assert(html.includes('$0.0029bn'));assert(html.includes('0.5%'));assert(html.includes('365 days'));
-  assert(html.includes('&lt;unsafe province&gt;'));assert(!html.includes('<unsafe province>'));
-  assert(html.includes('existing full-size project(s) keep their original cost'));
-  assert(html.includes('Iron · 0.00015 t required · 0.00002 in stock'));
+  assert(html.includes('data-comp-action="module-toggle"'));assert(html.includes('Open construction queue'));
+  assert(!html.includes('<unsafe province>'));assert(!html.includes('Iron ·'));
+  assert(!html.includes('data-comp-action="module-build"'));
+  assert(html.includes('pay as work is delivered'));
   const missing=run(c,`competitionModuleHtml({module_board:{coverage_reason:'No mapped gateway',provinces:[]}})`);
   assert(missing.includes('No mapped gateway'));assert(!missing.includes('data-comp-action="module-build"'));
 });
-test('Workshop purchase sends exact quoted frozen size through the receipt barrier',async()=>{
+test('Exchange workshop actions route to Construction without issuing a competing purchase',async()=>{
   const c=fixture();
   run(c,`COMP.stale=false;COMP.data={module_board:{selection:{district:'TG-1',quotes:[{district:'TG-1',capacity_micros:5001,scale:.005001,cost_bn:.00290058,political_cost:12,can_start:true}]}}};`);
   await run(c,`competitionAction({dataset:{compAction:'module-build',moduleQuote:'0'}})`);
-  assert.deepEqual(c.sent[0].b.commands,[{kind:'start_industry_module',district:'TG-1',capacity_micros:5001}]);
-  assert.equal(c.sent[0].b.session_id,'one');
+  assert.equal(c.sent.length,0);
+  assert.deepEqual(c.routes,[{kind:'starter_industry'}]);
 });
 test('Stale or forbidden module quotes never place an order',async()=>{
   for(const mode of ['stale','blocked','pending']){
@@ -235,6 +237,40 @@ test('Industry distinguishes settled receipts from forecasts and an unsettled st
   const html=run(c,`competitionIndustryHtml({industry_settlement:{label:'2 January 1990'}})`);
   assert(html.includes('Last industry settlement: 2 January 1990'));
   assert(html.includes('settled receipts, not a forecast for today'));
+});
+test('Exchange links to the Industry desk with a dated summary instead of duplicate production-site cards',()=>{
+  const c=fixture();run(c,'COMP.stale=false;');
+  const data={industry_settlement:{label:'2 January 1990 <settled>'},industry:{sites:[
+    {kind:'processing_plant',district:'US-CA',output_daily:1.23456,cash_spent_daily_bn:.000023,reason:'Unique local blockage'},
+    {kind:'machinery_works',district:'US-NV'}],research_operations:[{technology_name:'Prototype research',district:'US-CA',prototype_credit:.012345,cash_spent_daily_bn:.000007}]}};
+  c.industrySnapshot=data;const before=JSON.stringify(data),html=run(c,'competitionIndustryHtml(industrySnapshot)');
+  assert.match(html,/2 completed civilian production sites in this reading/);
+  assert.match(html,/Last industry settlement: 2 January 1990 &lt;settled&gt;/);
+  assert.match(html,/data-comp-action="industry-desk"/);assert.match(html,/Manage industry in Economy/);
+  assert.doesNotMatch(html,/Unique local blockage|1\.23456|Operating spend \/ day/);
+  assert.match(html,/Research workshops/);assert.match(html,/Prototype research/);assert.match(html,/0\.012345/);
+  assert.equal(JSON.stringify(data),before);assert.equal(c.sent.length,0);
+});
+test('the Industry desk remains reachable when Economic Competition is disabled without enabling it',async()=>{
+  const c=fixture(),body={innerHTML:'',scrollTop:0,setAttribute(){},querySelector(){return null;},querySelectorAll(){return [];}};
+  c.document.getElementById=()=>body;c.document.querySelectorAll=()=>[];
+  const start=source.indexOf('function competitionRender()'),end=source.indexOf('\nfunction competitionInvalidate()',start);
+  run(c,source.slice(start,end));run(c,'COMP.open=true;COMP.stale=false;COMP.data={enabled:false};competitionWire=()=>{};competitionRender();');
+  assert.match(body.innerHTML,/available without enabling Economic Competition/);
+  assert.match(body.innerHTML,/data-comp-action="industry-desk"[^>]*>Manage industry in Economy/);
+  assert.doesNotMatch(body.innerHTML,/data-comp-action="industry-desk"[^>]*disabled/);
+  run(c,'closeCompetition=()=>{COMP.open=false;};');
+  await run(c,"competitionAction({dataset:{compAction:'industry-desk'}})");
+  assert.deepEqual(c.routes,[{industry:true}]);assert.equal(c.sent.length,0);
+  assert.equal(run(c,'COMP.data.enabled'),false);assert.equal(run(c,'COMP.open'),false);
+});
+test('industry navigation preserves stale and pending Exchange guards without issuing orders',async()=>{
+  for(const state of ['COMP.stale=true','COMP.loading=true','COMP.busy=true','COMP.pending={session_id:"one"}']){
+    const c=fixture();run(c,`COMP.stale=false;COMP.data={enabled:true};${state};`);
+    assert.match(run(c,'competitionIndustryDeskHtml(COMP.data)'),/data-comp-action="industry-desk"[^>]*disabled/);
+    await run(c,"competitionAction({dataset:{compAction:'industry-desk'}})");
+    assert.deepEqual(c.routes,[]);assert.equal(c.sent.length,0);
+  }
 });
 test('Capacity planning paints both server-authored balances without inventing demand or output',()=>{
   const c=fixture();

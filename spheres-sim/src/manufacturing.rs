@@ -119,7 +119,7 @@ pub fn plant_slots(w: &WorldState, district: &str) -> u8 {
 pub fn used_slots(w: &WorldState, nation: NationId, district: &str) -> usize {
     lines_for(w, nation)
         .filter(|line| line.district == district)
-        .count()
+        .count() + crate::equipment::reserved_site_slots(w.nation(nation), district)
 }
 
 fn priority_weight(priority: Priority) -> f64 {
@@ -153,6 +153,9 @@ fn line_error(w: &WorldState, line: &ManufacturingLine) -> Option<String> {
             line.district
         ));
     }
+    // Existing legacy lines retain their slots. The equipment dispatcher uses
+    // only the remainder; subtracting custom reservations here as well would
+    // deadlock both queues after a site loses capacity.
     let slots = plant_slots(w, &line.district) as usize;
     if slots == 0 {
         return Some(format!("BLOCKED: {} has no arms plant.", line.district));

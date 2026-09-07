@@ -1,0 +1,280 @@
+/* Painted rooms. These selectors follow existing page state; there is no
+   overlay on the geographic map and no JavaScript animation or image polling.
+   The left side protects text while the right side keeps the painting visible. */
+#setup[data-menu-view=home] { --page-art:url('/art/areas/campaign-v1.webp'); }
+#setup[data-menu-view=nation] { --page-art:url('/art/pages/nation-selection-v1.webp'); }
+#setup[data-menu-view=saves] { --page-art:url('/art/pages/saved-campaigns-v1.webp'); }
+#cabinetDrawer { --page-art:url('/art/areas/cabinet-v1.webp'); }
+#cabinetDrawer:has(#cabinet-budget:not([hidden])) { --page-art:url('/art/areas/treasury-v1.webp'); }
+#cabinetDrawer:has(#cabinet-industry:not([hidden])) { --page-art:url('/art/areas/production-v1.webp'); }
+#cabinetDrawer:has(#cabinet-policy:not([hidden])) { --page-art:url('/art/pages/policy-v1.webp'); }
+#competitionRoom { --page-art:url('/art/areas/production-v1.webp'); }
+#competitionRoom:has(#competitionBody[aria-labelledby=comp-tab-trade]) { --page-art:url('/art/pages/trade-v1.webp'); }
+#competitionRoom:has(#competitionBody[aria-labelledby=comp-tab-world]) { --page-art:url('/art/pages/world-markets-v1.webp'); }
+#competitionRoom:has(#competitionBody[aria-labelledby=comp-tab-sphere]) { --page-art:url('/art/pages/influence-v1.webp'); }
+#productionPanel { --page-art:url('/art/areas/production-v1.webp'); }
+#productionPanel.construction-mode { --page-art:url('/art/pages/construction-v1.webp'); }
+#logisticsPanel { --page-art:url('/art/areas/logistics-v1.webp'); }
+#equipmentRoom { --page-art:url('/art/pages/military-research-v1.webp'); }
+#equipmentRoom:has([data-equipment-tab-view=designer]) { --page-art:url('/art/pages/tank-designer-v1.webp'); }
+#equipmentRoom:has([data-equipment-tab-view=library]) { --page-art:url('/art/pages/equipment-library-v1.webp'); }
+#equipmentRoom:has([data-equipment-tab-view=development]) { --page-art:url('/art/pages/proving-ground-v1.webp'); }
+#equipmentRoom:has([data-equipment-tab-view=production]) { --page-art:url('/art/pages/tank-factory-v1.webp'); }
+#equipmentRoom:has([data-equipment-tab-view=service]) { --page-art:url('/art/pages/army-service-v1.webp'); }
+#techScreen, #techMenu { --page-art:url('/art/areas/research-v1.webp'); }
+#techScreen[data-view=Computing] { --page-art:url('/art/pages/science-computing-v1.webp'); }
+#techScreen[data-view=Communications] { --page-art:url('/art/pages/science-communications-v1.webp'); }
+#techScreen[data-view=Energy] { --page-art:url('/art/pages/science-energy-v1.webp'); }
+#techScreen[data-view=Materials] { --page-art:url('/art/pages/science-materials-v1.webp'); }
+#techScreen[data-view=Aerospace] { --page-art:url('/art/pages/science-aerospace-v1.webp'); }
+#techScreen[data-view=Biotech] { --page-art:url('/art/pages/science-biotech-v1.webp'); }
+#techScreen[data-view=Transport] { --page-art:url('/art/pages/science-transport-v1.webp'); }
+#techScreen[data-view=Agriculture] { --page-art:url('/art/pages/science-agriculture-v1.webp'); }
+#stockScreen { --page-art:url('/art/areas/resources-v1.webp'); }
+#stockScreen.view-resource:has(:is([data-com=oil],[data-market-com=oil],[data-com=gas],[data-market-com=gas])[aria-pressed=true]) { --page-art:url('/art/pages/resource-oil-gas-v1.webp'); }
+#pane-charts { --page-art:url('/art/areas/history-v1.webp'); }
+#pane-table { --page-art:url('/art/pages/league-v1.webp'); }
+#intelDrawer { --page-art:url('/art/pages/intelligence-v1.webp'); }
+#dominationScreen { --page-art:url('/art/pages/global-command-v1.webp'); }
+#agencyPanel { --page-art:url('/art/pages/decisions-v1.webp'); }
+#provinceDossier { --page-art:url('/art/pages/nation-selection-v1.webp'); }
+#mapCityCard { --page-art:url('/art/pages/city-life-v1.webp'); }
+#performancePanel { --page-art:url('/art/pages/science-computing-v1.webp'); }
+#campaignConfirmDialog { --page-art:url('/art/pages/saved-campaigns-v1.webp'); }
+#sheet { --page-art:url('/art/areas/diplomacy-v1.webp'); }
+#sheet[aria-label='National dossier'] { --page-art:url('/art/pages/nation-selection-v1.webp'); }
+#sheet[aria-label='National dossier']:has([data-nation-view=economy][aria-selected=true]) { --page-art:url('/art/areas/treasury-v1.webp'); }
+#sheet[aria-label='National dossier']:has([data-nation-view=resources][aria-selected=true]) { --page-art:url('/art/areas/resources-v1.webp'); }
+#sheet[aria-label='National dossier']:has([data-nation-view=world][aria-selected=true]) { --page-art:url('/art/pages/influence-v1.webp'); }
+#sheet[aria-label='Conflict decisions'] { --page-art:url('/art/areas/military-v1.webp'); }
+#sheet[aria-label='Trade negotiations'] { --page-art:url('/art/areas/diplomacy-v1.webp'); }
+#sheet[aria-label='National decisions'] { --page-art:url('/art/pages/decisions-v1.webp'); }
+#sheet:has(> #tree) { --page-art:url('/art/areas/research-v1.webp'); }
+#decisionDialog { --page-art:url('/art/areas/cabinet-v1.webp'); }
+#decisionDialog[aria-label='Find a nation, province or city'] { --page-art:url('/art/pages/nation-selection-v1.webp'); }
+#decisionDialog[aria-label='Research decisions'] { --page-art:url('/art/pages/military-research-v1.webp'); }
+#decisionDialog[aria-label='About SPHERES'] { --page-art:url('/art/areas/campaign-v1.webp'); }
+#decisionDialog[aria-label='Playtest notes'], #keys .box { --page-art:url('/art/areas/history-v1.webp'); }
+
+/* A quiet continuation of the scene fills the edges around opaque work cards. */
+:is(#cabinetDrawer, #competitionRoom, #productionPanel, #logisticsPanel, #equipmentRoom, #intelDrawer, #dominationScreen, #stockScreen, #pane-charts, #pane-table, #sheet, #agencyPanel, #decisionDialog, #performancePanel, #campaignConfirmDialog) {
+  background-color:#10212b;
+  background-image:linear-gradient(180deg,#10212b66,#10212ba3 45%,#10212ba6),linear-gradient(90deg,#10212bd1,#10212b2e),var(--page-art);
+  /* These backgrounds belong to each room's viewport, not to its scrolling
+     content. The scene stays visible in the margins after the hero scrolls. */
+  background-size:100% 100%,100% 100%,cover;
+  background-position:center,center,center;
+  background-repeat:no-repeat;
+}
+#cabinetDrawer::before, #dominationScreen::before, #dominationScreen::after, #dominationScreen .dom-constellation { display:none; }
+
+/* Hero paintings live in the existing heading, so the page has a clear piece
+   of art even when every financial table and equipment card is opaque. */
+:is(#cabinetDrawer .cf-header, #cabinetDrawer .industry-hero, #cabinetDrawer .area-heading,
+    #competitionRoom .comp-hero, #productionPanel .operations-hero, #logisticsPanel .operations-hero,
+    #equipmentRoot .eq-header, #pane-charts .chr-heading, #pane-charts .arc-room-intro, #pane-table .arc-room-intro,
+    #stockScreen .supply-command-art-heading, #stockDock .stock-resource-title, #intelDrawer .arc-room-intro, #dominationScreen .dom-briefing,
+    #sheet > .head, #agencyPanel > header, #decisionDialog > header, #performancePanel > header, #campaignConfirmDialog > header, #keys .box > h3) {
+  min-height:240px;
+  padding:28px clamp(22px,3vw,44px);
+  border:1px solid #d1c3a72f;
+  border-radius:14px;
+  background-color:#13252e;
+  background-image:linear-gradient(90deg,#0c1b26f2 0,#0c1b26cf 28%,#0c1b267a 51%,#0c1b2610 76%),linear-gradient(0deg,#0c1b2680,transparent 65%),var(--page-art);
+  background-size:cover;
+  background-position:center,center,center 48%;
+  background-repeat:no-repeat;
+  box-shadow:inset 0 1px #f4deb512,0 14px 32px #040d171f;
+  overflow-wrap:anywhere;
+}
+:is(#cabinetDrawer .area-heading, #competitionRoom .comp-hero, #productionPanel .operations-hero, #logisticsPanel .operations-hero, #pane-charts .chr-heading, #stockScreen .supply-command-art-heading) {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+:is(#cabinetDrawer .area-heading, #competitionRoom .comp-hero, #productionPanel .operations-hero, #logisticsPanel .operations-hero, #pane-charts .chr-heading, #stockScreen .supply-command-art-heading) > .area-art { display:none; }
+:is(#cabinetDrawer .area-heading, #competitionRoom .comp-hero, #productionPanel .operations-hero, #logisticsPanel .operations-hero, #pane-charts .chr-heading, #stockScreen .supply-command-art-heading) > :first-child { width:min(63%,780px); }
+:is(#cabinetDrawer .cf-header, #cabinetDrawer .industry-hero, #equipmentRoot .eq-header) > :first-child { max-width:62%; }
+:is(#cabinetDrawer .cf-header, #cabinetDrawer .industry-hero, #equipmentRoot .eq-header) > :last-child { align-self:flex-start; }
+:is(#cabinetDrawer .cf-header, #cabinetDrawer .industry-hero, #equipmentRoot .eq-header, #competitionRoom .comp-hero, #productionPanel .operations-hero, #logisticsPanel .operations-hero, #pane-charts .chr-heading, #pane-charts .arc-room-intro, #pane-table .arc-room-intro, #stockScreen .supply-command-art-heading, #intelDrawer .arc-room-intro, #sheet > .head) :is(h1,h2,h3) { color:#faf2df; text-shadow:0 2px 12px #06121b80; }
+:is(#cabinetDrawer .cf-header, #cabinetDrawer .industry-hero, #equipmentRoot .eq-header, #competitionRoom .comp-hero, #productionPanel .operations-hero, #logisticsPanel .operations-hero, #pane-charts .chr-heading, #stockScreen .supply-command-art-heading) p { color:#d6dfdb; }
+#equipmentRoot[data-equipment-tab-view=designer] .eq-header { min-height:200px; padding:24px 30px; margin-bottom:18px; }
+#equipmentRoot .eq-header-actions { padding:8px; border-radius:11px; background:#10212bbd; }
+#equipmentRoot .eq-process, #equipmentRoot .eq-tabs { background:#10212bdc; border-radius:10px; padding:10px; }
+#equipmentRoot .eq-tabs { margin-bottom:22px; }
+#equipmentRoot .eq-tabs button[aria-selected=true] { background:#46574c; }
+#cabinetDrawer .industry-reading { background:#11232be6; padding:16px; border:1px solid #b9c9c43d; border-radius:10px; }
+#cabinetDrawer .cab-tabs, #competitionRoom .comp-tabs { background:#10212bec; }
+#competitionRoom .comp-card, #sheet .card, #intelDrawer .card, #pane-charts .card, #pane-table .card { background-color:#172c38ed; }
+#productionPanel .operations-hero .operations-art, #logisticsPanel .operations-hero .operations-art { display:none; }
+/* Construction opens directly on funding and the queue, without the generic
+   operations hero. Its existing title bar is the painted entry to that room. */
+#productionPanel.construction-mode:not(.map-view) .production-head {
+  min-height:180px;
+  padding:25px 32px;
+  background-color:#13252e;
+  background-image:linear-gradient(90deg,#0c1b26ef 0,#0c1b26c2 29%,#0c1b2647 56%,#0c1b260f 80%),linear-gradient(0deg,#0c1b2680,transparent 70%),var(--page-art);
+  background-size:cover;
+  background-position:center,center,center 55%;
+  background-repeat:no-repeat;
+}
+#productionPanel.construction-mode:not(.map-view) .production-head h2 { color:#faf2df; text-shadow:0 2px 12px #06121bb3; }
+#productionPanel.construction-mode:not(.map-view) .production-head .eyebrow { color:#d2e7d8; }
+#productionPanel.construction-mode:not(.map-view) :is(.production-modes,.production-close) { align-self:flex-start; background-color:#10212bf0; }
+#pane-charts .arc-room-intro > div, #pane-table .arc-room-intro > div, #intelDrawer .arc-room-intro > div { max-width:700px; }
+#pane-charts .arc-room-intro .arc-seal, #pane-table .arc-room-intro .arc-seal, #intelDrawer .arc-room-intro .arc-seal { display:none; }
+#pane-charts .arc-room-intro p, #pane-table .arc-room-intro p, #intelDrawer .arc-room-intro p { max-width:610px; color:#d6dfdb; }
+#dominationScreen .dom-briefing { background-image:linear-gradient(90deg,#0c1b26a3,#0c1b26c7 32%,#0c1b26bd 68%,#0c1b265c),var(--page-art); min-height:310px; }
+#dominationScreen .dom-goal { color:#dce2dd; }
+#dominationScreen .dom-mandate { text-shadow:0 2px 10px #07111e; }
+
+/* Campaign screens retain their existing semantic headings and buttons. */
+#setup:is([data-menu-view=nation],[data-menu-view=saves]) {
+  background-color:#10212b;
+  background-image:linear-gradient(90deg,#10212bf2,#10212b8c 55%,#10212b38),linear-gradient(180deg,transparent,#10212b 1050px),var(--page-art);
+  background-size:cover;
+  background-position:center top;
+  background-repeat:no-repeat;
+}
+#setup[data-menu-view=home] .menu-world-art { left:0; }
+#setup[data-menu-view=home] .menu-world-art img { object-position:68% 50%; opacity:1; }
+#setup[data-menu-view=home] .menu-home::after { background:linear-gradient(90deg,#101e24f7 0,#101e24df 27%,#101e248a 48%,#101e2410 77%),linear-gradient(0deg,#101e24,transparent 35%); }
+#setup[data-menu-view=nation] .menu-selection-head { min-height:185px; padding:20px 24px; border:1px solid #d1c3a72f; border-radius:12px; background:linear-gradient(90deg,#10212bdb,#10212b05),var(--page-art) center 40% / cover; }
+#setup[data-menu-view=nation] .menu-selection-head p { color:#e1e7e0; padding:10px 13px; max-width:360px; justify-self:end; border-radius:8px; background:#10212be0; }
+#setup[data-menu-view=nation] #newCampaignPicker #nationShowcase { padding:24px; border:1px solid #b5c5b82b; border-radius:12px; background:#10212bdc; }
+#setup[data-menu-view=nation] #newCampaignPicker .nation-browser { background:#101f27ed; }
+#setup[data-menu-view=saves] .menu-saves h1 { display:flex; align-items:flex-end; min-height:210px; padding:75px 25px 25px; margin-bottom:24px; color:#faf0db; border:1px solid #d1c3a740; border-radius:12px; background:linear-gradient(0deg,#10212be0,transparent 90%),var(--page-art) center 45% / cover; text-shadow:0 2px 10px #07121c; }
+#setup[data-menu-view=saves] .menu-save-panel { background:#14272cf5; }
+
+/* Research art stays behind the graph; node geometry and its camera never move. */
+#techScreen #techBackdrop {
+  background-color:#13212b;
+  background-image:linear-gradient(90deg,#101d2bcc,#101d2b80 52%,#101d2b59),linear-gradient(0deg,#101d2be6,transparent 80%),var(--page-art);
+  background-size:cover;
+  background-position:center;
+}
+#techScreen #techBackdrop .bgm { display:none; }
+#techScreen #techSvg .eraband.a { fill:#14233245; }
+#techScreen #techSvg .eraband.b { fill:#24324238; }
+#techScreen #techStageWrap, #techScreen #techViewport { background:transparent; }
+#techScreen .tsvg .node .pl { fill:#223546; }
+#techScreen .tsvg .node.st-locked .pl { fill:#1c2939; }
+#techScreen #techDock { background-color:#142632; background-image:linear-gradient(0deg,#142632ed,#142632c7 75%,#14263273),var(--page-art); background-size:cover; background-position:center; }
+#techScreen #techDock > h2 { min-height:130px; padding:45px 17px 18px; margin:0 0 18px; color:#fbf0dd; border:1px solid #d1c3a72f; border-radius:11px; background:linear-gradient(0deg,#10212bf0,transparent 95%),var(--page-art) center / cover; text-shadow:0 2px 8px #06111c; }
+#techScreen #techDock .discovery-dock-close { position:relative; z-index:1; margin:7px 7px 0 8px; background:#10212bed; }
+#techMenu { background-color:#142632; background-image:linear-gradient(0deg,#142632 20%,#142632b3 60%,#1426324d),var(--page-art); background-size:100% 100%,100% auto; background-position:center top; background-repeat:no-repeat; }
+#techMenu > .area-art { display:none; }
+#techMenu .discovery-menu-title { display:flex; align-items:flex-end; min-height:210px; padding:135px 24px 24px; margin-bottom:12px; color:#fbf0d9; border:1px solid #d1c3a72f; border-radius:13px; background:linear-gradient(0deg,#10212bed,transparent 82%),var(--page-art) center 45% / cover; text-shadow:0 2px 10px #07121c; }
+#techMenu .menu-close { background:#10212bf5; border-color:#c5d0bf70; }
+#techMenu .drow { background:#142632ed; }
+
+/* Shared modal pages get an image header without recoloring their form fields. */
+#sheet > .head, #sheet > #tree > .head { position:relative; top:auto; backdrop-filter:none; align-items:flex-start; }
+#sheet > #tree > .head { min-height:180px; padding:26px; border-radius:12px; background:linear-gradient(90deg,#10212bf0,#10212b33),var(--page-art) center / cover; color:#f6eeda; }
+#sheet > #tree > .head > h2 { max-width:65%; color:#faf0dd; text-shadow:0 2px 8px #07111c; }
+#sheet > #tree > .head .x { background:#10212bf0; }
+#sheet > .head > :first-child { max-width:min(75%,900px); align-self:center; }
+#sheet > .head .tagline { color:#d6dfdb; }
+#sheet > .head :is(.close,.x) { background:#10212be8; }
+#sheet .military-operations > .area-art { display:none; }
+#agencyPanel > header, #decisionDialog > header, #performancePanel > header, #campaignConfirmDialog > header { position:relative; min-height:190px; border-radius:0; color:#f6f0e3; align-items:flex-start; }
+#agencyPanel > header > div, :is(#decisionDialog, #performancePanel, #campaignConfirmDialog) > header h2 { max-width:70%; align-self:center; }
+#agencyPanel > header small { color:#d5dfd4; }
+#agencyPanel .agency-room-art, #decisionDialog .decision-body > .area-art { display:none; }
+#agencyPanel > header button { color:#f1efe2; border-color:#bdc9bd66; background:#10212be8; }
+#agencyBody { color:#e4eadd; }
+#agencyBody > section { color:#343044; background:#f7f5f0f5; }
+:is(#decisionDialog, #performancePanel, #campaignConfirmDialog) .decision-body { background:#10212b9e; }
+#decisionDialog .decision-list > article { background:#10212bd6; }
+#stockDock .stock-resource-title { min-height:220px; padding:30px; }
+#stockDock .stock-resource-title :is(h2,p,.sub) { max-width:70%; color:#edf0e4; }
+
+/* Compact art remains inside the selected place card. The real geographic
+   surface, city coordinates, and terrain rendering remain unobstructed. */
+#app #provinceDossier .province-head { min-height:108px; background-color:#142632; background-image:linear-gradient(90deg,#10212bf2,#10212ba6 55%,#10212b42),var(--page-art); background-size:cover; background-position:center; }
+#provinceDossier .province-head :is(.province-lock,.province-owner,h2) { color:#eff1e1; text-shadow:0 1px 6px #07111c; }
+#provinceDossier .province-close { background:#10212bf0; color:#f2ebd8; }
+#mapCityCard { background-color:#142632; background-image:linear-gradient(0deg,#10212bf0,#10212bd9 58%,#10212b59),var(--page-art); background-size:cover; background-position:center; }
+#mapCityCard > h2 { min-height:64px; padding:20px 0 8px; color:#faf0db; text-shadow:0 2px 8px #07111c; }
+
+/* Ministry details can be opened directly or scrolled into view, beyond the
+   annual-budget hero. Use their existing selection state for local paintings. */
+#cabinet-budget { --ministry-art:var(--page-art); }
+#cabinet-budget:has([data-cab-ministry=health][aria-pressed=true]) { --ministry-art:url('/art/pages/healthcare-v1.webp'); }
+#cabinet-budget:has([data-cab-ministry=education][aria-pressed=true]) { --ministry-art:url('/art/areas/research-v1.webp'); }
+#cabinet-budget:has([data-cab-ministry=housing][aria-pressed=true]) { --ministry-art:url('/art/pages/city-life-v1.webp'); }
+#cabinet-budget:has([data-cab-ministry=pensions][aria-pressed=true]) { --ministry-art:url('/art/pages/community-services-v1.webp'); }
+#cabinet-budget:has([data-cab-ministry=infrastructure][aria-pressed=true]) { --ministry-art:url('/art/pages/science-transport-v1.webp'); }
+#cabinet-budget:has([data-cab-ministry=industry][aria-pressed=true]) { --ministry-art:url('/art/areas/production-v1.webp'); }
+#cabinet-budget:has([data-cab-ministry=science][aria-pressed=true]) { --ministry-art:url('/art/pages/science-computing-v1.webp'); }
+#cabinet-budget:has([data-cab-ministry=defense][aria-pressed=true]) { --ministry-art:url('/art/pages/army-service-v1.webp'); }
+#cabinet-budget:has([data-cab-ministry=security][aria-pressed=true]) { --ministry-art:url('/art/pages/intelligence-v1.webp'); }
+#cabinet-budget:has([data-cab-ministry=diplomacy][aria-pressed=true]) { --ministry-art:url('/art/areas/diplomacy-v1.webp'); }
+#cabinetInspector, #programBoard { background-color:#142632; background-image:linear-gradient(0deg,#142632eb,#142632d6 67%,#14263266),var(--ministry-art); background-size:cover; background-position:center; }
+#cabinetInspector > h3, #programBoard > .pg-heading:first-child { min-height:125px; padding:42px 18px 18px; color:#f8efdb; border-radius:10px; background:linear-gradient(0deg,#10212be8,transparent 95%),var(--ministry-art) center / cover; text-shadow:0 2px 8px #07111c; }
+#programBoard > .pg-heading:first-child > img { display:none; }
+/* Industry's five investment departments use the served department indices. */
+#programBoard:has([data-pg-department="0"][aria-pressed=true]) { --department-art:url('/art/pages/construction-v1.webp'); }
+#programBoard:has([data-pg-department="1"][aria-pressed=true]) { --department-art:url('/art/pages/science-energy-v1.webp'); }
+#programBoard:has([data-pg-department="2"][aria-pressed=true]) { --department-art:url('/art/areas/resources-v1.webp'); }
+#programBoard:has([data-pg-department="3"][aria-pressed=true]) { --department-art:url('/art/areas/logistics-v1.webp'); }
+#programBoard:has([data-pg-department="4"][aria-pressed=true]) { --department-art:url('/art/pages/science-materials-v1.webp'); }
+#programBoard > .pg-heading:has(+ .pg-investments) { min-height:155px; padding:26px; border:1px solid #c5d2bd38; border-radius:12px; background:linear-gradient(90deg,#10212bef,#10212b8a 55%,#10212b24),var(--department-art,var(--ministry-art)) center / cover; }
+#programBoard > .pg-heading:has(+ .pg-investments) > div { max-width:70%; }
+#programBoard > .pg-heading:has(+ .pg-investments) :is(h3,p) { color:#eef0df; text-shadow:0 2px 8px #07111c; }
+#keys .box > h3 { min-height:190px; padding:28px 74px 28px 25px; display:flex; align-items:center; color:#f7efdd; margin-bottom:18px; }
+#keys .arc-help-close { position:relative; z-index:1; margin:12px 12px 0 0; }
+
+@media (max-width:800px) {
+  #productionPanel.construction-mode:not(.map-view) .production-head { min-height:160px; padding:16px 20px; gap:10px; background-position:center,center,68% 55%; }
+  #productionPanel.construction-mode:not(.map-view) .production-modes { align-self:flex-end; }
+}
+@media (max-width:760px) {
+  :is(#cabinetDrawer .cf-header, #cabinetDrawer .industry-hero, #cabinetDrawer .area-heading,
+      #competitionRoom .comp-hero, #productionPanel .operations-hero, #logisticsPanel .operations-hero,
+      #equipmentRoot .eq-header, #pane-charts .chr-heading, #pane-charts .arc-room-intro, #pane-table .arc-room-intro,
+      #stockScreen .supply-command-art-heading, #stockDock .stock-resource-title, #intelDrawer .arc-room-intro, #sheet > .head) {
+    min-height:250px;
+    padding:105px 20px 23px;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    background-image:linear-gradient(0deg,#0c1b26f5 0,#0c1b26d9 34%,#0c1b2629 83%),var(--page-art);
+    background-position:center,center 40%;
+  }
+  :is(#cabinetDrawer .area-heading, #competitionRoom .comp-hero, #productionPanel .operations-hero, #logisticsPanel .operations-hero, #pane-charts .chr-heading, #stockScreen .supply-command-art-heading) > :first-child { width:100%; }
+  :is(#cabinetDrawer .cf-header, #cabinetDrawer .industry-hero, #equipmentRoot .eq-header) > :first-child { max-width:100%; width:100%; }
+  #equipmentRoot[data-equipment-tab-view=designer] .eq-header { min-height:230px; padding:92px 18px 18px; }
+  #equipmentRoot .eq-header-actions { padding:0; background:none; }
+  #equipmentRoot .eq-tabs { padding:7px; }
+  #cabinetDrawer .industry-reading { width:100%; max-width:none; font-size:12px; }
+  #setup[data-menu-view=home] .menu-world-art img { opacity:.82; }
+  #setup[data-menu-view=home] .menu-home::after { background:linear-gradient(90deg,#101e24e6,#101e245e),linear-gradient(0deg,#101e24,transparent 70%); }
+  #setup[data-menu-view=nation] .menu-selection-head { min-height:215px; padding:22px; }
+  #setup[data-menu-view=nation] #newCampaignPicker #nationShowcase { margin-top:22px; padding:20px; }
+  #setup[data-menu-view=saves] .menu-saves h1 { min-height:210px; padding:72px 20px 22px; }
+  #dominationScreen .dom-briefing { padding:24px 18px; min-height:280px; }
+  #sheet > .head > :first-child { max-width:100%; }
+  #agencyPanel > header, #decisionDialog > header, #performancePanel > header, #campaignConfirmDialog > header { min-height:180px; padding:24px 18px; }
+  #techScreen #techBackdrop { background-position:60% center; }
+  #techScreen #techDock > h2 { min-height:94px; padding:25px 15px 14px; }
+  #stockDock .stock-resource-title :is(h2,p,.sub) { max-width:100%; }
+  #app #provinceDossier .province-head { min-height:98px; }
+  #mapCityCard > h2 { min-height:56px; padding-top:15px; }
+  #cabinetInspector > h3, #programBoard > .pg-heading:first-child { min-height:108px; padding:32px 15px 15px; }
+  #programBoard > .pg-heading:has(+ .pg-investments) { min-height:150px; padding:50px 18px 18px; background-image:linear-gradient(0deg,#10212bf2,#10212bc2 60%,#10212b47),var(--department-art,var(--ministry-art)); }
+  #programBoard > .pg-heading:has(+ .pg-investments) > div { max-width:100%; }
+  #sheet > #tree > .head { min-height:150px; padding:23px 18px; flex-wrap:wrap; }
+}
+@media (prefers-reduced-motion:reduce) {
+  :is(#setup, #cabinetDrawer, #competitionRoom, #equipmentRoom, #techScreen, #stockScreen, #dominationScreen) { scroll-behavior:auto; }
+  #cabinetDrawer.open, #dominationScreen.open { animation:none; }
+}
+@media (forced-colors:active) {
+  :is(#setup, #cabinetDrawer, #competitionRoom, #productionPanel, #logisticsPanel, #equipmentRoom, #intelDrawer, #dominationScreen, #stockScreen, #pane-charts, #pane-table, #sheet, #techScreen, #techMenu, #agencyPanel, #decisionDialog, #keys .box) { --page-art:none; background-image:none!important; }
+  :is(#cabinetDrawer, #competitionRoom, #productionPanel, #logisticsPanel, #equipmentRoom, #intelDrawer, #dominationScreen, #stockScreen, #pane-charts, #pane-table, #sheet, #agencyPanel, #decisionDialog, #keys) :is(header, .area-heading, .comp-hero, .operations-hero, .arc-room-intro, .dom-briefing, .supply-command-art-heading, h3), #techScreen #techBackdrop, #techMenu .discovery-menu-title, #setup .menu-selection-head, #setup .menu-saves h1 { background-image:none!important; text-shadow:none!important; color:CanvasText; border-color:CanvasText; }
+  #productionPanel.construction-mode .production-head { background-image:none!important; }
+  #programBoard > .pg-heading:has(+ .pg-investments) { background-image:none!important; }
+  :is(#provinceDossier, #mapCityCard, #performancePanel, #campaignConfirmDialog, #cabinetInspector, #programBoard, #techDock), #provinceDossier .province-head, #stockDock .stock-resource-title, #techScreen #techDock > h2, #cabinetInspector > h3, #programBoard > .pg-heading:first-child, #sheet > #tree > .head, #performancePanel > header, #campaignConfirmDialog > header { background-image:none!important; text-shadow:none!important; }
+  #setup .menu-world-art { display:none; }
+}

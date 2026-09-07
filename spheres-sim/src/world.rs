@@ -309,6 +309,9 @@ pub struct Nation {
     /// Actual-expenditure departments, explicitly enrolled by the player.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub program_budget: Option<crate::programs::ProgramBudget>,
+    /// Versioned component designs and paid development. Stock remains in Arsenal.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub equipment: Option<crate::equipment::EquipmentState>,
     /// Frozen inherited public investment while province output accounts own
     /// explicit projects. Absent unless the browser's accounting is enabled.
     #[serde(default, skip_serializing_if = "Option::is_none")]

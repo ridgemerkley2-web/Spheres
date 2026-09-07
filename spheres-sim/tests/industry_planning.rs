@@ -397,7 +397,7 @@ fn player_can_override_capacity_advice_without_free_or_instant_factories() {
         },
     )
     .unwrap();
-    assert!(w.nation(NationId::USA).political_capital < pc);
+    assert_eq!(w.nation(NationId::USA).political_capital, pc);
     assert_eq!(production::level(&w, &d, K::ProcessingPlant), 1);
     assert_eq!(w.production.projects[0].progress_days, 0.0);
     assert_eq!(

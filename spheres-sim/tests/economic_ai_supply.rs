@@ -190,7 +190,7 @@ fn consenting_seller(w: &mut WorldState, good: Good, quantity: f64) {
 }
 
 #[test]
-fn ninety_day_forecast_counts_recurring_use_three_times_but_project_goods_once() {
+fn ninety_day_forecast_counts_operating_use_three_times_and_no_construction_goods() {
     let (mut w, district) = prepared(1, 0, Some(3));
     apply_command(
         &mut w,
@@ -204,18 +204,18 @@ fn ninety_day_forecast_counts_recurring_use_three_times_but_project_goods_once()
 
     let intermediate = line(&w, Good::Intermediates);
     near(intermediate.operating_daily, 0.5);
-    near(intermediate.project_remaining, 12.0);
+    near(intermediate.project_remaining, 0.0);
     near(intermediate.startup_reserve, 0.0);
-    near(intermediate.target, 57.0); // 90 * 0.5 + the one-off twelve.
+    near(intermediate.target, 45.0); // Exactly ninety days of machinery operation.
     near(intermediate.coverage, 0.0);
-    near(intermediate.shortage, 57.0);
+    near(intermediate.shortage, 45.0);
     assert!(!intermediate.status.is_empty() && !intermediate.reason.is_empty());
 
     let capital = line(&w, Good::CapitalGoods);
     near(capital.operating_daily, 0.0);
-    near(capital.project_remaining, 5.0);
-    near(capital.target, 5.0);
-    near(capital.shortage, 5.0);
+    near(capital.project_remaining, 0.0);
+    near(capital.target, 0.0);
+    near(capital.shortage, 0.0);
 }
 
 #[test]
@@ -513,7 +513,10 @@ fn a_partial_quote_accumulates_paid_startup_stock_before_machinery_is_eligible()
 
 #[test]
 fn a_successful_domestic_materials_order_cannot_also_start_a_mine() {
-    let (mut w, district) = prepared(1, 0, Some(0));
+    // Ten operating machine shops need more packs than this one processor
+    // supplies. A small owned bauxite lot can back a finite Materials order,
+    // while still leaving the processor's daily bauxite requirement short.
+    let (mut w, district) = prepared(10, 1, Some(0));
     apply_command(
         &mut w,
         &Command::StartProject {
@@ -523,8 +526,9 @@ fn a_successful_domestic_materials_order_cannot_also_start_a_mine() {
         },
     )
     .unwrap();
-    set_raw(&mut w, ME, Commodity::RareEarths, 0.0);
-    for producer in resources::producers(&w, Commodity::RareEarths) {
+    set_raw(&mut w, ME, Commodity::Bauxite, 0.1);
+    assert_eq!(resources::flow(&w, ME, Commodity::Bauxite), 0.0);
+    for producer in resources::producers(&w, Commodity::Bauxite) {
         if producer != ME {
             w.sanctions.push((producer, ME));
         }
@@ -534,14 +538,26 @@ fn a_successful_domestic_materials_order_cannot_also_start_a_mine() {
         .iter()
         .filter(|(_, owner)| **owner == ME)
         .any(|(district, _)| {
-            resources::mine_refusal(&w, ME, district, Commodity::RareEarths).is_none()
+            resources::mine_refusal(&w, ME, district, Commodity::Bauxite).is_none()
         }));
     assert!(economic_ai::materials_order_candidate(&w, ME).is_some());
     spheres_sim::arsenal::tick(&mut w);
-    assert!(resources::tick_draw(&w, ME)[Commodity::RareEarths.idx()] > 0.0);
+    assert!(resources::tick_draw(&w, ME)[Commodity::Bauxite.idx()]
+        > resources::stockpile(&w, ME, Commodity::Bauxite));
+    assert!(economic_ai::raw_supply_forecast(&w, ME).lines[Commodity::Bauxite.idx()].shortage[0] > 0.0);
+    let mut without_supply_lot = w.clone();
+    set_raw(&mut without_supply_lot, ME, Commodity::Bauxite, 0.0);
+    assert!(economic_ai::materials_order_candidate(&without_supply_lot, ME).is_none());
+    economic_ai::evaluate(&mut without_supply_lot, ME);
+    assert!(without_supply_lot.resources.mine_projects.iter().any(|p|
+        p.started_by == ME && p.commodity == Commodity::Bauxite),
+        "the same operating shortfall must select a mine when no finite Materials lot is possible");
 
     economic_ai::evaluate(&mut w, ME);
     assert_eq!(w.materials.as_ref().unwrap().orders.len(), 1);
+    let order = &w.materials.as_ref().unwrap().orders[0];
+    assert!(order.quantity > 0.0 && order.quantity <= 0.5 + 1e-9,
+        "the signed operating supply lot must fit the actual 0.1 bauxite stock");
     assert!(
         w.resources.mine_projects.iter().all(|p| p.started_by != ME),
         "one review may place its finite domestic order, but must not also start irreversible mine work"
@@ -868,7 +884,7 @@ fn export_policy_protects_one_review_tranche_not_the_entire_forecast() {
     .unwrap();
     near(
         economic_ai::export_reserve(&w, ME, Good::Intermediates),
-        27.0,
+        15.0,
     );
     w.production.projects.clear();
     w.production.industry.projects.clear();

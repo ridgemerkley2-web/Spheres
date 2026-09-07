@@ -263,7 +263,7 @@ pub fn catalog(kind: ProjectKind) -> ProjectSpec {
             kind,
             name: "Infrastructure",
             description: "Roads, rail, bridges, and freight terminals.",
-            effect: "+10% construction speed in this province per level.",
+            effect: "Improves provincial freight-network capacity.",
             total_days: 360,
             political_cost: 8.0,
             funding_ministry: BUDGET_INFRASTRUCTURE,
@@ -275,7 +275,7 @@ pub fn catalog(kind: ProjectKind) -> ProjectSpec {
             kind,
             name: "Industrial Estates",
             description: "Factories, machine shops, and construction suppliers.",
-            effect: "+0.15 national construction capacity per level.",
+            effect: "Enables Machinery Works and Materials Processing in this province.",
             total_days: 540,
             political_cost: 12.0,
             funding_ministry: BUDGET_INDUSTRY,
@@ -376,16 +376,17 @@ pub fn projects_for(w: &WorldState, nation: NationId) -> impl Iterator<Item = &P
 }
 
 pub fn funding_ratio(w: &WorldState, nation: NationId, kind: ProjectKind) -> f64 {
-    if crate::programs::enrolled(w, nation) {
+    if crate::clock::is_daily(w) {
         let cost = crate::industry::work_cost_bn(kind) / catalog(kind).total_days as f64;
-        return (crate::industry::project_authority(w, nation, kind) / cost).clamp(0.0, 1.25);
+        return (crate::industry::project_authority(w, nation, kind) / cost).clamp(0.0, 1.0);
     }
     let spec = catalog(kind);
     let allocation = w.nation(nation).budget_for(w.year).allocations[spec.funding_ministry];
     (allocation / spec.funding_required.max(1e-9)).clamp(0.0, 1.25)
 }
 
-/// Shared national work capacity in project-days per calendar day.
+/// Legacy monthly replay only: shared national project-days per calendar day.
+/// Daily construction has independent site lead times and a shared cash budget.
 pub fn construction_capacity(w: &WorldState, nation: NationId) -> f64 {
     let industry: u32 = w
         .production
@@ -401,7 +402,7 @@ pub fn construction_capacity(w: &WorldState, nation: NationId) -> f64 {
 }
 
 fn rate_for(w: &WorldState, project: &Project) -> f64 {
-    if w.production.industry.projects.contains_key(&project.id) {
+    if crate::clock::is_daily(w) {
         return crate::industry::project_plans(w)
             .get(&project.id)
             .map_or(0.0, |p| p.advance_days);
@@ -420,10 +421,10 @@ fn rate_for(w: &WorldState, project: &Project) -> f64 {
         .min(1.5)
 }
 
-/// Work that today's construction capacity and budget schedule before physical
-/// input scarcity is applied.
+/// Work at the site's lead-time ceiling before today's shared funding limit.
+/// Monthly replay retains its original capacity and physical-input rules.
 pub fn nominal_work_rate(w: &WorldState, project: &Project) -> f64 {
-    if w.production.industry.projects.contains_key(&project.id) {
+    if crate::clock::is_daily(w) {
         return crate::industry::project_plans(w)
             .get(&project.id)
             .map_or(0.0, |p| p.target_advance_days);
@@ -431,9 +432,10 @@ pub fn nominal_work_rate(w: &WorldState, project: &Project) -> f64 {
     rate_for(w, project)
 }
 
-/// Feasible work today after the tightest raw or manufactured input is applied.
+/// Feasible work under today's construction funding; legacy monthly inputs apply
+/// only to the original monthly path.
 pub fn work_rate_today(w: &WorldState, project: &Project) -> f64 {
-    if w.production.industry.projects.contains_key(&project.id) {
+    if crate::clock::is_daily(w) {
         return crate::industry::project_plans(w)
             .get(&project.id)
             .map_or(0.0, |p| p.advance_days);
@@ -452,12 +454,11 @@ pub fn throughput_ratio(w: &WorldState, project: &Project) -> f64 {
     }
 }
 
-/// ETA at today's funding, queue priorities, completed capacity and physical
-/// input availability. A blocked or zero-throughput project has no honest ETA
-/// until its stated constraint is cleared.
+/// ETA at today's funding and priorities. Zero-funded work has no honest ETA
+/// until its budget resumes; legacy monthly work also checks physical inputs.
 pub fn estimated_days_left(w: &WorldState, project: &Project) -> Option<u32> {
     if let Some(finance) = project_finance(w, project) {
-        return (finance.reason.is_none() && finance.next_work_days > 1e-9).then(||
+        return (finance.next_work_days > 1e-9).then(||
             ((project.total_days as f64 - project.progress_days).max(0.0) / finance.next_work_days).ceil() as u32);
     }
     if project.status == ProjectStatus::Blocked {
@@ -474,7 +475,7 @@ pub fn estimated_days_left(w: &WorldState, project: &Project) -> Option<u32> {
 /// server-authoritative present-tense requirement; the catalog recipe is the
 /// whole-project bill and must not be mistaken for today's shortage.
 pub fn next_resource_draw(w: &WorldState, project: &Project) -> [f64; 12] {
-    if w.production.industry.projects.contains_key(&project.id) {
+    if crate::clock::is_daily(w) {
         return crate::industry::project_plans(w)
             .get(&project.id)
             .map_or([0.0; 12], |p| p.required);
@@ -535,8 +536,8 @@ pub(crate) fn start_project_common_error(
     if !w.rules.production_system {
         return Some("Production and construction are not enabled in this game.".into());
     }
-    if !w.rules.resource_market {
-        return Some("Production requires the resource market to be enabled.".into());
+    if !crate::clock::is_daily(w) && !w.rules.resource_market {
+        return Some("Legacy monthly production requires the resource market to be enabled.".into());
     }
     if !crate::economic_ai::may_direct(w, nation) {
         return Some("Only the player can direct construction.".into());
@@ -551,7 +552,7 @@ pub(crate) fn start_project_common_error(
         }
         _ => {}
     }
-    if projects_for(w, nation).count() >= MAX_ACTIVE_PROJECTS {
+    if !crate::clock::is_daily(w) && projects_for(w, nation).count() >= MAX_ACTIVE_PROJECTS {
         return Some(format!(
             "All {} construction slots are already active.",
             MAX_ACTIVE_PROJECTS
@@ -609,12 +610,7 @@ pub fn start_project(
         capacity_micros: None,
         started_day: None,
     });
-    if crate::programs::enrolled(w, nation) {
-        w.production
-            .industry
-            .projects
-            .insert(id, crate::industry::ProjectFunding::default());
-    }
+    if crate::clock::is_daily(w) { crate::industry::enroll_projects(w, nation); }
     w.headline(format!(
         "{} starts {} in {}.",
         nation.name(),
@@ -673,7 +669,7 @@ pub fn cancel_project(w: &mut WorldState, nation: NationId, project: u32) -> Res
     let removed = w.production.projects.remove(index);
     w.production.industry.projects.remove(&project);
     w.headline(format!(
-        "{} cancels {} in {}; committed materials are sunk.",
+        "{} cancels {} in {}; paid construction work is sunk.",
         nation.name(),
         catalog(removed.kind).name,
         removed.district
@@ -721,14 +717,11 @@ pub fn tick_day(w: &mut WorldState) {
     }
     crate::industry::begin_work_day(w);
 
-    // Snapshot the opening queue. Physical scarcity is allocated in priority
-    // order and scales a project's whole daily bundle; structural blockers
-    // consume nothing. A completion cannot change another project's allocation
-    // until the next day.
+    // Snapshot the opening queue and reserve the shared construction budget.
+    // Structural blockers consume nothing; parallel sites retain their lead times.
     let mut opening = w.production.projects.clone();
     let program_plans = crate::industry::project_plans(w);
-    // Priority governs scarce inputs as well as capacity. Stable id breaks a
-    // tie, so replay order never depends on a map or on a UI's card order.
+    // Priority governs scarce funding. Stable IDs break ties for exact replay.
     opening.sort_by_key(|project| (project.priority.dispatch_rank(), project.id));
     let mut completed: Vec<(u32, NationId, String, ProjectKind)> = vec![];
     for project in opening {
@@ -937,10 +930,12 @@ mod tests {
     use crate::world::{AnnualBudget, GameRules};
     use crate::{apply_command, load, save, tick_day as world_tick_day, tick_month, Command};
 
-    fn enabled() -> WorldState {
+    // These historical recipe tests exercise the retained monthly model.
+    fn legacy_monthly() -> WorldState {
         let mut w = world_1990(GameRules {
             resource_market: true,
             production_system: true,
+            daily_simulation: false,
             ..GameRules::default()
         });
         let nation = NationId::USA;
@@ -957,6 +952,30 @@ mod tests {
             reference: plan.reference,
         });
         w
+    }
+
+    fn daily_financial(budget_bn: f64) -> WorldState {
+        let mut w = legacy_monthly();
+        w.rules.daily_simulation = true;
+        w.rules.resource_market = false;
+        crate::programs::set_construction_budget(&mut w, NationId::USA, budget_bn).unwrap();
+        let n = w.nation_mut(NationId::USA);
+        n.political_capital = 0.0;
+        n.treasury_bn = Some(1000.0);
+        n.debt_bn = Some(0.0);
+        n.debt_gdp = 0.0;
+        w
+    }
+
+    fn next_financial_day(w: &mut WorldState) {
+        crate::programs::stage_fiscal(w.nation_mut(NationId::USA), 0.0, 0.0);
+        crate::programs::finish_day(w);
+        crate::clock::advance_date(w);
+        crate::programs::begin_day(w);
+    }
+
+    fn near(actual: f64, expected: f64) {
+        assert!((actual - expected).abs() < 1e-9, "{actual} != {expected}");
     }
 
     fn owned(w: &WorldState, nation: NationId) -> Vec<String> {
@@ -977,6 +996,242 @@ mod tests {
     }
 
     #[test]
+    fn daily_work_uses_money_without_materials_market_or_political_capital() {
+        let mut w = daily_financial(0.01);
+        let nation = NationId::USA;
+        let district = owned(&w, nation)[0].clone();
+        let kind = ProjectKind::Warehouse;
+        let treasury = w.nation(nation).treasury_bn;
+        apply_command(&mut w, &Command::StartProject { nation, district, kind }).unwrap();
+        assert_eq!(w.nation(nation).political_capital, 0.0);
+        assert_eq!(w.nation(nation).treasury_bn, treasury, "ordering is not an upfront bill");
+        crate::programs::begin_day(&mut w);
+        let raw = w.resources.clone();
+        let goods = w.production.industry.goods.clone();
+        let p = &w.production.projects[0];
+        assert_eq!(next_resource_draw(&w, p), [0.0; 12]);
+        assert_eq!(input_shortfalls(&w, p), [0.0; 12]);
+        let price = crate::industry::work_cost_bn(kind) / p.total_days as f64;
+
+        tick_day(&mut w);
+
+        let p = &w.production.projects[0];
+        near(p.progress_days, 1.0);
+        assert_eq!(p.resources_used, [0.0; 12]);
+        assert_eq!(p.status, ProjectStatus::Building);
+        near(w.production.industry.projects[&p.id].spent_bn, price);
+        near(w.nation(nation).program_budget.as_ref().unwrap().construction_spent_today_bn, price);
+        assert_eq!(w.resources, raw);
+        assert_eq!(w.production.industry.goods, goods);
+        assert_eq!(w.nation(nation).treasury_bn, treasury, "fiscal settlement owns the cash debit");
+        let once = save(&w);
+        tick_day(&mut w);
+        assert_eq!(save(&w), once, "same date cannot buy another day of work");
+    }
+
+    #[test]
+    fn daily_zero_and_partial_budget_preserve_work_and_resume_without_double_building() {
+        let mut w = daily_financial(0.0);
+        let nation = NationId::USA;
+        let district = owned(&w, nation)[0].clone();
+        let kind = ProjectKind::Infrastructure;
+        let id = start_project(&mut w, nation, &district, kind).unwrap();
+        let daily_price = crate::industry::work_cost_bn(kind) / catalog(kind).total_days as f64;
+        crate::programs::begin_day(&mut w);
+        let raw = w.resources.clone();
+        tick_day(&mut w);
+        assert_eq!(w.production.projects[0].status, ProjectStatus::Paused);
+        near(w.production.projects[0].progress_days, 0.0);
+        near(w.production.industry.projects[&id].spent_bn, 0.0);
+
+        crate::programs::set_construction_budget(&mut w, nation, daily_price * 0.4).unwrap();
+        tick_day(&mut w);
+        near(w.production.projects[0].progress_days, 0.4);
+        assert_eq!(w.production.projects[0].status, ProjectStatus::Slowed);
+        near(w.production.industry.projects[&id].spent_bn, daily_price * 0.4);
+        crate::programs::set_construction_budget(&mut w, nation, daily_price * 100.0).unwrap();
+        let once = save(&w);
+        tick_day(&mut w);
+        assert_eq!(save(&w), once, "raising a budget cannot reopen a settled project date");
+        next_financial_day(&mut w);
+        tick_day(&mut w);
+        near(w.production.projects[0].progress_days, 1.4);
+        near(w.production.industry.projects[&id].spent_bn, daily_price * 1.4);
+        assert_eq!(w.resources, raw);
+    }
+
+    #[test]
+    fn daily_six_parallel_sites_do_not_share_an_estate_workforce_ceiling() {
+        let mut plain = daily_financial(0.1);
+        let nation = NationId::USA;
+        let districts = owned(&plain, nation);
+        for district in districts.iter().take(6) {
+            apply_command(&mut plain, &Command::StartProject {
+                nation, district: district.clone(), kind: ProjectKind::Infrastructure,
+            }).unwrap();
+        }
+        assert_eq!(plain.production.projects.len(), 6, "a fifth site is a financial decision");
+        assert_eq!(plain.nation(nation).political_capital, 0.0);
+        let mut developed = plain.clone();
+        for district in districts.iter().take(6) {
+            for _ in 0..MAX_PROVINCE_LEVEL {
+                complete_capability(&mut developed, district, ProjectKind::CivilianIndustry);
+                complete_capability(&mut developed, district, ProjectKind::Infrastructure);
+            }
+        }
+        for w in [&mut plain, &mut developed] {
+            crate::programs::begin_day(w);
+            tick_day(w);
+            for project in &w.production.projects {
+                near(project.progress_days, 1.0);
+                assert_eq!(project.status, ProjectStatus::Building);
+            }
+        }
+        assert_eq!(plain.production.projects, developed.production.projects);
+        assert_eq!(plain.production.industry.projects, developed.production.industry.projects);
+        near(plain.nation(nation).program_budget.as_ref().unwrap().construction_spent_today_bn,
+             6.0 * crate::industry::work_cost_bn(ProjectKind::Infrastructure)
+                 / catalog(ProjectKind::Infrastructure).total_days as f64);
+    }
+
+    #[test]
+    fn daily_priority_reserves_one_cash_budget_across_different_project_kinds() {
+        let nation = NationId::USA;
+        let high_kind = ProjectKind::ArmsPlant;
+        let low_kind = ProjectKind::Infrastructure;
+        let high_price = crate::industry::work_cost_bn(high_kind) / catalog(high_kind).total_days as f64;
+        let low_price = crate::industry::work_cost_bn(low_kind) / catalog(low_kind).total_days as f64;
+        let budget = high_price + low_price * 0.5;
+        let mut w = daily_financial(budget);
+        let districts = owned(&w, nation);
+        let low = start_project(&mut w, nation, &districts[0], low_kind).unwrap();
+        let high = start_project(&mut w, nation, &districts[1], high_kind).unwrap();
+        set_priority(&mut w, nation, low, Priority::Low).unwrap();
+        set_priority(&mut w, nation, high, Priority::High).unwrap();
+        crate::programs::begin_day(&mut w);
+        let before = save(&w);
+        let plans = crate::industry::project_plans(&w);
+        near(plans.values().map(|plan| plan.cash_bn).sum(), budget);
+        assert_eq!(save(&w), before, "allocating a preview cannot spend funding");
+        tick_day(&mut w);
+        near(w.production.projects.iter().find(|p| p.id == high).unwrap().progress_days, 1.0);
+        near(w.production.projects.iter().find(|p| p.id == low).unwrap().progress_days, 0.5);
+        near(w.nation(nation).program_budget.as_ref().unwrap().construction_spent_today_bn, budget);
+        near(crate::programs::construction_available_bn(&w, nation), 0.0);
+    }
+
+    #[test]
+    fn daily_ownership_duplicates_and_foreign_project_actions_refuse_atomically() {
+        let mut w = daily_financial(0.01);
+        let nation = NationId::USA;
+        let foreign = owned(&w, NationId::Japan)[0].clone();
+        let before = save(&w);
+        assert!(apply_command(&mut w, &Command::StartProject {
+            nation, district: foreign, kind: ProjectKind::Infrastructure,
+        }).is_err());
+        assert_eq!(save(&w), before);
+        let district = owned(&w, nation)[0].clone();
+        let id = start_project(&mut w, nation, &district, ProjectKind::Infrastructure).unwrap();
+        let before = save(&w);
+        assert!(start_project(&mut w, nation, &district, ProjectKind::Infrastructure).is_err());
+        assert!(set_priority(&mut w, NationId::Japan, id, Priority::High).is_err());
+        assert!(cancel_project(&mut w, NationId::Japan, id).is_err());
+        assert_eq!(save(&w), before);
+
+        w.districts.insert(district, NationId::Japan);
+        crate::programs::begin_day(&mut w);
+        let raw = w.resources.clone();
+        tick_day(&mut w);
+        assert_eq!(w.production.projects[0].status, ProjectStatus::Blocked);
+        near(w.production.projects[0].progress_days, 0.0);
+        near(w.nation(nation).program_budget.as_ref().unwrap().construction_spent_today_bn, 0.0);
+        assert_eq!(w.resources, raw);
+    }
+
+    #[test]
+    fn daily_cancellation_preserves_paid_cash_without_refunding_or_granting_assets() {
+        let mut w = daily_financial(0.01);
+        let nation = NationId::USA;
+        let district = owned(&w, nation)[0].clone();
+        let id = start_project(&mut w, nation, &district, ProjectKind::Infrastructure).unwrap();
+        crate::programs::begin_day(&mut w);
+        tick_day(&mut w);
+        let before = w.nation(nation).program_budget.clone();
+        let raw = w.resources.clone();
+        cancel_project(&mut w, nation, id).unwrap();
+        assert_eq!(w.nation(nation).program_budget, before);
+        assert_eq!(w.resources, raw);
+        assert!(w.production.projects.is_empty());
+        assert!(!w.production.industry.projects.contains_key(&id));
+        assert_eq!(level(&w, &district, ProjectKind::Infrastructure), 0);
+    }
+
+    #[test]
+    fn daily_completion_charges_exact_frozen_cash_once_and_survives_midday_reload() {
+        let nation = NationId::USA;
+        let kind = ProjectKind::Warehouse;
+        let mut a = daily_financial(0.01);
+        let mut idle = a.clone();
+        let district = owned(&a, nation)[0].clone();
+        let id = start_project(&mut a, nation, &district, kind).unwrap();
+        let total_days = a.production.projects[0].total_days;
+        let cost = project_finance(&a, &a.production.projects[0]).unwrap().cost_bn;
+        crate::programs::begin_day(&mut a);
+        crate::programs::begin_day(&mut idle);
+        for _ in 0..37 {
+            tick_day(&mut a);
+            next_financial_day(&mut a);
+            next_financial_day(&mut idle);
+        }
+        tick_day(&mut a);
+        let encoded = save(&a);
+        let mut resumed = load(&encoded).unwrap();
+        assert_eq!(save(&resumed), encoded);
+        tick_day(&mut resumed);
+        assert_eq!(save(&resumed), encoded, "midday reload cannot repeat the paid work");
+        near(project_finance(&resumed, &resumed.production.projects[0]).unwrap().cost_bn, cost);
+        for _ in 38..total_days {
+            for w in [&mut a, &mut resumed] {
+                next_financial_day(w);
+                tick_day(w);
+            }
+            next_financial_day(&mut idle);
+        }
+        for w in [&mut a, &mut resumed, &mut idle] {
+            crate::programs::stage_fiscal(w.nation_mut(nation), 0.0, 0.0);
+            crate::programs::finish_day(w);
+        }
+        assert_eq!(save(&a), save(&resumed));
+        assert!(a.production.projects.is_empty());
+        assert!(!a.production.industry.projects.contains_key(&id));
+        assert_eq!(level(&a, &district, kind), 1);
+        near(a.nation(nation).program_budget.as_ref().unwrap().construction_spent_ytd_bn, cost);
+        let position = |w: &WorldState| {
+            w.nation(nation).treasury_bn.unwrap() - w.nation(nation).debt_bn.unwrap()
+        };
+        near(position(&idle) - position(&a), cost);
+        let once = save(&a);
+        tick_day(&mut a);
+        assert_eq!(save(&a), once, "completion cannot produce a second bill or asset");
+    }
+
+    #[test]
+    fn daily_financial_batch_matches_single_steps_with_saved_continuation() {
+        let mut single = daily_financial(0.001);
+        let nation = NationId::USA;
+        let district = owned(&single, nation)[0].clone();
+        start_project(&mut single, nation, &district, ProjectKind::Infrastructure).unwrap();
+        let mut batched = single.clone();
+        for day in 0..31 {
+            world_tick_day(&mut single, &[]);
+            if day == 13 { single = load(&save(&single)).unwrap(); }
+        }
+        tick_month(&mut batched, &[]);
+        assert_eq!(save(&single), save(&batched));
+        near(single.production.projects[0].progress_days, 31.0);
+    }
+
+    #[test]
     fn production_off_is_byte_inert_and_absent_from_default_saves() {
         let mut a = world_1990(GameRules::default());
         let mut b = a.clone();
@@ -990,7 +1245,7 @@ mod tests {
 
     #[test]
     fn ownership_slots_and_foreign_project_clicks_are_refused_atomically() {
-        let mut w = enabled();
+        let mut w = legacy_monthly();
         let nation = NationId::USA;
         let foreign = w
             .districts
@@ -1045,7 +1300,7 @@ mod tests {
 
     #[test]
     fn an_empty_input_pauses_without_consuming_then_resumes() {
-        let mut w = enabled();
+        let mut w = legacy_monthly();
         let nation = NationId::USA;
         let district = owned(&w, nation)[0].clone();
         let id = start_project(&mut w, nation, &district, ProjectKind::Infrastructure).unwrap();
@@ -1071,7 +1326,7 @@ mod tests {
 
     #[test]
     fn a_partial_input_scales_progress_and_every_resource_draw() {
-        let mut w = enabled();
+        let mut w = legacy_monthly();
         let nation = NationId::USA;
         let district = owned(&w, nation)[0].clone();
         fill_recipe(&mut w, nation, ProjectKind::Infrastructure, 1.0);
@@ -1107,7 +1362,7 @@ mod tests {
 
     #[test]
     fn completion_leaves_a_province_level_that_speeds_future_work() {
-        let mut w = enabled();
+        let mut w = legacy_monthly();
         let nation = NationId::USA;
         let district = owned(&w, nation)[0].clone();
         fill_recipe(&mut w, nation, ProjectKind::Infrastructure, 2.0);
@@ -1138,7 +1393,7 @@ mod tests {
 
     #[test]
     fn projects_and_capabilities_survive_save_and_load() {
-        let mut w = enabled();
+        let mut w = legacy_monthly();
         let nation = NationId::USA;
         let district = owned(&w, nation)[0].clone();
         fill_recipe(&mut w, nation, ProjectKind::CivilianIndustry, 1.0);
@@ -1150,8 +1405,8 @@ mod tests {
     }
 
     #[test]
-    fn daily_and_monthly_clocks_leave_the_same_production_world() {
-        let mut monthly = enabled();
+    fn legacy_monthly_batch_matches_repeated_calendar_days() {
+        let mut monthly = legacy_monthly();
         let nation = NationId::USA;
         let district = owned(&monthly, nation)[0].clone();
         fill_recipe(&mut monthly, nation, ProjectKind::Infrastructure, 10.0);
@@ -1167,7 +1422,7 @@ mod tests {
 
     #[test]
     fn every_unit_recorded_as_used_leaves_the_same_physical_stockpile() {
-        let mut w = enabled();
+        let mut w = legacy_monthly();
         let nation = NationId::USA;
         let district = owned(&w, nation)[0].clone();
         let kind = ProjectKind::ArmsPlant;
@@ -1192,7 +1447,7 @@ mod tests {
 
     #[test]
     fn high_priority_work_gets_a_scarce_daily_bundle_first() {
-        let mut w = enabled();
+        let mut w = legacy_monthly();
         let nation = NationId::USA;
         let districts = owned(&w, nation);
         let low =
@@ -1225,7 +1480,7 @@ mod tests {
 
     #[test]
     fn fresh_market_consumes_the_same_opening_cover_that_it_reports() {
-        let mut w = enabled();
+        let mut w = legacy_monthly();
         let nation = NationId::USA;
         resources::warm(&mut w);
         assert!(
@@ -1261,7 +1516,7 @@ mod tests {
 
     #[test]
     fn production_is_not_advertised_without_a_physical_resource_market() {
-        let mut w = enabled();
+        let mut w = legacy_monthly();
         let nation = NationId::USA;
         let district = owned(&w, nation)[0].clone();
         w.rules.resource_market = false;
@@ -1273,7 +1528,7 @@ mod tests {
 
     #[test]
     fn equal_priority_projects_report_shared_capacity_neutrally() {
-        let mut w = enabled();
+        let mut w = legacy_monthly();
         let nation = NationId::USA;
         let districts = owned(&w, nation);
         fill_recipe(&mut w, nation, ProjectKind::Infrastructure, 2.0);

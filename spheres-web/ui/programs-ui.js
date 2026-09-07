@@ -66,13 +66,13 @@ function programDepartmentCard(d, row, plan) {
 }
 
 function programInvestmentHtml(c, enabled) {
-  const ready = enabled && c.enabled;
+  const ready = c.project_kind ? true : enabled && c.enabled;
   return `<article class="pg-investment"><div class="pg-tag">${escText(c.tag || "Province investment")}</div><div class="pg-icon" aria-hidden="true"><svg viewBox="0 0 180 160"><use href="/assets/programs-art.svg#${["factory","power","mine","freight","automation"][c.department] || "factory"}"></use></svg></div>
     <h4>${escText(c.name)}</h4><p>${escText(c.description)}</p><p><strong>${escText(c.effect)}</strong></p>
-    <div class="pg-meta">${c.total_days ? `${c.total_days} base work-days · ` : ""}${Number.isFinite(c.pc_cost) ? `${c.pc_cost} political capital` : ""}</div>
-    ${Number.isFinite(c.work_cost_bn) ? `<p class="pg-meta">${programMoney(c.work_cost_bn)} total domestic work · paid as built. Materials are additional.</p>` : ""}
+    <div class="pg-meta">${c.total_days ? `${c.total_days} days base lead time` : ""}</div>
+    ${Number.isFinite(c.work_cost_bn) ? `<p class="pg-meta">${programMoney(c.work_cost_bn)} total project cost · paid as work progresses.</p>` : ""}
     <button type="button" data-pg-invest="${programAttr(c.id)}" ${ready ? "" : "disabled"}>${c.project_kind ? "Choose a province →" : "Choose a deposit →"}</button>
-    ${!ready ? `<p class="pg-warning">${escText(!enabled ? "Enact your department budget first." : c.reason || "No eligible province right now. See the production board for requirements.")}</p>` : ""}</article>`;
+    ${!ready ? `<p class="pg-warning">${escText(!enabled ? "Enact your department budget first." : c.reason || "No eligible province right now. Check Construction for funding and prerequisites.")}</p>` : ""}</article>`;
 }
 
 function programBoardHtml(m, ministryIndex) {
@@ -89,17 +89,14 @@ function programBoardHtml(m, ministryIndex) {
     ${row.editable ? `<div class="pg-presets" role="group" aria-label="Department allocation presets"><span>Quick draft</span><button type="button" data-pg-preset="balanced">Balanced</button>${ministryIndex === 5 ? `<button type="button" data-pg-preset="development">Build industry</button><button type="button" data-pg-preset="energy">Power first</button><button type="button" data-pg-preset="supply">Secure supplies</button>` : ""}<button type="button" data-pg-preset="current">Reset this ministry</button></div>` : ""}
     <div class="pg-departments">${names.map(d => programDepartmentCard(d,row,plan[ministryIndex])).join("")}</div>
     ${ministryIndex === 7 ? `<p class="pg-note">Plan effects: supported force ${fmtQ(view.defense_force)} · ammunition refill ${fmtQ(view.magazine_refill_mult)}×. Personnel, operations and military research support forces; maintenance supports ammunition; procurement pays real equipment orders and arms-plant work.</p>` : ""}
-    ${ministryIndex === 5 ? `<div class="pg-heading"><div><div class="cab-kicker">Ten ways to invest · two per department</div><h3>${escText(names[PG.department]?.name || "Investment choices")}</h3><p>Build capacity, supply it with inputs, and put it to work. These are projects—not instant GDP bonuses.</p></div></div><div class="pg-investments">${choices.map(c=>programInvestmentHtml(c,!!S.programs.enabled&&!S.programs.due)).join("")}</div>${programIndustryHtml(view.industry || S.programs.industry)}` : ""}
-    <details class="pg-note"><summary>How funding is counted</summary><p>Annual amounts are the current GDP-share run-rate. The simulation releases the correct daily fraction. Departments share one ministry envelope; projects share their department's funds. Materials and foreign purchases are shown separately from domestic project work. Unspent capital authority is not a second treasury. Operating services remain automatically managed where their sub-models are not yet separate.</p></details>
+    ${ministryIndex === 5 ? `<div class="pg-heading"><div><div class="cab-kicker">Ten ways to invest · two per department</div><h3>${escText(names[PG.department]?.name || "Investment choices")}</h3><p>Choose a project for the shared Construction queue. Completed facilities contribute through their actual operation.</p></div></div><div class="pg-investments">${choices.map(c=>programInvestmentHtml(c,!!S.programs.enabled&&!S.programs.due)).join("")}</div>${programIndustryHtml(view.industry || S.programs.industry)}` : ""}
+    <details class="pg-note"><summary>How funding is counted</summary><p>Annual amounts are the current GDP-share run-rate. The simulation releases the correct daily fraction. Departments share one ministry envelope; projects share their department's funds. Construction is paid from its daily funding limit as work is delivered. Operating facilities use their normal inputs and running funds. Unspent capital authority is not a second treasury. Operating services remain automatically managed where their sub-models are not yet separate.</p></details>
   </section>`;
 }
 
 function programIndustryHtml(data) {
   if (!data) return "";
-  const sites = data.sites || [];
-  return `<div class="pg-heading"><div><div class="cab-kicker">Industry in motion</div><h3>Your working industrial base</h3><p>${escText(data.note || "Usable output lives in this physical ledger. Its local value added is shown in the province economy; inventory is not treasury cash.")}</p><button type="button" class="pg-button" onclick="closeGameDrawers(); openNation(S.player); selectNationView('economy')">Explore your GDP breakdown →</button></div></div>
-    <div class="pg-summary"><article><span>Intermediate packs</span><strong>${fmtQ(data.goods?.intermediates || 0)}</strong></article><article><span>Capital-goods packs</span><strong>${fmtQ(data.goods?.capital_goods || 0)}</strong></article><article><span>Storage / goods type</span><strong>${fmtQ(data.capacity_each || 0)}</strong></article><article><span>Industrial power used / capacity</span><strong>${fmtQ(data.power_used_daily || 0)} / ${fmtQ(data.power_capacity_daily || 0)}</strong></article></div>
-    ${sites.length ? `<div class="pg-investments">${sites.map(site=>`<article class="pg-investment"><div class="pg-tag">${escText(site.status || "Built")}</div><h4>${escText(String(site.kind || "Industry").replace(/_/g," "))} · ${escText(site.district)}</h4><p>${escText(site.reason || "Capacity ready for use.")}</p><dl class="pg-ledger"><div><dt>Level</dt><dd>${site.level}</dd></div><div><dt>Output / day</dt><dd>${fmtQ(site.output_daily || 0)} packs</dd></div><div><dt>Work cost / day</dt><dd>${programMoney(site.cash_spent_daily_bn)}</dd></div></dl></article>`).join("")}</div>` : `<div class="pg-empty">Your new industrial base starts with a funded project. Completed sites and their actual operating status will appear here.</div>`}`;
+  return `<div class="pg-heading"><div><div class="cab-kicker">Economy · Industry</div><h3>Your working industrial base</h3><p>Inspect completed facilities, dated production receipts and operating needs in the Industry desk.</p><div class="decision-actions"><button type="button" class="pg-button" onclick="openIndustry()">Manage completed industry →</button><button type="button" class="pg-button" onclick="closeGameDrawers(); openNation(S.player); selectNationView('economy')">Explore your GDP breakdown →</button></div></div></div>`;
 }
 
 function queueProgramRow(m, ministryIndex, row) {
@@ -159,11 +156,11 @@ async function refreshProgramPreview(m, force=false) {
 
 async function openProgramInvestment(id) {
   const choice = (S?.programs?.investment_choices || []).find(c=>c.id===id);
-  if (!choice?.enabled || !S.programs.enabled || S.programs.due) return;
+  if (!choice) return;
   if (choice.project_kind) {
-    PROD.mode="build"; openProduction();
-    PROD.pickKind=choice.project_kind; PROD.view="provinces"; renderProductionPanel();
+    openConstruction({kind:choice.project_kind});
   } else {
+    if (!choice.enabled || !S.programs.enabled || S.programs.due) return;
     closeGameDrawers(); openStock();
   }
 }

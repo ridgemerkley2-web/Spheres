@@ -2,12 +2,15 @@ pub mod agency;
 pub mod campaign_aims;
 pub mod arsenal;
 pub mod commitment;
+pub mod construction_preview;
+pub mod construction_suggestions;
 pub mod commerce;
 pub mod data;
 pub mod districts;
 pub mod domination;
 pub mod dyads;
 pub mod economy;
+pub mod equipment;
 pub mod economic_ai;
 pub mod front;
 pub mod fiscal_preview;
@@ -44,9 +47,23 @@ pub mod world;
 use serde::{Deserialize, Serialize};
 use world::*;
 
+/// Equipment work shares the ordinary command and fiscal channels.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub enum EquipmentOrder {
+    Research { component: String },
+    SaveDraft { name: String, spec: equipment::DesignSpec },
+    Develop { name: String, spec: equipment::DesignSpec, daily_budget_bn: f64 },
+    Produce { revision: String, district: String, quantity: u32, daily_budget_bn: f64 },
+    Refit { source: String, target: String, district: String, quantity: u32, daily_budget_bn: f64 },
+    Pause { project: u32, paused: bool },
+    Funding { project: u32, daily_budget_bn: f64 },
+    Cancel { project: u32 },
+}
+
 /// All player and AI actions flow through the command queue.
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub enum Command {
+    Equipment { nation: NationId, order: EquipmentOrder },
     SetInterestRate { nation: NationId, rate: f64 },
     BreakCurrencyPeg { nation: NationId },
     ResumeAutomaticBank { nation: NationId },
@@ -75,6 +92,8 @@ pub enum Command {
         allocations: [f64; BUDGET_MINISTRIES],
         departments: programs::Shares,
     },
+    /// Set one daily cash ceiling for all construction under the fiscal plan.
+    SetConstructionBudget { nation: NationId, daily_budget_bn: f64 },
     /// Put a domain's laboratories onto a named technology, or hand the choice
     /// back to them with `None`. Switching away from a project in progress
     /// forfeits half of what was banked against it.
@@ -136,7 +155,7 @@ pub enum Command {
         district: String,
         commodity: resources::Commodity,
     },
-    /// Start one of the four player-directed province construction slots.
+    /// Queue a funded construction project in an owned province.
     StartProject {
         nation: NationId,
         district: String,
@@ -148,14 +167,13 @@ pub enum Command {
         district: String,
         capacity_micros: u32,
     },
-    /// Reweight one active project inside the shared national capacity pool.
+    /// Prioritize one active project inside the shared construction budget.
     SetProjectPriority {
         nation: NationId,
         project: u32,
         priority: production::Priority,
     },
-    /// Abandon active work. Political capital and materials already committed
-    /// are sunk; cancellation creates neither a refund nor a debt write.
+    /// Abandon active work. Completed work is sunk; unspent funding is retained.
     CancelProject { nation: NationId, project: u32 },
     /// Route one share of the existing defence procurement line through a
     /// completed province arms plant and into a stable equipment programme.
@@ -341,6 +359,9 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
             let base = command_price(w, &annual).map_or(0.0, |(_, p, _)|p);
             (*nation, base + programs::department_price(w, *nation, *fiscal_year, allocations, departments), REFUSABLE)
         }
+        Command::SetConstructionBudget { nation, .. } => (*nation, 0.0, REFUSABLE),
+        Command::Equipment { nation, order } => (*nation,
+            if matches!(order, EquipmentOrder::Research { .. }) { 6.0 } else { 0.0 }, REFUSABLE),
         Command::SetAnnualBudget { nation, fiscal_year, allocations } => {
             let n = w.nation(*nation);
             let current = n.budget_for(w.year);
@@ -446,12 +467,12 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         // years (resources.rs charges the reputation and the relation).
         Command::CancelDeal { nation, .. } => (*nation, 10.0, ALWAYS),
         Command::DevelopResource { nation, .. } => {
-            (*nation, resources::MINE_PC_COST, REFUSABLE)
+            (*nation, if clock::is_daily(w) { 0.0 } else { resources::MINE_PC_COST }, REFUSABLE)
         }
         Command::StartProject { nation, kind, .. } => {
-            (*nation, production::catalog(*kind).political_cost, REFUSABLE)
+            (*nation, if clock::is_daily(w) { 0.0 } else { production::catalog(*kind).political_cost }, REFUSABLE)
         }
-        Command::StartIndustryModule { nation, .. } => (*nation, production::catalog(production::ProjectKind::StarterIndustry).political_cost, REFUSABLE),
+        Command::StartIndustryModule { nation, .. } => (*nation, 0.0, REFUSABLE),
         Command::SetProjectPriority { nation, .. } => (*nation, 0.0, REFUSABLE),
         Command::CancelProject { nation, .. } => (*nation, 0.0, ALWAYS),
         Command::StartManufacturingLine { nation, .. } => {
@@ -584,6 +605,7 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
 /// this returns the sim's own prose rather than composing its own.
 fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
     match c {
+        Command::Equipment { nation, order } => apply_equipment_order(&mut w.clone(), *nation, order).err(),
         Command::SetInterestRate { nation, .. } if agency::pegged_rate(w,*nation).is_some() => Some("Exit the currency peg before changing its policy rate.".into()),
         Command::RespondDiplomacy { nation, offer, accept } => agency::response_error(w,*nation,*offer,*accept),
         Command::Sanction { imposer, target } => sovereignty::hostility_reason(w, *imposer, *target),
@@ -609,6 +631,7 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
         Command::SetProgramBudget { nation, fiscal_year, allocations, departments } => {
             programs::validation(w, *nation, *fiscal_year, allocations, departments)
         }
+        Command::SetConstructionBudget { nation, daily_budget_bn } => programs::construction_budget_refusal(w, *nation, *daily_budget_bn),
         Command::SetCommitment { conflict, nation, rung } => {
             commitment::rung_blocked(w, w.conflict(*conflict)?, *nation, *rung)
         }
@@ -639,6 +662,30 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
             manufacturing::start_line_error(w, *nation, district, kit)
         }
         _ => None,
+    }
+}
+
+fn apply_equipment_order(w: &mut WorldState, nation: NationId, order: &EquipmentOrder) -> Result<(), String> {
+    use EquipmentOrder::*;
+    match order {
+        Research { component } => {
+            let switching = w.nation(nation).equipment.as_ref().is_none_or(|s| s.active_research.is_none());
+            equipment::start_research(w, nation, component)?;
+            if switching {
+                let n = w.nation_mut(nation);
+                let di = tech::Domain::Aerospace.index();
+                n.equipment.as_mut().unwrap().research_progress = n.tech.progress[di] * 0.5;
+                n.tech.progress[di] = 0.0;
+            }
+            Ok(())
+        }
+        SaveDraft { name, spec } => equipment::save_draft(w, nation, name, spec.clone()),
+        Develop { name, spec, daily_budget_bn } => equipment::start_development(w, nation, name, spec.clone(), *daily_budget_bn).map(|_| ()),
+        Produce { revision, district, quantity, daily_budget_bn } => equipment::start_production(w, nation, revision, district, *quantity, *daily_budget_bn).map(|_| ()),
+        Refit { source, target, district, quantity, daily_budget_bn } => equipment::start_refit(w, nation, source, target, district, *quantity, *daily_budget_bn).map(|_| ()),
+        Pause { project, paused } => equipment::set_project_paused(w, nation, *project, *paused),
+        Funding { project, daily_budget_bn } => equipment::set_project_budget(w, nation, *project, *daily_budget_bn),
+        Cancel { project } => equipment::cancel_project(w, nation, *project),
     }
 }
 
@@ -745,6 +792,9 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
             programs::install(w, *nation, *fiscal_year, *departments);
             industry::enroll_projects(w, *nation);
         }
+        Command::SetConstructionBudget { nation, daily_budget_bn } => {
+            programs::set_construction_budget(w, *nation, *daily_budget_bn)?;
+        }
         Command::SetAnnualBudget { nation, fiscal_year, allocations } => {
             if *fiscal_year != w.year {
                 return Err(format!(
@@ -825,6 +875,7 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
                 n.treasury_bn = Some(crate::data::reserves_1990_bn(*nation).unwrap_or(0.0));
             }
         }
+        Command::Equipment { nation, order } => apply_equipment_order(w, *nation, order)?,
         Command::SetResearchFocus { nation, domain, tech: want } => {
             let di = domain.index();
             let target = match want {
@@ -845,7 +896,15 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
                 }
             };
             let n = w.nation_mut(*nation);
-            if n.tech.focus.get(di).copied().flatten() != target {
+            let component_switch = *domain == tech::Domain::Aerospace
+                && n.equipment.as_ref().is_some_and(|e| e.active_research.is_some());
+            if component_switch {
+                let e = n.equipment.as_mut().unwrap();
+                n.tech.progress[di] = e.research_progress;
+                e.research_progress = 0.0;
+                e.active_research = None;
+            }
+            if component_switch || n.tech.focus.get(di).copied().flatten() != target {
                 // A laboratory redirected does not start from nothing, and does
                 // not carry everything across either. Half the bank survives the
                 // change of subject; the rest was specific to the old one.
@@ -1162,12 +1221,14 @@ pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
     // what it unlocks is in the nation's hands before the soldiers and the
     // politicians get their turn with it.
     ("tech", tech::tick),
+    ("equipment", equipment::tick_day),
     // Pacts decide who is obliged to join a war and patronage decides who can
     // still afford one, so the standing arrangements are settled before the
     // fighting is worked out.
     // Money becomes orders years before it becomes strength, so procurement
     // runs with the other standing bills rather than beside the fighting.
     ("arsenal", arsenal::tick),
+    ("equipment_support", equipment::settle_support),
     ("statecraft", statecraft::tick),
     ("stratagems", stratagems::tick),
     ("ai_stratagems", stratagems::ai_stratagems),
@@ -1312,10 +1373,24 @@ pub fn state_hash(w: &WorldState) -> u64 {
 }
 
 pub fn save(w: &WorldState) -> String {
-    serde_json::to_string_pretty(w).expect("serialize")
+    if w.nations.iter().any(|n| n.equipment.is_some()) {
+        #[derive(Serialize)]
+        struct EquipmentSave<'a> { format: &'static str, version: u32, world: &'a WorldState }
+        serde_json::to_string_pretty(&EquipmentSave {
+            format: "spheres-equipment-save", version: 1, world: w,
+        }).expect("serialize equipment save")
+    } else { serde_json::to_string_pretty(w).expect("serialize") }
 }
 pub fn load(s: &str) -> Result<WorldState, String> {
-    let mut w: WorldState = serde_json::from_str(s).map_err(|e| e.to_string())?;
+    let shape: serde_json::Value = serde_json::from_str(s).map_err(|e| e.to_string())?;
+    let mut w: WorldState = if shape.get("format").is_some() {
+        if shape["format"] != "spheres-equipment-save" || shape["version"] != 1 {
+            return Err("This equipment save version is not supported by this build.".into());
+        }
+        #[derive(Deserialize)]
+        struct EquipmentSave { world: WorldState }
+        serde_json::from_str::<EquipmentSave>(s).map_err(|e| e.to_string())?.world
+    } else { serde_json::from_str(s).map_err(|e| e.to_string())? };
     migrate_legacy_wars(&mut w);
     if w.theatres.is_empty() {
         w.theatres = theatre::default_theatres();
@@ -1349,6 +1424,7 @@ pub fn load(s: &str) -> Result<WorldState, String> {
     // rounding step. That is not a stale account: preserving it keeps a save
     // taken immediately after enrollment on the exact same next-day timeline.
     for n in &mut w.nations {
+        equipment::validate_state(n)?;
         if n.on_the_books() && n.gdp.is_finite() && n.gdp > 0.0 {
             let derived = n.debt_bn.unwrap() / n.gdp;
             let rounding = 8.0 * f64::EPSILON * derived.abs().max(n.debt_gdp.abs()).max(1.0);

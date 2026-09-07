@@ -181,9 +181,9 @@ Only explicit player enrollment activates the model. Deprecated coarse fiscal
 commands cannot bypass an enrolled plan. Read-only previews never enact or pay.
 
 One daily opening GDP/calendar basis releases service spending and capital
-authorization. Capital consumers preflight authority, raw inputs, industrial
-goods and work capacity. The tightest temporary input sets one throughput ratio;
-work, every input draw, manufactured goods and cash all scale by that ratio.
+authorization. The 2026-09-06 construction amendment below replaces construction
+materials and national work capacity with one daily financial budget. Operating
+plants still preflight their physical inputs, power and operating funding.
 Zero feasible throughput pauses without spending or losing completed work.
 Hard blocks are reserved for structural failures such as invalid ownership,
 contested ground or unavailable technology. All consumers share departmental
@@ -200,6 +200,57 @@ Processing and machinery consume the existing raw ledger and modeled power;
 freight terminals improve real gateway capacity; warehouses hold manufactured
 packs; automation/efficiency consume researched upgrades. No direct GDP writes.
 UI prices, balances, recipes, progress, eligibility and effects come from Rust.
+
+## Adopted extension — funded construction (2026-09-06)
+
+The player sets one maximum construction payment per day with
+`SetConstructionBudget`. Applying it activates actual-expenditure accounting
+under the existing ministry appropriations. It does not enlarge those
+appropriations, debit the treasury or charge political capital. The Economy
+Construction page owns this control, project placement and the visible queue.
+
+Building projects and new mines draw from pooled civilian capital authority,
+subject to the same daily ceiling. Equipment procurement, prepaid equipment
+balances and service budgets are excluded. Actual payments are recorded in the
+existing departmental ledger and posted once by fiscal settlement. Unused daily
+funding is not spent; unused appropriations retain the existing fiscal-year
+expiry. The standing appropriation is the default daily ceiling until the
+player chooses an explicit amount. A zero ceiling pauses even when authority
+has accumulated. Operating plants use remaining departmental funding normally.
+
+Construction no longer consumes raw stock, intermediate packs or capital-goods
+packs, and it creates no demand for those goods. Construction capacity and the
+four-project limit are removed from daily games. Projects retain site lead
+times, ownership, uncontested territory, technology and facility prerequisites.
+Priority determines spending order, with stable project IDs breaking ties;
+mines follow building projects. More funding can support more simultaneous
+sites, while each site still takes its stated installation time.
+
+Prices are modeled turnkey construction contracts. Progress and cash move in
+proportion; total payments cannot exceed the contract. Existing project progress
+and payment receipts are retained when freezing the unfinished contract. Old
+mines already paid upfront keep their prepaid timeline. Cancellation stops
+future bills without refunding completed work. Actual paid work reaches province
+GDP through the existing receipts, with no completion bonus or duplicate macro
+investment credit. Monthly legacy construction retains its replay behavior.
+
+Before placement, buildings, sized starter workshops and mapped mines use a
+read-only impact review for the selected province and player nation. It compares
+current and hypothetically completed capabilities using the same completion,
+production, resource and logistics rules as the simulation. The review includes
+contract cost, minimum lead time, current queue/funding ETA, operating needs and
+prerequisites. It does not invent GDP, tax, employment or profit forecasts.
+Only the final confirmation places an order. The browser invalidates a review
+when the campaign state, selection or budget changes; the server always applies
+the current command rules and scopes preview requests to the current player.
+
+The Construction queue also offers up to three deterministic suggested projects
+with a proposed owned province, reason, supporting capacity evidence, cost and
+funding ETA. Suggestions use current and already-queued capacity, distinguish
+bottlenecks from development opportunities, and can explain when no additional
+build is justified. They are available in daily player games without enabling
+Economic Competition. Reviewing advice is read-only and opens the ordinary
+impact review; it never places orders or changes budgets automatically.
 
 ## Current extension — provincial GDP accounts (2026-09-03, local review)
 
@@ -329,3 +380,23 @@ credited 1990 revelations. Initialization retains the raw reference. The separat
 sparse credit ledger moves with inherited technology, starts at zero for older
 saves, and excludes no genuine new research. This semantic change is shared by
 daily and monthly simulation; calibration tolerances and historical data stay put.
+
+## Current extension — component-based tank equipment (2026-09-06)
+
+`EQUIPMENT_DESIGNER.md` specifies the first playable slice of the approved full
+designer plan. An optional versioned nation ledger carries drafts, component
+knowledge, frozen revisions and paid projects. New tank units remain in the
+existing Arsenal with explicit design identities, whole-unit loss residuals and
+refit reservations. Component research diverts existing Aerospace effort and
+shares its monthly acquisition ceiling; it creates no macroeconomic discovery.
+
+Defense research becomes work-funded on the next opening funding date after
+activation. Paid development is operating expense. Production/refits share
+Defense procurement and completed arms-plant slots with existing manufacture.
+The initial maintenance implementation earmarks already-paid maintenance funds
+and removes the same allocation from legacy refill; it does not post a second
+charge. Frozen component capability is restricted to land operations and uses
+physical reference coverage independently of purchase prices. Unused designer
+state preserves the legacy path. Activated saves use a structural envelope that
+older raw-world loaders reject. Broader families and complete maintenance
+invoice settlement remain staged work in the full plan.

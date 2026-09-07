@@ -789,6 +789,7 @@ impl NationRecord {
             social_spend_gdp: None,
             annual_budget: None,
             program_budget: None,
+            equipment: None,
             province_investment_reference: None,
             debt_gdp: self.economy.debt_gdp,
             // THE BOOKS START CLOSED for every nation on the board, including

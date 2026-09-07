@@ -3,6 +3,21 @@
 Forty-six low-poly meshes, one for every id in `spheres-sim/src/arsenal.rs`'s
 `DECK`, plus the two things that keep them honest.
 
+## Source and integration attribution
+
+This static catalogue deck comes from the existing Claude-assisted Arsenal
+work integrated in commit `092569227023ff4278a5d699018af46bd39c7c94`
+(`feat(arsenal): a 3D model for every kit in the deck, drawn from one WebGL2 context`).
+That commit records Claude Opus 5 as co-author and the source branch work as
+`8ec69ee` on `feat/hoi4-map-and-tech`. The integration retains its 46 deterministic
+catalogue meshes, shared WebGL2 renderer and OBJ export tools.
+
+These static catalogue previews are separate from the configurable ground
+designer and its GLB exports. Displaying aircraft and ships here does not add
+aircraft or naval component-design systems. This integration adds no new claim
+of independently verified historical dimensions or engineering fidelity; the
+existing names and dimension annotations are inherited from that source work.
+
 | file | what it is |
 | --- | --- |
 | `spheres-web/ui/arsenal-models.js` | the meshes. No DOM, no fetches, runs under node. |

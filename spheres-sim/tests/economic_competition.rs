@@ -146,7 +146,7 @@ fn viable_paid_work_is_nonzero_in_every_size_tier_and_every_mapped_country() {
         let p = production::projects_for(&w, id).next().unwrap();
         assert!(p.progress_days > 0.0, "{}: {:?}", id.name(), p.reason);
         assert!(w.production.industry.projects[&project].spent_bn > 0.0);
-        assert!(resources::stockpile(&w, id, resources::Commodity::Iron) < before);
+        assert_eq!(resources::stockpile(&w, id, resources::Commodity::Iron), before);
         assert!(
             w.nation(id).program_budget.as_ref().unwrap().spent_today_bn[BUDGET_INDUSTRY][0] > 0.0
         );
@@ -173,7 +173,7 @@ fn disabled_monthly_player_and_dead_paths_remain_byte_inert() {
 }
 
 #[test]
-fn political_cost_ownership_material_and_queue_rules_are_not_bypassed() {
+fn daily_construction_uses_budget_without_pc_or_materials_and_keeps_ownership_rules() {
     let mut w = world();
     let id = NationId::USA;
     w.nation_mut(id).political_capital = 0.0;
@@ -230,26 +230,24 @@ fn political_cost_ownership_material_and_queue_rules_are_not_bypassed() {
     .unwrap();
     assert_eq!(
         w.nation(id).political_capital,
-        pc - production::catalog(ProjectKind::CivilianIndustry).political_cost
+        pc
     );
     programs::begin_day(&mut w);
     production::tick_day(&mut w);
-    assert_eq!(
+    assert!(
         production::projects_for(&w, id)
             .next()
             .unwrap()
-            .progress_days,
-        0.0
+            .progress_days > 0.0
     );
-    assert_eq!(
+    assert!(
         w.production
             .industry
             .projects
             .values()
             .next()
             .unwrap()
-            .spent_bn,
-        0.0
+            .spent_bn > 0.0
     );
     let before = save(&w);
     economic_ai::evaluate(&mut w, id);
@@ -393,11 +391,14 @@ fn ai_sells_only_surplus_and_buys_real_goods_with_cash_not_free_inputs() {
         &mut w,
         &Command::StartProject {
             nation: buyer,
-            district,
+            district: district.clone(),
             kind: ProjectKind::Warehouse,
         },
     )
     .unwrap();
+    // This installed machine is an operating consumer. The warehouse itself
+    // must not generate imports now that construction is funded with money.
+    w.production.industry.sites.insert(district, [1, 0, 0, 0, 0, 0, 0]);
     for _ in 0..30 {
         clock::advance_date(&mut w);
     }
@@ -694,7 +695,7 @@ fn lost_province_project_is_cancelled_without_refund_then_replanned() {
     assert_eq!(w.districts.get(&replacement.district), Some(&id));
     assert_eq!(
         w.nation(id).political_capital,
-        pc - production::catalog(replacement.kind).political_cost
+        pc
     );
 }
 
@@ -866,8 +867,8 @@ fn routine_goods_replenishment_defers_a_processor_until_the_trade_route_closes()
     assert_eq!(production::projects_for(&w, id).next().unwrap().kind, kind);
     assert_eq!(
         w.nation(id).political_capital,
-        pc - 2.0 - production::catalog(kind).political_cost,
-        "trade and later construction each pay their ordinary command price"
+        pc - 2.0,
+        "the trade pays its political cost; daily construction uses its money budget"
     );
 }
 
@@ -947,7 +948,7 @@ fn full_intermediate_storage_cannot_preempt_the_first_capital_goods_producer() {
         .sites
         .insert(district.clone(), [0, 1, 1, 0, 0, 0, 0]);
     // A finite, legitimately producible inventory fixture. There is no machine
-    // shop or capital pack anywhere, so a warehouse has no capital supplier.
+    // shop or capital pack anywhere; operating demand justifies the machine.
     w.production.industry.goods.insert(
         id,
         industry::Goods {
@@ -961,10 +962,10 @@ fn full_intermediate_storage_cannot_preempt_the_first_capital_goods_producer() {
     );
     assert_eq!(
         industry::goods_recipe(ProjectKind::Warehouse).capital_goods,
-        5.0
+        0.0
     );
     let (_, kind, _) = economic_ai::candidate(&w, id).unwrap();
-    assert_eq!(kind, ProjectKind::MachineryWorks, "a full processor must build its capital-goods consumer before a warehouse requiring those unavailable goods");
+    assert_eq!(kind, ProjectKind::MachineryWorks, "a full processor should add a useful capital-goods consumer before more storage");
     for _ in 0..30 {
         clock::advance_date(&mut w);
     }
@@ -974,7 +975,7 @@ fn full_intermediate_storage_cannot_preempt_the_first_capital_goods_producer() {
     assert_eq!(project.kind, ProjectKind::MachineryWorks);
     assert_eq!(
         w.nation(id).political_capital,
-        pc - production::catalog(ProjectKind::MachineryWorks).political_cost
+        pc
     );
     assert_eq!(
         production::level(&w, &district, ProjectKind::MachineryWorks),
@@ -984,7 +985,7 @@ fn full_intermediate_storage_cannot_preempt_the_first_capital_goods_producer() {
 }
 
 #[test]
-fn a_loaded_capital_starved_warehouse_keeps_paid_work_and_builds_its_missing_machine() {
+fn a_loaded_warehouse_keeps_paid_work_and_resumes_without_material_prerequisites() {
     use spheres_sim::industry;
     let mut w = world();
     resources::tick(&mut w);
@@ -992,163 +993,54 @@ fn a_loaded_capital_starved_warehouse_keeps_paid_work_and_builds_its_missing_mac
     w.nation_mut(id).political_capital = 1000.0;
     w.nation_mut(id).debt_gdp = 0.0;
     economic_ai::evaluate(&mut w, id);
-    let district = w
-        .districts
-        .iter()
-        .find(|(_, owner)| **owner == id)
-        .unwrap()
-        .0
-        .clone();
-    w.production
-        .provinces
-        .push(production::ProvinceCapabilities {
-            district: district.clone(),
-            civilian_industry: 1,
-            power_grid: 1,
-            infrastructure: 0,
-            research_centers: 0,
-            arms_plants: 0,
-        });
-    w.production
-        .industry
-        .sites
-        .insert(district.clone(), [0, 1, 1, 0, 0, 0, 0]);
-    // A saved warehouse may already have made genuine paid progress using a
-    // finite capital lot, then exhausted it without a domestic machine shop.
-    w.production.industry.goods.insert(
-        id,
-        industry::Goods {
-            intermediates: 250.0,
-            capital_goods: 0.25,
-        },
-    );
-    for c in resources::ALL {
-        let stocks = &mut w.resources.market.as_mut().unwrap().stocks;
-        if let Some(s) = stocks
-            .iter_mut()
-            .find(|s| s.nation == id && s.commodity == c)
-        {
-            s.quantity = 1000.0;
-        } else {
-            stocks.push(resources::Stock {
-                nation: id,
-                commodity: c,
-                quantity: 1000.0,
-                reserve_target: 0.0,
-            });
-        }
-    }
-    w.resources
-        .market
-        .as_mut()
-        .unwrap()
-        .stocks
-        .sort_by_key(|s| (s.nation, s.commodity));
-    let allocations = w.nation(id).budget_for(w.year).allocations;
-    let mut departments = w.nation(id).program_budget.as_ref().unwrap().departments;
-    departments[BUDGET_INDUSTRY] = [1000, 1000, 1000, 6000, 1000];
-    apply_command(
-        &mut w,
-        &Command::SetProgramBudget {
-            nation: id,
-            fiscal_year: 1990,
-            allocations,
-            departments,
-        },
-    )
-    .unwrap();
-    apply_command(
-        &mut w,
-        &Command::StartProject {
-            nation: id,
-            district: district.clone(),
-            kind: ProjectKind::Warehouse,
-        },
-    )
-    .unwrap();
-    for _ in 0..20 {
-        programs::begin_day(&mut w);
-        production::tick_day(&mut w);
-        programs::finish_day(&mut w);
-        clock::advance_date(&mut w);
-    }
-    let warehouse = production::projects_for(&w, id).next().unwrap().clone();
-    let spent = w.production.industry.projects[&warehouse.id].spent_bn;
-    assert!(spent > 0.0 && warehouse.progress_days > 0.0);
-    assert!(warehouse
-        .reason
-        .as_ref()
-        .is_some_and(|r| r.contains("capital-goods")));
+    let district = w.districts.iter().find(|(_, owner)| **owner == id).unwrap().0.clone();
+    apply_command(&mut w, &Command::StartProject {
+        nation: id, district: district.clone(), kind: ProjectKind::Warehouse,
+    }).unwrap();
+    let project_id = w.production.projects[0].id;
+    // An older save has partially paid work and historical input receipts.
+    // It has no remaining goods stock or machinery supplier.
+    let p = &mut w.production.projects[0];
+    p.progress_days = p.total_days as f64 / 6.0;
+    p.resources_used = [1.0; 12];
+    let paid = industry::work_cost_bn(ProjectKind::Warehouse) / 6.0;
+    let f = w.production.industry.projects.get_mut(&project_id).unwrap();
+    f.spent_bn = paid;
+    f.contract_cost_bn = None;
+    f.goods_used = industry::Goods { intermediates: 2.0, capital_goods: 1.0 };
+    programs::set_construction_budget(&mut w, id, 0.00001).unwrap();
     w = load(&save(&w)).unwrap();
-    for _ in 0..10 {
-        clock::advance_date(&mut w);
-    }
-    economic_ai::evaluate(&mut w, id); // normal priced funding reprioritization
-    assert_eq!(
-        w.nation(id).program_budget.as_ref().unwrap().departments[BUDGET_INDUSTRY][0],
-        6000,
-        "fund the missing raw-only prerequisite rather than repeating the blocked warehouse target"
-    );
-    assert_eq!(
-        w.economic_ai.nations[&id].project, None,
-        "an unqueued prerequisite must not display the older warehouse's id"
-    );
-    for _ in 0..30 {
-        clock::advance_date(&mut w);
-    }
-    let pc = w.nation(id).political_capital;
-    let cash = w.nation(id).treasury_bn;
+    for _ in 0..30 { clock::advance_date(&mut w); }
     economic_ai::evaluate(&mut w, id);
-    assert_eq!(production::projects_for(&w, id).count(), 2);
-    assert!(production::projects_for(&w, id).any(|p| p.kind == ProjectKind::MachineryWorks));
-    assert_eq!(
-        w.economic_ai.nations[&id].project,
-        production::projects_for(&w, id)
-            .find(|p| p.kind == ProjectKind::MachineryWorks)
-            .map(|p| p.id)
-    );
-    let retained = w
-        .production
-        .projects
-        .iter()
-        .find(|p| p.id == warehouse.id)
-        .unwrap();
-    assert_eq!(retained.progress_days, warehouse.progress_days);
-    assert_eq!(
-        w.production.industry.projects[&warehouse.id].spent_bn,
-        spent
-    );
-    assert_eq!(
-        w.nation(id).treasury_bn,
-        cash,
-        "neither refunds nor free project funding"
-    );
-    assert_eq!(
-        w.nation(id).political_capital,
-        pc - production::catalog(ProjectKind::MachineryWorks).political_cost
-    );
-    for _ in 0..30 {
-        clock::advance_date(&mut w);
-    }
-    economic_ai::evaluate(&mut w, id);
-    assert_eq!(w.nation(id).program_budget.as_ref().unwrap().departments[BUDGET_INDUSTRY][0],6000,
-        "do not oscillate the funding target back to the blocked parent while its prerequisite is queued");
-    assert_eq!(
-        production::projects_for(&w, id).count(),
-        2,
-        "the two-project bound is retained"
-    );
+    assert_eq!(production::projects_for(&w, id).count(), 1);
+    assert_eq!(w.economic_ai.nations[&id].project, Some(project_id));
+    assert_eq!(w.production.industry.projects[&project_id].spent_bn, paid);
+    assert_eq!(spheres_sim::commerce::demand(&w, id, spheres_sim::commerce::Good::CapitalGoods), 0.0);
+    let resources_before = w.resources.clone();
+    let progress_before = w.production.projects[0].progress_days;
     programs::begin_day(&mut w);
     production::tick_day(&mut w);
-    assert!(
-        production::projects_for(&w, id)
-            .any(|p| p.kind == ProjectKind::MachineryWorks && p.progress_days > 0.0),
-        "the prerequisite must perform real paid work without manufactured capital inputs"
-    );
+    let f = &w.production.industry.projects[&project_id];
+    assert!(f.spent_bn > paid && f.spent_bn <= paid + 0.00001 + 1e-12);
+    assert_eq!(f.goods_used.intermediates, 2.0);
+    assert_eq!(f.goods_used.capital_goods, 1.0);
+    assert!(w.production.projects[0].progress_days > progress_before);
+    assert_eq!(w.production.projects[0].resources_used, [1.0; 12]);
+    assert_eq!(serde_json::to_string(&w.resources).unwrap(), serde_json::to_string(&resources_before).unwrap());
+    assert_eq!(industry::site_level(&w, &district, ProjectKind::MachineryWorks), 0);
+    let mut resumed = load(&save(&w)).unwrap();
+    for _ in 0..3 {
+        clock::advance_date(&mut w);
+        clock::advance_date(&mut resumed);
+        programs::begin_day(&mut w);
+        programs::begin_day(&mut resumed);
+        production::tick_day(&mut w);
+        production::tick_day(&mut resumed);
+    }
+    assert_eq!(save(&w), save(&resumed));
 }
-
 #[test]
-fn warehouse_rescue_obeys_power_processing_ownership_pc_and_queue_constraints() {
+fn a_queued_warehouse_never_spawns_a_material_prerequisite() {
     use spheres_sim::industry;
     let id = NationId::USA;
     let mut base = world();
@@ -1241,11 +1133,11 @@ fn warehouse_rescue_obeys_power_processing_ownership_pc_and_queue_constraints() 
         economic_ai::evaluate(&mut w, id);
         assert!(
             !production::projects_for(&w, id).any(|p| p.kind == ProjectKind::MachineryWorks),
-            "rescue bypassed {mode}"
+            "warehouse spawned a material prerequisite in {mode}"
         );
         assert!(
             production::projects_for(&w, id).count() <= 2,
-            "rescue exceeded queue in {mode}"
+            "warehouse exceeded queue in {mode}"
         );
         assert_eq!(industry::site_level(&w, &d, ProjectKind::MachineryWorks), 0);
         assert_eq!(industry::snapshot(&w, id).goods.capital_goods, 0.0);

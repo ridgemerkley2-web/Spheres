@@ -270,10 +270,10 @@ function provinceRenderFixture() {
   // province drawer through a full parent replacement.
   c.MapControls={html:()=>'',bind(){}};
   c.GL={ready:true,reason:''};
-  for(const name of ['globeBoot','applyCam','glShimmerKick','camWork','invalidateProgramPreview','renderMapCity'])c[name]=()=>{};
+  for(const name of ['globeBoot','applyCam','glShimmerKick','camWork','invalidateProgramPreview','renderMapCity','constructionInvalidatePreview'])c[name]=()=>{};
   c.globeReadout=()=>'';c.rglyph=()=>'';c.resHue=()=>'';
   c.nationOfDistrict=id=>id==='US-CA'?'USA':'France';
-  c.nationById=id=>({id,name:id});c.escText=c.economyText;c.provinceDepositHtml=()=>'';
+  c.nationById=id=>({id,name:id});c.escText=c.economyText;c.logisticsEscAttr=c.economyText;c.provinceDepositHtml=()=>'';
   c.fmt={pop:String,signed:String,pct:String};
   vm.runInContext(`const MAP_MODES={political:{label:'Political',legend:[]}};
     const ui={mapMode:'political',resOverlay:false,cam:{cx:0,cy:0,k:1},picked:['USA']};

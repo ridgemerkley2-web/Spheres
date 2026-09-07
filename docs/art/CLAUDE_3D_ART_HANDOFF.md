@@ -1,0 +1,15 @@
+# Copy this assignment to Claude
+
+Build the complete physical 3D asset library for Spheres using `docs/art/3D_MODEL_MASTER_ROADMAP.md` and `docs/art/3D_ASSET_BACKLOG.csv` as the production brief. I want actual editable meshes and working in-game presentation, not just concept images or mockups.
+
+First read the repository's current instructions and inspect the working tree. Preserve all existing work. Your 46-model catalogue from commit `092569227023ff4278a5d699018af46bd39c7c94` has already been imported alongside the configurable ground designer; do not overwrite that integration. The current designer has nine platforms, twelve/thirteen independent specifications, component picking and GLB export. The construction registry has thirteen project kinds.
+
+Begin with phase P0, then proceed through reviewable batches. P0 must deliver a polished main battle tank, wheeled APC, arms plant with construction stages, and representative town block, plus a manifest and a proven source-to-runtime pipeline. Use the existing renderers or a deliberately implemented local adapter: the game does not currently load arbitrary textured Blender GLBs just because they exist in a folder. Preserve current procedural assets as fallbacks until replacements work.
+
+Use metre-based geometry with +Y up and +Z forward, modular named parts, stable existing game IDs, LODs, clear pivots and semantic selection metadata. Deliver editable source/generator, self-contained GLBs, runtime output, neutral-view screenshots, game-context screenshots, provenance and automated validation. Improve silhouettes, bevels, surface layers, tracks/wheels, access panels, optics and mission equipment. Show meaningful visible differences when specifications change. Keep original game-art designs distinct from sourced representations of named real equipment.
+
+After the first accepted slice, prioritize all nine ground vehicles and their component variants, then cities and all thirteen construction representations, then refinement of the full existing arsenal. Aircraft, ships, support vehicles, civilian facilities, logistics, space, regional architecture and page scenes follow in the roadmap's dependency order. Reuse assemblies; do not produce hundreds of unrelated one-off meshes.
+
+Keep game rules, research unlocks, prices, quantities and saved designs unchanged during art work. Future visual families are not permission to invent gameplay. Do not fabricate geographic data, military performance values or building capacity. Test actual game integration, small-window usability, reduced motion, missing-WebGL fallback and performance. Do not let background scenes obscure controls.
+
+For each batch, report exactly what is complete, the files/commit and regeneration commands, screenshots, measured geometry/material/memory budgets, checks run, limitations and next batch. Update the backlog without treating a finished mesh as already integrated. Preserve the user's running campaign when launching previews. Start with the P0 work now.
