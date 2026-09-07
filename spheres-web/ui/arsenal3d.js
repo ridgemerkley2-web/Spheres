@@ -461,29 +461,60 @@
   /// Mount everything under `root` that asked for a model. Called after each
   /// panel render, because the panels replace their own innerHTML and a mounted
   /// canvas does not survive that.
+  /// The mount half of `scan`, shared by the immediate and the deferred path.
+  const pending = new Set();
+  function attach(canvas) {
+    pending.delete(canvas);
+    const ok = mount(canvas, canvas.getAttribute("data-kit3d"),
+      { cls: canvas.getAttribute("data-kit3d-class") || "" });
+    if (!ok) { canvas.remove(); return false; }
+    const holder = canvas.closest("[data-class-mark], .work-card, .factory-ledger-row")
+      || canvas.parentElement;
+    if (holder) holder.classList.add("has-kit3d");
+    return true;
+  }
+  const observer = typeof IntersectionObserver === "function"
+    ? new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        observer.unobserve(entry.target);
+        if (entry.target.isConnected) attach(entry.target);
+      });
+    }, { rootMargin: "200px" })
+    : null;
+
+  /// MOUNT WHAT CAN BE SEEN, DEFER THE REST.
+  ///
+  /// Measured on this machine: a 46-card equipment catalogue cost 298 ms to
+  /// open — 6.5 ms a card to build, upload and draw — because scan() mounted
+  /// every canvas it found whether or not anyone could see it. The deck went
+  /// from 20,780 triangles to 272,491 in the fidelity pass, and that turned a
+  /// hitch nobody noticed into one they would. Per-FRAME cost was never the
+  /// problem: the designer submits 94,576 triangles a frame and a card that is
+  /// not being hovered submits none at all.
+  ///
+  /// So a card in view mounts now, synchronously, exactly as before — nothing
+  /// that is visible waits on an observer callback, which also keeps the
+  /// bench and the tests deterministic. A card below the fold is observed and
+  /// mounts when it scrolls in, and keeps its class glyph until it does.
   function scan(where) {
     if (!init()) return 0;
     const host = where || document;
     const list = host.querySelectorAll ? host.querySelectorAll("canvas[data-kit3d]") : [];
     let n = 0;
+    const near = (canvas) => {
+      const r = canvas.getBoundingClientRect();
+      const h = root.innerHeight || 0, w = root.innerWidth || 0;
+      // A margin of one viewport, so scrolling meets meshes that are ready.
+      return r.bottom > -h && r.top < h * 2 && r.right > -w && r.left < w * 2;
+    };
     list.forEach((canvas) => {
-      if (mounted.has(canvas)) return;
-      const ok = mount(canvas, canvas.getAttribute("data-kit3d"),
-        { cls: canvas.getAttribute("data-kit3d-class") || "" });
-      if (ok) {
-        n += 1;
-        // The card, whatever the card turns out to be. The three named
-        // selectors are the panel's own; anything else -- the bench in
-        // tools/arsenal, a future card type -- gets its immediate parent, so a
-        // container never has to know it is holding a model to make one turn.
-        const holder = canvas.closest("[data-class-mark], .work-card, .factory-ledger-row")
-          || canvas.parentElement;
-        if (holder) holder.classList.add("has-kit3d");
-      } else {
-        canvas.remove();
-      }
+      if (mounted.has(canvas) || pending.has(canvas)) return;
+      if (near(canvas)) { if (attach(canvas)) n += 1; return; }
+      if (!observer) { if (attach(canvas)) n += 1; return; }
+      pending.add(canvas);
+      observer.observe(canvas);
     });
-    // Anything that scrolled away and was replaced is no longer in the document.
     if (mounted.size > 400) {
       mounted.forEach((v, k) => { if (!k.isConnected) mounted.delete(k); });
     }
