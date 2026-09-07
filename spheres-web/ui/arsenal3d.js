@@ -41,6 +41,7 @@
   precision highp float;
   in vec3 vNrm; in vec3 vCol; in vec3 vPos;
   uniform vec3 uEye;
+  uniform float uHeight;
   out vec4 outColor;
   void main() {
     vec3 N = normalize(vNrm);
@@ -49,17 +50,33 @@
     vec3 key = normalize(vec3(-0.45, 0.82, 0.55));
     vec3 fil = normalize(vec3(0.7, 0.15, -0.5));
     float sky = 0.5 + 0.5 * N.y;
-    vec3 c = vCol * (0.26 + 0.24 * sky);
-    c += vCol * max(dot(N, key), 0.0) * 0.86;
-    c += vCol * max(dot(N, fil), 0.0) * 0.22 * vec3(0.75, 0.85, 1.0);
+    // AMBIENT IS THE ENEMY OF A BEVEL. The models carry chamfers, panel lines
+    // and weld beads now, and none of them read if a flat ambient term is doing
+    // most of the lighting: a 47,000-triangle tank came out looking like a
+    // 5,000-triangle one. Ambient is down and the key is up, which costs
+    // nothing and is what makes the geometry visible at all.
+    vec3 c = vCol * (0.19 + 0.19 * sky);
+    c += vCol * max(dot(N, key), 0.0) * 1.06;
+    c += vCol * max(dot(N, fil), 0.0) * 0.20 * vec3(0.75, 0.85, 1.0);
+    // Contact darkening. Not real occlusion — there is no neighbour
+    // information here — but everything in this deck stands on y=0, so the
+    // bottom of a hull IS the shadowed part, and grounding it stops a vehicle
+    // looking like it is floating over its own tracks.
+    float low = 1.0 - smoothstep(0.0, max(uHeight, 0.001) * 0.42, vPos.y);
+    c *= 1.0 - 0.22 * low;
     float rim = pow(1.0 - max(dot(N, V), 0.0), 3.0);
-    c += rim * 0.30 * vec3(0.62, 0.76, 0.95);
-    float spec = pow(max(dot(reflect(-key, N), V), 0.0), 24.0);
-    c += spec * 0.16;
+    c += rim * 0.34 * vec3(0.62, 0.76, 0.95);
+    // Specular by brightness rather than by material, because there is no
+    // material channel: rubber, track and tyre are the dark colours in every
+    // palette here and they should stay matte, while steel, glass and lens are
+    // the bright ones and should catch a highlight.
+    float lum = dot(vCol, vec3(0.299, 0.587, 0.114));
+    float spec = pow(max(dot(reflect(-key, N), V), 0.0), 42.0);
+    c += spec * (0.06 + 0.34 * lum);
     outColor = vec4(c, 1.0);
   }`;
 
-  let gl = null, prog = null, uMVP = null, uEye = null, glCanvas = null;
+  let gl = null, prog = null, uMVP = null, uEye = null, uHeight = null, glCanvas = null;
   let lost = false;
   const sprites = new Map();
   let available = null;
@@ -82,6 +99,7 @@
     if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return false;
     uMVP = gl.getUniformLocation(prog, "uMVP");
     uEye = gl.getUniformLocation(prog, "uEye");
+    uHeight = gl.getUniformLocation(prog, "uHeight");
     gl.enable(gl.DEPTH_TEST);
     // No back-face culling, deliberately. Three parts of the deck are open
     // shells — a dish is a paraboloid with no back, a rotodome is a disc, a
@@ -321,6 +339,8 @@
     gl.useProgram(prog);
     gl.uniformMatrix4fv(uMVP, false, mvp);
     gl.uniform3f(uEye, eye[0] + entry.centre[0], eye[1] + entry.centre[1], eye[2] + entry.centre[2]);
+    gl.uniform1f(uHeight, entry.geom.bounds ? (entry.geom.bounds.max[1] - entry.geom.bounds.min[1])
+      : (entry.geom.max ? entry.geom.max[1] - entry.geom.min[1] : 2.0));
     gl.bindVertexArray(entry.vao);
     gl.drawArrays(gl.TRIANGLES, 0, entry.count);
     gl.bindVertexArray(null);
