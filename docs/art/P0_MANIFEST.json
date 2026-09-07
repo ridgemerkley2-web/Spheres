@@ -26,10 +26,10 @@
       "generator": "EquipmentMesh.build({platform})",
       "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-tank-balanced.glb",
-      "glb_bytes": 4775616,
+      "glb_bytes": 5205632,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 44172
+        "LOD0": 47288
       },
       "parts": 21,
       "slots": [
@@ -77,10 +77,10 @@
       "generator": "EquipmentMesh.build({platform})",
       "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-tank-heavy.glb",
-      "glb_bytes": 5331628,
+      "glb_bytes": 5672220,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 48148
+        "LOD0": 50816
       },
       "parts": 21,
       "slots": [
@@ -128,10 +128,10 @@
       "generator": "EquipmentMesh.build({platform})",
       "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-tank-light.glb",
-      "glb_bytes": 4777020,
+      "glb_bytes": 5207036,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 44172
+        "LOD0": 47288
       },
       "parts": 21,
       "slots": [
@@ -179,10 +179,10 @@
       "generator": "EquipmentMesh.build({platform})",
       "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-tank-destroyer.glb",
-      "glb_bytes": 4762692,
+      "glb_bytes": 5150368,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 44172
+        "LOD0": 47288
       },
       "parts": 21,
       "slots": [
@@ -230,10 +230,10 @@
       "generator": "EquipmentMesh.build({platform})",
       "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-ground-ifv.glb",
-      "glb_bytes": 1719668,
+      "glb_bytes": 2246056,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 15872
+        "LOD0": 20746
       },
       "parts": 28,
       "slots": [
@@ -255,17 +255,17 @@
       "pivot": "hull centreline, ground contact at Y=0",
       "bounds": {
         "min": [
-          -1.695,
+          -1.608,
           0,
           -3.095
         ],
         "max": [
-          1.695,
+          1.608,
           2.84,
           3.35
         ],
         "size": [
-          3.39,
+          3.215,
           2.84,
           6.445
         ]
@@ -289,10 +289,10 @@
       "generator": "EquipmentMesh.build({platform})",
       "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-ground-apc.glb",
-      "glb_bytes": 1739696,
+      "glb_bytes": 2241464,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 16064
+        "LOD0": 20710
       },
       "parts": 22,
       "slots": [
@@ -321,12 +321,12 @@
         "max": [
           1.49,
           3.015,
-          2.89
+          2.91
         ],
         "size": [
           2.98,
           3.015,
-          5.86
+          5.88
         ]
       },
       "basis": "fictional — original game art, not a named real vehicle",
@@ -348,10 +348,10 @@
       "generator": "EquipmentMesh.build({platform})",
       "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-ground-recon.glb",
-      "glb_bytes": 1662780,
+      "glb_bytes": 1993904,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 15352
+        "LOD0": 18418
       },
       "parts": 22,
       "slots": [
@@ -380,12 +380,12 @@
         "max": [
           1.36,
           2.705,
-          2.365
+          2.385
         ],
         "size": [
           2.72,
           2.705,
-          4.59
+          4.61
         ]
       },
       "basis": "fictional — original game art, not a named real vehicle",
@@ -407,10 +407,10 @@
       "generator": "EquipmentMesh.build({platform})",
       "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-ground-artillery.glb",
-      "glb_bytes": 1800248,
+      "glb_bytes": 2254492,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 16616
+        "LOD0": 20822
       },
       "parts": 30,
       "slots": [
@@ -432,18 +432,18 @@
       "pivot": "hull centreline, ground contact at Y=0",
       "bounds": {
         "min": [
-          -1.845,
+          -1.757,
           0,
           -3.675
         ],
         "max": [
-          1.845,
-          3.124,
+          1.758,
+          3.139,
           3.95
         ],
         "size": [
-          3.69,
-          3.124,
+          3.515,
+          3.139,
           7.625
         ]
       },
@@ -466,10 +466,10 @@
       "generator": "EquipmentMesh.build({platform})",
       "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
       "glb": "spheres-web/ui/equipment-models/spheres-ground-air-defense.glb",
-      "glb_bytes": 1697568,
+      "glb_bytes": 2052020,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 15668
+        "LOD0": 18950
       },
       "parts": 28,
       "slots": [
@@ -491,17 +491,17 @@
       "pivot": "hull centreline, ground contact at Y=0",
       "bounds": {
         "min": [
-          -1.695,
+          -1.608,
           0,
           -2.875
         ],
         "max": [
-          1.695,
+          1.608,
           3.599,
           3.06
         ],
         "size": [
-          3.39,
+          3.215,
           3.599,
           5.935
         ]
@@ -563,41 +563,41 @@
       ],
       "lod": {
         "LOD0": {
-          "min": 2400,
-          "max": 5262
+          "min": 8846,
+          "max": 23496
         },
         "LOD1": {
-          "min": 196,
-          "max": 600
+          "min": 244,
+          "max": 708
         }
       },
-      "parts": 22,
+      "parts": 28,
       "materials": "vertex colour only",
       "pivot": "footprint centre at grade, Y=0",
       "bounds": {
         "min": [
-          -29,
+          -32,
           0,
-          -20.099
+          -23
         ],
         "max": [
-          29,
+          32,
           11.78,
-          22.2
+          23
         ],
         "size": [
-          58,
+          64,
           11.78,
-          42.299
+          46
         ]
       },
       "basis": "fictional — representative industrial scenery, no sourced building",
-      "placeholder": true,
+      "placeholder": false,
       "era": [
         "1990-baseline"
       ],
       "validation": "tools/ui/check_site_mesh.cjs",
-      "milestone": "P0 (placeholder massing, art pass pending in P2)",
+      "milestone": "P0",
       "units": "metres",
       "axes": "+X right, +Y up, +Z forward",
       "handedness": "right"
@@ -647,41 +647,41 @@
       ],
       "lod": {
         "LOD0": {
-          "min": 2322,
-          "max": 5228
+          "min": 8066,
+          "max": 32042
         },
         "LOD1": {
-          "min": 196,
-          "max": 630
+          "min": 180,
+          "max": 546
         }
       },
-      "parts": 22,
+      "parts": 35,
       "materials": "vertex colour only",
       "pivot": "footprint centre at grade, Y=0",
       "bounds": {
         "min": [
-          -30,
+          -33,
           0,
-          -21.039
+          -23
         ],
         "max": [
-          30,
-          13.2,
-          24
+          33,
+          14.19,
+          23.16
         ],
         "size": [
-          60,
-          13.2,
-          45.039
+          66,
+          14.19,
+          46.16
         ]
       },
       "basis": "fictional — representative industrial scenery, no sourced building",
-      "placeholder": true,
+      "placeholder": false,
       "era": [
         "1990-baseline"
       ],
       "validation": "tools/ui/check_site_mesh.cjs",
-      "milestone": "P0 (placeholder massing, art pass pending in P2)",
+      "milestone": "P0",
       "units": "metres",
       "axes": "+X right, +Y up, +Z forward",
       "handedness": "right"
@@ -731,41 +731,41 @@
       ],
       "lod": {
         "LOD0": {
-          "min": 2602,
-          "max": 5416
+          "min": 9390,
+          "max": 31292
         },
         "LOD1": {
-          "min": 196,
-          "max": 606
+          "min": 276,
+          "max": 664
         }
       },
-      "parts": 22,
+      "parts": 27,
       "materials": "vertex colour only",
       "pivot": "footprint centre at grade, Y=0",
       "bounds": {
         "min": [
-          -28,
+          -33,
           0,
-          -20.099
+          -24
         ],
         "max": [
-          28,
-          15,
-          22.2
+          33,
+          24.2,
+          24
         ],
         "size": [
-          56,
-          15,
-          42.299
+          66,
+          24.2,
+          48
         ]
       },
       "basis": "fictional — representative industrial scenery, no sourced building",
-      "placeholder": true,
+      "placeholder": false,
       "era": [
         "1990-baseline"
       ],
       "validation": "tools/ui/check_site_mesh.cjs",
-      "milestone": "P0 (placeholder massing, art pass pending in P2)",
+      "milestone": "P0",
       "units": "metres",
       "axes": "+X right, +Y up, +Z forward",
       "handedness": "right"
@@ -815,41 +815,41 @@
       ],
       "lod": {
         "LOD0": {
-          "min": 2146,
-          "max": 5344
+          "min": 8066,
+          "max": 25520
         },
         "LOD1": {
-          "min": 196,
-          "max": 630
+          "min": 180,
+          "max": 532
         }
       },
-      "parts": 22,
+      "parts": 27,
       "materials": "vertex colour only",
       "pivot": "footprint centre at grade, Y=0",
       "bounds": {
         "min": [
-          -29,
+          -33,
           0,
-          -21.039
+          -23
         ],
         "max": [
-          29,
-          13.3,
-          22.8
+          33,
+          15.7,
+          23.18
         ],
         "size": [
-          58,
-          13.3,
-          43.839
+          66,
+          15.7,
+          46.18
         ]
       },
       "basis": "fictional — representative industrial scenery, no sourced building",
-      "placeholder": true,
+      "placeholder": false,
       "era": [
         "1990-baseline"
       ],
       "validation": "tools/ui/check_site_mesh.cjs",
-      "milestone": "P0 (placeholder massing, art pass pending in P2)",
+      "milestone": "P0",
       "units": "metres",
       "axes": "+X right, +Y up, +Z forward",
       "handedness": "right"
@@ -899,32 +899,32 @@
       ],
       "lod": {
         "LOD0": {
-          "min": 2274,
-          "max": 6356
+          "min": 8202,
+          "max": 28376
         },
         "LOD1": {
-          "min": 204,
-          "max": 542
+          "min": 180,
+          "max": 422
         }
       },
-      "parts": 25,
+      "parts": 26,
       "materials": "vertex colour only",
       "pivot": "footprint centre at grade, Y=0",
       "bounds": {
         "min": [
           -33,
           0,
-          -26.2
+          -24
         ],
         "max": [
-          33,
+          33.2,
           17.6,
-          24.6
+          24
         ],
         "size": [
-          66,
+          66.2,
           17.6,
-          50.8
+          48
         ]
       },
       "basis": "fictional — representative industrial scenery, no sourced building",
@@ -983,41 +983,41 @@
       ],
       "lod": {
         "LOD0": {
-          "min": 2458,
-          "max": 5388
+          "min": 9366,
+          "max": 30468
         },
         "LOD1": {
-          "min": 196,
-          "max": 662
+          "min": 204,
+          "max": 582
         }
       },
-      "parts": 22,
+      "parts": 32,
       "materials": "vertex colour only",
       "pivot": "footprint centre at grade, Y=0",
       "bounds": {
         "min": [
-          -31,
+          -33,
           0,
-          -21.039
+          -24
         ],
         "max": [
-          31,
-          14,
-          22.8
+          33,
+          16.79,
+          24
         ],
         "size": [
-          62,
-          14,
-          43.839
+          66,
+          16.79,
+          48
         ]
       },
       "basis": "fictional — representative industrial scenery, no sourced building",
-      "placeholder": true,
+      "placeholder": false,
       "era": [
         "1990-baseline"
       ],
       "validation": "tools/ui/check_site_mesh.cjs",
-      "milestone": "P0 (placeholder massing, art pass pending in P2)",
+      "milestone": "P0",
       "units": "metres",
       "axes": "+X right, +Y up, +Z forward",
       "handedness": "right"
@@ -1067,41 +1067,41 @@
       ],
       "lod": {
         "LOD0": {
-          "min": 2550,
-          "max": 5512
+          "min": 8394,
+          "max": 31760
         },
         "LOD1": {
-          "min": 204,
-          "max": 578
+          "min": 196,
+          "max": 648
         }
       },
-      "parts": 22,
+      "parts": 32,
       "materials": "vertex colour only",
       "pivot": "footprint centre at grade, Y=0",
       "bounds": {
         "min": [
-          -31,
+          -35,
           0,
-          -22
+          -25
         ],
         "max": [
-          31,
-          22.6,
-          24.4
+          35,
+          22.7,
+          25
         ],
         "size": [
-          62,
-          22.6,
-          46.4
+          70,
+          22.7,
+          50
         ]
       },
       "basis": "fictional — representative industrial scenery, no sourced building",
-      "placeholder": true,
+      "placeholder": false,
       "era": [
         "1990-baseline"
       ],
       "validation": "tools/ui/check_site_mesh.cjs",
-      "milestone": "P0 (placeholder massing, art pass pending in P2)",
+      "milestone": "P0",
       "units": "metres",
       "axes": "+X right, +Y up, +Z forward",
       "handedness": "right"
@@ -1151,41 +1151,41 @@
       ],
       "lod": {
         "LOD0": {
-          "min": 2406,
-          "max": 5352
+          "min": 8746,
+          "max": 27510
         },
         "LOD1": {
-          "min": 204,
-          "max": 590
+          "min": 220,
+          "max": 640
         }
       },
-      "parts": 22,
+      "parts": 28,
       "materials": "vertex colour only",
       "pivot": "footprint centre at grade, Y=0",
       "bounds": {
         "min": [
-          -31,
+          -34,
           0,
-          -22
+          -24
         ],
         "max": [
-          31,
-          22.6,
-          24.4
+          34,
+          22.7,
+          24
         ],
         "size": [
-          62,
-          22.6,
-          46.4
+          68,
+          22.7,
+          48
         ]
       },
       "basis": "fictional — representative industrial scenery, no sourced building",
-      "placeholder": true,
+      "placeholder": false,
       "era": [
         "1990-baseline"
       ],
       "validation": "tools/ui/check_site_mesh.cjs",
-      "milestone": "P0 (placeholder massing, art pass pending in P2)",
+      "milestone": "P0",
       "units": "metres",
       "axes": "+X right, +Y up, +Z forward",
       "handedness": "right"
@@ -1235,41 +1235,41 @@
       ],
       "lod": {
         "LOD0": {
-          "min": 2480,
-          "max": 5374
+          "min": 8802,
+          "max": 29026
         },
         "LOD1": {
-          "min": 204,
-          "max": 616
+          "min": 198,
+          "max": 674
         }
       },
-      "parts": 22,
+      "parts": 26,
       "materials": "vertex colour only",
       "pivot": "footprint centre at grade, Y=0",
       "bounds": {
         "min": [
-          -33,
+          -36,
           0,
-          -22
+          -25
         ],
         "max": [
-          33,
+          36,
           13.9,
-          23.4
+          25
         ],
         "size": [
-          66,
+          72,
           13.9,
-          45.4
+          50
         ]
       },
       "basis": "fictional — representative industrial scenery, no sourced building",
-      "placeholder": true,
+      "placeholder": false,
       "era": [
         "1990-baseline"
       ],
       "validation": "tools/ui/check_site_mesh.cjs",
-      "milestone": "P0 (placeholder massing, art pass pending in P2)",
+      "milestone": "P0",
       "units": "metres",
       "axes": "+X right, +Y up, +Z forward",
       "handedness": "right"
@@ -1319,41 +1319,41 @@
       ],
       "lod": {
         "LOD0": {
-          "min": 2436,
-          "max": 5346
+          "min": 8560,
+          "max": 26746
         },
         "LOD1": {
-          "min": 196,
-          "max": 568
+          "min": 188,
+          "max": 566
         }
       },
-      "parts": 21,
+      "parts": 25,
       "materials": "vertex colour only",
       "pivot": "footprint centre at grade, Y=0",
       "bounds": {
         "min": [
-          -32,
+          -35,
           0,
-          -21.039
+          -24
         ],
         "max": [
-          32,
-          12.6,
-          22.8
+          35,
+          16.39,
+          24
         ],
         "size": [
-          64,
-          12.6,
-          43.839
+          70,
+          16.39,
+          48
         ]
       },
       "basis": "fictional — representative industrial scenery, no sourced building",
-      "placeholder": true,
+      "placeholder": false,
       "era": [
         "1990-baseline"
       ],
       "validation": "tools/ui/check_site_mesh.cjs",
-      "milestone": "P0 (placeholder massing, art pass pending in P2)",
+      "milestone": "P0",
       "units": "metres",
       "axes": "+X right, +Y up, +Z forward",
       "handedness": "right"
@@ -1403,41 +1403,41 @@
       ],
       "lod": {
         "LOD0": {
-          "min": 2482,
-          "max": 5432
+          "min": 9044,
+          "max": 26056
         },
         "LOD1": {
-          "min": 196,
-          "max": 586
+          "min": 220,
+          "max": 610
         }
       },
-      "parts": 22,
+      "parts": 27,
       "materials": "vertex colour only",
       "pivot": "footprint centre at grade, Y=0",
       "bounds": {
         "min": [
-          -29,
+          -31,
           0,
-          -20.099
+          -22
         ],
         "max": [
-          29,
+          31,
           11.78,
-          22.2
+          22
         ],
         "size": [
-          58,
+          62,
           11.78,
-          42.299
+          44
         ]
       },
       "basis": "fictional — representative industrial scenery, no sourced building",
-      "placeholder": true,
+      "placeholder": false,
       "era": [
         "1990-baseline"
       ],
       "validation": "tools/ui/check_site_mesh.cjs",
-      "milestone": "P0 (placeholder massing, art pass pending in P2)",
+      "milestone": "P0",
       "units": "metres",
       "axes": "+X right, +Y up, +Z forward",
       "handedness": "right"
@@ -1487,41 +1487,41 @@
       ],
       "lod": {
         "LOD0": {
-          "min": 2482,
-          "max": 5444
+          "min": 8882,
+          "max": 25796
         },
         "LOD1": {
-          "min": 196,
-          "max": 610
+          "min": 208,
+          "max": 682
         }
       },
-      "parts": 22,
+      "parts": 30,
       "materials": "vertex colour only",
       "pivot": "footprint centre at grade, Y=0",
       "bounds": {
         "min": [
-          -29,
+          -31,
           0,
-          -20.099
+          -22
         ],
         "max": [
-          29,
+          31,
           11.78,
-          22.2
+          22
         ],
         "size": [
-          58,
+          62,
           11.78,
-          42.299
+          44
         ]
       },
       "basis": "fictional — representative industrial scenery, no sourced building",
-      "placeholder": true,
+      "placeholder": false,
       "era": [
         "1990-baseline"
       ],
       "validation": "tools/ui/check_site_mesh.cjs",
-      "milestone": "P0 (placeholder massing, art pass pending in P2)",
+      "milestone": "P0",
       "units": "metres",
       "axes": "+X right, +Y up, +Z forward",
       "handedness": "right"
@@ -1571,41 +1571,41 @@
       ],
       "lod": {
         "LOD0": {
-          "min": 2110,
-          "max": 5030
+          "min": 7250,
+          "max": 22388
         },
         "LOD1": {
-          "min": 188,
-          "max": 576
+          "min": 164,
+          "max": 494
         }
       },
-      "parts": 21,
+      "parts": 25,
       "materials": "vertex colour only",
       "pivot": "footprint centre at grade, Y=0",
       "bounds": {
         "min": [
-          -23,
+          -25,
           0,
-          -17.279
+          -19
         ],
         "max": [
-          24.12,
+          25.56,
           11.78,
-          21.64
+          19
         ],
         "size": [
-          47.12,
+          50.56,
           11.78,
-          38.919
+          38
         ]
       },
       "basis": "fictional — representative industrial scenery, no sourced building",
-      "placeholder": true,
+      "placeholder": false,
       "era": [
         "1990-baseline"
       ],
       "validation": "tools/ui/check_site_mesh.cjs",
-      "milestone": "P0 (placeholder massing, art pass pending in P2)",
+      "milestone": "P0",
       "units": "metres",
       "axes": "+X right, +Y up, +Z forward",
       "handedness": "right"
@@ -1622,10 +1622,10 @@
       "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
       "glb": null,
       "lod": {
-        "LOD0": 75078,
-        "LOD1": 3718
+        "LOD0": 198462,
+        "LOD1": 3422
       },
-      "parts": 17,
+      "parts": 18,
       "lots": 16,
       "materials": "vertex colour only",
       "pivot": "tile centre at grade, Y=0",
@@ -1637,12 +1637,12 @@
         ],
         "max": [
           74,
-          15.48,
+          15.595,
           52
         ],
         "size": [
           148,
-          15.48,
+          15.595,
           104
         ]
       },
@@ -1666,10 +1666,10 @@
       "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
       "glb": null,
       "lod": {
-        "LOD0": 77560,
-        "LOD1": 3586
+        "LOD0": 212820,
+        "LOD1": 3330
       },
-      "parts": 16,
+      "parts": 17,
       "lots": 15,
       "materials": "vertex colour only",
       "pivot": "tile centre at grade, Y=0",
@@ -1681,12 +1681,12 @@
         ],
         "max": [
           74,
-          15.2,
+          15.155,
           52
         ],
         "size": [
           148,
-          15.2,
+          15.155,
           104
         ]
       },
@@ -1710,10 +1710,10 @@
       "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
       "glb": null,
       "lod": {
-        "LOD0": 70388,
-        "LOD1": 3556
+        "LOD0": 132360,
+        "LOD1": 3012
       },
-      "parts": 15,
+      "parts": 16,
       "lots": 14,
       "materials": "vertex colour only",
       "pivot": "tile centre at grade, Y=0",
@@ -1754,10 +1754,10 @@
       "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
       "glb": null,
       "lod": {
-        "LOD0": 58052,
-        "LOD1": 3296
+        "LOD0": 131586,
+        "LOD1": 3124
       },
-      "parts": 14,
+      "parts": 15,
       "lots": 13,
       "materials": "vertex colour only",
       "pivot": "tile centre at grade, Y=0",
@@ -1769,12 +1769,12 @@
         ],
         "max": [
           74,
-          22.17,
+          22.175,
           52
         ],
         "size": [
           148,
-          22.17,
+          22.175,
           104
         ]
       },
@@ -1798,10 +1798,10 @@
       "runtime": "spheres-web/ui/arsenal3d.js via the 'town' provider",
       "glb": null,
       "lod": {
-        "LOD0": 49872,
-        "LOD1": 2780
+        "LOD0": 91276,
+        "LOD1": 2616
       },
-      "parts": 13,
+      "parts": 14,
       "lots": 12,
       "materials": "vertex colour only",
       "pivot": "tile centre at grade, Y=0",
@@ -1813,12 +1813,12 @@
         ],
         "max": [
           74,
-          21.5,
+          21.505,
           52
         ],
         "size": [
           148,
-          21.5,
+          21.505,
           104
         ]
       },
