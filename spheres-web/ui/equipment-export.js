@@ -52,13 +52,13 @@
     const label = String(name || "Spheres equipment").slice(0, 128);
     const description = typeof mesh.description === "string" ? mesh.description : "Original configurable Spheres equipment game model.";
     const document = {
-      asset: {version: "2.0", generator: "Spheres Equipment Designer", copyright: "Original Spheres procedural game art"},
+      asset: {version: "2.0", generator: mesh.assetKind === "character" ? "Spheres Character Studio" : "Spheres Equipment Designer", copyright: "Original Spheres procedural game art"},
       scene: 0,
       scenes: [{name: label, nodes: [0]}],
       nodes: [{name: label, mesh: 0}],
       meshes: [{name: label, primitives: [{attributes: {POSITION: 0, NORMAL: 1, COLOR_0: 2}, material: 0, mode: 4}],
         extras: {description, parts, triangleCount: count / 3, gameArt: true, ...(mesh.specification?{specification:mesh.specification}:{})}}],
-      materials: [{name: "Painted vehicle", pbrMetallicRoughness: {
+      materials: [{name: mesh.assetKind === "character" ? "Sculpted character" : "Painted vehicle", pbrMetallicRoughness: {
         baseColorFactor: [1, 1, 1, 1], metallicFactor: 0, roughnessFactor: 0.82
       }}],
       buffers: [{byteLength: binary.byteLength}],

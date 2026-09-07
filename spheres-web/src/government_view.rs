@@ -87,6 +87,7 @@ fn action_index(actions: &[Value], kind: &str) -> Option<usize> {
 /// Add only presentation fields. Existing action order, commands, prices,
 /// refusals and the political watch remain intact for every caller.
 pub(crate) fn enrich(w: &WorldState, id: NationId, value: &mut Value) {
+    value["party_leadership"] = super::person_portraits::campaign_view(w, id);
     if let Some(actions) = value["actions"].as_array_mut() {
         for action in actions {
             action["key"] = json!(action_key(action));

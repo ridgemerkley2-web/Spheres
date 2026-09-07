@@ -42,6 +42,7 @@
   in vec3 vNrm; in vec3 vCol; in vec3 vPos;
   uniform vec3 uEye;
   uniform float uHeight;
+  uniform float uCharacter;
   __SURFACE__
   out vec4 outColor;
   void main() {
@@ -59,7 +60,7 @@
     // The albedo a fragment shades with, after whatever surface treatment is
     // installed. The default is the identity, so an uninstalled renderer is
     // byte-for-byte the one that shipped.
-    vec3 alb = surface(vCol, N, vPos, V);
+    vec3 alb = uCharacter > 0.5 ? vCol : surface(vCol, N, vPos, V);
     vec3 c = alb * (0.19 + 0.19 * sky);
     c += alb * max(dot(N, key), 0.0) * 1.06;
     c += alb * max(dot(N, fil), 0.0) * 0.20 * vec3(0.75, 0.85, 1.0);
@@ -99,7 +100,7 @@
   let surfaceGlsl = DEFAULT_SURFACE;
   function fragSource() { return FRAG_TEMPLATE.replace("__SURFACE__", surfaceGlsl); }
 
-  let gl = null, prog = null, uMVP = null, uEye = null, uHeight = null, glCanvas = null;
+  let gl = null, prog = null, uMVP = null, uEye = null, uHeight = null, uCharacter = null, glCanvas = null;
   let lost = false;
   const sprites = new Map();
   let available = null;
@@ -143,6 +144,7 @@
     uMVP = gl.getUniformLocation(prog, "uMVP");
     uEye = gl.getUniformLocation(prog, "uEye");
     uHeight = gl.getUniformLocation(prog, "uHeight");
+    uCharacter = gl.getUniformLocation(prog, "uCharacter");
     gl.enable(gl.DEPTH_TEST);
     // No back-face culling, deliberately. Three parts of the deck are open
     // shells — a dish is a paraboloid with no back, a rotodome is a disc, a
@@ -516,6 +518,7 @@
     gl.uniform3f(uEye, eye[0] + at[0], eye[1] + at[1], eye[2] + at[2]);
     gl.uniform1f(uHeight, entry.geom.bounds ? (entry.geom.bounds.max[1] - entry.geom.bounds.min[1])
       : (entry.geom.max ? entry.geom.max[1] - entry.geom.min[1] : 2.0));
+    gl.uniform1f(uCharacter, entry.geom.assetKind === "character" ? 1 : 0);
     gl.bindVertexArray(entry.vao);
     gl.drawArrays(gl.TRIANGLES, 0, entry.count);
     gl.bindVertexArray(null);
@@ -524,6 +527,39 @@
   }
 
   // ------------------------------------------------------------ the cards
+  // An explicitly controlled view shares the renderer without joining the
+  // equipment hover animation or retaining its canvas in the card registry.
+  function draw(canvas, id, opts) {
+    if (!canvas || !init() || lost) return false;
+    const o = opts || {}, entry = bufferFor(id, "");
+    if (!entry) return false;
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width <= 0 || rect.height <= 0) return false;
+    const dpr = Math.min(MAX_DPR, root.devicePixelRatio || 1);
+    const w = Math.max(8, Math.min(2048, Math.round(rect.width * dpr)));
+    const h = Math.max(8, Math.min(2048, Math.round(rect.height * dpr)));
+    if (canvas.width !== w) canvas.width = w;
+    if (canvas.height !== h) canvas.height = h;
+    const yaw = Number.isFinite(o.yaw) ? o.yaw : 12;
+    // Quantize the manual pitch so dragging cannot accumulate unbounded fit
+    // entries, or refit every vertex for sub-pixel camera changes.
+    const pitch = Number.isFinite(o.pitch) ? Math.round(Math.max(-20,Math.min(34,o.pitch))/2)*2 : 6;
+    const zoom = Number.isFinite(o.zoom) ? Math.max(.75,Math.min(1.8,o.zoom)) : 1;
+    const fit = fitFrame(entry,w/h,pitch,null);
+    const pivot = fit.pivot.slice();
+    // Close inspection moves toward the face, keeping the head visible while
+    // the lower body leaves the frame as the player zooms in.
+    if (entry.geom.assetKind === "character" && zoom > 1) {
+      pivot[1] += (zoom-1) * (entry.geom.bounds.max[1]-entry.geom.bounds.min[1]) * .42;
+    }
+    const out = renderTo(id,"",w,h,yaw,pitch,fit.d/zoom,pivot);
+    const ctx = canvas.getContext("2d");
+    if (!out || !ctx) return false;
+    ctx.clearRect(0,0,w,h);
+    ctx.drawImage(glCanvas,0,out.top,w,h,0,0,w,h);
+    return true;
+  }
+
   const mounted = new Map();   // canvas -> state
   let active = null;           // the one card that is turning or settling back
   let frame = 0;
@@ -721,6 +757,7 @@
     uMVP = gl.getUniformLocation(prog, "uMVP");
     uEye = gl.getUniformLocation(prog, "uEye");
     uHeight = gl.getUniformLocation(prog, "uHeight");
+    uCharacter = gl.getUniformLocation(prog, "uCharacter");
     sprites.clear();
     mounted.forEach((state, canvas) => { if (canvas.isConnected) paint(canvas, state); });
     return true;
@@ -830,7 +867,7 @@
       return { triangles: cachedTriangles, cap: CACHE_TRIANGLES,
         models: seen.size, keys: vaos.size };
     },
-    mount, scan, dataURL, renderTo, sprite, setSurface, frameOf,
+    mount, scan, dataURL, renderTo, sprite, setSurface, frameOf, draw,
     REST_YAW, REST_PITCH, FOV,
     get available() { return init(); },
     register,

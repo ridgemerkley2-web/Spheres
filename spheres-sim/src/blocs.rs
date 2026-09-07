@@ -838,7 +838,8 @@ pub fn bloc_rows(w: &WorldState, id: NationId) -> Vec<BlocRow> {
 /// Who directs the executive, as the surface prints it. NAMED where the leader
 /// table carries a row for this nation; DESCRIBED by its real institution
 /// everywhere else — a successor state, a refused row, a nation the table has
-/// not reached (design D2: no name after 1 January 1990, and none invented).
+/// not reached. The optional party roster may name a durably bound campaign
+/// successor; an unverified or collective identity keeps its description.
 /// Exactly one of `name` and `described` is `Some`.
 #[derive(Clone, Debug, PartialEq, Serialize)]
 pub struct Leader {
@@ -886,13 +887,14 @@ fn any_row(w: &WorldState, id: NationId) -> Option<&Office> {
 pub fn leader(w: &WorldState, id: NationId) -> Option<Leader> {
     let pol = polity_in(w, id)?;
     if let Some(row) = leader_row(w, id) {
+        let person = crate::party_leadership::executive_person(w, id);
         // The office has changed hands (S4): described by institution, the
         // remaining heir kept, nothing of the transcribed person.
         if let Some(e) = &row.emergent {
             return Some(Leader {
-                name: None,
-                native: None,
-                described: Some(e.described.clone()),
+                name: person.map(|p| p.name.clone()),
+                native: person.and_then(|p| p.native.clone()),
+                described: person.is_none().then(|| e.described.clone()),
                 office: e.office.clone(),
                 since: Some(e.since.clone()),
                 party_name: e.party.as_deref().and_then(|p| party_name(id, p)),
@@ -910,8 +912,8 @@ pub fn leader(w: &WorldState, id: NationId) -> Option<Leader> {
             None => (None, None),
         };
         return Some(Leader {
-            name: row.name.clone(),
-            native: row.native.clone(),
+            name: person.map(|p| p.name.clone()).or_else(|| row.name.clone()),
+            native: person.and_then(|p| p.native.clone()).or_else(|| row.native.clone()),
             described: None,
             office: row.office.clone(),
             since: Some(row.since.clone()),

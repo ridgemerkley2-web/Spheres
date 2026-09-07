@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-09-07",
+  "reviewer": "Codex source and image inspection",
+  "purpose": "Identity and visual-era references for person-linked character art; these files are not approved final game avatars.",
+  "references": [
+    {
+      "person_id": "dafydd_elis_thomas",
+      "name": "Dafydd Elis-Thomas",
+      "asset": "spheres-web/ui/person-portraits/references/dafydd-elis-thomas-1999-senedd-v1.jpg",
+      "sha256": "07b6b58e733f66a17dd7a4dffc92093c6c130eefee9b5a3ff64379f9af5de925",
+      "width": 512,
+      "height": 768,
+      "bytes": 19004,
+      "method": "archival",
+      "title": "Elis-Thomas, Yr Arglwydd",
+      "source_url": "https://www.flickr.com/photos/seneddcymru/53965497458/",
+      "file_page": "https://commons.wikimedia.org/wiki/File:Elis-Thomas,_Yr_Arglwydd_(53965497458).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Elis-Thomas%2C_Yr_Arglwydd_%2853965497458%29.jpg",
+      "creator": "Senedd Cymru / Welsh Parliament",
+      "credit": "Elis-Thomas, Yr Arglwydd — Senedd Cymru / Welsh Parliament, CC BY 2.0; unchanged source image.",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "rights_statement": "The official Senedd Flickr item links directly to CC BY 2.0; Commons also records a successful Flickr license review. Its description additionally offers CC BY 4.0, but this record uses the directly observed Flickr license.",
+      "depiction_date": {"kind": "year", "value": "1999"},
+      "date_basis": "Commons identifies the first-Senedd portrait as 1999; the source upload was 2024. Exact photographic day is not established.",
+      "identity_source": "https://senedd.wales/senedd-now/news/our-senedd-s-founding-father-a-tribute-to-lord-dafydd-elis-thomas/",
+      "status": "reviewed_reference",
+      "era_note": "A later likeness reference, not a 1990 photograph. The requested 1990 character needs a separately reviewed artistic age treatment."
+    },
+    {
+      "person_id": "dafydd_elis_thomas",
+      "name": "Dafydd Elis-Thomas",
+      "asset": "spheres-web/ui/person-portraits/references/dafydd-elis-thomas-1979-nlw-v1.jpg",
+      "sha256": "113a5a2a97a8c22758581561ea128d6f8528298278625582296291a13b014e8b",
+      "width": 900,
+      "height": 1200,
+      "bytes": 152617,
+      "method": "archival",
+      "title": "Eisteddfod Genedlaethol Cymru 1979, Caernarfon (1555561) (cropped)",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Eisteddfod_Genedlaethol_Cymru_1979,_Caernarfon_(1555561)_(cropped).jpg",
+      "archive_record": "https://hdl.handle.net/10107/1555456",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Eisteddfod_Genedlaethol_Cymru_1979%2C_Caernarfon_%281555561%29_%28cropped%29.jpg",
+      "creator": "Geoff Charles",
+      "credit": "Geoff Charles / National Library of Wales, CC BY-SA 4.0; existing Commons crop by TheHarveyWallbanger, retained unchanged.",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "rights_statement": "The exact Commons file records CC BY-SA 4.0 and National Library of Wales provenance. Preserve attribution and applicable ShareAlike terms for adaptations.",
+      "depiction_date": {"kind": "day", "value": "1979-08-01"},
+      "date_basis": "Exact date declared on the Commons collection record; archive endpoint did not load during this review.",
+      "identity_source": "https://commons.wikimedia.org/wiki/Category:Dafydd_Elis-Thomas_in_1979",
+      "status": "reviewed_reference",
+      "era_note": "Earlier photographic reference with collection/category identity. Never relabel it 1990 or claim the source age represents the requested year."
+    }
+  ],
+  "unaccepted_candidates": [
+    {
+      "person_id": "gordon_wilson",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Winnie_Ewing_and_Gordon_Wilson_Brussels_(cropped).jpg",
+      "status": "identity_and_date_conflict",
+      "reason": "Commons usage associates this crop with the SNP leader, but embedded European Parliament metadata names the Irish peace campaigner. Description date is 2015 while copyright and transmission code indicate 1990. No file imported or identity approved."
+    },
+    {
+      "person_id": "gordon_wilson",
+      "source_url": "https://www.flickr.com/photos/scottishpoliticalarchive/5071297148/",
+      "archive_accession": "spa.si.77",
+      "depiction_date": {"kind": "month", "value": "1987-11"},
+      "status": "rights_not_licensed_for_import",
+      "reason": "University of Stirling Scottish Political Archive caption identifies the SNP leader and November 1987, but the file is All rights reserved. No image downloaded or added to the accepted manifest."
+    },
+    {
+      "person_id": "gordon_wilson",
+      "source_url": "https://www.flickr.com/photos/scottishpoliticalarchive/5161372048/",
+      "archive_accession": "spa.si.309",
+      "creator": "Stanley Kurp",
+      "depiction_date": {"kind": "year", "value": "1985"},
+      "status": "rights_not_licensed_for_import",
+      "reason": "Correctly captioned SNP conference scene, but the file is All rights reserved. No image downloaded or added to the accepted manifest."
+    },
+    {
+      "person_id": "gordon_wilson",
+      "source_url": "https://members.parliament.uk/member/1314/portrait",
+      "status": "no_portrait",
+      "reason": "The exact MP record reports that no official portrait is available."
+    }
+  ]
+}

@@ -354,11 +354,23 @@ pub fn mortality(w: &mut WorldState) {
     let mut living: Vec<(NationId, String, f64)> = match &w.leadership {
         Some(rows) => rows
             .iter()
-            .filter(|o| o.name.is_some() && o.emergent.is_none())
             .filter(|o| w.nation_opt(o.nation).is_some_and(|n| n.alive))
             .filter_map(|o| {
-                let age = age_on_new_year(o.born.as_deref()?, w.year)?;
-                Some((o.nation, o.name.clone()?, age))
+                // Keep every original dated office's already-sourced draw,
+                // even where the candidate catalogue has no copied birthday.
+                if o.name.is_some() && o.emergent.is_none() {
+                    let age = age_on_new_year(o.born.as_deref()?, w.year)?;
+                    return Some((o.nation, o.name.clone()?, age));
+                }
+                // The optional candidate layer gives the SAME annual office
+                // event a durable sourced identity after succession. It adds
+                // no rolls for opposition parties or guessed birth dates.
+                if let Some(person) = crate::party_leadership::executive_person(w, o.nation) {
+                    let crate::party_leadership::DateBound::Day(born) = person.born.as_ref()? else { return None };
+                    let age = age_on_new_year(born, w.year)?;
+                    return Some((o.nation, person.name.clone(), age));
+                }
+                None
             })
             .collect(),
         None => return,

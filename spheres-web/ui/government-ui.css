@@ -160,6 +160,55 @@
 #govScreen .gov-ui .gov-ui-warnings { color:#e9c4a2; font-size:14px; }
 #govScreen .gov-ui-footer { display:flex; gap:16px; align-items:center; justify-content:space-between; border-top:1px solid var(--gov-line); padding-top:22px; margin-top:28px; }
 #govScreen .gov-ui-footer p { font-size:12px; }
+#govScreen .gov-ui-sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+#govScreen .gov-ui-leadership-tools { display:flex; flex-wrap:wrap; gap:18px; justify-content:space-between; align-items:end; padding:18px; background:#0e252cbf; border:1px solid var(--gov-line); border-radius:12px; }
+#govScreen .gov-ui-leadership-tools>.gov-ui-search { flex:1 1 240px; max-width:390px; }
+#govScreen .gov-ui-reference-date { display:flex; flex-wrap:wrap; gap:12px; min-width:0; }
+#govScreen .gov-ui-reference-date label { display:grid; gap:6px; min-width:0; color:var(--gov-muted); font-size:12px; }
+#govScreen .gov-ui-reference-date input,#govScreen .gov-ui-reference-date select { min-width:0; min-height:46px; max-width:100%; padding:10px 12px; border:1px solid #b4c8bc4a; border-radius:9px; background:#0d2028; color:var(--gov-text); font:15px system-ui,sans-serif; }
+#govScreen .gov-ui-leadership-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:start; gap:20px; }
+#govScreen .gov-ui-party-leadership-card { min-width:0; padding:24px; border:1px solid #b0c2a33e; border-top:2px solid #c9b58085; border-radius:15px; background:linear-gradient(145deg,#294047,#1a2c34); box-shadow:0 12px 26px #0002; }
+#govScreen .gov-ui-party-leadership-card>header { display:flex; gap:12px; align-items:start; justify-content:space-between; padding-bottom:16px; border-bottom:1px solid var(--gov-line); }
+#govScreen .gov-ui-party-leadership-card>header>div { min-width:0; }
+#govScreen .gov-ui-party-leadership-card>header .gov-ui-kicker { font-size:10px; margin-bottom:7px; }
+#govScreen .gov-ui-party-leadership-card>header h3 { font:600 clamp(21px,2vw,26px)/1.25 var(--serif,Georgia,serif); }
+#govScreen .gov-ui-party-leadership-card>header .gov-ui-badge { max-width:100px; flex-shrink:0; color:#d9d4bc; font-size:10px; text-align:center; }
+#govScreen .gov-ui .gov-ui-identity-note { padding:12px 14px; border-left:2px solid #dbc58e83; background:#b9ceb90a; font-size:12px; }
+#govScreen .gov-ui-party-leaders { display:grid; gap:12px; margin-top:18px; }
+#govScreen .gov-ui-person { display:grid; grid-template-columns:106px minmax(0,1fr); gap:18px; align-items:start; min-width:0; margin:16px 0; }
+#govScreen .gov-ui-person-copy { min-width:0; }
+#govScreen .gov-ui-person-copy>.gov-ui-kicker { font-size:10px; margin-bottom:5px; }
+#govScreen .gov-ui-person-copy>h4 { font:600 23px/1.22 var(--serif,Georgia,serif); }
+#govScreen .gov-ui-person-art { width:106px; min-width:90px; margin:0; padding:8px 4px; min-height:152px; border:1px solid #cfc9aa3b; border-radius:8px 8px 25px 8px; background:radial-gradient(ellipse at 50% 45%,#78908835,transparent 75%),linear-gradient(160deg,#273c4140,#081b2359); overflow:hidden; }
+#govScreen .gov-ui-person-art img { display:block; width:100%; height:152px; object-fit:contain; object-position:center bottom; filter:drop-shadow(0 4px 3px #07141d6b); }
+#govScreen .gov-ui-person-art figcaption { margin:6px 2px 0; text-align:center; color:#b4c6bc; font-size:9px; line-height:1.5; overflow-wrap:anywhere; }
+#govScreen .gov-ui-person-art figcaption span { display:block; color:#92aaa6; }
+#govScreen .gov-ui-art-pending { min-height:152px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:12px 8px; border-style:dashed; }
+#govScreen .gov-ui-art-pending>span { display:block; color:#d8cda87a; font:400 36px/1.2 var(--serif,Georgia,serif); letter-spacing:.04em; }
+#govScreen .gov-ui .gov-ui-art-pending p { color:#adc0b4; font-size:10px; line-height:1.45; text-align:center; }
+#govScreen .gov-ui .gov-ui-person-role { color:#d3d6c6; font-size:12px; margin:8px 0; }
+#govScreen .gov-ui-person-role>span { color:#adc0b7; }
+#govScreen .gov-ui .gov-ui-person-dates { color:#aac0b7; font:11px/1.6 system-ui,sans-serif; font-variant-numeric:tabular-nums; }
+#govScreen .gov-ui .gov-ui-campaign-diverged { margin:12px 0; padding:9px 11px; border:1px solid #cfbc8644; border-radius:7px; color:#e2cba4; background:#d7bd7410; font-size:12px; }
+#govScreen .gov-ui-person-evidence { border-top:1px solid var(--gov-line); margin-top:12px; }
+#govScreen .gov-ui-person-evidence>summary { font-size:11px; color:#aebfad; }
+#govScreen .gov-ui-person-evidence .gov-ui-note { font-size:11px; }
+#govScreen .gov-ui-leader-disclosure { min-width:0; border-top:1px solid var(--gov-line); margin:0; padding:6px 0; }
+#govScreen .gov-ui-leader-disclosure>summary { font-size:12px; }
+#govScreen .gov-ui-leader-disclosure>summary>span { display:inline-block; margin-left:5px; color:#afc4b8; font-size:11px; }
+#govScreen .gov-ui-leader-disclosure[open] { margin-bottom:12px; }
+#govScreen .gov-ui-leader-disclosure .gov-ui-person { padding:14px 0; margin:0; border-top:1px solid #aec8ba15; }
+#govScreen .gov-ui .gov-ui-leader-sources { display:grid; gap:7px; list-style:none; padding:0; margin:12px 0; }
+#govScreen .gov-ui-leader-sources li { margin:0; min-width:0; }
+#govScreen .gov-ui-leader-sources a,#govScreen .gov-ui-person-evidence a { display:inline-block; max-width:100%; color:#dbcc9f; text-decoration:underline; text-underline-offset:3px; font-size:11px; overflow-wrap:anywhere; }
+#govScreen .gov-ui-leader-sources a>span:not(.gov-ui-sr-only) { color:#a1b8af; }
+#govScreen .gov-ui-leader-sources a:focus-visible,#govScreen .gov-ui-person-evidence a:focus-visible { outline:3px solid var(--gov-gold); outline-offset:3px; }
+#govScreen .gov-ui-leader-gap { padding:18px; margin:5px 0 16px; border:1px dashed #b6c3b237; border-radius:9px; background:#071e2744; }
+#govScreen .gov-ui-leader-gap h4 { color:#d4cfb9; font-size:15px; }
+#govScreen .gov-ui-leader-gap p { margin-bottom:0; font-size:12px; }
+#govScreen .gov-ui-coverage-gaps { font-size:12px; }
+#govScreen .gov-ui-coverage-gaps small { color:#9cb4aa; font-size:11px; }
+#govScreen .gov-ui-person.is-missing { grid-template-columns:minmax(0,1fr); }
 @media(max-width:1000px) {
   #govScreen .gov-ui { padding-left:24px; padding-right:24px; }
   #govScreen .gov-ui-hero { min-height:330px; padding:30px; }
@@ -167,6 +216,7 @@
   #govScreen .gov-ui-hero-compact { min-height:170px; }
   #govScreen .gov-ui-overview-grid { grid-template-columns:minmax(0,1fr); gap:0; }
   #govScreen .gov-ui-panel { padding:22px; }
+  #govScreen .gov-ui-leadership-grid { grid-template-columns:minmax(0,1fr); }
 }
 @media(max-width:700px) {
   #govScreen { --gov-toolbar-height:98px; }
@@ -201,6 +251,18 @@
   #govScreen .gov-ui-review-costs dd { font-size:23px; }
   #govScreen .gov-ui-empty { padding:22px; }
   #govScreen .gov-ui-footer { align-items:start; }
+  #govScreen .gov-ui-leadership-tools { padding:14px; gap:14px; }
+  #govScreen .gov-ui-leadership-tools>.gov-ui-search { flex-basis:100%; max-width:none; }
+  #govScreen .gov-ui-reference-date { width:100%; }
+  #govScreen .gov-ui-reference-date label:last-child { flex:1; }
+  #govScreen .gov-ui-reference-date input { width:100%; }
+  #govScreen .gov-ui-party-leadership-card { padding:17px; }
+  #govScreen .gov-ui-party-leadership-card>header { flex-wrap:wrap; }
+  #govScreen .gov-ui-party-leadership-card>header .gov-ui-badge { max-width:none; }
+  #govScreen .gov-ui-person { grid-template-columns:90px minmax(0,1fr); gap:13px; }
+  #govScreen .gov-ui-person-art { width:90px; min-height:132px; }
+  #govScreen .gov-ui-person-art img { height:132px; }
+  #govScreen .gov-ui-person-copy>h4 { font-size:21px; }
 }
 @media(max-width:390px) {
   #govScreen .ttitle { font-size:16px; }
@@ -217,4 +279,43 @@
   #govScreen .gov-ui-hero { background:Canvas; }
   #govScreen .gov-ui button,#govScreen .gov-ui button.gov-ui-primary { color:ButtonText; background:ButtonFace; border-color:ButtonText; }
   #govScreen .gov-ui-tabs button[aria-selected=true],#govScreen .gov-ui-filters button[aria-pressed=true] { outline:2px solid Highlight; }
+  #govScreen .gov-ui-party-leadership-card,#govScreen .gov-ui-leadership-tools,#govScreen .gov-ui-person-art { background:Canvas; color:CanvasText; border-color:CanvasText; }
+}
+
+/* Physical leader miniatures and their shared-context inspection room. */
+#govScreen .gov-ui-person-model { position:relative; border-radius:12px; padding:8px 6px; background:radial-gradient(ellipse at 50% 35%,#54707855,transparent 72%),linear-gradient(170deg,#233d44,#101f2c); }
+#govScreen .gov-ui-person-model canvas { display:block; width:100%; height:162px; filter:drop-shadow(0 5px 4px #0005); }
+#govScreen .gov-ui-person-model .person-3d-card-controls { display:flex; justify-content:center; gap:4px; }
+#govScreen .gov-ui .gov-ui-person-model button { min-height:36px; padding:4px 8px; font:12px system-ui,sans-serif; border:1px solid #c7bd9555; border-radius:6px; background:#bac5b914; color:#f1e3bc; }
+#govScreen .gov-ui .gov-ui-person-model [data-person-turn] { flex:1; font-size:20px; }
+#govScreen .gov-ui .gov-ui-person-model [data-person-open] { width:100%; margin-top:5px; background:#e0c18a19; font-size:11px; }
+#govScreen .gov-ui-leadership>.gov-ui-person-model { float:right; width:176px; margin:0 0 16px 22px; }
+#govScreen .gov-ui-leadership>.gov-ui-person-model canvas { height:245px; }
+#govScreen .gov-ui-leadership::after { content:""; display:block; clear:both; }
+.person-3d-fallback { position:absolute; top:60px; left:10px; right:10px; text-align:center; color:#b8c6c4; font:11px/1.5 system-ui,sans-serif; }
+.person-3d-ready>.person-3d-fallback { display:none; }
+.person-3d-dialog { box-sizing:border-box; width:min(700px,calc(100vw - 24px)); max-width:none; max-height:calc(100dvh - 24px); overflow:auto; padding:25px; border:1px solid #b7a27680; border-radius:18px; color:#ede9d9; background:linear-gradient(150deg,#29434b,#112633 70%); box-shadow:0 25px 100px #0009; font:14px/1.5 system-ui,sans-serif; }
+.person-3d-dialog::backdrop { background:#03121cdf; backdrop-filter:blur(7px); }
+.person-3d-dialog header { display:flex; justify-content:space-between; align-items:start; gap:16px; }
+.person-3d-dialog h2 { margin:5px 0 15px; font:400 clamp(26px,4vw,38px)/1.2 Georgia,serif; color:#f6edce; }
+.person-3d-kicker { margin:0; color:#c5b788; text-transform:uppercase; letter-spacing:.15em; font-size:10px; }
+.person-3d-dialog button { min-width:44px; min-height:44px; padding:7px 13px; border:1px solid #c4bd9666; border-radius:8px; background:#bed0c214; color:#f0e4c2; font:14px system-ui,sans-serif; cursor:pointer; }
+.person-3d-dialog button:hover { background:#cfba8440; }
+.person-3d-dialog button:disabled { opacity:.4; cursor:default; }
+.person-3d-dialog [data-person-close] { font-size:25px; line-height:1; }
+.person-3d-dialog :focus-visible { outline:3px solid #e7c785; outline-offset:3px; }
+.person-3d-stage { position:relative; border:1px solid #c4c5a42e; border-radius:12px; overflow:hidden; background:radial-gradient(ellipse at 50% 38%,#6383864d,transparent 70%),linear-gradient(155deg,#28434b66,#0b1c2d); }
+.person-3d-stage::after { content:""; position:absolute; pointer-events:none; left:30%; right:30%; height:8%; bottom:65px; border-radius:50%; background:#03131b55; filter:blur(15px); }
+.person-3d-stage canvas { position:relative; z-index:1; display:block; width:100%; height:clamp(220px,49dvh,470px); cursor:grab; touch-action:none; }
+.person-3d-stage canvas:active { cursor:grabbing; }
+.person-3d-toolbar { display:flex; position:relative; z-index:2; justify-content:center; flex-wrap:wrap; gap:8px; padding:10px; border-top:1px solid #b8b99c20; background:#112632a8; }
+.person-3d-dialog .person-3d-help { margin:10px 0; text-align:center; color:#b6c4bd; font-size:12px; }
+.person-3d-dialog footer { display:flex; flex-wrap:wrap; align-items:center; gap:14px; justify-content:space-between; padding-top:12px; border-top:1px solid #b6be9d33; }
+.person-3d-dialog .person-3d-credit { flex:1 1 250px; margin:0; max-width:400px; color:#aabfb8; font-size:11px; }
+.person-3d-dialog a { color:#e5cca0; font-size:12px; text-underline-offset:3px; }
+@media(max-width:700px) {
+  #govScreen .gov-ui-person-model canvas { height:144px; }
+  #govScreen .gov-ui-leadership>.gov-ui-person-model { width:122px; margin-left:14px; }
+  #govScreen .gov-ui-leadership>.gov-ui-person-model canvas { height:185px; }
+  .person-3d-dialog { padding:17px; }
 }

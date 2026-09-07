@@ -32,6 +32,7 @@ pub mod materials;
 pub mod ministries;
 pub mod nations;
 pub mod politics;
+pub mod party_leadership;
 pub mod production;
 pub mod programs;
 pub mod province_economy;
@@ -1492,26 +1493,49 @@ pub fn state_hash(w: &WorldState) -> u64 {
     h
 }
 
+fn equipment_save_version(w: &WorldState) -> u32 {
+    if !w.companies.is_empty() {
+        match w.companies.version {
+            companies::TANK_VERSION=>2, companies::EQUIPMENT_VERSION=>3,
+            companies::AMMUNITION_VERSION=>4, _=>5,
+        }
+    } else if w.nations.iter().any(|n|n.equipment.is_some()) {1} else {0}
+}
 pub fn save(w: &WorldState) -> String {
-    if !w.companies.is_empty() || w.nations.iter().any(|n| n.equipment.is_some()) {
+    let equipment_version=equipment_save_version(w);
+    if w.rules.historical_party_leadership || w.party_leadership.is_some() {
+        #[derive(Serialize)]
+        struct PartySave<'a> { format: &'static str, version:u32, equipment_version:u32, world:&'a WorldState }
+        return serde_json::to_string_pretty(&PartySave{format:"spheres-party-leadership-save",version:1,equipment_version,world:w}).expect("serialize party leadership save");
+    }
+    if equipment_version>0 {
         #[derive(Serialize)]
         struct EquipmentSave<'a> { format: &'static str, version: u32, world: &'a WorldState }
         serde_json::to_string_pretty(&EquipmentSave {
-            format: "spheres-equipment-save", version: if w.companies.is_empty() {1}else if w.companies.version==companies::TANK_VERSION {2}else if w.companies.version==companies::EQUIPMENT_VERSION {3}else if w.companies.version==companies::AMMUNITION_VERSION {4}else{5}, world: w,
+            format: "spheres-equipment-save", version:equipment_version, world: w,
         }).expect("serialize equipment save")
     } else { serde_json::to_string_pretty(w).expect("serialize") }
 }
 pub fn load(s: &str) -> Result<WorldState, String> {
     let shape: serde_json::Value = serde_json::from_str(s).map_err(|e| e.to_string())?;
+    let party_envelope=shape["format"]=="spheres-party-leadership-save";
     let mut w: WorldState = if shape.get("format").is_some() {
-        if shape["format"] != "spheres-equipment-save" || !matches!(shape["version"].as_u64(),Some(1..=5)) {
-            return Err("This equipment save version is not supported by this build.".into());
+        if !(party_envelope&&shape["version"].as_u64()==Some(1)&&matches!(shape["equipment_version"].as_u64(),Some(0..=5)))
+            && !(shape["format"]=="spheres-equipment-save"&&matches!(shape["version"].as_u64(),Some(1..=5))) {
+            return Err("This save format or version is not supported by this build.".into());
         }
         #[derive(Deserialize)]
-        struct EquipmentSave { world: WorldState }
-        serde_json::from_str::<EquipmentSave>(s).map_err(|e| e.to_string())?.world
+        struct WrappedSave { world: WorldState }
+        serde_json::from_str::<WrappedSave>(s).map_err(|e| e.to_string())?.world
     } else { serde_json::from_str(s).map_err(|e| e.to_string())? };
-    let envelope=shape.get("format").and_then(|_|shape["version"].as_u64()).unwrap_or(0);
+    if party_envelope != (w.rules.historical_party_leadership && w.party_leadership.is_some())
+        || (!party_envelope && w.party_leadership.is_some()) {
+        return Err("Campaign party identities require their enabled rule, saved book and matching save envelope.".into());
+    }
+    let envelope=if party_envelope {shape["equipment_version"].as_u64().unwrap()} else {shape.get("format").and_then(|_|shape["version"].as_u64()).unwrap_or(0)};
+    if party_envelope && envelope!=equipment_save_version(&w) as u64 {
+        return Err("Party leadership save has an incorrect equipment format version.".into());
+    }
     let expected_company_envelope=match w.companies.version {companies::TANK_VERSION=>2,companies::EQUIPMENT_VERSION=>3,companies::AMMUNITION_VERSION=>4,companies::VERSION=>5,_=>0};
     if (!w.companies.is_empty() && (expected_company_envelope==0||envelope!=expected_company_envelope))
         || (w.companies.is_empty()&&envelope>=2) {
@@ -1562,6 +1586,7 @@ pub fn load(s: &str) -> Result<WorldState, String> {
         }
     }
     companies::validate_state(&w)?;
+    party_leadership::validate_state(&w)?;
     Ok(w)
 }
 

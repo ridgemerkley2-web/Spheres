@@ -6102,6 +6102,7 @@ pub fn ensure_all(w: &mut WorldState) {
     for id in ids {
         ensure(w, id);
     }
+    crate::party_leadership::ensure_all(w);
 }
 
 // ---------------------------------------------------------------------------
@@ -8853,6 +8854,7 @@ pub fn seat_office(w: &mut WorldState, id: NationId, how: &Succession) {
         None => return,
     };
     let described = seat.described.clone();
+    crate::party_leadership::on_succession(w, id, how, seat.party.as_deref());
     if let Some(rows) = w.leadership.as_mut() {
         if let Some(row) = rows.iter_mut().find(|o| o.nation == id && o.holds()) {
             row.name = None;

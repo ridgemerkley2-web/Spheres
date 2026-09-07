@@ -1005,6 +1005,10 @@ pub struct GameRules {
     /// and nothing in the tree turns it on.
     #[serde(default, skip_serializing_if = "is_false")]
     pub ideology_takeover: bool,
+    /// Sourced candidate identities follow actual campaign succession events.
+    /// Off by default; historical reference browsing does not enroll a campaign.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub historical_party_leadership: bool,
 }
 fn rules_true() -> bool {
     true
@@ -1032,6 +1036,7 @@ impl Default for GameRules {
             economic_competition: false,
             ideology_blocs: false,
             ideology_takeover: false,
+            historical_party_leadership: false,
         }
     }
 }
@@ -1089,6 +1094,10 @@ pub struct WorldState {
     /// are described by their institution once the game moves.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub leadership: Option<Vec<crate::data::Office>>,
+    /// Durable party and executive person bindings, separate from the original
+    /// 1990 office table and absent from legacy campaigns.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub party_leadership: Option<crate::party_leadership::CampaignLeadership>,
     /// Brent-ish oil price, USD/barrel
     pub oil_price: f64,
     /// Event log for the current month (drained by UI)

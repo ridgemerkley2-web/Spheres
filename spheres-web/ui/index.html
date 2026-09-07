@@ -3198,6 +3198,9 @@
 <script src="/town-mesh.js"></script>
 <script src="/equipment-import.js"></script>
 <script src="/equipment-ui.js"></script>
+<script src="/person-model-data.js"></script>
+<script src="/person-models.js"></script>
+<script src="/person-3d.js"></script>
 <script src="/government-ui.js"></script>
 <script src="/agency-ui.js"></script>
 <script src="/operations-ui.js"></script>
@@ -3950,7 +3953,7 @@ function loadFigurePortrait(img, spec, eager) {
   const asset = (leaderArt && leaderArt.asset) || portraitAsset;
   const portraitRecord = spec.portrait && typeof spec.portrait === "object" ? spec.portrait : null;
   const credit = leaderArt
-    ? [leaderArt.credit, leaderArt.generator, `Identity source: ${leaderArt.identity_source_asset || "verified portrait"}`].filter(Boolean).join(" · ")
+    ? [leaderArt.credit, leaderArt.generator, `Identity source: ${leaderArt.identity_source_asset || leaderArt.identity_source_wikidata || "authored historical identity"}`].filter(Boolean).join(" · ")
     : portraitRecord
     ? [portraitRecord.source_title, portraitRecord.credit, portraitRecord.license].filter(Boolean).join(" · ")
     : "";
@@ -14952,6 +14955,7 @@ function resetGovernment() {
   closeGovernment();
   gov.nation = null; gov.data = null; gov.busy = false; gov.action = null;
   gov.review = null; gov.dataState = null; gov.tab = "overview"; gov.query = ""; gov.queries = {}; gov.notice = ""; gov.actionFilter = "available";
+  gov.leadershipMode = "campaign"; gov.leadershipDate = null; gov.leadershipQuery = ""; gov.leadershipReference = null; gov.leadershipRequest = null; gov.expandedDetails = new Set();
   COVERT_ACTION.pending = null;
 }
 function toggleGovernment() { if (gov.open) closeGovernment(); else openGovernment(); }
@@ -14970,7 +14974,7 @@ function openGovernment(id) {
   closeSheet();
   if (!gov.open) gov.lastFocus = returnFocus;
   gov.open = true;
-  if (gov.nation !== who) { gov.data = null; gov.review = null; gov.tab = "overview"; gov.query = ""; gov.queries = {}; gov.notice = ""; }
+  if (gov.nation !== who) { gov.data = null; gov.review = null; gov.tab = "overview"; gov.query = ""; gov.queries = {}; gov.notice = ""; gov.leadershipMode = "campaign"; gov.leadershipDate = null; gov.leadershipQuery = ""; gov.leadershipReference = null; gov.leadershipRequest = null; gov.expandedDetails = new Set(); }
   gov.nation = who;
   $("#govScreen").style.display = "block";
   renderGovernment();
@@ -14978,9 +14982,11 @@ function openGovernment(id) {
   $("#govScreen .tbar .x").focus({ preventScroll: true });
 }
 function closeGovernment() {
+  globalThis.Person3D?.dispose($("#govBody"));
   const wasOpen = gov.open;
   gov.open = false;
   gov.review = null;
+  gov.leadershipRequest = null; gov.leadershipReference = null;
   ++gov.seq;
   $("#govScreen").style.display = "none";
   if (wasOpen) {
@@ -14991,7 +14997,7 @@ function closeGovernment() {
 }
 window.openGovernment = openGovernment;
 window.closeGovernment = closeGovernment;
-function govShow(id) { gov.nation = id; gov.data = null; gov.review = null; gov.tab = "overview"; gov.query = ""; gov.queries = {}; gov.notice = ""; renderGovernment(); govFetch(); }
+function govShow(id) { gov.nation = id; gov.data = null; gov.review = null; gov.tab = "overview"; gov.query = ""; gov.queries = {}; gov.notice = ""; gov.leadershipMode = "campaign"; gov.leadershipDate = null; gov.leadershipQuery = ""; gov.leadershipReference = null; gov.leadershipRequest = null; gov.expandedDetails = new Set(); renderGovernment(); govFetch(); }
 async function govFetch() {
   if (!gov.open || !gov.nation) return;
   const seq = ++gov.seq, state = S, nation = gov.nation;
@@ -15008,6 +15014,7 @@ async function govFetch() {
     gov.data = { error: e.message || String(e) };
   }
   renderGovernment();
+  if (gov.open && gov.tab === "leadership" && gov.leadershipMode === "reference" && !gov.leadershipReference && !gov.data?.error) govLeadershipFetch();
 }
 /// Called from render() every tick while the screen is up, so the numbers
 /// behind it move with the world instead of freezing at the month it opened.
@@ -15041,21 +15048,90 @@ function gaugeText(g) {
 }
 
 function govSelectTab(tab) {
-  if (!["overview","decisions","politics","watch"].includes(tab)) return;
+  if (!["overview","decisions","politics","leadership","watch"].includes(tab)) return;
+  if (tab !== "leadership") { gov.leadershipRequest = null; if (gov.leadershipReference?.loading) gov.leadershipReference = null; }
   gov.queries = gov.queries || {};
   gov.queries[gov.tab || "overview"] = gov.query || "";
   gov.tab = tab; gov.query = gov.queries[tab] || "";
 }
 
+// Historical reference reads have their own identity. They never quote, issue
+// commands, advance the world or adopt a response into the campaign.
+function govLeadershipBounds() {
+  const board = gov.data?.party_leadership;
+  return {from: board?.reference_from || "1990-01-01", through: board?.reference_through || "2026-09-07"};
+}
+function govLeadershipDefaultDate() {
+  const bounds = govLeadershipBounds(), board = gov.data?.party_leadership;
+  const served = board?.campaign_date || board?.date;
+  const campaign = /^\d{4}-\d{2}-\d{2}$/.test(served || "") ? served
+    : Number.isInteger(S?.year) ? `${S.year}-${String(S.month || 1).padStart(2,"0")}-${String(S.day || 1).padStart(2,"0")}` : bounds.from;
+  return campaign < bounds.from ? bounds.from : campaign > bounds.through ? bounds.through : campaign;
+}
+function govLeadershipValidDate(date) {
+  if (typeof date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return false;
+  const parsed = new Date(date + "T12:00:00Z"), bounds = govLeadershipBounds();
+  return Number.isFinite(parsed.getTime()) && parsed.toISOString().slice(0,10) === date && date >= bounds.from && date <= bounds.through;
+}
+function govSetLeadershipMode(mode) {
+  if (!gov.open || !["campaign","reference"].includes(mode)) return;
+  gov.leadershipMode = mode; gov.leadershipRequest = null;
+  if (mode === "reference") {
+    if (!govLeadershipValidDate(gov.leadershipDate)) gov.leadershipDate = govLeadershipDefaultDate();
+    const cached = gov.leadershipReference;
+    if (!cached?.data || cached.nation !== gov.nation || cached.date !== gov.leadershipDate || cached.error) {
+      govLeadershipFetch(); return;
+    }
+  }
+  renderGovernment();
+}
+function govSetLeadershipDate(date) {
+  if (!gov.open || gov.leadershipMode !== "reference") return;
+  gov.leadershipRequest = null;
+  if (!govLeadershipValidDate(date)) {
+    const bounds = govLeadershipBounds();
+    gov.leadershipReference = {loading:false,data:null,error:`Choose a valid date from ${bounds.from} through ${bounds.through}.`};
+    renderGovernment(); return;
+  }
+  gov.leadershipDate = date;
+  govLeadershipFetch();
+}
+async function govLeadershipFetch() {
+  if (!gov.open || !gov.nation || gov.tab !== "leadership" || gov.leadershipMode !== "reference") return;
+  if (!govLeadershipValidDate(gov.leadershipDate)) gov.leadershipDate = govLeadershipDefaultDate();
+  const nation = gov.nation, date = gov.leadershipDate, request = {};
+  const reading = {nation,date,loading:true,error:"",data:null};
+  gov.leadershipRequest = request; gov.leadershipReference = reading;
+  const current = () => gov.open && gov.tab === "leadership" && gov.leadershipMode === "reference"
+    && gov.nation === nation && gov.leadershipDate === date && gov.leadershipRequest === request && gov.leadershipReference === reading;
+  renderGovernment();
+  try {
+    const result = await api("/api/party-leadership?nation=" + encodeURIComponent(nation) + "&date=" + encodeURIComponent(date));
+    if (!current()) return;
+    if (result?.error) throw new Error(result.error);
+    if (result?.nation !== nation || result?.date !== date) throw new Error("The historical response belongs to another nation or date. Please retry.");
+    reading.data = result;
+  } catch (error) {
+    if (!current()) return;
+    reading.error = error.message || String(error);
+  } finally {
+    if (current()) { reading.loading = false; gov.leadershipRequest = null; renderGovernment(); }
+  }
+}
+
 function renderGovernment() {
   if (!S) return;
   const body = $("#govBody"), sub = $("#govSub"), active = document.activeElement;
-  const focusId = active?.id, selection = active?.selectionStart;
+  const focusId = active?.id, selection = active?.selectionStart, selectionEnd = active?.selectionEnd, selectionDirection = active?.selectionDirection;
   const focusSource = active?.tagName === "SUMMARY" ? active.closest("details[data-gov-detail]") : active;
-  const focusAttr = ["data-gov-search","data-gov-filter","data-gov-review","data-gov-confirm","data-gov-review-close","data-gov-detail","data-gov-refresh","data-gov-retry"].find(attr => focusSource?.hasAttribute?.(attr));
+  const focusAttr = ["data-gov-search","data-gov-filter","data-gov-review","data-gov-confirm","data-gov-review-close","data-gov-detail","data-gov-refresh","data-gov-retry","data-gov-leadership-mode","data-gov-leadership-date","data-gov-leadership-year","data-gov-leadership-search","data-gov-leadership-retry"].find(attr => focusSource?.hasAttribute?.(attr));
   const focusValue = focusAttr ? focusSource.getAttribute(focusAttr) : null;
   const scrollTop = body.scrollTop;
-  const expanded = [...body.querySelectorAll("details[data-gov-detail][open]")].map(el => el.dataset.govDetail);
+  const sameExpandedNation = gov.expandedNation === gov.nation;
+  gov.expandedDetails = sameExpandedNation ? gov.expandedDetails || new Set() : new Set();
+  if (sameExpandedNation) body.querySelectorAll("details[data-gov-detail]").forEach(el => { if (el.open) gov.expandedDetails.add(el.dataset.govDetail); else gov.expandedDetails.delete(el.dataset.govDetail); });
+  gov.expandedNation = gov.nation;
+  const expanded = [...gov.expandedDetails];
   const pickerHtml = `<select id="govPick" aria-label="Government to inspect">${[...S.nations].sort((a,b) => a.name.localeCompare(b.name)).map(x => `<option value="${escText(x.id)}"${x.id === gov.nation ? " selected" : ""}>${escText(x.name)}</option>`).join("")}</select>`;
   if (gov.pickerHtml !== pickerHtml) { sub.innerHTML = pickerHtml; gov.pickerHtml = pickerHtml; }
   const pick = $("#govPick");
@@ -15066,19 +15142,25 @@ function renderGovernment() {
   body.innerHTML = window.GovernmentUI.render(gov.data, {
     tab: gov.tab || "overview", actionFilter: gov.actionFilter || "available", query: gov.query || "",
     review: gov.review || null, notice: gov.notice || "", busy: gov.busy || governmentActionBlocked(),
+    leadershipMode: gov.leadershipMode || "campaign", leadershipDate: gov.leadershipDate || govLeadershipDefaultDate(),
+    leadershipReference: gov.leadershipReference || null, leadershipQuery: gov.leadershipQuery || "",
   });
   body.querySelectorAll("[data-gov-tab]").forEach(b => {
     b.onclick = () => {
       govSelectTab(b.dataset.govTab); renderGovernment();
+      if (gov.tab === "leadership" && gov.leadershipMode === "reference" && !gov.leadershipReference) govLeadershipFetch();
       $("#gov-tab-" + gov.tab)?.focus({preventScroll:true});
       if (b.getAttribute("role") !== "tab") $("#gov-tab-" + gov.tab)?.scrollIntoView({block:"nearest"});
     };
     if (b.getAttribute("role") === "tab") b.onkeydown = e => {
       if (!["ArrowLeft","ArrowRight","Home","End"].includes(e.key)) return;
       e.preventDefault();
-      const tabs = ["overview","decisions","politics","watch"], i = tabs.indexOf(gov.tab || "overview");
-      govSelectTab(e.key === "Home" ? tabs[0] : e.key === "End" ? tabs[3] : tabs[(i + (e.key === "ArrowRight" ? 1 : 3)) % 4]);
-      renderGovernment(); $("#gov-tab-" + gov.tab)?.focus({preventScroll:true});
+      const tabs = [...body.querySelectorAll("[data-gov-tab][role=tab]")].map(tab => tab.dataset.govTab), i = tabs.indexOf(gov.tab || "overview");
+      if (!tabs.length) return;
+      govSelectTab(e.key === "Home" ? tabs[0] : e.key === "End" ? tabs[tabs.length - 1] : tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length]);
+      renderGovernment();
+      if (gov.tab === "leadership" && gov.leadershipMode === "reference" && !gov.leadershipReference) govLeadershipFetch();
+      $("#gov-tab-" + gov.tab)?.focus({preventScroll:true});
     };
   });
   body.querySelectorAll("[data-gov-filter]").forEach(b => { b.onclick = () => { gov.actionFilter = b.dataset.govFilter; renderGovernment(); }; });
@@ -15095,16 +15177,23 @@ function renderGovernment() {
   body.querySelectorAll("[data-gov-retry]").forEach(b => { b.onclick = () => { if (gov.review) govReview(gov.review.index); }; });
   body.querySelectorAll("[data-gov-refresh]").forEach(b => { b.onclick = () => govFetch(); });
   body.querySelectorAll("[data-gov-search]").forEach(input => { input.oninput = () => { gov.query = input.value; renderGovernment(); }; });
+
+  body.querySelectorAll("[data-gov-leadership-mode]").forEach(button => { button.onclick = () => govSetLeadershipMode(button.dataset.govLeadershipMode); });
+  body.querySelectorAll("[data-gov-leadership-date]").forEach(input => { input.onchange = () => govSetLeadershipDate(input.value); });
+  body.querySelectorAll("[data-gov-leadership-year]").forEach(select => { select.onchange = () => govSetLeadershipDate(select.value + "-01-01"); });
+  body.querySelectorAll("[data-gov-leadership-search]").forEach(input => { input.oninput = () => { gov.leadershipQuery = input.value; renderGovernment(); }; });
+  body.querySelectorAll("[data-gov-leadership-retry]").forEach(button => { button.onclick = () => govLeadershipFetch(); });
   body.querySelectorAll("details[data-gov-detail]").forEach(el => { if (expanded.includes(el.dataset.govDetail)) el.open = true; });
   if (focusId || focusAttr) {
     const restored = focusId ? document.getElementById(focusId) : [...body.querySelectorAll("[" + focusAttr + "]")].find(el => el.getAttribute(focusAttr) === focusValue);
     if (restored && (body.contains(restored) || sub.contains(restored))) {
       const focusTarget = active?.tagName === "SUMMARY" ? restored.querySelector("summary") : restored;
       focusTarget?.focus({preventScroll:true});
-      if (typeof selection === "number" && restored.setSelectionRange) restored.setSelectionRange(selection, selection);
+      if (typeof selection === "number" && restored.setSelectionRange) restored.setSelectionRange(selection, typeof selectionEnd === "number" ? selectionEnd : selection, selectionDirection || "none");
     }
   }
   body.scrollTop = scrollTop;
+  window.Person3D?.scan(body);
 }
 
 function govNavigate(route) {

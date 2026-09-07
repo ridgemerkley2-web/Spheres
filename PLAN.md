@@ -4,6 +4,14 @@
 BUGS.md is what is broken. This is the sequence between here and done, and why
 it is in this order.*
 
+## Historical party leadership, 7 September 2026
+
+The user chose a 1990–2026 historical reference and gameplay-altered succession from historical candidates. The new catalogue separates immutable people, party roles, dated affiliation evidence and current campaign officeholders. Party term endings and real historical election results never change campaign governments by calendar. Small represented parties, composite rows and collective leadership are included, with explicit gaps for unsupported identities and dates.
+
+New browser campaigns enable the optional party-leadership book; old campaigns remain on their existing rules and can browse historical reference data without migration. New saves use a versioned outer envelope preserving the equipment/company ledger version. Existing bindings are validated against immutable person/role facts; changing those facts requires a deliberate migration. Named successors appear through the shared government-office reading. Their existing annual executive mortality event needs an exact sourced birthday; there is no new party-only mortality scheduler.
+
+The Government Leadership page supports campaign/reference modes, exact dates and 1990–2026 year selection, sources, rotatable 3D cartoon character studies and separate component leaders. Four exact-person early-1990s models now have manual camera controls and downloadable GLBs; the rest of the model catalogue is pending. See [the physical character roadmap](docs/CHARACTER_3D_ROADMAP.md). No source image or generated study is counted as a finished avatar. The global party/portrait roster remains an active research and art project; current measured coverage and the rollout are documented in [the leadership roadmap](docs/PARTY_LEADERSHIP_ROADMAP.md).
+
 **Government interface update, 7 September 2026:** the illustrated government
 briefing and exact decision reviews are accepted. The room connects existing
 politics to real policy departments and shows immediate command consequences

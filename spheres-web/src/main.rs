@@ -21,6 +21,7 @@ use tiny_http::{Header, Method, Response, Server};
 
 mod history;
 mod portrait_assets;
+mod person_portraits;
 mod page_art_assets;
 mod storage;
 mod equipment_view;
@@ -103,6 +104,8 @@ const INDUSTRY_UI_JS: &str = include_str!("../ui/industry-ui.js");
 const INDUSTRY_CSS: &str = include_str!("../ui/industry-ui.css");
 const CASH_FLOW_UI_JS: &str = include_str!("../ui/cash-flow-ui.js");
 const CASH_FLOW_CSS: &str = include_str!("../ui/cash-flow-ui.css");
+const PERSON_MODELS_JS: &str = include_str!("../ui/person-models.js");
+const PERSON_3D_JS: &str = include_str!("../ui/person-3d.js");
 const GOVERNMENT_UI_JS: &str = include_str!("../ui/government-ui.js");
 const GOVERNMENT_UI_CSS: &str = include_str!("../ui/government-ui.css");
 const GOVERNMENT_COUNCIL_PNG: &[u8] = include_bytes!("../ui/government-art/council-v1.png");
@@ -6930,6 +6933,7 @@ fn fresh_play_rules(g: &mut Game) -> Result<(), String> {
     spheres_sim::starting_industry::enable_new_world(&mut g.world)?;
     spheres_sim::starting_industry::enrich_new_world(&mut g.world)?;
     play_rules(g);
+    spheres_sim::party_leadership::enable_campaign(&mut g.world)?;
     Ok(())
 }
 
@@ -7224,6 +7228,9 @@ fn main() {
                 } else { Response::from_string("Not found").with_status_code(404) }
             },
             (Method::Get, "/equipment-ui.css") => Response::from_string(EQUIPMENT_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
+            (Method::Get, "/person-models.js") => Response::from_string(PERSON_MODELS_JS).with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/person-3d.js") => Response::from_string(PERSON_3D_JS).with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/person-model-data.js") => Response::from_string(format!("window.PersonModelData = {};", person_portraits::MODEL_DATA)).with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/government-ui.js") => Response::from_string(GOVERNMENT_UI_JS).with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/government-ui.css") => Response::from_string(GOVERNMENT_UI_CSS).with_header(Header::from_bytes("Content-Type", "text/css; charset=utf-8").unwrap()),
             (Method::Get, "/art/government/council-v1.png") => Response::from_data(GOVERNMENT_COUNCIL_PNG).with_header(Header::from_bytes("Content-Type", "image/png").unwrap()).with_header(Header::from_bytes("Cache-Control", "public, max-age=31536000, immutable").unwrap()),
@@ -7338,6 +7345,17 @@ fn main() {
                         Header::from_bytes(&b"Cache-Control"[..], &b"no-cache"[..]).unwrap(),
                     );
                 let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, path) if path.starts_with("/art/people/") => {
+                let name = path.trim_start_matches("/art/people/");
+                if let Some(asset) = person_portraits::asset(name) {
+                    let response = Response::from_data(asset.bytes.to_vec())
+                        .with_chunked_threshold(usize::MAX)
+                        .with_header(Header::from_bytes("Content-Type", asset.content_type).unwrap())
+                        .with_header(Header::from_bytes("Cache-Control", "public, max-age=31536000, immutable").unwrap());
+                    let _ = request.respond(response);
+                } else { let _ = request.respond(Response::empty(404)); }
                 continue;
             }
             (Method::Get, path) if path.starts_with("/art/portraits/") => {
@@ -7613,6 +7631,21 @@ fn main() {
                     None => json_error(400, serde_json::json!({"error":"Choose a valid government to review."})),
                 };
                 let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/api/party-leadership") => {
+                let g = game.lock().unwrap();
+                let parameters: Vec<(&str,&str)> = request.url().split_once('?').map(|(_,q)| q.split('&').filter_map(|p|p.split_once('=')).collect()).unwrap_or_default();
+                let asked = parameters.iter().find(|(k,_)| *k == "nation");
+                let nation = asked.and_then(|(_,v)| NationId::parse(v)).or_else(|| if asked.is_none() { g.world.player } else { None });
+                let date = parameters.iter().find(|(k,_)| *k == "date").map(|(_,v)|*v);
+                let result = match (nation,date) {
+                    (Some(id),Some(date)) => person_portraits::reference_view(&g.world,id,date),
+                    (Some(id),None) => Ok(person_portraits::campaign_view(&g.world,id)),
+                    _ => Err("Choose a valid country.".to_string()),
+                };
+                let response = match result { Ok(v) => json_response(v), Err(e) => json_error(400,serde_json::json!({"error":e})) };
+                let _ = request.respond(response);
                 continue;
             }
             (Method::Get, path) if path.starts_with("/api/government") => {

@@ -1,0 +1,4669 @@
+{
+  "schema": "spheres-party-leader-research-v2",
+  "reference_through": "2026-09-07",
+  "nation": "United Kingdom",
+  "scope": {
+    "requested_years": [
+      1990,
+      2026
+    ],
+    "verified_through": "2026-09-07",
+    "initial_pilot_years": [
+      1990,
+      2000
+    ],
+    "purpose": "Historical candidate facts for gameplay-altered party succession and historical portrait selection; not a deterministic government timeline.",
+    "tracked_code_changed": false,
+    "scope_exclusions": [
+      "Unrepresented UK parties",
+      "Scottish/Welsh branches of the three UK-wide parties",
+      "Westminster parliamentary group leaders unless the party office is the same",
+      "Portrait licenses or downloads not yet approved or selected",
+      "Complete birth/death and party-membership windows: only a few explicitly sourced biographical facts are included."
+    ]
+  },
+  "people": [
+    {
+      "id": "margaret_thatcher",
+      "name": "Margaret Thatcher",
+      "sources": [
+        "https://www.margaretthatcher.org/document/102618",
+        "https://johnmajorarchive.org.uk/1990/11/doorstep-interview-27-november-1990/",
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+        "https://www.margaretthatcher.org/essential/chronology",
+        "https://www.margaretthatcher.org/archive/MTobit"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1925-10-13"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2013-04-08"
+      }
+    },
+    {
+      "id": "john_major",
+      "name": "John Major",
+      "sources": [
+        "https://johnmajorarchive.org.uk/1990/11/doorstep-interview-27-november-1990/",
+        "https://johnmajorarchive.org.uk/1995/06/mr-majors-resignation-speech-22-june-1995/",
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+        "https://www.margaretthatcher.org/essential/chronology"
+      ]
+    },
+    {
+      "id": "william_hague",
+      "name": "William Hague",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf"
+      ]
+    },
+    {
+      "id": "iain_duncan_smith",
+      "name": "Iain Duncan Smith",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf"
+      ]
+    },
+    {
+      "id": "michael_howard",
+      "name": "Michael Howard",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf"
+      ]
+    },
+    {
+      "id": "david_cameron",
+      "name": "David Cameron",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+        "https://members.parliament.uk/member/8/career"
+      ]
+    },
+    {
+      "id": "theresa_may",
+      "name": "Theresa May",
+      "sources": [
+        "https://members.parliament.uk/member/8/career",
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf"
+      ]
+    },
+    {
+      "id": "boris_johnson",
+      "name": "Boris Johnson",
+      "sources": [
+        "https://members.parliament.uk/member/1423/career",
+        "https://hansard.parliament.uk/pdf/commons/2019-07-23",
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf"
+      ]
+    },
+    {
+      "id": "liz_truss",
+      "name": "Liz Truss",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf"
+      ]
+    },
+    {
+      "id": "rishi_sunak",
+      "name": "Rishi Sunak",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf"
+      ]
+    },
+    {
+      "id": "kemi_badenoch",
+      "name": "Kemi Badenoch",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+        "https://www.conservatives.com/news/conservatives-announce-new-shadow-cabinet"
+      ]
+    },
+    {
+      "id": "neil_kinnock",
+      "name": "Neil Kinnock",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf",
+        "https://members.parliament.uk/member/693/career"
+      ]
+    },
+    {
+      "id": "john_smith",
+      "name": "John Smith",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf"
+      ]
+    },
+    {
+      "id": "margaret_beckett",
+      "name": "Margaret Beckett",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf"
+      ]
+    },
+    {
+      "id": "tony_blair",
+      "name": "Tony Blair",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf"
+      ]
+    },
+    {
+      "id": "gordon_brown",
+      "name": "Gordon Brown",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf"
+      ]
+    },
+    {
+      "id": "harriet_harman",
+      "name": "Harriet Harman",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf"
+      ]
+    },
+    {
+      "id": "ed_miliband",
+      "name": "Ed Miliband",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf"
+      ]
+    },
+    {
+      "id": "jeremy_corbyn",
+      "name": "Jeremy Corbyn",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf",
+        "https://labour.org.uk/wp-content/uploads/2023/01/The-Forde-Report.pdf"
+      ]
+    },
+    {
+      "id": "keir_starmer",
+      "name": "Keir Starmer",
+      "sources": [
+        "https://labour.org.uk/wp-content/uploads/2023/01/The-Forde-Report.pdf",
+        "https://www.itv.com/news/2026-06-22/keir-starmer-resigns-as-labour-leader-his-speech-in-full",
+        "https://labour.org.uk/updates/members-updates/andy-burnham-elected-leader-of-the-labour-party/",
+        "https://www.gov.uk/government/people/andy-burnham"
+      ]
+    },
+    {
+      "id": "andy_burnham",
+      "name": "Andy Burnham",
+      "sources": [
+        "https://labour.org.uk/updates/members-updates/andy-burnham-elected-leader-of-the-labour-party/",
+        "https://www.gov.uk/government/people/andy-burnham"
+      ]
+    },
+    {
+      "id": "paddy_ashdown",
+      "name": "Paddy Ashdown",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf",
+        "https://www.libdems.org.uk/internal-elections/election-results/leadership",
+        "https://www.ohr.int/63900/",
+        "https://members.parliament.uk/member/258/contact"
+      ],
+      "died": {
+        "kind": "day",
+        "value": "2018-12-22"
+      }
+    },
+    {
+      "id": "charles_kennedy",
+      "name": "Charles Kennedy",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf",
+        "https://www.libdems.org.uk/internal-elections/election-results/leadership"
+      ]
+    },
+    {
+      "id": "menzies_campbell",
+      "name": "Menzies Campbell",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf"
+      ]
+    },
+    {
+      "id": "vince_cable",
+      "name": "Vince Cable",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf",
+        "https://members.parliament.uk/member/207/contact"
+      ]
+    },
+    {
+      "id": "nick_clegg",
+      "name": "Nick Clegg",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf",
+        "https://members.parliament.uk/member/1563/career"
+      ]
+    },
+    {
+      "id": "tim_farron",
+      "name": "Tim Farron",
+      "sources": [
+        "https://members.parliament.uk/member/1591/career",
+        "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf"
+      ]
+    },
+    {
+      "id": "jo_swinson",
+      "name": "Jo Swinson",
+      "sources": [
+        "https://members.parliament.uk/member/207/contact",
+        "https://members.parliament.uk/member/188/career",
+        "https://search.electoralcommission.org.uk/Api/Accounts/Documents/22616"
+      ]
+    },
+    {
+      "id": "ed_davey",
+      "name": "Ed Davey",
+      "sources": [
+        "https://members.parliament.uk/member/188/career",
+        "https://search.electoralcommission.org.uk/Api/Accounts/Documents/22616",
+        "https://www.markpack.org.uk/files/2020/02/Liberal-Democrat-federal-conference-agenda-and-directory-Spring-2020.pdf",
+        "https://www.londonlibdems.org.uk/"
+      ]
+    },
+    {
+      "id": "sal_brinton",
+      "name": "Sal Brinton",
+      "sources": [
+        "https://search.electoralcommission.org.uk/Api/Accounts/Documents/22616"
+      ]
+    },
+    {
+      "id": "mark_pack",
+      "name": "Mark Pack",
+      "sources": [
+        "https://search.electoralcommission.org.uk/Api/Accounts/Documents/22616",
+        "https://www.markpack.org.uk/files/2020/02/Liberal-Democrat-federal-conference-agenda-and-directory-Spring-2020.pdf",
+        "https://www.northwestlibdems.org.uk/fileadmin/groups/147/Documents/Conference/Conference_Spring_2024.pdf"
+      ]
+    },
+    {
+      "id": "gordon_wilson",
+      "name": "Gordon Wilson",
+      "sources": [
+        "https://members.parliament.uk/member/1314/career",
+        "https://www.parliament.scot/chamber-and-committees/research-prepared-for-parliament/research-briefings/2019/6/27/sb-1946",
+        "https://manuscripts.nls.uk/repositories/2/resources/16187",
+        "https://members.parliament.uk/member/577/career"
+      ],
+      "born": {
+        "kind": "year",
+        "value": "1938"
+      }
+    },
+    {
+      "id": "alex_salmond",
+      "name": "Alex Salmond",
+      "sources": [
+        "https://www.parliament.scot/chamber-and-committees/research-prepared-for-parliament/research-briefings/2019/6/27/sb-1946",
+        "https://www.parliament.scot/msps/current-and-previous-msps/john-swinney",
+        "https://www.parliament.scot/msps/current-and-previous-msps/nicola-sturgeon",
+        "https://members.parliament.uk/member/577/career"
+      ]
+    },
+    {
+      "id": "john_swinney",
+      "name": "John Swinney",
+      "sources": [
+        "https://www.parliament.scot/msps/current-and-previous-msps/john-swinney",
+        "https://www.parliament.scot/chamber-and-committees/research-prepared-for-parliament/research-briefings/2019/6/27/sb-1946",
+        "https://search.electoralcommission.org.uk/Api/Accounts/Documents/27288",
+        "https://members.parliament.uk/member/577/career"
+      ]
+    },
+    {
+      "id": "nicola_sturgeon",
+      "name": "Nicola Sturgeon",
+      "sources": [
+        "https://www.parliament.scot/msps/current-and-previous-msps/nicola-sturgeon",
+        "https://www.parliament.scot/msps/current-and-previous-msps/humza-yousaf"
+      ]
+    },
+    {
+      "id": "humza_yousaf",
+      "name": "Humza Yousaf",
+      "sources": [
+        "https://www.parliament.scot/msps/current-and-previous-msps/humza-yousaf",
+        "https://search.electoralcommission.org.uk/Api/Accounts/Documents/27288"
+      ]
+    },
+    {
+      "id": "dafydd_elis_thomas",
+      "name": "Dafydd Elis-Thomas",
+      "sources": [
+        "https://senedd.wales/senedd-now/news/our-senedd-s-founding-father-a-tribute-to-lord-dafydd-elis-thomas/",
+        "https://members.parliament.uk/member/2816/career",
+        "https://members.parliament.uk/member/547/career",
+        "https://archives.library.wales/index.php/elis-thomas-dafydd-1946",
+        "https://www.library.wales/plaidcymru100",
+        "https://senedd.wales/senedd-now/news/members-to-pay-tribute-in-the-senedd/"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1946-10-18"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2025-02-07"
+      }
+    },
+    {
+      "id": "dafydd_wigley",
+      "name": "Dafydd Wigley",
+      "sources": [
+        "https://members.parliament.uk/member/547/career",
+        "https://senedd.cymru/NAfW%20Documents/ke-1997-2003.pdf%20-%2023052011/ke-1997-2003-English.pdf",
+        "https://www.library.wales/plaidcymru100"
+      ]
+    },
+    {
+      "id": "ieuan_wyn_jones",
+      "name": "Ieuan Wyn Jones",
+      "sources": [
+        "https://senedd.cymru/NAfW%20Documents/ke-1997-2003.pdf%20-%2023052011/ke-1997-2003-English.pdf",
+        "https://senedd.wales/NAfW%20Documents/ke-2003-2007.pdf%20-%2023052011/ke-2003-2007-English.pdf",
+        "https://senedd.wales/people/ieuan-wyn-jones/",
+        "https://senedd.wales/people/leanne-wood-ms/"
+      ]
+    },
+    {
+      "id": "leanne_wood",
+      "name": "Leanne Wood",
+      "sources": [
+        "https://senedd.wales/people/leanne-wood-ms/",
+        "https://record.senedd.wales/Plenary/5353"
+      ]
+    },
+    {
+      "id": "adam_price",
+      "name": "Adam Price",
+      "sources": [
+        "https://record.senedd.wales/Plenary/5353",
+        "https://search.electoralcommission.org.uk/Api/Accounts/Documents/26185",
+        "https://www.partyof.wales/news?force=2&page=30"
+      ]
+    },
+    {
+      "id": "llyr_gruffydd",
+      "name": "Llŷr Gruffydd",
+      "sources": [
+        "https://search.electoralcommission.org.uk/Api/Accounts/Documents/26185",
+        "https://www.partyof.wales/addo_mwy_o_bwerau_i_gymru_pledge_greater_powers_to_wales",
+        "https://researchbriefings.files.parliament.uk/documents/CBP-8318/CBP-8318.pdf"
+      ]
+    },
+    {
+      "id": "rhun_ap_iorwerth",
+      "name": "Rhun ap Iorwerth",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/CBP-8318/CBP-8318.pdf",
+        "https://www.partyof.wales/leader_hp"
+      ]
+    }
+  ],
+  "parties": [
+    {
+      "terms": [
+        {
+          "id": "uk_con_margaret_thatcher_1975_02_11",
+          "person": "margaret_thatcher",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "1990-11-27"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1975-02-11"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1990-11-27"
+          },
+          "sources": [
+            "https://www.margaretthatcher.org/document/102618",
+            "https://johnmajorarchive.org.uk/1990/11/doorstep-interview-27-november-1990/",
+            "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+            "https://www.margaretthatcher.org/essential/chronology",
+            "https://www.margaretthatcher.org/archive/MTobit"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "1975-02-11"
+          },
+          "note": "In office at 1990 start. Do not substitute her PM endpoint for party transfer. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_con_john_major_1990_11_27",
+          "person": "john_major",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "1995-06-22"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-11-27"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1995-06-22"
+          },
+          "sources": [
+            "https://johnmajorarchive.org.uk/1990/11/doorstep-interview-27-november-1990/",
+            "https://johnmajorarchive.org.uk/1995/06/mr-majors-resignation-speech-22-june-1995/",
+            "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+            "https://www.margaretthatcher.org/essential/chronology"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "1990-11-27"
+          },
+          "note": "Own acceptance statement is party-office evidence; own 1995 statement explicitly resigns party leadership. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_con_john_major_1995_07_04",
+          "person": "john_major",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "1997-06-19"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1995-07-04"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1997-06-19"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "1995-07-04"
+          },
+          "note": "Reelection 4 July 1995. Treat 22 June-4 July 1995 as a leadership-office status gap pending caretaker evidence, not a different invented person. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_con_william_hague_1997_06_19",
+          "person": "william_hague",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2001-09-13"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1997-06-19"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2001-09-13"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "1997-06-19"
+          },
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_con_iain_duncan_smith_2001_09_13",
+          "person": "iain_duncan_smith",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2003-11-06"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2001-09-13"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2003-11-06"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2001-09-13"
+          },
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_con_michael_howard_2003_11_06",
+          "person": "michael_howard",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2005-12-06"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2003-11-06"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2005-12-06"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2003-11-06"
+          },
+          "note": "Date is a party succession boundary. Announced resignation and caretaker status must be kept separate; Howard 2005 requires further status review. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_con_david_cameron_2005_12_06",
+          "person": "david_cameron",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2016-07-11"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2005-12-06"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2016-07-11"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+            "https://members.parliament.uk/member/8/career"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2005-12-06"
+          },
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_con_theresa_may_2016_07_11",
+          "person": "theresa_may",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2019-06-07"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2016-07-11"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2019-06-07"
+          },
+          "sources": [
+            "https://members.parliament.uk/member/8/career",
+            "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2016-07-11"
+          },
+          "note": "Career record distinguishes party start 11 July from PM start 13 July. Formal resignation 7 June 2019 precedes successor 23 July; caretaker status separately unresolved. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_con_boris_johnson_2019_07_23",
+          "person": "boris_johnson",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2022-09-05"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2019-07-23"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2022-09-05"
+          },
+          "sources": [
+            "https://members.parliament.uk/member/1423/career",
+            "https://hansard.parliament.uk/pdf/commons/2019-07-23",
+            "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2019-07-23"
+          },
+          "note": "Party election 23 July, PM appointment 24 July. Do not copy Commons summary-table PM date. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_con_liz_truss_2022_09_05",
+          "person": "liz_truss",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2022-10-24"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2022-09-05"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2022-10-24"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2022-09-05"
+          },
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_con_rishi_sunak_2022_10_24",
+          "person": "rishi_sunak",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2024-11-02"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2022-10-24"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2024-11-02"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2022-10-24"
+          },
+          "note": "Broad leadership span; substantive-to-caretaker change during 2024 needs separate confirmation. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_con_kemi_badenoch_2024_11_02",
+          "person": "kemi_badenoch",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2024-11-02"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+            "https://www.conservatives.com/news/conservatives-announce-new-shadow-cabinet"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2024-11-02"
+          },
+          "note": "Current party statement checked 7 September 2026; no assumed future endpoint. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        }
+      ],
+      "nation": "UK",
+      "party": "uk_con",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.margaretthatcher.org/document/102618",
+        "https://johnmajorarchive.org.uk/1990/11/doorstep-interview-27-november-1990/",
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+        "https://www.margaretthatcher.org/essential/chronology",
+        "https://www.margaretthatcher.org/archive/MTobit",
+        "https://johnmajorarchive.org.uk/1995/06/mr-majors-resignation-speech-22-june-1995/",
+        "https://members.parliament.uk/member/8/career",
+        "https://members.parliament.uk/member/1423/career",
+        "https://hansard.parliament.uk/pdf/commons/2019-07-23",
+        "https://www.conservatives.com/news/conservatives-announce-new-shadow-cabinet"
+      ],
+      "gaps": [
+        {
+          "until": {
+            "kind": "unknown"
+          },
+          "reason": "Resolve formal interim/caretaker classification for Major 22 June-4 July 1995, Howard 2005, May 7 June-23 July 2019 and Sunak 2024. Do not invent an acting replacement.",
+          "sources": [],
+          "from": {
+            "kind": "unknown"
+          }
+        }
+      ]
+    },
+    {
+      "terms": [
+        {
+          "id": "uk_lab_neil_kinnock_1983_10_02",
+          "person": "neil_kinnock",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "1992-07-18"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1970-06-18"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf",
+            "https://members.parliament.uk/member/693/career"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "1983-10-02"
+          },
+          "note": "In office at 1990 start. Exact 1983 day not verified in this pass; April 1992 announcement is not successor accession. Explicit parliamentary Labour affiliation; not a complete general membership register."
+        },
+        {
+          "id": "uk_lab_john_smith_1992_07_18",
+          "person": "john_smith",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "1994-05-12"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1992-07-18"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1994-05-12"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "1992-07-18"
+          },
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_lab_margaret_beckett_1994_05_12",
+          "person": "margaret_beckett",
+          "role": "party leader",
+          "kind": "acting",
+          "until": {
+            "kind": "day",
+            "value": "1994-07-21"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1994-05-12"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1994-07-21"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "1994-05-12"
+          },
+          "note": "Deputy became acting leader on Smith death; preserve her interval rather than jumping to Blair. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_lab_tony_blair_1994_07_21",
+          "person": "tony_blair",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2007-06-24"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1994-07-21"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2007-06-24"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "1994-07-21"
+          },
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_lab_gordon_brown_2007_06_24",
+          "person": "gordon_brown",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2010-05-11"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2007-06-24"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2010-05-11"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2007-06-24"
+          },
+          "note": "Formal party appointment 24 June 2007, distinct from sole nomination 17 May and PM appointment 27 June. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_lab_harriet_harman_2010_05_11",
+          "person": "harriet_harman",
+          "role": "party leader",
+          "kind": "acting",
+          "until": {
+            "kind": "day",
+            "value": "2010-09-25"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2010-05-11"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2010-09-25"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2010-05-11"
+          },
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_lab_ed_miliband_2010_09_25",
+          "person": "ed_miliband",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2015-05-08"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2010-09-25"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2015-05-08"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2010-09-25"
+          },
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_lab_harriet_harman_2015_05_08",
+          "person": "harriet_harman",
+          "role": "party leader",
+          "kind": "acting",
+          "until": {
+            "kind": "day",
+            "value": "2015-09-12"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2015-05-08"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2015-09-12"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2015-05-08"
+          },
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_lab_jeremy_corbyn_2015_09_12",
+          "person": "jeremy_corbyn",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2020-04-04"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2015-09-12"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2020-04-04"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf",
+            "https://labour.org.uk/wp-content/uploads/2023/01/The-Forde-Report.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2015-09-12"
+          },
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_lab_keir_starmer_2020_04_04",
+          "person": "keir_starmer",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "year",
+            "value": "2026"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2020-04-04"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2026"
+          },
+          "sources": [
+            "https://labour.org.uk/wp-content/uploads/2023/01/The-Forde-Report.pdf",
+            "https://www.itv.com/news/2026-06-22/keir-starmer-resigns-as-labour-leader-his-speech-in-full",
+            "https://labour.org.uk/updates/members-updates/andy-burnham-elected-leader-of-the-labour-party/",
+            "https://www.gov.uk/government/people/andy-burnham"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2020-04-04"
+          },
+          "note": "22 June 2026 statement announces departure and continued PM service. Exact party-office end/caretaker classification unresolved; Burnham transfer 16/17 July conflict is preserved. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit. The office endpoint is certainly in 2026 because an official successor was elected that year; exact June/July endpoint remains unresolved. Year precision preserves the verified pre-2026 term without inventing the handover day."
+        },
+        {
+          "id": "uk_lab_andy_burnham_2026_07_17",
+          "person": "andy_burnham",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "unknown"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://labour.org.uk/updates/members-updates/andy-burnham-elected-leader-of-the-labour-party/",
+            "https://www.gov.uk/government/people/andy-burnham"
+          ],
+          "from": {
+            "kind": "unknown"
+          },
+          "note": "Prefer party election-day declaration as candidate date; primary sources disagree. PM accession 20 July is separate. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        }
+      ],
+      "nation": "UK",
+      "party": "uk_lab",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf",
+        "https://members.parliament.uk/member/693/career",
+        "https://labour.org.uk/wp-content/uploads/2023/01/The-Forde-Report.pdf",
+        "https://www.itv.com/news/2026-06-22/keir-starmer-resigns-as-labour-leader-his-speech-in-full",
+        "https://labour.org.uk/updates/members-updates/andy-burnham-elected-leader-of-the-labour-party/",
+        "https://www.gov.uk/government/people/andy-burnham"
+      ],
+      "gaps": [
+        {
+          "until": {
+            "kind": "unknown"
+          },
+          "reason": "Labour official 17 July 2026 election statement conflicts with GOV.UK 16 July biography. Starmer party-office endpoint/caretaker gap also unresolved.",
+          "sources": [],
+          "from": {
+            "kind": "unknown"
+          }
+        }
+      ]
+    },
+    {
+      "terms": [
+        {
+          "id": "uk_lib_paddy_ashdown_1988_07_28",
+          "person": "paddy_ashdown",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "1999-08-09"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1988-03-03"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2018-12-22"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf",
+            "https://www.libdems.org.uk/internal-elections/election-results/leadership",
+            "https://www.ohr.int/63900/",
+            "https://members.parliament.uk/member/258/contact"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "1988-07-28"
+          },
+          "note": " Parliament profile instead records 16 July 1988 as leader start; retained 28 July from party/Commons election records. Affiliation dates are independently documented. Explicit parliamentary Liberal Democrat affiliation; last date is death, not transfer to another party."
+        },
+        {
+          "id": "uk_lib_charles_kennedy_1999_08_09",
+          "person": "charles_kennedy",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2006-01-07"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1999-08-09"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2006-01-07"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf",
+            "https://www.libdems.org.uk/internal-elections/election-results/leadership"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "1999-08-09"
+          },
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_lib_menzies_campbell_2006_01_07",
+          "person": "menzies_campbell",
+          "role": "party leader",
+          "kind": "acting",
+          "until": {
+            "kind": "day",
+            "value": "2006-03-02"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2006-01-07"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2006-03-02"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2006-01-07"
+          },
+          "note": "Library describes acting through 1 March; exclusive successor boundary 2 March used here. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_lib_menzies_campbell_2006_03_02",
+          "person": "menzies_campbell",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2007-10-15"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2006-03-02"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2007-10-15"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2006-03-02"
+          },
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_lib_vince_cable_2007_10_15",
+          "person": "vince_cable",
+          "role": "party leader",
+          "kind": "acting",
+          "until": {
+            "kind": "day",
+            "value": "2007-12-18"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2007-10-15"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2007-12-18"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf",
+            "https://members.parliament.uk/member/207/contact"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2007-10-15"
+          },
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_lib_nick_clegg_2007_12_18",
+          "person": "nick_clegg",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2015-05-08"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2007-12-18"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2015-05-08"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf",
+            "https://members.parliament.uk/member/1563/career"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2007-12-18"
+          },
+          "note": "No named 2015 interim successor verified. Do not silently extend to Farron or appoint the party president. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_lib_tim_farron_2015_07_16",
+          "person": "tim_farron",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2017-07-20"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2015-07-16"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2017-07-20"
+          },
+          "sources": [
+            "https://members.parliament.uk/member/1591/career",
+            "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2015-07-16"
+          },
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_lib_vince_cable_2017_07_20",
+          "person": "vince_cable",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2019-07-22"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2017-07-20"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2019-07-22"
+          },
+          "sources": [
+            "https://members.parliament.uk/member/207/contact"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2017-07-20"
+          },
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_lib_jo_swinson_2019_07_22",
+          "person": "jo_swinson",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2019-12-13"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2019-07-22"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2019-12-13"
+          },
+          "sources": [
+            "https://members.parliament.uk/member/207/contact",
+            "https://members.parliament.uk/member/188/career",
+            "https://search.electoralcommission.org.uk/Api/Accounts/Documents/22616"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2019-07-22"
+          },
+          "note": "Start/end are corroborated by predecessor/successor office records; accounts confirm substantive role in between. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_lib_ed_davey_2019_12_13",
+          "person": "ed_davey",
+          "role": "party leader",
+          "kind": "co_leader",
+          "until": {
+            "kind": "day",
+            "value": "2020-08-27"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2019-12-13"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2020-08-27"
+          },
+          "sources": [
+            "https://members.parliament.uk/member/188/career",
+            "https://search.electoralcommission.org.uk/Api/Accounts/Documents/22616",
+            "https://www.markpack.org.uk/files/2020/02/Liberal-Democrat-federal-conference-agenda-and-directory-Spring-2020.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2019-12-13"
+          },
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit. Acting co-leader; concurrent officeholders retained separately."
+        },
+        {
+          "id": "uk_lib_sal_brinton_2019_12",
+          "person": "sal_brinton",
+          "role": "party leader",
+          "kind": "co_leader",
+          "until": {
+            "kind": "month",
+            "value": "2020-01"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2019-12"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2020-01"
+          },
+          "sources": [
+            "https://search.electoralcommission.org.uk/Api/Accounts/Documents/22616"
+          ],
+          "from": {
+            "kind": "month",
+            "value": "2019-12"
+          },
+          "note": "Primary filing names both co-leaders but only gives months. Davey record provides 13 December; exact Brinton boundary needs additional person-specific confirmation. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit. Acting co-leader; concurrent officeholders retained separately."
+        },
+        {
+          "id": "uk_lib_mark_pack_2020_01_01",
+          "person": "mark_pack",
+          "role": "party leader",
+          "kind": "co_leader",
+          "until": {
+            "kind": "day",
+            "value": "2020-08-27"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2020-01-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2020-08-27"
+          },
+          "sources": [
+            "https://search.electoralcommission.org.uk/Api/Accounts/Documents/22616",
+            "https://www.markpack.org.uk/files/2020/02/Liberal-Democrat-federal-conference-agenda-and-directory-Spring-2020.pdf",
+            "https://www.northwestlibdems.org.uk/fileadmin/groups/147/Documents/Conference/Conference_Spring_2024.pdf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2020-01-01"
+          },
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit. Acting co-leader; concurrent officeholders retained separately."
+        },
+        {
+          "id": "uk_lib_ed_davey_2020_08_27",
+          "person": "ed_davey",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2020-08-27"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://members.parliament.uk/member/188/career",
+            "https://www.londonlibdems.org.uk/"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2020-08-27"
+          },
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        }
+      ],
+      "nation": "UK",
+      "party": "uk_lib",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf",
+        "https://www.libdems.org.uk/internal-elections/election-results/leadership",
+        "https://www.ohr.int/63900/",
+        "https://members.parliament.uk/member/258/contact",
+        "https://members.parliament.uk/member/207/contact",
+        "https://members.parliament.uk/member/1563/career",
+        "https://members.parliament.uk/member/1591/career",
+        "https://members.parliament.uk/member/188/career",
+        "https://search.electoralcommission.org.uk/Api/Accounts/Documents/22616",
+        "https://www.markpack.org.uk/files/2020/02/Liberal-Democrat-federal-conference-agenda-and-directory-Spring-2020.pdf",
+        "https://www.northwestlibdems.org.uk/fileadmin/groups/147/Documents/Conference/Conference_Spring_2024.pdf",
+        "https://www.londonlibdems.org.uk/"
+      ],
+      "identity_note": "1990 onward refers to the merged Liberal Democrats. The game baseline alias SDP-Liberal Alliance does not describe an additional party leadership after the merger.",
+      "gaps": [
+        {
+          "until": {
+            "kind": "unknown"
+          },
+          "reason": "Clegg career ends 8 May 2015; Farron begins 16 July 2015. Reviewed official sources do not name an interim office holder. Do not auto-assign Sal Brinton based on presidency.",
+          "sources": [],
+          "from": {
+            "kind": "unknown"
+          }
+        }
+      ]
+    },
+    {
+      "terms": [
+        {
+          "id": "uk_nat_gordon_wilson_1979",
+          "person": "gordon_wilson",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "1990-09-22"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1979"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1990-09-22"
+          },
+          "sources": [
+            "https://members.parliament.uk/member/1314/career",
+            "https://www.parliament.scot/chamber-and-committees/research-prepared-for-parliament/research-briefings/2019/6/27/sb-1946",
+            "https://manuscripts.nls.uk/repositories/2/resources/16187",
+            "https://members.parliament.uk/member/577/career"
+          ],
+          "from": {
+            "kind": "year",
+            "value": "1979"
+          },
+          "component": "snp",
+          "note": "NLS verifies leadership from 1979; Parliament records successor Salmond taking the party office on 22 September 1990. This successor boundary supplies the half-open end. Leadership interval is a conservative affiliation window, not evidence of later party exit."
+        },
+        {
+          "id": "uk_nat_alex_salmond_1990",
+          "person": "alex_salmond",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "month",
+            "value": "2000-09"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-09-22"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2000-09"
+          },
+          "sources": [
+            "https://www.parliament.scot/chamber-and-committees/research-prepared-for-parliament/research-briefings/2019/6/27/sb-1946",
+            "https://www.parliament.scot/msps/current-and-previous-msps/john-swinney",
+            "https://members.parliament.uk/member/577/career"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "1990-09-22"
+          },
+          "component": "snp",
+          "note": "Parliament explicitly records 22 September 1990 as party-leadership start. The 23/26 September 2000 boundary conflict is preserved at common verified month precision; no exact day is chosen. Leadership interval is a conservative affiliation window, not evidence of later party exit."
+        },
+        {
+          "id": "uk_nat_john_swinney_2000_09_26",
+          "person": "john_swinney",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2004-09-03"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2000-09"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2004-09-03"
+          },
+          "sources": [
+            "https://www.parliament.scot/msps/current-and-previous-msps/john-swinney",
+            "https://www.parliament.scot/chamber-and-committees/research-prepared-for-parliament/research-briefings/2019/6/27/sb-1946",
+            "https://members.parliament.uk/member/577/career"
+          ],
+          "from": {
+            "kind": "month",
+            "value": "2000-09"
+          },
+          "component": "snp",
+          "note": "Election chronology says 23 September 2000; both predecessor/successor parliamentary career profiles say 26 September. Common verified September month retained conservatively without choosing an unsupported day. Leadership interval is a conservative affiliation window."
+        },
+        {
+          "id": "uk_nat_alex_salmond_2004_09_03",
+          "person": "alex_salmond",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2014-11-14"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2004-09-03"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2014-11-14"
+          },
+          "sources": [
+            "https://www.parliament.scot/chamber-and-committees/research-prepared-for-parliament/research-briefings/2019/6/27/sb-1946",
+            "https://www.parliament.scot/msps/current-and-previous-msps/nicola-sturgeon"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2004-09-03"
+          },
+          "component": "snp",
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_nat_nicola_sturgeon_2014_11_14",
+          "person": "nicola_sturgeon",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2023-03-27"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2014-11-14"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2023-03-27"
+          },
+          "sources": [
+            "https://www.parliament.scot/msps/current-and-previous-msps/nicola-sturgeon",
+            "https://www.parliament.scot/msps/current-and-previous-msps/humza-yousaf"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2014-11-14"
+          },
+          "component": "snp",
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_nat_humza_yousaf_2023_03_27",
+          "person": "humza_yousaf",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2024-05-06"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2023-03-27"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2024-05-06"
+          },
+          "sources": [
+            "https://www.parliament.scot/msps/current-and-previous-msps/humza-yousaf",
+            "https://search.electoralcommission.org.uk/Api/Accounts/Documents/27288"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2023-03-27"
+          },
+          "component": "snp",
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_nat_john_swinney_2024_05_06",
+          "person": "john_swinney",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2024-05-06"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://search.electoralcommission.org.uk/Api/Accounts/Documents/27288",
+            "https://www.parliament.scot/msps/current-and-previous-msps/john-swinney"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2024-05-06"
+          },
+          "component": "snp",
+          "note": "Parliament currently names him party leader;8 April 2026 split is dissolution, not established party removal. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_nat_dafydd_elis_thomas_1984",
+          "person": "dafydd_elis_thomas",
+          "role": "party president (then political leader)",
+          "kind": "leader",
+          "until": {
+            "kind": "year",
+            "value": "1991"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1984"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "1991"
+          },
+          "sources": [
+            "https://senedd.wales/senedd-now/news/our-senedd-s-founding-father-a-tribute-to-lord-dafydd-elis-thomas/",
+            "https://members.parliament.uk/member/2816/career",
+            "https://members.parliament.uk/member/547/career",
+            "https://archives.library.wales/index.php/elis-thomas-dafydd-1946",
+            "https://www.library.wales/plaidcymru100",
+            "https://senedd.wales/senedd-now/news/members-to-pay-tribute-in-the-senedd/"
+          ],
+          "from": {
+            "kind": "year",
+            "value": "1984"
+          },
+          "component": "plaid_cymru",
+          "note": "1 July 1991 career endpoint conflicts with successor 1 January 1991 placeholder. Keep only year precision. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_nat_dafydd_wigley_1991",
+          "person": "dafydd_wigley",
+          "role": "party president (then political leader)",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2000-08-03"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1991"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2000-08-03"
+          },
+          "sources": [
+            "https://members.parliament.uk/member/547/career",
+            "https://senedd.cymru/NAfW%20Documents/ke-1997-2003.pdf%20-%2023052011/ke-1997-2003-English.pdf",
+            "https://www.library.wales/plaidcymru100"
+          ],
+          "from": {
+            "kind": "year",
+            "value": "1991"
+          },
+          "component": "plaid_cymru",
+          "note": "Party president/leader.1999-2000 temporary delegated duties require further primary evidence; do not erase the substantive office. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_nat_ieuan_wyn_jones_2000_08_03",
+          "person": "ieuan_wyn_jones",
+          "role": "party president (then political leader)",
+          "kind": "leader",
+          "until": {
+            "kind": "year",
+            "value": "2003"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2000-08-03"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2003"
+          },
+          "sources": [
+            "https://senedd.cymru/NAfW%20Documents/ke-1997-2003.pdf%20-%2023052011/ke-1997-2003-English.pdf",
+            "https://senedd.wales/NAfW%20Documents/ke-2003-2007.pdf%20-%2023052011/ke-2003-2007-English.pdf",
+            "https://senedd.wales/people/ieuan-wyn-jones/"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2000-08-03"
+          },
+          "component": "plaid_cymru",
+          "note": "President and political leader at accession.2003 presidency and Assembly-group leadership separate; exact resignation/caretaker interval unresolved. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_nat_ieuan_wyn_jones_2003_09_15",
+          "person": "ieuan_wyn_jones",
+          "role": "Assembly group leader (political leadership separate from presidency)",
+          "kind": "leader",
+          "until": {
+            "kind": "day",
+            "value": "2012-03-15"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2003-09-15"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2012-03-15"
+          },
+          "sources": [
+            "https://senedd.wales/NAfW%20Documents/ke-2003-2007.pdf%20-%2023052011/ke-2003-2007-English.pdf",
+            "https://senedd.wales/people/leanne-wood-ms/"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2003-09-15"
+          },
+          "component": "plaid_cymru",
+          "note": "Election here is explicitly Assembly group leadership. Review 2003 role split before representing as sole party office. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_nat_leanne_wood_2012_03_15",
+          "person": "leanne_wood",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "year",
+            "value": "2018"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2012-03-15"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2018"
+          },
+          "sources": [
+            "https://senedd.wales/people/leanne-wood-ms/",
+            "https://record.senedd.wales/Plenary/5353"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2012-03-15"
+          },
+          "component": "plaid_cymru",
+          "note": "Exact 2018 transfer day not accepted from primary source in this pass; Price is recorded by 2 October. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_nat_adam_price_2018",
+          "person": "adam_price",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "month",
+            "value": "2023-05"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "2018"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2023-05"
+          },
+          "sources": [
+            "https://record.senedd.wales/Plenary/5353",
+            "https://search.electoralcommission.org.uk/Api/Accounts/Documents/26185",
+            "https://www.partyof.wales/news?force=2&page=30"
+          ],
+          "from": {
+            "kind": "year",
+            "value": "2018"
+          },
+          "component": "plaid_cymru",
+          "note": "Announcement 10 May 2023 explicitly contingent on interim arrangements. Exact effective 16/17 May boundary needs final primary resolution. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_nat_llyr_gruffydd_2023_05",
+          "person": "llyr_gruffydd",
+          "role": "party leader",
+          "kind": "acting",
+          "until": {
+            "kind": "day",
+            "value": "2023-06-16"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2023-05"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2023-06-16"
+          },
+          "sources": [
+            "https://search.electoralcommission.org.uk/Api/Accounts/Documents/26185",
+            "https://www.partyof.wales/addo_mwy_o_bwerau_i_gymru_pledge_greater_powers_to_wales",
+            "https://researchbriefings.files.parliament.uk/documents/CBP-8318/CBP-8318.pdf"
+          ],
+          "from": {
+            "kind": "month",
+            "value": "2023-05"
+          },
+          "component": "plaid_cymru",
+          "note": "Primary statement verifies acting by 19 May. Do not confuse 11 May nomination,13 May ratification,16 May farewell, and 17 May first full day. Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        },
+        {
+          "id": "uk_nat_rhun_ap_iorwerth_2023_06_16",
+          "person": "rhun_ap_iorwerth",
+          "role": "party leader",
+          "kind": "leader",
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2023-06-16"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://researchbriefings.files.parliament.uk/documents/CBP-8318/CBP-8318.pdf",
+            "https://www.partyof.wales/leader_hp"
+          ],
+          "from": {
+            "kind": "day",
+            "value": "2023-06-16"
+          },
+          "component": "plaid_cymru",
+          "note": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+        }
+      ],
+      "components": [
+        {
+          "id": "snp",
+          "name": "Scottish National Party",
+          "sources": [
+            "https://members.parliament.uk/member/1314/career",
+            "https://www.parliament.scot/chamber-and-committees/research-prepared-for-parliament/research-briefings/2019/6/27/sb-1946",
+            "https://manuscripts.nls.uk/repositories/2/resources/16187",
+            "https://www.parliament.scot/msps/current-and-previous-msps/john-swinney",
+            "https://www.parliament.scot/msps/current-and-previous-msps/nicola-sturgeon",
+            "https://www.parliament.scot/msps/current-and-previous-msps/humza-yousaf",
+            "https://search.electoralcommission.org.uk/Api/Accounts/Documents/27288",
+            "https://members.parliament.uk/member/577/career"
+          ]
+        },
+        {
+          "id": "plaid_cymru",
+          "name": "Plaid Cymru",
+          "sources": [
+            "https://senedd.wales/senedd-now/news/our-senedd-s-founding-father-a-tribute-to-lord-dafydd-elis-thomas/",
+            "https://members.parliament.uk/member/2816/career",
+            "https://members.parliament.uk/member/547/career",
+            "https://archives.library.wales/index.php/elis-thomas-dafydd-1946",
+            "https://www.library.wales/plaidcymru100",
+            "https://senedd.wales/senedd-now/news/members-to-pay-tribute-in-the-senedd/",
+            "https://senedd.cymru/NAfW%20Documents/ke-1997-2003.pdf%20-%2023052011/ke-1997-2003-English.pdf",
+            "https://senedd.wales/NAfW%20Documents/ke-2003-2007.pdf%20-%2023052011/ke-2003-2007-English.pdf",
+            "https://senedd.wales/people/ieuan-wyn-jones/",
+            "https://senedd.wales/people/leanne-wood-ms/",
+            "https://record.senedd.wales/Plenary/5353",
+            "https://search.electoralcommission.org.uk/Api/Accounts/Documents/26185",
+            "https://www.partyof.wales/news?force=2&page=30",
+            "https://www.partyof.wales/addo_mwy_o_bwerau_i_gymru_pledge_greater_powers_to_wales",
+            "https://researchbriefings.files.parliament.uk/documents/CBP-8318/CBP-8318.pdf",
+            "https://www.partyof.wales/leader_hp"
+          ]
+        }
+      ],
+      "nation": "UK",
+      "party": "uk_nat",
+      "kind": "coalition",
+      "coverage": "partial",
+      "sources": [
+        "https://members.parliament.uk/member/1314/career",
+        "https://www.parliament.scot/chamber-and-committees/research-prepared-for-parliament/research-briefings/2019/6/27/sb-1946",
+        "https://manuscripts.nls.uk/repositories/2/resources/16187",
+        "https://www.parliament.scot/msps/current-and-previous-msps/john-swinney",
+        "https://www.parliament.scot/msps/current-and-previous-msps/nicola-sturgeon",
+        "https://www.parliament.scot/msps/current-and-previous-msps/humza-yousaf",
+        "https://search.electoralcommission.org.uk/Api/Accounts/Documents/27288",
+        "https://senedd.wales/senedd-now/news/our-senedd-s-founding-father-a-tribute-to-lord-dafydd-elis-thomas/",
+        "https://members.parliament.uk/member/2816/career",
+        "https://members.parliament.uk/member/547/career",
+        "https://archives.library.wales/index.php/elis-thomas-dafydd-1946",
+        "https://www.library.wales/plaidcymru100",
+        "https://senedd.wales/senedd-now/news/members-to-pay-tribute-in-the-senedd/",
+        "https://senedd.cymru/NAfW%20Documents/ke-1997-2003.pdf%20-%2023052011/ke-1997-2003-English.pdf",
+        "https://senedd.wales/NAfW%20Documents/ke-2003-2007.pdf%20-%2023052011/ke-2003-2007-English.pdf",
+        "https://senedd.wales/people/ieuan-wyn-jones/",
+        "https://senedd.wales/people/leanne-wood-ms/",
+        "https://record.senedd.wales/Plenary/5353",
+        "https://search.electoralcommission.org.uk/Api/Accounts/Documents/26185",
+        "https://www.partyof.wales/news?force=2&page=30",
+        "https://www.partyof.wales/addo_mwy_o_bwerau_i_gymru_pledge_greater_powers_to_wales",
+        "https://researchbriefings.files.parliament.uk/documents/CBP-8318/CBP-8318.pdf",
+        "https://www.partyof.wales/leader_hp",
+        "https://members.parliament.uk/member/577/career"
+      ],
+      "identity_note": "The game combines SNP and Plaid Cymru in one row. These are separate parties with distinct leaders, not a historical joint leadership.",
+      "gaps": [
+        {
+          "until": {
+            "kind": "unknown"
+          },
+          "reason": "Two separate parties share one game ID; there is no historical combined leader or co-leadership.",
+          "sources": [],
+          "from": {
+            "kind": "unknown"
+          }
+        },
+        {
+          "until": {
+            "kind": "unknown"
+          },
+          "reason": "Party presidency diverges from Assembly leadership in 2003. Dafydd Iwan presidency must be researched before deciding whether the game wants that office, Jones political leadership, or both.",
+          "sources": [],
+          "from": {
+            "kind": "unknown"
+          }
+        },
+        {
+          "until": {
+            "kind": "unknown"
+          },
+          "reason": "Secondary sources point to Ieuan Wyn Jones acting during Wigley illnessDecember 1999-February 2000; no precise primary timeline accepted yet. Keep as research lead only.",
+          "sources": [],
+          "from": {
+            "kind": "unknown"
+          }
+        },
+        {
+          "until": {
+            "kind": "unknown"
+          },
+          "reason": "Election-result reports vary 27/28 September 2018; actual primary statement or party filing needed. Current accepted earliest direct record is 2 October.",
+          "sources": [],
+          "from": {
+            "kind": "unknown"
+          }
+        },
+        {
+          "until": {
+            "kind": "unknown"
+          },
+          "reason": "Separate interim nomination, ratification and effective handover; exact 16/17 May boundary not yet accepted.",
+          "sources": [],
+          "from": {
+            "kind": "unknown"
+          }
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "2000-09"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2000-10"
+          },
+          "reason": "The SNP leadership handover is dated 23 September by SPICe chronology and 26 September by parliamentary career records. The historical terms use common month precision, leaving exact-day selection uncertain.",
+          "sources": [
+            "https://members.parliament.uk/member/577/career",
+            "https://www.parliament.scot/chamber-and-committees/research-prepared-for-parliament/research-briefings/2019/6/27/sb-1946",
+            "https://www.parliament.scot/msps/current-and-previous-msps/john-swinney"
+          ]
+        }
+      ]
+    }
+  ],
+  "research": {
+    "repo_parties": [
+      {
+        "id": "uk_con",
+        "name": "Conservative Party"
+      },
+      {
+        "id": "uk_lab",
+        "name": "Labour Party"
+      },
+      {
+        "id": "uk_lib",
+        "name": "Liberal Democrats",
+        "repo_native": "SDP-Liberal Alliance",
+        "note": "Historical alias for1987 baseline;1990 candidates belong to merged Liberal Democrats."
+      },
+      {
+        "id": "uk_nat",
+        "name": "Scottish National Party and Plaid Cymru",
+        "composite": true,
+        "components": [
+          "Scottish National Party",
+          "Plaid Cymru"
+        ],
+        "note": "No single historic leader of this aggregated game row. Present dual component identities or keep avatar unset; never invent a joint office."
+      }
+    ],
+    "date_semantics": {
+      "end": "Recorded departure or successor accession boundary, generally exclusive for lookup; source same-day handovers have no time-of-day precision.",
+      "partial": "YYYY and YYYY-MM are precision-preserving facts, never parse them as January1 or day1 without an explicit gameplay policy.",
+      "ongoing": "Verified as of research date; not a prediction through31December2026.",
+      "sources": "Primary transcripts/party documents and official parliamentary records are distinguished from official retrospective syntheses.",
+      "conflicts": "Candidate preferred dates can coexist with alternative claims. These records must not silently become authoritative calendar-switch commands."
+    },
+    "sources": {
+      "con_library": {
+        "title": "Leadership elections: Conservative Party",
+        "url": "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+        "kind": "official_institutional_synthesis",
+        "locator": "Printed pp 8,19,23,26,36-37",
+        "accessed": "2026-09-07",
+        "note": "Leader-start table sometimes uses the prime-minister accession day; preserve conflicts with contemporaneous records."
+      },
+      "thatcher_acceptance": {
+        "title": "ITN interview after winning Conservative leadership",
+        "url": "https://www.margaretthatcher.org/document/102618",
+        "kind": "primary_transcript_archived_by_subject_foundation",
+        "locator": "11 February 1975",
+        "accessed": "2026-09-07",
+        "note": ""
+      },
+      "major_acceptance": {
+        "title": "Doorstep interview, 27 November 1990",
+        "url": "https://johnmajorarchive.org.uk/1990/11/doorstep-interview-27-november-1990/",
+        "kind": "primary_subject_archive",
+        "locator": "",
+        "accessed": "2026-09-07",
+        "note": ""
+      },
+      "major_resigns": {
+        "title": "Resignation statement, 22 June 1995",
+        "url": "https://johnmajorarchive.org.uk/1995/06/mr-majors-resignation-speech-22-june-1995/",
+        "kind": "primary_subject_archive",
+        "locator": "",
+        "accessed": "2026-09-07",
+        "note": ""
+      },
+      "may_career": {
+        "title": "Theresa May parliamentary career",
+        "url": "https://members.parliament.uk/member/8/career",
+        "kind": "official_parliamentary_record",
+        "locator": "Other posts",
+        "accessed": "2026-09-07",
+        "note": ""
+      },
+      "johnson_career": {
+        "title": "Boris Johnson parliamentary career",
+        "url": "https://members.parliament.uk/member/1423/career",
+        "kind": "official_parliamentary_record",
+        "locator": "Other posts",
+        "accessed": "2026-09-07",
+        "note": ""
+      },
+      "johnson_hansard": {
+        "title": "Commons Hansard 23 July 2019",
+        "url": "https://hansard.parliament.uk/pdf/commons/2019-07-23",
+        "kind": "primary_parliamentary_transcript",
+        "locator": "NHS Workforce Vacancies, columns 1201-1202",
+        "accessed": "2026-09-07",
+        "note": "Health Secretary confirms Johnson has just been elected party leader."
+      },
+      "con_current": {
+        "title": "Conservatives announce new Shadow Cabinet",
+        "url": "https://www.conservatives.com/news/conservatives-announce-new-shadow-cabinet",
+        "kind": "primary_party_statement",
+        "locator": "7 September 2026",
+        "accessed": "2026-09-07",
+        "note": ""
+      },
+      "lab_library": {
+        "title": "Leadership elections: Labour Party",
+        "url": "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf",
+        "kind": "official_institutional_synthesis",
+        "locator": "Printed pp 10-11,18,27-30,39-44,47-52",
+        "accessed": "2026-09-07",
+        "note": "Includes acting leaders and immediate versus announced resignations. Metadata says 31 Oct 2025 but fetched text contains 2026; use dated event statements for 2026."
+      },
+      "starmer_start": {
+        "title": "Forde Report hosted by Labour",
+        "url": "https://labour.org.uk/wp-content/uploads/2023/01/The-Forde-Report.pdf",
+        "kind": "party_commissioned_investigation",
+        "locator": "B 3.6",
+        "accessed": "2026-09-07",
+        "note": "Records Starmer taking over on 4 April 2020."
+      },
+      "starmer_resigns": {
+        "title": "Starmer resignation speech in full",
+        "url": "https://www.itv.com/news/2026-06-22/keir-starmer-resigns-as-labour-leader-his-speech-in-full",
+        "kind": "primary_speech_transcript_on_news_host",
+        "locator": "22 June 2026",
+        "accessed": "2026-09-07",
+        "note": "Speech announces intended resignation and remaining PM during selection; exact party-office endpoint is not specified."
+      },
+      "burnham_party": {
+        "title": "Andy Burnham elected Leader of the Labour Party",
+        "url": "https://labour.org.uk/updates/members-updates/andy-burnham-elected-leader-of-the-labour-party/",
+        "kind": "primary_party_statement",
+        "locator": "17 July 2026",
+        "accessed": "2026-09-07",
+        "note": "Explicitly says elected today, Friday 17 July; not merely a publication timestamp."
+      },
+      "burnham_gov": {
+        "title": "Andy Burnham biography",
+        "url": "https://www.gov.uk/government/people/andy-burnham",
+        "kind": "official_government_biography",
+        "locator": "Biography",
+        "accessed": "2026-09-07",
+        "note": "Says elected party leader 16 July 2026 and became PM 20 July; conflicts with party 17 July statement."
+      },
+      "lib_library": {
+        "title": "Leadership Elections: Liberal Democrats",
+        "url": "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf",
+        "kind": "official_institutional_synthesis",
+        "locator": "Printed pp 3,6-10,14",
+        "accessed": "2026-09-07",
+        "note": "Names Campbell and Cable acting periods; records Clegg resignation 8 May 2015 without naming an interim leader."
+      },
+      "lib_ballots": {
+        "title": "Liberal Democrat leadership ballot results",
+        "url": "https://www.libdems.org.uk/internal-elections/election-results/leadership",
+        "kind": "primary_party_election_record",
+        "locator": "1988 and 1999",
+        "accessed": "2026-09-07",
+        "note": "Corroborates winners; precise days come from Commons Library."
+      },
+      "lib_history": {
+        "title": "Liberal Democrat official history",
+        "url": "https://www.libdems.org.uk/history",
+        "kind": "primary_party_history",
+        "locator": "1988 onward",
+        "accessed": "2026-09-07",
+        "note": "Confirms national succession and the 1988 merger; do not use obsolete SDP-Liberal Alliance alias as a separate 1990 party."
+      },
+      "clegg_career": {
+        "title": "Nick Clegg parliamentary career",
+        "url": "https://members.parliament.uk/member/1563/career",
+        "kind": "official_parliamentary_record",
+        "locator": "Other posts",
+        "accessed": "2026-09-07",
+        "note": ""
+      },
+      "farron_career": {
+        "title": "Tim Farron parliamentary career",
+        "url": "https://members.parliament.uk/member/1591/career",
+        "kind": "official_parliamentary_record",
+        "locator": "Other posts",
+        "accessed": "2026-09-07",
+        "note": ""
+      },
+      "cable_career": {
+        "title": "Vince Cable parliamentary career",
+        "url": "https://members.parliament.uk/member/207/contact",
+        "kind": "official_parliamentary_record",
+        "locator": "Other posts",
+        "accessed": "2026-09-07",
+        "note": "The fetched contact URL returns the parliamentary-career content."
+      },
+      "davey_career": {
+        "title": "Ed Davey parliamentary career",
+        "url": "https://members.parliament.uk/member/188/career",
+        "kind": "official_parliamentary_record",
+        "locator": "Other posts",
+        "accessed": "2026-09-07",
+        "note": ""
+      },
+      "lib_accounts2019": {
+        "title": "Liberal Democrats financial statements 2019",
+        "url": "https://search.electoralcommission.org.uk/Api/Accounts/Documents/22616",
+        "kind": "primary_party_filing",
+        "locator": "PDF page 6 / printed page 2",
+        "accessed": "2026-09-07",
+        "note": "Registered officers explicitly list Davey/Brinton fromDec 2019 and Davey/Pack fromJan 2020."
+      },
+      "lib_conference2020": {
+        "title": "Liberal Democrat Spring 2020 conference agenda",
+        "url": "https://www.markpack.org.uk/files/2020/02/Liberal-Democrat-federal-conference-agenda-and-directory-Spring-2020.pdf",
+        "kind": "primary_party_document_on_officer_site",
+        "locator": "Printed page 3",
+        "accessed": "2026-09-07",
+        "note": "Davey and Pack each sign as Acting Co-Leader."
+      },
+      "pack_conference2024": {
+        "title": "North West Liberal Democrat Spring 2024 conference agenda",
+        "url": "https://www.northwestlibdems.org.uk/fileadmin/groups/147/Documents/Conference/Conference_Spring_2024.pdf",
+        "kind": "primary_party_document",
+        "locator": "Mark Pack biography",
+        "accessed": "2026-09-07",
+        "note": "States acting period 1 January 2020 to 27 August 2020."
+      },
+      "lib_current": {
+        "title": "London Liberal Democrats current party news",
+        "url": "https://www.londonlibdems.org.uk/",
+        "kind": "primary_party_statement",
+        "locator": "News dated 1 September 2026",
+        "accessed": "2026-09-07",
+        "note": "Still identifies Ed Davey as national leader."
+      },
+      "snp_wilson": {
+        "title": "Gordon Wilson parliamentary career",
+        "url": "https://members.parliament.uk/member/1314/career",
+        "kind": "official_parliamentary_record",
+        "locator": "Other posts",
+        "accessed": "2026-09-07",
+        "note": "Lists 1 August 1979-1 August 1990; these suspicious first-of-month dates need corroboration, not automatic use."
+      },
+      "snp_20years": {
+        "title": "Twenty Years of the Scottish Parliament",
+        "url": "https://www.parliament.scot/chamber-and-committees/research-prepared-for-parliament/research-briefings/2019/6/27/sb-1946",
+        "kind": "official_institutional_synthesis",
+        "locator": "Party political highlights",
+        "accessed": "2026-09-07",
+        "note": "Lists Swinney election 23 September 2000, conflicting with his career start 26 September 2000; Salmond reelection 3 September 2004."
+      },
+      "snp_swinney": {
+        "title": "John Swinney parliamentary profile",
+        "url": "https://www.parliament.scot/msps/current-and-previous-msps/john-swinney",
+        "kind": "official_parliamentary_record",
+        "locator": "Party roles",
+        "accessed": "2026-09-07",
+        "note": "Repeated role intervals are split by parliamentary sessions/dissolutions; do not invent party vacancies at those splits."
+      },
+      "snp_sturgeon": {
+        "title": "Nicola Sturgeon parliamentary profile",
+        "url": "https://www.parliament.scot/msps/current-and-previous-msps/nicola-sturgeon",
+        "kind": "official_parliamentary_record",
+        "locator": "Party roles",
+        "accessed": "2026-09-07",
+        "note": "Party leader 14 November 2014-27 March 2023 across session fragments."
+      },
+      "snp_yousaf": {
+        "title": "Humza Yousaf parliamentary profile",
+        "url": "https://www.parliament.scot/msps/current-and-previous-msps/humza-yousaf",
+        "kind": "official_parliamentary_record",
+        "locator": "Party roles",
+        "accessed": "2026-09-07",
+        "note": ""
+      },
+      "snp_accounts2024": {
+        "title": "SNP Annual Report and Financial Statements 2024",
+        "url": "https://search.electoralcommission.org.uk/Api/Accounts/Documents/27288",
+        "kind": "primary_party_filing",
+        "locator": "PDF page 2",
+        "accessed": "2026-09-07",
+        "note": "Lists John Swinney from 6 May 2024."
+      },
+      "plaid_elis": {
+        "title": "Dafydd Elis-Thomas Senedd tribute",
+        "url": "https://senedd.wales/senedd-now/news/our-senedd-s-founding-father-a-tribute-to-lord-dafydd-elis-thomas/",
+        "kind": "official_institutional_biography",
+        "locator": "Biography",
+        "accessed": "2026-09-07",
+        "note": "Confirms leader 1984-1991; no exact day."
+      },
+      "plaid_elis_career": {
+        "title": "Dafydd Elis-Thomas parliamentary career",
+        "url": "https://members.parliament.uk/member/2816/career",
+        "kind": "official_parliamentary_record",
+        "locator": "Other posts",
+        "accessed": "2026-09-07",
+        "note": "Lists 1 July 1984-1 July 1991; conflicts with Wigley 1991 placeholder interval."
+      },
+      "plaid_wigley": {
+        "title": "Dafydd Wigley parliamentary career",
+        "url": "https://members.parliament.uk/member/547/career",
+        "kind": "official_parliamentary_record",
+        "locator": "Other posts",
+        "accessed": "2026-09-07",
+        "note": "Lists 1 January 1991-1 January 2000, which is incompatible with the precise 2000 successor chronology. Keep year precision."
+      },
+      "plaid_chronology2000": {
+        "title": "Assembly key events 1997-2003",
+        "url": "https://senedd.cymru/NAfW%20Documents/ke-1997-2003.pdf%20-%2023052011/ke-1997-2003-English.pdf",
+        "kind": "official_institutional_chronology",
+        "locator": "PDF page 31 / printed page 25",
+        "accessed": "2026-09-07",
+        "note": "Jones succeeds Wigley as party president 3 August 2000."
+      },
+      "plaid_chronology2003": {
+        "title": "Assembly key events 2003-2007",
+        "url": "https://senedd.wales/NAfW%20Documents/ke-2003-2007.pdf%20-%2023052011/ke-2003-2007-English.pdf",
+        "kind": "official_institutional_chronology",
+        "locator": "PDF page 13 / printed page 7",
+        "accessed": "2026-09-07",
+        "note": "Jones elected Assembly group leader 15 September 2003."
+      },
+      "plaid_jones": {
+        "title": "Ieuan Wyn Jones Senedd biography",
+        "url": "https://senedd.wales/people/ieuan-wyn-jones/",
+        "kind": "official_institutional_biography",
+        "locator": "Political history",
+        "accessed": "2026-09-07",
+        "note": ""
+      },
+      "plaid_wood": {
+        "title": "Leanne Wood Senedd biography",
+        "url": "https://senedd.wales/people/leanne-wood-ms/",
+        "kind": "official_institutional_biography",
+        "locator": "Political history",
+        "accessed": "2026-09-07",
+        "note": "Exact election 15 March 2012."
+      },
+      "plaid_price_record": {
+        "title": "Senedd Plenary 2 October 2018",
+        "url": "https://record.senedd.wales/Plenary/5353",
+        "kind": "primary_parliamentary_transcript",
+        "locator": "Questions Without Notice from Party Leaders",
+        "accessed": "2026-09-07",
+        "note": "Calls Adam Price the party leader; establishes he held office by this day, not his exact accession."
+      },
+      "plaid_accounts2023": {
+        "title": "Plaid Cymru annual accounts 2023",
+        "url": "https://search.electoralcommission.org.uk/Api/Accounts/Documents/26185",
+        "kind": "primary_party_filing",
+        "locator": "PDF page 36 / printed page 1",
+        "accessed": "2026-09-07",
+        "note": "Confirms Price, interim Gruffydd and ap Iorwerth; month precision only for interim entry."
+      },
+      "plaid_price_resignation": {
+        "title": "Plaid Cymru official news May 2023",
+        "url": "https://www.partyof.wales/news?force=2&page=30",
+        "kind": "primary_party_statement",
+        "locator": "10 May 2023 entry",
+        "accessed": "2026-09-07",
+        "note": "Price announces he will step down once interim arrangements exist; not an immediate departure."
+      },
+      "plaid_gruffydd_statement": {
+        "title": "Plaid acting leader calls for Welsh powers",
+        "url": "https://www.partyof.wales/addo_mwy_o_bwerau_i_gymru_pledge_greater_powers_to_wales",
+        "kind": "primary_party_statement",
+        "locator": "19 May 2023",
+        "accessed": "2026-09-07",
+        "note": "Directly identifies Gruffydd as acting leader."
+      },
+      "plaid_2023_date": {
+        "title": "Devolution in Wales: A process, not an event",
+        "url": "https://researchbriefings.files.parliament.uk/documents/CBP-8318/CBP-8318.pdf",
+        "kind": "official_institutional_chronology",
+        "locator": "2023 chronology",
+        "accessed": "2026-09-07",
+        "note": "Ap Iorwerth elected unopposed 16 June 2023."
+      },
+      "plaid_current": {
+        "title": "Rhun ap Iorwerth - Party of Wales",
+        "url": "https://www.partyof.wales/leader_hp",
+        "kind": "primary_party_biography",
+        "locator": "12 May 2026",
+        "accessed": "2026-09-07",
+        "note": "Names him Plaid leader, separately from becoming First Minister."
+      },
+      "thatcher_chronology": {
+        "title": "Brief chronology 1925-90",
+        "url": "https://www.margaretthatcher.org/essential/chronology",
+        "kind": "primary_archive_institution",
+        "accessed": "2026-09-07",
+        "note": "Party leadership transferred to Major on 27 November 1990; PM office transferred on 28 November."
+      },
+      "thatcher_life": {
+        "title": "Margaret Thatcher (1925-2013)",
+        "url": "https://www.margaretthatcher.org/archive/MTobit",
+        "kind": "primary_personal_archive",
+        "accessed": "2026-09-07",
+        "note": "Born 13 October 1925; died 8 April 2013."
+      },
+      "kinnock_career": {
+        "title": "Parliamentary career for Lord Kinnock",
+        "url": "https://members.parliament.uk/member/693/career",
+        "kind": "official_parliamentary_profile",
+        "accessed": "2026-09-07",
+        "note": "Labour leader 2 October 1983 to 18 July 1992; Labour parliamentary affiliation from 18 June 1970 to present."
+      },
+      "wilson_nls": {
+        "title": "Political correspondence and papers of Dr Gordon Wilson",
+        "url": "https://manuscripts.nls.uk/repositories/2/resources/16187",
+        "kind": "official_archival_catalogue",
+        "accessed": "2026-09-07",
+        "note": "Chairman and National Convener from 1979 to 1990; born 1938. Year precision only."
+      },
+      "elis_nlw": {
+        "title": "Elis-Thomas, Dafydd, 1946-",
+        "url": "https://archives.library.wales/index.php/elis-thomas-dafydd-1946",
+        "kind": "official_archival_catalogue",
+        "accessed": "2026-09-07",
+        "note": "Welsh-language authority record gives birth 18 October 1946 and Plaid presidency 1984-1991."
+      },
+      "plaid_nlw100": {
+        "title": "Plaid Cymru 100",
+        "url": "https://www.library.wales/plaidcymru100",
+        "kind": "official_archival_exhibition",
+        "accessed": "2026-09-07",
+        "note": "Elis-Thomas elected President in 1984; Wigley re-elected in 1991. No precise days."
+      },
+      "elis_life": {
+        "title": "Members to pay tribute in the Senedd",
+        "url": "https://senedd.wales/senedd-now/news/members-to-pay-tribute-in-the-senedd/",
+        "kind": "primary_parliamentary_statement",
+        "accessed": "2026-09-07",
+        "note": "Published 10 February 2025; expressly says he died Friday 7 February."
+      },
+      "ashdown_life": {
+        "title": "Paddy Ashdown: Office of the High Representative",
+        "url": "https://www.ohr.int/63900/",
+        "kind": "official_biography",
+        "accessed": "2026-09-07",
+        "note": "States Ashdown died 22 December 2018."
+      },
+      "ashdown_career": {
+        "title": "Parliamentary career for Lord Ashdown",
+        "url": "https://members.parliament.uk/member/258/contact",
+        "kind": "official_parliamentary_profile",
+        "accessed": "2026-09-07",
+        "note": "Parliamentary Liberal Democrat affiliation 3 March 1988 to 22 December 2018. Profile leadership start 16 July 1988 conflicts with party ballot and Commons election records, so is not adopted."
+      },
+      "snp_salmond_career": {
+        "title": "Parliamentary career for Alex Salmond",
+        "url": "https://members.parliament.uk/member/577/career",
+        "kind": "official_parliamentary_profile",
+        "accessed": "2026-09-07",
+        "note": "Party leader 22 September 1990 to 26 September 2000; deputy leader until 22 September 1990. Supports Wilson successor boundary. September 2000 still conflicts with SPICe election chronology on 23 September; common month is retained conservatively."
+      }
+    },
+    "terms": [
+      {
+        "id": "uk_con_margaret_thatcher_1975_02_11",
+        "raw_start": {
+          "date": "1975-02-11",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "thatcher_acceptance",
+            "major_acceptance",
+            "con_library"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "1990-11-27",
+          "precision": "day",
+          "basis": "party_transfer_distinguished_from_pm_transfer",
+          "evidence_ids": [
+            "thatcher_chronology",
+            "major_acceptance"
+          ],
+          "alternative_claims": [
+            {
+              "date": "1990-11-28",
+              "basis": "Commons table uses PM transfer; resolved by primary acceptance and Thatcher chronology"
+            }
+          ]
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "thatcher_acceptance",
+          "major_acceptance",
+          "con_library",
+          "thatcher_chronology",
+          "thatcher_life"
+        ],
+        "notes": "In office at 1990 start. Do not substitute her PM endpoint for party transfer.",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_con_john_major_1990_11_27",
+        "raw_start": {
+          "date": "1990-11-27",
+          "precision": "day",
+          "basis": "party_transfer_distinguished_from_pm_transfer",
+          "evidence_ids": [
+            "major_acceptance",
+            "thatcher_chronology"
+          ],
+          "alternative_claims": [
+            {
+              "date": "1990-11-28",
+              "source_id": "con_library"
+            }
+          ]
+        },
+        "raw_end": {
+          "date": "1995-06-22",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "major_acceptance",
+            "major_resigns",
+            "con_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "major_acceptance",
+          "major_resigns",
+          "con_library",
+          "thatcher_chronology"
+        ],
+        "notes": "Own acceptance statement is party-office evidence; own 1995 statement explicitly resigns party leadership.",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_con_john_major_1995_07_04",
+        "raw_start": {
+          "date": "1995-07-04",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "con_library"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "1997-06-19",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "con_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "con_library"
+        ],
+        "notes": "Reelection 4 July 1995. Treat 22 June-4 July 1995 as a leadership-office status gap pending caretaker evidence, not a different invented person.",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_con_william_hague_1997_06_19",
+        "raw_start": {
+          "date": "1997-06-19",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "con_library"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2001-09-13",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "con_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "con_library"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_con_iain_duncan_smith_2001_09_13",
+        "raw_start": {
+          "date": "2001-09-13",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "con_library"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2003-11-06",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "con_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "con_library"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_con_michael_howard_2003_11_06",
+        "raw_start": {
+          "date": "2003-11-06",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "con_library"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2005-12-06",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "con_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "con_library"
+        ],
+        "notes": "Date is a party succession boundary. Announced resignation and caretaker status must be kept separate; Howard 2005 requires further status review.",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_con_david_cameron_2005_12_06",
+        "raw_start": {
+          "date": "2005-12-06",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "con_library",
+            "may_career"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2016-07-11",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "con_library",
+            "may_career"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "con_library",
+          "may_career"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [
+            "https://members.parliament.uk/member/8/career"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_con_theresa_may_2016_07_11",
+        "raw_start": {
+          "date": "2016-07-11",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "may_career",
+            "con_library"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2019-06-07",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "may_career",
+            "con_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "may_career",
+          "con_library"
+        ],
+        "notes": "Career record distinguishes party start 11 July from PM start 13 July. Formal resignation 7 June 2019 precedes successor 23 July; caretaker status separately unresolved.",
+        "portrait": {
+          "source_candidates": [
+            "https://members.parliament.uk/member/8/career"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_con_boris_johnson_2019_07_23",
+        "raw_start": {
+          "date": "2019-07-23",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "johnson_career",
+            "johnson_hansard",
+            "con_library"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2022-09-05",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "johnson_career",
+            "johnson_hansard",
+            "con_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "johnson_career",
+          "johnson_hansard",
+          "con_library"
+        ],
+        "notes": "Party election 23 July, PM appointment 24 July. Do not copy Commons summary-table PM date.",
+        "portrait": {
+          "source_candidates": [
+            "https://members.parliament.uk/member/1423/career"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_con_liz_truss_2022_09_05",
+        "raw_start": {
+          "date": "2022-09-05",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "con_library"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2022-10-24",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "con_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "con_library"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_con_rishi_sunak_2022_10_24",
+        "raw_start": {
+          "date": "2022-10-24",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "con_library"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2024-11-02",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "con_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "con_library"
+        ],
+        "notes": "Broad leadership span; substantive-to-caretaker change during 2024 needs separate confirmation.",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_con_kemi_badenoch_2024_11_02",
+        "raw_start": {
+          "date": "2024-11-02",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "con_library",
+            "con_current"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": null,
+          "precision": "ongoing",
+          "basis": "direct",
+          "evidence_ids": [
+            "con_current"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "con_library",
+          "con_current"
+        ],
+        "notes": "Current party statement checked 7 September 2026; no assumed future endpoint.",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lab_neil_kinnock_1983_10_02",
+        "raw_start": {
+          "date": "1983-10-02",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "kinnock_career"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "1992-07-18",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "lab_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "lab_library",
+          "kinnock_career"
+        ],
+        "notes": "In office at 1990 start. Exact 1983 day not verified in this pass; April 1992 announcement is not successor accession.",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Explicit parliamentary Labour affiliation; not a complete general membership register."
+      },
+      {
+        "id": "uk_lab_john_smith_1992_07_18",
+        "raw_start": {
+          "date": "1992-07-18",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "lab_library"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "1994-05-12",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "lab_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "lab_library"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lab_margaret_beckett_1994_05_12",
+        "raw_start": {
+          "date": "1994-05-12",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "lab_library"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "1994-07-21",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "lab_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "acting",
+        "co_leaders": [],
+        "evidence_ids": [
+          "lab_library"
+        ],
+        "notes": "Deputy became acting leader on Smith death; preserve her interval rather than jumping to Blair.",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lab_tony_blair_1994_07_21",
+        "raw_start": {
+          "date": "1994-07-21",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "lab_library"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2007-06-24",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "lab_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "lab_library"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lab_gordon_brown_2007_06_24",
+        "raw_start": {
+          "date": "2007-06-24",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "lab_library"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2010-05-11",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "lab_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "lab_library"
+        ],
+        "notes": "Formal party appointment 24 June 2007, distinct from sole nomination 17 May and PM appointment 27 June.",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lab_harriet_harman_2010_05_11",
+        "raw_start": {
+          "date": "2010-05-11",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "lab_library"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2010-09-25",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "lab_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "acting",
+        "co_leaders": [],
+        "evidence_ids": [
+          "lab_library"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lab_ed_miliband_2010_09_25",
+        "raw_start": {
+          "date": "2010-09-25",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "lab_library"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2015-05-08",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "lab_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "lab_library"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lab_harriet_harman_2015_05_08",
+        "raw_start": {
+          "date": "2015-05-08",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "lab_library"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2015-09-12",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "lab_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "acting",
+        "co_leaders": [],
+        "evidence_ids": [
+          "lab_library"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lab_jeremy_corbyn_2015_09_12",
+        "raw_start": {
+          "date": "2015-09-12",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "lab_library",
+            "starmer_start"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2020-04-04",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "lab_library",
+            "starmer_start"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "lab_library",
+          "starmer_start"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lab_keir_starmer_2020_04_04",
+        "raw_start": {
+          "date": "2020-04-04",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "starmer_start",
+            "starmer_resigns",
+            "burnham_party",
+            "burnham_gov"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": null,
+          "precision": "unresolved",
+          "basis": "direct",
+          "evidence_ids": [
+            "starmer_resigns",
+            "burnham_party",
+            "burnham_gov"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "starmer_start",
+          "starmer_resigns",
+          "burnham_party",
+          "burnham_gov"
+        ],
+        "notes": "22 June 2026 statement announces departure and continued PM service. Exact party-office end/caretaker classification unresolved; Burnham transfer 16/17 July conflict is preserved.",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit.",
+        "normalized_precision_update": {
+          "until": {
+            "kind": "year",
+            "value": "2026"
+          },
+          "reason": "Year of succession is directly established; effective day/month unresolved."
+        }
+      },
+      {
+        "id": "uk_lab_andy_burnham_2026_07_17",
+        "raw_start": {
+          "date": "2026-07-17",
+          "precision": "conflicting_day",
+          "basis": "direct",
+          "evidence_ids": [
+            "burnham_party"
+          ],
+          "alternative_claims": [
+            {
+              "date": "2026-07-16",
+              "source_id": "burnham_gov"
+            }
+          ]
+        },
+        "raw_end": {
+          "date": null,
+          "precision": "ongoing",
+          "basis": "direct",
+          "evidence_ids": [
+            "burnham_party",
+            "burnham_gov"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "burnham_party",
+          "burnham_gov"
+        ],
+        "notes": "Prefer party election-day declaration as candidate date; primary sources disagree. PM accession 20 July is separate.",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lib_paddy_ashdown_1988_07_28",
+        "raw_start": {
+          "date": "1988-07-28",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "lib_library",
+            "lib_ballots"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "1999-08-09",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "lib_library",
+            "lib_ballots"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "lib_library",
+          "lib_ballots",
+          "ashdown_life",
+          "ashdown_career"
+        ],
+        "notes": " Parliament profile instead records 16 July 1988 as leader start; retained 28 July from party/Commons election records. Affiliation dates are independently documented.",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Explicit parliamentary Liberal Democrat affiliation; last date is death, not transfer to another party."
+      },
+      {
+        "id": "uk_lib_charles_kennedy_1999_08_09",
+        "raw_start": {
+          "date": "1999-08-09",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "lib_library",
+            "lib_ballots"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2006-01-07",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "lib_library",
+            "lib_ballots"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "lib_library",
+          "lib_ballots"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lib_menzies_campbell_2006_01_07",
+        "raw_start": {
+          "date": "2006-01-07",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "lib_library"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2006-03-02",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "lib_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "acting",
+        "co_leaders": [],
+        "evidence_ids": [
+          "lib_library"
+        ],
+        "notes": "Library describes acting through 1 March; exclusive successor boundary 2 March used here.",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lib_menzies_campbell_2006_03_02",
+        "raw_start": {
+          "date": "2006-03-02",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "lib_library"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2007-10-15",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "lib_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "lib_library"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lib_vince_cable_2007_10_15",
+        "raw_start": {
+          "date": "2007-10-15",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "lib_library",
+            "cable_career"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2007-12-18",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "lib_library",
+            "cable_career"
+          ],
+          "alternative_claims": []
+        },
+        "status": "acting",
+        "co_leaders": [],
+        "evidence_ids": [
+          "lib_library",
+          "cable_career"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [
+            "https://members.parliament.uk/member/207/contact"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lib_nick_clegg_2007_12_18",
+        "raw_start": {
+          "date": "2007-12-18",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "lib_library",
+            "clegg_career"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2015-05-08",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "lib_library",
+            "clegg_career"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "lib_library",
+          "clegg_career"
+        ],
+        "notes": "No named 2015 interim successor verified. Do not silently extend to Farron or appoint the party president.",
+        "portrait": {
+          "source_candidates": [
+            "https://members.parliament.uk/member/1563/career"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lib_tim_farron_2015_07_16",
+        "raw_start": {
+          "date": "2015-07-16",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "farron_career",
+            "lib_library"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2017-07-20",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "farron_career",
+            "lib_library"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "farron_career",
+          "lib_library"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [
+            "https://members.parliament.uk/member/1591/career"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lib_vince_cable_2017_07_20",
+        "raw_start": {
+          "date": "2017-07-20",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "cable_career"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2019-07-22",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "cable_career"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "cable_career"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [
+            "https://members.parliament.uk/member/207/contact"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lib_jo_swinson_2019_07_22",
+        "raw_start": {
+          "date": "2019-07-22",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "cable_career",
+            "davey_career",
+            "lib_accounts2019"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2019-12-13",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "cable_career",
+            "davey_career",
+            "lib_accounts2019"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "cable_career",
+          "davey_career",
+          "lib_accounts2019"
+        ],
+        "notes": "Start/end are corroborated by predecessor/successor office records; accounts confirm substantive role in between.",
+        "portrait": {
+          "source_candidates": [
+            "https://members.parliament.uk/member/207/contact",
+            "https://members.parliament.uk/member/188/career"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lib_ed_davey_2019_12_13",
+        "raw_start": {
+          "date": "2019-12-13",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "davey_career",
+            "lib_accounts2019",
+            "lib_conference2020"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2020-08-27",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "davey_career",
+            "lib_accounts2019",
+            "lib_conference2020"
+          ],
+          "alternative_claims": []
+        },
+        "status": "acting_co_leader",
+        "co_leaders": [
+          "Sal Brinton until January 2020",
+          "Mark Pack from January 2020"
+        ],
+        "evidence_ids": [
+          "davey_career",
+          "lib_accounts2019",
+          "lib_conference2020"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [
+            "https://members.parliament.uk/member/188/career"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lib_sal_brinton_2019_12",
+        "raw_start": {
+          "date": "2019-12",
+          "precision": "month",
+          "basis": "direct",
+          "evidence_ids": [
+            "lib_accounts2019"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2020-01",
+          "precision": "month",
+          "basis": "direct",
+          "evidence_ids": [
+            "lib_accounts2019"
+          ],
+          "alternative_claims": []
+        },
+        "status": "acting_co_leader",
+        "co_leaders": [
+          "Ed Davey"
+        ],
+        "evidence_ids": [
+          "lib_accounts2019"
+        ],
+        "notes": "Primary filing names both co-leaders but only gives months. Davey record provides 13 December; exact Brinton boundary needs additional person-specific confirmation.",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lib_mark_pack_2020_01_01",
+        "raw_start": {
+          "date": "2020-01-01",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "lib_accounts2019",
+            "lib_conference2020",
+            "pack_conference2024"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2020-08-27",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "lib_accounts2019",
+            "lib_conference2020",
+            "pack_conference2024"
+          ],
+          "alternative_claims": []
+        },
+        "status": "acting_co_leader",
+        "co_leaders": [
+          "Ed Davey"
+        ],
+        "evidence_ids": [
+          "lib_accounts2019",
+          "lib_conference2020",
+          "pack_conference2024"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_lib_ed_davey_2020_08_27",
+        "raw_start": {
+          "date": "2020-08-27",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "davey_career",
+            "lib_current"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": null,
+          "precision": "ongoing",
+          "basis": "direct",
+          "evidence_ids": [
+            "lib_current"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "davey_career",
+          "lib_current"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [
+            "https://members.parliament.uk/member/188/career"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_nat_gordon_wilson_1979",
+        "raw_start": {
+          "date": "1979",
+          "precision": "year",
+          "basis": "direct",
+          "evidence_ids": [
+            "snp_wilson"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "1990",
+          "precision": "year",
+          "basis": "direct",
+          "evidence_ids": [
+            "snp_wilson",
+            "snp_20years"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "snp_wilson",
+          "snp_20years",
+          "wilson_nls",
+          "snp_salmond_career"
+        ],
+        "notes": "NLS verifies leadership from 1979; Parliament records successor Salmond taking the party office on 22 September 1990. This successor boundary supplies the half-open end. Leadership interval is a conservative affiliation window, not evidence of later party exit.",
+        "portrait": {
+          "source_candidates": [
+            "https://members.parliament.uk/member/1314/career",
+            "https://www.parliament.scot/chamber-and-committees/research-prepared-for-parliament/research-briefings/2019/6/27/sb-1946"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit.",
+        "normalized_precision_update": {
+          "from": {
+            "kind": "year",
+            "value": "1979"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1990-09-22"
+          },
+          "reason": "New direct parliamentary office record; remaining same-month contradiction retained as month precision."
+        }
+      },
+      {
+        "id": "uk_nat_alex_salmond_1990",
+        "raw_start": {
+          "date": "1990",
+          "precision": "year",
+          "basis": "direct",
+          "evidence_ids": [
+            "snp_20years"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": null,
+          "precision": "conflicting_day",
+          "basis": "direct",
+          "evidence_ids": [
+            "snp_20years",
+            "snp_swinney"
+          ],
+          "alternative_claims": [
+            {
+              "date": "2000-09-23",
+              "source_id": "snp_20years"
+            },
+            {
+              "date": "2000-09-26",
+              "source_id": "snp_swinney"
+            }
+          ]
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "snp_20years",
+          "snp_swinney",
+          "snp_salmond_career"
+        ],
+        "notes": "Parliament explicitly records 22 September 1990 as party-leadership start. The 23/26 September 2000 boundary conflict is preserved at common verified month precision; no exact day is chosen. Leadership interval is a conservative affiliation window, not evidence of later party exit.",
+        "portrait": {
+          "source_candidates": [
+            "https://www.parliament.scot/chamber-and-committees/research-prepared-for-parliament/research-briefings/2019/6/27/sb-1946",
+            "https://www.parliament.scot/msps/current-and-previous-msps/john-swinney"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit.",
+        "normalized_precision_update": {
+          "from": {
+            "kind": "day",
+            "value": "1990-09-22"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2000-09"
+          },
+          "reason": "New direct parliamentary office record; remaining same-month contradiction retained as month precision."
+        }
+      },
+      {
+        "id": "uk_nat_john_swinney_2000_09_26",
+        "raw_start": {
+          "date": "2000-09-26",
+          "precision": "conflicting_day",
+          "basis": "direct",
+          "evidence_ids": [
+            "snp_swinney"
+          ],
+          "alternative_claims": [
+            {
+              "date": "2000-09-23",
+              "source_id": "snp_20years"
+            }
+          ]
+        },
+        "raw_end": {
+          "date": "2004-09-03",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "snp_swinney",
+            "snp_20years"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "snp_swinney",
+          "snp_20years",
+          "snp_salmond_career"
+        ],
+        "notes": "Election chronology says 23 September 2000; both predecessor/successor parliamentary career profiles say 26 September. Common verified September month retained conservatively without choosing an unsupported day. Leadership interval is a conservative affiliation window.",
+        "portrait": {
+          "source_candidates": [
+            "https://www.parliament.scot/msps/current-and-previous-msps/john-swinney",
+            "https://www.parliament.scot/chamber-and-committees/research-prepared-for-parliament/research-briefings/2019/6/27/sb-1946"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit.",
+        "normalized_precision_update": {
+          "from": {
+            "kind": "month",
+            "value": "2000-09"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2004-09-03"
+          },
+          "reason": "New direct parliamentary office record; remaining same-month contradiction retained as month precision."
+        }
+      },
+      {
+        "id": "uk_nat_alex_salmond_2004_09_03",
+        "raw_start": {
+          "date": "2004-09-03",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "snp_20years",
+            "snp_sturgeon"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2014-11-14",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "snp_20years",
+            "snp_sturgeon"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "snp_20years",
+          "snp_sturgeon"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [
+            "https://www.parliament.scot/chamber-and-committees/research-prepared-for-parliament/research-briefings/2019/6/27/sb-1946",
+            "https://www.parliament.scot/msps/current-and-previous-msps/nicola-sturgeon"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_nat_nicola_sturgeon_2014_11_14",
+        "raw_start": {
+          "date": "2014-11-14",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "snp_sturgeon",
+            "snp_yousaf"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2023-03-27",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "snp_sturgeon",
+            "snp_yousaf"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "snp_sturgeon",
+          "snp_yousaf"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [
+            "https://www.parliament.scot/msps/current-and-previous-msps/nicola-sturgeon",
+            "https://www.parliament.scot/msps/current-and-previous-msps/humza-yousaf"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_nat_humza_yousaf_2023_03_27",
+        "raw_start": {
+          "date": "2023-03-27",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "snp_yousaf",
+            "snp_accounts2024"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2024-05-06",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "snp_yousaf",
+            "snp_accounts2024"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "snp_yousaf",
+          "snp_accounts2024"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [
+            "https://www.parliament.scot/msps/current-and-previous-msps/humza-yousaf",
+            "https://search.electoralcommission.org.uk/Api/Accounts/Documents/27288"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_nat_john_swinney_2024_05_06",
+        "raw_start": {
+          "date": "2024-05-06",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "snp_accounts2024",
+            "snp_swinney"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": null,
+          "precision": "ongoing",
+          "basis": "direct",
+          "evidence_ids": [
+            "snp_swinney"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "snp_accounts2024",
+          "snp_swinney"
+        ],
+        "notes": "Parliament currently names him party leader;8 April 2026 split is dissolution, not established party removal.",
+        "portrait": {
+          "source_candidates": [
+            "https://search.electoralcommission.org.uk/Api/Accounts/Documents/27288",
+            "https://www.parliament.scot/msps/current-and-previous-msps/john-swinney"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_nat_dafydd_elis_thomas_1984",
+        "raw_start": {
+          "date": "1984",
+          "precision": "year",
+          "basis": "direct",
+          "evidence_ids": [
+            "plaid_elis"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "1991",
+          "precision": "year",
+          "basis": "direct",
+          "evidence_ids": [
+            "plaid_elis",
+            "plaid_elis_career",
+            "plaid_wigley"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "plaid_elis",
+          "plaid_elis_career",
+          "plaid_wigley",
+          "elis_nlw",
+          "plaid_nlw100",
+          "elis_life"
+        ],
+        "notes": "1 July 1991 career endpoint conflicts with successor 1 January 1991 placeholder. Keep only year precision.",
+        "portrait": {
+          "source_candidates": [
+            "https://senedd.wales/senedd-now/news/our-senedd-s-founding-father-a-tribute-to-lord-dafydd-elis-thomas/",
+            "https://members.parliament.uk/member/2816/career"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_nat_dafydd_wigley_1991",
+        "raw_start": {
+          "date": "1991",
+          "precision": "year",
+          "basis": "direct",
+          "evidence_ids": [
+            "plaid_wigley"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2000-08-03",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "plaid_wigley",
+            "plaid_chronology2000"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "plaid_wigley",
+          "plaid_chronology2000",
+          "plaid_nlw100"
+        ],
+        "notes": "Party president/leader.1999-2000 temporary delegated duties require further primary evidence; do not erase the substantive office.",
+        "portrait": {
+          "source_candidates": [
+            "https://members.parliament.uk/member/547/career",
+            "https://senedd.cymru/NAfW%20Documents/ke-1997-2003.pdf%20-%2023052011/ke-1997-2003-English.pdf"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_nat_ieuan_wyn_jones_2000_08_03",
+        "raw_start": {
+          "date": "2000-08-03",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "plaid_chronology2000",
+            "plaid_chronology2003",
+            "plaid_jones"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2003",
+          "precision": "year",
+          "basis": "direct",
+          "evidence_ids": [
+            "plaid_chronology2003",
+            "plaid_jones"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "plaid_chronology2000",
+          "plaid_chronology2003",
+          "plaid_jones"
+        ],
+        "notes": "President and political leader at accession.2003 presidency and Assembly-group leadership separate; exact resignation/caretaker interval unresolved.",
+        "portrait": {
+          "source_candidates": [
+            "https://senedd.cymru/NAfW%20Documents/ke-1997-2003.pdf%20-%2023052011/ke-1997-2003-English.pdf",
+            "https://senedd.wales/NAfW%20Documents/ke-2003-2007.pdf%20-%2023052011/ke-2003-2007-English.pdf"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_nat_ieuan_wyn_jones_2003_09_15",
+        "raw_start": {
+          "date": "2003-09-15",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "plaid_chronology2003",
+            "plaid_wood"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2012-03-15",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "plaid_chronology2003",
+            "plaid_wood"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "plaid_chronology2003",
+          "plaid_wood"
+        ],
+        "notes": "Election here is explicitly Assembly group leadership. Review 2003 role split before representing as sole party office.",
+        "portrait": {
+          "source_candidates": [
+            "https://senedd.wales/NAfW%20Documents/ke-2003-2007.pdf%20-%2023052011/ke-2003-2007-English.pdf",
+            "https://senedd.wales/people/leanne-wood-ms/"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_nat_leanne_wood_2012_03_15",
+        "raw_start": {
+          "date": "2012-03-15",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "plaid_wood",
+            "plaid_price_record"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2018",
+          "precision": "year",
+          "basis": "direct",
+          "evidence_ids": [
+            "plaid_price_record"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "plaid_wood",
+          "plaid_price_record"
+        ],
+        "notes": "Exact 2018 transfer day not accepted from primary source in this pass; Price is recorded by 2 October.",
+        "portrait": {
+          "source_candidates": [
+            "https://senedd.wales/people/leanne-wood-ms/",
+            "https://record.senedd.wales/Plenary/5353"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_nat_adam_price_2018",
+        "raw_start": {
+          "date": "2018",
+          "precision": "year",
+          "basis": "direct",
+          "evidence_ids": [
+            "plaid_price_record"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2023-05",
+          "precision": "month",
+          "basis": "direct",
+          "evidence_ids": [
+            "plaid_accounts2023",
+            "plaid_price_resignation"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "plaid_price_record",
+          "plaid_accounts2023",
+          "plaid_price_resignation"
+        ],
+        "notes": "Announcement 10 May 2023 explicitly contingent on interim arrangements. Exact effective 16/17 May boundary needs final primary resolution.",
+        "portrait": {
+          "source_candidates": [
+            "https://record.senedd.wales/Plenary/5353",
+            "https://search.electoralcommission.org.uk/Api/Accounts/Documents/26185"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_nat_llyr_gruffydd_2023_05",
+        "raw_start": {
+          "date": "2023-05",
+          "precision": "month",
+          "basis": "direct",
+          "evidence_ids": [
+            "plaid_accounts2023",
+            "plaid_gruffydd_statement"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": "2023-06-16",
+          "precision": "day",
+          "basis": "successor_boundary_or_recorded_end",
+          "evidence_ids": [
+            "plaid_accounts2023",
+            "plaid_gruffydd_statement",
+            "plaid_2023_date"
+          ],
+          "alternative_claims": []
+        },
+        "status": "acting",
+        "co_leaders": [],
+        "evidence_ids": [
+          "plaid_accounts2023",
+          "plaid_gruffydd_statement",
+          "plaid_2023_date"
+        ],
+        "notes": "Primary statement verifies acting by 19 May. Do not confuse 11 May nomination,13 May ratification,16 May farewell, and 17 May first full day.",
+        "portrait": {
+          "source_candidates": [
+            "https://search.electoralcommission.org.uk/Api/Accounts/Documents/26185",
+            "https://www.partyof.wales/addo_mwy_o_bwerau_i_gymru_pledge_greater_powers_to_wales"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      },
+      {
+        "id": "uk_nat_rhun_ap_iorwerth_2023_06_16",
+        "raw_start": {
+          "date": "2023-06-16",
+          "precision": "day",
+          "basis": "direct",
+          "evidence_ids": [
+            "plaid_2023_date",
+            "plaid_current"
+          ],
+          "alternative_claims": []
+        },
+        "raw_end": {
+          "date": null,
+          "precision": "ongoing",
+          "basis": "direct",
+          "evidence_ids": [
+            "plaid_current"
+          ],
+          "alternative_claims": []
+        },
+        "status": "substantive",
+        "co_leaders": [],
+        "evidence_ids": [
+          "plaid_2023_date",
+          "plaid_current"
+        ],
+        "notes": "",
+        "portrait": {
+          "source_candidates": [
+            "https://researchbriefings.files.parliament.uk/documents/CBP-8318/CBP-8318.pdf",
+            "https://www.partyof.wales/leader_hp"
+          ],
+          "asset_selected": false,
+          "rights_reviewed": false,
+          "historical_likeness_reviewed": false,
+          "image_availability_verified": false,
+          "note": "Identity/evidence references only; these pages are not a verified image catalogue."
+        },
+        "affiliation_basis": "Historical leadership interval used only as a conservative affiliation window. Actual party membership before/after it is not researched; its end is not evidence of party exit."
+      }
+    ],
+    "known_gaps": [
+      {
+        "id": "uk_nat_composite",
+        "severity": "mapping_blocker",
+        "detail": "Two separate parties share one game ID; there is no historical combined leader or co-leadership."
+      },
+      {
+        "id": "con_temporary_status",
+        "severity": "precision_blocker",
+        "detail": "Resolve formal interim/caretaker classification for Major 22 June-4 July 1995, Howard 2005, May 7 June-23 July 2019 and Sunak 2024. Do not invent an acting replacement."
+      },
+      {
+        "id": "lib_2015",
+        "severity": "coverage_gap",
+        "detail": "Clegg career ends 8 May 2015; Farron begins 16 July 2015. Reviewed official sources do not name an interim office holder. Do not auto-assign Sal Brinton based on presidency."
+      },
+      {
+        "id": "plaid_role_split",
+        "severity": "mapping_blocker",
+        "detail": "Party presidency diverges from Assembly leadership in 2003. Dafydd Iwan presidency must be researched before deciding whether the game wants that office, Jones political leadership, or both."
+      },
+      {
+        "id": "plaid_delegation",
+        "severity": "unverified_lead",
+        "detail": "Secondary sources point to Ieuan Wyn Jones acting during Wigley illnessDecember 1999-February 2000; no precise primary timeline accepted yet. Keep as research lead only."
+      },
+      {
+        "id": "plaid_2018",
+        "severity": "date_precision",
+        "detail": "Election-result reports vary 27/28 September 2018; actual primary statement or party filing needed. Current accepted earliest direct record is 2 October."
+      },
+      {
+        "id": "plaid_2023",
+        "severity": "date_precision",
+        "detail": "Separate interim nomination, ratification and effective handover; exact 16/17 May boundary not yet accepted."
+      },
+      {
+        "id": "lab_2026",
+        "severity": "date_conflict",
+        "detail": "Labour official 17 July 2026 election statement conflicts with GOV.UK 16 July biography. Starmer party-office endpoint/caretaker gap also unresolved."
+      },
+      {
+        "id": "portraits",
+        "severity": "asset_review_required",
+        "detail": "Official profile photos are candidate likeness references only. No image rights, exact historical-year appearance, texture files or generated avatars are established by this research."
+      },
+      {
+        "id": "snp_2000",
+        "severity": "date_precision",
+        "detail": "Leadership handover is established in September 2000; exact 23/26 September date still differs across official records. Normalized terms use common month precision."
+      }
+    ],
+    "integration_notes": [
+      "Historical office terms provide candidate provenance; they do not order replacement of a gameplay-elected incumbent.",
+      "Conservative affiliation windows prove membership only during leadership. A leadership end is not proof of party exit and should not force incumbent removal.",
+      "Open office ends mean current verified incumbent through 7 September 2026; they do not predict later events.",
+      "SNP and Plaid Cymru hold separate component offices inside the aggregate uk_nat game row.",
+      "Half-open intervals use successor/effective departure as until. Month/year precision must not become invented first-day transitions.",
+      "Top-level research/schema/scope/verification are annotations. Merge only version, reference_from, reference_through, people, parties and office_links into the strict Roster. Term.note needs the agreed optional serde field."
+    ]
+  },
+  "verification": {
+    "json_parsed": true,
+    "term_records": 51,
+    "unique_people": 43,
+    "source_records": 53,
+    "all_terms_have_source_urls": true,
+    "all_reference_ids_resolve": true,
+    "runtime_safe": false,
+    "reason": "Review-ready research retains unresolved boundaries, role mapping and incomplete eligibility facts; root must merge under explicit runtime uncertainty policy."
+  },
+  "version": 1,
+  "reference_from": "1990-01-01",
+  "office_links": []
+}
