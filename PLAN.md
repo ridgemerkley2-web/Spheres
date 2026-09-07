@@ -4,19 +4,22 @@
 BUGS.md is what is broken. This is the sequence between here and done, and why
 it is in this order.*
 
-**Equipment direction update, 7 September 2026:** the first domestic tank supplier
-loop is implemented and accepted through Rust, UI and browser
-checks. A paid state contractor develops frozen designs, funds its own finite stock and sells
-finished tanks into government deliveries. [COMPANIES.md](COMPANIES.md) records
-the player workflow, ownership and current limits. The domestic portions of
-steps 1–3 in [COMPANIES_AND_PROCUREMENT_PLAN.md](COMPANIES_AND_PROCUREMENT_PLAN.md)
-form the accepted first tank milestone, not completion of the entire companies
-layer. Establishing a contractor stops background automatic catalogue buying;
-explicit public work and already paid orders continue. Company property uses the
-version-2 equipment-save envelope; an unused company book remains sparse.
-Next extend the route to other equipment, ammunition, imports and sourced
-national firms while preserving already paid public work. Existing tactical
-aviation and public contracts retain their current path.
+**Equipment direction update, 7 September 2026:** the accepted domestic tank
+supplier loop now extends to all nine implemented ground platforms and both
+tactical aircraft. The expansion is accepted through simulator, web, UI and
+mixed-family browser checks. The same paid state contractor develops frozen models, finances finite
+stock and sells completed units into government deliveries, sharing one existing
+Arms Plant slot. [COMPANIES.md](COMPANIES.md) records the workflow and evidence.
+
+The domestic portions of steps 1–3 in
+[COMPANIES_AND_PROCUREMENT_PLAN.md](COMPANIES_AND_PROCUREMENT_PLAN.md) remain the
+accepted tank foundation; broader coverage is the accepted portion of step 4.
+Establishment stops background automatic catalogue buying while explicit public
+work and paid orders retain ownership. Tank-only company books keep save envelope
+2; the first non-tank contract upgrades to company version 2/save envelope 3.
+Unused companies remain sparse. Next address company-made ammunition, supplier
+services, imports, AI procurement and sourced national firms. No new aircraft
+mission, free factory, bomb stock or inherited-equipment conversion is implied.
 
 **Where this came from.** Rewritten 2026-08-18 from a directed audit: ten
 independent reads of the tree, five competing plans written from deliberately

@@ -1,23 +1,23 @@
 # Equipment designer — ground vehicles and tactical aviation
 
-Open **Research → Equipment bureau** or the designer link in the manufacturing catalogue. The current implementation has nine ground platforms and two tactical-strike airframes, sixteen component-integration research projects and the paid design-to-service loop from the [military equipment plan](MILITARY_EQUIPMENT_DESIGNER_PLAN.md). New tank designs now lead through **Companies & Procurement**: commission a domestic manufacturer, then purchase its finished stock. This first supplier implementation passes Rust, UI and browser acceptance; [COMPANIES.md](COMPANIES.md) records its scope and verification status. The Ammunition tab retains compatible physical stores and funded manufacture for ground weapons and aircraft. [AVIATION.md](AVIATION.md) covers the first two-airframe slice; other air missions, naval design, foreign licences, exports and designer AI remain later milestones.
+Open **Research → Equipment bureau** or the designer link in the manufacturing catalogue. The current implementation has nine ground platforms and two tactical-strike airframes, sixteen component-integration research projects and the paid design-to-service loop from the [military equipment plan](MILITARY_EQUIPMENT_DESIGNER_PLAN.md). New designs across all eleven platforms now lead through **Companies & Procurement**: commission a domestic manufacturer, then purchase its finished stock. This extends the accepted tank supplier loop. Simulator, web, UI and mixed-family browser checks pass; the broader domestic route is accepted. [COMPANIES.md](COMPANIES.md) records the scope and evidence. The Ammunition tab retains compatible physical stores and funded manufacture for ground weapons and aircraft. [AVIATION.md](AVIATION.md) covers the first two-airframe slice; other air missions, naval design, foreign licences, exports and designer AI remain later milestones.
 
 ## Play the loop
 
 1. Choose a vehicle family and a starting configuration. All eleven platforms have valid starting designs using established components. Name the model and open its specification groups: tanks have twelve independent slots, ground specialists thirteen and aircraft eight. Every choice has its own installation load, fabrication price, maintenance requirement and relative rating effects.
 2. Select a visible part on the 3D model, use **Inspect a visible part**, or select a specification directly. Review the ratings, installation space, development bill, fabrication price, maintenance need and minimum work times. Compare against a starting configuration, saved draft or published revision. Save an unfinished draft freely, including components you have yet to research.
 3. Open the designer's **Research** tab to follow the chassis, engines, weapons, armor, optics and communications branches. Cards show prerequisites, unlocked parts and known/available/researching/locked states. Follow prerequisites across branches or open their ordinary technology research pages. Research uses existing Aerospace effort and unlocks components; it creates no vehicles and installs nothing on existing models.
-4. For a new tank design, choose a manufacturer and review its daily development limit and company stock target. If none exists, the Companies page explains the paid establishment and available Arms Plant requirements. Defense R&D funds engineering and trials over time; the contract freezes the model. Other vehicle families retain their current public development path.
-5. For a supplier tank, certification lets the company fund its tooling and finite stock. Review a purchase when finished vehicles are available; select quantity and inspect total price, delivery, upkeep and fleet need. The company owns unsold tanks and pays manufacturing costs from its separate account. For existing public contracts and other vehicle families, the **Production** tab retains reviewed batches using a free completed Arms Plant, real inputs and daily procurement funding.
-6. Purchased supplier tanks enter their own paid delivery record and become usable after settlement and seven accessible shipping days. Public production retains its existing Arsenal delivery queue. On arrival, either route contributes through the same supported operations and service rules. The service page shows held and reserved vehicles, age, maintenance coverage and suggested modernization.
+4. For a new ground vehicle or aircraft design, choose a manufacturer and review its daily development limit and company stock target. If none exists, the Companies page explains the paid establishment and available Arms Plant requirements. Defense R&D funds engineering and trials over time; the contract freezes the model. The suggested stock buffer is four ground vehicles or two aircraft, editable from 1–12 complete units. This authorizes company inventory, not a government purchase.
+5. Certification lets the company fund its tooling and finite stock. Review a purchase when finished units are available; select quantity and inspect total price, delivery, upkeep and fleet need. The company owns unsold equipment and pays manufacturing costs from its separate account. Existing explicit public contracts retain the **Production** tab's reviewed batches, real Arms Plant capacity, inputs and procurement funding.
+6. Purchased supplier equipment enters its own paid delivery record and becomes usable after settlement and seven accessible shipping days. Ground vehicles enter the Armour class and aircraft enter the Air class with their exact frozen profiles. Public production retains its existing Arsenal delivery queue. On arrival, either route contributes through the same supported operations and service rules. The service page shows held and reserved equipment, age, maintenance coverage and suggested modernization.
 7. Develop a compatible revision and review a refit. A refit withdraws real source vehicles, consumes funding and replacement inputs, and returns the converted vehicles at their existing age. Chassis, airframe and main ground-weapon changes require new manufacture in this release.
 
 Pausing keeps completed work. Public cancellation refunds no sunk cost and retains completed products; unconverted reserved vehicles return to service. Company development cancellation stops future work and preserves its paid record, without returning the company's leased slot. Project limits share the existing department pool. Increasing a limit cannot bypass engineering time, materials, annual budget renewal or factory space. Existing manufacturing lines retain their occupied slots if provincial capacity falls.
 
 ## Companies & Procurement
 
-The first domestic route supports one paid state contractor per country and
-uses one real existing Arms Plant slot. Establishment costs 8 political capital;
+The domestic route supports all eleven designer platforms through one paid state
+contractor per country and one shared existing Arms Plant slot. Establishment costs 8 political capital;
 initial and additional company investment use Defense procurement. Company cash,
 inputs, work in progress and unsold stock stay separate from the government.
 Reviewed purchases transfer only the selected finished quantity into a delivery.
@@ -27,11 +27,13 @@ unassigned procurement funding can accrue for reviewed stock purchases. Explicit
 public lines, projects, ammunition work and already paid deliveries continue.
 
 The Companies tab shows manufacturers, development/tooling milestones, finished
-offers and paid deliveries. **Inspect 3D model** displays the exact frozen product
-while keeping the designer's unfinished draft. See [COMPANIES.md](COMPANIES.md)
-for settlement, input ownership, margins, inventory limits, delays and unfinished
-parts of the wider company layer. Existing public work and other equipment
-families retain their owners and controls while that migration continues.
+offers and paid deliveries. **All equipment**, **Ground vehicles** and **Aircraft**
+filter offers without hiding supplier accounts or paid deliveries. **Inspect 3D
+model** displays the exact filtered product while keeping the designer's unfinished
+draft. Aircraft purchase reviews show the frozen air profile, compatible mission
+store family and zero included stores; a link opens that separate supply need.
+See [COMPANIES.md](COMPANIES.md) for settlement, input ownership, margins,
+inventory limits, delays and unfinished parts of the wider company layer.
 
 ## Interactive 3D models
 
@@ -58,7 +60,7 @@ The two aircraft have eight visible, selectable specification groups. Engine, wi
 
 ## Comparison and suggested modernization
 
-Comparison uses server-compiled ratings and the original frozen prices when the baseline is a published revision. Fabrication and maintenance are **per vehicle**; development is **per model programme**; tooling is **per production batch**. Minimum work times and installation load are shown separately. A comparison delta is a prospective design difference, not a national-budget forecast or a refit invoice. Review the actual project quote before ordering. Cross-role comparisons explain that one vehicle is not automatically a replacement for another.
+Comparison uses server-compiled ratings and the original frozen prices when the baseline is a published revision. Fabrication and maintenance are **per vehicle**; development is **per model programme**; tooling is **per public production batch**. Companies fund a product's tooling separately; their actual stock review includes paid material and fabrication costs plus the modeled margin. Minimum work times and installation load are shown separately. A comparison delta is a prospective design difference, not a national-budget forecast or a refit invoice. Review the actual quote before ordering. Cross-role comparisons explain that one vehicle is not automatically a replacement for another.
 
 Suggested modernization first flags maintenance coverage below 95% when delivered custom vehicles are available. It then checks known, compatible, single-component changes for up to eight available custom holdings. Candidates must improve the primary role rating by at least 0.025; the score discounts improvement by proportional increases in fabrication and maintenance cost. Tanks use land contribution, ground specialists use their mission rating, IFVs use the mean of fire support and protected mobility, and aircraft use supported strike effectiveness. The board shows at most five suggestions, including any maintenance priority.
 
@@ -134,7 +136,7 @@ The 30-, 90- and 365-day equipment estimates keep current GDP, allocations, proj
 
 ## Tactical aviation
 
-Light attack and tactical strike aircraft add eighteen components across eight slots and three research projects. They use the same paid development, manufacture, delivery, maintenance, refit and retirement owners. Their finite unguided/guided bomb stocks use the existing Ammunition production, reserve and material-purchasing flows.
+Light attack and tactical strike aircraft add eighteen components across eight slots and three research projects. New designs follow company development, company-owned manufacture and stock purchase before delivery. Existing paid public aircraft work retains its funding and ownership. Delivered aircraft use the established maintenance, refit and retirement rules. Their finite unguided/guided bomb stocks use the existing Ammunition production, reserve and material-purchasing flows; an aircraft purchase includes no bombs.
 
 Supported sortie output is folded once into the frozen bounded strike factor. Only available, maintained, correctly supplied aircraft contribute to rung-6 raids with theatre access; they provide no ground fire or transport lift. Ground ammunition activation remains separate. Coarse basing uses existing theatre consent, with no new runways, kilometer-range model or aviation-fuel ledger. [AVIATION.md](AVIATION.md) gives the exact scope, tradeoffs, migration and remaining mission families.
 
@@ -146,7 +148,7 @@ Each delivered model offers **Review vehicle retirement**. Choose a whole quanti
 
 Retirement has no cash or material refund and cannot be undone within the game. It reduces the physical fleet's future maintenance need and can lower future actual invoices; existing allocations and recorded payments stay unchanged. The comparison holds recorded support fixed; normal settlement recalculates support later.
 
-**Fleet quantity targets** save desired counts for exact certified revisions, set from the Library. They count delivered vehicles, completed deliveries and unfinished manufacture once. Refits transfer quantities out of the source and into the target; cancelled work is excluded and paused or blocked commitments are labelled conditional. Shortfalls produce separately reviewed production or compatible-refit suggestions, protecting source targets before offering conversions. Zero is a valid desired count; stopping tracking removes only the preference. Targets never order, cancel, refit or retire anything automatically.
+**Fleet quantity targets** save desired counts for exact certified revisions, set from the Library. They count government-owned holdings, paid company deliveries, public deliveries and unfinished public manufacture once. Unsold company stock and company restocking are not government commitments. Refits transfer quantities out of the source and into the target; cancelled work is excluded and paused or blocked commitments are labelled conditional. Supplier products lead to the Companies market for separately reviewed stock purchases; retained public work and compatible refits keep their own review paths. Source targets are protected before offering conversions. Zero is a valid desired count; stopping tracking removes only the preference. Targets never order, cancel, refit or retire anything automatically.
 
 ## Optional automatic material purchasing
 
@@ -183,19 +185,22 @@ factory capacity or renew an expired Defense allocation.
 
 ## Saves and compatibility
 
-The new sparse, version-1 world company book retains company cash, receivables,
-frozen licenses, partly completed work, finished stock and paid deliveries.
-Corporate property is saved in the `spheres-equipment-save` envelope version 2;
-raw or version-1 wrappers containing company property are refused. This is a
-separate version from the equipment-state versions below. An unused company book
-is omitted and preserves the earlier raw/legacy or equipment-only save shape.
-Earlier campaigns receive no free company assets. Existing public equipment and
-paid orders keep their original ownership; the company route does not take them
-and sell them back. Company migration beyond new tank designs is still future
-work. Rust integration passes 1,168 tests with 68 ignored, Node passes 942, and a
-focused company run passes 19 including the explicit QA exporter. Browser
-save/resume, stock purchase, delivery and service checks passed; [COMPANIES.md](COMPANIES.md#verification)
-records the verification scope.
+The sparse world company book retains company cash, receivables, frozen licenses,
+partly completed work, finished stock and paid deliveries. Tank-only company books
+keep company version 1 and `spheres-equipment-save` envelope version 2. Starting
+the first non-tank contract upgrades to company version 2/save envelope version 3,
+without rewriting earlier tanks, balances or paid work. Mixed-family corporate
+property in an older envelope is refused. These versions are separate from the
+equipment-state versions below. An unused company book is omitted and preserves
+the earlier raw/legacy or equipment-only save shape. Earlier campaigns receive
+no free company assets. Existing public equipment and paid orders keep their
+original ownership; the company route does not take them and sell them back.
+The broader ground/air route passes 947 non-browser Node checks and 247 web tests
+(3 ignored), with final focused API/UI reruns passing. Mixed-family browser
+acceptance passed exact-model purchases, save/restart, year-end arrival and service,
+filters, draft preservation and narrow-screen inspection. The simulator/CLI run
+passes 929 with 66 ignored, giving a combined Rust total of 1,176 passed/69 ignored. [COMPANIES.md](COMPANIES.md#verification)
+records current evidence separately from the accepted earlier tank milestone.
 
 Campaigns that never use designer state keep the legacy world format and behavior. Saving a draft or starting component research introduces a versioned equipment envelope. Current builds preserve it in both raw simulation saves and campaign archives. Older loaders reject that structural envelope instead of silently discarding custom designs and inventories. Keep a pre-designer save if you intend to return to an older executable.
 

@@ -61,10 +61,10 @@ fn company_preview(w: &WorldState, me: NationId, session: &str, command: &Value,
     let mut confirmed = command.clone();
     if let Some(q) = &quote {confirmed["quote"] = q["token"].clone();}
     let (label,detail) = match order {
-        CompanyOrder::Establish {..} => ("Establish state contractor", "Create a state-owned tank manufacturer with a separately funded account and rights to one existing arms-plant slot."),
+        CompanyOrder::Establish {..} => ("Establish state contractor", "Create a state-owned equipment manufacturer with a separately funded account and rights to one existing arms-plant slot."),
         CompanyOrder::Capitalize {..} => ("Invest in manufacturer", "Transfer this additional investment to the company's account. It supports company-owned tooling and stock; it does not purchase equipment for the government."),
-        CompanyOrder::Develop {..} => ("Commission tank development", "Commission the manufacturer to develop and test this exact design. Development funding buys certification and manufacturing rights; finished tanks require a later purchase."),
-        CompanyOrder::Purchase {..} => ("Buy available tanks", "Buy existing finished stock at this reviewed price. Purchased tanks enter service only after payment settlement and delivery."),
+        CompanyOrder::Develop {..} => ("Commission vehicle development", "Commission the manufacturer to develop and test this exact design. Development funding buys certification and manufacturing rights; finished vehicles require a later purchase."),
+        CompanyOrder::Purchase {..} => ("Buy available equipment", "Buy existing finished stock at this reviewed price. Purchased vehicles enter service only after payment settlement and delivery."),
         CompanyOrder::Funding {..} => ("Apply development funding", "Set the maximum the government can pay each day for actual contracted development work. Zero pauses future work and retains paid progress."),
         CompanyOrder::Inventory {..} => ("Set company stock target", "Set a finite finished-stock target. The state company uses its own cash and facility to replenish it; this does not authorize government equipment purchases."),
         CompanyOrder::CancelDevelopment {..} => ("Cancel unfinished development", "End remaining development work. Completed work and its payment remain recorded; cancellation does not refund spent engineering and trials costs."),
@@ -120,23 +120,39 @@ fn company_preview(w: &WorldState, me: NationId, session: &str, command: &Value,
         },
         CompanyOrder::Develop {name,spec,daily_budget_bn,stock_target,..} => {
             metrics.push(metric("Model",name));
+            metrics.push(metric("Platform",eq::PLATFORMS.iter().find(|p|p.id==spec.platform).map_or(spec.platform.as_str(),|p|p.name)));
             metrics.push(metric("Initial company stock target",*stock_target));
             if let Some(profile) = eq::design_preview(w,me,spec).profile {
                 metrics.extend(profile_metrics(&profile));
+                if profile.aviation.is_some() {
+                    requirements.push("The aircraft contract includes no bombs. Manufacture compatible mission stores separately; delivered aircraft also need maintenance and theatre basing access before tactical air raids.".into());
+                } else if let Some(def)=eq::ammunition_family(spec).and_then(eq::ammo_def) {
+                    metrics.push(metric("Compatible ammunition",def.name));
+                }
                 costs.push(cost("Development and trials",profile.development_cost_bn,"government R&D · paid as work progresses"));
                 costs.push(cost("Company tooling commitment",profile.tooling_cost_bn,"company working capital after certification"));
                 timing.push(metric("Engineering and trials minimum",format!("{} days",profile.development_days)));
                 timing.push(metric("Tooling minimum after certification",format!("{} days",profile.tooling_days)));
-                timing.push(metric("Fabrication per tank",format!("{} days after tooling",profile.production_days)));
-                costs.push(cost("Maintenance after a later purchase",profile.maintenance_bn_day,"per delivered tank / day"));
+                timing.push(metric("Fabrication per vehicle",format!("{} days after tooling",profile.production_days)));
+                costs.push(cost("Maintenance after a later purchase",profile.maintenance_bn_day,"per delivered vehicle / day"));
             }
             costs.push(cost("Government development ceiling",*daily_budget_bn,"per day · shared R&D authority"));
             requirements.push("The contract freezes this model's specifications. A later design edit needs its own revision and development review.".into());
             requirements.push("After certification the company pays for production and acquires inputs into its own accounts. Its stock target reserves no government purchases.".into());
         },
         CompanyOrder::Purchase {quantity,..} => {
-            metrics.push(metric("Tanks to buy",*quantity));
+            metrics.push(metric("Units to buy",*quantity));
             if let Some((_,Some(product)))=selected {
+                if let Some(model)=w.nation(me).equipment.as_ref().and_then(|s|s.revisions.get(&product.revision_id)) {
+                    metrics.push(metric("Platform",eq::PLATFORMS.iter().find(|p|p.id==model.spec.platform).map_or(model.spec.platform.as_str(),|p|p.name)));
+                    metrics.extend(profile_metrics(&model.profile));
+                    if model.profile.aviation.is_some() {
+                        metrics.push(metric("Mission stores included",0));
+                        requirements.push("This purchase includes no bombs. Acquire the exact compatible mission-store family separately. Delivery alone grants no ready sorties: maintenance, stores and theatre basing access are required.".into());
+                    } else if let Some(def)=eq::ammunition_family(&model.spec).and_then(eq::ammo_def) {
+                        metrics.push(metric("Compatible ammunition",def.name));
+                    }
+                }
                 let before=eq::fleet_target_plans_world(w,me).into_iter().find(|p|p.revision==product.revision_id);
                 let mut after=w.clone();
                 let future=if blockers.is_empty() {
@@ -172,20 +188,25 @@ fn company_preview(w: &WorldState, me: NationId, session: &str, command: &Value,
         }
         if let Some(note) = q.get("note").and_then(Value::as_str) {requirements.push(note.into());}
         if matches!(order,CompanyOrder::Purchase{..}) {
-            if let Some(price)=q.get("unit_price_bn").and_then(Value::as_f64) {costs.push(cost("Supplier price",price,"per tank · fabrication and inputs included"));}
+            if let Some(price)=q.get("unit_price_bn").and_then(Value::as_f64) {costs.push(cost("Supplier price",price,"per vehicle · fabrication and inputs included"));}
             if let Some(total)=q.get("cost_bn").and_then(Value::as_f64) {costs.push(cost("Total equipment purchase",total,"one purchase · Defense procurement"));}
             if let Some(stock)=q.get("available_units").and_then(Value::as_u64) {metrics.push(metric("Supplier stock before purchase",stock));}
             if let Some(days)=q.get("minimum_days").and_then(Value::as_u64) {timing.push(metric("Delivery after settlement",format!("{days} accessible days")));}
-            if let Some(upkeep)=q.get("maintenance_bn_day").and_then(Value::as_f64) {costs.push(cost("Added maintenance requirement",upkeep,"per day after delivery · all purchased tanks"));}
+            if let Some(upkeep)=q.get("maintenance_bn_day").and_then(Value::as_f64) {costs.push(cost("Added maintenance requirement",upkeep,"per day after delivery · all purchased vehicles"));}
         }
         if matches!(order,CompanyOrder::Develop{..}) {
             if let Some(cash)=q.get("company_cash_needed_bn").and_then(Value::as_f64) {costs.push(cost("Company capital needed for first stock target",cash,"tooling, inputs and fabrication · current prices"));}
-            if let Some(price)=q.get("unit_price_bn").and_then(Value::as_f64) {costs.push(cost("Indicative later purchase price",price,"per tank · reviewed again when stock is available"));}
+            if let Some(price)=q.get("unit_price_bn").and_then(Value::as_f64) {costs.push(cost("Indicative later purchase price",price,"per vehicle · reviewed again when stock is available"));}
             if let Some(days)=q.get("first_stock_days").and_then(Value::as_u64) {timing.push(metric("Earliest first stock at this funding",format!("About {days} days with company cash, inputs and access")));}
+            else {timing.push(metric("First stock estimate","No dated estimate · review funding and earlier company work"));}
         }
     }
+    let mut review_actions=vec![action];
+    if matches!(order,CompanyOrder::Purchase{..}) && selected.and_then(|(_,p)|p).and_then(|p|eq::profile(w.nation(me),&p.revision_id)).is_some_and(|p|p.aviation.is_some()) {
+        review_actions.push(nav("Prepare aircraft mission stores",json!({"action":"equipment","tab":"ammunition"})));
+    }
     json!({"session_id":session,"nation":me,"valid":blockers.is_empty(),"blockers":blockers,
-        "metrics":metrics,"costs":costs,"timing":timing,"requirements":requirements,"service_effects":service_effects,"actions":[action],"detail":detail})
+        "metrics":metrics,"costs":costs,"timing":timing,"requirements":requirements,"service_effects":service_effects,"actions":review_actions,"detail":detail})
 }
 
 fn company_money(value: f64) -> String {
@@ -209,20 +230,21 @@ fn company_development_action(w: &WorldState, me: NationId, name: &str, spec: &e
     let options: Vec<_> = w.companies.firms.iter().filter(|c|c.nation==me).map(|c| {
         let reason=companies::facility_blocker(w,c);
         json!({"value":c.id,"label":c.name,"enabled":reason.is_none(),
-            "detail":format!("Tank development and manufacture · {} · {} company cash",spheres_sim::districts::name_of(&c.district).unwrap_or(&c.district),company_money(c.cash_bn)),"reason":reason})
+            "detail":format!("Ground vehicles and tactical aircraft · {} · {} company cash",spheres_sim::districts::name_of(&c.district).unwrap_or(&c.district),company_money(c.cash_bn)),"reason":reason})
     }).collect();
     if options.is_empty() {
-        let mut action=nav("Establish a tank manufacturer",json!({"action":"equipment","tab":"companies"}));
-        action["detail"]=json!("Save this draft, then establish a funded contractor with an existing arms plant. Return here to commission development of your tank.");
+        let mut action=nav("Establish an equipment manufacturer",json!({"action":"equipment","tab":"companies"}));
+        action["detail"]=json!("Save this draft, then establish a funded contractor with an existing arms plant. Return here to commission development of this vehicle.");
         return action;
     }
     let firm=options[0]["value"].clone();
+    let stock_target=if eq::is_aviation_platform(&spec.platform){2}else{4};
     let mut action=intent("Choose manufacturer and review development",json!({"kind":"company_develop","company":firm,"name":name,
-        "platform":spec.platform,"components":spec.components,"daily_budget_mn":0.5,"stock_target":4}),vec![
+        "platform":spec.platform,"components":spec.components,"daily_budget_mn":0.5,"stock_target":stock_target}),vec![
         json!({"key":"company","label":"Developing manufacturer","type":"select","value":firm,"options":options}),
-        budget_input(0.0005),company_inventory_input(4,true),
+        budget_input(0.0005),company_inventory_input(stock_target,true),
     ]);
-    action["detail"]=json!("Review the engineering contract, first-stock estimate and company working capital before commissioning this frozen design. You buy completed tanks later.");
+    action["detail"]=json!("Review the engineering contract, first-stock estimate and company working capital before commissioning this frozen design. You buy completed vehicles later.");
     action
 }
 fn company_supplies_revision(w: &WorldState, me: NationId, revision: &str) -> bool {
@@ -231,8 +253,8 @@ fn company_supplies_revision(w: &WorldState, me: NationId, revision: &str) -> bo
 fn company_design_costs(p: &eq::CompiledProfile) -> Vec<Value> {
     vec![cost("Development and trials",p.development_cost_bn,"government R&D · one model"),
         cost("Manufacturer tooling",p.tooling_cost_bn,"company capital · once per licensed model"),
-        cost("Company fabrication",p.fabrication_cost_bn,"per tank · company also purchases its inputs"),
-        cost("Maintenance requirement",p.maintenance_bn_day,"per delivered tank / day · government support")]
+        cost("Company fabrication",p.fabrication_cost_bn,"per vehicle · company also purchases its inputs"),
+        cost("Maintenance requirement",p.maintenance_bn_day,"per delivered vehicle / day · government support")]
 }
 
 fn company_board(w: &WorldState, me: NationId) -> Value {
@@ -255,7 +277,7 @@ fn company_board(w: &WorldState, me: NationId) -> Value {
         ]);
         establish["detail"]=json!("A new state contractor leases one existing completed plant slot. Choose an explicit initial investment; its own account pays for tooling and finished stock.");
         actions.push(establish);
-    } else {actions.push(nav("Design a tank",json!({"action":"equipment","tab":"designer"})));}
+    } else {actions.push(nav("Design a vehicle",json!({"action":"equipment","tab":"designer"})));}
     actions.push(nav("Review procurement funding",json!({"action":"budget","ministry":"defense","department":3})));
     actions.push(nav("Review development funding",json!({"action":"budget","ministry":"defense","department":4})));
     actions.push(nav("Build an arms plant",json!({"action":"construction","kind":"arms_plant"})));
@@ -264,15 +286,15 @@ fn company_board(w: &WorldState, me: NationId) -> Value {
     for firm in firms {
         let id=company_count(firm,"id");
         let mut firm_actions=vec![intent("Review additional investment",json!({"kind":"company_capitalize","company":id,"amount_mn":25.0}),vec![company_cash_input("amount_mn","Additional company capital",25.0)])];
-        firm_actions.push(nav("Design a tank for this company",json!({"action":"equipment","tab":"designer"})));
+        firm_actions.push(nav("Design a vehicle for this company",json!({"action":"equipment","tab":"designer"})));
         firm_actions.push(nav("Inspect domestic material availability",json!({"action":"resources"})));
         let district=company_text(firm,"district");
         let block=firm["facility_blocker"].as_str();
         let stock: u64=firm["products"].as_array().unwrap_or(&empty).iter().map(|p|company_count(p,"stock")).sum();
         firm_rows.push(json!({"id":id,"name":firm["name"],"status":if block.is_some(){"Facility unavailable"}else{"State contractor"},
             "detail":block.unwrap_or("A separate state-owned business. Its unsold stock adds no military strength and incurs no government fleet maintenance."),
-            "metrics":[metric("Specialty","Tank development and manufacture"),metric("Company cash",company_money(company_amount(firm,"cash_bn"))),
-                metric("Awaiting public settlement",company_money(company_amount(firm,"receivable_bn"))),metric("Available tanks",stock),metric("Company inventory at cost",company_money(company_amount(firm,"inventory_cost_bn"))),
+            "metrics":[metric("Specialty","Ground vehicles and tactical aircraft"),metric("Company cash",company_money(company_amount(firm,"cash_bn"))),
+                metric("Awaiting public settlement",company_money(company_amount(firm,"receivable_bn"))),metric("Available equipment",stock),metric("Company inventory at cost",company_money(company_amount(firm,"inventory_cost_bn"))),
                 metric("Leased site",spheres_sim::districts::name_of(district).unwrap_or(district)),metric("Physical capacity","One existing arms-plant slot")],
             "costs":[cost("Capital received",company_amount(firm,"capital_received_bn"),"cumulative investment"),
                 cost("Development receipts",company_amount(firm,"development_revenue_bn"),"cumulative engineering revenue"),
@@ -282,15 +304,16 @@ fn company_board(w: &WorldState, me: NationId) -> Value {
         for p in firm["products"].as_array().unwrap_or(&empty) {
             let pid=company_count(p,"id");let stock=company_count(p,"stock");let target=company_count(p,"stock_target");
             let revision=company_text(p,"revision_id");
+            let platform=company_text(&p["spec"],"platform");
             let certified=p["certified_day"].is_number();let cancelled=p["cancelled_day"].is_number();
             let dev_days=company_amount(p,"development_days");let dev_work=company_amount(p,"development_work_days");
-            let restock=p["estimated_stock_days"].as_u64().map(|d|format!("About {d} days if cash, inputs and access hold")).unwrap_or_else(||company_text(p,"reason").to_string());
+            let restock=p["estimated_stock_days"].as_u64().map(|d|format!("About {d} days if cash, inputs and access hold")).unwrap_or_else(||if !cancelled&&stock<target {format!("No dated estimate. {}",company_text(p,"estimate_note"))}else{company_text(p,"reason").to_string()});
             let mut product_actions=vec![];
             let plan=eq::fleet_target_plans_world(w,me).into_iter().find(|f|f.revision==revision);
             if stock>0 && !cancelled {
                 let quantity=plan.as_ref().filter(|p|p.desired.is_some()&&p.shortfall>0).map_or(1,|p|p.shortfall.min(stock));
                 product_actions.push(intent("Review stock purchase",json!({"kind":"company_purchase","company":id,"product":pid,"quantity":quantity}),vec![
-                    json!({"key":"quantity","label":"Available tanks to buy","type":"number","value":quantity,"min":1,"max":stock,"step":1})]));
+                    json!({"key":"quantity","label":"Available units to buy","type":"number","value":quantity,"min":1,"max":stock,"step":1})]));
             }
             if !cancelled && !certified {
                 let budget=company_amount(p,"daily_budget_bn");
@@ -301,13 +324,19 @@ fn company_board(w: &WorldState, me: NationId) -> Value {
                 product_actions.push(intent("Review company stock target",json!({"kind":"company_inventory","company":id,"product":pid,"stock_target":target}),vec![company_inventory_input(target,false)]));
             }
             if certified {product_actions.push(target_action(w,me,revision));}
+            if eq::is_aviation_platform(platform) {product_actions.push(nav("Prepare aircraft mission stores",json!({"action":"equipment","tab":"ammunition"})));}
             let status=match company_text(p,"status") {"development"|"engineering"=>"Engineering","prototype"=>"Prototype development","trials"=>"Vehicle trials","tooling"=>"Preparing production","manufacturing"=>"Building company stock","stock"|"in_stock"=>"In stock","idle"=>"Stock target met","cancelled"=>"Development cancelled","blocked"=>"Needs attention",other=>other};
             let phase=match company_text(p,"status") {"development"|"engineering"|"prototype"|"trials"=>"development","in_stock"|"stock"=>"stock",other=>other};
-            let mut metrics=vec![metric("Government development paid",company_money(company_amount(p,"development_spent_bn"))),
-                metric("Company tooling paid",company_money(company_amount(p,"tooling_spent_bn"))),metric("Tanks manufactured",company_count(p,"produced_units")),metric("Tanks sold",company_count(p,"sold_units")),
+            let mut metrics=vec![metric("Platform",eq::PLATFORMS.iter().find(|def|def.id==platform).map_or(platform,|def|def.name)),metric("Government development paid",company_money(company_amount(p,"development_spent_bn"))),
+                metric("Company tooling paid",company_money(company_amount(p,"tooling_spent_bn"))),metric("Units manufactured",company_count(p,"produced_units")),metric("Units sold",company_count(p,"sold_units")),
                 metric("Company stock target",target),metric("Company cash needed for next stock",company_money(company_amount(p,"company_cash_needed_bn"))),metric("Exact model revision",revision)];
             if let Some(plan)=&plan {metrics.push(metric("Government-owned incoming",plan.incoming));metrics.push(metric("Still needed for fleet target",plan.shortfall));}
+            if let Some(air)=eq::profile(w.nation(me),revision).and_then(|profile|profile.aviation.as_ref()) {
+                metrics.push(metric("Compatible mission stores",eq::ammo_def(&air.store_family).map_or(air.store_family.as_str(),|def|def.name)));
+                metrics.push(metric("Mission stores included","None · acquire separately"));
+            }
             product_rows.push(json!({"id":format!("{}:{}",id,pid),"company":id,"product":pid,"name":p["name"],"supplier_name":firm["name"],
+                "family":p["family"],"platform_name":p["platform_name"],"unit_label":p["unit_label"],
                 "source_revision":revision,"spec":p["spec"],"phase":phase,"status":status,"detail":p["reason"],
                 "progress":if !certified&&dev_days>0.0{Some((dev_work/dev_days).clamp(0.0,1.0))}else{None},
                 "milestones":[{"label":"Engineering and trials","value":if certified{"Certified".to_string()}else{format!("{dev_work:.1} / {dev_days:.0} work days")},"detail":"Government-funded development"},
@@ -317,16 +346,18 @@ fn company_board(w: &WorldState, me: NationId) -> Value {
                     "restock":restock,"maintenance_bn_per_year":company_amount(p,"maintenance_bn_day")*365.0,
                     "fleet_need":plan.as_ref().and_then(|plan|plan.desired.map(|_|plan.shortfall))},
                 "metrics":metrics,"costs":[cost("Development contract",company_amount(p,"development_cost_bn"),"government R&D · total"),
-                    cost("Manufacturer unit price",company_amount(p,"unit_price_bn"),if stock>0{"per available tank · reviewed before purchase"}else{"indicative per tank · stock not yet available"})],"actions":product_actions}));
+                    cost("Manufacturer unit price",company_amount(p,"unit_price_bn"),if stock>0{"per available vehicle · reviewed before purchase"}else{"indicative per vehicle · stock not yet available"})],"actions":product_actions}));
         }
     }
     let deliveries: Vec<_>=raw["deliveries"].as_array().unwrap_or(&empty).iter().rev().map(|d| {
         let revision=company_text(d,"revision_id");
-        let name=w.nation(me).equipment.as_ref().and_then(|s|s.revisions.get(revision)).map_or(revision,|r|r.name.as_str());
+        let model=w.nation(me).equipment.as_ref().and_then(|s|s.revisions.get(revision));
+        let name=model.map_or(revision,|r|r.name.as_str());
         let delivered=d["delivered_day"].is_number();
         json!({"id":d["id"],"name":format!("{} · purchase #{}",name,company_count(d,"id")),
+            "family":d["family"],"platform_name":d["platform_name"],"unit_label":d["unit_label"],"spec":model.map(|r|&r.spec),"source_revision":revision,
             "status":if delivered{"Delivered"}else if d["settled_day"].is_null(){"Awaiting payment settlement"}else if d["status"]=="blocked"{"Delivery paused"}else{"In transit"},
-            "detail":d["reason"],"metrics":[metric("Purchased tanks",company_count(d,"quantity")),metric("Exact model",revision),
+            "detail":d["reason"],"metrics":[metric("Purchased units",company_count(d,"quantity")),metric("Exact model",revision),
                 metric("Delivery remaining",if delivered{"Arrived".into()}else if d["settled_day"].is_null(){"Begins after payment settlement".into()}else{d["remaining_days"].as_u64().map(|days|format!("{days} accessible days")).unwrap_or("Awaiting a current delivery estimate".into())})],
             "costs":[cost("Paid equipment price",company_amount(d,"total_price_bn"),"reviewed purchase total")],
             "actions":[nav("Review fleet in service",json!({"action":"equipment","tab":"service"}))]})
@@ -334,15 +365,15 @@ fn company_board(w: &WorldState, me: NationId) -> Value {
     let total_stock:u64=product_rows.iter().map(|p|p["availability"]["ready_stock"].as_u64().unwrap_or(0)).sum();
     let total_cash:f64=firms.iter().map(|f|company_amount(f,"cash_bn")).sum();
     let warnings:Vec<_>=raw["reason"].as_str().filter(|r|!r.is_empty()).map(str::to_string).into_iter().collect();
-    json!({"overview":{"title":"Companies & Procurement","status":if firms.is_empty(){"Establish your first manufacturer"}else{"Domestic tank procurement"},
-        "detail":"Design the tank. Commission its development. Buy finished stock when your manufacturer has it ready.",
-        "metrics":[metric("Manufacturers",firms.len()),metric("Tanks available to buy",total_stock),metric("Company working capital",company_money(total_cash)),
+    json!({"overview":{"title":"Companies & Procurement","status":if firms.is_empty(){"Establish your first manufacturer"}else{"Domestic equipment procurement"},
+        "detail":"Design the vehicle. Commission its development. Buy finished stock when your manufacturer has it ready.",
+        "metrics":[metric("Manufacturers",firms.len()),metric("Equipment available to buy",total_stock),metric("Company working capital",company_money(total_cash)),
             metric("Government procurement available",company_money(company_amount(&raw,"procurement_available_bn"))),metric("Government R&D available",company_money(company_amount(&raw,"development_available_bn"))),
             metric("Background catalogue buying",if firms.is_empty(){"Existing procurement mode"}else{"Off · save funds for reviewed purchases"})],
         "roles_title":"Each payment has a purpose","roles":[
             {"label":"Development","value":"Government funds engineering and trials","detail":"The design becomes certified; prototypes do not enter service."},
             {"label":"Manufacturing","value":"Company funds its own finite stock","detail":"Capacity, cash and inputs constrain restocking."},
-            {"label":"Purchase","value":"Government buys completed tanks","detail":"Ownership transfers once, then delivery makes them available for service."}],
+            {"label":"Purchase","value":"Government buys completed vehicles","detail":"Ownership transfers once, then delivery makes them available for service."}],
         "warnings":warnings,"actions":actions},"firms":firm_rows,"products":product_rows,"deliveries":deliveries})
 }
 
@@ -456,5 +487,48 @@ mod company_view_tests {
         assert_eq!(replay["command_replayed"],true);
         assert_eq!(spheres_sim::save(&g.world),before);
         assert_eq!(g.world.companies.firms.len(),1);
+    }
+    #[test]
+    fn every_current_platform_commissions_its_exact_model_through_a_company() {
+        let (mut g,site)=fixture();let c=reviewed(&g,establish_command(&site));confirm(&mut g,&c);
+        let held_before=serde_json::to_value(&g.world.nation(ME).arsenal).unwrap();
+        let mut counts=(0,0);
+        for platform in eq::PLATFORMS {
+            let spec=eq::default_spec(platform.id);
+            let draft=json!({"name":format!("Supplier {}",platform.name),"platform":spec.platform,"components":spec.components});
+            let before=spheres_sim::save(&g.world);
+            let proposed=preview(&g.world,ME,&g.session_id,&draft).unwrap();
+            assert_eq!(proposed["valid"],true,"{}: {proposed}",platform.name);
+            let action=&proposed["actions"][1];
+            assert_eq!(action["command"]["kind"],"company_develop");
+            assert_eq!(action["command"]["components"],draft["components"]);
+            let quote=preview(&g.world,ME,&g.session_id,&json!({"command":action["command"]})).unwrap();
+            assert_eq!(quote["valid"],true,"{}: {quote}",platform.name);
+            let profile=eq::design_preview(&g.world,ME,&spec).profile.unwrap();
+            assert_eq!(quote["costs"][0]["amount_bn"],profile.development_cost_bn);
+            assert_eq!(spheres_sim::save(&g.world),before,"Review changes no money, assets or work");
+            confirm(&mut g,&quote["actions"][0]["command"]);
+            let product=g.world.companies.firms[0].products.last().unwrap();
+            let revision=product.revision_id.clone();let product_id=product.id;
+            let board=company_board(&g.world,ME);
+            let row=board["products"].as_array().unwrap().iter().find(|p|p["source_revision"]==revision).unwrap();
+            assert_eq!(row["spec"],serde_json::to_value(&spec).unwrap());
+            assert_eq!(row["platform_name"],platform.name);
+            assert_eq!(row["availability"]["ready_stock"],0);
+            assert_eq!(row["availability"]["maintenance_bn_per_year"],profile.maintenance_bn_day*365.0);
+            if eq::is_aviation_platform(platform.id) {
+                counts.1+=1;assert_eq!(row["family"],"aircraft");assert_eq!(row["unit_label"],"aircraft");
+                assert_eq!(action["command"]["stock_target"],2);
+                assert!(quote["metrics"].as_array().unwrap().iter().any(|m|m["label"]=="Compatible mission stores"));
+                assert!(quote["requirements"].as_array().unwrap().iter().any(|r|r.as_str().unwrap().contains("includes no bombs")));
+                assert!(row["actions"].as_array().unwrap().iter().any(|a|a["navigate"]["tab"]=="ammunition"));
+                assert!(aviation_board(&g.world,ME)["actions"].as_array().unwrap().iter().any(|a|a["navigate"]["tab"]=="companies"));
+            } else {counts.0+=1;assert_eq!(row["family"],"ground");}
+            assert_eq!(serde_json::to_value(&g.world.nation(ME).arsenal).unwrap(),held_before,"Development grants no usable equipment");
+            assert!(g.world.nation(ME).equipment.as_ref().unwrap().ammunition.is_none(),"A vehicle contract grants no ammunition");
+            let cancelled=json!({"kind":"company_cancel","company":g.world.companies.firms[0].id,"product":product_id});
+            confirm(&mut g,&cancelled);
+        }
+        assert_eq!(counts,(9,2));
     }
 }

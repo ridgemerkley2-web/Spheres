@@ -35,7 +35,9 @@ fn aviation_board(w:&WorldState,me:NationId)->Value {
         "detail":"Delivered tactical aircraft serve rung-6 air raids with theatre basing access and a share of the national deployment. Their supported sortie rate and selected payload determine physical store use. These aircraft provide no ground fire, air-superiority mission or transport lift. Ground ammunition activation remains a separate choice.",
         "metrics":[metric("Aircraft models",models.len()),metric("Delivered aircraft",held),metric("Available aircraft",available),metric("Air raids with theatre access",format!("{accessible} / {raids}")),metric("Mission stores required this tick",ammo_quantity(required)),metric("Mission stores available for this tick",ammo_quantity(supplied))],
         "roles_title":"Aircraft and mission loadouts","roles":rows,"warnings":warnings,
-        "actions":[nav("Prepare aircraft mission stores",json!({"action":"equipment","tab":"ammunition"})),nav("Follow aircraft production",json!({"action":"equipment","tab":"production"})),nav("Review Defense maintenance funding",json!({"action":"budget","ministry":"defense","department":2}))]})
+        "actions":[nav("Prepare aircraft mission stores",json!({"action":"equipment","tab":"ammunition"})),
+            if models.iter().any(|r|company_supplies_revision(w,me,&r.id)){nav("Review aircraft manufacturers",json!({"action":"equipment","tab":"companies"}))}else{nav("Follow aircraft production",json!({"action":"equipment","tab":"production"}))},
+            nav("Review Defense maintenance funding",json!({"action":"budget","ministry":"defense","department":2}))]})
 }
 
 #[cfg(test)]
@@ -70,7 +72,9 @@ mod aviation_view_tests {
             assert!(q["metrics"].as_array().unwrap().iter().any(|m|m["label"]=="Supported strike effectiveness"));
             assert!(!q["metrics"].as_array().unwrap().iter().any(|m|m["label"]=="Land contribution"));
             assert!(q["detail"].as_str().unwrap().contains("mission stores"));
-            let command=&q["actions"][1]["command"];
+            assert_eq!(q["actions"][1]["navigate"]["tab"],"companies","New aircraft use a developing manufacturer");
+            // Existing explicit public contracts retain their priced command.
+            let command=json!({"kind":"equipment_develop","name":"Existing public air contract","platform":draft["platform"],"components":draft["components"],"daily_budget_mn":0.5});
             let paid=preview(&g.world,ID,&g.session_id,&json!({"command":command})).unwrap();
             assert_eq!(paid["valid"],true,"{paid}");assert_eq!(paid["costs"][0]["amount_bn"],eq::design_preview(&g.world,ID,&eq::default_spec(p["id"].as_str().unwrap())).profile.unwrap().development_cost_bn);
         }

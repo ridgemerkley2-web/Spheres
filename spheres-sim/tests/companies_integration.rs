@@ -180,22 +180,32 @@ fn establish(w: &mut WorldState, district: &str, capital: f64) -> u32 {
 }
 
 fn develop(w: &mut WorldState, company: u32, budget: f64, target: u32) -> u32 {
-    let spec = equipment::default_spec("tank_standard");
-    let quote = companies::development_quote(
+    develop_model(
         w,
-        HOME,
         company,
+        "tank_standard",
         "Synthetic Atlas MBT",
-        &spec,
         budget,
         target,
-    );
+    )
+}
+
+fn develop_model(
+    w: &mut WorldState,
+    company: u32,
+    platform: &str,
+    name: &str,
+    budget: f64,
+    target: u32,
+) -> u32 {
+    let spec = equipment::default_spec(platform);
+    let quote = companies::development_quote(w, HOME, company, name, &spec, budget, target);
     assert!(quote.valid, "{:?}", quote.reason);
     apply(
         w,
         companies::CompanyOrder::Develop {
             company,
-            name: "Synthetic Atlas MBT".into(),
+            name: name.into(),
             spec,
             daily_budget_bn: budget,
             stock_target: target,
@@ -1206,6 +1216,529 @@ fn establishment_preserves_existing_owned_vehicles_paid_deliveries_and_public_co
         "existing public manufacture continues its paid contract"
     );
     spheres_sim::load(&spheres_sim::save(&w)).unwrap();
+}
+
+#[test]
+fn every_implemented_platform_uses_paid_company_stock_and_exact_owned_deliveries_without_ammunition(
+) {
+    assert_eq!(equipment::PLATFORMS.len(), 11);
+    for platform in equipment::PLATFORMS {
+        let (mut w, district) = fixture();
+        let company = establish(&mut w, &district, 1.0);
+        isolated_day(&mut w);
+        let id = develop_model(&mut w, company, platform.id, platform.name, 1.0, 2);
+        let revision = product(&w, company, id).revision_id.clone();
+        let frozen = equipment::profile(w.nation(HOME), &revision)
+            .unwrap()
+            .clone();
+        let opening_capabilities = operations::capabilities(w.nation(HOME));
+        assert_eq!(
+            product(&w, company, id).stock,
+            0,
+            "{} cannot grant instant equipment",
+            platform.id
+        );
+        until_stock(&mut w, company, id, 2);
+        assert_eq!(
+            held(&w, &revision),
+            0,
+            "{} stock still belongs to its supplier",
+            platform.id
+        );
+        assert!(w.nation(HOME).arsenal.orders.is_empty());
+        near(
+            product(&w, company, id).development_spent_bn,
+            frozen.development_cost_bn,
+        );
+        near(
+            firm(&w, company).fabrication_expense_bn,
+            frozen.fabrication_cost_bn * 2.0,
+        );
+        reconcile_company(&w, company);
+        equipment::set_fleet_target(&mut w, HOME, &revision, Some(3)).unwrap();
+        let target = equipment::fleet_target_plans_world(&w, HOME)
+            .into_iter()
+            .find(|p| p.revision == revision)
+            .unwrap();
+        assert_eq!(
+            (
+                target.available,
+                target.incoming,
+                target.projected,
+                target.shortfall
+            ),
+            (0, 0, 0, 3)
+        );
+        spheres_sim::apply_command(
+            &mut w,
+            &Command::Equipment {
+                nation: HOME,
+                order: spheres_sim::EquipmentOrder::Maintenance {
+                    daily_budget_bn: 0.001,
+                },
+            },
+        )
+        .unwrap();
+        spheres_sim::apply_command(
+            &mut w,
+            &Command::Equipment {
+                nation: HOME,
+                order: spheres_sim::EquipmentOrder::AmmoActivate,
+            },
+        )
+        .unwrap();
+        let ammo = w
+            .nation(HOME)
+            .equipment
+            .as_ref()
+            .unwrap()
+            .ammunition
+            .as_ref()
+            .unwrap();
+        assert!(ammo.stocks.is_empty() && ammo.orders.is_empty());
+        purchase(&mut w, company, id, 1);
+        let target = equipment::fleet_target_plans_world(&w, HOME)
+            .into_iter()
+            .find(|p| p.revision == revision)
+            .unwrap();
+        assert_eq!(
+            (
+                target.available,
+                target.incoming,
+                target.projected,
+                target.shortfall
+            ),
+            (0, 1, 1, 2)
+        );
+        assert_eq!(product(&w, company, id).stock, 1);
+        close_fiscal_day(&mut w);
+        apply(
+            &mut w,
+            companies::CompanyOrder::Inventory {
+                company,
+                product: id,
+                stock_target: 0,
+            },
+        );
+        let saved = spheres_sim::save(&w);
+        let mut resumed = spheres_sim::load(&saved).unwrap();
+        assert_eq!(spheres_sim::save(&resumed), saved);
+        let due = w.companies.deliveries[0].due_day.unwrap();
+        while clock::absolute_day(&w) <= due {
+            if clock::absolute_day(&w) < due {
+                assert_eq!(held(&w, &revision), 0);
+            }
+            isolated_day(&mut w);
+            isolated_day(&mut resumed);
+        }
+        assert_eq!(spheres_sim::save(&resumed), spheres_sim::save(&w));
+        assert_eq!(held(&w, &revision), 1);
+        let target = equipment::fleet_target_plans_world(&w, HOME)
+            .into_iter()
+            .find(|p| p.revision == revision)
+            .unwrap();
+        assert_eq!(
+            (
+                target.available,
+                target.incoming,
+                target.projected,
+                target.shortfall
+            ),
+            (1, 0, 1, 2)
+        );
+        assert_eq!(
+            equipment::profile(w.nation(HOME), &revision).unwrap(),
+            &frozen
+        );
+        let ammo = w
+            .nation(HOME)
+            .equipment
+            .as_ref()
+            .unwrap()
+            .ammunition
+            .as_ref()
+            .unwrap();
+        assert!(
+            ammo.stocks.is_empty() && ammo.orders.is_empty() && ammo.consumed.is_empty(),
+            "{} manufacture and delivery grant no rounds or bombs",
+            platform.id
+        );
+        if frozen.aviation.is_some() {
+            let cap = operations::capabilities(w.nation(HOME));
+            assert_eq!(cap.land, opening_capabilities.land);
+            assert_eq!(cap.lift, opening_capabilities.lift);
+            assert_eq!(cap.ground_roles, equipment::GroundRoles::default());
+            assert!(equipment::physical_ammunition_required(
+                w.nation(HOME),
+                clock::absolute_day(&w)
+            ));
+        }
+        reconcile_company(&w, company);
+    }
+}
+
+#[test]
+fn extending_an_existing_tank_company_preserves_its_old_save_and_promotes_only_new_platforms() {
+    let (mut w, _, company, tank) = ready(1);
+    let old_save = spheres_sim::save(&w);
+    let old_shape: serde_json::Value = serde_json::from_str(&old_save).unwrap();
+    assert_eq!(old_shape["version"], 2);
+    assert_eq!(w.companies.version, 1);
+    let mut restored = spheres_sim::load(&old_save).unwrap();
+    assert_eq!(spheres_sim::save(&restored), old_save);
+    let old_product = product(&w, company, tank).clone();
+    let old_revision =
+        w.nation(HOME).equipment.as_ref().unwrap().revisions[&old_product.revision_id].clone();
+    let aircraft = develop_model(
+        &mut w,
+        company,
+        "air_light_attack",
+        "Synthetic Falcon",
+        1.0,
+        1,
+    );
+    let restored_aircraft = develop_model(
+        &mut restored,
+        company,
+        "air_light_attack",
+        "Synthetic Falcon",
+        1.0,
+        1,
+    );
+    assert_eq!(aircraft, restored_aircraft);
+    assert_eq!(product(&w, company, tank), &old_product);
+    assert_eq!(
+        w.nation(HOME).equipment.as_ref().unwrap().revisions[&old_product.revision_id],
+        old_revision
+    );
+    assert_eq!(w.companies.version, 2);
+    let promoted = spheres_sim::save(&w);
+    let mut shape: serde_json::Value = serde_json::from_str(&promoted).unwrap();
+    assert_eq!(shape["version"], 3);
+    assert_eq!(
+        spheres_sim::save(&spheres_sim::load(&promoted).unwrap()),
+        promoted
+    );
+    shape["version"] = 2.into();
+    assert!(
+        spheres_sim::load(&shape.to_string()).is_err(),
+        "an older company reader cannot silently discard the aircraft product"
+    );
+    shape["world"]["companies"]["version"] = 1.into();
+    assert!(
+        spheres_sim::load(&shape.to_string()).is_err(),
+        "tank-only state cannot contain an aircraft license"
+    );
+    for _ in 0..5 {
+        isolated_day(&mut w);
+        isolated_day(&mut restored);
+    }
+    assert_eq!(spheres_sim::save(&w), spheres_sim::save(&restored));
+    assert_eq!(
+        equipment::profile(w.nation(HOME), &old_product.revision_id).unwrap(),
+        &old_revision.profile
+    );
+}
+
+#[test]
+fn mixed_ground_and_aircraft_work_share_one_company_slot_and_do_not_reserve_unsold_units_for_fleet_targets(
+) {
+    let (mut w, _, company, tank) = ready(1);
+    let tank_revision = product(&w, company, tank).revision_id.clone();
+    let aircraft_quote = |w: &WorldState| {
+        companies::development_quote(
+            w,
+            HOME,
+            company,
+            "Synthetic Strike Wing",
+            &equipment::default_spec("air_tactical_strike"),
+            1.0,
+            1,
+        )
+    };
+    let unobstructed = aircraft_quote(&w);
+    assert!(unobstructed.valid && unobstructed.first_stock_days.is_some());
+    purchase(&mut w, company, tank, 1);
+    let behind_tank_restock = aircraft_quote(&w);
+    assert!(behind_tank_restock.valid && behind_tank_restock.eta_days.is_some());
+    assert_eq!(
+        behind_tank_restock.first_stock_days, None,
+        "an older product replenishment occupies the same slot after development, so the review cannot promise unobstructed first-stock timing"
+    );
+    let mut no_restock = w.clone();
+    apply(
+        &mut no_restock,
+        companies::CompanyOrder::Inventory {
+            company,
+            product: tank,
+            stock_target: 0,
+        },
+    );
+    assert!(aircraft_quote(&no_restock).first_stock_days.is_some());
+    let aircraft = develop_model(
+        &mut w,
+        company,
+        "air_tactical_strike",
+        "Synthetic Strike Wing",
+        1.0,
+        1,
+    );
+    let board = companies::view(&w, HOME);
+    let air_row = board["companies"][0]["products"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|p| p["id"] == aircraft)
+        .unwrap();
+    assert!(air_row["development_remaining_days"].is_number());
+    assert!(
+        air_row["estimated_stock_days"].is_null(),
+        "the active development board must retain the older-stock scheduling constraint from its review"
+    );
+    let quote = companies::development_quote(
+        &w,
+        HOME,
+        company,
+        "Competing IFV",
+        &equipment::default_spec("ground_ifv"),
+        1.0,
+        1,
+    );
+    assert!(
+        !quote.valid,
+        "one leased slot cannot run another simultaneous development contract"
+    );
+    let progress = |w: &WorldState, id: u32| {
+        let p = product(w, company, id);
+        let x = equipment::profile(w.nation(HOME), &p.revision_id).unwrap();
+        p.development_work_days
+            + p.tooling_work_days
+            + p.unit_work_days
+            + p.produced_units as f64 * x.production_days as f64
+    };
+    for _ in 0..1000 {
+        if product(&w, company, aircraft).stock == 1 && product(&w, company, tank).stock == 1 {
+            break;
+        }
+        let before = [progress(&w, tank), progress(&w, aircraft)];
+        isolated_day(&mut w);
+        let changes = [
+            progress(&w, tank) - before[0],
+            progress(&w, aircraft) - before[1],
+        ];
+        assert!(
+            changes.iter().filter(|v| **v > 1e-8).count() <= 1,
+            "a single physical plant cannot work on both products on one date: {changes:?}"
+        );
+        assert!(changes.iter().sum::<f64>() <= 1.0 + 1e-8);
+    }
+    assert_eq!(product(&w, company, tank).stock, 1);
+    assert_eq!(product(&w, company, aircraft).stock, 1);
+    assert_eq!(
+        held(&w, &tank_revision),
+        1,
+        "existing paid delivery survives a new aircraft commission"
+    );
+    let air_revision = product(&w, company, aircraft).revision_id.clone();
+    equipment::set_fleet_target(&mut w, HOME, &air_revision, Some(4)).unwrap();
+    let target = equipment::fleet_target_plans_world(&w, HOME)
+        .into_iter()
+        .find(|p| p.revision == air_revision)
+        .unwrap();
+    assert_eq!((target.projected, target.shortfall), (0, 4));
+    purchase(&mut w, company, aircraft, 1);
+    let target = equipment::fleet_target_plans_world(&w, HOME)
+        .into_iter()
+        .find(|p| p.revision == air_revision)
+        .unwrap();
+    assert_eq!(
+        (
+            target.projected,
+            target.shortfall,
+            target.conditional_incoming
+        ),
+        (1, 3, 0)
+    );
+    reconcile_company(&w, company);
+    spheres_sim::load(&spheres_sim::save(&w)).unwrap();
+}
+
+#[test]
+fn earlier_paid_public_aircraft_and_company_ground_work_use_separate_real_slots() {
+    let (mut w, district) = fixture();
+    let spec = equipment::default_spec("air_tactical_strike");
+    let profile = equipment::design_preview(&w, HOME, &spec).profile.unwrap();
+    let day = clock::absolute_day(&w);
+    w.nation_mut(HOME)
+        .equipment
+        .get_or_insert_with(Default::default)
+        .revisions
+        .insert(
+            "earlier-aircraft".into(),
+            equipment::DesignRevision {
+                id: "earlier-aircraft".into(),
+                name: "Earlier public aircraft".into(),
+                specification_key: equipment::specification_key(&spec),
+                spec,
+                profile,
+                created_day: day,
+                certified_day: Some(day),
+            },
+        );
+    arsenal::queue_design_order(w.nation_mut(HOME), "earlier-aircraft", 1, 3, 0.0).unwrap();
+    w.production
+        .provinces
+        .iter_mut()
+        .find(|p| p.district == district)
+        .unwrap()
+        .arms_plants = 2;
+    let public =
+        equipment::start_production(&mut w, HOME, "earlier-aircraft", &district, 1, 0.1).unwrap();
+    let company = establish(&mut w, &district, 1.0);
+    let ground = develop_model(
+        &mut w,
+        company,
+        "ground_ifv",
+        "Synthetic Infantry Carrier",
+        1.0,
+        1,
+    );
+    assert_eq!(manufacturing::used_slots(&w, HOME, &district), 2);
+    for _ in 0..6 {
+        real_day(&mut w);
+    }
+    assert_eq!(
+        held(&w, "earlier-aircraft"),
+        1,
+        "already paid public aircraft is never sold back to its government"
+    );
+    assert!(
+        w.nation(HOME)
+            .equipment
+            .as_ref()
+            .unwrap()
+            .projects
+            .iter()
+            .find(|p| p.id == public)
+            .unwrap()
+            .work_days
+            > 0.0
+    );
+    assert!(product(&w, company, ground).development_work_days > 0.0);
+    assert_eq!(product(&w, company, ground).stock, 0);
+    assert_eq!(manufacturing::used_slots(&w, HOME, &district), 2);
+    assert!(
+        equipment::start_production(&mut w, HOME, "earlier-aircraft", &district, 1, 0.1).is_err(),
+        "no third factory exists"
+    );
+    spheres_sim::load(&spheres_sim::save(&w)).unwrap();
+}
+
+#[test]
+#[ignore = "Writes synthetic ground and aircraft QA saves only when SPHERES_COMPANY_QA_DIR is explicitly set"]
+fn export_company_platform_qa_stages() {
+    let Some(folder) = std::env::var_os("SPHERES_COMPANY_QA_DIR") else {
+        return;
+    };
+    let path = std::path::PathBuf::from(folder);
+    assert!(path.is_absolute());
+    std::fs::create_dir_all(&path).unwrap();
+    let write = |name: &str, w: &WorldState| {
+        let text = spheres_sim::save(w);
+        assert_eq!(spheres_sim::save(&spheres_sim::load(&text).unwrap()), text);
+        std::fs::write(path.join(name), text).unwrap();
+    };
+    let (mut w, district) = fixture();
+    let company = establish(&mut w, &district, 1.0);
+    real_day(&mut w);
+    let ground = develop_model(
+        &mut w,
+        company,
+        "ground_ifv",
+        "Synthetic Vanguard IFV",
+        1.0,
+        1,
+    );
+    for _ in 0..1000 {
+        if product(&w, company, ground).stock == 1 {
+            break;
+        }
+        real_day(&mut w);
+    }
+    assert_eq!(product(&w, company, ground).stock, 1);
+    write("06-ground-stock.json", &w);
+    apply(
+        &mut w,
+        companies::CompanyOrder::Inventory {
+            company,
+            product: ground,
+            stock_target: 0,
+        },
+    );
+    let aircraft = develop_model(
+        &mut w,
+        company,
+        "air_light_attack",
+        "Synthetic Peregrine Aircraft",
+        1.0,
+        1,
+    );
+    for _ in 0..10 {
+        real_day(&mut w);
+    }
+    assert!(product(&w, company, aircraft).development_work_days > 0.0);
+    write("07-aircraft-development.json", &w);
+    for _ in 0..1000 {
+        if product(&w, company, aircraft).stock == 1 {
+            break;
+        }
+        real_day(&mut w);
+    }
+    assert_eq!(product(&w, company, aircraft).stock, 1);
+    assert_eq!(product(&w, company, ground).stock, 1);
+    write("08-mixed-stock.json", &w);
+    let ground_revision = product(&w, company, ground).revision_id.clone();
+    let air_revision = product(&w, company, aircraft).revision_id.clone();
+    equipment::set_fleet_target(&mut w, HOME, &ground_revision, Some(3)).unwrap();
+    equipment::set_fleet_target(&mut w, HOME, &air_revision, Some(2)).unwrap();
+    purchase(&mut w, company, ground, 1);
+    purchase(&mut w, company, aircraft, 1);
+    apply(
+        &mut w,
+        companies::CompanyOrder::Inventory {
+            company,
+            product: aircraft,
+            stock_target: 0,
+        },
+    );
+    real_day(&mut w);
+    assert_eq!(held(&w, &ground_revision), 0);
+    assert_eq!(held(&w, &air_revision), 0);
+    write("09-mixed-transit.json", &w);
+    for _ in 0..20 {
+        if held(&w, &ground_revision) == 1 && held(&w, &air_revision) == 1 {
+            break;
+        }
+        real_day(&mut w);
+    }
+    assert_eq!(held(&w, &ground_revision), 1);
+    assert_eq!(held(&w, &air_revision), 1);
+    assert!(w
+        .nation(HOME)
+        .equipment
+        .as_ref()
+        .unwrap()
+        .ammunition
+        .as_ref()
+        .is_none_or(|a| a.stocks.is_empty()));
+    write("10-mixed-arrived.json", &w);
+    std::fs::write(path.join("README-platforms.txt"), format!(
+        "Synthetic shared-company browser QA. France has explicit fixture starting cash, authority, raw stocks and one Arms Plant in {district}. One company ({company}) develops and stocks an IFV ({ground_revision}), then a light attack aircraft ({air_revision}), using real company commands, real full daily ticks and annual budget renewal. Both are purchased and delivered with no free ammunition or bombs. No historical corporation, balance or production rate is asserted.\n"
+    )).unwrap();
+    println!(
+        "Synthetic mixed-platform company QA saves: {}",
+        path.display()
+    );
 }
 
 #[test]

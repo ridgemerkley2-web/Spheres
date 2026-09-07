@@ -44,6 +44,11 @@
 .eq-company-specs dt { color:#a9c0c9; }
 .eq-company-specs dd { margin:0; text-align:right; color:#dce4d5; }
 .eq-company-section { margin-top:30px; }
+.eq-company-filter { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px; margin:23px 0 15px; }
+.eq-company-family-buttons { display:flex; gap:7px; flex-wrap:wrap; }
+.eq-company-family-buttons button { display:flex; align-items:center; gap:10px; }
+.eq-company-family-buttons button[aria-pressed=true] { background:#41553c; color:#edf2d7; border-color:#c0d4a877; }
+.eq-company-family-buttons span { min-width:20px; padding:1px 5px; border-radius:5px; background:#10251d70; font-size:11px; color:#c5d8c1; }
 .eq-company-card .eq-eyebrow { font-size:10px; margin-bottom:5px!important; }
 .eq-company-card .eq-card-header { align-items:start; }
 .eq-company-card .eq-card-header>div { min-width:0; }

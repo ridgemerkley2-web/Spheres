@@ -863,7 +863,7 @@ pub fn production_quote(
         reason = Some("Equipment manufacturing requires the resource market.".into());
     }
     if reason.is_none() && crate::companies::licensed_revision(w,id,revision) {
-        reason=Some("This tank revision is licensed to its manufacturer. Buy the company's finished stock instead of creating a second public production line.".into());
+        reason=Some("This equipment revision is licensed to its manufacturer. Buy the company's finished stock instead of creating a second public production line.".into());
     }
     if reason.is_none() {
         reason = site_refusal(w, id, district).or_else(|| room_refusal(w.nation(id)));

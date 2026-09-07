@@ -6,6 +6,12 @@ light attack and tactical strike aircraft used in rung-6 air raids. The broader
 [military equipment plan](MILITARY_EQUIPMENT_DESIGNER_PLAN.md) remains staged;
 this is the first part of its aviation milestone.
 
+The domestic supplier route now covers both existing aircraft and all ground
+designer platforms. Simulator, web, UI and mixed-family browser checks pass,
+including aircraft purchase, save/restart and exact-model arrival.
+[COMPANIES.md](COMPANIES.md#verification) records acceptance
+separately from the earlier aircraft and tank milestones.
+
 ## Build and support an aircraft
 
 Choose **Light attack aircraft** or **Tactical strike aircraft** in the Designer.
@@ -33,12 +39,23 @@ Guided-strike integration requires mission systems first. These projects use
 the existing Aerospace research effort and acquisition limit; learning them
 installs nothing on a fielded aircraft.
 
-Fund development, certify the frozen revision, then order a finite production
-batch at a province with a free completed arms plant. Development uses Defense
-research; tooling, aircraft fabrication and refits use Defense procurement.
-Aircraft share factory slots, funding pools and raw-input stocks with other
-equipment. Fabrication prices exclude separately acquired materials. Completed
-whole aircraft enter the existing delivery queue before service.
+Choose the domestic manufacturer and review a development contract. Defense R&D
+funds engineering and trials for the exact frozen eight-component model. Once
+certified, the company uses its own working capital to pay tooling, purchase real
+domestic warehouse inputs and fabricate finite stock. The company shares its one
+existing Arms Plant slot across ground and aircraft models; it gains no additional
+factory or airfield. No prototype or unsold aircraft adds government capability.
+
+Buy a whole quantity from available company stock through a fresh server review.
+Defense procurement pays the finished-equipment price; materials and fabrication
+are included with the modeled margin, while development and tooling are not billed
+again per aircraft. The purchase becomes usable after payment settlement and
+seven accessible delivery days. Existing paid public aircraft projects and
+explicit manufacturing lines retain their work and original funding path.
+
+The purchase review shows the frozen aircraft profile, required compatible bomb
+family and zero included stores. Use its mission-stores link to inspect that
+separate supply requirement before buying aircraft.
 
 Delivered aircraft occupy the Arsenal's Air class and retain their exact design
 identity. Upkeep uses the frozen model requirement; condition and refit
@@ -47,6 +64,11 @@ developed and installed through a paid refit. Converting between the two
 airframes requires new manufacture. Refits retain age, reserve real source units
 and never duplicate an aircraft. Pause, cancellation and retirement follow the
 ordinary [equipment lifecycle](EQUIPMENT_DESIGNER.md).
+
+The Companies market's **Aircraft** filter shows aircraft offers and their exact
+3D specifications while keeping paid deliveries and the supplier account visible.
+Inspection preserves an unfinished designer draft. Aircraft purchases count toward
+their exact fleet target as paid inbound units; the target authorizes no purchase.
 
 ## Physical mission stores
 
@@ -114,6 +136,14 @@ specification version 4 and an optional frozen aviation profile. Earlier ground
 profiles remain sparse and retain their identities, contracts and ratings.
 Validation rejects mismatched profiles, store families and non-Air aircraft
 holdings or deliveries; it does not repair them by creating stock.
+
+Company-supplied aircraft require company-book version 2 and the
+`spheres-equipment-save` envelope version 3, activated on the first non-tank
+contract. Existing tank-only company books remain version 1/envelope 2 until
+then. Old aircraft projects, frozen profiles, paid deliveries and inventory keep
+their owners; this extension does not retroactively sell them through a supplier.
+The envelope prevents older tank-only company loaders from accepting and
+misclassifying mixed ground/air corporate property.
 
 Focused simulation coverage checks pure previews, research and installation
 refusals, fully supplied component effects, both paid aircraft lifecycles,

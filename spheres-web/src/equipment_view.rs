@@ -169,7 +169,7 @@ pub fn preview(w:&WorldState,me:NationId,session:&str,v:&Value)->Result<Value,St
     let spec=spec(v)?;let name=v.get("name").and_then(Value::as_str).unwrap_or("New vehicle");let p=eq::design_preview(w,me,&spec);
     let mut actions=vec![checked(w,me,"Save design draft",json!({"kind":"equipment_save","name":name,"platform":spec.platform,"components":spec.components}))];
     if p.valid {
-        if spec.platform.starts_with("tank_") {actions.push(company_development_action(w,me,name,&spec));}
+        if companies::supported_platform(&spec.platform) {actions.push(company_development_action(w,me,name,&spec));}
         else {actions.push(intent("Review development funding",json!({"kind":"equipment_develop","name":name,"platform":spec.platform,"components":spec.components,"daily_budget_mn":0.5}),vec![budget_input(0.0005)]));}
     }
     let mut metrics=p.profile.as_ref().map(profile_metrics).unwrap_or_default();
@@ -180,7 +180,7 @@ pub fn preview(w:&WorldState,me:NationId,session:&str,v:&Value)->Result<Value,St
         metrics.push(metric("Fabrication cost change",format!("{:+.3}m per vehicle",(new.fabrication_cost_bn-old.fabrication_cost_bn)*1000.0)));
     }}
     let comparison=design_comparison(w,me,v,&spec,p.profile.as_ref());
-    Ok(json!({"session_id":session,"nation":me,"valid":p.valid,"blockers":p.blockers,"metrics":metrics,"costs":p.profile.as_ref().map(|profile|if spec.platform.starts_with("tank_"){company_design_costs(profile)}else{profile_costs(profile)}).unwrap_or_default(),
+    Ok(json!({"session_id":session,"nation":me,"valid":p.valid,"blockers":p.blockers,"metrics":metrics,"costs":p.profile.as_ref().map(|profile|if companies::supported_platform(&spec.platform){company_design_costs(profile)}else{profile_costs(profile)}).unwrap_or_default(),
         "timing":p.profile.as_ref().map(|p|vec![json!({"label":"Development minimum","value":format!("{} days",p.development_days)}),json!({"label":"Per-vehicle production minimum","value":format!("{} days after {} tooling days",p.production_days,p.tooling_days)})]).unwrap_or_default(),
         "comparison":comparison,"requirements":p.notes,"actions":actions,"detail":if eq::is_aviation_platform(&spec.platform){"Research unlocks components. Paid development certifies this exact aircraft. Only delivered, supported aircraft with compatible mission stores and theatre access contribute to tactical air raids. Figures are game assumptions."}else{"Research unlocks components. Paid development certifies this exact revision. Only delivered vehicles affect the country's land forces."}}))
 }
@@ -224,8 +224,7 @@ mod tests {
             assert_eq!(preset["components"].as_object().unwrap().len(),eq::platform_slots(preset["platform"].as_str().unwrap()).len());
             let quote=preview(&g.world,NationId::USA,&g.session_id,preset).unwrap();assert_eq!(quote["valid"],true,"{}",preset["name"]);
             assert_eq!(quote["actions"][0]["command"]["components"],preset["components"],"Saving keeps every independent specification");
-            if preset["platform"].as_str().unwrap().starts_with("tank_") {assert_eq!(quote["actions"][1]["navigate"]["tab"],"companies");}
-            else {assert_eq!(quote["actions"][1]["command"]["components"],preset["components"]);}
+            assert_eq!(quote["actions"][1]["navigate"]["tab"],"companies","Every current platform needs a developing manufacturer");
         }
         assert_eq!(spheres_sim::save(&g.world),before);
     }

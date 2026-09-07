@@ -1,7 +1,9 @@
 # Companies, equipment development and procurement
 
-7 September 2026 · first domestic tank implementation accepted through Rust, UI
-and browser checks. The broader company roadmap remains future work.
+7 September 2026 · the first domestic tank implementation is accepted through
+Rust, UI and browser checks. Its extension to all nine ground platforms and both
+tactical aircraft is accepted through simulator, web, UI and mixed-family browser
+checks. The broader company roadmap remains future work.
 
 Ridge wants the country to design equipment, put it through development with a
 manufacturer, and buy the manufacturer's finished stock. Important national
@@ -11,18 +13,20 @@ It takes priority over expanding the aircraft/naval catalogue on the old path.
 
 The domestic portions of delivery steps 1–3 now have simulation and UI code:
 one explicitly capitalized state contractor, an existing leased Arms Plant slot,
-contracted tank development, company-funded stock, reviewed purchase and delivery.
+contracted model development, company-funded stock, reviewed purchase and delivery.
 [COMPANIES.md](COMPANIES.md) is the current player/mechanics guide and verification
 status. This implements a bounded first route, not the entire foundation or all
-acceptance gates below. Private/historical firms, broader equipment migration,
-imports, AI procurement and civilian-company economics remain unimplemented.
+acceptance gates below. Coverage of all eleven existing designer platforms is the
+accepted portion of step 4. Private/historical firms, inherited-equipment migration,
+company ammunition and refit services, imports, AI procurement and civilian-company
+economics remain unimplemented.
 
 ## The player experience
 
 **Research → design → choose a manufacturer → fund development and trials →
 company manufactures stock → purchase → delivery → service.**
 
-1. **Design:** choose a tank class and its separate specifications. Keep the
+1. **Design:** choose a ground vehicle or aircraft and its separate specifications. Keep the
    existing component research, comparison, 3D view and immutable revisions.
 2. **Choose a manufacturer:** compare eligible firms by development quote,
    completion estimate, production readiness, indicative unit price and support.
@@ -93,7 +97,7 @@ later route for countries without their own complete defense industry.
 | Equipment purchase | Government Defense procurement | Transfer of existing finished units into a delivery |
 | Maintenance, ammunition and refit services | Existing appropriate service/procurement departments | Actual delivered support, supplies or conversion work |
 
-Development fees pay engineering and trials, not free saleable tanks. Prototype
+Development fees pay engineering and trials, not free saleable equipment. Prototype
 units are not fielded or listed for sale unless explicitly converted by later
 rules. A recurring unit quote includes inputs, fabrication and the firm's margin;
 the government does not also buy that company's raw materials. Do not charge
@@ -188,10 +192,11 @@ should I buy it?" Factory recipes and accounts belong in expandable explanations
 ## Delivery sequence and completion gates
 
 **Current boundary:** the domestic first-contractor portions of steps 1–3 are
-implemented, with Rust/UI checks passed and browser verification pending.
-Do not mark those steps accepted until that evidence is recorded in
-[COMPANIES.md](COMPANIES.md). Sourced company data and broader ownership/economic
-attribution within the foundation remain future work. Steps 4–6 remain planned.
+accepted for tanks, with Rust/UI/browser evidence in [COMPANIES.md](COMPANIES.md).
+The current portion of step 4 extends that route to all nine ground platforms and
+both tactical aircraft and is accepted through simulator, web, UI and browser
+checks. Sourced company data and broader ownership/economic attribution within the foundation
+remain future work, as do the rest of step 4 and steps 5–6.
 
 ### 1. Company ownership and funding foundation
 
@@ -217,6 +222,13 @@ boundaries, save/resume, cancellation and blocked transit. This is the first
 complete playable milestone, covering steps 1–3 together.
 
 ### 4. Make the procurement loop the default
+
+**Platform coverage accepted; remaining work planned:** new designs for all eleven current
+platforms use the existing company contract, stock purchase and delivery path.
+One real leased Arms Plant slot is shared across the catalogue. Ground/Aircraft
+market filters retain exact specifications and purchase identities. Aircraft
+retain their Air-class, maintenance and compatible-store rules; this creates no
+additional factory, basing right or bomb stock. The remainder below is planned.
 
 Carry the same company/purchase path across implemented ground and air equipment.
 Add company-made ammunition, paid refit services and optional stock-buying plans.
@@ -259,20 +271,30 @@ not remove the game's obligation to validate saved ownership and paid contracts.
 The implemented first route stops background automatic catalogue buying once a
 contractor is established, freeing unassigned procurement authority for reviewed
 stock purchases. Explicit public lines, projects, ammunition and already paid
-deliveries continue. The version-1 company ledger uses a version-2
-`spheres-equipment-save` envelope whenever non-empty; raw/version-1 envelopes
-with corporate property are refused. Unused companies remain sparse and preserve
-the earlier legacy/equipment-only save shapes. Broader product migration remains
-part of the future roadmap.
+deliveries continue. Tank-only company ledgers retain company version 1 and the
+`spheres-equipment-save` envelope version 2. Starting the first non-tank contract
+upgrades to company version 2/save envelope 3 without rewriting earlier tanks,
+balances or paid work. Older envelopes cannot contain mixed-family company
+property. Unused companies remain sparse and preserve the earlier
+legacy/equipment-only save shapes. Inherited-equipment conversion remains future
+work.
 
 For implementation, require the relevant lifecycle, accounting and supply tests,
 full Rust workspace checks, affected UI checks, and browser verification of
 design → development → company stock → purchase → arrival → service. Include a
 save/resume in the middle and a second buyer/insufficient-stock case. The first
 domestic implementation changes runtime mechanics without inventing opening
-company assets. Current verification passes 942 non-browser UI checks and 1,168
-Rust tests (68 ignored), plus a focused 19-check company run including the
-explicit QA exporter; [COMPANIES.md](COMPANIES.md#verification) records the scope
-without counting that focused rerun twice. Browser acceptance passed development
-save/restart, reviewed finite-stock purchase, year-end arrival, exact-model service
-and narrow-screen inspection. The wider company and equipment roadmap remains open.
+company assets. The current ground/air expansion passes 947 non-browser Node
+checks, including 101 equipment UI checks, and 247 web tests (3 ignored). Final
+affected API and UI reruns pass 46 and 101 checks respectively. Mixed-family
+browser acceptance passed exact IFV/aircraft purchases, save/restart before
+settlement, year-end arrival and service, model filters, draft preservation and
+narrow-screen inspection. The final simulator/CLI run passes 929 tests with 66
+ignored; combined Rust integration passes 1,176 with 69 ignored. A focused company
+audit passes 24, including two explicit QA exporters, and overlaps those totals.
+The earlier tank-only checkpoint passed 942
+Node and 1,168 Rust tests (68 ignored), a focused 19-check company run, and browser
+development save/restart, stock purchase, year-end arrival and service checks.
+[COMPANIES.md](COMPANIES.md#verification) records current and historical evidence
+separately without counting focused reruns twice. The wider company and equipment
+roadmap remains open.

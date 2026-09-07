@@ -385,15 +385,16 @@ sparse credit ledger moves with inherited technology, starts at zero for older
 saves, and excludes no genuine new research. This semantic change is shared by
 daily and monthly simulation; calibration tolerances and historical data stay put.
 
-## Current extension — domestic company manufacturing and stock procurement (2026-09-07; accepted)
+## Current extension — domestic ground and aircraft company procurement (2026-09-07; accepted)
 
 Ridge's new equipment direction is design → manufacturer development and trials
 → company-owned production and finished stock → government purchase → delivery
 → service. [COMPANIES_AND_PROCUREMENT_PLAN.md](COMPANIES_AND_PROCUREMENT_PLAN.md)
 defines the staged replacement of public production management and the foundation
-for important national companies. [COMPANIES.md](COMPANIES.md) describes the first
-domestic tank implementation. Rust and UI integration checks pass; browser
-acceptance is pending. The broader company roadmap remains incomplete.
+for important national companies. [COMPANIES.md](COMPANIES.md) describes the accepted
+domestic tank implementation and its extension to all nine existing ground
+platforms and both tactical aircraft. Simulator, web, UI and mixed-family browser
+checks pass. The full company roadmap remains incomplete.
 
 New company manufacturing must spend company capital and inputs, create only
 company inventory and use existing physical capacity once. Public development
@@ -407,7 +408,7 @@ Previously paid public work and equipment retain their owners during migration.
 The first route supports one player-established state contractor per country,
 with a paid Defense procurement capitalization, an 8-PC establishment command
 and exclusive use of one existing completed Arms Plant slot. One unfinished
-tank development contract takes priority on that slot. Government R&D funds
+equipment development contract takes priority on that slot. Government R&D funds
 actual engineering and trials; certification creates no fielded prototypes.
 Company working capital pays tooling, purchases real inputs from the domestic
 national warehouse and funds finite fabrication. Input sales credit their
@@ -417,30 +418,40 @@ settlement; development receipts are matched by engineering expense.
 Initial per-model stock targets are 1–12, later adjustable to 0–12; they authorize
 no government purchases. A reviewed sale transfers finite stock into one paid
 delivery at average paid material/fabrication cost plus a 15% modeled margin.
-Development and tooling are not charged again per tank. Delivery takes seven
+Development and tooling are not charged again per unit. Delivery takes seven
 accessible days after settlement and pauses on lost source access while retaining
 ownership. Arrival enters the frozen revision in the existing Arsenal, including
 its ordinary maintenance and ammunition obligations. World-aware fleet targets
 count company deliveries before suggesting more purchases. These costs, limits
 and lead times are explicit game assumptions.
 
-The sparse version-1 world company book preserves older saves when unused.
-Non-empty corporate property requires the `spheres-equipment-save` envelope
-version 2; raw and version-1 wrappers containing that property are refused so an
-older company-unaware loader cannot silently discard it. Equipment-only saves
-retain their earlier envelope and equipment-state versions.
+All eleven implemented designer platforms use the same supplier contract,
+capacity, cash, input, stock and delivery rules. Ground specialists retain their
+frozen mission ratings; aircraft enter the Air class with their frozen aviation
+profile and mandatory compatible-store requirement. Supplier prices never create
+ground capability for aircraft or grant bombs, theatre access, airfields or new
+air missions. There is no separate free aircraft production slot.
+
+Tank-only company books retain company version 1 and `spheres-equipment-save`
+envelope 2. Starting the first non-tank contract upgrades to company version 2
+and save envelope 3. Frozen tank revisions, stock, cash and paid work remain
+unchanged; a mixed-family book in an older envelope is refused. An unused company
+book remains sparse, preserving earlier raw and equipment-only save shapes.
+These versions are separate from equipment-state/profile versions.
 
 Establishing the contractor stops background automatic catalogue purchases for
 that country, allowing unassigned procurement authority to accrue for reviewed
 stock purchases. Explicit public lines, projects, ammunition work and paid
-deliveries continue. New tank design actions use this supplier route; other
-equipment families retain explicit public paths. Imports, historical/private companies,
+deliveries continue. New designs across all eleven existing platforms use the
+supplier route. Imports, historical/private companies,
 company-made ammunition, supplier refits, AI procurement and full migration are
 future work, as are corporate macroeconomic attribution and broader failure rules.
-Current code verification is 1,168 Rust passes/68 ignored and 942 Node passes,
-with 19 focused company checks including the explicit QA exporter;
-[COMPANIES.md](COMPANIES.md#verification) records scope and the passing browser
-development save/restart, purchase, delivery, service and responsive-layout checks.
+The earlier tank-only milestone passed Rust/UI/browser acceptance. The expanded
+UI passes 947 non-browser Node checks, and the full web suite passes 247 tests
+with 3 ignored. Final affected API/UI reruns and mixed ground/air browser
+acceptance pass. Simulator/CLI passes 929 with 66 ignored, making the combined
+Rust total 1,176 passed/69 ignored. [COMPANIES.md](COMPANIES.md#verification)
+records current and historical evidence separately.
 
 ## Current extension — component-based tank equipment (2026-09-06)
 

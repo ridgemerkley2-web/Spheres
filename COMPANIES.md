@@ -1,11 +1,12 @@
 # Companies & Procurement
 
-7 September 2026 · first domestic tank implementation accepted in Rust, UI and
-browser checks. This guide describes the implemented mechanics,
+7 September 2026 · the accepted domestic tank route now extends to all nine
+implemented ground platforms and both tactical aircraft. Simulator, web, UI and
+browser checks pass. This guide describes the accepted domestic mechanics,
 not a claim that the full [company roadmap](COMPANIES_AND_PROCUREMENT_PLAN.md)
 has shipped.
 
-The country designs the tank and funds development. A manufacturer pays to
+The country designs a ground vehicle or aircraft and funds development. A manufacturer pays to
 produce its own finished stock. The government chooses how many completed
 vehicles to buy, and delivery makes those vehicles available for service.
 
@@ -19,9 +20,11 @@ vehicles to buy, and delivery makes those vehicles available for service.
    Establishment stops the country's background automatic catalogue purchases so
    unassigned procurement funding can accrue for reviewed purchases. Explicit
    public lines, projects, ammunition work and already paid deliveries continue.
-2. Open **Designer** or choose a saved model. Configure one of the four tank
-   platforms and review its components, ratings and costs. Choose the manufacturer
-   and review a development ceiling and initial company stock target. An unfinished
+2. Open **Designer** or choose a saved model. Configure a tank, ground specialist
+   or tactical aircraft and review its components, ratings and costs. Choose the manufacturer
+   and review a development ceiling and initial company stock target. The suggested
+   initial buffer is four ground vehicles or two aircraft, editable from 1–12.
+   This means complete company-owned units, not a government order. An unfinished
    local draft survives the trip to the company page; saving also retains it in
    the equipment library.
 3. Confirm the development contract. **Defense R&D** pays for actual engineering,
@@ -33,7 +36,7 @@ vehicles to buy, and delivery makes those vehicles available for service.
    capital. Its available stock belongs to the company and adds no military
    capability or government maintenance bill.
 5. When stock is available, choose **Review stock purchase** and a whole number
-   of tanks. Review the exact model, supplier, price, remaining stock, delivery,
+   of vehicles or aircraft. Review the exact model, supplier, price, remaining stock, delivery,
    maintenance and fleet need before confirming. Buying part of a lot leaves the
    rest with the manufacturer. An unmet fleet target does not place another order.
 6. Track **Purchases & deliveries**. Shipping begins after the public payment
@@ -46,11 +49,35 @@ changes, cancellation of unfinished development and a finite stock target.
 **Inspect 3D model** shows a product's frozen configuration without replacing an
 unfinished design. Viewpoint, finish and model exports create no orders.
 
+Use **All equipment**, **Ground vehicles** or **Aircraft** to filter model offers
+and the 3D inspection. The filter uses the model's served family and platform
+catalogue, preserves original purchase identities and leaves supplier accounts
+and paid deliveries visible. Search can further narrow the displayed records.
+
+## Supported equipment
+
+The same contractor can license all **eleven existing designer platforms**:
+four tank classes; infantry fighting vehicles, armored personnel carriers,
+reconnaissance vehicles, self-propelled artillery and mobile air defense; and
+light attack/tactical strike aircraft. This extends the supplier route, not the
+component catalogue or combat missions. All products share the contractor's one
+existing Arms Plant slot; an aircraft contract grants no specialized factory,
+airfield, basing rights or additional simultaneous capacity.
+
+Aircraft retain their exact eight-component specification and enter the Arsenal's
+Air class only after delivery. They require compatible physical bombs and theatre
+access for tactical raids. Purchasing an aircraft grants no bombs, ground strength
+or new air-superiority/transport mission. The purchase review shows the exact air
+profile, required compatible store family and zero included stores, with a link
+to inspect mission stores before purchase. Ground specialist profiles retain their
+existing roles. See [AVIATION.md](AVIATION.md) and
+[EQUIPMENT_DESIGNER.md](EQUIPMENT_DESIGNER.md) for those service rules.
+
 ## What each payment buys
 
 | Payment | Account | Result |
 | --- | --- | --- |
-| Establishment or additional investment | Government Defense procurement → company | Separate working capital; no free factory or tanks |
+| Establishment or additional investment | Government Defense procurement → company | Separate working capital; no free factory or equipment |
 | Development and trials | Government Defense R&D → company engineering expense | Certified frozen model; no saleable prototypes |
 | Tooling, materials and fabrication | Company working capital | Production readiness and company-owned work/stock |
 | Purchase of finished stock | Government Defense procurement → company | One government-owned delivery |
@@ -59,7 +86,7 @@ unfinished design. Viewpoint, finish and model exports create no orders.
 Public payments consume departmental authority and use the existing daily
 fiscal settlement once. Until settlement, the company shows a receivable rather
 than spendable cash. Development receipts are matched by engineering expense;
-they do not become free capital for producing tanks.
+they do not become free capital for producing equipment.
 
 For manufacturing, the company purchases a complete physical recipe from the
 domestic national warehouse at current modeled resource prices. The warehouse
@@ -72,7 +99,7 @@ funded under its existing rules.
 
 The purchase price is the finished lot's average paid material and fabrication
 cost plus a **15% modeled margin**. Development and tooling are not charged again
-on each tank. Seller prices never change the frozen physical/combat profile.
+on each unit. Seller prices never change the frozen physical/combat profile.
 The current company layer grants no additional GDP, employment or productivity
 bonus. Prices, margins, times and inventory limits are game assumptions, not
 sourced historical-company balances.
@@ -83,9 +110,9 @@ sourced historical-company balances.
   one existing completed Arms Plant slot. It shares physical capacity with
   existing public manufacturing, custom equipment and ammunition work; it does
   not create a second factory.
-- Tank platforms only in this first route. The company retains up to 32 product
+- All eleven implemented ground/air platforms use this route. The company retains up to 32 product
   records and supports one unfinished development contract at a time.
-- Initial stock targets are 1–12 tanks per model. Later targets may be 0–12.
+- Initial stock targets are 1–12 complete units per model. Later targets may be 0–12.
   A zero target stops new replenishment; already started fabrication can finish.
   Targets authorize company inventory, never government purchases.
 - One leased slot performs one daily work packet. An unfinished development
@@ -104,10 +131,13 @@ sourced historical-company balances.
 Reviewed purchases are tied to current funding, facility and stock conditions.
 A stale or invalid quote spends nothing; refresh and review again. Saves retain
 cash, receivables, frozen licenses, partial work, company stock and paid deliveries.
-The company ledger is version 1, carried in the **`spheres-equipment-save`
-envelope version 2** whenever corporate property exists. This prevents an older
-company-unaware loader from silently dropping company assets. The current loader
-rejects corporate property disguised as a raw or version-1 save. An unused
+Tank-only company ledgers retain **company version 1** and the
+**`spheres-equipment-save` envelope version 2**. Starting the first specialist
+ground or aircraft contract upgrades the company book to **version 2**, requiring
+**save envelope version 3**. This does not rewrite existing tanks, paid work or
+company balances. A loader refuses a mixed-family book disguised as an older
+envelope rather than silently discarding its property or misclassifying aircraft.
+These are separate from equipment-state and frozen-profile versions. An unused
 company book remains absent, preserving legacy and equipment-only save shapes.
 
 ## Existing campaigns and next work
@@ -115,17 +145,68 @@ company book remains absent, preserving legacy and equipment-only save shapes.
 No historical company, opening company balance, new factory or starting stock is
 invented. The unused company book is sparse. Existing public projects, inherited
 equipment, paid shipments and refit reservations retain their owners and funding
-history. New tank design actions lead to the supplier route; other vehicle
-families retain their explicit public work paths. Establishment ends only the
+history. New design actions for all eleven implemented platforms lead to the
+supplier route; existing explicit public work retains its path. Establishment ends only the
 background automatic catalogue buyer, not those explicit or already paid orders.
 
-The wider conversion remains unfinished: other ground vehicles and aircraft,
-company-made ammunition, supplier refit services, broader migration, AI buyers,
+The wider conversion remains unfinished: company-made ammunition, supplier refit
+services, broader inherited-equipment migration, AI buyers,
 foreign purchases, exports and optional standing purchase plans come later.
 Private/historical firms, competition, civilian companies, lending and corporate
 failure rules need their own data and accounting work.
 
 ## Verification
+
+**Current ground/air expansion: accepted.** The release build, simulator, web, UI
+and mixed ground/air browser checks pass.
+
+| Check | Result |
+| --- | --- |
+| Full Rust web suite | 247 passed; 3 ignored |
+| Final affected equipment API checks after shared-queue estimate correction | 46 passed; focused rerun |
+| Full non-browser Node batch | 947 passed; no failures or skipped checks |
+| Focused equipment UI checks after final singular/plural wording fix | 101 passed; focused rerun |
+| Final simulator and CLI integration suites | 929 passed; 66 ignored; 41 result groups; exit 0 |
+| Focused company audit, including two explicitly run QA exporters | 24 passed; overlapping focused run |
+
+The Node batch includes five new mixed-family filtering, exact-model,
+draft-preservation and purchase-identity regressions. It excludes browser scripts
+and the standalone mesh check. Its log is `work/company-family-node-all.log` in
+the parent workspace; the final focused UI log is `work/company-family-equipment.log`.
+The final simulator log is `work/company-families-sim-final.log`. Combined Rust
+integration totals are **1,176 passed, 69 ignored**. Focused reruns are not added
+to unique-suite totals; ignored checks are not counted as passes.
+
+In an isolated QA campaign, actual daily simulation produced one IFV and one light
+attack aircraft by 27 December 1991. The browser reviewed and bought the aircraft
+for $9.547m with $2,540/day future maintenance, and the IFV for $2.436m with
+$413/day future maintenance. The aircraft review showed its exact frozen air
+profile, required compatible stores and zero included bombs before confirmation.
+
+Saving both purchases before fiscal settlement retained two deliveries, two
+supplier receivables and zero remaining offered stock in company book version 2 /
+save envelope 3. Restarting the final executable and loading restored that state.
+Eight actual daily advances delivered both exact revisions on 4 January 1992,
+with $2,953/day combined maintenance requirement and no free ammunition.
+
+Ground/Aircraft filters switched the exact 3D model and preserved an unfinished
+local designer draft. At 390×844, the page and equipment room had no horizontal
+overflow, filters were visible and the model remained usable. The browser console
+was empty and the viewport was restored after inspection.
+
+A tactical-strike development review also retained its known 687-day development
+estimate while explaining that first stock had no dated estimate because older
+aircraft restocking shared the same company slot. That review created no order.
+
+Verified release SHA256:
+`64FE73F1A4A757C0D54FEAF9318EE3A22EE2FE19DD936D1C04DD2AF9B482961E`.
+The matching build was launched from `work/economy-preview/spheres-web.exe` on
+the existing `http://127.0.0.1:7836/` address. The 11 February 1990 USA campaign
+was retained with no company or equipment orders created, and Companies &
+Procurement was opened for review. QA purchases stayed in isolated saves.
+The evidence below records the earlier accepted tank milestone separately.
+
+### Previously accepted tank milestone
 
 | Check | Result |
 | --- | --- |

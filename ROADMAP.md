@@ -1,6 +1,41 @@
 # SPHERES Roadmap
 
+## Current implementation — suppliers for ground vehicles and tactical aircraft (2026-09-07; accepted)
+
+The accepted tank supplier route below now covers all eleven existing designer
+platforms: four tank classes, five ground specialists and two tactical aircraft.
+New design actions commission a manufacturer; completed company-owned stock is
+bought through reviewed purchases and delivered to the exact Arsenal revision.
+Company cash, development fees, inventory costs and government purchase payments
+retain their separate owners. All products share the same single leased Arms
+Plant slot; the extension adds no free capacity, aircraft factory, airfield,
+bombs or basing rights. Existing explicit public work and paid deliveries remain.
+
+The Companies market adds All equipment / Ground vehicles / Aircraft filters,
+using served family metadata and the platform catalogue. Its live 3D inspection
+follows the filtered exact model without replacing an unfinished design; paid
+deliveries and supplier accounts remain visible. Aircraft keep Air-class identity,
+frozen sortie/store rules and the existing tactical-raid consumer.
+
+Tank-only books retain company version 1/save envelope 2. The first non-tank
+contract upgrades to company version 2 and `spheres-equipment-save` envelope 3,
+preserving earlier tanks and rejecting silent downgrade. Unused state stays sparse.
+
+The expansion passes 947 non-browser Node checks, a final focused 101-check UI
+rerun, and 247 web tests with 3 ignored. The affected equipment API rerun passes 46.
+Browser acceptance passed exact IFV/aircraft purchases, save/restart before fiscal
+settlement, year-end arrival, separate ammunition requirements, model filtering,
+draft preservation and narrow-screen inspection. The final simulator/CLI run passes
+929 tests with 66 ignored, giving a combined Rust total of 1,176 passed/69 ignored.
+The overlapping focused company audit passes 24, including two explicit QA exporters.
+[COMPANIES.md](COMPANIES.md#verification) separates that evidence from the
+earlier accepted tank milestone below. Company ammunition, supplier refits,
+standing purchases, imports, AI buyers and sourced
+private/national firms remain future work.
+
 ## Current implementation — domestic tank companies and procurement (2026-09-07; accepted)
+
+This records the earlier tank-only checkpoint; the entry above extends its scope.
 
 Ridge wants manufacturers to develop the country's designs, build their own
 finished stock, and sell equipment to the government. The new intended loop is
