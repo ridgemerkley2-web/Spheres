@@ -103,7 +103,27 @@
   let lost = false;
   const sprites = new Map();
   let available = null;
+  /// THE MODEL CACHE IS BOUNDED, AND IT HAS TO BE.
+  ///
+  /// Every distinct id ever mounted used to keep its GPU buffers for the life
+  /// of the page, and the ONLY thing that ever cleared them was losing the
+  /// context — which is to say the eviction policy was the failure. Measured
+  /// on the live game: the ids a player can actually reach are 40 close town
+  /// blocks (5,926,602 triangles, 610 MiB) and 325 site configurations
+  /// (6,890,594 triangles, 710 MiB). A session that browses cities and
+  /// construction projects walks to 1,320 MiB of buffers nothing frees, and
+  /// the driver drops the context long before that.
+  ///
+  /// Bounded by TRIANGLES rather than by entry count, because these differ by
+  /// a hundredfold: a far-LOD site is 164 triangles and a close town block is
+  /// 214,044. 1.2M triangles is about 124 MiB at the 108 bytes a triangle
+  /// costs here, which holds any view this game builds — the heaviest
+  /// realistic working set is roughly 900k (a city card at 214k, a dozen site
+  /// cards at ~35k each, and the whole 46-model deck at 272k) — with room to
+  /// spare and no thrash.
+  const CACHE_TRIANGLES = 1200000;
   const vaos = new Map();
+  let cachedTriangles = 0;
 
   /// Building the program is separate from creating the context, because a
   /// context can come BACK. On `webglcontextrestored` every shader, program and
@@ -149,6 +169,7 @@
         event.preventDefault();
         lost = true;
         vaos.clear();
+        cachedTriangles = 0;
         sprites.clear();
       }, false);
       glCanvas.addEventListener("webglcontextrestored", () => {
@@ -197,16 +218,56 @@
   /// one of the baked map textures this page already holds. Sites and towns
   /// cache under the id STRING, which is what makes a card cheap on the second
   /// render of a panel that rebuilds its own innerHTML.
+  /// Free one entry outright. Deleting a vertex array does NOT delete the
+  /// buffers attached to it, so those are tracked and deleted by hand; and an
+  /// entry is reachable under more than one key (its own id and the geometry
+  /// id it resolved to), so every alias goes at once. Dropping only one alias
+  /// would leave the other pointing at a deleted vertex array, which draws
+  /// nothing and reports no error.
+  function release(entry) {
+    for (const alias of entry.keys) vaos.delete(alias);
+    cachedTriangles -= entry.tris;
+    if (gl && !lost) {
+      for (const b of entry.bufs) gl.deleteBuffer(b);
+      gl.deleteVertexArray(entry.vao);
+    }
+    entry.geom = null;            // and let the CPU-side arrays go too
+  }
+
+  /// Least-recently-USED, not least-recently-built: a Map iterates in
+  /// insertion order, so touching an entry on every hit and re-inserting it
+  /// keeps the order honest. Without the touch this would evict whatever was
+  /// oldest, which on a panel that repaints every card is the one being drawn.
+  function touch(entry) {
+    for (const alias of entry.keys) { vaos.delete(alias); vaos.set(alias, entry); }
+  }
+
+  function trim(protect) {
+    for (const entry of [...vaos.values()]) {
+      if (cachedTriangles <= CACHE_TRIANGLES) return;
+      if (entry === protect || !vaos.has(entry.keys[0])) continue;
+      release(entry);
+    }
+  }
+
   function bufferFor(id, cls) {
-    if (vaos.has(id)) return vaos.get(id);
+    if (vaos.has(id)) { const hit = vaos.get(id); touch(hit); return hit; }
     const geom = resolveMesh(id, cls);
     if (!geom || !geom.positions || !geom.positions.length) return null;
     const key = geom.id || id;
-    if (vaos.has(key)) { vaos.set(id, vaos.get(key)); return vaos.get(key); }
+    if (vaos.has(key)) {
+      const hit = vaos.get(key);
+      hit.keys.push(id);          // a new alias for the same geometry
+      vaos.set(id, hit);
+      touch(hit);
+      return hit;
+    }
     const vao = gl.createVertexArray();
+    const bufs = [];
     gl.bindVertexArray(vao);
     [[geom.positions, 0], [geom.normals, 1], [geom.colors, 2]].forEach((pair) => {
       const b = gl.createBuffer();
+      bufs.push(b);
       gl.bindBuffer(gl.ARRAY_BUFFER, b);
       gl.bufferData(gl.ARRAY_BUFFER, pair[0], gl.STATIC_DRAW);
       gl.enableVertexAttribArray(pair[1]);
@@ -234,9 +295,15 @@
         geom.positions[i + 2] - centre[2],
       ));
     }
-    const entry = { vao, count, centre, radius: r || 1, fits: new Map(), geom };
+    const keys = key === id ? [key] : [key, id];
+    const entry = { vao, bufs, keys, tris: count / 3,
+      count, centre, radius: r || 1, fits: new Map(), geom };
     vaos.set(key, entry);
     if (key !== id) vaos.set(id, entry);
+    cachedTriangles += entry.tris;
+    // Trimmed AFTER inserting, and the new entry is protected: the caller is
+    // about to draw it, so evicting it here would rebuild it immediately.
+    trim(entry);
     return entry;
   }
 
@@ -753,6 +820,16 @@
   }
 
   root.Arsenal3D = {
+    /// What the cache is holding right now, so the bound can be asserted
+    /// rather than believed. `triangles` is the live total, `cap` the ceiling
+    /// it is trimmed to, and `models` the number of distinct geometries (not
+    /// keys: an entry reachable under two aliases is one model).
+    cacheStats() {
+      const seen = new Set();
+      for (const e of vaos.values()) seen.add(e);
+      return { triangles: cachedTriangles, cap: CACHE_TRIANGLES,
+        models: seen.size, keys: vaos.size };
+    },
     mount, scan, dataURL, renderTo, sprite, setSurface, frameOf,
     REST_YAW, REST_PITCH, FOV,
     get available() { return init(); },
