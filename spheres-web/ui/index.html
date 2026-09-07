@@ -3099,8 +3099,6 @@
 <script src="/surface-material.js"></script>
 <script src="/site-mesh.js"></script>
 <script src="/town-mesh.js"></script>
-<script src="/scatter-mesh.js"></script>
-<script src="/world-scatter.js"></script>
 <script src="/equipment-import.js"></script>
 <script src="/equipment-ui.js"></script>
 <script src="/agency-ui.js"></script>
@@ -12605,45 +12603,10 @@ const CBOX = (() => {
 /// It is loaded lazily and only when something asks, because the map is fully
 /// usable without it: every consumer must treat null as "no vegetation data"
 /// and carry on.
-const VEG = { pixels: null, w: 0, h: 0, state: "idle" };
-function loadVegetation() {
-  if (VEG.state !== "idle") return;
-  VEG.state = "loading";
-  const image = new Image();
-  image.onload = () => {
-    try {
-      const canvas = document.createElement("canvas");
-      canvas.width = image.naturalWidth; canvas.height = image.naturalHeight;
-      const ctx = canvas.getContext("2d", { willReadFrequently: true });
-      ctx.drawImage(image, 0, 0);
-      const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      VEG.pixels = data.data; VEG.w = canvas.width; VEG.h = canvas.height;
-      VEG.state = "ready";
-      GLOBE?.schedule();
-    } catch (e) { VEG.state = "failed"; }
-  };
-  image.onerror = () => { VEG.state = "failed"; };
-  image.src = "/cover.png";
-}
 /// 0..1, or null when the raster is not loaded or the point is off the bake.
-function vegetationAt(lon, lat) {
-  if (VEG.state !== "ready" || !window.Globe3D || !window.WORLD) return null;
-  const p = Globe3D.project(lon, lat);
-  if (!p) return null;
-  const u = p[0] / WORLD.w, v = p[1] / WORLD.h;
-  if (!(u >= 0 && u <= 1 && v >= 0 && v <= 1)) return null;
-  const x = Math.min(VEG.w - 1, Math.max(0, Math.round(u * (VEG.w - 1))));
-  const y = Math.min(VEG.h - 1, Math.max(0, Math.round(v * (VEG.h - 1))));
-  return VEG.pixels[(y * VEG.w + x) * 4] / 255;
-}
 /// Land, borrowed from the political lookup rather than a second coastline:
 /// countryAt returns nothing over ocean, which is exactly the test scatter
 /// needs and is guaranteed to agree with what the map draws.
-function landAtGeo(lon, lat) {
-  if (!window.Globe3D) return false;
-  const w = Globe3D.project(lon, lat);
-  return !!(w && countryAt(w[0], w[1]));
-}
 
 function countryAt(x, y) {
   for (const code in WORLD.countries) {
@@ -12741,12 +12704,6 @@ function drawMapOverlay(ctx, view, globe) {
   }
   ctx.textBaseline = "middle";
   ctx.textAlign = "center";
-
-  // ---- ground dressing, drawn FIRST so that every information layer in this
-  // function — the war glow, the resource chips, the logistics arcs, the
-  // construction marks and the labels — lands on top of it. Scenery must never
-  // be able to hide a mark the player is meant to read.
-  drawScatterOverlay(ctx, view, globe);
 
   // ---- war: a glow on each belligerent, and the abstraction line only for a
   // war with no front to show. The flat map drew the glow as an 81.6-unit disc
@@ -15996,12 +15953,6 @@ function registerMeshProviders() {
       });
     });
   }
-  if (window.ScatterMesh) {
-    Arsenal3D.register("scatter", (rest) => {
-      const [kind, lod, seed, biome] = String(rest).split("/");
-      return ScatterMesh.piece(kind, { lod: lod === "near" ? 0 : "far", seed: Number(seed) || 0, biome });
-    });
-  }
   if (window.TownMesh) {
     Arsenal3D.register("town", (rest) => {
       const [id, district, lod] = String(rest).split("/");
@@ -16561,100 +16512,6 @@ $("#productionRoomReturn").onclick = () => operationsSetMapView("productionPanel
 document.querySelectorAll("[data-production-mode]").forEach((button) => {
   button.onclick = () => setProductionMode(button.dataset.productionMode);
 });
-
-/// GROUND DRESSING, AND WHY IT IS THE BOTTOM LAYER.
-///
-/// Trees, scrub and rock at close range only. It is drawn FIRST, under the
-/// resource marks, the logistics arcs, the province work and every label,
-/// because it is scenery and none of those may ever be obscured by it — the
-/// same rule the roadmap states as "do not let background scenes obscure
-/// controls".
-///
-/// Each instance is a BAKED SPRITE, not a model: a far-LOD oak is 68 triangles
-/// but two hundred of them redrawn every camera move is two hundred draw calls
-/// on a 2D context that cannot batch. Arsenal3D.sprite bakes each kind once and
-/// hands back a canvas, so a frame is a Map lookup and a drawImage per instance.
-///
-/// WHAT THIS IS NOT: it is not a survey. Placement is derived from the baked
-/// vegetation index, the latitude and the elevation surface, which makes it a
-/// plausible dressing of real terrain rather than a record of what grows there.
-/// The same reasoning that keeps invented roads off this map (see the logistics
-/// note above) applies: nothing here claims to be a source.
-/// zoomIn matches WorldScatter.MIN_ZOOM and the zoom at which city-detail.js
-/// starts drawing a skyline, so ground dressing and buildings arrive together
-/// rather than one floating in ahead of the other.
-const SCATTER = { zoomIn: 32, budget: 220, seed: 1990, variants: 4 };
-function drawScatterOverlay(ctx, view, globe) {
-  if (!window.WorldScatter || !window.ScatterMesh) return;
-  if (!(window.Arsenal3D && Arsenal3D.available)) return;
-  if (ui.mapDetails?.features === false) return;   // scenery rides the existing "features" toggle
-  const zoom = Number(view.zoom);
-  if (!Number.isFinite(zoom) || zoom < SCATTER.zoomIn) return;
-  loadVegetation();
-  const surface = GLR && GLR.surface;
-  let bounds = null;
-  try { bounds = scatterBounds(view); } catch (e) { return; }
-  if (!bounds) return;
-  registerMeshProviders();
-  const plan = WorldScatter.plan(bounds, {
-    zoom,
-    budget: SCATTER.budget,
-    seed: SCATTER.seed,
-    height: (lon, lat) => (surface && surface.ready ? surface.sampleHeight(lon, lat) : null),
-    land: landAtGeo,
-    vegetation: vegetationAt,
-  });
-  if (!plan || !plan.items || !plan.items.length) return;
-  const r = view.ratio || 1;
-  const px = Math.max(8, Math.min(26, Math.round(6 * r * Math.log2(Math.max(2, zoom)) / 2)));
-  ctx.save();
-  ctx.globalAlpha = 0.92;
-  for (const item of plan.items) {
-    const p = globe.projectGeo(item.lon, item.lat, view, 1.0);
-    if (!p) continue;
-    // A seed varies a piece's sizes, angles and colours but never its
-    // structure, so a handful of variants per kind costs a fixed triangle
-    // count and buys a stand of trees instead of one tree stamped N times.
-    // The variant is part of the id, which is what makes each one its own
-    // cache entry — Arsenal3D.sprite keys on id and size only, so passing a
-    // yaw here would silently return the first bake instead of turning it.
-    // The plan hands each slot its own seed; that is the variant. Note the lod
-    // is spelled as a WORD: ScatterMesh.isFar accepts the number 1 but not the
-    // string "1", so putting item.lod straight into an id would quietly bake a
-    // near-LOD tree at map scale.
-    const variant = Math.abs(item.seed || 0) % SCATTER.variants;
-    const lod = item.lod ? "far" : "near";
-    // The biome is part of the id because it is part of the PICTURE: the kinds
-    // shared between biomes take their palette from it, so a boulder or a grass
-    // tuft placed in the Congo is coloured for the Congo and not for a temperate
-    // default. Measured: grass_tuft moves from (0.250,0.393,0.168) to
-    // (0.192,0.438,0.213) between temperate_broadleaf and tropical.
-    const sprite = Arsenal3D.sprite(
-      `scatter:${item.kind}/${lod}/${variant}/${item.biome}`, 64);
-    if (!sprite) continue;
-    const size = px * (item.scale || 1);
-    // Anchored at the foot, not the centre, so a tree stands on its point.
-    ctx.drawImage(sprite, p[0] - size / 2, p[1] - size * 0.86, size, size);
-  }
-  ctx.restore();
-}
-/// The visible geographic window, clamped to something a placement pass can
-/// afford. TerrainSurface.footprint casts the screen corners onto the sphere and
-/// is the same window the elevation tiles are fetched for, so scatter cannot ask
-/// for ground the terrain layer has not got.
-function scatterBounds(view) {
-  if (!window.TerrainSurface || !TerrainSurface.footprint) return null;
-  const foot = TerrainSurface.footprint(view);
-  if (!foot) return null;
-  const box = TerrainSurface.paddedBounds ? TerrainSurface.paddedBounds(foot, 0) : foot;
-  const west = Number(box.west ?? box.minLon), east = Number(box.east ?? box.maxLon);
-  const south = Number(box.south ?? box.minLat), north = Number(box.north ?? box.maxLat);
-  if (![west, east, south, north].every(Number.isFinite)) return null;
-  // A window wider than a few degrees is not a city view; refuse rather than
-  // thin, so the layer appears at one honest scale or not at all.
-  if (east - west > 6 || north - south > 6) return null;
-  return { west, east, south, north };
-}
 
 function drawProductionOverlay(ctx, view, globe) {
   PROD.hits = [];
