@@ -121,7 +121,7 @@ fn battlefield_material_losses_consume_inventory_but_not_pending_orders() {
     fight.conflicts = vec![conflict(&fight, 1, N::Iraq, N::Kuwait)];
     let kit = arsenal::index_of("arm_gen2").unwrap();
     for w in [&mut peace, &mut fight] {
-        w.nation_mut(N::Iraq).arsenal.orders.push(arsenal::Order { kit, units: 100.0, due: 120, due_days: Some(3600) });
+        w.nation_mut(N::Iraq).arsenal.orders.push(arsenal::Order { kit, units: 100.0, due: 120, due_days: Some(3600), design_id: None, delivery_age: None });
     }
     war::tick(&mut peace);
     war::tick(&mut fight);
@@ -138,7 +138,7 @@ fn equal_equipment_value_cannot_substitute_ships_for_land_capability() {
     let naval = arsenal::DECK.iter().position(|d| d.class == arsenal::Class::Naval).unwrap();
     for (w, kit) in [(&mut land, armour), (&mut sea, naval)] {
         w.nation_mut(N::Iraq).arsenal.held = vec![arsenal::Holding {
-            kit: kit as u16, units: 10.0 / arsenal::DECK[kit].unit_cost, age: 0.0 }];
+            kit: kit as u16, units: 10.0 / arsenal::DECK[kit].unit_cost, age: 0.0, design_id: None, refit_reserved: 0, loss_remainder: 0.0 }];
     }
     assert!((arsenal::book_value(land.nation(N::Iraq)) - arsenal::book_value(sea.nation(N::Iraq))).abs() < 1e-10);
     let a = spheres_sim::operations::capabilities(land.nation(N::Iraq));

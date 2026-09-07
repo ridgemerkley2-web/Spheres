@@ -1,0 +1,1520 @@
+{
+  "schema": 1,
+  "catalogue": "Spheres page artwork",
+  "new_scene_count": 29,
+  "total_scene_coverage": 39,
+  "path_base": "Display paths are relative to the repository root. Absolute source and archive paths are provenance records, never runtime dependencies.",
+  "setting": "Original fictional 1990s environments for a geopolitical strategy game; painterly illustrations, not simulation diagrams or identified historical events.",
+  "art_direction": "Wide cinematic panoramas with tactile physical detail, navy/teal shadows, individual natural warm light, upper/right focal interest and calm dark left space for interface headings.",
+  "generator": "OpenAI built-in image_gen",
+  "source_note": "Original generated PNG bytes and embedded provenance are preserved unchanged in the archived source files. WebP files are display derivatives.",
+  "existing_areas": {
+    "count": 10,
+    "manifest": "spheres-web/ui/area-art/manifest.json",
+    "manifest_sha256": "5b696f404177d6935068f005b02ecaad4d9808f89e08315f5c764472812aaaae",
+    "keys": [
+      "campaign",
+      "cabinet",
+      "treasury",
+      "production",
+      "research",
+      "diplomacy",
+      "military",
+      "logistics",
+      "resources",
+      "history"
+    ]
+  },
+  "total_display_bytes": 5628772,
+  "assets": [
+    {
+      "key": "army-service",
+      "version": 1,
+      "batch": "root",
+      "display": {
+        "path": "spheres-web/ui/page-art/army-service-v1.webp",
+        "sha256": "f726f147db424bb4b597f8a49522c809096d6557a4f79d05bda63403ccd00429",
+        "bytes": 205706,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-98102727-09ae-436b-8281-b4ff7b065ca1.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-originals/army-service-v1.png",
+        "sha256": "c31dc715cdc083a76dc9c2ca46676918e9453a0c7a8933592d69a164f3b73d10",
+        "bytes": 2362304,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept. Asset type: unique cinematic full-bleed background painting for the army-service page of SPHERES, a grand strategy game. Scene: An army maintenance depot at the edge of a forested valley, a line of fictional 1990s armored vehicles and service trucks receiving routine maintenance beside hangars on the right. Mechanics and supply crates as small details, snow-capped mountains and sunlit pines beyond. Crisp hopeful sunrise, cool olive and blue steel, golden mist. Peaceful readiness scene. Style: exquisite painterly oil-and-gouache concept art, finely observed physical detail, rich atmospheric depth, navy/teal shadows and luminous restrained highlights. Wide landscape 16:9 composition, strongest visual interest on the right and upper image with quiet darker left for interface copy. Render a complete beautiful place, not an interface mockup. No text, lettering, numbers, labels, logos, real flags, watermark or borders.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": null,
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-root-manifest.json",
+        "source_manifest_sha256": "1830f0a95e193872584ccd160e6f91e95d96a446c9f883d100e5106c96cf1c1a"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "resize": false,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Generated artwork selected and visually reviewed during page-art implementation."
+    },
+    {
+      "key": "construction",
+      "version": 1,
+      "batch": "root",
+      "display": {
+        "path": "spheres-web/ui/page-art/construction-v1.webp",
+        "sha256": "fd842e65b518aea44f48a7e7f0f00812af28f17f173d07b90ef856aff7b730b1",
+        "bytes": 244688,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-0d49582d-4984-4f34-b5d5-f7de52a132d9.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-originals/construction-v1.png",
+        "sha256": "dbfb25390960bf04c67954ffd4b105b1d3e4ee69fed32ab2029ce57c4238dac4",
+        "bytes": 2541771,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept. Asset type: beautiful full-bleed background artwork for a page of SPHERES, a grand strategy game set in a fictional 1990s world. Scene: A vast modern city construction site in a river valley, a half-finished highway bridge curves toward a growing city of 1990s towers. Tower cranes, concrete piers, scaffolds, earthmoving machinery and small workers, sunlit exposed stone and greenery. Optimistic early morning golden mist, sweeping sense of national development. Style: cinematic painterly illustration, finely observed physical detail, hand-painted oil and gouache texture, navy/teal shadows, restrained luminous highlights, atmospheric depth, wide landscape 16:9 panorama. Composition: main subject in right two-thirds and upper image; quiet shadowed left for UI copy, but render the whole scene beautifully. No interface, text, lettering, labels, logos, flags, watermarks or borders. No infographic or diagram.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": null,
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-root-manifest.json",
+        "source_manifest_sha256": "1830f0a95e193872584ccd160e6f91e95d96a446c9f883d100e5106c96cf1c1a"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "resize": false,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Generated artwork selected and visually reviewed during page-art implementation."
+    },
+    {
+      "key": "decisions",
+      "version": 1,
+      "batch": "world",
+      "display": {
+        "path": "spheres-web/ui/page-art/decisions-v1.webp",
+        "sha256": "a2bbade6b434c7a4462b1f2dcb50c92052336f923e7da6653897932e32e4e5a2",
+        "bytes": 90746,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a0790e-4124-7471-8245-e2fa6e1fee81/exec-21807c48-5030-4911-b0ec-bcdc020c7e04.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-world-originals/decisions-v1.png",
+        "sha256": "32075088f26fa82b9bad8d6324d61e86fd2f8f1d3c9ea9fca2c5fda82a447a9f",
+        "bytes": 1782681,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept\nAsset type: finished background illustration for Spheres, a fictional 1990s grand strategy game.\nStyle/medium: beautiful cinematic painterly strategy-game concept art, sophisticated realistic architecture, tactile detailed places, subtle brushed oil-paint texture, atmospheric depth.\nComposition/framing: one wide 16:9 panoramic illustration. Put the main scene and brightest focal interest on the right and upper half; keep the left third naturally shadowed, calm, low-detail navy/teal for a game heading overlay. Do not draw an interface.\nConstraints: original fictional setting consistent with the 1990s. No text, lettering, numbers, readable signage, UI, logos, watermarks, national flags, futuristic holograms or collage. Furniture and architecture should be coherent and believable.\nPrimary request: a presidential cabinet meeting room in a fictional 1990s nation. A long polished oval wooden meeting table with simple leather chairs, plain closed folders and a few understated desk lamps, tall windows overlooking a distant capital at evening. Refined real-world proportions and welcoming architectural detail; no portraits, flags, plaques, emblems, writing or nameplates.\nLighting/mood: blue-hour city outside contrasts with warm amber interior lamps and the last sunset reflections on wood. Calm, weighty decisions, rich navy/teal shadow, comfortable yet serious atmosphere. Main table and windows in right half.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-07 00:38:29 UTC",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-world-manifest.json",
+        "source_manifest_sha256": "1f6d0b0760a81e5d954ddd60e65033c37b563f161f0da48f787c55f0b86d31f8"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "max_width": 1792,
+          "crop": false,
+          "recolor": false
+        }
+      },
+      "visual_review": {
+        "subject": "accepted",
+        "composition": "Right/upper focal interest with calm dark navy/teal left suitable for interface overlays",
+        "style": "Cinematic painterly original fictional setting",
+        "no_ui_logo_watermark_national_flag": true
+      }
+    },
+    {
+      "key": "equipment-library",
+      "version": 1,
+      "batch": "root",
+      "display": {
+        "path": "spheres-web/ui/page-art/equipment-library-v1.webp",
+        "sha256": "b4a53e41ca7bb2f0462dc5e4bfa615d454d9d0e4180d442c08d8bf0a8ce41d6a",
+        "bytes": 193634,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-b3c6c787-8129-42d9-8a99-51df22a7c7d6.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-originals/equipment-library-v1.png",
+        "sha256": "012f0c1c9a75c1cd950f6d8e0d20b0f7685ee1fb035f75e2d1365c4999cd9686",
+        "bytes": 2299613,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept. Asset type: beautiful full-bleed background artwork for a page of SPHERES, a grand strategy game set in a fictional 1990s world. Scene: A magnificent armored vehicle collection in a vaulted military museum storehouse. Three distinct fictional light, medium and heavy tank silhouettes displayed along a polished concrete hall on the right, distant tanks fading into atmospheric dust. Huge clerestory windows cast shafts of pale gold light, olive steel and dark slate architecture, contemplative archival grandeur. Style: cinematic painterly illustration, finely observed physical detail, hand-painted oil and gouache texture, navy/teal shadows, restrained luminous highlights, atmospheric depth, wide landscape 16:9 panorama. Composition: main subject in right two-thirds and upper image; quiet shadowed left for UI copy, but render the whole scene beautifully. No interface, text, lettering, labels, logos, flags, watermarks or borders. No infographic or diagram.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": null,
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-root-manifest.json",
+        "source_manifest_sha256": "1830f0a95e193872584ccd160e6f91e95d96a446c9f883d100e5106c96cf1c1a"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "resize": false,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Generated artwork selected and visually reviewed during page-art implementation."
+    },
+    {
+      "key": "global-command",
+      "version": 1,
+      "batch": "root",
+      "display": {
+        "path": "spheres-web/ui/page-art/global-command-v1.webp",
+        "sha256": "d06679a3a947383cb37f6025dcad7653709879d9753540531fa9fbcedeeda41f",
+        "bytes": 150568,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-cdc2e74d-cace-47f5-9efd-0f67eb2bef36.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-originals/global-command-v1.png",
+        "sha256": "0682bd9c1bb6cc7ade1e5bf54636388a9db2771581a808ce9cdaf27dcaea8949",
+        "bytes": 2108035,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept. Asset type: unique cinematic full-bleed background painting for the global-command page of SPHERES, a grand strategy game. Scene: A vast fictional 1990s joint strategic command hall, physically illuminated globe relief and large unlabeled world map display on the far right wall, curved rows of console desks and tiny officer silhouettes. Enormous cavernous architectural space, beautiful midnight blue shadows and restrained amber desk lamps, dignified scale and painterly texture. No readable labels on any screen. Style: exquisite painterly oil-and-gouache concept art, finely observed physical detail, rich atmospheric depth, navy/teal shadows and luminous restrained highlights. Wide landscape 16:9 composition, strongest visual interest on the right and upper image with quiet darker left for interface copy. Render a complete beautiful place, not an interface mockup. No text, lettering, numbers, labels, logos, real flags, watermark or borders.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": null,
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-root-manifest.json",
+        "source_manifest_sha256": "1830f0a95e193872584ccd160e6f91e95d96a446c9f883d100e5106c96cf1c1a"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "resize": false,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Generated artwork selected and visually reviewed during page-art implementation."
+    },
+    {
+      "key": "influence",
+      "version": 1,
+      "batch": "world",
+      "display": {
+        "path": "spheres-web/ui/page-art/influence-v1.webp",
+        "sha256": "452561f769460287283c1f388876e8563352f35088c6fe6f39fb0c9b26e465cc",
+        "bytes": 184430,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a0790e-4124-7471-8245-e2fa6e1fee81/exec-aabc58b2-e2e6-475f-b76f-c333b507c7d4.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-world-originals/influence-v1.png",
+        "sha256": "58acd60b8d406cf29888c575dd6f7db3801dd024af6b1dbaf49692ad29e8867c",
+        "bytes": 2357030,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept\nAsset type: finished background illustration for Spheres, a fictional 1990s grand strategy game.\nStyle/medium: beautiful cinematic painterly strategy-game concept art, sophisticated realistic architecture, tactile detailed places, subtle brushed oil-paint texture, atmospheric depth.\nComposition/framing: one wide 16:9 panoramic illustration. Put the main scene and brightest focal interest on the right and upper half; keep the left third naturally shadowed, calm, low-detail navy/teal for a game heading overlay. Do not draw an interface.\nConstraints: original fictional setting consistent with the 1990s. No text, lettering, numbers, readable signage, UI, logos, watermarks, national flags, futuristic holograms or collage. Furniture and architecture should be coherent and believable.\nPrimary request: a magnificent international conference hall with a circular arrangement of polished wooden desks, modest tabletop microphones and refined upholstered chairs, viewed from an elevated corner. Sweeping stone balconies and tall windows suggest diplomatic dialogue across a large world. No emblems and no desk nameplates.\nLighting/mood: clear daylight falls from high windows onto polished pale stone and honey-colored wood, quiet authority, generous space, soft navy/teal shadows, subtle warm highlights. Strongest circular-table detail on the right.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-07 00:38:29 UTC",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-world-manifest.json",
+        "source_manifest_sha256": "1f6d0b0760a81e5d954ddd60e65033c37b563f161f0da48f787c55f0b86d31f8"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "max_width": 1792,
+          "crop": false,
+          "recolor": false
+        }
+      },
+      "visual_review": {
+        "subject": "accepted",
+        "composition": "Right/upper focal interest with calm dark navy/teal left suitable for interface overlays",
+        "style": "Cinematic painterly original fictional setting",
+        "no_ui_logo_watermark_national_flag": true
+      }
+    },
+    {
+      "key": "intelligence",
+      "version": 1,
+      "batch": "root",
+      "display": {
+        "path": "spheres-web/ui/page-art/intelligence-v1.webp",
+        "sha256": "46debaacbfb76d8c6d6773bbb380225500b4e3cdc78ded269941a8ce47410088",
+        "bytes": 158720,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-0b145f59-89cc-4e16-92f4-c2c26a45ef5a.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-originals/intelligence-v1.png",
+        "sha256": "147b710daf01f52910c65a251c451212e95775f728872168cda20374f8d0a0f8",
+        "bytes": 2218827,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept. Asset type: unique cinematic full-bleed background painting for the intelligence page of SPHERES, a grand strategy game. Scene: A panoramic view inside a fictional 1990s world affairs observatory high above a coastal capital at blue hour. On the right an analyst's desk with open unlabeled atlases, photographic prints, a simple radio, binoculars and a reading lamp sits against tall windows; below are government buildings, embassies and ships in the bay. Atmospheric rain, distant city lights, deep blue and bronze, thoughtful cinematic mood. Style: exquisite painterly oil-and-gouache concept art, finely observed physical detail, rich atmospheric depth, navy/teal shadows and luminous restrained highlights. Wide landscape 16:9 composition, strongest visual interest on the right and upper image with quiet darker left for interface copy. Render a complete beautiful place, not an interface mockup. No text, lettering, numbers, labels, logos, real flags, watermark or borders.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": null,
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-root-manifest.json",
+        "source_manifest_sha256": "1830f0a95e193872584ccd160e6f91e95d96a446c9f883d100e5106c96cf1c1a"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "resize": false,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Generated artwork selected and visually reviewed during page-art implementation."
+    },
+    {
+      "key": "league",
+      "version": 1,
+      "batch": "world",
+      "display": {
+        "path": "spheres-web/ui/page-art/league-v1.webp",
+        "sha256": "2661fd21c39d28ab88f96effb083353f6e91d0102429aed3cfa3bd50f1bcefd5",
+        "bytes": 176422,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a0790e-4124-7471-8245-e2fa6e1fee81/exec-7cd271d8-e6da-48af-9cd0-95cf0ee2870f.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-world-originals/league-v1.png",
+        "sha256": "e7c2d6854c6cb3dc0fa05489b2d8a1f83fac10618423b4bdc33c5806146a639c",
+        "bytes": 2274874,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept\nAsset type: finished background illustration for Spheres, a fictional 1990s grand strategy game.\nStyle/medium: beautiful cinematic painterly strategy-game concept art, sophisticated realistic architecture, tactile detailed places, subtle brushed oil-paint texture, atmospheric depth.\nComposition/framing: one wide 16:9 panoramic illustration. Put the main scene and brightest focal interest on the right and upper half; keep the left third naturally shadowed, calm, low-detail navy/teal for a game heading overlay. Do not draw an interface.\nConstraints: original fictional setting consistent with the 1990s. No text, lettering, numbers, readable signage, UI, logos, watermarks, national flags, futuristic holograms or collage. Furniture and architecture should be coherent and believable.\nPrimary request: a grand international exhibition rotunda, a magnificent monumental hall with high vaulted glass roof and sweeping stone galleries. Many long completely plain unmarked fabric banners in muted individual colors hang neatly along the galleries. The architecture embodies peaceful world cooperation and achievement, with a broad open polished-stone floor and distant sunlit entrances.\nLighting/mood: hopeful luminous morning with warm natural sunshine, cream limestone, pale gold reflections, muted teal and earth-colored plain fabric banners, deep navy/teal shadows. Strong architectural focal interest to the upper right and an open calm shadowed foreground left.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-07 00:38:29 UTC",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-world-manifest.json",
+        "source_manifest_sha256": "1f6d0b0760a81e5d954ddd60e65033c37b563f161f0da48f787c55f0b86d31f8"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "max_width": 1792,
+          "crop": false,
+          "recolor": false
+        }
+      },
+      "visual_review": {
+        "subject": "accepted",
+        "composition": "Right/upper focal interest with calm dark navy/teal left suitable for interface overlays",
+        "style": "Cinematic painterly original fictional setting",
+        "no_ui_logo_watermark_national_flag": true
+      }
+    },
+    {
+      "key": "military-research",
+      "version": 1,
+      "batch": "root",
+      "display": {
+        "path": "spheres-web/ui/page-art/military-research-v1.webp",
+        "sha256": "70e9f89c9be2b7b38aee83fe5beeee14fafe2cc47f6ac6468171f9ca5adb2cb5",
+        "bytes": 206676,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-f3b5b912-122d-4f57-911e-097d514365bd.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-originals/military-research-v1.png",
+        "sha256": "c980621caaf623c2e2174162bb1b7abbcc04c93dd29988261b89a172382c3e8d",
+        "bytes": 2349830,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept. Asset type: beautiful full-bleed background artwork for a page of SPHERES, a grand strategy game set in a fictional 1990s world. Scene: An advanced fictional 1990s defense research laboratory in a mountain campus. A cutaway armored-vehicle test platform and electronics benches fill the right side; instrument racks, physical component prototypes, suspended lamps and glass partitions. Cool blue-green laboratory light meets copper sunset through high windows, beautiful inventive industrial atmosphere. Style: cinematic painterly illustration, finely observed physical detail, hand-painted oil and gouache texture, navy/teal shadows, restrained luminous highlights, atmospheric depth, wide landscape 16:9 panorama. Composition: main subject in right two-thirds and upper image; quiet shadowed left for UI copy, but render the whole scene beautifully. No interface, text, lettering, labels, logos, flags, watermarks or borders. No infographic or diagram.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": null,
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-root-manifest.json",
+        "source_manifest_sha256": "1830f0a95e193872584ccd160e6f91e95d96a446c9f883d100e5106c96cf1c1a"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "resize": false,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Generated artwork selected and visually reviewed during page-art implementation."
+    },
+    {
+      "key": "nation-selection",
+      "version": 1,
+      "batch": "world",
+      "display": {
+        "path": "spheres-web/ui/page-art/nation-selection-v1.webp",
+        "sha256": "8b327c2e1e3bb298bd48e5a21641fe6c9b5d969c4ad5421bb97e7e73b2c755ba",
+        "bytes": 147710,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a0790e-4124-7471-8245-e2fa6e1fee81/exec-02b763ae-ead7-4d69-a770-076c1292a9e9.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-world-originals/nation-selection-v1.png",
+        "sha256": "e27def9f310fff15081ccf68c0ad2822aa8b54cc9245e8dae5d96bc1cc595f54",
+        "bytes": 2089143,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept\nAsset type: finished cinematic background illustration for the nation-selection page of Spheres, a fictional 1990s grand strategy game.\nPrimary request: a grand sunlit globe and map room, with a beautiful large physical globe and cartographic tables in a monumental modern-classical interior; through tall distant windows, a layered world city skyline glows in warm daylight.\nStyle/medium: masterful cinematic painterly game concept art, detailed tactile architecture, brushed oil-paint finish, atmospheric depth, restrained sophisticated realism.\nComposition/framing: one wide 16:9 panoramic image, spacious and elegant. Place the globe, warm light and strongest focal interest on the upper right half. Leave the left third calm, low-detail, dark navy/teal, naturally shaded, suitable for a game page heading overlay. No actual interface in the image.\nLighting/mood: golden afternoon sunlight, quiet anticipation and possibility, navy/teal shadows, warm brass and natural cream stone highlights. Detailed paper, wood, stone and metal surfaces.\nConstraints: original fictional setting in the 1990s, no recognizable landmark reproduction, no text, letters, readable labels, interface, logos, watermark, national flags, futuristic holograms, neon cyberpunk, or collage. Maps have unlabeled abstract geography. Output one coherent premium game background illustration.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-07 00:38:29 UTC",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-world-manifest.json",
+        "source_manifest_sha256": "1f6d0b0760a81e5d954ddd60e65033c37b563f161f0da48f787c55f0b86d31f8"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "max_width": 1792,
+          "crop": false,
+          "recolor": false
+        }
+      },
+      "visual_review": {
+        "subject": "accepted",
+        "composition": "Right/upper focal interest with calm dark navy/teal left suitable for interface overlays",
+        "style": "Cinematic painterly original fictional setting",
+        "no_ui_logo_watermark_national_flag": true
+      }
+    },
+    {
+      "key": "policy",
+      "version": 1,
+      "batch": "world",
+      "display": {
+        "path": "spheres-web/ui/page-art/policy-v1.webp",
+        "sha256": "0a9b127420b43a110637e7ce56d0765a1d2d785531471e799e063a3fd7b95336",
+        "bytes": 155868,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a0790e-4124-7471-8245-e2fa6e1fee81/exec-ab09f1ae-c218-44fc-98f7-ac55a72a1bac.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-world-originals/policy-v1.png",
+        "sha256": "bf604991e81925f77e0538ce63651607e36ae97e131b8f326b0bb1fe826a715a",
+        "bytes": 2170399,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept\nAsset type: finished background illustration for Spheres, a fictional 1990s grand strategy game.\nStyle/medium: beautiful cinematic painterly strategy-game concept art, sophisticated realistic architecture, tactile detailed places, subtle brushed oil-paint texture, atmospheric depth.\nComposition/framing: one wide 16:9 panoramic illustration. Put the main scene and brightest focal interest on the right and upper half; keep the left third naturally shadowed, calm, low-detail navy/teal for a game heading overlay. Do not draw an interface.\nConstraints: original fictional setting consistent with the 1990s. No text, lettering, numbers, readable signage, UI, logos, watermarks, national flags, futuristic holograms or collage. Furniture and architecture should be coherent and believable.\nPrimary request: a national legislative chamber, broad semicircular tiers of refined wooden benches and desks facing a simple elevated speaking platform, tall windows, handsome carved architectural detail. The chamber is empty and ready for deliberation, with no insignia, emblems or writing anywhere.\nLighting/mood: thoughtful golden daylight, dignified limestone and dark walnut, warm amber highlights on orderly seating against cool navy/teal shadows. Main chamber and windows to the right, naturally shaded quiet foreground left.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-07 00:38:29 UTC",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-world-manifest.json",
+        "source_manifest_sha256": "1f6d0b0760a81e5d954ddd60e65033c37b563f161f0da48f787c55f0b86d31f8"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "max_width": 1792,
+          "crop": false,
+          "recolor": false
+        }
+      },
+      "visual_review": {
+        "subject": "accepted",
+        "composition": "Right/upper focal interest with calm dark navy/teal left suitable for interface overlays",
+        "style": "Cinematic painterly original fictional setting",
+        "no_ui_logo_watermark_national_flag": true
+      }
+    },
+    {
+      "key": "proving-ground",
+      "version": 1,
+      "batch": "root",
+      "display": {
+        "path": "spheres-web/ui/page-art/proving-ground-v1.webp",
+        "sha256": "bab2fbb2240cf872c0fbf9ebaf760eddc60bf0adcacaa26473351ac47ef45edd",
+        "bytes": 202642,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-5bcd5621-ba38-4824-8a1c-74c4b9597c98.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-originals/proving-ground-v1.png",
+        "sha256": "73e064272e62309849f26cb627ea60151bc26e9f8b3122dff12697b6c556188c",
+        "bytes": 2325086,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept. Asset type: unique cinematic full-bleed background painting for the proving-ground page of SPHERES, a grand strategy game. Scene: A fictional 1990s tank prototype traverses a broad rugged testing course on the right; dramatic sandstone hills, dusty switchbacks, test ramps and a remote instrumentation outpost. Great golden shafts of afternoon light break through towering blue storm clouds, dust trailing across a vast beautiful landscape. No battle, no wrecks. Style: exquisite painterly oil-and-gouache concept art, finely observed physical detail, rich atmospheric depth, navy/teal shadows and luminous restrained highlights. Wide landscape 16:9 composition, strongest visual interest on the right and upper image with quiet darker left for interface copy. Render a complete beautiful place, not an interface mockup. No text, lettering, numbers, labels, logos, real flags, watermark or borders.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": null,
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-root-manifest.json",
+        "source_manifest_sha256": "1830f0a95e193872584ccd160e6f91e95d96a446c9f883d100e5106c96cf1c1a"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "resize": false,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Generated artwork selected and visually reviewed during page-art implementation."
+    },
+    {
+      "key": "saved-campaigns",
+      "version": 1,
+      "batch": "world",
+      "display": {
+        "path": "spheres-web/ui/page-art/saved-campaigns-v1.webp",
+        "sha256": "b09a539f6b6902826defa99611cfea8d2c662a36889cc4fb20e276e924fefa2b",
+        "bytes": 146948,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a0790e-4124-7471-8245-e2fa6e1fee81/exec-7916c256-6ba9-41f7-a618-7cb58e533141.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-world-originals/saved-campaigns-v1.png",
+        "sha256": "b3a8ccf8de0044ff3bd39bfa23de80e361779ff86a2237e917df321c9fa5c694",
+        "bytes": 2050772,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept\nAsset type: finished background illustration for Spheres, a fictional 1990s grand strategy game.\nStyle/medium: beautiful cinematic painterly strategy-game concept art, sophisticated realistic architecture, tactile detailed places, subtle brushed oil-paint texture, atmospheric depth.\nComposition/framing: a single wide 16:9 panorama. Put the main scene and brightest focal interest on the right and upper half; keep the left third naturally shadowed, calm, low-detail navy/teal so interface headings remain legible. Do not draw the interface.\nConstraints: original fictional setting consistent with the 1990s. No text, lettering, numbers, readable signage, UI, logos, watermarks, national flags, futuristic holograms or collage. One coherent premium illustration.\nPrimary request: an evocative archival reading hall, with tall shelves, a long wooden reading table, carefully spread expedition maps, rolled charts, and shaded reading lamps. Shelves recede into quiet depth and high windows admit slender warm light. Unlabeled maps and book spines only.\nLighting/mood: golden late-afternoon shafts through dust, rich dark walnut, aged ivory paper, deep navy/teal shadows. A sense of remembered campaigns and journeys waiting to resume.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-07 00:38:29 UTC",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-world-manifest.json",
+        "source_manifest_sha256": "1f6d0b0760a81e5d954ddd60e65033c37b563f161f0da48f787c55f0b86d31f8"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "max_width": 1792,
+          "crop": false,
+          "recolor": false
+        }
+      },
+      "visual_review": {
+        "subject": "accepted",
+        "composition": "Right/upper focal interest with calm dark navy/teal left suitable for interface overlays",
+        "style": "Cinematic painterly original fictional setting",
+        "no_ui_logo_watermark_national_flag": true
+      }
+    },
+    {
+      "key": "science-aerospace",
+      "version": 1,
+      "batch": "science",
+      "display": {
+        "path": "spheres-web/ui/page-art/science-aerospace-v1.webp",
+        "sha256": "87f810585696d212d39eb370865553d3dddd811367808185a585de8c00268737",
+        "bytes": 111882,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a07943-0aca-7df1-a13b-f0492192f8b3/exec-a50a58e8-dc94-45d4-b602-c51b9b536b39.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-originals/science-aerospace-v1.png",
+        "sha256": "6a9fe57d2fc4b881a2f42c073030987cc120e12d2e584d9e73169a8578bb73b1",
+        "bytes": 1980461,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept. Asset type: original background painting for SPHERES, a geopolitical strategy game beginning in 1990. Landscape panoramic 16:9. Beautiful cinematic painterly concept art, oil and gouache brushwork with rich convincing physical detail, atmospheric perspective, nuanced navy and deep teal shadows and warm natural highlights. The strongest subject occupies the upper and right composition; left foreground should be quietly detailed and naturally darker, with usable negative space for game headings. Paint a complete environment, not a mockup or a bordered illustration. Fictional setting, no named country or actual historical event. No UI, letters, words, numbers, labels, logos, watermarks or flags, no modern smartphones or holograms. Scene: a breathtaking coastal aerospace launch complex just before sunrise, original fictional white launch vehicle and slender service tower dominating right and upper composition, carefully painted gantries, fuel lines and launch platform amid drifting ground mist. Orange dawn over ocean on far right, pale stars fading in deep indigo upper sky. Left foreground: dark coastal grasses and low concrete accessways, quiet atmospheric space. Grounded late-20th-century engineering, no recognizable real mission branding, a serene moment of scientific ambition before launch.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-06",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-science-manifest.json",
+        "source_manifest_sha256": "5e93af056c21eb43b0383839bc4f5c43c10699f0ff001f96357cc82a820b2efd"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "library": "Pillow",
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "max_width": 1792,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Inspected generated image: distinct subject, cohesive cinematic painterly treatment, clear right-side focal point, darker quieter left, no visible labels or branding."
+    },
+    {
+      "key": "science-agriculture",
+      "version": 1,
+      "batch": "science",
+      "display": {
+        "path": "spheres-web/ui/page-art/science-agriculture-v1.webp",
+        "sha256": "4feb0f66a7cd1b1de477cca5c60046b967865f54b477d1ffbc6ffad980414650",
+        "bytes": 278110,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a07943-0aca-7df1-a13b-f0492192f8b3/exec-088a9525-470e-4f38-895a-82ab1351952f.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-originals/science-agriculture-v1.png",
+        "sha256": "99baa467c7d6d29c472400c49b12a0890bc2db00d6ed33bd471686d87924f8cc",
+        "bytes": 2665874,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept. Asset type: original background painting for SPHERES, a geopolitical strategy game beginning in 1990. Landscape panoramic 16:9. Beautiful cinematic painterly concept art, oil and gouache brushwork with rich convincing physical detail, atmospheric perspective, nuanced navy and deep teal shadows and warm natural highlights. The strongest subject occupies the upper and right composition; left foreground should be quietly detailed and naturally darker, with usable negative space for game headings. Paint a complete environment, not a mockup or a bordered illustration. Fictional setting, no named country or actual historical event. No UI, letters, words, numbers, labels, logos, watermarks or flags, no modern smartphones or holograms. Scene: an immense beautiful agricultural valley of curved terraces and carefully planted fields at first light, research greenhouses and a tiny modest agronomy station with unmarked equipment arranged on the upper right hill. Golden wheat, fresh green experimental crop rows, a winding irrigation canal and realistic stone retaining walls lead into hazy mountains. The warm sun lights the right side and patterned farmland; dark teal orchard branches and a quiet shaded field occupy the left foreground. A hopeful 1990-era rural development landscape, vivid botanical texture and elegant agricultural geometry, no people close-up.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-06",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-science-manifest.json",
+        "source_manifest_sha256": "5e93af056c21eb43b0383839bc4f5c43c10699f0ff001f96357cc82a820b2efd"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "library": "Pillow",
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "max_width": 1792,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Inspected generated image: distinct subject, cohesive cinematic painterly treatment, clear right-side focal point, darker quieter left, no visible labels or branding."
+    },
+    {
+      "key": "science-biotech",
+      "version": 1,
+      "batch": "science",
+      "display": {
+        "path": "spheres-web/ui/page-art/science-biotech-v1.webp",
+        "sha256": "893ce0e1c1bdda78f819c75d157b9b138fcafd1bb53f40ab6c03074eb505f67b",
+        "bytes": 353644,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a07943-0aca-7df1-a13b-f0492192f8b3/exec-abeeaa84-cfd6-4e92-a186-cf9cfbf21795.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-originals/science-biotech-v1.png",
+        "sha256": "1171c23958523a9963bd26a474932219a249080afb01cc76145ed1c21a8abb1a",
+        "bytes": 2842441,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept. Asset type: original background painting for SPHERES, a geopolitical strategy game beginning in 1990. Landscape panoramic 16:9. Beautiful cinematic painterly concept art, oil and gouache brushwork with rich convincing physical detail, atmospheric perspective, nuanced navy and deep teal shadows and warm natural highlights. The strongest subject occupies the upper and right composition; left foreground should be quietly detailed and naturally darker, with usable negative space for game headings. Paint a complete environment, not a mockup or a bordered illustration. Fictional setting, no named country or actual historical event. No UI, letters, words, numbers, labels, logos, watermarks or flags, no modern smartphones or holograms. Scene: a lush botanical biotechnology laboratory in a sweeping glass conservatory, 1990-era research benches in the right foreground with microscopes, unlabeled glass vessels, delicate propagation seedlings and plant growth chambers. An elegant structure of glass and slender steel ribs arches across the top right. Late-morning golden light falls through tropical leaves and condensation; rich emerald and moss green plants contrast with teal shadows. Left side: quietly shadowed path and gentle foliage, the main instrument bench and sunlit glass house on right. Artful scientific optimism, extraordinary plant texture, no fantastical or hazardous organisms.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-06",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-science-manifest.json",
+        "source_manifest_sha256": "5e93af056c21eb43b0383839bc4f5c43c10699f0ff001f96357cc82a820b2efd"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "library": "Pillow",
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "max_width": 1792,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Inspected generated image: distinct subject, cohesive cinematic painterly treatment, clear right-side focal point, darker quieter left, no visible labels or branding."
+    },
+    {
+      "key": "science-communications",
+      "version": 1,
+      "batch": "science",
+      "display": {
+        "path": "spheres-web/ui/page-art/science-communications-v1.webp",
+        "sha256": "3c61faa8c14f8add4b02b9dbee0420303a91c404d10b0a9f8caec8df20317669",
+        "bytes": 102952,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a07943-0aca-7df1-a13b-f0492192f8b3/exec-1e00fedd-c8f7-4703-9146-c4d876b9f429.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-originals/science-communications-v1.png",
+        "sha256": "fc5279e6d9de1d0c842b021eff136e22a979666208f6394612d5a4f6176ebbed",
+        "bytes": 2092996,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept. Asset type: original background painting for SPHERES, a geopolitical strategy game beginning in 1990. Landscape panoramic 16:9. Beautiful cinematic painterly concept art, oil and gouache brushwork with rich convincing physical detail, atmospheric perspective, nuanced navy and deep teal shadows and warm natural highlights. The strongest subject occupies the upper and right composition; left foreground should be quietly detailed and naturally darker, with usable negative space for game headings. Paint a complete environment, not a mockup or a bordered illustration. Fictional setting, no named country or actual historical event. No UI, letters, words, numbers, labels, logos, watermarks or flags, no modern smartphones or holograms. Scene: a remote communications research observatory at blue dusk, towering white radio dishes tilting toward a delicate green aurora across a violet and blue sky. Main subject on right: one magnificent parabolic dish, realistically detailed supporting truss and receiver, with several smaller dishes receding into the mountainous horizon. Faint amber observatory windows and warm setting-sun edge light. Left foreground: dark rocky heath and low silhouettes with expansive atmospheric negative space. Breathtaking, grounded 1990 engineering and natural landscape.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-06",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-science-manifest.json",
+        "source_manifest_sha256": "5e93af056c21eb43b0383839bc4f5c43c10699f0ff001f96357cc82a820b2efd"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "library": "Pillow",
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "max_width": 1792,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Inspected generated image: distinct subject, cohesive cinematic painterly treatment, clear right-side focal point, darker quieter left, no visible labels or branding."
+    },
+    {
+      "key": "science-computing",
+      "version": 1,
+      "batch": "science",
+      "display": {
+        "path": "spheres-web/ui/page-art/science-computing-v1.webp",
+        "sha256": "9996e35257335c0c0e86dd39853ce320cad0bdab5323c8efdf3542fcf712b3e8",
+        "bytes": 139818,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a07943-0aca-7df1-a13b-f0492192f8b3/exec-ba891827-fc0c-42ad-8a45-86e2134a13d4.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-originals/science-computing-v1.png",
+        "sha256": "a80dae59131d1fe9397b868953afb23094a91369228be775bc288e7a5a5cf58e",
+        "bytes": 2018731,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept. Asset type: original background painting for SPHERES, a geopolitical strategy game beginning in 1990. Landscape panoramic 16:9. Beautiful cinematic painterly concept art, oil and gouache brushwork with rich convincing physical detail, atmospheric perspective, nuanced navy and deep teal shadows and warm natural highlights. The strongest subject occupies the upper and right composition; left foreground should be quietly detailed and naturally darker, with usable negative space for game headings. Paint a complete environment, not a mockup or a bordered illustration. Fictional setting, no named country or actual historical event. No UI, letters, words, numbers, labels, logos, watermarks or flags, no modern smartphones or holograms. Scene: a vast 1990-era mainframe computing hall with rows of imposing dark graphite and muted blue cabinets, magnetic tape reels behind glass, finely detailed cabling and cooling floor grilles. Main subject right: a tall wall of equipment receiving honey-gold late-afternoon window light, gentle monitor glows, and dust in the sunbeams. Left foreground: shadowy workbench and largely unlit consoles with no legible markings. Deep perspective, human-scale architecture and elegant industrial forms, contemplative scientific ambition.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-06",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-science-manifest.json",
+        "source_manifest_sha256": "5e93af056c21eb43b0383839bc4f5c43c10699f0ff001f96357cc82a820b2efd"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "library": "Pillow",
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "max_width": 1792,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Inspected generated image: distinct subject, cohesive cinematic painterly treatment, clear right-side focal point, darker quieter left, no visible labels or branding."
+    },
+    {
+      "key": "science-energy",
+      "version": 1,
+      "batch": "science",
+      "display": {
+        "path": "spheres-web/ui/page-art/science-energy-v1.webp",
+        "sha256": "b70f3c451e78b4d16f297cadbd0d4b8cad3af0e4f958071f9a26cf1f9f1750a8",
+        "bytes": 229894,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a07943-0aca-7df1-a13b-f0492192f8b3/exec-c409e175-0dbe-431b-94c2-979c44d32876.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-originals/science-energy-v1.png",
+        "sha256": "f66101e55f16725f5a0fbb8e80c06fe9607ed537811a59e81fcf72d5f775bacd",
+        "bytes": 2524985,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept. Asset type: original background painting for SPHERES, a geopolitical strategy game beginning in 1990. Landscape panoramic 16:9. Beautiful cinematic painterly concept art, oil and gouache brushwork with rich convincing physical detail, atmospheric perspective, nuanced navy and deep teal shadows and warm natural highlights. The strongest subject occupies the upper and right composition; left foreground should be quietly detailed and naturally darker, with usable negative space for game headings. Paint a complete environment, not a mockup or a bordered illustration. Fictional setting, no named country or actual historical event. No UI, letters, words, numbers, labels, logos, watermarks or flags, no modern smartphones or holograms. Scene: a monumental hydroelectric dam curving across the upper right of a deep forested gorge, brilliant turquoise water spilling in white curtains, intricate concrete buttresses, small powerhouse structures and power lines, mist drifting between evergreen slopes. Warm sunrise catches the dam crest and distant granite peaks while left foreground remains a deep teal rocky overlook. Grand but believable civil engineering, hopeful energy research, exquisite water and atmospheric depth.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-06",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-science-manifest.json",
+        "source_manifest_sha256": "5e93af056c21eb43b0383839bc4f5c43c10699f0ff001f96357cc82a820b2efd"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "library": "Pillow",
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "max_width": 1792,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Inspected generated image: distinct subject, cohesive cinematic painterly treatment, clear right-side focal point, darker quieter left, no visible labels or branding."
+    },
+    {
+      "key": "science-materials",
+      "version": 1,
+      "batch": "science",
+      "display": {
+        "path": "spheres-web/ui/page-art/science-materials-v1.webp",
+        "sha256": "43b1fc97de4582c3404b14687e43c0395a7f18ec196840c650256e3f94395582",
+        "bytes": 205846,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a07943-0aca-7df1-a13b-f0492192f8b3/exec-174aab64-245e-4d59-bba1-04071db0acaf.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-originals/science-materials-v1.png",
+        "sha256": "8ca8bf40f4ea3c0296f19559cae03f8c38465d04fa03c3b0cb4b4b866ffc1b45",
+        "bytes": 2206142,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept. Asset type: original background painting for SPHERES, a geopolitical strategy game beginning in 1990. Landscape panoramic 16:9. Beautiful cinematic painterly concept art, oil and gouache brushwork with rich convincing physical detail, atmospheric perspective, nuanced navy and deep teal shadows and warm natural highlights. The strongest subject occupies the upper and right composition; left foreground should be quietly detailed and naturally darker, with usable negative space for game headings. Paint a complete environment, not a mockup or a bordered illustration. Fictional setting, no named country or actual historical event. No UI, letters, words, numbers, labels, logos, watermarks or flags, no modern smartphones or holograms. Scene: a 1990-era metallurgy and advanced materials research laboratory, cavernous brick and steel testing hall. On the right a small induction furnace glows amber beside precision metal testing equipment, mechanical microscopy benches, polished steel sample cylinders and ceramic crucibles, realistic copper pipes and textured graphite tooling. Warm light shines through tall overhead windows and cool teal lamps illuminate glass. Left foreground remains a dark open laboratory bench, perspective depth with no legible markings. Scientific discovery, elegant engineered detail rather than a factory production line.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-06",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-science-manifest.json",
+        "source_manifest_sha256": "5e93af056c21eb43b0383839bc4f5c43c10699f0ff001f96357cc82a820b2efd"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "library": "Pillow",
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "max_width": 1792,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Inspected generated image: distinct subject, cohesive cinematic painterly treatment, clear right-side focal point, darker quieter left, no visible labels or branding."
+    },
+    {
+      "key": "science-transport",
+      "version": 1,
+      "batch": "science",
+      "display": {
+        "path": "spheres-web/ui/page-art/science-transport-v1.webp",
+        "sha256": "0b0acbe87cbe131fac047bd03d14d968f9360a78c769b2f37b7ac8335735e1dd",
+        "bytes": 311554,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a07943-0aca-7df1-a13b-f0492192f8b3/exec-4861af61-cd67-4c93-858a-cd362296ac45.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-originals/science-transport-v1.png",
+        "sha256": "623e04c22d1235d316828b8f0eabb23fbd223f183d7c1a504d98590ce4e70a3e",
+        "bytes": 2721350,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept. Asset type: original background painting for SPHERES, a geopolitical strategy game beginning in 1990. Landscape panoramic 16:9. Beautiful cinematic painterly concept art, oil and gouache brushwork with rich convincing physical detail, atmospheric perspective, nuanced navy and deep teal shadows and warm natural highlights. The strongest subject occupies the upper and right composition; left foreground should be quietly detailed and naturally darker, with usable negative space for game headings. Paint a complete environment, not a mockup or a bordered illustration. Fictional setting, no named country or actual historical event. No UI, letters, words, numbers, labels, logos, watermarks or flags, no modern smartphones or holograms. Scene: an original elegant 1990-era high-speed passenger train in ivory and deep blue, no branding, crossing a magnificent stone and concrete viaduct over a misty mountainous river valley. Main train and sweeping bridge curve dominate the upper right; the railway recedes toward warm sunlit distant town rooftops. Early autumn orange-gold trees contrast with deep teal evergreen slopes and slate mountains. Left foreground is a quiet shadowed rocky overlook; ribbons of morning fog reveal dramatic layered terrain. Beautiful grounded infrastructure painting, crisp railway detail and expansive travel mood.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-06",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-science-manifest.json",
+        "source_manifest_sha256": "5e93af056c21eb43b0383839bc4f5c43c10699f0ff001f96357cc82a820b2efd"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "library": "Pillow",
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "max_width": 1792,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Inspected generated image: distinct subject, cohesive cinematic painterly treatment, clear right-side focal point, darker quieter left, no visible labels or branding."
+    },
+    {
+      "key": "tank-designer",
+      "version": 1,
+      "batch": "root",
+      "display": {
+        "path": "spheres-web/ui/page-art/tank-designer-v1.webp",
+        "sha256": "d172faa4a2d1439c3e2174996390f56ac4175617b5279b75191d4088d3794970",
+        "bytes": 169266,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-092dd87f-a266-4113-a5a0-0832b9399b4f.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-originals/tank-designer-v1.png",
+        "sha256": "723a55c8f17bf243ab93f571e3ccf8b0b3f906d6e90895badad7c82255933ef0",
+        "bytes": 2221522,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept. Asset type: full-bleed landscape 16:9 background painting for the equipment designer page in SPHERES, a grand strategy game. Create a beautiful cinematic painterly illustration of a fictional 1990s armored vehicle design workshop. On the right, an exquisitely detailed partly assembled main battle tank sits on a platform below high steel trusses; the sculpted turret, tracks and suspension are visible. Physical drafting tables with unlabeled sketches, tool carts, crane hooks and component benches suggest inventive engineering. Broad warm sunlight through tall windows contrasts with deep petrol-blue shadows, brushed oil-paint texture, atmospheric depth, rich believable materials, understated small human silhouettes for scale. Compose strongest subject in right two thirds and leave the left third in quiet dark workshop space for interface text. The art itself contains no interface, text, lettering, labels, numbers, logos, real flags, watermarks or borders. Imaginative game art, not a technical assembly diagram. Wide panoramic composition with a remarkable sense of place.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": null,
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-root-manifest.json",
+        "source_manifest_sha256": "1830f0a95e193872584ccd160e6f91e95d96a446c9f883d100e5106c96cf1c1a"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "resize": false,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Generated artwork selected and visually reviewed during page-art implementation."
+    },
+    {
+      "key": "tank-factory",
+      "version": 1,
+      "batch": "root",
+      "display": {
+        "path": "spheres-web/ui/page-art/tank-factory-v1.webp",
+        "sha256": "b80405ef72a45429d5e2c54627d492e028f3a4c2332a2963e87fa9380286897d",
+        "bytes": 233140,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a07203-dc69-7c53-8cd5-f90f0854d05f/exec-87e71991-cc2a-4c8c-980d-07b18ac35441.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-originals/tank-factory-v1.png",
+        "sha256": "a3bda7b5c75c2df0de7d624d88dbf3dbeabcb63beb4f2972908737d344b2f689",
+        "bytes": 2424503,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept. Asset type: unique cinematic full-bleed background painting for the tank-factory page of SPHERES, a grand strategy game. Scene: A monumental modern armored vehicle assembly plant viewed down a long production line. In the right two-thirds overhead cranes lower turrets onto tracked chassis, metalworking stations throw small amber sparks, distant workers and rows of vehicles. High sawtooth skylights, teal steel architecture, luminous warm industrial haze; sophisticated 1990s manufacturing. Style: exquisite painterly oil-and-gouache concept art, finely observed physical detail, rich atmospheric depth, navy/teal shadows and luminous restrained highlights. Wide landscape 16:9 composition, strongest visual interest on the right and upper image with quiet darker left for interface copy. Render a complete beautiful place, not an interface mockup. No text, lettering, numbers, labels, logos, real flags, watermark or borders.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": null,
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-root-manifest.json",
+        "source_manifest_sha256": "1830f0a95e193872584ccd160e6f91e95d96a446c9f883d100e5106c96cf1c1a"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "resize": false,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Generated artwork selected and visually reviewed during page-art implementation."
+    },
+    {
+      "key": "trade",
+      "version": 1,
+      "batch": "world",
+      "display": {
+        "path": "spheres-web/ui/page-art/trade-v1.webp",
+        "sha256": "c88a02e81b29bd1ba03fd06e39d07d57b51f6015d6dc52d16ebe32d0be518928",
+        "bytes": 172824,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a0790e-4124-7471-8245-e2fa6e1fee81/exec-129bc5dc-4bf7-4f75-b4be-7db30a615b88.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-world-originals/trade-v1.png",
+        "sha256": "9b3d958ebfa2fe8c2686392c4d500b2824db796baf30cff9f423bdb83fae3ae3",
+        "bytes": 2258895,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept\nAsset type: finished background illustration for Spheres, a fictional 1990s grand strategy game.\nStyle/medium: beautiful cinematic painterly strategy-game concept art, sophisticated realistic architecture, tactile detailed places, subtle brushed oil-paint texture, atmospheric depth.\nComposition/framing: a single wide 16:9 panorama. Put the main scene and brightest focal interest on the right and upper half; keep the left third naturally shadowed, calm, low-detail navy/teal so interface headings remain legible. Do not draw the interface.\nConstraints: original fictional setting consistent with the 1990s. No text, lettering, numbers, readable signage, UI, logos, watermarks, national flags, futuristic holograms or collage. One coherent premium illustration.\nPrimary request: a vast maritime container port at dawn, stacked multicolored shipping containers, immense gantry cranes and cargo ships moored along stone quays; a distant ship moves through luminous harbor water. Depict the practical beauty of international commerce, seen from a slightly elevated port viewpoint.\nLighting/mood: soft peach and golden dawn breaking through cool sea mist, reflective teal water, warm rust-red and muted ochre containers, rich navy shadows. Strongest cranes and ships on the right, calm shaded quay/water on the left.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-07 00:38:29 UTC",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-world-manifest.json",
+        "source_manifest_sha256": "1f6d0b0760a81e5d954ddd60e65033c37b563f161f0da48f787c55f0b86d31f8"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "max_width": 1792,
+          "crop": false,
+          "recolor": false
+        }
+      },
+      "visual_review": {
+        "subject": "accepted",
+        "composition": "Right/upper focal interest with calm dark navy/teal left suitable for interface overlays",
+        "style": "Cinematic painterly original fictional setting",
+        "no_ui_logo_watermark_national_flag": true
+      }
+    },
+    {
+      "key": "world-markets",
+      "version": 1,
+      "batch": "world",
+      "display": {
+        "path": "spheres-web/ui/page-art/world-markets-v1.webp",
+        "sha256": "87170cc9aa27654d330759b4fc7882952ff05e4389b6464a5a09fb80d451325a",
+        "bytes": 167164,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a0790e-4124-7471-8245-e2fa6e1fee81/exec-ca3763e6-3bcd-4630-969b-77d53ef36248.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-world-originals/world-markets-v1.png",
+        "sha256": "f11a5d0275f53ee1d5594f2c6c6d6a029fc50ca68a519f3041079deb5f2c74b3",
+        "bytes": 2327523,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept\nAsset type: finished background illustration for Spheres, a fictional 1990s grand strategy game.\nStyle/medium: beautiful cinematic painterly strategy-game concept art, sophisticated realistic architecture, tactile detailed places, subtle brushed oil-paint texture, atmospheric depth.\nComposition/framing: a single wide 16:9 panorama. Put the main scene and brightest focal interest on the right and upper half; keep the left third naturally shadowed, calm, low-detail navy/teal so interface headings remain legible. Do not draw the interface.\nConstraints: original fictional setting consistent with the 1990s. No text, lettering, numbers, readable signage, UI, logos, watermarks, national flags, futuristic holograms or collage. One coherent premium illustration.\nPrimary request: a world-city financial district with monumental 1990s glass and stone office towers, geometric terraces, and a broad rain-darkened plaza. Tall towers gather toward the right under a dramatic stormy but luminous sky, with distant city depth.\nLighting/mood: a break in charcoal storm clouds casts silvery-gold light across upper façades; restrained warm window glow, wet teal reflections, deep navy shadows. A sophisticated sense of a vast interconnected world economy. No tickers or advertising screens.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-07 00:38:29 UTC",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-world-manifest.json",
+        "source_manifest_sha256": "1f6d0b0760a81e5d954ddd60e65033c37b563f161f0da48f787c55f0b86d31f8"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "max_width": 1792,
+          "crop": false,
+          "recolor": false
+        }
+      },
+      "visual_review": {
+        "subject": "accepted",
+        "composition": "Right/upper focal interest with calm dark navy/teal left suitable for interface overlays",
+        "style": "Cinematic painterly original fictional setting",
+        "no_ui_logo_watermark_national_flag": true
+      }
+    },
+    {
+      "key": "healthcare",
+      "version": 1,
+      "batch": "gap",
+      "display": {
+        "path": "spheres-web/ui/page-art/healthcare-v1.webp",
+        "sha256": "25dd168f88078dc43f090bdf1b8f2b7d9ae9ac0c4cdbdd5ce4e22a19445a40a2",
+        "bytes": 151894,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a0790e-4124-7471-8245-e2fa6e1fee81/exec-f0e612de-93da-4b62-8398-bfe42b15046c.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-gap-originals/healthcare-v1.png",
+        "sha256": "210d14e8a85e3c42e94716dd5ce22e6c47cdde73dc83c5196b69896dad8ab8c2",
+        "bytes": 2179933,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept\nAsset type: an original finished background painting for SPHERES, a fictional 1990s grand strategy game.\nStyle/medium: beautiful cinematic painterly concept art, sophisticated oil and gouache brushwork, highly detailed tactile places, believable architecture, atmospheric depth, navy and deep teal shadows with individual natural warm light. Clearly a premium strategy-game painting.\nComposition: one wide 16:9 panoramic scene. Place the strongest subject and sunlit detail on the upper/right half, with calm naturally shadowed low-detail navy/teal space on the left third for game page headings. The whole environment must feel coherent and physically real.\nConstraints: no text, lettering, numbers, labels, logos, watermarks, flags, UI, diagrams, futuristic holograms, modern smartphones or collage. Fictional 1990s setting, no identified real location or event.\nPrimary request: a spacious sunlit hospital atrium adjoining a clean clinical wing. Warm pale stone, tall glass windows, leafy indoor planters, a few practical 1990s hospital fixtures, and a small reception desk create a calm, humane public hospital. A few tiny staff silhouettes in white coats and patients provide human scale without identifiable faces. Main atrium and clinical corridor on the right, quiet shaded seating and wall on the left.\nLighting/mood: reassuring morning sunlight, clean ivory and sage green, gentle amber reflections, soft teal shadows. Dignified public healthcare, comfortable and orderly, no emergency, no injury, no medical procedure.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-07 01:12:11 UTC",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-gap-manifest.json",
+        "source_manifest_sha256": "e4b58c02fe142c7386a1bfb584cdb39f385368f5c36c5b20da63d7ceba3a94bd"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "library": "Pillow",
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "resize": false,
+          "crop": false,
+          "recolor": false,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Inspected: coherent subject, strong upper/right light, quiet dark left, and no visible UI, logos, national flags, or legible text."
+    },
+    {
+      "key": "community-services",
+      "version": 1,
+      "batch": "gap",
+      "display": {
+        "path": "spheres-web/ui/page-art/community-services-v1.webp",
+        "sha256": "cb68dbc1b2c377bf656522240532798f54c78c49eb1435f6856575c336ec819b",
+        "bytes": 241620,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a0790e-4124-7471-8245-e2fa6e1fee81/exec-ad21b42d-4f08-4d35-a2eb-e5ea81338105.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-gap-originals/community-services-v1.png",
+        "sha256": "5a675b2b903036c79b1d84436d4e8b3685dcff54eaad54bbf35121e5aa5ce04d",
+        "bytes": 2436845,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept\nAsset type: an original finished background painting for SPHERES, a fictional 1990s grand strategy game.\nStyle/medium: beautiful cinematic painterly concept art, sophisticated oil and gouache brushwork, highly detailed tactile places, believable architecture, atmospheric depth, navy and deep teal shadows with individual natural warm light. Clearly a premium strategy-game painting.\nComposition: one wide 16:9 panoramic scene. Place the strongest subject and sunlit detail on the upper/right half, with calm naturally shadowed low-detail navy/teal space on the left third for game page headings. The whole environment must feel coherent and physically real.\nConstraints: no text, lettering, numbers, labels, logos, watermarks, flags, UI, diagrams, futuristic holograms, modern smartphones or collage. Fictional 1990s setting, no identified real location or event.\nPrimary request: a welcoming neighborhood community center beside a well-tended public garden, with a library-like civic façade, mature trees, accessible garden paths, benches, and small groups of neighbors of different ages enjoying a peaceful afternoon. People are small, naturally posed background figures with no identifiable faces. Main community building and sunlit garden to the right, quiet shaded path and foliage on the left.\nLighting/mood: gentle golden afternoon, soft green gardens, warm brick and cream stone, dappled leaves and rich navy/teal shade. A grounded beautiful image of everyday civic care, belonging, and public services.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-07 01:12:11 UTC",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-gap-manifest.json",
+        "source_manifest_sha256": "e4b58c02fe142c7386a1bfb584cdb39f385368f5c36c5b20da63d7ceba3a94bd"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "library": "Pillow",
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "resize": false,
+          "crop": false,
+          "recolor": false,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Inspected: coherent subject, strong upper/right light, quiet dark left, and no visible UI, logos, national flags, or legible text."
+    },
+    {
+      "key": "city-life",
+      "version": 1,
+      "batch": "gap",
+      "display": {
+        "path": "spheres-web/ui/page-art/city-life-v1.webp",
+        "sha256": "20ab3d0a03e8337f3a41ecc91922874001de036f62d6654063f04d10dcade2f9",
+        "bytes": 317848,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a0790e-4124-7471-8245-e2fa6e1fee81/exec-aed26bdb-e3d6-4156-8263-ffdec588b9d6.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-gap-originals/city-life-v1.png",
+        "sha256": "9fd31f4c7188cf3f3412e1da9b967e630f0fb68243379d9d54e0290f20c9b41c",
+        "bytes": 2678311,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept\nAsset type: an original finished background painting for SPHERES, a fictional 1990s grand strategy game.\nStyle/medium: beautiful cinematic painterly concept art, sophisticated oil and gouache brushwork, highly detailed tactile places, believable architecture, atmospheric depth, navy and deep teal shadows with individual natural warm light. Clearly a premium strategy-game painting.\nComposition: one wide 16:9 panoramic scene. Place the strongest subject and sunlit detail on the upper/right half, with calm naturally shadowed low-detail navy/teal space on the left third for game page headings. The whole environment must feel coherent and physically real.\nConstraints: no text, lettering, numbers, labels, logos, watermarks, flags, UI, diagrams, futuristic holograms, modern smartphones or collage. Fictional 1990s setting, no identified real location or event.\nPrimary request: an evocative walkable city neighborhood with attractive mid-rise apartment buildings, a leafy public park, a handsome 1990s streetcar moving through a broad boulevard, and small distant residents walking or sitting. Richly observed balconies, paving, trees, practical street lamps, and layered architecture. Main streetcar and warm apartment façades on the right, shaded park foreground and quiet pavement on the left. Storefronts have no signs or lettering.\nLighting/mood: luminous late-afternoon city light after a brief shower, restrained terracotta, cream and warm gold, deep teal foliage and navy shadows, beautiful reflections. Peaceful everyday urban life at human scale.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-07 01:12:11 UTC",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-gap-manifest.json",
+        "source_manifest_sha256": "e4b58c02fe142c7386a1bfb584cdb39f385368f5c36c5b20da63d7ceba3a94bd"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "library": "Pillow",
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "resize": false,
+          "crop": false,
+          "recolor": false,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Inspected: attractive streetcar neighborhood with calm shaded left and warm right-side apartments; no legible labels or branding, with small indistinct painterly storefront markings."
+    },
+    {
+      "key": "resource-oil-gas",
+      "version": 1,
+      "batch": "gap",
+      "display": {
+        "path": "spheres-web/ui/page-art/resource-oil-gas-v1.webp",
+        "sha256": "198f16dd8142b513d0562cfec21f7d4e5205c26a90b52b3bc5035e6977e50d2d",
+        "bytes": 176558,
+        "width": 1672,
+        "height": 941,
+        "format": "WebP"
+      },
+      "source": {
+        "generated_path": "C:/Users/ridge/.codex/generated_images/01a0790e-4124-7471-8245-e2fa6e1fee81/exec-13939749-eb66-4109-a7e8-031f3f63b127.png",
+        "archive_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-gap-originals/resource-oil-gas-v1.png",
+        "sha256": "d98b9775ba09145160720f0d880f86ea5e758269e77a93d5099f612a09d6adcd",
+        "bytes": 2216430,
+        "width": 1672,
+        "height": 941,
+        "format": "PNG",
+        "archive_is_byte_identical": true
+      },
+      "prompt": "Use case: stylized-concept\nAsset type: an original finished background painting for SPHERES, a fictional 1990s grand strategy game.\nStyle/medium: beautiful cinematic painterly concept art, sophisticated oil and gouache brushwork, highly detailed tactile places, believable architecture, atmospheric depth, navy and deep teal shadows with individual natural warm light. Clearly a premium strategy-game painting.\nComposition: one wide 16:9 panoramic scene. Place the strongest subject and sunlit detail on the upper/right half, with calm naturally shadowed low-detail navy/teal space on the left third for game page headings. The whole environment must feel coherent and physically real.\nConstraints: no text, lettering, numbers, labels, logos, watermarks, flags, UI, diagrams, futuristic holograms, modern smartphones or collage. Fictional 1990s setting, no identified real location or event.\nPrimary request: a coastal petroleum refinery and oil terminal in an expansive working harbor landscape. Finely detailed pipe racks, distillation towers, orderly cylindrical storage tanks, terminal piers and a distant tanker convey the large physical scale of oil and gas infrastructure. Main refinery and tanks on the right and upper half; quiet shaded coastal water and a low service road on the left.\nLighting/mood: serene golden hour, warm copper light on silver steel and pale storage tanks, deep teal sea, navy industrial shadows, distant coastal haze. Normal safe operations, no fire, explosion, emergency, dramatic pollution plume, or crisis.",
+      "provenance": {
+        "generator": "OpenAI built-in image_gen",
+        "cli_or_api_fallback_used": false,
+        "generation_date_from_source_manifest": "2026-09-07 01:12:11 UTC",
+        "source_manifest_path": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/outputs/page-art-gap-manifest.json",
+        "source_manifest_sha256": "e4b58c02fe142c7386a1bfb584cdb39f385368f5c36c5b20da63d7ceba3a94bd"
+      },
+      "conversion": {
+        "library": "Pillow",
+        "format": "WebP",
+        "quality": 85,
+        "method": 6,
+        "resize": false,
+        "crop": false,
+        "recolor": false,
+        "creative_edits": false,
+        "original_recipe": {
+          "library": "Pillow",
+          "format": "WebP",
+          "quality": 85,
+          "method": 6,
+          "resize": false,
+          "crop": false,
+          "recolor": false,
+          "creative_edits": false
+        }
+      },
+      "visual_review": "Inspected: coherent subject, strong upper/right light, quiet dark left, and no visible UI, logos, national flags, or legible text."
+    }
+  ]
+}

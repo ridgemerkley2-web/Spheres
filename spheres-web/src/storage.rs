@@ -47,11 +47,11 @@ pub(crate) fn encode(g: &Game) -> Result<String, String> {
 pub(crate) fn decode(text: &str) -> Result<Game, String> {
     let value: Value =
         serde_json::from_str(text).map_err(|e| format!("Cannot read campaign: {e}"))?;
-    if value.get("format").is_none() {
+    if value.get("format").is_none() || value["format"] == "spheres-equipment-save" {
         // The original CLI/browser format is still supported and uses every
         // simulation migration. It cannot invent an archive it never recorded.
         let mut g = crate::loaded_play_game(crate::load(text)?);
-        g.storage_notice=Some("Legacy save restored. Earlier history was not recorded in this file; new campaign saves preserve it.".into());
+        g.storage_notice=Some("Simulation save restored. Earlier history was not recorded in this file; new campaign saves preserve it.".into());
         return Ok(g);
     }
     if value["format"] != "spheres-campaign" || value["version"] != VERSION {

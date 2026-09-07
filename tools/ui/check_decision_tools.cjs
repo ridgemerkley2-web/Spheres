@@ -2,7 +2,42 @@ const test=require('node:test'),assert=require('node:assert/strict');
 const d=require('../../spheres-web/ui/decision-tools.js');
 test('shared labels reserve the entire text rectangle across layers',()=>{assert(d.overlap([10,10,40,20],[35,15,10,10]));assert(!d.overlap([10,10,40,20],[100,100,10,10]));});
 test('finder finds owned provinces without requiring a globe hit',()=>{const rows=d.search([{id:'USA',name:'United States',alive:true}],{'US-CA':{name:'California'}},()=> 'USA','California','USA');assert.equal(rows[0].id,'US-CA');assert.equal(rows[0].kind,'province');});
-test('advisor observes funding, missing inputs and completed output in order',()=>{assert.equal(d.guide({enabled:false},{}).step,0);assert.equal(d.guide({enabled:true},{queue:[{status:'blocked',reason:'No steel'}]}).step,2);assert.equal(d.guide({enabled:true},{completed:[{}]}).step,4);});
+test('advisor distinguishes annual renewal, unopened funding and an intentional daily pause',()=>{
+  const renewal=d.guide({enabled:true,due:true},{construction_budget:{enrolled:true,daily_budget_bn:0}});
+  assert.equal(renewal.action,'budget');assert.match(renewal.title,/yearly budget/);
+  const unopened=d.guide({enabled:false},{construction_budget:{enrolled:false,daily_budget_bn:.01}});
+  assert.equal(unopened.action,'works');assert.match(unopened.title,/Open construction funding/);
+  const paused=d.guide({enabled:true},{construction_budget:{enrolled:true,daily_budget_bn:0}});
+  assert.equal(paused.step,2);assert.match(paused.title,/paused/);assert.match(paused.text,/Choose a positive limit when/);
+});
+test('advisor fixes blocked work before the server suggestion and uses that suggestion before healthy work or old assets',()=>{
+  const suggestion={id:'grid',name:'Local grid',district:'US-CA',project_kind:'power_grid',reason:'Grid limits the existing factory.'};
+  const work={construction_budget:{enrolled:true,daily_budget_bn:.01,available_bn:.01},
+    suggestions:{items:[suggestion]},queue:[{id:1,status:'slowed',reason:'Daily funding covers half the work.'}],completed:[{}]};
+  const before=JSON.stringify(work),blocked=d.guide({enabled:true},work);
+  assert.equal(blocked.project,work.queue[0]);assert.equal(blocked.text,work.queue[0].reason);assert.equal(blocked.action,'works');
+  work.queue[0].status='building';const recommended=d.guide({enabled:true},work);
+  assert.equal(recommended.suggestion,suggestion);assert.equal(recommended.text,suggestion.reason);assert.equal(recommended.action,'suggestion');
+  assert.equal(JSON.stringify({...work,queue:[{...work.queue[0],status:'slowed'}]}),before,'Advice must not edit the queue or recommendation');
+});
+test('advisor preserves server suggestion order and exact workshop size without scoring candidates',()=>{
+  const first={id:'small',name:'Small workshop',project_kind:'starter_industry',district:'US-CA',capacity_micros:5001};
+  const second={id:'other',name:'More expensive grid',project_kind:'power_grid',district:'US-NV'};
+  const work={suggestions:{items:[{...second,eligible:false},first,second]}};
+  assert.equal(d.guide({enabled:true},work).suggestion,first);
+  assert.equal(d.guide({enabled:true},work).suggestion.capacity_micros,5001);
+});
+test('advisor falls through to healthy work, operation and exploration only after funding and suggestions',()=>{
+  const p={id:1,status:'building'};
+  assert.equal(d.guide({enabled:true},{queue:[p]}).project,p);
+  assert.equal(d.guide({enabled:true},{completed:[{}]}).action,'economy');
+  assert.equal(d.guide({enabled:true},{suggestions:{items:[],note:'No demonstrated construction bottleneck.'}}).text,'No demonstrated construction bottleneck.');
+  const emptyCash=d.guide({enabled:true},{construction_budget:{daily_budget_bn:.01,available_bn:0},queue:[p]});
+  assert.match(emptyCash.title,/available construction funding/);
+});
+test('advisor progress matches the construction queue without hiding small paid work',()=>{
+  for(const [input,text] of [[0,'0%'],[-0,'0%'],[.00125,'0.1%'],[.00001,'<0.1%'],[.4567,'45.7%'],[1,'100%'],[null,'—'],[NaN,'—']])assert.equal(d.progressText(input),text);
+});
 test('research list keeps full names, filters available prerequisites, and sorts focus first',()=>{const nodes=[{id:'a',domain:'Energy',name:'A long discovery',state:'open',year:1990},{id:'b',domain:'Energy',name:'Other',state:'locked',year:1980},{id:'c',domain:'Energy',name:'Focused',state:'open',focus:true,year:2000}];assert.deepEqual(d.research(nodes,'all','','available').map(n=>n.id),['c','a']);assert.equal(d.research(nodes,'all','long','all')[0].id,'a');});
 
 test('Advisor growth drags keep the subtraction used by the simulation',()=>{

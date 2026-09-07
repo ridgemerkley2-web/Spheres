@@ -12,7 +12,7 @@ function competitionName(id) { return S?.nations?.find(n=>n.id===id)?.name || St
 function competitionGood(good) { return good==="capital_goods" ? "Capital goods" : "Intermediate packs"; }
 function competitionDistrict(id) { return typeof DINDEX!=="undefined" && DINDEX[id]?.name || id; }
 function competitionMetric(label,value) { return `<div><dt>${competitionText(label)}</dt><dd>${competitionText(value)}</dd></div>`; }
-function competitionButton(action,label,attrs="",primary=false) { return `<button type="button" data-comp-action="${action}" ${attrs} class="${primary?"comp-primary":""}" ${COMP.busy||COMP.pending?"disabled":""}>${label}</button>`; }
+function competitionButton(action,label,attrs="",primary=false) { return `<button type="button" data-comp-action="${action}" ${attrs} class="${primary?"comp-primary":""}" ${COMP.busy||COMP.pending||action==="industry-desk"&&(COMP.stale||COMP.loading)?"disabled":""}>${label}</button>`; }
 function competitionBadge(status) {
   const warning=["blocked","waiting","limited","awaiting_dispatch","struggling","idle","replenish"].some(s=>String(status).includes(s));
   return `<span class="comp-status ${warning?"warn":""}">${competitionText(String(status||"ready").replace(/_/g," "))}</span>`;
@@ -25,19 +25,9 @@ function competitionHero(kicker,title,text) {
 
 function competitionModuleHtml(data) {
   const board=data.module_board;if(!board)return "";
-  const selected=COMP.moduleDistrict||board.selection?.district;
-  const response=COMP.moduleQuotes||(selected===board.selection?.district?board.selection:null);
-  const quotes=response?.quotes||[];
-  return `<section class="comp-workshop" aria-labelledby="moduleHeading"><div class="comp-workshop-heading"><div><span class="comp-kicker">Start small · build something useful</span><h3 id="moduleHeading">Your first workshop. Room to grow.</h3><p>A working production package sized to your budget—not a full-size factory bill.</p></div><span class="comp-workshop-art" aria-hidden="true">▥ <span>✦</span></span></div>
-    ${board.coverage_reason?`<p class="comp-note">${competitionText(board.coverage_reason)}</p>`:`<div class="comp-actions">${competitionButton("module-toggle",COMP.moduleOpen?"Close workshop builder":"Choose a workshop size","",true)}${competitionButton("budget","Set the workshop budget")}</div>`}
-    ${COMP.moduleOpen&&!board.coverage_reason?`<div class="comp-form"><label>Build in your province<select id="competitionModuleProvince">${(board.provinces||[]).map(p=>`<option value="${competitionText(p.id)}" ${p.id===selected?"selected":""}>${competitionText(p.name)}${p.capacity>0?` · ${competitionNumber(p.capacity)} capacity built`:""}</option>`).join("")}</select></label></div>
-    <p>Budget fit uses the current Factories department allocation and available construction capacity. It targets about a year of work and funding, with a 90-day minimum. Raw shortages, competing projects and war can extend it.</p>
-    ${COMP.moduleLoading?`<p role="status">Checking this province and its budget…</p>`:`<div class="comp-grid">${quotes.map((q,i)=>`<article class="comp-card comp-module-choice"><span class="comp-kicker">${competitionText(q.label)}</span><h3>${competitionMoney(q.cost_bn)}</h3><p>Installation budget · raw inputs purchased separately</p><dl class="comp-metrics">${competitionMetric("Standard capacity",`${competitionNumber(q.scale*100)}%`)}${competitionMetric("Intermediates / day",competitionNumber(q.output_daily))}${competitionMetric("Earliest at current funding",Number.isFinite(q.lower_bound_days)?`${competitionNumber(Math.ceil(q.lower_bound_days))} days`:"Needs annual funding")}${competitionMetric("Political cost",`${competitionNumber(q.political_cost)} PC`)}</dl>
-      <p>Includes a workshop estate, generation, local grid and processing. Output requires stocked inputs and operating funds.</p>${q.reason?`<p class="comp-note">${competitionText(q.reason)}</p>`:competitionButton("module-build","Build this workshop",`data-module-quote="${i}"`,true)}
-      <details><summary>What this size needs</summary>${(q.requirements||[]).map(r=>`<p>${competitionText(r.name||r.commodity)} · ${competitionNumber(r.required)} ${competitionText(r.unit||"")} required · ${competitionNumber(r.stock_available)} in stock</p>`).join("")}<p>${competitionText(board.note)}</p></details></article>`).join("")}</div>`}`:""}
-    ${(board.projects||[]).length?`<div class="comp-grid">${board.projects.map(p=>`<article class="comp-card">${competitionBadge(p.status)}<h3>${competitionText(p.province?.name||p.province?.id)}</h3><label class="comp-module-progress">Workshop construction · ${competitionNumber(p.progress*100)}%<progress max="1" value="${competitionText(p.progress)}">${competitionNumber(p.progress*100)}%</progress></label><p>${competitionText(p.reason||"Paid work is progressing.")}</p><dl class="comp-metrics">${competitionMetric("Spent so far",competitionMoney(p.finance?.spent_bn))}${competitionMetric("Installation remaining",competitionMoney(p.finance?.remaining_bn))}</dl></article>`).join("")}</div>`:""}
-    ${board.legacy_active?`<p class="comp-note">${board.legacy_active} existing full-size project(s) keep their original cost and paid work. Manage those on the production board; cancelling does not refund sunk costs.</p>`:""}</section>`;
+  return `<section class="comp-workshop" aria-labelledby="moduleHeading"><div class="comp-workshop-heading"><div><span class="comp-kicker">Economy · Construction</span><h3 id="moduleHeading">Build your industrial base</h3><p>Factories, smaller workshops and their funding now live in one construction queue.</p></div></div>${board.coverage_reason?`<p class="comp-note">${competitionText(board.coverage_reason)}</p>`:`<div class="comp-actions">${competitionButton("module-toggle","Add a workshop","",true)}${competitionButton("build","Open construction queue")}</div>`}<p>Choose a daily funding limit and pay as work is delivered. Once complete, your factories use their normal operating inputs.</p></section>`;
 }
+
 function competitionCapacityHtml(data) {
   const plan=data.capacity_plan;
   if(!plan||!Array.isArray(plan.goods))return `<section class="comp-capacity" aria-label="Industry planning"><div class="comp-section-heading"><h3>Build what you need</h3></div><p class="comp-empty">Planning data is not available. Refresh the Exchange to see your tracked capacity and demand.</p></section>`;
@@ -61,7 +51,7 @@ function competitionSupplyName(good) { return good==="capital_goods" ? "Machiner
 function competitionSupplyForecastHtml(forecast) {
   if(!forecast||!Array.isArray(forecast.lines))return "";
   const choices=[{good:"intermediates",symbol:"◈",description:"Intermediate packs that keep projects and machinery moving"},
-    {good:"capital_goods",symbol:"⚙",description:"Machine packs for construction, upgrades and research"}];
+    {good:"capital_goods",symbol:"⚙",description:"Machine packs for operating industry and research"}];
   return `<section class="comp-supply" aria-labelledby="supplyForecastHeading"><div class="comp-section-heading"><div><span class="comp-kicker">Your next ${competitionNumber(forecast.horizon_days)} days</span><h3 id="supplyForecastHeading">Keep the production chain supplied</h3></div></div>
     <p>This is the government’s live supply forecast. Coverage counts stock, paid incoming lots, finite domestic contracts and projected recent output—not estimated capacity or free goods.</p>
     <div class="comp-supply-grid">${choices.map(choice=>{const line=forecast.lines.find(row=>row?.good===choice.good);if(!line)return `<article class="comp-card comp-supply-card"><h4>${choice.good==="intermediates"?"Materials":"Machinery"}</h4><p>Forecast data is not available for this good.</p></article>`;return `<article class="comp-card comp-supply-card comp-supply-${choice.good}"><div class="comp-capacity-title"><div><h4>${competitionSupplyName(line.good)}</h4><p>${choice.description}</p></div><span class="comp-symbol" aria-hidden="true">${choice.symbol}</span></div>
@@ -119,6 +109,10 @@ function competitionMaterialsHtml(data) {
     <details class="comp-material-ledger"><summary>Stock, GDP & the pilot’s boundaries</summary><dl class="comp-metrics">${competitionMetric("Materials in stock",competitionNumber(m.stock))}${competitionMetric("Storage limit",competitionNumber(m.storage_capacity))}${competitionMetric("Ordered capacity / day",competitionNumber(m.reserved_daily))}${competitionMetric("Imports / day",competitionNumber(m.imports_daily))}${competitionMetric("Exports / day",competitionNumber(m.exports_daily))}${competitionMetric("Already included in GDP",competitionMoney(m.inherited_gdp_annual_bn))}${competitionMetric("Additional GDP",competitionMoney(m.new_gdp_annual_bn))}</dl><p>GDP figures are annual-equivalent value added, not cash. Observed production replaces the inherited output it makes explicit before any additional output counts.</p><p>Expand and Upgrade open paid construction projects. They do not increase the fixed inherited estimate. Demand is tracked project and trade need, not a model of all household purchases.</p><p>${competitionText(m.note)}</p>
       ${orders.length>active.length?`<h4>Finished orders</h4>${orders.filter(o=>!["pending","running","limited","paused","blocked"].includes(o.status)).map(o=>`<p>${competitionBadge(o.status)} ${competitionText(competitionDistrict(o.district))} · ${competitionNumber(o.delivered)} packs delivered${o.reason?` · ${competitionText(o.reason)}`:""}</p>`).join("")}`:""}</details></section>`;
 }
+function competitionIndustryDeskHtml(data) {
+  const sites=data.industry?.sites;
+  return `<section class="comp-card" aria-labelledby="industryDeskHeading"><h3 id="industryDeskHeading">What is running?</h3><p>${Array.isArray(sites)?sites.length?`${competitionNumber(sites.length)} completed civilian production site${sites.length===1?"":"s"} in this reading.`:"No completed civilian production lines in this reading.":"Inspect your completed civilian industry in Economy."} The Industry desk brings together operating output, inputs, funding and reasons for idle sites.</p><p class="comp-note">${data.industry_settlement?`Last industry settlement: ${competitionText(data.industry_settlement.label)}. Output and spending in this reading are settled receipts, not a forecast for today.`:"No industry day has settled yet. Output and spending appear after actual work."}</p><div class="comp-actions">${competitionButton("industry-desk","Manage industry in Economy","",true)}</div></section>`;
+}
 function competitionIndustryHtml(data) {
   const b=data.balance||{}, ind=data.industry||{}, goods=data.commerce?.goods||[];
   return `${competitionHero("Industry • opportunity • influence","Make something the world needs.","Build a productive province. Keep its inputs moving. Sell useful goods, and turn reliable delivery into influence.")}
@@ -133,9 +127,7 @@ function competitionIndustryHtml(data) {
     ${competitionModuleHtml(data)}
     <div class="comp-section-heading"><h3>Your industrial stock</h3><span>${competitionNumber(ind.power_used_daily)} / ${competitionNumber(ind.power_capacity_daily)} power used</span></div>
     <div class="comp-grid">${goods.map(g=>`<article class="comp-card"><span class="comp-symbol" aria-hidden="true">${g.good==="capital_goods"?"⚙":"◈"}</span><h3>${competitionText(g.name)}</h3><strong class="comp-big">${competitionNumber(g.stock)} packs</strong><dl class="comp-metrics">${competitionMetric("Current demand",competitionNumber(g.demand))}${competitionMetric("On the way",competitionNumber(g.incoming))}${competitionMetric("Unfilled need",competitionNumber(g.shortage))}</dl>${competitionButton("trade","Find buyers & suppliers →",`data-good="${g.good}"`)}</article>`).join("")}</div>
-    <div class="comp-section-heading"><h3>What is running?</h3></div>
-    <p class="comp-note">${data.industry_settlement?`Last industry settlement: ${competitionText(data.industry_settlement.label)}. Output and spending below are settled receipts, not a forecast for today.`:"No industry day has settled yet. Output and spending appear after actual work."}</p>
-    ${(ind.sites||[]).length ? `<div class="comp-grid">${ind.sites.map(s=>`<article class="comp-card">${competitionBadge(s.status)}<h3>${s.kind==="starter_industry"?"Starter workshop":competitionText(String(s.kind).replace(/_/g," "))}</h3><p>${competitionText(competitionDistrict(s.district))}</p><dl class="comp-metrics">${competitionMetric("Output per day",competitionNumber(s.output_daily))}${competitionMetric("Operating spend / day",competitionMoney(s.cash_spent_daily_bn))}</dl>${s.reason?`<p>${competitionText(s.reason)}</p>`:""}</article>`).join("")}</div>` : `<div class="comp-empty">No completed civilian production lines yet. A starter workshop includes its own power and processing; larger standalone facilities remain on the production board.</div>`}
+    ${competitionIndustryDeskHtml(data)}
     <div class="comp-section-heading"><h3>Research workshops</h3></div>
     ${(ind.research_operations||[]).length ? `<div class="comp-grid">${ind.research_operations.map(r=>`<article class="comp-card">${competitionBadge(r.status)}<h3>${competitionText(r.technology_name||"Choose a research project")}</h3><p>${competitionText(competitionDistrict(r.district))}</p><p>${competitionText(r.reason||"Funded prototype work reduces this technology's remaining acquisition bill.")}</p><dl class="comp-metrics">${competitionMetric("Prototype credit",competitionNumber(r.prototype_credit))}${competitionMetric("Spend / day",competitionMoney(r.cash_spent_daily_bn))}</dl></article>`).join("")}</div>` : `<div class="comp-empty">Completed research centers can test prototypes for a specific technology, using Science funding and real industrial equipment.</div>`}
     <details><summary>How production, cash and GDP connect</summary><p>${competitionText(data.note)}</p><p>${competitionText(ind.note)}</p></details>`;
@@ -160,7 +152,7 @@ function competitionTradeHtml(data) {
 
 function competitionWorldHtml(data) {
   const rows=(data.countries||[]).filter(n=>(!COMP.tier||n.tier===COMP.tier)&&n.name.toLowerCase().includes(COMP.filter.toLowerCase()));
-  return `${competitionHero("A world that invests","Every economy has a next move.","Governments face the same costs, materials and limits as you. Read what they are building—and why another country is waiting.")}
+  return `${competitionHero("A world that invests","Every economy has a next move.","Governments fund construction from their budgets under the same rules as you. Read what they are building—and why another country is waiting.")}
     <div class="comp-form"><label>Find a country<input id="competitionFilter" type="search" value="${competitionText(COMP.filter)}" placeholder="Country name"></label><label>Economic size<select id="competitionTier"><option value="">Every size</option>${["Micro","Small","Medium","Large","Major"].map(t=>`<option ${COMP.tier===t?"selected":""}>${t}</option>`).join("")}</select></label></div>
     <p>${rows.length} countries shown. These are live decisions, not a claim that every economy must grow through wars or recessions.</p>
     <div class="comp-table-wrap"><table class="comp-table"><thead><tr><th scope="col">Country</th><th scope="col">Economy</th><th scope="col">Building / completed</th><th scope="col">Current decision</th></tr></thead><tbody>${rows.map(n=>{const plan=n.plan,forecast=plan?.supply_review,lines=Array.isArray(forecast?.lines)?forecast.lines:[];const target=plan?.district||plan?.project_kind?`<p class="comp-world-target"><strong>Next industrial target</strong><br>${competitionText(competitionSupplyName(plan?.project_kind||"project"))}${plan?.district?` · ${competitionText(competitionDistrict(plan.district))}`:""}</p>`:"";const supply=lines.length?`<details class="comp-world-supply"><summary>Supply snapshot · ${competitionNumber(forecast.horizon_days)} days</summary>${lines.map(line=>`<section><div><strong>${competitionText(competitionSupplyName(line.good))}</strong> ${competitionBadge(line.status)}</div><dl class="comp-world-supply-score">${competitionMetric("Need",competitionNumber(line.target))}${competitionMetric("Covered",competitionNumber(line.coverage))}${competitionMetric("Gap",competitionNumber(line.shortage))}</dl><p>${competitionText(line.reason)}</p></section>`).join("")}${plan?.funding?`<section><strong>Funding outlook</strong><dl class="comp-world-supply-score">${competitionMetric("Available authority",competitionMoney(plan.funding.available_authority_bn))}${competitionMetric("Work cost remaining",competitionMoney(plan.funding.remaining_work_cost_bn))}${competitionMetric("Earliest years",competitionNumber(plan.funding.earliest_years))}</dl><p>${competitionText(plan.funding.basis)}</p></section>`:""}<p class="comp-world-asof">Snapshot day ${competitionNumber(forecast.as_of_day)}. This captures supply after the government's recorded review action.</p></details>`:"";return `<tr><td class="comp-country" data-label="Country">${competitionText(n.name)}${n.is_player?" · You":""}</td><td data-label="Economy">${competitionMoney(n.gdp_bn)}<br>${competitionText(n.tier)}</td><td data-label="Building / completed">${n.production?.active??0} active · ${n.production?.completed??0} full-site levels${n.production?.module_provinces?`<p>${competitionNumber(n.production.module_provinces)} workshop province(s)<br>${competitionNumber(n.production.module_capacity)} standard capacity</p>`:""}</td><td class="comp-decision-cell" data-label="Current decision">${competitionBadge(n.is_player?"Your decision":plan?.action||"awaiting first review")}${target}<p>${competitionText(plan?.reason||(n.is_player?"Your cabinet and project decisions remain yours.":"The investment planner has not reviewed this country yet."))}</p>${supply}</td></tr>`;}).join("")}</tbody></table></div>
@@ -186,7 +178,7 @@ function competitionRender() {
   let html=COMP.error?`<div class="comp-error" role="alert">${competitionText(COMP.error)}</div>`:"";
   if(COMP.pending) html+=`<div class="comp-error"><strong>An order is awaiting confirmation.</strong><p>Check its receipt before sending another order. Retrying the same receipt cannot purchase twice.</p><div class="comp-actions"><button type="button" data-comp-retry ${COMP.busy?"disabled":""}>Check order receipt</button><button type="button" data-comp-dismiss ${COMP.busy?"disabled":""}>I reviewed the ledger</button></div></div>`;
   if(!COMP.data) html+=`<div class="comp-empty">${COMP.loading?"Opening the Exchange…":"The Exchange could not load."}<button type="button" data-comp-refresh>Refresh</button></div>`;
-  else if(!COMP.data.enabled) html+=`${competitionHero("Economic Competition • review build","Give the world something to build.","Enable AI civilian investment, manufactured trade, funded research workshops and economic compacts in this campaign. Existing saves are not silently upgraded.")}<article class="comp-card"><h3>A shared set of rules</h3><p>Countries gain no free factories, inventory or money. This adds decisions to the daily simulation while preserving your existing world.</p>${competitionButton("enable","Enable Economic Competition","",true)}</article>`;
+  else if(!COMP.data.enabled) html+=`${competitionHero("Economic Competition • review build","Give the world something to build.","Enable AI civilian investment, manufactured trade, funded research workshops and economic compacts in this campaign. Existing saves are not silently upgraded.")}<article class="comp-card"><h3>A shared set of rules</h3><p>Countries gain no free factories, inventory or money. This adds decisions to the daily simulation while preserving your existing world.</p>${competitionButton("enable","Enable Economic Competition","",true)}</article><article class="comp-card"><h3>Your industry in Economy</h3><p>Review your existing operating sites and their funding. The Industry desk is available without enabling Economic Competition.</p>${competitionButton("industry-desk","Manage industry in Economy")}</article>`;
   else html+=({industry:competitionIndustryHtml,trade:competitionTradeHtml,world:competitionWorldHtml,sphere:competitionSphereHtml}[COMP.tab]||competitionIndustryHtml)(COMP.data);
   const scroll=body.scrollTop;
   body.innerHTML=`<div class="comp-content">${html}</div>`;
@@ -308,6 +300,10 @@ function competitionWire() {
 }
 async function competitionAction(button) {
   const action=button.dataset.compAction,target=button.dataset.nation;
+  if(action==="industry-desk"){
+    if(COMP.stale||COMP.loading||COMP.busy||COMP.pending)return;
+    closeCompetition();openIndustry();return;
+  }
   const state=S,data=COMP.data,quotes=COMP.quotes,modules=COMP.moduleQuotes,materials=COMP.materialQuote;
   const confirmOrder=async message=>{
     if(COMP.busy||COMP.pending||advancing||pendingAdvance)return false;
@@ -338,19 +334,11 @@ async function competitionAction(button) {
     destination?.scrollIntoView({block:"start"});destination?.querySelector("input,select,button")?.focus({preventScroll:true});return;
   }
   if(action==="materials-expand"||action==="materials-upgrade"){
-    closeCompetition();openProduction();setProductionMode("build");
-    PROD.pickKind=action==="materials-expand"?"processing_plant":"automation";PROD.view="provinces";renderProductionPanel();return;
+    closeCompetition();openConstruction({kind:action==="materials-expand"?"processing_plant":"automation"});return;
   }
   if(action==="enable")return competitionCommand({kind:"enable_economic_competition"});
-  if(action==="module-toggle"){COMP.moduleOpen=!COMP.moduleOpen;competitionRender();return;}
-  if(action==="module-build"){
-    if(COMP.moduleLoading||COMP.stale)return;
-    const board=COMP.data?.module_board;
-    const response=COMP.moduleQuotes||(!COMP.moduleDistrict||COMP.moduleDistrict===board?.selection?.district?board?.selection:null);
-    const q=response?.quotes?.[Number(button.dataset.moduleQuote)];
-    if(!q?.can_start||q.reason)return;
-    if(!await confirmOrder(`Build ${competitionNumber(q.scale*100)}% of a standard workshop in ${competitionDistrict(q.district)}? Installation: ${competitionMoney(q.cost_bn)}, plus raw materials and ${competitionNumber(q.political_cost)} political capital. Size is fixed when ordered. No goods arrive until construction finishes and operating inputs are available.`))return;
-    return competitionCommand({kind:"start_industry_module",district:q.district,capacity_micros:q.capacity_micros});
+  if(action==="module-toggle"||action==="module-build"){
+    closeCompetition();openConstruction({kind:"starter_industry"});return;
   }
   if(action==="trade"){COMP.tab="trade";COMP.trade.good=button.dataset.good||COMP.trade.good;COMP.quotes=null;competitionRender();return;}
   if(action==="buy"){
@@ -370,8 +358,8 @@ async function competitionAction(button) {
     if(await confirmOrder(action==="leave"?"Reassert independence? This costs political capital, reputation and relations, but does not automatically start a war.":`Release ${competitionName(target)} from your formal hierarchy?`))return competitionCommand(action==="leave"?{kind:"leave_economic_union"}:{kind:"release_subject",target});return;
   }
   closeCompetition();
-  if(action==="budget")toggleGameDrawer("cabinetDrawer");
-  if(action==="build"){setProductionMode("build");openProduction();}
+  if(action==="budget"){toggleGameDrawer("cabinetDrawer");selectCabinetTab("budget");}
+  if(action==="build")openConstruction();
   if(action==="resources")openStock();
 }
 function openCompetition() {

@@ -78,7 +78,7 @@ pub fn deployable_fraction(w: &WorldState, id: NationId) -> f64 {
         None => return 0.02,
     };
     let capital = capital_intensity(w, id);
-    let lift = 0.30 + 0.70 * ((crate::tech::military_multiplier(n) - 0.5) / 3.5).clamp(0.0, 1.0);
+    let lift = 0.30 + 0.70 * ((crate::arsenal::combat_technology(n).0 - 0.5) / 3.5).clamp(0.0, 1.0);
     (0.02 + 0.30 * capital * lift).clamp(0.02, 0.40)
 }
 
@@ -110,7 +110,7 @@ pub fn quality(w: &WorldState, id: NationId) -> f64 {
         Some(n) => n,
         None => return 1.0,
     };
-    crate::tech::military_multiplier(n) * (0.55 + 0.75 * capital_intensity(w, id))
+    crate::arsenal::combat_technology(n).0 * (0.55 + 0.75 * capital_intensity(w, id))
 }
 
 /// A dry magazine does not stop an army; it stops it being able to do the thing
@@ -271,6 +271,9 @@ struct Side {
     /// which is how much of the *other* side's seizing it cancels.
     deny_share: f64,
     unrestricted: bool,
+    reconnaissance: f64,
+    air_defense: f64,
+    air_kill_share: f64,
 }
 
 fn side_profile(w: &WorldState, c: &Conflict, side_a: bool) -> Side {
@@ -283,6 +286,7 @@ fn side_profile_in(w: &WorldState, c: &Conflict, side_a: bool, snapshot: Option<
     let (mut q, mut k, mut s, mut deny) = (0.0, 0.0, 0.0, 0.0);
     let mut top = 1u8;
     let mut unrestricted = false;
+    let (mut reconnaissance, mut air_defense, mut air_kill) = (0.0, 0.0, 0.0);
     for id in members {
         if w.nation_opt(*id).is_none_or(|n| !n.alive) {
             continue;
@@ -312,10 +316,17 @@ fn side_profile_in(w: &WorldState, c: &Conflict, side_a: bool, snapshot: Option<
         q += m * deployment.map_or_else(|| quality(w, *id), |r| r.quality) * if advised { 1.25 } else { 1.0 };
         let caps = if w.rules.military_operations {
             deployment.map_or_else(|| crate::operations::capabilities(w.nation(*id)), |r| r.capabilities)
-        } else { crate::operations::Capabilities { land: 1.0, strike: 1.0, lift: 1.0 } };
+        } else { crate::operations::Capabilities { land: 1.0, strike: 1.0, lift: 1.0, ..Default::default() } };
         let attack_role = if b.rung == 6 { caps.strike } else { (caps.land + caps.strike) * 0.5 };
-        k += m * obj_kill(b.objective) * roe_kill(b.roe) * attack_role;
-        s += m * obj_seize(b.objective) * roe_seize(b.roe) * caps.land;
+        let kill = m * obj_kill(b.objective) * roe_kill(b.roe) * attack_role
+            * if b.rung == 6 { 1.0 } else { 1.0 + caps.ground_roles.fire_support };
+        k += kill;
+        if b.rung == 6 { air_kill += kill; }
+        s += m * obj_seize(b.objective) * roe_seize(b.roe) * caps.land * (1.0 + caps.ground_roles.protected_mobility);
+        // Scout vehicles accompany ground deployments; they do not improve an
+        // aircraft-only raid's sensors. Air defense protects the deployed side.
+        if b.rung != 6 { reconnaissance += m * caps.ground_roles.reconnaissance; }
+        air_defense += m * caps.ground_roles.air_defense;
         if b.objective == Objective::Deny {
             deny += m;
         }
@@ -329,6 +340,9 @@ fn side_profile_in(w: &WorldState, c: &Conflict, side_a: bool, snapshot: Option<
             top_rung: top,
             deny_share: 0.0,
             unrestricted,
+            reconnaissance: 0.0,
+            air_defense: 0.0,
+            air_kill_share: 0.0,
         };
     }
     Side {
@@ -339,6 +353,9 @@ fn side_profile_in(w: &WorldState, c: &Conflict, side_a: bool, snapshot: Option<
         top_rung: top,
         deny_share: deny / mass,
         unrestricted,
+        reconnaissance: reconnaissance / mass,
+        air_defense: air_defense / mass,
+        air_kill_share: if k > 0.0 { air_kill / k } else { 0.0 },
     }
 }
 
@@ -367,7 +384,7 @@ fn side_profile_in(w: &WorldState, c: &Conflict, side_a: bool, snapshot: Option<
 fn exposure(hunter: &Side, prey: &Side, th: &crate::theatre::Theatre) -> f64 {
     let terrain = (1.0 - 0.55 * th.urbanisation) * (1.0 - 0.45 * th.rough);
     let base = RUNG_EXPOSURE[(prey.top_rung as usize).min(9)];
-    let find = (hunter.quality / prey.quality.max(0.01)).clamp(0.30, 3.00);
+    let find = (hunter.quality * (1.0 + hunter.reconnaissance) / prey.quality.max(0.01)).clamp(0.30, 3.00);
     // Written as an explicit identity rather than left to `powf(x, 1.0)`, so a
     // prey in the open can never move a golden hash by an ulp for a reason that
     // is not the mechanism.
@@ -383,7 +400,11 @@ fn kill_rate(hunter: &Side, prey: &Side, th: &crate::theatre::Theatre) -> f64 {
     if hunter.mass <= 0.0 {
         return 0.0;
     }
+    // Only the air-strike share is intercepted, even in a mixed coalition.
+    // This consumes no additional force: both ratings came from the same
+    // conserved opening deployment and serviceable Arsenal inventory.
     (KILL_RATE * hunter.quality * hunter.kill_mult * hunter.mass * exposure(hunter, prey, th)
+        * (1.0 - hunter.air_kill_share * prey.air_defense)
         / (prey.mass + FLOOR_MASS))
         .clamp(0.0, 0.50)
 }
@@ -455,9 +476,9 @@ pub fn sustained_force(n: &Nation, mil_spend_gdp: f64) -> f64 {
     let budget = n.gdp * crate::programs::force_support_share(n, mil_spend_gdp); // $bn/yr
     (budget * 0.30).max(0.0).sqrt()
         * 8.0
-        * crate::tech::military_multiplier(n)
+        * crate::arsenal::combat_technology(n).0
         * crate::arsenal::adequacy_at(n, mil_spend_gdp)
-        + crate::tech::military_floor(n)
+        + crate::arsenal::combat_technology(n).1
 }
 
 /// HEALTH's named arm, and the only thing the health ministry does to a war.
@@ -1598,6 +1619,54 @@ pub fn join_side(c: &mut Conflict, id: NationId, side_a: bool, rung: u8, objecti
         c.side_b.push(id);
     }
     c.posture.push(Belligerent::new(id, rung, objective));
+}
+
+#[cfg(test)]
+mod ground_role_tests {
+    use super::*;
+    use crate::equipment as eq;
+
+    fn scenario(platform: &str) -> (WorldState, Conflict) {
+        let mut w=crate::init::world_1990(GameRules {daily_simulation:true,military_operations:true,..GameRules::default()});
+        let spec=eq::default_spec(platform);
+        let p=eq::design_preview(&w,NationId::USA,&spec); assert!(p.valid,"{:?}",p.blockers);
+        let day=crate::clock::absolute_day(&w);
+        let n=w.nation_mut(NationId::USA); n.arsenal.held.clear();n.arsenal.orders.clear();
+        n.equipment.get_or_insert_with(Default::default).revisions.insert("test".into(),eq::DesignRevision {
+            id:"test".into(),name:"test".into(),specification_key:eq::specification_key(&spec),spec,profile:p.profile.unwrap(),created_day:day,certified_day:Some(day),
+        });
+        crate::arsenal::deliver_design(n,"test",1000,0.0).unwrap();
+        let c=Conflict {id:1,theatre:theatre_between(&w,NationId::USA,NationId::Canada),side_a:vec![NationId::USA],side_b:vec![NationId::Canada],
+            posture:vec![Belligerent::new(NationId::USA,8,Objective::Seize),Belligerent::new(NationId::Canada,8,Objective::Hold)],
+            control:0.0,months:0,quiet_months:0,frozen_since:None,start_year:1990,start_month:1,origin_attacker:NationId::USA,
+            invasion_declared:true,front:Default::default(),pockets:vec![],aim:None};
+        (w,c)
+    }
+    fn without_specialist_effects(w:&WorldState)->WorldState {
+        let mut plain=w.clone();
+        plain.nation_mut(NationId::USA).equipment.as_mut().unwrap().revisions.get_mut("test").unwrap().profile.ground_roles=Some(eq::GroundRoles::default());
+        plain
+    }
+    #[test]
+    fn ground_specialist_ratings_are_consumed_by_distinct_battle_equations() {
+        let (w,c)=scenario("ground_artillery"); let plain=without_specialist_effects(&w);
+        let a=side_profile(&w,&c,true);let p=side_profile(&plain,&c,true);
+        assert_eq!(a.mass,p.mass);assert_eq!(a.quality,p.quality); assert!(a.kill_mult>p.kill_mult);
+        let (w,c)=scenario("ground_apc"); let plain=without_specialist_effects(&w);
+        assert!(side_profile(&w,&c,true).seize_mult>side_profile(&plain,&c,true).seize_mult);
+        assert!(seize_terms(&w,&c,0.0).0>seize_terms(&plain,&c,0.0).0);
+        let (w,c)=scenario("ground_recon"); let plain=without_specialist_effects(&w);
+        let prey=side_profile(&w,&c,false);let th=crate::theatre::theatre(&w,c.theatre);
+        assert!(exposure(&side_profile(&w,&c,true),&prey,th)>exposure(&side_profile(&plain,&c,true),&prey,th));
+        let (w,mut c)=scenario("ground_air_defense");let plain=without_specialist_effects(&w);
+        c.posture[1].rung=6;
+        let hunter=side_profile(&w,&c,false);let th=crate::theatre::theatre(&w,c.theatre);
+        assert_eq!(hunter.air_kill_share,1.0);
+        assert!(kill_rate(&hunter,&side_profile(&w,&c,true),th)<kill_rate(&hunter,&side_profile(&plain,&c,true),th));
+        c.posture[1].rung=8;let hunter=side_profile(&w,&c,false);
+        assert_eq!(hunter.air_kill_share,0.0);
+        assert_eq!(kill_rate(&hunter,&side_profile(&w,&c,true),th),kill_rate(&hunter,&side_profile(&plain,&c,true),th),"local air defense cannot intercept ground attack");
+    }
 }
 
 #[cfg(test)]

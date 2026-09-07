@@ -201,7 +201,10 @@ fn the_review_pairs_the_order_with_one_machine_not_a_duplicate_processor_or_impo
     let gdp = w.nation(ME).gdp;
     let stock = commerce::stock(&w, ME, Good::Intermediates);
     let rng = w.rng.clone();
-    let machine_price = production::catalog(K::MachineryWorks).political_cost;
+    let machine_price = spheres_sim::price_of(&w, &Command::StartProject {
+        nation: ME, district: district.clone(), kind: K::MachineryWorks,
+    }).unwrap();
+    assert_eq!(machine_price, 0.0);
     economic_ai::tick(&mut w);
     let orders = &w
         .materials
@@ -296,7 +299,10 @@ fn bootstrap_requires_the_whole_raw_lot_not_just_one_feasible_day() {
 #[test]
 fn bootstrap_keeps_enough_political_capital_for_both_commands_and_the_ai_reserve() {
     let (mut w, district) = prepared();
-    let machine_price = production::catalog(K::MachineryWorks).political_cost;
+    let machine_price = spheres_sim::price_of(&w, &Command::StartProject {
+        nation: ME, district: district.clone(), kind: K::MachineryWorks,
+    }).unwrap();
+    assert_eq!(machine_price, 0.0);
     w.nation_mut(ME).political_capital = materials::ORDER_PC + machine_price + 8.0 - 0.25;
     assert!(
         materials::quote(&w, ME, &district, STARTER_PACKS, WINDOW).can_start,
@@ -506,14 +512,14 @@ fn cancelled_or_expired_partial_orders_are_topped_up_only_for_the_missing_startu
 }
 
 #[test]
-fn a_stocked_warehouse_needs_only_the_net_seven_pack_machine_startup_topup() {
+fn a_queued_machine_needs_only_the_net_seven_pack_operating_startup_topup() {
     let (mut w, district) = prepared();
     apply_command(
         &mut w,
         &Command::StartProject {
             nation: ME,
             district: district.clone(),
-            kind: K::Warehouse,
+            kind: K::MachineryWorks,
         },
     )
     .unwrap();
@@ -522,36 +528,28 @@ fn a_stocked_warehouse_needs_only_the_net_seven_pack_machine_startup_topup() {
         .goods
         .entry(ME)
         .or_default()
-        .intermediates = 20.0;
+        .intermediates = 8.0;
     let command = economic_ai::materials_order_candidate(&w, ME)
-        .expect("20 stocked packs cover 12 warehouse inputs plus 8 of the 15 startup lot");
+        .expect("8 stocked packs cover part of the machine's 15-pack operating startup lot");
     assert!(matches!(
         command,
         Command::OrderMaterials { quantity: 7.0, .. }
     ));
     economic_ai::evaluate(&mut w, ME);
-    if production::projects_for(&w, ME).count() == 1 {
-        // A fiscal retarget may use the first review. No physical work occurs
-        // while this fixture moves to the next review; finite deadlines still apply.
-        for _ in 0..economic_ai::REVIEW_DAYS {
-            clock::advance_date(&mut w);
-        }
-        economic_ai::evaluate(&mut w, ME);
-    }
     let kinds: Vec<_> = production::projects_for(&w, ME).map(|p| p.kind).collect();
     assert_eq!(
         kinds.len(),
-        2,
-        "Keep the warehouse and add exactly its machinery prerequisite"
+        1,
+        "Supply the commissioned machine without adding a duplicate factory"
     );
-    assert!(kinds.contains(&K::Warehouse) && kinds.contains(&K::MachineryWorks));
+    assert_eq!(kinds, vec![K::MachineryWorks]);
     let orders = &w.materials.as_ref().unwrap().orders;
     assert_eq!(orders.len(), 1);
     assert_eq!(orders[0].quantity, 7.0);
-    assert_eq!(commerce::stock(&w, ME, Good::Intermediates), 20.0);
+    assert_eq!(commerce::stock(&w, ME, Good::Intermediates), 8.0);
     assert_eq!(
         commerce::sale(&w, ME, Good::Intermediates).unwrap().reserve,
-        27.0,
-        "The standing export policy protects warehouse inputs plus the machine startup lot"
+        15.0,
+        "The standing export policy protects the machine's operating startup lot"
     );
 }

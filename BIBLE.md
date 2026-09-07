@@ -479,3 +479,25 @@ freight route against the same shared physical capacity. Search is deterministic
 and bounded, with the original route as fallback. Barter legs freeze routes
 before one service fraction is charged. No extra stock, capacity, money or
 instant arrival is created. `MILITARY_OPERATIONS.md` records these boundaries.
+
+## Adopted amendment — construction funded as work progresses (2026-09-06)
+
+The player requested an economy centered on visible construction, funded with
+money instead of building capacity or material stockpiles. Daily construction
+uses one adjustable cash budget and a visible queue in Economy. Projects and
+new mines are paid as work progresses; their placement costs no political
+capital. Physical inputs remain requirements for factory operation, equipment
+production and prototype services. Existing fiscal appropriations and the one
+treasury posting remain authoritative. SPEC's funded-construction extension
+supersedes older construction-capacity and construction-material requirements.
+
+## Adopted amendment — component research and equipment design (2026-09-06)
+
+The player approved a full military equipment designer following the component
+research, named model, paid development and production loop. The staged scope is
+recorded in `MILITARY_EQUIPMENT_DESIGNER_PLAN.md`; `EQUIPMENT_DESIGNER.md` identifies
+the implemented tank release and the remaining families. Component-only knowledge
+does not inflate the economic technology frontier. Published designs are fixed,
+physical equipment remains in the Arsenal, and all work uses existing funding
+and resource ledgers. The approved wider naval design scope concerns ship models
+and their strategic roles; it does not introduce tactical ship control.

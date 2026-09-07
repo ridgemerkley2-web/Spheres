@@ -2666,7 +2666,24 @@ fn draw_inner(w: &WorldState, id: NationId, include_materials: bool) -> [f64; 12
 /// Inputs the next settlement will actually attempt. Unlike the monthly
 /// reserve-policy forecast, daily funding is prorated and banked money is not.
 pub fn tick_draw(w: &WorldState, id: NationId) -> [f64; 12] {
-    tick_draw_inner(w, id, true)
+    let mut need = tick_draw_inner(w, id, true);
+    if w.nation_opt(id).is_none_or(|n|n.equipment.is_none()) { return need; }
+    let custom = crate::equipment::next_work_supply(w, id);
+    // Reporting only. Automatic market clearing keeps using the original
+    // inner draw: a manually funded custom contract authorizes no imports.
+    let claimed = custom.procurement_payment_bn;
+    let available = custom.procurement_available_bn;
+    let legacy = if w.rules.manufacturing_system && crate::manufacturing::lines_for(w,id).next().is_some() {
+        let mut raw = [0.0;12];
+        for p in crate::manufacturing::tick_allocations(w,id) { for i in 0..12 { raw[i]+=p.required[i]; } }
+        raw
+    } else {
+        crate::arsenal::pick(w.nation(id)).map_or([0.0;12], |kit| kit_need(kit, crate::arsenal::tick_line(w,id)))
+    };
+    let share = if available>0.0 { (claimed/available).clamp(0.0,1.0) } else { 0.0 };
+    for i in 0..12 { need[i]=(need[i]-legacy[i]*share).max(0.0); }
+    for i in 0..12 { need[i]+=custom.raw[i]; }
+    need
 }
 fn tick_draw_inner(w: &WorldState, id: NationId, include_materials: bool) -> [f64; 12] {
     if !crate::clock::is_daily(w) { return draw_inner(w, id, include_materials); }
@@ -5010,9 +5027,6 @@ pub fn mine_refusal(
     district: &str,
     c: Commodity,
 ) -> Option<String> {
-    if crate::programs::enrolled(w, nation) && !(w.rules.production_system && w.rules.resource_market) {
-        return Some("Department-funded mines require construction and the physical resource market.".into());
-    }
     if !w.rules.resource_gates {
         return Some("The resource system is not enabled for this world.".into());
     }
@@ -5068,8 +5082,11 @@ pub fn start_mine(
     // closed borrows the identical ratio; with them open the till funds the
     // shaft first and only the shortfall is borrowed, which is what building a
     // mine out of reserves means.
-    let program = crate::programs::enrolled(w, nation);
-    if !program { crate::economy::charge(w, nation, investment_bn, investment_bn / gdp); }
+    // New daily mines pay from the construction budget as progress is made.
+    // Only the legacy monthly simulation commits the whole bill upfront.
+    // Existing prepaid rows without a funding ledger keep their paid status.
+    let pay_as_built = crate::clock::is_daily(w);
+    if !pay_as_built { crate::economy::charge(w, nation, investment_bn, investment_bn / gdp); }
     else { crate::industry::enroll_mine(w, district, c, crate::clock::days_for_months(w, MINE_BUILD_MONTHS)); }
     let project = MineProject {
         district: district.to_string(),
@@ -5094,8 +5111,8 @@ pub fn start_mine(
         "mine"
     };
     let district_name = crate::districts::name_of(district).unwrap_or(district);
-    if program {
-        w.headline(format!("{} commissions a {} {} in {}; modeled work ${:.1} bn, paid as completed from Minerals & processing. Inputs and construction capacity are shared.", nation.name(), c.name(), verb, district_name, investment_bn));
+    if pay_as_built {
+        w.headline(format!("{} commissions a {} {} in {}; modeled work ${:.1} bn, paid as completed from the shared construction budget.", nation.name(), c.name(), verb, district_name, investment_bn));
     } else {
         w.headline(format!("{} commits ${:.1} bn to a {} {} in {}; first output in {} months.", nation.name(), investment_bn, c.name(), verb, district_name, MINE_BUILD_MONTHS));
     }
@@ -5991,6 +6008,41 @@ mod tests {
         // The retained-cash ledger is quantised to a dollar (1e-9 bn), unlike
         // the continuous treasury stock used by the other contract test.
         assert_eq!(market_cash_bn(&w, buyer), round_market(100.0 - service / 31.0));
+    }
+
+    #[test]
+    fn daily_mine_start_waits_for_budget_without_upfront_charge_or_material_gates() {
+        let mut w = world_1990(GameRules {
+            daily_simulation: true, resource_gates: true,
+            ..GameRules::default()
+        });
+        let nation = NationId::Chile;
+        let commodity = Commodity::Copper;
+        let district = w.districts.iter().find_map(|(d, owner)| {
+            (*owner == nation && quality_of(d, commodity) > 0).then(|| d.clone())
+        }).unwrap();
+        w.nation_mut(nation).treasury_bn = Some(1.0);
+        let cash = w.nation(nation).treasury_bn;
+        let debt = w.nation(nation).debt_gdp;
+        assert!(w.nation(nation).program_budget.is_none());
+        start_mine(&mut w, nation, &district, commodity).unwrap();
+        assert_eq!(w.nation(nation).treasury_bn, cash);
+        assert_eq!(w.nation(nation).debt_gdp, debt);
+        let key = crate::industry::mine_key(&district, commodity);
+        assert!(w.production.industry.mines.contains_key(&key));
+        advance_mines(&mut w);
+        assert_eq!(w.production.industry.mines[&key].progress_days, 0.0);
+        assert_eq!(w.production.industry.mines[&key].spent_bn, 0.0);
+        let mut loaded = crate::load(&crate::save(&w)).unwrap();
+        crate::clock::advance_date(&mut loaded);
+        let year = loaded.year;
+        crate::programs::install(&mut loaded, nation, year, crate::programs::default_departments());
+        crate::programs::begin_day(&mut loaded);
+        advance_mines(&mut loaded);
+        let funded = &loaded.production.industry.mines[&key];
+        assert!(funded.progress_days > 0.0 && funded.spent_bn > 0.0);
+        assert_eq!(funded.resources_used, [0.0; 12]);
+        assert!(loaded.resources.market.is_none(), "construction must not need a physical stock ledger");
     }
 
     #[test]

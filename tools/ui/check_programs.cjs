@@ -37,6 +37,11 @@ function fixture() {
     noteQueued: () => calls.push('note-queued'),
     paintCabinetDraft: () => calls.push('paint-draft'),
     openProduction: () => calls.push('open-production'),
+    openConstruction: options => calls.push(['construction',JSON.parse(JSON.stringify(options))]),
+    openIndustry: () => calls.push('open-industry'),
+    openNation: id => calls.push(['nation',id]),
+    selectNationView: view => calls.push(['nation-view',view]),
+    constructionInvalidatePreview: () => {},
     productionFetch: async () => calls.push('fetch-production'),
     renderProductionPanel: () => calls.push('render-production'),
     closeGameDrawers: () => calls.push('close-drawers'),
@@ -339,35 +344,36 @@ test('all redistributed basis points remain exactly representable by the rendere
   }
 });
 
-test('investment controls require the live enacted plan, not an optimistic preview', () => {
+test('project links reach Construction funding before enactment while deposit actions retain their permissions', () => {
   const c=fixture();
   run(c,'PG.preview=JSON.parse(JSON.stringify(S.programs)); PG.preview.enabled=true; PG.key=programDraftKey(m);');
   let html=run(c,'programBoardHtml(m,5)');
   const buttons=[...html.matchAll(/<button\b[^>]*data-pg-invest="[^"]*"[^>]*>/g)].map(m=>m[0]);
   assert.equal(buttons.length,2,'exactly the selected department’s pair is shown');
-  assert(buttons.every(tag=>/\sdisabled(?:\s|>)/.test(tag)));
-  assert.match(html,/Enact your department budget first/);
+  assert(buttons.every(tag=>!tag.includes('disabled')),'These are navigation links to funding, not start commands');
   run(c,'S.programs.enabled=true; S.programs.due=false; PG.key=null;');
   html=run(c,'programBoardHtml(m,5)');
   assert([...html.matchAll(/<button\b[^>]*data-pg-invest="[^"]*"[^>]*>/g)].every(m=>!m[0].includes('disabled')));
   run(c,'S.programs.due=true;');
   html=run(c,'programBoardHtml(m,5)');
-  assert([...html.matchAll(/<button\b[^>]*data-pg-invest="[^"]*"[^>]*>/g)].every(m=>m[0].includes('disabled')));
+  assert([...html.matchAll(/<button\b[^>]*data-pg-invest="[^"]*"[^>]*>/g)].every(m=>!m[0].includes('disabled')));
   const blocked=c.programInvestmentHtml({id:'blocked',name:'Locked',description:'Wait',effect:'None yet',enabled:false,reason:'Needs a real grid.',project_kind:'power_grid'},true);
-  assert.match(startTag(blocked,'button'),/\sdisabled(?:\s|>)/); assert.match(blocked,/Needs a real grid/);
+  assert.doesNotMatch(startTag(blocked,'button'),/\sdisabled(?:\s|>)/);
+  const deposit=c.programInvestmentHtml({id:'mine',name:'Mine',enabled:true},false);
+  assert.match(startTag(deposit,'button'),/\sdisabled(?:\s|>)/);
 });
 
-test('pre-enact investment calls are inert even if invoked without pressing the disabled button', async () => {
+test('all project investment links open the same Construction destination without placing orders', async () => {
   const c=fixture();
-  await c.openProgramInvestment('choice-0'); assert.deepEqual(c.calls,[]);
+  await c.openProgramInvestment('choice-0'); assert.deepEqual(c.calls,[['construction',{kind:'civilian_industry'}]]);
   run(c,'S.programs.enabled=true; S.programs.due=true;');
-  await c.openProgramInvestment('choice-0'); assert.deepEqual(c.calls,[]);
+  await c.openProgramInvestment('choice-0'); assert.equal(c.calls.length,2);
   run(c,'S.programs.due=false; S.programs.investment_choices[0].enabled=false;');
-  await c.openProgramInvestment('choice-0'); await c.openProgramInvestment('missing'); assert.deepEqual(c.calls,[]);
+  await c.openProgramInvestment('choice-0'); await c.openProgramInvestment('missing'); assert.equal(c.calls.length,3);
   run(c,'S.programs.investment_choices[0].enabled=true;');
   await c.openProgramInvestment('choice-0');
-  assert.deepEqual(c.calls,['open-production','render-production']);
-  assert.equal(run(c,'PROD.pickKind'),'civilian_industry'); assert.equal(run(c,'PROD.view'),'provinces');
+  assert.equal(c.calls.length,4);
+  assert(c.calls.every(row=>row[0]==='construction'&&row[1].kind==='civilian_industry'));
 });
 
 test('malicious department labels cannot escape text or quoted accessibility attributes', () => {
@@ -409,7 +415,7 @@ test('board status distinguishes drafts and pending previews without altering li
   run(c,'S.programs=null;'); assert.equal(run(c,'programBoardHtml(m,5)'),'');
 });
 
-test('industry rendering uses the served goods, power and site snapshot without inventing returns', () => {
+test('ministry industry summary delegates operations to the shared desk without duplicate or invented readings', () => {
   const c=fixture();
   const data={
     note:'Industrial goods are not an extra GDP reward.',
@@ -419,18 +425,22 @@ test('industry rendering uses the served goods, power and site snapshot without 
       reason:'The line has its inputs.',output_daily:1.25,power_used_daily:.75,cash_spent_daily_bn:.004}]
   };
   const before=plain(data), html=c.programIndustryHtml(data);
-  for(const text of ['Intermediate packs','Capital-goods packs','Storage / goods type',
-    'Industrial power used / capacity','42','7','1,000','3 / 9','machinery works · US-CA',
-    'The line has its inputs.','1.25 packs','$0.004bn','Output / day','Work cost / day']) {
-    assert(html.includes(text),`Missing served industry reading ${text}`);
+  for(const text of ['Your working industrial base','Manage completed industry','dated production receipts',
+    'operating needs','Explore your GDP breakdown']) {
+    assert(html.includes(text),`Missing industry route ${text}`);
   }
-  assert.doesNotMatch(html,/NaN|undefined|Infinity/);
+  assert.doesNotMatch(html,/NaN|undefined|Infinity|Output \/ day|Work cost \/ day|Industrial power used|1\.25 packs|pg-investment/);
   assert.deepEqual(data,before,'rendering must not change industrial inventory or operations');
-  const hostile=c.programIndustryHtml({...data,sites:[{...data.sites[0],
-    district:'<img src=x onerror=alert(1)>',kind:'<script>bad</script>',
-    status:'<svg onload=alert(2)>',reason:'<iframe>bad</iframe>'}]});
-  assert.doesNotMatch(hostile,/<img\b|<script\b|<svg\b|<iframe\b/);
-  assert.match(hostile,/&lt;img/);
+  for(const snapshot of [{},{sites:[]},{sites:[{kind:'power_grid',output_daily:null}]},
+    {note:'<img>',sites:[{kind:'<script>',district:'<iframe>'}]}]){
+    const summary=c.programIndustryHtml(snapshot);
+    assert.match(summary,/Manage completed industry/);
+    assert.doesNotMatch(summary,/0 packs|Output \/ day|<img\b|<script\b|<iframe\b/);
+  }
   assert.equal(c.programIndustryHtml(null),'');
-  assert.match(c.programIndustryHtml({...data,sites:[]}),/Completed sites and their actual operating status will appear here/);
+  assert.deepEqual(c.calls,[],'Rendering a department must not navigate or place an order');
+  const buttons=[...html.matchAll(/<button\b[^>]*>[^<]*<\/button>/g)].map(match=>attributes(startTag(match[0],'button')));
+  run(c,decode(buttons[0].get('onclick')));assert.deepEqual(c.calls,['open-industry']);
+  run(c,decode(buttons[1].get('onclick')));
+  assert.deepEqual(c.calls,['open-industry','close-drawers',['nation','USA'],['nation-view','economy']]);
 });

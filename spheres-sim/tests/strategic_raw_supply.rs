@@ -2,7 +2,7 @@ use spheres_sim::{
     apply_command, arsenal, clock, economic_ai,
     industry::{self, MineFunding, ProjectFunding},
     init::world_1990,
-    load, logistics,
+    load, logistics, materials, starting_industry,
     production::{self, Priority, Project, ProjectKind as K, ProjectStatus},
     programs,
     resources::{self, Commodity, Contract, Leg, MineProject, ShipmentSource},
@@ -440,9 +440,8 @@ fn capacity_limited_contract_is_phase_stable_across_month_boundary() {
 }
 
 #[test]
-fn finite_projects_and_mines_cap_each_item_before_summing_horizons() {
+fn partially_completed_projects_and_mines_create_no_physical_input_claims() {
     let nation = NationId::USA;
-    let iron = Commodity::Iron.idx();
 
     let mut projects = raw_world(false);
     fund_programs(&mut projects, nation);
@@ -489,22 +488,9 @@ fn finite_projects_and_mines_cap_each_item_before_summing_horizons() {
         (clock::absolute_day(&projects), 999.0, 0.001),
     );
     let project_components = industry::raw_demand_components(&projects, nation);
-    let project_daily = project_components.projects_daily[iron];
-    assert!(project_daily > 1.0 && project_daily < 51.0, "daily={project_daily}");
-    let slow_daily = project_daily - 1.0;
-    let expected_30 = 1.0 + (slow_daily * 30.0).min(50.0);
-    assert!(
-        (project_components.projects_horizon[iron][0] - expected_30).abs() < 1e-8,
-        "h30={} expected={expected_30}",
-        project_components.projects_horizon[iron][0]
-    );
-    let pooled_30 = (project_daily * 30.0).min(51.0);
-    assert!(project_components.projects_horizon[iron][0] + 1e-8 < pooled_30);
-    assert!(project_components.projects_horizon[iron][0]
-        <= project_components.projects_horizon[iron][1]);
-    assert!(project_components.projects_horizon[iron][1]
-        <= project_components.projects_horizon[iron][2]);
-    assert!(project_components.projects_horizon[iron][2] <= 51.0 + 1e-8);
+    assert_eq!(project_components.projects_daily, [0.0; 12]);
+    assert_eq!(project_components.projects_remaining, [0.0; 12]);
+    assert_eq!(project_components.projects_horizon, [[0.0; 3]; 12]);
     let mut advanced = projects.clone();
     clock::advance_date(&mut advanced);
     assert_eq!(
@@ -553,19 +539,57 @@ fn finite_projects_and_mines_cap_each_item_before_summing_horizons() {
         );
     }
     let mine_components = industry::raw_demand_components(&mines, nation);
-    let mine_daily = mine_components.mines_daily[iron];
-    assert!(mine_daily > 1.0 && mine_daily < 21.0, "daily={mine_daily}");
-    let expected_30 = 1.0 + ((mine_daily - 1.0) * 30.0).min(20.0);
-    assert!(
-        (mine_components.mines_horizon[iron][0] - expected_30).abs() < 1e-8,
-        "h30={} expected={expected_30}",
-        mine_components.mines_horizon[iron][0]
-    );
-    assert!(mine_components.mines_horizon[iron][0]
-        <= mine_components.mines_horizon[iron][1]);
-    assert!(mine_components.mines_horizon[iron][1]
-        <= mine_components.mines_horizon[iron][2]);
-    assert!(mine_components.mines_horizon[iron][2] <= 21.0 + 1e-8);
+    assert_eq!(mine_components.mines_daily, [0.0; 12]);
+    assert_eq!(mine_components.mines_remaining, [0.0; 12]);
+    assert_eq!(mine_components.mines_horizon, [[0.0; 3]; 12]);
+}
+
+#[test]
+fn finite_materials_orders_cap_each_item_before_summing_horizons() {
+    let nation = NationId::USA;
+    let iron = Commodity::Iron.idx();
+    let mut w = world_1990(GameRules {
+        daily_simulation: true, economic_competition: true, production_system: true,
+        resource_gates: true, resource_market: true, manufacturing_system: true,
+        ..GameRules::default()
+    });
+    starting_industry::enable_new_world(&mut w).unwrap();
+    resources::tick(&mut w);
+    clock::advance_date(&mut w);
+    fund_programs(&mut w, nation);
+    let districts: Vec<_> = w.districts.iter()
+        .filter(|(d, owner)| **owner == nation && materials::capacity_daily(&w, d) >= 1.0)
+        .take(2).map(|(d, _)| d.clone()).collect();
+    assert_eq!(districts.len(), 2, "two source-backed operating sites are required");
+    // The API is now on an unsettled date. Each order receives its full future
+    // service window rather than reusing the already-settled resource date.
+    let baseline = economic_ai::raw_supply_forecast(&w, nation);
+    let short = materials::start_order(&mut w, nation, &districts[0], 30.0, 30).unwrap();
+    materials::start_order(&mut w, nation, &districts[1], 50.0, 100).unwrap();
+    // An actual finite contract can be nearly delivered beside a slower one.
+    let order = w.materials.as_mut().unwrap().orders.iter_mut().find(|o| o.id == short).unwrap();
+    order.delivered = 29.0;
+    order.remaining = 1.0;
+    order.raw_used[iron] = 29.0;
+    let saved = save(&w);
+    let daily = materials::resource_demand_daily(&w, nation)[iron];
+    assert!((daily - 1.5).abs() < 1e-9);
+    let expected = [16.0, 46.0, 51.0];
+    for (days, expected) in economic_ai::RAW_HORIZON_DAYS.into_iter().zip(expected) {
+        let need = materials::resource_demand_for_days(&w, nation, days)[iron];
+        assert!((need - expected).abs() < 1e-9, "{days}-day requirement={need}");
+    }
+    let pooled_thirty = (daily * 30.0).min(51.0);
+    assert!(expected[0] < pooled_thirty, "each finite remainder must cap its own rate before summing");
+    let forecast = economic_ai::raw_supply_forecast(&w, nation);
+    assert_eq!(forecast.lines[iron].materials_remaining, 51.0);
+    for h in 0..3 {
+        assert!((forecast.lines[iron].demand[h] - baseline.lines[iron].demand[h] - expected[h]).abs() < 1e-8,
+            "each finite Materials bill must enter horizon {h} once");
+    }
+    assert_eq!(save(&w), saved, "finite supply forecasts are read-only");
+    let loaded = load(&saved).unwrap();
+    assert_eq!(economic_ai::raw_supply_forecast(&loaded, nation), forecast);
 }
 
 #[test]
@@ -638,18 +662,10 @@ fn expiring_fiscal_authority_stops_at_the_year_boundary() {
     );
     assert_eq!(resources::forecast_start_day(&w), clock::absolute_day(&w));
     let before = industry::raw_demand_components(&w, nation);
-    assert!(before.projects_daily[iron] > 0.0);
-    assert!(
-        before.projects_horizon[iron]
-            .iter()
-            .all(|amount| (*amount - before.projects_daily[iron]).abs() < 1e-8),
-        "only the one remaining 1990 date is funded: {:?}",
-        before.projects_horizon[iron]
-    );
-    assert!(before.mines_daily[iron] > 0.0);
-    assert!(before.mines_horizon[iron]
-        .iter()
-        .all(|amount| (*amount - before.mines_daily[iron]).abs() < 1e-8));
+    assert_eq!(before.projects_daily[iron], 0.0);
+    assert_eq!(before.projects_horizon[iron], [0.0; 3]);
+    assert_eq!(before.mines_daily[iron], 0.0);
+    assert_eq!(before.mines_horizon[iron], [0.0; 3]);
     let forecast_before = economic_ai::raw_supply_forecast(&w, nation);
     let recurring_before = &forecast_before.lines[bauxite];
     assert!(recurring_before.civilian_operating_daily > 0.0);

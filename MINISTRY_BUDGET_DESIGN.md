@@ -1,5 +1,14 @@
 # Ministry programs and investment budgets
 
+Update, 2026-09-06: the adopted funded-construction extension in `SPEC.md`
+supersedes this document's construction-material, national-capacity and
+per-department construction gates. Economy now has one daily construction
+budget and queue. Capital appropriations still bound spending; construction
+payments share civilian capital funds while procurement stays protected.
+Factories continue to need their operating inputs. Applying a construction
+budget also activates actual-expenditure accounting under the existing fiscal
+allocations; it does not increase those allocations or spend at order time.
+
 Status: approved for local implementation by Ridge, 2026-09-03.
 The first playable implementation is local and awaiting review before any Git
 commit or push. Existing campaigns enroll only when a department plan is enacted.

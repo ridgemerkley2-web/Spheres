@@ -6,7 +6,7 @@ use crate::{
     clock, industry,
     production::{self, Priority, Project, ProjectKind as K, ProjectStatus},
     programs,
-    world::{NationId, WorldState, BUDGET_INDUSTRY},
+    world::{NationId, WorldState},
 };
 use serde::Serialize;
 
@@ -68,38 +68,18 @@ pub fn reserved_capacity(w: &WorldState, district: &str, kind: K) -> u32 {
     installed.saturating_add(pending).min(u32::MAX as u64) as u32
 }
 pub fn recommended_capacity_micros(w: &WorldState, nation: NationId) -> u32 {
-    let Some(n) = w.nation_opt(nation) else {
-        return 1;
-    };
-    let share = n
-        .program_budget
-        .as_ref()
-        .map_or(2000, |p| p.departments[BUDGET_INDUSTRY][0]) as f64
-        / 10_000.0;
-    let annual = n.gdp * n.budget_for(w.year).allocations[BUDGET_INDUSTRY] * share;
-    if !annual.is_finite() || annual <= 0.0 {
-        return 1;
-    }
-    // Appropriations release twelve equal monthly shares, not 365 equal
-    // daily shares. Size against 365 days at the slowest (31-day month)
-    // release rate. Otherwise early January funding can leave usable work
-    // capacity idle and push an ostensibly one-year package to day 366.
-    let calendar_cash = annual * (365.0 / (12.0 * 31.0));
-    let work_scale = 365.0 * production::construction_capacity(w, nation).min(1.5) / 1800.0;
+    let daily = programs::construction_daily_budget_bn(w, nation);
+    if !daily.is_finite() || daily <= 0.0 { return 1; }
+    let calendar_cash = daily * 365.0;
+    // Each site can perform one physical work-day per date, independent of
+    // other projects. Tiny packages retain the explicit 90-date lead time.
+    let work_scale = 365.0 / 1800.0;
     let mut micros = ((calendar_cash / industry::work_cost_bn(K::StarterIndustry)).min(work_scale)
-        * STANDARD_MICROS as f64)
-        .floor()
-        .clamp(1.0, STANDARD_MICROS as f64) as u32;
-    // Inverse division can round a mathematically exact boundary upward by
-    // one ULP. Validate against the forward bill the player actually pays.
-    // One micro remains the explicit minimum even below a one-year budget.
+        * STANDARD_MICROS as f64).floor().clamp(1.0, STANDARD_MICROS as f64) as u32;
     while micros > 1 {
         let fraction = micros as f64 / STANDARD_MICROS as f64;
         if industry::work_cost_bn(K::StarterIndustry) * fraction <= calendar_cash
-            && 1800.0 * fraction <= 365.0 * production::construction_capacity(w, nation).min(1.5)
-        {
-            break;
-        }
+            && 1800.0 * fraction <= 365.0 { break; }
         micros -= 1;
     }
     micros
@@ -131,24 +111,12 @@ pub fn quote(
     capacity_micros: u32,
 ) -> ModuleQuote {
     let scale = capacity_micros as f64 / STANDARD_MICROS as f64;
-    let annual_authority_bn = w.nation_opt(nation).map_or(0.0, |n| {
-        n.gdp
-            * n.budget_for(w.year).allocations[BUDGET_INDUSTRY]
-            * n.program_budget
-                .as_ref()
-                .map_or(2000, |p| p.departments[BUDGET_INDUSTRY][0]) as f64
-            / 10_000.0
-    });
+    let annual_authority_bn = programs::construction_daily_budget_bn(w, nation) * 365.0;
     let cost = industry::work_cost_bn(K::StarterIndustry) * scale;
-    let available = if w.nation_opt(nation).is_some() {
-        industry::project_authority(w, nation, K::StarterIndustry)
-    } else {
-        0.0
-    };
     let lower_bound_days =
         (annual_authority_bn > 0.0 && annual_authority_bn.is_finite()).then(|| {
-            ((cost - available).max(0.0) / annual_authority_bn * 365.0)
-                .max(1800.0 * scale / production::construction_capacity(w, nation).min(1.5))
+            (cost / annual_authority_bn * 365.0)
+                .max(1800.0 * scale)
                 .max(MIN_CALENDAR_DAYS as f64)
                 .ceil() as u32
         });
@@ -156,17 +124,15 @@ pub fn quote(
         capacity_micros,
         scale,
         cost_bn: industry::work_cost_bn(K::StarterIndustry) * scale,
-        recipe: production::catalog(K::StarterIndustry)
-            .recipe
-            .map(|r| r * scale),
+        recipe: [0.0; 12],
         nominal_work_days: 1800.0 * scale,
         minimum_calendar_days: MIN_CALENDAR_DAYS,
-        political_cost: production::catalog(K::StarterIndustry).political_cost,
+        political_cost: 0.0,
         department: 0,
         output_daily: scale,
         power_capacity_daily: 10.0 * scale,
         grid_capacity_daily: 5.0 * scale,
-        construction_capacity_daily: 0.15 * scale,
+        construction_capacity_daily: 0.0,
         annual_authority_bn,
         lower_bound_days,
         recommended_micros: recommended_capacity_micros(w, nation),
@@ -182,11 +148,8 @@ pub fn start_error(
     if !(1..=STANDARD_MICROS).contains(&micros) {
         return Some("Capacity must be 1–1,000,000 millionths of one standard package.".into());
     }
-    if !clock::is_daily(w) || !w.rules.economic_competition {
-        return Some("Starter Industry requires daily Economic Competition.".into());
-    }
-    if !programs::enrolled(w, nation) {
-        return Some("Enact a department budget before ordering a Starter Industry module.".into());
+    if !clock::is_daily(w) {
+        return Some("Starter Industry requires daily construction.".into());
     }
     if let Some(reason) =
         production::start_project_common_error(w, nation, district, K::StarterIndustry)
@@ -231,10 +194,7 @@ pub fn start(
         capacity_micros: Some(capacity_micros),
         started_day: Some(day),
     });
-    w.production
-        .industry
-        .projects
-        .insert(id, industry::ProjectFunding::default());
+    industry::enroll_projects(w, nation);
     w.headline(format!(
         "{} orders a {:.4}% Starter Industry module in {}.",
         nation.name(),
@@ -333,7 +293,7 @@ mod tests {
         assert!((a - b).abs() < 1e-10, "{a} != {b}");
     }
     #[test]
-    fn proportional_quote_is_pure_and_complete_recipe_sum() {
+    fn proportional_quote_is_pure_and_includes_turnkey_inputs() {
         let (w, d) = prepared();
         let before = save(&w);
         let full = quote(&w, USA, &d, 1_000_000);
@@ -343,16 +303,10 @@ mod tests {
         assert_eq!(full.nominal_work_days, 1800.0);
         near(tiny.nominal_work_days, 0.0018);
         assert_eq!(tiny.minimum_calendar_days, 90);
-        for i in 0..12 {
-            near(
-                full.recipe[i],
-                COMPONENTS
-                    .iter()
-                    .map(|k| production::catalog(*k).recipe[i])
-                    .sum(),
-            );
-            near(tiny.recipe[i], full.recipe[i] * 1e-6);
-        }
+        assert_eq!(full.recipe,[0.0;12]);
+        assert_eq!(tiny.recipe,[0.0;12]);
+        assert_eq!(tiny.political_cost,0.0);
+        assert_eq!(full.construction_capacity_daily,0.0);
         assert_eq!(save(&w), before);
     }
     #[test]
@@ -378,7 +332,7 @@ mod tests {
         assert_eq!(before, save(&w));
     }
     #[test]
-    fn tiny_module_needs_ninety_dates_and_consumes_exact_scaled_bill_and_inputs() {
+    fn tiny_module_needs_ninety_dates_and_pays_exact_scaled_turnkey_bill() {
         for micros in [1, 10_000] {
             let (mut w, d) = prepared();
             let q = quote(&w, USA, &d, micros);
@@ -395,14 +349,14 @@ mod tests {
                     .program_budget
                     .as_ref()
                     .unwrap()
-                    .spent_today_bn[BUDGET_INDUSTRY][0];
+                    .construction_spent_today_bn;
                 production::tick_day(&mut w);
                 paid += w
                     .nation(USA)
                     .program_budget
                     .as_ref()
                     .unwrap()
-                    .spent_today_bn[BUDGET_INDUSTRY][0]
+                    .construction_spent_today_bn
                     - before;
                 let once = save(&w);
                 production::tick_day(&mut w);
@@ -427,10 +381,6 @@ mod tests {
             }
             assert_eq!(production::level(&w, &d, K::CivilianIndustry), 0);
             assert_eq!(production::level(&w, &d, K::ProcessingPlant), 0);
-            near(
-                production::construction_capacity(&w, USA),
-                1.25 + 0.15 * q.scale,
-            );
             near(industry::power_capacity(&w, USA), 10.0 * q.scale);
             assert_eq!(
                 industry::snapshot(&w, USA).goods,
@@ -440,26 +390,15 @@ mod tests {
         }
     }
     #[test]
-    fn missing_input_blocks_money_and_work_then_paid_output_is_fractional() {
+    fn missing_construction_inputs_do_not_block_work_and_operating_output_is_fractional() {
         let (mut w, d) = prepared();
         start(&mut w, USA, &d, 10_000).unwrap();
         resources::set_stockpile_for_test(&mut w, USA, Commodity::Copper, 0.0);
-        let cash = w
-            .nation(USA)
-            .program_budget
-            .as_ref()
-            .unwrap()
-            .spent_today_bn;
+        let raw = w.resources.clone();
         production::tick_day(&mut w);
-        assert_eq!(w.production.projects[0].progress_days, 0.0);
-        assert_eq!(
-            w.nation(USA)
-                .program_budget
-                .as_ref()
-                .unwrap()
-                .spent_today_bn,
-            cash
-        );
+        assert!(w.production.projects[0].progress_days > 0.0);
+        assert_eq!(w.resources,raw);
+        assert!(w.nation(USA).program_budget.as_ref().unwrap().construction_spent_today_bn > 0.0);
         resources::set_stockpile_for_test(&mut w, USA, Commodity::Copper, 100.0);
         for _ in 0..90 {
             production::tick_day(&mut w);
@@ -524,57 +463,22 @@ mod tests {
         assert_eq!(production::level(&w, &d, K::CivilianIndustry), 0);
     }
     #[test]
-    fn mixed_queue_shares_actual_work_and_department_authority() {
-        let (mut w, d) = prepared();
-        let other = w
-            .districts
-            .iter()
-            .find(|(x, n)| **n == USA && **x != d)
-            .unwrap()
-            .0
-            .clone();
-        start(&mut w, USA, &d, 100_000).unwrap();
-        production::start_project(&mut w, USA, &other, K::CivilianIndustry).unwrap();
-        w.nation_mut(USA)
-            .program_budget
-            .as_mut()
-            .unwrap()
-            .available_bn[BUDGET_INDUSTRY][0] = 0.00001;
+    fn mixed_queue_shares_budget_with_independent_site_work() {
+        let (mut w,d) = prepared();
+        let other = w.districts.iter().find(|(x,n)| **n == USA && **x != d).unwrap().0.clone();
+        start(&mut w,USA,&d,100_000).unwrap();
+        production::start_project(&mut w,USA,&other,K::CivilianIndustry).unwrap();
+        let full = industry::project_plans(&w);
+        let physical: f64 = w.production.projects.iter().map(|p| full[&p.id].advance_days*scale(p)).sum();
+        near(physical,2.0);
+        programs::set_construction_budget(&mut w,USA,0.00001).unwrap();
         let plans = industry::project_plans(&w);
-        let physical: f64 = w
-            .production
-            .projects
-            .iter()
-            .filter_map(|p| {
-                plans
-                    .get(&p.id)
-                    .filter(|plan| plan.reason.is_none())
-                    .map(|plan| plan.advance_days * scale(p))
-            })
-            .sum();
-        assert!(physical <= production::construction_capacity(&w, USA));
-        let money: f64 = plans
-            .values()
-            .filter(|p| p.reason.is_none())
-            .map(|p| p.cash_bn)
-            .sum();
-        assert!(money <= 0.00001);
-        let before = w
-            .nation(USA)
-            .program_budget
-            .as_ref()
-            .unwrap()
-            .spent_today_bn[BUDGET_INDUSTRY][0];
+        let money: f64 = plans.values().map(|p| p.cash_bn).sum();
+        near(money,0.00001);
         production::tick_day(&mut w);
-        let spent = w
-            .nation(USA)
-            .program_budget
-            .as_ref()
-            .unwrap()
-            .spent_today_bn[BUDGET_INDUSTRY][0]
-            - before;
-        near(spent, money);
+        near(w.nation(USA).program_budget.as_ref().unwrap().construction_spent_today_bn,money);
     }
+
     #[test]
     fn unfinished_module_replays_identically_after_reload_and_keeps_frozen_price() {
         let (mut uninterrupted, d) = prepared();
@@ -625,25 +529,43 @@ mod tests {
         let size = recommended_capacity_micros(&w, USA);
         let q = quote(&w, USA, &d, size);
         assert!(q.cost_bn <= q.annual_authority_bn);
-        assert!(q.nominal_work_days <= 365.0 * production::construction_capacity(&w, USA).min(1.5));
+        assert!(q.nominal_work_days <= 365.0);
     }
     #[test]
     fn recommendation_fits_exact_slowest_calendar_release_cash_bill() {
         let (mut w, d) = prepared();
         for gdp in [0.1, 0.112, 1.6964999999999997, 2.5, 37.0] {
             w.nation_mut(USA).gdp = gdp;
-            let n = w.nation(USA);
-            let annual = n.gdp
-                * n.budget_for(w.year).allocations[BUDGET_INDUSTRY]
-                * (n.program_budget.as_ref().unwrap().departments[BUDGET_INDUSTRY][0] as f64
-                    / 10_000.0);
+            let annual = programs::construction_daily_budget_bn(&w,USA) * 365.0;
             let micros = recommended_capacity_micros(&w, USA);
             let q = quote(&w, USA, &d, micros);
             assert!(q.cost_bn.is_finite() && q.cost_bn > 0.0);
             assert!(
-                q.cost_bn <= annual * (365.0 / (12.0 * 31.0)),
+                q.cost_bn <= annual,
                 "{gdp}: {micros} micros over calendar cash bound"
             );
         }
+    }
+
+    #[test]
+    fn manual_daily_workshop_needs_no_economic_competition_opt_in() {
+        let (mut w,d)=prepared();
+        w.rules.economic_competition=false;
+        assert!(crate::economic_ai::may_direct(&w,USA));
+        assert!(!crate::economic_ai::may_direct(&w,NationId::Canada));
+        assert!(start_error(&w,USA,&d,10_000).is_none());
+        start(&mut w,USA,&d,10_000).unwrap();
+        let mut paid=0.0;
+        for day in 0..90 {
+            production::tick_day(&mut w);
+            paid+=w.nation(USA).program_budget.as_ref().unwrap().construction_spent_today_bn;
+            if day<89 {next_day(&mut w);}
+        }
+        assert!(w.production.projects.is_empty());
+        near(paid,0.0058);
+        near(capacity(&w,&d),0.01);
+        industry::tick_day(&mut w);
+        near(industry::snapshot(&w,USA).goods.intermediates,0.01);
+        assert!(!w.rules.economic_competition);
     }
 }

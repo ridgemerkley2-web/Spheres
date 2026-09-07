@@ -196,7 +196,7 @@ pub fn record_construction(
     row.output_quantity_daily = advance_days;
     row.output_unit = "completed project-days".into();
     row.payments_daily_bn = if paid_today { work_bill_bn } else { 0.0 };
-    row.reason=Some(if paid_today {"Actual completed installation and labor. Consumed raw and industrial goods are excluded; completion grants no second GDP bonus."}else{"Completed legacy work valued at the modeled installation/labor schedule. This is not a new treasury charge or a retroactive award."}.into());
+    row.reason=Some(if paid_today {"Actual paid construction work. Construction uses no physical inventory inputs; completion grants no second GDP bonus."}else{"Completed legacy work valued at the modeled installation/labor schedule. This is not a new treasury charge or a retroactive award."}.into());
     insert(w, row);
 }
 
@@ -228,7 +228,7 @@ pub fn record_mine_construction(
     row.output_quantity_daily = advance_days;
     row.output_unit = "completed project-days".into();
     row.payments_daily_bn = if paid_today { work_bill_bn } else { 0.0 };
-    row.reason=Some(if paid_today{"Actual installation/labor work, excluding consumed construction inputs. Extraction is recorded separately after completion."}else{"Current work on a legacy prepaid mine, valued at its installation schedule; no new or retroactive treasury charge."}.into());
+    row.reason=Some(if paid_today{"Actual paid construction work, with no physical inventory inputs. Extraction is recorded separately after completion."}else{"Current work on a legacy prepaid mine, valued at its installation schedule; no new or retroactive treasury charge."}.into());
     insert(w, row);
 }
 
@@ -930,6 +930,8 @@ mod tests {
     #[test]
     fn all_thirteen_construction_kinds_use_paid_work_not_completion_bonuses() {
         let mut w = prepared();
+        let cash = w.nation(USA).treasury_bn;
+        let debt = w.nation(USA).debt_gdp;
         let d = district(&w);
         for (i, kind) in production::PROJECT_KINDS.into_iter().enumerate() {
             let p = Project {
@@ -956,6 +958,12 @@ mod tests {
             13
         );
         near(rows.iter().map(|r| r.daily_value_added_bn).sum(), 0.013);
+        for row in rows.iter().filter(|r| r.sector == "construction" && r.counted) {
+            near(row.intermediate_inputs_daily_bn, 0.0);
+            near(row.daily_value_added_bn, row.payments_daily_bn);
+        }
+        assert_eq!(w.nation(USA).treasury_bn, cash, "GDP receipts must never charge a second construction bill");
+        assert_eq!(w.nation(USA).debt_gdp, debt);
     }
     #[test]
     fn new_mine_receipts_follow_actual_posting_without_january_february_gdp_jumps() {

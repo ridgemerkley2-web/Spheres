@@ -1846,6 +1846,7 @@ pub fn tick(w: &mut WorldState) {
     let daily = crate::clock::is_daily(w);
     let month_index = crate::clock::month_index(w);
     let day = w.day;
+    let equipment_day = crate::clock::absolute_day(w);
     let dt = crate::clock::month_fraction(w);
     let absorption_memory = crate::clock::blend(w, ABSORPTION_MEMORY);
     let oil_yield_blend = crate::clock::blend(w, 0.02);
@@ -2051,6 +2052,20 @@ pub fn tick(w: &mut WorldState) {
 
             for d in DOMAINS {
                 let di = d.index();
+                if daily && d == Domain::Aerospace && n.equipment.as_ref().is_some_and(|s| s.active_research.is_some()) {
+                    let held = n.tech.acquisition_quota.is_some_and(|q|
+                        q.migration_hold || q.acquired[di] >= ACQUISITIONS_PER_DOMAIN_MONTH);
+                    // A closed quota banks effort but cannot complete an integration.
+                    crate::equipment::research_step(n, output * weights[di], if held { i32::MIN } else { year }, equipment_day);
+                    let completed = n.equipment.as_ref().is_some_and(|s| s.last_research_completed_day == Some(equipment_day));
+                    if completed {
+                        n.tech.acquisition_quota.as_mut().expect("daily quota seated").acquired[di] += 1;
+                        let state = n.equipment.as_mut().unwrap();
+                        n.tech.progress[di] += state.research_progress;
+                        state.research_progress = 0.0;
+                    }
+                    continue;
+                }
                 n.tech.progress[di] += output * weights[di];
 
                 // Several cheap adoptions can land in one month — that is what

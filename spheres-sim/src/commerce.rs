@@ -269,8 +269,8 @@ pub fn pending(w: &WorldState, nation: NationId, good: Good) -> f64 {
     })
 }
 /// Current operating-goods use at today's installed rate. This is a planning
-/// read, not an inventory debit; construction remains a finite requirement in
-/// `demand` rather than being multiplied as if it recurred forever.
+/// read, not an inventory debit. Construction is funded with money and creates
+/// no demand for manufactured inventory.
 pub fn recurring_demand_daily(w: &WorldState, nation: NationId, good: Good) -> f64 {
     let factories = if good == Good::Intermediates {
         w.districts
@@ -285,26 +285,10 @@ pub fn recurring_demand_daily(w: &WorldState, nation: NationId, good: Good) -> f
     };
     factories + amount(&industry::research_goods_demand(w, nation), good)
 }
-/// Only actual queued construction and installed consumers create demand.
-/// Thirty days is the existing operating horizon; supply policy can extend the
-/// recurring arm without multiplying a project's one-off remaining recipe.
+/// Installed operating consumers create a thirty-day goods requirement.
+/// Queuing a building does not reserve goods or trigger imports.
 pub fn demand(w: &WorldState, nation: NationId, good: Good) -> f64 {
-    let projects = w
-        .production
-        .projects
-        .iter()
-        .filter(|p| p.nation == nation && w.districts.get(&p.district) == Some(&nation))
-        .map(|p| {
-            let used = w
-                .production
-                .industry
-                .projects
-                .get(&p.id)
-                .map_or(0.0, |f| amount(&f.goods_used, good));
-            (amount(&industry::goods_recipe(p.kind), good) - used).max(0.0)
-        })
-        .sum::<f64>();
-    projects + recurring_demand_daily(w, nation, good) * 30.0
+    recurring_demand_daily(w, nation, good) * 30.0
 }
 pub fn shortage(w: &WorldState, nation: NationId, good: Good) -> f64 {
     (demand(w, nation, good) - stock(w, nation, good) - pending(w, nation, good)).max(0.0)
@@ -1472,6 +1456,36 @@ mod tests {
         near(shortage(&w, BUYER, Good::Intermediates), 0.0);
         settle(&mut w);
         near(shortage(&w, BUYER, Good::Intermediates), 0.0);
+    }
+    #[test]
+    fn construction_queue_creates_no_goods_demand_and_preserves_paid_cargo() {
+        let mut w = world();
+        let district = w.districts.iter().find(|(_, owner)| **owner == BUYER).unwrap().0.clone();
+        w.production.projects.push(crate::production::Project {
+            id: 91, nation: BUYER, district: district.clone(),
+            kind: ProjectKind::Warehouse, priority: crate::production::Priority::Normal,
+            status: crate::production::ProjectStatus::Building, reason: None,
+            progress_days: 30.0, total_days: 180, resources_used: [1.0; 12],
+            capacity_micros: None, started_day: None,
+        });
+        w.production.industry.projects.insert(91, industry::ProjectFunding {
+            spent_bn: 0.01, goods_used: industry::Goods { intermediates: 2.0, capital_goods: 1.0 },
+            last_day: None, ..Default::default()
+        });
+        for good in GOODS { near(demand(&w, BUYER, good), 0.0); }
+        // A supply order paid before the rule change still belongs to its buyer.
+        buy(&mut w, Good::CapitalGoods, 2.0, 30);
+        settle(&mut w);
+        let saved = crate::save(&w);
+        let mut loaded = crate::load(&saved).unwrap();
+        for _ in 0..35 { next(&mut loaded); }
+        near(stock(&loaded, BUYER, Good::CapitalGoods), 2.0);
+        near(demand(&loaded, BUYER, Good::CapitalGoods), 0.0);
+        assert_eq!(loaded.production.projects[0].resources_used, [1.0; 12]);
+        near(loaded.production.industry.projects[&91].goods_used.capital_goods, 1.0);
+        // Installed machinery still needs real intermediate packs to operate.
+        loaded.production.industry.sites.insert(district, [1, 0, 0, 0, 0, 0, 0]);
+        near(demand(&loaded, BUYER, Good::Intermediates), 15.0);
     }
     #[test]
     fn disabled_legacy_save_stays_byte_identical_and_views_are_pure() {

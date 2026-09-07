@@ -96,6 +96,33 @@ pub fn is_capital(ministry: usize, department: usize) -> bool {
         }
 }
 
+fn equipment_finance_on(n: &Nation, day: i32) -> bool {
+    n.equipment.as_ref().is_some_and(|s| day >= s.finance_from_day)
+}
+
+/// Drafts do not change funding. Designer funding begins with its first newly
+/// opened day; money already posted to services is never reclassified.
+pub fn equipment_finance_active(n: &Nation) -> bool {
+    n.program_budget.as_ref().and_then(|p| p.day)
+        .is_some_and(|day| equipment_finance_on(n, day))
+}
+
+fn funded_department(ministry: usize, department: usize, equipment: bool) -> bool {
+    is_capital(ministry, department)
+        || (equipment && ministry == BUDGET_DEFENSE && department == 4)
+}
+
+/// Departments whose live ledger pays delivered work rather than automatically
+/// expensing the service allocation. Development remains an operating expense.
+pub fn is_project_funded(n: &Nation, ministry: usize, department: usize) -> bool {
+    funded_department(ministry, department, equipment_finance_active(n))
+}
+
+/// Historical receipts retain the classification of their actual funding day.
+pub fn is_project_funded_on(n: &Nation, ministry: usize, department: usize, day: i32) -> bool {
+    funded_department(ministry, department, equipment_finance_on(n, day))
+}
+
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct ProgramBudget {
     pub fiscal_year: i32,
@@ -129,6 +156,14 @@ pub struct ProgramBudget {
     /// into the Treasury run-rate card.
     #[serde(default)]
     pub settled_spending_annual_bn: f64,
+    /// One player-selected ceiling for all construction, in $bn per day.
+    /// None follows the standing daily civilian capital appropriation.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub construction_daily_budget_bn: Option<f64>,
+    #[serde(default)]
+    pub construction_spent_today_bn: f64,
+    #[serde(default)]
+    pub construction_spent_ytd_bn: f64,
 }
 
 pub fn enrolled(w: &WorldState, nation: NationId) -> bool {
@@ -264,6 +299,9 @@ pub(crate) fn install(w: &mut WorldState, nation: NationId, year: i32, departmen
         fiscal_staged: false,
         realized_investment_share: operating_investment,
         settled_spending_annual_bn: 0.0,
+        construction_daily_budget_bn: None,
+        construction_spent_today_bn: 0.0,
+        construction_spent_ytd_bn: 0.0,
     });
 }
 
@@ -274,6 +312,7 @@ fn open(
     gdp: f64,
     fraction: f64,
     allocation: &[f64; BUDGET_MINISTRIES],
+    equipment_finance: bool,
 ) {
     if plan.day == Some(day) {
         return;
@@ -282,6 +321,7 @@ fn open(
         plan.expired_authority_bn += plan.available_bn.iter().flatten().sum::<f64>();
         plan.available_bn = ZERO;
         plan.spent_ytd_bn = ZERO;
+        plan.construction_spent_ytd_bn = 0.0;
         plan.authority_year = year;
     }
     plan.day = Some(day);
@@ -290,6 +330,7 @@ fn open(
     plan.spent_today_bn = ZERO;
     plan.noncapital_spent_today_bn = ZERO;
     plan.prepaid_used_today_bn = ZERO;
+    plan.construction_spent_today_bn = 0.0;
     plan.accrued_today_bn = ZERO;
     plan.revenue_today_bn = 0.0;
     plan.interest_today_bn = 0.0;
@@ -306,7 +347,7 @@ fn open(
                 total * plan.departments[m][d] as f64 / 10_000.0
             };
             assigned += amount;
-            if is_capital(m, d) {
+            if funded_department(m, d, equipment_finance) {
                 if plan.fiscal_year == year {
                     plan.accrued_today_bn[m][d] = amount;
                     plan.available_bn[m][d] += amount;
@@ -336,6 +377,7 @@ pub fn begin_day(w: &mut WorldState) {
     {
         let allocation = n.budget_for(year).allocations;
         let gdp = n.gdp;
+        let equipment_finance = equipment_finance_on(n, day);
         open(
             n.program_budget.as_mut().unwrap(),
             year,
@@ -343,6 +385,7 @@ pub fn begin_day(w: &mut WorldState) {
             gdp,
             fraction,
             &allocation,
+            equipment_finance,
         );
     }
 }
@@ -358,13 +401,119 @@ fn projected(w: &WorldState, nation: NationId) -> Option<ProgramBudget> {
             n.gdp,
             clock::year_fraction(w),
             &n.budget_for(w.year).allocations,
+            equipment_finance_on(n, clock::absolute_day(w)),
         );
     }
     Some(plan)
 }
 
+/// Capital appropriations are fungible for construction. Procurement and its
+/// prepaid balance stay reserved for equipment, and services are never drawn.
+fn construction_pool(m: usize, d: usize) -> bool {
+    m != BUDGET_DEFENSE && is_capital(m, d)
+}
+
+pub fn construction_default_daily_bn(w: &WorldState, nation: NationId) -> f64 {
+    let n = w.nation(nation);
+    let departments = n.program_budget.as_ref().map_or_else(default_departments, |p| p.departments);
+    let allocations = n.budget_for(w.year).allocations;
+    (0..BUDGET_MINISTRIES).map(|m| (0..DEPARTMENTS)
+        .filter(|d| construction_pool(m, *d))
+        .map(|d| allocations[m] * departments[m][d] as f64 / 10_000.0)
+        .sum::<f64>()).sum::<f64>() * n.gdp * clock::year_fraction(w)
+}
+
+pub fn construction_daily_budget_bn(w: &WorldState, nation: NationId) -> f64 {
+    w.nation(nation).program_budget.as_ref().and_then(|p| p.construction_daily_budget_bn)
+        .unwrap_or_else(|| construction_default_daily_bn(w, nation))
+}
+
+fn construction_authority(plan: &ProgramBudget) -> f64 {
+    (0..BUDGET_MINISTRIES).map(|m| (0..DEPARTMENTS)
+        .filter(|d| construction_pool(m, *d))
+        .map(|d| plan.available_bn[m][d].max(0.0)).sum::<f64>()).sum()
+}
+
+pub fn construction_authority_bn(w: &WorldState, nation: NationId) -> f64 {
+    projected(w, nation).as_ref().map_or(0.0, construction_authority)
+}
+
+/// Pure quote using the same opening-day ledger as actual settlement.
+pub fn construction_available_bn(w: &WorldState, nation: NationId) -> f64 {
+    if !clock::is_daily(w) { return 0.0; }
+    projected(w, nation).map_or(0.0, |p| {
+        (construction_daily_budget_bn(w, nation) - p.construction_spent_today_bn)
+            .max(0.0).min(construction_authority(&p))
+    })
+}
+
+pub fn construction_budget_refusal(w: &WorldState, nation: NationId, daily_budget_bn: f64) -> Option<String> {
+    if !clock::is_daily(w) { return Some("Construction budgets require daily simulation.".into()); }
+    if !crate::economic_ai::may_direct(w, nation) { return Some("Only the directing government may set its construction budget.".into()); }
+    if !w.nation_opt(nation).is_some_and(|n| n.alive) { return Some("The sponsoring government no longer exists.".into()); }
+    if !daily_budget_bn.is_finite() || !(0.0..=1_000_000.0).contains(&daily_budget_bn) {
+        return Some("Enter a finite, non-negative daily construction budget up to $1,000,000bn.".into());
+    }
+    None
+}
+
+pub fn set_construction_budget(w: &mut WorldState, nation: NationId, daily_budget_bn: f64) -> Result<(), String> {
+    if let Some(why) = construction_budget_refusal(w, nation, daily_budget_bn) { return Err(why); }
+    let shares = w.nation(nation).program_budget.as_ref().map_or_else(default_departments, |p| p.departments);
+    let allocations = w.nation(nation).budget_for(w.year).allocations;
+    if let Some(why) = validation(w, nation, w.year, &allocations, &shares) { return Err(why); }
+    // Reuse the ordinary budget bootstrap so cash and debt are seated together
+    // from the existing/source-backed values, with no second reserve grant.
+    crate::dispatch(w, &crate::Command::SetAnnualBudget { nation, fiscal_year:w.year, allocations })?;
+    // This activates actual-expenditure accounting under the existing fiscal
+    // allocations. It changes no ministry appropriation and spends no cash.
+    install(w, nation, w.year, shares);
+    w.nation_mut(nation).program_budget.as_mut().unwrap().construction_daily_budget_bn = Some(daily_budget_bn);
+    crate::industry::enroll_projects(w, nation);
+    Ok(())
+}
+
+/// Draw once from the common capital envelope, subject to the daily ceiling.
+/// finish_day remains the only treasury/debt posting; no bill at order time.
+pub fn spend_construction(w: &mut WorldState, nation: NationId, amount_bn: f64) -> Result<(), String> {
+    if !amount_bn.is_finite() || amount_bn < 0.0 { return Err("Invalid construction payment.".into()); }
+    let today = clock::absolute_day(w);
+    let p = w.nation(nation).program_budget.as_ref().ok_or("Apply a construction budget first.")?;
+    if p.day != Some(today) || p.settled_day == Some(today) { return Err("The construction funding day is not open.".into()); }
+    if amount_bn > construction_available_bn(w, nation) { return Err("The daily construction budget or capital funding is exhausted.".into()); }
+    // Preflight all draws before any mutation. Stable proportional draws keep
+    // one department from paying for the entire national queue by iteration order.
+    let total = construction_authority(p);
+    let mut draws = ZERO;
+    let mut left = amount_bn;
+    for m in 0..BUDGET_MINISTRIES { for d in 0..DEPARTMENTS {
+        if construction_pool(m, d) && total > 0.0 {
+            let draw = (amount_bn * (p.available_bn[m][d].max(0.0) / total)).min(left).min(p.available_bn[m][d].max(0.0));
+            draws[m][d] = draw;
+            left -= draw;
+        }
+    }}
+    for m in 0..BUDGET_MINISTRIES { for d in 0..DEPARTMENTS {
+        if construction_pool(m, d) && left > 0.0 {
+            let extra = left.min((p.available_bn[m][d] - draws[m][d]).max(0.0));
+            draws[m][d] += extra;
+            left -= extra;
+        }
+    }}
+    if left > 1e-12 { return Err("Insufficient capital funding.".into()); }
+    let p = w.nation_mut(nation).program_budget.as_mut().unwrap();
+    for m in 0..BUDGET_MINISTRIES { for d in 0..DEPARTMENTS {
+        p.available_bn[m][d] -= draws[m][d];
+        p.spent_today_bn[m][d] += draws[m][d];
+        p.spent_ytd_bn[m][d] += draws[m][d];
+    }}
+    p.construction_spent_today_bn += amount_bn;
+    p.construction_spent_ytd_bn += amount_bn;
+    Ok(())
+}
+
 pub fn available_bn(w: &WorldState, nation: NationId, ministry: usize, department: usize) -> f64 {
-    if !is_capital(ministry, department) {
+    if !funded_department(ministry, department, equipment_finance_on(w.nation(nation), clock::absolute_day(w))) {
         return 0.0;
     }
     projected(w, nation).map_or(0.0, |p| {
@@ -381,7 +530,7 @@ pub fn spend(
     department: usize,
     amount_bn: f64,
 ) -> Result<(), String> {
-    if !is_capital(ministry, department) || !amount_bn.is_finite() || amount_bn < 0.0 {
+    if !funded_department(ministry, department, equipment_finance_on(w.nation(nation), clock::absolute_day(w))) || !amount_bn.is_finite() || amount_bn < 0.0 {
         return Err("Invalid department expenditure.".into());
     }
     let today = clock::absolute_day(w);
@@ -547,6 +696,15 @@ pub fn procurement_share(n: &Nation) -> f64 {
 /// that split while making transfers into equipment/supply real tradeoffs.
 pub fn force_support_share(n: &Nation, defense_allocation: f64) -> f64 {
     n.program_budget.as_ref().map_or(defense_allocation, |p| {
+        if equipment_finance_active(n) {
+            let scale = n.equipment.as_ref().unwrap().force_support_scale;
+            let supported = defense_allocation
+                * (p.departments[BUDGET_DEFENSE][0] as f64 + p.departments[BUDGET_DEFENSE][1] as f64)
+                * scale / 6000.0;
+            // A tiny support share at activation can imply a large frozen
+            // scale. Reallocation must never exceed the old all-Defense bound.
+            return supported.min(defense_allocation * 10_000.0 / 6000.0);
+        }
         defense_allocation
             * [0, 1, 4]
                 .into_iter()
@@ -566,9 +724,17 @@ pub fn refill_multiplier(n: &Nation, defense_allocation: Option<f64>) -> f64 {
                 .annual_budget
                 .as_ref()
                 .expect("program budget owns an annual plan");
-            let now = defense_allocation.unwrap_or(b.allocations[BUDGET_DEFENSE])
+            let mut now = defense_allocation.unwrap_or(b.allocations[BUDGET_DEFENSE])
                 * p.departments[BUDGET_DEFENSE][2] as f64
                 / 10_000.0;
+            if equipment_finance_active(n) {
+                let envelope = p.accrued_today_bn[BUDGET_DEFENSE][2];
+                if envelope > 0.0 {
+                    // Upkeep allocates an already-expensed service envelope;
+                    // this same share cannot also refill legacy magazines.
+                    now *= (1.0 - crate::equipment::maintenance_allocated_bn(n) / envelope).clamp(0.0, 1.0);
+                }
+            }
             let baseline = b.reference[BUDGET_DEFENSE]
                 * p.reference_departments[BUDGET_DEFENSE][2] as f64
                 / 10_000.0;
@@ -629,7 +795,7 @@ pub fn preview(w: &WorldState, nation: NationId) -> ProgramPreview {
     for m in 0..BUDGET_MINISTRIES {
         for d in 0..DEPARTMENTS {
             let annual = budget.allocations[m] * gdp * departments[m][d] as f64 / 10_000.0;
-            let capital = is_capital(m, d);
+            let capital = funded_department(m, d, equipment_finance_on(n, clock::absolute_day(w)));
             let (available, prepaid, accrual) = p.as_ref().map_or((0.0, 0.0, 0.0), |p| {
                 (
                     p.available_bn[m][d],
@@ -672,7 +838,7 @@ pub fn preview(w: &WorldState, nation: NationId) -> ProgramPreview {
         realized_investment_share:p.as_ref().map_or(n.state_invest_gdp, |p|p.realized_investment_share), political_cost:0.0, rows,
         last_spending_day:actual.and_then(|p|p.day), spending_fiscal_year:actual.map(|p|p.authority_year),
         defense_force:crate::war::sustained_force(n,n.mil_spend_gdp), magazine_refill_mult:refill_multiplier(n,None),
-        note:"Game-preset departments. Services are managed together; capital pools fund real work. Annual dollars are a GDP-based run-rate, not a fixed cash cap. Imported materials are paid separately. Realized investment reaches the economy on the following day.",
+        note:"Services use their standing budgets. Civilian capital appropriations support the shared Construction budget and operating plants. Construction pays only for delivered work; factory inputs and equipment remain separate operating purchases. Annual dollars follow GDP. Realized investment reaches the economy on the following day.",
     }
 }
 
@@ -735,6 +901,89 @@ mod tests {
     fn settle(w: &mut WorldState) {
         stage_fiscal(w.nation_mut(NationId::USA), 0.0, 0.0);
         finish_day(w);
+    }
+
+    #[test]
+    fn construction_budget_activation_is_free_and_preserves_appropriations() {
+        let mut w = prepared();
+        w.nation_mut(NationId::USA).political_capital = 0.0;
+        w.nation_mut(NationId::USA).treasury_bn = Some(1000.0);
+        w.nation_mut(NationId::USA).debt_bn = Some(0.0);
+        w.nation_mut(NationId::USA).debt_gdp = 0.0;
+        let before = w.nation(NationId::USA).clone();
+        apply_command(&mut w, &Command::SetConstructionBudget { nation: NationId::USA, daily_budget_bn: 0.0001 }).unwrap();
+        let after = w.nation(NationId::USA);
+        assert_eq!(after.treasury_bn, before.treasury_bn);
+        near(after.debt_gdp, before.debt_gdp);
+        near(after.political_capital, 0.0);
+        assert_eq!(after.budget_for(w.year), before.budget_for(w.year));
+        assert!(after.program_budget.is_some());
+        let saved = save(&w);
+        let replay = load(&saved).unwrap();
+        assert_eq!(save(&replay), saved);
+        near(construction_daily_budget_bn(&replay, NationId::USA), 0.0001);
+    }
+
+    #[test]
+    fn construction_cash_ceiling_is_shared_atomic_and_charged_once() {
+        let mut w = prepared();
+        set_construction_budget(&mut w, NationId::USA, 0.0001).unwrap();
+        w.nation_mut(NationId::USA).treasury_bn = Some(1000.0);
+        begin_day(&mut w);
+        let treasury = w.nation(NationId::USA).treasury_bn.unwrap();
+        let defense = w.nation(NationId::USA).program_budget.as_ref().unwrap().available_bn[BUDGET_DEFENSE][3];
+        spend_construction(&mut w, NationId::USA, 0.00006).unwrap();
+        let before_refusal = save(&w);
+        assert!(spend_construction(&mut w, NationId::USA, 0.00006).is_err());
+        assert_eq!(save(&w), before_refusal);
+        let rest = construction_available_bn(&w, NationId::USA);
+        near(rest, 0.00004);
+        spend_construction(&mut w, NationId::USA, rest).unwrap();
+        near(construction_available_bn(&w, NationId::USA), 0.0);
+        near(w.nation(NationId::USA).treasury_bn.unwrap(), treasury);
+        let plan = w.nation(NationId::USA).program_budget.as_ref().unwrap();
+        near(plan.available_bn[BUDGET_DEFENSE][3], defense);
+        near(plan.construction_spent_today_bn, 0.0001);
+        let expected = total(&plan.spent_today_bn);
+        settle(&mut w);
+        near(treasury - w.nation(NationId::USA).treasury_bn.unwrap(), expected);
+        let settled = save(&w);
+        finish_day(&mut w);
+        assert_eq!(save(&w), settled);
+    }
+
+    #[test]
+    fn zero_construction_budget_preserves_banked_funding_and_invalid_changes_are_atomic() {
+        let mut w = prepared();
+        set_construction_budget(&mut w, NationId::USA, 0.0).unwrap();
+        begin_day(&mut w);
+        assert!(construction_authority_bn(&w, NationId::USA) > 0.0);
+        near(construction_available_bn(&w, NationId::USA), 0.0);
+        let before = save(&w);
+        for bad in [-0.01, f64::NAN, f64::INFINITY] {
+            assert!(set_construction_budget(&mut w, NationId::USA, bad).is_err());
+            assert_eq!(save(&w), before);
+        }
+        assert!(spend_construction(&mut w, NationId::USA, 0.001).is_err());
+        assert_eq!(save(&w), before);
+    }
+
+    #[test]
+    fn construction_quote_is_pure_and_day_rollover_restores_only_the_daily_ceiling() {
+        let mut w = prepared();
+        set_construction_budget(&mut w, NationId::USA, 0.0001).unwrap();
+        let before = save(&w);
+        near(construction_available_bn(&w, NationId::USA), 0.0001);
+        assert_eq!(save(&w), before);
+        begin_day(&mut w);
+        spend_construction(&mut w, NationId::USA, 0.0001).unwrap();
+        w.day += 1;
+        let before_quote = save(&w);
+        near(construction_available_bn(&w, NationId::USA), 0.0001);
+        assert_eq!(save(&w), before_quote);
+        begin_day(&mut w);
+        near(w.nation(NationId::USA).program_budget.as_ref().unwrap().construction_spent_today_bn, 0.0);
+        near(w.nation(NationId::USA).program_budget.as_ref().unwrap().construction_spent_ytd_bn, 0.0001);
     }
 
     #[test]

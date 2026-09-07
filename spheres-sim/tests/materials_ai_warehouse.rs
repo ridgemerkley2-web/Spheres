@@ -1,5 +1,5 @@
-//! Bounded warehouse-rescue regressions. Installed assets, money and stocks
-//! here are explicit test fixtures, never grants from the inherited estimates.
+//! Money-funded warehouses must not create operating-material import demand.
+//! Installed assets, money and stocks here are explicit test fixtures.
 use spheres_sim::{
     apply_command, commerce::{self, Good}, economic_ai, init::world_1990,
     materials, production::{self, ProjectKind as K}, programs, province_economy,
@@ -50,14 +50,14 @@ fn warehouse_fixture(target_department: usize) -> (WorldState, String) {
     apply_command(&mut w, &Command::StartProject {
         nation: ME, district: district.clone(), kind: K::Warehouse,
     }).unwrap();
-    assert_eq!(commerce::demand(&w, ME, Good::Intermediates), 12.0);
-    assert_eq!(commerce::demand(&w, ME, Good::CapitalGoods), 5.0);
+    assert_eq!(commerce::demand(&w, ME, Good::Intermediates), 0.0);
+    assert_eq!(commerce::demand(&w, ME, Good::CapitalGoods), 0.0);
     assert_eq!(commerce::stock(&w, ME, Good::Intermediates), 0.0);
     (w, district)
 }
 
 #[test]
-fn an_inherited_warehouse_cannot_bypass_full_cover_with_a_large_but_short_contract() {
+fn a_queued_warehouse_preserves_existing_material_orders_without_buying_prerequisites() {
     let (mut w, district) = warehouse_fixture(0);
     apply_command(&mut w, &Command::OrderMaterials {
         nation: ME, district, quantity: 26.999, delivery_days: 30,
@@ -70,16 +70,15 @@ fn an_inherited_warehouse_cannot_bypass_full_cover_with_a_large_but_short_contra
     assert!(economic_ai::materials_order_candidate(&w, ME).is_none());
     economic_ai::evaluate(&mut w, ME);
     assert!(production::projects_for(&w, ME).all(|p| p.kind != K::MachineryWorks),
-        "26.999 contracted packs cannot cover the warehouse's 12 plus the machine's 15; the old >=15 contract shortcut must not bypass the new 27-pack gate");
+        "Warehouse construction does not need a machinery supplier or startup Materials lot");
     assert_eq!(w.materials.as_ref().unwrap().orders.len(), 1,
         "A missing ingredient must not create an unbacked top-up contract");
 }
 
 #[test]
-fn a_reachable_capital_import_does_not_create_an_orphan_materials_startup_order() {
+fn a_reachable_capital_supplier_does_not_trigger_imports_for_warehouse_construction() {
     let (mut w, _) = warehouse_fixture(3);
-    // The warehouse already owns all twelve of its construction packs. Only
-    // capital goods are missing; no ordinary Materials replenishment is due.
+    // Historical inventory remains owned. The warehouse reserves none of it.
     w.production.industry.goods.entry(ME).or_default().intermediates = 12.0;
     assert_eq!(commerce::shortage(&w, ME, Good::Intermediates), 0.0);
     let seller = NationId::Canada;
@@ -101,9 +100,9 @@ fn a_reachable_capital_import_does_not_create_an_orphan_materials_startup_order(
         "The fixture must have an actual consenting, funded, reachable capital-goods import");
     economic_ai::evaluate(&mut w, ME);
     assert!(w.materials.as_ref().is_none_or(|m| m.orders.is_empty()),
-        "The warehouse can import its missing capital goods, so no machinery startup is selected and its 15-pack Materials lot must not be ordered");
+        "Money-funded warehouses create no Materials operating orders");
     assert!(production::projects_for(&w, ME).all(|p| p.kind != K::MachineryWorks));
-    assert!(w.commerce.as_ref().is_some_and(|c| c.contracts.iter().any(|k|
+    assert!(w.commerce.as_ref().is_none_or(|c| !c.contracts.iter().any(|k|
         k.buyer == ME && k.seller == seller && k.good == Good::CapitalGoods)),
-        "The existing priced capital-import path should remain available");
+        "A reachable seller is not a reason to buy construction inputs");
 }

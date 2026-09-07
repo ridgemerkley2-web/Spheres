@@ -194,19 +194,33 @@ pub struct Holding {
     /// Index into `DECK`, written to disk as a stable id.
     #[serde(with = "kit_serde")]
     pub kit: u16,
+    /// Immutable custom revision. The base kit remains the legacy save key.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub design_id: Option<String>,
     pub units: f64,
     /// Months since delivery, units-weighted across everything merged into this
     /// row. Fractional because a fleet bought over twenty years has a mean age,
     /// and `condition` is linear in it, so the mean gives exactly the right
     /// answer rather than an approximation.
     pub age: f64,
+    /// Whole vehicles temporarily unavailable while their refit is funded.
+    #[serde(default, skip_serializing_if = "zero_u32")]
+    pub refit_reserved: u32,
+    /// Fractional attrition is carried until one complete vehicle is lost.
+    #[serde(default, skip_serializing_if = "zero_f64")]
+    pub loss_remainder: f64,
 }
+
+fn zero_u32(value: &u32) -> bool { *value == 0 }
+fn zero_f64(value: &f64) -> bool { *value == 0.0 }
 
 /// An order placed and not yet delivered.
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Order {
     #[serde(with = "kit_serde")]
     pub kit: u16,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub design_id: Option<String>,
     pub units: f64,
     /// Months still to run. This is the whole mechanism.
     pub due: u32,
@@ -214,6 +228,9 @@ pub struct Order {
     /// migration derives it from the unexpired monthly term exactly once.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub due_days: Option<u32>,
+    /// Custom delivery preserves age when the payload is a refitted cohort.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub delivery_age: Option<f64>,
 }
 
 /// Structured outcome of the latest arsenal settlement's raw-input gate.
@@ -373,7 +390,7 @@ pub fn inheritance(r: &crate::data::NationRecord) -> Arsenal {
                     h.age = (h.age * h.units + age * units) / t.max(1e-12);
                     h.units = t;
                 }
-                None => held.push(Holding { kit, units, age }),
+                None => held.push(Holding { kit, design_id: None, units, age, refit_reserved: 0, loss_remainder: 0.0 }),
             }
         }
     }
@@ -423,8 +440,166 @@ pub fn book_value(n: &Nation) -> f64 {
     n.arsenal
         .held
         .iter()
-        .filter_map(|h| DECK.get(h.kit as usize).map(|d| h.units * d.unit_cost * condition(d, h.age)))
+        .filter_map(|h| {
+            if let Some(id) = h.design_id.as_deref() {
+                crate::equipment::profile(n, id).map(|p| h.units * p.unit_cost_bn * condition_months(p.service_months, h.age))
+            } else {
+                DECK.get(h.kit as usize).map(|d| h.units * d.unit_cost * condition(d, h.age))
+            }
+        })
         .sum()
+}
+
+/// Display condition follows the immutable custom service life, when present.
+pub fn holding_condition(n: &Nation, h: &Holding) -> f64 {
+    if let Some(id) = h.design_id.as_deref() {
+        return crate::equipment::profile(n, id).map_or(0.0, |p| condition_months(p.service_months, h.age));
+    }
+    DECK.get(h.kit as usize).map_or(0.0, |d| condition(d, h.age))
+}
+
+/// Combat coverage for custom stock uses a fixed physical reference, never its
+/// configurable purchase price. Reserved refits are not fielded; upkeep is paid
+/// from the shared service envelope and controls current readiness.
+pub fn combat_value(n: &Nation, h: &Holding) -> f64 {
+    if let Some(id) = h.design_id.as_deref() {
+        return crate::equipment::profile(n, id).map_or(0.0, |p| {
+            let readiness = n.equipment.as_ref().map_or(1.0, |s| s.maintenance_fraction.clamp(0.0, 1.0));
+            available_design_units(h) as f64 * p.reference_weight_bn
+                * condition_months(p.service_months, h.age) * readiness
+        });
+    }
+    DECK.get(h.kit as usize).map_or(0.0, |d| h.units * d.unit_cost * condition(d, h.age))
+}
+
+/// Remove mapped hardware discoveries from only the custom share. Their installed
+/// effect is already frozen in the revision; discovering a component cannot
+/// silently upgrade existing custom vehicles. Other organizational tech remains.
+pub fn combat_technology(n: &Nation) -> (f64, f64) {
+    let legacy = (crate::tech::military_multiplier(n), crate::tech::military_floor(n));
+    if n.equipment.is_none() { return legacy; }
+    let mut total = 0.0;
+    let mut custom = 0.0;
+    for h in &n.arsenal.held {
+        let value = combat_value(n, h);
+        total += value;
+        if h.design_id.is_some() { custom += value; }
+    }
+    if custom <= 0.0 || total <= 0.0 { return legacy; }
+    static HARDWARE: std::sync::OnceLock<Vec<u16>> = std::sync::OnceLock::new();
+    let hardware = HARDWARE.get_or_init(|| {
+        crate::equipment::all_components().filter_map(|c| c.technology)
+            .filter_map(crate::tech::index_of).collect::<std::collections::BTreeSet<_>>()
+            .into_iter().collect()
+    });
+    let mut bonus = n.tech.bonus.clone();
+    for i in hardware.iter().copied().filter(|i| n.tech.knows_index(*i)) {
+        for effect in &crate::tech::registry()[i as usize].effects {
+            match effect {
+                crate::tech::Effect::MilitaryEfficiency(v) => bonus.military_efficiency -= v,
+                crate::tech::Effect::MilitaryStrength(v) => bonus.military_strength -= v,
+                _ => {}
+            }
+        }
+    }
+    let fraction = (custom / total).clamp(0.0, 1.0);
+    let neutral = ((1.0 + bonus.military_efficiency_eff()).clamp(0.5, 4.0), bonus.military_strength_eff());
+    (legacy.0 + (neutral.0 - legacy.0) * fraction,
+     legacy.1 + (neutral.1 - legacy.1) * fraction)
+}
+
+/// Whole custom vehicles available to deploy. Refit reservations remain in the
+/// one arsenal, but cannot fight or be reserved a second time.
+pub fn available_design_units(h: &Holding) -> u32 {
+    if h.design_id.is_none() || !h.units.is_finite() { return 0; }
+    (h.units.max(0.0).floor().min(u32::MAX as f64) as u32).saturating_sub(h.refit_reserved)
+}
+
+pub fn reserve_refit(n: &mut Nation, source_id: &str, units: u32) -> Result<f64, String> {
+    if units == 0 { return Err("Choose at least one vehicle to refit.".into()); }
+    let h = n.arsenal.held.iter_mut().find(|h| h.design_id.as_deref() == Some(source_id))
+        .ok_or("No fielded vehicles use this design.")?;
+    if available_design_units(h) < units { return Err("Not enough unreserved vehicles for this refit.".into()); }
+    h.refit_reserved = h.refit_reserved.checked_add(units).ok_or("Too many reserved vehicles.")?;
+    Ok(h.age)
+}
+
+pub fn release_refit(n: &mut Nation, source_id: &str, units: u32) -> Result<(), String> {
+    let h = n.arsenal.held.iter_mut().find(|h| h.design_id.as_deref() == Some(source_id))
+        .ok_or("The reserved source vehicles are missing.")?;
+    if units == 0 || h.refit_reserved < units { return Err("The refit reservation does not match these vehicles.".into()); }
+    h.refit_reserved -= units;
+    Ok(())
+}
+
+pub fn deliver_design(n: &mut Nation, design_id: &str, units: u32, age: f64) -> Result<(), String> {
+    if units == 0 || !age.is_finite() || age < 0.0 { return Err("Invalid custom equipment delivery.".into()); }
+    if crate::equipment::profile(n, design_id).is_none() { return Err("The equipment revision is missing.".into()); }
+    let kit = index_of("arm_gen3").expect("the custom tank base kit exists");
+    if let Some(h) = n.arsenal.held.iter_mut().find(|h| h.design_id.as_deref() == Some(design_id)) {
+        let total = h.units + units as f64;
+        if !total.is_finite() || total > u32::MAX as f64 { return Err("This equipment holding is full.".into()); }
+        h.age = (h.age * h.units + age * units as f64) / total;
+        h.units = total;
+    } else {
+        n.arsenal.held.push(Holding { kit, design_id: Some(design_id.into()), units: units as f64,
+            age, refit_reserved: 0, loss_remainder: 0.0 });
+    }
+    Ok(())
+}
+
+pub fn complete_refit(n: &mut Nation, source_id: &str, target_id: &str, units: u32) -> Result<(), String> {
+    if source_id == target_id { return Err("Choose a different revision for the refit.".into()); }
+    let source = n.arsenal.held.iter().position(|h| h.design_id.as_deref() == Some(source_id))
+        .ok_or("The reserved source vehicles are missing.")?;
+    let h = &n.arsenal.held[source];
+    if units == 0 || h.refit_reserved < units || h.units < units as f64 {
+        return Err("The refit reservation does not match these vehicles.".into());
+    }
+    let age = h.age;
+    // Validate and deliver before removing the reservation: a refused transfer
+    // cannot delete its source inventory. Different IDs cannot merge this row.
+    deliver_design(n, target_id, units, age)?;
+    let h = &mut n.arsenal.held[source];
+    h.units -= units as f64;
+    h.refit_reserved -= units;
+    if h.units == 0.0 { h.loss_remainder = 0.0; }
+    n.arsenal.held.retain(|h| h.units > 0.0);
+    Ok(())
+}
+
+/// Completed production uses the existing delivery book. There is no second
+/// ready-stock ledger, and this helper makes no further procurement charge.
+pub fn queue_design_order(n: &mut Nation, design_id: &str, units: u32, due_days: u32, delivery_age: f64) -> Result<(), String> {
+    if units == 0 || due_days == 0 || due_days > 36_500 || !delivery_age.is_finite() || delivery_age < 0.0 {
+        return Err("Invalid custom equipment delivery order.".into());
+    }
+    if crate::equipment::profile(n, design_id).is_none() { return Err("The equipment revision is missing.".into()); }
+    let kit = index_of("arm_gen3").expect("the custom tank base kit exists");
+    if let Some(o) = n.arsenal.orders.iter_mut().find(|o| o.design_id.as_deref() == Some(design_id) && o.due_days == Some(due_days)) {
+        let total = o.units + units as f64;
+        if !total.is_finite() || total > u32::MAX as f64 { return Err("This equipment order is full.".into()); }
+        o.delivery_age = Some((o.delivery_age.unwrap_or(0.0) * o.units + delivery_age * units as f64) / total);
+        o.units = total;
+    } else {
+        n.arsenal.orders.push(Order { kit, design_id: Some(design_id.into()), units: units as f64,
+            due: ((due_days as f64) * 12.0 / 365.0).ceil() as u32, due_days: Some(due_days), delivery_age: Some(delivery_age) });
+    }
+    Ok(())
+}
+
+/// Apply one aggregate attrition fraction. Legacy holdings keep their exact
+/// arithmetic; custom vehicles carry fractional losses instead of rounding up
+/// a vehicle for every small daily engagement.
+pub fn apply_holding_loss(h: &mut Holding, fraction: f64) {
+    let fraction = fraction.clamp(0.0, 1.0);
+    if h.design_id.is_none() { h.units *= 1.0 - fraction; return; }
+    let available = available_design_units(h);
+    if available == 0 || fraction <= 0.0 { return; }
+    let loss = (available as f64 * fraction + h.loss_remainder).min(available as f64);
+    let whole = loss.floor();
+    h.units -= whole;
+    h.loss_remainder = if whole == available as f64 { 0.0 } else { loss - whole };
 }
 
 /// What share of the force its budget describes a nation has actually equipped.
@@ -460,7 +635,9 @@ pub fn adequacy_at(n: &Nation, mil_spend_gdp: f64) -> f64 {
     if want <= 0.0 {
         return BARE_FORCE;
     }
-    let f = (book_value(n) / want).clamp(0.0, ADEQUACY_CAP);
+    let held = if n.equipment.is_none() { book_value(n) }
+        else { n.arsenal.held.iter().map(|h| combat_value(n, h)).sum() };
+    let f = (held / want).clamp(0.0, ADEQUACY_CAP);
     BARE_FORCE + (1.0 - BARE_FORCE) * f
 }
 
@@ -486,7 +663,11 @@ pub fn index_of(id: &str) -> Option<u16> {
 /// through its life, which is both closer to the truth and, more importantly,
 /// something a player feels within a decade of neglecting it.
 pub fn condition(def: &EquipmentDef, age: f64) -> f64 {
-    let life = def.service_months.max(1) as f64;
+    condition_months(def.service_months, age)
+}
+
+fn condition_months(service_months: u32, age: f64) -> f64 {
+    let life = service_months.max(1) as f64;
     (1.0 - (age / life) * (1.0 - RESIDUAL)).clamp(RESIDUAL, 1.0)
 }
 
@@ -637,10 +818,10 @@ pub(crate) fn book_order(
     let slot = match due_days {
         None => orders
             .iter_mut()
-            .find(|o| o.kit == kit && o.due == lead_months && o.due_days.is_none()),
+            .find(|o| o.design_id.is_none() && o.kit == kit && o.due == lead_months && o.due_days.is_none()),
         Some(days) => orders
             .iter_mut()
-            .find(|o| o.kit == kit && o.due_days.is_some_and(|d| landing(d) == landing(days))),
+            .find(|o| o.design_id.is_none() && o.kit == kit && o.due_days.is_some_and(|d| landing(d) == landing(days))),
     };
     match slot {
         Some(o) => {
@@ -649,7 +830,7 @@ pub(crate) fn book_order(
                 o.due_days = Some(had.max(days));
             }
         }
-        None => orders.push(Order { kit, units, due: lead_months, due_days }),
+        None => orders.push(Order { kit, units, due: lead_months, due_days, design_id: None, delivery_age: None }),
     }
 }
 
@@ -729,7 +910,7 @@ pub fn tick(w: &mut WorldState) {
             }
 
             // Deliveries. An order that has run its lead time becomes a holding.
-            let mut arrived: Vec<(u16, f64)> = vec![];
+            let mut arrived: Vec<(u16, f64, Option<String>, f64)> = vec![];
             for (o, remaining) in n.arsenal.orders.iter_mut().zip(migrated) {
                 if daily {
                     o.due_days = remaining.map(|days| days.saturating_sub(1));
@@ -737,15 +918,20 @@ pub fn tick(w: &mut WorldState) {
                 } else { o.due = o.due.saturating_sub(1); }
                 let arrived_now = if daily { o.due_days == Some(0) } else { o.due == 0 };
                 if arrived_now {
-                    arrived.push((o.kit, o.units));
+                    arrived.push((o.kit, o.units, o.design_id.clone(), o.delivery_age.unwrap_or(0.0)));
                 }
             }
             n.arsenal.orders.retain(|o| if daily { o.due_days != Some(0) } else { o.due > 0 });
-            for (kit, units) in arrived {
+            for (kit, units, design_id, age) in arrived {
+                if let Some(id) = design_id {
+                    deliver_design(n, &id, units as u32, age)
+                        .expect("custom delivery orders reference validated immutable revisions");
+                    continue;
+                }
                 // One row per kit, merged with a units-weighted mean age. The old
                 // `age < 12` predicate opened a new row every year, so a seventy-year
                 // run carried seventy rows per kit and `units` only ever rose.
-                match n.arsenal.held.iter_mut().find(|h| h.kit == kit) {
+                match n.arsenal.held.iter_mut().find(|h| h.design_id.is_none() && h.kit == kit) {
                     Some(h) => {
                         let total = h.units + units;
                         if total > 0.0 {
@@ -753,7 +939,7 @@ pub fn tick(w: &mut WorldState) {
                         }
                         h.units = total;
                     }
-                    None => n.arsenal.held.push(Holding { kit, units, age: 0.0 }),
+                    None => n.arsenal.held.push(Holding { kit, units, age: 0.0, design_id: None, refit_reserved: 0, loss_remainder: 0.0 }),
                 }
             }
 
@@ -781,7 +967,13 @@ pub fn tick(w: &mut WorldState) {
             // Without this `units` only ever rose and `retain` below could never
             // fire, so an arsenal was monotonically non-decreasing for the whole game.
             for h in n.arsenal.held.iter_mut() {
-                if let Some(def) = DECK.get(h.kit as usize) {
+                if let Some(id) = h.design_id.as_deref() {
+                    let life = n.equipment.as_ref().and_then(|s| s.revisions.get(id))
+                        .map(|r| r.profile.service_months);
+                    if life.is_some_and(|life| h.age > 2.0 * life as f64) {
+                        apply_holding_loss(h, 1.0 - writeoff);
+                    }
+                } else if let Some(def) = DECK.get(h.kit as usize) {
                     if h.age > 2.0 * def.service_months as f64 {
                         h.units *= writeoff;
                     }
@@ -881,7 +1073,7 @@ mod ranking_tests {
         let n = w.nation_mut(id);
         n.mil_spend_gdp = 0.0;
         n.arsenal.held.clear();
-        n.arsenal.orders = vec![Order { kit, units: 500.0, due: 1, due_days: None }];
+        n.arsenal.orders = vec![Order { kit, units: 500.0, due: 1, due_days: None, design_id: None, delivery_age: None }];
         for _ in 0..28 {
             tick(&mut w);
             assert!(w.nation(id).arsenal.held.is_empty());

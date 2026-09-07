@@ -15,12 +15,15 @@ use spheres_sim::stratagems;
 use spheres_sim::theatre::TheatreId;
 use spheres_sim::world::*;
 use spheres_sim::{apply_command, load, save, tick_day, tick_month, Command};
+use std::collections::BTreeMap;
 use std::sync::Mutex;
 use tiny_http::{Header, Method, Response, Server};
 
 mod history;
 mod portrait_assets;
+mod page_art_assets;
 mod storage;
+mod equipment_view;
 mod transport;
 #[cfg(test)]
 mod performance;
@@ -95,6 +98,21 @@ const AGENCY_CSS: &str = include_str!("../ui/agency.css");
 const AGENCY_UI_JS: &str = include_str!("../ui/agency-ui.js");
 const COMPETITION_CSS: &str = include_str!("../ui/competition.css");
 const COMPETITION_UI_JS: &str = include_str!("../ui/competition-ui.js");
+const INDUSTRY_UI_JS: &str = include_str!("../ui/industry-ui.js");
+const INDUSTRY_CSS: &str = include_str!("../ui/industry-ui.css");
+const CASH_FLOW_UI_JS: &str = include_str!("../ui/cash-flow-ui.js");
+const CASH_FLOW_CSS: &str = include_str!("../ui/cash-flow-ui.css");
+const EQUIPMENT_UI_JS: &str = include_str!("../ui/equipment-ui.js");
+const EQUIPMENT_CSS: &str = include_str!("../ui/equipment-ui.css");
+// Claude's 46 catalogue models, imported from 092569227023ff4278a5d699018af46bd39c7c94.
+const ARSENAL_MODELS_JS: &str = include_str!("../ui/arsenal-models.js");
+const ARSENAL3D_JS: &str = include_str!("../ui/arsenal3d.js");
+const ARSENAL3D_CSS: &str = include_str!("../ui/arsenal3d.css");
+#[cfg(test)]
+mod arsenal_model_tests;
+const EQUIPMENT_MESH_JS: &str = include_str!("../ui/equipment-mesh.js");
+const EQUIPMENT_MODEL_JS: &str = include_str!("../ui/equipment-model.js");
+const EQUIPMENT_EXPORT_JS: &str = include_str!("../ui/equipment-export.js");
 const MILITARY_OPERATIONS_JS: &str = include_str!("../ui/operations-ui.js");
 const MILITARY_OPERATIONS_CSS: &str = include_str!("../ui/operations-ui.css");
 /// Baked country outlines — see `src/bin/mapgen.rs`.
@@ -162,8 +180,8 @@ fn fresh_session_id() -> String {
 }
 
 fn exchange_read_path(path: &str) -> bool {
-    matches!(path, "/api/competition" | "/api/goods-quotes" |
-        "/api/industry-module-quotes" | "/api/materials-quote")
+    matches!(path, "/api/equipment" | "/api/equipment-preview" | "/api/competition" | "/api/industry" | "/api/cash-flow" | "/api/goods-quotes" |
+        "/api/industry-module-quotes" | "/api/materials-quote" | "/api/construction-preview")
 }
 
 /// Exchange reads are campaign-scoped even though three of them use POST for
@@ -1596,6 +1614,7 @@ fn strategic_resource_json(
     };
     driver("Civilian operating use", line.civilian_operating_daily, "/day");
     driver("Military recurring use", line.military_recurring_monthly, "/month");
+    driver("Equipment production and refit remaining", line.equipment_remaining, "");
     driver("Committed project work remaining", line.project_remaining, "");
     driver("Mine construction remaining", line.mine_remaining, "");
     driver("Materials orders remaining", line.materials_remaining, "");
@@ -1817,7 +1836,7 @@ fn strategic_summary_json(rows: &[serde_json::Value], as_of_day: i32) -> serde_j
                 "Objective secure — return to command"
             },
             "detail": if mission_state == "idle" {
-                "Then open Production and start a project or production line; its required materials will appear here."
+                "Operating factories and equipment lines create supply requirements here. Set construction funding in Economy."
             } else {
                 "No supply decision is required today. Keep the campaign moving."
             },
@@ -1844,7 +1863,7 @@ fn strategic_summary_json(rows: &[serde_json::Value], as_of_day: i32) -> serde_j
             "id": "cover_active_supply",
             "horizon_days": 90,
             "title": "Protect the next 90 days",
-            "objective": "Keep every active production and construction line supplied.",
+            "objective": "Keep operating factories and equipment lines supplied.",
             "state": mission_state,
             "status_label": status_label,
             "active_lines": active_lines,
@@ -2146,6 +2165,7 @@ fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::V
     let kit = resources::needed_by(w, me);
     let l = read_line(w, me, c, draw[c.idx()]);
     let strategic = spheres_sim::economic_ai::raw_supply_forecast(w, me);
+    let equipment_remaining = strategic.lines.iter().find(|line|line.commodity==c).map_or(0.0,|line|line.equipment_remaining);
     let row = row_json_with_strategic(w, me, &l, kit, &strategic);
     let unit = period_board_unit(w, c);
     let held = w.nation(me).political_capital;
@@ -2179,10 +2199,10 @@ fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::V
                     "eligible": eligible,
                     "reason": refusal,
                     "cost_bn": resources::mine_cost_bn(w, district, c),
-                    "funding_kind": if programs::enrolled(w,me) { "daily_department_work" } else { "upfront_capital" },
+                    "funding_kind": if spheres_sim::clock::is_daily(w) { "daily_construction_budget" } else { "upfront_capital" },
                     "finance": w.production.industry.mines.get(&spheres_sim::industry::mine_key(district,c)).map(|f|serde_json::json!({
                         "spent_bn":f.spent_bn,"reason":f.reason,"progress_days":f.progress_days,"total_days":f.total_days,
-                        "department":"Minerals & processing","available_bn":programs::available_bn(w,me,BUDGET_INDUSTRY,2)})),
+                        "department":"Construction budget","available_bn":programs::construction_available_bn(w,me)})),
                     "output": resources::mine_output(district, c).map(|v| round(annual_period_on_board(w, c, v), 6)),
                     "active": project.is_some(),
                     "online": developed.is_some(),
@@ -2200,9 +2220,9 @@ fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::V
         .then(|| format!("No mapped {} deposit is under your control.", c.name()));
     let typical = resources::reference_mine(c).map(|a| annual_period_on_board(w, c, a));
     let mine = serde_json::json!({
-        "pc": resources::MINE_PC_COST,
-        "affordable": held >= resources::MINE_PC_COST,
-        "shortfall": (resources::MINE_PC_COST - held).max(0.0),
+        "pc": if spheres_sim::clock::is_daily(w) {0.0} else {resources::MINE_PC_COST},
+        "affordable": spheres_sim::clock::is_daily(w) || held >= resources::MINE_PC_COST,
+        "shortfall": if spheres_sim::clock::is_daily(w) {0.0} else {(resources::MINE_PC_COST - held).max(0.0)},
         "verb": if matches!(c, Commodity::Oil | Commodity::Gas) { "DRILL" } else { "MINE" },
         "blurb": "Develop a mapped deposit on ground you control.",
         "plus": typical.map(|t| format!("+{} {unit} — a typical {} mine", qty(t), c.name()))
@@ -2236,6 +2256,8 @@ fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::V
                 String::new()
             };
             format!("+{} {unit} for 36 months — feeds the {kit_name} line{stalling}", qty(period_on_board(w, c, q)))
+        } else if equipment_remaining > 1e-9 {
+            format!("+{} {unit} for 36 months — compare this continuing supply with the finite equipment schedule before committing", qty(period_on_board(w, c, q)))
         } else {
             format!("+{} {unit} for 36 months — a typical mine's output; nothing needs it {}", qty(period_on_board(w, c, q)), if w.rules.daily_simulation { "today" } else { "this month" })
         };
@@ -2324,7 +2346,10 @@ fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::V
 
     // The advisor line, verbatim.
     let best_seller = trade.get("best_seller").and_then(|v| v.as_str()).map(str::to_string);
-    let advisor = if l.need <= 0.0 {
+    let advisor = if equipment_remaining > 1e-9 {
+        let (stock_label,factor)=stock_unit(c);
+        format!("Custom equipment has {} {stock_label} of {} work remaining. Compare its funded schedule with domestic output and incoming deliveries in the supply outlook before ordering more.",qty(equipment_remaining*factor),c.name())
+    } else if l.need <= 0.0 {
         format!("Nothing needs {} {}.", c.name(), if w.rules.daily_simulation { "today" } else { "this month" })
     } else if let Some(s) = best_seller {
         if w.rules.daily_simulation {
@@ -2812,6 +2837,295 @@ fn programs_json(w: &WorldState, me: NationId, preview: Option<programs::Program
         "industry":spheres_sim::industry::snapshot(w,me)})
 }
 
+/// Cash/debt are current stocks. A retained closed programme day supplies the
+/// government budget posting; it is not a journal of every trade or event.
+/// Annual authorizations and next-work quotes never become actual cash flows.
+fn cash_flow_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let n=w.nation(me);
+    let today=spheres_sim::clock::absolute_day(w);
+    let daily=spheres_sim::clock::is_daily(w);
+    let plan=programs::preview(w,me);
+    let actual=n.program_budget.as_ref();
+    let closed=actual.filter(|p|p.fiscal_staged && p.day.is_some() && p.day==p.settled_day
+        && p.day.is_some_and(|day|day<=today));
+    let terms=spheres_sim::economy::growth_terms(n,n.state_invest_gdp,n.interest_rate,
+        &spheres_sim::economy::Conditions::of(w,me));
+    let fiscal=spheres_sim::economy::Fiscal::of(n,&terms);
+    let revenue=fiscal.revenue_gdp*n.gdp;
+    // Opening a budget seats cash and debt. An off-books policy read cannot
+    // pretend its zero cash-interest arm is the future opening budget's bill.
+    let interest=n.on_the_books().then_some(fiscal.interest_bn);
+    let full_total=interest.map(|cost|plan.annual_authorized_bn+cost);
+    let full_balance=full_total.map(|cost|revenue-cost);
+    let renewed=n.annual_budget.as_ref().is_some_and(|b|b.fiscal_year==w.year)
+        && actual.is_none_or(|p|p.fiscal_year==w.year);
+    let settled=closed.map(|p| {
+        let spent=p.spent_today_bn.iter().flatten().sum::<f64>();
+        let services=(0..BUDGET_MINISTRIES).map(|m|(0..programs::DEPARTMENTS)
+            .filter(|d|!programs::is_project_funded_on(n,m,*d,p.settled_day.unwrap())).map(|d|p.spent_today_bn[m][d]).sum::<f64>()).sum::<f64>();
+        let operating=p.noncapital_spent_today_bn.iter().flatten().sum::<f64>();
+        // These four categories partition ministry spending. Prepaid equipment
+        // is already expensed and is disclosed separately, never added again.
+        let capital=(0..BUDGET_MINISTRIES).map(|m|(0..programs::DEPARTMENTS)
+            .filter(|d|programs::is_project_funded_on(n,m,*d,p.settled_day.unwrap())).map(|d|p.spent_today_bn[m][d]).sum::<f64>()).sum::<f64>();
+        let other_capital=(capital-operating-p.construction_spent_today_bn).max(0.0);
+        let outflow=spent+p.interest_today_bn;
+        let day=p.settled_day.unwrap();
+        serde_json::json!({"day":day,"label":settled_day_json(day)["label"],"fiscal_year":p.authority_year,
+            "revenue_bn":p.revenue_today_bn,"ministry_spend_bn":spent,"interest_bn":p.interest_today_bn,
+            "total_outflow_bn":outflow,"primary_balance_bn":p.revenue_today_bn-spent,"balance_bn":p.revenue_today_bn-outflow,
+            "services_bn":services,"plant_operating_bn":operating,"construction_bn":p.construction_spent_today_bn,
+            "other_capital_bn":other_capital,"prepaid_used_bn":p.prepaid_used_today_bn.iter().flatten().sum::<f64>(),
+            "note":"Revenue minus ministry spending and interest; positive is a surplus. The four spending categories are included once in ministry spending. Prepaid equipment is already paid. Trade and other direct transactions are separate."})
+    });
+    let names=["Health","Education","Housing","Welfare","Infrastructure","Industry & Energy","Science","Defense","Security","Diplomacy"];
+    let ministries:Vec<_>=(0..BUDGET_MINISTRIES).map(|m|{
+        let rows:Vec<_>=plan.rows.iter().filter(|row|row.ministry==m).collect();
+        serde_json::json!({"key":ministry_key(m),"name":names[m],
+            "annual_bn":rows.iter().map(|row|row.annual_bn).sum::<f64>(),
+            "daily_authorized_bn":daily.then(||rows.iter().map(|row|row.daily_bn).sum::<f64>()),
+            "available_bn":rows.iter().map(|row|row.available_bn).sum::<f64>(),
+            "last_spent_bn":closed.map(|p|p.spent_today_bn[m].iter().sum::<f64>()),
+            "spent_ytd_bn":closed.filter(|p|p.authority_year==w.year).map(|p|p.spent_ytd_bn[m].iter().sum::<f64>())})
+    }).collect();
+    let mut construction=construction_budget_json(w,me);
+    // Legacy construction fields carry raw work-ledger readings. On this cash
+    // screen only a closed posting may be labelled recorded spending.
+    construction["spent_today_bn"]=serde_json::json!(closed.map(|p|p.construction_spent_today_bn));
+    construction["spent_day"]=serde_json::json!(closed.and_then(|p|p.settled_day));
+    construction["spent_ytd_bn"]=serde_json::json!(closed.filter(|p|p.authority_year==w.year).map(|p|p.construction_spent_ytd_bn));
+    let available=programs::construction_available_bn(w,me);
+    let cap=programs::construction_daily_budget_bn(w,me);
+    let queued_count=production::projects_for(w,me).count()+w.resources.mine_projects.iter().filter(|p|p.started_by==me).count();
+    let planned=construction["planned_daily_bn"].as_f64().unwrap_or(0.0);
+    let (status,title,detail)=if !daily {("unavailable","Daily construction is not active","This save must finish its transition to daily play before using the construction funding limit.")}
+        else if actual.is_none() {("not_enrolled","Open construction funding","Apply a daily construction limit to use the capital funding in your annual budget.")}
+        else if !renewed {("renewal_due","Renew the annual budget","Capital work needs current-year authorization. Review the annual plan before adding more construction.")}
+        else if cap<=0.0 {("paused","Construction funding is paused","The applied daily limit is zero. Existing projects preserve their progress and receive no new construction funding.")}
+        else if queued_count==0 {("ready","No construction payments are queued","The daily limit is a ceiling. Unused construction authorization is not charged to the treasury.")}
+        else if available<=0.0 {("unfunded","No construction funds are available","Review the daily ceiling and remaining annual capital authority. Increasing the daily limit does not increase the annual budget.")}
+        else if planned<=0.0 {("constrained","Review the construction queue","Funds are available, but no next work is currently planned. The queue shows site, ownership and commissioning constraints.")}
+        else {("funded","Next construction work has funding","The planned next work fits the available construction authority and daily limit. This is a work quote, not a paid receipt or a guaranteed completion date.")};
+    construction["queued_count"]=serde_json::json!(queued_count);
+    construction["affordability"]=serde_json::json!({"status":status,"title":title,"detail":detail});
+    if !daily {
+        // The legacy year_fraction is a month. Do not label its allowance as
+        // a daily quote while the save finishes its open month.
+        for key in ["daily_budget_bn","default_daily_bn","planned_daily_bn"] {
+            construction[key]=serde_json::Value::Null;
+        }
+    }
+    let mut alerts=Vec::new();
+    if !n.on_the_books() {alerts.push(serde_json::json!({"id":"open_books","level":"info","title":"Treasury books are not open","detail":"Current cash and debt balances have not been seated. Review the first annual budget for its opening debt and interest quote.","action":"budget"}));}
+    if !renewed {alerts.push(serde_json::json!({"id":"renew_budget","level":"attention","title":"Annual budget needs review","detail":"The current year has no renewed plan. Standing services continue; new capital authorization requires renewal.","action":"budget"}));}
+    if full_balance.is_some_and(|value|value<0.0) {alerts.push(serde_json::json!({"id":"annual_full_use_gap","level":"attention","title":"Full-use annual plan exceeds estimated revenue","detail":"This comparison assumes every authorized ministry dollar is used. It is separate from the latest settled surplus or deficit; review allocations, taxes and interest.","action":"budget"}));}
+    if queued_count>0&&matches!(status,"paused"|"unfunded"|"constrained") {alerts.push(serde_json::json!({"id":"construction_funding","level":"attention","title":title,"detail":detail,"action":"construction"}));}
+    let mut actions=vec![serde_json::json!({"action":"budget","label":"Review annual budget"}),
+        serde_json::json!({"action":"construction","label":"Manage construction funding"}),
+        serde_json::json!({"action":"industry","label":"Inspect operating industry"}),
+        serde_json::json!({"action":"policy","label":"Review taxes and interest"})];
+    if spheres_sim::commerce::active(w) {actions.push(serde_json::json!({"action":"trade","label":"Review goods cash commitments"}));}
+    let mut view=serde_json::json!({"nation":me,"name":me.name(),"date":w.date_str(),"as_of_day":today,"daily":daily,"on_the_books":n.on_the_books(),
+        "balances":{"treasury_bn":n.treasury_bn,"debt_bn":n.debt_bn,"net_position_bn":n.net_position_bn(),"debt_gdp":n.debt_gdp},
+        "settled":settled,"annual":{"fiscal_year":w.year,"renewed":renewed,"basis_gdp_bn":plan.basis_gdp,
+            "revenue_basis_gdp_bn":n.gdp,"revenue_bn":revenue,"tax_revenue_bn":n.tax_rate*n.gdp,
+            "resource_revenue_bn":terms.budget_oil_revenue*n.gdp,"authorized_spend_bn":plan.annual_authorized_bn,
+            "interest_bn":interest,"total_at_full_use_bn":full_total,"balance_at_full_use_bn":full_balance,
+            "posted_spending_run_rate_bn":actual.filter(|p|p.settled_day.is_some()).map(|p|p.settled_spending_annual_bn),
+            "posted_spending_day":actual.and_then(|p|p.settled_day),
+            "note":"Tax and oil-related revenue are annual estimates using current GDP. Full use means all ministry allocations plus interest. The spending run-rate scales one recorded day's ministry spending to a year; it is not spending so far this year. Review the first budget to see opening debt and interest."},
+        "ministries":ministries,"construction":construction,"alerts":alerts,"actions":actions,
+        "note":"Daily figures cover the government budget. Trade, transfers and other transactions may also change the treasury. Budget surpluses reduce debt before building cash; deficits use cash before adding debt. Available funding is authorization, not a separate cash balance, and can include previously paid equipment."});
+    view["priorities"]=serde_json::Value::Array(cash_flow_priorities(&view));
+    view
+}
+
+/// Presentation advice from the already assembled authoritative readings. No
+/// hypothetical rate change, spending cut, runway or future saving is priced.
+fn cash_flow_priorities(view:&serde_json::Value)->Vec<serde_json::Value> {
+    let mut out=Vec::new();
+    let metric=|label:&str,amount:f64,period:&str|serde_json::json!({"label":label,"amount_bn":amount,"period":period});
+    let annual=&view["annual"];
+    if view["on_the_books"]==false {
+        out.push(serde_json::json!({"id":"open_books","level":"attention","title":"Review the opening budget",
+            "detail":"Review the opening treasury, debt and interest quote before choosing your annual funding plan.",
+            "metrics":[],"action":{"action":"budget"}}));
+    } else if annual["renewed"]==false {
+        out.push(serde_json::json!({"id":"renew_budget","level":"attention","title":"Renew this year's budget",
+            "detail":"Standing services continue, but new capital authorization needs a current-year budget.",
+            "metrics":[],"action":{"action":"budget"}}));
+    }
+    let construction=&view["construction"];
+    let funding=&construction["affordability"];
+    if construction["queued_count"].as_u64().unwrap_or(0)>0 && annual["renewed"]==true
+        && matches!(funding["status"].as_str(),Some("paused"|"unfunded"|"not_enrolled")) {
+        let metrics:[(&str,&str);3]=[("Daily construction limit","daily_budget_bn"),
+            ("Available for next work","available_bn"),("Planned next work","planned_daily_bn")];
+        out.push(serde_json::json!({"id":"construction_funding","level":"attention","title":funding["title"],
+            "detail":funding["detail"],"metrics":metrics.into_iter().filter_map(|(label,key)|
+                construction[key].as_f64().map(|amount|metric(label,amount,"Next-work quote"))).collect::<Vec<_>>(),
+            "action":{"action":"construction"}}));
+    }
+    let receipt=&view["settled"];
+    if let (Some(revenue),Some(spent),Some(primary),Some(interest),Some(balance))=(receipt["revenue_bn"].as_f64(),
+        receipt["ministry_spend_bn"].as_f64(),receipt["primary_balance_bn"].as_f64(),
+        receipt["interest_bn"].as_f64(),receipt["balance_bn"].as_f64()) {
+        if balance<0.0 {
+            let period=format!("Settled {}",receipt["label"].as_str().unwrap_or("day"));
+            let mut detail=if primary>=0.0 {
+                "Recorded revenue covered ministry spending. Interest exceeded the remaining amount, leaving the government budget in deficit. Review the debt-service terms alongside the current policy settings.".to_string()
+            } else {
+                format!("Ministry spending exceeded recorded revenue before interest. {} Review the funding plan and the services it supports.",
+                    if interest>0.0 {"Interest then increased the government budget deficit."} else {"No interest was charged in this posting."})
+            };
+            let mut metrics=vec![metric("Recorded revenue",revenue,&period),metric("Ministry spending",spent,&period),
+                metric("Balance before interest",primary,&period),metric("Interest",interest,&period),metric("Final budget balance",balance,&period)];
+            if let Some(amount)=receipt["construction_bn"].as_f64() {
+                metrics.push(metric("Construction included in spending",amount,&period));
+                if amount==0.0 { detail.push_str(" No construction was charged in this posting."); }
+                else if amount>0.0&&amount < -balance {
+                    detail.push_str(" Recorded construction was smaller than the deficit and does not account for the whole gap.");
+                }
+            }
+            out.push(serde_json::json!({"id":if primary>=0.0 {"interest_pressure"} else {"primary_deficit"},
+                "level":"attention","title":if primary>=0.0 {"Interest turned the budget negative"} else {"Spending exceeded revenue before interest"},
+                "detail":detail,"metrics":metrics,"action":if primary>=0.0 {
+                    serde_json::json!({"action":"policy","control":"rate"})
+                } else {serde_json::json!({"action":"budget"})}}));
+            if let Some(ministries)=view["ministries"].as_array() {
+                // Stable ministry order breaks an exact tie, not a guess about
+                // which service matters less. These totals include the source
+                // ministry's proportional share of pooled construction bills.
+                let largest=ministries.iter().enumerate().filter_map(|(i,row)|
+                    row["last_spent_bn"].as_f64().filter(|amount|*amount>0.0).map(|amount|(i,row,amount)))
+                    .max_by(|a,b|a.2.total_cmp(&b.2).then_with(||b.0.cmp(&a.0)));
+                if let Some((_,row,amount))=largest {
+                    let name=row["name"].as_str().unwrap_or("Ministry");
+                    let ties=ministries.iter().filter(|row|row["last_spent_bn"].as_f64()==Some(amount)).count();
+                    let mut detail=format!("{name} funded {:.1}% of the recorded ministry spending. This includes its share of pooled construction funding; review the services and allocations before deciding.",if spent>0.0 {amount/spent*100.0} else {0.0});
+                    if ties>1 {detail.push_str(" Other ministries recorded the same amount; the standard ministry order breaks the tie.");}
+                    out.push(serde_json::json!({"id":"largest_ministry","level":"info","title":format!("Largest ministry expense: {name}"),
+                        "detail":detail,"metrics":[metric(name,amount,&period),metric("All ministries",spent,&period)],
+                        "action":{"action":"budget","ministry":row["key"]}}));
+                }
+            }
+        }
+    }
+    if annual["renewed"]==true {
+        if let (Some(revenue),Some(authorized),Some(interest),Some(balance))=(annual["revenue_bn"].as_f64(),
+            annual["authorized_spend_bn"].as_f64(),annual["interest_bn"].as_f64(),annual["balance_at_full_use_bn"].as_f64()) {
+            if balance<0.0 {
+                out.push(serde_json::json!({"id":"annual_full_use_gap","level":"attention","title":"The full-use annual plan exceeds estimated revenue",
+                    "detail":"This estimate assumes every authorized ministry dollar is used, plus interest. It is separate from the dated government budget result. Review allocations and revenue; the construction ceiling does not change annual authorizations.",
+                    "metrics":[metric("Estimated revenue",revenue,"Annual estimate"),metric("Authorized ministry spending",authorized,"Annual estimate"),
+                        metric("Interest",interest,"Annual estimate"),metric("Full-use budget balance",balance,"Annual estimate")],
+                    "action":{"action":"budget"}}));
+            }
+        }
+    }
+    out.truncate(3);
+    out
+}
+
+/// Completed facilities, including support assets, without enabling the AI or
+/// trade pilot. Output is a dated operation receipt, never inferred from a
+/// catalog capacity or from a missing receipt's default zero.
+fn industry_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    use spheres_sim::industry;
+    let snapshot = industry::snapshot(w, me);
+    let today = spheres_sim::clock::absolute_day(w);
+    let operation_day = snapshot.settled_day.filter(|day| *day <= today);
+    let mut sites = Vec::new();
+    for site in &snapshot.sites {
+        let kind = site.kind;
+        let spec = production::catalog(kind);
+        let productive = matches!(kind, ProjectKind::ProcessingPlant | ProjectKind::StarterIndustry | ProjectKind::MachineryWorks);
+        let operation = operation_day.and_then(|_| w.production.industry.operations.iter()
+            .find(|row| row.district == site.district && row.kind == kind));
+        let research = snapshot.research_operations.iter().find(|row|
+            kind == ProjectKind::ResearchCenter && row.district == site.district
+                && row.nation == me && row.day <= today);
+        let receipt_day = research.map(|row| row.day).or_else(|| operation.map(|_| operation_day.unwrap()));
+        let has_receipt = receipt_day.is_some();
+        let status = operation.map(|row| row.status.as_str())
+            .or_else(|| research.map(|row| row.status.as_str()))
+            .unwrap_or(if productive { "awaiting_settlement" } else { "ready" });
+        let reason = operation.and_then(|row| row.reason.clone())
+            .or_else(|| research.map(|row| row.reason.clone()))
+            .or_else(|| (!has_receipt).then(|| if productive {
+                "No operating receipt has settled for this facility yet. Its first daily operation will report output or the exact constraint.".to_string()
+            } else { spec.effect.to_string() }));
+        let output_unit = match kind {
+            ProjectKind::ProcessingPlant | ProjectKind::StarterIndustry => Some("intermediate packs"),
+            ProjectKind::MachineryWorks => Some("capital-goods packs"),
+            _ => None,
+        };
+        let mut actions = vec![serde_json::json!({"action":"province","label":"Inspect province","district":site.district})];
+        let budget = |ministry: &str, department: usize, label: &str| serde_json::json!({
+            "action":"budget","label":label,"ministry":ministry,"department":department});
+        if productive {
+            actions.push(budget("industry", if kind == ProjectKind::MachineryWorks {0} else {2}, "Review factory operating funds"));
+            actions.push(budget("industry", 1, "Review energy funding"));
+            actions.push(serde_json::json!({"action":"resources","label":"Inspect raw input supplies"}));
+            if spheres_sim::commerce::active(w) {
+                actions.push(serde_json::json!({"action":"trade","label":"Inspect goods and trade",
+                    "good":if kind == ProjectKind::MachineryWorks {"capital_goods"} else {"intermediates"}}));
+            }
+        } else if kind == ProjectKind::Generation {
+            actions.push(budget("industry", 1, "Review energy funding"));
+            actions.push(serde_json::json!({"action":"resources","label":"Inspect generating fuel"}));
+        } else if kind == ProjectKind::ResearchCenter {
+            actions.push(budget("science", 0, "Review research funding"));
+            actions.push(serde_json::json!({"action":"research","label":"Inspect research projects"}));
+        } else if kind == ProjectKind::ArmsPlant {
+            actions.push(budget("defense", 3, "Review equipment funding"));
+            actions.push(serde_json::json!({"action":"manufacture","label":"Manage equipment production","district":site.district}));
+        }
+        actions.push(serde_json::json!({"action":"construction","label":"Review province construction","district":site.district}));
+        let attention = has_receipt && matches!(status, "limited" | "paused" | "blocked");
+        sites.push(serde_json::json!({
+            "id":format!("site:{}:{}",site.district,kind.key()),"district":site.district,
+            "district_name":spheres_sim::districts::name_of(&site.district).unwrap_or(&site.district),
+            "kind":kind.key(),"name":spec.name,"effect":spec.effect,"level":production::level(w,&site.district,kind),
+            "capacity_micros":if kind==ProjectKind::StarterIndustry {w.production.industry.modules.get(&site.district).copied()} else {None},
+            "productive":productive,"status":status,"reason":reason,
+            "has_receipt":has_receipt,"attention":attention,"receipt_day":receipt_day,
+            "receipt_label":receipt_day.map(|day|settled_day_json(day)["label"].clone()),
+            "output_daily":if productive {operation.map(|row|row.output_daily)} else {None},
+            "output_unit":output_unit,"power_used_daily":operation.map(|row|row.power_used_daily),
+            "cash_spent_daily_bn":operation.map(|row|row.cash_spent_daily_bn)
+                .or_else(||research.map(|row|row.cash_spent_daily_bn)),
+            "research":research.map(|row|serde_json::json!({"day":row.day,"technology_name":row.technology_name,
+                "prototype_credit":row.prototype_credit,"goods_used":row.goods_used})),
+            "actions":actions,
+        }));
+    }
+    let mut queue: Vec<_> = production::projects_for(w, me)
+        .filter(|project|w.districts.get(&project.district)==Some(&me))
+        .map(|project|serde_json::json!({"id":project.id,"name":production::catalog(project.kind).name,
+            "kind":project.kind.key(),"district":project.district,
+            "district_name":spheres_sim::districts::name_of(&project.district).unwrap_or(&project.district),
+            "progress":(project.progress_days / project.total_days.max(1) as f64).clamp(0.0,1.0),
+            "eta_days":production::estimated_days_left(w,project)})).collect();
+    queue.extend(construction_mine_queue(w,me).into_iter().filter(|row|
+        row["province"]["id"].as_str().is_some_and(|district|w.districts.get(district)==Some(&me)))
+        .map(|row|serde_json::json!({"id":row["id"],"name":row["name"],"kind":"resource_mine",
+            "district":row["province"]["id"],"district_name":row["province"]["name"],
+            "progress":row["progress"],"eta_days":row["eta_days"]})));
+    let daily=spheres_sim::clock::is_daily(w);
+    let settlement_day=operation_day.into_iter().chain(snapshot.research_operations.iter()
+        .filter(|row|row.nation==me&&row.day<=today).map(|row|row.day)).max();
+    serde_json::json!({"nation":me,"name":me.name(),"date":w.date_str(),"as_of_day":today,
+        "enabled":daily&&w.rules.production_system&&w.rules.resource_market,"daily":daily,
+        "settlement":settlement_day.map(|day|serde_json::json!({"day":day,"label":settled_day_json(day)["label"]})),
+        "summary":{"facility_count":sites.len(),"attention_count":sites.iter().filter(|row|row["attention"]==true).count(),"queued_count":queue.len()},
+        "sites":sites,"queue":queue,
+        "goods":[{"good":"intermediates","name":"Intermediate packs","stock":snapshot.goods.intermediates,"capacity":snapshot.capacity_each},
+            {"good":"capital_goods","name":"Capital-goods packs","stock":snapshot.goods.capital_goods,"capacity":snapshot.capacity_each}],
+        "power":{"capacity_daily":snapshot.power_capacity_daily,"used_daily":operation_day.map(|_|snapshot.power_used_daily)},
+        "note":"Completed facilities operate automatically when their inputs, power and operating funds are available. Output and spending are dated receipts; goods are inventory, not treasury cash. Support upgrades provide their stated capabilities and are not separate pack producers. Actual value added is recorded in the province economy, without a second completion or sales bonus. Construction funding and operating purchases remain distinct uses of the annual capital budget."})
+}
+
 /// Read-only assembly: the simulation owns decisions, prices and delivered
 /// output. Economic tiers are descriptive UI bands in billions of 1990 dollars.
 fn competition_json(w: &WorldState, me: NationId) -> serde_json::Value {
@@ -2988,9 +3302,9 @@ fn production_funding_json(
         "required": round(spec.funding_required, 6),
         "ratio": round(production::funding_ratio(w, me, kind), 4),
         "department_mode":programs::enrolled(w,me),
-        "department_name":programs::NAMES[spec.funding_ministry][production::funding_department(kind)],
+        "department_name":"National construction budget",
         "work_cost_bn":spheres_sim::industry::work_cost_bn(kind),
-        "available_bn":spheres_sim::industry::project_authority(w,me,kind),
+        "available_bn":programs::construction_available_bn(w,me),
     })
 }
 
@@ -3018,6 +3332,13 @@ fn district_capability_total(w: &WorldState, district: &str) -> usize {
 
 fn production_project_json(w: &WorldState, me: NationId, p: &Project) -> serde_json::Value {
     let spec = production::catalog(p.kind);
+    let planned = spheres_sim::industry::project_plans(w).remove(&p.id);
+    let status = planned.as_ref().map_or(p.status, |plan| {
+        if plan.reason.is_some() { ProjectStatus::Blocked }
+        else if plan.advance_days <= 1e-9 { ProjectStatus::Paused }
+        else if plan.slow_reason.is_some() { ProjectStatus::Slowed }
+        else { ProjectStatus::Building }
+    });
     let scale=spheres_sim::industrial_modules::scale(p);
     let recipe=spec.recipe.map(|value|value*scale);
     let progress = (p.progress_days / p.total_days.max(1) as f64).clamp(0.0, 1.0);
@@ -3040,18 +3361,18 @@ fn production_project_json(w: &WorldState, me: NationId, p: &Project) -> serde_j
         "priority": p.priority.key(),
         "progress_days": round(p.progress_days*scale, 3),
         "total_days":if p.capacity_micros.is_some(){serde_json::json!(p.total_days as f64*scale)}else{serde_json::json!(p.total_days)},
-        "work_unit":"physical work-days, not a calendar deadline",
+        "work_unit":"funded installation days",
         "progress": round(progress, 4),
-        "status": p.status.key(),
-        "reason": p.reason,
+        "status": status.key(),
+        "reason": planned.as_ref().and_then(|plan|plan.reason.clone().or_else(||plan.slow_reason.clone())).or_else(||p.reason.clone()),
         "eta_days": production::estimated_days_left(w, p),
         "nominal_work_rate": round(production::nominal_work_rate(w, p), 4),
         "work_rate_today": round(production::work_rate_today(w, p), 4),
         "throughput_ratio": round(production::throughput_ratio(w, p), 4),
-        "pc_cost": round(spec.political_cost, 3),
+        "pc_cost": if spheres_sim::clock::is_daily(w) { 0.0 } else { round(spec.political_cost, 3) },
         "funding": production_funding_json(w, me, p.kind),
         "finance": production::project_finance(w,p),
-        "requirements": production_requirements_json(w, me, &recipe, Some(p)),
+        "requirements": if spheres_sim::clock::is_daily(w) { vec![] } else { production_requirements_json(w, me, &recipe, Some(p)) },
         // This endpoint is player-only and `projects_for` filters by nation;
         // these are therefore actual permissions, not generic button hints.
         "actions": {
@@ -3073,7 +3394,7 @@ fn production_summary_json(w: &WorldState, me: NationId) -> serde_json::Value {
         .sum::<usize>();
     serde_json::json!({
         "active": projects.len(),
-        "capacity": production::MAX_ACTIVE_PROJECTS,
+        "capacity": if spheres_sim::clock::is_daily(w) { None } else { Some(production::MAX_ACTIVE_PROJECTS) },
         "building": count(ProjectStatus::Building),
         "slowed": slowed,
         "paused": paused,
@@ -3100,20 +3421,186 @@ fn production_start_allowed(
     district: &str,
     kind: ProjectKind,
 ) -> bool {
-    if production::start_project_error(w, me, district, kind).is_some() {
-        return false;
+    production_start_refusal(w, me, district, kind).is_none()
+}
+
+fn production_start_refusal(
+    w: &WorldState,
+    me: NationId,
+    district: &str,
+    kind: ProjectKind,
+) -> Option<String> {
+    if let Some(reason) = production::start_project_error(w, me, district, kind) {
+        return Some(reason);
     }
     let command = Command::StartProject {
         nation: me,
         district: district.to_string(),
         kind,
     };
-    spheres_sim::price_of(w, &command)
-        .is_some_and(|price| w.nation(me).political_capital + 1e-9 >= price)
+    match spheres_sim::price_of(w, &command) {
+        Some(price) if w.nation(me).political_capital + 1e-9 >= price => None,
+        Some(price) => Some(format!("This order needs {:.1} political capital; you have {:.1}.",
+            (price * 10.0).ceil() / 10.0, (w.nation(me).political_capital * 10.0).floor() / 10.0)),
+        None => Some("Construction orders are unavailable in this game.".into()),
+    }
 }
 
 /// Player-only production board. The fixed catalog order comes from the sim;
 /// provinces are the ownership BTreeMap's order; projects are sorted by id.
+fn construction_mine_queue(w: &WorldState, me: NationId) -> Vec<serde_json::Value> {
+    let planned: f64 = spheres_sim::industry::project_plans(w).iter()
+        .filter(|(id, _)| w.production.projects.iter().any(|p| p.id == **id && p.nation == me))
+        .map(|(_, plan)| plan.cash_bn).sum();
+    let mut available = (programs::construction_available_bn(w, me) - planned).max(0.0);
+    w.resources.mine_projects.iter().filter(|p| p.started_by == me).map(|p| {
+        let key = spheres_sim::industry::mine_key(&p.district, p.commodity);
+        let finance = w.production.industry.mines.get(&key);
+        let plan = spheres_sim::industry::mine_work_plan(w, p, available);
+        let legacy_blocked = plan.is_none() && (!w.districts.get(&p.district)
+            .and_then(|owner|w.nation_opt(*owner)).is_some_and(|n|n.alive)
+            || resources::district_contested(w,&p.district));
+        let paid = finance.map_or(p.investment_bn, |f| f.spent_bn);
+        let total = finance.map_or_else(|| spheres_sim::clock::days_for_months(w, p.months_total) as f64, |f| f.total_days.max(1) as f64);
+        let remaining_days = finance.map_or_else(|| p.days_left.unwrap_or_else(|| spheres_sim::clock::days_for_months(w,p.months_left)) as f64, |f| (total-f.progress_days).max(0.0));
+        let daily = plan.as_ref().map_or(0.0, |p| p.cash_bn);
+        available = (available-daily).max(0.0);
+        let reason = if legacy_blocked {Some("Paused while this province is contested or has no active government.".to_string())}
+            else {plan.as_ref().and_then(|p| p.reason.clone().or_else(||p.slow_reason.clone()))};
+        let eta = plan.as_ref().map_or((!legacy_blocked).then_some(remaining_days.ceil() as u32), |p|
+            (p.advance_days > 1e-9).then(|| (remaining_days / p.advance_days).ceil() as u32));
+        serde_json::json!({
+            "id":key,"name":format!("{} {}",p.commodity.name(),if matches!(p.commodity,Commodity::Oil|Commodity::Gas){"field"}else{"mine"}),
+            "province":{"id":p.district,"name":spheres_sim::districts::name_of(&p.district).unwrap_or(&p.district)},
+            "progress":(1.0-remaining_days/total.max(1.0)).clamp(0.0,1.0),
+            "status":if legacy_blocked || plan.as_ref().is_some_and(|p|p.reason.is_some()){"blocked"}else if plan.as_ref().is_some_and(|p|p.advance_days<=1e-9){"paused"}else if reason.is_some(){"slowed"}else{"building"},
+            "reason":reason,"eta_days":eta,"legacy_prepaid":finance.is_none(),
+            "finance":{"cost_bn":p.investment_bn,"spent_bn":paid,"remaining_bn":(p.investment_bn-paid).max(0.0),"daily_request_bn":daily}
+        })
+    }).collect()
+}
+
+fn mine_impact_preview_json(w:&WorldState,me:NationId,district:&str,c:Commodity)->serde_json::Value {
+    let reason=resources::mine_refusal(w,me,district,c);
+    let output=resources::mine_output(district,c).unwrap_or(0.0);
+    let cost=resources::mine_cost_bn(w,district,c).unwrap_or(0.0);
+    let days=spheres_sim::clock::days_for_months(w,resources::MINE_BUILD_MONTHS);
+    let mut after=w.clone();
+    let existing=resources::mine_at(w,district,c).map_or(0.0,|m|m.output);
+    let completed_output=resources::mine_at(w,district,c).map_or(output,|m|m.output);
+    let annual_value=resources::mine_output_bn_per_year(w,district,c);
+    let value_for_output=|amount:f64| annual_value.map(|value|if output>0.0 {value*amount/output}else{0.0});
+    if resources::mine_at(w,district,c).is_none() {
+        after.resources.mines.push(resources::Mine {district:district.into(),commodity:c,output,completed:(w.year-1990)*12+w.month as i32-1});
+    }
+    let before_flow=resources::flow_from(&resources::have_table(w),me,c);
+    let after_flow=resources::flow_from(&resources::have_table(&after),me,c);
+    let mut eta=None;
+    if reason.is_none() {
+        let mut queued=w.clone();
+        if resources::start_mine(&mut queued,me,district,c).is_ok() {
+            eta=construction_mine_queue(&queued,me).iter()
+                .find(|p|p["id"]==spheres_sim::industry::mine_key(district,c))
+                .and_then(|p|p["eta_days"].as_u64());
+        }
+    }
+    let unit=period_board_unit(w,c);
+    serde_json::json!({
+        "name":format!("{} {}",c.name(),if matches!(c,Commodity::Oil|Commodity::Gas){"field"}else{"mine"}),
+        "project_kind":"resource_mine","commodity":c.key(),"district":district,"capacity_micros":serde_json::Value::Null,
+        "district_name":spheres_sim::districts::name_of(district).unwrap_or(district),"nation_name":me.name(),
+        "as_of_day":spheres_sim::clock::absolute_day(w),"cost_bn":cost,"minimum_days":days,"eta_days":eta,
+        "can_start":reason.is_none(),"reason":reason,
+        "province_effects":[
+            {"label":"Developed deposit output","before":annual_period_on_board(w,c,existing),"after":annual_period_on_board(w,c,completed_output),"unit":unit,
+                "detail":"Additional extraction at this mapped deposit after construction finishes. Existing provincial production is separate."},
+            {"label":"Annual value of mine output","before":value_for_output(existing),"after":value_for_output(completed_output),"unit":"$bn / year",
+                "detail":"Gross output valued at current model prices. This is not profit, tax revenue or guaranteed sales."}
+        ],
+        "national_effects":[
+            {"label":format!("Domestic {} supply",c.name()),"before":annual_period_on_board(w,c,before_flow),"after":annual_period_on_board(w,c,after_flow),"unit":unit,
+                "detail":"National production with this mine online under today's control conditions. More domestic supply can cover demand or become available for trade."},
+            {"label":"Construction commitment","before":0.0,"after":if reason.is_none(){cost}else{0.0},"after_label":"If queued","unit":"$bn",
+                "detail":"Paid from the shared construction budget as work progresses. No automatic tax or GDP bonus is added at completion."}
+        ],
+        "operating_requirements":[{"label":"Control of the deposit","value":serde_json::Value::Null,"unit":"",
+            "detail":"The province must remain operable. Output follows the current controlling country and can be interrupted by conflict."}],
+        "notes":["Mine size follows the game's sourced deposit and national production data. It is an estimate, not a geological survey.",
+            "The completion estimate includes currently queued buildings and mines at today's funding. No stockpile is required for construction."]
+    })
+}
+
+fn construction_preview_json(w:&WorldState,me:NationId,payload:&serde_json::Value)->Result<serde_json::Value,String> {
+    let district=payload.get("district").and_then(|v|v.as_str()).ok_or("Choose a province to review.")?;
+    if w.districts.get(district)!=Some(&me) { return Err("Choose a province your government owns.".into()); }
+    if payload.get("project_kind").and_then(|v|v.as_str())==Some("resource_mine") {
+        if !spheres_sim::clock::is_daily(w) { return Err("This funding preview requires daily construction.".into()); }
+        if payload.get("capacity_micros").is_some() { return Err("Mine size follows its mapped deposit.".into()); }
+        let commodity=payload.get("commodity").and_then(|v|v.as_str()).and_then(Commodity::parse).ok_or("Choose a known mine resource.")?;
+        return Ok(mine_impact_preview_json(w,me,district,commodity));
+    }
+    let kind=payload.get("project_kind").and_then(|v|v.as_str()).and_then(ProjectKind::parse)
+        .ok_or("Choose a known construction project.")?;
+    let size=match payload.get("capacity_micros") {
+        None=>None,
+        Some(value)=>Some(value.as_u64().and_then(|v|u32::try_from(v).ok())
+            .filter(|v|(1..=spheres_sim::industrial_modules::STANDARD_MICROS).contains(v))
+            .ok_or("Choose a valid whole workshop size.")?),
+    };
+    if (kind==ProjectKind::StarterIndustry)!=size.is_some() {
+        return Err("Choose a workshop size only for a starter workshop.".into());
+    }
+    let preview=spheres_sim::construction_preview::preview(w,me,district,kind,size);
+    let mut value=serde_json::to_value(preview).map_err(|e|e.to_string())?;
+    value["project_kind"]=serde_json::json!(kind.key());
+    value["capacity_micros"]=serde_json::json!(size);
+    value["district_name"]=serde_json::json!(spheres_sim::districts::name_of(district).unwrap_or(district));
+    value["nation_name"]=serde_json::json!(me.name());
+    value["as_of_day"]=serde_json::json!(spheres_sim::clock::absolute_day(w));
+    Ok(value)
+}
+
+fn construction_budget_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let p = w.nation(me).program_budget.as_ref();
+    let budget = programs::construction_daily_budget_bn(w, me);
+    let reason = programs::construction_budget_refusal(w, me, budget);
+    let planned: f64 = spheres_sim::industry::project_plans(w).iter()
+        .filter(|(id, _)| w.production.projects.iter().any(|p| p.id == **id && p.nation == me))
+        .map(|(_, plan)| plan.cash_bn).sum::<f64>() + construction_mine_queue(w,me).iter()
+            .map(|p|p["finance"]["daily_request_bn"].as_f64().unwrap_or(0.0)).sum::<f64>();
+    serde_json::json!({
+        "daily_budget_bn":budget,
+        "default_daily_bn":programs::construction_default_daily_bn(w,me),
+        "available_bn":programs::construction_available_bn(w,me),
+        "authority_bn":programs::construction_authority_bn(w,me),
+        "spent_today_bn":p.map_or(0.0,|p|p.construction_spent_today_bn),
+        "spent_day":p.and_then(|p|p.day),
+        "spent_ytd_bn":p.filter(|p|p.authority_year==w.year).map_or(0.0,|p|p.construction_spent_ytd_bn),
+        "planned_daily_bn":planned,
+        "explicit":p.is_some_and(|p|p.construction_daily_budget_bn.is_some()),
+        "enrolled":p.is_some(),
+        "can_set":reason.is_none(),
+        "reason":reason,
+        "note":"Construction draws from one daily cash budget within civilian capital appropriations. Work is paid as delivered; unused daily budget is not charged. Existing procurement funds stay reserved for equipment."
+    })
+}
+
+fn construction_suggestions_json(w:&WorldState,me:NationId)->serde_json::Value {
+    let suggestions=spheres_sim::construction_suggestions::suggestions(w,me);
+    let items:Vec<_>=suggestions.items.into_iter().filter_map(|suggestion| {
+        let preview=spheres_sim::construction_preview::preview(w,me,&suggestion.district,suggestion.project_kind,suggestion.capacity_micros);
+        if !preview.can_start { return None; }
+        let mut value=serde_json::to_value(&suggestion).expect("serializable construction suggestion");
+        value["project_kind"]=serde_json::json!(suggestion.project_kind.key());
+        value["district_name"]=serde_json::json!(spheres_sim::districts::name_of(&suggestion.district).unwrap_or(&suggestion.district));
+        value["cost_bn"]=serde_json::json!(preview.cost_bn);
+        value["minimum_days"]=serde_json::json!(preview.minimum_days);
+        value["eta_days"]=serde_json::json!(preview.eta_days);
+        Some(value)
+    }).collect();
+    serde_json::json!({"as_of_day":suggestions.as_of_day,"items":items,"note":suggestions.note})
+}
+
 fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
     let mut projects = production::projects_for(w, me).collect::<Vec<_>>();
     projects.sort_by_key(|p| p.id);
@@ -3138,16 +3625,31 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 .filter(|district| production_start_allowed(w, me, district, spec.kind))
                 .map(|district| (*district).clone())
                 .collect::<Vec<_>>();
+            let reason = if eligible.is_empty() {
+                let mut counts = BTreeMap::<String, usize>::new();
+                for district in &owned {
+                    if let Some(reason) = production_start_refusal(w, me, district, spec.kind) {
+                        *counts.entry(reason).or_default() += 1;
+                    }
+                }
+                // Show the most widespread requirement, with deterministic ties.
+                // Each province below still carries its exact refusal.
+                counts.into_iter().max_by(|a, b| a.1.cmp(&b.1).then_with(|| b.0.cmp(&a.0)))
+                    .map(|(reason, count)| if count == owned.len() { reason } else {
+                        format!("{reason} Applies to {count} of {} provinces; check a province for its requirements.", owned.len())
+                    }).or_else(|| Some("You need an owned province before starting construction.".into()))
+            } else { None };
             serde_json::json!({
                 "kind": spec.kind.key(),
                 "name": spec.name,
                 "description": spec.description,
                 "effect": spec.effect,
                 "total_days": spec.total_days,
-                "pc_cost": round(spec.political_cost, 3),
+                "pc_cost": if spheres_sim::clock::is_daily(w) { 0.0 } else { round(spec.political_cost, 3) },
                 "funding": production_funding_json(w, me, spec.kind),
-                "requirements": production_requirements_json(w, me, &spec.recipe, None),
+                "requirements": if spheres_sim::clock::is_daily(w) { vec![] } else { production_requirements_json(w, me, &spec.recipe, None) },
                 "eligible_provinces": eligible,
+                "reason": reason,
                 "actions": { "start": !eligible.is_empty() },
             })
         })
@@ -3166,12 +3668,18 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 .filter(|spec| production_start_allowed(w, me, district, spec.kind))
                 .map(|spec| spec.kind.key())
                 .collect::<Vec<_>>();
+            let start_refusals = production::catalog_all().iter()
+                .filter(|spec| spec.kind != ProjectKind::StarterIndustry)
+                .filter_map(|spec| production_start_refusal(w, me, district, spec.kind)
+                    .map(|reason| (spec.kind.key(), reason)))
+                .collect::<BTreeMap<_, _>>();
             serde_json::json!({
                 "id": district.as_str(),
                 "name": spheres_sim::districts::name_of(district).unwrap_or(district),
                 "capabilities": district_capabilities_json(w,district),
                 "module_capacity": spheres_sim::industrial_modules::capacity(w,district),
                 "active_projects": active,
+                "start_refusals": start_refusals,
                 "actions": { "start": start },
             })
         })
@@ -3229,9 +3737,15 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
 
     serde_json::json!({
         "mode": "province_projects",
+        "preview_notice": if spheres_sim::clock::is_daily(w) { None } else if w.daily.activate_after_month.is_some() {
+            Some("Construction effects reviews need daily play. This older campaign will switch after the current month finishes.")
+        } else { Some("Construction effects reviews need daily play.") },
         "nation": format!("{:?}", me),
         "nation_name": me.name(),
-        "capacity": production::MAX_ACTIVE_PROJECTS,
+        "capacity": if spheres_sim::clock::is_daily(w) { None } else { Some(production::MAX_ACTIVE_PROJECTS) },
+        "construction_budget": construction_budget_json(w, me),
+        "suggestions": construction_suggestions_json(w, me),
+        "mine_queue": construction_mine_queue(w,me),
         "summary": production_summary_json(w, me),
         "catalog": catalog,
         "queue": queue,
@@ -3425,7 +3939,9 @@ fn manufacturing_summary_json(w: &WorldState, me: NationId) -> serde_json::Value
         .filter_map(|order| {
             spheres_sim::arsenal::registry()
                 .get(order.kit as usize)
-                .map(|def| order.units * def.unit_cost)
+                .map(|def| order.units * order.design_id.as_deref()
+                    .and_then(|id| spheres_sim::equipment::profile(n, id))
+                    .map_or(def.unit_cost, |p| p.unit_cost_bn))
         })
         .sum::<f64>();
     serde_json::json!({
@@ -3640,15 +4156,21 @@ fn manufacturing_json(w: &WorldState, me: NationId) -> serde_json::Value {
         .iter()
         .filter_map(|holding| {
             let def = spheres_sim::arsenal::registry().get(holding.kit as usize)?;
-            let condition = spheres_sim::arsenal::condition(def, holding.age);
+            let revision = holding.design_id.as_deref()
+                .and_then(|id| n.equipment.as_ref()?.revisions.get(id));
+            let condition = spheres_sim::arsenal::holding_condition(n, holding);
+            let unit_cost = revision.map_or(def.unit_cost, |r| r.profile.unit_cost_bn);
             Some(serde_json::json!({
                 "kit": def.id,
-                "name": def.name,
+                "design_id": holding.design_id,
+                "custom": revision.is_some(),
+                "unit_label": if revision.is_some() { "vehicles" } else { "legacy equivalents" },
+                "name": revision.map_or(def.name, |r| r.name.as_str()),
                 "class": resources::class_word(def.class),
                 "units": round(holding.units, 6),
                 "mean_age_months": round(holding.age, 2),
                 "condition": round(condition, 4),
-                "book_value_bn": round(holding.units * def.unit_cost * condition, 3),
+                "book_value_bn": round(holding.units * unit_cost * condition, 3),
             }))
         })
         .collect::<Vec<_>>();
@@ -3658,17 +4180,23 @@ fn manufacturing_json(w: &WorldState, me: NationId) -> serde_json::Value {
         .iter()
         .filter_map(|order| {
             let def = spheres_sim::arsenal::registry().get(order.kit as usize)?;
+            let revision = order.design_id.as_deref()
+                .and_then(|id| n.equipment.as_ref()?.revisions.get(id));
+            let unit_cost = revision.map_or(def.unit_cost, |r| r.profile.unit_cost_bn);
             let due_days = order.due_days.unwrap_or_else(|| spheres_sim::clock::days_for_months(w, order.due));
             let due = spheres_sim::clock::date_from_day(spheres_sim::clock::absolute_day(w) + due_days.saturating_sub(1) as i32);
             Some(serde_json::json!({
                 "kit": def.id,
-                "name": def.name,
+                "name": revision.map_or(def.name, |r| r.name.as_str()),
+                "design_id": order.design_id,
+                "custom": revision.is_some(),
+                "unit_label": if revision.is_some() { "vehicles" } else { "legacy equivalents" },
                 "class": resources::class_word(def.class),
                 "units": round(order.units, 6),
                 "due_months": order.due,
                 "due_days": due_days,
                 "due_date": if w.rules.daily_simulation { format!("{} {}", due.2, month_name(due.1, due.0)) } else { manufacturing_delivery_date(w, order.due) },
-                "value_bn": round(order.units * def.unit_cost, 3),
+                "value_bn": round(order.units * unit_cost, 3),
             }))
         })
         .collect::<Vec<_>>();
@@ -5051,7 +5579,7 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
             let rate = monthly * weights[di];
             // Same multiplication order as tech::tick: total * dt, then share.
             let daily_rate = daily * weights[di];
-            let (project, banked, cost, fields_in, floor) =
+            let (mut project, mut banked, mut cost, mut fields_in, mut floor) =
                 match spheres_sim::tech::project_of(w, me, *d) {
                     Some((def, banked, cost)) => (
                         serde_json::json!({
@@ -5069,6 +5597,13 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
                     ),
                     None => (serde_json::Value::Null, n.tech.progress[di], 0.0, None, false),
                 };
+            if *d == spheres_sim::tech::Domain::Aerospace {
+                if let Some((state, integration)) = n.equipment.as_ref().and_then(|s|
+                    s.active_research.as_deref().and_then(spheres_sim::equipment::research).map(|r|(s,r))) {
+                    project=serde_json::json!({"id":integration.id,"name":integration.name,"year":integration.earliest_year,"equipment":true});
+                    banked=state.research_progress;cost=integration.points;fields_in=Some(integration.earliest_year);floor=false;
+                }
+            }
             // A projection, and a projection is only worth serving while its
             // one assumption holds: that this month's research rate is the rate
             // for the whole wait. That is fair over a few years and a fiction
@@ -5228,6 +5763,8 @@ fn tech_tree_json(w: &WorldState, me: NationId, domain: spheres_sim::tech::Domai
     let n = w.nation(me);
     let reg = tech::registry();
     let focus = n.tech.focus[domain.index()];
+    let component_focus = (domain == tech::Domain::Aerospace).then(||n.equipment.as_ref()).flatten()
+        .filter(|s|s.active_research.is_some());
     let dev=tech::dev_of(n);
     let rate=tech::research_output(w,n,dev)*tech::domain_weights_of(w,n,dev)[domain.index()];
 
@@ -5248,11 +5785,13 @@ fn tech_tree_json(w: &WorldState, me: NationId, domain: spheres_sim::tech::Domai
                 "cost": tech::cost_of(w, me, idx),
                 "list_cost": def.cost,   // static list price; cost < list_cost ⇒ diffusion discount
                 "state": if known { "known" } else if open { "open" } else { "locked" },
-                "focus": focus == Some(idx),
+                "focus": component_focus.is_none() && focus == Some(idx),
                 "earliest_available":open && def.earliest_year<=w.year,
                 "floor_binds":tech::floor_binds(w,me,idx),
                 "estimated_days":if known || !open {None} else {
-                    let remaining=(tech::cost_of(w,me,idx)-n.tech.progress[domain.index()]).max(0.0);
+                    let retained=component_focus.map(|s|s.research_progress*0.5).unwrap_or_else(||
+                        n.tech.progress[domain.index()] * if focus==Some(idx){1.0}else{0.5});
+                    let remaining=(tech::cost_of(w,me,idx)-retained).max(0.0);
                     let funding=if remaining<=0.0 {Some(1)} else {research_days_left(w,remaining,rate)};
                     let calendar=(spheres_sim::clock::date_day(def.earliest_year,1,1)-spheres_sim::clock::absolute_day(w)).max(0);
                     funding.map(|d|d.max(calendar as u32))
@@ -5316,6 +5855,7 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             .and_then(spheres_sim::tech::Domain::parse)
     };
     Some(match kind {
+        "construction_budget" => Command::SetConstructionBudget { nation:me, daily_budget_bn:v.get("daily_budget_bn")?.as_f64()? },
         "choose_campaign_aim" => Command::ChooseCampaignAim { nation:me,aim:serde_json::from_value(v.get("aim")?.clone()).ok()? },
         "continue_sandbox" => Command::ContinueSandbox { nation:me },
         "respond_diplomacy" => Command::RespondDiplomacy { nation:me,offer:v.get("offer")?.as_u64()?,accept:v.get("accept")?.as_bool()? },
@@ -5504,6 +6044,26 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             nation: me,
             district: v.get("district")?.as_str()?.to_string(),
             kit: v.get("kit")?.as_str()?.to_string(),
+        },
+        "equipment_research" | "equipment_save" | "equipment_develop" | "equipment_produce" | "equipment_refit" | "equipment_retire" | "equipment_pause" | "equipment_funding" | "equipment_cancel" => {
+            use spheres_sim::EquipmentOrder as E;
+            let string=|key:&str|v.get(key)?.as_str().map(str::to_string);
+            let budget=||v.get("daily_budget_mn")?.as_f64().filter(|n|n.is_finite()).map(|n|n/1000.0);
+            let spec=||serde_json::from_value(serde_json::json!({"platform":v.get("platform"),"components":v.get("components")})).ok();
+            let project=||v.get("project")?.as_u64()?.try_into().ok();
+            let quantity=||v.get("quantity")?.as_u64()?.try_into().ok();
+            let order=match v.get("kind")?.as_str()? {
+                "equipment_research"=>E::Research{component:string("component")?},
+                "equipment_save"=>E::SaveDraft{name:string("name")?,spec:spec()?},
+                "equipment_develop"=>E::Develop{name:string("name")?,spec:spec()?,daily_budget_bn:budget()?},
+                "equipment_produce"=>E::Produce{revision:string("revision")?,district:string("district")?,quantity:quantity()?,daily_budget_bn:budget()?},
+                "equipment_refit"=>E::Refit{source:string("source")?,target:string("target")?,district:string("district")?,quantity:quantity()?,daily_budget_bn:budget()?},
+                "equipment_retire"=>E::Retire{revision:string("revision")?,quantity:quantity()?},
+                "equipment_pause"=>E::Pause{project:project()?,paused:v.get("paused")?.as_bool()?},
+                "equipment_funding"=>E::Funding{project:project()?,daily_budget_bn:budget()?},
+                "equipment_cancel"=>E::Cancel{project:project()?},_=>return None,
+            };
+            Command::Equipment{nation:me,order}
         },
         "set_manufacturing_priority" => Command::SetManufacturingPriority {
             nation: me,
@@ -6125,6 +6685,23 @@ fn main() {
                 continue;
             }
             (Method::Get, "/decision-tools.css") => Response::from_string(DECISION_TOOLS_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
+            (Method::Get, "/industry-ui.css") => Response::from_string(INDUSTRY_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
+            (Method::Get, "/industry-ui.js") => Response::from_string(INDUSTRY_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/cash-flow-ui.css") => Response::from_string(CASH_FLOW_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
+            (Method::Get, "/cash-flow-ui.js") => Response::from_string(CASH_FLOW_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/arsenal-models.js") => Response::from_string(ARSENAL_MODELS_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/arsenal3d.js") => Response::from_string(ARSENAL3D_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/arsenal3d.css") => Response::from_string(ARSENAL3D_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
+            (Method::Get, path) if path.starts_with("/art/components/") => {
+                if let Some(bytes) = page_art_assets::component_asset(&path["/art/components/".len()..]) {
+                    Response::from_data(bytes).with_header(Header::from_bytes("Content-Type","image/webp").unwrap()).with_header(Header::from_bytes("Cache-Control","public, max-age=31536000, immutable").unwrap())
+                } else { Response::from_string("Not found").with_status_code(404) }
+            },
+            (Method::Get, "/equipment-ui.css") => Response::from_string(EQUIPMENT_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
+            (Method::Get, "/equipment-ui.js") => Response::from_string(EQUIPMENT_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/equipment-mesh.js") => Response::from_string(EQUIPMENT_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/equipment-model.js") => Response::from_string(EQUIPMENT_MODEL_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/equipment-export.js") => Response::from_string(EQUIPMENT_EXPORT_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/decision-tools.js") => Response::from_string(DECISION_TOOLS_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/performance-ui.js") => Response::from_string(PERFORMANCE_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/area-art.js") => Response::from_string(AREA_ART_JS)
@@ -6171,6 +6748,20 @@ fn main() {
             (Method::Get, "/area-art.css") => Response::from_string(AREA_ART_CSS)
                 .with_header(Header::from_bytes("Content-Type", "text/css; charset=utf-8").unwrap())
                 .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/page-art.css") => Response::from_string(page_art_assets::CSS)
+                .with_header(Header::from_bytes("Content-Type", "text/css; charset=utf-8").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, path) if path.starts_with("/art/pages/") => {
+                if let Some(bytes) = page_art_assets::asset(&path["/art/pages/".len()..]) {
+                    let _ = request.respond(Response::from_data(bytes.to_vec())
+                        .with_chunked_threshold(usize::MAX)
+                        .with_header(Header::from_bytes("Content-Type", "image/webp").unwrap())
+                        .with_header(Header::from_bytes("Cache-Control", "public, max-age=31536000, immutable").unwrap()));
+                } else {
+                    let _ = request.respond(Response::from_string("Not found").with_status_code(404));
+                }
+                continue;
+            }
             (Method::Get, path) if path.starts_with("/art/areas/") => {
                 if let Some(bytes) = area_art_asset(&path["/art/areas/".len()..]) {
                     let _ = request.respond(Response::from_data(bytes.to_vec())
@@ -6572,6 +7163,36 @@ fn main() {
                 let g=game.lock().unwrap();
                 match g.world.player {Some(me)=>json_response(competition_json(&g.world,me)),None=>json_error(400,serde_json::json!({"error":"Choose a nation first."}))}
             }
+            (Method::Get, "/api/industry") => {
+                let g=game.lock().unwrap();
+                match g.world.player {
+                    Some(me)=>{
+                        let mut value=industry_json(&g.world,me);
+                        value["session_id"]=serde_json::json!(g.session_id);
+                        json_response(value)
+                    }
+                    None=>json_error(400,serde_json::json!({"error":"Choose a nation first."})),
+                }
+            }
+            (Method::Get, "/api/cash-flow") => {
+                let g=game.lock().unwrap();
+                match g.world.player {
+                    Some(me)=>{
+                        let mut value=cash_flow_json(&g.world,me);
+                        value["session_id"]=serde_json::json!(g.session_id);
+                        json_response(value)
+                    }
+                    None=>json_error(400,serde_json::json!({"error":"Choose a nation first."})),
+                }
+            }
+            (Method::Get, "/api/equipment") => {
+                let g=game.lock().unwrap();
+                match g.world.player {Some(me)=>json_response(equipment_view::view(&g.world,me,&g.session_id)),None=>json_error(400,serde_json::json!({"error":"Choose a nation first."}))}
+            }
+            (Method::Post, "/api/equipment-preview") => {
+                let g=game.lock().unwrap();
+                match g.world.player {Some(me)=>match equipment_view::preview(&g.world,me,&g.session_id,&payload){Ok(v)=>json_response(v),Err(e)=>json_error(400,serde_json::json!({"error":e}))},None=>json_error(400,serde_json::json!({"error":"Choose a nation first."}))}
+            }
             (Method::Post, "/api/goods-quotes") => {
                 let g=game.lock().unwrap();
                 match g.world.player {
@@ -6583,6 +7204,13 @@ fn main() {
                 let g=game.lock().unwrap();
                 match g.world.player {
                     Some(me)=>match industry_module_quotes_json(&g.world,me,&payload) {Ok(v)=>json_response(v),Err(e)=>json_error(400,serde_json::json!({"error":e}))},
+                    None=>json_error(400,serde_json::json!({"error":"Choose a nation first."})),
+                }
+            }
+            (Method::Post, "/api/construction-preview") => {
+                let g=game.lock().unwrap();
+                match g.world.player {
+                    Some(me)=>match construction_preview_json(&g.world,me,&payload) {Ok(v)=>json_response(v),Err(e)=>json_error(400,serde_json::json!({"error":e}))},
                     None=>json_error(400,serde_json::json!({"error":"Choose a nation first."})),
                 }
             }
@@ -6829,6 +7457,349 @@ mod tests {
     }
 
     #[test]
+    fn industry_board_is_pure_without_competition_and_never_invents_opening_output() {
+        let mut g=Game::new(42,Some(NationId::USA));
+        let me=NationId::USA;
+        g.world.rules.daily_simulation=true;
+        g.world.rules.production_system=true;
+        g.world.rules.resource_market=true;
+        g.world.rules.economic_competition=false;
+        let district=g.world.districts.iter().find(|(_,owner)|**owner==me).unwrap().0.clone();
+        let foreign=g.world.districts.iter().find(|(_,owner)|**owner==NationId::Canada).unwrap().0.clone();
+        g.world.production.industry.modules.insert(district.clone(),12_345);
+        g.world.production.industry.modules.insert(foreign.clone(),1_000_000);
+        g.world.production.provinces.push(production::ProvinceCapabilities{
+            district:district.clone(),infrastructure:1,civilian_industry:1,power_grid:1,research_centers:1,arms_plants:1});
+        g.world.production.industry.sites.insert(district.clone(),[1;7]);
+        production::start_project(&mut g.world,me,&district,ProjectKind::Infrastructure).unwrap();
+        let before=save(&g.world);
+        let view=industry_json(&g.world,me);
+        assert_eq!(view,industry_json(&g.world,me));
+        assert_eq!(save(&g.world),before);
+        assert_eq!(view["enabled"],true);
+        let sites=view["sites"].as_array().unwrap();
+        assert_eq!(sites.len(),production::PROJECT_KINDS.len());
+        assert!(sites.iter().all(|row|row["district"]==district&&row["has_receipt"]==false
+            &&row["output_daily"].is_null()&&row["cash_spent_daily_bn"].is_null()));
+        let module=sites.iter().find(|row|row["kind"]=="starter_industry").unwrap();
+        assert_eq!(module["capacity_micros"],12_345);
+        assert_eq!(module["status"],"awaiting_settlement");
+        assert_eq!(module["output_unit"],"intermediate packs");
+        assert!(sites.iter().filter(|row|row["productive"]==false).all(|row|
+            row["output_unit"].is_null()&&row["status"]=="ready"&&!row["effect"].as_str().unwrap().is_empty()));
+        assert_eq!(view["summary"]["attention_count"],0);
+        assert_eq!(view["summary"]["queued_count"],1);
+        assert_eq!(view["queue"][0]["district"],district);
+        assert_eq!(view["goods"][0]["capacity"],500.0);
+        assert_eq!(view["goods"][1]["capacity"],500.0);
+        assert!(view["power"]["used_daily"].is_null());
+        assert!(view["settlement"].is_null());
+        assert!(sites.iter().flat_map(|row|row["actions"].as_array().unwrap()).all(|action|
+            !action.as_object().unwrap().contains_key("command")&&action["action"]!="trade"));
+    }
+
+    #[test]
+    fn industry_board_serves_exact_dated_receipts_and_current_owned_assets() {
+        let mut g=Game::new(42,Some(NationId::USA));
+        let me=NationId::USA;
+        g.world.rules.daily_simulation=true;
+        g.world.rules.production_system=true;
+        g.world.rules.resource_market=true;
+        let district=g.world.districts.iter().find(|(_,owner)|**owner==me).unwrap().0.clone();
+        g.world.production.industry.modules.insert(district.clone(),12_345);
+        let day=spheres_sim::clock::absolute_day(&g.world)-1;
+        g.world.production.industry.last_day=Some(day);
+        g.world.production.industry.operations.push(spheres_sim::industry::SiteStatus{
+            district:district.clone(),kind:ProjectKind::StarterIndustry,level:0,capacity_micros:Some(12_345),
+            status:"limited".into(),reason:Some("Iron supply limits output to 50% of the planned line rate.".into()),
+            output_daily:0.0061725,power_used_daily:0.0061725,cash_spent_daily_bn:0.00000007407});
+        let before=save(&g.world);
+        let view=industry_json(&g.world,me);
+        let row=&view["sites"][0];
+        assert_eq!(row["has_receipt"],true);
+        assert_eq!(row["receipt_day"],day);
+        assert_eq!(row["output_daily"],0.0061725);
+        assert_eq!(row["power_used_daily"],0.0061725);
+        assert_eq!(row["cash_spent_daily_bn"],0.00000007407);
+        assert_eq!(row["reason"],g.world.production.industry.operations[0].reason.as_deref().unwrap());
+        assert_eq!(view["summary"]["attention_count"],1);
+        assert_eq!(view["settlement"]["day"],day);
+        assert_eq!(save(&g.world),before);
+        // Newly commissioned capacity is current even while the last actual
+        // operating receipt still describes the smaller, previous-day site.
+        g.world.production.industry.modules.insert(district.clone(),24_690);
+        let expanded=industry_json(&g.world,me);
+        assert_eq!(expanded["sites"][0]["capacity_micros"],24_690);
+        assert_eq!(expanded["sites"][0]["output_daily"],0.0061725);
+        assert_eq!(expanded["sites"][0]["receipt_day"],day);
+        g.world.districts.insert(district.clone(),NationId::Canada);
+        let lost=industry_json(&g.world,me);
+        assert!(lost["sites"].as_array().unwrap().is_empty());
+        assert_eq!(lost["summary"]["attention_count"],0);
+    }
+
+    #[test]
+    fn industry_board_keeps_research_credit_separate_from_factory_output() {
+        let mut g=Game::new(42,Some(NationId::USA));
+        let me=NationId::USA;
+        g.world.rules.daily_simulation=true;g.world.rules.production_system=true;
+        g.world.rules.resource_market=true;g.world.rules.economic_competition=true;
+        let district=g.world.districts.iter().find(|(_,owner)|**owner==me).unwrap().0.clone();
+        g.world.production.provinces.push(production::ProvinceCapabilities{
+            district:district.clone(),infrastructure:0,civilian_industry:0,power_grid:0,research_centers:1,arms_plants:0});
+        let day=spheres_sim::clock::absolute_day(&g.world)-1;
+        g.world.production.industry.research.entry(me).or_default().operations.push(spheres_sim::industry::ResearchOperation{
+            district:district.clone(),nation:me,level:1,day,technology:None,technology_name:Some("Specific prototype".into()),
+            status:"active".into(),reason:"Recorded prototype work.".into(),prototype_credit:0.002,
+            cash_spent_daily_bn:0.00001,goods_used:spheres_sim::industry::Goods{intermediates:0.02,capital_goods:0.005}});
+        let before=save(&g.world);
+        let view=industry_json(&g.world,me);
+        let row=&view["sites"][0];
+        assert_eq!(row["has_receipt"],true);
+        assert_eq!(row["productive"],false);
+        assert!(row["output_daily"].is_null()&&row["output_unit"].is_null()&&row["power_used_daily"].is_null());
+        assert_eq!(row["cash_spent_daily_bn"],0.00001);
+        assert_eq!(row["research"]["prototype_credit"],0.002);
+        assert_eq!(row["research"]["technology_name"],"Specific prototype");
+        assert_eq!(row["research"]["day"],day);
+        assert_eq!(save(&g.world),before);
+        g.world.rules.resource_market=false;
+        assert_eq!(industry_json(&g.world,me)["enabled"],false);
+    }
+
+    #[test]
+    fn industry_board_route_requires_the_current_campaign() {
+        assert!(exchange_read_path("/api/industry"));
+        let empty=serde_json::json!({});
+        assert!(exchange_session_matches(&Method::Get,"/api/industry?session_id=123-456-7",&empty,"123-456-7"));
+        assert!(!exchange_session_matches(&Method::Get,"/api/industry",&empty,"123-456-7"));
+        assert!(!exchange_session_matches(&Method::Get,"/api/industry?session_id=another",&empty,"123-456-7"));
+    }
+
+    fn cash_flow_posted_fixture() -> Game {
+        let mut g=Game::new(42,Some(NationId::USA));
+        let me=NationId::USA;
+        g.world.rules.daily_simulation=true;
+        g.world.rules.production_system=true;
+        g.world.rules.resource_market=true;
+        programs::set_construction_budget(&mut g.world,me,0.001).unwrap();
+        programs::begin_day(&mut g.world);
+        programs::spend_construction(&mut g.world,me,0.0001).unwrap();
+        programs::spend_operating(&mut g.world,me,BUDGET_INDUSTRY,2,0.00001).unwrap();
+        programs::spend(&mut g.world,me,BUDGET_INDUSTRY,4,0.00002).unwrap();
+        g.world.nation_mut(me).program_budget.as_mut().unwrap().prepaid_bn[BUDGET_DEFENSE][3]=0.001;
+        programs::spend(&mut g.world,me,BUDGET_DEFENSE,3,0.001).unwrap();
+        // Deliberately distinct recorded amounts: a reader must not replace
+        // these with Fiscal::of's current annual policy estimates.
+        let p=g.world.nation_mut(me).program_budget.as_mut().unwrap();
+        p.revenue_today_bn=0.123;p.interest_today_bn=0.004;p.fiscal_staged=true;
+        programs::finish_day(&mut g.world);
+        g
+    }
+
+    #[test]
+    fn cash_flow_read_preserves_unknown_opening_balances_and_does_not_enroll() {
+        let mut g=Game::new(42,Some(NationId::USA));
+        g.world.rules.daily_simulation=false;
+        let before=save(&g.world);
+        let view=cash_flow_json(&g.world,NationId::USA);
+        assert_eq!(view,cash_flow_json(&g.world,NationId::USA));
+        assert_eq!(view["on_the_books"],false);
+        assert!(view["balances"]["treasury_bn"].is_null()&&view["balances"]["debt_bn"].is_null());
+        assert!(view["settled"].is_null());
+        assert!(view["annual"]["interest_bn"].is_null()&&view["annual"]["balance_at_full_use_bn"].is_null());
+        assert!(view["annual"]["posted_spending_run_rate_bn"].is_null());
+        assert!(view["ministries"].as_array().unwrap().iter().all(|row|
+            row["last_spent_bn"].is_null()&&row["spent_ytd_bn"].is_null()));
+        assert!(view["construction"]["spent_today_bn"].is_null());
+        assert!(view["construction"]["daily_budget_bn"].is_null());
+        assert!(view["ministries"].as_array().unwrap().iter().all(|row|row["daily_authorized_bn"].is_null()),
+            "A legacy monthly allowance must not be advertised as a daily amount");
+        assert_eq!(save(&g.world),before,"A cash-flow read cannot open books, renew budgets or settle a day");
+    }
+
+    #[test]
+    fn cash_flow_posted_components_reconcile_without_recharging_prepaid_equipment() {
+        let g=cash_flow_posted_fixture();
+        let me=NationId::USA;
+        let before=save(&g.world);
+        let p=g.world.nation(me).program_budget.as_ref().unwrap();
+        let view=cash_flow_json(&g.world,me);
+        let receipt=&view["settled"];
+        let number=|key:&str|receipt[key].as_f64().unwrap();
+        let actual=p.spent_today_bn.iter().flatten().sum::<f64>();
+        assert_eq!(number("revenue_bn"),0.123);
+        assert_eq!(number("interest_bn"),0.004);
+        assert_eq!(number("ministry_spend_bn"),actual);
+        assert_eq!(number("construction_bn"),0.0001);
+        assert!((number("plant_operating_bn")-0.00001).abs()<1e-12);
+        assert!((number("other_capital_bn")-0.00002).abs()<1e-12);
+        assert!((number("services_bn")+number("plant_operating_bn")+number("construction_bn")
+            +number("other_capital_bn")-actual).abs()<1e-12);
+        assert_eq!(number("prepaid_used_bn"),0.001);
+        assert_eq!(number("total_outflow_bn"),actual+0.004);
+        assert_eq!(number("balance_bn"),0.123-(actual+0.004));
+        assert_eq!(receipt["day"],p.settled_day.unwrap());
+        let ministry_sum=view["ministries"].as_array().unwrap().iter()
+            .map(|row|row["last_spent_bn"].as_f64().unwrap()).sum::<f64>();
+        assert!((ministry_sum-actual).abs()<1e-12);
+        assert_eq!(view["construction"]["spent_today_bn"],receipt["construction_bn"]);
+        assert_eq!(view["construction"]["spent_day"],receipt["day"]);
+        assert_eq!(save(&g.world),before);
+    }
+
+    #[test]
+    fn cash_flow_open_day_never_masquerades_as_a_closed_posting() {
+        let mut g=cash_flow_posted_fixture();
+        let me=NationId::USA;
+        let original=cash_flow_json(&g.world,me);
+        g.world.day+=1;
+        programs::begin_day(&mut g.world);
+        let before=save(&g.world);
+        let next=cash_flow_json(&g.world,me);
+        assert!(next["settled"].is_null());
+        assert!(next["construction"]["spent_today_bn"].is_null());
+        assert!(next["ministries"].as_array().unwrap().iter().all(|row|row["last_spent_bn"].is_null()));
+        assert_eq!(next["annual"]["posted_spending_day"],original["annual"]["posted_spending_day"]);
+        assert_eq!(next["annual"]["posted_spending_run_rate_bn"],original["annual"]["posted_spending_run_rate_bn"]);
+        assert_eq!(save(&g.world),before);
+        // Even a staged new-day tax estimate is not a posted receipt.
+        g.world.nation_mut(me).program_budget.as_mut().unwrap().fiscal_staged=true;
+        assert!(cash_flow_json(&g.world,me)["settled"].is_null());
+    }
+
+    #[test]
+    fn cash_flow_annual_estimates_and_construction_quote_reuse_authoritative_sources() {
+        let mut g=cash_flow_posted_fixture();
+        let me=NationId::USA;
+        let n=g.world.nation(me);
+        let terms=spheres_sim::economy::growth_terms(n,n.state_invest_gdp,n.interest_rate,
+            &spheres_sim::economy::Conditions::of(&g.world,me));
+        let fiscal=spheres_sim::economy::Fiscal::of(n,&terms);
+        let plan=programs::preview(&g.world,me);
+        let expected=construction_budget_json(&g.world,me);
+        let view=cash_flow_json(&g.world,me);
+        assert_eq!(view["annual"]["revenue_bn"],fiscal.revenue_gdp*n.gdp);
+        assert_eq!(view["annual"]["tax_revenue_bn"],n.tax_rate*n.gdp);
+        assert_eq!(view["annual"]["resource_revenue_bn"],terms.budget_oil_revenue*n.gdp);
+        assert_eq!(view["annual"]["authorized_spend_bn"],plan.annual_authorized_bn);
+        assert_eq!(view["annual"]["interest_bn"],fiscal.interest_bn);
+        assert_eq!(view["annual"]["balance_at_full_use_bn"],fiscal.revenue_gdp*n.gdp-(plan.annual_authorized_bn+fiscal.interest_bn));
+        for key in ["daily_budget_bn","available_bn","authority_bn","planned_daily_bn"] {
+            assert_eq!(view["construction"][key],expected[key]);
+        }
+        g.world.nation_mut(me).program_budget.as_mut().unwrap().construction_daily_budget_bn=Some(0.0);
+        assert_eq!(cash_flow_json(&g.world,me)["construction"]["affordability"]["status"],"paused");
+        g.world.year+=1;
+        let expired=cash_flow_json(&g.world,me);
+        assert_eq!(expired["annual"]["renewed"],false);
+        assert_eq!(expired["construction"]["affordability"]["status"],"renewal_due");
+        assert!(expired["ministries"].as_array().unwrap().iter().all(|row|row["spent_ytd_bn"].is_null()));
+    }
+
+    #[test]
+    fn cash_flow_route_is_bound_to_the_current_campaign() {
+        assert!(exchange_read_path("/api/cash-flow"));
+        let empty=serde_json::json!({});
+        assert!(exchange_session_matches(&Method::Get,"/api/cash-flow?session_id=123-456-7",&empty,"123-456-7"));
+        assert!(!exchange_session_matches(&Method::Get,"/api/cash-flow",&empty,"123-456-7"));
+        assert!(!exchange_session_matches(&Method::Get,"/api/cash-flow?session_id=another",&empty,"123-456-7"));
+    }
+
+    #[test]
+    fn cash_flow_priorities_decompose_the_same_dated_interest_deficit_without_mutation() {
+        let mut g=cash_flow_posted_fixture();
+        let me=NationId::USA;
+        let p=g.world.nation_mut(me).program_budget.as_mut().unwrap();
+        let spent=p.spent_today_bn.iter().flatten().sum::<f64>();
+        p.revenue_today_bn=spent+0.002;
+        p.interest_today_bn=0.004;
+        let before=save(&g.world);
+        let view=cash_flow_json(&g.world,me);
+        assert!((view["settled"]["primary_balance_bn"].as_f64().unwrap()-0.002).abs()<1e-12);
+        let priorities=view["priorities"].as_array().unwrap();
+        assert!(priorities.len()<=3);
+        let first=&priorities[0];
+        assert_eq!(first["id"],"interest_pressure");
+        assert_eq!(first["action"],serde_json::json!({"action":"policy","control":"rate"}));
+        let metrics=first["metrics"].as_array().unwrap();
+        assert_eq!(metrics.iter().find(|metric|metric["label"]=="Interest").unwrap()["amount_bn"],0.004);
+        assert_eq!(metrics.iter().find(|metric|metric["label"]=="Final budget balance").unwrap()["amount_bn"],view["settled"]["balance_bn"]);
+        assert!(metrics.iter().all(|metric|metric["period"].as_str().unwrap().contains(view["settled"]["label"].as_str().unwrap())));
+        assert!(first["detail"].as_str().unwrap().contains("construction was smaller than the deficit"));
+        assert_eq!(view,cash_flow_json(&g.world,me));
+        assert_eq!(save(&g.world),before,"Advice neither edits the annual plan nor chooses a rate");
+    }
+
+    #[test]
+    fn cash_flow_priorities_use_actual_ministry_sources_and_stable_ties() {
+        let mut g=cash_flow_posted_fixture();
+        let me=NationId::USA;
+        let p=g.world.nation_mut(me).program_budget.as_mut().unwrap();
+        p.spent_today_bn=programs::ZERO;
+        p.noncapital_spent_today_bn=programs::ZERO;
+        p.construction_spent_today_bn=0.0;
+        p.spent_today_bn[BUDGET_HEALTH][0]=1.0;
+        p.spent_today_bn[BUDGET_EDUCATION][0]=1.0;
+        p.revenue_today_bn=0.5;
+        p.interest_today_bn=0.0;
+        let before=save(&g.world);
+        let view=cash_flow_json(&g.world,me);
+        let priorities=view["priorities"].as_array().unwrap();
+        assert_eq!(priorities[0]["id"],"primary_deficit");
+        assert!(priorities[0]["detail"].as_str().unwrap().contains("No construction was charged"));
+        assert!(priorities[0]["detail"].as_str().unwrap().contains("No interest was charged"));
+        let largest=priorities.iter().find(|priority|priority["id"]=="largest_ministry").unwrap();
+        assert_eq!(largest["action"],serde_json::json!({"action":"budget","ministry":"health"}));
+        assert_eq!(largest["metrics"][0]["amount_bn"],1.0);
+        assert!(largest["detail"].as_str().unwrap().contains("pooled construction funding"));
+        assert!(largest["detail"].as_str().unwrap().contains("standard ministry order breaks the tie"));
+        assert_eq!(save(&g.world),before);
+    }
+
+    #[test]
+    fn cash_flow_priorities_put_funding_and_renewal_first_and_keep_the_three_item_limit() {
+        let mut g=cash_flow_posted_fixture();
+        let me=NationId::USA;
+        let district=g.world.districts.iter().find(|(_,owner)|**owner==me).unwrap().0.clone();
+        production::start_project(&mut g.world,me,&district,ProjectKind::Infrastructure).unwrap();
+        g.world.nation_mut(me).program_budget.as_mut().unwrap().construction_daily_budget_bn=Some(0.0);
+        let view=cash_flow_json(&g.world,me);
+        let priorities=view["priorities"].as_array().unwrap();
+        assert_eq!(priorities.len(),3);
+        assert_eq!(priorities[0]["id"],"construction_funding");
+        assert_eq!(priorities[0]["action"]["action"],"construction");
+        assert_eq!(priorities[0]["metrics"][0]["amount_bn"],0.0);
+        g.world.year+=1;
+        let renewed=cash_flow_json(&g.world,me);
+        assert_eq!(renewed["priorities"][0]["id"],"renew_budget");
+        assert!(renewed["priorities"].as_array().unwrap().len()<=3);
+    }
+
+    #[test]
+    fn cash_flow_priorities_keep_annual_estimates_separate_from_a_settled_surplus() {
+        let mut g=cash_flow_posted_fixture();
+        let me=NationId::USA;
+        let p=g.world.nation_mut(me).program_budget.as_mut().unwrap();
+        p.revenue_today_bn=p.spent_today_bn.iter().flatten().sum::<f64>()+p.interest_today_bn+1.0;
+        g.world.nation_mut(me).tax_rate=0.0;
+        let view=cash_flow_json(&g.world,me);
+        assert!(view["settled"]["balance_bn"].as_f64().unwrap()>0.0);
+        assert!(view["annual"]["balance_at_full_use_bn"].as_f64().unwrap()<0.0);
+        let priorities=view["priorities"].as_array().unwrap();
+        assert_eq!(priorities.len(),1);
+        assert_eq!(priorities[0]["id"],"annual_full_use_gap");
+        assert!(view["alerts"].as_array().unwrap().iter().any(|alert|alert["id"]==priorities[0]["id"]));
+        assert!(priorities[0]["metrics"].as_array().unwrap().iter().all(|metric|metric["period"]=="Annual estimate"));
+        g.world.day+=1;
+        programs::begin_day(&mut g.world);
+        let open=cash_flow_json(&g.world,me);
+        assert!(open["settled"].is_null());
+        assert!(open["priorities"].as_array().unwrap().iter().all(|priority|
+            priority["id"]!="primary_deficit"&&priority["id"]!="interest_pressure"&&priority["id"]!="largest_ministry"));
+    }
+
+    #[test]
     fn module_only_province_is_visible_without_rounding_integer_capabilities() {
         let mut g=Game::new(1990,Some(NationId::USA));
         let district=g.world.districts.iter().find(|(_,n)|**n==NationId::USA).unwrap().0.clone();
@@ -6868,7 +7839,8 @@ mod tests {
         assert_eq!(q["capacity_micros"],5000);
         assert_eq!(q["output_daily"],0.005);
         assert_eq!(q["minimum_calendar_days"],90);
-        assert!(q["requirements"].as_array().unwrap().iter().any(|r|r["required"].as_f64().unwrap()>0.0));
+        assert!(q["requirements"].as_array().unwrap().is_empty(),"Workshop construction requires cash; operating inputs are separate");
+        assert_eq!(q["political_cost"],0.0);
         assert_eq!(before,save(&g.world));
         for bad in [serde_json::json!(0),serde_json::json!(-1),serde_json::json!(1.5),serde_json::json!(1_000_001),serde_json::json!(4294967297u64),serde_json::Value::Null] {
             let mut p=payload.clone();p["capacity_micros"]=bad;
@@ -6885,6 +7857,81 @@ mod tests {
         assert!(missing["provinces"].as_array().unwrap().is_empty());
         assert!(missing["coverage_reason"].as_str().unwrap().contains("freight gateway"));
         assert_eq!(before,save(&g.world));
+    }
+
+    #[test]
+    fn construction_suggestions_are_read_only_owned_and_match_reviewed_contracts() {
+        let me=NationId::USA;
+        let mut g=loaded_play_game(Game::new(42,Some(me)).world);
+        g.world.rules.economic_competition=false;
+        apply_command(&mut g.world,&Command::SetConstructionBudget {nation:me,daily_budget_bn:0.001}).unwrap();
+        let before=save(&g.world);
+        let board=production_json(&g.world,me);
+        let suggestions=&board["suggestions"];
+        assert_eq!(suggestions["as_of_day"],spheres_sim::clock::absolute_day(&g.world));
+        let items=suggestions["items"].as_array().unwrap();
+        assert!(!items.is_empty() && items.len()<=3,"An eligible first workshop is a development opportunity");
+        for item in items {
+            let district=item["district"].as_str().unwrap();
+            assert_eq!(g.world.districts.get(district),Some(&me));
+            assert!(!item["reason"].as_str().unwrap().trim().is_empty());
+            assert!(!item["evidence"].as_array().unwrap().is_empty());
+            let mut payload=serde_json::json!({"district":district,"project_kind":item["project_kind"]});
+            if let Some(size)=item["capacity_micros"].as_u64() { payload["capacity_micros"]=serde_json::json!(size); }
+            let review=construction_preview_json(&g.world,me,&payload).unwrap();
+            assert_eq!(review["can_start"],true);
+            for key in ["cost_bn","minimum_days","eta_days"] { assert_eq!(review[key],item[key],"{key} must use the same reviewed order"); }
+        }
+        assert_eq!(construction_suggestions_json(&g.world,me),*suggestions);
+        assert_eq!(save(&g.world),before,"Reading advice cannot place orders, spend cash or change policy");
+    }
+
+    #[test]
+    fn construction_impact_preview_is_read_only_scoped_and_validates_the_reviewed_project() {
+        let me=NationId::USA;
+        let mut g=loaded_play_game(Game::new(42,Some(me)).world);
+        apply_command(&mut g.world,&Command::SetConstructionBudget {nation:me,daily_budget_bn:0.002}).unwrap();
+        let district=g.world.districts.iter().find(|(_,owner)|**owner==me).unwrap().0.clone();
+        let payload=serde_json::json!({"district":district,"project_kind":ProjectKind::Generation.key(),"nation":"Japan"});
+        let before=save(&g.world);
+        let view=construction_preview_json(&g.world,me,&payload).unwrap();
+        assert_eq!(view["nation_name"],me.name());
+        assert_eq!(view["district"],district);
+        assert_eq!(view["project_kind"],ProjectKind::Generation.key());
+        assert_eq!(view["cost_bn"],spheres_sim::industry::work_cost_bn(ProjectKind::Generation));
+        assert_eq!(view["minimum_days"],production::catalog(ProjectKind::Generation).total_days);
+        for key in ["province_effects","national_effects","operating_requirements"] {
+            assert!(!view[key].as_array().unwrap().is_empty(),"missing {key}");
+        }
+        assert_eq!(save(&g.world),before,"Reviewing never places, completes, pays for or operates the project");
+        assert!(construction_preview_json(&g.world,NationId::Japan,&payload).is_err());
+        for bad in [serde_json::json!({"district":district,"project_kind":"unknown"}),
+            serde_json::json!({"district":district,"project_kind":"starter_industry","capacity_micros":0}),
+            serde_json::json!({"district":district,"project_kind":ProjectKind::Generation.key(),"capacity_micros":100})] {
+            assert!(construction_preview_json(&g.world,me,&bad).is_err());
+        }
+        let small=construction_preview_json(&g.world,me,&serde_json::json!({"district":district,"project_kind":"starter_industry","capacity_micros":5000})).unwrap();
+        assert_eq!(small["capacity_micros"],5000);
+        assert!((small["cost_bn"].as_f64().unwrap()-0.0029).abs()<1e-12);
+        assert_eq!(save(&g.world),before);
+        assert!(exchange_read_path("/api/construction-preview"));
+        assert!(!exchange_session_matches(&Method::Post,"/api/construction-preview",&serde_json::json!({"session_id":"old-campaign"}),&g.session_id));
+        let (mine_district,commodity)=g.world.districts.iter().filter(|(_,owner)|**owner==me)
+            .find_map(|(d,_)|ALL.iter().find(|c|resources::mine_refusal(&g.world,me,d,**c).is_none()).map(|c|(d.clone(),*c))).unwrap();
+        let mine=construction_preview_json(&g.world,me,&serde_json::json!({"district":mine_district,"project_kind":"resource_mine","commodity":commodity.key()})).unwrap();
+        assert_eq!(mine["commodity"],commodity.key());
+        assert_eq!(mine["can_start"],true);
+        assert!(mine["national_effects"][0]["after"].as_f64().unwrap()>mine["national_effects"][0]["before"].as_f64().unwrap());
+        assert_eq!(save(&g.world),before,"Mine review cannot install a mine or pay for it");
+        let mut online=g.world.clone();
+        online.resources.mines.push(resources::Mine {district:mine_district.clone(),commodity,
+            output:resources::mine_output(&mine_district,commodity).unwrap(),completed:0});
+        let mine_payload=serde_json::json!({"district":mine_district,"project_kind":"resource_mine","commodity":commodity.key()});
+        let existing=construction_preview_json(&online,me,&mine_payload).unwrap();
+        assert_eq!(existing["can_start"],false);
+        for row in existing["province_effects"].as_array().unwrap() { assert_eq!(row["before"],row["after"]); }
+        online.rules.daily_simulation=false;
+        assert!(construction_preview_json(&online,me,&mine_payload).is_err());
     }
 
     #[test]
@@ -14056,7 +15103,8 @@ mod tests {
         assert!(plus.starts_with('+') && plus.ends_with("a typical iron mine"), "{plus}");
         assert!(mine["typical"].as_f64().unwrap() > 0.0);
         assert!(INDEX.contains("data-mine-target"));
-        assert!(INDEX.contains("kind: \"develop_resource\""));
+        assert!(INDEX.contains("constructionReviewMine(com,target.district)"));
+        assert!(INDEX.contains("kind:\"develop_resource\""));
         // The advisor line is served verbatim.
         assert!(cards["advisor"].as_str().unwrap().ends_with('.'));
         assert!(INDEX.contains("c.advisor"), "the advisor line is printed from the payload");
@@ -14636,6 +15684,8 @@ mod tests {
         assert!(insolvent["provinces"].as_array().unwrap().iter().all(|p| {
             p["actions"]["start"].as_array().unwrap().is_empty()
         }));
+        assert!(insolvent["provinces"].as_array().unwrap().iter().any(|p|
+            p["start_refusals"]["infrastructure"].as_str().is_some_and(|r| r.contains("political capital"))));
 
         let cancel = serde_json::json!({ "kind": "cancel_project", "project": id });
         let cmd = parse_command(&g.world, &cancel, me).expect("cancel parses");
@@ -14646,6 +15696,92 @@ mod tests {
         assert!(ProjectKind::parse("space_elevator").is_none());
         assert!(Priority::parse("urgent").is_none());
         assert!(include_str!("main.rs").contains("(Method::Get, \"/api/production\")"));
+    }
+
+    #[test]
+    fn construction_requirements_explain_exact_site_refusals_without_mutation() {
+        let me = NationId::USA;
+        let mut g = loaded_play_game(Game::new(1990, Some(me)).world);
+        let district = g.world.districts.iter().find(|(_, owner)| **owner == me).unwrap().0.clone();
+        g.world.nation_mut(me).political_capital = 0.0;
+        let before = save(&g.world);
+        let board = production_json(&g.world, me);
+        assert_eq!(save(&g.world), before);
+        assert!(board["preview_notice"].is_null());
+        for province in board["provinces"].as_array().unwrap() {
+            let id = province["id"].as_str().unwrap();
+            for item in board["catalog"].as_array().unwrap() {
+                let key = item["kind"].as_str().unwrap();
+                let kind = ProjectKind::parse(key).unwrap();
+                let refusal = production_start_refusal(&g.world, me, id, kind);
+                assert_eq!(province["start_refusals"][key], serde_json::json!(refusal));
+                assert_eq!(province["actions"]["start"].as_array().unwrap().contains(&item["kind"]), refusal.is_none());
+                assert_eq!(item["reason"].is_null(), !item["eligible_provinces"].as_array().unwrap().is_empty());
+            }
+        }
+        assert_eq!(production_start_refusal(&g.world, me, &district, ProjectKind::ProcessingPlant).as_deref(),
+            Some("Build an Industrial Estate in this province first."));
+        assert!(production_start_refusal(&g.world, me, &district, ProjectKind::Infrastructure).is_none(),
+            "Daily construction has no political-capital gate");
+        g.world.production.industry.modules.insert(district.clone(), 1_000_000);
+        g.world.nation_mut(me).tech.known.clear();
+        assert_eq!(production_start_refusal(&g.world, me, &district, ProjectKind::Automation).as_deref(),
+            Some("Research Industrial Robot Cells before installing this upgrade."));
+        g.world.districts.retain(|_, owner| *owner != me);
+        let empty = production_json(&g.world, me);
+        assert!(empty["catalog"].as_array().unwrap().iter().all(|item|
+            item["reason"] == "You need an owned province before starting construction."));
+        let mut legacy = Game::new(1990, Some(me));
+        legacy.world.rules.resource_market = true;
+        legacy.world.rules.production_system = true;
+        legacy.world.day = 6;
+        spheres_sim::clock::enable_daily_play(&mut legacy.world);
+        let legacy_board = production_json(&legacy.world, me);
+        assert!(legacy_board["preview_notice"].as_str().unwrap().contains("after the current month"));
+        let command = Command::StartProject { nation: me, district: district.clone(), kind: ProjectKind::Infrastructure };
+        let price = spheres_sim::price_of(&legacy.world, &command).unwrap();
+        legacy.world.nation_mut(me).political_capital = price - 0.04;
+        assert_eq!(production_start_refusal(&legacy.world, me, &district, ProjectKind::Infrastructure),
+            Some(format!("This order needs {:.1} political capital; you have {:.1}.",
+                (price * 10.0).ceil() / 10.0, ((price - 0.04) * 10.0).floor() / 10.0)));
+    }
+
+    #[test]
+    fn funded_construction_api_is_actor_bound_pure_and_quotes_the_shared_cash_limit() {
+        let me = NationId::USA;
+        let mut g = loaded_play_game(Game::new(1990, Some(me)).world);
+        g.world.nation_mut(me).political_capital = 0.0;
+        let payload = serde_json::json!({"kind":"construction_budget","nation":"Japan","daily_budget_bn":0.0002});
+        let command = parse_command(&g.world, &payload, me).unwrap();
+        assert!(matches!(command, Command::SetConstructionBudget { nation, .. } if nation == me));
+        let pc = g.world.nation(me).political_capital;
+        apply_command(&mut g.world, &command).unwrap();
+        assert_eq!(g.world.nation(me).political_capital, pc);
+        let districts = g.world.districts.iter().filter(|(_,owner)| **owner==me)
+            .take(2).map(|(d,_)| d.clone()).collect::<Vec<_>>();
+        for d in districts {
+            apply_command(&mut g.world, &Command::StartProject { nation:me, district:d, kind:ProjectKind::Infrastructure }).unwrap();
+        }
+        let before = save(&g.world);
+        let data = production_json(&g.world,me);
+        assert_eq!(save(&g.world),before,"Viewing the desk cannot release or spend funds");
+        assert!(data["capacity"].is_null());
+        assert_eq!(data["construction_budget"]["daily_budget_bn"],0.0002);
+        assert!(data["construction_budget"]["can_set"].as_bool().unwrap());
+        let rows = data["queue"].as_array().unwrap();
+        assert_eq!(rows.len(),2);
+        assert!(rows.iter().all(|p|p["requirements"].as_array().unwrap().is_empty() && p["pc_cost"]==0.0));
+        let planned = rows.iter().map(|p|p["finance"]["daily_request_bn"].as_f64().unwrap()).sum::<f64>();
+        assert!(planned > 0.0 && planned <= 0.0002);
+        assert_eq!(data["construction_budget"]["planned_daily_bn"].as_f64().unwrap(),planned);
+        assert!(parse_command(&g.world,&serde_json::json!({"kind":"construction_budget","daily_budget_bn":"bad"}),me).is_none());
+        let invalid = parse_command(&g.world,&serde_json::json!({"kind":"construction_budget","daily_budget_bn":-1}),me).unwrap();
+        assert!(apply_command(&mut g.world,&invalid).is_err());
+        assert_eq!(save(&g.world),before);
+        apply_command(&mut g.world,&Command::SetConstructionBudget {nation:me,daily_budget_bn:0.0}).unwrap();
+        let paused = production_json(&g.world,me);
+        assert_eq!(paused["construction_budget"]["planned_daily_bn"],0.0);
+        assert!(paused["queue"].as_array().unwrap().iter().all(|p|p["finance"]["daily_request_bn"]==0.0));
     }
 
     /// Manufacturing is a player-scoped view over completed arms plants and
@@ -14810,7 +15946,10 @@ mod tests {
             "function openProduction()",
             "function productionFetch()",
             "api(\"/api/production\")",
-            "kind: \"start_project\"",
+            "kind:\"start_project\"",
+            "function openConstruction(options",
+            "id=\"constructionBudgetForm\"",
+            "kind:\"construction_budget\"",
             "kind: \"set_project_priority\"",
             "kind: \"cancel_project\"",
             "function drawProductionOverlay(",

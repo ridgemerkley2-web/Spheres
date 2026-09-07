@@ -5,7 +5,7 @@ const transport=require('../../spheres-web/ui/campaign-transport.js');
 const source=name=>fs.readFileSync(path.join(__dirname,'../../spheres-web/ui',name),'utf8');
 
 function decisionFixture(){
-  const elements=new Map(),listeners=new Map();
+  const elements=new Map(),listeners=new Map(),routes=[];
   const node=id=>{if(!elements.has(id))elements.set(id,{id,value:'',innerHTML:'',textContent:'',focus(){},addEventListener(kind,fn){this['on'+kind]=fn;},insertAdjacentHTML(where,html){assert.equal(where,'beforeend');this.innerHTML+=html;}});return elements.get(id);};
   const box={open:false,attrs:{},querySelector:node,querySelectorAll:()=>[],
     setAttribute(k,v){this.attrs[k]=v;},addEventListener(k,fn){listeners.set(k,fn);},
@@ -14,9 +14,15 @@ function decisionFixture(){
   let attached=false;
   const document={activeElement:{focus(){}},getElementById:()=>attached?box:null,
     createElement:()=>box,body:{append(){attached=true;}}};
-  const c=vm.createContext({window:{},document,clockPause(){},S:{session_id:'one',player:'USA',programs:{due:true}},tech:{data:[]}});
+  const c=vm.createContext({window:{},document,clockPause(){},S:{session_id:'one',player:'USA',programs:{due:true}},tech:{data:[]},
+    constructionMoney:value=>Number.isFinite(value)?`$${value}bn`:'—',
+    openConstruction:options=>routes.push(['construction',JSON.parse(JSON.stringify(options||{}))]),
+    openConstructionCabinet:tab=>routes.push(['cabinet',tab]),
+    openIndustry:()=>routes.push(['industry']),
+    constructionPreviewProject:async(kind,district,size)=>{routes.push(['preview',kind,district,size]);return true;},
+    openNation:id=>routes.push(['nation',id]),selectNationView:view=>routes.push(['nation-view',view])});
   vm.runInContext(source('decision-tools.js'),c);
-  c.box=box;c.body=()=>node('.decision-body');return c;
+  c.box=box;c.body=()=>node('.decision-body');c.routes=routes;return c;
 }
 test('late Advisor success cannot replace a newly opened Research dialog',async()=>{
   const c=decisionFixture();let finish;
@@ -49,9 +55,9 @@ test('advice does not mix old projects with a newer adopted campaign state',asyn
 });
 
 test('actual Advisor renders stability and opens only explicitly chosen policy rooms',async()=>{
-  for(const [action,target] of [['budget','cabinetDrawer'],['world','intelDrawer'],['decisions','agency']]){
+  for(const [action,target] of [['budget','budget'],['world','intelDrawer'],['decisions','agency']]){
     const c=decisionFixture(),button={dataset:{stabilityAction:action}},calls=[];
-    c.api=async()=>({queue:[]});c.cabinetIsOpen=()=>false;c.toggleGameDrawer=id=>calls.push(id);c.openAgency=()=>calls.push('agency');
+    c.api=async()=>({queue:[]});c.openConstructionCabinet=tab=>calls.push(tab);c.toggleGameDrawer=id=>calls.push(id);c.openAgency=()=>calls.push('agency');
     c.S.policy={stability:{monthly_points_before_bounds:-.1,month_fraction:1,terms:[{label:'Current pressure',monthly_points:-.1,action}]}};
     c.box.querySelectorAll=selector=>selector==='[data-stability-action]'?[button]:[];
     await c.window.openAdvisor();
@@ -59,6 +65,76 @@ test('actual Advisor renders stability and opens only explicitly chosen policy r
     assert.deepEqual(calls,[]);assert.equal(c.box.open,true);
     button.onclick();assert.deepEqual(calls,[target]);assert.equal(c.box.open,false);
   }
+});
+
+test('Advisor leads with exact server suggestion effects and never starts work when following it',async()=>{
+  for(const [kind,size] of [['power_grid',undefined],['starter_industry',5001]]){
+    const c=decisionFixture();c.S.programs={enabled:true};const reads=[];
+    c.api=async url=>{reads.push(url);return {queue:[{id:9,status:'building'}],completed:[{}],suggestions:{items:[{
+      id:'top',project_kind:kind,district:'US-CA',district_name:'California',capacity_micros:size,name:'Suggested project',priority:'Bottleneck',
+      reason:'Grid capacity is limiting existing output.',cost_bn:.025,minimum_days:90,eta_days:125,evidence:['An exact served observation.'],caution:'Operating funds are still needed.'}]}};};
+    await c.window.openAdvisor();const html=c.body().innerHTML;
+    for(const text of ['Your next step','Suggested project','California','Grid capacity is limiting existing output.','$0.025bn total project cost','at least 90 days','125 days at current funding','An exact served observation.','Operating funds are still needed.','Review suggested effects'])assert(html.includes(text),text);
+    assert.deepEqual(c.routes,[]);await c.box.querySelector('#advisorNext').onclick();
+    assert.deepEqual(c.routes,[['construction',{}],['preview',kind,'US-CA',size]]);
+    assert.deepEqual(reads,['/api/production'],'Following advice only opens the existing read-only effects review');
+  }
+});
+test('Advisor budget and growth actions reach explicit tabs regardless of the previous Cabinet view',async()=>{
+  const c=decisionFixture();c.S.policy={war:.02};c.api=async()=>({queue:[]});
+  await c.window.openAdvisor();assert.match(c.body().innerHTML,/Renew your yearly budget/);
+  c.box.querySelector('#advisorNext').onclick();assert.deepEqual(c.routes,[['cabinet','budget']]);
+  await c.window.openAdvisor();c.box.querySelector('#advisorCauses').onclick();
+  assert.deepEqual(c.routes,[['cabinet','budget'],['cabinet','policy']]);
+});
+test('Advisor keeps a suggestion open while the same world has a pending turn or construction order',async()=>{
+  for(const hold of [c=>c.advancing=true,c=>c.pendingAdvance={payload:{}},c=>c.PROD={busy:true}]){
+    const c=decisionFixture();c.S.programs={enabled:true};
+    c.api=async()=>({suggestions:{items:[{id:'grid',name:'Grid',project_kind:'power_grid',district:'US-CA'}]}});
+    await c.window.openAdvisor();const state=c.S;hold(c);
+    assert.equal(await c.box.querySelector('#advisorNext').onclick(),false);
+    assert.equal(c.S,state);assert.equal(c.box.open,true);assert.deepEqual(c.routes,[]);
+    assert.match(c.box.querySelector('#advisorStatus').textContent,/current turn or order to finish/);
+    c.advancing=false;c.pendingAdvance=null;c.PROD={busy:false};
+    assert.equal(await c.box.querySelector('#advisorNext').onclick(),true);
+    assert.deepEqual(c.routes,[['construction',{}],['preview','power_grid','US-CA',undefined]]);
+    assert.equal(c.box.open,false);
+  }
+});
+test('Advisor diagnostics remain optional and paid project progress keeps its first decimal',async()=>{
+  const c=decisionFixture();c.S.programs={enabled:true};c.S.policy={war:.01,stability:{monthly_points_before_bounds:0,terms:[]}};
+  c.api=async()=>({queue:[{id:7,name:'Grid',province:{name:'California'},status:'building',progress:.00125,eta_days:180,finance:{}}]});
+  await c.window.openAdvisor();const html=c.body().innerHTML;
+  assert.match(html,/0\.1% complete/);assert.match(html,/<details class="advisor-diagnostics"><summary>Economic pressures and stability/);
+  assert.doesNotMatch(html,/<details class="advisor-diagnostics"[^>]*\bopen/);
+  assert(html.indexOf('advisorNext')<html.indexOf('Economic pressures and stability'));
+  c.box.querySelector('#advisorNext').onclick();assert.deepEqual(c.routes,[['construction',{project:7}]]);
+});
+test('completed-industry advice opens the shared Industry desk and rejects stale navigation',async()=>{
+  const c=decisionFixture();c.S.programs={enabled:true};c.api=async()=>({completed:[{province:{id:'US-CA'}}]});
+  await c.window.openAdvisor();assert.match(c.body().innerHTML,/Manage industry in Economy/);
+  assert.deepEqual(c.routes,[]);c.box.querySelector('#advisorNext').onclick();
+  assert.deepEqual(c.routes,[['industry']]);assert.equal(c.box.open,false);
+  await c.window.openAdvisor();const action=c.box.querySelector('#advisorNext').onclick;
+  c.S={session_id:'two',player:'Japan'};assert.equal(action(),false);
+  assert.deepEqual(c.routes,[['industry']]);assert.equal(c.box.open,true);
+});
+test('loaded Advisor actions refuse a changed world, replaced campaign or superseding dialog',async()=>{
+  for(const target of ['#advisorNext','#advisorExchange','#advisorCauses'])for(const replacement of [{session_id:'one',player:'USA'},{session_id:'two',player:'Japan'}]){
+    const c=decisionFixture();c.S.policy={war:.02};c.api=async()=>({queue:[]});await c.window.openAdvisor();
+    const click=c.box.querySelector(target).onclick;c.S=replacement;
+    assert.equal(click(),false);assert.deepEqual(c.routes,[]);assert.equal(c.box.open,true);
+    assert.match(c.box.querySelector('#advisorStatus').textContent,/Refresh advice/);
+  }
+  const c=decisionFixture();c.api=async()=>({queue:[]});await c.window.openAdvisor();
+  const oldAction=c.box.querySelector('#advisorNext').onclick;c.box.close();c.window.openResearchList();
+  assert.equal(oldAction(),false);assert.deepEqual(c.routes,[]);assert.equal(c.box.open,true);
+});
+test('Advisor escapes suggestion names, reasons, evidence and cautions',async()=>{
+  const c=decisionFixture();c.S.programs={enabled:true};c.api=async()=>({suggestions:{items:[{id:'x',project_kind:'power_grid',district:'US-CA',
+    name:'<img>',district_name:'<iframe>',reason:'<script>reason</script>',evidence:['<svg>'],caution:'<script>caution</script>'}]}});
+  await c.window.openAdvisor();const html=c.body().innerHTML;assert.doesNotMatch(html,/<img|<iframe|<script|<svg/);
+  assert.match(html,/&lt;script&gt;reason/);assert.match(html,/&lt;svg&gt;/);assert.match(html,/— total project cost/);
 });
 
 function recoveryFixture(){
