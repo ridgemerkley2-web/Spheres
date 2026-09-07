@@ -1384,11 +1384,7 @@ fn post_market_flows(w: &mut WorldState) {
     let physical = crate::logistics::enabled(w);
     // A purchase is not a warehouse receipt. Only the transport clock can
     // release in-flight goods, once, at a monthly settlement.
-    if physical {
-        for cargo in crate::logistics::begin_month(w) {
-            change_market_stock(&mut market, cargo.buyer, cargo.commodity, cargo.quantity);
-        }
-    }
+    begin_raw_freight(w, &mut market);
     // A dead federation's warehouse stays inert until a later succession or
     // loot policy explicitly transfers it. Silently deleting physical goods
     // at a normal dissolution would break the ledger's conservation proof.
@@ -2682,7 +2678,8 @@ pub fn tick_draw(w: &WorldState, id: NationId) -> [f64; 12] {
     };
     let share = if available>0.0 { (claimed/available).clamp(0.0,1.0) } else { 0.0 };
     for i in 0..12 { need[i]=(need[i]-legacy[i]*share).max(0.0); }
-    for i in 0..12 { need[i]+=custom.raw[i]; }
+    let ammunition = crate::equipment::ammunition_next_work(w, id);
+    for i in 0..12 { need[i]+=custom.raw[i]+ammunition[i]; }
     need
 }
 fn tick_draw_inner(w: &WorldState, id: NationId, include_materials: bool) -> [f64; 12] {
@@ -5954,6 +5951,56 @@ mod tests {
         let market = w.resources.market.as_ref().unwrap();
         assert!((market_reserve_target(market, id, c) - monthly[c.idx()] * BUFFER_MONTHS).abs() < 1e-7);
         assert!((cover(&w, id, c) - today[c.idx()] / monthly[c.idx()]).abs() < 1e-7);
+    }
+
+    #[test]
+    fn ammunition_daily_report_adds_funded_inputs_once_without_authorizing_imports() {
+        use crate::{clock, equipment as eq, production, programs};
+        let id = NationId::USA;
+        for with_vehicle_order in [false, true] {
+            let mut base = world_1990(GameRules {
+                daily_simulation: true, military_operations: true, production_system: true,
+                manufacturing_system: true, resource_market: true, ..GameRules::default()
+            });
+            base.player = Some(id);
+            programs::set_construction_budget(&mut base, id, 0.0).unwrap();
+            eq::set_maintenance_plan(&mut base, id, 0.0).unwrap();
+            let spec = eq::default_spec("ground_apc");
+            let profile = eq::design_preview(&base, id, &spec).profile.unwrap();
+            let today = clock::absolute_day(&base);
+            let state = base.nation_mut(id).equipment.as_mut().unwrap();
+            state.finance_from_day = today;
+            state.revisions.insert("daily-ammo-apc".into(), eq::DesignRevision {
+                id: "daily-ammo-apc".into(), name: "Daily ammunition APC".into(),
+                specification_key: eq::specification_key(&spec), spec, profile,
+                created_day: today, certified_day: Some(today),
+            });
+            let district = base.districts.iter().find(|(_, owner)| **owner == id).unwrap().0.clone();
+            for _ in 0..2 {
+                production::complete_capability(&mut base, &district, production::ProjectKind::ArmsPlant);
+            }
+            if with_vehicle_order {
+                eq::start_production(&mut base, id, "daily-ammo-apc", &district, 2, 0.001).unwrap();
+            }
+            let mut with_ammo = base.clone();
+            eq::start_ammo_order(&mut with_ammo, id, "mg_127", &district, 1_000, 0.001).unwrap();
+            for w in [&mut base, &mut with_ammo] {
+                clock::advance_date(w);
+                programs::begin_day(w);
+            }
+            let saved = crate::save(&with_ammo);
+            let before = tick_draw(&base, id);
+            let after = tick_draw(&with_ammo, id);
+            let batch = eq::ammo_def("mg_127").unwrap().recipe.map(|v| v * 1_000.0);
+            assert!(before.iter().any(|v| *v > 0.0), "retain standing procurement demand");
+            for i in 0..12 {
+                assert!((after[i] - before[i] - batch[i]).abs() < 1e-9,
+                    "commodity {i}, vehicle order {with_vehicle_order}: the daily report must add this one-day ammunition batch exactly once");
+            }
+            assert_eq!(automatic_tick_draw(&with_ammo, id), automatic_tick_draw(&base, id),
+                "a manual ammunition contract cannot authorize automatic raw purchases");
+            assert_eq!(crate::save(&with_ammo), saved, "reporting cannot spend, reserve, or order");
+        }
     }
 
     #[test]
@@ -9289,3 +9336,5 @@ mod tests {
         assert_eq!(daily_heat, legacy_heat);
     }
 }
+
+include!("resource_replenishment.rs");

@@ -381,6 +381,24 @@ sparse credit ledger moves with inherited technology, starts at zero for older
 saves, and excludes no genuine new research. This semantic change is shared by
 daily and monthly simulation; calibration tolerances and historical data stay put.
 
+## Planned direction — company manufacturing and stock procurement (2026-09-07)
+
+Ridge's new equipment direction is design → manufacturer development and trials
+→ company-owned production and finished stock → government purchase → delivery
+→ service. [COMPANIES_AND_PROCUREMENT_PLAN.md](COMPANIES_AND_PROCUREMENT_PLAN.md)
+defines the staged replacement of public production management and the foundation
+for important national companies. This section states intended work; the current
+extensions below still describe the implemented system.
+
+New company manufacturing must spend company capital and inputs, create only
+company inventory and use existing physical capacity once. Public development
+contracts and finished-equipment purchases have distinct receipts and share the
+existing fiscal owner. Atomic purchases transfer finite stock into an owned
+delivery; unsold company inventory grants no military capability. Corporate cash,
+raw inputs, assets and output require explicit ownership and baseline reconciliation.
+Neither company revenue nor reattributed production creates a second copy of GDP.
+Previously paid public work and equipment retain their owners during migration.
+
 ## Current extension — component-based tank equipment (2026-09-06)
 
 `EQUIPMENT_DESIGNER.md` specifies the first playable slice of the approved full
@@ -393,10 +411,121 @@ shares its monthly acquisition ceiling; it creates no macroeconomic discovery.
 Defense research becomes work-funded on the next opening funding date after
 activation. Paid development is operating expense. Production/refits share
 Defense procurement and completed arms-plant slots with existing manufacture.
-The initial maintenance implementation earmarks already-paid maintenance funds
-and removes the same allocation from legacy refill; it does not post a second
-charge. Frozen component capability is restricted to land operations and uses
+The compatibility maintenance path earmarks already-paid maintenance funds
+and removes the same allocation from legacy refill. Reviewed actual fleet
+maintenance plans replace automatic maintenance expense on future funding days:
+one invoice after delivery uses shared departmental authority and the ordinary
+fiscal posting. Underfunding proportionally reduces custom and inherited support.
+Inherited upkeep is an explicit game assumption of 4% of catalog value annually
+over 365 days; custom revisions retain frozen upkeep. Saved receipts validate
+payment splits, support caches and dates. Frozen component capability uses
 physical reference coverage independently of purchase prices. Unused designer
 state preserves the legacy path. Activated saves use a structural envelope that
-older raw-world loaders reject. Broader families and complete maintenance
-invoice settlement remain staged work in the full plan.
+older raw-world loaders reject. Version 4 adds optional maintenance plans and
+quantity targets while retaining versions 1–3. Targets conserve manufacturing
+and refit commitments and offer separately reviewed replacements. Reviewed
+finite material purchases use existing spot-market and freight ledgers, supplier
+reserves and cash within a chosen cap; there is no new loan, duplicate ledger
+or automatic repeat order. The later purchasing-policy extension adds explicit repeat authorization; aviation starts with the tactical slice below, while remaining air/naval missions stay staged.
+
+## Current extension — custom ground ammunition (2026-09-06)
+
+`AMMUNITION.md` specifies 21 compatible store families for custom ground weapons.
+Reviewed finite orders share real arms-plant slots and use Defense maintenance
+authority after fleet upkeep. Fabrication and separately purchased raw inputs
+are settled once; only completed rounds enter stores. Orders can pause, change
+their daily ceiling or cancel without refunding paid work or deleting completed
+stock. Remaining inputs feed the existing supply forecast and reviewed purchases.
+
+Physical ammunition is explicitly activated for a future funding date, requires
+actual fleet maintenance and grants no initial stock. The conserved operations
+snapshot allocates compatible rounds across all conflicts once. Shortages reduce
+firing without deleting independent movement or observation, and mobile air
+defense spends ammunition only against air exposure. The inherited fleet retains
+only its own share of scalar magazine burn and refill. Stores never add vehicle
+value, standing force or physical vehicles. Version 5 saves production and
+consumption receipts while accepting versions 1–5; unused state retains the
+previous path. Rates, recipes and prices are explicit game assumptions. Inherited
+weapon conversion and further air/naval loadouts remain later work. The subsequent
+reserve-plan and tactical-aviation extensions are specified below.
+
+## Current extension — ammunition reserve plans (2026-09-06)
+
+Equipment-state version 6 adds sparse, optional ammunition targets and dated
+automatic scheduling receipts. Each certified family can have a manual reserve
+target or an explicitly authorized standing production plan. Targets net physical
+stock and unfinished commitments, including paused work. Automatic plans wait for
+all existing matching batches, review after their authorization date and use the
+ordinary finite order path after existing maintenance and fabrication settle.
+They share actual factory slots and Defense maintenance funding; they never
+purchase raw materials or grant output. Disabling or clearing a plan affects only
+future scheduling. Version 6 accepts versions 1–6 and preserves the no-plan path.
+The player workflow and boundaries are in `AMMUNITION.md`.
+
+## Current extension — military material purchasing policy (2026-09-07)
+
+Equipment-state version 7 adds optional national `supply_automation` with an
+optional policy and the latest 64 immutable review receipts. Manual/default
+campaigns do not run it. A reviewed command selects automatic mode, horizon
+30/90/365 days, finite non-negative per-review cash ceiling and cash reserve,
+and cadence 1/7/30 days. Confirmation is prospective and spends nothing.
+
+The daily tail executes after `programs::finish_day` and
+`province_economy::finish_day`, before date advance, to avoid consuming cash
+needed by already-incurred fiscal bills. Countries execute in NationId order.
+Due dates are the later of authorization plus one day and the latest recorded
+review plus the current cadence. Every eligible attempt records an outcome;
+missed dates do not catch up and unused ceilings do not accumulate.
+
+The existing finite equipment replenishment forecast and ordinary market
+purchase own quantities, suppliers, payments and freight. Funded vehicle,
+refit and ammunition work count, but unissued reserve goals and paused work do
+not. All paid cargo, including held or late arrivals, is netted before purchase.
+The usable ceiling is min(per-review cap, max(available cash - cash reserve, 0)).
+No loan or new money/stock ledger is introduced. Receipts freeze the original
+settings and actual fills; editing, disabling or clearing leaves them and paid
+cargo intact. Saved receipt validation checks finite quantities and payments,
+material/fill totals, ceilings and dated cadence independently of current settings.
+This step introduced version 7; the current version-8 loader retains versions 1–7 and keeps older unconfigured states sparse.
+
+## Current extension — tactical aviation (2026-09-07)
+
+[AVIATION.md](AVIATION.md) specifies the first integrated part of equipment
+milestone 5: light-attack and tactical-strike airframes, eighteen component
+choices across eight slots, and three component-only Aerospace research projects.
+Development, tooling, manufacture, delivery, upkeep, refits and retirement retain
+the existing equipment/Arsenal/fiscal owners and shared arms-plant capacity.
+Raw inputs are separate from fabrication payments. Refits preserve age and
+quantity; an airframe-family change requires new manufacture.
+
+Equipment-state version 8 accepts versions 1–8. Aircraft specification version 4
+adds an optional frozen aviation profile: supported strike factor, sorties per
+aircraft per month, stores per sortie and exact store-family identity. Earlier
+ground revisions omit this profile and retain their existing identities.
+Aircraft holdings and delivery orders use the Air class with fixed physical
+reference weights; neither chosen purchase price nor stored bombs creates
+standing force or an extra land/lift contribution. Saved profile and class
+validation rejects contradictory state.
+
+The existing physical-ammunition state adds unguided and guided aircraft bombs.
+Aircraft require their compatible stores from their first deployment, without
+activating physical ground ammunition. Ground retains its separate opt-in.
+Finite bomb batches use shared Defense maintenance authority after upkeep,
+raw stocks and factory slots. Reserve scheduling and optional material purchases
+reuse their existing reviewed permissions, limits and receipts.
+
+The conserved operations snapshot bounds air use by supported aircraft,
+allocated rung-6 deployments, available theatre access, compatible stores,
+intensity and date fraction. The sortie-rate ratio is folded once into the frozen
+0.75–1.25 strike factor and applied once to supplied aircraft. Unsupported or dry
+aircraft receive no inherited-magazine fallback; mixed inherited/custom supply
+retains a single consumption and refill owner. Custom aircraft create no ground
+fire, ground maneuver, interception mission or transport lift.
+
+Theatres provide coarse basing and reach. This slice adds no physical runway
+capacity, kilometer range, aviation-fuel ledger, carrier deck or specialized
+aircraft factory. Components, prices, recipes, work times and sortie/effectiveness
+ratings are explicit game assumptions. Fighters/interception, broader multirole
+missions, strategic/support aircraft, helicopters, drones and naval loadouts
+require further operational consumers. Historical presets and broad calibration
+remain separate work; this specification does not certify final release QA.

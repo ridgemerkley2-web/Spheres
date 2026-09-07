@@ -15,6 +15,7 @@ pub fn platform_slots(platform: &str) -> &'static [&'static str] {
         "ground_recon" => &GROUND_RECON_SLOTS, "ground_artillery" => &GROUND_ARTILLERY_SLOTS,
         "ground_air_defense" => &GROUND_AIR_DEFENSE_SLOTS,
         "tank_standard" | "tank_heavy" | "tank_light" | "tank_destroyer" => &DESIGN_SLOTS,
+        "air_light_attack" | "air_tactical_strike" => &AVIATION_SLOTS,
         _ => &[],
     }
 }
@@ -24,7 +25,8 @@ pub fn platform_role(platform: &str) -> &'static str {
         "ground_recon" => "Battlefield reconnaissance", "ground_artillery" => "Indirect fire support",
         "ground_air_defense" => "Mobile air defense", "tank_light" => "Light armored combat",
         "tank_heavy" => "Heavy armored assault", "tank_destroyer" => "Anti-armor combat",
-        "tank_standard" => "Main battle tank", _ => "Unknown platform",
+        "tank_standard" => "Main battle tank", "air_light_attack" => "Light tactical air strike",
+        "air_tactical_strike" => "Tactical air strike", _ => "Unknown platform",
     }
 }
 
@@ -44,12 +46,12 @@ pub const GROUND_COMPONENTS: &[ComponentDef] = &[
     component!("ground_howitzer_155","155 mm howitzer","armament",4,0.00060,0.000000075,-0.06,0.0,-0.08,0.0,Some("ground_medium_weapons"),None,"Greater indirect-fire support at higher procurement and maintenance cost."),
     component!("ground_aa_gun","Twin air-defense cannon","armament",3,0.00036,0.00000005,-0.18,0.0,-0.02,0.0,None,None,"Local air-defense coverage reduces incoming air-strike damage; does not create aircraft."),
     component!("ground_aa_missiles","Short-range missile launcher","armament",4,0.00075,0.00000008,-0.25,0.0,-0.04,0.0,Some("ground_guided_weapons"),None,"Improved mobile air defense. Requires tracking radar and its matching missile load."),
-    component!("ground_ammo_autocannon","Mixed autocannon load","ammunition",1,0.000035,0.000000012,0.0,0.0,0.0,0.0,None,None,"Carried autocannon ammunition, supplied by the existing shared munitions system."),
-    component!("ground_ammo_ball","Machine-gun ammunition","ammunition",1,0.000012,0.000000006,0.0,0.0,0.0,0.0,None,None,"Carried self-defense load; creates no second ammunition inventory."),
+    component!("ground_ammo_autocannon","Mixed autocannon load","ammunition",1,0.000035,0.000000012,0.0,0.0,0.0,0.0,None,None,"Autocannon load specification. Caliber-matched physical stores are manufactured separately under Ammunition."),
+    component!("ground_ammo_ball","Machine-gun ammunition","ammunition",1,0.000012,0.000000006,0.0,0.0,0.0,0.0,None,None,"Self-defense load specification. Compatible 12.7 mm rounds are managed under Ammunition."),
     component!("ground_ammo_he","High-explosive artillery load","ammunition",2,0.00006,0.00000002,0.0,0.0,0.0,0.0,None,None,"Baseline indirect-fire payload for either howitzer."),
     component!("ground_ammo_guided","Guided artillery load","ammunition",3,0.00025,0.00000005,0.04,0.0,0.0,0.04,Some("ground_guided_weapons"),None,"Improves artillery support after weapons and observation integration; requires digital fire control."),
     component!("ground_ammo_aa","Air-defense cannon load","ammunition",2,0.000065,0.000000025,0.0,0.0,0.0,0.0,None,None,"Matched payload for the mobile air-defense cannon."),
-    component!("ground_ammo_missiles","Short-range missile load","ammunition",3,0.00030,0.000000055,0.0,0.0,0.0,0.0,Some("ground_guided_weapons"),None,"Matched launcher payload; uses shared munitions and the vehicle maintenance envelope."),
+    component!("ground_ammo_missiles","Short-range missile load","ammunition",3,0.00030,0.000000055,0.0,0.0,0.0,0.0,Some("ground_guided_weapons"),None,"Matched launcher payload. Compatible missiles are manufactured separately and consumed by physical ammunition operations after activation."),
     component!("ground_armor_light","Light armored hull","protection",1,0.00016,0.000000015,0.0,0.0,0.02,0.0,None,None,"Economical baseline protection for specialist ground vehicles."),
     component!("ground_armor_modular","Modular applique armor","protection",3,0.00040,0.00000004,0.0,0.22,-0.10,0.0,Some("ground_modular_armor"),None,"More protection with a mobility penalty; also improves protected-transport effectiveness."),
     component!("ground_troops_standard","Standard troop compartment","troop_compartment",2,0.00009,0.000000015,0.0,0.0,-0.02,0.0,None,None,"Seats, stowage and egress for a protected infantry element. Contributes to ground maneuver, never overseas lift."),
@@ -67,6 +69,7 @@ pub const GROUND_COMPONENTS: &[ComponentDef] = &[
 /// This filters individual choices. `configuration_refusals` additionally
 /// validates paired weapon/mount/payload choices after all slots are selected.
 pub fn component_compatible(platform: &str, c: &ComponentDef) -> bool {
+    if is_aviation_platform(platform) { return aviation_component_compatible(platform,c); }
     if !platform_slots(platform).contains(&c.slot) { return false; }
     if !is_ground_platform(platform) {
         if !design_component(c) || GROUND_COMPONENTS.iter().any(|x| x.id == c.id) { return false; }
@@ -112,6 +115,7 @@ pub fn component_compatible(platform: &str, c: &ComponentDef) -> bool {
 }
 
 pub fn default_spec(platform: &str) -> DesignSpec {
+    if is_aviation_platform(platform) { return aviation_default_spec(platform); }
     let mut spec = tank_spec(platform);
     if !is_ground_platform(platform) { return spec; }
     for (slot,id) in [("mobility","engine_diesel_600"),("protection","ground_armor_light")] { spec.components.insert(slot.into(), id.into()); }
@@ -184,7 +188,8 @@ pub fn research_branch(id: &str) -> &'static str {
         "tank_powerpack"|"ground_engine_management" => "engines",
         "tank_autoloader"|"ground_medium_weapons"|"ground_artillery_automation"|"ground_guided_weapons" => "weapons",
         "ground_modular_armor" => "armor", "tank_fire_control_1990"|"ground_sensor_fusion" => "optics",
-        "ground_secure_radios"|"ground_battlefield_network" => "communications", _ => "unknown",
+        "ground_secure_radios"|"ground_battlefield_network" => "communications",
+        "air_propulsion_integration" => "engines", "air_mission_systems" => "optics", "air_guided_strike" => "weapons", _ => "unknown",
     }
 }
 pub fn research_prerequisites(id: &str) -> &'static [&'static str] {
@@ -193,7 +198,8 @@ pub fn research_prerequisites(id: &str) -> &'static [&'static str] {
         "ground_artillery_automation" => &["tank_autoloader","ground_medium_weapons"],
         "ground_guided_weapons" => &["ground_medium_weapons","tank_fire_control_1990"],
         "ground_sensor_fusion" => &["tank_fire_control_1990"],
-        "ground_battlefield_network" => &["ground_secure_radios","ground_sensor_fusion"], _ => &[],
+        "ground_battlefield_network" => &["ground_secure_radios","ground_sensor_fusion"],
+        "air_guided_strike" => &["air_mission_systems"], _ => &[],
     }
 }
 fn research_requirements(n: &Nation, id: &str) -> Result<(),String> {

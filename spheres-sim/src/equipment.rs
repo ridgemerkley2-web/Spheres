@@ -1,4 +1,4 @@
-//! Version-one tank design and lifecycle. All ratings and prices below are
+//! Custom ground and tactical-strike design lifecycles. Ratings and prices are
 //! explicit GAME assumptions, not specifications of historical vehicles.
 //! Component knowledge consumes existing Aerospace effort. Equipment itself
 //! always remains in `Nation::arsenal`, never in this project ledger.
@@ -10,7 +10,7 @@ use crate::{
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 
-pub const VERSION: u32 = 3;
+pub const VERSION: u32 = 8;
 pub const MAX_REVISIONS: usize = 128;
 pub const MAX_PROJECTS: usize = 128;
 pub const MAX_BATCH: u32 = 1000;
@@ -68,6 +68,12 @@ pub const PLATFORMS: &[PlatformDef] = &[
     PlatformDef { id:"ground_air_defense", name:"Mobile air defense", capacity:17,
         cost_bn:0.00065, mobility:1.02, protection:0.68,
         detail:"Tracked gun or missile defense with separate search radar. Reduces air-strike damage to the forces it accompanies." },
+    PlatformDef { id:"air_light_attack", name:"Light attack aircraft", capacity:18,
+        cost_bn:0.0040, mobility:1.0, protection:1.0,
+        detail:"Economical tactical-strike aircraft with two-store installations. Needs actual maintenance, available theatre basing and manufactured bombs for strike operations." },
+    PlatformDef { id:"air_tactical_strike", name:"Tactical strike aircraft", capacity:21,
+        cost_bn:0.0100, mobility:1.0, protection:1.0,
+        detail:"Larger strike airframe with optional twin engines and four-store installations. Provides tactical air strikes; no interception, strategic lift or ground combat capability." },
 ];
 
 #[derive(Clone, Debug, Serialize)]
@@ -111,8 +117,8 @@ pub const COMPONENTS: &[ComponentDef] = &[
     component!("protection_standard","Standard armor","protection",2,0.00040,0.00000003,0.0,0.0,0.0,0.0,None,None,"Baseline armor. Active protection is selected separately in detailed designs."),
     component!("protection_heavy","Reinforced armor","protection",4,0.00085,0.00000006,0.0,0.25,-0.12,0.0,None,None,"Greater protection occupies room and reduces mobility. Can accompany a separate active-protection system."),
     component!("protection_active","Integrated active protection","protection",4,0.00115,0.00000013,0.0,0.35,-0.05,0.0,None,Some("aero_active_protection_system"),"Requires the existing active-protection discovery; a new design or paid refit must install it."),
-    component!("armament_standard","General-purpose tank weapon package","armament",3,0.00055,0.00000006,0.0,0.0,0.0,0.0,None,None,"Legacy mission package. No extra ammunition inventory is created."),
-    component!("armament_heavy","Heavy tank weapon package","armament",4,0.00090,0.00000010,0.20,0.0,-0.06,0.0,None,None,"Higher land contribution, greater installation and support burden."),
+    component!("armament_standard","General-purpose tank weapon package","armament",3,0.00055,0.00000006,0.0,0.0,0.0,0.0,None,None,"Legacy package mapped to the modeled 105 mm mixed ammunition family. Compatible physical rounds are manufactured separately."),
+    component!("armament_heavy","Heavy tank weapon package","armament",4,0.00090,0.00000010,0.20,0.0,-0.06,0.0,None,None,"Higher land contribution, installation and support burden. Mapped to modeled 120 mm mixed rounds, manufactured separately."),
     component!("sensors_optical","Optical observation and control","sensors",1,0.00015,0.00000002,0.0,0.0,0.0,0.0,None,None,"Legacy observation package."),
     component!("sensors_integrated","Integrated observation and fire control","sensors",2,0.00048,0.00000006,0.12,0.0,0.0,0.25,Some("tank_fire_control_1990"),None,"A modeled vehicle integration programme, enabled by electronics knowledge. Research alone changes no existing vehicle."),
     component!("comms_radio","Field radio package","communications",1,0.00008,0.00000001,0.0,0.0,0.0,0.0,None,None,"Legacy radio integration."),
@@ -121,8 +127,16 @@ pub const COMPONENTS: &[ComponentDef] = &[
 
 include!("equipment_specs.rs");
 include!("equipment_ground.rs");
+include!("equipment_aviation.rs");
 include!("equipment_supply.rs");
 include!("equipment_service.rs");
+include!("equipment_maintenance.rs");
+include!("equipment_targets.rs");
+include!("equipment_replenishment.rs");
+include!("equipment_ammunition_production.rs");
+include!("equipment_ammunition_operations.rs");
+include!("equipment_ammunition_reserves.rs");
+include!("equipment_supply_automation.rs");
 
 #[derive(Clone, Debug, Serialize)]
 pub struct ResearchDef {
@@ -149,6 +163,9 @@ ResearchDef { id:"ground_modular_armor", name:"Modular ground protection", point
 ResearchDef { id:"ground_sensor_fusion", name:"Ground sensor fusion", points:34.0, earliest_year:1990, prerequisite:"core_cmos_submicron", detail:"Builds on observation integration to unlock elevated scout sensors and tracking radar." },
 ResearchDef { id:"ground_secure_radios", name:"Secure ground communications", points:20.0, earliest_year:1990, prerequisite:"core_cmos_submicron", detail:"Unlocks secure radio installations and begins the ground command-network branch." },
 ResearchDef { id:"ground_battlefield_network", name:"Networked ground command", points:38.0, earliest_year:1990, prerequisite:"core_cmos_submicron", detail:"Combines secure radios and sensor fusion to unlock networked reconnaissance and specialist coordination." },
+ResearchDef { id:"air_propulsion_integration", name:"Aircraft propulsion and flight-control integration", points:40.0, earliest_year:1990, prerequisite:"core_cmos_submicron", detail:"Unlocks managed aircraft engines and stabilized attack wings. Installed components change sustained sortie output; research grants no aircraft or national modifier." },
+ResearchDef { id:"air_mission_systems", name:"Tactical aircraft mission systems", points:42.0, earliest_year:1990, prerequisite:"core_cmos_submicron", detail:"Unlocks ground-mapping radar, digital attack avionics and integrated countermeasures. Effects require a certified aircraft revision and supplied strike mission." },
+ResearchDef { id:"air_guided_strike", name:"Guided air-to-ground stores integration", points:48.0, earliest_year:1990, prerequisite:"core_cmos_submicron", detail:"Builds on aircraft mission systems to certify guided-bomb interfaces. Bombs remain finite manufactured consumables; no starting stores are granted." },
 ];
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
@@ -178,6 +195,9 @@ pub struct CompiledProfile {
     /// Absent on old tank profiles so loading never changes frozen revisions.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub ground_roles: Option<GroundRoles>,
+    /// Sparse on all earlier frozen profiles. Tactical strike has no land role.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub aviation: Option<AviationProfile>,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
@@ -262,6 +282,16 @@ pub struct EquipmentState {
     pub maintenance_required_today_bn: f64,
     pub maintenance_fraction: f64,
     pub last_tick_day: Option<i32>,
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub fleet_targets: BTreeMap<String, u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub maintenance_plan: Option<FleetMaintenance>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub ammunition: Option<AmmunitionState>,
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub ammunition_reserves: BTreeMap<String, AmmoReservePlan>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub supply_automation: Option<EquipmentSupplyAutomation>,
 }
 impl Default for EquipmentState {
     fn default() -> Self {
@@ -284,6 +314,11 @@ impl Default for EquipmentState {
             maintenance_required_today_bn: 0.0,
             maintenance_fraction: 1.0,
             last_tick_day: None,
+            fleet_targets: BTreeMap::new(),
+            maintenance_plan: None,
+            ammunition: None,
+            ammunition_reserves: BTreeMap::new(),
+            supply_automation: None,
         }
     }
 }
@@ -351,7 +386,7 @@ pub fn design_preview(w: &WorldState, nation: NationId, spec: &DesignSpec) -> De
     let required = slots_for(spec);
     blockers.extend(configuration_refusals(spec));
     if platform.is_none() {
-        blockers.push("Choose a supported ground-vehicle chassis.".into());
+        blockers.push("Choose a supported vehicle chassis or aircraft airframe.".into());
     }
     for key in spec.components.keys() {
         if !required.contains(&key.as_str()) {
@@ -380,6 +415,14 @@ pub fn design_preview(w: &WorldState, nation: NationId, spec: &DesignSpec) -> De
         }
     }
     let compiled = platform.filter(|_| selected.len() == required.len()).map(|p| {
+        if is_aviation_platform(p.id) {
+            let profile = compile_aviation_model(spec).expect("all required aircraft slots validated");
+            if profile.installation_used > profile.installation_capacity {
+                blockers.push(format!("Installation load {} exceeds this airframe's {} capacity.",
+                    profile.installation_used, profile.installation_capacity));
+            }
+            return profile;
+        }
         let capacity = p.capacity + if detailed_spec(spec) { 8 } else { 0 };
         let used = selected.iter().map(|c| c.load).sum();
         if used > capacity {
@@ -434,11 +477,12 @@ pub fn design_preview(w: &WorldState, nation: NationId, spec: &DesignSpec) -> De
             installation_used: used,
             installation_capacity: capacity,
             ground_roles: compile_ground_roles(spec, land, protection, mobility, recon),
+            aviation: None,
         }
     });
     DesignPreview {valid:blockers.is_empty(),blockers,profile:compiled,specification_key:specification_key(spec),notes:vec![
         "Prices, installation ratings and input quantities are explicit game-model assumptions, not historical vehicle specifications.".into(),
-        "One unit is one complete new vehicle. Inherited Arsenal formations remain legacy equivalents.".into(),
+        "One unit is one complete new vehicle or aircraft. Inherited Arsenal formations remain legacy equivalents.".into(),
         "Fabrication payments exclude separately acquired raw inputs. Research and drafts create no equipment or force bonus.".into()]}
 }
 
@@ -757,7 +801,7 @@ pub fn reserved_site_slots(n: &Nation, district: &str) -> usize {
                 p.district.as_deref() == Some(district)
                     && !matches!(p.status, ProjectStatus::Complete | ProjectStatus::Cancelled)
             })
-            .count()
+            .count() + reserved_ammunition_slots(n,district)
     })
 }
 pub fn maintenance_allocated_bn(n: &Nation) -> f64 {
@@ -873,7 +917,7 @@ fn refit_terms(
         || source.spec.components.get("armament") != target.spec.components.get("armament")
     {
         return Err(
-            "This change replaces the chassis or main weapon. Manufacture new vehicles instead."
+            "This change replaces the chassis, airframe or main ground weapon. Manufacture new equipment instead."
                 .into(),
         );
     }
@@ -1373,6 +1417,9 @@ pub fn tick_day(w: &mut WorldState) {
 }
 
 fn settle_maintenance(w: &mut WorldState, id: NationId) {
+    // Actual invoices settle once after today's deliveries. The old earmark
+    // remains the compatibility path until a reviewed plan takes effect.
+    if maintenance_plan_on(w.nation(id),clock::absolute_day(w)){return;}
     let required = fleet_maintenance_requirement(w.nation(id));
     // Department2 already records this service payment. Earmarking its limited
     // envelope supports vehicles and reduces legacy magazine refill through
@@ -1407,7 +1454,7 @@ pub fn settle_support(w: &mut WorldState) {
             n.alive
                 && n.equipment
                     .as_ref()
-                    .is_some_and(|s| s.finance_from_day <= day)
+                    .is_some_and(|s| s.finance_from_day <= day || s.maintenance_plan.as_ref().is_some_and(|p|p.from_day<=day))
                 && n.program_budget
                     .as_ref()
                     .is_some_and(|p| p.day == Some(day))
@@ -1415,7 +1462,9 @@ pub fn settle_support(w: &mut WorldState) {
         .map(|n| n.id)
         .collect();
     for id in ids {
-        settle_maintenance(w, id);
+        if maintenance_plan_on(w.nation(id),day){settle_fleet_maintenance(w,id);}else{settle_maintenance(w, id);}
+        tick_ammunition_work(w,id);
+        tick_ammunition_reserves(w,id);
     }
 }
 
@@ -1431,9 +1480,14 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
         return Ok(());
     };
     let fail = |detail: &str| format!("Invalid equipment state for {}: {detail}", n.id.name());
-    if !matches!(s.version, 1 | 2 | VERSION) {
+    if !(1..=VERSION).contains(&s.version) {
         return Err(fail("unsupported equipment version"));
     }
+    validate_fleet_targets(n)?;
+    validate_maintenance_plan(n)?;
+    validate_ammunition(n)?;
+    validate_ammunition_reserves(n)?;
+    validate_supply_automation(n)?;
     if s.revisions.len() > MAX_REVISIONS
         || s.projects.len() > MAX_PROJECTS
         || s.drafts.len() > MAX_REVISIONS
@@ -1488,6 +1542,7 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
             || p.rules_version != spec_version(&r.spec)
             || (s.version == 1 && detailed_spec(&r.spec))
             || (s.version < 3 && is_ground_platform(&r.spec.platform))
+            || (s.version < 8 && is_aviation_platform(&r.spec.platform))
             || !PLATFORMS.iter().any(|p| p.id == r.spec.platform)
             || !configuration_refusals(&r.spec).is_empty()
             || r.spec.components.len() != slots_for(&r.spec).len()
@@ -1514,6 +1569,7 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
             || !(0.75..=1.25).contains(&p.land_factor)
             || p.ground_roles.is_some() != is_ground_platform(&r.spec.platform)
             || p.ground_roles.is_some_and(|roles| !roles.valid())
+            || !aviation_frozen_profile_valid(&r.spec, p)
             || p.service_months == 0
             || p.production_days == 0
             || p.development_days == 0
@@ -1675,7 +1731,7 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
                 || s.revisions
                     .get(id)
                     .is_some_and(|r| r.certified_day.is_none())
-                || Some(h.kit) != crate::arsenal::index_of("arm_gen3")
+                || Some(h.kit) != s.revisions.get(id).and_then(|r| crate::arsenal::index_of(design_base_kit(&r.spec)))
                 || !h.units.is_finite()
                 || h.units < 0.0
                 || h.units.fract() != 0.0
@@ -1702,7 +1758,7 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
                 || s.revisions
                     .get(id)
                     .is_some_and(|r| r.certified_day.is_none())
-                || Some(o.kit) != crate::arsenal::index_of("arm_gen3")
+                || Some(o.kit) != s.revisions.get(id).and_then(|r| crate::arsenal::index_of(design_base_kit(&r.spec)))
                 || !o.units.is_finite()
                 || o.units <= 0.0
                 || o.units.fract() != 0.0
@@ -1726,7 +1782,7 @@ mod tests {
         world::{GameRules, BUDGET_DEFENSE},
     };
     const USA: NationId = NationId::USA;
-    fn fixture() -> (WorldState, String) {
+    pub(super) fn fixture() -> (WorldState, String) {
         let mut w = world_1990(GameRules {
             daily_simulation: true,
             military_operations: true,
@@ -1855,7 +1911,7 @@ mod tests {
     #[test]
     fn separate_specifications_have_valid_distinct_types_and_require_every_slot() {
         let (w,_) = fixture();let before=crate::save(&w);let mut prices=vec![];
-        for platform in PLATFORMS.iter().filter(|p| !is_ground_platform(p.id)) {
+        for platform in PLATFORMS.iter().filter(|p| p.id.starts_with("tank_")) {
             let spec=tank_spec(platform.id);let preview=design_preview(&w,USA,&spec);
             assert!(preview.valid,"{}: {:?}",platform.id,preview.blockers);
             let p=preview.profile.unwrap();assert_eq!(p.rules_version,2);assert_eq!(p.component_costs.len(),12);prices.push(p.unit_cost_bn);

@@ -5456,19 +5456,29 @@ function equipmentExternalPending() {
 }
 async function equipmentCommand(command) {
   if (!S?.player || equipmentExternalPending()) throw new Error("Wait for the current order or turn to finish before confirming equipment work.");
-  if (!command || !["equipment_save","equipment_research","equipment_develop","equipment_produce","equipment_refit","equipment_retire","equipment_pause","equipment_cancel","equipment_funding"].includes(command.kind)) throw new Error("This is not a reviewed equipment order.");
+  if (!command || !["equipment_save","equipment_research","equipment_develop","equipment_produce","equipment_refit","equipment_retire","equipment_maintenance","equipment_supply","equipment_target","equipment_pause","equipment_cancel","equipment_funding","equipment_ammo_order","equipment_ammo_activate","equipment_ammo_funding","equipment_ammo_pause","equipment_ammo_cancel","equipment_ammo_reserve","equipment_ammo_reserve_clear","equipment_supply_policy","equipment_supply_policy_clear"].includes(command.kind)) throw new Error("This is not a reviewed equipment order.");
   const session=S.session_id;
   const response=await api("/api/command", {commands:[command]});
   if (session!==S?.session_id) throw new Error("The campaign changed. Review the equipment in the current campaign.");
   if (response.command_pending) throw new Error("The order is awaiting confirmation. Use the pending order controls before sending another.");
   if (response.errors?.length) throw new Error(response.errors.join(" "));
   await adopt(response,false);
-  return {message:command.kind==="equipment_save"?"Design draft saved to your library.":command.kind==="equipment_retire"?"Vehicles retired. Your remaining fleet is shown below; funding allocations and existing orders are unchanged.":"Equipment order accepted. Review its programme for progress and paid work."};
+  if(command.kind==="equipment_supply_policy"||command.kind==="equipment_supply_policy_clear") {
+    equipmentSelectTab("production");
+    return {message:command.kind==="equipment_supply_policy_clear"?"Material purchasing policy cleared. Existing paid shipments remain tracked in Resources.":command.automatic?"Automatic material purchasing enabled. Future reviews follow the saved horizon, spending cap, cash floor and interval.":"Material purchasing policy saved with automatic purchases disabled. Review purchases individually in Production."};
+  }
+  if(command.kind==="equipment_ammo_reserve"||command.kind==="equipment_ammo_reserve_clear") {
+    equipmentSelectTab("ammunition");
+    return {message:command.kind==="equipment_ammo_reserve_clear"?"Ammunition reserve plan removed. Review any existing batches in Ammunition.":command.automatic?"Ammunition reserve plan saved with automatic replenishment enabled. Review its target, funding and status in Ammunition.":"Ammunition reserve target saved for manual replenishment. Review its target and suggested work in Ammunition."};
+  }
+  const ammunitionMessages={equipment_ammo_order:"Ammunition batch scheduled. Review its funded work and completed output in Ammunition.",equipment_ammo_activate:"Physical ammunition management activated. Review family stocks and production requirements in Ammunition.",equipment_ammo_funding:"Ammunition funding limit saved. Future work follows the chosen limit and available departmental funds.",equipment_ammo_pause:command.paused?"Ammunition batch paused. Completed work is retained.":"Ammunition batch resumed. Future work requires available funding and materials.",equipment_ammo_cancel:"Remaining ammunition work cancelled. Review completed output and recorded spending in Ammunition."};
+  if(ammunitionMessages[command.kind])return {message:ammunitionMessages[command.kind]};
+  return {message:command.kind==="equipment_save"?"Design draft saved to your library.":command.kind==="equipment_retire"?"Vehicles retired. Your remaining fleet is shown below; funding allocations and existing orders are unchanged.":command.kind==="equipment_maintenance"?"Maintenance plan saved. Future invoices use the chosen ceiling and available Defense funding.":command.kind==="equipment_target"?"Fleet target saved. Review suggested production or refits separately; no vehicles have been ordered.":command.kind==="equipment_supply"?"Material purchase completed. Paid shipments are recorded in Resources and must arrive before use.":"Equipment order accepted. Review its programme for progress and paid work."};
 }
 async function equipmentNavigate(action) {
   if (!action || !S?.player || equipmentExternalPending()) return false;
   if (action.action==="equipment") {
-    if (!["research","designer","library","development","production","service"].includes(action.tab)) return false;
+    if (!["research","designer","library","development","production","ammunition","service"].includes(action.tab)) return false;
     equipmentSelectTab(action.tab); return true;
   }
   if (action.action==="research" && action.equipment===true) {
@@ -16106,7 +16116,7 @@ function manufacturingCatalogHtml() {
   return `${operationsHeroHtml("manufacturing", "Step 1 · Choose a programme", "Make your next move.", "Browse equipment your nation knows how to build. Choose a programme, then place it in a free arms-plant slot.")}
     <div class="production-stamp"><b>Equipment catalogue</b><span>Locked programmes stay tucked away until you need them</span></div>
     ${!(MANU.data?.actions?.start === true && +MANU.data?.summary?.free_slots > 0) ? `<div class="factory-bridge"><b>Explore your next programme</b>You can inspect equipment before a plant is ready. Starting a line requires a free, completed arms-plant slot.<button type="button" data-manu-build-plant>Review arms-plant construction</button></div>` : ""}
-    <div class="factory-bridge"><b>Design a ground vehicle</b>Develop a configuration of your own, then manufacture its certified revision.<button type="button" data-equipment-open>Open equipment designer</button></div>
+    <div class="factory-bridge"><b>Design ground equipment or aircraft</b>Develop a configuration of your own, then manufacture its certified revision.<button type="button" data-equipment-open>Open equipment designer</button></div>
     <div class="factory-classes">${classes.map((name) => `<button type="button" data-manu-class="${logisticsEscAttr(name)}" class="${MANU.classFilter === name ? "on" : ""}">${escText(name)}</button>`).join("")}</div>
     <div class="equipment-catalog">${cards || `<div class="production-empty">No equipment in this filter is ready.</div>`}</div>
     ${locked ? `<button type="button" class="built-toggle" data-manu-locked aria-expanded="${MANU.showLocked}"><span>${MANU.showLocked ? "Hide" : "Show"} technology-locked equipment</span><b>${locked}</b></button>` : ""}

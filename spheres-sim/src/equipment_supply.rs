@@ -33,6 +33,9 @@ pub struct EquipmentRawDemand {
     /// prepaid balances are excluded, so a bank is never a recurring flow.
     pub procurement_claim_bn: [f64; 3],
     pub procurement_months: [f64; 3],
+    /// Eligible D3 contracts own the calendar-aware procurement baseline.
+    /// D2 ammunition demand alone must not suppress legacy procurement demand.
+    pub procurement_calendar: bool,
 }
 
 #[derive(Clone, Debug, Default, Serialize)]
@@ -230,6 +233,11 @@ pub fn next_work_supply(w: &WorldState, id: NationId) -> NextWorkSupply {
 /// and fresh authority expires with the enacted fiscal year. Previously paid
 /// procurement balances survive that boundary exactly as settlement does.
 pub fn raw_supply_demand(w: &WorldState, id: NationId) -> EquipmentRawDemand {
+    let mut out=equipment_project_raw_supply_demand(w,id);let ammo=ammunition_supply_demand(w,id);
+    for i in 0..12{out.remaining[i]+=ammo.remaining[i];out.next_work[i]+=ammo.next_work[i];for h in 0..3{out.horizons[i][h]+=ammo.horizons[i][h];}}
+    out
+}
+fn equipment_project_raw_supply_demand(w: &WorldState, id: NationId) -> EquipmentRawDemand {
     let mut out = EquipmentRawDemand::default();
     let Some(n) = w.nation_opt(id).filter(|n|n.alive) else { return out; };
     let Some(state) = &n.equipment else { return out; };
@@ -242,6 +250,7 @@ pub fn raw_supply_demand(w: &WorldState, id: NationId) -> EquipmentRawDemand {
     for job in &jobs { for (r,q) in out.remaining.iter_mut().zip(supply_remaining(job)) { *r+=q; } }
     out.next_work=next_work_supply(w,id).raw;
     if jobs.is_empty() { return out; }
+    out.procurement_calendar=jobs.iter().any(|p|supply_department(p)==3);
     let (mut funds,mut carry) = supply_opening_funds(w,id,start);
     let legacy_buys = crate::arsenal::pick(n).is_some()
         || crate::manufacturing::lines_for(w,id).next().is_some();

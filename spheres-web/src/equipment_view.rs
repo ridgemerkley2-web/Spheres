@@ -4,6 +4,13 @@ use spheres_sim::{equipment as eq, world::*, Command, EquipmentOrder};
 include!("equipment_planning.rs");
 include!("equipment_supply_view.rs");
 include!("equipment_service_view.rs");
+include!("equipment_maintenance_view.rs");
+include!("equipment_targets_view.rs");
+include!("equipment_replenishment_view.rs");
+include!("equipment_supply_automation_view.rs");
+include!("equipment_aviation_view.rs");
+include!("equipment_ammunition_view.rs");
+include!("equipment_ammunition_reserves_view.rs");
 
 fn metric(label:&str,value:impl serde::Serialize)->Value {json!({"label":label,"value":value})}
 fn cost(label:&str,amount:f64,period:&str)->Value {json!({"label":label,"amount_bn":amount,"period":period})}
@@ -18,7 +25,9 @@ fn checked(w:&WorldState,me:NationId,label:&str,command:Value)->Value {
 fn intent(label:&str,command:Value,inputs:Vec<Value>)->Value {
     json!({"label":label,"command":command,"inputs":inputs,"requires_preview":true,"enabled":true})
 }
-fn profile_metrics(p:&eq::CompiledProfile)->Vec<Value> {let mut rows=vec![
+fn profile_metrics(p:&eq::CompiledProfile)->Vec<Value> {
+if let Some(a)=&p.aviation {return vec![metric("Supported strike effectiveness",format!("{:.3}×",a.strike_factor)),metric("Supported sorties per aircraft / month",a.sorties_per_aircraft_month),metric("Stores per sortie",a.stores_per_sortie),metric("Compatible mission stores",eq::ammo_def(&a.store_family).map_or(a.store_family.as_str(),|d|d.name)),metric("Installation load",format!("{} / {}",p.installation_used,p.installation_capacity)),metric("Operational role","Tactical air raids · compatible stores and theatre access required")];}
+let mut rows=vec![
     metric("Land contribution",format!("{:.3}×",p.land_factor)),
     metric("Firepower rating",p.land),metric("Protection rating",p.protection),
     metric("Mobility rating",p.mobility),metric("Observation rating",p.recon),
@@ -30,7 +39,7 @@ fn profile_costs(p:&eq::CompiledProfile)->Vec<Value> {vec![
     cost("Development and trials",p.development_cost_bn,"one programme"),
     cost("Site tooling",p.tooling_cost_bn,"each production batch"),
     cost("Vehicle fabrication",p.fabrication_cost_bn,"per vehicle; raw inputs separate"),
-    cost("Maintenance requirement",p.maintenance_bn_day,"per vehicle / day; existing Defense maintenance allocation"),
+    cost("Maintenance requirement",p.maintenance_bn_day,"per vehicle / day; paid through Defense maintenance"),
 ]}
 fn sites(w:&WorldState,me:NationId)->Vec<Value> {
     w.districts.iter().filter(|(_,d)|**d==me).filter_map(|(id,_)|{
@@ -42,35 +51,39 @@ fn sites(w:&WorldState,me:NationId)->Vec<Value> {
 }
 fn production_action(w:&WorldState,me:NationId,r:&eq::DesignRevision)->Value {
     let options=sites(w,me);let site=options.first().map(|o|o["value"].clone()).unwrap_or(json!(""));
-    intent("Review production order",json!({"kind":"equipment_produce","revision":r.id,"district":site,"quantity":10,"daily_budget_mn":0.2}),vec![
+    let aircraft=r.profile.aviation.is_some();let quantity=if aircraft{2}else{10};
+    intent("Review production order",json!({"kind":"equipment_produce","revision":r.id,"district":site,"quantity":quantity,"daily_budget_mn":0.2}),vec![
         json!({"key":"district","label":"Arms plant province","type":"select","value":site,"options":options}),
-        json!({"key":"quantity","label":"Vehicles to build","type":"number","value":10,"min":1,"max":eq::MAX_BATCH,"step":1}),budget_input(0.0002)])
+        json!({"key":"quantity","label":if aircraft{"Aircraft to build"}else{"Vehicles to build"},"type":"number","value":quantity,"min":1,"max":eq::MAX_BATCH,"step":1}),budget_input(0.0002)])
 }
 pub fn view(w:&WorldState,me:NationId,session:&str)->Value {
     let n=w.nation(me);let state=n.equipment.as_ref();
     let supply_plans=eq::supply_plan(w,me);
     let supply=equipment_national_supply(w,me,&supply_plans);
     let platforms:Vec<_>=eq::PLATFORMS.iter().map(|p|json!({"id":p.id,"name":p.name,"description":p.detail,
-        "role":eq::platform_role(p.id),"family":if p.id.starts_with("tank_"){"tanks"}else{p.id},"family_name":if p.id.starts_with("tank_"){"Tanks"}else{p.name},"default_spec":eq::default_spec(p.id),
+        "role":eq::platform_role(p.id),"family":if eq::is_aviation_platform(p.id){"aviation"}else if p.id.starts_with("tank_"){"tanks"}else{p.id},"family_name":if eq::is_aviation_platform(p.id){"Tactical aviation"}else if p.id.starts_with("tank_"){"Tanks"}else{p.name},"default_spec":eq::default_spec(p.id),
         "slots":eq::platform_slots(p.id).iter().map(|s|json!({"id":s,"name":eq::slot_name(s),"required":true,
             "components":eq::all_components().filter(|c|c.slot==*s && eq::component_compatible(p.id,c)).map(|c|c.id).collect::<Vec<_>>()})).collect::<Vec<_>>()})).collect();
     let components:Vec<_>=eq::all_components().map(|c|{
         let known=eq::component_known(n,c);
         let tech=c.research.map(|id|json!({"id":id,"domain":"Aerospace","name":eq::research(id).map(|r|r.name),"equipment":true}))
             .or_else(||c.technology.map(|id|json!({"id":id,"domain":"Aerospace","name":id})));
+        let mut tradeoffs=vec![format!("{} installation points · ${:.0}k fabrication · ${:.0}/day upkeep",c.load,c.cost_bn*1e6,c.upkeep_bn_day*1e9)];
+        if !c.slot.starts_with("air_"){tradeoffs.push(format!("Rating changes: firepower {:+.2}, protection {:+.2}, mobility {:+.2}, observation {:+.2}",c.land,c.protection,c.mobility,c.recon));}
         json!({"id":c.id,"name":c.name,"family":c.slot,"description":c.detail,"known":known,
             "reason":if known {None} else {Some("Research this system before funding a model that uses it.")},"tech":tech,
-            "tradeoffs":[format!("{} installation points · ${:.0}k fabrication · ${:.0}/day upkeep",c.load,c.cost_bn*1e6,c.upkeep_bn_day*1e9),
-                format!("Rating changes: firepower {:+.2}, protection {:+.2}, mobility {:+.2}, observation {:+.2}",c.land,c.protection,c.mobility,c.recon)]})
+            "tradeoffs":tradeoffs})
     }).collect();
     let presets=equipment_presets();
     let mut designs=vec![];let mut development=vec![];let mut production=vec![];let mut lots=vec![];
     if let Some(s)=state {
         for (id,d) in &s.drafts {designs.push(json!({"id":format!("draft:{id}"),"name":d.name,"spec":d.spec,"editable_spec":eq::editable_spec(&d.spec),"status":"Draft","detail":"Editable concept. No money spent and no vehicles created.","actions":[]}));}
         for r in s.revisions.values() {
+            let mut model_metrics=profile_metrics(&r.profile);
+            if r.profile.aviation.is_none(){if let Some(def)=eq::ammunition_family(&r.spec).and_then(eq::ammo_def){model_metrics.push(metric("Compatible ammunition",def.name));}}
             designs.push(json!({"id":r.id,"name":r.name,"spec":r.spec,"editable_spec":eq::editable_spec(&r.spec),"status":if r.certified_day.is_some(){"Certified"}else{"Under development"},
-                "detail":format!("Revision {} is fixed. Use it as a starting point to develop a different configuration.",r.id),"metrics":profile_metrics(&r.profile),"costs":profile_costs(&r.profile),
-                "actions":if r.certified_day.is_some(){vec![production_action(w,me,r)]}else{vec![]}}));
+                "detail":format!("Revision {} is fixed. Use it as a starting point to develop a different configuration.",r.id),"metrics":model_metrics,"costs":profile_costs(&r.profile),
+                "actions":if r.certified_day.is_some(){vec![production_action(w,me,r),target_action(w,me,&r.id)]}else{vec![]}}));
         }
         for p in &s.projects {
             let r=s.revisions.get(&p.revision_id);let active=!matches!(p.status,eq::ProjectStatus::Complete|eq::ProjectStatus::Cancelled);
@@ -105,7 +118,7 @@ pub fn view(w:&WorldState,me:NationId,session:&str)->Value {
             }
             actions.push(retirement_action(w,me,id));
             lots.push(json!({"id":id,"name":r.name,"status":"In service","detail":"Only delivered vehicles contribute. Reserved refit vehicles are withdrawn until conversion or cancellation.",
-                "metrics":[metric("Vehicles held",h.units),metric("Available for operations",spheres_sim::arsenal::available_design_units(h)),metric("Reserved for refit",h.refit_reserved),metric("Age",format!("{:.1} months",h.age)),metric("Condition",format!("{:.1}%",spheres_sim::arsenal::holding_condition(n,h)*100.0)),metric("Last settled maintenance coverage",if s.last_tick_day.is_some(){format!("{:.0}%",s.maintenance_fraction*100.0)}else{"Not yet settled".into()})],
+                "metrics":[metric("Vehicles held",h.units),metric("Available for operations",spheres_sim::arsenal::available_design_units(h)),metric("Reserved for refit",h.refit_reserved),metric("Age",format!("{:.1} months",h.age)),metric("Condition",format!("{:.1}%",spheres_sim::arsenal::holding_condition(n,h)*100.0)),metric("Last settled maintenance coverage",if s.last_tick_day.is_some()||s.maintenance_plan.as_ref().is_some_and(|p|p.receipt.is_some()){format!("{:.0}%",s.maintenance_fraction*100.0)}else{"Not yet settled".into()})],
                 "costs":[cost("Maintenance requirement",r.profile.maintenance_bn_day*h.units,"per day")],"actions":actions}));
         }
         for o in &n.arsenal.orders {if let Some(id)=o.design_id.as_deref(){production.push(json!({"id":format!("delivery:{id}:{}",o.due),"name":s.revisions.get(id).map(|r|r.name.as_str()).unwrap_or(id),"status":"Delivery","detail":"Fabrication is paid. These vehicles enter service when delivery completes.","metrics":[metric("Vehicles in transit",o.units),metric("Delivery remaining",format!("{} days",o.due_days.unwrap_or(o.due*30)))],"actions":[]}));}}
@@ -114,8 +127,8 @@ pub fn view(w:&WorldState,me:NationId,session:&str)->Value {
     let comparison_options=comparison_options(&presets,&designs);
     let modernization=modernization_board(w,me);
     json!({"session_id":session,"nation":me,"name":me.name(),"date":w.date_str(),"enabled":spheres_sim::clock::is_daily(w)&&w.rules.military_operations,"reason":"Equipment programmes require daily time and military operations.",
-        "platforms":platforms,"components":components,"presets":presets,"designs":designs,"development":development,"production":production,"lots":lots,"research":research,"comparison_options":comparison_options,"modernization":modernization,"supply":supply,"service":equipment_service_board(w,me),
-        "funding":{"metrics":[metric("Development","Defense · Research & development"),metric("Production and refit","Defense · Procurement"),metric("Service support","Defense · Maintenance, within the existing allocation"),metric("Unused development funds",format!("${:.3}m",spheres_sim::programs::available_bn(w,me,BUDGET_DEFENSE,4)*1000.0)),metric("Unused procurement funds",format!("${:.3}m",spheres_sim::programs::available_bn(w,me,BUDGET_DEFENSE,3)*1000.0))]},
+        "platforms":platforms,"components":components,"presets":presets,"designs":designs,"development":development,"production":production,"lots":lots,"research":research,"comparison_options":comparison_options,"modernization":modernization,"supply":supply,"service":equipment_service_board(w,me),"maintenance":maintenance_board(w,me),"targets":targets_board(w,me),"replenishment":replenishment_board(w,me),"supply_automation":supply_automation_board(w,me),"ammunition":ammunition_board(w,me),"aviation":aviation_board(w,me),
+        "funding":{"metrics":[metric("Development","Defense · Research & development"),metric("Production and refit","Defense · Procurement"),metric("Service support","Defense · Maintenance; see the service plan"),metric("Unused development funds",format!("${:.3}m",spheres_sim::programs::available_bn(w,me,BUDGET_DEFENSE,4)*1000.0)),metric("Unused procurement funds",format!("${:.3}m",spheres_sim::programs::available_bn(w,me,BUDGET_DEFENSE,3)*1000.0))]},
         "actions":[nav("Development funding",json!({"action":"budget","ministry":"defense","department":4})),nav("Procurement funding",json!({"action":"budget","ministry":"defense","department":3})),nav("Build an arms plant",json!({"action":"construction","kind":"arms_plant"})),nav("Review raw inputs",json!({"action":"resources"}))]})
 }
 
@@ -124,6 +137,12 @@ pub fn preview(w:&WorldState,me:NationId,session:&str,v:&Value)->Result<Value,St
     if let Some(command)=v.get("command") {
         let parsed=super::parse_command(w,command,me).ok_or("The equipment order is malformed.")?;
         let Command::Equipment {ref order,..}=parsed else{return Err("This preview accepts equipment orders only.".into());};
+        if matches!(order,EquipmentOrder::SupplyPolicy{..}|EquipmentOrder::SupplyPolicyClear) {return Ok(supply_automation_preview(w,me,session,command,order));}
+        if matches!(order,EquipmentOrder::AmmoReserve{..}|EquipmentOrder::AmmoReserveClear{..}) {return Ok(ammunition_reserve_preview(w,me,session,command,order));}
+        if matches!(order,EquipmentOrder::AmmoOrder{..}|EquipmentOrder::AmmoActivate|EquipmentOrder::AmmoFunding{..}|EquipmentOrder::AmmoPause{..}|EquipmentOrder::AmmoCancel{..}) {return Ok(ammunition_preview(w,me,session,command,order));}
+        if let EquipmentOrder::Maintenance{daily_budget_bn}=order{return Ok(maintenance_preview(w,me,session,command,*daily_budget_bn));}
+        if let EquipmentOrder::Target{revision,quantity}=order{return Ok(target_preview(w,me,session,command,&parsed,revision,*quantity));}
+        if let EquipmentOrder::Supply{horizon_days,spending_cap_bn}=order{return Ok(replenishment_preview(w,me,session,command,*horizon_days,*spending_cap_bn));}
         if let EquipmentOrder::Retire{revision,quantity}=order {
             return Ok(equipment_retirement_preview(w,me,session,command,&parsed,revision,*quantity));
         }
@@ -148,14 +167,16 @@ pub fn preview(w:&WorldState,me:NationId,session:&str,v:&Value)->Result<Value,St
     let mut actions=vec![checked(w,me,"Save design draft",json!({"kind":"equipment_save","name":name,"platform":spec.platform,"components":spec.components}))];
     if p.valid {actions.push(intent("Review development funding",json!({"kind":"equipment_develop","name":name,"platform":spec.platform,"components":spec.components,"daily_budget_mn":0.5}),vec![budget_input(0.0005)]));}
     let mut metrics=p.profile.as_ref().map(profile_metrics).unwrap_or_default();
+    if !eq::is_aviation_platform(&spec.platform){if let Some(def)=eq::ammunition_family(&spec).and_then(eq::ammo_def){metrics.push(metric("Compatible ammunition",def.name));}}
     if let Some(old)=v.get("source_revision").and_then(Value::as_str).and_then(|id|eq::profile(w.nation(me),id)){if let Some(new)=&p.profile{
-        metrics.push(metric("Change from original land contribution",format!("{:+.3}×",new.land_factor-old.land_factor)));
+        if let (Some(a),Some(b))=(&old.aviation,&new.aviation){metrics.push(metric("Change from original supported strike effectiveness",format!("{:+.3}×",b.strike_factor-a.strike_factor)));}
+        else if old.aviation.is_none()&&new.aviation.is_none(){metrics.push(metric("Change from original land contribution",format!("{:+.3}×",new.land_factor-old.land_factor)));}
         metrics.push(metric("Fabrication cost change",format!("{:+.3}m per vehicle",(new.fabrication_cost_bn-old.fabrication_cost_bn)*1000.0)));
     }}
     let comparison=design_comparison(w,me,v,&spec,p.profile.as_ref());
     Ok(json!({"session_id":session,"nation":me,"valid":p.valid,"blockers":p.blockers,"metrics":metrics,"costs":p.profile.as_ref().map(profile_costs).unwrap_or_default(),
         "timing":p.profile.as_ref().map(|p|vec![json!({"label":"Development minimum","value":format!("{} days",p.development_days)}),json!({"label":"Per-vehicle production minimum","value":format!("{} days after {} tooling days",p.production_days,p.tooling_days)})]).unwrap_or_default(),
-        "comparison":comparison,"requirements":p.notes,"actions":actions,"detail":"Research unlocks components. Paid development certifies this exact revision. Only delivered vehicles affect the country's land forces."}))
+        "comparison":comparison,"requirements":p.notes,"actions":actions,"detail":if eq::is_aviation_platform(&spec.platform){"Research unlocks components. Paid development certifies this exact aircraft. Only delivered, supported aircraft with compatible mission stores and theatre access contribute to tactical air raids. Figures are game assumptions."}else{"Research unlocks components. Paid development certifies this exact revision. Only delivered vehicles affect the country's land forces."}}))
 }
 
 #[cfg(test)]

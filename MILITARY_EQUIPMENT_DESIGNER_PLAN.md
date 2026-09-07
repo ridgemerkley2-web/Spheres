@@ -1,23 +1,38 @@
 # Military research and equipment designer
 
-Spheres product and implementation plan · 6 September 2026
+Spheres product and implementation plan · 6 September 2026 · status updated 7 September
 
-Status: proposed design, based on the current working tree. This document does
-not describe a feature already implemented. It carries forward the request for
-a full component-based military research system and equipment designer.
+Status: staged full-designer plan. Ground design/lifecycle, physical ground
+ammunition, reserve plans and optional material purchasing are implemented.
+The first tactical-aviation slice now adds two airframes, eighteen components and
+three research projects with paid lifecycle and physical bomb use. Milestone 5
+remains partial; this document's broader aircraft, naval, trade and AI scope is
+still planned. Current mechanics and verification boundaries are in
+[EQUIPMENT_DESIGNER.md](EQUIPMENT_DESIGNER.md), [AMMUNITION.md](AMMUNITION.md)
+and [AVIATION.md](AVIATION.md).
 
 ## 1. The experience we are building
 
+**Direction update, 7 September:** Ridge now wants company development and
+manufacturing, followed by government purchases from finished company stock.
+[COMPANIES_AND_PROCUREMENT_PLAN.md](COMPANIES_AND_PROCUREMENT_PLAN.md) supersedes
+this document's government-directed production workflow and its immediate
+implementation sequence. Existing direct-production mechanics remain live until
+the replacement is implemented. The research, design, service and equipment-family
+scope below still applies; its production sections describe the earlier plan.
+
 You decide what your country needs, research the necessary components, combine
-them into a named equipment model, fund its development, manufacture it, and
-watch it enter service. Years later, you can improve that model, refit suitable
+them into a named equipment model, commission its development, buy finished
+equipment from its manufacturer, and watch it enter service. Years later, you
+can improve that model, refit suitable
 equipment, export it, or replace it. Every step explains its cost, time,
 limitations, and effect on your forces before you commit.
 
 The core sequence is:
 
 **Need → component research → equipment design → development and trials →
-production → fielding → maintenance, refit or retirement.**
+company manufacturing → stock purchase → delivery and fielding → maintenance,
+refit or retirement.**
 
 A new radar does not instantly improve every aircraft. Research makes the
 component available; you still need a compatible design and a funded route to
@@ -29,9 +44,9 @@ submarines, missiles, infantry equipment, and military support systems. Guided
 presets and advanced editing use the same rules. The player should never need
 to design every truck or learn an aircraft engineering spreadsheet to govern.
 
-The first playable delivery will take one land-vehicle family through the
-entire loop. It is a foundation for the full designer, not the definition of
-the final scope.
+The first playable delivery took a land-vehicle family through the entire loop.
+The nine-ground-platform implementation and first tactical aircraft now extend
+that foundation; they do not define the final scope.
 
 ## 2. What we take from Millennium Dawn
 
@@ -748,7 +763,7 @@ effort should be measured before estimating dates.
 | 2. First complete vehicle designer | Tank-family platform choices, useful components, presets, draft/revision comparison and validation | Several valid configurations with meaningful tradeoffs; no illegal or free upgraded model |
 | 3. Develop, build, field and refit | Development funding, certification, tooling, production, delivery, maintenance, first role-capability consumer and one compatible tank refit | Exact revision enters service; costs settle once; combat reflects a tradeoff without duplicate tech/adequacy effects in mixed fleets; refit stock is conserved |
 | 4. Ground forces and modernization | IFV/APC/recon/artillery/air-defence/support families, component-only research expansion, broader refits/replacement and minimum launcher/store compatibility | Ground roles have affordable alternatives; basic consumable conservation and replacement of overlapping scalar refill exist before aviation loadouts |
-| 5. Aviation and helicopters | Airframes, sensors/engines/mission systems, support aircraft, rotary-wing and drone families | Basing, supported missions, loadouts and operating costs constrain actual use |
+| 5. Aviation and helicopters — partial | Implemented: light-attack/tactical-strike airframes, eight component slots, physical unguided/guided bombs and shared paid lifecycle. Pending: fighter/interception, multirole, strategic/support, carrier, rotary-wing and drone missions | Current slice: theatre access, supported rung-6 sorties, compatible finite stores and upkeep constrain use. Each further family needs its own operational consumer |
 | 6. Naval designer | Surface/submarine families, ship-class revisions, yard eligibility and long refits | Escort/blockade/lift/undersea consumers exist; air wings and stores are separately procured where required |
 | 7. Conventional munitions and shared support | Expand compatible ammunition/interceptors, expendable drones, communications and electronic support on the already working stock foundation | Full released weapon-family coverage; no standing-force bonus from unspent rounds; consumption and replenishment settle once |
 | 8. Licences, exports and full AI | Rights, equipment contracts, role presets, staff procurement and small-country paths | AI completes the full loop under real budgets; imported equipment survives without granting knowledge |
@@ -758,6 +773,25 @@ Milestones 2 and 3 form the first release worth playing. Releasing only a slot
 editor with no production or combat connection would not satisfy this plan.
 Ground/air/naval content authoring can run in parallel once schemas stabilize;
 stock/funding contracts and the capability resolver must remain coordinated.
+
+The tactical-aviation increment uses equipment-state version 8, accepts versions
+1–8 and preserves earlier frozen ground profiles. Its two airframes have eighteen
+choices across eight independent slots and three component-research projects.
+Aircraft use the existing shared arms plants, paid lifecycle and Air inventory.
+Their exact physical bomb family is mandatory from first deployment; ground
+ammunition retains its separate activation. Sortie output affects frozen bounded
+strike effectiveness once, then finite stores and supported deployments constrain
+actual rung-6 use. It grants no ground fire, transport lift or scalar supply
+fallback. Ordinary reserve batches and optional cash-limited material purchasing
+remain the sole replenishment paths.
+
+Existing theatre access is the current coarse basing/reach owner. Physical
+airfields, runway throughput, flight-distance/fuel simulation and aircraft-site
+specialization remain deliberate gaps. Fighter interception and support missions
+are not claimed merely because an aircraft mesh or component exists. Rates,
+recipes, prices and effectiveness are explicit game assumptions; historical
+presets, balance and final release acceptance require separate evidence.
+[AVIATION.md](AVIATION.md) records the exact implemented boundary.
 
 ## 20. First playable slice: exact scope
 
@@ -847,6 +881,12 @@ must have a real effect, cost or compatibility consequence. The existing
 construction budget, economic accounts, military stocks and saved campaigns
 must remain coherent throughout that loop.
 
+## Dated implementation record
+
+The entries below describe each increment at the time it landed. Later entries
+close some of the earlier listed gaps; the current tactical-aviation boundary is
+summarized above and in [AVIATION.md](AVIATION.md).
+
 ## Implementation status — ground expansion, 2026-09-06
 
 The playable scope now covers **nine platforms**: main battle, heavy and light
@@ -895,7 +935,7 @@ version-3 mission ratings; old equipment loaders reject the newer state.
 This is an integrated extension of milestone 4, **not completion of the full
 milestone or roadmap**. Shared national munitions still supply all weapons;
 separate shell/missile inventories, replacement of the scalar support system,
-full fleet maintenance invoices, designer-specific automatic replenishment and
+designer-specific automatic replenishment and
 additional support families remain open. Aircraft, helicopters, naval design,
 licences, exports, designer AI, sourced historical presets and long-run balance
 work in milestones 5–9 remain planned. The static aircraft/ship models in the
@@ -908,3 +948,123 @@ inputs and shared factory slots, research dependencies, unchanged frozen tank
 profiles, real role consumers, maintenance/refit exclusion, conserved deployment
 and deterministic reload. These checks do not claim historical calibration of
 the new game-assumption ratings.
+
+## Implementation status — fleet readiness, 2026-09-06
+
+The service screen now reviews and saves a daily maintenance ceiling. Activation
+starts on the following funding day; existing campaigns retain their previous
+allocation behavior until the player activates it. Actual custom and catalogue
+maintenance share one Defense department 2 invoice, bounded by current authority,
+the ceiling and actual need. Unfunded maintenance reduces both fleets' supported
+capability proportionally. Catalogue upkeep is an explicit game assumption of
+4% of purchase cost annually. The view separates maintenance support, physical
+condition, refit reservations and the existing shared ammunition readiness.
+
+Production offers finite, reviewed purchases for 30, 90 or 365 days of equipment
+material shortfalls. Stock, domestic production, contracts and all paid inbound
+cargo are counted before requesting more. The review names suppliers, payment,
+partial fulfillment and estimated arrival. Confirmation uses cash, existing
+market settlement and physical freight; it creates no loan or recurring order.
+
+Players can save desired in-service counts for certified revisions. The fleet
+board reconciles current stock, paid inbound orders, unfinished production and
+refits, then offers reviewed production or compatible replacement actions.
+Refits conserve vehicles and recommendations protect a source model's own target.
+Saving a target never spends money or starts work. Zero is an explicit target;
+clearing it removes the preference.
+
+Equipment-state version 4 saves maintenance receipts and fleet targets, loads
+versions 1–4, and preserves frozen design specifications and costs. Regression
+checks cover proportional once-only billing, save continuity, conserved stock
+and cash, freight settlement after a manual purchase, stale quote protection,
+target accounting and no mutation from previews. Separate ammunition inventories,
+automatic replenishment, additional support families and the air/naval, trade,
+AI and balance milestones above remain planned.
+
+## Implementation status — physical ground ammunition, 2026-09-06
+
+Custom ground vehicles now use 21 exact ammunition families, shown in their
+design review and certified library. The new Ammunition tab reviews finite
+batches, shows compatible stores and current operation demand, and offers a
+one-month reserve reference that nets existing stock and unfinished commitments.
+Manufacture shares factory slots, consumes raw inputs and uses the remaining
+Defense maintenance allocation after vehicle upkeep. Funding, pause and cancel
+controls preserve completed stock and paid-work receipts. The existing Resources
+forecast and reviewed material purchase include these inputs without creating
+new procurement authority or a second spending ledger.
+
+After explicit prospective activation, custom weapons use physical ammunition
+instead of their scalar magazine share. One opening operations snapshot plans
+and settles use across conflicts. Dry weapons lose firing support while keeping
+their independent movement and reconnaissance. Mobile air-defense ammunition
+supports interception, not a general offensive attack. Version 5 retains
+production, consumption and compatibility state without granting initial rounds.
+
+This advances milestone 4. The inherited fleet's separate weapon inventories,
+automatic ammunition scheduling, support families and the air/naval, trade, AI
+and balance milestones remain open. See [AMMUNITION.md](AMMUNITION.md) for the
+current workflow, conservation rules, game assumptions and verification scope.
+
+## Implementation status — ammunition reserves, 2026-09-06
+
+The Ammunition tab now tracks fixed stock targets by compatible family. Manual
+targets offer reviewed batch orders using the saved site and spending defaults.
+Separately authorized automatic plans schedule ordinary finite batches after a
+future daily review, net physical stock and unfinished work, and wait for all
+existing matching batches to finish. Maintenance, factory capacity, paid raw
+inputs and fiscal authority remain the constraints. Plans never buy materials,
+rewrite existing batches or activate physical combat rules. Saved dated receipts
+explain the last action or blocker, and version 6 preserves earlier save behavior.
+
+This completes the initial optional ammunition scheduling slice. Automatic raw
+procurement, inherited weapon conversion and the air/naval, trade, AI and balance
+milestones remain open.
+
+## Implementation status — material purchasing policy, 2026-09-07
+
+The Production tab now closes the reserve/production supply loop with optional
+automatic raw-material purchases. The reviewed policy specifies a production
+horizon, per-review cash cap, protected available cash and review interval.
+It starts prospectively after daily bills settle, uses the existing finite
+forecast and ordinary market/freight transaction, and nets all paid cargo before
+buying again. Unissued targets are not raw demand. Disabled policies spend
+nothing; clearing stops future reviews while retaining cargo and receipts.
+
+Version 7 stores the latest 64 reviews with frozen limits, dated reasons and
+actual supplier fills. There is no catch-up spending, carryover ceiling, loan,
+free stock or separate financial owner. One-time manual purchases remain.
+This completes the initial optional material-procurement slice. Inherited weapon
+conversion, air/naval designers, equipment trade, designer AI and balance remain
+staged work.
+
+## Implementation status — first tactical aviation, 2026-09-07
+
+Two aircraft families now extend the equipment lifecycle: light attack and
+tactical strike. Eighteen parts occupy eight independent slots, and three
+component-only research projects unlock propulsion/flight controls, mission
+systems and guided-store integration. Their models carry the exact selections
+in live 3D previews and GLB exports. The total designer catalogue is eleven
+platforms and sixteen integration projects.
+
+Both aircraft share the existing paid development, production, delivery,
+maintenance, refit and retirement flow. Frozen specification-version-4 profiles
+define supported strike effectiveness, sortie output and required stores.
+Equipment-state version 8 accepts versions 1–8. Earlier ground profiles retain
+their versioned identities, and aircraft are validated as Air inventory.
+
+The unguided/guided bomb families use the existing finite ammunition ledger,
+bringing the store catalogue to 23. Physical bombs are mandatory for custom
+aircraft from first deployment; ground activation remains optional and separate.
+The snapshot resolves supplied, supported aircraft only in accessible rung-6
+raids. It applies the frozen sortie-adjusted strike factor once and does not
+grant ground fire, transport lift or inherited-magazine fallback. Bomb
+fabrication, reserve plans and optional raw purchases retain their existing
+financial, inventory and authorization owners.
+
+This begins milestone 5 without completing it. Fighter/interception, multirole,
+strategic and support missions, carrier aircraft, helicopters and drones remain
+future increments. Basing is the existing coarse theatre/access model, not new
+physical runway capacity or a flight-distance simulation. Work rates, costs,
+recipes and performance values are game assumptions. Focused lifecycle,
+compatibility, conservation and migration tests support the current code;
+full-workspace/browser acceptance and campaign calibration are separate gates.

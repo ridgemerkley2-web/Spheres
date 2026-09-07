@@ -1,5 +1,83 @@
 # SPHERES Roadmap
 
+## Next direction — company-built equipment and procurement (2026-09-07)
+
+Ridge wants manufacturers to develop the country's designs, build their own
+finished stock, and sell equipment to the government. The new intended loop is
+design → contracted development → company manufacturing → stock purchase →
+delivery → service. Factory capacity remains a company constraint; the player's
+normal controls become development funding and equipment purchases.
+
+[COMPANIES_AND_PROCUREMENT_PLAN.md](COMPANIES_AND_PROCUREMENT_PLAN.md) records
+the ownership, financing, UI, migration and acceptance plan. First deliver one
+domestic tank contractor through development, company-owned inventory and a real
+purchase. Expand to ammunition, existing equipment, imports and nationally
+important firms before extending more equipment on the old public-production
+path. This is planned work: the current aviation release below is unchanged.
+
+## Current implementation — first tactical aviation slice (2026-09-07)
+
+The first part of equipment milestone 5 adds two airframes (light attack and
+tactical strike), eighteen component choices in eight slots and three research
+projects. Aircraft use the existing paid development, certification, arms-plant
+manufacture, delivery, maintenance, refit and retirement loop. Their fixed
+physical reference and Air-class identity prevent a price-driven ground or
+transport bonus.
+
+Unguided and guided bombs extend the existing physical-ammunition book to 23
+families. Aircraft require the exact stores from their first deployment; optional
+ground-ammunition activation remains separate. Supported sortie output is folded
+once into frozen strike effectiveness. Accessible rung-6 raids consume finite
+stores across the conserved national deployment snapshot. Reserve targets,
+optional batch scheduling and cash-limited raw-material purchases use their
+existing owners.
+
+Equipment-state version 8 accepts versions 1–8 and preserves earlier frozen
+ground revisions. See [AVIATION.md](AVIATION.md), [EQUIPMENT_DESIGNER.md](EQUIPMENT_DESIGNER.md)
+and [AMMUNITION.md](AMMUNITION.md) for mechanics and verification boundaries.
+Prices, inputs and sortie/effectiveness ratings are explicit game assumptions.
+Full release verification is recorded separately; this entry does not assert a
+completed browser or workspace acceptance run.
+
+Milestone 5 remains partial. Fighters/interception, multirole mission assignment,
+carrier aviation, strategic bombing, airlift/support aircraft, helicopters and
+drones need their own real mission consumers. Physical airfields, aircraft-only
+factories, flight-distance/fuel simulation, historical presets and balance also
+remain future work. Existing theatre consent supplies coarse basing in this slice.
+
+## Integrated release — military supply purchasing (2026-09-07)
+
+Production now offers a reviewed, optional automatic material-purchasing plan.
+Players choose a 30/90/365-day production horizon, a per-review cash ceiling,
+a minimum available-cash reserve and a 1/7/30-day review interval. The plan buys
+only finite funded vehicle, refit and ammunition shortages through the existing
+market and freight path. It counts all paid inbound cargo before buying again.
+Reviews run after daily fiscal settlement, retain dated receipts, and never
+borrow, accumulate unused limits or replay missed reviews. Manual remains the
+default. Disabling or clearing stops future purchases while retaining paid cargo.
+
+This step introduced equipment-state version 7 and left unconfigured campaigns
+unchanged; the current version-8 loader retains it. See
+[EQUIPMENT_DESIGNER.md](EQUIPMENT_DESIGNER.md) for the player workflow. Inherited
+weapon conversion, remaining air/naval design, equipment trade, designer AI and balance
+remain later milestones.
+
+## Integrated release — ground equipment lifecycle and reserves (2026-09-06)
+
+The Equipment bureau now connects component research, nine configurable ground
+platforms, funded development, physical manufacture, delivery, maintenance,
+refit and retirement. Its Ammunition tab adds 21 compatible stores, paid finite
+batches and conserved combat consumption. Manual reserve targets track desired
+stock; explicitly authorized automatic plans replenish through the same finite
+batch rules after existing work. Dated receipts explain actions and blockers.
+Plans never grant rounds, buy raw materials or rewrite existing contracts.
+
+Current workflow and verification boundaries: `EQUIPMENT_DESIGNER.md` and
+`AMMUNITION.md`. The staged equipment roadmap remains
+`MILITARY_EQUIPMENT_DESIGNER_PLAN.md`; inherited ammunition conversion,
+remaining air/naval design, trade, designer AI and balance remain future milestones.
+Automatic material purchasing followed in the release above.
+
 ## Integrated release — AI industrial supply manager (2026-09-04)
 
 Economic Competition governments now review evidenced Materials and Machinery

@@ -8,7 +8,10 @@ pub fn slot_name(slot: &str) -> &str {
         "ammunition" => "Ammunition load", "protection" => "Armor", "active_protection" => "Active protection",
         "sensors" => "Observation optics", "fire_control" => "Fire control", "communications" => "Communications",
         "wheels" => "Wheeled running gear", "troop_compartment" => "Troop compartment",
-        "recon_package" => "Scout equipment", "artillery_loader" => "Artillery loading", "radar" => "Air-defense radar", _ => slot,
+        "recon_package" => "Scout equipment", "artillery_loader" => "Artillery loading", "radar" => "Air-defense radar",
+        "air_engine" => "Aircraft engines", "air_wing" => "Wing and flight controls", "air_radar" => "Attack radar",
+        "air_avionics" => "Attack avionics", "air_countermeasures" => "Mission protection", "air_hardpoints" => "Store installations",
+        "air_payload" => "Certified strike loadout", "air_fuel" => "Endurance installation", _ => slot,
     }
 }
 pub const SPEC_COMPONENTS: &[ComponentDef] = &[
@@ -32,7 +35,7 @@ pub const SPEC_COMPONENTS: &[ComponentDef] = &[
     component!("gun_105","105 mm rifled gun","armament",3,0.00055,0.00000006,0.0,0.0,0.0,0.0,None,None,"General-purpose gun. Ammunition mix and fire control are separate choices."),
     component!("gun_120","120 mm smoothbore","armament",4,0.00090,0.00000010,0.20,0.0,-0.06,0.0,None,None,"Higher firepower. Requires a large, autoloading or fixed mounting; not compatible with the light chassis."),
     component!("gun_125","125 mm smoothbore","armament",4,0.00102,0.00000012,0.23,0.0,-0.08,0.0,None,None,"Highest gun rating and support burden. Requires an autoloading turret or fixed casemate."),
-    component!("ammo_mixed","Mixed-purpose ammunition","ammunition",1,0.00005,0.00000001,0.0,0.0,0.0,0.0,None,None,"Balanced carried load. This specification affects the vehicle's game rating and support cost; it is not a separate ammunition stockpile."),
+    component!("ammo_mixed","Mixed-purpose ammunition","ammunition",1,0.00005,0.00000001,0.0,0.0,0.0,0.0,None,None,"Balanced load specification. Sets the compatible store family; physical rounds are manufactured separately under Ammunition."),
     component!("ammo_penetrator","Penetrator-focused ammunition","ammunition",2,0.00013,0.000000035,0.10,0.0,0.0,0.0,None,None,"Higher composite firepower rating, procurement cost and support demand. The current combat system does not resolve individual projectile impacts."),
     component!("ammo_support","Fire-support ammunition","ammunition",1,0.00003,0.000000008,-0.04,0.0,0.0,0.0,None,None,"Cheaper support load with a lower composite firepower rating; no separate anti-infantry damage model is implied."),
     component!("aps_none","No active protection","active_protection",0,0.000001,0.000000001,0.0,0.0,0.0,0.0,None,None,"Basic wiring provision only. Armor is selected independently."),
@@ -46,12 +49,12 @@ pub const SPEC_COMPONENTS: &[ComponentDef] = &[
     component!("fcs_digital","Digital ballistic fire control","fire_control",2,0.00033,0.00000005,0.12,0.0,0.0,0.04,Some("tank_fire_control_1990"),None,"Vehicle electronics integration unlocks digital gun control."),
 ];
 
-pub fn all_components() -> impl Iterator<Item = &'static ComponentDef> { COMPONENTS.iter().chain(SPEC_COMPONENTS.iter()).chain(GROUND_COMPONENTS.iter()) }
+pub fn all_components() -> impl Iterator<Item = &'static ComponentDef> { COMPONENTS.iter().chain(SPEC_COMPONENTS.iter()).chain(GROUND_COMPONENTS.iter()).chain(AVIATION_COMPONENTS.iter()) }
 pub fn detailed_spec(spec: &DesignSpec) -> bool {
     !matches!(spec.platform.as_str(), "tank_standard" | "tank_heavy") || spec.components.iter().any(|(slot,id)| !SLOTS.contains(&slot.as_str()) || SPEC_COMPONENTS.iter().chain(GROUND_COMPONENTS.iter()).any(|c|c.id == id))
 }
-pub fn spec_version(spec: &DesignSpec) -> u32 { if is_ground_platform(&spec.platform) { 3 } else if detailed_spec(spec) { 2 } else { 1 } }
-pub fn slots_for(spec: &DesignSpec) -> &'static [&'static str] { if is_ground_platform(&spec.platform) { platform_slots(&spec.platform) } else if detailed_spec(spec) { &DESIGN_SLOTS } else { &SLOTS } }
+pub fn spec_version(spec: &DesignSpec) -> u32 { if is_aviation_platform(&spec.platform) { 4 } else if is_ground_platform(&spec.platform) { 3 } else if detailed_spec(spec) { 2 } else { 1 } }
+pub fn slots_for(spec: &DesignSpec) -> &'static [&'static str] { if is_aviation_platform(&spec.platform) || is_ground_platform(&spec.platform) { platform_slots(&spec.platform) } else if detailed_spec(spec) { &DESIGN_SLOTS } else { &SLOTS } }
 pub fn design_component(c: &ComponentDef) -> bool {
     SPEC_COMPONENTS.iter().any(|s| s.id == c.id) || matches!(c.id,"protection_standard"|"protection_heavy"|"comms_radio"|"comms_data")
 }
@@ -70,6 +73,7 @@ pub fn tank_spec(platform: &str) -> DesignSpec {
     for (k,v) in changes {spec.components.insert((*k).into(),(*v).into());} spec
 }
 pub fn configuration_refusals(spec: &DesignSpec) -> Vec<String> {
+    if is_aviation_platform(&spec.platform) { return aviation_configuration_refusals(spec); }
     if is_ground_platform(&spec.platform) { return ground_configuration_refusals(spec); }
     if !detailed_spec(spec) {return vec![];}
     let mut reasons=vec![]; let get=|slot:&str|spec.components.get(slot).map(String::as_str).unwrap_or("");

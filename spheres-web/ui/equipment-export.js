@@ -6,8 +6,8 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
 
-  function glb(mesh, name = "Spheres tank") {
-    if (!mesh || typeof mesh !== "object") throw new TypeError("A tank triangle mesh is required.");
+  function glb(mesh, name = "Spheres equipment") {
+    if (!mesh || typeof mesh !== "object") throw new TypeError("An equipment triangle mesh is required.");
     const attributes = [mesh.positions, mesh.normals, mesh.colors];
     const size = mesh.positions && mesh.positions.length;
     if (!Number.isSafeInteger(size) || size === 0 || size % 9 !== 0)
@@ -49,8 +49,8 @@
       for (let axis = 0; axis < 3; axis++)
         data.setFloat32(byteLength + (i + axis) * 4, mesh.normals[i + axis] / magnitude, true);
     }
-    const label = String(name || "Spheres tank").slice(0, 128);
-    const description = typeof mesh.description === "string" ? mesh.description : "Original configurable Spheres tank game model.";
+    const label = String(name || "Spheres equipment").slice(0, 128);
+    const description = typeof mesh.description === "string" ? mesh.description : "Original configurable Spheres equipment game model.";
     const document = {
       asset: {version: "2.0", generator: "Spheres Equipment Designer", copyright: "Original Spheres procedural game art"},
       scene: 0,

@@ -56,6 +56,18 @@ pub enum EquipmentOrder {
     Produce { revision: String, district: String, quantity: u32, daily_budget_bn: f64 },
     Refit { source: String, target: String, district: String, quantity: u32, daily_budget_bn: f64 },
     Retire { revision: String, quantity: u32 },
+    Maintenance { daily_budget_bn: f64 },
+    Supply { horizon_days:u32, spending_cap_bn:f64 },
+    SupplyPolicy { horizon_days:u32, spending_cap_bn:f64, cash_floor_bn:f64, review_interval_days:u32, automatic:bool },
+    SupplyPolicyClear,
+    Target { revision:String, quantity:Option<u32> },
+    AmmoOrder { family:String, district:String, quantity:u32, daily_budget_bn:f64 },
+    AmmoActivate,
+    AmmoFunding { project:u32, daily_budget_bn:f64 },
+    AmmoPause { project:u32, paused:bool },
+    AmmoCancel { project:u32 },
+    AmmoReserve { family:String, target_rounds:u32, district:String, daily_budget_bn:f64, automatic:bool },
+    AmmoReserveClear { family:String },
     Pause { project: u32, paused: bool },
     Funding { project: u32, daily_budget_bn: f64 },
     Cancel { project: u32 },
@@ -685,6 +697,18 @@ fn apply_equipment_order(w: &mut WorldState, nation: NationId, order: &Equipment
         Produce { revision, district, quantity, daily_budget_bn } => equipment::start_production(w, nation, revision, district, *quantity, *daily_budget_bn).map(|_| ()),
         Refit { source, target, district, quantity, daily_budget_bn } => equipment::start_refit(w, nation, source, target, district, *quantity, *daily_budget_bn).map(|_| ()),
         Retire { revision, quantity } => equipment::retire(w, nation, revision, *quantity),
+        Maintenance { daily_budget_bn } => equipment::set_maintenance_plan(w,nation,*daily_budget_bn),
+        Supply { horizon_days, spending_cap_bn } => equipment::replenish(w,nation,*horizon_days,*spending_cap_bn),
+        SupplyPolicy { horizon_days, spending_cap_bn, cash_floor_bn, review_interval_days, automatic } => equipment::set_supply_policy(w,nation,*horizon_days,*spending_cap_bn,*cash_floor_bn,*review_interval_days,*automatic),
+        SupplyPolicyClear => equipment::clear_supply_policy(w,nation),
+        Target { revision, quantity } => equipment::set_fleet_target(w,nation,revision,*quantity),
+        AmmoOrder { family, district, quantity, daily_budget_bn } => equipment::start_ammo_order(w,nation,family,district,*quantity,*daily_budget_bn).map(|_|()),
+        AmmoActivate => equipment::activate_ammunition(w,nation),
+        AmmoFunding { project, daily_budget_bn } => equipment::set_ammo_funding(w,nation,*project,*daily_budget_bn),
+        AmmoPause { project, paused } => equipment::pause_ammo_order(w,nation,*project,*paused),
+        AmmoCancel { project } => equipment::cancel_ammo_order(w,nation,*project),
+        AmmoReserve { family, target_rounds, district, daily_budget_bn, automatic } => equipment::set_ammo_reserve(w,nation,family,*target_rounds,district,*daily_budget_bn,*automatic),
+        AmmoReserveClear { family } => equipment::clear_ammo_reserve(w,nation,family),
         Pause { project, paused } => equipment::set_project_paused(w, nation, *project, *paused),
         Funding { project, daily_budget_bn } => equipment::set_project_budget(w, nation, *project, *daily_budget_bn),
         Cancel { project } => equipment::cancel_project(w, nation, *project),
@@ -1335,6 +1359,10 @@ pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
         for (_, system) in SYSTEMS { system(w); }
         programs::finish_day(w);
         province_economy::finish_day(w);
+        // Optional spot purchases use cash left after today's incurred fiscal
+        // bills. Running this inside SYSTEMS could consume cash those bills
+        // still require and indirectly cause borrowing at settlement.
+        equipment::tick_supply_automation(w);
         campaign_aims::tick(w);
         clock::advance_date(w);
         return w.headlines[before..].to_vec();

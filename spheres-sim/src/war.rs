@@ -299,8 +299,17 @@ fn side_profile_in(w: &WorldState, c: &Conflict, side_a: bool, snapshot: Option<
         if b.roe == Roe::Unrestricted {
             unrestricted = true;
         }
-        let deployment = snapshot.and_then(|s| s.rows.get(&(c.id, *id)));
-        let m = deployment.map_or_else(|| committed_force(w, c, *id), |r| r.effective_force);
+        // Read-only previews use the same ammunition allocation as a snapshot.
+        let quoted_deployment = if snapshot.is_none() && w.rules.military_operations
+            && crate::equipment::physical_ammunition_required(w.nation(*id),crate::clock::absolute_day(w)) {
+            crate::operations::deployment(w,c,*id)
+        } else { None };
+        let deployment = snapshot.and_then(|s| s.rows.get(&(c.id, *id))).or(quoted_deployment.as_ref());
+        let ammo = deployment.and_then(|r|r.ammunition);
+        // Empty weapon stores do not erase the bodies and vehicles exposed to
+        // enemy fire, or the mobility and observation of their deployed crews.
+        let m = if let (Some(row),Some(effects))=(deployment,ammo) { row.deployed*effects.maneuver_fraction }
+            else { deployment.map_or_else(|| committed_force(w, c, *id), |r| r.effective_force) };
         if m <= 0.0 {
             continue;
         }
@@ -318,15 +327,26 @@ fn side_profile_in(w: &WorldState, c: &Conflict, side_a: bool, snapshot: Option<
             deployment.map_or_else(|| crate::operations::capabilities(w.nation(*id)), |r| r.capabilities)
         } else { crate::operations::Capabilities { land: 1.0, strike: 1.0, lift: 1.0, ..Default::default() } };
         let attack_role = if b.rung == 6 { caps.strike } else { (caps.land + caps.strike) * 0.5 };
-        let kill = m * obj_kill(b.objective) * roe_kill(b.roe) * attack_role
-            * if b.rung == 6 { 1.0 } else { 1.0 + caps.ground_roles.fire_support };
+        let kill = if let (Some(row),Some(effects))=(deployment,ammo) {
+            row.deployed*obj_kill(b.objective)*roe_kill(b.roe)*effects.attack_coefficient
+        } else { m * obj_kill(b.objective) * roe_kill(b.roe) * attack_role
+            * if b.rung == 6 { 1.0 } else { 1.0 + caps.ground_roles.fire_support } };
         k += kill;
         if b.rung == 6 { air_kill += kill; }
-        s += m * obj_seize(b.objective) * roe_seize(b.roe) * caps.land * (1.0 + caps.ground_roles.protected_mobility);
+        // A coalition's top rung may permit capture, but launching tactical
+        // aircraft adds no bodies that can seize ground. Keep the historical
+        // legacy contribution, including mixed inventories, while retaining
+        // the full launched aircraft mass in the strike calculation above.
+        let seizing_mass = if b.rung == 6 {
+            if let (Some(row),Some(effects))=(deployment,ammo) {
+                row.deployed * (effects.legacy_share * magazine_multiplier(w,*id))
+            } else { m }
+        } else { m };
+        s += seizing_mass * obj_seize(b.objective) * roe_seize(b.roe) * caps.land * (1.0 + caps.ground_roles.protected_mobility);
         // Scout vehicles accompany ground deployments; they do not improve an
         // aircraft-only raid's sensors. Air defense protects the deployed side.
         if b.rung != 6 { reconnaissance += m * caps.ground_roles.reconnaissance; }
-        air_defense += m * caps.ground_roles.air_defense;
+        air_defense += m * ammo.map_or(caps.ground_roles.air_defense,|a|a.air_defense);
         if b.objective == Objective::Deny {
             deny += m;
         }
@@ -594,7 +614,10 @@ pub fn tick(w: &mut WorldState) {
         // in two and a half years what it can shoot off in eighteen months; one
         // without spends a decade catching up with a single campaign, and that
         // mismatch is the whole of BIBLE §6's second stock.
-        let refill = MAGAZINE_REBUILD * capital_intensity(w, *id) * industry_refill(w, *id);
+        let mut refill = MAGAZINE_REBUILD * capital_intensity(w, *id) * industry_refill(w, *id);
+        if crate::equipment::physical_ammunition_required(w.nation(*id),crate::clock::absolute_day(w)) {
+            refill *= crate::equipment::ammunition_legacy_refill_share(w,*id);
+        }
         // Both ministry arms are computed here, before the nation is borrowed
         // mutably, because each of them reads the world and not just the
         // nation.
@@ -856,7 +879,7 @@ fn resolve_conflicts(w: &mut WorldState) {
         }
         for (id, burn) in burns {
             let dry = if let Some(s) = &operations {
-                s.dry(id) && s.deployed(c.id, id) > 0.0 && burn > 0.0
+                s.dry(c.id,id) && s.deployed(c.id, id) > 0.0 && burn > 0.0
             } else {
                 let n = w.nation_mut(id);
                 n.munitions = (n.munitions - burn * dt).clamp(0.0, 1.0);
@@ -1666,6 +1689,67 @@ mod ground_role_tests {
         c.posture[1].rung=8;let hunter=side_profile(&w,&c,false);
         assert_eq!(hunter.air_kill_share,0.0);
         assert_eq!(kill_rate(&hunter,&side_profile(&w,&c,true),th),kill_rate(&hunter,&side_profile(&plain,&c,true),th),"local air defense cannot intercept ground attack");
+    }
+}
+
+#[cfg(test)]
+mod ammunition_firing_tests {
+    use super::*;
+    use crate::equipment::{self as eq,ammunition_operation_tests::{fixture,stock}};
+    #[test]
+    fn tactical_aircraft_cannot_add_coalition_seizure_but_mixed_legacy_force_remains() {
+        for mixed in [false,true] {
+            let mut dry=fixture("air_light_attack");
+            dry.conflicts[0].posture_mut(NationId::USA).unwrap().rung=6;
+            join_side(&mut dry.conflicts[0],NationId::Mexico,true,8,Objective::Seize);
+            if mixed {
+                let baseline=crate::init::world_1990(GameRules::default());
+                let mut legacy=baseline.nation(NationId::USA).arsenal.held.iter()
+                    .find(|h|crate::arsenal::DECK[h.kit as usize].class==crate::arsenal::Class::Air).unwrap().clone();
+                legacy.units=1000.0;dry.nation_mut(NationId::USA).arsenal.held.push(legacy);
+            }
+            let mut full=dry.clone();stock(&mut full,1_000_000);
+            let empty=side_profile(&dry,&dry.conflicts[0],true);
+            let loaded=side_profile(&full,&full.conflicts[0],true);
+            let seize_empty=empty.mass*empty.seize_mult;
+            let seize_loaded=loaded.mass*loaded.seize_mult;
+            assert!(loaded.mass>empty.mass,"loaded aircraft must actually launch");
+            assert!(loaded.mass*loaded.kill_mult>empty.mass*empty.kill_mult,"aircraft must still add strike damage");
+            assert!((seize_loaded-seize_empty).abs()<1e-10*(1.0+seize_empty.abs()),
+                "tactical aircraft added coalition ground seizure: {seize_empty} -> {seize_loaded}");
+            // Removing the ground ally leaves no seizing aircraft. Mixed legacy
+            // inventory retains its old contribution even while bombs are dry.
+            for w in [&mut dry,&mut full] {
+                w.conflicts[0].side_a.retain(|id|*id!=NationId::Mexico);
+                w.conflicts[0].posture.retain(|b|b.nation!=NationId::Mexico);
+            }
+            let a=side_profile(&dry,&dry.conflicts[0],true);
+            let b=side_profile(&full,&full.conflicts[0],true);
+            if mixed {assert!(a.mass*a.seize_mult>0.0);assert!((a.mass*a.seize_mult-b.mass*b.seize_mult).abs()<1e-10);}
+            else {assert_eq!(a.seize_mult,0.0);assert_eq!(b.seize_mult,0.0);}
+        }
+    }
+    #[test]
+    fn ground_ammunition_scales_fires_linearly_and_retains_nonfiring_roles() {
+        for platform in ["tank_standard","ground_ifv","ground_artillery","ground_recon","ground_apc"] {
+            let dry=fixture(platform);let mut partial=dry.clone();stock(&mut partial,1000);let mut full=dry.clone();stock(&mut full,1_000_000);
+            let d=side_profile(&dry,&dry.conflicts[0],true);let p=side_profile(&partial,&partial.conflicts[0],true);let f=side_profile(&full,&full.conflicts[0],true);
+            assert_eq!(d.mass,f.mass);assert_eq!(d.seize_mult,f.seize_mult);assert_eq!(d.reconnaissance,f.reconnaissance);
+            assert_eq!(d.kill_mult,0.0,"dry {platform} must not fire");assert!(f.kill_mult>0.0);
+            let coverage=eq::ammunition_overview(&partial,NationId::USA).families[0].coverage;
+            assert!(coverage>0.0&&coverage<1.0);assert!((p.kill_mult/f.kill_mult-coverage).abs()<1e-10,"{platform} was gated more than once");
+        }
+    }
+    #[test]
+    fn air_defense_never_gets_free_offensive_damage_and_only_loaded_interception_works() {
+        let mut dry=fixture("ground_air_defense");dry.conflicts[0].posture_mut(NationId::Canada).unwrap().rung=6;
+        let mut full=dry.clone();stock(&mut full,1_000_000);
+        let d=side_profile(&dry,&dry.conflicts[0],true);let f=side_profile(&full,&full.conflicts[0],true);
+        assert_eq!(d.mass,f.mass);assert_eq!(d.reconnaissance,f.reconnaissance);
+        assert_eq!(d.kill_mult,0.0);assert_eq!(f.kill_mult,0.0,"interceptors do not become ground attackers");
+        assert_eq!(d.air_defense,0.0);assert!(f.air_defense>0.0);
+        let hunter=side_profile(&full,&full.conflicts[0],false);let th=theatre::theatre(&full,full.conflicts[0].theatre);
+        assert!(kill_rate(&hunter,&f,th)<kill_rate(&hunter,&d,th));
     }
 }
 

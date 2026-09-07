@@ -12,6 +12,7 @@ let checks = 0;
 function check(label, fn) { fn(); checks++; process.stdout.write(`PASS ${label}\n`); }
 function digest(mesh) { return crypto.createHash("sha256").update(Buffer.from(mesh.positions.buffer)).update(Buffer.from(mesh.colors.buffer)).digest("hex"); }
 function validate(mesh,ground=false) {
+  const air=ground==='air';
   assert.ok(mesh.positions instanceof Float32Array);
   assert.ok(mesh.normals instanceof Float32Array);
   assert.ok(mesh.colors instanceof Float32Array);
@@ -27,7 +28,7 @@ function validate(mesh,ground=false) {
     previous = part.first + part.count;
   }
   assert.equal(previous, mesh.positions.length / 3);
-  assert.ok(mesh.parts.length >= 18);
+  assert.ok(mesh.parts.length >= (air?16:18));
   for (let i = 0; i < mesh.positions.length; i += 3) {
     for (let j = 0; j < 3; j++) {
       assert.ok(Number.isFinite(mesh.positions[i + j])); assert.ok(Number.isFinite(mesh.normals[i + j]));
@@ -148,5 +149,35 @@ check('mission upgrades alter observable silhouette, running gear and weapons',(
     for(const [slot,id] of [['mobility','ground_engine_750'],['transmission','transmission_auto'],['suspension','suspension_hydro'],['protection','ground_armor_modular'],['sensors','optics_night'],['sensors','optics_thermal'],['fire_control','fcs_stabilized'],['fire_control','fcs_digital'],['active_protection','aps_soft'],['active_protection','aps_hard']])assert.notEqual(digest(upgrade(platform,{[slot]:id})),digest(original),`${platform} ${id}`);
     if(original.specification.components.tracks)for(const tracks of ['tracks_wide','tracks_padded'])assert.notEqual(digest(upgrade(platform,{tracks})),digest(original),`${platform} ${tracks}`);
   }
+});
+const aircraft=Object.fromEntries(['air_light_attack','air_tactical_strike'].map(platform=>[platform,build({platform})]));
+check('light attack and tactical strike are distinct complete aircraft with eight pickable specifications',()=>{
+  const sim=fs.readFileSync(path.resolve(__dirname,'../../spheres-sim/src/equipment_aviation.rs'),'utf8');
+  const slots=[...sim.slice(sim.indexOf('pub const AVIATION_SLOTS'),sim.indexOf('];')+2).matchAll(/"(air_\w+)"/g)].map(m=>m[1]);assert.equal(slots.length,8);
+  for(const [platform,mesh] of Object.entries(aircraft)){
+    validate(mesh,'air');assert.equal(mesh.specification.platform,platform);assert.deepEqual(Object.keys(mesh.specification.components).sort(),slots.slice().sort());
+    for(const slot of slots)assert(mesh.parts.some(p=>p.slot===slot),slot);
+    assert(mesh.parts.every(p=>slots.includes(p.slot)));assert.equal(mesh.parts.filter(p=>p.label.includes('landing gear')).length,3);
+    assert(mesh.bounds.max[0]-mesh.bounds.min[0]>9);assert(mesh.bounds.max[2]-mesh.bounds.min[2]>12);
+    const spec={name:'Test aircraft',platform,components:mesh.specification.components},before=JSON.stringify(spec);assert.equal(digest(build(spec)),digest(mesh));assert.equal(JSON.stringify(spec),before);
+  }
+  assert.notEqual(digest(aircraft.air_light_attack),digest(aircraft.air_tactical_strike));
+  assert(aircraft.air_tactical_strike.bounds.max[2]>aircraft.air_light_attack.bounds.max[2]+2);
+  assert.equal(aircraft.air_light_attack.parts.filter(p=>p.slot==='air_engine').length,1);assert.equal(aircraft.air_tactical_strike.parts.filter(p=>p.slot==='air_engine').length,2);
+});
+check('every aviation component resolves from the live catalogue and every selectable upgrade changes its own visible assembly',()=>{
+  const sim=fs.readFileSync(path.resolve(__dirname,'../../spheres-sim/src/equipment_aviation.rs'),'utf8');
+  const rows=[...sim.matchAll(/component!\("(air_\w+)","[^"]+","(air_\w+)"/g)];assert.equal(rows.length,18);
+  for(const [,id,slot] of rows){
+    const original=aircraft.air_tactical_strike,next=build({platform:'air_tactical_strike',components:{...original.specification.components,[slot]:id}});validate(next,'air');assert.equal(next.specification.components[slot],id);
+    if(original.specification.components[slot]!==id){
+      const selected=m=>m.parts.filter(p=>p.slot===slot).flatMap(p=>Array.from(m.positions.slice(p.first*3,(p.first+p.count)*3)));
+      assert.notDeepEqual(selected(next),selected(original),id+' must change its selected assembly');
+    }
+  }
+});
+check('light aircraft reject heavy-only visuals and omit stale ground slots',()=>{
+  const mesh=build({platform:'air_light_attack',components:{air_engine:'air_engine_twin',air_wing:'air_wing_swept',air_hardpoints:'air_hardpoints_heavy',armament:'gun_125',mobility:'drive_mobile'}});
+  assert.deepEqual(mesh.specification,aircraft.air_light_attack.specification);assert.equal(digest(mesh),digest(aircraft.air_light_attack));
 });
 process.stdout.write(`${checks} equipment mesh checks passed; baseline ${base.triangleCount.toLocaleString("en-US")} triangles.\n`);

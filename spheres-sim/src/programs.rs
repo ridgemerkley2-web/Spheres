@@ -107,20 +107,21 @@ pub fn equipment_finance_active(n: &Nation) -> bool {
         .is_some_and(|day| equipment_finance_on(n, day))
 }
 
-fn funded_department(ministry: usize, department: usize, equipment: bool) -> bool {
+fn funded_department(ministry: usize, department: usize, equipment: bool, maintenance: bool) -> bool {
     is_capital(ministry, department)
         || (equipment && ministry == BUDGET_DEFENSE && department == 4)
+        || (maintenance && ministry == BUDGET_DEFENSE && department == 2)
 }
 
 /// Departments whose live ledger pays delivered work rather than automatically
 /// expensing the service allocation. Development remains an operating expense.
 pub fn is_project_funded(n: &Nation, ministry: usize, department: usize) -> bool {
-    funded_department(ministry, department, equipment_finance_active(n))
+    funded_department(ministry, department, equipment_finance_active(n), n.program_budget.as_ref().and_then(|p|p.day).is_some_and(|day|crate::equipment::maintenance_plan_on(n,day)))
 }
 
 /// Historical receipts retain the classification of their actual funding day.
 pub fn is_project_funded_on(n: &Nation, ministry: usize, department: usize, day: i32) -> bool {
-    funded_department(ministry, department, equipment_finance_on(n, day))
+    funded_department(ministry, department, equipment_finance_on(n, day), crate::equipment::maintenance_plan_on(n,day))
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
@@ -313,6 +314,7 @@ fn open(
     fraction: f64,
     allocation: &[f64; BUDGET_MINISTRIES],
     equipment_finance: bool,
+    maintenance_finance: bool,
 ) {
     if plan.day == Some(day) {
         return;
@@ -347,7 +349,7 @@ fn open(
                 total * plan.departments[m][d] as f64 / 10_000.0
             };
             assigned += amount;
-            if funded_department(m, d, equipment_finance) {
+            if funded_department(m, d, equipment_finance, maintenance_finance) {
                 if plan.fiscal_year == year {
                     plan.accrued_today_bn[m][d] = amount;
                     plan.available_bn[m][d] += amount;
@@ -378,6 +380,7 @@ pub fn begin_day(w: &mut WorldState) {
         let allocation = n.budget_for(year).allocations;
         let gdp = n.gdp;
         let equipment_finance = equipment_finance_on(n, day);
+        let maintenance_finance = crate::equipment::maintenance_plan_on(n,day);
         open(
             n.program_budget.as_mut().unwrap(),
             year,
@@ -386,6 +389,7 @@ pub fn begin_day(w: &mut WorldState) {
             fraction,
             &allocation,
             equipment_finance,
+            maintenance_finance,
         );
     }
 }
@@ -402,6 +406,7 @@ fn projected(w: &WorldState, nation: NationId) -> Option<ProgramBudget> {
             clock::year_fraction(w),
             &n.budget_for(w.year).allocations,
             equipment_finance_on(n, clock::absolute_day(w)),
+            crate::equipment::maintenance_plan_on(n,clock::absolute_day(w)),
         );
     }
     Some(plan)
@@ -513,7 +518,7 @@ pub fn spend_construction(w: &mut WorldState, nation: NationId, amount_bn: f64) 
 }
 
 pub fn available_bn(w: &WorldState, nation: NationId, ministry: usize, department: usize) -> f64 {
-    if !funded_department(ministry, department, equipment_finance_on(w.nation(nation), clock::absolute_day(w))) {
+    if !funded_department(ministry, department, equipment_finance_on(w.nation(nation), clock::absolute_day(w)), crate::equipment::maintenance_plan_on(w.nation(nation),clock::absolute_day(w))) {
         return 0.0;
     }
     projected(w, nation).map_or(0.0, |p| {
@@ -530,7 +535,7 @@ pub fn spend(
     department: usize,
     amount_bn: f64,
 ) -> Result<(), String> {
-    if !funded_department(ministry, department, equipment_finance_on(w.nation(nation), clock::absolute_day(w))) || !amount_bn.is_finite() || amount_bn < 0.0 {
+    if !funded_department(ministry, department, equipment_finance_on(w.nation(nation), clock::absolute_day(w)), crate::equipment::maintenance_plan_on(w.nation(nation),clock::absolute_day(w))) || !amount_bn.is_finite() || amount_bn < 0.0 {
         return Err("Invalid department expenditure.".into());
     }
     let today = clock::absolute_day(w);
@@ -717,6 +722,11 @@ pub fn force_support_share(n: &Nation, defense_allocation: f64) -> f64 {
 /// Replace Industry's magazine arm on enrolled plans with Defense maintenance.
 /// Reference is the default department fraction of the inherited Defense plan.
 pub fn refill_multiplier(n: &Nation, defense_allocation: Option<f64>) -> f64 {
+    // Serviced legacy equipment supplies the inherited magazine-support role.
+    // Unspent authorization from the actual invoice may not also fund refill.
+    if n.program_budget.as_ref().and_then(|p|p.day).is_some_and(|day|crate::equipment::maintenance_plan_on(n,day)) {
+        return crate::equipment::legacy_maintenance_fraction(n);
+    }
     match &n.program_budget {
         None => crate::ministries::industry_refill(n.budget_gap(BUDGET_INDUSTRY)),
         Some(p) => {
@@ -795,7 +805,7 @@ pub fn preview(w: &WorldState, nation: NationId) -> ProgramPreview {
     for m in 0..BUDGET_MINISTRIES {
         for d in 0..DEPARTMENTS {
             let annual = budget.allocations[m] * gdp * departments[m][d] as f64 / 10_000.0;
-            let capital = funded_department(m, d, equipment_finance_on(n, clock::absolute_day(w)));
+            let capital = funded_department(m, d, equipment_finance_on(n, clock::absolute_day(w)), crate::equipment::maintenance_plan_on(n,clock::absolute_day(w)));
             let (available, prepaid, accrual) = p.as_ref().map_or((0.0, 0.0, 0.0), |p| {
                 (
                     p.available_bn[m][d],

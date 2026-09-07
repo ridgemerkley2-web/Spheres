@@ -6045,7 +6045,7 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             district: v.get("district")?.as_str()?.to_string(),
             kit: v.get("kit")?.as_str()?.to_string(),
         },
-        "equipment_research" | "equipment_save" | "equipment_develop" | "equipment_produce" | "equipment_refit" | "equipment_retire" | "equipment_pause" | "equipment_funding" | "equipment_cancel" => {
+        "equipment_research" | "equipment_save" | "equipment_develop" | "equipment_produce" | "equipment_refit" | "equipment_retire" | "equipment_maintenance" | "equipment_supply" | "equipment_supply_policy" | "equipment_supply_policy_clear" | "equipment_target" | "equipment_pause" | "equipment_funding" | "equipment_cancel" | "equipment_ammo_order" | "equipment_ammo_activate" | "equipment_ammo_funding" | "equipment_ammo_pause" | "equipment_ammo_cancel" | "equipment_ammo_reserve" | "equipment_ammo_reserve_clear" => {
             use spheres_sim::EquipmentOrder as E;
             let string=|key:&str|v.get(key)?.as_str().map(str::to_string);
             let budget=||v.get("daily_budget_mn")?.as_f64().filter(|n|n.is_finite()).map(|n|n/1000.0);
@@ -6059,6 +6059,18 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
                 "equipment_produce"=>E::Produce{revision:string("revision")?,district:string("district")?,quantity:quantity()?,daily_budget_bn:budget()?},
                 "equipment_refit"=>E::Refit{source:string("source")?,target:string("target")?,district:string("district")?,quantity:quantity()?,daily_budget_bn:budget()?},
                 "equipment_retire"=>E::Retire{revision:string("revision")?,quantity:quantity()?},
+                "equipment_maintenance"=>E::Maintenance{daily_budget_bn:budget()?},
+                "equipment_supply"=>E::Supply{horizon_days:v.get("horizon_days")?.as_u64()?.try_into().ok()?,spending_cap_bn:v.get("spending_cap_mn")?.as_f64().filter(|n|n.is_finite())?/1000.0},
+                "equipment_supply_policy"=>E::SupplyPolicy{horizon_days:v.get("horizon_days")?.as_u64()?.try_into().ok()?,spending_cap_bn:v.get("spending_cap_mn")?.as_f64().filter(|n|n.is_finite())?/1000.0,cash_floor_bn:v.get("cash_floor_mn")?.as_f64().filter(|n|n.is_finite())?/1000.0,review_interval_days:v.get("review_interval_days")?.as_u64()?.try_into().ok()?,automatic:v.get("automatic")?.as_bool()?},
+                "equipment_supply_policy_clear"=>E::SupplyPolicyClear,
+                "equipment_target"=>E::Target{revision:string("revision")?,quantity:if v.get("quantity")?.is_null(){None}else{Some(quantity()?) }},
+                "equipment_ammo_order"=>E::AmmoOrder{family:string("family")?,district:string("district")?,quantity:quantity()?,daily_budget_bn:budget()?},
+                "equipment_ammo_activate"=>E::AmmoActivate,
+                "equipment_ammo_funding"=>E::AmmoFunding{project:project()?,daily_budget_bn:budget()?},
+                "equipment_ammo_pause"=>E::AmmoPause{project:project()?,paused:v.get("paused")?.as_bool()?},
+                "equipment_ammo_cancel"=>E::AmmoCancel{project:project()?},
+                "equipment_ammo_reserve"=>E::AmmoReserve{family:string("family")?,target_rounds:u32::try_from(v.get("target_rounds")?.as_u64()?).ok()?,district:string("district")?,daily_budget_bn:budget()?,automatic:v.get("automatic")?.as_bool()?},
+                "equipment_ammo_reserve_clear"=>E::AmmoReserveClear{family:string("family")?},
                 "equipment_pause"=>E::Pause{project:project()?,paused:v.get("paused")?.as_bool()?},
                 "equipment_funding"=>E::Funding{project:project()?,daily_budget_bn:budget()?},
                 "equipment_cancel"=>E::Cancel{project:project()?},_=>return None,

@@ -750,7 +750,10 @@ pub fn raw_supply_forecast_with_context(
             // Civilian operating recipes are daily. Military appropriations
             // are policy-monthly: funded_days*12/365 makes a fully funded
             // WATCH exactly 12 months without inventing next-year authority.
-            let military_months = if equipment.remaining.iter().any(|q|*q>0.0) {
+            // Ammunition has its own D2 funding. Only vehicle/refit work in
+            // D3 changes the calendar basis of legacy procurement; a positive
+            // ammunition material bill must not erase that standing demand.
+            let military_months = if equipment.procurement_calendar {
                 equipment.procurement_months[h]
             } else { funded_days * 12.0 / 365.0 };
             // Custom equipment is paid first from the same procurement pool.
@@ -2050,6 +2053,71 @@ fn review(w: &mut WorldState, nation: NationId, raw_context: &RawSupplyContext) 
         Some((district, kind)),
         raw_context,
     );
+}
+
+#[cfg(test)]
+mod ammunition_forecast_tests {
+    use super::*;
+    use crate::equipment as eq;
+    const USA:NationId=NationId::USA;
+
+    fn fixture(with_vehicle_order:bool)->(WorldState,String) {
+        let mut w=crate::init::world_1990(GameRules{daily_simulation:true,military_operations:true,
+            production_system:true,manufacturing_system:true,resource_market:true,..Default::default()});
+        w.player=Some(USA);
+        programs::set_construction_budget(&mut w,USA,0.0).unwrap();
+        eq::set_maintenance_plan(&mut w,USA,0.0).unwrap();
+        let spec=eq::default_spec("ground_apc");
+        let profile=eq::design_preview(&w,USA,&spec).profile.unwrap();
+        let today=clock::absolute_day(&w);
+        let state=w.nation_mut(USA).equipment.as_mut().unwrap();
+        state.finance_from_day=today;
+        state.revisions.insert("ammo-forecast-apc".into(),eq::DesignRevision{
+            id:"ammo-forecast-apc".into(),name:"Ammunition forecast APC".into(),
+            specification_key:eq::specification_key(&spec),spec,profile,created_day:today,certified_day:Some(today)});
+        let district=w.districts.iter().find(|(_,owner)|**owner==USA).unwrap().0.clone();
+        for _ in 0..2 {production::complete_capability(&mut w,&district,K::ArmsPlant);}
+        if with_vehicle_order {eq::start_production(&mut w,USA,"ammo-forecast-apc",&district,2,0.001).unwrap();}
+        eq::validate_state(w.nation(USA)).unwrap();
+        (w,district)
+    }
+    fn check_ammunition_addition(with_vehicle_order:bool) {
+        let (base,district)=fixture(with_vehicle_order);let mut with_ammo=base.clone();
+        eq::start_ammo_order(&mut with_ammo,USA,"mg_127",&district,10_000,0.001).unwrap();
+        let mut base=base;
+        for w in [&mut base,&mut with_ammo] {clock::advance_date(w);programs::begin_day(w);}
+        let saved=crate::save(&with_ammo);
+        let before=raw_supply_forecast(&base,USA);let after=raw_supply_forecast(&with_ammo,USA);
+        let vehicle_demand=eq::raw_supply_demand(&base,USA);
+        let combined=eq::raw_supply_demand(&with_ammo,USA);
+        let ammunition=eq::ammunition_supply_demand(&with_ammo,USA);
+        assert_eq!(combined.procurement_calendar,with_vehicle_order);
+        assert_eq!(combined.procurement_calendar,vehicle_demand.procurement_calendar);
+        assert_eq!(combined.procurement_months,vehicle_demand.procurement_months);
+        assert_eq!(combined.procurement_claim_bn,vehicle_demand.procurement_claim_bn,
+            "D2 ammunition cannot claim D3 vehicle funding");
+        assert!(resources::recurring_procurement_draw(&base,USA).iter().any(|q|*q>0.0),
+            "The fixture must include genuine standing legacy material demand");
+        assert!(ammunition.horizons.iter().any(|q|q[0]>0.0),"The ammunition order must be funded");
+        for (old,new) in before.lines.iter().zip(&after.lines) {
+            assert_eq!(old.commodity,new.commodity);let i=new.commodity.idx();
+            for h in 0..3 {
+                let expected=old.demand[h]+ammunition.horizons[i][h];
+                assert!((new.demand[h]-expected).abs()<=1e-7+expected.abs()*1e-12,
+                    "{} horizon {}: legacy/custom vehicle demand {} plus ammunition {} became {}",
+                    new.commodity.key(),RAW_HORIZON_DAYS[h],old.demand[h],ammunition.horizons[i][h],new.demand[h]);
+            }
+        }
+        assert_eq!(crate::save(&with_ammo),saved,"Forecasting must not order, reserve or spend");
+    }
+    #[test]
+    fn ammunition_only_preserves_standing_procurement_and_adds_its_material_bill_once() {
+        check_ammunition_addition(false);
+    }
+    #[test]
+    fn ammunition_and_vehicle_orders_preserve_separate_funding_and_one_material_bill() {
+        check_ammunition_addition(true);
+    }
 }
 
 #[cfg(test)]
