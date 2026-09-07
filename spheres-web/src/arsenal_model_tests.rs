@@ -75,14 +75,38 @@ fn the_card_renderer_ships_a_surface_treatment() {
 /// someone assumes it is that place's streets. It is not, TownMesh says so in
 /// its own description, and the card must keep saying so too.
 #[test]
-fn a_selected_city_shows_representative_buildings_and_admits_it() {
-    assert!(INDEX.contains("function townBlockFor(city)"),
-        "nothing chooses a block for a city");
-    assert!(INDEX.contains("not a street map of"),
+fn a_selected_city_shows_a_birds_eye_and_denies_the_street_plan() {
+    // The card used to show one of eight generic town BLOCKS chosen by hashing
+    // the name, so Tokyo and a ninety-thousand-person town got the same street
+    // corner. Ridge: "the town asset makes no sense to me. I would rather it
+    // just be a birds eye of the city." A city cannot be built from those
+    // blocks either — a million people is ~40 km2, which is 2,599 of them and
+    // 507 million triangles — so the primitive is city massing.
+    assert!(INDEX.contains("function cityIndexFor(city)"),
+        "nothing resolves the selected city to a record");
+    assert!(INDEX.contains("CityMesh.build(CITIES[cityIndex]"),
+        "the card no longer builds a city from the record it selected");
+
+    // THE BAR THAT MATTERS MOST, and it matters MORE now than it did with a
+    // block: this is a convincing city drawn beside a real place name taken
+    // from Natural Earth, and every street in it is invented. The caption must
+    // say so. Iron rule 4 is that starting data is transcribed, not invented;
+    // a plausible plan captioned only with the name is how that gets broken.
+    assert!(INDEX.contains("the size and setting follow the record, the streets do not"),
         "the city vignette has lost the caption that stops it reading as a survey");
+
+    // The size cannot be in the picture. Every card frames its model to fill
+    // it, so a 32 km city and a 3 km one fill it identically, and fixing the
+    // scale instead would draw the small ones a few pixels wide. So the extent
+    // is stated in words, and that sentence is load-bearing.
+    assert!(INDEX.contains("across about ") && INDEX.contains("km'"),
+        "the caption no longer carries the extent, which the framing cannot show");
+
+    // A birds-eye needs a birds-eye camera. arsenal3d rests at 20 degrees,
+    // which on something 32 km wide and 600 m tall is edge-on to the plan.
+    assert!(INDEX.contains("{ pitch: 58 }"),
+        "the city is drawn at the default oblique, where its plan is a plate");
+
     assert!(INDEX.contains("function registerMeshProviders()"),
         "the mesh providers are no longer registered from one place");
-    // Bounded on purpose: a unique block per city would rebuild 75,000
-    // triangles on every click and cache without limit.
-    assert!(INDEX.contains("% 8"), "the block pool is no longer bounded");
 }

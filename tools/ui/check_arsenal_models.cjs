@@ -77,6 +77,16 @@ test('each arsenal model has finite render buffers, unit normals and usable spat
 //     array's smallest authored feature is a cell some centimetres across; only
 //     a lofted aerofoil with a chord in centimetres goes below that, and there
 //     is no aerofoil in space.
+//     RE-MEASURED AFTER THE P0 DETAIL PASS — the one that took the deck from
+//     272,491 catalogue triangles to 392,407 across all six classes at once —
+//     AND NOT MOVED. The Switchblade's tip rib still holds the deck at 1.4e-7
+//     m2, and the class floors are now Air 8.2e-7 (the CCA's bay round, a
+//     lofted 50 mm-radius body), Missile 9.7e-7 (the OWA's propeller root),
+//     Naval 1.4e-6, Space 3.3e-6 and Armour 6.0e-5. Two passes in seven have
+//     shrunk this number and five have not, and the reading is unchanged: the
+//     floor is set by what a model IS. This pass added roughly 120,000
+//     triangles of fairings, hinges, flange bolts, grating, tiles and deck
+//     clutter and did not go near it, because none of that is an aerofoil.
 //   - every vertex normal shares a half-space with the face carrying it. This
 //     asks for the sign and claims nothing more, deliberately: the tightest
 //     corner in the deck sits at 0.0017 — msl_brm's, tighter than the 0.0037
@@ -178,6 +188,35 @@ test('each arsenal model has finite render buffers, unit normals and usable spat
 //     pass for that list to be handed to, so it is a standing item now and not
 //     a forward pointer: it is where a Naval-style shading repair would go if
 //     one is ever wanted, and it costs no triangles either way.
+//     RE-MEASURED AFTER THE P0 DETAIL PASS, WHICH RE-IMPORTED THE FIRST
+//     PATTERN TWICE AND WAS CAUGHT BY MEASURING RATHER THAN BY THIS BAR. Both
+//     were the same shape the Naval pass named — a can shorter than it is wide
+//     closed by `loft`'s own caps INSIDE a `.soft(` block — and both were added
+//     by this pass, which is the point of re-measuring instead of carrying the
+//     number forward:
+//       - `jet`'s anti-collision beacon, a dome 0.23 m across and 0.08 m tall
+//         on the spine of every aircraft in the class. It took the DECK's worst
+//         corner from 0.0017 to 0.00046 — a normal ninety degrees off its own
+//         face — and all nine tests in this file stayed green through it.
+//       - the rolled camouflage net in `armour`'s bustle rack, 0.3 W long and
+//         0.22 H across. It took the Armour class from 0.4809, which is the
+//         number recorded above as "NO corner anywhere under 0.2", to 0.0309
+//         with twelve corners under 0.2.
+//     Both were repaired the way the Naval pass repaired its four: `false` in
+//     the caps slot and the fans emitted OUTSIDE the smoothing group, at a cost
+//     of nothing but the two fans that were already being drawn. Re-measured
+//     after the repair, every class is back at the value recorded above, to
+//     four figures — Infantry 0.0049, Armour 0.4809, Air 0.0037, Naval 0.0199,
+//     Missile 0.0017, Space 0.2170 — and msl_brm still holds the deck at
+//     0.0017, so the bar is again NOT moved. What DID move is the population:
+//     corners under 0.2 across both levels stand at 4,106 against 3,768, on a
+//     deck that grew by 44%, and none of them is in Space or Armour.
+//     THE SWEEP WAS RE-RUN RATHER THAN ASSUMED and it grew with the deck: 335
+//     `loft`/`tube` calls now sit inside a `.soft(` block (was 205) and 48 of
+//     them do not pass an explicit `false` in the caps slot (was 47). The
+//     detail pass added 130 such calls and exactly one of them to the second
+//     list, which is the discipline the Armour and Space passes established —
+//     author against this list rather than check against it afterwards.
 //     This clause is also what catches an INVERTED normal, which nothing
 //     in this file caught before — unit, finite and deterministic are all true
 //     of a normal pointing exactly backwards.
@@ -490,6 +529,26 @@ test('no two models collapse into the same shape at either level of detail',()=>
 // added tomorrow in a seventh class reds this until someone decides what band
 // it belongs in. Strictly an ADDED clause: every id the old version walked, the
 // new one still walks, under the same two bands.
+//
+// THE P0 DETAIL PASS RAISED ALL SIX CLASSES AT ONCE, and the numbers above are
+// what it started from. Deck total 272,491 catalogue triangles to 392,407, a
+// 5,924 average to 8,531; the map form moved 39,508 to 39,564, which is 0.14%
+// and is the whole point — everything added is behind an `m.far` gate or an
+// `m.lod` pair, so the level that scales when a hundred pins are on a map did
+// not move. Per class, catalogue average before to after: Air 4,912 to 9,064,
+// Missile 4,911 to 7,215, Infantry 6,212 to 7,261, Naval 6,866 to 9,600,
+// Armour 9,351 to 10,071, Space 10,465 to 11,064. The near band is now
+// 5,112..11,502 against 4,000..12,000 and the far band 364..1,354 against
+// 300..1,500.
+//
+// WHAT THE CEILING MEANS FOR THE NEXT PASS, stated plainly because it is the
+// binding constraint and not an opinion: 12,000 is a per-model CAP, the deck
+// averaged 5,924 before this pass, so the largest multiple any pass can ever
+// deliver from that start is 2.03x and only by putting every one of the 46
+// models within a hair of the cap. 1.44x is what was reachable while every
+// added triangle was a real fitting rather than a finer ring. Anyone asked for
+// "2-4x" from here is being asked to widen this band, which is the move this
+// file exists to forbid — so the answer is to say so, not to ship it.
 const BUDGETED=new Set(['Air','Missile','Infantry','Naval','Armour','Space']);
 test('every model in the deck holds the catalogue and map budgets, and no class can opt out',()=>{
   const graded=models.ids().filter(id=>BUDGETED.has(models.meta(id).cls));

@@ -121,6 +121,13 @@ const SITE_MESH_JS: &str = include_str!("../ui/site-mesh.js");
 /// The temperate town block kit. Layout varies by a seeded hash of the block id,
 /// never by a random number, so a settlement is the same one every session.
 const TOWN_MESH_JS: &str = include_str!("../ui/town-mesh.js");
+/// The birds-eye city. A town BLOCK on the city card was the wrong asset — one
+/// generic 148x104 m block, picked by hashing the name, so Tokyo and a 90,000-
+/// person town got the same picture. A city cannot be built from blocks either:
+/// a million people is about 40 km2, which is 2,599 blocks and 507 MILLION
+/// triangles. The primitive here is city massing at roughly 100 m cells, and the
+/// whole city costs less than the single block it replaces.
+const CITY_MESH_JS: &str = include_str!("../ui/city-mesh.js");
 /// The reverse leg of the art pipeline: glTF back into the runtime mesh shape.
 const EQUIPMENT_IMPORT_JS: &str = include_str!("../ui/equipment-import.js");
 const ARSENAL3D_CSS: &str = include_str!("../ui/arsenal3d.css");
@@ -6704,6 +6711,7 @@ fn main() {
             (Method::Get, "/surface-material.js") => Response::from_string(SURFACE_MATERIAL_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/site-mesh.js") => Response::from_string(SITE_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/town-mesh.js") => Response::from_string(TOWN_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/city-mesh.js") => Response::from_string(CITY_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/equipment-import.js") => Response::from_string(EQUIPMENT_IMPORT_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/arsenal3d.css") => Response::from_string(ARSENAL3D_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, path) if path.starts_with("/art/components/") => {

@@ -28,18 +28,36 @@ const STAGES=['site','foundation','frame','enclosed','complete'];
 // that is under a pixel there. The floor moved 100 -> 164 measured
 // (starter_industry/site/L1).
 //
-// LOD0's ceiling was RAISED from 12,000 to 40,000 on the owner's brief ("way
-// more detailed with realistic mesh"). The roadmap's own section 4 calls the
-// first band "initial budgets to validate on the user's machine, not measured
-// performance promises", and the old ceiling was what capped this art: the whole
-// finished arms plant fitted in 6,356 triangles. The floor moved the other way,
-// 2,000 -> 6,000, which is a TIGHTENING: nothing in this file can now fall back
-// to the plain massing it used to be and still pass. Measured range today is
-// 7,250 (starter_industry/site/L1) to 39,302 (civilian_industry/complete/L5) —
-// three halls, a service block and an external plant compound on the biggest
-// pad this file draws — so the ceiling keeps under two per cent of headroom and
-// the next composition to grow has to take something out first.
-const NEAR_MIN=6000,NEAR_MAX=40000,FAR_MIN=100,FAR_MAX=800;
+// LOD0's ceiling has been RAISED TWICE, both times on the owner's brief and
+// both times recorded rather than quietly widened. 12,000 -> 40,000 was the
+// first detail pass ("way more detailed with realistic mesh"); 40,000 -> 54,000
+// is the second ("way more detailed" again, on plant and process: pipework
+// runs, ducting, stacks, gantries, roof plant, external stairs and walkways,
+// groundworks, and yard life). The roadmap's own section 4 calls the first band
+// "initial budgets to validate on the user's machine, not measured performance
+// promises", and it is the ceiling and not the art that has been the binding
+// constraint here from the start. THIS IS A DECISION, NOT A MEASUREMENT, and
+// docs/art/BUDGET_DECISION.md is where it is argued; the numbers below are what
+// this file actually costs so the record can be kept honest.
+//
+// THE FLOOR MOVED FURTHER THAN THE CEILING, PROPORTIONALLY, and that is the
+// half of this that is a TIGHTENING: 2,000 -> 6,000 -> 11,000. Nothing in this
+// file can now fall back to the massing it used to be and still pass, and the
+// second pass cannot be deleted from the early stages either — the cheapest
+// mesh in the whole table is a level-one site establishment and it is 11,312.
+//
+// Measured range today is 11,312 (starter_industry/site/L1) to 50,102
+// (generation/complete/L5): a machine hall, a conversion block, heat rejection,
+// consumables handling, a tank farm, a takeoff gantry, a flue stack, a yard
+// pipe bridge, roof ducting and vent stacks, an external stair, a substation
+// and a marked-out yard, on the biggest pad this file draws. That leaves seven
+// per cent of headroom under the ceiling and three per cent over the floor.
+//
+// AND THE MAP MESH DID NOT MOVE AT ALL. Every function the second pass added
+// returns on its first line unless `d0.fine`, the far range is the 164..756 it
+// was, and `the map mesh pays for none of the close-range detail` below pins
+// the far triangle total to the exact number so it cannot drift by accident.
+const NEAR_MIN=11000,NEAR_MAX=54000,FAR_MIN=100,FAR_MAX=800;
 
 // The smoothing pass folds a corner's neighbours in only when they are within
 // the crease limit of its own face. That is 0.35 in site-mesh.js, and it makes
@@ -296,7 +314,17 @@ test('curved surfaces are smooth-shaded and flat ones are not',()=>{
   // plates and a counterweight as well as chords — so the bar is not 100%.
   const curved=[['plant / tower crane','frame',0.70],['reinforcement and formwork','foundation',0.55],
     ['bollards and gate island','complete',0.65],['batching skid','foundation',0.52],
-    ['site / stacked materials','site',0.48],['lighting masts','frame',0.32]];
+    ['site / stacked materials','site',0.48],['lighting masts','frame',0.32],
+    // The second detail pass, on the same terms. Measured minima across all 13
+    // kinds and levels: drainage 60.4%, earthmoving plant 43.8%, external stair
+    // 43.6%, external pipework 42.6%, extract ducting 29.2% (at hand-over — at
+    // the enclosing stage it is honestly all folded plate and no round section
+    // at all, which is what a bare duct route IS), bunded store 37.6%,
+    // substation 20.6%, pipe bridge 22.3%. Bars set roughly a fifth under.
+    ['drainage runs and manholes','foundation',0.45],['plant / earthmoving plant','site',0.34],
+    ['external stair and roof access','frame',0.34],['external pipework and cable ladder','enclosed',0.33],
+    ['extract ducting and vent stacks','complete',0.22],['bunded store and gas cage','complete',0.29],
+    ['packaged substation and cable route','frame',0.16],['yard pipe bridge','complete',0.17]];
   for(const [fragment,stage,floor] of curved){
     for(const key of site.kinds()){
       for(const level of [1,5]){
@@ -313,7 +341,12 @@ test('curved surfaces are smooth-shaded and flat ones are not',()=>{
   // A crease limit that drifted wide enough to weld a wall panel to its
   // neighbour would show up here and nowhere else.
   const flat=['site / formation platform','envelope / wall cladding','envelope / roof sheeting and ridge',
-    'structure / ground slab','yard / marked bays and kerbs','yard / permanent perimeter'];
+    'structure / ground slab','yard / marked bays and kerbs','yard / permanent perimeter',
+    // Paint is plate. The walkway, the hatching, the arrows, the roundel and
+    // the bay-number boards are the one place in this file where the ONLY thing
+    // being drawn is a flat surface with a different tone, and if the smoothing
+    // pass ever reached them they would stop reading as markings at all.
+    'yard / hardstanding markings and walkway'];
   for(const key of site.kinds()){
     for(const stage of ['frame','complete']){
       const mesh=site.build(key,stage,{lod:0,level:2});
@@ -347,7 +380,11 @@ test('curved surfaces are smooth-shaded and flat ones are not',()=>{
 // face up. Checked against the pre-repair geometry it goes red on all four.
 test('surfaces you stand on and surfaces it rains on face the sky',()=>{
   const tops=['formation platform','ground slab','structure / slab','roof sheeting','envelope / massing',
-    'apron','hardstand','marked bays','dig and spoil','access road','excavation'];
+    'apron','hardstand','marked bays','dig and spoil','access road','excavation',
+    // Added with the second pass. The trench floor and the yard markings are
+    // both surfaces made of `deck` and `plate` calls, and both are exactly the
+    // kind of hand-listed horizontal quad that came out inside out last time.
+    'drainage runs','hardstanding markings'];
   let checked=0;
   for(const key of site.kinds()){
     for(const stage of STAGES){
@@ -799,6 +836,151 @@ test('delivered wings stand on the fill they were built on',()=>{
   }
 });
 
+
+// THE SECOND DETAIL PASS, asserted as PARTS AND STAGES rather than as a triangle
+// count. A budget range says the file got bigger; it cannot say that what was
+// added is a drainage trench at the stage a drainage trench is dug, and it is
+// exactly the claim this pass makes that has to be checkable: the brief asked
+// for detail that reads on a 1124x102 strip AND for the five stages to stay
+// clearly distinguishable, and the second of those is the one a triangle count
+// will happily let you break.
+//
+// Each row is [part name, the stages it may stand at, a triangle floor]. THE
+// STAGE LIST IS EXHAUSTIVE IN BOTH DIRECTIONS: the part must be there at every
+// stage in it, on every kind, and must be ABSENT at every stage that is not —
+// so an early site cannot quietly grow finished pipework and a handed-over
+// facility cannot keep its skips. The floors are measured minima across all 13
+// kinds at levels one and five, set about a fifth under, and they are here so a
+// future edit cannot return any of these to the boxes they could have been.
+const DETAIL=[
+  ['earthworks / drainage runs and manholes',['site','foundation'],1000],
+  ['plant / earthmoving plant',['site','foundation'],1600],
+  ['site / skips and waste segregation',['site','foundation','frame','enclosed'],640],
+  ['services / external stair and roof access',['frame','enclosed','complete'],1450],
+  ['services / packaged substation and cable route',['frame','enclosed','complete'],580],
+  ['services / external pipework and cable ladder',['enclosed','complete'],1300],
+  ['services / extract ducting and vent stacks',['enclosed','complete'],400],
+  ['services / yard pipe bridge',['enclosed','complete'],1400],
+  ['yard / hardstanding markings and walkway',['complete'],260],
+  ['yard / bunded store and gas cage',['complete'],1100],
+];
+
+test('the second detail pass stands on every kind, at the stages it belongs to and at no others',()=>{
+  for(const [name,stages,floor] of DETAIL){
+    assert(stages.every(stage=>STAGES.includes(stage)),`${name}: names a stage that does not exist`);
+    for(const key of site.kinds()){
+      for(const stage of STAGES){
+        for(const level of [1,5]){
+          const mesh=site.build(key,stage,{lod:0,level});
+          const part=mesh.parts.find(entry=>entry.name===name);
+          if(!stages.includes(stage)){
+            assert(!part,`${key}/${stage}/L${level}: "${name}" is standing at a stage it does not belong to`);
+            continue;
+          }
+          assert(part,`${key}/${stage}/L${level}: "${name}" is missing`);
+          assert(part.count%3===0);
+          assert(part.count/3>=floor,
+            `${key}/${stage}/L${level}: "${name}" is only ${part.count/3} triangles against a floor of ${floor} — has it gone back to boxes?`);
+        }
+      }
+    }
+  }
+  // And the pass is a pass, not a rename: ten named objects that were not there
+  // before have to be there now, on all thirteen kinds, across the five stages.
+  for(const key of site.kinds()){
+    const seen=new Set();
+    for(const stage of STAGES)for(const part of site.build(key,stage,{lod:0}).parts)seen.add(part.name);
+    for(const [name] of DETAIL)assert(seen.has(name),`${key}: never draws "${name}" at any stage`);
+  }
+});
+
+test('the map mesh pays for none of the close-range detail',()=>{
+  // The far LOD is what the globe overlay pays for and it is the tight budget:
+  // the worst kind sits 44 triangles under a hard 800. Every function the
+  // second pass added returns on its first line unless `d0.fine`, and this is
+  // the bar that keeps it true — by name, so a coarse path cannot be added
+  // later without saying so, and by total, so it cannot drift a triangle at a
+  // time either.
+  let far=0;
+  for(const key of site.kinds()){
+    for(const stage of STAGES){
+      for(let level=1;level<=site.maxLevel;level+=1){
+        const mesh=site.build(key,stage,{lod:1,level});
+        far+=mesh.triangleCount;
+        for(const [name] of DETAIL){
+          assert(!mesh.parts.some(part=>part.name===name),
+            `${key}/${stage}/L${level}: the map mesh is drawing "${name}", which is close-range detail`);
+        }
+      }
+    }
+  }
+  assert.equal(far,142776,
+    `the far mesh now costs ${far} triangles over the 325 kind/stage/level combinations instead of 142776 — the map budget is the one that is actually tight, so a change here has to be a decision and not a side effect`);
+});
+
+test('the formation platform is the thing that touches the ground',()=>{
+  // `finish` re-seats the lowest vertex of the model on Y=0, which means
+  // `bounds.min[1] === 0` is true whatever happens and CANNOT catch a bucket, a
+  // track shoe or a trench floor dropped below the platform. What such a thing
+  // does instead is silently LIFT the whole site by however far it went under —
+  // the platform, the building, the fence and every object on the pad — and
+  // nothing else in this file would notice. The site stands on its platform, so
+  // the platform is what has to be on the ground.
+  for(const key of site.kinds()){
+    for(const stage of STAGES){
+      for(const lod of [0,1]){
+        for(const level of [1,5]){
+          for(const status of site.statuses){
+            const mesh=site.build(key,stage,{lod,level,status});
+            const part=mesh.parts.find(entry=>entry.name.includes('formation platform'));
+            assert(part,`${key}/${stage}/lod${lod}: formation platform present`);
+            let low=Infinity;
+            for(let i=part.first*3;i<(part.first+part.count)*3;i+=3){
+              if(mesh.positions[i+1]<low)low=mesh.positions[i+1];
+            }
+            assert(low<1e-5,
+              `${key}/${stage}/lod${lod}/L${level}/${status}: the platform is floating ${low.toFixed(3)} m off the ground — something under it is holding the model up`);
+          }
+        }
+      }
+    }
+  }
+});
+
+test('earthmoving plant is parked when the work stops, not deleted',()=>{
+  // The same contract the tower crane is already held to, one stage earlier.
+  // The crane covers the frame and enclosing stages; the two stages before them
+  // had no plant at all until this pass and so had nothing that could read as
+  // stopped except a board at the gate. A machine holding its boom over the dig
+  // on a paused site is the exact lie this file exists to refuse.
+  for(const key of site.kinds()){
+    for(const stage of ['site','foundation']){
+      const working=site.build(key,stage,{status:'building'});
+      const stopped=site.build(key,stage,{status:'paused'});
+      const find=mesh=>mesh.parts.find(part=>part.name==='plant / earthmoving plant');
+      const a=find(working),b=find(stopped);
+      assert(a&&b,`${key}/${stage}: earthmoving plant at both statuses`);
+      // A stop is a POSE. Same triangles either way, so it can move neither a
+      // budget nor a monotonicity run.
+      assert.equal(a.count,b.count,`${key}/${stage}: a parked machine costs a different number of triangles`);
+      const span=(mesh,part)=>Array.from(mesh.positions.slice(part.first*3,(part.first+part.count)*3));
+      assert.notDeepEqual(span(working,a),span(stopped,b),
+        `${key}/${stage}: the machine stands in exactly the same pose whether or not anybody is paying for it`);
+      // Not merely "different": the boom is DOWN. The highest point of the
+      // plant has to drop, which a slew angle or a moved track cannot fake.
+      const top=(mesh,part)=>{
+        let y=-Infinity;
+        for(let i=part.first*3;i<(part.first+part.count)*3;i+=3)if(mesh.positions[i+1]>y)y=mesh.positions[i+1];
+        return y;
+      };
+      assert(top(stopped,b)<top(working,a)-0.5,
+        `${key}/${stage}: the stopped machine is still holding its boom up (${top(stopped,b).toFixed(2)} against ${top(working,a).toFixed(2)})`);
+    }
+    // And a slowed site is still a working site, here as everywhere else.
+    assert.equal(digest(site.build(key,'foundation',{status:'building'})),
+      digest(site.build(key,'foundation',{status:'slowed'})),`${key}: slowed earthworks is still earthworks`);
+  }
+});
 test('no wall clock, no frame counter and no second RNG can reach this geometry',()=>{
   // Roadmap section E: elapsed time never completes a building. The cheapest way
   // to keep that true is for the vocabulary not to exist in the file at all.

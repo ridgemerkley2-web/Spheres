@@ -36,6 +36,29 @@
 // the thousands of triangles a card can afford; `build(id, cls, {lod:"far"})`
 // is the same model with coarser rings and none of the greebles, for a map pin.
 // Nothing about the first signature moved.
+//
+// DETAIL IS AIMED AT A MEASURED SIZE, and this is the rule the P0 detail pass
+// added and every part below was chosen against. These meshes are drawn between
+// a 34 px ledger chip and a ~380 px inspection view — the pane sizes are in
+// arsenal3d.css (34, 30, 68, 104, 108 px, and the inspection pane) — so what is
+// worth a triangle depends on how big the REAL object is:
+//   - On a 15 m aircraft a fastener is 5 mm, which is a third of a pixel at
+//     380 px. So the aircraft got fairings, rails, ramps, dispensers, aerials
+//     and things you can see down a hole — silhouette and shadow — and NOT
+//     rivet lines. A scribed panel line on an airframe buys nothing here.
+//   - On a 7 m tank a track-link bolt head is 20 mm and a tow cable is 26 mm,
+//     which is one to two pixels, and a ROW of them is a legible band. So the
+//     ground kit got bolts, cables, tool racks and grating.
+//   - On an 800 mm sensor fit a shock isolator is 20 mm — nine pixels. That end
+//     of the deck's scale range is the only place where hardware the size of a
+//     thumb resolves, and it is where the equipment fits spend their budget.
+// The other half of the rule: MORE STRUCTURE, NOT FINER RINGS. Smoothing a
+// cylinder from 8 sides to 32 at card size is waste. Two places took a ring
+// count up anyway and both are named where they happen — `foil`'s contour
+// points (9 to 11, on the leading edge, which is the one part of a section a
+// 380 px view resolves) and `jet`'s fuselage (22 to 26) — and the far pair was
+// left alone in both, which is why the map level moved 0.14% while the
+// catalogue level moved 44%.
 (function (root) {
   "use strict";
 
@@ -429,7 +452,13 @@
   /// so the tip stays a hard edge — a wing whose tip rib is smoothed reads as a
   /// blob, and the tip is where a card sees the wing's thickness.
   Mesh.prototype.foil = function (o, col) {
-    const n = o.n || this.lod(9, 3), bays = o.bays || this.lod(6, 1);
+    // THE NEAR COUNTS MOVED AND THE FAR ONES DID NOT, deliberately. Eleven
+    // contour points instead of nine puts two more where cosine spacing puts
+    // them — on the leading edge — which is the only part of a section a
+    // ~380 px inspection view can resolve at all; seven bays instead of six
+    // gives a tapered panel one more station to change thickness at. The far
+    // pair is untouched at 3 and 1 because a map pin has no section.
+    const n = o.n || this.lod(11, 3), bays = o.bays || this.lod(7, 1);
     const thick = o.thick == null ? 0.1 : o.thick;
     const secs = [];
     for (let i = 0; i <= bays; i += 1) {
@@ -653,6 +682,26 @@
       [-o.w / 2, o.len / 2]], d, d * 0.35, o.col);
     m.restore();
   }
+  /// A FIELD of them wrapped round a body of revolution: rows at a spread of
+  /// clock angles, stations along the length. This is what an anechoic coating
+  /// is — a submarine's black rubber is laid in rectangular tiles with a
+  /// visible seam at every join, tiles come off in service and the gaps show,
+  /// and it is the only surface texture a hundred metres of unbroken cylinder
+  /// will ever have. `skinPanel` already puts each tile on the ellipse's true
+  /// normal, so a tile on the turn of the flank lies flat instead of hovering.
+  function tileField(m, o) {
+    if (m.far) return;
+    const rows = o.rows || 5, cols = o.cols || 12;
+    for (let r = 0; r < rows; r += 1) {
+      const th = o.th0 + (o.th1 - o.th0) * (rows === 1 ? 0.5 : r / (rows - 1));
+      for (let c = 0; c < cols; c += 1) {
+        const z = o.z0 + (o.z1 - o.z0) * ((c + 0.5) / cols);
+        skinPanel(m, { rx: o.rx, ry: o.ry, th, z, w: o.w, len: o.len, depth: o.depth,
+          col: shade(o.col, 1 + (((r * 3 + c) % 5) - 2) * 0.03) });
+      }
+    }
+  }
+
   /// A run of them: the line of access panels down a fuselage side, which on a
   /// real airframe is where the avionics bays are and on a card is what tells
   /// the eye how long the thing is.
@@ -803,6 +852,201 @@
     m.restore();
   }
 
+  // ------------------------------------------------- the airframe detail kit
+  // ADDED BY THE DETAIL PASS, AND CHOSEN AGAINST A SIZE. These cards are drawn
+  // between a 34 px ledger chip and a ~380 px inspection view (arsenal3d.css:
+  // 34, 30, 68, 104, 108 px panes; the inspection pane is the largest). At the
+  // small end only the SILHOUETTE survives, so everything below either breaks
+  // the outline (fairings, rails, ramps, dispensers, aerials) or sits inside a
+  // hole the eye is already looking into (a fan face down an intake, actuators
+  // round a nozzle). NOTHING here is a rivet or a scribed line: a fastener on a
+  // 15 m airframe is five millimetres, which is a third of a pixel at 380 px,
+  // and a pass that spent its budget there would be buying nothing. That is the
+  // whole selection rule, and it is why the aircraft got fairings and the tanks
+  // got bolts — a bolt head on a track link IS resolvable at 380 px because the
+  // link is 150 mm on a 7 m vehicle.
+
+  /// A flap-track fairing — the "canoe" that hangs under and behind a wing's
+  /// trailing edge to house the flap carriage. Every large-flap aeroplane has
+  /// two or three a side and they are the one thing that breaks a wing's
+  /// underside outline, which is exactly what a three-quarter card shows.
+  function trackFairing(m, o) {
+    if (m.far) return;
+    const seg = m.lod(10, 5), L = o.len, R = o.r;
+    m.save().move(o.x, o.y, o.z).rotY(o.yaw || 0);
+    m.soft((mm) => mm.loft([
+      { z: L * 0.34, pts: ring(R * 0.2, R * 0.26, seg) },
+      { z: L * 0.16, pts: ring(R * 0.82, R * 0.94, seg) },
+      { z: -L * 0.06, pts: ring(R, R * 1.08, seg) },
+      { z: -L * 0.44, pts: ring(R * 0.66, R * 0.74, seg) },
+      { z: -L * 0.66, pts: ring(R * 0.16, R * 0.2, seg) },
+    ], o.col, false));
+    m.restore();
+  }
+
+  /// The ring of external actuators round a variable-area nozzle. On every
+  /// afterburning engine since the 1960s the convergent flaps are driven from
+  /// outside by a dozen rams spaced round the can, and that ring of rods is
+  /// what makes the back of a fighter read as machinery rather than as a pipe.
+  /// Drawn as the ram, its clevis at the forward end and the link at the aft.
+  function nozzleActuators(m, o) {
+    if (m.far) return;
+    const n = o.n || 9, seg = 6, R = o.r, L = o.len;
+    for (let i = 0; i < n; i += 1) {
+      m.save().move(o.x || 0, o.y || 0, o.z || 0).rotZ((i + 0.5) * (360 / n))
+        .move(0, R * 1.1, 0).rotX(-90 - (o.lean == null ? 5 : o.lean));
+      m.soft((mm) => mm.tube(R * 0.075, R * 0.055, L, seg, o.col || P.metal, false));
+      m.bar(-R * 0.1, R * 0.1, -R * 0.07, R * 0.07, -R * 0.06, R * 0.02,
+        shade(P.exhaust, 1.25));
+      m.save().move(0, 0, L);
+      m.bar(-R * 0.085, R * 0.085, -R * 0.05, R * 0.05, -R * 0.02, R * 0.05,
+        shade(P.metal, 0.82));
+      m.restore();
+      m.restore();
+    }
+  }
+
+  /// The fan face at the bottom of an intake duct. `intakeDuct` already draws a
+  /// duct you can see down and then shuts it with a black disc; on a
+  /// three-quarter card you are looking straight into that hole, and what
+  /// belongs at the end of it is a spinner and a stage of blades. Twenty
+  /// staggered plates on a cone is about forty triangles more than the disc it
+  /// replaces reads as, and it is the difference between an inlet and a duct
+  /// painted on the side of a fuselage.
+  function fanFace(m, o) {
+    if (m.far) return;
+    const n = o.n || 20, seg = m.lod(12, 6), R = o.r;
+    m.save().move(o.x || 0, o.y || 0, o.z || 0).rotY(o.yaw || 0);
+    m.soft((mm) => mm.tube(R * 0.26, 1e-4, R * 0.62, seg, shade(P.metal, 0.6), false));
+    for (let i = 0; i < n; i += 1) {
+      m.save().rotZ(i * (360 / n)).rotX(o.stagger == null ? 32 : o.stagger);
+      m.plate([[R * 0.24, -R * 0.16], [R * 0.99, -R * 0.1], [R * 0.99, R * 0.1],
+        [R * 0.24, R * 0.16]], R * 0.03, shade(P.metal, 0.44 + (i % 2) * 0.1));
+      m.restore();
+    }
+    m.restore();
+  }
+
+  /// A row of hinged doors on a cowl or a fuselage side: auxiliary intake
+  /// doors, bleed-air louvres, a gun-gas vent. Each one sits proud on its
+  /// hinge line and is tipped open by a few degrees, so it throws a shadow the
+  /// flat panel it is cut from cannot.
+  function doorRow(m, o) {
+    if (m.far) return;
+    const n = o.n || 4;
+    for (let i = 0; i < n; i += 1) {
+      const t = n === 1 ? 0 : i / n;
+      m.save().move(o.x, o.y, o.z0 + (o.z1 - o.z0) * t).rotZ(o.roll || 0)
+        .rotX(-(o.open == null ? 7 : o.open));
+      m.slab([[-o.w / 2, 0], [o.w / 2, 0], [o.w / 2, -o.len], [-o.w / 2, -o.len]],
+        o.t, o.t * 0.35, shade(o.col, 1 - (i % 2) * 0.06));
+      m.restore();
+    }
+  }
+
+  /// A countermeasures dispenser: the block, and the dark mouths of the tubes
+  /// in its face. A flare bucket is a real box on the underside of every
+  /// combat aircraft in this deck and it is one of the few things down there
+  /// with a hard rectangular outline.
+  function dispenser(m, o) {
+    if (m.far) return;
+    const cols = o.cols || 2, rows = o.rows || 4, W = o.w, H = o.len;
+    m.save().move(o.x, o.y, o.z).rotY(o.yaw || 0).rotZ(o.roll || 0);
+    m.slab([[-W / 2, -H / 2], [W / 2, -H / 2], [W / 2, H / 2], [-W / 2, H / 2]],
+      o.d, o.d * 0.3, o.col || P.greyDark);
+    const r = Math.min(W / cols, H / rows) * 0.3;
+    for (let c = 0; c < cols; c += 1) {
+      for (let k = 0; k < rows; k += 1) {
+        m.save().move(W * ((c + 0.5) / cols - 0.5), -o.d * 0.5, H * ((k + 0.5) / rows - 0.5))
+          .rotX(90);
+        m.soft((mm) => mm.tube(r, r * 0.86, o.d * 0.5, mm.lod(7, 4), shade(P.metal, 0.5), false));
+        m.save().move(0, 0, o.d * 0.5);
+        discCap(m, r * 0.86, m.lod(7, 4), P.black, false);
+        m.restore();
+        m.restore();
+      }
+    }
+    m.restore();
+  }
+
+  /// Static wick dischargers: the row of thin rods trailing off an aileron and
+  /// a fin. Each is a couple of centimetres of wire and none of them would be
+  /// worth drawing alone; the ROW is a recognised silhouette of an aeroplane
+  /// that flies rather than one that sits in a shop window, and a row of nine
+  /// costs what one blade aerial does.
+  function wickRow(m, o) {
+    if (m.far) return;
+    const n = o.n || 5;
+    for (let i = 0; i < n; i += 1) {
+      const t = n === 1 ? 0.5 : i / (n - 1);
+      m.save().move(o.x0 + (o.x1 - o.x0) * t, o.y0 + ((o.y1 == null ? o.y0 : o.y1) - o.y0) * t,
+        o.z0 + ((o.z1 == null ? o.z0 : o.z1) - o.z0) * t)
+        .rotY(180 + (o.yaw || 0)).rotX(o.pitch || 0);
+      m.soft((mm) => mm.tube(o.r, o.r * 0.4, o.len, 4, o.col || P.black, false));
+      m.restore();
+    }
+  }
+
+  /// A wingtip launch rail with its round on it. A rail is thirty triangles and
+  /// what it carries is the outline of a missile standing clear of the wing —
+  /// the single most legible thing a fighter card can say about what it is
+  /// armed with, because it is out at the widest point of the span where
+  /// nothing else overlaps it.
+  function tipRail(m, o) {
+    if (m.far) return;
+    const L = o.len;
+    m.save().move(o.x, o.y, o.z);
+    m.slab([[-L * 0.03, -L * 0.42], [L * 0.03, -L * 0.42], [L * 0.03, L * 0.34],
+      [-L * 0.03, L * 0.34]], L * 0.075, L * 0.02, P.greyDark);
+    if (o.round !== false) {
+      m.save().move(0, -L * 0.09, -L * 0.46);
+      missile(m, { len: L * 0.9, r: L * 0.035, col: P.white, nose: L * 0.14,
+        seg: m.lod(10, 6), soft: true, motor: false,
+        fins: [{ n: 4, z: 0.1, span: L * 0.05, chord: L * 0.16, tip: L * 0.06, roll: 45 },
+          { n: 4, z: 0.74, span: L * 0.055, chord: L * 0.1, tip: L * 0.04, roll: 45 }] });
+      m.save().move(0, 0, L * 0.86);
+      m.soft((mm) => mm.tube(L * 0.022, L * 0.016, L * 0.04, mm.lod(9, 5), P.glass, false));
+      m.restore();
+      m.restore();
+    }
+    m.restore();
+  }
+
+  /// The wing-root fairing. Where a wing leaves a fuselage there is a fillet
+  /// carrying the join out of the corner, and its absence is what makes a
+  /// low-poly aeroplane look like a plate pushed through a tube. Drawn as a
+  /// short loft that starts wide and flat at the root and dies out along the
+  /// chord, above and below the wing plane.
+  function rootFillet(m, o) {
+    if (m.far) return;
+    const seg = m.lod(9, 5);
+    m.save().move(o.x, o.y, o.z).rotY(-90);
+    m.soft((mm) => mm.loft([
+      { z: 0, pts: ringSuper(o.h * 0.34, o.r * 0.2, seg, 2.6) },
+      { z: o.span * 0.3, pts: ringSuper(o.h, o.r * 0.8, seg, 2.4) },
+      { z: o.span * 0.72, pts: ringSuper(o.h * 0.86, o.r, seg, 2.4) },
+      { z: o.span, pts: ringSuper(o.h * 0.3, o.r * 0.24, seg, 2.6) },
+    ], o.col, false));
+    m.restore();
+  }
+
+  /// A boundary-layer diverter ramp: the flat wedge that stands above a
+  /// rectangular intake mouth and schedules it. On an F-15 it is hinged and
+  /// visibly drooped on the ground; on anything with a fixed inlet it is a
+  /// splitter wedge. Either way it is a hard-edged plate standing proud of a
+  /// round fuselage, which is a shape a card can read at 60 px.
+  function intakeRamp(m, o) {
+    if (m.far) return;
+    m.save().move(o.x, o.y, o.z).rotZ(o.roll || 0).rotX(o.droop || 0);
+    m.slab([[-o.w / 2, o.len * 0.5], [o.w / 2, o.len * 0.5], [o.w / 2, -o.len * 0.5],
+      [-o.w / 2, -o.len * 0.5]], o.t, o.t * 0.34, o.col);
+    m.save().move(0, o.t * 0.6, o.len * 0.5);
+    m.slab([[-o.w / 2, 0], [o.w / 2, 0], [o.w / 2, -o.len * 0.22], [-o.w / 2, -o.len * 0.22]],
+      o.t * 0.7, o.t * 0.24, shade(o.col, 0.88));
+    m.restore();
+    m.restore();
+  }
+
   const JET_STATIONS = [[0, .72, .74], [.07, 1, 1], [.4, 1, 1], [.62, .96, .92],
     [.82, .66, .68], [.94, .34, .36], [1, .06, .06]];
   /// The same fuselage at the resolution a catalogue card deserves. The seven
@@ -831,7 +1075,7 @@
   function jet(m, o) {
     const L = o.len, col = o.col, w = o.w, h = o.h;
     const faceted = !!o.facet;
-    const seg = faceted ? m.lod(12, 6) : m.lod(22, 8);
+    const seg = faceted ? m.lod(14, 6) : m.lod(26, 8);
     // The fuselage. A chined low-observable body is a superellipse and a
     // conventional one is an oval; one loft draws both. Only the oval is
     // smoothed: averaging a chine away is how a Raptor stops being a Raptor.
@@ -855,6 +1099,63 @@
         thick: foilT, dihedral: o.dihedral || 0, ctrl: o.wingCtrl == null ? 0.2 : o.wingCtrl,
         surfaces: [[0.05, 0.48, 4], [0.54, 0.96, -5]], fence: o.fence,
       }, col);
+      // LEADING-EDGE FLAPS, and they are separate panels for the same reason
+      // the flaperon is: the hinge gap is a shadow line a card can resolve
+      // where a scribed line is not. Two segments, drooped a few degrees, laid
+      // on the swept leading edge and sitting a hair proud of it.
+      if (!mm.far && o.slats !== false) {
+        const chordAt = (t) => o.root + ((o.tip == null ? o.root * 0.4 : o.tip) - o.root) * t;
+        const sw = o.sweep == null ? o.root * 0.5 : o.sweep;
+        mm.save().move(w * 0.44, wingY, o.wingZ).rotZ(-(o.dihedral || 0));
+        [[0.06, 0.5], [0.54, 0.97]].forEach((s) => {
+          const le = (t) => -sw * t;
+          const aft = (t) => -(sw * t + chordAt(t) * 0.16);
+          mm.save().move(0, 0, le((s[0] + s[1]) / 2)).rotX(-4)
+            .move(0, 0, -le((s[0] + s[1]) / 2));
+          mm.slab([[halfSpan * s[0], le(s[0]) + chordAt(s[0]) * 0.01],
+            [halfSpan * s[1], le(s[1]) + chordAt(s[1]) * 0.01],
+            [halfSpan * s[1], aft(s[1])], [halfSpan * s[0], aft(s[0])]],
+          foilT * chordAt((s[0] + s[1]) / 2) * 0.72, foilT * chordAt(0.5) * 0.2,
+          shade(col, 1.04));
+          mm.restore();
+          // The slat track cans under the leading edge, two per segment.
+          [0.3, 0.72].forEach((k) => {
+            const t = s[0] + (s[1] - s[0]) * k;
+            mm.save().move(halfSpan * t, wingY * 0 - foilT * chordAt(t) * 0.4, le(t) - chordAt(t) * 0.1);
+            mm.bar(-chordAt(t) * 0.018, chordAt(t) * 0.018, -chordAt(t) * 0.05, 0,
+              -chordAt(t) * 0.1, chordAt(t) * 0.1, shade(col, 0.86));
+            mm.restore();
+          });
+        });
+        mm.restore();
+      }
+      // Flap-track fairings under the trailing edge, and the wing-root fillet
+      // that carries the join out of the corner. Both are pure outline: they
+      // are what a wing has where a plate pushed through a tube does not.
+      if (!mm.far) {
+        const chordAt = (t) => o.root + ((o.tip == null ? o.root * 0.4 : o.tip) - o.root) * t;
+        const sw = o.sweep == null ? o.root * 0.5 : o.sweep;
+        [0.22, 0.52].forEach((t) => {
+          trackFairing(mm, {
+            x: w * 0.44 + halfSpan * t,
+            y: wingY - foilT * chordAt(t) * 0.42,
+            z: o.wingZ - sw * t - chordAt(t) * 0.88,
+            len: chordAt(t) * 0.62, r: chordAt(t) * 0.048, col: shade(col, 0.93),
+          });
+        });
+        rootFillet(mm, { x: w * 0.42, y: wingY, z: o.wingZ - o.root * 0.5,
+          span: w * 0.16, h: o.root * 0.52, r: h * 0.16, col: shade(col, 0.98) });
+        // Static dischargers off the aileron trailing edge.
+        wickRow(mm, { n: 4, r: o.root * 0.008, len: o.root * 0.09,
+          x0: w * 0.44 + halfSpan * 0.6, x1: w * 0.44 + halfSpan * 0.94,
+          y0: wingY, z0: o.wingZ - sw * 0.6 - chordAt(0.6),
+          z1: o.wingZ - sw * 0.94 - chordAt(0.94), pitch: -4 });
+        if (o.tipStore) {
+          tipRail(mm, { x: w * 0.44 + halfSpan * 1.01,
+            y: wingY + foilT * o.root * 0.3, z: o.wingZ - sw - (o.tip == null ? o.root * 0.4 : o.tip) * 0.4,
+            len: (o.tip == null ? o.root * 0.4 : o.tip) * 2.1 });
+        }
+      }
       // A leading-edge root extension where the aircraft has one. It is the
       // vortex generator that made a 1970s fighter manoeuvre, and it is a
       // straight line on the plan view, so a card can show it.
@@ -902,8 +1203,16 @@
         mm.liftSurface({
           x0: 0, y: 0, z: 0, span: fin.height, root: fin.root, tip: fin.tip,
           sweep: finSweep, thick: foilT * 0.8, ctrl: 0.26,
-          n: mm.lod(7, 3), bays: mm.lod(4, 1), surfaces: [[0.06, 0.92, 2]],
+          n: mm.lod(9, 3), bays: mm.lod(5, 1), surfaces: [[0.06, 0.5, 2], [0.56, 0.92, -3]],
         }, shade(col, 1.02));
+        // Static wicks off the rudder, and the two flush aerials every fin
+        // carries on its leading edge.
+        if (!mm.far) {
+          wickRow(mm, { n: 3, r: fin.tip * 0.02, len: fin.tip * 0.24,
+            x0: fin.height * 0.34, x1: fin.height * 0.92, y0: 0,
+            z0: -finSweep * 0.34 - fin.root * 0.62, z1: -finSweep * 0.92 - fin.tip * 0.98,
+            pitch: 6 });
+        }
         // The tip cap. Every fin on a modern aircraft carries an antenna
         // fairing or a jammer up there, and it squares off the silhouette.
         if (!mm.far) {
@@ -919,11 +1228,17 @@
       else one(m, 0);
     }
 
-    // Exhaust. Two nozzles or one, with petals, sunk into the tail.
+    // Exhaust. Two nozzles or one, with petals, sunk into the tail — and the
+    // ring of external actuators that drives the petals, which is the half of
+    // an afterburning nozzle that says "engine" rather than "pipe".
     const nz = o.nozzles == null ? 2 : o.nozzles;
     for (let i = 0; i < nz; i += 1) {
       const x = nz === 1 ? 0 : (i === 0 ? 1 : -1) * w * 0.22;
       nozzle(m, { x, y: -h * 0.02, z: -L * 0.02, r: h * 0.27, len: L * 0.085 });
+      if (o.rams !== false) {
+        nozzleActuators(m, { x, y: -h * 0.02, z: -L * 0.02 + L * 0.012,
+          r: h * 0.3, len: L * 0.05, n: 10 });
+      }
     }
 
     // Canopy. Cockpit glass is the one place a saturated colour is allowed: it
@@ -951,6 +1266,7 @@
       m.save().move(0, 0, L * 0.95);
       m.soft((mm) => mm.tube(h * 0.02, h * 0.17, L * 0.05, mm.lod(12, 6), P.metal, false));
       m.restore();
+      fanFace(m, { x: 0, y: 0, z: L * 0.86, r: h * 0.2, n: 18 });
     } else if (o.intake === "side" || o.intake === "dsi") {
       const iz = (o.intakeZ == null ? L * 0.52 : o.intakeZ) + L * 0.16;
       m.both((mm) => {
@@ -959,10 +1275,24 @@
           sharp: o.intake === "dsi" ? 2.4 : 3.4, col: shade(col, 0.92),
           splitter: o.intake === "side" ? 1 : 0, yaw: -4,
         });
+        // The compressor face at the bottom of that duct — you look straight
+        // down a cheek inlet from the card's own three-quarter view — and, on
+        // a fixed-geometry inlet, the row of auxiliary doors on the cowl top.
+        fanFace(mm, { x: w * 0.52, y: -h * 0.1, z: iz - L * 0.185, r: h * 0.15, n: 18 });
+        doorRow(mm, { n: 3, x: w * 0.5, y: h * 0.07, z0: iz - L * 0.02, z1: iz - L * 0.13,
+          w: w * 0.2, len: L * 0.03, t: h * 0.025, roll: 12, col: shade(col, 0.9) });
+        // And the ramp above the mouth. On a variable inlet it is hinged and
+        // droops; on a diverterless bump there is no ramp at all, which is the
+        // whole point of the type and the one thing a card can show about it.
+        if (o.intake === "side") {
+          intakeRamp(mm, { x: w * 0.52, y: h * 0.09, z: iz - L * 0.03,
+            w: w * 0.34, len: L * 0.13, t: h * 0.035, droop: 5, col: shade(col, 1.04) });
+        }
       });
     } else if (o.intake === "chin") {
       intakeDuct(m, { x: 0, y: -h * 0.34, z: L * 0.72, w: w * 0.5, h: h * 0.26,
         len: L * 0.14, sharp: 3.0, col: shade(col, 0.9) });
+      fanFace(m, { x: 0, y: -h * 0.34, z: L * 0.72 - L * 0.15, r: h * 0.12, n: 18 });
     }
     if (m.far) return m;
 
@@ -1012,6 +1342,64 @@
     });
     skinPanel(m, { rx: w * 0.5, ry: h * 0.5, th: 90, z: L * 0.56,
       w: w * 0.16, len: L * 0.04, depth: h * 0.03, col: shade(col, 0.8) });
+    // The rest of the operational fit, and every item is on the outline rather
+    // than on the skin: the flare buckets aft of the wing, the airbrake and its
+    // two rams, the ram-air scoop that cools the avionics bay, and the aerial
+    // farm. A card at 108 px sees the airbrake standing off the spine and the
+    // scoop breaking the boat-tail; it will never see a panel line.
+    m.both((mm) => {
+      dispenser(mm, { x: w * 0.34, y: -h * 0.42, z: o.wingZ - o.root * 0.9,
+        w: w * 0.2, len: L * 0.07, d: h * 0.05, cols: 2, rows: 4,
+        col: shade(col, 0.84) });
+    });
+    if (o.airbrake !== false) {
+      const bz = o.brakeZ == null ? L * 0.3 : o.brakeZ;
+      m.save().move(0, h * 0.44, bz).rotX(o.brakeOpen == null ? -22 : o.brakeOpen);
+      m.slab([[-w * 0.26, L * 0.07], [w * 0.26, L * 0.07], [w * 0.22, -L * 0.07],
+        [-w * 0.22, -L * 0.07]], h * 0.04, h * 0.014, shade(col, 1.06));
+      m.restore();
+      m.both((mm) => {
+        mm.save().move(w * 0.12, h * 0.4, bz - L * 0.05).rotX(-70);
+        mm.soft((s) => s.tube(h * 0.018, h * 0.014, L * 0.055, 6, P.metal, false));
+        mm.restore();
+      });
+    }
+    // The ram-air scoop: a small forward-facing mouth with a duct behind it.
+    m.save().move(0, h * 0.4, L * 0.2);
+    m.soft((mm) => mm.loft([
+      { z: L * 0.05, pts: ringSuper(w * 0.09, h * 0.05, 8, 2.6) },
+      { z: -L * 0.02, pts: ringSuper(w * 0.075, h * 0.04, 8, 2.6) },
+      { z: -L * 0.06, pts: ringSuper(w * 0.05, h * 0.02, 8, 2.6) },
+    ], shade(col, 0.9), false));
+    m.save().move(0, 0, L * 0.05);
+    m.fan(ringSuper(w * 0.075, h * 0.04, 8, 2.6).map((p) => [p[0], p[1], 0]).reverse(), P.black);
+    m.restore();
+    m.restore();
+    bladeAerial(m, { y: h * 0.45, z: L * 0.24, h: h * 0.09, len: L * 0.028 });
+    bladeAerial(m, { y: h * 0.44, z: L * 0.5, h: h * 0.07, len: L * 0.022 });
+    bladeAerial(m, { y: -h * 0.43, z: L * 0.28, h: h * 0.07, len: L * 0.024, roll: 180 });
+    bladeAerial(m, { y: -h * 0.42, z: L * 0.66, h: h * 0.06, len: L * 0.02, roll: 180 });
+    m.both((mm) => bladeAerial(mm, { x: w * 0.44, y: h * 0.2, z: L * 0.42,
+      h: h * 0.05, len: L * 0.02, roll: 90 }));
+    // Anti-collision beacons, drawn as shallow domes because that is what they
+    // are. THE CAP IS EMITTED OUTSIDE THE SMOOTHING GROUP, and the check file's
+    // second clause is why: this is a can 0.23 m across and 0.08 m tall — much
+    // shorter than it is wide — and letting `loft` close it from inside the
+    // group is the exact defect the naval pass named. Built with caps on, it
+    // took the deck's worst normal-vs-face corner from 0.0017 to 0.00046, a
+    // normal ninety degrees off its own face, on a part 80 mm tall. Measured by
+    // building it both ways rather than argued.
+    [[h * 0.47, L * 0.44, 0], [-h * 0.46, L * 0.38, 180]].forEach((b) => {
+      m.save().move(0, b[0], b[1]).rotX(b[2] ? 90 : -90);
+      m.soft((mm) => mm.loft([
+        { z: 0, pts: ring(h * 0.05, w * 0.05, 8) },
+        { z: h * 0.035, pts: ring(h * 0.03, w * 0.03, 8) },
+      ], P.red, false));
+      m.save().move(0, 0, h * 0.035);
+      m.fan(ring(h * 0.03, w * 0.03, 8).map((p) => [p[0], p[1], 0]), shade(P.red, 1.2));
+      m.restore();
+      m.restore();
+    });
     return m;
   }
 
@@ -1340,6 +1728,84 @@
         shade(col, 0.88));
       boltRun(m, { n: 5, r: H * 0.012, x0: -W * 0.34, x1: W * 0.34,
         y0: roof - H * 0.02, z0: L * 0.001, pitch: 0, col: shade(P.metal, 0.6) });
+      // WHAT A CREW BOLTS TO THE OUTSIDE, and on a tank this is not decoration:
+      // an armoured vehicle carries its recovery gear and its digging tools
+      // where a man can reach them without opening a hatch, so they live along
+      // the hull side at exactly the height the eye is already reading the
+      // wheel line at. Sized against what a card can see: a 26 mm tow cable on
+      // a 7 m hull is a pixel and a half at the ~380 px inspection view, the
+      // spliced eye on the end of it is five, and a shovel is thirty.
+      //
+      // The tow cable, draped in a catenary between two clips on the sponson,
+      // with an eye at each end. One a side, which is what a tank carries.
+      m.both((mm) => {
+        const cz0 = L * 0.72, cz1 = L * 0.2, cy = fender + H * 0.16;
+        for (let i = 0; i < 9; i += 1) {
+          const u = i / 8;
+          const sag = Math.sin(u * Math.PI) * H * 0.07;
+          mm.save().move(W / 2 * 1.01, cy - sag, cz0 + (cz1 - cz0) * u)
+            .rotY(90).rotX(-90 + Math.cos(u * Math.PI) * 13);
+          mm.soft((s) => s.tube(H * 0.013, H * 0.013, (cz0 - cz1) / 8 * 1.14,
+            s.lod(7, 4), shade(P.metal, 0.52), false));
+          mm.restore();
+        }
+        [cz0, cz1].forEach((z) => {
+          mm.save().move(W / 2 * 1.02, cy, z).rotY(90);
+          mm.soft((s) => s.loft([
+            { z: -H * 0.018, pts: ring(H * 0.042, H * 0.026, s.lod(9, 5)) },
+            { z: H * 0.018, pts: ring(H * 0.042, H * 0.026, s.lod(9, 5)) },
+          ], shade(P.metal, 0.62), false));
+          mm.restore();
+        });
+        // The tool rack on the fender shelf: a shovel, a crowbar and a tow bar,
+        // each held in two clips. Three objects, six clips, and between them
+        // they are why a tank looks used rather than delivered.
+        [[0.3, 1.0, P.rust], [0.45, 0.72, P.metal], [0.6, 0.86, P.rust]]
+          .forEach((tool, k) => {
+            mm.save().move(tx + tw * 0.1, shelf + H * 0.045, L * tool[0]).rotZ(90);
+            mm.slab([[-H * 0.02, -L * 0.09 * tool[1]], [H * 0.02, -L * 0.09 * tool[1]],
+              [H * 0.02, L * 0.09 * tool[1]], [-H * 0.02, L * 0.09 * tool[1]]],
+            H * 0.032, H * 0.009, shade(tool[2], k === 1 ? 0.6 : 1.05));
+            mm.restore();
+            [-1, 1].forEach((s) => {
+              mm.save().move(tx + tw * 0.1, shelf + H * 0.04,
+                L * tool[0] + s * L * 0.07 * tool[1]).rotZ(90);
+              mm.bar(-H * 0.032, H * 0.032, -H * 0.012, H * 0.012,
+                -L * 0.01, L * 0.01, shade(P.metal, 0.72));
+              mm.restore();
+            });
+          });
+      });
+      // The bustle rack's load. The frame is drawn above; what a tank actually
+      // carries in it is a rolled camouflage net and two jerry cans, and an
+      // empty rack reads as a fault rather than as a vehicle.
+      m.save().move(-W * 0.14, roof + H * 0.24, -L * 0.055).rotY(5 + 90);
+      // CAPS OUTSIDE THE GROUP. A roll 0.22 H across and 0.3 W long is shorter
+      // than it is wide, so a cap emitted inside the smoothing group swings the
+      // rim's normal round onto itself — the defect the check file names and
+      // the Armour class had avoided everywhere until this pass added a rolled
+      // cam net. Measured by building it both ways: with `true` in the caps
+      // slot the class's tightest corner went from 0.4809 to 0.0309 and twelve
+      // corners fell under 0.2. With the two fans emitted outside, it does not.
+      m.soft((mm) => mm.tube(H * 0.11, H * 0.11, W * 0.3, mm.lod(10, 5),
+        shade(P.cloth, 0.9), false));
+      m.fan(ring(H * 0.11, H * 0.11, m.lod(10, 5)).map((q) => [q[0], q[1], 0]).reverse(),
+        shade(P.cloth, 0.78));
+      m.save().move(0, 0, W * 0.3);
+      m.fan(ring(H * 0.11, H * 0.11, m.lod(10, 5)).map((q) => [q[0], q[1], 0]),
+        shade(P.cloth, 1.0));
+      m.restore();
+      m.restore();
+      [[W * 0.2, 0.9], [W * 0.3, 1.05]].forEach((c) => {
+        m.save().move(c[0], roof + H * 0.1, -L * 0.05);
+        m.bar(-W * 0.045, W * 0.045, 0, H * 0.24, -L * 0.022, L * 0.022,
+          shade(P.green, c[1]));
+        m.save().move(0, H * 0.24, 0);
+        m.bar(-W * 0.02, W * 0.02, 0, H * 0.03, -L * 0.008, L * 0.008,
+          shade(P.green, c[1] * 0.8));
+        m.restore();
+        m.restore();
+      });
     }
 
     const t = o.turret;
@@ -1774,6 +2240,74 @@
     m.save().move(W * 0.36, cy, L - cab * 0.86).rotX(-90);
     m.soft((mm) => mm.tube(W * 0.045, W * 0.04, ch * 1.05, mm.lod(8, 5), P.exhaust));
     m.restore();
+    // WHAT A MILITARY LORRY CARRIES BETWEEN ITS AXLES, and every one of these
+    // is a shape the eye finds under the bed line before it finds anything on
+    // the deck. They are also the right size for the size these are drawn:
+    // a 400 mm air reservoir on a 13 m vehicle is eleven pixels at the ~380 px
+    // inspection view, and a mudflap is thirty.
+    //
+    // The air reservoirs and the fuel tank slung on the frame rails.
+    m.both((mm) => {
+      [[0.18, 0.5], [0.18, 0.72]].forEach((t) => {
+        mm.save().move(W * 0.3, r * 0.95, front * t[1]).rotY(90);
+        mm.soft((s) => s.tube(r * 0.2, r * 0.2, W * 0.34, s.lod(10, 5),
+          shade(P.metal, 0.62), false));
+        mm.save().move(0, 0, W * 0.34);
+        discCap(mm, r * 0.2, mm.lod(10, 5), shade(P.metal, 0.8), false);
+        mm.restore();
+        mm.restore();
+      });
+      mm.save().move(W * 0.42, r * 1.0, front * 0.3).rotY(90);
+      mm.soft((s) => s.loft([
+        { z: 0, pts: ringSuper(r * 0.34, r * 0.3, s.lod(12, 6), 3.0) },
+        { z: front * 0.24, pts: ringSuper(r * 0.34, r * 0.3, s.lod(12, 6), 3.0) },
+      ], shade(P.metal, 0.7), false));
+      mm.restore();
+      // The battery box and the step under the cab door, then the mudflap
+      // hanging behind the rearmost wheel.
+      mm.save().move(W * 0.42, r * 1.2, front * 0.86);
+      mm.bar(-W * 0.06, W * 0.06, 0, r * 0.42, -r * 0.34, r * 0.34, shade(col, 0.8));
+      mm.restore();
+      mm.save().move(W * 0.44, cy - r * 0.42, L - cab * 0.4);
+      mm.bar(-W * 0.06, W * 0.06, 0, r * 0.06, -cab * 0.16, cab * 0.16,
+        shade(P.metal, 0.62));
+      mm.restore();
+      mm.save().move(W * 0.46, r * 0.34, r * 0.5);
+      mm.slab([[-W * 0.09, -r * 0.04], [W * 0.09, -r * 0.04], [W * 0.09, r * 0.04],
+        [-W * 0.09, r * 0.04]], r * 0.62, r * 0.06, shade(P.rubber, 1.3));
+      mm.restore();
+      // The lamp cluster on the nose with its wire guard, which every truck in
+      // service has because a headlamp without one lasts a week.
+      mm.save().move(W * 0.28, cy + ch * 0.12, L + W * 0.03).rotX(-90);
+      mm.soft((s) => s.tube(W * 0.075, W * 0.075, W * 0.02, s.lod(10, 5),
+        shade(P.metal, 0.8), false));
+      mm.restore();
+      for (let i = 0; i < 4; i += 1) {
+        mm.save().move(W * 0.28, cy + ch * 0.12, L + W * 0.04).rotZ(i * 45);
+        mm.bar(-W * 0.085, W * 0.085, -W * 0.008, W * 0.008, -W * 0.006, W * 0.006,
+          shade(P.metal, 0.7));
+        mm.restore();
+      }
+    });
+    // The exhaust stack's heat shield: a perforated wrap round the pipe, which
+    // is the one thing that stops a vertical stack reading as a flagpole.
+    for (let i = 0; i < 5; i += 1) {
+      m.save().move(W * 0.36, cy + ch * 0.18 + i * ch * 0.16, L - cab * 0.86).rotX(-90);
+      m.soft((mm) => mm.loft([
+        { z: 0, pts: ring(W * 0.065, W * 0.065, mm.lod(9, 5)) },
+        { z: ch * 0.11, pts: ring(W * 0.065, W * 0.065, mm.lod(9, 5)) },
+      ], shade(P.metal, 0.66 + (i % 2) * 0.1), false));
+      m.restore();
+    }
+    // The spare wheel on its carrier behind the cab, and the towing pintle at
+    // the tail. Both are on the outline and both are on every one of these.
+    roadWheel(m, { x: -W * 0.36, y: r * 1.5, z: L - cab * 1.24, r: r * 0.86, w: W * 0.14 });
+    m.save().move(0, r * 1.1, -W * 0.03).rotX(90);
+    m.soft((mm) => mm.tube(r * 0.14, r * 0.12, W * 0.06, mm.lod(9, 5),
+      shade(P.metal, 0.6), false));
+    m.restore();
+    m.bar(-W * 0.12, W * 0.12, r * 0.9, r * 1.3, -W * 0.04, W * 0.02,
+      shade(P.metal, 0.68));
   }
 
   /// A truck chassis with a cab. `bedY` is the deck height everything else is
@@ -2431,6 +2965,56 @@
     drum(m, { r: s * 0.5, r1: s * 0.42, len: s * 0.7, seg: m.lod(10, 5), col: P.greyDark });
     m.restore();
     m.restore();
+    // WHAT ELSE IS ACTUALLY ON A WEATHER DECK, added by the detail pass and
+    // deliberately kept small: this function is shared by every surface ship in
+    // the class and two of them are already within a couple of thousand
+    // triangles of the catalogue ceiling, so the universal set is the four
+    // fittings that appear on EVERY deck and nothing more. Anything a
+    // particular hull carries goes on that hull.
+    //
+    // Mushroom ventilators. Machinery spaces breathe through a cowl with a
+    // domed crown, and a row of them along the deck edge is the most
+    // recognisable small object on a ship after the bollards.
+    m.both((mm) => {
+      [0.26, 0.5, 0.74].forEach((t, i) => {
+        mm.save().move(B * 0.36, y, L * t);
+        mm.soft((q) => q.save().rotX(-90).tube(s * 0.3, s * 0.3, s * 0.8, q.lod(10, 5),
+          shade(P.navy, 1.1), false).restore());
+        mm.save().move(0, s * 0.8, 0).scale(1, 0.5, 1);
+        mm.soft((q) => q.ball(s * 0.36, q.lod(10, 5), q.lod(4, 3),
+          shade(P.navy, 1.2 - i * 0.04)));
+        mm.restore();
+        mm.restore();
+      });
+      // Watertight doors in the deckhouse front, each a chamfered slab with the
+      // dog handles down its closing edge. A superstructure nobody can get into
+      // is a block; a door is what gives the house a human scale.
+      [0.42, 0.6].forEach((t) => {
+        mm.save().move(B * 0.2, y, L * t);
+        mm.slab([[-s * 0.4, -s * 0.06], [s * 0.4, -s * 0.06], [s * 0.4, s * 0.06],
+          [-s * 0.4, s * 0.06]], s * 1.8, s * 0.12, shade(P.navy, 1.16));
+        mm.restore();
+      });
+      // Deck-edge fairleads: the closed rollers a mooring line is led through,
+      // one beside each pair of bollards.
+      [0.2, 0.68].forEach((t) => {
+        mm.save().move(B * 0.44, y + s * 0.2, L * t).rotY(90);
+        mm.soft((q) => q.tube(s * 0.22, s * 0.22, s * 0.5, q.lod(8, 4),
+          shade(P.metal, 0.66), false));
+        mm.restore();
+      });
+      // Lifebuoy stations on the rail: a ring on its bracket, and the one
+      // saturated colour anywhere on a grey ship.
+      [0.36, 0.8].forEach((t) => {
+        mm.save().move(B * 0.45, y + s * 1.2, L * t).rotY(90).rotX(90);
+        mm.soft((q) => q.loft([
+          { z: -s * 0.08, pts: ring(s * 0.42, s * 0.42, q.lod(10, 5)) },
+          { z: 0, pts: ring(s * 0.5, s * 0.5, q.lod(10, 5)) },
+          { z: s * 0.08, pts: ring(s * 0.42, s * 0.42, q.lod(10, 5)) },
+        ], shade(P.red, 1.15), false));
+        mm.restore();
+      });
+    });
   }
 
   /// The whole ship. Every argument the tables already used still means what it
@@ -2692,6 +3276,19 @@
     }
     m.restore();
     if (m.far) return m;
+    // THE ANECHOIC COATING, and it is the largest thing this model was
+    // missing. Every boat in this deck is rubber-tiled, the tiles are laid in
+    // courses with a seam at every join, and a hundred metres of unbroken
+    // cylinder has nothing else on it to give the eye a scale. It is the same
+    // argument the Spirit's skin mosaic makes and it holds harder here: a tile
+    // is about a metre square on a hull ten metres across, so at the ~380 px
+    // inspection view it is four pixels and its seam is a real shadow line.
+    // Laid in two fields, port and starboard, over the flanks a card sees.
+    [[-56, 62], [124, 242]].forEach((arc) => {
+      tileField(m, { rows: 5, cols: 13, th0: arc[0], th1: arc[1],
+        rx: D * 0.5, ry: D * 0.5, z0: L * 0.12, z1: L * 0.9,
+        w: D * 0.16, len: L * 0.05, depth: D * 0.01, col: shade(col, 1.1) });
+    });
     // The free-flood holes down the casing edge, the towed-array fairing on the
     // quarter, the torpedo shutters on the bow flanks and the runs of access
     // hatches along the back. All flush, all shallow, all shadow — which is the
@@ -2787,6 +3384,97 @@
         mm.restore();
       });
     }
+    // THE MASTS HAVE HEADS. Three bare poles is a fence; what is actually up
+    // there is a search periscope with an optical window, an attack scope with
+    // a smaller one, an electronic-support head that is a flat-sided box, a
+    // radar array in its housing and a snorkel induction with its float valve.
+    // The mast line is the one part of a submerged boat anybody ever
+    // photographs, and it is the only vertical detail in the silhouette.
+    m.save().move(0, D * 0.46, L * 0.62);
+    [[0, 0, 0.5, D * 0.03, 0], [D * 0.05, -SL * 0.15, 0.34, D * 0.024, 1],
+      [-D * 0.05, SL * 0.1, 0.26, D * 0.02, 2]].forEach((k) => {
+      m.save().move(k[0], SH * (0.94 + k[2]), k[1]);
+      if (k[4] === 0) {
+        // The search scope: a bent optical head with the window facing out.
+        m.save().rotX(-90);
+        m.soft((mm) => mm.tube(k[3] * 1.5, k[3] * 1.4, SH * 0.1, mm.lod(10, 5),
+          shade(P.metal, 0.86), false));
+        m.restore();
+        m.save().move(0, SH * 0.1, k[3] * 1.2);
+        m.slab([[-k[3] * 1.1, -k[3] * 1.1], [k[3] * 1.1, -k[3] * 1.1],
+          [k[3] * 1.1, k[3] * 1.1], [-k[3] * 1.1, k[3] * 1.1]], k[3], k[3] * 0.3,
+        shade(P.glass, 0.9));
+        m.restore();
+      } else if (k[4] === 1) {
+        // The ESM head: flat-sided, because a broadband intercept array is a
+        // set of planar apertures and its shape says so.
+        m.save().rotX(-90);
+        m.soft((mm) => mm.loft([
+          { z: 0, pts: ringSuper(k[3] * 1.8, k[3] * 1.8, mm.lod(10, 5), 3.2) },
+          { z: SH * 0.14, pts: ringSuper(k[3] * 1.9, k[3] * 1.9, mm.lod(10, 5), 3.2) },
+          { z: SH * 0.18, pts: ringSuper(k[3] * 1.3, k[3] * 1.3, mm.lod(10, 5), 3.2) },
+        ], shade(P.sensor, 1.3), false));
+        m.restore();
+      } else {
+        // The snorkel induction and its float valve cap.
+        m.save().rotX(-90);
+        m.soft((mm) => mm.tube(k[3] * 2.0, k[3] * 1.7, SH * 0.12, mm.lod(10, 5),
+          shade(col, 1.3), false));
+        m.save().move(0, 0, SH * 0.12);
+        discCap(m, k[3] * 1.7, m.lod(10, 5), P.black, false);
+        m.restore();
+        m.restore();
+      }
+      m.restore();
+    });
+    // The sail's own fit: the two clearing lines running aft from the bridge,
+    // the access hatch in the after casing of the sail, and the navigation
+    // light housings on the leading edge.
+    m.both((mm) => {
+      mm.save().move(D * 0.1, SH * 0.9, SL * 0.3).rotX(64);
+      mm.soft((s) => s.tube(D * 0.006, D * 0.006, SH * 0.5, s.lod(5, 4),
+        shade(P.metal, 0.8), false));
+      mm.restore();
+      mm.save().move(D * 0.13, SH * 0.5, -SL * 0.44);
+      mm.slab([[-D * 0.02, -SH * 0.05], [D * 0.02, -SH * 0.05], [D * 0.02, SH * 0.05],
+        [-D * 0.02, SH * 0.05]], D * 0.03, D * 0.008, shade(P.red, 1.1));
+      mm.restore();
+    });
+    m.save().move(0, SH * 0.99, -SL * 0.2);
+    m.slab([[-D * 0.05, -SL * 0.1], [D * 0.05, -SL * 0.1], [D * 0.05, SL * 0.1],
+      [-D * 0.05, SL * 0.1]], D * 0.02, D * 0.006, shade(col, 1.34));
+    m.restore();
+    m.restore();
+    // THE TORPEDO TUBES, DRAWN AS TUBES. Amidships on the flank, angled out,
+    // each shutter a chamfered door on its own hinge line inside a recessed
+    // frame — which is what a boat's weapon fit looks like from outside and
+    // the one thing on the bow that says which end shoots.
+    m.both((mm) => {
+      for (let i = 0; i < 2; i += 1) {
+        for (let k = 0; k < 2; k += 1) {
+          const th = -28 - k * 22, z = L * (0.7 + i * 0.055);
+          skinPanel(mm, { rx: D * 0.5, ry: D * 0.5, th, z,
+            w: D * 0.12, len: L * 0.03, depth: D * 0.022, col: shade(col, 1.36) });
+          skinPanel(mm, { rx: D * 0.5, ry: D * 0.5, th, z,
+            w: D * 0.16, len: L * 0.04, depth: D * 0.012, col: shade(col, 0.86) });
+        }
+      }
+      // The ballast tank vents along the top of the hull forward: a row of
+      // slots that lets air out when the boat dives, and the only openings on
+      // the fore casing.
+      for (let i = 0; i < 6; i += 1) {
+        skinPanel(mm, { rx: D * 0.5, ry: D * 0.5, th: 62, z: L * (0.24 + i * 0.09),
+          w: D * 0.05, len: L * 0.022, depth: D * 0.014, col: shade(P.black, 1.25) });
+      }
+    });
+    // The sonar dome joint at the bow: a bolted ring where the pressure hull
+    // stops and the acoustic window begins, plus the window itself in its own
+    // shade. This is a real material change on every boat afloat.
+    flangeBolts(m, { z: L * 0.775, r: D * 0.505, br: D * 0.014, n: 24,
+      col: shade(P.metal, 0.72) });
+    tileField(m, { rows: 3, cols: 4, th0: 200, th1: 340,
+      rx: D * 0.44, ry: D * 0.44, z0: L * 0.84, z1: L * 0.96,
+      w: D * 0.1, len: L * 0.028, depth: D * 0.01, col: shade(col, 1.4) });
     return m;
   }
 
@@ -2966,6 +3654,98 @@
     m.save().move(0, o.r * 0.92, o.z);
     m.bar(-o.r * 0.09, o.r * 0.09, 0, o.r * 0.3, -o.r * 0.16, o.r * 0.16, o.col);
     m.restore();
+  }
+
+  // ------------------------------------------- the ordnance detail pass
+  // FOUR MORE PIECES, AND THE SIZE THEY WERE CHOSEN FOR. A round in this deck
+  // is drawn between the 34 px ledger chip and the ~380 px inspection view, and
+  // it is between one and eighteen metres long — so unlike an aircraft, where a
+  // fastener is a third of a pixel, a bolt on a 300 mm-diameter missile flange
+  // is a whole one at 380 px and a ROW of them round the joint is a legible
+  // band of highlight. That is the difference this pass is buying: the joins
+  // stop being painted-on hoops and become bolted joints, the fins stop growing
+  // out of the skin and start hanging off hinges, and the nozzle stops being a
+  // fixed pipe and starts being steered.
+
+  /// The ring of bolts round a flange. NOT `boltRing` — that one lays a circle
+  /// in the XZ plane with every head pointing +Y, which is a deck hatch. This
+  /// clocks round the +Z axis a round is built about and points every head
+  /// radially outward, which is the only way a bolt on a cylinder sits flat.
+  function flangeBolts(m, o) {
+    if (m.far) return;
+    const n = o.n || 14, seg = m.lod(6, 4), r = o.br;
+    for (let i = 0; i < n; i += 1) {
+      m.save().move(0, 0, o.z).rotZ((o.phase || 0) + i * (360 / n))
+        .move(0, o.r, 0).rotX(-90);
+      m.soft((mm) => mm.loft([
+        { z: 0, pts: ring(r, r, seg) },
+        { z: r * 0.7, pts: ring(r * 0.88, r * 0.88, seg) },
+        { z: r, pts: ring(r * 0.42, r * 0.42, seg) },
+      ], o.col || shade(P.metal, 0.8), false));
+      m.restore();
+    }
+  }
+
+  /// The actuator fairing at a control fin's root: the blister that houses the
+  /// servo, and the hinge pin the fin turns on. A fin bolted flat to a body is
+  /// a card in a tube; a fin on a visible hinge is a control surface, and on a
+  /// round drawn end-on the row of four blisters is what breaks the circle.
+  function finActuator(m, o) {
+    if (m.far) return;
+    const n = o.n || 4, seg = m.lod(8, 5);
+    for (let i = 0; i < n; i += 1) {
+      m.save().move(0, 0, o.z).rotZ((o.roll || 0) + i * (360 / n)).move(0, o.r * 0.86, 0);
+      m.soft((mm) => mm.loft([
+        { z: -o.len * 0.5, pts: ringSuper(o.w * 0.22, o.h * 0.22, seg, 2.6) },
+        { z: -o.len * 0.22, pts: ringSuper(o.w, o.h, seg, 2.6) },
+        { z: o.len * 0.24, pts: ringSuper(o.w, o.h, seg, 2.6) },
+        { z: o.len * 0.5, pts: ringSuper(o.w * 0.26, o.h * 0.26, seg, 2.6) },
+      ], o.col, false));
+      m.save().rotY(90).move(0, o.h * 0.7, -o.w * 1.5);
+      m.soft((mm) => mm.tube(o.h * 0.22, o.h * 0.22, o.w * 3.0, mm.lod(8, 4),
+        shade(P.metal, 0.7), false));
+      m.restore();
+      m.restore();
+    }
+  }
+
+  /// The clamps down a cable raceway. A conduit is bolted to the skin every
+  /// foot or so and the clamps are what stop the run reading as a moulded
+  /// ridge; each is a band a shade brighter than the conduit it grips.
+  function conduitClamps(m, o) {
+    if (m.far) return;
+    const n = o.n || 6, seg = m.lod(8, 4);
+    for (let i = 0; i < n; i += 1) {
+      const t = (i + 0.5) / n;
+      m.save().rotZ(o.roll || 0).move(0, o.r * 0.94, o.z0 + (o.z1 - o.z0) * t).rotX(-90);
+      m.soft((mm) => mm.loft([
+        { z: -o.h * 0.5, pts: ring(o.h * 1.9, o.h * 1.2, seg) },
+        { z: o.h * 0.5, pts: ring(o.h * 1.9, o.h * 1.2, seg) },
+      ], o.col || shade(P.metal, 0.74), false));
+      m.restore();
+    }
+  }
+
+  /// The pair of rams that steer a motor bell. Thrust vector control is how a
+  /// boosting round holds an attitude before its fins bite, and the two
+  /// actuators at ninety degrees on the aft skirt are the visible half of it —
+  /// they stand outside the nozzle, in the one place on a round nothing else
+  /// occupies.
+  function tvcActuator(m, o) {
+    if (m.far) return;
+    const seg = m.lod(8, 5);
+    for (let i = 0; i < (o.n || 2); i += 1) {
+      m.save().move(0, 0, o.z).rotZ((o.roll || 0) + i * (360 / (o.n || 2)))
+        .move(0, o.r, 0).rotX(180 - (o.lean == null ? 12 : o.lean));
+      m.soft((mm) => mm.tube(o.br, o.br * 0.8, o.len, seg, o.col || shade(P.metal, 0.7), false));
+      m.bar(-o.br * 1.4, o.br * 1.4, -o.br * 1.2, o.br * 1.2, -o.br * 0.6, o.br * 0.9,
+        shade(P.exhaust, 1.2));
+      m.save().move(0, 0, o.len);
+      m.soft((mm) => mm.tube(o.br * 0.6, o.br * 0.55, o.len * 0.4, seg,
+        shade(P.metal, 0.92), false));
+      m.restore();
+      m.restore();
+    }
   }
 
   /// A launch canister: the tube, its reinforcing hoops, the frangible cover
@@ -4289,6 +5069,67 @@
     }
   }
 
+  /// A radar-absorbent intake grid: the mesh screen that covers a
+  /// low-observable inlet so the compressor face is never in line of sight.
+  /// The Nighthawk's two are the most recognisable thing on its front quarter
+  /// and they are a GRID — bars with air behind them — so they are drawn as
+  /// bars with a dark recess behind them and not as a shaded rectangle.
+  function ramGrid(m, o) {
+    const bars = m.lod(o.bars || 11, 3), cross = m.lod(o.cross || 4, 1);
+    m.save().move(o.x, o.y, o.z).rotY(o.yaw || 0).rotX(o.pitch || 0);
+    // The recess behind the grid, and the frame round it.
+    m.save().move(0, 0, -o.d * 1.2);
+    m.slab([[-o.w / 2, -o.h / 2], [o.w / 2, -o.h / 2], [o.w / 2, o.h / 2],
+      [-o.w / 2, o.h / 2]], o.d * 0.4, o.d * 0.1, P.black);
+    m.restore();
+    for (let i = 0; i < bars; i += 1) {
+      const x = -o.w / 2 + (o.w / bars) * (i + 0.5);
+      m.save().move(x, 0, 0);
+      m.slab([[-o.w / (bars * 6), -o.h / 2], [o.w / (bars * 6), -o.h / 2],
+        [o.w / (bars * 6), o.h / 2], [-o.w / (bars * 6), o.h / 2]],
+      o.d, o.d * 0.3, shade(o.col, 1 + (i % 2) * 0.08));
+      m.restore();
+    }
+    for (let i = 0; i < cross; i += 1) {
+      const y = -o.h / 2 + (o.h / cross) * (i + 0.5);
+      m.save().move(0, y, o.d * 0.2).rotZ(90);
+      m.slab([[-o.h / (cross * 7), -o.w / 2], [o.h / (cross * 7), -o.w / 2],
+        [o.h / (cross * 7), o.w / 2], [-o.h / (cross * 7), o.w / 2]],
+      o.d * 0.7, o.d * 0.2, shade(o.col, 0.9));
+      m.restore();
+    }
+    // The frame: four rails round the mouth, each standing proud of the skin.
+    [[0, o.h / 2, o.w, o.d * 0.5], [0, -o.h / 2, o.w, o.d * 0.5]].forEach((f) => {
+      m.save().move(f[0], f[1], o.d * 0.4);
+      m.slab([[-f[2] / 2 - o.d, -f[3]], [f[2] / 2 + o.d, -f[3]], [f[2] / 2 + o.d, f[3]],
+        [-f[2] / 2 - o.d, f[3]]], o.d * 1.1, o.d * 0.3, shade(o.col, 1.14));
+      m.restore();
+    });
+    m.restore();
+  }
+
+  /// A bay door with its serrated edges and the dark of the bay behind it.
+  /// Every low-observable aircraft in this deck carries its stores inside, so
+  /// the door line down the belly IS the weapons fit — the one thing a card
+  /// can say about a machine that has nothing hanging off it.
+  function bayDoor(m, o) {
+    const W = o.w, L = o.len;
+    m.save().move(o.x, o.y, o.z);
+    m.save().move(0, -o.t * 0.9, 0);
+    m.slab([[-W * 0.44, -L * 0.46], [W * 0.44, -L * 0.46], [W * 0.44, L * 0.46],
+      [-W * 0.44, L * 0.46]], o.t * 0.5, o.t * 0.15, P.black);
+    m.restore();
+    m.slab([[-W / 2, -L / 2], [W / 2, -L / 2], [W / 2, L / 2], [-W / 2, L / 2]],
+      o.t, o.t * 0.34, o.col);
+    if (!m.far && o.saw !== false) {
+      [1, -1].forEach((s) => {
+        sawEdge(m, { x: s * W * 0.5, y: o.t * 0.1, z0: -L / 2, len: L,
+          n: o.teeth || 8, tooth: s * W * 0.09, t: o.t * 0.8, col: shade(o.col, 1.1) });
+      });
+    }
+    m.restore();
+  }
+
   /// A pylon and a store under a wing, which is what turns a fighter into a
   /// strike fighter and is the only difference a card can show between them.
   /// The pylon is a chamfered wedge with its two sway braces, because that is
@@ -4653,6 +5494,69 @@
         m.slab([[-0.22, -0.9], [0.22, -0.9], [0.22, 0.9], [-0.22, 0.9]], 0.4, 0.12,
           shade(P.greyDark, 0.86));
         m.restore();
+        if (m.far) return;
+        // THE CENTRELINE TANK, and on this generation it is not optional
+        // equipment — a 1960s interceptor with an afterburner and internal fuel
+        // for eight hundred kilometres flew with one under it more often than
+        // not, and the shape is half of what the aeroplane looks like from
+        // below. Lofted with the stabilising fins a drop tank actually has.
+        m.save().move(0, -0.95, 4.4);
+        m.soft((mm) => bodyLoft(mm, {
+          len: 4.4, w: 0.66, h: 0.66, col: shade(P.greyDark, 1.12), seg: mm.lod(14, 6),
+          stations: [[0, .28, .28], [.06, .74, .74], [.16, .96, .96], [.62, 1, 1],
+            [.86, .9, .9], [1, .4, .4]],
+        }));
+        [0, 90, 180, 270].forEach((a) => {
+          m.save().move(0, 0, 0.5).rotZ(a);
+          m.slab([[0.3, 0], [0.52, -0.1], [0.52, -0.7], [0.3, -0.62]], 0.05, 0.016,
+            shade(P.greyDark, 0.96));
+          m.restore();
+        });
+        m.restore();
+        // Three belly airbrakes, which is where this generation put them: two
+        // forward of the wing and one aft, all hinged at the front and all
+        // standing open a few degrees.
+        [[0.5, 5.4, 18], [-0.5, 5.4, 18], [0, 2.6, 24]].forEach((b) => {
+          m.save().move(b[0], -0.82, b[1]).rotX(b[2]);
+          m.slab([[-0.32, -0.55], [0.32, -0.55], [0.32, 0.55], [-0.32, 0.55]], 0.07, 0.024,
+            shade(P.greyDark, 1.08));
+          m.restore();
+          m.save().move(b[0], -0.78, b[1] - 0.4).rotX(-64);
+          m.soft((mm) => mm.tube(0.022, 0.018, 0.3, 6, shade(P.metal, 0.76), false));
+          m.restore();
+        });
+        // A second wing fence outboard of the first — a swept wing of this
+        // decade carried two, and the pair is the diagnostic detail.
+        m.both((mm) => {
+          mm.save().move(0.68 + 2.68 * 0.78, -0.18, 7.0 - 4.7 * 0.78).rotZ(90);
+          mm.slab([[0, 0.2], [0.22, -0.05], [0.22, -0.9], [0, -1.15]], 0.05, 0.016,
+            shade(P.greyDark, 1.1));
+          mm.restore();
+          // The boundary-layer bleed slot down the side of the nose duct, and
+          // the avionics blister behind it: both belong to a nose inlet and
+          // nothing else in the class has either.
+          mm.save().move(0.42, 0.1, 12.4).rotZ(90);
+          mm.slab([[-0.1, -1.4], [0.1, -1.4], [0.1, 1.0], [-0.1, 1.0]], 0.06, 0.02,
+            shade(P.greyDark, 0.86));
+          mm.restore();
+          mm.save().move(0.6, -0.3, 10.4).scale(0.5, 0.7, 1.6);
+          mm.soft((s) => s.ball(0.3, s.lod(12, 6), s.lod(6, 3), shade(P.greyDark, 1.14)));
+          mm.restore();
+        });
+        // The gun pod on the centreline forward of the tank, which is how this
+        // generation got a gun back after it was designed without one.
+        m.save().move(0, -0.82, 8.2);
+        m.soft((mm) => bodyLoft(mm, {
+          len: 2.2, w: 0.42, h: 0.42, col: shade(P.greyDark, 0.9), seg: mm.lod(12, 6),
+          stations: [[0, .5, .5], [.1, .95, .95], [.8, 1, 1], [1, .7, .7]],
+        }));
+        m.save().move(0, 0, 2.2);
+        m.soft((mm) => mm.tube(0.05, 0.045, 0.5, mm.lod(8, 5), shade(P.metal, 0.5), false));
+        m.save().move(0, 0, 0.5);
+        discCap(m, 0.04, m.lod(8, 5), P.black, false);
+        m.restore();
+        m.restore();
+        m.restore();
       },
     },
     air_gen3: {
@@ -4841,6 +5745,62 @@
         facetMosaic(m, { rows: 5, cols: 3, t: 0.05, col: shade(P.stealth, 1.06),
           corners: [[-1.5, L * 0.78], [1.5, L * 0.78], [1.9, L * 0.16], [-1.9, L * 0.16]] });
         m.restore();
+        if (m.far) return;
+        // THE INTAKE GRIDS, and leaving them off was the largest single thing
+        // missing from this model. A Nighthawk's inlets are covered by a
+        // radar-absorbent GRID — bars, with air and darkness behind them — and
+        // it is the feature the front three-quarter view a card is drawn at
+        // sees first. Two of them, shoulder height, canted with the chine.
+        m.both((mm) => {
+          ramGrid(mm, { x: 1.55, y: 0.72, z: L * 0.63, w: 1.7, h: 1.0, d: 0.09,
+            yaw: -22, bars: 12, cross: 4, col: shade(P.stealth, 1.2) });
+        });
+        // The elevons: four panels a side on the trailing edge, each on its own
+        // hinge gap and each sitting at its own deflection. On this planform
+        // the trailing edge is a single straight line from tip to tail, so the
+        // gaps between them are the only thing that breaks it.
+        m.both((mm) => {
+          [[0.06, 0.3, 3], [0.32, 0.55, -2], [0.57, 0.78, 4], [0.8, 0.98, -3]].forEach((s) => {
+            const x0 = 1.6 + half * s[0], x1 = 1.6 + half * s[1];
+            const zAt = (t) => L * 0.06 + (L * 0.2 - L * 0.06) * t;
+            mm.save().move(0, -0.35, 0).rotX(s[2]);
+            mm.slab([[x0, zAt(s[0])], [x1, zAt(s[1])], [x1, zAt(s[1]) - 1.5],
+              [x0, zAt(s[0]) - 1.5]], 0.3, 0.1, shade(P.stealth, 0.95));
+            mm.restore();
+          });
+        });
+        // The underside is a mosaic too, and on this aeroplane it matters:
+        // the belly is flat, it is half the planform, and a card drawn from
+        // three-quarter front low sees it.
+        m.both((mm) => {
+          mm.save().move(1.7, -0.58, 0);
+          facetMosaic(mm, { rows: 3, cols: 5, t: 0.05, col: shade(P.stealth, 0.86),
+            corners: [[0.2, L * 0.8], [half * 0.7, L * 0.42], [half * 0.7, L * 0.3],
+              [0.2, L * 0.2]] });
+          mm.restore();
+          // And each V-tail carries its own two-by-three field of panels.
+          mm.save().move(1.1, 0.5, L * 0.2).rotZ(90 - 42);
+          facetMosaic(mm, { rows: 3, cols: 2, t: 0.045, col: shade(P.stealth, 1.16),
+            corners: [[0.25, 2.3], [3.0, 0.5], [3.0, -0.1], [0.25, -0.8]] });
+          mm.restore();
+        });
+        // The second weapons bay door, and the serration down its outboard
+        // edge. Two bays side by side is what the aeroplane has.
+        m.both((mm) => {
+          bayDoor(mm, { x: 1.05, y: -1.02, z: L * 0.46, w: 0.9, len: 4.2, t: 0.12,
+            teeth: 9, col: shade(P.stealth, 0.8) });
+        });
+        // Gear doors, three, every edge sawtoothed — on this aircraft the
+        // sawtooth is not decoration, it is why the doors are shaped that way.
+        [[0, -0.95, L * 0.72, 1.0, 1.9], [1.5, -1.0, L * 0.34, 0.85, 2.4],
+          [-1.5, -1.0, L * 0.34, 0.85, 2.4]].forEach((d) => {
+          bayDoor(m, { x: d[0], y: d[1], z: d[2], w: d[3], len: d[4], t: 0.1,
+            teeth: 6, col: shade(P.stealth, 0.9) });
+        });
+        // The refuelling receptacle door on the spine, aft of the cockpit: the
+        // one opening on the upper surface, and it too is cut with teeth.
+        bayDoor(m, { x: 0, y: 1.12, z: L * 0.44, w: 0.8, len: 1.1, t: 0.08,
+          teeth: 5, col: shade(P.stealth, 1.1) });
       },
     },
     e3: {
@@ -4936,9 +5896,15 @@
         // Cabin windows, doors and the escape hatches: a run of small flush
         // panels down each side, which is how the eye reads the length of an
         // airliner and the one thing a bare tube cannot say.
+        // SIXTEEN WINDOWS A SIDE, NOT NINE, and this is the one place on the
+        // deck where a "panel line" earns its triangles: a cabin window is
+        // 230 mm on a 46 m fuselage, which is two pixels at the 380 px
+        // inspection view — and a ROW of them at a regular pitch is how the eye
+        // measures the length of an airliner. Nine of them across a 26 m cabin
+        // reads as portholes on a boat.
         [30, -30, 150, -150].forEach((th) => {
-          panelRun(m, { rx: 1.9, ry: 2.0, th, z0: L * 0.24, z1: L * 0.8, n: m.lod(9, 3),
-            w: 0.34, len: 0.34, depth: 0.06, col: P.sensor });
+          panelRun(m, { rx: 1.9, ry: 2.0, th, z0: L * 0.24, z1: L * 0.8, n: m.lod(16, 3),
+            w: 0.3, len: 0.3, depth: 0.06, col: P.sensor });
         });
         [[24, L * 0.78], [156, L * 0.78], [24, L * 0.3], [156, L * 0.3]].forEach((d) => {
           skinPanel(m, { rx: 1.9, ry: 2.0, th: d[0], z: d[1], w: 0.9, len: 1.7,
@@ -4961,6 +5927,60 @@
         // The flight deck windows, which are where the front is.
         m.save().move(0, 1.5, L * 0.92).rotX(-16);
         m.slab([[-1.1, -0.5], [1.1, -0.5], [0.8, 0.6], [-0.8, 0.6]], 0.24, 0.08, P.glass);
+        m.restore();
+        // FOUR FLAP-TRACK FAIRINGS A SIDE, which is what a 707 wing has and
+        // what nothing else in this class does. They hang below and behind the
+        // trailing edge, they are two metres long apiece, and from the
+        // three-quarter view a card is drawn at they are the row of shapes that
+        // says this wing has big Fowler flaps on it.
+        m.both((mm) => {
+          [[4.6, 8.0], [8.4, 7.0], [12.4, 5.6], [16.6, 4.2]].forEach((f, i) => {
+            trackFairing(mm, { x: 1.7 + f[0], y: -1.35,
+              z: L * 0.52 - 8.0 * (f[0] / 20.5) * 0.4 - f[1] * 0.86,
+              len: 3.2 - i * 0.35, r: 0.34 - i * 0.03, col: shade(P.white, 0.9) });
+          });
+          // Leading-edge slats, three panels a side, drooped. On a 707 they
+          // are Krueger flaps inboard and slats outboard; either way the gap
+          // between them and the wing is a shadow the card can find.
+          [[0.08, 0.36], [0.4, 0.66], [0.7, 0.96]].forEach((s) => {
+            const le = (t) => L * 0.52 - 8.0 * t;
+            mm.save().move(1.7, -0.9, 0).rotZ(-6);
+            mm.slab([[20.5 * s[0], le(s[0]) + 0.1], [20.5 * s[1], le(s[1]) + 0.1],
+              [20.5 * s[1], le(s[1]) - 1.0], [20.5 * s[0], le(s[0]) - 1.0]],
+            0.42, 0.12, shade(P.white, 1.06));
+            mm.restore();
+          });
+          // The thrust-reverser cascade band round each nacelle: the ring of
+          // vents that opens in reverse, and the joint line it sits on.
+          [[6.2, L * 0.5], [11.6, L * 0.44]].forEach((e, i) => {
+            mm.save().move(e[0], -2.1 - i * 0.15, e[1] + 2.9);
+            mm.soft((s) => s.loft([
+              { z: 0, pts: ring(1.14, 1.14, s.lod(16, 8)) },
+              { z: 0.5, pts: ring(1.18, 1.18, s.lod(16, 8)) },
+              { z: 0.95, pts: ring(1.12, 1.12, s.lod(16, 8)) },
+            ], shade(P.greyDark, 1.08), false));
+            mm.restore();
+          });
+        });
+        // The dorsal fin fillet running the fin root forward into the spine —
+        // a 707's is a metre deep and it is what stops the fin looking pushed
+        // into a slot. Then the ventral strake, the APU exhaust in the tailcone
+        // and the SATCOM hump the AWACS fit carries on the spine.
+        rootFillet(m, { x: 0, y: 1.9, z: L * 0.06 + 3.0, span: 0.9, h: 5.0, r: 0.8,
+          col: shade(P.white, 0.97) });
+        m.save().move(0, -1.9, L * 0.12).rotZ(90);
+        m.slab([[0, 3.0], [0.9, 1.2], [0.9, -0.6], [0, -2.2]], 0.2, 0.07,
+          shade(P.white, 0.9));
+        m.restore();
+        m.save().move(0, 0.2, 0.1).rotY(180);
+        m.soft((mm) => mm.tube(0.4, 0.34, 0.5, mm.lod(12, 6), shade(P.exhaust, 0.9), false));
+        m.restore();
+        m.save().move(0, 2.1, L * 0.44);
+        m.soft((mm) => mm.loft([
+          { z: -1.4, pts: ring(0.5, 0.22, mm.lod(12, 6)) },
+          { z: 0, pts: ring(0.9, 0.5, mm.lod(12, 6)) },
+          { z: 1.5, pts: ring(0.45, 0.2, mm.lod(12, 6)) },
+        ], shade(P.white, 1.04), false));
         m.restore();
       },
     },
@@ -4997,17 +6017,52 @@
             0.7 - i * 0.1, 0.16, shade(P.stealth, 1 + ((i % 2) - 0.5) * 0.08));
             if (n === 1) break;
           }
-          // Panel mosaic, upper and lower.
+          // Panel mosaic, upper and lower. THE FIELD IS DENSER THAN IT WAS,
+          // and on this aeroplane that is not subdivision: a Spirit's skin is
+          // a real mosaic of individually cut absorbent panels, the tape lines
+          // between them are the only surface texture the aircraft has, and a
+          // fifty-two metre span drawn at 380 px still gives each panel four or
+          // five pixels — which is a shadow line the eye can find.
           mm.save().move(0, 0.52, 0);
-          facetMosaic(mm, { rows: 6, cols: 4, t: 0.09, col: shade(P.stealth, 1.1),
+          facetMosaic(mm, { rows: 8, cols: 6, t: 0.09, col: shade(P.stealth, 1.1),
             corners: [[1.2, L * 0.92], [half * 0.52, L * 0.46], [half * 0.52, L * 0.14],
               [1.2, L * 0.08]] });
           mm.restore();
+          mm.save().move(0, 0.5, 0);
+          facetMosaic(mm, { rows: 4, cols: 3, t: 0.07, col: shade(P.stealth, 1.04),
+            corners: [[half * 0.56, L * 0.44], [half * 0.97, L * 0.08],
+              [half * 0.97, L * 0.0], [half * 0.56, L * 0.12]] });
+          mm.restore();
           mm.save().move(0, -0.52, 0);
-          facetMosaic(mm, { rows: 5, cols: 3, t: 0.09, col: shade(P.stealth, 0.88),
+          facetMosaic(mm, { rows: 7, cols: 5, t: 0.09, col: shade(P.stealth, 0.88),
             corners: [[1.2, L * 0.88], [half * 0.5, L * 0.44], [half * 0.5, L * 0.16],
               [1.2, L * 0.1]] });
           mm.restore();
+          // NINE CONTROL SURFACES, WHICH IS WHAT THE AEROPLANE HAS. Three
+          // elevons a side on the inner trailing edge, and outboard of them the
+          // split drag rudder — two panels hinged on the same line that open
+          // like a clamshell to yaw the aircraft, because a flying wing has no
+          // fin to do it with. That clamshell is the most distinctive moving
+          // part in the class and the model did not have it.
+          const te = (x) => (x <= half * 0.55
+            ? L * 0.02 + (x / (half * 0.55)) * L * 0.08
+            : L * 0.1 - ((x - half * 0.55) / (half * 0.45)) * L * 0.12);
+          if (!mm.far) [[0.14, 0.3], [0.31, 0.45]].forEach((s, i) => {
+            const x0 = half * s[0], x1 = half * s[1];
+            mm.save().move(0, 0, 0).rotX(i ? 3 : -2);
+            mm.slab([[x0, te(x0) + L * 0.035], [x1, te(x1) + L * 0.035],
+              [x1, te(x1) + L * 0.005], [x0, te(x0) + L * 0.005]],
+            0.5, 0.15, shade(P.stealth, 0.98 + i * 0.06));
+            mm.restore();
+          });
+          if (!mm.far) [[16, 0.62, 0.86], [-16, 0.62, 0.86]].forEach((r) => {
+            const x0 = half * r[1], x1 = half * r[2];
+            mm.save().move(0, 0, 0).rotX(r[0]);
+            mm.slab([[x0, te(x0) + L * 0.03], [x1, te(x1) + L * 0.03],
+              [x1, te(x1) - L * 0.002], [x0, te(x0) - L * 0.002]],
+            0.34, 0.1, shade(P.stealth, r[0] > 0 ? 1.12 : 0.86));
+            mm.restore();
+          });
           // Buried intakes: a serrated lip, a duct that turns out of sight, and
           // the boundary-layer diverter slot behind it.
           mm.save().move(2.6, 1.1, L * 0.52);
@@ -5073,6 +6128,36 @@
         m.slab([[-0.5, -0.5], [0.5, -0.5], [0.5, 0.5], [-0.5, 0.5]], 0.12, 0.05,
           shade(P.stealth, 0.86));
         m.restore();
+        // THE TWO WEAPONS BAYS, side by side on the centreline, each with its
+        // own sawtoothed door. This aircraft carries everything internally, so
+        // the door lines down the belly are the entire visible statement of
+        // what it is for — and they were missing, which left the underside of
+        // a bomber reading as the underside of a wing.
+        m.both((mm) => {
+          bayDoor(mm, { x: 1.5, y: -1.28, z: L * 0.4, w: 2.4, len: 7.6, t: 0.16,
+            teeth: 10, col: shade(P.stealth, 0.86) });
+        });
+        // The leading-edge absorbent strip: one continuous chamfered band from
+        // the nose to the tip, laid on the swept edge, which is where a Spirit's
+        // radar cross-section is actually managed.
+        m.both((mm) => {
+          mm.save().move(0, 0.1, 0);
+          mm.slab([[0.6, L * 0.99], [half * 0.54, L * 0.45], [half * 0.54, L * 0.4],
+            [0.6, L * 0.9]], 0.62, 0.2, shade(P.stealth, 1.22));
+          mm.slab([[half * 0.56, L * 0.44], [half * 0.99, L * 0.065],
+            [half * 0.99, L * 0.03], [half * 0.56, L * 0.39]], 0.36, 0.12,
+          shade(P.stealth, 1.18));
+          mm.restore();
+          // Auxiliary intake doors on the shoulder behind each inlet, and the
+          // boundary-layer bleed exits above them.
+          doorRow(mm, { n: 4, x: 2.6, y: 1.46, z0: L * 0.44, z1: L * 0.3,
+            w: 1.6, len: 0.55, t: 0.11, open: 9, col: shade(P.stealth, 1.14) });
+          // The exhaust trough's aft lip, shading the plume from below.
+          mm.save().move(2.9, 0.62, L * 0.11 - 1.45).rotX(24);
+          mm.slab([[-1.6, -0.5], [1.6, -0.5], [1.6, 0.5], [-1.6, 0.5]], 0.2, 0.07,
+            shade(P.stealth, 1.18));
+          mm.restore();
+        });
       },
     },
     predator: {
@@ -5123,6 +6208,56 @@
           mm.slab([[-0.42, -1.3], [0.42, -1.3], [0.42, 1.3], [-0.42, 1.3]], 1.5, 0.24,
             shade(P.stealth, 0.9));
           mm.restore();
+        });
+        if (m.far) return;
+        // THE SIDE BAY, OPEN, WITH THE ROUND ON ITS TRAPEZE. A Raptor's
+        // weapons are the one thing about it a clean-wing card cannot say, and
+        // the aircraft's own answer is this: the side door swings out and the
+        // launcher pushes the missile clear of the airframe on an arm. It is
+        // the single most recognisable photograph of the type, and it is the
+        // only way a model with nothing under its wings can show a fit.
+        m.both((mm) => {
+          mm.save().move(1.42, -0.5, 9.4).rotZ(-46);
+          mm.slab([[-0.28, -1.5], [0.28, -1.5], [0.28, 1.5], [-0.28, 1.5]], 0.14, 0.05,
+            shade(P.stealth, 1.06));
+          mm.restore();
+          mm.save().move(1.86, -0.72, 9.4);
+          mm.bar(-0.06, 0.06, -0.4, 0.06, -0.9, 0.9, shade(P.greyDark, 1.0));
+          mm.restore();
+          mm.save().move(1.9, -1.16, 8.0);
+          missile(mm, { len: 2.9, r: 0.065, col: P.white, nose: 0.42, seeker: true,
+            seg: mm.lod(12, 6), soft: true, motor: false,
+            fins: [{ n: 4, z: 0.1, span: 0.11, chord: 0.5, tip: 0.2, roll: 45 },
+              { n: 4, z: 0.76, span: 0.1, chord: 0.32, tip: 0.14, roll: 45 }] });
+          mm.restore();
+          // The main-bay doors and the three gear doors, every edge sawtoothed.
+          bayDoor(mm, { x: 0.72, y: -1.1, z: 8.6, w: 1.24, len: 4.8, t: 0.12,
+            teeth: 9, col: shade(P.stealth, 0.8) });
+          bayDoor(mm, { x: 1.4, y: -0.94, z: 4.0, w: 0.9, len: 2.4, t: 0.1,
+            teeth: 6, col: shade(P.stealth, 0.88) });
+          // Flush antenna panels along the chine, and the mosaic on the
+          // shoulder deck: a Raptor's skin is cut panels like a Spirit's.
+          mm.save().move(0, 0.9, 0);
+          facetMosaic(mm, { rows: 5, cols: 3, t: 0.05, col: shade(P.stealth, 1.1),
+            corners: [[0.2, 14.8], [1.45, 10.6], [1.45, 4.2], [0.2, 4.6]] });
+          mm.restore();
+        });
+        bayDoor(m, { x: 0, y: -1.0, z: 13.0, w: 0.9, len: 2.2, t: 0.1, teeth: 6,
+          col: shade(P.stealth, 0.88) });
+        bayDoor(m, { x: 0, y: 1.16, z: 8.2, w: 0.7, len: 0.9, t: 0.08, teeth: 5,
+          col: shade(P.stealth, 1.12) });
+        // The two-dimensional nozzle's divergent flaps and their actuator
+        // links: the paddles move, and the lines across them are what says so.
+        m.both((mm) => {
+          [0.42, -0.42].forEach((y) => {
+            mm.save().move(0.66, y, 0.28).rotX(y > 0 ? -7 : 7);
+            mm.slab([[-0.4, -0.6], [0.4, -0.6], [0.4, 0.6], [-0.4, 0.6]], 0.12, 0.04,
+              shade(P.exhaust, y > 0 ? 1.16 : 0.88));
+            mm.restore();
+            mm.save().move(1.06, y * 0.7, 0.7).rotX(-90);
+            mm.soft((s) => s.tube(0.05, 0.04, 0.7, 6, shade(P.metal, 0.76), false));
+            mm.restore();
+          });
         });
       },
     },
@@ -5205,12 +6340,12 @@
           mm.slab([[half * 0.5, L * 0.5], [half, L * 0.12], [half, -L * 0.04],
             [half * 0.5, L * 0.06]], 0.26, 0.08, shade(P.stealthLit, 0.94));
           mm.save().move(0, 0.23, 0);
-          facetMosaic(mm, { rows: 6, cols: 4, t: 0.04, col: shade(P.stealthLit, 1.1),
+          facetMosaic(mm, { rows: 8, cols: 5, t: 0.04, col: shade(P.stealthLit, 1.1),
             corners: [[0.8, L * 0.9], [half * 0.46, L * 0.53], [half * 0.46, L * 0.1],
               [0.8, -L * 0.06]] });
           mm.restore();
           mm.save().move(0, -0.23, 0);
-          facetMosaic(mm, { rows: 5, cols: 3, t: 0.04, col: shade(P.stealthLit, 0.9),
+          facetMosaic(mm, { rows: 6, cols: 4, t: 0.04, col: shade(P.stealthLit, 0.9),
             corners: [[0.9, L * 0.86], [half * 0.44, L * 0.52], [half * 0.44, L * 0.14],
               [0.9, -L * 0.02]] });
           mm.restore();
@@ -5266,6 +6401,57 @@
         m.save().move(0, 0.6, L * 0.2).scale(1, 0.5, 1.3);
         m.soft((s) => s.ball(0.5, s.lod(14, 6), s.lod(7, 3), shade(P.stealthLit, 1.2)));
         m.restore();
+        if (m.far) return;
+        // The serrated inlet lip. On this airframe every opening in the skin is
+        // cut with teeth, and the dorsal inlet is the only opening there is —
+        // so its lip is the one place the aeroplane shows how it is built.
+        sawEdge(m, { x: 0, y: 0.7, z0: L * 0.62 + 0.55, len: 1.0, n: 7, tooth: 0.2,
+          t: 0.08, col: shade(P.stealthLit, 1.28), roll: 90 });
+        // THE EXHAUST, and its absence was the model's largest omission after
+        // the payload bay: this aeroplane's engine has to go somewhere, and on
+        // a flying wing built to be invisible from below it goes out through a
+        // shielded slot on TOP, spread thin across vanes. The trough, its
+        // vanes and the aft lip that shades the plume.
+        m.save().move(0, 0.24, -L * 0.02);
+        m.slab([[-1.5, -0.5], [1.5, -0.5], [1.5, 0.7], [-1.5, 0.7]], 0.16, 0.05, P.black);
+        m.restore();
+        for (let i = 0; i < 7; i += 1) {
+          m.save().move(-1.25 + i * 0.42, 0.3, -L * 0.02);
+          m.slab([[-0.05, -0.46], [0.05, -0.46], [0.05, 0.66], [-0.05, 0.66]], 0.2, 0.06,
+            shade(P.exhaust, 0.75 + (i % 2) * 0.12));
+          m.restore();
+        }
+        m.save().move(0, 0.34, -L * 0.02 - 0.5).rotX(20);
+        m.slab([[-1.6, -0.3], [1.6, -0.3], [1.6, 0.3], [-1.6, 0.3]], 0.12, 0.04,
+          shade(P.stealthLit, 1.2));
+        m.restore();
+        // THE PAYLOAD BAY. A reconnaissance aircraft with no aperture is a
+        // wing; the bay door line down the centreline and the two sensor
+        // windows in it are what the aeroplane is for.
+        bayDoor(m, { x: 0, y: -0.26, z: L * 0.44, w: 1.5, len: 2.4, t: 0.1,
+          teeth: 7, col: shade(P.stealthLit, 0.84) });
+        [[-0.34, L * 0.5], [0.34, L * 0.38]].forEach((s) => {
+          m.save().move(s[0], -0.34, s[1]).rotZ(20);
+          m.slab([[-0.2, -0.24], [0.2, -0.24], [0.2, 0.24], [-0.2, 0.24]], 0.06, 0.02,
+            shade(P.glass, 0.86));
+          m.restore();
+        });
+        // Gear doors, all three sawtoothed, and the leading-edge absorbent
+        // strip that runs from the nose to the tip.
+        [[0, -0.24, L * 0.72, 0.6, 1.0], [1.7, -0.26, L * 0.3, 0.55, 1.2],
+          [-1.7, -0.26, L * 0.3, 0.55, 1.2]].forEach((d) => {
+          bayDoor(m, { x: d[0], y: d[1], z: d[2], w: d[3], len: d[4], t: 0.07,
+            teeth: 5, col: shade(P.stealthLit, 0.9) });
+        });
+        m.both((mm) => {
+          mm.save().move(0, 0.08, 0);
+          mm.slab([[0.5, L * 0.98], [half * 0.49, L * 0.51], [half * 0.49, L * 0.44],
+            [0.5, L * 0.88]], 0.3, 0.1, shade(P.stealthLit, 1.24));
+          mm.slab([[half * 0.51, L * 0.5], [half * 0.98, L * 0.13],
+            [half * 0.98, L * 0.08], [half * 0.51, L * 0.43]], 0.18, 0.06,
+          shade(P.stealthLit, 1.2));
+          mm.restore();
+        });
       },
     },
     f35a: {
@@ -5316,6 +6502,47 @@
         m.save().move(0, -1.05, 8.0);
         m.slab([[-0.5, -1.1], [0.5, -1.1], [0.5, 1.1], [-0.5, 1.1]], 0.35, 0.1, P.black);
         m.restore();
+        if (m.far) return;
+        // THE BAY, OPEN, WITH A ROUND IN IT. Same argument as the Raptor's:
+        // this aeroplane's whole fit is inside it, and a clean airframe with a
+        // painted door line says nothing about what it carries. Two bays, each
+        // with the door swung down and a thousand-pound class weapon on the
+        // rack — which is the load the A model is actually bought for.
+        m.both((mm) => {
+          mm.save().move(1.28, -1.02, 7.4).rotZ(-52);
+          mm.slab([[-0.5, -1.9], [0.5, -1.9], [0.5, 1.9], [-0.5, 1.9]], 0.12, 0.04,
+            shade(P.stealth, 1.08));
+          mm.restore();
+          mm.save().move(0.66, -1.24, 7.4);
+          mm.bar(-0.3, 0.3, -0.16, 0.02, -1.5, 1.5, shade(P.greyDark, 0.9));
+          mm.restore();
+          mm.save().move(0.66, -1.62, 5.6);
+          missile(mm, { len: 3.6, r: 0.14, col: shade(P.warhead, 0.9), nose: 0.7,
+            blunt: true, motor: false, seg: mm.lod(12, 6), soft: true,
+            fins: [{ n: 4, z: 0.06, span: 0.2, chord: 0.7, tip: 0.3, roll: 45 }] });
+          mm.restore();
+          // Gear doors, all sawtoothed, and the mosaic on the shoulder.
+          bayDoor(mm, { x: 1.2, y: -0.9, z: 3.4, w: 0.8, len: 2.0, t: 0.09,
+            teeth: 6, col: shade(P.stealth, 0.88) });
+          mm.save().move(0, 0.82, 0);
+          facetMosaic(mm, { rows: 5, cols: 3, t: 0.045, col: shade(P.stealth, 1.1),
+            corners: [[0.2, 12.4], [1.3, 9.0], [1.3, 3.4], [0.2, 3.8]] });
+          mm.restore();
+        });
+        bayDoor(m, { x: 0, y: -1.02, z: 10.8, w: 0.8, len: 1.9, t: 0.09, teeth: 6,
+          col: shade(P.stealth, 0.88) });
+        // The arrestor hook fairing under the tail — the A model has one, the
+        // B and C do not have this one, and it is the tell between them.
+        m.save().move(0, -0.86, 1.4);
+        m.soft((mm) => mm.loft([
+          { z: 1.2, pts: ringSuper(0.22, 0.1, mm.lod(10, 5), 2.6) },
+          { z: 0, pts: ringSuper(0.3, 0.18, mm.lod(10, 5), 2.6) },
+          { z: -1.1, pts: ringSuper(0.16, 0.1, mm.lod(10, 5), 2.6) },
+        ], shade(P.stealth, 0.9), false));
+        m.restore();
+        // The refuelling receptacle door on the spine, sawtoothed like the rest.
+        bayDoor(m, { x: 0, y: 1.24, z: 8.6, w: 0.62, len: 0.8, t: 0.07, teeth: 5,
+          col: shade(P.stealth, 1.14) });
       },
     },
     cca: {
@@ -5373,8 +6600,55 @@
           mm.restore();
         });
         m.save().move(0, 0.42, 0);
-        facetMosaic(m, { rows: 5, cols: 3, t: 0.04, col: shade(P.stealthLit, 1.08),
+        facetMosaic(m, { rows: 6, cols: 4, t: 0.04, col: shade(P.stealthLit, 1.08),
           corners: [[-0.6, 4.2], [0.6, 4.2], [0.72, 1.2], [-0.72, 1.2]] });
+        m.restore();
+        if (m.far) return;
+        // THE BAY, OPEN, WITH TWO ROUNDS IN IT. An attritable aircraft is
+        // bought for the magazine it adds to the formation, so the magazine is
+        // the thing to show: the door swung down and a pair of air-to-air
+        // rounds on the rack, which is exactly the load this programme exists
+        // to put in the air cheaply.
+        m.both((mm) => {
+          mm.save().move(0.74, -0.56, 4.4).rotZ(-48);
+          mm.slab([[-0.3, -1.2], [0.3, -1.2], [0.3, 1.2], [-0.3, 1.2]], 0.08, 0.03,
+            shade(P.stealthLit, 1.1));
+          mm.restore();
+          mm.save().move(0.38, -0.72, 4.4);
+          mm.bar(-0.2, 0.2, -0.09, 0.02, -1.0, 1.0, shade(P.greyDark, 0.94));
+          mm.restore();
+          mm.save().move(0.38, -0.94, 3.2);
+          missile(mm, { len: 2.4, r: 0.05, col: P.white, nose: 0.34, seeker: true,
+            seg: mm.lod(10, 5), soft: true, motor: false,
+            fins: [{ n: 4, z: 0.1, span: 0.08, chord: 0.4, tip: 0.16, roll: 45 },
+              { n: 4, z: 0.78, span: 0.075, chord: 0.24, tip: 0.1, roll: 45 }] });
+          mm.restore();
+          // Gear doors and the ventral fin: an attritable airframe still has to
+          // land, and this one has fixed strakes instead of a rudder.
+          bayDoor(mm, { x: 0.5, y: -0.5, z: 2.0, w: 0.4, len: 1.1, t: 0.06,
+            teeth: 5, col: shade(P.stealthLit, 0.9) });
+          mm.save().move(0.7, -0.5, 1.5).rotZ(-22);
+          mm.slab([[0, 1.3], [0.55, 0.5], [0.55, -0.1], [0, -0.7]], 0.09, 0.03,
+            shade(P.stealthLit, 0.94));
+          mm.restore();
+          // Skin mosaic on the flank, which is what a panel-built airframe has
+          // where an expensive one has a moulding.
+          mm.save().move(0.68, 0, 0).rotZ(90);
+          facetMosaic(mm, { rows: 4, cols: 3, t: 0.03, col: shade(P.stealthLit, 0.98),
+            corners: [[-0.5, 1.2], [0.5, 1.4], [0.5, 6.4], [-0.5, 5.8]] });
+          mm.restore();
+        });
+        bayDoor(m, { x: 0, y: -0.56, z: 6.2, w: 0.42, len: 1.0, t: 0.06, teeth: 5,
+          col: shade(P.stealthLit, 0.9) });
+        // The exhaust shroud: one engine, one slot, shielded from below by the
+        // shelf the wing carries aft of it.
+        m.save().move(0, 0.06, 0.5);
+        m.slab([[-0.62, -0.5], [0.62, -0.5], [0.62, 0.5], [-0.62, 0.5]], 0.55, 0.14,
+          shade(P.stealthLit, 0.9));
+        m.restore();
+        m.save().move(0, -0.24, 0.2);
+        m.slab([[-0.8, -0.5], [0.8, -0.5], [0.8, 0.7], [-0.8, 0.7]], 0.08, 0.03,
+          shade(P.stealthLit, 0.84));
         m.restore();
       },
     },
@@ -5415,9 +6689,49 @@
         // The dorsal spine: fuel and cooling, and on this generation the reason
         // the aeroplane is as deep as it is.
         m.save().move(0, 1.32, 0);
-        facetMosaic(m, { rows: 4, cols: 2, t: 0.06, col: shade(P.stealth, 1.02),
+        facetMosaic(m, { rows: 6, cols: 3, t: 0.06, col: shade(P.stealth, 1.02),
           corners: [[-1.3, 12.6], [1.3, 12.6], [1.6, 2.6], [-1.6, 2.6]] });
         m.restore();
+        if (m.far) return;
+        // THE DEEP BAY, OPEN, WITH A LONG-RANGE ROUND IN IT. The whole argument
+        // for this generation is that it carries its magazine and its fuel
+        // inside a bigger airframe, so the bay is the aeroplane's thesis: a
+        // door swung down, a rack, and a weapon longer than anything the
+        // previous generation could carry internally.
+        m.both((mm) => {
+          mm.save().move(1.66, -1.28, 10.0).rotZ(-50);
+          mm.slab([[-0.68, -3.4], [0.68, -3.4], [0.68, 3.4], [-0.68, 3.4]], 0.14, 0.05,
+            shade(P.stealth, 1.06));
+          mm.restore();
+          mm.save().move(0.9, -1.52, 10.0);
+          mm.bar(-0.28, 0.28, -0.18, 0.02, -2.8, 2.8, shade(P.greyDark, 0.92));
+          mm.restore();
+          mm.save().move(0.9, -1.94, 6.6);
+          missile(mm, { len: 5.4, r: 0.11, col: shade(P.white, 0.94), nose: 0.9,
+            seeker: true, seg: mm.lod(12, 6), soft: true, motor: false,
+            fins: [{ n: 4, z: 0.05, span: 0.14, chord: 0.9, tip: 0.4, roll: 45 },
+              { n: 4, z: 0.82, span: 0.12, chord: 0.5, tip: 0.2, roll: 45 }] });
+          mm.restore();
+          // Gear doors and the mosaic down the flank, both serrated where they
+          // meet the skin — every opening on this airframe is cut that way.
+          bayDoor(mm, { x: 1.5, y: -1.1, z: 4.4, w: 1.0, len: 2.8, t: 0.11,
+            teeth: 7, col: shade(P.stealth, 0.88) });
+          mm.save().move(1.62, 0, 0).rotZ(90);
+          facetMosaic(mm, { rows: 5, cols: 3, t: 0.05, col: shade(P.stealth, 0.98),
+            corners: [[-1.2, 3.0], [1.0, 3.4], [1.0, 15.0], [-1.2, 13.4]] });
+          mm.restore();
+          // The exhaust paddles either side of the slot, and their actuators.
+          [0.6, -0.6].forEach((y) => {
+            mm.save().move(0.8, y, 0.4).rotX(y > 0 ? -8 : 8);
+            mm.slab([[-0.46, -0.9], [0.46, -0.9], [0.46, 0.9], [-0.46, 0.9]], 0.16, 0.05,
+              shade(P.exhaust, y > 0 ? 1.14 : 0.86));
+            mm.restore();
+          });
+        });
+        bayDoor(m, { x: 0, y: -1.3, z: 15.0, w: 1.0, len: 2.6, t: 0.1, teeth: 7,
+          col: shade(P.stealth, 0.88) });
+        bayDoor(m, { x: 0, y: 1.4, z: 9.6, w: 0.8, len: 1.0, t: 0.08, teeth: 5,
+          col: shade(P.stealth, 1.12) });
       },
     },
     aesa: {
@@ -5490,6 +6804,88 @@
           m.restore();
         }
         m.restore();
+        // THE TRANSMIT/RECEIVE MODULES, WHICH ARE WHAT THE REFIT IS. The front
+        // of an active array is the cheap half — a field of radiators anyone
+        // can etch. What costs the money is the brick behind each patch of
+        // them: an amplifier, a phase shifter and a circulator in a sealed
+        // package, bolted to the cold plate with a finned face and a coaxial
+        // tail. This model is drawn at 1.4 m across, so at the ~380 px
+        // inspection view a 55 mm brick is a dozen pixels — it resolves, and a
+        // blank plate behind the aperture does not.
+        m.save().move(0, 0.78, 0).rotX(74).move(0, -0.055, 0);
+        for (let r = -3; r <= 3; r += 1) {
+          for (let c = -3; c <= 3; c += 1) {
+            const x = c * R * 0.25, z = r * R * 0.25;
+            if (Math.hypot(x, z) > R * 0.78) continue;
+            m.save().move(x, 0, z).rotX(90);
+            m.slab([[-R * 0.1, -R * 0.1], [R * 0.1, -R * 0.1], [R * 0.1, R * 0.1],
+              [-R * 0.1, R * 0.1]], 0.075, 0.016,
+            shade(P.greyDark, 1 + (((r * 2 + c) % 3) - 1) * 0.06));
+            m.restore();
+            // The cooling fins across the back of each brick, and the coaxial
+            // tail out of the corner of it.
+            for (let f = 0; f < 3; f += 1) {
+              m.save().move(x - R * 0.06 + f * R * 0.06, -0.052, z).rotX(90);
+              m.slab([[-R * 0.014, -R * 0.09], [R * 0.014, -R * 0.09],
+                [R * 0.014, R * 0.09], [-R * 0.014, R * 0.09]], 0.03, 0.008,
+              shade(P.metal, 0.66));
+              m.restore();
+            }
+            m.save().move(x + R * 0.08, -0.06, z + R * 0.08).rotX(-90);
+            m.soft((s) => s.tube(R * 0.018, R * 0.014, 0.05, s.lod(6, 4),
+              shade(P.gold, 0.9), false));
+            m.restore();
+          }
+        }
+        m.restore();
+        // The trunnions the array tilts on, the elevation drive and the ram
+        // that swings it. A radar that cannot be pointed is a plate.
+        m.both((mm) => {
+          mm.save().move(0.5, 0.62, 0).rotY(90);
+          mm.soft((s) => s.tube(0.075, 0.075, 0.14, s.lod(12, 6), shade(P.metal, 0.7), false));
+          mm.save().move(0, 0, 0.14);
+          discCap(mm, 0.075, mm.lod(12, 6), shade(P.metal, 0.9), false);
+          mm.restore();
+          mm.restore();
+          boltRing(mm, { x: 0.5, y: 0.62, z: 0, r: 0.055, br: 0.011, h: 0.014, n: 6,
+            col: shade(P.metal, 0.8) });
+        });
+        m.save().move(-0.5, 0.62, 0).rotY(90);
+        m.soft((s) => s.tube(0.11, 0.09, 0.12, s.lod(12, 6), shade(P.sensor, 1.3), false));
+        m.restore();
+        m.save().move(0.16, 0.34, -0.24).rotX(-58);
+        m.soft((s) => s.tube(0.03, 0.026, 0.42, s.lod(8, 5), shade(P.metal, 0.72), false));
+        m.restore();
+        // The connector bank and the coolant hoses with their clamps: the
+        // interface the refit plugs into, which is the half of a line
+        // replaceable unit that says it is one.
+        [-0.28, -0.1, 0.08, 0.26].forEach((x, i) => {
+          connector(m, { x, y: 0.2, z: -0.42, r: 0.038 - (i % 2) * 0.008, len: 0.07,
+            pitch: 90 });
+        });
+        [[0.34, P.red], [-0.34, P.glass]].forEach((hz) => {
+          m.save().move(hz[0], 0.28, -0.4).rotX(70);
+          m.soft((s) => s.tube(0.045, 0.045, 0.36, s.lod(10, 5), shade(hz[1], 0.7), false));
+          m.restore();
+          for (let i = 0; i < 3; i += 1) {
+            m.save().move(hz[0], 0.28 + i * 0.11, -0.4 - i * 0.04).rotX(70);
+            m.soft((s) => s.tube(0.053, 0.053, 0.022, s.lod(10, 5),
+              shade(P.metal, 0.85), false));
+            m.restore();
+          }
+        });
+        // The mounting frame: four legs and a cross-brace, bolted at the feet.
+        m.both((mm) => {
+          mm.save().move(0.5, 0.06, 0.34).rotX(-8);
+          mm.bar(-0.035, 0.035, 0, 0.5, -0.035, 0.035, shade(P.greyDark, 1.06));
+          mm.restore();
+          mm.save().move(0.5, 0.06, -0.34).rotX(8);
+          mm.bar(-0.035, 0.035, 0, 0.5, -0.035, 0.035, shade(P.greyDark, 1.06));
+          mm.restore();
+          boltRun(mm, { n: 4, r: 0.02, x0: 0.5, y0: 0.13, z0: -0.34, z1: 0.34,
+            pitch: -90, col: shade(P.metal, 0.74) });
+        });
+        m.bar(-0.5, 0.5, 0.44, 0.5, -0.05, 0.05, shade(P.greyDark, 0.92));
       },
     },
   };
@@ -5572,20 +6968,27 @@
     m.save().move(0, 0.52, L * 0.86).scale(1, 0.72, 1.2);
     m.soft((s) => s.ball(0.42, s.lod(16, 8), s.lod(8, 4), shade(P.white, 1.0)));
     m.restore();
-    // The sensor ball: the aperture plate and two windows, which is where the
-    // aeroplane's whole job happens.
-    m.save().move(0, -0.32, L * 0.78).scale(1, 0.9, 1);
-    m.soft((s) => s.ball(0.28, s.lod(16, 8), s.lod(8, 4), P.sensor));
-    m.restore();
+    // THE SENSOR BALL, AND IT IS NOW THE DECK'S SENSOR BALL. It used to be a
+    // plain sphere with two flat slabs stuck on the front; `gimbalBall` is the
+    // turret the Infantry class already builds — a real azimuth seam, recessed
+    // aperture lips and domed windows sitting inside them — and this aeroplane
+    // is the one in the class whose entire job happens behind those windows,
+    // so it is the last model that should have been carrying the cheap one.
+    // Hung on its yoke rather than growing out of the belly.
+    if (m.far) {
+      m.save().move(0, -0.32, L * 0.78).scale(1, 0.9, 1);
+      m.soft((s) => s.ball(0.28, s.lod(16, 8), s.lod(8, 4), P.sensor));
+      m.restore();
+    } else {
+      m.save().move(0, -0.2, L * 0.78);
+      m.soft((s) => s.save().rotX(90).tube(0.1, 0.13, 0.16, s.lod(12, 6),
+        shade(P.white, 0.86), false).restore());
+      m.restore();
+      gimbalBall(m, { x: 0, y: -0.42, z: L * 0.78, r: 0.29, col: P.sensor,
+        apertures: [[0, -6, 0.34, P.glass], [16, -14, 0.2, shade(P.glass, 1.25)],
+          [-18, -12, 0.16, P.black]] });
+    }
     if (!m.far) {
-      m.save().move(0, -0.34, L * 0.78 + 0.26).rotX(6);
-      m.slab([[-0.16, -0.16], [0.16, -0.16], [0.16, 0.16], [-0.16, 0.16]], 0.06, 0.02,
-        shade(P.glass, 0.9));
-      m.restore();
-      m.save().move(0.1, -0.46, L * 0.78 + 0.2);
-      m.slab([[-0.07, -0.07], [0.07, -0.07], [0.07, 0.07], [-0.07, 0.07]], 0.05, 0.016,
-        shade(P.glass, 1.2));
-      m.restore();
       // Undercarriage: a nose leg and two mains, each a smooth oleo with a fork
       // and a wheel. Three legs is about two hundred triangles and it is what
       // stops the model reading as a plastic toy hanging on a wire.
@@ -5618,6 +7021,155 @@
       bladeAerial(m, { y: 0.5, z: L * 0.3, h: 0.1, len: 0.24, col: shade(P.white, 0.8) });
       bladeAerial(m, { y: -0.44, z: L * 0.62, h: 0.08, len: 0.2, roll: 180,
         col: shade(P.white, 0.8) });
+      // GEAR DOORS AND THE REST OF THE LEG. Three bare oleos hanging out of a
+      // smooth belly is what a model on a wire looks like; a retractable
+      // undercarriage has a well with doors either side of it, a torque link
+      // down the front of the strut and a fork at the axle. All of it is inside
+      // the wheel track, so none of it changes the quoted span.
+      [[0, L * 0.78, 0.62, 0.11], [0.62, L * 0.42, 0.72, 0.13], [-0.62, L * 0.42, 0.72, 0.13]]
+        .forEach((g) => {
+          [1, -1].forEach((s) => {
+            m.save().move(g[0] + s * (g[3] + 0.05), -0.29, g[1]).rotZ(-s * 24);
+            m.slab([[-0.06, -g[3] * 1.9], [0.06, -g[3] * 1.9], [0.06, g[3] * 1.9],
+              [-0.06, g[3] * 1.9]], 0.03, 0.01, shade(P.white, 0.88));
+            m.restore();
+          });
+          // The torque link: two short arms meeting at a knee half way down.
+          m.save().move(g[0], -0.3 - g[2] * 0.4, g[1] + 0.045).rotX(24);
+          m.bar(-0.012, 0.012, -g[2] * 0.22, g[2] * 0.22, -0.008, 0.008,
+            shade(P.metal, 0.72));
+          m.restore();
+          // The fork either side of the wheel, and the brake disc inside it.
+          [1, -1].forEach((s) => {
+            m.save().move(g[0] + s * (g[3] * 0.5), -0.3 - g[2] * 0.72, g[1]);
+            m.bar(-0.012, 0.012, -g[2] * 0.16, g[2] * 0.16, -0.02, 0.02,
+              shade(P.metal, 0.62));
+            m.restore();
+          });
+          m.save().move(g[0], -0.3 - g[2], g[1]).rotY(90);
+          m.soft((s) => s.tube(g[3] * 0.6, g[3] * 0.6, 0.02, s.lod(10, 5),
+            shade(P.metal, 0.5), false));
+          m.restore();
+        });
+      // The radome joint: the nose cone comes off, and the ring of fasteners
+      // round it is the line that says so.
+      boltRing(m, { x: 0, y: 0.02, z: L * 0.1, r: 0.3, br: 0.012, h: 0.016, n: 14,
+        col: shade(P.metal, 0.72) });
+      // Wing-root fairings, wingtip position lights and the aileron control
+      // horns with their pushrods — the fittings a real airframe carries on the
+      // one surface a card sees end-on.
+      m.both((mm) => {
+        rootFillet(mm, { x: 0.4, y: 0.35, z: L * 0.52 - 0.45, span: 0.34, h: 0.62,
+          r: 0.1, col: shade(P.white, 0.94) });
+        mm.save().move(6.95, 0.35, L * 0.52 - 0.25);
+        mm.soft((s) => s.loft([
+          { z: 0.3, pts: ring(0.02, 0.02, s.lod(8, 4)) },
+          { z: 0, pts: ring(0.07, 0.05, s.lod(8, 4)) },
+          { z: -0.4, pts: ring(0.05, 0.04, s.lod(8, 4)) },
+        ], shade(P.white, 1.05), false));
+        mm.restore();
+        mm.save().move(5.2, 0.28, L * 0.52 - 0.86).rotX(-18);
+        mm.slab([[-0.02, -0.12], [0.02, -0.12], [0.02, 0.06], [-0.02, 0.06]], 0.05, 0.015,
+          shade(P.metal, 0.7));
+        mm.restore();
+        mm.save().move(3.0, 0.28, L * 0.52 - 0.8).rotX(-14);
+        mm.slab([[-0.02, -0.1], [0.02, -0.1], [0.02, 0.05], [-0.02, 0.05]], 0.045, 0.014,
+          shade(P.metal, 0.7));
+        mm.restore();
+      });
+      // The engine bay: the cooling scoop under the boom, the exhaust stack out
+      // of the left side and the muffler can on the end of it. A pusher's
+      // exhaust is on the outside of the aeroplane and it is not small.
+      m.save().move(-0.3, -0.16, 0.9).rotY(-8);
+      m.soft((mm) => mm.tube(0.055, 0.05, 0.5, mm.lod(10, 5), shade(P.exhaust, 1.1), false));
+      m.save().move(0, 0, 0.5).rotY(30);
+      m.soft((mm) => mm.tube(0.075, 0.06, 0.28, mm.lod(10, 5), shade(P.exhaust, 0.8), false));
+      m.save().move(0, 0, 0.28);
+      discCap(m, 0.06, m.lod(10, 5), P.black, false);
+      m.restore();
+      m.restore();
+      m.restore();
+      // The spinner and its back plate, and the two-bolt hub the blades sit in.
+      m.save().move(0, 0.16, -0.05).rotY(180);
+      m.soft((mm) => mm.loft([
+        { z: 0, pts: ring(0.1, 0.1, mm.lod(12, 6)) },
+        { z: 0.1, pts: ring(0.085, 0.085, mm.lod(12, 6)) },
+        { z: 0.17, pts: ring(0.03, 0.03, mm.lod(12, 6)) },
+      ], shade(P.white, 0.8), false));
+      m.restore();
+      // Avionics-bay hatch on the spine and the fuel filler on the wing.
+      skinPanel(m, { rx: 0.42, ry: 0.5, th: 90, z: L * 0.68, w: 0.28, len: 0.42,
+        depth: 0.035, col: shade(col, 0.9) });
+      m.both((mm) => {
+        mm.save().move(2.2, 0.42, L * 0.52 - 0.3);
+        mm.soft((s) => s.save().rotX(-90).tube(0.05, 0.048, 0.012, s.lod(10, 5),
+          shade(P.metal, 0.78), false).restore());
+        mm.restore();
+      });
+      // THE WING IS THE FUEL TANK, which is why it is as thick as it is, and a
+      // wet wing is opened from below: a row of bolted access panels down the
+      // underside of each one, and the rib line above them. On a 14.6 m span
+      // drawn up to ~380 px a 300 mm panel is eight pixels and the row of nine
+      // is what tells the eye the wing has structure inside it.
+      m.both((mm) => {
+        for (let i = 0; i < 6; i += 1) {
+          const t = 0.1 + i * 0.145;
+          mm.save().move(0.4 + 6.9 * t, 0.3, L * 0.52 - 0.12 * t - 0.45);
+          mm.slab([[-0.13, -0.16], [0.13, -0.16], [0.13, 0.16], [-0.13, 0.16]],
+            0.028, 0.008, shade(col, 0.9 + (i % 2) * 0.06));
+          mm.restore();
+          mm.save().move(0.4 + 6.9 * t, 0.42, L * 0.52 - 0.12 * t - 0.42);
+          mm.slab([[-0.02, -0.34], [0.02, -0.34], [0.02, 0.34], [-0.02, 0.34]],
+            0.02, 0.006, shade(col, 1.05));
+          mm.restore();
+        }
+        // The flap and the aileron are separate panels on this wing, and the
+        // gap between them is a shadow line a card can find where a scribed
+        // line cannot. The inboard one is a plain flap, drooped.
+        [[0.08, 0.44, 6], [0.5, 0.94, -3]].forEach((s) => {
+          const zAt = (t) => L * 0.52 - 0.12 * t - 0.9 * (1 - 0.39 * t);
+          mm.save().move(0, 0.34, 0).rotX(s[2] * 0.4);
+          mm.slab([[0.4 + 6.9 * s[0], zAt(s[0]) + 0.2], [0.4 + 6.9 * s[1], zAt(s[1]) + 0.2],
+            [0.4 + 6.9 * s[1], zAt(s[1])], [0.4 + 6.9 * s[0], zAt(s[0])]],
+          0.05, 0.014, shade(col, 0.97));
+          mm.restore();
+        });
+      });
+      // The SATCOM radome's mounting ring and its fasteners: the fairing lifts
+      // off, and the joint line round its foot is the only thing that says the
+      // hump is a cover over an antenna rather than part of the fuselage.
+      m.save().move(0, 0.36, L * 0.86).rotX(-90);
+      m.soft((mm) => mm.loft([
+        { z: 0, pts: ring(0.44, 0.5, mm.lod(16, 8)) },
+        { z: 0.05, pts: ring(0.46, 0.52, mm.lod(16, 8)) },
+        { z: 0.1, pts: ring(0.43, 0.49, mm.lod(16, 8)) },
+      ], shade(P.white, 0.86), false));
+      m.restore();
+      for (let i = 0; i < 14; i += 1) {
+        const a = (i / 14) * Math.PI * 2;
+        m.save().move(Math.cos(a) * 0.46, 0.38, L * 0.86 + Math.sin(a) * 0.52).rotX(-90);
+        m.soft((mm) => mm.tube(0.016, 0.012, 0.026, mm.lod(6, 4),
+          shade(P.metal, 0.76), false));
+        m.restore();
+      }
+      // The cooling-air exit louvres behind the engine bay and the oil cooler
+      // scoop under it: a piston engine in a fuselage has to get its air out
+      // again, and the exit is bigger than the inlet.
+      m.both((mm) => {
+        louvre(mm, { n: 4, x: 0.4, y0: -0.2, y1: 0.1, z: 0.62, w: 0.24,
+          t: 0.012, d: 0.018, yaw: 90, col: shade(P.sensor, 1.2) });
+      });
+      m.save().move(0, -0.44, L * 0.24);
+      m.soft((mm) => mm.loft([
+        { z: 0.18, pts: ringSuper(0.14, 0.06, mm.lod(10, 5), 2.6) },
+        { z: 0, pts: ringSuper(0.13, 0.055, mm.lod(10, 5), 2.6) },
+        { z: -0.22, pts: ringSuper(0.09, 0.035, mm.lod(10, 5), 2.6) },
+      ], shade(col, 0.88), false));
+      m.save().move(0, 0, 0.18);
+      m.fan(ringSuper(0.13, 0.055, m.lod(10, 5), 2.6).map((p) => [p[0], p[1], 0]).reverse(),
+        P.black);
+      m.restore();
+      m.restore();
     }
   }
   /// A bolt circle. A ring of fasteners round a bearing race, a hatch or an
@@ -5762,6 +7314,102 @@
           });
           boltRing(m, { r: 0.86, br: 0.035, h: 0.05, n: 12, y: fb + 0.02,
             z: L * 0.79, col: shade(P.metal, 0.9) });
+          // THE GROUND TACKLE, and its absence was this hull's biggest gap:
+          // a boat that comes alongside and boards has to be able to anchor,
+          // moor and recover its own RIBs, and every one of those is a fitting
+          // on the forecastle where the card looks first. An anchor in its
+          // hawse, the cable down the deck to the windlass, and the chain stopper
+          // between them.
+          m.both((mm) => {
+            mm.save().move(2.7, fb - 1.2, L * 0.93).rotY(6);
+            mm.slab([[-0.06, -0.5], [0.06, -0.5], [0.06, 0.5], [-0.06, 0.5]], 1.1, 0.12,
+              shade(P.metal, 0.5));
+            mm.restore();
+            mm.save().move(2.55, fb + 0.05, L * 0.9).rotX(-90);
+            mm.soft((s) => s.tube(0.28, 0.24, 0.3, s.lod(10, 5),
+              shade(P.metal, 0.62), false));
+            mm.restore();
+            for (let i = 0; i < 7; i += 1) {
+              mm.save().move(2.5 - i * 0.06, fb + 0.11, L * 0.9 - i * 0.42)
+                .rotY(8).rotX(i % 2 ? 0 : 90);
+              mm.soft((s) => s.save().rotX(90).loft([
+                { z: -0.06, pts: ring(0.14, 0.09, s.lod(8, 4)) },
+                { z: 0.06, pts: ring(0.14, 0.09, s.lod(8, 4)) },
+              ], shade(P.metal, 0.56), false).restore());
+              mm.restore();
+            }
+          });
+          // The windlass on the centreline: two cable lifters on a horizontal
+          // shaft with the gearcase between them, which is the machine that
+          // does it.
+          m.save().move(0, fb + 0.14, L * 0.86);
+          m.bar(-0.5, 0.5, 0, 0.6, -0.44, 0.44, shade(P.navy, 1.14));
+          m.both((mm) => {
+            mm.save().move(0.72, 0.36, 0).rotY(90);
+            mm.soft((s) => s.loft([
+              { z: -0.22, pts: ring(0.34, 0.34, s.lod(12, 6)) },
+              { z: -0.1, pts: ring(0.26, 0.26, s.lod(12, 6)) },
+              { z: 0.1, pts: ring(0.26, 0.26, s.lod(12, 6)) },
+              { z: 0.22, pts: ring(0.34, 0.34, s.lod(12, 6)) },
+            ], shade(P.metal, 0.6), false));
+            mm.restore();
+          });
+          m.restore();
+          // THE DAVIT the RIBs are launched on. A boat sitting in a cradle with
+          // no way of getting into the water is scenery; the A-frame, its
+          // hydraulic ram and the falls are the whole recovery system, and the
+          // frame stands above the deck line where a profile view finds it.
+          m.both((mm) => {
+            mm.save().move(3.15, fb, L * 0.19).rotZ(-14);
+            mm.bar(-0.12, 0.12, 0, 3.2, -0.14, 0.14, shade(P.navy, 1.18));
+            mm.restore();
+            mm.save().move(2.5, fb + 3.05, L * 0.19).rotZ(78);
+            mm.bar(-0.11, 0.11, 0, 1.5, -0.12, 0.12, shade(P.navy, 1.1));
+            mm.restore();
+            mm.save().move(2.9, fb + 1.1, L * 0.19).rotZ(-56);
+            mm.soft((s) => s.tube(0.11, 0.1, 1.5, s.lod(9, 5),
+              shade(P.metal, 0.72), false));
+            mm.restore();
+            mm.save().move(1.35, fb + 1.4, L * 0.19).rotX(-90);
+            mm.soft((s) => s.tube(0.02, 0.02, 2.9, s.lod(5, 4),
+              shade(P.metal, 0.85), false));
+            mm.restore();
+          });
+          // The fire main down the deck edge with a hydrant at every station,
+          // and the two liferaft canisters on their rack: a hull certified to
+          // carry people carries these, and nothing else on the deck is round.
+          m.both((mm) => {
+            for (let i = 0; i < 6; i += 1) {
+              mm.save().move(3.3, fb + 0.28, L * (0.22 + i * 0.12)).rotX(-90);
+              mm.soft((s) => s.tube(0.075, 0.075, 4.0, s.lod(7, 4),
+                shade(P.red, 0.86), false));
+              mm.restore();
+            }
+            [0.3, 0.62].forEach((t) => {
+              mm.save().move(3.1, fb + 0.5, L * t).rotX(-90);
+              mm.soft((s) => s.tube(0.06, 0.05, 0.36, s.lod(8, 4),
+                shade(P.red, 1.2), false));
+              mm.restore();
+            });
+          });
+          // The jackstaff forward and the ensign staff aft, with the two
+          // navigation light boards on the bridge wings. Small, and between
+          // them they are what says this is a commissioned ship.
+          [[L * 0.985, 2.2], [0.4, 2.6]].forEach((st) => {
+            m.save().move(0, fb + 0.3, st[0]).rotX(-90);
+            m.soft((mm) => mm.tube(0.06, 0.035, st[1], mm.lod(7, 4),
+              shade(P.white, 1.0), false));
+            m.restore();
+          });
+          m.both((mm) => {
+            mm.save().move(2.2, fb + 4.0, L * 0.6);
+            mm.slab([[-0.06, -0.2], [0.06, -0.2], [0.06, 0.2], [-0.06, 0.2]], 0.5, 0.06,
+              shade(P.navy, 0.86));
+            mm.restore();
+            mm.save().move(2.3, fb + 4.3, L * 0.6).rotY(90);
+            mm.soft((s) => s.tube(0.07, 0.07, 0.14, s.lod(8, 4), P.red, false));
+            mm.restore();
+          });
         }
       },
     },
@@ -6186,6 +7834,170 @@
         m.save().move(0, 0, 1.06);
         m.soft((mm) => mm.tube(0.07, 0.02, 2.3, mm.lod(8, 5), [1, 0.86, 0.55], false));
         m.restore();
+        if (!m.far) {
+          // BAFFLE VANES DOWN THE BORE. The aperture is a window and a card
+          // drawn from anywhere forward looks straight into it; what is behind
+          // the window on a real coelostat is a stack of knife-edged rings that
+          // kill stray light, and they are the difference between a lens and a
+          // painted disc. Same argument as the telescope in the Space class.
+          for (let i = 0; i < 4; i += 1) {
+            m.save().move(0, 0, 0.7 - i * 0.2);
+            m.soft((mm) => mm.loft([
+              { z: 0, pts: ring(0.4, 0.4, mm.lod(16, 8)) },
+              { z: 0.03, pts: ring(0.3 - i * 0.012, 0.3 - i * 0.012, mm.lod(16, 8)) },
+            ], shade(P.black, 1.3 + i * 0.1), false));
+            m.restore();
+          }
+          // The cable festoon between the house and the director: the loop of
+          // flexible conduit that has to be there for the barrel to elevate,
+          // and the one moving-service detail on the whole mount.
+          [-1, 1].forEach((s) => {
+            for (let i = 0; i < 5; i += 1) {
+              const t = i / 4;
+              m.save().move(s * 0.5, -0.5 - Math.sin(t * Math.PI) * 0.22, -0.5 + t * 0.5)
+                .rotX(-60 + t * 50).rotY(s * 14);
+              m.soft((mm) => mm.tube(0.035, 0.035, 0.18, mm.lod(8, 4),
+                shade(P.black, 1.25), false));
+              m.restore();
+            }
+          });
+        }
+        m.restore();
+        if (m.far) { m.restore(); return; }
+        // THE PLATFORM IS GRATING, and grating is bars. A maintenance platform
+        // drawn as a solid ring is a plate; what it actually is, on every
+        // upper-deck mount afloat, is a walkway you can see the deck through —
+        // and at 3.4 m across, drawn up to ~380 px, a 60 mm bearing bar is six
+        // pixels wide and the gaps between them are real shadow.
+        const gn = 26;
+        for (let i = 0; i < gn; i += 1) {
+          const a = (i / gn) * Math.PI * 2;
+          m.save().move(Math.cos(a) * 1.13, 0.075, Math.sin(a) * 1.13)
+            .rotY(-a / DEG);
+          m.bar(-0.028, 0.028, -0.03, 0.03, -0.15, 0.15,
+            shade(P.metal, 0.6 + (i % 2) * 0.08));
+          m.restore();
+        }
+        [1.0, 1.24].forEach((r, k) => {
+          for (let i = 0; i < gn; i += 1) {
+            const a0 = (i / gn) * Math.PI * 2, a1 = ((i + 1) / gn) * Math.PI * 2;
+            const p0 = [Math.cos(a0) * r, Math.sin(a0) * r];
+            const p1 = [Math.cos(a1) * r, Math.sin(a1) * r];
+            const len = Math.hypot(p1[0] - p0[0], p1[1] - p0[1]);
+            m.save().move(p0[0], 0.075, p0[1])
+              .rotY(Math.atan2(p1[0] - p0[0], p1[1] - p0[1]) / DEG);
+            m.bar(-0.015, 0.015, -0.022, 0.022, 0, len, shade(P.metal, 0.72 + k * 0.08));
+            m.restore();
+          }
+        });
+        // The service trunk: the power and coolant run that comes up through
+        // the deck into the base ring, in its own conduit with a clamp at every
+        // break. A mount that is not plumbed to anything is a model of a mount.
+        for (let i = 0; i < 4; i += 1) {
+          m.save().move(-0.55 + i * 0.14, 0, -0.86).rotX(-90);
+          m.soft((mm) => mm.tube(0.045, 0.045, 0.4, mm.lod(9, 5),
+            shade(i % 2 ? P.black : P.metal, i % 2 ? 1.2 : 0.6), false));
+          m.restore();
+        }
+        for (let i = 0; i < 3; i += 1) {
+          m.save().move(-0.34, 0.08 + i * 0.14, -0.86).rotZ(90);
+          m.slab([[-0.03, -0.34], [0.03, -0.34], [0.03, 0.34], [-0.03, 0.34]],
+            0.05, 0.014, shade(P.metal, 0.74));
+          m.restore();
+        }
+        // The local control station on the platform: a console with its screen
+        // and the two handles a rating trains the mount on when the network is
+        // down, plus the warning beacon that says the mount is live.
+        m.save().move(1.02, 0.12, 0.66).rotY(-36);
+        m.bar(-0.24, 0.24, 0, 0.62, -0.16, 0.16, shade(P.navyDeck, 1.2));
+        m.save().move(0, 0.62, 0).rotX(-26);
+        m.slab([[-0.24, -0.16], [0.24, -0.16], [0.24, 0.16], [-0.24, 0.16]], 0.06, 0.02,
+          shade(P.greyDark, 1.1));
+        m.save().move(0, 0.04, 0);
+        m.slab([[-0.17, -0.1], [0.17, -0.1], [0.17, 0.1], [-0.17, 0.1]], 0.02, 0.006,
+          shade(P.glass, 1.1));
+        m.restore();
+        m.restore();
+        m.both((mm) => {
+          mm.save().move(0.16, 0.5, 0.18).rotX(-90);
+          mm.soft((s) => s.tube(0.022, 0.022, 0.14, s.lod(7, 4), P.black, false));
+          mm.restore();
+        });
+        m.restore();
+        m.save().move(-1.1, 0.12, 0.7);
+        m.bar(-0.05, 0.05, 0, 0.5, -0.05, 0.05, shade(P.metal, 0.7));
+        m.save().move(0, 0.5, 0).rotX(-90);
+        m.soft((mm) => mm.loft([
+          { z: 0, pts: ring(0.09, 0.09, mm.lod(10, 5)) },
+          { z: 0.1, pts: ring(0.09, 0.09, mm.lod(10, 5)) },
+          { z: 0.16, pts: ring(0.05, 0.05, mm.lod(10, 5)) },
+        ], shade(P.red, 1.2), false));
+        m.restore();
+        m.restore();
+        // THE HEAT HAS TO GO SOMEWHERE, and on a directed-energy mount that is
+        // most of the installation. The condenser on the deck beside the ring
+        // is a coil of finned tube behind a guard, and its fan stack is the
+        // second largest object in this model after the director itself —
+        // which is honest: a hundred kilowatts out of the aperture is several
+        // hundred into the seawater, and the plant that does it is not small.
+        m.save().move(-1.5, 0, -0.9).rotY(24);
+        m.bar(-0.62, 0.62, 0, 1.0, -0.42, 0.42, shade(P.navyDeck, 1.14));
+        for (let i = 0; i < 16; i += 1) {
+          m.save().move(-0.56 + i * 0.075, 0.5, 0.43);
+          m.slab([[-0.026, -0.4], [0.026, -0.4], [0.026, 0.4], [-0.026, 0.4]],
+            0.06, 0.016, shade(P.metal, 0.7 + (i % 2) * 0.12));
+          m.restore();
+        }
+        [-0.28, 0.28].forEach((x) => {
+          m.save().move(x, 1.0, 0).rotX(-90);
+          m.soft((mm) => mm.tube(0.24, 0.24, 0.12, mm.lod(12, 6),
+            shade(P.navyDeck, 1.24), false));
+          m.restore();
+          for (let i = 0; i < 6; i += 1) {
+            m.save().move(x, 1.06, 0).rotZ(i * 60).rotX(24);
+            m.plate([[0.04, -0.05], [0.22, -0.08], [0.22, 0.08], [0.04, 0.05]],
+              0.014, shade(P.greyDark, 1.15));
+            m.restore();
+          }
+          m.save().move(x, 1.1, 0).rotX(-90);
+          m.soft((mm) => mm.loft([
+            { z: 0, pts: ring(0.25, 0.25, mm.lod(12, 6)) },
+            { z: 0.012, pts: ring(0.25, 0.25, mm.lod(12, 6)) },
+          ], shade(P.metal, 0.72), false));
+          m.restore();
+        });
+        // The two coolant runs from the condenser to the mount, and the pump
+        // set under them. Flow and return, one warm and one cold, which is why
+        // they are two colours.
+        [[0.2, P.red], [-0.2, P.glass]].forEach((p) => {
+          m.save().move(p[0], 0.34, -0.44).rotX(90).rotZ(0);
+          m.soft((mm) => mm.tube(0.07, 0.07, 1.2, mm.lod(10, 5),
+            shade(p[1], 0.72), false));
+          m.restore();
+          for (let i = 0; i < 3; i += 1) {
+            m.save().move(p[0], 0.34, -0.44 + i * 0.4).rotX(90);
+            m.soft((mm) => mm.tube(0.082, 0.082, 0.04, mm.lod(10, 5),
+              shade(P.metal, 0.86), false));
+            m.restore();
+          }
+        });
+        m.save().move(0, 0.12, -0.62).rotY(90);
+        m.soft((mm) => mm.tube(0.16, 0.16, 0.34, mm.lod(12, 6),
+          shade(P.metal, 0.66), false));
+        m.restore();
+        m.restore();
+        // The ladder up onto the platform: five rungs on two stringers, which
+        // is what a card needs to know that people stand on this.
+        m.save().move(0.5, 0, 1.5).rotY(-20);
+        m.both((mm) => {
+          mm.bar(0.2, 0.26, 0, 0.6, -0.03, 0.03, shade(P.metal, 0.72));
+        });
+        for (let i = 0; i < 4; i += 1) {
+          m.save().move(0, 0.1 + i * 0.16, 0).rotY(90);
+          m.soft((mm) => mm.tube(0.022, 0.022, 0.46, mm.lod(7, 4),
+            shade(P.metal, 0.86), false));
+          m.restore();
+        }
         m.restore();
         m.restore();
       },
@@ -6443,6 +8255,24 @@
           // only marking a white round carries that is not a stencil.
           jointBand(m, { z: ML * 0.845, r: R * 0.76, w: R * 0.5, k: 1.02, seg,
             col: shade(P.sensor, 1.2) });
+          // THE INTERSTAGES ARE BOLTED, and on a 21 m round with a 2.1 m case
+          // the flange bolts round each of them are two pixels at the ~380 px
+          // inspection view — resolvable, and the only thing that says this is
+          // four objects stacked rather than one painted tube. Four planes:
+          // aft skirt, first/second, second/third and the shroud.
+          [[0.032, 1], [0.348, 1], [0.633, 0.86], [0.813, 0.8]].forEach((j, i) => {
+            flangeBolts(m, { z: j[0] * ML, r: R * j[1] * 1.02, br: R * 0.055, n: 26,
+              phase: i * 5, col: shade(P.metal, 0.78) });
+          });
+          // The first stage's nozzle is steered, so the two rams stand outside
+          // the aft skirt where nothing else is; the raceways are clamped every
+          // metre the way a conduit on a pressure vessel has to be.
+          tvcActuator(m, { z: ML * 0.045, r: R * 0.78, br: R * 0.1, len: ML * 0.05,
+            n: 2, roll: 45, col: shade(P.metal, 0.74) });
+          conduitClamps(m, { roll: 0, r: R, h: R * 0.12, z0: ML * 0.06, z1: ML * 0.78,
+            n: 12, col: shade(P.metal, 0.8) });
+          conduitClamps(m, { roll: 152, r: R, h: R * 0.08, z0: ML * 0.07, z1: ML * 0.59,
+            n: 9, col: shade(P.metal, 0.8) });
         }
         m.restore();
         // The eject canister still in the silo, mouth OPEN round the round —
@@ -6549,6 +8379,30 @@
         m.slab([[-R * 0.2, -L * 0.03], [R * 0.2, -L * 0.03], [R * 0.2, L * 0.03],
           [-R * 0.2, L * 0.03]], R * 0.24, R * 0.08, P.sensor);
         m.restore();
+        // THE JOINS ARE BOLTED JOINS. Three sections bolt together on this
+        // weapon and the bands that mark them were smooth hoops; a ring of
+        // fasteners round each is what a 380 px card resolves as a joint, and
+        // it is the difference between three objects and one painted tube.
+        [0.03, 0.24, 0.8].forEach((t, i) => {
+          flangeBolts(m, { z: t * L, r: R * 1.01, br: R * 0.055, n: 16,
+            phase: i * 11, col: shade(P.metal, 0.78) });
+        });
+        flangeBolts(m, { z: L * 0.9, r: R * 0.96, br: R * 0.05, n: 12,
+          col: shade(P.metal, 0.72) });
+        // Canard and wing actuator fairings: this mark's canards are driven,
+        // and the blisters that drive them sit on the guidance section.
+        finActuator(m, { z: L * 0.845, r: R, n: 4, roll: 45,
+          w: R * 0.28, h: R * 0.2, len: L * 0.11, col: shade(P.warhead, 1.06) });
+        finActuator(m, { z: L * 0.3, r: R * 1.08, n: 4, roll: 0,
+          w: R * 0.3, h: R * 0.18, len: L * 0.3, col: shade(P.warhead, 1.02) });
+        // The raceway's clamps, and the two flush access covers over the
+        // thermal battery and the fuze arming interface.
+        conduitClamps(m, { roll: 0, r: R, h: R * 0.16, z0: L * 0.15, z1: L * 0.77, n: 8,
+          col: shade(P.metal, 0.76) });
+        [[90, 0.46], [270, 0.62]].forEach((c) => {
+          skinPanel(m, { rx: R, ry: R, th: c[0], z: c[1] * L, w: R * 0.5, len: L * 0.035,
+            depth: R * 0.05, col: shade(P.metal, 0.7) });
+        });
       },
     },
     tomahawk: {
@@ -6665,6 +8519,63 @@
             col: shade(P.greyDark, 0.86) });
         });
         motorBell(m, { z: 0.36, r: R * 0.74, len: 0.36 });
+        if (m.far) return;
+        // THE BOLTS IN THE JOINS. A Tomahawk is built in five sections that
+        // bolt together — guidance, warhead, fuel, engine, boattail — plus the
+        // booster on the back of it, and every one of those joints is a flange
+        // with a ring of fasteners round it. The bands were already here; what
+        // they were missing is the thing that makes them joints.
+        m.save().move(0, 0, BL);
+        [0.035, 0.2, 0.62].forEach((t, i) => {
+          flangeBolts(m, { z: t * L, r: R * 1.01, br: R * 0.05, n: 16, phase: i * 9,
+            col: shade(P.metal, 0.8) });
+        });
+        // Tail fin actuator blisters and the clamps down both raceways.
+        finActuator(m, { z: L * 0.045, r: R, n: 4, roll: 45,
+          w: R * 0.24, h: R * 0.16, len: L * 0.06, col: shade(P.white, 1.02) });
+        conduitClamps(m, { roll: 22, r: R, h: R * 0.13, z0: L * 0.12, z1: L * 0.64, n: 8,
+          col: shade(P.metal, 0.78) });
+        conduitClamps(m, { roll: 200, r: R, h: R * 0.09, z0: L * 0.14, z1: L * 0.56, n: 6,
+          col: shade(P.metal, 0.78) });
+        // THE INLET SCISSORS DOWN, and that is why the duct is where it is.
+        // A Tomahawk flies with its inlet folded out of a belly well on a
+        // four-bar linkage; the well, its two doors and the link arms are the
+        // whole reason the underside is not a smooth tube.
+        m.save().move(0, -R * 0.86, L * 0.24);
+        m.slab([[-R * 0.72, -L * 0.1], [R * 0.72, -L * 0.1], [R * 0.72, L * 0.1],
+          [-R * 0.72, L * 0.1]], R * 0.12, R * 0.04, shade(P.white, 0.76));
+        m.restore();
+        m.both((mm) => {
+          mm.save().move(R * 0.6, -R * 0.86, L * 0.24).rotZ(-38);
+          mm.slab([[-R * 0.3, -L * 0.09], [R * 0.3, -L * 0.09], [R * 0.3, L * 0.09],
+            [-R * 0.3, L * 0.09]], R * 0.1, R * 0.035, shade(P.white, 0.9));
+          mm.restore();
+          mm.save().move(R * 0.34, -R * 0.78, L * 0.19).rotX(-24);
+          mm.soft((s) => s.tube(R * 0.05, R * 0.045, L * 0.09, s.lod(8, 4),
+            shade(P.metal, 0.72), false));
+          mm.restore();
+        });
+        // The wing hinge pins in the slot fairing, and the two blade antennas
+        // a terrain-following round carries for its data link.
+        m.both((mm) => {
+          mm.save().move(R * 0.96, R * 0.12, L * 0.42).rotY(90);
+          mm.soft((s) => s.tube(R * 0.06, R * 0.06, R * 0.34, s.lod(8, 4),
+            shade(P.metal, 0.66), false));
+          mm.restore();
+        });
+        bladeAerial(m, { y: R * 0.94, z: L * 0.58, h: R * 0.3, len: L * 0.03,
+          col: shade(P.white, 0.78) });
+        bladeAerial(m, { y: R * 0.94, z: L * 0.16, h: R * 0.24, len: L * 0.025,
+          col: shade(P.white, 0.78) });
+        m.restore();
+        // The booster's own flange rings, and the two rams that steer its
+        // nozzle before the wings are out and the fins have anything to bite.
+        [0.1, BL - 0.06].forEach((z, i) => {
+          flangeBolts(m, { z, r: R * 0.99, br: R * 0.045, n: 14, phase: i * 12,
+            col: shade(P.metal, 0.74) });
+        });
+        tvcActuator(m, { z: 0.34, r: R * 0.66, br: R * 0.07, len: 0.3, n: 2, roll: 45,
+          col: shade(P.metal, 0.72) });
       },
     },
     patriot: {
@@ -6768,6 +8679,164 @@
           m.soft((mm) => mm.tube(0.3, 0.3, 0.4, mm.lod(12, 6), shade(P.green, 1.14)));
           m.restore();
         }
+        if (m.far) return;
+        // WHAT AN EMPLACED LAUNCHER ACTUALLY CARRIES, and none of it was here.
+        // A launching station is a trailer that has to be towed, levelled,
+        // earthed, powered and talked to, and every one of those is a fitting
+        // on the outside of it — which is where a card looks, because the
+        // trailer deck is the widest flat thing in the silhouette.
+        //
+        // The kingpin plate and the towing eye at the head of the trailer.
+        m.save().move(0, 0.66, 9.0);
+        m.soft((mm) => mm.tube(0.34, 0.34, 0.08, mm.lod(14, 7), shade(P.metal, 0.6)));
+        m.restore();
+        m.save().move(0, 0.5, 9.0).rotX(-90);
+        m.soft((mm) => mm.tube(0.09, 0.08, 0.18, mm.lod(10, 5), shade(P.metal, 0.72), false));
+        m.restore();
+        // The generator set on the neck: an engine can with a louvred radiator
+        // face, its exhaust stack and the fuel drum beside it. A Patriot
+        // launcher makes its own power and the set is a metre and a half long.
+        m.save().move(-0.6, 1.4, 7.9);
+        m.bar(-0.52, 0.52, 0, 0.8, -0.7, 0.7, shade(P.green, 0.94));
+        louvre(m, { n: 6, y0: 0.14, y1: 0.66, z: 0.72, w: 0.8, t: 0.03, d: 0.05,
+          col: shade(P.sensor, 1.2) });
+        m.save().move(0.36, 0.8, -0.4).rotX(-90);
+        m.soft((mm) => mm.tube(0.07, 0.06, 0.5, mm.lod(10, 5), shade(P.exhaust, 1.1), false));
+        m.save().move(0, 0, 0.5);
+        discCap(m, 0.06, m.lod(10, 5), P.black, false);
+        m.restore();
+        m.restore();
+        m.restore();
+        m.save().move(0.75, 1.4, 7.9).rotY(90);
+        m.soft((mm) => mm.tube(0.28, 0.28, 0.9, mm.lod(14, 7), shade(P.green, 1.1), false));
+        m.save().move(0, 0, 0.9);
+        discCap(m, 0.28, m.lod(14, 7), shade(P.green, 0.86), false);
+        m.restore();
+        m.restore();
+        // The cable reel and the run of power cable to the launcher: the four
+        // canisters are fired down a cable and the drum is on the deck.
+        m.save().move(-1.05, 1.15, 5.4).rotY(90);
+        m.soft((mm) => mm.loft([
+          { z: 0, pts: ring(0.3, 0.3, mm.lod(12, 6)) },
+          { z: 0.06, pts: ring(0.22, 0.22, mm.lod(12, 6)) },
+          { z: 0.34, pts: ring(0.22, 0.22, mm.lod(12, 6)) },
+          { z: 0.4, pts: ring(0.3, 0.3, mm.lod(12, 6)) },
+        ], shade(P.green, 0.86), false));
+        m.restore();
+        // The earthing spike and its lead, the levelling bubble housing, and
+        // the stowed crew ladder down the near side.
+        m.save().move(-1.45, 0.0, 6.6).rotX(-90);
+        m.soft((mm) => mm.tube(0.035, 0.02, 0.9, mm.lod(8, 4), shade(P.metal, 0.5), false));
+        m.restore();
+        for (let i = 0; i < 5; i += 1) {
+          m.save().move(-1.52, 0.28 + i * 0.17, 8.0).rotY(90);
+          m.soft((mm) => mm.tube(0.022, 0.022, 0.34, mm.lod(6, 4),
+            shade(P.metal, 0.78), false));
+          m.restore();
+        }
+        m.both((mm) => {
+          mm.save().move(1.5, 0.3, 8.0).rotX(-90);
+          mm.soft((s) => s.tube(0.03, 0.03, 1.1, s.lod(6, 4), shade(P.metal, 0.7), false));
+          mm.restore();
+        });
+        // Stowage bins along the trailer's flanks, each on its hinge line with
+        // a latch — the running spares, the earthing kit and the camouflage net
+        // all live in these and they are the only vertical faces on the deck.
+        m.both((mm) => {
+          [2.2, 4.0, 5.8].forEach((z, i) => {
+            mm.save().move(1.48, 0.72, z);
+            mm.slab([[-0.06, -0.7], [0.06, -0.7], [0.06, 0.7], [-0.06, 0.7]],
+              0.5, 0.06, shade(P.green, i % 2 ? 1.1 : 0.96));
+            mm.restore();
+            mm.save().move(1.56, 0.9, z);
+            mm.bar(-0.02, 0.02, -0.05, 0.05, -0.08, 0.08, shade(P.metal, 0.8));
+            mm.restore();
+          });
+        });
+        // Blast deflectors under the canister mouths: the launcher fires over
+        // its own tail and the plate is what stops it setting itself alight.
+        m.save().move(0, 1.0, 1.2).rotX(-38).move(0, 0.5, -0.4).rotX(28);
+        m.slab([[-1.7, -0.9], [1.7, -0.9], [1.7, 0.9], [-1.7, 0.9]], 0.12, 0.04,
+          shade(P.metal, 0.54));
+        m.restore();
+        // And the canister index plates on the frame — four of them, because a
+        // crew has to know which cell it is arming.
+        for (let i = 0; i < 4; i += 1) {
+          m.save().move(0, 1.0, 1.2).rotX(-38)
+            .move(((i % 2) - 0.5) * 1.5, 0.5 + Math.floor(i / 2) * 1.05, 5.5);
+          m.slab([[-0.2, -0.16], [0.2, -0.16], [0.2, 0.16], [-0.2, 0.16]], 0.42, 0.05,
+            shade(P.white, 0.8));
+          m.restore();
+        }
+        // THE SEMITRAILER UNDERNEATH, and it was the half of this model nobody
+        // had drawn: a launching station is a road trailer that has to be
+        // braked, sprung, sheeted and lit, and every one of those is a fitting
+        // hanging off the frame between the wheels — which is where the eye
+        // goes at card size, because the wheel line is the widest dark band in
+        // the silhouette. At 12 m long drawn up to ~380 px, a 400 mm air
+        // reservoir is thirteen pixels and a brake chamber is six.
+        m.both((mm) => {
+          // The frame's two main rails and the cross members between them.
+          mm.bar(0.94, 1.06, 0.46, 0.7, 0.4, 8.6, shade(P.green, 0.9));
+          for (let i = 0; i < 7; i += 1) {
+            mm.bar(0, 1.0, 0.5, 0.62, 0.8 + i * 1.2, 0.98 + i * 1.2, shade(P.green, 0.84));
+          }
+          // The air reservoirs, the brake chambers on each axle, and the
+          // suspension's leaf pack between them.
+          [1.2, 2.0].forEach((z, i) => {
+            mm.save().move(0.62, 0.42, z).rotY(90);
+            mm.soft((s) => s.tube(0.19, 0.19, 0.7, s.lod(12, 6),
+              shade(P.metal, 0.6 + i * 0.06), false));
+            mm.save().move(0, 0, 0.7);
+            discCap(mm, 0.19, mm.lod(12, 6), shade(P.metal, 0.85), false);
+            mm.restore();
+            mm.restore();
+          });
+          [1.1, 2.4].forEach((z) => {
+            mm.save().move(1.24, 0.72, z).rotZ(-90);
+            mm.soft((s) => s.tube(0.13, 0.13, 0.26, s.lod(10, 5),
+              shade(P.metal, 0.68), false));
+            mm.restore();
+            mm.save().move(1.3, 0.5, z).rotY(90);
+            mm.soft((s) => s.tube(0.05, 0.045, 0.3, s.lod(8, 4),
+              shade(P.black, 1.3), false));
+            mm.restore();
+          });
+          for (let i = 0; i < 4; i += 1) {
+            mm.bar(1.06, 1.26, 0.36 + i * 0.05, 0.42 + i * 0.05, 0.95, 2.55,
+              shade(P.metal, 0.5 + (i % 2) * 0.1));
+          }
+          // Mudguards over both axles, and the mudflap behind the rear one.
+          for (let k = 0; k < 4; k += 1) {
+            mm.save().move(1.3, 0.6, 1.75).rotX(-56 + k * 38).move(0, 0.86, 0);
+            mm.bar(-0.28, 0.28, 0, 0.05, -0.42, 0.42, shade(P.green, 0.78));
+            mm.restore();
+          }
+          mm.save().move(1.3, 0.32, 0.85);
+          mm.slab([[-0.26, -0.03], [0.26, -0.03], [0.26, 0.03], [-0.26, 0.03]],
+            0.5, 0.05, shade(P.rubber, 1.3));
+          mm.restore();
+          // Marker lights down the flank and the lamp cluster at the tail: a
+          // road trailer is required to carry both, and they are the only
+          // saturated colour on an olive vehicle.
+          [1.6, 3.4, 5.2, 7.0].forEach((z, i) => {
+            mm.save().move(1.52, 0.86, z);
+            mm.slab([[-0.03, -0.06], [0.03, -0.06], [0.03, 0.06], [-0.03, 0.06]],
+              0.1, 0.02, i % 2 ? shade(P.red, 1.1) : shade(P.rust, 1.3));
+            mm.restore();
+          });
+          mm.save().move(1.1, 0.78, 0.34);
+          mm.bar(-0.2, 0.2, 0, 0.34, -0.06, 0.06, shade(P.green, 0.86));
+          mm.save().move(0, 0.1, -0.07);
+          mm.slab([[-0.12, -0.06], [0.12, -0.06], [0.12, 0.06], [-0.12, 0.06]],
+            0.1, 0.02, shade(P.red, 1.15));
+          mm.restore();
+          mm.restore();
+          // The spare wheel on its carrier under the neck.
+          if (mm.detSign() > 0) {
+            roadWheel(mm, { x: 0.5, y: 0.34, z: 7.2, r: 0.6, w: 0.5 });
+          }
+        });
       },
     },
     jdam: {
@@ -6848,6 +8917,41 @@
         [0.2, 0.33, 0.53, 0.6, 0.66, 0.72].forEach((t, i) => {
           skinPanel(m, { rx: R, ry: R, th: i % 2 ? 118 : 242, z: t * L,
             w: R * 0.5, len: L * 0.04, depth: R * 0.05, col: shade(P.warhead, 0.88) });
+        });
+        // THE CLAMP RING IS BOLTED, and that is the whole engineering story of
+        // this kit: it is a tail section that CLAMPS onto a bomb somebody
+        // already owns, so the ring of fasteners at the join is the interface
+        // the deck is actually pricing. Three more rings mark the bomb's own
+        // sections, which are not part of the purchase and are drawn plainer.
+        flangeBolts(m, { z: 0.62, r: R * 1.04, br: R * 0.055, n: 18,
+          col: shade(P.metal, 0.86) });
+        [0.05, 0.28, 0.74].forEach((t, i) => {
+          flangeBolts(m, { z: t * L, r: R * 1.0, br: R * 0.045, n: 14, phase: i * 8,
+            col: shade(P.metal, 0.74) });
+        });
+        // The suspension band's own bolt line, and the three fin hinge pins.
+        flangeBolts(m, { z: L * 0.44, r: R * 1.02, br: R * 0.05, n: 16,
+          col: shade(P.metal, 0.78) });
+        finActuator(m, { z: 0.2, r: R * 1.02, n: 3, roll: 30,
+          w: R * 0.26, h: R * 0.17, len: 0.34, col: shade(P.green, 1.2) });
+        // The clamps down both umbilical runs, the arming solenoid on the
+        // spine and the tail plug the aircraft's rack mates with.
+        conduitClamps(m, { roll: 150, r: R, h: R * 0.13, z0: 0.7, z1: L * 0.64, n: 8,
+          col: shade(P.metal, 0.8) });
+        conduitClamps(m, { roll: 212, r: R, h: R * 0.08, z0: 0.74, z1: L * 0.48, n: 6,
+          col: shade(P.metal, 0.8) });
+        connector(m, { x: 0, y: R * 0.86, z: 0.42, r: R * 0.16, len: R * 0.24,
+          pitch: -70, col: shade(P.metal, 0.66) });
+        connector(m, { x: R * 0.5, y: R * 0.7, z: L * 0.5, r: R * 0.12, len: R * 0.18,
+          pitch: -50, yaw: 30, col: shade(P.metal, 0.66) });
+        // The nose fuze well's retainer ring, and the two body strakes' bolt
+        // lines — a strake is riveted to the case down its whole length and
+        // that line of heads is what stops it reading as a moulded fin.
+        flangeBolts(m, { z: L * 0.985, r: R * 0.42, br: R * 0.035, n: 10,
+          col: shade(P.metal, 0.7) });
+        m.both((mm) => {
+          boltRun(mm, { n: 7, r: R * 0.045, x0: R * 0.96, y0: 0, z0: 1.3, z1: 3.4,
+            yaw: 90, pitch: 0, col: shade(P.metal, 0.72) });
         });
       },
     },
@@ -6957,6 +9061,56 @@
         m.fan(ring(0.78, 0.78, seg).map((p) => [p[0], p[1], 0]), P.black);
         m.restore();
         m.restore();
+        if (m.far) return;
+        // THE INTERSTAGES ARE BOLTED AND THE FIRST STAGE IS STEERED. A
+        // three-stage booster has three separation planes, and each is a
+        // machined ring with a line of frangible bolts round it — the one place
+        // a card can see that this is a stack and not a tube. The first stage's
+        // nozzle gimbals, so the two rams stand outside the skirt.
+        m.save().rotX(-90);
+        [[0.032, 1], [0.432, 0.93], [0.735, 0.72], [0.94, 0.58]].forEach((j, i) => {
+          flangeBolts(m, { z: j[0] * L, r: R * j[1] * 1.02, br: R * 0.06, n: 20,
+            phase: i * 7, col: shade(P.metal, 0.8) });
+        });
+        tvcActuator(m, { z: L * 0.05, r: R * 0.8, br: R * 0.1, len: L * 0.05, n: 2,
+          roll: 45, col: shade(P.metal, 0.74) });
+        conduitClamps(m, { roll: 0, r: R, h: R * 0.13, z0: L * 0.06, z1: L * 0.4, n: 8,
+          col: shade(P.metal, 0.8) });
+        conduitClamps(m, { roll: 0, r: R * 0.86, h: R * 0.1, z0: L * 0.47, z1: L * 0.7, n: 6,
+          col: shade(P.metal, 0.8) });
+        // The shroud's separation rail down each side of the third stage, and
+        // the umbilical mast plate the silo pulls away at first motion.
+        m.both((mm) => {
+          mm.save().move(R * 0.6, 0, L * 0.86).rotZ(90);
+          mm.slab([[-R * 0.1, -L * 0.06], [R * 0.1, -L * 0.06], [R * 0.1, L * 0.06],
+            [-R * 0.1, L * 0.06]], R * 0.16, R * 0.05, shade(P.metal, 0.68));
+          mm.restore();
+        });
+        m.save().move(0, -R * 0.98, L * 0.2);
+        m.slab([[-R * 0.34, -L * 0.02], [R * 0.34, -L * 0.02], [R * 0.34, L * 0.02],
+          [-R * 0.34, L * 0.02]], R * 0.26, R * 0.08, shade(P.metal, 0.62));
+        m.restore();
+        m.restore();
+        // The silo's own hardware: the closure hinge, its two rams, and the
+        // ring of hold-down bolts round the collar. A hole in the ground with
+        // nothing round it is a hole in the ground.
+        m.save().rotX(-90);
+        for (let i = 0; i < 20; i += 1) {
+          const a = (i / 20) * Math.PI * 2;
+          m.save().move(Math.cos(a) * 2.24, Math.sin(a) * 2.24, -0.16).rotX(0);
+          m.soft((mm) => mm.tube(0.07, 0.05, 0.12, mm.lod(6, 4), shade(P.metal, 0.7), false));
+          m.restore();
+        }
+        m.restore();
+        m.save().move(0, 0.14, -2.5).rotX(-58);
+        m.slab([[-2.3, -0.2], [2.3, -0.2], [2.0, 2.4], [-2.0, 2.4]], 0.3, 0.09,
+          shade(P.metal, 0.58));
+        m.restore();
+        m.both((mm) => {
+          mm.save().move(1.4, 0.1, -2.2).rotX(-40);
+          mm.soft((s) => s.tube(0.12, 0.1, 1.6, s.lod(9, 5), shade(P.metal, 0.72), false));
+          mm.restore();
+        });
       },
     },
     x51: {
@@ -7070,6 +9224,58 @@
           { z: 0.5, pts: ringSuper(0.34, 0.28, seg, 4.5) },
         ], shade(P.greyDark, 1.2), false));
         m.restore();
+        if (m.far) return;
+        // THE SEPARATION PLANES, BOLTED. This vehicle is three objects — a
+        // motor, an adapter and a test article — and it exists to come apart at
+        // Mach 4.5. The frangible rings are where it does that, and they are
+        // the one place a card can see that the stack is a stack.
+        m.save().move(0, -0.05, -BL);
+        [0.4, BL * 0.5, BL - 0.3].forEach((z, i) => {
+          flangeBolts(m, { z, r: 0.445, br: 0.038, n: 18, phase: i * 6,
+            col: shade(P.metal, 0.78) });
+        });
+        conduitClamps(m, { roll: 0, r: 0.42, h: 0.045, z0: 0.5, z1: BL - 0.4, n: 7,
+          col: shade(P.metal, 0.78) });
+        tvcActuator(m, { z: 0.42, r: 0.34, br: 0.05, len: 0.32, n: 2, roll: 45,
+          col: shade(P.metal, 0.72) });
+        finActuator(m, { z: 1.0, r: 0.44, n: 4, roll: 45,
+          w: 0.09, h: 0.06, len: 0.9, col: shade(P.greyDark, 1.24) });
+        m.restore();
+        m.save().move(0, -0.05, -0.5);
+        flangeBolts(m, { z: 0.02, r: 0.4, br: 0.032, n: 16, col: shade(P.metal, 0.8) });
+        m.restore();
+        // THE TEST INSTRUMENTATION, which is what makes this a test vehicle
+        // and not a weapon: the flush-mounted pressure rakes down the
+        // compression flank, the telemetry aerials on the spine and the
+        // umbilical break plate the booster's harness parts at.
+        for (let i = 0; i < 5; i += 1) {
+          m.save().move(0, 0.215, 0.9 + i * 0.62);
+          m.slab([[-0.055, -0.05], [0.055, -0.05], [0.055, 0.05], [-0.055, 0.05]],
+            0.035, 0.011, i % 2 ? shade(P.metal, 0.86) : P.sensor);
+          m.restore();
+        }
+        bladeAerial(m, { y: 0.235, z: 3.3, h: 0.09, len: 0.16, col: shade(P.white, 0.8) });
+        bladeAerial(m, { y: 0.235, z: 1.35, h: 0.07, len: 0.13, col: shade(P.white, 0.8) });
+        m.save().move(0, -0.3, 0.15);
+        m.slab([[-0.16, -0.05], [0.16, -0.05], [0.16, 0.05], [-0.16, 0.05]], 0.09, 0.028,
+          shade(P.metal, 0.62));
+        m.restore();
+        connector(m, { x: 0.1, y: -0.3, z: 0.15, r: 0.035, len: 0.06, pitch: 90,
+          col: shade(P.metal, 0.66) });
+        // The isolator's cooling manifold along the engine's flank: a scramjet
+        // runs its own fuel through the structure to survive, and the plumbing
+        // is on the outside of the cowl where it can be inspected.
+        m.both((mm) => {
+          mm.save().move(0.3, -0.34, 0.5).rotX(-90);
+          mm.soft((s) => s.tube(0.03, 0.028, 1.3, s.lod(8, 4), shade(P.metal, 0.72), false));
+          mm.restore();
+          for (let i = 0; i < 4; i += 1) {
+            mm.save().move(0.3, -0.34, 0.6 + i * 0.36).rotX(-90);
+            mm.soft((s) => s.tube(0.04, 0.04, 0.03, s.lod(8, 4),
+              shade(P.metal, 0.9), false));
+            mm.restore();
+          }
+        });
       },
     },
     hgv: {
@@ -7156,11 +9362,97 @@
         m.restore();
         m.both((mm) => {
           mm.save().move(0.92, -0.05, 0).rotZ(-42);
-          facetMosaic(mm, { rows: 10, cols: 1, t: 0.018, gap: 0.16,
+          facetMosaic(mm, { rows: 14, cols: 2, t: 0.018, gap: 0.16,
             col: shade(P.stealth, 1.28),
             corners: [[-0.14, 0.15], [0.14, 0.15], [0.06, 3.85], [-0.06, 3.85]] });
           mm.restore();
         });
+        // THE AFT END IS A MATING PLANE, not a lid — this vehicle rides a
+        // booster and lets go of it, so the base carries the separation ring's
+        // bolt circle, the four spring plungers that push the two apart and the
+        // umbilical break plate the harness parts at.
+        m.save().rotX(-90);
+        for (let i = 0; i < 18; i += 1) {
+          const a = (i / 18) * Math.PI * 2;
+          m.save().move(Math.cos(a) * 0.5, Math.sin(a) * 0.5 - 0.05, 0.02);
+          m.soft((mm) => mm.tube(0.035, 0.026, 0.05, mm.lod(6, 4),
+            shade(P.metal, 0.72), false));
+          m.restore();
+        }
+        m.restore();
+        for (let i = 0; i < 4; i += 1) {
+          m.save().rotZ(45 + i * 90).move(0, 0.38, 0.1).rotY(90);
+          m.soft((mm) => mm.tube(0.05, 0.05, 0.14, mm.lod(8, 4), shade(P.metal, 0.86), false));
+          m.restore();
+        }
+        m.save().move(0, -0.28, 0.1);
+        m.slab([[-0.16, -0.05], [0.16, -0.05], [0.16, 0.05], [-0.16, 0.05]], 0.1, 0.03,
+          shade(P.metal, 0.6));
+        m.restore();
+        // THE FLAP HINGE LINE, DRAWN AS A HINGE. Four flaps means eight
+        // brackets and four actuator horns, and the horn is the part that says
+        // the flap is driven rather than fixed. This vehicle has no other
+        // moving part at all, so this is the whole of its machinery.
+        m.both((mm) => {
+          [[0.5, -0.24, 0.16, 14], [0.92, 0.06, 0.72, 0]].forEach((hg, k) => {
+            for (let i = 0; i < 2; i += 1) {
+              mm.save().move(hg[0] + (i ? 0.22 : -0.22), hg[1], hg[2]).rotY(90).rotX(hg[3]);
+              mm.soft((s) => s.tube(0.035, 0.035, 0.16, s.lod(8, 4),
+                shade(P.metal, 0.66), false));
+              mm.restore();
+            }
+            mm.save().move(hg[0], hg[1] + (k ? 0.1 : -0.1), hg[2]).rotX(k ? 40 : -140);
+            mm.soft((s) => s.tube(0.03, 0.026, 0.3, s.lod(8, 4), shade(P.metal, 0.78), false));
+            mm.restore();
+          });
+        });
+        // Instrumentation and the two flush aerials a test article carries: a
+        // glide body is telemetered from launch to impact and the plugs are the
+        // only openings in an otherwise sealed thermal shell.
+        for (let i = 0; i < 6; i += 1) {
+          m.save().move(0, 0.26 - i * 0.006, 0.7 + i * 0.5);
+          m.slab([[-0.07, -0.06], [0.07, -0.06], [0.07, 0.06], [-0.07, 0.06]],
+            0.026, 0.008, i % 2 ? shade(P.metal, 0.9) : P.sensor);
+          m.restore();
+        }
+        // THE SHOULDER IS TILED TOO. The belly, the deck and the chine already
+        // carry their courses; the two panels between the chine and the deck
+        // did not, and they are the largest untiled area left on a vehicle
+        // whose whole outer surface is thermal protection. Laid the long way,
+        // like the chine's, because that is the direction the heat runs.
+        m.both((mm) => {
+          mm.save().move(0.66, 0.14, 0).rotZ(-64);
+          facetMosaic(mm, { rows: 12, cols: 2, t: 0.016, gap: 0.15,
+            col: shade(P.stealth, 1.36),
+            corners: [[-0.22, 0.2], [0.22, 0.2], [0.09, 3.82], [-0.09, 3.82]] });
+          mm.restore();
+        });
+        // The flap actuator rams, visible up inside the open base: each flap is
+        // driven by a jack anchored to the aft bulkhead, and the base is the
+        // one face of this vehicle you can see any machinery through.
+        m.both((mm) => {
+          [[0.42, -0.2, -32], [0.72, 0.06, 26]].forEach((a) => {
+            mm.save().move(a[0], a[1], 0.36).rotX(a[2]).rotZ(a[0] > 0.6 ? -18 : 12);
+            mm.soft((s) => s.tube(0.05, 0.045, 0.5, s.lod(9, 5),
+              shade(P.metal, 0.6), false));
+            mm.save().move(0, 0, 0.5);
+            mm.soft((s) => s.tube(0.03, 0.028, 0.22, s.lod(8, 4),
+              shade(P.metal, 0.9), false));
+            mm.restore();
+            mm.restore();
+          });
+        });
+        // The nose cap's seal ring: carbon-carbon against the hot structure is
+        // a bolted joint with a compliant seal in it, and it is the one line on
+        // the front of the vehicle.
+        for (let i = 0; i < 12; i += 1) {
+          const a = (i / 12) * Math.PI * 2;
+          m.save().move(Math.cos(a) * 0.14, -0.02 + Math.sin(a) * 0.05, 4.62)
+            .rotY(90).rotZ(0);
+          m.soft((mm) => mm.tube(0.014, 0.011, 0.03, mm.lod(6, 4),
+            shade(P.metal, 0.7), false));
+          m.restore();
+        }
       },
     },
     owa: {
@@ -7300,6 +9592,58 @@
         finSet(m, { z: 0.16, r: 0.13, n: 4, span: 0.11, chord: 0.16, tip: 0.09,
           sweep: 0.04, roll: 45, thick: 0.02, col: shade(P.greyDark, 1.16) });
         motorBell(m, { z: 0.04, r: 0.1, len: 0.14 });
+        [0.2, 0.55, 0.9].forEach((z, i) => {
+          flangeBolts(m, { z, r: 0.142, br: 0.014, n: 10, phase: i * 12,
+            col: shade(P.metal, 0.76) });
+        });
+        m.restore();
+        // THE AIRFRAME IS SCREWED TOGETHER, and on a weapon costing what a car
+        // costs that is not a detail, it is the design. This one is built in a
+        // shed out of four mouldings and a plywood bulkhead, so the joints show
+        // as rows of countersunk screws rather than as machined flanges — a
+        // longitudinal seam down each side where the shells close, and a
+        // circumferential ring where the warhead section bolts on.
+        m.both((mm) => {
+          boltRun(mm, { n: 9, r: 0.011, x0: 0.245, y0: 0.0, z0: 0.5, z1: 2.7,
+            yaw: 90, pitch: 0, col: shade(P.metal, 0.8) });
+        });
+        flangeBolts(m, { z: L * 0.78, r: 0.23, br: 0.014, n: 12,
+          col: shade(P.metal, 0.78) });
+        // The wing spar's carry-through: two blocks where the delta bolts to
+        // the fuselage, with the four bolts a bolted wing actually has. On the
+        // real thing this is the joint that lets the aeroplane ship flat.
+        m.both((mm) => {
+          mm.save().move(0.24, -0.04, L * 0.5);
+          mm.bar(-0.05, 0.05, -0.05, 0.05, -0.34, 0.34, shade(P.metal, 0.68));
+          mm.restore();
+          boltRun(mm, { n: 4, r: 0.013, x0: 0.24, y0: 0.02, z0: L * 0.5 - 0.26,
+            z1: L * 0.5 + 0.26, pitch: -90, col: shade(P.metal, 0.86) });
+        });
+        // The elevon horns and their pushrods, out in the open under the wing
+        // where a cheap aeroplane puts them because a fairing costs money.
+        m.both((mm) => {
+          [[0.55, 0.3], [0.9, -0.4]].forEach((s) => {
+            mm.save().move(0.24 + 1.0 * s[0], -0.03, L * 0.92 - L * 0.8 * s[0] - 0.5)
+              .rotX(-40);
+            mm.slab([[-0.012, -0.09], [0.012, -0.09], [0.012, 0.03], [-0.012, 0.03]],
+              0.03, 0.009, shade(P.metal, 0.72));
+            mm.restore();
+            mm.save().move(0.24 + 1.0 * s[0], -0.07, L * 0.92 - L * 0.8 * s[0] - 0.42)
+              .rotX(-96);
+            mm.soft((t) => t.tube(0.008, 0.008, 0.16, t.lod(6, 4),
+              shade(P.metal, 0.9), false));
+            mm.restore();
+          });
+        });
+        // The fuel filler and the two servo hatches on the spine: screwed-on
+        // plywood squares, which is exactly what they are on the real one.
+        [[0.3, 90], [0.62, 90], [0.46, 270]].forEach((hp) => {
+          skinPanel(m, { rx: 0.25, ry: 0.21, th: hp[1], z: hp[0] * L,
+            w: 0.13, len: 0.13, depth: 0.012, col: shade(P.cloth, 0.82) });
+        });
+        m.save().move(0, 0.215, L * 0.66).rotX(-90);
+        m.soft((mm) => mm.tube(0.032, 0.03, 0.02, mm.lod(10, 5),
+          shade(P.metal, 0.8), false));
         m.restore();
       },
     },
@@ -7435,6 +9779,83 @@
         m.slab([[-0.016, -0.05], [0.016, -0.05], [0.016, 0.05], [-0.016, 0.05]], 0.04, 0.012,
           shade(P.cloth, 0.86));
         m.restore();
+        if (m.far) return;
+        // IT COMES APART INTO A RUCKSACK, and that is the design. Four break
+        // planes — nose, wing joint, tail boom, tail — and each one is a real
+        // joint: a locating spigot, three alignment pins round it and the
+        // rubber band groove that holds the two halves together. The model is
+        // 920 mm long and drawn up to ~380 px, so a 6 mm pin is two and a half
+        // pixels and the ring of three round a joint is a legible detail.
+        [[0.2, 0.052], [0.52, 0.062], [0.86, 0.05]].forEach((j) => {
+          for (let i = 0; i < 3; i += 1) {
+            m.save().rotZ(30 + i * 120).move(0, j[1] * 0.62, L * j[0]).rotX(-90);
+            m.soft((mm) => mm.tube(0.005, 0.004, 0.014, mm.lod(7, 4),
+              shade(P.metal, 0.82), false));
+            m.restore();
+          }
+          jointBand(m, { z: L * j[0] + 0.012, r: j[1] * 0.99, w: 0.008, k: 1.05,
+            seg, col: shade(P.rubber, 1.5) });
+        });
+        // The wing spar: a carbon tube running through the fuselage, with its
+        // two exposed ends and the sockets they push into. Every foam aeroplane
+        // in the world is built round one of these and this is where it shows.
+        m.both((mm) => {
+          mm.save().move(0.05, 0.03, L * 0.6).rotY(90);
+          mm.soft((s) => s.tube(0.008, 0.008, 0.16, s.lod(8, 4),
+            shade(P.black, 1.4), false));
+          mm.restore();
+          mm.save().move(0.055, 0.03, L * 0.6).rotY(90);
+          mm.soft((s) => s.tube(0.013, 0.012, 0.024, s.lod(8, 4),
+            shade(P.greyDark, 1.1), false));
+          mm.restore();
+          // The elevon horn and its pushrod out to the ruddervator, in the open
+          // where a two-kilogram aeroplane puts them.
+          mm.save().move(0.03, 0.02, L * 0.14).rotZ(-24);
+          mm.slab([[-0.004, -0.02], [0.004, -0.02], [0.004, 0.008], [-0.004, 0.008]],
+            0.008, 0.002, shade(P.metal, 0.8));
+          mm.restore();
+          mm.save().move(0.026, 0.028, L * 0.2).rotX(96).rotY(-10);
+          mm.soft((s) => s.tube(0.0022, 0.0022, 0.075, s.lod(5, 4),
+            shade(P.metal, 0.9), false));
+          mm.restore();
+        });
+        // The battery bay hatch on the spine with its two catches, and the
+        // servo bay cover under the wing: the two things a crew opens.
+        m.save().move(0, 0.06, L * 0.5);
+        m.slab([[-0.026, -0.07], [0.026, -0.07], [0.026, 0.07], [-0.026, 0.07]],
+          0.012, 0.004, shade(P.cloth, 1.14));
+        m.restore();
+        [[-0.02, 0.42], [0.02, 0.58]].forEach((c) => {
+          m.save().move(c[0], 0.066, L * c[1]);
+          m.bar(-0.006, 0.006, 0, 0.006, -0.01, 0.01, shade(P.metal, 0.8));
+          m.restore();
+        });
+        m.save().move(0, -0.056, L * 0.52);
+        m.slab([[-0.03, -0.05], [0.03, -0.05], [0.03, 0.05], [-0.03, 0.05]], 0.01, 0.003,
+          shade(P.cloth, 0.9));
+        m.restore();
+        // The nose camera's second window — this airframe carries a side-look
+        // and a forward-look and the pair of them is why it is bought — and the
+        // motor's cooling slots either side of the pylon.
+        m.save().move(0.048, 0.0, L * 0.9).rotY(64);
+        m.soft((mm) => mm.loft([
+          { z: 0, pts: ring(0.019, 0.019, mm.lod(12, 6)) },
+          { z: 0.007, pts: ring(0.021, 0.021, mm.lod(12, 6)) },
+          { z: 0.012, pts: ring(0.016, 0.016, mm.lod(12, 6)) },
+        ], shade(P.sensor, 1.3), false));
+        m.save().move(0, 0, 0.012);
+        m.fan(ring(0.016, 0.016, m.lod(12, 6)).map((p) => [p[0], p[1], 0]),
+          shade(P.glass, 0.9));
+        m.restore();
+        m.restore();
+        m.both((mm) => {
+          for (let i = 0; i < 4; i += 1) {
+            mm.save().move(0.03, 0.04 + i * 0.012, L * 0.06).rotZ(90);
+            mm.slab([[-0.003, -0.012], [0.003, -0.012], [0.003, 0.012], [-0.003, 0.012]],
+              0.01, 0.003, shade(P.sensor, 1.3));
+            mm.restore();
+          }
+        });
       },
     },
     switchblade: {
@@ -7566,6 +9987,94 @@
             depth: 0.004, col: shade(P.sensor, 1.3) });
         });
         boom(m, { x: 0, y: 0, z: L * 1.02, r: 0.0035, len: 0.03, col: shade(P.metal, 0.8) });
+        // THE ROUND IS SOLD IN ITS TUBE, and the tube is half of what the deck
+        // is buying — a Switchblade is a sealed launch container a soldier
+        // carries on his back and fires from the ground, so the container is
+        // not packaging, it is the weapon's launcher. It is also the only thing
+        // on this entry big enough to read at the 34 px ledger chip: the round
+        // itself is 650 mm long and vanishes there, and the tube on its baseplate
+        // does not. Drawn beside the round rather than round it, so the card
+        // shows both the article and what it comes in.
+        m.save().move(0.34, 0.055, -0.06).rotY(-14).rotZ(4);
+        const TR = 0.062, TL = 0.72, tseg = m.lod(18, 8);
+        m.soft((mm) => mm.tube(TR, TR, TL, tseg, shade(P.olive, 1.0), false));
+        // The reinforcing hoops down it, and the two end caps — the aft one
+        // domed, the forward one a frangible lid a shade darker than the tube.
+        [0.08, 0.26, 0.46, 0.64].forEach((t, i) => {
+          jointBand(m, { z: TL * t, r: TR, w: TR * 0.28, k: 1.09, seg: tseg,
+            col: shade(P.olive, i % 2 ? 0.86 : 0.94) });
+        });
+        m.save().move(0, 0, TL);
+        m.soft((mm) => mm.loft([
+          { z: 0, pts: ring(TR * 1.02, TR * 1.02, tseg) },
+          { z: TR * 0.2, pts: ring(TR * 0.98, TR * 0.98, tseg) },
+          { z: TR * 0.34, pts: ring(TR * 0.7, TR * 0.7, tseg) },
+        ], shade(P.olive, 0.8), false));
+        m.move(0, 0, TR * 0.34);
+        m.fan(ring(TR * 0.7, TR * 0.7, tseg).map((p) => [p[0], p[1], 0]),
+          shade(P.black, 1.5));
+        m.restore();
+        m.save().rotY(180);
+        m.soft((mm) => mm.loft([
+          { z: 0, pts: ring(TR * 1.04, TR * 1.04, tseg) },
+          { z: TR * 0.3, pts: ring(TR * 0.94, TR * 0.94, tseg) },
+          { z: TR * 0.5, pts: ring(TR * 0.62, TR * 0.62, tseg) },
+        ], shade(P.olive, 1.14), false));
+        m.move(0, 0, TR * 0.5);
+        m.fan(ring(TR * 0.62, TR * 0.62, tseg).map((p) => [p[0], p[1], 0]),
+          shade(P.olive, 0.9));
+        m.restore();
+        if (!m.far) {
+          // The carry handle, the sight rail along the top and the trigger
+          // grip under it: the three things a soldier actually touches.
+          m.save().move(0, TR * 1.05, TL * 0.5);
+          m.bar(-TR * 0.16, TR * 0.16, 0, TR * 0.12, -TL * 0.13, TL * 0.13,
+            shade(P.olive, 0.84));
+          m.bar(-TR * 0.16, TR * 0.16, TR * 0.12, TR * 0.5, -TL * 0.13, -TL * 0.1,
+            shade(P.olive, 0.84));
+          m.bar(-TR * 0.16, TR * 0.16, TR * 0.12, TR * 0.5, TL * 0.1, TL * 0.13,
+            shade(P.olive, 0.84));
+          m.bar(-TR * 0.2, TR * 0.2, TR * 0.5, TR * 0.62, -TL * 0.14, TL * 0.14,
+            shade(P.rubber, 1.5));
+          m.restore();
+          for (let i = 0; i < 7; i += 1) {
+            m.save().move(0, TR * 1.02, TL * (0.18 + i * 0.032));
+            m.bar(-TR * 0.1, TR * 0.1, 0, TR * 0.1, -TL * 0.008, TL * 0.008,
+              shade(P.metal, 0.6));
+            m.restore();
+          }
+          m.save().move(0, -TR * 1.05, TL * 0.34).rotX(22);
+          m.bar(-TR * 0.14, TR * 0.14, -TR * 0.7, 0, -TR * 0.24, TR * 0.24,
+            shade(P.black, 1.4));
+          m.restore();
+          // The firing unit's cable and its connector on the tube's flank, and
+          // the two shipping-plug seals at the ends.
+          connector(m, { x: TR * 0.98, y: 0, z: TL * 0.24, r: TR * 0.2, len: TR * 0.3,
+            yaw: 90, col: shade(P.metal, 0.6) });
+          for (let i = 0; i < 4; i += 1) {
+            m.save().move(TR * 0.9 + i * TR * 0.35, -TR * 0.2 - i * TR * 0.2,
+              TL * 0.24 - i * TL * 0.04).rotY(78).rotX(24 + i * 12);
+            m.soft((mm) => mm.tube(TR * 0.09, TR * 0.09, TR * 0.5, mm.lod(7, 4),
+              shade(P.black, 1.2), false));
+            m.restore();
+          }
+          // The stencil plate and the two shoulder-strap lugs: the tube is
+          // carried, so it has something to carry it by.
+          m.save().move(0, -TR * 1.02, TL * 0.68).rotX(180);
+          m.slab([[-TR * 0.34, -TL * 0.06], [TR * 0.34, -TL * 0.06],
+            [TR * 0.34, TL * 0.06], [-TR * 0.34, TL * 0.06]], TR * 0.1, TR * 0.03,
+          shade(P.white, 0.78));
+          m.restore();
+          [0.14, 0.82].forEach((t) => {
+            m.save().move(0, TR * 1.0, TL * t).rotX(-90);
+            m.soft((mm) => mm.loft([
+              { z: 0, pts: ring(TR * 0.16, TR * 0.1, mm.lod(10, 5)) },
+              { z: TR * 0.24, pts: ring(TR * 0.16, TR * 0.1, mm.lod(10, 5)) },
+            ], shade(P.metal, 0.7), false));
+            m.restore();
+          });
+        }
+        m.restore();
       },
     },
     cuas: {
@@ -7722,6 +10231,56 @@
         whip(m, { x: 1.02, y: bedY, z: 3.95, r: 0.014, len: 1.2, lean: -10 });
         connector(m, { x: 0.6, y: 0.7, z: 4.15, r: 0.03, len: 0.06 });
         connector(m, { x: 0.46, y: 0.7, z: 4.15, r: 0.03, len: 0.06 });
+        // THE READY ROUNDS, which is what makes this a battery rather than a
+        // radar. The effector layer of a counter-UAS fit is interceptors, they
+        // travel in sealed tubes on a rack at the back of the trailer, and a
+        // card that shows a sensor mast and nothing to shoot with is showing
+        // half the purchase. Six tubes in two rows, each with its hoops, its
+        // frangible lid and the firing lead off its base.
+        m.save().move(0, bedY + 0.16, 1.1).rotX(-26);
+        for (let i = 0; i < 6; i += 1) {
+          const cx = (-1 + (i % 3)) * 0.34, cy = Math.floor(i / 3) * 0.34;
+          m.save().move(cx, cy, 0);
+          canister(m, { r: 0.15, len: 1.5, col: shade(P.green, 1.0 + (i % 2) * 0.06),
+            hoops: 3 });
+          m.restore();
+        }
+        m.restore();
+        // The rack the tubes sit in: two end frames and the cross braces
+        // between them, which is what an elevating launcher actually is.
+        m.save().move(0, bedY + 0.16, 1.1).rotX(-26);
+        [0.1, 1.35].forEach((z) => {
+          m.save().move(0, 0, z);
+          m.bar(-0.6, 0.6, -0.24, -0.18, -0.05, 0.05, shade(P.metal, 0.62));
+          m.bar(-0.6, 0.6, 0.1, 0.16, -0.05, 0.05, shade(P.metal, 0.62));
+          m.bar(-0.6, 0.6, 0.44, 0.5, -0.05, 0.05, shade(P.metal, 0.62));
+          [-0.58, 0.58].forEach((x) => {
+            m.bar(x - 0.03, x + 0.03, -0.24, 0.5, -0.05, 0.05, shade(P.metal, 0.7));
+          });
+          m.restore();
+        });
+        for (let i = 0; i < 6; i += 1) {
+          const cx = (-1 + (i % 3)) * 0.34, cy = Math.floor(i / 3) * 0.34;
+          m.save().move(cx, cy - 0.12, 0.02).rotX(180);
+          m.soft((mm) => mm.tube(0.016, 0.016, 0.2, mm.lod(7, 4),
+            shade(P.black, 1.2), false));
+          m.restore();
+        }
+        m.restore();
+        // The elevation ram under the rack, and the trunnion it swings on.
+        m.both((mm) => {
+          mm.save().move(0.5, bedY + 0.1, 0.4).rotX(-64);
+          mm.soft((s) => s.tube(0.06, 0.055, 0.7, s.lod(9, 5),
+            shade(P.metal, 0.7), false));
+          mm.save().move(0, 0, 0.7);
+          mm.soft((s) => s.tube(0.035, 0.032, 0.24, s.lod(8, 4), P.metal, false));
+          mm.restore();
+          mm.restore();
+          mm.save().move(0.62, bedY + 0.16, 1.05).rotY(90);
+          mm.soft((s) => s.tube(0.075, 0.07, 0.14, s.lod(10, 5),
+            shade(P.green, 0.88), false));
+          mm.restore();
+        });
       },
     },
     link16: {
@@ -7876,6 +10435,134 @@
             shade(P.greyDark, 1.1 + ((i % 3) - 1) * 0.12));
           m.restore();
         }
+        m.restore();
+        // WHAT A FIT WEIGHS ON THE VEHICLE IT GOES INTO, and the fit is all
+        // this card ever shows — so at 2.2 m across, drawn up to ~380 px, a
+        // 40 mm shock mount is seven pixels and a 25 mm cable gland is four.
+        // This is the one class in the deck where hardware at that scale
+        // resolves, which is why the triangles go into fittings here and into
+        // fairings on the aircraft.
+        //
+        // The shock mounts. Avionics does not bolt rigidly to a vehicle that
+        // drives over ground; it sits on wire-rope or elastomeric isolators,
+        // and there are four under every rack.
+        [[-0.3, -0.28], [-0.3, 0.28], [0.72, -0.28], [0.72, 0.28],
+          [-0.62, -0.22], [-0.62, 0.22]].forEach((c, i) => {
+          m.save().move(c[0] + (i > 3 ? 0 : 0), 0.105, c[1]).rotX(-90);
+          m.soft((mm) => mm.loft([
+            { z: 0, pts: ring(0.05, 0.05, mm.lod(10, 5)) },
+            { z: 0.02, pts: ring(0.038, 0.038, mm.lod(10, 5)) },
+            { z: 0.05, pts: ring(0.038, 0.038, mm.lod(10, 5)) },
+            { z: 0.07, pts: ring(0.05, 0.05, mm.lod(10, 5)) },
+          ], shade(P.rubber, 1.4), false));
+          m.restore();
+        });
+        // The cable loom between the rack and the antenna group: a bundle of
+        // three runs with a P-clip every 200 mm and a gland where it enters the
+        // rack. A fit with no loom is a photograph of two boxes.
+        [[0.06, 0.2], [0.0, 0.24], [-0.06, 0.28]].forEach((run, k) => {
+          for (let i = 0; i < 5; i += 1) {
+            const t = i / 4;
+            const x = -0.05 + 0.42 * t + run[0] * 0.3;
+            const z = -0.02 + 0.26 * t;
+            m.save().move(x, 0.15 + run[1] * 0.1 * Math.sin(t * 3), z).rotY(-38).rotX(78);
+            m.soft((mm) => mm.tube(0.016, 0.016, 0.12, mm.lod(7, 4),
+              shade(P.black, 1.2 + k * 0.12), false));
+            m.restore();
+            if (i % 2 === 0) {
+              m.save().move(x, 0.13, z).rotX(-90);
+              m.soft((mm) => mm.tube(0.026, 0.026, 0.03, mm.lod(8, 4),
+                shade(P.metal, 0.72), false));
+              m.restore();
+            }
+          }
+        });
+        // The power distribution unit on the plate's aft edge: a box with its
+        // breakers in a row, the two-pole battery post and the earth stud. A
+        // radio fit that shows no power path is a radio fit nobody has wired.
+        m.save().move(0.5, 0.11, -0.5);
+        m.bar(-0.24, 0.24, 0, 0.3, -0.14, 0.14, shade(P.greyDark, 1.02));
+        for (let i = 0; i < 6; i += 1) {
+          m.save().move(-0.18 + i * 0.072, 0.2, 0.15).rotX(-10);
+          m.bar(-0.022, 0.022, -0.05, 0.05, -0.012, 0.012, shade(P.red, 1.05));
+          m.restore();
+        }
+        [[-0.12, P.red], [0.12, P.black]].forEach((p) => {
+          m.save().move(p[0], 0.3, 0).rotX(-90);
+          m.soft((mm) => mm.tube(0.024, 0.02, 0.05, mm.lod(8, 4), shade(p[1], 1.4), false));
+          m.restore();
+        });
+        m.restore();
+        // The transit case the spares travel in, strapped to the plate: every
+        // deployed fit carries one and it is the only soft-edged object here.
+        m.save().move(-0.5, 0.11, 0.5).rotY(6);
+        m.slab([[-0.28, -0.18], [0.28, -0.18], [0.28, 0.18], [-0.28, 0.18]], 0.26, 0.04,
+          shade(P.olive, 1.06));
+        for (let i = 0; i < 4; i += 1) {
+          m.save().move(-0.21 + i * 0.14, 0.14, 0.19);
+          m.bar(-0.03, 0.03, -0.03, 0.03, -0.012, 0.012, shade(P.metal, 0.7));
+          m.restore();
+        }
+        m.restore();
+        // The cable tray between the two racks, with its lid lifted at one end
+        // so the loom inside it is visible. On a real fit the tray is bolted
+        // down first and everything else is laid into it, and it is the one
+        // thing on the plate that says which way the wiring runs.
+        m.save().move(-0.46, 0.11, -0.02).rotY(90);
+        m.bar(-0.2, 0.2, 0, 0.06, -0.05, 0.05, shade(P.metal, 0.66));
+        m.both((mm) => {
+          mm.bar(-0.2, 0.2, 0, 0.09, 0.045, 0.055, shade(P.metal, 0.78));
+        });
+        m.save().move(0.08, 0.09, 0).rotX(0).rotZ(0);
+        m.slab([[-0.12, -0.055], [0.12, -0.055], [0.12, 0.055], [-0.12, 0.055]],
+          0.012, 0.004, shade(P.metal, 0.86));
+        m.restore();
+        m.save().move(-0.14, 0.13, 0).rotZ(26);
+        m.slab([[-0.09, -0.055], [0.09, -0.055], [0.09, 0.055], [-0.09, 0.055]],
+          0.012, 0.004, shade(P.metal, 0.92));
+        m.restore();
+        for (let i = 0; i < 4; i += 1) {
+          m.save().move(-0.19 + i * 0.05, 0.07, 0).rotX(90);
+          m.soft((mm) => mm.tube(0.012, 0.012, 0.34, mm.lod(7, 4),
+            shade(P.black, 1.1 + (i % 3) * 0.12), false));
+          m.restore();
+        }
+        m.restore();
+        // The timing and cryptographic units on the plate's forward corner: a
+        // data link is only a data link if every terminal agrees what time it
+        // is, and the reference is a box with its own oven and its own alarm.
+        m.save().move(0.66, 0.11, -0.36);
+        m.bar(-0.16, 0.16, 0, 0.34, -0.13, 0.13, shade(P.greyDark, 0.94));
+        for (let i = 0; i < 14; i += 1) {
+          m.bar(-0.155 + i * 0.022, -0.145 + i * 0.022, 0.34, 0.42, -0.12, 0.12,
+            shade(P.metal, 0.8 + (i % 2) * 0.1));
+        }
+        m.save().move(0, 0.18, 0.14).rotX(90);
+        m.slab([[-0.13, -0.09], [0.13, -0.09], [0.13, 0.09], [-0.13, 0.09]], 0.02, 0.006,
+          shade(P.sensor, 1.35));
+        m.restore();
+        [[-0.07, P.red], [0, shade(P.glass, 1.2)], [0.07, shade(P.rust, 1.3)]]
+          .forEach((lamp) => {
+            m.save().move(lamp[0], 0.26, 0.15);
+            m.bar(-0.013, 0.013, -0.011, 0.011, -0.006, 0.006, lamp[1]);
+            m.restore();
+          });
+        connector(m, { x: 0, y: 0.1, z: -0.14, r: 0.03, len: 0.055, yaw: 180 });
+        m.restore();
+        // Lifting eyes at the plate's four corners, and the two-bolt earth stud
+        // beside them. A fit this heavy is craned into a vehicle and bonded to
+        // its hull, and both are visible interfaces rather than assumptions.
+        [[-0.82, -0.62], [0.82, -0.62], [-0.82, 0.62], [0.82, 0.62]].forEach((c) => {
+          m.save().move(c[0], 0.11, c[1]).rotX(-90);
+          m.soft((mm) => mm.loft([
+            { z: 0, pts: ring(0.03, 0.02, mm.lod(9, 5)) },
+            { z: 0.05, pts: ring(0.03, 0.02, mm.lod(9, 5)) },
+          ], shade(P.metal, 0.64), false));
+          m.restore();
+        });
+        m.save().move(0.66, 0.11, 0.6).rotX(-90);
+        m.soft((mm) => mm.tube(0.018, 0.016, 0.05, mm.lod(8, 4),
+          shade(P.gold, 0.9), false));
         m.restore();
       },
     },
@@ -8157,6 +10844,78 @@
         m.slab([[-0.05, -0.05], [0.05, -0.05], [0.05, 0.05], [-0.05, 0.05]], 0.03, 0.009,
           P.sensor);
         m.restore();
+        // THE SIZE THIS ONE IS DRAWN AT, and it changes what is worth
+        // building: the whole model is 800 mm across, so at the ~380 px
+        // inspection view a 20 mm shock isolator is nine pixels and a 6 mm
+        // cable gland is three. This is the far end of the deck's scale range
+        // and the one place where a fitting the size of a thumb resolves.
+        //
+        // The isolators the plate stands on, and the four feet under them. An
+        // optic that is bolted rigidly to a vehicle sees nothing but vibration.
+        [[-0.24, -0.24], [0.24, -0.24], [-0.24, 0.24], [0.24, 0.24]].forEach((c) => {
+          m.save().move(c[0], 0, c[1]).rotX(-90);
+          m.soft((mm) => mm.loft([
+            { z: 0, pts: ring(0.03, 0.03, mm.lod(10, 5)) },
+            { z: 0.014, pts: ring(0.022, 0.022, mm.lod(10, 5)) },
+            { z: 0.036, pts: ring(0.022, 0.022, mm.lod(10, 5)) },
+            { z: 0.05, pts: ring(0.03, 0.03, mm.lod(10, 5)) },
+          ], shade(P.rubber, 1.4), false));
+          m.restore();
+          m.save().move(c[0], -0.014, c[1]);
+          m.slab([[-0.045, -0.045], [0.045, -0.045], [0.045, 0.045], [-0.045, 0.045]],
+            0.014, 0.005, shade(P.metal, 0.62));
+          m.restore();
+        });
+        // The cooling fan tray on the back of the stack: two fans behind a
+        // finger guard, which is what runs the heat out of the box the
+        // recognition actually happens in.
+        [-0.1, 0.1].forEach((x) => {
+          m.save().move(x, plateY + 0.13, -0.6).rotX(-90).rotY(90);
+          m.soft((mm) => mm.tube(0.052, 0.052, 0.02, mm.lod(12, 6),
+            shade(P.sensor, 1.4), false));
+          m.restore();
+          for (let i = 0; i < 7; i += 1) {
+            m.save().move(x, plateY + 0.13, -0.598).rotZ(i * (360 / 7)).rotX(28);
+            m.plate([[0.008, -0.012], [0.046, -0.02], [0.046, 0.02], [0.008, 0.012]],
+              0.004, shade(P.greyDark, 1.2));
+            m.restore();
+          }
+          for (let i = 0; i < 3; i += 1) {
+            m.save().move(x, plateY + 0.13, -0.594).rotX(-90);
+            m.soft((mm) => mm.loft([
+              { z: 0, pts: ring(0.018 + i * 0.017, 0.018 + i * 0.017, mm.lod(12, 6)) },
+              { z: 0.004, pts: ring(0.018 + i * 0.017, 0.018 + i * 0.017, mm.lod(12, 6)) },
+            ], shade(P.metal, 0.72), false));
+            m.restore();
+          }
+        });
+        // The boresight target on its folding arm: a checker plate the head is
+        // aligned against before the vehicle moves, stowed flat on the plate.
+        m.save().move(-0.24, plateY + 0.02, 0.02).rotZ(-8);
+        m.bar(-0.02, 0.02, 0, 0.012, -0.16, 0.16, shade(P.metal, 0.7));
+        m.restore();
+        m.save().move(-0.3, plateY + 0.03, 0.16).rotY(24);
+        m.slab([[-0.07, -0.07], [0.07, -0.07], [0.07, 0.07], [-0.07, 0.07]], 0.012, 0.004,
+          shade(P.white, 0.86));
+        for (let i = 0; i < 4; i += 1) {
+          m.save().move(-0.035 + (i % 2) * 0.07, 0.008, -0.035 + Math.floor(i / 2) * 0.07);
+          m.slab([[-0.032, -0.032], [0.032, -0.032], [0.032, 0.032], [-0.032, 0.032]],
+            0.004, 0.001, i % 3 ? P.black : shade(P.white, 1.1));
+          m.restore();
+        }
+        m.restore();
+        // The breather valve and the two lifting handles: a sealed box has to
+        // equalise and somebody has to carry it, and both are on the outline.
+        m.save().move(0.16, plateY + 0.3, -0.42).rotX(-90);
+        m.soft((mm) => mm.tube(0.014, 0.012, 0.02, mm.lod(8, 4),
+          shade(P.metal, 0.86), false));
+        m.restore();
+        m.both((mm) => {
+          mm.save().move(0.24, plateY + 0.34, -0.42);
+          mm.bar(-0.008, 0.008, 0, 0.04, -0.05, 0.05, shade(P.metal, 0.66));
+          mm.bar(-0.008, 0.008, 0.04, 0.052, -0.05, 0.05, shade(P.metal, 0.8));
+          mm.restore();
+        });
       },
     },
 
@@ -8226,6 +10985,73 @@
           col: shade(P.gold, 0.78) });
         bladeAerial(m, { x: 0.55, y: -1.24, z: -4.2, h: 0.2, len: 0.38, t: 0.045,
           col: shade(P.gold, 0.78) });
+        // THE RADIATORS, and on this spacecraft they are the largest surface
+        // after the arrays. An imaging satellite carries a cryocooler and the
+        // heat it lifts has to leave through a panel that never sees the sun,
+        // so the two flat wings on the anti-sun side are not decoration — they
+        // are why the bus is the shape it is. Drawn as honeycomb face sheets
+        // with the heat-pipe runs standing proud of them, because a bare white
+        // rectangle reads as a solar panel and this is the opposite of one.
+        m.both((mm) => {
+          mm.save().move(1.34, -0.2, -3.3).rotZ(-8);
+          mm.slab([[-0.05, -1.5], [0.05, -1.5], [0.05, 1.5], [-0.05, 1.5]], 1.9, 0.06,
+            shade(P.white, 0.98));
+          mm.restore();
+          for (let i = 0; i < 7; i += 1) {
+            mm.save().move(1.42, -0.2, -4.7 + i * 0.46).rotZ(-8);
+            mm.slab([[-0.035, -0.9], [0.035, -0.9], [0.035, 0.9], [-0.035, 0.9]],
+              0.06, 0.018, shade(P.metal, 0.72 + (i % 2) * 0.12));
+            mm.restore();
+          }
+          // The two stand-off struts each radiator hangs on, and the flexible
+          // heat-pipe loop that crosses the joint.
+          [-1.0, 1.0].forEach((z) => {
+            mm.save().move(1.1, -0.2, -3.3 + z).rotY(90);
+            mm.soft((s) => s.tube(0.045, 0.04, 0.28, s.lod(8, 4),
+              shade(P.metal, 0.66), false));
+            mm.restore();
+          });
+          for (let i = 0; i < 4; i += 1) {
+            const u = i / 3;
+            mm.save().move(1.06 + u * 0.22, -0.2 - Math.sin(u * Math.PI) * 0.14, -3.9)
+              .rotY(72).rotX(-90);
+            mm.soft((s) => s.tube(0.022, 0.022, 0.1, s.lod(6, 4),
+              shade(P.metal, 0.84), false));
+            mm.restore();
+          }
+        });
+        // The propellant tank and its feed, visible between the bus panels: a
+        // spacecraft that manoeuvres carries a sphere of hydrazine and the
+        // plumbing off it, and it is the roundest thing on an angular machine.
+        m.save().move(0, 0.9, -4.5);
+        m.soft((mm) => mm.ball(0.62, mm.lod(16, 8), mm.lod(8, 4), shade(P.gold, 1.18)));
+        m.restore();
+        m.save().move(0, 0.9, -4.5).rotX(-90);
+        m.soft((mm) => mm.tube(0.16, 0.14, 0.78, mm.lod(10, 5),
+          shade(P.metal, 0.68), false));
+        m.restore();
+        for (let i = 0; i < 3; i += 1) {
+          m.save().move(0.3 + i * 0.06, 0.42, -4.5 + (i - 1) * 0.3).rotX(-70).rotY(20);
+          m.soft((mm) => mm.tube(0.026, 0.026, 0.6, mm.lod(7, 4),
+            shade(P.metal, 0.8), false));
+          m.restore();
+        }
+        // The launch-vehicle separation ring on the aft face, with the ring of
+        // clamp-band shoes round it. Every satellite in the deck was bolted to
+        // something and let go of it, and this is where.
+        m.save().move(0, 0, -5.1).rotX(180);
+        m.soft((mm) => mm.loft([
+          { z: 0, pts: ring(1.15, 1.15, mm.lod(20, 8)) },
+          { z: 0.22, pts: ring(1.22, 1.22, mm.lod(20, 8)) },
+          { z: 0.34, pts: ring(1.15, 1.15, mm.lod(20, 8)) },
+        ], shade(P.metal, 0.66), false));
+        m.restore();
+        for (let i = 0; i < 16; i += 1) {
+          const a = (i / 16) * Math.PI * 2;
+          m.save().move(Math.cos(a) * 1.24, Math.sin(a) * 1.24, -5.28).rotZ(-a / DEG);
+          m.bar(-0.06, 0.06, -0.05, 0.05, -0.05, 0.05, shade(P.metal, 0.86));
+          m.restore();
+        }
       },
     },
   });

@@ -3099,6 +3099,7 @@
 <script src="/surface-material.js"></script>
 <script src="/site-mesh.js"></script>
 <script src="/town-mesh.js"></script>
+<script src="/city-mesh.js"></script>
 <script src="/equipment-import.js"></script>
 <script src="/equipment-ui.js"></script>
 <script src="/agency-ui.js"></script>
@@ -12943,20 +12944,46 @@ function renderMapCity() {
   const text = document.createElement('p');
   text.textContent = `${city.capital ? 'Capital · ' : ''}${Math.abs(city.lat).toFixed(2)}°${city.lat<0?'S':'N'} ${Math.abs(city.lon).toFixed(2)}°${city.lon<0?'W':'E'}`;
   const note = document.createElement('p'); note.className = 'map-city-note'; note.textContent = 'City location · zoom to explore the surrounding terrain';
-  // A representative block, not this city's streets. TownMesh says the same in
-  // its own description and the caption says it here, because a settlement
-  // drawn beside a real place name is exactly where someone would assume
-  // otherwise. It is 3,700 triangles at map detail and 75,000 close; this is a
-  // deliberate click on one card, so it gets the close one.
-  let vignette = null;
-  if (registerMeshProviders() && window.TownMesh) {
+  // A BIRDS-EYE OF THE CITY, and three things about it are worth stating here.
+  //
+  // WHAT IS SOURCED: the extent follows the record's population, the ground
+  // follows real ETOPO relief and stops at the real coastline when the terrain
+  // layer has loaded. WHAT IS NOT: every street, block and building. So the
+  // caption denies the plan explicitly — a convincing city drawn beside a real
+  // name is exactly where someone would assume otherwise.
+  //
+  // THE CAMERA IS STEEPER THAN A CARD'S. arsenal3d rests at 20 degrees, which
+  // is a low oblique: a city is 32 km wide and 600 m tall, 1.8%, so at 20
+  // degrees it is a plate and the plan — the grid, the parks, the coast, which
+  // is the whole read — is edge-on. It gets 58 degrees instead.
+  //
+  // AND THE SIZE IS IN THE CAPTION, because it cannot be in the picture. Every
+  // card frames its model to fill it, so Tokyo at 32 km and Reykjavik at 3 km
+  // fill it identically; fixing the scale instead would make the small ones a
+  // few pixels wide. The framing shows the shape, the caption carries the size.
+  let vignette = null, cityMesh = null;
+  const cityIndex = cityIndexFor(city);
+  if (cityIndex >= 0 && registerMeshProviders() && window.CityMesh) {
+    try { cityMesh = CityMesh.build(CITIES[cityIndex], { lod: 'close' }); } catch (e) { cityMesh = null; }
+  }
+  if (cityMesh) {
     vignette = document.createElement('div');
     vignette.className = 'map-city-view';
-    vignette.innerHTML = Arsenal3D.canvasHtml(townBlockFor(city));
+    const canvas = document.createElement('canvas');
+    canvas.className = 'kit3d';
+    vignette.append(canvas);
     const caption = document.createElement('p');
     caption.className = 'map-city-caption';
-    caption.textContent = 'Representative buildings for a settlement of this size — not a street map of ' + city.name + '.';
+    const km = cityMesh.extentMetres ? cityMesh.extentMetres / 1000
+      : (cityMesh.bounds.max[0] - cityMesh.bounds.min[0]) / 1000;
+    caption.textContent = 'Massing for a city of ' + city.pop.toLocaleString()
+      + ' across about ' + (km >= 10 ? Math.round(km) : km.toFixed(1)) + ' km'
+      + (cityMesh.assumed && cityMesh.assumed.land === false ? ', to the real coastline' : '')
+      + ' — the size and setting follow the record, the streets do not.';
     vignette.append(caption);
+    // Mounted directly rather than through scan(), because scan() cannot pass a
+    // camera and this one needs the steeper angle above.
+    vignette._mountCity = () => Arsenal3D.mount(canvas, 'city:' + cityIndex + '/close', { pitch: 58 });
   }
   const actions = document.createElement('div');
   const focus = document.createElement('button'); focus.textContent = 'Explore city'; focus.onclick = () => selectMapCity(city, true);
@@ -12970,7 +12997,7 @@ function renderMapCity() {
   if (vignette) card.append(vignette);
   card.append(actions);
   stage.append(card);
-  if (vignette) { installSurfaceTreatment(); Arsenal3D.scan(card); }
+  if (vignette) { installSurfaceTreatment(); vignette._mountCity(); }
 }
 
 /// The keyboard, and the buttons that stand for it. Arrows turn the globe by a
@@ -15964,6 +15991,19 @@ function registerMeshProviders() {
       });
     });
   }
+  if (window.CityMesh && window.CITIES) {
+    // The id is the city's INDEX in the shipped Natural Earth table. It has to
+    // encode which city, and it cannot encode the record itself: canvasHtml
+    // strips everything outside [a-z0-9_:/.-], so a name with a space or an
+    // accent — Sao Paulo, Nizhny Novgorod — would collide with its neighbours
+    // the moment the punctuation was stripped out.
+    Arsenal3D.register("city", (rest) => {
+      const [index, lod] = String(rest).split("/");
+      const record = CITIES[Number(index)];
+      if (!record) return null;
+      return CityMesh.build(record, { lod: lod === "map" ? "map" : "close" });
+    });
+  }
   if (window.TownMesh) {
     Arsenal3D.register("town", (rest) => {
       const [id, district, lod] = String(rest).split("/");
@@ -15981,19 +16021,29 @@ function registerMeshProviders() {
 /// would mean a fresh 75,000-triangle build on every click and an unbounded
 /// cache, where eight layouts across five districts is forty meshes at worst
 /// and instant after the first few.
-function townBlockFor(city) {
-  let h = 2166136261;
-  const key = String((city && (city.id || city.name)) || "city");
-  for (let i = 0; i < key.length; i += 1) { h ^= key.charCodeAt(i); h = Math.imul(h, 16777619); }
-  const layout = (h >>> 0) % 8;
-  const pop = +(city && city.pop) || 0;
-  // Character follows what the source record actually says, and nothing more.
-  const district = city && city.capital ? "civic"
-    : pop > 2000000 ? "commercial"
-    : pop > 400000 ? "mixed"
-    : pop > 90000 ? "residential" : "industrial";
-  return `town:${layout}/${district}/close`;
+/// WHICH CITY THIS CARD IS SHOWING.
+///
+/// This used to be townBlockFor, and it hashed the city's NAME into one of
+/// eight generic town blocks — so Tokyo and a ninety-thousand-person town were
+/// handed the same 148 x 104 m street corner. Ridge's words: "the town asset
+/// makes no sense to me. I would rather it just be a birds eye of the city."
+///
+/// A city cannot be assembled from those blocks. A million people is about
+/// 40 km2 of built-up ground, which is 2,599 of them and 507 MILLION triangles;
+/// even at map LOD it is 8.5M. City massing at roughly 100 m cells draws the
+/// whole place for less than the single block cost.
+function cityIndexFor(city) {
+  if (!city || typeof window === "undefined" || !window.CITIES) return -1;
+  // Matched on the coordinates rather than the name: the table has repeated
+  // names (there are several Springfields) and the selected record may be a
+  // copy rather than the same object.
+  for (let i = 0; i < CITIES.length; i += 1) {
+    const c = CITIES[i];
+    if (c.name === city.name && c.lon === city.lon && c.lat === city.lat) return i;
+  }
+  return -1;
 }
+
 
 function siteArtReady() {
   if (typeof window === "undefined") return false;

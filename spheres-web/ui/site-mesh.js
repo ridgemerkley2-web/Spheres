@@ -1739,6 +1739,703 @@
     }
   }
 
+  // ------------------------------------------------ groundworks, plant, yard
+  // THE SECOND DETAIL PASS, and every function in it is CLOSE RANGE ONLY: each
+  // one returns on its first line unless `d0.fine`, so the map mesh is byte for
+  // byte the mesh it was. The far LOD is what the globe overlay pays for, its
+  // worst kind sits forty-four triangles under a hard eight hundred, and it did
+  // not ask for any of this.
+  //
+  // WHAT THESE BUY. The first pass drew a building and a fence round it. A site
+  // is not that: it is a drainage trench with pipe bedded in it, a machine
+  // standing over the dig, a skip line, pipework and ducting hung off the
+  // structure, a stair somebody climbs to reach the roof, and paint on the
+  // ground telling a lorry where to stop. Every one of those changes the
+  // SILHOUETTE rather than the surface, which is the only kind of detail that
+  // survives on a 1124x102 strip — a rib you cannot resolve is wasted, a stack
+  // against the sky is not.
+  //
+  // AND THEY ARE STAGE-APPROPRIATE, which is the harder half of the brief. The
+  // trench, the excavator and the dumper belong to the two stages before
+  // anything stands and are gone by the frame stage; the access stair arrives
+  // with the steel; the pipework and ducting arrive with commissioning; the
+  // markings and the bunded store arrive at hand-over. Nothing here gives an
+  // early site a finished building.
+
+  /// Below-ground drainage, open. The first fortnight of every one of these
+  /// jobs is a trench, and a trench with bedding in it, pipe on the bedding, a
+  /// manhole every so often and a barrier down the open side is the most
+  /// legible thing an early site has to show.
+  ///
+  /// The cut sides are battered and drawn ONCE, then mirrored in Z: `tri`
+  /// re-winds under a negative determinant, so the far bank faces into the
+  /// trench by construction instead of by a hand-listed quad somebody has to
+  /// get right twice.
+  function drainage(m, x0, x1, z, d0) {
+    if (!d0.fine) return;
+    const bot = Math.max(PIT + 0.04, GRADE - 1.0), hw = 0.62, lip = 1.05;
+    m.save().move(0, 0, z);
+    for (const s of [-1, 1]) {
+      m.save();
+      if (s < 0) m.scale(1, 1, -1);
+      m.quad([x0, GRADE, lip], [x1, GRADE, lip], [x1, bot, hw], [x0, bot, hw], shade(P.earthCut, 0.98));
+      m.restore();
+    }
+    // The floor of a trench is churned, same as the floor of a dig, and for the
+    // same reason: with no textures a single quad reads as a painted stripe.
+    groundPatch(m, (x0 + x1) / 2, 0, x1 - x0, hw * 2, 10, 2, bot, P.earthCut, 0.08);
+    m.bar(x0, x1, bot, bot + 0.16, -0.44, 0.44, P.hardcore);                  // bedding
+    // Pipe in lengths with a collar at every joint. One continuous tube is a
+    // rod; the collars are what make it drainage.
+    const runs = Math.max(3, Math.round((x1 - x0) / 3.4));
+    for (let i = 0; i < runs; i += 1) {
+      const a = x0 + (i * (x1 - x0)) / runs, b = x0 + ((i + 1) * (x1 - x0)) / runs;
+      m.rod([a + 0.08, bot + 0.44, 0], [b - 0.08, bot + 0.44, 0], 0.26, 10, shade(P.concreteWet, 1.0), true);
+      m.rod([b - 0.26, bot + 0.44, 0], [b + 0.04, bot + 0.44, 0], 0.32, 10, shade(P.concreteWet, 0.84), false);
+    }
+    // Manholes: precast rings, a cover slab across them, and the frame and
+    // cover sitting proud of the fill where a wheel will find it.
+    for (let i = 0; i < 2; i += 1) {
+      const mx = x0 + ((i + 0.7) * (x1 - x0)) / 2.4;
+      for (let r = 0; r < 3; r += 1) {
+        const y = bot + 0.1 + r * ((GRADE - bot - 0.42) / 3);
+        m.column(mx, y, 0, (GRADE - bot - 0.42) / 3 - 0.04, 0.82 - r * 0.02, 0.82 - r * 0.02, 12,
+          shade(P.concreteWet, 0.92 + 0.05 * r), false);
+      }
+      m.beam(mx - 0.92, mx + 0.92, GRADE - 0.32, GRADE - 0.1, -0.92, 0.92, shade(P.concrete, 0.96), 0.03);
+      m.beam(mx - 0.46, mx + 0.46, GRADE - 0.1, GRADE + 0.06, -0.46, 0.46, shade(P.dark, 1.18), 0.025);
+      m.bar(mx - 0.34, mx + 0.34, GRADE + 0.06, GRADE + 0.08, -0.34, 0.34, shade(P.steel, 0.9));
+      for (let s = 0; s < 3; s += 1) {                                        // step irons down the shaft
+        m.rod([mx - 0.2, bot + 0.5 + s * 0.32, -0.62], [mx + 0.2, bot + 0.5 + s * 0.32, -0.62], 0.03, 6, P.galv, false);
+      }
+    }
+    // Arisings along the far bank, and pipe stock waiting to go in on the near
+    // one. A trench with no spoil beside it came from nowhere.
+    for (let i = 0; i < 7; i += 1) {
+      m.mound(x0 + 1.2 + (i * (x1 - x0 - 2.4)) / 6, GRADE, 2.4, 1.5, 0.95, 6, i % 2 ? P.earth : P.earthCut);
+    }
+    for (const bz of [-3.2, -2.2]) m.bar(x0 + 1.0, x0 + 8.0, GRADE, GRADE + 0.16, bz - 0.16, bz + 0.16, P.timber);
+    for (let i = 0; i < 3; i += 1) {
+      const py = GRADE + 0.42 + (i > 1 ? 0.5 : 0), px = -2.7 + (i % 2) * 0.56 + (i > 1 ? 0.28 : 0);
+      m.rod([x0 + 1.1, py, px], [x0 + 7.9, py, px], 0.26, 10, shade(P.concreteWet, 0.96), false);
+    }
+    // Pedestrian barrier down the open side. This is a hole somebody could fall
+    // into and the barrier is what says the site knows it.
+    for (let i = 0; i < 8; i += 1) {
+      const bx = x0 + 0.6 + (i * (x1 - x0 - 1.2)) / 7;
+      m.rod([bx, GRADE, -1.55], [bx, GRADE + 1.1, -1.55], 0.045, 6, P.safety, false);
+      m.bar(bx - 0.28, bx + 0.28, GRADE, GRADE + 0.08, -1.8, -1.3, shade(P.steel, 0.92));
+    }
+    for (const y of [GRADE + 0.55, GRADE + 1.06]) {
+      m.bar(x0 + 0.5, x1 - 0.5, y, y + 0.11, -1.6, -1.5, shade(P.safety, y > GRADE + 0.8 ? 1.1 : 0.86));
+    }
+    m.restore();
+  }
+
+  /// A tracked excavator. The one machine every one of these sites has, and the
+  /// one object that says WORK rather than "a building will be here". Tracks
+  /// with shoes on them, a slewing house with a counterweight and a cab, and a
+  /// boom, dipper and bucket carried on rams.
+  ///
+  /// THE POSE IS THE RECORDED STATUS AND NOTHING ELSE. A working machine has
+  /// the boom up and the bucket held over the dig; a stopped one has it lowered
+  /// with the bucket flat on the ground and the house squared up, which is how
+  /// plant is left when nobody is paying for it. Both poses cost exactly the
+  /// same triangles, so the stop cannot move a budget either.
+  function excavator(m, x, z, rot, working, d0) {
+    if (!d0.fine) return;
+    const seg = 8;
+    m.save().move(x, GRADE, z).rotY(rot);
+    // Undercarriage. A track is a frame with an idler at one end, a sprocket at
+    // the other and shoes wrapped round both; the shoe rhythm is the whole read
+    // of it and it is the cheapest thing on the machine.
+    for (const s of [-1, 1]) {
+      const tx = s * 1.18;
+      m.beam(tx - 0.26, tx + 0.26, 0.34, 0.84, -2.2, 2.2, shade(P.safety, 0.84), 0.03);
+      for (const ez of [-2.2, 2.2]) {
+        m.rod([tx - 0.32, 0.5, ez], [tx + 0.32, 0.5, ez], 0.46, seg, shade(P.dark, 1.12), true);
+      }
+      for (let r = 0; r < 4; r += 1) {
+        m.rod([tx - 0.24, 0.26, -1.35 + r * 0.9], [tx + 0.24, 0.26, -1.35 + r * 0.9], 0.2, 6, shade(P.steel, 0.9), true);
+      }
+      for (let i = 0; i < 11; i += 1) {
+        const sz = -2.5 + (i * 5.0) / 10;
+        m.bar(tx - 0.36, tx + 0.36, 0, 0.1, sz - 0.17, sz + 0.17, shade(P.dark, 0.94 + 0.14 * (i % 2)));
+        m.bar(tx - 0.36, tx + 0.36, 0.9, 1.0, sz - 0.17, sz + 0.17, shade(P.dark, 0.86 + 0.14 * (i % 2)));
+      }
+    }
+    m.beam(-1.25, 1.25, 0.46, 0.94, -1.3, 1.3, shade(P.steel, 0.84), 0.03);
+    m.column(0, 0.94, 0, 0.2, 0.84, 0.84, 12, shade(P.dark, 1.08), true);
+    // The house, slewed off the tracks. Counterweight at the back, engine cover
+    // beside the cab, glazing on two faces and a walkway rail round the deck.
+    m.save().move(0, 1.14, 0).rotY(working ? 24 : -6);
+    m.beam(-1.28, 1.28, 0, 1.0, -2.1, 1.45, shade(P.safety, 0.96), 0.04);
+    m.beam(-1.32, 1.32, -0.42, 0.96, -2.6, -2.0, shade(P.dark, 1.02), 0.05);
+    m.beam(-1.2, 1.2, 1.0, 1.46, -1.95, -0.15, shade(P.safety, 1.06), 0.035);
+    m.bar(-1.24, -0.18, 1.0, 2.44, 0.05, 1.45, shade(P.safety, 1.02));
+    m.bar(-1.22, -0.2, 1.34, 2.24, 1.45, 1.5, P.glass);
+    m.bar(-1.28, -1.24, 1.34, 2.24, 0.15, 1.45, P.glass);
+    m.beam(-1.32, -0.1, 2.44, 2.56, -0.02, 1.54, shade(P.safety, 0.84), 0.02);
+    m.column(0.78, 1.46, -1.45, 0.66, 0.1, 0.085, 8, shade(P.dark, 1.2), true);
+    for (const rz of [-1.9, -0.4]) {
+      m.rod([1.28, 1.0, rz], [1.28, 1.9, rz], 0.035, 6, P.galv, false);
+    }
+    m.rod([1.28, 1.9, -1.9], [1.28, 1.9, -0.4], 0.035, 6, shade(P.galv, 1.05), false);
+    // Boom, dipper and bucket. The angles are the only thing the status moves.
+    const boomUp = working ? 42 : 12, dipAt = working ? 66 : 34, bucketAt = working ? 34 : -22;
+    m.save().move(0.3, 0.36, 1.35).rotX(-boomUp);
+    m.beam(-0.28, 0.28, -0.3, 0.3, 0, 4.4, shade(P.safety, 1.0), 0.035);
+    for (const hs of [-1, 1]) {
+      m.rod([hs * 0.32, 0.24, 0.3], [hs * 0.32, 0.24, 4.1], 0.05, 6, shade(P.dark, 1.1), false);
+    }
+    m.rod([0, -0.62, 0.1], [0, -0.28, 2.3], 0.19, 8, shade(P.steel, 0.94), true);
+    m.rod([0, -0.3, 2.1], [0, -0.1, 3.1], 0.095, 8, shade(P.galv, 1.12), true);
+    m.save().move(0, 0, 4.4).rotX(dipAt);
+    m.beam(-0.22, 0.22, -0.26, 0.26, 0, 2.4, shade(P.safety, 0.94), 0.03);
+    m.rod([0, 0.5, 0.15], [0, 0.24, 1.5], 0.15, 8, shade(P.steel, 0.94), true);
+    m.rod([0, 0.26, 1.35], [0, 0.12, 2.2], 0.078, 8, shade(P.galv, 1.12), true);
+    m.save().move(0, 0, 2.4).rotX(bucketAt);
+    // The bucket, as its own section extruded across the machine. `rotY(90)`
+    // puts the profile plane where `webPlate` wants it, which fixes the
+    // handedness once instead of asking the call site to wind a shell by hand.
+    m.save().rotY(90);
+    m.webPlate([[0.0, 0.0], [-0.1, -0.98], [-0.7, -1.28], [-1.28, -0.95], [-1.32, -0.15]],
+      -0.62, 0.62, shade(P.safety, 0.86));
+    m.restore();
+    for (let t = 0; t < 5; t += 1) {
+      const tx = -0.5 + t * 0.25;
+      m.beam(tx - 0.06, tx + 0.06, -1.42, -1.2, 0.55, 0.85, shade(P.steel, 1.02), 0.012);
+    }
+    m.restore();
+    m.restore();
+    m.restore();
+    m.restore();
+    m.restore();
+  }
+
+  /// A site dumper. The other half of an earthworks job: something has to take
+  /// what the excavator digs out. Skip forward over the front axle, four wheels
+  /// that are round, a roll-over frame and a beacon.
+  function dumper(m, x, z, rot, d0) {
+    if (!d0.fine) return;
+    m.save().move(x, GRADE, z).rotY(rot);
+    m.beam(-0.92, 0.92, 0.52, 0.84, -1.9, 2.0, shade(P.steel, 0.9), 0.03);
+    for (const wz of [-1.2, 1.35]) {
+      for (const s of [-1, 1]) {
+        m.rod([s * 0.82, 0.6, wz], [s * 1.16, 0.6, wz], 0.6, 10, P.dark, true);
+        m.rod([s * 0.98, 0.6, wz], [s * 1.14, 0.6, wz], 0.28, 8, shade(P.steel, 1.02), true);
+      }
+      m.rod([-0.88, 0.6, wz], [0.88, 0.6, wz], 0.11, 6, shade(P.steel, 0.86), false);
+    }
+    // The skip. Tapered, because a straight-sided box is a crate.
+    m.save().rotY(90);
+    m.webPlate([[-2.35, 0.92], [-0.55, 0.92], [-0.25, 2.1], [-2.6, 2.1]], -1.02, 1.02, shade(P.safety, 1.04));
+    m.restore();
+    m.beam(-1.08, 1.08, 2.06, 2.2, -2.66, -0.2, shade(P.safety, 0.82), 0.025);
+    m.bar(-0.86, 0.86, 0.84, 1.5, 0.6, 1.9, shade(P.safety, 0.94));            // engine cover
+    m.bar(-0.5, 0.5, 1.5, 2.02, 1.0, 1.5, shade(P.dark, 1.1));                 // seat
+    for (const s of [-1, 1]) {
+      m.rod([s * 0.76, 1.5, 0.7], [s * 0.76, 3.0, 0.7], 0.058, 6, P.safety, false);
+      m.rod([s * 0.76, 1.5, 1.9], [s * 0.76, 3.0, 1.9], 0.058, 6, P.safety, false);
+      m.rod([s * 0.76, 3.0, 0.7], [s * 0.76, 3.0, 1.9], 0.058, 6, shade(P.safety, 1.08), false);
+    }
+    m.rod([-0.76, 3.0, 1.3], [0.76, 3.0, 1.3], 0.058, 6, shade(P.safety, 1.08), false);
+    m.column(0.58, 3.0, 1.9, 0.24, 0.11, 0.11, 8, shade(P.stopped, 1.15), true);
+    m.restore();
+  }
+
+  /// Skips. Waste segregation is three open containers, chained down, one of
+  /// them full. Built as five thin boxes rather than one solid, because a skip
+  /// is OPEN and a solid wedge with a rail on top is a skip-shaped paperweight —
+  /// you can see into these, which is the entire difference.
+  function skipLine(m, x, z, d0) {
+    if (!d0.fine) return;
+    for (let i = 0; i < 3; i += 1) {
+      const sz = z + i * 3.1, front = 1.02, back = 1.62;
+      const col = shade(i === 1 ? P.safety : P.hoard, 0.88 + 0.09 * i);
+      m.bar(x - 1.6, x + 1.6, GRADE + 0.16, GRADE + 0.26, sz - 1.15, sz + 1.15, shade(col, 0.8));
+      m.bar(x - 1.64, x - 1.56, GRADE + 0.16, GRADE + back, sz - 1.2, sz + 1.2, col);
+      m.bar(x + 1.56, x + 1.64, GRADE + 0.16, GRADE + back, sz - 1.2, sz + 1.2, shade(col, 0.94));
+      m.bar(x - 1.64, x + 1.64, GRADE + 0.16, GRADE + back, sz + 1.14, sz + 1.22, shade(col, 0.9));
+      m.bar(x - 1.64, x + 1.64, GRADE + 0.16, GRADE + front, sz - 1.22, sz - 1.14, shade(col, 1.06));
+      m.beam(x - 1.7, x + 1.7, GRADE + back, GRADE + back + 0.12, sz - 1.26, sz + 1.26, shade(col, 1.14), 0.018);
+      for (const hz of [sz - 0.5, sz + 0.5]) {                                 // lifting eyes and runners
+        m.beam(x - 1.72, x - 1.6, GRADE + 0.6, GRADE + 1.05, hz - 0.07, hz + 0.07, shade(P.steel, 0.94), 0.012);
+        m.beam(x + 1.6, x + 1.72, GRADE + 0.6, GRADE + 1.05, hz - 0.07, hz + 0.07, shade(P.steel, 0.94), 0.012);
+      }
+      m.beam(x - 1.66, x + 1.66, GRADE, GRADE + 0.16, sz - 1.0, sz - 0.7, shade(P.steel, 0.86), 0.02);
+      m.beam(x - 1.66, x + 1.66, GRADE, GRADE + 0.16, sz + 0.7, sz + 1.0, shade(P.steel, 0.86), 0.02);
+      if (i !== 1) continue;
+      for (let f = 0; f < 4; f += 1) {                                          // the full one
+        m.mound(x - 0.9 + (f % 2) * 1.5, GRADE + 1.1, sz - 0.5 + Math.floor(f / 2) * 1.0, 0.85, 0.75, 6,
+          shade(f % 2 ? P.timber : P.hardcore, 0.9 + 0.08 * f));
+      }
+    }
+  }
+
+  /// The external access stair. Every industrial building on this list has one,
+  /// nothing on it was drawn before, and it is the single cheapest thing that
+  /// changes a GABLE SILHOUETTE from a triangle to a building somebody works
+  /// in: two flights with a half landing between them, stringers at the pitch,
+  /// level treads, a handrail with real posts, and a hooped ladder off the top
+  /// landing to the roof. It arrives with the steel — primed at the frame
+  /// stage, galvanised once the building is clad — and it never leaves.
+  function accessStair(m, x, z, y0, top, d0, col) {
+    if (!d0.fine) return;
+    const wide = 1.15, rise = (top - y0) / 2, len = rise * 1.5;
+    for (let f = 0; f < 2; f += 1) {
+      const dir = f ? -1 : 1;
+      const zBase = z + (f ? len : 0), yBase = y0 + f * rise;
+      // Stringers, laid along the pitch. Drawn in a rotated frame so the member
+      // is a real raking section and not a stepped stack of boxes.
+      m.save().move(x, yBase, zBase).rotX(-dir * Math.atan2(rise, len) / DEG);
+      const run = Math.hypot(rise, len);
+      for (const s of [-1, 1]) {
+        m.beam(s * (wide / 2) - 0.055, s * (wide / 2) + 0.055, -0.32, -0.02, 0, dir * run, col, 0.016);
+      }
+      m.restore();
+      const steps = 7;
+      for (let i = 0; i < steps; i += 1) {
+        const t = (i + 0.5) / steps;
+        const ty = yBase + rise * t, tz = zBase + dir * len * t;
+        m.beam(x - wide / 2, x + wide / 2, ty, ty + 0.05, tz - 0.13, tz + 0.13, shade(col, 1.08), 0.011);
+        m.bar(x - wide / 2 + 0.03, x + wide / 2 - 0.03, ty - 0.16, ty, tz + dir * 0.12, tz + dir * 0.16, shade(col, 0.82));
+      }
+      // Handrail: a raking top rail and a knee rail on posts, both sides.
+      for (const s of [-1, 1]) {
+        const px = x + s * (wide / 2 + 0.06);
+        for (const hy of [1.02, 0.55]) {
+          m.rod([px, yBase + hy, zBase], [px, yBase + rise + hy, zBase + dir * len], 0.036, 6,
+            shade(P.galv, hy > 0.8 ? 1.06 : 0.92), false);
+        }
+        for (let p = 0; p <= 2; p += 1) {
+          const t = p / 2;
+          m.rod([px, yBase + rise * t, zBase + dir * len * t], [px, yBase + rise * t + 1.02, zBase + dir * len * t],
+            0.036, 6, P.galv, false);
+        }
+      }
+    }
+    // Half landing at the head of the first flight, top landing at the head of
+    // the second, both grated and both railed.
+    for (const [ly, lz] of [[y0 + rise, z + len + 0.7], [top, z - 0.7]]) {
+      gratedDeck(m, x, lz, wide + 0.3, 1.4, ly, d0, true);
+      for (const s of [-1, 1]) {
+        m.beam(x + s * (wide / 2 + 0.14) - 0.06, x + s * (wide / 2 + 0.14) + 0.06, ly - 0.42, ly - 0.26,
+          lz - 0.7, lz + 0.7, shade(col, 0.9), 0.014);
+        m.beam(x + s * (wide / 2 + 0.14) - 0.08, x + s * (wide / 2 + 0.14) + 0.08, GRADE, ly - 0.4,
+          lz + 0.5, lz + 0.66, col, 0.018);
+      }
+    }
+    const lad = z - 1.28;
+    // Hooped cat ladder off the top landing. A roof nobody can reach is a roof
+    // with nothing on it, and this file puts plant on every one of them.
+    for (const s of [-1, 1]) {
+      m.rod([x + s * 0.24, top, lad], [x + s * 0.24, top + 2.6, lad], 0.036, 6, P.galv, false);
+    }
+    for (let r = 0; r < 8; r += 1) {
+      m.rod([x - 0.24, top + 0.24 + r * 0.3, lad], [x + 0.24, top + 0.24 + r * 0.3, lad], 0.026, 6,
+        shade(P.galv, 0.96), false);
+    }
+    for (let hp = 0; hp < 3; hp += 1) {
+      const hy = top + 0.8 + hp * 0.8;
+      m.rod([x - 0.42, hy, lad], [x - 0.42, hy, lad - 0.56], 0.03, 6, shade(P.galv, 1.04), false);
+      m.rod([x + 0.42, hy, lad], [x + 0.42, hy, lad - 0.56], 0.03, 6, shade(P.galv, 1.04), false);
+      m.rod([x - 0.42, hy, lad - 0.56], [x + 0.42, hy, lad - 0.56], 0.03, 6, shade(P.galv, 1.04), false);
+    }
+  }
+
+  /// External pipework, cable ladder and rainwater goods on an elevation. This
+  /// is what an industrial building actually looks like from the yard and the
+  /// first pass drew none of it: a bank of pipes on brackets at high level with
+  /// flanged joints and one line turning up and over the eaves, a cable ladder
+  /// above them with rungs you can count, downpipes into shoes, and a valve set
+  /// standing on the ground where somebody can reach it.
+  function wallServices(m, o, d0, k) {
+    if (!d0.fine) return;
+    const b = o.block, z = o.z + b.dz / 2, y = o.deck + Math.max(2.6, b.eaves - 2.6);
+    const x0 = o.x - b.w * 0.42, x1 = o.x + b.w * 0.42;
+    const lines = [[0.0, 0.19, shade(P.galv, 1.0)], [0.52, 0.15, shade(k.accent, 1.1)], [0.98, 0.12, shade(P.safety, 0.9)]];
+    for (const [dy, r, col] of lines) {
+      m.rod([x0, y + dy, z + 0.62], [x1, y + dy, z + 0.62], r, 10, col, false);
+      for (let j = 0; j < 4; j += 1) {                                          // flanged joints
+        const jx = x0 + ((j + 0.5) * (x1 - x0)) / 4;
+        m.rod([jx - 0.07, y + dy, z + 0.62], [jx + 0.07, y + dy, z + 0.62], r * 1.4, 10, shade(col, 0.8), true);
+      }
+    }
+    // Brackets. Pipework hanging on nothing is a stripe painted on a wall.
+    for (let i = 0; i <= 5; i += 1) {
+      const bx = x0 + (i * (x1 - x0)) / 5;
+      m.beam(bx - 0.07, bx + 0.07, y - 0.34, y + 1.2, z + 0.04, z + 0.82, shade(P.steel, 0.92), 0.015);
+      m.rod([bx, y - 0.3, z + 0.8], [bx, y - 0.9, z + 0.1], 0.045, 6, shade(P.steel, 0.88), false);
+    }
+    // One line turns up the gable and over the eaves onto the roof, which is
+    // the bit that changes the outline against the sky.
+    m.rod([x1, y, z + 0.62], [x1 + 0.9, y, z + 0.62], 0.19, 10, shade(P.galv, 1.0), false);
+    m.rod([x1 + 0.9, y - 0.1, z + 0.62], [x1 + 0.9, o.deck + b.eaves + 1.2, z + 0.62], 0.19, 10, shade(P.galv, 1.06), false);
+    m.rod([x1 + 0.9, o.deck + b.eaves + 1.2, z + 0.62], [x1 + 0.9, o.deck + b.eaves + 1.2, z - 1.6], 0.19, 10,
+      shade(P.galv, 0.94), false);
+    // Cable ladder: two side rails and rungs at 300, which is the one detail
+    // that separates it from a duct.
+    for (const s of [-1, 1]) {
+      m.beam(x0, x1, y + 1.42, y + 1.56, z + 0.4 + s * 0.26, z + 0.5 + s * 0.26, shade(P.galv, 0.94), 0.014);
+    }
+    const rungs = Math.max(6, Math.round((x1 - x0) / 0.9));
+    for (let i = 0; i < rungs; i += 1) {
+      const rx = x0 + ((i + 0.5) * (x1 - x0)) / rungs;
+      m.bar(rx - 0.05, rx + 0.05, y + 1.45, y + 1.53, z + 0.16, z + 0.74, shade(P.galv, 1.06));
+    }
+    // Rainwater goods: hopper, pipe, bracket, shoe. Four parts, and a building
+    // without them sheds its roof onto its own wall.
+    for (let i = 0; i < 3; i += 1) {
+      const dx = o.x - b.w * 0.34 + (i * b.w * 0.68) / 2;
+      m.rod([dx, GRADE + 0.34, z + 0.2], [dx, o.deck + b.eaves - 0.34, z + 0.2], 0.09, 8, shade(P.galv, 0.98), false);
+      m.beam(dx - 0.3, dx + 0.3, o.deck + b.eaves - 0.34, o.deck + b.eaves + 0.04, z + 0.02, z + 0.42,
+        shade(P.galv, 1.08), 0.02);
+      m.rod([dx, GRADE + 0.34, z + 0.2], [dx, GRADE + 0.2, z + 0.62], 0.09, 8, shade(P.galv, 0.9), true);
+      for (const by of [GRADE + 1.6, GRADE + 3.4]) {
+        m.bar(dx - 0.14, dx + 0.14, by, by + 0.09, z, z + 0.26, shade(P.galv, 0.86));
+      }
+    }
+    // A valve set at ground level: two risers, a manifold, gate bodies and
+    // handwheels, on a plinth with a bollard in front of it.
+    const vx = o.x + b.w * 0.30;
+    m.beam(vx - 1.3, vx + 1.3, GRADE, GRADE + 0.26, z + 0.3, z + 1.5, shade(P.concrete, 0.94), 0.025);
+    for (let i = 0; i < 2; i += 1) {
+      const rx = vx - 0.7 + i * 1.4;
+      m.rod([rx, GRADE + 0.26, z + 0.9], [rx, y - 0.1, z + 0.9], 0.14, 10, shade(P.galv, 1.02), false);
+      m.beam(rx - 0.24, rx + 0.24, GRADE + 1.16, GRADE + 1.62, z + 0.66, z + 1.14, shade(k.accent, 0.9), 0.02);
+      m.column(rx, GRADE + 1.62, z + 0.9, 0.1, 0.34, 0.34, 12, shade(P.stopped, 1.0), true);
+      for (let s = 0; s < 3; s += 1) {
+        const a = (s * 60) * DEG;
+        m.rod([rx - Math.cos(a) * 0.32, GRADE + 1.67, z + 0.9 - Math.sin(a) * 0.32],
+          [rx + Math.cos(a) * 0.32, GRADE + 1.67, z + 0.9 + Math.sin(a) * 0.32], 0.035, 6, shade(P.stopped, 1.1), false);
+      }
+    }
+    m.rod([vx - 0.7, GRADE + 0.7, z + 0.9], [vx + 0.7, GRADE + 0.7, z + 0.9], 0.14, 10, shade(P.galv, 0.92), false);
+    bollard(m, vx, z + 2.1, 1.0, 0.16, 8, P.safety);
+  }
+
+  /// Extract ducting and vent stacks. The top of an industrial building is
+  /// never empty and it is the half of the silhouette a wide strip actually
+  /// shows: a rectangular duct run on stools with a flanged joint every few
+  /// metres, an elbow into a fan casing with a weather cowl, and two vent
+  /// stacks with rain caps and stays.
+  ///
+  /// `stage` splits it honestly. The duct route goes in with the services at
+  /// the enclosing stage; the fan and the stacks are commissioned and only
+  /// stand once the building is handed over.
+  function roofServices(m, o, stage, d0) {
+    if (!d0.fine) return;
+    const b = o.block, hw = b.w / 2;
+    const off = Math.min(4.0, b.w * 0.30);
+    const ry = o.deck + b.eaves + (b.ridge - b.eaves) * (1 - off / hw);
+    const z0 = o.z - b.dz * 0.36, z1 = o.z + b.dz * 0.36;
+    const dx0 = o.x - off - 0.8, dx1 = o.x - off + 0.8;
+    // Stools, then the duct on them. A duct lying on a roof is a duct that
+    // leaks; the stools are what hold it off the sheeting.
+    const stools = Math.max(3, Math.round((z1 - z0) / 3.4));
+    for (let i = 0; i <= stools; i += 1) {
+      const sz = z0 + (i * (z1 - z0)) / stools;
+      for (const sx of [dx0 + 0.16, dx1 - 0.16]) {
+        m.beam(sx - 0.07, sx + 0.07, ry, ry + 0.52, sz - 0.12, sz + 0.12, shade(P.steel, 0.92), 0.014);
+      }
+      m.beam(dx0, dx1, ry + 0.46, ry + 0.58, sz - 0.14, sz + 0.14, shade(P.steel, 0.88), 0.016);
+    }
+    const runs = Math.max(3, Math.round((z1 - z0) / 3.0));
+    for (let i = 0; i < runs; i += 1) {
+      const a = z0 + (i * (z1 - z0)) / runs, c = z0 + ((i + 1) * (z1 - z0)) / runs;
+      m.beam(dx0, dx1, ry + 0.58, ry + 1.5, a + 0.05, c - 0.05, shade(P.galv, 0.98 + 0.04 * (i % 2)), 0.03);
+      m.beam(dx0 - 0.09, dx1 + 0.09, ry + 0.5, ry + 1.58, c - 0.08, c + 0.08, shade(P.galv, 1.08), 0.018);
+    }
+    // The elbow up out of the run, and the fan on top of it. Commissioned kit.
+    if (stage >= 5) {
+      m.beam(dx0, dx1, ry + 1.5, ry + 2.5, z1 - 1.5, z1 - 0.1, shade(P.galv, 1.02), 0.03);
+      m.beam(dx0 - 0.12, dx1 + 0.12, ry + 2.5, ry + 2.66, z1 - 1.62, z1 + 0.02, shade(P.galv, 1.1), 0.02);
+      m.column((dx0 + dx1) / 2, ry + 2.66, z1 - 0.8, 0.82, 0.66, 0.66, 14, shade(P.clad, 1.0), true);
+      m.column((dx0 + dx1) / 2, ry + 3.48, z1 - 0.8, 0.34, 0.78, 0.5, 14, shade(P.dark, 1.15), true);
+      for (const sx of [-0.5, 0.5]) {
+        m.rod([(dx0 + dx1) / 2 + sx, ry + 2.72, z1 - 1.5], [(dx0 + dx1) / 2 + sx, ry + 3.3, z1 - 0.9], 0.04, 6,
+          shade(P.galv, 0.94), false);
+      }
+      // Vent stacks over the ridge, with caps and stays. Two of them, because a
+      // single stack reads as a chimney and a pair reads as process extract.
+      for (let s = 0; s < 2; s += 1) {
+        const sx = o.x + b.w * 0.16, sz = o.z + (s ? 1 : -1) * b.dz * 0.28;
+        const base = o.deck + b.eaves + (b.ridge - b.eaves) * (1 - Math.abs(b.w * 0.16) / hw);
+        m.column(sx, base, sz, 4.6, 0.42, 0.36, 14, shade(P.galv, 1.0), false);
+        m.column(sx, base + 4.6, sz, 0.24, 0.5, 0.5, 14, shade(P.galv, 1.08), false);
+        m.column(sx, base + 4.9, sz, 0.34, 0.54, 0.16, 14, shade(P.dark, 1.1), true);
+        m.column(sx, base + 0.5, sz, 0.14, 0.52, 0.52, 14, shade(P.galv, 0.86), false);
+        for (let g = 0; g < 3; g += 1) {
+          const a = (g * 120 + 30) * DEG;
+          m.rod([sx, base + 3.4, sz], [sx + Math.cos(a) * 2.2, base + 0.1, sz + Math.sin(a) * 2.2], 0.035, 5,
+            shade(P.dark, 1.05), false);
+        }
+      }
+    }
+  }
+
+  /// Hardstanding markings and a walkway. A yard with no paint on it is a grey
+  /// rectangle, and paint is the one thing a renderer with no textures has to
+  /// build out of geometry: the walkway route from the gate to the door in its
+  /// own surface tone with edge lines, a hatched keep-clear box, two direction
+  /// arrows as real polygons, and the bay numbers on posts.
+  ///
+  /// All of it flat, deliberately: none of it opens a smoothing group, so the
+  /// check that plate and paint keep their exact face normal still holds here.
+  function yardMarkings(m, W, D, d0) {
+    if (!d0.fine) return;
+    const y = GRADE + 0.11, wz = -D * 0.22;
+    m.save().move(0, y, 0);
+    m.plate([[-W * 0.44, wz - 0.7], [W * 0.16, wz - 0.7], [W * 0.16, wz + 0.7], [-W * 0.44, wz + 0.7]], 0.012,
+      shade(P.asphalt, 1.22));
+    m.plate([[W * 0.12, wz - 0.7], [W * 0.18, wz - 0.7], [W * 0.18, -D * 0.02], [W * 0.12, -D * 0.02]], 0.014,
+      shade(P.asphalt, 1.22));
+    m.restore();
+    for (const s of [-1, 1]) {
+      m.bar(-W * 0.44, W * 0.17, y + 0.012, y + 0.03, wz + s * 0.7 - 0.06, wz + s * 0.7 + 0.06, P.lane);
+    }
+    // Hatched keep-clear, on the diagonal, in front of the gate.
+    for (let i = 0; i < 7; i += 1) {
+      const hx = -W * 0.14 + i * 1.15;
+      m.save().move(0, y, 0);
+      m.plate([[hx, -D * 0.38], [hx + 0.22, -D * 0.38], [hx + 1.02, -D * 0.30], [hx + 0.8, -D * 0.30]], 0.016, P.lane);
+      m.restore();
+    }
+    // Two direction arrows, as a shaft and a head rather than as one outline:
+    // an arrow is concave, `plate` fans from its first vertex, and a fan across
+    // a concave outline lays triangles outside the shape and degenerate ones
+    // along the notch. Two convex pieces are the honest way to draw it.
+    for (let a = 0; a < 2; a += 1) {
+      const ax = -W * 0.30 + a * W * 0.30, az = -D * 0.36;
+      m.save().move(0, y, 0);
+      m.plate([[ax - 0.26, az], [ax + 0.26, az], [ax + 0.26, az + 1.55], [ax - 0.26, az + 1.55]], 0.016, P.lane);
+      m.plate([[ax - 0.64, az + 1.4], [ax + 0.64, az + 1.4], [ax, az + 2.42]], 0.016, P.lane);
+      m.restore();
+    }
+    // A speed roundel and the bay numbers. Both are things a yard has and both
+    // are cheap; the posts also give the apron something vertical to read the
+    // marked bays against.
+    m.save().move(0, y, 0);
+    m.plate([[W * 0.10, -D * 0.14], [W * 0.10 + 1.4, -D * 0.14], [W * 0.10 + 1.4, -D * 0.14 + 1.4],
+      [W * 0.10, -D * 0.14 + 1.4]], 0.016, P.lane);
+    m.restore();
+    m.bar(W * 0.10 + 0.28, W * 0.10 + 1.12, y + 0.016, y + 0.032, -D * 0.14 + 0.6, -D * 0.14 + 0.8,
+      shade(P.asphalt, 1.1));
+    for (let i = 0; i < 4; i += 1) {
+      const px = -W * 0.12 + i * 2.6, pz = -D * 0.27;
+      m.beam(px - 0.05, px + 0.05, GRADE + 0.1, GRADE + 1.15, pz - 0.05, pz + 0.05, shade(P.galv, 0.94), 0.012);
+      m.webPlate([[px - 0.24, GRADE + 0.86], [px + 0.24, GRADE + 0.86], [px + 0.24, GRADE + 1.24], [px - 0.24, GRADE + 1.24]],
+        pz - 0.04, pz + 0.02, shade(P.hut, 1.08));
+    }
+  }
+
+  /// The bunded store. Every facility on this list keeps fuel, oil or gas
+  /// outside in a bund, and a bund is three unmistakable things: a kerbed slab
+  /// that will hold a spill, a horizontal tank on saddles with a fill point,
+  /// and a caged rack of bottles beside it. Small, permanent, and it is the
+  /// piece that stops a finished yard being an empty car park.
+  function bundedStore(m, x, z, d0, k) {
+    if (!d0.fine) return;
+    const w = 8.4, d = 5.2;
+    m.bar(x - w / 2, x + w / 2, GRADE + 0.04, GRADE + 0.16, z - d / 2, z + d / 2, shade(P.concrete, 0.96));
+    for (const s of [-1, 1]) {
+      m.beam(x - w / 2 - 0.16, x + w / 2 + 0.16, GRADE + 0.04, GRADE + 0.7, z + s * (d / 2) - 0.16, z + s * (d / 2) + 0.16,
+        shade(P.concrete, 1.02), 0.03);
+      m.beam(x + s * (w / 2) - 0.16, x + s * (w / 2) + 0.16, GRADE + 0.04, GRADE + 0.7, z - d / 2 - 0.16, z + d / 2 + 0.16,
+        shade(P.concrete, 0.98), 0.03);
+    }
+    // The tank: rolled shell on two saddles, a dished end, a fill cabinet and a
+    // vent standing off the top of it.
+    const tz = z - 1.0;
+    m.rod([x - 2.6, GRADE + 1.35, tz], [x + 2.6, GRADE + 1.35, tz], 0.85, 14, shade(k.accent, 1.04), true);
+    for (const sx of [-1.6, 1.6]) {
+      m.beam(x + sx - 0.36, x + sx + 0.36, GRADE + 0.12, GRADE + 0.72, tz - 0.78, tz + 0.78, shade(P.concrete, 0.94), 0.03);
+      m.webPlate([[x + sx - 0.4, GRADE + 0.72], [x + sx + 0.4, GRADE + 0.72], [x + sx + 0.4, GRADE + 0.86],
+        [x + sx - 0.4, GRADE + 0.86]], tz - 0.8, tz + 0.8, shade(P.steel, 0.94));
+    }
+    m.column(x + 0.4, GRADE + 2.2, tz, 0.9, 0.09, 0.09, 8, shade(P.galv, 1.04), true);
+    m.bar(x + 2.7, x + 3.5, GRADE + 0.72, GRADE + 1.9, tz - 0.42, tz + 0.42, shade(P.clad, 1.0));
+    m.beam(x + 2.64, x + 3.56, GRADE + 1.9, GRADE + 2.02, tz - 0.48, tz + 0.48, shade(P.roof, 1.04), 0.018);
+    m.rod([x - 2.6, GRADE + 1.35, tz], [x - 3.3, GRADE + 1.35, tz], 0.16, 8, shade(P.galv, 0.96), true);
+    // The bottle cage: a framed rack with mesh on three sides and bottles in it.
+    const cx = x + 1.0, cz = z + 1.6;
+    for (const px of [cx - 1.8, cx + 1.8]) {
+      for (const pz of [cz - 0.8, cz + 0.8]) {
+        m.beam(px - 0.06, px + 0.06, GRADE + 0.12, GRADE + 2.2, pz - 0.06, pz + 0.06, shade(P.safety, 0.9), 0.014);
+      }
+    }
+    m.beam(cx - 1.86, cx + 1.86, GRADE + 2.2, GRADE + 2.32, cz - 0.86, cz + 0.86, shade(P.safety, 1.06), 0.018);
+    for (let i = 0; i < 9; i += 1) {
+      const mx = cx - 1.7 + (i * 3.4) / 8;
+      m.bar(mx - 0.025, mx + 0.025, GRADE + 0.2, GRADE + 2.18, cz - 0.83, cz - 0.79, shade(P.galv, 0.98));
+      m.bar(mx - 0.025, mx + 0.025, GRADE + 0.2, GRADE + 2.18, cz + 0.79, cz + 0.83, shade(P.galv, 0.9));
+    }
+    for (let i = 0; i < 5; i += 1) {
+      const bx = cx - 1.4 + i * 0.7;
+      m.column(bx, GRADE + 0.12, cz, 1.5, 0.22, 0.22, 10, shade(i % 2 ? P.stopped : P.hoard, 0.96), true);
+      m.column(bx, GRADE + 1.62, cz, 0.2, 0.22, 0.12, 10, shade(P.galv, 1.06), true);
+      m.column(bx, GRADE + 1.82, cz, 0.16, 0.07, 0.07, 8, shade(P.galv, 0.9), true);
+    }
+    for (const bx of [x - w / 2 - 0.9, x + w / 2 + 0.9]) bollard(m, bx, z - d / 2 - 0.9, 1.0, 0.16, 8, P.safety);
+  }
+
+  /// A packaged substation and the cable route out of it. Every one of these
+  /// facilities is fed from somewhere and the feed is a physical object: a
+  /// kiosk with louvred ventilation and a locked door, a metering pillar beside
+  /// it, and a cable trench under precast covers running to the building with
+  /// marker posts along it. It goes in with the permanent supply at the frame
+  /// stage and it is still there at hand-over — unlike the site kit, which is
+  /// the distinction the stage gate exists to make.
+  function substationKiosk(m, x, z, toX, d0) {
+    if (!d0.fine) return;
+    const w = 4.4, d = 2.8, h = 2.9;
+    m.beam(x - w / 2 - 0.4, x + w / 2 + 0.4, GRADE, GRADE + 0.22, z - d / 2 - 0.4, z + d / 2 + 0.4,
+      shade(P.concrete, 0.96), 0.025);
+    m.bar(x - w / 2, x + w / 2, GRADE + 0.22, GRADE + h, z - d / 2, z + d / 2, shade(P.clad, 0.98));
+    m.beam(x - w / 2 - 0.16, x + w / 2 + 0.16, GRADE + h, GRADE + h + 0.2, z - d / 2 - 0.16, z + d / 2 + 0.16,
+      shade(P.roof, 1.04), 0.025);
+    // Louvres on the long face and a door on the end. A kiosk that cannot
+    // breathe is a box, and the louvre bank is the same object the halls use.
+    louvreBank(m, x - w / 2 + 0.5, x - 0.3, GRADE + 1.1, GRADE + 2.4, z + d / 2, 0.13, 4, shade(P.galv, 0.96));
+    louvreBank(m, x + 0.3, x + w / 2 - 0.5, GRADE + 1.1, GRADE + 2.4, z + d / 2, 0.13, 4, shade(P.galv, 0.96));
+    m.bar(x + w / 2, x + w / 2 + 0.05, GRADE + 0.3, GRADE + 2.4, z - 0.5, z + 0.5, P.door);
+    m.webPlate([[x - 1.1, GRADE + 2.6], [x + 1.1, GRADE + 2.6], [x + 1.1, GRADE + 2.9], [x - 1.1, GRADE + 2.9]],
+      z - d / 2 - 0.06, z - d / 2, shade(P.safety, 1.05));
+    // The metering pillar beside it, and the duct sweeping out of its base.
+    m.bar(x - w / 2 - 1.5, x - w / 2 - 0.5, GRADE + 0.22, GRADE + 1.9, z - 0.4, z + 0.4, shade(P.clad, 0.9));
+    m.beam(x - w / 2 - 1.56, x - w / 2 - 0.44, GRADE + 1.9, GRADE + 2.02, z - 0.46, z + 0.46, shade(P.roof, 1.02), 0.018);
+    m.rod([x - w / 2 - 1.0, GRADE + 0.9, z - 0.42], [x - w / 2 - 1.0, GRADE + 0.9, z - 1.0], 0.09, 8, shade(P.galv, 1.0), true);
+    // The cable route: covers on the trench, marker posts along it, and a duct
+    // stub standing where it turns in under the building.
+    const covers = Math.max(3, Math.round(Math.abs(toX - x) / 1.7));
+    const cz = z - d / 2 - 1.9;
+    for (let i = 0; i < covers; i += 1) {
+      const cx = x + ((i + 0.5) * (toX - x)) / covers;
+      m.beam(cx - 0.72, cx + 0.72, GRADE + 0.04, GRADE + 0.17, cz - 0.6, cz + 0.6,
+        shade(P.concrete, 0.9 + 0.07 * (i % 2)), 0.02);
+    }
+    for (let i = 0; i <= 2; i += 1) {
+      const px = x + (i * (toX - x)) / 2;
+      m.beam(px - 0.07, px + 0.07, GRADE + 0.1, GRADE + 0.95, cz + 0.72, cz + 0.86, shade(P.safety, 0.94), 0.014);
+      m.webPlate([[px - 0.2, GRADE + 0.72], [px + 0.2, GRADE + 0.72], [px + 0.2, GRADE + 0.98], [px - 0.2, GRADE + 0.98]],
+        cz + 0.86, cz + 0.9, shade(P.hut, 1.06));
+    }
+    m.rod([toX, GRADE + 0.17, cz], [toX, GRADE + 0.9, cz], 0.13, 8, shade(P.galv, 0.94), true);
+    for (const bx of [x - w / 2 - 2.4, x + w / 2 + 1.2]) bollard(m, bx, cz - 0.9, 1.0, 0.16, 8, P.safety);
+  }
+
+  /// A pipe bridge across the yard. Services do not stop at a building's wall:
+  /// they cross the compound six metres up on trestles, and that horizontal
+  /// line with the trestles hanging off it and a walkway beside it is one of
+  /// the very few things on an industrial site that still reads at 1124 x 102,
+  /// where the strip is a hundred pixels tall and nothing survives but the
+  /// outline.
+  ///
+  /// `full` is the hand-over state and it is an honest split rather than a
+  /// budget trick: the steel and the two main lines go up with the services,
+  /// and the remaining lines, the lagging and the lighting run under the
+  /// walkway are commissioning work.
+  function pipeBridge(m, x0, x1, z, y, d0, k, full) {
+    if (!d0.fine) return;
+    const bays = Math.max(4, Math.round((x1 - x0) / 9));
+    for (let i = 0; i <= bays; i += 1) {
+      const px = x0 + (i * (x1 - x0)) / bays;
+      for (const s of [-1, 1]) {
+        m.beam(px - 0.15, px + 0.15, GRADE, y, z + s * 0.85 - 0.15, z + s * 0.85 + 0.15, shade(P.steel, 0.94), 0.022);
+        m.beam(px - 0.34, px + 0.34, GRADE - 0.02, GRADE + 0.32, z + s * 0.85 - 0.34, z + s * 0.85 + 0.34,
+          shade(P.concrete, 0.94), 0.03);
+        m.rod([px, y - 0.35, z + s * 0.85], [px, y - 1.9, z], 0.055, 6, shade(P.steel, 0.9), false);
+      }
+      m.beam(px - 0.19, px + 0.19, y, y + 0.28, z - 1.15, z + 1.15, shade(P.steel, 1.02), 0.022);
+    }
+    // The lines. Two while the bridge is being built, four once it is in
+    // service, and a shoe under every line at every trestle.
+    const lines = full
+      ? [[-0.62, 0.24, shade(P.galv, 1.0)], [-0.12, 0.19, shade(k.accent, 1.08)],
+        [0.34, 0.15, shade(P.safety, 0.92)], [0.72, 0.12, shade(P.hut, 0.92)]]
+      : [[-0.62, 0.24, shade(P.galv, 1.0)], [-0.12, 0.19, shade(k.accent, 1.08)]];
+    for (const line of lines) {
+      const dz = line[0], r = line[1];
+      m.rod([x0 - 0.7, y + 0.28 + r, z + dz], [x1 + 0.7, y + 0.28 + r, z + dz], r, 10, line[2], false);
+      for (let i = 0; i <= bays; i += 1) {
+        const px = x0 + (i * (x1 - x0)) / bays;
+        m.beam(px - 0.11, px + 0.11, y + 0.28, y + 0.28 + r * 0.7, z + dz - 0.15, z + dz + 0.15, shade(P.steel, 0.9), 0.012);
+      }
+    }
+    // The maintenance walkway. Somebody has to be able to reach a flange, and
+    // the grating rhythm is what gives a bridge a length to read against.
+    m.bar(x0, x1, y + 0.2, y + 0.28, z + 0.98, z + 1.36, shade(P.steel, 0.86));
+    const slats = Math.max(8, Math.round((x1 - x0) / 1.15));
+    for (let i = 0; i < slats; i += 1) {
+      const sx = x0 + (i * (x1 - x0)) / slats;
+      m.bar(sx + 0.08, sx + (x1 - x0) / slats - 0.08, y + 0.28, y + 0.34, z + 0.98, z + 1.36,
+        shade(P.steel, 0.94 + 0.09 * (i % 2)));
+    }
+    const posts = Math.max(6, bays * 2);
+    for (let i = 0; i <= posts; i += 1) {
+      const px = x0 + (i * (x1 - x0)) / posts;
+      m.rod([px, y + 0.34, z + 1.36], [px, y + 1.42, z + 1.36], 0.035, 6, P.galv, false);
+    }
+    m.rod([x0, y + 1.42, z + 1.36], [x1, y + 1.42, z + 1.36], 0.035, 6, shade(P.galv, 1.06), false);
+    m.rod([x0, y + 0.9, z + 1.36], [x1, y + 0.9, z + 1.36], 0.032, 6, shade(P.galv, 0.92), false);
+    m.bar(x0, x1, y + 0.34, y + 0.48, z + 1.32, z + 1.38, shade(P.safety, 0.92));
+    // Both ends drop to grade, so the bridge comes from somewhere and goes
+    // somewhere instead of floating over the yard on nothing.
+    for (const s of [-1, 1]) {
+      const ex = s < 0 ? x0 : x1;
+      m.rod([ex + s * 0.7, y + 0.52, z - 0.62], [ex + s * 0.7, GRADE + 1.3, z - 0.62], 0.24, 10, shade(P.galv, 0.98), false);
+      m.rod([ex + s * 0.7, GRADE + 1.3, z - 0.62], [ex + s * 2.1, GRADE + 1.3, z - 0.62], 0.24, 10, shade(P.galv, 0.9), false);
+      m.beam(ex + s * 1.8 - 0.5, ex + s * 1.8 + 0.5, GRADE, GRADE + 0.3, z - 1.12, z - 0.12, shade(P.concrete, 0.94), 0.025);
+    }
+    if (!full) return;
+    // Lagging bands on the hot line and a lighting run under the walkway. Both
+    // are commissioning work and neither is there while the bridge is going up.
+    for (let i = 0; i < bays * 2; i += 1) {
+      const bx = x0 + ((i + 0.5) * (x1 - x0)) / (bays * 2);
+      m.rod([bx - 0.14, y + 0.43, z + 0.34], [bx + 0.14, y + 0.43, z + 0.34], 0.2, 10, shade(P.hut, 1.04), false);
+    }
+    for (let i = 0; i < bays; i += 1) {
+      const lx = x0 + ((i + 0.5) * (x1 - x0)) / bays;
+      m.bar(lx - 0.34, lx + 0.34, y + 0.06, y + 0.2, z + 1.02, z + 1.3, shade(P.dark, 1.3));
+      m.bar(lx - 0.28, lx + 0.28, y + 0.02, y + 0.06, z + 1.04, z + 1.28, shade(P.lane, 1.2));
+    }
+  }
+
+  /// Where the drainage run goes, and it is ONE function because the trench and
+  /// the plant working beside it have to agree: clear of the dig on the approach
+  /// side of the compound, and never so far forward that it lands in the gate,
+  /// the wheel wash or the haul route. Every kind seats its block differently,
+  /// so this is read off the block rather than off the pad.
+  function serviceRunZ(o, b, D) {
+    return Math.max(o.z - (b.dz + 3.2) / 2 - 7.0, -D / 2 + 10.5);
+  }
+
+  /// The services that hang off the building itself, gathered so `buildNear`
+  /// calls them once and the stage gate lives in one place. Nothing here exists
+  /// before the steel is up, which is the honest reading: you cannot bracket
+  /// pipework to a frame that is not standing.
+  function buildingServices(m, k, o, W, D, stage, d0) {
+    if (!d0.fine) return;
+    const b = o.block;
+    if (stage >= 3) {
+      m.part("services / external stair and roof access", () => {
+        accessStair(m, o.x + b.w / 2 + 1.0, o.z - b.dz * 0.30, o.deck, o.deck + b.eaves, d0,
+          stage >= 4 ? shade(P.galv, 0.96) : P.primer);
+      });
+      m.part("services / packaged substation and cable route", () => {
+        substationKiosk(m, o.x + b.w / 2 + 3.4, o.z + b.dz * 0.30, o.x + b.w * 0.20, d0);
+      });
+    }
+    if (stage >= 4) {
+      m.part("services / external pipework and cable ladder", () => wallServices(m, o, d0, k));
+      m.part("services / extract ducting and vent stacks", () => roofServices(m, o, stage, d0));
+      m.part("services / yard pipe bridge", () => {
+        pipeBridge(m, -W * 0.34, W * 0.34, D * 0.36, GRADE + 6.2, d0, k, stage >= 5);
+      });
+    }
+  }
+
   // ------------------------------------------------------------- arms plant
   // The one kind worked through in full (roadmap section E: assembly hall, test
   // and service yard, secure loading area). Everything below is original
@@ -4743,6 +5440,8 @@
         m.beam(cx - 3.05, cx + 3.05, GRADE, GRADE + 0.16, cz - 1.24, cz + 1.24, shade(P.steel, 0.86), 0.02);
       }
     });
+    m.part("yard / hardstanding markings and walkway", () => yardMarkings(m, W, D, d0));
+    m.part("yard / bunded store and gas cage", () => bundedStore(m, W * 0.30, -D * 0.02, d0, k));
     m.part("yard / bollards and gate island", () => {
       for (let i = 0; i < (d0.fine ? 10 : 3); i += 1) {
         const n = d0.fine ? 10 : 3;
@@ -4839,7 +5538,24 @@
         m.column(cx, GRADE, gz + 4.6, 0.75, 0.36, 0.1, d0.fine ? 6 : 4, P.safety, true);
       }
     });
+    // Waste segregation. Three skips for the life of the job, and gone at
+    // hand-over with everything else that belongs to the job rather than to the
+    // facility. A site with no skips on it is a site nobody is working.
+    m.part("site / skips and waste segregation", () => skipLine(m, -W * 0.40, -D * 0.04, d0));
     if (stage <= 2) {
+      // GROUNDWORKS, which is what an early site should gain and the first pass
+      // gave it none of: the drainage going in before anything stands on top of
+      // it, and the plant that puts it there. Both are gone by the frame stage,
+      // which is when they would actually leave.
+      m.part("earthworks / drainage runs and manholes", () => {
+        drainage(m, -W * 0.30, W * 0.34, serviceRunZ(o, b, D), d0);
+      });
+      m.part("plant / earthmoving plant", () => {
+        const tz = serviceRunZ(o, b, D);
+        const pz = Math.max(tz + 3.4, Math.min(tz + 5.2, o.z - (b.dz + 3.2) / 2 - 3.0));
+        excavator(m, -W * 0.26, pz, 6, working, d0);
+        dumper(m, W * 0.24, pz - 1.2, 196, d0);
+      });
       m.part("earthworks / topsoil bund", () => {
         // Stripped topsoil, stockpiled along the boundary. It goes back as the
         // verge at hand-over, which is why the finished site has one and the
@@ -5016,6 +5732,10 @@
       // knows what else is standing beside it at this stage.
       KIND_WORKS[k.key](m, k, { o, W, D, d0, stage, h, level });
     }
+    // The services hung off whatever is standing. Stage-gated in one place, so
+    // no composition can decide on its own that pipework arrives before the
+    // steel it is bracketed to.
+    buildingServices(m, k, o, W, D, stage, d0);
 
     if (stage >= 5) {
       m.part("yard / permanent perimeter", () => fence(m, W, D, d0));
