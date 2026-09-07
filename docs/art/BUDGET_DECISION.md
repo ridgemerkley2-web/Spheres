@@ -48,6 +48,36 @@ builds by a factor of five. Its 119.6 ms cold build is also the slowest
 first-paint in the library. If any ceiling deserves to hold rather than move,
 it is that one.
 
+## I tried the obvious fix on the town block. It does not work, and here is why
+
+Before putting this to you I attempted the trim myself, because if it were cheap
+the decision would only be about the other 26 rows.
+
+Buildings are 81% of a close block (174,088 of 214,044 for residential; the rest
+is streetscape and ground). And they are drawn absurdly small: the block is 148 m
+across, so on the ~300 px card the city view gives it, a 9 m house is about 18
+pixels wide and arrives carrying 6,299 triangles — roughly **350 triangles per
+pixel it can occupy**. Stamping lots one detail tier down took the worst block
+from 214,044 to 76,278, under the ceiling, with the map LOD and the standalone
+`building()` card both untouched.
+
+Then `check_town_mesh.cjs` refused it, correctly. The block ships three assembled
+levels and asserts they stay separated — `close > mid*2 && mid > map*4`. The
+block ladder is BUILT ON the building ladder, and there are only three building
+tiers, so stepping close down to `mid` collapses the middle:
+
+| lot tiers used | worst close block | separation |
+| --- | --- | --- |
+| close / mid / map (today) | 214,044 | holds |
+| mid / mid / map | 76,278 | fails — 71,164 / 57,784 / 3,422 |
+| mid / map / map | 76,278 | fails — 71,164 / 7,102 / 3,422 |
+
+So the trim is available, but only at the price of a fourth building tier or of
+making close buildings cheaper everywhere — including on their own card, where
+they really are the subject and really do fill the frame. Both are art decisions
+with a wider blast radius than a budget line, so I reverted to 214,044 and left
+it with you. The measurement is the useful part: the waste is real and large,
+and the fix is a tier of detail this kit does not yet have.
 ## The options
 
 1. **Revise the ceilings to match the art.** Sites to 40,000, platforms to
