@@ -79,6 +79,59 @@ with a wider blast radius than a budget line, so I reverted to 214,044 and left
 it with you. The measurement is the useful part: the waste is real and large,
 and the fix is a tier of detail this kit does not yet have.
 
+## Section 4 does not grade 43% of the art, and that reframes the question
+
+Added after a verification pass on 2026-09-07. `bench_art.cjs` grades 79
+configurations and reports 30 over. It does not grade the road, scatter or prop
+kits at all — 78 pieces with no row anywhere. I set out to give them bands and
+an adversarial review killed the proposal, correctly, for reasons worth keeping:
+
+- `P0_BUDGETS.md` is GENERATED and says so; its ceilings live in the `BUDGETS`
+  table in `bench_art.cjs`, where every entry quotes a section 4 row and cell
+  **verbatim** and `verifyBudgets()` exits 1 if that cell ever moves. Five of the
+  seven bands I proposed had no cell to quote.
+- The scatter bands are already pinned by `assert.deepEqual` in
+  `check_scatter_mesh.cjs`, added 2026-09-06 after a pass measured that widening
+  the dressing band to [1, 900000] left the whole suite green. My numbers
+  contradicted those pins without acknowledging them.
+- The rate I derived them from — 250 triangles per metre of footprint radius —
+  was a one-point fit. `radius` is a per-FAMILY constant: all eight trees carry
+  3.2 while their triangle counts run 206 to 699, so it explains none of the
+  variance in the family it was calibrated from.
+
+So no bands were added. What the pass DID establish is more useful than bands:
+
+| | cards | verdict |
+| --- | --- | --- |
+| graded by a section 4 row | 123 | **25 over a ceiling**, 10 under a floor |
+| no section 4 row exists | 94 | the deck (46), roads (13), props (35) |
+
+**Section 4 has six rows; the library now has seven kits.** Nearly half the
+shipped art is ungraded, and forcing the existing rows onto it produces category
+errors in both directions — its Tree/prop row grades a 218 m container ship as a
+tree, and fails a 54-triangle grass tuft for being cheaper than a tree FLOOR.
+The ten "under floor" readings above are exactly that, and they are not a cost
+problem.
+
+That makes the real question larger than the 30 rows: **does section 4's table
+still describe this library?** It was written for vehicles, buildings and a
+generic tree/prop. It has no row for a road network, a scenery vehicle or a
+vessel, and one row spanning an oak and a grass tuft cannot bind either. A
+fourth option therefore exists:
+
+4. **Re-cut section 4 itself** — keep the vehicle and building rows, split
+   Tree/prop into plant and scenery-object rows, and add rows for the road and
+   vessel kits. Then re-derive the ceilings once, against a table that fits.
+   More work than options 1-3 and it is the only one that ends with every
+   shipped asset graded by something.
+
+The review bench now reports all of this honestly. It previously could not: four
+of its nine bands were LOOSER than the section 4 rows they claimed to grade
+against (vehicles 150,000 against 45,000; sites and stages 40,000 against
+12,000; town 400,000 against 150,000), so over-budget art displayed as passing,
+and every town card printed a triangle count for a block it was not drawing.
+`tools/ui/check_art_gallery.cjs` now holds it to section 4 by re-reading the
+roadmap.
 ## The options
 
 1. **Revise the ceilings to match the art.** Sites to 40,000, platforms to

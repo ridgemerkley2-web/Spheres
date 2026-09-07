@@ -33,6 +33,7 @@
   .card span { display:block; color:#8fa3b4; font-size:12px; }
   .card em { display:block; margin-top:3px; color:#6f8496; font-size:11.5px; font-style:normal; }
   .over { color:#e0a05a; }
+  .ungraded { color:#6f8496; font-style:italic; }
   .warn { padding:14px; border:1px solid #6b3030; border-radius:12px; background:#2a1717; }
 </style>
 </head>
@@ -71,45 +72,109 @@ Hover to turn. Triangle counts are measured live; a count outside its budget is 
     return RoadMesh.build(piece, +lod ? { lod: "map" } : {}); });
   Arsenal3D.register("prop", (r) => { const [piece, lod] = r.split("/");
     return PropMesh.build(piece, +lod ? { lod: "map" } : {}); });
+  // scatter-mesh was loaded by a script tag and never drawn: the whole kit, 30
+  // kinds, was invisible on a bench that claims to show every P0 asset.
+  Arsenal3D.register("scatter", (r) => { const [kind, lod] = r.split("/");
+    return ScatterMesh.piece(kind, { lod: lod === "far" ? "far" : 0 }); });
 
+  // ROADMAP SECTION 4, QUOTED. These were this file's own numbers and four of
+  // them were LOOSER than the roadmap they claimed to grade against — vehicles
+  // at 150,000 where section 4 says 45,000, sites and stages at 40,000 where it
+  // says 12,000, town at 400,000 where it says 150,000. A review bench whose
+  // bars are wider than the budget shows over-budget art as passing, which is
+  // the one thing it must not do. tools/ui/bench_art.cjs is the authority: it
+  // re-reads section 4 and exits if a cell has moved. This page cannot read a
+  // file, so it carries the numbers and names the row it took each from.
+  const S4 = {
+    vehicle_lod0: [20000, 45000, "Ground vehicle close inspection LOD0"],
+    vehicle_lod1: [4000, 12000, "LOD1 catalogue preview"],
+    vehicle_lod2: [300, 1500, "LOD2 map vehicle"],
+    building_near: [2000, 12000, "Building close view / map"],
+    building_far: [100, 800, "Building close view / map"],
+    scene: [0, 150000, "Scene assembly"],
+    tree_prop_near: [100, 800, "Tree/prop near / far"],
+    tree_prop_far: [20, 100, "Tree/prop near / far"],
+  };
   const num = (n) => n.toLocaleString();
+  // `band` is a key into S4, or null for art section 4 has NO ROW for. A null
+  // band prints the measurement and says so, rather than inventing a bar: the
+  // road and prop kits are graded nowhere, and pretending otherwise with a
+  // made-up range would be a bar that cannot fail.
   const card = (id, title, sub, tris, band) => {
-    const over = band && (tris < band[0] || tris > band[1]);
+    const b = band ? S4[band] : null;
+    // Under the floor and over the ceiling are DIFFERENT findings and saying
+    // only "OUTSIDE" conflates them. Six of the eight scatter far readings are
+    // grass and sedge at 8 triangles against a floor of 20 — cheaper than a tree
+    // because they are not trees, which is a fact about section 4's Tree/prop
+    // row covering a kit that spans an oak and a grass tuft, not a defect in the
+    // art. The ceiling breaches are the ones that cost anything.
+    const under = b && tris < b[0];
+    const over = b && tris > b[1];
+    const note = b
+      ? ` · §4 ${num(b[0])}–${num(b[1])} (${b[2]})`
+        + (over ? " — OVER CEILING" : under ? " — under floor" : "")
+      : " · no section 4 row grades this";
     return `<article class="card has-kit3d"><canvas data-kit3d="${id}"></canvas>
       <b>${title}</b><span>${sub}</span>
-      <em class="${over ? "over" : ""}">${num(tris)} triangles${band ? ` · budget ${num(band[0])}–${num(band[1])}${over ? " — OUTSIDE" : ""}` : ""}</em></article>`;
+      <em class="${over ? "over" : under ? "ungraded" : b ? "" : "ungraded"}">${num(tris)} triangles${note}</em></article>`;
   };
 
   const VIEWS = {
     "Vehicles LOD0": () => ["tank_standard","tank_heavy","tank_light","tank_destroyer",
         "ground_ifv","ground_apc","ground_recon","ground_artillery","ground_air_defense"]
       .map((p) => card(`veh:${p}/0`, p, "close inspection",
-        EquipmentMesh.build({ platform: p }).triangleCount, [4000, 150000])),
-    "Vehicles LOD1": () => ["tank_standard","ground_apc","ground_ifv","ground_artillery","ground_air_defense","ground_recon"]
+        EquipmentMesh.build({ platform: p }).triangleCount, "vehicle_lod0")),
+    // All nine platforms at every level. The three that were missing here
+    // (tank_heavy, tank_light, tank_destroyer at LOD1 and LOD2) build fine and
+    // were simply never listed, so the bench showed 21 of the 27 that ship.
+    "Vehicles LOD1": () => ["tank_standard","tank_heavy","tank_light","tank_destroyer",
+        "ground_ifv","ground_apc","ground_recon","ground_artillery","ground_air_defense"]
       .map((p) => card(`veh:${p}/1`, p, "catalogue card",
-        EquipmentMesh.build({ platform: p, lod: 1 }).triangleCount, [4000, 12000])),
-    "Vehicles LOD2": () => ["tank_standard","ground_apc","ground_ifv","ground_artillery","ground_air_defense","ground_recon"]
+        EquipmentMesh.build({ platform: p, lod: 1 }).triangleCount, "vehicle_lod1")),
+    "Vehicles LOD2": () => ["tank_standard","tank_heavy","tank_light","tank_destroyer",
+        "ground_ifv","ground_apc","ground_recon","ground_artillery","ground_air_defense"]
       .map((p) => card(`veh:${p}/2`, p, "map scale",
-        EquipmentMesh.build({ platform: p, lod: 2 }).triangleCount, [300, 1500])),
+        EquipmentMesh.build({ platform: p, lod: 2 }).triangleCount, "vehicle_lod2")),
     "Sites complete": () => SiteMesh.kinds()
       .map((k) => card(`site:${k}/complete/2`, SiteMesh.meta(k).name || k, "level 2, complete",
-        SiteMesh.build(k, "complete", { level: 2 }).triangleCount, [2000, 40000])),
+        SiteMesh.build(k, "complete", { level: 2 }).triangleCount, "building_near")),
     "Sites at map LOD": () => SiteMesh.kinds()
       .map((k) => card(`siteFar:${k}/complete/2`, SiteMesh.meta(k).name || k, "map sprite",
-        SiteMesh.build(k, "complete", { level: 2, lod: "far" }).triangleCount, [100, 800])),
+        SiteMesh.build(k, "complete", { level: 2, lod: "far" }).triangleCount, "building_far")),
     "Arms plant stages": () => SiteMesh.stages("arms_plant")
       .map((s) => card(`site:arms_plant/${s.key}/2`, s.name, `${Math.round(s.from * 100)}%–${Math.round(s.to * 100)}% of recorded work`,
-        SiteMesh.build("arms_plant", s.key, { level: 2 }).triangleCount, [2000, 40000])),
-    "Town": () => TownMesh.districts()
-      .map((d) => card(`town:1990/${d}/close`, d, "assembled block",
-        TownMesh.block({ id: 1990, district: d }).triangleCount, [2000, 400000])),
+        SiteMesh.build("arms_plant", s.key, { level: 2 }).triangleCount, "building_near")),
+    // THE CAPTION MUST MEASURE WHAT THE CANVAS DRAWS. It did not: the count came
+    // from `{id: 1990}` while the provider splits the id out of the string and
+    // passes `{id: "1990"}`, and town-mesh seeds those differently — so every
+    // town card printed a number for a block that was not on screen, civic worst
+    // at 131,586 against the 106,789 actually drawn. The id is now built once,
+    // as a string, and used for both.
+    "Town": () => TownMesh.districts().map((d) => {
+      const id = `town:1990/${d}/close`;
+      const drawn = TownMesh.block({ id: "1990", district: d, lod: "close" });
+      return card(id, d, "assembled block", drawn.triangleCount, "scene");
+    }),
     "Deck": () => ArsenalModels.ids()
       .map((id) => { const g = ArsenalModels.build(id);
         return card(id, g.name, g.cls, g.count / 3, null); }),
+    // Section 4 has a Tree/prop row and this kit is exactly what it describes.
+    "Scatter near": () => ScatterMesh.kinds()
+      .map((k) => card(`scatter:${k}/near`, k, ScatterMesh.piece(k).biome,
+        ScatterMesh.piece(k, { lod: 0 }).triangleCount, "tree_prop_near")),
+    "Scatter far": () => ScatterMesh.kinds()
+      .map((k) => card(`scatter:${k}/far`, k, "far LOD",
+        ScatterMesh.piece(k, { lod: "far" }).triangleCount, "tree_prop_far")),
+    // Roads and props get NO band: section 4 has no row for a road network, and
+    // its Tree/prop row does not describe a 218 m container ship. Grading a
+    // vessel as a tree is a category error in one direction and a 54-triangle
+    // grass tuft failing a tree FLOOR is one in the other. The numbers are shown
+    // and the absence is stated.
     "Roads": () => RoadMesh.pieces()
-      .map((p) => card(`road:${p}/0`, p, "near", RoadMesh.build(p).triangleCount, [200, 1200])),
+      .map((p) => card(`road:${p}/0`, p, "near", RoadMesh.build(p).triangleCount, null)),
     "Props": () => PropMesh.pieces()
-      .map((p) => card(`prop:${p}/0`, p, "near", PropMesh.build(p).triangleCount, [300, 2500])),
+      .map((p) => { const m = PropMesh.build(p);
+        return card(`prop:${p}/0`, p, m.family || "near", m.triangleCount, null); }),
   };
 
   let view = "Vehicles LOD0";
