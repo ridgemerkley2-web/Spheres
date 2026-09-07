@@ -16,7 +16,7 @@ function fn(name,source=page){
 const names=['logisticsEscAttr','constructionMoney','productionQueue','productionCatalog','productionProvinces',
   'productionCompleted','productionProject','productionKind','productionStatus','productionTone','productionProvince',
   'productionProgress','productionPriorityChoices','productionCanCancel','productionSummary','productionFundingLabel',
-  'productionEligible','productionCardHtml','productionCatalogHtml','productionProvinceHtml','constructionBudgetHtml',
+  'productionEligible','productionCardHtml','productionSiteStripHtml','productionSite3d','siteArtReady','productionCatalogHtml','productionProvinceHtml','constructionBudgetHtml',
   'productionCapabilityPairs','productionModuleLabel','constructionSiteContext','constructionProvinceRefusal',
   'constructionProvinceMatches','constructionProvinceChoices','constructionRevealProject','constructionPreviewNoticeHtml',
   'constructionWorkshopProvinces','constructionWorkshopDistrict','constructionChooseWorkshop',

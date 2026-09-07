@@ -150,6 +150,22 @@
       [width, y, front - bevel + offset], [width - bevel, y, front + offset], [-width + bevel, y, front + offset],
       [-width, y, front - bevel + offset], [-width, y, rear + bevel + offset]];
   }
+  // A chamfered prism reads as a machined fitting where a raw box reads as a toy:
+  // the cut edge catches its own flat normal and draws a highlight line. It costs
+  // 28 triangles against box()'s 12, so it is spent on volumes big enough to see
+  // on a 90px card and never on fasteners. The chamfer runs along the basis Z.
+  function beveled(b, center, size, color, cut, basis) {
+    const axes = basis || [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
+    const hx = size[0] / 2, hy = size[1] / 2, k = Math.min(cut, hx * 0.8, hy * 0.8);
+    const section = [[-hx + k, -hy], [hx - k, -hy], [hx, -hy + k], [hx, hy - k],
+      [hx - k, hy], [-hx + k, hy], [-hx, hy - k], [-hx, -hy + k]];
+    const ring = end => section.map(([u, v]) => add(center, add(mul(axes[0], u), add(mul(axes[1], v), mul(axes[2], end * size[2] / 2)))));
+    b.loft([ring(-1), ring(1)], color);
+  }
+  // Restrained wear, varied by loop index so the same input still gives the same
+  // bytes. shade() scales all three channels together, so a weathered panel keeps
+  // the green dominance the sand/winter repaint heuristic keys on.
+  const weathered = (color, index) => shade(color, 0.945 + 0.05 * (index % 3) + 0.022 * Math.abs(Math.sin(index * 1.7)));
   function resolveSpec(spec) {
     const input = spec && typeof spec === "object" ? spec : {}, components = {};
     if (Object.hasOwn(GROUND_DEFAULTS,input.platform)) {
@@ -193,21 +209,48 @@
           const a=TAU*j/8,cy=r+Math.cos(a)*r*.39,cz=z+Math.sin(a)*r*.39;
           b.cylinder([side*(x+width/2+.05),cy,cz],[side*(x+width/2+.075),cy,cz],.022,c.bright,6);
         }
-        if(wheeled)for(let j=0;j<32;j++) {
-          const a=TAU*j/32,radial=[0,Math.cos(a),Math.sin(a)],tangent=[0,-Math.sin(a),Math.cos(a)];
-          for(const strip of [-1,1])b.box([side*x+strip*width*.23,r+Math.cos(a)*(r+.006),z+Math.sin(a)*(r+.006)],[width*.43,.035,.075],c.track,[[1,0,0],radial,tangent]);
+        // A smooth cylinder is the fastest way to make a wheeled hull look
+        // unfinished. Two shoulder rows, a centre row staggered off their pitch,
+        // and a bead ring on each sidewall, for 376 triangles a tyre.
+        if(wheeled) {
+          for(let j=0;j<32;j++) {
+            const a=TAU*j/32,radial=[0,Math.cos(a),Math.sin(a)],tangent=[0,-Math.sin(a),Math.cos(a)];
+            for(const strip of [-1,1])b.box([side*x+strip*width*.23,r+Math.cos(a)*(r+.006),z+Math.sin(a)*(r+.006)],[width*.43,.035,.075],c.track,[[1,0,0],radial,tangent]);
+          }
+          for(let j=0;j<16;j++) {
+            const a=TAU*(j+.5)/16,radial=[0,Math.cos(a),Math.sin(a)],tangent=[0,-Math.sin(a),Math.cos(a)];
+            b.box([side*x,r+Math.cos(a)*(r+.004),z+Math.sin(a)*(r+.004)],[width*.30,.031,.11],c.rubber,[[1,0,0],radial,tangent]);
+          }
+          for(const bead of [-1,1])b.cylinder([side*x+bead*width*.47,r,z],[side*x+bead*width*.50,r,z],r*.985,c.black,24);
         }
       },wheeled?'wheels':'tracks');
     }
     b.part('protection / specialist sloped hull',()=>{
-      b.loft([octagon(.44,w-.24,rear+.25,front-.44,.25),octagon(.94,w,rear,front,.27),octagon(deck,w-.14,rear+.10,front-.62,.30)],c.hull);
+      // Two extra rings for the price of 32 triangles. The old three-ring loft ran
+      // one unbroken plane from the belly to the deck, which is what made this hull
+      // read as a wedge of soap next to the tank's folded plate.
+      const shoulder=.94+(deck-.94)*.42;
+      b.loft([octagon(.44,w-.24,rear+.25,front-.44,.25),octagon(.78,w-.06,rear+.06,front-.11,.26),
+        octagon(.94,w,rear,front,.27),octagon(shoulder,w-.045,rear+.03,front-.24,.29),
+        octagon(deck,w-.14,rear+.10,front-.62,.30)],c.hull);
       b.loft([octagon(deck,w-.14,rear+.10,front-.62,.30),octagon(deck+.065,w-.20,rear+.16,front-.69,.28)],c.upper);
+      // Splash plate and bolted nose beam: a wheeled hull needs a hard line where
+      // the glacis meets the deck or the whole front is one continuous slope.
+      b.box([0,deck-.10,front-.60],[w*1.62,.055,.19],c.edge);
+      beveled(b,[0,1.03,front-.02],[w*1.52,.22,.16],c.armor,.05);
+      for(let i=-3;i<=3;i++)b.box([i*w*.32,1.03,front+.055],[.05,.05,.03],c.bright);
       for(const side of [-1,1]) {
-        b.box([side*(w+.06),wheeled?1.33:1.18,0],[.25,.075,length-.40],c.edge);
+        b.rod([side*w*.44,.86,front-.04],[side*w*.44,.86,front+.14],.055,c.bright,8);
+        b.box([side*(w-.055),shoulder,0],[.05,.045,length-.70],c.shade);
+        beveled(b,[side*(w+.06),wheeled?1.33:1.18,0],[.25,.075,length-.40],c.edge,.028);
         for(const z of [rear+.21,front-.12]) {
           b.rod([side*w*.66,.74,z],[side*w*.66,.74,z+(z>0?.16:-.16)],.063,c.bright,12);
           b.box([side*w*.77,1.08,z],[.15,.14,.07],c.shade);
           b.cylinder([side*w*.77,1.08,z],[side*w*.77,1.08,z+(z>0?.055:-.055)],.045,z>0?c.lens:c.amber,12);
+          if(z>0) {
+            for(const dx of [-.085,.085])b.rod([side*w*.77+dx,1.00,z+.09],[side*w*.77+dx,1.18,z+.09],.012,c.steel,6);
+            b.rod([side*w*.77-.085,1.18,z+.09],[side*w*.77+.085,1.18,z+.09],.012,c.steel,6);
+          }
         }
         if(modular)for(let j=0;j<6;j++) {
           const z=rear+.58+j*(length-.97)/6;
@@ -229,6 +272,45 @@
           if(hydro)b.cylinder([side*(w-.24),.80,z-.12],[side*(x-.10),r+.10,z-.025],.104,c.bright,14);
         }
       });
+      // Arches, not a flat slab with tyres poking out. On a wheeled hull this is
+      // the single largest silhouette gain available: the sweep is kept under the
+      // axle pitch so four-axle kit does not fuse its arches into one blister.
+      b.part(`protection / ${lane} flank stowage, rails and lifting eyes`,()=>{
+        // The long locker only appears where modular armour is not fitted: on this
+        // hull the two want the same 340 mm of flank, and the armour wins. Rails
+        // and eyes sit on the deck edge above both, so they are always present.
+        const railX=side*(w-.17);
+        if(!modular) {
+          const binY=(wheeled?1.3675:1.2175)+.18;
+          beveled(b,[side*(w+.07),binY,-length*.12],[.24,.34,length*.44],weathered(c.hull,side>0?1:2),.06);
+          b.box([side*(w+.07),binY+.185,-length*.12],[.27,.028,length*.44+.03],c.edge);
+          for(let j=0;j<4;j++)b.box([side*(w+.19),binY,-length*.12+(j-1.5)*length*.10],[.03,.10,.05],c.bright);
+        }
+        for(let j=0;j<3;j++) {
+          const z=rear+.85+j*(length-1.9)/2;
+          b.rod([railX,deck+.07,z-.16],[railX,deck+.16,z-.16],.017,c.steel,6);
+          b.rod([railX,deck+.07,z+.16],[railX,deck+.16,z+.16],.017,c.steel,6);
+          b.rod([railX,deck+.16,z-.16],[railX,deck+.16,z+.16],.017,c.steel,6);
+        }
+        for(const z of [rear+.60,front-.80])b.box([side*(w-.06),deck-.02,z],[.13,.09,.10],c.steel);
+        for(let j=0;j<2;j++)b.rod([side*(w-.06),deck-.16-j*.14,front-1.55],[side*(w-.06),deck-.16-j*.14,front-.78],.024,j?c.steel:c.cable,8);
+      });
+      if(wheeled)b.part(`running gear / ${lane} wheel arches and mud flaps`,()=>{
+        const R=r+.14,arc=6;
+        for(let j=0;j<count;j++) {
+          const z=-half+2*half*j/(count-1);
+          for(let k=0;k<arc;k++) {
+            const t0=Math.PI*(.16+.68*k/arc),t1=Math.PI*(.16+.68*(k+1)/arc),t=(t0+t1)/2;
+            const radial=[0,Math.sin(t),Math.cos(t)],tangent=[0,Math.cos(t),-Math.sin(t)],span=R*(t1-t0)*1.08;
+            const cy=r+Math.sin(t)*R,cz=z+Math.cos(t)*R;
+            b.box([side*x,cy,cz],[width+.20,.07,span],weathered(c.upper,j+k),[[1,0,0],radial,tangent]);
+            b.box([side*(x+width/2+.085),cy,cz],[.05,.13,span],c.edge,[[1,0,0],radial,tangent]);
+          }
+          // The flap hangs from the arch's trailing end, not from thin air: it has
+          // to reach that exact point or it reads as a detached black rectangle.
+          b.box([side*x,r*.89,z-R+.085],[width+.10,r*1.42,.035],c.rubber);
+        }
+      },'wheels');
       if(!wheeled)b.part(`tracks / ${lane} continuous articulated belt`,()=>{
         const radius=.53,centerY=.53,span=half,perimeter=span*4+TAU*radius,steps=Math.ceil(perimeter/.18);
         function point(distance,rr) {
@@ -254,6 +336,11 @@
       b.box([x,deck+.105,z],[.66,.07,.75],c.shade);
       const vents=power?14:managed?11:s.mobility==='engine_diesel_900'?9:7;
       for(let i=0;i<vents;i++)b.box([x,deck+.151,z-.31+i*.62/(vents-1)],[.57,.022,.027],c.bright);
+      // Framed grille rather than louvres painted on a lid. From above, the deck
+      // is most of what a card crop shows of a low hull.
+      for(const dx of [-.315,.315])b.box([x+dx,deck+.145,z],[.055,.070,.80],c.upper);
+      for(const dz of [-.375,.375])b.box([x,deck+.145,z+dz],[.72,.070,.055],c.upper);
+      for(const dz of [-.30,.30])b.box([x-.40,deck+.10,z+dz],[.10,.075,.10],c.steel);
       if(managed)b.box([x,deck+.17,z+.44],[.49,.14,.16],c.upper);
       for(let j=0;j<(power?2:1);j++) {
         b.cylinder([w-.14,deck-.34,front-1.18-j*.30],[w+.14,deck-.34,front-1.18-j*.30],.09,c.steel,16);
@@ -271,8 +358,14 @@
       b.cylinder([0,deck+.066,mountZ],[0,deck+.18,mountZ],radius,c.steel,40);
       if(mg) {
         b.cylinder([0,deck+.18,mountZ],[0,mountTop-.05,mountZ],.16,c.upper,20);
-        b.box([0,mountTop-.03,mountZ+.10],[.49,.32,.085],c.armor);
+        beveled(b,[0,mountTop-.03,mountZ+.10],[.49,.32,.085],c.armor,.05);
         for(const side of [-1,1])b.box([side*.235,mountTop-.015,mountZ-.03],[.05,.29,.32],c.upper);
+        // A bare pedestal reads as a pipe. The bolted ring hatch it stands on and
+        // the discharger cluster behind it are what make it a fighting position.
+        b.cylinder([0,deck+.09,mountZ],[0,deck+.155,mountZ],.50,c.shade,28);
+        for(let j=0;j<8;j++){const a=TAU*j/8;b.box([Math.sin(a)*.50,deck+.185,mountZ+Math.cos(a)*.50],[.07,.042,.07],c.bright);}
+        for(const side of [-1,1])for(let j=0;j<3;j++)
+          b.cylinder([side*(.42+j*.10),deck+.24,mountZ-.34],[side*(.46+j*.11),deck+.46,mountZ-.44],.055,c.steel,10);
       } else {
         const tw=howitzer?1.18:aaMount?.83:.75,back=howitzer?-1.31:aaMount?-.63:-.73,ahead=howitzer?.94:aaMount?.58:.61;
         b.loft([octagon(deck+.19,tw,back,ahead,.19,mountZ),octagon(mountTop,tw*(aaMount?.80:.85),back+.14,ahead-.17,.19,mountZ)],c.upper);
@@ -325,6 +418,11 @@
     b.part(`sensors / ${label(s.sensors)} observation fittings`,()=>{
       hatch(-w*.42,deck+.065,front-1.12,.25);
       for(let j=-1;j<=1;j++)b.box([-w*.42+j*.16,deck+.19,front-.90],[.13,.085,.065],c.glass);
+      // Coaming and guard bar over the driver's blocks. From above they are the
+      // only fitting that says which end of a low flat hull is the front.
+      b.box([-w*.42,deck+.135,front-.90],[.52,.055,.11],c.shade);
+      for(const dx of [-.25,.25])b.rod([-w*.42+dx,deck+.24,front-.86],[-w*.42+dx,deck+.30,front-.86],.016,c.steel,6);
+      b.rod([-w*.42-.25,deck+.30,front-.86],[-w*.42+.25,deck+.30,front-.86],.016,c.steel,6);
       const night=s.sensors==='optics_night',thermal=s.sensors==='optics_thermal',y=mg?deck+.17:mountTop;
       b.box([.32,y+.075,mountZ+.15],[thermal?.28:.21,thermal?.16:.12,.24],c.shade);
       b.box([.32,y+.077,mountZ+.276],[thermal?.19:.13,.075,.016],c.lens);
@@ -362,14 +460,34 @@
     if(s.troop_compartment)b.part(`troop_compartment / ${s.troop_compartment==='ground_troops_protected'?'reinforced troop bay':'troop bay and rear egress'}`,()=>{
       const protectedBay=s.troop_compartment==='ground_troops_protected',height=protectedBay?.19:.045;
       b.box([0,deck+height/2,rear+1.02],[w*1.34,height,1.33],c.upper);
+      // Roof edge lip and a stowage basket forward of the hatches. Crews stow on
+      // the roof of a carrier, and the top view had nothing between the hatches.
+      for(const dx of [-w*.67,w*.67])b.box([dx,deck+height+.03,rear+1.02],[.06,.075,1.35],c.edge);
+      for(const dz of [rear+.36,rear+1.68])b.box([0,deck+height+.03,dz],[w*1.36,.075,.06],c.edge);
+      for(let j=0;j<2;j++)b.rod([-w*.55,deck+height+.05,rear+.30+j*.44],[w*.55,deck+height+.05,rear+.30+j*.44],.018,c.steel,6);
+      for(let j=0;j<5;j++)b.rod([(j-2)*w*.275,deck+height+.05,rear+.28],[(j-2)*w*.275,deck+height+.05,rear+.76],.014,c.steel,6);
+      beveled(b,[0,deck+height+.17,rear+.52],[w*.66,.22,.40],c.canvas,.055);
       for(const side of [-1,1]) {
         hatch(side*w*.37,deck+height,rear+1.01,.25);
         for(let j=0;j<3;j++)b.box([side*(w-.09),deck-.17,rear+.48+j*.43],[.045,.075,.14],c.glass);
       }
-      b.box([0,deck-.46,rear-.035],[w*1.18,.90,.085],protectedBay?c.armor:c.shade);
+      // The ramp is the entire aft silhouette on a carrier and it was one flat
+      // panel with five ribs. Personnel door, hinges, actuators and lights give
+      // the rear view something to resolve into at card size.
+      beveled(b,[0,deck-.46,rear-.035],[w*1.18,.90,.085],protectedBay?c.armor:c.shade,.07);
       for(const x of [-w*.50,w*.50])b.rod([x,.79,rear-.092],[x,deck-.16,rear-.092],protectedBay?.038:.023,c.bright);
       for(let j=0;j<5;j++)b.box([0,.81+j*.135,rear-.085],[w*.90,.020,.025],c.steel);
       b.box([0,deck-.27,rear-.10],[.17,.055,.035],c.bright);
+      b.box([w*.32,deck-.46,rear-.090],[.44,.72,.028],c.edge);
+      b.box([w*.32,deck-.25,rear-.106],[.19,.12,.016],c.glass);
+      b.box([w*.32+.18,deck-.46,rear-.108],[.05,.10,.042],c.bright);
+      for(const side of [-1,1]) {
+        b.rod([side*w*.63,.84,rear+.03],[side*w*.63,.84,rear-.10],.052,c.steel,8);
+        b.cylinder([side*w*.74,deck-.66,rear+.18],[side*w*.66,deck-.28,rear-.04],.050,c.bright,10);
+        b.box([side*w*.82,deck-.09,rear-.02],[.16,.15,.09],c.shade);
+        b.box([side*w*.82,deck-.09,rear-.070],[.10,.09,.012],side>0?c.amber:c.lens);
+      }
+      b.box([0,.63,rear-.13],[w*.66,.070,.18],c.steel);
     });
     if(s.recon_package)b.part(`recon_package / ${s.recon_package==='ground_recon_mast'?'elevated observation mast':'scout observation station'}`,()=>{
       const elevated=s.recon_package==='ground_recon_mast',z=rear+.94,y=deck+(elevated?1.72:.39);
@@ -439,16 +557,46 @@
     }
 
     b.part("chassis / sloped lower hull", () => {
+      // Five rings rather than three. The two added rings put a chine above the
+      // belly and a break under the fender line, so the flank reads as folded
+      // plate instead of one slab; the glacis gains its second angle the same way.
       b.loft([octagon(0.39, hullWidth - 0.29, rear + 0.16, front - 0.49, 0.28),
+        octagon(0.66, hullWidth - 0.17, rear + 0.06, front - 0.24, 0.28),
         octagon(0.91, hullWidth - 0.08, rear, front + 0.08, 0.27),
+        octagon(1.22, hullWidth - 0.05, rear + 0.02, front - 0.14, 0.30),
         octagon(1.47, hullWidth, rear + 0.06, front - 0.43, 0.32)], c.hull);
       b.loft([octagon(1.475, hullWidth + 0.015, rear + 0.05, front - 0.43, 0.32),
         octagon(1.54, hullWidth - 0.025, rear + 0.11, front - 0.49, 0.32)], c.upper);
       b.box([0, 0.58, rear - 0.03], [hullWidth * 1.5, 0.22, 0.12], c.shade);
+      // Bolted nose beam and a rear plate. Without a hard horizontal at each end
+      // the hull is a single smooth wedge from any three-quarter view.
+      beveled(b, [0, 0.99, front + 0.05], [hullWidth * 1.44, 0.21, 0.15], c.armor, 0.05);
+      for (let i = -3; i <= 3; i++) b.box([i * hullWidth * 0.30, 0.99, front + 0.125], [0.055, 0.055, 0.032], c.bright);
+      beveled(b, [0, 1.06, rear - 0.07], [hullWidth * 1.60, 0.60, 0.11], c.upper, 0.07);
+      for (let i = -4; i <= 4; i++) b.box([i * hullWidth * 0.21, 1.32, rear - 0.13], [0.05, 0.05, 0.028], c.bright);
       for (const x of [-hullWidth * 0.72, hullWidth * 0.72]) {
         b.rod([x, 0.78, front - 0.04], [x, 0.78, front + 0.19], 0.095, c.bright, 12);
         b.tube([x, 0.80, front + 0.16], [x, 0.80, front + 0.23], 0.115, 0.063, c.steel, 16);
         b.tube([x, 0.79, rear - 0.15], [x, 0.79, rear - 0.05], 0.11, 0.060, c.steel, 16);
+      }
+    });
+
+    b.part("chassis / glacis applique, splash guard and spare track links", () => {
+      // Applique is spaced off the glacis on purpose — flush plate would just be
+      // a colour change. The basis is the measured glacis slope so the plates lie
+      // on the surface rather than floating at their own angle.
+      const up = [0, 0.7407, -0.6745], out = [0, 0.6745, 0.7407], slope = [[1, 0, 0], up, out];
+      for (let i = 0; i < 5; i++) {
+        const x = (i - 2) * hullWidth * 0.38;
+        beveled(b, [x, 1.234, front - 0.131], [hullWidth * 0.35, 0.42, 0.09], weathered(c.armor, i), 0.06, slope);
+      }
+      // Spare links live on the glacis on real vehicles because that is the face
+      // that gets hit; here they also break the largest flat plane on the model.
+      for (let i = 0; i < 4; i++) beveled(b, [(i - 1.5) * 0.40, 1.02, front - 0.06], [0.34, 0.13, 0.10], c.steel, 0.03, slope);
+      b.box([0, 1.515, front - 0.455], [hullWidth * 1.70, 0.05, 0.17], c.edge);
+      for (const x of [-hullWidth * 0.55, hullWidth * 0.55]) {
+        b.rod([x, 1.05, front + 0.10], [x, 1.16, front + 0.06], 0.036, c.bright, 8);
+        b.rod([x, 1.42, front - 0.34], [x, 1.53, front - 0.44], 0.030, c.steel, 8);
       }
     });
 
@@ -488,6 +636,9 @@
         for (let i = 0; i < wheels; i++) {
           const z = first + (last - first) * i / (wheels - 1), wheelY = 0.48, wheelRadius = 0.335;
           b.rod([side * (hullWidth - 0.14), 0.90, z - 0.24], [x, wheelY, z], 0.085, c.steel, 12);
+          // Bump stop above each arm. It is the fitting that tells the eye the
+          // arm swings, and it survives the shrink to card size as a shadow.
+          b.box([side * (hullWidth - 0.05), 1.02, z - 0.19], [0.17, 0.13, 0.16], c.shade);
           if(chosen.suspension==='suspension_hydro') {b.cylinder([x+side*.25,.86,z-.18],[x+side*.25,.53,z],.065,c.bright,12);b.cylinder([x+side*.25,.99,z-.25],[x+side*.25,.76,z-.13],.10,c.shade,12);}
           b.cylinder([x - 0.27, wheelY, z], [x + 0.27, wheelY, z], wheelRadius, c.rubber, 36);
           for (const rim of [-1, 1]) {
@@ -501,19 +652,30 @@
             }
           }
         }
+        // Drive sprocket forward, idler aft. Toothed wheels at both ends is the
+        // tell that one track end was drawn twice rather than designed, and the
+        // spoked idler web gives the rear of the running gear its own read.
         for (const end of [-1, 1]) {
           const z = end * wheelHalfSpan, y = trackCenterY + 0.21, r = 0.36;
           b.cylinder([x - 0.28, y, z], [x + 0.28, y, z], r, c.steel, 28);
           b.cylinder([x + side * 0.281, y, z], [x + side * 0.326, y, z], r * 0.75, c.hull, 28);
           b.cylinder([x + side * 0.325, y, z], [x + side * 0.355, y, z], 0.13, c.bright, 16);
-          for (let tooth = 0; tooth < 14; tooth++) {
+          if (end > 0) for (let tooth = 0; tooth < 14; tooth++) {
             const angle = TAU * tooth / 14, radial = [0, Math.sin(angle), Math.cos(angle)], tangent = [0, Math.cos(angle), -Math.sin(angle)];
             b.box([x, y + radial[1] * r, z + radial[2] * r], [0.49, 0.075, 0.10], c.bright, [[1, 0, 0], radial, tangent]);
+          } else {
+            b.cylinder([x + side * 0.283, y, z], [x + side * 0.302, y, z], r * 0.98, c.steel, 28);
+            for (let spoke = 0; spoke < 8; spoke++) {
+              const angle = TAU * spoke / 8, radial = [0, Math.sin(angle), Math.cos(angle)], tangent = [0, Math.cos(angle), -Math.sin(angle)];
+              b.box([x + side * 0.316, y + radial[1] * r * 0.50, z + radial[2] * r * 0.50], [0.030, r * 0.60, 0.075], c.shade, [[1, 0, 0], radial, tangent]);
+            }
+            b.box([side * (hullWidth - 0.02), 1.02, z + end * 0.22], [0.34, 0.15, 0.36], c.shade);
           }
         }
         for (let i = 0; i < 3; i++) {
           const z = -wheelHalfSpan * 0.66 + i * wheelHalfSpan * 0.66;
           b.cylinder([x - 0.18, 1.13, z], [x + 0.18, 1.13, z], 0.135, c.rubber, 16);
+          b.box([side * (hullWidth - 0.03), 1.16, z], [0.30, 0.10, 0.13], c.steel);
         }
       });
       b.part(`chassis / ${label} fenders, segmented skirts and fixtures`, () => {
@@ -521,15 +683,34 @@
         const outerX = x + side * (trackWidth / 2 + 0.055), panels = heavy ? 7 : 6;
         for (let i = 0; i < panels; i++) {
           const z = -wheelHalfSpan + (i + 0.5) * (wheelHalfSpan * 2 / panels), panelLength = wheelHalfSpan * 2 / panels - 0.035;
-          b.box([outerX, 1.23, z], [0.065, reinforced ? 0.55 : 0.36, panelLength], i % 2 ? c.hull : c.armor);
+          beveled(b, [outerX, 1.23, z], [0.065, reinforced ? 0.55 : 0.36, panelLength], weathered(i % 2 ? c.hull : c.armor, i), 0.022);
           b.box([outerX + side * 0.039, 1.40, z], [0.018, 0.045, panelLength * 0.76], c.edge);
           for (const dz of [-panelLength * 0.34, panelLength * 0.34]) b.cylinder([outerX + side * 0.030, 1.33, z + dz], [outerX + side * 0.048, 1.33, z + dz], 0.025, c.bright, 6);
+          // Hinge lugs at the top of every panel: skirts swing up for track work,
+          // and without the lugs the row reads as one painted stripe.
+          for (const dz of [-panelLength * 0.37, panelLength * 0.37]) b.box([outerX - side * 0.026, 1.418, z + dz], [0.052, 0.075, 0.052], c.steel);
         }
         for (const end of [-1, 1]) b.box([x, 1.08, end * (wheelHalfSpan + 0.55)], [trackWidth + 0.06, 0.57, 0.046], c.rubber);
         b.box([side * (hullWidth - 0.16), 1.53, front - 0.48], [0.25, 0.15, 0.21], c.shade);
         b.box([side * (hullWidth - 0.16), 1.55, front - 0.37], [0.16, 0.078, 0.012], c.amber);
         for (const dx of [-0.12, 0.12]) b.rod([side * (hullWidth - 0.16) + dx, 1.53, front - 0.35], [side * (hullWidth - 0.16) + dx, 1.72, front - 0.35], 0.012, c.steel, 6);
         b.rod([side * (hullWidth - 0.16) - 0.12, 1.72, front - 0.35], [side * (hullWidth - 0.16) + 0.12, 1.72, front - 0.35], 0.012, c.steel, 6);
+      });
+      b.part(`chassis / ${label} sponson stowage bins and tool stowage`, () => {
+        // Bins ride the fender rather than the hull side, because the hull side is
+        // armour. They are also the layer that stops the flank reading as one long
+        // green plate between the skirt line and the turret.
+        const top = 1.4725;
+        for (let i = 0; i < 3; i++) {
+          const z = (i - 1) * wheelHalfSpan * 0.70, length = i === 1 ? 1.06 : 0.88;
+          beveled(b, [x, top + 0.17, z], [trackWidth + 0.03, 0.33, length], weathered(c.hull, i + (side > 0 ? 1 : 0)), 0.06);
+          b.box([x, top + 0.345, z], [trackWidth + 0.06, 0.026, length + 0.03], c.edge);
+          for (const dz of [-length * 0.30, length * 0.30]) b.box([x + side * (trackWidth / 2 + 0.005), top + 0.20, z + dz], [0.030, 0.090, 0.055], c.bright);
+          b.rod([x - 0.15, top + 0.372, z - length * 0.35], [x + 0.15, top + 0.372, z - length * 0.35], 0.016, c.steel, 6);
+        }
+        // Pioneer tools clamped outboard: two long thin runs that catch the light
+        // along the whole flank for the price of two rods.
+        for (let i = 0; i < 2; i++) b.rod([x + side * (trackWidth / 2 + 0.055), top + 0.11 + i * 0.115, -0.62], [x + side * (trackWidth / 2 + 0.055), top + 0.11 + i * 0.115, 0.66], 0.027, i ? c.steel : c.cable, 8);
       });
     }
 
@@ -555,6 +736,23 @@
       for (let i = 0; i < louvres; i++) {
         const z = engineRear + 0.06 + (engineFront - engineRear - 0.12) * i / (louvres - 1);
         for (const x of [-hullWidth * 0.40, hullWidth * 0.40]) b.box([x, 1.608, z], [hullWidth * 0.67, 0.040, mobile ? 0.032 : 0.045], c.edge);
+      }
+      // Raised frames around each louvre bank. Bare stripes on a flat lid read as
+      // paint from above, and the deck is most of the plan view on a card.
+      for (const x of [-hullWidth * 0.40, hullWidth * 0.40]) {
+        for (const dx of [-hullWidth * 0.365, hullWidth * 0.365]) b.box([x + dx, 1.601, mid], [0.055, 0.078, engineFront - engineRear - 0.02], c.upper);
+        for (const dz of [engineRear + 0.028, engineFront - 0.028]) b.box([x, 1.601, dz], [hullWidth * 0.79, 0.078, 0.055], c.upper);
+      }
+      // Bolted powerpack access panel forward of the grilles, clear of the ring.
+      beveled(b, [0, 1.585, engineFront + 0.30], [0.86, 0.075, 0.44], c.edge, 0.07);
+      for (const dx of [-0.24, 0.24]) b.box([dx, 1.632, engineFront + 0.30], [0.072, 0.048, 0.28], c.bright);
+      // Pintle and light clusters. The rear plate is the second view a card crop
+      // shows after the three-quarter, and it was blank.
+      beveled(b, [0, 1.02, rear - 0.20], [0.34, 0.26, 0.22], c.steel, 0.05);
+      b.tube([0, 1.02, rear - 0.30], [0, 1.02, rear - 0.255], 0.105, 0.058, c.bright, 12);
+      for (const side of [-1, 1]) {
+        b.box([side * (hullWidth - 0.42), 1.40, rear - 0.10], [0.20, 0.17, 0.10], c.shade);
+        b.box([side * (hullWidth - 0.42), 1.40, rear - 0.152], [0.13, 0.10, 0.012], side > 0 ? c.amber : c.lens);
       }
       if (mobile) {
         for (const x of [-0.60, 0.60]) {
@@ -586,10 +784,22 @@
       if(!casemate)b.cylinder([0, 1.53, turretZ], [0, turretY + 0.06, turretZ], turretWidth * 0.88, c.steel, 48);
       else b.box([0,1.57,-.1],[turretWidth*1.95,.27,2.9],c.hull);
       if(casemate)b.loft([octagon(1.47,hullWidth*.97,-1.87,2.23,.16),octagon(turretTop,turretWidth*.82,-1.35,.87,.14)],c.upper);
+      // The extra ring below the roof turns one long slab side into a shoulder
+      // and a roof chamfer, which is what makes a turret read as cast armour.
       else b.loft([octagon(turretY, turretWidth * 0.88, -1.56, 1.20, 0.35, turretZ),
         octagon(turretY + 0.23, turretWidth, -1.64, 1.37, 0.47, turretZ),
+        octagon(turretTop - 0.26, turretWidth * 0.92, -1.50, 1.04, 0.42, turretZ),
         octagon(turretTop - 0.08, turretWidth * 0.84, -1.36, 0.83, 0.37, turretZ),
         octagon(turretTop, turretWidth * 0.77, -1.25, 0.73, 0.32, turretZ)], c.upper);
+      // A bolted collar at the ring. Without it the shell floats on the deck;
+      // with it the two big volumes get a shadow line where they meet.
+      if (!casemate) {
+        b.cylinder([0, 1.495, turretZ], [0, 1.578, turretZ], turretWidth * 0.96, c.shade, 24);
+        for (let i = 0; i < 12; i++) {
+          const angle = TAU * i / 12;
+          b.box([Math.sin(angle) * turretWidth * 0.96, 1.588, turretZ + Math.cos(angle) * turretWidth * 0.96], [0.075, 0.030, 0.075], c.bright);
+        }
+      }
       // Separate cheek castings belong to the rotating turret, not the fixed hull mounting.
       for (const side of casemate?[]:[-1, 1]) {
         const cheek = [[side * 0.43, turretY + 0.25, 1.49], [side * (turretWidth - 0.27), turretY + 0.28, 1.45],
@@ -599,15 +809,19 @@
         b.face(cheek, c.armor, center); b.face(inside, c.shade, center);
         for (let i = 0; i < cheek.length; i++) { const next = (i + 1) % cheek.length; b.face([cheek[i], cheek[next], inside[next], inside[i]], c.edge, center); }
       }
-      b.box([0, turretY + 0.41, -1.59], [turretWidth * 1.56, 0.38, 0.27], c.shade);
+      beveled(b, [0, turretY + 0.41, -1.59], [turretWidth * 1.56, 0.38, 0.27], c.shade, 0.07);
       for (const x of [-turretWidth * 0.57, 0, turretWidth * 0.57]) b.box([x, turretY + 0.56, -1.739], [0.27, 0.09, 0.024], c.steel);
     });
 
     b.part(`armament / ${heavyGun ? "heavy weapon, enlarged mantlet and sleeved barrel" : "standard weapon, mantlet and barrel"}`, () => {
       const gunY = turretY + 0.49, radius = chosen.armament==='gun_90'?.085:chosen.armament==='gun_125'?.15:heavyGun ? 0.132 : 0.105, muzzle = chosen.armament==='gun_90'?4.78:chosen.armament==='gun_125'?6.67:heavyGun ? 6.36 : 5.68;
-      b.box([0, gunY, 1.20], [heavyGun ? 0.90 : 0.75, heavyGun ? 0.68 : 0.55, 0.61], c.shade);
+      beveled(b, [0, gunY, 1.20], [heavyGun ? 0.90 : 0.75, heavyGun ? 0.68 : 0.55, 0.61], c.shade, 0.10);
       b.cylinder([-0.45, gunY, 1.45], [0.45, gunY, 1.45], heavyGun ? 0.35 : 0.29, c.armor, 32);
       b.cylinder([0, gunY, 1.46], [0, gunY, 1.99], radius * 1.85, c.steel, 32, radius * 1.34);
+      // Canvas boot over the mantlet gap. It is the only soft material on the
+      // model, and it stops the barrel reading as a rod pushed into a box.
+      b.cylinder([0, gunY, 1.63], [0, gunY, 1.94], radius * 2.42, c.canvas, 16, radius * 1.54);
+      for (const [z, scale] of [[1.66, 2.44], [1.89, 1.70]]) b.cylinder([0, gunY, z], [0, gunY, z + 0.028], radius * scale, c.steel, 16);
       b.cylinder([0, gunY, 1.94], [0, gunY, muzzle - 0.23], radius * 1.10, c.upper, 36, radius);
       b.cylinder([0, gunY, 3.30], [0, gunY, 3.87], radius * (heavyGun ? 1.60 : 1.45), c.shade, 36, radius * 1.28);
       const sleeveCount = heavyGun ? 7 : 4;
@@ -633,6 +847,17 @@
           b.box([x, turretTop + 0.065, z], [0.085, 0.055, 0.060], c.glass);
         }
       }
+      // Pintle machine gun beside the commander's hatch. At card size this is the
+      // single detail that separates a turret from a smooth casting; it is a crew
+      // fitting, not the platform's armament, and carries no game capability.
+      const pintle = [-0.18, turretTop, -0.20];
+      b.cylinder([pintle[0], pintle[1] + 0.18, pintle[2]], [pintle[0], pintle[1] + 0.44, pintle[2]], 0.045, c.steel, 12);
+      b.cylinder([pintle[0], pintle[1] + 0.44, pintle[2]], [pintle[0], pintle[1] + 0.50, pintle[2]], 0.075, c.shade, 12);
+      b.box([pintle[0], pintle[1] + 0.545, pintle[2] + 0.16], [0.12, 0.14, 0.32], c.shade);
+      b.box([pintle[0], pintle[1] + 0.46, pintle[2] + 0.10], [0.19, 0.16, 0.22], c.black);
+      b.cylinder([pintle[0], pintle[1] + 0.565, pintle[2] + 0.30], [pintle[0], pintle[1] + 0.565, pintle[2] + 0.76], 0.032, c.steel, 12);
+      b.box([pintle[0], pintle[1] + 0.625, pintle[2] + 0.40], [0.048, 0.042, 0.28], c.bright);
+      b.box([pintle[0] + 0.15, pintle[1] + 0.50, pintle[2] + 0.08], [0.17, 0.20, 0.20], c.armor);
       for (const side of [-1, 1]) {
         const x = side * turretWidth * 0.79;
         b.rod([x, turretTop - 0.12, -0.55], [x, turretTop + 0.035, -0.55], 0.022, c.steel);

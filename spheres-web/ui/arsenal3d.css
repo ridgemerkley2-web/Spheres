@@ -48,3 +48,20 @@ canvas.kit3d { display: block; background: none; pointer-events: none; }
 /* The hover spin is the only motion these cards have, and it is started from
  * JavaScript rather than from CSS -- so the reduced-motion preference is read
  * there, in arsenal3d.js's `reducedMotion`, and there is no rule for it here. */
+
+
+/* --- a construction site on its card ------------------------------------- */
+/* Wide and short, directly above the progress bar it illustrates. The site is
+ * the only art on this page that CHANGES as the project runs, so it earns the
+ * room; the per-kind glyph stays in its tile as the identity mark and as the
+ * fallback when there is no WebGL2. */
+#productionPanel .work-site {
+  position: relative; height: 104px; margin: 12px 0 2px; overflow: hidden;
+  border: 1px solid var(--ops-line, #27343f); border-radius: 14px;
+  background: radial-gradient(120% 90% at 50% 12%, #22323f 0%, #16222c 70%);
+}
+#productionPanel .work-site canvas.kit3d {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+}
+.work-card.blocked .work-site, .work-card.paused .work-site { filter: saturate(.55) brightness(.86); }
+@media (max-width: 760px) { #productionPanel .work-site { height: 84px; } }

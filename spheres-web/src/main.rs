@@ -107,6 +107,14 @@ const EQUIPMENT_CSS: &str = include_str!("../ui/equipment-ui.css");
 // Claude's 46 catalogue models, imported from 092569227023ff4278a5d699018af46bd39c7c94.
 const ARSENAL_MODELS_JS: &str = include_str!("../ui/arsenal-models.js");
 const ARSENAL3D_JS: &str = include_str!("../ui/arsenal3d.js");
+/// Construction-site geometry: thirteen project kinds, five stages each, driven
+/// by recorded server progress and never by a clock. DOM-free, so node checks it.
+const SITE_MESH_JS: &str = include_str!("../ui/site-mesh.js");
+/// The temperate town block kit. Layout varies by a seeded hash of the block id,
+/// never by a random number, so a settlement is the same one every session.
+const TOWN_MESH_JS: &str = include_str!("../ui/town-mesh.js");
+/// The reverse leg of the art pipeline: glTF back into the runtime mesh shape.
+const EQUIPMENT_IMPORT_JS: &str = include_str!("../ui/equipment-import.js");
 const ARSENAL3D_CSS: &str = include_str!("../ui/arsenal3d.css");
 #[cfg(test)]
 mod arsenal_model_tests;
@@ -6683,6 +6691,9 @@ fn main() {
             (Method::Get, "/cash-flow-ui.js") => Response::from_string(CASH_FLOW_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/arsenal-models.js") => Response::from_string(ARSENAL_MODELS_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/arsenal3d.js") => Response::from_string(ARSENAL3D_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/site-mesh.js") => Response::from_string(SITE_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/town-mesh.js") => Response::from_string(TOWN_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/equipment-import.js") => Response::from_string(EQUIPMENT_IMPORT_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/arsenal3d.css") => Response::from_string(ARSENAL3D_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, path) if path.starts_with("/art/components/") => {
                 if let Some(bytes) = page_art_assets::component_asset(&path["/art/components/".len()..]) {

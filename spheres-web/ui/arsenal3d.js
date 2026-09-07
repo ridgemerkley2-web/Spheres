@@ -101,13 +101,42 @@
     return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null;
   }
 
-  /// One VAO per kit, built on first sight and kept. The whole deck is about
+  /// WHERE A MESH COMES FROM. This file was written when the equipment deck
+  /// was the only source of card art. It is not any more: construction sites
+  /// and town blocks are the same kind of object — three parallel Float32Arrays
+  /// and a bounding box — and they want the same single context, for exactly
+  /// the reason in this file's header. So an id may carry a provider prefix,
+  /// `site:arms_plant/frame/2`, and a bare id still means the deck. Providers
+  /// register from the page rather than being imported here, because the
+  /// geometry modules are DOM-free by contract and must not learn about GL.
+  const providers = new Map();
+  function register(prefix, build) {
+    if (typeof prefix !== "string" || typeof build !== "function") return false;
+    providers.set(prefix, build);
+    return true;
+  }
+  function resolveMesh(id, cls) {
+    const text = String(id);
+    const cut = text.indexOf(":");
+    if (cut > 0) {
+      const build = providers.get(text.slice(0, cut));
+      if (!build) return null;
+      try { return build(text.slice(cut + 1), cls) || null; } catch (e) { return null; }
+    }
+    return root.ArsenalModels ? root.ArsenalModels.build(text, cls) : null;
+  }
+
+  /// One VAO per mesh, built on first sight and kept. The whole deck is about
   /// twenty thousand triangles, so keeping all of it costs less than a single
-  /// one of the baked map textures this page already holds.
+  /// one of the baked map textures this page already holds. Sites and towns
+  /// cache under the id STRING, which is what makes a card cheap on the second
+  /// render of a panel that rebuilds its own innerHTML.
   function bufferFor(id, cls) {
-    const geom = root.ArsenalModels.build(id, cls);
-    if (!geom) return null;
-    if (vaos.has(geom.id)) return vaos.get(geom.id);
+    if (vaos.has(id)) return vaos.get(id);
+    const geom = resolveMesh(id, cls);
+    if (!geom || !geom.positions || !geom.positions.length) return null;
+    const key = geom.id || id;
+    if (vaos.has(key)) { vaos.set(id, vaos.get(key)); return vaos.get(key); }
     const vao = gl.createVertexArray();
     gl.bindVertexArray(vao);
     [[geom.positions, 0], [geom.normals, 1], [geom.colors, 2]].forEach((pair) => {
@@ -118,19 +147,30 @@
       gl.vertexAttribPointer(pair[1], 3, gl.FLOAT, false, 0, 0);
     });
     gl.bindVertexArray(null);
+    // Two mesh shapes reach here. The deck's carries `centre` and `count`; the
+    // equipment/site/town generators carry `bounds` and `triangleCount`. Neither
+    // is wrong, so read whichever is present rather than making four generators
+    // agree on a field name after the fact.
+    const count = typeof geom.count === "number" ? geom.count : geom.positions.length / 3;
+    const centre = geom.centre || (geom.bounds
+      ? [(geom.bounds.min[0] + geom.bounds.max[0]) / 2,
+        (geom.bounds.min[1] + geom.bounds.max[1]) / 2,
+        (geom.bounds.min[2] + geom.bounds.max[2]) / 2]
+      : [0, 0, 0]);
     // The framing radius is the bounding sphere about the box centre, so a
     // task group and a hand-launched drone are both fitted by the same rule and
     // neither is clipped when it turns.
     let r = 0;
     for (let i = 0; i < geom.positions.length; i += 3) {
       r = Math.max(r, Math.hypot(
-        geom.positions[i] - geom.centre[0],
-        geom.positions[i + 1] - geom.centre[1],
-        geom.positions[i + 2] - geom.centre[2],
+        geom.positions[i] - centre[0],
+        geom.positions[i + 1] - centre[1],
+        geom.positions[i + 2] - centre[2],
       ));
     }
-    const entry = { vao, count: geom.count, centre: geom.centre, radius: r || 1, fits: new Map(), geom };
-    vaos.set(geom.id, entry);
+    const entry = { vao, count, centre, radius: r || 1, fits: new Map(), geom };
+    vaos.set(key, entry);
+    if (key !== id) vaos.set(id, entry);
     return entry;
   }
 
@@ -366,7 +406,7 @@
       pitch: o.pitch == null ? REST_PITCH : o.pitch,
       aspect: null, dist: 0, distRest: 0, distTurn: 0, spinning: false,
     };
-    if (!root.ArsenalModels.build(id, state.cls)) return false;
+    if (!bufferFor(id, state.cls)) return false;
     mounted.set(canvas, state);
     canvas.setAttribute("aria-hidden", "true");
     return paint(canvas, state);
@@ -445,8 +485,11 @@
   root.Arsenal3D = {
     mount, scan, dataURL, renderTo,
     get available() { return init(); },
+    register,
     canvasHtml(id, cls) {
-      return `<canvas class="kit3d" data-kit3d="${String(id).replace(/[^a-z0-9_]/gi, "")}"`
+      // Provider ids carry ':' '/' '.' and '-'. Everything else still goes, so
+      // this stays an attribute value that cannot break out of its quotes.
+      return `<canvas class="kit3d" data-kit3d="${String(id).replace(/[^a-z0-9_:/.-]/gi, "")}"`
         + ` data-kit3d-class="${String(cls || "").replace(/[^a-z]/gi, "")}"></canvas>`;
     },
   };

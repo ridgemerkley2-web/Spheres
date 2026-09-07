@@ -3094,6 +3094,9 @@
 <script src="/equipment-model.js"></script>
 <script src="/arsenal-models.js"></script>
 <script src="/arsenal3d.js"></script>
+<script src="/site-mesh.js"></script>
+<script src="/town-mesh.js"></script>
+<script src="/equipment-import.js"></script>
 <script src="/equipment-ui.js"></script>
 <script src="/agency-ui.js"></script>
 <script src="/operations-ui.js"></script>
@@ -15864,6 +15867,54 @@ async function productionFetch() {
   }
 }
 
+/// THE CONSTRUCTION SITE ON A CARD.
+///
+/// Registration lives here rather than in site-mesh.js because that module is
+/// DOM-free by contract — it is built and checked under node — and must not
+/// learn that a GL context exists. It is done lazily and once, so load order
+/// between the three scripts cannot matter.
+function siteArtReady() {
+  if (siteArtReady.done) return true;
+  if (typeof window === "undefined") return false;
+  if (!(window.Arsenal3D && Arsenal3D.available && window.SiteMesh)) return false;
+  Arsenal3D.register("site", (rest) => {
+    const [kind, stage, level, status] = String(rest).split("/");
+    return SiteMesh.build(kind, stage, {
+      level: Number.isFinite(+level) ? +level : 1,
+      status: status || "building",
+    });
+  });
+  if (window.TownMesh) {
+    Arsenal3D.register("town", (rest) => {
+      const [id, district, lod] = String(rest).split("/");
+      return TownMesh.block({ id, district: district || "mixed", lod: lod || "close" });
+    });
+  }
+  siteArtReady.done = true;
+  return true;
+}
+/// The id is quantised to the STAGE, not to the raw fraction. A project moves
+/// a little every tick and an id built from 0.5137 would mint a new mesh, and
+/// a new VAO, on every render. Stage x level x status is at most a few dozen
+/// meshes for the whole game, and it is also the honest resolution: the art
+/// changes when the work reaches a stage, not when the number moves.
+/// The strip above the progress bar. It is aria-hidden and it carries no
+/// number: the percentage, the ETA and the blocked reason are all text a line
+/// below, and a picture that tried to restate them would only be a second
+/// place for them to disagree.
+function productionSiteStripHtml(p) {
+  const art = productionSite3d(p);
+  return art ? `<div class="work-site" aria-hidden="true">${art}</div>` : "";
+}
+function productionSite3d(p) {
+  if (!siteArtReady()) return "";
+  const kind = productionKind(p);
+  if (!SiteMesh.kinds().includes(kind)) return "";
+  const status = productionStatus(p);
+  const stage = SiteMesh.stageFor(kind, productionProgress(p), { status });
+  const level = Number.isFinite(+p.level) ? Math.max(1, Math.min(5, Math.round(+p.level))) : 1;
+  return Arsenal3D.canvasHtml(`site:${kind}/${stage.stage}/${level}/${status}`);
+}
 function productionCardHtml(p) {
   const tone = productionTone(p), kind = productionKind(p), province = productionProvince(p);
   const frac = productionProgress(p), percent = Math.round(frac * 1000) / 10, f = p.finance || {};
@@ -15875,6 +15926,7 @@ function productionCardHtml(p) {
   return `<article class="work-card ${tone}${String(PROD.selected) === String(p.id) ? " selected" : ""}" tabindex="0" data-prod-project="${logisticsEscAttr(p.id)}">
     <div class="work-top"><span class="work-art" aria-hidden="true">${PROD_ICON[kind] || "◆"}</span><div class="work-title"><b>${escText(p.name || kind.replace(/_/g," "))}</b><span>${escText(province.name || province.id || "Province")}</span></div><span class="work-state">${escText(productionStatus(p))}</span></div>
     <dl class="construction-project-money"><div><dt>Total cost</dt><dd>${constructionMoney(f.cost_bn)}</dd></div><div><dt>Spent</dt><dd>${constructionMoney(f.spent_bn)}</dd></div><div><dt>Remaining</dt><dd>${constructionMoney(f.remaining_bn)}</dd></div><div><dt>Planned / day</dt><dd>${constructionMoney(f.daily_request_bn)}</dd></div></dl>
+    ${productionSiteStripHtml(p)}
     <div class="work-progress" role="progressbar" aria-label="${logisticsEscAttr(p.name || "Project")} progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${percent}"><i style="width:${percent}%"></i></div>
     <div class="work-line"><span><b>${escText(progressText)}%</b> complete</span><span>${escText(eta)}</span></div>
     ${reason ? `<p class="work-reason">${escText(reason)}</p>` : ""}
@@ -16133,7 +16185,7 @@ function renderManufacturingPanel() {
   else body.innerHTML = manufacturingLinesHtml();
   operationsRestoreDetails(body, details);
   wireManufacturingPanel();
-  if (window.Arsenal3D) Arsenal3D.scan(body);
+  if (typeof window !== "undefined" && window.Arsenal3D) Arsenal3D.scan(body);
 }
 
 function wireManufacturingPanel() {
@@ -16231,6 +16283,8 @@ function renderProductionPanel() {
   }
   operationsRestoreDetails(body,details); body.scrollTop=scroll;
   wireProductionPanel();
+  // The panel replaces its own innerHTML, so every canvas in it is a new node.
+  if (typeof window !== "undefined" && window.Arsenal3D) Arsenal3D.scan(body);
   if(focused) {
     const input=body.querySelector("#"+focused.id);
     input?.focus({preventScroll:true});
