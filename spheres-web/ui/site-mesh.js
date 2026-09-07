@@ -32,16 +32,28 @@
    MODEL SPACE. Metres. +X starboard, +Y up, +Z forward. Y=0 is ground contact —
    the underside of the formation platform every site sits on, and grade is
    `GRADE` above that, because a real site is built up on fill before anything
-   else happens and a foundation pit has to have somewhere to go. Flat
-   per-triangle normals, no shared vertices, no index buffer, per-vertex RGB in
-   0..1 with no alpha.
+   else happens and a foundation pit has to have somewhere to go. No shared
+   vertices, no index buffer, per-vertex RGB in 0..1 with no alpha, no UVs and no
+   textures — this renderer has no texture path at all, so everything you can see
+   here is geometry or vertex colour, which is why a rib, a chamfer and a louvre
+   slat are all drawn rather than painted.
+
+   SHADING. Normals are per triangle EXCEPT inside a smoothing group, where the
+   faces meeting at a corner are averaged under a crease limit. Curved
+   primitives — every loft, tube, column, rod and heap — open a group and come
+   out round; plate, sheeting, panelling and concrete never do and keep their
+   exact face normal. It costs no triangles and it is the single largest thing
+   separating this from the faceted prisms it used to draw.
 
    TRUTHFULNESS (roadmap section 3). These are ORIGINAL generic industrial
    designs. Nothing here is a real named plant, no dimension is a measured
    dimension of anything real, and the art grants the province no capability the
-   simulation has not already recorded. Twelve of the thirteen kinds are
-   deliberately plain massing — legible at map zoom, correct in stage and scale,
-   and not finished art. `arms_plant` is the one worked through in full. */
+   simulation has not already recorded. `arms_plant` is the one kind worked
+   through in full. The other twelve are still PLACEHOLDERS and still say so in
+   `meta().placeholder` and in their own descriptions: they got better in this
+   pass only because they lean on the same shared stage kit — hoarding, huts,
+   materials, crane, scaffold, footings, cladding, roof, fence, lighting — and
+   the kit got better. Their own massing is unchanged and is not finished art. */
 (function (root, factory) {
   const api = factory();
   if (typeof module === "object" && module.exports) module.exports = api;
@@ -134,19 +146,57 @@
     grass: rgb(0x51603f),
   };
 
+  /// How far two faces may disagree and still share a corner normal. cos 69.5°.
+  /// WHY A LIMIT AT ALL: a smooth cylinder still has a sharp rim, a spoil heap
+  /// still has a hard edge where its side meets the ground, and a smoothing pass
+  /// that ignores that turns every drum into a blob. At 0.35 the ring of an
+  /// 8-segment tube merges (adjacent faces are 45° apart, dot 0.707) and its end
+  /// cap does not (dot 0), which is exactly the split wanted.
+  ///
+  /// It also PROVES the shading contract the checks assert. Every face folded
+  /// into a corner is within the limit of that corner's own face, so the sum has
+  /// dot >= 0.35 * count with it and the normalised sum has dot >= 0.35. A
+  /// smoothed vertex can therefore never point behind the triangle it belongs
+  /// to, which is the property the old flat-normal assertion was really
+  /// defending.
+  const CREASE = 0.35;
+
   // ------------------------------------------------------------------- build
   // A mesh is a triangle soup with a per-vertex colour, a transform stack and a
-  // list of named part ranges. Normals are NOT accumulated: they are derived per
-  // triangle in `finish` from the vertices AS TRANSFORMED, so a mirrored wall
-  // gets the normal its geometry actually has. Mirroring is how half the walls
-  // here are placed, so that is worth the two lines it costs.
+  // list of named part ranges. Normals are NOT accumulated at emit time: they
+  // are derived per triangle in `finish` from the vertices AS TRANSFORMED, so a
+  // mirrored wall gets the normal its geometry actually has. Mirroring is how
+  // half the walls here are placed, so that is worth the two lines it costs.
+  //
+  // SMOOTH SHADING, and why it is the first thing this pass did. Every triangle
+  // in this file used to take the normal of the face it sat on, so a tank, a
+  // pipe, a bollard, a drum and a spoil heap all read as faceted prisms however
+  // many segments they were given. Smoothing costs ZERO triangles. Curved
+  // primitives now open a SMOOTHING GROUP, and `finish` averages the face
+  // normals that meet at each corner inside one, crease-limited so rims and
+  // caps stay sharp. Flat plate, concrete, panelling and sheeting never open a
+  // group and keep the exact face normal they always had.
   function Mesh() {
     this.pos = [];
     this.col = [];
+    this.grp = [];
     this.parts = [];
     this.m = IDENT.slice();
     this.stack = [];
+    this.sg = 0;
+    this.sgNext = 0;
   }
+  /// Everything emitted inside `fn` shares one smoothing group. A FRESH id per
+  /// call, deliberately: two drums standing shoulder to shoulder touch at their
+  /// skins, and a shared group would weld their normals into one lumpy surface.
+  Mesh.prototype.smooth = function (fn) {
+    const prev = this.sg;
+    this.sgNext += 1;
+    this.sg = this.sgNext;
+    fn(this);
+    this.sg = prev;
+    return this;
+  };
   Mesh.prototype.save = function () { this.stack.push(this.m.slice()); return this; };
   Mesh.prototype.restore = function () { this.m = this.stack.pop() || IDENT.slice(); return this; };
   Mesh.prototype.move = function (x, y, z) { this.m = mul(this.m, mTranslate(x, y, z)); return this; };
@@ -178,6 +228,7 @@
     const A = this.xf(a), B = this.xf(flip ? c : b), C = this.xf(flip ? b : c);
     this.pos.push(A[0], A[1], A[2], B[0], B[1], B[2], C[0], C[1], C[2]);
     for (let i = 0; i < 3; i += 1) this.col.push(col[0], col[1], col[2]);
+    this.grp.push(this.sg);
     return this;
   };
   Mesh.prototype.quad = function (a, b, c, d, col) {
@@ -234,6 +285,68 @@
     return this.bar(cx - sx / 2, cx + sx / 2, cy - sy / 2, cy + sy / 2, cz - sz / 2, cz + sz / 2, col);
   };
 
+  /// The shading `bar` gives its six faces, as a function of an arbitrary
+  /// outward normal, so a chamfer or a folded sheet lands on the same key as the
+  /// box beside it. Top 1.07, bottom 0.76, front 1.00, back 0.76, sides 0.90 —
+  /// read straight off `bar` so the two cannot drift apart.
+  /// The 0.02 on nx is deliberate and small: it gives the two long faces of a
+  /// section slightly different values so a beam does not read as symmetrical
+  /// under a light that is not.
+  function faceTone(nx, ny, nz) {
+    return 0.90 + 0.17 * Math.max(0, ny) - 0.14 * Math.max(0, -ny)
+      + 0.10 * Math.max(0, nz) - 0.14 * Math.max(0, -nz) + 0.02 * nx;
+  }
+
+  /// A CHAMFERED box: the same extents as `bar`, with the four edges parallel to
+  /// its longest axis cut back by `ch`.
+  ///
+  /// WHY THIS EXISTS AND WHY IT IS WORTH 8 EXTRA TRIANGLES. Nothing manufactured
+  /// has a knife edge. A rolled section, a kerb, a concrete upstand, a ballast
+  /// block all carry a small arris, and that arris is what catches the light and
+  /// separates a machined object from a folded piece of card — in a renderer
+  /// with no textures it is most of what "machined" even means. 20 mm is the
+  /// house default: enough to catch a highlight at inspection range, small
+  /// enough to vanish honestly at map range, which is why the coarse path never
+  /// calls this. The ends are left square because they are almost always buried
+  /// in another member or standing on the ground.
+  Mesh.prototype.beam = function (x0, x1, y0, y1, z0, z1, col, ch0) {
+    const dx = x1 - x0, dy = y1 - y0, dz = z1 - z0;
+    // Along the longest axis, because that is the edge a section is extruded
+    // along and the one a viewer reads as its length.
+    const axis = dx >= dy && dx >= dz ? 0 : (dy >= dz ? 1 : 2);
+    const u = axis === 0 ? dy : dx, v = axis === 2 ? dy : dz;
+    const ch = Math.max(0.004, Math.min(ch0 == null ? 0.02 : ch0, u * 0.34, v * 0.34));
+    // The octagonal section, counter-clockwise in the two axes that are not the
+    // extrusion axis. `a` is the first of them, `b` the second.
+    const a0 = axis === 0 ? y0 : x0, a1 = axis === 0 ? y1 : x1;
+    const b0 = axis === 2 ? y0 : z0, b1 = axis === 2 ? y1 : z1;
+    const sec = [
+      [a0 + ch, b0], [a1 - ch, b0], [a1, b0 + ch], [a1, b1 - ch],
+      [a1 - ch, b1], [a0 + ch, b1], [a0, b1 - ch], [a0, b0 + ch],
+    ];
+    // A section listed counter-clockwise in (a, b) winds the wrong way when the
+    // extrusion axis is Y, because (x, z) seen from +Y is the mirror of the
+    // plane the list was written in. Reversing it once here fixes both the side
+    // quads and the two caps, and `sgn` keeps the shading normal with them.
+    const sgn = axis === 1 ? -1 : 1;
+    if (axis === 1) sec.reverse();
+    const e0 = axis === 0 ? x0 : (axis === 1 ? y0 : z0);
+    const e1 = axis === 0 ? x1 : (axis === 1 ? y1 : z1);
+    const at = (a, b, e) => (axis === 0 ? [e, a, b] : axis === 1 ? [a, e, b] : [a, b, e]);
+    for (let i = 0; i < 8; i += 1) {
+      const j = (i + 1) % 8;
+      const na = sec[j][1] - sec[i][1], nb = sec[i][0] - sec[j][0];
+      const nl = Math.hypot(na, nb) || 1;
+      const n = at((sgn * na) / nl, (sgn * nb) / nl, 0);
+      this.quad(at(sec[i][0], sec[i][1], e0), at(sec[j][0], sec[j][1], e0),
+        at(sec[j][0], sec[j][1], e1), at(sec[i][0], sec[i][1], e1),
+        shade(col, faceTone(n[0], n[1], n[2])));
+    }
+    this.fan(sec.map((p) => at(p[0], p[1], e1)), shade(col, faceTone(...at(0, 0, 1))));
+    this.fan(sec.map((p) => at(p[0], p[1], e0)).reverse(), shade(col, faceTone(...at(0, 0, -1))));
+    return this;
+  };
+
   function ring(rx, ry, seg) {
     const pts = [];
     for (let i = 0; i < seg; i += 1) {
@@ -242,25 +355,32 @@
     }
     return pts;
   }
+  /// Lofted surfaces are the curved half of this file — pipes, tanks, silos,
+  /// drums, bollards, downpipes, reinforcement, scaffold tube, masts — so the
+  /// whole loft opens ONE smoothing group and every one of them comes out round
+  /// for no triangles at all. The end caps sit in the same group and stay sharp
+  /// on the crease limit, which is what a rolled rim actually looks like.
   Mesh.prototype.loft = function (sections, col, caps) {
-    const n = sections[0].pts.length;
-    for (let s = 0; s + 1 < sections.length; s += 1) {
-      const a = sections[s], b = sections[s + 1];
-      for (let i = 0; i < n; i += 1) {
-        const j = (i + 1) % n;
-        const lit = 1 + 0.15 * Math.sin((i / n) * Math.PI * 2 + 1.2);
-        this.quad(
-          [a.pts[i][0], a.pts[i][1], a.z], [a.pts[j][0], a.pts[j][1], a.z],
-          [b.pts[j][0], b.pts[j][1], b.z], [b.pts[i][0], b.pts[i][1], b.z],
-          shade(col, lit),
-        );
+    this.smooth(() => {
+      const n = sections[0].pts.length;
+      for (let s = 0; s + 1 < sections.length; s += 1) {
+        const a = sections[s], b = sections[s + 1];
+        for (let i = 0; i < n; i += 1) {
+          const j = (i + 1) % n;
+          const lit = 1 + 0.15 * Math.sin((i / n) * Math.PI * 2 + 1.2);
+          this.quad(
+            [a.pts[i][0], a.pts[i][1], a.z], [a.pts[j][0], a.pts[j][1], a.z],
+            [b.pts[j][0], b.pts[j][1], b.z], [b.pts[i][0], b.pts[i][1], b.z],
+            shade(col, lit),
+          );
+        }
       }
-    }
-    if (caps !== false) {
-      const f = sections[0], l = sections[sections.length - 1];
-      this.fan(f.pts.map((p) => [p[0], p[1], f.z]).slice().reverse(), shade(col, 0.8));
-      this.fan(l.pts.map((p) => [p[0], p[1], l.z]), shade(col, 0.88));
-    }
+      if (caps !== false) {
+        const f = sections[0], l = sections[sections.length - 1];
+        this.fan(f.pts.map((p) => [p[0], p[1], f.z]).slice().reverse(), shade(col, 0.8));
+        this.fan(l.pts.map((p) => [p[0], p[1], l.z]), shade(col, 0.88));
+      }
+    });
     return this;
   };
   Mesh.prototype.tube = function (r0, r1, len, seg, col, caps) {
@@ -279,13 +399,29 @@
   };
   /// A conical heap. Spoil, aggregate, sand. Cheaper than a lofted cone and it
   /// is the right shape: tipped material stands at its angle of repose.
+  /// A conical heap. Spoil, aggregate, sand, topsoil, grass verge. Smoothed
+  /// around the ring, which also rounds the apex: tipped material does not come
+  /// to a point, and the crease limit still holds the hard line where the side
+  /// meets the ground.
   Mesh.prototype.mound = function (x, y, z, r, h, seg, col) {
-    const pts = ring(r, r, seg).map((p) => [x + p[0], y, z + p[1]]);
-    for (let i = 0; i < seg; i += 1) {
-      const j = (i + 1) % seg;
-      this.tri(pts[i], pts[j], [x, y + h, z], shade(col, 1 + 0.1 * Math.sin(i * 1.3)));
-    }
-    this.fan(pts.slice().reverse(), shade(col, 0.8));
+    this.smooth(() => {
+      const pts = ring(r, r, seg).map((p) => [x + p[0], y, z + p[1]]);
+      for (let i = 0; i < seg; i += 1) {
+        const j = (i + 1) % seg;
+        // WOUND j-THEN-i. Listed the other way the whole cone is inside out —
+        // every spoil heap, topsoil bund, aggregate pile and grass verge in this
+        // file was, and it hid because a tall narrow heap's sides are nearly
+        // vertical and a nearly vertical face lit from the wrong side is only
+        // slightly wrong. Flatten the verge to the 0.55 m it should always have
+        // been and it is unmistakable.
+        this.tri(pts[j], pts[i], [x, y + h, z], shade(col, 1 + 0.1 * Math.sin(i * 1.3)));
+      }
+      // The base looks DOWN. It is buried either way, but a base facing up
+      // shares the sides' sky-ward normal closely enough to pass the crease
+      // limit, and the smoothing pass would then round the one edge on a tipped
+      // heap that is genuinely hard.
+      this.fan(pts, shade(col, 0.8));
+    });
     return this;
   };
   /// A flat planform extruded in Y — slabs, aprons, canopies, gable tympana.
@@ -308,6 +444,152 @@
     }
     return this;
   };
+
+  /// A flat plate standing in the XY plane between two Z faces: haunches,
+  /// gussets, gable tympana, sign boards, dock bumpers. It exists because
+  /// hand-winding both faces of a plate is how normals end up inside out — the
+  /// signed area of the outline decides the handedness once, here, and both
+  /// faces and the rim follow from it.
+  Mesh.prototype.webPlate = function (pts, z0, z1, col) {
+    let area = 0;
+    for (let i = 0; i < pts.length; i += 1) {
+      const j = (i + 1) % pts.length;
+      area += pts[i][0] * pts[j][1] - pts[j][0] * pts[i][1];
+    }
+    const o = area < 0 ? pts.slice().reverse() : pts;
+    this.fan(o.map((p) => [p[0], p[1], z1]), shade(col, 1.02));
+    this.fan(o.map((p) => [p[0], p[1], z0]).reverse(), shade(col, 0.88));
+    for (let i = 0; i < o.length; i += 1) {
+      const j = (i + 1) % o.length;
+      this.quad([o[i][0], o[i][1], z0], [o[j][0], o[j][1], z0],
+        [o[j][0], o[j][1], z1], [o[i][0], o[i][1], z1], shade(col, 0.84));
+    }
+    return this;
+  };
+
+  /// A round bar between two points, at any angle. Reinforcement, scaffold
+  /// tube, lattice bracing, handrail and pendant ties are all this. Doing it
+  /// with a matrix rather than by hand is what lets a brace actually be a brace
+  /// instead of an axis-aligned box pretending to be one, and it comes out
+  /// smooth-shaded for free because `loft` opens the group.
+  Mesh.prototype.rod = function (a, b, r, seg, col, caps) {
+    const dx = b[0] - a[0], dy = b[1] - a[1], dz = b[2] - a[2];
+    const len = Math.hypot(dx, dy, dz);
+    if (len < 1e-6) return this;
+    this.save().move(a[0], a[1], a[2])
+      .rotY(Math.atan2(dx, dz) / DEG)
+      .rotX(-Math.asin(Math.max(-1, Math.min(1, dy / len))) / DEG);
+    this.tube(r, r, len, seg, col, caps);
+    this.restore();
+    return this;
+  };
+
+  /// Ground you can tell from the platform it sits on. A site is not a clean
+  /// plane: there is hardstanding where the plant runs, churned mud off the
+  /// gate, and hardcore where the piling mat was left. With no textures the
+  /// ONLY way to say that is to break the surface into faces that differ, so
+  /// this lays a grid and varies the tone across it. `wear` is deliberately
+  /// small — the brief asks for restrained, and mud that reads as camouflage is
+  /// worse than no mud.
+  function groundPatch(m, x, z, w, d, nx, nz, y, col, wear) {
+    for (let i = 0; i < nx; i += 1) {
+      for (let j = 0; j < nz; j += 1) {
+        const x0 = x - w / 2 + (i * w) / nx, x1 = x - w / 2 + ((i + 1) * w) / nx;
+        const z0 = z - d / 2 + (j * d) / nz, z1 = z - d / 2 + ((j + 1) * d) / nz;
+        const t = 1 + wear * (0.6 * Math.sin(i * 1.7 + j * 2.3) + 0.4 * Math.sin(i * 0.62 - j * 1.13));
+        deck(m, x0, x1, y, z0, z1, shade(col, t));
+      }
+    }
+  }
+
+  /// Profiled sheeting, drawn as the fold it actually is. Trapezoidal cladding
+  /// is a continuous zig-zag of crest, web, valley, web, and every one of those
+  /// facets takes a different amount of light — which is precisely the read this
+  /// renderer can afford and a flat quad cannot fake. Spans x in [x0, x1], y in
+  /// [0, h], sheeting the +Z face.
+  function ribbedPanel(m, x0, x1, h, pitch, depth, col) {
+    const span = x1 - x0;
+    const ribs = Math.max(1, Math.round(span / pitch));
+    const step = span / ribs;
+    // crest 0.30, fall 0.20, valley 0.30, rise 0.20 of each rib
+    const profile = [[0, 0], [0.30, 0], [0.50, depth], [0.80, depth], [1.0, 0]];
+    for (let r = 0; r < ribs; r += 1) {
+      for (let s = 0; s + 1 < profile.length; s += 1) {
+        const ax = x0 + (r + profile[s][0]) * step, az = profile[s][1];
+        const bx = x0 + (r + profile[s + 1][0]) * step, bz = profile[s + 1][1];
+        const fl = Math.hypot(bz - az, bx - ax) || 1;
+        m.quad([ax, 0, az], [bx, 0, bz], [bx, h, bz], [ax, h, az],
+          shade(col, faceTone((az - bz) / fl, 0, (bx - ax) / fl)));
+      }
+    }
+  }
+
+  /// A louvre bank with slats and a hole behind them. WHY NOT A DARK RECTANGLE:
+  /// a dark rectangle is what a texture would be for, and there is no texture
+  /// path here. Ventilation openings are one of the few places an industrial
+  /// building has real depth on its elevation, so they get real depth.
+  function louvreBank(m, x0, x1, y0, y1, z, out, slats, col) {
+    m.bar(x0, x1, y0, y1, z - 0.02, z + 0.03, shade(P.dark, 0.55));            // the opening
+    for (let i = 0; i < slats; i += 1) {
+      const y = y0 + 0.06 + (i * (y1 - y0 - 0.12)) / slats;
+      const t = (y1 - y0 - 0.12) / slats;
+      // Tilted down and out, so the top face catches sky and the underside does
+      // not — the alternation is the whole silhouette of a louvre.
+      m.quad([x0, y + t * 0.75, z], [x1, y + t * 0.75, z], [x1, y, z + out], [x0, y, z + out], shade(col, 0.66));
+      m.quad([x0, y, z + out], [x1, y, z + out], [x1, y + t * 0.75, z], [x0, y + t * 0.75, z], shade(col, 1.08));
+    }
+    m.bar(x0 - 0.08, x0 + 0.02, y0 - 0.06, y1 + 0.06, z - 0.02, z + out + 0.04, shade(col, 0.86));
+    m.bar(x1 - 0.02, x1 + 0.08, y0 - 0.06, y1 + 0.06, z - 0.02, z + out + 0.04, shade(col, 0.86));
+    m.bar(x0 - 0.08, x1 + 0.08, y1 + 0.02, y1 + 0.14, z - 0.02, z + out + 0.1, shade(col, 1.1));
+  }
+
+  /// A reinforcement cage that reads as a cage: vertical bars at the corners and
+  /// on the faces, closed links at four levels, and starters left projecting for
+  /// the column that lands on it. Round bar, because it is round, and because
+  /// the smoothing pass makes that free.
+  function rebarCage(m, x, z, hw, hd, y0, y1, seg) {
+    const r = 0.028;
+    const verts = [
+      [-hw, -hd], [0, -hd], [hw, -hd], [hw, 0],
+      [hw, hd], [0, hd], [-hw, hd], [-hw, 0],
+    ];
+    for (const v of verts) {
+      m.rod([x + v[0], y0, z + v[1]], [x + v[0], y1, z + v[1]], r, seg, P.rebar, false);
+    }
+    for (let l = 0; l < 4; l += 1) {
+      const y = y0 + 0.16 + (l * (y1 - y0 - 0.32)) / 3;
+      const link = [[-hw, -hd], [hw, -hd], [hw, hd], [-hw, hd]];
+      for (let i = 0; i < 4; i += 1) {
+        const a = link[i], b = link[(i + 1) % 4];
+        m.rod([x + a[0], y, z + a[1]], [x + b[0], y, z + b[1]], r * 0.8, 6, shade(P.rebar, 1.08), false);
+      }
+    }
+  }
+
+  /// A lattice bay: four chords already standing, this adds the horizontals and
+  /// the K-bracing that make a mast or a jib a lattice rather than a stick. The
+  /// crane and the pipe gantry both want it, so it lives out here.
+  function latticeBay(m, y0, y1, hx, hz, r, seg, col) {
+    const ym = (y0 + y1) / 2;
+    for (const s of [-1, 1]) {
+      m.rod([-hx, y1, s * hz], [hx, y1, s * hz], r, seg, col, false);
+      m.rod([-hx, y0, s * hz], [0, ym, s * hz], r * 0.85, seg, shade(col, 0.9), false);
+      m.rod([0, ym, s * hz], [hx, y0, s * hz], r * 0.85, seg, shade(col, 0.9), false);
+      m.rod([s * hx, y1, -hz], [s * hx, y1, hz], r, seg, col, false);
+      m.rod([s * hx, y0, -hz], [s * hx, ym, 0], r * 0.85, seg, shade(col, 0.88), false);
+      m.rod([s * hx, ym, 0], [s * hx, y0, hz], r * 0.85, seg, shade(col, 0.88), false);
+    }
+  }
+
+  /// A bollard: shaft, reflective band and a domed cap. Three tubes rather than
+  /// one because the band is the thing that says "bollard" and not "post", and
+  /// the smoothing pass rounds all three for nothing.
+  function bollard(m, x, z, h, r, seg, col) {
+    m.column(x, GRADE, z, h * 0.62, r, r, seg, col, true);
+    m.column(x, GRADE + h * 0.62, z, h * 0.16, r * 1.04, r * 1.04, seg, shade(P.hut, 1.06), false);
+    m.column(x, GRADE + h * 0.78, z, h * 0.16, r, r, seg, col, false);
+    m.column(x, GRADE + h * 0.94, z, h * 0.06, r, r * 0.55, seg, shade(col, 1.1), true);
+  }
 
   // ------------------------------------------------------------------ stages
   // Five stages, and which one a site is in is a pure function of recorded work.
@@ -532,10 +814,19 @@
   /// The made-up platform, with a hole left where the works are. The hole is
   /// how an excavation exists without going below Y=0 — the apron is a ring,
   /// and the dig is what you see through it.
+  /// DECK WINDING. These four quads run x-then-z, which winds a face looking at
+  /// the ground rather than at the sky — the made-up platform every site stands
+  /// on was lit from underneath. `deck` fixes the order in one place so the
+  /// platform, the pit floor and the hardstanding all agree, and the checks now
+  /// assert that a surface you walk on has a normal with a positive Y.
+  function deck(m, x0, x1, y, z0, z1, col) {
+    m.quad([x0, y, z0], [x0, y, z1], [x1, y, z1], [x1, y, z0], col);
+  }
+
   function platform(m, W, D, hole, col) {
     const hw = W / 2, hd = D / 2;
     if (!hole) {
-      m.quad([-hw, GRADE, -hd], [hw, GRADE, -hd], [hw, GRADE, hd], [-hw, GRADE, hd], col);
+      deck(m, -hw, hw, GRADE, -hd, hd, col);
     } else {
       const aw = hole.w / 2, ad = hole.d / 2, cx = hole.x || 0, cz = hole.z || 0;
       const bands = [
@@ -544,7 +835,7 @@
       ];
       for (const b of bands) {
         if (b[1] - b[0] < 1e-6 || b[3] - b[2] < 1e-6) continue;
-        m.quad([b[0], GRADE, b[2]], [b[1], GRADE, b[2]], [b[1], GRADE, b[3]], [b[0], GRADE, b[3]], col);
+        deck(m, b[0], b[1], GRADE, b[2], b[3], col);
       }
     }
     // Outer skirt. The undersides are never seen and are not drawn; the skirt
@@ -559,7 +850,8 @@
   /// from inside, plus the cut floor. Depth is visual: a foundation pit at this
   /// scale is a shallow dish, and the spoil bund beside it does most of the work
   /// of saying how much was moved.
-  function excavation(m, cx, cz, w, d, depth, benches) {
+  function excavation(m, cx, cz, w, d, depth, benches, d0) {
+    const fine = !!(d0 && d0.fine);
     const floorY = Math.max(PIT, GRADE - depth);
     const aw = w / 2, ad = d / 2, batter = Math.min(1.6, depth * 2.2);
     const iw = Math.max(1, aw - batter), id = Math.max(1, ad - batter);
@@ -569,7 +861,11 @@
       const j = (i + 1) % 4;
       m.quad(outer[i], inner[i], inner[j], outer[j], shade(P.earthCut, 0.94 + 0.06 * i));
     }
-    m.quad(inner[0], inner[1], inner[2], inner[3], P.earthCut);
+    // The floor of a dig is churned, not swept. A grid of faces at slightly
+    // different tones is the only way to say that with no textures, and it also
+    // gives the pit a scale to read against.
+    if (fine) groundPatch(m, cx, cz, iw * 2, id * 2, 9, 7, floorY, P.earthCut, 0.075);
+    else deck(m, cx - iw, cx + iw, floorY, cz - id, cz + id, P.earthCut);
     // Trench sheeting on the two long sides once the dig is at depth. It is the
     // detail that separates a hole from a formed excavation at a glance.
     if (benches) {
@@ -578,6 +874,29 @@
           const x = cx - iw + (i + 0.5) * (iw * 2 / benches);
           m.bar(x - 0.5, x + 0.5, floorY, GRADE + 0.35, cz + s * id - 0.08, cz + s * id + 0.08, P.rebar);
         }
+        if (!fine) continue;
+        // Waling and struts. Sheet piles hold nothing up on their own — the
+        // horizontal waling across their faces is the member doing the work,
+        // and it is what makes a dig read as supported rather than as a hole
+        // somebody hopes will stand.
+        for (const y of [floorY + 0.5, GRADE - 0.35]) {
+          m.beam(cx - iw - 0.2, cx + iw + 0.2, y, y + 0.26, cz + s * id - 0.2, cz + s * id + 0.02, shade(P.primer, 0.95), 0.02);
+        }
+      }
+      for (let i = 0; i < 3; i += 1) {
+        const x = cx - iw * 0.7 + i * iw * 0.7;
+        m.rod([x, GRADE - 0.22, cz - id], [x, GRADE - 0.22, cz + id], 0.14, 6, shade(P.primer, 1.05), false);
+      }
+    }
+    // A haul ramp into the pit. Every excavation this size has one; without it
+    // the plant that dug it could not have got out.
+    if (fine) {
+      const rw = Math.min(4.2, iw * 0.6);
+      m.quad([cx - rw, GRADE, cz - ad], [cx - rw, floorY, cz - id * 0.2], [cx + rw, floorY, cz - id * 0.2], [cx + rw, GRADE, cz - ad],
+        shade(P.hardcore, 0.92));
+      for (const s of [-1, 1]) {
+        m.quad([cx + s * rw, GRADE, cz - ad], [cx + s * rw, floorY, cz - id * 0.2],
+          [cx + s * rw, floorY - 0.02, cz - id * 0.2], [cx + s * rw, GRADE - 0.02, cz - ad], shade(P.hardcore, 0.8));
       }
     }
   }
@@ -594,21 +913,43 @@
         const z = cz + (j - (rows - 1) / 2) * (d / rows);
         const state = (i * 3 + j * 2) % 5;           // poured, formed, or caged
         m.bar(x - 1.1, x + 1.1, floorY, floorY + 0.35, z - 1.1, z + 1.1, P.concreteWet);
-        if (state === 0 || !d0.fine) continue;
-        if (state < 3) {
+        if (!d0.fine) continue;
+        if (state === 0) {
+          // Poured and struck. What is left is the kicker, the holding-down
+          // bolts cast into it and the starter bars for the column — the three
+          // things that say a base is finished rather than a slab of nothing.
+          m.beam(x - 0.55, x + 0.55, floorY + 0.35, floorY + 0.62, z - 0.55, z + 0.55, P.concrete, 0.025);
+          for (let b = 0; b < 4; b += 1) {
+            const bx = x + (b % 2 ? 0.34 : -0.34), bz = z + (b < 2 ? 0.34 : -0.34);
+            m.rod([bx, floorY + 0.6, bz], [bx, floorY + 0.82, bz], 0.035, 6, P.steel, true);
+          }
+          for (let s = 0; s < 4; s += 1) {
+            const sx = x + (s % 2 ? 0.7 : -0.7), sz = z + (s < 2 ? 0.7 : -0.7);
+            m.rod([sx, floorY + 0.3, sz], [sx, floorY + 1.35, sz], 0.026, 6, P.rebar, false);
+          }
+        } else if (state < 3) {
+          // Formwork: face panels, soldiers standing against them, a waling
+          // round the top and raking props holding the lot plumb. A box of four
+          // thin planks is not formwork, it is a picture of formwork.
           for (const s of [-1, 1]) {
-            m.bar(x - 1.15, x + 1.15, floorY + 0.3, floorY + 1.05, z + s * 1.15 - 0.06, z + s * 1.15 + 0.06, P.timber);
-            m.bar(x + s * 1.15 - 0.06, x + s * 1.15 + 0.06, floorY + 0.3, floorY + 1.05, z - 1.15, z + 1.15, P.timber);
+            m.bar(x - 1.2, x + 1.2, floorY + 0.28, floorY + 1.08, z + s * 1.18 - 0.05, z + s * 1.18 + 0.05, P.timber);
+            m.bar(x + s * 1.18 - 0.05, x + s * 1.18 + 0.05, floorY + 0.28, floorY + 1.08, z - 1.2, z + 1.2, P.timber);
+            m.bar(x - 1.26, x + 1.26, floorY + 0.86, floorY + 0.98, z + s * 1.24 - 0.06, z + s * 1.24 + 0.06, shade(P.timber, 0.82));
+            m.bar(x + s * 1.24 - 0.06, x + s * 1.24 + 0.06, floorY + 0.86, floorY + 0.98, z - 1.26, z + 1.26, shade(P.timber, 0.82));
+            for (const t of [-0.6, 0.6]) {
+              m.bar(x + t - 0.05, x + t + 0.05, floorY + 0.28, floorY + 1.12, z + s * 1.24 - 0.05, z + s * 1.24 + 0.05, shade(P.timber, 1.1));
+            }
+            m.rod([x + s * 1.24, floorY + 1.0, z], [x + s * 2.3, floorY + 0.05, z], 0.05, 6, P.safety, false);
           }
         } else {
-          for (let r = 0; r < 4; r += 1) {
-            const rx = x + (r % 2 ? 0.62 : -0.62), rz = z + (r < 2 ? 0.62 : -0.62);
-            m.bar(rx - 0.05, rx + 0.05, floorY + 0.3, floorY + 1.9, rz - 0.05, rz + 0.05, P.rebar);
-          }
-          for (let h = 0; h < 3; h += 1) {
-            const y = floorY + 0.6 + h * 0.55;
-            m.bar(x - 0.68, x + 0.68, y, y + 0.05, z - 0.68, z - 0.6, P.rebar);
-            m.bar(x - 0.68, x + 0.68, y, y + 0.05, z + 0.6, z + 0.68, P.rebar);
+          // Blinding, spacers and a cage. Eight bars round the perimeter with
+          // closed links at four levels is what one actually looks like from
+          // above, and it is the difference between "reinforcement" and "four
+          // sticks in a hole".
+          m.bar(x - 1.25, x + 1.25, floorY - 0.06, floorY, z - 1.25, z + 1.25, shade(P.concreteWet, 0.88));
+          rebarCage(m, x, z, 0.72, 0.72, floorY + 0.12, floorY + 1.95, 6);
+          for (const c of [-1, 1]) {
+            m.rod([x + c * 0.85, floorY + 0.12, z - 0.85], [x + c * 0.85, floorY + 0.12, z + 0.85], 0.03, 6, shade(P.rebar, 0.9), false);
           }
         }
       }
@@ -617,30 +958,81 @@
 
   /// The slab. From the frame stage on it is the thing everything else stands
   /// on, and its edge is the only place the made-up ground is still visible.
-  function slab(m, cx, cz, w, d, col) {
+  function slab(m, cx, cz, w, d, col, d0) {
     const top = GRADE + 0.18;
     m.bar(cx - w / 2, cx + w / 2, PIT, top, cz - d / 2, cz + d / 2, col);
+    if (d0 && d0.fine) {
+      // Construction joints, saw-cut on the grid the slab was poured in. They
+      // are the only marking a bare industrial floor has, and this renderer
+      // cannot draw a line, so they are 8 mm of real recess.
+      for (let i = 1; i < 4; i += 1) {
+        m.bar(cx - w / 2 + (i * w) / 4 - 0.03, cx - w / 2 + (i * w) / 4 + 0.03, top - 0.02, top,
+          cz - d / 2 + 0.2, cz + d / 2 - 0.2, shade(col, 0.78));
+      }
+      for (let i = 1; i < 3; i += 1) {
+        m.bar(cx - w / 2 + 0.2, cx + w / 2 - 0.2, top - 0.02, top,
+          cz - d / 2 + (i * d) / 3 - 0.03, cz - d / 2 + (i * d) / 3 + 0.03, shade(col, 0.78));
+      }
+      // The chamfered arris round the slab edge, which is where the shutter was
+      // and the one edge of a floor slab anybody ever sees.
+      m.beam(cx - w / 2 - 0.04, cx + w / 2 + 0.04, top - 0.14, top, cz - d / 2 - 0.04, cz - d / 2 + 0.1, shade(col, 0.94), 0.022);
+      m.beam(cx - w / 2 - 0.04, cx + w / 2 + 0.04, top - 0.14, top, cz + d / 2 - 0.1, cz + d / 2 + 0.04, shade(col, 0.94), 0.022);
+    }
     return top;
   }
 
   /// One portal frame: two columns, two rafters, a haunch each side. Primed
   /// steel, because a frame that has not been clad has not been painted either.
+  ///
+  /// WHAT CHANGED AND WHY. This used to be four boxes and a stepped ribbon, with
+  /// the left half wound inside out — the frame that carries the whole building
+  /// was lit from behind on one side of the ridge. It is now built once in the
+  /// right-hand half and MIRRORED, so `tri` re-winds it and both halves face out
+  /// by construction. The members are I-sections rather than solid boxes,
+  /// because the flange-web-flange read is what tells a viewer this is rolled
+  /// steel and not a length of timber, and it is only three primitives.
   function portal(m, cz, span, depth, eaves, ridge, col) {
-    const hw = span / 2, t = 0.22;
-    for (const s of [-1, 1]) {
-      m.bar(s * hw - t, s * hw + t, depth, eaves, cz - t, cz + t, col);
-      m.bar(s * hw - 0.5, s * hw + 0.5, depth, depth + 0.16, cz - 0.5, cz + 0.5, shade(col, 0.8));
-    }
+    const hw = span / 2, t = 0.22, fl = 0.055, dep = 0.34;
     const steps = 3;
     for (const s of [-1, 1]) {
-      for (let i = 0; i < steps; i += 1) {
-        const x0 = s * hw * (1 - i / steps), x1 = s * hw * (1 - (i + 1) / steps);
-        const y0 = eaves + (ridge - eaves) * (i / steps), y1 = eaves + (ridge - eaves) * ((i + 1) / steps);
-        m.quad([x0, y0, cz - t], [x1, y1, cz - t], [x1, y1 + 0.34, cz - t], [x0, y0 + 0.34, cz - t], shade(col, 1.05));
-        m.quad([x1, y1, cz + t], [x0, y0, cz + t], [x0, y0 + 0.34, cz + t], [x1, y1 + 0.34, cz + t], shade(col, 0.92));
-        m.quad([x0, y0 + 0.34, cz - t], [x1, y1 + 0.34, cz - t], [x1, y1 + 0.34, cz + t], [x0, y0 + 0.34, cz + t], shade(col, 1.12));
+      m.save();
+      if (s < 0) m.scale(-1, 1, 1);
+      // Column, as flange / web / flange.
+      m.beam(hw - t, hw - t + fl, depth + 0.2, eaves, cz - t, cz + t, col, 0.016);
+      m.beam(hw + t - fl, hw + t, depth + 0.2, eaves, cz - t, cz + t, shade(col, 0.94), 0.016);
+      m.bar(hw - t + fl, hw + t - fl, depth + 0.2, eaves, cz - 0.05, cz + 0.05, shade(col, 0.8));
+      // Grout bed, base plate, holding-down bolts. The bolts are the only place
+      // a steel frame touches its foundation and they are four of the cheapest
+      // triangles on the model.
+      m.bar(hw - 0.42, hw + 0.42, depth, depth + 0.1, cz - 0.42, cz + 0.42, P.concrete);
+      m.beam(hw - 0.5, hw + 0.5, depth + 0.1, depth + 0.16, cz - 0.5, cz + 0.5, shade(col, 0.8), 0.02);
+      for (let b = 0; b < 4; b += 1) {
+        const bx = hw + (b % 2 ? 0.34 : -0.34), bz = cz + (b < 2 ? 0.34 : -0.34);
+        m.rod([bx, depth + 0.16, bz], [bx, depth + 0.3, bz], 0.038, 6, P.steel, true);
       }
+      // Haunch: the deepened wedge under the rafter at the eaves, and the pair
+      // of stiffeners welded either side of it.
+      const hx = hw - span * 0.09, hy = eaves + (ridge - eaves) * (span * 0.09) / hw;
+      m.webPlate([[hw - t, eaves + dep], [hw - t, eaves - 0.85], [hx, hy]], cz - t, cz + t, shade(col, 0.96));
+      for (const zs of [-1, 1]) {
+        m.bar(hw - t, hw + t - fl, eaves - 0.5, eaves, cz + zs * 0.14 - 0.02, cz + zs * 0.14 + 0.02, shade(col, 1.06));
+      }
+      // Rafter, stepped from eaves to ridge. Four faces per step: the underside
+      // used to be left open, and a rafter you can see the inside of is a
+      // rafter that is not there.
+      for (let i = 0; i < steps; i += 1) {
+        const x0 = hw * (1 - i / steps), x1 = hw * (1 - (i + 1) / steps);
+        const y0 = eaves + (ridge - eaves) * (i / steps), y1 = eaves + (ridge - eaves) * ((i + 1) / steps);
+        m.quad([x0, y0, cz - t], [x1, y1, cz - t], [x1, y1 + dep, cz - t], [x0, y0 + dep, cz - t], shade(col, 1.05));
+        m.quad([x1, y1, cz + t], [x0, y0, cz + t], [x0, y0 + dep, cz + t], [x1, y1 + dep, cz + t], shade(col, 0.92));
+        m.quad([x0, y0 + dep, cz - t], [x1, y1 + dep, cz - t], [x1, y1 + dep, cz + t], [x0, y0 + dep, cz + t], shade(col, 1.12));
+        m.quad([x1, y1, cz - t], [x0, y0, cz - t], [x0, y0, cz + t], [x1, y1, cz + t], shade(col, 0.72));
+      }
+      m.restore();
     }
+    // Apex splice plate, bolted through both rafters. One per frame, not one
+    // per side, which is why it sits outside the mirror.
+    m.beam(-0.55, 0.55, ridge - 0.12, ridge + dep + 0.12, cz - t - 0.03, cz + t + 0.03, shade(col, 1.08), 0.018);
   }
 
   /// A clad wall in local space: spans x in [-w/2, w/2], y in [0, h], facing +Z.
@@ -654,7 +1046,11 @@
       if (i >= done) continue;
       const x0 = -w / 2 + i * bw, x1 = x0 + bw;
       const tone = 1 + 0.05 * Math.sin(i * 1.7 + (opt.phase || 0));
-      m.quad([x0, 0, 0], [x1, 0, 0], [x1, h, 0], [x0, h, 0], shade(col, tone));
+      // Profiled at inspection range, one flat quad at map range. A rib is
+      // 35 mm deep and there is no distance at which drawing it costs less than
+      // it earns close up or more than it earns far away.
+      if (d0.fine) ribbedPanel(m, x0, x1, h, opt.pitch || 0.75, 0.05, shade(col, tone));
+      else m.quad([x0, 0, 0], [x1, 0, 0], [x1, h, 0], [x0, h, 0], shade(col, tone));
       // The lining. A sheeted wall is one quad thick, and a part-clad building
       // is the one time you look at the back of it: without this you see
       // straight through the far elevation and the panel shades from its
@@ -663,8 +1059,22 @@
     }
     if (done > 0 && d0.fine) {
       const edge = -w / 2 + done * bw;
-      m.bar(-w / 2, edge, h - 0.3, h, 0.0, 0.16, shade(col, 1.1));      // eaves trim
-      m.bar(-w / 2, edge, 0, 0.3, 0.0, 0.16, shade(col, 0.72));          // base flashing
+      // Flashings are what close a sheeted envelope, and they are chamfered
+      // because a folded flashing has an arris on every bend — at eaves height
+      // that line is the top edge of the whole building.
+      m.beam(-w / 2, edge, h - 0.3, h, 0.0, 0.18, shade(col, 1.1), 0.018);       // eaves trim
+      m.beam(-w / 2, edge, 0, 0.32, 0.0, 0.18, shade(col, 0.72), 0.018);         // base flashing
+      m.bar(-w / 2, edge, 0.32, 0.4, 0.02, 0.14, shade(P.galv, 0.86));           // base drip
+      // Corner flashing on the finished end only, so a part-clad wall still
+      // shows the sheeting running out mid-elevation.
+      if (done === bays) {
+        m.beam(edge - 0.18, edge, 0, h, 0.0, 0.2, shade(col, 0.94), 0.018);
+      }
+      // Fixing rows: a sheeted wall is screwed to rails at three levels and the
+      // shadow line of that row is visible on any real one.
+      for (let r = 1; r <= 3; r += 1) {
+        m.bar(-w / 2, edge, (h * r) / 4, (h * r) / 4 + 0.05, 0.05, 0.1, shade(col, 0.8));
+      }
     }
   }
 
@@ -684,16 +1094,37 @@
     const opt = o || {};
     const hw = w / 2, hd = d / 2;
     const done = Math.round(sheets * (opt.clad == null ? 1 : clamp01(opt.clad)));
+    // Slope length and pitch, so anything laid ON the roof is laid on the roof
+    // rather than floating above it at a guessed height.
+    const run = Math.hypot(hw, ridge - eaves);
+    const pitch = Math.atan2(ridge - eaves, hw) / DEG;
+    /// One standing seam, eaves to ridge, on slope `s`. WHY IT IS WORTH THE
+    /// TRIANGLES: a roof that is two flat quads reads as a folded card from any
+    /// angle that shows the ridge. The seam lines are the only thing that can
+    /// say "sheets, laid side by side and lapped" in a renderer with no
+    /// textures, and they are what makes the eye read a length.
+    const onSlope = (s, fn) => {
+      m.save().move(s * hw, eaves, 0);
+      if (s > 0) m.scale(-1, 1, 1);   // mirrored, and `tri` re-winds it for us
+      m.rotZ(pitch);
+      fn();
+      m.restore();
+    };
     for (let i = 0; i < done; i += 1) {
       const z0 = -hd + (i * d) / sheets, z1 = -hd + ((i + 1) * d) / sheets;
       const tone = 1 + 0.045 * Math.sin(i * 2.1);
-      m.quad([-hw, eaves, z0], [0, ridge, z0], [0, ridge, z1], [-hw, eaves, z1], shade(col, tone));
-      m.quad([0, ridge, z0], [hw, eaves, z0], [hw, eaves, z1], [0, ridge, z1], shade(col, tone * 0.93));
-      m.quad([0, ridge - 0.2, z0], [-hw, eaves - 0.2, z0], [-hw, eaves - 0.2, z1], [0, ridge - 0.2, z1], shade(P.dark, 1.5));
-      m.quad([hw, eaves - 0.2, z0], [0, ridge - 0.2, z0], [0, ridge - 0.2, z1], [hw, eaves - 0.2, z1], shade(P.dark, 1.4));
+      // WINDING. These four used to be listed x-then-z, which put the weather
+      // face of the roof looking at the floor and the dark inner lining looking
+      // at the sky — the whole envelope was lit inside out. The sheet faces up
+      // and out; the lining, 200 mm under it, faces down and in.
+      m.quad([-hw, eaves, z1], [0, ridge, z1], [0, ridge, z0], [-hw, eaves, z0], shade(col, tone));
+      m.quad([0, ridge, z1], [hw, eaves, z1], [hw, eaves, z0], [0, ridge, z0], shade(col, tone * 0.93));
+      m.quad([-hw, eaves - 0.2, z0], [0, ridge - 0.2, z0], [0, ridge - 0.2, z1], [-hw, eaves - 0.2, z1], shade(P.dark, 1.5));
+      m.quad([0, ridge - 0.2, z0], [hw, eaves - 0.2, z0], [hw, eaves - 0.2, z1], [0, ridge - 0.2, z1], shade(P.dark, 1.4));
       if (d0.ribs) {
-        m.bar(-hw + 0.2, -0.2, eaves + (ridge - eaves) * 0.5, eaves + (ridge - eaves) * 0.5 + 0.09, z1 - 0.07, z1 + 0.07, shade(col, 0.86));
-        m.bar(0.2, hw - 0.2, eaves + (ridge - eaves) * 0.5, eaves + (ridge - eaves) * 0.5 + 0.09, z1 - 0.07, z1 + 0.07, shade(col, 0.82));
+        for (const s of [-1, 1]) {
+          onSlope(s, () => m.bar(run * 0.02, run * 0.98, 0, 0.08, z1 - 0.07, z1 + 0.07, shade(col, 0.9)));
+        }
       }
     }
     if (opt.purlins) {
@@ -706,8 +1137,18 @@
       m.bar(-0.14, 0.14, ridge, ridge + 0.18, -hd, hd, P.primer);
     }
     if (done > 0 && d0.fine) {
-      m.bar(-0.35, 0.35, ridge + 0.06, ridge + 0.3, -hd, hd, shade(col, 1.12));       // ridge cap
-      for (const s of [-1, 1]) m.bar(s * hw - 0.22, s * hw + 0.22, eaves - 0.28, eaves, -hd, hd, shade(col, 0.78));
+      // A folded ridge capping has arrises down both sides of it and they are
+      // the brightest line on the building, so this one is chamfered.
+      m.beam(-0.4, 0.4, ridge + 0.04, ridge + 0.32, -hd - 0.25, hd + 0.25, shade(col, 1.12), 0.035);
+      for (const s of [-1, 1]) {
+        m.bar(s * hw - 0.22, s * hw + 0.22, eaves - 0.28, eaves, -hd, hd, shade(col, 0.78));
+        m.bar(s * hw - 0.3, s * hw + 0.06, eaves - 0.42, eaves - 0.26, -hd, hd, shade(P.galv, 0.9));   // drip
+        // Barge board along each gable verge, which is where a sheeted roof is
+        // closed off and the one place its thickness is on show.
+        for (const g of [-1, 1]) {
+          onSlope(s, () => m.bar(run * 0.01, run * 0.99, -0.14, 0.1, g * hd - 0.06, g * hd + 0.16, shade(col, 0.82)));
+        }
+      }
     }
   }
 
@@ -740,7 +1181,19 @@
             [x0 + (x1 - x0) * 0.45, GRADE + h, z0 + (z1 - z0) * 0.45], [x0, GRADE + h, z0], shade(P.safety, 1));
         }
         if (d0.fine) {
-          m.bar(x0 - 0.12, x0 + 0.12, GRADE, GRADE + h + 0.18, z0 - 0.12, z0 + 0.12, P.steel);
+          // Post, capping rail and a raking prop back into the site. A hoarding
+          // is a fence panel screwed to posts that are held up by something, and
+          // the props are the part that says it is temporary.
+          m.beam(x0 - 0.12, x0 + 0.12, GRADE, GRADE + h + 0.18, z0 - 0.12, z0 + 0.12, P.steel, 0.016);
+          const mx = (x0 + x1) / 2, mz = (z0 + z1) / 2;
+          m.bar(Math.min(x0, x1) - 0.06, Math.max(x0, x1) + 0.06, GRADE + h, GRADE + h + 0.14,
+            Math.min(z0, z1) - 0.06, Math.max(z0, z1) + 0.06, shade(col, 1.14));
+          if (!gate) {
+            const inx = uz, inz = -ux;   // into the compound, whichever way the run points
+            m.rod([mx, GRADE + h * 0.82, mz], [mx + inx * 1.1, GRADE + 0.05, mz + inz * 1.1], 0.05, 6, P.steel, false);
+            m.bar(mx + inx * 1.05 - 0.2, mx + inx * 1.05 + 0.2, GRADE, GRADE + 0.24,
+              mz + inz * 1.05 - 0.2, mz + inz * 1.05 + 0.2, P.concreteWet);
+          }
         }
       }
     });
@@ -758,13 +1211,29 @@
     // finished level-three compound spent 384 of its 800 map triangles on
     // fence posts and machinery_works blew the ceiling at 830. 22 m holds the
     // worst case at 710 with the compound still growing four metres per level.
-    const step = d0.fine ? 3.0 : 22.0;
+    const step = d0.fine ? 4.0 : 22.0;
     for (const [a, b] of [[[-hw, hd], [hw, hd]], [[hw, -hd], [-hw, -hd]], [[hw, hd], [hw, -hd]], [[-hw, -hd], [-hw, hd]]]) {
       const dx = b[0] - a[0], dz = b[1] - a[1], len = Math.hypot(dx, dz);
       const n = Math.max(2, Math.round(len / step));
       for (let i = 0; i <= n; i += 1) {
         const x = a[0] + (dx * i) / n, z = a[1] + (dz * i) / n;
-        m.bar(x - 0.1, x + 0.1, GRADE, GRADE + h, z - 0.1, z + 0.1, P.galv);
+        if (d0.fine) m.beam(x - 0.1, x + 0.1, GRADE, GRADE + h + 0.16, z - 0.1, z + 0.1, P.galv, 0.018);
+        else m.bar(x - 0.1, x + 0.1, GRADE, GRADE + h, z - 0.1, z + 0.1, P.galv);
+      }
+      // The pales. A palisade with no pales is two wires and a row of posts,
+      // which is a cattle fence, not a compound line — and the vertical rhythm
+      // is the only thing that gives the perimeter a scale to read the building
+      // against. Close range only: at map range these are far under a pixel and
+      // the two rails carry the whole silhouette.
+      if (d0.fine) {
+        const px = dx / len, pz = dz / len;
+        for (let i = 0; i < n; i += 1) {
+          for (let p = 1; p <= 3; p += 1) {
+            const t = ((i + (p / 4)) * len) / n;
+            const x = a[0] + px * t, z = a[1] + pz * t;
+            m.bar(x - 0.045, x + 0.045, GRADE + 0.12, GRADE + h + 0.1, z - 0.045, z + 0.045, shade(P.galv, 0.92 + 0.05 * (p % 2)));
+          }
+        }
       }
       const ux = dx / len, uz = dz / len;
       for (const y of [GRADE + 0.5, GRADE + h - 0.35]) {
@@ -785,15 +1254,56 @@
       m.bar(-3.0, 3.0, y + 0.25, y + 2.65, zz - 1.4, zz + 1.4, shade(P.hut, 1 - level * 0.04));
       m.bar(-3.05, 3.05, y + 2.6, y + 2.75, zz - 1.5, zz + 1.5, shade(P.hut, 0.8));
       if (d0.fine) {
-        for (const wx of [-1.6, 0.2]) m.bar(wx, wx + 1.1, y + 1.4, y + 2.15, zz + 1.4, zz + 1.46, P.glass);
+        // A site cabin is a pressed steel box: ribbed sides, a rolled roof edge,
+        // corner castings it is craned and stacked by, and a chassis under it.
+        // Those four things are the whole reason one reads as a cabin and not as
+        // a shipping crate, and they are what a stacked pair needs to look
+        // STACKED rather than balanced.
+        m.beam(-3.1, 3.1, y + 2.72, y + 2.86, zz - 1.56, zz + 1.56, shade(P.hut, 0.9), 0.02);
+        m.beam(-3.06, 3.06, y + 0.18, y + 0.34, zz - 1.46, zz + 1.46, shade(P.hut, 0.72), 0.02);
+        for (const cx of [-2.86, 2.86]) {
+          for (const cz of [-1.3, 1.3]) {
+            m.bar(cx - 0.16, cx + 0.16, y + 0.2, y + 2.78, zz + cz - 0.16, zz + cz + 0.16, shade(P.steel, 1.02));
+          }
+        }
+        for (let r = 0; r < 5; r += 1) {
+          const rx = -2.3 + r * 1.15;
+          for (const fz of [zz - 1.44, zz + 1.38]) {
+            m.bar(rx - 0.07, rx + 0.07, y + 0.34, y + 2.6, fz, fz + 0.06, shade(P.hut, 0.86));
+          }
+        }
+        // Glazing with a frame and a sill, and a door with a frame and a handle.
+        for (const wx of [-1.6, 0.2]) {
+          m.bar(wx, wx + 1.1, y + 1.4, y + 2.15, zz + 1.4, zz + 1.44, P.glass);
+          m.beam(wx - 0.09, wx + 1.19, y + 1.31, y + 2.24, zz + 1.4, zz + 1.52, shade(P.hut, 1.06), 0.015);
+          m.bar(wx - 0.09, wx + 1.19, y + 1.24, y + 1.33, zz + 1.4, zz + 1.6, shade(P.hut, 0.78));
+        }
         m.bar(1.9, 2.7, y + 0.3, y + 2.3, zz + 1.4, zz + 1.46, P.door);
+        m.beam(1.8, 2.8, y + 0.26, y + 2.4, zz + 1.42, zz + 1.54, shade(P.hut, 0.94), 0.015);
+        m.rod([2.6, y + 1.2, zz + 1.5], [2.6, y + 1.5, zz + 1.5], 0.035, 6, P.dark, true);
         for (let b = 0; b < 3; b += 1) m.bar(-2.6 + b * 2.4, -2.2 + b * 2.4, 0, 0.25, zz - 1.2, zz + 1.2, P.concrete);
       }
     }
     if (d0.fine) {
-      for (let s = 0; s < 6; s += 1) {
-        m.bar(3.0, 4.2, 0.45 * s, 0.45 * s + 0.09, -1.2 + s * 0.22, -0.9 + s * 0.22, P.galv);
+      // Steps to the upper cabin: two stringers, treads on them, a handrail with
+      // posts, and a landing at the door. The old six floating slabs were a
+      // stair-shaped gesture.
+      const rise = 0.44, tread = 0.27, steps = 6;
+      const zTop = -1.4 + steps * tread, yTop = rise * steps;
+      for (const sx of [3.12, 4.28]) {
+        m.rod([sx, 0.1, -1.4], [sx, yTop + 0.1, zTop], 0.065, 6, shade(P.galv, 0.9), false);
       }
+      for (let s = 0; s < steps; s += 1) {
+        m.beam(3.05, 4.35, rise * s + 0.14, rise * s + 0.22, -1.4 + s * tread, -0.78 + s * tread, P.galv, 0.012);
+      }
+      m.beam(3.0, 4.6, yTop + 0.06, yTop + 0.18, zTop - 0.1, zTop + 1.3, shade(P.galv, 0.96), 0.015);
+      for (let p = 0; p <= 3; p += 1) {
+        const pz = -1.4 + (p * (zTop + 1.2 + 1.4)) / 3;
+        const py = Math.min(yTop, Math.max(0, ((pz + 1.4) / (zTop + 1.4)) * yTop));
+        m.rod([4.45, py + 0.1, pz], [4.45, py + 1.15, pz], 0.035, 6, P.galv, false);
+      }
+      m.rod([4.45, 1.25, -1.4], [4.45, yTop + 1.25, zTop], 0.035, 6, shade(P.galv, 1.04), false);
+      m.rod([4.45, yTop + 1.25, zTop], [4.45, yTop + 1.25, zTop + 1.2], 0.035, 6, shade(P.galv, 1.04), false);
     }
     m.restore();
   }
@@ -803,28 +1313,91 @@
   /// does not have four of the same pile.
   function materialStack(m, x, z, kind, d0) {
     const y = GRADE;
+    // WHAT MAKES A STACK A STACK. Material on a site is banded, chocked, sat on
+    // bearers and never quite square. Four boxes of decreasing size read as a
+    // diagram of a stack; the strapping and the bearers are what make it one,
+    // and they are the cheapest detail in the file.
+    // The map path must not grow by a triangle: the worst-case far mesh has
+    // under a hundred to spare against a hard 800, so every addition below is
+    // behind `fine` and the coarse counts are exactly what they were.
     if (kind === 0) {                                   // clad sheet packs
+      if (d0.fine) for (const bz of [-0.9, 0.9]) m.bar(x - 3.0, x + 3.0, y, y + 0.14, z + bz - 0.14, z + bz + 0.14, P.timber);
       for (let i = 0; i < 3; i += 1) {
-        m.bar(x - 3.2, x + 3.2, y + i * 0.34, y + i * 0.34 + 0.3, z - 1.1 + i * 0.12, z + 1.1 - i * 0.12, shade(P.clad, 0.9 + i * 0.06));
-      }
-    } else if (kind === 1) {                            // pipe bundle
-      for (let r = 0; r < (d0.fine ? 2 : 1); r += 1) {
-        for (let i = 0; i < 4 - r; i += 1) {
-          m.column(x - 2.6 + i * 1.3 + r * 0.65, y + 0.55 + r * 1.05, z, 5.2, 0.5, 0.5, d0.seg, P.steel, false);
+        const skew = d0.fine ? (i === 2 ? 0.22 : 0) : 0;
+        m.bar(x - 3.2 + skew, x + 3.2 + skew, y + 0.14 + i * 0.34, y + 0.14 + i * 0.34 + 0.3,
+          z - 1.1 + i * 0.12, z + 1.1 - i * 0.12, shade(P.clad, 0.9 + i * 0.06));
+        if (!d0.fine) continue;
+        for (const sx of [-2.1, 0.2, 2.4]) {           // strapping over each pack
+          m.bar(x + sx + skew - 0.04, x + sx + skew + 0.04, y + 0.12 + i * 0.34, y + 0.46 + i * 0.34,
+            z - 1.16 + i * 0.12, z + 1.16 - i * 0.12, shade(P.dark, 1.25));
         }
       }
+      if (d0.fine) {
+        for (const cx of [-3.0, 3.0]) m.beam(x + cx - 0.1, x + cx + 0.1, y + 0.14, y + 1.16, z - 1.0, z + 1.0, P.safety, 0.012);
+      }
+    } else if (kind === 1) {                            // pipe bundle
+      // PIPE LIES DOWN. These were standing on end on a bearer mat laid out for
+      // pipe lying along it, so a bundle read as a picket fence. Nested rows at
+      // the offsets a stack of 1 m pipe actually nests at, on bearers, chocked
+      // at both ends.
       m.bar(x - 3.4, x + 3.4, y, y + 0.16, z - 2.8, z + 2.8, P.timber);
+      for (let r = 0; r < (d0.fine ? 2 : 1); r += 1) {
+        for (let i = 0; i < 4 - r; i += 1) {
+          const px = x - 2.4 + i * 1.05 + r * 0.53, py = y + 0.68 + r * 0.91;
+          m.rod([px, py, z - 2.6], [px, py, z + 2.6], 0.5, d0.seg, P.steel, false);
+          if (d0.fine) {
+            // A bore you can see into. A capped tube is a bar; the ring at the
+            // end is what says pipe.
+            for (const cz of [z - 2.6, z + 2.58]) {
+              m.rod([px, py, cz], [px, py, cz + 0.02], 0.5, d0.seg, shade(P.dark, 1.2), false);
+              m.rod([px, py, cz], [px, py, cz + 0.02], 0.36, d0.seg, shade(P.dark, 0.7), false);
+            }
+          }
+        }
+      }
+      if (d0.fine) {
+        for (const cz of [z - 1.9, z + 1.9]) {          // chocks and bundle strap
+          m.bar(x - 3.3, x + 3.3, y + 0.16, y + 0.26, cz - 0.12, cz + 0.12, shade(P.timber, 0.86));
+          m.bar(x - 3.3, x - 3.1, y + 0.16, y + 1.9, cz - 0.1, cz + 0.1, P.timber);
+          m.bar(x + 3.1, x + 3.3, y + 0.16, y + 1.9, cz - 0.1, cz + 0.1, P.timber);
+        }
+      }
     } else if (kind === 2) {                            // block packs
       for (let i = 0; i < 4; i += 1) {
         const ox = (i % 2) * 2.5, oz = Math.floor(i / 2) * 1.7;
-        m.bar(x + ox - 1.1, x + ox + 1.1, y, y + 1.2, z + oz - 0.75, z + oz + 0.75, shade(P.concrete, 0.88 + 0.06 * i));
-        if (d0.fine) m.bar(x + ox - 1.15, x + ox + 1.15, y + 1.2, y + 1.26, z + oz - 0.8, z + oz + 0.8, P.hardcore);
+        m.bar(x + ox - 1.1, x + ox + 1.1, y + 0.12, y + 1.2, z + oz - 0.75, z + oz + 0.75, shade(P.concrete, 0.88 + 0.06 * i));
+        if (!d0.fine) continue;
+        m.bar(x + ox - 1.15, x + ox + 1.15, y + 1.2, y + 1.26, z + oz - 0.8, z + oz + 0.8, P.hardcore);
+        m.bar(x + ox - 1.16, x + ox + 1.16, y, y + 0.12, z + oz - 0.8, z + oz + 0.8, P.timber);  // pallet
+        for (const sx of [-0.6, 0.6]) {                 // banding
+          m.bar(x + ox + sx - 0.04, x + ox + sx + 0.04, y + 0.1, y + 1.24, z + oz - 0.79, z + oz + 0.79, shade(P.dark, 1.35));
+        }
+        // The half-used pack, in courses, because a compound this old has one.
+        if (i === 3) {
+          for (let c = 0; c < 3; c += 1) {
+            m.bar(x + ox - 1.1 + c * 0.42, x + ox - 0.78 + c * 0.42, y + 1.26, y + 1.48,
+              z + oz - 0.72 + (c % 2) * 0.2, z + oz + 0.1 + (c % 2) * 0.2, shade(P.hardcore, 0.94 + 0.05 * c));
+          }
+        }
       }
     } else {                                            // steel sections
-      for (let i = 0; i < 4; i += 1) {
-        m.bar(x - 4.5, x + 4.5, y + 0.2 + i * 0.42, y + 0.55 + i * 0.42, z - 0.9 + (i % 2) * 0.55, z - 0.35 + (i % 2) * 0.55, P.primer);
-      }
       for (const oz of [-2.2, 2.2]) m.bar(x - 4.2, x + 4.2, y, y + 0.2, z + oz - 0.16, z + oz + 0.16, P.timber);
+      for (let i = 0; i < 4; i += 1) {
+        const cz = z - 0.9 + (i % 2) * 0.55;
+        // Rolled sections, chamfered, because the arris down a flange is the
+        // brightest line on a stack of steel in the open.
+        if (d0.fine) {
+          m.beam(x - 4.5, x + 4.5, y + 0.2 + i * 0.42, y + 0.55 + i * 0.42, cz, cz + 0.55, P.primer, 0.018);
+          m.bar(x + 4.3, x + 4.52, y + 0.24 + i * 0.42, y + 0.51 + i * 0.42, cz + 0.06, cz + 0.49, shade(P.safety, 1.1));
+        } else {
+          m.bar(x - 4.5, x + 4.5, y + 0.2 + i * 0.42, y + 0.55 + i * 0.42, cz, cz + 0.55, P.primer);
+        }
+      }
+      if (d0.fine) {
+        for (const sx of [-2.6, 2.6]) {
+          m.bar(x + sx - 0.04, x + sx + 0.04, y + 0.18, y + 2.1, z - 0.96, z - 0.88, shade(P.dark, 1.3));
+        }
+      }
     }
   }
 
@@ -852,53 +1425,97 @@
       m.restore();
       return;
     }
+    // A LATTICE, not a stick. A tower crane is the tallest thing on any site
+    // here and the one object a viewer will look at against the sky, where a
+    // solid box reads as a chimney and a lattice reads as a crane from any
+    // distance the mast subtends more than a couple of pixels. Chords are round
+    // tube and come out smooth-shaded for nothing; the bracing is real bracing,
+    // put in by `latticeBay` so the mast and the jib are braced the same way.
+    const seg = 5, chord = 0.13;
     m.save().move(x, GRADE, z);
     for (let i = 0; i < 4; i += 1) {                              // ballast
       const bx = (i % 2 ? 1 : -1) * 2.6, bz = (i < 2 ? 1 : -1) * 2.6;
-      m.bar(bx - 1.6, bx + 1.6, 0, 0.7, bz - 1.6, bz + 1.6, P.concreteWet);
+      m.beam(bx - 1.6, bx + 1.6, 0, 0.7, bz - 1.6, bz + 1.6, P.concreteWet, 0.04);
     }
+    m.beam(-1.5, 1.5, 0.7, 0.95, -1.5, 1.5, shade(P.concreteWet, 1.06), 0.03);   // base frame
     for (const sx of [-1, 1]) {
       for (const sz of [-1, 1]) {
-        m.bar(sx * t - 0.12, sx * t + 0.12, 0.7, h, sz * t - 0.12, sz * t + 0.12, P.safety);
+        m.rod([sx * t, 0.7, sz * t], [sx * t, h, sz * t], chord, seg, P.safety, false);
       }
     }
-    const ties = d0.fine ? 6 : 2;
-    for (let i = 1; i <= ties; i += 1) {
-      const y = 0.7 + (h - 0.7) * (i / (ties + 1));
-      m.bar(-t, t, y, y + 0.11, -t - 0.1, -t + 0.1, shade(P.safety, 0.9));
-      m.bar(-t, t, y, y + 0.11, t - 0.1, t + 0.1, shade(P.safety, 0.9));
-      if (d0.fine) {
-        m.save().move(0, y, -t).rotZ(28);
-        m.bar(-t * 1.2, t * 1.2, 0, 0.09, -0.08, 0.08, shade(P.safety, 0.8));
-        m.restore();
-      }
+    const bays = 10;
+    for (let i = 0; i < bays; i += 1) {
+      const y0 = 0.95 + ((h - 1.2) * i) / bays, y1 = 0.95 + ((h - 1.2) * (i + 1)) / bays;
+      latticeBay(m, y0, y1, t, t, 0.06, 6, shade(P.safety, 0.95));
+      // Climbing ladder, one face of the mast, in a cage of hoops.
+      m.rod([-0.09, y0, -t - 0.22], [-0.09, y1, -t - 0.22], 0.035, 6, P.galv, false);
+      m.rod([0.09, y0, -t - 0.22], [0.09, y1, -t - 0.22], 0.035, 6, P.galv, false);
+      m.rod([-0.09, (y0 + y1) / 2, -t - 0.22], [0.09, (y0 + y1) / 2, -t - 0.22], 0.025, 6, P.galv, false);
     }
     // The slew: a fixed angle, chosen per site from its own index. Two sites do
     // not point the same way, and one site points the same way every time.
     m.save().move(0, h, 0).rotY(slew);
-    m.bar(-1.1, 1.1, 0, 1.5, -1.1, 1.1, P.safety);                 // slew ring and cab
-    m.bar(-0.9, 0.9, 0.2, 1.9, 1.1, 2.4, shade(P.hut, 0.95));
-    if (d0.fine) m.bar(-0.7, 0.7, 0.8, 1.7, 2.4, 2.46, P.glass);
+    m.column(0, -0.35, 0, 0.5, 1.15, 1.15, 10, shade(P.dark, 1.3), true);        // slew bearing
+    m.beam(-1.1, 1.1, 0.15, 1.5, -1.1, 1.1, P.safety, 0.03);                     // turntable
+    m.bar(-0.9, 0.9, 0.2, 1.9, 1.1, 2.4, shade(P.hut, 0.95));                    // cab
+    m.beam(-0.98, 0.98, 1.86, 2.02, 1.02, 2.5, shade(P.hut, 0.8), 0.02);
+    m.bar(-0.7, 0.7, 0.8, 1.7, 2.4, 2.46, P.glass);
+    m.bar(-0.86, 0.86, 0.75, 0.82, 1.15, 2.5, shade(P.galv, 0.9));
+    // A-frame over the turntable, and the pendant ties that hang the jib and the
+    // counter-jib off it. Without them a jib is a plank balanced on a post.
+    const apex = 5.2;
+    for (const sx of [-1, 1]) {
+      m.rod([sx * 0.75, 1.5, -0.75], [0, apex, 0], 0.085, 6, shade(P.safety, 1.04), false);
+      m.rod([sx * 0.75, 1.5, 0.75], [0, apex, 0], 0.085, 6, shade(P.safety, 1.04), false);
+    }
+    m.rod([0, apex, 0], [0, 1.72, jib * 0.42], 0.05, 6, P.dark, false);
+    m.rod([0, apex, 0], [0, 1.72, jib * 0.86], 0.05, 6, P.dark, false);
+    m.rod([0, apex, 0], [0, 1.9, -7.6], 0.05, 6, P.dark, false);
+    // Jib: two bottom chords and a top chord, braced bay by bay.
     for (const sx of [-0.45, 0.45]) {
-      m.bar(sx - 0.09, sx + 0.09, 1.4, 1.6, 0, jib, shade(P.safety, 1.05));
+      m.rod([sx, 1.4, 0], [sx, 1.4, jib], 0.075, seg, shade(P.safety, 1.05), false);
     }
-    m.bar(-0.09, 0.09, 2.5, 2.7, 0, jib * 0.55, shade(P.safety, 0.95));
-    const webs = d0.fine ? 7 : 2;
+    m.rod([0, 1.72, 0], [0, 1.72, jib], 0.075, seg, shade(P.safety, 0.98), false);
+    const webs = 12;
     for (let i = 0; i < webs; i += 1) {
-      const zz = (jib * (i + 0.5)) / webs;
-      m.bar(-0.5, 0.5, 1.4, 1.55, zz - 0.08, zz + 0.08, shade(P.safety, 0.88));
-      if (d0.fine && zz < jib * 0.55) m.bar(-0.06, 0.06, 1.5, 2.6, zz - 0.07, zz + 0.07, shade(P.safety, 0.8));
+      const za = (jib * i) / webs, zb = (jib * (i + 1)) / webs;
+      m.rod([-0.45, 1.4, zb], [0.45, 1.4, zb], 0.045, 6, shade(P.safety, 0.88), false);
+      m.rod([-0.45, 1.4, za], [0, 1.72, zb], 0.04, 6, shade(P.safety, 0.84), false);
+      m.rod([0.45, 1.4, za], [0, 1.72, zb], 0.04, 6, shade(P.safety, 0.84), false);
+      m.rod([-0.45, 1.4, za], [0.45, 1.4, zb], 0.04, 6, shade(P.safety, 0.8), false);
     }
-    m.bar(-1.3, 1.3, 1.2, 2.0, -7.5, -1.1, shade(P.safety, 0.92));  // counter-jib
-    m.bar(-1.5, 1.5, 0.6, 2.2, -8.6, -7.4, P.concreteWet);          // counterweight
-    // Trolley, rope and hook. Working: hook up over the work. Not working: hook
-    // down on the deck and no load on it.
+    m.column(0, 1.56, jib - 0.1, 0.16, 0.34, 0.34, 8, P.dark, true);              // jib-head sheave
+    // Counter-jib, braced the same way, with the counterweight in slabs.
+    for (const sx of [-1.15, 1.15]) {
+      m.rod([sx, 1.35, -1.1], [sx, 1.35, -7.9], 0.08, seg, shade(P.safety, 0.92), false);
+      m.rod([sx, 2.05, -1.1], [sx, 2.05, -7.9], 0.08, seg, shade(P.safety, 1.0), false);
+    }
+    for (let i = 0; i < 4; i += 1) {
+      const zz = -1.6 - i * 1.6;
+      m.rod([-1.15, 1.35, zz], [1.15, 1.35, zz], 0.05, 6, shade(P.safety, 0.86), false);
+      m.rod([-1.15, 2.05, zz], [-1.15, 1.35, zz - 1.4], 0.04, 6, shade(P.safety, 0.82), false);
+      m.rod([1.15, 2.05, zz], [1.15, 1.35, zz - 1.4], 0.04, 6, shade(P.safety, 0.82), false);
+    }
+    for (let i = 0; i < 3; i += 1) {
+      m.beam(-1.5, 1.5, 0.6, 2.2, -8.6 + i * 0.42, -8.24 + i * 0.42, shade(P.concreteWet, 0.94 + 0.04 * i), 0.03);
+    }
+    m.bar(-1.0, 1.0, 2.1, 2.5, -6.6, -4.2, shade(P.galv, 0.94));                  // hoist machinery
+    // Trolley, rope and hook. Working: hook up over the work, with a load on it.
+    // Not working: hook down on the deck and nothing hanging.
     const trolley = working ? jib * 0.62 : jib * 0.3;
     const hookY = working ? -h * 0.42 : -h + 1.0;
-    m.bar(-0.35, 0.35, 1.1, 1.45, trolley - 0.5, trolley + 0.5, P.dark);
-    m.bar(-0.05, 0.05, hookY, 1.1, trolley - 0.05, trolley + 0.05, P.dark);
-    m.bar(-0.3, 0.3, hookY - 0.5, hookY, trolley - 0.3, trolley + 0.3, shade(P.steel, 0.9));
-    if (working) m.bar(-1.2, 1.2, hookY - 1.1, hookY - 0.5, trolley - 1.2, trolley + 1.2, P.timber);
+    m.beam(-0.35, 0.35, 1.08, 1.45, trolley - 0.5, trolley + 0.5, P.dark, 0.02);
+    for (const sx of [-0.24, 0.24]) m.column(sx, 1.14, trolley, 0.1, 0.19, 0.19, 8, shade(P.steel, 0.9), true);
+    m.rod([0, hookY, trolley], [0, 1.1, trolley], 0.035, 6, P.dark, false);
+    m.column(0, hookY - 0.12, trolley, 0.52, 0.26, 0.26, 8, shade(P.steel, 0.9), true);
+    m.webPlate([[-0.16, hookY - 0.6], [0.16, hookY - 0.6], [0.16, hookY - 0.12], [-0.16, hookY - 0.12]],
+      trolley - 0.05, trolley + 0.05, shade(P.steel, 0.8));
+    if (working) {
+      m.beam(-1.2, 1.2, hookY - 1.1, hookY - 0.5, trolley - 1.2, trolley + 1.2, P.timber, 0.03);
+      for (const sx of [-1, 1]) {
+        m.rod([0, hookY - 0.55, trolley], [sx * 1.1, hookY - 0.5, trolley + sx * 1.1], 0.03, 6, P.dark, false);
+      }
+    }
     m.restore();
     m.restore();
   }
@@ -913,6 +1530,23 @@
       const lx = x - 1.1 + (i * 2.2) / Math.max(1, lamps - 1 || 1);
       m.bar(lx - 0.32, lx + 0.32, GRADE + h - 0.35, GRADE + h, z - 0.45, z + 0.45, P.dark);
       m.bar(lx - 0.26, lx + 0.26, GRADE + h - 0.38, GRADE + h - 0.34, z - 0.4, z + 0.4, shade(P.lane, 1.15));
+      if (!d0.fine) continue;
+      // A hood over the lamp and a bracket under it. A floodlight without a
+      // hood is a glowing brick, and the hood is what throws the shadow that
+      // tells you which way the thing is pointing.
+      m.bar(lx - 0.36, lx + 0.36, GRADE + h - 0.02, GRADE + h + 0.1, z - 0.62, z + 0.5, shade(P.dark, 1.5));
+      m.rod([lx, GRADE + h, z + 0.4], [lx, GRADE + h - 0.3, z - 0.2], 0.04, 6, P.galv, false);
+    }
+    if (d0.fine) {
+      // Base flange, holding-down bolts and the cable duct up the mast. The
+      // three things that stop a mast being a stick pushed into the ground.
+      m.beam(x - 0.42, x + 0.42, GRADE, GRADE + 0.09, z - 0.42, z + 0.42, shade(P.galv, 0.9), 0.02);
+      for (let b = 0; b < 4; b += 1) {
+        const bx = x + (b % 2 ? 0.29 : -0.29), bz = z + (b < 2 ? 0.29 : -0.29);
+        m.rod([bx, GRADE + 0.09, bz], [bx, GRADE + 0.2, bz], 0.032, 6, P.steel, true);
+      }
+      m.bar(x - 0.09, x + 0.09, GRADE + 0.2, GRADE + 1.5, z + 0.14, z + 0.3, shade(P.galv, 0.84));
+      m.rod([x, GRADE + h * 0.52, z], [x, GRADE + h * 0.52 + 0.14, z], 0.21, d0.seg, shade(P.galv, 0.86), false);
     }
   }
 
@@ -921,11 +1555,23 @@
   /// boards here, and neither of them is a crane that looks busy.
   function stopBoard(m, x, z, blocked, d0) {
     m.save().move(x, GRADE, z);
-    for (const sx of [-1.1, 1.1]) m.bar(sx - 0.09, sx + 0.09, 0, 2.3, -0.09, 0.09, P.galv);
-    m.bar(-1.5, 1.5, 1.3, 2.5, -0.06, 0.06, blocked ? P.stopped : P.safety);
+    for (const sx of [-1.1, 1.1]) {
+      if (d0.fine) m.rod([sx, 0, 0], [sx, 2.3, 0], 0.075, 6, P.galv, true);
+      else m.bar(sx - 0.09, sx + 0.09, 0, 2.3, -0.09, 0.09, P.galv);
+    }
     if (d0.fine) {
-      for (let i = 0; i < 3; i += 1) m.bar(-1.2, 1.2, 1.5 + i * 0.3, 1.62 + i * 0.3, 0.06, 0.09, shade(P.hut, 1));
-      m.bar(-0.6, 0.6, 0, 0.3, -0.6, 0.6, P.concreteWet);
+      m.webPlate([[-1.5, 1.3], [1.5, 1.3], [1.5, 2.5], [-1.5, 2.5]], -0.05, 0.05, blocked ? P.stopped : P.safety);
+      for (let i = 0; i < 3; i += 1) m.bar(-1.2, 1.2, 1.5 + i * 0.3, 1.62 + i * 0.3, 0.05, 0.08, shade(P.hut, 1));
+      m.beam(-0.7, 0.7, 0, 0.34, -0.7, 0.7, P.concreteWet, 0.03);
+      // A stopped site is coned off as well as signed. Two cones and a barrier
+      // in front of the board, so it reads as closed from behind as well.
+      for (const cx of [-2.2, 2.2]) {
+        m.column(cx, 0, 0.9, 0.7, 0.34, 0.09, 8, P.safety, true);
+        m.bar(cx - 0.42, cx + 0.42, 0, 0.07, 0.9 - 0.42, 0.9 + 0.42, shade(P.safety, 0.82));
+      }
+      m.beam(-2.2, 2.2, 0.55, 0.75, 0.85, 0.95, shade(P.hut, 1.02), 0.015);
+    } else {
+      m.bar(-1.5, 1.5, 1.3, 2.5, -0.06, 0.06, blocked ? P.stopped : P.safety);
     }
     m.restore();
   }
@@ -934,29 +1580,108 @@
   /// between a foundation stage that reads as work and one that reads as a
   /// tidy diagram.
   function sitePlant(m, x, z, d0) {
-    m.column(x, GRADE, z, 4.6, 1.5, 1.0, d0.seg, P.galv, true);
-    m.bar(x - 1.8, x + 1.8, GRADE + 4.6, GRADE + 5.6, z - 1.8, z + 1.8, shade(P.galv, 0.86));
+    // A batching skid is a silo standing on legs over a weigh hopper, with a
+    // chute into whatever is under it. The silo is a smooth cylinder over a
+    // cone, which is the shape stored powder actually needs and is now free to
+    // shade correctly.
+    m.column(x, GRADE + 1.8, z, 3.4, 1.5, 1.5, d0.seg, P.galv, true);
+    m.column(x, GRADE + 1.0, z, 0.8, 0.45, 1.5, d0.seg, shade(P.galv, 0.92), false);
+    m.bar(x - 1.8, x + 1.8, GRADE + 5.2, GRADE + 5.6, z - 1.8, z + 1.8, shade(P.galv, 0.86));
     for (let i = 0; i < 4; i += 1) {
       const a = i * 90 * DEG;
-      m.bar(x + Math.cos(a) * 1.9 - 0.1, x + Math.cos(a) * 1.9 + 0.1, GRADE, GRADE + 4.6,
-        z + Math.sin(a) * 1.9 - 0.1, z + Math.sin(a) * 1.9 + 0.1, P.steel);
+      const lx = x + Math.cos(a) * 1.55, lz = z + Math.sin(a) * 1.55;
+      m.rod([lx, GRADE, lz], [lx, GRADE + 2.2, lz], 0.11, 6, P.steel, false);
+      if (d0.fine) {
+        m.bar(lx - 0.24, lx + 0.24, GRADE, GRADE + 0.12, lz - 0.24, lz + 0.24, shade(P.steel, 0.9));
+        m.rod([lx, GRADE + 2.0, lz], [x + Math.cos(a + 1.57) * 1.55, GRADE + 0.4, z + Math.sin(a + 1.57) * 1.55],
+          0.06, 5, shade(P.steel, 0.9), false);
+      }
     }
-    m.bar(x + 3.4, x + 7.0, GRADE, GRADE + 1.9, z - 1.1, z + 1.1, P.safety);
-    if (d0.fine) m.bar(x + 3.3, x + 7.1, GRADE + 1.85, GRADE + 2.0, z - 1.2, z + 1.2, shade(P.safety, 0.8));
+    if (d0.fine) {
+      m.column(x, GRADE + 0.55, z, 0.5, 0.7, 0.45, d0.seg, shade(P.safety, 0.94), true);   // weigh hopper
+      m.rod([x, GRADE + 1.0, z], [x + 2.0, GRADE + 0.4, z], 0.22, 8, shade(P.galv, 1.02), true);
+      // Filter head and access ladder, which is how the top of a silo is
+      // reached and the only thing that gives it a scale.
+      m.column(x + 0.6, GRADE + 5.6, z, 0.9, 0.42, 0.42, d0.seg, shade(P.galv, 1.04), true);
+      for (const sx of [-0.22, 0.22]) m.rod([x + sx, GRADE + 0.2, z - 1.62], [x + sx, GRADE + 5.7, z - 1.62], 0.035, 6, P.galv, false);
+      for (let r = 0; r < 9; r += 1) {
+        m.rod([x - 0.22, GRADE + 0.5 + r * 0.6, z - 1.62], [x + 0.22, GRADE + 0.5 + r * 0.6, z - 1.62], 0.025, 6, P.galv, false);
+      }
+    }
+    // The bowser beside it.
+    m.bar(x + 3.4, x + 7.0, GRADE + 0.55, GRADE + 1.9, z - 1.1, z + 1.1, P.safety);
+    if (d0.fine) {
+      m.beam(x + 3.3, x + 7.1, GRADE + 1.85, GRADE + 2.0, z - 1.2, z + 1.2, shade(P.safety, 0.8), 0.02);
+      m.rod([x + 3.5, GRADE + 1.25, z], [x + 6.9, GRADE + 1.25, z], 0.62, 10, shade(P.galv, 1.0), true);
+      for (const wx of [x + 4.1, x + 6.3]) {
+        for (const wz of [z - 1.05, z + 1.05]) {
+          m.rod([wx, GRADE + 0.45, wz - 0.1], [wx, GRADE + 0.45, wz + 0.1], 0.45, 10, P.dark, true);
+        }
+      }
+      m.bar(x + 2.6, x + 3.5, GRADE + 0.9, GRADE + 1.2, z - 0.12, z + 0.12, shade(P.steel, 0.95));
+    }
   }
 
   /// Scaffold on one gable while the sheeting goes up. Present only in the
   /// enclosing stage, which is the only time it would be there.
+  /// Scaffold, in the words it is actually built out of: standards up, ledgers
+  /// along, transoms across, boards on the transoms, a guardrail and a toe board
+  /// at every lift, facade bracing on the diagonal and a base plate under every
+  /// standard. WHY THAT MUCH: scaffold is the one thing on a site made almost
+  /// entirely of thin round tube, and thin round tube is where flat shading and
+  /// square section were costing the most — it read as a stack of planks. Every
+  /// member here is a `rod`, so it is round, and the smoothing pass makes it so
+  /// for no triangles. The map path keeps the old plank-and-post massing.
   function scaffold(m, x, z, w, h, d0) {
     const lifts = d0.fine ? 4 : 2, bays = d0.fine ? 5 : 2;
+    if (!d0.fine) {
+      for (let i = 0; i <= bays; i += 1) {
+        const px = x - w / 2 + (i * w) / bays;
+        for (const pz of [z, z + 1.3]) m.bar(px - 0.06, px + 0.06, GRADE, GRADE + h, pz - 0.06, pz + 0.06, P.galv);
+      }
+      for (let i = 1; i <= lifts; i += 1) {
+        const y = (h * i) / lifts;
+        m.bar(x - w / 2, x + w / 2, GRADE + y, GRADE + y + 0.08, z - 0.06, z + 1.36, P.timber);
+        m.bar(x - w / 2, x + w / 2, GRADE + y + 0.9, GRADE + y + 0.98, z + 1.24, z + 1.36, P.galv);
+      }
+      return;
+    }
+    const rows = [z, z + 1.3], tube = 0.033, seg = 5;
     for (let i = 0; i <= bays; i += 1) {
       const px = x - w / 2 + (i * w) / bays;
-      for (const pz of [z, z + 1.3]) m.bar(px - 0.06, px + 0.06, GRADE, GRADE + h, pz - 0.06, pz + 0.06, P.galv);
+      for (const pz of rows) {
+        m.rod([px, GRADE + 0.1, pz], [px, GRADE + h + 1.05, pz], tube, seg, P.galv, false);
+        m.bar(px - 0.13, px + 0.13, GRADE, GRADE + 0.1, pz - 0.13, pz + 0.13, shade(P.steel, 0.95));  // sole plate
+      }
     }
     for (let i = 1; i <= lifts; i += 1) {
-      const y = (h * i) / lifts;
-      m.bar(x - w / 2, x + w / 2, GRADE + y, GRADE + y + 0.08, z - 0.06, z + 1.36, P.timber);
-      m.bar(x - w / 2, x + w / 2, GRADE + y + 0.9, GRADE + y + 0.98, z + 1.24, z + 1.36, P.galv);
+      const y = GRADE + (h * i) / lifts;
+      for (const pz of rows) {
+        m.rod([x - w / 2, y, pz], [x + w / 2, y, pz], tube, seg, shade(P.galv, 0.94), false);
+        m.rod([x - w / 2, y + 0.95, pz], [x + w / 2, y + 0.95, pz], tube, seg, shade(P.galv, 1.02), false);
+      }
+      for (let b = 0; b <= bays; b += 1) {
+        const px = x - w / 2 + (b * w) / bays;
+        m.rod([px, y, rows[0] - 0.16], [px, y, rows[1] + 0.16], tube, 6, shade(P.galv, 0.88), false);
+      }
+      // Four boards to the lift, laid on the transoms, and the toe board that
+      // stops anything rolling off them.
+      for (let b = 0; b < 4; b += 1) {
+        const bz = rows[0] - 0.1 + b * 0.4;
+        m.bar(x - w / 2, x + w / 2, y + 0.04, y + 0.09, bz, bz + 0.37, shade(P.timber, 0.94 + 0.05 * (b % 2)));
+      }
+      m.bar(x - w / 2, x + w / 2, y + 0.09, y + 0.34, rows[1] + 0.14, rows[1] + 0.2, shade(P.timber, 0.86));
+      // Facade brace, one diagonal a lift, alternating hand as a braced facade
+      // actually does.
+      const d = i % 2 ? 1 : -1;
+      m.rod([x - (d * w) / 2, y, rows[1]], [x + (d * w) / 2, y + h / lifts, rows[1]], tube, 6, shade(P.galv, 0.82), false);
+    }
+    // Ties back to the building, without which the whole thing is a ladder
+    // leaning on nothing.
+    for (const px of [x - w * 0.3, x + w * 0.3]) {
+      for (let i = 1; i <= lifts; i += 2) {
+        m.rod([px, GRADE + (h * i) / lifts, rows[0]], [px, GRADE + (h * i) / lifts, z - 1.4], tube, 6, shade(P.galv, 0.9), false);
+      }
     }
   }
 
@@ -1020,14 +1745,19 @@
     if (clad <= 0) return;
     m.part(`envelope / wall cladding${tag}`, () => {
       m.save().move(o.x, o.deck, o.z);
+      // A delivered wing is a secondary object and is drawn a step plainer —
+      // the same call already made for its hidden frames and its rainwater
+      // goods. Wider rib pitch, not fewer flashings: the flashings are the
+      // silhouette and the ribs are the surface.
+      const pitch = o.tag ? 1.25 : 0.75;
       for (const s of [-1, 1]) {
         m.save().move(0, 0, s * (dz / 2)).rotY(s > 0 ? 0 : 180);
-        claddedWall(m, w, eaves, bays, o.col, d0, { clad, phase: s });
+        claddedWall(m, w, eaves, bays, o.col, d0, { clad, phase: s, pitch });
         m.restore();
       }
       for (const s of [-1, 1]) {
         m.save().move(s * (w / 2), 0, 0).rotY(90 * s);
-        claddedWall(m, dz, eaves, ends, o.col, d0, { clad, phase: s * 2 });
+        claddedWall(m, dz, eaves, ends, o.col, d0, { clad, phase: s * 2, pitch });
         m.restore();
       }
       m.restore();
@@ -1063,6 +1793,12 @@
           for (let i = 0; i < 3; i += 1) {
             const zz = -dz / 2 + 1.5 + (i * (dz - 3)) / 2;
             m.column(s * (w / 2 + 0.2), 0, zz, eaves, 0.13, 0.13, d0.seg, P.galv, false);
+            // The shoe at the bottom and the hopper at the top. Only on the
+            // lead block: a delivered wing is a secondary object and is drawn a
+            // step plainer, the same call already made for its hidden frames.
+            if (o.tag) continue;
+            m.rod([s * (w / 2 + 0.2), 0.42, zz], [s * (w / 2 + 0.55), 0.18, zz], 0.13, 8, shade(P.galv, 0.9), true);
+            m.column(s * (w / 2 + 0.2), eaves - 0.34, zz, 0.34, 0.24, 0.14, 8, shade(P.galv, 1.02), false);
           }
         }
         m.restore();
@@ -1080,17 +1816,44 @@
         const cx = (i - 1) * (w / 3.4), dw = w / 4.6, dh = eaves * 0.66;
         m.bar(cx - dw / 2, cx + dw / 2, 0.05, dh, 0, 0.14, P.door);
         if (d0.fine) {
-          const slats = 6;
-          for (let s = 0; s < slats; s += 1) {
-            const y = 0.15 + (s * (dh - 0.3)) / slats;
-            m.bar(cx - dw / 2 + 0.05, cx + dw / 2 - 0.05, y, y + (dh - 0.3) / slats - 0.06, 0.14, 0.2, shade(P.door, 1.08));
+          // Two leaves that meet on the centre line, ribbed, on a track with a
+          // bottom guide — a sliding door is a pair of panels that move, and the
+          // meeting stile and the track are what say so. Vision panels at head
+          // height, because every large industrial door has them.
+          for (const ls of [-1, 1]) {
+            m.beam(cx + (ls < 0 ? -dw / 2 : 0.03), cx + (ls < 0 ? -0.03 : dw / 2), 0.05, dh, 0.14, 0.24,
+              shade(P.door, ls < 0 ? 1.04 : 0.96), 0.02);
+            for (let r = 0; r < 4; r += 1) {
+              const rx = cx + ls * (0.2 + r * (dw / 2 - 0.35) / 3);
+              m.bar(rx - 0.05, rx + 0.05, 0.1, dh - 0.05, 0.24, 0.3, shade(P.door, 0.86));
+            }
+            m.bar(cx + ls * dw * 0.24 - 0.42, cx + ls * dw * 0.24 + 0.42, dh - 1.35, dh - 0.75, 0.22, 0.26, P.glass);
           }
-          m.bar(cx - dw / 2 - 0.16, cx + dw / 2 + 0.16, dh, dh + 0.28, 0, 0.24, P.safety);
+          m.beam(cx - dw / 2 - 0.3, cx + dw / 2 + 0.3, dh, dh + 0.3, 0, 0.36, P.safety, 0.02);   // track and hood
+          m.bar(cx - dw / 2 - 0.3, cx + dw / 2 + 0.3, 0.02, 0.09, 0.16, 0.3, shade(P.steel, 0.94));
+          for (const gs of [-1, 1]) {
+            m.beam(cx + gs * (dw / 2 + 0.18) - 0.09, cx + gs * (dw / 2 + 0.18) + 0.09, 0.05, dh + 0.3, 0.12, 0.32, P.galv, 0.016);
+          }
         }
       }
       if (d0.fine) {
+        // Personnel door beside the last leaf, with a frame, a handle and a
+        // canopy: the one human-sized thing on a 34 metre elevation, and the
+        // only reference a viewer has for how big the rest of it is.
         m.bar(w / 2 - 2.6, w / 2 - 1.4, 0.05, 2.3, 0, 0.12, shade(P.door, 0.85));
-        m.bar(w / 2 - 3.0, w / 2 - 1.0, 2.3, 2.5, 0, 1.4, shade(P.clad, 1.06));
+        m.beam(w / 2 - 2.72, w / 2 - 1.28, 0.02, 2.42, 0.1, 0.2, shade(P.galv, 1.02), 0.015);
+        m.rod([w / 2 - 1.62, 1.05, 0.14], [w / 2 - 1.62, 1.05, 0.3], 0.04, 6, P.dark, true);
+        m.bar(w / 2 - 3.0, w / 2 - 1.0, 2.42, 2.58, 0, 1.4, shade(P.clad, 1.06));
+        for (const bs of [-0.9, 0.9]) m.rod([w / 2 - 2.0 + bs, 2.42, 0.1], [w / 2 - 2.0 + bs, 1.9, 0.05], 0.04, 6, P.galv, false);
+        // Guide posts either side of the outer opening — what stops a vehicle
+        // taking the door off its track. Placed at local -0.18 so they stand on
+        // the yard, not on the deck this block is drawn relative to.
+        for (const gs of [-1, 1]) {
+          const gx = gs * (w / 3.4 + w / 9.2 + 0.8);
+          m.column(gx, -0.18, 1.1, 0.72, 0.2, 0.2, 8, P.safety, true);
+          m.column(gx, 0.54, 1.1, 0.19, 0.21, 0.21, 8, shade(P.hut, 1.06), false);
+          m.column(gx, 0.73, 1.1, 0.2, 0.2, 0.13, 8, P.safety, true);
+        }
       }
       m.restore();
     });
@@ -1103,14 +1866,43 @@
     const x = o.x + 8, z = o.z - o.block.dz / 2 - 8.0;
     m.part("yard / loading dock and levellers", () => {
       m.bar(x - 11, x + 11, GRADE, GRADE + 1.25, z - 3.2, z + 3.2, P.concrete);
-      m.bar(x - 11.2, x + 11.2, GRADE + 1.2, GRADE + 1.32, z - 3.4, z + 3.4, P.kerb);
+      if (d0.fine) m.beam(x - 11.2, x + 11.2, GRADE + 1.2, GRADE + 1.34, z - 3.4, z + 3.4, P.kerb, 0.025);
+      else m.bar(x - 11.2, x + 11.2, GRADE + 1.2, GRADE + 1.32, z - 3.4, z + 3.4, P.kerb);
       const docks = d0.fine ? 4 : 2;
       for (let i = 0; i < docks; i += 1) {
         const dx = x - 8.2 + (i * 16.4) / (docks - 1);
         m.bar(dx - 1.6, dx + 1.6, GRADE + 1.32, GRADE + 1.44, z - 3.4, z - 1.4, shade(P.steel, 1.05));
-        if (d0.fine) {
-          for (const s of [-1, 1]) m.bar(dx + s * 1.75 - 0.18, dx + s * 1.75 + 0.18, GRADE + 1.32, GRADE + 2.6, z - 3.5, z - 3.1, P.dark);
-          m.bar(dx - 1.9, dx + 1.9, GRADE + 2.6, GRADE + 2.85, z - 3.55, z - 3.05, P.dark);
+        if (!d0.fine) continue;
+        // A dock is a hole in a wall with a leveller in it, rubber buffers
+        // either side, a shelter round it and a light on an arm. Each of those
+        // is a thing a driver needs, and together they are the difference
+        // between a loading dock and a slot.
+        m.beam(dx - 1.55, dx + 1.55, GRADE + 1.36, GRADE + 1.46, z - 3.5, z - 3.16, shade(P.steel, 1.12), 0.015);
+        for (const s of [-1, 1]) {
+          m.beam(dx + s * 1.75 - 0.18, dx + s * 1.75 + 0.18, GRADE + 0.55, GRADE + 1.28, z - 3.56, z - 3.3, shade(P.dark, 1.15), 0.02);
+          m.bar(dx + s * 1.75 - 0.26, dx + s * 1.75 + 0.26, GRADE + 1.32, GRADE + 3.5, z - 3.62, z - 3.28, shade(P.dark, 1.0));
+        }
+        m.bar(dx - 2.05, dx + 2.05, GRADE + 3.5, GRADE + 3.86, z - 3.66, z - 3.24, shade(P.dark, 1.0));
+        m.bar(dx - 1.5, dx + 1.5, GRADE + 1.46, GRADE + 3.44, z - 3.36, z - 3.3, P.door);
+        for (let s = 0; s < 5; s += 1) {
+          m.bar(dx - 1.44, dx + 1.44, GRADE + 1.6 + s * 0.38, GRADE + 1.88 + s * 0.38, z - 3.42, z - 3.36, shade(P.door, 1.08));
+        }
+        m.rod([dx + 1.9, GRADE + 3.3, z - 3.3], [dx + 2.7, GRADE + 3.5, z - 3.9], 0.05, 6, P.galv, false);
+        m.column(dx + 2.7, GRADE + 3.34, z - 3.9, 0.3, 0.24, 0.2, 8, shade(P.lane, 1.1), true);
+      }
+      if (d0.fine) {
+        // Steps off the end of the dock, and the guard rail along the open edge.
+        for (let s = 0; s < 4; s += 1) {
+          m.beam(x + 11.2, x + 12.4, GRADE + (s * 1.25) / 4, GRADE + ((s + 1) * 1.25) / 4,
+            z + 1.0 + s * 0.3, z + 3.2, shade(P.concrete, 0.94 + 0.03 * s), 0.02);
+        }
+        for (const rz of [z + 3.3]) {
+          for (let p = 0; p < 5; p += 1) {
+            const px = x - 10 + p * 5;
+            m.rod([px, GRADE + 1.34, rz], [px, GRADE + 2.44, rz], 0.045, 6, P.safety, false);
+          }
+          m.rod([x - 10, GRADE + 2.44, rz], [x + 10, GRADE + 2.44, rz], 0.045, 6, P.safety, false);
+          m.rod([x - 10, GRADE + 1.9, rz], [x + 10, GRADE + 1.9, rz], 0.045, 6, shade(P.safety, 0.9), false);
         }
       }
     });
@@ -1118,23 +1910,43 @@
       const posts = d0.fine ? 5 : 2;
       for (let i = 0; i < posts; i += 1) {
         const px = x - 10 + (i * 20) / (posts - 1);
-        m.bar(px - 0.16, px + 0.16, GRADE, GRADE + 5.2, z - 3.6, z - 3.28, P.steel);
+        if (d0.fine) {
+          m.beam(px - 0.16, px + 0.16, GRADE, GRADE + 5.2, z - 3.6, z - 3.28, P.steel, 0.018);
+          m.bar(px - 0.3, px + 0.3, GRADE, GRADE + 0.1, z - 3.74, z - 3.14, shade(P.steel, 0.9));
+          m.webPlate([[px - 0.16, GRADE + 4.4], [px - 0.16, GRADE + 5.2], [px - 1.5, GRADE + 5.2]],
+            z - 3.52, z - 3.36, shade(P.steel, 0.96));
+        } else {
+          m.bar(px - 0.16, px + 0.16, GRADE, GRADE + 5.2, z - 3.6, z - 3.28, P.steel);
+        }
       }
       m.save().move(0, GRADE + 5.2, 0);
       m.plate([[x - 11.5, z - 5.6], [x + 11.5, z - 5.6], [x + 11.5, z + 0.6], [x - 11.5, z + 0.6]], 0.22, shade(P.roof, 1.04));
       m.restore();
+      if (d0.fine) {
+        // Gutter along the outer edge and two downpipes off it. Water has to go
+        // somewhere and a canopy with no rainwater goods reads as a card.
+        m.beam(x - 11.6, x + 11.6, GRADE + 5.2, GRADE + 5.5, z - 5.72, z - 5.44, shade(P.galv, 0.96), 0.02);
+        for (const px of [x - 10, x + 10]) m.rod([px, GRADE, z - 5.58], [px, GRADE + 5.2, z - 5.58], 0.11, 8, P.galv, false);
+        for (const px of [x - 10, x + 10]) m.rod([px, GRADE + 0.15, z - 5.58], [px, GRADE + 0.15, z - 5.1], 0.11, 8, P.galv, false);
+      }
     });
     m.part("yard / bollards and dock markings", () => {
       const n = d0.fine ? 8 : 3;
       for (let i = 0; i < n; i += 1) {
         const bx = x - 10.5 + (i * 21) / (n - 1);
-        m.column(bx, GRADE, z - 4.6, 1.05, 0.22, 0.22, d0.seg, P.safety, true);
+        if (d0.fine) bollard(m, bx, z - 4.6, 1.1, 0.22, 8, P.safety);
+        else m.column(bx, GRADE, z - 4.6, 1.05, 0.22, 0.22, d0.seg, P.safety, true);
       }
       if (d0.fine) {
         for (let i = 0; i < 4; i += 1) {
           const lx = x - 7.5 + i * 5;
-          m.bar(lx - 0.12, lx + 0.12, GRADE + 0.01, GRADE + 0.04, z - 11, z - 5, P.lane);
+          // Stops 7.8 m short of the dock rather than 11: the compound line at
+          // level one sits at 23.2 m and the old run put painted lane markings
+          // straight through the perimeter fence.
+          m.bar(lx - 0.12, lx + 0.12, GRADE + 0.01, GRADE + 0.04, z - 7.8, z - 5, P.lane);
         }
+        // The approach itself, worn where the vehicles turn.
+        groundPatch(m, x, z - 4.4, 24, 6.8, 10, 5, GRADE + 0.008, P.asphalt, 0.055);
       }
     });
   }
@@ -1142,11 +1954,27 @@
   function gatehouse(m, x, z, d0) {
     m.part("yard / gatehouse and controlled entry", () => {
       m.bar(x - 2.4, x + 2.4, GRADE, GRADE + 3.1, z - 2.0, z + 2.0, shade(P.clad, 1.02));
-      m.bar(x - 2.7, x + 2.7, GRADE + 3.1, GRADE + 3.35, z - 2.3, z + 2.3, P.roof);
+      if (d0.fine) m.beam(x - 2.7, x + 2.7, GRADE + 3.1, GRADE + 3.38, z - 2.3, z + 2.3, P.roof, 0.025);
+      else m.bar(x - 2.7, x + 2.7, GRADE + 3.1, GRADE + 3.35, z - 2.3, z + 2.3, P.roof);
       if (d0.fine) {
-        for (const s of [-1, 1]) m.bar(x - 1.7, x + 1.7, GRADE + 1.5, GRADE + 2.5, z + s * 2.0, z + s * 2.04, P.glass);
-        m.bar(x + 2.6, x + 9.0, GRADE + 1.05, GRADE + 1.2, z - 0.16, z + 0.16, P.safety);
-        m.column(x + 2.6, GRADE, z, 1.4, 0.16, 0.16, d0.seg, P.dark, true);
+        // Glazing in a frame, a door, and a barrier with a counterweight. A
+        // controlled entry is a person in a box who can stop a vehicle, and the
+        // barrier is the part that does the stopping.
+        for (const s of [-1, 1]) {
+          m.bar(x - 1.7, x + 1.7, GRADE + 1.5, GRADE + 2.5, z + s * 2.0, z + s * 2.03, P.glass);
+          m.beam(x - 1.82, x + 1.82, GRADE + 1.4, GRADE + 2.6, z + s * 2.0, z + s * 2.1, shade(P.galv, 1.0), 0.015);
+          m.beam(x - 0.06, x + 0.06, GRADE + 1.5, GRADE + 2.5, z + s * 2.0, z + s * 2.1, shade(P.galv, 1.02), 0.012);
+        }
+        m.bar(x - 2.4, x - 1.4, GRADE + 0.05, GRADE + 2.1, z + 2.0, z + 2.04, P.door);
+        m.beam(x - 2.52, x - 1.28, GRADE, GRADE + 2.22, z + 2.0, z + 2.09, shade(P.galv, 0.96), 0.015);
+        m.column(x + 2.6, GRADE, z, 1.5, 0.18, 0.18, 10, P.dark, true);
+        m.beam(x + 2.6, x + 9.2, GRADE + 1.36, GRADE + 1.52, z - 0.1, z + 0.1, P.safety, 0.02);
+        for (let b = 0; b < 5; b += 1) {
+          m.bar(x + 3.2 + b * 1.2, x + 3.8 + b * 1.2, GRADE + 1.35, GRADE + 1.53, z - 0.11, z + 0.11, shade(P.hut, 1.04));
+        }
+        m.beam(x + 1.9, x + 2.6, GRADE + 1.28, GRADE + 1.6, z - 0.16, z + 0.16, P.concreteWet, 0.02);
+        for (const bs of [-1, 1]) bollard(m, x + 2.6, z + bs * 1.6, 0.95, 0.18, 8, P.safety);
+        m.beam(x - 2.9, x + 2.9, GRADE + 3.38, GRADE + 3.72, z - 1.0, z - 0.86, shade(P.hoard, 1.1), 0.02);
       }
     });
   }
@@ -1164,11 +1992,28 @@
           m.bar(x - w / 2 + 1, x + w / 2 - 1, GRADE + 0.12, GRADE + 0.15, lz - 0.11, lz + 0.11, P.lane);
         }
         for (const s of [-1, 1]) {
-          m.bar(x + s * (w / 2) - 0.3, x + s * (w / 2) + 0.3, GRADE + 0.12, GRADE + 0.42, z - d / 2, z + d / 2, P.kerb);
+          m.beam(x + s * (w / 2) - 0.3, x + s * (w / 2) + 0.3, GRADE + 0.12, GRADE + 0.42, z - d / 2, z + d / 2, P.kerb, 0.025);
         }
-        // Ramp and inspection pit cover, which is what a service yard has.
-        m.bar(x - 4, x + 4, GRADE + 0.12, GRADE + 0.9, z - d / 2 - 3, z - d / 2 - 0.4, P.concrete);
-        m.bar(x - 2.2, x + 2.2, GRADE + 0.13, GRADE + 0.2, z + 2, z + 8, shade(P.steel, 0.9));
+        // Ramp with kerbs, and an inspection pit with a grating over it rather
+        // than a plate: the slats are what say there is a hole under it.
+        m.beam(x - 4, x + 4, GRADE + 0.12, GRADE + 0.9, z - d / 2 - 3, z - d / 2 - 0.4, P.concrete, 0.03);
+        for (const s of [-1, 1]) {
+          m.beam(x + s * 4 - 0.22, x + s * 4 + 0.22, GRADE + 0.9, GRADE + 1.12, z - d / 2 - 3, z - d / 2 - 0.4, P.kerb, 0.02);
+        }
+        m.bar(x - 2.3, x + 2.3, GRADE + 0.05, GRADE + 0.13, z + 1.9, z + 8.1, shade(P.dark, 0.7));
+        for (let g = 0; g < 14; g += 1) {
+          const gz = 2.0 + g * 0.44;
+          m.bar(x - 2.24, x + 2.24, GRADE + 0.13, GRADE + 0.2, z + gz, z + gz + 0.26, shade(P.steel, 0.92 + 0.06 * (g % 2)));
+        }
+        for (const s of [-1, 1]) {
+          m.beam(x + s * 2.32, x + s * 2.44, GRADE + 0.12, GRADE + 0.22, z + 1.85, z + 8.15, shade(P.steel, 1.02), 0.015);
+        }
+        // Wash-down bay in the far corner, and the tyre wear across the middle
+        // of the hardstand where everything turns.
+        groundPatch(m, x, z, w - 2.4, d - 2.4, 10, 7, GRADE + 0.125, P.asphalt, 0.05);
+        m.bar(x + w / 2 - 5.4, x + w / 2 - 0.6, GRADE + 0.12, GRADE + 0.2, z - d / 2 + 0.6, z - d / 2 + 4.4, shade(P.concrete, 0.92));
+        m.rod([x + w / 2 - 3.0, GRADE + 0.2, z - d / 2 + 2.5], [x + w / 2 - 3.0, GRADE + 2.6, z - d / 2 + 2.5], 0.09, 8, P.galv, false);
+        m.beam(x + w / 2 - 3.6, x + w / 2 - 2.4, GRADE + 2.6, GRADE + 2.74, z - d / 2 + 2.4, z - d / 2 + 3.4, shade(P.galv, 0.94), 0.02);
       }
     });
   }
@@ -1176,17 +2021,71 @@
   function utilities(m, x, z, d0, tall) {
     m.part("services / substation, tanks and stack", () => {
       m.bar(x - 3.0, x + 3.0, GRADE, GRADE + 3.4, z - 2.2, z + 2.2, shade(P.concrete, 0.96));
-      m.bar(x - 3.2, x + 3.2, GRADE + 3.4, GRADE + 3.6, z - 2.4, z + 2.4, P.roof);
+      if (d0.fine) m.beam(x - 3.2, x + 3.2, GRADE + 3.4, GRADE + 3.62, z - 2.4, z + 2.4, P.roof, 0.025);
+      else m.bar(x - 3.2, x + 3.2, GRADE + 3.4, GRADE + 3.6, z - 2.4, z + 2.4, P.roof);
       for (const s of [-1, 1]) {
         m.bar(x + 4.2, x + 6.6, GRADE, GRADE + 2.4, z + s * 1.6 - 1.0, z + s * 1.6 + 1.0, P.galv);
-        if (d0.fine) m.column(x + 5.4, GRADE + 2.4, z + s * 1.6, 1.6, 0.3, 0.3, d0.seg, P.dark, true);
+        if (!d0.fine) continue;
+        // A transformer is a tank with radiator banks bolted to it and bushings
+        // on top. Both are on every one, both are unmistakable, and both are a
+        // handful of triangles.
+        m.column(x + 5.4, GRADE + 2.4, z + s * 1.6, 1.6, 0.3, 0.3, d0.seg, P.dark, true);
+        for (let r = 0; r < 6; r += 1) {
+          m.bar(x + 4.4 + r * 0.36, x + 4.6 + r * 0.36, GRADE + 0.5, GRADE + 2.1,
+            z + s * 1.6 - 1.42, z + s * 1.6 - 1.0, shade(P.galv, 0.86 + 0.06 * (r % 2)));
+        }
+        for (const bx of [x + 4.7, x + 5.4, x + 6.1]) {
+          m.column(bx, GRADE + 2.42, z + s * 1.6 + 0.7, 0.85, 0.16, 0.13, 8, shade(P.hardcore, 1.02), true);
+        }
+        m.bar(x + 4.0, x + 6.8, GRADE, GRADE + 0.16, z + s * 1.6 - 1.2, z + s * 1.6 + 1.2, shade(P.concrete, 0.9));
       }
-      m.column(x - 6.5, GRADE, z, 7.2, 1.9, 1.9, d0.seg, shade(P.galv, 0.94), true);
-      m.column(x - 10.5, GRADE, z, 7.2, 1.9, 1.9, d0.seg, shade(P.galv, 0.9), true);
-      if (tall) m.column(x - 1.0, GRADE, z - 5.5, 17.0, 0.95, 0.75, d0.seg, shade(P.clad, 0.88), false);
+      // Storage tanks: smooth shells with a dished top, a stair round one of
+      // them and a rail at the top. A tank without an access stair is a drum.
+      for (const tx of [x - 6.5, x - 10.5]) {
+        m.column(tx, GRADE + 0.35, z, 6.5, 1.9, 1.9, d0.fine ? 14 : d0.seg, shade(P.galv, tx < x - 8 ? 0.9 : 0.94), true);
+        if (!d0.fine) continue;
+        m.column(tx, GRADE + 6.85, z, 0.45, 1.9, 1.35, 14, shade(P.galv, 1.02), true);
+        m.beam(tx - 2.1, tx + 2.1, GRADE, GRADE + 0.35, z - 2.1, z + 2.1, shade(P.concrete, 0.94), 0.03);
+        for (let hp = 0; hp < 8; hp += 1) {
+          const a = (hp / 8) * Math.PI * 2;
+          m.rod([tx + Math.cos(a) * 1.86, GRADE + 7.3, z + Math.sin(a) * 1.86],
+            [tx + Math.cos(a) * 1.86, GRADE + 8.3, z + Math.sin(a) * 1.86], 0.035, 4, P.galv, false);
+          const b = ((hp + 1) / 8) * Math.PI * 2;
+          m.rod([tx + Math.cos(a) * 1.86, GRADE + 8.3, z + Math.sin(a) * 1.86],
+            [tx + Math.cos(b) * 1.86, GRADE + 8.3, z + Math.sin(b) * 1.86], 0.035, 4, shade(P.galv, 1.04), false);
+        }
+      }
       if (d0.fine) {
+        for (let s = 0; s < 12; s += 1) {
+          m.beam(x - 6.5 + 2.1, x - 6.5 + 3.3, GRADE + 0.35 + s * 0.55, GRADE + 0.45 + s * 0.55,
+            z - 2.2 + s * 0.4, z - 1.6 + s * 0.4, P.galv, 0.012);
+        }
+        m.rod([x - 3.6, GRADE + 1.4, z - 2.2], [x - 3.6, GRADE + 7.4, z + 2.6], 0.035, 6, shade(P.galv, 1.04), false);
+      }
+      if (tall) {
+        m.column(x - 1.0, GRADE, z - 5.5, 17.0, 0.95, 0.75, d0.fine ? 14 : d0.seg, shade(P.clad, 0.88), false);
+        if (d0.fine) {
+          // Stiffening bands and a ladder. A flue with neither is a cone.
+          for (let bnd = 0; bnd < 4; bnd += 1) {
+            const by = GRADE + 3.4 + bnd * 3.4, br = 0.95 - (0.2 * (by - GRADE)) / 17;
+            m.column(x - 1.0, by, z - 5.5, 0.22, br + 0.07, br + 0.07, 14, shade(P.clad, 0.78), false);
+          }
+          for (const lx of [-0.16, 0.16]) {
+            m.rod([x - 1.0 + lx, GRADE + 1.0, z - 6.6], [x - 1.0 + lx, GRADE + 16.4, z - 6.35], 0.035, 6, P.galv, false);
+          }
+          for (let r = 0; r < 14; r += 1) {
+            const ry = GRADE + 1.4 + r * 1.1;
+            m.rod([x - 1.16, ry, z - 6.58], [x - 0.84, ry, z - 6.58], 0.026, 6, P.galv, false);
+          }
+        }
+      }
+      if (d0.fine) {
+        // The pipe bridge back to the hall, on its own trestles.
         for (let i = 0; i < 4; i += 1) {
-          m.bar(x - 11.0, x - 6.0, GRADE + 5.0 + i * 0.5, GRADE + 5.3 + i * 0.5, z - 0.2, z + 0.2, P.steel);
+          m.rod([x - 11.0, GRADE + 5.0 + i * 0.5, z - 0.2], [x - 6.0, GRADE + 5.0 + i * 0.5, z - 0.2], 0.16, 8, shade(P.steel, 0.96 + 0.04 * (i % 2)), false);
+        }
+        for (const px of [x - 10.4, x - 6.6]) {
+          m.beam(px - 0.12, px + 0.12, GRADE, GRADE + 4.9, z - 0.34, z - 0.06, P.steel, 0.016);
         }
       }
     });
@@ -1202,55 +2101,121 @@
     for (const prop of k.props) {
       if (prop === "stack") {
         m.part("services / flue stack", () => {
-          m.column(x + W * 0.26, GRADE, z - D * 0.18, built ? 22 : 6, 1.3, 1.0, d0.seg, shade(P.clad, 0.86), false);
-          if (d0.fine && built) for (let i = 0; i < 3; i += 1) m.column(x + W * 0.26, GRADE + 8 + i * 4.5, z - D * 0.18, 0.4, 1.5, 1.5, d0.seg, P.safety, true);
+          const sx = x + W * 0.26, sz = z - D * 0.18, sh = built ? 22 : 6;
+          m.column(sx, GRADE, sz, sh, 1.3, 1.0, d0.fine ? 14 : d0.seg, shade(P.clad, 0.86), false);
+          if (!d0.fine) return;
+          // Stiffening bands, a caged ladder and a coping ring. A flue with none
+          // of them is a traffic cone with the point cut off.
+          m.beam(sx - 1.7, sx + 1.7, GRADE, GRADE + 0.5, sz - 1.7, sz + 1.7, shade(P.concrete, 0.94), 0.03);
+          if (built) {
+            for (let i = 0; i < 3; i += 1) m.column(sx, GRADE + 8 + i * 4.5, sz, 0.4, 1.5, 1.5, 14, P.safety, true);
+            m.column(sx, GRADE + sh - 0.4, sz, 0.5, 1.12, 1.12, 14, shade(P.clad, 0.7), false);
+            for (const lx of [-0.16, 0.16]) m.rod([sx + lx, GRADE + 1.0, sz - 1.4], [sx + lx, GRADE + sh - 0.8, sz - 1.12], 0.035, 6, P.galv, false);
+            for (let r = 0; r < 12; r += 1) {
+              m.rod([sx - 0.16, GRADE + 1.4 + r * 1.6, sz - 1.38], [sx + 0.16, GRADE + 1.4 + r * 1.6, sz - 1.38], 0.026, 6, P.galv, false);
+            }
+          }
         });
       } else if (prop === "tanks") {
         m.part("services / tank farm", () => {
-          for (let i = 0; i < (d0.fine ? 3 : 2); i += 1) {
-            m.column(x + W * 0.3, GRADE, z + D * 0.1 + i * 6.5, built ? 9 : 2.5, 2.6, 2.6, d0.seg, shade(P.galv, 0.95 + i * 0.03), true);
+          const n = d0.fine ? 3 : 2, th = built ? 9 : 2.5;
+          for (let i = 0; i < n; i += 1) {
+            const tz = z + D * 0.1 + i * 6.5, tx = x + W * 0.3;
+            m.column(tx, GRADE + (d0.fine ? 0.4 : 0), tz, th, 2.6, 2.6, d0.fine ? 14 : d0.seg, shade(P.galv, 0.95 + i * 0.03), true);
+            if (!d0.fine) continue;
+            // Plinth, dished top, top rail. A storage tank is a rolled shell you
+            // walk on the top of, and a flat lid with no rail is a bin.
+            m.beam(tx - 2.9, tx + 2.9, GRADE, GRADE + 0.4, tz - 2.9, tz + 2.9, shade(P.concrete, 0.94), 0.03);
+            if (built) {
+              m.column(tx, GRADE + 0.4 + th, tz, 0.55, 2.6, 1.8, 14, shade(P.galv, 1.04), true);
+              for (let hp = 0; hp < 8; hp += 1) {
+                const a = (hp / 8) * Math.PI * 2, b2 = ((hp + 1) / 8) * Math.PI * 2;
+                m.rod([tx + Math.cos(a) * 2.5, GRADE + 0.4 + th, tz + Math.sin(a) * 2.5],
+                  [tx + Math.cos(a) * 2.5, GRADE + 1.4 + th, tz + Math.sin(a) * 2.5], 0.035, 4, P.galv, false);
+                m.rod([tx + Math.cos(a) * 2.5, GRADE + 1.4 + th, tz + Math.sin(a) * 2.5],
+                  [tx + Math.cos(b2) * 2.5, GRADE + 1.4 + th, tz + Math.sin(b2) * 2.5], 0.035, 4, shade(P.galv, 1.04), false);
+              }
+              m.rod([tx - 2.6, GRADE + 1.2, tz], [tx - 4.6, GRADE + 1.2, tz], 0.16, 8, shade(P.steel, 1.0), true);
+            }
+          }
+          // The bund wall the farm stands in, which is what makes it a farm.
+          if (d0.fine) {
+            const bz0 = z + D * 0.1 - 3.6, bz1 = z + D * 0.1 + (n - 1) * 6.5 + 3.6;
+            for (const s of [-1, 1]) {
+              m.beam(x + W * 0.3 + s * 3.8, x + W * 0.3 + s * 4.1, GRADE, GRADE + 1.1, bz0, bz1, shade(P.concrete, 0.9), 0.03);
+            }
+            for (const bz of [bz0, bz1]) {
+              m.beam(x + W * 0.3 - 4.1, x + W * 0.3 + 4.1, GRADE, GRADE + 1.1, bz - 0.15, bz + 0.15, shade(P.concrete, 0.9), 0.03);
+            }
           }
         });
       } else if (prop === "pipeRack") {
         m.part("services / pipe rack", () => {
+          const rz = z - D * 0.3;
           for (let i = 0; i < (d0.fine ? 5 : 2); i += 1) {
             const px = x - W * 0.3 + (i * W * 0.6) / 4;
-            m.bar(px - 0.16, px + 0.16, GRADE, GRADE + 5.5, z - D * 0.3 - 0.16, z - D * 0.3 + 0.16, P.steel);
+            if (d0.fine) m.beam(px - 0.16, px + 0.16, GRADE, GRADE + 5.5, rz - 0.16, rz + 0.16, P.steel, 0.018);
+            else m.bar(px - 0.16, px + 0.16, GRADE, GRADE + 5.5, rz - 0.16, rz + 0.16, P.steel);
           }
           for (let i = 0; i < (d0.fine ? 3 : 1); i += 1) {
-            m.bar(x - W * 0.32, x + W * 0.32, GRADE + 4.4 + i * 0.5, GRADE + 4.7 + i * 0.5, z - D * 0.3 - 0.25, z - D * 0.3 + 0.25, shade(P.galv, 0.94));
+            m.bar(x - W * 0.32, x + W * 0.32, GRADE + 4.4 + i * 0.5, GRADE + 4.7 + i * 0.5, rz - 0.25, rz + 0.25, shade(P.galv, 0.94));
+          }
+          if (!d0.fine) return;
+          // The pipes themselves, which the rack existed to carry and did not
+          // have. Round, lagged in two diameters, on shoes, with a loop at one
+          // end for the expansion a hot line needs.
+          const runs = [[0.34, 4.95, 0.9], [0.24, 5.45, 1.02], [0.18, 5.95, 0.88]];
+          for (let r = 0; r < runs.length; r += 1) {
+            const rr = runs[r][0], ry = GRADE + runs[r][1];
+            m.rod([x - W * 0.32, ry + rr, rz - 0.12 + r * 0.14], [x + W * 0.28, ry + rr, rz - 0.12 + r * 0.14],
+              rr, 10, shade(P.galv, runs[r][2]), false);
+            m.rod([x + W * 0.28, ry + rr, rz - 0.12 + r * 0.14], [x + W * 0.28, ry + rr + 1.6, rz - 0.12 + r * 0.14],
+              rr, 10, shade(P.galv, runs[r][2] * 0.96), true);
           }
         });
       } else if (prop === "transformers") {
         m.part("services / transformer bays", () => {
           for (let i = 0; i < (d0.fine ? 3 : 2); i += 1) {
-            const tx = x - W * 0.22 + i * 7.5;
-            m.bar(tx - 2.2, tx + 2.2, GRADE, GRADE + 3.2, z + D * 0.16 - 1.6, z + D * 0.16 + 1.6, shade(P.steel, 1.05));
-            if (d0.fine) {
-              for (const s of [-1, 1]) m.column(tx + s * 1.2, GRADE + 3.2, z + D * 0.16, 1.5, 0.35, 0.28, d0.seg, P.hardcore, true);
-              m.bar(tx - 2.6, tx + 2.6, GRADE, GRADE + 4.2, z + D * 0.16 + 2.2, z + D * 0.16 + 2.3, P.galv);
+            const tx = x - W * 0.22 + i * 7.5, tz = z + D * 0.16;
+            m.bar(tx - 2.2, tx + 2.2, GRADE + (d0.fine ? 0.2 : 0), GRADE + 3.2, tz - 1.6, tz + 1.6, shade(P.steel, 1.05));
+            if (!d0.fine) continue;
+            // Bushings, radiator banks, a conservator and the blast wall between
+            // bays. All four are on every transformer and none of them is more
+            // than a dozen triangles.
+            for (const s of [-1, 1]) m.column(tx + s * 1.2, GRADE + 3.2, tz, 1.5, 0.35, 0.28, 10, P.hardcore, true);
+            m.rod([tx - 1.6, GRADE + 3.5, tz - 1.2], [tx + 1.6, GRADE + 3.5, tz - 1.2], 0.34, 10, shade(P.galv, 0.98), true);
+            for (let r = 0; r < 7; r += 1) {
+              m.bar(tx - 1.9 + r * 0.55, tx - 1.72 + r * 0.55, GRADE + 0.6, GRADE + 2.8, tz + 1.6, tz + 2.05, shade(P.steel, 0.88 + 0.06 * (r % 2)));
             }
+            m.beam(tx - 2.6, tx + 2.6, GRADE, GRADE + 0.2, tz - 2.2, tz + 2.3, shade(P.concrete, 0.92), 0.03);
+            m.bar(tx - 2.6, tx + 2.6, GRADE, GRADE + 4.2, tz + 2.2, tz + 2.3, P.galv);
           }
         });
       } else if (prop === "pylon") {
         m.part("services / feeder gantry", () => {
-          const px = x - W * 0.3, py = built ? 14 : 5;
+          const px = x - W * 0.3, py = built ? 14 : 5, pz = z - D * 0.2;
           for (const sx of [-1, 1]) {
             for (const sz of [-1, 1]) {
-              m.bar(px + sx * 1.5 - 0.14, px + sx * 1.5 + 0.14, GRADE, GRADE + py, z - D * 0.2 + sz * 1.5 - 0.14, z - D * 0.2 + sz * 1.5 + 0.14, P.galv);
+              if (d0.fine) m.rod([px + sx * 1.5, GRADE, pz + sz * 1.5], [px + sx * 1.5, GRADE + py, pz + sz * 1.5], 0.14, 6, P.galv, false);
+              else m.bar(px + sx * 1.5 - 0.14, px + sx * 1.5 + 0.14, GRADE, GRADE + py, pz + sz * 1.5 - 0.14, pz + sz * 1.5 + 0.14, P.galv);
             }
           }
-          m.bar(px - 4.5, px + 4.5, GRADE + py, GRADE + py + 0.4, z - D * 0.2 - 0.25, z - D * 0.2 + 0.25, P.galv);
-          if (d0.fine) {
-            for (let i = 0; i < 3; i += 1) {
-              const ax = px - 3.4 + i * 3.4;
-              m.column(ax, GRADE + py - 1.2, z - D * 0.2, 1.2, 0.16, 0.16, d0.seg, P.hardcore, false);
+          m.bar(px - 4.5, px + 4.5, GRADE + py, GRADE + py + 0.4, pz - 0.25, pz + 0.25, P.galv);
+          if (!d0.fine) return;
+          // A braced lattice and real insulator strings. A gantry is four legs
+          // and the bracing between them; without the bracing it is four poles,
+          // and the discs hanging off the crosshead are what say "live".
+          m.save().move(px, 0, pz);
+          for (let bay = 0; bay < 5; bay += 1) {
+            latticeBay(m, GRADE + (py * bay) / 5, GRADE + (py * (bay + 1)) / 5, 1.5, 1.5, 0.07, 6, shade(P.galv, 0.92));
+          }
+          m.restore();
+          for (let i = 0; i < 3; i += 1) {
+            const ax = px - 3.4 + i * 3.4;
+            for (let d = 0; d < 5; d += 1) {
+              m.column(ax, GRADE + py - 0.28 - d * 0.24, pz, 0.16, 0.19, 0.19, 8, shade(P.hardcore, 1.0 - 0.03 * d), false);
             }
-            for (let i = 1; i <= 3; i += 1) {
-              const y = GRADE + (py * i) / 4;
-              m.bar(px - 1.6, px + 1.6, y, y + 0.12, z - D * 0.2 - 1.6, z - D * 0.2 - 1.5, shade(P.galv, 0.9));
-              m.bar(px - 1.6, px + 1.6, y, y + 0.12, z - D * 0.2 + 1.5, z - D * 0.2 + 1.6, shade(P.galv, 0.9));
-            }
+            m.rod([ax, GRADE + py - 1.5, pz], [ax + 3.0, GRADE + py - 2.4, pz - 6.0], 0.05, 6, P.dark, false);
           }
         });
       } else if (prop === "containers") {
@@ -1260,8 +2225,26 @@
             const cx = x - W * 0.3 + (i % 3) * 7.0, cz = z + D * 0.18 + Math.floor(i / 3) * 3.2;
             const high = built ? 2 : 1;
             for (let h = 0; h < high; h += 1) {
-              m.bar(cx - 3.0, cx + 3.0, GRADE + h * 2.6, GRADE + 2.5 + h * 2.6, cz - 1.2, cz + 1.2,
-                shade(k.accent, 0.82 + 0.12 * ((i + h) % 3)));
+              const y0 = GRADE + h * 2.6, col = shade(k.accent, 0.82 + 0.12 * ((i + h) % 3));
+              m.bar(cx - 3.0, cx + 3.0, y0, y0 + 2.5, cz - 1.2, cz + 1.2, col);
+              if (!d0.fine) continue;
+              // Corner castings, corrugation, and doors with locking bars on one
+              // end. A container is the most recognisable object in a freight
+              // yard and it is recognisable by exactly those three things.
+              for (const ex of [-3.0, 3.0]) {
+                for (const ez of [-1.2, 1.2]) {
+                  m.bar(cx + ex - 0.17, cx + ex + 0.17, y0, y0 + 2.5, cz + ez - 0.17, cz + ez + 0.17, shade(P.steel, 1.0));
+                }
+              }
+              for (let r = 0; r < 6; r += 1) {
+                const rx = cx - 2.3 + r * 0.92;
+                for (const fz of [cz - 1.26, cz + 1.2]) {
+                  m.bar(rx - 0.08, rx + 0.08, y0 + 0.1, y0 + 2.4, fz, fz + 0.06, shade(col, 0.8));
+                }
+              }
+              for (const bx of [cx + 2.4, cx + 2.72]) {
+                m.rod([bx, y0 + 0.14, cz + 1.24], [bx, y0 + 2.36, cz + 1.24], 0.05, 6, shade(P.steel, 0.94), false);
+              }
             }
           }
         });
@@ -1269,20 +2252,70 @@
         m.part("yard / transfer gantry", () => {
           const gz = z + D * 0.18, h = built ? 12 : 4;
           for (const sx of [-1, 1]) {
-            m.bar(x + sx * 13 - 0.5, x + sx * 13 + 0.5, GRADE, GRADE + h, gz - 0.5, gz + 0.5, P.safety);
-            if (d0.fine) m.bar(x + sx * 13 - 1.2, x + sx * 13 + 1.2, GRADE, GRADE + 0.6, gz - 1.2, gz + 1.2, P.concrete);
+            if (d0.fine) {
+              // Each leg is an A-frame of four chords with bracing, not a post.
+              m.save().move(x + sx * 13, 0, gz);
+              for (const cx of [-0.5, 0.5]) {
+                for (const cz of [-0.5, 0.5]) m.rod([cx, GRADE, cz], [cx, GRADE + h, cz], 0.12, 6, P.safety, false);
+              }
+              for (let bay = 0; bay < 4; bay += 1) {
+                latticeBay(m, GRADE + (h * bay) / 4, GRADE + (h * (bay + 1)) / 4, 0.5, 0.5, 0.06, 6, shade(P.safety, 0.92));
+              }
+              m.restore();
+              m.beam(x + sx * 13 - 1.2, x + sx * 13 + 1.2, GRADE, GRADE + 0.6, gz - 1.2, gz + 1.2, P.concrete, 0.03);
+              for (const wz of [gz - 0.8, gz + 0.8]) {
+                m.rod([x + sx * 13 - 0.5, GRADE + 0.3, wz], [x + sx * 13 + 0.5, GRADE + 0.3, wz], 0.3, 8, P.dark, true);
+              }
+            } else {
+              m.bar(x + sx * 13 - 0.5, x + sx * 13 + 0.5, GRADE, GRADE + h, gz - 0.5, gz + 0.5, P.safety);
+            }
           }
           m.bar(x - 14, x + 14, GRADE + h, GRADE + h + 1.3, gz - 0.9, gz + 0.9, P.safety);
-          if (d0.fine) m.bar(x - 2, x + 2, GRADE + h - 3.4, GRADE + h, gz - 0.7, gz + 0.7, P.dark);
+          if (d0.fine) {
+            // Trolley and spreader on the beam, and the rails the legs run on.
+            m.beam(x - 2, x + 2, GRADE + h - 0.5, GRADE + h, gz - 0.8, gz + 0.8, shade(P.safety, 1.06), 0.025);
+            for (const rx of [-1.4, 1.4]) m.rod([x + rx, GRADE + h - 3.4, gz], [x + rx, GRADE + h - 0.5, gz], 0.05, 6, P.dark, false);
+            m.beam(x - 3.0, x + 3.0, GRADE + h - 3.9, GRADE + h - 3.4, gz - 1.3, gz + 1.3, P.dark, 0.03);
+            for (const rs of [-1, 1]) {
+              m.bar(x - 15, x + 15, GRADE, GRADE + 0.22, gz + rs * 0.62 - 0.1, gz + rs * 0.62 + 0.1, shade(P.steel, 1.0));
+            }
+          }
         });
       } else if (prop === "yardCrane") {
         m.part("yard / outdoor crane rail", () => {
+          const rz = z - D * 0.28;
           for (const s of [-1, 1]) {
-            m.bar(x - W * 0.34, x + W * 0.34, GRADE, GRADE + 0.25, z - D * 0.28 + s * 4 - 0.3, z - D * 0.28 + s * 4 + 0.3, P.steel);
+            m.bar(x - W * 0.34, x + W * 0.34, GRADE, GRADE + 0.25, rz + s * 4 - 0.3, rz + s * 4 + 0.3, P.steel);
+            // Sleepers under the rail. A crane rail laid straight on the yard is
+            // a stripe; the sleepers are what make it track.
+            if (d0.fine) {
+              for (let t = 0; t < 9; t += 1) {
+                const tx = x - W * 0.32 + (t * W * 0.64) / 8;
+                m.bar(tx - 0.3, tx + 0.3, GRADE, GRADE + 0.12, rz + s * 4 - 0.7, rz + s * 4 + 0.7, shade(P.timber, 0.86));
+              }
+            }
           }
           if (built) {
-            for (const s of [-1, 1]) m.bar(x - 0.4, x + 0.4, GRADE + 0.25, GRADE + 7.5, z - D * 0.28 + s * 4 - 0.4, z - D * 0.28 + s * 4 + 0.4, P.safety);
-            m.bar(x - 1.0, x + 1.0, GRADE + 7.5, GRADE + 8.4, z - D * 0.28 - 4.6, z - D * 0.28 + 4.6, P.safety);
+            for (const s of [-1, 1]) {
+              if (d0.fine) {
+                m.save().move(x, 0, rz + s * 4);
+                for (const cx of [-0.34, 0.34]) {
+                  for (const cz of [-0.34, 0.34]) m.rod([cx, GRADE + 0.25, cz], [cx, GRADE + 7.5, cz], 0.1, 6, P.safety, false);
+                }
+                for (let bay = 0; bay < 3; bay += 1) {
+                  latticeBay(m, GRADE + 0.25 + (7.25 * bay) / 3, GRADE + 0.25 + (7.25 * (bay + 1)) / 3, 0.34, 0.34, 0.05, 6, shade(P.safety, 0.92));
+                }
+                m.restore();
+              } else {
+                m.bar(x - 0.4, x + 0.4, GRADE + 0.25, GRADE + 7.5, rz + s * 4 - 0.4, rz + s * 4 + 0.4, P.safety);
+              }
+            }
+            m.bar(x - 1.0, x + 1.0, GRADE + 7.5, GRADE + 8.4, rz - 4.6, rz + 4.6, P.safety);
+            if (d0.fine) {
+              m.beam(x - 1.2, x + 1.2, GRADE + 6.9, GRADE + 7.5, rz - 1.0, rz + 1.0, P.dark, 0.025);
+              m.rod([x, GRADE + 4.4, rz], [x, GRADE + 6.9, rz], 0.05, 6, P.dark, false);
+              m.column(x, GRADE + 3.8, rz, 0.6, 0.3, 0.3, 8, shade(P.steel, 0.9), true);
+            }
           }
         });
       } else if (prop === "docks") {
@@ -1293,7 +2326,21 @@
           for (let i = 0; i < n; i += 1) {
             const dx = x - W * 0.26 + (i * W * 0.52) / (n - 1);
             m.bar(dx - 1.5, dx + 1.5, GRADE + 1.25, GRADE + 1.36, dz0 - 2.5, dz0 - 0.9, shade(P.steel, 1.05));
-            if (d0.fine) m.bar(dx - 1.7, dx + 1.7, GRADE + 1.36, GRADE + 3.9, dz0 - 2.58, dz0 - 2.46, P.dark);
+            if (!d0.fine) continue;
+            // Shutter, buffers and a leveller lip on every bay, so a dock reads
+            // as somewhere a lorry backs onto rather than a step in a wall.
+            m.bar(dx - 1.7, dx + 1.7, GRADE + 1.36, GRADE + 3.9, dz0 - 2.58, dz0 - 2.46, P.dark);
+            for (let sl = 0; sl < 5; sl += 1) {
+              m.bar(dx - 1.62, dx + 1.62, GRADE + 1.5 + sl * 0.48, GRADE + 1.86 + sl * 0.48, dz0 - 2.62, dz0 - 2.58, shade(P.door, 1.06));
+            }
+            for (const s of [-1, 1]) {
+              m.beam(dx + s * 1.82 - 0.16, dx + s * 1.82 + 0.16, GRADE + 0.6, GRADE + 1.3, dz0 - 2.6, dz0 - 2.34, shade(P.dark, 1.15), 0.02);
+            }
+            m.beam(dx - 1.45, dx + 1.45, GRADE + 1.36, GRADE + 1.46, dz0 - 2.66, dz0 - 2.4, shade(P.steel, 1.12), 0.015);
+          }
+          if (d0.fine) {
+            m.beam(x - W * 0.31, x + W * 0.31, GRADE + 1.2, GRADE + 1.34, dz0 - 2.5, dz0 + 2.5, P.kerb, 0.025);
+            groundPatch(m, x, dz0 - 7.5, W * 0.6, 9, 9, 5, GRADE + 0.01, P.asphalt, 0.055);
           }
         });
       } else if (prop === "roadStrip") {
@@ -1306,23 +2353,48 @@
               const lx = x - W * 0.36 + (i * W * 0.72) / 6;
               m.bar(lx - 1.1, lx + 1.1, GRADE + 0.1, GRADE + 0.13, z - D * 0.375, z - D * 0.365, P.lane);
             }
+            // Kerbs and a run-in of worn hardstanding either side. A road with no
+            // edge is a grey rectangle.
+            for (const s of [-1, 1]) {
+              const kz = z - D * (s < 0 ? 0.445 : 0.295);
+              m.beam(x - W * 0.42, x + W * 0.42, GRADE + 0.1, GRADE + 0.32, kz - 0.11, kz + 0.11, P.kerb, 0.022);
+            }
+            groundPatch(m, x, z - D * 0.375, W * 0.8, D * 0.11, 12, 3, GRADE + 0.105, P.asphalt, 0.05);
           }
         });
       } else if (prop === "pipeStack") {
         m.part("yard / stacked sections", () => materialStack(m, x - W * 0.3, z + D * 0.26, 1, d0));
       } else if (prop === "kiosk") {
         m.part("services / control kiosk", () => {
-          m.bar(x + W * 0.32 - 2.2, x + W * 0.32 + 2.2, GRADE, GRADE + 2.9, z - D * 0.3 - 1.6, z - D * 0.3 + 1.6, shade(P.clad, 1.04));
-          m.bar(x + W * 0.32 - 2.4, x + W * 0.32 + 2.4, GRADE + 2.9, GRADE + 3.1, z - D * 0.3 - 1.8, z - D * 0.3 + 1.8, P.roof);
-          if (d0.fine) m.bar(x + W * 0.32 - 0.6, x + W * 0.32 + 0.6, GRADE + 0.1, GRADE + 2.2, z - D * 0.3 + 1.6, z - D * 0.3 + 1.64, P.door);
+          const kx = x + W * 0.32, kz = z - D * 0.3;
+          m.bar(kx - 2.2, kx + 2.2, GRADE, GRADE + 2.9, kz - 1.6, kz + 1.6, shade(P.clad, 1.04));
+          if (d0.fine) m.beam(kx - 2.4, kx + 2.4, GRADE + 2.9, GRADE + 3.12, kz - 1.8, kz + 1.8, P.roof, 0.025);
+          else m.bar(kx - 2.4, kx + 2.4, GRADE + 2.9, GRADE + 3.1, kz - 1.8, kz + 1.8, P.roof);
+          if (d0.fine) {
+            m.bar(kx - 0.6, kx + 0.6, GRADE + 0.1, GRADE + 2.2, kz + 1.6, kz + 1.64, P.door);
+            m.beam(kx - 0.72, kx + 0.72, GRADE + 0.04, GRADE + 2.32, kz + 1.6, kz + 1.72, shade(P.galv, 0.98), 0.015);
+            m.bar(kx + 0.7, kx + 1.9, GRADE + 1.5, GRADE + 2.3, kz + 1.6, kz + 1.63, P.glass);
+            m.beam(kx + 0.58, kx + 2.02, GRADE + 1.4, GRADE + 2.4, kz + 1.6, kz + 1.7, shade(P.galv, 1.0), 0.015);
+            m.beam(kx - 1.0, kx + 1.0, GRADE, GRADE + 0.1, kz + 1.6, kz + 2.2, shade(P.concrete, 0.94), 0.02);
+            for (const lv of [-1.5, -0.9]) {
+              louvreBank(m, kx + lv, kx + lv + 0.5, GRADE + 1.6, GRADE + 2.3, kz + 1.6, 0.1, 3, shade(P.galv, 0.96));
+            }
+          }
         });
       } else if (prop === "glazing" && built) {
         m.part("envelope / strip glazing", () => {
           const b = k.block;
+          const n = d0.fine ? 8 : 3;
           for (const s of [-1, 1]) {
-            for (let i = 0; i < (d0.fine ? 8 : 3); i += 1) {
-              const gx = -b.w / 2 + 1.5 + (i * (b.w - 3)) / ((d0.fine ? 8 : 3) - 1);
+            for (let i = 0; i < n; i += 1) {
+              const gx = -b.w / 2 + 1.5 + (i * (b.w - 3)) / (n - 1);
               m.bar(x + gx - 0.8, x + gx + 0.8, GRADE + 3.2, GRADE + 5.4, z + s * (b.dz / 2) - 0.05, z + s * (b.dz / 2) + 0.05, P.glass);
+              if (!d0.fine) continue;
+              // Frame, transom and a sill with a drip. Strip glazing without a
+              // surround is a row of blue rectangles painted on a wall.
+              m.beam(x + gx - 0.92, x + gx + 0.92, GRADE + 3.08, GRADE + 5.52, z + s * (b.dz / 2) - 0.09, z + s * (b.dz / 2) + 0.09, shade(P.galv, 1.0), 0.015);
+              m.beam(x + gx - 0.05, x + gx + 0.05, GRADE + 3.2, GRADE + 5.4, z + s * (b.dz / 2) - 0.09, z + s * (b.dz / 2) + 0.09, shade(P.galv, 1.02), 0.012);
+              m.bar(x + gx - 0.98, x + gx + 0.98, GRADE + 2.94, GRADE + 3.08, z + s * (b.dz / 2) - 0.16, z + s * (b.dz / 2) + 0.16, shade(P.galv, 0.84));
             }
           }
         });
@@ -1330,41 +2402,95 @@
         m.part("services / roof plant", () => {
           const b = k.block;
           m.bar(x - 4, x + 4, GRADE + b.eaves + 0.2, GRADE + b.eaves + 2.6, z - 3, z + 3, shade(P.galv, 0.95));
-          if (d0.fine) for (let i = 0; i < 3; i += 1) m.column(x - 2.4 + i * 2.4, GRADE + b.eaves + 2.6, z, 1.1, 0.7, 0.7, d0.seg, P.dark, true);
+          if (!d0.fine) return;
+          for (let i = 0; i < 3; i += 1) m.column(x - 2.4 + i * 2.4, GRADE + b.eaves + 2.6, z, 1.1, 0.7, 0.7, 12, P.dark, true);
+          // A plinth, a louvre face and a handrail round the edge, which is what
+          // is on the roof of every plant room ever built.
+          m.beam(x - 4.3, x + 4.3, GRADE + b.eaves, GRADE + b.eaves + 0.2, z - 3.3, z + 3.3, shade(P.concrete, 0.92), 0.03);
+          louvreBank(m, x - 3.2, x + 3.2, GRADE + b.eaves + 0.6, GRADE + b.eaves + 2.2, z + 3.0, 0.16, 5, shade(P.galv, 0.98));
+          for (const rx of [-4.4, 4.4]) {
+            m.rod([x + rx, GRADE + b.eaves + 0.2, z - 3.4], [x + rx, GRADE + b.eaves + 1.3, z - 3.4], 0.035, 6, P.galv, false);
+            m.rod([x + rx, GRADE + b.eaves + 0.2, z + 3.4], [x + rx, GRADE + b.eaves + 1.3, z + 3.4], 0.035, 6, P.galv, false);
+            m.rod([x + rx, GRADE + b.eaves + 1.3, z - 3.4], [x + rx, GRADE + b.eaves + 1.3, z + 3.4], 0.035, 6, shade(P.galv, 1.04), false);
+          }
         });
       } else if (prop === "annex" && built) {
         m.part("structure / service annex", () => {
           const b = k.block;
           m.bar(x + b.w / 2, x + b.w / 2 + 9, GRADE, GRADE + 5.2, z - 5, z + 5, shade(k.body, 0.95));
-          m.bar(x + b.w / 2 - 0.2, x + b.w / 2 + 9.2, GRADE + 5.2, GRADE + 5.5, z - 5.3, z + 5.3, P.roof);
+          if (d0.fine) m.beam(x + b.w / 2 - 0.2, x + b.w / 2 + 9.2, GRADE + 5.2, GRADE + 5.54, z - 5.3, z + 5.3, P.roof, 0.03);
+          else m.bar(x + b.w / 2 - 0.2, x + b.w / 2 + 9.2, GRADE + 5.2, GRADE + 5.5, z - 5.3, z + 5.3, P.roof);
+          if (!d0.fine) return;
+          m.bar(x + b.w / 2 + 3.4, x + b.w / 2 + 5.6, GRADE + 0.05, GRADE + 2.4, z + 5.0, z + 5.04, P.door);
+          m.beam(x + b.w / 2 + 3.28, x + b.w / 2 + 5.72, GRADE, GRADE + 2.52, z + 5.0, z + 5.12, shade(P.galv, 0.98), 0.015);
+          for (let i = 0; i < 3; i += 1) {
+            m.bar(x + b.w / 2 + 0.9 + i * 3.0, x + b.w / 2 + 2.3 + i * 3.0, GRADE + 3.2, GRADE + 4.4, z - 5.04, z - 5.0, P.glass);
+          }
+          for (const py of [1.6, 3.2, 4.8]) {
+            m.bar(x + b.w / 2 + 8.9, x + b.w / 2 + 9.06, GRADE, GRADE + py, z - 4.4, z - 4.2, shade(P.galv, 0.9));
+          }
         });
       } else if (prop === "leanTo" && built) {
         m.part("structure / open lean-to", () => {
           const b = k.block;
-          for (let i = 0; i < (d0.fine ? 4 : 2); i += 1) {
-            const px = x - b.w / 2 + (i * b.w) / ((d0.fine ? 4 : 2) - 1);
-            m.bar(px - 0.14, px + 0.14, GRADE, GRADE + 3.6, z + b.dz / 2 + 5.2, z + b.dz / 2 + 5.5, P.steel);
+          const n = d0.fine ? 4 : 2;
+          for (let i = 0; i < n; i += 1) {
+            const px = x - b.w / 2 + (i * b.w) / (n - 1);
+            if (d0.fine) m.beam(px - 0.14, px + 0.14, GRADE, GRADE + 3.6, z + b.dz / 2 + 5.2, z + b.dz / 2 + 5.5, P.steel, 0.016);
+            else m.bar(px - 0.14, px + 0.14, GRADE, GRADE + 3.6, z + b.dz / 2 + 5.2, z + b.dz / 2 + 5.5, P.steel);
           }
           m.save().move(0, GRADE + 3.6, 0);
           m.plate([[x - b.w / 2 - 0.4, z + b.dz / 2], [x + b.w / 2 + 0.4, z + b.dz / 2], [x + b.w / 2 + 0.4, z + b.dz / 2 + 5.8], [x - b.w / 2 - 0.4, z + b.dz / 2 + 5.8]], 0.2, P.roof);
           m.restore();
+          if (!d0.fine) return;
+          // Purlins under the sheet, a rail across the open front, and something
+          // actually stored under it — an empty canopy reads as unfinished.
+          for (let p = 0; p < 4; p += 1) {
+            const pz = z + b.dz / 2 + 0.6 + p * 1.5;
+            m.bar(x - b.w / 2 - 0.3, x + b.w / 2 + 0.3, GRADE + 3.4, GRADE + 3.58, pz - 0.09, pz + 0.09, shade(P.steel, 0.9));
+          }
+          m.beam(x - b.w / 2, x + b.w / 2, GRADE + 3.6, GRADE + 3.82, z + b.dz / 2 + 5.6, z + b.dz / 2 + 5.86, shade(P.roof, 1.1), 0.02);
+          materialStack(m, x - b.w * 0.22, z + b.dz / 2 + 3.0, 2, d0);
         });
       } else if (prop === "robotCell" && built) {
         m.part("structure / machine cell annex", () => {
           const b = k.block;
           m.bar(x - b.w / 2 - 8, x - b.w / 2, GRADE, GRADE + 4.6, z - 4, z + 4, shade(k.accent, 1.05));
-          if (d0.fine) {
-            for (let i = 0; i < 3; i += 1) m.column(x - b.w / 2 - 6 + i * 2.4, GRADE + 4.6, z, 1.4, 0.5, 0.4, d0.seg, P.galv, true);
+          if (!d0.fine) return;
+          for (let i = 0; i < 3; i += 1) m.column(x - b.w / 2 - 6 + i * 2.4, GRADE + 4.6, z, 1.4, 0.5, 0.4, 12, P.galv, true);
+          // Extract stacks want a weather cowl; a roll shutter and a fire escape
+          // are what the rest of the elevation has.
+          for (let i = 0; i < 3; i += 1) {
+            m.column(x - b.w / 2 - 6 + i * 2.4, GRADE + 6.0, z, 0.3, 0.62, 0.42, 12, shade(P.dark, 1.2), true);
           }
+          m.beam(x - b.w / 2 - 8.2, x - b.w / 2 + 0.2, GRADE + 4.6, GRADE + 4.84, z - 4.2, z + 4.2, P.roof, 0.025);
+          m.bar(x - b.w / 2 - 6.4, x - b.w / 2 - 3.6, GRADE + 0.05, GRADE + 3.4, z + 4.0, z + 4.04, P.door);
+          for (let s = 0; s < 6; s += 1) {
+            m.bar(x - b.w / 2 - 6.32, x - b.w / 2 - 3.68, GRADE + 0.2 + s * 0.52, GRADE + 0.58 + s * 0.52, z + 4.04, z + 4.1, shade(P.door, 1.08));
+          }
+          louvreBank(m, x - b.w / 2 - 2.8, x - b.w / 2 - 0.8, GRADE + 2.4, GRADE + 3.8, z + 4.0, 0.14, 4, shade(P.galv, 0.96));
         });
       } else if (prop === "ductRun" && built) {
         m.part("services / heat recovery ducts", () => {
           const b = k.block;
-          for (let i = 0; i < (d0.fine ? 4 : 2); i += 1) {
-            const dx = x - b.w * 0.3 + (i * b.w * 0.6) / ((d0.fine ? 4 : 2) - 1);
-            m.column(dx, GRADE + b.eaves, z, 3.0, 0.75, 0.75, d0.seg, shade(P.galv, 1.02), true);
+          const n = d0.fine ? 4 : 2;
+          for (let i = 0; i < n; i += 1) {
+            const dx = x - b.w * 0.3 + (i * b.w * 0.6) / (n - 1);
+            m.column(dx, GRADE + b.eaves, z, 3.0, 0.75, 0.75, d0.fine ? 12 : d0.seg, shade(P.galv, 1.02), true);
+            if (!d0.fine) continue;
+            // Flanged joints and a saddle at the roof line. Ductwork is made in
+            // lengths, and the flange rings are how anyone knows that.
+            for (const fy of [0.1, 1.5, 2.9]) {
+              m.column(dx, GRADE + b.eaves + fy, z, 0.12, 0.88, 0.88, 12, shade(P.galv, 0.86), false);
+            }
+            m.beam(dx - 0.95, dx + 0.95, GRADE + b.eaves - 0.25, GRADE + b.eaves + 0.05, z - 0.95, z + 0.95, shade(P.steel, 0.92), 0.02);
           }
           m.bar(x - b.w * 0.34, x + b.w * 0.34, GRADE + b.eaves + 2.6, GRADE + b.eaves + 3.4, z - 0.8, z + 0.8, shade(P.galv, 0.95));
+          if (d0.fine) {
+            m.beam(x - b.w * 0.36, x + b.w * 0.36, GRADE + b.eaves + 3.4, GRADE + b.eaves + 3.62, z - 0.95, z + 0.95, shade(P.galv, 1.06), 0.02);
+            m.column(x + b.w * 0.30, GRADE + b.eaves + 3.62, z, 1.1, 0.55, 0.55, 12, shade(P.galv, 1.0), false);
+            m.column(x + b.w * 0.30, GRADE + b.eaves + 4.72, z, 0.3, 0.72, 0.5, 12, shade(P.dark, 1.2), true);
+          }
         });
       } else if (prop === "host") {
         // A retrofit is installed INTO something that already exists, and the
@@ -1379,7 +2505,25 @@
           m.restore();
           if (d0.fine) {
             m.bar(hx - 4, hx + 4, GRADE + 0.1, GRADE + 4.4, z - 8.05, z - 7.95, P.door);
-            for (let i = 0; i < 4; i += 1) m.bar(hx - 9 + i * 6, hx - 7 + i * 6, GRADE + 4.8, GRADE + 6.2, z + 7.95, z + 8.05, P.glass);
+            for (let s = 0; s < 8; s += 1) {
+              m.bar(hx - 3.9, hx + 3.9, GRADE + 0.25 + s * 0.52, GRADE + 0.63 + s * 0.52, z - 8.11, z - 8.05, shade(P.door, 1.07));
+            }
+            for (let i = 0; i < 4; i += 1) {
+              m.bar(hx - 9 + i * 6, hx - 7 + i * 6, GRADE + 4.8, GRADE + 6.2, z + 7.95, z + 8.05, P.glass);
+              m.beam(hx - 9.12 + i * 6, hx - 6.88 + i * 6, GRADE + 4.68, GRADE + 6.32, z + 7.95, z + 8.09, shade(P.galv, 1.0), 0.015);
+            }
+            // The host is an OLDER building, and it says so: ribbed sheeting, a
+            // rusted base flashing, a dock at one end and a raked apron. That is
+            // the point of a retrofit — the plant already exists and the staged
+            // work is the kit going into it.
+            for (let r = 0; r < 9; r += 1) {
+              const rx = hx - 10 + r * 2.5;
+              for (const fz of [z - 8.02, z + 7.96]) m.bar(rx - 0.08, rx + 0.08, GRADE + 0.2, GRADE + 6.9, fz, fz + 0.07, shade(P.clad, 0.8));
+            }
+            m.beam(hx - 11.1, hx + 11.1, GRADE, GRADE + 0.36, z - 8.15, z + 8.15, shade(P.primer, 0.86), 0.02);
+            m.beam(hx - 11.2, hx + 11.2, GRADE + 6.86, GRADE + 7.06, z - 8.2, z + 8.2, shade(P.clad, 1.08), 0.025);
+            m.bar(hx + 4.6, hx + 10.4, GRADE, GRADE + 1.2, z - 10.4, z - 8.0, P.concrete);
+            groundPatch(m, hx, z - 12.5, 24, 8, 9, 4, GRADE + 0.01, P.asphalt, 0.055);
           }
           void b;
         });
@@ -1423,7 +2567,18 @@
           const n = d0.fine ? 8 : 3;
           const zz = -b.dz / 2 + 1.6 + (i * (b.dz - 3.2)) / (n - 1);
           m.save().move(-b.w * 0.28, b.eaves + (b.ridge - b.eaves) * 0.44, zz).rotZ(-pitch);
-          m.bar(-2.4, 2.4, 0.02, 0.2, -0.7, 0.7, shade(P.glass, 1.35));
+          if (d0.fine) {
+            // Kerb, glazing on top of it, and glazing bars across. A rooflight
+            // that is a flat bright patch reads as a stain; the upstand is what
+            // makes it a hole in the roof with something in it.
+            m.beam(-2.5, 2.5, 0.0, 0.16, -0.8, 0.8, shade(P.roof, 0.86), 0.02);
+            m.bar(-2.4, 2.4, 0.16, 0.22, -0.7, 0.7, shade(P.glass, 1.35));
+            for (let g = 1; g < 3; g += 1) {
+              m.bar(-2.4 + (g * 4.8) / 3 - 0.05, -2.4 + (g * 4.8) / 3 + 0.05, 0.2, 0.27, -0.7, 0.7, shade(P.galv, 0.94));
+            }
+          } else {
+            m.bar(-2.4, 2.4, 0.02, 0.2, -0.7, 0.7, shade(P.glass, 1.35));
+          }
           m.restore();
         }
         m.restore();
@@ -1434,22 +2589,80 @@
         for (let i = 0; i < (d0.fine ? 8 : 3); i += 1) {
           const n = d0.fine ? 8 : 3;
           const lx = o.x - b.w * 0.36 + (i * b.w * 0.72) / (n - 1);
-          m.bar(lx - 0.9, lx + 0.9, o.deck + b.eaves - 2.4, o.deck + b.eaves - 1.0,
-            o.z + s * (b.dz / 2) - 0.02, o.z + s * (b.dz / 2) + 0.18, P.dark);
+          const y0 = o.deck + b.eaves - 2.4, y1 = o.deck + b.eaves - 1.0;
+          if (d0.fine) {
+            m.save().move(0, 0, o.z + s * (b.dz / 2));
+            if (s < 0) m.scale(1, 1, -1);
+            louvreBank(m, lx - 0.9, lx + 0.9, y0, y1, 0.0, 0.16, 4, shade(P.galv, 0.98));
+            m.restore();
+          } else {
+            m.bar(lx - 0.9, lx + 0.9, y0, y1, o.z + s * (b.dz / 2) - 0.02, o.z + s * (b.dz / 2) + 0.18, P.dark);
+          }
+        }
+      }
+    });
+    m.part("services / roof plant and access walkway", () => {
+      // Air handling, extract cowls and a condenser bank on a frame over the
+      // ridge, with a walkway and a handrail to reach them. This is the one
+      // thing an industrial building always has on top of it and the model
+      // never had, and the silhouette against the sky is where it is read.
+      const ry = o.deck + b.ridge;
+      const units = d0.fine ? 3 : 1;
+      for (let i = 0; i < units; i += 1) {
+        const zz = o.z - b.dz * 0.22 + (i * b.dz * 0.44) / Math.max(1, units - 1 || 1);
+        m.beam(o.x - 2.6, o.x + 2.6, ry + 0.34, ry + 0.5, zz - 1.5, zz + 1.5, shade(P.steel, 0.9), 0.02);
+        m.beam(o.x - 2.3, o.x + 2.3, ry + 0.5, ry + 2.05, zz - 1.3, zz + 1.3, shade(P.galv, 0.98), 0.03);
+        if (!d0.fine) continue;
+        for (const cx of [-1.2, 1.2]) {
+          m.column(o.x + cx, ry + 2.05, zz, 0.5, 0.62, 0.62, d0.seg, shade(P.galv, 1.04), false);
+          m.column(o.x + cx, ry + 2.55, zz, 0.26, 0.72, 0.5, d0.seg, shade(P.dark, 1.2), true);
+        }
+        for (let f = 0; f < 5; f += 1) {
+          m.bar(o.x - 2.26, o.x + 2.26, ry + 0.7 + f * 0.24, ry + 0.86 + f * 0.24, zz + 1.3, zz + 1.36, shade(P.dark, 1.1));
+        }
+        for (const px of [-2.4, 2.4]) {
+          m.rod([o.x + px, ry + 0.1, zz - 1.4], [o.x + px, ry + 0.42, zz - 1.4], 0.07, 6, P.steel, false);
+          m.rod([o.x + px, ry + 0.1, zz + 1.4], [o.x + px, ry + 0.42, zz + 1.4], 0.07, 6, P.steel, false);
+        }
+      }
+      if (d0.fine) {
+        m.bar(o.x - 0.6, o.x + 0.6, ry + 0.3, ry + 0.36, o.z - b.dz * 0.34, o.z + b.dz * 0.34, shade(P.galv, 0.92));
+        for (const rs of [-1, 1]) {
+          m.rod([o.x + rs * 0.6, ry + 0.36, o.z - b.dz * 0.34], [o.x + rs * 0.6, ry + 1.36, o.z - b.dz * 0.34], 0.035, 6, P.galv, false);
+          m.rod([o.x + rs * 0.6, ry + 0.36, o.z + b.dz * 0.34], [o.x + rs * 0.6, ry + 1.36, o.z + b.dz * 0.34], 0.035, 6, P.galv, false);
+          m.rod([o.x + rs * 0.6, ry + 1.36, o.z - b.dz * 0.34], [o.x + rs * 0.6, ry + 1.36, o.z + b.dz * 0.34], 0.035, 6, P.galv, false);
         }
       }
     });
     m.part("envelope / entrance canopy and reception", () => {
       const ex = o.x - b.w * 0.36, ez = o.z - b.dz / 2;
-      for (const px of [ex - 2.4, ex + 2.4]) m.bar(px - 0.14, px + 0.14, GRADE, GRADE + 3.4, ez - 3.2, ez - 2.92, P.galv);
+      for (const px of [ex - 2.4, ex + 2.4]) {
+        if (d0.fine) m.rod([px, GRADE, ez - 3.06], [px, GRADE + 3.4, ez - 3.06], 0.15, 8, P.galv, false);
+        else m.bar(px - 0.14, px + 0.14, GRADE, GRADE + 3.4, ez - 3.2, ez - 2.92, P.galv);
+      }
       m.save().move(0, GRADE + 3.4, 0);
       m.plate([[ex - 3.0, ez - 3.6], [ex + 3.0, ez - 3.6], [ex + 3.0, ez + 0.2], [ex - 3.0, ez + 0.2]], 0.18, shade(P.roof, 1.06));
       m.restore();
       m.bar(ex - 1.1, ex + 1.1, o.deck + 0.05, o.deck + 2.4, ez - 0.06, ez + 0.02, P.glass);
       if (d0.fine) {
+        // Mullions, a transom and a fascia. Curtain walling is a grid of frames
+        // with glass in it, and the grid is the only thing that gives a glazed
+        // elevation any scale at all.
         for (let i = 0; i < 4; i += 1) {
           const gx = ex - 3.0 + i * 1.6;
           m.bar(gx - 0.55, gx + 0.55, o.deck + 2.7, o.deck + 4.2, ez - 0.06, ez + 0.02, P.glass);
+          m.beam(gx + 0.55, gx + 0.68, o.deck + 2.62, o.deck + 4.28, ez - 0.1, ez + 0.06, shade(P.galv, 1.0), 0.015);
+        }
+        m.beam(ex - 3.14, ex + 3.14, o.deck + 2.56, o.deck + 2.7, ez - 0.1, ez + 0.06, shade(P.galv, 0.9), 0.015);
+        for (const mx of [ex - 1.14, ex, ex + 1.14]) {
+          m.beam(mx - 0.05, mx + 0.05, o.deck + 0.05, o.deck + 2.44, ez - 0.1, ez + 0.06, shade(P.galv, 1.02), 0.012);
+        }
+        m.beam(ex - 3.1, ex + 3.1, GRADE + 3.58, GRADE + 3.8, ez - 3.7, ez + 0.3, shade(k.accent, 1.1), 0.025);
+        // Steps up to the door, because the deck stands above the yard and a
+        // door opening onto a 180 mm drop is a detail somebody forgot.
+        for (let s = 0; s < 3; s += 1) {
+          m.beam(ex - 1.6, ex + 1.6, GRADE + (s * (o.deck - GRADE)) / 3, GRADE + ((s + 1) * (o.deck - GRADE)) / 3,
+            ez - 0.36 - (2 - s) * 0.32, ez, shade(P.concrete, 0.94 + 0.04 * s), 0.02);
         }
       }
     });
@@ -1460,42 +2673,140 @@
         m.bar(bx, bx + 7.5, GRADE + 0.1, GRADE + 0.13, lz - 0.09, lz + 0.09, P.lane);
       }
       for (let i = 0; i < (d0.fine ? 6 : 2); i += 1) {
-        m.bar(-W * 0.46 + i * 3, -W * 0.46 + i * 3 + 2.4, GRADE + 0.1, GRADE + 0.32, -D * 0.40 - 0.2, -D * 0.40 + 0.2, P.kerb);
+        if (d0.fine) m.beam(-W * 0.46 + i * 3, -W * 0.46 + i * 3 + 2.4, GRADE + 0.1, GRADE + 0.32, -D * 0.40 - 0.2, -D * 0.40 + 0.2, P.kerb, 0.022);
+        else m.bar(-W * 0.46 + i * 3, -W * 0.46 + i * 3 + 2.4, GRADE + 0.1, GRADE + 0.32, -D * 0.40 - 0.2, -D * 0.40 + 0.2, P.kerb);
       }
       m.bar(-W * 0.46, W * 0.46, GRADE + 0.1, GRADE + 0.32, -D * 0.455, -D * 0.435, P.kerb);
+      if (d0.fine) {
+        // Hardstanding that can be told apart from the platform it is laid on,
+        // and the gullies it drains to. Restrained: the tone spread is six per
+        // cent, which is wear rather than camouflage.
+        groundPatch(m, 0, D * 0.06, W * 0.86, D * 0.28, 12, 6, GRADE + 0.02, P.asphalt, 0.06);
+        for (let g = 0; g < 4; g += 1) {
+          const gx = -W * 0.32 + (g * W * 0.64) / 3;
+          m.bar(gx - 0.32, gx + 0.32, GRADE + 0.02, GRADE + 0.06, D * 0.06 - 0.32, D * 0.06 + 0.32, shade(P.dark, 1.2));
+        }
+      }
     });
     m.part("yard / parked vehicles and stored units", () => {
-      for (let i = 0; i < (d0.fine ? 4 : 1); i += 1) {
-        const tx = -W * 0.415, tz = -D * 0.24 + i * 9.2;
+      // A yard parks what fits in it. The row used to be four vehicles at fixed
+      // 9.2 m centres whatever the compound was, which ran the last one seven
+      // metres off the end of the hardstanding on the smaller kinds — and an
+      // articulated unit is eleven metres long, so 9.2 m centres had them
+      // inside one another as well. Count and spacing now come off the pad.
+      const lorries = d0.fine ? Math.max(2, Math.min(4, Math.floor((D - 8) / 11))) : 1;
+      for (let i = 0; i < lorries; i += 1) {
+        const tx = -W * 0.415, tz = (i - (lorries - 1) / 2) * 11 + 0.7;
         m.bar(tx - 2.2, tx + 2.2, GRADE + 1.1, GRADE + 3.6, tz - 6.0, tz + 2.2, shade(P.clad, 1.02));
         m.bar(tx - 1.9, tx + 1.9, GRADE + 0.55, GRADE + 1.1, tz - 5.4, tz - 3.6, P.dark);
         m.bar(tx - 1.9, tx + 1.9, GRADE, GRADE + 0.6, tz + 0.4, tz + 2.0, P.dark);
+        if (!d0.fine) continue;
+        // A box on two blocks is not a lorry. Chassis, landing legs, a tandem
+        // bogie on wheels that are round, a tractor unit with a cab and a rear
+        // marker board: the parts a viewer counts without knowing they are
+        // counting them.
+        m.beam(tx - 1.7, tx + 1.7, GRADE + 0.95, GRADE + 1.12, tz - 5.8, tz + 2.0, shade(P.dark, 1.2), 0.02);
+        for (const lz of [tz - 3.2, tz - 2.7]) {
+          for (const ls of [-1, 1]) {
+            m.beam(tx + ls * 1.6, tx + ls * 1.86, GRADE + 0.2, GRADE + 0.98, lz - 0.12, lz + 0.12, shade(P.steel, 0.94), 0.015);
+          }
+        }
+        for (const wz of [tz - 5.1, tz - 4.0]) {
+          for (const ws of [-1, 1]) {
+            m.rod([tx + ws * 1.7, GRADE + 0.52, wz], [tx + ws * 1.96, GRADE + 0.52, wz], 0.52, 8, P.dark, true);
+            m.rod([tx + ws * 1.76, GRADE + 0.52, wz], [tx + ws * 1.9, GRADE + 0.52, wz], 0.27, 6, shade(P.steel, 1.0), true);
+          }
+        }
+        m.bar(tx - 1.9, tx + 1.9, GRADE + 1.1, GRADE + 3.0, tz + 2.2, tz + 4.6, shade(k.accent, 1.06));
+        m.bar(tx - 1.72, tx + 1.72, GRADE + 2.0, GRADE + 2.9, tz + 4.6, tz + 4.66, P.glass);
+        for (const wz of [tz + 2.8, tz + 4.2]) {
+          for (const ws of [-1, 1]) {
+            m.rod([tx + ws * 1.58, GRADE + 0.5, wz], [tx + ws * 1.86, GRADE + 0.5, wz], 0.5, 8, P.dark, true);
+          }
+        }
+        m.bar(tx - 2.0, tx + 2.0, GRADE + 3.4, GRADE + 3.62, tz - 6.12, tz - 5.98, shade(P.safety, 1.1));
       }
       for (let i = 0; i < (d0.fine ? 8 : 2); i += 1) {
-        const cx = W * 0.32 + (i % 2) * 6.4, cz = D * 0.30 + Math.floor(i / 2) * 3.0;
-        m.bar(cx - 3.0, cx + 3.0, GRADE, GRADE + 2.5, cz - 1.2, cz + 1.2, shade(k.accent, 0.84 + 0.1 * (i % 3)));
+        // Same reason as the vehicles: at D*0.30 the back row of stored units
+        // stood three metres past the edge of the fill on a small compound.
+        const cx = W * 0.32 + (i % 2) * 6.4, cz = D * 0.18 + Math.floor(i / 2) * 3.0;
+        m.bar(cx - 3.0, cx + 3.0, GRADE + (d0.fine ? 0.14 : 0), GRADE + 2.5, cz - 1.2, cz + 1.2, shade(k.accent, 0.84 + 0.1 * (i % 3)));
+        if (!d0.fine) continue;
+        // Corner castings, corrugation and a base rail. A stored unit is a
+        // pressed steel box and reads as one from thirty metres.
+        for (const ex2 of [-3.0, 3.0]) {
+          for (const ez2 of [-1.2, 1.2]) {
+            m.bar(cx + ex2 - 0.16, cx + ex2 + 0.16, GRADE + 0.14, GRADE + 2.5, cz + ez2 - 0.16, cz + ez2 + 0.16, shade(P.steel, 1.0));
+          }
+        }
+        for (let r = 0; r < 5; r += 1) {
+          const rx = cx - 2.2 + r * 1.1;
+          for (const fz of [cz - 1.26, cz + 1.2]) {
+            m.bar(rx - 0.08, rx + 0.08, GRADE + 0.24, GRADE + 2.42, fz, fz + 0.06, shade(k.accent, 0.78));
+          }
+        }
+        m.beam(cx - 3.05, cx + 3.05, GRADE, GRADE + 0.16, cz - 1.24, cz + 1.24, shade(P.steel, 0.86), 0.02);
       }
     });
     m.part("yard / bollards and gate island", () => {
       for (let i = 0; i < (d0.fine ? 10 : 3); i += 1) {
         const n = d0.fine ? 10 : 3;
-        m.column(-W * 0.42 + (i * W * 0.84) / (n - 1), GRADE, -D * 0.415, 1.0, 0.2, 0.2, d0.seg, P.safety, true);
+        const bx = -W * 0.42 + (i * W * 0.84) / (n - 1);
+        if (d0.fine) bollard(m, bx, -D * 0.415, 1.05, 0.2, 8, P.safety);
+        else m.column(bx, GRADE, -D * 0.415, 1.0, 0.2, 0.2, d0.seg, P.safety, true);
       }
     });
     m.part("yard / weighbridge and external storage racks", () => {
-      m.bar(-W * 0.47, -W * 0.47 + 9, GRADE + 0.08, GRADE + 0.24, D * 0.10, D * 0.10 + 3.6, shade(P.steel, 1.02));
+      const wx = -W * 0.47, wz = D * 0.10;
+      if (d0.fine) {
+        // A weighbridge is a plate deck in a pit with a kerb round it and a
+        // ticket kiosk beside it. The plate joint down the middle is the one
+        // thing that says "deck" instead of "patch of yard".
+        m.beam(wx, wx + 9, GRADE + 0.08, GRADE + 0.26, wz, wz + 3.6, shade(P.steel, 1.02), 0.02);
+        m.bar(wx + 4.4, wx + 4.6, GRADE + 0.24, GRADE + 0.27, wz, wz + 3.6, shade(P.dark, 1.2));
+        for (const kz of [wz - 0.22, wz + 3.6]) m.beam(wx - 0.2, wx + 9.2, GRADE + 0.06, GRADE + 0.3, kz, kz + 0.22, P.kerb, 0.02);
+        m.bar(wx + 9.6, wx + 11.6, GRADE, GRADE + 2.7, wz + 0.6, wz + 2.4, shade(P.clad, 1.02));
+        m.beam(wx + 9.4, wx + 11.8, GRADE + 2.7, GRADE + 2.9, wz + 0.4, wz + 2.6, P.roof, 0.02);
+        m.bar(wx + 9.56, wx + 11.5, GRADE + 1.3, GRADE + 2.2, wz + 0.56, wz + 0.6, P.glass);
+      } else {
+        m.bar(wx, wx + 9, GRADE + 0.08, GRADE + 0.24, wz, wz + 3.6, shade(P.steel, 1.02));
+      }
       for (const s of [-1, 1]) {
-        m.column(-W * 0.47 + 4.5, GRADE, D * 0.10 + 1.8 + s * 2.6, 1.4, 0.18, 0.18, d0.seg, P.safety, true);
+        if (d0.fine) bollard(m, wx + 4.5, wz + 1.8 + s * 2.6, 1.45, 0.18, 8, P.safety);
+        else m.column(wx + 4.5, GRADE, wz + 1.8 + s * 2.6, 1.4, 0.18, 0.18, d0.seg, P.safety, true);
       }
       const uprights = d0.fine ? 7 : 3;
       for (let i = 0; i < uprights; i += 1) {
         const rx = -W * 0.16 + (i * 11) / (uprights - 1);
-        for (const rz of [D * 0.42, D * 0.42 + 2.4]) m.bar(rx - 0.12, rx + 0.12, GRADE, GRADE + 4.4, rz - 0.12, rz + 0.12, shade(P.safety, 0.9));
+        for (const rz of [D * 0.42, D * 0.42 + 2.4]) {
+          if (d0.fine) m.beam(rx - 0.12, rx + 0.12, GRADE, GRADE + 4.4, rz - 0.12, rz + 0.12, shade(P.safety, 0.9), 0.016);
+          else m.bar(rx - 0.12, rx + 0.12, GRADE, GRADE + 4.4, rz - 0.12, rz + 0.12, shade(P.safety, 0.9));
+        }
+        // Frame bracing between the two uprights of a rack frame. Without it a
+        // pallet rack is a row of poles.
+        if (d0.fine) {
+          for (let b = 0; b < 3; b += 1) {
+            m.rod([rx, GRADE + 0.5 + b * 1.3, D * 0.42], [rx, GRADE + 1.8 + b * 1.3, D * 0.42 + 2.4], 0.05, 6, shade(P.safety, 0.82), false);
+          }
+          m.bar(rx - 0.2, rx + 0.2, GRADE, GRADE + 0.1, D * 0.42 - 0.2, D * 0.42 + 2.6, shade(P.steel, 0.9));
+        }
       }
       for (let i = 0; i < (d0.fine ? 3 : 1); i += 1) {
         const y = GRADE + 1.3 + i * 1.5;
-        m.bar(-W * 0.16, -W * 0.16 + 11, y, y + 0.16, D * 0.42 - 0.2, D * 0.42 + 2.6, shade(P.steel, 1.04));
-        if (d0.fine) m.bar(-W * 0.16 + 1 + i * 2, -W * 0.16 + 4 + i * 2, y + 0.16, y + 1.0, D * 0.42 - 0.1, D * 0.42 + 2.5, shade(P.timber, 1.05));
+        if (d0.fine) {
+          for (const rz of [D * 0.42 - 0.2, D * 0.42 + 2.4]) {
+            m.beam(-W * 0.16, -W * 0.16 + 11, y, y + 0.16, rz, rz + 0.2, shade(P.steel, 1.04), 0.016);
+          }
+          // Pallets on the beams, banded, at slightly different depths.
+          for (let p = 0; p < 3; p += 1) {
+            const px = -W * 0.16 + 0.7 + p * 3.5, off = 0.1 * ((p + i) % 3);
+            m.bar(px, px + 2.4, y + 0.16, y + 0.28, D * 0.42 - 0.1 + off, D * 0.42 + 2.3 + off, shade(P.timber, 0.9));
+            m.bar(px + 0.1, px + 2.3, y + 0.28, y + 1.05, D * 0.42 + off, D * 0.42 + 2.2 + off, shade(P.hardcore, 0.95 + 0.05 * p));
+            m.bar(px + 0.9, px + 1.02, y + 0.26, y + 1.1, D * 0.42 - 0.06 + off, D * 0.42 + 2.26 + off, shade(P.dark, 1.3));
+          }
+        } else {
+          m.bar(-W * 0.16, -W * 0.16 + 11, y, y + 0.16, D * 0.42 - 0.2, D * 0.42 + 2.6, shade(P.steel, 1.04));
+        }
       }
     });
   }
@@ -1574,7 +2885,7 @@
   const CLAD_BY_STAGE = [0, 0, 0, 0.62, 1];
 
   function buildNear(m, k, st, level, variant) {
-    const d0 = { fine: true, ribs: true, seg: 8 };
+    const d0 = { fine: true, ribs: true, seg: 12 };
     const h = (keyHash(k.name) + variant * 17) % 360;
     const W = k.pad[0] + (level - 1) * 4, D = k.pad[1] + (level - 1) * 2;
     const stage = st.index + 1;
@@ -1598,19 +2909,34 @@
         });
       }
     } else {
-      m.part("structure / ground slab", () => slab(m, o.x, o.z, b.w + 2.2, b.dz + 2.2, P.concrete));
+      m.part("structure / ground slab", () => slab(m, o.x, o.z, b.w + 2.2, b.dz + 2.2, P.concrete, d0));
     }
     if (stage === 1) {
       m.part("site / setting out and access", () => {
+        // Profiles, not pegs. Setting out is a pair of posts with a board
+        // across them and a line pulled between boards, and the line is the
+        // thing the building is actually built to — it is the one part of this
+        // stage that says what is about to be here.
         for (let i = 0; i < 10; i += 1) {
           const px = o.x - b.w / 2 - 3 + (i * (b.w + 6)) / 9;
           for (const s of [-1, 1]) {
-            m.bar(px - 0.08, px + 0.08, GRADE, GRADE + 1.0, o.z + s * (b.dz / 2 + 3) - 0.08, o.z + s * (b.dz / 2 + 3) + 0.08, P.safety);
+            const pz = o.z + s * (b.dz / 2 + 3);
+            m.bar(px - 0.08, px + 0.08, GRADE, GRADE + 1.0, pz - 0.08, pz + 0.08, P.safety);
+            m.bar(px - 0.55, px + 0.55, GRADE + 0.78, GRADE + 0.95, pz - 0.04, pz + 0.04, P.timber);
+            if (i) {
+              const qx = o.x - b.w / 2 - 3 + ((i - 1) * (b.w + 6)) / 9;
+              m.bar(qx, px, GRADE + 0.95, GRADE + 0.98, pz - 0.015, pz + 0.015, shade(P.hut, 1.1));
+            }
           }
         }
         m.save().move(0, GRADE, 0);
         m.plate([[-W * 0.44, -D * 0.42], [W * 0.1, -D * 0.42], [W * 0.1, -D * 0.30], [-W * 0.44, -D * 0.30]], 0.1, P.hardcore);
         m.restore();
+        // The haul route churned into the fill, and the site board at the gate.
+        groundPatch(m, -W * 0.17, -D * 0.36, W * 0.5, D * 0.11, 10, 3, GRADE + 0.105, P.hardcore, 0.09);
+        for (const sx of [-W * 0.30, -W * 0.20]) m.rod([sx, GRADE, -D / 2 + 5.2], [sx, GRADE + 2.5, -D / 2 + 5.2], 0.07, 6, P.timber, false);
+        m.webPlate([[-W * 0.31, GRADE + 1.2], [-W * 0.19, GRADE + 1.2], [-W * 0.19, GRADE + 2.4], [-W * 0.31, GRADE + 2.4]],
+          -D / 2 + 5.14, -D / 2 + 5.2, shade(P.hoard, 1.1));
       });
     }
 
@@ -1655,13 +2981,33 @@
         m.save().move(0, GRADE, 0);
         m.plate([[-W * 0.44, -D * 0.44], [W * 0.44, -D * 0.44], [W * 0.44, -D * 0.28], [-W * 0.44, -D * 0.28]], 0.1, P.asphalt);
         m.restore();
-        for (let i = 0; i < (d0.fine ? 12 : 5); i += 1) {
-          const n = d0.fine ? 12 : 5;
-          m.mound(-W * 0.46 + (i * W * 0.92) / (n - 1), GRADE, -D * 0.47, 1.5, 2.4, d0.fine ? 6 : 4, P.grass);
+        // A verge is a low mound of reinstated topsoil, not a row of pointed
+        // cones: wide, 0.55 m proud, at overlapping centres so it reads as one
+        // strip of planting along the boundary rather than a dozen objects. The
+        // radius is tied to the spacing so the strip stays closed at every
+        // province level, and pulled in from the platform edge so it does not
+        // hang off the fill — a verge floating past the hardstanding is the
+        // detail that gives a model away.
+        for (let i = 0; i < (d0.fine ? 16 : 5); i += 1) {
+          const n = d0.fine ? 16 : 5;
+          m.mound(-W * 0.46 + (i * W * 0.92) / (n - 1), GRADE, -D * 0.45,
+            ((W * 0.92) / (n - 1)) * 0.56, 0.55, d0.fine ? 7 : 4, shade(P.grass, 0.96 + 0.06 * (i % 3)));
         }
       });
       m.part("yard / signage and lighting", () => {
+        // A totem at the gate: two posts on base plates, a framed board between
+        // them, and a low plinth. The accent colour appears here and almost
+        // nowhere else, which is the point — a factory should read as a factory
+        // and not as a pavilion.
         m.bar(-W * 0.36, -W * 0.36 + 5.4, GRADE + 1.6, GRADE + 3.0, -D / 2 + 2.0, -D / 2 + 2.16, shade(k.accent, 1.12));
+        if (d0.fine) {
+          m.beam(-W * 0.36 - 0.16, -W * 0.36 + 5.56, GRADE + 1.44, GRADE + 3.16, -D / 2 + 1.96, -D / 2 + 2.2, shade(P.galv, 1.02), 0.02);
+          m.beam(-W * 0.36 + 0.2, -W * 0.36 + 5.2, GRADE + 1.5, GRADE + 1.62, -D / 2 + 1.94, -D / 2 + 2.22, shade(P.galv, 0.86), 0.015);
+          m.beam(-W * 0.36 - 0.4, -W * 0.36 + 5.8, GRADE, GRADE + 0.34, -D / 2 + 1.7, -D / 2 + 2.5, shade(P.concrete, 0.94), 0.025);
+          for (const sx of [-W * 0.36 + 0.3, -W * 0.36 + 5.1]) {
+            m.bar(sx - 0.26, sx + 0.26, GRADE + 0.34, GRADE + 0.44, -D / 2 + 1.82, -D / 2 + 2.34, shade(P.galv, 0.88));
+          }
+        }
         for (const sx of [-W * 0.36 + 0.3, -W * 0.36 + 5.1]) m.bar(sx - 0.12, sx + 0.12, GRADE, GRADE + 3.1, -D / 2 + 1.9, -D / 2 + 2.26, P.galv);
         for (let i = 0; i < 6; i += 1) {
           lightMast(m, (i % 2 ? 1 : -1) * W * 0.40, (i < 2 ? 1 : i < 4 ? -1 : 0) * D * 0.30, 11, d0);
@@ -1692,7 +3038,12 @@
     });
     if (stage <= 2) {
       m.part("earthworks / dig and spoil", () => {
-        m.bar(x - b.w / 2, x + b.w / 2, GRADE - 0.4, GRADE, z - b.dz / 2, z + b.dz / 2, P.earthCut);
+        // 20 mm PROUD of the platform deck, not flush with it. The coarse
+        // platform is drawn without a hole (the hole costs triangles this budget
+        // does not have), so a dig whose top face sits exactly at GRADE is
+        // coplanar with the deck and z-fights across the whole excavation at
+        // every map zoom. Two centimetres settles it and costs nothing.
+        m.bar(x - b.w / 2, x + b.w / 2, GRADE - 0.4, GRADE + 0.02, z - b.dz / 2, z + b.dz / 2, P.earthCut);
         for (let i = 0; i < (stage === 1 ? 2 : 4); i += 1) {
           const a = ((i * 97 + h) % 360) * DEG;
           m.mound(W * 0.30 * Math.cos(a) - W * 0.06, GRADE, D * 0.34 * Math.sin(a), 3.4, 2.0, 5, P.earth);
@@ -1802,15 +3153,67 @@
     const positions = new Float32Array(this.pos);
     const colors = new Float32Array(this.col);
     const normals = new Float32Array(positions.length);
-    for (let i = 0; i < positions.length; i += 9) {
+    const count = positions.length / 9;
+    const face = new Float64Array(count * 3);
+    for (let t = 0; t < count; t += 1) {
+      const i = t * 9;
       const ax = positions[i], ay = positions[i + 1], az = positions[i + 2];
       const ux = positions[i + 3] - ax, uy = positions[i + 4] - ay, uz = positions[i + 5] - az;
       const vx = positions[i + 6] - ax, vy = positions[i + 7] - ay, vz = positions[i + 8] - az;
       let nx = uy * vz - uz * vy, ny = uz * vx - ux * vz, nz = ux * vy - uy * vx;
       const len = Math.hypot(nx, ny, nz);
       if (len > 1e-12) { nx /= len; ny /= len; nz /= len; } else { nx = 0; ny = 1; nz = 0; }
+      face[t * 3] = nx; face[t * 3 + 1] = ny; face[t * 3 + 2] = nz;
       for (let k = 0; k < 3; k += 1) {
         normals[i + k * 3] = nx; normals[i + k * 3 + 1] = ny; normals[i + k * 3 + 2] = nz;
+      }
+    }
+    // THE SMOOTHING PASS. Corners are gathered per smoothing group by their
+    // position on a 1 mm lattice — the same corner reached by two different
+    // primitives is computed by the same expression from the same matrix, so it
+    // lands on the same key exactly rather than nearly. Nothing here is a lookup
+    // into anything outside the buffer, and Map iteration is insertion order, so
+    // two processes given the same inputs sum the same numbers in the same order
+    // and hand back byte-identical normals.
+    const corners = new Map();
+    for (let t = 0; t < count; t += 1) {
+      const g = this.grp[t];
+      if (!g) continue;
+      for (let c = 0; c < 3; c += 1) {
+        const i = t * 9 + c * 3;
+        const key = `${g}|${Math.round(positions[i] * 1000)}|${Math.round(positions[i + 1] * 1000)}`
+          + `|${Math.round(positions[i + 2] * 1000)}`;
+        const at = corners.get(key);
+        if (at) at.push(t * 3 + c); else corners.set(key, [t * 3 + c]);
+      }
+    }
+    let smoothCorners = 0;
+    for (const list of corners.values()) {
+      if (list.length < 2) continue;
+      for (let a = 0; a < list.length; a += 1) {
+        const ta = (list[a] - (list[a] % 3)) / 3;
+        const ax = face[ta * 3], ay = face[ta * 3 + 1], az = face[ta * 3 + 2];
+        let sx = 0, sy = 0, sz = 0, folded = 0;
+        for (let b = 0; b < list.length; b += 1) {
+          const tb = (list[b] - (list[b] % 3)) / 3;
+          const bx = face[tb * 3], by = face[tb * 3 + 1], bz = face[tb * 3 + 2];
+          if (ax * bx + ay * by + az * bz < CREASE) continue;
+          sx += bx; sy += by; sz += bz; folded += 1;
+        }
+        if (folded < 2) continue;
+        const len = Math.hypot(sx, sy, sz);
+        if (len < 1e-9) continue;
+        const o = ta * 9 + (list[a] % 3) * 3;
+        normals[o] = sx / len; normals[o + 1] = sy / len; normals[o + 2] = sz / len;
+        smoothCorners += 1;
+      }
+    }
+    let smoothTriangles = 0;
+    for (let t = 0; t < count; t += 1) {
+      const i = t * 9;
+      if (normals[i] !== normals[i + 3] || normals[i + 1] !== normals[i + 4] || normals[i + 2] !== normals[i + 5]
+        || normals[i] !== normals[i + 6] || normals[i + 1] !== normals[i + 7] || normals[i + 2] !== normals[i + 8]) {
+        smoothTriangles += 1;
       }
     }
     const min = [Infinity, Infinity, Infinity], max = [-Infinity, -Infinity, -Infinity];
@@ -1834,7 +3237,10 @@
       positions, normals, colors,
       bounds: { min, max },
       parts: this.parts,
-      triangleCount: positions.length / 9,
+      triangleCount: count,
+      // What the smoothing pass actually did, so a caller (and the checks) can
+      // see it regress instead of taking it on trust.
+      shading: { smoothTriangles, flatTriangles: count - smoothTriangles, smoothCorners, crease: CREASE },
     };
     for (const key of Object.keys(info)) out[key] = info[key];
     return out;

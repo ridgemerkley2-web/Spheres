@@ -41,6 +41,35 @@
 // finish scheme and the stamped normal. So a street of houses can share three
 // baked meshes and still be three bricks and two slates under one sun, and the
 // variant cache stays small enough to be worth having.
+//
+// WHAT THE DETAIL PASS CHANGED, and why. The first cut of this kit was honest
+// massing with roofs on it, and it read as massing. Two things were capping it
+// and both are fixed here.
+//
+// One: EVERY TRIANGLE WAS FLAT SHADED. A drainpipe, a chimney pot, a tree
+// trunk and a lamp column were all faceted prisms, because a face normal is
+// what `tri` computes and nothing ever averaged them. Smooth normals across a
+// curved surface cost NOTHING — not one triangle — and they are the single
+// largest gain available to a vertex-coloured renderer with no textures. See
+// `Builder.smoothed`. Brick, render, glazing and roof planes stay flat,
+// because they are flat.
+//
+// Two: THE OPENINGS WERE NOT OPEN. Every window, shopfront and fanlight was
+// authored as a reveal running back from the wall plane to a pane of glass
+// behind it, and every one of them was set into a SOLID box whose own face was
+// drawn straight across the front of it. The file's own comment — "what makes
+// a box read as a building is the rhythm of its holes" — was describing
+// geometry no camera could reach. Walls are cut now; see `Builder.wall` and
+// `Builder.opening`.
+//
+// Three: THE DETAIL CEILING. A street reads from the things below eaves level —
+// window reveals with real cills and lintels, door surrounds, gutters and
+// downpipes, slate courses, dormers, kerbs, hedges, parked cars — and none of
+// them existed. They do now, and they are paid for with a third LOD: `close`
+// for inspection, `mid` for a card, `map` for the map. `mid` is not a separate
+// authoring of anything; it is the same call graph with the small stuff turned
+// off by `Builder.detail`, which is why it cannot drift away from the building
+// it is a cheaper view of.
 (function (root, factory) {
   const api = factory();
   if (typeof module === "object" && module.exports) module.exports = api;
@@ -54,7 +83,13 @@
   const STOREY = 3.0;
   const TALL_STOREY = 4.0;
 
-  const SLOT = { WALL: 0, ROOF: 1, TRIM: 2, GLASS: 3, GROUND: 4, FOLIAGE: 5, METAL: 6, DARK: 7 };
+  const SLOT = {
+    WALL: 0, ROOF: 1, TRIM: 2, GLASS: 3, GROUND: 4, FOLIAGE: 5, METAL: 6, DARK: 7,
+    // Three car paints. They are slots of their own rather than a reuse of
+    // TRIM because TRIM moves with the finish scheme, and a parked car does
+    // not change colour when the house behind it changes from brick to render.
+    CAR_A: 8, CAR_B: 9, CAR_C: 10,
+  };
 
   // Six finish schemes. Wall, roof and trim move; everything else is the same
   // town in all six, because tarmac and leaves do not change when the bricks
@@ -68,6 +103,13 @@
     { id: "pale_brick_tile", wall: [0.67, 0.59, 0.49], roof: [0.46, 0.29, 0.23], trim: [0.83, 0.81, 0.77] },
     { id: "painted_render_tile", wall: [0.71, 0.70, 0.66], roof: [0.41, 0.28, 0.23], trim: [0.31, 0.36, 0.34] },
   ];
+  // THE REPAINT PREDICATE CONSTRAINS THIS TABLE. A sand or winter finish
+  // rewrites a vertex only where g > r*1.025 && g > b*1.06 && g > 0.12, so
+  // FOLIAGE is green-dominant deliberately: leaves and grass are exactly what
+  // should go straw or snow-white when the town moves climate, and they are
+  // the only slot here that does. Masonry, tarmac, glass, steel and the three
+  // car paints all fail the predicate on purpose — a brick town does not turn
+  // sand-coloured, and a red car stays red in the snow.
   const FIXED = [
     null, null, null,
     [0.20, 0.26, 0.30],   // GLASS  — 1990 glazing is a dark hole, not a mirror
@@ -75,6 +117,9 @@
     [0.28, 0.40, 0.23],   // FOLIAGE
     [0.53, 0.55, 0.57],   // METAL
     [0.10, 0.11, 0.12],   // DARK   — openings, rubber, shadow gaps
+    [0.44, 0.14, 0.13],   // CAR_A  — a dull red saloon
+    [0.44, 0.48, 0.54],   // CAR_B  — pale blue-grey
+    [0.74, 0.72, 0.68],   // CAR_C  — cream
   ];
 
   // One sun, fixed, high and to the right. Lighting is baked into the vertex
@@ -121,13 +166,27 @@
   // rather than nearly identical.
   const YAW = [[1, 0], [0, 1], [-1, 0], [0, -1]];
 
-  function Builder() {
+  function Builder(detail) {
     this.pos = []; this.nrm = []; this.slot = []; this.mat = []; this.sch = [];
     this.tf = { c: 1, s: 0, x: 0, y: 0, z: 0 };
     this.stack = [];
     this.scheme = 0;
     this.parts = [];
+    // Pending elevations and the openings that will be cut out of them; see
+    // the punched-wall note below.
+    this.faces = []; this.holes = [];
+    // 2 close, 1 card, 0 map. Read by the shared kit — a chamfer, a slate
+    // course, a glazing bar, a tree limb and a parked car all ask it whether
+    // they are worth drawing — so the three LODs are one call graph and a kind
+    // never has to know which one it is being built at.
+    this.detail = detail == null ? 2 : detail | 0;
   }
+  /// How many sides a round thing gets. Curvature is the one place where
+  /// segments are worth real triangles, so close view is generous; the map is
+  /// where a six-sided pipe is not only acceptable but invisible.
+  Builder.prototype.segs = function (close, mid, map) {
+    return this.detail >= 2 ? close : this.detail >= 1 ? (mid == null ? close : mid) : (map == null ? 4 : map);
+  };
   Builder.prototype.push = function (yawIdx, tx, ty, tz) {
     const t = this.tf, r = YAW[((yawIdx | 0) % 4 + 4) % 4];
     this.stack.push(t);
@@ -195,8 +254,231 @@
   /// A flat slab on a ground plane — carriageway, footway, yard, pitch. Two
   /// triangles, because ground is the surface a town has most of and giving it
   /// thickness buys nothing you can see.
+  ///
+  /// IT FACES UP. It used to be wound the other way, and every square metre of
+  /// ground in the kit — carriageway, footways, gardens, yards, flat roofs,
+  /// the stadium pitch — was therefore lit as a downward face: `colourOf` saw
+  /// a negative lambert and baked pure ambient, so the whole town stood on
+  /// something half as bright as it should be. The renderer flips a normal
+  /// towards the eye before lighting it, which is exactly why nobody caught
+  /// it: the ground was not black, only wrong. Measured on the mixed block,
+  /// 56,000 m^2 of surface faced down against 17,000 m^2 up.
   Builder.prototype.slab = function (x0, x1, z0, z1, y, slot, mat) {
+    return this.quad([x0, y, z0], [x0, y, z1], [x1, y, z1], [x1, y, z0], slot, mat);
+  };
+  /// The same two triangles facing DOWN. A lamp lens, a canopy underside and a
+  /// balcony soffit are seen from below and want the ambient reading `slab`
+  /// used to give everything by accident.
+  Builder.prototype.soffit = function (x0, x1, z0, z1, y, slot, mat) {
     return this.quad([x0, y, z0], [x1, y, z0], [x1, y, z1], [x0, y, z1], slot, mat);
+  };
+
+  // ------------------------------------------------------- punched walls
+  // THE HOLES WERE NEVER HOLES. Every opening in this kit — sash, ribbon,
+  // shopfront, fanlight — was authored as a reveal running back from the wall
+  // plane to a pane of glass 170 mm behind it, and every one of them was
+  // INVISIBLE, because the wall it was set into is a solid box and the box's
+  // own face was drawn across the front of it. The depth test did the rest. So
+  // the file's own comment — "what makes a box read as a building is the
+  // rhythm of its holes" — was describing geometry the player could not see:
+  // what showed was the cill, the lintel and the jambs, and between them a
+  // rectangle of bare brick. Every pane, every glazing bar, every reveal and
+  // every fanlight in the town was buried.
+  //
+  // The repair is to cut the wall rather than to move the window forward. An
+  // elevation registers itself as a PENDING FACE instead of drawing straight
+  // away; each opening registers a world-space box; and at the end of the
+  // building the faces are emitted as a grid of rectangles with the openings
+  // left out. Bands first, then columns inside a band, so a five-by-six
+  // elevation costs about sixty rectangles rather than the nine hundred a
+  // naive full grid would produce.
+
+  /// Record an opening, in world space, so any face it lands on is cut. The
+  /// thin axis is opened out by 120 mm either way: a wall is a plane and an
+  /// opening is a rectangle on it, and no two wall planes in this kit are
+  /// closer together than that.
+  Builder.prototype.opening = function (x0, x1, y0, y1, zf) {
+    const a = this.xf([x0, y0, zf]), b = this.xf([x1, y1, zf]);
+    const box = [Math.min(a[0], b[0]), Math.max(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[1], b[1]),
+      Math.min(a[2], b[2]), Math.max(a[2], b[2])];
+    for (const k of [0, 2, 4]) {
+      if (box[k + 1] - box[k] < 0.02) { box[k] -= 0.12; box[k + 1] += 0.12; }
+    }
+    this.holes.push(box);
+    return this;
+  };
+  /// A box whose four vertical faces are punchable. Top and bottom go in
+  /// straight away — nothing is ever cut out of them — and the elevations wait
+  /// until the openings are known.
+  Builder.prototype.wall = function (x0, x1, y0, y1, z0, z1, slot, mat) {
+    this.quad([x0, y1, z0], [x0, y1, z1], [x1, y1, z1], [x1, y1, z0], slot, mat);
+    this.quad([x0, y0, z0], [x1, y0, z0], [x1, y0, z1], [x0, y0, z1], slot, mat);
+    for (const f of [["z+", z1, x0, x1], ["z-", z0, x0, x1], ["x+", x1, z0, z1], ["x-", x0, z0, z1]]) {
+      this.faces.push({ tf: this.tf, side: f[0], at: f[1], u0: f[2], u1: f[3], v0: y0, v1: y1, slot, mat });
+    }
+    return this;
+  };
+  /// Local coordinates of a world box under a cardinal transform. Cardinal
+  /// yaw is what makes this exact: an axis-aligned box stays axis-aligned, so
+  /// the two corners are enough and no clipping is needed.
+  function toLocal(tf, box) {
+    const c = tf.c, s = tf.s;
+    const pts = [];
+    for (const X of [box[0], box[1]]) {
+      for (const Z of [box[4], box[5]]) {
+        pts.push([c * (X - tf.x) - s * (Z - tf.z), s * (X - tf.x) + c * (Z - tf.z)]);
+      }
+    }
+    let x0 = Infinity, x1 = -Infinity, z0 = Infinity, z1 = -Infinity;
+    for (const p of pts) {
+      if (p[0] < x0) x0 = p[0];
+      if (p[0] > x1) x1 = p[0];
+      if (p[1] < z0) z0 = p[1];
+      if (p[1] > z1) z1 = p[1];
+    }
+    return [x0, x1, box[2] - tf.y, box[3] - tf.y, z0, z1];
+  }
+  Builder.prototype.flushFaces = function () {
+    const faces = this.faces;
+    if (!faces.length) { this.holes = []; return this; }
+    this.faces = [];
+    const saved = this.tf;
+    for (const f of faces) {
+      this.tf = f.tf;
+      const cuts = [];
+      for (const world of this.holes) {
+        const h = toLocal(f.tf, world);
+        const onFace = f.side[0] === "z" ? (h[4] < f.at + 0.13 && h[5] > f.at - 0.13)
+          : (h[0] < f.at + 0.13 && h[1] > f.at - 0.13);
+        if (!onFace) continue;
+        const u0 = f.side[0] === "z" ? h[0] : h[4], u1 = f.side[0] === "z" ? h[1] : h[5];
+        if (u1 <= f.u0 + 1e-4 || u0 >= f.u1 - 1e-4 || h[3] <= f.v0 + 1e-4 || h[2] >= f.v1 - 1e-4) continue;
+        cuts.push([Math.max(u0, f.u0), Math.min(u1, f.u1), Math.max(h[2], f.v0), Math.min(h[3], f.v1)]);
+      }
+      emitFace(this, f, cuts);
+    }
+    this.tf = saved;
+    this.holes = [];
+    return this;
+  };
+  function sortedBounds(values, lo, hi) {
+    const out = [lo];
+    values.slice().sort((a, b) => a - b).forEach((v) => { if (v > out[out.length - 1] + 1e-4 && v < hi - 1e-4) out.push(v); });
+    out.push(hi);
+    return out;
+  }
+  function emitFace(b, f, cuts) {
+    const quadAt = (u0, u1, v0, v1) => {
+      if (!(u1 - u0 > 1e-4 && v1 - v0 > 1e-4)) return;
+      const a = f.at;
+      if (f.side === "z+") b.quad([u0, v0, a], [u1, v0, a], [u1, v1, a], [u0, v1, a], f.slot, f.mat);
+      else if (f.side === "z-") b.quad([u0, v0, a], [u0, v1, a], [u1, v1, a], [u1, v0, a], f.slot, f.mat);
+      else if (f.side === "x+") b.quad([a, v0, u0], [a, v1, u0], [a, v1, u1], [a, v0, u1], f.slot, f.mat);
+      else b.quad([a, v0, u0], [a, v0, u1], [a, v1, u1], [a, v1, u0], f.slot, f.mat);
+    };
+    if (!cuts.length) { quadAt(f.u0, f.u1, f.v0, f.v1); return; }
+    const vs = [];
+    for (const c of cuts) { vs.push(c[2], c[3]); }
+    const bands = sortedBounds(vs, f.v0, f.v1);
+    for (let i = 0; i + 1 < bands.length; i += 1) {
+      const v0 = bands[i], v1 = bands[i + 1], mid = (v0 + v1) / 2;
+      const active = cuts.filter((c) => c[2] < mid && c[3] > mid);
+      if (!active.length) { quadAt(f.u0, f.u1, v0, v1); continue; }
+      const us = [];
+      for (const c of active) { us.push(c[0], c[1]); }
+      const cols = sortedBounds(us, f.u0, f.u1);
+      for (let j = 0; j + 1 < cols.length; j += 1) {
+        const u0 = cols[j], u1 = cols[j + 1], um = (u0 + u1) / 2;
+        if (active.some((c) => c[0] < um && c[1] > um)) continue;
+        quadAt(u0, u1, v0, v1);
+      }
+    }
+  }
+
+  /// Weld vertex normals inside ONE drawn group, so a curved surface shades as
+  /// a curve instead of as a prism. This is the cheapest realism in the file:
+  /// it moves no vertex and adds no triangle, and it is the difference between
+  /// a hexagonal drainpipe and a drainpipe.
+  ///
+  /// SCOPED TO THE GROUP ON PURPOSE. A whole-mesh weld would find the downpipe
+  /// where it meets the wall behind it and tilt the corner of a four-metre
+  /// wall quad to match a 60 mm pipe — a shading fault you cannot find by
+  /// looking at the pipe. Only what one call draws is welded together.
+  ///
+  /// The crease is what keeps a cap flat. Faces sharing a position join a
+  /// cluster only while they stay inside CREASE of that cluster's running
+  /// average, so the eight sides of a chimney pot merge into one smooth barrel
+  /// and the disc on top of it stays a disc. No sorting, no set arithmetic:
+  /// insertion order is the iteration order, which is what keeps a welded mesh
+  /// byte-identical from one process to the next.
+  const CREASE = 0.62;    // cos ~51.7 deg. An eight-sided tube merges; a cap does not.
+  Builder.prototype.smoothed = function (draw, crease) {
+    const first = this.pos.length / 3;
+    draw();
+    const last = this.pos.length / 3;
+    const cos = crease == null ? CREASE : crease;
+    const at = new Map();
+    for (let v = first; v < last; v += 1) {
+      const i = v * 3;
+      // Quantised to 1/4096 m. Coincident vertices are usually bit-identical
+      // because they come from the same `oval` call, but a ring stamped
+      // through two different transform pushes need not be, and a quarter of a
+      // millimetre is far below anything the geometry means.
+      const key = Math.round(this.pos[i] * 4096) + "|" + Math.round(this.pos[i + 1] * 4096)
+        + "|" + Math.round(this.pos[i + 2] * 4096);
+      let clusters = at.get(key);
+      if (!clusters) { clusters = []; at.set(key, clusters); }
+      const nx = this.nrm[i], ny = this.nrm[i + 1], nz = this.nrm[i + 2];
+      let joined = false;
+      for (let c = 0; c < clusters.length; c += 1) {
+        const acc = clusters[c], len = Math.hypot(acc[0], acc[1], acc[2]);
+        if (len > 1e-9 && (nx * acc[0] + ny * acc[1] + nz * acc[2]) / len > cos) {
+          acc[0] += nx; acc[1] += ny; acc[2] += nz; acc[3].push(v); joined = true; break;
+        }
+      }
+      if (!joined) clusters.push([nx, ny, nz, [v]]);
+    }
+    for (const clusters of at.values()) {
+      for (let c = 0; c < clusters.length; c += 1) {
+        const acc = clusters[c];
+        if (acc[3].length < 2) continue;
+        const len = Math.hypot(acc[0], acc[1], acc[2]);
+        if (!(len > 1e-6)) continue;
+        const nx = acc[0] / len, ny = acc[1] / len, nz = acc[2] / len;
+        for (let k = 0; k < acc[3].length; k += 1) {
+          const i = acc[3][k] * 3;
+          this.nrm[i] = nx; this.nrm[i + 1] = ny; this.nrm[i + 2] = nz;
+        }
+      }
+    }
+    return this;
+  };
+
+  /// A box with every edge chamfered. A 20 mm bevel is the whole difference
+  /// between a machined stone cill and a cardboard rectangle: it catches the
+  /// sun on an edge that would otherwise be a single hard line between two
+  /// flat tones, and on a vertex-lit mesh that highlight is the only edge cue
+  /// there is. Sixty triangles against twelve, so it goes on the pieces a hand
+  /// would reach — cills, copings, kerbs, string courses, gate piers, nosings
+  /// — and not on the wall behind them.
+  ///
+  /// Built as three lofted bands over an OCTAGONAL ring, which chamfers the
+  /// four vertical arrises for free and lets `loft` settle the winding. Below
+  /// close detail it is a plain box, which is most of what the card LOD saves.
+  Builder.prototype.bevelBox = function (x0, x1, y0, y1, z0, z1, slot, mat, chamf) {
+    const c = Math.min(chamf == null ? 0.022 : chamf, (x1 - x0) / 2.5, (y1 - y0) / 2.5, (z1 - z0) / 2.5);
+    if (!(c > 0.003) || this.detail < 2) return this.box(x0, x1, y0, y1, z0, z1, slot, mat);
+    const ring = (k) => [
+      [x0 + c + k, z0 + k], [x1 - c - k, z0 + k], [x1 - k, z0 + c + k], [x1 - k, z1 - c - k],
+      [x1 - c - k, z1 - k], [x0 + c + k, z1 - k], [x0 + k, z1 - c - k], [x0 + k, z0 + c + k],
+    ];
+    const outer = ring(0), inner = ring(c);
+    this.loft(inner, outer, y0, y0 + c, slot, mat, false);
+    this.loft(outer, outer, y0 + c, y1 - c, slot, mat, false);
+    this.loft(outer, inner, y1 - c, y1, slot, mat, false);
+    this.fan(reversed(inner).map((p) => [p[0], y1, p[1]]), slot, mat);
+    this.fan(inner.map((p) => [p[0], y0, p[1]]), slot, mat);
+    return this;
   };
 
   /// A lofted prism between two matching point rings. Orientation is FIXED
@@ -250,6 +532,55 @@
       pts.push([cx + Math.cos(t) * rx, cz + Math.sin(t) * rz]);
     }
     return pts;
+  }
+
+  // ------------------------------------------------------- round primitives
+  // Everything below is `cyl`, `loft` and `oval` with the normals welded
+  // afterwards. They exist as their own names so that a call site says what it
+  // meant — this is a pipe, this is a dome, this is a leaf mass — and so that
+  // adding a segment to every pipe in the town is one edit.
+
+  /// A pipe, a pot, a bollard, a column. Smooth around the axis and flat
+  /// across the caps.
+  function tube(b, cx, cz, y0, y1, r0, r1, seg, slot, mat, caps) {
+    return b.smoothed(() => { b.cyl(cx, cz, y0, y1, r0, r1, seg, slot, mat, caps); });
+  }
+  /// A half-round section swept along X: gutters and ridge tiles, which are
+  /// the two curved profiles a temperate roof actually has. `turn` rotates the
+  /// open side — 1 opens upward for a gutter, -1 downward for a ridge cap.
+  function halfRound(b, x0, x1, cy, cz, r, seg, turn, slot, mat) {
+    const n = Math.max(3, seg | 0), up = turn < 0 ? -1 : 1;
+    return b.smoothed(() => {
+      for (let i = 0; i < n; i += 1) {
+        const a0 = Math.PI * (i / n), a1 = Math.PI * ((i + 1) / n);
+        const p0 = [cz - Math.cos(a0) * r, cy + up * Math.sin(a0) * r];
+        const p1 = [cz - Math.cos(a1) * r, cy + up * Math.sin(a1) * r];
+        // Wound so the CONVEX side faces out in both turns: the outside of a
+        // gutter is what the street sees, and the outside of a ridge cap is
+        // what the sun catches.
+        if (up > 0) b.quad([x0, p1[1], p1[0]], [x1, p1[1], p1[0]], [x1, p0[1], p0[0]], [x0, p0[1], p0[0]], slot, mat);
+        else b.quad([x0, p0[1], p0[0]], [x1, p0[1], p0[0]], [x1, p1[1], p1[0]], [x0, p1[1], p1[0]], slot, mat);
+      }
+    });
+  }
+  /// A squashed spheroid in `rings` latitude bands. Leaf masses, hedge lobes
+  /// and the odd finial. Poles are collapsed, so `tri` drops the degenerate
+  /// quad halves at the top and bottom by itself.
+  function lobe(b, cx, cy, cz, rx, ry, rz, seg, rings, slot, mat) {
+    return b.smoothed(() => {
+      let prev = null, prevY = 0;
+      for (let r = 0; r <= rings; r += 1) {
+        const a = Math.PI * (r / rings);
+        const ring = oval(cx, cz, Math.sin(a) * rx, Math.sin(a) * rz, seg);
+        const y = cy + Math.cos(a) * ry;
+        // Wound BOTTOM-UP. The latitude loop runs from the top pole down, so
+        // handing `band` the rings in loop order made every leaf mass in the
+        // town inside-out: the crown was lit from underneath and the smooth
+        // normals pointed into the tree.
+        if (prev) b.band(ring, prev, y, prevY, slot, mat);
+        prev = ring; prevY = y;
+      }
+    }, 0.2);
   }
 
   /// Semantic ranges, so a click on a roof can say which building it hit.
@@ -353,18 +684,48 @@
   /// One opening on the +Z wall plane at z = zf, centred on cx. Authored only
   /// for +Z; the other three elevations get it by pushing a cardinal yaw, so
   /// there is one of this function and not four.
-  function sash(b, cx, y0, w, h, zf, cols, rows) {
-    const hw = w / 2, y1 = y0 + h, dep = 0.17;
-    b.box(cx - hw - 0.13, cx + hw + 0.13, y0 - 0.13, y0, zf - 0.02, zf + 0.10, SLOT.TRIM, 1.02);          // sill
-    b.box(cx - hw - 0.13, cx + hw + 0.13, y1, y1 + 0.16, zf - 0.02, zf + 0.06, SLOT.TRIM, 1.0);           // head
+  ///
+  /// `dress` is the difference between a principal elevation and a back one,
+  /// and it is a real distinction rather than a budget dodge: a building of
+  /// this period got stone cills and lintels where the street could see them
+  /// and plain openings in the return and the rear. It is also where the
+  /// triangles for the fronts come from.
+  function sash(b, cx, y0, w, h, zf, cols, rows, dress) {
+    const hw = w / 2, y1 = y0 + h, dep = 0.17, full = b.detail >= 2;
+    const shown = dress !== false;
+    // A CILL IS A PROJECTING STONE, not a painted line. It oversails the jambs,
+    // stands 100 mm proud of the brickwork and is chamfered on its outer
+    // arris, so it takes a highlight along its whole length and throws the
+    // shadow that reads, at any distance, as "there is a hole here".
+    if (shown) {
+      b.bevelBox(cx - hw - 0.16, cx + hw + 0.16, y0 - 0.14, y0 + 0.01, zf - 0.03, zf + 0.11, SLOT.TRIM, 1.04, 0.022);
+      // Lintel over the head. Same idea, less projection, because it is
+      // carrying brickwork rather than throwing water clear of it.
+      b.bevelBox(cx - hw - 0.16, cx + hw + 0.16, y1 - 0.01, y1 + 0.18, zf - 0.03, zf + 0.07, SLOT.TRIM, 1.0, 0.02);
+    } else {
+      b.box(cx - hw - 0.14, cx + hw + 0.14, y0 - 0.1, y0 + 0.01, zf - 0.02, zf + 0.07, SLOT.TRIM, 1.04);
+      b.box(cx - hw - 0.14, cx + hw + 0.14, y1 - 0.01, y1 + 0.14, zf - 0.02, zf + 0.05, SLOT.TRIM, 1.0);
+    }
     b.box(cx - hw - 0.13, cx - hw, y0, y1, zf - 0.02, zf + 0.05, SLOT.TRIM, 0.98);                        // jambs
     b.box(cx + hw, cx + hw + 0.13, y0, y1, zf - 0.02, zf + 0.05, SLOT.TRIM, 0.98);
+    b.opening(cx - hw, cx + hw, y0, y1, zf);
     // Reveal: four inward-facing quads from the wall plane back to the glass.
     b.quad([cx - hw, y0, zf], [cx + hw, y0, zf], [cx + hw, y0, zf - dep], [cx - hw, y0, zf - dep], SLOT.WALL, 0.72);
     b.quad([cx - hw, y1, zf - dep], [cx + hw, y1, zf - dep], [cx + hw, y1, zf], [cx - hw, y1, zf], SLOT.WALL, 0.72);
     b.quad([cx - hw, y0, zf - dep], [cx - hw, y1, zf - dep], [cx - hw, y1, zf], [cx - hw, y0, zf], SLOT.WALL, 0.8);
     b.quad([cx + hw, y0, zf], [cx + hw, y1, zf], [cx + hw, y1, zf - dep], [cx + hw, y0, zf - dep], SLOT.WALL, 0.8);
     b.quad([cx - hw, y0, zf - dep], [cx + hw, y0, zf - dep], [cx + hw, y1, zf - dep], [cx - hw, y1, zf - dep], SLOT.GLASS, 1.0);
+    if (full) {
+      // The frame itself, sitting in the reveal in front of the glass. Four
+      // sections and a meeting rail: the window, rather than the hole.
+      const fz0 = zf - dep + 0.005, fz1 = zf - dep + 0.075;
+      b.box(cx - hw, cx - hw + 0.07, y0, y1, fz0, fz1, SLOT.TRIM, 1.02);
+      b.box(cx + hw - 0.07, cx + hw, y0, y1, fz0, fz1, SLOT.TRIM, 1.02);
+      b.box(cx - hw, cx + hw, y0, y0 + 0.07, fz0, fz1, SLOT.TRIM, 1.06);
+      b.box(cx - hw, cx + hw, y1 - 0.07, y1, fz0, fz1, SLOT.TRIM, 1.06);
+      b.box(cx - hw, cx + hw, y0 + h * 0.5 - 0.05, y0 + h * 0.5 + 0.05, fz0, fz1 + 0.02, SLOT.TRIM, 1.08);
+    }
+    if (!full) return b;
     const nc = Math.max(1, cols | 0), nr = Math.max(1, rows | 0);
     for (let i = 1; i < nc; i += 1) {
       const x = cx - hw + (w * i) / nc;
@@ -383,17 +744,32 @@
   /// one band covers a whole floor for the price of a couple of sashes.
   function ribbon(b, x0, x1, y0, h, zf, pitch) {
     const y1 = y0 + h, dep = 0.14;
-    b.box(x0 - 0.1, x1 + 0.1, y0 - 0.12, y0, zf - 0.02, zf + 0.08, SLOT.TRIM, 1.02);
-    b.box(x0 - 0.1, x1 + 0.1, y1, y1 + 0.14, zf - 0.02, zf + 0.05, SLOT.TRIM, 1.0);
+    if (b.detail >= 2) {
+      b.bevelBox(x0 - 0.12, x1 + 0.12, y0 - 0.14, y0 + 0.01, zf - 0.02, zf + 0.1, SLOT.TRIM, 1.02, 0.02);
+      b.bevelBox(x0 - 0.12, x1 + 0.12, y1 - 0.01, y1 + 0.15, zf - 0.02, zf + 0.06, SLOT.TRIM, 1.0, 0.02);
+    } else {
+      b.box(x0 - 0.1, x1 + 0.1, y0 - 0.12, y0, zf - 0.02, zf + 0.08, SLOT.TRIM, 1.02);
+      b.box(x0 - 0.1, x1 + 0.1, y1, y1 + 0.14, zf - 0.02, zf + 0.05, SLOT.TRIM, 1.0);
+    }
     b.quad([x0, y0, zf], [x1, y0, zf], [x1, y0, zf - dep], [x0, y0, zf - dep], SLOT.WALL, 0.72);
     b.quad([x0, y1, zf - dep], [x1, y1, zf - dep], [x1, y1, zf], [x0, y1, zf], SLOT.WALL, 0.72);
     b.quad([x0, y0, zf - dep], [x0, y1, zf - dep], [x0, y1, zf], [x0, y0, zf], SLOT.WALL, 0.8);
     b.quad([x1, y0, zf], [x1, y1, zf], [x1, y1, zf - dep], [x1, y0, zf - dep], SLOT.WALL, 0.8);
     b.quad([x0, y0, zf - dep], [x1, y0, zf - dep], [x1, y1, zf - dep], [x0, y1, zf - dep], SLOT.GLASS, 1.0);
-    const n = Math.max(1, Math.round((x1 - x0) / (pitch || 1.8)));
+    b.opening(x0, x1, y0, y1, zf);
+    // Mullions at a fixed pitch, thinned out below close range. A ribbon is
+    // read by its rhythm rather than by its count, so halving the mullions on
+    // a card costs the elevation nothing and is most of what the card saves on
+    // a building that is nothing but ribbons.
+    const n = Math.max(1, Math.round((x1 - x0) / ((pitch || 1.8) * (b.detail >= 2 ? 1 : 2))));
     for (let i = 1; i < n; i += 1) {
       const x = x0 + ((x1 - x0) * i) / n;
       b.box(x - 0.05, x + 0.05, y0, y1, zf - dep, zf - dep + 0.06, SLOT.TRIM, 1.05);
+    }
+    if (b.detail >= 2) {
+      // A transom at the head of the opening light, which is what turns a
+      // glazed slot into a window at close range.
+      b.box(x0, x1, y0 + h * 0.62 - 0.04, y0 + h * 0.62 + 0.04, zf - dep, zf - dep + 0.055, SLOT.TRIM, 1.06);
     }
     return b;
   }
@@ -402,53 +778,207 @@
   /// triangles because a door is the only part of an elevation that gives the
   /// building a human scale to be read against.
   function frontDoor(b, cx, zf, h) {
-    const w = 0.95, hw = w / 2, top = h || 2.1;
+    const w = 0.95, hw = w / 2, top = h || 2.1, full = b.detail >= 2;
     b.box(cx - hw - 0.14, cx + hw + 0.14, 0, top + 0.62, zf - 0.02, zf + 0.09, SLOT.TRIM, 1.02);
     b.box(cx - hw, cx + hw, 0, top, zf - 0.06, zf + 0.02, SLOT.DARK, 1.0);
     b.box(cx - hw + 0.09, cx + hw - 0.09, 0.28, top - 0.9, zf + 0.015, zf + 0.05, SLOT.TRIM, 0.95);
     b.box(cx - hw + 0.09, cx + hw - 0.09, top - 0.78, top - 0.18, zf + 0.015, zf + 0.05, SLOT.TRIM, 0.95);
     b.box(cx - hw, cx + hw, top + 0.08, top + 0.52, zf - 0.1, zf - 0.04, SLOT.GLASS, 1.0);
-    b.box(cx - hw - 0.3, cx + hw + 0.3, 0, 0.14, zf, zf + 0.55, SLOT.TRIM, 1.04);          // step
-    b.box(cx - hw - 0.34, cx + hw + 0.34, top + 0.66, top + 0.82, zf - 0.02, zf + 0.42, SLOT.TRIM, 1.05); // hood
-    b.cyl(cx + hw - 0.18, zf + 0.06, top - 1.02, top - 0.92, 0.05, 0.05, 6, SLOT.METAL, 1.05);
+    b.opening(cx - hw, cx + hw, 0.02, top + 0.52, zf);
+    // Step with a chamfered nosing. A door is where the eye goes to read the
+    // scale of the whole building, so it is worth the extra fifty triangles.
+    b.bevelBox(cx - hw - 0.3, cx + hw + 0.3, 0, 0.15, zf, zf + 0.55, SLOT.TRIM, 1.04, 0.025);
+    b.bevelBox(cx - hw - 0.34, cx + hw + 0.34, top + 0.66, top + 0.84, zf - 0.02, zf + 0.44, SLOT.TRIM, 1.05, 0.022); // hood
+    if (full) {
+      for (const sx of [-1, 1]) {                                     // hood brackets
+        b.box(cx + sx * (hw + 0.16), cx + sx * (hw + 0.26), top + 0.2, top + 0.66, zf, zf + 0.3, SLOT.TRIM, sx > 0 ? 1.06 : 0.9);
+      }
+      tube(b, cx + hw - 0.18, zf + 0.06, top - 1.02, top - 0.9, 0.05, 0.05, 8, SLOT.METAL, 1.05);      // knob
+      b.box(cx - 0.13, cx + 0.13, top - 1.24, top - 1.16, zf + 0.02, zf + 0.05, SLOT.METAL, 1.08);     // letter plate
+      b.box(cx - hw - 0.02, cx + hw + 0.02, -0.005, 0.02, zf - 0.05, zf + 0.1, SLOT.TRIM, 1.1);        // threshold
+    } else {
+      tube(b, cx + hw - 0.18, zf + 0.06, top - 1.02, top - 0.9, 0.05, 0.05, 5, SLOT.METAL, 1.05);
+    }
     return b;
   }
 
   // --------------------------------------------------------------- roofing
+  /// SLATE AND TILE COURSES, as geometry. There is no texture path in this
+  /// renderer, so the only way a roof can say "slate" rather than "a plane" is
+  /// to be built as the courses it is made of: a run of shallow steps, each
+  /// one a tread lying on the roof plane and a lip standing proud of the
+  /// course below it. The lip is what does the work — it takes the sun on its
+  /// top arris and drops a shadow line onto the course underneath, and a dozen
+  /// of those lines are what the eye reads as a tiled roof from a street away.
+  ///
+  /// Four triangles a course, so a whole two-sided roof is under a hundred.
+  /// Below close detail the slope is one quad, because at card and map size
+  /// the courses are smaller than a pixel and all they would cost is fill.
+  function slopeCourses(b, x0, x1, yEave, zEave, yRidge, zRidge, slot, mat, thk) {
+    const dy = yRidge - yEave, dz = zRidge - zEave, L = Math.hypot(dy, dz);
+    if (!(L > 0.05)) return b;
+    let ny = -dz / L, nz = dy / L;
+    if (ny < 0) { ny = -ny; nz = -nz; }                 // a roof slope always faces up
+    const flip = dz > 0;                                 // the -Z slope runs the other way
+    const face = (ay, az, by, bz) => {
+      if (flip) b.quad([x0, by, bz], [x1, by, bz], [x1, ay, az], [x0, ay, az], slot, mat);
+      else b.quad([x0, ay, az], [x1, ay, az], [x1, by, bz], [x0, by, bz], slot, mat);
+    };
+    if (b.detail < 2) { face(yEave, zEave, yRidge, zRidge); return b; }
+    const t = thk == null ? 0.035 : thk;
+    const n = Math.max(4, Math.min(20, Math.round(L / 0.34)));
+    // THE COURSE HAS TO TAPER OR IT IS NOT A COURSE. The first cut of this
+    // offset BOTH ends of every tread by the same 35 mm, which put all twenty
+    // treads on one plane 35 mm above the roof and buried every lip underneath
+    // it: measured on the house, 19 course quads sharing a single plane, and
+    // the roof rendered as the bare sheet the courses exist to replace. It cost
+    // 160 triangles a roof and bought nothing.
+    //
+    // What a slate actually does is stand proud at its LOWER edge, where it
+    // laps the course below, and die back into the roof under the course above.
+    // So the tread runs from `t` proud at t0 down to the plane at t1, and the
+    // lip is the 35 mm step up onto it. That is the same four triangles, it is
+    // continuous with the course below it, and it gives every course line a lit
+    // arris and a shadow — which is the whole point.
+    for (let i = 0; i < n; i += 1) {
+      const t0 = i / n, t1 = (i + 1) / n;
+      const ay = yEave + dy * t0 + ny * t, az = zEave + dz * t0 + nz * t;
+      const by = yEave + dy * t1, bz = zEave + dz * t1;
+      face(ay, az, by, bz);                                     // the course, dying back into the roof
+      face(yEave + dy * t0, zEave + dz * t0, ay, az);           // its lip, standing on the one below
+    }
+    return b;
+  }
+  /// A barge board along one rake of a gable: a board of `drop` depth hanging
+  /// under the verge, swept from the eaves corner up to the ridge.
+  function barge(b, x0, x1, yEave, zEave, yTop, zTop, drop, slot, mat) {
+    const d = drop == null ? 0.24 : drop;
+    b.quad([x0, yEave - d, zEave], [x0, yEave, zEave], [x0, yTop, zTop], [x0, yTop - d, zTop], slot, mat);
+    b.quad([x1, yTop - d, zTop], [x1, yTop, zTop], [x1, yEave, zEave], [x1, yEave - d, zEave], slot, mat);
+    b.quad([x0, yEave - d, zEave], [x0, yTop - d, zTop], [x1, yTop - d, zTop], [x1, yEave - d, zEave], slot, mat * 0.78);
+    return b;
+  }
+  /// Half-round ridge caps, bedded over the apex. Smooth around the section,
+  /// which is the whole point of using a round profile at all.
+  function ridgeCap(b, x0, x1, y, z, r, slot, mat) {
+    if (b.detail < 2) return b.box(x0, x1, y - r * 0.5, y + r * 0.6, z - r, z + r, slot, mat);
+    halfRound(b, x0, x1, y, z, r, b.segs(7, 5, 3), -1, slot, mat);
+    b.tri([x0, y, z - r], [x0, y, z + r], [x0, y + r * 0.02, z], slot, mat * 0.9);
+    b.tri([x1, y, z + r], [x1, y, z - r], [x1, y + r * 0.02, z], slot, mat * 0.9);
+    return b;
+  }
   /// A pitched roof with its ridge running along X, so the gables face +/-X.
-  /// Eaves overhang, fascia, barge boards and a ridge cap are all in here
-  /// because between them they are most of what tells a pitched roof from a
-  /// wedge, and they cost about fifty triangles.
+  /// Eaves overhang, soffit, fascia, barge boards, slate courses and a
+  /// half-round ridge: between them they are all of what tells a pitched roof
+  /// from a wedge, and they are why a house looks like a house at close range.
   function gableRoof(b, hw, hd, eave, rise, over) {
     const o = over == null ? 0.32 : over;
     const X0 = -hw - o, X1 = hw + o, Z0 = -hd - o, Z1 = hd + o, top = eave + rise;
-    b.quad([X0, eave, Z1], [X1, eave, Z1], [X1, top, 0], [X0, top, 0], SLOT.ROOF, 1.0);
-    b.quad([X1, eave, Z0], [X0, eave, Z0], [X0, top, 0], [X1, top, 0], SLOT.ROOF, 0.86);
-    b.tri([X0, eave, Z0], [X0, eave, Z1], [X0, top, 0], SLOT.ROOF, 0.82);
-    b.tri([X1, eave, Z1], [X1, eave, Z0], [X1, top, 0], SLOT.ROOF, 0.9);
-    b.box(X0, X1, eave - 0.17, eave, Z1 - 0.08, Z1, SLOT.TRIM, 1.02);                      // fascia
-    b.box(X0, X1, eave - 0.17, eave, Z0, Z0 + 0.08, SLOT.TRIM, 0.95);
-    b.box(X0, X0 + 0.09, eave - 0.05, top, Z0, Z1, SLOT.TRIM, 0.98);                       // barge boards
-    b.box(X1 - 0.09, X1, eave - 0.05, top, Z0, Z1, SLOT.TRIM, 0.98);
-    b.box(X0, X1, top - 0.05, top + 0.11, -0.14, 0.14, SLOT.ROOF, 1.08);                   // ridge
-    b.quad([X0, eave - 0.17, Z1 - 0.08], [X1, eave - 0.17, Z1 - 0.08], [X1, eave - 0.17, hd], [X0, eave - 0.17, hd], SLOT.TRIM, 0.7);
+    slopeCourses(b, X0, X1, eave, Z1, top, 0, SLOT.ROOF, 1.0);
+    slopeCourses(b, X0, X1, eave, Z0, top, 0, SLOT.ROOF, 0.86);
+    // THE GABLE IS MASONRY, not slate. It was drawn in the roof slot, so every
+    // gable end in the town was a triangle of dark grey sitting on a brick
+    // wall, which is the one thing a gable never is.
+    b.tri([X0, eave, Z0], [X0, eave, Z1], [X0, top, 0], SLOT.WALL, 0.82);
+    b.tri([X1, eave, Z1], [X1, eave, Z0], [X1, top, 0], SLOT.WALL, 0.9);
+    b.bevelBox(X0, X1, eave - 0.19, eave + 0.02, Z1 - 0.09, Z1, SLOT.TRIM, 1.02, 0.02);    // fascia
+    b.bevelBox(X0, X1, eave - 0.19, eave + 0.02, Z0, Z0 + 0.09, SLOT.TRIM, 0.95, 0.02);
+    // BARGE BOARDS FOLLOW THE RAKE. They used to be drawn as a full-height
+    // rectangular plate from eaves to ridge across the whole depth of the
+    // roof, which put a pair of two-metre fins above the roof line at each
+    // gable end of every house, terrace, shop and school in the kit. Flat
+    // shading and a dark roof hid them; a ridge cap and a lit slope did not.
+    for (const sx of [-1, 1]) {
+      const x = sx > 0 ? X1 - 0.07 : X0, xb = sx > 0 ? X1 : X0 + 0.07;
+      barge(b, x, xb, eave, Z1, top, 0, 0.26, SLOT.TRIM, sx > 0 ? 1.02 : 0.94);
+      barge(b, x, xb, eave, Z0, top, 0, 0.26, SLOT.TRIM, sx > 0 ? 1.0 : 0.92);
+    }
+    ridgeCap(b, X0, X1, top, 0, 0.15, SLOT.ROOF, 1.08);
+    // Soffit — the underside of the overhang, which is seen from the pavement
+    // on every one of these buildings and used to be wound facing the sky.
+    b.soffit(X0, X1, Z1 - 0.09, hd, eave - 0.19, SLOT.TRIM, 0.72);
+    b.soffit(X0, X1, -hd, Z0 + 0.09, eave - 0.19, SLOT.TRIM, 0.7);
     return b;
   }
   /// A hipped roof: four slopes to a short ridge. The civic and low-rise
   /// residential kinds use it because a hip reads as a deliberate building and
-  /// a gable reads as a house, at any zoom.
+  /// a gable reads as a house, at any zoom. The hips get their own courses and
+  /// a hip roll along each arris.
   function hipRoof(b, hw, hd, eave, rise, over) {
     const o = over == null ? 0.3 : over;
     const X0 = -hw - o, X1 = hw + o, Z0 = -hd - o, Z1 = hd + o, top = eave + rise;
     const rx = Math.max(0.4, hw - hd * 0.85);
-    b.quad([X0, eave, Z1], [X1, eave, Z1], [rx, top, 0], [-rx, top, 0], SLOT.ROOF, 1.0);
-    b.quad([X1, eave, Z0], [X0, eave, Z0], [-rx, top, 0], [rx, top, 0], SLOT.ROOF, 0.86);
+    slopeCourses(b, X0, X1, eave, Z1, top, 0, SLOT.ROOF, 1.0);
+    slopeCourses(b, X0, X1, eave, Z0, top, 0, SLOT.ROOF, 0.86);
     b.tri([X0, eave, Z0], [X0, eave, Z1], [-rx, top, 0], SLOT.ROOF, 0.82);
     b.tri([X1, eave, Z1], [X1, eave, Z0], [rx, top, 0], SLOT.ROOF, 0.9);
-    for (const z of [[Z1 - 0.08, Z1, 1.02], [Z0, Z0 + 0.08, 0.95]]) b.box(X0, X1, eave - 0.17, eave, z[0], z[1], SLOT.TRIM, z[2]);
-    b.box(X0, X0 + 0.08, eave - 0.17, eave, Z0, Z1, SLOT.TRIM, 0.95);
-    b.box(X1 - 0.08, X1, eave - 0.17, eave, Z0, Z1, SLOT.TRIM, 1.0);
-    b.box(-rx, rx, top - 0.05, top + 0.1, -0.13, 0.13, SLOT.ROOF, 1.08);
+    for (const z of [[Z1 - 0.09, Z1, 1.02], [Z0, Z0 + 0.09, 0.95]]) {
+      b.bevelBox(X0, X1, eave - 0.19, eave + 0.02, z[0], z[1], SLOT.TRIM, z[2], 0.02);
+    }
+    b.bevelBox(X0, X0 + 0.09, eave - 0.19, eave + 0.02, Z0, Z1, SLOT.TRIM, 0.95, 0.02);
+    b.bevelBox(X1 - 0.09, X1, eave - 0.19, eave + 0.02, Z0, Z1, SLOT.TRIM, 1.0, 0.02);
+    ridgeCap(b, -rx, rx, top, 0, 0.14, SLOT.ROOF, 1.08);
+    if (b.detail >= 2) {
+      // Hip rolls, one per arris. Four short half-rounds, and they are what
+      // stops the four slopes meeting in a bare crease.
+      for (const sx of [-1, 1]) {
+        for (const sz of [-1, 1]) {
+          const n = 5;
+          for (let i = 0; i < n; i += 1) {
+            const t0 = i / n, t1 = (i + 1) / n;
+            const p = (t) => [sx * (rx + (hw + o - rx) * t), top + (eave - top) * t, sz * (Z1 * t)];
+            // The roll sits INBOARD of the hip line, not astride it: astride,
+            // it put 100 mm of roof past the eaves on each side, and a lot
+            // boundary is not the place to discover that a roll is 200 mm wide.
+            const a = p(t0), c = p(t1), inset = sx * 0.1;
+            b.quad([a[0] - 0.1 - inset, a[1] + 0.05, a[2]], [c[0] - 0.1 - inset, c[1] + 0.05, c[2]],
+              [c[0] + 0.1 - inset, c[1] + 0.05, c[2]], [a[0] + 0.1 - inset, a[1] + 0.05, a[2]], SLOT.ROOF, sx > 0 ? 1.1 : 0.92);
+          }
+        }
+      }
+    }
+    b.soffit(X0, X1, Z1 - 0.09, hd, eave - 0.19, SLOT.TRIM, 0.72);
+    b.soffit(X0, X1, -hd, Z0 + 0.09, eave - 0.19, SLOT.TRIM, 0.7);
+    return b;
+  }
+  /// A gabled dormer on the +Z slope: cheeks, a pitched roof of its own, lead
+  /// flashing at the abutment and a window in the face. Dormers are the reason
+  /// a two-storey roof reads as lived in rather than as a lid, and they are
+  /// the cheapest way to break a long unbroken slope on a terrace.
+  function dormer(b, cx, w, yBase, sill, h, zFace, slope) {
+    const hw = w / 2, top = sill + h;
+    const zBack = zFace - (slope || 1.6);
+    b.wall(cx - hw, cx + hw, yBase, top + 0.1, zBack, zFace, SLOT.WALL, 0.98);
+    b.bevelBox(cx - hw - 0.07, cx + hw + 0.07, top + 0.1, top + 0.22, zBack, zFace + 0.1, SLOT.TRIM, 1.04, 0.02);
+    // Its own little roof, ridged along Z so the gable faces the street.
+    b.quad([cx - hw - 0.08, top + 0.22, zFace + 0.1], [cx, top + 0.62, zFace + 0.1],
+      [cx, top + 0.62, zBack], [cx - hw - 0.08, top + 0.22, zBack], SLOT.ROOF, 0.88);
+    b.quad([cx, top + 0.62, zFace + 0.1], [cx + hw + 0.08, top + 0.22, zFace + 0.1],
+      [cx + hw + 0.08, top + 0.22, zBack], [cx, top + 0.62, zBack], SLOT.ROOF, 1.06);
+    b.tri([cx - hw - 0.08, top + 0.22, zFace + 0.1], [cx + hw + 0.08, top + 0.22, zFace + 0.1], [cx, top + 0.62, zFace + 0.1], SLOT.ROOF, 1.0);
+    if (b.detail >= 2) {
+      // Lead soakers where the cheeks die into the main slope.
+      for (const sx of [-1, 1]) {
+        b.box(cx + sx * hw - 0.05, cx + sx * hw + 0.05, yBase, yBase + 0.28, zBack, zFace - 0.1, SLOT.METAL, sx > 0 ? 1.05 : 0.9);
+      }
+    }
+    sash(b, cx, sill, w - 0.62, h - 0.28, zFace, 2, 3);
+    return b;
+  }
+  /// Dormers on the +Z slope of a pitched roof, sized to the roof they are
+  /// standing on. The caller says where along the frontage it wants them; the
+  /// height comes from the room between the roof surface and the ridge, so a
+  /// shallow roof gets a squat dormer and a steep one gets a full-height
+  /// window, and neither ever pokes out of the ridge.
+  function roofDormers(b, hw, hd, eave, rise, over, xs, w) {
+    if (b.detail < 2) return b;                         // a dormer is a close-range read
+    const Z1 = hd + (over == null ? 0.32 : over), depth = 1.4;
+    const zFace = hd * 0.9;
+    const roofY = (z) => eave + rise * (1 - z / Z1);
+    const yBase = roofY(zFace) - 0.12, sill = yBase + 0.36;
+    const h = Math.min(1.25, eave + rise - sill - 0.78);
+    if (!(h > 0.72) || roofY(zFace - depth) + 0.3 > sill + h) return b;
+    for (const x of xs) if (Math.abs(x) + w / 2 < hw - 0.35) dormer(b, x, w, yBase, sill, h, zFace, depth);
     return b;
   }
   /// A flat roof with a parapet, coping and whatever plant the building needs.
@@ -467,29 +997,67 @@
       for (let i = 0; i < 4; i += 1) {
         b.box(hw * 0.2 + i * (hw * 0.09), hw * 0.24 + i * (hw * 0.09), y + 1.35, y + 1.5, -hd * 0.44, -hd * 0.12, SLOT.METAL, 1.05);
       }
-      b.cyl(-hw * 0.62, hd * 0.42, y, y + 1.8, 0.42, 0.42, 8, SLOT.METAL, 0.95);          // water tank
+      tube(b, -hw * 0.62, hd * 0.42, y, y + 1.8, 0.42, 0.42, b.segs(10, 7, 5), SLOT.METAL, 0.95);   // water tank
     }
     return b;
   }
-  /// A stack with corbelled head and pots. Chimneys are the single cheapest
-  /// thing that says "temperate, and not new": the kit puts one on every
-  /// pitched roof and one per party wall on a terrace.
+  /// A stack with a corbelled head, lead flashing at the roof line and clay
+  /// pots. Chimneys are the single cheapest thing that says "temperate, and
+  /// not new": the kit puts one on every pitched roof and one per party wall
+  /// on a terrace. The pots are smoothed and have a rim and a hollow throat,
+  /// because a pot is the most obviously round object on the skyline and a
+  /// hexagonal one gives the whole roof away.
   function chimney(b, cx, cz, base, top, w, d, pots) {
-    b.box(cx - w / 2, cx + w / 2, base, top, cz - d / 2, cz + d / 2, SLOT.WALL, 1.0);
-    b.box(cx - w / 2 - 0.09, cx + w / 2 + 0.09, top - 0.3, top, cz - d / 2 - 0.09, cz + d / 2 + 0.09, SLOT.WALL, 1.06);
+    b.box(cx - w / 2, cx + w / 2, base, top - 0.32, cz - d / 2, cz + d / 2, SLOT.WALL, 1.0);
+    b.bevelBox(cx - w / 2 - 0.09, cx + w / 2 + 0.09, top - 0.32, top, cz - d / 2 - 0.09, cz + d / 2 + 0.09, SLOT.WALL, 1.06, 0.025);
+    if (b.detail >= 2) {
+      // Flashing: a lead apron and two soakers where the stack passes through
+      // the slope. Thirty centimetres of grey at the base is what stops a
+      // chimney reading as a box pushed into a roof.
+      b.bevelBox(cx - w / 2 - 0.06, cx + w / 2 + 0.06, base + 0.02, base + 0.26, cz - d / 2 - 0.06, cz + d / 2 + 0.06, SLOT.METAL, 0.95, 0.02);
+    }
     const n = pots || 2;
     for (let i = 0; i < n; i += 1) {
       const x = cx + (n === 1 ? 0 : (i / (n - 1) - 0.5) * (w - 0.4));
-      b.cyl(x, cz, top, top + 0.55, 0.14, 0.12, 6, SLOT.ROOF, 1.1);
+      tube(b, x, cz, top, top + 0.58, 0.145, 0.125, b.segs(9, 6, 4), SLOT.ROOF, 1.1);
+      if (b.detail >= 2) {
+        tube(b, x, cz, top + 0.58, top + 0.66, 0.155, 0.15, 9, SLOT.ROOF, 1.14);   // rim
+        tube(b, x, cz, top + 0.5, top + 0.62, 0.09, 0.09, 9, SLOT.DARK, 0.7);      // throat
+      }
     }
     return b;
   }
-  /// Eaves gutter and one downpipe. Cheap, and the vertical line of a
-  /// downpipe is what breaks up a blank gable at close range.
+  /// Eaves gutter, brackets and downpipes. A half-round gutter on brackets and
+  /// the vertical line of a pipe with a swan neck off the eaves are two of the
+  /// half-dozen details that separate a modelled building from a massing
+  /// study, and they read from further away than they have any right to
+  /// because they are the only near-vertical lines on an elevation.
   function rainwater(b, hw, hd, eave) {
-    b.box(-hw - 0.3, hw + 0.3, eave - 0.3, eave - 0.18, hd + 0.2, hd + 0.34, SLOT.TRIM, 1.02);
-    b.cyl(hw - 0.18, hd + 0.28, 0, eave - 0.28, 0.06, 0.06, 6, SLOT.TRIM, 1.0);
-    b.cyl(-hw + 0.18, hd + 0.28, 0, eave - 0.28, 0.06, 0.06, 6, SLOT.TRIM, 1.0);
+    const z = hd + 0.26, y = eave - 0.24;
+    halfRound(b, -hw - 0.3, hw + 0.3, y, z, 0.11, b.segs(7, 5, 3), 1, SLOT.TRIM, 1.02);
+    if (b.detail >= 2) {
+      const n = Math.max(2, Math.round(hw / 1.5));
+      for (let i = 0; i <= n; i += 1) {
+        const x = -hw - 0.2 + ((hw + 0.2) * 2 * i) / n;
+        b.box(x - 0.02, x + 0.02, y - 0.02, y + 0.13, z - 0.16, z + 0.13, SLOT.METAL, 0.95);
+      }
+    }
+    for (const sx of [-1, 1]) {
+      const px = sx * (hw - 0.18), seg = b.segs(8, 5, 4);
+      if (b.detail >= 2) {
+        b.box(px - 0.11, px + 0.11, y - 0.06, y + 0.16, z - 0.13, z + 0.12, SLOT.TRIM, 1.06);   // hopper
+        tube(b, px, z, y - 0.34, y - 0.06, 0.055, 0.055, seg, SLOT.TRIM, 1.0);                  // swan neck
+        tube(b, px, hd + 0.07, y - 0.52, y - 0.3, 0.055, 0.055, seg, SLOT.TRIM, 1.0);
+        b.box(px - 0.055, px + 0.055, y - 0.36, y - 0.3, hd + 0.05, z, SLOT.TRIM, 0.98);
+        tube(b, px, hd + 0.07, 0.16, y - 0.5, 0.055, 0.055, seg, SLOT.TRIM, 1.0);
+        tube(b, px, hd + 0.07, 0.0, 0.16, 0.07, 0.06, seg, SLOT.TRIM, 0.95);                    // shoe
+        for (let k = 1; k * 1.9 < y - 0.6; k += 1) {
+          b.box(px - 0.085, px + 0.085, k * 1.9, k * 1.9 + 0.05, hd + 0.02, hd + 0.09, SLOT.METAL, 0.95);
+        }
+      } else {
+        tube(b, px, hd + 0.07, 0, y - 0.1, 0.055, 0.055, seg, SLOT.TRIM, 1.0);
+      }
+    }
     return b;
   }
 
@@ -498,7 +1066,10 @@
   /// the reason a front garden costs real triangles, and they are also the
   /// reason it reads as a front garden rather than a green rectangle.
   function railing(b, x0, x1, z, y, h, pitch) {
-    const n = Math.max(2, Math.round((x1 - x0) / (pitch || 0.24)));
+    // Baluster pitch doubles below close range. A railing is read as a texture
+    // of verticals and half of them at twice the spacing reads the same at
+    // card size, which matters because a block is full of railings.
+    const n = Math.max(2, Math.round((x1 - x0) / ((pitch || 0.24) * (b.detail >= 2 ? 1 : 2))));
     b.box(x0, x1, y + h - 0.09, y + h, z - 0.03, z + 0.03, SLOT.METAL, 1.05);
     b.box(x0, x1, y + h * 0.42, y + h * 0.42 + 0.05, z - 0.025, z + 0.025, SLOT.METAL, 0.95);
     for (let i = 0; i <= n; i += 1) {
@@ -509,27 +1080,93 @@
   }
   function lowWall(b, x0, x1, z0, z1, h) {
     b.box(x0, x1, 0, h, z0, z1, SLOT.WALL, 0.96);
-    b.box(x0 - 0.04, x1 + 0.04, h, h + 0.08, z0 - 0.04, z1 + 0.04, SLOT.TRIM, 1.06);
+    b.bevelBox(x0 - 0.05, x1 + 0.05, h, h + 0.09, z0 - 0.05, z1 + 0.05, SLOT.TRIM, 1.06, 0.02);   // coping
     return b;
   }
-  /// A deciduous street tree: tapered trunk, two canopy masses. Two masses
-  /// rather than one because a single blob reads as a lollipop, and the
-  /// second one is twenty-four triangles.
+  /// A clipped hedge. A box of leaves reads as a box, so this is a box with
+  /// every arris taken off and a few lobes settled on top of it: the silhouette
+  /// a hedge actually has is soft on the corners and lumpy along the top, and
+  /// those are the only two things about it the eye checks.
+  function hedge(b, x0, x1, z0, z1, h, mat) {
+    const m = mat == null ? 0.95 : mat;
+    b.bevelBox(x0, x1, 0, h, z0, z1, SLOT.FOLIAGE, m, Math.min(0.16, (z1 - z0) / 2.6));
+    if (b.detail < 2) return b;
+    const run = x1 - x0, n = Math.max(1, Math.min(7, Math.round(run / 1.6)));
+    const r = Math.min(0.42, (z1 - z0) * 0.55);
+    for (let i = 0; i < n; i += 1) {
+      const x = x0 + (run * (i + 0.5)) / n;
+      lobe(b, x, h - r * 0.35, (z0 + z1) / 2, run / n * 0.52, r * 0.7, r, 6, 3, SLOT.FOLIAGE, m * (i % 2 ? 1.06 : 0.94));
+    }
+    return b;
+  }
+  /// A deciduous street tree. Tapered trunk with a root flare, three limbs
+  /// into the crown, and a crown made of overlapping lobes rather than one
+  /// blob — a lollipop is what a single mass always reads as, and the branches
+  /// are what stop the canopy floating.
+  ///
+  /// Deterministic in its arguments alone: the crown arrangement is hashed
+  /// from the height and the lean it was given, never from a counter or a
+  /// clock, so the same tree in two towns is the same tree.
   function tree(b, cx, cz, h, lean, seg) {
-    const s = seg || 6, r = h * 0.055;
-    b.loft(oval(cx, cz, r, r, s), oval(cx + lean * 0.3, cz, r * 0.62, r * 0.62, s), 0, h * 0.42, SLOT.WALL, 0.55);
-    const c1 = h * 0.62, c2 = h * 0.86, rad = h * 0.3;
-    b.loft(oval(cx + lean * 0.4, cz, rad * 0.55, rad * 0.55, s), oval(cx + lean * 0.6, cz, rad, rad * 0.92, s), h * 0.38, c1, SLOT.FOLIAGE, 0.9);
-    b.loft(oval(cx + lean * 0.6, cz, rad, rad * 0.92, s), oval(cx + lean * 0.8, cz + lean * 0.2, rad * 0.72, rad * 0.7, s), c1, c2, SLOT.FOLIAGE, 1.05);
-    b.loft(oval(cx + lean * 0.8, cz + lean * 0.2, rad * 0.72, rad * 0.7, s), oval(cx + lean, cz + lean * 0.3, rad * 0.16, rad * 0.16, s), c2, h, SLOT.FOLIAGE, 1.1);
+    const s = b.segs(Math.max(7, seg || 7), 5, 4), r = h * 0.055;
+    const salt = mix32(Math.round(h * 97) ^ Math.imul(Math.round(lean * 211) | 0, 0x2545f491));
+    b.smoothed(() => {
+      b.loft(oval(cx, cz, r * 1.35, r * 1.35, s), oval(cx, cz, r, r, s), 0, h * 0.09, SLOT.WALL, 0.5, false);
+      b.loft(oval(cx, cz, r, r, s), oval(cx + lean * 0.3, cz, r * 0.62, r * 0.62, s), h * 0.09, h * 0.42, SLOT.WALL, 0.55, false);
+    });
+    if (b.detail >= 2) {
+      // Three limbs off the crotch. Short, tapered and smoothed, and they cost
+      // about seventy triangles for the whole tree.
+      for (let i = 0; i < 3; i += 1) {
+        const a = ((salt >>> (i * 5)) % 6) / 6 * Math.PI * 2;
+        const dx = Math.cos(a) * h * 0.16, dz = Math.sin(a) * h * 0.16;
+        b.smoothed(() => {
+          b.loft(oval(cx + lean * 0.3, cz, r * 0.5, r * 0.5, 5),
+            oval(cx + lean * 0.4 + dx, cz + dz, r * 0.22, r * 0.22, 5), h * 0.4, h * 0.62, SLOT.WALL, 0.6, false);
+        });
+      }
+    }
+    // THE CROWN STAYS INSIDE ITS OLD ENVELOPE. The outer lobes are offset by
+    // 0.34 of the radius and are 0.6 of it across, so the widest reach is
+    // 0.94 rad — narrower than the single blob this replaced. That is not
+    // fussiness: a street tree sits a metre and a half off a lot boundary, and
+    // a crown that grew 18% wider put a civic building's trees through the
+    // school next door and failed the neighbour check rather than looking bad.
+    const rad = h * 0.3, cy = h * 0.72, lobes = b.detail >= 2 ? 4 : 1;
+    for (let i = 0; i < lobes; i += 1) {
+      const a = ((salt >>> (i * 4 + 3)) % 8) / 8 * Math.PI * 2;
+      const off = i === 0 ? 0 : rad * 0.34;
+      lobe(b, cx + lean * 0.6 + Math.cos(a) * off, cy + (i === 0 ? rad * 0.1 : ((salt >>> (i * 3)) % 5 - 2) * rad * 0.16),
+        cz + Math.sin(a) * off, rad * (i === 0 ? 0.94 : 0.6), rad * (i === 0 ? 0.82 : 0.56), rad * (i === 0 ? 0.9 : 0.58),
+        s, b.detail >= 2 ? 4 : 3, SLOT.FOLIAGE, 0.86 + (i % 3) * 0.09);
+    }
     return b;
   }
+  /// A lamp column: cast base, tapered smooth column, swan neck and a lantern
+  /// with the lens facing DOWN, which is the direction a lantern points.
   function lampColumn(b, cx, cz, out) {
-    b.box(cx - 0.22, cx + 0.22, 0, 0.16, cz - 0.22, cz + 0.22, SLOT.GROUND, 1.0);
-    b.cyl(cx, cz, 0.1, 7.2, 0.11, 0.07, 6, SLOT.METAL, 0.95);
-    b.box(cx, cx + out * 1.1, 7.05, 7.2, cz - 0.05, cz + 0.05, SLOT.METAL, 1.0);
-    b.box(cx + out * 0.75, cx + out * 1.3, 6.72, 7.06, cz - 0.19, cz + 0.19, SLOT.METAL, 1.05);
-    b.slab(cx + out * 0.78, cx + out * 1.27, cz - 0.16, cz + 0.16, 6.71, SLOT.GLASS, 1.1);
+    const s = b.segs(8, 6, 4);
+    b.bevelBox(cx - 0.22, cx + 0.22, 0, 0.17, cz - 0.22, cz + 0.22, SLOT.GROUND, 1.0, 0.025);
+    tube(b, cx, cz, 0.1, 0.62, 0.15, 0.115, s, SLOT.METAL, 0.9);
+    tube(b, cx, cz, 0.62, 7.2, 0.11, 0.07, s, SLOT.METAL, 0.95);
+    if (b.detail >= 2) {
+      // Swan neck: two short tubes and a knuckle, which is what a 1990 column
+      // has where the bracket leaves the shaft.
+      tube(b, cx + out * 0.3, cz, 7.05, 7.24, 0.06, 0.06, 6, SLOT.METAL, 1.0);
+      b.box(cx, cx + out * 1.1, 7.06, 7.2, cz - 0.05, cz + 0.05, SLOT.METAL, 1.0);
+    } else {
+      b.box(cx, cx + out * 1.1, 7.05, 7.2, cz - 0.05, cz + 0.05, SLOT.METAL, 1.0);
+    }
+    // A column with no bracket (out === 0) carries the lantern on its head
+    // rather than nowhere: the civic forecourt asks for exactly that, and the
+    // old code quietly emitted a zero-width lantern that every triangle of got
+    // dropped as degenerate.
+    const a0 = out ? out * 0.72 : -0.28, a1 = out ? out * 1.34 : 0.28;
+    const l0 = cx + Math.min(a0, a1), l1 = cx + Math.max(a0, a1);
+    b.loft([[l0, cz - 0.2], [l1, cz - 0.2], [l1, cz + 0.2], [l0, cz + 0.2]],
+      [[l0 + 0.06, cz - 0.15], [l1 - 0.06, cz - 0.15], [l1 - 0.06, cz + 0.15], [l0 + 0.06, cz + 0.15]],
+      6.72, 7.08, SLOT.METAL, 1.05);
+    b.soffit(l0 + 0.05, l1 - 0.05, cz - 0.16, cz + 0.16, 6.715, SLOT.GLASS, 1.14);
     return b;
   }
   function bench(b, cx, cz, yaw) {
@@ -544,18 +1181,119 @@
     return b;
   }
   function bollard(b, cx, cz) {
-    b.cyl(cx, cz, 0, 0.92, 0.09, 0.08, 6, SLOT.METAL, 1.0);
-    b.cyl(cx, cz, 0.92, 1.0, 0.11, 0.05, 6, SLOT.METAL, 1.08);
+    const s = b.segs(9, 6, 4);
+    tube(b, cx, cz, 0, 0.08, 0.115, 0.1, s, SLOT.METAL, 0.85);        // spread foot
+    tube(b, cx, cz, 0.08, 0.9, 0.09, 0.08, s, SLOT.METAL, 1.0);
+    tube(b, cx, cz, 0.9, 0.96, 0.105, 0.09, s, SLOT.METAL, 1.06);     // collar
+    if (b.detail >= 2) lobe(b, cx, 0.96, cz, 0.09, 0.09, 0.09, s, 3, SLOT.METAL, 1.1);
+    else tube(b, cx, cz, 0.96, 1.02, 0.09, 0.04, s, SLOT.METAL, 1.08);
     return b;
   }
   function litterBin(b, cx, cz) {
-    b.cyl(cx, cz, 0, 0.9, 0.24, 0.26, 8, SLOT.METAL, 0.9);
-    b.cyl(cx, cz, 0.9, 1.0, 0.28, 0.22, 8, SLOT.DARK, 1.0);
+    const s = b.segs(10, 7, 5);
+    tube(b, cx, cz, 0, 0.14, 0.2, 0.24, s, SLOT.METAL, 0.8);
+    tube(b, cx, cz, 0.14, 0.88, 0.24, 0.26, s, SLOT.METAL, 0.9);
+    tube(b, cx, cz, 0.88, 0.98, 0.28, 0.27, s, SLOT.DARK, 1.0);
+    if (b.detail >= 2) {
+      tube(b, cx, cz, 0.98, 1.06, 0.27, 0.2, s, SLOT.DARK, 1.05);
+      for (let i = 0; i < 3; i += 1) {                                 // banding
+        b.cyl(cx, cz, 0.3 + i * 0.2, 0.34 + i * 0.2, 0.265, 0.265, s, SLOT.METAL, 1.06, false);
+      }
+    }
     return b;
   }
   function roadSign(b, cx, cz, h) {
-    b.cyl(cx, cz, 0, h, 0.05, 0.05, 6, SLOT.METAL, 1.0);
-    b.box(cx - 0.34, cx + 0.34, h - 0.5, h, cz - 0.03, cz + 0.03, SLOT.TRIM, 1.08);
+    tube(b, cx, cz, 0, h, 0.055, 0.05, b.segs(8, 6, 4), SLOT.METAL, 1.0);
+    b.bevelBox(cx - 0.34, cx + 0.34, h - 0.5, h, cz - 0.035, cz + 0.035, SLOT.TRIM, 1.08, 0.02);
+    return b;
+  }
+  /// A wheel with its axle along Z, which is across a car whose length runs
+  /// along X: tread, two walls and a dished rim. Round things are where smooth
+  /// normals earn their keep, and a wheel is the roundest thing in a street.
+  function wheel(b, cx, cy, cz, r, halfW, seg, slot, mat) {
+    const n = Math.max(5, seg | 0);
+    const P = (a, rr) => [cx + Math.cos(a) * rr, cy + Math.sin(a) * rr];
+    b.smoothed(() => {
+      for (let i = 0; i < n; i += 1) {
+        const p0 = P((i / n) * Math.PI * 2, r), p1 = P(((i + 1) / n) * Math.PI * 2, r);
+        b.quad([p0[0], p0[1], cz + halfW], [p0[0], p0[1], cz - halfW],
+          [p1[0], p1[1], cz - halfW], [p1[0], p1[1], cz + halfW], slot, mat);
+      }
+    });
+    if (b.detail < 2) return b;
+    const hub = r * 0.56;
+    for (const sz of [-1, 1]) {
+      const z = cz + sz * halfW;
+      for (let i = 0; i < n; i += 1) {
+        const a0 = (i / n) * Math.PI * 2, a1 = ((i + 1) / n) * Math.PI * 2;
+        const o0 = P(a0, r), o1 = P(a1, r), i0 = P(a0, hub), i1 = P(a1, hub);
+        if (sz > 0) b.quad([o0[0], o0[1], z], [o1[0], o1[1], z], [i1[0], i1[1], z], [i0[0], i0[1], z], slot, mat * 0.88);
+        else b.quad([i0[0], i0[1], z], [i1[0], i1[1], z], [o1[0], o1[1], z], [o0[0], o0[1], z], slot, mat * 0.88);
+        // The rim inside the tyre wall, a shade brighter and set in.
+        const rz = z - sz * 0.012;
+        if (sz > 0) b.tri([i0[0], i0[1], rz], [i1[0], i1[1], rz], [cx, cy, rz], SLOT.METAL, 1.0);
+        else b.tri([i1[0], i1[1], rz], [i0[0], i0[1], rz], [cx, cy, rz], SLOT.METAL, 1.0);
+      }
+    }
+    return b;
+  }
+  /// A parked car. Generic three-box saloon of the period: no badge, no grille
+  /// pattern, no maker. It is here because an empty kerb is the single loudest
+  /// way a generated street says nobody lives there, and because a car is a
+  /// known-size object the eye measures the whole street against.
+  function parkedCar(b, cx, cz, yaw, paint, len) {
+    const L = len == null ? 4.1 : len, hl = L / 2, hwid = 0.82, s = b.segs(12, 7, 5);
+    b.push(yaw, cx, 0, cz);
+    if (b.detail < 1) {
+      b.box(-hl, hl, 0.2, 1.32, -hwid, hwid, paint, 1.0);
+      b.pop();
+      return b;
+    }
+    if (b.detail < 2) {
+      b.box(-hl, hl, 0.28, 0.92, -hwid, hwid, paint, 1.0);
+      b.box(-hl * 0.42, hl * 0.5, 0.92, 1.38, -hwid + 0.09, hwid - 0.09, SLOT.GLASS, 0.95);
+      for (const sx of [-1, 1]) for (const sz of [-1, 1]) {
+        b.box(sx * hl * 0.62 - 0.28, sx * hl * 0.62 + 0.28, 0.02, 0.6, sz * (hwid - 0.02) - 0.11, sz * (hwid - 0.02) + 0.11, SLOT.DARK, 0.9);
+      }
+      b.pop();
+      return b;
+    }
+    // Lower body, bonnet and boot as three chamfered masses. The chamfers are
+    // the point: a car with square arrises reads as a brick, and 20 mm off
+    // every edge is what gives it the long highlight down the flank.
+    b.bevelBox(-hl, hl, 0.34, 0.9, -hwid, hwid, paint, 1.0, 0.055);
+    b.bevelBox(-hl, -hl * 0.38, 0.86, 1.03, -hwid + 0.03, hwid - 0.03, paint, 1.05, 0.045);   // bonnet
+    b.bevelBox(hl * 0.46, hl, 0.86, 1.06, -hwid + 0.03, hwid - 0.03, paint, 0.98, 0.045);     // boot
+    // Cabin, tapered in on all four sides, with the glazing set inside it.
+    b.loft([[-hl * 0.4, -hwid + 0.04], [hl * 0.48, -hwid + 0.04], [hl * 0.48, hwid - 0.04], [-hl * 0.4, hwid - 0.04]],
+      [[-hl * 0.2, -hwid + 0.2], [hl * 0.34, -hwid + 0.2], [hl * 0.34, hwid - 0.2], [-hl * 0.2, hwid - 0.2]],
+      0.9, 1.45, paint, 1.06);
+    for (const sz of [-1, 1]) {
+      // Wound per side. A quad mirrored across an axis reverses, and the near
+      // side's window would otherwise face into the car.
+      const p = [[-hl * 0.34, 0.98, sz * (hwid - 0.02)], [hl * 0.42, 0.98, sz * (hwid - 0.02)],
+        [hl * 0.3, 1.4, sz * (hwid - 0.17)], [-hl * 0.16, 1.4, sz * (hwid - 0.17)]];
+      if (sz > 0) b.quad(p[0], p[1], p[2], p[3], SLOT.GLASS, 1.0);
+      else b.quad(p[3], p[2], p[1], p[0], SLOT.GLASS, 0.86);
+    }
+    b.quad([-hl * 0.38, 0.95, -hwid + 0.05], [-hl * 0.38, 0.95, hwid - 0.05],
+      [-hl * 0.19, 1.42, hwid - 0.19], [-hl * 0.19, 1.42, -hwid + 0.19], SLOT.GLASS, 1.05);   // windscreen
+    b.quad([hl * 0.46, 0.95, hwid - 0.05], [hl * 0.46, 0.95, -hwid + 0.05],
+      [hl * 0.33, 1.42, -hwid + 0.19], [hl * 0.33, 1.42, hwid - 0.19], SLOT.GLASS, 0.9);      // backlight
+    for (const sx of [-1, 1]) {
+      // Bumper, lamps and an arch liner at each end.
+      b.bevelBox(sx * hl - (sx > 0 ? 0.14 : 0), sx * hl + (sx > 0 ? 0 : 0.14), 0.42, 0.62, -hwid - 0.02, hwid + 0.02, SLOT.DARK, 1.0, 0.02);
+      for (const sz of [-1, 1]) {
+        b.box(sx * hl - 0.06, sx * hl + 0.06, 0.68, 0.86, sz * (hwid - 0.42), sz * (hwid - 0.12),
+          sx < 0 ? SLOT.GLASS : SLOT.CAR_A, sx < 0 ? 1.18 : 1.1);
+        wheel(b, sx * hl * 0.62, 0.32, sz * (hwid - 0.06), 0.32, 0.1, s, SLOT.DARK, 1.0);
+        b.box(sx * hl * 0.62 - 0.36, sx * hl * 0.62 + 0.36, 0.34, 0.68, sz * (hwid - 0.12) - 0.02, sz * (hwid - 0.12) + 0.02, SLOT.DARK, 0.7);
+      }
+    }
+    for (const sz of [-1, 1]) {                                                     // mirrors
+      b.box(-hl * 0.3, -hl * 0.22, 1.0, 1.12, sz * (hwid + 0.02) - 0.05, sz * (hwid + 0.02) + 0.05, SLOT.DARK, 0.95);
+    }
+    b.pop();
     return b;
   }
 
@@ -614,11 +1352,15 @@
   /// The courses cost twelve triangles each and they are what stops a
   /// four-storey wall reading as one tall blank slab.
   function shell(b, hw, hd, h, courses, courseAt) {
-    b.box(-hw, hw, 0, h, -hd, hd, SLOT.WALL, 1.0);
-    b.box(-hw - 0.13, hw + 0.13, 0, 0.6, -hd - 0.13, hd + 0.13, SLOT.TRIM, 0.9);
+    b.wall(-hw, hw, 0, h, -hd, hd, SLOT.WALL, 1.0);
+    // Plinth and string courses get their arris taken off. They are the two
+    // horizontal lines a masonry elevation has, they run the whole width of
+    // the building, and a chamfer is what makes them read as a projecting
+    // course rather than as a change of paint.
+    b.bevelBox(-hw - 0.14, hw + 0.14, 0, 0.62, -hd - 0.14, hd + 0.14, SLOT.TRIM, 0.9, 0.028);
     for (let i = 1; i <= (courses || 0); i += 1) {
       const y = courseAt(i);
-      b.box(-hw - 0.07, hw + 0.07, y - 0.09, y + 0.09, -hd - 0.07, hd + 0.07, SLOT.TRIM, 1.04);
+      b.bevelBox(-hw - 0.08, hw + 0.08, y - 0.09, y + 0.09, -hd - 0.08, hd + 0.08, SLOT.TRIM, 1.04, 0.022);
     }
     return b;
   }
@@ -641,9 +1383,12 @@
       gableRoof(b, hw, hd, h, hd * 0.82);
       chimney(b, -hw + 0.5, 0, h, h + hd * 0.82 + 1.05, 1.05, 0.75, 2);
       rainwater(b, hw, hd, h);
+      // One dormer in the front slope. A temperate house of this age with a
+      // roof this steep has a room in it, and the dormer is what says so.
+      roofDormers(b, hw, hd, h, hd * 0.82, 0.32, [hw - 3.4], 1.45);
       // Front elevation: a canted bay on the ground floor, sashes above.
       const bayW = Math.min(3.1, p.w * 0.32), bx = -hw + bayW * 0.62 + 0.5;
-      b.box(bx - bayW / 2, bx + bayW / 2, 0, 2.75, hd, hd + 1.05, SLOT.WALL, 1.02);
+      b.wall(bx - bayW / 2, bx + bayW / 2, 0, 2.75, hd, hd + 1.05, SLOT.WALL, 1.02);
       b.box(bx - bayW / 2 - 0.14, bx + bayW / 2 + 0.14, 2.75, 2.95, hd - 0.05, hd + 1.2, SLOT.ROOF, 1.08);
       sash(b, bx, 0.72, bayW - 0.9, 1.65, hd + 1.05, 3, 2);
       sash(b, bx - bayW / 2 - 0.02, 0.72, 0.7, 1.65, hd + 0.5, 1, 2);
@@ -655,13 +1400,13 @@
       // Rear and sides.
       b.push(2, 0, 0, 0);
       for (let s = 0; s < p.storeys; s += 1) {
-        sash(b, -hw + 1.5, s * STOREY + 0.85, 1.2, 1.55, hd, 2, 3);
-        sash(b, hw - 1.6, s * STOREY + 0.85, 1.5, 1.55, hd, 2, 3);
+        sash(b, -hw + 1.5, s * STOREY + 0.85, 1.2, 1.55, hd, 2, 3, false);
+        sash(b, hw - 1.6, s * STOREY + 0.85, 1.5, 1.55, hd, 2, 3, false);
       }
       b.pop();
       for (const yaw of [1, 3]) {
         b.push(yaw, 0, 0, 0);
-        for (let s = 0; s < p.storeys; s += 1) sash(b, 0.6, s * STOREY + 1.0, 0.95, 1.35, hw, 2, 2);
+        for (let s = 0; s < p.storeys; s += 1) sash(b, 0.6, s * STOREY + 1.0, 0.95, 1.35, hw, 2, 2, false);
         b.pop();
       }
       // Single-storey rear addition — every temperate house of this age has one.
@@ -676,7 +1421,12 @@
       railing(b, 1.0, p.w / 2 - 0.1, fz - 0.22, 0.63, 0.55, 0.26);
       for (const x of [-1.0, 1.0]) b.box(x - 0.19, x + 0.19, 0, 1.25, fz - 0.5, fz - 0.12, SLOT.WALL, 1.0);
       paving(b, -0.85, 0.85, zc + hd, fz - 0.2);
-      paving(b, hw - 2.4, hw - 0.6, zc + hd - 0.1, zc + hd + 0.1);
+      // Drive down the side of the house, with the car that goes on it. A
+      // driveway with nothing parked on it reads as a slab of grey; a car is
+      // also the object that tells the eye how big the house is.
+      paving(b, hw - 2.9, hw - 0.5, -p.d / 2 + 3.2, fz - 0.6);
+      parkedCar(b, hw - 1.7, fz - 3.4, 1, SLOT.CAR_B, 4.0);
+      hedge(b, -p.w / 2, -1.6, zc + hd + 1.2, zc + hd + 1.9, 1.15);
       tree(b, -p.w / 2 + 1.5, fz - 3.2, 5.4, 0.25, 6);
       railing(b, -0.95, 0.95, fz - 0.3, 0, 1.05, 0.2);                        // gate
       b.box(-p.w / 2 + 0.8, -p.w / 2 + 3.0, 0, 2.05, -p.d / 2 + 0.8, -p.d / 2 + 2.6, SLOT.WALL, 0.94);
@@ -705,6 +1455,8 @@
       b.push(0, 0, 0, zc);
       shell(b, hw, hd, h, p.storeys - 1, (i) => i * STOREY);
       gableRoof(b, hw, hd, h, hd * 0.8, 0.22);
+      roofDormers(b, hw, hd, h, hd * 0.8, 0.22,
+        (function () { const xs = []; for (let u = 0; u < units; u += 1) xs.push(-hw + uw * (u + 0.5)); return xs; })(), 1.25);
       // A stack on every party wall and both ends: the signature of a terrace.
       for (let i = 0; i <= units; i += 1) {
         const inset = i === 0 ? 0.62 : i === units ? -0.62 : 0;
@@ -723,9 +1475,22 @@
       b.push(2, 0, 0, 0);
       for (let u = 0; u < units; u += 1) {
         const cx = -hw + uw * (u + 0.5);
-        for (let s = 0; s < p.storeys; s += 1) sash(b, cx, s * STOREY + 0.9, uw * 0.38, 1.45, hd, 2, 2);
-        b.box(cx - uw * 0.3, cx + uw * 0.16, 0, 2.4, -hd - 2.4, -hd + 0.1, SLOT.WALL, 0.94);
-        b.box(cx - uw * 0.34, cx + uw * 0.2, 2.4, 2.6, -hd - 2.55, -hd + 0.1, SLOT.ROOF, 1.05);
+        // The ground-floor back window sits BESIDE the addition, not behind it,
+        // which is both where a terrace actually puts it and the only place it
+        // can be seen from. The upper floors have the whole wall to themselves.
+        for (let s = 1; s < p.storeys; s += 1) sash(b, cx, s * STOREY + 0.9, uw * 0.38, 1.45, hd, 2, 2, false);
+        sash(b, cx + uw * 0.32, 0.9, uw * 0.24, 1.35, hd, 2, 2, false);
+        // THE BACK ADDITION GOES OUT THE BACK. This frame is pushed at yaw 2,
+        // which mirrors BOTH x and z, so the rear wall the sashes above sit in
+        // is at +hd here and everything behind the house is at z greater than
+        // that. Authored with -hd the outrigger landed on the other side of the
+        // building entirely: 2.4 m of blank brick standing in the FRONT garden
+        // of every unit, across the ground-floor sashes and the front doors and
+        // through the dwarf wall. Measured on the street elevation before the
+        // repair, 6 of 32 ground-floor panes could be seen from outside; the
+        // upper floors, which nothing stood in front of, were 36 of 36.
+        b.box(cx - uw * 0.3, cx + uw * 0.16, 0, 2.4, hd - 0.1, hd + 2.4, SLOT.WALL, 0.94);
+        b.box(cx - uw * 0.34, cx + uw * 0.2, 2.4, 2.6, hd - 0.1, hd + 2.55, SLOT.ROOF, 1.05);
       }
       b.pop();
       b.pop();
@@ -735,6 +1500,11 @@
       lowWall(b, -hw, hw, fz - 1.2, fz - 0.85, 0.5);
       railing(b, -hw, hw, fz - 1.02, 0.58, 0.5, 0.24);
       for (let u = 0; u < units; u += 1) grass(b, -hw + uw * u + 0.4, -hw + uw * (u + 1) - 0.4, -p.d / 2 + 0.5, zc - hd - 3.0);
+      // Two cars nose to tail at the kerb. A terrace with an empty frontage is
+      // the single clearest tell that a street was generated rather than lived
+      // in, and this is four hundred triangles against that.
+      parkedCar(b, -hw + uw * 0.9, fz - 1.9, 0, SLOT.CAR_A, 4.0);
+      if (units > 3) parkedCar(b, -hw + uw * (units - 1.1), fz - 1.9, 0, SLOT.CAR_C, 4.2);
       return "Original game art: representative temperate terrace, continuous eaves and party-wall stacks over " +
         units + " dwellings. Massing only; not a measured street.";
     },
@@ -760,7 +1530,7 @@
       hipRoof(b, hw, hd, h, hd * 0.5);
       rainwater(b, hw, hd, h);
       // Communal entrance in a shallow projecting bay, flats either side.
-      b.box(-1.7, 1.7, 0, STOREY - 0.2, hd, hd + 0.9, SLOT.WALL, 1.03);
+      b.wall(-1.7, 1.7, 0, STOREY - 0.2, hd, hd + 0.9, SLOT.WALL, 1.03);
       b.box(-1.95, 1.95, STOREY - 0.2, STOREY, hd - 0.05, hd + 1.1, SLOT.TRIM, 1.08);
       frontDoor(b, 0, hd + 0.9, 2.2);
       b.box(-1.4, 1.4, STOREY + 0.4, h - 0.4, hd + 0.02, hd + 0.1, SLOT.GLASS, 0.9);
@@ -778,12 +1548,12 @@
       }
       b.push(2, 0, 0, 0);
       for (let s = 0; s < p.storeys; s += 1) {
-        for (const cx of [-hw + 3.0, -hw + 6.4, hw - 6.4, hw - 3.0]) sash(b, cx, s * STOREY + 0.95, 1.35, 1.55, hd, 2, 2);
+        for (const cx of [-hw + 3.0, -hw + 6.4, hw - 6.4, hw - 3.0]) sash(b, cx, s * STOREY + 0.95, 1.35, 1.55, hd, 2, 2, false);
       }
       b.pop();
       for (const yaw of [1, 3]) {
         b.push(yaw, 0, 0, 0);
-        for (let s = 0; s < p.storeys; s += 1) sash(b, 0, s * STOREY + 1.0, 1.1, 1.4, hw, 2, 2);
+        for (let s = 0; s < p.storeys; s += 1) sash(b, 0, s * STOREY + 1.0, 1.1, 1.4, hw, 2, 2, false);
         b.pop();
       }
       b.pop();
@@ -814,7 +1584,7 @@
       flatRoof(b, hw, hd, h, 1.0, true);
       // Stair and lift core expressed on the elevation — the 1970s temperate
       // block's one honest piece of composition.
-      b.box(-2.2, 2.2, 0, h + 1.3, hd, hd + 1.1, SLOT.WALL, 0.94);
+      b.wall(-2.2, 2.2, 0, h + 1.3, hd, hd + 1.1, SLOT.WALL, 0.94);
       b.box(-2.45, 2.45, h + 1.3, h + 1.45, hd - 0.05, hd + 1.3, SLOT.TRIM, 1.06);
       for (let s = 0; s < p.storeys; s += 1) b.box(-1.6, 1.6, s * STOREY + 0.6, s * STOREY + 2.5, hd + 1.05, hd + 1.14, SLOT.GLASS, 0.95);
       frontDoor(b, 0, hd + 1.1, 2.3);
@@ -832,7 +1602,7 @@
       b.pop();
       for (const yaw of [1, 3]) {
         b.push(yaw, 0, 0, 0);
-        for (let s = 0; s < p.storeys; s += 1) sash(b, 0, s * STOREY + 1.0, 1.2, 1.45, hw, 2, 2);
+        for (let s = 0; s < p.storeys; s += 1) sash(b, 0, s * STOREY + 1.0, 1.2, 1.45, hw, 2, 2, false);
         b.pop();
       }
       b.pop();
@@ -863,7 +1633,7 @@
       flatRoof(b, hw, hd, h, 1.2, true);
       b.box(-2.6, 2.6, 0, h + 3.4, -hd - 1.6, -hd + 0.2, SLOT.WALL, 0.92);      // stair and tank tower
       b.box(-2.85, 2.85, h + 3.4, h + 3.6, -hd - 1.85, -hd + 0.2, SLOT.TRIM, 1.06);
-      b.box(-hw - 0.3, hw + 0.3, 0, TALL_STOREY, hd - 0.2, hd + 0.9, SLOT.WALL, 1.02);   // ground-floor podium
+      b.wall(-hw - 0.3, hw + 0.3, 0, TALL_STOREY, hd - 0.2, hd + 0.9, SLOT.WALL, 1.02);  // ground-floor podium
       b.box(-hw - 0.45, hw + 0.45, TALL_STOREY, TALL_STOREY + 0.22, hd - 0.3, hd + 1.15, SLOT.TRIM, 1.08);
       ribbon(b, -hw + 0.6, -2.4, 0.9, 2.2, hd + 0.9, 1.9);
       ribbon(b, 2.4, hw - 0.6, 0.9, 2.2, hd + 0.9, 1.9);
@@ -889,7 +1659,7 @@
         b.push(yaw, 0, 0, 0);
         for (let s = 0; s < p.storeys; s += 2) {
           if (s * STOREY + 2.2 > h) break;
-          sash(b, 0, s * STOREY + 1.1, 1.1, 1.3, hw, 1, 2);
+          sash(b, 0, s * STOREY + 1.1, 1.1, 1.3, hw, 1, 2, false);
         }
         b.pop();
       }
@@ -926,6 +1696,9 @@
       // above it, a mullioned band per floor. That is the 1970s-80s temperate
       // commercial block, and it is deliberately not a glass tower.
       b.box(-hw, hw, 0, TALL_STOREY, hd - 1.0, hd - 0.85, SLOT.GLASS, 0.95);
+      // The colonnade is a real recess: cut the ground floor out of the wall
+      // and leave the piers standing in front of the glass line.
+      b.opening(-hw + 0.45, hw - 0.45, 0.62, TALL_STOREY - 0.06, hd);
       for (let i = 0; i < 7; i += 1) {
         const x = -hw + 0.7 + (i * (p.w - 1.4)) / 6;
         b.box(x - 0.22, x + 0.22, 0, TALL_STOREY, hd - 0.95, hd, SLOT.TRIM, 1.0);
@@ -988,6 +1761,7 @@
       // Shopfront: stallriser, deep glazing, mullions, fascia and a blind.
       b.box(-hw + 0.35, hw - 0.35, 0, 0.62, hd - 0.05, hd + 0.05, SLOT.TRIM, 0.94);
       b.box(-hw + 0.35, hw - 0.35, 0.62, 3.1, hd - 0.35, hd - 0.25, SLOT.GLASS, 1.0);
+      b.opening(-hw + 0.35, hw - 0.35, 0.62, 3.12, hd);
       const mull = Math.max(2, Math.round(p.w / 2.4));
       for (let i = 0; i <= mull; i += 1) {
         const x = -hw + 0.35 + ((p.w - 0.7) * i) / mull;
@@ -1004,6 +1778,7 @@
       b.box(hw - 1.05, hw - 0.9, 0, 3.1, hd - 0.9, hd - 0.3, SLOT.TRIM, 0.95);
       b.box(hw - 2.35, hw - 0.9, 3.0, 3.12, hd - 0.95, hd - 0.25, SLOT.TRIM, 1.02);
       b.box(hw - 2.35, hw - 0.9, 0, 0.09, hd - 0.95, hd - 0.25, SLOT.GROUND, 1.1);
+      b.opening(hw - 2.35, hw - 0.9, 0, 3.02, hd);
       b.box(hw - 2.2, hw - 1.05, 0.09, 2.35, hd - 0.96, hd - 0.86, SLOT.DARK, 1.0);   // shop door
       b.box(hw - 2.2, hw - 1.05, 2.4, 2.95, hd - 0.96, hd - 0.9, SLOT.GLASS, 1.0);
       for (let s = 1; s < p.storeys; s += 1) {
@@ -1013,13 +1788,13 @@
       b.push(2, 0, 0, 0);
       for (let s = 0; s < p.storeys; s += 1) {
         const y = s === 0 ? 0 : TALL_STOREY + (s - 1) * STOREY;
-        for (let i = 0; i < 2; i += 1) sash(b, -hw + (p.w * (i + 0.5)) / 2, y + 1.0, 1.15, 1.5, hd, 2, 2);
+        for (let i = 0; i < 2; i += 1) sash(b, -hw + (p.w * (i + 0.5)) / 2, y + 1.0, 1.15, 1.5, hd, 2, 2, false);
       }
       b.box(-hw + 0.6, -hw + 2.4, 0, 2.2, -hd - 0.06, -hd + 0.02, SLOT.DARK, 1.0);
       b.pop();
       for (const yaw of [1, 3]) {
         b.push(yaw, 0, 0, 0);
-        for (let s = 1; s < p.storeys; s += 1) sash(b, 0, TALL_STOREY + (s - 1) * STOREY + 1.0, 1.0, 1.4, hw, 2, 2);
+        for (let s = 1; s < p.storeys; s += 1) sash(b, 0, TALL_STOREY + (s - 1) * STOREY + 1.0, 1.0, 1.4, hw, 2, 2, false);
         b.pop();
       }
       b.pop();
@@ -1061,8 +1836,8 @@
       const hw = p.w / 2, hd = 9.5, h = 7.6, zc = -p.d / 2 + 9.0 + hd;
       paving(b, -hw, hw, -p.d / 2, p.d / 2);
       b.push(0, 0, 0, zc);
-      b.box(-hw, hw, 0, h, -hd, hd, SLOT.WALL, 1.0);
-      b.box(-hw - 0.14, hw + 0.14, 0, 1.2, -hd - 0.14, hd + 0.14, SLOT.TRIM, 0.9);
+      b.wall(-hw, hw, 0, h, -hd, hd, SLOT.WALL, 1.0);
+      b.bevelBox(-hw - 0.15, hw + 0.15, 0, 1.2, -hd - 0.15, hd + 0.15, SLOT.TRIM, 0.9, 0.03);
       // Profiled cladding ribs — cheap, and the vertical rhythm is what makes
       // a big blank shed read as clad steel rather than as a solid.
       for (let i = 0; i <= 16; i += 1) {
@@ -1080,6 +1855,7 @@
       for (let i = 0; i < 3; i += 1) {
         const cx = -hw + (p.w * (i + 0.5)) / 3;
         b.box(cx - 1.9, cx + 1.9, 0, 4.6, hd - 0.35, hd, SLOT.DARK, 1.0);
+        b.opening(cx - 1.9, cx + 1.9, 0, 4.6, hd);
         for (let k = 0; k < 12; k += 1) b.box(cx - 1.85, cx + 1.85, 0.2 + k * 0.36, 0.42 + k * 0.36, hd - 0.32, hd - 0.24, SLOT.METAL, 0.95);
         b.box(cx - 2.2, cx + 2.2, 4.6, 4.85, hd - 0.4, hd + 1.6, SLOT.METAL, 1.06);
         b.box(cx - 2.3, cx + 2.3, 0, 1.1, hd, hd + 1.5, SLOT.GROUND, 1.04);   // dock apron
@@ -1087,7 +1863,21 @@
         bollard(b, cx + 2.6, hd + 1.7);
       }
       b.box(hw - 3.2, hw - 2.0, 0, 2.2, hd - 0.06, hd + 0.03, SLOT.DARK, 1.0);
+      b.opening(hw - 3.2, hw - 2.0, 0, 2.2, hd);
       b.box(hw - 3.5, hw - 1.7, 2.2, 2.45, hd - 0.1, hd + 1.0, SLOT.METAL, 1.05);
+      // Eaves gutter and downpipes. A shed this size is mostly roof, and the
+      // rainwater goods are the only thing on the elevation at eaves level.
+      rainwater(b, hw, hd, h);
+      if (b.detail >= 2) {
+        // A stack of pallets and a skip on the apron. A yard with nothing in
+        // it is the tell that a building was drawn and never used.
+        for (let i = 0; i < 4; i += 1) {
+          b.bevelBox(-hw + 2.0, -hw + 3.2, i * 0.16, i * 0.16 + 0.13, -hd - 3.4, -hd - 2.2, SLOT.TRIM, 0.85 + i * 0.04, 0.015);
+        }
+        b.loft([[-hw + 5.2, -hd - 3.6], [-hw + 8.2, -hd - 3.6], [-hw + 8.2, -hd - 2.0], [-hw + 5.2, -hd - 2.0]],
+          [[-hw + 4.9, -hd - 3.8], [-hw + 8.5, -hd - 3.8], [-hw + 8.5, -hd - 1.8], [-hw + 4.9, -hd - 1.8]],
+          0, 1.35, SLOT.METAL, 0.88);
+      }
       for (const yaw of [1, 3, 2]) {
         b.push(yaw, 0, 0, 0);
         const run = yaw === 2 ? hw : hd;
@@ -1126,24 +1916,30 @@
           b.box(sx * (hw - 0.9), sx * (hw + 0.09), i * 0.85, i * 0.85 + 0.42, hd - 0.02, hd + 0.09, SLOT.TRIM, 1.05);
         }
       }
-      b.box(-4.6, 4.6, 0, TALL_STOREY + 1.4, hd, hd + 2.6, SLOT.WALL, 1.03);
+      // The portico is a PORCH, not a solid block with columns inside it. It
+      // used to project 2.6 m and the colonnade stood at 2.2 m — buried in its
+      // own masonry, invisible from every angle, on the one elevation the kind
+      // exists to deliver. The wall comes forward 1.8 m and the columns stand
+      // clear in front of it, under the pediment, where a portico's columns go.
+      b.wall(-4.6, 4.6, 0, TALL_STOREY + 1.4, hd, hd + 1.8, SLOT.WALL, 1.03);
       b.box(-5.0, 5.0, TALL_STOREY + 1.4, TALL_STOREY + 1.85, hd - 0.1, hd + 3.0, SLOT.TRIM, 1.1);
       b.tri([-5.0, TALL_STOREY + 1.85, hd + 3.0], [5.0, TALL_STOREY + 1.85, hd + 3.0], [0, TALL_STOREY + 3.3, hd + 3.0], SLOT.TRIM, 1.06);
       b.quad([-5.0, TALL_STOREY + 1.85, hd + 3.0], [0, TALL_STOREY + 3.3, hd + 3.0], [0, TALL_STOREY + 3.3, hd], [-5.0, TALL_STOREY + 1.85, hd], SLOT.ROOF, 0.95);
       b.quad([0, TALL_STOREY + 3.3, hd + 3.0], [5.0, TALL_STOREY + 1.85, hd + 3.0], [5.0, TALL_STOREY + 1.85, hd], [0, TALL_STOREY + 3.3, hd], SLOT.ROOF, 1.05);
       for (let i = 0; i < 4; i += 1) {
         const x = -3.4 + i * 2.27;
-        b.cyl(x, hd + 2.2, 0.6, TALL_STOREY + 1.35, 0.31, 0.27, 8, SLOT.TRIM, 1.04);
-        b.cyl(x, hd + 2.2, TALL_STOREY + 1.35, TALL_STOREY + 1.5, 0.37, 0.31, 8, SLOT.TRIM, 1.09);
+        tube(b, x, hd + 2.45, 0.52, 0.74, 0.38, 0.33, b.segs(12, 8, 5), SLOT.TRIM, 1.02);     // base
+        tube(b, x, hd + 2.45, 0.74, TALL_STOREY + 1.32, 0.31, 0.27, b.segs(12, 8, 5), SLOT.TRIM, 1.04);
+        tube(b, x, hd + 2.45, TALL_STOREY + 1.32, TALL_STOREY + 1.5, 0.38, 0.31, b.segs(12, 8, 5), SLOT.TRIM, 1.09);
       }
       for (let i = 0; i < 4; i += 1) b.box(-5.6 + i * 0.0, 5.6, i * 0.2, i * 0.2 + 0.2, hd + 2.6 + i * 0.42, hd + 4.4, SLOT.TRIM, 1.04);
-      frontDoor(b, 0, hd + 2.6, 3.0);
+      frontDoor(b, 0, hd + 1.8, 3.0);
       // Clock cupola. It carries no maker's name and no dial reading.
       b.box(-1.9, 1.9, h + hd * 0.42 - 0.5, h + hd * 0.42 + 3.4, -1.9, 1.9, SLOT.WALL, 1.04);
       b.box(-2.15, 2.15, h + hd * 0.42 + 3.4, h + hd * 0.42 + 3.65, -2.15, 2.15, SLOT.TRIM, 1.1);
-      for (const f of [[1.9, 1.98, 0], [-1.98, -1.9, 0]]) b.cyl(0, (f[0] + f[1]) / 2, h + hd * 0.42 + 1.1, h + hd * 0.42 + 2.5, 0.8, 0.8, 10, SLOT.TRIM, 1.08);
-      b.cyl(0, 0, h + hd * 0.42 + 3.65, h + hd * 0.42 + 6.1, 1.75, 0.12, 8, SLOT.ROOF, 1.06);
-      b.cyl(0, 0, h + hd * 0.42 + 6.1, h + hd * 0.42 + 7.4, 0.07, 0.07, 6, SLOT.METAL, 1.1);
+      for (const f of [[1.9, 1.98, 0], [-1.98, -1.9, 0]]) tube(b, 0, (f[0] + f[1]) / 2, h + hd * 0.42 + 1.1, h + hd * 0.42 + 2.5, 0.8, 0.8, b.segs(14, 10, 6), SLOT.TRIM, 1.08);
+      tube(b, 0, 0, h + hd * 0.42 + 3.65, h + hd * 0.42 + 6.1, 1.75, 0.12, b.segs(12, 8, 5), SLOT.ROOF, 1.06);
+      tube(b, 0, 0, h + hd * 0.42 + 6.1, h + hd * 0.42 + 7.4, 0.07, 0.07, 6, SLOT.METAL, 1.1);
       for (let s = 0; s < p.storeys; s += 1) {
         const y = s === 0 ? 0 : TALL_STOREY + (s - 1) * 3.6;
         const fh = s === 0 ? TALL_STOREY : 3.6;
@@ -1154,13 +1950,13 @@
       b.push(2, 0, 0, 0);
       for (let s = 0; s < p.storeys; s += 1) {
         const y = s === 0 ? 0 : TALL_STOREY + (s - 1) * 3.6;
-        for (let i = 0; i < 7; i += 1) sash(b, -hw + (p.w * (i + 0.5)) / 7, y + 1.0, 1.3, 1.9, hd, 2, 3);
+        for (let i = 0; i < 7; i += 1) sash(b, -hw + (p.w * (i + 0.5)) / 7, y + 1.0, 1.3, 1.9, hd, 2, 3, false);
       }
       b.pop();
       for (const yaw of [1, 3]) {
         b.push(yaw, 0, 0, 0);
         for (let s = 0; s < p.storeys; s += 1) {
-          for (let i = 0; i < 3; i += 1) sash(b, -hd + (hd * 2 * (i + 0.5)) / 3, (s === 0 ? 0 : TALL_STOREY + (s - 1) * 3.6) + 1.0, 1.2, 1.85, hw, 2, 3);
+          for (let i = 0; i < 3; i += 1) sash(b, -hd + (hd * 2 * (i + 0.5)) / 3, (s === 0 ? 0 : TALL_STOREY + (s - 1) * 3.6) + 1.0, 1.2, 1.85, hw, 2, 3, false);
         }
         b.pop();
       }
@@ -1175,7 +1971,7 @@
       const hd = 8.5, zc = -p.d / 2 + 8.0 + hd, hw = p.w / 2, h = TALL_STOREY + (p.storeys - 1) * 3.6;
       return [
         { x0: -hw, x1: hw, z0: zc - hd, z1: zc + hd, h, roof: "hip", rise: hd * 0.42, bands: p.storeys },
-        { x0: -4.6, x1: 4.6, z0: zc + hd, z1: zc + hd + 2.6, h: TALL_STOREY + 1.85, roof: "flat", para: 0.4, bands: 1 },
+        { x0: -4.6, x1: 4.6, z0: zc + hd, z1: zc + hd + 1.8, h: TALL_STOREY + 1.85, roof: "flat", para: 0.4, bands: 1 },
         { x0: -1.9, x1: 1.9, z0: -1.9, z1: 1.9, y0: h + hd * 0.42 - 0.5, h: h + hd * 0.42 + 3.65, roof: "flat", para: 0.3, bands: 1 },
       ];
     },
@@ -1219,7 +2015,7 @@
       b.pop();
       for (let i = 0; i < 3; i += 1) b.box(wx - 6.0 + i * 4.4, wx - 3.4 + i * 4.4, 3.6, 5.6, -hd - 13.06, -hd - 12.94, SLOT.GLASS, 1.0);
       // Covered walkway linking the two.
-      for (let i = 0; i < 5; i += 1) b.cyl(-hw + 3.0 + i * 4.2, -hd - 3.2, 0, 2.9, 0.09, 0.09, 6, SLOT.METAL, 1.0);
+      for (let i = 0; i < 5; i += 1) tube(b, -hw + 3.0 + i * 4.2, -hd - 3.2, 0, 2.9, 0.09, 0.09, b.segs(8, 6, 4), SLOT.METAL, 1.0);
       b.box(-hw + 2.4, -hw + 20.0, 2.9, 3.08, -hd - 4.1, -hd - 2.3, SLOT.METAL, 1.06);
       b.pop();
       const fz = p.d / 2;
@@ -1257,12 +2053,12 @@
       // Two-storey podium in front of the ward slab, with the ambulance
       // canopy on it — the composition every temperate district hospital of
       // this period ended up with.
-      b.box(-hw + 2.0, hw - 2.0, 0, 2 * TALL_STOREY, hd, hd + 7.5, SLOT.WALL, 1.02);
+      b.wall(-hw + 2.0, hw - 2.0, 0, 2 * TALL_STOREY, hd, hd + 7.5, SLOT.WALL, 1.02);
       b.box(-hw + 1.7, hw - 1.7, 2 * TALL_STOREY, 2 * TALL_STOREY + 0.35, hd - 0.1, hd + 7.8, SLOT.TRIM, 1.08);
       for (let s = 0; s < 2; s += 1) ribbon(b, -hw + 3.0, hw - 3.0, s * TALL_STOREY + 1.2, 2.0, hd + 7.5, 1.8);
       b.box(-5.5, 5.5, 0, 4.4, hd + 7.5, hd + 12.5, SLOT.TRIM, 1.05);
       b.box(-5.5, 5.5, 4.4, 4.75, hd + 7.3, hd + 12.9, SLOT.TRIM, 1.1);
-      for (const x of [-5.2, 5.2]) b.cyl(x, hd + 12.2, 0, 4.4, 0.19, 0.19, 8, SLOT.METAL, 1.0);
+      for (const x of [-5.2, 5.2]) tube(b, x, hd + 12.2, 0, 4.4, 0.19, 0.19, b.segs(10, 7, 5), SLOT.METAL, 1.0);
       frontDoor(b, 0, hd + 7.5, 2.6);
       for (let s = 2; s < p.storeys; s += 1) {
         ribbon(b, -hw + 1.0, hw - 1.0, s * STOREY + 0.9, 1.6, hd, 1.7);
@@ -1311,7 +2107,8 @@
       gableRoof(b, hw, hd, h, hd * 0.55, 0.4);
       for (const x of [-hw + 4, 0, hw - 4]) chimney(b, x, 0, h, h + hd * 0.55 + 0.8, 1.0, 0.8, 3);
       rainwater(b, hw, hd, h);
-      b.box(-4.4, 4.4, 0, h + 2.2, hd, hd + 1.4, SLOT.WALL, 1.03);
+      roofDormers(b, hw, hd, h, hd * 0.55, 0.4, [-hw + 9, -hw + 15, hw - 15, hw - 9], 1.35);
+      b.wall(-4.4, 4.4, 0, h + 2.2, hd, hd + 1.4, SLOT.WALL, 1.03);
       b.box(-4.8, 4.8, h + 2.2, h + 2.45, hd - 0.1, hd + 1.7, SLOT.TRIM, 1.1);
       b.box(-2.1, 2.1, 0, 4.4, hd + 1.36, hd + 1.46, SLOT.DARK, 1.0);                       // arched entry
       for (let i = 0; i < 8; i += 1) {
@@ -1329,7 +2126,7 @@
       }
       b.push(2, 0, 0, 0);
       for (let s = 0; s < p.storeys; s += 1) {
-        for (let i = 0; i < 6; i += 1) sash(b, -hw + (p.w * (i + 0.5)) / 6, (s === 0 ? 0 : TALL_STOREY + (s - 1) * 3.5) + 1.1, 1.35, 1.9, hd, 2, 3);
+        for (let i = 0; i < 6; i += 1) sash(b, -hw + (p.w * (i + 0.5)) / 6, (s === 0 ? 0 : TALL_STOREY + (s - 1) * 3.5) + 1.1, 1.35, 1.9, hd, 2, 3, false);
       }
       b.pop();
       b.pop();
@@ -1342,11 +2139,11 @@
         chimney(b, sx * 4.6, 0, wingH, wingH + wd * 0.5 + 0.8, 0.9, 0.7, 2);
         for (const yaw of [1, 3]) {
           b.push(yaw, 0, 0, 0);
-          for (let s = 0; s < 2; s += 1) for (let i = 0; i < 3; i += 1) sash(b, -wd + (wd * 2 * (i + 0.5)) / 3, (s ? TALL_STOREY : 0) + 1.15, 1.3, 1.8, 6.0, 2, 3);
+          for (let s = 0; s < 2; s += 1) for (let i = 0; i < 3; i += 1) sash(b, -wd + (wd * 2 * (i + 0.5)) / 3, (s ? TALL_STOREY : 0) + 1.15, 1.3, 1.8, 6.0, 2, 3, false);
           b.pop();
         }
         b.push(2, 0, 0, 0);
-        for (let s = 0; s < 2; s += 1) for (let i = 0; i < 3; i += 1) sash(b, -6.0 + (12 * (i + 0.5)) / 3, (s ? TALL_STOREY : 0) + 1.15, 1.25, 1.8, wd, 2, 3);
+        for (let s = 0; s < 2; s += 1) for (let i = 0; i < 3; i += 1) sash(b, -6.0 + (12 * (i + 0.5)) / 3, (s ? TALL_STOREY : 0) + 1.15, 1.25, 1.8, wd, 2, 3, false);
         b.pop();
         b.pop();
       }
@@ -1383,7 +2180,11 @@
       // A standard association-football pitch is 105 x 68 metres by the laws
       // of the game, so the bowl is sized off that rather than off any real
       // ground. Everything outside the touchline is original scenery.
-      const seg = 24, rows = 12;
+      // The bowl's segment count is the one thing that falls with detail here:
+      // the rake, the height and the plan stay exactly what they are, so the
+      // card is the same ground seen with a coarser curve rather than a
+      // smaller stadium.
+      const seg = b.segs(24, 16, 14), rows = 12;
       const inRx = 62, inRz = 44, step = 1.55, rise = 0.95;
       b.slab(-52.5, 52.5, -34, 34, 0.12, SLOT.FOLIAGE, 0.95);
       for (let i = 0; i < 6; i += 1) b.slab(-52.5, 52.5, -34 + i * 11.33, -34 + i * 11.33 + 5.6, 0.13, SLOT.FOLIAGE, 1.05);
@@ -1407,8 +2208,39 @@
       const outRx = inRx + rows * step, outRz = inRz + rows * step;
       const rim = oval(0, 0, outRx, outRz, seg), skin = oval(0, 0, outRx + 3.0, outRz + 3.0, seg);
       b.band(skin, rim, ry0, ry0, SLOT.GROUND, 0.95);                       // concourse deck
-      b.band(skin, skin, 0, ry0 + 2.4, SLOT.WALL, 1.0);                     // outer skin
+      // THE OUTER SKIN IS SMOOTHED and the terracing is not, and that is the
+      // whole rule in one object: a continuous curved wall shades as a curve,
+      // a flight of steps shades as steps. Left flat, a 24-sided bowl read as
+      // a drum built out of flat panels from any distance at all.
+      b.smoothed(() => {
+        b.band(skin, skin, 0, ry0 + 2.4, SLOT.WALL, 1.0);                   // outer skin
+      });
       b.band(skin, oval(0, 0, outRx + 3.2, outRz + 3.2, seg), ry0 + 2.4, ry0 + 2.7, SLOT.TRIM, 1.08);
+      // Crush barriers across the terracing, and a goal at each end. A pitch
+      // with no goals on it is the one thing that stops a bowl reading as a
+      // ground; the frames are generic and carry no markings.
+      if (b.detail >= 2) {
+        for (let r = 2; r < rows; r += 3) {
+          const ring = oval(0, 0, inRx + (r + 0.5) * step, inRz + (r + 0.5) * step, seg);
+          const y = 1.2 + r * rise;
+          for (let i = 0; i < ring.length; i += 2) {
+            b.box(ring[i][0] - 0.9, ring[i][0] + 0.9, y + 0.9, y + 1.02, ring[i][1] - 0.05, ring[i][1] + 0.05, SLOT.METAL, 1.02);
+          }
+        }
+        for (const sx of [-1, 1]) {
+          const gx = sx * 52.5;
+          for (const sz of [-1, 1]) tube(b, gx, sz * 3.66, 0.12, 2.56, 0.06, 0.06, 7, SLOT.TRIM, 1.1);
+          b.box(gx - 0.06, gx + 0.06, 2.44, 2.56, -3.72, 3.72, SLOT.TRIM, 1.12);
+          for (const sz of [-1, 1]) b.box(gx - 0.05, gx + sx * 1.9, 0.12, 0.2, sz * 3.66 - 0.04, sz * 3.66 + 0.04, SLOT.TRIM, 1.0);
+        }
+        // Hoardings round the touchline: blank boards, no advertiser.
+        for (const sz of [-1, 1]) {
+          for (let i = 0; i < 14; i += 1) {
+            const x = -49 + i * 7.2;
+            b.box(x, x + 6.6, 0.12, 1.05, sz * 37.2 - 0.08, sz * 37.2 + 0.08, SLOT.TRIM, sz > 0 ? 1.06 : 0.88);
+          }
+        }
+      }
       // Turnstile blocks around the concourse.
       const gate = oval(0, 0, outRx + 3.6, outRz + 3.6, 8);
       for (const g of gate) b.box(g[0] - 2.2, g[0] + 2.2, 0, 3.2, g[1] - 2.2, g[1] + 2.2, SLOT.WALL, 0.95);
@@ -1481,10 +2313,14 @@
       paving(b, -hw + 0.4, hw - 0.4, -1.4, 1.4, 0.12);
       paving(b, -1.4, 1.4, -hd + 0.4, hd - 0.4, 0.12);
       b.cyl(0, 0, 0.12, 0.14, 4.6, 4.6, 14, SLOT.GROUND, 1.02, false);
-      b.cyl(0, 0, 0, 0.55, 2.3, 2.1, 12, SLOT.TRIM, 1.05);
-      b.cyl(0, 0, 0.55, 0.75, 1.9, 1.7, 12, SLOT.WALL, 1.02);
-      b.cyl(0, 0, 0.75, 2.6, 0.35, 0.28, 8, SLOT.TRIM, 1.06);
-      b.cyl(0, 0, 2.6, 3.1, 0.9, 0.1, 8, SLOT.TRIM, 1.08);
+      tube(b, 0, 0, 0, 0.55, 2.3, 2.1, b.segs(16, 10, 6), SLOT.TRIM, 1.05);
+      tube(b, 0, 0, 0.55, 0.75, 1.9, 1.7, b.segs(16, 10, 6), SLOT.WALL, 1.02);
+      for (let i = 0; i < 6; i += 1) {                                    // the bandstand columns
+        const a = (i / 6) * Math.PI * 2;
+        tube(b, Math.cos(a) * 1.55, Math.sin(a) * 1.42, 0.75, 2.55, 0.09, 0.075, b.segs(8, 6, 4), SLOT.METAL, 1.02);
+      }
+      tube(b, 0, 0, 0.75, 2.6, 0.35, 0.28, b.segs(10, 7, 5), SLOT.TRIM, 1.06);
+      tube(b, 0, 0, 2.5, 3.15, 2.0, 0.1, b.segs(16, 10, 6), SLOT.ROOF, 1.08);
       const s = p.seed || 0;
       for (let i = 0; i < 11; i += 1) {
         const a = (i / 11) * Math.PI * 2;
@@ -1546,12 +2382,12 @@
       for (let i = 0; i < 9; i += 1) b.box(tx - 2.2, tx + 2.2, 0.5, 3.1, tz + 1.6 + i * 0.14, tz + 1.66 + i * 0.14, SLOT.METAL, 1.06);
       for (let i = 0; i < 3; i += 1) {
         const x = tx - 1.2 + i * 1.2;
-        b.cyl(x, tz - 0.9, 3.3, 4.5, 0.24, 0.18, 8, SLOT.TRIM, 1.05);
-        b.cyl(x, tz - 0.9, 4.5, 4.7, 0.3, 0.3, 8, SLOT.DARK, 1.0);
+        tube(b, x, tz - 0.9, 3.3, 4.5, 0.24, 0.18, b.segs(10, 7, 5), SLOT.TRIM, 1.05);
+        tube(b, x, tz - 0.9, 4.5, 4.7, 0.3, 0.3, b.segs(10, 7, 5), SLOT.DARK, 1.0);
       }
-      for (const x of [tx - 3.2, tx + 3.2]) b.cyl(x, tz + 3.0, 0, 7.0, 0.16, 0.13, 6, SLOT.METAL, 1.0);
+      for (const x of [tx - 3.2, tx + 3.2]) tube(b, x, tz + 3.0, 0, 7.0, 0.16, 0.13, b.segs(9, 6, 4), SLOT.METAL, 1.0);
       b.box(tx - 3.4, tx + 3.4, 7.0, 7.25, tz + 2.85, tz + 3.15, SLOT.METAL, 1.05);
-      for (let i = 0; i < 3; i += 1) b.cyl(tx - 2.2 + i * 2.2, tz + 3.0, 6.2, 7.0, 0.09, 0.09, 6, SLOT.DARK, 0.9);
+      for (let i = 0; i < 3; i += 1) tube(b, tx - 2.2 + i * 2.2, tz + 3.0, 6.2, 7.0, 0.09, 0.09, b.segs(8, 6, 4), SLOT.DARK, 0.9);
       // A lattice pylon in the corner, four legs braced in six panels.
       b.push(0, hw - 5.0, 0, -hd + 3.0);
       for (const lx of [-1, 1]) for (const lz of [-1, 1]) {
@@ -1575,7 +2411,7 @@
       for (const k of [0, 1]) {
         const y = 11.0 + k * 3.2;
         b.box(-4.6, 4.6, y, y + 0.16, -0.12, 0.12, SLOT.METAL, 1.0);
-        for (const x of [-4.3, 0, 4.3]) b.cyl(x, 0, y - 0.9, y, 0.07, 0.07, 6, SLOT.DARK, 0.9);
+        for (const x of [-4.3, 0, 4.3]) tube(b, x, 0, y - 0.9, y, 0.07, 0.07, b.segs(8, 6, 4), SLOT.DARK, 0.9);
       }
       b.pop();
       // Palisade fence around the compound, with warning plates.
@@ -1616,15 +2452,23 @@
   // one piece of roof furniture. What it drops is every opening, every piece
   // of trim and the whole streetscape below waist height.
 
-  /// One recessed glazing band. Ten triangles, and it is what stops a map
-  /// building reading as an untextured block.
+  /// One glazing band at map scale, standing 50 mm PROUD of the wall rather
+  /// than recessed into it. Six triangles against the punched recess's
+  /// seventy-two, and at map size the two are the same dark line with the same
+  /// shadow under it — the difference between a 50 mm projection and a 220 mm
+  /// reveal is well under a pixel when a whole town fits on screen.
+  ///
+  /// It is proud and not recessed for a reason worth writing down: the recess
+  /// this replaced was drawn BEHIND the massing box's own face and was
+  /// therefore invisible, exactly like the close view's windows were. The two
+  /// honest repairs are to cut the wall or to stand the band in front of it,
+  /// and the map is the one level where the cheap one is also the right one,
+  /// because the map budget is multiplied by every settlement on the screen.
   function mapBand(b, x0, x1, y0, h, zf) {
-    const y1 = y0 + h, dep = 0.22;
-    b.quad([x0, y0, zf], [x1, y0, zf], [x1, y0, zf - dep], [x0, y0, zf - dep], SLOT.WALL, 0.75);
-    b.quad([x0, y1, zf - dep], [x1, y1, zf - dep], [x1, y1, zf], [x0, y1, zf], SLOT.WALL, 0.75);
-    b.quad([x0, y0, zf - dep], [x0, y1, zf - dep], [x0, y1, zf], [x0, y0, zf], SLOT.WALL, 0.82);
-    b.quad([x1, y0, zf], [x1, y1, zf], [x1, y1, zf - dep], [x1, y0, zf - dep], SLOT.WALL, 0.82);
-    b.quad([x0, y0, zf - dep], [x1, y0, zf - dep], [x1, y1, zf - dep], [x0, y1, zf - dep], SLOT.GLASS, 1.0);
+    const y1 = y0 + h, p = 0.05;
+    b.quad([x0, y0, zf + p], [x1, y0, zf + p], [x1, y1, zf + p], [x0, y1, zf + p], SLOT.GLASS, 1.0);
+    b.quad([x0, y1, zf + p], [x1, y1, zf + p], [x1, y1, zf], [x0, y1, zf], SLOT.TRIM, 1.06);
+    b.quad([x0, y0, zf], [x1, y0, zf], [x1, y0, zf + p], [x0, y0, zf + p], SLOT.TRIM, 0.8);
     return b;
   }
 
@@ -1641,7 +2485,7 @@
       b.push(0, cx, 0, cz);
       b.box(-hw, hw, y0, y1, -hd, hd, SLOT.WALL, 1.0);
       b.box(-hw - 0.18, hw + 0.18, y0, y0 + 0.55, -hd - 0.18, hd + 0.18, SLOT.TRIM, 0.9);
-      const bands = Math.max(1, Math.min(v.bands || 2, level + 1));
+      const bands = Math.max(2, Math.min(v.bands || 2, level + 1));
       const fh = (y1 - y0) / bands;
       for (let f = 0; f < faces; f += 1) {
         b.push(f, 0, 0, 0);
@@ -1656,9 +2500,22 @@
         b.tri([-hw - 0.3, y1, -hd - 0.3], [-hw - 0.3, y1, hd + 0.3], [-rx, top, 0], SLOT.ROOF, 0.82);
         b.tri([hw + 0.3, y1, hd + 0.3], [hw + 0.3, y1, -hd - 0.3], [rx, top, 0], SLOT.ROOF, 0.9);
         b.box(-hw - 0.34, hw + 0.34, y1 - 0.2, y1, -hd - 0.34, hd + 0.34, SLOT.TRIM, 1.02);
+        // A ridge line. Twelve triangles, and at map size it is the difference
+        // between a roof that has a direction and a roof that is a wedge — the
+        // ridge is the one line on a pitched roof that survives being two
+        // pixels tall.
+        b.box(-rx - 0.14, rx + 0.14, top - 0.13, top + 0.13, -0.2, 0.2, SLOT.ROOF, 1.12);
       } else {
         b.slab(-hw, hw, -hd, hd, y1, SLOT.GROUND, 0.86);
         b.box(-hw - 0.22, hw + 0.22, y1, y1 + (v.para || 0.8), -hd - 0.22, hd + 0.22, SLOT.WALL, 1.02);
+      }
+      // Where the building is entered, as a dark recessed panel on the street
+      // elevation. At map zoom this is the only cue for which way a building
+      // faces, and a settlement where every block faces nowhere reads as a
+      // pattern rather than as a town.
+      if (y1 - y0 > 3) {
+        const dw = Math.min(1.6, hw * 0.4);
+        b.box(-dw, dw, y0, y0 + Math.min(2.6, (y1 - y0) * 0.55), hd - 0.16, hd + 0.02, SLOT.DARK, 1.0);
       }
       if (v.chimneys) {
         for (let i = 0; i < Math.min(4, v.chimneys.length); i += 1) {
@@ -1689,9 +2546,19 @@
     // coarse mesh and "map" is this one's. Accepting both in both is the whole
     // fix; a caller that says the wrong word used to get the 20x heavier mesh
     // with no complaint.
+    //
+    // THE NUMERIC FORMS STILL MEAN THE COARSE MESH. `mid` is a third level and
+    // it had to be given a word of its own rather than take 1 off `map`: the
+    // two art modules agreed that 1, 2, "lod1", "lod2", "far" and "map" all
+    // name the cheap mesh, and quietly redefining 1 here would have handed
+    // every existing caller a mesh eight times heavier than the one it asked
+    // for, silently, which is the exact failure that agreement was written to
+    // end.
     if (v === "map" || v === "far" || v === 1 || v === 2 || v === "lod1" || v === "lod2") return "map";
+    if (v === "mid" || v === "card") return "mid";
     return "close";
   }
+  const DETAIL = { close: 2, mid: 1, map: 0 };
   function quantise(x) { return Math.round(x * 10) / 10; }
   // How far a roof may legitimately hang past the land it was allotted. Eaves,
   // cornices and window surrounds all do it, a terrace where they did not would
@@ -1712,7 +2579,7 @@
     const key = kind + "|" + p.w + "|" + p.d + "|" + p.storeys + "|" + lod + "|" + p.seed;
     const hit = variants.get(key);
     if (hit) return hit;
-    const b = new Builder();
+    const b = new Builder(DETAIL[lod]);
     const spec = KINDS[kind];
     let description;
     if (lod === "map") {
@@ -1730,7 +2597,17 @@
         + " at map scale — representative temperate scenery reduced to massing, roof form and storey rhythm.";
     } else {
       description = spec.close(b, p);
+      // The card LOD is the SAME building, drawn by the same code with the
+      // small stuff switched off, so it can never become a different building
+      // by drifting. Say so rather than let a card claim the close view's
+      // description word for word.
+      if (lod === "mid") {
+        description = description.replace(/Massing only/i, "Card scale")
+          + " Card LOD: chamfers, glazing bars, slate courses, tree limbs and window frames are dropped; "
+          + "the massing, openings and roof form are the close view's own.";
+      }
     }
+    b.flushFaces();
     const baked = b.bake();
     baked.key = key; baked.kind = kind; baked.label = spec.label; baked.description = description;
     baked.footprint = [p.w, p.d]; baked.storeys = p.storeys;
@@ -1804,14 +2681,35 @@
     return null;
   }
 
+  /// A frontage gap is not decoration, it is clearance, and it has to be wider
+  /// than the trim standing on both sides of it. Measured across 225 blocks,
+  /// the widest anything in this kit hangs past its own lot line is 0.70 m —
+  /// the shop's fascia — with the civic portico at 0.59 and the school's eaves
+  /// at 0.55, so 1.6 m of gap leaves at least 0.20 m of daylight in the worst
+  /// pairing this kit can produce.
+  ///
+  /// WHY THE FLOOR EXISTS. Before it, the gap was only ever the leftover run
+  /// divided up, and a tightly packed frontage could close it to 1.0 m: block
+  /// id 9's civic district stood a school and a civic building 50 mm into each
+  /// other over a 21 m run. The neighbour check would have caught it — its bar
+  /// is 50 mm and this was 50.4 — and it stayed green only because id 9 is not
+  /// one of the eleven ids it samples. The repair is the geometry, not the bar.
+  const MIN_GAP = 1.6;
+
   /// One frontage, subdivided along its run. Leftover is spread as equal gaps
   /// and the whole row is centred, so a run that does not divide evenly reads
-  /// as side entries and alley gates rather than as a mistake at one end.
+  /// as side entries and alley gates rather than as a mistake at one end. When
+  /// the run is too tight for that to clear MIN_GAP, the interior gaps are paid
+  /// first and the two end margins take what is left: a building standing hard
+  /// against the block corner is a corner shop, two buildings sharing the same
+  /// air is a defect.
   function subdivide(seed, salt, run, table, depthCap) {
     const picks = [];
     let used = 0;
     for (let i = 0; i < 24; i += 1) {
-      const left = run - used - picks.length * 1.6;
+      // The reserve is one MIN_GAP per interior gap the row will have once this
+      // pick joins it, which is exactly what the floor below needs to be payable.
+      const left = run - used - picks.length * MIN_GAP;
       const kind = pickKind(seed, salt + i * 101, table, depthCap, left);
       if (!kind) break;
       const spec = KINDS[kind];
@@ -1822,8 +2720,11 @@
       used += w;
     }
     if (!picks.length) return picks;
-    const gap = picks.length > 1 ? Math.min(7.0, (run - used) / (picks.length + 1)) : 0;
-    let cursor = (run - used - gap * (picks.length - 1)) / 2;
+    const spare = run - used;
+    const gap = picks.length > 1 ? clamp(spare / (picks.length + 1), MIN_GAP, 7.0) : 0;
+    // Never negative: the packer above reserved MIN_GAP per interior gap, so
+    // `spare >= gap * (picks.length - 1)` whichever arm of the clamp won.
+    let cursor = (spare - gap * (picks.length - 1)) / 2;
     for (const pick of picks) { pick.at = cursor + pick.w / 2; cursor += pick.w + gap; }
     return picks;
   }
@@ -1843,10 +2744,25 @@
     b.slab(X0 - foot, X1 + foot, Z0 - foot, Z0, 0.14, SLOT.GROUND, 1.18);
     b.slab(X0 - foot, X0, Z0, Z1, 0.14, SLOT.GROUND, 1.18);
     b.slab(X1, X1 + foot, Z0, Z1, 0.14, SLOT.GROUND, 1.18);
-    b.box(X0 - foot, X1 + foot, 0, 0.14, Z1 + foot - 0.16, Z1 + foot, SLOT.TRIM, 1.02);
-    b.box(X0 - foot, X1 + foot, 0, 0.14, Z0 - foot, Z0 - foot + 0.16, SLOT.TRIM, 1.02);
-    b.box(X0 - foot, X0 - foot + 0.16, 0, 0.14, Z0 - foot, Z1 + foot, SLOT.TRIM, 1.02);
-    b.box(X1 + foot - 0.16, X1 + foot, 0, 0.14, Z0 - foot, Z1 + foot, SLOT.TRIM, 1.02);
+    // KERBS ARE A BULLNOSE, not a step. The chamfer along the top arris is
+    // 25 mm of geometry that runs the whole perimeter of the block, and it is
+    // the line the eye follows to read where the road stops — the one edge in
+    // a street that is always lit from one side and shadowed on the other.
+    b.bevelBox(X0 - foot, X1 + foot, 0, 0.15, Z1 + foot - 0.17, Z1 + foot, SLOT.TRIM, 1.02, 0.025);
+    b.bevelBox(X0 - foot, X1 + foot, 0, 0.15, Z0 - foot, Z0 - foot + 0.17, SLOT.TRIM, 1.02, 0.025);
+    b.bevelBox(X0 - foot, X0 - foot + 0.17, 0, 0.15, Z0 - foot, Z1 + foot, SLOT.TRIM, 1.02, 0.025);
+    b.bevelBox(X1 + foot - 0.17, X1 + foot, 0, 0.15, Z0 - foot, Z1 + foot, SLOT.TRIM, 1.02, 0.025);
+    // The gutter channel: one course of setts laid flat against the kerb,
+    // slightly darker and slightly proud. It is what stops the road and the
+    // footway meeting as one flat tone.
+    if (b.detail >= 2) {
+      for (const z of [Z1 + foot - 0.17, Z0 - foot + 0.17]) {
+        b.slab(X0 - foot, X1 + foot, z - (z > 0 ? 0.42 : 0), z + (z > 0 ? 0 : 0.42), 0.012, SLOT.GROUND, 0.86);
+      }
+      for (const x of [X0 - foot + 0.17, X1 + foot - 0.17]) {
+        b.slab(x - (x > 0 ? 0.42 : 0), x + (x > 0 ? 0 : 0.42), Z0 - foot, Z1 + foot, 0.012, SLOT.GROUND, 0.86);
+      }
+    }
     // Edge lines, inset from the tile boundary so two abutting tiles do not
     // paint the same line twice down the middle of one carriageway.
     for (const z of [hd - 0.6, -hd + 0.6]) b.box(X0 - foot, X1 + foot, 0.001, 0.02, z - 0.06, z + 0.06, SLOT.TRIM, 1.1);
@@ -1866,6 +2782,17 @@
     for (let i = 0; i < 7; i += 1) {
       const x = -3.6 + i * 1.15;
       b.box(x - 0.34, x + 0.34, 0.001, 0.02, Z1 + foot, hd, SLOT.TRIM, 1.1);
+    }
+    // Dropped kerb across the crossing, tactile paving each side of it, and a
+    // pair of guard rails. A crossing that runs into a 150 mm upstand is the
+    // sort of thing that is invisible until you notice it and then is all you
+    // can see.
+    if (b.detail >= 2) {
+      b.bevelBox(-4.4, 4.4, 0, 0.055, Z1 + foot - 0.17, Z1 + foot, SLOT.TRIM, 1.06, 0.02);
+      for (const sx of [-1, 1]) {
+        b.slab(sx * 4.4 - (sx > 0 ? 1.2 : 0), sx * 4.4 + (sx > 0 ? 0 : 1.2), Z1 + foot - 1.3, Z1 + foot - 0.2, 0.152, SLOT.GROUND, 0.94);
+        railing(b, Math.min(sx * 4.6, sx * 7.4), Math.max(sx * 4.6, sx * 7.4), Z1 + foot - 0.32, 0.15, 1.05, 0.3);
+      }
     }
     for (let i = 0; i < 10; i += 1) {
       const x = X0 + ((X1 - X0) * (i + 0.5)) / 10;
@@ -1898,6 +2825,23 @@
     roadSign(b, X0 + 1.4, Z1 + foot - 0.6, 2.6);
     roadSign(b, X1 - 1.4, Z0 - foot + 0.6, 2.6);
     roadSign(b, X1 - 1.4, Z1 + foot - 0.6, 2.2);
+    // Cars at the kerb, staggered so the two sides do not line up. Six of
+    // them is what a hundred-metre frontage in 1990 holds, and they are the
+    // only moving-scale object in the whole block: everything else here is
+    // furniture, and furniture is the same size everywhere.
+    const PAINT = [SLOT.CAR_A, SLOT.CAR_B, SLOT.CAR_C];
+    for (let i = 0; i < 4; i += 1) {
+      const x = X0 + 9 + i * ((X1 - X0 - 18) / 3);
+      if (Math.abs(x) > 8) parkedCar(b, x, Z1 + foot + 1.15, 0, PAINT[i % 3], 3.9 + (i % 2) * 0.35);
+    }
+    for (let i = 0; i < 3; i += 1) {
+      const x = X0 + 14 + i * ((X1 - X0 - 28) / 2);
+      parkedCar(b, x, Z0 - foot - 1.15, 0, PAINT[(i + 2) % 3], 4.0 + (i % 2) * 0.3);
+    }
+    // A utility cabinet and a grit bin, because a pavement is never only
+    // lamps and trees. Both are generic boxes with no operator on them.
+    b.bevelBox(X0 + 5.4, X0 + 6.5, 0.15, 1.42, Z1 + foot - 0.95, Z1 + foot - 0.55, SLOT.METAL, 0.95, 0.025);
+    b.bevelBox(X1 - 7.2, X1 - 6.2, 0.15, 0.86, Z0 - foot + 0.5, Z0 - foot + 1.15, SLOT.TRIM, 0.9, 0.03);
     return b;
   }
 
@@ -1941,7 +2885,7 @@
     const margin = street / 2, foot = margin * 0.42;
     const X0 = -w / 2 + margin, X1 = w / 2 - margin, Z0 = -d / 2 + margin, Z1 = d / 2 - margin;
 
-    const out = new Builder();
+    const out = new Builder(DETAIL[lod]);
     const lots = [];
     const used = new Map();
     let tris = 0, lotIndex = 0;
@@ -2004,8 +2948,20 @@
         // worst civic block). A kind that cannot honour the depth asked of it
         // is not a smaller building, it is the same building in the wrong
         // place, so reject it and try the next anchor the district offers.
+        //
+        // AND THE PROBE IS ALWAYS THE CLOSE VARIANT, whatever level is being
+        // built. It used to be the level in hand, which made the LAYOUT a
+        // function of the LOD: a map-scale hospital has no gutters, no eaves
+        // overhang and no portico, so it measures a little smaller and passes a
+        // gate the close-scale one fails. Measured over 1,000 blocks that put a
+        // hospital in the middle of civic blocks 2, 142 and 198 at map zoom and
+        // a park in the same ground the moment the camera came in — the exact
+        // pop this kit exists to avoid. The close variant is the biggest the
+        // building ever gets, so a fit measured there is a fit at every level.
+        // It costs one extra bake per distinct anchor candidate per process,
+        // shared through the same variant cache as everything else.
         const probe = variantFor(kind, { w: quantise(best), d: depth, storeys,
-          seed: SEEDED[kind] ? mix32(seed ^ Math.imul(lotIndex + 1, 0x27d4eb2f)) : 0 }, lod);
+          seed: SEEDED[kind] ? mix32(seed ^ Math.imul(lotIndex + 1, 0x27d4eb2f)) : 0 }, "close");
         if (probe.extent[0] > roomX + EAVE || probe.extent[1] > roomZ + EAVE) continue;
         place(kind, { w: best, d: depth, storeys },
           0, (inX0 + inX1) / 2, (inZ0 + inZ1) / 2, "block interior");
@@ -2016,6 +2972,35 @@
     if (!anchored && inX1 - inX0 > 12 && inZ1 - inZ0 > 8) {
       out.part("block interior / service lane and lock-ups", "service", -1, () => {
         serviceCore(out, inX0, inX1, inZ0, inZ1, seed);
+      });
+    }
+    // Rear boundaries. The land behind a frontage is gardens and yards, and
+    // left as one unbroken sheet of grass it is the thing that makes a block
+    // read as a model of a block rather than as a place: from any camera above
+    // the eaves the middle of the tile is most of what you see. A hedge line
+    // behind each frontage, with a gap for the path, divides it for about two
+    // thousand triangles. It stays clear of the flank lots and of whatever the
+    // interior holds, so it cannot clash with either.
+    const bandX0 = X0 + deepW + 1.0, bandX1 = X1 - deepE - 1.0;
+    if (out.detail >= 1 && bandX1 - bandX0 > 16 && coreRun > 10) {
+      out.part("block interior / rear boundaries", "boundary", -1, () => {
+        out.scheme = ask(seed, 881) % SCHEMES.length;
+        for (const side of [1, -1]) {
+          const z = side > 0 ? coreZ1 - 1.05 : coreZ0 + 1.05;
+          const runs = 5, span = (bandX1 - bandX0) / runs;
+          for (let i = 0; i < runs; i += 1) {
+            if (i === 2) continue;                                  // the way through
+            const x0 = bandX0 + i * span + 0.5, x1 = bandX0 + (i + 1) * span - 0.5;
+            if (ask(seed, 1200 + i * 7 + (side > 0 ? 0 : 3)) % 3 === 0) {
+              lowWall(out, x0, x1, z - 0.16, z + 0.16, 0.95);
+            } else {
+              hedge(out, x0, x1, z - 0.34, z + 0.34, 1.15 + (i % 2) * 0.18);
+            }
+          }
+          for (const x of [bandX0 + span * 1.5, bandX0 + span * 3.5]) {
+            tree(out, x, z - side * 2.2, 5.4 + (Math.abs(x) % 3) * 0.4, side * 0.2, 6);
+          }
+        }
       });
     }
     out.part("streetscape / carriageway, footways and furniture", "street", -1, () => {
@@ -2059,7 +3044,7 @@
     const lod = normaliseLod(o.lod);
     const baked = variantFor(kind, p, lod);
     const scheme = o.scheme != null && SCHEMES[o.scheme | 0] ? (o.scheme | 0) : ask(seed, 900) % SCHEMES.length;
-    const out = new Builder();
+    const out = new Builder(DETAIL[lod]);
     out.part(baked.label, kind, 0, () => { stampInto(out, baked, 0, 0, 0, scheme); });
     return out.finish(baked.description, {
       kind, lod, scheme: SCHEMES[scheme].id,
