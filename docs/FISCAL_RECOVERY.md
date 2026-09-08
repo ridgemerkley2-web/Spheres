@@ -177,13 +177,13 @@ of the displayed fiscal stability contribution. Browser unit tests exercise
 units, provisional readings, full-use draft separation, navigation, duplicate
 and stale commands, replaced campaigns, command refusals and escaped text.
 
-Final local checks passed on 2026-09-08:
+Implementation checks passed locally on 2026-09-08 at `5cc39c1`:
 
 - 1,337 workspace Rust tests, zero failures; 70 existing tests remain ignored.
 - The separate resource timing test passed at **0.0739 ms/model month** against
   the unchanged **0.15 ms** gate. Its executable remained byte-identical after
-  the final web-only fixes, so the isolated reading still covers the final
-  simulation source.
+  that commit's final web-only fixes. The later presentation correction was
+  checked separately in CI as recorded below.
 - Four campaign-observer tests and all **1,093 UI unit tests** passed. The UI
   count includes 13 fiscal tests and 25 existing Cabinet tests.
 - All three unchanged browser suites passed on the final web executable:
@@ -228,12 +228,23 @@ Problems found during QA were repaired rather than weakening checks:
 
 The final fiscal observer executable has SHA-256
 `6696E9B9C401FB057F502E0F40E23321451EF2DB586760D4EB13D24EF446CEB0`.
-The final browser QA executable has SHA-256
+The browser executable used for the three local suites and HTTP reproduction
+has SHA-256
 `F87E99A6878CE3553BBD8C5CBC5E011B6122493F9405D0CC6E37566003DADD66`.
 The browser fixes did not change the simulation used by the endurance observer.
 The later crisis-headline correction changes presentation in the observer's
 annual payloads, but not the world path or fiscal calculations. Frozen raw
 reports retain their original presentation for provenance.
+
+The clean browser build of `5c7d044` has SHA-256
+`4DA16DE5C2F219979BCC90C0912703EBA9094CEE3B16FB034AFCF3099F52F248`.
+Manual continuation loaded the post-vote France campaign on 2 January 2035
+and followed the overview link to Money & policy, with enabled recovery controls
+and no browser warnings or errors. Saving again preserved the complete parsed
+campaign payload, including 1,332 history points and 79,829 dispatches; only the
+save metadata timestamp differed. The original campaign save remained intact.
+The saved campaign payload hash, excluding that timestamp, is
+`544452438de6adf7e7d006623c15a9ac0493b933aa1aa4da94cdd583b2f0b969`.
 Local receipts, earlier failed runs and final results are retained under
 `artifacts/fiscal-recovery/` (not committed). The earlier
 `USER_QA_1990_2035.md` describes the prior fiscal model; it is separate evidence.
@@ -248,6 +259,28 @@ respectively; `master` recorded 0.1116 and 0.1048. All passed the 0.15 ms limit.
 See the completed
 [active-branch verification](https://github.com/ridgemerkley2-web/Spheres/actions/runs/34264793999)
 and [master verification](https://github.com/ridgemerkley2-web/Spheres/actions/runs/34264794813).
+
+The final fiscal code, commit
+[`5c7d044`](https://github.com/ridgemerkley2-web/Spheres/commit/5c7d0444dba070aea6a5b2e24dafdd4fe74f2630),
+passed the same complete workflow on both branches and both platforms. Each
+job passed **1,338 workspace tests**, the isolated resource test, four observer
+tests, **1,093 UI tests**, and all three browser suites. Seventy existing tests
+remain ignored; the resource test is deliberately filtered out of the workspace
+run and executed separately. The added crisis-presentation regression passed
+in all four jobs and in the local 18-test fiscal suite.
+
+| Final-code CI | Linux resource time, ms/month | Windows resource time, ms/month |
+| --- | ---: | ---: |
+| Active branch | 0.1080 | 0.1173 |
+| Master | 0.1075 | 0.1185 |
+
+All four original jobs completed successfully without a rerun or relaxed
+assertion. These resource readings pass the unchanged 0.15 ms hard gate; the
+separate 0.05 ms aspiration was not met. See the final
+[active-branch workflow](https://github.com/ridgemerkley2-web/Spheres/actions/runs/34270309707)
+and [master workflow](https://github.com/ridgemerkley2-web/Spheres/actions/runs/34270310733).
+Full job logs and the checked counts are retained in
+`artifacts/fiscal-recovery/ci-5c7d044/final-summary.json` and adjacent logs.
 
 ## Completed guided campaign: 1990–2035
 
@@ -289,7 +322,71 @@ The system exposes their fiscal stress and political pressure; it does not
 implement a payment default or guarantee recovery through ordinary adjustments.
 The Zaire reading also supplied the crisis-headline regression described above.
 
+## Matched unchanged-policy comparison: 1990–2035
+
+The unchanged-policy USA run completed the same 16,436 days, all daily checks
+and seven-day exact save replay. It had the identical opening world hash,
+`2a6d3e40f04682c6`, and renewed the same inherited player program budget
+unchanged each year. It enacted no recovery votes and left tax at 27%.
+Its terminal hash was `aea36307d5f18825`.
+
+| USA on 1 January 2035 | Unchanged policy | Guided recovery |
+| --- | ---: | ---: |
+| Debt / GDP | 543.20% | 0.00% |
+| Tax rate | 27.00% | 30.33% |
+| Real GDP, $bn | 12,374.80 | 11,173.59 |
+| Primary cash balance / GDP | −0.52% | +2.85% |
+| Interest / revenue | 163.37% | 0.00% |
+| Fiscal stability effect, points/month | −0.05 | 0.00 |
+| Stability | 52.86 | 65.27 |
+| Inflation | 2.00% | 2.00% |
+
+The unchanged-policy run first shows fiscal pressure in the 2000 annual
+sample and reaches the pressure cap by the 2004 sample. By 2035, its debt ratio
+was rising 37.17 percentage points per year, with a five-year projection of
+772.40%. It remained in a fiscal-confidence crisis, with 427 stress months.
+Debt pressure did not automatically raise inflation or create a civil war.
+
+The guided run trades a higher tax rate and lower modeled output for fiscal
+solvency and higher final stability. The total 12.41-point stability difference
+is the outcome of two evolving game worlds, not a measurement of the fiscal
+term alone. This comparison does not disable tax, employment, political or
+international feedback. The separate fiscal contribution is shown explicitly
+above. In the unchanged-policy world, 146 of 156 living countries were under
+control and eight had stability below 30; unlimited borrowing still produced
+severe outliers, including Nicaragua at 23,505.20% debt/GDP.
+
+## Completed all-AI campaign: 1990–2035
+
+The all-AI scenario also completed 16,436 daily ticks and the seven-day exact
+save replay. Opening world hash: `59a54b63968168c4`; terminal hash:
+`d2abe18f62959fc5`. It used the same seed and enabled daily systems, with no
+player. The observer did not enroll the USA in a player program budget. This
+therefore tests an autonomous world, rather than isolating the effect of the
+four guided tax votes in the matched player-budget setup above.
+
+The AI-run USA ended at **50.4831% debt/GDP**, 32.9499% tax and 68.3071 stability.
+Interest absorbed **3.7827% of revenue**, and the primary cash surplus was
+1.9023% of GDP. The assessment included an estimated 1.5926% of GDP in other
+recurring cash obligations. Its five-year debt projection was 52.4879%; it was
+assessed as under control with no fiscal-confidence pressure. This illustrates
+affordable ongoing debt, rather than requiring every government to reach zero.
+
+Of 156 living countries, **148 were under control**. Thirteen still had debt
+above 100% of GDP, and six had stability below 30. Nicaragua reached
+22,924.38% debt/GDP, with interest equal to 3,424.92% of revenue and stability
+37.05. Zaire reached 8,041.86% debt/GDP and 23.25 stability. Both received the
+maximum fiscal-confidence pressure. Ordinary adjustments do not guarantee an
+escape from those extreme paths, especially after tax reaches its AI ceiling.
+Conversely, some low-stability countries had little debt and no fiscal pressure;
+other game systems remain capable of causing instability.
+
 These are descriptive results from one seed, not historical calibration or a
-claim that every economy is balanced. The full all-AI and unchanged-player-policy
-comparisons are still running. Raw outputs and the guided action ledger are
-retained in `artifacts/fiscal-recovery/guided-1990.json` and its summary.
+claim that every economy is balanced. Raw outputs, annual country rows and the
+guided executed-action ledger are retained under `artifacts/fiscal-recovery/`.
+The action ledger is not a complete audit of all AI proposals or unaffordable
+commands skipped by the observer.
+
+All three runs use the frozen fiscal simulation described above. The separately
+developed replacement of industrial packs with factory capacity is not included
+in these campaign comparisons and requires its own integration verification.
