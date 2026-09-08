@@ -577,17 +577,32 @@ pub enum CovertOp {
     FundOpposition,
     StirSeparatists,
     SabotageIndustry,
+    /// The political arm (S3): money and organisers for one bloc's movement
+    /// inside the target. Fixed effect, no extra draw — see
+    /// `statecraft::add_backing`. Refused while `rules.ideology_blocs` is off
+    /// and against the target's own ruling bloc.
+    BackBloc(crate::government::Bloc),
 }
 impl CovertOp {
     pub fn label(&self) -> &'static str {
+        use crate::government::Bloc;
         match self {
             CovertOp::FundOpposition => "funding the opposition",
             CovertOp::StirSeparatists => "arming separatists",
             CovertOp::SabotageIndustry => "industrial sabotage",
+            CovertOp::BackBloc(Bloc::Western) => "backing the Western movement",
+            CovertOp::BackBloc(Bloc::Communist) => "backing the Communist movement",
+            CovertOp::BackBloc(Bloc::Nationalist) => "backing the Nationalist movement",
+            CovertOp::BackBloc(Bloc::Islamist) => "backing the Islamist movement",
+            CovertOp::BackBloc(Bloc::NonAligned) => "backing the Non-Aligned movement",
         }
     }
     pub fn parse(s: &str) -> Option<CovertOp> {
-        match s.trim().to_lowercase().as_str() {
+        let s = s.trim().to_lowercase();
+        if let Some(bloc) = s.strip_prefix("back:") {
+            return crate::government::Bloc::parse(bloc).map(CovertOp::BackBloc);
+        }
+        match s.as_str() {
             "opposition" | "fund" | "coup" => Some(CovertOp::FundOpposition),
             "separatists" | "separatism" | "stir" => Some(CovertOp::StirSeparatists),
             "sabotage" | "industry" => Some(CovertOp::SabotageIndustry),
@@ -609,6 +624,30 @@ pub struct Statecraft {
     /// Sparse, like `relations`: a state that has never broken its word is
     /// simply absent and reads as the baseline.
     pub reputation: Vec<(NationId, f64)>,
+    /// Foreign backing of a bloc inside another state — the F_B term of the
+    /// political arm's influence, I_B = S_B + F_B (design S3). Written by
+    /// `statecraft::add_backing` on a clean `CovertOp::BackBloc`, halved by
+    /// exposure, cooled by `statecraft::backing_cools`, and kept SORTED by
+    /// (sponsor, target, bloc) so a save and a tick walk it in one order. It
+    /// serialises nothing while empty, which is every world the switch is
+    /// off in, because the op is refused there.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub backing: Vec<Backing>,
+}
+
+/// One sponsor's standing weight behind one bloc in one target state.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+pub struct Backing {
+    pub sponsor: NationId,
+    pub target: NationId,
+    pub bloc: crate::government::Bloc,
+    /// Added to the bloc's share to make its influence, 0..1.
+    pub weight: f64,
+    /// Whether the target has caught the sponsor at it: the surface names the
+    /// sponsor only once this is true. Set by exposure, never cleared while
+    /// the entry lives.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub exposed: bool,
 }
 
 /// What a state's word is worth before it has spent any of it.
@@ -942,6 +981,10 @@ pub struct GameRules {
     /// Empty state and a false switch both disappear from saves.
     #[serde(default, skip_serializing_if = "is_false")]
     pub production_system: bool,
+    /// Outcome-led industry and conserved construction assignments. Browser
+    /// campaigns enable this; absent saves retain their legacy replay rules.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub industry_rebuild: bool,
     /// Player-directed military manufacturing lines. OFF in the calibrated
     /// world; with no directed lines even an enabled browser world retains the
     /// existing automatic procurement path exactly.
@@ -951,6 +994,21 @@ pub struct GameRules {
     /// Explicitly enabled for the daily review campaign; absent from legacy saves.
     #[serde(default, skip_serializing_if = "is_false")]
     pub economic_competition: bool,
+    /// The political arm, stage S1: the five ideological blocs, the leader
+    /// table, the discontent gauge and the takeover watch as READOUTS. OFF by
+    /// default on the `resource_market` pattern, so every test and the headless
+    /// CLI run the world the goldens pin, bit for bit; the browser's play rules
+    /// turn it on. Every state this switch seeds (`GovState.movements`,
+    /// `GovState.regime_bloc`, `WorldState.leadership`) serialises nothing
+    /// while it is off, and the government module draws no RNG for it.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub ideology_blocs: bool,
+    /// The four roads to power — coup, uprising, round table, collapse — as
+    /// MECHANICS rather than readouts. Stage S4, not built here: every road
+    /// reads closed with the reason "not in this build" while this is false,
+    /// and nothing in the tree turns it on.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub ideology_takeover: bool,
 }
 fn rules_true() -> bool {
     true
@@ -974,8 +1032,11 @@ impl Default for GameRules {
             daily_simulation: false,
             military_operations: false,
             production_system: false,
+            industry_rebuild: false,
             manufacturing_system: false,
             economic_competition: false,
+            ideology_blocs: false,
+            ideology_takeover: false,
         }
     }
 }
@@ -1025,6 +1086,14 @@ pub struct WorldState {
     /// seats each one from the transcribed 1990 party table on the next tick.
     #[serde(default)]
     pub governments: crate::government::Governments,
+    /// Who directed each executive on 1 January 1990, from
+    /// `data/leaders_1990.json`. `Some` only when `rules.ideology_blocs` is
+    /// on, and absent from the save otherwise, so a default world serialises
+    /// exactly as it did before the political arm existed. No name in it is
+    /// ever written for a date after 1 January 1990 (design D2): the offices
+    /// are described by their institution once the game moves.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub leadership: Option<Vec<crate::data::Office>>,
     /// Brent-ish oil price, USD/barrel
     pub oil_price: f64,
     /// Event log for the current month (drained by UI)
@@ -1124,6 +1193,9 @@ pub struct WorldState {
     pub commerce: Option<crate::commerce::Commerce>,
     #[serde(default, skip_serializing_if = "crate::economic_ai::EconomicAi::is_empty")]
     pub economic_ai: crate::economic_ai::EconomicAi,
+    /// Fictional domestic contractors; old saves remain disabled until opted in.
+    #[serde(default, skip_serializing_if = "crate::companies::Companies::is_empty")]
+    pub companies: crate::companies::Companies,
 
     /// Where each roster id sits in `nations`, or `u16::MAX` for a state that
     /// has not been born. Derived and never serialized: a save that carried it
@@ -1399,6 +1471,15 @@ impl WorldState {
         } else {
             self.statecraft.reputation.push((id, v));
         }
+    }
+    /// The stored weight one sponsor holds behind one bloc in one target.
+    pub fn backing_of(&self, sponsor: NationId, target: NationId, bloc: crate::government::Bloc) -> f64 {
+        self.statecraft
+            .backing
+            .iter()
+            .find(|b| b.sponsor == sponsor && b.target == target && b.bloc == bloc)
+            .map(|b| b.weight)
+            .unwrap_or(0.0)
     }
     pub fn covert_heat(&self, sponsor: NationId, target: NationId) -> f64 {
         self.statecraft

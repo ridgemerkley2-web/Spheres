@@ -21,12 +21,20 @@ pub fn capabilities(n: &Nation) -> Capabilities {
     let mut value = [0.0; 6];
     let mut custom_land = 0.0;
     let mut custom_land_effect = 0.0;
+    let mut custom_strike_aircraft = 0.0;
     let mut ground = crate::equipment::GroundRoles::default();
     for h in &n.arsenal.held {
         if let Some(d) = arsenal::DECK.get(h.kit as usize) {
             let weight = arsenal::combat_value(n, h);
             value[class_index(d.class)] += weight;
             if let Some(profile) = h.design_id.as_deref().and_then(|id| crate::equipment::profile(n, id)) {
+                if profile.aviation.is_some() {
+                    // Tactical strike aircraft provide no land hardware or
+                    // transport lift. Their installed strike factor is applied
+                    // once, with compatible stores, by ammunition_effects.
+                    custom_strike_aircraft += weight;
+                    continue;
+                }
                 custom_land += weight;
                 custom_land_effect += weight * profile.land_factor.clamp(0.75, 1.25);
                 if let Some(r) = profile.ground_roles {
@@ -56,7 +64,7 @@ pub fn capabilities(n: &Nation) -> Capabilities {
     ground.reconnaissance = (ground.reconnaissance / coverage * 0.20).clamp(0.0,0.25);
     ground.air_defense = (ground.air_defense / coverage * 0.25).clamp(0.0,0.35);
     Capabilities { land: role(land_weight, 0.40) * land_factor,
-        strike: role(value[1] + value[4], 0.25), lift: role(value[1] + value[2], 0.20), ground_roles: ground }
+        strike: role(value[1] + value[4], 0.25), lift: role((value[1] - custom_strike_aircraft).max(0.0) + value[2], 0.20), ground_roles: ground }
 }
 fn class_index(c: Class) -> usize {
     match c { Class::Armour => 0, Class::Air => 1, Class::Naval => 2,
@@ -76,6 +84,9 @@ pub struct Deployment {
     pub capabilities: Capabilities,
     pub rung: u8,
     pub burn_monthly: f64,
+    /// Present only after physical custom ammunition has been activated.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub ammunition: Option<crate::equipment::GroundAmmoEffects>,
 }
 
 #[derive(Clone, Debug, Serialize)]
@@ -92,7 +103,7 @@ pub struct ForceView {
 
 /// Desired deployments are capped first by the shared overseas ceiling, then
 /// by total structure. Scaling is proportional and sorted by conflict id.
-fn allocate(w: &WorldState, id: NationId, extra: Option<&Conflict>) -> Vec<Deployment> {
+fn allocate_base(w: &WorldState, id: NationId, extra: Option<&Conflict>) -> Vec<Deployment> {
     let Some(n) = w.nation_opt(id).filter(|n| n.alive) else { return vec![] };
     let cap = capabilities(n);
     let overseas_limit = n.mil_strength.max(0.0) * war::deployable_fraction(w, id) * cap.lift;
@@ -110,7 +121,7 @@ fn allocate(w: &WorldState, id: NationId, extra: Option<&Conflict>) -> Vec<Deplo
             .min(b.force_share_bp.map_or(f64::INFINITY, |bp| n.mil_strength.max(0.0) * bp.min(10_000) as f64 / 10_000.0));
         Some(Deployment { conflict: c.id, nation: id, overseas, allocation_bp: b.force_share_bp,
             requested, deployed: requested, effective_force: 0.0, quality: war::quality(w, id),
-            capabilities: cap, rung: b.rung, burn_monthly: 0.0 })
+            capabilities: cap, rung: b.rung, burn_monthly: 0.0, ammunition: None })
     }).collect();
     let abroad: f64 = rows.iter().filter(|r| r.overseas).map(|r| r.deployed).sum();
     if abroad > overseas_limit {
@@ -131,6 +142,80 @@ fn allocate(w: &WorldState, id: NationId, extra: Option<&Conflict>) -> Vec<Deplo
         r.burn_monthly = if reference > 0.0 { war::BURN_BY_RUNG[r.rung.min(9) as usize] * roe * r.deployed / reference } else { 0.0 };
     }
     rows
+}
+
+// Build aircraft allocations independently of opposing air exposure. Their
+// national compatible-store plan can then establish actual launched raids
+// without recursively asking another nation's full ammunition allocation.
+fn ammo_deployments_base(w: &WorldState, id: NationId, rows: &[Deployment], extra: Option<&Conflict>) -> Vec<crate::equipment::AmmoDeployment> {
+    let strength = w.nation(id).mil_strength.max(0.0);
+    rows.iter().map(|row| {
+        let conflict = w.conflict(row.conflict).or_else(|| extra.filter(|c| c.id == row.conflict));
+        let posture = conflict.and_then(|c| c.posture_of(id));
+        let roe = posture.map_or(1.0, |b| war::roe_burn(b.roe));
+        let rung = row.rung.min(9) as usize;
+        let reference = war::RUNG_COMMIT[rung];
+        let intensity = if reference > 0.0 {
+            war::BURN_BY_RUNG[rung] / reference / (war::BURN_BY_RUNG[8] / war::RUNG_COMMIT[8]) * roe
+        } else { 0.0 };
+        crate::equipment::AmmoDeployment {
+            ground: row.rung != 6,
+            aircraft_share: if row.rung == 6 && strength > 0.0 && conflict.is_some_and(|c| theatre::has_access(w,id,c.theatre)) {
+                (row.deployed / strength).clamp(0.0,1.0)
+            } else { 0.0 },
+            deployed_share: if strength > 0.0 { (row.deployed / strength).clamp(0.0, 1.0) } else { 0.0 },
+            intensity, air_exposure: 0.0,
+        }
+    }).collect()
+}
+
+fn launched_enemy_air(w: &WorldState, id: NationId, conflict: u32, extra: Option<&Conflict>) -> f64 {
+    let rows = allocate_base(w, id, extra);
+    let Some(index) = rows.iter().position(|r| r.conflict == conflict && r.rung == 6) else { return 0.0; };
+    let row = &rows[index];
+    // Preserve the old legacy-air exposure rule. Only nations with actual
+    // custom aircraft need the new supported, based and paid-store check.
+    if !crate::equipment::has_aviation_holdings(w.nation(id)) { return row.deployed; }
+    let deployments = ammo_deployments_base(w, id, &rows, extra);
+    let plan = crate::equipment::plan_ammunition(w, id, &deployments);
+    let effects = crate::equipment::ammunition_effects(w, id, &deployments[index], row.capabilities, &plan);
+    row.deployed * effects.fire_fraction
+}
+
+fn ammo_deployments(w: &WorldState, id: NationId, rows: &[Deployment], extra: Option<&Conflict>) -> Vec<crate::equipment::AmmoDeployment> {
+    let mut deployments = ammo_deployments_base(w, id, rows, extra);
+    for (row, deployment) in rows.iter().zip(&mut deployments) {
+        let conflict = w.conflict(row.conflict).or_else(|| extra.filter(|c| c.id == row.conflict));
+        let enemy_air: f64 = conflict.map_or(0.0, |c| {
+            let opponents = if c.side_a.contains(&id) { &c.side_b } else { &c.side_a };
+            opponents.iter().map(|enemy| launched_enemy_air(w, *enemy, row.conflict, extra)).sum()
+        });
+        deployment.air_exposure = if row.deployed > 0.0 { (enemy_air / row.deployed).clamp(0.0, 1.0) } else { 0.0 };
+    }
+    deployments
+}
+
+fn allocate(w: &WorldState, id: NationId, extra: Option<&Conflict>) -> Vec<Deployment> {
+    let mut rows = allocate_base(w, id, extra);
+    if !crate::equipment::physical_ammunition_required(w.nation(id), crate::clock::absolute_day(w)) { return rows; }
+    let deployments = ammo_deployments(w, id, &rows, extra);
+    let plan = crate::equipment::plan_ammunition(w, id, &deployments);
+    for (row, deployment) in rows.iter_mut().zip(&deployments) {
+        let effects = crate::equipment::ammunition_effects(w, id, deployment, row.capabilities, &plan);
+        row.effective_force = row.deployed * effects.fire_fraction;
+        row.burn_monthly *= effects.legacy_share;
+        row.ammunition = Some(effects);
+    }
+    rows
+}
+
+pub(crate) fn ammunition_overview(w: &WorldState, id: NationId) -> crate::equipment::AmmunitionOverview {
+    let rows = allocate_base(w, id, None);
+    crate::equipment::plan_ammunition(w, id, &ammo_deployments(w, id, &rows, None))
+}
+
+pub(crate) fn deployment(w: &WorldState, c: &Conflict, id: NationId) -> Option<Deployment> {
+    allocate(w, id, Some(c)).into_iter().find(|r| r.conflict == c.id)
 }
 
 pub fn committed_force(w: &WorldState, c: &Conflict, id: NationId) -> f64 {
@@ -166,14 +251,40 @@ pub(crate) struct Snapshot {
     pub rows: BTreeMap<(u32, NationId), Deployment>,
     strength: BTreeMap<NationId, f64>,
     magazines: BTreeMap<NationId, f64>,
-    losses: BTreeMap<(NationId, u32), (f64, u8)>,
+    // Raw deployment loss retains legacy materiel arithmetic; launched force
+    // loss may be smaller for nations operating physical tactical aircraft.
+    losses: BTreeMap<(NationId, u32), (f64, u8, f64)>,
+    ammunition: BTreeMap<NationId, crate::equipment::AmmunitionOverview>,
+    aircraft_exposure: BTreeMap<(NationId, u32), BTreeMap<String, f64>>,
 }
 impl Snapshot {
     pub fn new(w: &WorldState) -> Self {
-        let mut s = Self { rows: BTreeMap::new(), strength: BTreeMap::new(), magazines: BTreeMap::new(), losses: BTreeMap::new() };
+        let mut s = Self { rows: BTreeMap::new(), strength: BTreeMap::new(), magazines: BTreeMap::new(), losses: BTreeMap::new(), ammunition: BTreeMap::new(), aircraft_exposure: BTreeMap::new() };
         for n in w.nations.iter().filter(|n| n.alive) {
             s.strength.insert(n.id, n.mil_strength.max(0.0));
             let rows = allocate(w, n.id, None);
+            if crate::equipment::physical_ammunition_required(n, crate::clock::absolute_day(w)) {
+                let deployments = ammo_deployments(w, n.id, &rows, None);
+                let plan = crate::equipment::plan_ammunition(w, n.id, &deployments);
+                if crate::equipment::has_aviation_holdings(n) {
+                    for (row, deployment) in rows.iter().zip(&deployments) {
+                        let mut exposure = BTreeMap::new();
+                        for h in &n.arsenal.held {
+                            let Some(design) = h.design_id.as_deref() else { continue; };
+                            let Some(profile) = crate::equipment::profile(n, design) else { continue; };
+                            let Some(aviation) = &profile.aviation else { continue; };
+                            let reference = arsenal::available_design_units(h) as f64 * profile.reference_weight_bn;
+                            let launched = if deployment.aircraft_share > 0.0 && deployment.intensity > 0.0 && reference > 0.0 {
+                                arsenal::combat_value(n, h) / reference
+                                    * crate::equipment::ammunition_family_coverage(&plan, &aviation.store_family)
+                            } else { 0.0 };
+                            exposure.insert(design.to_string(), launched.clamp(0.0, 1.0));
+                        }
+                        s.aircraft_exposure.insert((n.id, row.conflict), exposure);
+                    }
+                }
+                s.ammunition.insert(n.id, plan);
+            }
             let burn: f64 = rows.iter().map(|r| r.burn_monthly).sum();
             s.magazines.insert(n.id, (n.munitions - burn * crate::clock::month_fraction(w)).clamp(0.0, 1.0));
             for row in rows { s.rows.insert((row.conflict, n.id), row); }
@@ -182,18 +293,33 @@ impl Snapshot {
     }
     pub fn deployed(&self, cid: u32, id: NationId) -> f64 { self.rows.get(&(cid, id)).map_or(0.0, |r| r.deployed) }
     pub fn strength(&self, id: NationId) -> f64 { self.strength.get(&id).copied().unwrap_or(0.0) }
-    pub fn dry(&self, id: NationId) -> bool { self.magazines.get(&id).is_some_and(|m| *m <= 0.0) }
+    pub fn dry(&self, cid: u32, id: NationId) -> bool {
+        let scalar_dry = self.magazines.get(&id).is_some_and(|m| *m <= 0.0);
+        if let Some(effects) = self.rows.get(&(cid,id)).and_then(|r| r.ammunition) {
+            return (effects.legacy_share <= 1e-12 || scalar_dry)
+                && (effects.legacy_share >= 1.0-1e-12 || effects.physical_dry);
+        }
+        scalar_dry
+    }
     pub fn record_loss(&mut self, cid: u32, id: NationId, fraction: f64) {
-        if let Some(r) = self.rows.get(&(cid,id)) { self.losses.insert((id,cid), (r.deployed * fraction.clamp(0.0,1.0), r.rung)); }
+        if let Some(r) = self.rows.get(&(cid,id)) {
+            let raw = r.deployed * fraction.clamp(0.0,1.0);
+            let force = if self.aircraft_exposure.contains_key(&(id,cid)) {
+                raw * r.ammunition.map_or(1.0, |a| a.maneuver_fraction)
+            } else { raw };
+            self.losses.insert((id,cid), (raw, r.rung, force));
+        }
     }
     /// Apply each nation's force and inventory debit once after every theatre
     /// has resolved against the same opening deployment and equipment snapshot.
     pub fn settle(self, w: &mut WorldState) {
+        for (id, plan) in &self.ammunition { crate::equipment::settle_ammunition(w, *id, plan); }
         for (id, opening) in self.strength {
             let mut loss = 0.0;
             let mut material = [0.0; 6];
-            for (_, (amount, rung)) in self.losses.range((id,0)..=(id,u32::MAX)) {
-                loss += amount;
+            let mut aircraft_material = BTreeMap::<String, f64>::new();
+            for ((_, cid), (amount, rung, force)) in self.losses.range((id,0)..=(id,u32::MAX)) {
+                loss += force;
                 // Half of force casualties represent irrecoverable materiel;
                 // the rest are personnel/damage already represented by force
                 // regeneration. Space stocks are not destroyed in land combat.
@@ -204,13 +330,32 @@ impl Snapshot {
                     _ => [0.7,0.25,0.0,1.0,0.1,0.0],
                 };
                 for i in 0..6 { material[i] += amount / opening.max(1e-12) * 0.5 * weights[i]; }
+                if *rung == 6 {
+                    if let Some(exposure) = self.aircraft_exposure.get(&(id,*cid)) {
+                        for (design, launched) in exposure {
+                            *aircraft_material.entry(design.clone()).or_default() += amount / opening.max(1e-12) * 0.5 * launched;
+                        }
+                    }
+                }
             }
             let n = w.nation_mut(id);
             n.mil_strength = (opening - loss).max(0.0);
             if let Some(m) = self.magazines.get(&id) { n.munitions = *m; }
+            let equipment = n.equipment.as_ref();
             for h in &mut n.arsenal.held {
+                if let Some(design) = h.design_id.as_deref().filter(|design| equipment
+                    .and_then(|s| s.revisions.get(*design)).is_some_and(|r| r.profile.aviation.is_some())) {
+                    // This first aircraft slice models launched strike sorties,
+                    // not aircraft destroyed on airfields during a land battle.
+                    arsenal::apply_holding_loss(h, aircraft_material.get(design).copied().unwrap_or(0.0));
+                    continue;
+                }
                 if let Some(d) = arsenal::DECK.get(h.kit as usize) { arsenal::apply_holding_loss(h, material[class_index(d.class)]); }
             }
         }
     }
 }
+
+#[cfg(test)]
+#[path = "operations_aviation_loss_tests.rs"]
+mod aviation_loss_tests;

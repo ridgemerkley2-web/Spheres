@@ -3,7 +3,7 @@
 use crate::{
     clock,
     commerce::Good,
-    districts, industrial_modules as modules, industry, industry_planning,
+    districts, industrial_modules as modules, industry, industry_planning, industry_operations as operations,
     production::{self, ProjectKind as K},
     programs,
     world::{NationId, WorldState},
@@ -156,6 +156,7 @@ pub fn suggestions(w: &WorldState, nation: NationId) -> Suggestions {
         out.note = "Construction advice requires daily construction to be enabled.".into();
         return out;
     }
+    if operations::enabled(w) { return rebuild_suggestions(w, nation); }
     let plan = industry_planning::plan(w, nation);
     let sites = ordered_sites(w, &plan);
     if sites.is_empty() {
@@ -311,6 +312,176 @@ pub fn suggestions(w: &WorldState, nation: NationId) -> Suggestions {
         }
     } else if let Some(why) = operations {
         out.note = why;
+    }
+    out
+}
+
+/// Needs precede development choices. Hypothetically commissioning queued
+/// work prevents recommending another solution to a problem already funded.
+/// Every recommendation links to the same pure before/after preview as a
+/// manual order; none starts work or changes a budget.
+pub(crate) fn rebuild_suggestions(w: &WorldState, nation: NationId) -> Suggestions {
+    let mut future = w.clone();
+    let queued: Vec<_> = production::projects_for(w, nation).cloned().collect();
+    for p in &queued {
+        if w.districts.get(&p.district) != Some(&nation) { continue; }
+        if p.kind == K::StarterIndustry { modules::complete(&mut future, p); }
+        else if production::level(&future, &p.district, p.kind) < production::MAX_PROVINCE_LEVEL {
+            production::complete_capability(&mut future, &p.district, p.kind);
+        }
+    }
+    let plan = industry_planning::plan(w, nation);
+    let sites = ordered_sites(w, &plan);
+    let mut out = Suggestions { as_of_day: clock::absolute_day(w), items: vec![],
+        note: "Needs are checked after installed and queued projects. Development options describe a choice, not an observed shortage. Review the same worker, electricity, input, funding and output preview before ordering.".into() };
+    if sites.is_empty() { out.note = "No controlled, uncontested construction site is available.".into(); return out; }
+    let already = |kind: K| queued.iter().any(|p| p.kind == kind);
+    let choose = |kind: K| sites.iter().find(|p| eligible(w, nation, &p.district, kind, None)).copied();
+    let caution = "The preview shows current operating constraints. Building capacity does not import its supplies or raise its operating budget.";
+    let mut candidates = Vec::<Ranked>::new();
+    let load = operations::power_required(&future, nation);
+    let generation = industry::power_capacity(&future, nation);
+    if load > generation + EPS {
+        if let Some(s) = choose(K::Generation) {
+            candidates.push(Ranked { rank:0, gap:load-generation, item:item(w,nation,&s.district,K::Generation,None,"Bottleneck",
+                format!("Factories and offices need {:.3} power units/day; installed and queued supply covers {:.3}. More generation can restore power-limited capacity.",load,generation),
+                vec![format!("Remaining power gap after queued projects: {:.3} units/day.",load-generation),
+                    "Opening inherited demand is already served; this gap belongs to additional activity.".into()], caution) });
+        }
+    }
+    for s in &sites {
+        let demand = operations::local_power_required(&future, &s.district);
+        let grid = operations::grid_capacity(&future, &s.district);
+        if demand > grid + EPS && eligible(w,nation,&s.district,K::PowerGrid,None) {
+            candidates.push(Ranked {rank:1,gap:demand-grid,item:item(w,nation,&s.district,K::PowerGrid,None,"Bottleneck",
+                format!("This province needs {:.3} power units/day but its installed and queued grid can deliver {:.3}.",demand,grid),
+                vec!["Local grid capacity belongs to this province; another province's spare grid cannot serve it.".into()],caution)});
+        }
+    }
+    let cap = crate::construction_capacity::snapshot(w,nation);
+    let projects = queued.len() + w.resources.mine_projects.iter().filter(|p|p.started_by==nation).count();
+    if !already(K::CivilianIndustry) && projects as f64 * crate::construction_capacity::MAX_PER_PROJECT > cap.total_capacity + EPS {
+        if let Some(s) = choose(K::CivilianIndustry) {
+            candidates.push(Ranked {rank:2,gap:projects as f64*20.0-cap.total_capacity,item:item(w,nation,&s.district,K::CivilianIndustry,None,"Build faster",
+                format!("{} projects share {:.1} construction capacity. A staffed civilian factory adds 10 capacity for this queue and future work.",projects,cap.total_capacity),
+                vec![format!("Maximum useful assignment per project: {:.0}; available new hires: {:.0}.",cap.max_per_project,operations::available_workers(w,nation))],
+                "Build this when allocation limits work. Funding or material shortages need supplies and budget; another factory alone does not fix them.")});
+        }
+    }
+    let intermediate_need = plan.goods.iter().find(|g|g.good==Good::Intermediates).map_or(0.0,|g|g.domestic_daily);
+    let intermediate_supply = plan.goods.iter().find(|g|g.good==Good::Intermediates)
+        .map_or(0.0,|g|g.installed_daily+g.committed_daily+g.contracted_daily);
+    if intermediate_need > intermediate_supply + EPS && !already(K::ProcessingPlant) {
+        if let Some(s)=choose(K::ProcessingPlant) {
+            candidates.push(Ranked {rank:3,gap:intermediate_need-intermediate_supply,item:item(w,nation,&s.district,K::ProcessingPlant,None,"Supply industry",
+                format!("Offices, machinery, components and research need {:.3} intermediate packs/day; installed, queued and contracted supply is {:.3}.",intermediate_need,intermediate_supply),
+                vec!["Materials plants turn iron, bauxite and coal into intermediate packs. Paid imports or inherited Materials contracts can also fill this need.".into()],caution)});
+        }
+    }
+    let capital = plan.goods.iter().find(|g|g.good==Good::CapitalGoods);
+    let capital_gap = capital.map_or(0.0,|g|(g.domestic_daily-g.installed_daily-g.committed_daily-g.contracted_daily).max(0.0));
+    if capital_gap > EPS {
+        let kind=K::MachineryWorks;
+        if !already(kind) { if let Some(s)=choose(kind) {
+            candidates.push(Ranked {rank:3,gap:capital_gap,item:item(w,nation,&s.district,kind,None,"Supply equipment and research",
+                format!("Existing programmes leave {:.3} capital-goods packs/day of domestic demand above installed and planned supply.",capital_gap),
+                vec!["These components enter the same inventory consumed by equipment development and research. Importing packs remains an alternative.".into()],caution)});
+        }}
+    }
+    let component_need=crate::manufacturing::advanced_components_demand_daily(w,nation)+crate::equipment::advanced_components_demand_daily(w,nation);
+    let component_supply:f64=future.districts.iter().filter(|(_,n)|**n==nation)
+        .map(|(d,_)|production::level(&future,d,K::AdvancedIndustry) as f64*operations::ADVANCED_OUTPUT_DAY).sum();
+    if component_need>component_supply+EPS && !already(K::AdvancedIndustry) {
+        if let Some(s)=choose(K::AdvancedIndustry) {
+            candidates.push(Ranked{rank:3,gap:component_need-component_supply,item:item(w,nation,&s.district,K::AdvancedIndustry,None,"Supply advanced equipment",
+                format!("Advanced military programmes need {:.3} components/day; installed and queued advanced industry provides {:.3} rated components/day.",component_need,component_supply),
+                vec![format!("Current component stock: {:.3}. Advanced components are separate from machine/tool packs.",operations::advanced_component_stock(w,nation)),"Paid imports can also supply advanced components through the existing industrial goods market.".into()],caution)});
+        }
+    }
+    if component_need<=EPS && component_supply<=EPS && !already(K::AdvancedIndustry) {
+        let external_need:f64=w.nations.iter().filter(|n|n.alive&&n.id!=nation).map(|n|
+            crate::commerce::shortage(w,n.id,Good::AdvancedComponents)).sum();
+        if external_need>operations::ADVANCED_OUTPUT_DAY*30.0 {
+            if let Some(s)=choose(K::AdvancedIndustry) {
+                if operations::available_workers(w,nation)>=operations::jobs_per_level(K::AdvancedIndustry) {
+                    candidates.push(Ranked{rank:5,gap:external_need,item:item(w,nation,&s.district,K::AdvancedIndustry,None,"Supply export demand",
+                        format!("Other governments' current equipment programmes have {:.2} advanced components of uncovered 30-day demand.",external_need),
+                        vec!["This is evidence of potential buyers, not a signed export contract. Finished components can be offered through the industrial goods market.".into()],caution)});
+                }
+            }
+        }
+    }
+    let military_waiting=w.manufacturing.lines.iter().filter(|l|l.nation==nation)
+        .filter(|l|l.reason.as_deref().is_some_and(|r|r.to_ascii_lowercase().contains("slot")||r.to_ascii_lowercase().contains("shipyard"))).count();
+    if military_waiting>0 {
+        for kind in [K::Shipyard,K::ArmsPlant] {
+            if already(kind) {continue;}
+            if !w.manufacturing.lines.iter().any(|l|l.nation==nation
+                && crate::manufacturing::is_naval(&l.kit)==(kind==K::Shipyard)
+                && l.reason.as_deref().is_some_and(|r|r.to_ascii_lowercase().contains("slot")||r.to_ascii_lowercase().contains("shipyard"))) { continue; }
+            if let Some(s)=choose(kind) {
+                candidates.push(Ranked{rank:3,gap:military_waiting as f64,item:item(w,nation,&s.district,kind,None,"Equip the country",
+                    format!("{} equipment programmes report a plant-slot or shipyard constraint. Review whether this site's line type matches the waiting equipment.",military_waiting),
+                    vec![if kind==K::Shipyard {"Coastal shipyards host naval lines.".into()}else{"Military factories host land and air equipment lines.".into()}],caution)});
+            }
+        }
+    }
+    if !already(K::Warehouse) {
+        if let Some(g)=plan.goods.iter().find(|g|g.demand_daily>EPS
+            && g.stock+g.incoming+g.contracted_remaining>=(plan.storage+plan.storage_committed)*0.9
+            && g.demand_daily*industry_planning::STOCK_COVER_DAYS>plan.storage+plan.storage_committed) {
+            if let Some(s)=choose(K::Warehouse) {
+                candidates.push(Ranked{rank:2,gap:g.demand_daily*90.0-plan.storage-plan.storage_committed,item:item(w,nation,&s.district,K::Warehouse,None,"Keep supplies available",
+                    format!("{} inventory and incoming deliveries are close to warehouse capacity while current demand needs a larger reserve.",g.good.name()),
+                    vec![format!("Installed and queued capacity per good: {:.2}; 90-day use: {:.2}.",plan.storage+plan.storage_committed,g.demand_daily*90.0)],
+                    "Warehouse upgrades add capacity separately for intermediates, capital goods and advanced components. Empty storage creates neither stock nor buyers.")});
+            }
+        }
+    }
+    if !already(K::OfficeDistrict) {
+        if let Some(s)=choose(K::OfficeDistrict) {
+            let mut after=future.clone();
+            production::complete_capability(&mut after,&s.district,K::OfficeDistrict);
+            let office=operations::site(&after,&s.district,K::OfficeDistrict);
+            let prior=operations::site(&future,&s.district,K::OfficeDistrict);
+            let extra=(office.operating_capacity-prior.operating_capacity).max(0.0);
+            if extra>0.05 {
+                let gdp=operations::office_annual_value_added(&after,&s.district,extra);
+                candidates.push(Ranked{rank:4,gap:gdp,item:item(w,nation,&s.district,K::OfficeDistrict,None,"Earn more",
+                    format!("Current workers, demand and supplies could support an estimated {:.3} $bn/year of additional service value added here.",gdp),
+                    vec![format!("Estimated annual tax at the existing fiscal tax share: {:.4} $bn. GDP and treasury revenue are separate.",operations::annual_tax_estimate(w,nation,gdp)),
+                        format!("Additional supportable service jobs: {:.0}.",extra*operations::jobs_per_level(K::OfficeDistrict))],
+                    "A development option, not guaranteed revenue: only actual staffed service output enters GDP, and normal fiscal settlement collects tax later.")});
+            }
+        }
+    }
+    if industry::research_work_demand(w,nation)>EPS && !already(K::ResearchCenter) {
+        if let Some(s)=choose(K::ResearchCenter) {
+            if production::level(&future,&s.district,K::ResearchCenter)==0 {
+                candidates.push(Ranked{rank:5,gap:industry::research_work_demand(w,nation),item:item(w,nation,&s.district,K::ResearchCenter,None,"Develop technology",
+                    "An active research programme can use prototype and testing services from a research center.".into(),
+                    vec!["Laboratories consume scientists, manufactured supplies and Science operating funds to reduce the assigned technology's remaining acquisition cost.".into()],caution)});
+            }
+        }
+    }
+    for s in &sites {
+        if queued.iter().any(|p|p.district==s.district) && !queued.iter().any(|p|p.district==s.district&&p.kind==K::Infrastructure)
+            && eligible(w,nation,&s.district,K::Infrastructure,None) {
+            candidates.push(Ranked{rank:5,gap:queued.iter().filter(|p|p.district==s.district).count() as f64,item:item(w,nation,&s.district,K::Infrastructure,None,"Improve construction and freight",
+                "Several construction commitments use this province. Infrastructure adds 10% of base work speed per level and can improve connected freight routes.".into(),
+                vec!["The impact preview checks actual route ceilings; a neighboring endpoint can remain the freight bottleneck.".into()],caution)});
+            break;
+        }
+    }
+    candidates.sort_by(|a,b|a.rank.cmp(&b.rank).then(b.gap.total_cmp(&a.gap)).then(a.item.district.cmp(&b.item.district)).then(a.item.project_kind.cmp(&b.item.project_kind)));
+    let mut kinds=std::collections::BTreeSet::new();
+    out.items=candidates.into_iter().filter(|c|kinds.insert(c.item.project_kind)).take(5).map(|c|c.item).collect();
+    if let Some(receipt)=w.production.operations.receipts.iter().filter(|r|w.districts.get(&r.district)==Some(&nation))
+        .find(|r|r.status=="blocked" && (r.worker_fraction<=EPS||r.input_fraction<=EPS||r.funding_fraction<=EPS)) {
+        out.note=format!("{} in {}: {} Additional factories alone do not resolve this operating constraint.",receipt.name,districts::name_of(&receipt.district).unwrap_or(&receipt.district),receipt.reason);
+    } else if out.items.is_empty() {
+        out.note=if queued.is_empty(){"No immediate expansion bottleneck is demonstrated. Choose your goal: civilian factories build faster, offices expand taxable services, military factories and shipyards supply assigned equipment, and supporting projects solve specific power, resource, freight or research needs."}
+            else{"Queued projects already cover the demonstrated needs, or current operating inputs/funding must be restored first. Review the existing commitments before adding capacity."}.into();
     }
     out
 }

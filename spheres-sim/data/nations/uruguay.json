@@ -25,7 +25,9 @@
   },
   "military": {
     "strength": 2.0,
-    "nuclear": false
+    "nuclear": false,
+    "personnel_1990": 25000,
+    "milex_1990_usd_bn": 0.328351
   },
   "sources": [
     "GDP $9.3bn and 3.10m people (World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, 1990; exact prints $9.299bn and 3,104,403).",
@@ -35,7 +37,8 @@
     "Oil 0.00: no domestic production at all. ANCAP refines imported crude at La Teja.",
     "Defence 2.3% of GDP and strength 2, an army sized for a country of three million between two large neighbours. Stability 65 and separatism 0.0 — the highest stability and lowest strain in this region. The dictatorship ended in March 1985, and the amnesty for the military was confirmed by referendum on 16 April 1989 with 57% voting to uphold it, which settled the transition rather than deferring it.",
     "pop_growth_1990 = 0.5519%/yr. Compound annual growth of World Bank SP.POP.TOTL, series URY (Uruguay): 3,002,488 in 1984 to 3,086,255 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
-    "reserves_bn = 1.548 ($bn). Total reserves including gold, URY, 1989: US$1547554304.49 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
+    "reserves_bn = 1.548 ($bn). Total reserves including gold, URY, 1989: US$1547554304.49 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4).",
+    "military.personnel_1990 = 25000 and military.milex_1990_usd_bn = 0.328351 ($bn). personnel: World Bank API MS.MIL.TOTL.P1 (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (URY, 1990) | milex_usd: World Bank API MS.MIL.XPND.CD (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.XPND.CD?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (URY, 1990). milex entered in billions to six decimals (the nearest $1,000) of the fetched 328,351,062 current US$. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [

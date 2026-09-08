@@ -9,7 +9,8 @@
 //! absent here (CLAUDE iron rule 8: it already owns extraction).
 //!
 //! Freight settles daily in daily simulations, monthly in legacy audits.
-//! Dispatch removes nothing and pays nobody: the
+//! Dispatch removes no cargo stock. Assigned terminal operators charge their
+//! government for actual handling through the ordinary fiscal channel; the
 //! resource market owns those ledgers. It merely reserves the narrowest route,
 //! records cargo and returns the quantity the market may remove from the
 //! seller. `begin_month` returns arrivals for that market to credit. A closure
@@ -458,7 +459,50 @@ fn segment_capacity(w: &WorldState, e: &Edge) -> (f64, String) {
             )
         }
     };
-    (monthly * crate::clock::month_fraction(w), label)
+    let operator = terminal_company(w, e).map_or(1.0, |(owner, target)| {
+        crate::companies::modifiers(w, owner, &target).work_rate
+    });
+    (monthly * crate::clock::month_fraction(w) * operator, label)
+}
+
+fn terminal_company(w: &WorldState, e: &Edge) -> Option<(NationId, crate::companies::CompanyTarget)> {
+    if w.companies.is_empty() || !crate::clock::is_daily(w) || e.kind != "terminal" { return None; }
+    let district = [&e.a, &e.b].into_iter().find(|d| w.districts.contains_key(*d))?;
+    let owner = *w.districts.get(district)?;
+    if !w.nation_opt(owner).is_some_and(|n| n.alive)
+        || (w.rules.military_operations && !crate::control::can_operate(w, owner, district)) {
+        return None;
+    }
+    Some((owner, crate::companies::CompanyTarget::Facility {
+        district: district.clone(), sector: crate::companies::CompanySector::Logistics,
+    }))
+}
+
+/// MODEL handling basis: $10 per tonne at each contracted terminal. The
+/// contractor's quoted percentage is billed only when cargo actually moves.
+pub const COMPANY_HANDLING_BN_PER_TONNE: f64 = 0.00000001;
+fn record_terminal_work(w: &mut WorldState, route: &RoutePlan, tonnes: f64) {
+    if w.companies.is_empty() || tonnes <= 0.0 || !crate::clock::is_daily(w) { return; }
+    let mut seen = BTreeSet::new();
+    for segment in &route.segments {
+        let Some(&ei) = network().edge_index.get(segment) else { continue; };
+        let e = &network().edges[ei];
+        let Some((owner, target)) = terminal_company(w, e) else { continue; };
+        if !seen.insert(target.clone()) { continue; }
+        crate::companies::record_sector_activity(w, owner, crate::companies::CompanySector::Logistics, tonnes);
+        let modifiers = crate::companies::modifiers(w, owner, &target);
+        if modifiers.fee_rate <= 0.0 && modifiers.work_rate == 1.0 { continue; }
+        let used_after = w.logistics.usage_tonnes.get(segment).copied().unwrap_or(0.0);
+        let ordinary_capacity = segment_capacity(w, e).0 / modifiers.work_rate.max(0.1);
+        let bonus = (used_after - ordinary_capacity).max(0.0)
+            - (used_after - tonnes - ordinary_capacity).max(0.0);
+        let fee = tonnes * COMPANY_HANDLING_BN_PER_TONNE * modifiers.fee_rate;
+        if fee > 0.0 {
+            let share = fee / w.nation(owner).gdp.max(0.1);
+            crate::economy::charge(w, owner, fee, share);
+        }
+        crate::companies::record_work(w, owner, &target, tonnes, bonus, fee);
+    }
 }
 
 pub fn plan(w: &WorldState, seller: NationId, buyer: NationId) -> Result<RoutePlan, String> {
@@ -840,6 +884,7 @@ pub fn reserve_freight(
     for segment in &route.segments {
         *w.logistics.usage_tonnes.entry(segment.clone()).or_default() += quantity * tonnes_per_unit;
     }
+    record_terminal_work(w, &route, quantity * tonnes_per_unit);
     let reason = freight_routing::dispatch_reason(w, alternate, quantity < requested, &route);
     Dispatch { quantity, route: Some(route), reason }
 }
@@ -959,6 +1004,7 @@ fn dispatch_impl(
     for s in &route.segments {
         *w.logistics.usage_tonnes.entry(s.clone()).or_default() += tonnes;
     }
+    record_terminal_work(w, &route, tonnes);
     let id = w.logistics.next_id;
     w.logistics.next_id = w.logistics.next_id.saturating_add(1);
     let dispatched_day = crate::clock::is_daily(w).then(|| crate::clock::absolute_day(w));
@@ -1630,6 +1676,43 @@ mod tests {
         assert!((segment_capacity(&w,e).0-before*1.25).abs()<1e-8);
         let sea = network().edges.iter().find(|e|e.kind=="sea").unwrap();
         assert!((segment_capacity(&w,sea).0-75_000.0*crate::clock::month_fraction(&w)).abs()<1e-8);
+    }
+    #[test]
+    fn company_terminal_capacity_and_fees_follow_actual_dispatch() {
+        use crate::companies::{self, CompanySector, CompanyTarget};
+        let mut w = world();
+        w.rules.daily_simulation = true;
+        companies::enable(&mut w);
+        let buyer = NationId::USA;
+        let seller = NationId::Japan;
+        let route = plan(&w, seller, buyer).unwrap();
+        let edge = route.segments.iter().filter_map(|s| network().edge_index.get(s))
+            .map(|i| &network().edges[*i]).find(|e| e.kind == "terminal"
+                && [&e.a,&e.b].iter().any(|d| w.districts.get(*d) == Some(&buyer))).unwrap();
+        let district = [&edge.a,&edge.b].into_iter().find(|d| w.districts.get(*d) == Some(&buyer)).unwrap().clone();
+        production::complete_capability(&mut w, &district, production::ProjectKind::FreightTerminal);
+        let baseline = segment_capacity(&w, edge).0;
+        let company = w.companies.roster.iter().find(|c| c.nation == buyer && c.sector == CompanySector::Logistics).unwrap().clone();
+        let target = CompanyTarget::Facility {district,sector:CompanySector::Logistics};
+        companies::assign(&mut w,buyer,company.id,target.clone()).unwrap();
+        assert!((segment_capacity(&w,edge).0-baseline*company.modifiers().work_rate).abs()<1e-8);
+        let sea = network().edges.iter().find(|e| e.kind == "sea").unwrap();
+        assert!((segment_capacity(&w,sea).0-75_000.0*crate::clock::month_fraction(&w)).abs()<1e-8);
+        assert_eq!(w.companies.roster.iter().find(|c|c.id==company.id).unwrap().total_fees_bn,0.0);
+        begin_month(&mut w);
+        w.nation_mut(buyer).treasury_bn=Some(100.0);
+        w.nation_mut(buyer).debt_bn=Some(0.0);
+        let dispatched=dispatch_impl(&mut w,seller,buyer,Commodity::Iron,100.0,ShipmentSource::Spot,None,None,Some(Ok(route)));
+        assert!(dispatched.quantity>0.0);
+        let receipt=w.companies.assignments.iter().find(|a|a.company_id==company.id).unwrap();
+        let fee=dispatched.quantity*tonnes_per_unit(Commodity::Iron)*COMPANY_HANDLING_BN_PER_TONNE*company.fee_rate;
+        assert!((receipt.fees_today_bn-fee).abs()<1e-14);
+        assert!((w.nation(buyer).treasury_bn.unwrap()-(100.0-fee)).abs()<1e-12);
+        let copy=crate::save(&w);
+        let _=plan(&w,seller,buyer);
+        assert_eq!(copy,crate::save(&w),"capacity previews never charge fees");
+        companies::unassign(&mut w,buyer,&target).unwrap();
+        assert!((segment_capacity(&w,edge).0-baseline).abs()<1e-8);
     }
     #[test]
     fn land_only_is_a_real_policy() {

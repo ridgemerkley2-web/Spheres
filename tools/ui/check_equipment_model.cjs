@@ -200,3 +200,35 @@ test('native keyboard part selection works without graphics and selection surviv
   live.canvas.listeners.get('webglcontextrestored')();live.flush();assert.equal(live.partSelect.value,'armament / test barrel');assert.deepEqual(live.controller.exportGlb(),before);
   live.controller.dispose();assert.equal(live.canvas.listeners.size,0);assert.equal(live.partSelect.listeners.size,0);
 });
+
+test('aircraft fit all camera views and expose each specification through visible triangle picking',()=>{
+  const {build}=require('../../spheres-web/ui/equipment-mesh.js');
+  for(const platform of ['air_light_attack','air_tactical_strike']){
+    const mesh=build({platform});
+    for(const aspect of [.55,1,1.8])for(const [yaw,pitch] of Object.values(viewer.views)){
+      const camera=viewer.frame(mesh.bounds,aspect,yaw,pitch),m=camera.matrix;
+      for(const x of [mesh.bounds.min[0],mesh.bounds.max[0]])for(const y of [0,mesh.bounds.max[1]])for(const z of [mesh.bounds.min[2],mesh.bounds.max[2]]){
+        const p=[x,y,z,1],clip=[0,0,0,0];for(let r=0;r<4;r++)for(let k=0;k<4;k++)clip[r]+=m[k*4+r]*p[k];
+        assert(clip[3]>0&&clip.slice(0,3).every(v=>Math.abs(v/clip[3])<1),platform+' fits '+aspect);
+      }
+    }
+    for(const slot of Object.keys(mesh.specification.components)){
+      let found=false;
+      for(const [yaw,pitch] of Object.values(viewer.views)){
+        const camera=viewer.frame(mesh.bounds,1.8,yaw,pitch),m=camera.matrix;
+        for(const part of mesh.parts.filter(p=>p.slot===slot)){
+          const step=Math.max(3,Math.floor(part.count/45/3)*3);
+          for(let v=part.first;v<part.first+part.count;v+=step){
+            const p=[0,0,0,1],clip=[0,0,0,0];for(let a=0;a<3;a++)p[a]=(mesh.positions[v*3+a]+mesh.positions[(v+1)*3+a]+mesh.positions[(v+2)*3+a])/3;
+            for(let r=0;r<4;r++)for(let c=0;c<4;c++)clip[r]+=m[c*4+r]*p[c];
+            const ray=viewer.rayAt(camera,clip[0]/clip[3],clip[1]/clip[3],1.8);
+            if(viewer.raycast(mesh,ray.origin,ray.direction)?.part?.slot===slot){found=true;break;}
+          }
+          if(found)break;
+        }
+        if(found)break;
+      }
+      assert(found,`${platform} exposes visible ${slot} geometry`);
+    }
+  }
+});

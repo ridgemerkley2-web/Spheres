@@ -212,6 +212,39 @@ pub fn tick(w: &mut WorldState) {
             dissolve_ussr(w);
         } else if is_yugo && (stab < 25.0 || sep > 0.9) && !w.has_flag("yugoslavia_dissolved") {
             dissolve_yugoslavia(w);
+        } else if !is_ussr && !is_yugo && w.rules.ideology_takeover {
+            // The roads (S4, route 3), the uprising: the same site and the
+            // SAME draw as the collapse below, taken only when the road is
+            // armed — the pre-arm collapse (stability under 12) or the
+            // movement (discontent and the challenger's influence both at or
+            // over 0.45 and coercion failing, `blocs::uprising_armed`). The
+            // random `auth_shift` is NOT drawn: the winner sets the opening
+            // authoritarianism. The branch below keeps its exact code and its
+            // exact draw when this switch is off.
+            //
+            // CALIBRATED 2026-09-06 (the bloc census, anchor A3): the crown
+            // goes to the challenger only where the MOVEMENT armed the road.
+            // A collapse the movement did not arm is the pre-arm collapse
+            // VERBATIM — the block below, its random shift included — and
+            // not a route event. Before this line the collapse handed the
+            // capital to whichever non-ruling bloc was largest: the first
+            // reading measured Peru's Shining Path at 0.25 of the vote and
+            // Georgia's CP at 0.36 taking power in sixty seeds of sixty.
+            let movement = crate::blocs::uprising_armed(w, id);
+            let armed = stab < 12.0 || movement;
+            if armed && monthly_chance(w, 0.10 * w.rules.crisis_intensity) {
+                if movement {
+                    crate::government::uprising(w, id);
+                } else {
+                    let auth_shift = w.rng.range(-0.3, 0.2);
+                    let n = w.nation_mut(id);
+                    n.stability = 45.0;
+                    n.gdp *= 0.93;
+                    crate::economy::refresh_debt_ratio(n);
+                    n.authoritarianism = (n.authoritarianism + auth_shift).clamp(0.05, 0.95);
+                    w.headline(format!("Revolution in {} — the old regime falls.", id.name()));
+                }
+            }
         } else if !is_ussr && !is_yugo && stab < 12.0 && monthly_chance(w, 0.10 * w.rules.crisis_intensity) {
             // Generic regime collapse: chaos, then a new regime
             let auth_shift = w.rng.range(-0.3, 0.2);
@@ -275,6 +308,66 @@ pub fn tick(w: &mut WorldState) {
     for t in freed {
         if !w.headlines.iter().any(|h| h.contains(&format!("Sanctions on {}", t.name()))) {
             w.headline(format!("Sanctions on {} are lifted.", t.name()));
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Mortality (design D1, S4): the transcribed leaders are mortal.
+// ---------------------------------------------------------------------------
+
+/// The annual hazard of death in office at `age`, INVENTED as a fit to the
+/// 1990 male life tables of the leaders' own countries — a Gompertz curve,
+/// `0.015 · 2^((age − 65) / 7)`: 1.5% at 65, 3% at 72, 6% at 79, 12% at 86,
+/// capped at one. A coefficient of the approved design, not a transcribed
+/// figure; filed in BUGS.md with what would calibrate it.
+pub fn death_hazard(age: f64) -> f64 {
+    (0.015 * crate::exact::powf(2.0, (age - 65.0) / 7.0)).clamp(0.0, 1.0)
+}
+
+/// Age in completed years on 1 January of `year` for someone born on
+/// `born` (`YYYY-MM-DD`). `None` where the table carries no birth date.
+pub fn age_on_new_year(born: &str, year: i32) -> Option<f64> {
+    let (by, bm, bd) = crate::data::parse_date(born)?;
+    let completed = year - by - if (bm, bd) > (1, 1) { 1 } else { 0 };
+    Some(completed as f64)
+}
+
+/// One draw per living transcribed leader per game year, in sorted
+/// `NationId` order, from the one RNG — the LAST system of the month, so a
+/// switched-on world's stream parts from a switched-off one's only between
+/// months and never inside one. Fires in January, once (`clock::month_end`
+/// holds the daily clock to one draw). A leader whose row carries no birth
+/// date (Libya, Malawi, Saudi Arabia, Vanuatu in the 1990 table) is not
+/// drawn for: an unsourced age is a refusal, not a default. On death the
+/// office is seated by the leader's own party or pillar
+/// (`government::seat_office`, design D2) and the headline reads
+/// "{name} dies in office." Returns before reading anything while
+/// `rules.ideology_blocs` is off, which is every world the goldens pin.
+pub fn mortality(w: &mut WorldState) {
+    if !w.rules.ideology_blocs {
+        return;
+    }
+    if w.month != 1 || !crate::clock::month_end(w) {
+        return;
+    }
+    let mut living: Vec<(NationId, String, f64)> = match &w.leadership {
+        Some(rows) => rows
+            .iter()
+            .filter(|o| o.name.is_some() && o.emergent.is_none())
+            .filter(|o| w.nation_opt(o.nation).is_some_and(|n| n.alive))
+            .filter_map(|o| {
+                let age = age_on_new_year(o.born.as_deref()?, w.year)?;
+                Some((o.nation, o.name.clone()?, age))
+            })
+            .collect(),
+        None => return,
+    };
+    living.sort_by(|a, b| a.0.cmp(&b.0));
+    for (id, name, age) in living {
+        if w.rng.chance(death_hazard(age)) {
+            w.headline(format!("{} dies in office.", name));
+            crate::government::seat_office(w, id, &crate::government::Succession::Death);
         }
     }
 }
@@ -1369,7 +1462,14 @@ fn ai_statecraft(w: &mut WorldState) {
                     let n = w.nation(t);
                     (n.stability, n.separatism)
                 };
-                let op = if sep > 0.25 {
+                // The political arm's leading arm (S3, gated on
+                // `rules.ideology_blocs` inside `ai_back_bloc_choice`, which
+                // answers `None` before reading anything with the switch
+                // off): back a movement where one is worth backing, else the
+                // three ops as before.
+                let op = if let Some(b) = ai_back_bloc_choice(w, p, t) {
+                    CovertOp::BackBloc(b)
+                } else if sep > 0.25 {
                     CovertOp::StirSeparatists
                 } else if stab < 50.0 {
                     CovertOp::FundOpposition
@@ -1380,6 +1480,56 @@ fn ai_statecraft(w: &mut WorldState) {
                     w,
                     &crate::Command::CovertAction { sponsor: p, target: t, op },
                 );
+            }
+        }
+    }
+
+    // ---- The regional ideological sponsors (design D3, S3): the same target
+    // choice as a patron's covert arm, for their own bloc only, and nothing
+    // else — no aid, no guarantees, no other op. The whole block is behind
+    // the switch, so an off-world's RNG stream is untouched.
+    //
+    // A STANDING PROGRAMME, NOT A LOTTERY (M1, 2026-09-06, anchor A2). S3
+    // gave the sponsors the patron arm's 0.022-a-month draw, taken after
+    // the choice. Two things were wrong with it once M1 gave a sponsor a
+    // choice in a hostile target from the first month. First, a failed draw
+    // parts the switched-on stream from the off-world's silently — no
+    // operation, no headline, every later draw of the month shifted — so
+    // the one bar that reads the two worlds side by side
+    // (`the_bloc_layer_is_inert_over_time`) can never see the act it parts
+    // on (measured: "parted at month 0 with no stem"). Second, and the
+    // reason it is wrong as history: a lottery at 0.022 lands Pakistan's
+    // money in Afghanistan three times in twenty years on seed 7, while the
+    // stock a clean operation puts in (`BACKING_STEP` 0.06) is spent in ten
+    // months (`BACKING_DECAY` 0.006) — Operation Cyclone ran from 1979
+    // to 1992, "$695,000 USD in mid-1979, ... $20-$30 million per year in
+    // 1980, and rose to $630 million per year in 1987", and Saudi Arabia
+    // "agreed to match dollar for dollar the money the CIA was sending"
+    // (Wikipedia, Operation Cyclone, fetched 2026-09-06; the page gives
+    // no per-year figure past those, so "every fiscal year" is not a claim
+    // this comment makes — BUGS H-7). So
+    // a sponsor with a movement to back acts WHENEVER ITS CHANNEL HAS
+    // COOLED to `SPONSOR_PROGRAMME_HEAT`, once a calendar month, and draws
+    // nothing itself: the operation's own two dice (`covert_action`) are the
+    // stream's only parting, and they always print a line.
+    if w.rules.ideology_blocs && crate::clock::month_end(w) {
+        let sponsors: Vec<NationId> = crate::nations::ideological_sponsors()
+            .iter()
+            .copied()
+            .filter(|p| w.nation_opt(*p).is_some_and(|n| n.alive) && Some(*p) != w.player)
+            .collect();
+        for p in sponsors {
+            if w.nation(p).stability < 25.0 {
+                continue;
+            }
+            let choice = best_covert_target(w, p).and_then(|t| ai_back_bloc_choice(w, p, t).map(|b| (t, b)));
+            if let Some((t, b)) = choice {
+                if w.covert_heat(p, t) < SPONSOR_PROGRAMME_HEAT {
+                    let _ = crate::apply_command(
+                        w,
+                        &crate::Command::CovertAction { sponsor: p, target: t, op: CovertOp::BackBloc(b) },
+                    );
+                }
             }
         }
     }
@@ -1506,14 +1656,88 @@ fn best_client(w: &WorldState, patron: NationId) -> Option<NationId> {
         .map(|(c, _)| c)
 }
 
+/// Which movement, if any, an AI sponsor would back in a target (S3): the
+/// strongest PRESENT non-ruling bloc B of the target with influence
+/// I_B >= 0.15 (ties in enum order), provided B is the sponsor's own bloc —
+/// a patron's ruling bloc, an ideological sponsor's transcribed one — or,
+/// for a patron only, the target is a rival's client (a patron of the target
+/// the sponsor is at under -20 with, the same test `best_covert_target`
+/// reads). Pure, and `None` before reading anything while
+/// `rules.ideology_blocs` is off. The 0.15 line is INVENTED (design S3).
+///
+/// M1 (Ridge's ruling, 2026-09-06), the creating clause: where no present
+/// bloc qualifies and the sponsor's OWN bloc is ABSENT from the target's
+/// TABLE (`blocs::bloc_in_table` false — no party and no pillar of it; a
+/// presence the sponsor's own money created, `blocs::bloc_backed`, counts
+/// as absent here so the money keeps arriving until the caps hold it), the
+/// sponsor backs its own bloc anyway when the target is HOSTILE to it
+/// (relation at or under `HOSTILE_TARGET`, the line `best_covert_target`
+/// already reads) or a rival's client (the same test as above, here for
+/// every sponsor). The first successful operation then creates the
+/// presence (`blocs::PRESENCE_BACKING`). A present qualifying bloc is
+/// always preferred, so nothing an existing choice returned changes.
+/// Historical anchor: the Peshawar parties, the NIF, the contras —
+/// movements that existed inside the target only as a sponsor's creation,
+/// and were paid for as long as the sponsor stayed hostile.
+pub(crate) fn ai_back_bloc_choice(w: &WorldState, sponsor: NationId, target: NationId) -> Option<crate::government::Bloc> {
+    if !w.rules.ideology_blocs {
+        return None;
+    }
+    let sponsored = sponsor.def().ideological_sponsor;
+    let own = sponsored.or_else(|| crate::blocs::ruling_bloc(w, sponsor));
+    let ruling = crate::blocs::ruling_bloc(w, target)?;
+    let rival_backed = w.patrons_of(target).iter().any(|q| w.relation(sponsor, *q) < -20.0);
+    let rivals_client = sponsored.is_none() && rival_backed;
+    let mut best: Option<(crate::government::Bloc, f64)> = None;
+    for (b, v) in crate::blocs::influence(w, target) {
+        if b == ruling || v < 0.15 || !crate::blocs::bloc_present(w, target, b) {
+            continue;
+        }
+        if Some(b) != own && !rivals_client {
+            continue;
+        }
+        if best.map_or(true, |(_, bv)| v > bv) {
+            best = Some((b, v));
+        }
+    }
+    if let Some((b, _)) = best {
+        return Some(b);
+    }
+    let own = own?;
+    if own == ruling || crate::blocs::bloc_in_table(w, target, own) {
+        return None;
+    }
+    if w.relation(sponsor, target) <= HOSTILE_TARGET || rival_backed {
+        return Some(own);
+    }
+    None
+}
+
+/// The relation at or under which a state is a covert target at all —
+/// `best_covert_target`'s line, named so the M1 clause reads the same one.
+pub(crate) const HOSTILE_TARGET: f64 = -30.0;
+
+/// The covert heat under which an ideological sponsor's standing programme
+/// sends the next operation (M1). DERIVED, not chosen: a clean operation
+/// heats the channel by 0.18 (`covert_action`) and the channel cools 0.012
+/// a month (`covert_channels_cool`); the money it put in, `BACKING_STEP`,
+/// cools away in `BACKING_STEP / BACKING_DECAY` = 10 months. A programme
+/// that holds what it put in returns exactly then, when the channel reads
+/// 0.18 − 10 × 0.012 = 0.06 — one operation per sponsor per target every
+/// ten months on a clean channel, every thirty-one after an exposure (the
+/// +0.25 `caught` adds). The patron arm keeps its 0.022 draw, which both
+/// worlds take.
+pub(crate) const SPONSOR_PROGRAMME_HEAT: f64 =
+    0.18 - 0.012 * (crate::statecraft::BACKING_STEP / crate::statecraft::BACKING_DECAY);
+
 /// Subversion goes where hostility meets brittleness. A rival's client is the
 /// classic target: cheaper to break than the rival, and it hurts the rival anyway.
-fn best_covert_target(w: &WorldState, sponsor: NationId) -> Option<NationId> {
+pub(crate) fn best_covert_target(w: &WorldState, sponsor: NationId) -> Option<NationId> {
     w.nations
         .iter()
         .filter(|n| n.alive && n.id != sponsor)
         .map(|n| n.id)
-        .filter(|t| w.relation(sponsor, *t) <= -30.0 && !w.allied(sponsor, *t))
+        .filter(|t| w.relation(sponsor, *t) <= HOSTILE_TARGET && !w.allied(sponsor, *t))
         .map(|t| {
             let n = w.nation(t);
             let brittle = (70.0 - n.stability).max(0.0) / 70.0 + n.separatism * 0.5;
@@ -1642,4 +1866,88 @@ fn ai_wars(w: &mut WorldState) {
     }
 
     // AI peace offers: badly losing attackers sue for peace (abstract: white peace at high exhaustion handled in war tick)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::init::world_1990;
+
+    /// The hazard curve at its named points, and the age arithmetic on the
+    /// table's own dates: Najibullah (1947-08-06) is 42 on 1 January 1990,
+    /// Bush (1924-06-12) 65, Castro (1926-08-13) 63; a birthday on New
+    /// Year's Day counts.
+    #[test]
+    fn the_hazard_doubles_every_seven_years_from_1_5_percent_at_65() {
+        assert!((death_hazard(65.0) - 0.015).abs() < 1e-12);
+        assert!((death_hazard(72.0) - 0.030).abs() < 1e-9);
+        assert!((death_hazard(79.0) - 0.060).abs() < 1e-9);
+        assert!((death_hazard(58.0) - 0.0075).abs() < 1e-9);
+        assert_eq!(death_hazard(200.0), 1.0);
+        assert_eq!(age_on_new_year("1947-08-06", 1990), Some(42.0));
+        assert_eq!(age_on_new_year("1924-06-12", 1990), Some(65.0));
+        assert_eq!(age_on_new_year("1926-08-13", 1990), Some(63.0));
+        assert_eq!(age_on_new_year("1950-01-01", 1990), Some(40.0));
+        assert_eq!(age_on_new_year("1950-01-02", 1990), Some(39.0));
+        assert_eq!(age_on_new_year("not a date", 1990), None);
+    }
+
+    /// Mortality (D1), a census over seeds: with the lens on, a transcribed
+    /// leader dies in office in MOST seeds over forty years, and never on a
+    /// fixed date — the first death's (leader, date) differs between seeds.
+    /// With the lens off the line never prints and the seat never changes.
+    ///
+    /// Rule 7. The per-seed event is "at least one death in forty years";
+    /// with 133 dated leaders and a mean hazard near 3% a year the measured
+    /// per-seed rate is p = 1.0 on every seed tried (deaths per seed over
+    /// forty years, seeds 0..5, printed below: the smallest was in the
+    /// dozens), so the false-red probability of a "most seeds" bar is 0 at
+    /// any n and the sample is a budget: n = 6. The POWER statement is what
+    /// the bar is for: it catches the draw not running at all (a hazard of
+    /// zero, or the pass gated off), which reads 0 deaths on every seed —
+    /// watched red with `death_hazard` returning 0.0: "seed 0: forty years
+    /// and nobody died". A bar on the RATE of deaths (against the life
+    /// tables) is not asked here: the hazard is INVENTED and filed, and a
+    /// bar on it would be a calibration the design has not made.
+    #[test]
+    fn a_transcribed_leader_dies_in_most_seeds_over_forty_years_and_never_on_a_fixed_date() {
+        let mut firsts: Vec<(String, String)> = vec![];
+        let mut counts: Vec<usize> = vec![];
+        for seed in 0..6u64 {
+            let mut w = world_1990(GameRules { seed, ideology_blocs: true, ..GameRules::default() });
+            let mut deaths = 0usize;
+            let mut first: Option<(String, String)> = None;
+            for _ in 0..480 {
+                let news = crate::tick_month(&mut w, &[]);
+                for h in news.iter().filter(|h| h.ends_with(" dies in office.")) {
+                    deaths += 1;
+                    if first.is_none() {
+                        first = Some((h.clone(), w.date_str()));
+                    }
+                }
+            }
+            println!("mortality: seed {seed}, {deaths} deaths in forty years, first {first:?}");
+            assert!(deaths > 0, "seed {seed}: forty years and nobody died");
+            firsts.push(first.unwrap());
+            counts.push(deaths);
+            // Nobody who died is named again anywhere in the table.
+            for o in w.leadership.as_ref().unwrap() {
+                if o.emergent.is_some() {
+                    assert!(o.name.is_none(), "{:?}", o.nation);
+                }
+            }
+        }
+        let most = counts.iter().filter(|c| **c > 0).count();
+        assert!(most * 2 > counts.len(), "deaths in {most} of {} seeds", counts.len());
+        let dates: std::collections::BTreeSet<&String> = firsts.iter().map(|(_, d)| d).collect();
+        let who: std::collections::BTreeSet<&String> = firsts.iter().map(|(n, _)| n).collect();
+        assert!(dates.len() > 1 || who.len() > 1, "the first death is the same on every seed: {firsts:?}");
+        let mut off = world_1990(GameRules { seed: 0, ..GameRules::default() });
+        for _ in 0..480 {
+            for h in crate::tick_month(&mut off, &[]) {
+                assert!(!h.ends_with(" dies in office."), "the lens off: {h}");
+            }
+        }
+        assert!(off.leadership.is_none());
+    }
 }

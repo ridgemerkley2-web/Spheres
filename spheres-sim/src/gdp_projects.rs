@@ -22,6 +22,7 @@ pub const DAYS_PER_ACCOUNTING_YEAR: f64 = 365.0;
 /// not geological quantities or claims about historical factory sale prices.
 pub const INTERMEDIATE_PACK_BN: f64 = 0.0001;
 pub const CAPITAL_PACK_BN: f64 = 0.00025;
+pub const ADVANCED_COMPONENT_BN: f64 = 0.0005;
 pub const POWER_UNIT_BN: f64 = 0.00001;
 /// MODEL extraction intermediate-cost share. The resource layer has no mine
 /// operating-cost ledger yet; this is an explicit imputation, not cash spent.
@@ -250,7 +251,7 @@ pub fn record_factory(
     if output <= 0.0 || !output.is_finite() || !power.is_finite() || !event(w, &id) {
         return;
     }
-    let fuel = (power * 0.02 * 1e9).round() / 1e9;
+    let fuel = (power * 0.02 * industry::energy_company_rates(w, nation).0 * 1e9).round() / 1e9;
     let fuel = fuel.min(raw[C::Coal.idx()]);
     let mut plant_raw = raw;
     plant_raw[C::Coal.idx()] -= fuel;
@@ -281,7 +282,7 @@ pub fn record_factory(
             row.intermediate_inputs_daily_bn = inputs
                 + power * POWER_UNIT_BN
                 + if kind == K::MachineryWorks {
-                    output * INTERMEDIATE_PACK_BN
+                    output * industry::manufacturing_company(w, nation, district).input_rate * INTERMEDIATE_PACK_BN
                 } else {
                     0.0
                 };
@@ -298,6 +299,55 @@ pub fn record_factory(
     }
     insert(w, row);
 
+    record_power_dispatch(w, nation, power, fuel, generation_cash);
+}
+
+/// Actual service output belongs to the services account. Offices have one
+/// route into GDP through this ledger, and taxes remain the fiscal system's
+/// normal share of the resulting GDP. Neither this function nor the operator
+/// deposits the displayed tax estimate into the treasury.
+pub fn record_office(
+    w: &mut WorldState, nation: NationId, district: &str, operating_levels: f64,
+    power: f64, raw: [f64; 12], cash: f64, generation_cash: f64,
+) {
+    let id = format!("site:{district}:office_district");
+    if operating_levels <= 0.0 || !operating_levels.is_finite() || !event(w, &id) { return; }
+    let mut row = receipt(id, "Office District".into(), district, K::OfficeDistrict.key(), "services");
+    row.status = "producing".into();
+    row.output_quantity_daily = operating_levels;
+    row.output_unit = "operating office levels".into();
+    row.gross_output_daily_bn = operating_levels * crate::industry_operations::OFFICE_GROSS_ANNUAL_BN / DAYS_PER_ACCOUNTING_YEAR;
+    row.intermediate_inputs_daily_bn = operating_levels * crate::industry_operations::OFFICE_INTERMEDIATES_DAY * INTERMEDIATE_PACK_BN
+        + power * POWER_UNIT_BN;
+    row.payments_daily_bn = cash;
+    row.reason = Some("Actual staffed service output, capped by existing-economy demand, less supplied intermediate packs and power. GDP and expected tax are separate quantities; no direct tax or treasury award.".into());
+    insert(w, row);
+    record_power_dispatch(w, nation, power, raw[C::Coal.idx()], generation_cash);
+}
+
+/// Advanced components are distinct from machine/tool packs. Advanced military
+/// programmes consume these components; intermediate consumption is deducted once.
+pub fn record_advanced(
+    w: &mut WorldState, nation: NationId, district: &str, operating_levels: f64,
+    output: f64, power: f64, raw: [f64; 12], cash: f64, generation_cash: f64,
+) {
+    let id = format!("site:{district}:advanced_industry");
+    if output <= 0.0 || !output.is_finite() || !event(w, &id) { return; }
+    let mut row = receipt(id, "Advanced Industry".into(), district, K::AdvancedIndustry.key(), "manufacturing");
+    let fuel = raw[C::Coal.idx()];
+    let mut plant_raw = raw;
+    plant_raw[C::Coal.idx()] = 0.0;
+    row.status = "producing".into();
+    row.output_quantity_daily = output;
+    row.output_unit = "advanced components".into();
+    row.gross_output_daily_bn = output * ADVANCED_COMPONENT_BN;
+    if let Ok(inputs) = raw_value(&plant_raw) {
+        row.intermediate_inputs_daily_bn = inputs + power * POWER_UNIT_BN
+            + operating_levels * crate::industry_operations::ADVANCED_INTERMEDIATES_DAY * INTERMEDIATE_PACK_BN;
+    } else { row.counted = false; row.classification = "unpriced_output".into(); }
+    row.payments_daily_bn = cash;
+    row.reason = Some("Actual advanced components enter the separate inventory used by advanced military equipment. Consumed intermediates, copper, rare earths and power are deducted once; no free electronics stock or second equipment GDP bonus.".into());
+    insert(w, row);
     record_power_dispatch(w, nation, power, fuel, generation_cash);
 }
 
@@ -326,7 +376,7 @@ pub fn record_materials_operation(
     let Some(group) = crate::starting_industry::province(w, district)
         .and_then(|p| p.groups.into_iter().find(|g| g.key == "materials")) else { return; };
     if !event(w, &id) { return; }
-    let fuel = ((power * 0.02 * 1e9).round() / 1e9).min(raw[C::Coal.idx()]);
+    let fuel = ((power * 0.02 * industry::energy_company_rates(w, nation).0 * 1e9).round() / 1e9).min(raw[C::Coal.idx()]);
     let mut plant_raw = raw;
     plant_raw[C::Coal.idx()] -= fuel;
     let Ok(raw_cost) = raw_value(&plant_raw) else { return; };
@@ -354,7 +404,7 @@ pub fn record_materials_operation(
 
 /// Power is an internal transaction: factories deduct its full value and its
 /// dispatching producers earn that same gross amount, less generating fuel.
-fn record_power_dispatch(w: &mut WorldState, nation: NationId, power: f64, fuel: f64, generation_cash: f64) {
+pub(crate) fn record_power_dispatch(w: &mut WorldState, nation: NationId, power: f64, fuel: f64, generation_cash: f64) {
     let generators: Vec<_> = w
         .districts
         .iter()
@@ -363,27 +413,42 @@ fn record_power_dispatch(w: &mut WorldState, nation: NationId, power: f64, fuel:
         })
         .filter_map(|(d, _)| {
             let level = crate::industrial_modules::effective_capacity(w, d, K::Generation);
-            (level > 0.0).then(|| (d.clone(), level * 10.0))
+            let operator = crate::companies::modifiers(w, nation, &crate::companies::CompanyTarget::Facility {
+                district: d.clone(), sector: crate::companies::CompanySector::Energy,
+            });
+            (level > 0.0).then(|| (d.clone(), level * 10.0 * operator.work_rate, operator.input_rate, operator.fee_rate))
         })
         .collect();
-    let capacity: f64 = generators.iter().map(|(_, c)| *c).sum();
+    let capacity: f64 = generators.iter().map(|(_, c, _, _)| *c).sum();
     if power <= 0.0 || capacity <= 0.0 {
         return;
     }
+    // Opening utility service is already represented by inherited GDP. Only
+    // the share dispatched by commissioned generators is new utility output.
+    let inherited = crate::industry_operations::inherited_power_headroom(w, nation);
+    let new_share = capacity / (capacity + inherited);
+    let fuel_weight: f64 = generators.iter().map(|(_, c, input, _)| c * input).sum();
+    let cash_weight: f64 = generators.iter().map(|(_, c, _, fee)| c * (1.0 + fee)).sum();
+    let power = power * new_share;
+    // Neutral inherited generation consumes its own fuel and cash but is
+    // already represented in background GDP. Operator efficiencies and fees
+    // apply only to the corresponding commissioned generator's dispatch.
+    let fuel = fuel * (fuel_weight / (fuel_weight + inherited));
+    let generation_cash = generation_cash * (cash_weight / (cash_weight + inherited));
     let fuel_value =
         fuel * resources::unit_price_bn(C::Coal).expect("coal has a documented 1990 price");
     let mut power_left = power;
     let mut fuel_left = fuel_value;
     let mut cash_left = generation_cash;
-    for (i, (d, c)) in generators.iter().enumerate() {
+    for (i, (d, c, input, fee)) in generators.iter().enumerate() {
         let last = i + 1 == generators.len();
         let share = *c / capacity;
         let used = if last { power_left } else { power * share };
-        let inputs = if last { fuel_left } else { fuel_value * share };
+        let inputs = if last { fuel_left } else { fuel_value * (c * input / fuel_weight) };
         let cash = if last {
             cash_left
         } else {
-            generation_cash * share
+            generation_cash * (c * (1.0 + fee) / cash_weight)
         };
         power_left -= used;
         fuel_left -= inputs;
@@ -409,6 +474,22 @@ fn record_power_dispatch(w: &mut WorldState, nation: NationId, power: f64, fuel:
 /// Called once when domestic resources post, not from a board/forecast read.
 /// Only player-created completed mines are incremental; mapped inherited
 /// national extraction belongs to the calibrated baseline, not this adapter.
+pub fn record_mine_company_output(w: &mut WorldState, mine: &resources::Mine, quantity: f64, fee_bn: f64) {
+    let id = format!("mine-company:{}:{}", mine.district, mine.commodity.key());
+    if quantity <= 0.0 || !event(w, &id) { return; }
+    let Some(price) = resources::unit_price_bn(mine.commodity) else { return; };
+    let mut row = receipt(id, format!("{} contractor output", mine.commodity.name()),
+        &mine.district, mine.commodity.key(), "extraction");
+    row.output_quantity_daily = quantity;
+    row.output_unit = format!("{} table units", mine.commodity.name());
+    row.gross_output_daily_bn = quantity * price;
+    row.intermediate_inputs_daily_bn = row.gross_output_daily_bn * EXTRACTION_INTERMEDIATE_SHARE;
+    row.payments_daily_bn = fee_bn;
+    row.annualization_days = 12.0 / clock::month_fraction(w);
+    row.reason = Some("Additional physical extraction delivered by the assigned contractor; fee funded by Minerals & processing. No separate GDP award for hiring.".into());
+    insert(w, row);
+}
+
 pub fn record_mines(w: &mut WorldState) {
     if !crate::province_economy::active(w) {
         return;
@@ -492,6 +573,7 @@ fn site_sector(kind: K) -> &'static str {
         K::Generation | K::PowerGrid => "utilities",
         K::Infrastructure | K::FreightTerminal | K::Warehouse => "transport",
         K::ResearchCenter => "public_services",
+        K::OfficeDistrict => "services",
         _ => "manufacturing",
     }
 }
@@ -558,6 +640,7 @@ pub fn contributions(w: &WorldState) -> Vec<Contribution> {
         .map(|p| &p.district)
         .chain(w.production.industry.sites.keys())
         .chain(w.production.industry.modules.keys())
+        .chain(w.production.rebuild_sites.keys())
         .collect();
     for district in sites {
         if !w.districts.contains_key(district) {
@@ -575,7 +658,7 @@ pub fn contributions(w: &WorldState) -> Vec<Contribution> {
                 let mut r=receipt(id,production::catalog(kind).name.into(),district,kind.key(),site_sector(kind));
                 r.counted=false;r.classification="enabling_asset".into();r.status="enabling".into();
                 r.reason=Some(format!("{} No independent GDP bonus; only actual downstream output or completed work is counted.",production::catalog(kind).effect));
-                if matches!(kind,K::ProcessingPlant|K::StarterIndustry|K::MachineryWorks|K::Generation){r.classification="inactive_capacity".into();r.status="idle".into();r.reason=w.production.industry.operations.iter().find(|s|s.district==*district && s.kind==kind).and_then(|s|s.reason.clone()).or_else(||Some("No actual output or power dispatch was recorded for this settlement; installed capacity alone is not GDP.".into()));}
+                if matches!(kind,K::ProcessingPlant|K::StarterIndustry|K::MachineryWorks|K::Generation|K::OfficeDistrict|K::AdvancedIndustry){r.classification="inactive_capacity".into();r.status="idle".into();r.reason=w.production.industry.operations.iter().find(|s|s.district==*district && s.kind==kind).and_then(|s|s.reason.clone()).or_else(||Some("No actual output or power dispatch was recorded for this settlement; installed capacity alone is not GDP.".into()));}
                 r
             });
         }
@@ -595,7 +678,7 @@ pub fn finish_day(_w: &mut WorldState) {}
 pub fn inherited_asset_ids(w: &WorldState) -> BTreeSet<String> {
     let mut ids = BTreeSet::new();
     for (d, _) in &w.districts {
-        for kind in [K::ProcessingPlant, K::StarterIndustry, K::MachineryWorks, K::Generation] {
+        for kind in [K::ProcessingPlant, K::StarterIndustry, K::MachineryWorks, K::Generation, K::OfficeDistrict, K::AdvancedIndustry] {
             let capacity=if matches!(kind,K::StarterIndustry|K::Generation) {
                 crate::industrial_modules::effective_capacity(w,d,kind)
             } else {production::level(w,d,kind) as f64};
@@ -616,7 +699,8 @@ pub fn inherited_asset_ids(w: &WorldState) -> BTreeSet<String> {
 /// and utilization remain mandatory at settlement.
 pub fn asset_scales(w: &WorldState) -> BTreeMap<String, f64> {
     let mut scales = BTreeMap::new();
-    let districts=w.production.industry.sites.keys().chain(w.production.industry.modules.keys()).collect::<BTreeSet<_>>();
+    let districts=w.production.industry.sites.keys().chain(w.production.industry.modules.keys())
+        .chain(w.production.rebuild_sites.keys()).collect::<BTreeSet<_>>();
     for d in districts {
         for kind in [K::ProcessingPlant, K::StarterIndustry, K::MachineryWorks] {
             let rate = industry::plant_rate(w, d, kind);
@@ -650,6 +734,22 @@ pub fn asset_scales(w: &WorldState) -> BTreeMap<String, f64> {
                 generation
                     * (POWER_UNIT_BN - 0.02 * resources::unit_price_bn(C::Coal).unwrap_or(0.0)),
             );
+        }
+        let offices=production::level(w,d,K::OfficeDistrict) as f64;
+        if offices>0.0 {
+            scales.insert(format!("site:{d}:office_district"),
+                crate::industry_operations::office_annual_value_added(w,d,offices)/DAYS_PER_ACCOUNTING_YEAR);
+        }
+        let advanced=production::level(w,d,K::AdvancedIndustry) as f64;
+        if advanced>0.0 {
+            let power=crate::industry_operations::power_per_level(w,d,K::AdvancedIndustry);
+            let mut raw=crate::industry_operations::raw_recipe(K::AdvancedIndustry,1.0,power);
+            raw[C::Coal.idx()]=0.0;
+            if let Ok(inputs)=raw_value(&raw) {
+                let value=crate::industry_operations::ADVANCED_OUTPUT_DAY*ADVANCED_COMPONENT_BN-inputs-power*POWER_UNIT_BN
+                    -crate::industry_operations::ADVANCED_INTERMEDIATES_DAY*INTERMEDIATE_PACK_BN;
+                scales.insert(format!("site:{d}:advanced_industry"),advanced*value.max(0.0));
+            }
         }
     }
     for mine in &w.resources.mines {
@@ -928,12 +1028,15 @@ mod tests {
         near(r.payments_daily_bn, 0.0);
     }
     #[test]
-    fn all_thirteen_construction_kinds_use_paid_work_not_completion_bonuses() {
+    fn legacy_and_rebuilt_construction_kinds_use_paid_work_not_completion_bonuses() {
+        for (rebuild, expected_count, expected_value) in [(false, 13, 0.013), (true, 16, 0.016)] {
         let mut w = prepared();
+        w.rules.industry_rebuild = rebuild;
         let cash = w.nation(USA).treasury_bn;
         let debt = w.nation(USA).debt_gdp;
         let d = district(&w);
         for (i, kind) in production::PROJECT_KINDS.into_iter().enumerate() {
+            if !rebuild && matches!(kind, K::OfficeDistrict | K::Shipyard | K::AdvancedIndustry) { continue; }
             let p = Project {
                 id: 100 + i as u32,
                 nation: USA,
@@ -955,15 +1058,16 @@ mod tests {
             rows.iter()
                 .filter(|r| r.sector == "construction" && r.counted)
                 .count(),
-            13
+            expected_count
         );
-        near(rows.iter().map(|r| r.daily_value_added_bn).sum(), 0.013);
+        near(rows.iter().map(|r| r.daily_value_added_bn).sum(), expected_value);
         for row in rows.iter().filter(|r| r.sector == "construction" && r.counted) {
             near(row.intermediate_inputs_daily_bn, 0.0);
             near(row.daily_value_added_bn, row.payments_daily_bn);
         }
         assert_eq!(w.nation(USA).treasury_bn, cash, "GDP receipts must never charge a second construction bill");
         assert_eq!(w.nation(USA).debt_gdp, debt);
+        }
     }
     #[test]
     fn new_mine_receipts_follow_actual_posting_without_january_february_gdp_jumps() {
@@ -1061,6 +1165,7 @@ mod tests {
             ordered_bn: 1.0,
             resources_used: [0.0; 12],
             ordered_today_bn: 1.0,
+            ordered_today_units: 0.0,
             throughput_today: 1.0,
             settled_day: None,
         };

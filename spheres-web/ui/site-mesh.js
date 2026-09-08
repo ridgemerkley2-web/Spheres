@@ -20,8 +20,8 @@
    can support.
 
    WHY BUILT AND NOT LOADED. Same reason as arsenal-models.js: no build step, no
-   CDN, no third-party runtime (CLAUDE.md). Thirteen kinds at five stages is
-   sixty-five meshes; as source they are one file, and the stages share one kit
+   CDN, no third-party runtime (CLAUDE.md). Sixteen kinds at five stages is
+   eighty meshes; as source they are one file, and the stages share one kit
    rather than being five unrelated copies per kind.
 
    WHY NO DOM IN HERE. Geometry is the half that has to be right. It is checked
@@ -54,8 +54,8 @@
    technology-specific variants in a later pass and this one is not entitled to
    invent one and present it as sourced.
 
-   ALL THIRTEEN NOW HAVE A COMPOSITION. `arms_plant` has a bespoke builder; the
-   other twelve have a function each in KIND_WORKS, built to what section E says
+   ALL SIXTEEN HAVE A COMPOSITION. `arms_plant` has a bespoke builder; the
+   other fifteen have a function each in KIND_WORKS, built to what section E says
    that kind IS — a corridor and a structure over it, three factory modules on
    one grid, a switchyard, a laboratory campus, two machine bays under a
    travelling crane, a generic generation facility, an open process structure, a
@@ -64,8 +64,10 @@
    standalone buildings. They still share one stage kit — hoarding, huts,
    materials, crane, scaffold, footings, cladding, roof, fence, lighting —
    because section E asks for exactly that, and because those are the same
-   objects on all thirteen real sites. `meta(key).placeholder` is now a per-kind
-   fact and it is false on all thirteen; the check asserts the count, so a kind
+   objects on all these sites. Offices add a framed service block, shipyards a
+   dock and lifting gantry, and advanced industry a controlled assembly hall.
+   `meta(key).placeholder` is a per-kind fact and it is false on all sixteen;
+   the check asserts the count, so a kind
    cannot be quietly marked finished without one. */
 (function (root, factory) {
   const api = factory();
@@ -702,8 +704,8 @@
   }
 
   // ------------------------------------------------------------------- kinds
-  // One row per key in PROJECT_KINDS. Every one of the thirteen now carries a
-  // composition — `arms_plant` a bespoke builder, the other twelve a function
+  // One row per key in PROJECT_KINDS. Every one of the sixteen carries a
+  // composition — `arms_plant` a bespoke builder, the other fifteen a function
   // in KIND_WORKS — and this table holds only what a composition is placed
   // against: the compound, the lead block, the two colours and the sentence the
   // card prints.
@@ -815,6 +817,27 @@
       block: { w: 16, dz: 11, eaves: 6.0, ridge: 7.4, bays: 7, ends: 4 },
       body: rgb(0xb4b0a4), accent: rgb(0x7b8a6a),
       blurb: "A single-span workshop with an open lean-to, a blockwork store, an office pod and a small open yard",
+    },
+    office_district: {
+      name: "Office district",
+      pad: [66, 46], home: [-0.28, 0.08], grid: [3, 2],
+      block: { w: 16, dz: 12, eaves: 6.6, ridge: 7.8, bays: 7, ends: 5 },
+      body: rgb(0xbebcb3), accent: rgb(0x4f7384),
+      blurb: "A multi-storey office block, shared service building, shaded entrance and pedestrian forecourt",
+    },
+    shipyard: {
+      name: "Shipyard",
+      pad: [72, 50], home: [-0.27, 0.12], grid: [3, 3],
+      block: { w: 20, dz: 20, eaves: 10.5, ridge: 12.6, bays: 9, ends: 8 },
+      body: rgb(0xa0a9ac), accent: rgb(0x6b787b),
+      blurb: "A coastal fabrication shed beside an empty dry dock, lifting gantry, quay services and repair access",
+    },
+    advanced_industry: {
+      name: "Advanced industry",
+      pad: [66, 48], home: [-0.14, 0.10], grid: [4, 3],
+      block: { w: 28, dz: 18, eaves: 8.6, ridge: 10.2, bays: 12, ends: 7 },
+      body: rgb(0xbcc3c2), accent: rgb(0x527d7e),
+      blurb: "A controlled assembly hall with filtered-air services, process supply cabinets and a separate clean loading vestibule",
     },
   };
   const KIND_KEYS = Object.keys(KINDS);
@@ -5200,6 +5223,140 @@
     if (stage >= 3 && d0.fine) propPipeStack(m, k, YARD.x, YARD.z, W, D, d0, built);
   }
 
+  /// Service economy: the low shared-services hall uses the same site kit as
+  /// the original buildings; the offices have storeys, strip glazing and an
+  /// entrance forecourt. These are representative spaces, not measured assets.
+  function worksOfficeDistrict(m, k, c) {
+    const { o, W, d0, stage } = c;
+    if (d0.fine && stage >= 3) genericBlock(m, k, o, d0);
+    const x = W * 0.12, z = o.z + 1.0;
+    if (d0.fine) {
+      deckedBlock(m, { x, z, deck: GRADE + 0.18, col: k.body, tag: "office floors",
+        block: { w: 24, dz: 15, eaves: 13.2, floors: 3 } }, stage, d0);
+    } else if (stage >= 3) {
+      m.part("structure / office floor silhouette", () => {
+        if (stage === 3) {
+          for (const dx of [-10, 0, 10]) m.bar(x + dx - 0.3, x + dx + 0.3, GRADE, GRADE + 13.2, z - 7.5, z + 7.5, P.primer);
+        } else {
+          m.bar(x - 12, x + 12, GRADE, GRADE + 13.2, z - 7.5, z + 7.5, k.body);
+          for (let floor = 0; floor < 3; floor += 1) m.bar(x - 11.6, x + 11.6, GRADE + floor * 4.4 + 1.6, GRADE + floor * 4.4 + 3.5, z + 7.5, z + 7.6, P.glass);
+        }
+      });
+    }
+    if (stage >= 4) {
+      m.part("services / office air handling terrace", () => {
+        for (const dx of [-5, 5]) {
+          m.bar(x + dx - 2.0, x + dx + 2.0, GRADE + 13.4, GRADE + 15.1, z - 2, z + 2, P.galv);
+          if (d0.fine) {
+            for (let i = 0; i < 8; i += 1) m.beam(x + dx - 1.8, x + dx + 1.8, GRADE + 13.6 + i * 0.16, GRADE + 13.65 + i * 0.16, z + 2, z + 2.14, P.dark, 0.01);
+            m.rod([x + dx, GRADE + 14.1, z - 2], [x + dx, GRADE + 14.1, z - 4.0], 0.38, 12, P.galv, true);
+          }
+        }
+      });
+      m.part("envelope / office entrance canopy", () => {
+        m.bar(x - 4, x + 4, GRADE + 3.5, GRADE + 3.8, z + 7.5, z + 11.5, k.accent);
+        for (const dx of [-3.5, 3.5]) m.column(x + dx, GRADE, z + 11, 3.5, 0.12, 0.12, d0.fine ? 12 : 4, P.galv, false);
+        if (d0.fine) m.bar(x - 2.2, x + 2.2, GRADE, GRADE + 3.1, z + 7.61, z + 7.75, P.glass);
+      });
+    }
+    if (stage >= 5) m.part("yard / office pedestrian forecourt", () => {
+      m.bar(x - 13, x + 13, GRADE, GRADE + 0.15, z + 9, z + 15, P.kerb);
+      for (const dx of [-10, 10]) {
+        m.bar(x + dx - 1.5, x + dx + 1.5, GRADE + 0.15, GRADE + 0.6, z + 10.5, z + 13.5, P.concrete);
+        m.mound(x + dx, GRADE + 0.6, z + 12, 1.4, 0.7, d0.fine ? 10 : 4, P.grass);
+      }
+    });
+  }
+
+  /// No vessel is drawn: the project creates a place to build and service
+  /// ships, while actual ships remain equipment owned by the simulation.
+  function worksShipyard(m, k, c) {
+    const { o, W, d0, stage } = c;
+    if (d0.fine && stage >= 3) genericBlock(m, k, o, d0);
+    // The dock occupies the clear centre of the compound. Shared stored units
+    // stay on the eastern hardstand, clear of this basin and its repair access.
+    const x = W * 0.02, z = 1.0;
+    if (stage >= 2) m.part("dock / dry dock base and retaining walls", () => {
+      m.bar(x - 6, x + 6, GRADE + 0.02, GRADE + 0.10, z - 14, z + 14, shade(P.concrete, 0.66));
+      for (const dx of [-6.6, 6.6]) m.bar(x + dx - 0.6, x + dx + 0.6, GRADE, GRADE + (stage >= 3 ? 1.9 : 0.4), z - 14, z + 14, P.concrete);
+      if (d0.fine && stage >= 3) {
+        for (let i = 0; i < 10; i += 1) m.beam(x - 1.0, x + 1.0, GRADE + 0.10, GRADE + 0.7, z - 12 + i * 2.5, z - 11.4 + i * 2.5, P.timber, 0.025);
+      }
+    });
+    if (stage >= 3) m.part("structure / shipyard lifting gantry", () => {
+      for (const dx of [-8, 8]) {
+        m.bar(x + dx - 0.32, x + dx + 0.32, GRADE + 0.12, GRADE + 0.30, z - 15, z + 15, P.steel);
+        m.bar(x + dx - 0.55, x + dx + 0.55, GRADE + 0.3, GRADE + 20.0, z - 1.0, z + 1.0, k.accent);
+        if (d0.fine) {
+          for (const dz of [-1.5, 1.5]) m.rod([x + dx, GRADE + 0.7, z + dz - 0.2], [x + dx, GRADE + 0.7, z + dz + 0.2], 0.6, 12, P.dark, true);
+          m.rod([x + dx, GRADE + 3, z], [x + dx * 0.65, GRADE + 19, z], 0.16, 8, P.steel, false);
+        }
+      }
+      m.bar(x - 9.3, x + 9.3, GRADE + 19.0, GRADE + 21.0, z - 1.1, z + 1.1, k.accent);
+      m.bar(x - 1.5, x + 1.5, GRADE + 18.0, GRADE + 19.0, z - 1.4, z + 1.4, P.steel);
+      if (d0.fine) {
+        for (const dx of [-0.45, 0.45]) m.rod([x + dx, GRADE + 18, z], [x + dx, GRADE + 10, z], 0.05, 6, P.dark, false);
+        m.beam(x - 0.8, x + 0.8, GRADE + 9.4, GRADE + 10.2, z - 0.4, z + 0.4, P.safety, 0.03);
+      }
+    });
+    if (stage >= 4) m.part("services / dock pump house and shore cabinets", () => {
+      m.bar(x + 9.5, x + 14.5, GRADE, GRADE + 3.2, z + 7, z + 13, k.body);
+      for (let i = 0; i < (d0.fine ? 4 : 1); i += 1) m.bar(x + 9.5, x + 10.6, GRADE + 0.1, GRADE + 1.8, z - 10 + i * 3, z - 9 + i * 3, P.galv);
+      if (d0.fine) m.rod([x + 11, GRADE + 1.2, z + 7], [x + 11, GRADE + 1.2, z - 12], 0.15, 10, P.galv, true);
+    });
+    if (stage >= 5) m.part("dock / caisson gate and quay bollards", () => {
+      m.bar(x - 6, x + 6, GRADE + 0.1, GRADE + 1.8, z + 13.4, z + 14.0, P.steel);
+      for (const dx of [-7.2, 7.2]) for (let i = 0; i < (d0.fine ? 5 : 2); i += 1) {
+        const bz = z - 11 + i * (d0.fine ? 5.5 : 22);
+        m.column(x + dx, GRADE + 1.9, bz, 0.8, 0.25, 0.32, d0.fine ? 12 : 4, P.dark, true);
+      }
+    });
+  }
+
+  /// A controlled production environment: air handling, process supplies and
+  /// an enclosed material entrance distinguish it from the ordinary factory.
+  function worksAdvancedIndustry(m, k, c) {
+    const { o, d0, stage } = c;
+    if (d0.fine && stage >= 3) genericBlock(m, k, o, d0);
+    const x = o.x + 20, z = o.z;
+    if (stage >= 3) m.part("structure / controlled process service gallery", () => {
+      for (const dz of [-6, 0, 6]) {
+        m.bar(x - 2.8, x + 2.8, GRADE + 4.5, GRADE + 4.8, z + dz - 0.2, z + dz + 0.2, P.steel);
+        for (const dx of [-2.6, 2.6]) m.bar(x + dx - 0.16, x + dx + 0.16, GRADE, GRADE + 4.8, z + dz - 0.16, z + dz + 0.16, P.steel);
+      }
+      if (d0.fine) {
+        for (const dx of [-1.4, 0, 1.4]) m.rod([x + dx, GRADE + 4.9, z - 7], [x + dx, GRADE + 4.9, z + 7], 0.17, 10, P.galv, true);
+      }
+    });
+    if (stage >= 4) {
+      m.part("services / filtered air supply bank", () => {
+        for (let i = 0; i < 3; i += 1) {
+          const fx = o.x - 8 + i * 8;
+          m.bar(fx - 2.6, fx + 2.6, GRADE + k.block.ridge + 0.15, GRADE + k.block.ridge + 2.0, o.z - 3, o.z + 3, P.galv);
+          if (d0.fine) for (let s = 0; s < 9; s += 1) m.beam(fx - 2.3, fx + 2.3, GRADE + k.block.ridge + 0.3 + s * 0.17, GRADE + k.block.ridge + 0.36 + s * 0.17, o.z + 3, o.z + 3.18, P.dark, 0.01);
+        }
+      });
+      m.part("services / enclosed process supply cabinets", () => {
+        for (const dz of [-4.5, 0, 4.5]) {
+          m.bar(x - 2.0, x + 2.0, GRADE + 0.15, GRADE + 3.3, z + dz - 1.5, z + dz + 1.5, shade(k.body, 0.94));
+          if (d0.fine) {
+            m.beam(x + 2.0, x + 2.1, GRADE + 0.45, GRADE + 3.0, z + dz - 1.2, z + dz + 1.2, P.door, 0.015);
+            m.column(x - 0.7, GRADE + 0.2, z + dz, 2.5, 0.4, 0.4, 12, P.galv, true);
+          }
+        }
+      });
+    }
+    if (stage >= 5) m.part("envelope / clean loading vestibule", () => {
+      const front = o.z + k.block.dz / 2;
+      m.bar(o.x - 4.5, o.x + 4.5, GRADE, GRADE + 4.4, front + 0.1, front + 5.0, k.body);
+      m.bar(o.x - 2.0, o.x + 2.0, GRADE + 0.2, GRADE + 3.8, front + 5.0, front + 5.1, P.door);
+      if (d0.fine) {
+        for (const dx of [-2.2, 2.2]) m.beam(o.x + dx - 0.15, o.x + dx + 0.15, GRADE, GRADE + 4.0, front + 5.1, front + 5.3, P.galv, 0.02);
+        m.bar(o.x - 4.8, o.x + 4.8, GRADE + 4.4, GRADE + 4.6, front, front + 5.3, P.roof);
+      }
+    });
+  }
+
   // The dispatch. One entry per key in PROJECT_KINDS except `arms_plant`, which
   // has its own builder above and is not composed from this table.
   const KIND_WORKS = {
@@ -5215,6 +5372,9 @@
     automation: worksAutomation,
     efficiency: worksEfficiency,
     starter_industry: worksStarterIndustry,
+    office_district: worksOfficeDistrict,
+    shipyard: worksShipyard,
+    advanced_industry: worksAdvancedIndustry,
   };
 
   /// The plain shed, staged. Everything the twelve share.

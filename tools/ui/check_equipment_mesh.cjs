@@ -140,6 +140,7 @@ function normalsContract(mesh) {
 }
 
 function validate(mesh, ground = false, level = 0) {
+  const air = ground === "air";
   assert.ok(mesh.positions instanceof Float32Array);
   assert.ok(mesh.normals instanceof Float32Array);
   assert.ok(mesh.colors instanceof Float32Array);
@@ -147,7 +148,7 @@ function validate(mesh, ground = false, level = 0) {
   assert.equal(mesh.positions.length, mesh.colors.length);
   assert.equal(mesh.positions.length, mesh.triangleCount * 9);
   assert.equal(mesh.lod, level);
-  const [low, high] = BANDS[level][ground ? "ground" : "tank"];
+  const [low, high] = air ? [8000, 60000] : BANDS[level][ground ? "ground" : "tank"];
   assert.ok(mesh.triangleCount >= low && mesh.triangleCount <= high, `${mesh.triangleCount} triangles at LOD${level}`);
   let previous = 0;
   const names = new Set();
@@ -157,7 +158,7 @@ function validate(mesh, ground = false, level = 0) {
     previous = part.first + part.count;
   }
   assert.equal(previous, mesh.positions.length / 3);
-  assert.ok(mesh.parts.length >= 18);
+  assert.ok(mesh.parts.length >= (air ? 16 : 18));
   for (let i = 0; i < mesh.positions.length; i += 3) {
     for (let j = 0; j < 3; j++) {
       assert.ok(Number.isFinite(mesh.positions[i + j])); assert.ok(Number.isFinite(mesh.normals[i + j]));
@@ -169,7 +170,7 @@ function validate(mesh, ground = false, level = 0) {
   // Curved surfaces are most of a vehicle: wheels, tyres, barrels, drums, domes,
   // cable, hatch lids. If this fraction collapses the model has silently gone
   // back to flat shading, which is the regression the old contract enforced.
-  if (level === 0) assert.ok(smoothed / (mesh.triangleCount * 3) > 0.30, `${(smoothed / (mesh.triangleCount * 3) * 100).toFixed(1)}% of vertices smoothed`);
+  if (level === 0 && !air) assert.ok(smoothed / (mesh.triangleCount * 3) > 0.30, `${(smoothed / (mesh.triangleCount * 3) * 100).toFixed(1)}% of vertices smoothed`);
   assert.ok(mesh.bounds.min[1] >= -0.02 && mesh.bounds.min[1] < 0.06, "track soles meet ground");
   assert.ok(mesh.bounds.max[2] > (ground ? 1.7 : 3) && mesh.bounds.min[2] < -1.7, "forward and aft chassis bounds");
   assert.ok(mesh.description.includes("Visual interpretation"));
@@ -536,6 +537,37 @@ check('the committed component coverage report still matches the geometry',()=>{
   const run=require('node:child_process').spawnSync(process.execPath,[tool,'--check'],{encoding:'utf8'});
   assert.equal(run.status,0,`node tools/ui/build_component_coverage.cjs --check failed:\n${run.stdout}${run.stderr}`);
   assert.match(run.stdout,/0 weak \/ 0 absent/,`the report still records holes:\n${run.stdout}`);
+});
+
+const aircraft=Object.fromEntries(['air_light_attack','air_tactical_strike'].map(platform=>[platform,build({platform})]));
+check('light attack and tactical strike are distinct complete aircraft with eight pickable specifications',()=>{
+  const sim=fs.readFileSync(path.resolve(__dirname,'../../spheres-sim/src/equipment_aviation.rs'),'utf8');
+  const slots=[...sim.slice(sim.indexOf('pub const AVIATION_SLOTS'),sim.indexOf('];')+2).matchAll(/"(air_\w+)"/g)].map(m=>m[1]);assert.equal(slots.length,8);
+  for(const [platform,mesh] of Object.entries(aircraft)){
+    validate(mesh,'air');assert.equal(mesh.specification.platform,platform);assert.deepEqual(Object.keys(mesh.specification.components).sort(),slots.slice().sort());
+    for(const slot of slots)assert(mesh.parts.some(p=>p.slot===slot),slot);
+    assert(mesh.parts.every(p=>slots.includes(p.slot)));assert.equal(mesh.parts.filter(p=>p.label.includes('landing gear')).length,3);
+    assert(mesh.bounds.max[0]-mesh.bounds.min[0]>9);assert(mesh.bounds.max[2]-mesh.bounds.min[2]>12);
+    const spec={name:'Test aircraft',platform,components:mesh.specification.components},before=JSON.stringify(spec);assert.equal(digest(build(spec)),digest(mesh));assert.equal(JSON.stringify(spec),before);
+  }
+  assert.notEqual(digest(aircraft.air_light_attack),digest(aircraft.air_tactical_strike));
+  assert(aircraft.air_tactical_strike.bounds.max[2]>aircraft.air_light_attack.bounds.max[2]+2);
+  assert.equal(aircraft.air_light_attack.parts.filter(p=>p.slot==='air_engine').length,1);assert.equal(aircraft.air_tactical_strike.parts.filter(p=>p.slot==='air_engine').length,2);
+});
+check('every aviation component resolves from the live catalogue and every selectable upgrade changes its own visible assembly',()=>{
+  const sim=fs.readFileSync(path.resolve(__dirname,'../../spheres-sim/src/equipment_aviation.rs'),'utf8');
+  const rows=[...sim.matchAll(/component!\("(air_\w+)","[^"]+","(air_\w+)"/g)];assert.equal(rows.length,18);
+  for(const [,id,slot] of rows){
+    const original=aircraft.air_tactical_strike,next=build({platform:'air_tactical_strike',components:{...original.specification.components,[slot]:id}});validate(next,'air');assert.equal(next.specification.components[slot],id);
+    if(original.specification.components[slot]!==id){
+      const selected=m=>m.parts.filter(p=>p.slot===slot).flatMap(p=>Array.from(m.positions.slice(p.first*3,(p.first+p.count)*3)));
+      assert.notDeepEqual(selected(next),selected(original),id+' must change its selected assembly');
+    }
+  }
+});
+check('light aircraft reject heavy-only visuals and omit stale ground slots',()=>{
+  const mesh=build({platform:'air_light_attack',components:{air_engine:'air_engine_twin',air_wing:'air_wing_swept',air_hardpoints:'air_hardpoints_heavy',armament:'gun_125',mobility:'drive_mobile'}});
+  assert.deepEqual(mesh.specification,aircraft.air_light_attack.specification);assert.equal(digest(mesh),digest(aircraft.air_light_attack));
 });
 
 const smoothedShare = mesh => mesh.smoothing.reduce((sum, entry) => sum + entry.vertices, 0) / (mesh.triangleCount * 3);

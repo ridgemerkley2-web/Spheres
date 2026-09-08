@@ -200,7 +200,7 @@ test('campaign changes and modal entry close global More and Map menus without c
 
 test('starting a replacement campaign cannot reuse the previous named save target',async()=>{
   const c=fixture(['resetCampaignUi','doSave']);
-  for(const name of ['closeGlobalMenus','resetProvinceDossierState','closeTech','closeStock','closeTechMenu','closeGameDrawers','closeLogistics','closeProduction','closeDomination','invalidateEconomicLedger','clearTimeout'])c[name]=()=>{};
+  for(const name of ['closeGlobalMenus','resetProvinceDossierState','resetGovernment','closeTech','closeStock','closeTechMenu','closeGameDrawers','closeLogistics','closeProduction','closeDomination','invalidateEconomicLedger','clearTimeout'])c[name]=()=>{};
   c.dominationIsOpen=()=>false;
   run(c,`let tech={},LOGI={},PROD={},MANU={},STOCKW={},stock={},stockDash={},selected=null,selectedWar=null,selectedWarName='',talks={};
     const ECONOMIC_LEDGER={details:new Map()},ui={};let HIST=null;SESSION.slot='valuable-campaign';`);

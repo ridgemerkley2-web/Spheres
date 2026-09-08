@@ -1,0 +1,785 @@
+diff --git a/spheres-sim/src/government.rs b/spheres-sim/src/government.rs
+index 965f4cd..b647b33 100644
+--- a/spheres-sim/src/government.rs
++++ b/spheres-sim/src/government.rs
+@@ -408,22 +408,30 @@ pub const POLITIES: &[Polity] = &[
+             pl(Pillar::Security, "the Committee for State Security (KGB)"),
+         ],
+     },
+-    // Russia — 1993 State Duma party-list vote: LDPR 22.9%, Russia's Choice
+-    // 15.5%, CPRF 12.4%, Women of Russia 8.1%, Agrarians 8.0%, Yabloko 7.9%.
+-    // The first election a post-Soviet Russia held, and the one that told
+-    // everyone the transition was not going to be liberal.
++    // Russia - RSFSR Congress of People's Deputies, 4 March 1990 with a second
++    // round 14-18 March. 1,068 seats: CPSU members 920, non-partisans 148;
++    // "around 350 of those elected (CPSU or independents) were deemed to be in
++    // the democratic bloc and supportive of the Democratic Russia programme".
++    // Two-round single-member: over 50% of the vote and 50% turnout to win in
++    // the first round. Turnout 76.4% / 65.8% (infobox). The democratic row is
++    // the page's 350 over 1,068; the communist row is the remainder of the
++    // chamber, every member of which was nominated under the CPSU's monopoly
++    // (Article 6 was repealed ten days after the first round). Democratic
++    // Russia's own page puts the bloc at "about 300 out of 1,068"; the election
++    // page's 350 is used and the 300 recorded here. The 1993 Duma table this
++    // replaces was look-ahead data (BIBLE section 8).
++    // https://en.wikipedia.org/wiki/1990_Russian_Supreme_Soviet_election
++    // https://en.wikipedia.org/wiki/Democratic_Russia
+     Polity {
+         nation: NationId::Russia,
+-        system: Electoral::Proportional,
++        system: Electoral::TwoRound,
+         term_months: 48,
+         next: (0, 0),
+         parties: &[
+-            p("ru_ldpr", "Liberal Democratic Party of Russia", "Liberalno-demokraticheskaya partiya Rossii", Family::Nationalist, 0.229),
+-            p("ru_vybor", "Russia's Choice", "Vybor Rossii", Family::Liberal, 0.155),
+-            p("ru_kprf", "Communist Party of the Russian Federation", "Kommunisticheskaya partiya Rossiyskoy Federatsii", Family::Communist, 0.124),
+-            // bloc -> Communist: The collective-farm lobby, the KPRF's ally in every Duma. https://en.wikipedia.org/wiki/Agrarian_Party_of_Russia
+-            p("ru_apr", "Agrarian Party of Russia", "Agrarnaya partiya Rossii", Family::Agrarian, 0.080).aligned(Bloc::Communist),
+-            p("ru_yabloko", "Yabloko", "Yabloko", Family::Liberal, 0.079),
++            // 718 of 1,068 = the chamber less the democratic bloc. Id kept from the 1993 table: the KPRF is the successor of the CPSU's Russian organisation and the successor flag (R3(d)) reads this id. https://en.wikipedia.org/wiki/1990_Russian_Supreme_Soviet_election
++            p("ru_kprf", "Communist Party of the Soviet Union (RSFSR deputies)", "Kommunisticheskaya partiya Sovetskogo Soyuza", Family::Communist, 0.672),
++            // bloc -> Western: the democratic bloc of the Congress, around 350 of 1,068, the caucus that elected Yeltsin chairman. https://en.wikipedia.org/wiki/Democratic_Russia
++            p("ru_dr", "Democratic Russia", "Demokraticheskaya Rossiya", Family::Liberal, 0.328).aligned(Bloc::Western),
+         ],
+         ruling: "the Presidency of the Russian Federation",
+         pillars: &[
+@@ -432,20 +440,24 @@ pub const POLITIES: &[Polity] = &[
+             pl(Pillar::Business, "the new financial groups"),
+         ],
+     },
+-    // Ukraine — 1998 Verkhovna Rada party-list vote: CPU 24.7%, Rukh 9.4%,
+-    // Socialist/Peasant bloc 8.6%, People's Democratic Party 5.0%. The 1994
+-    // election was fought largely by independents, so 1998 is the first result
+-    // that reads as a party system.
++    // Ukraine - Supreme Soviet of the Ukrainian SSR, 4 March 1990 with a
++    // second round 10-18 March. 450 seats, 442 filled: Communist Party of
++    // Ukraine 331, Democratic Bloc 111. Majoritarian in 450 districts, second
++    // round where nobody reached 50%. Turnout 85% / 79%. Within the 331 the
++    // page counts the "Group of 239" (For a Soviet Sovereign Ukraine) at 239
++    // and the CPU Democratic Platform at 41. Shares are of the 442 seated.
++    // The 1998 table this replaces was look-ahead data (BIBLE section 8).
++    // https://en.wikipedia.org/wiki/1990_Ukrainian_Supreme_Soviet_election
+     Polity {
+         nation: NationId::Ukraine,
+-        system: Electoral::Proportional,
++        system: Electoral::TwoRound,
+         term_months: 48,
+         next: (0, 0),
+         parties: &[
+-            p("ua_kpu", "Communist Party of Ukraine", "Komunistychna partiya Ukrayiny", Family::Communist, 0.247),
+-            p("ua_rukh", "People's Movement of Ukraine", "Narodnyi Rukh Ukrayiny", Family::Nationalist, 0.094),
+-            p("ua_spu", "Socialist Party of Ukraine", "Sotsialistychna partiya Ukrayiny", Family::SocialDemocratic, 0.086),
+-            p("ua_ndp", "People's Democratic Party", "Narodno-demokratychna partiya", Family::Liberal, 0.050),
++            // 331 of 442. Id kept: the KPU of the 1998 table is the same organisation. https://en.wikipedia.org/wiki/1990_Ukrainian_Supreme_Soviet_election
++            p("ua_kpu", "Communist Party of Ukraine", "Komunistychna partiya Ukrayiny", Family::Communist, 0.749),
++            // bloc -> Western: the Democratic Bloc, 111 of 442, the opposition umbrella built around Rukh. A new id because the bloc is not Rukh (ua_rukh) and the page does not split it. https://en.wikipedia.org/wiki/1990_Ukrainian_Supreme_Soviet_election
++            p("ua_demblok", "Democratic Bloc", "Demokratychnyi blok", Family::BigTent, 0.251).aligned(Bloc::Western),
+         ],
+         ruling: "the Presidency of Ukraine",
+         pillars: &[
+@@ -903,20 +915,23 @@ pub const POLITIES: &[Polity] = &[
+             pl(Pillar::Security, "the State Security Service"),
+         ],
+     },
+-    // Serbia — 9 December 1990, the first multiparty election in Serbia since
+-    // 1938: Milosevic's Socialist Party of Serbia 46.1%, the Serbian Renewal
+-    // Movement 15.8%, the Democratic Party 7.4%. Elections were held and the
+-    // state television was not neutral, which is why Serbia is modelled with
+-    // pillars as well as parties.
++    // Serbia - National Assembly, first round 9 December 1990, turnout
++    // 71.39%: SPS 48.15% (194/250), SPO 16.49% (19), DS 7.78% (7), VMDK 2.75%
++    // (8), SDA of Sandzak 1.75% (3), independents 9.47% (8). Milosevic took
++    // the presidency with 67.71%. Transcribed 2026-09-06.
++    // https://en.wikipedia.org/wiki/1990_Serbian_general_election
+     Polity {
+         nation: NationId::Serbia,
+         system: Electoral::FirstPastThePost,
+         term_months: 48,
+         next: (0, 0),
+         parties: &[
+-            p("rs_sps", "Socialist Party of Serbia", "Socijalisticka partija Srbije", Family::Nationalist, 0.461),
+-            p("rs_spo", "Serbian Renewal Movement", "Srpski pokret obnove", Family::Nationalist, 0.158),
+-            p("rs_ds", "Democratic Party", "Demokratska stranka", Family::Liberal, 0.074),
++            // successor_of_ruling_party: founded 17 July 1990 by merger of the League of Communists of Serbia and the Socialist Alliance of Working People; programme of October 1990 "Serbia as a socialist republic". https://en.wikipedia.org/wiki/Socialist_Party_of_Serbia ; 48.15% https://en.wikipedia.org/wiki/1990_Serbian_general_election . Family kept as the table has it (not re-familied this run).
++            p("rs_sps", "Socialist Party of Serbia", "Socijalisticka partija Srbije", Family::Nationalist, 0.4815),
++            // 16.49% https://en.wikipedia.org/wiki/1990_Serbian_general_election
++            p("rs_spo", "Serbian Renewal Movement", "Srpski pokret obnove", Family::Nationalist, 0.1649),
++            // 7.78% https://en.wikipedia.org/wiki/1990_Serbian_general_election
++            p("rs_ds", "Democratic Party", "Demokratska stranka", Family::Liberal, 0.0778),
+         ],
+         ruling: "the Socialist Party of Serbia",
+         pillars: &[
+@@ -925,58 +940,70 @@ pub const POLITIES: &[Polity] = &[
+             pl(Pillar::Security, "the State Security Service"),
+         ],
+     },
+-    // Croatia — 22 April 1990: Tudjman's Croatian Democratic Union 41.9%, the
+-    // reformed League of Communists 35.0%, the Coalition of National Accord
+-    // 15.3%. First round, first free election since 1938.
++    // Croatia - Socio-Political Council, first round 22-23 April 1990: HDZ
++    // 41.76% (54/80 after the 6-7 May run-off), SKH-SDP 23.59% own list (12;
++    // 31.09% with its joint lists), KNS 10.99% (3), SS-SSH 6.49% (2), SDS
++    // 1.61% (1). Transcribed 2026-09-06.
++    // https://en.wikipedia.org/wiki/1990_Croatian_parliamentary_election
+     Polity {
+         nation: NationId::Croatia,
+         system: Electoral::TwoRound,
+         term_months: 48,
+         next: (0, 0),
+         parties: &[
+-            p("hr_hdz", "Croatian Democratic Union", "Hrvatska demokratska zajednica", Family::Nationalist, 0.419),
+-            p("hr_sdp", "Party of Democratic Reform", "Stranka demokratskih promjena", Family::SocialDemocratic, 0.350),
+-            p("hr_kns", "Coalition of National Accord", "Koalicija narodnog sporazuma", Family::Liberal, 0.153),
++            // 41.76% first round. https://en.wikipedia.org/wiki/1990_Croatian_parliamentary_election
++            p("hr_hdz", "Croatian Democratic Union", "Hrvatska demokratska zajednica", Family::Nationalist, 0.4176),
++            // successor_of_ruling_party: "formed in 1990 as the successor of the League of Communists of Croatia"; renamed SKH-SDP February 1990, dropped SKH 3 November 1990. https://en.wikipedia.org/wiki/Social_Democratic_Party_of_Croatia ; own list 23.59% https://en.wikipedia.org/wiki/1990_Croatian_parliamentary_election
++            p("hr_sdp", "Party of Democratic Reform", "Stranka demokratskih promjena", Family::SocialDemocratic, 0.2359),
++            // 10.99% first round. https://en.wikipedia.org/wiki/1990_Croatian_parliamentary_election
++            p("hr_kns", "Coalition of National Accord", "Koalicija narodnog sporazuma", Family::Liberal, 0.1099),
+         ],
+         ruling: "the Sabor",
+         pillars: &[],
+     },
+-    // Slovenia — 8 April 1990: the DEMOS opposition coalition 54.0%, the Party
+-    // of Democratic Renewal 17.3%, the Liberal Democrats 14.5%. DEMOS was six
+-    // parties in a trenchcoat and came apart within two years of winning, which
+-    // is what a big-tent coalition costs to hold.
++    // Slovenia - Socio-Political Chamber, 8 April 1990: DEMOS five parties
++    // 51.27% (44/80) as the sum of SKD 12.98, SKZ 12.55, SDZ 9.51, ZS 8.84,
++    // SDSS 7.39; ZKS-SDP 17.28% (14); ZSMS 14.49% (12); Socialist Alliance
++    // 5.37% (5). Transcribed 2026-09-06.
++    // https://en.wikipedia.org/wiki/1990_Slovenian_parliamentary_election
++    // https://en.wikipedia.org/wiki/DEMOS_(Slovenia)
+     Polity {
+         nation: NationId::Slovenia,
+         system: Electoral::Proportional,
+         term_months: 48,
+         next: (0, 0),
+         parties: &[
+-            // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/DEMOS_(Slovenia)
+-            p("si_demos", "DEMOS", "Demokraticna opozicija Slovenije", Family::BigTent, 0.540).aligned(Bloc::Western),
+-            p("si_sdp", "Party of Democratic Renewal", "Stranka demokraticne prenove", Family::SocialDemocratic, 0.173),
+-            p("si_ldp", "Liberal Democratic Party", "Liberalno demokratska stranka", Family::Liberal, 0.145),
++            // bloc -> Western: democratic umbrella against the party-state; members SDZ, SDSS, SKD, SKZ, ZS per https://en.wikipedia.org/wiki/DEMOS_(Slovenia) ; share = sum of the five members' chamber rows, https://en.wikipedia.org/wiki/1990_Slovenian_parliamentary_election
++            p("si_demos", "DEMOS", "Demokraticna opozicija Slovenije", Family::BigTent, 0.5127).aligned(Bloc::Western),
++            // successor_of_ruling_party: "is the successor of the League of Communists of Slovenia", renamed ZKS-SDP 4 February 1990. https://en.wikipedia.org/wiki/Party_of_Democratic_Renewal_(Slovenia) ; 17.28% https://en.wikipedia.org/wiki/1990_Slovenian_parliamentary_election
++            p("si_sdp", "Party of Democratic Renewal", "Stranka demokraticne prenove", Family::SocialDemocratic, 0.1728),
++            // The ZSMS list ("Union of Socialist Youth of Slovenia - Liberal Party (later the Liberal Democratic Party)", social-liberal). https://en.wikipedia.org/wiki/Liberal_Democracy_of_Slovenia ; 14.49% https://en.wikipedia.org/wiki/1990_Slovenian_parliamentary_election
++            p("si_ldp", "Liberal Democratic Party", "Liberalno demokratska stranka", Family::Liberal, 0.1449),
+         ],
+         ruling: "the National Assembly",
+         pillars: &[],
+     },
+-    // Bosnia and Herzegovina — 18 November 1990. The three national parties took
+-    // the vote almost exactly in proportion to the census: the Party of
+-    // Democratic Action 35.8%, the Serbian Democratic Party 30.0%, the Croatian
+-    // Democratic Union of BiH 18.4%, the reformed communists 6.0%. They then
+-    // formed a government together, because the arithmetic left no alternative,
+-    // and it held for about a year. There is no more expensive coalition in this
+-    // model, and there was none in life either.
++    // Bosnia and Herzegovina - Chamber of Citizens, 18 November 1990, turnout
++    // 77.49%: SDA 31.48% (43/130), SDS 26.14% (34), HDZ BiH 16.07% (21),
++    // League of Communists 12.31% (15), Union of Reform Forces 8.90% (12).
++    // Transcribed 2026-09-06.
++    // https://en.wikipedia.org/wiki/1990_Bosnian_general_election
+     Polity {
+         nation: NationId::Bosnia,
+         system: Electoral::Proportional,
+         term_months: 48,
+         next: (0, 0),
+         parties: &[
+-            // bloc -> Nationalist: DISAGREES WITH THE DESIGN (which lists it Western): the source describes the SDA at founding as "a party of the Muslim cultural-historical circle" and "a broad nationalist and conservative movement", transcribed 2026-09-05. https://en.wikipedia.org/wiki/Party_of_Democratic_Action
+-            p("ba_sda", "Party of Democratic Action", "Stranka demokratske akcije", Family::Religious, 0.358).aligned(Bloc::Nationalist),
+-            p("ba_sds", "Serbian Democratic Party", "Srpska demokratska stranka", Family::Nationalist, 0.300),
+-            p("ba_hdz", "Croatian Democratic Union of BiH", "Hrvatska demokratska zajednica BiH", Family::Nationalist, 0.184),
+-            p("ba_sdp", "Social Democratic Party", "Socijaldemokratska partija", Family::SocialDemocratic, 0.060),
++            // bloc -> Nationalist: DISAGREES WITH THE DESIGN (which lists it Western): the source describes the SDA at founding as "a party of the Muslim cultural-historical circle" and "a broad nationalist and conservative movement", transcribed 2026-09-05; 31.48% re-transcribed 2026-09-06 from https://en.wikipedia.org/wiki/1990_Bosnian_general_election . https://en.wikipedia.org/wiki/Party_of_Democratic_Action
++            p("ba_sda", "Party of Democratic Action", "Stranka demokratske akcije", Family::Religious, 0.3148).aligned(Bloc::Nationalist),
++            // 26.14% https://en.wikipedia.org/wiki/1990_Bosnian_general_election
++            p("ba_sds", "Serbian Democratic Party", "Srpska demokratska stranka", Family::Nationalist, 0.2614),
++            // 16.07% https://en.wikipedia.org/wiki/1990_Bosnian_general_election
++            p("ba_hdz", "Croatian Democratic Union of BiH", "Hrvatska demokratska zajednica BiH", Family::Nationalist, 0.1607),
++            // successor_of_ruling_party: "considered the successor of the League of Communists of Bosnia and Herzegovina". https://en.wikipedia.org/wiki/Social_Democratic_Party_of_Bosnia_and_Herzegovina ; 12.31% as "League of Communists" https://en.wikipedia.org/wiki/1990_Bosnian_general_election
++            p("ba_sdp", "Social Democratic Party", "Socijaldemokratska partija", Family::SocialDemocratic, 0.1231),
++            // NEW ROW. Ante Markovic's federal reform party, 8.90%; filed Liberal by the same convention the table already applies to me_srsj and mk_srsm (Union of Reform Forces). https://en.wikipedia.org/wiki/1990_Bosnian_general_election
++            p("ba_srsj", "Union of Reform Forces of Yugoslavia", "Savez reformskih snaga Jugoslavije", Family::Liberal, 0.0890),
+         ],
+         ruling: "the Assembly",
+         pillars: &[],
+@@ -1694,20 +1721,29 @@ pub const POLITIES: &[Polity] = &[
+     // ---------------------------------------------------------------------
+ 
+     // Belarus - Supreme Soviet of the Byelorussian SSR, 4 March 1990 with
+-    // runoffs into May. Seat shares, not votes: the Communist Party of
+-    // Byelorussia took the overwhelming majority of the 310 seats and the
+-    // Belarusian Popular Front's opposition caucus settled at around 37 of
+-    // them. Belarus is the republic where the old apparatus was least disturbed
+-    // by 1991, and that is the fact this table exists to carry.
++    // rounds to 14 May. 360 seats: 310 elected, 50 appointed by organisations
++    // of veterans and invalids; 98 elected on 4 March (turnout 86.5%), 131 on
++    // 17-18 March, by-elections 22 April, 5 May, 10-14 May; 278 elected in all
++    // and thirteen seats never filled. The election page gives the Popular
++    // Front "around 25-37 seats" and, by the start of 1991, the Communists in
++    // four groups (170 + Agrarian 40 + Industrialists 35 + "Union" 30 = 275)
++    // and the BNF faction at 27. The composition transcribed is the 12th
++    // Supreme Council page's, a single set summing to 360: Communist Party of
++    // Byelorussia 302, independents 32, Belarusian Popular Front 26. The
++    // present block reads 0.850 / 0.120 from the election page's range; the
++    // 26 of 360 is what the composition page says.
+     // https://en.wikipedia.org/wiki/1990_Byelorussian_Supreme_Soviet_election
++    // https://en.wikipedia.org/wiki/12th_Belarusian_Supreme_Soviet
+     Polity {
+         nation: NationId::Belarus,
+-        system: Electoral::FirstPastThePost,
++        system: Electoral::TwoRound,
+         term_months: 60,
+         next: (0, 0),
+         parties: &[
+-            p("by_kpb", "Communist Party of Byelorussia", "Kamunistychnaya partyya Belarusi", Family::Communist, 0.850),
+-            p("by_bnf", "Belarusian Popular Front", "Belaruski Narodny Front", Family::Nationalist, 0.120),
++            // 302 of 360. https://en.wikipedia.org/wiki/12th_Belarusian_Supreme_Soviet
++            p("by_kpb", "Communist Party of Byelorussia", "Kamunistychnaya partyya Belarusi", Family::Communist, 0.839),
++            // 26 of 360 (the election page's range is 25-37). https://en.wikipedia.org/wiki/12th_Belarusian_Supreme_Soviet
++            p("by_bnf", "Belarusian Popular Front", "Belaruski Narodny Front", Family::Nationalist, 0.072),
+         ],
+         ruling: "the Supreme Soviet",
+         pillars: &[
+@@ -1717,19 +1753,22 @@ pub const POLITIES: &[Polity] = &[
+         ],
+     },
+ 
+-    // Kazakhstan - 1 December 1991 presidential election: Nursultan Nazarbayev
+-    // unopposed with 98.8%. Azat and Zheltoqsan, the two national-democratic
+-    // movements that would have contested it, were refused registration, so
+-    // there is genuinely no second row to transcribe. A single party here is
+-    // the correct description of the republic and not a gap in it.
+-    // https://en.wikipedia.org/wiki/1991_Kazakh_presidential_election
++    // Kazakhstan - Supreme Soviet of the Kazakh SSR, 25 March 1990. 360 seats,
++    // 270 directly elected and 90 chosen by public associations: Communist
++    // Party of Kazakhstan 342, independents 18. Turnout 83.97% (8,177,059 of
++    // 9,738,548). Nohlen, Grotz & Hartmann (2001) Elections in Asia I, p.423,
++    // p.420, as cited on the page. The present block's kz_snek (SNEK) did not
++    // exist in 1990 and is not carried; the ruling party is transcribed under
++    // a new id.
++    // https://en.wikipedia.org/wiki/1990_Kazakh_Supreme_Soviet_election
+     Polity {
+         nation: NationId::Kazakhstan,
+-        system: Electoral::FirstPastThePost,
++        system: Electoral::TwoRound,
+         term_months: 60,
+         next: (0, 0),
+         parties: &[
+-            p("kz_snek", "Union of People's Unity of Kazakhstan", "Qazaqstan Halyq Birligi Odagy", Family::BigTent, 0.988),
++            // 342 of 360. https://en.wikipedia.org/wiki/1990_Kazakh_Supreme_Soviet_election
++            p("kz_kpk", "Communist Party of Kazakhstan", "Qazaqstan Kommunistik Partiyasy", Family::Communist, 0.950),
+         ],
+         ruling: "the Presidency of the Republic of Kazakhstan",
+         pillars: &[
+@@ -1740,21 +1779,24 @@ pub const POLITIES: &[Polity] = &[
+         ],
+     },
+ 
+-    // Uzbekistan - 29 December 1991 presidential election: Islam Karimov 86.0%,
+-    // Muhammad Salih of Erk 12.7%. Erk was banned within two years and Salih
+-    // left the country; Birlik, the larger opposition movement, was never
+-    // allowed onto the ballot at all. The First Secretary became the President
+-    // without an interval, which is why the pillars here are the Soviet ones
+-    // under new names.
+-    // https://en.wikipedia.org/wiki/1991_Uzbek_presidential_election
++    // Uzbekistan - Supreme Soviet of the Uzbek SSR, 18 February 1990. 500
++    // seats, 368 decided in the first round: Communist Party of Uzbekistan
++    // 348 of those 368 (69.6% of the chamber), the Unity (Birlik) opposition
++    // "around 50 seats", 132 seats to a second round the page does not report.
++    // Turnout 94%. Nohlen et al. (2001) I, p.490 and p.495 as cited. The
++    // Birlik figure is the page's approximation and is carried as such. The
++    // present block's uz_erk (Erk) did not stand and is not carried.
++    // https://en.wikipedia.org/wiki/1990_Uzbek_Supreme_Soviet_election
+     Polity {
+         nation: NationId::Uzbekistan,
+         system: Electoral::TwoRound,
+         term_months: 60,
+         next: (0, 0),
+         parties: &[
+-            p("uz_pdp", "People's Democratic Party of Uzbekistan", "Ozbekiston Xalq Demokratik Partiyasi", Family::BigTent, 0.860),
+-            p("uz_erk", "Erk Democratic Party", "Erk Demokratik Partiyasi", Family::Liberal, 0.127),
++            // 348 of 500 after the first round. Id kept: the present block records that the PDP is the Communist Party of Uzbekistan renamed, and the successor flag reads this id. https://en.wikipedia.org/wiki/1990_Uzbek_Supreme_Soviet_election
++            p("uz_pdp", "Communist Party of Uzbekistan", "Ozbekiston Kommunistik Partiyasi", Family::Communist, 0.696),
++            // bloc -> Western: "around 50 seats" of 500, the page's approximation. https://en.wikipedia.org/wiki/1990_Uzbek_Supreme_Soviet_election
++            p("uz_birlik", "Unity", "Birlik", Family::Nationalist, 0.100).aligned(Bloc::Western),
+         ],
+         ruling: "the Presidency of the Republic of Uzbekistan",
+         pillars: &[
+@@ -1764,24 +1806,25 @@ pub const POLITIES: &[Polity] = &[
+         ],
+     },
+ 
+-    // Kyrgyzstan - 12 October 1991 presidential election: Askar Akayev, running
+-    // unopposed after the Supreme Soviet declined to register a second
+-    // candidate, 95.3% on a 90% turnout. The number is a formality; the fact
+-    // worth transcribing happened a year earlier, on 27 October 1990, when the
+-    // same Supreme Soviet elected Akayev — the president of the Academy of
+-    // Sciences, a physicist who had never held party office — over Absamat
+-    // Masaliyev, the First Secretary. Kyrgyzstan is the only Soviet republic
+-    // where the party boss ran for the new presidency and lost, which is why
+-    // this is the one polity in Central Asia that rests on something other than
+-    // the apparatus it inherited, and why there is no Party pillar below.
+-    // https://en.wikipedia.org/wiki/1991_Kyrgyz_presidential_election
++    // Kyrgyzstan - Supreme Soviet of the Kirghiz SSR, 25 February 1990 with a
++    // second round 7 April. The Communist Party of Kirghizia, the only party,
++    // "around 90% of the seats"; turnout 92% (election page, Nohlen et al.
++    // 2001 I, pp.440-455 as cited). The seat count is the party page's
++    // infobox, "315 / 350 (90%)", which carries no reference of its own -
++    // the two pages agree on the 90% and the 350 rests on the infobox alone.
++    // Some deputies were "informally affiliated with the Democratic Movement
++    // of Kyrgyzstan"; the page gives no number, so the present block's kg_dkk
++    // is not carried and no democratic row is typed.
++    // https://en.wikipedia.org/wiki/1990_Kirghiz_Supreme_Soviet_election
++    // https://en.wikipedia.org/wiki/Communist_Party_of_Kirghizia
+     Polity {
+         nation: NationId::Kyrgyzstan,
+         system: Electoral::TwoRound,
+         term_months: 60,
+         next: (0, 0),
+         parties: &[
+-            p("kg_dkk", "Democratic Movement of Kyrgyzstan", "Demokratiyaluu Kyrgyzstan Kyymyly", Family::Liberal, 0.953),
++            // 315 of 350. https://en.wikipedia.org/wiki/Communist_Party_of_Kirghizia
++            p("kg_kpk", "Communist Party of Kirghizia", "Kyrgyzstan Kommunisttik Partiyasy", Family::Communist, 0.900),
+         ],
+         ruling: "the Presidency of the Kyrgyz Republic",
+         pillars: &[
+@@ -1790,26 +1833,22 @@ pub const POLITIES: &[Polity] = &[
+         ],
+     },
+ 
+-    // Tajikistan - 24 November 1991 presidential election: Rahmon Nabiyev of
+-    // the Communist Party 56.9%, Davlat Khudonazarov 30.1%. Khudonazarov was a
+-    // filmmaker from Gorno-Badakhshan carrying the whole of the opposition at
+-    // once — the Democratic Party, Rastokhez and the Islamic Renaissance Party
+-    // on one ticket — and the result is the closest presidential contest held
+-    // anywhere in Central Asia. It is also the only one in this group that was
+-    // seriously disputed, and the dispute did not end at the count: the
+-    // Dushanbe square protests of March 1992 followed from it and the civil war
+-    // followed from those. Nothing here schedules that war. What this table
+-    // records is a government elected by 57% of a republic whose other 43% did
+-    // not accept the result, which is the condition it was in.
+-    // https://en.wikipedia.org/wiki/1991_Tajik_presidential_election
++    // Tajikistan - Supreme Soviet of the Tajik SSR, 25 February 1990. 230
++    // seats: Communist Party of Tajikistan 221 (96%), independents 9 (4%).
++    // Rastokhez and the Islamic Renaissance Party "contested the elections as
++    // independent candidates", unregistered, and the page counts them inside
++    // the 9; several de facto opposition candidates also sat inside the CPT's
++    // 221. Nohlen et al. (2001) I, p.462, p.465 as cited. The present block's
++    // tj_hnt (Democratic Party) did not stand and is not carried.
++    // https://en.wikipedia.org/wiki/1990_Tajik_Supreme_Soviet_election
+     Polity {
+         nation: NationId::Tajikistan,
+         system: Electoral::TwoRound,
+         term_months: 60,
+         next: (0, 0),
+         parties: &[
+-            p("tj_kpt", "Communist Party of Tajikistan", "Hizbi Kommunistii Tojikiston", Family::Communist, 0.569),
+-            p("tj_hnt", "Democratic Party of Tajikistan", "Hizbi Demokrati Tojikiston", Family::Liberal, 0.301),
++            // 221 of 230. Id kept from the 1991 block, the same party. https://en.wikipedia.org/wiki/1990_Tajik_Supreme_Soviet_election
++            p("tj_kpt", "Communist Party of Tajikistan", "Hizbi Kommunistii Tojikiston", Family::Communist, 0.961),
+         ],
+         ruling: "the Presidency of the Republic of Tajikistan",
+         pillars: &[
+@@ -1818,22 +1857,23 @@ pub const POLITIES: &[Polity] = &[
+         ],
+     },
+ 
+-    // Turkmenistan - 27 October 1990 presidential election: Saparmurat Niyazov
+-    // unopposed, 98.3%. The earliest presidential election in any Soviet
+-    // republic and the emptiest: the Communist Party of Turkmenistan renamed
+-    // itself the Democratic Party in December 1991 and remained the only legal
+-    // party in the country until 2012. Agzybirlik, the one opposition movement,
+-    // was banned in January 1990 before the ballot was printed, so a single row
+-    // is again the correct description and not a gap. Niyazov took 99.5% at the
+-    // re-run of 21 June 1992 and had the Mejlis extend his term indefinitely in
+-    // 1999. https://en.wikipedia.org/wiki/1990_Turkmen_presidential_election
++    // Turkmenistan - Supreme Soviet of the Turkmen SSR, 7 January 1990, a week
++    // into this start state. 175 seats; the Communist Party of Turkmenistan,
++    // the only registered party, "around 90% of the 175 seats"; turnout 94%
++    // (election page, Nohlen et al. 2001). The seat count is the Commons
++    // parliament diagram for 1990-1994, "Communist Party of Turkmenistan: 157,
++    // Independents: 18", a file with no source of its own beyond the diagram
++    // tool; it agrees with the page's 90%.
++    // https://en.wikipedia.org/wiki/1990_Turkmen_Supreme_Soviet_election
++    // https://commons.wikimedia.org/wiki/File:Supreme_Soviet_of_Turkmen_SSR_and_Republic_of_Turkmenistan_in_1990-1994.svg
+     Polity {
+         nation: NationId::Turkmenistan,
+-        system: Electoral::FirstPastThePost,
++        system: Electoral::TwoRound,
+         term_months: 60,
+         next: (0, 0),
+         parties: &[
+-            p("tm_dpt", "Democratic Party of Turkmenistan", "Turkmenistanyn Demokratik Partiyasy", Family::BigTent, 0.983),
++            // 157 of 175. Id kept: the present block records that the DPT is the CPT renamed in December 1991, and the successor flag reads this id. https://en.wikipedia.org/wiki/1990_Turkmen_Supreme_Soviet_election
++            p("tm_dpt", "Communist Party of Turkmenistan", "Turkmenistanyn Kommunistik Partiyasy", Family::Communist, 0.897),
+         ],
+         ruling: "the Presidency of Turkmenistan",
+         pillars: &[
+@@ -1844,11 +1884,18 @@ pub const POLITIES: &[Polity] = &[
+         ],
+     },
+ 
+-    // Georgia - Supreme Council, 28 October 1990: Zviad Gamsakhurdia's Round
+-    // Table-Free Georgia 64.0%, the Communist Party of Georgia 29.6%. The first
+-    // multi-party election in any Soviet republic won outright by the
+-    // opposition, and the government it produced was overthrown by its own
+-    // National Guard fourteen months later.
++    // Georgia - Supreme Soviet, 28 October 1990, second round 11 November.
++    // 250 seats, 125 by proportional list with a 4% bar and 125 in
++    // single-member two-round districts. Vote shares from the page's table
++    // (Nohlen et al. 2001 I, p.382 as cited): Round Table - Free Georgia
++    // 1,248,111 = 53.99%, 155 seats (81 list + 74 district); Communist Party
++    // of Georgia 683,824 = 29.58%, 64 seats (44 + 20); People's Front 1.89%,
++    // 12 seats; Democratic Georgia bloc 1.76%, 4; Rustaveli Society 2.32%, 1;
++    // Liberation and Economic Revival bloc 1.46%, 1; independents 9; vacant
++    // 4; 2,311,923 votes, turnout 69.59%. The present block reads the Round
++    // Table at 0.640 from the same URL; the table fetched this run says 53.99
++    // and that is the figure carried. The four small lists are not typed
++    // because their families are not on the fetched page.
+     // https://en.wikipedia.org/wiki/1990_Georgian_Supreme_Soviet_election
+     Polity {
+         nation: NationId::Georgia,
+@@ -1856,7 +1903,9 @@ pub const POLITIES: &[Polity] = &[
+         term_months: 48,
+         next: (0, 0),
+         parties: &[
+-            p("ge_mrsm", "Round Table-Free Georgia", "Mrgvali Magida-Tavisupali Sakartvelo", Family::Nationalist, 0.640),
++            // 53.99% of the vote, 155 of 250. https://en.wikipedia.org/wiki/1990_Georgian_Supreme_Soviet_election
++            p("ge_mrsm", "Round Table-Free Georgia", "Mrgvali Magida-Tavisupali Sakartvelo", Family::Nationalist, 0.540),
++            // 29.58% of the vote, 64 of 250. https://en.wikipedia.org/wiki/1990_Georgian_Supreme_Soviet_election
+             p("ge_kpg", "Communist Party of Georgia", "Sakartvelos Komunisturi Partia", Family::Communist, 0.296),
+         ],
+         ruling: "the Supreme Council of Georgia",
+@@ -1866,22 +1915,26 @@ pub const POLITIES: &[Polity] = &[
+         ],
+     },
+ 
+-    // Armenia - 16 October 1991 presidential election: Levon Ter-Petrosyan of
+-    // the Pan-Armenian National Movement 83.0%, Paruyr Hayrikyan 7.2%, Sos
+-    // Sargsyan of the Dashnaks 4.3%. Held five weeks after the independence
+-    // referendum, with the Karabakh war already running and the Azerbaijani
+-    // blockade closing.
+-    // https://en.wikipedia.org/wiki/1991_Armenian_presidential_election
++    // Armenia - Supreme Soviet of the Armenian SSR, 20 May 1990, further
++    // rounds 3 June and 15 July for low turnout. 259 seats: Communist Party
++    // of Armenia 136, independents 59 - "all officially independents, but
++    // almost all were members of the Pan-Armenian National Movement" - and 64
++    // seats still vacant at the end of July (16 in February 1991). 1,286,464
++    // votes of 2,137,210 registered, turnout 60.19%. Nohlen et al. 2001 I,
++    // p.329, p.335 as cited. Shares are of the 259 seats and sum to 0.753;
++    // the vacancies are not padded. The 1991 presidential table this replaces
++    // was look-ahead data.
++    // https://en.wikipedia.org/wiki/1990_Armenian_Supreme_Soviet_election
+     Polity {
+         nation: NationId::Armenia,
+         system: Electoral::TwoRound,
+         term_months: 60,
+         next: (0, 0),
+         parties: &[
+-            // bloc -> Western: Liberal-nationalist democratic movement that won the 1990 Supreme Soviet against the party-state. https://en.wikipedia.org/wiki/Pan-Armenian_National_Movement
+-            p("am_hhsh", "Pan-Armenian National Movement", "Hayots Hamazgayin Sharzhum", Family::BigTent, 0.830).aligned(Bloc::Western),
+-            p("am_ansd", "National Self-Determination Union", "Azgayin Inknoroshum Miavorum", Family::Nationalist, 0.072),
+-            p("am_hhd", "Armenian Revolutionary Federation", "Hay Heghapokhakan Dashnaktsutyun", Family::SocialDemocratic, 0.043),
++            // 136 of 259. https://en.wikipedia.org/wiki/1990_Armenian_Supreme_Soviet_election
++            p("am_hkk", "Communist Party of Armenia", "Hayastani Komunistakan Kusaktsutyun", Family::Communist, 0.525),
++            // bloc -> Western: 59 of 259, the independents the page counts as PANM. Id and override kept from the 1991 block. https://en.wikipedia.org/wiki/1990_Armenian_Supreme_Soviet_election
++            p("am_hhsh", "Pan-Armenian National Movement", "Hayots Hamazgayin Sharzhum", Family::BigTent, 0.228).aligned(Bloc::Western),
+         ],
+         ruling: "the Presidency of the Republic of Armenia",
+         pillars: &[
+@@ -1890,22 +1943,28 @@ pub const POLITIES: &[Polity] = &[
+         ],
+     },
+ 
+-    // Azerbaijan - 7 June 1992 presidential election: Abulfaz Elchibey of the
+-    // Popular Front 59.4%, Nizami Suleymanov 33.0%. The 1990 Supreme Soviet
+-    // election was run by the Communist Party under the state of emergency
+-    // imposed after Black January and published no comparable shares, so 1992
+-    // is the first result that describes the country. Elchibey lasted a year:
+-    // Karabakh took his government down, as it had taken down the one before.
+-    // https://en.wikipedia.org/wiki/1992_Azerbaijani_presidential_election
++    // Azerbaijan - Supreme Soviet of the Azerbaijan SSR, 30 September and 14
++    // October 1990, under the state of emergency that followed Black January.
++    // 360 seats: Azerbaijan Communist Party 280, Azerbaijan Popular Front 45,
++    // independents 15, vacant 20. Altstadt, as quoted on the page: the
++    // elections "were characterized by intimidation, including the jailing of
++    // several Popular Front candidates, the murder of two others, and
++    // unabashed stuffing of ballot boxes". The present block refused this
++    // election for want of comparable shares; the page fetched this run
++    // carries seat counts and they are transcribed, with the manner of the
++    // count recorded here. The 1992 table this replaces was look-ahead data
++    // and its az_msi is not carried.
++    // https://en.wikipedia.org/wiki/1990_Azerbaijani_Supreme_Soviet_election
+     Polity {
+         nation: NationId::Azerbaijan,
+         system: Electoral::TwoRound,
+         term_months: 60,
+         next: (0, 0),
+         parties: &[
+-            p("az_axc", "Popular Front of Azerbaijan", "Azarbaycan Xalq Cabhasi", Family::Nationalist, 0.594),
+-            // bloc -> Western: The Popular Front opposition bloc of 1990: anti-communist, democratic, for independence. https://en.wikipedia.org/wiki/Azerbaijan_Popular_Front_Party
+-            p("az_msi", "Independent Azerbaijan bloc", "Musteqil Azarbaycan", Family::BigTent, 0.330).aligned(Bloc::Western),
++            // 280 of 360. https://en.wikipedia.org/wiki/1990_Azerbaijani_Supreme_Soviet_election
++            p("az_akp", "Azerbaijan Communist Party", "Azarbaycan Kommunist Partiyasi", Family::Communist, 0.778),
++            // 45 of 360. Id kept from the 1992 block, the same organisation. https://en.wikipedia.org/wiki/1990_Azerbaijani_Supreme_Soviet_election
++            p("az_axc", "Popular Front of Azerbaijan", "Azarbaycan Xalq Cabhasi", Family::Nationalist, 0.125),
+         ],
+         ruling: "the Presidency of the Republic of Azerbaijan",
+         pillars: &[
+@@ -1915,92 +1974,111 @@ pub const POLITIES: &[Polity] = &[
+         ],
+     },
+ 
+-    // Lithuania - Supreme Council, 24 February 1990 with runoffs in March. Seat
+-    // shares of 141: Sajudis-endorsed candidates 91, the Communist Party of
+-    // Lithuania that had already broken with Moscow about 40, the Polish
+-    // electoral caucus around 7. This is the parliament that declared
+-    // independence on 11 March 1990, eleven days after it was seated, and it is
+-    // the earliest of the three Baltic declarations.
++    // Lithuania - Supreme Council, 24 February 1990, second round 4-10 March,
++    // a third round 17 and 21 April in six constituencies. 141 seats, 71 for
++    // a majority, single-member two-round. Of the 135 seated after two rounds,
++    // "91 had been endorsed by Sajudis, including 58 of the 64 independents".
++    // Party rows: LKP (independent of the CPSU) 46, LSDP 9, LKP (CPSU) 7,
++    // Greens 4, LDP 3, LKDP 2, independents 64. Turnout 71.72%. The Sajudis
++    // row and the LKP row overlap by the 33 party members Sajudis endorsed,
++    // which is why the three rows sum to 1.02: the page does not say which
++    // LKP deputies were among them. The present block's lt_lls (Union of
++    // Poles, 0.050) is not on the fetched page and is not carried.
+     // https://en.wikipedia.org/wiki/1990_Lithuanian_Supreme_Soviet_election
+     Polity {
+         nation: NationId::Lithuania,
+-        system: Electoral::Proportional,
++        system: Electoral::TwoRound,
+         term_months: 48,
+         next: (0, 0),
+         parties: &[
+-            // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/Sajudis
++            // bloc -> Western: 91 of 141 Sajudis-endorsed. https://en.wikipedia.org/wiki/1990_Lithuanian_Supreme_Soviet_election
+             p("lt_sajudis", "Sajudis", "Lietuvos Persitvarkymo Sajudis", Family::BigTent, 0.645).aligned(Bloc::Western),
+-            p("lt_ldpp", "Lithuanian Democratic Labour Party", "Lietuvos demokratine darbo partija", Family::SocialDemocratic, 0.284),
+-            p("lt_lls", "Union of Poles in Lithuania", "Lietuvos lenku sajunga", Family::Regionalist, 0.050),
++            // 46 of 141, the LKP that had broken with the CPSU; id kept, the LDDP of the present block is this party renamed, and the successor flag reads it. Family Communist on the 1 January 1990 reading (the Bulgaria precedent). https://en.wikipedia.org/wiki/1990_Lithuanian_Supreme_Soviet_election
++            p("lt_ldpp", "Communist Party of Lithuania (independent)", "Lietuvos komunistu partija", Family::Communist, 0.326),
++            // 7 of 141, the rump on the CPSU platform. https://en.wikipedia.org/wiki/1990_Lithuanian_Supreme_Soviet_election
++            p("lt_lkp_cpsu", "Communist Party of Lithuania (CPSU platform)", "Lietuvos komunistu partija (TSKP)", Family::Communist, 0.049),
+         ],
+         ruling: "the Seimas",
+         pillars: &[],
+     },
+ 
+-    // Latvia - Supreme Council, 18 March 1990. Seat shares of 201: the Popular
+-    // Front of Latvia 131, the pro-Soviet Equal Rights caucus 55. The Front had
+-    // the two-thirds it needed to vote the restoration of independence on 4 May,
+-    // and Equal Rights is the parliamentary form of the Russophone third of the
+-    // country that the citizenship law of 1994 then left outside the electorate.
++    // Latvia - Supreme Council, 18 March 1990, run-offs 25 March and 29 April,
++    // 170 seats decided in the first round. 201 seats. Vote shares, from the
++    // page's table (Nohlen & Stover 2010, Elections in Europe, p.1122 as
++    // cited): Popular Front of Latvia 1,086,439 = 68.20%, 131 seats; Communist
++    // Party of Latvia 342,499 = 21.50%, 55 seats; independents 164,080 =
++    // 10.30%, 15 seats; 1,593,018 votes of 1,960,638 registered. The present
++    // block carries seat shares (0.652 / 0.274) and names the communist row
++    // Equal Rights; the fetched table names it the Communist Party of Latvia
++    // and the id is kept.
+     // https://en.wikipedia.org/wiki/1990_Latvian_Supreme_Soviet_election
+     Polity {
+         nation: NationId::Latvia,
+-        system: Electoral::Proportional,
++        system: Electoral::TwoRound,
+         term_months: 48,
+         next: (0, 0),
+         parties: &[
+-            // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/Popular_Front_of_Latvia
+-            p("lv_ltf", "Popular Front of Latvia", "Latvijas Tautas fronte", Family::BigTent, 0.652).aligned(Bloc::Western),
+-            p("lv_lidz", "Equal Rights", "Lidztiesiba", Family::Communist, 0.274),
++            // bloc -> Western: 68.20% of the vote, 131 of 201. https://en.wikipedia.org/wiki/1990_Latvian_Supreme_Soviet_election
++            p("lv_ltf", "Popular Front of Latvia", "Latvijas Tautas fronte", Family::BigTent, 0.682).aligned(Bloc::Western),
++            // 21.50% of the vote, 55 of 201. https://en.wikipedia.org/wiki/1990_Latvian_Supreme_Soviet_election
++            p("lv_lidz", "Communist Party of Latvia", "Latvijas Komunistiska partija", Family::Communist, 0.215),
+         ],
+         ruling: "the Saeima",
+         pillars: &[],
+     },
+ 
+-    // Estonia - 20 September 1992 Riigikogu election: Pro Patria 22.0%, Safe
+-    // Home 13.6%, the Popular Front 12.3%, the Moderates 9.7%, the National
+-    // Independence Party 8.8%, Estonian Citizen 6.9%. The first election
+-    // anywhere in the former union held under a restored pre-war constitution,
+-    // and the first in which only citizens of the inter-war republic and their
+-    // descendants could vote. The shares sum to 0.733 because the remainder went
+-    // to lists that took no seats; padding it to 1.0 would be inventing.
+-    // https://en.wikipedia.org/wiki/1992_Estonian_parliamentary_election
++    // Estonia - Supreme Soviet of the Estonian SSR, 18 March 1990. 105 seats:
++    // Popular Front of Estonia 43, Communist Party of Estonia - Free Estonia
++    // 27 (the reform communists for independence), Joint Council of Work
++    // Collectives 25 (the pro-Moscow Russophone list), independents 10. 42
++    // constituencies, single-member by first-past-the-post and multi-member
++    // by single transferable vote, four seats for the Soviet forces' military
++    // districts. Turnout 78.24% (911,203 of 1,164,603). Nohlen & Stover 2010
++    // and the Estonian National Electoral Committee as cited. The 1992 table
++    // this replaces was look-ahead data.
++    // https://en.wikipedia.org/wiki/1990_Estonian_Supreme_Soviet_election
+     Polity {
+         nation: NationId::Estonia,
+-        system: Electoral::Proportional,
++        system: Electoral::FirstPastThePost,
+         term_months: 48,
+         next: (0, 0),
+         parties: &[
+-            p("ee_isamaa", "Pro Patria", "Isamaa", Family::Conservative, 0.220),
+-            p("ee_kk", "Safe Home", "Kindel Kodu", Family::Agrarian, 0.136),
+-            // bloc -> Western: Democratic umbrella against the party-state. https://en.wikipedia.org/wiki/Popular_Front_of_Estonia
+-            p("ee_rahvarinne", "Popular Front of Estonia", "Rahvarinne", Family::BigTent, 0.123).aligned(Bloc::Western),
+-            p("ee_mood", "Moderates", "Moodukad", Family::SocialDemocratic, 0.097),
+-            p("ee_ersp", "Estonian National Independence Party", "Eesti Rahvusliku Soltumatuse Partei", Family::Nationalist, 0.088),
+-            p("ee_ek", "Estonian Citizen", "Eesti Kodanik", Family::Nationalist, 0.069),
++            // bloc -> Western: 43 of 105. Id kept from the 1992 table. https://en.wikipedia.org/wiki/1990_Estonian_Supreme_Soviet_election
++            p("ee_rahvarinne", "Popular Front of Estonia", "Rahvarinne", Family::BigTent, 0.410).aligned(Bloc::Western),
++            // 27 of 105. https://en.wikipedia.org/wiki/1990_Estonian_Supreme_Soviet_election
++            p("ee_ekp", "Communist Party of Estonia - Free Estonia", "Eestimaa Kommunistlik Partei - Vaba Eesti", Family::Communist, 0.257),
++            // 25 of 105, "anti-independence, pro-Moscow". https://en.wikipedia.org/wiki/1990_Estonian_Supreme_Soviet_election
++            p("ee_otk", "Joint Council of Work Collectives", "Tookollektiivide Uhendnoukogu", Family::Communist, 0.238),
+         ],
+         ruling: "the Riigikogu",
+         pillars: &[],
+     },
+ 
+-    // Moldova - 27 February 1994 parliamentary election: the Agrarian
+-    // Democratic Party 43.2%, the Socialist Party and Unity Movement bloc
+-    // 22.0%, the Bloc of Peasants and Intellectuals 9.2%, the Christian
+-    // Democratic Popular Front 7.5%. The 1990 Supreme Soviet election was
+-    // fought by candidates rather than parties, so 1994 is the first party
+-    // result, and it is a vote against union with Romania taken after
+-    // Transnistria was already gone.
+-    // https://en.wikipedia.org/wiki/1994_Moldovan_parliamentary_election
++    // Moldova - Supreme Soviet of the Moldavian SSR, February-March 1990, all
++    // 380 seats in uninominal constituencies, first sitting 17 April 1990. The
++    // Communist Party of Moldavia was the only registered party; opposition
++    // candidates ran as independents. Open Popular Front supporters "won
++    // about 27% of the seats" and the Front's page carries the infobox figure
++    // 101 / 380; "together with moderate Communists, mainly from rural
++    // districts, they commanded a majority". The communist row is the rest of
++    // the chamber, 279 of 380, every member of which stood under the CPM's
++    // registration - it holds the Gagauz and Transnistrian deputies who later
++    // walked out and the rural moderates who voted with the Front, and the
++    // fetched pages do not split it (a figure of "almost 80" internationalist
++    // seats appeared only in an unfetched search snippet and is refused).
++    // The 1994 table this replaces was look-ahead data.
++    // https://en.wikipedia.org/wiki/1990_Moldavian_Supreme_Soviet_election
++    // https://en.wikipedia.org/wiki/Popular_Front_of_Moldova
+     Polity {
+         nation: NationId::Moldova,
+-        system: Electoral::Proportional,
++        system: Electoral::TwoRound,
+         term_months: 48,
+         next: (0, 0),
+         parties: &[
+-            p("md_pdam", "Agrarian Democratic Party", "Partidul Democrat Agrar din Moldova", Family::Agrarian, 0.432),
+-            p("md_sb", "Socialist Party and Unity Movement bloc", "Blocul Partidul Socialist si Miscarea Unitate-Edinstvo", Family::Communist, 0.220),
+-            p("md_bti", "Bloc of Peasants and Intellectuals", "Blocul Taranilor si Intelectualilor", Family::Liberal, 0.092),
+-            p("md_fpcd", "Christian Democratic Popular Front", "Frontul Popular Crestin Democrat", Family::Nationalist, 0.075),
++            // 279 of 380, the chamber less the Front. https://en.wikipedia.org/wiki/1990_Moldavian_Supreme_Soviet_election
++            p("md_pcm", "Communist Party of Moldavia", "Partidul Comunist al Moldovei", Family::Communist, 0.734),
++            // bloc -> Western: 101 of 380, the pro-Romanian democratic front against the party-state. New id; whether md_fpcd of the 1994 table is this organisation renamed was not fetched this run. https://en.wikipedia.org/wiki/Popular_Front_of_Moldova
++            p("md_fpm", "Popular Front of Moldova", "Frontul Popular din Moldova", Family::Nationalist, 0.266).aligned(Bloc::Western),
+         ],
+         ruling: "the Parliament of the Republic of Moldova",
+         pillars: &[],
+@@ -5026,16 +5104,10 @@ pub const POLITIES: &[Polity] = &[
+         pillars: &[],
+     },
+ 
+-    // Macedonia — 11 and 25 November 1990, the first competitive election ever
+-    // held on this ground: SKM-PDP 24.75%, VMRO-DPMNE 21.35%, Union of Reform
+-    // Forces 14.74%, Party for Democratic Prosperity 12.16%, Socialist Party
+-    // 6.31%. The seat count inverts the vote — VMRO-DPMNE took 38 of the 120
+-    // seats on the smaller share and the reformed communists 31 on the larger
+-    // — because the 120 members were elected in single-member constituencies
+-    // with a run-off, which is why TwoRound and not Proportional. No pillars:
+-    // Macedonia is the one Yugoslav successor whose founding election produced
+-    // a parliament and not an apparatus, and Kiro Gligorov took the republic
+-    // out of the federation in September 1991 without a shot being fired.
++    // Macedonia - Assembly, first round 11 November 1990: SKM-PDP 21.79%,
++    // PDP 15.38%, VMRO-DPMNE 14.33%, Union of Reform Forces 13.25%, Socialist
++    // Party 7.17%, PDP-NDP 5.82%; the run-off of 25 November gave VMRO-DPMNE
++    // 38 of 120, SKM-PDP 31, PDP 22. Transcribed 2026-09-06.
+     // https://en.wikipedia.org/wiki/1990_Macedonian_parliamentary_election
+     Polity {
+         nation: NationId::Macedonia,
+@@ -5043,37 +5115,25 @@ pub const POLITIES: &[Polity] = &[
+         term_months: 48,
+         next: (0, 0),
+         parties: &[
+-            p("mk_skm", "League of Communists - Party for Democratic Change", "Sojuz na komunistite - Partija za demokratska preobrazba", Family::SocialDemocratic, 0.248),
+-            p("mk_vmro", "VMRO-DPMNE", "Vnatresna makedonska revolucionerna organizacija", Family::Nationalist, 0.214),
+-            p("mk_srsm", "Union of Reform Forces", "Sojuz na reformskite sili", Family::Liberal, 0.147),
+-            // The Albanian minority party, filed the way Bosnia's three
+-            // national parties are filed: a party organised on nationality is
+-            // Nationalist on this axis whether it speaks for a majority or for
+-            // a fifth. Roughly 21% of Macedonia's people were Albanian at the
+-            // 1991 census, concentrated in the north-west, and that minority
+-            // produced an insurgency in 2001 — a decade past this table and
+-            // reachable by the model rather than written into it.
+-            p("mk_pdp", "Party for Democratic Prosperity", "Partija za demokratski prosperitet", Family::Nationalist, 0.122),
+-            p("mk_spm", "Socialist Party of Macedonia", "Socijalisticka partija na Makedonija", Family::SocialDemocratic, 0.063),
++            // successor_of_ruling_party: SDSM "founded on 20 April 1991 at the 11th Congress of the League of Communists of Macedonia, when it was transformed into the SDSM". https://en.wikipedia.org/wiki/Social_Democratic_Union_of_Macedonia ; 21.79% https://en.wikipedia.org/wiki/1990_Macedonian_parliamentary_election
++            p("mk_skm", "League of Communists - Party for Democratic Change", "Sojuz na komunistite - Partija za demokratska preobrazba", Family::SocialDemocratic, 0.2179),
++            // 14.33% first round, 38 seats after the run-off. https://en.wikipedia.org/wiki/1990_Macedonian_parliamentary_election
++            p("mk_vmro", "VMRO-DPMNE", "Vnatresna makedonska revolucionerna organizacija", Family::Nationalist, 0.1433),
++            // 13.25% https://en.wikipedia.org/wiki/1990_Macedonian_parliamentary_election
++            p("mk_srsm", "Union of Reform Forces", "Sojuz na reformskite sili", Family::Liberal, 0.1325),
++            // Albanian minority party, Nationalist on this axis as already recorded on the row; 15.38%, 22 seats. https://en.wikipedia.org/wiki/1990_Macedonian_parliamentary_election
++            p("mk_pdp", "Party for Democratic Prosperity", "Partija za demokratski prosperitet", Family::Nationalist, 0.1538),
++            // 7.17% https://en.wikipedia.org/wiki/1990_Macedonian_parliamentary_election
++            p("mk_spm", "Socialist Party of Macedonia", "Socijalisticka partija na Makedonija", Family::SocialDemocratic, 0.0717),
+         ],
+         ruling: "the Assembly",
+         pillars: &[],
+     },
+ 
+-    // Montenegro — 9 December 1990, with the presidential run-off on the 23rd:
+-    // the League of Communists of Montenegro 58.3% and 83 of 125 seats, the
+-    // Union of Reform Forces 14.1%, the People's Party 13.3%, the Democratic
+-    // Coalition of Muslim and Albanian parties 10.5%. Momir Bulatovic took the
+-    // presidency with 78.1% in the run-off. This is the one Yugoslav republic
+-    // where the League of Communists won a free election outright and did not
+-    // need to rename itself first, and the reason is the anti-bureaucratic
+-    // revolution of January 1989, which replaced the Montenegrin leadership
+-    // with Milosevic's people a year and a half before anybody voted.
+-    // Montenegro therefore carries pillars as well as parties — the same
+-    // construction as Serbia and for the same reason — but not the Army one:
+-    // the JNA's Podgorica corps and the naval base in the Boka Kotorska
+-    // answered to Belgrade, which is exactly why Montenegro stayed in the
+-    // federal republic until 2006.
++    // Montenegro - Assembly, 9 December 1990: League of Communists 58.29%
++    // (83/125), Union of Reform Forces 14.07% (17), People's Party 13.31%
++    // (13), Democratic Coalition SDA-DS-SR 10.47% (12); Bulatovic 78.13% in
++    // the 23 December run-off. Transcribed 2026-09-06.
+     // https://en.wikipedia.org/wiki/1990_Montenegrin_general_election
+     Polity {
+         nation: NationId::Montenegro,
+@@ -5081,10 +5141,14 @@ pub const POLITIES: &[Polity] = &[
+         term_months: 48,
+         next: (0, 0),
+         parties: &[
+-            p("me_skcg", "League of Communists of Montenegro", "Savez komunista Crne Gore", Family::Communist, 0.583),
+-            p("me_srsj", "Union of Reform Forces", "Savez reformskih snaga Jugoslavije", Family::Liberal, 0.141),
+-            p("me_ns", "People's Party", "Narodna stranka", Family::Nationalist, 0.133),
+-            p("me_dk", "Democratic Coalition", "Demokratska koalicija", Family::Nationalist, 0.105),
++            // successor_of_ruling_party (the ruling party itself, unrenamed until 22 June 1991 when it became the DPS "as the successor of the League of Communists of Montenegro"). https://en.wikipedia.org/wiki/Democratic_Party_of_Socialists_of_Montenegro ; 58.29% https://en.wikipedia.org/wiki/1990_Montenegrin_general_election
++            p("me_skcg", "League of Communists of Montenegro", "Savez komunista Crne Gore", Family::Communist, 0.5829),
++            // 14.07% https://en.wikipedia.org/wiki/1990_Montenegrin_general_election
++            p("me_srsj", "Union of Reform Forces", "Savez reformskih snaga Jugoslavije", Family::Liberal, 0.1407),
++            // 13.31% https://en.wikipedia.org/wiki/1990_Montenegrin_general_election
++            p("me_ns", "People's Party", "Narodna stranka", Family::Nationalist, 0.1331),
++            // 10.47% https://en.wikipedia.org/wiki/1990_Montenegrin_general_election
++            p("me_dk", "Democratic Coalition", "Demokratska koalicija", Family::Nationalist, 0.1047),
+         ],
+         ruling: "the League of Communists of Montenegro",
+         pillars: &[

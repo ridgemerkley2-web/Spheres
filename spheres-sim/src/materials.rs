@@ -404,8 +404,8 @@ fn current_output(w: &WorldState, order: &Order) -> f64 {
 }
 fn remaining_power(w: &WorldState, nation: NationId, district: &str) -> (f64, f64) {
     let day = clock::absolute_day(w);
-    let mut national = industry::power_capacity(w, nation);
-    let mut local = crate::industrial_modules::effective_capacity(w, district, K::PowerGrid) * 5.0;
+    let mut national = industry::power_capacity(w, nation) - crate::industry_operations::support_power_used(w, nation);
+    let mut local = crate::industry_operations::grid_capacity(w, district) - crate::industry_operations::support_grid_used(w, district);
     if w.production.industry.last_day == Some(day) {
         for op in &w.production.industry.operations {
             if w.districts.get(&op.district) == Some(&nation) {
@@ -437,6 +437,8 @@ fn feasible(
     grid: f64,
 ) -> (f64, Vec<String>) {
     let per_power = industry::power_per_pack(w, district, K::ProcessingPlant);
+    let company = industry::manufacturing_company(w, nation, district);
+    let (_, energy_fee) = industry::energy_company_rates(w, nation);
     let room = (industry::goods_capacity(w, nation)
         - commerce::stock(w, nation, Good::Intermediates))
     .max(0.0);
@@ -456,11 +458,11 @@ fn feasible(
             "Needs spare local Power Grid capacity after existing plants.",
         ),
         (
-            conversion / CONVERSION_CASH_PER_PACK_BN,
+            conversion / (CONVERSION_CASH_PER_PACK_BN * (1.0 + company.fee_rate)),
             "Minerals & processing has insufficient operating authority.",
         ),
         (
-            energy / (ENERGY_CASH_PER_POWER_BN * per_power),
+            energy / (ENERGY_CASH_PER_POWER_BN * per_power * (1.0 + energy_fee)),
             "Energy systems has insufficient operating authority.",
         ),
     ];
@@ -472,7 +474,7 @@ fn feasible(
             blockers.push(message.into());
         }
     }
-    let unit = industry::operating_recipe(K::ProcessingPlant, 1.0, per_power);
+    let unit = industry::company_operating_recipe(w, nation, district, K::ProcessingPlant, 1.0, per_power);
     for c in ALL {
         if unit[c.idx()] > 0.0 {
             let have = resources::stockpile(w, nation, c);
@@ -496,9 +498,11 @@ pub fn quote(
 ) -> Quote {
     let refusal = order_refusal(w, nation, district, quantity, delivery_days);
     let capacity = capacity_daily(w, district);
-    let target = rate(quantity, delivery_days).min(capacity);
+    let company = industry::manufacturing_company(w, nation, district);
+    let (_, energy_fee) = industry::energy_company_rates(w, nation);
+    let target = (rate(quantity, delivery_days).min(capacity) * company.work_rate).min(sane(quantity));
     let power_per = industry::power_per_pack(w, district, K::ProcessingPlant);
-    let inputs = industry::operating_recipe(K::ProcessingPlant, target, target * power_per);
+    let inputs = industry::company_operating_recipe(w, nation, district, K::ProcessingPlant, target, target * power_per);
     let (power, grid) = remaining_power(w, nation, district);
     let (feasible_today, mut blockers) = if w.nation_opt(nation).is_some() {
         feasible(w, nation, district, target, power, grid)
@@ -534,10 +538,10 @@ pub fn quote(
         capacity_daily: capacity,
         inputs_daily: inputs,
         requirements,
-        conversion_daily_bn: target * CONVERSION_CASH_PER_PACK_BN,
-        energy_daily_bn: target * power_per * ENERGY_CASH_PER_POWER_BN,
-        conversion_total_bn: sane(quantity) * CONVERSION_CASH_PER_PACK_BN,
-        energy_total_bn: sane(quantity) * power_per * ENERGY_CASH_PER_POWER_BN,
+        conversion_daily_bn: target * CONVERSION_CASH_PER_PACK_BN * (1.0 + company.fee_rate),
+        energy_daily_bn: target * power_per * ENERGY_CASH_PER_POWER_BN * (1.0 + energy_fee),
+        conversion_total_bn: sane(quantity) * CONVERSION_CASH_PER_PACK_BN * (1.0 + company.fee_rate),
+        energy_total_bn: sane(quantity) * power_per * ENERGY_CASH_PER_POWER_BN * (1.0 + energy_fee),
         available_conversion_bn: programs::available_bn(w, nation, BUDGET_INDUSTRY, 2),
         available_energy_bn: programs::available_bn(w, nation, BUDGET_INDUSTRY, 1),
         feasible_today,
@@ -562,12 +566,10 @@ pub fn resource_demand_daily(w: &WorldState, nation: NationId) -> [f64; 12] {
                 && w.districts.get(&o.district) == Some(&nation)
                 && !resources::district_contested(w, &o.district)
         }) {
-            let target = o
-                .remaining
-                .min(o.reserved_daily)
-                .min(capacity_daily(w, &o.district));
+            let company = industry::manufacturing_company(w, nation, &o.district);
+            let target = o.remaining.min(o.reserved_daily.min(capacity_daily(w, &o.district)) * company.work_rate);
             let p = target * industry::power_per_pack(w, &o.district, K::ProcessingPlant);
-            let raw = industry::operating_recipe(K::ProcessingPlant, target, p);
+            let raw = industry::company_operating_recipe(w, nation, &o.district, K::ProcessingPlant, target, p);
             for i in 0..12 {
                 out[i] += raw[i];
             }
@@ -590,12 +592,13 @@ pub fn resource_reserve(w: &WorldState, nation: NationId) -> [f64; 12] {
                 && o.deadline_day > today
                 && w.districts.get(&o.district) == Some(&nation)
         }) {
+            let company = industry::manufacturing_company(w, nation, &o.district);
             let target = o.remaining.min(
-                o.reserved_daily.min(capacity_daily(w, &o.district))
+                o.reserved_daily.min(capacity_daily(w, &o.district)) * company.work_rate
                     * o.deadline_day.saturating_sub(today.max(o.start_day)).max(0) as f64,
             );
             let power = target * industry::power_per_pack(w, &o.district, K::ProcessingPlant);
-            let raw = industry::operating_recipe(K::ProcessingPlant, target, power);
+            let raw = industry::company_operating_recipe(w, nation, &o.district, K::ProcessingPlant, target, power);
             for i in 0..12 {
                 out[i] += raw[i];
             }
@@ -637,13 +640,12 @@ pub fn resource_demand_for_days(
                 .saturating_add(days)
                 .min(order.deadline_day);
             let usable_days = ends.saturating_sub(starts).max(0);
-            let output = order
-                .remaining
-                .min(order.reserved_daily * usable_days as f64)
-                .min(capacity_daily(w, &order.district) * usable_days as f64);
+            let company = industry::manufacturing_company(w, nation, &order.district);
+            let output = order.remaining.min(order.reserved_daily.min(capacity_daily(w, &order.district))
+                * company.work_rate * usable_days as f64);
             let power = output
                 * industry::power_per_pack(w, &order.district, K::ProcessingPlant);
-            let raw = industry::operating_recipe(K::ProcessingPlant, output, power);
+            let raw = industry::company_operating_recipe(w, nation, &order.district, K::ProcessingPlant, output, power);
             for i in 0..12 {
                 out[i] += raw[i];
             }
@@ -771,14 +773,14 @@ pub(crate) fn operate(
         } else {
             let available_power = power
                 .entry(o.nation)
-                .or_insert_with(|| industry::power_capacity(w, o.nation));
+                .or_insert_with(|| (industry::power_capacity(w, o.nation) - crate::industry_operations::support_power_used(w, o.nation)).max(0.0));
             let grid = grids.entry(o.district.clone()).or_insert_with(|| {
-                crate::industrial_modules::effective_capacity(w, &o.district, K::PowerGrid) * 5.0
+                (crate::industry_operations::grid_capacity(w, &o.district) - crate::industry_operations::support_grid_used(w, &o.district)).max(0.0)
             });
-            let target = o
-                .reserved_daily
-                .min(o.remaining)
-                .min(capacity_daily(w, &o.district));
+            let company = industry::manufacturing_company(w, o.nation, &o.district);
+            let (_, energy_fee) = industry::energy_company_rates(w, o.nation);
+            let target = (o.reserved_daily.min(capacity_daily(w, &o.district)) * company.work_rate
+                * crate::industry_operations::worker_fraction(w, o.nation, K::ProcessingPlant)).min(o.remaining);
             let (output, blockers) =
                 feasible(w, o.nation, &o.district, target, *available_power, *grid);
             if output < QUANTUM {
@@ -791,10 +793,10 @@ pub(crate) fn operate(
             } else {
                 let used_power =
                     output * industry::power_per_pack(w, &o.district, K::ProcessingPlant);
-                let draw = industry::operating_recipe(K::ProcessingPlant, output, used_power);
-                let conversion = (output * CONVERSION_CASH_PER_PACK_BN)
+                let draw = industry::company_operating_recipe(w, o.nation, &o.district, K::ProcessingPlant, output, used_power);
+                let conversion = (output * CONVERSION_CASH_PER_PACK_BN * (1.0 + company.fee_rate))
                     .min(programs::available_bn(w, o.nation, BUDGET_INDUSTRY, 2));
-                let energy = (used_power * ENERGY_CASH_PER_POWER_BN).min(programs::available_bn(
+                let energy = (used_power * ENERGY_CASH_PER_POWER_BN * (1.0 + energy_fee)).min(programs::available_bn(
                     w,
                     o.nation,
                     BUDGET_INDUSTRY,
@@ -859,6 +861,8 @@ pub(crate) fn operate(
                         conversion,
                         energy,
                     );
+                    industry::record_manufacturing_work(w, o.nation, &o.district, output, output * CONVERSION_CASH_PER_PACK_BN);
+                    industry::record_energy_work(w, o.nation, used_power, used_power * ENERGY_CASH_PER_POWER_BN);
                 }
             }
         }

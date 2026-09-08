@@ -276,6 +276,9 @@ pub fn plan(w: &WorldState, nation: NationId) -> CapacityPlan {
     let mut construction = industry::Goods::default();
     let mut labs = 0.0;
     let mut labs_committed = 0.0;
+    let mut advanced_installed=0.0;
+    let mut advanced_committed=0.0;
+    let mut new_intermediate_demand=0.0;
     // The allocator walks the global construction queue. Resolve it once,
     // not again for every project/province in this read-only country plan.
     let work_plans = industry::project_plans(w);
@@ -319,7 +322,20 @@ pub fn plan(w: &WorldState, nation: NationId) -> CapacityPlan {
             .max(0.5);
         let materials_power = crate::materials::province_reserved_daily(w, nation, d)
             * industry::power_per_pack(w, d, K::ProcessingPlant);
-        let power = (process_total + 2.0 * machine_total) * efficiency + materials_power;
+        let mut power = (process_total + 2.0 * machine_total) * efficiency + materials_power;
+        if crate::industry_operations::enabled(w) {
+            for kind in [K::CivilianIndustry,K::OfficeDistrict,K::ArmsPlant,K::Shipyard,K::AdvancedIndustry,K::ResearchCenter] {
+                power+=(effective(kind)+queued(kind))*crate::industry_operations::power_per_level(w,d,kind);
+            }
+            let advanced=effective(K::AdvancedIndustry);
+            advanced_installed+=crate::industry_operations::advanced_output_daily(w,d,advanced);
+            advanced_committed+=crate::industry_operations::advanced_output_daily(w,d,queued(K::AdvancedIndustry));
+            if !contested {
+                new_intermediate_demand+=crate::industry_operations::intermediate_requirement(w,nation,d,K::AdvancedIndustry,advanced+queued(K::AdvancedIndustry))
+                    +crate::industry_operations::intermediate_requirement(w,nation,d,K::OfficeDistrict,effective(K::OfficeDistrict)+queued(K::OfficeDistrict));
+            }
+            out.generation_daily+=crate::industry_operations::inherited_grid_headroom(w,d);
+        }
         out.generation_daily += effective(K::Generation) * 10.0;
         out.generation_committed_daily += queued(K::Generation) * 10.0;
         out.power_required_daily += power;
@@ -336,7 +352,7 @@ pub fn plan(w: &WorldState, nation: NationId) -> CapacityPlan {
             processing_committed_daily: (process_total - processing).max(0.0),
             machinery_daily: machinery,
             machinery_committed_daily: (machine_total - machinery).max(0.0),
-            grid_daily: effective(K::PowerGrid) * 5.0,
+            grid_daily: effective(K::PowerGrid) * 5.0 + crate::industry_operations::inherited_grid_headroom(w,d),
             grid_committed_daily: queued(K::PowerGrid) * 5.0,
             power_required_daily: power,
             materials_power_required_daily: materials_power,
@@ -392,7 +408,8 @@ pub fn plan(w: &WorldState, nation: NationId) -> CapacityPlan {
     let domestic = construction.intermediates
         + research.intermediates
         + machine_use
-        + pending_lab_work * industry::PROTOTYPE_INTERMEDIATES_PER_LEVEL_DAY;
+        + pending_lab_work * industry::PROTOTYPE_INTERMEDIATES_PER_LEVEL_DAY
+        + new_intermediate_demand;
     out.goods.push(balance(
         w,
         nation,
@@ -402,6 +419,10 @@ pub fn plan(w: &WorldState, nation: NationId) -> CapacityPlan {
         domestic,
     ));
     out.goods.push(capital);
+    if crate::industry_operations::enabled(w) {
+        out.goods.push(balance(w,nation,Good::AdvancedComponents,advanced_installed,advanced_committed,
+            commerce::recurring_demand_daily(w,nation,Good::AdvancedComponents)));
+    }
     out.inherited_sectors = structural_sectors(w, nation, &out);
     out
 }

@@ -203,11 +203,11 @@ gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;
     }
     function exportGlb(){
       if(!mesh||!root.EquipmentExport)return null;
-      return root.EquipmentExport.glb({...mesh,colors:painted||mesh.colors},draft?.name||'Spheres tank');
+      return root.EquipmentExport.glb({...mesh,colors:painted||mesh.colors},draft?.name||'Spheres equipment');
     }
     function download(){
       try{const data=exportGlb();if(!data)return;const url=root.URL.createObjectURL(new root.Blob([data],{type:'model/gltf-binary'}));urls.add(url);
-        const a=doc.createElement('a');a.href=url;a.download=(draft?.name||'spheres-tank').replace(/[^a-z0-9_-]+/gi,'-').slice(0,64)+'.glb';doc.body.appendChild(a);a.click();a.remove();say('3D model downloaded as a GLB file.');
+        const a=doc.createElement('a');a.href=url;a.download=(draft?.name||'spheres-equipment').replace(/[^a-z0-9_-]+/gi,'-').slice(0,64)+'.glb';doc.body.appendChild(a);a.click();a.remove();say('3D model downloaded as a GLB file.');
         // The click has consumed this blob URL; defer revocation until the next task.
         root.setTimeout(()=>{root.URL.revokeObjectURL(url);urls.delete(url);},1000);
       }catch(error){say('The 3D file could not be exported. The design is still available.');}

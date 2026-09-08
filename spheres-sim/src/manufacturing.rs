@@ -56,6 +56,9 @@ pub struct ManufacturingLine {
     /// identical daily and monthly simulations serialize differently.
     #[serde(default, skip)]
     pub ordered_today_bn: f64,
+    /// Actual units on the same dated receipt, including the frozen contractor.
+    #[serde(default, skip)]
+    pub ordered_today_units: f64,
     /// Fraction of the scheduled line that physical inputs supplied in its
     /// latest settlement. Presentation state only; after loading a save the UI
     /// explicitly waits for the next settlement instead of inventing a rate.
@@ -89,6 +92,7 @@ pub struct LinePlan {
     pub kit: u16,
     pub budget_bn: f64,
     pub required: [f64; 12],
+    pub company: crate::companies::CompanyModifiers,
 }
 
 pub fn lines_for(w: &WorldState, nation: NationId) -> impl Iterator<Item = &ManufacturingLine> {
@@ -116,10 +120,67 @@ pub fn plant_slots(w: &WorldState, district: &str) -> u8 {
     production::province_capabilities(w, district).arms_plants
 }
 
+pub fn naval_slots(w: &WorldState, district: &str) -> u8 {
+    if !w.rules.industry_rebuild { return 0; }
+    production::level(w, district, production::ProjectKind::Shipyard)
+}
+
+pub fn is_naval(kit: &str) -> bool {
+    arsenal::index_of(kit).is_some_and(|i| DECK[i as usize].class == arsenal::Class::Naval)
+}
+
+pub fn slots_for_kit(w: &WorldState, district: &str, kit: &str) -> u8 {
+    if w.rules.industry_rebuild && is_naval(kit) { naval_slots(w,district) }
+    else { plant_slots(w,district) }
+}
+
+fn same_capacity(w: &WorldState, a: &str, b: &str) -> bool {
+    !w.rules.industry_rebuild || is_naval(a) == is_naval(b)
+}
+
+pub fn used_slots_for_kit(w: &WorldState, nation: NationId, district: &str, kit: &str) -> usize {
+    let directed = lines_for(w,nation).filter(|line| line.district == district && same_capacity(w, &line.kit, kit)).count();
+    directed + if w.rules.industry_rebuild && is_naval(kit) { 0 }
+        else { crate::equipment::reserved_site_slots(w.nation(nation), district) }
+}
+
+pub fn operating_fraction(w: &WorldState, line: &ManufacturingLine) -> f64 {
+    if !w.rules.industry_rebuild { return 1.0; }
+    crate::industry_operations::operating_fraction(w,&line.district,
+        if is_naval(&line.kit) { production::ProjectKind::Shipyard } else { production::ProjectKind::ArmsPlant })
+}
+
+/// MODEL: technology-gated equipment uses 100 component packs per $bn of
+/// ordered work. Its raw recipe and procurement budget remain separately real.
+pub fn advanced_components_for(w:&WorldState,kit:u16,budget_bn:f64)->f64 {
+    if w.rules.industry_rebuild && DECK.get(kit as usize).is_some_and(|k|k.tech.is_some()) {
+        budget_bn.max(0.0)*100.0
+    } else { 0.0 }
+}
+/// The reserved recipe follows physical output and the contractor's input
+/// efficiency. Service fees buy no equipment or components.
+pub fn plan_advanced_components(w: &WorldState, plan: &LinePlan) -> f64 {
+    advanced_components_for(w, plan.kit,
+        plan.budget_bn * plan.company.work_rate / (1.0 + plan.company.fee_rate))
+        * plan.company.input_rate
+}
+pub fn advanced_components_demand_daily(w:&WorldState,nation:NationId)->f64 {
+    if !w.rules.industry_rebuild { return 0.0; }
+    allocations_with_envelope(w,nation,budget_bn(w,nation)).iter()
+        .filter(|p|lines_for(w,nation).find(|line|line.id==p.line).is_some_and(|line|line_error(w,line).is_none()))
+        .map(|p|plan_advanced_components(w,p)).sum::<f64>()
+        / crate::world::days_in_month(w.year,w.month) as f64
+}
+
 pub fn used_slots(w: &WorldState, nation: NationId, district: &str) -> usize {
     lines_for(w, nation)
-        .filter(|line| line.district == district)
+        .filter(|line| line.district == district && (!w.rules.industry_rebuild || !is_naval(&line.kit)))
         .count() + crate::equipment::reserved_site_slots(w.nation(nation), district)
+}
+
+pub fn used_naval_slots(w:&WorldState,nation:NationId,district:&str)->usize {
+    if !w.rules.industry_rebuild { return 0; }
+    lines_for(w,nation).filter(|line|line.district==district && is_naval(&line.kit)).count()
 }
 
 fn priority_weight(priority: Priority) -> f64 {
@@ -156,8 +217,11 @@ fn line_error(w: &WorldState, line: &ManufacturingLine) -> Option<String> {
     // Existing legacy lines retain their slots. The equipment dispatcher uses
     // only the remainder; subtracting custom reservations here as well would
     // deadlock both queues after a site loses capacity.
-    let slots = plant_slots(w, &line.district) as usize;
+    let slots = slots_for_kit(w, &line.district, &line.kit) as usize;
     if slots == 0 {
+        if w.rules.industry_rebuild && is_naval(&line.kit) {
+            return Some("BLOCKED: naval production requires a completed coastal shipyard.".into());
+        }
         return Some(format!("BLOCKED: {} has no arms plant.", line.district));
     }
 
@@ -165,7 +229,7 @@ fn line_error(w: &WorldState, line: &ManufacturingLine) -> Option<String> {
     // or future save carries too many lines, the same priority order used for
     // scarce material decides which physical slots still run.
     let mut at_site: Vec<&ManufacturingLine> = lines_for(w, line.nation)
-        .filter(|candidate| candidate.district == line.district)
+        .filter(|candidate| candidate.district == line.district && same_capacity(w, &candidate.kit, &line.kit))
         .collect();
     at_site.sort_by_key(|candidate| (dispatch_rank(candidate.priority), candidate.id));
     if at_site
@@ -230,11 +294,14 @@ pub fn start_line_error(
         }
         _ => {}
     }
-    let slots = plant_slots(w, district) as usize;
+    let slots = slots_for_kit(w, district, kit) as usize;
     if slots == 0 {
+        if w.rules.industry_rebuild && is_naval(kit) {
+            return Some("Build a Shipyard at a mapped coastal gateway before assigning naval production.".into());
+        }
         return Some(format!("{} has no completed arms plant.", district));
     }
-    if used_slots(w, nation, district) >= slots {
+    if used_slots_for_kit(w, nation, district, kit) >= slots {
         return Some(format!(
             "All {} arms-plant slots in {} are assigned.",
             slots, district
@@ -275,6 +342,7 @@ pub fn start_line(
         ordered_bn: 0.0,
         resources_used: [0.0; 12],
         ordered_today_bn: 0.0,
+        ordered_today_units: 0.0,
         throughput_today: 0.0,
         settled_day: None,
     });
@@ -410,8 +478,13 @@ fn allocations_with_envelope(w: &WorldState, nation: NationId, envelope: f64) ->
                 assigned += slice;
                 slice
             };
+            let company = crate::companies::modifiers(w, nation,
+                &crate::companies::CompanyTarget::Equipment { project: line.id });
             let required = if line_error(w, line).is_none() {
-                resources::manufacturing_need(kit, budget)
+                let output_value = budget * company.work_rate / (1.0 + company.fee_rate);
+                let nominal = resources::manufacturing_need(kit, output_value);
+                if company.input_rate == 1.0 { nominal }
+                else { nominal.map(|v| (v * company.input_rate * 1e9).floor() / 1e9) }
             } else {
                 [0.0; 12]
             };
@@ -420,6 +493,7 @@ fn allocations_with_envelope(w: &WorldState, nation: NationId, envelope: f64) ->
                 kit,
                 budget_bn: budget,
                 required,
+                company,
             }
         })
         .collect()
@@ -464,13 +538,20 @@ fn shortfalls_for_plans(w: &WorldState, nation: NationId, line_id: u32, plans: V
         let commodity = Commodity::from_idx(i).expect("twelve resource rows");
         resources::stockpile(w, nation, commodity)
     });
+    let mut component_stock = crate::commerce::stock(w, nation, crate::commerce::Good::AdvancedComponents);
     for plan in plans {
         let shortfalls: [f64; 12] =
             std::array::from_fn(|i| (plan.required[i] - remaining[i]).max(0.0));
         if plan.line == line_id {
             return shortfalls;
         }
-        let mut throughput: f64 = 1.0;
+        let Some(line) = w.manufacturing.lines.iter().find(|line| line.id == plan.line) else { continue; };
+        if line_error(w, line).is_some() { continue; }
+        let mut throughput = operating_fraction(w, line);
+        let components = plan_advanced_components(w, &plan);
+        if components > 0.0 {
+            throughput = throughput.min(component_stock / components);
+        }
         for commodity in ALL {
             let want = plan.required[commodity.idx()];
             if want > 1e-12 {
@@ -479,6 +560,7 @@ fn shortfalls_for_plans(w: &WorldState, nation: NationId, line_id: u32, plans: V
             }
         }
         let used = resources::scale_bundle(&plan.required, throughput);
+        component_stock = (component_stock - components * throughput).max(0.0);
         for commodity in ALL {
             remaining[commodity.idx()] =
                 (remaining[commodity.idx()] - used[commodity.idx()]).max(0.0);
@@ -522,6 +604,7 @@ pub(crate) fn settle_nation(w: &mut WorldState, nation: NationId) {
     for plan in plans {
         if let Some(line) = w.manufacturing.lines.iter_mut().find(|line| line.id == plan.line) {
             line.ordered_today_bn = 0.0;
+            line.ordered_today_units = 0.0;
             line.throughput_today = 0.0;
             line.settled_day = Some(today);
         }
@@ -545,18 +628,25 @@ pub(crate) fn settle_nation(w: &mut WorldState, nation: NationId) {
             continue;
         }
 
-        let mut throughput = 1.0;
+        let mut throughput = operating_fraction(w,&opening_line);
+        let components = plan_advanced_components(w,&plan);
+        let component_stock = crate::commerce::stock(w,nation,crate::commerce::Good::AdvancedComponents);
+        if components > 0.0 {
+            throughput=throughput.min(component_stock/components);
+        }
         let mut required = plan.required;
         let mut limiting_input = None;
         if w.rules.resource_gates {
-            throughput = resources::bundle_throughput(w, nation, &plan.required);
+            throughput = throughput.min(resources::bundle_throughput(w, nation, &plan.required));
             limiting_input = resources::limiting_bundle_input(w, nation, &plan.required);
             if throughput <= 1e-12 {
                 banked += plan.budget_bn;
                 let line = w.manufacturing.lines.iter_mut().find(|line| line.id == plan.line).unwrap();
                 line.status = LineStatus::Paused;
                 line.reason = Some(limiting_input.map_or_else(
-                    || "PAUSED: the equipment line is waiting for physical inputs.".into(),
+                    || if components>0.0 && component_stock<=1e-12 {
+                        "PAUSED: advanced components are missing. Import them or operate Advanced Industry.".into()
+                    } else { "PAUSED: the equipment line needs staffed, powered facilities and physical inputs.".into() },
                     |(commodity, want, have)| format!(
                         "PAUSED: waiting for {}; full-speed production needs {:.2} this {}, with {:.2} available.",
                         commodity.name(), want, settlement_period, have
@@ -580,13 +670,21 @@ pub(crate) fn settle_nation(w: &mut WorldState, nation: NationId) {
         }
 
         let ordered_today = plan.budget_bn * throughput;
+        if components > 0.0 {
+            let stock=w.production.operations.advanced_components.entry(nation).or_default();
+            *stock=(*stock-components*throughput).max(0.0);
+        }
         banked += (plan.budget_bn - ordered_today).max(0.0);
         if program_funded {
             crate::programs::spend(w, nation, crate::world::BUDGET_DEFENSE, 3, ordered_today)
                 .expect("the priority allocation reserves this proportional department slice before its atomic recipe");
         }
         let def = &DECK[plan.kit as usize];
-        let units = ordered_today / def.unit_cost.max(1e-9);
+        let company_target = crate::companies::CompanyTarget::Equipment { project: plan.line };
+        let company = plan.company;
+        let base_cash = ordered_today / (1.0 + company.fee_rate);
+        let base_units = base_cash / def.unit_cost.max(1e-9);
+        let units = base_units * company.work_rate;
         if units > 0.0 {
             let due_days = crate::clock::is_daily(w)
                 .then(|| crate::clock::days_for_months(w, def.lead_months));
@@ -613,7 +711,7 @@ pub(crate) fn settle_nation(w: &mut WorldState, nation: NationId) {
         };
         line.reason = if throughput + 1e-12 < 1.0 {
             limiting_input.map_or_else(
-                || Some(format!("SLOWED: physical inputs limit this line to {:.0}% throughput today.", throughput * 100.0)),
+                || Some(format!("SLOWED: workers, electricity or physical inputs limit this line to {:.0}% throughput today.", throughput * 100.0)),
                 |(commodity, want, have)| Some(format!(
                     "SLOWED: {} limits this line to {:.0}% throughput; full speed needs {:.2}, with {:.2} available before production.",
                     commodity.name(), throughput * 100.0, want, have
@@ -624,6 +722,7 @@ pub(crate) fn settle_nation(w: &mut WorldState, nation: NationId) {
         };
         line.ordered_bn += ordered_today;
         line.ordered_today_bn = ordered_today;
+        line.ordered_today_units = units;
         line.throughput_today = throughput;
         if w.rules.resource_gates {
             for commodity in ALL {
@@ -631,6 +730,8 @@ pub(crate) fn settle_nation(w: &mut WorldState, nation: NationId) {
             }
         }
         crate::gdp_projects::record_manufacturing_commitment(w,&opening_line,ordered_today,units);
+        crate::companies::record_work(w, nation, &company_target, base_units, units - base_units, ordered_today - base_cash);
+        crate::companies::record_sector_activity(w, nation, crate::companies::CompanySector::Defense, units);
     }
 
     w.nation_mut(nation).arsenal.banked = if program_funded { 0.0 } else { banked.min(recurring * 24.0) };
@@ -643,6 +744,64 @@ mod tests {
     use crate::production::{ProjectKind, ProvinceCapabilities};
     use crate::world::GameRules;
     use crate::{apply_command, load, save, tick_day, tick_month, Command};
+
+    #[test]
+    fn company_defense_lines_spend_one_envelope_and_use_the_delivered_recipe() {
+        use crate::companies::{self, CompanySector, CompanyTarget};
+        let (mut w, nation, district) = enabled();
+        w.rules.daily_simulation = true;
+        w.rules.resource_gates = true;
+        let line = start_line(&mut w, nation, &district, "arm_gen3").unwrap();
+        companies::enable(&mut w);
+        let company = w.companies.roster.iter().filter(|c| c.nation == nation && c.sector == CompanySector::Defense)
+            .max_by(|a,b| a.work_bonus.total_cmp(&b.work_bonus)).unwrap().id;
+        let target = CompanyTarget::Equipment { project: line };
+        companies::assign(&mut w, nation, company, target.clone()).unwrap();
+        let modifier = companies::modifiers(&w, nation, &target);
+        let plan = tick_allocations(&w, nation)[0].clone();
+        fill_draw(&mut w, nation, plan.required, 2.0);
+        settle_nation(&mut w, nation);
+        let ordered = w.manufacturing.lines[0].ordered_today_bn;
+        let units = w.nation(nation).arsenal.orders[0].units;
+        let expected = ordered / (1.0 + modifier.fee_rate) * modifier.work_rate / DECK[plan.kit as usize].unit_cost;
+        assert!((units - expected).abs() < 1e-10);
+        assert!((ordered - plan.budget_bn).abs() < 1e-10);
+        for c in ALL {
+            assert!((w.manufacturing.lines[0].resources_used[c.idx()] - plan.required[c.idx()]).abs() < 1e-9);
+        }
+        assert!(w.companies.assignments[0].total_fees_bn > 0.0);
+        let before = w.companies.roster.clone();
+        for c in ALL { resources::set_stockpile_for_test(&mut w, nation, c, 0.0); }
+        crate::clock::advance_date(&mut w);
+        settle_nation(&mut w, nation);
+        assert_eq!(w.manufacturing.lines[0].ordered_today_bn, 0.0);
+        assert_eq!(w.companies.roster, before);
+    }
+
+    #[test]
+    fn company_level_up_does_not_change_a_reserved_defense_recipe_mid_settlement() {
+        use crate::companies::{self, CompanySector, CompanyTarget};
+        let (mut w, nation, district) = enabled();
+        w.rules.daily_simulation = true;
+        w.rules.resource_gates = true;
+        let first = start_line(&mut w, nation, &district, "arm_gen3").unwrap();
+        let second = start_line(&mut w, nation, &district, "arm_gen2").unwrap();
+        companies::enable(&mut w);
+        let company = w.companies.roster.iter_mut().filter(|c| c.nation == nation && c.sector == CompanySector::Defense && c.capacity >= 2)
+            .max_by(|a,b| a.work_bonus.total_cmp(&b.work_bonus)).unwrap();
+        company.experience = 179.999999;
+        let id = company.id;
+        for project in [first, second] { companies::assign(&mut w, nation, id, CompanyTarget::Equipment {project}).unwrap(); }
+        let plans = tick_allocations(&w, nation);
+        let draw = line_resource_draw(&w, first);
+        fill_draw(&mut w, nation, draw, 20.0);
+        let expected: f64 = plans.iter().map(|p| p.budget_bn / (1.0 + p.company.fee_rate)
+            * p.company.work_rate / DECK[p.kit as usize].unit_cost).sum();
+        settle_nation(&mut w, nation);
+        assert!(w.companies.roster.iter().find(|c|c.id == id).unwrap().level() > 0);
+        let actual: f64 = w.nation(nation).arsenal.orders.iter().map(|o|o.units).sum();
+        assert!((actual - expected).abs() < 1e-10);
+    }
 
     #[test]
     fn daily_manufacturing_places_a_daily_slice_without_shrinking_forecasts() {
@@ -1017,6 +1176,7 @@ mod tests {
         let mut durable = w.manufacturing.clone();
         for line in &mut durable.lines {
             line.ordered_today_bn = 0.0;
+            line.ordered_today_units = 0.0;
             line.throughput_today = 0.0;
             line.settled_day = None;
         }

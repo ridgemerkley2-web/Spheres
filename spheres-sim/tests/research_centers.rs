@@ -84,6 +84,41 @@ fn near(a: f64, b: f64) {
 }
 
 #[test]
+fn company_research_bonus_is_specific_supplied_prototype_work_with_real_fees() {
+    use spheres_sim::companies::{self, CompanySector, CompanyTarget};
+    let (mut w, district, technology) = prepared(USA);
+    center(&mut w, &district, 1);
+    companies::enable(&mut w);
+    let mut plain = w.clone();
+    let company = w.companies.roster.iter().filter(|c| c.nation == USA && c.sector == CompanySector::Research)
+        .max_by(|a,b| a.work_bonus.total_cmp(&b.work_bonus)).unwrap().id;
+    let target = CompanyTarget::Research { domain: "Materials".into() };
+    companies::assign(&mut w, USA, company, target.clone()).unwrap();
+    let modifier = companies::modifiers(&w, USA, &target);
+    industry::research_day(&mut w);
+    industry::research_day(&mut plain);
+    let actual = &industry::research_status(&w, USA)[0];
+    let baseline = &industry::research_status(&plain, USA)[0];
+    assert_eq!(actual.technology, Some(technology));
+    near(actual.prototype_credit, baseline.prototype_credit * modifier.work_rate);
+    near(actual.cash_spent_daily_bn, baseline.cash_spent_daily_bn * (1.0 + modifier.fee_rate));
+    assert_eq!(actual.goods_used, baseline.goods_used);
+    assert_eq!(w.nation(USA).gdp, plain.nation(USA).gdp);
+    assert_eq!(w.nation(USA).tech.research_total, plain.nation(USA).tech.research_total);
+    near(w.companies.assignments[0].fees_today_bn, actual.cash_spent_daily_bn - baseline.cash_spent_daily_bn);
+    let saved = save(&w);
+    let mut restored = load(&saved).unwrap();
+    industry::research_day(&mut restored);
+    assert_eq!(save(&restored), saved);
+    next_day(&mut restored);
+    restored.production.industry.goods.get_mut(&USA).unwrap().capital_goods = 0.0;
+    let roster = restored.companies.roster.clone();
+    industry::research_day(&mut restored);
+    assert_eq!(restored.companies.roster, roster);
+    assert_eq!(industry::research_status(&restored, USA)[0].prototype_credit, 0.0);
+}
+
+#[test]
 fn completed_center_has_a_paid_price_side_effect_not_a_research_multiplier() {
     let (mut with, district, t) = prepared(USA);
     let mut without = with.clone();

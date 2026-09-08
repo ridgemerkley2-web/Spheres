@@ -24,7 +24,9 @@
   },
   "military": {
     "strength": 2.0,
-    "nuclear": false
+    "nuclear": false,
+    "personnel_1990": 55000,
+    "milex_1990_usd_bn": 0.102293
   },
   "sources": [
     "system Market, and this is the least comfortable call in the file. The New Economic Mechanism adopted at the Fourth Party Congress in November 1986 is the same vintage as Vietnam's doi moi, and Vietnam ships as Command on the grounds that the plan was intact. Laos had gone further by January 1990 on dated measures: prices were decontrolled and the Lao Food Corporation and Lao Trade Corporation, which held the rice procurement and distribution monopolies, were liquidated in 1988; the multiple exchange rates were unified in 1988; the foreign investment law passed the same year; mandatory plan targets for state enterprises were dropped and enterprises were leased or sold. Contemporary Bank and Fund reporting treated Laos as the most thoroughly liberalised of the Indochinese transition economies. Read the last note in this file before relying on the classification.",
@@ -39,7 +41,8 @@
     "Investment 13% of GDP, split 8 state and 5 private. The World Bank publishes no gross capital formation series for Laos in 1990; the split is weighted to the state side because most fixed investment in the country was aid-financed and passed through the budget.",
     "Same caveat as Cambodia's, and for the same reason. Entered as a command economy Laos finishes thirty years holding four technologies against a frontier of a hundred and thirty, and the poor-nation technology test goes red. The 0.80 command multiplier on research output is what decides it at this scale, not anything about Laos. The classification above is independently arguable, but it is doing work in the model that a classification should not have to do.",
     "Series check, August 2026, read from the World Bank API: NY.GDP.MKTP.CD 1990 = 865,559,879; SP.POP.TOTL = 4,311,955; FP.CPI.TOTL.ZG = 35.643. All match. MS.MIL.XPND.GD.ZS, FR.INR.LEND and NE.GDI.TOTL.ZS all return NO VALUE for Laos in 1990, confirming that the military share, the interest rate and the investment split in this file are estimates and stated as such. Note also that countryeconomy.com carries $1,742m for Lao GDP in 1990, twice the World Bank figure; the World Bank series is entered because it is the series the rest of this roster sits on.",
-    "pop_growth_1990 = 2.8713%/yr. Compound annual growth of World Bank SP.POP.TOTL, series LAO (Lao PDR): 3,637,843 in 1984 to 4,190,974 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 2.8713%/yr. Compound annual growth of World Bank SP.POP.TOTL, series LAO (Lao PDR): 3,637,843 in 1984 to 4,190,974 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "military.personnel_1990 = 55000 and military.milex_1990_usd_bn = 0.102293 ($bn). personnel: World Bank API MS.MIL.TOTL.P1 (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (LAO, 1990) | milex_usd: World Bank API MS.MIL.XPND.CD (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.XPND.CD?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (LAO, 1992) [fallback year 1992, not 1990]. milex entered in billions to six decimals (the nearest $1,000) of the fetched 102,292,611 current US$. YEAR FALLBACK: milex is the 1992 observation, the nearest in 1988-1992. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [

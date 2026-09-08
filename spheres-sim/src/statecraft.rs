@@ -59,6 +59,27 @@ pub const MAX_CLIENT_SHARE: f64 = 0.004;
 /// https://en.wikipedia.org/wiki/Cuba%E2%80%93Soviet_Union_relations
 const MAX_INFUSION: f64 = 0.25;
 
+// ---------------------------------------------------------------------------
+// Foreign backing (the political arm, S3). Every number below is INVENTED —
+// a model coefficient of the approved design, not a transcribed figure — and
+// filed in BUGS.md with what would calibrate it.
+// ---------------------------------------------------------------------------
+
+/// What one clean `BackBloc` operation adds to a sponsor's weight behind a
+/// bloc. FIXED: the op draws no third die the way the other three do.
+pub const BACKING_STEP: f64 = 0.06;
+/// The most one sponsor can hold behind one bloc in one target: two clean
+/// operations' worth.
+pub const BACKING_SPONSOR_CAP: f64 = 0.12;
+/// The most a bloc's F_B can total from every source, sponsors and patronage
+/// gravity together (`blocs::backing` applies the same cap to the view).
+pub const BACKING_TOTAL_CAP: f64 = 0.25;
+/// Monthly cooling of every backing entry, at half the rate covert heat
+/// cools (0.012): money that stops arriving is spent within a year or two.
+pub const BACKING_DECAY: f64 = 0.006;
+/// What exposure costs the backed bloc's own support, in share points.
+pub const EXPOSURE_TAINT: f64 = 0.02;
+
 /// Monthly upkeep of the standing arrangements. Nothing here rolls dice: a
 /// treaty in force is not a gamble, it is a bill.
 pub fn tick(w: &mut WorldState) {
@@ -67,6 +88,7 @@ pub fn tick(w: &mut WorldState) {
     aid_flows(w);
     trade_deepens(w);
     covert_channels_cool(w);
+    backing_cools(w);
     // A seller's refusal is remembered, then gradually not (resources.rs,
     // spec section 6.3). Free while the memory is empty, which is every
     // world the market switch is off in. ONCE A CALENDAR MONTH: the memory
@@ -313,6 +335,157 @@ fn covert_channels_cool(w: &mut WorldState) {
     w.statecraft.covert_heat.retain(|(_, _, h)| *h > 0.0);
 }
 
+/// Where covert channels cool, backing cools too: `BACKING_DECAY` a month,
+/// retained only while positive. Returns on the switch before touching
+/// anything (a save carrying a stock, loaded into a world with the lens
+/// off, keeps it as it was), and again while the stock is empty; draws no
+/// RNG.
+fn backing_cools(w: &mut WorldState) {
+    if !w.rules.ideology_blocs || w.statecraft.backing.is_empty() {
+        return;
+    }
+    let dt = crate::clock::month_fraction(w);
+    for b in w.statecraft.backing.iter_mut() {
+        b.weight -= BACKING_DECAY * dt;
+    }
+    w.statecraft.backing.retain(|b| b.weight > 0.0);
+}
+
+/// Why a `BackBloc` would be refused, read without touching the world — the
+/// ONE place the prose lives, asked by `covert_action` and by
+/// `lib::world_refusal` before any state is read (the switch first, so a
+/// world without the arm refuses before it looks at a ruling bloc).
+pub fn back_bloc_refusal(w: &WorldState, target: NationId, bloc: crate::government::Bloc) -> Option<String> {
+    if !w.rules.ideology_blocs {
+        return Some("This world does not model ideological movements.".into());
+    }
+    if crate::blocs::ruling_bloc(w, target) == Some(bloc) {
+        return Some("You cannot back a government covertly — send aid.".into());
+    }
+    None
+}
+
+/// How much a clean operation would actually add for this sponsor behind
+/// this bloc in this target: `BACKING_STEP`, clipped by the sponsor's own
+/// cap and the bloc's total cap on the STORED stock. Pure; the arm
+/// `add_backing` charges exactly this, and the card quotes it (iron rule 8:
+/// an arm clamped downstream is quoted at its clamped value).
+pub fn backing_room(w: &WorldState, sponsor: NationId, target: NationId, bloc: crate::government::Bloc) -> f64 {
+    let mine = w.backing_of(sponsor, target, bloc);
+    let total: f64 = w
+        .statecraft
+        .backing
+        .iter()
+        .filter(|b| b.target == target && b.bloc == bloc)
+        .map(|b| b.weight)
+        .sum();
+    BACKING_STEP
+        .min(BACKING_SPONSOR_CAP - mine)
+        .min(BACKING_TOTAL_CAP - total)
+        .max(0.0)
+}
+
+/// The arm of a clean `BackBloc`: `backing_room` added to the sponsor's
+/// entry, the stock kept sorted by (sponsor, target, bloc). Returns what was
+/// added. Writes nothing when the room is zero.
+pub fn add_backing(w: &mut WorldState, sponsor: NationId, target: NationId, bloc: crate::government::Bloc) -> f64 {
+    let room = backing_room(w, sponsor, target, bloc);
+    if room <= 0.0 {
+        return 0.0;
+    }
+    match w
+        .statecraft
+        .backing
+        .iter_mut()
+        .find(|b| b.sponsor == sponsor && b.target == target && b.bloc == bloc)
+    {
+        Some(b) => b.weight += room,
+        None => w.statecraft.backing.push(Backing { sponsor, target, bloc, weight: room, exposed: false }),
+    }
+    w.statecraft.backing.sort_by_key(|b| (b.sponsor, b.target, b.bloc));
+    room
+}
+
+/// What exposure of a `BackBloc` does beyond the existing costs of being
+/// caught: every backing entry this sponsor holds in this target is halved
+/// and marked exposed, and the backed bloc is tainted `EXPOSURE_TAINT` of
+/// support — in an electoral target off its parties in proportion to their
+/// size, in a regime off `movements[bloc]` — then renormalised. Draws no RNG.
+pub fn expose_backing(w: &mut WorldState, sponsor: NationId, target: NationId, bloc: crate::government::Bloc) {
+    for b in w.statecraft.backing.iter_mut() {
+        if b.sponsor == sponsor && b.target == target {
+            b.weight *= 0.5;
+            b.exposed = true;
+        }
+    }
+    crate::government::taint_bloc(w, target, bloc, EXPOSURE_TAINT);
+}
+
+/// The Security Crackdown's gated arm (S3): every stored backing entry
+/// behind a NON-ruling bloc in this nation is halved — the apparatus on the
+/// street rolls up the foreign money behind the opposition. The ruling
+/// bloc's entries are untouched (a government is not raiding its own
+/// friends), and patronage gravity, a view of the aid flows, is not a stock
+/// and cannot be halved. Returns before reading anything while the arm is
+/// off or the stock is empty. Draws no RNG.
+pub fn halve_foreign_backing(w: &mut WorldState, id: NationId) {
+    if !w.rules.ideology_blocs || w.statecraft.backing.is_empty() {
+        return;
+    }
+    let ruling = crate::blocs::ruling_bloc(w, id);
+    for b in w.statecraft.backing.iter_mut() {
+        if b.target == id && Some(b.bloc) != ruling {
+            b.weight *= 0.5;
+        }
+    }
+}
+
+/// The crackdown arm's card, from the same rule `halve_foreign_backing`
+/// applies (iron rule 8): per non-ruling bloc with backing, F_B before and
+/// after, each quoted at its CLAMPED value — the stock halved, the gravity
+/// kept, the total capped as `blocs::backing` caps it. Empty with the arm
+/// off, and empty where there is nothing to halve.
+pub fn crackdown_backing_effects(w: &WorldState, id: NationId) -> Vec<String> {
+    if !w.rules.ideology_blocs {
+        return vec![];
+    }
+    let ruling = crate::blocs::ruling_bloc(w, id);
+    let stock = crate::blocs::backing_stock(w, id);
+    let grav = crate::blocs::gravity(w, id);
+    let before = crate::blocs::backing(w, id);
+    let mut out = vec![];
+    for i in 0..5 {
+        let (bloc, s) = stock[i];
+        if s <= 0.0 || Some(bloc) == ruling {
+            continue;
+        }
+        let after = (s * 0.5 + grav[i].1).min(BACKING_TOTAL_CAP);
+        out.push(format!(
+            "Foreign backing of the {} movement halved: {:.3} → {:.3}.",
+            bloc.label(), before[i].1, after
+        ));
+    }
+    out
+}
+
+/// The one-sentence arms of a `BackBloc`, from the same constants and the
+/// same `backing_room` the op charges, for the card (iron rule 8).
+pub fn back_bloc_effects(w: &WorldState, sponsor: NationId, target: NationId, bloc: crate::government::Bloc) -> Vec<String> {
+    let room = backing_room(w, sponsor, target, bloc);
+    vec![
+        format!(
+            "If it works: +{:.2} backing for the {} movement (sponsor cap {:.2}, bloc cap {:.2}); {:.2} realised now.",
+            BACKING_STEP, bloc.label(), BACKING_SPONSOR_CAP, BACKING_TOTAL_CAP, room
+        ),
+        format!("Backing cools {:.3} a month while covert channels cool.", BACKING_DECAY),
+        format!(
+            "If exposed: every entry of {}'s backing in {} halved and named, the {} movement loses {:.2} of support, and the usual costs of being caught.",
+            sponsor.name(), target.name(), bloc.label(), EXPOSURE_TAINT
+        ),
+        "Backing never enters support: it counts in influence only.".to_string(),
+    ]
+}
+
 // ---------------------------------------------------------------------------
 // Commands
 // ---------------------------------------------------------------------------
@@ -537,26 +710,13 @@ pub fn end_aid(
     Ok(())
 }
 
-/// Deniable, probabilistic, and worse than useless once it is caught. Two rolls
-/// in a fixed order: whether the operation worked, and whether it stayed secret.
-pub fn covert_action(
-    w: &mut WorldState,
-    sponsor: NationId,
-    target: NationId,
-    op: CovertOp,
-) -> Result<(), String> {
-    if sponsor == target {
-        return Err("A service does not run operations against its own state.".into());
-    }
-    if !alive(w, sponsor) || !alive(w, target) {
-        return Err("Nation no longer exists.".into());
-    }
-
-    // Running a service costs money whether or not anything comes of it.
-    // 0.0008 of output is the pre-treasury line unchanged.
-    let service_bn = w.nation(sponsor).gdp * 0.0008;
-    crate::economy::charge(w, sponsor, service_bn, 0.0008);
-
+/// The two probabilities a covert operation rolls — (worked, exposed) — read
+/// without touching the world. THE ONE PLACE they are computed (iron rule 8):
+/// `covert_action` rolls exactly these, after its service charge (which
+/// moves the treasury and never output, so the card and the roll agree), and
+/// the dossier's "Back a movement" card quotes them as "works p% / exposed
+/// q%". The block below is `covert_action`'s, moved verbatim.
+pub fn covert_odds(w: &WorldState, sponsor: NationId, target: NationId) -> (f64, f64) {
     let (s_gdp, t_gdp) = (w.nation(sponsor).gdp, w.nation(target).gdp);
     let (t_stab, t_sep, t_auth) = {
         let t = w.nation(target);
@@ -594,6 +754,36 @@ pub fn covert_action(
     let expose_p =
         exposure_probability(heat, t_auth, crate::ministries::diplomacy_counterintel(t_dip));
 
+    (success_p, expose_p)
+}
+
+/// Deniable, probabilistic, and worse than useless once it is caught. Two rolls
+/// in a fixed order: whether the operation worked, and whether it stayed secret.
+pub fn covert_action(
+    w: &mut WorldState,
+    sponsor: NationId,
+    target: NationId,
+    op: CovertOp,
+) -> Result<(), String> {
+    if sponsor == target {
+        return Err("A service does not run operations against its own state.".into());
+    }
+    if !alive(w, sponsor) || !alive(w, target) {
+        return Err("Nation no longer exists.".into());
+    }
+    if let CovertOp::BackBloc(bloc) = op {
+        if let Some(why) = back_bloc_refusal(w, target, bloc) {
+            return Err(why);
+        }
+    }
+
+    // Running a service costs money whether or not anything comes of it.
+    // 0.0008 of output is the pre-treasury line unchanged.
+    let service_bn = w.nation(sponsor).gdp * 0.0008;
+    crate::economy::charge(w, sponsor, service_bn, 0.0008);
+
+    let (success_p, expose_p) = covert_odds(w, sponsor, target);
+
     let worked = w.rng.chance(success_p);
     let exposed = w.rng.chance(expose_p);
     w.add_covert_heat(sponsor, target, 0.18);
@@ -629,6 +819,17 @@ pub fn covert_action(
                     target.name()
                 ));
             }
+            // FIXED effect, no third draw: the two `chance` rolls above are
+            // the whole of this op's randomness, so the stream is the stream
+            // the other three leave.
+            CovertOp::BackBloc(bloc) => {
+                add_backing(w, sponsor, target, bloc);
+                w.headline(format!(
+                    "Money and organisers reach the {} movement in {}; nobody can say from where.",
+                    bloc.label(),
+                    target.name()
+                ));
+            }
         }
     } else {
         w.headline(format!(
@@ -638,35 +839,200 @@ pub fn covert_action(
     }
 
     if exposed {
-        w.shift_relation(sponsor, target, -35.0);
-        w.shift_reputation(sponsor, -12.0);
-        w.add_covert_heat(sponsor, target, 0.25);
-        {
-            let t = w.nation_mut(target);
-            // Caught red-handed, a foreign hand is the best thing that can
-            // happen to an unpopular government.
-            t.stability = (t.stability + 6.0).min(100.0);
-            t.separatism = (t.separatism - 0.03).max(0.0);
-        }
-        let friends: Vec<NationId> = w
-            .nations
-            .iter()
-            .filter(|n| n.alive && n.id != sponsor && n.id != target)
-            .map(|n| n.id)
-            .filter(|x| w.relation(target, *x) >= 40.0)
-            .collect();
-        for x in friends {
-            w.shift_relation(sponsor, x, -5.0);
-        }
-        w.headline(format!(
-            "{} exposes {} {} in {} — the scandal rallies the country behind its government.",
-            target.name(),
-            sponsor.name(),
-            op.label(),
-            target.name()
-        ));
+        caught(w, sponsor, target, op);
     }
     Ok(())
+}
+
+/// What being caught costs, defined once: the block `covert_action` charges
+/// on its exposure roll, verbatim, and — under the roads (S4) — what a
+/// takeover charges a sponsor whose channel into the winner was already
+/// half-blown (`takeover_payoff`). Draws no RNG.
+pub(crate) fn caught(w: &mut WorldState, sponsor: NationId, target: NationId, op: CovertOp) {
+    w.shift_relation(sponsor, target, -35.0);
+    w.shift_reputation(sponsor, -12.0);
+    w.add_covert_heat(sponsor, target, 0.25);
+    {
+        let t = w.nation_mut(target);
+        // Caught red-handed, a foreign hand is the best thing that can
+        // happen to an unpopular government.
+        t.stability = (t.stability + 6.0).min(100.0);
+        t.separatism = (t.separatism - 0.03).max(0.0);
+    }
+    let friends: Vec<NationId> = w
+        .nations
+        .iter()
+        .filter(|n| n.alive && n.id != sponsor && n.id != target)
+        .map(|n| n.id)
+        .filter(|x| w.relation(target, *x) >= 40.0)
+        .collect();
+    for x in friends {
+        w.shift_relation(sponsor, x, -5.0);
+    }
+    if let CovertOp::BackBloc(bloc) = op {
+        expose_backing(w, sponsor, target, bloc);
+    }
+    w.headline(format!(
+        "{} exposes {} {} in {} — the scandal rallies the country behind its government.",
+        target.name(),
+        sponsor.name(),
+        op.label(),
+        target.name()
+    ));
+}
+
+// ---------------------------------------------------------------------------
+// The foreign payoff on a takeover (S4). Every number INVENTED (design S4)
+// and filed in BUGS.md.
+// ---------------------------------------------------------------------------
+
+/// The backing at or over which a sponsor is paid by the winner it backed.
+pub const PAYOFF_BACKING: f64 = 0.10;
+/// What the new regime's gratitude is worth in relation.
+pub const PAYOFF_SPONSOR: f64 = 40.0;
+/// What the sponsor loses with the target's previous top patron, whose
+/// client it has just taken.
+pub const PAYOFF_RIVAL: f64 = -25.0;
+/// The covert heat at or over which the sponsorship is exposed at the
+/// moment of the takeover, with the usual costs (`caught`).
+pub const PAYOFF_EXPOSED_HEAT: f64 = 0.50;
+/// What the democracies (authoritarianism under `government::
+/// DEMOCRACY_BELOW`) feel about a new regime: −8 for a Communist,
+/// Nationalist or Islamist one, +8 for a Western one, nothing for a
+/// Non-Aligned one.
+pub const PAYOFF_DEMOCRACY: f64 = 8.0;
+/// What a great-power patron ruling in the LOSER's colour feels.
+pub const PAYOFF_LOSER_PATRON: f64 = -10.0;
+
+/// Everything `takeover_payoff` writes, computed once (rule 8: the card
+/// quotes this plan).
+#[derive(Clone, Debug, PartialEq)]
+pub struct Payoff {
+    /// (sponsor, backing held, exposed at this moment).
+    pub sponsors: Vec<(NationId, f64, bool)>,
+    /// The target's previous top patron by aid share, if any.
+    pub top_patron: Option<NationId>,
+    /// (democracy, shift) — every democracy other than the target.
+    pub democracies: Vec<(NationId, f64)>,
+    /// Great-power patrons whose own ruling bloc is the loser's.
+    pub loser_patrons: Vec<NationId>,
+}
+
+/// The payoff plan for a non-ballot takeover of `target` by `winner` from
+/// `loser`, or `None` before any read while the takeover switch is off.
+pub fn takeover_payoff_plan(
+    w: &WorldState,
+    target: NationId,
+    winner: crate::government::Bloc,
+    loser: Option<crate::government::Bloc>,
+) -> Option<Payoff> {
+    use crate::government::Bloc;
+    if !w.rules.ideology_takeover {
+        return None;
+    }
+    let sponsors: Vec<(NationId, f64, bool)> = w
+        .statecraft
+        .backing
+        .iter()
+        .filter(|b| b.target == target && b.bloc == winner && b.weight >= PAYOFF_BACKING)
+        .filter(|b| w.nation_opt(b.sponsor).is_some_and(|n| n.alive))
+        .map(|b| (b.sponsor, b.weight, w.covert_heat(b.sponsor, target) >= PAYOFF_EXPOSED_HEAT))
+        .collect();
+    let mut top: Option<(NationId, f64)> = None;
+    for p in w.patrons_of(target) {
+        let share: f64 = w.statecraft.aid.iter().filter(|f| f.patron == p && f.client == target).map(|f| f.share_gdp).sum();
+        if top.map_or(true, |(_, s)| share > s) {
+            top = Some((p, share));
+        }
+    }
+    let democracy_shift = match winner {
+        Bloc::Communist | Bloc::Nationalist | Bloc::Islamist => -PAYOFF_DEMOCRACY,
+        Bloc::Western => PAYOFF_DEMOCRACY,
+        Bloc::NonAligned => 0.0,
+    };
+    let democracies: Vec<(NationId, f64)> = if democracy_shift == 0.0 {
+        vec![]
+    } else {
+        crate::government::democracies(w, target).into_iter().map(|d| (d, democracy_shift)).collect()
+    };
+    let loser_patrons: Vec<NationId> = match loser {
+        Some(l) => crate::nations::patrons()
+            .iter()
+            .copied()
+            .filter(|p| *p != target && w.nation_opt(*p).is_some_and(|n| n.alive))
+            .filter(|p| crate::blocs::ruling_bloc(w, *p) == Some(l))
+            .collect(),
+        None => vec![],
+    };
+    Some(Payoff { sponsors, top_patron: top.map(|(p, _)| p), democracies, loser_patrons })
+}
+
+/// The foreign payoff on any non-ballot takeover (S4): every sponsor holding
+/// `PAYOFF_BACKING` of the winner +40 with the new regime and −25 with the
+/// target's previous top patron, exposed on the spot (the usual costs)
+/// where its covert heat is at or over 0.50; the democracies −8 with a new
+/// Communist / Nationalist / Islamist regime and +8 with a new Western one;
+/// the great-power patrons ruling in the loser's colour −10. Writes
+/// nothing while the takeover switch is off. Draws no RNG.
+pub fn takeover_payoff(
+    w: &mut WorldState,
+    target: NationId,
+    winner: crate::government::Bloc,
+    loser: Option<crate::government::Bloc>,
+) {
+    let p = match takeover_payoff_plan(w, target, winner, loser) {
+        Some(p) => p,
+        None => return,
+    };
+    for (sponsor, _, exposed) in &p.sponsors {
+        w.shift_relation(*sponsor, target, PAYOFF_SPONSOR);
+        if let Some(top) = p.top_patron {
+            if top != *sponsor {
+                w.shift_relation(*sponsor, top, PAYOFF_RIVAL);
+            }
+        }
+        if *exposed {
+            caught(w, *sponsor, target, CovertOp::BackBloc(winner));
+        }
+    }
+    for (d, shift) in &p.democracies {
+        w.shift_relation(*d, target, *shift);
+    }
+    for patron in &p.loser_patrons {
+        w.shift_relation(*patron, target, PAYOFF_LOSER_PATRON);
+    }
+}
+
+/// The payoff's arms as the screen prints them, from the same plan.
+pub fn takeover_payoff_effects(
+    w: &WorldState,
+    target: NationId,
+    winner: crate::government::Bloc,
+    loser: Option<crate::government::Bloc>,
+) -> Vec<String> {
+    let p = match takeover_payoff_plan(w, target, winner, loser) {
+        Some(p) => p,
+        None => return vec![],
+    };
+    let mut out = vec![];
+    for (sponsor, held, exposed) in &p.sponsors {
+        out.push(format!(
+            "{} holds {:.3} of the {} movement's backing: relations {:+.0} with the new regime{}{}.",
+            sponsor.name(),
+            held,
+            winner.label(),
+            PAYOFF_SPONSOR,
+            p.top_patron.filter(|t| t != sponsor).map_or(String::new(), |t| format!(", {:+.0} with {}", PAYOFF_RIVAL, t.name())),
+            if *exposed { "; exposed on the spot" } else { "" }
+        ));
+    }
+    if let Some((_, shift)) = p.democracies.first() {
+        out.push(format!("Relations {:+.0} with {} democracies.", shift, p.democracies.len()));
+    }
+    for patron in &p.loser_patrons {
+        out.push(format!("Relations {:+.0} with {}, which rules in the old colour.", PAYOFF_LOSER_PATRON, patron.name()));
+    }
+    out
 }
 
 /// Offer `to` a trade agreement, which it may refuse.

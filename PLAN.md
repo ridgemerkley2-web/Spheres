@@ -4,6 +4,14 @@
 BUGS.md is what is broken. This is the sequence between here and done, and why
 it is in this order.*
 
+**Equipment direction update, 7 September 2026:** Ridge wants company-owned
+manufacturing and government purchases from finished stock after contracted
+development. The next equipment milestone is the complete domestic tank supplier
+loop in [COMPANIES_AND_PROCUREMENT_PLAN.md](COMPANIES_AND_PROCUREMENT_PLAN.md),
+before further expansion on the old production path. This is also the foundation
+for the requested national companies layer. It is planned, not implemented;
+the current tactical aviation release remains live.
+
 **Where this came from.** Rewritten 2026-08-18 from a directed audit: ten
 independent reads of the tree, five competing plans written from deliberately
 opposed priors, four judges scoring all five, and a completeness critic. Every

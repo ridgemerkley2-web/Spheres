@@ -41,6 +41,7 @@ struct Country {
     end_import_escrow_bn: f64,
     end_in_flight_intermediate_packs: f64,
     end_in_flight_capital_packs: f64,
+    end_in_flight_component_packs: f64,
     end_in_flight_reference_bn: f64,
     end_held_in_flight_reference_bn: f64,
     #[serde(skip)]
@@ -96,12 +97,14 @@ fn record_open_commerce(row: &mut Country, ledger: &commerce::Commerce, id: Nati
         .sum();
     row.end_in_flight_intermediate_packs = 0.0;
     row.end_in_flight_capital_packs = 0.0;
+    row.end_in_flight_component_packs = 0.0;
     row.end_in_flight_reference_bn = 0.0;
     row.end_held_in_flight_reference_bn = 0.0;
     for cargo in ledger.cargo.iter().filter(|c| c.buyer == id) {
         match cargo.good {
             commerce::Good::Intermediates => row.end_in_flight_intermediate_packs += cargo.quantity,
             commerce::Good::CapitalGoods => row.end_in_flight_capital_packs += cargo.quantity,
+            commerce::Good::AdvancedComponents => row.end_in_flight_component_packs += cargo.quantity,
         }
         let value = cargo.quantity * commerce::reference_price_bn(cargo.good);
         row.end_in_flight_reference_bn += value;

@@ -8,13 +8,19 @@
 //! what a power grid, laboratory, or arms plant actually produces.
 
 use serde::{Deserialize, Serialize};
+use std::collections::BTreeMap;
 
 use crate::resources::{self, Commodity, ALL};
 use crate::world::{
     NationId, WorldState, BUDGET_DEFENSE, BUDGET_INDUSTRY, BUDGET_INFRASTRUCTURE, BUDGET_SCIENCE,
 };
 
-pub const MAX_ACTIVE_PROJECTS: usize = 4;
+/// Legacy monthly planning ceiling. Its projects share the existing workforce
+/// and inputs; daily construction instead follows independent lead times and
+/// a shared financial budget, with no administrative project-count limit.
+pub const MAX_QUEUED_PROJECTS: usize = 12;
+/// Compatibility name for clients reading the legacy monthly queue limit.
+pub const MAX_ACTIVE_PROJECTS: usize = MAX_QUEUED_PROJECTS;
 pub const MAX_PROVINCE_LEVEL: u8 = 5;
 
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
@@ -33,9 +39,12 @@ pub enum ProjectKind {
     Automation,
     Efficiency,
     StarterIndustry,
+    OfficeDistrict,
+    Shipyard,
+    AdvancedIndustry,
 }
 
-pub const PROJECT_KINDS: [ProjectKind; 13] = [
+pub const PROJECT_KINDS: [ProjectKind; 16] = [
     ProjectKind::Infrastructure,
     ProjectKind::CivilianIndustry,
     ProjectKind::PowerGrid,
@@ -49,6 +58,9 @@ pub const PROJECT_KINDS: [ProjectKind; 13] = [
     ProjectKind::Automation,
     ProjectKind::Efficiency,
     ProjectKind::StarterIndustry,
+    ProjectKind::OfficeDistrict,
+    ProjectKind::Shipyard,
+    ProjectKind::AdvancedIndustry,
 ];
 
 impl ProjectKind {
@@ -67,6 +79,9 @@ impl ProjectKind {
             Self::Automation => "automation",
             Self::Efficiency => "efficiency",
             Self::StarterIndustry => "starter_industry",
+            Self::OfficeDistrict => "office_district",
+            Self::Shipyard => "shipyard",
+            Self::AdvancedIndustry => "advanced_industry",
         }
     }
 
@@ -225,6 +240,20 @@ pub struct Production {
     pub next_id: u32,
     #[serde(default, skip_serializing_if = "crate::industry::Industry::is_empty")]
     pub industry: crate::industry::Industry,
+    /// Requested national capacity; absent means priority-weighted automatic
+    /// assignment and an explicit zero remains paused across save/resume.
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub construction_assignments: BTreeMap<u32, f64>,
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub mine_construction_assignments: BTreeMap<String, f64>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub construction_day: Option<crate::construction_capacity::DayAllocation>,
+    /// Office District, Shipyard and Advanced Industry, in that stable order.
+    /// Separate from the original seven-slot ledger for old-save compatibility.
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub rebuild_sites: BTreeMap<String, [u8; 3]>,
+    #[serde(default, skip_serializing_if = "crate::industry_operations::State::is_empty")]
+    pub operations: crate::industry_operations::State,
 }
 
 fn is_zero(value: &u32) -> bool {
@@ -237,6 +266,11 @@ impl Production {
             && self.provinces.is_empty()
             && self.next_id == 0
             && self.industry.is_empty()
+            && self.construction_assignments.is_empty()
+            && self.mine_construction_assignments.is_empty()
+            && self.construction_day.is_none()
+            && self.rebuild_sites.is_empty()
+            && self.operations.is_empty()
     }
 }
 
@@ -263,7 +297,7 @@ pub fn catalog(kind: ProjectKind) -> ProjectSpec {
             kind,
             name: "Infrastructure",
             description: "Roads, rail, bridges, and freight terminals.",
-            effect: "Improves provincial freight-network capacity.",
+            effect: "Improves local freight throughput and construction work by 10% per level in the rebuilt industry system.",
             total_days: 360,
             political_cost: 8.0,
             funding_ministry: BUDGET_INFRASTRUCTURE,
@@ -273,9 +307,9 @@ pub fn catalog(kind: ProjectKind) -> ProjectSpec {
         },
         ProjectKind::CivilianIndustry => ProjectSpec {
             kind,
-            name: "Industrial Estates",
-            description: "Factories, machine shops, and construction suppliers.",
-            effect: "Enables Machinery Works and Materials Processing in this province.",
+            name: "Civilian Factory",
+            description: "Construction firms, machine shops, and civilian industrial capacity.",
+            effect: "Adds up to 10 national construction capacity while supplied with workers and electricity. Allocate that capacity to finish future projects faster.",
             total_days: 540,
             political_cost: 12.0,
             funding_ministry: BUDGET_INDUSTRY,
@@ -313,7 +347,7 @@ pub fn catalog(kind: ProjectKind) -> ProjectSpec {
         },
         ProjectKind::ArmsPlant => ProjectSpec {
             kind,
-            name: "Arms Plant",
+            name: "Military Factory",
             description: "Hardened tooling for equipment production lines.",
             effect: "Adds one arms-plant level for funded manufacturing lines; equipment still needs its recipe, procurement authority and production time.",
             total_days: 720,
@@ -325,20 +359,74 @@ pub fn catalog(kind: ProjectKind) -> ProjectSpec {
                 12.0, 15.0, 4.0, 10.0, 0.0, 0.0, 55.0, 0.0, 0.0, 2.0, 3.0, 0.0,
             ],
         },
-        _ => crate::industry::catalog(kind),
+        // MODEL build times, input recipes and costs are gameplay conversions,
+        // not observations of historical factories or construction contracts.
+        ProjectKind::OfficeDistrict => ProjectSpec {
+            kind,
+            name: "Office District",
+            description: "Service businesses and professional employment.",
+            effect: "Creates service jobs and additional taxable value added when skilled workers, electricity and domestic demand are available. GDP and tax receipts are reported separately.",
+            total_days: 360,
+            political_cost: 10.0,
+            funding_ministry: BUDGET_INDUSTRY,
+            funding_label: "Industry & Energy",
+            funding_required: 0.020,
+            recipe: [4.0, 10.0, 0.0, 8.0, 0.0, 0.0, 25.0, 0.0, 0.0, 0.0, 4.0, 0.0],
+        },
+        ProjectKind::Shipyard => ProjectSpec {
+            kind,
+            name: "Shipyard",
+            description: "Coastal docks, marine tooling, and naval production berths.",
+            effect: "Adds naval production capacity at a mapped coastal gateway. Each operating level reduces the inherited naval maintenance invoice by 5%, capped at 25%; ships still need funded production lines, inputs and build time.",
+            total_days: 840,
+            political_cost: 16.0,
+            funding_ministry: BUDGET_DEFENSE,
+            funding_label: "Defense",
+            funding_required: 0.025,
+            recipe: [15.0, 20.0, 4.0, 12.0, 0.0, 0.0, 80.0, 0.0, 0.0, 2.0, 5.0, 0.0],
+        },
+        ProjectKind::AdvancedIndustry => ProjectSpec {
+            kind,
+            name: "Advanced Industry",
+            description: "Electronics, precision components, and advanced machine production.",
+            effect: "Produces advanced component packs consumed by technology-gated equipment production. Needs skilled workers, electricity, intermediate packs, copper, rare earths and a supplied operating budget.",
+            total_days: 660,
+            political_cost: 14.0,
+            funding_ministry: BUDGET_INDUSTRY,
+            funding_label: "Industry & Energy",
+            funding_required: 0.020,
+            recipe: [8.0, 12.0, 0.0, 20.0, 0.0, 5.0, 35.0, 0.0, 0.0, 2.0, 8.0, 0.0],
+        },
+        _ => {
+            let mut spec = crate::industry::catalog(kind);
+            if kind == ProjectKind::Generation { spec.name = "Power Plant"; }
+            if kind == ProjectKind::ProcessingPlant { spec.name = "Materials Plant"; }
+            spec
+        },
     }
 }
 
-pub fn catalog_all() -> [ProjectSpec; 13] {
+pub fn catalog_all() -> [ProjectSpec; 16] {
     PROJECT_KINDS.map(catalog)
 }
 
 /// Unified capability lookup; old save records retain their original shape.
 pub fn level(w: &WorldState, district: &str, kind: ProjectKind) -> u8 {
-    if crate::industry::extended(kind) {
+    if let Some(index) = rebuild_site_index(kind) {
+        w.production.rebuild_sites.get(district).map_or(0, |row| row[index])
+    } else if crate::industry::extended(kind) {
         crate::industry::site_level(w, district, kind)
     } else {
         province_capabilities(w, district).level(kind)
+    }
+}
+
+fn rebuild_site_index(kind: ProjectKind) -> Option<usize> {
+    match kind {
+        ProjectKind::OfficeDistrict => Some(0),
+        ProjectKind::Shipyard => Some(1),
+        ProjectKind::AdvancedIndustry => Some(2),
+        _ => None,
     }
 }
 
@@ -346,7 +434,8 @@ pub fn funding_department(kind: ProjectKind) -> usize {
     match kind {
         ProjectKind::PowerGrid | ProjectKind::Generation => 1,
         ProjectKind::ProcessingPlant => 2,
-        ProjectKind::FreightTerminal | ProjectKind::Warehouse | ProjectKind::ArmsPlant => 3,
+        ProjectKind::FreightTerminal | ProjectKind::Warehouse | ProjectKind::ArmsPlant | ProjectKind::Shipyard => 3,
+        ProjectKind::AdvancedIndustry => 2,
         ProjectKind::Automation | ProjectKind::Efficiency => 4,
         _ => 0,
     }
@@ -388,6 +477,9 @@ pub fn funding_ratio(w: &WorldState, nation: NationId, kind: ProjectKind) -> f64
 /// Legacy monthly replay only: shared national project-days per calendar day.
 /// Daily construction has independent site lead times and a shared cash budget.
 pub fn construction_capacity(w: &WorldState, nation: NationId) -> f64 {
+    if crate::construction_capacity::enabled(w) {
+        return crate::construction_capacity::pool(w, nation).total_capacity;
+    }
     let industry: u32 = w
         .production
         .provinces
@@ -536,6 +628,9 @@ pub(crate) fn start_project_common_error(
     if !w.rules.production_system {
         return Some("Production and construction are not enabled in this game.".into());
     }
+    if rebuild_site_index(kind).is_some() && !crate::construction_capacity::enabled(w) {
+        return Some("This project requires the rebuilt daily industry system.".into());
+    }
     if !crate::clock::is_daily(w) && !w.rules.resource_market {
         return Some("Legacy monthly production requires the resource market to be enabled.".into());
     }
@@ -552,10 +647,13 @@ pub(crate) fn start_project_common_error(
         }
         _ => {}
     }
-    if !crate::clock::is_daily(w) && projects_for(w, nation).count() >= MAX_ACTIVE_PROJECTS {
+    if kind == ProjectKind::Shipyard && !crate::logistics::has_terminal(district) {
+        return Some("Shipyards require a province with a mapped coastal freight gateway.".into());
+    }
+    if !crate::clock::is_daily(w) && projects_for(w, nation).count() >= MAX_QUEUED_PROJECTS {
         return Some(format!(
-            "All {} construction slots are already active.",
-            MAX_ACTIVE_PROJECTS
+            "Planning queue full: {0}/{0} projects. Finish or cancel one before planning another.",
+            MAX_QUEUED_PROJECTS,
         ));
     }
     if projects_for(w, nation).any(|p| p.district == district && p.kind == kind) {
@@ -668,6 +766,7 @@ pub fn cancel_project(w: &mut WorldState, nation: NationId, project: u32) -> Res
     }
     let removed = w.production.projects.remove(index);
     w.production.industry.projects.remove(&project);
+    w.production.construction_assignments.remove(&project);
     w.headline(format!(
         "{} cancels {} in {}; paid construction work is sunk.",
         nation.name(),
@@ -692,6 +791,11 @@ fn set_paused(w: &mut WorldState, id: u32, reason: String) {
 }
 
 pub(crate) fn complete_capability(w: &mut WorldState, district: &str, kind: ProjectKind) {
+    if let Some(index) = rebuild_site_index(kind) {
+        let row = w.production.rebuild_sites.entry(district.to_string()).or_default();
+        row[index] = row[index].saturating_add(1).min(MAX_PROVINCE_LEVEL);
+        return;
+    }
     if crate::industry::extended(kind) {
         crate::industry::complete_site(w, district, kind);
         return;
@@ -899,6 +1003,7 @@ pub fn tick_day(w: &mut WorldState) {
         };
         let finished = w.production.projects.remove(index);
         w.production.industry.projects.remove(&id);
+        w.production.construction_assignments.remove(&id);
         if kind == ProjectKind::StarterIndustry {
             crate::industrial_modules::complete(w, &finished);
             w.headline(format!("{} completes a {:.4}% Starter Industry module in {}.",
@@ -996,6 +1101,48 @@ mod tests {
     }
 
     #[test]
+    fn company_old_daily_project_migrates_before_work_and_waits_for_real_funding() {
+        use crate::companies::{self, CompanySector, CompanyTarget};
+        let nation = NationId::USA;
+        let mut w = legacy_monthly();
+        let district = owned(&w, nation)[0].clone();
+        let project = start_project(&mut w, nation, &district, ProjectKind::Warehouse).unwrap();
+        w.production.projects[0].progress_days = 40.0;
+        w.production.projects[0].resources_used[Commodity::Iron.idx()] = 2.0;
+        w.rules.daily_simulation = true;
+        assert!(w.production.industry.projects.is_empty());
+        assert!(w.nation(nation).program_budget.is_none());
+        let mut w = load(&save(&w)).unwrap();
+        companies::enable(&mut w);
+        let company = w.companies.roster.iter().filter(|c| c.nation == nation && c.sector == CompanySector::Construction)
+            .max_by(|a,b| a.work_bonus.total_cmp(&b.work_bonus)).unwrap().id;
+        let target = CompanyTarget::Construction { project };
+        companies::assign(&mut w, nation, company, target.clone()).unwrap();
+        let historical_paid = crate::industry::project_cost_bn(&w.production.projects[0])
+            * w.production.projects[0].progress_fraction();
+        let resources = w.resources.clone();
+        tick_day(&mut w);
+        near(w.production.projects[0].progress_days, 40.0);
+        near(w.production.industry.projects[&project].spent_bn, historical_paid);
+        near(w.companies.assignments[0].total_fees_bn, 0.0);
+        near(w.companies.assignments[0].total_work, 0.0);
+        crate::programs::set_construction_budget(&mut w, nation, 1.0).unwrap();
+        crate::programs::begin_day(&mut w);
+        let plan = crate::industry::project_plans(&w)[&project].clone();
+        tick_day(&mut w);
+        assert!(w.production.projects[0].progress_days > 41.0);
+        near(w.production.industry.projects[&project].spent_bn, historical_paid + plan.cash_bn - plan.company_fee_bn);
+        near(w.companies.assignments[0].fees_today_bn, plan.company_fee_bn);
+        assert!(plan.company_fee_bn > 0.0);
+        assert_eq!(w.production.projects[0].resources_used[Commodity::Iron.idx()], 2.0);
+        assert_eq!(w.resources, resources, "migration must preserve historical physical receipts");
+        let saved = save(&w);
+        let mut restored = load(&saved).unwrap();
+        tick_day(&mut restored);
+        assert_eq!(save(&restored), saved);
+    }
+
+    #[test]
     fn daily_work_uses_money_without_materials_market_or_political_capital() {
         let mut w = daily_financial(0.01);
         let nation = NationId::USA;
@@ -1061,19 +1208,21 @@ mod tests {
     }
 
     #[test]
-    fn daily_six_parallel_sites_do_not_share_an_estate_workforce_ceiling() {
+    fn daily_parallel_sites_do_not_share_a_workforce_or_planning_ceiling() {
         let mut plain = daily_financial(0.1);
         let nation = NationId::USA;
         let districts = owned(&plain, nation);
-        for district in districts.iter().take(6) {
+        let sites = MAX_QUEUED_PROJECTS + 1;
+        assert!(districts.len() >= sites);
+        for district in districts.iter().take(sites) {
             apply_command(&mut plain, &Command::StartProject {
                 nation, district: district.clone(), kind: ProjectKind::Infrastructure,
             }).unwrap();
         }
-        assert_eq!(plain.production.projects.len(), 6, "a fifth site is a financial decision");
+        assert_eq!(plain.production.projects.len(), sites, "another site is a financial decision");
         assert_eq!(plain.nation(nation).political_capital, 0.0);
         let mut developed = plain.clone();
-        for district in districts.iter().take(6) {
+        for district in districts.iter().take(sites) {
             for _ in 0..MAX_PROVINCE_LEVEL {
                 complete_capability(&mut developed, district, ProjectKind::CivilianIndustry);
                 complete_capability(&mut developed, district, ProjectKind::Infrastructure);
@@ -1090,7 +1239,7 @@ mod tests {
         assert_eq!(plain.production.projects, developed.production.projects);
         assert_eq!(plain.production.industry.projects, developed.production.industry.projects);
         near(plain.nation(nation).program_budget.as_ref().unwrap().construction_spent_today_bn,
-             6.0 * crate::industry::work_cost_bn(ProjectKind::Infrastructure)
+             sites as f64 * crate::industry::work_cost_bn(ProjectKind::Infrastructure)
                  / catalog(ProjectKind::Infrastructure).total_days as f64);
     }
 
@@ -1244,7 +1393,7 @@ mod tests {
     }
 
     #[test]
-    fn ownership_slots_and_foreign_project_clicks_are_refused_atomically() {
+    fn ownership_queue_limit_and_foreign_project_clicks_are_refused_atomically() {
         let mut w = legacy_monthly();
         let nation = NationId::USA;
         let foreign = w
@@ -1268,7 +1417,8 @@ mod tests {
         assert_eq!(w.nation(nation).political_capital, pc);
 
         let districts = owned(&w, nation);
-        for district in districts.iter().take(MAX_ACTIVE_PROJECTS) {
+        assert!(districts.len() > MAX_QUEUED_PROJECTS);
+        for district in districts.iter().take(MAX_QUEUED_PROJECTS) {
             apply_command(
                 &mut w,
                 &Command::StartProject {
@@ -1279,23 +1429,84 @@ mod tests {
             )
             .unwrap();
         }
+        assert_eq!(projects_for(&w, nation).count(), MAX_QUEUED_PROJECTS);
         let before = w.production.clone();
         let pc = w.nation(nation).political_capital;
-        assert!(apply_command(
+        let refusal = apply_command(
             &mut w,
             &Command::StartProject {
                 nation,
-                district: districts[MAX_ACTIVE_PROJECTS].clone(),
+                district: districts[MAX_QUEUED_PROJECTS].clone(),
                 kind: ProjectKind::Infrastructure,
             },
         )
-        .is_err());
+        .unwrap_err();
+        assert!(refusal.contains("Planning queue"));
+        assert!(refusal.contains(&MAX_QUEUED_PROJECTS.to_string()));
         assert_eq!(w.production, before);
         assert_eq!(w.nation(nation).political_capital, pc);
 
         let id = w.production.projects[0].id;
         assert!(set_priority(&mut w, NationId::Japan, id, Priority::High).is_err());
         assert!(cancel_project(&mut w, NationId::Japan, id).is_err());
+    }
+
+    #[test]
+    fn a_larger_queue_shares_unchanged_national_throughput() {
+        let nation = NationId::USA;
+
+        let mut solo = legacy_monthly();
+        let solo_district = owned(&solo, nation)[0].clone();
+        fill_recipe(&mut solo, nation, ProjectKind::Infrastructure, 1.0);
+        start_project(
+            &mut solo,
+            nation,
+            &solo_district,
+            ProjectKind::Infrastructure,
+        )
+        .unwrap();
+        let solo_rate = nominal_work_rate(&solo, &solo.production.projects[0]);
+        tick_day(&mut solo);
+        let solo_progress = solo.production.projects[0].progress_days;
+
+        let mut shared = legacy_monthly();
+        let districts = owned(&shared, nation);
+        assert!(districts.len() >= MAX_QUEUED_PROJECTS);
+        fill_recipe(
+            &mut shared,
+            nation,
+            ProjectKind::Infrastructure,
+            MAX_QUEUED_PROJECTS as f64,
+        );
+        for district in districts.iter().take(MAX_QUEUED_PROJECTS) {
+            start_project(
+                &mut shared,
+                nation,
+                district,
+                ProjectKind::Infrastructure,
+            )
+            .unwrap();
+        }
+
+        let shared_first_rate = nominal_work_rate(&shared, &shared.production.projects[0]);
+        let shared_total_rate: f64 = shared
+            .production
+            .projects
+            .iter()
+            .map(|project| nominal_work_rate(&shared, project))
+            .sum();
+        assert!(shared_first_rate < solo_rate);
+        assert!((shared_total_rate - solo_rate).abs() < 1e-9);
+
+        tick_day(&mut shared);
+        let shared_progress: f64 = shared
+            .production
+            .projects
+            .iter()
+            .map(|project| project.progress_days)
+            .sum();
+        assert!((solo_progress - solo_rate).abs() < 1e-9);
+        assert!((shared_progress - solo_progress).abs() < 1e-9);
     }
 
     #[test]

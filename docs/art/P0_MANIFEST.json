@@ -9,10 +9,10 @@
     "authoritative_source": "the deterministic JavaScript generators in spheres-web/ui/",
     "portable_export": "glTF 2.0 .glb via spheres-web/ui/equipment-export.js (equipment platforms only)",
     "reverse_leg": "spheres-web/ui/equipment-import.js — GLB back into the runtime mesh shape",
-    "runtime_loader": "none, deliberately: the game ships no GLB loader and needs no build step"
+    "runtime_loader": "runtime geometry is generated locally; no GLB asset fetch or build step is required"
   },
   "counts": {
-    "vehicles": 9,
+    "vehicles": 11,
     "sites": 13,
     "town_blocks": 5
   },
@@ -29,7 +29,9 @@
       "glb_bytes": 5205632,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 47288
+        "LOD0": 47288,
+        "LOD1": 9425,
+        "LOD2": 1164
       },
       "parts": 21,
       "slots": [
@@ -80,7 +82,9 @@
       "glb_bytes": 5672220,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 50816
+        "LOD0": 50816,
+        "LOD1": 9010,
+        "LOD2": 1200
       },
       "parts": 21,
       "slots": [
@@ -131,7 +135,9 @@
       "glb_bytes": 5207036,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 47288
+        "LOD0": 47288,
+        "LOD1": 9425,
+        "LOD2": 1164
       },
       "parts": 21,
       "slots": [
@@ -182,7 +188,9 @@
       "glb_bytes": 5150368,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 47288
+        "LOD0": 47288,
+        "LOD1": 9425,
+        "LOD2": 1164
       },
       "parts": 21,
       "slots": [
@@ -233,7 +241,9 @@
       "glb_bytes": 2246056,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 20746
+        "LOD0": 20746,
+        "LOD1": 5828,
+        "LOD2": 1120
       },
       "parts": 28,
       "slots": [
@@ -292,7 +302,9 @@
       "glb_bytes": 2241464,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 20710
+        "LOD0": 20710,
+        "LOD1": 4675,
+        "LOD2": 942
       },
       "parts": 22,
       "slots": [
@@ -351,7 +363,9 @@
       "glb_bytes": 1993904,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 18418
+        "LOD0": 18418,
+        "LOD1": 4984,
+        "LOD2": 932
       },
       "parts": 22,
       "slots": [
@@ -410,7 +424,9 @@
       "glb_bytes": 2254492,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 20822
+        "LOD0": 20822,
+        "LOD1": 6050,
+        "LOD2": 1092
       },
       "parts": 30,
       "slots": [
@@ -469,7 +485,9 @@
       "glb_bytes": 2052020,
       "regenerate": "node tools/ui/build_equipment_models.cjs",
       "lod": {
-        "LOD0": 18950
+        "LOD0": 18950,
+        "LOD1": 5590,
+        "LOD2": 1040
       },
       "parts": 28,
       "slots": [
@@ -504,6 +522,114 @@
           3.215,
           3.599,
           5.935
+        ]
+      },
+      "basis": "fictional — original game art, not a named real vehicle",
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_equipment_mesh.cjs, check_equipment_model.cjs, check_equipment_export.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "aviation.air_light_attack.baseline.v1",
+      "display_name": "Visual interpretation of an original light attack aircraft",
+      "kind": "modular platform",
+      "game_id": "air_light_attack",
+      "source": "spheres-web/ui/equipment-mesh.js",
+      "generator": "EquipmentMesh.build({platform})",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "glb": "spheres-web/ui/equipment-models/spheres-air-light-attack.glb",
+      "glb_bytes": 1248352,
+      "regenerate": "node tools/ui/build_equipment_models.cjs",
+      "lod": {
+        "LOD0": 11524
+      },
+      "parts": 16,
+      "slots": [
+        "air_avionics",
+        "air_countermeasures",
+        "air_engine",
+        "air_fuel",
+        "air_hardpoints",
+        "air_payload",
+        "air_radar",
+        "air_wing"
+      ],
+      "materials": 1,
+      "pivot": "airframe centreline, parked landing-gear contact at Y=0",
+      "bounds": {
+        "min": [
+          -5.22,
+          0,
+          -6.092
+        ],
+        "max": [
+          5.22,
+          3.352,
+          6.638
+        ],
+        "size": [
+          10.44,
+          3.352,
+          12.73
+        ]
+      },
+      "basis": "fictional — original game art, not a named real vehicle",
+      "era": [
+        "1990-baseline"
+      ],
+      "validation": "tools/ui/check_equipment_mesh.cjs, check_equipment_model.cjs, check_equipment_export.cjs",
+      "milestone": "P0",
+      "units": "metres",
+      "axes": "+X right, +Y up, +Z forward",
+      "handedness": "right"
+    },
+    {
+      "asset_id": "aviation.air_tactical_strike.baseline.v1",
+      "display_name": "Visual interpretation of an original twin-seat tactical strike aircraft",
+      "kind": "modular platform",
+      "game_id": "air_tactical_strike",
+      "source": "spheres-web/ui/equipment-mesh.js",
+      "generator": "EquipmentMesh.build({platform})",
+      "runtime": "spheres-web/ui/equipment-model.js (WebGL2 viewer, selectable parts)",
+      "glb": "spheres-web/ui/equipment-models/spheres-air-tactical-strike.glb",
+      "glb_bytes": 1594104,
+      "regenerate": "node tools/ui/build_equipment_models.cjs",
+      "lod": {
+        "LOD0": 14724
+      },
+      "parts": 17,
+      "slots": [
+        "air_avionics",
+        "air_countermeasures",
+        "air_engine",
+        "air_fuel",
+        "air_hardpoints",
+        "air_payload",
+        "air_radar",
+        "air_wing"
+      ],
+      "materials": 1,
+      "pivot": "airframe centreline, parked landing-gear contact at Y=0",
+      "bounds": {
+        "min": [
+          -6.22,
+          0,
+          -8.542
+        ],
+        "max": [
+          6.22,
+          4.082,
+          9.188
+        ],
+        "size": [
+          12.44,
+          4.082,
+          17.73
         ]
       },
       "basis": "fictional — original game art, not a named real vehicle",

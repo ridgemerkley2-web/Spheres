@@ -1,16 +1,17 @@
-//! Version-one tank design and lifecycle. All ratings and prices below are
+//! Custom ground and tactical-strike design lifecycles. Ratings and prices are
 //! explicit GAME assumptions, not specifications of historical vehicles.
 //! Component knowledge consumes existing Aerospace effort. Equipment itself
 //! always remains in `Nation::arsenal`, never in this project ledger.
 use crate::{
     clock,
+    companies::{self, CompanySector, CompanyTarget},
     production::Priority,
     world::{Nation, NationId, WorldState},
 };
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 
-pub const VERSION: u32 = 3;
+pub const VERSION: u32 = 8;
 pub const MAX_REVISIONS: usize = 128;
 pub const MAX_PROJECTS: usize = 128;
 pub const MAX_BATCH: u32 = 1000;
@@ -68,6 +69,12 @@ pub const PLATFORMS: &[PlatformDef] = &[
     PlatformDef { id:"ground_air_defense", name:"Mobile air defense", capacity:17,
         cost_bn:0.00065, mobility:1.02, protection:0.68,
         detail:"Tracked gun or missile defense with separate search radar. Reduces air-strike damage to the forces it accompanies." },
+    PlatformDef { id:"air_light_attack", name:"Light attack aircraft", capacity:18,
+        cost_bn:0.0040, mobility:1.0, protection:1.0,
+        detail:"Economical tactical-strike aircraft with two-store installations. Needs actual maintenance, available theatre basing and manufactured bombs for strike operations." },
+    PlatformDef { id:"air_tactical_strike", name:"Tactical strike aircraft", capacity:21,
+        cost_bn:0.0100, mobility:1.0, protection:1.0,
+        detail:"Larger strike airframe with optional twin engines and four-store installations. Provides tactical air strikes; no interception, strategic lift or ground combat capability." },
 ];
 
 #[derive(Clone, Debug, Serialize)]
@@ -111,8 +118,8 @@ pub const COMPONENTS: &[ComponentDef] = &[
     component!("protection_standard","Standard armor","protection",2,0.00040,0.00000003,0.0,0.0,0.0,0.0,None,None,"Baseline armor. Active protection is selected separately in detailed designs."),
     component!("protection_heavy","Reinforced armor","protection",4,0.00085,0.00000006,0.0,0.25,-0.12,0.0,None,None,"Greater protection occupies room and reduces mobility. Can accompany a separate active-protection system."),
     component!("protection_active","Integrated active protection","protection",4,0.00115,0.00000013,0.0,0.35,-0.05,0.0,None,Some("aero_active_protection_system"),"Requires the existing active-protection discovery; a new design or paid refit must install it."),
-    component!("armament_standard","General-purpose tank weapon package","armament",3,0.00055,0.00000006,0.0,0.0,0.0,0.0,None,None,"Legacy mission package. No extra ammunition inventory is created."),
-    component!("armament_heavy","Heavy tank weapon package","armament",4,0.00090,0.00000010,0.20,0.0,-0.06,0.0,None,None,"Higher land contribution, greater installation and support burden."),
+    component!("armament_standard","General-purpose tank weapon package","armament",3,0.00055,0.00000006,0.0,0.0,0.0,0.0,None,None,"Legacy package mapped to the modeled 105 mm mixed ammunition family. Compatible physical rounds are manufactured separately."),
+    component!("armament_heavy","Heavy tank weapon package","armament",4,0.00090,0.00000010,0.20,0.0,-0.06,0.0,None,None,"Higher land contribution, installation and support burden. Mapped to modeled 120 mm mixed rounds, manufactured separately."),
     component!("sensors_optical","Optical observation and control","sensors",1,0.00015,0.00000002,0.0,0.0,0.0,0.0,None,None,"Legacy observation package."),
     component!("sensors_integrated","Integrated observation and fire control","sensors",2,0.00048,0.00000006,0.12,0.0,0.0,0.25,Some("tank_fire_control_1990"),None,"A modeled vehicle integration programme, enabled by electronics knowledge. Research alone changes no existing vehicle."),
     component!("comms_radio","Field radio package","communications",1,0.00008,0.00000001,0.0,0.0,0.0,0.0,None,None,"Legacy radio integration."),
@@ -121,6 +128,16 @@ pub const COMPONENTS: &[ComponentDef] = &[
 
 include!("equipment_specs.rs");
 include!("equipment_ground.rs");
+include!("equipment_aviation.rs");
+include!("equipment_supply.rs");
+include!("equipment_service.rs");
+include!("equipment_maintenance.rs");
+include!("equipment_targets.rs");
+include!("equipment_replenishment.rs");
+include!("equipment_ammunition_production.rs");
+include!("equipment_ammunition_operations.rs");
+include!("equipment_ammunition_reserves.rs");
+include!("equipment_supply_automation.rs");
 
 #[derive(Clone, Debug, Serialize)]
 pub struct ResearchDef {
@@ -147,6 +164,9 @@ ResearchDef { id:"ground_modular_armor", name:"Modular ground protection", point
 ResearchDef { id:"ground_sensor_fusion", name:"Ground sensor fusion", points:34.0, earliest_year:1990, prerequisite:"core_cmos_submicron", detail:"Builds on observation integration to unlock elevated scout sensors and tracking radar." },
 ResearchDef { id:"ground_secure_radios", name:"Secure ground communications", points:20.0, earliest_year:1990, prerequisite:"core_cmos_submicron", detail:"Unlocks secure radio installations and begins the ground command-network branch." },
 ResearchDef { id:"ground_battlefield_network", name:"Networked ground command", points:38.0, earliest_year:1990, prerequisite:"core_cmos_submicron", detail:"Combines secure radios and sensor fusion to unlock networked reconnaissance and specialist coordination." },
+ResearchDef { id:"air_propulsion_integration", name:"Aircraft propulsion and flight-control integration", points:40.0, earliest_year:1990, prerequisite:"core_cmos_submicron", detail:"Unlocks managed aircraft engines and stabilized attack wings. Installed components change sustained sortie output; research grants no aircraft or national modifier." },
+ResearchDef { id:"air_mission_systems", name:"Tactical aircraft mission systems", points:42.0, earliest_year:1990, prerequisite:"core_cmos_submicron", detail:"Unlocks ground-mapping radar, digital attack avionics and integrated countermeasures. Effects require a certified aircraft revision and supplied strike mission." },
+ResearchDef { id:"air_guided_strike", name:"Guided air-to-ground stores integration", points:48.0, earliest_year:1990, prerequisite:"core_cmos_submicron", detail:"Builds on aircraft mission systems to certify guided-bomb interfaces. Bombs remain finite manufactured consumables; no starting stores are granted." },
 ];
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
@@ -176,6 +196,9 @@ pub struct CompiledProfile {
     /// Absent on old tank profiles so loading never changes frozen revisions.
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub ground_roles: Option<GroundRoles>,
+    /// Sparse on all earlier frozen profiles. Tactical strike has no land role.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub aviation: Option<AviationProfile>,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
@@ -229,9 +252,19 @@ pub struct EquipmentProject {
     pub daily_budget_bn: f64,
     pub recipe_per_unit: [f64; 12],
     pub resources_used: [f64; 12],
+    /// Nominal ingredients avoided during completed company-operated work;
+    /// negative receipts record a material-intensity tradeoff.
+    /// Kept separately so changing contractors never refunds or catches up
+    /// materials already settled under a different recipe efficiency.
+    #[serde(default, skip_serializing_if = "zero_company_inputs")]
+    pub company_inputs_saved: [f64; 12],
+    #[serde(default, skip_serializing_if = "zero_company_fees")]
+    pub company_fees_bn: f64,
     pub last_spent_bn: f64,
     pub last_day: Option<i32>,
 }
+fn zero_company_inputs(value: &[f64; 12]) -> bool { value.iter().all(|v| *v == 0.0) }
+fn zero_company_fees(value: &f64) -> bool { *value == 0.0 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct DesignDraft {
@@ -260,6 +293,16 @@ pub struct EquipmentState {
     pub maintenance_required_today_bn: f64,
     pub maintenance_fraction: f64,
     pub last_tick_day: Option<i32>,
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub fleet_targets: BTreeMap<String, u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub maintenance_plan: Option<FleetMaintenance>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub ammunition: Option<AmmunitionState>,
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub ammunition_reserves: BTreeMap<String, AmmoReservePlan>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub supply_automation: Option<EquipmentSupplyAutomation>,
 }
 impl Default for EquipmentState {
     fn default() -> Self {
@@ -282,6 +325,11 @@ impl Default for EquipmentState {
             maintenance_required_today_bn: 0.0,
             maintenance_fraction: 1.0,
             last_tick_day: None,
+            fleet_targets: BTreeMap::new(),
+            maintenance_plan: None,
+            ammunition: None,
+            ammunition_reserves: BTreeMap::new(),
+            supply_automation: None,
         }
     }
 }
@@ -349,7 +397,7 @@ pub fn design_preview(w: &WorldState, nation: NationId, spec: &DesignSpec) -> De
     let required = slots_for(spec);
     blockers.extend(configuration_refusals(spec));
     if platform.is_none() {
-        blockers.push("Choose a supported ground-vehicle chassis.".into());
+        blockers.push("Choose a supported vehicle chassis or aircraft airframe.".into());
     }
     for key in spec.components.keys() {
         if !required.contains(&key.as_str()) {
@@ -378,6 +426,14 @@ pub fn design_preview(w: &WorldState, nation: NationId, spec: &DesignSpec) -> De
         }
     }
     let compiled = platform.filter(|_| selected.len() == required.len()).map(|p| {
+        if is_aviation_platform(p.id) {
+            let profile = compile_aviation_model(spec).expect("all required aircraft slots validated");
+            if profile.installation_used > profile.installation_capacity {
+                blockers.push(format!("Installation load {} exceeds this airframe's {} capacity.",
+                    profile.installation_used, profile.installation_capacity));
+            }
+            return profile;
+        }
         let capacity = p.capacity + if detailed_spec(spec) { 8 } else { 0 };
         let used = selected.iter().map(|c| c.load).sum();
         if used > capacity {
@@ -432,11 +488,12 @@ pub fn design_preview(w: &WorldState, nation: NationId, spec: &DesignSpec) -> De
             installation_used: used,
             installation_capacity: capacity,
             ground_roles: compile_ground_roles(spec, land, protection, mobility, recon),
+            aviation: None,
         }
     });
     DesignPreview {valid:blockers.is_empty(),blockers,profile:compiled,specification_key:specification_key(spec),notes:vec![
         "Prices, installation ratings and input quantities are explicit game-model assumptions, not historical vehicle specifications.".into(),
-        "One unit is one complete new vehicle. Inherited Arsenal formations remain legacy equivalents.".into(),
+        "One unit is one complete new vehicle or aircraft. Inherited Arsenal formations remain legacy equivalents.".into(),
         "Fabrication payments exclude separately acquired raw inputs. Research and drafts create no equipment or force bonus.".into()]}
 }
 
@@ -743,6 +800,8 @@ fn new_project(
         daily_budget_bn: budget,
         recipe_per_unit: [0.0; 12],
         resources_used: [0.0; 12],
+        company_inputs_saved: [0.0; 12],
+        company_fees_bn: 0.0,
         last_spent_bn: 0.0,
         last_day: None,
     }
@@ -755,7 +814,7 @@ pub fn reserved_site_slots(n: &Nation, district: &str) -> usize {
                 p.district.as_deref() == Some(district)
                     && !matches!(p.status, ProjectStatus::Complete | ProjectStatus::Cancelled)
             })
-            .count()
+            .count() + reserved_ammunition_slots(n,district)
     })
 }
 pub fn maintenance_allocated_bn(n: &Nation) -> f64 {
@@ -871,7 +930,7 @@ fn refit_terms(
         || source.spec.components.get("armament") != target.spec.components.get("armament")
     {
         return Err(
-            "This change replaces the chassis or main weapon. Manufacture new vehicles instead."
+            "This change replaces the chassis, airframe or main ground weapon. Manufacture new equipment instead."
                 .into(),
         );
     }
@@ -1112,7 +1171,7 @@ fn live_site_blocker(w: &WorldState, id: NationId, job: &EquipmentProject) -> Op
     // starts preflight all reservations; malformed/reduced-capacity saves use
     // stable priority order rather than running more work than the site holds.
     let legacy = crate::manufacturing::lines_for(w, id)
-        .filter(|l| l.district == district)
+        .filter(|l| l.district == district && (!w.rules.industry_rebuild || !crate::manufacturing::is_naval(&l.kit)))
         .count();
     let remaining =
         (crate::manufacturing::plant_slots(w, district) as usize).saturating_sub(legacy);
@@ -1125,6 +1184,28 @@ fn live_site_blocker(w: &WorldState, id: NationId, job: &EquipmentProject) -> Op
     }
     None
 }
+
+pub fn production_operating_fraction(w:&WorldState,job:&EquipmentProject)->f64 {
+    if !w.rules.industry_rebuild || job.kind==ProjectKind::Development { return 1.0; }
+    job.district.as_deref().map_or(0.0,|d|crate::industry_operations::operating_fraction(w,d,crate::production::ProjectKind::ArmsPlant))
+}
+pub fn project_components(w:&WorldState,job:&EquipmentProject,step:f64)->f64 {
+    if !w.rules.industry_rebuild || job.kind==ProjectKind::Development || work_terms(job).tooling { return 0.0; }
+    let company = job.district.as_ref().and_then(|d| w.districts.get(d)).map_or_else(
+        companies::CompanyModifiers::default, |id| work_company(w, *id, job));
+    project_components_with_company(w, job, step, company)
+}
+fn project_components_with_company(w: &WorldState, job: &EquipmentProject, step: f64, company: companies::CompanyModifiers) -> f64 {
+    if !w.rules.industry_rebuild || job.kind == ProjectKind::Development || work_terms(job).tooling { return 0.0; }
+    // Step already includes company work efficiency. Components are consumed
+    // only for that actual fabrication work, with the same ingredient tradeoff.
+    work_terms(job).rate * step.max(0.0) * 100.0 * company.input_rate
+}
+pub fn advanced_components_demand_daily(w:&WorldState,nation:NationId)->f64 {
+    if !w.rules.industry_rebuild { return 0.0; }
+    next_work_supply(w, nation).advanced_components
+}
+
 fn set_blocker(w: &mut WorldState, id: NationId, index: usize, reason: String, paused: bool) {
     let p = &mut state_mut(w.nation_mut(id)).projects[index];
     p.status = if paused {
@@ -1169,6 +1250,10 @@ pub fn tick_day(w: &mut WorldState) {
             .map(|(i, p)| (p.priority.dispatch_rank(), p.id, i))
             .collect();
         jobs.sort();
+        // Freeze the bid used for every opening project. One completed job can
+        // train its contractor without changing another reserved day's recipe.
+        let opening_companies: BTreeMap<_, _> = w.nation(id).equipment.as_ref().unwrap().projects.iter()
+            .map(|job| (job.id, work_company(w, id, job))).collect();
         {
             let s = state_mut(w.nation_mut(id));
             s.last_tick_day = Some(today);
@@ -1222,59 +1307,25 @@ pub fn tick_day(w: &mut WorldState) {
                 );
                 continue;
             }
-            let tooling = job.kind == ProjectKind::Production
-                && job.work_days + 1e-9 < (job.tooling_days as f64);
-            let (rate, stage_remaining, raw_rate) = if tooling {
-                (
-                    job.tooling_cost_bn / job.tooling_days.max(1) as f64,
-                    job.tooling_days as f64 - job.work_days,
-                    [0.0; 12],
-                )
-            } else if job.kind == ProjectKind::Development {
-                (
-                    job.cost_bn / job.minimum_days.max(1) as f64,
-                    job.minimum_days as f64 - job.work_days,
-                    [0.0; 12],
-                )
-            } else {
-                let work = (job.minimum_days - job.tooling_days).max(1) as f64;
-                let per_unit = work / job.quantity.max(1) as f64;
-                let completed = job.completed_units as f64;
-                (
-                    (job.cost_bn - job.tooling_cost_bn) / work,
-                    job.tooling_days as f64 + (completed + 1.0) * per_unit - job.work_days,
-                    job.recipe_per_unit.map(|x| x / per_unit),
-                )
-            };
+            let terms = work_terms(&job);
+            let tooling = terms.tooling;
+            let rate = terms.rate;
+            let stage_remaining = terms.stage_remaining;
             if !rate.is_finite() || rate <= 0.0 || stage_remaining <= 0.0 {
-                set_blocker(
-                    w,
-                    id,
-                    index,
-                    "The saved work contract is invalid.".into(),
-                    false,
-                );
+                set_blocker(w, id, index, "The saved work contract is invalid.".into(), false);
                 continue;
             }
-            let mut advance = 1.0_f64
+            let company_target = CompanyTarget::CustomEquipment { project: job.id };
+            let company = opening_companies[&job.id];
+            let billed_rate = rate * (1.0 + company.fee_rate);
+            let mut advance = company_work_capacity(w, &job, company)
                 .min(stage_remaining)
-                .min(job.daily_budget_bn / rate)
-                .min(available / rate);
-            let input_bundle = |step: f64| {
-                if raw_rate.iter().all(|x| *x == 0.0) {
-                    return [0.0; 12];
-                }
-                let unit_days = (job.minimum_days - job.tooling_days).max(1) as f64
-                    / job.quantity.max(1) as f64;
-                let units_worked = ((job.work_days + step - job.tooling_days as f64).max(0.0)
-                    / unit_days)
-                    .min(job.quantity as f64);
-                let batch = job.recipe_per_unit.map(|x| x * job.quantity as f64);
-                let target =
-                    crate::resources::scale_bundle(&batch, units_worked / job.quantity as f64);
-                std::array::from_fn(|i| (target[i] - job.resources_used[i]).max(0.0))
-            };
-            let desired = input_bundle(advance);
+                .min(job.daily_budget_bn / billed_rate)
+                .min(available / billed_rate);
+            let wanted_components = project_components_with_company(w, &job, advance, company);
+            let component_stock = crate::commerce::stock(w, id, crate::commerce::Good::AdvancedComponents);
+            let desired = company_inputs(work_inputs(&job, advance), company);
+
             // Custom manufacture always needs its recipe; the legacy gate flag
             // cannot turn newly designed vehicles into free physical inputs.
             let supply = if desired.iter().any(|x| *x > 0.0) {
@@ -1282,24 +1333,30 @@ pub fn tick_day(w: &mut WorldState) {
             } else {
                 1.0
             };
-            advance *= supply.clamp(0.0, 1.0);
+            let component_fraction = if wanted_components > 0.0 {
+                (component_stock / wanted_components).clamp(0.0, 1.0)
+            } else { 1.0 };
+            advance *= supply.min(component_fraction).clamp(0.0, 1.0);
             if advance <= 1e-12 {
                 set_blocker(
                     w,
                     id,
                     index,
-                    "Waiting for the physical inputs shown in this project's recipe.".into(),
+                    "Waiting for staffed, powered production capacity, physical inputs or advanced components.".into(),
                     true,
                 );
                 continue;
             }
-            let required = input_bundle(advance);
+            let nominal_required = work_inputs(&job, advance);
+            let required = company_inputs(nominal_required, company);
+            let components_used = project_components_with_company(w, &job, advance, company);
+            if components_used > component_stock {
+                set_blocker(w, id, index, "The exact advanced-component bundle cannot settle this fractional work.".into(), true);
+                continue;
+            }
             let finishing = job.work_days + advance + 1e-9 >= job.minimum_days as f64;
-            let payment = if finishing {
-                (job.cost_bn - job.spent_bn).max(0.0)
-            } else {
-                rate * advance
-            };
+            let base_payment = supply_payment(&job, advance);
+            let payment = base_payment * (1.0 + company.fee_rate);
             if payment > available || payment > job.daily_budget_bn + 1e-12 {
                 set_blocker(
                     w,
@@ -1342,6 +1399,10 @@ pub fn tick_day(w: &mut WorldState) {
                     continue;
                 }
             }
+            if components_used>0.0 {
+                let stock=w.production.operations.advanced_components.entry(id).or_default();
+                *stock=(*stock-components_used).max(0.0);
+            }
             let work = (job.work_days + advance).min(job.minimum_days as f64);
             let new_units = if job.kind == ProjectKind::Development {
                 0
@@ -1381,12 +1442,14 @@ pub fn tick_day(w: &mut WorldState) {
             let s = state_mut(w.nation_mut(id));
             let p = &mut s.projects[index];
             p.work_days = work;
-            p.spent_bn += payment;
+            p.spent_bn += base_payment;
+            p.company_fees_bn += payment - base_payment;
             p.last_spent_bn = payment;
             p.completed_units = new_units;
             for (used, amount) in p.resources_used.iter_mut().zip(required) {
                 *used += amount;
             }
+            for i in 0..12 { p.company_inputs_saved[i] += nominal_required[i] - required[i]; }
             p.status = if finishing {
                 ProjectStatus::Complete
             } else {
@@ -1406,23 +1469,19 @@ pub fn tick_day(w: &mut WorldState) {
                     s.revisions.get_mut(&job.revision_id).unwrap().certified_day = Some(today);
                 }
             }
+            let base_work = advance / company.work_rate;
+            companies::record_work(w, id, &company_target, base_work, advance - base_work, payment - base_payment);
+            companies::record_sector_activity(w, id, CompanySector::Defense, advance);
         }
         settle_maintenance(w, id);
     }
 }
 
 fn settle_maintenance(w: &mut WorldState, id: NationId) {
-    let required = w
-        .nation(id)
-        .arsenal
-        .held
-        .iter()
-        .filter_map(|h| {
-            h.design_id.as_deref().and_then(|key| {
-                profile(w.nation(id), key).map(|p| p.maintenance_bn_day * h.units.max(0.0))
-            })
-        })
-        .sum::<f64>();
+    // Actual invoices settle once after today's deliveries. The old earmark
+    // remains the compatibility path until a reviewed plan takes effect.
+    if maintenance_plan_on(w.nation(id),clock::absolute_day(w)){return;}
+    let required = fleet_maintenance_requirement(w.nation(id));
     // Department2 already records this service payment. Earmarking its limited
     // envelope supports vehicles and reduces legacy magazine refill through
     // the shared integration helper; it never creates another treasury charge.
@@ -1456,7 +1515,7 @@ pub fn settle_support(w: &mut WorldState) {
             n.alive
                 && n.equipment
                     .as_ref()
-                    .is_some_and(|s| s.finance_from_day <= day)
+                    .is_some_and(|s| s.finance_from_day <= day || s.maintenance_plan.as_ref().is_some_and(|p|p.from_day<=day))
                 && n.program_budget
                     .as_ref()
                     .is_some_and(|p| p.day == Some(day))
@@ -1464,7 +1523,9 @@ pub fn settle_support(w: &mut WorldState) {
         .map(|n| n.id)
         .collect();
     for id in ids {
-        settle_maintenance(w, id);
+        if maintenance_plan_on(w.nation(id),day){settle_fleet_maintenance(w,id);}else{settle_maintenance(w, id);}
+        tick_ammunition_work(w,id);
+        tick_ammunition_reserves(w,id);
     }
 }
 
@@ -1480,9 +1541,14 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
         return Ok(());
     };
     let fail = |detail: &str| format!("Invalid equipment state for {}: {detail}", n.id.name());
-    if !matches!(s.version, 1 | 2 | VERSION) {
+    if !(1..=VERSION).contains(&s.version) {
         return Err(fail("unsupported equipment version"));
     }
+    validate_fleet_targets(n)?;
+    validate_maintenance_plan(n)?;
+    validate_ammunition(n)?;
+    validate_ammunition_reserves(n)?;
+    validate_supply_automation(n)?;
     if s.revisions.len() > MAX_REVISIONS
         || s.projects.len() > MAX_PROJECTS
         || s.drafts.len() > MAX_REVISIONS
@@ -1537,6 +1603,7 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
             || p.rules_version != spec_version(&r.spec)
             || (s.version == 1 && detailed_spec(&r.spec))
             || (s.version < 3 && is_ground_platform(&r.spec.platform))
+            || (s.version < 8 && is_aviation_platform(&r.spec.platform))
             || !PLATFORMS.iter().any(|p| p.id == r.spec.platform)
             || !configuration_refusals(&r.spec).is_empty()
             || r.spec.components.len() != slots_for(&r.spec).len()
@@ -1563,6 +1630,7 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
             || !(0.75..=1.25).contains(&p.land_factor)
             || p.ground_roles.is_some() != is_ground_platform(&r.spec.platform)
             || p.ground_roles.is_some_and(|roles| !roles.valid())
+            || !aviation_frozen_profile_valid(&r.spec, p)
             || p.service_months == 0
             || p.production_days == 0
             || p.development_days == 0
@@ -1595,6 +1663,7 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
                 p.spent_bn,
                 p.tooling_cost_bn,
                 p.last_spent_bn,
+                p.company_fees_bn,
             ]
             .iter()
             .any(|v| !v.is_finite() || *v < 0.0)
@@ -1605,6 +1674,7 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
                 .iter()
                 .chain(p.resources_used.iter())
                 .any(|v| !v.is_finite() || *v < 0.0)
+            || p.company_inputs_saved.iter().any(|v| !v.is_finite())
             || budget_refusal(p.daily_budget_bn).is_some()
         {
             return Err(fail("invalid project contract, progress or identity"));
@@ -1686,8 +1756,9 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
             || p.completed_units != expected_units
             || p.resources_used
                 .iter()
+                .zip(p.company_inputs_saved)
                 .zip(expected_inputs)
-                .any(|(a, b)| !near(*a, b))
+                .any(|((used, saved), expected)| !near(*used + saved, expected))
         {
             return Err(fail(
                 "project money, materials or completed units disagree with paid work",
@@ -1724,7 +1795,7 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
                 || s.revisions
                     .get(id)
                     .is_some_and(|r| r.certified_day.is_none())
-                || Some(h.kit) != crate::arsenal::index_of("arm_gen3")
+                || Some(h.kit) != s.revisions.get(id).and_then(|r| crate::arsenal::index_of(design_base_kit(&r.spec)))
                 || !h.units.is_finite()
                 || h.units < 0.0
                 || h.units.fract() != 0.0
@@ -1751,7 +1822,7 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
                 || s.revisions
                     .get(id)
                     .is_some_and(|r| r.certified_day.is_none())
-                || Some(o.kit) != crate::arsenal::index_of("arm_gen3")
+                || Some(o.kit) != s.revisions.get(id).and_then(|r| crate::arsenal::index_of(design_base_kit(&r.spec)))
                 || !o.units.is_finite()
                 || o.units <= 0.0
                 || o.units.fract() != 0.0
@@ -1775,7 +1846,7 @@ mod tests {
         world::{GameRules, BUDGET_DEFENSE},
     };
     const USA: NationId = NationId::USA;
-    fn fixture() -> (WorldState, String) {
+    pub(super) fn fixture() -> (WorldState, String) {
         let mut w = world_1990(GameRules {
             daily_simulation: true,
             military_operations: true,
@@ -1823,6 +1894,42 @@ mod tests {
         }
         assert!(certified(w.nation(USA), &id).is_ok());
         id
+    }
+    #[test]
+    fn company_custom_equipment_recipes_survive_reassignment_and_save_load() {
+        let (mut fixture, district) = fixture();
+        let revision = finish_development(&mut fixture, "Company test vehicle", baseline_spec());
+        let project = start_production(&mut fixture, USA, &revision, &district, 2, 1.0).unwrap();
+        let tooling = profile(fixture.nation(USA), &revision).unwrap().tooling_days;
+        for _ in 0..tooling { next_work_day(&mut fixture); }
+        companies::enable(&mut fixture);
+        // Check both efficient recipes and the fast firm's extra ingredient
+        // use; releasing either contract must not recalculate past receipts.
+        for saving in [true, false] {
+            let mut w = fixture.clone();
+            let company = w.companies.roster.iter().filter(|c| c.nation == USA && c.sector == CompanySector::Defense)
+                .max_by(|a,b| if saving {a.input_saving.total_cmp(&b.input_saving)} else {a.work_bonus.total_cmp(&b.work_bonus)}).unwrap().id;
+            let target = CompanyTarget::CustomEquipment { project };
+            companies::assign(&mut w, USA, company, target.clone()).unwrap();
+            let modifier = companies::modifiers(&w, USA, &target);
+            next_work_day(&mut w);
+            let job = w.nation(USA).equipment.as_ref().unwrap().projects.iter().find(|p|p.id == project).unwrap();
+            assert!(job.company_fees_bn > 0.0 && job.work_days > tooling as f64);
+            assert!(job.company_inputs_saved.iter().any(|v| if saving {*v > 0.0} else {*v < 0.0}), "saving={saving}, rate={}, receipts={:?}", modifier.input_rate, job.company_inputs_saved);
+            for i in 0..12 {
+                let nominal = job.resources_used[i] + job.company_inputs_saved[i];
+                assert!((job.resources_used[i] - nominal * modifier.input_rate).abs() < 1e-8);
+            }
+            validate_state(w.nation(USA)).unwrap();
+            let saved = crate::save(&w);
+            w = crate::load(&saved).unwrap();
+            assert_eq!(crate::save(&w), saved);
+            companies::unassign(&mut w, USA, &target).unwrap();
+            next_work_day(&mut w);
+            validate_state(w.nation(USA)).unwrap();
+            let saved = crate::save(&w);
+            assert_eq!(crate::save(&crate::load(&saved).unwrap()), saved);
+        }
     }
     #[test]
     fn ground_families_complete_paid_development_and_share_physical_production() {
@@ -1904,7 +2011,7 @@ mod tests {
     #[test]
     fn separate_specifications_have_valid_distinct_types_and_require_every_slot() {
         let (w,_) = fixture();let before=crate::save(&w);let mut prices=vec![];
-        for platform in PLATFORMS.iter().filter(|p| !is_ground_platform(p.id)) {
+        for platform in PLATFORMS.iter().filter(|p| p.id.starts_with("tank_")) {
             let spec=tank_spec(platform.id);let preview=design_preview(&w,USA,&spec);
             assert!(preview.valid,"{}: {:?}",platform.id,preview.blockers);
             let p=preview.profile.unwrap();assert_eq!(p.rules_version,2);assert_eq!(p.component_costs.len(),12);prices.push(p.unit_cost_bn);

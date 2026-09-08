@@ -13,9 +13,29 @@ function fn(name,source=page){
   if(/}\s*$/.test(line))return line;
   return source.slice(match.index,source.indexOf('\n}',match.index)+2);
 }
+test('map construction sprites resolve coarse geometry separately from close cards',()=>{
+  const SiteMesh=require(path.join(root,'spheres-web/ui/site-mesh.js'));
+  const providers=new Map(), draws=[];
+  const Arsenal3D={available:true,register:(key,build)=>providers.set(key,build),
+    sprite(id,size){const split=id.indexOf(':');const mesh=providers.get(id.slice(0,split))(id.slice(split+1));draws.push({id,size,mesh});return mesh;},
+    canvasHtml(id){const split=id.indexOf(':');const mesh=providers.get(id.slice(0,split))(id.slice(split+1));draws.push({id,mesh});return id;}};
+  const c=vm.createContext({window:{SiteMesh,Arsenal3D},SiteMesh,Arsenal3D,installSurfaceTreatment(){},
+    clamp:(v,a,b)=>Math.max(a,Math.min(b,v))});
+  vm.runInContext(['registerMeshProviders','siteArtReady','productionKind','productionStatus','productionProgress','productionSiteSprite','productionSite3d'].map(n=>fn(n)).join('\n'),c);
+  const project={kind:'arms_plant',progress:0.55,status:'building',level:1};
+  c.productionSiteSprite(project,24);c.productionSite3d(project);
+  assert.equal(draws[0].mesh.lod,1,'Map pins must actually build the coarse site');
+  assert.equal(draws[1].mesh.lod,0,'Cards retain the detailed site');
+  assert.notEqual(draws[0].id,draws[1].id,'Renderer caches cannot alias the two detail levels');
+  assert(draws[0].mesh.triangleCount<draws[1].mesh.triangleCount/4,'Map geometry must be substantially cheaper');
+  c.productionSiteSprite({...project,progress:0.551},30);
+  assert.equal(draws[2].id,draws[0].id,'Tiny work updates reuse the stage cache');
+  assert.equal(draws[2].size,draws[0].size,'Nearby pin sizes reuse the sprite bucket');
+});
+
 const names=['logisticsEscAttr','constructionMoney','productionQueue','productionCatalog','productionProvinces',
   'productionCompleted','productionProject','productionKind','productionStatus','productionTone','productionProvince',
-  'productionProgress','productionPriorityChoices','productionCanCancel','productionSummary','productionFundingLabel',
+  'productionProgress','productionPriorityChoices','productionCanCancel','productionSummary','constructionProjectRole','productionFundingLabel',
   'productionEligible','productionCardHtml','productionSiteStripHtml','productionSite3d','siteArtReady','productionCatalogHtml','productionProvinceHtml','constructionBudgetHtml',
   'productionCapabilityPairs','productionModuleLabel','constructionSiteContext','constructionProvinceRefusal',
   'constructionProvinceMatches','constructionProvinceChoices','constructionRevealProject','constructionPreviewNoticeHtml',

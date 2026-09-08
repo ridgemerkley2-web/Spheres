@@ -175,6 +175,9 @@ fn consenting_seller(w: &mut WorldState, good: Good, quantity: f64) {
     match good {
         Good::Intermediates => goods.intermediates = quantity,
         Good::CapitalGoods => goods.capital_goods = quantity,
+        Good::AdvancedComponents => {
+            w.production.operations.advanced_components.insert(SELLER, quantity);
+        }
     }
     apply_command(
         w,

@@ -1,10 +1,20 @@
 pub mod agency;
 pub mod campaign_aims;
 pub mod arsenal;
+pub mod blocs;
 pub mod commitment;
 pub mod construction_preview;
+pub mod construction_capacity;
+pub mod construction_roles;
+pub mod construction_presets;
+#[cfg(test)]
+mod industry_manufacturing_tests;
+#[cfg(test)]
+mod industry_construction_tests;
+pub mod industry_operations;
 pub mod construction_suggestions;
 pub mod commerce;
+pub mod companies;
 pub mod data;
 pub mod districts;
 pub mod domination;
@@ -55,6 +65,19 @@ pub enum EquipmentOrder {
     Develop { name: String, spec: equipment::DesignSpec, daily_budget_bn: f64 },
     Produce { revision: String, district: String, quantity: u32, daily_budget_bn: f64 },
     Refit { source: String, target: String, district: String, quantity: u32, daily_budget_bn: f64 },
+    Retire { revision: String, quantity: u32 },
+    Maintenance { daily_budget_bn: f64 },
+    Supply { horizon_days:u32, spending_cap_bn:f64 },
+    SupplyPolicy { horizon_days:u32, spending_cap_bn:f64, cash_floor_bn:f64, review_interval_days:u32, automatic:bool },
+    SupplyPolicyClear,
+    Target { revision:String, quantity:Option<u32> },
+    AmmoOrder { family:String, district:String, quantity:u32, daily_budget_bn:f64 },
+    AmmoActivate,
+    AmmoFunding { project:u32, daily_budget_bn:f64 },
+    AmmoPause { project:u32, paused:bool },
+    AmmoCancel { project:u32 },
+    AmmoReserve { family:String, target_rounds:u32, district:String, daily_budget_bn:f64, automatic:bool },
+    AmmoReserveClear { family:String },
     Pause { project: u32, paused: bool },
     Funding { project: u32, daily_budget_bn: f64 },
     Cancel { project: u32 },
@@ -63,6 +86,9 @@ pub enum EquipmentOrder {
 /// All player and AI actions flow through the command queue.
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub enum Command {
+    EnableCompanies { nation: NationId },
+    AssignCompany { nation: NationId, company: u32, target: companies::CompanyTarget },
+    UnassignCompany { nation: NationId, target: companies::CompanyTarget },
     Equipment { nation: NationId, order: EquipmentOrder },
     SetInterestRate { nation: NationId, rate: f64 },
     BreakCurrencyPeg { nation: NationId },
@@ -155,7 +181,8 @@ pub enum Command {
         district: String,
         commodity: resources::Commodity,
     },
-    /// Queue a funded construction project in an owned province.
+    /// Queue a funded construction project in an owned province. Legacy monthly
+    /// planning shares its existing workforce and cannot create free throughput.
     StartProject {
         nation: NationId,
         district: String,
@@ -168,6 +195,21 @@ pub enum Command {
         capacity_micros: u32,
     },
     /// Prioritize one active project inside the shared construction budget.
+    SetConstructionAllocation {
+        nation: NationId,
+        project: u32,
+        capacity: Option<f64>,
+    },
+    StartIndustryPreset {
+        nation: NationId,
+        district: String,
+    },
+    SetMineConstructionAllocation {
+        nation: NationId,
+        district: String,
+        commodity: resources::Commodity,
+        capacity: Option<f64>,
+    },
     SetProjectPriority {
         nation: NationId,
         project: u32,
@@ -227,6 +269,23 @@ pub enum Command {
     /// What a regime that does not hold elections does instead: pay one of the
     /// institutions that could remove it.
     SecurePillar { nation: NationId, pillar: government::Pillar },
+
+    // --- The political arm's five levers (S3). Every one is refused with
+    // "This world does not model ideological movements." while
+    // `rules.ideology_blocs` is off, before any state is read. ---
+    /// Rule by decree: the elected government stays in office as a regime in
+    /// its own colour and stops holding elections.
+    SuspendConstitution { nation: NationId },
+    /// Proscribe a party: it keeps its voters and loses its seats.
+    BanParty { nation: NationId, party: String },
+    /// Lift a ban.
+    LegalizeParty { nation: NationId, party: String },
+    /// A regime changes its colour by decree, toward a movement or its
+    /// strongest institution.
+    DeclareProgramme { nation: NationId, bloc: government::Bloc },
+    /// A regime sits down with the opposition: bans lifted, the country
+    /// opened up, first free elections in six months.
+    ConveneRoundTable { nation: NationId },
 
     // --- The commitment ladder (BIBLE §6) ------------------------------------
     /// Start a quarrel at rung 1. Conflicts begin when somebody climbs, not with
@@ -359,6 +418,8 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
             let base = command_price(w, &annual).map_or(0.0, |(_, p, _)|p);
             (*nation, base + programs::department_price(w, *nation, *fiscal_year, allocations, departments), REFUSABLE)
         }
+        Command::EnableCompanies { nation } | Command::AssignCompany { nation, .. }
+        | Command::UnassignCompany { nation, .. } => (*nation, 0.0, REFUSABLE),
         Command::SetConstructionBudget { nation, .. } => (*nation, 0.0, REFUSABLE),
         Command::Equipment { nation, order } => (*nation,
             if matches!(order, EquipmentOrder::Research { .. }) { 6.0 } else { 0.0 }, REFUSABLE),
@@ -474,6 +535,9 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         }
         Command::StartIndustryModule { nation, .. } => (*nation, 0.0, REFUSABLE),
         Command::SetProjectPriority { nation, .. } => (*nation, 0.0, REFUSABLE),
+        Command::SetConstructionAllocation { nation, .. } => (*nation, 0.0, REFUSABLE),
+        Command::StartIndustryPreset { nation, .. } => (*nation, 0.0, REFUSABLE),
+        Command::SetMineConstructionAllocation { nation, .. } => (*nation, 0.0, REFUSABLE),
         Command::CancelProject { nation, .. } => (*nation, 0.0, ALWAYS),
         Command::StartManufacturingLine { nation, .. } => {
             (*nation, manufacturing::START_LINE_PC_COST, REFUSABLE)
@@ -520,6 +584,12 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         Command::CallElection { nation } => (*nation, 25.0, REFUSABLE),
         // Patronage. Cheaper than an election and it has to be paid again.
         Command::SecurePillar { nation, .. } => (*nation, 14.0, REFUSABLE),
+        // The five levers (S3), priced in `government` beside their arms.
+        Command::SuspendConstitution { nation } => (*nation, government::SUSPEND_PC, REFUSABLE),
+        Command::BanParty { nation, .. } => (*nation, government::BAN_PC, REFUSABLE),
+        Command::LegalizeParty { nation, .. } => (*nation, government::LEGALIZE_PC, REFUSABLE),
+        Command::DeclareProgramme { nation, .. } => (*nation, government::PROGRAMME_PC, REFUSABLE),
+        Command::ConveneRoundTable { nation } => (*nation, government::ROUND_TABLE_PC, REFUSABLE),
 
         // --- The ladder. Every rung is a purchase. ---------------------------
         // Opening at rhetoric is nearly free on purpose: the first rung has to
@@ -611,7 +681,22 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
         Command::Sanction { imposer, target } => sovereignty::hostility_reason(w, *imposer, *target),
         Command::LeaveEconomicUnion { nation } | Command::ReleaseSubject { nation, .. }
             if !w.nation_opt(*nation).is_some_and(|n| n.alive) => Some("This government no longer exists.".into()),
+        // A `BackBloc` is refused by the arm's own switch before the world
+        // reads anything else, then by the target's ruling bloc, then by the
+        // sovereignty gate every covert op meets.
+        Command::CovertAction { sponsor, target, op: CovertOp::BackBloc(bloc) } => {
+            statecraft::back_bloc_refusal(w, *target, *bloc)
+                .or_else(|| sovereignty::hostility_reason(w, *sponsor, *target))
+        }
         Command::CovertAction { sponsor, target, .. } => sovereignty::hostility_reason(w, *sponsor, *target),
+        // The five levers (S3): each lever's own pure query, which answers
+        // the arm's switch before it reads anything else, then the lever's
+        // conditions in the sim's prose. The same function the arm asks.
+        Command::SuspendConstitution { nation } => government::suspend_refusal(w, *nation),
+        Command::BanParty { nation, party } => government::ban_refusal(w, *nation, party),
+        Command::LegalizeParty { nation, party } => government::legalize_refusal(w, *nation, party),
+        Command::DeclareProgramme { nation, bloc } => government::programme_refusal(w, *nation, *bloc),
+        Command::ConveneRoundTable { nation } => government::round_table_refusal(w, *nation),
         Command::ProposeEconomicUnion { patron, partner } | Command::JoinEconomicUnion { nation: partner, patron } => {
             let q = sovereignty::quote(w, *patron, *partner);
             (!q.ready).then_some(q.reason)
@@ -683,10 +768,75 @@ fn apply_equipment_order(w: &mut WorldState, nation: NationId, order: &Equipment
         Develop { name, spec, daily_budget_bn } => equipment::start_development(w, nation, name, spec.clone(), *daily_budget_bn).map(|_| ()),
         Produce { revision, district, quantity, daily_budget_bn } => equipment::start_production(w, nation, revision, district, *quantity, *daily_budget_bn).map(|_| ()),
         Refit { source, target, district, quantity, daily_budget_bn } => equipment::start_refit(w, nation, source, target, district, *quantity, *daily_budget_bn).map(|_| ()),
+        Retire { revision, quantity } => equipment::retire(w, nation, revision, *quantity),
+        Maintenance { daily_budget_bn } => equipment::set_maintenance_plan(w,nation,*daily_budget_bn),
+        Supply { horizon_days, spending_cap_bn } => equipment::replenish(w,nation,*horizon_days,*spending_cap_bn),
+        SupplyPolicy { horizon_days, spending_cap_bn, cash_floor_bn, review_interval_days, automatic } => equipment::set_supply_policy(w,nation,*horizon_days,*spending_cap_bn,*cash_floor_bn,*review_interval_days,*automatic),
+        SupplyPolicyClear => equipment::clear_supply_policy(w,nation),
+        Target { revision, quantity } => equipment::set_fleet_target(w,nation,revision,*quantity),
+        AmmoOrder { family, district, quantity, daily_budget_bn } => equipment::start_ammo_order(w,nation,family,district,*quantity,*daily_budget_bn).map(|_|()),
+        AmmoActivate => equipment::activate_ammunition(w,nation),
+        AmmoFunding { project, daily_budget_bn } => equipment::set_ammo_funding(w,nation,*project,*daily_budget_bn),
+        AmmoPause { project, paused } => equipment::pause_ammo_order(w,nation,*project,*paused),
+        AmmoCancel { project } => equipment::cancel_ammo_order(w,nation,*project),
+        AmmoReserve { family, target_rounds, district, daily_budget_bn, automatic } => equipment::set_ammo_reserve(w,nation,family,*target_rounds,district,*daily_budget_bn,*automatic),
+        AmmoReserveClear { family } => equipment::clear_ammo_reserve(w,nation,family),
         Pause { project, paused } => equipment::set_project_paused(w, nation, *project, *paused),
         Funding { project, daily_budget_bn } => equipment::set_project_budget(w, nation, *project, *daily_budget_bn),
         Cancel { project } => equipment::cancel_project(w, nation, *project),
     }
+}
+
+
+/// The refusal `apply_command` WOULD give, read without touching the world, in
+/// the order it would give it: the world's bar first, then the treasury's, then
+/// the command's own — for the commands whose own check has been split out as a
+/// read (`government::*_refusal`, `stratagems::closed_reason`). `None` where the
+/// command would go through, or where its own check is not readable ahead of
+/// time (it may still be refused inside `dispatch`). Served by the government
+/// screen beside each price, so the page prints the sim's sentence and never
+/// composes one.
+pub fn refusal_of(w: &WorldState, c: &Command) -> Option<String> {
+    if let Some(why) = world_refusal(w, c) {
+        return Some(why);
+    }
+    if let Some((payer, price, refusable)) = command_price(w, c).filter(|(_, p, _)| *p > 0.0) {
+        let held = w.nation_opt(payer).map_or(0.0, |n| n.political_capital);
+        if refusable && held < price {
+            return Some(standing_refusal(payer, held, price));
+        }
+    }
+    match c {
+        Command::InviteToGovernment { nation, party } => government::invite_refusal(w, *nation, party),
+        Command::ExpelFromGovernment { nation, party } => government::expel_refusal(w, *nation, party),
+        Command::CallElection { nation } => government::call_election_refusal(w, *nation),
+        Command::SecurePillar { nation, pillar } => government::secure_pillar_refusal(w, *nation, *pillar),
+        Command::EnactStratagem { nation, id } => stratagems::closed_reason(w, *nation, id),
+        _ => None,
+    }
+}
+
+/// The treasury's refusal, defined once for `apply_command` and `refusal_of`.
+///
+/// Rounded APART, not to nearest: what is held rounds DOWN and what is needed
+/// rounds UP, both to the tenth actually shown. At `{:.0}` the two could land
+/// on the same integer and the refusal read as a contradiction — measured,
+/// 57.596 held against a price of 57.600 printed as "58 political capital
+/// held, 58 needed", which tells a player they have exactly what they were
+/// just told they lack.
+///
+/// Rounding apart makes that impossible rather than unlikely:
+/// `floor(held) <= held < price <= ceil(price)`, so the two printed numbers
+/// are equal only if `price <= held`, which is the branch this is not in.
+/// Prices are not whole numbers — they scale — so one decimal is the least
+/// that can carry the difference.
+fn standing_refusal(payer: NationId, held: f64, price: f64) -> String {
+    let held_shown = (held * 10.0).floor() / 10.0;
+    let need_shown = (price * 10.0).ceil() / 10.0;
+    format!(
+        "{} has not the standing: {:.1} political capital held, {:.1} needed.",
+        payer.name(), held_shown, need_shown
+    )
 }
 
 pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
@@ -717,24 +867,7 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
     if let Some((payer, price, refusable)) = bill {
         let held = w.nation(payer).political_capital;
         if refusable && held < price {
-            // Rounded APART, not to nearest: what is held rounds DOWN and what
-            // is needed rounds UP, both to the tenth actually shown. At `{:.0}`
-            // the two could land on the same integer and the refusal read as a
-            // contradiction — measured, 57.596 held against a price of 57.600
-            // printed as "58 political capital held, 58 needed", which tells a
-            // player they have exactly what they were just told they lack.
-            //
-            // Rounding apart makes that impossible rather than unlikely:
-            // `floor(held) <= held < price <= ceil(price)`, so the two printed
-            // numbers are equal only if `price <= held`, which is the branch
-            // this is not in. Prices are not whole numbers — they scale — so
-            // one decimal is the least that can carry the difference.
-            let held_shown = (held * 10.0).floor() / 10.0;
-            let need_shown = (price * 10.0).ceil() / 10.0;
-            return Err(format!(
-                "{} has not the standing: {:.1} political capital held, {:.1} needed.",
-                payer.name(), held_shown, need_shown
-            ));
+            return Err(standing_refusal(payer, held, price));
         }
     }
     let outcome = dispatch(w, c);
@@ -751,6 +884,14 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
 
 fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
     match c {
+        Command::EnableCompanies { nation } => {
+            if !clock::is_daily(w) || w.nation_opt(*nation).is_none_or(|n| !n.alive) {
+                return Err("Companies require an active daily campaign.".into());
+            }
+            companies::enable(w);
+        }
+        Command::AssignCompany { nation, company, target } => companies::assign(w, *nation, *company, target.clone())?,
+        Command::UnassignCompany { nation, target } => companies::unassign(w, *nation, target)?,
         Command::ChooseCampaignAim { nation, aim } => campaign_aims::choose(w,*nation,*aim)?,
         Command::ContinueSandbox { nation } => campaign_aims::continue_sandbox(w,*nation)?,
         Command::BreakCurrencyPeg { nation } => agency::break_peg(w,*nation)?,
@@ -1046,6 +1187,15 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
         Command::SetProjectPriority { nation, project, priority } => {
             production::set_priority(w, *nation, *project, *priority)?;
         }
+        Command::SetConstructionAllocation { nation, project, capacity } => {
+            construction_capacity::set_assignment(w, *nation, *project, *capacity)?;
+        }
+        Command::StartIndustryPreset { nation, district } => {
+            construction_presets::start(w,*nation,district)?;
+        }
+        Command::SetMineConstructionAllocation { nation, district, commodity, capacity } => {
+            construction_capacity::set_mine_assignment(w,*nation,district,*commodity,*capacity)?;
+        }
         Command::CancelProject { nation, project } => {
             production::cancel_project(w, *nation, *project)?;
         }
@@ -1059,17 +1209,13 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
             manufacturing::stop_line(w, *nation, *line)?;
         }
         Command::EnactStratagem { nation, id } => {
-            let s = stratagems::by_id(id)
-                .ok_or_else(|| format!("No such stratagem: {}", id))?;
             // Checked again here, not only when the menu was drawn: the world
             // may have moved between a government deciding and acting.
-            if !(s.available)(w, *nation) {
-                return Err(format!(
-                    "{} is no longer open to {}.",
-                    s.name,
-                    nation.name()
-                ));
+            if let Some(why) = stratagems::closed_reason(w, *nation, id) {
+                return Err(why);
             }
+            let s = stratagems::by_id(id)
+                .ok_or_else(|| format!("No such stratagem: {}", id))?;
             (s.enact)(w, *nation);
         }
         Command::ChooseDominationAgenda { nation, agenda } => {
@@ -1123,6 +1269,13 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
         Command::SecurePillar { nation, pillar } => {
             government::secure_pillar(w, *nation, *pillar)?
         }
+        Command::SuspendConstitution { nation } => government::suspend_constitution(w, *nation)?,
+        Command::BanParty { nation, party } => government::ban_party(w, *nation, party)?,
+        Command::LegalizeParty { nation, party } => government::legalize_party(w, *nation, party)?,
+        Command::DeclareProgramme { nation, bloc } => {
+            government::declare_programme(w, *nation, *bloc)?
+        }
+        Command::ConveneRoundTable { nation } => government::convene_round_table(w, *nation)?,
 
         Command::OpenConflict { opener, target, theatre } => {
             commitment::open_conflict(w, *opener, *target, *theatre)?;
@@ -1217,6 +1370,7 @@ pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
     ("resources", resources::tick),
     ("commerce", commerce::tick_day),
     ("industry", industry::tick_day),
+    ("industry_operations", industry_operations::tick_day),
     // Research is funded out of the output the economy has just produced, and
     // what it unlocks is in the nation's hands before the soldiers and the
     // politicians get their turn with it.
@@ -1244,6 +1398,10 @@ pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
     // The campaign director reads the settled month. It grants no bonus and
     // consumes no RNG; it only advances milestone seals and the sole victory.
     ("domination", domination::tick),
+    // The political arm's one yearly draw (D1), LAST so that a world with
+    // the arm on parts from one with it off only between months. Returns
+    // before reading anything with `rules.ideology_blocs` off.
+    ("mortality", politics::mortality),
 ];
 
 /// Advance the world one month. Commands are applied before systems tick.
@@ -1327,12 +1485,18 @@ pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
 
     province_economy::begin_day(w);
     programs::begin_day(w);
+    industry_operations::begin_day(w);
     production::tick_day(w);
 
     if clock::is_daily(w) {
         for (_, system) in SYSTEMS { system(w); }
         programs::finish_day(w);
         province_economy::finish_day(w);
+        // Optional spot purchases use cash left after today's incurred fiscal
+        // bills. Running this inside SYSTEMS could consume cash those bills
+        // still require and indirectly cause borrowing at settlement.
+        equipment::tick_supply_automation(w);
+        companies::tick_day(w);
         campaign_aims::tick(w);
         clock::advance_date(w);
         return w.headlines[before..].to_vec();
@@ -1743,6 +1907,121 @@ mod tests {
             "a day-stepped month is not bit-identical to a month-stepped one with the market on.\nfirst state_hash miss: {}\nfirst miss of the world under the headlines: {}",
             first_hash_miss.as_deref().unwrap_or("none"),
             first_world_miss.as_deref().unwrap_or("none in 24 months: only `headlines` differs")
+        );
+    }
+
+    /// The political arm on the daily clock (S4): with BOTH switches on, a
+    /// BackBloc issued on the 10th, a BanParty on the 20th and a
+    /// ConveneRoundTable on the 31st — the with-commands pattern of
+    /// `the_daily_clock_preserves_the_market_on_world` — a day-stepped month
+    /// is bit-identical to a month-stepped one at every one of twenty-four
+    /// boundaries, through a mid-month save and load in month 13. One-off
+    /// commands stay whole, the levers date their elections by the month,
+    /// the mortality draw falls on the month's settlement, and nothing the
+    /// arm reads is the day. Indonesia in the player's seat: a regime, so
+    /// the round table applies; its stability and prices held restive and
+    /// the Western movement at 0.30 in both worlds before month 11, so the
+    /// table's conditions are met identically. Every command must go
+    /// through (no `[rejected]` line those months). Watched red with the
+    /// emergent office's `since` reading the day under the legacy clock
+    /// (the settlement day, not a date): month 0 parted on `leadership`.
+    #[test]
+    fn the_daily_clock_preserves_the_political_arm_on_world() {
+        use crate::government::Bloc;
+        let rules = GameRules { ideology_blocs: true, ideology_takeover: true, ..GameRules::default() };
+        let player = NationId::Indonesia;
+        let target = NationId::Malaysia;
+        let mut monthly = world_1990(rules);
+        monthly.player = Some(player);
+        monthly.nation_mut(player).political_capital = 100.0;
+        let mut daily = monthly.clone();
+        assert_eq!(state_hash(&daily), state_hash(&monthly));
+        fn restive(w: &mut WorldState, id: NationId) {
+            let n = w.nation_mut(id);
+            n.stability = 30.0;
+            n.inflation = 0.18;
+            n.political_capital = 100.0;
+            if let Some(g) = w.governments.states.iter_mut().find(|g| g.nation == id) {
+                if g.movements.len() == 5 {
+                    let r = g.regime_bloc.unwrap();
+                    let mut m = g.movements.clone();
+                    for e in m.iter_mut() {
+                        e.1 = if e.0 == Bloc::Western { 0.30 } else if e.0 == r { 0.50 } else { 0.20 / 3.0 };
+                    }
+                    g.movements = m;
+                }
+            }
+        }
+        let mut issued_on: Vec<(usize, u32)> = Vec::new();
+        let mut first_hash_miss: Option<String> = None;
+        let mut resumed: Option<String> = None;
+        for m in 0..24usize {
+            let mut cmds: Vec<Command> = Vec::new();
+            match m {
+                3 => cmds.push(Command::CovertAction { sponsor: player, target, op: CovertOp::BackBloc(Bloc::Western) }),
+                5 => cmds.push(Command::BanParty { nation: player, party: "id_pdi".into() }),
+                11 => {
+                    restive(&mut monthly, player);
+                    restive(&mut daily, player);
+                    assert_eq!(state_hash(&daily), state_hash(&monthly), "the staging parted the worlds");
+                    assert_eq!(refusal_of(&monthly, &Command::ConveneRoundTable { nation: player }), None);
+                    cmds.push(Command::ConveneRoundTable { nation: player });
+                }
+                _ => {}
+            }
+            let monthly_record = tick_month(&mut monthly, &cmds);
+            let days = world::days_in_month(daily.year, daily.month);
+            let issue_on = match m {
+                3 => 9,
+                5 => 19,
+                11 => days - 1,
+                _ => 0,
+            };
+            if !cmds.is_empty() {
+                issued_on.push((m, issue_on + 1));
+                assert!(
+                    !monthly_record.iter().any(|h| h.starts_with("[rejected]")),
+                    "month {m}: a command was refused: {monthly_record:?}"
+                );
+            }
+            let mut daily_record: Vec<String> = Vec::new();
+            for d in 0..days {
+                let today = if d == issue_on { &cmds[..] } else { &[][..] };
+                daily_record.extend(tick_day(&mut daily, today));
+                if m == 13 && d == 14 {
+                    let mid = save(&daily);
+                    daily = load(&mid).expect("the mid-month daily save must load");
+                    assert_eq!(daily.day, 16, "the save lost the day");
+                    resumed = Some(daily.date_str());
+                }
+            }
+            assert_eq!((daily.year, daily.month, daily.day), (monthly.year, monthly.month, 1), "month {m}: the calendars parted");
+            assert_eq!(daily_record, monthly_record, "month {m}: the daily returns do not add up to the monthly record");
+            let (hd, hm) = (state_hash(&daily), state_hash(&monthly));
+            if hd != hm && first_hash_miss.is_none() {
+                let mut differing: Vec<String> = Vec::new();
+                let vd: serde_json::Value = serde_json::from_str(&save(&daily)).unwrap();
+                let vm: serde_json::Value = serde_json::from_str(&save(&monthly)).unwrap();
+                if let (Some(od), Some(om)) = (vd.as_object(), vm.as_object()) {
+                    for (k, v) in od {
+                        if om.get(k) != Some(v) {
+                            differing.push(k.clone());
+                        }
+                    }
+                }
+                first_hash_miss = Some(format!("month {m} ({}): keys differing {differing:?}", monthly.date_str()));
+            }
+        }
+        assert_eq!(issued_on, vec![(3, 10), (5, 20), (11, 31)]);
+        assert!(monthly.backing_of(player, target, Bloc::Western) > 0.0 || monthly.headlines.len() > 0);
+        let g = monthly.governments.states.iter().find(|g| g.nation == player).unwrap();
+        assert!(g.next_election.0 > 0, "the round table set no date: {:?}", g.next_election);
+        assert!(monthly.nation(player).authoritarianism < crate::government::ELECTORAL_CEILING);
+        assert_eq!(resumed.as_deref(), Some("16 Feb 1991"), "the daily world was never resumed from a save");
+        assert!(
+            first_hash_miss.is_none(),
+            "a day-stepped month is not bit-identical to a month-stepped one with the arm on.\nfirst miss: {}",
+            first_hash_miss.as_deref().unwrap_or("none")
         );
     }
 

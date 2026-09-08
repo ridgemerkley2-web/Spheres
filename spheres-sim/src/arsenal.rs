@@ -469,7 +469,7 @@ pub fn combat_value(n: &Nation, h: &Holding) -> f64 {
                 * condition_months(p.service_months, h.age) * readiness
         });
     }
-    DECK.get(h.kit as usize).map_or(0.0, |d| h.units * d.unit_cost * condition(d, h.age))
+    DECK.get(h.kit as usize).map_or(0.0, |d| h.units * d.unit_cost * condition(d, h.age) * crate::equipment::legacy_maintenance_fraction(n))
 }
 
 /// Remove mapped hardware discoveries from only the custom share. Their installed
@@ -480,32 +480,51 @@ pub fn combat_technology(n: &Nation) -> (f64, f64) {
     if n.equipment.is_none() { return legacy; }
     let mut total = 0.0;
     let mut custom = 0.0;
+    let mut custom_air = 0.0;
     for h in &n.arsenal.held {
         let value = combat_value(n, h);
         total += value;
-        if h.design_id.is_some() { custom += value; }
+        if let Some(id)=h.design_id.as_deref() {
+            custom += value;
+            if crate::equipment::profile(n,id).is_some_and(|p|p.aviation.is_some()){custom_air += value;}
+        }
     }
     if custom <= 0.0 || total <= 0.0 { return legacy; }
     static HARDWARE: std::sync::OnceLock<Vec<u16>> = std::sync::OnceLock::new();
     let hardware = HARDWARE.get_or_init(|| {
-        crate::equipment::all_components().filter_map(|c| c.technology)
+        crate::equipment::all_components().filter(|c| !c.slot.starts_with("air_")).filter_map(|c| c.technology)
             .filter_map(crate::tech::index_of).collect::<std::collections::BTreeSet<_>>()
             .into_iter().collect()
     });
-    let mut bonus = n.tech.bonus.clone();
-    for i in hardware.iter().copied().filter(|i| n.tech.knows_index(*i)) {
-        for effect in &crate::tech::registry()[i as usize].effects {
-            match effect {
-                crate::tech::Effect::MilitaryEfficiency(v) => bonus.military_efficiency -= v,
-                crate::tech::Effect::MilitaryStrength(v) => bonus.military_strength -= v,
-                _ => {}
+    let without_hardware=|indices:&[u16]| {
+        let mut bonus = n.tech.bonus.clone();
+        for i in indices.iter().copied().filter(|i| n.tech.knows_index(*i)) {
+            for effect in &crate::tech::registry()[i as usize].effects {
+                match effect {
+                    crate::tech::Effect::MilitaryEfficiency(v) => bonus.military_efficiency -= v,
+                    crate::tech::Effect::MilitaryStrength(v) => bonus.military_strength -= v,
+                    _ => {}
+                }
             }
         }
-    }
+        ((1.0 + bonus.military_efficiency_eff()).clamp(0.5, 4.0), bonus.military_strength_eff())
+    };
     let fraction = (custom / total).clamp(0.0, 1.0);
-    let neutral = ((1.0 + bonus.military_efficiency_eff()).clamp(0.5, 4.0), bonus.military_strength_eff());
-    (legacy.0 + (neutral.0 - legacy.0) * fraction,
-     legacy.1 + (neutral.1 - legacy.1) * fraction)
+    let neutral = without_hardware(hardware);
+    if custom_air <= 0.0 {
+        return (legacy.0 + (neutral.0 - legacy.0) * fraction,
+                legacy.1 + (neutral.1 - legacy.1) * fraction);
+    }
+    // Installed hardware is removed from its own equipment domain only.
+    // Adding aircraft components cannot silently change older ground fleets.
+    static AIR_HARDWARE: std::sync::OnceLock<Vec<u16>> = std::sync::OnceLock::new();
+    let air_hardware=AIR_HARDWARE.get_or_init(||crate::equipment::AIR_COMPONENTS.iter().filter_map(|c|c.technology)
+        .filter_map(crate::tech::index_of).collect::<std::collections::BTreeSet<_>>().into_iter().collect());
+    let air_neutral=without_hardware(air_hardware);
+    let air_fraction=(custom_air/total).clamp(0.0,1.0);
+    let ground_fraction=((custom-custom_air)/total).clamp(0.0,1.0);
+    (legacy.0+(neutral.0-legacy.0)*ground_fraction+(air_neutral.0-legacy.0)*air_fraction,
+     legacy.1+(neutral.1-legacy.1)*ground_fraction+(air_neutral.1-legacy.1)*air_fraction)
 }
 
 /// Whole custom vehicles available to deploy. Refit reservations remain in the
@@ -534,8 +553,8 @@ pub fn release_refit(n: &mut Nation, source_id: &str, units: u32) -> Result<(), 
 
 pub fn deliver_design(n: &mut Nation, design_id: &str, units: u32, age: f64) -> Result<(), String> {
     if units == 0 || !age.is_finite() || age < 0.0 { return Err("Invalid custom equipment delivery.".into()); }
-    if crate::equipment::profile(n, design_id).is_none() { return Err("The equipment revision is missing.".into()); }
-    let kit = index_of("arm_gen3").expect("the custom tank base kit exists");
+    let revision = n.equipment.as_ref().and_then(|s|s.revisions.get(design_id)).ok_or("The equipment revision is missing.")?;
+    let kit = index_of(crate::equipment::design_base_kit(&revision.spec)).expect("the custom equipment base kit exists");
     if let Some(h) = n.arsenal.held.iter_mut().find(|h| h.design_id.as_deref() == Some(design_id)) {
         let total = h.units + units as f64;
         if !total.is_finite() || total > u32::MAX as f64 { return Err("This equipment holding is full.".into()); }
@@ -574,8 +593,8 @@ pub fn queue_design_order(n: &mut Nation, design_id: &str, units: u32, due_days:
     if units == 0 || due_days == 0 || due_days > 36_500 || !delivery_age.is_finite() || delivery_age < 0.0 {
         return Err("Invalid custom equipment delivery order.".into());
     }
-    if crate::equipment::profile(n, design_id).is_none() { return Err("The equipment revision is missing.".into()); }
-    let kit = index_of("arm_gen3").expect("the custom tank base kit exists");
+    let revision = n.equipment.as_ref().and_then(|s|s.revisions.get(design_id)).ok_or("The equipment revision is missing.")?;
+    let kit = index_of(crate::equipment::design_base_kit(&revision.spec)).expect("the custom equipment base kit exists");
     if let Some(o) = n.arsenal.orders.iter_mut().find(|o| o.design_id.as_deref() == Some(design_id) && o.due_days == Some(due_days)) {
         let total = o.units + units as f64;
         if !total.is_finite() || total > u32::MAX as f64 { return Err("This equipment order is full.".into()); }

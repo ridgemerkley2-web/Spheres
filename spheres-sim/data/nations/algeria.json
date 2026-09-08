@@ -24,7 +24,9 @@
   },
   "military": {
     "strength": 8.0,
-    "nuclear": false
+    "nuclear": false,
+    "personnel_1990": 126000,
+    "milex_1990_usd_bn": 0.904269
   },
   "sources": [
     "GDP $62.0bn: World Bank NY.GDP.MKTP.CD, series DZA, 1990 = 62,048,507,531 current US$, retrieved from the World Bank API 2026-08-12. Same series as the rest of the roster (USA 5980, France 1270, Spain 535).",
@@ -41,7 +43,8 @@
     "Stability 40: the lowest in this region and among the lowest in the roster, and it is the whole of what happens next. The riots of October 1988 were put down by the army with hundreds dead; the constitution of 23 February 1989 ended the single party; by January 1990 more than thirty parties were legal and the FLN was about to lose more than half the country's communes to the Islamic Salvation Front in June. Set below Sudan's? No - above Sudan's 30, because the Algerian state still functioned, and far below Morocco's 62, because the Moroccan one was not being contested at the ballot box.",
     "Separatism 0.08: the Berber Cultural Movement's boycott campaign and the Tamazight language demands in Kabylie, which were cultural and constitutional rather than secessionist - nobody in Tizi Ouzou was asking to leave. Set below Spain's 0.10 for that reason and above Italy's 0.05.",
     "Authoritarianism 0.55: deliberately below the 0.60 electoral ceiling, which is a substantive claim and not a rounding. In January 1990 Algeria was a state whose government could be removed by a vote, and five months later a vote removed it from half the country. Set well above Turkey's 0.35 - the presidency was not contested, the army was not accountable, and the press operated on sufferance - and well below Egypt's 0.75, where the elections were held and the result was known in advance.",
-    "pop_growth_1990 = 3.0788%/yr. Compound annual growth of World Bank SP.POP.TOTL, series DZA (Algeria): 21,271,969 in 1984 to 24,754,485 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 3.0788%/yr. Compound annual growth of World Bank SP.POP.TOTL, series DZA (Algeria): 21,271,969 in 1984 to 24,754,485 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "military.personnel_1990 = 126000 and military.milex_1990_usd_bn = 0.904269 ($bn). personnel: World Bank API MS.MIL.TOTL.P1 (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (DZA, 1990) | milex_usd: World Bank API MS.MIL.XPND.CD (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.XPND.CD?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (DZA, 1990). milex entered in billions to six decimals (the nearest $1,000) of the fetched 904,269,155 current US$. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [

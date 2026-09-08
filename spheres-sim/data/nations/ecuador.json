@@ -24,7 +24,9 @@
   },
   "military": {
     "strength": 4.0,
-    "nuclear": false
+    "nuclear": false,
+    "personnel_1990": 53000,
+    "milex_1990_usd_bn": 0.202
   },
   "sources": [
     "GDP $15.2bn and 10.5m people (World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, 1990; exact prints $15.239bn and 10,473,673). CORRECTION WORTH RECORDING: this row first carried $10.6bn, which is not any World Bank print for Ecuador in any year near 1990 and would have implied output per head of about $1,010 against a real figure near $1,455. It was caught by querying the series directly rather than by any test, because no test in this repo can tell a plausible wrong number from a right one - which is the argument for the sources block existing at all.",
@@ -34,7 +36,8 @@
     "Oil 0.29 mbd: about 292,000 bbl/d in 1990. Ecuador left OPEC in 1992 rather than pay the dues and accept the quota.",
     "Defence 1.9% of GDP and strength 4. The binding external fact is the undemarcated Cordillera del Condor frontier with Peru: Ecuador rejected the 1942 Rio Protocol as invalid in 1960, there were shooting incidents at Paquisha in 1981, and the Cenepa war follows in January 1995. That war should be reachable from the border and the relations here, not fired by a date.",
     "Stability 40 and separatism 0.08: Rodrigo Borja's government faced the first national indigenous uprising, the levantamiento of June 1990 organised by CONAIE, which closed the Sierra highways for a week and put land and plurinationality on the agenda permanently. No president elected between 1996 and 2006 finished a term; that instability is the thing this row is trying to seed.",
-    "pop_growth_1990 = 2.4492%/yr. Compound annual growth of World Bank SP.POP.TOTL, series ECU (Ecuador): 9,074,782 in 1984 to 10,241,852 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 2.4492%/yr. Compound annual growth of World Bank SP.POP.TOTL, series ECU (Ecuador): 9,074,782 in 1984 to 10,241,852 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "military.personnel_1990 = 53000 and military.milex_1990_usd_bn = 0.202 ($bn). personnel: World Bank API MS.MIL.TOTL.P1 (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (ECU, 1990) | milex_usd: World Bank API MS.MIL.XPND.CD (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.XPND.CD?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (ECU, 1990). milex entered in billions to six decimals (the nearest $1,000) of the fetched 202,000,000 current US$. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [

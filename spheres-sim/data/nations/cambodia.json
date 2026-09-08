@@ -24,7 +24,9 @@
   },
   "military": {
     "strength": 3.0,
-    "nuclear": false
+    "nuclear": false,
+    "personnel_1990": 112000,
+    "milex_1990_usd_bn": 0.029091
   },
   "sources": [
     "system Market, and it is a judgement call worth stating. The State of Cambodia's constitutional amendments of April-May 1989 dropped the socialist economy clause, restored private ownership of land, legalised private enterprise and reinstated Buddhism as the state religion. That is a dated, formal abandonment of the command economy rather than a reform programme running alongside one, which is the distinction this roster's Vietnam file draws when it stays Command with doi moi four years old and the plan intact. See the note on the technology model below: this classification is load-bearing in a way it should not be.",
@@ -39,7 +41,8 @@
     "Gross capital formation 11.9% of GDP (World Bank, 1993 — the first year of the series). 1990 is entered at 11% split 4 state and 7 private, on the assumption that the ratio did not move much across the UNTAC years.",
     "A note on what this file exposes rather than on the file itself. Entered as a command economy, Cambodia finishes a thirty-year run holding three technologies while the frontier holds a hundred and thirty, and `a_poor_nation_still_picks_up_what_everyone_has` goes red. The binding term is research_output: intensity scales with GDP per capita, the budget scales with absolute GDP, and a command economy is multiplied by 0.80 on top. At $190 a head and $1.4bn of output that product rounds to nothing. Real Cambodia in 2020 had mobile telephony, container ports, hybrid rice and antiretrovirals — far more than five technologies — so the test is right and the model is wrong at this end of the roster. Classifying Cambodia as a market economy is defensible on the 1989 amendments and it makes the test pass, but it does not repair the model, and the next $200-per-capita market economy anyone adds will trip the same wire.",
     "Series check, August 2026, read from the World Bank API: NY.GDP.MKTP.CD 1990 = 1,402,541,177; SP.POP.TOTL = 7,374,752; MS.MIL.XPND.GD.ZS = 2.071. All match. FP.CPI.TOTL.ZG, FR.INR.LEND and NE.GDI.TOTL.ZS all return NO VALUE for Cambodia in 1990, confirming that the inflation, interest and investment figures in this file are estimates and stated as such.",
-    "pop_growth_1990 = 3.8886%/yr. Compound annual growth of World Bank SP.POP.TOTL, series KHM (Cambodia): 5,845,117 in 1984 to 7,073,473 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 3.8886%/yr. Compound annual growth of World Bank SP.POP.TOTL, series KHM (Cambodia): 5,845,117 in 1984 to 7,073,473 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "military.personnel_1990 = 112000 and military.milex_1990_usd_bn = 0.029091 ($bn). personnel: World Bank API MS.MIL.TOTL.P1 (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (KHM, 1990) | milex_usd: World Bank API MS.MIL.XPND.CD (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.XPND.CD?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (KHM, 1990). milex entered in billions to six decimals (the nearest $1,000) of the fetched 29,090,909 current US$. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [

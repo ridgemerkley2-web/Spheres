@@ -66,6 +66,11 @@ does not fail. A budget with only a ceiling can only be `PASS` or `OVER`.
 
 79 graded configurations: 47 PASS, 2 under the detail floor, 30 over the ceiling.
 
+The geometry sweep covers nine ground platforms, construction sites and town
+assets. The export inventory below also includes tactical aircraft; aircraft
+geometry is listed in [P0_MANIFEST.md](P0_MANIFEST.md) but is not graded by this ground-only
+vehicle budget sweep.
+
 30 measured configurations are over budget. `--check` exits 1 while any row here has content.
 
 | asset | configuration | measured | budget ceiling | over by |
@@ -150,12 +155,14 @@ Components that make each platform heaviest:
 - `ground_artillery`: active_protection=aps_hard, ammunition=ground_ammo_guided, armament=ground_aa_gun, artillery_loader=ground_loader_assisted, communications=ground_comms_network, fire_control=fcs_digital, mobility=engine_diesel_1200, protection=ground_armor_modular, sensors=optics_night, suspension=suspension_hydro, transmission=ground_transmission_electric, turret=ground_station_mg
 - `ground_air_defense`: active_protection=aps_hard, ammunition=ground_ammo_guided, communications=ground_comms_network, fire_control=fcs_digital, mobility=engine_diesel_1200, protection=ground_armor_modular, radar=ground_radar_tracking, sensors=optics_night, suspension=suspension_hydro, transmission=ground_transmission_electric, turret=ground_station_mg
 
-**LOD1 and LOD2 do not exist for vehicles.** `EquipmentMesh.build` takes no
-`lod` argument, and asking it for a far mesh hands back the LOD0 mesh — measured here, not assumed. The roadmap's 4–12k catalogue preview and 300–1,500
-map vehicle are therefore unmeasurable rather than passing: the catalogue card
-and the map both pay the full LOD0 count today. Sites and town blocks both have
-their coarse mesh; the vehicles are the hole, and it is the largest single gap
-this harness found.
+Ground equipment has numeric LOD0, LOD1 and LOD2. A baseline `tank_heavy`
+probe measures 50,816 / 9,010 / 1,200 triangles respectively.
+The graded vehicle sweep above remains LOD0-only; this probe is not a complete
+coarse-configuration budget audit. [P0_MANIFEST.md](P0_MANIFEST.md) records all
+ground baselines at each detail level, and `check_equipment_mesh.cjs` checks
+the 4–12k catalogue and 300–1,500 map bands
+across individual and combined component choices. Aircraft currently have
+inspection geometry only and are outside this vehicle sweep.
 
 ## Construction sites
 
@@ -261,9 +268,9 @@ failure; this is where the next art pass will push something over.
 | `site.freight_terminal.v1` | far complete/L5/building | 722 | 800 | 90.3% |
 | `site.power_grid.v1` | far complete/L5/building | 712 | 800 | 89.0% |
 
-## Resident cost, if everything P0 ships were resident at once
+## Resident cost, if the measured ground, site and town set were resident at once
 
-No frame draws this. It is the whole shipped set held at once, which is the
+No frame draws this. It is the measured set held at once, which is the
 number that decides whether a bounded cache can keep everything rather than
 rebuild it.
 
@@ -272,14 +279,14 @@ rebuild it.
 | Ground vehicles, heaviest specification | 9 | 328,796 | 35,509,968 |
 | Construction sites, worst case near | 13 | 593,682 | 64,117,656 |
 | Town blocks, worst case close | 5 | 817,992 | 88,343,136 |
-| **Everything, close detail** | **27** | **1,740,470** | **187,970,760** (179.26 MiB) |
-| The same set at map LOD, where one exists | 27 | 355,734 | 38,419,272 (36.64 MiB) |
+| **Measured set, close detail** | **27** | **1,740,470** | **187,970,760** (179.26 MiB) |
+| Sites/towns coarse; ground vehicles retained at LOD0 for comparison | 27 | 355,734 | 38,419,272 (36.64 MiB) |
 
-The map row still carries the vehicles at their full LOD0 count, because they have
-no coarse mesh: 328,796 of its 355,734 triangles
-are the nine vehicles, against 26,938 for all
-eighteen sites and blocks together. A vehicle map LOD is worth more than any other
-saving available here.
+The comparison row deliberately retains the measured vehicles at LOD0:
+328,796 of its 355,734 triangles are
+the nine ground vehicles, with 26,938
+for the coarse sites and blocks. It is not the live map's rendering cost and
+does not imply the available ground LOD1/LOD2 geometry is unused.
 
 Upload arithmetic, for every byte figure above: the meshes are non-indexed with
 three `Float32Array` attributes, so bytes = triangles x 3 vertices x 3
@@ -289,35 +296,35 @@ a generator ever stops matching it.
 
 ## Source cost — what the player actually downloads
 
-The generators ship as source and build their meshes in the browser. There is no
-runtime GLB loader and no build step, so this is the entire download cost of
-every asset above, and it is the number that justifies the procedural decision.
+The generators ship as source and build their meshes in the browser without
+fetching GLB assets or requiring a build step. These figures measure the three
+geometry generators; renderer, stylesheet and other page costs are not included.
 
 | file | bytes | |
 | --- | --- | --- |
-| `spheres-web/ui/equipment-mesh.js` | 120,373 | 117.6 KiB |
+| `spheres-web/ui/equipment-mesh.js` | 135,969 | 132.8 KiB |
 | `spheres-web/ui/site-mesh.js` | 343,878 | 335.8 KiB |
-| `spheres-web/ui/town-mesh.js` | 168,970 | 165.0 KiB |
-| **total** | **633,221** | **618.4 KiB** |
+| `spheres-web/ui/town-mesh.js` | 172,044 | 168.0 KiB |
+| **total** | **651,891** | **636.6 KiB** |
 
-633,221 bytes of source produce 1,740,470 triangles of
-geometry — 297x its own weight in vertex data. That ratio is not fixed
+651,891 bytes of source produce 1,740,470 triangles of
+geometry — 288x its own weight in vertex data. That ratio is not fixed
 at authoring time either: it grows with every extra seed, stage, level and
 district asked of the same source.
 
-10 exported `.glb` files sit in `spheres-web/ui/equipment-models/`
-totalling 37,187,352 bytes (35.46 MiB). They are the
+12 exported `.glb` files sit in `spheres-web/ui/equipment-models/`
+totalling 40,029,808 bytes (38.18 MiB). They are the
 portable deliverable roadmap section 4 asks for, not a runtime download — the game
 never fetches them — and they are the comparison that settles the argument:
-10 ground vehicles as binary assets weigh
-58.7x the entire generator source
+12 equipment exports (2 aircraft and 10 ground-vehicle configurations) as binary assets weigh
+61.4x the entire generator source
 that builds every vehicle, every site at every stage and every town block.
 
 ## Method
 
 - Every number is measured by building the mesh and reading `triangleCount`,
   `parts` and the attribute arrays. Nothing is copied from another document.
-- Sweeps: vehicles 630 builds, sites 2,600,
+- Sweeps: vehicles 631 builds, sites 2,600,
   town blocks 80, town kit 120.
 - The vehicle worst case is greedy coordinate ascent over the simulation's own
   component catalogue, repeated until a pass buys nothing (2 passes).

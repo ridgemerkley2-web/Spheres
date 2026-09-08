@@ -8,6 +8,18 @@ only he can answer. Everything else is settled unless he says otherwise.
 Read order: this file, then SPEC.md (technical design), then PLAN.md (sequence),
 then ROADMAP.md (status), then CLAUDE.md (how to work).
 
+## Construction and industry amendment — 2026-09-07
+
+Ridge approved the full rebuild around clearer reasons to construct each
+project, closer to Millennium Dawn, and integration with the other system
+pushes. [INDUSTRY_REBUILD.md](INDUSTRY_REBUILD.md) records the implementation:
+one shared construction allocation pool, physical installation inputs,
+staffed and powered facilities, distinct service/component/naval roles,
+and simulation-backed effects reviews. This supersedes cash-only construction
+and the old estate prerequisite in browser play. Preserve legacy replay behind
+the default-false `industry_rebuild` rule; new balance values are MODEL
+assumptions and are not evidence of long-run historical calibration.
+
 ## Daily simulation amendment — 2026-09-03
 
 Ridge: **“Can we get everything on a daily ticker not monthly?”** This
@@ -94,7 +106,7 @@ Lose any of them and we have built a different product, not a better one.
 |---|---|---|
 | Factory counts as economy | The macroeconomy that already exists — TFP, capital, inflation, debt, oil, embargo | MD cannot express a currency crisis or a sanctions regime because HOI4 has no prices |
 | National focus trees | Emergent history from incentives, plus doctrine gates and a stratagem deck | Trees are rails and they run out; incentives do not |
-| Party popularity slider | Political capital as a real budget, coalitions, and legitimacy earned by delivery | Governing becomes a constraint rather than a colour |
+| Party popularity slider | Political capital as a real budget, coalitions, and legitimacy earned by delivery. **Amended 2026-09-05 on Ridge's approval of "The Political Arm of SPHERES", revision 2, quoted: "Go ahead and build it with code."** — the coalitions now sit under a bloc lens: five blocs (Western, Communist, Nationalist, Islamist, Non-Aligned) read off the transcribed party tables and a sourced leader table of 1 January 1990, a ruling bloc and a discontent gauge per nation served from the same pains the electorate feels, and a takeover watch whose four roads are served closed until stage S4 lands (SPEC §4) | Governing becomes a constraint rather than a colour |
 | Ministry sliders and boost buttons | ~~A ten-ministry annual budget enacted once a year, priced in political capital, capped per ministry, composing the three aggregates the model has always priced — social, military, state investment.~~ **AMENDED 2026-09-02 – Ridge's call, quoted: "Add in an interest over GDP figure that inflates based on percentage. You can cook the rest into the GITHUB dir".** The budget is still enacted once a year at a political price and still composes the three aggregates, but a ministry now BUYS one or two NAMED things instead of leaking into six: **health** buys births, and in war the return of the wounded to the line; **education** buys research points, and nothing else; **housing** (renamed from Families on Ridge's ruling, "Families should be housing instead") buys births and contentment; **pensions** buy a smaller labour force, a higher political-capital ceiling and contentment; **infrastructure** buys non-oil extraction, as a stock built and lost over a year; **industry and energy** buys faster magazine refill; **science** buys absorptive capacity — the ability to read someone else's paper and build the machine it describes; **defense** buys NOTHING beyond the force it already pays for, deliberately; **security** buys order and, alone, suppresses separatism; **diplomacy** buys the sanction shield and counter-intelligence. Debt service is an eleventh, unelectable row above the ten dials, charged in cash at a rate that ESCALATES with the debt ratio, so it visibly crowds the ministries out (§5, amended 2026-09-02, Ridge's call; SPEC §3) | A plan you enact once a year at a political price is a constraint; a dial you nudge for free every day is a colour. And a ministry you can point at — "this buys births, that buys shells" — is a decision; a dial that moves six hidden numbers at once is a slot machine |
 | Fronts and province combat | Theatres, a commitment ladder, and force packages (§6), now projected onto an operational district map (§5, amended 2026-08-30) | Capability gates stay the causes; districts are where their consequences show |
 | Factory queues that win a war | Procurement with a decade of lead time, feeding force structure (§5, amended) | You cannot out-build a modern war – you can only have already built |

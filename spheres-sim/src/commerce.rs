@@ -35,12 +35,14 @@ const MAX_ACTIVE: usize = 64;
 pub enum Good {
     Intermediates,
     CapitalGoods,
+    AdvancedComponents,
 }
 impl Good {
     pub fn key(self) -> &'static str {
         match self {
             Self::Intermediates => "intermediates",
             Self::CapitalGoods => "capital_goods",
+            Self::AdvancedComponents => "advanced_components",
         }
     }
     pub fn parse(s: &str) -> Option<Self> {
@@ -52,6 +54,7 @@ impl Good {
         {
             "intermediates" | "intermediate" | "intermediate_packs" => Some(Self::Intermediates),
             "capital_goods" | "capital" => Some(Self::CapitalGoods),
+            "advanced_components" | "components" => Some(Self::AdvancedComponents),
             _ => None,
         }
     }
@@ -59,6 +62,7 @@ impl Good {
         match self {
             Self::Intermediates => "Intermediate packs",
             Self::CapitalGoods => "Capital goods",
+            Self::AdvancedComponents => "Advanced components",
         }
     }
     /// MODELED shipping tonnes per industrial pack, not a geological unit.
@@ -66,14 +70,20 @@ impl Good {
         match self {
             Self::Intermediates => 1.0,
             Self::CapitalGoods => 2.0,
+            Self::AdvancedComponents => 0.25,
         }
     }
 }
 pub const GOODS: [Good; 2] = [Good::Intermediates, Good::CapitalGoods];
+pub fn supported_goods(w:&WorldState)->&'static [Good] {
+    if w.rules.industry_rebuild { &[Good::Intermediates,Good::CapitalGoods,Good::AdvancedComponents] }
+    else { &GOODS }
+}
 pub fn reference_price_bn(good: Good) -> f64 {
     match good {
         Good::Intermediates => crate::gdp_projects::INTERMEDIATE_PACK_BN,
         Good::CapitalGoods => crate::gdp_projects::CAPITAL_PACK_BN,
+        Good::AdvancedComponents => crate::gdp_projects::ADVANCED_COMPONENT_BN,
     }
 }
 
@@ -224,17 +234,27 @@ fn amount(goods: &industry::Goods, good: Good) -> f64 {
     match good {
         Good::Intermediates => goods.intermediates,
         Good::CapitalGoods => goods.capital_goods,
+        Good::AdvancedComponents => 0.0,
     }
 }
 fn change_stock(w: &mut WorldState, nation: NationId, good: Good, delta: f64) {
+    if good == Good::AdvancedComponents {
+        let value=w.production.operations.advanced_components.entry(nation).or_default();
+        *value=(*value+delta).max(0.0);
+        return;
+    }
     let goods = w.production.industry.goods.entry(nation).or_default();
     let value = match good {
         Good::Intermediates => &mut goods.intermediates,
         Good::CapitalGoods => &mut goods.capital_goods,
+        Good::AdvancedComponents => unreachable!("components have their own stock ledger"),
     };
     *value = (*value + delta).max(0.0);
 }
 pub fn stock(w: &WorldState, nation: NationId, good: Good) -> f64 {
+    if good == Good::AdvancedComponents {
+        return w.production.operations.advanced_components.get(&nation).copied().unwrap_or(0.0).max(0.0);
+    }
     w.production
         .industry
         .goods
@@ -272,6 +292,10 @@ pub fn pending(w: &WorldState, nation: NationId, good: Good) -> f64 {
 /// read, not an inventory debit. Construction is funded with money and creates
 /// no demand for manufactured inventory.
 pub fn recurring_demand_daily(w: &WorldState, nation: NationId, good: Good) -> f64 {
+    if good == Good::AdvancedComponents {
+        return crate::manufacturing::advanced_components_demand_daily(w,nation)
+            + crate::equipment::advanced_components_demand_daily(w,nation);
+    }
     let factories = if good == Good::Intermediates {
         w.districts
             .iter()
@@ -283,7 +307,14 @@ pub fn recurring_demand_daily(w: &WorldState, nation: NationId, good: Good) -> f
     } else {
         0.0
     };
-    factories + amount(&industry::research_goods_demand(w, nation), good)
+    let new_industry = if good == Good::Intermediates { crate::industry_operations::intermediate_demand_daily(w,nation) } else { 0.0 };
+    let construction = if w.rules.industry_rebuild { crate::production::projects_for(w,nation).map(|p| {
+        let recipe=crate::production::catalog(p.kind).recipe;
+        let amount=if good==Good::Intermediates { recipe[crate::resources::Commodity::Iron.idx()] }
+            else { recipe[crate::resources::Commodity::Copper.idx()]/0.1 };
+        amount * crate::industrial_modules::scale(p) / p.total_days.max(1) as f64
+    }).sum::<f64>() } else { 0.0 };
+    factories + new_industry + construction + amount(&industry::research_goods_demand(w, nation), good)
 }
 /// Installed operating consumers create a thirty-day goods requirement.
 /// Queuing a building does not reserve goods or trigger imports.
@@ -332,7 +363,7 @@ fn government(w: &WorldState, nation: NationId) -> Result<(), String> {
 pub fn sale_refusal(
     w: &WorldState,
     nation: NationId,
-    _good: Good,
+    good: Good,
     reserve: f64,
     ask_multiplier: f64,
     _enabled: bool,
@@ -341,6 +372,9 @@ pub fn sale_refusal(
         return Some(
             "Enable the daily economic competition and physical logistics systems first.".into(),
         );
+    }
+    if !supported_goods(w).contains(&good) {
+        return Some("Advanced components require the daily industry rebuild.".into());
     }
     if let Err(e) = government(w, nation) {
         return Some(e);
@@ -391,6 +425,9 @@ fn check(
 ) -> Result<logistics::RoutePlan, String> {
     if !active(w) {
         return Err("Enable daily economic competition and physical logistics first.".into());
+    }
+    if !supported_goods(w).contains(&good) {
+        return Err("Advanced components require the daily industry rebuild.".into());
     }
     if buyer == seller {
         return Err("An import needs a different seller.".into());
@@ -792,7 +829,8 @@ pub fn market_quotes(
     quantity: f64,
     delivery_days: u32,
 ) -> Vec<Quote> {
-    if !active(w) || !quantity.is_finite() || quantity < MIN_LOT || government(w, buyer).is_err() {
+    if !active(w) || !supported_goods(w).contains(&good)
+        || !quantity.is_finite() || quantity < MIN_LOT || government(w, buyer).is_err() {
         return vec![];
     }
     let cash = w.nation(buyer).treasury_bn.unwrap();
@@ -994,7 +1032,7 @@ pub fn tick_day(w: &mut WorldState) {
 }
 pub fn snapshot(w: &WorldState, nation: NationId) -> Snapshot {
     let c = w.commerce.as_ref();
-    Snapshot {enabled:active(w),nation,goods:GOODS.into_iter().map(|good|GoodsView{good,name:good.name().into(),stock:stock(w,nation,good),capacity:industry::goods_capacity(w,nation),demand:demand(w,nation,good),shortage:shortage(w,nation,good),incoming:pending(w,nation,good),exportable:available_to_sell(w,nation,good),reference_price_bn:reference_price_bn(good),sale:sale(w,nation,good).cloned()}).collect(),
+    Snapshot {enabled:active(w),nation,goods:supported_goods(w).iter().copied().map(|good|GoodsView{good,name:good.name().into(),stock:stock(w,nation,good),capacity:industry::goods_capacity(w,nation),demand:demand(w,nation,good),shortage:shortage(w,nation,good),incoming:pending(w,nation,good),exportable:available_to_sell(w,nation,good),reference_price_bn:reference_price_bn(good),sale:sale(w,nation,good).cloned()}).collect(),
         offers:c.map_or(vec![],|c|c.offers.iter().filter(|o|o.buyer==nation || o.seller==nation).cloned().collect()),
         contracts:c.map_or(vec![],|c|c.contracts.iter().filter(|o|o.buyer==nation || o.seller==nation).cloned().collect()),
         cargo:c.map_or(vec![],|c|c.cargo.iter().filter(|o|o.buyer==nation || o.seller==nation).cloned().collect()),
@@ -1139,6 +1177,86 @@ mod tests {
                 "trade resells output; never new GDP"
             );
         }
+    }
+    #[test]
+    fn advanced_components_counteroffer_escrow_freight_and_delivery_conserve_separate_inventory() {
+        let mut w=world();
+        w.rules.industry_rebuild=true;
+        let good=Good::AdvancedComponents;
+        change_stock(&mut w,SELLER,good,100.0);
+        set_sale(&mut w,SELLER,good,5.0,1.25,true).unwrap();
+        let total=goods_total(&w,good);
+        let money=money_total(&w);
+        let gdp=(w.nation(BUYER).gdp,w.nation(SELLER).gdp);
+        let machine_stock=w.production.industry.goods.clone();
+        let ask=reference_price_bn(good)*1.25;
+        let offered=propose(&mut w,BUYER,SELLER,good,10.0,reference_price_bn(good),30).unwrap();
+        assert_eq!(offered.kind,"counter_offer");
+        near(stock(&w,SELLER,good),100.0);
+        near(money_total(&w),money);
+        assert!(w.commerce.as_ref().unwrap().contracts.is_empty(),"an unanswered offer reserves no goods or cash");
+        let id=accept_offer(&mut w,BUYER,offered.id).unwrap();
+        let contract=w.commerce.as_ref().unwrap().contracts.iter().find(|c|c.id==id).unwrap();
+        near(contract.escrow_bn,10.0*ask);
+        near(contract.remaining_quantity,10.0);
+        near(stock(&w,SELLER,good),90.0);
+        near(stock(&w,BUYER,good),0.0);
+        near(pending(&w,BUYER,good),10.0);
+        near(goods_total(&w,good),total);
+        near(money_total(&w),money);
+        settle(&mut w);
+        let cargo=&w.commerce.as_ref().unwrap().cargo[0];
+        assert_eq!(cargo.good,good);
+        near(cargo.quantity,10.0);
+        let due=cargo.due_day;
+        assert!(due>clock::absolute_day(&w),"paid components must travel before use");
+        near(stock(&w,BUYER,good),0.0);
+        near(w.nation(SELLER).treasury_bn.unwrap(),1.0+10.0*ask);
+        near(w.commerce.as_ref().unwrap().contracts[0].escrow_bn,0.0);
+        near(goods_total(&w,good),total);
+        near(money_total(&w),money);
+        let saved=crate::save(&w);
+        let mut resumed=crate::load(&saved).unwrap();
+        settle(&mut resumed);
+        assert_eq!(crate::save(&resumed),saved,"same-day replay cannot redispatch components");
+        while clock::absolute_day(&w)<due {
+            next(&mut w); next(&mut resumed);
+            near(goods_total(&w,good),total);
+            near(money_total(&w),money);
+            assert_eq!(crate::save(&w),crate::save(&resumed));
+            if clock::absolute_day(&w)<due { near(stock(&w,BUYER,good),0.0); }
+        }
+        near(stock(&w,BUYER,good),10.0);
+        near(pending(&w,BUYER,good),0.0);
+        assert_eq!(w.production.industry.goods,machine_stock,"component trade cannot credit intermediates or machine/tool packs");
+        assert!(w.commerce.as_ref().unwrap().cargo.is_empty());
+        assert_eq!(w.commerce.as_ref().unwrap().goods_deliveries.len(),1);
+        assert_eq!(w.commerce.as_ref().unwrap().goods_deliveries[0].good,good);
+        next(&mut w);
+        near(stock(&w,BUYER,good),10.0);
+        assert_eq!(w.commerce.as_ref().unwrap().goods_deliveries.len(),1);
+        assert_eq!((w.nation(BUYER).gdp,w.nation(SELLER).gdp),gdp,"resale of manufactured components earns no second GDP award");
+    }
+    #[test]
+    fn advanced_components_sales_quotes_and_offer_acceptance_require_rebuild_rules() {
+        let mut w=world();
+        let good=Good::AdvancedComponents;
+        let old=crate::save(&w);
+        assert!(set_sale(&mut w,SELLER,good,0.0,1.0,true).unwrap_err().contains("industry rebuild"));
+        assert_eq!(crate::save(&w),old);
+        w.rules.industry_rebuild=true;
+        change_stock(&mut w,SELLER,good,10.0);
+        set_sale(&mut w,SELLER,good,0.0,2.0,true).unwrap();
+        let offer=propose(&mut w,BUYER,SELLER,good,1.0,reference_price_bn(good),30).unwrap();
+        assert_eq!(offer.kind,"counter_offer");
+        w.rules.industry_rebuild=false;
+        let before=crate::save(&w);
+        assert!(!supported_goods(&w).contains(&good));
+        assert!(market_quotes(&w,BUYER,good,1.0,30).is_empty());
+        assert!(!quote(&w,BUYER,SELLER,good,1.0,reference_price_bn(good)*2.0,30).accepted);
+        assert!(propose(&mut w,BUYER,SELLER,good,1.0,reference_price_bn(good)*2.0,30).unwrap_err().contains("industry rebuild"));
+        assert!(accept_offer(&mut w,BUYER,offer.id).unwrap_err().contains("industry rebuild"));
+        assert_eq!(crate::save(&w),before,"unsupported trade commands leave legacy worlds and already saved offers unchanged");
     }
     #[test]
     fn cash_only_handles_tiny_exact_cash_and_insufficient_funds_without_new_debt() {

@@ -3,7 +3,7 @@
 // viewer already draws, and that everything this runtime cannot draw is refused
 // by name instead of half-imported.
 //
-// Every model bar is asked of the ten committed .glb files, so this fails if the
+// Every model bar is asked of the twelve committed .glb files, so this fails if the
 // reader, the writer, the generator or the committed bytes drift apart. The
 // design each file is rebuilt from is the one the file itself records in
 // extras.specification: that is the round trip being proved, and it does not go
@@ -23,14 +23,15 @@ const viewer = require('../../spheres-web/ui/equipment-model.js');
 const folder = path.resolve(__dirname, '../../spheres-web/ui/equipment-models');
 
 // File to the platform it must carry, so a swapped or misnamed asset is caught
-// even though the components come from the file. Nine ground types plus the one
+// even though the components come from the file. Nine ground types, two aircraft, plus the one
 // mobility preset, matching the committed model README.
 const MODELS = [
   ['spheres-tank-balanced.glb', 'tank_standard'], ['spheres-tank-mobile.glb', 'tank_standard'],
   ['spheres-tank-heavy.glb', 'tank_heavy'], ['spheres-tank-light.glb', 'tank_light'],
   ['spheres-tank-destroyer.glb', 'tank_destroyer'], ['spheres-ground-ifv.glb', 'ground_ifv'],
   ['spheres-ground-apc.glb', 'ground_apc'], ['spheres-ground-recon.glb', 'ground_recon'],
-  ['spheres-ground-artillery.glb', 'ground_artillery'], ['spheres-ground-air-defense.glb', 'ground_air_defense']
+  ['spheres-ground-artillery.glb', 'ground_artillery'], ['spheres-ground-air-defense.glb', 'ground_air_defense'],
+  ['spheres-air-light-attack.glb', 'air_light_attack'], ['spheres-air-tactical-strike.glb', 'air_tactical_strike']
 ];
 const cache = new Map();
 const model = file => {
@@ -107,7 +108,8 @@ for (const [file, platform] of MODELS) {
       assert.ok(Math.abs(Math.hypot(mesh.normals[i], mesh.normals[i + 1], mesh.normals[i + 2]) - 1) < 1e-5);
 
     assert.equal(mesh.specification.platform, platform);
-    assert.ok(Object.keys(mesh.specification.components).length >= 12, 'every specification slot should survive the round trip');
+    const slots = platform.startsWith('air_') ? 8 : platform.startsWith('ground_') ? 13 : 12;
+    assert.equal(Object.keys(mesh.specification.components).length, slots, 'every specification slot should survive the round trip');
     assert.ok(mesh.description.length > 20, 'the model should import with its own description');
     assert.ok(mesh.parts.length > 5);
     wholeParts(mesh);

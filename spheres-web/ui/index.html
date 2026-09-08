@@ -1347,6 +1347,84 @@
   #techTip .tt-fx li.more { list-style:none; margin-left:-14px; color:var(--faint); }
   #techTip .tt-more { margin-top:6px; padding-top:5px; border-top:1px solid rgba(255,255,255,.06);
     font-size:9px; letter-spacing:.06em; text-transform:uppercase; color:var(--faint); }
+  /* ---------- the government screen (I): the board's shell, the arm's five colours ---------- */
+  #govBtn[disabled] { opacity:.4; cursor:default; }
+  #govScreen { position:fixed; inset:0; z-index:40; display:none; background:#04060a; }
+  #govScreen .tbar { position:absolute; inset:0 0 auto 0; height:44px; display:flex; align-items:center;
+    gap:14px; padding:0 14px; background:var(--panel); border-bottom:1px solid var(--brass-dim); z-index:4; }
+  #govScreen .ttitle { font-family:var(--serif); font-variant:small-caps; letter-spacing:.14em;
+    font-size:15px; color:var(--brass-hi); }
+  #govScreen .tsub { color:var(--dim); font-size:11px; display:flex; align-items:center; gap:8px; }
+  #govScreen .spacer { flex:1; }
+  #govBody { position:absolute; top:44px; left:0; right:0; bottom:0; overflow-y:auto; padding:14px 18px 28px;
+    display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); gap:6px 26px; align-content:start; }
+  @media (max-width: 900px) { #govBody { grid-template-columns:1fr; } }
+  .govcol { min-width:0; }
+  .govhead { font-family:var(--serif); font-variant:small-caps; letter-spacing:.14em; color:var(--brass-dim);
+    font-size:12px; margin:14px 0 6px; }
+  .govbar { display:flex; height:22px; border:1px solid var(--edge-dark); background:var(--well); overflow:hidden; }
+  .govbar i { display:block; height:100%; box-sizing:border-box; opacity:.5; }
+  .govbar i.gov { opacity:1; outline:2px solid var(--brass-hi); outline-offset:-2px; }
+  .govbar i.rule { box-shadow:inset 0 -4px 0 #fff; }
+  /* The foreign row (S3): under the bar, one hatched segment per bloc at its
+     served F_B, in the bloc's colour — money from abroad is an extension of
+     the movement, drawn as a hatch because it is not a share of the country. */
+  .govabroad { display:flex; height:9px; margin-top:2px; border:1px solid var(--edge-dark); border-top:0;
+    background:var(--well); overflow:hidden; }
+  .govabroad i { display:block; height:100%; box-sizing:border-box;
+    background-image:repeating-linear-gradient(45deg, var(--hatch, #fff) 0 2px, transparent 2px 5px); opacity:.85; }
+  .govabroad i.exposed { outline:1px solid var(--red); outline-offset:-1px; }
+  .govabroadnote { font-size:10px; color:var(--faint); letter-spacing:.06em; text-transform:uppercase; margin-top:3px; }
+  .govlegend { display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:6px; font-size:11px; color:var(--dim); }
+  .govlegend b { color:var(--ink); font-variant-numeric:tabular-nums; }
+  .govlegend i, .blocdot { display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px; }
+  header .blocdot { margin:0 2px 0 6px; }
+  .govoffice { margin-top:10px; font-size:13px; color:var(--ink); line-height:1.5; }
+  .govoffice .native, .govtable .native { color:var(--faint); font-style:italic; }
+  .govstats { display:flex; flex-wrap:wrap; gap:6px 16px; font-size:11px; color:var(--dim); margin:4px 0 8px; }
+  .govstats b { color:var(--ink); font-variant-numeric:tabular-nums; }
+  .govgroup { margin-bottom:10px; }
+  .govgrouphead { font-size:12px; color:var(--ink); padding:4px 0; border-bottom:1px solid var(--line); }
+  .govgrouphead b { font-variant-numeric:tabular-nums; }
+  .govtable { width:100%; border-collapse:collapse; font-size:11px; }
+  .govtable th { text-align:left; color:var(--faint); font-weight:400; letter-spacing:.1em; text-transform:uppercase;
+    font-size:9px; padding:3px 6px; }
+  .govtable td { padding:4px 6px; border-bottom:1px solid var(--line); font-variant-numeric:tabular-nums; vertical-align:top; }
+  .govtable tr.leads td { background:#1c2330; }
+  .govtable tr.ingov td { background:#161c26; }
+  .govpillar { margin:6px 0; font-size:12px; overflow:hidden; }
+  .govpillar .v { float:right; font-variant-numeric:tabular-nums; }
+  .govroads { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .govroad { border:1px solid var(--line); padding:8px 10px; background:var(--panel); }
+  .govroad.half { border-color:var(--amber); }
+  .govroad .rh { display:flex; justify-content:space-between; gap:8px; font-size:12px; margin-bottom:4px; }
+  .govroad .closed { color:var(--faint); font-size:10px; letter-spacing:.06em; text-transform:uppercase; text-align:right; }
+  .gauge { font-size:11px; color:var(--dim); margin-top:4px; overflow:hidden; }
+  .gauge .gv { float:right; font-variant-numeric:tabular-nums; color:var(--ink); }
+  .govacts { display:flex; flex-direction:column; gap:6px; }
+  .govact { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:6px 8px;
+    border:1px solid var(--line); background:var(--panel); font-size:12px; }
+  .govact.refused { opacity:.8; }
+  .govact .refusal { color:var(--amber); }
+  .govact button { white-space:nowrap; }
+  .govact .fx { margin:4px 0 0; padding-left:14px; font-size:10.5px; line-height:1.45; color:var(--green); }
+  .govact .fx li { list-style:disc; }
+  .govroad .armed { color:var(--red); }
+  /* The header chip pulses while any gauge on the watch is past half its
+     trigger — `takeover.half_armed`, served — and the dock names the road. */
+  @keyframes discontentPulse { 0%,100% { box-shadow:0 0 0 0 transparent; } 50% { box-shadow:0 0 0 4px #e0bf7955; } }
+  #hdrDiscontentChip.pulse { animation:discontentPulse 1.6s ease-in-out infinite; border-radius:3px; }
+  #govBtn.watch small { color:var(--amber); }
+  /* The covert card on a target's dossier (S3): the three operations and
+     "Back a movement" per present bloc, each at the sim's price with the sim's
+     refusal, and the two odds the sim rolls. */
+  .covertcard .odds { display:flex; gap:14px; font-size:11px; color:var(--dim); margin:4px 0 8px; }
+  .covertcard .odds b { color:var(--ink); font-variant-numeric:tabular-nums; }
+  .covertcard .govact { margin-bottom:6px; }
+  .govnote { grid-column:1 / -1; color:var(--dim); padding:20px; }
+  .band-green { color:var(--green) !important; }
+  .band-amber { color:var(--amber) !important; }
+  .band-red { color:var(--red) !important; }
   /* ---------- the resource board (B): #techScreen's shell, no tab bar ---------- */
   #stockBtn { position:relative; }
   #stockBtn.note::after { content:""; position:absolute; top:2px; right:2px; width:5px; height:5px;
@@ -2354,6 +2432,7 @@
 <link rel="stylesheet" href="/decision-tools.css">
 <link rel="stylesheet" href="/province-economy.css">
 <link rel="stylesheet" href="/industry-ui.css">
+<link rel="stylesheet" href="/companies.css">
 <link rel="stylesheet" href="/cash-flow-ui.css">
 <link rel="stylesheet" href="/equipment-ui.css">
 <link rel="stylesheet" href="/arsenal3d.css">
@@ -2544,7 +2623,10 @@
     <span class="date" id="hdrDate">—</span>
     <div id="calendarNotice" role="status" hidden></div>
     <span class="metric quiet-metric">OIL <b id="hdrOil">—</b></span>
-    <span class="metric player-metric">YOU <b id="hdrYou">—</b></span>
+    <span class="metric player-metric">YOU <i id="hdrBloc" class="blocdot" hidden></i><b id="hdrYou">—</b></span>
+    <!-- The political arm's chip: blocs::discontent, served, banded green under
+         25, amber 25-49, red at 50 and above. Hidden while the arm is off. -->
+    <span class="metric" id="hdrDiscontentChip" hidden>DISCONTENT <b id="hdrDiscontent">—</b></span>
     <span class="metric">GDP <b id="hdrGdp">—</b></span>
     <span class="metric quiet-metric">GROWTH <b id="hdrGrowth">—</b></span>
     <span class="metric">CAPITAL <b id="hdrPc" style="color:var(--amber)">—</b></span>
@@ -2626,7 +2708,7 @@
         </div>
         <button class="production-close" id="productionClose" type="button" aria-label="Close production">&times;</button>
       </div>
-      <nav class="construction-nav" aria-label="Economy sections"><button type="button" data-construction-cabinet="overview">Overview</button><button type="button" data-construction-cabinet="budget">Annual budget</button><span aria-current="page">Construction</span><button type="button" data-construction-cabinet="industry">Industry</button><button type="button" data-construction-cabinet="policy">Money &amp; policy</button></nav>
+      <nav class="construction-nav" aria-label="Economy sections"><button type="button" data-construction-cabinet="overview">Overview</button><button type="button" data-construction-cabinet="budget">Annual budget</button><span aria-current="page">Construction</span><button type="button" data-construction-cabinet="industry">Industry</button><button type="button" data-construction-cabinet="companies">Companies</button><button type="button" data-construction-cabinet="policy">Money &amp; policy</button></nav>
       <div class="production-body" id="productionBody"></div>
       <div class="sr-only" id="productionLive" role="status" aria-live="polite"></div>
     </aside>
@@ -2639,6 +2721,7 @@
       <button class="dockbtn" id="competitionDockBtn" type="button" aria-controls="competitionRoom" aria-expanded="false"><span class="icon" aria-hidden="true">⇄</span><span class="copy"><span class="label">Exchange</span><small>industry &amp; influence</small></span></button>
       <button class="dockbtn" data-drawer="intelDrawer" aria-expanded="false"><span class="icon">⚔</span><span class="copy"><span class="label">World</span><small id="dockWorld">conflicts &amp; news</small></span></button>
       <button class="dockbtn" id="stockBtn" title="Resources" aria-controls="stockScreen"><span class="icon" aria-hidden="true">◈</span><span class="copy"><span class="label">Resources</span><small id="dockResources">mine &amp; trade</small></span></button>
+      <button class="dockbtn" id="govBtn" title="Government" aria-controls="govScreen"><span class="icon" aria-hidden="true">♜</span><span class="copy"><span class="label">Government</span><small id="dockGovernment">who holds power</small></span></button>
       <button class="dockbtn" id="techBtn" title="Technology" aria-controls="techScreen"><span class="icon" aria-hidden="true">⌬</span><span class="copy"><span class="label">Research</span><small>discover &amp; develop</small></span></button>
       <button class="dockbtn" id="logisticsDockBtn" type="button" aria-controls="logisticsPanel" aria-expanded="false"><span class="icon">⇢</span><span class="copy"><span class="label">Logistics</span><small id="dockLogistics">daily dispatches</small></span><span class="dockbadge" id="logisticsBadge" aria-hidden="true"></span></button>
       <button class="dockbtn" id="productionDockBtn" type="button" aria-controls="productionPanel" aria-expanded="false"><span class="icon">⚙</span><span class="copy"><span class="label">Construction</span><small id="dockProduction">fund your projects</small></span><span class="dockbadge" id="productionBadge" aria-hidden="true"></span></button>
@@ -2675,7 +2758,8 @@
     <button id="cab-tab-budget" role="tab" aria-selected="false" aria-controls="cabinet-budget" tabindex="-1" data-cab-tab="budget">02 <span>Your yearly budget</span></button>
     <button id="cab-tab-construction" type="button" role="tab" aria-selected="false" aria-controls="productionPanel" tabindex="-1" data-cab-tab="construction">03 <span>Construction</span></button>
     <button id="cab-tab-industry" role="tab" aria-selected="false" aria-controls="cabinet-industry" tabindex="-1" data-cab-tab="industry">04 <span>Industry</span></button>
-    <button id="cab-tab-policy" role="tab" aria-selected="false" aria-controls="cabinet-policy" tabindex="-1" data-cab-tab="policy">05 <span>Money &amp; policy</span></button>
+    <button id="cab-tab-companies" type="button" role="tab" aria-selected="false" aria-controls="cabinet-companies" tabindex="-1" data-cab-tab="companies">05 <span>Companies</span></button>
+    <button id="cab-tab-policy" role="tab" aria-selected="false" aria-controls="cabinet-policy" tabindex="-1" data-cab-tab="policy">06 <span>Money &amp; policy</span></button>
   </nav>
   <div class="col" id="left"></div>
   <footer id="cabinetDraft" class="cab-draft" aria-label="Cabinet orders"></footer>
@@ -3029,6 +3113,19 @@
   </div>
 </div>
 
+<!-- The government screen (I): who holds power, on which side of the world's
+     argument, and what it would take to remove them. Built from
+     /api/government — every number and every sentence is served. -->
+<div id="govScreen" role="dialog" aria-modal="true" aria-label="Government" tabindex="-1">
+  <div class="tbar">
+    <span class="ttitle">Government</span>
+    <span class="tsub" id="govSub">&mdash;</span>
+    <span class="spacer"></span>
+    <button class="x" aria-label="Close government and return to map" onclick="closeGovernment()">close</button>
+  </div>
+  <div id="govBody"></div>
+</div>
+
 <div id="keys" role="dialog" aria-modal="true" aria-label="How to play"><div class="box">
   <button class="arc-help-close" onclick="setKeysCard(false)" aria-label="Close help">×</button><h3>Your command guide</h3>
   <p style="font-size:16px;line-height:1.6;color:var(--dim)">Drag to turn the globe. Select a province to explore it. Open a system from the command dock; your decisions take effect through the game's existing orders.</p>
@@ -3044,6 +3141,7 @@
   <div class="row"><span>Filter the event log</span><span><kbd>E</kbd></span></div>
   <div class="row"><span>Technology</span><span><kbd>T</kbd></span></div>
   <div class="row"><span>Resources board</span><span><kbd>B</kbd></span></div>
+  <div class="row"><span>Government &mdash; who holds power, and the takeover watch</span><span><kbd>I</kbd></span></div>
   <div class="row"><span>Global Command war room</span><span><kbd>D</kbd></span></div>
   <div class="row"><span>Logistics routes</span><span><kbd>G</kbd></span></div>
   <div class="row"><span>Production and construction</span><span><kbd>Q</kbd></span></div>
@@ -3088,6 +3186,7 @@
 <script src="/province-economy-ui.js"></script>
 <script src="/competition-ui.js"></script>
 <script src="/industry-ui.js"></script>
+<script src="/companies-ui.js"></script>
 <script src="/cash-flow-ui.js"></script>
 <script src="/equipment-mesh.js"></script>
 <script src="/equipment-export.js"></script>
@@ -3647,6 +3746,7 @@ function resetCampaignUi() {
   tech.mode = "domain"; tech.curDomain = null;
   tech._stEls = null; tech._stEdges = null;
   closeTech(); closeStock(); closeTechMenu(); closeGameDrawers();
+  resetGovernment();
   if (typeof equipmentClose === "function") equipmentClose();
   if (LOGI.open) closeLogistics();
   if (PROD.open) closeProduction();
@@ -4105,6 +4205,7 @@ function arcadeTopRoom() {
   if (techMenuIsOpen()) return $("#techMenu");
   if (stock.open) return $("#stockScreen");
   if (tech.open) return $("#techScreen");
+  if (typeof gov !== "undefined" && gov.open) return $("#govScreen");
   if (PROD.open && !$("#productionPanel").classList.contains("map-view")) return $("#productionPanel");
   if (LOGI.open && !$("#logisticsPanel").classList.contains("map-view")) return $("#logisticsPanel");
   if ($("#intelDrawer").classList.contains("open")) return $("#intelDrawer");
@@ -4139,6 +4240,7 @@ function cabinetIsOpen() { return $("#cabinetDrawer").classList.contains("open")
 function closeGameDrawers() {
   if (typeof COMP !== "undefined" && COMP.open) closeCompetition();
   if (typeof equipmentIsOpen === "function" && equipmentIsOpen()) closeEquipmentDrawer();
+  if (typeof gov !== "undefined" && gov.open) closeGovernment();
   const wasCabinet = cabinetIsOpen();
   const wasWorld = $("#intelDrawer").classList.contains("open");
   document.querySelectorAll(".game-drawer.open").forEach((d) => {
@@ -4149,6 +4251,7 @@ function closeGameDrawers() {
   $("#drawerScrim").classList.remove("open");
   if (wasCabinet) {
     if (typeof industryClose === "function") industryClose();
+    if (typeof companiesClose === "function") companiesClose();
     if (typeof cashFlowClose === "function") cashFlowClose();
     $("#app").inert = false;
     if (CAB.lastFocus && CAB.lastFocus.isConnected) CAB.lastFocus.focus({ preventScroll: true });
@@ -4197,6 +4300,7 @@ function toggleGameDrawer(id) {
     $("#drawerScrim").classList.add("open");
     if (id === "cabinetDrawer") {
       if (CAB.tab === "industry") openIndustry();
+      if (CAB.tab === "companies") openCompanies();
       if (typeof cashFlowTabChanged === "function") cashFlowTabChanged();
       $("#cab-tab-" + CAB.tab).focus({ preventScroll: true });
     }
@@ -4208,7 +4312,7 @@ function cabinetKeys(e) {
   if (e.key === "Escape") { e.preventDefault(); closeGameDrawers(); return; }
   if (e.target.closest('[role="tablist"]') && ["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) {
     e.preventDefault();
-    const tabs = ["overview", "budget", "construction", "industry", "policy"];
+    const tabs = ["overview", "budget", "construction", "industry", "companies", "policy"];
     const index = tabs.indexOf(CAB.tab);
     const next = e.key === "Home" ? 0 : e.key === "End" ? tabs.length-1 : (index + (e.key === "ArrowRight" ? 1 : tabs.length-1)) % tabs.length;
     selectCabinetTab(tabs[next]);
@@ -4241,6 +4345,7 @@ async function adopt(state, withHistory, allowCampaignChange = false) {
   }
   S = state;
   if (typeof industryOnStateChanged === "function") industryOnStateChanged();
+  if (typeof companiesOnStateChanged === "function") companiesOnStateChanged();
   if (typeof cashFlowOnStateChanged === "function") cashFlowOnStateChanged();
   if (typeof equipmentOnStateChanged === "function") equipmentOnStateChanged();
   if (typeof invalidateProgramPreview === "function") invalidateProgramPreview();
@@ -4666,6 +4771,7 @@ document.addEventListener("keydown", (e) => {
   // how they drift apart.
   if (clock.running && e.key === " " && !typing(e) && !e.ctrlKey && !e.metaKey && !e.altKey
       && !tech.open && !stock.open
+      && !gov.open
       && !e.target?.closest?.('button, summary, select, [role="tab"]')) {
     e.preventDefault(); clockPause(); return;
   }
@@ -4698,6 +4804,7 @@ document.addEventListener("keydown", (e) => {
     // The resource board (z 40) paints over the cabinet/intel drawers (z 31),
     // so it is the outer thing and goes first; the drawers next; the sheet last.
     if (stock.open) { closeStock(); return; }
+    if (gov.open) { closeGovernment(); return; }
     if (document.querySelector(".game-drawer.open")) { closeGameDrawers(); return; }
     if (LOGI.open && LOGI.selected) { logisticsSelect(null); return; }
     if (LOGI.open) { closeLogistics(); return; }
@@ -4765,12 +4872,17 @@ document.addEventListener("keydown", (e) => {
     // says out loud what it did; the banner paints above both (z 60 over z 40).
     if (tech.open || stock.open) {
       banner(clock.running ? "The clock is running — speed " + clock.speed : "The clock is paused");
+    } else if (gov.open) {
+      // The government screen covers the header too, and keeps the board's
+      // rule: Space reaches the clock, and the press says what it did.
+      banner(clock.running ? "The clock is running — speed " + clock.speed : "The clock is paused");
     }
     return;
   }
   // Everything else those two screens keep.
   if (tech.open) { techKeys(e); return; }
   if (stock.open) { stockKeys(e); return; }
+  if (gov.open) { govKeys(e); return; }
   if (room?.id === "techMenu" && (e.key === "t" || e.key === "T")) { openTech(null); return; }
   if (room && ["intelDrawer", "logisticsPanel", "productionPanel", "techMenu"].includes(room.id)) return;
   // Native controls own their activation and navigation keys. A Space press
@@ -4796,6 +4908,7 @@ document.addEventListener("keydown", (e) => {
   else if (k === "s" || k === "S") doSave();
   else if (k === "t" || k === "T") toggleTechMenu();
   else if (k === "b" || k === "B") toggleStockScreen();
+  else if (k === "i" || k === "I") toggleGovernment();
   else if (k === "d" || k === "D") openDomination();
   else if (k === "g" || k === "G") toggleLogistics();
   else if (k === "q" || k === "Q") toggleProduction();
@@ -4853,7 +4966,39 @@ function render() {
   $("#calendarNotice").hidden = !S.simulation_transition;
   $("#calendarNotice").textContent = S.simulation_transition ? S.simulation_transition.message : "";
   $("#hdrOil").textContent = "$" + S.oil_price.toFixed(0);
-  $("#hdrYou").textContent = S.player_name || "—";
+  // The political arm in the header: the person (or the institution, where no
+  // person is named) before the nation, then the ruling bloc's swatch —
+  // "Tadeusz Mazowiecki / Western · Poland". Both served; nothing derived.
+  const lead = leaderLine(m);
+  const chip = $("#hdrDiscontentChip");
+  if (m && m.ruling_bloc) {
+    $("#hdrYou").textContent = `${lead || "—"} / ${blocLabel(m.ruling_bloc)} · ${m.name}`;
+    $("#hdrBloc").style.background = blocColor(m.ruling_bloc);
+    $("#hdrBloc").hidden = false;
+  } else {
+    $("#hdrYou").textContent = S.player_name || "—";
+    $("#hdrBloc").hidden = true;
+  }
+  if (m && typeof m.discontent === "number") {
+    const pct = m.discontent * 100;
+    chip.hidden = false;
+    const b = $("#hdrDiscontent");
+    b.textContent = pct.toFixed(0) + "%";
+    b.className = "band-" + discontentBand(pct);
+  } else {
+    chip.hidden = true;
+  }
+  // The takeover watch in the header and the dock: the chip pulses while any
+  // gauge on any road is at or past half its trigger, and the dock names the
+  // road(s). Both read the SERVED `takeover.half_armed` flags; nothing is
+  // judged here.
+  const roadsHot = m && m.takeover
+    ? [["coup", "coup"], ["uprising", "uprising"], ["round_table", "round table"], ["collapse", "collapse"]]
+        .filter(([k]) => m.takeover[k] && m.takeover[k].half_armed).map(([, label]) => label)
+    : [];
+  chip.classList.toggle("pulse", !!(m && m.takeover && m.takeover.half_armed));
+  $("#govBtn").classList.toggle("watch", roadsHot.length > 0);
+  $("#dockGovernment").textContent = roadsHot.length ? `watch: ${roadsHot.join(", ")} past half` : "who holds power";
   $("#hdrGdp").textContent = m ? fmt.money(m.gdp) : "—";
   $("#hdrGrowth").textContent = m ? fmt.signed(m.growth) : "—";
   $("#hdrPc").textContent = m ? m.political_capital.toFixed(0) + " PC" : "—";
@@ -4916,6 +5061,7 @@ function render() {
   if (tech.open) refreshTech();
   if (techMenuIsOpen()) renderTechMenu();
   if (stock.open) { renderStock(); stockFetchCards(); }
+  if (gov.open) refreshGovernment();
   if (dominationIsOpen()) renderDomination();
 }
 
@@ -5324,8 +5470,10 @@ function moneyCard(m) {
 function selectCabinetTab(tab, mounting = false) {
   if (tab === "construction") { openConstruction(); return; }
   if (tab === "industry" && !mounting) { openIndustry(); return; }
-  if (!["overview", "budget", "industry", "policy"].includes(tab)) return;
+  if (tab === "companies" && !mounting) { openCompanies(); return; }
+  if (!["overview", "budget", "industry", "companies", "policy"].includes(tab)) return;
   if (CAB.tab === "industry" && tab !== "industry" && typeof industryClose === "function") industryClose();
+  if (CAB.tab === "companies" && tab !== "companies" && typeof companiesClose === "function") companiesClose();
   if (CAB.tab === "overview" && tab !== "overview" && typeof cashFlowClose === "function") cashFlowClose();
   CAB.tab = tab;
   document.querySelectorAll("[data-cab-tab]").forEach(b => {
@@ -5345,6 +5493,13 @@ function openIndustryCabinet() {
   $("#cab-tab-industry").focus({preventScroll:true});
 }
 
+function openCompaniesCabinet() {
+  closeProduction();
+  if (!cabinetIsOpen()) toggleGameDrawer("cabinetDrawer");
+  selectCabinetTab("companies", true);
+  $("#cab-tab-companies").focus({preventScroll:true});
+}
+
 function industryNavigate(action) {
   if (!action || !S?.player || advancing || pendingAdvance) return false;
   if (action.action === "construction") {
@@ -5361,7 +5516,7 @@ function industryNavigate(action) {
   } else if (action.action === "resources") {
     openStock();
   } else if (action.action === "trade") {
-    if (["intermediates","capital_goods"].includes(action.good)) COMP.trade.good = action.good;
+    if (["intermediates","capital_goods","advanced_components"].includes(action.good)) COMP.trade.good = action.good;
     openCompetition();
     competitionSetTab("trade");
   } else if (action.action === "inherited") {
@@ -5464,21 +5619,35 @@ function equipmentExternalPending() {
 }
 async function equipmentCommand(command) {
   if (!S?.player || equipmentExternalPending()) throw new Error("Wait for the current order or turn to finish before confirming equipment work.");
-  if (!command || !["equipment_save","equipment_research","equipment_develop","equipment_produce","equipment_refit","equipment_pause","equipment_cancel","equipment_funding"].includes(command.kind)) throw new Error("This is not a reviewed equipment order.");
+  if (!command || !["equipment_save","equipment_research","equipment_develop","equipment_produce","equipment_refit","equipment_retire","equipment_maintenance","equipment_supply","equipment_target","equipment_pause","equipment_cancel","equipment_funding","equipment_ammo_order","equipment_ammo_activate","equipment_ammo_funding","equipment_ammo_pause","equipment_ammo_cancel","equipment_ammo_reserve","equipment_ammo_reserve_clear","equipment_supply_policy","equipment_supply_policy_clear"].includes(command.kind)) throw new Error("This is not a reviewed equipment order.");
   const session=S.session_id;
   const response=await api("/api/command", {commands:[command]});
   if (session!==S?.session_id) throw new Error("The campaign changed. Review the equipment in the current campaign.");
   if (response.command_pending) throw new Error("The order is awaiting confirmation. Use the pending order controls before sending another.");
   if (response.errors?.length) throw new Error(response.errors.join(" "));
   await adopt(response,false);
-  return {message:command.kind==="equipment_save"?"Design draft saved to your library.":"Equipment order accepted. Review its programme for progress and paid work."};
+  if(command.kind==="equipment_supply_policy"||command.kind==="equipment_supply_policy_clear") {
+    equipmentSelectTab("production");
+    return {message:command.kind==="equipment_supply_policy_clear"?"Material purchasing policy cleared. Existing paid shipments remain tracked in Resources.":command.automatic?"Automatic material purchasing enabled. Future reviews follow the saved horizon, spending cap, cash floor and interval.":"Material purchasing policy saved with automatic purchases disabled. Review purchases individually in Production."};
+  }
+  if(command.kind==="equipment_ammo_reserve"||command.kind==="equipment_ammo_reserve_clear") {
+    equipmentSelectTab("ammunition");
+    return {message:command.kind==="equipment_ammo_reserve_clear"?"Ammunition reserve plan removed. Review any existing batches in Ammunition.":command.automatic?"Ammunition reserve plan saved with automatic replenishment enabled. Review its target, funding and status in Ammunition.":"Ammunition reserve target saved for manual replenishment. Review its target and suggested work in Ammunition."};
+  }
+  const ammunitionMessages={equipment_ammo_order:"Ammunition batch scheduled. Review its funded work and completed output in Ammunition.",equipment_ammo_activate:"Physical ammunition management activated. Review family stocks and production requirements in Ammunition.",equipment_ammo_funding:"Ammunition funding limit saved. Future work follows the chosen limit and available departmental funds.",equipment_ammo_pause:command.paused?"Ammunition batch paused. Completed work is retained.":"Ammunition batch resumed. Future work requires available funding and materials.",equipment_ammo_cancel:"Remaining ammunition work cancelled. Review completed output and recorded spending in Ammunition."};
+  if(ammunitionMessages[command.kind])return {message:ammunitionMessages[command.kind]};
+  return {message:command.kind==="equipment_save"?"Design draft saved to your library.":command.kind==="equipment_retire"?"Vehicles retired. Your remaining fleet is shown below; funding allocations and existing orders are unchanged.":command.kind==="equipment_maintenance"?"Maintenance plan saved. Future invoices use the chosen ceiling and available Defense funding.":command.kind==="equipment_target"?"Fleet target saved. Review suggested production or refits separately; no vehicles have been ordered.":command.kind==="equipment_supply"?"Material purchase completed. Paid shipments are recorded in Resources and must arrive before use.":"Equipment order accepted. Review its programme for progress and paid work."};
 }
 async function equipmentNavigate(action) {
   if (!action || !S?.player || equipmentExternalPending()) return false;
+  if (action.action==="equipment") {
+    if (!["research","designer","library","development","production","ammunition","service"].includes(action.tab)) return false;
+    equipmentSelectTab(action.tab); return true;
+  }
   if (action.action==="research" && action.equipment===true) {
     equipmentSelectTab("research"); equipmentRevealRecord(action.id); return true;
   }
-  if (!["research","budget","construction","manufacture","resources"].includes(action.action)) return false;
+  if (!["research","budget","construction","manufacture","resources","industry"].includes(action.action)) return false;
   const state=S;
   closeEquipmentDrawer();
   if (action.action==="research") {
@@ -5491,7 +5660,9 @@ async function equipmentNavigate(action) {
   } else if (action.action==="construction") {
     openConstruction({kind:action.kind,province:action.district,project:action.project});
   } else if (action.action==="resources") {
-    openStock();
+    openStock(action.commodity);
+  } else if (action.action==="industry") {
+    openIndustry({district:action.district});
   } else {
     PROD.mode="manufacture"; openProduction();
   }
@@ -5662,6 +5833,8 @@ function renderLeft(m) {
 
     <section id="cabinet-industry" class="cab-page" role="tabpanel" aria-labelledby="cab-tab-industry" hidden>${typeof industryPanelHtml === "function" ? industryPanelHtml() : ""}</section>
 
+    <section id="cabinet-companies" class="cab-page" role="tabpanel" aria-labelledby="cab-tab-companies" hidden>${typeof companiesPanelHtml === "function" ? companiesPanelHtml() : ""}</section>
+
     <section id="cabinet-policy" class="cab-page" role="tabpanel" aria-labelledby="cab-tab-policy" hidden>
       <div class="area-heading"><div class="cab-section-head"><div><div class="cab-kicker">The engine room</div><h2>Money with a purpose.</h2></div><p>Policy controls show your draft. The treasury shows the plan running now. All money is in constant 1990 dollars.</p></div>${globalThis.AreaArt?.html("treasury", "compact") || ""}</div>
       <div class="cab-two-col"><div class="card"><h3>Your policy controls</h3>
@@ -5697,6 +5870,7 @@ function renderLeft(m) {
   $("#cabinetResearch").querySelectorAll("[data-tree]").forEach(b => { b.onclick = () => { closeGameDrawers(); openTech(b.dataset.tree); }; });
   selectCabinetTab(CAB.tab, true);
   if (typeof industryBind === "function") industryBind();
+  if (typeof companiesBind === "function") companiesBind();
   if (typeof cashFlowBind === "function") cashFlowBind();
   openDetails.forEach(id => { const el = document.getElementById(id); if (el) el.open = true; });
   $("#left").scrollTop = scroll;
@@ -8803,6 +8977,20 @@ const MAP_MODES = {
     color: (n) => mix("#1d3a5c", "#4fb8cc", Math.log10(Math.max(n.gdp, 10) / 10) / 3),
     legend: [["#1d3a5c", "$10bn"], ["#4fb8cc", "$10tn"]],
   },
+  ideology: {
+    label: "Ideology",
+    // The political arm's read: who rules, counted on which side of the
+    // world's argument of 1990. `ruling_bloc` is SERVED per nation by the sim
+    // (blocs::ruling_bloc), and the diagonal hatch reads the served
+    // `takeover.half_armed` — a gauge on any road at or past half its trigger.
+    // Nothing here decides either. A nation the arm has not reached (the
+    // switch off, no government) recedes to the scenery tone. Thematic: colour
+    // IS the data, so it carries no ground, like the four modes above it.
+    color: (n) => blocColor(n.ruling_bloc),
+    legend: [["#3465a4", "Western"], ["#b3261e", "Communist"], ["#4a3728", "Nationalist"],
+             ["#2e7d32", "Islamist"], ["#7a7a7a", "Non-Aligned"],
+             ["repeating-linear-gradient(45deg,#39424e 0 2px,#171d26 2px 4px)", "a takeover gauge at half its trigger"]],
+  },
 };
 
 function cycleMapMode() {
@@ -11597,6 +11785,22 @@ function paintPolitical() {
     }
   }
 
+  // 2a. the ideology hatch: a nation whose takeover watch has any gauge at or
+  // past half its trigger — SERVED as `takeover.half_armed`, never judged here
+  // — is hatched over its bloc colour, with the fronts' own tile at the
+  // fronts' own angle. Political and Stability are untouched: this paints in
+  // the Ideology mode alone.
+  if (ui.mapMode === "ideology") {
+    const pat = ctx.createPattern(HATCH, "repeat");
+    pat.setTransform(new DOMMatrix().rotate(45).scale(1 / POL.s * 3));
+    ctx.fillStyle = pat;
+    ctx.globalAlpha = 1;
+    for (const n of S.nations) {
+      if (!n.takeover || !n.takeover.half_armed) continue;
+      for (const c of (TERRITORY[n.id] || [])) if (WORLD.countries[c]) ctx.fill(p2d(WORLD.countries[c]), "evenodd");
+    }
+  }
+
   // 2b. the resource tint: who holds a surplus, who is short, who is stalled,
   // whom every seller has refused — served by /api/stock/world for the
   // selected commodity and painted over the powers in both resource readings.
@@ -14322,6 +14526,9 @@ function openNation(id, keepScroll) {
           ? "" : `<button onclick="openQuarrel('${n.name}')">Open a quarrel · 4 pc</button>`}
         <button class="danger" onclick="declareWar('${n.name}')">Declare war</button>
       </div>`}</div>
+      ${isMe ? "" : `<div class="card covertcard"><h3>Covert action</h3>
+      <div class="tiny muted" style="margin-bottom:6px">Deniable until it is not. Every price, every refusal and both odds below are the sim's own, read from /api/covert.</div>
+      <div id="covertDash" class="tiny muted">Asking the service\u2026</div></div>`}
     </section>
 
     <section id="nation-page-economy" data-nation-page="economy" role="tabpanel" aria-labelledby="nation-tab-economy">
@@ -14441,6 +14648,7 @@ function openNation(id, keepScroll) {
   loadProvenance(n.name);
   fillResourceDash(n.id);
   fillStockDash(n.id);
+  if (!isMe) fillCovertDash(n.id);
   // The selected nation's ring is drawn on the selection layer and its
   // districts label up on the overlay, so both owe the globe a redraw.
   selectionChanged();
@@ -15339,6 +15547,221 @@ function stockKeys(e) {
   if (k >= "0" && k <= "9") e.preventDefault();
 }
 
+/* ================= the government screen (I) =================
+   Who holds power, on which side of the world's argument of 1990, and what it
+   would take to remove them. EVERY number and every sentence here is served by
+   /api/government — the bloc shares, the ruling bloc, the discontent gauge,
+   the gauges of the takeover watch and their progress, the prices and the
+   refusals all come out of blocs.rs and government.rs through the server. This
+   file composes nothing and holds no coefficient: the one thing it owns is the
+   five colours, and the three bands of the discontent chip. */
+const BLOC_COLOR = { Western: "#3465a4", Communist: "#b3261e", Nationalist: "#4a3728", Islamist: "#2e7d32", NonAligned: "#7a7a7a" };
+const BLOC_LABEL = { Western: "Western", Communist: "Communist", Nationalist: "Nationalist", Islamist: "Islamist", NonAligned: "Non-Aligned" };
+function blocColor(b) { return BLOC_COLOR[b] || "#333c48"; }
+function blocLabel(b) { return BLOC_LABEL[b] || "\u2014"; }
+/// The header chip's band, from the served percentage: green under 25, amber
+/// 25-49, red at 50 and above. The number itself is blocs::discontent. The two
+/// band edges, 25 and 50, are INVENTED (design, approved 2026-09-05) and filed
+/// in BUGS.md P-4: they colour a chip and decide nothing in the sim.
+function discontentBand(pct) { return pct < 25 ? "green" : pct < 50 ? "amber" : "red"; }
+/// The person, or the institution where no person is named (design D2).
+function leaderLine(n) { const l = n && n.leader; return l ? (l.name || l.described || null) : null; }
+function pctText(v) { const p = v * 100; return (p >= 10 || p === 0 ? p.toFixed(0) : p.toFixed(1)) + "%"; }
+
+const gov = { open: false, nation: null, data: null, seq: 0, lastFocus: null, busy: false, action: null };
+const COVERT_ACTION = { pending: null };
+function governmentActionBlocked() {
+  return SESSION.busy || advancing || !!pendingAdvance
+    || (typeof COMMAND_CHANNEL !== "undefined" && (COMMAND_CHANNEL.busy || !!COMMAND_CHANNEL.pending));
+}
+function resetGovernment() {
+  closeGovernment();
+  gov.nation = null; gov.data = null; gov.busy = false; gov.action = null;
+  COVERT_ACTION.pending = null;
+}
+function toggleGovernment() { if (gov.open) closeGovernment(); else openGovernment(); }
+function openGovernment(id) {
+  if (!S) return;
+  const who = id || gov.nation || selected || S.player;
+  if (!who) { banner("Choose a nation first \u2014 click one on the map."); return; }
+  const returnFocus = gov.open ? gov.lastFocus : document.activeElement;
+  if (LOGI.open) closeLogistics();
+  if (PROD.open) closeProduction();
+  if (dominationIsOpen()) closeDomination();
+  closeGameDrawers();
+  closeTechMenu();
+  if (tech.open) closeTech();
+  if (stock.open) closeStock();
+  closeSheet();
+  if (!gov.open) gov.lastFocus = returnFocus;
+  gov.open = true;
+  if (gov.nation !== who) gov.data = null;
+  gov.nation = who;
+  $("#govScreen").style.display = "block";
+  renderGovernment();
+  govFetch();
+  $("#govScreen .tbar .x").focus({ preventScroll: true });
+}
+function closeGovernment() {
+  const wasOpen = gov.open;
+  gov.open = false;
+  ++gov.seq;
+  $("#govScreen").style.display = "none";
+  if (wasOpen) {
+    const target = gov.lastFocus?.isConnected && gov.lastFocus.getClientRects().length ? gov.lastFocus : $("#govBtn");
+    target?.focus({ preventScroll: true });
+    gov.lastFocus = null;
+  }
+}
+window.openGovernment = openGovernment;
+window.closeGovernment = closeGovernment;
+function govShow(id) { gov.nation = id; gov.data = null; renderGovernment(); govFetch(); }
+async function govFetch() {
+  if (!gov.open || !gov.nation) return;
+  const seq = ++gov.seq, state = S, nation = gov.nation;
+  const current = () => seq === gov.seq && gov.open && S === state && gov.nation === nation;
+  try {
+    const d = await api("/api/government?nation=" + encodeURIComponent(nation));
+    if (!current()) return;
+    gov.data = d;
+  } catch (e) {
+    if (!current()) return;
+    gov.data = { error: e.message || String(e) };
+  }
+  renderGovernment();
+}
+/// Called from render() every tick while the screen is up, so the numbers
+/// behind it move with the world instead of freezing at the month it opened.
+function refreshGovernment() { govFetch(); }
+
+function govKeys(e) {
+  const k = e.key;
+  if (k === "Escape") { e.preventDefault(); closeGovernment(); return; }
+  if (e.target && e.target.closest && e.target.closest("button,input,select,textarea,summary,[contenteditable=true]")) return;
+  if (k === "i" || k === "I") { e.preventDefault(); closeGovernment(); return; }
+  if (k === "[" || k === "]") {
+    e.preventDefault();
+    const order = [...S.nations].sort((a, b) => b.gdp - a.gdp).map((n) => n.id);
+    if (!order.length) return;
+    const i = order.indexOf(gov.nation);
+    govShow(order[(i + (k === "]" ? 1 : -1) + order.length) % order.length]);
+    return;
+  }
+  // The board's rule: the ADVANCE keys are swallowed behind a full screen.
+  // Space never arrives here — the global handler takes it as the clock's
+  // toggle first, and says so in a banner over this screen.
+  if (k >= "0" && k <= "9") e.preventDefault();
+}
+
+function gaugeText(g) {
+  const big = g.trigger > 1 || (g.upper != null && g.upper > 1);
+  const f = (v) => big ? v.toFixed(v >= 10 ? 0 : 2) : pctText(v);
+  const rel = g.sense === "Above" ? "\u2265" : g.sense === "Below" ? "\u2264" : "in";
+  const target = g.sense === "Inside" ? `${f(g.trigger)}\u2026${f(g.upper)}` : f(g.trigger);
+  return `${f(g.value)} <span class="tiny">${rel} ${target}</span>`;
+}
+
+function govGroupsHtml(groups) {
+  return groups.map((g) => `<div class="govgroup"><div class="govgrouphead"><i class="blocdot" style="background:${blocColor(g.bloc)}"></i>${blocLabel(g.bloc)} <b>${pctText(g.share)}</b>${g.banned ? " \u00b7 banned" : ""}</div>
+    <table class="govtable"><thead><tr><th>party</th><th>support</th><th>seats</th><th>office</th></tr></thead><tbody>
+    ${g.parties.map((p) => `<tr class="${p.leads ? "leads" : p.in_government ? "ingov" : ""}"><td><b>${escText(p.name)}</b>${p.native && p.native !== p.name ? ` <span class="native">${escText(p.native)}</span>` : ""}<span class="tiny"> \u00b7 ${escText(p.family)}</span></td><td>${pctText(p.support)}</td><td>${pctText(p.seats)}</td><td>${p.leads ? "leads the government" : p.in_government ? "in government" : p.pariah ? "pariah" : ""}${p.banned ? " \u00b7 banned" : ""}</td></tr>`).join("")}
+    </tbody></table></div>`).join("");
+}
+
+function renderGovernment() {
+  if (!S) return;
+  const d = gov.data;
+  const n = nationById(gov.nation);
+  $("#govSub").innerHTML = `<select id="govPick" aria-label="Nation">${[...S.nations].sort((a, b) => a.name.localeCompare(b.name)).map((x) =>
+    `<option value="${x.id}"${x.id === gov.nation ? " selected" : ""}>${escText(x.name)}</option>`).join("")}</select>` +
+    (n && n.id === S.player ? `<span>your government</span>` : `<span>spectating</span>`);
+  const pick = $("#govPick");
+  if (pick) pick.onchange = () => govShow(pick.value);
+  const body = $("#govBody");
+  if (!d) { body.innerHTML = `<div class="govnote">Asking the sim\u2026</div>`; return; }
+  if (d.error) { body.innerHTML = `<div class="govnote">${escText(d.error)}</div>`; return; }
+  if (!d.on) { body.innerHTML = `<div class="govnote">The political arm is off in this world.</div>`; return; }
+  const lead = d.leader || {};
+  const who = lead.name || lead.described || "\u2014";
+  const disc = d.discontent * 100;
+
+  // (1) the five-segment bar, the governing segments outlined, the ruling one
+  // underlined; the office and since beneath.
+  const bar = `<div class="govhead">Who holds power</div>
+    <div class="govbar" role="img" aria-label="bloc shares">${d.bar.map((b) =>
+      `<i class="${b.governing ? "gov" : ""}${b.ruling ? " rule" : ""}" style="width:${(b.share * 100).toFixed(2)}%;background:${blocColor(b.bloc)}" title="${blocLabel(b.bloc)} ${pctText(b.share)}${b.banned ? " \u00b7 banned" : ""}"></i>`).join("")}</div>
+    ${d.bar.some((b) => b.backing > 0) ? `<div class="govabroad" role="img" aria-label="backed from abroad">${d.bar.map((b) =>
+      `<i class="${(b.abroad || []).some((e) => e.kind === "covert" && e.exposed) ? "exposed" : ""}" style="width:${(b.backing * 100).toFixed(2)}%;--hatch:${blocColor(b.bloc)}" title="${blocLabel(b.bloc)} backed from abroad ${pctText(b.backing)}"></i>`).join("")}</div>
+    <div class="govabroadnote">hatched: backed from abroad \u00b7 ${d.bar.filter((b) => b.backing > 0).map((b) => `${blocLabel(b.bloc)} ${pctText(b.backing)} (${(b.abroad || []).map((e) => e.kind === "patronage" ? "patronage" : e.sponsor ? `${escText(e.sponsor)}, exposed` : "nobody can say from where").join("; ")})`).join(" \u00b7 ")}</div>` : ""}
+    <div class="govlegend">${d.bar.map((b) => `<span><i style="background:${blocColor(b.bloc)}"></i>${blocLabel(b.bloc)} <b>${pctText(b.share)}</b>${b.backing ? ` +${pctText(b.backing)} abroad` : ""}${b.ruling ? " \u00b7 rules" : b.governing ? " \u00b7 in government" : ""}${b.banned ? " \u00b7 banned" : ""}</span>`).join("")}</div>
+    <div class="govoffice"><b>${escText(who)}</b>${lead.native && lead.native !== lead.name ? ` <span class="native">${escText(lead.native)}</span>` : ""} \u2014 ${escText(lead.office || "")}${lead.since ? ` \u00b7 since ${escText(lead.since)}` : ""}${d.ruling_bloc ? ` \u00b7 <i class="blocdot" style="background:${blocColor(d.ruling_bloc)}"></i>${blocLabel(d.ruling_bloc)}` : ""}
+      ${d.government_of_the_day ? `<div class="tiny">government of the day: ${escText(d.government_of_the_day_name || d.government_of_the_day)}</div>` : ""}
+      ${lead.heir ? `<div class="tiny">heir: ${escText(lead.heir.name)}, ${escText(lead.heir.office)} since ${escText(lead.heir.since)}</div>` : ""}
+      ${lead.must_leave_by ? `<div class="tiny">must leave by ${escText(lead.must_leave_by)}</div>` : ""}
+      ${(lead.also || []).map((a) => `<div class="tiny">also: ${escText(a.name)}, ${escText(a.office)} since ${escText(a.since)}</div>`).join("")}
+      <div class="tiny">discontent <b class="band-${discontentBand(disc)}">${pctText(d.discontent)}</b> \u00b7 political capital ${d.political_capital.toFixed(0)}</div></div>`;
+
+  // (2) the face: the chamber, or the regime.
+  let face;
+  if (d.electoral) {
+    face = `<div class="govhead">The chamber</div>
+      <div class="govstats"><span>${escText(d.system || "")}</span><span>term <b>${d.term_months}</b> months</span>${d.next_election ? `<span>next election <b>${escText(d.next_election)}</b></span>` : ""}<span>government seats <b>${pctText(d.government_seats)}</b></span><span>in office <b>${d.months_in_office}</b> months</span><span>strain <b>${d.strain.toFixed(2)}</b></span><span>upkeep <b>${d.upkeep.toFixed(2)}</b> PC a month</span></div>
+      ${govGroupsHtml(d.groups)}`;
+  } else {
+    face = `<div class="govhead">The regime</div>
+      <div class="govstats"><span>${escText(d.ruling_institution || "")}</span><span>coup pressure <b>${d.coup_pressure.toFixed(2)}</b></span></div>
+      ${d.pillars.map((p) => `<div class="govpillar"><span class="nm"><i class="blocdot" style="background:${blocColor(p.bloc)}"></i>${escText(p.name)} <span class="tiny">\u00b7 ${escText(p.key)} \u00b7 installs ${blocLabel(p.bloc)}</span></span><span class="v">${pctText(p.loyalty)} loyal</span>
+        <div class="bar"><i style="width:${(p.loyalty * 100).toFixed(1)}%;background:${blocColor(p.bloc)}"></i></div></div>`).join("")}
+      ${d.groups.length ? `<div class="govhead">The dormant table</div>${govGroupsHtml(d.groups)}` : ""}`;
+  }
+
+  // (3) the takeover watch: four roads, every one closed with its reason in
+  // this build, the gauges served with their progress.
+  const roads = [["coup", "Coup"], ["uprising", "Uprising"], ["round_table", "Round table"], ["collapse", "Collapse"]];
+  const watch = `<div class="govhead">The takeover watch</div><div class="govroads">${roads.map(([k, label]) => {
+    const r = d.takeover[k];
+    return `<div class="govroad${r.half_armed ? " half" : ""}"><div class="rh"><b>${label}</b><span class="closed">${r.open ? "open" : "closed"}${r.reason ? ` \u2014 ${escText(r.reason)}` : ""}${r.armed ? ` <span class="armed">\u00b7 every gauge met</span>` : ""}</span></div>
+      ${r.gauges.map((g) => `<div class="gauge"><span>${escText(g.name)}${g.bloc ? ` (${blocLabel(g.bloc)})` : ""}</span><span class="gv">${gaugeText(g)}</span>
+        <div class="bar"><i style="width:${(Math.min(g.progress, 1) * 100).toFixed(1)}%;background:${g.met ? "var(--red)" : g.progress >= 0.5 ? "var(--amber)" : "var(--dim)"}"></i></div></div>`).join("")}</div>`;
+  }).join("")}</div>`;
+
+  // (4) the actions, each at the sim's price, with the sim's refusal and the
+  // sim's effects list (S3: `effects`, one sentence per arm, served from the
+  // function that charges it). The five levers get their own head.
+  const LEVERS = new Set(["suspend", "ban", "legalize", "programme", "round_table"]);
+  const actHtml = (a, i) => `<div class="govact${a.refusal ? " refused" : ""}"><div><b>${escText(a.label)}</b>${a.detail ? ` <span class="tiny">\u00b7 ${escText(a.detail)}</span>` : ""}${a.blurb ? `<div class="tiny">${escText(a.blurb)}</div>` : ""}${a.refusal ? `<div class="tiny refusal">${escText(a.refusal)}</div>` : ""}${(a.effects || []).length ? `<ul class="fx">${a.effects.map((e) => `<li>${escText(e)}</li>`).join("")}</ul>` : ""}</div>
+      <button data-act="${i}" ${a.refusal || !d.mine || gov.busy ? "disabled" : ""}>${a.price.toFixed(1)} PC</button></div>`;
+  const plain = d.actions.map((a, i) => [a, i]).filter(([a]) => !LEVERS.has(a.kind));
+  const levers = d.actions.map((a, i) => [a, i]).filter(([a]) => LEVERS.has(a.kind));
+  const acts = `<div class="govhead">Actions</div><div class="govacts">${plain.map(([a, i]) => actHtml(a, i)).join("")}
+    ${d.mine ? "" : `<div class="tiny">Only your own government takes orders.</div>`}</div>
+    ${levers.length ? `<div class="govhead">The levers</div><div class="govacts">${levers.map(([a, i]) => actHtml(a, i)).join("")}</div>` : ""}`;
+
+  body.innerHTML = `<div class="govcol">${bar}${face}</div><div class="govcol">${watch}${acts}</div>`;
+  body.querySelectorAll("button[data-act]").forEach((b) => { b.onclick = () => govAct(d.actions[+b.dataset.act]); });
+}
+
+/// An action takes effect the moment it is pressed — the stratagem route. The
+/// sim re-checks, charges, and refuses with its own sentence.
+async function govAct(a) {
+  if (gov.busy || governmentActionBlocked() || !gov.open || !a || a.refusal || !a.command || !gov.data?.mine || !gov.data.actions.includes(a)) return;
+  const state = S, nation = gov.nation, data = gov.data, action = {};
+  const command = JSON.parse(JSON.stringify(a.command)), label = a.label, price = a.price;
+  gov.busy = true; gov.action = action; renderGovernment();
+  try {
+    if (!await campaignConfirm(`${label}?\n\nIt costs ${price.toFixed(1)} political capital and takes effect at once.`, { title: "Government action", confirmLabel: label })) return;
+    if (S !== state || gov.action !== action || !gov.open || gov.nation !== nation || gov.data !== data || governmentActionBlocked()) return;
+    const r = await api("/api/command", { commands: [command] });
+    if (S !== state || gov.action !== action) return;
+    if (r.errors && r.errors.length) banner(r.errors[0]); else banner(label + " \u2014 done.");
+    await adopt(r, false);
+  } catch (e) {
+    if (S === state && gov.action === action) { banner(e.message || String(e)); govFetch(); }
+  } finally {
+    if (gov.action === action) { gov.busy = false; gov.action = null; if (gov.open) renderGovernment(); }
+  }
+}
+
 /* ---------------- contracts and offers ---------------- */
 
 window.cancelDeal = async function (id, withName, pc, note) {
@@ -15554,6 +15977,46 @@ async function talksOffer(takeTerms) {
   banner("Signed — " + signed);
   await adopt(r, false);
   closeSheet();
+}
+
+/* ---------------- the dossier: covert action (S3) ----------------
+   The three operations and "Back a movement" for every bloc present in the
+   target, each with the sim's price and refusal, and the two odds the sim
+   would roll — `works` and `exposed` are statecraft::covert_odds, served.
+   The card composes nothing. */
+async function fillCovertDash(nid) {
+  const host = $("#covertDash"), state = S;
+  if (!host) return;
+  const current = () => $("#covertDash") === host && selected === nid && S === state;
+  let d;
+  try { d = await api("/api/covert?nation=" + encodeURIComponent(nid)); }
+  catch (e) { if (current()) host.textContent = e.message; return; }
+  if (!current()) return;
+  const odds = `<div class="odds"><span>works <b>${pctText(d.works)}</b></span><span>exposed <b>${pctText(d.exposed)}</b></span><span>heat <b>${d.heat.toFixed(2)}</b></span><span>capital <b>${d.political_capital.toFixed(0)}</b></span></div>`;
+  const ops = d.ops.map((a, i) => `<div class="govact${a.refusal ? " refused" : ""}"><div><b>${a.bloc ? `<i class="blocdot" style="background:${blocColor(a.bloc)}"></i>` : ""}${escText(a.label)}</b>${a.detail ? ` <span class="tiny">\u00b7 ${escText(a.detail)}</span>` : ""}${a.refusal ? `<div class="tiny refusal">${escText(a.refusal)}</div>` : ""}${(a.effects || []).length ? `<ul class="fx">${a.effects.map((e) => `<li>${escText(e)}</li>`).join("")}</ul>` : ""}</div>
+      <button data-covert="${i}" ${a.refusal ? "disabled" : ""}>${a.price.toFixed(1)} PC</button></div>`).join("");
+  $("#covertDash").innerHTML = odds + ops + (d.on ? "" : `<div class="tiny">This world does not model ideological movements; the three operations stand.</div>`);
+  $("#covertDash").querySelectorAll("button[data-covert]").forEach((b) => { b.onclick = () => covertAct(d.ops[+b.dataset.covert], d.target_name, { state, target: nid, host }); });
+}
+async function covertAct(a, targetName, context = { state: S, target: selected, host: $("#covertDash") }) {
+  const { state, target, host } = context;
+  const current = () => S === state && selected === target && !!host && $("#covertDash") === host;
+  if (COVERT_ACTION.pending || governmentActionBlocked() || !current() || !a || a.refusal || !a.command) return;
+  const action = {}, command = JSON.parse(JSON.stringify(a.command)), label = a.label, price = a.price;
+  COVERT_ACTION.pending = action;
+  try {
+    if (!await campaignConfirm(`${label} in ${targetName}?\n\nIt costs ${price.toFixed(1)} political capital, the service's fee, and is rolled at once.`, { title: "Covert operation", confirmLabel: label })) return;
+    if (!current() || COVERT_ACTION.pending !== action || governmentActionBlocked()) return;
+    const r = await api("/api/command", { commands: [command] });
+    if (S !== state || COVERT_ACTION.pending !== action) return;
+    if (r.errors && r.errors.length) banner(r.errors[0]); else banner(label + " \u2014 ordered.");
+    await adopt(r, false);
+    if (selected === target && $("#covertDash") === host) fillCovertDash(target);
+  } catch (e) {
+    if (S === state && COVERT_ACTION.pending === action) banner(e.message || String(e));
+  } finally {
+    if (COVERT_ACTION.pending === action) COVERT_ACTION.pending = null;
+  }
 }
 
 /* ---------------- the dossier: what it holds ---------------- */
@@ -16223,7 +16686,7 @@ function renderProductionDock() {
   const completed = +sum.completed || 0;
   // Construction has one funding limit; manufacturing keeps its operating plant model.
   const lines = +manufacture.active || 0, lineCapacity = +manufacture.capacity || 0;
-  copy.textContent = `${active} project${active === 1 ? "" : "s"} · funded daily`;
+  copy.textContent = `${active} project${active === 1 ? "" : "s"} · ${PROD.data?.industry_rebuild?"shared capacity":"funded daily"}`;
   const attention = (+sum.attention || slowed + paused + blocked) + (+manufacture.attention || 0);
   badge.textContent = attention > 99 ? "99+" : String(attention);
   badge.classList.toggle("on", attention > 0);
@@ -16303,7 +16766,7 @@ function openConstruction(options = {}) {
   constructionInvalidatePreview(true);
   if (PROD.session !== S?.session_id) {
     PROD.session=S?.session_id; PROD.data=null; PROD.stale=true; PROD.loading=false;
-    PROD.budgetDraft=null; PROD.actionError=""; ++PROD.seq;
+    PROD.budgetDraft=null; PROD.allocationDrafts={}; PROD.actionError=""; ++PROD.seq;
   }
   PROD.mode = "build";
   openProduction();
@@ -16327,6 +16790,79 @@ function openConstructionCabinet(tab) {
 function constructionMoney(value) {
   return Number.isFinite(value) ? economyMoney(value) : "—";
 }
+function constructionCapacityHtml() {
+  const c=PROD.data?.industry_rebuild?.capacity;
+  if (!c) return "";
+  const value=n=>Number.isFinite(n)?(Math.abs(n)<.005?0:n).toLocaleString("en-US",{maximumFractionDigits:2}):"—";
+  return `<section class="construction-capacity" aria-labelledby="constructionCapacityTitle"><div class="construction-heading"><div><div class="cab-kicker">Build faster</div><h2 id="constructionCapacityTitle">National construction capacity</h2><p>Assign civilian construction capacity to projects. Funding pays for the work; power, workers and materials determine what can operate.</p></div><button type="button" data-construction-remedy="civilian_industry">Review a Civilian Factory →</button></div><dl class="construction-ledger"><div><dt>Available capacity</dt><dd>${value(c.total_capacity)}</dd></div><div><dt>Assigned</dt><dd>${value(c.assigned_capacity)}</dd></div><div><dt>Idle</dt><dd>${value(c.idle_capacity)}</dd></div><div><dt>Maximum per project</dt><dd>${value(c.max_per_project)}</dd></div></dl><p class="construction-note">${value(c.inherited_capacity)} from the inherited construction sector · ${value(c.civilian_capacity)} from operating Civilian Factories · ${value(c.starter_capacity)} of guaranteed starting capacity. Auto shares available capacity by priority. Manual assignments reserve up to the amount requested.</p></section>`;
+}
+function constructionFundingDisclosureHtml() {
+  const c=PROD.data?.industry_rebuild?.capacity, b=PROD.data?.construction_budget;
+  const number=value=>Number.isFinite(value)?(Math.abs(value)<.005?0:value).toLocaleString("en-US",{maximumFractionDigits:2}):"—";
+  return `<details class="construction-funding-disclosure"><summary><strong>Construction capacity and funding</strong><span>${number(c?.total_capacity)} capacity · ${number(c?.assigned_capacity)} assigned · ${constructionMoney(b?.daily_budget_bn)} daily funding limit</span></summary>${constructionCapacityHtml()}${constructionBudgetHtml()}</details>`;
+}
+function constructionAllocationHtml(p) {
+  const a=p.allocation;
+  if (!a) return "";
+  const id=String(p.id), fieldId="constructionAllocation-"+Array.from(id).map(char=>char.codePointAt(0).toString(16)).join("_"), busy=PROD.busy||PROD.stale||PROD.loading||advancing||pendingAdvance;
+  const requested=PROD.allocationDrafts?.[id]??(a.requested==null?String(Number.isFinite(a.assigned)?+a.assigned.toFixed(2):0):String(a.requested));
+  const n=value=>Number.isFinite(value)?value.toLocaleString("en-US",{maximumFractionDigits:2}):"—";
+  return `<form class="construction-allocation" data-construction-allocation="${logisticsEscAttr(id)}"><label for="${fieldId}">Construction capacity <span>${escText(a.mode==="manual"?"Manual":"Auto")} · ${n(a.assigned)} assigned${a.requested!=null?` of ${n(a.requested)} requested`:""}</span></label><div><input id="${fieldId}" name="capacity" type="number" min="0" max="${Number.isFinite(a.max)?a.max:20}" step="any" required inputmode="decimal" value="${logisticsEscAttr(requested)}" aria-describedby="constructionAllocationHelp-${logisticsEscAttr(id)}" ${busy?"disabled":""}><button type="submit" ${busy?"disabled":""}>Assign capacity</button><button type="button" data-construction-allocation-auto="${logisticsEscAttr(id)}" aria-pressed="${a.mode!=="manual"}" ${busy?"disabled":""}>Auto</button></div><p id="constructionAllocationHelp-${logisticsEscAttr(id)}" class="construction-note">Set 0 to pause this project. More capacity can shorten its completion estimate when funding and supplies are available.</p></form>`;
+}
+async function constructionSetAllocation(project,value) {
+  const p=productionProject(project), automatic=value===null;
+  if (!p?.allocation || PROD.stale || PROD.loading || PROD.busy || advancing || pendingAdvance) return false;
+  const text=automatic?"":String(value).trim(), capacity=automatic?null:Number(text), max=Number.isFinite(p.allocation.max)?p.allocation.max:20;
+  const district=p.district||p.province?.id, mine=productionKind(p)==="resource_mine"||typeof p.commodity==="string";
+  if ((!mine&&(!Number.isSafeInteger(+project)||+project<0)) || (mine&&(typeof district!=="string"||!district||typeof p.commodity!=="string"||!p.commodity)) || !automatic&&(!text||!Number.isFinite(capacity)||capacity<0||capacity>max)) {
+    PROD.actionError=`Enter construction capacity between 0 and ${max}, or choose Auto.`;
+    renderProductionPanel(); return false;
+  }
+  const command=mine?{kind:"set_mine_allocation",district,commodity:p.commodity,capacity}:{kind:"set_project_allocation",project:+project,capacity};
+  const ok=await productionCommand(command,automatic?"Project returned to automatic capacity allocation.":"Project construction capacity assigned.");
+  if(ok&&PROD.allocationDrafts) delete PROD.allocationDrafts[String(project)];
+  return ok;
+}
+function constructionRemedyHtml(reason,requirements) {
+  const text=String(reason||"").toLowerCase(), buttons=[];
+  if (/power|electric|generation/.test(text)) buttons.push(["generation","Review a Power Plant"]);
+  if (/grid/.test(text)) buttons.push(["power_grid","Review grid upgrades"]);
+  if (/freight|transport|infrastructure/.test(text)) buttons.push(["infrastructure","Review infrastructure"]);
+  if (/capacity|allocation/.test(text)) buttons.push(["civilian_industry","Review a Civilian Factory"]);
+  if (/fund|budget|cash|treasury|money/.test(text)) buttons.push(["budget","Review annual funding"]);
+  const shortages=(Array.isArray(requirements)?requirements:[]).filter(r=>+r.shortfall>0);
+  if (/input|material|steel|iron|fuel|shortage/.test(text)||shortages.length) buttons.push(["imports","Find imports"]);
+  return buttons.length?`<div class="construction-remedies">${buttons.map(([key,label])=>`<button type="button" data-construction-remedy="${key}">${label} →</button>`).join("")}</div>`:"";
+}
+function constructionOpenRemedy(key) {
+  if(key==="budget") { openConstructionCabinet("budget"); return true; }
+  if(key==="imports") { closeProduction(); openStock(); return true; }
+  const c=productionCatalog().find(c=>productionKind(c)===key);
+  if(!c) return false;
+  PROD.pickKind=key;PROD.provinceQuery="";PROD.showUnavailable=false;PROD.view="provinces";
+  constructionInvalidatePreview(true);renderProductionPanel();return true;
+}
+function constructionProjectRole(c) {
+  const kind=productionKind(c), roles={
+    civilian_industry:["Build faster","Adds construction capacity for future projects.","Needs workers, electricity and industrial inputs."],
+    office_district:["Earn income","Adds service jobs and taxable economic output.","Needs educated workers, electricity and demand; GDP and tax receipts are separate."],
+    arms_plant:["Equip forces","Adds capacity for assigned equipment production.","Equipment still needs funded orders, materials and workers."],
+    shipyard:["Equip forces","Adds coastal shipbuilding and repair capacity.","Requires a coast, industrial supplies and funded naval work."],
+    generation:["Support economy","Supplies power to facilities limited by electricity.","Requires a running budget and energy inputs."],
+    processing_plant:["Support economy","Makes materials used by construction and industry.","Requires raw resources, workers and power."],
+    advanced_industry:["Support economy","Makes components for advanced equipment.","Requires skilled workers, electricity and reliable inputs."],
+    machinery_works:["Support economy","Makes machinery used by industrial production.","Requires materials, workers and power."],
+    infrastructure:["Support economy","Improves local construction and freight throughput.","Most useful where transport is restricting activity."],
+    research_center:["Support economy","Adds capacity for assigned research programs.","Requires scientists and ongoing science funding."],
+    freight_terminal:["Support economy","Moves more freight through the province.","Needs connected routes and traffic to use the capacity."],
+    power_grid:["Facility upgrades","Distributes electricity to existing facilities.","Needs generation to supply the grid."],
+    warehouse:["Facility upgrades","Adds storage for local industrial operations.","Helps when storage capacity limits production."],
+    automation:["Facility upgrades","Upgrades existing facilities to improve productivity.","Does not create a separate production line."],
+    efficiency:["Facility upgrades","Improves how existing facilities use their inputs.","Needs an existing facility to improve."]};
+  const fallback=roles[kind]||["Support economy",c.description||"Review the project's effects.",""];
+  const labels={build_faster:"Build faster",earn_income:"Earn income",equip_forces:"Equip forces",support_economy:"Support economy",facility_upgrades:"Facility upgrades"};
+  return {category:labels[c.category]||c.category||fallback[0],purpose:c.purpose||fallback[1],tradeoff:c.tradeoff||fallback[2]};
+}
 function constructionPreviewNoticeHtml() {
   const notice=PROD.data?.preview_notice;
   return notice?`<p class="construction-preview-status" role="status">${escText(notice)}</p>`:"";
@@ -16347,7 +16883,7 @@ function constructionSuggestionsHtml() {
   const scope=PROD.provinceFilter ? `For ${province?.name||PROD.provinceFilter}` : "Across your country";
   const empty=PROD.loading || PROD.stale ? "Updating suggestions from the current construction ledger…" : PROD.provinceFilter ? "No current suggestion for this province. Show all national projects to see suggestions elsewhere, or use Add project to explore its options." : suggestions?.note || "No clear construction priority is identified right now. Use Add project to compare other investments and their effects.";
   return `<section class="construction-suggestions" aria-labelledby="constructionSuggestionsTitle"><h3 id="constructionSuggestionsTitle">Suggested construction</h3><p class="construction-note">${escText(scope)} · Review the effects before deciding.</p>${items.length ? `<div class="construction-suggestion-list">${items.map(item=>{
-    const eta=Number.isFinite(item.eta_days) ? `About ${Math.ceil(item.eta_days)} days at current funding` : "Completion awaits available funding";
+    const eta=Number.isFinite(item.eta_days) ? `About ${Math.ceil(item.eta_days)} days at current ${PROD.data?.industry_rebuild?"capacity and funding":"funding"}` : PROD.data?.industry_rebuild?"Completion awaits available capacity, funding and supplies":"Completion awaits available funding";
     const evidence=Array.isArray(item.evidence) ? item.evidence : [];
     return `<article class="construction-suggestion"><span class="construction-suggestion-priority${item.priority==="Bottleneck"?" bottleneck":""}">${escText(item.priority||"Development")}</span><h4>${escText(item.name||"Construction project")}</h4><p class="suggestion-place">${escText(item.district_name||item.district)}</p><p class="suggestion-reason">${escText(item.reason||"Review the province and country effects of this project.")}</p>${evidence.length?`<details><summary>Why this is suggested</summary><ul>${evidence.map(text=>`<li>${escText(text)}</li>`).join("")}</ul></details>`:""}${item.caution?`<p class="construction-note">${escText(item.caution)}</p>`:""}<p class="suggestion-cost">${constructionMoney(item.cost_bn)} total</p><p class="construction-note">${escText(eta)}${Number.isFinite(item.minimum_days)?` · At least ${Math.ceil(item.minimum_days)} days`:""}</p><button type="button" data-construction-suggestion="${logisticsEscAttr(item.id)}" ${current?"":"disabled"}>Review suggestion →</button></article>`;
   }).join("")}</div>${!current?`<p class="construction-note" role="status">Suggestions will be available after the current update finishes.</p>`:""}${suggestions?.note?`<p class="construction-note">${escText(suggestions.note)}</p>`:""}` : `<p class="construction-note">${escText(empty)}</p>`}</section>`;
@@ -16385,9 +16921,9 @@ function constructionWorkshopHtml() {
   const district = constructionWorkshopDistrict();
   const selected = provinces.find(p=>p.id===district);
   const quotes = PROD.moduleQuotes?.district === district ? PROD.moduleQuotes.quotes || [] : [];
-  return `<div class="construction-heading"><div><div class="cab-kicker">Add a project</div><h2>Start with a smaller workshop</h2><p>A factory package with its own generation, grid and processing. Choose a size you can fund.</p></div></div>
+  return `<div class="construction-heading"><div><div class="cab-kicker">Add a project</div><h2>Start with a smaller workshop</h2><p>A preset containing a Civilian Factory, Power Plant, Power Grid and Materials Plant at the same scale. Choose a size you can fund.</p></div></div>
     <form id="constructionWorkshopForm" class="construction-budget-form"><label for="constructionWorkshopProvince">Build in your province</label><div><select id="constructionWorkshopProvince" name="district">${provinces.map(p=>`<option value="${logisticsEscAttr(p.id)}" ${p.id===district?"selected":""}>${escText(p.name||p.id)}</option>`).join("")}</select><button ${!district||PROD.moduleLoading||PROD.busy?"disabled":""}>${PROD.moduleLoading?"Checking…":"Get project quotes"}</button></div></form>
-    ${selected?`<p class="construction-note">${escText(constructionSiteContext(selected))}</p>`:""}${PROD.moduleError?`<p class="construction-error" role="alert">${escText(PROD.moduleError)}</p>`:""}<div class="project-catalog">${quotes.map((q,i)=>`<article class="project-choice"><span class="work-art" aria-hidden="true">▥</span><h3>${escText(q.label)}</h3><strong>${constructionMoney(q.cost_bn)}</strong><p>Total project cost · paid as work progresses</p><p>${Number.isFinite(q.lower_bound_days)?`At least ${Math.ceil(q.lower_bound_days)} days at current funding`:"Apply construction funding to see an estimate"}</p><details class="operations-details"><summary>After completion</summary><p>${Number.isFinite(q.output_daily)?`${fmtQ(q.output_daily)} intermediate packs per day at full operation. `:""}Production uses its normal operating inputs and budget.</p></details>${q.reason?`<p class="work-reason">${escText(q.reason)}</p>`:""}<button type="button" data-construction-workshop="${i}" ${PROD.busy||PROD.data?.preview_notice?"disabled":""}>Review effects →</button></article>`).join("")}</div><button type="button" class="production-back" data-prod-back>Back to projects</button>`;
+    ${selected?`<p class="construction-note">${escText(constructionSiteContext(selected))}</p>`:""}${PROD.moduleError?`<p class="construction-error" role="alert">${escText(PROD.moduleError)}</p>`:""}<div class="project-catalog">${quotes.map((q,i)=>`<article class="project-choice"><span class="work-art" aria-hidden="true">▥</span><h3>${escText(q.label)}</h3><strong>${constructionMoney(q.cost_bn)}</strong>${Array.isArray(q.components)?`<ul class="construction-preset-components">${q.components.map(c=>`<li>${escText(c.name)}${Number.isFinite(c.cost_bn)?` · ${constructionMoney(c.cost_bn)}`:""}</li>`).join("")}</ul>`:""}<p>Total project cost · paid as work progresses</p><p>${Number.isFinite(q.lower_bound_days)?`At least ${Math.ceil(q.lower_bound_days)} days at current funding`:"Apply construction funding to see an estimate"}</p><details class="operations-details"><summary>After completion</summary><p>${Number.isFinite(q.output_daily)?`${fmtQ(q.output_daily)} intermediate packs per day at full operation. `:""}Production uses its normal operating inputs and budget.</p></details>${q.reason?`<p class="work-reason">${escText(q.reason)}</p>`:""}<button type="button" data-construction-workshop="${i}" ${PROD.busy||PROD.data?.preview_notice?"disabled":""}>Review effects →</button></article>`).join("")}</div><button type="button" class="production-back" data-prod-back>Back to projects</button>`;
 }
 function constructionWorkshopProvinces() {
   return productionProvinces().filter(p=>!PROD.provinceFilter || p.id===PROD.provinceFilter);
@@ -16448,23 +16984,28 @@ function constructionEffectRows(rows) {
 function constructionPreviewHtml() {
   const r=PROD.previewRequest, q=PROD.preview, current=constructionPreviewCurrent();
   const province=productionProvinces().find(p=>p.id===r?.district);
-  const name=q?.name || productionCatalog().find(c=>productionKind(c)===r?.project_kind)?.name || "Project impact";
-  const heading=`<div class="construction-heading"><div><div class="cab-kicker">Review before building${r?` · ${escText(q?.district_name||province?.name||r.district)}`:""}</div><h2 id="constructionPreviewTitle" tabindex="-1">${escText(name)}</h2><p>See what changes for this province and your country before adding the project.</p></div></div>`;
+  const catalog=productionCatalog().find(c=>productionKind(c)===r?.project_kind);
+  const role=catalog?constructionProjectRole(catalog):null;
+  const name=q?.name || catalog?.name || "Project impact";
+  const heading=`<div class="construction-heading"><div><div class="cab-kicker">Review before building${r?` · ${escText(q?.district_name||province?.name||r.district)}`:""}</div><h2 id="constructionPreviewTitle" tabindex="-1">${escText(name)}</h2><p>${escText(q?.purpose||role?.purpose||"See what changes for this province and your country before adding the project.")}</p>${q?.tradeoff||role?.tradeoff?`<p class="construction-note">${escText(q?.tradeoff||role.tradeoff)}</p>`:""}</div></div>`;
   const status=PROD.previewLoading ? "Reading the project's effects and current funding…" : PROD.previewError || (q?.reason || "");
   const refresh=r&&!PROD.previewLoading&&!current ? `<button type="button" data-construction-preview-refresh>Refresh impact preview</button>` : "";
   const footer=`<div class="construction-preview-actions"><button type="button" data-prod-back>← ${r?.commodity?"Choose a deposit":r?.capacity_micros!=null?"Workshop sizes":"Choose a province"}</button>${refresh}<button type="button" class="construction-confirm" data-construction-confirm ${!current||q?.can_start!==true||PROD.busy||advancing||pendingAdvance?"disabled":""}>${PROD.busy?"Adding project…":"Add to construction queue"}</button></div>`;
   if (!current) return `${heading}<p id="constructionPreviewStatus" class="construction-preview-status" role="status">${escText(status||"Choose a project and province to review its effects.")}</p>${footer}`;
   const operating=Array.isArray(q.operating_requirements)?q.operating_requirements:[];
   return `${heading}<p id="constructionPreviewStatus" class="construction-preview-status" role="status">${escText(status)}</p>
-    <dl class="construction-preview-costs"><div><dt>Total project cost</dt><dd>${constructionMoney(q.cost_bn)}</dd><small>Paid as work progresses</small></div><div><dt>Earliest completion</dt><dd>${Number.isFinite(q.minimum_days)?`${Math.ceil(q.minimum_days)} days`:"—"}</dd><small>Project lead time</small></div><div><dt>At current funding</dt><dd>${Number.isFinite(q.eta_days)?`About ${Math.ceil(q.eta_days)} days`:"Waiting for funding"}</dd><small>Uses your applied budget</small></div></dl>
+    <dl class="construction-preview-costs"><div><dt>Total project cost</dt><dd>${constructionMoney(q.cost_bn)}</dd><small>Paid as work progresses</small></div><div><dt>Earliest completion</dt><dd>${Number.isFinite(q.minimum_days)?`${Math.ceil(q.minimum_days)} days`:"—"}</dd><small>${PROD.data?.industry_rebuild?"At maximum capacity, with full funding and supplies":"Project lead time"}</small></div><div><dt>${PROD.data?.industry_rebuild?"At current capacity &amp; funding":"At current funding"}</dt><dd>${Number.isFinite(q.eta_days)?`About ${Math.ceil(q.eta_days)} days`:PROD.data?.industry_rebuild?"Waiting for capacity, funding or supplies":"Waiting for funding"}</dd><small>${PROD.data?.industry_rebuild?"Uses the current national allocation":"Uses your applied budget"}</small></div></dl>
+    ${Array.isArray(q.components)&&q.components.length?`<section class="construction-operating"><h3>Projects in this preset</h3><ul class="construction-preset-components">${q.components.map(component=>`<li><strong>${escText(component.name)}</strong>${Number.isFinite(component.cost_bn)?` · ${constructionMoney(component.cost_bn)}`:""}${component.detail?` · ${escText(component.detail)}`:""}</li>`).join("")}</ul><p>Components retain their own construction capacity, funding and operating requirements.</p></section>`:""}
     <div class="construction-impact-grid"><section class="construction-impact-scope" aria-labelledby="constructionProvinceImpact"><div class="cab-kicker">Local impact</div><h3 id="constructionProvinceImpact">For ${escText(q.district_name||province?.name||r.district)}</h3>${constructionEffectRows(q.province_effects)}</section><section class="construction-impact-scope" aria-labelledby="constructionNationalImpact"><div class="cab-kicker">National impact</div><h3 id="constructionNationalImpact">For ${escText(q.nation_name||"your country")}</h3>${constructionEffectRows(q.national_effects)}</section></div>
     ${operating.length?`<section class="construction-operating"><h3>What it needs to operate</h3><p>These apply after the project is complete.</p><dl>${operating.map(row=>`<div><dt>${escText(row.label||"Operating requirement")}</dt><dd>${constructionEffectValue(row.value,row.unit)}</dd>${row.detail?`<p>${escText(row.detail)}</p>`:""}</div>`).join("")}</dl></section>`:""}
+    ${PROD.data?.industry_rebuild?constructionRemedyHtml(q.reason):""}
     ${Array.isArray(q.notes)&&q.notes.length?`<ul class="construction-preview-notes">${q.notes.map(note=>`<li>${escText(note)}</li>`).join("")}</ul>`:""}${footer}`;
 }
 async function constructionPreviewProject(kind,district,capacityMicros,commodity) {
   if (PROD.data?.preview_notice) return false;
   if (PROD.busy || advancing || pendingAdvance || !district || !kind) return false;
   const request={district,project_kind:kind};
+  if(kind==="industry_preset"&&(capacityMicros!=null||commodity!=null)) return false;
   if (kind==="resource_mine") {
     if (typeof commodity!=="string" || !commodity || capacityMicros!=null) return false;
     request.commodity=commodity;
@@ -16499,8 +17040,8 @@ async function constructionPreviewProject(kind,district,capacityMicros,commodity
 async function constructionConfirmPreview() {
   if (!constructionPreviewCurrent() || PROD.preview.can_start!==true || PROD.busy || advancing || pendingAdvance) return false;
   const r=PROD.previewRequest, q=PROD.preview;
-  if (r.capacity_micros==null && r.project_kind!=="resource_mine") return productionStart(r.project_kind,r.district);
-  const command=r.project_kind==="resource_mine" ? {kind:"develop_resource",commodity:r.commodity,district:r.district} : {kind:"start_industry_module",district:r.district,capacity_micros:r.capacity_micros};
+  if (r.capacity_micros==null && !["resource_mine","industry_preset"].includes(r.project_kind)) return productionStart(r.project_kind,r.district);
+  const command=r.project_kind==="industry_preset" ? {kind:"start_industry_preset",district:r.district} : r.project_kind==="resource_mine" ? {kind:"develop_resource",commodity:r.commodity,district:r.district} : {kind:"start_industry_module",district:r.district,capacity_micros:r.capacity_micros};
   const ok=await productionCommand(command,`${q.name||"Project"} added to construction.`);
   if (ok) { constructionInvalidatePreview(true); PROD.view="queue"; PROD.moduleQuotes=null; renderProductionPanel(); }
   return ok;
@@ -16573,10 +17114,11 @@ function registerMeshProviders() {
   if (!(window.Arsenal3D && Arsenal3D.available)) return false;
   if (window.SiteMesh) {
     Arsenal3D.register("site", (rest) => {
-      const [kind, stage, level, status] = String(rest).split("/");
+      const [kind, stage, level, status, lod] = String(rest).split("/");
       return SiteMesh.build(kind, stage, {
         level: Number.isFinite(+level) ? +level : 1,
         status: status || "building",
+        lod: lod || "close",
       });
     });
   }
@@ -16666,7 +17208,7 @@ function productionSiteSprite(project, px) {
   const stage = SiteMesh.stageFor(kind, productionProgress(project), { status: productionStatus(project) });
   const level = Number.isFinite(+project.level) ? Math.max(1, Math.min(5, Math.round(+project.level))) : 1;
   const bucket = px <= 40 ? 64 : px <= 72 ? 96 : 128;
-  return Arsenal3D.sprite(`site:${kind}/${stage.stage}/${level}/building`, bucket, { lod: "map" });
+  return Arsenal3D.sprite(`site:${kind}/${stage.stage}/${level}/building/map`, bucket);
 }
 function productionSite3d(p) {
   if (!siteArtReady()) return "";
@@ -16683,7 +17225,7 @@ function productionCardHtml(p) {
   const progressText = frac > 0 && percent === 0 ? "<0.1" : String(percent);
   const choices = productionPriorityChoices(p), priority = String(p.priority || "normal");
   const priorityControls = p.actions ? ["high", "normal", "low"].filter(v => v === priority || choices.includes(v)) : [];
-  const eta = Number.isFinite(p.eta_days) ? `About ${Math.max(0,Math.ceil(p.eta_days))} days remaining` : "ETA pending funding";
+  const eta = Number.isFinite(p.eta_days) ? `About ${Math.max(0,Math.ceil(p.eta_days))} days remaining` : p.allocation?"ETA awaits capacity, funding or supplies":"ETA pending funding";
   const reason = p.reason || f.reason || p.status_reason || "";
   return `<article class="work-card ${tone}${String(PROD.selected) === String(p.id) ? " selected" : ""}" tabindex="0" data-prod-project="${logisticsEscAttr(p.id)}">
     <div class="work-top"><span class="work-art" aria-hidden="true">${PROD_ICON[kind] || "◆"}</span><div class="work-title"><b>${escText(p.name || kind.replace(/_/g," "))}</b><span>${escText(province.name || province.id || "Province")}</span></div><span class="work-state">${escText(productionStatus(p))}</span></div>
@@ -16691,7 +17233,8 @@ function productionCardHtml(p) {
     ${productionSiteStripHtml(p)}
     <div class="work-progress" role="progressbar" aria-label="${logisticsEscAttr(p.name || "Project")} progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${percent}"><i style="width:${percent}%"></i></div>
     <div class="work-line"><span><b>${escText(progressText)}%</b> complete</span><span>${escText(eta)}</span></div>
-    ${reason ? `<p class="work-reason">${escText(reason)}</p>` : ""}
+    ${reason ? `<p class="work-reason">${escText(reason)}</p>` : ""}${p.allocation?constructionRemedyHtml(reason,p.requirements):""}
+    ${p.allocation?constructionAllocationHtml(p):""}
     ${p.legacy_prepaid ? `<p class="construction-note">Previously paid project · its existing work continues without a second construction charge.</p>` : ""}
     <div class="work-actions">${priorityControls.length?`<span class="construction-note">Priority</span>`:""}${priorityControls.map(v=>`<button type="button" data-prod-priority="${v}" data-prod-id="${logisticsEscAttr(p.id)}" ${priority===v||PROD.busy?"disabled":""} class="${priority===v?"on":""}" aria-pressed="${priority===v}">${escText(v)}</button>`).join("")}<button type="button" data-prod-map="${logisticsEscAttr(p.id)}">Show on map</button>${productionCanCancel(p)?`<button type="button" class="cancel" data-prod-cancel="${logisticsEscAttr(p.id)}" ${PROD.busy?"disabled":""}>Cancel</button>`:""}</div>
     <details class="operations-details"><summary>After completion</summary><p>${escText(p.effect || p.description || "Adds the completed upgrade to this province.")}</p><p>Operating facilities use their normal running budget and inputs.</p></details>
@@ -16703,17 +17246,23 @@ function productionStartAllowed() {
   return start === true || !!(start && start.enabled);
 }
 function productionFundingLabel(c) {
-  const cost = c.funding?.work_cost_bn ?? c.work_cost_bn;
+  const cost = c.funding?.work_cost_bn ?? c.funding?.cost_bn ?? c.work_cost_bn;
   return `${constructionMoney(cost)} total project cost · paid as work progresses`;
 }
 function productionCatalogHtml() {
   const filter = PROD.provinceFilter, province = productionProvinces().find(p=>p.id===filter);
-  const cards = productionCatalog().filter(c=>productionKind(c)!=="starter_industry").map(c=>{
+  const groups=new Map(["Build faster","Earn income","Equip forces","Support economy","Facility upgrades"].map(name=>[name,[]]));
+  productionCatalog().filter(c=>!["starter_industry","industry_preset"].includes(productionKind(c))).forEach(c=>{
     const kind = productionKind(c), days = c.base_days || c.total_days;
+    const role=constructionProjectRole(c), category=groups.has(role.category)?role.category:"Support economy";
     const enabled = (!c.actions || c.actions.start !== false) && (!province || productionEligible(c,province));
-    return `<button type="button" class="project-choice" ${enabled?`data-prod-kind="${logisticsEscAttr(kind)}"`:"disabled"}><span class="work-art" aria-hidden="true">${PROD_ICON[kind]||"◆"}</span><b>${escText(c.name || kind.replace(/_/g," "))}</b><small>${escText(c.description || "Province construction")}</small><small class="project-effect">${escText(c.effect || "Adds a province upgrade.")}</small><em>${escText(productionFundingLabel(c))}</em>${days?`<small>Base lead time · ${Math.ceil(days)} days</small>`:""}${enabled?"":`<small class="work-reason">${escText(constructionProvinceRefusal(c,province))}</small>`}</button>`;
-  }).join("");
-  return `<div class="construction-heading"><div><div class="cab-kicker">Add a project${province?` · ${escText(province.name||province.id)}`:""}</div><h2>What will you build?</h2><p>Pick a project, choose its province, then fund it from the shared daily budget.</p></div></div><div class="project-catalog"><button type="button" class="project-choice" data-construction-small><span class="work-art" aria-hidden="true">▥</span><b>Starter workshop</b><small>Choose a smaller factory package that fits your funding.</small><em>Get a cost and completion estimate →</em></button>${cards}<button type="button" class="project-choice" data-construction-mine><span class="work-art" aria-hidden="true">◆</span><b>Develop a mine</b><small>Choose a mapped deposit in Resources. Its project joins this construction queue.</small><em>Choose a deposit →</em></button></div><button type="button" class="production-back" data-prod-back>Back to construction queue</button>`;
+    groups.get(category).push(`<button type="button" class="project-choice" ${enabled?`data-prod-kind="${logisticsEscAttr(kind)}"`:"disabled"}><span class="work-art" aria-hidden="true">${PROD_ICON[kind]||"◆"}</span><b>${escText(c.name || kind.replace(/_/g," "))}</b><small class="project-purpose">${escText(role.purpose)}</small><small class="project-effect">${escText(c.effect || c.description || "Review the province and national effects.")}</small>${role.tradeoff?`<small class="project-tradeoff"><strong>Needs / tradeoff</strong> ${escText(role.tradeoff)}</small>`:""}<em>${escText(productionFundingLabel(c))}</em>${days?`<small>Base lead time · ${Math.ceil(days)} days</small>`:""}${enabled?"":`<small class="work-reason">${escText(constructionProvinceRefusal(c,province))}</small>`}</button>`);
+  });
+  groups.get("Support economy").push(`<button type="button" class="project-choice" data-construction-mine><span class="work-art" aria-hidden="true">◆</span><b>Mine / oil field</b><small>Develop a mapped deposit to replace imports or supply exports.</small><small class="project-tradeoff">Needs a deposit, transport and extraction funding.</small><em>Choose a deposit and review its cost →</em></button>`);
+  const preset=productionCatalog().find(c=>productionKind(c)==="industry_preset");
+  const presetEnabled=preset&&(!preset.actions||preset.actions.start!==false)&&(!province||productionEligible(preset,province));
+  const sections=[...groups].filter(([,cards])=>cards.length).map(([name,cards])=>name==="Facility upgrades"&&!province?`<section class="construction-catalog-group"><h3>${name}</h3><p>Choose the province whose existing facilities you want to improve.</p><label for="constructionUpgradeProvince">Province</label><select id="constructionUpgradeProvince"><option value="">Choose a province…</option>${productionProvinces().map(p=>`<option value="${logisticsEscAttr(p.id)}">${escText(p.name||p.id)}</option>`).join("")}</select></section>`:`<section class="construction-catalog-group"><h3>${name}${name==="Facility upgrades"?` · ${escText(province?.name||province?.id||"")}`:""}</h3>${name==="Facility upgrades"?`<p>Apply improvements to the facilities in this province.</p>`:""}<div class="project-catalog">${cards.join("")}</div></section>`).join("");
+  return `<div class="construction-heading"><div><div class="cab-kicker">Add a project${province?` · ${escText(province.name||province.id)}`:""}</div><h2>What will you build?</h2><p>Build faster, earn income or equip your forces. Review the local and national effects before assigning capacity and funding.</p></div></div>${sections}<section class="construction-catalog-group"><h3>Starter industry preset</h3><div class="project-catalog">${preset?`<button type="button" class="project-choice" ${presetEnabled?`data-prod-kind="industry_preset"`:"disabled"}><span class="work-art" aria-hidden="true">▥</span><b>Standard industrial starter preset</b><small>Queues a Civilian Factory, Power Plant, Power Grid and Materials Plant. Assign capacity to each project separately.</small><em>${escText(productionFundingLabel(preset))}</em>${presetEnabled?"":`<small class="work-reason">${escText(constructionProvinceRefusal(preset,province))}</small>`}</button>`:""}<button type="button" class="project-choice" data-construction-small><span class="work-art" aria-hidden="true">▥</span><b>Starter workshop</b><small>A smaller Civilian Factory, Power Plant, Power Grid and Materials Plant package. Each component uses the same operating rules as other facilities.</small><em>Choose a scale and review total cost →</em></button></div></section><button type="button" class="production-back" data-prod-back>Back to construction queue</button>`;
 }
 function productionEligible(c, province) {
   const ids = Array.isArray(c && c.eligible_provinces) ? c.eligible_provinces.map(String) : [];
@@ -16725,6 +17274,7 @@ function constructionProvinceRefusal(c, province) {
 }
 function constructionSiteContext(province) {
   const labels={civilian_industry:"Estate",power_grid:"Grid",generation:"Generation",processing_plant:"Processing",machinery_works:"Machinery",warehouse:"Warehouse",infrastructure:"Infrastructure",research_centers:"Research",arms_plants:"Arms plants",automation:"Automation",efficiency:"Efficiency",freight_terminal:"Freight terminal"};
+  if(PROD.data?.industry_rebuild) Object.assign(labels,{civilian_industry:"Civilian Factory",generation:"Power Plant",processing_plant:"Materials Plant",arms_plants:"Military Factory",office_district:"Office District",shipyard:"Shipyard",advanced_industry:"Advanced Industry"});
   const pairs=productionCapabilityPairs(province?.capabilities).filter(([,value])=>Number.isFinite(+value));
   const selected=PROD.pickKind;
   pairs.sort((a,b)=>(a[0]===selected?-1:0)-(b[0]===selected?-1:0));
@@ -16843,6 +17393,12 @@ async function manufacturingFetch() {
   }
 }
 
+function manufacturingComponentsHtml(line) {
+  const components=line.advanced_components;
+  if(!components) return "";
+  const number=value=>Number.isFinite(value)?value.toLocaleString("en-US",{maximumSignificantDigits:6}):"—";
+  return `<section class="manufacturing-components"><h4>Advanced components</h4><p><strong>${number(components.required)}</strong> ${escText(components.unit||"packs")} planned ${components.cadence==="monthly"?"this month":"this day"} · <strong>${number(components.stock)}</strong> in national stock</p><p class="construction-note">${escText(components.note||"National inventory is shared with other equipment work.")}</p><button type="button" data-manu-component-supply>Review component suppliers →</button></section>`;
+}
 function manufacturingLineHtml(line) {
   const tone = manufacturingTone(line), province = line.province || {};
   const priority = String(line.priority || "normal");
@@ -16864,6 +17420,7 @@ function manufacturingLineHtml(line) {
     <div class="work-line"><span>${actualUnits}</span><span>${manufacturingBn(line.ordered_bn || 0)} ordered to date</span></div>
     <details class="operations-details"${String(MANU.selected) === String(line.id) ? " open" : ""}><summary>Daily materials &amp; line priority</summary>
     ${requirements ? `<div class="work-needs">${requirements}</div>` : ""}
+    ${line.advanced_components?manufacturingComponentsHtml(line):""}
     <div class="work-actions" aria-label="Manufacturing line controls">${["high", "normal", "low"].filter((value) => value === priority || choices.includes(value)).map((value) =>
       `<button type="button" ${priority === value ? "disabled" : `data-manu-priority="${value}" data-manu-id="${logisticsEscAttr(line.id)}"`} class="${priority === value ? "on" : ""}" aria-pressed="${priority === value}">${value}</button>`).join("")}
       ${manufacturingCanStop(line) ? `<button type="button" class="cancel" data-manu-stop="${logisticsEscAttr(line.id)}">Stop line</button>` : ""}</div></details>
@@ -16888,15 +17445,17 @@ function manufacturingLinesHtml() {
   let empty = "";
   if (!lines.length && capacity <= 0) {
     empty = `<div class="factory-bridge"><b>No arms-plant capacity</b>Build an Arms Plant in a province to open a directed equipment line. Until then, military staff keep the inherited procurement programme running.<button type="button" data-manu-build-plant>Build an Arms Plant</button></div>`;
+  } else if (freeSlots <= 0) {
+    empty = `<div class="factory-bridge"><b>${capacity === 1 ? "The plant slot is" : `All ${capacity} plant slots are`} assigned</b>Existing equipment and ammunition work use these plants. Complete or cancel work to free a slot, or review another plant.<button type="button" data-manu-build-plant>Build another Arms Plant</button></div>`;
   } else if (!lines.length) {
     empty = `<div class="factory-bridge"><b>Staff procurement is active</b>Your ${capacity} plant slot${capacity === 1 ? " is" : "s are"} ready. Start a line to replace automatic buying with your own equipment plan.</div>`;
   }
   return `${operationsHeroHtml("manufacturing", "Industry with a purpose", "Equip your ambitions.", "Turn funded plant slots into a steady equipment pipeline. Pick a programme, assign a province, and give your most important lines first call on materials.")}
-    <div class="factory-bridge"><b>Your own tank programme</b>Choose components, review the design, and follow a named model into service.<button type="button" data-equipment-open>Open equipment designer</button></div>
+    <div class="factory-bridge"><b>Your own vehicle programme</b>Choose components, review the design, and follow a named model into service.<button type="button" data-equipment-open>Open equipment designer</button></div>
     <div class="manufacturing-hero"><div class="stamp">Daily defense procurement</div><div class="money">${manufacturingBn(finance.procurement_budget_bn_day)} <small>per day</small></div>
       <p>${share.toFixed(0)}% of the defense budget buys equipment. The treasury already carries that spending; imported materials settle through the resource market.</p></div>
     <div class="manufacturing-summary"><span>Plant slots<b>${usedSlots}/${capacity}</b></span><span>Force equipped<b>${Math.round((+summary.adequacy || 0) * 100)}%</b></span><span class="${+summary.blocked ? "warn" : ""}">Pipeline<b>${manufacturingBn(summary.pipeline_value_bn)}</b></span></div>
-    ${freeSlots > 0 && data.actions && data.actions.start === true ? `<button type="button" class="production-new" data-manu-new>＋ Start equipment line</button>` : ""}${empty}${list}
+    <button type="button" class="production-new" data-manu-new>${freeSlots > 0 && data.actions && data.actions.start === true ? "＋ Start equipment line" : "Browse equipment catalogue"}</button>${empty}${list}
     ${manufacturingLedgerHtml()}`;
 }
 
@@ -16915,7 +17474,8 @@ function manufacturingCatalogHtml() {
   }).join("");
   return `${operationsHeroHtml("manufacturing", "Step 1 · Choose a programme", "Make your next move.", "Browse equipment your nation knows how to build. Choose a programme, then place it in a free arms-plant slot.")}
     <div class="production-stamp"><b>Equipment catalogue</b><span>Locked programmes stay tucked away until you need them</span></div>
-    <div class="factory-bridge"><b>Design a ground vehicle</b>Develop a configuration of your own, then manufacture its certified revision.<button type="button" data-equipment-open>Open equipment designer</button></div>
+    ${!(MANU.data?.actions?.start === true && +MANU.data?.summary?.free_slots > 0) ? `<div class="factory-bridge"><b>Explore your next programme</b>You can inspect equipment before a plant is ready. Starting a line requires a free, completed arms-plant slot.<button type="button" data-manu-build-plant>Review arms-plant construction</button></div>` : ""}
+    <div class="factory-bridge"><b>Design ground equipment or aircraft</b>Develop a configuration of your own, then manufacture its certified revision.<button type="button" data-equipment-open>Open equipment designer</button></div>
     <div class="factory-classes">${classes.map((name) => `<button type="button" data-manu-class="${logisticsEscAttr(name)}" class="${MANU.classFilter === name ? "on" : ""}">${escText(name)}</button>`).join("")}</div>
     <div class="equipment-catalog">${cards || `<div class="production-empty">No equipment in this filter is ready.</div>`}</div>
     ${locked ? `<button type="button" class="built-toggle" data-manu-locked aria-expanded="${MANU.showLocked}"><span>${MANU.showLocked ? "Hide" : "Show"} technology-locked equipment</span><b>${locked}</b></button>` : ""}
@@ -16953,6 +17513,7 @@ function renderManufacturingPanel() {
 function wireManufacturingPanel() {
   const body = $("#productionBody"); if (!body || PROD.mode !== "manufacture") return;
   body.querySelectorAll("[data-equipment-open]").forEach(button => { button.onclick=()=>openEquipment(); });
+  body.querySelectorAll("[data-manu-component-supply]").forEach(button=>{button.onclick=()=>{closeProduction();industryNavigate({action:"trade",good:"advanced_components"});};});
   body.querySelectorAll("[data-manu-line]").forEach((card) => {
     card.onclick = (event) => { if (!event.target.closest("button, details")) manufacturingSelect(card.dataset.manuLine, false); };
     card.onkeydown = (event) => { if (event.target === card && (event.key === "Enter" || event.key === " ")) { event.preventDefault(); manufacturingSelect(card.dataset.manuLine, false); } };
@@ -17024,10 +17585,11 @@ function renderProductionPanel() {
   const body = $("#productionBody");
   if (!body || !PROD.open) return;
   if (PROD.mode === "manufacture") { renderManufacturingPanel(); return; }
-  const details = operationsDetailsState(body), scroll = body.scrollTop;
+  const details = operationsDetailsState(body), scroll = PROD.renderedView&&PROD.renderedView!==PROD.view?0:body.scrollTop;
+  PROD.renderedView=PROD.view;
   const active=document.activeElement;
-  const focused=["constructionDailyBudget","constructionWorkshopProvince","constructionProvinceSearch","constructionProvinceUnavailable"].includes(active?.id)?{id:active.id,start:active.selectionStart,end:active.selectionEnd}:null;
-  if (PROD.view === "preview") body.innerHTML=constructionBudgetHtml()+constructionPreviewHtml();
+  const focused=(["constructionDailyBudget","constructionWorkshopProvince","constructionProvinceSearch","constructionProvinceUnavailable","constructionUpgradeProvince"].includes(active?.id)||active?.id?.startsWith("constructionAllocation-"))?{id:active.id,start:active.selectionStart,end:active.selectionEnd}:null;
+  if (PROD.view === "preview") body.innerHTML=(PROD.data?.industry_rebuild?constructionFundingDisclosureHtml():constructionBudgetHtml())+constructionPreviewHtml();
   else if (PROD.error) body.innerHTML=`<div class="production-empty">${escText(PROD.error)}<br><button type="button" data-prod-retry>Retry construction ledger</button></div>`;
   else if (!PROD.data) body.innerHTML=`<div class="production-empty" role="status">Opening construction funding and projects…</div>`;
   else {
@@ -17039,9 +17601,10 @@ function renderProductionPanel() {
     else {
       const all = productionQueue(), order={high:0,normal:1,low:2}, rows = all.filter(p=>!PROD.provinceFilter||productionProvince(p).id===PROD.provinceFilter).sort((a,b)=>(order[a.priority]??3)-(order[b.priority]??3));
       const place = productionProvinces().find(p=>p.id===PROD.provinceFilter);
-      content=constructionSuggestionsHtml()+`<div class="construction-heading"><div><div class="cab-kicker">${rows.length} active project${rows.length===1?"":"s"}${place?` · ${escText(place.name||place.id)}`:""}</div><h2>Your construction queue</h2><p>Higher priorities receive funding first. Estimates follow current funding and project lead times.</p></div><button type="button" class="production-new" data-prod-new>＋ Add project</button></div>${PROD.provinceFilter?`<button type="button" data-construction-all>Show all national projects</button>`:""}<div class="production-list construction-queue">${rows.map(productionCardHtml).join("")||`<div class="production-empty"><h3>Your next project starts here</h3><p>Add a factory, power project or infrastructure upgrade. Set the daily budget above; you pay only as work is delivered.</p></div>`}</div>${productionBuiltHtml()}`;
+      content=constructionSuggestionsHtml()+`<div class="construction-heading"><div><div class="cab-kicker">${rows.length} active project${rows.length===1?"":"s"}${place?` · ${escText(place.name||place.id)}`:""}</div><h2>Your construction queue</h2><p>Assign capacity to the projects you want sooner. Auto follows priority; estimates include available capacity, funding and project lead times.</p></div><button type="button" class="production-new" data-prod-new>＋ Add project</button></div>${PROD.provinceFilter?`<button type="button" data-construction-all>Show all national projects</button>`:""}<div class="production-list construction-queue">${rows.map(productionCardHtml).join("")||`<div class="production-empty"><h3>Your next project starts here</h3><p>Add a factory, power project or infrastructure upgrade. Assign construction capacity and set the daily funding limit above; you pay as work is delivered.</p></div>`}</div>${productionBuiltHtml()}`;
     }
-    body.innerHTML=constructionBudgetHtml()+(["catalog","provinces","workshop"].includes(PROD.view)?constructionPreviewNoticeHtml():"")+content;
+    const chooser=["catalog","provinces","workshop"].includes(PROD.view);
+    body.innerHTML=(PROD.data?.industry_rebuild&&chooser?constructionFundingDisclosureHtml():(PROD.data?.industry_rebuild?constructionCapacityHtml():"")+constructionBudgetHtml())+(chooser?constructionPreviewNoticeHtml():"")+content;
   }
   operationsRestoreDetails(body,details); body.scrollTop=scroll;
   wireProductionPanel();
@@ -17067,6 +17630,15 @@ function wireProductionPanel() {
   body.querySelector("[data-construction-all]")?.addEventListener("click",()=>{PROD.provinceFilter=null;renderProductionPanel();});
   body.querySelector("[data-construction-small]")?.addEventListener("click",()=>{PROD.view="workshop";PROD.moduleQuotes=null;renderProductionPanel();});
   body.querySelector("[data-construction-mine]")?.addEventListener("click",()=>{closeProduction();openStock();});
+  const upgradeProvince=body.querySelector("#constructionUpgradeProvince");
+  if(upgradeProvince) upgradeProvince.onchange=()=>{if(productionProvinces().some(p=>p.id===upgradeProvince.value)){PROD.provinceFilter=upgradeProvince.value;renderProductionPanel();}};
+  body.querySelectorAll("[data-construction-remedy]").forEach(button=>{button.onclick=()=>constructionOpenRemedy(button.dataset.constructionRemedy);});
+  body.querySelectorAll("[data-construction-allocation]").forEach(form=>{
+    const id=form.dataset.constructionAllocation;
+    form.elements.capacity.oninput=()=>{(PROD.allocationDrafts??={})[id]=form.elements.capacity.value;};
+    form.onsubmit=e=>{e.preventDefault();constructionSetAllocation(id,form.elements.capacity.value);};
+  });
+  body.querySelectorAll("[data-construction-allocation-auto]").forEach(button=>{button.onclick=()=>constructionSetAllocation(button.dataset.constructionAllocationAuto,null);});
   const search=body.querySelector("#constructionProvinceSearch");
   if(search) search.oninput=()=>{PROD.provinceQuery=search.value;renderProductionPanel();};
   body.querySelector("[data-construction-search-clear]")?.addEventListener("click",()=>{PROD.provinceQuery="";renderProductionPanel();body.querySelector("#constructionProvinceSearch")?.focus({preventScroll:true});});
@@ -17083,7 +17655,7 @@ function wireProductionPanel() {
   body.querySelector("[data-construction-confirm]")?.addEventListener("click",constructionConfirmPreview);
   body.querySelector("[data-construction-preview-refresh]")?.addEventListener("click",()=>{const r=PROD.previewRequest;if(r)constructionPreviewProject(r.project_kind,r.district,r.capacity_micros,r.commodity);});
   body.querySelectorAll("[data-prod-project]").forEach((card) => {
-    card.onclick = (e) => { if (!e.target.closest("button, details")) productionSelect(card.dataset.prodProject, false); };
+    card.onclick = (e) => { if (!e.target.closest("button, details, form, input, label")) productionSelect(card.dataset.prodProject, false); };
     card.onkeydown = (e) => { if (e.target === card && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); productionSelect(card.dataset.prodProject, false); } };
   });
   body.querySelectorAll("[data-prod-map]").forEach((button) => { button.onclick = () => { operationsSetMapView("productionPanel", true); productionSelect(button.dataset.prodMap, true); }; });
@@ -17889,6 +18461,7 @@ $("#dominationDockBtn").onclick = openDomination;
 $("#dominationClose").onclick = closeDomination;
 
 $("#stockBtn").onclick = toggleStockScreen;
+$("#govBtn").onclick = toggleGovernment;
 
 installCampaignControls();
 bootSession();

@@ -112,6 +112,38 @@ fn close(a: f64, b: f64) {
 }
 
 #[test]
+fn company_materials_orders_deliver_faster_with_recipe_and_fees_reconciled() {
+    use spheres_sim::companies::{self, CompanySector, CompanyTarget};
+    let (mut w, district) = prepared();
+    companies::enable(&mut w);
+    let company = w.companies.roster.iter().filter(|c| c.nation == NationId::USA && c.sector == CompanySector::Manufacturing)
+        .max_by(|a,b| a.work_bonus.total_cmp(&b.work_bonus)).unwrap().id;
+    materials::start_order(&mut w, NationId::USA, &district, 2.0, 30).unwrap();
+    let mut plain = w.clone();
+    let target = CompanyTarget::Facility {district: district.clone(), sector: CompanySector::Manufacturing};
+    companies::assign(&mut w, NationId::USA, company, target.clone()).unwrap();
+    let modifier = companies::modifiers(&w, NationId::USA, &target);
+    industry::tick_day(&mut w);
+    industry::tick_day(&mut plain);
+    let actual = &w.materials.as_ref().unwrap().orders[0];
+    let baseline = &plain.materials.as_ref().unwrap().orders[0];
+    assert!(actual.output_today > baseline.output_today);
+    close(actual.raw_used[C::Iron.idx()], actual.output_today * modifier.input_rate);
+    close(actual.spent_conversion_bn, actual.output_today * materials::CONVERSION_CASH_PER_PACK_BN * (1.0 + modifier.fee_rate));
+    close(w.companies.assignments[0].fees_today_bn, actual.output_today * materials::CONVERSION_CASH_PER_PACK_BN * modifier.fee_rate);
+    let saved = save(&w);
+    let mut restored = load(&saved).unwrap();
+    industry::tick_day(&mut restored);
+    assert_eq!(save(&restored), saved);
+    next(&mut restored);
+    stock(&mut restored, NationId::USA, C::Iron, 0.0);
+    let roster = restored.companies.roster.clone();
+    industry::tick_day(&mut restored);
+    assert_eq!(restored.materials.as_ref().unwrap().orders[0].output_today, 0.0);
+    assert_eq!(restored.companies.roster, roster);
+}
+
+#[test]
 fn unactivated_default_and_new_campaign_are_inert_and_quotes_are_pure() {
     for daily in [false, true] {
         let mut w = world_1990(GameRules {

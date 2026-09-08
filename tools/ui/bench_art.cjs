@@ -4,7 +4,7 @@
 // Roadmap section 4 prints a budget table and says outright that those are
 // "initial budgets to validate on the user's machine, not measured performance
 // promises". The P0 exit gate then asks for "measured performance recorded".
-// This tool is what closes that gap: it builds every asset P0 ships, counts the
+// This tool measures the ground-vehicle, site and town set, counts the
 // triangles the generator actually emits, computes the bytes those meshes would
 // occupy on the GPU, weighs the source that produces them, and states PASS,
 // UNDER or OVER against the roadmap's own numbers.
@@ -191,10 +191,10 @@ function measureVehicles() {
       });
     }
   }
-  // Measured, not assumed: ask for a coarse vehicle and see whether one exists.
-  const coarse = EquipmentMesh.build({ platform: "tank_heavy", lod: "far" });
-  const hasLod = coarse.triangleCount !== EquipmentMesh.build({ platform: "tank_heavy" }).triangleCount;
-  return { rows, builds: builds + 2, passes, components: components.length, hasLod };
+  // The ground renderer takes numeric LODs. This small probe records that
+  // contract without pretending the LOD0 sweep grades every coarse variant.
+  const lodProbe = [0, 1, 2].map(lod => EquipmentMesh.build({ platform: "tank_heavy", lod }).triangleCount);
+  return { rows, builds: builds + 3, passes, components: components.length, lodProbe };
 }
 
 // --------------------------------------------------------------------- sites
@@ -455,6 +455,11 @@ does not fail. A budget with only a ceiling can only be \`PASS\` or \`OVER\`.
 
 ${m.graded.length} graded configurations: ${gradeCount("PASS")} PASS, ${gradeCount("UNDER")} under the detail floor, ${gradeCount("OVER")} over the ceiling.
 
+The geometry sweep covers nine ground platforms, construction sites and town
+assets. The export inventory below also includes tactical aircraft; aircraft
+geometry is listed in [P0_MANIFEST.md](P0_MANIFEST.md) but is not graded by this ground-only
+vehicle budget sweep.
+
 ${overSection}
 
 ## Ground vehicles, LOD0
@@ -476,12 +481,14 @@ Components that make each platform heaviest:
 
 ${m.vehicles.rows.filter((r) => r.config === "heaviest").map((r) => `- \`${r.platform}\`: ${r.note}`).join("\n")}
 
-**LOD1 and LOD2 do not exist for vehicles.** \`EquipmentMesh.build\` takes no
-\`lod\` argument${m.vehicles.hasLod ? " — but a coarse mesh now answers, so this paragraph is stale and the tool needs extending" : ", and asking it for a far mesh hands back the LOD0 mesh — measured here, not assumed"}. The roadmap's ${BUDGETS.vehicle_lod1.cell} catalogue preview and ${BUDGETS.vehicle_lod2.cell}
-map vehicle are therefore unmeasurable rather than passing: the catalogue card
-and the map both pay the full LOD0 count today. Sites and town blocks both have
-their coarse mesh; the vehicles are the hole, and it is the largest single gap
-this harness found.
+Ground equipment has numeric LOD0, LOD1 and LOD2. A baseline \`tank_heavy\`
+probe measures ${m.vehicles.lodProbe.map(fmt).join(" / ")} triangles respectively.
+The graded vehicle sweep above remains LOD0-only; this probe is not a complete
+coarse-configuration budget audit. [P0_MANIFEST.md](P0_MANIFEST.md) records all
+ground baselines at each detail level, and \`check_equipment_mesh.cjs\` checks
+the ${BUDGETS.vehicle_lod1.cell} catalogue and ${BUDGETS.vehicle_lod2.cell} map bands
+across individual and combined component choices. Aircraft currently have
+inspection geometry only and are outside this vehicle sweep.
 
 ## Construction sites
 
@@ -541,9 +548,9 @@ failure; this is where the next art pass will push something over.
 | --- | --- | --- | --- | --- |
 ${tightest}
 
-## Resident cost, if everything P0 ships were resident at once
+## Resident cost, if the measured ground, site and town set were resident at once
 
-No frame draws this. It is the whole shipped set held at once, which is the
+No frame draws this. It is the measured set held at once, which is the
 number that decides whether a bounded cache can keep everything rather than
 rebuild it.
 
@@ -552,14 +559,14 @@ rebuild it.
 | Ground vehicles, heaviest specification | ${m.resident.vehicles.n} | ${fmt(m.resident.vehicles.tris)} | ${fmt(m.resident.vehicles.bytes)} |
 | Construction sites, worst case near | ${m.resident.sites.n} | ${fmt(m.resident.sites.tris)} | ${fmt(m.resident.sites.bytes)} |
 | Town blocks, worst case close | ${m.resident.blocks.n} | ${fmt(m.resident.blocks.tris)} | ${fmt(m.resident.blocks.bytes)} |
-| **Everything, close detail** | **${m.resident.total.n}** | **${fmt(m.resident.total.tris)}** | **${fmt(m.resident.total.bytes)}** (${mib(m.resident.total.bytes)}) |
-| The same set at map LOD, where one exists | ${m.resident.map.n} | ${fmt(m.resident.map.tris)} | ${fmt(m.resident.map.bytes)} (${mib(m.resident.map.bytes)}) |
+| **Measured set, close detail** | **${m.resident.total.n}** | **${fmt(m.resident.total.tris)}** | **${fmt(m.resident.total.bytes)}** (${mib(m.resident.total.bytes)}) |
+| Sites/towns coarse; ground vehicles retained at LOD0 for comparison | ${m.resident.map.n} | ${fmt(m.resident.map.tris)} | ${fmt(m.resident.map.bytes)} (${mib(m.resident.map.bytes)}) |
 
-The map row still carries the vehicles at their full LOD0 count, because they have
-no coarse mesh: ${fmt(m.resident.map.vehicleShare)} of its ${fmt(m.resident.map.tris)} triangles
-are the nine vehicles, against ${fmt(m.resident.map.tris - m.resident.map.vehicleShare)} for all
-eighteen sites and blocks together. A vehicle map LOD is worth more than any other
-saving available here.
+The comparison row deliberately retains the measured vehicles at LOD0:
+${fmt(m.resident.map.vehicleShare)} of its ${fmt(m.resident.map.tris)} triangles are
+the nine ground vehicles, with ${fmt(m.resident.map.tris - m.resident.map.vehicleShare)}
+for the coarse sites and blocks. It is not the live map's rendering cost and
+does not imply the available ground LOD1/LOD2 geometry is unused.
 
 Upload arithmetic, for every byte figure above: the meshes are non-indexed with
 three \`Float32Array\` attributes, so bytes = triangles x 3 vertices x 3
@@ -569,9 +576,9 @@ a generator ever stops matching it.
 
 ## Source cost — what the player actually downloads
 
-The generators ship as source and build their meshes in the browser. There is no
-runtime GLB loader and no build step, so this is the entire download cost of
-every asset above, and it is the number that justifies the procedural decision.
+The generators ship as source and build their meshes in the browser without
+fetching GLB assets or requiring a build step. These figures measure the three
+geometry generators; renderer, stylesheet and other page costs are not included.
 
 | file | bytes | |
 | --- | --- | --- |
@@ -587,7 +594,7 @@ ${m.source.glb.length} exported \`.glb\` files sit in \`spheres-web/ui/equipment
 totalling ${fmt(m.source.glbBytes)} bytes (${mib(m.source.glbBytes)}). They are the
 portable deliverable roadmap section 4 asks for, not a runtime download — the game
 never fetches them — and they are the comparison that settles the argument:
-${m.source.glb.length} ground vehicles as binary assets weigh
+${m.source.glb.length} equipment exports (${m.source.glb.filter(f => f.file.startsWith("spheres-air-")).length} aircraft and ${m.source.glb.filter(f => !f.file.startsWith("spheres-air-")).length} ground-vehicle configurations) as binary assets weigh
 ${(m.source.glbBytes / m.source.bytes).toFixed(1)}x the entire generator source
 that builds every vehicle, every site at every stage and every town block.
 

@@ -1,6 +1,6 @@
 # Arsenal models
 
-Forty-six low-poly meshes, one for every id in `spheres-sim/src/arsenal.rs`'s
+Forty-six procedural meshes, one for every id in `spheres-sim/src/arsenal.rs`'s
 `DECK`, plus the two things that keep them honest.
 
 ## Source and integration attribution
@@ -12,10 +12,18 @@ That commit records Claude Opus 5 as co-author and the source branch work as
 `8ec69ee` on `feat/hoi4-map-and-tech`. The integration retains its 46 deterministic
 catalogue meshes, shared WebGL2 renderer and OBJ export tools.
 
-These static catalogue previews are separate from the configurable ground
-designer and its GLB exports. Displaying aircraft and ships here does not add
-aircraft or naval component-design systems. This integration adds no new claim
-of independently verified historical dimensions or engineering fidelity; the
+The 7 September integration combines `feat/hoi4-map-and-tech` through `fc0f0c2`
+with `feat/art-p0` through `c2e49c6`. The art branch raises the deck to card-level
+detail, adds a coarse level of detail and selective smooth shading, and improves
+lighting and surface treatment. Its separate globe scatter experiment remains
+withdrawn; see [the scale finding](../../docs/art/SCATTER_SCALE_FINDING.md).
+
+These static catalogue previews are separate from the configurable ground and
+tactical-aircraft designer and its GLB exports. The first aircraft design slice
+is documented in [AVIATION.md](../../AVIATION.md); displaying other aircraft and
+ships here does not add their mission or naval component-design systems.
+This integration adds no new claim of independently verified historical
+dimensions or engineering fidelity; the
 existing names and dimension annotations are inherited from that source work.
 
 | file | what it is |
@@ -28,11 +36,12 @@ existing names and dimension annotations are inherited from that source work.
 
 ## Why the models are code
 
-This page has **no build step and no CDN** (CLAUDE.md; `main.rs` asserts it).
-That rules out a glTF loader and forty-six binary payloads, so the meshes are
-built the way `mapgen.rs` builds the map: author the recipe, ship the recipe,
-let the client bake it. The whole deck is about **20,800 triangles** and costs
-the wire nothing — `arsenal-models.js` is source, and source gzips.
+This static catalogue renderer has **no build step and no CDN** (CLAUDE.md;
+`main.rs` asserts it). It generates its meshes without a glTF loader or
+forty-six binary payloads, the way `mapgen.rs` builds the map: author the recipe,
+ship the recipe, let the client bake it. The current near-detail deck contains
+**272,491 triangles** across 46 models; cards can use the coarse geometry.
+The browser downloads the source generator rather than separate binary models.
 
 It also means the models are **diffable**. A tank here is forty lines of
 readable code; a change to one shows up in review as a change to one.
@@ -45,9 +54,9 @@ readable code; a change to one shows up in review as a change to one.
   an F-15E is 19.4 m long beside an M1 that is 7.9 m, because a future map layer
   will place these against terrain and guessing now means re-measuring later.
   `MODELS[id].span` carries the largest real dimension for that use.
-- **Flat shaded, no stored normals.** Faceting is the look, and normals are
-  derived per triangle at `finish()` from the vertices *as transformed* — which
-  is what makes mirroring safe (see `Mesh.both`).
+- **Shading is selected per part.** Face normals are derived from transformed
+  geometry; curved parts may use averaged vertex normals while faceted designs
+  retain their silhouette. OBJ export preserves per-vertex normals.
 - **No randomness anywhere.** Same id, same buffers, every run. This project's
   first iron rule is determinism and there is no reason for art to be the
   exception.

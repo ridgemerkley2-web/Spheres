@@ -11,7 +11,7 @@
 //   node tools/ui/build_component_coverage.cjs           -> docs/art/COMPONENT_COVERAGE.md
 //   node tools/ui/build_component_coverage.cjs --check   -> exit 1 if the committed file is stale
 //
-// Everything in the document is read from the two Rust catalogues and from the
+// Everything in the document is read from the Rust component catalogues and from the
 // mesh generator itself, so a report that disagrees with the art is a bug in
 // this script and not a stale document. There are no timestamps and no machine
 // names in the output: two runs of the same tree write the same bytes.
@@ -24,11 +24,13 @@ const crypto = require("crypto");
 const ROOT = path.resolve(__dirname, "..", "..");
 const SPECS = path.join(ROOT, "spheres-sim", "src", "equipment_specs.rs");
 const GROUND = path.join(ROOT, "spheres-sim", "src", "equipment_ground.rs");
+const AVIATION = path.join(ROOT, "spheres-sim", "src", "equipment_aviation.rs");
 const OUT = path.join(ROOT, "docs", "art", "COMPONENT_COVERAGE.md");
 const { build } = require(path.join(ROOT, "spheres-web", "ui", "equipment-mesh.js"));
 
 const specsSrc = fs.readFileSync(SPECS, "utf8");
 const groundSrc = fs.readFileSync(GROUND, "utf8");
+const aviationSrc = fs.readFileSync(AVIATION, "utf8");
 
 // The baseline this pass started from, recorded so the improvement is not taken
 // on trust. It is a measurement, not a target: re-derive it by checking out the
@@ -49,9 +51,12 @@ function components(src, origin) {
   return [...src.matchAll(/component!\("([^"]+)","([^"]+)","([^"]+)"/g)]
     .map(([, id, name, slot]) => ({ id, name, slot, origin }));
 }
-const CATALOGUE = [...components(specsSrc, "equipment_specs.rs"), ...components(groundSrc, "equipment_ground.rs")];
+const AVIATION_COMPONENTS = components(aviationSrc, "equipment_aviation.rs");
+const CATALOGUE = [...components(specsSrc, "equipment_specs.rs"), ...components(groundSrc, "equipment_ground.rs"), ...AVIATION_COMPONENTS];
 const BY_ID = new Map(CATALOGUE.map(c => [c.id, c]));
 if (CATALOGUE.length < 60) throw new Error(`the catalogue scrape found only ${CATALOGUE.length} components`);
+if (BY_ID.size !== CATALOGUE.length) throw new Error("the catalogue contains duplicate component IDs");
+if (AVIATION_COMPONENTS.length !== 18) throw new Error(`aviation catalogue changed: found ${AVIATION_COMPONENTS.length} components; review its coverage derivation`);
 
 // ---------------------------------------------------------------------------
 // The default specification of every platform, from the Rust that builds it
@@ -60,7 +65,7 @@ if (CATALOGUE.length < 60) throw new Error(`the catalogue scrape found only ${CA
 // default_spec() adds the ground families on top, drops `tracks` from the two
 // wheeled hulls and inserts their mission slot. Both are parsed here rather than
 // copied, so a change to either goes through this report.
-const pairs = text => [...text.matchAll(/\("([a-z_]+)","([a-z0-9_]+)"\)/g)].map(m => [m[1], m[2]]);
+const pairs = text => [...text.matchAll(/\(\s*"([a-z_]+)"\s*,\s*"([a-z0-9_]+)"\s*,?\s*\)/g)].map(m => [m[1], m[2]]);
 function armTable(src, marker) {
   const start = src.indexOf(marker);
   if (start < 0) throw new Error(`cannot find ${marker}`);
@@ -77,10 +82,23 @@ const GROUND_SEED = pairs(/for \(slot,id\) in \[(.*?)\] \{ spec\.components\.ins
 const GROUND_ARMS = armTable(groundSrc.slice(groundSrc.indexOf("pub fn default_spec")), "let changes: &[(&str,&str)] = match platform {");
 const TANK_PLATFORMS = ["tank_standard", "tank_heavy", "tank_light", "tank_destroyer"];
 const GROUND_PLATFORMS = ["ground_ifv", "ground_apc", "ground_recon", "ground_artillery", "ground_air_defense"];
-const PLATFORMS = [...TANK_PLATFORMS, ...GROUND_PLATFORMS];
+const aviationPlatformsBody = /pub fn is_aviation_platform\([^]*?matches!\(platform,([^]*?)\)/.exec(aviationSrc);
+if (!aviationPlatformsBody) throw new Error("cannot read aviation platform identities");
+const AVIATION_PLATFORMS = [...aviationPlatformsBody[1].matchAll(/"(air_[a-z_]+)"/g)].map(m => m[1]);
+if (AVIATION_PLATFORMS.length !== 2) throw new Error("aviation platform set changed; review coverage derivation");
+const PLATFORMS = [...TANK_PLATFORMS, ...GROUND_PLATFORMS, ...AVIATION_PLATFORMS];
 const isGround = platform => GROUND_PLATFORMS.includes(platform);
+const isAviation = platform => AVIATION_PLATFORMS.includes(platform);
+const aviationDefaultBody = aviationSrc.slice(aviationSrc.indexOf("pub fn aviation_default_spec"), aviationSrc.indexOf("pub fn aviation_component_compatible"));
+const strikePlatform = /let strike = platform == "([a-z_]+)"/.exec(aviationDefaultBody);
+if (!strikePlatform) throw new Error("cannot read aircraft default condition");
 
 function defaultSpec(platform) {
+  if (isAviation(platform)) {
+    const resolved = aviationDefaultBody.replace(/\(\s*"([a-z_]+)"\s*,\s*if strike\s*\{\s*"([a-z_]+)"\s*\}\s*else\s*\{\s*"([a-z_]+)"\s*\}\s*,?\s*\)/g,
+      (_, slot, strike, light) => `("${slot}","${platform === strikePlatform[1] ? strike : light}")`);
+    return new Map(pairs(resolved));
+  }
   const spec = new Map(TANK_BASE.map(([k, v]) => [k, v]));
   for (const [k, v] of TANK_ARMS.get(platform) || TANK_ARMS.get("_")) spec.set(k, v);
   if (!isGround(platform)) return spec;
@@ -91,7 +109,7 @@ function defaultSpec(platform) {
 }
 const DEFAULTS = new Map(PLATFORMS.map(p => [p, defaultSpec(p)]));
 for (const [platform, spec] of DEFAULTS) {
-  const want = isGround(platform) ? 13 : 12;
+  const want = isAviation(platform) ? 8 : isGround(platform) ? 13 : 12;
   if (spec.size !== want) throw new Error(`${platform} resolved ${spec.size} slots, expected ${want}`);
 }
 
@@ -166,6 +184,17 @@ const allow = (platform, slot, id) => {
       if (platform === "tank_destroyer" ? (c.slot === "turret" && c.id !== "turret_casemate") : c.id === "turret_casemate") continue;
       allow(platform, c.slot, c.id);
     }
+  }
+}
+{
+  const compatible = aviationSrc.slice(aviationSrc.indexOf("pub fn aviation_component_compatible"), aviationSrc.indexOf("fn aviation_configuration_refusals"));
+  if (!compatible.includes("is_aviation_platform(platform)") || !compatible.includes("AVIATION_COMPONENTS.iter().any(|x| x.id == c.id)")) throw new Error("aircraft compatibility ownership changed");
+  const exclusion = /platform != "([a-z_]+)"\s*\|\| !matches!\(\s*c\.id,([^]*?)\)/.exec(compatible);
+  if (!exclusion) throw new Error("cannot read aircraft installation exclusion list");
+  const banned = new Set(idsIn(exclusion[2]));
+  for (const platform of AVIATION_PLATFORMS) for (const c of AVIATION_COMPONENTS) {
+    if (platform === exclusion[1] && banned.has(c.id)) continue;
+    allow(platform, c.slot, c.id);
   }
 }
 // Guard the derivation: every platform's own default must be legal on it, and
@@ -364,18 +393,24 @@ const holes = rows.filter(r => r.verdict !== "distinct");
 const md = `# Component visual coverage
 
 Generated by \`node tools/ui/build_component_coverage.cjs\` — do not edit by hand.
-Re-run it after any change to \`spheres-web/ui/equipment-mesh.js\` or to either Rust
+Re-run it after any change to \`spheres-web/ui/equipment-mesh.js\` or to the Rust
 catalogue; \`--check\` fails when this file and the geometry disagree, and
 \`tools/ui/check_equipment_mesh.cjs\` runs that check.
 
 ## What is measured
 
-Every component id in \`spheres-sim/src/equipment_specs.rs\` and
-\`spheres-sim/src/equipment_ground.rs\`, on every platform that legally fields it
+Every component id in \`spheres-sim/src/equipment_specs.rs\`,
+\`spheres-sim/src/equipment_ground.rs\` and \`spheres-sim/src/equipment_aviation.rs\`,
+on every platform that legally fields it
 under \`component_compatible\`, selected one slot at a time against that platform's
 own \`default_spec\`. Paired weapon/mount/payload validity is a separate gate in the
 simulation and is deliberately not applied here: changing more than one slot would
 make it impossible to say which component caused the change in the mesh.
+The sweep includes ${AVIATION_PLATFORMS.length} tactical aircraft and all ${AVIATION_COMPONENTS.length} aircraft components.
+Aircraft currently use inspection geometry at every requested detail setting;
+an aircraft LOD1 comparison measures the same inspection geometry, not a separate
+authored low-detail aircraft model. The historical baseline below covers ground
+equipment only; it predates the aircraft catalogue.
 
 For each pair the tool builds both meshes and compares the position and colour
 buffers, the per-part vertex ranges keyed by slot and ordinal, the model bounds,

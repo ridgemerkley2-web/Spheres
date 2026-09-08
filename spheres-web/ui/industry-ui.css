@@ -74,5 +74,45 @@
 .industry-inherited p { max-width:680px; margin-top:8px; font-size:14px; }
 .industry-inherited button { flex:none; max-width:230px; }
 .industry-model-note { margin-top:18px!important; }
+.construction-capacity { margin-bottom:24px; padding:20px 24px; border:1px solid #a9cddd55; border-radius:16px; background:linear-gradient(120deg,#243d50,#203d3d); }
+.construction-funding-disclosure { margin:0 0 20px; padding:13px 18px; border:1px solid #9fbac344; border-radius:12px; background:#203544; }
+.construction-funding-disclosure>summary { cursor:pointer; color:#d8e7da; font:600 14px/1.5 system-ui; }
+.construction-funding-disclosure>summary span { display:block; margin:4px 0 0 18px; color:#b7cbd0; font:400 12px/1.5 system-ui; }
+.construction-funding-disclosure[open]>summary { margin-bottom:20px; }
+.industry-receipts-details { margin:24px 0; padding:16px 20px; border:1px solid #9db7c244; border-radius:12px; }
+.industry-receipts-details>summary { cursor:pointer; color:#c5dbcf; font:600 14px/1.5 system-ui; }
+#productionPanel .construction-capacity .construction-heading { margin:0; }
+.construction-capacity button,.construction-remedies button { min-height:42px; padding:10px 14px; border:1px solid #a7cbb879; border-radius:8px; background:#334d44; color:#d7eadf; font:600 13px/1.4 system-ui; }
+.construction-allocation { margin:18px 0; padding:16px; border:1px solid #93b9c03b; border-radius:11px; background:#10273780; }
+.construction-allocation label { display:block; color:#ecf1e5; font:600 14px/1.5 system-ui; }
+.construction-allocation label span { display:block; margin:4px 0 10px; color:#b7ccce; font:400 12px/1.4 system-ui; }
+.construction-allocation>div { display:flex; gap:8px; flex-wrap:wrap; }
+.construction-allocation input { min-width:0; width:110px; min-height:44px; padding:9px 12px; border:1px solid #88aca4; border-radius:8px; color:#f1f3eb; background:#10232e; font:500 16px/1.3 system-ui; }
+.construction-allocation button { min-height:44px; padding:9px 12px; border:1px solid #a6cab773; border-radius:8px; background:#345044; color:#dcebdc; font:600 13px/1.4 system-ui; }
+.construction-allocation button[aria-pressed="true"] { border-color:#c2e5d0; background:#496452; }
+.construction-allocation button:disabled,.construction-allocation input:disabled { opacity:.5; }
+.construction-remedies { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+#productionPanel .construction-catalog-group { margin:26px 0 32px; }
+#productionPanel .construction-catalog-group h3 { margin:0 0 13px; color:#d1e6d7; font:600 23px/1.3 system-ui; }
+#productionPanel .construction-catalog-group>p { color:#bbcfd2; font:400 14px/1.5 system-ui; }
+.construction-catalog-group>label { display:block; margin-bottom:8px; color:#d1e6d7; }
+.construction-catalog-group>select { max-width:100%; min-height:44px; padding:10px; border:1px solid #8cadad; border-radius:8px; background:#17313d; color:#e8efe7; font:400 16px/1.4 system-ui; }
+#productionPanel .project-choice .project-purpose { color:#dce9dd; font-weight:600; font-size:14px; }
+#productionPanel .project-choice .project-tradeoff { color:#cbbfa5; line-height:1.6; }
+.project-tradeoff strong { display:block; font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:.03em; }
+.construction-preset-components { padding-left:18px; font-size:12px; line-height:1.7; }
+.manufacturing-components { margin:15px 0; padding:14px; border:1px solid #9dbdba44; border-radius:9px; background:#1d3640; }
+.manufacturing-components h4 { margin:0 0 8px; color:#d9e7dd; font:600 14px/1.4 system-ui; }
+.manufacturing-components p { margin:7px 0; font:400 13px/1.5 system-ui; color:#c1d0d2; }
+.manufacturing-components button { margin-top:7px; min-height:40px; }
+#productionPanel .construction-catalog-group button:focus-visible,#productionPanel .construction-allocation :focus-visible,#productionPanel .construction-catalog-group select:focus-visible,#productionPanel .construction-remedies button:focus-visible { outline:3px solid #ebcc91; outline-offset:3px; }
+.industry-unified { margin-bottom:30px; }
+.industry-unified .industry-site-metrics { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.industry-origin { color:#abc7d9!important; font-size:11px!important; margin:6px 0!important; }
+.industry-utilization { height:6px; margin:12px 0; background:#102431; border-radius:5px; overflow:hidden; }
+.industry-utilization i { display:block; height:100%; background:#aecfba; }
+.industry-unified .industry-site>header { margin-bottom:9px; }
+.industry-unified .industry-site .industry-note { margin-top:8px; }
+@media(max-width:640px) { .construction-capacity {padding:17px;} .construction-allocation>div {display:grid;grid-template-columns:1fr 1fr;} .construction-allocation input {width:100%;grid-column:1/-1;} .industry-unified .industry-site-metrics {grid-template-columns:1fr;} }
 @media(max-width:950px) { .industry-sites {grid-template-columns:1fr;} .industry-hero {padding:22px;} .industry-reading {max-width:230px;} .industry-queued {grid-template-columns:minmax(0,1fr) minmax(120px,.65fr);} .industry-queued>button {grid-column:1/-1;justify-self:start;} }
 @media(max-width:640px) { .industry-hero,.industry-inherited {flex-direction:column;align-items:stretch;gap:18px;} .industry-reading {border-left:0;border-top:1px solid #a9d0bd40;padding:15px 0 0;max-width:none;align-self:stretch;} .industry-stock {grid-template-columns:1fr;gap:9px;} .industry-stock>div {padding:16px 18px;} .industry-section-heading {align-items:start;flex-direction:column;gap:12px;} .industry-site {padding:18px;} .industry-site>header {flex-direction:column;} .industry-status {max-width:none;} .industry-inherited button {max-width:none;} .industry-queued {grid-template-columns:1fr;gap:14px;} .industry-queue-progress {max-width:none;} .industry-site-metrics {grid-template-columns:1fr;} }

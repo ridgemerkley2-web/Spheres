@@ -30,6 +30,17 @@ function fixture() {
 }
 const run=(c,s)=>vm.runInContext(s,c);
 
+test('advanced component supplier selection follows the served goods catalogue and quotes its exact key',async()=>{
+  const c=fixture();
+  let html=run(c,'competitionTradeHtml({commerce:{goods:[]}})');
+  assert.doesNotMatch(html,/<option value="advanced_components"/);
+  html=run(c,'COMP.trade.good="advanced_components";competitionTradeHtml({commerce:{goods:[{good:"advanced_components",name:"Advanced components",stock:3}]}})');
+  assert.match(html,/<option value="advanced_components" selected>Advanced components<\/option>/);
+  assert.equal(run(c,'competitionGood("advanced_components")'),'Advanced components');
+  await run(c,'competitionFindSuppliers({elements:{good:{value:"advanced_components"},quantity:{value:"3"},delivery_days:{value:"30"}}})');
+  assert.equal(c.sent[0].b.good,'advanced_components');
+});
+
 test('Every Exchange snapshot and quote read carries the active campaign identity',async()=>{
   const c=fixture();run(c,'COMP.open=true;');
   await run(c,'competitionFetch()');

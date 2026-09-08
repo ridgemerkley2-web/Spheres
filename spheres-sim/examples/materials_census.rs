@@ -55,6 +55,7 @@ struct Milestones {
     machinery_output: Option<i32>,
     intermediate_import_delivered: Option<i32>,
     capital_import_delivered: Option<i32>,
+    component_import_delivered: Option<i32>,
     end_of_day_intermediate_stock: Option<i32>,
     end_of_day_capital_stock: Option<i32>,
     research_goods_consumed: Option<i32>,
@@ -66,6 +67,7 @@ struct SupplyUse {
     domestic_capital_goods: f64,
     imported_intermediates_delivered: f64,
     imported_capital_goods_delivered: f64,
+    imported_components_delivered: f64,
     intermediates_used_by_machinery: f64,
     intermediates_used_by_research: f64,
     capital_goods_used_by_research: f64,
@@ -78,6 +80,7 @@ impl SupplyUse {
         self.domestic_capital_goods += other.domestic_capital_goods;
         self.imported_intermediates_delivered += other.imported_intermediates_delivered;
         self.imported_capital_goods_delivered += other.imported_capital_goods_delivered;
+        self.imported_components_delivered += other.imported_components_delivered;
         self.intermediates_used_by_machinery += other.intermediates_used_by_machinery;
         self.intermediates_used_by_research += other.intermediates_used_by_research;
         self.capital_goods_used_by_research += other.capital_goods_used_by_research;
@@ -236,6 +239,10 @@ fn observe_bootstrap(w: &WorldState, settled_day: i32, owners: &BTreeMap<String,
                 Good::CapitalGoods => {
                     c.bootstrap.first_day.capital_import_delivered.get_or_insert(settled_day);
                     c.bootstrap.supply_and_use.imported_capital_goods_delivered += delivery.quantity;
+                }
+                Good::AdvancedComponents => {
+                    c.bootstrap.first_day.component_import_delivered.get_or_insert(settled_day);
+                    c.bootstrap.supply_and_use.imported_components_delivered += delivery.quantity;
                 }
             }
         }

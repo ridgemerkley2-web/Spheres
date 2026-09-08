@@ -24,7 +24,9 @@
   },
   "military": {
     "strength": 11.0,
-    "nuclear": false
+    "nuclear": false,
+    "personnel_1990": 85000,
+    "milex_1990_usd_bn": 2.050908
   },
   "sources": [
     "GDP $141.4bn and 32.8m people (World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, 1990; the exact prints are $141.353bn and 32,755,901). Output had fallen about 6% in 1989 and fell again in 1990; the decade to 1990 is the lost decade, hence a negative TFP trend of -0.8%/yr.",
@@ -35,7 +37,8 @@
     "Oil 0.48 mbd: YPF and the associated private producers pumped about 483,000 bbl/d in 1990 (Secretaria de Energia), roughly self-sufficiency. Privatisation of YPF begins in 1991.",
     "Defence 1.6% of GDP: the armed forces were cut hard after the Falklands and after the 1987-88 carapintada mutinies. Strength 11 reflects a conscript army with no ability to project, and Menem's pardons of the junta in October 1989 and December 1990.",
     "Stability 36: the second hyperinflation, the Bonex plan confiscating time deposits in January 1990, and the fourth and last carapintada rising on 3 December 1990. Separatism 0.02 — Argentina has essentially none.",
-    "pop_growth_1990 = 1.5630%/yr. Compound annual growth of World Bank SP.POP.TOTL, series ARG (Argentina): 29,863,093 in 1984 to 32,270,948 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 1.5630%/yr. Compound annual growth of World Bank SP.POP.TOTL, series ARG (Argentina): 29,863,093 in 1984 to 32,270,948 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "military.personnel_1990 = 85000 and military.milex_1990_usd_bn = 2.050908 ($bn). personnel: World Bank API MS.MIL.TOTL.P1 (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (ARG, 1990) | milex_usd: World Bank API MS.MIL.XPND.CD (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.XPND.CD?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (ARG, 1990). milex entered in billions to six decimals (the nearest $1,000) of the fetched 2,050,907,629 current US$. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [

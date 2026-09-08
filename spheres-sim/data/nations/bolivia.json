@@ -25,7 +25,9 @@
   },
   "military": {
     "strength": 3.0,
-    "nuclear": false
+    "nuclear": false,
+    "personnel_1990": 30000,
+    "milex_1990_usd_bn": 0.137065
   },
   "sources": [
     "GDP $4.87bn and 7.13m people (World Bank NY.GDP.MKTP.CD and SP.POP.TOTL, 1990; exact prints $4.868bn and 7,130,142) - the smallest economy in this region's roster. The census of 3 June 1992 counted 6,420,792, which is the figure most Bolivian sources of the period use; the World Bank series carries the higher revised estimate and it is the one entered, for consistency with the rest of the roster.",
@@ -36,7 +38,8 @@
     "Defence 2.4% of GDP, strength 3. Stability 42: Bolivia had had a constitutional government since 1982 after decades of coups, but the tin price collapse of October 1985 had closed COMIBOL's mines and put 23,000 miners out of work, and coca eradication under US pressure — Operation Blast Furnace in 1986, the Annual Bilateral Agreements from 1987 — was a permanent confrontation with the Chapare growers' unions.",
     "Separatism 0.10: not secession but the indigenous and regional question that produces the March for Territory and Dignity from Beni to La Paz in August 1990, and the Santa Cruz autonomy movement later.",
     "pop_growth_1990 = 2.1352%/yr. Compound annual growth of World Bank SP.POP.TOTL, series BOL (Bolivia): 6,281,868 in 1984 to 6,981,766 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
-    "reserves_bn = 0.563 ($bn). Total reserves including gold, BOL, 1989: US$563347083.00 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4)."
+    "reserves_bn = 0.563 ($bn). Total reserves including gold, BOL, 1989: US$563347083.00 (World Bank World Development Indicators series FI.RES.TOTL.CD, 'Total reserves (includes gold, current US$)', retrieved from the World Bank API on 2026-09-02; indicator lastupdated 2026-07-13). THE 1989 OBSERVATION AND NOT THE 1990 ONE: a reserve is a stock, and the stock on the morning of the 1 January 1990 start date is the end-1989 figure - the same reasoning pop_growth_1990 above gives for ending its window on 31 December 1989. LIMIT STATED: this series is official reserve assets. Sovereign wealth fund balances are not in it and none has been added, because no audited 1990 balance could be sourced for any of them; where that materially understates a state's usable stock it is reported rather than estimated (iron rule 4).",
+    "military.personnel_1990 = 30000 and military.milex_1990_usd_bn = 0.137065 ($bn). personnel: World Bank API MS.MIL.TOTL.P1 (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (BOL, 1990) | milex_usd: World Bank API MS.MIL.XPND.CD (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.XPND.CD?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (BOL, 1990). milex entered in billions to six decimals (the nearest $1,000) of the fetched 137,065,128 current US$. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [

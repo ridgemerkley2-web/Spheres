@@ -24,7 +24,9 @@
   },
   "military": {
     "strength": 16.0,
-    "nuclear": false
+    "nuclear": false,
+    "personnel_1990": 295000,
+    "milex_1990_usd_bn": 9.236297
   },
   "sources": [
     "World Bank has 1990 GDP at $385bn and 149.1m people, with CPI inflation of 2948% — the year of the Collor Plan. The World Bank's 1990 deposit rate for Brazil is 9394%. Output fell 4.3% over the year (IBGE).",
@@ -34,7 +36,8 @@
     "What the stand-ins are NOT is a designed damping, and the file should not pretend otherwise. Three things say so. First, the scale is a power of ten applied to exactly the three nations whose 1990 percentage needed four digits — Brazil, Poland and Yugoslavia — and to no others; Turkey at 60.3% and Vietnam at 67% are transcribed correctly. That is a decimal shift, not a policy. Second, a damping chosen to preserve the economics would preserve the sign of the real rate: the truth is a policy rate 6400 points above inflation, about as contractionary as a central bank can be, and 2.9 against 2.95 is five points BELOW inflation, which the model reads as easy money. Third, 2.9 is above the ceiling of 0.45 that politics.rs clamps the AI central bank's desired rate to, so the entered rate is transient anyway: it decays with a half-life of about four months and is down to 50% by January 1992.",
     "The cost of the stand-ins, stated so nobody has to rediscover it. On seed 1 Brazil grows 13.9% through 1990 and reaches $530bn by the end of 1991, against an actual contraction of 4.3% followed by roughly flat. The sign of Brazil's early nineties is wrong, and it is wrong because of the real rate these two numbers imply, not because of anything the model does with hyperinflation as such. Fixing it means bounding the real-rate channel in economy.rs; bounding it at +/-0.20 was tried and costs china_growth_miracle (China runs to 17.1x in 30 years) and the trade-integration test, so it is a recalibration and not a one-line change. Until that is done these numbers stay and this note stays with them.",
     "Oil: Petrobras pumped 0.63 mbd from Campos against 1.4 mbd of demand, so Brazil was buying, not selling.",
-    "pop_growth_1990 = 2.0051%/yr. Compound annual growth of World Bank SP.POP.TOTL, series BRA (Brazil): 132,658,864 in 1984 to 146,502,972 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = 2.0051%/yr. Compound annual growth of World Bank SP.POP.TOTL, series BRA (Brazil): 132,658,864 in 1984 to 146,502,972 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "military.personnel_1990 = 295000 and military.milex_1990_usd_bn = 9.236297 ($bn). personnel: World Bank API MS.MIL.TOTL.P1 (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (BRA, 1990) | milex_usd: World Bank API MS.MIL.XPND.CD (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.XPND.CD?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (BRA, 1990). milex entered in billions to six decimals (the nearest $1,000) of the fetched 9,236,296,955 current US$. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [

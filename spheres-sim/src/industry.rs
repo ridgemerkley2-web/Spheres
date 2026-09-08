@@ -6,6 +6,7 @@
 //! value-added receipts to that ledger. Only new activity can lack power.
 use crate::{
     clock,
+    companies::{self, CompanySector, CompanyTarget},
     production::{self, Project, ProjectKind as K, ProjectSpec, ProjectStatus},
     programs,
     resources::{self, Commodity as C, ALL},
@@ -203,8 +204,8 @@ pub fn catalog(kind: K) -> ProjectSpec {
     }
     let (name, description, effect, days, recipe) = match kind {
         K::MachineryWorks => ("Machinery Works", "Tool and machine production for civilian capital projects.", "Uses intermediate packs, copper and power to produce 0.5 capital-goods packs/day per level.", 420, [(C::Iron,40.0),(C::Copper,12.0),(C::Coal,15.0)]),
-        K::Generation => ("Power Generation", "New dispatchable generation for modeled industrial activity only.", "Supplies up to 10 modeled power units/day per level; burns coal only when a factory runs.", 480, [(C::Iron,50.0),(C::Copper,18.0),(C::Coal,20.0)]),
-        K::ProcessingPlant => ("Materials Processing", "Converts ore and fuel into usable industrial intermediates.", "Uses iron, bauxite, coal and power to produce 1 intermediate pack/day per level.", 360, [(C::Iron,35.0),(C::Copper,8.0),(C::Coal,20.0)]),
+        K::Generation => ("Power Plant", "Dispatchable electricity for industrial operations.", "Supplies up to 10 modeled power units/day per level; consumes generating fuel and funds when electricity is used.", 480, [(C::Iron,50.0),(C::Copper,18.0),(C::Coal,20.0)]),
+        K::ProcessingPlant => ("Materials Plant", "Converts ore and fuel into prepared industrial materials.", "Uses iron, bauxite, coal and power to produce 1 intermediate pack/day per level for installation, machinery, offices and trade.", 360, [(C::Iron,35.0),(C::Copper,8.0),(C::Coal,20.0)]),
         K::FreightTerminal => ("Freight Terminal", "An upgrade to a mapped coastal freight gateway.", "+25% modeled terminal throughput per level, shared by every shipment through this gateway.", 360, [(C::Iron,35.0),(C::Copper,6.0),(C::Coal,12.0)]),
         K::Warehouse => ("Industrial Warehouses", "Storage for manufactured intermediate and capital-goods packs.", "+250 storage capacity for each industrial good per level. Full storage pauses its producer; no stock is destroyed.", 240, [(C::Iron,20.0),(C::Copper,4.0),(C::Coal,8.0)]),
         K::Automation => ("Factory Automation", "Robot cells and controls fitted to a real civilian plant.", "+20% local civilian line throughput per level, with proportionate inputs, power and cash. Requires Industrial Robot Cells.", 300, [(C::Iron,12.0),(C::Copper,10.0),(C::RareEarths,2.0)]),
@@ -246,6 +247,9 @@ pub fn work_cost_bn(kind: K) -> f64 {
         K::Automation => 0.08,
         K::Efficiency => 0.06,
         K::StarterIndustry => 0.58,
+        K::OfficeDistrict => 0.16,
+        K::Shipyard => 0.32,
+        K::AdvancedIndustry => 0.24,
     }
 }
 pub fn project_cost_bn(p: &Project) -> f64 {
@@ -312,7 +316,8 @@ pub fn project_refusal(
             return Some("Enable physical freight routes before upgrading a terminal.".into())
         }
         K::MachineryWorks | K::ProcessingPlant
-            if crate::industrial_modules::effective_capacity(w, district, K::CivilianIndustry) < 1.0 =>
+            if !w.rules.industry_rebuild &&
+            crate::industrial_modules::effective_capacity(w, district, K::CivilianIndustry) < 1.0 =>
         {
             return Some("Build an Industrial Estate in this province first.".into())
         }
@@ -353,6 +358,11 @@ pub struct WorkPlan {
     pub target_advance_days: f64,
     pub advance_days: f64,
     pub cash_bn: f64,
+    /// Included in cash_bn, but not in the frozen underlying building price.
+    pub company_fee_bn: f64,
+    /// Quote-time base work; another contract can level up the same firm before
+    /// this reserved plan settles, without changing its recipe or work receipt.
+    pub company_base_work: f64,
     pub required: [f64; 12],
     pub goods: Goods,
     pub reason: Option<String>,
@@ -369,6 +379,7 @@ pub fn begin_work_day(w: &mut WorldState) {
     if !clock::is_daily(w) { return; }
     let nations: std::collections::BTreeSet<_> = w.production.projects.iter().map(|p| p.nation).collect();
     for nation in nations { enroll_projects(w, nation); }
+    crate::construction_capacity::begin_day(w);
 }
 pub fn project_authority(w: &WorldState, nation: NationId, _kind: K) -> f64 {
     programs::construction_available_bn(w, nation)
@@ -379,6 +390,11 @@ pub fn project_plans(w: &WorldState) -> BTreeMap<u32, WorkPlan> {
     let mut out = BTreeMap::new();
     if !clock::is_daily(w) { return out; }
     let mut cash = BTreeMap::new();
+    let allocations = if w.rules.industry_rebuild {
+        crate::construction_capacity::allocations(w)
+    } else { BTreeMap::new() };
+    let mut raw_stock = BTreeMap::<NationId, [f64; 12]>::new();
+    let mut goods_stock = w.production.industry.goods.clone();
     let mut queue: Vec<_> = w.production.projects.iter().collect();
     queue.sort_by_key(|p| (p.priority.dispatch_rank(), p.id));
     for p in queue {
@@ -400,22 +416,79 @@ pub fn project_plans(w: &WorldState) -> BTreeMap<u32, WorkPlan> {
         let balance = cash.entry(p.nation).or_insert_with(|| programs::construction_available_bn(w, p.nation));
         let remaining = (p.total_days as f64 - p.progress_days).max(0.0);
         let due = (f.contract_cost_bn.expect("frozen contract") - f.spent_bn).max(0.0);
-        let site_work = crate::industrial_modules::normalized_advance(w, p, 1.0).min(remaining);
+        let company = companies::modifiers(w, p.nation, &CompanyTarget::Construction { project: p.id });
+        let physical_work = if w.rules.industry_rebuild {
+            let assigned = allocations.get(&p.id).copied().unwrap_or(0.0)
+                .min(crate::construction_capacity::MAX_PER_PROJECT);
+            assigned / crate::construction_capacity::CAPACITY_PER_WORK_DAY
+                * (1.0 + production::level(w, &p.district, K::Infrastructure) as f64
+                    * crate::construction_capacity::INFRASTRUCTURE_WORK_BONUS)
+        } else { 1.0 };
+        let ordinary_site_work = crate::industrial_modules::normalized_advance(w, p, physical_work).min(remaining);
+        let site_work = crate::industrial_modules::normalized_advance(w, p, physical_work * company.work_rate).min(remaining);
+        // A commissioning ceiling or the final fraction of a project can
+        // leave no work for a faster contractor to add. Do not charge for an
+        // unavailable service or report normalized days as invented bonuses.
+        let fee_rate = if (site_work - ordinary_site_work).abs() <= EPS { 0.0 } else { company.fee_rate };
         plan.target_advance_days = site_work;
         if site_work <= EPS && remaining > EPS {
-            plan.slow_reason = Some("PAUSED: this site's commissioning lead time preserves completed work until the next work date.".into());
+            plan.slow_reason = Some(if w.rules.industry_rebuild && allocations.get(&p.id).copied().unwrap_or(0.0) <= EPS {
+                "PAUSED: no construction capacity assigned. Use Auto or assign available capacity."
+            } else { "PAUSED: this site's commissioning lead time preserves completed work until the next work date." }.into());
         }
         let daily_price = if remaining > EPS { due / remaining } else { 0.0 };
-        plan.advance_days = if daily_price > 0.0 { site_work.min(*balance / daily_price) } else { site_work };
-        plan.cash_bn = if plan.advance_days + EPS >= remaining { due } else { daily_price * plan.advance_days };
-        plan.cash_bn = plan.cash_bn.min(*balance).min(due);
+        let ordinary_advance = if daily_price > 0.0 { ordinary_site_work.min(*balance / daily_price) } else { ordinary_site_work };
+        let billed_price = daily_price * (1.0 + fee_rate);
+        plan.advance_days = if billed_price > 0.0 { site_work.min(*balance / billed_price) } else { site_work };
+        let base_cash = if plan.advance_days + EPS >= remaining { due } else { daily_price * plan.advance_days };
+        plan.cash_bn = (base_cash * (1.0 + fee_rate)).min(*balance);
+        plan.company_fee_bn = plan.cash_bn * fee_rate / (1.0 + fee_rate);
         // Recompute progress from the exact final cash amount; no underpaid
         // completion and no second bill after a save or a partial budget day.
-        if daily_price > 0.0 { plan.advance_days = (plan.cash_bn / daily_price).min(site_work); }
+        if billed_price > 0.0 { plan.advance_days = (plan.cash_bn / billed_price).min(site_work); }
+        plan.company_base_work = ordinary_advance;
+        if w.rules.industry_rebuild && plan.advance_days > EPS {
+            // MODEL installation inputs. Prepared materials can replace iron;
+            // a machine/tool pack replaces its 0.1 copper input. Both routes
+            // reserve the same physical bundle once, in project priority order.
+            let stock = raw_stock.entry(p.nation).or_insert_with(||
+                std::array::from_fn(|i| resources::stockpile(w, p.nation, ALL[i])));
+            let goods = goods_stock.entry(p.nation).or_default();
+            let recipe = production::catalog(p.kind).recipe;
+            let fraction = plan.advance_days / p.total_days.max(1) as f64
+                * crate::industrial_modules::scale(p);
+            let mut required = recipe.map(|amount| amount * fraction);
+            let material = required[C::Iron.idx()].min(goods.intermediates);
+            let machinery = (required[C::Copper.idx()] / 0.1).min(goods.capital_goods);
+            required[C::Iron.idx()] -= material;
+            required[C::Copper.idx()] -= machinery * 0.1;
+            let mut ratio: f64 = 1.0;
+            let mut limiting = None;
+            for c in ALL {
+                if required[c.idx()] > EPS {
+                    let feasible = (stock[c.idx()] / required[c.idx()]).clamp(0.0, 1.0);
+                    if feasible < ratio { ratio = feasible; limiting = Some(c); }
+                }
+            }
+            plan.advance_days *= ratio;
+            plan.cash_bn *= ratio;
+            plan.company_fee_bn *= ratio;
+            plan.company_base_work *= ratio;
+            plan.required = required.map(|amount| (amount * ratio * 1e9).floor() / 1e9);
+            plan.goods = Goods { intermediates: (material * ratio * 1e9).floor()/1e9,
+                capital_goods: (machinery * ratio * 1e9).floor()/1e9 };
+            for c in ALL { stock[c.idx()] = (stock[c.idx()] - plan.required[c.idx()]).max(0.0); }
+            goods.intermediates = (goods.intermediates - plan.goods.intermediates).max(0.0);
+            goods.capital_goods = (goods.capital_goods - plan.goods.capital_goods).max(0.0);
+            if let Some(c) = limiting {
+                plan.slow_reason = Some(format!("{}: missing {} limits construction to {:.0}% of allocated work. Import inputs or produce prepared materials.",
+                    if ratio <= EPS { "PAUSED" } else { "SLOWED" }, c.name(), ratio * 100.0));
+            }
+        }
         if plan.advance_days + EPS < site_work {
-            plan.slow_reason = Some(if plan.advance_days <= EPS {
+            if plan.slow_reason.is_none() { plan.slow_reason = Some(if plan.advance_days <= EPS {
                 "PAUSED: today's construction budget is exhausted; completed work is preserved.".into()
-            } else { "SLOWED: today's construction budget funds part of this site's work.".into() });
+            } else { "SLOWED: today's construction budget funds part of this site's work.".into() }); }
         }
         *balance = (*balance - plan.cash_bn).max(0.0);
         out.insert(p.id, plan);
@@ -433,12 +506,31 @@ pub(crate) fn settle_project(
     if !funding_day_open(w, p.nation) {
         return Err("BLOCKED: the daily construction ledger is not open.".into());
     }
+    if w.rules.industry_rebuild {
+        // Preflight all accounts before charging any of them.
+        let goods = w.production.industry.goods.get(&p.nation).cloned().unwrap_or_default();
+        if goods.intermediates + EPS < plan.goods.intermediates || goods.capital_goods + EPS < plan.goods.capital_goods {
+            return Err("PAUSED: prepared construction inputs are no longer available.".into());
+        }
+        if programs::construction_available_bn(w,p.nation) + EPS < plan.cash_bn {
+            return Err("PAUSED: construction funding is no longer available.".into());
+        }
+        resources::consume_stockpile_atomic(w,p.nation,&plan.required)
+            .map_err(|(c,_,_)|format!("PAUSED: {} is no longer available for construction.",c.name()))?;
+        if plan.goods.intermediates > 0.0 || plan.goods.capital_goods > 0.0 {
+            let goods = w.production.industry.goods.entry(p.nation).or_default();
+            goods.intermediates = q(goods.intermediates - plan.goods.intermediates);
+            goods.capital_goods = q(goods.capital_goods - plan.goods.capital_goods);
+        }
+    }
     programs::spend_construction(w, p.nation, plan.cash_bn)?;
     let today = clock::absolute_day(w);
     let f = w.production.industry.projects.get_mut(&p.id).unwrap();
-    f.spent_bn += plan.cash_bn;
+    f.spent_bn += plan.cash_bn - plan.company_fee_bn;
     f.last_spent_bn = Some(plan.cash_bn);
     f.last_day = Some(today);
+    f.goods_used.intermediates += plan.goods.intermediates;
+    f.goods_used.capital_goods += plan.goods.capital_goods;
     let row = w
         .production
         .projects
@@ -446,6 +538,7 @@ pub(crate) fn settle_project(
         .find(|row| row.id == p.id)
         .unwrap();
     row.progress_days = (row.progress_days + plan.advance_days).min(row.total_days as f64);
+    for c in ALL { row.resources_used[c.idx()] += plan.required[c.idx()]; }
     row.status = if plan.advance_days <= EPS {
         ProjectStatus::Paused
     } else if plan.slow_reason.is_some() {
@@ -459,6 +552,12 @@ pub(crate) fn settle_project(
         None
     };
     crate::gdp_projects::record_construction(w, p, plan.advance_days * crate::industrial_modules::scale(p), plan.cash_bn, true);
+    let target = CompanyTarget::Construction { project: p.id };
+    let scale = crate::industrial_modules::scale(p);
+    let base_work = plan.company_base_work * scale;
+    let actual_work = plan.advance_days * scale;
+    companies::record_work(w, p.nation, &target, base_work, actual_work - base_work, plan.company_fee_bn);
+    companies::record_sector_activity(w, p.nation, CompanySector::Construction, actual_work);
     Ok(())
 }
 #[derive(Clone, Debug, Serialize)]
@@ -520,17 +619,68 @@ pub fn power_capacity(w: &WorldState, nation: NationId) -> f64 {
         .filter(|(d, _)| {
             w.districts.get(*d) == Some(&nation) && !resources::district_contested(w, d)
         })
-        .map(|(_, v)| v[site_index(K::Generation)] as f64 * 10.0)
+        .map(|(d, v)| v[site_index(K::Generation)] as f64 * 10.0
+            * companies::modifiers(w, nation, &CompanyTarget::Facility { district: d.clone(), sector: CompanySector::Energy }).work_rate)
         .sum();
-    legacy + w.production.industry.modules.iter()
+    legacy + crate::industry_operations::inherited_power_headroom(w, nation) + w.production.industry.modules.iter()
         .filter(|(d,_)| w.districts.get(*d)==Some(&nation) && !resources::district_contested(w,d))
-        .map(|(_,micros)| *micros as f64 / 1_000_000.0 * 10.0).sum::<f64>()
+        .map(|(d,micros)| *micros as f64 / 1_000_000.0 * 10.0
+            * companies::modifiers(w, nation, &CompanyTarget::Facility { district: d.clone(), sector: CompanySector::Energy }).work_rate).sum::<f64>()
+}
+/// Generation serves the shared national grid. Dispatch and its operator fees
+/// are apportioned over installed, uncontested generation by available capacity.
+fn energy_dispatch(w: &WorldState, nation: NationId) -> Vec<(CompanyTarget, f64, companies::CompanyModifiers)> {
+    operating_districts(w).into_iter().filter_map(|district| {
+        if w.districts.get(&district) != Some(&nation) || resources::district_contested(w, &district) { return None; }
+        let capacity = site_level(w, &district, K::Generation) as f64 * 10.0
+            + w.production.industry.modules.get(&district).copied().unwrap_or(0) as f64 / 1_000_000.0 * 10.0;
+        if capacity <= 0.0 { return None; }
+        let target = CompanyTarget::Facility { district, sector: CompanySector::Energy };
+        let modifier = companies::modifiers(w, nation, &target);
+        Some((target, capacity * modifier.work_rate, modifier))
+    }).collect()
+}
+pub(crate) fn energy_company_rates(w: &WorldState, nation: NationId) -> (f64, f64) {
+    if !w.companies.enabled || !w.companies.assignments.iter().any(|a|
+        a.nation == nation && a.target.sector() == CompanySector::Energy) { return (1.0, 0.0); }
+    let dispatch = energy_dispatch(w, nation);
+    let inherited = crate::industry_operations::inherited_power_headroom(w, nation);
+    let capacity: f64 = dispatch.iter().map(|(_, cap, _)| cap).sum::<f64>() + inherited;
+    if capacity <= 0.0 { return (1.0, 0.0); }
+    let input = (dispatch.iter().map(|(_, cap, m)| cap * m.input_rate).sum::<f64>() + inherited) / capacity;
+    let fee = dispatch.iter().map(|(_, cap, m)| cap * m.fee_rate).sum::<f64>() / capacity;
+    (input, fee)
+}
+pub(crate) fn record_energy_work(w: &mut WorldState, nation: NationId, power: f64, base_cash_bn: f64) {
+    if power <= 0.0 || !w.companies.enabled { return; }
+    companies::record_sector_activity(w, nation, CompanySector::Energy, power);
+    if !w.companies.assignments.iter().any(|a| a.nation == nation && a.target.sector() == CompanySector::Energy) { return; }
+    let dispatch = energy_dispatch(w, nation);
+    let capacity: f64 = dispatch.iter().map(|(_, cap, _)| cap).sum::<f64>()
+        + crate::industry_operations::inherited_power_headroom(w, nation);
+    if capacity <= 0.0 { return; }
+    for (target, cap, modifier) in dispatch {
+        let actual = power * cap / capacity;
+        let base = actual / modifier.work_rate;
+        companies::record_work(w, nation, &target, base, actual - base, base_cash_bn * cap / capacity * modifier.fee_rate);
+    }
+}
+pub(crate) fn manufacturing_company(w: &WorldState, nation: NationId, district: &str) -> companies::CompanyModifiers {
+    companies::modifiers(w, nation, &CompanyTarget::Facility { district: district.into(), sector: CompanySector::Manufacturing })
+}
+pub(crate) fn record_manufacturing_work(w: &mut WorldState, nation: NationId, district: &str, output: f64, base_cash_bn: f64) {
+    let target = CompanyTarget::Facility { district: district.into(), sector: CompanySector::Manufacturing };
+    let modifier = companies::modifiers(w, nation, &target);
+    let base = output / modifier.work_rate;
+    companies::record_work(w, nation, &target, base, output - base, base_cash_bn * modifier.fee_rate);
+    companies::record_sector_activity(w, nation, CompanySector::Manufacturing, output);
 }
 pub(crate) fn plant_rate(w: &WorldState, district: &str, kind: K) -> f64 {
     let base = if is_processing(kind) { 1.0 } else { 0.5 };
     let capacity = if kind==K::StarterIndustry {crate::industrial_modules::capacity(w,district)} else {site_level(w,district,kind) as f64};
     base * capacity
         * (1.0 + site_level(w, district, K::Automation) as f64 * 0.2)
+        * w.districts.get(district).map_or(1.0, |nation| manufacturing_company(w, *nation, district).work_rate)
 }
 fn is_processing(kind: K)->bool {matches!(kind,K::ProcessingPlant|K::StarterIndustry)}
 fn operating_districts(w:&WorldState)->Vec<String>{
@@ -553,6 +703,16 @@ pub(crate) fn operating_recipe(kind: K, output: f64, power: f64) -> [f64; 12] {
         raw[C::Copper.idx()] = output * 0.1;
     }
     raw.map(q)
+}
+/// Keep industrial ingredients and generating fuel separate: a materials
+/// specialist saves ingredients, while the dispatched generators save fuel.
+pub(crate) fn company_operating_recipe(w: &WorldState, nation: NationId, district: &str, kind: K, output: f64, power: f64) -> [f64; 12] {
+    let company = manufacturing_company(w, nation, district);
+    let (fuel_rate, _) = energy_company_rates(w, nation);
+    if company.input_rate == 1.0 && fuel_rate == 1.0 { return operating_recipe(kind, output, power); }
+    let mut raw = operating_recipe(kind, output, 0.0).map(|v| q(v * company.input_rate));
+    raw[C::Coal.idx()] = q(raw[C::Coal.idx()] + power * 0.02 * fuel_rate);
+    raw
 }
 fn funding_day_open(w: &WorldState, nation: NationId) -> bool {
     let today = clock::absolute_day(w);
@@ -605,7 +765,7 @@ pub fn raw_demand_components(w: &WorldState, nation: NationId) -> RawDemandCompo
             }
             for kind in [K::ProcessingPlant, K::StarterIndustry, K::MachineryWorks] {
                 let rate = plant_rate(w, &district, kind);
-                let raw = operating_recipe(
+                let raw = company_operating_recipe(w, nation, &district,
                     kind,
                     rate,
                     rate * power_per_pack(w, &district, kind),
@@ -617,7 +777,24 @@ pub fn raw_demand_components(w: &WorldState, nation: NationId) -> RawDemandCompo
         }
     }
 
-    // Turnkey construction creates financial commitments, not raw-stock demand.
+    if w.rules.industry_rebuild {
+        let operating = crate::industry_operations::demand_daily(w, nation);
+        for i in 0..12 { out.operating_daily[i] += operating[i]; }
+        for p in production::projects_for(w,nation) {
+            let recipe = production::catalog(p.kind).recipe;
+            let left = (1.0 - p.progress_fraction()) * crate::industrial_modules::scale(p);
+            // Rated demand excludes stockpile constraints so shortages remain
+            // visible instead of disappearing when a project is paused.
+            let daily = crate::industrial_modules::scale(p) / p.total_days.max(1) as f64;
+            for i in 0..12 {
+                out.projects_remaining[i] += recipe[i] * left;
+                out.projects_daily[i] += recipe[i] * daily;
+                for (h,days) in [30.0,90.0,365.0].into_iter().enumerate() {
+                    out.projects_horizon[i][h] += (recipe[i] * daily * days).min(recipe[i] * left);
+                }
+            }
+        }
+    }
     out.operating_daily = out.operating_daily.map(q);
     out.projects_remaining = out.projects_remaining.map(q);
     out.projects_daily = out.projects_daily.map(q);
@@ -639,7 +816,7 @@ fn resource_demand_daily_inner(w: &WorldState, nation: NationId, include_materia
         }
         for k in [K::ProcessingPlant, K::StarterIndustry, K::MachineryWorks] {
             let rate = plant_rate(w, &d, k);
-            let raw = operating_recipe(k, rate, rate * power_per_pack(w, &d, k));
+            let raw = company_operating_recipe(w, nation, &d, k, rate, rate * power_per_pack(w, &d, k));
             for i in 0..12 {
                 out[i] += raw[i];
             }
@@ -648,6 +825,15 @@ fn resource_demand_daily_inner(w: &WorldState, nation: NationId, include_materia
     if include_materials {
         let materials = crate::materials::resource_demand_daily(w, nation);
         for i in 0..12 { out[i] += materials[i]; }
+    }
+    if w.rules.industry_rebuild {
+        let additional = crate::industry_operations::demand_daily(w, nation);
+        for i in 0..12 { out[i] += additional[i]; }
+        for p in production::projects_for(w,nation) {
+            let recipe = production::catalog(p.kind).recipe;
+            let daily = crate::industrial_modules::scale(p) / p.total_days.max(1) as f64;
+            for i in 0..12 { out[i] += recipe[i] * daily; }
+        }
     }
     out
 }
@@ -705,12 +891,12 @@ pub fn tick_day(w: &mut WorldState) {
             }
             let available_power = power
                 .entry(nation)
-                .or_insert_with(|| power_capacity(w, nation));
+                .or_insert_with(|| (power_capacity(w, nation) - crate::industry_operations::support_power_used(w, nation)).max(0.0));
             let grid = grids
                 .entry(d.clone())
-                .or_insert_with(|| crate::industrial_modules::effective_capacity(w, d, K::PowerGrid) * 5.0);
+                .or_insert_with(|| (crate::industry_operations::grid_capacity(w, d) - crate::industry_operations::support_grid_used(w, d)).max(0.0));
             let per_power = power_per_pack(w, d, kind);
-            let target = plant_rate(w, d, kind);
+            let target = plant_rate(w, d, kind) * crate::industry_operations::worker_fraction(w, nation, kind);
             let pile = w
                 .production
                 .industry
@@ -725,8 +911,10 @@ pub fn tick_day(w: &mut WorldState) {
             };
             let room = (goods_capacity(w, nation) - stored).max(0.0);
             let dept = if is_processing(kind) { 2 } else { 0 };
-            let cash_per_pack = 0.00001;
-            let generating_cost_per_power = 0.000002;
+            let company = manufacturing_company(w, nation, d);
+            let (_, energy_fee) = energy_company_rates(w, nation);
+            let cash_per_pack = 0.00001 * (1.0 + company.fee_rate);
+            let generating_cost_per_power = 0.000002 * (1.0 + energy_fee);
             let mut output = target
                 .min(room)
                 .min(*available_power / per_power)
@@ -737,7 +925,7 @@ pub fn tick_day(w: &mut WorldState) {
                         / (generating_cost_per_power * per_power),
                 );
             if kind == K::MachineryWorks {
-                output = output.min(pile.intermediates);
+                output = output.min(pile.intermediates / company.input_rate);
             }
             if output <= EPS {
                 status.status = "paused".into();
@@ -760,7 +948,7 @@ pub fn tick_day(w: &mut WorldState) {
             }
             // Proportional feasible output, followed by one atomic raw draw. A
             // missing raw component does not consume the others, cash or power.
-            let unit = operating_recipe(kind, 1.0, per_power);
+            let unit = company_operating_recipe(w, nation, d, kind, 1.0, per_power);
             let mut raw_limiter: Option<(C, f64)> = None;
             for c in ALL {
                 if unit[c.idx()] > 0.0 {
@@ -801,7 +989,7 @@ pub fn tick_day(w: &mut WorldState) {
                 w.production.industry.operations.push(status);
                 continue;
             }
-            let draw = operating_recipe(kind, output, output * per_power);
+            let draw = company_operating_recipe(w, nation, d, kind, output, output * per_power);
             if let Err((c, _, _)) = resources::consume_stockpile_atomic(w, nation, &draw) {
                 status.status = "paused".into();
                 status.reason = Some(format!(
@@ -827,7 +1015,7 @@ pub fn tick_day(w: &mut WorldState) {
             if is_processing(kind) {
                 g.intermediates = q(g.intermediates + output);
             } else {
-                g.intermediates = q(g.intermediates - output);
+                g.intermediates = q(g.intermediates - output * company.input_rate);
                 g.capital_goods = q(g.capital_goods + output);
             }
             *available_power -= output * per_power;
@@ -863,6 +1051,8 @@ pub fn tick_day(w: &mut WorldState) {
                 cash,
                 energy_cash,
             );
+            record_manufacturing_work(w, nation, d, output, output * 0.00001);
+            record_energy_work(w, nation, output * per_power, output * per_power * 0.000002);
         }
     }
     crate::materials::operate(w, &mut power, &mut grids);
@@ -999,6 +1189,9 @@ pub fn research_day(w: &mut WorldState) {
         } else if !funding_day_open(w, nation) {
             operation.status = "blocked".into();
             operation.reason = "BLOCKED: enact an active daily Science department budget.".into();
+        } else if crate::industry_operations::operating_fraction(w,&district,K::ResearchCenter) <= EPS {
+            operation.status = "paused".into();
+            operation.reason = "PAUSED: scientists, electricity or facility operating funds are unavailable; restore the research center's operating service.".into();
         } else {
             let mut candidates = research_targets(w, nation, &work_today);
             // Follow the nation's existing research allocation. Stable domain
@@ -1007,6 +1200,9 @@ pub fn research_day(w: &mut WorldState) {
             if let Some((t, _, _, useful)) = candidates.first().copied() {
                 operation.technology = Some(t);
                 operation.technology_name = Some(crate::tech::registry()[t as usize].name.into());
+                let target = CompanyTarget::Research { domain: format!("{:?}", crate::tech::registry()[t as usize].domain) };
+                let company = companies::modifiers(w, nation, &target);
+                let cash_per_work = PROTOTYPE_CASH_PER_LEVEL_DAY_BN * (1.0 + company.fee_rate);
                 let authority = programs::available_bn(w, nation, BUDGET_SCIENCE, 0);
                 let goods = w.production.industry.goods.get(&nation).cloned().unwrap_or_default();
                 if !authority.is_finite() || authority <= 0.0 {
@@ -1017,13 +1213,14 @@ pub fn research_day(w: &mut WorldState) {
                     operation.status = "paused".into();
                     operation.reason = "PAUSED: prototype testing is waiting for both intermediate and capital-goods packs.".into();
                 } else {
-                    let desired = (level as f64).min(useful / PROTOTYPE_WORK_PER_LEVEL_DAY);
+                    let desired = (level as f64 * crate::industry_operations::operating_fraction(w,&district,K::ResearchCenter))
+                        .min(useful / (PROTOTYPE_WORK_PER_LEVEL_DAY * company.work_rate));
                     let work = desired
-                        .min(authority / PROTOTYPE_CASH_PER_LEVEL_DAY_BN)
+                        .min(authority / cash_per_work)
                         .min(goods.intermediates / PROTOTYPE_INTERMEDIATES_PER_LEVEL_DAY)
                         .min(goods.capital_goods / PROTOTYPE_CAPITAL_PER_LEVEL_DAY);
                     if work.is_finite() && work > 1e-12 {
-                        let cash = work * PROTOTYPE_CASH_PER_LEVEL_DAY_BN;
+                        let cash = work * cash_per_work;
                         let draw = Goods {
                             intermediates: work * PROTOTYPE_INTERMEDIATES_PER_LEVEL_DAY,
                             capital_goods: work * PROTOTYPE_CAPITAL_PER_LEVEL_DAY,
@@ -1034,7 +1231,8 @@ pub fn research_day(w: &mut WorldState) {
                             let inventory = w.production.industry.goods.get_mut(&nation).unwrap();
                             inventory.intermediates = (inventory.intermediates - draw.intermediates).max(0.0);
                             inventory.capital_goods = (inventory.capital_goods - draw.capital_goods).max(0.0);
-                            let credit = work * PROTOTYPE_WORK_PER_LEVEL_DAY;
+                            let base_credit = work * PROTOTYPE_WORK_PER_LEVEL_DAY;
+                            let credit = base_credit * company.work_rate;
                             *w.production.industry.research.entry(nation).or_default().credits.entry(t).or_default() += credit;
                             *work_today.entry((nation, t)).or_default() += credit;
                             operation.prototype_credit = credit;
@@ -1044,6 +1242,9 @@ pub fn research_day(w: &mut WorldState) {
                             operation.reason = format!("Prototype/testing work on {}. Specific acquisition credit; no extra research money or direct GDP.{}",
                                 operation.technology_name.as_deref().unwrap_or("the active project"),
                                 if operation.status == "limited" { " Limited by Science authority or manufactured supplies." } else { "" });
+                            companies::record_work(w, nation, &target, base_credit, credit - base_credit,
+                                work * PROTOTYPE_CASH_PER_LEVEL_DAY_BN * company.fee_rate);
+                            companies::record_sector_activity(w, nation, CompanySector::Research, credit);
                         } else {
                             operation.status = "blocked".into();
                             operation.reason = "BLOCKED: Science operating authority could not settle; no supplies consumed.".into();
@@ -1159,7 +1360,11 @@ pub fn mine_work_plan(w: &WorldState, p: &resources::MineProject, available_bn: 
     let due = (p.investment_bn - f.spent_bn).max(0.0);
     let price = if remaining > EPS { due / remaining } else { 0.0 };
     let available = available_bn.max(0.0).min(programs::construction_available_bn(w, p.started_by));
-    plan.target_advance_days = remaining.min(1.0);
+    plan.target_advance_days = if w.rules.industry_rebuild { crate::construction_capacity::mine_nominal_work(w,p) }
+        else { remaining.min(1.0) };
+    if plan.target_advance_days <= EPS && w.rules.industry_rebuild {
+        plan.slow_reason=Some("PAUSED: no construction capacity assigned to this mine. Use Auto or assign capacity.".into());
+    }
     plan.advance_days = if price > 0.0 { plan.target_advance_days.min(available / price) } else { plan.target_advance_days };
     plan.cash_bn = (if plan.advance_days + EPS >= remaining { due } else { price * plan.advance_days }).min(available).min(due);
     if price > 0.0 { plan.advance_days = (plan.cash_bn / price).min(plan.target_advance_days); }
@@ -1243,6 +1448,147 @@ mod tests {
         for k in [K::Generation, K::ProcessingPlant, K::MachineryWorks] {
             complete_site(w, d, k);
         }
+    }
+    fn company_for(w: &WorldState, sector: CompanySector, saving: bool) -> u32 {
+        w.companies.roster.iter().filter(|c| c.nation == USA && c.sector == sector)
+            .max_by(|a, b| if saving { a.input_saving.total_cmp(&b.input_saving) } else { a.work_bonus.total_cmp(&b.work_bonus) })
+            .unwrap().id
+    }
+    #[test]
+    fn rebuilt_construction_scales_company_fees_with_reserved_physical_inputs() {
+        let mut w=prepared();
+        w.rules.industry_rebuild=true;
+        let district=districts(&w)[0].clone();
+        programs::set_construction_budget(&mut w,USA,1.0).unwrap();
+        let id=production::start_project(&mut w,USA,&district,K::Warehouse).unwrap();
+        companies::enable(&mut w);
+        let target=CompanyTarget::Construction{project:id};
+        let company=company_for(&w,CompanySector::Construction,false);
+        companies::assign(&mut w,USA,company,target).unwrap();
+        let full=project_plans(&w)[&id].clone();
+        assert!(full.required[C::Iron.idx()]>0.0&&full.company_fee_bn>0.0);
+        resources::set_stockpile_for_test(&mut w,USA,C::Iron,full.required[C::Iron.idx()]*0.5);
+        let limited=project_plans(&w)[&id].clone();
+        near(limited.advance_days,full.advance_days*0.5);
+        near(limited.cash_bn,full.cash_bn*0.5);
+        near(limited.company_fee_bn,full.company_fee_bn*0.5);
+        let before=programs::construction_available_bn(&w,USA);
+        production::tick_day(&mut w);
+        near(before-programs::construction_available_bn(&w,USA),limited.cash_bn);
+        near(w.production.industry.projects[&id].spent_bn,limited.cash_bn-limited.company_fee_bn);
+        near(w.companies.assignments[0].fees_today_bn,limited.company_fee_bn);
+        near(resources::stockpile(&w,USA,C::Iron),0.0);
+        let once=save(&w);production::tick_day(&mut w);assert_eq!(save(&w),once);
+    }
+    #[test]
+    fn company_construction_is_funded_performed_work_and_replays_once() {
+        let mut w = prepared();
+        let district = districts(&w)[0].clone();
+        programs::set_construction_budget(&mut w, USA, 1.0).unwrap();
+        let project = production::start_project(&mut w, USA, &district, K::Warehouse).unwrap();
+        companies::enable(&mut w);
+        let mut plain = w.clone();
+        let company = company_for(&w, CompanySector::Construction, false);
+        let target = CompanyTarget::Construction { project };
+        companies::assign(&mut w, USA, company, target.clone()).unwrap();
+        let modifier = companies::modifiers(&w, USA, &target);
+        let plan = project_plans(&w)[&project].clone();
+        assert!(plan.advance_days > project_plans(&plain)[&project].advance_days);
+        assert!(plan.company_fee_bn > 0.0);
+        production::tick_day(&mut w);
+        production::tick_day(&mut plain);
+        assert!(w.production.projects[0].progress_days > plain.production.projects[0].progress_days);
+        near(w.production.industry.projects[&project].spent_bn, plan.cash_bn - plan.company_fee_bn);
+        let assignment = &w.companies.assignments[0];
+        near(assignment.fees_today_bn, plan.company_fee_bn);
+        assert!(assignment.total_work > 0.0 && assignment.total_bonus > 0.0);
+        near(plan.advance_days, modifier.work_rate);
+        let saved = save(&w);
+        let mut restored = load(&saved).unwrap();
+        production::tick_day(&mut restored);
+        assert_eq!(save(&restored), saved, "same day cannot charge or train twice");
+        next_day(&mut restored);
+        programs::set_construction_budget(&mut restored, USA, 0.0).unwrap();
+        let experience = restored.companies.roster.iter().find(|c| c.id == company).unwrap().experience;
+        let progress = restored.production.projects[0].progress_days;
+        production::tick_day(&mut restored);
+        near(restored.production.projects[0].progress_days, progress);
+        near(restored.companies.roster.iter().find(|c| c.id == company).unwrap().experience, experience);
+    }
+    #[test]
+    fn company_factories_save_real_inputs_and_missing_inputs_charge_nothing() {
+        let mut w = prepared();
+        let d = districts(&w)[0].clone();
+        chain(&mut w, &d);
+        companies::enable(&mut w);
+        let company = company_for(&w, CompanySector::Manufacturing, true);
+        let target = CompanyTarget::Facility { district: d.clone(), sector: CompanySector::Manufacturing };
+        companies::assign(&mut w, USA, company, target.clone()).unwrap();
+        let modifier = companies::modifiers(&w, USA, &target);
+        assert!(modifier.input_rate < 1.0);
+        let opening_iron = resources::stockpile(&w, USA, C::Iron);
+        tick_day(&mut w);
+        let output = w.production.industry.operations.iter().find(|o| o.kind == K::ProcessingPlant).unwrap().output_daily;
+        assert!(output > 0.0);
+        near(opening_iron - resources::stockpile(&w, USA, C::Iron), output * modifier.input_rate);
+        assert!(w.companies.assignments[0].fees_today_bn > 0.0);
+        let saved = save(&w);
+        tick_day(&mut w);
+        assert_eq!(save(&w), saved);
+        next_day(&mut w);
+        resources::set_stockpile_for_test(&mut w, USA, C::Coal, 0.0);
+        let company_before = w.companies.roster.clone();
+        let goods_before = w.production.industry.goods.clone();
+        tick_day(&mut w);
+        assert!(w.production.industry.operations.iter().all(|o| o.output_daily == 0.0 && o.cash_spent_daily_bn == 0.0));
+        assert_eq!(w.companies.roster, company_before, "stalled firms earn neither fees nor experience");
+        assert_eq!(w.production.industry.goods, goods_before);
+    }
+    #[test]
+    fn company_generators_charge_for_dispatch_and_save_only_generating_fuel() {
+        let mut w = prepared();
+        let d = districts(&w)[0].clone();
+        chain(&mut w, &d);
+        companies::enable(&mut w);
+        let mut plain = w.clone();
+        let company = company_for(&w, CompanySector::Energy, true);
+        let target = CompanyTarget::Facility { district: d.clone(), sector: CompanySector::Energy };
+        companies::assign(&mut w, USA, company, target.clone()).unwrap();
+        let modifier = companies::modifiers(&w, USA, &target);
+        let coal_before = resources::stockpile(&w, USA, C::Coal);
+        tick_day(&mut w);
+        tick_day(&mut plain);
+        assert_eq!(w.production.industry.goods, plain.production.industry.goods);
+        let actual_power: f64 = w.production.industry.operations.iter().map(|o| o.power_used_daily).sum();
+        let saving = resources::stockpile(&w, USA, C::Coal) - resources::stockpile(&plain, USA, C::Coal);
+        near(saving, actual_power * 0.02 * (1.0 - modifier.input_rate));
+        assert!(coal_before > resources::stockpile(&w, USA, C::Coal));
+        near(w.companies.assignments[0].fees_today_bn, actual_power * 0.000002 * modifier.fee_rate);
+    }
+    #[test]
+    fn company_cannot_charge_or_claim_bonus_through_module_commissioning_ceiling() {
+        let mut w = prepared();
+        let district = districts(&w)[0].clone();
+        programs::set_construction_budget(&mut w, USA, 1.0).unwrap();
+        crate::industrial_modules::start(&mut w, USA, &district, 1).unwrap();
+        let project = w.production.projects[0].id;
+        companies::enable(&mut w);
+        let company = company_for(&w, CompanySector::Construction, false);
+        let target = CompanyTarget::Construction { project };
+        let mut plain = w.clone();
+        companies::assign(&mut w, USA, company, target).unwrap();
+        let plan = project_plans(&w)[&project].clone();
+        let baseline = project_plans(&plain)[&project].clone();
+        near(plan.advance_days, baseline.advance_days);
+        near(plan.cash_bn, baseline.cash_bn);
+        near(plan.company_fee_bn, 0.0);
+        production::tick_day(&mut w);
+        production::tick_day(&mut plain);
+        assert_eq!(w.production.projects, plain.production.projects);
+        near(w.companies.assignments[0].bonus_today, 0.0);
+        near(w.companies.assignments[0].fees_today_bn, 0.0);
+        assert!(w.companies.roster.iter().find(|c|c.id == company).unwrap().experience < 0.001,
+            "tiny normalized modules cannot farm a full-size work day's experience");
     }
     #[test]
     fn untouched_industry_is_byte_inert_and_absent_from_saves() {

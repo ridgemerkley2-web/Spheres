@@ -24,7 +24,9 @@
   },
   "military": {
     "strength": 6.0,
-    "nuclear": false
+    "nuclear": false,
+    "personnel_1990": 129000,
+    "milex_1990_usd_bn": 0.794521
   },
   "sources": [
     "GDP $20.7bn: World Bank NY.GDP.MKTP.CD, series BGR, 1990. The same official-rate caveat that applies to Romania applies here - the lev was administered and the 1990 figure precedes the February 1991 float - but this is the World Bank series the roster is calibrated on and the figure is entered unaltered.",
@@ -39,7 +41,8 @@
     "authoritarianism 0.40: Todor Zhivkov was removed by his own politburo on 10 November 1989 after 35 years in office; the party's constitutional monopoly was repealed on 15 January 1990, two weeks into this start state; the round table ran from January to May 1990. The Bulgarian Communist Party renamed itself the Bulgarian Socialist Party on 3 April 1990 and then won the free election of 10 and 17 June 1990 outright - the only ruling communist party in the region to do so. Competitive, and conducted by an apparatus that never actually left office. Set marginally below Romania's 0.42 because the count was cleaner and the opposition had a press.",
     "stability 45.0: above Romania's 40 and below Hungary's 58. The 1990 the government has ahead of it is the general strike of November 1990 that brought Lukanov down and the food shortages that produced it, but the transfer of power was not violent and the state apparatus held.",
     "separatism 0.12: the Revival Process of 1984-89 forced Bulgarian names on the roughly 800,000-strong Turkish minority - about 9% of the population - and drove some 340,000 of them across the Turkish border in the summer of 1989, the largest forced movement in Europe since 1945. The policy was reversed on 29 December 1989, which triggered Bulgarian nationalist counter-demonstrations in January 1990 and a national referendum campaign against the reversal. The Movement for Rights and Freedoms was founded on 4 January 1990, four days into this start state. Set above Hungary's 0.03 and below Romania's 0.18: a minority large enough to organise, not concentrated enough to secede.",
-    "pop_growth_1990 = -0.1875%/yr. Compound annual growth of World Bank SP.POP.TOTL, series BGR (Bulgaria): 8,960,679 in 1984 to 8,876,972 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate."
+    "pop_growth_1990 = -0.1875%/yr. Compound annual growth of World Bank SP.POP.TOTL, series BGR (Bulgaria): 8,960,679 in 1984 to 8,876,972 in 1989 — the five years ending on the eve of the 1 January 1990 start date. See EconomyRecord::pop_growth_1990 in spheres-sim/src/data/mod.rs for why the window ends in 1989 and not with the single-year 1990 rate.",
+    "military.personnel_1990 = 129000 and military.milex_1990_usd_bn = 0.794521 ($bn). personnel: World Bank API MS.MIL.TOTL.P1 (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.TOTL.P1?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (BGR, 1990) | milex_usd: World Bank API MS.MIL.XPND.CD (https://api.worldbank.org/v2/country/all/indicator/MS.MIL.XPND.CD?date=1988:1992&format=json&per_page=2000), fetched 2026-09-06 (BGR, 1990). milex entered in billions to six decimals (the nearest $1,000) of the fetched 794,520,548 current US$. Transcribed 2026-09-06 for the pay-per-soldier arm of the Army pillar (M2, Ridge's ruling of 2026-09-06; government::army_pay_ratio reads personnel_1990, milex_1990_usd_bn is the record beside it and enters no formula); a nation without personnel_1990 falls back to the share-only line and is counted (BUGS H-3)."
   ],
   "tech_1990": {
     "note": [

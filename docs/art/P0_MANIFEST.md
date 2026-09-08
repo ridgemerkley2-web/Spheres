@@ -5,38 +5,43 @@ number here is read from the generator, so this file and the art cannot disagree
 
 Convention: metres, +X right, +Y up, +Z forward, right-handed.
 Authoritative source: the deterministic JavaScript generators in spheres-web/ui/.
-Runtime loader: none, deliberately: the game ships no GLB loader and needs no build step.
+Runtime loader: runtime geometry is generated locally; no GLB asset fetch or build step is required.
 
-| asset | game id | LOD0 tris | LOD1 tris | size |
-| --- | --- | --- | --- | --- |
-| `ground.tank_standard.baseline.v1` | `tank_standard` | 47288 | — | 4.146 x 3.867 x 8.9 m |
-| `ground.tank_heavy.baseline.v1` | `tank_heavy` | 50816 | — | 4.656 x 3.966 x 9.31 m |
-| `ground.tank_light.baseline.v1` | `tank_light` | 47288 | — | 3.317 x 3.093 x 7.12 m |
-| `ground.tank_destroyer.baseline.v1` | `tank_destroyer` | 47288 | — | 4.146 x 3.867 x 8.9 m |
-| `ground.ground_ifv.baseline.v1` | `ground_ifv` | 20746 | — | 3.215 x 2.84 x 6.445 m |
-| `ground.ground_apc.baseline.v1` | `ground_apc` | 20710 | — | 2.98 x 3.015 x 5.88 m |
-| `ground.ground_recon.baseline.v1` | `ground_recon` | 18418 | — | 2.72 x 2.705 x 4.61 m |
-| `ground.ground_artillery.baseline.v1` | `ground_artillery` | 20822 | — | 3.515 x 3.139 x 7.625 m |
-| `ground.ground_air_defense.baseline.v1` | `ground_air_defense` | 18950 | — | 3.215 x 3.599 x 5.935 m |
-| `site.infrastructure.v1` | `infrastructure` | 13076-33438 | 244-708 | 64 x 13.572 x 46 m |
-| `site.civilian_industry.v1` | `civilian_industry` | 12296-42060 | 180-546 | 66 x 15.948 x 46.16 m |
-| `site.power_grid.v1` | `power_grid` | 13620-41118 | 276-664 | 66 x 24.2 x 48 m |
-| `site.research_center.v1` | `research_center` | 12296-35474 | 180-532 | 66 x 15.7 x 46.18 m |
-| `site.arms_plant.v1` | `arms_plant` | 12432-38878 | 180-422 | 66.2 x 19.06 x 48 m |
-| `site.machinery_works.v1` | `machinery_works` | 13596-40674 | 204-582 | 66 x 18.516 x 48 m |
-| `site.generation.v1` | `generation` | 12680-41970 | 196-648 | 70 x 22.7 x 50 m |
-| `site.processing_plant.v1` | `processing_plant` | 13032-37556 | 220-640 | 68 x 22.7 x 48 m |
-| `site.freight_terminal.v1` | `freight_terminal` | 13144-39164 | 198-674 | 72 x 14.3 x 50 m |
-| `site.warehouse.v1` | `warehouse` | 12846-37132 | 188-566 | 70 x 18.404 x 48 m |
-| `site.automation.v1` | `automation` | 13274-35822 | 220-610 | 62 x 11.964 x 44 m |
-| `site.efficiency.v1` | `efficiency` | 13112-35550 | 208-682 | 62 x 11.78 x 44 m |
-| `site.starter_industry.v1` | `starter_industry` | 11312-31794 | 164-494 | 50.56 x 12.972 x 38 m |
-| `town.temperate.mixed.v1` | `visual_only` | 198462 | 3422 | 148 x 15.595 x 104 m |
-| `town.temperate.residential.v1` | `visual_only` | 212820 | 3330 | 148 x 15.155 x 104 m |
-| `town.temperate.commercial.v1` | `visual_only` | 132360 | 3012 | 148 x 23.68 x 104 m |
-| `town.temperate.civic.v1` | `visual_only` | 131586 | 3124 | 148 x 22.175 x 104 m |
-| `town.temperate.industrial.v1` | `visual_only` | 91276 | 2616 | 148 x 21.505 x 104 m |
+| asset | game id | LOD0 tris | LOD1 tris | LOD2 tris | size |
+| --- | --- | --- | --- | --- | --- |
+| `ground.tank_standard.baseline.v1` | `tank_standard` | 47288 | 9425 | 1164 | 4.146 x 3.867 x 8.9 m |
+| `ground.tank_heavy.baseline.v1` | `tank_heavy` | 50816 | 9010 | 1200 | 4.656 x 3.966 x 9.31 m |
+| `ground.tank_light.baseline.v1` | `tank_light` | 47288 | 9425 | 1164 | 3.317 x 3.093 x 7.12 m |
+| `ground.tank_destroyer.baseline.v1` | `tank_destroyer` | 47288 | 9425 | 1164 | 4.146 x 3.867 x 8.9 m |
+| `ground.ground_ifv.baseline.v1` | `ground_ifv` | 20746 | 5828 | 1120 | 3.215 x 2.84 x 6.445 m |
+| `ground.ground_apc.baseline.v1` | `ground_apc` | 20710 | 4675 | 942 | 2.98 x 3.015 x 5.88 m |
+| `ground.ground_recon.baseline.v1` | `ground_recon` | 18418 | 4984 | 932 | 2.72 x 2.705 x 4.61 m |
+| `ground.ground_artillery.baseline.v1` | `ground_artillery` | 20822 | 6050 | 1092 | 3.515 x 3.139 x 7.625 m |
+| `ground.ground_air_defense.baseline.v1` | `ground_air_defense` | 18950 | 5590 | 1040 | 3.215 x 3.599 x 5.935 m |
+| `aviation.air_light_attack.baseline.v1` | `air_light_attack` | 11524 | — | — | 10.44 x 3.352 x 12.73 m |
+| `aviation.air_tactical_strike.baseline.v1` | `air_tactical_strike` | 14724 | — | — | 12.44 x 4.082 x 17.73 m |
+| `site.infrastructure.v1` | `infrastructure` | 13076-33438 | 244-708 | — | 64 x 13.572 x 46 m |
+| `site.civilian_industry.v1` | `civilian_industry` | 12296-42060 | 180-546 | — | 66 x 15.948 x 46.16 m |
+| `site.power_grid.v1` | `power_grid` | 13620-41118 | 276-664 | — | 66 x 24.2 x 48 m |
+| `site.research_center.v1` | `research_center` | 12296-35474 | 180-532 | — | 66 x 15.7 x 46.18 m |
+| `site.arms_plant.v1` | `arms_plant` | 12432-38878 | 180-422 | — | 66.2 x 19.06 x 48 m |
+| `site.machinery_works.v1` | `machinery_works` | 13596-40674 | 204-582 | — | 66 x 18.516 x 48 m |
+| `site.generation.v1` | `generation` | 12680-41970 | 196-648 | — | 70 x 22.7 x 50 m |
+| `site.processing_plant.v1` | `processing_plant` | 13032-37556 | 220-640 | — | 68 x 22.7 x 48 m |
+| `site.freight_terminal.v1` | `freight_terminal` | 13144-39164 | 198-674 | — | 72 x 14.3 x 50 m |
+| `site.warehouse.v1` | `warehouse` | 12846-37132 | 188-566 | — | 70 x 18.404 x 48 m |
+| `site.automation.v1` | `automation` | 13274-35822 | 220-610 | — | 62 x 11.964 x 44 m |
+| `site.efficiency.v1` | `efficiency` | 13112-35550 | 208-682 | — | 62 x 11.78 x 44 m |
+| `site.starter_industry.v1` | `starter_industry` | 11312-31794 | 164-494 | — | 50.56 x 12.972 x 38 m |
+| `town.temperate.mixed.v1` | `visual_only` | 198462 | 3422 | — | 148 x 15.595 x 104 m |
+| `town.temperate.residential.v1` | `visual_only` | 212820 | 3330 | — | 148 x 15.155 x 104 m |
+| `town.temperate.commercial.v1` | `visual_only` | 132360 | 3012 | — | 148 x 23.68 x 104 m |
+| `town.temperate.civic.v1` | `visual_only` | 131586 | 3124 | — | 148 x 22.175 x 104 m |
+| `town.temperate.industrial.v1` | `visual_only` | 91276 | 2616 | — | 148 x 21.505 x 104 m |
 
-0 of the 13 construction kinds are
-placeholder massing on the shared stage kit, honestly marked as such in the JSON and in
-each mesh's own description; only `arms_plant` has had its P0 art pass.
+All 13 construction kinds have authored compositions; none is marked as placeholder massing.
+Placeholder status comes from each generator's metadata and is also retained in the JSON.
+Ground equipment has three authored detail levels. Tactical aircraft currently
+have inspection geometry only. A missing level is shown as a dash, not as a
+duplicate lower-detail asset. These counts do not certify runtime frame rates;
+measured budget limits and remaining overruns are recorded in P0_BUDGETS.md.

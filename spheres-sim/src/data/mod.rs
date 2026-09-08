@@ -38,7 +38,7 @@ use crate::world::*;
 
 pub mod embedded;
 
-pub use embedded::{EMBEDDED_NATIONS, EMBEDDED_RELATIONS};
+pub use embedded::{EMBEDDED_LEADERS, EMBEDDED_NATIONS, EMBEDDED_RELATIONS};
 
 /// One content file, named so an error can point at it.
 #[derive(Clone, Copy, Debug)]
@@ -299,6 +299,28 @@ pub struct MilitaryRecord {
     /// Abstract strength index.
     pub strength: f64,
     pub nuclear: bool,
+    /// ARMED-FORCES PERSONNEL, total, on 1 January 1990 — the count the
+    /// pay-per-soldier arm of the Army pillar divides by (M2, Ridge's ruling
+    /// of 2026-09-06; `government::army_pay_ratio`). Transcribed from the
+    /// World Bank API series MS.MIL.TOTL.P1 for 1990, falling back to the
+    /// nearest year in 1988-1992 and saying so in `sources`, and where the
+    /// API has nothing from the IISS Military Balance 1990-91 as cited on
+    /// the nation's armed-forces page; a nation with neither is REFUSED —
+    /// `None` here, the arm falls back to the share-only line, and the
+    /// nation is counted (BUGS H-3). Appended after `nuclear` with
+    /// `skip_serializing_if`, so a file without it round-trips byte for
+    /// byte and the 1990 save carries no new key.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub personnel_1990: Option<f64>,
+    /// MILITARY EXPENDITURE in 1990, billions of current US dollars, the
+    /// World Bank API series MS.MIL.XPND.CD (SIPRI), the same 1988-1992
+    /// fallback. Carried as the RECORD and the cross-check of the pay arm
+    /// — the arm itself reads the live `mil_spend_gdp · gdp` over the
+    /// personnel, so the transcribed budget is what `mil_spend_gdp` was
+    /// transcribed from, quoted in dollars; it enters no formula. Same
+    /// posture as `personnel_1990`.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub milex_1990_usd_bn: Option<f64>,
 }
 
 /// The seed relations table.
@@ -398,6 +420,13 @@ fn check_record(file: &str, r: &NationRecord) -> Vec<LoadError> {
             &who,
             format!("economy.population_m is {}, expected a positive number", r.economy.population_m),
         ));
+    }
+    for (v, field) in [(r.military.personnel_1990, "military.personnel_1990"), (r.military.milex_1990_usd_bn, "military.milex_1990_usd_bn")] {
+        if let Some(v) = v {
+            if !(v.is_finite() && v > 0.0) {
+                e.push(LoadError::nation_level(file, &who, format!("{field} is {v}, expected a positive number or absent")));
+            }
+        }
     }
     if let Some(res) = r.economy.reserves_bn {
         if !(res.is_finite() && res >= 0.0) {
@@ -848,6 +877,7 @@ pub fn load_world(
     let nations = parse_nations(nation_sources)?;
     let relations = parse_relations(relations_source)?;
     validate(&nations, &relations, relations_source.file)?;
+    let leadership = if rules.ideology_blocs { Some(parse_leaders(&EMBEDDED_LEADERS)?) } else { None };
 
     let mut w = WorldState {
         rng: Rng::new(rules.seed),
@@ -863,6 +893,12 @@ pub fn load_world(
         agency: Default::default(),
         campaign_aims: Default::default(),
         governments: Default::default(),
+        // The leader table rides the same switch as everything else in the
+        // political arm. Parsed and REFUSED on the same terms as the nations —
+        // a bad row is a panic at world_1990, not a nation quietly without a
+        // face — but only read when the arm is on, so the default world
+        // carries no `leadership` key and hashes as it always has.
+        leadership,
         conflicts: vec![],
         theatres: crate::theatre::default_theatres(),
         access: vec![],
@@ -885,6 +921,7 @@ pub fn load_world(
         materials: None,
         commerce: None,
         economic_ai: Default::default(),
+        companies: Default::default(),
         by_id: vec![],
         by_id_len: 0,
         resource_have: Default::default(),
@@ -945,6 +982,330 @@ pub fn load_world(
     Ok(w)
 }
 
+// ---------------------------------------------------------------------------
+// The leader table
+// ---------------------------------------------------------------------------
+
+/// `data/leaders_1990.json`: one face per nation, the person who DIRECTED THE
+/// EXECUTIVE on 1 January 1990 — the head of government in a parliamentary
+/// system, the president where the president governs, the general secretary,
+/// supreme leader, king or junta chairman in a regime. The person in office ON
+/// that date, so Sarney and not Collor, Pinochet and not Aylwin; the incoming
+/// one goes in `also`.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub struct LeadersFile {
+    pub version: u32,
+    pub rows: Vec<Office>,
+}
+
+/// What the leader is tied to in the polity table — the party that put them
+/// there, or the pillar they head. This is what the ruling bloc of a regime is
+/// read from, and it is why the loader refuses a tie that does not resolve.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(rename_all = "lowercase")]
+pub enum Tie {
+    /// A `PartySpec.id` in this nation's polity table.
+    Party(String),
+    /// A pillar in this nation's polity pillar list.
+    Pillar(crate::government::Pillar),
+}
+
+/// The heir apparent as of 1 January 1990 — a fact of that date, not a
+/// forecast. Kim Jong-il, Abdullah, Hassan.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub struct Heir {
+    pub name: String,
+    pub office: String,
+    pub since: String,
+}
+
+/// Another office-holder of 1 January 1990 worth naming beside the leader —
+/// the president in a parliamentary system, the president-elect, the chamber
+/// leadership of the other party.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub struct Also {
+    pub name: String,
+    pub office: String,
+    pub since: String,
+    /// A `PartySpec.id` in this nation's table, or null where the party is not
+    /// in it.
+    pub party: Option<String>,
+}
+
+/// Who holds an office once the game has moved (design D2, S4): a
+/// DESCRIPTION by institution — "the Solidarity government", "the
+/// Republican Guard", "a new Republican Party president", "the ruling house"
+/// — and never a name, with the one exception the design allows, the
+/// transcribed heir of 1 January 1990 seated once. Written only by
+/// `government::seat_office`; null in the data file, which the loader holds
+/// to. `party` / `pillar` are what the new holder governs through, and are
+/// what the ruling bloc and the monarchy exception read from then on.
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub struct Emergent {
+    pub described: String,
+    pub office: String,
+    pub party: Option<String>,
+    pub pillar: Option<crate::government::Pillar>,
+    /// `YYYY-MM-DD`, the model's date of the change.
+    pub since: String,
+}
+
+/// One row of the leader table. Dates are `YYYY-MM-DD` strings, checked by the
+/// loader; `born` is carried for the S4 hazard draw and may be null where no
+/// source gave a full date.
+///
+/// A REFUSED row is one whose facts were fetched but whose tie cannot resolve
+/// against the polity table as transcribed — Pinochet, who belonged to no
+/// party in a polity with no pillars; Endara, whose party the table records as
+/// struck off. Such a row keeps its office, dates and sources for the record,
+/// but its `name` and `tie` are null and its note begins with `REFUSED`, and
+/// the loader holds it to exactly that shape: a null name without the word is
+/// refused as an omission, a named leader without a tie is refused as an
+/// unsourced bloc. Downstream, a refused row asserts nothing — `blocs::
+/// leader_row` skips it and the nation is described from its table, the way a
+/// successor state is (design D2).
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub struct Office {
+    pub nation: NationId,
+    /// Null only on a REFUSED row.
+    pub name: Option<String>,
+    /// Null only on a REFUSED row.
+    pub native: Option<String>,
+    pub office: String,
+    pub since: String,
+    pub born: Option<String>,
+    /// Null only on a REFUSED row.
+    pub tie: Option<Tie>,
+    /// A sourced bloc that beats the one the tie would derive — Sudan's Bashir
+    /// heads the army and governs as an Islamist.
+    pub bloc_override: Option<crate::government::Bloc>,
+    pub heir: Option<Heir>,
+    /// A constitutional term limit already binding on 1 January 1990 — Bush's
+    /// second-term ceiling. Null where none applies.
+    pub must_leave_by: Option<String>,
+    pub also: Vec<Also>,
+    pub sources: Vec<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub note: Option<String>,
+    /// The office's holder after a change of government (S4): `Some` once
+    /// the transcribed person has been replaced, and the row's `name`,
+    /// `native`, `tie`, `bloc_override`, `must_leave_by` and `also` are
+    /// then null or empty — the row asserts only what the model did. Absent
+    /// from the save until written.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub emergent: Option<Emergent>,
+}
+
+impl Office {
+    /// Whether the row seats anybody at all: a transcribed name, or an
+    /// emergent holder. A REFUSED row seats nobody.
+    pub fn holds(&self) -> bool {
+        self.name.is_some() || self.emergent.is_some()
+    }
+    /// What the CURRENT holder governs through: the emergent holder's party
+    /// or pillar once there is one, else the transcribed tie.
+    pub fn tie_now(&self) -> Option<Tie> {
+        if let Some(e) = &self.emergent {
+            if let Some(p) = &e.party {
+                return Some(Tie::Party(p.clone()));
+            }
+            return e.pillar.map(Tie::Pillar);
+        }
+        self.tie.clone()
+    }
+}
+
+/// The start of the game, as a date, for the "no name after this" rule.
+const START_DATE: (i32, u32, u32) = (1990, 1, 1);
+
+/// The word a nameless row's note must open with.
+pub const REFUSED: &str = "REFUSED";
+
+/// Parse `YYYY-MM-DD` strictly — ten characters, a real month, a real day of
+/// that month. The one date format the table accepts.
+pub fn parse_date(s: &str) -> Option<(i32, u32, u32)> {
+    let b = s.as_bytes();
+    if b.len() != 10 || b[4] != b'-' || b[7] != b'-' {
+        return None;
+    }
+    if !b.iter().enumerate().all(|(i, c)| i == 4 || i == 7 || c.is_ascii_digit()) {
+        return None;
+    }
+    let y: i32 = s[0..4].parse().ok()?;
+    let m: u32 = s[5..7].parse().ok()?;
+    let d: u32 = s[8..10].parse().ok()?;
+    if !(1..=12).contains(&m) || d == 0 || d > days_in_month(y, m) {
+        return None;
+    }
+    Some((y, m, d))
+}
+
+fn check_office(file: &str, o: &Office) -> Vec<LoadError> {
+    let mut e = vec![];
+    let who = o.nation.code().to_string();
+    let err = |msg: String| LoadError::nation_level(file, &who, msg);
+
+    let refused = o.note.as_deref().is_some_and(|n| n.starts_with(REFUSED));
+    match &o.name {
+        Some(n) if n.trim().is_empty() => {
+            e.push(err("name is empty — one face per nation, and this row has none".into()))
+        }
+        Some(_) if o.tie.is_none() => e.push(err(
+            "tie is null but the row names a leader — a named leader ties to a party or a              pillar, or the row is REFUSED"
+                .into(),
+        )),
+        Some(_) => {}
+        None if !refused => e.push(err(format!(
+            "name is null but the note does not begin with {REFUSED:?} — a nameless row is a              refusal and says why, never an omission"
+        ))),
+        None => {
+            if o.native.is_some() || o.tie.is_some() || o.bloc_override.is_some() || o.heir.is_some() {
+                e.push(err(
+                    "a REFUSED row asserts nothing: native, tie, bloc_override and heir must all                      be null"
+                        .into(),
+                ));
+            }
+        }
+    }
+    if o.name.is_some() && o.native.is_none() {
+        e.push(err("native is null on a named row — repeat the name where there is no native form".into()));
+    }
+    if o.emergent.is_some() {
+        e.push(err(
+            "emergent is set in the file — the table transcribes 1 January 1990, and what follows is the model's to write"
+                .into(),
+        ));
+    }
+    if o.office.trim().is_empty() {
+        e.push(err("office is empty — say what institution this person directed".into()));
+    }
+    if o.sources.is_empty() {
+        e.push(err(
+            "sources is empty — iron rule 4 says starting data is transcribed, so say \
+             where this row came from"
+                .into(),
+        ));
+    }
+    // The tie has to resolve against the polity table exactly as a party id in
+    // a save does, because it is what the ruling bloc is read from.
+    match crate::government::polity(o.nation) {
+        None => e.push(err(format!(
+            "{} has no polity table in government.rs, so no tie can resolve — \
+             transcribe its parties or pillars before naming its leader",
+            o.nation.code()
+        ))),
+        Some(pol) => {
+            match &o.tie {
+                None => {}
+                Some(Tie::Party(p)) => {
+                    if !pol.parties.iter().any(|s| s.id == p) {
+                        e.push(err(format!(
+                            "tie.party {p:?} is not in {}'s party table — the ids there are {:?}",
+                            o.nation.code(),
+                            pol.parties.iter().map(|s| s.id).collect::<Vec<_>>()
+                        )));
+                    }
+                }
+                Some(Tie::Pillar(pl)) => {
+                    if !pol.pillars.iter().any(|s| s.pillar == *pl) {
+                        e.push(err(format!(
+                            "tie.pillar {pl:?} is not in {}'s pillar list — the pillars there are {:?}",
+                            o.nation.code(),
+                            pol.pillars.iter().map(|s| s.pillar).collect::<Vec<_>>()
+                        )));
+                    }
+                }
+            }
+            for (i, a) in o.also.iter().enumerate() {
+                if let Some(p) = &a.party {
+                    if !pol.parties.iter().any(|s| s.id == p) {
+                        e.push(err(format!(
+                            "also[{i}].party {p:?} is not in {}'s party table",
+                            o.nation.code()
+                        )));
+                    }
+                }
+            }
+        }
+    }
+    // Dates. Every one is a fact OF 1 January 1990: nothing in the table may
+    // name a person for a date after the start except a limit already binding.
+    let mut date = |label: String, s: &str, before_start: bool| match parse_date(s) {
+        None => e.push(LoadError::nation_level(
+            file,
+            &who,
+            format!("{label} is {s:?}, not a YYYY-MM-DD date"),
+        )),
+        Some(d) if before_start && d > START_DATE => e.push(LoadError::nation_level(
+            file,
+            &who,
+            format!(
+                "{label} is {s}, after 1 January 1990 — the table records who held office \
+                 ON the start date, never who came next (design D2)"
+            ),
+        )),
+        Some(d) if !before_start && d <= START_DATE => e.push(LoadError::nation_level(
+            file,
+            &who,
+            format!("{label} is {s}, which is not after 1 January 1990"),
+        )),
+        Some(_) => {}
+    };
+    date("since".into(), &o.since, true);
+    if let Some(b) = &o.born {
+        date("born".into(), b, true);
+    }
+    if let Some(h) = &o.heir {
+        date("heir.since".into(), &h.since, true);
+    }
+    for (i, a) in o.also.iter().enumerate() {
+        date(format!("also[{i}].since"), &a.since, true);
+    }
+    if let Some(m) = &o.must_leave_by {
+        date("must_leave_by".into(), m, false);
+    }
+    e
+}
+
+/// Parse and check the leader table, refusing on the same terms as
+/// [`parse_nations`]: an unknown field, a nation not in the roster, an empty
+/// sources list, a party or pillar not in that nation's polity table, a date
+/// that is not one or that names someone after the start, or two rows for one
+/// nation. Every problem in the file is reported at once.
+pub fn parse_leaders(src: &Source) -> Result<Vec<Office>, Vec<LoadError>> {
+    let file: LeadersFile = match serde_json::from_str(src.json) {
+        Ok(f) => f,
+        Err(e) => return Err(vec![LoadError::file_level(src.file, e.to_string())]),
+    };
+    let mut errors: Vec<LoadError> = vec![];
+    if file.version != 1 {
+        errors.push(LoadError::file_level(
+            src.file,
+            format!("version is {}, and this build reads version 1", file.version),
+        ));
+    }
+    for (i, o) in file.rows.iter().enumerate() {
+        errors.extend(check_office(src.file, o));
+        if file.rows.iter().take(i).any(|p| p.nation == o.nation) {
+            errors.push(LoadError::nation_level(
+                src.file,
+                o.nation.code(),
+                "appears twice — one face per nation; put the second person in `also`",
+            ));
+        }
+    }
+    if errors.is_empty() {
+        Ok(file.rows)
+    } else {
+        Err(errors)
+    }
+}
+
 /// The provenance of one nation's 1990 figures, for showing to a player.
 ///
 /// The `sources` blocks are the reason this directory exists — iron rule 4 says
@@ -984,6 +1345,40 @@ pub fn reserves_1990_bn(id: NationId) -> Option<f64> {
         .and_then(|r| r.economy.reserves_bn)
 }
 
+/// The armed-forces personnel transcribed for this nation on 1 January 1990
+/// (`MilitaryRecord::personnel_1990`), or `None` where none was sourced —
+/// the pay arm's refusal (M2, BUGS H-3).
+///
+/// The same posture as `reserves_1990_bn`: an immutable start-of-game fact,
+/// not carried on `Nation`, never in a save, never in the timeline hash.
+/// Unlike the reserve it is read every tick for every regime, so the
+/// embedded set is parsed ONCE into a roster-indexed table rather than on
+/// every call.
+pub fn army_personnel_1990(id: NationId) -> Option<f64> {
+    static TABLE: std::sync::OnceLock<Vec<Option<f64>>> = std::sync::OnceLock::new();
+    let table = TABLE.get_or_init(|| {
+        let mut v = vec![None; crate::nations::nation_count()];
+        for s in EMBEDDED_NATIONS.iter() {
+            if let Ok(r) = serde_json::from_str::<NationRecord>(s.json) {
+                v[r.id.index()] = r.military.personnel_1990;
+            }
+        }
+        v
+    });
+    table.get(id.index()).copied().flatten()
+}
+
+/// The 1990 military expenditure transcribed beside the personnel, billions
+/// of current dollars, for the record and the cross-check (M2). Parsed on
+/// demand like `reserves_1990_bn`; no tick reads it.
+pub fn army_milex_1990_usd_bn(id: NationId) -> Option<f64> {
+    EMBEDDED_NATIONS
+        .iter()
+        .filter_map(|s| serde_json::from_str::<NationRecord>(s.json).ok())
+        .find(|r| r.id == id)
+        .and_then(|r| r.military.milex_1990_usd_bn)
+}
+
 /// What this nation was granted on 1 January 1990, and why, for showing to a
 /// player.
 ///
@@ -1021,6 +1416,148 @@ mod tests {
         let rel = parse_relations(&EMBEDDED_RELATIONS).expect("relations parse");
         validate(&nations, &rel, EMBEDDED_RELATIONS.file).expect("cross-references resolve");
         assert_eq!(nations.len(), start_nations().len());
+    }
+
+    /// Every row of the leader table loads, and every tie resolves against the
+    /// polity table of its own nation. Watched red on this tree by pointing
+    /// Poland's tie at "pl_nope" in the fixture: the loader refused it with
+    /// `tie.party "pl_nope" is not in Poland's party table`.
+    ///
+    /// The full table, integrated 2026-09-05: one row for each of the 137
+    /// nations in the 1990 roster (the 23 successor states have none by design
+    /// D2), of which exactly FIVE are REFUSED — Chile, whose Pinochet belonged
+    /// to no party in a polity with no pillars; Panama, whose Endara stood on a
+    /// party the table records as struck off; and, refused on the provenance
+    /// audit the same day, Comoros (Djohar non-party on 1 January, his Udzima
+    /// label a March 1990 fact), Cyprus (Vassiliou an independent; AKEL's
+    /// backing is not a membership) and Greece (Zolotas a non-party central
+    /// banker on a self-described "convenience tie" to ND). Every named row
+    /// has a tie, a native form and at least one fetched source; every refused
+    /// row has a note that says so. Watched red on the merged table by nulling
+    /// Poland's name without the REFUSED note and by nulling its tie with the
+    /// name kept (both refused by the loader, see `a_bad_leader_row_is_refused`),
+    /// and by changing the expected refusal count; and red again on 2026-09-05
+    /// when the three audit refusals landed against the old two-row list
+    /// (`left: ["Chile", "Comoros", "Cyprus", "Greece", "Panama"] right:
+    /// ["Chile", "Panama"]`).
+    #[test]
+    fn every_leader_row_loads_and_ties_to_its_polity() {
+        let rows = parse_leaders(&EMBEDDED_LEADERS)
+            .unwrap_or_else(|e| panic!("{}", render_errors(&e)));
+        let roster: Vec<NationId> = start_nations().to_vec();
+        assert_eq!(rows.len(), roster.len(), "one face per 1990 nation");
+        for id in &roster {
+            assert!(rows.iter().any(|o| o.nation == *id), "{} has no row", id.code());
+        }
+        // Sorted by nation id, so a diff of the file reads as a diff of nations.
+        let mut sorted: Vec<&str> = rows.iter().map(|o| o.nation.code()).collect();
+        sorted.sort_unstable();
+        assert_eq!(sorted, rows.iter().map(|o| o.nation.code()).collect::<Vec<_>>());
+        let mut refused = vec![];
+        for o in &rows {
+            let pol = crate::government::polity(o.nation)
+                .unwrap_or_else(|| panic!("{} has no polity", o.nation.code()));
+            match (&o.name, &o.tie) {
+                (None, None) => {
+                    assert!(o.note.as_deref().is_some_and(|n| n.starts_with(REFUSED)));
+                    assert!(o.native.is_none() && o.bloc_override.is_none() && o.heir.is_none());
+                    refused.push(o.nation.code());
+                }
+                (Some(name), Some(tie)) => {
+                    assert!(!name.trim().is_empty(), "{}: nameless", o.nation.code());
+                    assert!(o.native.is_some(), "{}: no native form", o.nation.code());
+                    match tie {
+                        Tie::Party(p) => assert!(
+                            pol.parties.iter().any(|s| s.id == p),
+                            "{}: tie {p} not in the table",
+                            o.nation.code()
+                        ),
+                        Tie::Pillar(pl) => assert!(
+                            pol.pillars.iter().any(|s| s.pillar == *pl),
+                            "{}: pillar {pl:?} not in the list",
+                            o.nation.code()
+                        ),
+                    }
+                }
+                (name, tie) => panic!("{}: name {name:?} with tie {tie:?}", o.nation.code()),
+            }
+            for a in &o.also {
+                if let Some(p) = &a.party {
+                    assert!(pol.parties.iter().any(|s| s.id == p), "{}: also {p}", o.nation.code());
+                }
+            }
+            assert!(!o.sources.is_empty(), "{}: unsourced", o.nation.code());
+            assert!(o.sources.iter().all(|s| s.starts_with("http")), "{}: {:?}", o.nation.code(), o.sources);
+            assert!(parse_date(&o.since).is_some_and(|d| d <= (1990, 1, 1)));
+            // No nation appears twice: one face each.
+            assert_eq!(rows.iter().filter(|r| r.nation == o.nation).count(), 1);
+        }
+        assert_eq!(
+            refused,
+            vec!["Chile", "Comoros", "Cyprus", "Greece", "Panama"],
+            "the refused rows of the 1990 table"
+        );
+        // The decided cases of the design, as the table carries them.
+        let row = |id: NationId| rows.iter().find(|o| o.nation == id).unwrap();
+        assert_eq!(row(NationId::China).name.as_deref(), Some("Jiang Zemin"));
+        assert_eq!(row(NationId::Iran).tie, Some(Tie::Pillar(crate::government::Pillar::Clergy)));
+        assert_eq!(row(NationId::Sudan).bloc_override, Some(crate::government::Bloc::Islamist));
+        assert_eq!(row(NationId::USA).must_leave_by.as_deref(), Some("1997-01-20"));
+        assert_eq!(row(NationId::NorthKorea).heir.as_ref().map(|h| h.name.as_str()), Some("Kim Jong-il"));
+        // The heir's day was sourced on the audit: the 1st plenum of the 6th
+        // Central Committee, 14 October 1980.
+        assert_eq!(row(NationId::NorthKorea).heir.as_ref().map(|h| h.since.as_str()), Some("1980-10-14"));
+        assert_eq!(row(NationId::Brazil).name.as_deref(), Some("Jose Sarney"), "Sarney, not Collor");
+    }
+
+    /// The four refusals the design names, each exercised against the shipped
+    /// fixture with one field broken, so the message points at the row.
+    #[test]
+    fn a_bad_leader_row_is_refused() {
+        let good = EMBEDDED_LEADERS.json;
+        let refuse = |json: &str, needle: &str| {
+            let err = parse_leaders(&Source { file: "leaders.json", json })
+                .expect_err(&format!("expected a refusal mentioning {needle:?}"));
+            let text = render_errors(&err);
+            assert!(text.contains(needle), "refusal did not mention {needle:?}:\n{text}");
+        };
+        // A party id not in that nation's polity table.
+        refuse(&good.replacen("\"pl_solidarity\"", "\"pl_nope\"", 1), "pl_nope");
+        // A pillar not in that polity's pillar list (Poland has none).
+        refuse(
+            &good.replacen("{ \"party\": \"pl_solidarity\" }", "{ \"pillar\": \"Army\" }", 1),
+            "tie.pillar Army is not in Poland's pillar list",
+        );
+        // A nation not in the roster.
+        refuse(&good.replacen("\"nation\": \"Poland\"", "\"nation\": \"Ruritania\"", 1), "Ruritania");
+        // An empty sources list.
+        let unsourced = {
+            let start = good.find("\"sources\": [").unwrap();
+            let end = start + good[start..].find(']').unwrap() + 1;
+            format!("{}\"sources\": []{}", &good[..start], &good[end..])
+        };
+        refuse(&unsourced, "sources is empty");
+        // A name after the start date, and a date that is not one.
+        refuse(&good.replacen("\"since\": \"1989-08-24\"", "\"since\": \"1990-02-01\"", 1), "after 1 January 1990");
+        refuse(&good.replacen("\"since\": \"1989-08-24\"", "\"since\": \"24 Aug 1989\"", 1), "not a YYYY-MM-DD date");
+        // An unknown field, on the same terms as a nation record.
+        refuse(&good.replacen("\"native\"", "\"natvie\"", 1), "unknown field");
+        // A nameless row that does not say REFUSED, and a named row without a tie.
+        refuse(
+            &good.replacen("\"name\": \"Tadeusz Mazowiecki\"", "\"name\": null", 1),
+            "name is null but the note does not begin with",
+        );
+        refuse(
+            &good.replacen("\"tie\": { \"party\": \"pl_solidarity\" }", "\"tie\": null", 1),
+            "tie is null but the row names a leader",
+        );
+        // Two rows for one nation.
+        let twice = {
+            let first = good.find("    {\n      \"nation\": \"Poland\"").unwrap();
+            let end = first + good[first..].find("\n    },\n").unwrap() + "\n    },\n".len();
+            format!("{}{}{}", &good[..end], &good[first..end], &good[end..])
+        };
+        refuse(&twice, "appears twice");
     }
 
     #[test]

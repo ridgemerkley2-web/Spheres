@@ -8,6 +8,11 @@ The command-line historical runner retains its separate monthly calibration mode
 
 ## Play
 
+Construction and industry now group projects by national purpose, share
+assignable capacity across buildings and mines, and review operating effects
+before ordering. See [INDUSTRY_REBUILD.md](INDUSTRY_REBUILD.md) for the building
+roles, economic connections and save compatibility contract.
+
 For the ready-built Windows release, extract the whole ZIP to a writable folder
 and double-click **Play SPHERES.cmd**. No Rust installation is needed. Keep the
 server window open while playing. The game and its artwork run locally.
@@ -25,6 +30,9 @@ the precise version, branch, source revision, build date and absolute save folde
 Saves use the server's working directory. The packaged launcher selects its own
 folder so moving a shortcut does not move your saves.
 
+The browser includes the strategic map, policy controls, GDP/oil history charts,
+a league table and a dispatch feed. Click a nation to inspect it and act on it.
+
 The clock is HOI4's: it runs by itself until something stops it. Space stops it
 from any screen — the cabinet, the tech screen and the resource board included —
 and starts it again from the map or either of those two boards; 1-5 pick a speed
@@ -36,6 +44,9 @@ what to do.
 
 Choose a country, use **Advisor** to fund a budget and follow a development
 project, and use **Find** to open a province without hunting on the globe.
+**Cabinet → Companies** compares domestic specialists with custom names and
+logos. Assign them to eligible work for bonuses, fees and experience; sustained
+economic growth can create new firms. See [Companies](COMPANIES.md) for the rules.
 **Research list** explains availability, prerequisites, payoff and estimated time.
 **Decisions** contains diplomatic requests, standing policies, monetary choices
 and optional peaceful campaign aims. Domination remains an available aim.
@@ -114,9 +125,13 @@ Start with [CURRENT_ARCHITECTURE.md](CURRENT_ARCHITECTURE.md) and
 [SECTOR_PROFILES.md](SECTOR_PROFILES.md),
 [MANUFACTURING.md](MANUFACTURING.md) and
 [PROVINCE_ECONOMY.md](PROVINCE_ECONOMY.md).
+[EQUIPMENT_DESIGNER.md](EQUIPMENT_DESIGNER.md), [AMMUNITION.md](AMMUNITION.md)
+and [AVIATION.md](AVIATION.md) describe the configurable equipment lifecycle.
+[COMPANIES_AND_PROCUREMENT_PLAN.md](COMPANIES_AND_PROCUREMENT_PLAN.md) describes
+the next planned company-manufacturing and government-purchase model.
 [PLAYTEST.md](PLAYTEST.md) gives a short, repeatable usability protocol.
 
 Historical design rulings remain in BIBLE.md, SPEC.md and the domain documents.
 They should be read with dated amendments; earlier roadmap statements are not a
 reliable description of the current browser. Missing elections detail, household
-microeconomics and individual military platforms are not implied by this release.
+microeconomics and unimplemented military mission families are not implied by this release.

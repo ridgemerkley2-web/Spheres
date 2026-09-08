@@ -2,10 +2,10 @@
 // by equipment_view; all figures are compiled by the simulation, never the UI.
 fn component_branch(slot: &str) -> &'static str {
     match slot {
-        "mobility" | "transmission" => "engines",
-        "tracks" | "wheels" | "suspension" | "troop_compartment" => "chassis",
-        "turret" | "armament" | "ammunition" | "artillery_loader" => "weapons",
-        "protection" | "active_protection" => "armor",
+        "mobility" | "transmission" | "air_engine" | "air_fuel" => "engines",
+        "tracks" | "wheels" | "suspension" | "troop_compartment" | "air_wing" => "chassis",
+        "turret" | "armament" | "ammunition" | "artillery_loader" | "air_hardpoints" | "air_payload" => "weapons",
+        "protection" | "active_protection" | "air_countermeasures" => "armor",
         "communications" => "communications",
         _ => "optics",
     }
@@ -85,6 +85,10 @@ fn profile_rows(p:&eq::CompiledProfile)->Vec<(&'static str,&'static str,f64,&'st
     if let Some(g)=&p.ground_roles {rows.extend([
         ("fire_support","Fire support",g.fire_support,"rating","higher"),("protected_mobility","Protected mobility",g.protected_mobility,"rating","higher"),
         ("reconnaissance","Reconnaissance support",g.reconnaissance,"rating","higher"),("air_defense","Air defense",g.air_defense,"rating","higher")]);}
+    if let Some(a)=&p.aviation {
+        rows.retain(|r|!matches!(r.0,"land_factor"|"firepower"|"protection"|"mobility"|"observation"));
+        rows.extend([("air_strike","Supported strike effectiveness",a.strike_factor,"×","higher"),("sorties","Supported sorties / aircraft / month",a.sorties_per_aircraft_month,"sorties","higher"),("stores_per_sortie","Mission stores per sortie",a.stores_per_sortie,"stores","neutral")]);
+    }
     rows
 }
 
@@ -128,7 +132,7 @@ fn modernization_board(w:&WorldState,me:NationId)->Vec<Value> {
     for h in held.iter().take(8) {
         let id=h.design_id.as_ref().unwrap();let Some(source)=state.revisions.get(id) else{continue;};
         let base=eq::editable_spec(&source.spec);
-        let primary=|p:&eq::CompiledProfile|->f64 {match (base.platform.as_str(),&p.ground_roles) {
+        let primary=|p:&eq::CompiledProfile|->f64 {if let Some(a)=&p.aviation{return a.strike_factor;}match (base.platform.as_str(),&p.ground_roles) {
             ("ground_artillery",Some(g))=>g.fire_support,("ground_air_defense",Some(g))=>g.air_defense,("ground_recon",Some(g))=>g.reconnaissance,
             ("ground_apc",Some(g))=>g.protected_mobility,("ground_ifv",Some(g))=>(g.fire_support+g.protected_mobility)*0.5,_=>p.land_factor,
         }};

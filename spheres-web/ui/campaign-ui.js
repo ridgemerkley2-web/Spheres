@@ -105,6 +105,7 @@ function syncCommandControls() {
   const save=document.getElementById("saveBtn");if(save){const slot=SESSION.slot||"default";save.textContent="Save · "+slot;save.title="Save the current campaign and history to "+slot;}
   syncClockControls();
   if(typeof renderMainMenuState === "function")renderMainMenuState();
+  if(typeof companiesRender === "function")companiesRender();
   if(uncertain || (pending&&!busy&&commandRecoveryKey&&campaignModalOpen()))revealCommandRecovery();
 }
 async function retryCampaignCommand() {

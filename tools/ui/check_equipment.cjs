@@ -31,6 +31,20 @@ function preview(extra={}){return {session_id:'one',nation:'USA',valid:true,deta
   costs:[{label:'Development',amount_bn:.03,period:'One-time work'},{label:'Unit cost',amount_bn:.004,period:'Per complete vehicle'},{label:'Maintenance',amount_bn:.00001,period:'Per vehicle per year'}],timing:[{label:'Minimum development',value:'30 days'}],requirements:['Subject to the chosen production site.'],
   actions:[{label:'Save draft',command:{kind:'equipment_save',name:'Balanced',...spec()}},{label:'Fund development',command:{kind:'equipment_develop',name:'Balanced',...spec(),daily_budget_mn:1},requires_preview:true,inputs:[{key:'daily_budget_mn',label:'Daily development limit',type:'number',unit:'$m/day',value:1,min:0}]}],...extra};}
 function quote(extra={}){return preview({detail:'Three complete vehicles at the selected site.',costs:[{label:'Batch cost',amount_bn:.017,period:'One production batch'},{label:'Daily limit',amount_bn:.003,period:'Maximum per day'}],metrics:[{label:'Vehicles requested',value:3,unit:'complete vehicles'}],timing:[{label:'First delivery',value:'45 days if funded and supplied'}],actions:[{label:'Confirm production',command:{kind:'equipment_produce',revision:7,district:'US-TX',quantity:3,daily_budget_mn:3,quote_token:'server-quote'},requires_preview:false}],...extra});}
+function supply(extra={}){return {title:'Production supply plan',status:'Some programmes need attention',stage:'national',detail:'Review funded production, refits and shared warehouse stock.',
+  metrics:[{label:'Production and refit programmes',value:2},{label:'Planning date',value:'11 Feb 1990'}],
+  resources:[{commodity:'steel',name:'Steel',unit:'kt',remaining:1.25,planned_day:.04,stock:.03,shortfall:.01,detail:'Shared stock is not reserved.'},{commodity:'gas',name:'Natural gas',unit:'bcf',remaining:.0000456,planned_day:.00000047,stock:null,shortfall:null}],
+  warnings:['Future deliveries are not counted as stock.'],actions:[{label:'Review Steel supply',navigate:{action:'resources',commodity:'steel'}}],...extra};}
+function service(extra={}){return {title:'Fleet service readiness',status:'Review fleet support',detail:'Delivered vehicles, refits and incoming deliveries remain separate.',
+  metrics:[{label:'Available vehicles',value:17},{label:'In refit',value:2},{label:'Incoming deliveries',value:3},{label:'Annual maintenance need',value:'$420k'}],
+  roles:[{label:'Protected mobility',value:'0.742 capability',detail:'At currently recorded military support.'},{label:'Observation',value:null,detail:'This reading has no estimate.'}],
+  warnings:['Inherited equipment is included in the arsenal.'],actions:[{label:'Review military support',navigate:{action:'budget',ministry:'defense',department:2}}],...extra};}
+function retirement(extra={}){return action({label:'Review retirement',command:{kind:'equipment_retire',revision:'fleet-ifv',quantity:1},inputs:[{key:'quantity',label:'Vehicles to retire',type:'number',value:1,min:1,max:3,step:1}],...extra});}
+function retirementQuote(extra={}){return quote({detail:'Retire the selected available vehicles.',costs:[],timing:[],metrics:[],requirements:[],
+  service_effects:service({title:'Fleet after retirement',status:'Permanent removal',detail:'These vehicles leave service immediately.',
+    metrics:[{label:'Available vehicles',value:'17 → 16'},{label:'Annual maintenance need',value:'$420k → $396k'}],roles:[{label:'Protected mobility',value:'0.742 → 0.719',detail:'At unchanged recorded support.'}],
+    warnings:['Retirement is permanent. There is no refund or recovered material.','Lower maintenance need does not reduce the military budget or release cash.'],actions:[]}),
+  actions:[{label:'Confirm retirement',command:{kind:'equipment_retire',revision:'fleet-ifv',quantity:1},requires_preview:false}],...extra});}
 function fixture(){
   const calls=[],requests=[],modelMounts=[],doc={activeElement:null},scroller={scrollTop:0};let html='';
   function parse(tag,attrs,body=''){
@@ -70,7 +84,7 @@ function loaded(c,data=snapshot()){Object.assign(c.eq,{data,state:c.S,loading:fa
 
 test('designer starts from the server balanced preset and renders supplied ratings and costs without recalculating',()=>{
   const c=fixture(),data=loaded(c),before=plain(data),html=c.equipmentContentHtml();assert.equal(c.eq.preset,'balanced');assert.deepEqual(plain(c.eq.draft.components),spec().components);
-  for(const text of ['From concept to service','Research','Designer','Library','Development','Production','In service','Individual specifications','Interactive ground vehicle model','Observation','1.3','One-time work','$30m','$4m','30 days'])assert(html.includes(text),text);
+  for(const text of ['From concept to service','Research','Designer','Library','Development','Production','In service','Individual specifications','Interactive ground and aviation model','Observation','1.3','One-time work','$30m','$4m','30 days'])assert(html.includes(text),text);
   assert.deepEqual(plain(data),before);assert.equal(c.requests.length,0);assert.equal(c.calls.length,0);
 });
 
@@ -89,6 +103,49 @@ test('independent new specifications are submitted separately and grouped for re
   loaded(c,data);c.equipmentRender();const select=c.mount.querySelector('[data-equipment-slot="ammunition"]');select.value='ammunition_upgrade';select.onchange();await tick();
   const sent=c.requests.at(-1)[1];assert.equal(sent.components.ammunition,'ammunition_upgrade');assert.equal(sent.components.turret,'turret_base');assert.equal(sent.components.tracks,'tracks_base');
   assert(c.mount.querySelector('[data-equipment-detail="spec:weapon"]'));assert(c.mount.querySelector('[data-equipment-detail="spec:drive"]'));assert.equal(c.calls.length,0);
+});
+
+function aviationSnapshot(){
+  const data=snapshot(),{build}=require('../../spheres-web/ui/equipment-mesh.js');
+  for(const [id,name] of [['air_light_attack','Light attack aircraft'],['air_tactical_strike','Tactical strike aircraft']]){
+    const defaults=build({platform:id}).specification;
+    const slots=Object.entries(defaults.components).map(([slot,component])=>({id:slot,name:slot.replace('air_','').replaceAll('_',' '),required:true,components:[component,...(slot==='air_payload'?['air_payload_guided']:[])]}));
+    data.platforms.push({id,name,family:'aviation',family_name:'Tactical aviation',slots,default_spec:defaults});
+    data.presets.push({id,name,spec:defaults});
+    for(const slot of slots)for(const component of slot.components)if(!data.components.some(c=>c.id===component))data.components.push({id:component,name:component.replaceAll('_',' '),slot:slot.id,known:true});
+  }
+  return data;
+}
+test('aviation family uses supplied defaults, clears ground slots and groups all eight independent specifications',async()=>{
+  const c=fixture(),data=aviationSnapshot();loaded(c,data);c.eq.draft.source_revision=7;c.equipmentRender();
+  c.mount.querySelector('[data-equipment-family="aviation"]').onclick();await tick();
+  assert.equal(c.eq.draft.platform,'air_light_attack');assert.equal(c.eq.draft.source_revision,undefined);assert.deepEqual(plain(c.eq.draft.components),data.platforms[1].default_spec.components);
+  assert.equal(c.mount.querySelectorAll('[data-equipment-slot]').length,8);for(const id of ['airframe','airmission','airsystems'])assert(c.mount.querySelector(`[data-equipment-detail="spec:${id}"]`));
+  assert.doesNotMatch(c.mount.innerHTML,/Turret &amp; armament|Turret & armament|Interactive ground vehicle model/);assert.match(c.mount.innerHTML,/Ground &amp; aviation/);
+  const platform=c.mount.querySelector('#equipmentPlatform');platform.value='air_tactical_strike';platform.onchange();await tick();
+  assert.equal(c.eq.draft.platform,'air_tactical_strike');assert.equal(Object.keys(c.eq.draft.components).length,8);assert.equal(c.eq.draft.components.armament,undefined);assert.equal(c.calls.length,0);
+});
+test('aircraft part inspection focuses its group and payload edits submit all eight slots to a pure fresh review',async()=>{
+  const c=fixture(),data=aviationSnapshot();loaded(c,data);c.equipmentChangePlatform('air_light_attack');await tick();
+  c.equipmentRender();const model=c.modelMounts[0],requests=c.requests.length,select=c.mount.querySelector('[data-equipment-slot="air_fuel"]');
+  c.mount['onequipment-part-select']({detail:{slot:'air_fuel',part:'air_fuel / internal fuel access panels',label:'Internal fuel access panels'}});
+  assert.equal(select.parentDetail.open,true);assert.equal(c.document.activeElement,select);assert.equal(model.selectedParts.at(-1),'air_fuel');assert.equal(c.requests.length,requests);
+  const pending=[];c.api=(...args)=>new Promise(resolve=>pending.push({args,resolve}));
+  let payload=c.mount.querySelector('[data-equipment-slot="air_payload"]');payload.value='air_payload_guided';payload.onchange();
+  assert.equal(c.eq.preview,null);assert.equal(c.eq.previewLoading,true);assert.equal(pending[0].args[0],'/api/equipment-preview');assert.equal(pending[0].args[1].components.air_payload,'air_payload_guided');assert.equal(Object.keys(pending[0].args[1].components).length,8);
+  payload=c.mount.querySelector('[data-equipment-slot="air_payload"]');payload.value='air_payload_unguided';payload.onchange();
+  pending[0].resolve(preview({detail:'Stale guided payload quote'}));await tick();assert.equal(c.eq.preview,null);assert.doesNotMatch(c.mount.innerHTML,/Stale guided payload quote/);
+  pending[1].resolve(preview({detail:'Current unguided aircraft review',metrics:[{label:'Sustained sorties',value:'Server-calculated output'}]}));await tick();assert.match(c.mount.innerHTML,/Current unguided aircraft review/);assert.match(c.mount.innerHTML,/Server-calculated output/);assert.equal(c.calls.length,0);assert.equal(c.modelMounts.length,1);
+});
+
+test('aviation readiness precedes maintenance, preserves server loadout readings and navigates through captured actions',()=>{
+  const c=fixture(),aviation=service({title:'Tactical aviation readiness',status:'Mission stores needed',roles_title:'Aircraft and mission loadouts',roles:[{label:'Strike <model>',value:'3 available · 2.75 supported aircraft equivalents',detail:'Four stores per sortie · supported strike effectiveness from the server.'}],actions:[{label:'Prepare aircraft mission stores',navigate:{action:'equipment',tab:'ammunition'}}]});
+  loaded(c,snapshot({aviation,maintenance:service({title:'Maintenance funding'})}));c.equipmentSelectTab('service');
+  assert(c.mount.innerHTML.indexOf('Tactical aviation readiness')<c.mount.innerHTML.indexOf('Maintenance funding'));
+  for(const text of ['Aircraft and mission loadouts','Strike &lt;model&gt;','2.75 supported aircraft equivalents','Four stores per sortie'])assert(c.mount.innerHTML.includes(text),text);
+  assert.equal(c.calls.length,0);const go=c.mount.querySelector('[data-equipment-action="aviation.actions.0"]');assert(go);go.onclick();assert.deepEqual(c.calls,[{action:'equipment',tab:'ammunition'}]);
+  c.eq.stale=true;go.onclick();assert.equal(c.calls.length,1);
+  c.eq.data.aviation=null;c.eq.stale=false;c.equipmentRender();assert.doesNotMatch(c.mount.innerHTML,/Tactical aviation readiness/);assert.match(c.mount.innerHTML,/Maintenance funding/);
 });
 
 test('3D preview retains one live host and camera across pricing responses, typing, and component changes',async()=>{
@@ -281,7 +338,7 @@ function shellFixture(){
     set innerHTML(value){c.mount.innerHTML=value;},get innerHTML(){return c.mount.innerHTML;},querySelectorAll:selector=>c.mount.querySelectorAll(selector)};
   const nodes={'#equipmentRoom':room,'#equipmentRoot':c.mount,'#app':app,'#techBtn':fallback};c.$=selector=>nodes[selector]||null;
   c.document.activeElement=launch;c.document.querySelector=selector=>nodes[selector]||c.mount.querySelector(selector);c.mount.parentElement=room;
-  c.LOGI={open:false};c.stock={open:false};c.tech={open:false,byId:new Map([['radar',0]]),data:[{id:'radar',domain:'Computing'}]};
+  c.LOGI={open:false};c.stock={open:false};c.gov={open:false};c.tech={open:false,byId:new Map([['radar',0]]),data:[{id:'radar',domain:'Computing'}]};
   for(const name of ['closeGlobalMenus','closeTechMenu','closeSheet','closeGameDrawers','closeLogistics','closeProduction','closeStock','closeTech','closeDomination','setKeysCard'])c[name]=()=>c.calls.push(name);
   c.dominationIsOpen=()=>false;c.keysCardIsOpen=()=>false;c.openConstruction=value=>c.calls.push(['construction',plain(value)]);c.openProduction=()=>c.calls.push('manufacture');c.openStock=()=>c.calls.push('resources');
   c.cashFlowNavigate=value=>{c.calls.push(['budget',plain(value)]);return true;};c.openTech=async domain=>{c.calls.push(['tech',domain]);c.tech.open=true;};
@@ -308,6 +365,18 @@ test('shell commands use the existing channel and adopted response while preserv
   assert.deepEqual(c.requests[0],['/api/command',{commands:[command]}]);assert.equal(c.eq.draft.name,'Still editing');assert.deepEqual(c.queued,[{kind:'tax',value:20}]);
   const before=c.requests.length;c.COMMAND_CHANNEL.pending={};await assert.rejects(c.equipmentCommand(command),/current order/);assert.equal(c.requests.length,before);
   c.COMMAND_CHANNEL.pending=null;await assert.rejects(c.equipmentCommand({kind:'set_tax'}),/reviewed equipment order/);
+});
+
+test('reviewed retirement reaches the real command bridge and reports immediate fleet changes',async()=>{
+  const c=shellFixture();loaded(c);c.room.hidden=false;c.eq.draft.name='Unfinished design';c.queued=[{kind:'tax',value:20}];
+  const current={session_id:'one',player:'USA',receipt:'retired'};let adopted=0;
+  c.api=async(...args)=>{c.requests.push(plain(args));return current;};
+  c.adopt=async(state,history)=>{assert.equal(state,current);assert.equal(history,false);adopted++;c.S=state;c.equipmentOnStateChanged();};
+  const command={kind:'equipment_retire',revision:'fleet-ifv',quantity:2},result=await c.equipmentCommand(command);
+  assert.deepEqual(c.requests.filter(row=>row[0]==='/api/command'),[['/api/command',{commands:[command]}]]);assert.equal(adopted,1);
+  assert(c.requests.some(row=>row[0]==='/api/equipment?session_id=one'),'Adopting the order refreshes the service overview');
+  assert.match(result.message,/Vehicles retired/);assert.doesNotMatch(result.message,/programme will/);
+  assert.equal(c.eq.draft.name,'Unfinished design');assert.deepEqual(c.queued,[{kind:'tax',value:20}]);
 });
 
 test('refused, uncertain and cross-campaign command responses never adopt or announce a successful order',async()=>{
@@ -449,4 +518,275 @@ test('model part events open and focus their specification without repricing or 
   assert.equal(group.open,false);assert(c.mount.querySelector('[data-model-part]'));c.mount['onequipment-part-select']({detail:{slot:'sensors',part:'thermal_sight',label:'Thermal sight'}});
   assert.equal(group.open,true);assert(c.eq.details.has(group.dataset.equipmentDetail));assert.equal(c.document.activeElement,select);assert.equal(c.eq.selectedSlot,'sensors');assert.equal(model.selectedParts.at(-1),'sensors');assert.deepEqual(plain(c.eq.draft),original);assert.equal(c.mount.innerHTML,before);assert.equal(c.modelMounts.length,1);assert.equal(c.requests.length,0);assert.equal(c.calls.length,0);
   assert.equal(c.equipmentRevealSpecification('not_a_slot'),false);c.equipmentRender();assert.equal(c.mount.listeners.filter(type=>type==='equipment-part-select').length,1);assert(c.mount.querySelector('[data-equipment-detail="spec:electronics"]').open);
+});
+
+test('production supply precedes project cards and shows server quantities with separate physical units',()=>{
+  const c=fixture(),s=supply(),data=snapshot({supply:s,production:[{id:12,name:'Sentinel batch',status:'Producing',supply:supply({stage:'production',title:'Programme supply readiness'})}]});loaded(c,data);const before=plain(data);c.equipmentSelectTab('production');
+  const html=c.mount.innerHTML;assert(html.indexOf('Production supply plan')<html.indexOf('Build the model you approved'));
+  for(const text of ['Planning date','11 Feb 1990','Remaining work','Next work','Next work gap','National stock','Stock for this review','0.0000456','0.00000047','<small>kt</small>','<small>bcf</small>','does not reserve materials'])assert(html.includes(text),text);
+  assert.doesNotMatch(html,/kt\/day|bcf\/day|1\.25 kt\/day|Next-day shortfall/);assert.match(html,/<td>—<\/td>/);assert.deepEqual(plain(data),before);assert.equal(c.requests.length,0);assert.equal(c.calls.length,0);
+});
+
+test('per-project supply expands and keeps its exact resource target without placing an order',()=>{
+  const c=fixture();loaded(c,snapshot({production:[{id:12,name:'Sentinel batch',status:'Tooling',supply:supply({stage:'tooling',title:'Programme supply readiness',detail:'Tooling uses funding first; fabrication materials follow.'})}]}));c.equipmentSelectTab('production');
+  const details=c.mount.querySelector('[data-equipment-detail="supply:production.0.supply"]');assert(details);assert.equal(details.open,false);details.open=true;c.equipmentRender();assert.equal(c.mount.querySelector('[data-equipment-detail="supply:production.0.supply"]').open,true);
+  assert.match(c.mount.innerHTML,/Tooling uses funding first/);const link=c.mount.querySelector('[data-equipment-supply-action="production.0.supply.actions.0"]');assert.equal(link.disabled,false);assert.equal(link.onclick(),true);assert.deepEqual(c.calls,[{action:'resources',commodity:'steel'}]);assert.equal(c.requests.length,0);
+});
+
+test('optional supply data preserves old responses and explicit empty stages without inventing requirements',()=>{
+  const c=fixture();loaded(c);c.equipmentSelectTab('production');assert.doesNotMatch(c.mount.innerHTML,/eq-supply-table|Production supply plan|Next work gap/);assert.match(c.mount.innerHTML,/No equipment production is listed/);
+  c.eq.data.supply=supply({status:'No production commitments',resources:[],warnings:[],detail:'Certified designs can be scheduled from the Library.'});c.equipmentRender();assert.match(c.mount.innerHTML,/No production commitments/);assert.match(c.mount.innerHTML,/Certified designs can be scheduled/);assert.doesNotMatch(c.mount.innerHTML,/eq-supply-table/);
+  const development=c.equipmentSupplyHtml(supply({stage:'development',resources:[],detail:'Development uses funding and engineering time, with no raw-material recipe.'}),'supply');assert.match(development,/no raw-material recipe/);assert.doesNotMatch(development,/eq-supply-table|0 kt|Materials ready/);
+});
+
+test('supply navigation rejects stale data, replaced readings, pending orders and command-shaped actions',()=>{
+  for(const invalidate of [c=>c.eq.stale=true,c=>c.eq.data=snapshot({supply:supply()}),c=>c.S={session_id:'two',player:'CAN'},c=>c.COMMAND_CHANNEL.pending={}]){
+    const c=fixture();loaded(c,snapshot({supply:supply()}));c.equipmentSelectTab('production');const link=c.mount.querySelector('[data-equipment-supply-action="supply.actions.0"]');invalidate(c);assert.equal(link.onclick(),false);assert.equal(c.calls.length,0);assert.equal(c.requests.length,0);
+  }
+  const c=fixture();loaded(c,snapshot({supply:supply({actions:[{label:'Buy automatically',command:{kind:'resource_buy'},navigate:{action:'resources',commodity:'steel'}},{label:'Open stock',navigate:{action:'resources',commodity:'gas'}}]})}));c.equipmentSelectTab('production');assert.doesNotMatch(c.mount.innerHTML,/Buy automatically/);assert.equal(c.equipmentSupplyNavigate('supply.actions.0','data',c.eq.data,c.S),false);assert.equal(c.mount.querySelector('[data-equipment-supply-action="supply.actions.1"]').onclick(),true);assert.deepEqual(c.calls,[{action:'resources',commodity:'gas'}]);
+});
+
+test('order supply appears before confirmation and invalid orders may review resources without submitting',async()=>{
+  const c=fixture();loaded(c);c.equipmentSelectTab('library');c.api=async()=>quote({valid:false,supply:supply({stage:'unavailable',title:'Supply before you commit',status:'Order not ready'}),blockers:['Select a working plant.']});c.mount.querySelector('[data-equipment-action="designs.0.actions.0"]').onclick();await tick();
+  const html=c.mount.innerHTML;assert(html.indexOf('Supply before you commit')<html.indexOf('data-equipment-intent="0"'));assert.equal(c.mount.querySelector('[data-equipment-intent="0"]').disabled,true);
+  const link=c.mount.querySelector('[data-equipment-supply-action="supply.actions.0"]');assert.equal(link.dataset.equipmentScope,'intent');assert.equal(link.disabled,false);assert.equal(link.onclick(),true);assert.deepEqual(c.calls,[{action:'resources',commodity:'steel'}]);assert.equal(c.eq.review.command.kind,'equipment_produce');assert.equal(c.eq.draft.name,'Balanced');
+});
+
+test('quoted supply links require the captured quote and current order settings even when campaign data is fresh',async()=>{
+  for(const mode of ['loading','error','edit','replacement','dismiss']){
+    const c=fixture();loaded(c);c.equipmentSelectTab('library');c.api=async()=>quote({supply:supply({title:'Supply before you commit'})});c.mount.querySelector('[data-equipment-action="designs.0.actions.0"]').onclick();await tick();const link=c.mount.querySelector('[data-equipment-supply-action="supply.actions.0"]');assert.equal(link.disabled,false);
+    if(mode==='loading')c.eq.review.loading=true;else if(mode==='error')c.eq.review.error='Review failed';else if(mode==='edit')c.eq.review.command.quantity=9;else if(mode==='replacement')c.eq.review.quote=quote({supply:supply()});else c.eq.review=null;
+    assert.equal(link.onclick(),false,mode);assert.equal(c.calls.length,0,mode);if(mode!=='dismiss'){c.equipmentRender();if(mode!=='replacement')assert.equal(c.mount.querySelector('[data-equipment-supply-action="supply.actions.0"]').disabled,true,mode);}
+  }
+});
+
+test('supply text and attributes escape unsafe server content while small physical requirements remain visible',()=>{
+  const c=fixture();loaded(c);const unsafe='\"><img src=x onerror=alert(1)>',s=supply({title:unsafe,status:unsafe,detail:unsafe,warnings:[unsafe],resources:[{commodity:unsafe,name:unsafe,unit:unsafe,detail:unsafe,remaining:.000000000003456,planned_day:0,stock:Infinity,shortfall:NaN}],actions:[{label:unsafe,reason:unsafe,navigate:{action:'resources'}}]});const html=c.equipmentSupplyHtml(s,'supply');
+  assert.doesNotMatch(html,/<img|<script|title=""><img/);assert.match(html,/&lt;img/);assert.match(html,/0\.00000000000346/);assert.match(html,/<td>0<\/td>/);assert.match(html,/<td>—<\/td>/);assert.equal(c.calls.length,0);
+});
+
+test('commodity navigation reaches the exact resource and preserves unsaved designs while refusing pending navigation',async()=>{
+  const c=shellFixture();loaded(c);c.room.hidden=false;c.eq.draft.name='Uncommitted supply design';c.openStock=id=>c.calls.push(['resources',id]);
+  assert.equal(await c.equipmentNavigate({action:'resources',commodity:'steel'}),true);assert.deepEqual(c.calls.at(-1),['resources','steel']);assert.equal(c.eq.draft.name,'Uncommitted supply design');assert.equal(c.requests.length,0);
+  const count=c.calls.length;c.COMMAND_CHANNEL.pending={};assert.equal(await c.equipmentNavigate({action:'resources',commodity:'gas'}),false);assert.equal(c.calls.length,count);
+});
+
+test('material tables contain horizontal scrolling and retain readable narrow controls',()=>{
+  assert.match(css,/\.eq-supply-scroll\s*\{[^}]*max-width:100%[^}]*overflow-x:auto[^}]*overscroll-behavior-x:contain/);
+  assert.match(css,/\.eq-supply-table\s*\{[^}]*min-width:590px/);assert.match(css,/@media\(max-width:700px\)[^\n]*\.eq-supply-actions button[^}]*min-height:42px/);
+  assert.match(css,/\.eq-supply-scroll:focus-visible/);const c=fixture();loaded(c);assert.match(c.equipmentSupplyHtml(supply(),'supply'),/role="region" aria-label="Production material requirements" tabindex="0"/);
+});
+
+test('service overview precedes modernization and displays supplied fleet counts and role capabilities',()=>{
+  const c=fixture(),data=snapshot({service:service()});loaded(c,data);const before=plain(data);c.equipmentSelectTab('service');
+  const html=c.mount.innerHTML;assert(html.indexOf('Fleet service readiness')<html.indexOf('Suggested modernization'));assert(html.indexOf('Fleet service readiness')<html.indexOf('Equipment in service'));
+  for(const text of ['Available vehicles','In refit','Incoming deliveries','Annual maintenance need','$420k','0.742 capability','At currently recorded military support.','Inherited equipment is included'])assert(html.includes(text),text);
+  assert.match(html,/<dt>Observation<\/dt><dd>—<small>/);assert.match(html,/<dl><div><dt>Protected mobility/);assert.deepEqual(plain(data),before);assert.equal(c.calls.length,0);assert.equal(c.requests.length,0);
+});
+
+test('service navigation preserves a local design and refuses stale readings or command-shaped shortcuts',()=>{
+  const c=fixture();loaded(c,snapshot({service:service({actions:[{label:'Issue order',command:{kind:'equipment_retire',revision:'fleet-ifv',quantity:1},navigate:{action:'budget',ministry:'defense',department:2}},{label:'Review military support',navigate:{action:'budget',ministry:'defense',department:2}}]})}));c.eq.draft.name='Uncommitted Sentinel';c.equipmentSelectTab('service');
+  assert.doesNotMatch(c.mount.innerHTML,/Issue order/);assert.equal(c.equipmentServiceNavigate('service.actions.0',c.eq.data,c.S),false);assert.equal(c.mount.querySelector('[data-equipment-service-action="service.actions.1"]').onclick(),true);assert.deepEqual(c.calls,[{action:'budget',ministry:'defense',department:2}]);assert.equal(c.eq.draft.name,'Uncommitted Sentinel');assert.equal(c.requests.length,0);
+  for(const change of [c=>c.eq.stale=true,c=>c.eq.data=snapshot({service:service()}),c=>c.eq.loading=true,c=>c.S={session_id:'new',player:'CAN'},c=>c.COMMAND_CHANNEL.pending={},c=>c.eq.data.service.actions[0].enabled=false,c=>c.eq.data.service.actions[0].available=false]){
+    const c=fixture();loaded(c,snapshot({service:service()}));c.equipmentSelectTab('service');const button=c.mount.querySelector('[data-equipment-service-action="service.actions.0"]');change(c);assert.equal(button.onclick(),false);assert.equal(c.calls.length,0);assert.equal(c.requests.length,0);
+  }
+});
+
+test('retirement effects and permanent loss are reviewed before any command and quantity edits require a new captured quote',async()=>{
+  const c=fixture(),data=snapshot();data.service=service();data.lots[0].actions=[retirement()];loaded(c,data);c.eq.draft.name='My unfinished design';c.equipmentSelectTab('service');
+  c.api=async(...args)=>{c.requests.push(plain(args));return retirementQuote();};c.mount.querySelector('[data-equipment-action="lots.0.actions.0"]').onclick();await tick();
+  assert.equal(c.calls.length,0);assert.equal(c.requests[0][0],'/api/equipment-preview');assert.deepEqual(c.requests[0][1].command,{kind:'equipment_retire',revision:'fleet-ifv',quantity:1});
+  const html=c.mount.innerHTML;assert(html.indexOf('Fleet after retirement')<html.indexOf('data-equipment-intent="0"'));for(const text of ['Permanent removal','17 → 16','$420k → $396k','0.742 → 0.719','At unchanged recorded support.','There is no refund','does not reduce the military budget or release cash'])assert(html.includes(text),text);
+  const oldConfirm=c.mount.querySelector('[data-equipment-intent="0"]');let resolve;c.api=(...args)=>{c.requests.push(plain(args));return new Promise(r=>resolve=r);};const input=c.mount.querySelector('[data-equipment-order-input="quantity"]');input.value='2';input.oninput();
+  assert.equal(c.requests.at(-1)[1].command.quantity,2);assert.equal(c.equipmentReviewQuoteCurrent(),false);assert.equal(await oldConfirm.onclick(),false);assert.equal(c.calls.length,0);
+  const next=retirementQuote({service_effects:service({title:'Fleet after retirement',metrics:[{label:'Server maintenance estimate',value:'$381k'}],roles:[],actions:[]}),actions:[{label:'Confirm retirement',command:{kind:'equipment_retire',revision:'fleet-ifv',quantity:2,quote_token:'reviewed-two'}}]});resolve(next);await tick();
+  assert.match(c.mount.innerHTML,/\$381k/);assert.equal(await oldConfirm.onclick(),false,'A retained confirmation cannot accept a replacement quote');assert.equal(c.calls.length,0);const confirm=c.mount.querySelector('[data-equipment-intent="0"]');
+  c.api=async path=>path.startsWith('/api/equipment?')?data:preview();assert.equal(await confirm.onclick(),true);assert.deepEqual(c.calls,[next.actions[0].command]);assert.equal(c.eq.draft.name,'My unfinished design');assert.equal(c.eq.tab,'service');await tick();
+});
+
+test('invalid retirement reviews keep effects visible but cannot remove vehicles',async()=>{
+  const c=fixture(),data=snapshot();data.lots[0].actions=[retirement()];loaded(c,data);c.equipmentSelectTab('service');c.api=async()=>retirementQuote({valid:false,blockers:['Only one available vehicle can be retired.']});c.mount.querySelector('[data-equipment-action="lots.0.actions.0"]').onclick();await tick();
+  assert.match(c.mount.innerHTML,/Only one available vehicle can be retired/);assert.match(c.mount.innerHTML,/Fleet after retirement/);assert.equal(c.mount.querySelector('[data-equipment-intent="0"]').disabled,true);assert.equal(await c.mount.querySelector('[data-equipment-intent="0"]').onclick(),false);assert.equal(c.calls.length,0);
+});
+
+test('retirement confirmation from a dismissed review cannot confirm another current review',async()=>{
+  const c=fixture(),data=snapshot();data.lots[0].actions=[retirement()];loaded(c,data);c.equipmentSelectTab('service');c.api=async()=>retirementQuote();c.mount.querySelector('[data-equipment-action="lots.0.actions.0"]').onclick();await tick();const oldConfirm=c.mount.querySelector('[data-equipment-intent="0"]');
+  c.mount.querySelector('[data-equipment-dismiss]').onclick();c.mount.querySelector('[data-equipment-action="lots.0.actions.0"]').onclick();await tick();assert.equal(c.equipmentReviewQuoteCurrent(),true);assert.equal(await oldConfirm.onclick(),false);assert.equal(c.calls.length,0);
+});
+
+test('fleet shortcuts switch only recognized equipment tabs while preserving the open room and unsaved design',async()=>{
+  const c=shellFixture();loaded(c);c.room.hidden=false;c.eq.draft.name='Unfinished fleet successor';c.eq.tab='service';c.equipmentRender();const draft=plain(c.eq.draft);
+  for(const tab of ['production','library','designer']){assert.equal(await c.equipmentNavigate({action:'equipment',tab}),true);assert.equal(c.eq.tab,tab);assert.equal(c.room.hidden,false);assert.deepEqual(plain(c.eq.draft),draft);}
+  const before=c.eq.tab;assert.equal(await c.equipmentNavigate({action:'equipment',tab:'unknown'}),false);assert.equal(c.eq.tab,before);assert.equal(c.room.hidden,false);assert.equal(c.calls.length,0);assert.equal(c.requests.length,0);
+  c.COMMAND_CHANNEL.pending={};assert.equal(await c.equipmentNavigate({action:'equipment',tab:'production'}),false);assert.equal(c.eq.tab,before);assert.deepEqual(plain(c.eq.draft),draft);
+});
+
+test('service overview and effects escape labels, role detail and attributes while optional responses stay usable',()=>{
+  const c=fixture();loaded(c);c.equipmentSelectTab('service');assert.doesNotMatch(c.mount.innerHTML,/eq-service-heading|Fleet service readiness/);assert.match(c.mount.innerHTML,/Equipment in service/);
+  const unsafe='"><img src=x onerror=alert(1)>',value=service({title:unsafe,status:unsafe,detail:unsafe,metrics:[{label:unsafe,value:unsafe}],roles:[{label:unsafe,value:unsafe,detail:unsafe}],warnings:[unsafe],actions:[{label:unsafe,reason:unsafe,navigate:{action:'budget',ministry:'defense',department:2}}]});
+  for(const effects of [false,true]){const html=c.equipmentServiceHtml(value,effects);assert.doesNotMatch(html,/<img|<script|title=""><img/);assert.match(html,/&lt;img/);if(effects)assert.doesNotMatch(html,/data-equipment-service-action/);}
+  assert.equal(c.equipmentServiceHtml(null),'');assert.equal(c.equipmentServiceHtml(undefined,true),'');assert.equal(c.calls.length,0);assert.equal(c.requests.length,0);
+});
+
+test('maintenance, supply and target confirmations use the real command bridge with accurate outcomes',async()=>{
+  for(const [command,message] of [[{kind:'equipment_maintenance',daily_budget_mn:.5},/Maintenance plan saved/],[{kind:'equipment_supply',horizon_days:90,spending_cap_mn:2},/Material purchase completed/],[{kind:'equipment_target',revision:'fleet-ifv',quantity:0},/Fleet target saved/]]){
+    const c=shellFixture();loaded(c);c.room.hidden=false;c.eq.draft.name='My unfinished vehicle';
+    c.api=async(...args)=>{c.requests.push(plain(args));return {session_id:'one',player:'USA'};};c.adopt=async state=>{c.S=state;};
+    const result=await c.equipmentCommand(command);assert.deepEqual(c.requests,[['/api/command',{commands:[command]}]]);assert.match(result.message,message);assert.doesNotMatch(result.message,/programme for progress/);assert.equal(c.eq.draft.name,'My unfinished vehicle');
+  }
+});
+
+test('maintenance and target planning show authoritative figures without issuing orders on navigation',async()=>{
+  const c=fixture(),data=snapshot({maintenance:service({title:'Maintenance and readiness',roles_title:'What affects readiness',metrics:[{label:'Last invoice paid',value:'$41.327k / day'}],actions:[action({label:'Review maintenance limit',command:{kind:'equipment_maintenance',daily_budget_mn:.1},inputs:[{key:'daily_budget_mn',label:'Maximum maintenance payment',type:'number',value:.1,min:0}]})]}),targets:[{id:'target:fleet-ifv',name:'Fleet IFV target',status:'More vehicles needed',metrics:[{label:'Still to order',value:7}],actions:[action({label:'Review fleet target',command:{kind:'equipment_target',revision:'fleet-ifv',quantity:0},inputs:[{key:'quantity',label:'Desired vehicles',type:'number',value:0,min:0,step:1}]})]}]});
+  loaded(c,data);c.equipmentSelectTab('service');assert.match(c.mount.innerHTML,/What affects readiness/);assert.match(c.mount.innerHTML,/\$41.327k/);assert.match(c.mount.innerHTML,/Fleet IFV target/);assert.equal(c.calls.length,0);assert.equal(c.requests.length,0);assert.equal(c.mount.querySelectorAll('#equipmentSearch').length,1);
+  c.api=async(...args)=>{c.requests.push(plain(args));return quote({actions:[],metrics:[]});};c.mount.querySelector('[data-equipment-action="targets.0.actions.0"]').onclick();await tick();assert.equal(c.requests[0][1].command.quantity,0);assert.equal(c.calls.length,0);
+});
+
+test('supply horizon keeps its numeric type and editing the cash cap invalidates the previous purchase review',async()=>{
+  const c=fixture(),purchase=action({label:'Review material purchase',command:{kind:'equipment_supply',horizon_days:30,spending_cap_mn:1},inputs:[{key:'horizon_days',label:'Supply horizon',type:'select',value:30,options:[{value:30,label:'30 days'},{value:90,label:'90 days'}]},{key:'spending_cap_mn',label:'Maximum purchase spending',type:'number',value:1,min:.000001}]}),data=snapshot({replenishment:service({title:'Purchase missing materials',actions:[purchase]})});
+  loaded(c,data);c.equipmentSelectTab('production');assert.equal(c.requests.length,0);
+  c.api=async(...args)=>{c.requests.push(plain(args));return quote({actions:[{label:'Confirm material purchase',command:plain(args[1].command)}]});};c.mount.querySelector('[data-equipment-action="replenishment.actions.0"]').onclick();await tick();
+  const horizon=c.mount.querySelector('[data-equipment-order-input="horizon_days"]');horizon.value='90';horizon.onchange();await tick();assert.equal(c.requests.at(-1)[1].command.horizon_days,90);
+  const old=c.mount.querySelector('[data-equipment-intent="0"]');let resolve;c.api=(...args)=>{c.requests.push(plain(args));return new Promise(r=>resolve=r);};const cap=c.mount.querySelector('[data-equipment-order-input="spending_cap_mn"]');cap.value='0.25';cap.oninput();
+  assert.equal(c.requests.at(-1)[1].command.spending_cap_mn,.25);assert.equal(await old.onclick(),false);assert.equal(c.calls.length,0);
+  const command=plain(c.requests.at(-1)[1].command);resolve(quote({actions:[{label:'Confirm material purchase',command}]}));await tick();assert.equal(await old.onclick(),false);c.api=async path=>path.startsWith('/api/equipment?')?data:preview();assert.equal(await c.mount.querySelector('[data-equipment-intent="0"]').onclick(),true);assert.deepEqual(c.calls,[command]);
+});
+
+function ammunitionOrder(extra={}){return action({label:'Review cannon ammunition batch',command:{kind:'equipment_ammo_order',family:'cannon',district:'US-CA',quantity:100,daily_budget_mn:.25},inputs:[{key:'quantity',label:'Rounds to manufacture',type:'number',value:100,min:1,max:10000,step:1},{key:'district',label:'Ammunition plant',type:'select',value:'US-CA',options:[{value:'US-CA',label:'California'},{value:'US-TX',label:'Texas'}]},{key:'daily_budget_mn',label:'Daily funding limit',type:'number',value:.25,min:0}],...extra});}
+function ammunition(extra={}){return {overview:service({title:'Physical ammunition reserve',status:'Planning available',detail:'Only completed ammunition is available to the fleet.',metrics:[{label:'Available rounds',value:2475},{label:'Funding department',value:'Defense · Ammunition'}],roles:[],warnings:['A scheduled batch is not available stock.'],actions:[{label:'Review ammunition activation',command:{kind:'equipment_ammo_activate'},requires_preview:true}]}),families:[{id:'autocannon',name:'Autocannon rounds',status:'Stock available',metrics:[{label:'Available rounds',value:2400}],actions:[]},{id:'cannon',name:'Cannon rounds',status:'Supply needed',detail:'Compatible with the selected cannon family.',metrics:[{label:'Available rounds',value:75}],actions:[ammunitionOrder()]}],orders:[{id:'ammo:7',name:'Cannon batch · California',status:'Working',detail:'Funded fabrication is progressing.',progress:.1234,receipt_label:'10 Feb 1990',metrics:[{label:'Completed rounds',value:12}],actions:[{label:'Pause ammunition batch',command:{kind:'equipment_ammo_pause',project:7,paused:true}}]}],...extra};}
+function ammunitionReserve(extra={}){return action({label:'Review reserve target',command:{kind:'equipment_ammo_reserve',family:'cannon',target_rounds:5000,district:'US-CA',daily_budget_mn:.125,automatic:false},inputs:[{key:'target_rounds',label:'Reserve target',type:'number',value:5000,min:1,step:1},{key:'district',label:'Production site',type:'select',value:'US-CA',options:[{value:'US-CA',label:'California'},{value:'US-TX',label:'Texas'}]},{key:'daily_budget_mn',label:'Daily funding ceiling',type:'number',value:.125,min:0},{key:'automatic',label:'Replenishment',type:'select',value:false,options:[{value:false,label:'Manual target'},{value:true,label:'Automatic replenishment'}]}],...extra});}
+function ammunitionReserves(){return [{id:'reserve:autocannon',name:'Autocannon reserve',status:'Manual target',metrics:[{label:'Reserve target',value:2000}],actions:[]},{id:'reserve:cannon',name:'Cannon reserve',status:'Eligible to replenish',detail:'California is the preferred ammunition production site.',metrics:[{label:'Reserve target',value:5000},{label:'Remaining gap',value:1337}],costs:[{label:'Daily funding ceiling',amount_bn:.000125,period:'Maximum per day'}],receipt_label:'11 Feb 1990',blockers:['Shared funding remains subject to fleet servicing.'],actions:[ammunitionReserve(),{label:'Remove reserve plan',command:{kind:'equipment_ammo_reserve_clear',family:'cannon'},requires_preview:true}]}];}
+
+test('ammunition is a separate keyboard workflow with server figures, action paths and one search',async()=>{
+  const c=fixture(),data=snapshot({ammunition:ammunition()}),before=plain(data);loaded(c,data);c.eq.draft.name='Unfinished vehicle';c.equipmentSelectTab('production');
+  c.mount.querySelector('[data-equipment-tab="production"]').onkeydown({key:'ArrowRight',preventDefault(){}});assert.equal(c.eq.tab,'ammunition');assert.equal(c.document.activeElement.dataset.equipmentFocus,'tab:ammunition');
+  const html=c.mount.innerHTML;assert(html.indexOf('Physical ammunition reserve')<html.indexOf('Ammunition families'));assert(html.indexOf('Ammunition families')<html.indexOf('Ammunition production'));
+  for(const text of ['2,475','Defense · Ammunition','Autocannon rounds','Cannon rounds','Completed rounds','12.3% complete','Recorded · 10 Feb 1990'])assert(html.includes(text),text);
+  for(const path of ['ammunition.overview.actions.0','ammunition.families.1.actions.0','ammunition.orders.0.actions.0'])assert(c.mount.querySelector(`[data-equipment-action="${path}"]`),path);
+  assert.equal(c.mount.querySelectorAll('#equipmentSearch').length,1);assert.equal(c.calls.length,0);assert.equal(c.requests.length,0);assert.deepEqual(plain(data),before);
+  const search=c.mount.querySelector('#equipmentSearch');search.value='Supply needed';search.oninput();assert.doesNotMatch(c.mount.innerHTML,/Autocannon rounds/);assert(c.mount.querySelector('[data-equipment-action="ammunition.families.1.actions.0"]'));assert.equal(c.mount.querySelectorAll('#equipmentSearch').length,1);
+  c.api=async(...args)=>{c.requests.push(plain(args));return quote({actions:[]});};c.mount.querySelector('[data-equipment-action="ammunition.families.1.actions.0"]').onclick();await tick();assert.deepEqual(c.requests[0][1].command,ammunitionOrder().command);assert.equal(c.calls.length,0);
+  c.equipmentSelectTab('library');assert.equal(c.eq.query,'');assert.match(c.mount.innerHTML,/Your equipment library/);assert.equal(c.eq.draft.name,'Unfinished vehicle');
+});
+
+test('ammunition order edits require a new captured quote before submitting the server command',async()=>{
+  const c=fixture(),data=snapshot({ammunition:ammunition({orders:[]})});loaded(c,data);c.equipmentSelectTab('ammunition');c.eq.draft.name='Saved locally only';
+  const ammoQuote=command=>quote({detail:'The proposed rounds require paid work and raw inputs.',metrics:[],costs:[{label:'Ammunition fabrication',amount_bn:.00137,period:'One batch'}],timing:[{label:'Minimum work',value:'9 funded days'}],requirements:['Iron and copper must be available.'],service_effects:service({title:'Reserve after this batch completes',metrics:[{label:'Cannon rounds',value:'75 → 175'}],roles:[],warnings:[],actions:[]}),actions:[{label:'Confirm ammunition batch',command}]});
+  c.api=async(...args)=>{c.requests.push(plain(args));return ammoQuote(plain(args[1].command));};c.mount.querySelector('[data-equipment-action="ammunition.families.1.actions.0"]').onclick();await tick();
+  for(const text of ['Reserve after this batch completes','75 → 175','$1.37m','9 funded days','Iron and copper'])assert(c.mount.innerHTML.includes(text),text);assert.equal(c.calls.length,0);
+  const old=c.mount.querySelector('[data-equipment-intent="0"]');let resolve;c.api=(...args)=>{c.requests.push(plain(args));return new Promise(r=>resolve=r);};const input=c.mount.querySelector('[data-equipment-order-input="quantity"]');input.value='250';input.oninput();
+  assert.equal(c.requests.at(-1)[1].command.quantity,250);assert.equal(await old.onclick(),false);assert.equal(c.calls.length,0);
+  const reviewed={...plain(c.requests.at(-1)[1].command),quote_token:'fresh-ammunition'};resolve(ammoQuote(reviewed));await tick();assert.equal(await old.onclick(),false);assert.equal(c.calls.length,0);
+  c.api=async path=>path.startsWith('/api/equipment?')?data:preview();assert.equal(await c.mount.querySelector('[data-equipment-intent="0"]').onclick(),true);assert.deepEqual(c.calls,[reviewed]);assert.equal(c.eq.draft.name,'Saved locally only');assert.equal(c.eq.tab,'ammunition');await tick();
+});
+
+test('ammunition activation and batch controls remain reviewed and reject stale board actions',async()=>{
+  const c=fixture(),data=snapshot({ammunition:ammunition()});loaded(c,data);c.equipmentSelectTab('ammunition');c.api=async(...args)=>{c.requests.push(plain(args));return quote({actions:[]});};
+  c.mount.querySelector('[data-equipment-action="ammunition.overview.actions.0"]').onclick();await tick();assert.deepEqual(c.requests[0][1].command,{kind:'equipment_ammo_activate'});assert.equal(c.calls.length,0);
+  c.mount.querySelector('[data-equipment-dismiss]').onclick();const pause=c.mount.querySelector('[data-equipment-action="ammunition.orders.0.actions.0"]');pause.onclick();assert.equal(c.calls.length,0);assert.deepEqual(plain(c.eq.review.command),{kind:'equipment_ammo_pause',project:7,paused:true});
+  c.mount.querySelector('[data-equipment-dismiss]').onclick();c.eq.stale=true;assert.equal(pause.onclick(),false);assert.equal(c.calls.length,0);
+});
+
+test('all ammunition bridge commands report their own result and preserve unrelated drafts and queues',async()=>{
+  const cases=[[{kind:'equipment_ammo_order',family:'cannon',district:'US-CA',quantity:100,daily_budget_mn:.25},/Ammunition batch scheduled/],[{kind:'equipment_ammo_activate'},/Physical ammunition management activated/],[{kind:'equipment_ammo_funding',project:7,daily_budget_mn:.1},/Ammunition funding limit saved/],[{kind:'equipment_ammo_pause',project:7,paused:true},/Ammunition batch paused/],[{kind:'equipment_ammo_pause',project:7,paused:false},/Ammunition batch resumed/],[{kind:'equipment_ammo_cancel',project:7},/Remaining ammunition work cancelled/]];
+  for(const [command,message] of cases){const c=shellFixture();loaded(c);c.room.hidden=false;c.eq.draft.name='Unfinished ammunition carrier';c.queued=[{kind:'tax',value:20}];c.api=async(...args)=>{c.requests.push(plain(args));return {session_id:'one',player:'USA'};};c.adopt=async state=>{c.S=state;};const result=await c.equipmentCommand(command);assert.deepEqual(c.requests,[['/api/command',{commands:[command]}]]);assert.match(result.message,message);assert.equal(c.eq.draft.name,'Unfinished ammunition carrier');assert.deepEqual(c.queued,[{kind:'tax',value:20}]);}
+  const c=shellFixture();loaded(c,snapshot({ammunition:ammunition()}));c.room.hidden=false;assert.equal(await c.equipmentNavigate({action:'equipment',tab:'ammunition'}),true);assert.equal(c.eq.tab,'ammunition');assert.equal(c.room.hidden,false);assert.equal(c.calls.length,0);assert.equal(c.requests.length,0);
+});
+
+test('ammunition empty states, filtering and server text stay usable and escaped',()=>{
+  const c=fixture();loaded(c);c.equipmentSelectTab('ammunition');assert.match(c.mount.innerHTML,/Ammunition information is not available/);assert.equal(c.mount.querySelectorAll('#equipmentSearch').length,0);
+  loaded(c,snapshot({ammunition:ammunition({families:[],orders:[]})}));c.equipmentRender();assert.match(c.mount.innerHTML,/No ammunition families are listed/);assert.match(c.mount.innerHTML,/No ammunition batches are scheduled/);assert.match(c.mount.innerHTML,/No reserve plans saved/);assert.match(c.mount.innerHTML,/Choose an ammunition family below and set a reserve target/);assert.equal(c.mount.querySelectorAll('#equipmentSearch').length,0);
+  const unsafe='"><img src=x onerror=alert(1)>',record={id:unsafe,name:unsafe,detail:unsafe,status:unsafe,metrics:[{label:unsafe,value:unsafe}],actions:[{label:unsafe,reason:unsafe,command:{kind:'equipment_ammo_cancel',project:7}}]};loaded(c,snapshot({ammunition:ammunition({overview:service({title:unsafe,roles:[],actions:[]}),reserves:[record],families:[record],orders:[record]})}));c.equipmentRender();assert.doesNotMatch(c.mount.innerHTML,/<img src=x|title=""><img/);assert.match(c.mount.innerHTML,/&lt;img/);
+  const search=c.mount.querySelector('#equipmentSearch');search.value='missing family';search.oninput();assert.match(c.mount.innerHTML,/No matches/);assert.equal(c.mount.querySelectorAll('#equipmentSearch').length,1);c.mount.querySelector('[data-equipment-clear]').onclick();assert.equal(c.eq.query,'');assert.equal(c.calls.length,0);assert.equal(c.requests.length,0);
+});
+
+test('ammunition reserve cards share search counts and retain authoritative values and original action indexes',async()=>{
+  const c=fixture(),data=snapshot({ammunition:ammunition({reserves:ammunitionReserves()})}),before=plain(data);loaded(c,data);c.equipmentSelectTab('ammunition');
+  const html=c.mount.innerHTML;assert(html.indexOf('Physical ammunition reserve')<html.indexOf('Reserve plans'));assert(html.indexOf('Reserve plans')<html.indexOf('Ammunition families'));
+  for(const text of ['5 of 5 shown','1,337','$125k','Recorded · 11 Feb 1990','Shared funding remains subject to fleet servicing.'])assert(html.includes(text),text);
+  assert.equal(c.mount.querySelectorAll('#equipmentSearch').length,1);const search=c.mount.querySelector('#equipmentSearch');search.value='Eligible to replenish';search.oninput();
+  assert.match(c.mount.innerHTML,/1 of 5 shown/);assert.doesNotMatch(c.mount.innerHTML,/Autocannon reserve/);assert(c.mount.querySelector('[data-equipment-action="ammunition.reserves.1.actions.0"]'));assert(c.mount.querySelector('[data-equipment-action="ammunition.reserves.1.actions.1"]'));assert.equal(c.mount.querySelector('[data-equipment-action="ammunition.reserves.0.actions.0"]'),null);
+  assert.deepEqual(plain(data),before);assert.equal(c.requests.length,0);assert.equal(c.calls.length,0);
+  c.api=async(...args)=>{c.requests.push(plain(args));return quote({actions:[]});};c.mount.querySelector('[data-equipment-action="ammunition.reserves.1.actions.0"]').onclick();await tick();assert.deepEqual(c.requests[0][1].command,ammunitionReserve().command);assert.equal(c.calls.length,0);
+});
+
+test('reserve target and Boolean automation edits invalidate captured quotes before exact confirmation',async()=>{
+  const c=fixture(),data=snapshot({ammunition:ammunition({reserves:ammunitionReserves()})});loaded(c,data);c.equipmentSelectTab('ammunition');c.eq.draft.name='Local vehicle draft';
+  const reserveQuote=command=>quote({detail:'Only the reviewed reserve policy will be saved.',costs:[{label:'Daily funding ceiling',amount_bn:.000125,period:'Maximum per day'}],metrics:[],requirements:['Replenishment uses available funding after fleet servicing.'],timing:[{label:'First review',value:'Next simulation day'}],service_effects:service({title:'Reserve policy after confirmation',metrics:[{label:'Automatic replenishment',value:command.automatic?'Enabled':'Disabled'}],roles:[],actions:[]}),actions:[{label:'Confirm reserve plan',command}]});
+  c.api=async(...args)=>{c.requests.push(plain(args));return reserveQuote(plain(args[1].command));};c.mount.querySelector('[data-equipment-action="ammunition.reserves.1.actions.0"]').onclick();await tick();
+  assert.equal(c.requests.at(-1)[1].command.automatic,false);assert.match(c.mount.innerHTML,/Reserve policy after confirmation/);assert.match(c.mount.innerHTML,/Next simulation day/);assert.match(c.mount.innerHTML,/Replenishment uses available funding after fleet servicing/);
+  const captured=c.mount.querySelector('[data-equipment-intent="0"]');let resolve;c.api=(...args)=>{c.requests.push(plain(args));return new Promise(r=>resolve=r);};
+  let automatic=c.mount.querySelector('[data-equipment-order-input="automatic"]');automatic.value='true';automatic.onchange();assert.equal(c.requests.at(-1)[1].command.automatic,true);assert.equal(await captured.onclick(),false);assert.equal(c.calls.length,0);
+  resolve(reserveQuote(plain(c.requests.at(-1)[1].command)));await tick();assert.equal(await captured.onclick(),false);
+  automatic=c.mount.querySelector('[data-equipment-order-input="automatic"]');automatic.value='false';automatic.onchange();assert.equal(c.requests.at(-1)[1].command.automatic,false);resolve(reserveQuote(plain(c.requests.at(-1)[1].command)));await tick();
+  const target=c.mount.querySelector('[data-equipment-order-input="target_rounds"]');target.value='7200';target.oninput();assert.equal(c.requests.at(-1)[1].command.target_rounds,7200);assert.equal(await c.equipmentConfirm(0),false);
+  const reviewed={...plain(c.requests.at(-1)[1].command),quote_token:'reviewed-reserve'};resolve(reserveQuote(reviewed));await tick();assert.equal(await captured.onclick(),false);
+  c.api=async path=>path.startsWith('/api/equipment?')?data:preview();assert.equal(await c.mount.querySelector('[data-equipment-intent="0"]').onclick(),true);assert.deepEqual(c.calls,[reviewed]);assert.equal(c.eq.draft.name,'Local vehicle draft');await tick();
+});
+
+test('reserve removal requires its own fresh quote and stale reserve cards cannot send commands',async()=>{
+  const c=fixture(),data=snapshot({ammunition:ammunition({reserves:ammunitionReserves()})});loaded(c,data);c.equipmentSelectTab('ammunition');const clear={kind:'equipment_ammo_reserve_clear',family:'cannon'};
+  c.api=async(...args)=>{c.requests.push(plain(args));return quote({detail:'Remove the reserve policy.',actions:[{label:'Confirm removal',command:clear}],service_effects:service({title:'After removing this plan',metrics:[{label:'Reserve policy',value:'Removed'}],roles:[],actions:[]})});};
+  const button=c.mount.querySelector('[data-equipment-action="ammunition.reserves.1.actions.1"]');button.onclick();await tick();assert.deepEqual(c.requests[0][1].command,clear);assert.equal(c.calls.length,0);assert.match(c.mount.innerHTML,/After removing this plan/);
+  const captured=c.mount.querySelector('[data-equipment-intent="0"]');c.eq.stale=true;assert.equal(await captured.onclick(),false);assert.equal(button.onclick(),false);assert.equal(c.calls.length,0);
+  loaded(c,data);c.equipmentRender();c.mount.querySelector('[data-equipment-action="ammunition.reserves.1.actions.1"]').onclick();await tick();c.api=async path=>path.startsWith('/api/equipment?')?data:preview();assert.equal(await c.equipmentConfirm(0),true);assert.deepEqual(c.calls,[clear]);await tick();
+});
+
+test('reserve bridge distinguishes manual, automatic and removal outcomes and returns to ammunition only on success',async()=>{
+  const reserve=ammunitionReserve().command,cases=[[reserve,/target saved for manual replenishment/],[{...reserve,automatic:true},/plan saved with automatic replenishment enabled/],[{kind:'equipment_ammo_reserve_clear',family:'cannon'},/reserve plan removed/]];
+  for(const [command,message] of cases){const c=shellFixture();loaded(c,snapshot({ammunition:ammunition()}));c.room.hidden=false;c.eq.draft.name='Unsaved carrier';c.eq.tab='production';c.queued=[{kind:'tax',value:20}];c.api=async(...args)=>{c.requests.push(plain(args));return {session_id:'one',player:'USA'};};c.adopt=async state=>{c.S=state;};const result=await c.equipmentCommand(command);assert.deepEqual(c.requests,[['/api/command',{commands:[command]}]]);assert.match(result.message,message);assert.equal(c.eq.tab,'ammunition');assert.equal(c.eq.draft.name,'Unsaved carrier');assert.deepEqual(c.queued,[{kind:'tax',value:20}]);}
+  const c=shellFixture();loaded(c);c.room.hidden=false;c.eq.tab='production';c.api=async()=>({errors:['The selected site is unavailable.']});await assert.rejects(c.equipmentCommand(reserve),/selected site is unavailable/);assert.equal(c.eq.tab,'production');assert.equal(c.eq.message,'');
+});
+
+function supplyPolicyAction(){return action({label:'Review material purchasing policy',command:{kind:'equipment_supply_policy',automatic:false,horizon_days:30,spending_cap_mn:1,cash_floor_mn:0,review_interval_days:7},inputs:[
+  {key:'automatic',label:'Automatic purchasing',type:'select',value:false,options:[{value:false,label:'Disabled'},{value:true,label:'Enabled'}]},
+  {key:'horizon_days',label:'Supply horizon',type:'select',value:30,options:[{value:30,label:'30 days'},{value:90,label:'90 days'},{value:365,label:'365 days'}]},
+  {key:'spending_cap_mn',label:'Spending cap per review',type:'number',value:1,min:0,unit:'$m'},
+  {key:'cash_floor_mn',label:'Retained cash floor',type:'number',value:0,min:0,unit:'$m'},
+  {key:'review_interval_days',label:'Review interval',type:'select',value:7,options:[{value:1,label:'Daily'},{value:7,label:'Every 7 days'},{value:30,label:'Every 30 days'}]},
+]});}
+function supplyAutomation(extra={}){return {overview:service({title:'Automatic military material purchasing',status:'Disabled',detail:'Review the purchasing limits before authorizing future purchases.',metrics:[{label:'Next policy review',value:'18 Feb 1990'}],roles:[],actions:[supplyPolicyAction(),{label:'Clear material purchasing policy',command:{kind:'equipment_supply_policy_clear'},requires_preview:true}]}),reviews:Array.from({length:6},(_,index)=>({id:`supply-review:${6-index}`,name:`Policy receipt ${6-index}`,status:index===1?'Deferred':'Purchased',detail:index===1?'Retained cash is at its chosen floor.':'Paid shipments are moving toward the national warehouse.',metrics:[{label:'Quoted deficit',value:1337+index,unit:'t'}],costs:[{label:'Recorded spending',amount_bn:.000125,period:'This review'}],receipt_label:`${11-index} Feb 1990`,actions:[{label:'Review shipment record',navigate:{action:'resources',commodity:'iron'}}]})),...extra};}
+function supplyPolicyQuote(command,extra={}){return quote({detail:'Save only the reviewed material purchasing policy.',metrics:[{label:'Future automatic reviews',value:command.automatic?'Enabled':'Disabled'}],costs:[{label:'Saved spending cap',amount_bn:.000375,period:'Per review'}],timing:[{label:'First eligible review',value:'12 Feb 1990'}],requirements:['Purchased materials must arrive before production can consume them.'],service_effects:service({title:'Material supply policy after confirmation',metrics:[{label:'Retained cash floor',value:'$2.25m'}],roles:[],actions:[]}),actions:[{label:command.kind==='equipment_supply_policy_clear'?'Confirm policy removal':'Confirm purchasing policy',command}],...extra});}
+
+test('material purchasing policy precedes manual purchases and shows three recent receipts with preserved history paths',()=>{
+  const c=fixture(),data=snapshot({supply_automation:supplyAutomation(),replenishment:service({title:'Manual material purchase',actions:[]})}),before=plain(data);loaded(c,data);c.equipmentSelectTab('production');
+  const html=c.mount.innerHTML;assert(html.indexOf('Automatic military material purchasing')<html.indexOf('Manual material purchase'));assert(html.indexOf('Recent purchasing reviews')<html.indexOf('Manual material purchase'));
+  const history=c.mount.querySelector('details[data-equipment-detail="supply-automation-history"]');assert(history);assert.equal(history.open,false);assert.match(html,/Show 3 earlier purchasing reviews/);
+  const beforeHistory=html.slice(0,html.indexOf('data-equipment-detail="supply-automation-history"'));for(const number of [6,5,4])assert(beforeHistory.includes(`Policy receipt ${number}`));assert(!beforeHistory.includes('Policy receipt 3'));assert.match(html,/Retained cash is at its chosen floor/);assert.match(html,/1,337/);assert.match(html,/\$125k/);
+  assert(c.mount.querySelector('[data-equipment-action="supply_automation.overview.actions.0"]'));assert(c.mount.querySelector('[data-equipment-action="supply_automation.reviews.4.actions.0"]'));assert.deepEqual(plain(data),before);assert.equal(c.requests.length,0);assert.equal(c.calls.length,0);
+  history.open=true;history.ontoggle();c.equipmentRender();assert.equal(c.mount.querySelector('details[data-equipment-detail="supply-automation-history"]').open,true);c.mount.querySelector('[data-equipment-action="supply_automation.reviews.4.actions.0"]').onclick();assert.deepEqual(c.calls,[{action:'resources',commodity:'iron'}]);assert.equal(c.requests.length,0);
+});
+
+test('optional material purchasing data keeps old payloads usable, escapes receipt text and avoids duplicated ammunition history',()=>{
+  const c=fixture();loaded(c);c.equipmentSelectTab('production');assert.doesNotMatch(c.mount.innerHTML,/Recent purchasing reviews/);assert.match(c.mount.innerHTML,/Build the model you approved/);
+  loaded(c,snapshot({supply_automation:supplyAutomation({reviews:[]})}));c.equipmentRender();assert.match(c.mount.innerHTML,/No purchasing reviews recorded yet/);assert.equal(c.mount.querySelector('details[data-equipment-detail="supply-automation-history"]'),null);
+  const unsafe='"><img src=x onerror=alert(1)>',automation=supplyAutomation({overview:service({title:unsafe,detail:unsafe,roles:[],actions:[]}),reviews:[{id:unsafe,name:unsafe,status:unsafe,detail:unsafe,receipt_label:unsafe,metrics:[{label:unsafe,value:unsafe}],actions:[{label:unsafe,navigate:{action:'resources',commodity:'iron'}}]}]});
+  loaded(c,snapshot({supply_automation:automation,ammunition:ammunition({overview:service({title:'Ammunition supply',roles:[],actions:[{label:'Review material purchasing',navigate:{action:'equipment',tab:'production'}}]})})}));c.equipmentRender();assert.doesNotMatch(c.mount.innerHTML,/<img src=x/);assert.match(c.mount.innerHTML,/&lt;img/);c.equipmentSelectTab('ammunition');assert.doesNotMatch(c.mount.innerHTML,/Recent purchasing reviews/);c.mount.querySelector('[data-equipment-action="ammunition.overview.actions.0"]').onclick();assert.deepEqual(c.calls,[{action:'equipment',tab:'production'}]);assert.equal(c.requests.length,0);
+});
+
+test('material purchasing authorization uses exact edited Boolean and numeric values only after a fresh quote',async()=>{
+  const c=fixture(),data=snapshot({supply_automation:supplyAutomation({reviews:[]})});loaded(c,data);c.equipmentSelectTab('production');c.eq.draft.name='Unfinished vehicle';
+  c.api=async(...args)=>{c.requests.push(plain(args));return supplyPolicyQuote(plain(args[1].command));};c.mount.querySelector('[data-equipment-action="supply_automation.overview.actions.0"]').onclick();await tick();assert.deepEqual(c.requests.at(-1)[1].command,supplyPolicyAction().command);assert.equal(c.calls.length,0);
+  const captured=c.mount.querySelector('[data-equipment-intent="0"]');let resolve;c.api=(...args)=>{c.requests.push(plain(args));return new Promise(r=>resolve=r);};const automatic=c.mount.querySelector('[data-equipment-order-input="automatic"]');automatic.value='true';automatic.onchange();assert.equal(c.requests.at(-1)[1].command.automatic,true);assert.equal(await captured.onclick(),false);assert.equal(await c.equipmentConfirm(0),false);resolve(supplyPolicyQuote(plain(c.requests.at(-1)[1].command)));await tick();
+  c.api=async(...args)=>{c.requests.push(plain(args));return supplyPolicyQuote(plain(args[1].command));};
+  for(const [key,value,event] of [['horizon_days','90','onchange'],['spending_cap_mn','.375','oninput'],['cash_floor_mn','2.25','oninput'],['review_interval_days','30','onchange']]){const input=c.mount.querySelector(`[data-equipment-order-input="${key}"]`);input.value=value;input[event]();assert.equal(await captured.onclick(),false);await tick();}
+  const expected={kind:'equipment_supply_policy',automatic:true,horizon_days:90,spending_cap_mn:.375,cash_floor_mn:2.25,review_interval_days:30};assert.deepEqual(c.requests.at(-1)[1].command,expected);assert.match(c.mount.innerHTML,/Material supply policy after confirmation/);assert.match(c.mount.innerHTML,/\$2.25m/);assert.match(c.mount.innerHTML,/12 Feb 1990/);assert.match(c.mount.innerHTML,/Purchased materials must arrive/);assert.equal(c.calls.length,0);
+  c.api=async path=>path.startsWith('/api/equipment?')?data:preview();assert.equal(await c.mount.querySelector('[data-equipment-intent="0"]').onclick(),true);assert.deepEqual(c.calls,[expected]);assert.equal(c.eq.draft.name,'Unfinished vehicle');await tick();
+});
+
+test('material purchasing reviews reject stale or pending confirmations and invalid authorization quotes',async()=>{
+  for(const invalidate of [c=>c.eq.stale=true,c=>c.eq.data=snapshot(),c=>c.COMMAND_CHANNEL.pending={},c=>c.advancing=true]){const c=fixture();loaded(c,snapshot({supply_automation:supplyAutomation()}));c.equipmentSelectTab('production');c.api=async(...args)=>supplyPolicyQuote(plain(args[1].command));const button=c.mount.querySelector('[data-equipment-action="supply_automation.overview.actions.0"]');button.onclick();await tick();const captured=c.mount.querySelector('[data-equipment-intent="0"]');invalidate(c);assert.equal(await captured.onclick(),false);assert.equal(button.onclick(),false);assert.equal(c.calls.length,0);}
+  const c=fixture();loaded(c,snapshot({supply_automation:supplyAutomation()}));c.equipmentSelectTab('production');c.api=async(...args)=>supplyPolicyQuote(plain(args[1].command),{valid:false,blockers:['The purchasing cash account is unavailable.']});c.mount.querySelector('[data-equipment-action="supply_automation.overview.actions.0"]').onclick();await tick();assert.match(c.mount.innerHTML,/purchasing cash account is unavailable/);assert.equal(await c.equipmentConfirm(0),false);assert.equal(c.calls.length,0);
+});
+
+test('clearing the material purchasing policy requires a fresh explicit review',async()=>{
+  const c=fixture(),data=snapshot({supply_automation:supplyAutomation()});loaded(c,data);c.equipmentSelectTab('production');const command={kind:'equipment_supply_policy_clear'};c.api=async(...args)=>{c.requests.push(plain(args));return supplyPolicyQuote(plain(args[1].command),{detail:'Remove future purchasing authorization. Existing shipments remain.'});};
+  c.mount.querySelector('[data-equipment-action="supply_automation.overview.actions.1"]').onclick();await tick();assert.deepEqual(c.requests[0][1].command,command);assert.equal(c.calls.length,0);assert.match(c.mount.innerHTML,/Existing shipments remain/);const captured=c.mount.querySelector('[data-equipment-intent="0"]');c.mount.querySelector('[data-equipment-dismiss]').onclick();assert.equal(await captured.onclick(),false);assert.equal(c.calls.length,0);
+  c.mount.querySelector('[data-equipment-action="supply_automation.overview.actions.1"]').onclick();await tick();c.api=async path=>path.startsWith('/api/equipment?')?data:preview();assert.equal(await c.equipmentConfirm(0),true);assert.deepEqual(c.calls,[command]);await tick();
+});
+
+test('material purchasing bridge distinguishes disabled, enabled and cleared policies and returns to Production',async()=>{
+  const command=supplyPolicyAction().command,cases=[[command,/automatic purchases disabled/],[{...command,automatic:true},/Automatic material purchasing enabled/],[{kind:'equipment_supply_policy_clear'},/Material purchasing policy cleared/]];
+  for(const [order,message] of cases){const c=shellFixture();loaded(c,snapshot({supply_automation:supplyAutomation()}));c.room.hidden=false;c.eq.tab='ammunition';c.eq.draft.name='Local tank';c.queued=[{kind:'tax',value:20}];c.api=async(...args)=>{c.requests.push(plain(args));return {session_id:'one',player:'USA'};};c.adopt=async state=>{c.S=state;};const result=await c.equipmentCommand(order);assert.deepEqual(c.requests,[['/api/command',{commands:[order]}]]);assert.match(result.message,message);assert.equal(c.eq.tab,'production');assert.equal(c.eq.draft.name,'Local tank');assert.deepEqual(c.queued,[{kind:'tax',value:20}]);}
+  const c=shellFixture();loaded(c);c.room.hidden=false;c.eq.tab='ammunition';c.api=async()=>({errors:['Cash floor must be nonnegative.']});await assert.rejects(c.equipmentCommand(command),/Cash floor must be nonnegative/);assert.equal(c.eq.tab,'ammunition');
 });
