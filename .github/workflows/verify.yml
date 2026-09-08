@@ -21,7 +21,10 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: tools/ui/package-lock.json
-      - run: cargo test --locked --release --workspace --no-fail-fast
+      # Keep the absolute timing gate out of the concurrent simulation suite.
+      # The same test and 0.15 ms limit run below, alone on each runner.
+      - run: cargo test --locked --release --workspace --no-fail-fast -- --skip tests::the_resource_pass_stays_under_budget
+      - run: cargo test --locked --release -p spheres-sim --lib tests::the_resource_pass_stays_under_budget -- --exact --nocapture --test-threads=1
       - run: cargo test --locked --release -p spheres-sim --example campaign_report
       - run: node tools/ui/run-unit.cjs
       - run: cargo build --locked --release -p spheres-web
