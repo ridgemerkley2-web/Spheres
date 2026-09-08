@@ -17,7 +17,7 @@ document did not.
 | group | rows | ceiling | measured | over by |
 | --- | --- | --- | --- | --- |
 | ground platforms | 8 | 45,000 | 47,288 – 51,304 | 5% – 14% |
-| construction sites (near, complete, L5) | 13 | 12,000 | 30,164 – 39,302 | 151% – 227% |
+| construction sites (near, complete, L5) | 13 | 12,000 | 40,066 – 50,102 | 234% – 318% |
 | town blocks (close) | 4 | 150,000 | 151,008 – 214,044 | 0.7% – 43% |
 | town kit buildings (close, max size) | 5 | 12,000 | 12,028 – 24,252 | 0.2% – 102% |
 
@@ -25,6 +25,15 @@ The sites are the striking row and the reason is documented: that 12,000 was set
 when twelve of the thirteen kinds were placeholder massing on a shared stage
 kit. They have since had their art pass — the placeholder count went 12/13 to
 0/13 — so the ceiling is measuring something that no longer exists.
+
+**RE-MEASURED 2026-09-07, and the sites row moved again.** It read 30,164 –
+39,302 (151% – 227%) when this file was written; the second detail pass on the
+sites, in commit 2de343e, took it to 40,066 – 50,102 (234% – 318%). The
+generated `P0_BUDGETS.md` and `P0_MANIFEST.*` were stale by exactly that commit
+and have been regenerated alongside this. The other three rows are unchanged,
+and the count is still 30. **This invalidates the first option's number below**
+— 40,000 is now under the leanest site, not over the heaviest — so it is
+restated rather than left to mislead.
 
 ## What it actually costs, measured
 
@@ -134,10 +143,11 @@ and every town card printed a triangle count for a block it was not drawing.
 roadmap.
 ## The options
 
-1. **Revise the ceilings to match the art.** Sites to 40,000, platforms to
-   52,000, town kit to 25,000. Honest about what was built, and the measurements
-   above say nothing breaks. Leaves the town-block ceiling where it is, which
-   would keep 4 rows red until the blocks are trimmed.
+1. **Revise the ceilings to match the art.** Sites to 52,000 (was written as
+   40,000 before the re-measurement above; 40,000 would leave all thirteen still
+   red), platforms to 52,000, town kit to 25,000. Honest about what was built,
+   and the measurements above say nothing breaks. Leaves the town-block ceiling
+   where it is, which would keep 4 rows red until the blocks are trimmed.
 2. **Trim the art back to the ceilings.** This undoes the fidelity work you
    asked for, most of it on the sites. I would not recommend it.
 3. **Split the difference** — revise sites and platforms, hold the line on town

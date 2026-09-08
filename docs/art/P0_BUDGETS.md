@@ -78,19 +78,19 @@ does not fail. A budget with only a ceiling can only be `PASS` or `OVER`.
 | `ground.tank_light.baseline.v1` | heaviest | 47,776 | 45,000 | 2,776 (6.2%) |
 | `ground.tank_destroyer.baseline.v1` | baseline | 47,288 | 45,000 | 2,288 (5.1%) |
 | `ground.tank_destroyer.baseline.v1` | heaviest | 47,776 | 45,000 | 2,776 (6.2%) |
-| `site.infrastructure.v1` | near complete/L5/building | 30,756 | 12,000 | 18,756 (156.3%) |
-| `site.civilian_industry.v1` | near complete/L5/building | 39,302 | 12,000 | 27,302 (227.5%) |
-| `site.power_grid.v1` | near complete/L5/building | 38,552 | 12,000 | 26,552 (221.3%) |
-| `site.research_center.v1` | near complete/L5/building | 32,780 | 12,000 | 20,780 (173.2%) |
-| `site.arms_plant.v1` | near complete/L5/building | 35,636 | 12,000 | 23,636 (197.0%) |
-| `site.machinery_works.v1` | near complete/L5/building | 37,728 | 12,000 | 25,728 (214.4%) |
-| `site.generation.v1` | near complete/L5/building | 39,020 | 12,000 | 27,020 (225.2%) |
-| `site.processing_plant.v1` | near complete/L5/building | 34,770 | 12,000 | 22,770 (189.8%) |
-| `site.freight_terminal.v1` | near complete/L5/building | 36,430 | 12,000 | 24,430 (203.6%) |
-| `site.warehouse.v1` | near complete/L5/building | 34,006 | 12,000 | 22,006 (183.4%) |
-| `site.automation.v1` | near complete/L5/building | 33,316 | 12,000 | 21,316 (177.6%) |
-| `site.efficiency.v1` | near complete/L5/building | 33,056 | 12,000 | 21,056 (175.5%) |
-| `site.starter_industry.v1` | near complete/L5/building | 30,164 | 12,000 | 18,164 (151.4%) |
+| `site.infrastructure.v1` | near complete/L5/building | 41,206 | 12,000 | 29,206 (243.4%) |
+| `site.civilian_industry.v1` | near complete/L5/building | 49,828 | 12,000 | 37,828 (315.2%) |
+| `site.power_grid.v1` | near complete/L5/building | 48,886 | 12,000 | 36,886 (307.4%) |
+| `site.research_center.v1` | near complete/L5/building | 43,242 | 12,000 | 31,242 (260.3%) |
+| `site.arms_plant.v1` | near complete/L5/building | 46,646 | 12,000 | 34,646 (288.7%) |
+| `site.machinery_works.v1` | near complete/L5/building | 48,442 | 12,000 | 36,442 (303.7%) |
+| `site.generation.v1` | near complete/L5/building | 50,102 | 12,000 | 38,102 (317.5%) |
+| `site.processing_plant.v1` | near complete/L5/building | 45,688 | 12,000 | 33,688 (280.7%) |
+| `site.freight_terminal.v1` | near complete/L5/building | 47,428 | 12,000 | 35,428 (295.2%) |
+| `site.warehouse.v1` | near complete/L5/building | 45,264 | 12,000 | 33,264 (277.2%) |
+| `site.automation.v1` | near complete/L5/building | 43,578 | 12,000 | 31,578 (263.1%) |
+| `site.efficiency.v1` | near complete/L5/building | 43,306 | 12,000 | 31,306 (260.9%) |
+| `site.starter_industry.v1` | near complete/L5/building | 40,066 | 12,000 | 28,066 (233.9%) |
 | `town.temperate.mixed.v1` | close id 1997 | 199,331 | 150,000 | 49,331 (32.9%) |
 | `town.temperate.residential.v1` | close id 1994 | 214,044 | 150,000 | 64,044 (42.7%) |
 | `town.temperate.commercial.v1` | close id 1991 | 151,008 | 150,000 | 1,008 (0.7%) |
@@ -164,37 +164,37 @@ across that whole sweep, so `max` is the worst case the sim can ask for.
 
 | asset | near min | near max | near verdict | far min | far max | far verdict | worst-case near bytes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| `site.infrastructure.v1` | 8,846 | 30,756 | **OVER by 18,756 (156.3%)** | 244 | 756 | PASS | 3,321,648 |
-| `site.civilian_industry.v1` | 8,066 | 39,302 | **OVER by 27,302 (227.5%)** | 180 | 594 | PASS | 4,244,616 |
-| `site.power_grid.v1` | 9,390 | 38,552 | **OVER by 26,552 (221.3%)** | 276 | 712 | PASS | 4,163,616 |
-| `site.research_center.v1` | 8,066 | 32,780 | **OVER by 20,780 (173.2%)** | 180 | 580 | PASS | 3,540,240 |
-| `site.arms_plant.v1` | 8,202 | 35,636 | **OVER by 23,636 (197.0%)** | 180 | 470 | PASS | 3,848,688 |
-| `site.machinery_works.v1` | 9,366 | 37,728 | **OVER by 25,728 (214.4%)** | 204 | 630 | PASS | 4,074,624 |
-| `site.generation.v1` | 8,394 | 39,020 | **OVER by 27,020 (225.2%)** | 196 | 696 | PASS | 4,214,160 |
-| `site.processing_plant.v1` | 8,746 | 34,770 | **OVER by 22,770 (189.8%)** | 220 | 688 | PASS | 3,755,160 |
-| `site.freight_terminal.v1` | 8,802 | 36,430 | **OVER by 24,430 (203.6%)** | 198 | 722 | PASS | 3,934,440 |
-| `site.warehouse.v1` | 8,560 | 34,006 | **OVER by 22,006 (183.4%)** | 188 | 614 | PASS | 3,672,648 |
-| `site.automation.v1` | 9,044 | 33,316 | **OVER by 21,316 (177.6%)** | 220 | 658 | PASS | 3,598,128 |
-| `site.efficiency.v1` | 8,882 | 33,056 | **OVER by 21,056 (175.5%)** | 208 | 730 | PASS | 3,570,048 |
-| `site.starter_industry.v1` | 7,250 | 30,164 | **OVER by 18,164 (151.4%)** | 164 | 542 | PASS | 3,257,712 |
+| `site.infrastructure.v1` | 13,076 | 41,206 | **OVER by 29,206 (243.4%)** | 244 | 756 | PASS | 4,450,248 |
+| `site.civilian_industry.v1` | 12,296 | 49,828 | **OVER by 37,828 (315.2%)** | 180 | 594 | PASS | 5,381,424 |
+| `site.power_grid.v1` | 13,620 | 48,886 | **OVER by 36,886 (307.4%)** | 276 | 712 | PASS | 5,279,688 |
+| `site.research_center.v1` | 12,296 | 43,242 | **OVER by 31,242 (260.3%)** | 180 | 580 | PASS | 4,670,136 |
+| `site.arms_plant.v1` | 12,432 | 46,646 | **OVER by 34,646 (288.7%)** | 180 | 470 | PASS | 5,037,768 |
+| `site.machinery_works.v1` | 13,596 | 48,442 | **OVER by 36,442 (303.7%)** | 204 | 630 | PASS | 5,231,736 |
+| `site.generation.v1` | 12,680 | 50,102 | **OVER by 38,102 (317.5%)** | 196 | 696 | PASS | 5,411,016 |
+| `site.processing_plant.v1` | 13,032 | 45,688 | **OVER by 33,688 (280.7%)** | 220 | 688 | PASS | 4,934,304 |
+| `site.freight_terminal.v1` | 13,144 | 47,428 | **OVER by 35,428 (295.2%)** | 198 | 722 | PASS | 5,122,224 |
+| `site.warehouse.v1` | 12,846 | 45,264 | **OVER by 33,264 (277.2%)** | 188 | 614 | PASS | 4,888,512 |
+| `site.automation.v1` | 13,274 | 43,578 | **OVER by 31,578 (263.1%)** | 220 | 658 | PASS | 4,706,424 |
+| `site.efficiency.v1` | 13,112 | 43,306 | **OVER by 31,306 (260.9%)** | 208 | 730 | PASS | 4,677,048 |
+| `site.starter_industry.v1` | 11,312 | 40,066 | **OVER by 28,066 (233.9%)** | 164 | 542 | PASS | 4,327,128 |
 
 Which configuration is the worst case, and how many selectable parts it carries:
 
 | asset | worst near | parts | worst far | parts |
 | --- | --- | --- | --- | --- |
-| `site.infrastructure.v1` | complete/L5/building | 48 | complete/L5/building | 17 |
-| `site.civilian_industry.v1` | complete/L5/building | 55 | complete/L5/building | 16 |
-| `site.power_grid.v1` | complete/L5/building | 47 | complete/L5/building | 17 |
-| `site.research_center.v1` | complete/L5/building | 47 | complete/L5/building | 14 |
-| `site.arms_plant.v1` | complete/L5/building | 46 | complete/L5/building | 11 |
-| `site.machinery_works.v1` | complete/L5/building | 52 | complete/L5/building | 16 |
-| `site.generation.v1` | complete/L5/building | 52 | complete/L5/building | 17 |
-| `site.processing_plant.v1` | complete/L5/building | 48 | complete/L5/building | 18 |
-| `site.freight_terminal.v1` | complete/L5/building | 46 | complete/L5/building | 15 |
-| `site.warehouse.v1` | complete/L5/building | 45 | complete/L5/building | 13 |
-| `site.automation.v1` | complete/L5/building | 47 | complete/L5/building | 15 |
-| `site.efficiency.v1` | complete/L5/building | 50 | complete/L5/building | 19 |
-| `site.starter_industry.v1` | complete/L5/building | 45 | complete/L5/building | 14 |
+| `site.infrastructure.v1` | complete/L5/building | 55 | complete/L5/building | 17 |
+| `site.civilian_industry.v1` | complete/L5/building | 62 | complete/L5/building | 16 |
+| `site.power_grid.v1` | complete/L5/building | 54 | complete/L5/building | 17 |
+| `site.research_center.v1` | complete/L5/building | 54 | complete/L5/building | 14 |
+| `site.arms_plant.v1` | complete/L5/building | 53 | complete/L5/building | 11 |
+| `site.machinery_works.v1` | complete/L5/building | 59 | complete/L5/building | 16 |
+| `site.generation.v1` | complete/L5/building | 59 | complete/L5/building | 17 |
+| `site.processing_plant.v1` | complete/L5/building | 55 | complete/L5/building | 18 |
+| `site.freight_terminal.v1` | complete/L5/building | 53 | complete/L5/building | 15 |
+| `site.warehouse.v1` | complete/L5/building | 52 | complete/L5/building | 13 |
+| `site.automation.v1` | complete/L5/building | 54 | complete/L5/building | 15 |
+| `site.efficiency.v1` | complete/L5/building | 57 | complete/L5/building | 19 |
+| `site.starter_industry.v1` | complete/L5/building | 52 | complete/L5/building | 14 |
 
 ## Town blocks
 
@@ -270,9 +270,9 @@ rebuild it.
 | set | assets | triangles | upload bytes |
 | --- | --- | --- | --- |
 | Ground vehicles, heaviest specification | 9 | 328,796 | 35,509,968 |
-| Construction sites, worst case near | 13 | 455,516 | 49,195,728 |
+| Construction sites, worst case near | 13 | 593,682 | 64,117,656 |
 | Town blocks, worst case close | 5 | 817,992 | 88,343,136 |
-| **Everything, close detail** | **27** | **1,602,304** | **173,048,832** (165.03 MiB) |
+| **Everything, close detail** | **27** | **1,740,470** | **187,970,760** (179.26 MiB) |
 | The same set at map LOD, where one exists | 27 | 355,734 | 38,419,272 (36.64 MiB) |
 
 The map row still carries the vehicles at their full LOD0 count, because they have
@@ -296,12 +296,12 @@ every asset above, and it is the number that justifies the procedural decision.
 | file | bytes | |
 | --- | --- | --- |
 | `spheres-web/ui/equipment-mesh.js` | 120,373 | 117.6 KiB |
-| `spheres-web/ui/site-mesh.js` | 300,602 | 293.6 KiB |
+| `spheres-web/ui/site-mesh.js` | 343,878 | 335.8 KiB |
 | `spheres-web/ui/town-mesh.js` | 168,970 | 165.0 KiB |
-| **total** | **589,945** | **576.1 KiB** |
+| **total** | **633,221** | **618.4 KiB** |
 
-589,945 bytes of source produce 1,602,304 triangles of
-geometry — 293x its own weight in vertex data. That ratio is not fixed
+633,221 bytes of source produce 1,740,470 triangles of
+geometry — 297x its own weight in vertex data. That ratio is not fixed
 at authoring time either: it grows with every extra seed, stage, level and
 district asked of the same source.
 
@@ -310,7 +310,7 @@ totalling 37,187,352 bytes (35.46 MiB). They are the
 portable deliverable roadmap section 4 asks for, not a runtime download — the game
 never fetches them — and they are the comparison that settles the argument:
 10 ground vehicles as binary assets weigh
-63.0x the entire generator source
+58.7x the entire generator source
 that builds every vehicle, every site at every stage and every town block.
 
 ## Method

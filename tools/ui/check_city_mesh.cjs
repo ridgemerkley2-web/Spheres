@@ -21,16 +21,26 @@
 // differ every time, that not one triangle of massing stand over a cell the
 // mask refused, and that the description say which of the two it was.
 //
+// THE DETAIL BARS. A built cell carries one to four masses at close detail
+// and the module says so in `lots`; the road hierarchy is three widths and the
+// local grid is actually drawn; heights step by district and spike in
+// outliers; parks, plazas and shores have edges. `barLots`, `barHierarchy` and
+// `barHeights` hold each of those to a number rather than to a look, because
+// the look is exactly what a regression would keep while the structure quietly
+// went back to one box per tile.
+//
 // AND IT WATCHES ITSELF GO RED. Iron rule 5: a test that cannot fail is worse
-// than no test. `SABOTAGE` at the foot of this file is the ledger — twelve
+// than no test. `SABOTAGE` at the foot of this file is the ledger — twenty-one
 // deliberate defects, one for every bar in the sweep, each patched into the
 // source as a one-line edit, each run through the same sweep, and each
 // required to fail ON ITS NAMED BAR rather than merely somewhere, so a
-// sabotage cannot start passing for the wrong reason. Two of them are defects
-// that were actually found and fixed while the module was being written and
-// are kept here as the regressions they are: a cell-size ceiling that silently
-// clipped a metropolis into a full square with no boundary at all, and an
-// arterial grid so dense at coarse cells that half the city was road.
+// sabotage cannot start passing for the wrong reason. Three of them are
+// defects that were actually found and fixed while the module was being
+// written and are kept here as the regressions they are: a cell-size ceiling
+// that silently clipped a metropolis into a full square with no boundary at
+// all, an arterial grid so dense at coarse cells that half the city was road,
+// and a capital's plaza decided AFTER its roads, which paved all nine cells of
+// it and left every capital with a landmark standing in a crossroads.
 //
 // The ledger is also why two bars are ordered the way they are rather than in
 // the order they were written. `barLod` asks about the grid before the cost
@@ -81,13 +91,25 @@ const byName = (n) => CITIES.find((c) => c.name === n);
 // (close 40,000-120,000 for big cities) could no longer fire in either
 // direction, so it was re-measured rather than left decorative.
 //
-// Measured over all 1,249 real records at the new span: close 1,984 (Andorra)
-// to 34,876 (Vancouver), median 12,638, p99 32,754; cities over 2M run
-// 25,994 to 34,876; map 392 to 3,988 (San Francisco), median 760.
-// The ceilings carry ~15% and ~25% headroom over the worst real case.
-const CLOSE_CEILING = 40000, MAP_CEILING = 5000;
+// Measured over all 1,249 real records at that span with one mass a cell:
+// close 1,984 (Andorra) to 34,876 (Vancouver), median 12,638, p99 32,754;
+// cities over 2M ran 25,994 to 34,876; map 392 to 3,988 (San Francisco),
+// median 760. The ceiling was 40,000.
+//
+// RE-DERIVED AGAIN 2026-09-07 when a built cell went from one mass to one to
+// four, with a pad under them and edges on parks and shores. That roughly
+// doubled the close cost of every city and the 40,000 bar could no longer
+// pass any metropolis, so it was re-measured rather than raised on a guess:
+// close 2,868 (Melekeok) to 69,036 (Sao Paulo), median 23,992, p99 62,790;
+// cities over 2M run 48,188 (Abidjan) to 69,036; map is unchanged because the
+// detail is close-only. 80,000 is 16% over the worst real case and 44,000 is
+// 9% under the leanest metropolis, so both halves of the band can still fail.
+// At the map's span of 181 the same records reach 302,396 (Lagos); that is not
+// graded here because the card's numbers must not move when the map asks for
+// more, and the map bounds its own cache.
+const CLOSE_CEILING = 80000, MAP_CEILING = 5000;
 const CLOSE_FLOOR = 250, MAP_FLOOR = 100;
-const BIG_POP = 2000000, BIG_MIN = 24000;
+const BIG_POP = 2000000, BIG_MIN = 44000;
 // What today's single representative town block costs, measured, and the reason
 // this kit exists: it must show an entire city for less than one block.
 const TOWN_BLOCK_CLOSE = 198462;
@@ -210,9 +232,19 @@ function barGeometry(mod, tag) {
     const p = mod.plan(rec, {});
     const m = mod.build(rec, {});
     const t = tag + rec.name + ": ";
+    // The masses a cell declares, asked once per cell. A cell may carry
+    // several now, so a wall's owner is found by footprint rather than
+    // assumed to be centred on the cell.
+    const lotCache = new Map();
+    const lotsAt = (gi, gj) => {
+      const key = gj * p.span + gi;
+      let l = lotCache.get(key);
+      if (!l) { l = mod.lots(p, gi, gj); lotCache.set(key, l); }
+      return l;
+    };
     // Same discipline as barContract: scan, remember the first offender, and
     // assert once at the end.
-    let walls = 0, roofs = 0, down = -1, inward = -1, offGrid = -1, offPlot = -1;
+    let walls = 0, roofs = 0, down = -1, inward = -1, offGrid = -1, offPlot = -1, orphan = -1;
     for (let i = 0; i < m.positions.length; i += 9) {
       const nx = m.normals[i], ny = m.normals[i + 1], nz = m.normals[i + 2];
       // NOTHING FACES DOWN. There are no undersides in this kit and no
@@ -223,18 +255,29 @@ function barGeometry(mod, tag) {
       walls += 1;
       const cx = (m.positions[i] + m.positions[i + 3] + m.positions[i + 6]) / 3;
       const cz = (m.positions[i + 2] + m.positions[i + 5] + m.positions[i + 8]) / 3;
-      // A WALL FACES OUT of the cell that owns it. The mass is inset inside
-      // its own cell, so the cell centre is always inside the box and the
-      // outward test is exact.
       const ci = Math.round(cx / p.cell), cj = Math.round(cz / p.cell);
-      if (inward < 0 && !(nx * (cx - ci * p.cell) + nz * (cz - cj * p.cell) > 0)) inward = i;
-      // And it stayed on its own cell: a mass that wandered would put its
-      // walls over a neighbour's ground.
+      // A mass stayed on its own cell: one that wandered would put its walls
+      // over a neighbour's ground.
       const gi = ci + p.half, gj = cj + p.half;
       if (gi < 0 || gi >= p.span || gj < 0 || gj >= p.span) { if (offGrid < 0) offGrid = i; continue; }
-      if (offPlot < 0 && p.cls[gj * p.span + gi] !== mod.classes.PLOT) offPlot = i;
+      if (p.cls[gj * p.span + gi] !== mod.classes.PLOT) { if (offPlot < 0) offPlot = i; continue; }
+      // A WALL STANDS ON A DECLARED FOOTPRINT: its centroid lies on the
+      // boundary of one of the boxes `lots` says the cell carries. Anything
+      // else is geometry the plan does not know about — which is also what a
+      // random footprint looks like from here.
+      let own = null;
+      for (const l of lotsAt(gi, gj)) {
+        if (cx >= l.x0 - 0.06 && cx <= l.x1 + 0.06 && cz >= l.z0 - 0.06 && cz <= l.z1 + 0.06) { own = l; break; }
+      }
+      if (!own) { if (orphan < 0) orphan = i; continue; }
+      // AND IT FACES OUT of that box. The tower's shaft and the landmark's
+      // stages are inset symmetrically, so the box centre is inside every
+      // stage and the outward test is exact for all of them.
+      const mx = (own.x0 + own.x1) / 2, mz = (own.z0 + own.z1) / 2;
+      if (inward < 0 && !(nx * (cx - mx) + nz * (cz - mz) > 0)) inward = i;
     }
     assert.equal(down, -1, t + "a triangle faces downwards");
+    assert.equal(orphan, -1, t + "a wall stands on no mass's footprint, at " + orphan);
     assert.equal(inward, -1, t + "a wall faces into the mass it belongs to");
     assert.equal(offGrid, -1, t + "a mass stands outside the grid");
     assert.equal(offPlot, -1, t + "a mass stands on a cell that is not a plot");
@@ -407,6 +450,26 @@ function barCharacter(mod, tag) {
   assert.equal(cap.layout, "radial", tag + "a capital is not laid out radially");
   assert.notEqual(plain.layout, "radial", tag + "the capital flag did not change the plan");
   assert.ok(cap.landmark && cap.tallest >= cap.peakHeight, tag + "the landmark is not the tallest thing");
+  // THE PLAZA EXISTS AT CLOSE DETAIL. It did not, once: decided after the
+  // roads, the cross and the two diagonals between them paved all nine cells
+  // and the landmark stood in a crossroads. Eight civic park cells round the
+  // landmark, and a civic precinct of single masses round those.
+  const cpl = mod.plan(CAPITAL, {});
+  let plaza = 0, precinct = 0, precinctLots = 0;
+  for (let j = 0; j < cpl.span; j += 1) {
+    for (let i = 0; i < cpl.span; i += 1) {
+      const idx = j * cpl.span + i;
+      if (!(cpl.flag[idx] & mod.flags.CIVIC)) continue;
+      if (cpl.cls[idx] === mod.classes.PARK) plaza += 1;
+      else if (cpl.cls[idx] === mod.classes.PLOT && !(cpl.flag[idx] & mod.flags.LANDMARK)) {
+        precinct += 1;
+        precinctLots += mod.lots(cpl, i, j).length;
+      }
+    }
+  }
+  assert.ok(plaza >= 8, tag + "a capital has no plaza: " + plaza + " civic cells of open ground");
+  assert.ok(precinct >= 4, tag + "a capital has no civic precinct: " + precinct + " civic masses");
+  assert.equal(precinctLots, precinct, tag + "the civic precinct is divided like the suburbs");
   // A big city has a tower cluster; a small one has neither towers nor height.
   const big = mod.build(byName("Mumbai"), {});
   assert.ok(big.cells.tower > 0 && big.parts.some((x) => x.kind === "tower"),
@@ -538,6 +601,309 @@ function barBudget(mod, tag) {
   assert.equal(mod.budget.ceiling.map, MAP_CEILING, tag + "the module's declared map ceiling moved");
 }
 
+/// A BUILT CELL CARRIES MORE THAN ONE MASS, the largest fronts the road, a
+/// town's cells and the map level stay single, and the layout is pure and
+/// deterministic. All of it read from `lots`, which is what `build` drew — the
+/// geometry bar above ties the two together wall by wall.
+function barLots(mod, tag) {
+  const p = mod.plan(CITY, {});
+  const m = mod.build(CITY, {});
+  assert.ok(p.cell >= mod.lot.minCell, tag + "the city fixture's cell is too small to divide");
+  const PLOT = mod.classes.PLOT, ROAD = mod.classes.ROAD;
+  const whole = mod.flags.TOWER | mod.flags.LANDMARK | mod.flags.CIVIC;
+  const area = (l) => (l.x1 - l.x0) * (l.z1 - l.z0);
+  let plots = 0, multi = 0, most = 0, fronted = 0, wrongSide = 0, notNearest = 0;
+  let outside = -1, overlap = -1, sideCount = 0, fronts = 0;
+  for (let j = 0; j < p.span; j += 1) {
+    for (let i = 0; i < p.span; i += 1) {
+      const idx = j * p.span + i;
+      if (p.cls[idx] !== PLOT) continue;
+      const lots = mod.lots(p, i, j);
+      plots += 1;
+      assert.ok(lots.length >= 1 && lots.length <= mod.lot.max, tag + "a cell carries " + lots.length + " masses");
+      if (lots.length > 1) multi += 1;
+      if (lots.length > most) most = lots.length;
+      const cx = (i - p.half) * p.cell, cz = (j - p.half) * p.cell;
+      for (let a = 0; a < lots.length; a += 1) {
+        const l = lots[a];
+        // Inside its own cell, and not on top of a sibling.
+        if (outside < 0 && !(l.x0 > cx - p.cell / 2 && l.x1 < cx + p.cell / 2
+          && l.z0 > cz - p.cell / 2 && l.z1 < cz + p.cell / 2)) outside = idx;
+        for (let b = a + 1; b < lots.length; b += 1) {
+          const o = lots[b];
+          const apart = l.x1 <= o.x0 || o.x1 <= l.x0 || l.z1 <= o.z0 || o.z1 <= l.z0;
+          if (overlap < 0 && !apart) overlap = idx;
+        }
+        if (l.front) fronts += 1;
+      }
+      if (lots.length < 2 || (p.flag[idx] & whole)) continue;
+      // THE LARGEST MASS FRONTS THE ROAD. Asked only of blocks with exactly
+      // one road beside them, where the answer is unambiguous, and asked of
+      // the geometry: the biggest footprint's centre is displaced toward the
+      // road from the cell centre, and no sibling's road-side edge is nearer.
+      const roads = [];
+      for (let s = 0; s < 4; s += 1) {
+        const ni = i + (s === 0 ? 1 : s === 2 ? -1 : 0), nj = j + (s === 1 ? 1 : s === 3 ? -1 : 0);
+        if (ni < 0 || nj < 0 || ni >= p.span || nj >= p.span) continue;
+        if (p.cls[nj * p.span + ni] === ROAD) roads.push(s);
+      }
+      if (roads.length !== 1) continue;
+      const side = roads[0];
+      sideCount += 1;
+      let big = lots[0];
+      for (const l of lots) if (area(l) > area(big)) big = l;
+      const dx = (big.x0 + big.x1) / 2 - cx, dz = (big.z0 + big.z1) / 2 - cz;
+      const toward = side === 0 ? dx : side === 1 ? dz : side === 2 ? -dx : -dz;
+      fronted += 1;
+      if (!(toward > 0)) wrongSide += 1;
+      const edge = (l) => (side === 0 ? l.x1 : side === 1 ? l.z1 : side === 2 ? -l.x0 : -l.z0);
+      for (const l of lots) if (l !== big && edge(l) > edge(big) + 1e-6) { notNearest += 1; break; }
+    }
+  }
+  assert.ok(multi > 0, tag + "a built cell never carries more than one mass");
+  assert.ok(multi / plots > 0.5, tag + "only " + multi + " of " + plots + " built cells carry more than one mass");
+  assert.ok(most >= 3, tag + "no cell carries three masses");
+  assert.equal(outside, -1, tag + "a mass leaves its cell, at " + outside);
+  assert.equal(overlap, -1, tag + "two masses on one cell overlap, at " + overlap);
+  assert.ok(sideCount > 40, tag + "only " + sideCount + " blocks have exactly one road beside them");
+  assert.equal(wrongSide, 0, tag + "the largest mass is not on the arterial side in " + wrongSide
+    + " of " + fronted + " blocks");
+  assert.equal(notNearest, 0, tag + "a smaller mass stands between the largest and the road in "
+    + notNearest + " of " + fronted + " blocks");
+  assert.ok(fronts > 0, tag + "no mass is marked as fronting its street");
+  assert.ok(m.masses > m.cells.plot * 1.4, tag + "the mesh reports " + m.masses + " masses on "
+    + m.cells.plot + " built cells, which is not two to four a block");
+  // A TOWN IS NOT DRAWN AS SHEDS: at 41 m a cell is one plot with its lane.
+  // Anadyr, ten thousand people, is the record that sits under the floor —
+  // the 24,000 fixture builds at 58 m and is legitimately divided in twos.
+  const town = byName("Anadyr");
+  const tp = mod.plan(town, {});
+  assert.ok(tp.cell < mod.lot.minCell, tag + "Anadyr's cell is not below the lot floor: " + tp.cell);
+  let sheds = 0;
+  for (let j = 0; j < tp.span; j += 1) {
+    for (let i = 0; i < tp.span; i += 1) {
+      if (tp.cls[j * tp.span + i] === PLOT && mod.lots(tp, i, j).length !== 1) sheds += 1;
+    }
+  }
+  assert.equal(sheds, 0, tag + "a town of ten thousand is drawn as sheds on " + sheds + " cells");
+  const tm = mod.build(town, {});
+  assert.equal(tm.masses, tm.cells.plot, tag + "a town's masses and built cells disagree");
+  // THE MAP LEVEL STAYS ONE MASS A CELL, which is what keeps it cheap.
+  const mm = mod.build(CITY, { lod: "map" });
+  assert.equal(mm.masses, mm.cells.plot, tag + "the map level divides its cells: " + mm.masses
+    + " masses on " + mm.cells.plot + " cells");
+  const mp = mod.plan(CITY, { lod: "map" });
+  for (let j = 0; j < mp.span; j += 1) {
+    for (let i = 0; i < mp.span; i += 1) {
+      if (mp.cls[j * mp.span + i] === PLOT) assert.equal(mod.lots(mp, i, j).length, 1, tag + "the map level divides a cell");
+    }
+  }
+  // PURE AND DETERMINISTIC: the same cell answers the same twice, and asking
+  // changes nothing the mesh is built from.
+  const before = digest(m);
+  let probe = null;
+  for (let j = 0; j < p.span && !probe; j += 1) {
+    for (let i = 0; i < p.span; i += 1) {
+      if (p.cls[j * p.span + i] === PLOT && mod.lots(p, i, j).length > 1) { probe = [i, j]; break; }
+    }
+  }
+  assert.ok(probe, tag + "no divided cell to probe");
+  assert.equal(JSON.stringify(mod.lots(p, probe[0], probe[1])), JSON.stringify(mod.lots(p, probe[0], probe[1])),
+    tag + "the sub-cell layout is not deterministic");
+  assert.equal(digest(mod.build(CITY, {})), before, tag + "asking for the layout changed the mesh");
+}
+
+/// THE ROAD HIERARCHY IS THREE WIDTHS and the local grid is actually drawn;
+/// parks have an edge; a coast has a quay. Each held to a triangle count the
+/// plan predicts exactly, so a pass that quietly stops drawing its part is a
+/// number, not a look.
+function barHierarchy(mod, tag) {
+  const m = mod.build(CITY, {});
+  const p = mod.plan(CITY, {});
+  const { PLOT, ROAD, OPEN, PARK, WATER, OUT } = mod.classes;
+  const s = m.streets;
+  assert.ok(s && s.arterial > s.local * 2 && s.local > s.lane, tag
+    + "the road hierarchy is not three widths in order: " + JSON.stringify(s));
+  assert.equal(s.arterial, p.cell, tag + "an arterial is not a whole cell wide");
+  const at = (i, j) => (i < 0 || j < 0 || i >= p.span || j >= p.span ? OUT : p.cls[j * p.span + i]);
+  const sides = (i, j) => [[i + 1, j], [i, j + 1], [i - 1, j], [i, j - 1]];
+  // THE LOCAL GRID: a pad on every built cell and on every open cell with a
+  // built or road neighbour, two triangles each over the cell's own two.
+  let ringedOpen = 0, parkSides = 0;
+  for (let j = 0; j < p.span; j += 1) {
+    for (let i = 0; i < p.span; i += 1) {
+      const c = p.cls[j * p.span + i];
+      if (c === OPEN && sides(i, j).some(([a, b]) => at(a, b) === PLOT || at(a, b) === ROAD)) ringedOpen += 1;
+      if (c === PARK) {
+        const civic = (p.flag[j * p.span + i] & mod.flags.CIVIC) !== 0;
+        for (const [a, b] of sides(i, j)) {
+          const same = at(a, b) === PARK && ((p.flag[b * p.span + a] & mod.flags.CIVIC) !== 0) === civic;
+          if (!same) parkSides += 1;
+        }
+      }
+    }
+  }
+  const ground = m.parts.find((x) => x.kind === "ground");
+  const cells = p.counts.road + p.counts.plot + p.counts.open;
+  const expect = 2 * cells + 2 * (p.counts.plot + ringedOpen);
+  assert.ok(ground, tag + "no ground part");
+  assert.equal(ground.count / 3, expect, tag + "the local street grid is not drawn: ground is "
+    + ground.count / 3 + " triangles where " + expect + " carries a pad on every block");
+  const mm = mod.build(CITY, { lod: "map" }), mp = mod.plan(CITY, { lod: "map" });
+  const mg = mm.parts.find((x) => x.kind === "ground");
+  assert.equal(mg.count / 3, 2 * (mp.counts.road + mp.counts.plot + mp.counts.open),
+    tag + "the map level pays for the local street grid");
+  // PARKS HAVE AN EDGE: two triangles for every side that faces something
+  // that is not the same kind of park.
+  const park = m.parts.find((x) => x.kind === "park");
+  assert.ok(park && parkSides > 0, tag + "no parks to test");
+  assert.equal(park.count / 3, 2 * p.counts.park + 2 * parkSides, tag + "a park has no edge: the park part is "
+    + park.count / 3 + " triangles where " + (2 * p.counts.park + 2 * parkSides) + " outlines every park");
+  // THE WATERFRONT: a quay along every side where land meets water, on the
+  // land, and nowhere else.
+  const c = mod.build(COAST, { land: westSea }), cp = mod.plan(COAST, { land: westSea });
+  const cat = (i, j) => (i < 0 || j < 0 || i >= cp.span || j >= cp.span ? OUT : cp.cls[j * cp.span + i]);
+  let shore = 0;
+  for (let j = 0; j < cp.span; j += 1) {
+    for (let i = 0; i < cp.span; i += 1) {
+      const k = cp.cls[j * cp.span + i];
+      if (k === OUT || k === WATER) continue;
+      for (const [a, b] of sides(i, j)) if (cat(a, b) === WATER) shore += 1;
+    }
+  }
+  const quay = c.parts.find((x) => x.kind === "quay");
+  assert.ok(shore > 0, tag + "the coastal fixture has no shore");
+  assert.ok(quay, tag + "a coastal city has no quay");
+  assert.equal(quay.count / 3, 2 * shore, tag + "the quay does not run the length of the shore: "
+    + quay.count / 3 + " triangles for " + shore + " shore sides");
+  let wet = -1, inland = -1;
+  for (let v = quay.first; v < quay.first + quay.count; v += 3) {
+    const i = v * 3;
+    const cx = (c.positions[i] + c.positions[i + 3] + c.positions[i + 6]) / 3;
+    const cz = (c.positions[i + 2] + c.positions[i + 5] + c.positions[i + 8]) / 3;
+    const gi = Math.round(cx / cp.cell) + cp.half, gj = Math.round(cz / cp.cell) + cp.half;
+    const k = cat(gi, gj);
+    if (wet < 0 && (k === WATER || k === OUT)) wet = i;
+    if (inland < 0 && !sides(gi, gj).some(([a, b]) => cat(a, b) === WATER)) inland = i;
+  }
+  assert.equal(wet, -1, tag + "a quay stands in the water");
+  assert.equal(inland, -1, tag + "a quay stands on a cell with no water beside it");
+  assert.ok(!m.parts.some((x) => x.kind === "quay"), tag + "an inland city has a quay");
+  assert.ok(!mod.build(COAST, { land: westSea, lod: "map" }).parts.some((x) => x.kind === "quay"),
+    tag + "the map level pays for quays");
+  // Everything drawn over the ground is lifted a kerb and the kerb is small:
+  // the pad must not read as a plinth.
+  assert.ok(mod.kerb > 0 && mod.kerb <= 2, tag + "the kerb is " + mod.kerb + " m");
+}
+
+/// HEIGHT STEPS RATHER THAN SLOPES. The core varies more than the edge, a few
+/// masses inside the inner two thirds stand well over their own block, the
+/// edge has pitched roofs, roofs on one block differ in colour, and heights
+/// cluster into districts — neighbouring blocks agree more than chance would.
+function barHeights(mod, tag) {
+  const PLOT = mod.classes.PLOT;
+  const whole = mod.flags.TOWER | mod.flags.LANDMARK | mod.flags.CIVIC;
+  const variance = (a) => {
+    const mean = a.reduce((s, x) => s + x, 0) / a.length;
+    return a.reduce((s, x) => s + (x - mean) * (x - mean), 0) / a.length;
+  };
+  const mean = (a) => a.reduce((s, x) => s + x, 0) / a.length;
+  for (const rec of [CITY, CAPITAL]) {
+    const p = mod.plan(rec, {});
+    const t = tag + rec.name + ": ";
+    const core = [], edge = [];
+    let outliers = 0, mid = 0, pitchedEdge = 0;
+    for (let j = 0; j < p.span; j += 1) {
+      for (let i = 0; i < p.span; i += 1) {
+        const idx = j * p.span + i;
+        if (p.cls[idx] !== PLOT || (p.flag[idx] & whole)) continue;
+        const x = (i - p.half) * p.cell, z = (j - p.half) * p.cell;
+        const tt = Math.sqrt(x * x + z * z) / p.radius;
+        for (const l of mod.lots(p, i, j)) {
+          const h = l.y1 - l.y0;
+          if (tt < 0.3) core.push(h);
+          else if (tt > 0.7) { edge.push(h); if (l.pitched) pitchedEdge += 1; }
+          if (tt > 0.35 && tt < 0.65) { mid += 1; if (h > p.hgt[idx] * 1.4) outliers += 1; }
+        }
+      }
+    }
+    assert.ok(core.length > 30 && edge.length > 30, t + "too few masses to measure");
+    // Variance before mean: a flat falloff fails both, and the variance is the
+    // bar this function is named for, so it is the diagnosis the ledger wants.
+    assert.ok(variance(core) > 2 * variance(edge), t + "height variance in the core ("
+      + variance(core).toFixed(1) + ") does not exceed the edge (" + variance(edge).toFixed(1) + ")");
+    assert.ok(mean(core) > 2 * mean(edge), t + "the core is not taller than the edge");
+    assert.ok(outliers > 0, t + "no tall outliers: no mass in the inner two thirds stands over 1.4x its block");
+    assert.ok(outliers < mid * 0.1, t + outliers + " of " + mid + " masses are outliers, which is not an outlier");
+    assert.ok(pitchedEdge > 0, t + "no pitched roofs on the edge");
+  }
+  // DISTRICTS. Each block's height, divided by what the falloff alone would
+  // give it, is compared with its east and south neighbours' over the whole
+  // city. With the district term that correlation measures about 0.2 on both
+  // fixtures; without it, the per-block spread alone, it is zero to within
+  // 0.03 — so the bar is 0.08.
+  const p = mod.plan(CAPITAL, {});
+  const r = new Float64Array(p.span * p.span).fill(NaN);
+  for (let j = 0; j < p.span; j += 1) {
+    for (let i = 0; i < p.span; i += 1) {
+      const idx = j * p.span + i;
+      if (p.cls[idx] !== PLOT || (p.flag[idx] & whole)) continue;
+      const x = (i - p.half) * p.cell, z = (j - p.half) * p.cell;
+      const tt = Math.min(1, Math.sqrt(x * x + z * z) / p.radius);
+      const profile = 0.15 + 0.85 * (1 - tt) * (1 - tt);
+      r[idx] = p.hgt[idx] / (p.peak * profile);
+    }
+  }
+  let n = 0, sa = 0, sb = 0, saa = 0, sbb = 0, sab = 0;
+  for (let j = 0; j < p.span; j += 1) {
+    for (let i = 0; i < p.span; i += 1) {
+      const idx = j * p.span + i;
+      if (Number.isNaN(r[idx])) continue;
+      const pairs = [];
+      if (i + 1 < p.span) pairs.push(idx + 1);
+      if (j + 1 < p.span) pairs.push(idx + p.span);
+      for (const nb of pairs) {
+        if (Number.isNaN(r[nb])) continue;
+        const a = r[idx], b = r[nb];
+        n += 1; sa += a; sb += b; saa += a * a; sbb += b * b; sab += a * b;
+      }
+    }
+  }
+  assert.ok(n > 500, tag + "too few neighbouring blocks to measure districts");
+  const ma = sa / n, mb = sb / n;
+  const corr = (sab / n - ma * mb) / Math.sqrt((saa / n - ma * ma) * (sbb / n - mb * mb));
+  assert.ok(corr > 0.08, tag + "heights are not in districts: neighbouring blocks agree at "
+    + corr.toFixed(3) + ", which is chance");
+  // ROOF COLOUR VARIES WITHIN A BLOCK. Read off the buffer: the flat roofs
+  // in the fabric part, bucketed by cell, must show more than one colour on
+  // most divided cells.
+  const m = mod.build(CITY, {});
+  const cp = mod.plan(CITY, {});
+  const fabric = m.parts.find((x) => x.kind === "fabric");
+  const roofs = new Map();
+  for (let v = fabric.first; v < fabric.first + fabric.count; v += 3) {
+    const i = v * 3;
+    if (!(m.normals[i + 1] > 0.99)) continue;
+    const cx = (m.positions[i] + m.positions[i + 3] + m.positions[i + 6]) / 3;
+    const cz = (m.positions[i + 2] + m.positions[i + 5] + m.positions[i + 8]) / 3;
+    const key = (Math.round(cz / cp.cell) + cp.half) * cp.span + Math.round(cx / cp.cell) + cp.half;
+    const col = m.colors[i].toFixed(4) + "," + m.colors[i + 1].toFixed(4) + "," + m.colors[i + 2].toFixed(4);
+    let set = roofs.get(key);
+    if (!set) { set = new Set(); roofs.set(key, set); }
+    set.add(col);
+  }
+  let divided = 0, varied = 0;
+  for (const [key, set] of roofs) {
+    const i = key % cp.span, j = (key - i) / cp.span;
+    if (mod.lots(cp, i, j).length < 2) continue;
+    divided += 1;
+    if (set.size > 1) varied += 1;
+  }
+  assert.ok(divided > 50, tag + "too few divided blocks with flat roofs: " + divided);
+  assert.ok(varied / divided > 0.8, tag + "roof colour does not vary within a block: " + varied
+    + " of " + divided + " divided blocks show more than one roof colour");
+}
+
 function sweep(mod, tag) {
   barContract(mod, tag);
   barGeometry(mod, tag);
@@ -549,6 +915,12 @@ function sweep(mod, tag) {
   barCharacter(mod, tag);
   barStreets(mod, tag);
   barProvenance(mod, tag);
+  // The detail bars sit BEFORE the budget on purpose: a city that goes back to
+  // one mass a cell also drops under the band's floor, and the specific
+  // diagnosis is the one a sabotage should report.
+  barLots(mod, tag);
+  barHierarchy(mod, tag);
+  barHeights(mod, tag);
   barBudget(mod, tag);
 }
 
@@ -593,6 +965,18 @@ test("the description states what is modelled rather than sourced", () => {
   barProvenance(kit, "");
 });
 
+test("a built cell carries one to four masses, the largest fronting the road", () => {
+  barLots(kit, "");
+});
+
+test("the road hierarchy is three widths, parks have an edge and a coast has a quay", () => {
+  barHierarchy(kit, "");
+});
+
+test("heights step by district, spike in outliers and pitch on the edge", () => {
+  barHeights(kit, "");
+});
+
 test("the declared budget holds on the headline records", () => {
   barBudget(kit, "");
 });
@@ -623,6 +1007,8 @@ test("the declared budget holds for every one of the 1,249 real records", () => 
     assert.ok(close.triangleCount < TOWN_BLOCK_CLOSE,
       c.name + ": costs more than the town block it replaces");
     assert.equal(close.bounds.min[1], 0, c.name + ": does not sit on Y=0");
+    assert.ok(close.masses >= close.cells.plot, c.name + ": fewer masses than built cells");
+    assert.equal(map.masses, map.cells.plot, c.name + ": the map level divides its cells");
     if (close.triangleCount > worstClose.t) worstClose = { t: close.triangleCount, n: c.name };
     if (c.pop >= BIG_POP) {
       big += 1;
@@ -663,6 +1049,20 @@ test("the browser global exports the same contract and builds the identical city
   assert.equal(browser.build(CITY, {}).triangleCount, kit.build(CITY, {}).triangleCount);
   assert.equal(digest(browser.build(CAPITAL, { land: westSea, height: ramp })),
     digest(kit.build(CAPITAL, { land: westSea, height: ramp })));
+  // The sub-cell layout, too, is the same from a different realm: every
+  // divided cell of the capital answers the same boxes to the metre.
+  const a = browser.plan(CAPITAL, { land: westSea, height: ramp });
+  const b = kit.plan(CAPITAL, { land: westSea, height: ramp });
+  let compared = 0;
+  for (let j = 0; j < b.span; j += 1) {
+    for (let i = 0; i < b.span; i += 1) {
+      if (b.cls[j * b.span + i] !== kit.classes.PLOT) continue;
+      assert.equal(JSON.stringify(browser.lots(a, i, j)), JSON.stringify(kit.lots(b, i, j)),
+        "the sub-cell layout differs between realms at " + i + "," + j);
+      compared += 1;
+    }
+  }
+  assert.ok(compared > 500, "only " + compared + " cells compared");
 });
 
 test("no wall clock, no entropy source, no DOM and no transcendental arithmetic", () => {
@@ -763,10 +1163,21 @@ const SABOTAGE = [
       "          if (false && Number.isFinite(h)) corner[cj * cornerN + ci] = q(h - datum, 0.05);"]],
   },
   {
-    defect: "an entropy source in the per-mass variation",
-    expect: "two builds are not byte-identical",
+    // This one MOVED bars when a cell learned to carry several masses. A
+    // random footprint used to reach the determinism bar; now the geometry
+    // bar asks every wall to stand on a footprint `lots` declared, and a
+    // random one does not — which is the earlier and the more specific
+    // diagnosis, so it is the one the ledger expects.
+    defect: "an entropy source in the per-mass footprint",
+    expect: "a wall stands on no mass's footprint",
     edits: [["    const w = q(room * askSpan(cs, 41, 0.80, 1.0), 0.1);",
       "    const w = q(room * (0.80 + 0.2 * Math.random()), 0.1);"]],
+  },
+  {
+    defect: "an entropy source in the per-mass height",
+    expect: "two builds are not byte-identical",
+    edits: [["      let hh = h * askSpan(ls, 81, rise[0], rise[1]);",
+      "      let hh = h * (rise[0] + (rise[1] - rise[0]) * Math.random());"]],
   },
   {
     defect: "the mesh is not seated on the ground plane",
@@ -813,11 +1224,66 @@ const SABOTAGE = [
     // only binds on cities whose modelled extent is wider than cap x 100 m, so
     // raising it does not touch Toronto (14.2 km, span 143 at any cap above
     // that) and had to be raised far enough for TOKYO to cross the ceiling.
-    // Measured: 141 -> 80,568, 165 -> 113,408, 181 -> 137,818.
+    // Measured with one mass a cell: 141 -> 80,568, 165 -> 113,408,
+    // 181 -> 137,818. Re-measured with lots: 141 -> 149,492, 165 -> 211,042,
+    // 181 -> 254,572, against a ceiling of 80,000.
     defect: "the close grid cap is raised, so the largest cities blow the triangle budget",
     expect: "close is over the declared ceiling",
     edits: [["  const SPAN = { close: { min: 25, max: 81 }, map: { min: 13, max: 27 } };",
       "  const SPAN = { close: { min: 25, max: 181 }, map: { min: 13, max: 27 } };"]],
+  },
+  // ---- the detail bars
+  {
+    defect: "every built cell is one mass again",
+    expect: "a built cell never carries more than one mass",
+    edits: [["    const n = single ? 1 : lotCount(p, cs);", "    const n = 1;"]],
+  },
+  {
+    defect: "the largest mass fronts the side AWAY from the road",
+    expect: "the largest mass is not on the arterial side",
+    edits: [["      if (neighbour(p, i, j, side) === CLS.ROAD) { front = side; break; }",
+      "      if (neighbour(p, i, j, side) === CLS.ROAD) { front = (side + 2) % 4; break; }"]],
+  },
+  {
+    defect: "the pad under a block is not drawn, so the local street grid vanishes",
+    expect: "the local street grid is not drawn",
+    edits: [["          overlayQuad(b, p, i, j, padInset, 1 - padInset, padInset, 1 - padInset, KERB,",
+      "          if (false) overlayQuad(b, p, i, j, padInset, 1 - padInset, padInset, 1 - padInset, KERB,"]],
+  },
+  {
+    defect: "parks lose their tree line",
+    expect: "a park has no edge",
+    edits: [["            edgeStrip(b, p, i, j, s, verge, civic ? GROUND.plazaEdge : GROUND.treeline, mat);",
+      "            if (false) edgeStrip(b, p, i, j, s, verge, civic ? GROUND.plazaEdge : GROUND.treeline, mat);"]],
+  },
+  {
+    defect: "the waterfront loses its quay",
+    expect: "a coastal city has no quay",
+    edits: [["                if (neighbour(p, i, j, s) !== CLS.WATER) continue;",
+      "                continue;"]],
+  },
+  {
+    defect: "the tall outliers are gone",
+    expect: "no tall outliers",
+    edits: [["      if (outliers && askUnit(ls, 83) < LOT.outlier.chance) {", "      if (false) {"]],
+  },
+  {
+    defect: "the height falloff is flat, so the core varies no more than the edge",
+    expect: "height variance in the core",
+    edits: [["        const profile = 0.15 + 0.85 * (1 - clamp(t, 0, 1)) * (1 - clamp(t, 0, 1));",
+      "        const profile = 0.5;"]],
+  },
+  {
+    defect: "the district term is gone and heights are a smooth cone again",
+    expect: "heights are not in districts",
+    edits: [["        const district = 1 + 0.30 * noise(seed, i, j, 6.0, 71);", "        const district = 1;"]],
+  },
+  {
+    // The regression that was actually found: with the plaza decided after
+    // the roads, the cross and the diagonals paved all nine cells of it.
+    defect: "the plaza is decided after the roads again, and they pave it",
+    expect: "a capital has no plaza",
+    edits: [["        if (precinct <= 1) {", "        if (false) {"]],
   },
 ];
 
@@ -858,7 +1324,9 @@ test("headline measurements", () => {
     const close = kit.build(c, {}), map = kit.build(c, { lod: "map" });
     out.push(n + " " + c.pop.toLocaleString("en-US") + ": "
       + close.triangleCount.toLocaleString("en-US") + "/" + map.triangleCount.toLocaleString("en-US")
-      + " tris, " + (close.size[0] / 1000).toFixed(1) + " km at " + close.cell + " m cells");
+      + " tris, " + close.masses.toLocaleString("en-US") + " masses on "
+      + close.cells.plot.toLocaleString("en-US") + " blocks, "
+      + (close.size[0] / 1000).toFixed(1) + " km at " + close.cell + " m cells");
   }
   process.stdout.write("    " + out.join("\n    ") + "\n");
   assert.ok(out.length === rows.length);

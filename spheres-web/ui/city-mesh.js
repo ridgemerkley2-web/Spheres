@@ -102,43 +102,91 @@
 // SAYS SO rather than quietly pretending — the `assumed` block is the same
 // discipline world-scatter.js uses.
 //
+// WHAT READS AT FOUR PIXELS A CELL. The card draws a cell at about 3 px and
+// the globe at about 4.5; nothing finer than a cell can be resolved at either,
+// so "more detail" cannot mean a finer grid. It means STRUCTURE inside and
+// between the cells that reads at that size, and this file draws five kinds
+// of it at close detail and none of them at map detail:
+//
+//   - A built cell carries one to four MASSES, not one: different footprints,
+//     different heights, an alley between them, the largest fronting the
+//     nearest road. `lots` below is the whole of that decision.
+//   - A ROAD HIERARCHY: an arterial is a whole cell of the darkest ground; a
+//     local street is the ring a block's pad leaves round itself, one quarter
+//     of a cell wide; a lane is the alley on the block. Three widths, always
+//     in that order, reported in `streets`.
+//   - HEIGHT that steps rather than slopes: a district term six cells wide on
+//     top of the falloff, one mass in twenty-five inside the inner two thirds
+//     standing 1.6-2.2x over its block, pitched roofs on the low edge, and a
+//     roof colour per mass.
+//   - EDGES: a tree line on every side of a park that faces something that is
+//     not park, a line of steps round a plaza, and a QUAY on every side of a
+//     land cell that faces water the host's mask refused.
+//   - A capital's PLAZA decided before its roads, so the avenues radiate from
+//     it instead of paving it over, a civic precinct of pale single masses
+//     round it, and a landmark drawn in four narrowing stages.
+//
 // TRIANGLE BUDGET, declared with its derivation and then measured against
-// every one of the 1,249 records in cities.js.
+// every one of the 1,249 records in cities.js, AT DEFAULT SPAN — the card's
+// ceiling of 81 cells. A caller that raises the span (the map does, to 181)
+// buys geometry in proportion and is not graded here; see the end of this
+// block for what it pays.
 //
-//   close   40,000 - 120,000 for the largest cities; 120,000 is a hard
+//   close   44,000 - 80,000 for cities over two million; 80,000 is a hard
 //           ceiling for any city at all
-//   map     250 - 6,000 for any city at all
+//   map     250 - 5,000 for any city at all
 //
-// WHERE THE NUMBERS COME FROM. The grid is capped at 141 cells across at close
-// detail, so at most 19,881 cells exist. Every cell inside the boundary costs
-// a 2-triangle ground quad and about 70% of the square is inside the lobed
-// boundary, so ground is at most ~28,000 triangles. Of those cells, 16-33% are
-// arterial and 8-20% are park, and between a third and nine tenths of what is
-// left carries a mass. A mass is 10 triangles — four walls and a flat roof, no
+// WHERE THE NUMBERS COME FROM. The grid is capped at 81 cells across at close
+// detail, so at most 6,561 cells exist and about 70% of the square, ~4,600
+// cells, is inside the lobed boundary. Ground costs a 2-triangle quad per
+// cell, plus 2 more for the pad on every built cell and on every open cell
+// with a built or road neighbour: ~13,000 at most. Parks and plazas pay 2 a
+// side for their edges and quays 2 a side where land meets water, ~2,000
+// together. Of the cells left after 16-33% arterial and 8-20% park, between
+// a third and nine tenths carry masses, and at close detail a built cell
+// carries one to three of them under 260 m and two to four over it, about 2
+// on average. A mass is 10 triangles — four walls and a flat roof, no
 // underside, because nothing in a birds-eye can see one — 14 with a pitched
-// roof at close detail and 20 with a tower setback. That is 4,600-6,200 masses
-// and 50,000-70,000 triangles of massing for the biggest cities.
+// roof and 20 with a tower setback. That is 2,500-3,000 built cells,
+// 5,000-6,000 masses and 50,000-65,000 triangles of massing for the biggest
+// cities.
 //
-// MEASURED, over all 1,249 records, both levels:
-//   close  max 99,008 (Toronto, 141 x 141 at 101 m), min 1,984 (Andorra),
-//          median 12,638; every city over two million lands between 43,204
-//          (Sanaa) and 99,008. The 120,000 ceiling therefore carries 21% of
-//          headroom over the worst real case.
-//   map    max 3,988 (San Francisco), min 392 (Mazar-e Sharif), median 760.
+// MEASURED, over all 1,249 records, both levels, 2026-09-07:
+//   close  max 69,036 (Sao Paulo), min 2,868 (Melekeok), median 23,992,
+//          p99 62,790; every city over two million lands between 48,188
+//          (Abidjan) and 69,036. The 80,000 ceiling therefore carries 16% of
+//          headroom over the worst real case and the 44,000 floor of the band
+//          sits 9% under the leanest metropolis: both can still fail.
+//   map    max 3,988 (San Francisco), min 392 (Mazar-e Sharif), median 760 —
+//          unchanged, because none of the close detail is drawn at map level.
+//
+// WHAT THE CEILING WAS, AND WHY IT MOVED. It was 40,000 against a worst case
+// of 34,876 (Vancouver) when a built cell was one mass and a plot's ground
+// was one quad. One to four masses a cell, the pad under them and the edges
+// on parks and shores roughly doubled the close cost of every city; the
+// ceiling was re-measured and moved WITH that change rather than widened
+// ahead of it, and it still cannot pass a city that quietly doubles again.
 //
 // ABOVE THREE AND A HALF MILLION PEOPLE THE TRIANGLE COUNT STOPS GROWING and
-// the cell grows instead: the grid is pinned at 141 and Tokyo is drawn in
-// 230 m superblocks where Toronto gets 101 m blocks. Tokyo is still four times
-// wider on the ground. That is the trade this file makes deliberately — the
-// EXTENT is the thing the model exists to show, and resolution is what pays
-// for it.
+// the cell grows instead: the grid is pinned at 81 and Tokyo is drawn in
+// 400 m district cells where Toronto gets 176 m superblocks. Tokyo is still
+// twice as wide on the ground. That is the trade this file makes deliberately
+// — the EXTENT is the thing the model exists to show, and resolution is what
+// pays for it. The map buys the resolution back with `maxSpan`.
+//
+// AT THE MAP'S SPAN of 181 the same records measure up to 302,396 (Lagos):
+// Chicago 300,982, Tokyo 254,572, Toronto 193,448, against 158,822 for
+// Chicago when a cell was one mass. That is the map's budget to keep, and it
+// keeps it by asking for fewer cells when a city is smaller on screen and by
+// bounding its cache. A Chicago at 181 builds in about 120 ms on one core.
 //
 // THE COMPARISON THAT MATTERS: today's single town block is 198,462 triangles
-// at close detail and 3,422 at map. An entire city here is 99,008 at worst —
-// half the cost of the one block it replaces — and its map level is the same
-// order as the block's while showing a city rather than a street corner.
+// at close detail and 3,422 at map. An entire city here is 69,036 at worst —
+// a third of the cost of the one block it replaces — and its map level is the
+// same order as the block's while showing a city rather than a street corner.
 //
-// NOT WIRED IN. Nothing calls this yet; the card is somebody else's commit.
+// WIRED IN. The city card in index.html builds this at default span, and
+// city-layer.js moves it onto the globe at up to 181 cells.
 (function (root, factory) {
   const api = factory();
   if (typeof module === "object" && module.exports) module.exports = api;
@@ -238,7 +286,8 @@
   const POP_CEIL = 5e7;
 
   /// THE CELL, and why it is not a constant 100 m. A cell is the massing
-  /// primitive: one mass, one patch of ground. 100 m is the right size for it
+  /// primitive: one block, one patch of ground, and at close detail the one
+  /// to four masses `lots` puts on it. 100 m is the right size for it
   /// — it is a city block plus its streets, the scale at which "is this built,
   /// how tall, is it a road" are real questions — and for any city between
   /// about nine thousand and three and a half million people that is within a
@@ -267,11 +316,12 @@
   /// and the boundary between the two groups sits at about 3 px.
   ///
   /// 81 puts every city at 3.1 px or better. It costs nothing to do it — the
-  /// grid is the cost, so coarsening it CUTS the worst case in the whole
-  /// 1,249-record dataset from 99,008 triangles to 34,876 — which is the rare
-  /// case of legibility and budget pulling the same way. The price is honest
-  /// and stated: Tokyo's cell becomes 400 m, so its masses are districts rather
-  /// than superblocks, and the extent is what this asset exists to show.
+  /// grid is the cost, so coarsening it CUT the worst case in the whole
+  /// 1,249-record dataset from 99,008 triangles to 34,876 when a cell was one
+  /// mass — which is the rare case of legibility and budget pulling the same
+  /// way. The price is honest and stated: Tokyo's cell becomes 400 m, so its
+  /// masses are districts rather than superblocks, and the extent is what
+  /// this asset exists to show.
   const SPAN = { close: { min: 25, max: 81 }, map: { min: 13, max: 27 } };
   /// GUARDS, not design parameters, and the asymmetry between them is
   /// deliberate. The FLOOR bites — a hamlet's extent divided by the minimum
@@ -334,15 +384,27 @@
 
   const GROUND = {
     /// Carriageway and hard standing. The darkest thing in the mesh, which is
-    /// what makes the street grid legible from above.
+    /// what makes the street grid legible from above. An arterial is a whole
+    /// cell of this.
     road: [0.19, 0.19, 0.20],
+    /// A LOCAL STREET: the ring of carriageway around a block, between it and
+    /// its neighbours. A shade lighter than an arterial so the two widths read
+    /// as two ranks of road and not as one road drawn twice.
+    lane: [0.22, 0.22, 0.23],
     /// The plot's own ground: pavement, yards, parking. A shade lighter than
     /// the carriageway so a street reads against the block it serves.
     plot: [0.31, 0.30, 0.29],
     /// Vacant and low-density edge — dust, verge, the ground between things.
     open: [0.38, 0.36, 0.31],
     park: [0.24, 0.36, 0.20],
+    /// The tree line or path along a park's edge. Darker than the park so the
+    /// park has an outline rather than being a green cell.
+    treeline: [0.15, 0.24, 0.12],
     plaza: [0.55, 0.53, 0.48],
+    /// The steps and colonnade line around a plaza, and the quay where a built
+    /// cell meets water: both civic stone a shade darker than the plaza.
+    plazaEdge: [0.44, 0.42, 0.38],
+    quay: [0.58, 0.56, 0.50],
     water: [0.13, 0.22, 0.29],
   };
 
@@ -351,6 +413,25 @@
   /// shore rather than a modelled depth. It is enough to keep the coast from
   /// z-fighting the land and honest enough to be describable in one line.
   const WATER_DROP = 1.5;
+  /// THE KERB. Everything drawn OVER a ground quad — a block's pad inside its
+  /// ring of street, a park's tree line, a quay — is lifted this far above the
+  /// ground it sits on, so two coplanar quads never fight for the same depth.
+  /// One metre, because the host draws the city on a unit sphere in float32
+  /// where a radial ulp is about a quarter of a metre and the terrain is
+  /// exaggerated three times with the city: a metre is four ulps of clearance
+  /// and three metres of drawn height, which is a kerb, not a plinth.
+  const KERB = 1.0;
+  /// STREET WIDTHS, as a share of the cell. A LOCAL street is the ring around
+  /// a block — a quarter of the cell, floored at 7 m so a village lane is
+  /// still a lane, capped at 34 m so a superblock is not mostly tarmac. An
+  /// ARTERIAL is a whole cell, so it is always wider than a local street by
+  /// the cell's own ratio: 4x at 100 m, 12x at 400 m. The LANE is the alley
+  /// between two masses on one block, and it is the narrowest of the three.
+  const STREET = { local: [0.26, 7, 34], lane: [0.07, 3, 12] };
+  /// The strips that give parks, plazas and shores an edge, as a share of the
+  /// cell with a floor and a cap in metres.
+  const EDGE = { verge: [0.10, 3, 14], quay: [0.12, 4, 16] };
+  function streetWidth(cell, spec) { return q(clamp(cell * spec[0], spec[1], spec[2]), 0.1); }
 
   // ------------------------------------------------------------------ maths
   function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
@@ -524,11 +605,13 @@
   ///                 anything.
   ///
   /// THE ORDER OF DECISIONS IS FIXED and each one can only remove ground from
-  /// the one before it: extent, then boundary, then water, then roads, then
-  /// parks, then plots. That is what makes the coastline authoritative — a
-  /// mass cannot appear in the sea because the sea is decided two steps
-  /// earlier — and it is why `land` is asked before anything is built rather
-  /// than used to cull afterwards.
+  /// the one before it: extent, then boundary, then water, then a capital's
+  /// plaza, then roads, then parks, then plots. That is what makes the
+  /// coastline authoritative — a mass cannot appear in the sea because the sea
+  /// is decided steps earlier — and it is why `land` is asked before anything
+  /// is built rather than used to cull afterwards. The plaza sits before the
+  /// roads for the same reason in the other direction: the avenues radiate
+  /// from it, so it has to exist before they are drawn.
   function plan(city, opts) {
     const rec = city && typeof city === "object" ? city : {};
     const o = opts && typeof opts === "object" ? opts : {};
@@ -677,7 +760,24 @@
         if (cornerMin < minLand) minLand = cornerMin;
         if (cornerMin > maxLand) maxLand = cornerMin;
 
-        // 3. ROADS. The arterial grid, plus a ring and two diagonal avenues
+        // 3. THE CIVIC PLAZA, and it comes BEFORE the roads. A capital's
+        //    plaza is nine cells at the core and the avenues radiate FROM it:
+        //    decided the other way round, the cross and the two diagonals
+        //    between them covered all nine cells at close detail and the
+        //    plaza never existed — only the landmark survived, by overwriting
+        //    the centre road cell. Measured on the first render of every
+        //    capital, and the reason this step is out of the "roads first"
+        //    order the rest of the file keeps.
+        //    The PRECINCT is the two rings outside the plaza: whatever is not
+        //    road or water there is built, civic stone, and one mass to the
+        //    cell, so the plaza sits in a block of pale government fabric
+        //    rather than in the same grain as the suburbs.
+        const precinct = capital && span >= 25 ? Math.max(Math.abs(di), Math.abs(dj)) : 99;
+        if (precinct <= 1) {
+          cls[idx] = CLS.PARK; flag[idx] |= FLAG.CIVIC; counts.park += 1; continue;
+        }
+
+        // 4. ROADS. The arterial grid, plus a ring and two diagonal avenues
         //    for a capital, plus the crossroads a small town gets instead of a
         //    grid. Roads are decided before plots so a road always wins: a
         //    street that a building can land on is not a street.
@@ -714,32 +814,48 @@
         }
         if (road) { cls[idx] = CLS.ROAD; counts.road += 1; continue; }
 
-        // 4. OPEN SPACE. A noise field of its own, so parks come in patches
-        //    rather than as salt. A capital also gets a civic plaza of nine
-        //    cells at the core, which is the one piece of deliberate
-        //    composition in the plan.
-        const civicPlaza = capital && Math.abs(di) <= 1 && Math.abs(dj) <= 1 && span >= 25;
-        if (civicPlaza) {
-          cls[idx] = CLS.PARK; flag[idx] |= FLAG.CIVIC; counts.park += 1; continue;
-        }
-        if (noise(seed, i, j, 3.0, 21) > 0.52) {
+        // 5. OPEN SPACE. A noise field of its own, so parks come in patches
+        //    rather than as salt. Not inside a capital's precinct, which is
+        //    built by definition.
+        if (precinct > 3 && noise(seed, i, j, 3.0, 21) > 0.52) {
           cls[idx] = CLS.PARK; counts.park += 1; continue;
         }
 
-        // 5. PLOTS. Density falls with urbanity, so the edge thins into open
+        // 6. PLOTS. Density falls with urbanity, so the edge thins into open
         //    ground instead of stopping at a wall of buildings.
         const chance = clamp(density * (0.34 + 0.72 * clamp(u, 0, 1)), 0, 0.97);
-        if (askUnit(cs, 31) >= chance) { cls[idx] = CLS.OPEN; counts.open += 1; continue; }
+        if (precinct > 3 && askUnit(cs, 31) >= chance) {
+          cls[idx] = CLS.OPEN; counts.open += 1; continue;
+        }
 
         cls[idx] = CLS.PLOT; counts.plot += 1;
 
-        // 6. HEIGHT. A quadratic falloff from the core with a floor, times a
-        //    per-mass variation. Quadratic rather than exponential for the
-        //    determinism reason at the top of the file, and it happens to be
-        //    the better shape anyway: a city's height profile is flatter in
-        //    the middle and steeper at the edge than an exponential is.
+        // The precinct: civic stone, a uniform civic height a little under
+        // half the core scale, no tower, no pitch, one mass. Decided here and
+        // not in the lot pass so the map level sees the same precinct.
+        if (precinct <= 3) {
+          flag[idx] |= FLAG.CIVIC;
+          hgt[idx] = q(clamp(peak * askSpan(cs, 39, 0.36, 0.52), 5, 320), 0.1);
+          if (hgt[idx] > tallest) tallest = hgt[idx];
+          continue;
+        }
+
+        // 7. HEIGHT. A quadratic falloff from the core with a floor, times a
+        //    DISTRICT term, times a per-mass variation. Quadratic rather than
+        //    exponential for the determinism reason at the top of the file,
+        //    and it happens to be the better shape anyway: a city's height
+        //    profile is flatter in the middle and steeper at the edge than an
+        //    exponential is.
+        //    THE DISTRICT TERM is what keeps the profile from being a smooth
+        //    cone: lattice noise six cells wide, plus or minus thirty per
+        //    cent, so heights come in neighbourhoods — a taller quarter here,
+        //    a low one there — the way a city's skyline steps rather than
+        //    slopes. It is smooth, so neighbouring blocks agree; the per-mass
+        //    spread on top of it is what keeps them from matching, and the
+        //    check measures that neighbours agree more than chance would.
         const profile = 0.15 + 0.85 * (1 - clamp(t, 0, 1)) * (1 - clamp(t, 0, 1));
-        let h = peak * profile * askSpan(cs, 33, 0.58, 1.32);
+        const district = 1 + 0.30 * noise(seed, i, j, 6.0, 71);
+        let h = peak * profile * district * askSpan(cs, 33, 0.58, 1.32);
         // Towers. Only near the core, only for cities big enough to have a
         // core worth the name, and rare enough that they read as a cluster.
         const towerZone = (band === "commercial" || band === "mixed") && t < 0.32;
@@ -784,7 +900,12 @@
         cls[idx] = CLS.PLOT;
         flag[idx] |= FLAG.LANDMARK | FLAG.CIVIC;
         flag[idx] &= ~FLAG.PITCHED;
-        hgt[idx] = q(clamp(peak * 1.35, 14, 320), 0.1);
+        // 1.6x the core scale: over the precinct around it (0.36-0.52x) and
+        // over any plain fabric (1.6x at most), under the tallest tower a
+        // commercial core can raise (2.6x). A landmark is the most DISTINCT
+        // thing in a capital, not necessarily the tallest, and the silhouette
+        // it is drawn with below is what makes it read.
+        hgt[idx] = q(clamp(peak * 1.6, 14, 320), 0.1);
         if (hgt[idx] > tallest) tallest = hgt[idx];
         landmark = { i, j, height: hgt[idx] };
         break;
@@ -873,17 +994,76 @@
     }
   }
 
-  /// The mass a plot carries. Footprint is the cell inset by a street, then
-  /// varied per plot so a block is not a row of identical stamps; base is the
-  /// LOWEST of the cell's four ground corners, so on a slope a mass digs into
-  /// the hill rather than floating over it.
+  /// Ground height at a fraction (fx, fz) of the way across cell (i, j),
+  /// bilinear in the four shared corners. The strips and pads drawn over a
+  /// ground quad take their heights from this so they follow the slope the
+  /// quad follows; across the width of a strip the difference between the
+  /// bilinear surface and the quad's two triangles is far under the kerb.
+  function groundAt(p, i, j, fx, fz) {
+    const { cornerN, corner } = p;
+    const y00 = corner[j * cornerN + i], y10 = corner[j * cornerN + i + 1];
+    const y01 = corner[(j + 1) * cornerN + i], y11 = corner[(j + 1) * cornerN + i + 1];
+    const top = y00 + (y10 - y00) * fx, bot = y01 + (y11 - y01) * fx;
+    return q(top + (bot - top) * fz, 0.01);
+  }
+  /// A quad over part of a cell — the rectangle [fx0, fx1] x [fz0, fz1] in
+  /// cell fractions — lifted a kerb above the ground. Wound the same way as
+  /// groundQuad so its normal is +Y.
+  function overlayQuad(b, p, i, j, fx0, fx1, fz0, fz1, lift, base, mat) {
+    const { cell, half } = p;
+    const ox = (i - half - 0.5) * cell, oz = (j - half - 0.5) * cell;
+    const x0 = q(ox + fx0 * cell, 0.1), x1 = q(ox + fx1 * cell, 0.1);
+    const z0 = q(oz + fz0 * cell, 0.1), z1 = q(oz + fz1 * cell, 0.1);
+    b.quad(
+      [x0, groundAt(p, i, j, fx0, fz0) + lift, z0], [x0, groundAt(p, i, j, fx0, fz1) + lift, z1],
+      [x1, groundAt(p, i, j, fx1, fz1) + lift, z1], [x1, groundAt(p, i, j, fx1, fz0) + lift, z0],
+      base, mat,
+    );
+  }
+  /// A strip of `width` metres along one side of a cell: 0 east, 1 south,
+  /// 2 west, 3 north. The park edge, the plaza edge and the quay are all this.
+  function edgeStrip(b, p, i, j, side, width, base, mat) {
+    const f = Math.min(0.5, width / p.cell);
+    if (side === 0) overlayQuad(b, p, i, j, 1 - f, 1, 0, 1, KERB, base, mat);
+    else if (side === 1) overlayQuad(b, p, i, j, 0, 1, 1 - f, 1, KERB, base, mat);
+    else if (side === 2) overlayQuad(b, p, i, j, 0, f, 0, 1, KERB, base, mat);
+    else overlayQuad(b, p, i, j, 0, 1, 0, f, KERB, base, mat);
+  }
+  /// The class of the 4-neighbour on `side`, or OUT beyond the grid.
+  function neighbour(p, i, j, side) {
+    const ni = i + (side === 0 ? 1 : side === 2 ? -1 : 0);
+    const nj = j + (side === 1 ? 1 : side === 3 ? -1 : 0);
+    if (ni < 0 || nj < 0 || ni >= p.span || nj >= p.span) return CLS.OUT;
+    return p.cls[nj * p.span + ni];
+  }
+  function neighbourFlag(p, i, j, side) {
+    const ni = i + (side === 0 ? 1 : side === 2 ? -1 : 0);
+    const nj = j + (side === 1 ? 1 : side === 3 ? -1 : 0);
+    if (ni < 0 || nj < 0 || ni >= p.span || nj >= p.span) return 0;
+    return p.flag[nj * p.span + ni];
+  }
+  /// Whether an open cell is drawn with the street ring round it: only when
+  /// it has a built or road neighbour, so the local grid runs through the
+  /// vacancies inside a city and dies out where the city does.
+  function ringed(p, i, j) {
+    for (let s = 0; s < 4; s += 1) {
+      const c = neighbour(p, i, j, s);
+      if (c === CLS.PLOT || c === CLS.ROAD) return true;
+    }
+    return false;
+  }
+
+  /// The mass a plot carries when it carries ONE. Footprint is the cell inset
+  /// by a street, then varied per plot so a block is not a row of identical
+  /// stamps; base is the LOWEST of the cell's four ground corners, so on a
+  /// slope a mass digs into the hill rather than floating over it. Towers,
+  /// the landmark, the civic precinct, every cell at map detail and every
+  /// cell too small to divide come through here.
   function massFor(p, i, j) {
     const { cell, half, cornerN, corner } = p;
     const idx = j * p.span + i;
     const cs = cellSeed(p.seed, i, j);
-    // Street width: a quarter of the cell, floored at 7 m so a village lane is
-    // still a lane, capped at 34 m so a superblock is not mostly tarmac.
-    const street = q(clamp(cell * 0.26, 7, 34), 0.1);
+    const street = streetWidth(cell, STREET.local);
     const room = cell - street;
     const w = q(room * askSpan(cs, 41, 0.80, 1.0), 0.1);
     const d = q(room * askSpan(cs, 43, 0.80, 1.0), 0.1);
@@ -893,12 +1073,160 @@
       corner[j * cornerN + i], corner[j * cornerN + i + 1],
       corner[(j + 1) * cornerN + i], corner[(j + 1) * cornerN + i + 1],
     );
+    const h = p.hgt[idx];
     return {
       x0: q(cx - w / 2, 0.1), x1: q(cx + w / 2, 0.1),
       z0: q(cz - d / 2, 0.1), z1: q(cz + d / 2, 0.1),
-      y0: q(base - 0.4, 0.05), y1: q(base + p.hgt[idx], 0.05),
-      seed: cs, flag: p.flag[idx],
+      y0: q(base - 0.4, 0.05), y1: q(base + h, 0.05),
+      seed: cs, flag: p.flag[idx], front: true,
+      pitched: p.lod === "close" && (p.flag[idx] & FLAG.PITCHED) !== 0 && h <= 16,
     };
+  }
+
+  // ------------------------------------------------------------------- lots
+  /// HOW A BUILT CELL IS DIVIDED, at close detail. One cell, one mass is the
+  /// unit the budget was written in and it is still the map level's; at close
+  /// detail a cell is a city block, and a block is not one building. It is two
+  /// to four, of different footprints and heights, with an alley between them
+  /// and the biggest of them fronting the main road — which is what makes a
+  /// block read as buildings from above rather than as a tile.
+  ///
+  /// HOW MANY, from the cell's size in metres and nothing else: a block under
+  /// 260 m holds two, a superblock over it three, each spread one either way
+  /// by hash so a street is not a row of pairs — one to three on a block, two
+  /// to four on a superblock. Below LOT.minCell the cell is a single plot with
+  /// its lane — a town of ten thousand drawn at 41 m — and dividing it would
+  /// draw sheds. The counts are deliberately LOW for what a real block holds,
+  /// and the reason is the screen, not the budget: the map draws a cell at
+  /// about 4.5 px and the card at 3, so a fourth mass on a 200 m cell is
+  /// geometry nobody can resolve. A first cut at 2/3/4 by size measured
+  /// 83,082 triangles for Sao Paulo at default span, for no visible return
+  /// over 2/3.
+  ///
+  /// WHICH IS BIGGEST, and where. The FRONT lot faces the arterial: it takes
+  /// 58-68% of the block's depth, sits on its street line and shrinks least,
+  /// so it is the largest mass on the block whatever the hashes say about the
+  /// others — guaranteed by arithmetic, not by luck. Two lots: the front is
+  /// at least 0.58 x 0.90^2 = 0.47 of the block against at most
+  /// 0.42 x 0.88^2 = 0.33 for the back. Four lots, the tight case, the front
+  /// row is split across at 40-60% with a lane out of it: the smaller front
+  /// half is at least 0.58 x 0.465 x 0.81 = 0.218 against a back half of at
+  /// most 0.42 x 0.60 x 0.774 = 0.195. The check re-measures this rather
+  /// than trusting it. The arterial side is whichever 4-neighbour is a road,
+  /// chosen by hash when several are; a block with no road beside it fronts
+  /// a hashed side.
+  ///
+  /// HOW TALL. Each lot takes the cell's height times its own spread — the
+  /// front 0.95-1.25, the rest 0.55-1.0 — and one lot in twenty-five inside
+  /// the inner two thirds of a city that is not a small town is a TALL
+  /// OUTLIER at 1.6-2.2x, which is the one office block on a residential
+  /// street. Plain lots are capped at 1.6x the core scale so a town of
+  /// twenty-four thousand stays a town; outliers keep the tower cap.
+  const LOT = {
+    minCell: 55,
+    frontShare: [0.58, 0.68], frontShrink: [0.90, 1.0], backShrink: [0.70, 0.88],
+    frontRise: [0.95, 1.25], backRise: [0.55, 1.0],
+    outlier: { chance: 0.04, rise: [1.6, 2.2], within: 0.65 },
+    plainCap: 1.6, outlierCap: 2.6,
+  };
+  function lotCount(p, cs) {
+    const cell = p.cell;
+    let n = cell < 260 ? 2 : 3;
+    const r = askUnit(cs, 71);
+    if (r < 0.22) n -= 1; else if (r > 0.82) n += 1;
+    return clamp(n, 1, 4);
+  }
+  /// lots(plan, i, j) -> the masses cell (i, j) carries, each as the same box
+  /// massFor returns: {x0, x1, z0, z1, y0, y1, seed, flag, front, pitched}.
+  /// Public, so a check can test the layout without walking a buffer, and pure:
+  /// it reads the plan and writes nothing.
+  function lotsFor(p, i, j) {
+    const { cell, half, span, cls, flag, hgt, seed, peak } = p;
+    const idx = j * span + i;
+    const f = flag[idx];
+    const cs = cellSeed(seed, i, j);
+    const single = p.lod !== "close" || cell < LOT.minCell
+      || (f & (FLAG.TOWER | FLAG.LANDMARK | FLAG.CIVIC)) !== 0;
+    const n = single ? 1 : lotCount(p, cs);
+    if (n <= 1) return [massFor(p, i, j)];
+
+    const street = streetWidth(cell, STREET.local);
+    const lane = streetWidth(cell, STREET.lane);
+    const room = q(cell - street, 0.1);
+    // The block's pad: the cell inset by half a street on every side.
+    const ox = (i - half) * cell - room / 2, oz = (j - half) * cell - room / 2;
+    const base = Math.min(
+      p.corner[j * p.cornerN + i], p.corner[j * p.cornerN + i + 1],
+      p.corner[(j + 1) * p.cornerN + i], p.corner[(j + 1) * p.cornerN + i + 1],
+    );
+    const y0 = q(base - 0.4, 0.05);
+    const h = hgt[idx];
+    const x = (i - half) * cell, z = (j - half) * cell;
+    const t = p.radius > 0 ? Math.sqrt(x * x + z * z) / p.radius : 1;
+    const outliers = p.character !== "small" && t < LOT.outlier.within;
+
+    // The front: a road neighbour, hashed among several, hashed when none.
+    const k = ask(cs, 73) % 4;
+    let front = k;
+    for (let s = 0; s < 4; s += 1) {
+      const side = (k + s) % 4;
+      if (neighbour(p, i, j, side) === CLS.ROAD) { front = side; break; }
+    }
+    // Lot space: `a` runs from the back of the block to its street line at
+    // the front, `c` runs across it. Mapped to world by which side is front.
+    const map = (a0, a1, c0, c1) => {
+      if (front === 0) return [ox + a0, ox + a1, oz + c0, oz + c1];
+      if (front === 1) return [ox + c0, ox + c1, oz + a0, oz + a1];
+      if (front === 2) return [ox + room - a1, ox + room - a0, oz + c0, oz + c1];
+      return [ox + c0, ox + c1, oz + room - a1, oz + room - a0];
+    };
+    const place = (a0, a1, c0, c1, slot, isFront) => {
+      const ls = ask(cs, 100 + slot);
+      const shrink = isFront ? LOT.frontShrink : LOT.backShrink;
+      const la = a1 - a0, lc = c1 - c0;
+      const wa = q(la * askSpan(ls, 41, shrink[0], shrink[1]), 0.1);
+      const wc = q(lc * askSpan(ls, 43, shrink[0], shrink[1]), 0.1);
+      // The front mass stands ON its street line; a back mass floats in its lot.
+      const oa = isFront ? a1 - wa : a0 + q((la - wa) * askUnit(ls, 45), 0.1);
+      const oc = c0 + q((lc - wc) * askUnit(ls, 47), 0.1);
+      const rise = isFront ? LOT.frontRise : LOT.backRise;
+      let hh = h * askSpan(ls, 81, rise[0], rise[1]);
+      let cap = LOT.plainCap;
+      if (outliers && askUnit(ls, 83) < LOT.outlier.chance) {
+        hh *= askSpan(ls, 85, LOT.outlier.rise[0], LOT.outlier.rise[1]);
+        cap = LOT.outlierCap;
+      }
+      hh = q(clamp(hh, 4, peak * cap), 0.1);
+      const r = map(oa, oa + wa, oc, oc + wc);
+      return {
+        x0: q(r[0], 0.1), x1: q(r[1], 0.1), z0: q(r[2], 0.1), z1: q(r[3], 0.1),
+        y0, y1: q(base + hh, 0.05),
+        seed: ls, flag: f, front: isFront,
+        pitched: (f & FLAG.PITCHED) !== 0 && hh <= 16,
+      };
+    };
+
+    const share = askSpan(cs, 75, LOT.frontShare[0], LOT.frontShare[1]);
+    const split = q(room * (1 - share), 0.1);         // where the front lot begins
+    const back = split - lane;                         // the back lots' depth
+    const out = [];
+    if (n === 2) {
+      out.push(place(split, room, 0, room, 0, true));
+      out.push(place(0, back, 0, room, 1, false));
+    } else if (n === 3) {
+      const c = q(room * askSpan(cs, 77, 0.40, 0.60), 0.1);
+      out.push(place(split, room, 0, room, 0, true));
+      out.push(place(0, back, 0, c - lane / 2, 1, false));
+      out.push(place(0, back, c + lane / 2, room, 2, false));
+    } else {
+      const c1 = q(room * askSpan(cs, 77, 0.40, 0.60), 0.1);
+      const c2 = q(room * askSpan(cs, 79, 0.40, 0.60), 0.1);
+      out.push(place(split, room, 0, c1 - lane / 2, 0, true));
+      out.push(place(split, room, c1 + lane / 2, room, 1, true));
+      out.push(place(0, back, 0, c2 - lane / 2, 2, false));
+      out.push(place(0, back, c2 + lane / 2, room, 3, false));
+    }
+    return out;
   }
 
   function fabricColour(p, cs, flag) {
@@ -918,22 +1246,47 @@
     const close = p.lod === "close";
     const { span, cls, flag, hgt } = p;
 
-    // GROUND, in three passes so each is one contiguous part: the hard
-    // surfaces, then open space and parks, then water. Ground is drawn under
-    // the masses as well as between them — a mass is inset by a street, so
-    // most of the plot's own ground is visible from above anyway, and the
+    // GROUND, in passes so each is one contiguous part: the hard surfaces,
+    // then open space and parks, then water, then the quays. Ground is drawn
+    // under the masses as well as between them — a mass is inset by a street,
+    // so most of the plot's own ground is visible from above anyway, and the
     // saving from skipping it would be a rounding error against the mass.
+    //
+    // THE LOCAL STREET GRID is drawn here, at close detail, and it is what
+    // makes the road hierarchy read: a built cell's ground is a whole cell of
+    // carriageway with the block's PAD lifted a kerb above it, inset by half
+    // a street on every side, so the ring between two neighbouring pads is a
+    // street one `local` wide and continuous across the city, while an
+    // arterial is a whole cell of darker road. An open cell gets the ring only
+    // when it has a built or road neighbour, so the grid runs through the
+    // vacancies inside the city and stops where the city does. Four triangles
+    // a built cell instead of two; the map level keeps the two.
+    const local = streetWidth(p.cell, STREET.local);
+    const padInset = Math.min(0.45, (local / 2) / p.cell);
     b.part("ground / streets, plots and open ground", "ground", () => {
       for (let j = 0; j < span; j += 1) {
         for (let i = 0; i < span; i += 1) {
           const c = cls[j * span + i];
           if (c !== CLS.ROAD && c !== CLS.PLOT && c !== CLS.OPEN) continue;
-          const base = c === CLS.ROAD ? GROUND.road : c === CLS.PLOT ? GROUND.plot : GROUND.open;
           const mat = 0.9 + 0.2 * askUnit(cellSeed(p.seed, i, j), 61);
-          groundQuad(b, p, i, j, base, mat);
+          if (c === CLS.ROAD || !close || (c === CLS.OPEN && !ringed(p, i, j))) {
+            groundQuad(b, p, i, j, c === CLS.ROAD ? GROUND.road : c === CLS.PLOT ? GROUND.plot : GROUND.open, mat);
+            continue;
+          }
+          groundQuad(b, p, i, j, GROUND.lane, mat);
+          overlayQuad(b, p, i, j, padInset, 1 - padInset, padInset, 1 - padInset, KERB,
+            c === CLS.PLOT ? GROUND.plot : GROUND.open, mat);
         }
       }
     });
+    // PARKS WITH AN EDGE. At close detail a park cell gets a tree line along
+    // every side that does not face another park, so a park of six cells is
+    // one outlined shape rather than six green tiles; the plaza gets a line of
+    // steps along every side that does not face more plaza — which includes
+    // the four sides facing the landmark in its centre, so the monument stands
+    // in a ring of stone. Two triangles a side, and only on the sides that
+    // are edges.
+    const verge = streetWidth(p.cell, EDGE.verge);
     b.part("ground / parks and civic plaza", "park", () => {
       for (let j = 0; j < span; j += 1) {
         for (let i = 0; i < span; i += 1) {
@@ -942,6 +1295,13 @@
           const civic = (flag[idx] & FLAG.CIVIC) !== 0;
           const mat = 0.92 + 0.16 * askUnit(cellSeed(p.seed, i, j), 63);
           groundQuad(b, p, i, j, civic ? GROUND.plaza : GROUND.park, mat);
+          if (!close) continue;
+          for (let s = 0; s < 4; s += 1) {
+            const nc = neighbour(p, i, j, s);
+            const same = nc === CLS.PARK && ((neighbourFlag(p, i, j, s) & FLAG.CIVIC) !== 0) === civic;
+            if (same) continue;
+            edgeStrip(b, p, i, j, s, verge, civic ? GROUND.plazaEdge : GROUND.treeline, mat);
+          }
         }
       }
     });
@@ -958,25 +1318,51 @@
           }
         }
       });
+      // THE WATERFRONT. Where a land cell meets a water cell it gets a quay
+      // along the shared side: a strip of stone on the land, a kerb up, so the
+      // coast is a hard line rather than a colour change. The land mask
+      // decided where the water is; this only draws the edge it already made.
+      if (close) {
+        const quay = streetWidth(p.cell, EDGE.quay);
+        b.part("ground / quays", "quay", () => {
+          for (let j = 0; j < span; j += 1) {
+            for (let i = 0; i < span; i += 1) {
+              const c = cls[j * span + i];
+              if (c === CLS.OUT || c === CLS.WATER) continue;
+              const mat = 0.94 + 0.12 * askUnit(cellSeed(p.seed, i, j), 67);
+              for (let s = 0; s < 4; s += 1) {
+                if (neighbour(p, i, j, s) !== CLS.WATER) continue;
+                edgeStrip(b, p, i, j, s, quay, GROUND.quay, mat);
+              }
+            }
+          }
+        });
+      }
     }
 
     // MASSING, in three passes for the same reason. Fabric first — everything
     // that is not a tower and not the landmark — then the towers, then the one
     // landmark, so a host can highlight a city's core without walking the
-    // whole buffer.
+    // whole buffer. A built cell carries the masses `lots` gives it: one at
+    // map detail, one to four at close.
+    let masses = 0;
     b.part("massing / " + p.character + " fabric", "fabric", () => {
       for (let j = 0; j < span; j += 1) {
         for (let i = 0; i < span; i += 1) {
           const idx = j * span + i;
           if (cls[idx] !== CLS.PLOT || (flag[idx] & (FLAG.TOWER | FLAG.LANDMARK))) continue;
-          const m = massFor(p, i, j);
-          const col = fabricColour(p, m.seed, m.flag);
-          const mat = askSpan(m.seed, 55, 0.86, 1.12);
-          if (close && (m.flag & FLAG.PITCHED)) {
-            boxRidge(b, m.x0, m.x1, m.z0, m.z1, m.y0, m.y1, col.wall, col.roof, mat,
-              q(2.0 + 2.5 * askUnit(m.seed, 57), 0.1));
-          } else {
-            boxTop(b, m.x0, m.x1, m.z0, m.z1, m.y0, m.y1, col.wall, col.roof, mat);
+          const lots = lotsFor(p, i, j);
+          for (let k = 0; k < lots.length; k += 1) {
+            const m = lots[k];
+            const col = fabricColour(p, m.seed, m.flag);
+            const mat = askSpan(m.seed, 55, 0.86, 1.12);
+            masses += 1;
+            if (m.pitched) {
+              boxRidge(b, m.x0, m.x1, m.z0, m.z1, m.y0, m.y1, col.wall, col.roof, mat,
+                q(2.0 + 2.5 * askUnit(m.seed, 57), 0.1));
+            } else {
+              boxTop(b, m.x0, m.x1, m.z0, m.z1, m.y0, m.y1, col.wall, col.roof, mat);
+            }
           }
         }
       }
@@ -990,6 +1376,7 @@
             const m = massFor(p, i, j);
             const col = fabricColour(p, m.seed, m.flag);
             const mat = askSpan(m.seed, 55, 0.9, 1.14);
+            masses += 1;
             // A setback at close detail: a podium to a third of the height and
             // a slimmer shaft above it, which is the silhouette that separates
             // a tower from a tall box. Twenty triangles instead of ten, and
@@ -1010,32 +1397,40 @@
     if (p.landmark) {
       b.part("civic / landmark", "landmark", () => {
         const m = massFor(p, p.landmark.i, p.landmark.j);
-        // A plinth, a shaft and a capped top. Thirty triangles for the one
-        // thing on the card a player will look for, and the only piece of
-        // geometry in the file that is not a cell of city.
-        const plinth = q(m.y0 + (m.y1 - m.y0) * 0.14, 0.05);
-        const shaftTop = q(m.y0 + (m.y1 - m.y0) * 0.86, 0.05);
+        masses += 1;
+        // A broad plinth, a hall on it, a tower out of the hall and a spire
+        // on the tower: four stages, each narrower than the one below, which
+        // is the silhouette that says "the monument" from any angle — a
+        // parliament, a cathedral, a column — without naming one. Forty
+        // triangles at close detail, twenty at map, for the one thing on the
+        // card a player will look for, and the only piece of geometry in the
+        // file that is not a cell of city.
+        const H = m.y1 - m.y0;
+        const plinth = q(m.y0 + H * 0.08, 0.05);
+        const hall = q(m.y0 + H * 0.32, 0.05);
+        const tower = q(m.y0 + H * 0.80, 0.05);
         const w = (m.x1 - m.x0), d = (m.z1 - m.z0);
-        const sx = q(w * 0.28, 0.1), sz = q(d * 0.28, 0.1);
+        const inset = (f) => [q(w * f, 0.1), q(d * f, 0.1)];
+        const [hx, hz] = inset(0.10), [tx, tz] = inset(0.27), [sx, sz] = inset(0.40);
         boxTop(b, m.x0, m.x1, m.z0, m.z1, m.y0, plinth, CIVIC.wall, CIVIC.roof, 1.0);
-        boxTop(b, m.x0 + sx, m.x1 - sx, m.z0 + sz, m.z1 - sz, plinth, shaftTop,
-          CIVIC.wall, CIVIC.roof, 1.05);
+        boxTop(b, m.x0 + hx, m.x1 - hx, m.z0 + hz, m.z1 - hz, plinth, hall, CIVIC.wall, CIVIC.roof, 1.05);
         if (close) {
-          const cx = q(w * 0.4, 0.1), cz = q(d * 0.4, 0.1);
-          boxTop(b, m.x0 + cx, m.x1 - cx, m.z0 + cz, m.z1 - cz, shaftTop, m.y1,
-            CIVIC.wall, CIVIC.roof, 1.1);
+          boxTop(b, m.x0 + tx, m.x1 - tx, m.z0 + tz, m.z1 - tz, hall, tower, CIVIC.wall, CIVIC.roof, 1.1);
+          boxTop(b, m.x0 + sx, m.x1 - sx, m.z0 + sz, m.z1 - sz, tower, m.y1, CIVIC.wall, CIVIC.roof, 1.15);
+        } else {
+          boxTop(b, m.x0 + tx, m.x1 - tx, m.z0 + tz, m.z1 - tz, hall, m.y1, CIVIC.wall, CIVIC.roof, 1.1);
         }
       });
     }
 
-    return b.finish(describe(p), meta(p));
+    return b.finish(describe(p, masses), meta(p, masses));
   }
 
   /// The metadata a card, a check or a debug overlay reads. Everything here is
   /// either transcribed from the record or derived from the declared models,
   /// and the two are kept in separate fields on purpose: `pop` is the record's
   /// own number, `modelAreaKm2` is the model's.
-  function meta(p) {
+  function meta(p, masses) {
     return {
       city: { name: p.name, lon: p.lon, lat: p.lat, pop: p.pop, rank: p.rank, capital: p.capital },
       lod: p.lod, seed: p.seed,
@@ -1043,6 +1438,17 @@
       extent: [q(p.span * p.cell, 0.5), q(p.span * p.cell, 0.5)],
       modelExtent: p.extent,
       character: p.character, layout: p.layout, arterialEvery: p.every,
+      /// The three ranks of road, in metres: an arterial is a whole cell, a
+      /// local street is the ring round a block, a lane is the alley between
+      /// two masses on one block. Always in that order of width.
+      streets: {
+        arterial: p.cell,
+        local: streetWidth(p.cell, STREET.local),
+        lane: streetWidth(p.cell, STREET.lane),
+      },
+      /// Masses drawn against built cells: one to one at map detail, one to
+      /// four at close. `cells.plot` is the blocks; this is the buildings.
+      masses,
       peakHeight: p.peak, tallest: p.tallest,
       modelAreaKm2: p.modelAreaKm2, footprintKm2: p.footprintKm2,
       landKm2: p.landKm2, builtKm2: p.builtKm2, waterKm2: p.waterKm2,
@@ -1069,13 +1475,14 @@
   /// streets. The order is: what it is, what the extent is and where it came
   /// from, what the samplers did or did not provide, and what it grants
   /// (nothing).
-  function describe(p) {
+  function describe(p, masses) {
     // Formatted, not rounded: `q(12.1, 0.01)` is 12.100000000000001 in a
     // double and a description is read by a person.
     const km = (v) => (v >= 100 ? String(Math.round(v)) : v >= 10 ? v.toFixed(1) : v.toFixed(2));
     const name = p.name || "an unnamed place";
     const head = "Original game art: birds-eye massing of " + name + " — "
-      + p.counts.plot.toLocaleString("en-US") + " masses on a " + p.span + " x " + p.span
+      + masses.toLocaleString("en-US") + " masses on " + p.counts.plot.toLocaleString("en-US")
+      + " built cells of a " + p.span + " x " + p.span
       + " grid of " + km(p.cell) + " m cells, " + km(p.landKm2) + " km2 of land inside a "
       + km(p.footprintKm2) + " km2 modelled extent about " + km(p.span * p.cell / 1000)
       // `peak` is the core SCALE PARAMETER, not a height: masses are drawn at
@@ -1116,7 +1523,12 @@
   // --------------------------------------------------------------- exports
   return Object.freeze({
     build, plan,
+    /// lots(plan, i, j): the masses a cell carries, as boxes in model space.
+    /// Pure, and the same answer build drew.
+    lots: lotsFor,
     areaKm2, extentMetres, peakHeight, character,
+    lot: Object.freeze({ minCell: LOT.minCell, max: 4 }),
+    kerb: KERB,
     classes: Object.freeze(Object.assign({}, CLS)),
     flags: Object.freeze(Object.assign({}, FLAG)),
     areaModel: Object.freeze({
@@ -1129,9 +1541,9 @@
     /// over two million must land in. Both are asserted in
     /// tools/ui/check_city_mesh.cjs against the whole of cities.js.
     budget: Object.freeze({
-      ceiling: Object.freeze({ close: 40000, map: 5000 }),
+      ceiling: Object.freeze({ close: 80000, map: 5000 }),
       floor: Object.freeze({ close: 250, map: 100 }),
-      largest: Object.freeze({ overPop: 2000000, close: [24000, 40000] }),
+      largest: Object.freeze({ overPop: 2000000, close: [44000, 80000] }),
     }),
     baseCell: Object.freeze(Object.assign({}, BASE_CELL)),
     spanLimits: Object.freeze({ close: Object.assign({}, SPAN.close), map: Object.assign({}, SPAN.map) }),
