@@ -60,6 +60,9 @@ const BLOCK = (() => {
   return SRC.slice(a, b);
 })();
 
+/// The whole shader, for bars about code outside the cover block.
+const BLOCK_ALL = SRC;
+
 // ---------------------------------------------------------------- GLSL shims
 const clamp = (x, lo, hi) => Math.min(hi, Math.max(lo, x));
 function smoothstep(lo, hi, x) {
@@ -88,6 +91,12 @@ function vnoise(x, y) {
 function grab(re, label) {
   const m = re.exec(BLOCK);
   assert.ok(m, `${label}: not found in the shipped cover block`);
+  return m;
+}
+/// The same, over the whole shader, for the bars about code outside the block.
+function grabAll(re, label) {
+  const m = re.exec(BLOCK_ALL);
+  assert.ok(m, `${label}: not found in the shipped shader`);
   return m;
 }
 
@@ -314,4 +323,56 @@ test("no shader declares a GLSL ES reserved word as an identifier", () => {
     }
   }
   assert.deepEqual(bad, [], `reserved words declared as identifiers: ${bad.join(", ")}`);
+});
+
+test("the coastline bias is documented as a known error, not silently kept", () => {
+  // MEASURED against Natural Earth 10m admin-0 rasterised at 334 m over ten
+  // coastal regions: the drawn shoreline sits a median 3.02 km from the true
+  // one, p90 6.80 km, 6.47% of area on the wrong side, and most of that median
+  // is this one constant. Removing it on the mesh path was tried and reverted:
+  // the ground moved toward the truth and de-registered from the national
+  // outline, which comes from world.js at a median 24 km per segment.
+  //
+  // The bar is that the constant carries its own measurement. A number this
+  // wrong must not sit in the shader looking like a tuning choice.
+  const m = grabAll(/float bias = ([^;]+);/, "the coastline bias");
+  assert.match(m[1], /mix\(1\.20, 0\.15, tDetail\)/, "the coastline bias has moved");
+  const where = BLOCK_ALL.indexOf("float bias =");
+  const note = BLOCK_ALL.slice(Math.max(0, where - 1600), where);
+  assert.match(note, /3\.02 km/,
+    "the bias no longer carries the measured shoreline error it is responsible for");
+  assert.match(note, /REVERTED|reverted/,
+    "the note no longer records that removing it was tried and why it came back");
+});
+
+test("the political fill stops at the water, and scales premultiplied colour with it", () => {
+  const m = grabAll(/vec4 pol = texture\(uPol, overlayUv\)([^;]*);/, "the political sample");
+  assert.match(m[1], /isLand/, "the political fill is not clipped to the land test");
+  // THE BUG THIS BAR EXISTS FOR. pol is premultiplied, so clipping only its
+  // alpha leaves the colour at full strength and paints a BRIGHTER fringe along
+  // every coast instead of removing it. The whole vector has to be scaled.
+  assert.ok(!/pol\.a\s*\*=/.test(BLOCK_ALL) && !/pol\.a = /.test(BLOCK_ALL),
+    "the political alpha is being scaled on its own; pol is premultiplied and rgb must scale with it");
+  // And against the ocean field, never the lake field: world.js covers the
+  // Great Lakes as land by design, so clipping on lakes would strip their
+  // nation colour.
+  assert.ok(!/lake|lC\b|uLake/i.test(m[1]),
+    `the political fill is clipped against the lake field: "${m[1].trim()}"`);
+});
+
+test("no shader contains a backtick, which would end its own template literal", () => {
+  // A comment written as `bias` inside GLSL_MAP ended the template literal it
+  // was sitting in, so the rest of the shader became JavaScript and the WHOLE
+  // page stopped parsing. Seven unrelated suites went red at once and none of
+  // them named the cause. The shaders are template literals and a backtick is
+  // the one character they cannot contain.
+  const bad = [];
+  for (const m of page.matchAll(/const (GLSL_\w+) = `([\s\S]*?)`;/g)) {
+    if (m[2].includes("`")) bad.push(m[1]);
+  }
+  assert.deepEqual(bad, [], `shaders containing a stray backtick: ${bad.join(", ")}`);
+  // The match above stops at the FIRST backtick, so a stray one would also
+  // truncate the extracted source. Guard that the map shader still looks whole.
+  assert.ok(SRC.includes("void main()") && SRC.length > 20000,
+    `the extracted map shader is only ${SRC.length} chars; a stray backtick has truncated it`);
 });

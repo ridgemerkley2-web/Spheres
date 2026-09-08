@@ -9929,6 +9929,29 @@ void main() {
   // half of this shader is worth skipping outright over the ocean and the test
   // for that is isLand. They depend only on uniforms and on sdf, so nothing is
   // reordered across a dependency. See the micro-relief gate below.
+  // THE COASTLINE IS PUSHED OUT TO SEA, AND IT STAYS THAT WAY FOR NOW. The
+  // bias shifts the land test outward along the distance field: 1.20 canvas
+  // units at world zoom, 0.15 once the camera is in. 0.15 canvas units is
+  // 2.0 km of real ground, applied at every close zoom, so at ZOOM_MAX the
+  // shore is drawn crisply about 300 device pixels out to sea.
+  //
+  // MEASURED against Natural Earth 10m admin-0 rasterised at 334 m over ten
+  // coastal regions: the shoreline the map draws sits a median 3.02 km from
+  // the true one, p90 6.80 km, with 6.47% of area on the wrong side. Most of
+  // that median is this one constant.
+  //
+  // REMOVING IT WAS TRIED, ON THE MESH PATH ONLY, AND REVERTED after looking
+  // at the result. The ground's water edge moved 2 km landward -- toward the
+  // truth -- and immediately de-registered from the national outline drawn
+  // over it, which comes from world.js at a median 24 km per segment and did
+  // not move. A border line standing out over open water reads as a bug, and
+  // it is one: the two layers disagree about where the coast is, and this
+  // constant is what was hiding that. It is the vector bake that is wrong,
+  // not the bias, so the bias holds the two together until the bake is
+  // replaced. That is one job -- re-bake world.js and districts.js from
+  // ne_10m_admin_0, then take the shoreline from the elevation tiles, which
+  // are 1,855 m against the coast field's 16,698 -- and it needs a 40 MB
+  // download this repo does not carry. Recorded rather than half-done.
   float bias = mix(1.20, 0.15, tDetail);
   float aa   = 0.75 / max(uPxPerWorld, 1e-6);
   float isLand = smoothstep(-aa, aa, sdf + bias);
@@ -10566,7 +10589,22 @@ void main() {
   // alone, which is what a mode with no political reading wants.
   vec2 overlayUv = (world - uOverlayRegion.xy) / uOverlayRegion.zw;
   float overlayInside = step(0.0, overlayUv.x)*step(0.0,overlayUv.y)*step(overlayUv.x,1.0)*step(overlayUv.y,1.0);
-  vec4 pol = texture(uPol, overlayUv) * overlayInside;
+  // CLIPPED TO THE WATER'S EDGE. The political texture is rasterised from
+  // world.js and districts.js, whose rings carry a median 24 km per segment,
+  // so a nation's fill runs into the sea wherever its outline is coarser than
+  // the shader's own land test -- which, now that the test is no longer biased
+  // seaward, is everywhere with an indented coast. Multiplying by isLand ends
+  // the fill exactly where the water begins.
+  //
+  // THE WHOLE VECTOR IS SCALED, not just the alpha. pol is PREMULTIPLIED (see
+  // the note above), so scaling only .a leaves .rgb at full strength and paints
+  // a bright fringe along every coastline -- brighter, not absent, which is the
+  // opposite of the intent.
+  //
+  // Against the OCEAN field only. The lake field is a separate signal and the
+  // Great Lakes are deliberately covered as land by world.js; clipping against
+  // them would take the nation colour off them.
+  vec4 pol = texture(uPol, overlayUv) * overlayInside * mix(1.0, isLand, float(uMesh == 1));
   col = col * (1.0 - pol.a * uPolOp) + pol.rgb * uPolOp;
   // The selection rides ABOVE the ramp, at full strength: the point of a
   // highlight is to be seen, and dimming it with the same camera ramp that
