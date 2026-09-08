@@ -107,6 +107,8 @@ mod companies_view;
 const INDUSTRY_CSS: &str = include_str!("../ui/industry-ui.css");
 const CASH_FLOW_UI_JS: &str = include_str!("../ui/cash-flow-ui.js");
 const CASH_FLOW_CSS: &str = include_str!("../ui/cash-flow-ui.css");
+const POPULATION_UI_JS: &str = include_str!("../ui/population-ui.js");
+const POPULATION_CSS: &str = include_str!("../ui/population-ui.css");
 const EQUIPMENT_UI_JS: &str = include_str!("../ui/equipment-ui.js");
 const EQUIPMENT_CSS: &str = include_str!("../ui/equipment-ui.css");
 // Claude's 46 catalogue models, imported from 092569227023ff4278a5d699018af46bd39c7c94.
@@ -213,7 +215,7 @@ fn fresh_session_id() -> String {
 
 fn exchange_read_path(path: &str) -> bool {
     matches!(path, "/api/companies" | "/api/equipment" | "/api/equipment-preview" | "/api/competition" | "/api/industry" | "/api/cash-flow" | "/api/goods-quotes" |
-        "/api/industry-module-quotes" | "/api/materials-quote" | "/api/construction-preview")
+        "/api/industry-module-quotes" | "/api/materials-quote" | "/api/construction-preview" | "/api/population")
 }
 
 /// Exchange reads are campaign-scoped even though three of them use POST for
@@ -3248,6 +3250,27 @@ fn ministry_key(index: usize) -> &'static str {
     }
 }
 
+/// Read-only transport of the population simulation. Counts remain in millions;
+/// policy prices, blockers and effects come from the same quotes commands use.
+fn population_json(w: &WorldState, nation: NationId, session_id: &str) -> serde_json::Value {
+    let mut value = match spheres_sim::population::snapshot(w, nation) {
+        Some(snapshot) => {
+            let mut value = serde_json::to_value(snapshot).expect("population snapshot is serializable");
+            value["enabled"] = serde_json::json!(true);
+            value
+        },
+        None => serde_json::json!({
+            "enabled": false,
+            "reason": "This save uses the earlier population rules. Enable People when you are ready to connect jobs, qualifications and household living standards.",
+        }),
+    };
+    value["nation"] = serde_json::json!(format!("{:?}", nation));
+    value["name"] = serde_json::json!(nation.name());
+    value["session_id"] = serde_json::json!(session_id);
+    value["date"] = serde_json::json!(w.date_str());
+    value
+}
+
 /// The simulation supplies all amounts, eligibility and prices. This adapter
 /// groups the fifty ledger rows for the cabinet without creating another model.
 fn programs_json(w: &WorldState, me: NationId, preview: Option<programs::ProgramPreview>) -> serde_json::Value {
@@ -5579,6 +5602,7 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         "dispatch_count":g.log.len(),
         "storage_notice":g.storage_notice,
         "simulation_cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
+        "population_enabled": spheres_sim::population::active(w),
         "simulation_transition": w.daily.activate_after_month.map(|closing_month| {
             let next = closing_month + 1;
             let year = 1990 + next.div_euclid(12);
@@ -6302,8 +6326,8 @@ fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
         "arms": [
             arm("base", "R&D intensity", "points", terms.base,
                 "what the economy puts into research before any policy"),
-            arm("ministry", "Education", "multiplier", terms.ministry,
-                "the ministry that owns the research multiplier"),
+            arm("ministry", if spheres_sim::population::active(w) { "Research workforce" } else { "Education" }, "multiplier", terms.ministry,
+                if spheres_sim::population::active(w) { "qualified people and funded research capacity" } else { "the ministry that owns the research multiplier" }),
             arm("tools", "Instruments", "multiplier", terms.tools,
                 "what the nation's own technology is worth to its laboratories"),
             // NOT called "allocation": the budget shares below the arms are an
@@ -6456,6 +6480,9 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
         "break_currency_peg" => Command::BreakCurrencyPeg { nation:me },
         "resume_automatic_bank" => Command::ResumeAutomaticBank { nation:me },
         "enable_economic_competition" => Command::EnableEconomicCompetition { nation:me },
+        "enable_population" => Command::EnablePopulation { nation:me },
+        "set_population_policy" => Command::SetPopulationPolicy { nation:me,
+            policy:spheres_sim::population::Policy::parse(v.get("policy")?.as_str()?)? },
         "propose_economic_union" => Command::ProposeEconomicUnion { patron:me,partner:target()? },
         "join_economic_union" => Command::JoinEconomicUnion { nation:me,patron:target()? },
         "leave_economic_union" => Command::LeaveEconomicUnion { nation:me },
@@ -7078,6 +7105,7 @@ fn fresh_play_rules(g: &mut Game) -> Result<(), String> {
     spheres_sim::starting_industry::enrich_new_world(&mut g.world)?;
     play_rules(g);
     spheres_sim::companies::enable(&mut g.world);
+    spheres_sim::population::enable(&mut g.world);
     Ok(())
 }
 
@@ -7359,6 +7387,8 @@ fn main() {
             (Method::Get, "/companies.css") => Response::from_string(COMPANIES_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, "/cash-flow-ui.css") => Response::from_string(CASH_FLOW_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, "/cash-flow-ui.js") => Response::from_string(CASH_FLOW_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/population-ui.js") => Response::from_string(POPULATION_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/population-ui.css") => Response::from_string(POPULATION_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, "/arsenal-models.js") => Response::from_string(ARSENAL_MODELS_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/arsenal3d.js") => Response::from_string(ARSENAL3D_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/surface-grain.js") => Response::from_string(SURFACE_GRAIN_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
@@ -7902,6 +7932,15 @@ fn main() {
                     None=>json_error(400,serde_json::json!({"error":"Choose a nation first."})),
                 }
             }
+            (Method::Get, "/api/population") => {
+                let g=game.lock().unwrap();
+                let asked=url.split_once('?').and_then(|(_,query)|query.split('&').find_map(|field|field.strip_prefix("nation=")));
+                let nation=match asked {Some(raw)=>nation_param(&format!("/?nation={raw}")),None=>g.world.player};
+                match nation.filter(|id|g.world.nation_opt(*id).is_some_and(|n|n.alive)) {
+                    Some(nation)=>json_response(population_json(&g.world,nation,&g.session_id)),
+                    None=>json_error(400,serde_json::json!({"error":"Choose a living nation to read its population."})),
+                }
+            }
             (Method::Get, "/api/equipment") => {
                 let g=game.lock().unwrap();
                 match g.world.player {Some(me)=>json_response(equipment_view::view(&g.world,me,&g.session_id)),None=>json_error(400,serde_json::json!({"error":"Choose a nation first."}))}
@@ -8047,6 +8086,69 @@ fn open_browser(url: &str) {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn population_view_is_pure_and_preserves_simulation_units() {
+        let mut g=Game::new(71,Some(NationId::USA));
+        fresh_play_rules(&mut g).unwrap();
+        let before=save(&g.world);
+        let first=population_json(&g.world,NationId::USA,&g.session_id);
+        let second=population_json(&g.world,NationId::USA,&g.session_id);
+        assert_eq!(first,second);
+        assert_eq!(before,save(&g.world),"reading population must not hire, enroll or charge anyone");
+        assert_eq!(first["session_id"],g.session_id);
+        assert_eq!(first["nation"],"USA");
+        assert_eq!(first["enabled"],true);
+        assert_eq!(first["classes"].as_array().unwrap().len(),6);
+        assert_eq!(first["policies"].as_array().unwrap().len(),4);
+        assert_eq!(first["sectors"].as_array().unwrap().len(),8);
+        let count=first["population_m"].as_f64().unwrap();
+        assert!((count-g.world.nation(NationId::USA).population).abs()<1e-7);
+        let sum=first["classes"].as_array().unwrap().iter().map(|row|row["people_m"].as_f64().unwrap()).sum::<f64>();
+        assert!((sum-count).abs()<1e-7);
+        for key in ["unemployment_rate","participation_rate","employment_rate","school_coverage"] {
+            assert!((0.0..=1.0).contains(&first[key].as_f64().unwrap()),"{key} is a fraction");
+        }
+        assert_eq!(state_json(&g,None)["population_enabled"],true);
+    }
+
+    #[test]
+    fn population_commands_bind_the_player_and_validate_policy() {
+        let mut g=Game::new(71,Some(NationId::USA));
+        fresh_play_rules(&mut g).unwrap();
+        let value=serde_json::json!({"kind":"set_population_policy","policy":"trade_schools","nation":"Japan","political_cost":0});
+        let command=parse_command(&g.world,&value,NationId::USA).unwrap();
+        assert!(matches!(command,Command::SetPopulationPolicy{nation:NationId::USA,policy:spheres_sim::population::Policy::TradeSchools}));
+        let before_pc=g.world.nation(NationId::USA).political_capital;
+        let price=spheres_sim::population::policy_quote(&g.world,NationId::USA,spheres_sim::population::Policy::TradeSchools).political_cost;
+        apply_command(&mut g.world,&command).unwrap();
+        assert!((g.world.nation(NationId::USA).political_capital-(before_pc-price)).abs()<1e-8);
+        let view=population_json(&g.world,NationId::USA,&g.session_id);
+        assert_eq!(view["policy"],"trade_schools");
+        assert_eq!(population_json(&g.world,NationId::Japan,&g.session_id)["policy"],"balanced");
+        assert_eq!(view["policies"].as_array().unwrap().iter().filter(|q|q["selected"]==true).count(),1);
+        assert!(apply_command(&mut g.world,&Command::SetPopulationPolicy{nation:NationId::USA,policy:spheres_sim::population::Policy::Universities}).is_err());
+        for invalid in [serde_json::json!("instant_degree"),serde_json::json!(14),serde_json::Value::Null] {
+            assert!(parse_command(&g.world,&serde_json::json!({"kind":"set_population_policy","policy":invalid}),NationId::USA).is_none());
+        }
+        assert!(matches!(parse_command(&g.world,&serde_json::json!({"kind":"enable_population","nation":"Japan"}),NationId::USA),Some(Command::EnablePopulation{nation:NationId::USA})));
+    }
+
+    #[test]
+    fn population_upgrade_is_explicit_and_reads_are_session_bound() {
+        let g=loaded_play_game(Game::new(71,Some(NationId::USA)).world);
+        assert!(!spheres_sim::population::active(&g.world),"loading a legacy save must not seed the new population system");
+        assert_eq!(population_json(&g.world,NationId::USA,&g.session_id)["enabled"],false);
+        assert!(exchange_read_path("/api/population"));
+        let empty=serde_json::json!({});
+        assert!(exchange_session_matches(&Method::Get,"/api/population?session_id=123-456-7",&empty,"123-456-7"));
+        assert!(!exchange_session_matches(&Method::Get,"/api/population",&empty,"123-456-7"));
+        assert!(!exchange_session_matches(&Method::Get,"/api/population?session_id=other",&empty,"123-456-7"));
+        assert!(INDEX.contains("data-cab-tab=\"people\""));
+        assert!(INDEX.contains("data-cab-go=\"people\""));
+        assert!(POPULATION_UI_JS.contains("data-people-policy"));
+        assert!(POPULATION_CSS.contains("@media(max-width:520px)"));
+    }
 
     #[test]
     fn campaign_aim_browser_commands_freeze_and_close_model_targets() {
@@ -11265,7 +11367,16 @@ mod tests {
         assert!(INDEX.contains("async function cabinetEnact()"));
         assert!(INDEX.contains("Enact & advance 1 day →"));
         assert!(INDEX.contains("await advance(1);"));
-        assert!(INDEX.contains("Employment"));
+        assert!(INDEX.contains("statRow(\"Unemployment\", fmt.pct(m.unemployment))"),
+            "the Cabinet overview must show the authoritative unemployment rate");
+        assert!(INDEX.contains("data-cab-tab=\"people\""),
+            "the Cabinet must expose the detailed People and jobs desk");
+        assert!(INDEX.contains("<script src=\"/population-ui.js\"></script>"),
+            "the page must load the employment renderer");
+        assert!(POPULATION_UI_JS.contains("peopleMetric(\"People at work\",peopleCount(data.employed_m)"),
+            "the People desk must show the authoritative employed population");
+        assert!(POPULATION_UI_JS.contains("<dt>Employment ratio</dt><dd>${peoplePercent(data.employment_rate)}"),
+            "the People desk must expose employment separately from unemployment");
     }
 
     /// A power that dies must leave a line that ends, not one that runs flat to

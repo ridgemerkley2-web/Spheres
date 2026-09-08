@@ -382,6 +382,13 @@ pub fn arms_at(w: &WorldState, n: &Nation, ministry: usize, allocation: f64) -> 
                 value: health_replacement(gap),
             },
         ],
+        BUDGET_EDUCATION if w.population_system.enabled => vec![Arm {
+            id: "education_capacity",
+            name: "Funded school & training places",
+            note: "funding supports places; teachers and course completion take time",
+            kind: ArmKind::Mult,
+            value: crate::population::education_capacity_multiplier(w, n.id, gap),
+        }],
         BUDGET_EDUCATION => vec![Arm {
             id: "research",
             name: "Research",
@@ -430,14 +437,18 @@ pub fn arms_at(w: &WorldState, n: &Nation, ministry: usize, allocation: f64) -> 
             },
             Arm {
                 id: "jobs",
-                name: "Unemployment",
-                note: "retirement support reduces the measured labour force; this is not job creation",
+                name: if w.population_system.enabled { "Workforce participation target" } else { "Unemployment" },
+                note: if w.population_system.enabled {
+                    "retirement support lets adults leave the workforce gradually; vacancies and filled jobs are counted separately"
+                } else { "retirement support reduces the measured labour force; this is not job creation" },
                 // A SHARE of the labour force, not a rate per year: the two
                 // population arms move a growth rate and this moves a level,
                 // and a card that gave both the same unit would be inviting the
                 // reader to add them.
                 kind: ArmKind::Share,
-                value: -pensions_jobs(gap),
+                value: if w.population_system.enabled {
+                    crate::population::welfare_participation_change(w, n.id, gap)
+                } else { -pensions_jobs(gap) },
             },
             Arm {
                 id: "stability",

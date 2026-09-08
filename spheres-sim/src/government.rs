@@ -6295,7 +6295,8 @@ pub(crate) fn pains(w: &WorldState, id: NationId) -> Pains {
         // being judged on nothing else.
         prices: ((n.inflation - 0.03) / 0.15).clamp(0.0, 1.0),
         // A percent of growth is neutral; a 4% contraction is a catastrophe.
-        growth: ((0.01 - n.growth_last) / 0.05).clamp(0.0, 1.0),
+        growth: (((0.01 - n.growth_last) / 0.05).clamp(0.0, 1.0)
+            + crate::population::hardship(w, id)).clamp(0.0, 1.0),
         war: n.war_exhaustion.clamp(0.0, 1.0),
         order: ((60.0 - n.stability) / 60.0).clamp(0.0, 1.0) + n.separatism * 0.4,
     }

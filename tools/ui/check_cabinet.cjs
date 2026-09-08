@@ -56,10 +56,10 @@ function fixture(names) {
   document.querySelectorAll = selector => {
     if (selector === '.game-drawer.open') return [...elements.values()].filter(e => e.classList.contains('open') && e.id.endsWith('Drawer'));
     if (selector === '[data-drawer]') return [element('economyDock')];
-    if (selector === '[data-cab-tab]') return ['overview', 'budget', 'industry', 'policy'].map(tab => {
+    if (selector === '[data-cab-tab]') return ['overview', 'budget', 'industry', 'companies', 'policy', 'people'].map(tab => {
       const button = element(`cab-tab-${tab}`); button.dataset.cabTab = tab; return button;
     });
-    if (selector === '.cab-page') return ['overview', 'budget', 'industry', 'policy'].map(tab => element(`cabinet-${tab}`));
+    if (selector === '.cab-page') return ['overview', 'budget', 'industry', 'companies', 'policy', 'people'].map(tab => element(`cabinet-${tab}`));
     return [];
   };
   const context = vm.createContext({
@@ -226,12 +226,12 @@ test('cabinet keyboard navigation wraps tabs and traps focus without consuming n
         target:{closest(){ return tablist ? {} : null; }}});
     }`);
   evaluate(c, 'key("ArrowLeft", true)');
-  assert.equal(evaluate(c, 'CAB.tab'), 'policy');
-  assert.equal(c.document.activeElement.id, 'cab-tab-policy');
+  assert.equal(evaluate(c, 'CAB.tab'), 'people');
+  assert.equal(c.document.activeElement.id, 'cab-tab-people');
   evaluate(c, 'key("ArrowRight", true)');
   assert.equal(evaluate(c, 'CAB.tab'), 'overview');
   evaluate(c, 'key("End", true)');
-  assert.equal(evaluate(c, 'CAB.tab'), 'policy');
+  assert.equal(evaluate(c, 'CAB.tab'), 'people');
   evaluate(c, 'key("Home", true)');
   assert.equal(evaluate(c, 'CAB.tab'), 'overview');
 
@@ -258,7 +258,7 @@ test('cabinet is an accessible modal with industry and a gameplay-shortcut guard
   for (const attribute of ['role="dialog"', 'aria-modal="true"', 'aria-labelledby="cabinetTitle"']) {
     assert(modal[0].includes(attribute), `modal must carry ${attribute}`);
   }
-  for (const tab of ['overview', 'budget', 'industry', 'policy']) {
+  for (const tab of ['overview', 'budget', 'industry', 'companies', 'policy', 'people']) {
     const button = page.match(new RegExp(`<button\\b[^>]*id="cab-tab-${tab}"[^>]*>`));
     assert(button, `${tab} has a tab control`);
     assert(button[0].includes('role="tab"'));
@@ -283,9 +283,25 @@ test('tab selection changes visibility and roving focus, never the pending budge
   assert.equal(c.element('cab-tab-budget').tabIndex, 0);
   assert.equal(c.element('cab-tab-budget').attributes['aria-selected'], 'true');
   assert.equal(c.element('cab-tab-overview').tabIndex, -1);
+  evaluate(c, 'selectCabinetTab("people")');
+  assert.equal(c.element('cabinet-people').hidden, false);
+  assert.equal(c.element('cabinetDraft').hidden, true, 'People has no unrelated enact-and-advance footer');
+  evaluate(c, 'selectCabinetTab("budget")');
+  assert.equal(c.element('cabinetDraft').hidden, false, 'returning to budget restores its action footer');
   evaluate(c, 'selectCabinetTab("not-a-tab")');
   assert.equal(evaluate(c, 'CAB.tab'), 'budget');
   assert.equal(evaluate(c, 'queued[0].health'), 0.04);
+});
+
+test('Companies and Industry mounting retire the People read lifecycle', () => {
+  for (const destination of ['companies','industry']) {
+    const c=fixture(['selectCabinetTab']);
+    evaluate(c, `CAB.tab="people"; let peopleClosed=0; function peopleClose(){++peopleClosed;} selectCabinetTab("${destination}",true);`);
+    assert.equal(evaluate(c,'peopleClosed'),1);
+    assert.equal(evaluate(c,'CAB.tab'),destination);
+    assert.equal(c.element('cabinet-people').hidden,true);
+    assert.equal(c.element('cabinetDraft').hidden,false);
+  }
 });
 
 test('industry tab delegates opening, mounts once and closes its read lifecycle on departure', () => {

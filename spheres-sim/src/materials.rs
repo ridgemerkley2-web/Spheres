@@ -780,7 +780,7 @@ pub(crate) fn operate(
             let company = industry::manufacturing_company(w, o.nation, &o.district);
             let (_, energy_fee) = industry::energy_company_rates(w, o.nation);
             let target = (o.reserved_daily.min(capacity_daily(w, &o.district)) * company.work_rate
-                * crate::industry_operations::worker_fraction(w, o.nation, K::ProcessingPlant)).min(o.remaining);
+                * crate::industry_operations::district_worker_fraction(w, &o.district, K::ProcessingPlant)).min(o.remaining);
             let (output, blockers) =
                 feasible(w, o.nation, &o.district, target, *available_power, *grid);
             if output < QUANTUM {

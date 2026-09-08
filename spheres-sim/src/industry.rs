@@ -424,8 +424,16 @@ pub fn project_plans(w: &WorldState) -> BTreeMap<u32, WorkPlan> {
                 * (1.0 + production::level(w, &p.district, K::Infrastructure) as f64
                     * crate::construction_capacity::INFRASTRUCTURE_WORK_BONUS)
         } else { 1.0 };
-        let ordinary_site_work = crate::industrial_modules::normalized_advance(w, p, physical_work).min(remaining);
-        let site_work = crate::industrial_modules::normalized_advance(w, p, physical_work * company.work_rate).min(remaining);
+        // Factory service and local building crews are independent capacities.
+        // Take their limiting work rate once; multiplying two staffing ratios
+        // would charge the same national shortage again in a project's output.
+        let crew_limit = crate::construction_capacity::crew_work_limit(w, &p.district);
+        let staffed_work = physical_work.min(crew_limit);
+        if staffed_work + EPS < physical_work {
+            plan.slow_reason = Some("SLOWED: local construction crews need qualified workers. Trade schools can help.".into());
+        }
+        let ordinary_site_work = crate::industrial_modules::normalized_advance(w, p, staffed_work).min(remaining);
+        let site_work = crate::industrial_modules::normalized_advance(w, p, staffed_work * company.work_rate).min(remaining);
         // A commissioning ceiling or the final fraction of a project can
         // leave no work for a faster contractor to add. Do not charge for an
         // unavailable service or report normalized days as invented bonuses.
@@ -896,7 +904,7 @@ pub fn tick_day(w: &mut WorldState) {
                 .entry(d.clone())
                 .or_insert_with(|| (crate::industry_operations::grid_capacity(w, d) - crate::industry_operations::support_grid_used(w, d)).max(0.0));
             let per_power = power_per_pack(w, d, kind);
-            let target = plant_rate(w, d, kind) * crate::industry_operations::worker_fraction(w, nation, kind);
+            let target = plant_rate(w, d, kind) * crate::industry_operations::district_worker_fraction(w, d, kind);
             let pile = w
                 .production
                 .industry
@@ -1361,7 +1369,7 @@ pub fn mine_work_plan(w: &WorldState, p: &resources::MineProject, available_bn: 
     let price = if remaining > EPS { due / remaining } else { 0.0 };
     let available = available_bn.max(0.0).min(programs::construction_available_bn(w, p.started_by));
     plan.target_advance_days = if w.rules.industry_rebuild { crate::construction_capacity::mine_nominal_work(w,p) }
-        else { remaining.min(1.0) };
+        else { remaining.min(1.0).min(crate::construction_capacity::crew_work_limit(w, &p.district)) };
     if plan.target_advance_days <= EPS && w.rules.industry_rebuild {
         plan.slow_reason=Some("PAUSED: no construction capacity assigned to this mine. Use Auto or assign capacity.".into());
     }

@@ -40,6 +40,7 @@ pub mod materials;
 pub mod ministries;
 pub mod nations;
 pub mod politics;
+pub mod population;
 pub mod production;
 pub mod programs;
 pub mod province_economy;
@@ -86,6 +87,9 @@ pub enum EquipmentOrder {
 /// All player and AI actions flow through the command queue.
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub enum Command {
+    /// Explicit migration for a saved campaign; existing residents and GDP stay.
+    EnablePopulation { nation: NationId },
+    SetPopulationPolicy { nation: NationId, policy: population::Policy },
     EnableCompanies { nation: NationId },
     AssignCompany { nation: NationId, company: u32, target: companies::CompanyTarget },
     UnassignCompany { nation: NationId, target: companies::CompanyTarget },
@@ -371,6 +375,9 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
     /// Always available, and charged anyway.
     const ALWAYS: bool = false;
     Some(match c {
+        Command::EnablePopulation { nation } => (*nation, 0.0, REFUSABLE),
+        Command::SetPopulationPolicy { nation, policy } =>
+            (*nation, population::policy_quote(w, *nation, *policy).political_cost, REFUSABLE),
         Command::SetInterestRate { nation, rate } => (
             *nation,
             swing(w.nation(*nation).interest_rate, rate.clamp(0.0, 0.60), 90.0),
@@ -675,6 +682,14 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
 /// this returns the sim's own prose rather than composing its own.
 fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
     match c {
+        Command::EnablePopulation { nation } => {
+            if !w.nation_opt(*nation).is_some_and(|n| n.alive) {
+                Some("This government no longer exists.".into())
+            } else if !clock::is_daily(w) {
+                Some("The People system needs the daily simulation. Finish the calendar transition first.".into())
+            } else { None }
+        }
+        Command::SetPopulationPolicy { nation, policy } => population::policy_quote(w, *nation, *policy).reason,
         Command::Equipment { nation, order } => apply_equipment_order(&mut w.clone(), *nation, order).err(),
         Command::SetInterestRate { nation, .. } if agency::pegged_rate(w,*nation).is_some() => Some("Exit the currency peg before changing its policy rate.".into()),
         Command::RespondDiplomacy { nation, offer, accept } => agency::response_error(w,*nation,*offer,*accept),
@@ -884,6 +899,8 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
 
 fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
     match c {
+        Command::EnablePopulation { .. } => population::enable(w),
+        Command::SetPopulationPolicy { nation, policy } => population::apply_policy(w, *nation, *policy)?,
         Command::EnableCompanies { nation } => {
             if !clock::is_daily(w) || w.nation_opt(*nation).is_none_or(|n| !n.alive) {
                 return Err("Companies require an active daily campaign.".into());
@@ -1363,6 +1380,8 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
 /// is the largest single entry in the table.
 #[allow(clippy::type_complexity)]
 pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
+    ("population", tick_population),
+    ("construction", tick_daily_construction),
     ("economy", economy::tick),
     // The resource ledger is derived from the ownership map and read by the
     // arsenal's gate in this same month, so it is built before tech and
@@ -1403,6 +1422,31 @@ pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
     // before reading anything with `rules.ideology_blocs` off.
     ("mortality", politics::mortality),
 ];
+
+/// Publish one population ledger to every existing economic reader. Keeping
+/// the legacy Nation query interfaces means the HUD, fiscal previews and
+/// political-capital calculation cannot accidentally quote another job rate.
+fn tick_population(w: &mut WorldState) {
+    population::tick(w);
+    if !w.population_system.enabled { return; }
+    let ids: Vec<_> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
+    for id in ids {
+        if let (Some(labor_growth), Some(unemployment)) =
+            (population::labor_growth(w, id), population::unemployment(w, id))
+        {
+            w.nation_mut(id).population_outcomes = Some(population::PopulationOutcomes { labor_growth, unemployment });
+        }
+    }
+}
+
+fn tick_daily_construction(w: &mut WorldState) {
+    if clock::is_daily(w) {
+        // Staffing is assigned by population before today's physical industry
+        // forecast, so construction and production share the same workers.
+        industry_operations::begin_day(w);
+        production::tick_day(w);
+    }
+}
 
 /// Advance the world one month. Commands are applied before systems tick.
 pub fn tick_month(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
@@ -1485,8 +1529,7 @@ pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
 
     province_economy::begin_day(w);
     programs::begin_day(w);
-    industry_operations::begin_day(w);
-    production::tick_day(w);
+    if !clock::is_daily(w) { production::tick_day(w); }
 
     if clock::is_daily(w) {
         for (_, system) in SYSTEMS { system(w); }

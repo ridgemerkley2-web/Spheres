@@ -164,12 +164,53 @@ pub fn jobs_per_level(kind: K) -> f64 {
         K::ResearchCenter => 2_000.0, _ => 0.0,
     }
 }
+/// The population ledger and operations use the same occupation demand.
+/// Fractions are game production recipes, not a historical occupational census.
+pub fn skill_recipe(kind: K) -> [f64; 3] {
+    match kind {
+        K::ArmsPlant => [0.45, 0.42, 0.13],
+        K::Shipyard => [0.50, 0.40, 0.10],
+        K::AdvancedIndustry => [0.15, 0.35, 0.50],
+        K::OfficeDistrict => [0.45, 0.15, 0.40],
+        K::ResearchCenter => [0.10, 0.15, 0.75],
+        K::Generation | K::PowerGrid => [0.42, 0.42, 0.16],
+        K::FreightTerminal | K::Warehouse | K::Infrastructure => [0.70, 0.22, 0.08],
+        _ => [0.58, 0.34, 0.08],
+    }
+}
+pub fn workforce_sector(kind: K) -> usize {
+    match kind {
+        K::OfficeDistrict => 6,
+        K::ResearchCenter => 7,
+        K::Generation | K::PowerGrid => 3,
+        K::FreightTerminal | K::Warehouse | K::Infrastructure => 5,
+        _ => 2,
+    }
+}
+/// Assigned workers remain employees when the hiring pool becomes empty.
+/// Required qualifications are bottlenecks: general workers cannot substitute
+/// for missing researchers merely because most other positions are filled.
+pub fn district_worker_fraction(w: &WorldState, district: &str, kind: K) -> f64 {
+    if crate::population::active(w) {
+        if jobs_per_level(kind) <= 0.0 { return 1.0; }
+        return crate::population::district_skill_staffing(
+            w, district, workforce_sector(kind), skill_recipe(kind));
+    }
+    w.districts.get(district).map_or(0.0, |&nation| worker_fraction(w, nation, kind))
+}
 fn skilled(kind: K) -> bool { matches!(kind, K::OfficeDistrict | K::AdvancedIndustry | K::ResearchCenter) }
 
 /// The macro unemployment result supplies available new hires. Existing
 /// employment remains reserved for inherited output; jobs are not a second
 /// growth multiplier and no extra GDP/unemployment write is made here.
 pub fn available_workers(w: &WorldState, nation: NationId) -> f64 {
+    if crate::population::active(w) {
+        let located: f64 = w.population_system.provinces.iter()
+            .filter(|(d, _)| w.districts.get(*d) == Some(&nation))
+            .map(|(_, p)| p.unemployed_m()).sum();
+        return (located + w.population_system.unallocated.get(&nation)
+            .map_or(0.0, |p| p.unemployed_m())) * 1_000_000.0;
+    }
     w.nation_opt(nation).map_or(0.0, |n|
         clean(n.population) * 1_000_000.0 * 0.50
             * economy::unemployment_rate(n, w.at_war(nation)))
@@ -181,6 +222,17 @@ fn workforce_demand(w: &WorldState, nation: NationId, skilled_only: bool) -> f64
             .map(|k| levels(w, d, *k) * jobs_per_level(*k)).sum::<f64>()).sum()
 }
 pub fn worker_fraction(w: &WorldState, nation: NationId, kind: K) -> f64 {
+    if crate::population::active(w) {
+        let mut demand = 0.0;
+        let mut staffed = 0.0;
+        for (district, &owner) in &w.districts {
+            if owner != nation { continue; }
+            let jobs = levels(w, district, kind) * jobs_per_level(kind);
+            demand += jobs;
+            staffed += jobs * district_worker_fraction(w, district, kind);
+        }
+        return if demand > EPS { ratio(staffed, demand) } else { 1.0 };
+    }
     if !enabled(w) || jobs_per_level(kind) == 0.0 { return 1.0; }
     let available = available_workers(w, nation);
     let general = ratio(available, workforce_demand(w, nation, false));
@@ -233,7 +285,7 @@ pub fn operating_fraction(w: &WorldState, district: &str, kind: K) -> f64 {
     }
     let Some(&nation) = w.districts.get(district) else { return 0.0; };
     if resources::district_contested(w, district) || !w.nation(nation).alive { return 0.0; }
-    worker_fraction(w, nation, kind).min(if power_per_level(w, district, kind) > 0.0 {
+    district_worker_fraction(w, district, kind).min(if power_per_level(w, district, kind) > 0.0 {
         power_fraction(w, district)
     } else { 1.0 })
 }
@@ -304,7 +356,7 @@ pub fn office_annual_value_added(w: &WorldState, district: &str, operating_level
 pub fn site(w: &WorldState, district: &str, kind: K) -> FacilityOperation {
     let count = levels(w, district, kind);
     let owner = w.districts.get(district).copied();
-    let workers = owner.map_or(0.0, |n| worker_fraction(w, n, kind));
+    let workers = owner.map_or(0.0, |_| district_worker_fraction(w, district, kind));
     let power = count * power_per_level(w, district, kind);
     let power_fraction = if power > 0.0 { power_fraction(w, district) } else { 1.0 };
     let mut funding_fraction: f64 = 1.0;
@@ -521,16 +573,29 @@ pub fn snapshot(w: &WorldState, nation: NationId) -> OperationsSnapshot {
         for (d, asset) in &state.provinces {
             if w.districts.get(d) != Some(&nation) { continue; }
             let Some(p) = starting_industry::province(w, d) else { continue; };
+            let group_equivalents: f64 = p.groups.iter().map(|g| g.factory_equivalents).sum();
+            let population_jobs = if crate::population::active(w) {
+                w.population_system.provinces.get(d).map(|people| {
+                    let required = people.jobs[2].iter().sum::<f64>() * 1_000_000.0;
+                    let filled = (0..3).map(|grade| {
+                        people.filled[2][grade]
+                            * ratio(people.jobs[2][grade], people.jobs[2][grade] + people.project_jobs[2][grade])
+                    }).sum::<f64>() * 1_000_000.0;
+                    (required, filled)
+                })
+            } else { None };
             for g in p.groups {
                 if g.factory_equivalents <= 0.0 { continue; }
                 let utilization = g.utilization.clamp(0.0, 1.0);
-                let jobs = g.factory_equivalents * 1_000.0;
+                let share = ratio(g.factory_equivalents, group_equivalents);
+                let jobs = population_jobs.map_or(g.factory_equivalents * 1_000.0, |(required, _)| required * share);
+                let filled_jobs = population_jobs.map_or(jobs * utilization, |(_, filled)| filled * share);
                 let power = g.factory_equivalents * INHERITED_POWER_PER_EQUIVALENT;
                 facilities.push(FacilityOperation { nation:Some(nation), recorded_day:Some(clock::absolute_day(w)), district: d.clone(), kind: format!("inherited_{}", g.key), name: g.name.into(), inherited: true,
                     installed_capacity: g.factory_equivalents, operating_capacity: g.factory_equivalents * utilization,
                     utilization, actual_operating_capacity:Some(g.factory_equivalents*utilization), actual_utilization:Some(utilization), output_daily: g.current_output_annual_bn / 365.0, output_unit: "inherited value added ($bn/day)".into(),
-                    jobs_required: jobs, jobs_filled: jobs * utilization, power_required_daily: power,
-                    power_used_daily: power * utilization, worker_fraction: utilization, power_fraction: 1.0,
+                    jobs_required: jobs, jobs_filled: filled_jobs, power_required_daily: power,
+                    power_used_daily: power * utilization, worker_fraction: if population_jobs.is_some() { ratio(filled_jobs, jobs) } else { utilization }, power_fraction: 1.0,
                     input_fraction: 1.0, funding_fraction: 1.0, status: "inherited_operation".into(),
                     reason: format!("Estimated {} capacity from the inherited manufacturing account. Its existing workers, utility service and supply are reconciled to opening output; {:.4} $bn/year is already in GDP. Unused capacity is not free government inventory.", g.name, g.current_output_annual_bn),
                     annual_gdp_bn: g.current_output_annual_bn, annual_tax_bn: annual_tax_estimate(w, nation, g.current_output_annual_bn), cash_spent_daily_bn: 0.0 });
@@ -588,7 +653,11 @@ pub fn snapshot(w: &WorldState, nation: NationId) -> OperationsSnapshot {
         workers_available: available_workers(w, nation), jobs_required, jobs_filled, facilities,
         advanced_components_stock:advanced_component_stock(w,nation), advanced_components_capacity:advanced_component_capacity(w,nation),
         advanced_components_required_daily:crate::manufacturing::advanced_components_demand_daily(w,nation)+crate::equipment::advanced_components_demand_daily(w,nation),
-        note: "Factory equivalents, staffing, qualification and spare power are explicit model estimates. Inherited value added is already inside GDP; only actual new production reaches the existing province ledger, then normal fiscal taxes. New jobs use the available hiring pool without adding a second growth multiplier. Power totals show supply available to additional activity after inherited demand; dated output is a receipt, operating capacity is today's conditional forecast.".into() }
+        note: if crate::population::active(w) {
+            "Jobs and qualifications use the shared population ledger. Inherited manufacturing headcounts are divided among its model factory groups; new-site jobs filled report workers utilized in dated production, while assigned employees remain in the population accounts. Available workers are remaining jobseekers, not the pool already employed by these factories. Inherited value added is already inside GDP; only actual new production reaches the province ledger and normal fiscal taxes. Staffing caps each operating bundle once; nameplate capacity remains physical capacity."
+        } else {
+            "Factory equivalents, staffing, qualification and spare power are explicit model estimates. Inherited value added is already inside GDP; only actual new production reaches the existing province ledger, then normal fiscal taxes. New jobs use the available hiring pool without adding a second growth multiplier. Power totals show supply available to additional activity after inherited demand; dated output is a receipt, operating capacity is today's conditional forecast."
+        }.into() }
 }
 
 #[cfg(test)]
@@ -761,5 +830,111 @@ mod tests {
         assert!(a.facilities.iter().any(|r|r.output_daily>0.0));
         clock::advance_date(&mut w);clock::advance_date(&mut w);
         assert!(snapshot(&w,USA).facilities.iter().all(|r|r.output_daily==0.0));
+    }
+
+    #[test]
+    fn population_staffing_limits_processor_output_once_without_shrinking_nameplate() {
+        let (mut w, d) = ready_with_inherited(true);
+        production::complete_capability(&mut w, &d, K::ProcessingPlant);
+        crate::population::enable(&mut w);
+        crate::population::tick(&mut w);
+        let nameplate = industry::plant_rate(&w, &d, K::ProcessingPlant);
+        let materials_nameplate = crate::materials::capacity_daily(&w, &d);
+        let power_nameplate = power_per_level(&w, &d, K::ProcessingPlant);
+        let p = w.population_system.provinces.get_mut(&d).unwrap();
+        for grade in 0..3 { p.filled[2][grade] = (p.jobs[2][grade] + p.project_jobs[2][grade]) * 0.5; }
+        near(district_worker_fraction(&w, &d, K::ProcessingPlant), 0.5);
+        near(industry::plant_rate(&w, &d, K::ProcessingPlant), nameplate);
+        near(crate::materials::capacity_daily(&w, &d), materials_nameplate);
+        near(power_per_level(&w, &d, K::ProcessingPlant), power_nameplate);
+        industry::tick_day(&mut w);
+        let receipt = w.production.industry.operations.iter()
+            .find(|s| s.district == d && s.kind == K::ProcessingPlant).unwrap();
+        near(receipt.output_daily, nameplate * 0.5);
+        assert!(receipt.output_daily > nameplate * 0.25,
+            "the worker fraction must not be squared through nameplate and operation");
+    }
+
+    #[test]
+    fn population_jobs_match_operations_including_rebuild_only_sites() {
+        let (mut w, d) = ready();
+        crate::population::enable(&mut w);
+        for kind in production::PROJECT_KINDS {
+            if jobs_per_level(kind) > 0.0 { production::complete_capability(&mut w, &d, kind); }
+        }
+        let office = w.districts.iter().find(|(other, owner)| **owner == USA && **other != d)
+            .unwrap().0.clone();
+        production::complete_capability(&mut w, &office, K::OfficeDistrict);
+        crate::population::tick(&mut w);
+        let counted: f64 = [&d, &office].iter().map(|d| w.population_system.provinces[*d]
+            .project_jobs.iter().flatten().sum::<f64>() * 1_000_000.0).sum();
+        let operations = snapshot(&w, USA);
+        near(counted, operations.jobs_required);
+        near(w.population_system.provinces[&office].project_jobs.iter().flatten().sum::<f64>() * 1_000_000.0,
+            jobs_per_level(K::OfficeDistrict));
+        for kind in production::PROJECT_KINDS {
+            if jobs_per_level(kind) > 0.0 { near(skill_recipe(kind).iter().sum(), 1.0); }
+        }
+    }
+
+    #[test]
+    fn research_centers_need_professionals_and_do_not_double_ordinary_research() {
+        let (mut original, d) = ready();
+        crate::population::enable(&mut original);
+        let mut center = original.clone();
+        production::complete_capability(&mut center, &d, K::ResearchCenter);
+        crate::population::tick(&mut original);
+        crate::population::tick(&mut center);
+        near(crate::population::research_multiplier(&center, USA).unwrap(),
+            crate::population::research_multiplier(&original, USA).unwrap());
+        assert!(center.population_system.provinces[&d].project_jobs[7][2] > 0.0);
+        let p = center.population_system.provinces.get_mut(&d).unwrap();
+        p.filled[7][0] = p.jobs[7][0] + p.project_jobs[7][0];
+        p.filled[7][1] = p.jobs[7][1] + p.project_jobs[7][1];
+        p.filled[7][2] = 0.0;
+        near(district_worker_fraction(&center, &d, K::ResearchCenter), 0.0);
+        near(operating_fraction(&center, &d, K::ResearchCenter), 0.0);
+        near(site(&center, &d, K::ResearchCenter).jobs_filled, 0.0);
+    }
+
+    #[test]
+    fn inherited_factory_headcounts_reconcile_to_population_manufacturing_jobs() {
+        let (mut w, _) = ready_with_inherited(true);
+        crate::population::enable(&mut w);
+        let operations = snapshot(&w, USA);
+        let expected: f64 = w.population_system.provinces.iter()
+            .filter(|(d, _)| w.districts.get(*d) == Some(&USA))
+            .map(|(_, p)| p.jobs[2].iter().sum::<f64>() * 1_000_000.0).sum();
+        assert!((operations.inherited_jobs_required - expected).abs() < 1e-5,
+            "the industry panel must not fabricate a second inherited workforce");
+        assert!(operations.inherited_jobs_filled <= expected + 1e-5);
+    }
+
+    #[test]
+    fn a_full_day_matches_new_jobs_before_factory_service_and_retains_employees() {
+        let (mut w, d) = ready();
+        // `ready` opens a department fixture directly for isolated operation
+        // tests; a complete fiscal day also requires its enacted annual plan.
+        let annual = w.nation(USA).budget_for(w.year);
+        w.nation_mut(USA).annual_budget = Some(annual);
+        crate::population::enable(&mut w);
+        production::complete_capability(&mut w, &d, K::CivilianIndustry);
+        near(w.population_system.provinces[&d].project_jobs[2].iter().sum(), 0.0);
+        crate::tick_day(&mut w, &[]);
+        near(w.population_system.provinces[&d].project_jobs[2].iter().sum::<f64>() * 1_000_000.0,
+            jobs_per_level(K::CivilianIndustry));
+        let receipt = w.production.operations.receipts.iter()
+            .find(|s| s.district == d && s.kind == K::CivilianIndustry.key()).unwrap();
+        assert!(receipt.jobs_filled > 0.0,
+            "new job matching must happen before today's factory service is settled");
+        let employed_fraction = district_worker_fraction(&w, &d, K::CivilianIndustry);
+        for (district, people) in &mut w.population_system.provinces {
+            if w.districts.get(district) == Some(&USA) { people.labor_force_m = people.employed_m(); }
+        }
+        if let Some(p) = w.population_system.unallocated.get_mut(&USA) { p.labor_force_m = p.employed_m(); }
+        near(available_workers(&w, USA), 0.0);
+        near(district_worker_fraction(&w, &d, K::CivilianIndustry), employed_fraction);
+        assert!(employed_fraction > 0.0,
+            "empty hiring pools must not dismiss the workers already assigned to factories");
     }
 }

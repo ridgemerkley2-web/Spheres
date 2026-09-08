@@ -622,16 +622,18 @@ pub fn tick(w: &mut WorldState) {
         // mutably, because each of them reads the world and not just the
         // nation.
         let retention = health_retention(w, *id);
+        let staffing = crate::population::military_staffing(w, *id).min(1.0);
         let replacement = crate::clock::blend(w, REPLACEMENT_RATE * retention);
         let n = w.nation_mut(*id);
         // Strength drifts toward what the budget sustains. The arithmetic is in
         // `sustained_force` below, which is the only place it exists.
         let share = n.mil_spend_gdp;
         let sustained = sustained_force(n, share);
+        let manpower = if sustained > n.mil_strength { staffing } else { 1.0 };
         if dt == 1.0 {
-            n.mil_strength += (sustained - n.mil_strength) * REPLACEMENT_RATE * retention;
+            n.mil_strength += (sustained - n.mil_strength) * REPLACEMENT_RATE * retention * manpower;
         } else {
-            n.mil_strength += (sustained - n.mil_strength) * replacement;
+            n.mil_strength += (sustained - n.mil_strength) * replacement * manpower;
         }
         n.munitions = (n.munitions + refill * dt).clamp(0.0, 1.0);
         // Exhaustion decays in peace
@@ -869,6 +871,7 @@ fn resolve_conflicts(w: &mut WorldState) {
             let rate = crate::clock::blend(w, rate);
             if let Some(s) = &mut operations { s.record_loss(c.id, id, rate); }
             else {
+                crate::population::record_casualties(w, id, rate);
                 let n = w.nation_mut(id);
                 n.mil_strength = (n.mil_strength * (1.0 - rate)).max(0.0);
             }

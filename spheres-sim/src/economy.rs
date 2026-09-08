@@ -148,6 +148,7 @@ pub const INFLATION_ANCHOR: f64 = 0.020;
 /// arcade layer needs jobs to tell the player what growth means for people,
 /// while the calibrated production model still owns the underlying economy.
 pub fn unemployment_rate(n: &Nation, at_war: bool) -> f64 {
+    if let Some(outcomes) = &n.population_outcomes { return outcomes.unemployment; }
     let gdp_pc = n.gdp * 1000.0 / n.population.max(0.1);
     let dev = (gdp_pc / 24000.0).min(1.0);
     let natural = 0.045
@@ -728,7 +729,8 @@ pub fn growth_terms(
     // contribution, plus labour's share of the change in the workforce. A
     // shrinking workforce is a headwind no amount of investment offsets,
     // which is the fact about Japan the model was missing entirely.
-    let labour = population_growth(n) * 0.60;
+    let labour = n.population_outcomes.as_ref().map_or_else(
+        || population_growth(n) * 0.60, |outcomes| outcomes.labor_growth);
     let mut potential = n.tfp_trend + invest_effect + catchup + labour;
     // NO MINISTRY REACHES POTENTIAL GROWTH DIRECTLY, and the ministry collapse
     // removed the five that did — health 0.015, education 0.050,
@@ -1669,7 +1671,9 @@ pub fn tick(w: &mut WorldState) {
         let demographic_support = crate::ministries::health_population(budget_gap[BUDGET_HEALTH])
             + crate::ministries::housing_population(budget_gap[BUDGET_HOUSING]);
         let population_before = n.population;
-        n.population *= 1.0 + (population_growth(n) + demographic_support) / 12.0 * dt;
+        if n.population_outcomes.is_none() {
+            n.population *= 1.0 + (population_growth(n) + demographic_support) / 12.0 * dt;
+        }
         district_growth.push((id, n.population / population_before));
 
         // ---- Stability ----
@@ -1763,6 +1767,7 @@ pub fn population_growth(n: &Nation) -> f64 {
 /// `* 0.015` beside it. The ministry named FAMILIES when this was written is
 /// HOUSING now; the index is the same slot and the coefficients are unmoved.
 pub fn effective_population_growth(w: &WorldState, id: NationId) -> Option<f64> {
+    if let Some(rate) = crate::population::effective_demographic_growth(w, id) { return Some(rate); }
     let n = w.nation_opt(id)?;
     let policy = if w.player == Some(id) {
         crate::ministries::health_population(n.budget_gap(BUDGET_HEALTH))

@@ -21,7 +21,19 @@ pub const MAX_PER_PROJECT: f64 = 20.0;
 pub const STARTER_CAPACITY: f64 = 10.0;
 pub const CIVILIAN_CAPACITY_PER_LEVEL: f64 = 10.0;
 pub const INFRASTRUCTURE_WORK_BONUS: f64 = 0.10;
+pub const CREW_SKILL_RECIPE: [f64; 3] = [0.72, 0.24, 0.04];
 const EPS: f64 = 1e-9;
+
+/// Local crews can use at most a full site's twenty assigned capacity. Their
+/// qualification limit is a separate ceiling on work, not another multiplier
+/// on the already staffed civilian factory service in the national pool.
+pub fn crew_work_limit(w: &WorldState, district: &str) -> f64 {
+    if !crate::population::active(w) { return f64::INFINITY; }
+    let maximum = if w.rules.industry_rebuild { MAX_PER_PROJECT / CAPACITY_PER_WORK_DAY } else { 1.0 };
+    let infrastructure = production::level(w, district, ProjectKind::Infrastructure) as f64;
+    maximum * (1.0 + infrastructure * INFRASTRUCTURE_WORK_BONUS)
+        * crate::population::district_skill_staffing(w, district, 4, CREW_SKILL_RECIPE)
+}
 
 pub fn enabled(w: &WorldState) -> bool {
     w.rules.industry_rebuild && w.rules.production_system && clock::is_daily(w)
@@ -343,7 +355,7 @@ pub fn nominal_work_with_assignment(w: &WorldState, p: &Project, assigned: f64) 
     let infrastructure = production::level(w, &p.district, ProjectKind::Infrastructure) as f64;
     let physical = finite_nonnegative(assigned).min(MAX_PER_PROJECT) / CAPACITY_PER_WORK_DAY
         * (1.0 + infrastructure * INFRASTRUCTURE_WORK_BONUS);
-    industrial_modules::normalized_advance(w, p, physical)
+    industrial_modules::normalized_advance(w, p, physical.min(crew_work_limit(w, &p.district)))
         .min((p.total_days as f64 - p.progress_days).max(0.0))
 }
 
@@ -459,6 +471,7 @@ pub fn mine_work_with_assignment(w: &WorldState, p: &resources::MineProject, ass
     let infrastructure = production::level(w, &p.district, ProjectKind::Infrastructure) as f64;
     (finite_nonnegative(assigned).min(MAX_PER_PROJECT) / CAPACITY_PER_WORK_DAY
         * (1.0 + infrastructure * INFRASTRUCTURE_WORK_BONUS))
+        .min(crew_work_limit(w, &p.district))
         .min((funding.total_days as f64 - funding.progress_days).max(0.0))
 }
 
@@ -729,6 +742,23 @@ mod tests {
         near(nominal_work(&w, &w.production.projects[0]), 0.55);
         set_assignment(&mut w, NationId::USA, id, Some(0.0)).unwrap();
         near(nominal_work(&w, &w.production.projects[0]), 0.0);
+    }
+
+    #[test]
+    fn population_crews_cap_work_without_squaring_a_factory_capacity_shortage() {
+        let (mut w, district) = prepared();
+        crate::population::enable(&mut w);
+        production::start_project(&mut w, NationId::USA, &district, ProjectKind::OfficeDistrict).unwrap();
+        crate::population::tick(&mut w);
+        let p = w.population_system.provinces.get_mut(&district).unwrap();
+        for grade in 0..3 { p.filled[4][grade] = (p.jobs[4][grade] + p.project_jobs[4][grade]) * 0.5; }
+        near(crew_work_limit(&w, &district), 1.0);
+        // Half the site's crew can perform one work day. A smaller physical
+        // factory assignment remains the limiting input, without another x0.5.
+        near(nominal_work_with_assignment(&w, &w.production.projects[0], 20.0), 1.0);
+        near(nominal_work_with_assignment(&w, &w.production.projects[0], 5.0), 0.5);
+        w.population_system.provinces.get_mut(&district).unwrap().filled[4][2] = 0.0;
+        near(nominal_work_with_assignment(&w, &w.production.projects[0], 20.0), 0.0);
     }
 
     #[test]

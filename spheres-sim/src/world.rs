@@ -285,6 +285,10 @@ pub struct Nation {
     /// field existed was doing.
     #[serde(default)]
     pub pop_growth_offset: f64,
+    /// Derived daily labor outcomes. Absent in legacy worlds; the population
+    /// ledger owns these values and publishes them before the economic tick.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub population_outcomes: Option<crate::population::PopulationOutcomes>,
     /// Annual inflation rate (0.04 = 4%)
     pub inflation: f64,
     /// Central bank policy rate, annual
@@ -1181,6 +1185,8 @@ pub struct WorldState {
     pub daily: crate::clock::DailyState,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub province_economy: Option<crate::province_economy::ProvinceEconomy>,
+    #[serde(default, skip_serializing_if = "crate::population::PopulationState::is_empty")]
+    pub population_system: crate::population::PopulationState,
     /// Explicit new-campaign estimates of manufacturing already inside GDP.
     /// Absent legacy saves remain absent; no load or tick backfills this stock.
     #[serde(default, skip_serializing_if = "Option::is_none")]

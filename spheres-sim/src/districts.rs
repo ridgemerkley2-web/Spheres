@@ -708,6 +708,8 @@ pub fn annex_all(w: &mut WorldState, winner: NationId, loser: NationId) -> usize
         rebase_population_for_owner(w, &d, winner);
         w.districts.insert(d, winner);
     }
+    crate::population::transfer_unallocated(w, loser, winner);
+    crate::population::reconcile_ownership(w);
     n
 }
 
@@ -748,6 +750,7 @@ pub fn cede_share(
         rebase_population_for_owner(w, d, winner);
         w.districts.insert(d.clone(), winner);
     }
+    crate::population::reconcile_ownership(w);
     held
 }
 
@@ -790,6 +793,7 @@ pub fn cede_share_preferring(
         rebase_population_for_owner(w, d, winner);
         w.districts.insert(d.clone(), winner);
     }
+    crate::population::reconcile_ownership(w);
     held
 }
 
@@ -818,7 +822,9 @@ pub fn dissolve_to(w: &mut WorldState, parent: NationId, heirs: &[NationId]) {
             rebase_population_for_owner(w, &d, first);
             w.districts.insert(d, first);
         }
+        crate::population::transfer_unallocated(w, parent, first);
     }
+    crate::population::reconcile_ownership(w);
 }
 
 /// Consent (resources.rs, spec section 4.9): one district from `from` to
@@ -870,6 +876,7 @@ pub fn transfer_district(
     }
     rebase_population_for_owner(w, id, to);
     w.districts.insert(id.to_string(), to);
+    crate::population::reconcile_ownership(w);
     Ok(())
 }
 

@@ -1250,8 +1250,8 @@ pub fn research_terms(w: &WorldState, n: &Nation, dev: f64) -> ResearchTerms {
     // 0.084 * 15.0 = 1.26 lands on 2.26 against the 2.25 clamp ceiling. At
     // x20 the ceiling bound five points of the dial short of its own top and
     // every step past that bought nothing.
-    let ministry =
-        crate::ministries::education_research(n.budget_gap(crate::world::BUDGET_EDUCATION));
+    let ministry = crate::population::research_multiplier(w, n.id).unwrap_or_else(||
+        crate::ministries::education_research(n.budget_gap(crate::world::BUDGET_EDUCATION)));
 
     // Better tools make more research out of the same money.
     let tools = 1.0 + n.tech.bonus.research_rate_eff();
@@ -2303,7 +2303,9 @@ fn apply_bonuses(
     let population_before = n.population;
     let demographic =
         b.health_eff() * 0.002 + b.fertility_eff() * 0.002 + b.environment_eff() * 0.0006;
-    n.population *= 1.0 + demographic / 12.0 * dt;
+    if n.population_outcomes.is_none() {
+        n.population *= 1.0 + demographic / 12.0 * dt;
+    }
 
     // A steady nudge against the growth model's own mean reversion, so a well
     // served population settles a few points higher rather than running away.

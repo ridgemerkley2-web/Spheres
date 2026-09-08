@@ -36,8 +36,14 @@ browser, npm install, running server or campaign. Run a single file with
 | `check_polar_cap.cjs` | Unmapped north-cap shading and the existing globe picking limit. |
 | `check_city_labels.cjs` | Actual city overlay: measured text, collision handling, persistent markers and independent city/name visibility. |
 | `check_competition.cjs` | Exchange view rendering, authoritative supply forecasts and saved AI review snapshots, escaping, all-size filters, served purchase quantities, repeat-safe receipts, campaign binding and stale-request invalidation. |
+| `check_population.cjs` | People desk counts and rates, six class cards, server-priced focus choices, explicit old-save upgrade, refusal messages, campaign binding and stale-request rejection. |
 
 Run Exchange helper checks with `node --test tools/ui/check_competition.cjs`.
+Run People helper checks with `node --test tools/ui/check_population.cjs`.
+`check_population_browser.cjs URL --disposable [screenshots]` starts a fresh
+France campaign and checks desktop/tablet/phone layouts, classes, focus cost and
+cooldown, province and job details, education navigation and Escape. It requires
+Playwright and a separate disposable local server, like the browser checks below.
 `check_competition_browser.cjs URL --disposable [screenshots]` exercises all four
 views at desktop/tablet/mobile sizes, responsive World decision cards and live
 Materials/Machinery supply cards, plus 137-country filtering, pure supplier

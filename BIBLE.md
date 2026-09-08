@@ -1,5 +1,32 @@
 # SPHERES — the bible
 
+## Adopted amendment — People, work and opportunity (2026-09-07)
+
+Ridge approved the population rebuild strategy and instructed: "Okay build it
+but remember to keep it as arcade feeling as possible. Once the full build is
+complete mesh it with existing pushes on GitHub."
+
+Daily campaigns may now model province age cohorts, actual employment,
+qualifications earned over time, and six household classes. The People desk
+offers four national priorities and readable consequences; individual-person
+management, a second tax ledger and an education spreadsheet are not required
+to play. Source observations, their actual years, and modeled allocations remain
+distinguishable. Unsourced class composition is explicitly a game model.
+
+For enabled campaigns this supersedes education's instant research-only arm,
+the inferred unemployment rate and population-growth labor proxy. Education
+funds teaching and training capacity; completed qualifications supply jobs and
+research. Filled inherited jobs own the labor contribution to background GDP;
+explicit industry keeps its existing realized-output accounting. A staffing
+constraint is applied once. Welfare can affect participation and household
+security, but retirement cannot be reported as creation of a job.
+
+Province residents retain their age and qualifications when borders change.
+Fresh browser campaigns enable this system; saved campaigns without it require
+an explicit upgrade. Default headless replay remains unchanged. Integration and
+GitHub publication after completed validation are authorized by the instruction
+above. See docs/POPULATION_REBUILD.md and docs/POPULATION_DATA.md.
+
 *What this game is, what it refuses to be, and how to decide when they conflict.*
 
 **Status: draft for Ridge to edit.** Everything in section 9 is an open question

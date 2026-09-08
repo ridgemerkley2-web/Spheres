@@ -1,5 +1,21 @@
 # SPHERES Roadmap
 
+## People, classes, education and jobs — 2026-09-07
+
+The [population rebuild](docs/POPULATION_REBUILD.md) is implemented for new daily
+browser campaigns. The People cabinet keeps the main decisions to four national
+priorities, backed by counted employment, six household classes, provincial
+qualifications and training that takes funded time. Jobs and household hardship
+feed the existing economy and politics; suitable workers constrain the merged
+industry, construction and research systems without another GDP or spending
+award. Older saves offer an explicit upgrade and retain their previous behavior
+until it is chosen.
+
+The historical input snapshot and clearly labeled modeling assumptions are
+documented in [the population data review](docs/POPULATION_DATA.md). This release
+integrates the construction, industry and specialist-company work, including
+their shared facility and construction capacity accounting.
+
 ## Construction and industry rebuild — 2026-09-07
 
 Implemented the approved [construction and industry rebuild](INDUSTRY_REBUILD.md):

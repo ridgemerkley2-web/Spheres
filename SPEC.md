@@ -1,4 +1,24 @@
 # SPHERES — Complete Game Specification
+
+## Population rebuild amendment — 2026-09-07
+
+The daily People model is defined in `population.rs` and documented in
+`docs/POPULATION_REBUILD.md`. Its persisted province ledger owns births, age
+transitions, deaths, qualifications, course progress, employment and class
+outcomes. The old economy and technology population multipliers are bypassed
+when it is enabled; their named health/housing/technology effects are consumed
+once by the demographic model. A population system row publishes cached
+unemployment and inherited-workforce growth before economy. All previews use
+the same simulation queries. Courses consume time and the existing education
+allocation, never a duplicate fiscal payment.
+
+Four national focus commands (Balanced, Trade Schools, Universities, Back to
+Work) share one political-capital quote, refusal and cooldown path. Employers
+and public services draw from the same qualification pools. Population is
+reconciled to mapped provinces plus an explicit unallocated account. Legacy
+state omits the new fields; enabling an old campaign is an explicit command.
+The browser presents counts, class prosperity, skill shortages and training
+progress in the People cabinet, with detailed accounting behind disclosures.
 *Consolidated from all design and build sessions. This is the authoritative reference for what the game is. For current build status see ROADMAP.md; for session rules see CLAUDE.md.*
 
 ---
