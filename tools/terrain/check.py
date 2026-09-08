@@ -53,6 +53,7 @@ CROSSING_EDGES = os.path.join(ROOT, "spheres-web/data/crossing_edges.json")
 RIVERS_JS = os.path.join(ROOT, "spheres-web/ui/rivers.js")
 TERRAIN_PNG = os.path.join(ROOT, "spheres-web/ui/terrain.png")
 LAKES_GEOJSON = os.path.join(ROOT, "spheres-web/data/ne_10m_lakes.geojson")
+LAKES_SHP = os.path.join(ROOT, "tools/terrain/raster/ne/ne_10m_lakes")
 
 # --- mapgen.rs projection replica (constants read from the CURRENT file) -----
 W = 2400.0
@@ -276,12 +277,23 @@ for name in MAJORS:
 # Lake paths are anonymous in rivers.js (the UI needs no lake labels), so the
 # name check runs against the same source selection make_rivers.py filters:
 # ne_10m_lakes scalerank <= 1.
-with open(LAKES_GEOJSON, encoding="utf-8") as f:
-    lk = json.load(f)["features"]
-src_lakes = {(feat["properties"].get("name_en") or feat["properties"].get("name") or "")
-             for feat in lk
-             if feat["properties"].get("scalerank") is not None
-             and feat["properties"]["scalerank"] <= 1}
+# The source is read from whichever export is on disk. Natural Earth ships the
+# same data as GeoJSON and as a shapefile; the shapefile is a tenth the size and
+# is what tools/terrain/make_lake_rings.py reads, so this accepts either rather
+# than demanding the larger one be kept around to run the checks.
+if os.path.exists(LAKES_GEOJSON):
+    with open(LAKES_GEOJSON, encoding="utf-8") as f:
+        lk = [feat["properties"] for feat in json.load(f)["features"]]
+elif os.path.exists(LAKES_SHP + ".shp"):
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import shapefile as _shp
+    lk = _shp.read_dbf(LAKES_SHP + ".dbf")
+else:
+    raise SystemExit("neither %s nor %s.shp is on disk; fetch one to run the lake checks"
+                     % (LAKES_GEOJSON, LAKES_SHP))
+src_lakes = {(props.get("name_en") or props.get("name") or "")
+             for props in lk
+             if props.get("scalerank") is not None and props["scalerank"] <= 1}
 MAJOR_LAKES = ["Superior", "Michigan", "Huron", "Erie", "Ontario", "Baikal",
                "Tanganyika", "Malawi", "Ladoga", "Balkhash", "Winnipeg",
                "Titicaca", "Chad", "Nicaragua", "Great Salt", "Vänern"]

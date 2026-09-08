@@ -192,3 +192,49 @@ test('small screens keep a sparse name layer and global collision boxes prevent 
   assert.equal(api.drawLabels(f.ctx, f.view, f.globe, labels), 1);
   assert.equal(f.globe.labelBoxes.length, 1); f.restored();
 });
+
+test('the shipped lake shorelines resolve well enough for the camera that looks at them', () => {
+  // WHY THIS BAR EXISTS. make_rivers.py simplifies at DP_EPS 0.4 canvas units,
+  // which is 6,679 m of tolerance -- chosen when this layer was drawn on a flat
+  // world map where that is sub-pixel. The camera now reaches about 9 m per
+  // pixel. Lake Michigan arrived as 42 vertices with a median segment of
+  // 37,792 m and a longest of 233,789 m: a ruler-straight shore several screen
+  // widths long, in the same frame as a 300,982-triangle 3D Chicago.
+  //
+  // tools/terrain/make_lake_rings.py re-simplifies the lakes alone at 200 m and
+  // leaves the rivers byte-identical, for the reason its header gives. Running
+  // make_rivers.py would silently undo that, so the shipped resolution is
+  // asserted here rather than left to whoever runs which generator last.
+  //
+  // MEASURED after the re-bake, over all 29 lakes and 10,828 segments: median
+  // 2,718 m, p90 7,355 m. Lake Michigan is 451 segments, median 3,538 m. The
+  // bars are set clear of those and far under what the old epsilon produced.
+  const lakes = sandbox.window.RIVERS.lakes;
+  assert.equal(lakes.length, 29, 'the lake set changed size');
+  const METRES_PER_UNIT = 40075017 / sandbox.window.RIVERS.meta.w;
+  const segments = (path) => {
+    const out = [];
+    for (const ring of path.split('M').filter(Boolean)) {
+      const n = ring.match(/-?\d+(?:\.\d+)?/g).map(Number);
+      for (let i = 2; i + 1 < n.length; i += 2) {
+        out.push(Math.hypot(n[i] - n[i - 2], n[i + 1] - n[i - 1]) * METRES_PER_UNIT);
+      }
+    }
+    return out;
+  };
+  const all = lakes.flatMap(segments).sort((a, b) => a - b);
+  const q = (f) => all[Math.floor(all.length * f)];
+  assert.ok(all.length > 8000,
+    `only ${all.length} lake shoreline segments ship; the coarse bake had 1,906 vertices in total`);
+  assert.ok(q(0.5) < 4000,
+    `the median lake shoreline segment is ${Math.round(q(0.5))} m; the coarse bake was 37,792 m at Lake Michigan`);
+  assert.ok(q(0.9) < 12000, `p90 lake shoreline segment is ${Math.round(q(0.9))} m`);
+  // And the one in the owner's own view, by name via its water-surface record.
+  const provenance = JSON.parse(fs.readFileSync(path.join(ui, 'lake-surfaces.json'), 'utf8'));
+  const michigan = provenance.lakes.find((l) => l.name === 'Lake Michigan');
+  assert.ok(michigan, 'Lake Michigan lost its water-surface record');
+  const mich = segments(lakes[michigan.lake_index]).sort((a, b) => a - b);
+  assert.ok(mich.length > 300, `Lake Michigan is ${mich.length} segments; it was 42`);
+  assert.ok(mich[Math.floor(mich.length / 2)] < 5000,
+    `Lake Michigan's median shoreline segment is ${Math.round(mich[Math.floor(mich.length / 2)])} m`);
+});

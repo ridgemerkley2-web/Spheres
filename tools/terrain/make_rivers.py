@@ -22,6 +22,24 @@
 # Simplification: Douglas-Peucker, eps = 0.4 canvas px, applied AFTER projection.
 # Lake paths use exterior rings only (island holes dropped at this scale).
 #
+# WARNING, ADDED 2026-09-07: RUNNING THIS UNDOES THE LAKE SHORELINES.
+# 0.4 canvas units is 6,679 m of tolerance. That is sub-pixel on a flat world
+# map and it was right when this was written; the camera now reaches about 9 m
+# per pixel, where it turned Lake Michigan into 42 vertices with a 233.8 km
+# straight edge across the Chicago waterfront. The lakes in ui/rivers.js have
+# since been re-simplified at 200 m by tools/terrain/make_lake_rings.py, which
+# rewrites ONLY the lakes array and leaves the rivers here byte for byte.
+# Re-running this script would silently coarsen them again; the resolution is
+# asserted in tools/ui/check_water_detail.cjs so that goes red rather than
+# unnoticed. If you do re-run it, run make_lake_rings.py afterwards.
+#
+# AND THE RIVER SOURCE ON DISK IS NEWER THAN THIS FILE WAS BAKED FROM. The
+# Natural Earth 10m export now in tools/terrain/raster/ne yields 281 drawable
+# rivers against the 263 committed here, and this script also writes
+# spheres-web/data/river_segments.json, which crossing_edges.py turns into
+# river-crossed district adjacency -- a simulation input. Re-baking therefore
+# changes what the sim believes, and is a decision rather than a refresh.
+#
 # Outputs (deterministic — no RNG, stable sort by (name, projected length, input index)):
 #   spheres-web/ui/rivers.js          the committed, baked UI layer:
 #       window.RIVERS={meta:{w,h},rivers:[{n:name|null,d:"M..L.."}],lakes:["M..L..Z"]}

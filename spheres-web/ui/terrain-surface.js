@@ -10,8 +10,8 @@
   // [existing RIVERS.lakes index, HydroLAKES water metres, path FNV-1a]. These
   // are the six ETOPO bed lakes, not new lake outlines. Reproducible source,
   // exact HydroLAKES records and CC-BY attribution are in lake-surfaces.json.
-  const BED_LAKES = Object.freeze([[1, 449, 4049581666], [4, 172, 2943202480],
-    [9, 175, 1824147311], [14, 175, 4191224988], [20, 73, 2319471044], [23, 179, 575582281]].map(Object.freeze));
+  const BED_LAKES = Object.freeze([[1, 449, 1463847026], [4, 172, 3084742872],
+    [9, 175, 2529466954], [14, 175, 2651255432], [20, 73, 3348593445], [23, 179, 2738054863]].map(Object.freeze));
   const IDENTITY = new Float32Array([1, 0, 0, 0, 1, 0, 0, 0, 1]);
   const clamp = (x, lo, hi) => Math.max(lo, Math.min(hi, x));
   const wrap = x => ((x + 180) % 360 + 360) % 360 - 180;
