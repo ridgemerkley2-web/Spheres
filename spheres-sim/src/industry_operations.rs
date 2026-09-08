@@ -63,6 +63,7 @@ pub struct FacilityOperation {
     pub power_fraction: f64,
     pub input_fraction: f64,
     pub funding_fraction: f64,
+    /// Current readiness in snapshots; settled outcome in persisted receipts.
     pub status: String,
     pub reason: String,
     pub annual_gdp_bn: f64,
@@ -616,14 +617,14 @@ pub fn snapshot(w: &WorldState, nation: NationId) -> OperationsSnapshot {
                 row.output_daily = last.output_daily; row.power_used_daily = last.power_used_daily;
                 row.jobs_filled = last.jobs_filled; row.cash_spent_daily_bn = last.cash_spent_daily_bn;
                 row.annual_gdp_bn = last.annual_gdp_bn; row.annual_tax_bn = last.annual_tax_bn;
-                row.status = last.status.clone(); row.reason = last.reason.clone();
+                // Keep today's readiness from `site`; a dated paid receipt
+                // cannot explain a new constraint (for example expired funds).
                 row.recorded_day=last.recorded_day; row.actual_utilization=last.actual_utilization;
                 row.actual_operating_capacity=last.actual_operating_capacity;
             } else if let Some(last) = w.production.industry.operations.iter().find(|r| r.district == *d && r.kind == k && controlled
                 && w.production.industry.last_day.is_some_and(|day|day>=today-1&&day<=today)) {
                 row.output_daily = last.output_daily; row.power_used_daily = last.power_used_daily;
                 row.cash_spent_daily_bn = last.cash_spent_daily_bn;
-                row.status = last.status.clone(); row.reason = last.reason.clone().unwrap_or_else(|| "Full operating bundle supplied.".into());
                 let rated = industry::plant_rate(w, d, k);
                 row.jobs_filled = row.jobs_required * ratio(last.output_daily, rated);
                 row.recorded_day=w.production.industry.last_day;
@@ -830,6 +831,63 @@ mod tests {
         assert!(a.facilities.iter().any(|r|r.output_daily>0.0));
         clock::advance_date(&mut w);clock::advance_date(&mut w);
         assert!(snapshot(&w,USA).facilities.iter().all(|r|r.output_daily==0.0));
+    }
+
+    #[test]
+    fn snapshot_keeps_current_funding_constraints_separate_from_dated_output() {
+        // Exercise both receipt stores at a real fiscal-year boundary. A read
+        // must neither replace yesterday's paid work nor fund today's service.
+        for kind in [K::CivilianIndustry, K::AdvancedIndustry, K::ProcessingPlant, K::MachineryWorks] {
+            let (mut w, d) = ready();
+            w.month = 12;
+            w.day = 31;
+            programs::begin_day(&mut w);
+            production::complete_capability(&mut w, &d, kind);
+            begin_day(&mut w);
+            industry::tick_day(&mut w);
+            tick_day(&mut w);
+            let find = |view: OperationsSnapshot| view.facilities.into_iter()
+                .find(|r| r.district == d && r.kind == kind.key()).unwrap();
+            let paid = find(snapshot(&w, USA));
+            assert!(paid.output_daily > 0.0, "{} must have settled work", kind.key());
+            assert!(paid.cash_spent_daily_bn > 0.0);
+            assert_eq!(paid.recorded_day, Some(clock::absolute_day(&w)));
+            let receipts = w.production.operations.receipts.clone();
+            let legacy_receipts = w.production.industry.operations.clone();
+
+            clock::advance_date(&mut w);
+            assert_eq!((w.year, w.month, w.day), (1991, 1, 1));
+            let before_read = save(&w);
+            let expired = find(snapshot(&w, USA));
+            assert_eq!(expired.funding_fraction, 0.0, "{}", kind.key());
+            assert_eq!(expired.utilization, 0.0, "{}", kind.key());
+            assert_eq!(expired.status, "blocked", "{}", kind.key());
+            assert!(expired.reason.contains("operating funds limit"), "{}: {}", kind.key(), expired.reason);
+            assert_eq!(save(&w), before_read, "reading readiness must not open a new funding day");
+            assert_eq!(find(snapshot(&load(&before_read).unwrap(), USA)), expired);
+
+            programs::install(&mut w, USA, 1991, programs::default_departments());
+            let before_read = save(&w);
+            let renewed = find(snapshot(&w, USA));
+            assert_eq!(renewed.funding_fraction, 1.0, "{}", kind.key());
+            assert_eq!(renewed.utilization, 1.0, "{}", kind.key());
+            assert_eq!(renewed.status, "awaiting_operation", "{}", kind.key());
+            assert!(renewed.reason.starts_with("Ready"), "{}: {}", kind.key(), renewed.reason);
+            for view in [&expired, &renewed] {
+                assert_eq!(view.recorded_day, paid.recorded_day);
+                assert_eq!(view.output_daily, paid.output_daily);
+                assert_eq!(view.actual_operating_capacity, paid.actual_operating_capacity);
+                assert_eq!(view.actual_utilization, paid.actual_utilization);
+                assert_eq!(view.jobs_filled, paid.jobs_filled);
+                assert_eq!(view.power_used_daily, paid.power_used_daily);
+                assert_eq!(view.cash_spent_daily_bn, paid.cash_spent_daily_bn);
+                assert_eq!(view.annual_gdp_bn, paid.annual_gdp_bn);
+                assert_eq!(view.annual_tax_bn, paid.annual_tax_bn);
+            }
+            assert_eq!(w.production.operations.receipts, receipts);
+            assert_eq!(w.production.industry.operations, legacy_receipts);
+            assert_eq!(save(&w), before_read, "renewed readiness is still a pure forecast");
+        }
     }
 
     #[test]

@@ -114,3 +114,37 @@ fn actual_daily_tick_observes_after_settlement_and_save_resume_matches() {
     assert_eq!(goal.last_day,Some(clock::absolute_day(&w)-1));
     assert_eq!(goal.held_days,1);
 }
+
+#[test]
+fn completed_campaign_records_survive_abandoned_aims_and_reload() {
+    // Targeted record-retention fixture: observe only the aim's qualifying
+    // dates here, not a simulated multi-decade economic campaign.
+    let mut w=fixture();
+    w.nation_mut(N::USA).stability=95.0;
+    w.nation_mut(N::USA).inflation=0.02;
+    let mut achievements=vec![];
+    let mut abandoned_days=vec![];
+    for _ in 0..2 {
+        choose(&mut w,Aim::Stability);
+        observe_days(&mut w,365);
+        assert!(w.campaign_aims.active.as_ref().unwrap().completed_day.is_some());
+        apply_command(&mut w,&Command::ContinueSandbox{nation:N::USA}).unwrap();
+        achievements.push(w.campaign_aims.history.last().unwrap().clone());
+        for _ in 0..30 {
+            choose(&mut w,Aim::Prosperity);
+            abandoned_days.push(clock::absolute_day(&w));
+            apply_command(&mut w,&Command::ContinueSandbox{nation:N::USA}).unwrap();
+            clock::advance_date(&mut w);
+        }
+        let completed:Vec<_>=w.campaign_aims.history.iter()
+            .filter(|r|r.goal.completed_day.is_some()).cloned().collect();
+        assert_eq!(completed,achievements,"free abandoned selections must never evict an achievement");
+        let abandoned:Vec<_>=w.campaign_aims.history.iter()
+            .filter(|r|r.goal.completed_day.is_none()).map(|r|r.goal.chosen_day).collect();
+        assert_eq!(abandoned,&abandoned_days[abandoned_days.len()-24..],
+            "only the latest 24 abandoned records survive, even around achievements");
+        let saved=save(&w);
+        w=load(&saved).unwrap();
+        assert_eq!(save(&w),saved,"all retained achievement details must survive reload exactly");
+    }
+}

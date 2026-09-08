@@ -17369,6 +17369,7 @@ function manufacturingOrders() { return (MANU.data && Array.isArray(MANU.data.or
 function manufacturingLine(id) { return manufacturingLines().find((line) => String(line.id) === String(id)); }
 function manufacturingKit(id) { return manufacturingCatalog().find((kit) => String(kit.id) === String(id)); }
 function manufacturingTone(line) {
+  if (typeof line?.has_current_funding === "boolean") return line.current_blocker ? "blocked" : line.has_current_funding ? "building" : "paused";
   const status = String(line && line.status || "producing").toLowerCase();
   return status === "blocked" ? "blocked" : status === "paused" ? "paused" : status === "slowed" ? "slowed" : "building";
 }
@@ -17376,7 +17377,7 @@ function manufacturingClassMark(value) { return MANU_CLASS_MARK[String(value || 
 function manufacturingKit3d(kit, cls) {
   return window.Arsenal3D && Arsenal3D.available ? Arsenal3D.canvasHtml(kit, cls) : "";
 }
-function manufacturingBn(value, digits) { return `$${(+value || 0).toFixed(digits == null ? 2 : digits)}bn`; }
+function manufacturingBn(value) { return economyMoney(value); }
 function manufacturingRequirementHtml(requirement) {
   const quantity = requirement.draw != null ? +requirement.draw : +requirement.required || 0;
   const stock = +requirement.stock_available || 0, available = +requirement.priority_available || 0;
@@ -17425,9 +17426,10 @@ async function manufacturingFetch() {
 
 function manufacturingComponentsHtml(line) {
   const components=line.advanced_components;
-  if(!components) return "";
+  if(!components || (!line.tech && !(components.required>0))) return "";
   const number=value=>Number.isFinite(value)?value.toLocaleString("en-US",{maximumSignificantDigits:6}):"—";
-  return `<section class="manufacturing-components"><h4>Advanced components</h4><p><strong>${number(components.required)}</strong> ${escText(components.unit||"packs")} planned ${components.cadence==="monthly"?"this month":"this day"} · <strong>${number(components.stock)}</strong> in national stock</p><p class="construction-note">${escText(components.note||"National inventory is shared with other equipment work.")}</p><button type="button" data-manu-component-supply>Review component suppliers →</button></section>`;
+  const tradeEnabled=S?.economic_competition===true;
+  return `<section class="manufacturing-components"><h4>Advanced components</h4><p><strong>${number(components.required)}</strong> ${escText(components.unit||"packs")} planned ${components.cadence==="monthly"?"this month":"this day"} · <strong>${number(components.stock)}</strong> in national stock</p><p class="construction-note">${escText(components.note||"National inventory is shared with other equipment work.")}${tradeEnabled?"":" Advanced Industry produces these components in your current campaign."}</p><button type="button" data-manu-component-supply>${tradeEnabled?"Review component suppliers":"Review Advanced Industry"} →</button></section>`;
 }
 function manufacturingLineHtml(line) {
   const tone = manufacturingTone(line), province = line.province || {};
@@ -17436,17 +17438,26 @@ function manufacturingLineHtml(line) {
   const requirements = (line.requirements || []).filter((row) => +(row.draw != null ? row.draw : row.required) > 0)
     .map(manufacturingRequirementHtml).join("");
   const lead = +line.lead_days || 0;
-  const settled = line.allocation_bn_actual_day != null && line.throughput_ratio != null;
-  const actualMoney = settled ? manufacturingBn(line.allocation_bn_actual_day) : "Awaiting";
-  const actualSpeed = settled ? `${Math.round(clamp(+line.throughput_ratio || 0, 0, 1) * 100)}%` : "Next tick";
-  const actualUnits = settled ? `${fmtQ(line.units_ordered_day || 0)} units last day · ${fmtQ(line.units_planned_day || 0)} planned`
+  const current = typeof line.has_current_funding === "boolean", receipt = line.last_run;
+  const settled = current ? !!receipt : line.allocation_bn_actual_day != null && line.throughput_ratio != null;
+  const hasHistory = typeof line.has_order_history === "boolean" ? line.has_order_history : +line.ordered_bn > 0;
+  const noReceipt = hasHistory ? "No dated receipt available" : "Awaiting first run";
+  const actualMoney = settled ? manufacturingBn(current ? receipt.allocation_bn_day : line.allocation_bn_actual_day) : noReceipt;
+  const throughput = settled ? clamp(+(current ? receipt.throughput_ratio : line.throughput_ratio) || 0, 0, 1) : null;
+  const actualSpeed = settled ? throughput > 0 && throughput < .01 ? "<1%" : `${Math.round(throughput * 100)}%` : noReceipt;
+  const actualUnits = settled ? current ? `${fmtQ(receipt.units_day || 0)} units recorded · ${fmtQ(line.units_planned_day || 0)} units planned for the next day` : `${fmtQ(line.units_ordered_day || 0)} units last day · ${fmtQ(line.units_planned_day || 0)} planned`
     : `${fmtQ(line.units_planned_day || 0)} units planned for the next day`;
+  const status = current ? line.current_blocker ? "blocked" : !line.has_current_funding ? "no current funding" : settled || hasHistory ? "funded plan" : "awaiting first run" : line.status || "producing";
+  const currentReason = current ? line.current_blocker || (!line.has_current_funding ? "No procurement funding is currently assigned to this line. Review Defense equipment funding." : "") : "";
+  const recordedReason = current ? receipt?.reason?.replace(/\btoday\b/g,"on the recorded day").replace(/\bthis (day|month)\b/g,"that $1").replace(/\b\d+% throughput\b/g,actualSpeed+" throughput") : line.reason;
   return `<article class="work-card factory-card ${tone}${String(MANU.selected) === String(line.id) ? " selected" : ""}" tabindex="0" data-manu-line="${logisticsEscAttr(line.id)}">
     <div class="work-top"><span class="work-art" aria-hidden="true"><b class="mark">${manufacturingClassMark(line.class)}</b>${manufacturingKit3d(line.kit, line.class)}</span>
       <div class="work-title"><b>${escText(line.name || line.kit)}</b><span>${escText(province.name || province.id || "Arms plant")} · ${escText(line.class || "Equipment")}</span></div>
-      <span class="work-state">${escText(String(line.status || "producing").toUpperCase())}</span></div>
-    <div class="factory-output"><span>Actual last day<b>${actualMoney}</b></span><span>Last run<b>${actualSpeed}</b></span><span>Lead time<b>${lead ? `${lead} days` : "pending"}</b></span></div>
-    ${line.reason ? `<div class="work-reason">${escText(line.reason)}</div>` : ""}
+      <span class="work-state">${escText(String(status).toUpperCase())}</span></div>
+    ${currentReason ? `<div class="work-reason">Current constraint · ${escText(currentReason)}</div>` : ""}
+    ${current&&receipt ? `<div class="work-line"><span>Recorded · ${escText(receipt.label||"Latest run")} · ${escText(String(receipt.status||"Recorded").toUpperCase())}</span></div>` : ""}
+    <div class="factory-output"><span>${current?"Recorded spending":"Actual last day"}<b>${actualMoney}</b></span><span>Last run<b>${escText(actualSpeed)}</b></span><span>Lead time<b>${lead ? `${lead} days` : "pending"}</b></span></div>
+    ${recordedReason ? `<div class="work-reason">${current?"Recorded constraint · ":""}${escText(recordedReason)}</div>` : ""}
     <div class="work-line"><span>${actualUnits}</span><span>${manufacturingBn(line.ordered_bn || 0)} ordered to date</span></div>
     <details class="operations-details"${String(MANU.selected) === String(line.id) ? " open" : ""}><summary>Daily materials &amp; line priority</summary>
     ${requirements ? `<div class="work-needs">${requirements}</div>` : ""}
@@ -17482,8 +17493,8 @@ function manufacturingLinesHtml() {
   }
   return `${operationsHeroHtml("manufacturing", "Industry with a purpose", "Equip your ambitions.", "Turn funded plant slots into a steady equipment pipeline. Pick a programme, assign a province, and give your most important lines first call on materials.")}
     <div class="factory-bridge"><b>Your own vehicle programme</b>Choose components, review the design, and follow a named model into service.<button type="button" data-equipment-open>Open equipment designer</button></div>
-    <div class="manufacturing-hero"><div class="stamp">Daily defense procurement</div><div class="money">${manufacturingBn(finance.procurement_budget_bn_day)} <small>per day</small></div>
-      <p>${share.toFixed(0)}% of the defense budget buys equipment. The treasury already carries that spending; imported materials settle through the resource market.</p></div>
+    <div class="manufacturing-hero"><div class="stamp">Budgeted daily procurement</div><div class="money">${manufacturingBn(finance.procurement_budget_bn_day)} <small>per day</small></div>
+      <p>${share.toFixed(0)}% of the defense budget is allocated to equipment. Current funding and dated spending are shown on each line; this budget estimate is not a payment receipt.</p></div>
     <div class="manufacturing-summary"><span>Plant slots<b>${usedSlots}/${capacity}</b></span><span>Force equipped<b>${Math.round((+summary.adequacy || 0) * 100)}%</b></span><span class="${+summary.blocked ? "warn" : ""}">Pipeline<b>${manufacturingBn(summary.pipeline_value_bn)}</b></span></div>
     <button type="button" class="production-new" data-manu-new>${freeSlots > 0 && data.actions && data.actions.start === true ? "＋ Start equipment line" : "Browse equipment catalogue"}</button>${empty}${list}
     ${manufacturingLedgerHtml()}`;
@@ -17517,11 +17528,18 @@ function manufacturingProvinceHtml() {
   if (!kit) { MANU.view = "catalog"; return manufacturingCatalogHtml(); }
   const eligible = new Set((kit.eligible_provinces || []).map(String));
   const provinces = manufacturingProvinces().filter((province) => eligible.has(String(province.id)) || (province.actions && Array.isArray(province.actions.start) && province.actions.start.map(String).includes(String(kit.id))));
-  const picks = provinces.map((province) => `<button type="button" class="province-pick" data-manu-province="${logisticsEscAttr(province.id)}"><b>${escText(province.name || province.id)}</b><span>${+province.free_slots || 0} free · arms plant ${+province.arms_plants || 0}</span></button>`).join("");
+  const naval=kit.facility_kind==="shipyard",facility=naval?"Shipyard":"Military Factory";
+  const pool=naval?"shipyard":"military_factory";
+  const politicalCost=Number.isFinite(kit.pc_cost)?`${fmtQ(kit.pc_cost)} PC to open this line`:"Political cost unavailable";
+  const picks = provinces.map((province) => {
+    const free=Number.isFinite(province[pool+"_free_slots"])?province[pool+"_free_slots"]:(+province.free_slots||0);
+    const slots=Number.isFinite(province[pool+"_slots"])?province[pool+"_slots"]:(+province.arms_plants||0);
+    return `<button type="button" class="province-pick" data-manu-province="${logisticsEscAttr(province.id)}"><b>${escText(province.name || province.id)}</b><span>${free} free · ${facility} ${slots}</span><span>${escText(politicalCost)}</span></button>`;
+  }).join("");
   const recipe = (kit.requirements_per_bn || []).map((row) => `<span class="work-need">${escText(row.name || row.commodity)} · ${fmtQ(row.quantity || row.required || 0)} ${escText(row.unit || "")} / $bn</span>`).join("");
   return `<div class="production-stamp"><b>${manufacturingClassMark(kit.class)} ${escText(kit.name)}</b><span>step 2 of 2<br>choose a plant</span></div>
     <div class="project-brief"><b>${manufacturingBn(kit.unit_cost_bn, 3)} per unit · first delivery in ${kit.lead_days} days</b>${recipe ? `<details class="operations-details"><summary>Materials per $bn of orders</summary><div class="work-needs">${recipe}</div></details>` : ""}</div>
-    <div class="province-picks">${picks || `<div class="production-empty">No owned arms plant has a free slot.</div>`}</div>
+    <div class="province-picks">${picks || `<div class="production-empty">No owned ${facility.toLowerCase()} has a free slot.</div>`}</div>
     <button type="button" class="production-back" data-manu-back>Choose another equipment line</button>`;
 }
 
@@ -17543,7 +17561,7 @@ function renderManufacturingPanel() {
 function wireManufacturingPanel() {
   const body = $("#productionBody"); if (!body || PROD.mode !== "manufacture") return;
   body.querySelectorAll("[data-equipment-open]").forEach(button => { button.onclick=()=>openEquipment(); });
-  body.querySelectorAll("[data-manu-component-supply]").forEach(button=>{button.onclick=()=>{closeProduction();industryNavigate({action:"trade",good:"advanced_components"});};});
+  body.querySelectorAll("[data-manu-component-supply]").forEach(button=>{button.onclick=()=>{closeProduction();if(S?.economic_competition===true)industryNavigate({action:"trade",good:"advanced_components"});else openConstruction({kind:"advanced_industry"});};});
   body.querySelectorAll("[data-manu-line]").forEach((card) => {
     card.onclick = (event) => { if (!event.target.closest("button, details")) manufacturingSelect(card.dataset.manuLine, false); };
     card.onkeydown = (event) => { if (event.target === card && (event.key === "Enter" || event.key === " ")) { event.preventDefault(); manufacturingSelect(card.dataset.manuLine, false); } };

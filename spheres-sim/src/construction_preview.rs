@@ -568,7 +568,10 @@ pub fn preview(
         K::ArmsPlant => {
             out.province_effects.push(effect("Military manufacturing line slots",manufacturing::plant_slots(w,district) as f64,manufacturing::plant_slots(&after,district) as f64,"slots","One slot hosts one separately ordered equipment production line; the building itself delivers no equipment."));
             out.national_effects.push(effect("National military manufacturing slots",owned_sum(w,nation,|w,d|manufacturing::plant_slots(w,d) as f64),owned_sum(&after,nation,|w,d|manufacturing::plant_slots(w,d) as f64),"slots","All active lines still share the procurement budget. Extra slots do not create procurement funds or guarantee extra equipment."));
-            out.operating_requirements.push(requirement("Equipment programme inputs",None,"programme-specific","A separately ordered, technologically eligible line needs procurement funding, its physical resource recipe and production lead time. Empty slots consume nothing."));
+            let idle_service = if operations::enabled(w) {
+                "An empty slot orders no equipment; the factory's routine staffing, electricity and operating service still need funding."
+            } else {"Empty slots consume nothing."};
+            out.operating_requirements.push(requirement("Equipment programme inputs",None,"programme-specific",&format!("A separately ordered, technologically eligible line needs procurement funding, its physical resource recipe and production lead time. {idle_service}")));
             out.operating_requirements.push(requirement("Military manufacturing enabled",Some(flag(w.rules.manufacturing_system&&w.rules.resource_market)),"enabled","Military manufacturing and the physical resource market must be enabled before a line can operate."));
         }
         K::ResearchCenter => {
@@ -663,6 +666,9 @@ fn add_rebuild_effects(out: &mut ConstructionPreview, w: &WorldState, after: &Wo
             out.operating_requirements.push(requirement("Intermediate packs per added office level", Some(operations::OFFICE_INTERMEDIATES_DAY), "packs/day", "Purchased business inputs are consumed only with a complete staffed and funded service bundle."));
             out.operating_requirements.push(requirement("Office operating cash per added level", Some(operations::OPERATING_CASH_LEVEL_DAY_BN), "$bn/day", "Industry operating funding; generating services and purchased raw inputs are additional."));
         },
+        K::ArmsPlant => {
+            out.operating_requirements.push(requirement("Military factory operating cash per added level", Some(operations::operating_cash_required(after,nation,district,kind,1.0)), "$bn/day", "A staffed, supplied factory pays this Industry operating service even without an equipment line. Electricity and generating fuel are separate; equipment orders use their own Defense procurement authority."));
+        },
         K::Shipyard => {
             out.province_effects.push(effect("Naval production line slots", manufacturing::naval_slots(w, district) as f64, manufacturing::naval_slots(after, district) as f64, "slots", "Coastal shipyards host assigned naval equipment lines. A naval programme still needs technology, procurement money, physical inputs and production lead time."));
             out.national_effects.push(effect("National naval production line slots", owned_sum(w, nation, |w,d| manufacturing::naval_slots(w,d) as f64), owned_sum(after, nation, |w,d| manufacturing::naval_slots(w,d) as f64), "slots", "Extra shipbuilding capacity does not automatically order a ship or increase the procurement budget."));
@@ -731,6 +737,45 @@ mod tests {
     }
     fn near(a: f64, b: f64) {
         assert!((a - b).abs() < 1e-10, "{a} != {b}");
+    }
+    #[test]
+    fn legacy_empty_military_factory_preview_does_not_claim_rebuild_operating_costs() {
+        let (mut w,d)=prepared();
+        w.rules.industry_rebuild=false;
+        assert!(!operations::enabled(&w));
+        let quoted=preview(&w,USA,&d,K::ArmsPlant,None);
+        let inputs=quoted.operating_requirements.iter().find(|r|r.label=="Equipment programme inputs").unwrap();
+        assert!(inputs.detail.contains("Empty slots consume nothing."),"{}",inputs.detail);
+        assert!(!inputs.detail.contains("operating service"));
+        assert!(!quoted.operating_requirements.iter().any(|r|r.label=="Military factory operating cash per added level"));
+        production::complete_capability(&mut w,&d,K::ArmsPlant);
+        programs::begin_day(&mut w);
+        assert!(manufacturing::lines_for(&w,USA).next().is_none());
+        let before=save(&w);
+        operations::begin_day(&mut w);
+        assert_eq!(save(&w),before,"disabled rebuild services do not charge an empty legacy factory");
+    }
+    #[test]
+    fn empty_military_factory_preview_discloses_its_actual_routine_service_bill() {
+        let (mut w,d)=prepared();
+        w.rules.industry_rebuild=true;
+        w.rules.economic_competition=false;
+        let quoted=preview(&w,USA,&d,K::ArmsPlant,None);
+        assert!(!quoted.operating_requirements.iter().any(|r|r.detail.contains("Empty slots consume nothing")));
+        let bill=quoted.operating_requirements.iter().find(|r|r.label=="Military factory operating cash per added level")
+            .expect("an unassigned completed factory still has a routine bill");
+        for kind in [K::ArmsPlant,K::PowerGrid,K::Generation] {
+            production::complete_capability(&mut w,&d,kind);
+        }
+        for commodity in resources::ALL {
+            if commodity!=resources::Commodity::Oil {resources::set_stockpile_for_test(&mut w,USA,commodity,1000.0);}
+        }
+        programs::begin_day(&mut w);
+        assert!(manufacturing::lines_for(&w,USA).next().is_none());
+        let before=programs::available_bn(&w,USA,crate::world::BUDGET_INDUSTRY,0);
+        operations::begin_day(&mut w);
+        near(before-programs::available_bn(&w,USA,crate::world::BUDGET_INDUSTRY,0),bill.value.unwrap());
+        assert!(w.nation(USA).arsenal.orders.is_empty(),"routine factory service does not order equipment");
     }
     #[test]
     fn advanced_company_forecasts_match_output_recipe_and_keep_unfunded_shortages() {

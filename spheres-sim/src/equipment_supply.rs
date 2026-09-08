@@ -21,6 +21,9 @@ pub struct ProjectSupply {
     pub funding_available_bn: f64,
     pub daily_cap_bn: f64,
     pub blockers: Vec<String>,
+    /// Unperformed fabrication at current contractor input terms, including
+    /// future fabrication after tooling or the first eligible work date.
+    pub advanced_components_remaining: f64,
     pub advanced_components_required: f64,
     pub advanced_components_available: f64,
     pub advanced_components_used: f64,
@@ -100,6 +103,15 @@ fn supply_remaining(job: &EquipmentProject) -> [f64; 12] {
     if supply_ended(job) || job.kind == ProjectKind::Development { return [0.0; 12]; }
     std::array::from_fn(|i| (job.recipe_per_unit[i] * job.quantity as f64 - job.resources_used[i] - job.company_inputs_saved[i]).max(0.0))
 }
+fn supply_remaining_components(w:&WorldState,job:&EquipmentProject,company:companies::CompanyModifiers)->f64 {
+    if supply_ended(job) || job.kind==ProjectKind::Development {return 0.0;}
+    // Price no new work: quote the existing component recipe at the start of
+    // the unfinished fabrication, without making tooling consume components.
+    let mut fabrication=job.clone();
+    fabrication.work_days=fabrication.work_days.max(fabrication.tooling_days as f64);
+    let remaining=(fabrication.minimum_days as f64-fabrication.work_days).max(0.0);
+    project_components_with_company(w,&fabrication,remaining,company)
+}
 fn supply_department(job: &EquipmentProject) -> usize {
     if job.kind == ProjectKind::Development { 4 } else { 3 }
 }
@@ -178,6 +190,7 @@ pub fn supply_plan(w: &WorldState, id: NationId) -> Vec<ProjectSupply> {
             else if terms.tooling { "tooling" }
             else { match job.kind { ProjectKind::Development => "development", ProjectKind::Production => "production", ProjectKind::Refit => "refit" } };
         let mut p = ProjectSupply { project_id:job.id, stage:stage.into(), plan_day:day,
+            advanced_components_remaining:supply_remaining_components(w,job,company),
             advanced_components_required:0.0,advanced_components_available:components_stock,advanced_components_used:0.0,
             earliest_work_day:job.started_day.saturating_add(1).max(state.finance_from_day),
             remaining:company_inputs(supply_remaining(job), company), planned_day:[0.0;12], stock, shortfall:[0.0;12],
@@ -385,6 +398,53 @@ mod supply_tests {
         let target=CompanyTarget::CustomEquipment{project};
         companies::assign(w,USA,company,target.clone()).unwrap();
         companies::modifiers(w,USA,&target)
+    }
+    #[test]
+    fn remaining_components_include_future_fabrication_and_follow_actual_work() {
+        let (mut w,d,r)=fixture();
+        let id=start_production(&mut w,USA,&r,&d,2,1.0).unwrap();
+        assert_eq!(plan(&w,id).advanced_components_remaining,0.0,"legacy rules have no component bill");
+        w.rules.industry_rebuild=true;
+        let total=(job(&w,id).cost_bn-job(&w,id).tooling_cost_bn)*100.0;
+        let before=crate::save(&w);
+        let first=plan(&w,id);
+        assert_eq!(first.stage,"tooling");
+        assert_eq!(first.advanced_components_required,0.0);
+        approx(first.advanced_components_remaining,total);
+        assert_eq!(crate::save(&w),before);
+        assert_eq!(plan(&crate::load(&before).unwrap(),id).advanced_components_remaining,first.advanced_components_remaining);
+        set_project_paused(&mut w,USA,id,true).unwrap();
+        approx(plan(&w,id).advanced_components_remaining,total);
+        assert_eq!(plan(&w,id).advanced_components_required,0.0);
+        set_project_paused(&mut w,USA,id,false).unwrap();
+        for saving in [false,true] {
+            let mut operated=w.clone();
+            let company=assign_company(&mut operated,id,saving);
+            let before=crate::save(&operated);
+            approx(plan(&operated,id).advanced_components_remaining,total*company.input_rate);
+            assert_eq!(crate::save(&operated),before,"contractor-adjusted remaining bills are pure");
+        }
+        let tooling=job(&w,id).tooling_days;
+        for _ in 0..tooling {
+            open_next(&mut w);company_operation(&mut w,&d,1.0);tick_day(&mut w);crate::programs::finish_day(&mut w);
+        }
+        approx(plan(&w,id).advanced_components_remaining,total);
+        w.production.operations.advanced_components.insert(USA,10.0);
+        open_next(&mut w);company_operation(&mut w,&d,1.0);
+        let previous=plan(&w,id).advanced_components_remaining;
+        tick_day(&mut w);
+        let consumed=10.0-crate::commerce::stock(&w,USA,crate::commerce::Good::AdvancedComponents);
+        assert!(consumed>0.0);
+        approx(previous-plan(&w,id).advanced_components_remaining,consumed);
+        let saved=crate::save(&w);let resumed=crate::load(&saved).unwrap();
+        approx(plan(&resumed,id).advanced_components_remaining,plan(&w,id).advanced_components_remaining);
+        assert_eq!(crate::save(&resumed),saved);
+        let mut development=job(&w,id).clone();development.kind=ProjectKind::Development;
+        assert_eq!(supply_remaining_components(&w,&development,companies::CompanyModifiers::default()),0.0);
+        let mut complete=job(&w,id).clone();complete.status=ProjectStatus::Complete;
+        assert_eq!(supply_remaining_components(&w,&complete,companies::CompanyModifiers::default()),0.0);
+        cancel_project(&mut w,USA,id).unwrap();
+        assert_eq!(plan(&w,id).advanced_components_remaining,0.0);
     }
     #[test]
     fn company_supply_preview_and_settlement_share_joint_raw_component_and_operating_limits() {

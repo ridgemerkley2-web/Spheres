@@ -8,7 +8,7 @@ pub const SCIENCE_DISCOVERIES: usize = 8;
 pub const PARTNERSHIP_GAIN: usize = 2;
 pub const SUSTAIN_DAYS: u32 = 90;
 pub const STABILITY_DAYS: u32 = 365;
-const HISTORY_LIMIT: usize = 24;
+const ABANDONED_HISTORY_LIMIT: usize = 24;
 
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "snake_case")]
@@ -89,7 +89,15 @@ pub fn continue_sandbox(w:&mut WorldState,nation:NationId)->Result<(),String> {
     let goal=w.campaign_aims.active.take().unwrap();
     let outcome=if goal.completed_day.is_some() {"achieved"} else {"set aside"};
     w.campaign_aims.history.push(Record{goal,ended_day:clock::absolute_day(w),outcome:outcome.into()});
-    if w.campaign_aims.history.len()>HISTORY_LIMIT {w.campaign_aims.history.remove(0);}
+    // Completed results last for the campaign; only abandoned selections are
+    // a rolling record. Retain their newest entries without evicting victories.
+    let mut abandoned=w.campaign_aims.history.iter().filter(|r|r.goal.completed_day.is_none()).count();
+    w.campaign_aims.history.retain(|r| {
+        if r.goal.completed_day.is_none() && abandoned>ABANDONED_HISTORY_LIMIT {
+            abandoned-=1;
+            false
+        } else {true}
+    });
     w.headline(format!("{} continues in sandbox. Recorded achievements remain in its campaign history.",nation.name()));
     Ok(())
 }

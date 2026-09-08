@@ -5,11 +5,11 @@ use crate::{
     history::{Event, Snapshot},
     Game,
 };
-use serde::{Deserialize, Serialize};
+use serde::{de::{DeserializeSeed, MapAccess, SeqAccess, Visitor}, Deserialize, Serialize};
 use serde_json::{json, Value};
 use std::{
     fs::{self, File, OpenOptions},
-    io::Write,
+    io::{BufReader, Read, Write},
     path::{Path, PathBuf},
 };
 
@@ -193,6 +193,64 @@ pub(crate) fn read(root: &Path, slot: &str, backup: bool) -> Result<Game, String
     let text = fs::read_to_string(path).map_err(|e| format!("Could not open campaign: {e}"))?;
     decode(&text)
 }
+
+#[derive(Default)]
+struct ListingMetadata {
+    format_present: bool,
+    saved_date: Value,
+    player: Value,
+}
+#[derive(Deserialize)]
+#[serde(field_identifier, rename_all = "snake_case")]
+enum ListingField { Format, SavedDate, Player, #[serde(other)] Other }
+
+// Validate every value, but retain only the top-level listing fields. Using
+// deserialize_any also preserves Value's number, Unicode and nesting checks;
+// IgnoredAny's fast skip would accept some files the old listing rejected.
+struct ListingSeed(bool);
+impl<'de> DeserializeSeed<'de> for ListingSeed {
+    type Value = ListingMetadata;
+    fn deserialize<D: serde::Deserializer<'de>>(self, deserializer: D) -> Result<Self::Value, D::Error> {
+        deserializer.deserialize_any(self)
+    }
+}
+impl<'de> Visitor<'de> for ListingSeed {
+    type Value = ListingMetadata;
+    fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
+        formatter.write_str("a JSON value")
+    }
+    fn visit_unit<E>(self) -> Result<Self::Value, E> { Ok(ListingMetadata::default()) }
+    fn visit_bool<E>(self, _: bool) -> Result<Self::Value, E> { Ok(ListingMetadata::default()) }
+    fn visit_i64<E>(self, _: i64) -> Result<Self::Value, E> { Ok(ListingMetadata::default()) }
+    fn visit_u64<E>(self, _: u64) -> Result<Self::Value, E> { Ok(ListingMetadata::default()) }
+    fn visit_f64<E>(self, _: f64) -> Result<Self::Value, E> { Ok(ListingMetadata::default()) }
+    fn visit_str<E>(self, _: &str) -> Result<Self::Value, E> { Ok(ListingMetadata::default()) }
+    fn visit_seq<A: SeqAccess<'de>>(self, mut seq: A) -> Result<Self::Value, A::Error> {
+        while seq.next_element_seed(ListingSeed(false))?.is_some() {}
+        Ok(ListingMetadata::default())
+    }
+    fn visit_map<A: MapAccess<'de>>(self, mut map: A) -> Result<Self::Value, A::Error> {
+        let mut metadata = ListingMetadata::default();
+        while let Some(field) = map.next_key::<ListingField>()? {
+            match (self.0, field) {
+                (true, ListingField::Format) => {
+                    metadata.format_present = true;
+                    map.next_value_seed(ListingSeed(false))?;
+                }
+                (true, ListingField::SavedDate) => metadata.saved_date = map.next_value()?,
+                (true, ListingField::Player) => metadata.player = map.next_value()?,
+                _ => { map.next_value_seed(ListingSeed(false))?; }
+            }
+        }
+        Ok(metadata)
+    }
+}
+fn listing_metadata(reader: impl Read) -> Result<ListingMetadata, serde_json::Error> {
+    let mut deserializer = serde_json::Deserializer::from_reader(reader);
+    let metadata = ListingSeed(true).deserialize(&mut deserializer)?;
+    deserializer.end()?;
+    Ok(metadata)
+}
 pub(crate) fn list(root: &Path) -> Value {
     let mut slots = vec![("default".to_string(), root.join("save.json"))];
     if let Ok(files) = fs::read_dir(root.join("saves")) {
@@ -210,12 +268,12 @@ pub(crate) fn list(root: &Path) -> Value {
         .into_iter()
         .filter(|(_, p)| p.is_file())
         .map(|(slot, path)| {
-            let data = fs::read_to_string(&path)
+            let data = File::open(&path)
                 .ok()
-                .and_then(|s| serde_json::from_str::<Value>(&s).ok());
-            let envelope = data.as_ref().is_some_and(|v| v.get("format").is_some());
-            json!({"slot":slot,"date":data.as_ref().and_then(|v|v.get("saved_date")),
-            "player":data.as_ref().and_then(|v|v.get("player")),"legacy":!envelope,
+                .and_then(|file| listing_metadata(BufReader::with_capacity(64 * 1024, file)).ok());
+            let envelope = data.as_ref().is_some_and(|v| v.format_present);
+            json!({"slot":slot,"date":data.as_ref().map(|v|&v.saved_date),
+            "player":data.as_ref().map(|v|&v.player),"legacy":!envelope,
             "readable":data.is_some(),"backup":path.with_extension("json.bak").is_file(),
             "autosave":slot.starts_with("auto-"),"bytes":fs::metadata(&path).ok().map(|m|m.len())})
         })
@@ -319,5 +377,61 @@ mod tests {
         assert_eq!(slots["slots"].as_array().unwrap().len(), 4);
         assert!(root.join("saves/auto-2.json.bak").is_file());
         fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn save_listing_preserves_metadata_and_full_json_readability() {
+        let root=root();
+        fs::create_dir_all(root.join("saves")).unwrap();
+        let mut cases:Vec<(&str,Vec<u8>)>=vec![
+            ("campaign",br#"{"format":"spheres-campaign","world":{"year":2035},"history":[],"log":[],"saved_date":"1 Jan 2035","player":"France"}"#.to_vec()),
+            ("raw",br#"{"year":2035,"player":"USA"}"#.to_vec()),
+            ("equipment",br#"{"format":"spheres-equipment-save","world":{}}"#.to_vec()),
+            ("null-fields",br#"{"format":null,"saved_date":null,"player":null}"#.to_vec()),
+            ("unusual-fields",br#"{"format":{"unknown":true},"saved_date":2035,"player":["France"]}"#.to_vec()),
+            ("duplicate-fields",br#"{"saved_date":"old","player":"USA","format":false,"saved_date":"new","player":null}"#.to_vec()),
+            ("nested-fields",br#"{"world":{"format":"nested","saved_date":"nested","player":"USA"}}"#.to_vec()),
+            ("array",br#"[{"format":"nested"},null,1.5,true]"#.to_vec()),
+            ("string",br#""legacy JSON scalar""#.to_vec()),
+            ("number",b"123.5".to_vec()),
+            ("boolean",b"true".to_vec()),
+            ("null",b"null".to_vec()),
+            ("whitespace",b" \r\n {\"player\":\"USA\"} \t\n".to_vec()),
+            ("malformed-nested",br#"{"saved_date":"2035","world":[{"value":true,}]}"#.to_vec()),
+            ("truncated",br#"{"format":"spheres-campaign","world":[1,2"#.to_vec()),
+            ("trailing",br#"{"saved_date":"2035"} false"#.to_vec()),
+            ("overflow",br#"{"world":[1e999]}"#.to_vec()),
+            ("leading-zero",br#"{"world":[01]}"#.to_vec()),
+            ("invalid-surrogate",br#"{"world":{"text":"\uD800"}}"#.to_vec()),
+            ("invalid-utf8",b"{\"world\":\"\xff\"}".to_vec()),
+        ];
+        cases.push(("too-deep",format!("{{\"world\":{}0{}}}","[".repeat(130),"]".repeat(130)).into_bytes()));
+        for (name,bytes) in &cases {fs::write(root.join("saves").join(format!("{name}.json")),bytes).unwrap();}
+        let listing=list(&root);
+        let slots=listing["slots"].as_array().unwrap();
+        assert_eq!(slots.len(),cases.len());
+        for (name,bytes) in &cases {
+            // This is the previous listing contract, not load validation:
+            // any JSON value is readable, and format presence marks envelopes.
+            let previous=serde_json::from_slice::<Value>(bytes).ok();
+            let slot=slots.iter().find(|s|s["slot"]==*name).unwrap();
+            assert_eq!(slot["readable"],json!(previous.is_some()),"{name}");
+            assert_eq!(slot["legacy"],json!(!previous.as_ref().is_some_and(|v|v.get("format").is_some())),"{name}");
+            assert_eq!(slot["date"],previous.as_ref().and_then(|v|v.get("saved_date")).cloned().unwrap_or(Value::Null),"{name}");
+            assert_eq!(slot["player"],previous.as_ref().and_then(|v|v.get("player")).cloned().unwrap_or(Value::Null),"{name}");
+            assert_eq!(slot["bytes"],json!(bytes.len()),"{name}");
+        }
+        fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn listing_metadata_handles_split_utf8_escapes_and_trailing_data() {
+        let text=r#"{"world":{"text":"日本 \"archive\" \uD83C\uDF0D"},"saved_date":"1 Jan 2035","player":"日本","format":null}"#;
+        let metadata=listing_metadata(BufReader::with_capacity(1,text.as_bytes())).unwrap();
+        assert!(metadata.format_present);
+        assert_eq!(metadata.saved_date,"1 Jan 2035");
+        assert_eq!(metadata.player,"日本");
+        let trailing=format!("{text} false");
+        assert!(listing_metadata(BufReader::with_capacity(1,trailing.as_bytes())).is_err());
     }
 }

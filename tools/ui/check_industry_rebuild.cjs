@@ -176,6 +176,27 @@ test('unified industry separates installed capacity, latest output, GDP and tax 
   assert.match(html,/Review a Power Plant/);assert.match(html,/Find imports/);assert.match(html,/Fund operations/);assert.match(html,/Review facility upgrades/);
   assert.deepEqual(plain(data),before);assert.equal(c.orders.length,0);
 });
+
+test('current funding cause stays distinct from yesterday’s paid output after budget expiry and renewal',()=>{
+  const c=fixture(),ops=operations();
+  Object.assign(ops.facilities[0],{recorded_day:4382,operating_capacity:0,utilization:0,funding_fraction:0,
+    actual_operating_capacity:1,actual_utilization:.5,status:'blocked',
+    reason:'Industry or electricity operating funds limit this site; fund its department.'});
+  const data={date:'1 Jan 2002',industry_rebuild:{operations:ops}},before=plain(data);
+  const expired=c.industryUnifiedHtml(data);
+  assert.match(expired,/Current constraints · Industry or electricity operating funds limit this site/);
+  assert.match(expired,/0% usable/);assert.match(expired,/Fund operations/);
+  assert.match(expired,/<dt>Latest output<\/dt><dd>\$0.003bn \/ day<\/dd><small>Recorded · 31 Dec 2001<\/small>/);
+  assert.match(expired,/<dt>Estimated jobs filled<\/dt><dd>3,000<\/dd><small>Recorded · 31 Dec 2001 · 6,000 required now<\/small>/);
+  assert.match(expired,/<dt>Latest operating spending<\/dt><dd>\$0.0001bn<\/dd><small>Recorded · 31 Dec 2001<\/small>/);
+  assert.deepEqual(plain(data),before);assert.equal(c.orders.length,0);
+  Object.assign(ops.facilities[0],{operating_capacity:2,utilization:1,funding_fraction:1,status:'awaiting_operation',
+    reason:'Ready for assigned work; operating inputs and funding are checked when used.'});
+  const renewed=c.industryUnifiedHtml(data);
+  assert.match(renewed,/Current constraints · Ready for assigned work/);assert.match(renewed,/100% usable/);
+  assert.doesNotMatch(renewed,/Fund operations/);
+  assert.match(renewed,/<dt>Latest output<\/dt><dd>\$0.003bn \/ day<\/dd><small>Recorded · 31 Dec 2001<\/small>/);
+});
 test('no settled operation is rendered as awaiting output; inherited output stays explicitly already counted',()=>{
   const c=fixture(),ops=operations({as_of_day:null});ops.facilities[0].output_daily=999;
   let html=c.industryUnifiedHtml({industry_rebuild:{operations:ops}});assert.match(html,/Awaiting first operation/);assert.doesNotMatch(html,/999/);

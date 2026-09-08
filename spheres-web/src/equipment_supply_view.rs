@@ -14,7 +14,18 @@ fn equipment_supply_actions(rows:&[Value])->Vec<Value> {
 fn equipment_supply_stock(w:&WorldState,me:NationId)->[f64;12] {
     std::array::from_fn(|i|spheres_sim::resources::stockpile(w,me,spheres_sim::resources::ALL[i]))
 }
-fn equipment_project_supply(_w:&WorldState,_me:NationId,p:&eq::ProjectSupply)->Value {
+fn equipment_component_bill(w:&WorldState,me:NationId,remaining:f64,planned:f64,available:f64)->Option<Value> {
+    (remaining>0.0||planned>0.0).then(||json!({"remaining":remaining,"planned_day":planned,
+        "stock":spheres_sim::commerce::stock(w,me,spheres_sim::commerce::Good::AdvancedComponents),
+        "available_for_next_work":available,"unit":"packs",
+        "detail":"Remaining covers unperformed fabrication at current contractor input terms. Development and tooling use no components. National stock is shared with other equipment work; this view reserves nothing."}))
+}
+fn equipment_component_metrics(bill:&Value)->Vec<Value> {
+    [("Advanced components remaining","remaining"),("Advanced components planned for next work","planned_day"),
+        ("Advanced components in national stock","stock"),("Advanced components available for next work","available_for_next_work")]
+        .into_iter().map(|(label,key)|metric(label,format!("{:.6} packs",bill[key].as_f64().unwrap_or(0.0)))).collect()
+}
+fn equipment_project_supply(w:&WorldState,me:NationId,p:&eq::ProjectSupply)->Value {
     let rows=equipment_supply_resources(&p.remaining,&p.planned_day,&p.stock,&p.shortfall);
     let ended=p.stage=="complete"||p.stage=="cancelled";
     let short=p.shortfall.iter().any(|q|*q>1e-9);
@@ -43,13 +54,16 @@ fn equipment_project_supply(_w:&WorldState,_me:NationId,p:&eq::ProjectSupply)->V
         metric("Work supported by current stock",format!("{:.3} work days",p.executable_work_days)),
         metric("Remaining programme payment",format!("${:.3}m",p.remaining_payment_bn*1000.0))];
     let mut actions=equipment_supply_actions(&rows);
-    if p.advanced_components_required>0.0 {
-        metrics.push(metric("Advanced components needed",format!("{:.4} packs",p.advanced_components_required)));
-        metrics.push(metric("Advanced components available",format!("{:.4} packs",p.advanced_components_available)));
-        actions.push(nav("Review component supply",json!({"action":"industry"})));
+    let components=equipment_component_bill(w,me,p.advanced_components_remaining,p.advanced_components_required,p.advanced_components_available);
+    if let Some(bill)=&components {
+        metrics.extend(equipment_component_metrics(bill));
+        actions.push(nav("Review domestic component production",json!({"action":"industry"})));
+        if p.advanced_components_remaining>bill["stock"].as_f64().unwrap_or(0.0)+1e-9 {
+            warnings.push("Shared component stock does not cover later fabrication or refit work. Operate Advanced Industry before that work is due; zero planned use during tooling does not cover the remaining bill.".into());
+        }
     }
     if !ended {actions.push(nav("Review programme funding",json!({"action":"budget","ministry":"defense","department":p.department})));}
-    json!({"title":"Programme supply readiness","stage":p.stage,"status":status,"detail":detail,"metrics":metrics,"resources":rows,"warnings":warnings,"actions":actions})
+    json!({"title":"Programme supply readiness","stage":p.stage,"status":status,"detail":detail,"metrics":metrics,"resources":rows,"advanced_components":components,"warnings":warnings,"actions":actions})
 }
 
 #[cfg(test)]
@@ -95,6 +109,40 @@ mod supply_view_tests {
         assert_eq!(spheres_sim::save(&g.world),before);
     }
     #[test]
+    fn production_review_discloses_future_components_before_tooling_or_eligible_work() {
+        let mut g=fixture();
+        g.world.production.operations.advanced_components.insert(NationId::USA,0.0);
+        let request=order(&g,5);
+        let command=super::super::parse_command(&g.world,&request,NationId::USA).unwrap();
+        let mut proposed=g.world.clone();
+        spheres_sim::apply_command(&mut proposed,&command).unwrap();
+        let mut fabrication=proposed.nation(NationId::USA).equipment.as_ref().unwrap().projects[0].clone();
+        fabrication.work_days=fabrication.tooling_days as f64;
+        let expected=eq::project_components(&proposed,&fabrication,
+            fabrication.minimum_days as f64-fabrication.work_days);
+        assert!(expected>0.0);
+        let before=spheres_sim::save(&g.world);
+        let q=preview(&g.world,NationId::USA,&g.session_id,&json!({"command":request})).unwrap();
+        assert_eq!(q["valid"],true);
+        let supply=&q["supply"];
+        assert_eq!(supply["stage"],"tooling");
+        assert_eq!(supply["advanced_components"]["remaining"].as_f64(),Some(expected));
+        assert_eq!(supply["advanced_components"]["planned_day"],0.0);
+        assert_eq!(supply["advanced_components"]["stock"],0.0);
+        assert!(supply["metrics"].as_array().unwrap().iter().any(|r|r["label"]=="Advanced components remaining"));
+        assert!(supply["actions"].as_array().unwrap().iter().any(|r|r["navigate"]["action"]=="industry"));
+        assert!(supply["warnings"].as_array().unwrap().iter().any(|r|
+            r.as_str().is_some_and(|s|s.contains("later fabrication")&&s.contains("Advanced Industry"))));
+        assert_eq!(spheres_sim::save(&g.world),before);
+        spheres_sim::apply_command(&mut g.world,&command).unwrap();
+        let before=spheres_sim::save(&g.world);
+        let data=view(&g.world,NationId::USA,&g.session_id);
+        assert_eq!(data["production"][0]["supply"]["advanced_components"]["remaining"].as_f64(),Some(expected));
+        assert_eq!(data["supply"]["advanced_components"]["remaining"].as_f64(),Some(expected));
+        assert_eq!(data["supply"]["advanced_components"]["stock"],0.0,"national stock is counted once");
+        assert_eq!(spheres_sim::save(&g.world),before);
+    }
+    #[test]
     fn invalid_plant_retains_material_bill_but_cannot_confirm() {
         let g=fixture();let mut request=order(&g,3);request["district"]=json!("missing-province");
         let q=preview(&g.world,NationId::USA,&g.session_id,&json!({"command":request})).unwrap();
@@ -127,6 +175,10 @@ mod supply_view_tests {
             assert!((row["remaining"].as_f64().unwrap()-per[c.idx()]*4.0).abs()<2e-9);
             assert_eq!(row["stock"].as_f64().unwrap(),spheres_sim::resources::stockpile(&g.world,NationId::USA,c));
         }
+        let fabrication=g.world.nation(NationId::USA).equipment.as_ref().unwrap().revisions["certified-ifv"].profile.fabrication_cost_bn;
+        assert!((data["supply"]["advanced_components"]["remaining"].as_f64().unwrap()-fabrication*4.0*100.0).abs()<1e-9,
+            "the paused batch retains its unfinished component bill");
+        assert_eq!(data["supply"]["advanced_components"]["stock"],5.0,"shared component stock is not multiplied by programme count");
         assert_eq!(spheres_sim::save(&g.world),before);
     }
     #[test]
@@ -174,7 +226,7 @@ mod supply_view_tests {
 }
 fn equipment_national_supply(w:&WorldState,me:NationId,plans:&[eq::ProjectSupply])->Value {
     let active:Vec<_>=plans.iter().filter(|p|!["development","complete","cancelled"].contains(&p.stage.as_str())).collect();
-    let mut remaining=[0.0;12];let planned=eq::next_work_supply(w,me).raw;let stock=equipment_supply_stock(w,me);
+    let mut remaining=[0.0;12];let next=eq::next_work_supply(w,me);let planned=next.raw;let stock=equipment_supply_stock(w,me);
     for p in &active {for i in 0..12 {remaining[i]+=p.remaining[i];}}
     let shortfall=std::array::from_fn(|i|(planned[i]-stock[i]).max(0.0));
     let rows=equipment_supply_resources(&remaining,&planned,&stock,&shortfall);
@@ -183,12 +235,22 @@ fn equipment_national_supply(w:&WorldState,me:NationId,plans:&[eq::ProjectSupply
     let mut warnings=vec![];
     if has_future_gap {warnings.push("The warehouse does not cover the full outstanding bill. Review the resource forecast for timed deliveries, domestic supply and other claims before buying more.".to_string());}
     let mut actions=equipment_supply_actions(&rows);
+    let mut metrics=vec![metric("Production and refit programmes",active.len()),metric("Programmes needing review",blocked),metric("Planning date",super::settled_day_json(spheres_sim::resources::forecast_start_day(w))["label"].clone())];
+    let component_stock=spheres_sim::commerce::stock(w,me,spheres_sim::commerce::Good::AdvancedComponents);
+    let component_remaining=active.iter().map(|p|p.advanced_components_remaining).sum();
+    let components=equipment_component_bill(w,me,component_remaining,next.advanced_components,component_stock);
+    if let Some(bill)=&components {
+        metrics.extend(equipment_component_metrics(bill));
+        actions.push(nav("Review domestic component production",json!({"action":"industry"})));
+        if component_remaining>component_stock+1e-9 {
+            warnings.push("Shared component stock does not cover all later fabrication or refit work. Review Advanced Industry; current tooling consumes no components, and stock is counted once across these programmes.".into());
+        }
+    }
     actions.push(nav("Open national supply forecast",json!({"action":"resources"})));
     if active.is_empty(){actions.push(nav("Review arms-plant construction",json!({"action":"construction","kind":"arms_plant"})));}
     json!({"title":"Production supply plan","stage":"national","status":if active.is_empty(){"No production commitments"}else if blocked>0{"Some programmes need attention"}else{"Plan reviewed"},
         "detail":if active.is_empty(){"Certified designs can be scheduled from the Library. Their funded production and refit material bills will appear here; development and inherited equipment are separate."}else{"Outstanding bills include paused production and refits. Next work allocates shared funding once in project priority order, assuming required inputs can be secured. Stock is counted once and is shared with other consumers. Individual programme reviews also account for earlier stock-limited work. Opening this plan reserves nothing and places no supply orders."},
-        "metrics":[metric("Production and refit programmes",active.len()),metric("Programmes needing review",blocked),metric("Planning date",super::settled_day_json(spheres_sim::resources::forecast_start_day(w))["label"].clone())],
-        "resources":rows,"warnings":warnings,"actions":actions})
+        "metrics":metrics,"resources":rows,"advanced_components":components,"warnings":warnings,"actions":actions})
 }
 fn equipment_order_supply(w:&WorldState,me:NationId,command:&Command,order:&EquipmentOrder,quote:Option<&eq::ProjectQuote>)->Option<Value> {
     if !matches!(order,EquipmentOrder::Develop{..}|EquipmentOrder::Produce{..}|EquipmentOrder::Refit{..}|EquipmentOrder::Funding{..}) {return None;}

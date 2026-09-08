@@ -4662,7 +4662,7 @@ fn manufacturing_line_json(
     let live_blocker = spheres_sim::manufacturing::line_blocker(w, line);
     let effective_blocked = live_blocker.is_some()
         || line.status == spheres_sim::manufacturing::LineStatus::Blocked;
-    let effective_reason = live_blocker.or_else(|| line.reason.clone());
+    let effective_reason = live_blocker.clone().or_else(|| line.reason.clone());
     let status = if effective_blocked { "blocked" } else { line.status.key() };
     let Some(kit) = spheres_sim::arsenal::index_of(&line.kit) else {
         return serde_json::json!({
@@ -4721,6 +4721,19 @@ fn manufacturing_line_json(
     } else {
         line.settled_day.map(|_| line.throughput_today)
     };
+    // Preserve the dated settlement independently of today's plan/blockers.
+    // Legacy fields above keep their existing contract for older consumers.
+    let last_run = line.settled_day.map(|day| {
+        let (year, month, _) = spheres_sim::clock::date_from_day(day);
+        let days = if w.rules.daily_simulation {1.0} else {spheres_sim::world::days_in_month(year,month) as f64};
+        serde_json::json!({
+            "day":day,"label":settled_day_json(day)["label"],
+            "status":line.status.key(),"reason":line.reason,
+            "allocation_bn_day":line.ordered_today_bn/days,
+            "units_day":line.ordered_today_units/days,
+            "throughput_ratio":line.throughput_today,
+        })
+    });
     serde_json::json!({
         "id": line.id,
         "kit": def.id,
@@ -4733,6 +4746,10 @@ fn manufacturing_line_json(
         "priority": line.priority.key(),
         "status": status,
         "reason": effective_reason,
+        "current_blocker":live_blocker,
+        "has_current_funding":allocation>1e-12,
+        "has_order_history":line.ordered_bn>0.0,
+        "last_run":last_run,
         "allocation_bn_month": round(monthly_allocation, 6),
         "allocation_bn_day": round(daily_allocation, 6),
         "ordered_bn": round(line.ordered_bn, 6),
@@ -4760,6 +4777,104 @@ fn manufacturing_line_json(
 #[cfg(test)]
 mod manufacturing_component_view_tests {
     use super::*;
+
+    #[test]
+    fn loaded_manufacturing_history_is_distinct_from_a_missing_dated_receipt() {
+        let me=NationId::USA;
+        let mut g=Game::new(1990,Some(me));play_rules(&mut g);
+        let w=&mut g.world;
+        let district=w.districts.iter().find(|(d,n)|**n==me&&spheres_sim::logistics::has_terminal(d)).unwrap().0.clone();
+        w.production.provinces.push(production::ProvinceCapabilities {
+            district:district.clone(),infrastructure:0,civilian_industry:0,power_grid:0,research_centers:0,arms_plants:1,
+        });
+        spheres_sim::manufacturing::start_line(w,me,&district,"inf_light").unwrap();
+        assert_eq!(manufacturing_json(w,me)["lines"][0]["has_order_history"],false);
+        let day=spheres_sim::clock::absolute_day(w);
+        let line=&mut w.manufacturing.lines[0];
+        line.ordered_bn=0.00000001;
+        line.settled_day=Some(day);line.ordered_today_bn=line.ordered_bn;
+        let saved=spheres_sim::save(w);
+        let loaded=spheres_sim::load(&saved).unwrap();
+        let view=manufacturing_json(&loaded,me);
+        assert!(view["lines"][0]["last_run"].is_null(),"dated presentation fields intentionally do not survive saves");
+        assert_eq!(view["lines"][0]["ordered_bn"],0.0,"compatibility display field is still rounded");
+        assert_eq!(view["lines"][0]["has_order_history"],true,"exact historical spending survives rounding and loading");
+        assert_eq!(loaded.manufacturing.lines[0].ordered_bn,0.00000001);
+        assert_eq!(spheres_sim::save(&loaded),saved,"reading does not invent a receipt or rewrite the campaign");
+    }
+
+    #[test]
+    fn manufacturing_current_funding_and_blockers_do_not_rewrite_the_dated_run() {
+        let me=NationId::USA;
+        let mut g=Game::new(1990,Some(me));play_rules(&mut g);
+        let w=&mut g.world;
+        w.month=12;w.day=31;
+        programs::set_construction_budget(w,me,0.0).unwrap();
+        let district=w.districts.iter().find(|(d,n)|**n==me&&spheres_sim::logistics::has_terminal(d)).unwrap().0.clone();
+        w.production.provinces.push(production::ProvinceCapabilities {
+            district:district.clone(),infrastructure:0,civilian_industry:0,power_grid:0,research_centers:0,arms_plants:1,
+        });
+        spheres_sim::manufacturing::start_line(w,me,&district,"inf_light").unwrap();
+        let fresh=manufacturing_json(w,me);
+        assert!(fresh["lines"][0]["last_run"].is_null());
+        assert_eq!(fresh["lines"][0]["has_current_funding"],true);
+        // Saved receipt fixture: the view must retain these exact settled
+        // figures when today's funding or province control changes.
+        let day=spheres_sim::clock::absolute_day(w);
+        let line=&mut w.manufacturing.lines[0];
+        line.settled_day=Some(day);
+        line.status=spheres_sim::manufacturing::LineStatus::Slowed;
+        line.reason=Some("SLOWED: workers limit this line to 97% throughput today.".into());
+        line.ordered_today_bn=0.03;line.ordered_today_units=3.0;line.throughput_today=0.97;
+        let paid=manufacturing_json(w,me)["lines"][0]["last_run"].clone();
+        assert_eq!(paid["day"],day);assert_eq!(paid["label"],"31 Dec 1990");
+        assert_eq!(paid["status"],"slowed");assert_eq!(paid["allocation_bn_day"],0.03);
+        assert_eq!(paid["units_day"],3.0);assert_eq!(paid["throughput_ratio"],0.97);
+        spheres_sim::clock::advance_date(w);
+        let before=spheres_sim::save(w);
+        let expired=manufacturing_json(w,me);
+        assert_eq!(expired["lines"][0]["has_current_funding"],false);
+        assert_eq!(expired["lines"][0]["units_planned_day"],0.0);
+        assert_eq!(expired["lines"][0]["last_run"],paid);
+        assert_eq!(spheres_sim::save(w),before);
+        programs::set_construction_budget(w,me,0.0).unwrap();
+        assert_eq!(manufacturing_json(w,me)["lines"][0]["has_current_funding"],true);
+        w.districts.insert(district,NationId::Japan);
+        let before=spheres_sim::save(w);
+        let blocked=manufacturing_json(w,me);
+        assert!(blocked["lines"][0]["current_blocker"].is_string());
+        assert_eq!(blocked["lines"][0]["last_run"],paid);
+        assert_eq!(spheres_sim::save(w),before);
+    }
+
+    #[test]
+    fn manufacturing_site_payload_keeps_land_and_naval_slot_pools_separate() {
+        let me=NationId::USA;
+        let mut g=Game::new(1990,Some(me));play_rules(&mut g);
+        let w=&mut g.world;
+        let district=w.districts.iter().find(|(d,n)|**n==me&&spheres_sim::logistics::has_terminal(d)).unwrap().0.clone();
+        w.production.provinces.push(spheres_sim::production::ProvinceCapabilities {
+            district:district.clone(),infrastructure:0,civilian_industry:0,power_grid:0,research_centers:0,arms_plants:2,
+        });
+        w.production.rebuild_sites.insert(district.clone(),[0,2,0]);
+        spheres_sim::manufacturing::start_line(w,me,&district,"inf_light").unwrap();
+        spheres_sim::manufacturing::start_line(w,me,&district,"nav_escort").unwrap();
+        let before=spheres_sim::save(w);
+        let view=manufacturing_json(w,me);
+        let province=view["provinces"].as_array().unwrap().iter().find(|p|p["id"]==district).unwrap();
+        assert_eq!(province["military_factory_used_slots"],1);
+        assert_eq!(province["military_factory_free_slots"],1);
+        assert_eq!(province["shipyard_used_slots"],1);
+        assert_eq!(province["shipyard_free_slots"],1);
+        assert_eq!(province["arms_plants"],4,"combined compatibility field is preserved");
+        assert_eq!(province["free_slots"],2);
+        for (kit,kind) in [("inf_light","arms_plant"),("nav_escort","shipyard")] {
+            let row=view["catalog"].as_array().unwrap().iter().find(|k|k["id"]==kit).unwrap();
+            assert_eq!(row["facility_kind"],kind);
+            assert_eq!(row["pc_cost"],8.0);
+        }
+        assert_eq!(spheres_sim::save(w),before);
+    }
 
     #[test]
     fn manufacturing_line_component_quote_uses_simulation_units_and_stays_read_only() {
@@ -4813,8 +4928,9 @@ fn manufacturing_json(w: &WorldState, me: NationId) -> serde_json::Value {
             if slots == 0 {
                 return None;
             }
-            let used = spheres_sim::manufacturing::used_slots(w, me, district)
-                + spheres_sim::manufacturing::used_naval_slots(w,me,district);
+            let used_arms = spheres_sim::manufacturing::used_slots(w, me, district);
+            let used_yards = spheres_sim::manufacturing::used_naval_slots(w,me,district);
+            let used = used_arms + used_yards;
             let active = lines
                 .iter()
                 .filter(|line| line.district == *district)
@@ -4830,6 +4946,10 @@ fn manufacturing_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 "name": spheres_sim::districts::name_of(district).unwrap_or(district),
                 "arms_plants": slots,
                 "military_factory_slots":arms,"shipyard_slots":yards,
+                "military_factory_used_slots":used_arms,
+                "military_factory_free_slots":arms.saturating_sub(used_arms),
+                "shipyard_used_slots":used_yards,
+                "shipyard_free_slots":yards.saturating_sub(used_yards),
                 "used_slots": used,
                 "free_slots": slots.saturating_sub(used),
                 "active_lines": active,
@@ -4859,6 +4979,7 @@ fn manufacturing_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 "name": def.name,
                 "class": resources::class_word(def.class),
                 "unlocked": lock_reason.is_none(),
+                "facility_kind":if w.rules.industry_rebuild && spheres_sim::manufacturing::is_naval(def.id) {"shipyard"} else {"arms_plant"},
                 "lock_reason": lock_reason,
                 "tech": manufacturing_tech_json(n, def),
                 "quality": round(def.quality, 4),
