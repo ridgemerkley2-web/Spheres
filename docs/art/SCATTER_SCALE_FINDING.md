@@ -97,9 +97,34 @@ than assumed, and the answer is not the zoom cap:
 | `relief/terrain/coast/lake.png` 2400x1018 | 16,698 m/px | the globe surface |
 | `cover.png` 1200x509 | 33,396 m/px | vegetation tint |
 
+**THE 55 m/px IN THIS DOCUMENT IS ITSELF WRONG, and it is wrong in the
+dangerous direction.** Corrected 2026-09-07 after three independent
+re-measurements agreed against it. 55 m/px is `mx / uPxPerWorld`, and
+`pixelsPerWorld()` divides pixels per radian of ARC by canvas units per radian
+of LONGITUDE — two different radians — so it is 1/cos(latitude) too large and
+the metres per pixel it implies are that much too small. The true figures at
+screen centre, at latitude 41.9 on an 1878x889 pane:
+
+| zoom | cross-track (E-W) | along-track (N-S) | the shader's own gate variable |
+| --- | --- | --- | --- |
+| 192 | 70.2 m/px | 122.7 m/px | 114.6 m/px |
+| 512 | 26.3 m/px | 45.9 m/px | 43.0 m/px |
+| 1500 | 9.0 m/px | 15.7 m/px | 14.7 m/px |
+
+Three numbers, not one, and the difference between them matters. The gate
+variable is what the ground shader actually tests, `max(fwidth(world.x),
+fwidth(world.y)) * mx`, and it is 1.633x the cross-track figure because the
+55-degree pitch stretches the along-track footprint. A document written to
+correct a scale error understated the scale by 27% for a year, in the direction
+of "the map is finer than it is", which is exactly the direction that lets a
+feature be specified too small to see. The live page now measures it correctly:
+`groundMetresPerPixel()` in index.html reads 26.3 at zoom 512, and
+`drawCityLayer`'s per-city version carried the same cos(latitude) defect until
+the same pass fixed it.
+
 `ZOOM_MAX` was 192 when this was written, which puts the camera 81 km up. The
-best data under it is 1,855 m per sample, so at 55 m/px the map was ALREADY
-magnifying its finest source about 34 times. Raising the cap was tried: at zoom
+best data under it is 1,855 m per sample, so at 70 m/px the map was ALREADY
+magnifying its finest source about 27 times. Raising the cap was tried: at zoom
 768 (35 m/px, 76 km across) the surface is a featureless olive field, and the
 terrain mesh has about eight elevation samples across the whole screen.
 

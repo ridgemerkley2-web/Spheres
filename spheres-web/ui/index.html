@@ -10197,29 +10197,98 @@ void main() {
   // not under snow, not on bare rock, not in the sea.
   float ground = (1.0 - snow) * (1.0 - rock) * smoothstep(0.0, 1.5, sdf);
 
+  // One countryside's worth of world. Every generated pattern below is anchored
+  // to this lattice so that its coordinates stay small and local instead of
+  // being measured from the canvas origin thousands of cells away -- see the
+  // note on the field rotation for what happens when they are not.
+  const float REGION_W = 50.0;
+
+  // ---------------------------------------------- WHAT THE GROUND IS DOING
+  //
+  // DERIVED, from data: whether anything grows here at all (V, from cover.png),
+  // how steep the ground is (slope, from the same elevation the mesh and the
+  // height texture already carry), how high it is, and whether it is sea, snow
+  // or bare rock. GENERATED, and the legend says so: how a green region divides
+  // between worked land and woodland, and every pattern drawn inside either.
+  //
+  // WHY THE DIVISION HAS TO BE GENERATED. cover.png is 33 km per texel and it
+  // carries GREENNESS, not land use. Measured at 21 regions, cropland runs
+  // V 0.71-0.85 and closed forest 0.82-1.00 -- Borneo and the English midlands
+  // read 0.824 apiece. The index separates the EXTREME and nothing in the
+  // middle: only closed canopy reaches 0.90 (Amazon 0.93-1.00, Congo 1.00), so
+  // above that the worked term is faded out and below it the split comes from
+  // slope and from noise. Borneo and the taiga still read as worked ground,
+  // and that is a stated limit of a 33 km greenness index, not an oversight.
+  //
+  // THE SLOPE GATES ARE MEASURED, NOT CHOSEN. Dimensionless ground slope at
+  // ETOPO's own 1,855 m sampling, p50 / p90 over about 12,000 land cells each:
+  //
+  //     Iowa 0.0036 / 0.0086      Amazon 0.0030 / 0.0087
+  //     Kansas 0.0038 / 0.0095    English midlands 0.0090 / 0.0242
+  //     Sahara 0.0120 / 0.0372    Appalachians 0.0268 / 0.0751
+  //     Tibet 0.0266 / 0.0682     Scottish highlands 0.0609 / 0.1318
+  //     Alps 0.1733 / 0.3195
+  //
+  // The gates that stood here before -- fields fading out over 0.10 to 0.34,
+  // woodland thinning over 0.42 to 0.80 -- are an order of magnitude above that
+  // whole spread. So fields drew at full strength on Scottish moorland and the
+  // woodland thinning never fired anywhere but the Alps' 99th percentile: the
+  // two terms could not tell any two places apart. These can.
+  float ploughable = 1.0 - smoothstep(0.012, 0.055, slope);
+  float closed     = smoothstep(0.88, 0.97, V);
+  float allot      = vnoise(wm * 0.125);              // ~8 world units, ~110 km
+  float workedMix  = ploughable * (1.0 - closed) * smoothstep(0.20, 0.56, allot + 0.30);
+  float treeMix    = (1.0 - workedMix) * (1.0 - smoothstep(0.28, 0.55, slope));
+
   // ---- FIELDS. Real parcels run about 100-400 m across; 260 m is the middle.
-  // Ploughing stops on a slope and where nothing grows, so the term carries the
-  // same slope and vegetation signals the biome model already trusts.
   float fieldW  = 260.0 / max(mx, 1e-6);            // one parcel, in world units
   float fieldPx = 260.0 / max(mPerPx, 1e-6);
-  float tField  = smoothstep(2.5, 7.0, fieldPx) * ground
-                * (1.0 - smoothstep(0.10, 0.34, slope))
+  float tField  = smoothstep(2.5, 7.0, fieldPx) * ground * workedMix
                 * smoothstep(0.26, 0.52, V)
                 * (1.0 - smoothstep(1400.0, 2600.0, h));
   if (tField > 0.0) {
-    // Rotated per REGION. The first draft used vnoise(wm * 0.55), which turns
-    // over once every 1.8 world units — about 30 km — so the angle swept
-    // several radians across a single screen and the lattice came out as
-    // scrambled noise rather than as fields. One turn per ~50 world units is
-    // roughly 800 km: a countryside keeps one grain, and the next one over has
-    // a different one.
-    float a = 6.2831853 * vnoise(wm * 0.02);
+    // ROTATED ABOUT THE REGION'S OWN CORNER, NOT ABOUT THE CANVAS ORIGIN, and
+    // that distinction is the difference between fields and moire.
+    //
+    // The first draft used vnoise(wm * 0.55), which turns over every 1.8 world
+    // units, so the angle swept several radians across one screen. That was
+    // fixed to one turn per REGION_W world units. But the rotation was still
+    // taken about the Robinson origin, and Chicago sits |wm| = 933 world units
+    // from it -- 48,000 parcel widths of lever arm. An angle drifting a
+    // fraction of a degree across the frame then sweeps the lattice through
+    // hundreds of cells while the ground advances tens, so the parcels arrive
+    // as interference fringes rather than as fields.
+    //
+    // MEASURED on a line of real ground across a real frame, counting the
+    // distinct 260 m cells the lattice visits against the cells the ground
+    // itself crosses: at zoom 512, 435 ground parcels drew 991 cells (2.28x);
+    // at ZOOM_MAX, 145 drew 348 (2.39x). Anchoring both the angle and the
+    // rotation origin to the region cell brings those to 524 (1.21x) and 179
+    // (1.23x), and about 1.2x is what a straight line crossing a rotated
+    // lattice costs by geometry alone.
+    //
+    // The angle is CONSTANT within a cell, which is what removes the sweep
+    // entirely rather than merely shortening it. The price is an orientation
+    // seam at the cell boundary every REGION_W world units -- about 680 km at
+    // this latitude -- where one survey grain gives way to the next. Farmland
+    // really does that at a river or a county line, and it is far rarer than
+    // the fringes it replaces.
+    vec2  cell = floor(wm / REGION_W) * REGION_W;
+    float a = 6.2831853 * vnoise(cell * 0.02);
     vec2  e = vec2(cos(a), sin(a));
-    vec2  fu = vec2(dot(wm, e), dot(wm, vec2(-e.y, e.x))) / fieldW;
+    vec2  rel = wm - cell;
+    vec2  fu = vec2(dot(rel, e), dot(rel, vec2(-e.y, e.x))) / fieldW;
+
+    // Boundaries wander. A parcel edge that is exactly straight for kilometres
+    // reads as graph paper laid over the ground; real ones follow a ditch, a
+    // hedge or the fall of the land. The warp is a fifth of a parcel, so the
+    // lattice stays a lattice and its cells stay countable.
+    vec2 warp = vec2(vnoise(fu * 0.7 + 11.3), vnoise(fu * 0.7 + 31.7)) - 0.5;
+    fu += warp * 0.22;
+
     float hc = hash12(floor(fu));
     // Parcel tone. 0.17 was measured on screen and read as a faint mottle
-    // rather than as farmland; 0.30 is what makes a parcel a parcel at the
-    // 13 px a 260 m field occupies at the new ceiling.
+    // rather than as farmland; 0.30 is what makes a parcel a parcel.
     base *= 1.0 + 0.30 * (hc - 0.5) * 2.0 * tField;
     // The boundary: a hedge, a track, a ditch. Held to a fraction of a parcel
     // so it stays a line rather than becoming a grid of its own.
@@ -10227,18 +10296,65 @@ void main() {
     float lineW = clamp(0.055 * fieldPx / max(fieldPx - 1.0, 1.0), 0.02, 0.09);
     float edge = smoothstep(0.5 - lineW, 0.5, max(gq.x, gq.y));
     base *= 1.0 - 0.24 * edge * tField;
+
+    // HALF THE PARCELS ARE WORKED IN TWO. A 130 m half-parcel is 8.9 screen
+    // pixels at ZOOM_MAX against the 2.5 the gate asks for, so this is the one
+    // sub-parcel scale that actually arrives on a 1x display; a 40 m tillage
+    // grain measures 1.7 px there and would never have turned on at all.
+    float subPx = 130.0 / max(mPerPx, 1e-6);
+    float tSub = smoothstep(2.5, 6.0, subPx) * step(0.5, hash12(floor(fu) + 7.0));
+    if (tSub > 0.0) {
+      vec2 sq = abs(fract(fu * 2.0) - 0.5);
+      float sEdge = smoothstep(0.5 - lineW * 1.6, 0.5, max(sq.x, sq.y));
+      base *= 1.0 - 0.11 * sEdge * tField * tSub;
+    }
   }
 
-  // ---- WOODLAND. Patches at about 700 m, only where the cover index already
-  // says there are trees, and thinning out as the ground steepens into rock.
-  float woodPx = 700.0 / max(mPerPx, 1e-6);
-  float tWood  = smoothstep(2.5, 8.0, woodPx) * ground
-               * smoothstep(0.44, 0.72, V)
-               * (1.0 - smoothstep(0.42, 0.80, slope));
+  // ---- WOODLAND, at three scales rather than one. The shipped term was a
+  // single 700 m blob, which is why wooded ground read as a soft mottle at
+  // every zoom instead of resolving into stands as the camera came down. Each
+  // octave is gated on its own screen size, so it costs nothing until the
+  // screen can show it: at ZOOM_MAX on a 1x display 320 m is 21.8 px, 130 m is
+  // 8.9 and 55 m is 3.7; at zoom 512 only the first two are open.
+  float tWood = ground * treeMix * smoothstep(0.44, 0.72, V);
   if (tWood > 0.0) {
-    float w = vnoise(wm * (mx / 700.0));
-    w = smoothstep(0.52, 0.78, w);
-    base = mix(base, base * vec3(0.68, 0.84, 0.60), w * tWood * 0.70);
+    float standPx = 320.0 / max(mPerPx, 1e-6);
+    float clumpPx = 130.0 / max(mPerPx, 1e-6);
+    float grainPx =  55.0 / max(mPerPx, 1e-6);
+    float stand = smoothstep(0.46, 0.74, vnoise(wm * (mx / 320.0)))
+                * smoothstep(2.5, 8.0, standPx);
+    float clump = (vnoise(wm * (mx / 130.0)) - 0.5) * smoothstep(2.5, 6.0, clumpPx);
+    float grain = (vnoise(wm * (mx /  55.0)) - 0.5) * smoothstep(2.5, 6.0, grainPx);
+    // The finer octaves MODULATE the stand rather than adding to it, so they
+    // can only break up canopy the stand octave already put there. A tree
+    // cannot stand where the wood does not.
+    float canopy = clamp(stand * (1.0 + 0.42 * clump + 0.26 * grain), 0.0, 1.0);
+    base = mix(base, base * vec3(0.62, 0.80, 0.55), canopy * tWood * 0.78);
+  }
+
+  // ---- ARID GROUND, which had nothing at all. Measured, 31.9% of land area
+  // (42.8 of 134.3 million km2) fell through both terms above, and half of
+  // that is desert: the Sahara reads V 0.016, the Gobi 0.000, the Australian
+  // interior 0.251. Those places were a flat tint at every zoom.
+  float tArid = ground * (1.0 - smoothstep(0.06, 0.24, V))
+              * (1.0 - smoothstep(0.10, 0.30, slope))
+              * smoothstep(2.5, 7.0, 200.0 / max(mPerPx, 1e-6));
+  if (tArid > 0.0) {
+    // Dunes run in ranks across the prevailing wind, so the pattern is
+    // stretched about 6:1 along one direction, and that direction is constant
+    // within a region -- the same anchoring the parcels use, for the same
+    // reason.
+    vec2  acell = floor(wm / REGION_W) * REGION_W;
+    float ad = 6.2831853 * vnoise(acell * 0.02 + 5.0);
+    vec2  ae = vec2(cos(ad), sin(ad));
+    vec2  ar = wm - acell;
+    vec2  du = vec2(dot(ar, ae), dot(ar, vec2(-ae.y, ae.x))) * (mx / 200.0);
+    float ridge = vnoise(vec2(du.x * 0.17, du.y));
+    base *= 1.0 + 0.16 * (ridge - 0.5) * 2.0 * tArid;
+    // Gravel and stone, an octave down, wherever the screen can hold it.
+    float gPx = 60.0 / max(mPerPx, 1e-6);
+    float gg = (vnoise(wm * (mx / 60.0)) - 0.5) * smoothstep(2.5, 6.0, gPx);
+    base *= 1.0 + 0.09 * gg * tArid;
   }
 
   vec3 land = base * li;
@@ -10555,6 +10671,21 @@ void main() {
 /// never evict itself (which would rebuild a city every frame at ~120 ms
 /// each) and a second frame's worth still survives a pan away and back. It
 /// costs at most 82 MiB of buffers and 27 MiB of kept model positions.
+/// Metres of ground per device pixel at the centre of the view, measured the
+/// way the city layer measures it at a city: project two points a known ground
+/// distance apart and divide. 0.01/cos(lat) degrees of longitude spans a
+/// constant 1,113.2 m at every latitude, which is the whole point of the
+/// cosine -- and why the metres must not carry it a second time.
+function groundMetresPerPixel(view) {
+  const lat = GLOBE.pitch * 180 / Math.PI, lon = -GLOBE.yaw * 180 / Math.PI;
+  const cosLat = Math.max(Math.cos(lat * Math.PI / 180), 0.02);
+  const a = GLOBE.projectGeo(lon, lat, view, 1.0);
+  const b = GLOBE.projectGeo(lon + 0.01 / cosLat, lat, view, 1.0);
+  if (!a || !b) return Infinity;
+  const px = Math.hypot(b[0] - a[0], b[1] - a[1]);
+  return px > 0 ? 0.01 * 111320 / px : Infinity;
+}
+
 const CITY_LAYER = { minPx: 110, budget: 4, cache: 8, cacheTriangles: 800000, cellPx: 4.5, maxSpan: 181 };
 /// What cityBuffers hands back when it declined to build this frame. A
 /// distinct token rather than null, because null already means "this city
@@ -10583,16 +10714,27 @@ function drawCityLayer(view, cw, ch) {
   // Metres per pixel AT EACH CITY, from the same projection the rest of the
   // frame uses. Not once at the footprint midpoint: a pitched footprint's
   // midpoint is tilted toward the horizon, and it read 29.1 m/px for a view
-  // whose city sat at 19.6 -- which asked Chicago for span 123 where 181 was
-  // resolvable, a 1.5x under-resolution, and would gate a small city out that
-  // was plainly big enough on screen. Four cities at most, so this is cheap.
+  // whose city sat elsewhere -- which under-resolved Chicago and would gate a
+  // small city out that was plainly big enough on screen. Four cities at most,
+  // so this is cheap.
+  //
+  // THE STEP IS A CONSTANT GROUND DISTANCE, and the cos(latitude) is what makes
+  // it one. 0.01/cos(lat) degrees of longitude spans 0.01 * 111320 = 1,113.2 m
+  // of ground at EVERY latitude -- that is the entire point of dividing by the
+  // cosine -- so the metres in the numerator must NOT carry the cosine as well.
+  // The first version did, and was therefore cos(lat) too small: 19.6 m/px
+  // reported at Chicago where the ground is 26.3. That inflated every city's
+  // screen size by 1/cos(lat), so a city was admitted at 110*cos(lat) = 82 real
+  // pixels at Chicago and at 55 at latitude 60, and Chicago was asked for span
+  // 181 where 136 was resolvable. Three independent measurements agree on the
+  // corrected figure; docs/art/SCATTER_SCALE_FINDING.md carries them.
   const scaleAt = (c) => {
     const cosLat = Math.max(Math.cos(c.lat * Math.PI / 180), 0.02);
     const a = GLOBE.projectGeo(c.lon, c.lat, view, 1.0);
     const b = GLOBE.projectGeo(c.lon + 0.01 / cosLat, c.lat, view, 1.0);
     if (!a || !b) return NaN;
     const px = Math.hypot(b[0] - a[0], b[1] - a[1]);
-    return px > 0 ? 0.01 * 111320 * cosLat / px : NaN;
+    return px > 0 ? 0.01 * 111320 / px : NaN;
   };
 
   const picked = CityLayer.select(CITIES, box, { mPerPx: scaleAt, minPx: CITY_LAYER.minPx, budget: CITY_LAYER.budget });
@@ -11641,7 +11783,17 @@ function glDrawGlobe(view) {
   if (view.zoom >= 12) {
     const footprint = TerrainSurface.footprint(view);
     if (footprint) {
-      const box = TerrainSurface.paddedBounds(footprint, 3);
+      // PAD FOR THE RELIEF ACTUALLY BEING DRAWN. paddedBounds' margin is a
+      // terrain-displacement budget -- 9000 * exaggeration / R / DEG * 1.8 --
+      // and the mesh itself is built with paddedBounds(box, view
+      // .terrainExaggeration) in terrain-surface.js. Leaving a literal 3 here
+      // padded the political texture for 3x relief while it was being drawn
+      // onto ground at 1x, so the region was larger than the view and every
+      // texel was coarser than it needed to be. Measured at Chicago: the
+      // region falls 13.25x8.00 -> 6.75x3.75 world units at ZOOM_MAX, and the
+      // texture goes from 4.90 to 2.50 screen pixels per texel. It is strictly
+      // less work as well as more resolution.
+      const box = TerrainSurface.paddedBounds(footprint, view.terrainExaggeration);
       if (box.west >= -180 && box.east <= 180) {
         const points=[];
         for(let row=0;row<=8;row++) for(const lon of [box.west,box.east])
@@ -11686,7 +11838,25 @@ function glDrawGlobe(view) {
     // (globe3d's exaggerationFor, which the view carries), and a legend that
     // said 3× while the mountains were drawn at life size would be wrong in
     // exactly the place a player checks.
-    const generated = terrainActive && GLR.surface.ready && view.zoom >= 320;
+    // WHEN THE DISCLOSURE APPEARS IS DERIVED FROM THE COVER'S OWN GATES, not
+    // from a zoom number written down beside them. It read `view.zoom >= 320`,
+    // and the shipped woodland term was fully on by zoom 252 on a 1x display
+    // and 126 on a retina one -- so the map drew generated cover for most of a
+    // zoom decade while the legend said it was not.
+    //
+    // The coarsest generated feature fades in at 2.5 screen pixels, so it
+    // starts appearing at COVER_ONSET_M / 2.5 metres per pixel. Two measured
+    // conversions turn that into something the host can test. The shader gates
+    // on fwidth(world) * mx, which is 1.633x the cross-track scale at screen
+    // centre under the 55-degree pitch; and the near edge of the frame is
+    // 0.58x the centre. Those very nearly cancel (0.95x), so the centre's
+    // cross-track metres per pixel is, to within 5%, the figure at which the
+    // frame's nearest ground first resolves the coarsest generated feature.
+    // Erring toward disclosing is the safe direction and that is the direction
+    // the 5% falls in.
+    const coverOnset = 320 / 2.5;              // the woodland stand, in m/px
+    const generated = terrainActive && GLR.surface.ready
+      && groundMetresPerPixel(view) <= coverOnset;
     const relief = String(view.terrainExaggeration);
     const text = terrainActive
       ? (GLR.surface.ready
