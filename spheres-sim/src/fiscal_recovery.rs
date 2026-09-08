@@ -369,9 +369,13 @@ pub fn assessment(w: &WorldState, nation: NationId) -> Option<Assessment> {
     let grace = GRACE_MONTHS.saturating_sub(months);
     let pressure = -stability_pressure(w, nation);
     let improving = state.map_or(0, |f| f.improving_months);
+    // Improving cash results do not make a still-severe burden affordable.
+    // Keep that condition visible; these presentation fields do not drive
+    // confidence settlement or the AI's priced policy proposals.
+    let severe_crisis = recovery_required && (burden > 0.50 || adjustment > 0.05);
     let status = if months == 0 || (recovery_required && grace > 0) { Status::Watch }
+        else if severe_crisis { Status::Crisis }
         else if improving >= 3 && (recovery_required || pressure > 0.0) { Status::Recovering }
-        else if recovery_required && (burden > 0.50 || adjustment > 0.05) { Status::Crisis }
         else if recovery_required { Status::Adjustment }
         else if pressure > 0.0 { Status::Recovering }
         else { Status::Stable };
@@ -395,6 +399,8 @@ pub fn assessment(w: &WorldState, nation: NationId) -> Option<Assessment> {
         "Review tax and actual spending, then let a monthly cash report close. Unused construction authority is not a paid expense."
     } else if !recovery_required {
         "Maintain the sustainable cash balance and protect essential services and productive maintenance."
+    } else if status == Status::Crisis && improving >= 3 {
+        "Recent cash results have improved, but severe fiscal stress remains. Keep effective measures in place and review whether further adjustment is needed; available Cabinet recovery actions, including debt restructuring, still carry their political and diplomatic costs."
     } else if improving >= 3 {
         "Continue the measures that improved the posted cash balance; confidence recovers as results persist."
     } else if n.debt_gdp > 1.10 && burden > 0.50 {
@@ -559,6 +565,40 @@ mod tests {
         assert!(!a.recovery_required);
         assert!(stability_pressure(&recovery, NationId::USA) > neglected_pressure);
         assert!(recovery.nation(NationId::USA).debt_bn.unwrap() < debt_after_grace);
+    }
+
+    #[test]
+    fn improving_results_do_not_hide_severe_unresolved_fiscal_stress() {
+        let mut w = cash_fixture();
+        for _ in 0..18 { post_month(&mut w, 0.25, 0.40, 0.0); }
+        let id = NationId::USA;
+        let before = assessment(&w, id).unwrap();
+        assert_eq!(before.status, Status::Crisis);
+        let proposal = crate::fiscal_recovery_ai::proposal(&w, id);
+        w.fiscal_recovery.nations.get_mut(&id).unwrap().improving_months = 3;
+        let hash = crate::state_hash(&w);
+        let after = assessment(&w, id).unwrap();
+        assert_eq!(after.status, Status::Crisis);
+        assert_eq!(after.status_label, "Fiscal confidence crisis");
+        assert!(after.next_action.contains("improved, but severe fiscal stress remains"));
+        assert!(after.next_action.contains("debt restructuring"));
+        assert_eq!(after.reason, before.reason);
+        assert_eq!(after.adjustment_needed_gdp, before.adjustment_needed_gdp);
+        assert_eq!(after.confidence_pressure, before.confidence_pressure);
+        assert_eq!(crate::fiscal_recovery_ai::proposal(&w, id), proposal);
+        assert_eq!(crate::state_hash(&w), hash);
+
+        // The inherited observation grace remains a watch even at high stress.
+        w.fiscal_recovery.nations.get_mut(&id).unwrap().months_observed = 6;
+        assert_eq!(assessment(&w, id).unwrap().status, Status::Watch);
+
+        let mut moderate = cash_fixture();
+        for _ in 0..18 { post_month(&mut moderate, 0.25, 0.25, 0.0); }
+        moderate.fiscal_recovery.nations.get_mut(&id).unwrap().improving_months = 3;
+        let view = assessment(&moderate, id).unwrap();
+        assert!(view.recovery_required);
+        assert_eq!(view.status, Status::Recovering);
+        assert!(view.next_action.starts_with("Continue the measures"));
     }
 
     #[test]

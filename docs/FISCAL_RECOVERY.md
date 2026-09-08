@@ -97,7 +97,11 @@ remains payable throughout. After that period, sustained deterioration builds a
 bounded fiscal-confidence pressure. Improvement is measured from results; merely
 announcing a plan does not reset pressure. The statuses distinguish a watch,
 required adjustment, recovery in progress, a confidence crisis, and debt under
-control.
+control. Severe unresolved stress keeps the crisis headline even when recent
+cash results improve. The advice acknowledges improvement and asks the player
+to review whether further adjustment is needed, allowing already-enacted policy
+time to enter receipts. It does not present a small improvement as restored
+affordability.
 
 The fiscal arm enters the existing stability integrator once. Its initial raw
 cap is 0.20, equivalent to −0.05 stability points per month before the
@@ -199,7 +203,7 @@ living-country accounts. The original save was untouched. The final executable
 also passed the exact post-vote navigation sequence: renew the 2035 budget once,
 advance from 1 to 2 January, then follow recovery links to taxes and the budget.
 
-Three problems found during QA were repaired rather than weakening checks:
+Problems found during QA were repaired rather than weakening checks:
 
 1. An existing coup GDP shock left debt/GDP stale. The mutation owner now
    refreshes the ratio, and fiscal closing-day surveillance also reconciles it
@@ -213,12 +217,79 @@ Three problems found during QA were repaired rather than weakening checks:
    workspace suite runs its deterministic liveness regression. Restoring the
    old comparison makes the regression fail. See
    [`vendor/tiny_http/PATCHES.md`](../vendor/tiny_http/PATCHES.md) for provenance.
+4. The completed guided 2035 report exposed a severe debt spiral labeled
+   **Recovery in progress** after three improving months. The existing crisis
+   thresholds now take precedence over that headline, with advice that
+   acknowledges improvement and retains the need to review further action. This
+   changes only the reported status, label and next-action text; cash flows,
+   fiscal confidence, AI proposals and persisted AI reasons remain unchanged.
+   Coverage includes severe and moderate improving cases, inherited grace,
+   query purity and unchanged policy proposals.
 
 The final fiscal observer executable has SHA-256
 `6696E9B9C401FB057F502E0F40E23321451EF2DB586760D4EB13D24EF446CEB0`.
 The final browser QA executable has SHA-256
 `F87E99A6878CE3553BBD8C5CBC5E011B6122493F9405D0CC6E37566003DADD66`.
 The browser fixes did not change the simulation used by the endurance observer.
+The later crisis-headline correction changes presentation in the observer's
+annual payloads, but not the world path or fiscal calculations. Frozen raw
+reports retain their original presentation for provenance.
 Local receipts, earlier failed runs and final results are retained under
 `artifacts/fiscal-recovery/` (not committed). The earlier
 `USER_QA_1990_2035.md` describes the prior fiscal model; it is separate evidence.
+
+The published implementation, commit
+[`5cc39c1`](https://github.com/ridgemerkley2-web/Spheres/commit/5cc39c1044064fa7514bd46677f77e95ee565ffb),
+also passed the full GitHub workflow on both Windows and Linux on the active
+branch and `master`. All four jobs ran the unchanged workspace, isolated
+resource timing, observer, UI and three browser checks, without retries. The
+active branch's resource readings were 0.0747 and 0.1047 ms/model month
+respectively; `master` recorded 0.1116 and 0.1048. All passed the 0.15 ms limit.
+See the completed
+[active-branch verification](https://github.com/ridgemerkley2-web/Spheres/actions/runs/34264793999)
+and [master verification](https://github.com/ridgemerkley2-web/Spheres/actions/runs/34264794813).
+
+## Completed guided campaign: 1990–2035
+
+The frozen fiscal observer ran seed 1990 through **16,436 daily ticks**, from
+1 January 1990 to 1 January 2035. It used normal starting data, daily industry,
+manufacturing, logistics, warfare, population, company and province-economy
+systems. The USA renewed its inherited annual program budget and followed the
+same priced recovery proposals available to AI governments, with the same
+eight-point political-capital reserve. No cash, political capital or growth
+overrides were injected.
+
+| USA, 1 January | Debt / GDP | Tax rate | Real GDP, $bn | Stability |
+| --- | ---: | ---: | ---: | ---: |
+| 1990 | 62.00% | 27.00% | 5,980.00 | 78.00 |
+| 2000 | 41.52% | 30.33% | 6,899.43 | 73.46 |
+| 2010 | 15.47% | 30.33% | 7,921.95 | 70.02 |
+| 2016 | 0.00% | 30.33% | 8,662.80 | 68.61 |
+| 2035 | 0.00% | 30.33% | 11,173.59 | 65.27 |
+
+Only four recovery commands were executed, all tax adjustments during 1990:
+28%, 29%, 30% and 30.3323%. They cost **10.6634 political capital** in total,
+with zero execution errors. The observer needed no spending-cut or
+restructuring command. The first zero-debt annual sample was 2016. By 2035,
+the primary cash surplus was 2.8482% of GDP and treasury cash was $5,501.87bn.
+No annual USA sample had fiscal-confidence pressure; other political and
+economic effects continued to affect stability.
+
+Daily checks confirmed finite positive GDP, bounded stability, nonnegative
+cash/debt and debt/GDP reconciliation within `1e-9` for every living country.
+A save at the terminal state reproduced seven more days exactly. Opening world
+hash: `2a6d3e40f04682c6`; terminal hash: `f60790d8d77ab680`.
+
+Of 156 living countries in this guided world, **146 were assessed as under
+control** in 2035. That includes some countries above 100% debt/GDP with an
+affordable, broadly stable path. Severe outliers remain: Zaire reached
+8,883.08% debt/GDP and 22.66 stability; El Salvador and Afghanistan exceeded
+1,700% debt/GDP. Unlimited borrowing allows those extreme paths to persist.
+The system exposes their fiscal stress and political pressure; it does not
+implement a payment default or guarantee recovery through ordinary adjustments.
+The Zaire reading also supplied the crisis-headline regression described above.
+
+These are descriptive results from one seed, not historical calibration or a
+claim that every economy is balanced. The full all-AI and unchanged-player-policy
+comparisons are still running. Raw outputs and the guided action ledger are
+retained in `artifacts/fiscal-recovery/guided-1990.json` and its summary.
