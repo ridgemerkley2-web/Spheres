@@ -45,13 +45,16 @@ function analyticPick(f, point, radius = 1) {
 }
 
 test('terrain tilt and camera height derive from one live view and return to overhead when disabled', () => {
-  for (const zoom of [1, 8, 12, 20, 80, 192]) {
+  for (const zoom of [1, 8, 12, 20, 80, 192, 700, Globe.ZOOM_MAX]) {
     const f = fixture({zoom, elevation: 3000}), view = f.view();
     assert.equal(view.zoom, zoom); assert.equal(view.distance, f.globe.distance());
     assert(view.tilt >= 0 && view.tilt <= 55 * DEG);
     if (zoom <= 8) assert.equal(view.tilt, 0);
     if (zoom >= 20) assert.equal(view.tilt, 55 * DEG);
-    const altitude = view.distance - 1, focus = zoom >= 12 ? 3000 * 3 / 6371000 : 0;
+    // The focus height is the terrain at the relief the globe draws at THIS
+    // zoom, which is 3x at map zooms and comes down to 1x at the ceiling.
+    const altitude = view.distance - 1, focus = zoom >= 12 ? 3000 * Globe.exaggerationFor(zoom) / 6371000 : 0;
+    assert.equal(view.terrainExaggeration, Globe.exaggerationFor(zoom));
     assert(Math.abs(view.camera[2] - (1 + focus + Math.cos(view.tilt) * altitude)) < 1e-12);
   }
   for (const options of [{terrain: false}, {tilted: false}]) {
@@ -102,7 +105,7 @@ test('raised terrain above the base-globe horizon stays pickable', () => {
   // Near the horizon a 63.71 m icon lift spans hundreds of ground metres;
   // verify the actual elevated sphere intersection instead of limiting that
   // perspective effect with an arbitrary geographic-distance allowance.
-  const exact = analyticPick(f, point, 1 + 8000 * 3 / 6371000);
+  const exact = analyticPick(f, point, 1 + 8000 * Globe.exaggerationFor(f.globe.zoom) / 6371000);
   assert(groundDistance(picked, exact) < 2, 'bounded terrain marching agrees with the analytic raised sphere');
   const projectedAgain = f.project(...picked);
   assert(Math.hypot(projectedAgain[0] - point[0], projectedAgain[1] - point[1]) < .1,
@@ -137,47 +140,78 @@ test('actual horizontal drag preserves screen travel while its angular rate shri
   for (let i = 1; i < rates.length; i++) assert(rates[i] < rates[i - 1]);
 });
 
-test('close zoom stays bounded and wheel updates keep the camera outside a high terrain focus', () => {
-  // The ceiling moved 192 -> 1024 when the procedural cover layer gave the
-  // close range something to resolve. This test used to assert the wheel
-  // reaches ZOOM_MAX over 8,800 m of terrain, which was true only because 192
-  // was far enough out that the clearance guard never bit. At 1024 it does bite
-  // -- Everest at 3x exaggeration is 26.4 km of relief and the camera would be
-  // INSIDE it -- so the guard now stops the wheel at about 860.
-  //
-  // That is the guard working, so the test asserts the two properties that
-  // matter rather than the one number that happened to satisfy both: over high
-  // ground clearance WINS over the ceiling, and over flat ground the ceiling is
-  // actually reachable. Pinning only the first would let the cap rot to
-  // anything; pinning only the second would let the camera fly into a mountain.
-  // THE CEILING IS DERIVED, SO THIS RE-DERIVES IT. The camera sits 2.45/zoom
-  // Earth radii up and the terrain mesh is drawn at 3x, so the camera is
-  // outside the highest ground only while 2.45/ZOOM_MAX > 8848*3/6371000.
-  // 1024 was tried and fails this by 11 km. Pinning the literal instead would
-  // let someone raise the exaggeration and fly the camera into a mountain with
-  // every test still green.
-  const EXAGGERATION = 3, EVEREST = 8848, EARTH = 6371000;
-  const clearance = 2.45 / Globe.ZOOM_MAX;
-  assert(clearance > EVEREST * EXAGGERATION / EARTH,
-    `ZOOM_MAX ${Globe.ZOOM_MAX} puts the camera ${((EVEREST * EXAGGERATION / EARTH - clearance) * EARTH / 1000).toFixed(1)} km inside exaggerated Everest`);
+test('at the ceiling the relief is 1x and picking still lands on the flattened ground', () => {
+  // The ramp changes the surface the picker marches against, so the
+  // round-trip is checked where the ramp has done all of its work. The
+  // offsets are a few hundred metres because at the ceiling the frame is only
+  // a few kilometres across.
+  const sampleHeight = (lon, lat) => 1600 + 350 * Math.sin((lon - 12) * 12) + 200 * Math.cos((lat - 46) * 10);
+  const f = fixture({zoom: Globe.ZOOM_MAX, sampleHeight});
+  assert.equal(f.view().terrainExaggeration, 1, 'the ceiling is where the relief reaches life size');
+  for (const [lon, lat] of [[12, 46], [12.003, 45.998], [11.996, 46.004]]) {
+    const point = f.project(lon, lat); assert(point, 'near-focus ground is in frame at the ceiling');
+    const picked = f.pick(point); assert(picked, 'the flattened ground is still pickable');
+    const distance = groundDistance(picked, [lon, lat]);
+    assert(distance < 110, `ceiling sloped-ground offset ${distance.toFixed(3)} m`);
+  }
+});
 
+test('the relief ramp and the zoom ceiling are one derivation, and the camera clears the rock at every zoom', () => {
+  // THE CEILING IS DERIVED, SO THIS RE-DERIVES IT -- against the exaggeration
+  // the globe actually draws at each zoom, not a literal 3. The camera sits
+  // 2.45/zoom Earth radii up and the terrain is drawn E(zoom) times taller
+  // than life, so it is outside the highest ground only while
+  //
+  //     2.45 / zoom > 8848 * E(zoom) / 6371000.
+  //
+  // A fixed 3x fails that past 588 (1024 was tried and is 11 km inside
+  // Everest). With E = KNEE / zoom the zoom cancels out of the inequality,
+  // which is the only reason the ceiling could move to 1500 without a higher
+  // camera. Pinning the knee, the ceiling or the quantum instead would let
+  // someone move one of them and fly the camera into a mountain with every
+  // test still green; so the ACTUAL function is swept against the ACTUAL
+  // inequality, densely enough to hit every quantised step.
+  const EVEREST = 8848, EARTH = 6371000;
+  const E = Globe.exaggerationFor;
+  assert.equal(typeof E, 'function', 'the globe must export the relief it draws');
+  const zooms = [];
+  for (let z = Globe.ZOOM_MIN; z < Globe.ZOOM_MAX; z *= 1.01) zooms.push(z);
+  for (let z = 400; z <= Globe.ZOOM_MAX; z += 1) zooms.push(z);
+  zooms.push(Globe.ZOOM_MAX);
+  zooms.sort((a, b) => a - b);
+  let previous = Infinity, tightest = Infinity;
+  for (const zoom of zooms) {
+    const e = E(zoom);
+    assert(e >= 1 && e <= 3, `relief ${e} at zoom ${zoom} is outside 1x..3x`);
+    assert(e <= previous, `relief rises from ${previous} to ${e} at zoom ${zoom}: the ramp must only come down as the camera does`);
+    previous = e;
+    const clearance = 2.45 / zoom, rock = EVEREST * e / EARTH;
+    assert(clearance > rock,
+      `zoom ${zoom.toFixed(1)} at ${e}x puts the camera ${Math.round((rock - clearance) * EARTH)} m inside exaggerated Everest`);
+    tightest = Math.min(tightest, clearance / rock - 1);
+  }
+  // The ends of the ramp are what make the range worth having: 3x at world
+  // zoom or the map view flattens, 1x at the ceiling or the ceiling could
+  // still go higher, and the old 512 ceiling still sees the full 3x so nothing
+  // a player saw before the ramp has changed.
+  assert.equal(E(Globe.ZOOM_MIN), 3);
+  assert.equal(E(Globe.ZOOM_MAX), 1);
+  assert.equal(E(512), 3, 'the relief at the old ceiling is no longer the full 3x');
+  assert(tightest > 0.05, `the tightest clearance on the ramp is only ${(tightest * 100).toFixed(1)}% -- float error in the mesh could eat that`);
+
+  // And the live camera agrees with the derivation: rolled to the stop over
+  // 8,800 m of ground, it stays outside the rock at the relief it is drawing.
   const high = fixture({zoom: 192, elevation: 8800}); high.globe.bind();
   for (let i = 0; i < 6; i++) high.globe.onWheel({deltaY: -1000, preventDefault() {}});
-  // There is NO terrain-dependent clamp in the zoom path, and an earlier draft
-  // of this test asserted one because a single wheel notch happened to fall
-  // short of the old ceiling. The ceiling alone is what keeps the camera out,
-  // which is exactly why it has to be derived above rather than chosen.
-  assert(high.globe.zoom <= Globe.ZOOM_MAX,
-    `zoom ${high.globe.zoom} passed the ceiling`);
+  assert(high.globe.zoom <= Globe.ZOOM_MAX, `zoom ${high.globe.zoom} passed the ceiling`);
   const camera = high.view().camera;
-  assert(Math.hypot(...camera) > 1 + 8800 * 3 / 6371000,
-    'the camera is inside the exaggerated terrain');
+  assert(Math.hypot(...camera) > 1 + 8800 * E(high.globe.zoom) / EARTH, 'the camera is inside the exaggerated terrain');
 
   // One wheel event multiplies the zoom by exp(1000 * 0.0015) = 4.48, so from
-  // 192 a single notch lands at 860 and never reaches the ceiling. Roll it
-  // until it stops moving, which is what a player does.
+  // 192 the notches land at 860 and then the stop. Roll it until it stops
+  // moving, which is what a player does; over flat ground the wheel must
+  // still reach the ceiling, or the ceiling is fiction.
   const flat = fixture({zoom: 192, elevation: 0}); flat.globe.bind();
   for (let i = 0; i < 6; i++) flat.globe.onWheel({deltaY: -1000, preventDefault() {}});
-  assert.equal(flat.globe.zoom, Globe.ZOOM_MAX,
-    'over flat ground the wheel must still reach the ceiling, or the ceiling is fiction');
+  assert.equal(flat.globe.zoom, Globe.ZOOM_MAX);
 });

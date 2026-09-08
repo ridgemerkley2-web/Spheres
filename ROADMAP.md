@@ -52,7 +52,7 @@ SCATTER IS BUILT AND DELIBERATELY NOT ON THE MAP. `world-scatter.js` is a
 finished terrain-following placement pass — stable under pan, samplers injected,
 17 checks including a ten-entry sabotage ledger where each defect must fail on
 its own named bar. It was wired onto the globe as ground dressing and the wiring
-came out the same session: at ZOOM_MAX the ground scale at screen centre is
+came out the same session: at the ZOOM_MAX of the day (192) the ground scale at screen centre is
 **55 m/px at the centre of view, over 400 near the horizon** (corrected from a
 misquoted 661 on 2026-09-07) and the visible footprint is still 8.5 x 1.7 degrees, so a 20 m
 tree is 0.03 px and every sprite was about 500x too large. The rule against

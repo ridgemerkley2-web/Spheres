@@ -16,11 +16,14 @@
 /// two agree by building both and comparing.
 ///
 /// THE EXAGGERATION APPLIES TO THE CITY TOO, and that is a deliberate choice
-/// rather than an oversight. The terrain around it is drawn at 3x — the legend
-/// says so — and a city drawn at 1x on ground drawn at 3x would sit in a
-/// landscape three times too big for it. Consistency with the surface it stands
-/// on is worth more than a true building height nobody can check by eye, and
-/// the disclosure the terrain already carries covers both.
+/// rather than an oversight. The terrain around it is drawn at the globe's live
+/// relief — 3x at map zooms, coming down to 1x as the camera dives, and the
+/// legend says which — and a city drawn at 1x on ground drawn at 3x would sit
+/// in a landscape three times too big for it. Consistency with the surface it
+/// stands on is worth more than a true building height nobody can check by
+/// eye, and the disclosure the terrain already carries covers both. The host
+/// passes the view's value in; the 3 below is only the default for a caller
+/// that says nothing, and it matches the terrain surface's own default.
 ///
 /// WHAT THIS MODULE IS NOT. It invents nothing. Every metre it moves comes from
 /// the mesh city-mesh.js already built and the elevation the host sampled; it is
@@ -50,6 +53,16 @@
   ///
   /// Returns positions and normals in the globe's own frame plus the mesh's
   /// colours untouched, ready to hand straight to a vertex buffer.
+  ///
+  /// `positionsOnly` RE-SEATS AN ALREADY-DRAWN CITY. The globe's relief comes
+  /// down as the camera dives, and every step of that ramp moves the ground
+  /// under a city that is already on the GPU: only the positions change, since
+  /// a radial scale leaves the model-space normals and the colours exactly
+  /// where they were. Rebuilding the mesh to get them costs about 120 ms for
+  /// the largest city against about 15 ms here, and computing normals nobody
+  /// will upload costs three multiply-adds and a square root on every vertex —
+  /// 900,000 floats of arithmetic for Lagos, thrown away. So the caller that
+  /// only needs the seating says so and gets positions and nothing else.
   function place(mesh, city, options) {
     if (!mesh || !mesh.positions || !mesh.positions.length) return null;
     const o = options || {};
@@ -75,10 +88,11 @@
     const up    = [cosLat0 * sinLon0, sinLat0, cosLat0 * cosLon0];
     const north = [-sinLat0 * sinLon0, cosLat0, -sinLat0 * cosLon0];
 
+    const positionsOnly = !!o.positionsOnly;
     const src = mesh.positions, srcN = mesh.normals;
     const n = src.length / 3;
     const positions = new Float32Array(n * 3);
-    const normals = new Float32Array(n * 3);
+    const normals = positionsOnly ? null : new Float32Array(n * 3);
 
     for (let i = 0, p = 0; i < n; i += 1, p += 3) {
       const X = src[p], Y = src[p + 1], Z = src[p + 2];
@@ -94,6 +108,7 @@
       positions[p + 1] = r * sinLat;
       positions[p + 2] = r * cosLat * Math.cos(lon);
 
+      if (positionsOnly) continue;
       // NORMAL: model space is east/up/south, so south is minus north.
       const nx = srcN ? srcN[p] : 0, ny = srcN ? srcN[p + 1] : 1, nz = srcN ? srcN[p + 2] : 0;
       let wx = nx * east[0] + ny * up[0] - nz * north[0];
@@ -105,7 +120,7 @@
 
     return {
       positions, normals,
-      colors: mesh.colors,
+      colors: positionsOnly ? null : mesh.colors,
       count: n,
       triangleCount: n / 3,
       city: { name: city.name, lon: city.lon, lat: city.lat, pop: city.pop },

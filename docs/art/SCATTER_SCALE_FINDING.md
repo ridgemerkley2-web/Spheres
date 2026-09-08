@@ -97,11 +97,20 @@ than assumed, and the answer is not the zoom cap:
 | `relief/terrain/coast/lake.png` 2400x1018 | 16,698 m/px | the globe surface |
 | `cover.png` 1200x509 | 33,396 m/px | vegetation tint |
 
-`ZOOM_MAX` is 192, which puts the camera 81 km up. The best data under it is
-1,855 m per sample, so at 55 m/px the map is ALREADY magnifying its finest
-source about 34 times. Raising the cap was tried: at zoom 768 (35 m/px, 76 km
-across) the surface is a featureless olive field, and the terrain mesh has about
-eight elevation samples across the whole screen.
+`ZOOM_MAX` was 192 when this was written, which puts the camera 81 km up. The
+best data under it is 1,855 m per sample, so at 55 m/px the map was ALREADY
+magnifying its finest source about 34 times. Raising the cap was tried: at zoom
+768 (35 m/px, 76 km across) the surface is a featureless olive field, and the
+terrain mesh has about eight elevation samples across the whole screen.
+
+**The cap has since moved twice, and neither move contradicts the table above —
+both were paid for by generating what the data cannot supply.** 192 -> 512 when
+the procedural cover layer gave the close range parcels and woodland gated on
+metres per pixel, and 512 -> 1500 when the relief stopped being a constant. The
+SHAPE of the land is still 1,855 m per sample at every one of those zooms; what
+improves is the cover and, since 2026-09-07, the city masses drawn on top of it.
+The legend says which parts are generated, and that disclosure is what makes the
+range honest rather than the resolution.
 
 AND THE SHADER STOPS ADDING DETAIL AT ZOOM 32. Every detail ramp in the fragment
 shader is a smoothstep on `uLk = log2(zoom)`, and the last of them, `tMicro`,

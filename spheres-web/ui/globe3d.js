@@ -131,21 +131,49 @@
   /// gated on metres per pixel rather than on zoom, so the range is worth
   /// walking now.
   ///
-  /// 512 IS DERIVED, NOT CHOSEN. The camera sits 2.45/zoom Earth radii above
-  /// the datum and the terrain mesh is drawn at 3x exaggeration, so Everest
-  /// stands 8848 x 3 / 6371000 = 0.004166 radii proud of it. The camera is
-  /// outside the terrain only while 2.45/zoom > 0.004166, which is zoom < 588.
-  /// 1024 was tried first and is INSIDE Everest by 11 km; so is 768. 512 leaves
-  /// 30.5 km of altitude against 26.5 km of exaggerated rock — about 15% clear —
-  /// and check_globe_terrain.cjs re-derives that inequality rather than pinning
-  /// the number, so raising the exaggeration cannot silently fly the camera
-  /// into a mountain.
+  /// THE CEILING AND THE RELIEF ARE ONE DERIVATION, and the ceiling is where
+  /// the relief runs out. The camera sits 2.45/zoom Earth radii above the
+  /// datum. Drawn E times taller than life, Everest stands 8848 x E / 6371000
+  /// radii proud of it, and the camera is outside the rock only while
   ///
-  /// At 512 the ground runs about 20 m per pixel where the camera points, so a
-  /// 260 m field is a dozen pixels and reads as a field. Past that the ETOPO
-  /// tiles underneath (1,855 m per sample) have nothing left to say about the
-  /// SHAPE of the land even though its surface keeps improving.
-  const ZOOM_MIN = 1, ZOOM_MAX = 512;
+  ///     2.45 / zoom  >  8848 x E / 6371000.
+  ///
+  /// At a FIXED 3x that is zoom < 588, and the ceiling sat at 512 (1024 and
+  /// 768 were tried and are inside Everest by 11 km and 6 km). The way past it
+  /// is not a bigger number; it is to let the relief come down as the camera
+  /// does. With E = KNEE / zoom the inequality loses its zoom altogether --
+  /// 2.45 > 8848 x KNEE / 6371000, i.e. KNEE < 1764 -- so it either holds at
+  /// every zoom or at none. KNEE = 1500 holds it with 17.6% to spare: the
+  /// relief is a full 3x until zoom 522 (where 1500/zoom first rounds below
+  /// 2.875), ramps down to 1x at 1500, and the ceiling IS the knee -- past it
+  /// there is no relief left to take away, and 2.45/1500 = 0.001633 still
+  /// clears an unexaggerated Everest's 0.001389.
+  ///
+  /// The ramp is quantised to quarter steps so the terrain re-meshes eight
+  /// times across the dive rather than on every wheel notch. Rounding to
+  /// nearest can put E up to 0.125 ABOVE the curve, which costs margin: the
+  /// inequality then needs (2.45 - 2.083) / zoom > 8848 x 0.125 / 6371000,
+  /// i.e. zoom < 2113, which every zoom under the ceiling satisfies.
+  /// check_globe_terrain.cjs sweeps the actual function against the actual
+  /// inequality rather than pinning any of these numbers, so moving the knee,
+  /// the ceiling or the quantum cannot silently fly the camera into a mountain.
+  ///
+  /// At 1500 the ground runs about 7 m per pixel where the camera points. The
+  /// ETOPO tiles underneath (1,855 m per sample) stopped saying anything new
+  /// about the SHAPE of the land long before that; what keeps improving is the
+  /// generated cover and the city masses, which is what the range is for.
+  const ZOOM_MIN = 1, ZOOM_MAX = 1500;
+  const EARTH_METRES = 6371000;
+  const RELIEF_MAX = 3, RELIEF_MIN = 1, RELIEF_KNEE = ZOOM_MAX;
+
+  /// How many times taller than life the terrain is drawn at this zoom. Every
+  /// consumer -- the camera's focus height, label projection, terrain picking,
+  /// the surface mesh through the view, the city layer -- reads THIS, so they
+  /// cannot disagree with each other or with the ceiling above.
+  function exaggerationFor(zoom) {
+    const z = clamp(zoom, ZOOM_MIN, ZOOM_MAX);
+    return clamp(Math.round(RELIEF_KNEE / z * 4) / 4, RELIEF_MIN, RELIEF_MAX);
+  }
 
   /// Camera distance from the sphere's CENTRE, in sphere radii. The near limit
   /// is 1 + a hair: the camera may approach the surface but never enter it.
@@ -189,7 +217,7 @@
       const tilt = this.terrainEnabled() && this.options.tilted?.() !== false
         ? 55 * DEG * clamp((this.zoom - 8) / 12, 0, 1) : 0;
       const c = Math.cos(tilt), s = Math.sin(tilt), altitude = this.distance() - 1;
-      const focus = this.terrainHeight(-this.yaw / DEG, this.pitch / DEG) * 3 / 6371000;
+      const focus = this.terrainHeight(-this.yaw / DEG, this.pitch / DEG) * exaggerationFor(this.zoom) / EARTH_METRES;
       return { origin: [0, -s * altitude, 1 + focus + c * altitude],
         basis: new Float32Array([1, 0, 0, 0, c, s, 0, -s, c]), tilt };
     }
@@ -319,7 +347,7 @@
         halfTan: HALF_TAN,
         invBasis: this.inverseBasis(),
         camera: camera.origin, rayBasis: camera.basis, tilt: camera.tilt,
-        half: [HALF_TAN * size.aspect, HALF_TAN], terrainExaggeration: 3,
+        half: [HALF_TAN * size.aspect, HALF_TAN], terrainExaggeration: exaggerationFor(this.zoom),
         pxPerWorld: this.pixelsPerWorld(size),
         lk: Math.log2(Math.max(this.zoom, 1e-6)),
       };
@@ -353,7 +381,7 @@
     /// a label on a mountain is not z-fought by the mountain.
     projectGeo(longitude, latitude, view, lift) {
       const terrain = this.terrainEnabled() && this.zoom >= 12;
-      const r = this.zoom >= 12 ? 1 + (terrain ? this.terrainHeight(longitude, latitude) * 3 / 6371000 : 0) + 0.00001 : (lift || 1.004);
+      const r = this.zoom >= 12 ? 1 + (terrain ? this.terrainHeight(longitude, latitude) * exaggerationFor(this.zoom) / EARTH_METRES : 0) + 0.00001 : (lift || 1.004);
       const p = rotate(pointOnSphere(longitude, latitude, r), this.yaw, this.pitch);
       const distance = view.distance;
       // The horizon, exactly: a point on a sphere of radius r is visible from
@@ -441,11 +469,12 @@
       let hit = origin.map((v,i) => v+dir[i]*t);
       if (terrain) {
         const start = Math.max(0, -b-Math.sqrt(Math.max(0,shell)));
+        const exaggeration = exaggerationFor(this.zoom);
         const gap = time => {
           const model = inverseRotate(origin.map((v,i) => v+dir[i]*time), this.yaw, this.pitch);
           const radius = Math.hypot(...model);
           const lon = Math.atan2(model[0],model[2])/DEG, lat = Math.asin(model[1]/radius)/DEG;
-          return radius - 1 - this.terrainHeight(lon,lat)*3/6371000;
+          return radius - 1 - this.terrainHeight(lon,lat)*exaggeration/EARTH_METRES;
         };
         let previous = start, found = false;
         for (let i=1; i<=72; i++) {
@@ -663,5 +692,6 @@
   Globe3D.ZOOM_MIN = ZOOM_MIN;
   Globe3D.ZOOM_MAX = ZOOM_MAX;
   Globe3D.distanceFor = distanceFor;
+  Globe3D.exaggerationFor = exaggerationFor;
   window.Globe3D = Globe3D;
 })();

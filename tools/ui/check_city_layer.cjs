@@ -190,6 +190,86 @@ test("selection is a screen question, and the budget is a hard stop", () => {
     "a scale that cannot be measured must refuse the city, not place it at NaN");
 });
 
+test("the relief the host is drawing is the relief the city is seated at", () => {
+  // THE GLOBE'S RELIEF IS NO LONGER A CONSTANT. It is 3x at map zooms and
+  // ramps down to 1x as the camera dives, and the view carries the live value
+  // (globe3d's exaggerationFor). A city seated at a different multiple from
+  // the ground it stands on sinks into it or floats over it, so the module
+  // has to take the number rather than assume one -- and the default it falls
+  // back to has to be the terrain surface's own default, or a caller that
+  // says nothing gets a mismatch instead of an unexaggerated city.
+  const mesh = CityMesh.build(CITY, { lod: "close", height: HILLY });
+  const base = expectedBase(mesh);
+  // THE BAR IS IN METRES OF ELEVATION, and its tolerance comes from the
+  // storage rather than from taste. Positions are float32 at a radius of
+  // about 1, where one quantum is 2^-23 = 1.19e-7 of the radius; read back as
+  // an elevation that is 6371000/exaggeration metres per unit radius, so
+  // 0.25 m at 3x and 0.76 m at 1x. Three quanta is the bar. A wrong
+  // multiplier moves this vertex by hundreds of metres -- 1x instead of 3x
+  // drops it by twice its own elevation -- so a sub-metre allowance is still
+  // three orders of magnitude tighter than the defect it exists to catch.
+  const QUANTUM = Math.pow(2, -23) * 6371000;
+  for (const exaggeration of [3, 2.25, 1.5, 1]) {
+    const placed = CityLayer.place(mesh, CITY, { exaggeration });
+    assert.equal(placed.exaggeration, exaggeration);
+    const r = Math.hypot(placed.positions[0], placed.positions[1], placed.positions[2]);
+    // Radius is not the elevation directly; invert the same formula the
+    // terrain surface uses, written out here rather than read from the module
+    // under test.
+    const elevation = (r - 1) * 6371000 / exaggeration;
+    const expected = Math.max(0, base + mesh.positions[1]);
+    const tolerance = 3 * QUANTUM / exaggeration;
+    assert.ok(Math.abs(elevation - expected) < tolerance,
+      `at ${exaggeration}x the first vertex reads ${elevation.toFixed(2)} m where the terrain formula says `
+      + `${expected.toFixed(2)} m, which is ${Math.abs(elevation - expected).toFixed(2)} m out against a `
+      + `${tolerance.toFixed(2)} m float32 allowance`);
+  }
+  // And the multiples are actually different from each other: a place() that
+  // ignored the option would pass every bar above by accident.
+  const flat = CityLayer.place(mesh, CITY, { exaggeration: 1 });
+  const tall = CityLayer.place(mesh, CITY, { exaggeration: 3 });
+  const rFlat = Math.hypot(flat.positions[0], flat.positions[1], flat.positions[2]);
+  const rTall = Math.hypot(tall.positions[0], tall.positions[1], tall.positions[2]);
+  assert.ok(rTall > rFlat, "3x must lift the city further from the centre than 1x");
+  assert.equal(CityLayer.place(mesh, CITY).exaggeration, CityLayer.EXAGGERATION,
+    "a caller that says nothing must get the terrain surface's own default");
+});
+
+test("a re-seat moves the city and touches nothing else", () => {
+  // WHY THIS EXISTS. Each step of the relief ramp moves the ground under a
+  // city that is already on the GPU. Rebuilding it costs about 120 ms for the
+  // largest record and re-seating it about 15, so the host keeps the model
+  // and re-seats -- but it uploads ONLY the positions, so any normals and
+  // colours place() computes for that call are thrown away. positionsOnly
+  // must therefore be the same seating, to the bit, and must not do the work.
+  const mesh = CityMesh.build(CITY, { lod: "close", height: HILLY });
+  for (const exaggeration of [3, 2.25, 1]) {
+    const full = CityLayer.place(mesh, CITY, { exaggeration });
+    const only = CityLayer.place(mesh, CITY, { exaggeration, positionsOnly: true });
+    assert.equal(only.positions.length, full.positions.length);
+    for (let i = 0; i < full.positions.length; i += 1) {
+      assert.equal(only.positions[i], full.positions[i],
+        `positionsOnly disagrees with a full place at vertex float ${i}`);
+    }
+    assert.equal(only.normals, null, "positionsOnly built normals it was not asked for");
+    assert.equal(only.colors, null, "positionsOnly carried colours it was not asked for");
+    assert.equal(only.count, full.count);
+    assert.equal(only.triangleCount, full.triangleCount);
+  }
+  // A re-seat of a model carrying no normals at all -- which is what the host
+  // keeps, since the normals are already on the GPU -- must still work, and
+  // must agree with a re-seat of the whole mesh.
+  const model = { positions: mesh.positions, datum: mesh.datum, relief: mesh.relief,
+    extentMetres: mesh.extentMetres, bounds: mesh.bounds };
+  const fromModel = CityLayer.place(model, CITY, { exaggeration: 2, positionsOnly: true });
+  const fromMesh = CityLayer.place(mesh, CITY, { exaggeration: 2, positionsOnly: true });
+  assert.equal(fromModel.positions.length, fromMesh.positions.length);
+  for (let i = 0; i < fromMesh.positions.length; i += 1) {
+    assert.equal(fromModel.positions[i], fromMesh.positions[i],
+      "a stripped model re-seats to a different place than the full mesh");
+  }
+});
+
 test("a bad record is refused rather than placed at the origin", () => {
   const mesh = CityMesh.build(CITY, { height: HILLY });
   assert.equal(CityLayer.place(mesh, { name: "?", lon: NaN, lat: 10 }), null);

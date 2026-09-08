@@ -10537,14 +10537,48 @@ void main() {
 /// same 3 px legibility floor the card was derived from, with headroom. The
 /// cache came down 14 -> 8 with it -- a city at map resolution is three to six
 /// times the triangles of one at card resolution.
-const CITY_LAYER = { minPx: 110, budget: 4, cache: 8, cellPx: 4.5, maxSpan: 181 };
+/// THE CITY LAYER'S BUDGET, and the two caps are two different worries.
+///
+/// `cache` bounds the NUMBER of cities kept, so a pan across a continent does
+/// not leave a hundred vertex arrays behind. Two frames' worth of the draw
+/// budget is what a player who pans back and forth needs, so it is 2 x 4.
+///
+/// `cacheTriangles` bounds their SIZE, and it is the cap that matters now that
+/// a city is up to 302,396 triangles at the map's span: eight of those would
+/// be 2.4M triangles, 249 MiB of buffers, held for a pan the player has
+/// already finished. MEASURED 2026-09-07 rather than guessed -- the selector
+/// was run at every city in the table and at the midpoint of every close pair
+/// of cities over 1.2M, at 24 zooms from 110 to the ceiling, 18,455 distinct
+/// (city, span) meshes: the largest set of cities drawable in ONE frame is
+/// 385,012 triangles, Seoul at span 180 beside Incheon at 140, at zoom 602.
+/// The cap is 800,000 -- 2.08x that worst frame, so the frame being drawn can
+/// never evict itself (which would rebuild a city every frame at ~120 ms
+/// each) and a second frame's worth still survives a pan away and back. It
+/// costs at most 82 MiB of buffers and 27 MiB of kept model positions.
+const CITY_LAYER = { minPx: 110, budget: 4, cache: 8, cacheTriangles: 800000, cellPx: 4.5, maxSpan: 181 };
+/// What cityBuffers hands back when it declined to build this frame. A
+/// distinct token rather than null, because null already means "this city
+/// cannot be built at all" and the caller has to schedule another frame for
+/// the first and not for the second.
+const DEFERRED = Symbol("city build deferred");
+
+/// Draws the cities in view and RETURNS THE MILLISECONDS IT SPENT BUILDING
+/// them, which the caller subtracts from the frame it hands the performance
+/// guard. That is not book-keeping for its own sake: glPerf kills the globe
+/// outright above 16 ms a frame, and one city mesh is ~120 ms of CPU. Measured
+/// in the running game before this was separated, walking the zoom ramp from
+/// 512 to the ceiling put the rolling average at 16.4 ms and the guard tore
+/// the whole globe down with "the ground costs 16.4 ms a frame" -- a verdict
+/// on the ground that the ground had not earned. The guard's own contract
+/// says so in the line above `t1`: it times the DRAW SUBMISSION, and mesh
+/// construction is paid when coverage changes.
 function drawCityLayer(view, cw, ch) {
-  const g = GLR; if (!g || !g.progCity || !window.CityLayer || !window.CityMesh) return;
-  if (!window.CITIES || !window.TerrainSurface) return;
-  const surface = g.surface; if (!surface || !surface.ready) return;
+  const g = GLR; if (!g || !g.progCity || !window.CityLayer || !window.CityMesh) return 0;
+  if (!window.CITIES || !window.TerrainSurface) return 0;
+  const surface = g.surface; if (!surface || !surface.ready) return 0;
   let box = null;
-  try { box = TerrainSurface.footprint(view); } catch (e) { return; }
-  if (!box) return;
+  try { box = TerrainSurface.footprint(view); } catch (e) { return 0; }
+  if (!box) return 0;
 
   // Metres per pixel AT EACH CITY, from the same projection the rest of the
   // frame uses. Not once at the footprint midpoint: a pitched footprint's
@@ -10562,7 +10596,7 @@ function drawCityLayer(view, cw, ch) {
   };
 
   const picked = CityLayer.select(CITIES, box, { mPerPx: scaleAt, minPx: CITY_LAYER.minPx, budget: CITY_LAYER.budget });
-  if (!picked.length) return;
+  if (!picked.length) return 0;
 
   const gl = g.gl;
   gl.useProgram(g.progCity);
@@ -10578,9 +10612,19 @@ function drawCityLayer(view, cw, ch) {
   gl.uniformMatrix3fv(u.rayBasis, false, view.rayBasis);
   gl.uniform2f(u.half, view.halfTan * (cw / ch), view.halfTan);
 
+  // ONE NEW CITY A FRAME. Four cities can enter the frame together -- panning
+  // into a cluster does exactly that -- and four builds at ~120 ms is half a
+  // second of stall in one frame. The rest arrive on the frames after, which
+  // is what the fade below was already written for, and `schedule()` asks for
+  // those frames rather than waiting for the player to move again.
+  let built = 0, spent = 0;
   for (const hit of picked) {
-    const entry = cityBuffers(gl, hit);
+    const t0 = performance.now();
+    const entry = cityBuffers(gl, hit, view, built > 0);
+    spent += performance.now() - t0;
+    if (entry === DEFERRED) { built += 1; GLOBE?.schedule(); continue; }
     if (!entry) continue;
+    if (entry.fresh) { built += 1; entry.fresh = false; }
     // Fade in over the last stretch rather than appearing whole, so a city
     // arrives as the ground resolves instead of popping into being.
     const t = Math.min(1, Math.max(0, (hit.screenPx / CITY_LAYER.minPx - 1) / 0.6));
@@ -10589,22 +10633,61 @@ function drawCityLayer(view, cw, ch) {
     gl.drawArrays(gl.TRIANGLES, 0, entry.count);
   }
   gl.bindVertexArray(null);
+  return spent;
 }
 
-/// One city's buffers, built once. The mesh is asked for the terrain under it
-/// so it sits on the real ground rather than on a plane at sea level.
-function cityBuffers(gl, hit) {
+
+/// One city's buffers, built once per span and re-seated when the relief
+/// steps. The mesh is asked for the terrain under it so it sits on the real
+/// ground rather than on a plane at sea level.
+function cityBuffers(gl, hit, view, defer) {
   const key = hit.index;
   const cache = GLR.cityCache;
+  const exaggeration = view.terrainExaggeration;
+  // The map has the pixels the card did not: ask for as many cells as keep
+  // the pitch at CITY_LAYER.cellPx on screen, capped where the buffers get
+  // silly. Chicago at 20 m/px goes 81 cells -> ~180, 224 m -> ~90 m blocks.
+  const wantSpan = Math.min(CITY_LAYER.maxSpan, Math.round(hit.screenPx / CITY_LAYER.cellPx));
   const had = cache.get(key);
-  if (had) { cache.delete(key); cache.set(key, had); return had; }   // LRU touch
-  let placed = null;
+  if (had) {
+    cache.delete(key); cache.set(key, had);   // LRU touch
+    // A city built for a wider view is kept as the camera comes in until the
+    // view could resolve a quarter again as many cells, then rebuilt at the
+    // finer span. Going back out the finer mesh stays: it is right, only
+    // over-resolved, and a rebuild on every notch would be the hitch.
+    const outgrown = had.span < CITY_LAYER.maxSpan && wantSpan >= Math.round(had.span * 1.25);
+    if (!outgrown) {
+      // THE RELIEF RAMP MOVES THE GROUND, so it has to move the city. The
+      // buffers hold sphere-space positions baked at one exaggeration; when
+      // the globe steps its relief the terrain re-meshes, and a city left
+      // where it was would sink into the new ground or float over it.
+      // Re-seating the kept model-space positions is ~15 ms for the largest
+      // city (measured at span 181) against ~120 ms to rebuild it, so only
+      // the positions go back to the GPU. Normals do not depend on the
+      // exaggeration -- a radial scale does not turn a wall -- and colours
+      // never did, so both stay where they are, and positionsOnly stops
+      // place() computing a set of normals nobody would upload.
+      if (had.exaggeration !== exaggeration) {
+        try {
+          const placed = CityLayer.place(had.model, hit.city, { exaggeration, positionsOnly: true });
+          if (placed) {
+            gl.bindBuffer(gl.ARRAY_BUFFER, had.bufs[0]);
+            gl.bufferData(gl.ARRAY_BUFFER, placed.positions, gl.STATIC_DRAW);
+            had.exaggeration = exaggeration;
+          }
+        } catch (e) { /* keep the old seating rather than drop the city */ }
+      }
+      return had;
+    }
+    if (defer) return had;          // outgrown, but not at the cost of a stall
+    cache.delete(key);
+    for (const b of had.bufs) gl.deleteBuffer(b);
+    gl.deleteVertexArray(had.vao);
+  }
+  if (defer) return DEFERRED;
+  let placed = null, model = null;
   try {
     const surface = GLR.surface;
-    // The map has the pixels the card did not: ask for as many cells as keep
-    // the pitch at CITY_LAYER.cellPx on screen, capped where the buffers get
-    // silly. Chicago at 20 m/px goes 81 cells -> ~180, 224 m -> ~90 m blocks.
-    const wantSpan = Math.min(CITY_LAYER.maxSpan, Math.round(hit.screenPx / CITY_LAYER.cellPx));
     const mesh = CityMesh.build(hit.city, {
       lod: "close",
       maxSpan: wantSpan,
@@ -10625,7 +10708,12 @@ function cityBuffers(gl, hit) {
         return !(Number.isFinite(e) && e < -1);
       },
     });
-    placed = CityLayer.place(mesh, hit.city);
+    placed = CityLayer.place(mesh, hit.city, { exaggeration });
+    // What a re-seat needs and nothing more: the positions and the datum the
+    // mesh was seated on. Normals and colours are already on the GPU, and
+    // keeping them here too would double the heap the cache holds.
+    model = { positions: mesh.positions, datum: mesh.datum, relief: mesh.relief,
+      extentMetres: mesh.extentMetres, bounds: mesh.bounds };
   } catch (e) { placed = null; }
   if (!placed) return null;
   const vao = gl.createVertexArray();
@@ -10639,13 +10727,23 @@ function cityBuffers(gl, hit) {
     gl.vertexAttribPointer(pair[1], 3, gl.FLOAT, false, 0, 0);
   });
   gl.bindVertexArray(null);
-  const entry = { vao, bufs, count: placed.count, tris: placed.triangleCount };
+  const entry = { vao, bufs, count: placed.count, tris: placed.triangleCount,
+    model, span: wantSpan, exaggeration, fresh: true };
   cache.set(key, entry);
-  // Bounded, and the buffers go with the vertex array: deleting the array does
-  // NOT free them, which is the trap arsenal3d's cache had to be taught.
-  while (cache.size > CITY_LAYER.cache) {
+  // Bounded BY BOTH COUNT AND SIZE, and the buffers go with the vertex array:
+  // deleting the array does NOT free them, which is the trap arsenal3d's cache
+  // had to be taught. Eviction takes the oldest, which is never the city just
+  // built and -- because the cap is twice the largest frame the selector can
+  // produce -- never one being drawn this frame either. The `cache.size > 1`
+  // guard is the backstop for that reasoning rather than a substitute for it:
+  // a single city over the whole cap would otherwise delete itself and be
+  // rebuilt every frame.
+  let held = 0;
+  for (const e of cache.values()) held += e.tris;
+  while (cache.size > 1 && (cache.size > CITY_LAYER.cache || held > CITY_LAYER.cacheTriangles)) {
     const oldest = cache.keys().next().value;
     const dead = cache.get(oldest); cache.delete(oldest);
+    held -= dead.tris;
     for (const b of dead.bufs) gl.deleteBuffer(b);
     gl.deleteVertexArray(dead.vao);
   }
@@ -11582,11 +11680,18 @@ function glDrawGlobe(view) {
     // that looks like farmland beside a real place name is exactly where
     // someone would assume otherwise. Relief stays measured throughout; it is
     // the COVER that is invented, and the wording separates the two.
+    //
+    // THE MULTIPLIER IS LIVE, so the legend reads it rather than repeating a
+    // number. It is 3× at map zooms and comes down to 1× as the camera dives
+    // (globe3d's exaggerationFor, which the view carries), and a legend that
+    // said 3× while the mountains were drawn at life size would be wrong in
+    // exactly the place a player checks.
     const generated = terrainActive && GLR.surface.ready && view.zoom >= 320;
+    const relief = String(view.terrainExaggeration);
     const text = terrainActive
       ? (GLR.surface.ready
-          ? (generated ? 'Raised terrain · 3× relief · generated ground cover'
-                       : 'Raised terrain · 3× relief')
+          ? (generated ? `Raised terrain · ${relief}× relief · generated ground cover`
+                       : `Raised terrain · ${relief}× relief`)
           : GLR.surface.loading ? 'Loading local terrain…' : 'Global relief')
       : '';
     if (terrainStatus.textContent !== text) terrainStatus.textContent = text;
@@ -11595,6 +11700,7 @@ function glDrawGlobe(view) {
   // Tile decoding/mesh construction is CPU work, paid when coverage changes;
   // the existing GPU fallback guard must time only the actual draw submission.
   const t1 = performance.now();
+  let cityBuildMs = 0;
   for (const isMesh of [false, true]) {
   if (isMesh && !terrainActive) continue;
   const u = isMesh ? GLR.uSurface : GLR.u;
@@ -11648,12 +11754,15 @@ function glDrawGlobe(view) {
   gl.activeTexture(gl.TEXTURE5); gl.bindTexture(gl.TEXTURE_2D, GLR.lake);
   gl.activeTexture(gl.TEXTURE6); gl.bindTexture(gl.TEXTURE_2D, GLR.heightDetail?.texture || GLR.phys);
   if (isMesh) GLR.surface.draw(GLR.progSurface, view);
-  if (isMesh) drawCityLayer(view, cw, ch);
+  if (isMesh) cityBuildMs += drawCityLayer(view, cw, ch) || 0;
   else gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
   gl.disable(gl.DEPTH_TEST);
 
-  glPerf(t1 - t0, performance.now() - t1);
+  // Construction comes off the frame before the guard sees it, for the reason
+  // written over drawCityLayer: the guard judges whether this GPU can DRAW the
+  // ground, and a city mesh being built on the CPU is not evidence about that.
+  glPerf(t1 - t0, performance.now() - t1 - cityBuildMs);
 }
 
 /// Kept as the name the rest of the page calls. The flat map's glDraw() took no
