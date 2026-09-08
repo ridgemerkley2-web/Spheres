@@ -992,6 +992,10 @@ pub struct GameRules {
     /// campaigns enable this; absent saves retain their legacy replay rules.
     #[serde(default, skip_serializing_if = "is_false")]
     pub industry_rebuild: bool,
+    /// Shared real-money debt accounting, recovery reviews and fiscal confidence.
+    /// Old saves and calibrated monthly replay remain unchanged until enabled.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub fiscal_recovery: bool,
     /// Player-directed military manufacturing lines. OFF in the calibrated
     /// world; with no directed lines even an enabled browser world retains the
     /// existing automatic procurement path exactly.
@@ -1042,6 +1046,7 @@ impl Default for GameRules {
             operational_warfare: 0,
             production_system: false,
             industry_rebuild: false,
+            fiscal_recovery: false,
             manufacturing_system: false,
             economic_competition: false,
             ideology_blocs: false,
@@ -1210,6 +1215,8 @@ pub struct WorldState {
     pub commerce: Option<crate::commerce::Commerce>,
     #[serde(default, skip_serializing_if = "crate::economic_ai::EconomicAi::is_empty")]
     pub economic_ai: crate::economic_ai::EconomicAi,
+    #[serde(default, skip_serializing_if = "crate::fiscal_recovery::State::is_empty")]
+    pub fiscal_recovery: crate::fiscal_recovery::State,
     /// Fictional domestic contractors; old saves remain disabled until opted in.
     #[serde(default, skip_serializing_if = "crate::companies::Companies::is_empty")]
     pub companies: crate::companies::Companies,

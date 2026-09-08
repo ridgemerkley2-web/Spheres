@@ -8454,6 +8454,7 @@ fn regime_break(w: &mut WorldState, id: NationId, b: Break) {
         let n = w.nation_mut(id);
         n.stability = (n.stability - 16.0).max(5.0);
         n.gdp *= 0.97;
+        crate::economy::refresh_debt_ratio(n);
         n.authoritarianism = b.auth_after;
         n.political_capital = crate::politics::seated_political_capital(
             n.stability, n.inflation, n.authoritarianism,

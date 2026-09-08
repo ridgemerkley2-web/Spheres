@@ -1,5 +1,17 @@
 # SPHERES Roadmap
 
+## Shared fiscal recovery — 2026-09-08
+
+Daily campaigns can now use common debt accounting for every government,
+monthly cash-based recovery assessments, quarterly priced AI policy and gradual
+fiscal-confidence pressure. Cabinet consolidation changes the active ministry
+budget; restructuring retains real stock relief and political costs with a
+shared cooldown. The Economy policy card explains the debt path, payment burden
+and recovery choices, and budget drafts have a separate full-use projection.
+Fresh browser campaigns enable the model; old saves require an explicit upgrade.
+See [FISCAL_RECOVERY.md](docs/FISCAL_RECOVERY.md) for the model, workflow and
+documented limits; final integration evidence is recorded with that document.
+
 ## Implemented and verified — operational warfare (2026-09-07)
 
 Daily browser wars now use local combat, cohesion, dated deployment and retreat,

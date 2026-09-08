@@ -2434,6 +2434,7 @@
 <link rel="stylesheet" href="/industry-ui.css">
 <link rel="stylesheet" href="/companies.css">
 <link rel="stylesheet" href="/cash-flow-ui.css">
+<link rel="stylesheet" href="/fiscal-recovery-ui.css">
 <link rel="stylesheet" href="/population-ui.css">
 <link rel="stylesheet" href="/equipment-ui.css">
 <link rel="stylesheet" href="/arsenal3d.css">
@@ -3191,6 +3192,7 @@
 <script src="/industry-ui.js"></script>
 <script src="/companies-ui.js"></script>
 <script src="/cash-flow-ui.js"></script>
+<script src="/fiscal-recovery-ui.js"></script>
 <script src="/population-ui.js"></script>
 <script src="/equipment-mesh.js"></script>
 <script src="/equipment-export.js"></script>
@@ -4469,6 +4471,7 @@ function syncAdvanceControls() {
   $("#saveBtn").disabled = advancing || !!pendingAdvance;
   const enact = $("#cabinetEnact");
   if (enact) enact.disabled = CAB.busy || advancing || !!pendingAdvance;
+  if(typeof fiscalRecoverySync === "function")fiscalRecoverySync();
   if(typeof syncCommandControls === "function")syncCommandControls();
 }
 
@@ -5698,7 +5701,8 @@ function cabinetBudgetSummary(m) {
     if (!fiscal) return `<article><span>Proposed annual finances</span><strong>${PG.error ? "Preview unavailable" : "Calculating…"}</strong></article><article><span>Debt service included when the books open</span><strong>Awaiting server quote</strong></article><article><span>Draft preserved</span><strong>${PG.error ? "Retry funding preview" : "Current GDP basis"}</strong></article>`;
     return `<article><span>Proposed revenue / year</span><strong>${fmt.money(fiscal.revenue_bn)}</strong></article>
       <article><span>Authority + debt service / year</span><strong>${fmt.money(fiscal.total_at_full_use_bn)}</strong><small>Includes ${fmt.money(fiscal.interest_bn)} interest${fiscal.opening_books ? " when books open" : ""}</small></article>
-      <article><span>At full use: ${fiscal.balance_at_full_use_bn<0 ? "funding gap" : "surplus"} / year</span><strong class="${fiscal.balance_at_full_use_bn<0 ? "down" : "up"}">${fmt.money(Math.abs(fiscal.balance_at_full_use_bn))}</strong><small>At current GDP; actual work is charged as delivered.</small></article>`;
+      <article><span>At full use: ${fiscal.balance_at_full_use_bn<0 ? "funding gap" : "surplus"} / year</span><strong class="${fiscal.balance_at_full_use_bn<0 ? "down" : "up"}">${fmt.money(Math.abs(fiscal.balance_at_full_use_bn))}</strong><small>At current GDP; actual work is charged as delivered.</small></article>
+      ${Number.isFinite(fiscal.projected_debt_gdp_5y_at_full_use)?`<p class="fr-draft-scenario">Five-year debt / GDP at full use: <strong>${fmt.pct(fiscal.projected_debt_gdp_5y_at_full_use,1)}</strong>. This scenario uses your draft tax, interest rate and budget, with all authority spent. It is separate from the recovery desk's observed cash-spending projection. Reducing unused authority is not a cash saving.</p>`:""}`;
   }
   const p = proposed(m);
   const led = ledgerOf(m, p.tax, p.social, p.military, p.invest);
@@ -5730,6 +5734,7 @@ function paintCabinetDraft(m) {
   if (summary) summary.innerHTML = cabinetBudgetSummary(m);
   const budgetNotes = $("#cabinetBudgetEstimate");
   if (budgetNotes) budgetNotes.textContent = `Budget-only estimate: ${costLabel} political capital. Other orders and foreign commitments are separate.`;
+  if (typeof fiscalRecoverySync === "function") fiscalRecoverySync();
 }
 
 async function cabinetEnact() {
@@ -5796,6 +5801,7 @@ function renderLeft(m) {
     <section id="cabinet-overview" class="cab-page" role="tabpanel" aria-labelledby="cab-tab-overview">
       ${typeof cashFlowPanelHtml === "function" ? cashFlowPanelHtml() : ""}
       ${cabinetStatusHtml(m, S.production_summary, S.programs)}
+      ${typeof fiscalRecoveryHtml === "function" ? fiscalRecoveryHtml(true) : ""}
       <div class="cab-pulse" aria-label="Current national indicators">
         <article><span class="cab-label">Your economic engine</span><strong>${fmt.money(m.gdp)}</strong><p>Annual national output · GDP</p></article>
         <article><span class="cab-label">The growth pulse</span><strong class="${g >= 0 ? "up" : "down"}">${fmt.signed(g)}</strong><p>Annualized growth · ${g < 0 ? "output is shrinking" : g > 0 ? "output is expanding" : "starting position"}</p></article>
@@ -5849,6 +5855,7 @@ function renderLeft(m) {
     <section id="cabinet-companies" class="cab-page" role="tabpanel" aria-labelledby="cab-tab-companies" hidden>${typeof companiesPanelHtml === "function" ? companiesPanelHtml() : ""}</section>
 
     <section id="cabinet-policy" class="cab-page" role="tabpanel" aria-labelledby="cab-tab-policy" hidden>
+      ${typeof fiscalRecoveryHtml === "function" ? fiscalRecoveryHtml() : ""}
       <div class="area-heading"><div class="cab-section-head"><div><div class="cab-kicker">The engine room</div><h2>Money with a purpose.</h2></div><p>Policy controls show your draft. The treasury shows the plan running now. All money is in constant 1990 dollars.</p></div>${globalThis.AreaArt?.html("treasury", "compact") || ""}</div>
       <div class="cab-two-col"><div class="card"><h3>Your policy controls</h3>
         <p class="budget-note">Taxes fund the plan. Interest rates move demand and inflation. Drag a control to preview its effects.</p>
@@ -5886,6 +5893,7 @@ function renderLeft(m) {
   if (typeof companiesBind === "function") companiesBind();
   if (typeof cashFlowBind === "function") cashFlowBind();
   if (typeof peopleBind === "function") peopleBind();
+  if (typeof fiscalRecoveryBind === "function") fiscalRecoveryBind();
   openDetails.forEach(id => { const el = document.getElementById(id); if (el) el.open = true; });
   $("#left").scrollTop = scroll;
   paintCabinetDraft(m);

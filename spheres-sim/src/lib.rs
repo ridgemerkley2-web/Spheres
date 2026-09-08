@@ -27,6 +27,8 @@ pub mod equipment;
 pub mod economic_ai;
 pub mod front;
 pub mod fiscal_preview;
+pub mod fiscal_recovery;
+pub mod fiscal_recovery_ai;
 pub mod government;
 pub mod gdp_projects;
 pub mod exact;
@@ -94,6 +96,8 @@ pub enum Command {
     WarDiplomacy { nation: NationId, order: campaign_peace::PeaceOrder },
     /// Explicit migration for a saved campaign; existing residents and GDP stay.
     EnablePopulation { nation: NationId },
+    /// Explicit global fiscal-model upgrade; existing cash and debt are retained.
+    EnableFiscalRecovery { nation: NationId },
     SetPopulationPolicy { nation: NationId, policy: population::Policy },
     EnableCompanies { nation: NationId },
     AssignCompany { nation: NationId, company: u32, target: companies::CompanyTarget },
@@ -381,6 +385,7 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
     const ALWAYS: bool = false;
     Some(match c {
         Command::EnablePopulation { nation } => (*nation, 0.0, REFUSABLE),
+        Command::EnableFiscalRecovery { nation } => (*nation, 0.0, REFUSABLE),
         Command::SetPopulationPolicy { nation, policy } =>
             (*nation, population::policy_quote(w, *nation, *policy).political_cost, REFUSABLE),
         Command::SetInterestRate { nation, rate } => (
@@ -690,6 +695,15 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
 fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
     match c {
         Command::DeclareWar { .. } => w.conflict_id_refusal(),
+        Command::EnableFiscalRecovery { nation } => {
+            if !w.nation_opt(*nation).is_some_and(|n| n.alive) {
+                Some("This government no longer exists.".into())
+            } else if w.player != Some(*nation) {
+                Some("Only the player can upgrade this campaign's fiscal system.".into())
+            } else if !clock::is_daily(w) {
+                Some("Fiscal recovery needs the daily simulation. Finish the calendar transition first.".into())
+            } else { None }
+        }
         Command::OpenConflict { opener, target, .. } if w.conflict_between(*opener, *target).is_none() => w.conflict_id_refusal(),
         Command::EnablePopulation { nation } => {
             if !w.nation_opt(*nation).is_some_and(|n| n.alive) {
@@ -911,6 +925,7 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
 fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
     match c {
         Command::EnablePopulation { .. } => population::enable(w),
+        Command::EnableFiscalRecovery { .. } => fiscal_recovery::enable(w),
         Command::SetPopulationPolicy { nation, policy } => population::apply_policy(w, *nation, *policy)?,
         Command::EnableCompanies { nation } => {
             if !clock::is_daily(w) || w.nation_opt(*nation).is_none_or(|n| !n.alive) {
@@ -1426,6 +1441,7 @@ pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
     ("politics", politics::tick),
     ("agency", agency::tick),
     ("economic_ai", economic_ai::tick),
+    ("fiscal_recovery_ai", fiscal_recovery_ai::tick),
     ("sovereignty", sovereignty::tick),
     // The campaign director reads the settled month. It grants no bonus and
     // consumes no RNG; it only advances milestone seals and the sole victory.
@@ -1540,6 +1556,7 @@ pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
         }
     }
 
+    fiscal_recovery::prepare(w);
     province_economy::begin_day(w);
     programs::begin_day(w);
     if !clock::is_daily(w) { production::tick_day(w); }
@@ -1553,6 +1570,7 @@ pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
         // still require and indirectly cause borrowing at settlement.
         equipment::tick_supply_automation(w);
         companies::tick_day(w);
+        fiscal_recovery::tick(w);
         campaign_aims::tick(w);
         clock::advance_date(w);
         return w.headlines[before..].to_vec();

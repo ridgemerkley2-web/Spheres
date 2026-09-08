@@ -1,3 +1,7 @@
 [workspace]
 members = ["spheres-sim", "spheres-cli", "spheres-web"]
 resolver = "2"
+
+[patch.crates-io]
+# tiny_http 0.12.0 with the queued-connection worker starvation fix; see its PATCHES.md.
+tiny_http = { path = "vendor/tiny_http" }

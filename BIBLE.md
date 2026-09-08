@@ -1,5 +1,23 @@
 # SPHERES — the bible
 
+## Adopted amendment — shared fiscal recovery (2026-09-08)
+
+Ridge approved country debt recovery with instability as the consequence of
+continued deterioration. `docs/FISCAL_RECOVERY.md` defines the daily extension.
+Every living country uses the existing real-dollar treasury/debt ledger under
+`GameRules.fiscal_recovery`; enabling it preserves recorded cash and debt and
+opens missing treasury accounts at zero. No historical reserve is granted again.
+Fresh browser campaigns enable it; old saves require an explicit upgrade.
+
+Debt control means a sustainable trajectory and affordable interest payments,
+not one universal debt ceiling. Monthly actual-cash reviews, an initial adjustment
+period, quarterly priced AI policies and bounded fiscal-confidence pressure
+replace the legacy AI's free aggregate adjustments in enabled campaigns.
+Existing ministry service effects retain their owners; unused authority is never
+reported as savings. Existing Cabinet consolidation and restructuring provide
+costly recovery options. Debt alone neither creates inflation nor declares a
+civil war. Default monthly calibration remains on its original rules.
+
 ## Operational warfare amendment — 2026-09-07
 
 Ridge requested the full war overhaul and instructed: "Okay build the whole thing

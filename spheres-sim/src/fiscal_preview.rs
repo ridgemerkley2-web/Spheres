@@ -18,6 +18,10 @@ pub struct FiscalQuote {
     pub posted_spending_run_rate_bn: f64,
     pub total_political_cost: f64,
     pub affordable: bool,
+    /// Conservative draft scenario: every authorized department dollar is
+    /// spent. This is separate from the trailing actual-cash recovery view.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub projected_debt_gdp_5y_at_full_use: Option<f64>,
 }
 
 pub fn with_budget(w: &WorldState, nation: NationId, policies: &[Command], budget: &Command)
@@ -59,6 +63,10 @@ pub fn with_budget(w: &WorldState, nation: NationId, policies: &[Command], budge
         authorized_spend_bn:p.annual_authorized_bn,total_at_full_use_bn:total,
         balance_at_full_use_bn:revenue-total,posted_spending_run_rate_bn:f.spend_gdp*n.gdp,
         total_political_cost:total_cost,affordable:total_cost<=w.nation(nation).political_capital,
+        projected_debt_gdp_5y_at_full_use:crate::fiscal_recovery::assessment(&copy,nation).map(|a|
+            crate::fiscal_recovery::project(n.debt_gdp,n.treasury_bn.unwrap_or(0.0)/n.gdp,
+                f.revenue_gdp-p.annual_authorized_bn/n.gdp-a.other_obligations_gdp,
+                a.annual_real_growth,n.interest_rate,n.inflation)),
     };
     Ok((p,quote))
 }

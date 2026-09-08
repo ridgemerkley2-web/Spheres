@@ -52,6 +52,51 @@ fn dev(w: &WorldState, id: NationId) -> f64 {
     (n.gdp * 1000.0 / n.population.max(0.001) / 24000.0).min(1.0)
 }
 
+fn consolidation_available(w: &WorldState, id: NationId) -> bool {
+    if crate::fiscal_recovery::enabled(w) {
+        crate::fiscal_recovery::assessment(w, id).is_some_and(|v| v.recovery_required)
+            && (n_of(w, id).tax_rate < 0.60
+                || crate::fiscal_recovery_ai::budget_adjustment(w, id, 0.20, 0.02).is_some())
+    } else {
+        n_of(w, id).debt_gdp > 0.90
+    }
+}
+
+fn restructure_available(w: &WorldState, id: NationId) -> bool {
+    n_of(w, id).debt_gdp > 1.10
+        && (!crate::fiscal_recovery::enabled(w)
+            || crate::fiscal_recovery_ai::restructuring_ready(w, id))
+}
+
+fn enact_consolidation(w: &mut WorldState, id: NationId) {
+    if crate::fiscal_recovery::enabled(w) {
+        // The Cabinet vote already pays the package's 34 PC. Dispatch its
+        // constituent tax and budget changes through the ordinary state path
+        // without charging the same vote again. Existing enrolled departments
+        // retain their money and dated receipts; only future accrual changes.
+        let budget = crate::fiscal_recovery_ai::budget_adjustment(w, id, 0.20, 0.02);
+        let tax = (w.nation(id).tax_rate + 0.05).min(0.60);
+        crate::dispatch(w, &crate::Command::SetTaxRate { nation: id, rate: tax })
+            .expect("a finite consolidation tax is a valid ordinary command");
+        if let Some(budget) = budget {
+            crate::dispatch(w, &budget.command)
+                .expect("the consolidation quote retains a valid current budget");
+        }
+    } else {
+        let n = w.nation_mut(id);
+        n.tax_rate = (n.tax_rate + 0.05).min(0.60);
+        n.state_invest_gdp = (n.state_invest_gdp * 0.7).max(0.02);
+        n.mil_spend_gdp = (n.mil_spend_gdp * 0.8).max(0.005);
+    }
+    let n = w.nation_mut(id);
+    n.stability = (n.stability - 9.0).max(0.0);
+    if crate::fiscal_recovery::enabled(w) {
+        w.headline(format!("{} enacts a fiscal consolidation budget.", id.name()));
+    } else {
+        w.headline(format!("{} announces an austerity budget.", id.name()));
+    }
+}
+
 /// Every stratagem in the game, in a fixed order.
 ///
 /// Fixed because the order decides what a player is offered when several are
@@ -155,32 +200,30 @@ pub const DECK: &[Stratagem] = &[
     Stratagem {
         id: "austerity",
         name: "Fiscal Consolidation",
-        blurb: "Raise the taxes, cut the spending, stop the debt. The arithmetic \
-                works. The government that does it usually loses.",
-        because: "Public debt above 90% of output",
+        blurb: "Raise taxes by up to five points and trim discretionary spending. \
+                Essential services and maintenance are protected in recovery campaigns. \
+                The vote costs 9 stability; debt only improves when the budget delivers.",
+        because: "A debt trajectory that requires recovery (legacy campaigns: debt above 90%)",
         cost: 34.0,
-        available: |w, id| n_of(w, id).debt_gdp > 0.90,
-        enact: |w, id| {
-            let n = w.nation_mut(id);
-            n.tax_rate = (n.tax_rate + 0.05).min(0.60);
-            n.state_invest_gdp = (n.state_invest_gdp * 0.7).max(0.02);
-            n.mil_spend_gdp = (n.mil_spend_gdp * 0.8).max(0.005);
-            n.stability = (n.stability - 9.0).max(0.0);
-            let name = id.name();
-            w.headline(format!("{} announces an austerity budget.", name));
-        },
+        available: consolidation_available,
+        enact: enact_consolidation,
     },
     // Brady bonds, the Paris Club, and Egypt's reward for joining the coalition.
     // Your creditors are the people whose opinion of you it costs.
     Stratagem {
         id: "debt_restructuring",
         name: "Restructure the Debt",
-        blurb: "Go to the creditors and write it down. The burden lifts. Every \
-                capital that holds your paper remembers.",
+        blurb: "Write down 45% of the debt: creditors lose money and major-country \
+                relations fall by 8. Recovery campaigns allow another restructuring \
+                only after five years. Ongoing deficits still need a funded response.",
         because: "Debt beyond what any budget can service",
         cost: 30.0,
-        available: |w, id| n_of(w, id).debt_gdp > 1.10,
+        available: restructure_available,
         enact: |w, id| {
+            if crate::fiscal_recovery::enabled(w) {
+                let today = crate::clock::absolute_day(w);
+                w.fiscal_recovery.nations.entry(id).or_default().last_restructuring_day = Some(today);
+            }
             {
                 // THROUGH THE ONE FISCAL CHANNEL, and this leg reached it late
                 // (routed 2026-09-02, after the merge). A write-down is money
@@ -398,6 +441,14 @@ pub fn closed_reason(w: &WorldState, id: NationId, stratagem: &str) -> Option<St
         Some(s) => s,
         None => return Some(format!("No such stratagem: {}", stratagem)),
     };
+    if stratagem == "debt_restructuring" && crate::fiscal_recovery::enabled(w)
+        && !crate::fiscal_recovery_ai::restructuring_ready(w, id)
+    {
+        let last = w.fiscal_recovery.nations.get(&id).and_then(|n| n.last_restructuring_day).unwrap();
+        let left = (last + crate::fiscal_recovery_ai::RESTRUCTURING_COOLDOWN_DAYS
+            - crate::clock::absolute_day(w)).max(0);
+        return Some(format!("Creditors will not accept another restructuring for {left} days."));
+    }
     if !(s.available)(w, id) {
         return Some(format!("{} is no longer open to {}.", s.name, id.name()));
     }
@@ -432,7 +483,10 @@ pub fn ai_stratagems(w: &mut WorldState) {
         if held < 55.0 {
             continue;
         }
-        let options = available(w, id);
+        let options: Vec<_> = available(w, id).into_iter().filter(|s|
+            !crate::fiscal_recovery::enabled(w)
+                || !matches!(s.id, "austerity" | "debt_restructuring")
+        ).collect();
         // The political arm's five levers (S3) ride THIS draw — the design's
         // "on the existing 0.02 monthly stratagem draw" — so the government
         // module keeps drawing nothing and a month holds one decision, a

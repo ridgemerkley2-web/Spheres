@@ -360,7 +360,7 @@ fn fiscal_command(
     let n = w.nation(nation);
     let current = n.budget_for(w.year);
     let mut allocations = current.allocations;
-    if n.program_budget.is_some() && !renewal {
+    if n.program_budget.is_some() && !renewal && !crate::fiscal_recovery::enabled(w) {
         let terms = economy::growth_terms(
             n,
             n.state_invest_gdp,

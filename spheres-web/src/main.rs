@@ -107,6 +107,8 @@ mod companies_view;
 const INDUSTRY_CSS: &str = include_str!("../ui/industry-ui.css");
 const CASH_FLOW_UI_JS: &str = include_str!("../ui/cash-flow-ui.js");
 const CASH_FLOW_CSS: &str = include_str!("../ui/cash-flow-ui.css");
+const FISCAL_RECOVERY_UI_JS: &str = include_str!("../ui/fiscal-recovery-ui.js");
+const FISCAL_RECOVERY_CSS: &str = include_str!("../ui/fiscal-recovery-ui.css");
 const POPULATION_UI_JS: &str = include_str!("../ui/population-ui.js");
 const POPULATION_CSS: &str = include_str!("../ui/population-ui.css");
 const EQUIPMENT_UI_JS: &str = include_str!("../ui/equipment-ui.js");
@@ -5850,6 +5852,8 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         "storage_notice":g.storage_notice,
         "simulation_cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
         "population_enabled": spheres_sim::population::active(w),
+        "fiscal_recovery_enabled": w.rules.fiscal_recovery,
+        "fiscal_recovery": w.player.and_then(|p| spheres_sim::fiscal_recovery::assessment(w, p)),
         "simulation_transition": w.daily.activate_after_month.map(|closing_month| {
             let next = closing_month + 1;
             let year = 1990 + next.div_euclid(12);
@@ -6076,6 +6080,7 @@ fn stability_json(w: &WorldState, n: &Nation) -> serde_json::Value {
         ("war_exhaustion", "War exhaustion", -t.war_exhaustion_drag, "world"),
         ("sanctions", "Sanctioning economies", -t.sanctions_drag, "decisions"),
         ("command_recession", "Command-economy recession", -t.command_recession_drag, "budget"),
+        ("fiscal_confidence", "Fiscal confidence", -t.fiscal_confidence_drag, "budget"),
         ("mean_reversion", "Gradual return toward 60 stability", reversion, ""),
     ].into_iter().map(|(id, label, pressure, action)| serde_json::json!({
         "id": id, "label": label, "monthly_points": stability_flow(pressure, 1.0), "action": action,
@@ -6728,6 +6733,7 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
         "resume_automatic_bank" => Command::ResumeAutomaticBank { nation:me },
         "enable_economic_competition" => Command::EnableEconomicCompetition { nation:me },
         "enable_population" => Command::EnablePopulation { nation:me },
+        "enable_fiscal_recovery" => Command::EnableFiscalRecovery { nation:me },
         "set_population_policy" => Command::SetPopulationPolicy { nation:me,
             policy:spheres_sim::population::Policy::parse(v.get("policy")?.as_str()?)? },
         "propose_economic_union" => Command::ProposeEconomicUnion { patron:me,partner:target()? },
@@ -7364,6 +7370,7 @@ fn fresh_play_rules(g: &mut Game) -> Result<(), String> {
     play_rules(g);
     spheres_sim::companies::enable(&mut g.world);
     spheres_sim::population::enable(&mut g.world);
+    spheres_sim::fiscal_recovery::enable(&mut g.world);
     Ok(())
 }
 
@@ -7657,6 +7664,8 @@ fn main() {
             (Method::Get, "/companies.css") => Response::from_string(COMPANIES_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, "/cash-flow-ui.css") => Response::from_string(CASH_FLOW_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, "/cash-flow-ui.js") => Response::from_string(CASH_FLOW_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/fiscal-recovery-ui.css") => Response::from_string(FISCAL_RECOVERY_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
+            (Method::Get, "/fiscal-recovery-ui.js") => Response::from_string(FISCAL_RECOVERY_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/population-ui.js") => Response::from_string(POPULATION_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/population-ui.css") => Response::from_string(POPULATION_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, "/arsenal-models.js") => Response::from_string(ARSENAL_MODELS_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
@@ -8356,6 +8365,53 @@ fn open_browser(url: &str) {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn fiscal_recovery_browser_state_quotes_the_shared_assessment_without_mutation() {
+        let mut g=Game::new(71,Some(NationId::USA));
+        fresh_play_rules(&mut g).unwrap();
+        let before=save(&g.world);
+        let expected=serde_json::to_value(spheres_sim::fiscal_recovery::assessment(&g.world,NationId::USA)).unwrap();
+        let first=state_json(&g,None);
+        assert_eq!(first["fiscal_recovery_enabled"],true);
+        assert_eq!(first["fiscal_recovery"],expected);
+        assert_eq!(first["fiscal_recovery"]["months_observed"],0);
+        assert_eq!(save(&g.world),before,"the assessment must not enact a plan or accrue pressure");
+        assert!(g.world.nations.iter().filter(|n|n.alive).all(|n|n.treasury_bn==Some(0.0)&&n.debt_bn.is_some()),
+            "fresh campaigns seat one debt ledger for every country without granting cash");
+    }
+
+    #[test]
+    fn fiscal_recovery_upgrade_is_explicit_and_bound_to_the_actual_player() {
+        let mut g=loaded_play_game(Game::new(71,Some(NationId::USA)).world);
+        assert!(!g.world.rules.fiscal_recovery,"loading does not change the fiscal model");
+        assert_eq!(state_json(&g,None)["fiscal_recovery_enabled"],false);
+        assert!(state_json(&g,None)["fiscal_recovery"].is_null());
+        let command=parse_command(&g.world,&serde_json::json!({"kind":"enable_fiscal_recovery","nation":"Japan"}),NationId::USA).unwrap();
+        assert!(matches!(command,Command::EnableFiscalRecovery{nation:NationId::USA}));
+        let old_debt=g.world.nation(NationId::USA).debt_gdp*g.world.nation(NationId::USA).gdp;
+        let old_capital=g.world.nation(NationId::USA).political_capital;
+        apply_command(&mut g.world,&command).unwrap();
+        assert!(g.world.rules.fiscal_recovery);
+        assert_eq!(g.world.nation(NationId::USA).debt_bn,Some(old_debt));
+        assert_eq!(g.world.nation(NationId::USA).treasury_bn,Some(0.0));
+        assert_eq!(g.world.nation(NationId::USA).political_capital,old_capital);
+        assert!(!state_json(&g,None)["fiscal_recovery"].is_null());
+    }
+
+    #[test]
+    fn fiscal_recovery_stability_disclosure_reconciles_with_the_charged_flow() {
+        let mut g=Game::new(71,Some(NationId::USA));
+        fresh_play_rules(&mut g).unwrap();
+        g.world.fiscal_recovery.nations.get_mut(&NationId::USA).unwrap().confidence_pressure=0.12;
+        let view=stability_json(&g.world,g.world.nation(NationId::USA));
+        let rows=view["terms"].as_array().unwrap();
+        let fiscal=rows.iter().find(|row|row["id"]=="fiscal_confidence").unwrap();
+        assert_eq!(fiscal["monthly_points"],-0.03);
+        let sum=rows.iter().map(|row|row["monthly_points"].as_f64().unwrap()).sum::<f64>();
+        assert!((sum-view["monthly_points_before_bounds"].as_f64().unwrap()).abs()<1e-12);
+        assert_eq!(state_json(&g,None)["fiscal_recovery"]["stability_change_per_month"],fiscal["monthly_points"]);
+    }
 
     #[test]
     fn population_view_is_pure_and_preserves_simulation_units() {

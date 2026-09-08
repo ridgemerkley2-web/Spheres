@@ -1,0 +1,35 @@
+.fiscal-recovery { margin:0 0 22px; padding:22px; border:1px solid #b6c8bf50; border-radius:14px; background:#22373b; color:#edf0df; font:14px/1.55 system-ui,sans-serif; }
+.fiscal-recovery * { box-sizing:border-box; }
+.fiscal-recovery h2,.fiscal-recovery h3,.fiscal-recovery p { margin:0; }
+.fiscal-recovery h2 { font:600 24px/1.25 system-ui,sans-serif; color:#edf0df; }
+.fiscal-recovery h3 { font:600 16px/1.4 system-ui,sans-serif; color:#edf0df; }
+.fiscal-recovery p { margin-top:10px; color:#c4d1d2; }
+.fiscal-recovery .fr-kicker { margin:0 0 7px; color:#c7d9b6; font:650 11px/1.4 system-ui,sans-serif; letter-spacing:.1em; text-transform:uppercase; }
+.fiscal-recovery header { display:flex; align-items:start; justify-content:space-between; gap:15px; }
+.fr-status { padding:5px 9px; border:1px solid #b6c8bf55; border-radius:7px; white-space:nowrap; font-size:12px; }
+.fr-adjustment,.fr-crisis { border-top:3px solid #dfb578; }
+.fr-crisis { background:#3b3035; }
+.fr-stable,.fr-recovering { border-top:3px solid #a8d2b5; }
+.fr-metrics,.fr-method { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:20px 0; }
+.fr-metrics>div { background:#10262e7a; padding:14px; border-radius:10px; min-width:0; }
+.fiscal-recovery dt { color:#becdce; font-size:12px; }
+.fiscal-recovery dd { margin:5px 0; font:600 24px/1.3 system-ui,sans-serif; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+.fiscal-recovery small { display:block; color:#b1c3c8; font-size:11px; }
+.fr-next { padding-top:2px; }
+.fr-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+.fiscal-recovery button { min-height:42px; padding:10px 14px; border:1px solid #b6c8bf65; border-radius:8px; background:#355449; color:#edf0df; font:600 13px/1.4 system-ui,sans-serif; cursor:pointer; }
+.fiscal-recovery button:hover:enabled { background:#426856; }
+.fiscal-recovery button:disabled { opacity:.5; cursor:default; }
+.fiscal-recovery button:focus-visible,.fiscal-recovery summary:focus-visible { outline:3px solid #ecc987; outline-offset:3px; }
+.fiscal-recovery .fr-note { font-size:12px; }
+.fr-detail { border-top:1px solid #bdcfd02c; margin-top:20px; padding-top:15px; }
+.fr-detail summary { cursor:pointer; color:#e3e8da; font-weight:600; }
+.fr-method dd { font-size:18px; }
+.fr-message { padding:10px 13px; background:#543c39; border-radius:8px; }
+.cab-budget-summary .fr-draft-scenario { grid-column:1/-1; margin:0; color:#bdc9ce; font:13px/1.5 system-ui,sans-serif; }
+.cab-budget-summary .fr-draft-scenario strong { color:#e4e8d8; font-size:14px; }
+.fiscal-compact { display:flex; align-items:center; gap:20px; justify-content:space-between; }
+.fiscal-compact h2 { font-size:20px; }
+.fiscal-compact button { flex-shrink:0; }
+@media(max-width:760px) { .fiscal-recovery { padding:17px; } .fr-metrics,.fr-method { grid-template-columns:repeat(2,minmax(0,1fr)); } .fiscal-recovery header,.fiscal-compact { align-items:stretch; flex-direction:column; } .fr-status { align-self:start; } .fr-actions button { flex:1 1 180px; } }
+@media(max-width:400px) { .fr-metrics dd { font-size:21px; } .fr-metrics>div { padding:11px; } }

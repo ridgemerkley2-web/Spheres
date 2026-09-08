@@ -926,6 +926,7 @@ pub fn load_world(
         materials: None,
         commerce: None,
         economic_ai: Default::default(),
+        fiscal_recovery: Default::default(),
         companies: Default::default(),
         by_id: vec![],
         by_id_len: 0,

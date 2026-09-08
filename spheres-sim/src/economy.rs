@@ -1202,10 +1202,9 @@ pub fn growth_terms(
 /// `ministries::stability_settles_at` computes and what every stability CARD is
 /// now quoted through.
 ///
-/// `budget_gap` is passed in rather than read off the nation because `tick`
-/// gates the ministry channels on the nation being the PLAYER (the design's
-/// point 5); a function reading `n.budget_gap` directly would quietly hand the
-/// three arms to every AI government that ever seats a plan.
+/// `budget_gap` is passed in rather than read off the nation because legacy
+/// campaigns gate these channels on the player. Fiscal recovery campaigns
+/// give every government the same consequences for its domestic policies.
 #[derive(Clone, Copy, Debug)]
 pub struct StabilityPressure {
     pub growth: f64,
@@ -1217,6 +1216,8 @@ pub struct StabilityPressure {
     pub war_exhaustion_drag: f64,
     pub sanctions_drag: f64,
     pub command_recession_drag: f64,
+    /// Confidence lost through sustained unsustainable public finances.
+    pub fiscal_confidence_drag: f64,
     pub total: f64,
 }
 
@@ -1227,25 +1228,26 @@ pub fn stability_pressure_terms(
     n: &Nation,
     budget_gap: &[f64; BUDGET_MINISTRIES],
     unemployment: f64,
-    is_player: bool,
+    domestic_pressure_enabled: bool,
     sanction_share: f64,
 ) -> StabilityPressure {
     let mut terms = StabilityPressure {
         growth: (n.growth_last - 0.015) * 6.0,
         inflation_drag: (n.inflation - 0.05).max(0.0) * 4.0,
-        unemployment_drag: if is_player { (unemployment - 0.06).max(0.0) * 1.5 } else { 0.0 },
+        unemployment_drag: if domestic_pressure_enabled { (unemployment - 0.06).max(0.0) * 1.5 } else { 0.0 },
         housing: crate::ministries::housing_stability(budget_gap[BUDGET_HOUSING]),
         pensions: crate::ministries::pensions_stability(budget_gap[BUDGET_PENSIONS]),
         security: crate::ministries::security_stability(budget_gap[BUDGET_SECURITY]),
         war_exhaustion_drag: n.war_exhaustion * 1.2,
         sanctions_drag: sanction_share * 0.50,
         command_recession_drag: if n.system == EconomySystem::Command && n.growth_last < 0.0 { 0.5 } else { 0.0 },
+        fiscal_confidence_drag: 0.0,
         total: 0.0,
     };
     let mut ds = 0.0;
     ds += terms.growth; // growth legitimizes
     ds -= terms.inflation_drag; // high inflation corrodes
-    if is_player {
+    if domestic_pressure_enabled {
         ds -= terms.unemployment_drag;
     }
     // `ds += social_gap * 12.0` STOOD HERE AND IS GONE. It was the
@@ -1292,10 +1294,17 @@ pub fn stability_pressure(
     n: &Nation,
     budget_gap: &[f64; BUDGET_MINISTRIES],
     unemployment: f64,
-    is_player: bool,
+    domestic_pressure_enabled: bool,
     sanction_share: f64,
 ) -> f64 {
-    stability_pressure_terms(n, budget_gap, unemployment, is_player, sanction_share).total
+    stability_pressure_terms(n, budget_gap, unemployment, domestic_pressure_enabled, sanction_share).total
+}
+
+/// Legacy calibration keeps domestic policy feedback player-only. Once the
+/// shared fiscal rules are enabled, AI recovery choices pay the same service,
+/// labor-market and private-investment consequences as the player's choices.
+fn domestic_policy_consequences(w: &WorldState, nation: NationId) -> bool {
+    w.player == Some(nation) || crate::fiscal_recovery::enabled(w)
 }
 
 /// Existing integrator coefficients, shared with explanations. These report a
@@ -1310,25 +1319,28 @@ pub fn stability_flow(pressure: f64, month_fraction: f64) -> f64 {
 
 /// The same pressure, read off the world for a nation that is not mid-tick.
 ///
-/// What the ministry CARDS use. It reproduces `tick`'s player gate exactly,
-/// including that a nation which is not the player carries no ministry arms at
-/// all -- so its card shows a flat zero rather than a promise the sim will not
-/// keep.
+/// What the ministry CARDS use. It reproduces `tick`'s domestic-policy gate:
+/// player-only in legacy campaigns and shared in fiscal recovery campaigns.
 pub fn stability_pressure_of(w: &WorldState, n: &Nation) -> f64 {
     stability_pressure_terms_of(w, n).total
 }
 
 pub fn stability_pressure_terms_of(w: &WorldState, n: &Nation) -> StabilityPressure {
-    let is_player = w.player == Some(n.id);
+    let domestic_policy = domestic_policy_consequences(w, n.id);
     let budget_gap: [f64; BUDGET_MINISTRIES] =
-        std::array::from_fn(|i| if is_player { n.budget_gap(i) } else { 0.0 });
-    stability_pressure_terms(
+        std::array::from_fn(|i| if domestic_policy { n.budget_gap(i) } else { 0.0 });
+    let mut terms = stability_pressure_terms(
         n,
         &budget_gap,
         unemployment_rate(n, w.at_war(n.id)),
-        is_player,
+        domestic_policy,
         w.sanction_weight(n.id),
-    )
+    );
+    if crate::fiscal_recovery::enabled(w) {
+        terms.fiscal_confidence_drag = -crate::fiscal_recovery::stability_pressure(w, n.id);
+        terms.total -= terms.fiscal_confidence_drag;
+    }
+    terms
 }
 
 /// Fraction of a month's additive business-pressure flow applied this step.
@@ -1356,9 +1368,11 @@ pub fn tick(w: &mut WorldState) {
     oil_market(w);
 
     let oil_price = w.oil_price;
-    let player = w.player;
     let ids: Vec<NationId> = w.nations.iter().filter(|n| n.alive).map(|n| n.id).collect();
     let mut district_growth: Vec<(NationId, f64)> = Vec::with_capacity(ids.len());
+    let fiscal_enabled = crate::fiscal_recovery::enabled(w);
+    let fiscal_day = crate::clock::absolute_day(w);
+    let mut fiscal_receipts = Vec::new();
 
     for id in ids {
         let sanction_share = w.sanction_weight(id);
@@ -1379,10 +1393,12 @@ pub fn tick(w: &mut WorldState) {
             w.rng.range(-0.004, 0.004)
         };
         let crisis_mult = w.rules.crisis_intensity;
+        let domestic_policy = domestic_policy_consequences(w, id);
         let budget_gap: [f64; BUDGET_MINISTRIES] = std::array::from_fn(|i| {
-            if Some(id) == player { w.nation(id).budget_gap(i) } else { 0.0 }
+            if domestic_policy { w.nation(id).budget_gap(i) } else { 0.0 }
         });
         let project_level = crate::province_economy::project_level(w, id);
+        let fiscal_pressure = crate::fiscal_recovery::stability_pressure(w, id);
         let n = w.nation_mut(id);
 
         // The whole of this nation's year, priced by `growth_terms` — the one
@@ -1575,10 +1591,11 @@ pub fn tick(w: &mut WorldState) {
         // needs.
 
         // In the governed economy, private investment is an outcome rather than
-        // a frozen roster number. AI economies keep their calibrated structural
-        // shares until they receive the same player policy surface.
+        // a frozen roster number. Fiscal recovery gives AI economies the same
+        // tax and budget policy surface and therefore the same feedback. Legacy
+        // AI economies retain their calibrated structural shares.
         let unemployment = unemployment_rate(n, at_war);
-        if Some(id) == player {
+        if domestic_policy {
             let neutral = 0.025;
             let mut business_pressure = (n.growth_last - 0.020) * 0.20
                 + (neutral - real_rate) * 0.10
@@ -1651,6 +1668,9 @@ pub fn tick(w: &mut WorldState) {
                 // not the reporting share multiplied back up by GDP, which
                 // would not be the same float.
                 let interest_bn = books.interest_bn / 12.0 * dt;
+                if fiscal_enabled {
+                    fiscal_receipts.push((id, revenue_bn, spend_bn, interest_bn));
+                }
                 let (treasury, debt) = pay(treasury, debt, spend_bn + interest_bn - revenue_bn);
                 n.treasury_bn = Some(treasury);
                 n.debt_bn = Some(debt);
@@ -1682,7 +1702,8 @@ pub fn tick(w: &mut WorldState) {
         // where the nation SETTLES without keeping a second copy of this sum.
         // See that function for every term and why the gaps are passed in.
         let mut ds =
-            stability_pressure(n, &budget_gap, unemployment, Some(id) == player, sanction_share);
+            stability_pressure(n, &budget_gap, unemployment, domestic_policy, sanction_share);
+        if fiscal_enabled { ds += fiscal_pressure; }
         // The 0.01 is `ministries::MEAN_REVERSION`, named there because it is
         // the reciprocal every stability CARD is quoted through: a standing
         // pressure of x settles the nation at `(60 + x/0.01).clamp(0.0, 100.0)`,
@@ -1716,6 +1737,9 @@ pub fn tick(w: &mut WorldState) {
     // Hold this exact first multiplier transiently so both can be paid in one
     // province-map pass, in the same arithmetic order.
     w.district_population_growth = district_growth;
+    for (id, revenue, spending, interest) in fiscal_receipts {
+        crate::fiscal_recovery::record_fiscal(&mut w.fiscal_recovery, id, fiscal_day, revenue, spending, interest);
+    }
 }
 
 /// How much a nation's population growth MOVES as it gets rich, and nothing
@@ -1758,7 +1782,7 @@ pub fn population_growth(n: &Nation) -> f64 {
 }
 
 /// The annual demographic pace the next monthly tick will apply to one nation,
-/// including the player's health and housing budget choices. Exposed so the
+/// including the active health and housing budget consequences. Exposed so the
 /// province dossier can state the same rate the simulation uses.
 ///
 /// The two arms are `ministries::health_population` and
@@ -1769,7 +1793,7 @@ pub fn population_growth(n: &Nation) -> f64 {
 pub fn effective_population_growth(w: &WorldState, id: NationId) -> Option<f64> {
     if let Some(rate) = crate::population::effective_demographic_growth(w, id) { return Some(rate); }
     let n = w.nation_opt(id)?;
-    let policy = if w.player == Some(id) {
+    let policy = if domestic_policy_consequences(w, id) {
         crate::ministries::health_population(n.budget_gap(BUDGET_HEALTH))
             + crate::ministries::housing_population(n.budget_gap(BUDGET_HOUSING))
     } else {
