@@ -84,6 +84,56 @@ fn near(a: f64, b: f64) {
 }
 
 #[test]
+fn rebuilt_center_supports_automatic_research_without_economic_competition() {
+    let nation = NationId::France;
+    let (mut w, district, _) = prepared(nation);
+    w.rules.economic_competition = false;
+    w.rules.industry_rebuild = true;
+    w.nation_mut(nation).tech.focus.fill(None);
+    w.nation_mut(nation).tech.allocation = None;
+    // Ordinary research selects its own projects; a lab must not require a
+    // manual redirect (which charges political capital and loses progress).
+    tech::tick(&mut w);
+    assert!(w.nation(nation).tech.focus.iter().any(Option::is_some));
+    next_day(&mut w);
+    center(&mut w, &district, 1);
+    w.production.provinces.iter_mut().find(|p| p.district == district).unwrap().power_grid = 1;
+    w.production.industry.sites.insert(district.clone(), [0, 1, 0, 0, 0, 0, 0]);
+    assert!(spheres_sim::industry_operations::operating_fraction(
+        &w, &district, production::ProjectKind::ResearchCenter) > 0.0);
+
+    let mut legacy = w.clone();
+    legacy.rules.industry_rebuild = false;
+    let legacy_before = save(&legacy);
+    industry::research_day(&mut legacy);
+    assert_eq!(save(&legacy), legacy_before,
+        "both opt-ins off must retain the exact legacy no-operation path");
+
+    let before = w.clone();
+    industry::research_day(&mut w);
+    let receipts = industry::research_status(&w, nation);
+    assert_eq!(receipts.len(), 1,
+        "the default browser industry system must settle its completed research center");
+    let receipt = &receipts[0];
+    let technology = receipt.technology.expect("automatic research supplies an eligible project");
+    assert!(receipt.prototype_credit > 0.0);
+    near(tech::cost_of(&before, nation, technology) - tech::cost_of(&w, nation, technology),
+        receipt.prototype_credit);
+    near(before.production.industry.goods[&nation].intermediates
+        - w.production.industry.goods[&nation].intermediates, receipt.goods_used.intermediates);
+    near(before.production.industry.goods[&nation].capital_goods
+        - w.production.industry.goods[&nation].capital_goods, receipt.goods_used.capital_goods);
+    near(programs::available_bn(&before, nation, BUDGET_SCIENCE, 0)
+        - programs::available_bn(&w, nation, BUDGET_SCIENCE, 0), receipt.cash_spent_daily_bn);
+    assert_eq!(w.nation(nation).tech.research_total, before.nation(nation).tech.research_total);
+    assert_eq!(w.nation(nation).gdp, before.nation(nation).gdp);
+    let saved = save(&w);
+    let mut restored = load(&saved).unwrap();
+    industry::research_day(&mut restored);
+    assert_eq!(save(&restored), saved, "save/resume cannot buy the same day's work twice");
+}
+
+#[test]
 fn company_research_bonus_is_specific_supplied_prototype_work_with_real_fees() {
     use spheres_sim::companies::{self, CompanySector, CompanyTarget};
     let (mut w, district, technology) = prepared(USA);

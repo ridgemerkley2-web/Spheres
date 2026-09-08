@@ -1067,8 +1067,10 @@ pub fn tick_day(w: &mut WorldState) {
 }
 
 pub(crate) fn research_enabled(w: &WorldState) -> bool {
-    clock::is_daily(w) && w.rules.economic_competition && w.rules.production_system
-        && w.rules.resource_market
+    // The active industry system offers research centers independently of
+    // economic competition. Preserve the earlier opt-in and legacy off path.
+    clock::is_daily(w) && (w.rules.industry_rebuild || w.rules.economic_competition)
+        && w.rules.production_system && w.rules.resource_market
 }
 
 /// Pure and shared by the technology quote and acquisition charge. Work is

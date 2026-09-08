@@ -1645,6 +1645,36 @@ fn bn(v: f64) -> String {
     }
 }
 
+/// Small recurring contract quotes should say $100m rather than rounding the
+/// same commitment into a decimal-billion abbreviation.
+fn contract_money(v: f64) -> String {
+    if v.abs() < 1.0 { format!("${}m", qty(v * 1000.0)) } else { bn(v) }
+}
+
+/// Scheduled counterleg at full service, using the contract's real daily term
+/// and calendar fractions. This is not an upfront charge or a delivery promise.
+fn contract_full_term_bn(w: &WorldState, annual: f64, months: u32) -> f64 {
+    let years = if spheres_sim::clock::is_daily(w) {
+        resources::annual_flow_fraction_for_days(w, spheres_sim::clock::days_for_months(w, months) as i32)
+    } else { months as f64 / 12.0 };
+    annual * years
+}
+
+/// The military picker is only one possible resource consumer. The existing
+/// supply forecast already separates the actual funded and committed uses.
+fn resource_demand_label(line: &spheres_sim::economic_ai::RawSupplyLine) -> String {
+    let uses = [
+        (line.project_remaining, "construction projects"),
+        (line.mine_remaining, "mine construction"),
+        (line.materials_remaining, "Materials orders"),
+        (line.civilian_operating_daily, "operating industry"),
+        (line.equipment_remaining, "equipment production and refits"),
+        (line.military_recurring_monthly, "military production"),
+    ].into_iter().filter_map(|(amount, label)| (amount > 1e-9).then_some(label))
+        .collect::<Vec<_>>();
+    if uses.is_empty() { "committed work".into() } else { uses.join(", ") }
+}
+
 /// "a year", "3 years", "10 years".
 fn years_words(months: u32) -> String {
     match months {
@@ -2165,6 +2195,41 @@ fn row_json_with_strategic(
     let mut row = row_json(w, id, l, kit);
     if let Some(line) = forecast.lines.iter().find(|line| line.commodity == l.c) {
         row["strategic"] = strategic_resource_json(w, forecast, line);
+        if spheres_sim::clock::is_daily(w) && l.tracked && l.c != Commodity::Oil {
+            let purpose = resource_demand_label(line);
+            let need = row["need"].as_f64().unwrap_or(0.0);
+            let unit = period_board_unit(w, l.c);
+            let physical = row["stock"]["physical"] == true;
+            // The historical twelve-month gate is not an inventory reading.
+            row["cover_months"] = row["stock"]["months_cover"].clone();
+            row["cover_days"] = row["stock"]["days_cover"].clone();
+            row["needed_by"] = if l.need > 0.0 || line.finite_remaining > 1e-9 {
+                serde_json::json!(purpose)
+            } else { serde_json::Value::Null };
+            if l.need > 0.0 {
+                row["sentence"] = serde_json::json!(format!("{} {unit} needed for {purpose}", qty(need)));
+                let cover = if physical {
+                    format!("Warehouse stock covers {} days at the current forecast demand.",
+                        qty(row["cover_days"].as_f64().unwrap_or(0.0)))
+                } else {
+                    "Stock is a legacy projection until the first physical settlement.".to_string()
+                };
+                row["hover"] = serde_json::json!(format!(
+                    "Current demand: {purpose}. {cover} Incoming supply and remaining committed work are shown in the supply outlook."));
+            }
+            if let Some(prov) = row["prov"].as_array_mut() {
+                prov.retain(|entry| entry["letter"] != "M");
+                if l.need > 0.0 {
+                    prov.push(serde_json::json!({"letter":"M","text":format!(
+                        "need: the current resource draw for {purpose}; committed bills and funded time windows are listed separately in the supply outlook") }));
+                    prov.push(serde_json::json!({"letter":"M","text":if physical {
+                        "cover: warehouse inventory relative to current forecast demand; future deliveries are not stock in hand"
+                    } else {
+                        "cover: legacy projected stock until the first physical settlement; not delivered inventory"
+                    }}));
+                }
+            }
+        }
     }
     row
 }
@@ -2709,7 +2774,15 @@ fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::V
             .min_by(|a, b| a.ask.partial_cmp(&b.ask).unwrap_or(std::cmp::Ordering::Equal).then(a.id.cmp(&b.id)));
         let pc = spheres_sim::price_of(w, &Command::ProposeDeal { from: me, to: me, give: vec![], take: vec![], months: 36 })
             .unwrap_or(3.0);
-        let plus = if l.need > 0.0 {
+        let plus = if spheres_sim::clock::is_daily(w) && c != Commodity::Oil &&
+            strategic.lines.iter().any(|line|line.commodity == c && (line.finite_remaining > 1e-9 || l.need > 0.0)) {
+            let line = strategic.lines.iter().find(|line| line.commodity == c).unwrap();
+            let finite = if line.finite_remaining > 1e-9 {
+                " This is recurring supply; compare the full term with the finite remaining work before committing."
+            } else { "" };
+            format!("+{} {unit} for 36 months — supplies {}.{finite}",
+                qty(period_on_board(w, c, q)), resource_demand_label(line))
+        } else if l.need > 0.0 {
             let kit_name = kit.map(|k| k.0).unwrap_or("procurement");
             let stalling = if matches!(l.status, "short" | "stalled") {
                 format!(" (stalling in {} months)", l.cover.ceil() as i64)
@@ -2724,7 +2797,12 @@ fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::V
         };
         let minus = match best {
             Some(s) if s.ask > 0.0 => {
-                format!("−{} a year at {} ask ({:.2}% of output)", bn(s.ask), possessive(s.id.name()), s.ask / gdp * 100.0)
+                let minimum = if (s.ask - resources::PRICE_STEP).abs() < 1e-9 {
+                    format!(" This is the minimum paid diplomatic contract quote: {} a year.", contract_money(resources::PRICE_STEP))
+                } else { String::new() };
+                format!("Cost: {} a year at {} ask ({:.2}% of output); up to {} over 36 months at full service, paid as the contract operates.{minimum}",
+                    contract_money(s.ask), possessive(s.id.name()), s.ask / gdp * 100.0,
+                    contract_money(contract_full_term_bn(w, s.ask, 36)))
             }
             Some(s) => format!("−nothing: {} would take the terms as they stand", s.id.name()),
             None => "nobody is asking a price".to_string(),
@@ -2749,6 +2827,7 @@ fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::V
             "best_seller": best.map(|s| s.id.name()),
             "best_seller_id": best.map(|s| format!("{:?}", s.id)),
             "best_ask": best.map(|s| round(s.ask, 3)),
+            "full_term_ask_bn": best.map(|s| round(contract_full_term_bn(w, s.ask, 36), 9)),
             "sellers": sellers.iter().map(|s| seller_json(w, c, s)).collect::<Vec<_>>(),
             "blocked": serde_json::Value::Null,
         })
@@ -2807,9 +2886,17 @@ fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::V
 
     // The advisor line, verbatim.
     let best_seller = trade.get("best_seller").and_then(|v| v.as_str()).map(str::to_string);
+    let covered = strategic.lines.iter().find(|line|line.commodity == c)
+        .is_some_and(|line|strategic_status(c, line, 1) == "secure");
+    let coverage_advice = "The 90-day supply outlook is covered. Inspect stock and incoming deliveries before buying more; goods in transit cannot be used yet.";
     let advisor = if equipment_remaining > 1e-9 {
         let (stock_label,factor)=stock_unit(c);
-        format!("Custom equipment has {} {stock_label} of {} work remaining. Compare its funded schedule with domestic output and incoming deliveries in the supply outlook before ordering more.",qty(equipment_remaining*factor),c.name())
+        let guidance = if covered { coverage_advice } else {
+            "Compare its funded schedule with domestic output and incoming deliveries in the supply outlook before ordering more."
+        };
+        format!("Custom equipment has {} {stock_label} of {} work remaining. {guidance}",qty(equipment_remaining*factor),c.name())
+    } else if covered {
+        coverage_advice.to_string()
     } else if l.need <= 0.0 {
         format!("Nothing needs {} {}.", c.name(), if w.rules.daily_simulation { "today" } else { "this month" })
     } else if let Some(s) = best_seller {
@@ -2839,6 +2926,7 @@ fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::V
 fn stock_nation_json(w: &WorldState, me: Option<NationId>, other: NationId) -> serde_json::Value {
     let draw = resources::draw(w, other);
     let kit = resources::needed_by(w, other);
+    let forecast = spheres_sim::clock::is_daily(w).then(|| spheres_sim::economic_ai::raw_supply_forecast(w, other));
     let rows: Vec<serde_json::Value> = ALL
         .iter()
         .map(|c| {
@@ -2873,7 +2961,11 @@ fn stock_nation_json(w: &WorldState, me: Option<NationId>, other: NationId) -> s
                 "produce": round(annual_period_on_board(w, c, l.flow), 6),
                 "cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
                 "unit": unit,
-                "needed_by": if l.need > 0.0 { kit.map(|k| k.0) } else { None },
+                "needed_by": if l.need > 0.0 {
+                    forecast.as_ref().and_then(|forecast| forecast.lines.iter()
+                        .find(|line|line.commodity==c)).map(resource_demand_label)
+                        .or_else(||kit.map(|k|k.0.to_string()))
+                } else { None },
                 "to_you": to_you.as_ref().map(|t| t.0),
                 "because": to_you.as_ref().map(|t| t.1.clone()),
             })
@@ -3014,10 +3106,12 @@ fn shipment_lane_json(
         "seller_name": a.seller.name(),
         "buyer": format!("{:?}", a.buyer),
         "buyer_name": a.buyer.name(),
-        "requested": round(requested, 3),
-        "delivered": round(delivered, 3),
-        "dispatched": dispatched.map(|q| round(q, 3)),
-        "unshipped": round(unshipped, 3),
+        // Preserve physical quantities; the browser selects readable t/kg
+        // units. Rounding to three kt decimals erased real small shipments.
+        "requested": requested,
+        "delivered": delivered,
+        "dispatched": dispatched,
+        "unshipped": unshipped,
         "service_ratio": round(service_ratio, 4),
         "unit": stock_unit(a.commodity).0,
         "unit_price": a.unit_price.map(|v| round(v, 6)),
@@ -3043,7 +3137,7 @@ fn cargo_json(cargo: &logistics::Cargo, arrived_month: Option<i32>) -> serde_jso
         "to_name": cargo.buyer.name(),
         "commodity": cargo.commodity.key(),
         "commodity_name": line_name(cargo.commodity),
-        "quantity": round(cargo.quantity * stock_unit(cargo.commodity).1, 3),
+        "quantity": cargo.quantity * stock_unit(cargo.commodity).1,
         "unit": stock_unit(cargo.commodity).0,
         "source": cargo.source,
         "contract_id": cargo.contract,
@@ -3828,15 +3922,21 @@ fn district_capability_total(w: &WorldState, district: &str) -> usize {
     production::PROJECT_KINDS.into_iter().map(|kind| production::level(w,district,kind) as usize).sum()
 }
 
-fn production_project_json(w: &WorldState, me: NationId, p: &Project) -> serde_json::Value {
-    let spec = production::catalog(p.kind);
-    let planned = spheres_sim::industry::project_plans(w).remove(&p.id);
-    let status = planned.as_ref().map_or(p.status, |plan| {
+/// Current feasible work is the daily display authority. The saved status is
+/// the last settlement receipt and can lag an order or an input delivery.
+fn production_project_status(p: &Project, planned: Option<&spheres_sim::industry::WorkPlan>) -> ProjectStatus {
+    planned.map_or(p.status, |plan| {
         if plan.reason.is_some() { ProjectStatus::Blocked }
         else if plan.advance_days <= 1e-9 { ProjectStatus::Paused }
         else if plan.slow_reason.is_some() { ProjectStatus::Slowed }
         else { ProjectStatus::Building }
-    });
+    })
+}
+
+fn production_project_json(w: &WorldState, me: NationId, p: &Project) -> serde_json::Value {
+    let spec = production::catalog(p.kind);
+    let planned = spheres_sim::industry::project_plans(w).remove(&p.id);
+    let status = production_project_status(p, planned.as_ref());
     let scale=spheres_sim::industrial_modules::scale(p);
     let recipe=spec.recipe.map(|value|value*scale);
     let progress = (p.progress_days / p.total_days.max(1) as f64).clamp(0.0, 1.0);
@@ -3889,7 +3989,15 @@ fn production_project_json(w: &WorldState, me: NationId, p: &Project) -> serde_j
 fn production_summary_json(w: &WorldState, me: NationId) -> serde_json::Value {
     let mut projects = production::projects_for(w, me).collect::<Vec<_>>();
     projects.sort_by_key(|p| p.id);
-    let count = |status| projects.iter().filter(|p| p.status == status).count();
+    // Reserve inputs, capacity and funding once for the whole priority queue,
+    // just as the detailed cards do. Empty and legacy monthly queues need no
+    // planning pass, and none of these reads settles work or mutates the save.
+    let planned = if projects.is_empty() || !spheres_sim::clock::is_daily(w) {
+        BTreeMap::new()
+    } else { spheres_sim::industry::project_plans(w) };
+    let statuses = projects.iter().map(|p| (p.id, production_project_status(p, planned.get(&p.id))))
+        .collect::<Vec<_>>();
+    let count = |status| statuses.iter().filter(|(_, current)| *current == status).count();
     let slowed = count(ProjectStatus::Slowed);
     let paused = count(ProjectStatus::Paused);
     let blocked = count(ProjectStatus::Blocked);
@@ -3909,10 +4017,10 @@ fn production_summary_json(w: &WorldState, me: NationId) -> serde_json::Value {
         "paused": paused,
         "blocked": blocked,
         "attention": slowed + paused + blocked,
-        "attention_ids": projects.iter()
-            .filter(|p| p.status != ProjectStatus::Building)
+        "attention_ids": statuses.iter()
+            .filter(|(_, status)| *status != ProjectStatus::Building)
             .take(3)
-            .map(|p| p.id)
+            .map(|(id, _)| *id)
             .collect::<Vec<_>>(),
         "completed": completed,
         "module_provinces":w.production.industry.modules.keys().filter(|d|w.districts.get(*d)==Some(&me)).count(),
@@ -4249,13 +4357,15 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 && spheres_sim::industrial_modules::capacity(w,district) <= 0.0 {
                 return None;
             }
-            let status = if active.iter().any(|p| p.status == ProjectStatus::Blocked) {
+            let has_status = |status: &str| active.iter().any(|p|
+                queue.iter().any(|row| row["id"] == p.id && row["status"] == status));
+            let status = if has_status("blocked") {
                 Some("blocked")
-            } else if active.iter().any(|p| p.status == ProjectStatus::Paused) {
+            } else if has_status("paused") {
                 Some("paused")
-            } else if active.iter().any(|p| p.status == ProjectStatus::Slowed) {
+            } else if has_status("slowed") {
                 Some("slowed")
-            } else if active.iter().any(|p| p.status == ProjectStatus::Building) {
+            } else if has_status("building") {
                 Some("building")
             } else {
                 None
@@ -5131,6 +5241,7 @@ fn ladders_json(w: &WorldState, me: NationId, to: NationId, com: Option<Commodit
 fn talks_lines(w: &WorldState, me: NationId, to: NationId, give: &[Leg], take: &[Leg], months: u32) -> (Vec<String>, Vec<String>) {
     let draw = resources::draw(w, me);
     let kit = resources::needed_by(w, me);
+    let forecast = spheres_sim::clock::is_daily(w).then(|| spheres_sim::economic_ai::raw_supply_forecast(w, me));
     let gdp = w.nation(me).gdp.max(1e-9);
     let mut pluses = vec![];
     let mut minuses = vec![];
@@ -5139,7 +5250,14 @@ fn talks_lines(w: &WorldState, me: NationId, to: NationId, give: &[Leg], take: &
             Leg::Commodity { c, per_month } => {
                 let unit = period_board_unit(w, *c);
                 pluses.push(format!("+ {} {unit} of {} for {} months", qty(period_on_board(w, *c, *per_month)), c.name(), months));
-                if draw[c.idx()] > 0.0 {
+                if let Some(line) = forecast.as_ref().and_then(|forecast| forecast.lines.iter()
+                    .find(|line| line.commodity == *c && *c != Commodity::Oil))
+                    .filter(|line| draw[c.idx()] > 0.0 || line.finite_remaining > 1e-9) {
+                    pluses.push(format!("+ supplies {}", resource_demand_label(line)));
+                    if line.finite_remaining > 1e-9 {
+                        minuses.push(format!("Supply continues for {months} months even if the finite committed work finishes sooner."));
+                    }
+                } else if draw[c.idx()] > 0.0 {
                     let line = read_line(w, me, *c, draw[c.idx()]);
                     let was = if matches!(line.status, "short" | "stalled") {
                         format!(" (was stalling in {} months)", line.cover.ceil() as i64)
@@ -5168,10 +5286,10 @@ fn talks_lines(w: &WorldState, me: NationId, to: NationId, give: &[Leg], take: &
     for l in give {
         match l {
             Leg::Money { bn_per_year } if *bn_per_year > 0.0 => minuses.push(format!(
-                "− {} a year for {} ({:.2}% of output)",
-                bn(*bn_per_year),
-                years_words(months),
-                bn_per_year / gdp * 100.0
+                "Cost: {} a year for {} months ({:.2}% of output); up to {} at full service, paid as the contract operates",
+                contract_money(*bn_per_year), months,
+                bn_per_year / gdp * 100.0,
+                contract_money(contract_full_term_bn(w, *bn_per_year, months))
             )),
             Leg::Money { .. } => {}
             Leg::Commodity { c, per_month } => {
@@ -15571,6 +15689,73 @@ mod tests {
     }
 
     #[test]
+    fn construction_resource_quote_names_committed_work_and_full_contract_cost() {
+        let me = NationId::France;
+        let mut g = Game::new(1990, Some(me));
+        fresh_play_rules(&mut g).unwrap();
+        apply_command(&mut g.world, &Command::SetConstructionBudget {
+            nation: me, daily_budget_bn: 0.005,
+        }).unwrap();
+        let district = g.world.districts.iter().find(|(district, owner)|
+            **owner == me && spheres_sim::districts::name_of(district)
+                .is_some_and(|name| name.contains("Île-de-France")))
+            .expect("France's capital province").0.clone();
+        apply_command(&mut g.world, &Command::StartProject {
+            nation: me, district, kind: ProjectKind::CivilianIndustry,
+        }).unwrap();
+        g.advance_days(1, vec![]);
+        let before = save(&g.world);
+        let cards = stock_cards_json(&g.world, me, Commodity::RareEarths);
+        assert_eq!(cards["row"]["strategic"]["horizons"][1]["status"], "secure",
+            "this real factory fixture has enough already-paid cargo incoming");
+        assert!(cards["advisor"].as_str().unwrap().contains("covered"),
+            "the adviser must not recommend duplicate buying when the outlook is already covered");
+        assert!(!cards["advisor"].as_str().unwrap().contains("Try buying"));
+        assert!(cards["row"]["needed_by"].as_str().unwrap().contains("construction"),
+            "a factory's input must identify construction: {}", cards["row"]);
+        assert!(!cards.to_string().contains("GBU-24"), "no aircraft weapon line was ordered");
+        assert_eq!(cards["row"]["cover_months"], cards["row"]["stock"]["months_cover"],
+            "an empty warehouse must not advertise the old twelve-month buffer");
+        assert!(!cards["trade"]["plus"].as_str().unwrap().contains("stalling in"));
+        assert!(cards["trade"]["plus"].as_str().unwrap().contains("finite"));
+        let annual = cards["trade"]["best_ask"].as_f64().expect("a seller quotes the factory input");
+        assert_eq!(annual, resources::PRICE_STEP);
+        assert!((cards["trade"]["full_term_ask_bn"].as_f64().unwrap() - annual * 3.0).abs() < 1e-10);
+        let cost = cards["trade"]["minus"].as_str().unwrap();
+        assert!(cost.contains("$100m") && cost.contains("$300m") && cost.contains("36 months"), "{cost}");
+        assert!(cost.contains("minimum"), "explain why a tiny physical need has a large contract quote: {cost}");
+        let take = vec![Leg::Commodity { c: Commodity::RareEarths,
+            per_month: ask_basis(&g.world, me, Commodity::RareEarths).0 }];
+        let (pluses, _) = talks_lines(&g.world, me, NationId::USA, &[], &take, 36);
+        assert!(pluses.iter().any(|text| text.contains("construction")));
+        assert!(!pluses.iter().any(|text| text.contains("GBU-24") || text.contains("stalling in")));
+        assert_eq!(save(&g.world), before, "quotes cannot reserve goods, spend money, or advance time");
+    }
+
+    #[test]
+    fn resource_contract_full_term_cost_follows_leap_day_payments() {
+        let mut g = Game::new(1990, Some(NationId::France));
+        g.world.rules.daily_simulation = true;
+        g.world.year = 1992;
+        g.world.month = 2;
+        g.world.day = 29;
+        let annual = resources::PRICE_STEP;
+        let days = spheres_sim::clock::days_for_months(&g.world, 36);
+        let quote = contract_full_term_bn(&g.world, annual, 36);
+        let mut scheduled = 0.0;
+        for _ in 0..days {
+            scheduled += annual * spheres_sim::clock::year_fraction(&g.world);
+            spheres_sim::clock::advance_date(&mut g.world);
+        }
+        assert_eq!(g.world.date_str(), "28 Feb 1995");
+        assert!((quote - scheduled).abs() < 1e-12);
+        assert!((quote - annual * 3.0).abs() > 1e-7,
+            "a leap-day start has a clamped anniversary, not exactly three budget shares");
+        g.world.rules.daily_simulation = false;
+        assert_eq!(contract_full_term_bn(&g.world, annual, 36), annual * 3.0);
+    }
+
+    #[test]
     fn strategic_supply_red_requires_an_authoritative_recorded_block() {
         let g = Game::new(1990, Some(NationId::USA));
         let raw = spheres_sim::economic_ai::raw_supply_forecast(&g.world, NationId::USA);
@@ -16469,6 +16654,35 @@ mod tests {
         assert_eq!(arrived["state"], "arrived");
         assert_eq!(arrived["due_month"]["month"], 2);
         assert_eq!(arrived["arrived_month"]["month"], 4);
+    }
+
+    #[test]
+    fn logistics_small_shipments_preserve_physical_quantity_before_display_units() {
+        let g = Game::new(1990, Some(NationId::France));
+        let cargo = logistics::Cargo {
+            id: 7, seller: NationId::USA, buyer: NationId::France,
+            commodity: Commodity::RareEarths, quantity: 0.004,
+            source: resources::ShipmentSource::Contract, contract: Some(1),
+            route: logistics::plan(&g.world, NationId::USA, NationId::France).unwrap(),
+            dispatched_month: 0, due_month: 1, hold_reason: None,
+            dispatched_day: Some(0), due_day: Some(8),
+        };
+        let served = cargo_json(&cargo, None);
+        assert_eq!(served["unit"], "kt");
+        assert!((served["quantity"].as_f64().unwrap() * 1_000_000.0 - 4.0).abs() < 1e-12,
+            "four kilograms must survive the wire, not become zero kilotonnes");
+        let audit = resources::ShipmentAudit {
+            source: resources::ShipmentSource::Contract, contract: Some(1),
+            seller: NationId::USA, buyer: NationId::France, commodity: Commodity::RareEarths,
+            requested: 0.004, delivered: 0.0, dispatched: Some(0.003),
+            unit_price: None, cost_bn: None, months_left: Some(36),
+            status: resources::ShipmentStatus::CapacityLimited, cause: None, route: Some(cargo.route),
+        };
+        let lane = shipment_lane_json(0, &audit, true);
+        for (field, kilograms) in [("requested", 4.0), ("dispatched", 3.0), ("unshipped", 1.0), ("delivered", 0.0)] {
+            assert!((lane[field].as_f64().unwrap() * 1_000_000.0 - kilograms).abs() < 1e-12,
+                "{field} must preserve the shipment's physical mass");
+        }
     }
 
     /// The web layer exposes the simulation's latest shipment audit as a

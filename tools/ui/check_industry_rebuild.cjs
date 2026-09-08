@@ -40,6 +40,38 @@ function operations(extra={}){return {as_of_day:2,inherited_factory_equivalents:
     reason:'Power shortage limits this facility.',annual_gdp_bn:1.095,annual_tax_bn:.219,cash_spent_daily_bn:.0001,
   }],note:'Jobs are modeled estimates.',...extra};}
 
+test('rebuilt civilian operation dates and built-facility navigation do not depend on legacy material receipts',()=>{
+  const c=fixture(),ops=operations();
+  ops.facilities=[{...ops.facilities[0],inherited:true,name:'Inherited materials',recorded_day:366},
+    {...ops.facilities[0],kind:'civilian_industry',name:'Civilian Factory',recorded_day:365}];
+  const data={name:'France',date:'2 Jan 1991',settlement:null,sites:[],goods:[],industry_rebuild:{operations:ops}};
+  c.desk.data=data;const before=plain(data),html=c.industryContentHtml(data);
+  assert.match(html,/Latest facility operation · 1 Jan 1991/);
+  assert.doesNotMatch(html,/No industry settlement recorded yet/);
+  assert(html.indexOf('<h3>Civilian Factory</h3>')<html.indexOf('<h3>Inherited materials</h3>'));
+  c.desk.filter='built';const filtered=c.industryUnifiedHtml(data);
+  assert.match(filtered,/1 of 2 operating facilities/);assert.doesNotMatch(filtered,/<h3>Inherited materials<\/h3>/);
+  assert.deepEqual(plain(data),before,'Rendering must not mutate the served ledger');
+  ops.facilities=ops.facilities.filter(row=>row.inherited);
+  assert.doesNotMatch(c.industryContentHtml(data),/Latest facility operation/,'Inherited estimates are not a new facility receipt');
+});
+
+test('rebuilt research centers show their dated prototype benefit and separate Science spending',()=>{
+  const c=fixture(),ops=operations();
+  ops.facilities=[{...ops.facilities[0],kind:'research_center',name:'Research Center',recorded_day:2557}];
+  const site={district:'US-CA',kind:'research_center',receipt_label:'1 Jan 1997',cash_spent_daily_bn:.000004,
+    research:{day:2557,prototype_credit:.0025,technology_name:'A <prototype>',goods_used:{intermediates:.03,capital_goods:.01}}};
+  const data={sites:[site],industry_rebuild:{operations:ops}};c.desk.data=data;
+  const before=plain(data),html=c.industryUnifiedHtml(data);
+  assert.match(html,/Latest prototype credit/);assert.match(html,/0.0025 research units/);
+  assert.match(html,/A &lt;prototype&gt; · 1 Jan 1997/);assert.match(html,/Latest prototype spending/);
+  assert.match(html,/Science funding/);assert.match(html,/Review research/);
+  assert.deepEqual(plain(data),before);
+  site.research=null;
+  assert.match(c.industryUnifiedHtml(data),/Awaiting first prototype operation/);
+  assert.doesNotMatch(c.industryUnifiedHtml(data),/0 research units/,'Missing work is not zero credit');
+});
+
 test('capacity ledger renders the served pool, assignments and idle capacity without changing state',()=>{
   const c=fixture();c.PROD.data.industry_rebuild={capacity:{total_capacity:30,assigned_capacity:21.5,idle_capacity:8.5,
     inherited_capacity:10,civilian_capacity:20,starter_capacity:0,max_per_project:20}};

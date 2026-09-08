@@ -59,3 +59,58 @@ fn component_trade_is_an_explicit_third_good_only_in_rebuild() {
     assert_eq!(spheres_sim::commerce::snapshot(&game.world,me).goods.len(),2);
     assert!(industry_rebuild_json(&game.world,me).is_null());
 }
+
+#[test]
+fn construction_summary_and_markers_follow_live_inputs_and_assignments_without_settling() {
+    let me=NationId::France;
+    let mut game=Game::new(1990,Some(me));
+    fresh_play_rules(&mut game).unwrap();
+    tick_day(&mut game.world,&[]);
+    programs::set_construction_budget(&mut game.world,me,0.01).unwrap();
+    programs::begin_day(&mut game.world);
+    resources::warm(&mut game.world);
+    let district=game.world.districts.iter().find(|(id,owner)| **owner==me
+        && spheres_sim::districts::name_of(id).is_some_and(|name|name.contains("le-de-France")))
+        .expect("France has its capital province").0.clone();
+    let market=game.world.resources.market.as_mut().unwrap();
+    for commodity in ALL {
+        let quantity=if commodity==Commodity::RareEarths {0.0}else{1000.0};
+        if let Some(stock)=market.stocks.iter_mut().find(|stock|stock.nation==me&&stock.commodity==commodity) {
+            stock.quantity=quantity;
+        } else {
+            market.stocks.push(resources::Stock{nation:me,commodity,quantity,reserve_target:0.0});
+        }
+    }
+    market.stocks.sort_by_key(|stock|(stock.nation,stock.commodity));
+    let id=production::start_project(&mut game.world,me,&district,ProjectKind::CivilianIndustry).unwrap();
+    assert_eq!(game.world.production.projects[0].status,ProjectStatus::Building,
+        "Newly queued status has not yet received a settlement");
+    let assert_views=|game:&Game,expected:&str| {
+        let before=spheres_sim::save(&game.world);
+        let board=production_json(&game.world,me);
+        let summary=production_summary_json(&game.world,me);
+        assert_eq!(summary,board["summary"]);
+        assert_eq!(board["queue"][0]["status"],expected);
+        assert_eq!(summary[expected],1);
+        assert_eq!(summary["building"],u64::from(expected=="building"));
+        assert_eq!(summary["attention"],u64::from(expected!="building"));
+        assert_eq!(summary["attention_ids"],if expected=="building" {serde_json::json!([])}else{serde_json::json!([id])});
+        let marker=board["markers"].as_array().unwrap().iter().find(|marker|marker["district"]==district).unwrap();
+        assert_eq!(marker["status"],expected);
+        assert_eq!(state_json(game,None)["production_summary"],summary);
+        assert_eq!(spheres_sim::save(&game.world),before,"Status reads must not settle work or alter RNG");
+    };
+    assert_views(&game,"paused");
+    assert!(production_json(&game.world,me)["queue"][0]["reason"].as_str().unwrap().contains("rare"));
+
+    // Receiving the missing input resumes the displayed work immediately;
+    // no day must elapse for the summary to agree with the construction card.
+    game.world.resources.market.as_mut().unwrap().stocks.iter_mut()
+        .find(|stock|stock.nation==me&&stock.commodity==Commodity::RareEarths).unwrap().quantity=1000.0;
+    assert_views(&game,"building");
+    spheres_sim::construction_capacity::set_assignment(&mut game.world,me,id,Some(0.0)).unwrap();
+    assert_views(&game,"paused");
+    spheres_sim::construction_capacity::set_assignment(&mut game.world,me,id,None).unwrap();
+    assert_views(&game,"building");
+    assert_eq!(game.world.production.projects[0].progress_days,0.0);
+}

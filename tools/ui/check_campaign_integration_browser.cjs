@@ -17,7 +17,9 @@ async function availablePort(){const server=net.createServer();await new Promise
   let browser,page;const errors=[];
   try{
     for(let attempt=0;;attempt++){
-      try{if((await fetch(url+'/api/state')).ok)break;}catch(_){}
+      // Consume the large state body before asking the serial server for HTML.
+      // An abandoned fetch can leave its response write blocked by backpressure.
+      try{const response=await fetch(url+'/api/state');await response.arrayBuffer();if(response.ok)break;}catch(_){}
       if(server.exitCode!==null)throw Error(`Server exited: ${server.exitCode}`);
       if(attempt>=300)throw Error('Server did not start.');await new Promise(resolve=>setTimeout(resolve,100));
     }

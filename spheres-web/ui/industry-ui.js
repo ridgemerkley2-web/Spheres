@@ -2,7 +2,7 @@
    converts no capacity into output, and never treats a missing receipt as zero. */
 const IDESK = {open:false,data:null,state:null,session:null,nation:null,seq:0,loading:false,stale:true,error:"",
   query:"",filter:"all",details:new Set(),focus:null,scroll:0};
-const INDUSTRY_FILTERS = [["all","All"],["attention","Needs attention"],["producing","Producing"],["supporting","Supporting"]];
+const INDUSTRY_FILTERS = [["all","All"],["built","Built facilities"],["attention","Needs attention"],["producing","Producing"],["supporting","Supporting"]];
 const INDUSTRY_NAV = new Set(["construction","budget","resources","trade","research","manufacture","province","inherited"]);
 
 function industryText(value) {
@@ -41,6 +41,7 @@ function industryProducing(site) {
     || Number.isFinite(site.research?.prototype_credit)&&site.research.prototype_credit>0);
 }
 function industryMatchesFilter(site,filter) {
+  if(filter==="built") return site.inherited!==true;
   if(filter==="attention") return industryNeedsAttention(site);
   if(filter==="producing") return industryProducing(site);
   if(filter==="supporting") return site.productive===false;
@@ -107,7 +108,7 @@ function industryUnifiedHtml(data) {
   const ops=data?.industry_rebuild?.operations;
   if(!ops||!Array.isArray(ops.facilities)) return "";
   const settled=Number.isFinite(ops.as_of_day);
-  const facilities=ops.facilities.filter(row=>industrySiteMatches({...row,district_name:row.district_name||(typeof DINDEX!=="undefined"?DINDEX[row.district]?.name:null)},IDESK.query)&&industryMatchesFilter({...row,attention:Number.isFinite(row.utilization)&&row.utilization<.999,has_receipt:row.inherited||settled,productive:!(["civilian_industry","power_grid","infrastructure","warehouse","automation","efficiency","freight_terminal"].includes(row.kind))},IDESK.filter));
+  const facilities=ops.facilities.filter(row=>industrySiteMatches({...row,district_name:row.district_name||(typeof DINDEX!=="undefined"?DINDEX[row.district]?.name:null)},IDESK.query)&&industryMatchesFilter({...row,attention:Number.isFinite(row.utilization)&&row.utilization<.999,has_receipt:row.inherited||settled,productive:!(["civilian_industry","power_grid","infrastructure","warehouse","automation","efficiency","freight_terminal"].includes(row.kind))},IDESK.filter)).sort((a,b)=>Number(!!a.inherited)-Number(!!b.inherited));
   const number=industryNumber, metric=industryMetric;
   const summary=[...(Number.isFinite(ops.advanced_components_stock)?[metric("Advanced components in stock",`${number(ops.advanced_components_stock)} components`,`${number(ops.advanced_components_capacity)} storage capacity`)]:[]),metric("Power for additional activity",`${number(ops.power_capacity_daily)} units / day`,`${number(ops.power_required_daily)} required by new facilities; inherited demand is already reserved`),metric("Jobs filled in new facilities",number(ops.jobs_filled),`${number(ops.jobs_required)} required · ${number(ops.workers_available)} workers available for additional jobs`),metric("Inherited factory equivalents",number(ops.inherited_factory_equivalents),Number.isFinite(ops.inherited_jobs_filled)?`${number(ops.inherited_jobs_filled)} of ${number(ops.inherited_jobs_required)} estimated existing jobs filled`:"Existing industry and employment are already in the national baseline"),...(Number.isFinite(ops.inherited_power_used_daily)?[metric("Inherited electricity use",`${number(ops.inherited_power_used_daily)} units / day`,`${number(ops.inherited_power_required_daily)} required by existing industry`)]:[])].join("");
   const cards=facilities.map(row=>{
@@ -127,13 +128,31 @@ function industryUnifiedHtml(data) {
     if(Number.isFinite(row.annual_gdp_bn)) metrics.push(metric("Annual GDP contribution",industryMoney(row.annual_gdp_bn),"Economic output; not a treasury deposit"));
     if(Number.isFinite(row.annual_tax_bn)) metrics.push(metric("Annual tax revenue",industryMoney(row.annual_tax_bn),"Fiscal revenue at the current tax rate"));
     if(Number.isFinite(row.cash_spent_daily_bn)) metrics.push(metric("Latest operating spending",recorded?industryMoney(row.cash_spent_daily_bn):"Awaiting first operation","Per recorded day"));
+    if(row.kind==="research_center"&&!row.inherited) {
+      const site=(data.sites||[]).find(site=>site.district===row.district&&site.kind==="research_center"),research=site?.research;
+      const credited=research&&Number.isFinite(research.day)&&Number.isFinite(research.prototype_credit);
+      metrics.push(metric("Latest prototype credit",credited?`${number(research.prototype_credit)} research units`:"Awaiting first prototype operation",
+        credited?`${research.technology_name||"Research project"} · ${site.receipt_label||"Recorded day"}`:"Useful focused research, manufactured supplies and Science funding are required"));
+      if(credited) metrics.push(metric("Latest prototype spending",industryMoney(site.cash_spent_daily_bn),"Science funding · "+(site.receipt_label||"Recorded day")));
+      actions.push({action:"research",label:"Review research"});
+    }
     return `<article class="industry-site${percent!=null&&percent<99.9?" needs-attention":""}"><header><div><p class="industry-place">${industryText(district)}</p><h3>${industryText(name)}</h3><p class="industry-origin">${origin}</p></div><span class="industry-status">${percent==null?"Reading unavailable":`${number(percent)}% usable`}</span></header>${percent!=null?`<div class="industry-utilization" role="meter" aria-label="${industryText(name)} usable capacity" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${percent}"><i style="width:${percent}%"></i></div>`:""}<p class="industry-reason">${industryText(row.reason||row.status||"Operating reading available.")}</p><dl class="industry-site-metrics">${metrics.join("")}</dl><div class="industry-actions">${actions.map(action=>industryButton(action,action.label)).join("")}</div></article>`;
   }).join("");
   return `<section class="industry-unified" aria-labelledby="industryUnifiedTitle"><div class="industry-section-heading"><div><p class="industry-kicker">Capacity → workers, power and inputs → output</p><h2 id="industryUnifiedTitle">What your industry can actually deliver</h2><p>Inherited and newly completed facilities face visible operating constraints. Check the reason for idle capacity before adding another factory.</p></div></div><dl class="industry-stock">${summary}</dl><div class="industry-toolbar"><label for="industrySearch">Find a province or facility</label><div class="industry-search"><input id="industrySearch" type="search" value="${industryText(IDESK.query)}" placeholder="Province or facility" autocomplete="off" aria-controls="industryUnifiedSites"><button type="button" data-industry-clear ${IDESK.query?"":"disabled"}>Clear search</button></div><div class="industry-filters" aria-label="Facility filters">${INDUSTRY_FILTERS.map(([key,label])=>`<button type="button" data-industry-filter="${key}" aria-pressed="${IDESK.filter===key}">${label}</button>`).join("")}</div><p class="industry-note" role="status" aria-live="polite">${facilities.length} of ${ops.facilities.length} operating facilities shown</p></div><div class="industry-sites" id="industryUnifiedSites">${cards||`<p class="industry-note">No operating facilities match the current search.</p>`}</div>${ops.note?`<p class="industry-note industry-model-note">${industryText(ops.note)}</p>`:""}</section>`;
 }
+function industrySettlementLabel(data) {
+  const days=(data?.industry_rebuild?.operations?.facilities||[])
+    .filter(row=>!row.inherited&&Number.isInteger(row.recorded_day)&&row.recorded_day>=0)
+    .map(row=>row.recorded_day);
+  if(days.length) {
+    const date=new Date(Date.UTC(1990,0,1+Math.max(...days)));
+    return "Latest facility operation · "+date.toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric",timeZone:"UTC"});
+  }
+  return data?.settlement?.label?`Latest industry settlement · ${data.settlement.label}`:"No industry settlement recorded yet";
+}
 function industryContentHtml() {
   const data=IDESK.data,sites=industrySites(data),visible=industryVisibleSites(data);
-  const hero=`<header class="industry-hero"><div><p class="industry-kicker">Economy · Industry</p><h1>From construction to production</h1><p>Check completed facilities, their recorded work, and the supplies that keep them running.</p></div><div class="industry-reading"><strong>${industryText(data?.name||"National operations")}</strong><span>Current date · ${industryText(data?.date||"Loading")}</span><span>${industryText(data?.settlement?.label?`Latest industry settlement · ${data.settlement.label}`:"No industry settlement recorded yet")}</span></div></header>`;
+  const hero=`<header class="industry-hero"><div><p class="industry-kicker">Economy · Industry</p><h1>From construction to production</h1><p>Check completed facilities, their recorded work, and the supplies that keep them running.</p></div><div class="industry-reading"><strong>${industryText(data?.name||"National operations")}</strong><span>Current date · ${industryText(data?.date||"Loading")}</span><span>${industryText(industrySettlementLabel(data))}</span></div></header>`;
   const status=IDESK.error?`<div class="industry-message error" role="alert"><strong>Industry could not be refreshed.</strong><p>${industryText(IDESK.error)}</p>${data?"<p>The previous reading is shown below. Actions are disabled until it is refreshed.</p>":""}<button type="button" data-industry-retry ${industryOrdersPending()?"disabled":""}>Retry Industry</button></div>`
     :IDESK.loading||IDESK.stale?`<p class="industry-message" role="status">${data?"Updating the operations reading…":"Loading your industry…"}</p>`
     :industryOrdersPending()?`<p class="industry-message" role="status">Finish or review the pending turn or order before opening another task.</p>`:"";

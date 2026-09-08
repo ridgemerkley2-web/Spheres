@@ -16216,7 +16216,17 @@ function logisticsRoutePoints(lane) {
   return a && b ? [Globe3D.unproject(a[0], a[1]), Globe3D.unproject(b[0], b[1])] : [];
 }
 function logisticsCalendar(value) { return logisticsMonthLabel(value) || "next settlement"; }
-function logisticsQuantity(value, unit) { return value == null ? "—" : `${fmtQ(value)}${unit ? ` ${unit}` : ""}`; }
+function logisticsQuantity(value, unit) {
+  if (value == null || !isFinite(value)) return "—";
+  let amount = +value, shownUnit = unit;
+  if (shownUnit === "kt" && Math.abs(amount) > 0 && Math.abs(amount) < 1) {
+    amount *= 1000; shownUnit = "t";
+  }
+  if (shownUnit === "t" && Math.abs(amount) > 0 && Math.abs(amount) < 1) {
+    amount *= 1000; shownUnit = "kg";
+  }
+  return `${fmtQ(amount)}${shownUnit ? ` ${shownUnit}` : ""}`;
+}
 function logisticsActions(lane) {
   return (lane.actions || []).map((a) => typeof a === "string" ? a : (a && (a.kind || a.action || a.id))).filter(Boolean);
 }

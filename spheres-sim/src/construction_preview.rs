@@ -574,7 +574,7 @@ pub fn preview(
         K::ResearchCenter => {
             out.province_effects.push(effect("Prototype credit ceiling",research_capacity(w,district),research_capacity(&after,district),"acquisition-cost units/day","Conditional on useful focused research, Science operating authority and manufactured supplies; one target per center per day."));
             out.national_effects.push(effect("National prototype credit ceiling",owned_sum(w,nation,research_capacity),owned_sum(&after,nation,research_capacity),"acquisition-cost units/day","All centers also share each target's daily cap (25% of domain effort) and lifetime cap (20% of its current base research cost)."));
-            out.operating_requirements.push(requirement("Prototype operations enabled",Some(flag(industry::research_enabled(w))),"enabled","Current research operations require daily simulation, Economic Competition, production and the resource market. Disabled operations generate zero prototype credit."));
+            out.operating_requirements.push(requirement("Prototype operations enabled",Some(flag(industry::research_enabled(w))),"enabled","Current research operations require daily simulation, the active industry system or Economic Competition, production and the resource market. Disabled operations generate zero prototype credit."));
             out.operating_requirements.push(requirement("Science operating cash per added level",Some(industry::PROTOTYPE_CASH_PER_LEVEL_DAY_BN),"$bn/day","Maximum daily bill while a full added level performs useful prototype work; no generic research-output or GDP bonus."));
             out.operating_requirements.push(requirement(
                 "Intermediate packs per added level",
