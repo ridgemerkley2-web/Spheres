@@ -149,6 +149,10 @@ const EQUIPMENT_MODEL_JS: &str = include_str!("../ui/equipment-model.js");
 const EQUIPMENT_EXPORT_JS: &str = include_str!("../ui/equipment-export.js");
 const MILITARY_OPERATIONS_JS: &str = include_str!("../ui/operations-ui.js");
 const MILITARY_OPERATIONS_CSS: &str = include_str!("../ui/operations-ui.css");
+const CAMPAIGN_OPERATIONS_JS: &str = include_str!("../ui/campaign-operations-ui.js");
+const CAMPAIGN_OPERATIONS_CSS: &str = include_str!("../ui/campaign-operations-ui.css");
+#[cfg(test)]
+mod campaign_api_tests;
 /// Baked country outlines — see `src/bin/mapgen.rs`.
 const WORLD_JS: &str = include_str!("../ui/world.js");
 /// Baked admin-1 district outlines, same projection and canvas as world.js.
@@ -826,6 +830,7 @@ fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
         // conflict is still served while the row for the dead one is not.
         .filter(|b| w.nation_opt(b.nation).is_some_and(|n| n.alive))
         .map(|b| {
+            let disclosed = !spheres_sim::campaign::enabled(w) || w.player==Some(b.nation);
             let defending = spheres_sim::commitment::defending_home(w, c, b.nation);
             // THE LADDER, PRICED AND ADJUDICATED BY THE SIM, one entry per rung.
             //
@@ -870,12 +875,12 @@ fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
                 "ceiling": b.ceiling,
                 "objective": b.objective.label(),
                 "roe": b.roe.label(),
-                "resolve": b.resolve,
-                "red_line": b.red_line,
-                "stake": b.stake,
+                "resolve": disclosed.then_some(b.resolve),
+                "red_line": disclosed.then_some(b.red_line),
+                "stake": disclosed.then_some(b.stake),
                 "months_at_rung": b.months_at_rung,
-                "munitions": w.nation_opt(b.nation).map(|n| n.munitions),
-                "deployable": spheres_sim::war::deployable_fraction(w, b.nation),
+                "munitions": disclosed.then(|| w.nation_opt(b.nation).map(|n| n.munitions)).flatten(),
+                "deployable": disclosed.then(|| spheres_sim::war::deployable_fraction(w, b.nation)),
                 "access": spheres_sim::theatre::has_access(w, b.nation, c.theatre),
                 "home": spheres_sim::theatre::is_home(w, b.nation, c.theatre),
                 // Whether this belligerent is answering on its own ground, which
@@ -883,8 +888,8 @@ fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
                 // so the price the UI quotes and the price the queue charges
                 // cannot drift apart.
                 "defending_home": defending,
-                "committed": spheres_sim::war::committed_force(w, c, b.nation),
-                "force_share_bp": b.force_share_bp,
+                "committed": disclosed.then(|| spheres_sim::war::committed_force(w, c, b.nation)),
+                "force_share_bp": disclosed.then_some(b.force_share_bp).flatten(),
                 "rungs": rungs,
             })
         })
@@ -941,6 +946,8 @@ fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
         "attacker_allies": c.side_a.iter().skip(1).map(|a| a.name()).collect::<Vec<_>>(),
         "defender_allies": c.side_b.iter().skip(1).map(|a| a.name()).collect::<Vec<_>>(),
         "posture": posture,
+        "operation": w.player.and_then(|n|spheres_sim::campaign::view(w,c.id,n)),
+        "peace": w.player.map(|n|spheres_sim::campaign_peace::view(w,c,n)),
         "start": month_name(c.start_month, c.start_year),
     })
 }
@@ -1049,7 +1056,8 @@ fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
         "stability": n.stability,
         "political_capital": n.political_capital,
         "separatism": n.separatism,
-        "mil_strength": n.mil_strength,
+        "mil_strength": if spheres_sim::campaign::enabled(w) && me!=Some(n.id) { (n.mil_strength/10.0).round()*10.0 } else {n.mil_strength},
+        "military_estimated": spheres_sim::campaign::enabled(w) && me!=Some(n.id),
         "war_exhaustion": n.war_exhaustion,
         "nuclear": n.nuclear,
         "oil_mbd": n.oil_mbd,
@@ -6825,6 +6833,15 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
                 value => Some(value.as_u64()?.try_into().ok()?),
             },
         },
+        "operation" => Command::SetOperation { order: spheres_sim::campaign::OperationOrder {
+            conflict:v.get("conflict")?.as_u64()?.try_into().ok()?, nation:me,
+            target:match v.get("target")? {serde_json::Value::Null=>None,x=>Some(x.as_str()?.to_string())},
+            approach:serde_json::from_value(v.get("approach")?.clone()).ok()?,
+            reserve_bp:v.get("reserve_bp")?.as_u64()?.try_into().ok()?,
+            air:serde_json::from_value(v.get("air")?.clone()).ok()?,
+            naval:serde_json::from_value(v.get("naval")?.clone()).ok()?,
+        }},
+        "war_diplomacy" => Command::WarDiplomacy {nation:me,order:serde_json::from_value(v.get("order")?.clone()).ok()?},
         "objective" => Command::SetObjective {
             conflict: conflict()?,
             nation: me,
@@ -7091,6 +7108,8 @@ fn play_rules(g: &mut Game) {
     g.world.rules.logistics_routes = true;
     g.world.rules.physical_logistics = true;
     g.world.rules.military_operations = true;
+    g.world.rules.operational_warfare = 1;
+    spheres_sim::campaign::enroll(&mut g.world);
     g.world.rules.production_system = true;
     g.world.rules.industry_rebuild = true;
     g.world.rules.manufacturing_system = true;
@@ -7334,6 +7353,18 @@ fn main() {
                 let _ = request.respond(Response::from_string(MILITARY_OPERATIONS_JS)
                     .with_header(Header::from_bytes("Content-Type", "text/javascript; charset=utf-8").unwrap())
                     .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()));
+                continue;
+            }
+            (Method::Get, "/campaign-operations-ui.js") => {
+                let _=request.respond(Response::from_string(CAMPAIGN_OPERATIONS_JS)
+                    .with_header(Header::from_bytes("Content-Type","text/javascript; charset=utf-8").unwrap())
+                    .with_header(Header::from_bytes("Cache-Control","no-cache").unwrap()));
+                continue;
+            }
+            (Method::Get, "/campaign-operations-ui.css") => {
+                let _=request.respond(Response::from_string(CAMPAIGN_OPERATIONS_CSS)
+                    .with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap())
+                    .with_header(Header::from_bytes("Cache-Control","no-cache").unwrap()));
                 continue;
             }
             (Method::Get, "/operations-ui.css") => {
@@ -11137,7 +11168,7 @@ mod tests {
             .expect("the cabinet dispatch is gone");
         assert!(room_pause < cabinet, "the cabinet swallows the pause key");
         assert!(
-            INDEX.contains("      && !tech.open && !stock.open\r\n"),
+            INDEX.lines().any(|line| line == "      && !tech.open && !stock.open"),
             "both space rules fire on one press: the top rule no longer stands aside for the two boards"
         );
         // Said on the card, both halves.
@@ -17288,7 +17319,7 @@ mod tests {
             .split_once("const MAP_MODES = {")
             .expect("MAP_MODES is gone")
             .1
-            .split_once("\r\n};")
+            .split_once("\n};")
             .expect("MAP_MODES is brace-terminated")
             .0;
         let entries: Vec<&str> = modes.lines().filter(|l| {
@@ -17333,7 +17364,7 @@ mod tests {
         assert_eq!(handler.matches(r#"k === "i" || k === "I""#).count(), 1, "I is bound exactly once");
         assert!(handler.contains("if (gov.open) { closeGovernment(); return; }"), "Escape does not close the screen");
         assert!(handler.contains("if (gov.open) { govKeys(e); return; }"), "the screen does not take the keyboard");
-        assert!(handler.contains("      && !gov.open\r\n"), "the pause-only branch must skip the screen, like the board");
+        assert!(handler.lines().any(|line| line == "      && !gov.open"), "the pause-only branch must skip the screen, like the board");
         // Space is bound ahead of the screen's dispatch, so pause reaches the clock.
         let space = handler
             .find("if (e.key === \" \" && !e.target?.closest?.('button, summary, select, [role=\"tab\"]')) {")

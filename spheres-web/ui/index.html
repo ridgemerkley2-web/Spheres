@@ -2440,6 +2440,7 @@
 <link rel="stylesheet" href="/competition.css">
 <link rel="stylesheet" href="/agency.css">
 <link rel="stylesheet" href="/operations-ui.css">
+<link rel="stylesheet" href="/campaign-operations-ui.css">
 <link rel="stylesheet" href="/area-art.css">
 <style>
 .session-pending button { min-height:44px; white-space:normal; }
@@ -3207,6 +3208,7 @@
 <script src="/equipment-ui.js"></script>
 <script src="/agency-ui.js"></script>
 <script src="/operations-ui.js"></script>
+<script src="/campaign-operations-ui.js"></script>
 <script>
 "use strict";
 const WORLD = window.WORLD;
@@ -8636,7 +8638,7 @@ window.openConflict = function (id, keepScroll) {
         onclick="zoomTheatre(${w.id});closeSheet()">⌖</span><span class="close" onclick="closeSheet()">&times;</span></div>
     <div class="card" style="margin-top:12px"><h3>Where each side stands</h3>
       ${w.posture.map((b) => `<div class="prow"><b>${b.name}</b> rung ${b.rung} — ${b.rung_name}
-        <span class="tiny">· ${b.objective} · ${b.roe} · resolve ${b.resolve.toFixed(2)}${
+        <span class="tiny">· ${b.objective} · ${b.roe} · resolve ${Number.isFinite(b.resolve) ? b.resolve.toFixed(2) : "unconfirmed"}${
           b.home ? " · at home" : ""}${b.access ? "" : " · no host"}</span></div>`).join("")}
       <div class="tiny" style="margin-top:8px">ground held — ${w.control >= 0 ? w.attacker : w.defender} by ${
         Math.abs(w.control * 100).toFixed(0)}%</div>
@@ -8646,6 +8648,7 @@ window.openConflict = function (id, keepScroll) {
         t.rough + t.urbanisation > 0.8 ? " · cover enough that a force which will not stand in the open is very hard to kill" : ""}</div>
       ${frontLine}
     </div>
+    ${mine ? window.CampaignOperationsUI?.html(w) || "" : ""}
     ${mine ? `<div class="card" style="margin-top:12px"><h3>The ladder</h3>${rows}
       <div class="tiny" style="margin-top:10px">${force}</div></div>
     <div class="card" style="margin-top:12px"><h3>Objective <span>· ${priceTag(w, "objective")}</span></h3>
@@ -8680,6 +8683,11 @@ window.openConflict = function (id, keepScroll) {
 };
 
 function bindForceAllocations(container) {
+  window.CampaignOperationsUI?.bind(container, async command => {
+    const response = await api("/api/command", { commands: [command] });
+    if (response.errors?.length) throw new Error(response.errors[0]);
+    await adopt(response, false);
+  }, clockPause);
   window.MilitaryOperationsUI?.bind(container, async command => {
     const response = await api("/api/command", { commands: [command] });
     if (response.errors?.length) throw new Error(response.errors[0]);
@@ -14384,7 +14392,7 @@ const COLS = [
   ["inflation", "Inflation", (n) => fmt.pct(n.inflation)],
   ["debt", "DEBT", (n) => fmt.pct(n.debt, 0)],
   ["stability", "Stability", (n) => n.stability.toFixed(0)],
-  ["mil_strength", "Military", (n) => n.mil_strength.toFixed(0) + (n.nuclear ? " ☢" : "")],
+  ["mil_strength", "Military", (n) => n.mil_strength.toFixed(0) + (n.military_estimated ? " est." : "") + (n.nuclear ? " ☢" : "")],
   ["relation", "Relations", (n) => (n.relation === null || n.relation === undefined ? "—" : n.relation.toFixed(0))],
 ];
 
@@ -14560,7 +14568,7 @@ function openNation(id, keepScroll) {
         ${statRow("Debt", fmt.pct(n.debt, 0) + " of GDP", n.debt > 0.9 ? "down" : "")}
         ${statRow("Stability", n.stability.toFixed(0) + "/100")}
         ${statRow("Separatism", fmt.pct(n.separatism, 0), n.separatism > 0.4 ? "down" : "")}
-        ${statRow("Military", n.mil_strength.toFixed(0) + (n.nuclear ? " ☢" : ""))}
+        ${statRow(n.military_estimated ? "Military estimate" : "Military", n.mil_strength.toFixed(0) + (n.nuclear ? " ☢" : ""))}
         ${statRow("War exhaustion", fmt.pct(n.war_exhaustion, 0), n.war_exhaustion > 0.4 ? "down" : "")}
         ${n.oil_mbd > 0 ? statRow("Oil", n.oil_mbd.toFixed(1) + " mbd") : ""}
         ${n.oil_mbd > 0 ? statRow("Shipping", fmt.pct(n.export_share, 0), n.export_share < 0.9 ? "down" : "") : ""}

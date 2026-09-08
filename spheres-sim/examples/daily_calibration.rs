@@ -290,14 +290,15 @@ fn terminal_statistics(rows:&[Row])->BTreeMap<String,Statistic> {
 }
 fn main()->Result<(),Box<dyn std::error::Error>> {
     let mut years=30u32;let mut seeds=vec![1990,7,42];let mut output=PathBuf::from("daily-calibration.csv");
-    let mut physical_logistics=true;let mut economic_competition=false;
+    let mut physical_logistics=true;let mut economic_competition=false;let mut operational_warfare=false;
     let mut selected:Option<Vec<String>>=None;let args:Vec<String>=std::env::args().skip(1).collect();let mut i=0;
     while i<args.len() {
-        if args[i]=="--help" {println!("daily_calibration --years 30 --seeds 1990,7,42 --output daily.csv [--scenarios idle_human,balanced_budget,...] [--physical-logistics true|false] [--economic-competition true|false]\nWrites annual CSV and a .summary.json with per-scenario means and sample variance. Descriptive evidence, no tuned pass/fail growth bars.");return Ok(());}
+        if args[i]=="--help" {println!("daily_calibration --years 30 --seeds 1990,7,42 --output daily.csv [--scenarios idle_human,balanced_budget,...] [--physical-logistics true|false] [--economic-competition true|false] [--operational-warfare true|false]\nWrites annual CSV and a .summary.json with per-scenario means and sample variance. Descriptive evidence, no tuned pass/fail growth bars.");return Ok(());}
         let value=args.get(i+1).ok_or("Every option needs a value")?;
         match args[i].as_str() {
             "--years"=>years=value.parse()?,"--seeds"=>seeds=value.split(',').map(str::parse).collect::<Result<Vec<_>,_>>()?,
             "--physical-logistics"=>physical_logistics=value.parse()?,
+            "--operational-warfare"=>operational_warfare=value.parse()?,
             "--economic-competition"=>economic_competition=value.parse()?,
             "--output"=>output=PathBuf::from(value),"--scenarios"=>selected=Some(value.split(',').map(String::from).collect()),
             _=>return Err(format!("Unknown option {}",args[i]).into()),
@@ -313,7 +314,7 @@ fn main()->Result<(),Box<dyn std::error::Error>> {
         for seed in &seeds {
             let run_started=Instant::now();
             let mut w=world_1990(GameRules{seed:*seed,daily_simulation:true,resource_market:true,logistics_routes:true,physical_logistics,
-                production_system:true,manufacturing_system:true,economic_competition,military_operations:true,..GameRules::default()});
+                production_system:true,manufacturing_system:true,economic_competition,military_operations:true,operational_warfare:u8::from(operational_warfare),..GameRules::default()});
             w.player=Some(id);starting_industry::enable_new_world(&mut w)?;starting_industry::enrich_new_world(&mut w)?;province_economy::enable(&mut w);resources::warm(&mut w);
             let initial=w.nation(id).budget_for(w.year).allocations;let start=w.nation(id).gdp;let mut counts=Counts::default();
             counts.known=w.nation(id).tech.known.iter().copied().collect();
@@ -363,7 +364,7 @@ fn main()->Result<(),Box<dyn std::error::Error>> {
         "terminal_statistics":terminal_statistics(rows),
         "terminal_rows":rows,
     })).collect();
-    let summary=serde_json::json!({"instrument_schema":2,"instrument":"daily_calibration_v2","years":years,"seeds":seeds,"calendar":"actual daily dates including leap years","economic_competition":economic_competition,"physical_logistics":physical_logistics,
+    let summary=serde_json::json!({"instrument_schema":2,"instrument":"daily_calibration_v2","years":years,"seeds":seeds,"calendar":"actual daily dates including leap years","economic_competition":economic_competition,"physical_logistics":physical_logistics,"operational_warfare":operational_warfare,
         "initialization":"daily simulation with strategic resource market, manufacturing, production, province accounts and modeled inherited capacity; physical freight and Economic Competition are selected flags; scenario policy fixtures are explicitly described below",
         "scope":"Descriptive evidence. Sample variance is n-1 and unavailable for n<2. No historical fit or growth-rate success claim follows from this panel. CAGR excludes ceased governments; their cessation remains reported. War, shortage and hyperinflation days are observed before each settlement.",
         "sampling":"No statistical calibration bar is added. A future bar must name its target regression, derive sample size from its own measured variance and false-red probability below 1%, and verify power; do not widen an existing bar to match this panel.",

@@ -980,6 +980,9 @@ pub struct GameRules {
     /// control. Explicit opt-in keeps historical replay/calibration unchanged.
     #[serde(default, skip_serializing_if = "is_false")]
     pub military_operations: bool,
+    /// Versioned daily local warfare. Zero preserves legacy replay exactly.
+    #[serde(default, skip_serializing_if = "is_zero_warfare")]
+    pub operational_warfare: u8,
     /// Player-directed province production and construction. OFF in the
     /// calibrated/headless world and enabled by the browser's play rules.
     /// Empty state and a false switch both disappear from saves.
@@ -1017,6 +1020,7 @@ pub struct GameRules {
 fn rules_true() -> bool {
     true
 }
+fn is_zero_warfare(v: &u8) -> bool { *v == 0 }
 fn is_true(v: &bool) -> bool {
     *v
 }
@@ -1035,6 +1039,7 @@ impl Default for GameRules {
             physical_logistics: false,
             daily_simulation: false,
             military_operations: false,
+            operational_warfare: 0,
             production_system: false,
             industry_rebuild: false,
             manufacturing_system: false,
@@ -1084,6 +1089,12 @@ pub struct WorldState {
     pub agency: crate::agency::Agency,
     #[serde(default, skip_serializing_if = "crate::campaign_aims::CampaignAims::is_empty")]
     pub campaign_aims: crate::campaign_aims::CampaignAims,
+    #[serde(default, skip_serializing_if = "crate::campaign::CampaignState::is_empty")]
+    pub campaign: crate::campaign::CampaignState,
+    #[serde(default, skip_serializing_if = "crate::campaign_supply::SupplyState::is_empty")]
+    pub campaign_supply: crate::campaign_supply::SupplyState,
+    #[serde(default, skip_serializing_if = "crate::campaign_peace::PeaceState::is_empty")]
+    pub campaign_peace: crate::campaign_peace::PeaceState,
     /// Parties, elections, coalitions, and the pillars an unelected regime has
     /// to keep paying. Defaulted for the same reason `statecraft` is: a save
     /// written before governments existed still loads, and `government::ensure`
@@ -1577,7 +1588,23 @@ impl WorldState {
         })
     }
     pub fn next_conflict_id(&self) -> u32 {
+        if crate::campaign::enabled(self) {
+            return crate::campaign::conflict_id_high_water(self).saturating_add(1);
+        }
         self.conflicts.iter().map(|c| c.id).max().map_or(1, |m| m + 1)
+    }
+    /// Reserve only after a creation command has passed validation. Unlike a
+    /// preview, the operational reservation survives closure before any tick.
+    pub(crate) fn allocate_conflict_id(&mut self) -> Result<u32, String> {
+        if !crate::campaign::enabled(self) { return Ok(self.next_conflict_id()); }
+        if let Some(reason) = self.conflict_id_refusal() { return Err(reason); }
+        let id = crate::campaign::conflict_id_high_water(self) + 1;
+        self.campaign.conflict_id_high_water = id;
+        Ok(id)
+    }
+    pub(crate) fn conflict_id_refusal(&self) -> Option<String> {
+        (crate::campaign::enabled(self) && crate::campaign::conflict_id_high_water(self) == u32::MAX)
+            .then(|| "No operational conflict identifiers remain available.".to_owned())
     }
     pub fn headline(&mut self, s: String) {
         self.headlines.push(s);

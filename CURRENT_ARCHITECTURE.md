@@ -1,5 +1,20 @@
 # Current architecture — SPHERES 0.6
 
+## Daily operational warfare (version 1)
+
+`campaign.rs` owns staff sector assignments, dated transfers, cohesion, operations,
+observations and local contacts. It divides the conserved `operations::Snapshot`
+and returns aggregated deployed-force loss fractions. Physical control is captured
+before `war.rs` removes conflicts for resolution. Local outcomes replace scalar
+front-budget projection only in the versioned daily mode.
+
+`campaign_supply.rs` routes finite modeled support services through shared freight
+capacity using military access and physical control. It does not own ammunition,
+oil, equipment or money. `campaign_peace.rs` owns war aims, coalition consent and
+occupation; actual cash and territory settle through existing resource/treasury
+and district APIs. `campaign-operations-ui.js` displays Rust assessments and sends
+normal authenticated commands. See `WARFARE.md` for player behavior and limitations.
+
 ## Authority and cadence
 
 `spheres-sim` owns state, commands, costs and simulation results. A single seeded

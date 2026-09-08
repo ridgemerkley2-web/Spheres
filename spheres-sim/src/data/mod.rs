@@ -893,6 +893,9 @@ pub fn load_world(
         statecraft: Statecraft::default(),
         agency: Default::default(),
         campaign_aims: Default::default(),
+        campaign: Default::default(),
+        campaign_supply: Default::default(),
+        campaign_peace: Default::default(),
         governments: Default::default(),
         // The leader table rides the same switch as everything else in the
         // political arm. Parsed and REFUSED on the same terms as the nations —

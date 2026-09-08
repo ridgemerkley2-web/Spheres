@@ -409,6 +409,40 @@ pub fn has_terminal(district: &str) -> bool {
     network().edges.iter().any(|e| e.kind == "terminal" && (e.a == district || e.b == district))
 }
 
+/// Read-only adapter for military service cargo. Geometry, stable segment keys,
+/// infrastructure and daily capacities remain owned by the commercial graph.
+/// Military permissions and cargo accounting deliberately belong to its caller.
+pub(crate) struct CampaignNode {
+    pub id: String,
+    pub district: Option<String>,
+}
+pub(crate) struct CampaignEdge {
+    pub a: usize,
+    pub b: usize,
+    pub key: String,
+    pub sea: bool,
+    pub travel_weight: u64,
+    pub capacity_tonnes: f64,
+}
+pub(crate) fn campaign_graph(w: &WorldState) -> (Vec<CampaignNode>, Vec<CampaignEdge>) {
+    let net = network();
+    let nodes = net.nodes.iter().map(|n| CampaignNode {
+        id: n.id.clone(),
+        district: if n.kind == "district" { Some(n.id.clone()) } else { n.district.clone() },
+    }).collect();
+    let edges = net.edges.iter().enumerate().map(|(i, e)| CampaignEdge {
+        a: net.endpoints[i].0, b: net.endpoints[i].1, key: net.edge_keys[i].clone(),
+        sea: e.kind == "sea", travel_weight: e.km as u64 * if e.kind == "sea" { 3 } else { 4 },
+        capacity_tonnes: segment_capacity(w, e).0,
+    }).collect();
+    (nodes, edges)
+}
+/// Outer None is an unknown node; inner None is public ocean geometry.
+pub(crate) fn campaign_district(id:&str)->Option<Option<&'static str>> {
+    let net=network();let node=&net.nodes[*net.index.get(id)?];
+    Some(if node.kind=="district" {Some(node.id.as_str())} else {node.district.as_deref()})
+}
+
 fn segment_capacity(w: &WorldState, e: &Edge) -> (f64, String) {
     let net = network();
     let (a, b) = (&net.nodes[net.index[&e.a]], &net.nodes[net.index[&e.b]]);

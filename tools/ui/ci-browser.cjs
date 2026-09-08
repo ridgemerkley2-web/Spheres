@@ -15,6 +15,7 @@ async function port(){const s=net.createServer();await new Promise(r=>s.listen(0
     browser=await chromium.launch({headless:true});const page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
     page.setDefaultTimeout(30000);const errors=[];page.on('pageerror',e=>errors.push(e.message));
     await page.goto(url);await page.locator('#campaignHome').waitFor({state:'visible'});
+    await page.waitForFunction(()=>!!SESSION.live);
     assert(await page.locator('#newCampaignPicker').isHidden());
     await page.locator('#openSavesBtn').click();await page.locator('#savedCampaigns').waitFor({state:'visible'});
     await page.locator('#menuSaveEmpty').waitFor({state:'visible'});
@@ -24,14 +25,19 @@ async function port(){const s=net.createServer();await new Promise(r=>s.listen(0
     await page.locator('#nationPick [aria-label^="United States;"]').click();await page.locator('#startBtn').click();await page.locator('#app').waitFor({state:'visible'});
     const state=async()=> (await page.request.get(url+'/api/state')).json();
     const initial=await state();assert.equal(initial.player,'USA');assert.equal(initial.simulation_cadence,'daily');
-    await page.getByRole('button',{name:'Advisor',exact:true}).click();await page.getByRole('heading',{name:'Fund your plan',exact:true}).waitFor();await page.getByRole('button',{name:'Close Your development advisor',exact:true}).click();
+    await page.getByRole('button',{name:'Advisor',exact:true}).click();
+    await page.getByRole('heading',{name:'Your development advisor',exact:true}).waitFor();
+    await page.getByRole('heading',{name:'Renew your yearly budget',exact:true}).waitFor();
+    await page.screenshot({path:path.join(out,'advisor-desktop.png')});
+    await page.getByRole('button',{name:'Close Your development advisor',exact:true}).click();
     await page.getByRole('button',{name:'Find',exact:true}).click();await page.locator('#worldFindInput').fill('California');await page.locator('[data-find-id="US-CA"]').click();await page.locator('#provinceDossier').waitFor({state:'visible'});
     await page.evaluate(()=>closeProvince());
     // Let the normal command channel create the receipt. Lose only the first
     // already-committed response, then recover via the visible receipt button.
     let lost=false;await page.route('**/api/command',async route=>{if(lost)return route.continue();lost=true;await route.fetch();await route.abort('failed');});
-    const lostError=await page.evaluate(async()=>{try{await api('/api/command',{commands:[{kind:'tax',value:0.29}]});return null;}catch(error){return error.message;}});
-    assert(lostError,'The lost response must be visible as an uncertain command outcome');
+    const lostResult=await page.evaluate(async()=>{const result=await api('/api/command',{commands:[{kind:'tax',value:0.29}]});return {errors:result.errors,pending:result.command_pending,receipt_retained:!!COMMAND_CHANNEL.pending};});
+    assert(lostResult.errors?.some(error=>typeof error==='string'&&error.length>0),'The lost response must be visible as an uncertain command outcome');
+    assert.equal(lostResult.pending,true);assert.equal(lostResult.receipt_retained,true);
     await page.locator('#retryCommandBtn').waitFor({state:'visible'});const committed=await state();
     await page.locator('#retryCommandBtn').click();await page.locator('#pendingCommand').waitFor({state:'hidden'});
     const recovered=await state();assert.equal(recovered.nations.find(n=>n.id==='USA').political_capital,committed.nations.find(n=>n.id==='USA').political_capital);
@@ -43,10 +49,10 @@ async function port(){const s=net.createServer();await new Promise(r=>s.listen(0
     const restored=await(await page.request.get(url+'/api/history?nations=USA')).json();
     delete restored.session_id;delete history.session_id;assert.deepEqual(restored,history);
     await page.reload();await page.locator('#continueBtn').click();
-    await page.locator('#techBtn').click();await page.locator('#techMenu .dfoot').click();await page.getByRole('button',{name:'Research list',exact:true}).click();await page.locator('#researchListQuery').fill('');await page.locator('[data-research-id]').first().waitFor();
+    await page.locator('#techBtn').click();await page.locator('#techMenu').getByRole('button',{name:/^Explore technology\b/}).click();await page.getByRole('button',{name:'Research list',exact:true}).click();await page.locator('#researchListQuery').fill('');await page.locator('[data-research-id]').first().waitFor();
     await page.screenshot({path:path.join(out,'research-desktop.png')});await page.setViewportSize({width:414,height:896});
     assert(await page.evaluate(()=>document.querySelector('#decisionDialog').scrollWidth<=document.querySelector('#decisionDialog').clientWidth+1));
     await page.screenshot({path:path.join(out,'research-mobile.png')});assert.deepEqual(errors,[]);
-    fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({passed:true,build:initial.build,lost_committed_response_recovered:lost,save_history_roundtrip:true},null,2));
+    fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({passed:true,build:initial.build,advisor_heading:'Renew your yearly budget',lost_committed_response_recovered:lost,save_history_roundtrip:true},null,2));
   }finally{if(browser)await browser.close();server.kill();log.end();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

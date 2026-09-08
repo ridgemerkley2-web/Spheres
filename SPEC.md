@@ -1,5 +1,13 @@
 # SPHERES — Complete Game Specification
 
+Operational warfare amendment (2026-09-07): the daily version-1 model is specified
+in `WARFARE.md` and its staged implementation contract in `WAR_OVERHAUL_EXECUTION.md`.
+It replaces aggregate front movement with local contacts, finite deployments,
+cohesion, routed support, strategic missions and consented peace. Where older war
+paragraphs below describe scalar/monthly behavior, they remain the version-zero
+compatibility specification. Existing inventory, fiscal and sovereignty authorities
+remain single sources of truth.
+
 ## Population rebuild amendment — 2026-09-07
 
 The daily People model is defined in `population.rs` and documented in
