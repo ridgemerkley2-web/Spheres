@@ -250,7 +250,7 @@ pub fn record_factory(
     if output <= 0.0 || !output.is_finite() || !power.is_finite() || !event(w, &id) {
         return;
     }
-    let fuel = (power * 0.02 * 1e9).round() / 1e9;
+    let fuel = (power * 0.02 * industry::energy_company_rates(w, nation).0 * 1e9).round() / 1e9;
     let fuel = fuel.min(raw[C::Coal.idx()]);
     let mut plant_raw = raw;
     plant_raw[C::Coal.idx()] -= fuel;
@@ -281,7 +281,7 @@ pub fn record_factory(
             row.intermediate_inputs_daily_bn = inputs
                 + power * POWER_UNIT_BN
                 + if kind == K::MachineryWorks {
-                    output * INTERMEDIATE_PACK_BN
+                    output * industry::manufacturing_company(w, nation, district).input_rate * INTERMEDIATE_PACK_BN
                 } else {
                     0.0
                 };
@@ -326,7 +326,7 @@ pub fn record_materials_operation(
     let Some(group) = crate::starting_industry::province(w, district)
         .and_then(|p| p.groups.into_iter().find(|g| g.key == "materials")) else { return; };
     if !event(w, &id) { return; }
-    let fuel = ((power * 0.02 * 1e9).round() / 1e9).min(raw[C::Coal.idx()]);
+    let fuel = ((power * 0.02 * industry::energy_company_rates(w, nation).0 * 1e9).round() / 1e9).min(raw[C::Coal.idx()]);
     let mut plant_raw = raw;
     plant_raw[C::Coal.idx()] -= fuel;
     let Ok(raw_cost) = raw_value(&plant_raw) else { return; };
@@ -363,7 +363,10 @@ fn record_power_dispatch(w: &mut WorldState, nation: NationId, power: f64, fuel:
         })
         .filter_map(|(d, _)| {
             let level = crate::industrial_modules::effective_capacity(w, d, K::Generation);
-            (level > 0.0).then(|| (d.clone(), level * 10.0))
+            let operator = crate::companies::modifiers(w, nation, &crate::companies::CompanyTarget::Facility {
+                district: d.clone(), sector: crate::companies::CompanySector::Energy,
+            }).work_rate;
+            (level > 0.0).then(|| (d.clone(), level * 10.0 * operator))
         })
         .collect();
     let capacity: f64 = generators.iter().map(|(_, c)| *c).sum();
@@ -409,6 +412,22 @@ fn record_power_dispatch(w: &mut WorldState, nation: NationId, power: f64, fuel:
 /// Called once when domestic resources post, not from a board/forecast read.
 /// Only player-created completed mines are incremental; mapped inherited
 /// national extraction belongs to the calibrated baseline, not this adapter.
+pub fn record_mine_company_output(w: &mut WorldState, mine: &resources::Mine, quantity: f64, fee_bn: f64) {
+    let id = format!("mine-company:{}:{}", mine.district, mine.commodity.key());
+    if quantity <= 0.0 || !event(w, &id) { return; }
+    let Some(price) = resources::unit_price_bn(mine.commodity) else { return; };
+    let mut row = receipt(id, format!("{} contractor output", mine.commodity.name()),
+        &mine.district, mine.commodity.key(), "extraction");
+    row.output_quantity_daily = quantity;
+    row.output_unit = format!("{} table units", mine.commodity.name());
+    row.gross_output_daily_bn = quantity * price;
+    row.intermediate_inputs_daily_bn = row.gross_output_daily_bn * EXTRACTION_INTERMEDIATE_SHARE;
+    row.payments_daily_bn = fee_bn;
+    row.annualization_days = 12.0 / clock::month_fraction(w);
+    row.reason = Some("Additional physical extraction delivered by the assigned contractor; fee funded by Minerals & processing. No separate GDP award for hiring.".into());
+    insert(w, row);
+}
+
 pub fn record_mines(w: &mut WorldState) {
     if !crate::province_economy::active(w) {
         return;

@@ -996,6 +996,48 @@ mod tests {
     }
 
     #[test]
+    fn company_old_daily_project_migrates_before_work_and_waits_for_real_funding() {
+        use crate::companies::{self, CompanySector, CompanyTarget};
+        let nation = NationId::USA;
+        let mut w = legacy_monthly();
+        let district = owned(&w, nation)[0].clone();
+        let project = start_project(&mut w, nation, &district, ProjectKind::Warehouse).unwrap();
+        w.production.projects[0].progress_days = 40.0;
+        w.production.projects[0].resources_used[Commodity::Iron.idx()] = 2.0;
+        w.rules.daily_simulation = true;
+        assert!(w.production.industry.projects.is_empty());
+        assert!(w.nation(nation).program_budget.is_none());
+        let mut w = load(&save(&w)).unwrap();
+        companies::enable(&mut w);
+        let company = w.companies.roster.iter().filter(|c| c.nation == nation && c.sector == CompanySector::Construction)
+            .max_by(|a,b| a.work_bonus.total_cmp(&b.work_bonus)).unwrap().id;
+        let target = CompanyTarget::Construction { project };
+        companies::assign(&mut w, nation, company, target.clone()).unwrap();
+        let historical_paid = crate::industry::project_cost_bn(&w.production.projects[0])
+            * w.production.projects[0].progress_fraction();
+        let resources = w.resources.clone();
+        tick_day(&mut w);
+        near(w.production.projects[0].progress_days, 40.0);
+        near(w.production.industry.projects[&project].spent_bn, historical_paid);
+        near(w.companies.assignments[0].total_fees_bn, 0.0);
+        near(w.companies.assignments[0].total_work, 0.0);
+        crate::programs::set_construction_budget(&mut w, nation, 1.0).unwrap();
+        crate::programs::begin_day(&mut w);
+        let plan = crate::industry::project_plans(&w)[&project].clone();
+        tick_day(&mut w);
+        assert!(w.production.projects[0].progress_days > 41.0);
+        near(w.production.industry.projects[&project].spent_bn, historical_paid + plan.cash_bn - plan.company_fee_bn);
+        near(w.companies.assignments[0].fees_today_bn, plan.company_fee_bn);
+        assert!(plan.company_fee_bn > 0.0);
+        assert_eq!(w.production.projects[0].resources_used[Commodity::Iron.idx()], 2.0);
+        assert_eq!(w.resources, resources, "migration must preserve historical physical receipts");
+        let saved = save(&w);
+        let mut restored = load(&saved).unwrap();
+        tick_day(&mut restored);
+        assert_eq!(save(&restored), saved);
+    }
+
+    #[test]
     fn daily_work_uses_money_without_materials_market_or_political_capital() {
         let mut w = daily_financial(0.01);
         let nation = NationId::USA;

@@ -2354,6 +2354,7 @@
 <link rel="stylesheet" href="/decision-tools.css">
 <link rel="stylesheet" href="/province-economy.css">
 <link rel="stylesheet" href="/industry-ui.css">
+<link rel="stylesheet" href="/companies.css">
 <link rel="stylesheet" href="/cash-flow-ui.css">
 <link rel="stylesheet" href="/equipment-ui.css">
 <link rel="stylesheet" href="/arsenal3d.css">
@@ -2675,7 +2676,8 @@
     <button id="cab-tab-budget" role="tab" aria-selected="false" aria-controls="cabinet-budget" tabindex="-1" data-cab-tab="budget">02 <span>Your yearly budget</span></button>
     <button id="cab-tab-construction" type="button" role="tab" aria-selected="false" aria-controls="productionPanel" tabindex="-1" data-cab-tab="construction">03 <span>Construction</span></button>
     <button id="cab-tab-industry" role="tab" aria-selected="false" aria-controls="cabinet-industry" tabindex="-1" data-cab-tab="industry">04 <span>Industry</span></button>
-    <button id="cab-tab-policy" role="tab" aria-selected="false" aria-controls="cabinet-policy" tabindex="-1" data-cab-tab="policy">05 <span>Money &amp; policy</span></button>
+    <button id="cab-tab-companies" type="button" role="tab" aria-selected="false" aria-controls="cabinet-companies" tabindex="-1" data-cab-tab="companies">05 <span>Companies</span></button>
+    <button id="cab-tab-policy" role="tab" aria-selected="false" aria-controls="cabinet-policy" tabindex="-1" data-cab-tab="policy">06 <span>Money &amp; policy</span></button>
   </nav>
   <div class="col" id="left"></div>
   <footer id="cabinetDraft" class="cab-draft" aria-label="Cabinet orders"></footer>
@@ -3088,6 +3090,7 @@
 <script src="/province-economy-ui.js"></script>
 <script src="/competition-ui.js"></script>
 <script src="/industry-ui.js"></script>
+<script src="/companies-ui.js"></script>
 <script src="/cash-flow-ui.js"></script>
 <script src="/equipment-mesh.js"></script>
 <script src="/equipment-export.js"></script>
@@ -4149,6 +4152,7 @@ function closeGameDrawers() {
   $("#drawerScrim").classList.remove("open");
   if (wasCabinet) {
     if (typeof industryClose === "function") industryClose();
+    if (typeof companiesClose === "function") companiesClose();
     if (typeof cashFlowClose === "function") cashFlowClose();
     $("#app").inert = false;
     if (CAB.lastFocus && CAB.lastFocus.isConnected) CAB.lastFocus.focus({ preventScroll: true });
@@ -4197,6 +4201,7 @@ function toggleGameDrawer(id) {
     $("#drawerScrim").classList.add("open");
     if (id === "cabinetDrawer") {
       if (CAB.tab === "industry") openIndustry();
+      if (CAB.tab === "companies") openCompanies();
       if (typeof cashFlowTabChanged === "function") cashFlowTabChanged();
       $("#cab-tab-" + CAB.tab).focus({ preventScroll: true });
     }
@@ -4208,7 +4213,7 @@ function cabinetKeys(e) {
   if (e.key === "Escape") { e.preventDefault(); closeGameDrawers(); return; }
   if (e.target.closest('[role="tablist"]') && ["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) {
     e.preventDefault();
-    const tabs = ["overview", "budget", "construction", "industry", "policy"];
+    const tabs = ["overview", "budget", "construction", "industry", "companies", "policy"];
     const index = tabs.indexOf(CAB.tab);
     const next = e.key === "Home" ? 0 : e.key === "End" ? tabs.length-1 : (index + (e.key === "ArrowRight" ? 1 : tabs.length-1)) % tabs.length;
     selectCabinetTab(tabs[next]);
@@ -4241,6 +4246,7 @@ async function adopt(state, withHistory, allowCampaignChange = false) {
   }
   S = state;
   if (typeof industryOnStateChanged === "function") industryOnStateChanged();
+  if (typeof companiesOnStateChanged === "function") companiesOnStateChanged();
   if (typeof cashFlowOnStateChanged === "function") cashFlowOnStateChanged();
   if (typeof equipmentOnStateChanged === "function") equipmentOnStateChanged();
   if (typeof invalidateProgramPreview === "function") invalidateProgramPreview();
@@ -5324,8 +5330,10 @@ function moneyCard(m) {
 function selectCabinetTab(tab, mounting = false) {
   if (tab === "construction") { openConstruction(); return; }
   if (tab === "industry" && !mounting) { openIndustry(); return; }
-  if (!["overview", "budget", "industry", "policy"].includes(tab)) return;
+  if (tab === "companies" && !mounting) { openCompanies(); return; }
+  if (!["overview", "budget", "industry", "companies", "policy"].includes(tab)) return;
   if (CAB.tab === "industry" && tab !== "industry" && typeof industryClose === "function") industryClose();
+  if (CAB.tab === "companies" && tab !== "companies" && typeof companiesClose === "function") companiesClose();
   if (CAB.tab === "overview" && tab !== "overview" && typeof cashFlowClose === "function") cashFlowClose();
   CAB.tab = tab;
   document.querySelectorAll("[data-cab-tab]").forEach(b => {
@@ -5343,6 +5351,13 @@ function openIndustryCabinet() {
   if (!cabinetIsOpen()) toggleGameDrawer("cabinetDrawer");
   selectCabinetTab("industry", true);
   $("#cab-tab-industry").focus({preventScroll:true});
+}
+
+function openCompaniesCabinet() {
+  closeProduction();
+  if (!cabinetIsOpen()) toggleGameDrawer("cabinetDrawer");
+  selectCabinetTab("companies", true);
+  $("#cab-tab-companies").focus({preventScroll:true});
 }
 
 function industryNavigate(action) {
@@ -5662,6 +5677,8 @@ function renderLeft(m) {
 
     <section id="cabinet-industry" class="cab-page" role="tabpanel" aria-labelledby="cab-tab-industry" hidden>${typeof industryPanelHtml === "function" ? industryPanelHtml() : ""}</section>
 
+    <section id="cabinet-companies" class="cab-page" role="tabpanel" aria-labelledby="cab-tab-companies" hidden>${typeof companiesPanelHtml === "function" ? companiesPanelHtml() : ""}</section>
+
     <section id="cabinet-policy" class="cab-page" role="tabpanel" aria-labelledby="cab-tab-policy" hidden>
       <div class="area-heading"><div class="cab-section-head"><div><div class="cab-kicker">The engine room</div><h2>Money with a purpose.</h2></div><p>Policy controls show your draft. The treasury shows the plan running now. All money is in constant 1990 dollars.</p></div>${globalThis.AreaArt?.html("treasury", "compact") || ""}</div>
       <div class="cab-two-col"><div class="card"><h3>Your policy controls</h3>
@@ -5697,6 +5714,7 @@ function renderLeft(m) {
   $("#cabinetResearch").querySelectorAll("[data-tree]").forEach(b => { b.onclick = () => { closeGameDrawers(); openTech(b.dataset.tree); }; });
   selectCabinetTab(CAB.tab, true);
   if (typeof industryBind === "function") industryBind();
+  if (typeof companiesBind === "function") companiesBind();
   if (typeof cashFlowBind === "function") cashFlowBind();
   openDetails.forEach(id => { const el = document.getElementById(id); if (el) el.open = true; });
   $("#left").scrollTop = scroll;

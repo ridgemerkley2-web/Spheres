@@ -1401,6 +1401,7 @@ fn post_market_flows(w: &mut WorldState) {
             }
         }
     }
+    post_company_mine_output(w, &mut market);
     crate::gdp_projects::record_mines(w);
 
     market.contract_spend_bn = all_nations()
@@ -1962,6 +1963,39 @@ fn clear_spot_market_impl(w: &mut WorldState, cache_pure_reads: bool) {
         apply_market_net(w, &mut market, id, net_cost);
     }
     w.resources.market = Some(market);
+}
+
+/// Contracted specialists add funded work to commissioned non-oil mines.
+/// Opening national extraction remains the historical background economy.
+fn post_company_mine_output(w: &mut WorldState, market: &mut MarketState) {
+    if w.companies.is_empty() || !crate::clock::is_daily(w) { return; }
+    for mine in w.resources.mines.clone() {
+        if mine.commodity == Commodity::Oil || !mine.commodity.tracked() { continue; }
+        let Some(&owner) = w.districts.get(&mine.district) else { continue; };
+        if !w.nation_opt(owner).is_some_and(|n| n.alive)
+            || (w.rules.military_operations && !crate::control::can_operate(w, owner, &mine.district)) {
+            continue;
+        }
+        let target = crate::companies::CompanyTarget::Facility {
+            district: mine.district.clone(), sector: crate::companies::CompanySector::Mining,
+        };
+        let base = mine.output / 12.0 * crate::clock::month_fraction(w);
+        crate::companies::record_sector_activity(w, owner, crate::companies::CompanySector::Mining, base);
+        let modifiers = crate::companies::modifiers(w, owner, &target);
+        if modifiers.work_rate <= 1.0 { continue; }
+        let Some(price) = unit_price_bn(mine.commodity) else { continue; };
+        let fee = base * price * crate::gdp_projects::EXTRACTION_INTERMEDIATE_SHARE * modifiers.fee_rate;
+        let available = crate::programs::available_bn(w, owner, crate::world::BUDGET_INDUSTRY, 2);
+        let service = if fee > 0.0 { (available / fee).clamp(0.0, 1.0) } else { 1.0 };
+        let bonus = base * (modifiers.work_rate - 1.0) * service;
+        if bonus <= 0.0 { continue; }
+        let paid = fee * service;
+        if paid > 0.0 && crate::programs::spend_operating(w, owner, crate::world::BUDGET_INDUSTRY, 2, paid).is_err() { continue; }
+        change_market_stock(market, owner, mine.commodity, bonus);
+        crate::companies::record_sector_activity(w, owner, crate::companies::CompanySector::Mining, bonus);
+        crate::gdp_projects::record_mine_company_output(w, &mine, bonus, paid);
+        crate::companies::record_work(w, owner, &target, base * service, bonus, paid);
+    }
 }
 
 fn completed_mine_outputs(
@@ -5850,6 +5884,42 @@ mod tests {
             // At most one 1e-9 warehouse quantisation per calendar day.
             assert!((stock_quantity(&w, nation, c) - annual).abs() < 1e-5);
         }
+    }
+    #[test]
+    fn company_mine_bonus_requires_funding_and_posts_output_once() {
+        use crate::companies::{self, CompanySector, CompanyTarget};
+        let mut w=world_1990(GameRules {daily_simulation:true,resource_market:true,..GameRules::default()});
+        let nation=NationId::USA;
+        w.player=Some(nation);
+        let district=w.districts.iter().find(|(_,n)|**n==nation).unwrap().0.clone();
+        w.resources.mines.push(Mine {district:district.clone(),commodity:Commodity::Iron,output:37200.0,completed:0});
+        companies::enable(&mut w);
+        let company=w.companies.roster.iter().find(|c|c.nation==nation&&c.sector==CompanySector::Mining).unwrap().clone();
+        let target=CompanyTarget::Facility {district:district.clone(),sector:CompanySector::Mining};
+        companies::assign(&mut w,nation,company.id,target).unwrap();
+        crate::province_economy::enable(&mut w);
+        let mut market=new_market_state(&w);
+        let before=market_stock(&market,nation,Commodity::Iron);
+        post_company_mine_output(&mut w,&mut market);
+        assert_eq!(market_stock(&market,nation,Commodity::Iron),before,"unfunded contractor provides no extra ore");
+        assert_eq!(w.companies.assignments[0].total_work,0.0);
+        w.nation_mut(nation).political_capital=1000.0;
+        let allocations=w.nation(nation).budget_for(w.year).allocations;
+        crate::apply_command(&mut w,&crate::Command::SetProgramBudget {nation,fiscal_year:1990,allocations,departments:crate::programs::default_departments()}).unwrap();
+        crate::programs::begin_day(&mut w);
+        post_company_mine_output(&mut w,&mut market);
+        let expected=100.0*(company.modifiers().work_rate-1.0);
+        assert!((market_stock(&market,nation,Commodity::Iron)-before-expected).abs()<1e-8);
+        let receipt=&w.companies.assignments[0];
+        assert!((receipt.bonus_today-expected).abs()<1e-9);
+        assert!(receipt.fees_today_bn>0.0);
+        assert!(crate::gdp_projects::contributions(&w).iter().any(|r|r.id.starts_with("mine-company:")&&r.output_quantity_daily>0.0));
+        // The real posting entry point owns daily idempotence, including its contractor.
+        w.resources.market=Some(market);
+        tick(&mut w);
+        let once=crate::save(&w);
+        tick(&mut w);
+        assert_eq!(once,crate::save(&w));
     }
 
     #[test]

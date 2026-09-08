@@ -36,6 +36,9 @@ what to do.
 
 Choose a country, use **Advisor** to fund a budget and follow a development
 project, and use **Find** to open a province without hunting on the globe.
+**Cabinet → Companies** compares domestic specialists with custom names and
+logos. Assign them to eligible work for bonuses, fees and experience; sustained
+economic growth can create new firms. See [Companies](COMPANIES.md) for the rules.
 **Research list** explains availability, prerequisites, payoff and estimated time.
 **Decisions** contains diplomatic requests, standing policies, monetary choices
 and optional peaceful campaign aims. Domination remains an available aim.

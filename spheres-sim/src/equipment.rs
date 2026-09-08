@@ -4,6 +4,7 @@
 //! always remains in `Nation::arsenal`, never in this project ledger.
 use crate::{
     clock,
+    companies::{self, CompanySector, CompanyTarget},
     production::Priority,
     world::{Nation, NationId, WorldState},
 };
@@ -229,9 +230,19 @@ pub struct EquipmentProject {
     pub daily_budget_bn: f64,
     pub recipe_per_unit: [f64; 12],
     pub resources_used: [f64; 12],
+    /// Nominal ingredients avoided during completed company-operated work;
+    /// negative receipts record a material-intensity tradeoff.
+    /// Kept separately so changing contractors never refunds or catches up
+    /// materials already settled under a different recipe efficiency.
+    #[serde(default, skip_serializing_if = "zero_company_inputs")]
+    pub company_inputs_saved: [f64; 12],
+    #[serde(default, skip_serializing_if = "zero_company_fees")]
+    pub company_fees_bn: f64,
     pub last_spent_bn: f64,
     pub last_day: Option<i32>,
 }
+fn zero_company_inputs(value: &[f64; 12]) -> bool { value.iter().all(|v| *v == 0.0) }
+fn zero_company_fees(value: &f64) -> bool { *value == 0.0 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct DesignDraft {
@@ -743,6 +754,8 @@ fn new_project(
         daily_budget_bn: budget,
         recipe_per_unit: [0.0; 12],
         resources_used: [0.0; 12],
+        company_inputs_saved: [0.0; 12],
+        company_fees_bn: 0.0,
         last_spent_bn: 0.0,
         last_day: None,
     }
@@ -1256,10 +1269,13 @@ pub fn tick_day(w: &mut WorldState) {
                 );
                 continue;
             }
-            let mut advance = 1.0_f64
+            let company_target = CompanyTarget::CustomEquipment { project: job.id };
+            let company = companies::modifiers(w, id, &company_target);
+            let billed_rate = rate * (1.0 + company.fee_rate);
+            let mut advance = company.work_rate
                 .min(stage_remaining)
-                .min(job.daily_budget_bn / rate)
-                .min(available / rate);
+                .min(job.daily_budget_bn / billed_rate)
+                .min(available / billed_rate);
             let input_bundle = |step: f64| {
                 if raw_rate.iter().all(|x| *x == 0.0) {
                     return [0.0; 12];
@@ -1272,9 +1288,13 @@ pub fn tick_day(w: &mut WorldState) {
                 let batch = job.recipe_per_unit.map(|x| x * job.quantity as f64);
                 let target =
                     crate::resources::scale_bundle(&batch, units_worked / job.quantity as f64);
-                std::array::from_fn(|i| (target[i] - job.resources_used[i]).max(0.0))
+                std::array::from_fn(|i| (target[i] - job.resources_used[i] - job.company_inputs_saved[i]).max(0.0))
             };
-            let desired = input_bundle(advance);
+            let company_recipe = |nominal: [f64; 12]| {
+                if company.input_rate == 1.0 { nominal }
+                else { nominal.map(|v| (v * company.input_rate * 1e9).floor() / 1e9) }
+            };
+            let desired = company_recipe(input_bundle(advance));
             // Custom manufacture always needs its recipe; the legacy gate flag
             // cannot turn newly designed vehicles into free physical inputs.
             let supply = if desired.iter().any(|x| *x > 0.0) {
@@ -1293,13 +1313,15 @@ pub fn tick_day(w: &mut WorldState) {
                 );
                 continue;
             }
-            let required = input_bundle(advance);
+            let nominal_required = input_bundle(advance);
+            let required = company_recipe(nominal_required);
             let finishing = job.work_days + advance + 1e-9 >= job.minimum_days as f64;
-            let payment = if finishing {
+            let base_payment = if finishing {
                 (job.cost_bn - job.spent_bn).max(0.0)
             } else {
                 rate * advance
             };
+            let payment = base_payment * (1.0 + company.fee_rate);
             if payment > available || payment > job.daily_budget_bn + 1e-12 {
                 set_blocker(
                     w,
@@ -1381,12 +1403,14 @@ pub fn tick_day(w: &mut WorldState) {
             let s = state_mut(w.nation_mut(id));
             let p = &mut s.projects[index];
             p.work_days = work;
-            p.spent_bn += payment;
+            p.spent_bn += base_payment;
+            p.company_fees_bn += payment - base_payment;
             p.last_spent_bn = payment;
             p.completed_units = new_units;
             for (used, amount) in p.resources_used.iter_mut().zip(required) {
                 *used += amount;
             }
+            for i in 0..12 { p.company_inputs_saved[i] += nominal_required[i] - required[i]; }
             p.status = if finishing {
                 ProjectStatus::Complete
             } else {
@@ -1406,6 +1430,9 @@ pub fn tick_day(w: &mut WorldState) {
                     s.revisions.get_mut(&job.revision_id).unwrap().certified_day = Some(today);
                 }
             }
+            let base_work = advance / company.work_rate;
+            companies::record_work(w, id, &company_target, base_work, advance - base_work, payment - base_payment);
+            companies::record_sector_activity(w, id, CompanySector::Defense, advance);
         }
         settle_maintenance(w, id);
     }
@@ -1595,6 +1622,7 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
                 p.spent_bn,
                 p.tooling_cost_bn,
                 p.last_spent_bn,
+                p.company_fees_bn,
             ]
             .iter()
             .any(|v| !v.is_finite() || *v < 0.0)
@@ -1605,6 +1633,7 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
                 .iter()
                 .chain(p.resources_used.iter())
                 .any(|v| !v.is_finite() || *v < 0.0)
+            || p.company_inputs_saved.iter().any(|v| !v.is_finite())
             || budget_refusal(p.daily_budget_bn).is_some()
         {
             return Err(fail("invalid project contract, progress or identity"));
@@ -1686,8 +1715,9 @@ pub fn validate_state(n: &Nation) -> Result<(), String> {
             || p.completed_units != expected_units
             || p.resources_used
                 .iter()
+                .zip(p.company_inputs_saved)
                 .zip(expected_inputs)
-                .any(|(a, b)| !near(*a, b))
+                .any(|((used, saved), expected)| !near(*used + saved, expected))
         {
             return Err(fail(
                 "project money, materials or completed units disagree with paid work",
@@ -1823,6 +1853,42 @@ mod tests {
         }
         assert!(certified(w.nation(USA), &id).is_ok());
         id
+    }
+    #[test]
+    fn company_custom_equipment_recipes_survive_reassignment_and_save_load() {
+        let (mut fixture, district) = fixture();
+        let revision = finish_development(&mut fixture, "Company test vehicle", baseline_spec());
+        let project = start_production(&mut fixture, USA, &revision, &district, 2, 1.0).unwrap();
+        let tooling = profile(fixture.nation(USA), &revision).unwrap().tooling_days;
+        for _ in 0..tooling { next_work_day(&mut fixture); }
+        companies::enable(&mut fixture);
+        // Check both efficient recipes and the fast firm's extra ingredient
+        // use; releasing either contract must not recalculate past receipts.
+        for saving in [true, false] {
+            let mut w = fixture.clone();
+            let company = w.companies.roster.iter().filter(|c| c.nation == USA && c.sector == CompanySector::Defense)
+                .max_by(|a,b| if saving {a.input_saving.total_cmp(&b.input_saving)} else {a.work_bonus.total_cmp(&b.work_bonus)}).unwrap().id;
+            let target = CompanyTarget::CustomEquipment { project };
+            companies::assign(&mut w, USA, company, target.clone()).unwrap();
+            let modifier = companies::modifiers(&w, USA, &target);
+            next_work_day(&mut w);
+            let job = w.nation(USA).equipment.as_ref().unwrap().projects.iter().find(|p|p.id == project).unwrap();
+            assert!(job.company_fees_bn > 0.0 && job.work_days > tooling as f64);
+            assert!(job.company_inputs_saved.iter().any(|v| if saving {*v > 0.0} else {*v < 0.0}), "saving={saving}, rate={}, receipts={:?}", modifier.input_rate, job.company_inputs_saved);
+            for i in 0..12 {
+                let nominal = job.resources_used[i] + job.company_inputs_saved[i];
+                assert!((job.resources_used[i] - nominal * modifier.input_rate).abs() < 1e-8);
+            }
+            validate_state(w.nation(USA)).unwrap();
+            let saved = crate::save(&w);
+            w = crate::load(&saved).unwrap();
+            assert_eq!(crate::save(&w), saved);
+            companies::unassign(&mut w, USA, &target).unwrap();
+            next_work_day(&mut w);
+            validate_state(w.nation(USA)).unwrap();
+            let saved = crate::save(&w);
+            assert_eq!(crate::save(&crate::load(&saved).unwrap()), saved);
+        }
     }
     #[test]
     fn ground_families_complete_paid_development_and_share_physical_production() {

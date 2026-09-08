@@ -5,6 +5,7 @@ pub mod commitment;
 pub mod construction_preview;
 pub mod construction_suggestions;
 pub mod commerce;
+pub mod companies;
 pub mod data;
 pub mod districts;
 pub mod domination;
@@ -63,6 +64,9 @@ pub enum EquipmentOrder {
 /// All player and AI actions flow through the command queue.
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub enum Command {
+    EnableCompanies { nation: NationId },
+    AssignCompany { nation: NationId, company: u32, target: companies::CompanyTarget },
+    UnassignCompany { nation: NationId, target: companies::CompanyTarget },
     Equipment { nation: NationId, order: EquipmentOrder },
     SetInterestRate { nation: NationId, rate: f64 },
     BreakCurrencyPeg { nation: NationId },
@@ -359,6 +363,8 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
             let base = command_price(w, &annual).map_or(0.0, |(_, p, _)|p);
             (*nation, base + programs::department_price(w, *nation, *fiscal_year, allocations, departments), REFUSABLE)
         }
+        Command::EnableCompanies { nation } | Command::AssignCompany { nation, .. }
+        | Command::UnassignCompany { nation, .. } => (*nation, 0.0, REFUSABLE),
         Command::SetConstructionBudget { nation, .. } => (*nation, 0.0, REFUSABLE),
         Command::Equipment { nation, order } => (*nation,
             if matches!(order, EquipmentOrder::Research { .. }) { 6.0 } else { 0.0 }, REFUSABLE),
@@ -751,6 +757,14 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
 
 fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
     match c {
+        Command::EnableCompanies { nation } => {
+            if !clock::is_daily(w) || w.nation_opt(*nation).is_none_or(|n| !n.alive) {
+                return Err("Companies require an active daily campaign.".into());
+            }
+            companies::enable(w);
+        }
+        Command::AssignCompany { nation, company, target } => companies::assign(w, *nation, *company, target.clone())?,
+        Command::UnassignCompany { nation, target } => companies::unassign(w, *nation, target)?,
         Command::ChooseCampaignAim { nation, aim } => campaign_aims::choose(w,*nation,*aim)?,
         Command::ContinueSandbox { nation } => campaign_aims::continue_sandbox(w,*nation)?,
         Command::BreakCurrencyPeg { nation } => agency::break_peg(w,*nation)?,
@@ -1333,6 +1347,7 @@ pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
         for (_, system) in SYSTEMS { system(w); }
         programs::finish_day(w);
         province_economy::finish_day(w);
+        companies::tick_day(w);
         campaign_aims::tick(w);
         clock::advance_date(w);
         return w.headlines[before..].to_vec();

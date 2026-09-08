@@ -1124,6 +1124,9 @@ pub struct WorldState {
     pub commerce: Option<crate::commerce::Commerce>,
     #[serde(default, skip_serializing_if = "crate::economic_ai::EconomicAi::is_empty")]
     pub economic_ai: crate::economic_ai::EconomicAi,
+    /// Fictional domestic contractors; old saves remain disabled until opted in.
+    #[serde(default, skip_serializing_if = "crate::companies::Companies::is_empty")]
+    pub companies: crate::companies::Companies,
 
     /// Where each roster id sits in `nations`, or `u16::MAX` for a state that
     /// has not been born. Derived and never serialized: a save that carried it

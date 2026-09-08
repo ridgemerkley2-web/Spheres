@@ -99,6 +99,9 @@ const AGENCY_UI_JS: &str = include_str!("../ui/agency-ui.js");
 const COMPETITION_CSS: &str = include_str!("../ui/competition.css");
 const COMPETITION_UI_JS: &str = include_str!("../ui/competition-ui.js");
 const INDUSTRY_UI_JS: &str = include_str!("../ui/industry-ui.js");
+const COMPANIES_UI_JS: &str = include_str!("../ui/companies-ui.js");
+const COMPANIES_CSS: &str = include_str!("../ui/companies.css");
+mod companies_view;
 const INDUSTRY_CSS: &str = include_str!("../ui/industry-ui.css");
 const CASH_FLOW_UI_JS: &str = include_str!("../ui/cash-flow-ui.js");
 const CASH_FLOW_CSS: &str = include_str!("../ui/cash-flow-ui.css");
@@ -207,7 +210,7 @@ fn fresh_session_id() -> String {
 }
 
 fn exchange_read_path(path: &str) -> bool {
-    matches!(path, "/api/equipment" | "/api/equipment-preview" | "/api/competition" | "/api/industry" | "/api/cash-flow" | "/api/goods-quotes" |
+    matches!(path, "/api/companies" | "/api/equipment" | "/api/equipment-preview" | "/api/competition" | "/api/industry" | "/api/cash-flow" | "/api/goods-quotes" |
         "/api/industry-module-quotes" | "/api/materials-quote" | "/api/construction-preview")
 }
 
@@ -5875,6 +5878,16 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             .and_then(spheres_sim::tech::Domain::parse)
     };
     Some(match kind {
+        "enable_companies" => Command::EnableCompanies { nation: me },
+        "assign_company" => Command::AssignCompany {
+            nation: me,
+            company: u32::try_from(v.get("company")?.as_u64()?).ok()?,
+            target: serde_json::from_value(v.get("target")?.clone()).ok()?,
+        },
+        "unassign_company" => Command::UnassignCompany {
+            nation: me,
+            target: serde_json::from_value(v.get("target")?.clone()).ok()?,
+        },
         "construction_budget" => Command::SetConstructionBudget { nation:me, daily_budget_bn:v.get("daily_budget_bn")?.as_f64()? },
         "choose_campaign_aim" => Command::ChooseCampaignAim { nation:me,aim:serde_json::from_value(v.get("aim")?.clone()).ok()? },
         "continue_sandbox" => Command::ContinueSandbox { nation:me },
@@ -6429,6 +6442,7 @@ fn fresh_play_rules(g: &mut Game) -> Result<(), String> {
     spheres_sim::starting_industry::enable_new_world(&mut g.world)?;
     spheres_sim::starting_industry::enrich_new_world(&mut g.world)?;
     play_rules(g);
+    spheres_sim::companies::enable(&mut g.world);
     Ok(())
 }
 
@@ -6706,6 +6720,8 @@ fn main() {
             (Method::Get, "/decision-tools.css") => Response::from_string(DECISION_TOOLS_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, "/industry-ui.css") => Response::from_string(INDUSTRY_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, "/industry-ui.js") => Response::from_string(INDUSTRY_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/companies-ui.js") => Response::from_string(COMPANIES_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/companies.css") => Response::from_string(COMPANIES_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, "/cash-flow-ui.css") => Response::from_string(CASH_FLOW_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, "/cash-flow-ui.js") => Response::from_string(CASH_FLOW_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/arsenal-models.js") => Response::from_string(ARSENAL_MODELS_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
@@ -7195,6 +7211,17 @@ fn main() {
                 match g.world.player {
                     Some(me)=>{
                         let mut value=industry_json(&g.world,me);
+                        value["session_id"]=serde_json::json!(g.session_id);
+                        json_response(value)
+                    }
+                    None=>json_error(400,serde_json::json!({"error":"Choose a nation first."})),
+                }
+            }
+            (Method::Get, "/api/companies") => {
+                let g=game.lock().unwrap();
+                match g.world.player {
+                    Some(me)=>{
+                        let mut value=companies_view::snapshot(&g.world,me);
                         value["session_id"]=serde_json::json!(g.session_id);
                         json_response(value)
                     }

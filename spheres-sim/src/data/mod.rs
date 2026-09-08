@@ -885,6 +885,7 @@ pub fn load_world(
         materials: None,
         commerce: None,
         economic_ai: Default::default(),
+        companies: Default::default(),
         by_id: vec![],
         by_id_len: 0,
         resource_have: Default::default(),
