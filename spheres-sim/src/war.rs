@@ -158,7 +158,7 @@ pub fn committed_force(w: &WorldState, c: &Conflict, id: NationId) -> f64 {
 /// Objectives are not decoration. Each is a different pair of multipliers on
 /// killing and on taking ground, and choosing between them is choosing which of
 /// the two tracks you are playing.
-fn obj_kill(o: Objective) -> f64 {
+pub(crate) fn obj_kill(o: Objective) -> f64 {
     match o {
         Objective::Deny => 0.85,
         Objective::Degrade => 1.40,
@@ -171,7 +171,7 @@ fn obj_kill(o: Objective) -> f64 {
 /// Denying them the ground is not the same as taking it, but a force in the
 /// field that means to stop you does contest it — a fractional pull, not none,
 /// which is why a coalition that arrives to deny can still push an occupier out.
-fn obj_seize(o: Objective) -> f64 {
+pub(crate) fn obj_seize(o: Objective) -> f64 {
     match o {
         Objective::Deny => 0.35,
         Objective::Degrade => 0.30,
@@ -198,14 +198,14 @@ fn obj_recover(o: Objective) -> f64 {
         _ => 1.00,
     }
 }
-fn roe_kill(r: Roe) -> f64 {
+pub(crate) fn roe_kill(r: Roe) -> f64 {
     match r {
         Roe::Restrained => 0.75,
         Roe::Standard => 1.00,
         Roe::Unrestricted => 1.35,
     }
 }
-fn roe_seize(r: Roe) -> f64 {
+pub(crate) fn roe_seize(r: Roe) -> f64 {
     match r {
         Roe::Restrained => 0.90,
         Roe::Standard => 1.00,
@@ -646,6 +646,7 @@ pub fn tick(w: &mut WorldState) {
     crate::commitment::ai_ladder(w);
 
     resolve_conflicts(w);
+    crate::campaign_peace::tick(w);
 }
 
 /// One outcome per conflict that stopped being one.
@@ -669,12 +670,16 @@ enum Ending {
 }
 
 fn resolve_conflicts(w: &mut WorldState) {
+    crate::campaign::ai_orders(w);
     let dt = crate::clock::month_fraction(w);
     let mut continuing: Vec<Conflict> = vec![];
     let mut ended: Vec<(Conflict, Ending)> = vec![];
     // Snapshot before removing conflicts: every theatre shares one finite
     // national force, and later theatres cannot reuse or reread earlier losses.
     let mut operations = w.rules.military_operations.then(|| crate::operations::Snapshot::new(w));
+    let opening_campaign = if crate::campaign::enabled(w) {
+        operations.as_ref().map(|snapshot| crate::campaign::prepare(w, snapshot))
+    } else { None };
     let conflicts = std::mem::take(&mut w.conflicts);
 
     for mut c in conflicts {
@@ -696,6 +701,8 @@ fn resolve_conflicts(w: &mut WorldState) {
         let th = crate::theatre::theatre(w, c.theatre).clone();
         let a = side_profile_in(w, &c, true, operations.as_ref());
         let b = side_profile_in(w, &c, false, operations.as_ref());
+        let campaign_result = opening_campaign.as_ref().zip(operations.as_ref())
+            .map(|(opening,snapshot)| crate::campaign::resolve(w, &mut c, snapshot, opening));
 
         // ---- STEP 2: the gate ----
         let kill_ab = if operations.is_some() && b.mass <= 0.0 { 0.0 } else { kill_rate(&a, &b, &th) };
@@ -718,7 +725,9 @@ fn resolve_conflicts(w: &mut WorldState) {
         }
         let (push, hold_mult) = control_terms(&c, &a, &b, c.control);
         let dcontrol = (push * (1.0 - c.control * c.control) - CONTROL_DECAY * c.control * hold_mult) * dt;
-        if contested.k.is_empty() {
+        if campaign_result.is_some() {
+            // Local contacts have already resolved control from the opening board.
+        } else if contested.k.is_empty() {
             c.control = (c.control + dcontrol).clamp(-1.0, 1.0);
         } else {
             crate::front::project(w, &mut c, &contested, dcontrol, &th);
@@ -745,6 +754,8 @@ fn resolve_conflicts(w: &mut WorldState) {
                 let own = c.posture[i].rung.min(9) as usize;
                 kill_in = (kill_in * RUNG_EXPOSURE[own] / RUNG_EXPOSURE[prey_rung.min(9) as usize].max(1e-12)).clamp(0.0, 0.50);
             }
+            let (kill_in, kill_out) = campaign_result.as_ref().map_or((kill_in,kill_out), |r|
+                r.kill_rates.get(&nation).copied().unwrap_or((0.0,0.0)));
             let opp_unrestricted = if side_a { b.unrestricted } else { a.unrestricted };
             let mine = if side_a { c.control } else { -c.control };
             let enemy_top = c.top_rung(!side_a);
@@ -868,7 +879,8 @@ fn resolve_conflicts(w: &mut WorldState) {
         }
 
         for (id, rate) in structure_hits {
-            let rate = crate::clock::blend(w, rate);
+            let rate = campaign_result.as_ref().map_or_else(|| crate::clock::blend(w, rate), |r|
+                r.losses.get(&id).copied().unwrap_or(0.0));
             if let Some(s) = &mut operations { s.record_loss(c.id, id, rate); }
             else {
                 crate::population::record_casualties(w, id, rate);
@@ -926,6 +938,20 @@ fn resolve_conflicts(w: &mut WorldState) {
         // origin ATTACKER — which is how China once capitulated to China, paid
         // itself reparations and broke its own army for winning, while
         // Mongolia walked away from the war it had just lost.
+        if campaign_result.is_some() {
+            // Operational wars end at a consented table. Exhausted governments
+            // cease fighting but remain parties to their territory and terms.
+            for id in &exits {
+                if let Some(b)=c.posture_mut(*id) { b.rung=1; b.resolve=0.0; }
+            }
+            if c.posture.iter().all(|b|b.rung<SHOOTING_RUNG) {
+                c.quiet_months=crate::clock::advance_counter(w,format!("war:{}:quiet",c.id),c.quiet_months);
+            } else { c.quiet_months=0; w.daily.counters.remove(&format!("war:{}:quiet",c.id)); }
+            if !c.invasion_declared && c.quiet_months>=42 && c.posture.iter().all(|b|b.rung<=1) {
+                ended.push((c,Ending::Lapsed));
+            } else { continuing.push(c); }
+            continue;
+        }
         let (last_lead_a, last_lead_b) = (c.attacker(), c.defender());
         for id in &exits {
             w.headline(format!("{} quits the fight.", id.name()));
@@ -1606,7 +1632,7 @@ pub fn declare_war(w: &mut WorldState, attacker: NationId, defender: NationId) -
     }
 
     let th = theatre_between(w, attacker, defender);
-    let id = w.next_conflict_id();
+    let id = w.allocate_conflict_id()?;
     w.conflicts.push(Conflict {
         id,
         theatre: th,

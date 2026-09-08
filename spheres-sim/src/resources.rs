@@ -1187,6 +1187,16 @@ fn set_market_cash(market: &mut MarketState, nation: NationId, balance_bn: f64) 
     }
 }
 
+/// Settle a consented cash transfer through the existing payment authority.
+pub(crate) fn settle_cash_transfer(w: &mut WorldState, from: NationId, to: NationId, amount: f64) {
+    // Materialize existing legacy procurement cover through its normal
+    // migration path; this adds no reserve beyond what the world already owns.
+    let mut market = w.resources.market.take().unwrap_or_else(|| new_market_state(w));
+    apply_market_net(w, &mut market, from, amount);
+    apply_market_net(w, &mut market, to, -amount);
+    w.resources.market = Some(market);
+}
+
 /// Apply one nation's net market payment in $bn. Positive is an outflow:
 /// retained trade cash is spent before debt rises. Negative is a receipt:
 /// debt is retired first and any remainder is kept as cash. Both negotiated

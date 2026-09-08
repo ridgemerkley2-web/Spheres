@@ -1,5 +1,8 @@
 pub mod agency;
 pub mod campaign_aims;
+pub mod campaign;
+pub mod campaign_supply;
+pub mod campaign_peace;
 pub mod arsenal;
 pub mod blocs;
 pub mod commitment;
@@ -87,6 +90,8 @@ pub enum EquipmentOrder {
 /// All player and AI actions flow through the command queue.
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub enum Command {
+    SetOperation { order: campaign::OperationOrder },
+    WarDiplomacy { nation: NationId, order: campaign_peace::PeaceOrder },
     /// Explicit migration for a saved campaign; existing residents and GDP stay.
     EnablePopulation { nation: NationId },
     SetPopulationPolicy { nation: NationId, policy: population::Policy },
@@ -624,6 +629,8 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         ),
         Command::SetObjective { nation, .. } => (*nation, 3.0, REFUSABLE),
         Command::SetForceAllocation { nation, .. } => (*nation, 0.0, REFUSABLE),
+        Command::SetOperation { order } => (order.nation, 0.0, REFUSABLE),
+        Command::WarDiplomacy { nation, order } => (*nation, campaign_peace::price(order), REFUSABLE),
         // Saying which district a quarrel is for costs nothing: the quarrel
         // was the purchase. Refusable so a bad aim is refused, not charged.
         Command::SetAim { nation, .. } => (*nation, 0.0, REFUSABLE),
@@ -682,6 +689,8 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
 /// this returns the sim's own prose rather than composing its own.
 fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
     match c {
+        Command::DeclareWar { .. } => w.conflict_id_refusal(),
+        Command::OpenConflict { opener, target, .. } if w.conflict_between(*opener, *target).is_none() => w.conflict_id_refusal(),
         Command::EnablePopulation { nation } => {
             if !w.nation_opt(*nation).is_some_and(|n| n.alive) {
                 Some("This government no longer exists.".into())
@@ -738,6 +747,8 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
         Command::SetForceAllocation { conflict, nation, share_bp } => {
             operations::allocation_refusal(w, *conflict, *nation, *share_bp)
         }
+        Command::SetOperation { order } => campaign::order_refusal(w, order),
+        Command::WarDiplomacy { nation, order } => campaign_peace::refusal(w, *nation, order),
         // A hard bar — the wrong shape, an unsourced line, a seller at war,
         // ground that is being fought over — costs the asker nothing and is
         // never quoted a price. A counter is not a bar: it reaches
@@ -1316,6 +1327,8 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
         Command::SetForceAllocation { conflict, nation, share_bp } => {
             operations::set_allocation(w, *conflict, *nation, *share_bp)?;
         }
+        Command::SetOperation { order } => campaign::set_order(w, order)?,
+        Command::WarDiplomacy { nation, order } => campaign_peace::apply(w, *nation, order)?,
         Command::SetAim { conflict, district, commodity, .. } => {
             resources::set_aim(w, *conflict, district, *commodity)?
         }
@@ -1598,6 +1611,7 @@ pub fn load(s: &str) -> Result<WorldState, String> {
         struct EquipmentSave { world: WorldState }
         serde_json::from_str::<EquipmentSave>(s).map_err(|e| e.to_string())?.world
     } else { serde_json::from_str(s).map_err(|e| e.to_string())? };
+    if w.rules.operational_warfare > 1 { return Err("This operational warfare save version is not supported by this build.".into()); }
     migrate_legacy_wars(&mut w);
     if w.theatres.is_empty() {
         w.theatres = theatre::default_theatres();

@@ -1,5 +1,21 @@
 # SPHERES — the bible
 
+## Operational warfare amendment — 2026-09-07
+
+Ridge requested the full war overhaul and instructed: "Okay build the whole thing
+and push to GitHub". `WARFARE.md` describes the implemented operational model.
+For explicitly enabled daily `operational_warfare = 1`, local district contacts,
+readiness, supply and preparation determine aggregate progress. This supersedes
+the front projection's requirement to spend the entire scalar advance budget.
+The player still commands theatre intent, not individual units or tactical ships.
+
+One national force, equipment inventory, ammunition account and economic control
+authority remain binding. Routed military support is a disclosed modeled service,
+not fabricated ammunition tonnage. Operational readiness is distinct from physical
+serviceability and political resolve. Peace uses typed terms and coalition consent;
+occupation remains distinct from sovereignty. Legacy monthly mode and version-zero
+front calibration retain their original contracts and golden pins.
+
 ## Adopted amendment — People, work and opportunity (2026-09-07)
 
 Ridge approved the population rebuild strategy and instructed: "Okay build it

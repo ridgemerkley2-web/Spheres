@@ -51,6 +51,12 @@ economic growth can create new firms. See [Companies](COMPANIES.md) for the rule
 **Decisions** contains diplomatic requests, standing policies, monetary choices
 and optional peaceful campaign aims. Domination remains an available aim.
 
+**Wars** now includes an operation board: select a district, probe or concentrate
+an advance, hold prepared ground, commit reserves, or withdraw. Forces travel,
+lose cohesion and depend on delivered supply. Air/naval support, limited peace
+terms and occupation policy use the same army and economy. See [WARFARE.md](WARFARE.md)
+for the controls, accounting and save compatibility.
+
 The map opens in **Terrain**. Drag to rotate and scroll or pinch to zoom, up to
 **192×**. The corner controls switch to **Political** or **Fronts**, return to
 **World**, center **Home**, and toggle **3D / Top**. Close Terrain views use an

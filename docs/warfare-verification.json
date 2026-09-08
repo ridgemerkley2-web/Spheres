@@ -1,0 +1,542 @@
+{
+  "source_revision": "c9c267cf30d33daa4efc3538972a3cb9732ed49a",
+  "build_metadata_note": "The browser revision has a -modified suffix from release documentation edits only: ROADMAP.md, WARFARE.md, WAR_OVERHAUL_EXECUTION.md and new docs/WARFARE_RELEASE.md. Simulation, web and UI source matches c9c267c; the final documentation commit does not change it.",
+  "source_tree": "62807e9d0236a3a7d26abcdd304e9473ac8c38de",
+  "rust_workspace": {
+    "targets": 50,
+    "passed": 1291,
+    "failed": 0,
+    "existing_ignored": 70
+  },
+  "observer_tests": {
+    "passed": 4,
+    "failed": 0
+  },
+  "ui_tests": {
+    "passed": 1064,
+    "failed": 0
+  },
+  "browser": {
+    "runtime_revision": "c9c267cf30d3-modified",
+    "passed_suites": 5,
+    "suites": [
+      {
+        "name": "Original browser CI",
+        "passed": true
+      },
+      {
+        "name": "Campaign module browser",
+        "passed": true
+      },
+      {
+        "name": "Campaign server integration",
+        "passed": true
+      },
+      {
+        "name": "Industry and company browser",
+        "passed": true
+      },
+      {
+        "name": "People browser",
+        "passed": true
+      }
+    ]
+  },
+  "campaign_panels": [
+    {
+      "scenario": "unequal_neighbors",
+      "seed": 1990,
+      "requested_days": 90,
+      "observed_days": 90,
+      "active_days": 75,
+      "active_at_end": false,
+      "first_closed_date": "1990-03-17",
+      "last_observed_control": 0.6444886318301725,
+      "control_min": 0.0,
+      "control_max": 0.7600590011218687,
+      "control_direction_changes": 7,
+      "final_world_hash": "76d274c348eda221",
+      "invariants": {
+        "force_roundoff_tolerance": 1e-07,
+        "maximum_national_mass_excess": 1.4210854715202004e-14,
+        "passed": true,
+        "violations": []
+      },
+      "performance": {
+        "command_seconds": 0.00013680000000000018,
+        "observer_seconds": 0.0075728,
+        "setup_seconds": 0.0483612,
+        "simulation_seconds": 19.18059630000001,
+        "total_wall_seconds": 19.3047275
+      },
+      "reported_force_losses": {
+        "USA": 0.0,
+        "UK": 0.0,
+        "Iraq": 0.023709576666971283,
+        "Kuwait": 0.03220134693953827
+      },
+      "peace_outcomes": [
+        {
+          "day": 61,
+          "outcome": "rejected",
+          "terms": {
+            "kind": "reparations",
+            "share_bp": 50
+          }
+        },
+        {
+          "day": 75,
+          "outcome": "accepted",
+          "terms": {
+            "kind": "ceasefire"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "unequal_neighbors",
+      "seed": 7,
+      "requested_days": 90,
+      "observed_days": 90,
+      "active_days": 75,
+      "active_at_end": false,
+      "first_closed_date": "1990-03-17",
+      "last_observed_control": 0.6445009686224334,
+      "control_min": 0.0,
+      "control_max": 0.7600718230551108,
+      "control_direction_changes": 7,
+      "final_world_hash": "cb2d1ed548022689",
+      "invariants": {
+        "force_roundoff_tolerance": 1e-07,
+        "maximum_national_mass_excess": 1.4210854715202004e-14,
+        "passed": true,
+        "violations": []
+      },
+      "performance": {
+        "command_seconds": 0.0001289000000000002,
+        "observer_seconds": 0.004169000000000001,
+        "setup_seconds": 0.0291388,
+        "simulation_seconds": 15.405758100000002,
+        "total_wall_seconds": 15.507816
+      },
+      "reported_force_losses": {
+        "USA": 0.0,
+        "UK": 0.0,
+        "Iraq": 0.023709660539232933,
+        "Kuwait": 0.03220239755401405
+      },
+      "peace_outcomes": [
+        {
+          "day": 61,
+          "outcome": "rejected",
+          "terms": {
+            "kind": "reparations",
+            "share_bp": 50
+          }
+        },
+        {
+          "day": 75,
+          "outcome": "accepted",
+          "terms": {
+            "kind": "ceasefire"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "unequal_neighbors",
+      "seed": 42,
+      "requested_days": 90,
+      "observed_days": 90,
+      "active_days": 75,
+      "active_at_end": false,
+      "first_closed_date": "1990-03-17",
+      "last_observed_control": 0.6444842203958933,
+      "control_min": 0.0,
+      "control_max": 0.7600554415038892,
+      "control_direction_changes": 7,
+      "final_world_hash": "28ed5f1b2cf707ca",
+      "invariants": {
+        "force_roundoff_tolerance": 1e-07,
+        "maximum_national_mass_excess": 1.4210854715202004e-14,
+        "passed": true,
+        "violations": []
+      },
+      "performance": {
+        "command_seconds": 0.00013040000000000016,
+        "observer_seconds": 0.0070821999999999986,
+        "setup_seconds": 0.0321058,
+        "simulation_seconds": 20.907451700000003,
+        "total_wall_seconds": 21.0171736
+      },
+      "reported_force_losses": {
+        "USA": 0.0,
+        "UK": 0.0,
+        "Iraq": 0.023708589957161016,
+        "Kuwait": 0.03220130798392704
+      },
+      "peace_outcomes": [
+        {
+          "day": 61,
+          "outcome": "rejected",
+          "terms": {
+            "kind": "reparations",
+            "share_bp": 50
+          }
+        },
+        {
+          "day": 75,
+          "outcome": "accepted",
+          "terms": {
+            "kind": "ceasefire"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "regional_peers",
+      "seed": 1990,
+      "requested_days": 90,
+      "observed_days": 90,
+      "active_days": 89,
+      "active_at_end": true,
+      "first_closed_date": null,
+      "last_observed_control": -0.2983440896319526,
+      "control_min": -0.2983440896319526,
+      "control_max": 0.0002139439595248596,
+      "control_direction_changes": 11,
+      "final_world_hash": "704131b48f6072c1",
+      "invariants": {
+        "force_roundoff_tolerance": 1e-07,
+        "maximum_national_mass_excess": 7.105427357601002e-15,
+        "passed": true,
+        "violations": []
+      },
+      "performance": {
+        "command_seconds": 0.0001225000000000001,
+        "observer_seconds": 0.004634799999999998,
+        "setup_seconds": 0.0334142,
+        "simulation_seconds": 20.221482499999993,
+        "total_wall_seconds": 20.3278434
+      },
+      "reported_force_losses": {
+        "Iraq": 0.08845180656081246,
+        "Iran": 0.0724082389238463
+      },
+      "peace_outcomes": [
+        {
+          "day": 61,
+          "outcome": "rejected",
+          "terms": {
+            "kind": "reparations",
+            "share_bp": 50
+          }
+        },
+        {
+          "day": 75,
+          "outcome": "rejected",
+          "terms": {
+            "kind": "ceasefire"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "regional_peers",
+      "seed": 7,
+      "requested_days": 90,
+      "observed_days": 90,
+      "active_days": 89,
+      "active_at_end": true,
+      "first_closed_date": null,
+      "last_observed_control": -0.29834333715744876,
+      "control_min": -0.29834333715744876,
+      "control_max": 0.0002139527901265941,
+      "control_direction_changes": 11,
+      "final_world_hash": "e9cbd5a96b328dfd",
+      "invariants": {
+        "force_roundoff_tolerance": 1e-07,
+        "maximum_national_mass_excess": 1.0658141036401503e-14,
+        "passed": true,
+        "violations": []
+      },
+      "performance": {
+        "command_seconds": 0.00012000000000000011,
+        "observer_seconds": 0.004717499999999999,
+        "setup_seconds": 0.0271804,
+        "simulation_seconds": 19.055027500000005,
+        "total_wall_seconds": 19.1505392
+      },
+      "reported_force_losses": {
+        "Iraq": 0.08844472377398255,
+        "Iran": 0.07241510310700612
+      },
+      "peace_outcomes": [
+        {
+          "day": 61,
+          "outcome": "rejected",
+          "terms": {
+            "kind": "reparations",
+            "share_bp": 50
+          }
+        },
+        {
+          "day": 75,
+          "outcome": "rejected",
+          "terms": {
+            "kind": "ceasefire"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "regional_peers",
+      "seed": 42,
+      "requested_days": 90,
+      "observed_days": 90,
+      "active_days": 89,
+      "active_at_end": true,
+      "first_closed_date": null,
+      "last_observed_control": -0.29834480614084674,
+      "control_min": -0.29834480614084674,
+      "control_max": 0.00021394581461620714,
+      "control_direction_changes": 11,
+      "final_world_hash": "e475bff6e7b50c8f",
+      "invariants": {
+        "force_roundoff_tolerance": 1e-07,
+        "maximum_national_mass_excess": 7.105427357601002e-15,
+        "passed": true,
+        "violations": []
+      },
+      "performance": {
+        "command_seconds": 0.0001264000000000002,
+        "observer_seconds": 0.004562999999999997,
+        "setup_seconds": 0.0299253,
+        "simulation_seconds": 18.850290700000002,
+        "total_wall_seconds": 18.9513462
+      },
+      "reported_force_losses": {
+        "Iraq": 0.08845273703322193,
+        "Iran": 0.07240587046940858
+      },
+      "peace_outcomes": [
+        {
+          "day": 61,
+          "outcome": "rejected",
+          "terms": {
+            "kind": "reparations",
+            "share_bp": 50
+          }
+        },
+        {
+          "day": 75,
+          "outcome": "rejected",
+          "terms": {
+            "kind": "ceasefire"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "unequal_neighbors",
+      "seed": 1990,
+      "requested_days": 365,
+      "observed_days": 365,
+      "active_days": 75,
+      "active_at_end": false,
+      "first_closed_date": "1990-03-17",
+      "last_observed_control": 0.6444886318301725,
+      "control_min": 0.0,
+      "control_max": 0.7600590011218687,
+      "control_direction_changes": 7,
+      "final_world_hash": "4acf87d0a9de587f",
+      "invariants": {
+        "force_roundoff_tolerance": 1e-07,
+        "maximum_national_mass_excess": 1.4210854715202004e-14,
+        "passed": true,
+        "violations": []
+      },
+      "performance": {
+        "command_seconds": 0.00018750000000000125,
+        "observer_seconds": 0.011061099999999912,
+        "setup_seconds": 0.0482078,
+        "simulation_seconds": 84.67980490000002,
+        "total_wall_seconds": 84.8378928
+      },
+      "reported_force_losses": {
+        "USA": 0.0,
+        "UK": 0.0,
+        "Iraq": 0.023709576666971283,
+        "Kuwait": 0.03220134693953827
+      },
+      "peace_outcomes": [
+        {
+          "day": 61,
+          "outcome": "rejected",
+          "terms": {
+            "kind": "reparations",
+            "share_bp": 50
+          }
+        },
+        {
+          "day": 75,
+          "outcome": "accepted",
+          "terms": {
+            "kind": "ceasefire"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "regional_peers",
+      "seed": 1990,
+      "requested_days": 365,
+      "observed_days": 365,
+      "active_days": 364,
+      "active_at_end": true,
+      "first_closed_date": null,
+      "last_observed_control": -0.2983440896319526,
+      "control_min": -0.2983440896319526,
+      "control_max": 0.0002139439595248596,
+      "control_direction_changes": 11,
+      "final_world_hash": "138f1144782b1f79",
+      "invariants": {
+        "force_roundoff_tolerance": 1e-07,
+        "maximum_national_mass_excess": 1.0658141036401503e-14,
+        "passed": true,
+        "violations": []
+      },
+      "performance": {
+        "command_seconds": 0.0001574000000000011,
+        "observer_seconds": 0.017003999999999984,
+        "setup_seconds": 0.0310119,
+        "simulation_seconds": 157.72960459999996,
+        "total_wall_seconds": 157.8730678
+      },
+      "reported_force_losses": {
+        "Iraq": 0.08845180656081246,
+        "Iran": 0.0724082389238463
+      },
+      "peace_outcomes": [
+        {
+          "day": 61,
+          "outcome": "rejected",
+          "terms": {
+            "kind": "reparations",
+            "share_bp": 50
+          }
+        },
+        {
+          "day": 75,
+          "outcome": "rejected",
+          "terms": {
+            "kind": "ceasefire"
+          }
+        },
+        {
+          "day": 202,
+          "outcome": "expired",
+          "terms": {
+            "kind": "ceasefire"
+          }
+        },
+        {
+          "day": 232,
+          "outcome": "expired",
+          "terms": {
+            "kind": "ceasefire"
+          }
+        },
+        {
+          "day": 262,
+          "outcome": "expired",
+          "terms": {
+            "kind": "ceasefire"
+          }
+        },
+        {
+          "day": 292,
+          "outcome": "expired",
+          "terms": {
+            "kind": "ceasefire"
+          }
+        },
+        {
+          "day": 322,
+          "outcome": "expired",
+          "terms": {
+            "kind": "ceasefire"
+          }
+        },
+        {
+          "day": 352,
+          "outcome": "expired",
+          "terms": {
+            "kind": "ceasefire"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "unequal_neighbors",
+      "seed": 1990,
+      "requested_days": 3650,
+      "observed_days": 3650,
+      "active_days": 75,
+      "active_at_end": false,
+      "first_closed_date": "1990-03-17",
+      "last_observed_control": 0.6444886318301725,
+      "control_min": 0.0,
+      "control_max": 0.7600590011218687,
+      "control_direction_changes": 7,
+      "final_world_hash": "27dd69107c6d4787",
+      "invariants": {
+        "force_roundoff_tolerance": 1e-07,
+        "maximum_national_mass_excess": 1.4210854715202004e-14,
+        "passed": true,
+        "violations": []
+      },
+      "performance": {
+        "command_seconds": 0.0009520999999999284,
+        "observer_seconds": 0.055709900000000916,
+        "setup_seconds": 0.056738,
+        "simulation_seconds": 500.5168264000017,
+        "total_wall_seconds": 500.7569741
+      },
+      "reported_force_losses": {
+        "USA": 0.0,
+        "UK": 0.0,
+        "Iraq": 0.023709576666971283,
+        "Kuwait": 0.03220134693953827
+      },
+      "peace_outcomes": [
+        {
+          "day": 61,
+          "outcome": "rejected",
+          "terms": {
+            "kind": "reparations",
+            "share_bp": 50
+          }
+        },
+        {
+          "day": 75,
+          "outcome": "accepted",
+          "terms": {
+            "kind": "ceasefire"
+          }
+        }
+      ]
+    }
+  ],
+  "raw_evidence_sha256": {
+    "artifacts/warfare/release-tests-final.log": "a4440df1b7de87671c6c839304b465efba9cc6d23f08ade5c4e9d209337b7c49",
+    "artifacts/warfare/report-observer-final.log": "3435c94bff01472e0bf03a8b6ab065f7425330891c408e78a5bf7d7c17c7664d",
+    "artifacts/warfare/ui-unit-final.log": "72adbb5f074d0e3b0e55c81155a642b1476918dea04f5c22cce6c207631af705",
+    "artifacts/warfare/release-build-final.log": "2b77ee9e099a00e7429283ce04d91e9605afe2f1ff8f5363384434f6c6a1da2a",
+    "artifacts/browser-ci/final-c9c267c/verification.json": "ca1f34f15bc44c089df338d3a103ce7a711413f06e0de355334fbdcccadadfbe",
+    "artifacts/warfare/campaign-report-final.json": "8e2c064638fee44587c664f65cd5c7e399062198d97160eb96ead3e6e7e15589",
+    "artifacts/warfare/campaign-report-final-year.json": "388c401acd35665bbb790832ab27a36e85633dc848e2a3fe499c218e010136d7",
+    "artifacts/warfare/campaign-report-final-decade.json": "1688a3c0dcf86076b61e8fb074071a607f9f8f66ea9ba746b5be527ab8a0bcd6"
+  },
+  "scope": "Descriptive full-world diagnostics and conservation checks, not historical calibration or human playtesting. Timings include concurrent local verification work. Raw artifacts remain local and can be reproduced with the committed tools."
+}

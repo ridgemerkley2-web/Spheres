@@ -1,5 +1,23 @@
 # SPHERES Roadmap
 
+## Implemented and verified — operational warfare (2026-09-07)
+
+Daily browser wars now use local combat, cohesion, dated deployment and retreat,
+finite reserves and equipment, routed military support and observed enemy
+estimates. The operation board exposes district focus, approach, reserve share,
+air/naval intent, constraints and dated reports. Typed war aims, coalition consent
+for limited peace, and supplied garrisons connect combat to political outcomes.
+The model preserves the existing industry, ammunition, aviation, economy and map
+authorities; legacy monthly wars retain their previous solver.
+
+See [WARFARE.md](WARFARE.md) for mechanics and
+[the release record](docs/WARFARE_RELEASE.md) for the verified `c9c267cf30d3`
+runtime and integration with the landed population work. The release passed
+1,291 workspace Rust tests, four observer tests, 1,064 UI tests and five browser
+suites. Persistent conflict identities prevent old orders and policies carrying
+into later wars. Multi-seed campaign reports are descriptive evidence, not
+historical calibration.
+
 ## People, classes, education and jobs — 2026-09-07
 
 The [population rebuild](docs/POPULATION_REBUILD.md) is implemented for new daily

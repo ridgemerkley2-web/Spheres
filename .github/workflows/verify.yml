@@ -22,11 +22,14 @@ jobs:
           cache: npm
           cache-dependency-path: tools/ui/package-lock.json
       - run: cargo test --locked --release --workspace --no-fail-fast
+      - run: cargo test --locked --release -p spheres-sim --example campaign_report
       - run: node tools/ui/run-unit.cjs
       - run: cargo build --locked --release -p spheres-web
       - run: npm ci --prefix tools/ui
       - run: npx --prefix tools/ui playwright install --with-deps chromium
       - run: node tools/ui/ci-browser.cjs
+      - run: node tools/ui/check_campaign_browser.cjs
+      - run: node tools/ui/check_campaign_integration_browser.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
