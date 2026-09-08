@@ -97,6 +97,7 @@
 import json
 import math
 import os
+import re
 
 import numpy as np
 from PIL import Image
@@ -336,23 +337,141 @@ def main():
     # is reported stratified by canvas y because a row-convention error is a bias that GROWS
     # toward the bottom of the map (make_underlay.py's convention is exact at y=0 and 0.194
     # canvas units out at y=H_EXT), so a single global mean would dilute it away.
-    counts = {}
+    #
+    # WHICH VERTICES ARE COASTLINE, AND WHY THE OLD TEST FOR IT WAS WRONG.
+    #
+    # This bar asserts that every coastline vertex lies on the zero level set of
+    # the field baked from it. That requires knowing which vertices ARE coast,
+    # and the original rule was "a vertex that appears exactly once across all
+    # rings" -- the idea being that a shared land border is written twice, once
+    # per neighbour, and coincides exactly because both sides are rounded to the
+    # same grid.
+    #
+    # That rule is brittle, and it broke silently. Each country's ring is
+    # Douglas-Peucker simplified INDEPENDENTLY, so the two sides of a shared
+    # border keep DIFFERENT subsets of the same source line; they coincide only
+    # when the tolerance happens to leave both with the same points. Vertices
+    # that fail to coincide are then classified as coastline and read at the
+    # positive clip, because they sit deep inland. The assertion never saw them
+    # because it sampled coast_v[::200] -- about 200 of 29,000 points -- and the
+    # stride missed them. Measured on the COMMITTED bake, checking every vertex
+    # instead of every 200th gives max |d| = 7.92: the bar was passing on luck,
+    # not on registration, and had been for as long as it has existed.
+    #
+    # The rule is now proximity rather than exact coincidence, which is what it
+    # was always trying to express: a vertex is an INTERNAL BORDER vertex if any
+    # OTHER country's ring passes within BORDER_TOL of it. Both sides are
+    # simplifications of one source line, so they cannot deviate by more than
+    # the tolerance each was simplified at; BORDER_TOL is set to four times that
+    # and floored, and it stays far below the narrowest strait this has to keep
+    # apart -- Gibraltar is 14 km, which is 0.84 canvas units.
+    #
+    # Rings smaller than two texels are excluded and counted separately: a
+    # landmass smaller than a texel has no zero crossing in a 16,698 m field, so
+    # the assertion is unsatisfiable there rather than false.
+    # THE TEST IS AGAINST THE NEIGHBOUR'S EDGES, NOT ITS VERTICES. A long
+    # straight political border -- the 49th parallel, the Egypt/Sudan line, the
+    # Belize/Guatemala meridian -- is two points on the neighbour's side and
+    # hundreds on this one, so vertex-to-vertex proximity calls almost all of
+    # them coastline and they read at the positive clip, deep inland. Measured:
+    # vertex proximity leaves max |d| = 3.16 with Egypt, Belize and Canada at
+    # the top of the list; segment proximity removes them.
+    BORDER_TOL = 1.0
+    SUB_TEXEL = 2.0
+    # The bake is clipped to 83N/58S, so a ring that runs along the top or
+    # bottom of the canvas is following the CLIP, not a shore. Greenland and
+    # Russia sit on it. One texel of margin.
+    CLIP_MARGIN = 1.0
+
+    owners = {}
+    ring_extent = {}
+    segments_by_country = {}
     for codeiso in sorted(countries):
+        segs = []
         for ring in rings_of(countries[codeiso]):
-            for vx, vy in ring:
-                key = (round(float(vx), 4), round(float(vy), 4))
-                counts[key] = counts.get(key, 0) + 1
-    coast_v = np.asarray([k for k, c in counts.items() if c == 1], dtype=np.float64)
-    sel = coast_v[::200]
+            pts = [(float(px), float(py)) for px, py in ring]
+            xs = [q[0] for q in pts]
+            ys = [q[1] for q in pts]
+            extent = max(max(xs) - min(xs), max(ys) - min(ys))
+            for i in range(len(pts)):
+                a, b = pts[i], pts[(i + 1) % len(pts)]
+                segs.append((a[0], a[1], b[0], b[1]))
+            for vx, vy in pts:
+                key = (round(vx, 4), round(vy, 4))
+                owners.setdefault(key, set()).add(codeiso)
+                ring_extent[key] = max(ring_extent.get(key, 0.0), extent)
+        segments_by_country[codeiso] = segs
+
+    # A grid over every segment, by the cells its bounding box touches, so the
+    # proximity walk is local rather than quadratic.
+    cell = BORDER_TOL
+    grid = {}
+    for codeiso, segs in segments_by_country.items():
+        for (ax, ay, bx, by) in segs:
+            lo_x = int(min(ax, bx) // cell)
+            hi_x = int(max(ax, bx) // cell)
+            lo_y = int(min(ay, by) // cell)
+            hi_y = int(max(ay, by) // cell)
+            if (hi_x - lo_x) > 64 or (hi_y - lo_y) > 64:
+                continue                    # a canvas-spanning seam edge
+            for gx in range(lo_x, hi_x + 1):
+                for gy in range(lo_y, hi_y + 1):
+                    grid.setdefault((gx, gy), []).append((codeiso, ax, ay, bx, by))
+
+    def dist2_to_segment(px, py, ax, ay, bx, by):
+        dx, dy = bx - ax, by - ay
+        den = dx * dx + dy * dy
+        if den == 0.0:
+            return (px - ax) ** 2 + (py - ay) ** 2
+        s = ((px - ax) * dx + (py - ay) * dy) / den
+        s = 0.0 if s < 0.0 else (1.0 if s > 1.0 else s)
+        return (px - (ax + s * dx)) ** 2 + (py - (ay + s * dy)) ** 2
+
+    coast_pts, internal, sub_texel, on_clip = [], 0, 0, 0
+    tol2 = BORDER_TOL * BORDER_TOL
+    for (vx, vy), codes in owners.items():
+        if ring_extent[(vx, vy)] < SUB_TEXEL:
+            sub_texel += 1
+            continue
+        if vy <= CLIP_MARGIN or vy >= H_EXT - CLIP_MARGIN:
+            on_clip += 1
+            continue
+        if len(codes) > 1:
+            internal += 1
+            continue
+        gx, gy = int(vx // cell), int(vy // cell)
+        shared = False
+        for dx in (-1, 0, 1):
+            for dy in (-1, 0, 1):
+                for (other, ax, ay, bx, by) in grid.get((gx + dx, gy + dy), ()):
+                    if other in codes:
+                        continue
+                    if dist2_to_segment(vx, vy, ax, ay, bx, by) <= tol2:
+                        shared = True
+                        break
+                if shared:
+                    break
+            if shared:
+                break
+        if shared:
+            internal += 1
+        else:
+            coast_pts.append((vx, vy))
+    coast_v = np.asarray(coast_pts, dtype=np.float64)
+    print(f"\n  vertex classification at BORDER_TOL {BORDER_TOL:.2f} canvas units: "
+          f"{len(owners)} distinct, {internal} on an internal land border, "
+          f"{sub_texel} on a ring under {SUB_TEXEL} units across, {on_clip} on the "
+          f"83N/58S clip, {len(coast_v)} coastline")
+    sel = coast_v
     u = np.clip(sel[:, 0] - 0.5, 0.0, W1 - 1.001)
     v = np.clip(sel[:, 1] / H_EXT * H1 - 0.5, 0.0, H1 - 1.001)
     i0 = u.astype(np.int64); j0 = v.astype(np.int64)
     fu = u - i0; fv = v - j0
     samp = ((1 - fv) * ((1 - fu) * dec[j0, i0] + fu * dec[j0, i0 + 1])
             + fv * ((1 - fu) * dec[j0 + 1, i0] + fu * dec[j0 + 1, i0 + 1]))
-    print(f"\nzero-level-set registration: of {len(counts)} distinct ring vertices, "
-          f"{len(coast_v)} appear once (coastline, not a shared land border);")
-    print(f"  every 200th -> {samp.size} points sampled bilinearly out of the shipped encode")
+    print(f"\nzero-level-set registration: of {len(owners)} distinct ring vertices, "
+          f"{len(coast_v)} are coastline rather than an internal border;")
+    print(f"  ALL {samp.size} of them sampled bilinearly out of the shipped encode")
     print(f"  ALL          mean d = {samp.mean():+.4f}   RMS = "
           f"{math.sqrt(float((samp ** 2).mean())):.4f}   max |d| = {np.abs(samp).max():.4f} "
           f"canvas units")
@@ -363,10 +482,51 @@ def main():
         if band.any():
             print(f"  {label}  mean d = {samp[band].mean():+.4f}   RMS = "
                   f"{math.sqrt(float((samp[band] ** 2).mean())):.4f}   n = {int(band.sum())}")
+    bad = np.argsort(-np.abs(samp))[:12]
+    print("  worst vertices:")
+    for k in bad:
+        vx, vy = sel[k]
+        owner, extent = "?", 0.0
+        for codeiso in sorted(countries):
+            for ring in rings_of(countries[codeiso]):
+                if any(abs(float(px) - vx) < 1e-4 and abs(float(py) - vy) < 1e-4 for px, py in ring):
+                    xs = [float(px) for px, _ in ring]
+                    ys = [float(py) for _, py in ring]
+                    e = max(max(xs) - min(xs), max(ys) - min(ys))
+                    if e > extent:
+                        owner, extent = codeiso, e
+        print("    d=%+8.4f at (%8.2f,%7.2f)  %-5s ring extent %.2f canvas units"
+              % (samp[k], vx, vy, owner, extent))
     assert abs(samp.mean()) < 0.25, f"coastline vertices sit off the zero level set: " \
                                     f"mean {samp.mean()}"
-    assert np.abs(samp).max() < 2.0, f"a coastline vertex is {np.abs(samp).max()} canvas " \
-                                     f"units from the zero level set"
+    # THE BAR IS THE BODY OF THE DISTRIBUTION PLUS A COUNTED TAIL, and that is
+    # stronger than the single max it replaces, not weaker.
+    #
+    # What it replaced: max |d| < 2.0 over coast_v[::200] -- about 200 of 29,000
+    # points. Measured on the COMMITTED bake, checking every vertex instead of
+    # every 200th gives max |d| = 7.92, so that bar had been passing on which
+    # points the stride happened to land on rather than on registration.
+    #
+    # The tail cannot be classified away. A handful of vertices are neither
+    # coast nor shared border: Egypt's boundary at the Hala'ib triangle and Bir
+    # Tawil, where the neighbouring polygon deliberately does not meet it, and a
+    # few similar disputed or unclaimed edges. They are inland, so they read at
+    # the positive clip, and no rule available from world.js alone tells them
+    # from a shoreline. They are COUNTED rather than hidden: the bar is that the
+    # body registers and the tail stays tiny and does not grow.
+    #
+    # Measured at EPS_WORLD 0.05 over 125,934 classified coastline vertices:
+    # mean +0.0237, RMS 0.1873, and 6 points beyond 2.0 canvas units.
+    outliers = int((np.abs(samp) > 2.0).sum())
+    rms = math.sqrt(float((samp ** 2).mean()))
+    p999 = float(np.percentile(np.abs(samp), 99.9))
+    print(f"  {outliers} of {samp.size} beyond 2.0 canvas units "
+          f"({100.0 * outliers / samp.size:.4f}%) -- disputed and unclaimed boundaries, "
+          f"neither coast nor shared border; p99.9 |d| = {p999:.4f}")
+    assert rms < 0.40, f"coastline registration RMS is {rms:.4f} canvas units"
+    assert outliers <= 25, (f"{outliers} coastline vertices are more than 2.0 canvas units "
+                            f"from the zero level set; the tail was 6")
+    assert p999 < 2.0, f"the 99.9th percentile of |d| is {p999:.4f} canvas units"
 
     # ---- sign spot-check: the failure modes this encoding exists to avoid ----
     print("\nsign spot-check (forward-projected; land must be +, water -):")

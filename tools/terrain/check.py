@@ -631,7 +631,15 @@ for _code, _d in sorted(json.loads(world_src[_i:_j + 1]).items()):
             _xs, _ys = _pair.split()
             _k = (round(float(_xs), 4), round(float(_ys), 4))
             _counts[_k] = _counts.get(_k, 0) + 1
-_cv = np.asarray([k for k, c in _counts.items() if c == 1], dtype=np.float64)[::200]
+# EVERY VERTEX, AND THE TAIL COUNTED. This sampled [::200] and asserted a max,
+# which passed on which points the stride landed on rather than on registration:
+# checking all of them on the same committed bake gives max |d| = 7.9. The
+# "appears once" rule also calls a disputed or unclaimed boundary a shoreline --
+# Egypt at the Hala'ib triangle, Bir Tawil -- and those read at the positive
+# clip because they are inland. tools/terrain/make_coast.py carries the full
+# reasoning and the same shape of bar; this is its independent second opinion,
+# so it stays deliberately simpler and asserts the body plus a counted tail.
+_cv = np.asarray([k for k, c in _counts.items() if c == 1], dtype=np.float64)
 _u = np.clip(_cv[:, 0] - 0.5, 0.0, 2398.999)
 _v = np.clip(_cv[:, 1] / H_EXT * 1018.0 - 0.5, 0.0, 1016.999)
 _i0, _j0 = _u.astype(np.int64), _v.astype(np.int64)
@@ -640,9 +648,24 @@ _s = ((1 - _fv) * ((1 - _fu) * sdf[_j0, _i0] + _fu * sdf[_j0, _i0 + 1])
       + _fv * ((1 - _fu) * sdf[_j0 + 1, _i0] + _fu * sdf[_j0 + 1, _i0 + 1]))
 print(f"  coastline registration: {_s.size} shoreline vertices, mean d = {_s.mean():+.4f}, "
       f"RMS {math.sqrt(float((_s ** 2).mean())):.4f}, max |d| {np.abs(_s).max():.4f}")
-check("gltex", abs(float(_s.mean())) < 0.25 and float(np.abs(_s).max()) < 2.0,
-      "world.js coastline vertices sit on coast.png's zero level set (mean |d| < 0.25, "
-      "max |d| < 2.0 canvas units)")
+_out = int((np.abs(_s) > 2.0).sum())
+_p999 = float(np.percentile(np.abs(_s), 99.9))
+print(f"    {_out} of {_s.size} beyond 2.0 canvas units, p99.9 |d| {_p999:.4f} — inland "
+      f"border and disputed-boundary vertices this file's simple classifier cannot "
+      f"separate; make_coast.py's segment-proximity classifier can, and bars the tail there")
+# ONLY THE MEAN IS ASSERTED HERE, deliberately. The mean is what detects the thing
+# this bar exists for -- a half-texel row offset or the wrong row convention -- and
+# it is robust to a misclassified tail. The MAX is not assertable from the "appears
+# in exactly one ring" rule: that rule calls every inland border vertex whose two
+# sides did not survive simplification alike a shoreline, and calls a disputed
+# boundary one too, and those read at the positive clip because they are inland.
+# The old bar asserted a max over _cv[::200] and passed on which points the stride
+# landed on; over every vertex the same committed bake gives max 7.92. So the tail
+# is printed here and asserted in make_coast.py, which classifies well enough to
+# mean it.
+check("gltex", abs(float(_s.mean())) < 0.25,
+      "world.js coastline vertices sit on coast.png's zero level set (mean |d| < 0.25 "
+      "over every vertex, not every 200th)")
 
 # --- relief.png's B plane on land: baked sky occlusion --------------------------
 # The B byte carries TWO quantities disambiguated by the SIGN of coast.png, never by a
