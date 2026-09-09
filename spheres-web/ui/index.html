@@ -2430,6 +2430,7 @@
 <link rel="stylesheet" href="/chronicle.css">
 <link rel="stylesheet" href="/programs.css">
 <link rel="stylesheet" href="/decision-tools.css">
+<link rel="stylesheet" href="/guidance-ui.css">
 <link rel="stylesheet" href="/province-economy.css">
 <link rel="stylesheet" href="/industry-ui.css">
 <link rel="stylesheet" href="/cash-flow-ui.css">
@@ -2572,7 +2573,7 @@
           <button class="menu-secondary" id="openSavesBtn">Saved campaigns <span id="menuSaveCount"></span><span aria-hidden="true">→</span></button>
         </div>
         <p id="sessionStatus" class="menu-live-status" role="status">Checking for a live campaign…</p>
-        <div class="menu-small-actions"><button id="menuHelpBtn">How to play</button><span aria-hidden="true">/</span><button id="menuAboutBtn">About Spheres</button></div>
+        <div class="menu-small-actions"><button id="menuHelpBtn">How to play</button><span aria-hidden="true">/</span><button type="button" onclick="openGuidance('tutorial')">Guided tutorial</button><span aria-hidden="true">/</span><button id="menuAboutBtn">About Spheres</button></div>
       </div>
       <div class="menu-world-caption" aria-hidden="true"><span>THE NEXT CHAPTER</span><strong>History is unwritten.</strong><i>Every nation. A different possibility.</i></div>
       <div class="menu-home-foot"><span><b id="menuRosterCount">137</b> PLAYABLE NATIONS</span><span>1990 <b>START DATE</b></span><span>AN OPEN-ENDED CAMPAIGN</span></div>
@@ -2664,7 +2665,7 @@
         <button id="agencyBtn" type="button" onclick="openAgency()">Decisions <span id="agencyCount"></span></button>
         <span class="grow"></span>
         <details class="arc-map-tools"><summary>Map layers</summary><div id="mapModes"></div></details>
-        <nav class="decision-nav" aria-label="Map assistance"><button type="button" onclick="homeNation()">Home</button><button type="button" onclick="openWorldFinder()">Find</button><button type="button" onclick="openAdvisor()">Advisor</button><button type="button" onclick="openBuildInfo()">About</button></nav>
+        <nav class="decision-nav" aria-label="Map assistance"><button type="button" onclick="homeNation()">Home</button><button type="button" onclick="openWorldFinder()">Find</button><button type="button" onclick="openGuidance('advisors')">Advisors</button><button type="button" onclick="openGuidance('tutorial')">Tutorial</button><button type="button" onclick="openBuildInfo()">About</button></nav>
       </div>
       <div class="pane on" id="pane-map"></div>
       <div class="pane" id="pane-charts"></div>
@@ -3181,6 +3182,9 @@
 <script src="/chronicle-ui.js"></script>
 <script src="/programs-ui.js"></script>
 <script src="/decision-tools.js"></script>
+<script src="/tutorial-model.js"></script>
+<script src="/advisor-model.js"></script>
+<script src="/guidance-ui.js"></script>
 <script src="/performance-ui.js"></script>
 <script src="/province-economy-ui.js"></script>
 <script src="/competition-ui.js"></script>
@@ -3188,6 +3192,8 @@
 <script src="/cash-flow-ui.js"></script>
 <script src="/equipment-mesh.js"></script>
 <script src="/equipment-export.js"></script>
+<script src="/military-surface.js"></script>
+<script src="/tank-surface.js"></script>
 <script src="/equipment-model.js"></script>
 <script src="/arsenal-models.js"></script>
 <script src="/arsenal3d.js"></script>
@@ -3198,9 +3204,6 @@
 <script src="/town-mesh.js"></script>
 <script src="/equipment-import.js"></script>
 <script src="/equipment-ui.js"></script>
-<script src="/person-model-data.js"></script>
-<script src="/person-models.js"></script>
-<script src="/person-3d.js"></script>
 <script src="/government-ui.js"></script>
 <script src="/agency-ui.js"></script>
 <script src="/operations-ui.js"></script>
@@ -3778,6 +3781,7 @@ async function enterCampaign(state, replacing = false) {
   if (changed) restorePendingAdvance(state, replacing);
   await adopt(state, true, true);
   renderSessionActions(); syncAdvanceControls();
+  if (typeof GUIDANCE !== "undefined") GUIDANCE.changed();
   $("#hdrDate").focus?.({ preventScroll: true });
 }
 
@@ -3818,6 +3822,7 @@ function showCampaigns() {
   SESSION.live = S;
   $("#app").style.display = "none"; $("#setup").style.display = "flex";
   renderSessionActions(); showMenuView("home");
+  if (typeof GUIDANCE !== "undefined") GUIDANCE.changed();
   if (typeof refreshSaveSlots === "function") refreshSaveSlots();
 }
 
@@ -4342,6 +4347,7 @@ async function adopt(state, withHistory, allowCampaignChange = false) {
     throw new Error("The live campaign changed. Open Campaigns and Continue to inspect it before sending more orders.");
   }
   S = state;
+  if (typeof GUIDANCE !== "undefined") GUIDANCE.changed();
   if (typeof industryOnStateChanged === "function") industryOnStateChanged();
   if (typeof cashFlowOnStateChanged === "function") cashFlowOnStateChanged();
   if (typeof equipmentOnStateChanged === "function") equipmentOnStateChanged();
@@ -4755,6 +4761,15 @@ function isKeysCardToggle(e) { return e.key === "?" || (e.key === "/" && e.shift
 
 document.addEventListener("keydown", (e) => {
   const room = arcadeTopRoom();
+  // Native guidance can replace its content while a read is in flight. Keep
+  // simulation shortcuts inert even if browser focus falls outside the dialog.
+  if (document.getElementById?.("guidanceDialog")?.open) {
+    if (!e.target?.closest?.("#guidanceDialog")) {
+      e.preventDefault();
+      document.querySelector("#guidanceDialog [data-guidance-close]")?.focus();
+    }
+    return;
+  }
   if (room && e.key === "Tab") { arcadeTrapTab(e, room); return; }
   // A running clock may be paused from a room whose own key handler otherwise
   // swallows global shortcuts. Native controls and text fields keep Space.
@@ -5758,7 +5773,7 @@ function cabinetStatusHtml(m, summary, programs) {
     <button data-cab-go="budget" class="${due ? "needs-attention" : ""}"><span class="cab-kicker">Yearly plan</span><strong>${budgetTitle} →</strong><small>${due ? "Review ministry funding, then enact your plan." : `FY ${escText(budget.fiscal_year)} is running. Open to review or adjust it.`}</small></button>
     <button onclick="openConstruction()" class="${attention ? "needs-attention" : ""}"><span class="cab-kicker">Construction</span><strong>${projectTitle} →</strong><small>${attention ? `${attention} reported needing attention. Open the queue for current funding and progress.` : "See suggestions, review effects and manage daily funding."}</small></button>
     <button onclick="openIndustry()"><span class="cab-kicker">Industry</span><strong>Put facilities to work →</strong><small>See output, operating costs and what needs attention.</small></button>
-    <button onclick="closeGameDrawers(); openAdvisor()"><span class="cab-kicker">Advisor</span><strong>What should I do next? →</strong><small>Get a next step and its reason, based on your country.</small></button>
+    <button onclick="openGuidance('advisors')"><span class="cab-kicker">Advisors</span><strong>What should I do next? →</strong><small>Review your country’s priorities, reasons and tradeoffs.</small></button>
   </nav>`;
 }
 
@@ -14982,7 +14997,6 @@ function openGovernment(id) {
   $("#govScreen .tbar .x").focus({ preventScroll: true });
 }
 function closeGovernment() {
-  globalThis.Person3D?.dispose($("#govBody"));
   const wasOpen = gov.open;
   gov.open = false;
   gov.review = null;
@@ -15193,7 +15207,6 @@ function renderGovernment() {
     }
   }
   body.scrollTop = scrollTop;
-  window.Person3D?.scan(body);
 }
 
 function govNavigate(route) {
@@ -17839,6 +17852,51 @@ $("#dominationClose").onclick = closeDomination;
 
 $("#stockBtn").onclick = toggleStockScreen;
 $("#govBtn").onclick = toggleGovernment;
+
+// Navigation only. The existing screens own quotes, confirmations and commands.
+const GUIDANCE_ROUTES = new Set(["home","budget","construction","project","suggestion","industry","government","research","equipment","world","decisions","resources","campaign"]);
+function guidanceBusy() {
+  return advancing || !!pendingAdvance || SESSION.busy || CAB.busy || PROD.busy
+    || !!(COMMAND_CHANNEL.busy || COMMAND_CHANNEL.pending) || equipmentExternalPending()
+    || !!EQUIP.busy || !!gov.busy || !!AGENCY.busy;
+}
+function guidanceNavigate(action) {
+  if (!action || !GUIDANCE_ROUTES.has(action.kind) || !gameIsUp() || guidanceBusy()) return false;
+  closeGlobalMenus(); closeGameDrawers(); closeTech(); closeStock(); closeGovernment(); closeSheet();
+  closeTechMenu();
+  if (PROD.open) closeProduction();
+  if (LOGI.open) closeLogistics();
+  if (dominationIsOpen()) closeDomination();
+  if (keysCardIsOpen()) setKeysCard(false);
+  if (action.kind === "home") homeNation();
+  else if (action.kind === "budget") openConstructionCabinet("budget");
+  else if (action.kind === "construction") openConstruction();
+  else if (action.kind === "project") openConstruction({project:action.id});
+  else if (action.kind === "suggestion") {
+    openConstruction();
+    constructionPreviewProject(action.project_kind, action.district, action.capacity_micros);
+  }
+  else if (action.kind === "industry") openIndustry();
+  else if (action.kind === "government") openGovernment(S.player);
+  else if (action.kind === "research") openTech(action.domain);
+  else if (action.kind === "equipment") openEquipmentDrawer();
+  else if (action.kind === "world") toggleGameDrawer("intelDrawer");
+  else if (action.kind === "decisions") openAgency();
+  else if (action.kind === "resources") openStock();
+  else if (action.kind === "campaign") showCampaigns();
+  return true;
+}
+const GUIDANCE = GuidanceUI.mount({
+  getState:()=>S, canNavigate:()=>gameIsUp(), pause:()=>clockPause(), busy:guidanceBusy,
+  supports:kind=>GUIDANCE_ROUTES.has(kind), navigate:guidanceNavigate,
+  readSnapshot:state=>api("/api/guidance?session_id="+encodeURIComponent(state.session_id)),
+  storage:{getItem:key=>localStorage.getItem(key),setItem:(key,value)=>localStorage.setItem(key,value)}
+});
+window.openGuidance = view=>GUIDANCE.open(view);
+document.addEventListener("keydown", event=>{
+  if (event.key !== "F1" || event.ctrlKey || event.metaKey || event.altKey) return;
+  event.preventDefault(); event.stopImmediatePropagation(); openGuidance("tutorial");
+}, true);
 
 installCampaignControls();
 bootSession();

@@ -1,0 +1,86 @@
+{
+  "status": "pass",
+  "sha256": "2ee7df0f4b98ddadf94a0cf85070f96b5a3b80811338839dbc8d370849a2c9f4",
+  "bytes": 14517724,
+  "triangles": 25675,
+  "exported_vertices_including_uv_and_normal_splits": 24603,
+  "meshes": 16,
+  "materials": 2,
+  "degenerate_triangles_below_1e-10_cross_length": 0,
+  "bounds_gltf_y_up": {
+    "min": [
+      -1.771896481513977,
+      0.0,
+      -4.475926399230957
+    ],
+    "max": [
+      1.771896481513977,
+      2.7525036334991455,
+      4.475926399230957
+    ]
+  },
+  "external_resources": 0,
+  "required_extensions": [],
+  "images": [
+    {
+      "name": "body-normal",
+      "mime_type": "image/png",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "bytes": 2957084,
+      "sha256": "dd51475952d8707935ede7c6e4c8e05a048bc20e867ef28cadbba47defaab153"
+    },
+    {
+      "name": "body-base_color",
+      "mime_type": "image/jpeg",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "bytes": 1224525,
+      "sha256": "092fdb533ec9b717b4ecd2b68337cae634eee97a9493ad4ed34b28a73a88e38f"
+    },
+    {
+      "name": "body-roughness",
+      "mime_type": "image/jpeg",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "bytes": 1535686,
+      "sha256": "23ea1b10da2c1ba2f130779d8cf10849f2e607f838223618a6adecff986e5dc2"
+    },
+    {
+      "name": "details-normal",
+      "mime_type": "image/png",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "bytes": 4196837,
+      "sha256": "bd16fe077bf0d6595bf0c7a92e90f0638e12130c5b9a41657d366a3d342de835"
+    },
+    {
+      "name": "details-base_color",
+      "mime_type": "image/jpeg",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "bytes": 1549963,
+      "sha256": "bb35d87aec3eef1c50e2b5f1f072f736197d2ba7fde70539f3789d8065be3f08"
+    },
+    {
+      "name": "details-roughness",
+      "mime_type": "image/jpeg",
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "bytes": 1698471,
+      "sha256": "732084b5e33e76ed66eb52d6da6b8deaec65a4037db0dceadb2030b26fb331a4"
+    }
+  ]
+}

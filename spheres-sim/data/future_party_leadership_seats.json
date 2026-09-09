@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-09-07",
+  "from": "2026-09-08",
+  "until_exclusive": "2036-01-01",
+  "parties": [
+    {
+      "nation": "Germany",
+      "party": "de_gruene",
+      "target_holders": 2,
+      "fictional_pair_rule": "at_least_one_authored_woman",
+      "authored_woman_candidates": ["fictional_v1_germany_de_gruene_main_01", "fictional_v1_germany_de_gruene_main_03"],
+      "authored_man_candidates": ["fictional_v1_germany_de_gruene_main_02", "fictional_v1_germany_de_gruene_main_04"],
+      "sources": ["https://cms.gruene.de/uploads/assets/Gruene-Regeln.pdf"],
+      "institutional_fact": "The federal statute updated 1 July 2026, section 17(2), provides for two equal chairs, at least one a woman. Section 17(5) distinguishes a replacement election from the ordinary board election.",
+      "gameplay_assumption": "Retain the two-chair structure through 2035 and fill only vacancies reached through existing campaign succession events. Fictional seat qualifications are explicitly authored, not inferred from names or art. Preserve all historical incumbents, including a surviving three-person board. Historical gender qualifications are unreviewed here: an unknown surviving co-holder is never relabeled, and a newly added fictional woman supplies the minimum confirmed representation. The game does not implement the full board, nomination votes, mandate restrictions or electoral procedure."
+    },
+    {
+      "nation": "Germany",
+      "party": "de_spd",
+      "target_holders": 2,
+      "fictional_pair_rule": "authored_woman_and_man",
+      "authored_woman_candidates": ["fictional_v1_germany_de_spd_main_01", "fictional_v1_germany_de_spd_main_03"],
+      "authored_man_candidates": ["fictional_v1_germany_de_spd_main_02", "fictional_v1_germany_de_spd_main_04"],
+      "sources": ["https://www.spd.de/fileadmin/Dokumente/Parteiorganisation/SPD_Orgastatut_2025.pdf", "https://parteitag.spd.de/fileadmin/parteitag/Dokumente/Beschluesse_oBPT2025/Beschlussbuch_oBPT25.pdf"],
+      "institutional_fact": "The published federal organizational statute, section 23, permits a single chair or two equal chairs including a woman, as decided by the party congress. The 2025 proposal explicitly enabling a two-woman federal pair was referred rather than adopted in the published resolutions.",
+      "gameplay_assumption": "Choose the paired option for an empty future leadership and preserve documented paired leadership after vacancies. A surviving historical single chair is not converted automatically. Entirely fictional pairs use an authored woman/man team as a conservative game policy; this does not assert a universal legal prohibition of other teams. An unclassified historical co-holder remains unchanged and a fictional woman is selected beside that person without claiming the mixed team's full quota eligibility has been researched. The game does not simulate congress choice, nominations or all statutory qualifications."
+    }
+  ]
+}

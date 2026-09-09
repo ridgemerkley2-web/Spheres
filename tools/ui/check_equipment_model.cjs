@@ -20,7 +20,14 @@ test('cosmetic paint preserves unpainted materials and never mutates original co
   for(const finish of ['sand','winter']){const painted=viewer.finishColors(colors,finish);assert.notDeepEqual(painted.slice(0,3),colors.slice(0,3));assert.deepEqual(painted.slice(3),colors.slice(3));assert(painted.every(v=>v>=0&&v<=1));}
   assert.deepEqual(colors,before);assert.equal(viewer.finishColors(colors,'olive'),colors);
 });
-function fixture({noGraphics=false}={}){
+
+test('changing detail level replaces the displayed and exported geometry; equivalent detail reuses it',()=>{
+  const f=fixture();f.flush();assert.equal(f.builds(),1);
+  for(const lod of [1,2,0]){const before=f.builds();f.controller.update({platform:'tank_standard',components:{},lod});f.flush();assert.equal(f.builds(),before+1);}
+  const before=f.builds();f.controller.update({platform:'tank_standard',components:{},lod:'0'});assert.equal(f.builds(),before);
+  f.controller.dispose();assert.equal(f.gpu.size,0);
+});
+function fixture({noGraphics=false,withMaterials=false}={}){
   let next=1,builds=0,draws=0,clears=0;const gpu=new Set(),frames=new Map(),observers=[],uploads=[];
   const allocate=()=>{const id=next++;gpu.add(id);return id;},release=id=>gpu.delete(id);
   const gl={createShader:allocate,deleteShader:release,createProgram:allocate,deleteProgram:release,createBuffer:allocate,deleteBuffer:release,
@@ -36,10 +43,26 @@ function fixture({noGraphics=false}={}){
   class Observer{constructor(callback){this.callback=callback;this.closed=false;observers.push(this);}observe(){}disconnect(){this.closed=true;}}
   const ctx={module:{exports:{}},Float32Array,Math,Number,Map,Set,Array,Object,JSON,document:doc,devicePixelRatio:4,ResizeObserver:Observer,IntersectionObserver:Observer,
     CustomEvent:class{constructor(type,options){this.type=type;Object.assign(this,options);}},EquipmentMesh:{build(){builds++;return mesh;}},EquipmentExport:{glb:m=>m.colors},requestAnimationFrame:f=>{const id=next++;frames.set(id,f);return id;},cancelAnimationFrame:id=>frames.delete(id)};
+  const materialPacks=[];
+  if(withMaterials)ctx.MilitarySurface={glsl:require('../../spheres-web/ui/military-surface.js').glsl,create(context,ready){assert.equal(context,gl);const pack={ready,binds:[],disposals:[],bind(program){this.binds.push(program);},dispose(lost){this.disposals.push(lost);}};materialPacks.push(pack);return pack;}};
   vm.runInNewContext(source,ctx);const controller=ctx.module.exports.mount(host,{platform:'tank_standard',components:{},name:'Test'});
   function flush(){const batch=[...frames];frames.clear();for(const [,fn] of batch)fn(100);}
-  return {controller,ctx,host,slot,status,canvas,doc,gl,gpu,frames,observers,uploads,exportButton,partSelect,flush,builds:()=>builds,draws:()=>draws,clears:()=>clears};
+  return {controller,ctx,host,slot,status,canvas,doc,gl,gpu,frames,observers,uploads,exportButton,partSelect,flush,materialPacks,builds:()=>builds,draws:()=>draws,clears:()=>clears};
 }
+
+test('material readiness redraws the designer and paint/geometry updates reuse its texture pack',()=>{
+  const f=fixture({withMaterials:true});f.flush();assert.equal(f.materialPacks.length,1);const pack=f.materialPacks[0],draws=f.draws(),builds=f.builds();
+  pack.ready();f.flush();assert(f.draws()>draws);assert.equal(f.builds(),builds);
+  f.controller.setFinish('sand');f.controller.update({platform:'tank_heavy',components:{}});f.flush();
+  assert.equal(f.materialPacks.length,1);assert(pack.binds.length>=3);assert.deepEqual(pack.disposals,[]);
+  f.controller.dispose();assert.deepEqual(pack.disposals,[false]);
+});
+
+test('designer context loss abandons old material handles and restoration owns a fresh pack',()=>{
+  const f=fixture({withMaterials:true});f.flush();f.gpu.clear();f.canvas.listeners.get('webglcontextlost')({preventDefault(){}});
+  assert.deepEqual(f.materialPacks[0].disposals,[true]);f.canvas.listeners.get('webglcontextrestored')();f.flush();
+  assert.equal(f.materialPacks.length,2);assert(f.materialPacks[1].binds.length>0);f.controller.dispose();assert.deepEqual(f.materialPacks[1].disposals,[false]);
+});
 test('repainting/name edits reuse geometry, a component edit replaces buffers, disposal releases all GPU resources and listeners',()=>{
   const f=fixture();f.flush();assert.equal(f.builds(),1);assert(f.draws()>=3);const allocated=f.gpu.size;
   for(let i=0;i<20;i++)f.controller.update({platform:'tank_standard',components:{},name:'Name '+i});

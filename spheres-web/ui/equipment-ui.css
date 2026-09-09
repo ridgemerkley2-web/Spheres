@@ -142,6 +142,10 @@
 .eq-model-finishes span { width:11px; height:11px; border-radius:50%; border:1px solid #d7dfd976; background:#6b7751; }
 .eq-model-finishes [data-model-finish=sand] span { background:#bba775; }
 .eq-model-finishes [data-model-finish=winter] span { background:#d3d9d4; }
+.eq-model-finishes [data-model-finish=woodland] span { background:linear-gradient(35deg,#4b5638 40%,#232b25 42%,#5b4733 74%); }
+.eq-model-wear { display:flex; align-items:center; gap:8px; color:#bbc5b5; font-size:11px; }
+.eq-model-wear select { max-width:130px; }
+.eq-model-viewer [data-model-tank-only][hidden] { display:none; }
 .eq-model-help { font-size:11px; line-height:1.55; margin-top:11px!important; }
 .equipment-room[data-equipment-tab-view=designer] { padding-top:20px; }
 .equipment-room[data-equipment-tab-view=designer] .eq-header { margin-bottom:13px; }

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spheres · Character production</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0c1922;--panel:#132631;--line:#29424e;--ink:#e9f0ed;--muted:#a5b8bd;--gold:#e5bd75;--teal:#72d4c0}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 95% 0,#234449,transparent 50%),var(--bg);color:var(--ink);font:15px/1.5 system-ui,sans-serif}main{max-width:1340px;margin:auto;padding:42px 30px 70px}a{color:var(--teal)}h1,h2,h3,p{margin-top:0}h1{font:500 clamp(30px,4vw,52px)/1.12 Georgia,serif;max-width:860px;margin-bottom:18px}h2{font:500 26px/1.2 Georgia,serif}h3{font-size:18px}.eyebrow{color:var(--gold);letter-spacing:.18em;text-transform:uppercase;font-size:11px;font-weight:750}.lede{max-width:810px;color:var(--muted);font-size:17px}.periods{display:flex;gap:12px;flex-wrap:wrap;margin:25px 0}.periods span,.badge{border:1px solid var(--line);background:#162d37;border-radius:6px;padding:7px 11px;font-size:12px}.periods b{color:var(--gold)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:25px 0}.stat{padding:18px 20px;background:var(--panel);border:1px solid var(--line);border-radius:9px}.stat b{display:block;font:500 34px Georgia,serif;color:var(--teal)}.stat span{font-size:12px;color:var(--muted)}section{margin-top:32px}.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px}.section-head p,.note{color:var(--muted);font-size:13px}.gallery{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px}.art{margin:0;flex:0 0 156px;background:var(--panel);border:1px solid var(--line);border-radius:9px;overflow:hidden}.art img{display:block;width:100%;height:235px;object-fit:contain;background:#112b30}.art figcaption{padding:11px;font-size:12px}.art small{color:var(--muted);display:block;margin-top:4px}.controls{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}input,select{font:inherit;color:var(--ink);background:#122a35;border:1px solid #405f6b;border-radius:7px;padding:12px;max-width:100%}input{flex:1;min-width:210px}select{min-width:200px}button{font:inherit;color:inherit;cursor:pointer}summary{cursor:pointer;list-style:none}summary::-webkit-details-marker{display:none}details{border:1px solid var(--line);background:var(--panel);border-radius:8px;margin-bottom:9px;overflow:hidden}summary{display:grid;grid-template-columns:minmax(170px,1.1fr) minmax(150px,1fr) auto;gap:15px;padding:17px 19px;align-items:center}summary::after{content:'+';color:var(--gold);font-size:23px}details[open]>summary::after{content:'−'}summary small{display:block;color:var(--muted);margin-top:2px}.country-meta{font-size:12px;color:var(--muted)}.country-body{border-top:1px solid var(--line);padding:20px}.party-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.party{border:1px solid var(--line);border-radius:7px;padding:16px;background:#10232c}.party p{font-size:12px;color:var(--muted);margin:8px 0}.party h3{font-size:15px;margin-bottom:5px}.party .badge{display:inline-block;padding:3px 7px;color:var(--gold);font-size:10px;margin-bottom:7px}.component{padding:8px 10px;border-left:2px solid var(--teal);margin:10px 0;font-size:12px;background:#183139}.term{font-size:12px;border-top:1px solid var(--line);padding-top:8px;margin-top:8px}.term span{color:var(--muted);display:block}.future{border-left:3px solid var(--gold);padding:18px 22px;background:#1a2b31}.empty{color:var(--muted);padding:25px;border:1px dashed var(--line)}footer{color:var(--muted);font-size:12px;margin-top:35px;max-width:930px}:focus-visible{outline:2px solid var(--teal);outline-offset:3px}@media(max-width:700px){main{padding:27px 16px}.stats{grid-template-columns:repeat(2,1fr)}.party-grid{grid-template-columns:1fr}summary{grid-template-columns:1fr auto}summary .country-meta{grid-column:1;grid-row:2}summary::after{grid-column:2;grid-row:1/3}.section-head{display:block}.stat{padding:15px}.art{flex-basis:136px}.art img{height:204px}}
+  </style>
+  <style>
+    #gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));overflow:visible}.art a{display:block}.art a:focus-visible{outline-offset:-3px}#gallery .art{min-width:0}#art-more{border:1px solid var(--line);border-radius:7px;background:#173540;padding:10px 18px;margin-top:14px}#art-count{margin-bottom:12px}
+  </style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Spheres / Character atelier</p>
+  <h1>A cartoon cast for every country.</h1>
+  <p class="lede">The approved cartoon style, now tracked across the entire game. Historical research, finished illustrations and fictional successors have separate progress records.</p>
+  <p><a href="leadership-government-review.html">Browse the government cards and research</a></p>
+  <div class="periods"><span><b>Historical people</b> · 1990 – 7 September 2026</span><span><b>Fictional successors</b> · 8 September 2026 – 2035</span></div>
+  <div id="status" role="status">Loading the production inventory…</div>
+  <div id="stats" class="stats"></div>
+  <section aria-labelledby="art-heading">
+    <div class="section-head"><h2 id="art-heading">Finished historical illustrations</h2><p>Actual files with identity, era and visual review.</p></div>
+    <div class="controls"><input id="art-search" type="search" aria-label="Search finished cartoon avatars" placeholder="Find a finished character…"><select id="art-country" aria-label="Filter finished art by country"><option value="all">All illustrated countries</option></select></div>
+    <p id="art-count" class="note" role="status"></p>
+    <div id="gallery" class="gallery"></div>
+    <button id="art-more" type="button" hidden>Show more characters</button>
+  </section>
+  <section class="future" aria-labelledby="future-heading">
+    <h2 id="future-heading">A researched world. An unwritten future.</h2>
+    <p>After the research cutoff, successor characters are explicitly fictional. Their backgrounds and party fit draw on research; gameplay decides who takes office.</p>
+    <p id="future-status" class="note"></p>
+    <div id="future-gallery" class="gallery" aria-label="Finished fictional cartoon illustrations"></div>
+  </section>
+  <section aria-labelledby="countries-heading">
+    <div class="section-head"><h2 id="countries-heading">The worldwide roster</h2><p id="filtered-count"></p></div>
+    <p class="note">The current party list is the game’s starting inventory. Each country still needs a complete historical census, including small, dissolved and unrepresented parties. A country with no game party rows remains in the workload.</p>
+    <div class="controls"><input id="search" type="search" aria-label="Search countries, parties or people" placeholder="Search a country, party or person…"><select id="filter" aria-label="Filter countries"><option value="all">All countries</option><option value="partial">Some party history researched</option><option value="none">Party inventory needed</option><option value="successor">Successor countries</option></select></div>
+    <div id="countries"></div>
+  </section>
+  <footer>This read-only report is generated from the checked-in simulation roster and portrait manifest. Queued jobs, identity records and future name pools do not count as completed avatars. Appearance windows are clipped to sourced terms or a known executive observation; uncertain dates remain visible. <a href="../../docs/LEADERSHIP_PRODUCTION_2035.md">Production method and roadmap</a> · <a href="../../spheres-web/data/leadership_production_2035.json">Full JSON inventory</a></footer>
+</main>
+<script>
+  'use strict';
+  const el = id => document.getElementById(id);
+  const node = (tag, text, cls) => { const n=document.createElement(tag); if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n; };
+  const dates = w => w ? `${w.from} → ${w.to} (end excluded)` : 'Date research needed';
+  const labels = {verified:'History reviewed',partial:'Partial history',gap:'History needed',missing:'Artwork needed',covered:'Artwork covers known term',needs_date_research:'Date research needed'};
+  function partyCard(p){
+    const card=node('article',undefined,'party');card.append(node('span',labels[p.history_status]||'History needed','badge'),node('h3',p.name),node('p',`${p.id} · ${p.family} · ${p.terms.length} sourced term records`));
+    for(const c of p.components){const n=node('div',undefined,'component');n.append(node('strong',c.name),node('div',`${c.known_term_ids.length} separate leadership terms · Own successors required`));card.append(n);}
+    if(!p.terms.length)card.append(node('p','Names, leadership roles and dates still need historical research. Officeholders and national selector art are not substitutes.'));
+    for(const t of p.terms){const n=node('div',undefined,'term');n.append(node('strong',`${t.name} · ${t.role||'Leadership role'}`),node('span',`Art planning: ${dates(t.safe_art_window)}`),node('span',labels[t.art_status]||t.art_status));card.append(n);}
+    if(p.declared_history_gaps.length)card.append(node('p',`${p.declared_history_gaps.length} declared historical gaps remain. Future succession is a separate fictional layer.`));if(p.future_candidate_ids?.length)card.append(node('p',`${p.future_candidate_ids.length} fictional successor templates · Character art and country editorial review remain separate tasks.`));return card;
+  }
+  function renderCountries(board){
+    const q=el('search').value.trim().toLowerCase(),filter=el('filter').value;
+    const countries=board.countries.filter(c=>{
+      const text=[c.name,c.id,...c.parties.flatMap(p=>[p.name,p.id,...p.terms.map(t=>t.name),...p.components.map(x=>x.name)])].join(' ').toLowerCase();
+      return (!q||text.includes(q))&&(filter==='all'||filter==='none'&&!c.party_rows||filter==='successor'&&!c.start_1990||filter==='partial'&&c.parties.some(p=>p.terms.length));
+    });el('filtered-count').textContent=`${countries.length} of ${board.countries.length} nation identities`;
+    const fragment=document.createDocumentFragment();
+    for(const c of countries){const details=node('details'),summary=node('summary'),name=node('div');name.append(node('strong',c.name),node('small',`${c.id} · ${c.region} · ${c.start_1990?'1990 starting country':'Successor country'}`));const researched=c.parties.filter(p=>p.terms.length).length;summary.append(name,node('div',c.party_rows?`${c.party_rows} party rows · ${researched} with researched terms`:'Party and institution inventory required','country-meta'));const body=node('div',undefined,'country-body');body.append(node('p',c.party_inventory_requirement,'note'));if(c.institutional_requirement)body.append(node('p',c.institutional_requirement,'empty'));const grid=node('div',undefined,'party-grid');c.parties.forEach(p=>grid.append(partyCard(p)));body.append(grid);details.append(summary,body);fragment.append(details);}
+    if(!countries.length)fragment.append(node('p','No countries match this search.','empty'));el('countries').replaceChildren(fragment);
+  }
+  let artLimit=12;
+  function renderGallery(board){
+    const q=el('art-search').value.trim().toLocaleLowerCase(),country=el('art-country').value;
+    const names=new Map(board.countries.map(c=>[c.id,c.name]));
+    const matching=board.people.filter(p=>(country==='all'||p.reasons.some(r=>r.nation===country))&&(!q||p.name.toLocaleLowerCase().includes(q))).flatMap(person=>person.validated_cartoon_assets.map(portrait=>({person,portrait})));
+    const fragment=document.createDocumentFragment();
+    for(const {person,portrait} of matching.slice(0,artLimit)){
+      const fig=node('figure',undefined,'art'),link=node('a'),img=node('img');link.href='../../'+portrait.asset;link.target='_blank';link.rel='noopener';link.setAttribute('aria-label',`View full-size cartoon of ${person.name}`);img.src=link.href;img.alt=`Cartoon illustration of ${person.name}`;img.loading='lazy';link.append(img);
+      const cap=node('figcaption',person.name),countries=[...new Set(person.reasons.map(r=>names.get(r.nation)).filter(Boolean))];cap.append(node('small',countries.join(' · ')),node('small',`Illustrated appearance from ${portrait.from.slice(0,4)}`));fig.append(link,cap);fragment.append(fig);
+    }
+    if(!matching.length)fragment.append(node('p','No finished illustration matches this search. Unfinished portraits remain in the roster below.','empty'));
+    el('gallery').replaceChildren(fragment);el('art-count').textContent=`${Math.min(artLimit,matching.length)} of ${matching.length} finished illustrations shown · Select an avatar for full size`;
+    el('art-more').hidden=matching.length<=artLimit;
+  }
+  async function start(){
+    const response=await fetch('../../spheres-web/data/leadership_production_2035.json',{cache:'no-store'});if(!response.ok)throw Error(`Inventory unavailable (${response.status})`);const board=await response.json(),c=board.counts;
+    el('status').textContent=`Source cutoff: ${board.source_cutoff}. ${c.parties_with_declared_history_gaps} party rows still have historical gaps; complete world coverage has not been claimed.`;
+    for(const [number,label] of [[c.nation_identities,'Nation identities inventoried'],[c.simulation_party_rows,'Current simulation party rows'],[c.validated_cartoon_total_assets??c.validated_cartoon_assets,'Finished cartoon illustrations'],[c.pending_historical_art_jobs,'Known historical art jobs pending']]){const n=node('div',undefined,'stat');n.append(node('b',number.toLocaleString()),node('span',label));el('stats').append(n);}
+    const illustrated=new Set(board.people.filter(p=>p.validated_cartoon_assets.length).flatMap(p=>p.reasons.map(r=>r.nation)));
+    for(const country of board.countries.filter(c=>illustrated.has(c.id)).sort((a,b)=>a.name.localeCompare(b.name))){const option=node('option',country.name);option.value=country.id;el('art-country').append(option);}
+    for(const id of ['art-search','art-country'])el(id).addEventListener(id==='art-search'?'input':'change',()=>{artLimit=12;renderGallery(board);});
+    el('art-more').addEventListener('click',()=>{artLimit+=12;renderGallery(board);});renderGallery(board);
+    const futureNames=new Map((board.future.candidates||[]).map(p=>[p.person_id,p.name]));
+    for(const [id,portraits] of Object.entries(board.future.validated_cartoon_assets||{}))for(const portrait of portraits){const fig=node('figure',undefined,'art'),img=node('img'),name=futureNames.get(id)||id;img.src='../../'+portrait.asset;img.alt=`Original fictional cartoon character ${name}`;img.loading='lazy';const cap=node('figcaption',name);cap.append(node('small','Fictional successor · 2026–2035'));fig.append(img,cap);el('future-gallery').append(fig);}
+    el('future-status').textContent=board.future.validated_candidate_count!=null?`${board.future.validated_candidate_count.toLocaleString()} exported fictional candidate templates across ${board.future.represented_party_count} party rows: ${board.future.available_component_templates.toLocaleString()} available campaign templates and ${board.future.archived_component_templates} archived organization templates. ${board.future.rendered_avatar_count} finished fictional cartoon avatars. Candidate templates still need country-specific editorial review.`:board.future.source_path?'Future profile data is present. This report has not audited the runtime-generated candidate roster or future character artwork.':'Future character research and the runtime candidate catalogue are pending. No future portraits are counted as complete.';
+    el('search').addEventListener('input',()=>renderCountries(board));el('filter').addEventListener('change',()=>renderCountries(board));renderCountries(board);
+  }
+  start().catch(error=>{el('status').textContent=error.message+'. Serve this page from the repository HTTP preview and rebuild the inventory if needed.';el('status').setAttribute('role','alert');});
+</script>
+</body>
+</html>

@@ -5,6 +5,20 @@ use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 use std::{collections::BTreeSet, sync::OnceLock};
 
+#[path = "party_leadership_future.rs"]
+pub mod future;
+pub use future::{candidate as fictional_person, catalog as future_catalog};
+#[path = "party_executive_eligibility.rs"]
+pub mod executive_eligibility;
+#[path = "party_leadership_seats.rs"]
+pub mod leadership_seats;
+#[cfg(test)]
+#[path = "party_executive_eligibility_tests.rs"]
+mod executive_eligibility_tests;
+#[cfg(test)]
+#[path = "party_leadership_seats_tests.rs"]
+mod leadership_seats_tests;
+
 pub const VERSION: u32 = 1;
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
@@ -230,6 +244,7 @@ fn life_valid(from: &Option<DateBound>, until: &Option<DateBound>) -> bool {
 pub fn validate_roster(r: &Roster) -> Result<(), String> {
     let fail = |s: &str| Err(format!("Party leadership roster: {s}"));
     if r.version != VERSION
+        || r.reference_through != future::HISTORICAL_THROUGH
         || day(&r.reference_from)
             .zip(day(&r.reference_through))
             .is_none_or(|(a, b)| a > b)
@@ -341,7 +356,21 @@ pub fn enable_campaign(w: &mut WorldState) -> Result<(), String> {
     Ok(())
 }
 pub fn person(id: &str) -> Option<&'static Person> {
-    roster().ok()?.people.iter().find(|p| p.id == id)
+    person_in(roster().ok()?, id).or_else(|| fictional_person(id).map(|c| &c.person))
+}
+/// Display metadata keeps invented future biographies separate from source facts.
+pub fn person_view(id: &str) -> Value {
+    let Ok(r) = roster() else { return Value::Null };
+    display_person_in(r, id)
+}
+fn display_person_in(r: &Roster, id: &str) -> Value {
+    if let Some(p) = person_in(r, id) { return json!(p); }
+    let Some(c) = fictional_person(id) else { return Value::Null };
+    let mut value = json!(c.person);
+    let mut fiction = json!(c);
+    fiction.as_object_mut().unwrap().remove("person");
+    value["fiction"] = fiction;
+    value
 }
 fn person_in<'a>(r: &'a Roster, id: &str) -> Option<&'a Person> {
     r.people.iter().find(|p| p.id == id)
@@ -696,7 +725,7 @@ pub fn executive_person(w: &WorldState, n: NationId) -> Option<&'static Person> 
         return None;
     }
     let r = roster().ok()?;
-    person_in(r, &executive_id_with(w, r, n)?)
+    person(&executive_id_with(w, r, n)?)
 }
 
 /// Called only when the existing government engine actually seats an office.
@@ -716,6 +745,16 @@ pub(crate) fn on_succession(
 fn on_succession_with(
     w: &mut WorldState,
     r: &Roster,
+    n: NationId,
+    how: &gov::Succession,
+    target_party: Option<&str>,
+) {
+    on_succession_with_policy(w, r, executive_eligibility::policy().ok(), n, how, target_party)
+}
+fn on_succession_with_policy(
+    w: &mut WorldState,
+    r: &Roster,
+    policy: Option<&executive_eligibility::Policy>,
     n: NationId,
     how: &gov::Succession,
     target_party: Option<&str>,
@@ -783,10 +822,24 @@ fn on_succession_with(
             .filter(|(_, a)| a.nation == party_nation && a.party == p.party)
             .map(|(i, _)| i)
             .collect();
+        let continuing_single_party = future::eligible_on(at) && p.kind == PartyKind::Party
+            && indices.iter().any(|i| !book.assignments[*i].holders.is_empty());
         for i in indices {
+            if future::eligible_on(at) && leadership_seats::reviewed_pair(party_nation,&party_id) {
+                let additions=leadership_seats::additions(p,&book.assignments[i],at,&book);
+                if !additions.is_empty() {
+                    book.assignments[i].holders.extend(additions);
+                    book.assignments[i].since_day=at;
+                    book.assignments[i].reason=reason.into();
+                }
+                continue;
+            }
             if book.assignments[i].holders.is_empty() {
+                if continuing_single_party { continue; }
                 let component = book.assignments[i].component.clone();
-                let selected = choose(r, p, component.as_deref(), at, &book, false);
+                let selected = if future::eligible_on(at) {
+                    future::pick(party_nation, &party_id, component.as_deref(), at, &book, false).into_iter().collect()
+                } else { choose(r, p, component.as_deref(), at, &book, false) };
                 book.assignments[i].holders = selected;
                 book.assignments[i].since_day = at;
                 book.assignments[i].reason = reason.into();
@@ -808,17 +861,29 @@ fn on_succession_with(
             .filter(|h| {
                 !dead(&book, &h.person)
                     && !blocked(&h.person)
+                    && policy.is_some_and(|policy|policy.allows_holder(p,h))
                     && held_people.insert(h.person.as_str())
             })
             .cloned()
             .collect();
         let picked = if held.len() == 1 {
             held.into_iter().next()
-        } else if held.is_empty() && p.components.is_empty() {
+        } else if held.is_empty() && future::eligible_on(at) {
+            let components = if p.components.is_empty() { vec![None] }
+                else { p.components.iter().map(|c| Some(c.id.as_str())).collect() };
+            let mut choices = components.into_iter()
+                .filter(|c|future::component_eligible(n, &p.party, *c))
+                .filter_map(|component|future::for_party(n,&p.party).into_iter()
+                    .find(|c|c.component.as_deref()==component && !dead(&book,&c.person.id)
+                        && !blocked(&c.person.id) && policy.is_some_and(|policy|policy.allows_future(c)))
+                    .map(|c|future::holder(c,at))).collect::<Vec<_>>();
+            if choices.len() == 1 { choices.pop() } else { None }
+        } else if held.is_empty() {
             let mut terms = p
                 .terms
                 .iter()
-                .filter(|t| eligible(r, p, t, at) && !dead(&book, &t.person) && !blocked(&t.person))
+                .filter(|t| eligible(r, p, t, at) && !dead(&book, &t.person) && !blocked(&t.person)
+                    && policy.is_some_and(|policy|policy.allows_historical(p,t)))
                 .collect::<Vec<_>>();
             terms.sort_by_key(|t| rank(t));
             let best = terms.first().map(|t| rank(t));
@@ -860,6 +925,69 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
     let r = roster().map_err(str::to_string)?;
     validate_with(w, r)
 }
+
+/// Structural upgrades for explicitly reviewed organization inventories.
+/// Only an empty legacy slot can expand. This never selects or replaces people.
+/// Validate all affected maps before applying any changes, then run normal strict
+/// state validation in the loader. Saving writes the expanded form thereafter.
+pub(crate) fn migrate_legacy_empty_components(w: &mut WorldState) -> Result<bool, String> {
+    if !w.rules.historical_party_leadership { return Ok(false); }
+    let r = roster().map_err(str::to_owned)?;
+    migrate_legacy_empty_components_with(w,r)
+}
+fn migrate_legacy_empty_components_with(w: &mut WorldState, r: &Roster) -> Result<bool, String> {
+    if !w.rules.historical_party_leadership { return Ok(false); }
+    let Some(book) = w.party_leadership.as_ref() else { return Ok(false) };
+    const UPGRADES: &[(NationId, &str, &[&str])] = &[
+        (NationId::Japan, "jp_jsp", &["jp_jsp_1945", "jp_sdp_1996"]),
+        (NationId::Japan, "jp_komeito", &["jp_komeito_1964", "jp_komei_1994", "jp_komeito_1998"]),
+        (NationId::France, "fr_udf", &["fr_udf_federation", "fr_udf_pr", "fr_udf_dl", "fr_udf_cds",
+            "fr_udf_fd", "fr_udf_radical", "fr_udf_psd", "fr_udf_perspectives", "fr_udf_ppdf", "fr_udf_direct", "fr_udf_pril"]),
+        (NationId::Germany, "de_union", &["de_union_cdu", "de_union_csu"]),
+    ];
+    let mut replacements = Vec::new();
+    for &(nation, id, expected) in UPGRADES {
+        let rows = book.assignments.iter().enumerate()
+            .filter(|(_, a)| a.nation == nation && a.party == id)
+            .collect::<Vec<_>>();
+        if rows.is_empty() { continue; } // Ordinary validation handles missing required slots.
+        let schema = party_in(r, nation, id).ok_or("Component upgrade has no matching researched party.")?;
+        // These two reviewed imports are staged separately. Before ingestion the
+        // original empty schema remains valid and has nothing to expand.
+        if schema.components.is_empty() && matches!(nation,NationId::France|NationId::Germany) { continue; }
+        if schema.components.iter().map(|c| c.id.as_str()).collect::<Vec<_>>() != expected {
+            return Err(format!("{id} component upgrade requires its exact documented organization schema."));
+        }
+        if rows.len() == 1 && rows[0].1.component.is_none() {
+            let (index, old) = rows[0];
+            if !old.holders.is_empty() {
+                return Err(format!("Cannot upgrade {id}: a populated legacy component binding requires explicit identity migration."));
+            }
+            let expanded = expected.iter().map(|component| {
+                let mut a = old.clone();
+                a.component = Some((*component).into());
+                a
+            }).collect::<Vec<_>>();
+            replacements.push((index, expanded));
+        } else {
+            let keys = rows.iter().filter_map(|(_, a)| a.component.as_deref()).collect::<BTreeSet<_>>();
+            if rows.iter().any(|(_, a)| a.component.is_none())
+                || rows.len() != expected.len() || keys.len() != expected.len()
+                || expected.iter().any(|id| !keys.contains(id))
+            {
+                return Err(format!("Cannot upgrade {id}: mixed, duplicate, unknown or incomplete component assignments."));
+            }
+        }
+    }
+    if replacements.is_empty() { return Ok(false); }
+    let book = w.party_leadership.as_mut().unwrap();
+    // Descending indices keep every unrelated assignment in its original order.
+    replacements.sort_by(|a, b| b.0.cmp(&a.0));
+    for (index, expanded) in replacements {
+        book.assignments.splice(index..=index, expanded);
+    }
+    Ok(true)
+}
 fn validate_with(w: &WorldState, r: &Roster) -> Result<(), String> {
     let b = w
         .party_leadership
@@ -878,6 +1006,16 @@ fn validate_with(w: &WorldState, r: &Roster) -> Result<(), String> {
                         pid: &str,
                         component: Option<&str>|
      -> Result<(), String> {
+        if let Some(c) = fictional_person(&h.person) {
+            if c.nation != n || c.party != pid || c.component.as_deref() != component
+                || c.term_id != h.term || h.selected_day < b.started_day || h.selected_day > at
+                || !future::eligible_on(h.selected_day) || dead(b, &h.person)
+                || h.identity_hash != future::binding_hash(c)
+            {
+                return Err("Invalid or changed fictional successor identity, affiliation or eligibility date.".into());
+            }
+            return Ok(());
+        }
         let p = party_in(r, n, pid).ok_or("Unknown campaign party leadership record.")?;
         let t = p
             .terms
@@ -974,6 +1112,9 @@ fn validate_with(w: &WorldState, r: &Roster) -> Result<(), String> {
         }
         let mut holders = BTreeSet::new();
         for h in &a.holders {
+            if fictional_person(&h.person).is_some() && a.reason == "initial_reference" {
+                return Err("A fictional successor requires an actual campaign succession event.".into());
+            }
             if h.selected_day > a.since_day {
                 return Err(
                     "Incumbent selection occurs after its recorded party succession.".into(),
@@ -1024,12 +1165,16 @@ fn validate_with(w: &WorldState, r: &Roster) -> Result<(), String> {
             return Err("Invalid or duplicate campaign executive.".into());
         }
         let p = party_in(r, e.nation, &e.party).ok_or("Unknown executive party.")?;
-        let t = p
-            .terms
-            .iter()
-            .find(|t| t.id == e.holder.term)
-            .ok_or("Unknown executive term.")?;
-        check_holder(&e.holder, e.nation, &e.party, t.component.as_deref())?;
+        let component = if let Some(c) = fictional_person(&e.holder.person) {
+            if e.reason == "initial_reference" {
+                return Err("A fictional executive requires an actual campaign succession event.".into());
+            }
+            c.component.as_deref()
+        } else {
+            p.terms.iter().find(|t| t.id == e.holder.term)
+                .ok_or("Unknown executive term.")?.component.as_deref()
+        };
+        check_holder(&e.holder, e.nation, &e.party, component)?;
         let tie = w
             .leadership
             .as_ref()
@@ -1053,9 +1198,10 @@ fn validate_with(w: &WorldState, r: &Roster) -> Result<(), String> {
     let mut deaths = BTreeSet::new();
     for d in &b.deaths {
         if !deaths.insert(d.person.as_str())
-            || person_in(r, &d.person).is_none()
+            || person_in(r, &d.person).is_none() && fictional_person(&d.person).is_none()
             || d.day < b.started_day
             || d.day > at
+            || fictional_person(&d.person).is_some() && d.day < day(future::FROM).unwrap()
         {
             return Err("Invalid campaign person death.".into());
         }
@@ -1063,10 +1209,11 @@ fn validate_with(w: &WorldState, r: &Roster) -> Result<(), String> {
     let mut exits = BTreeSet::new();
     for e in &b.office_exclusions {
         if !exits.insert((e.nation, e.person.as_str()))
-            || person_in(r, &e.person).is_none()
+            || person_in(r, &e.person).is_none() && fictional_person(&e.person).is_none()
             || w.nation_opt(e.nation).is_none()
             || e.day < b.started_day
             || e.day > at
+            || fictional_person(&e.person).is_some() && e.day < day(future::FROM).unwrap()
         {
             return Err("Invalid campaign office exclusion.".into());
         }
@@ -1095,14 +1242,25 @@ fn view_on(w: &WorldState, n: NationId, at: i32, date: &str) -> Value {
 fn view_with(w: &WorldState, n: NationId, at: i32, date: &str, r: &Roster) -> Value {
     let rows=gov::polity_in(w,n).map(|pol|pol.parties.iter().map(|s|{
         let p=party_in(r,n,s.id);let assignments=w.party_leadership.as_ref().map(|b|b.assignments.iter().filter(|a|a.nation==n&&a.party==s.id).collect::<Vec<_>>()).unwrap_or_default();
-        let historical=p.map(|p|p.terms.iter().filter(|t|historical_on(r,p,t,at)&&t.kind!=TermKind::Candidate).map(|t|json!({"term":t,"person":person_in(r,&t.person)})).collect::<Vec<_>>()).unwrap_or_default();
-        let uncertain=p.map(|p|p.terms.iter().filter(|t|possibly_historical_on(r,p,t,at)).map(|t|json!({"term":t,"person":person_in(r,&t.person),"reason":"The sourced date bounds may overlap this date, but do not establish an incumbent or eligible candidate."})).collect::<Vec<_>>()).unwrap_or_default();
-        let candidates=p.map(|p|p.terms.iter().filter(|t|eligible(r,p,t,at)&&(at!=today(w)||w.party_leadership.as_ref().is_none_or(|b|!dead(b,&t.person)))).map(|t|json!({"term":t,"person":person_in(r,&t.person)})).collect::<Vec<_>>()).unwrap_or_default();
-        let holders=assignments.iter().flat_map(|a|a.holders.iter().map(move|h|json!({"person":person_in(r,&h.person),"person_id":h.person,"term_id":h.term,"component":a.component,"since_day":a.since_day,"since_label":date_label(a.since_day),"role":p.and_then(|p|p.terms.iter().find(|t|t.id==h.term).map(|t|&t.role)),"kind":p.and_then(|p|p.terms.iter().find(|t|t.id==h.term).map(|t|&t.kind)),"reason":a.reason,"historical_reference_continues":p.is_some_and(|p|p.terms.iter().find(|t|t.id==h.term).is_some_and(|t|eligible(r,p,t,at)))}))).collect::<Vec<_>>();
-        let status=if !w.rules.historical_party_leadership{"reference_only"}else if !holders.is_empty(){"campaign_incumbent"}else if candidates.is_empty(){"coverage_gap"}else{"eligible_candidates"};
-        json!({"party_id":s.id,"party_name":s.name,"kind":p.map(|p|&p.kind),"coverage":p.map(|p|&p.coverage),"identity_note":p.and_then(|p|p.identity_note.as_ref()),"sources":p.map(|p|&p.sources),"components":p.map(|p|&p.components),"status":status,"historical":historical,"uncertain_historical":uncertain,"campaign":holders,"eligible":candidates,"gaps":p.map(|p|&p.gaps),"reason":if p.is_none(){Some("No researched leadership roster for this simulation party.")}else if status=="coverage_gap"{Some("No verified eligible person is available for this date; no leader has been invented.")}else{None}})
+        let historical=p.map(|p|p.terms.iter().filter(|t|historical_on(r,p,t,at)&&t.kind!=TermKind::Candidate).map(|t|json!({"term":t,"person":person_in(r,&t.person),"executive_eligibility":executive_eligibility::historical_info(p,t)})).collect::<Vec<_>>()).unwrap_or_default();
+        let uncertain=p.map(|p|p.terms.iter().filter(|t|possibly_historical_on(r,p,t,at)).map(|t|json!({"term":t,"person":person_in(r,&t.person),"executive_eligibility":executive_eligibility::historical_info(p,t),"reason":"The sourced date bounds may overlap this date, but do not establish an incumbent or eligible candidate."})).collect::<Vec<_>>()).unwrap_or_default();
+        let candidates=p.map(|p|p.terms.iter().filter(|t|eligible(r,p,t,at)&&(at!=today(w)||w.party_leadership.as_ref().is_none_or(|b|!dead(b,&t.person)))).map(|t|json!({"term":t,"person":person_in(r,&t.person),"executive_eligibility":executive_eligibility::historical_info(p,t)})).collect::<Vec<_>>()).unwrap_or_default();
+        let holders=assignments.iter().flat_map(|a|a.holders.iter().map(move|h|json!({"person":display_person_in(r,&h.person),"person_id":h.person,"term_id":h.term,"component":a.component,"executive_eligibility":p.map(|p|executive_eligibility::holder_info(p,h)),"since_day":h.selected_day,"since_label":date_label(h.selected_day),"party_succession_day":a.since_day,"role":if fictional_person(&h.person).is_some(){Some(if leadership_seats::reviewed_pair(n,s.id){"party co-leader (fictional)"}else{"party leader (fictional)"})}else{p.and_then(|p|p.terms.iter().find(|t|t.id==h.term).map(|t|t.role.as_str()))},"kind":if fictional_person(&h.person).is_some(){Some(if leadership_seats::reviewed_pair(n,s.id){TermKind::CoLeader}else{TermKind::Leader})}else{p.and_then(|p|p.terms.iter().find(|t|t.id==h.term).map(|t|t.kind.clone()))},"reason":a.reason,"historical_reference_continues":p.is_some_and(|p|p.terms.iter().find(|t|t.id==h.term).is_some_and(|t|eligible(r,p,t,at)))}))).collect::<Vec<_>>();
+        let future_candidates=if future::eligible_on(at) { future::for_party(n,s.id).into_iter().filter(|c|future::component_eligible(n,s.id,c.component.as_deref())).filter(|c|at==today(w)||future_reference_party_exists(p,c.component.as_deref(),at)).map(|c|json!({"person":display_person_in(r,&c.person.id),"term_id":c.term_id,"component":c.component,"eligible":at!=today(w)||w.party_leadership.as_ref().is_none_or(|b|!dead(b,&c.person.id)),"origin":"fictional_successor","role":"fictional party successor candidate","executive_eligibility":executive_eligibility::future_info(c),"historical_continuation_status":future::historical_continuation(n,s.id).map(|r|r.status.as_str()),"historical_continuation":future::historical_continuation(n,s.id)})).collect::<Vec<_>>() } else {vec![]};
+        let future_preview=future::for_party(n,s.id).into_iter().map(|c|json!({"person":display_person_in(r,&c.person.id),"term_id":c.term_id,"component":c.component,"eligible":false,"component_available":future::component_eligible(n,s.id,c.component.as_deref()),"origin":"fictional_successor","role":"fictional party successor preview","executive_eligibility":executive_eligibility::future_info(c),"historical_continuation_status":future::historical_continuation(n,s.id).map(|r|r.status.as_str()),"historical_continuation":future::historical_continuation(n,s.id),"condition":if future::component_eligible(n,s.id,c.component.as_deref()){"This party or component must remain active in the campaign; previews never appoint a leader or predict party survival."}else{"Archived organization template. New future vacancies use the surviving organization; existing campaign incumbents remain unchanged."}})).collect::<Vec<_>>();
+        let status=if !w.rules.historical_party_leadership{"reference_only"}else if !holders.is_empty(){"campaign_incumbent"}else if future_candidates.iter().any(|c|c["eligible"]==true){"fictional_candidates"}else if candidates.is_empty(){"coverage_gap"}else{"eligible_candidates"};
+        json!({"party_id":s.id,"party_name":s.name,"kind":p.map(|p|&p.kind),"coverage":p.map(|p|&p.coverage),"identity_note":p.and_then(|p|p.identity_note.as_ref()),"sources":p.map(|p|&p.sources),"components":p.map(|p|&p.components),"status":status,"historical":historical,"uncertain_historical":uncertain,"campaign":holders,"eligible":candidates,"future_candidates":future_candidates,"future_preview":future_preview,"future_leadership_seats":p.map(|p|leadership_seats::view(p,&assignments)),"gaps":p.map(|p|&p.gaps),"reason":if p.is_none(){Some("No researched leadership roster for this simulation party.")}else if status=="coverage_gap"{Some("No eligible person is available for this date. Historical gaps are not filled with fictional people.")}else{None}})
     }).collect::<Vec<_>>()).unwrap_or_default();
-    json!({"enabled":w.rules.historical_party_leadership,"roster_version":r.version,"reference_from":r.reference_from,"reference_through":r.reference_through,"date":date,"campaign_date":date_label(today(w)),"eligibility_context":if at==today(w)&&w.rules.historical_party_leadership{"campaign"}else{"historical_reference"},"nation":n,"parties":rows,"executive_person":executive_person(w,n),"executive_mortality_supported":executive_person(w,n).is_some_and(|p|matches!(&p.born,Some(DateBound::Day(_)))),"note":"Historical terms define candidate eligibility. Saved campaign incumbents change only through actual simulation events; historical election outcomes are not scheduled."})
+    json!({"enabled":w.rules.historical_party_leadership,"roster_version":r.version,"reference_from":r.reference_from,"reference_through":r.reference_through,"date":date,"campaign_date":date_label(today(w)),"eligibility_context":if at==today(w)&&w.rules.historical_party_leadership{"campaign"}else if future::eligible_on(at){"fictional_future_reference"}else{"historical_reference"},"nation":n,"parties":rows,"executive_person":executive_id_with(w,r,n).map(|id|display_person_in(r,&id)),"executive_mortality_supported":executive_person(w,n).is_some_and(|p|matches!(&p.born,Some(DateBound::Day(_)))),"future_policy":future::policy(at),"executive_policy":executive_eligibility::view(n),"note":"Historical references end on 7 September 2026. Fictional successor candidates are available from 8 September 2026 through 2035. Saved incumbents change only through actual campaign events; no historical or future election outcome is scheduled."})
+}
+fn future_reference_party_exists(p: Option<&Party>, component: Option<&str>, at: i32) -> bool {
+    let Some(p) = p else { return false };
+    let exists = |f: &Option<DateBound>, d: &Option<DateBound>| {
+        f.as_ref().and_then(DateBound::bounds).is_none_or(|(first, _)| first <= at)
+            && d.as_ref().and_then(DateBound::bounds).is_none_or(|(_, last)| last > at)
+    };
+    exists(&p.founded, &p.dissolved) && component.is_none_or(|id| p.components.iter()
+        .find(|c| c.id == id).is_some_and(|c| exists(&c.founded, &c.dissolved)))
 }
 #[cfg(test)]
 mod tests {
@@ -1190,7 +1348,8 @@ mod tests {
     }
     fn seat(w: &mut WorldState, r: &Roster, how: gov::Succession) {
         let (next, _) = gov::succession_seat(w, NationId::UK, &how).unwrap();
-        on_succession_with(w, r, NationId::UK, &how, next.party.as_deref());
+        let policy = executive_eligibility::fixture_policy(r);
+        on_succession_with_policy(w, r, Some(&policy), NationId::UK, &how, next.party.as_deref());
         let o = w
             .leadership
             .as_mut()
@@ -1205,6 +1364,238 @@ mod tests {
         o.must_leave_by = None;
         o.also.clear();
         o.emergent = Some(next);
+    }
+    fn future_world(date: &str) -> WorldState {
+        let mut w = crate::init::world_1990(GameRules {
+            ideology_blocs: true, historical_party_leadership: true,
+            daily_simulation: true, ..Default::default()
+        });
+        (w.year, w.month, w.day) = strict_date(date).unwrap();
+        w
+    }
+    fn legacy_empty_japanese_components() -> WorldState {
+        let mut w = future_world("1990-02-01");
+        let b = w.party_leadership.as_mut().unwrap();
+        let mut seen = BTreeSet::new();
+        b.assignments = b.assignments.iter().filter_map(|a| {
+            if a.nation != NationId::Japan || !matches!(a.party.as_str(), "jp_jsp" | "jp_komeito") {
+                return Some(a.clone());
+            }
+            if !seen.insert(a.party.clone()) { return None; }
+            let mut old = a.clone();
+            old.component = None;
+            old.holders.clear();
+            old.since_day = 20;
+            old.reason = "death".into();
+            Some(old)
+        }).collect();
+        w
+    }
+    #[test]
+    fn legacy_japanese_empty_slots_upgrade_without_changing_campaign_state() {
+        let mut w = legacy_empty_japanese_components();
+        // Saved order is arbitrary: neither the migration nor its index math
+        // may assume that the JSP row precedes Komeito.
+        w.party_leadership.as_mut().unwrap().assignments.reverse();
+        assert!(validate_state(&w).is_err());
+        let upgraded = crate::load(&crate::save(&w)).unwrap();
+        validate_state(&upgraded).unwrap();
+        for (party, expected) in [("jp_jsp", 2), ("jp_komeito", 3)] {
+            let rows = upgraded.party_leadership.as_ref().unwrap().assignments.iter()
+                .filter(|a| a.nation == NationId::Japan && a.party == party).collect::<Vec<_>>();
+            assert_eq!(rows.len(), expected);
+            assert!(rows.iter().all(|a| a.component.is_some() && a.holders.is_empty()
+                && a.since_day == 20 && a.reason == "death"));
+        }
+        let strip_upgraded_slots = |world: &WorldState| {
+            let mut value = serde_json::to_value(world).unwrap();
+            value["party_leadership"]["assignments"].as_array_mut().unwrap().retain(|a| {
+                a["nation"] != "Japan" || !matches!(a["party"].as_str(), Some("jp_jsp" | "jp_komeito"))
+            });
+            value
+        };
+        assert_eq!(strip_upgraded_slots(&w), strip_upgraded_slots(&upgraded));
+        let reloaded = crate::load(&crate::save(&upgraded)).unwrap();
+        assert_eq!(crate::save(&upgraded), crate::save(&reloaded));
+        let mut modern = upgraded.clone();
+        assert!(!migrate_legacy_empty_components(&mut modern).unwrap());
+        assert_eq!(crate::save(&modern), crate::save(&upgraded));
+    }
+    #[test]
+    fn japanese_component_upgrade_rejects_populated_and_mixed_maps_atomically() {
+        let legacy = legacy_empty_japanese_components();
+        let index = legacy.party_leadership.as_ref().unwrap().assignments.iter()
+            .position(|a| a.nation == NationId::Japan && a.party == "jp_komeito").unwrap();
+        let mut populated = legacy.clone();
+        populated.party_leadership.as_mut().unwrap().assignments[index].holders.push(Holder {
+            person: "legacy_named_person".into(), term: "legacy_term".into(),
+            selected_day: 0, identity_hash: "legacy_hash".into(),
+        });
+        let mut mixed = legacy.clone();
+        let mut new_row = mixed.party_leadership.as_ref().unwrap().assignments[index].clone();
+        new_row.component = Some("jp_komeito_1964".into());
+        mixed.party_leadership.as_mut().unwrap().assignments.push(new_row);
+        let mut duplicate = legacy.clone();
+        let repeated = duplicate.party_leadership.as_ref().unwrap().assignments[index].clone();
+        duplicate.party_leadership.as_mut().unwrap().assignments.push(repeated);
+        let modern = crate::load(&crate::save(&legacy)).unwrap();
+        let mut incomplete = modern.clone();
+        incomplete.party_leadership.as_mut().unwrap().assignments.retain(|a| a.component.as_deref() != Some("jp_sdp_1996"));
+        let mut unknown = modern;
+        unknown.party_leadership.as_mut().unwrap().assignments.iter_mut()
+            .find(|a| a.component.as_deref() == Some("jp_sdp_1996")).unwrap().component = Some("unsupported_organization".into());
+        for mut invalid in [populated, mixed, duplicate, incomplete, unknown] {
+            let before = crate::save(&invalid);
+            assert!(migrate_legacy_empty_components(&mut invalid).is_err());
+            assert_eq!(crate::save(&invalid), before, "failed upgrades are atomic");
+            assert!(crate::load(&before).is_err());
+        }
+        let mut bad_metadata = legacy;
+        bad_metadata.party_leadership.as_mut().unwrap().assignments[index].reason = "invented_reason".into();
+        assert!(crate::load(&crate::save(&bad_metadata)).is_err(), "normal validation must still reject invalid metadata");
+    }
+    #[test]
+    fn future_cutoff_never_replaces_incumbents_without_a_succession_event() {
+        let mut w = future_world("2026-09-07");
+        let original = executive_person(&w, NationId::UK).unwrap().id.clone();
+        let before = serde_json::to_string(&w.party_leadership).unwrap();
+        w.day = 8;
+        ensure_all(&mut w);
+        assert_eq!(serde_json::to_string(&w.party_leadership).unwrap(), before);
+        assert_eq!(executive_person(&w, NationId::UK).unwrap().id, original);
+        let saved = crate::save(&w);
+        let preview = reference_view(&w, NationId::UK, "2035-12-31");
+        assert_eq!(preview["reference_through"], "2026-09-07");
+        assert!(preview["parties"][0]["historical"].as_array().unwrap().is_empty());
+        assert_eq!(preview["parties"][0]["future_candidates"][0]["person"]["fiction"]["origin"], "fictional_successor");
+        assert_eq!(crate::save(&w), saved);
+
+        let mut before_cutoff = future_world("2026-09-07");
+        gov::seat_office(&mut before_cutoff, NationId::UK, &gov::Succession::Death);
+        assert!(executive_person(&before_cutoff, NationId::UK).is_none_or(|p| fictional_person(&p.id).is_none()));
+        gov::seat_office(&mut w, NationId::UK, &gov::Succession::Death);
+        let next = executive_person(&w, NationId::UK).unwrap();
+        assert!(fictional_person(&next.id).is_some());
+        assert!(next.sources.is_empty());
+        assert_eq!(view(&w, NationId::UK)["executive_person"]["fiction"]["origin"], "fictional_successor");
+        validate_state(&w).unwrap();
+    }
+    #[test]
+    fn japanese_future_vacancies_use_one_surviving_organization_without_replacing_incumbents() {
+        for (party, active) in [("jp_jsp", "jp_sdp_1996"), ("jp_komeito", "jp_komeito_1998")] {
+            let mut w = future_world("2027-01-01");
+            let before = w.party_leadership.as_ref().unwrap().assignments.iter()
+                .filter(|a| a.nation == NationId::Japan && a.party == party)
+                .flat_map(|a| a.holders.iter()).map(|h| h.person.clone()).collect::<Vec<_>>();
+            assert_eq!(before.len(), 1, "one 1990 incumbent in {party}");
+            gov::seat_office(&mut w, NationId::Japan, &gov::Succession::Election { leader: party.into() });
+            assert_eq!(executive_person(&w, NationId::Japan).unwrap().id, before[0]);
+            let mut term_limited = w.clone();
+            term_limited.day = 2;
+            gov::seat_office(&mut term_limited, NationId::Japan, &gov::Succession::TermLimit);
+            let next = executive_person(&term_limited, NationId::Japan).unwrap();
+            assert_eq!(fictional_person(&next.id).unwrap().component.as_deref(), Some(active));
+            assert!(term_limited.party_leadership.as_ref().unwrap().assignments.iter()
+                .any(|a| a.holders.iter().any(|h| h.person == before[0])), "term limit preserves party incumbent");
+            validate_state(&term_limited).unwrap();
+            w.day = 2;
+            gov::seat_office(&mut w, NationId::Japan, &gov::Succession::Death);
+            let next = executive_person(&w, NationId::Japan).unwrap();
+            assert_eq!(fictional_person(&next.id).unwrap().component.as_deref(), Some(active));
+            let slots = w.party_leadership.as_ref().unwrap().assignments.iter()
+                .filter(|a| a.nation == NationId::Japan && a.party == party).collect::<Vec<_>>();
+            assert_eq!(slots.iter().map(|a| a.holders.len()).sum::<usize>(), 1);
+            assert!(slots.iter().filter(|a| a.component.as_deref() != Some(active)).all(|a| a.holders.is_empty()));
+            validate_state(&w).unwrap();
+            let reloaded = crate::load(&crate::save(&w)).unwrap();
+            assert_eq!(crate::save(&w), crate::save(&reloaded));
+            let model = view(&w, NationId::Japan);
+            let row = model["parties"].as_array().unwrap().iter().find(|p| p["party_id"] == party).unwrap();
+            assert_eq!(row["future_candidates"].as_array().unwrap().len(), 4);
+            assert!(row["future_candidates"].as_array().unwrap().iter().all(|c| c["component"] == active));
+        }
+    }
+    #[test]
+    fn future_coalition_components_remain_collective() {
+        let mut w = future_world("2027-01-01");
+        // A specific opposition coalition guarantees an actual election seating
+        // event as more countries gain researched coalition rows.
+        let p = roster().unwrap().parties.iter().find(|p|
+            p.nation == NationId::UK && p.kind == PartyKind::Coalition).unwrap();
+        assert!(p.components.len() > 1);
+        for a in &mut w.party_leadership.as_mut().unwrap().assignments {
+            if a.nation == p.nation && a.party == p.party { a.holders.clear(); }
+        }
+        gov::seat_office(&mut w, p.nation, &gov::Succession::Election { leader: p.party.clone() });
+        let holders = w.party_leadership.as_ref().unwrap().assignments.iter()
+            .filter(|a| a.nation == p.nation && a.party == p.party).flat_map(|a| a.holders.iter()).collect::<Vec<_>>();
+        assert_eq!(holders.len(), p.components.len());
+        assert!(holders.iter().all(|h| fictional_person(&h.person).is_some()));
+        assert!(executive_person(&w, p.nation).is_none());
+        validate_state(&w).unwrap();
+    }
+    #[test]
+    fn fictional_successor_save_replay_death_and_term_limits_keep_stable_identities() {
+        let mut w = future_world("2027-01-01");
+        gov::seat_office(&mut w, NationId::UK, &gov::Succession::Death);
+        let first = executive_person(&w, NationId::UK).unwrap().id.clone();
+        let mut loaded = crate::load(&crate::save(&w)).unwrap();
+        assert_eq!(crate::save(&w), crate::save(&loaded));
+        for state in [&mut w, &mut loaded] {
+            state.day = 2;
+            gov::seat_office(state, NationId::UK, &gov::Succession::TermLimit);
+            let second = executive_person(state, NationId::UK).unwrap();
+            assert_ne!(second.id, first);
+            assert!(fictional_person(&second.id).is_some());
+            assert_eq!(assignment(state, "uk_con").holders[0].person, first);
+            state.day = 3;
+            gov::seat_office(state, NationId::UK, &gov::Succession::Death);
+            validate_state(state).unwrap();
+        }
+        assert_eq!(crate::save(&w), crate::save(&loaded));
+        w.year = 2036;
+        let incumbent = executive_person(&w, NationId::UK).unwrap().id.clone();
+        ensure_all(&mut w);
+        assert_eq!(executive_person(&w, NationId::UK).unwrap().id, incumbent);
+        validate_state(&crate::load(&crate::save(&w)).unwrap()).unwrap();
+    }
+    #[test]
+    fn forged_fictional_dates_affiliations_and_initial_assignments_are_rejected() {
+        let mut w = future_world("2027-01-01");
+        gov::seat_office(&mut w, NationId::UK, &gov::Succession::Death);
+        validate_state(&w).unwrap();
+        let index = w.party_leadership.as_ref().unwrap().assignments.iter()
+            .position(|a| a.nation == NationId::UK && a.party == "uk_con").unwrap();
+        let mut bad = w.clone();
+        bad.party_leadership.as_mut().unwrap().assignments[index].holders[0].selected_day = day("2026-09-07").unwrap();
+        assert!(validate_state(&bad).is_err());
+        let mut bad = w.clone();
+        bad.party_leadership.as_mut().unwrap().assignments[index].reason = "initial_reference".into();
+        assert!(validate_state(&bad).is_err());
+        let mut bad = w.clone();
+        bad.party_leadership.as_mut().unwrap().assignments[index].holders[0].identity_hash = "changed".into();
+        assert!(validate_state(&bad).is_err());
+        let mut bad = w.clone();
+        let other = future::for_party(NationId::Japan, "jp_ldp")[0];
+        bad.party_leadership.as_mut().unwrap().assignments[index].holders[0] = future::holder(other, today(&w));
+        assert!(validate_state(&bad).is_err());
+    }
+    #[test]
+    fn future_previews_are_read_only_and_dissolved_reference_parties_stay_distinct() {
+        let (w, mut r) = fixture();
+        let old = crate::save(&w);
+        let model = view_with(&w, NationId::UK, today(&w), "1990-01-01", &r);
+        assert!(model["parties"][0]["future_candidates"].as_array().unwrap().is_empty());
+        assert!(model["parties"][0]["future_preview"].as_array().unwrap().iter().all(|c| c["eligible"] == false));
+        assert_eq!(crate::save(&w), old);
+        r.parties[0].dissolved = Some(bound("2000-01-01"));
+        let model = view_with(&w, NationId::UK, day("2030-01-01").unwrap(), "2030-01-01", &r);
+        assert!(model["parties"][0]["future_candidates"].as_array().unwrap().is_empty());
+        assert_eq!(model["parties"][0]["future_preview"].as_array().unwrap().len(), 4);
+        let mut diverged = w.clone();
+        diverged.year = 2030;
+        let model = view_with(&diverged, NationId::UK, today(&diverged), "2030-01-01", &r);
+        assert_eq!(model["parties"][0]["future_candidates"].as_array().unwrap().len(), 4);
     }
     #[test]
     fn exact_gregorian_dates_and_conservative_partial_bounds() {
@@ -1451,10 +1842,32 @@ mod tests {
         assert_eq!(actual.len(), 624);
         for p in &r.parties {
             if p.terms.is_empty() {
-                assert_eq!(p.coverage, Coverage::Gap);
+                // A researched organization can have a documented lifecycle but
+                // no sufficiently dated office holder yet (for example PDS).
+                assert_ne!(p.coverage, Coverage::Verified);
+                if p.coverage == Coverage::Partial {
+                    assert!(!p.sources.is_empty());
+                    assert!(p.identity_note.as_ref().is_some_and(|n| !n.trim().is_empty()));
+                }
                 assert!(!p.gaps.is_empty());
             }
         }
+    }
+    #[test]
+    fn canadian_ndp_reference_retains_mclaughlin_through_the_researched_handover() {
+        let w = crate::init::world_1990(GameRules { ideology_blocs: true, ..Default::default() });
+        let original = crate::save(&w);
+        for (date, expected) in [("1994-04-15", "audrey_mclaughlin"),
+            ("1995-10-13", "audrey_mclaughlin"), ("1995-10-14", "alexa_mcdonough")] {
+            let view = reference_view(&w, NationId::Canada, date);
+            let party = view["parties"].as_array().unwrap().iter().find(|p| p["party_id"] == "ca_ndp").unwrap();
+            let historical = party["historical"].as_array().unwrap();
+            assert_eq!(historical.len(), 1, "one researched NDP leader at {date}");
+            assert_eq!(historical[0]["person"]["id"], expected);
+            assert!(party["uncertain_historical"].as_array().unwrap().is_empty(),
+                "the unresolved announced-resignation/interim label must not erase a continuously serving person");
+        }
+        assert_eq!(crate::save(&w), original);
     }
     #[test]
     fn default_off_is_sparse_and_reference_reads_do_not_change_world() {

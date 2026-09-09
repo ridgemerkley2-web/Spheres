@@ -1,0 +1,91 @@
+{
+  "provider": "OpenAI built-in image_gen",
+  "generated_at": "2026-09-07",
+  "style_approval": "User approved the fixed cartoon pilot before requesting worldwide expansion.",
+  "jobs": [
+    {
+      "key": "kaifu",
+      "person_id": "toshiki_kaifu",
+      "year": "1990",
+      "from": "1990-01-01",
+      "to": "1995-01-01",
+      "prompt": "Create one polished 2D CARTOON full-body game avatar of Toshiki Kaifu circa 1990, age about 59. Image1 is the approved Margaret Thatcher STYLE reference only: match its bold dark clean outlines, expressive slightly enlarged head, graphic cel shading, readable cloth folds and full-body composition. Never copy her identity or costume. Image2 is the identity reference: official Cabinet Public Relations Office portrait associated with Kaifu's 1989 inauguration. Preserve his neat dark side-parted hair with a little grey, fuller cheeks, distinct eye shape, gently angled brows, straight nose, clean-shaven jaw and calm reserved smile; depict this exact Japanese historical person, not a generic politician. Dress him in a tailored medium slate-blue suit, white shirt, dark navy tie with small red and white polka dots, black polished shoes. One hand at ease and the other holding a slim closed folder. Full figure, head to shoes visible, comfortable margins, about 5.5 heads tall, slight three-quarter stance facing viewer. Clean opaque deep teal background (#192d34). Portrait1024x1536. Keep the illustration clearly cartoon with simplified shapes; no photographic skin, oil painting, plastic render, 3Dmodel, lettering, flags, insignia, watermarks or checkerboard. Suitable as a small country-selector-style game character.",
+      "source": "https://www.kantei.go.jp/jp/rekidainaikaku/076.html",
+      "generated_source": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-46f85b03-0c1b-4647-896c-a184d7f8a37e.png",
+      "asset": "spheres-web/ui/person-portraits/toshiki-kaifu-cartoon-1990-v1.png"
+    },
+    {
+      "key": "doi",
+      "prompt": "Create one polished 2D CARTOON full-body game avatar of Takako Doi circa1990, about62. Image1 is approved Margaret Thatcher STYLE ONLY: match bold clean dark outlines, expressive slightly enlarged head, graphic cel shading, 5.5-head adult proportions, full-body composition. Never copy Thatcher's identity, hair or costume. Image2 is the Japanese MOFA identity reference from April1991: Doi is the woman in red in the foreground. Preserve her recognizable high swept short black hair, angular cheekbones, expressive narrow eyes, firm rounded chin, prominent straight nose and confident calm expression. Show her at a slight three-quarter angle toward viewer. She wears a tailored rich red skirt suit with cream blouse, simple small round earrings and a tasteful plain gold brooch, black low heels, one hand holding a slim black folder, other relaxed. Entire figure head to shoes with breathing room; quiet opaque dark teal background (#192d34);1024x1536. Clearly drawn cartoon; no photographic texture, oil painting, plastic 3Drender, lettering, flags, insignia, watermark or checkerboard. Face and silhouette readable at small card size.",
+      "refs": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\spheres-web\\ui\\person-portraits\\margaret-thatcher-cartoon-1990-v3.png",
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\spheres-web\\ui\\person-portraits\\references\\takako-doi-april-1991.jpg"
+      ],
+      "person_id": "takako_doi",
+      "year": "1990",
+      "from": "1990-01-01",
+      "to": "1995-01-01",
+      "source": "https://commons.wikimedia.org/wiki/File:Takako_Doi_19910417.jpg",
+      "generated_source": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-87c69924-84b1-45b0-a771-07e11d6bbf07.png",
+      "asset": "spheres-web/ui/person-portraits/takako-doi-cartoon-1990-v1.png"
+    },
+    {
+      "key": "major",
+      "prompt": "Create one polished 2D CARTOON full-body game avatar of John Major circa1991, about48. Supplied Margaret Thatcher image is approved STYLE ONLY: match bold clean dark outlines, expressive slightly enlarged head, graphic cel shading, adult proportions about5.5heads tall, full-body character composition. Never copy Thatcher's face, hair or costume. Depict the recognizable British statesman John Major: neat short grey hair side-parted, large round-to-oval dark rim glasses, long narrow clean-shaven face, straight prominent nose, light blue-grey eyes, thin lips with a restrained friendly smile. Dark charcoal single-breasted business suit, white shirt, plain blue tie, black dress shoes; one hand lightly holding a closed burgundy document folder, other relaxed. Entire figure head to shoes, slightly three-quarter stance towardviewer, breathing room; opaque quiet dark teal background (#192d34), portrait1024x1536. Distinctly a cartoon illustration with simplified readable features, not a photo, oil portrait or plastic 3Dmodel. No text, flags, insignia, watermark or checkerboard.",
+      "refs": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\spheres-web\\ui\\person-portraits\\margaret-thatcher-cartoon-1990-v3.png"
+      ],
+      "person_id": "john_major",
+      "year": "1991",
+      "from": "1990-01-01",
+      "to": "1998-01-01",
+      "source": "https://www.gov.uk/government/history/past-prime-ministers/john-major",
+      "generated_source": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-d997d511-d85f-40c2-9b1b-97d0060f4cc4.png",
+      "asset": "spheres-web/ui/person-portraits/john-major-cartoon-1991-v1.png"
+    },
+    {
+      "key": "tony_blair",
+      "year": "1997",
+      "source": "https://www.gov.uk/government/history/past-prime-ministers/tony-blair",
+      "prompt": "Create one 2D CARTOON full-body game avatar of Tony Blair circa1997, age44, recognizable long narrow face, prominent ears, broad friendly toothy smile, brown side-parted short hair, highforehead, clean-shaven. Tailored navy suit, white shirt, burgundy-red tie, black shoes, relaxed arms with one hand holding a thin dark folder. The supplied Margaret Thatcher image is APPROVED STYLE ONLY: bold clean dark outlines, expressive slightly enlarged head, graphic cel shading, readable cloth folds and adult proportions about5.5heads tall. Do not copy her identity or costume. Entire full-body figure with hands and shoes, slight three-quarter pose towardviewer, comfortable margins, quiet opaque dark teal background (#192d34), portrait1024x1536. Draw a polished cartoon suitable for small game avatars; no photo skin, realistic oil painting, plastic3Dmodel, text, flag, insignia, watermark or checkerboard.",
+      "person_id": "tony_blair",
+      "from": "1994-01-01",
+      "to": "2003-01-01",
+      "generated_source": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-fc253951-5013-496b-986f-f6f25820f616.png",
+      "asset": "spheres-web/ui/person-portraits/tony-blair-cartoon-1997-v1.png"
+    },
+    {
+      "key": "gordon_brown",
+      "year": "2007",
+      "source": "https://www.gov.uk/government/history/past-prime-ministers/gordon-brown",
+      "prompt": "Create one 2D CARTOON full-body game avatar of Gordon Brown circa2007, age56, recognizable broad full face, heavy dark eyebrows, deep-set eyes, darkbrown hair swept toside, strong nose, slightly asymmetric reserved smile, clean-shaven. Dark charcoal business suit, pale blue shirt, muted purple tie, polished black shoes, hands loosely clasped infront. The supplied Margaret Thatcher image is APPROVED STYLE ONLY: bold clean dark outlines, expressive slightly enlarged head, graphic cel shading, readable cloth folds and adult proportions about5.5heads tall. Do not copy her identity or costume. Entire full-body figure with hands and shoes, slight three-quarter pose towardviewer, comfortable margins, quiet opaque dark teal background (#192d34), portrait1024x1536. Draw a polished cartoon suitable for small game avatars; no photo skin, realistic oil painting, plastic3Dmodel, text, flag, insignia, watermark or checkerboard.",
+      "person_id": "gordon_brown",
+      "from": "2007-01-01",
+      "to": "2012-01-01",
+      "generated_source": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-be0f5e6e-142e-45a4-aee8-3b3b97902127.png",
+      "asset": "spheres-web/ui/person-portraits/gordon-brown-cartoon-2007-v1.png"
+    },
+    {
+      "key": "david_cameron",
+      "year": "2010",
+      "source": "https://www.gov.uk/government/people/david-cameron",
+      "prompt": "Create one 2D CARTOON full-body game avatar of David Cameron circa2010, age43, recognizable broad smooth oval face, rounded cheeks, neat side-parted dark brown hair, blue eyes, small composed smile, clean-shaven. Tailored darknavy suit, white shirt, light blue tie, black shoes, one arm relaxed with other holding thin navy documentfolder. The supplied Margaret Thatcher image is APPROVED STYLE ONLY: bold clean dark outlines, expressive slightly enlarged head, graphic cel shading, readable cloth folds and adult proportions about5.5heads tall. Do not copy her identity or costume. Entire full-body figure with hands and shoes, slight three-quarter pose towardviewer, comfortable margins, quiet opaque dark teal background (#192d34), portrait1024x1536. Draw a polished cartoon suitable for small game avatars; no photo skin, realistic oil painting, plastic3Dmodel, text, flag, insignia, watermark or checkerboard.",
+      "person_id": "david_cameron",
+      "from": "2005-01-01",
+      "to": "2013-01-01",
+      "generated_source": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-81c16316-4fb6-4037-a3e7-bba9031b775f.png",
+      "asset": "spheres-web/ui/person-portraits/david-cameron-cartoon-2010-v1.png"
+    },
+    {
+      "key": "theresa_may",
+      "year": "2016",
+      "source": "https://www.gov.uk/government/history/past-prime-ministers/theresa-may",
+      "prompt": "Create one 2D CARTOON full-body game avatar of Theresa May circa2016, age59, recognizable short silver-grey bob with side-swept fringe, angular longface, defined cheekbones, lightblue eyes, straight nose and reserved smile. Fitted navy blazer over a teal dress, understated silver necklace, small earrings, modest leopard-pattern lowheels, arms at ease with one hand holding small dark handbag. The supplied Margaret Thatcher image is APPROVED STYLE ONLY: bold clean dark outlines, expressive slightly enlarged head, graphic cel shading, readable cloth folds and adult proportions about5.5heads tall. Do not copy her identity or costume. Entire full-body figure with hands and shoes, slight three-quarter pose towardviewer, comfortable margins, quiet opaque dark teal background (#192d34), portrait1024x1536. Draw a polished cartoon suitable for small game avatars; no photo skin, realistic oil painting, plastic3Dmodel, text, flag, insignia, watermark or checkerboard.",
+      "person_id": "theresa_may",
+      "from": "2015-01-01",
+      "to": "2020-01-01",
+      "generated_source": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-680000ed-a13e-4cf4-a109-5f2ff72e39a7.png",
+      "asset": "spheres-web/ui/person-portraits/theresa-may-cartoon-2016-v1.png"
+    }
+  ]
+}

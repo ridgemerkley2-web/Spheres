@@ -1,0 +1,36 @@
+{
+  "imported_parties": [
+    {
+      "nation": "India",
+      "party": "in_inc",
+      "terms": 7,
+      "components": []
+    },
+    {
+      "nation": "India",
+      "party": "in_jd",
+      "terms": 3,
+      "components": []
+    },
+    {
+      "nation": "India",
+      "party": "in_bjp",
+      "terms": 14,
+      "components": []
+    },
+    {
+      "nation": "India",
+      "party": "in_cpm",
+      "terms": 6,
+      "components": []
+    }
+  ],
+  "people_changed": 0,
+  "office_links_changed": 0,
+  "executive_grants_added": 0,
+  "save_files_changed": 0,
+  "source_file": "docs/research/india-party-leaders-1990-2026.json",
+  "source_sha256": "77566a887e37beb613fc4d175ffe7f54a7915cc12269952a23d118a09c4ff0e2",
+  "status": "party_terms_imported",
+  "validation": "Run native registry, succession and saved-campaign checks after import."
+}

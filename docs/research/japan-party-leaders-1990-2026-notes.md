@@ -1,0 +1,19 @@
+# Japan party leadership research
+
+Checked 7 September 2026. The staging JSON contains **37 real people, five existing game party rows and 42 leadership terms**. All rows remain partial. The `people` and `parties` entries follow the current Rust roster schema; metadata outside those arrays is research context and should not be copied into the core roster.
+
+The starter lineup is Toshiki Kaifu (LDP), Takako Doi (JSP), Kōshirō Ishida (Komeito), Tetsuzō Fuwa (JCP) and Eiichi Nagasue (DSP). The [Japan National Press Club's contemporary debate record](https://www.jnpc.or.jp/archive/conferences/20132/report) independently names all five on 2 February 1990. The [National Diet Library](https://ndlsearch.ndl.go.jp/books/R100000002-I000002913813) gives Nagasue's reading as **Eiichi**, not Eigo.
+
+The [LDP's own history](https://www.jimin.jp/aboutus/history/) supplies a full sequence of presidents through Sanae Takaichi. Its effective tenure dates sometimes differ from leadership-election dates. This staging file retains the official effective dates and explicitly records the discrepancy. The end of each interval is exclusive; a source's inclusive final day is not silently reused as an exclusive bound.
+
+JSP became the Social Democratic Party in January 1996. The JSON distinguishes the names with historical components while preserving continuity. It does not substitute the DPJ or CDP. Several handover dates remain at month precision, and the 2013 caretaker interval still needs primary confirmation. The [party's April 2026 report](https://sdp.or.jp/sdp-paper/toushu-116/) confirms Mizuho Fukushima's re-election.
+
+[Komeito's institutional history](https://www.komei.or.jp/about/history/) distinguishes the original party, local Komei and the reconstituted 1998 organization. The short national New Komei branch and New Peace Party need further records; New Frontier leaders cannot be used as Komei leaders. Toshiko Takeya was initially an [acting representative from 22 January 2026](https://www.komei.or.jp/komeinews/p504957/), then [formally selected on 14 March](https://www.komei.or.jp/komeinews/p506839/). Those are two separate term records.
+
+For JCP, the public party leader is the Executive Committee chair. Central Committee chair and secretary-general are different offices. The [party's contemporary handover report](https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html) confirms Tomoko Tamura's selection on 18 January 2024. The earlier Fuwa–Shii transition retains month precision until the congress record establishes the exact day.
+
+DSP is distinct from today's Social Democratic Party. Its final chair, Takashi Yonezawa, is identified by the [14 June 1994 JNPC record](https://www.jnpc.or.jp/archive/conferences/20523/report). [NDL archive item 27](https://ndlsearch.ndl.go.jp/file/rnavi/kensei/umezawashouhei/index_umezawashouhei.pdf) dates the dissolution-congress booklet to 9 December 1994. No continuing real DSP chair is invented after dissolution.
+
+Portrait references are separate from leadership facts. Kaifu has a licensed official premiership-era photograph, Doi has an April 1991 MOFA image and Ishida a 1993 Defense Agency film frame. Commons' readily available Fuwa portrait is from 1956, and Nagasue's is from 1971; neither establishes their 1990 age appearance. The 1990 JNPC bulletin and 1989 badminton program are additional visual leads, with reuse rights still unverified. No source photo was downloaded or copied into the game by this research task.
+
+The user-defined historical cutoff is 7 September 2026. Research after that cutoff informs fictional career paths and party context through 2035, with invented people explicitly labeled. Current real leaders are not assigned predicted future terms. Unrepresented modern Japanese parties and exhaustive minor split groups still need separate simulation identities and research.

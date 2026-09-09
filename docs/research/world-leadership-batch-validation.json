@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "completed_at": "2026-09-07",
+  "scope": "First worldwide expansion after UK/Japan pilots; global request remains incomplete",
+  "counts": {
+    "nation_identities": 160,
+    "simulation_party_rows": 624,
+    "parties_with_partial_history": 53,
+    "known_historical_people": 590,
+    "known_party_office_records": 393,
+    "historical_cartoon_files": 53,
+    "fictional_cartoon_files": 4,
+    "total_cartoon_files": 57,
+    "added_historical_cartoon_files": 38,
+    "pending_known_historical_art_jobs": 705,
+    "complete_all_party_countries": 0
+  },
+  "validation": {
+    "web_release_tests": {
+      "passed": 271,
+      "failed": 0,
+      "ignored": 3
+    },
+    "native_leadership_tests": {
+      "passed": 44,
+      "failed": 0
+    },
+    "government_renderer_tests": {
+      "passed": 106,
+      "failed": 0
+    },
+    "historical_art_tests": 16,
+    "fictional_art_tests": 7,
+    "production_inventory_tests": 8,
+    "import_tests": 15,
+    "static_review_tests": 7,
+    "repeat_country_imports": "Nine stages are exact no-ops",
+    "avatar_allowlist_matches": true,
+    "production_inventory_current": true,
+    "diff_whitespace_check": true
+  },
+  "browser_review": {
+    "pages": [
+      "tools/ui/leadership-art-progress.html",
+      "tools/ui/leadership-government-review.html"
+    ],
+    "art_search_country_filter_and_pagination": true,
+    "government_canada_starter_cartoon_cards": true,
+    "government_canada_fictional_lifecycle_disclosure": true,
+    "government_india_historical_only_view": true,
+    "government_source_disclosures": true,
+    "desktop_and_390px_no_horizontal_overflow": true,
+    "observed_missing_images": 0,
+    "observed_console_warnings_or_errors": 0,
+    "viewport_override_restored": true,
+    "live_game_was_not_replaced": true
+  },
+  "saved_campaign": {
+    "complete_live_api_state_unchanged": true,
+    "session_id": "19716-1788825604716609500-1",
+    "named_archive_sha256": "44cae2cacb2f0e6a83aa6deef7d1e465fc6f0a652dbe5ab018d9aead3f631db9",
+    "archived_load_audit": "Four exact empty legacy rows expand to18 empty component slots; no holder assigned; all other fields preserved"
+  },
+  "release": {
+    "path": "company-sim-target/release/spheres-web.exe",
+    "sha256": "c6b04e7e34b8850c8cd75d687694fdb1147d61086aca6a726413cd89280907d8",
+    "build_passed": true,
+    "launched": false,
+    "reason": "Earlier automatic approval review rejected the separate preview launch with 'blocked by policy'; no launch was retried."
+  },
+  "git": {
+    "branch": "codex/resume-spheres",
+    "base_head": "98a27249e5809c8bb276ed39f84804fa2ee9dcc3",
+    "committed": false,
+    "pushed": false
+  },
+  "limitations": [
+    "Global party census, historical chronology and artwork remain incomplete.",
+    "Future candidates are2556 templates with broad profiles; country-specific editorial review and most artwork remain unfinished.",
+    "Charles Blunt has an identified low-detail1987 group reference, but no registered cartoon yet.",
+    "New historical terms default to party-only; executive roles need separate review.",
+    "Live localhost7843 still serves the previous4-cartoon executable."
+  ]
+}

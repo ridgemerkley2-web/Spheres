@@ -43,12 +43,12 @@ argued with rather than taken on trust — nothing currently falls below it:
 
 | slot | component | platform | verdict | Δ tris | outline m² | LOD1 | carried by | change |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `sensors` | `optics_thermal` | `ground_recon` | distinct | +104 | 0.079 | yes | sensors / thermal observation fittings | 1 resized |
-| `sensors` | `optics_thermal` | `ground_apc` | distinct | +104 | 0.084 | yes | sensors / thermal observation fittings | 1 resized |
-| `suspension` | `suspension_hydro` | `tank_light` | distinct | +1152 | 0.113 | yes | running gear / port suspension, road wheels and sprockets | 2 resized |
-| `communications` | `ground_comms_secure` | `ground_apc` | distinct | +148 | 0.128 | yes | communications / secure radio aerial installation | 1 resized |
-| `suspension` | `suspension_hydro` | `tank_destroyer` | distinct | +1152 | 0.129 | yes | running gear / port suspension, road wheels and sprockets | 2 resized |
-| `communications` | `ground_comms_secure` | `ground_recon` | distinct | +148 | 0.129 | yes | communications / secure radio aerial installation | 1 resized |
+| `suspension` | `suspension_hydro` | `ground_apc` | distinct | +336 | 0.084 | yes | suspension / port hydropneumatic struts | 2 resized |
+| `sensors` | `optics_thermal` | `ground_recon` | distinct | +104 | 0.086 | yes | sensors / thermal observation fittings | 1 resized |
+| `sensors` | `optics_thermal` | `ground_apc` | distinct | +104 | 0.103 | yes | sensors / thermal observation fittings | 1 resized |
+| `communications` | `ground_comms_secure` | `ground_recon` | distinct | +148 | 0.115 | yes | communications / secure radio aerial installation | 1 resized |
+| `suspension` | `suspension_hydro` | `ground_recon` | distinct | +336 | 0.121 | yes | suspension / port hydropneumatic struts | 2 resized |
+| `communications` | `ground_comms_secure` | `ground_apc` | distinct | +148 | 0.152 | yes | communications / secure radio aerial installation | 1 resized |
 
 ## Coverage
 
@@ -76,189 +76,189 @@ Nothing. Every component the simulation offers changes the silhouette of every p
 
 | slot | component | platform | verdict | Δ tris | outline m² | LOD1 | carried by | change |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `active_protection` | `aps_hard` | `tank_standard` | distinct | +764 | 0.702 | yes | active_protection / active-protection sensors and intercept modules | +1 part, -1 part |
-| `active_protection` | `aps_hard` | `tank_heavy` | distinct | +836 | 0.433 | yes | active_protection / active-protection sensors and intercept modules | +1 part |
-| `active_protection` | `aps_hard` | `tank_light` | distinct | +764 | 0.468 | yes | active_protection / active-protection sensors and intercept modules | +1 part, -1 part |
-| `active_protection` | `aps_hard` | `tank_destroyer` | distinct | +764 | 0.480 | yes | active_protection / active-protection sensors and intercept modules | +1 part, -1 part |
-| `active_protection` | `aps_hard` | `ground_ifv` | distinct | +456 | 0.158 | yes | active_protection / active interception perimeter system | +1 part |
-| `active_protection` | `aps_hard` | `ground_apc` | distinct | +456 | 0.164 | yes | active_protection / active interception perimeter system | +1 part |
-| `active_protection` | `aps_hard` | `ground_recon` | distinct | +456 | 0.178 | yes | active_protection / active interception perimeter system | +1 part |
-| `active_protection` | `aps_hard` | `ground_artillery` | distinct | +456 | 0.185 | yes | active_protection / active interception perimeter system | +1 part |
-| `active_protection` | `aps_hard` | `ground_air_defense` | distinct | +456 | 0.175 | yes | active_protection / active interception perimeter system | +1 part |
-| `active_protection` | `aps_soft` | `tank_standard` | distinct | +48 | 0.056 | yes | active_protection / soft-kill sensors | +1 part |
-| `active_protection` | `aps_soft` | `tank_heavy` | distinct | +48 | 0.047 | yes | active_protection / soft-kill sensors | +1 part |
-| `active_protection` | `aps_soft` | `tank_light` | distinct | +48 | 0.056 | yes | active_protection / soft-kill sensors | +1 part |
-| `active_protection` | `aps_soft` | `tank_destroyer` | distinct | +48 | 0.065 | yes | active_protection / soft-kill sensors | +1 part |
-| `active_protection` | `aps_soft` | `ground_ifv` | distinct | +240 | 0.099 | yes | active_protection / soft-kill perimeter system | +1 part |
-| `active_protection` | `aps_soft` | `ground_apc` | distinct | +240 | 0.076 | yes | active_protection / soft-kill perimeter system | +1 part |
-| `active_protection` | `aps_soft` | `ground_recon` | distinct | +240 | 0.087 | yes | active_protection / soft-kill perimeter system | +1 part |
-| `active_protection` | `aps_soft` | `ground_artillery` | distinct | +240 | 0.097 | yes | active_protection / soft-kill perimeter system | +1 part |
-| `active_protection` | `aps_soft` | `ground_air_defense` | distinct | +240 | 0.110 | yes | active_protection / soft-kill perimeter system | +1 part |
-| `air_avionics` | `air_avionics_digital` | `air_light_attack` | distinct | +232 | 0.951 | yes | air_avionics / digital mission cockpit and targeting pod | 1 resized |
-| `air_avionics` | `air_avionics_digital` | `air_tactical_strike` | distinct | +232 | 0.822 | yes | air_avionics / digital mission cockpit and targeting pod | 1 resized |
-| `air_countermeasures` | `air_countermeasures_ecm` | `air_light_attack` | distinct | +632 | 0.863 | yes | air_countermeasures / electronic countermeasure fairings and dispensers | 1 resized |
-| `air_countermeasures` | `air_countermeasures_ecm` | `air_tactical_strike` | distinct | +632 | 0.721 | yes | air_countermeasures / electronic countermeasure fairings and dispensers | 1 resized |
-| `air_engine` | `air_engine_economical` | `air_tactical_strike` | distinct | -2220 | 6.381 | yes | air_engine / economical turbine nacelle | -1 part, 2 reshaped |
-| `air_engine` | `air_engine_efficient` | `air_light_attack` | distinct | +24 | 0.935 | yes | air_engine / efficient turbofan nacelle | 1 resized |
-| `air_engine` | `air_engine_efficient` | `air_tactical_strike` | distinct | -2196 | 5.643 | yes | air_engine / efficient turbofan nacelle | -1 part, 1 resized |
-| `air_fuel` | `air_fuel_extended` | `air_light_attack` | distinct | +1656 | 2.186 | yes | air_fuel / extended fuel tanks and refueling fitting | 1 resized |
-| `air_fuel` | `air_fuel_extended` | `air_tactical_strike` | distinct | +1656 | 2.832 | yes | air_fuel / extended fuel tanks and refueling fitting | 1 resized |
-| `air_hardpoints` | `air_hardpoints_light` | `air_tactical_strike` | distinct | -936 | 2.510 | yes | air_hardpoints / two-store attack external mounts | 2 resized |
-| `air_payload` | `air_payload_guided` | `air_light_attack` | distinct | +224 | 0.459 | yes | air_payload / precision-guided external bombs | 1 resized |
-| `air_payload` | `air_payload_guided` | `air_tactical_strike` | distinct | +448 | 0.795 | yes | air_payload / precision-guided external bombs | 1 resized |
-| `air_radar` | `air_radar_mapping` | `air_light_attack` | distinct | +284 | 0.658 | yes | air_radar / terrain-mapping radome and sensor fairing | 1 resized, extent 0.25 m |
-| `air_radar` | `air_radar_mapping` | `air_tactical_strike` | distinct | +284 | 0.942 | yes | air_radar / terrain-mapping radome and sensor fairing | 1 resized, extent 0.25 m |
-| `air_wing` | `air_wing_stable` | `air_light_attack` | distinct | +24 | 2.214 | yes | air_wing / port high-stability wing | 2 resized, extent 0.75 m |
-| `air_wing` | `air_wing_stable` | `air_tactical_strike` | distinct | +24 | 7.659 | yes | air_wing / port high-stability wing | 2 resized, extent 0.75 m |
-| `air_wing` | `air_wing_straight` | `air_tactical_strike` | distinct | 0 | 6.815 | yes | air_wing / port straight wing | 4 reshaped |
-| `ammunition` | `ammo_mixed` | `tank_destroyer` | distinct | +144 | 0.700 | yes | ammunition / mixed-purpose ready rack and blow-off panels | 1 resized |
-| `ammunition` | `ammo_penetrator` | `tank_standard` | distinct | -144 | 0.708 | yes | ammunition / penetrator ready rack and blow-off panels | 1 resized |
-| `ammunition` | `ammo_penetrator` | `tank_heavy` | distinct | -144 | 0.647 | yes | ammunition / penetrator ready rack and blow-off panels | 1 resized |
-| `ammunition` | `ammo_penetrator` | `tank_light` | distinct | -144 | 0.369 | yes | ammunition / penetrator ready rack and blow-off panels | 1 resized |
-| `ammunition` | `ammo_support` | `tank_standard` | distinct | +96 | 0.774 | yes | ammunition / fire-support ready rack and blow-off panels | 1 resized |
-| `ammunition` | `ammo_support` | `tank_heavy` | distinct | +96 | 0.686 | yes | ammunition / fire-support ready rack and blow-off panels | 1 resized |
-| `ammunition` | `ammo_support` | `tank_light` | distinct | +96 | 0.405 | yes | ammunition / fire-support ready rack and blow-off panels | 1 resized |
-| `ammunition` | `ammo_support` | `tank_destroyer` | distinct | +240 | 1.004 | yes | ammunition / fire-support ready rack and blow-off panels | 1 resized |
-| `ammunition` | `ground_ammo_autocannon` | `ground_recon` | distinct | -20 | 0.563 | yes | ammunition / autocannon ready stowage | 1 resized |
-| `ammunition` | `ground_ammo_guided` | `ground_artillery` | distinct | +80 | 1.519 | yes | ammunition / guided artillery ready stowage | 1 resized |
-| `ammunition` | `ground_ammo_missiles` | `ground_air_defense` | distinct | -148 | 1.176 | yes | ammunition / missile ready stowage | 1 resized |
-| `armament` | `ground_aa_missiles` | `ground_air_defense` | distinct | -896 | 0.985 | yes | armament / short-range missile launcher installation | 1 resized |
-| `armament` | `ground_gun_25` | `ground_recon` | distinct | +232 | 0.201 | yes | armament / 25 mm autocannon installation | 1 resized, extent 0.38 m |
-| `armament` | `ground_gun_35` | `ground_ifv` | distinct | 0 | 0.282 | yes | armament / 35 mm autocannon installation | 1 reshaped, extent 0.41 m |
-| `armament` | `ground_gun_35` | `ground_recon` | distinct | +232 | 0.224 | yes | armament / 35 mm autocannon installation | 1 resized, extent 0.79 m |
-| `armament` | `ground_howitzer_155` | `ground_artillery` | distinct | 0 | 0.880 | yes | armament / 155 mm howitzer installation | 1 reshaped, extent 0.53 m |
-| `armament` | `gun_105` | `tank_heavy` | distinct | -384 | 2.895 | yes | turret / ring and faceted armor shell | 1 resized, extent 0.68 m |
-| `armament` | `gun_105` | `tank_light` | distinct | 0 | 0.569 | yes | armament / standard weapon, mantlet and barrel | 1 reshaped, extent 0.72 m |
-| `armament` | `gun_105` | `tank_destroyer` | distinct | -384 | 1.748 | yes | armament / standard weapon, mantlet and barrel | 1 resized, extent 0.68 m |
-| `armament` | `gun_120` | `tank_standard` | distinct | +384 | 2.946 | yes | turret / ring and faceted armor shell | 1 resized, extent 0.68 m |
-| `armament` | `gun_125` | `tank_standard` | distinct | +384 | 3.385 | yes | turret / ring and faceted armor shell | 1 resized, extent 0.99 m |
-| `armament` | `gun_125` | `tank_heavy` | distinct | 0 | 1.371 | yes | armament / heavy weapon, enlarged mantlet and sleeved barrel | 1 reshaped, extent 0.31 m |
-| `armament` | `gun_125` | `tank_destroyer` | distinct | 0 | 1.445 | yes | armament / heavy weapon, enlarged mantlet and sleeved barrel | 1 reshaped, extent 0.31 m |
-| `armament` | `gun_90` | `tank_standard` | distinct | 0 | 0.979 | yes | armament / standard weapon, mantlet and barrel | 1 reshaped, extent 0.90 m |
-| `armament` | `gun_90` | `tank_heavy` | distinct | -384 | 3.395 | yes | turret / ring and faceted armor shell | 1 resized, extent 1.58 m |
-| `armament` | `gun_90` | `tank_destroyer` | distinct | -384 | 2.132 | yes | armament / standard weapon, mantlet and barrel | 1 resized, extent 1.58 m |
-| `artillery_loader` | `ground_loader_assisted` | `ground_artillery` | distinct | +48 | 0.238 | yes | artillery_loader / assisted loading installation | 1 resized |
-| `communications` | `ground_comms_network` | `ground_ifv` | distinct | +340 | 0.335 | yes | communications / networked command aerial installation | 1 resized, extent 0.30 m |
-| `communications` | `ground_comms_network` | `ground_apc` | distinct | +340 | 0.258 | yes | communications / networked command aerial installation | 1 resized, extent 0.30 m |
-| `communications` | `ground_comms_network` | `ground_recon` | distinct | +340 | 0.248 | yes | communications / networked command aerial installation | 1 resized, extent 0.30 m |
-| `communications` | `ground_comms_network` | `ground_artillery` | distinct | +340 | 0.392 | yes | communications / networked command aerial installation | 1 resized |
-| `communications` | `ground_comms_network` | `ground_air_defense` | distinct | +340 | 0.393 | yes | communications / networked command aerial installation | 1 resized |
-| `communications` | `ground_comms_secure` | `ground_ifv` | distinct | +148 | 0.193 | yes | communications / secure radio aerial installation | 1 resized |
-| `communications` | `ground_comms_secure` | `ground_apc` | distinct | +148 | 0.128 | yes | communications / secure radio aerial installation | 1 resized |
-| `communications` | `ground_comms_secure` | `ground_recon` | distinct | +148 | 0.129 | yes | communications / secure radio aerial installation | 1 resized |
-| `communications` | `ground_comms_secure` | `ground_artillery` | distinct | +148 | 0.207 | yes | communications / secure radio aerial installation | 1 resized |
-| `communications` | `ground_comms_secure` | `ground_air_defense` | distinct | +148 | 0.224 | yes | communications / secure radio aerial installation | 1 resized |
-| `fire_control` | `fcs_digital` | `tank_standard` | distinct | +64 | 0.093 | yes | fire_control / stabilization and rangefinding equipment | +1 part |
-| `fire_control` | `fcs_digital` | `tank_heavy` | distinct | +64 | 0.123 | yes | fire_control / stabilization and rangefinding equipment | +1 part |
-| `fire_control` | `fcs_digital` | `tank_light` | distinct | +64 | 0.035 | yes | fire_control / stabilization and rangefinding equipment | +1 part |
-| `fire_control` | `fcs_digital` | `tank_destroyer` | distinct | +64 | 0.111 | yes | fire_control / stabilization and rangefinding equipment | +1 part |
-| `fire_control` | `fcs_digital` | `ground_ifv` | distinct | +496 | 0.450 | yes | fire_control / digital sight and stabilization | 1 resized |
-| `fire_control` | `fcs_digital` | `ground_apc` | distinct | +496 | 0.318 | yes | fire_control / digital sight and stabilization | 1 resized |
-| `fire_control` | `fcs_digital` | `ground_recon` | distinct | +496 | 0.301 | yes | fire_control / digital sight and stabilization | 1 resized |
-| `fire_control` | `fcs_digital` | `ground_artillery` | distinct | +496 | 0.609 | yes | fire_control / digital sight and stabilization | 1 resized, extent 0.10 m |
-| `fire_control` | `fcs_digital` | `ground_air_defense` | distinct | +496 | 0.417 | yes | fire_control / digital sight and stabilization | 1 resized |
-| `fire_control` | `fcs_stabilized` | `tank_standard` | distinct | +96 | 0.165 | yes | fire_control / stabilization and rangefinding equipment | +1 part |
-| `fire_control` | `fcs_stabilized` | `tank_heavy` | distinct | +96 | 0.114 | yes | fire_control / stabilization and rangefinding equipment | +1 part |
-| `fire_control` | `fcs_stabilized` | `tank_light` | distinct | +96 | 0.103 | yes | fire_control / stabilization and rangefinding equipment | +1 part |
-| `fire_control` | `fcs_stabilized` | `tank_destroyer` | distinct | +96 | 0.159 | yes | fire_control / stabilization and rangefinding equipment | +1 part |
-| `fire_control` | `fcs_stabilized` | `ground_ifv` | distinct | +254 | 0.226 | yes | fire_control / stabilized sight and stabilization | 1 resized |
-| `fire_control` | `fcs_stabilized` | `ground_apc` | distinct | +254 | 0.156 | yes | fire_control / stabilized sight and stabilization | 1 resized |
-| `fire_control` | `fcs_stabilized` | `ground_recon` | distinct | +254 | 0.141 | yes | fire_control / stabilized sight and stabilization | 1 resized |
-| `fire_control` | `fcs_stabilized` | `ground_artillery` | distinct | +254 | 0.308 | yes | fire_control / stabilized sight and stabilization | 1 resized |
-| `fire_control` | `fcs_stabilized` | `ground_air_defense` | distinct | +254 | 0.218 | yes | fire_control / stabilized sight and stabilization | 1 resized |
-| `mobility` | `engine_diesel_1200` | `tank_standard` | distinct | -384 | 0.509 | yes | mobility / high-output powertrain exhaust and cooling | 1 resized |
-| `mobility` | `engine_diesel_1200` | `tank_light` | distinct | -396 | 0.349 | yes | mobility / high-output powertrain exhaust and cooling | -1 part, 1 resized |
-| `mobility` | `engine_diesel_1200` | `tank_destroyer` | distinct | -384 | 0.460 | yes | mobility / high-output powertrain exhaust and cooling | 1 resized |
-| `mobility` | `engine_diesel_1200` | `ground_artillery` | distinct | +548 | 0.213 | yes | mobility / high-output diesel engine deck | 1 resized |
-| `mobility` | `engine_diesel_600` | `tank_standard` | distinct | +12 | 0.012 | yes | mobility / powerpack installation | +1 part |
-| `mobility` | `engine_diesel_600` | `tank_heavy` | distinct | +396 | 0.722 | yes | mobility / powerpack installation | +1 part, 1 resized |
-| `mobility` | `engine_diesel_600` | `tank_destroyer` | distinct | +12 | 0.017 | yes | mobility / powerpack installation | +1 part |
-| `mobility` | `engine_diesel_600` | `ground_artillery` | distinct | -320 | 0.305 | yes | mobility / compact diesel engine deck | 1 resized |
-| `mobility` | `engine_diesel_900` | `tank_heavy` | distinct | +384 | 0.751 | yes | mobility / standard powertrain exhaust and cooling | 1 resized |
-| `mobility` | `engine_diesel_900` | `tank_light` | distinct | -12 | 0.008 | yes | mobility / powerpack installation | -1 part |
-| `mobility` | `engine_diesel_900` | `ground_ifv` | distinct | +320 | 0.216 | yes | mobility / standard diesel engine deck | 1 resized |
-| `mobility` | `engine_diesel_900` | `ground_apc` | distinct | +320 | 0.234 | yes | mobility / standard diesel engine deck | 1 resized |
-| `mobility` | `engine_diesel_900` | `ground_recon` | distinct | +320 | 0.235 | yes | mobility / standard diesel engine deck | 1 resized |
-| `mobility` | `engine_diesel_900` | `ground_air_defense` | distinct | +320 | 0.318 | yes | mobility / standard diesel engine deck | 1 resized |
-| `mobility` | `engine_turbine_1500` | `tank_standard` | distinct | -264 | 0.652 | yes | mobility / powerpack installation | +1 part, 1 resized, extent 0.07 m |
-| `mobility` | `engine_turbine_1500` | `tank_heavy` | distinct | +120 | 0.146 | yes | mobility / powerpack installation | +1 part, extent 0.07 m |
-| `mobility` | `engine_turbine_1500` | `tank_destroyer` | distinct | -264 | 0.609 | yes | mobility / powerpack installation | +1 part, 1 resized, extent 0.07 m |
-| `mobility` | `ground_engine_750` | `ground_ifv` | distinct | +252 | 0.246 | yes | mobility / managed diesel engine deck | 1 resized |
-| `mobility` | `ground_engine_750` | `ground_apc` | distinct | +252 | 0.240 | yes | mobility / managed diesel engine deck | 1 resized |
-| `mobility` | `ground_engine_750` | `ground_recon` | distinct | +252 | 0.227 | yes | mobility / managed diesel engine deck | 1 resized |
-| `mobility` | `ground_engine_750` | `ground_artillery` | distinct | -68 | 0.421 | yes | mobility / managed diesel engine deck | 1 resized |
-| `mobility` | `ground_engine_750` | `ground_air_defense` | distinct | +252 | 0.311 | yes | mobility / managed diesel engine deck | 1 resized |
-| `protection` | `ground_armor_modular` | `ground_ifv` | distinct | +580 | 0.526 | yes | protection / specialist sloped hull | 4 resized |
-| `protection` | `ground_armor_modular` | `ground_apc` | distinct | +556 | 0.564 | yes | protection / specialist sloped hull | 3 resized |
-| `protection` | `ground_armor_modular` | `ground_recon` | distinct | +556 | 0.442 | yes | protection / specialist sloped hull | 3 resized |
-| `protection` | `ground_armor_modular` | `ground_artillery` | distinct | +580 | 0.598 | yes | protection / specialist sloped hull | 4 resized |
-| `protection` | `ground_armor_modular` | `ground_air_defense` | distinct | +580 | 0.541 | yes | protection / specialist sloped hull | 4 resized |
-| `radar` | `ground_radar_tracking` | `ground_air_defense` | distinct | +320 | 0.825 | yes | radar / search and tracking array | 1 resized, extent 0.08 m |
-| `recon_package` | `ground_recon_mast` | `ground_recon` | distinct | +80 | 0.196 | yes | recon_package / elevated observation mast | 1 resized, extent 0.83 m |
-| `sensors` | `optics_night` | `tank_standard` | distinct | +92 | 0.143 | yes | sensors / night observation housing | +1 part |
-| `sensors` | `optics_night` | `tank_heavy` | distinct | +92 | 0.164 | yes | sensors / night observation housing | +1 part |
-| `sensors` | `optics_night` | `tank_light` | distinct | +92 | 0.095 | yes | sensors / night observation housing | +1 part |
-| `sensors` | `optics_night` | `tank_destroyer` | distinct | +92 | 0.158 | yes | sensors / night observation housing | +1 part |
-| `sensors` | `optics_night` | `ground_ifv` | distinct | +304 | 0.421 | yes | sensors / night observation fittings | 1 resized, extent 0.06 m |
-| `sensors` | `optics_night` | `ground_apc` | distinct | +304 | 0.195 | yes | sensors / night observation fittings | 1 resized |
-| `sensors` | `optics_night` | `ground_recon` | distinct | +304 | 0.187 | yes | sensors / night observation fittings | 1 resized |
-| `sensors` | `optics_night` | `ground_artillery` | distinct | +304 | 0.431 | yes | sensors / night observation fittings | 1 resized, extent 0.16 m |
-| `sensors` | `optics_night` | `ground_air_defense` | distinct | +304 | 0.369 | yes | sensors / night observation fittings | 1 resized |
-| `sensors` | `optics_thermal` | `tank_standard` | distinct | +16 | 0.565 | yes | sensors / integrated panoramic sight and fire-control optics | 1 resized |
-| `sensors` | `optics_thermal` | `tank_heavy` | distinct | +16 | 0.649 | yes | sensors / integrated panoramic sight and fire-control optics | 1 resized |
-| `sensors` | `optics_thermal` | `tank_light` | distinct | +16 | 0.302 | yes | sensors / integrated panoramic sight and fire-control optics | 1 resized |
-| `sensors` | `optics_thermal` | `tank_destroyer` | distinct | +16 | 0.595 | yes | sensors / integrated panoramic sight and fire-control optics | 1 resized |
-| `sensors` | `optics_thermal` | `ground_ifv` | distinct | +104 | 0.197 | yes | sensors / thermal observation fittings | 1 resized, extent 0.26 m |
-| `sensors` | `optics_thermal` | `ground_apc` | distinct | +104 | 0.084 | yes | sensors / thermal observation fittings | 1 resized |
-| `sensors` | `optics_thermal` | `ground_recon` | distinct | +104 | 0.079 | yes | sensors / thermal observation fittings | 1 resized |
-| `sensors` | `optics_thermal` | `ground_artillery` | distinct | +104 | 0.215 | yes | sensors / thermal observation fittings | 1 resized, extent 0.37 m |
-| `sensors` | `optics_thermal` | `ground_air_defense` | distinct | +104 | 0.227 | yes | sensors / thermal observation fittings | 1 resized |
-| `suspension` | `suspension_hydro` | `tank_standard` | distinct | +1152 | 0.162 | yes | running gear / port suspension, road wheels and sprockets | 2 resized |
-| `suspension` | `suspension_hydro` | `tank_heavy` | distinct | +1344 | 0.231 | yes | running gear / port suspension, road wheels and sprockets | 2 resized |
-| `suspension` | `suspension_hydro` | `tank_light` | distinct | +1152 | 0.113 | yes | running gear / port suspension, road wheels and sprockets | 2 resized |
-| `suspension` | `suspension_hydro` | `tank_destroyer` | distinct | +1152 | 0.129 | yes | running gear / port suspension, road wheels and sprockets | 2 resized |
-| `suspension` | `suspension_hydro` | `ground_ifv` | distinct | +672 | 0.339 | yes | suspension / port hydropneumatic struts | 2 resized |
-| `suspension` | `suspension_hydro` | `ground_apc` | distinct | +336 | 0.138 | yes | suspension / port hydropneumatic struts | 2 resized |
-| `suspension` | `suspension_hydro` | `ground_recon` | distinct | +336 | 0.151 | yes | suspension / port hydropneumatic struts | 2 resized |
-| `suspension` | `suspension_hydro` | `ground_artillery` | distinct | +784 | 0.300 | yes | suspension / port hydropneumatic struts | 2 resized |
-| `suspension` | `suspension_hydro` | `ground_air_defense` | distinct | +672 | 0.273 | yes | suspension / port hydropneumatic struts | 2 resized |
-| `tracks` | `tracks_padded` | `tank_standard` | distinct | 0 | 3.018 | yes | chassis / sloped lower hull | 22 reshaped |
-| `tracks` | `tracks_padded` | `tank_heavy` | distinct | 0 | 3.506 | yes | chassis / sloped lower hull | 22 reshaped |
-| `tracks` | `tracks_padded` | `tank_light` | distinct | 0 | 1.893 | yes | chassis / sloped lower hull | 23 reshaped |
-| `tracks` | `tracks_padded` | `tank_destroyer` | distinct | 0 | 2.939 | yes | chassis / sloped lower hull | 22 reshaped |
-| `tracks` | `tracks_padded` | `ground_ifv` | distinct | 0 | 4.739 | yes | protection / specialist sloped hull | 28 reshaped |
-| `tracks` | `tracks_padded` | `ground_artillery` | distinct | 0 | 4.726 | yes | protection / specialist sloped hull | 30 reshaped |
-| `tracks` | `tracks_padded` | `ground_air_defense` | distinct | 0 | 4.574 | yes | protection / specialist sloped hull | 28 reshaped |
-| `tracks` | `tracks_wide` | `tank_standard` | distinct | 0 | 3.896 | yes | running gear / port continuous track belt | 8 reshaped, extent 0.10 m |
-| `tracks` | `tracks_wide` | `tank_heavy` | distinct | 0 | 4.482 | yes | running gear / port continuous track belt | 9 reshaped, extent 0.10 m |
-| `tracks` | `tracks_wide` | `tank_light` | distinct | 0 | 3.431 | yes | running gear / port continuous track belt | 8 reshaped, extent 0.08 m |
-| `tracks` | `tracks_wide` | `tank_destroyer` | distinct | 0 | 4.105 | yes | running gear / port continuous track belt | 8 reshaped, extent 0.10 m |
-| `tracks` | `tracks_wide` | `ground_ifv` | distinct | 0 | 2.709 | yes | running gear / port road wheel 1 | 14 reshaped, extent 0.07 m |
-| `tracks` | `tracks_wide` | `ground_artillery` | distinct | 0 | 2.551 | yes | running gear / port road wheel 1 | 16 reshaped, extent 0.07 m |
-| `tracks` | `tracks_wide` | `ground_air_defense` | distinct | 0 | 2.705 | yes | running gear / port road wheel 1 | 14 reshaped, extent 0.07 m |
-| `transmission` | `ground_transmission_electric` | `ground_ifv` | distinct | +382 | 0.638 | yes | transmission / forward drive access | 1 resized |
-| `transmission` | `ground_transmission_electric` | `ground_apc` | distinct | +382 | 0.588 | yes | transmission / forward drive access | 1 resized |
-| `transmission` | `ground_transmission_electric` | `ground_recon` | distinct | +382 | 0.510 | yes | transmission / forward drive access | 1 resized |
-| `transmission` | `ground_transmission_electric` | `ground_artillery` | distinct | +382 | 0.708 | yes | transmission / forward drive access | 1 resized |
-| `transmission` | `ground_transmission_electric` | `ground_air_defense` | distinct | +382 | 0.688 | yes | transmission / forward drive access | 1 resized |
-| `transmission` | `transmission_auto` | `tank_standard` | distinct | +72 | 0.153 | yes | transmission / final drive housing | +1 part |
-| `transmission` | `transmission_auto` | `tank_heavy` | distinct | +72 | 0.150 | yes | transmission / final drive housing | +1 part |
-| `transmission` | `transmission_auto` | `tank_light` | distinct | +72 | 0.097 | yes | transmission / final drive housing | +1 part |
-| `transmission` | `transmission_auto` | `tank_destroyer` | distinct | +72 | 0.170 | yes | transmission / final drive housing | +1 part |
-| `transmission` | `transmission_auto` | `ground_ifv` | distinct | +266 | 0.543 | yes | transmission / forward drive access | 1 resized |
-| `transmission` | `transmission_auto` | `ground_apc` | distinct | +266 | 0.472 | yes | transmission / forward drive access | 1 resized |
-| `transmission` | `transmission_auto` | `ground_recon` | distinct | +266 | 0.393 | yes | transmission / forward drive access | 1 resized |
-| `transmission` | `transmission_auto` | `ground_artillery` | distinct | +266 | 0.595 | yes | transmission / forward drive access | 1 resized |
-| `transmission` | `transmission_auto` | `ground_air_defense` | distinct | +266 | 0.586 | yes | transmission / forward drive access | 1 resized |
-| `troop_compartment` | `ground_troops_protected` | `ground_ifv` | distinct | 0 | 0.503 | yes | troop_compartment / reinforced troop bay | 1 reshaped |
-| `troop_compartment` | `ground_troops_protected` | `ground_apc` | distinct | 0 | 0.450 | yes | troop_compartment / reinforced troop bay | 1 reshaped |
-| `turret` | `ground_turret_autocannon` | `ground_recon` | distinct | -140 | 1.670 | yes | turret / autocannon turret | 1 resized |
-| `turret` | `turret_autoload` | `tank_standard` | distinct | +72 | 1.576 | yes | turret / autoloader bustle | +1 part, 5 reshaped, extent 0.14 m |
-| `turret` | `turret_autoload` | `tank_heavy` | distinct | +72 | 4.786 | yes | turret / autoloader bustle | +1 part, 7 reshaped, extent 0.24 m |
-| `turret` | `turret_compact` | `tank_standard` | distinct | 0 | 4.352 | yes | turret / ring and faceted armor shell | 7 reshaped, extent 0.19 m |
-| `turret` | `turret_compact` | `tank_heavy` | distinct | 0 | 5.795 | yes | turret / ring and faceted armor shell | 7 reshaped, extent 0.29 m |
-| `turret` | `turret_heavy` | `tank_standard` | distinct | 0 | 2.231 | yes | turret / ring and faceted armor shell | 5 reshaped |
-| `turret` | `turret_standard` | `tank_heavy` | distinct | 0 | 2.970 | yes | turret / ring and faceted armor shell | 5 reshaped |
-| `turret` | `turret_standard` | `tank_light` | distinct | 0 | 2.854 | yes | turret / ring and faceted armor shell | 7 reshaped, extent 0.15 m |
-| `wheels` | `ground_wheels_runflat` | `ground_apc` | distinct | +4128 | 3.534 | yes | running gear / starboard road tire 4 | +2 parts, 5 resized |
-| `wheels` | `ground_wheels_runflat` | `ground_recon` | distinct | +4128 | 2.038 | yes | running gear / starboard road tire 4 | +2 parts, 5 resized |
+| `active_protection` | `aps_hard` | `tank_standard` | distinct | +764 | 0.514 | yes | active_protection / active-protection sensors and intercept modules | +1 part, -1 part |
+| `active_protection` | `aps_hard` | `tank_heavy` | distinct | +836 | 0.421 | yes | active_protection / active-protection sensors and intercept modules | +1 part |
+| `active_protection` | `aps_hard` | `tank_light` | distinct | +764 | 0.384 | yes | active_protection / active-protection sensors and intercept modules | +1 part, -1 part |
+| `active_protection` | `aps_hard` | `tank_destroyer` | distinct | +764 | 0.471 | yes | active_protection / active-protection sensors and intercept modules | +1 part, -1 part |
+| `active_protection` | `aps_hard` | `ground_ifv` | distinct | +456 | 0.118 | yes | active_protection / active interception perimeter system | +1 part |
+| `active_protection` | `aps_hard` | `ground_apc` | distinct | +456 | 0.254 | yes | active_protection / active interception perimeter system | +1 part |
+| `active_protection` | `aps_hard` | `ground_recon` | distinct | +456 | 0.308 | yes | active_protection / active interception perimeter system | +1 part |
+| `active_protection` | `aps_hard` | `ground_artillery` | distinct | +456 | 0.183 | yes | active_protection / active interception perimeter system | +1 part |
+| `active_protection` | `aps_hard` | `ground_air_defense` | distinct | +456 | 0.138 | yes | active_protection / active interception perimeter system | +1 part |
+| `active_protection` | `aps_soft` | `tank_standard` | distinct | +48 | 0.075 | yes | active_protection / soft-kill sensors | +1 part |
+| `active_protection` | `aps_soft` | `tank_heavy` | distinct | +48 | 0.079 | yes | active_protection / soft-kill sensors | +1 part |
+| `active_protection` | `aps_soft` | `tank_light` | distinct | +48 | 0.041 | yes | active_protection / soft-kill sensors | +1 part |
+| `active_protection` | `aps_soft` | `tank_destroyer` | distinct | +48 | 0.040 | yes | active_protection / soft-kill sensors | +1 part |
+| `active_protection` | `aps_soft` | `ground_ifv` | distinct | +240 | 0.069 | yes | active_protection / soft-kill perimeter system | +1 part |
+| `active_protection` | `aps_soft` | `ground_apc` | distinct | +240 | 0.147 | yes | active_protection / soft-kill perimeter system | +1 part |
+| `active_protection` | `aps_soft` | `ground_recon` | distinct | +240 | 0.178 | yes | active_protection / soft-kill perimeter system | +1 part |
+| `active_protection` | `aps_soft` | `ground_artillery` | distinct | +240 | 0.109 | yes | active_protection / soft-kill perimeter system | +1 part |
+| `active_protection` | `aps_soft` | `ground_air_defense` | distinct | +240 | 0.078 | yes | active_protection / soft-kill perimeter system | +1 part |
+| `air_avionics` | `air_avionics_digital` | `air_light_attack` | distinct | +232 | 0.662 | yes | air_avionics / digital mission cockpit and targeting pod | 1 resized |
+| `air_avionics` | `air_avionics_digital` | `air_tactical_strike` | distinct | +232 | 0.508 | yes | air_avionics / digital mission cockpit and targeting pod | 1 resized |
+| `air_countermeasures` | `air_countermeasures_ecm` | `air_light_attack` | distinct | +632 | 0.803 | yes | air_countermeasures / electronic countermeasure fairings and dispensers | 1 resized |
+| `air_countermeasures` | `air_countermeasures_ecm` | `air_tactical_strike` | distinct | +632 | 0.637 | yes | air_countermeasures / electronic countermeasure fairings and dispensers | 1 resized |
+| `air_engine` | `air_engine_economical` | `air_tactical_strike` | distinct | -1996 | 4.719 | yes | air_engine / economical turbine nacelle | -1 part, 1 resized |
+| `air_engine` | `air_engine_efficient` | `air_light_attack` | distinct | +24 | 1.183 | yes | air_engine / efficient turbofan nacelle | 1 resized |
+| `air_engine` | `air_engine_efficient` | `air_tactical_strike` | distinct | -1972 | 3.827 | yes | air_engine / efficient turbofan nacelle | -1 part, 1 resized |
+| `air_fuel` | `air_fuel_extended` | `air_light_attack` | distinct | +1656 | 1.713 | yes | air_fuel / extended fuel tanks and refueling fitting | 1 resized |
+| `air_fuel` | `air_fuel_extended` | `air_tactical_strike` | distinct | +1656 | 2.300 | yes | air_fuel / extended fuel tanks and refueling fitting | 1 resized |
+| `air_hardpoints` | `air_hardpoints_light` | `air_tactical_strike` | distinct | -936 | 2.176 | yes | air_hardpoints / two-store attack external mounts | 2 resized |
+| `air_payload` | `air_payload_guided` | `air_light_attack` | distinct | +224 | 0.406 | yes | air_payload / precision-guided external bombs | 1 resized |
+| `air_payload` | `air_payload_guided` | `air_tactical_strike` | distinct | +448 | 0.589 | yes | air_payload / precision-guided external bombs | 1 resized |
+| `air_radar` | `air_radar_mapping` | `air_light_attack` | distinct | +284 | 0.567 | yes | air_radar / terrain-mapping radome and sensor fairing | 1 resized, extent 0.25 m |
+| `air_radar` | `air_radar_mapping` | `air_tactical_strike` | distinct | +284 | 0.934 | yes | air_radar / terrain-mapping radome and sensor fairing | 1 resized, extent 0.25 m |
+| `air_wing` | `air_wing_stable` | `air_light_attack` | distinct | +24 | 11.524 | yes | air_wing / port high-stability wing | 2 resized, extent 0.75 m |
+| `air_wing` | `air_wing_stable` | `air_tactical_strike` | distinct | +24 | 16.358 | yes | air_wing / port high-stability wing | 2 resized, extent 0.75 m |
+| `air_wing` | `air_wing_straight` | `air_tactical_strike` | distinct | 0 | 10.833 | yes | air_wing / port straight wing | 4 reshaped |
+| `ammunition` | `ammo_mixed` | `tank_destroyer` | distinct | +144 | 0.668 | yes | ammunition / mixed-purpose ready rack and blow-off panels | 1 resized |
+| `ammunition` | `ammo_penetrator` | `tank_standard` | distinct | -144 | 0.700 | yes | ammunition / penetrator ready rack and blow-off panels | 1 resized |
+| `ammunition` | `ammo_penetrator` | `tank_heavy` | distinct | -144 | 0.763 | yes | ammunition / penetrator ready rack and blow-off panels | 1 resized |
+| `ammunition` | `ammo_penetrator` | `tank_light` | distinct | -144 | 0.342 | yes | ammunition / penetrator ready rack and blow-off panels | 1 resized |
+| `ammunition` | `ammo_support` | `tank_standard` | distinct | +96 | 0.729 | yes | ammunition / fire-support ready rack and blow-off panels | 1 resized |
+| `ammunition` | `ammo_support` | `tank_heavy` | distinct | +96 | 0.933 | yes | ammunition / fire-support ready rack and blow-off panels | 1 resized |
+| `ammunition` | `ammo_support` | `tank_light` | distinct | +96 | 0.385 | yes | ammunition / fire-support ready rack and blow-off panels | 1 resized |
+| `ammunition` | `ammo_support` | `tank_destroyer` | distinct | +240 | 1.052 | yes | ammunition / fire-support ready rack and blow-off panels | 1 resized |
+| `ammunition` | `ground_ammo_autocannon` | `ground_recon` | distinct | -20 | 0.516 | yes | ammunition / autocannon ready stowage | 1 resized |
+| `ammunition` | `ground_ammo_guided` | `ground_artillery` | distinct | +80 | 1.441 | yes | ammunition / guided artillery ready stowage | 1 resized |
+| `ammunition` | `ground_ammo_missiles` | `ground_air_defense` | distinct | -148 | 0.942 | yes | ammunition / missile ready stowage | 1 resized |
+| `armament` | `ground_aa_missiles` | `ground_air_defense` | distinct | -808 | 0.886 | yes | armament / short-range missile launcher installation | 1 resized |
+| `armament` | `ground_gun_25` | `ground_recon` | distinct | +132 | 0.273 | yes | armament / 25 mm autocannon installation | 1 resized, extent 0.34 m |
+| `armament` | `ground_gun_35` | `ground_ifv` | distinct | 0 | 0.239 | yes | armament / 35 mm autocannon installation | 1 reshaped |
+| `armament` | `ground_gun_35` | `ground_recon` | distinct | +132 | 0.278 | yes | armament / 35 mm autocannon installation | 1 resized, extent 0.75 m |
+| `armament` | `ground_howitzer_155` | `ground_artillery` | distinct | 0 | 0.781 | yes | armament / 155 mm howitzer installation | 1 reshaped, extent 0.53 m |
+| `armament` | `gun_105` | `tank_heavy` | distinct | -24 | 2.596 | yes | turret / ring and faceted armor shell | 1 resized, extent 0.70 m |
+| `armament` | `gun_105` | `tank_light` | distinct | 0 | 0.607 | yes | armament / standard weapon, mantlet and barrel | 1 reshaped, extent 0.72 m |
+| `armament` | `gun_105` | `tank_destroyer` | distinct | 0 | 1.292 | yes | armament / standard weapon, mantlet and barrel | 1 reshaped, extent 0.70 m |
+| `armament` | `gun_120` | `tank_standard` | distinct | +24 | 2.548 | yes | turret / ring and faceted armor shell | 1 resized, extent 0.70 m |
+| `armament` | `gun_125` | `tank_standard` | distinct | +24 | 2.673 | yes | turret / ring and faceted armor shell | 1 resized, extent 1.02 m |
+| `armament` | `gun_125` | `tank_heavy` | distinct | 0 | 0.935 | yes | armament / heavy weapon, enlarged mantlet and sleeved barrel | 1 reshaped, extent 0.32 m |
+| `armament` | `gun_125` | `tank_destroyer` | distinct | 0 | 1.028 | yes | armament / heavy weapon, enlarged mantlet and sleeved barrel | 1 reshaped, extent 0.32 m |
+| `armament` | `gun_90` | `tank_standard` | distinct | 0 | 1.035 | yes | armament / standard weapon, mantlet and barrel | 1 reshaped, extent 0.90 m |
+| `armament` | `gun_90` | `tank_heavy` | distinct | -24 | 2.716 | yes | turret / ring and faceted armor shell | 1 resized, extent 1.60 m |
+| `armament` | `gun_90` | `tank_destroyer` | distinct | 0 | 1.317 | yes | armament / standard weapon, mantlet and barrel | 1 reshaped, extent 1.60 m |
+| `artillery_loader` | `ground_loader_assisted` | `ground_artillery` | distinct | +48 | 0.371 | yes | artillery_loader / assisted loading installation | 1 resized |
+| `communications` | `ground_comms_network` | `ground_ifv` | distinct | +340 | 0.342 | yes | communications / networked command aerial installation | 1 resized, extent 0.30 m |
+| `communications` | `ground_comms_network` | `ground_apc` | distinct | +340 | 0.289 | yes | communications / networked command aerial installation | 1 resized, extent 0.30 m |
+| `communications` | `ground_comms_network` | `ground_recon` | distinct | +340 | 0.195 | yes | communications / networked command aerial installation | 1 resized, extent 0.30 m |
+| `communications` | `ground_comms_network` | `ground_artillery` | distinct | +340 | 0.384 | yes | communications / networked command aerial installation | 1 resized |
+| `communications` | `ground_comms_network` | `ground_air_defense` | distinct | +340 | 0.407 | yes | communications / networked command aerial installation | 1 resized |
+| `communications` | `ground_comms_secure` | `ground_ifv` | distinct | +148 | 0.187 | yes | communications / secure radio aerial installation | 1 resized |
+| `communications` | `ground_comms_secure` | `ground_apc` | distinct | +148 | 0.152 | yes | communications / secure radio aerial installation | 1 resized |
+| `communications` | `ground_comms_secure` | `ground_recon` | distinct | +148 | 0.115 | yes | communications / secure radio aerial installation | 1 resized |
+| `communications` | `ground_comms_secure` | `ground_artillery` | distinct | +148 | 0.227 | yes | communications / secure radio aerial installation | 1 resized |
+| `communications` | `ground_comms_secure` | `ground_air_defense` | distinct | +148 | 0.233 | yes | communications / secure radio aerial installation | 1 resized |
+| `fire_control` | `fcs_digital` | `tank_standard` | distinct | +64 | 0.098 | yes | fire_control / stabilization and rangefinding equipment | +1 part |
+| `fire_control` | `fcs_digital` | `tank_heavy` | distinct | +64 | 0.129 | yes | fire_control / stabilization and rangefinding equipment | +1 part |
+| `fire_control` | `fcs_digital` | `tank_light` | distinct | +64 | 0.061 | yes | fire_control / stabilization and rangefinding equipment | +1 part |
+| `fire_control` | `fcs_digital` | `tank_destroyer` | distinct | +64 | 0.113 | yes | fire_control / stabilization and rangefinding equipment | +1 part |
+| `fire_control` | `fcs_digital` | `ground_ifv` | distinct | +496 | 0.348 | yes | fire_control / digital sight and stabilization | 1 resized |
+| `fire_control` | `fcs_digital` | `ground_apc` | distinct | +496 | 0.408 | yes | fire_control / digital sight and stabilization | 1 resized |
+| `fire_control` | `fcs_digital` | `ground_recon` | distinct | +496 | 0.370 | yes | fire_control / digital sight and stabilization | 1 resized |
+| `fire_control` | `fcs_digital` | `ground_artillery` | distinct | +496 | 0.520 | yes | fire_control / digital sight and stabilization | 1 resized, extent 0.09 m |
+| `fire_control` | `fcs_digital` | `ground_air_defense` | distinct | +496 | 0.399 | yes | fire_control / digital sight and stabilization | 1 resized |
+| `fire_control` | `fcs_stabilized` | `tank_standard` | distinct | +96 | 0.103 | yes | fire_control / stabilization and rangefinding equipment | +1 part |
+| `fire_control` | `fcs_stabilized` | `tank_heavy` | distinct | +96 | 0.152 | yes | fire_control / stabilization and rangefinding equipment | +1 part |
+| `fire_control` | `fcs_stabilized` | `tank_light` | distinct | +96 | 0.071 | yes | fire_control / stabilization and rangefinding equipment | +1 part |
+| `fire_control` | `fcs_stabilized` | `tank_destroyer` | distinct | +96 | 0.099 | yes | fire_control / stabilization and rangefinding equipment | +1 part |
+| `fire_control` | `fcs_stabilized` | `ground_ifv` | distinct | +254 | 0.152 | yes | fire_control / stabilized sight and stabilization | 1 resized |
+| `fire_control` | `fcs_stabilized` | `ground_apc` | distinct | +254 | 0.204 | yes | fire_control / stabilized sight and stabilization | 1 resized |
+| `fire_control` | `fcs_stabilized` | `ground_recon` | distinct | +254 | 0.162 | yes | fire_control / stabilized sight and stabilization | 1 resized |
+| `fire_control` | `fcs_stabilized` | `ground_artillery` | distinct | +254 | 0.244 | yes | fire_control / stabilized sight and stabilization | 1 resized |
+| `fire_control` | `fcs_stabilized` | `ground_air_defense` | distinct | +254 | 0.189 | yes | fire_control / stabilized sight and stabilization | 1 resized |
+| `mobility` | `engine_diesel_1200` | `tank_standard` | distinct | -384 | 0.674 | yes | mobility / high-output powertrain exhaust and cooling | 1 resized |
+| `mobility` | `engine_diesel_1200` | `tank_light` | distinct | -396 | 0.412 | yes | mobility / high-output powertrain exhaust and cooling | -1 part, 1 resized |
+| `mobility` | `engine_diesel_1200` | `tank_destroyer` | distinct | -384 | 0.682 | yes | mobility / high-output powertrain exhaust and cooling | 1 resized |
+| `mobility` | `engine_diesel_1200` | `ground_artillery` | distinct | +548 | 0.196 | yes | mobility / high-output diesel engine deck | 1 resized |
+| `mobility` | `engine_diesel_600` | `tank_standard` | distinct | +12 | 0.028 | yes | mobility / powerpack installation | +1 part |
+| `mobility` | `engine_diesel_600` | `tank_heavy` | distinct | +396 | 0.914 | yes | mobility / powerpack installation | +1 part, 1 resized |
+| `mobility` | `engine_diesel_600` | `tank_destroyer` | distinct | +12 | 0.029 | yes | mobility / powerpack installation | +1 part |
+| `mobility` | `engine_diesel_600` | `ground_artillery` | distinct | -320 | 0.266 | yes | mobility / compact diesel engine deck | 1 resized |
+| `mobility` | `engine_diesel_900` | `tank_heavy` | distinct | +384 | 0.934 | yes | mobility / standard powertrain exhaust and cooling | 1 resized |
+| `mobility` | `engine_diesel_900` | `tank_light` | distinct | -12 | 0.013 | yes | mobility / powerpack installation | -1 part |
+| `mobility` | `engine_diesel_900` | `ground_ifv` | distinct | +320 | 0.257 | yes | mobility / standard diesel engine deck | 1 resized |
+| `mobility` | `engine_diesel_900` | `ground_apc` | distinct | +320 | 0.238 | yes | mobility / standard diesel engine deck | 1 resized |
+| `mobility` | `engine_diesel_900` | `ground_recon` | distinct | +320 | 0.247 | yes | mobility / standard diesel engine deck | 1 resized |
+| `mobility` | `engine_diesel_900` | `ground_air_defense` | distinct | +320 | 0.294 | yes | mobility / standard diesel engine deck | 1 resized |
+| `mobility` | `engine_turbine_1500` | `tank_standard` | distinct | -264 | 0.823 | yes | mobility / powerpack installation | +1 part, 1 resized, extent 0.07 m |
+| `mobility` | `engine_turbine_1500` | `tank_heavy` | distinct | +120 | 0.203 | yes | mobility / powerpack installation | +1 part, extent 0.07 m |
+| `mobility` | `engine_turbine_1500` | `tank_destroyer` | distinct | -264 | 0.827 | yes | mobility / powerpack installation | +1 part, 1 resized, extent 0.07 m |
+| `mobility` | `ground_engine_750` | `ground_ifv` | distinct | +252 | 0.215 | yes | mobility / managed diesel engine deck | 1 resized |
+| `mobility` | `ground_engine_750` | `ground_apc` | distinct | +252 | 0.235 | yes | mobility / managed diesel engine deck | 1 resized |
+| `mobility` | `ground_engine_750` | `ground_recon` | distinct | +252 | 0.222 | yes | mobility / managed diesel engine deck | 1 resized |
+| `mobility` | `ground_engine_750` | `ground_artillery` | distinct | -68 | 0.374 | yes | mobility / managed diesel engine deck | 1 resized |
+| `mobility` | `ground_engine_750` | `ground_air_defense` | distinct | +252 | 0.283 | yes | mobility / managed diesel engine deck | 1 resized |
+| `protection` | `ground_armor_modular` | `ground_ifv` | distinct | -400 | 0.818 | yes | protection / specialist sloped hull | 4 resized |
+| `protection` | `ground_armor_modular` | `ground_apc` | distinct | -436 | 0.802 | yes | protection / specialist sloped hull | 3 resized |
+| `protection` | `ground_armor_modular` | `ground_recon` | distinct | -436 | 0.525 | yes | protection / specialist sloped hull | 3 resized |
+| `protection` | `ground_armor_modular` | `ground_artillery` | distinct | -400 | 0.767 | yes | protection / specialist sloped hull | 4 resized |
+| `protection` | `ground_armor_modular` | `ground_air_defense` | distinct | -400 | 0.768 | yes | protection / specialist sloped hull | 4 resized |
+| `radar` | `ground_radar_tracking` | `ground_air_defense` | distinct | +312 | 1.001 | yes | radar / search and tracking array | 1 resized, extent 0.08 m |
+| `recon_package` | `ground_recon_mast` | `ground_recon` | distinct | +80 | 0.190 | yes | recon_package / elevated observation mast | 1 resized, extent 0.83 m |
+| `sensors` | `optics_night` | `tank_standard` | distinct | +92 | 0.141 | yes | sensors / night observation housing | +1 part |
+| `sensors` | `optics_night` | `tank_heavy` | distinct | +92 | 0.166 | yes | sensors / night observation housing | +1 part |
+| `sensors` | `optics_night` | `tank_light` | distinct | +92 | 0.100 | yes | sensors / night observation housing | +1 part |
+| `sensors` | `optics_night` | `tank_destroyer` | distinct | +92 | 0.170 | yes | sensors / night observation housing | +1 part |
+| `sensors` | `optics_night` | `ground_ifv` | distinct | +304 | 0.332 | yes | sensors / night observation fittings | 1 resized |
+| `sensors` | `optics_night` | `ground_apc` | distinct | +304 | 0.206 | yes | sensors / night observation fittings | 1 resized |
+| `sensors` | `optics_night` | `ground_recon` | distinct | +304 | 0.221 | yes | sensors / night observation fittings | 1 resized |
+| `sensors` | `optics_night` | `ground_artillery` | distinct | +304 | 0.371 | yes | sensors / night observation fittings | 1 resized, extent 0.15 m |
+| `sensors` | `optics_night` | `ground_air_defense` | distinct | +304 | 0.365 | yes | sensors / night observation fittings | 1 resized |
+| `sensors` | `optics_thermal` | `tank_standard` | distinct | +16 | 0.541 | yes | sensors / integrated panoramic sight and fire-control optics | 1 resized |
+| `sensors` | `optics_thermal` | `tank_heavy` | distinct | +16 | 0.619 | yes | sensors / integrated panoramic sight and fire-control optics | 1 resized |
+| `sensors` | `optics_thermal` | `tank_light` | distinct | +16 | 0.331 | yes | sensors / integrated panoramic sight and fire-control optics | 1 resized |
+| `sensors` | `optics_thermal` | `tank_destroyer` | distinct | +16 | 0.593 | yes | sensors / integrated panoramic sight and fire-control optics | 1 resized |
+| `sensors` | `optics_thermal` | `ground_ifv` | distinct | +104 | 0.207 | yes | sensors / thermal observation fittings | 1 resized, extent 0.06 m |
+| `sensors` | `optics_thermal` | `ground_apc` | distinct | +104 | 0.103 | yes | sensors / thermal observation fittings | 1 resized |
+| `sensors` | `optics_thermal` | `ground_recon` | distinct | +104 | 0.086 | yes | sensors / thermal observation fittings | 1 resized |
+| `sensors` | `optics_thermal` | `ground_artillery` | distinct | +104 | 0.204 | yes | sensors / thermal observation fittings | 1 resized, extent 0.36 m |
+| `sensors` | `optics_thermal` | `ground_air_defense` | distinct | +104 | 0.206 | yes | sensors / thermal observation fittings | 1 resized |
+| `suspension` | `suspension_hydro` | `tank_standard` | distinct | +6600 | 0.226 | yes | running gear / port suspension, road wheels and sprockets | 2 resized |
+| `suspension` | `suspension_hydro` | `tank_heavy` | distinct | +7700 | 0.255 | yes | running gear / port suspension, road wheels and sprockets | 2 resized |
+| `suspension` | `suspension_hydro` | `tank_light` | distinct | +6600 | 0.167 | yes | running gear / port suspension, road wheels and sprockets | 2 resized |
+| `suspension` | `suspension_hydro` | `tank_destroyer` | distinct | +6600 | 0.247 | yes | running gear / port suspension, road wheels and sprockets | 2 resized |
+| `suspension` | `suspension_hydro` | `ground_ifv` | distinct | +672 | 0.253 | yes | suspension / port hydropneumatic struts | 2 resized |
+| `suspension` | `suspension_hydro` | `ground_apc` | distinct | +336 | 0.084 | yes | suspension / port hydropneumatic struts | 2 resized |
+| `suspension` | `suspension_hydro` | `ground_recon` | distinct | +336 | 0.121 | yes | suspension / port hydropneumatic struts | 2 resized |
+| `suspension` | `suspension_hydro` | `ground_artillery` | distinct | +784 | 0.277 | yes | suspension / port hydropneumatic struts | 2 resized |
+| `suspension` | `suspension_hydro` | `ground_air_defense` | distinct | +672 | 0.270 | yes | suspension / port hydropneumatic struts | 2 resized |
+| `tracks` | `tracks_padded` | `tank_standard` | distinct | 0 | 3.309 | yes | chassis / sloped lower hull | 22 reshaped |
+| `tracks` | `tracks_padded` | `tank_heavy` | distinct | 0 | 2.996 | no | chassis / sloped lower hull | 22 reshaped |
+| `tracks` | `tracks_padded` | `tank_light` | distinct | 0 | 1.961 | yes | chassis / sloped lower hull | 23 reshaped |
+| `tracks` | `tracks_padded` | `tank_destroyer` | distinct | 0 | 3.050 | yes | chassis / sloped lower hull | 22 reshaped |
+| `tracks` | `tracks_padded` | `ground_ifv` | distinct | 0 | 4.267 | yes | protection / specialist sloped hull | 28 reshaped |
+| `tracks` | `tracks_padded` | `ground_artillery` | distinct | 0 | 4.685 | yes | protection / specialist sloped hull | 30 reshaped |
+| `tracks` | `tracks_padded` | `ground_air_defense` | distinct | 0 | 4.038 | yes | protection / specialist sloped hull | 28 reshaped |
+| `tracks` | `tracks_wide` | `tank_standard` | distinct | 0 | 4.089 | yes | running gear / port continuous track belt | 8 reshaped, extent 0.09 m |
+| `tracks` | `tracks_wide` | `tank_heavy` | distinct | 0 | 4.324 | yes | running gear / port continuous track belt | 9 reshaped, extent 0.09 m |
+| `tracks` | `tracks_wide` | `tank_light` | distinct | 0 | 2.430 | yes | running gear / port continuous track belt | 8 reshaped, extent 0.08 m |
+| `tracks` | `tracks_wide` | `tank_destroyer` | distinct | 0 | 4.240 | yes | running gear / port continuous track belt | 8 reshaped, extent 0.09 m |
+| `tracks` | `tracks_wide` | `ground_ifv` | distinct | 0 | 2.127 | yes | running gear / port road wheel 1 | 14 reshaped, extent 0.07 m |
+| `tracks` | `tracks_wide` | `ground_artillery` | distinct | 0 | 2.352 | yes | running gear / port road wheel 1 | 16 reshaped, extent 0.07 m |
+| `tracks` | `tracks_wide` | `ground_air_defense` | distinct | 0 | 2.118 | yes | running gear / port road wheel 1 | 14 reshaped, extent 0.07 m |
+| `transmission` | `ground_transmission_electric` | `ground_ifv` | distinct | +382 | 0.793 | yes | transmission / forward drive access | 1 resized |
+| `transmission` | `ground_transmission_electric` | `ground_apc` | distinct | +382 | 0.660 | yes | transmission / forward drive access | 1 resized |
+| `transmission` | `ground_transmission_electric` | `ground_recon` | distinct | +382 | 0.606 | yes | transmission / forward drive access | 1 resized |
+| `transmission` | `ground_transmission_electric` | `ground_artillery` | distinct | +382 | 0.907 | yes | transmission / forward drive access | 1 resized |
+| `transmission` | `ground_transmission_electric` | `ground_air_defense` | distinct | +382 | 0.870 | yes | transmission / forward drive access | 1 resized |
+| `transmission` | `transmission_auto` | `tank_standard` | distinct | +72 | 0.141 | yes | transmission / final drive housing | +1 part |
+| `transmission` | `transmission_auto` | `tank_heavy` | distinct | +72 | 0.177 | yes | transmission / final drive housing | +1 part |
+| `transmission` | `transmission_auto` | `tank_light` | distinct | +72 | 0.092 | yes | transmission / final drive housing | +1 part |
+| `transmission` | `transmission_auto` | `tank_destroyer` | distinct | +72 | 0.134 | yes | transmission / final drive housing | +1 part |
+| `transmission` | `transmission_auto` | `ground_ifv` | distinct | +266 | 0.649 | yes | transmission / forward drive access | 1 resized |
+| `transmission` | `transmission_auto` | `ground_apc` | distinct | +266 | 0.542 | yes | transmission / forward drive access | 1 resized |
+| `transmission` | `transmission_auto` | `ground_recon` | distinct | +266 | 0.490 | yes | transmission / forward drive access | 1 resized |
+| `transmission` | `transmission_auto` | `ground_artillery` | distinct | +266 | 0.752 | yes | transmission / forward drive access | 1 resized |
+| `transmission` | `transmission_auto` | `ground_air_defense` | distinct | +266 | 0.707 | yes | transmission / forward drive access | 1 resized |
+| `troop_compartment` | `ground_troops_protected` | `ground_ifv` | distinct | +28 | 0.488 | yes | troop_compartment / reinforced troop bay | 1 resized |
+| `troop_compartment` | `ground_troops_protected` | `ground_apc` | distinct | +28 | 0.479 | yes | troop_compartment / reinforced troop bay | 1 resized |
+| `turret` | `ground_turret_autocannon` | `ground_recon` | distinct | +808 | 1.493 | yes | turret / autocannon turret | 1 resized |
+| `turret` | `turret_autoload` | `tank_standard` | distinct | +48 | 1.013 | yes | turret / autoloader bustle | +1 part, 1 resized, extent 0.06 m |
+| `turret` | `turret_autoload` | `tank_heavy` | distinct | +24 | 4.038 | yes | turret / autoloader bustle | +1 part, 1 resized, extent 0.16 m |
+| `turret` | `turret_compact` | `tank_standard` | distinct | -24 | 3.449 | yes | turret / ring and faceted armor shell | 1 resized, extent 0.11 m |
+| `turret` | `turret_compact` | `tank_heavy` | distinct | -48 | 4.778 | yes | turret / ring and faceted armor shell | 1 resized, extent 0.21 m |
+| `turret` | `turret_heavy` | `tank_standard` | distinct | 0 | 1.821 | yes | turret / ring and faceted armor shell | 5 reshaped |
+| `turret` | `turret_standard` | `tank_heavy` | distinct | 0 | 2.567 | yes | turret / ring and faceted armor shell | 5 reshaped |
+| `turret` | `turret_standard` | `tank_light` | distinct | +24 | 2.175 | yes | turret / ring and faceted armor shell | 1 resized, extent 0.09 m |
+| `wheels` | `ground_wheels_runflat` | `ground_apc` | distinct | +4436 | 4.859 | yes | running gear / starboard road tire 4 | +2 parts, 5 resized |
+| `wheels` | `ground_wheels_runflat` | `ground_recon` | distinct | +4436 | 2.751 | yes | running gear / starboard road tire 4 | +2 parts, 5 resized |

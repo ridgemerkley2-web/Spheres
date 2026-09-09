@@ -1,0 +1,46 @@
+{
+  "added_person_ids": [
+    "kim_campbell",
+    "jean_charest",
+    "elsie_wayne",
+    "joe_clark",
+    "peter_mackay",
+    "john_turner",
+    "jean_chretien",
+    "paul_martin",
+    "bill_graham",
+    "stephane_dion",
+    "michael_ignatieff",
+    "bob_rae",
+    "justin_trudeau",
+    "mark_carney",
+    "audrey_mclaughlin",
+    "alexa_mcdonough",
+    "jack_layton",
+    "nycole_turmel",
+    "thomas_mulcair",
+    "jagmeet_singh",
+    "don_davies",
+    "avi_lewis",
+    "preston_manning"
+  ],
+  "source_enriched_ids": [
+    "brian_mulroney"
+  ],
+  "existing_fact_conflicts_preserved": [
+    {
+      "person_id": "brian_mulroney",
+      "fields": [
+        "died"
+      ],
+      "action": "Preserved existing saved-identity facts; proposed corrections require separate review/migration."
+    }
+  ],
+  "party_terms_changed": 0,
+  "office_links_changed": 0,
+  "portraits_generated": 0,
+  "source_file": "docs/research/canada-party-leaders-1990-2026.json",
+  "source_sha256": "dc6586f246fbd1de2e2e39bdccc4c5b45d068912b10b0b381123795c683b5869",
+  "status": "identities_imported",
+  "known_people": 549
+}

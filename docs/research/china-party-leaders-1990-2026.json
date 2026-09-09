@@ -1,0 +1,362 @@
+{
+  "schema": "spheres-party-leader-research-v3",
+  "reference_from": "1990-01-01",
+  "reference_through": "2026-09-07",
+  "source_checked_at": "2026-09-07",
+  "nation": "China",
+  "scope": {
+    "requested_through": "2035-12-31",
+    "history_through": "2026-09-07",
+    "future_from": "2026-09-08",
+    "future_policy": "Fictional successor identities and their portraits are separate from this historical record. Do not predict a real person holding a future office.",
+    "coverage": "partial",
+    "represented_party_ids": [
+      "cn_cpc"
+    ],
+    "unrepresented_parties": "Eight legally recognized non-CPC parties are enumerated separately below. They have no simulation rows and are not components of the CPC. Hong Kong and Macao political organizations require a separate territorial and representation audit.",
+    "claim": "Three sourced formal CPC general-secretary tenures cover the represented national party row. This is not complete Chinese party representation, collective-leadership coverage, executive history, or finished avatar production."
+  },
+  "ingestion": {
+    "status": "ready-for-reviewed-partial-import",
+    "people": "Merge by exact ID, preserving all existing Jiang Zemin name/native/birth facts and office links. New Hu and Xi birth records retain month precision.",
+    "parties": "Party and Term fields match runtime schema. A General Secretary is not automatically the PRC President, Premier, military commission chairman or an informal paramount leader. Review office-role candidacy separately before using these people to fill a national office.",
+    "intervals": "Half-open [from, until). A successor election closes the prior general-secretary term. Open means no sourced end by the historical cutoff; it does not authorize historical assignments after 2026-09-07.",
+    "affiliations": "Only evidenced leadership windows are provided; these are not full CPC memberships."
+  },
+  "starter_leaders": [
+    {
+      "party": "cn_cpc",
+      "person": "jiang_zemin",
+      "at": "1990-01-01",
+      "corroborated_at": "1989-06-24",
+      "sources": [
+        "https://cpc.people.com.cn/BIG5/64162/64165/66002/4463025.html",
+        "https://english.www.gov.cn/news/topnews/202212/02/content_WS6389d626c6d0a757729e3f58.html"
+      ],
+      "note": "Formal party secretary. Deng Xiaoping and Yang Shangkun had different roles; preserve their existing office facts."
+    }
+  ],
+  "people": [
+    {
+      "id": "jiang_zemin",
+      "name": "Jiang Zemin",
+      "sources": [
+        "https://rulers.org/rulc2.html",
+        "https://en.wikipedia.org/wiki/Jiang_Zemin",
+        "https://en.wikipedia.org/wiki/Deng_Xiaoping",
+        "https://en.wikipedia.org/wiki/Li_Peng",
+        "https://cpc.people.com.cn/BIG5/64162/64165/66002/4463025.html",
+        "https://english.www.gov.cn/news/topnews/202212/02/content_WS6389d626c6d0a757729e3f58.html"
+      ],
+      "native": "Jiang Zemin",
+      "born": {
+        "kind": "day",
+        "value": "1926-08-17"
+      }
+    },
+    {
+      "id": "hu_jintao",
+      "name": "Hu Jintao",
+      "native": "胡锦涛",
+      "born": {
+        "kind": "month",
+        "value": "1942-12"
+      },
+      "sources": [
+        "https://eu.china-mission.gov.cn/eng/more/ac/200403/t20040308_8303537.htm",
+        "https://news.cctv.com/news/china/20021115/100209.shtml"
+      ]
+    },
+    {
+      "id": "xi_jinping",
+      "name": "Xi Jinping",
+      "native": "习近平",
+      "born": {
+        "kind": "month",
+        "value": "1953-06"
+      },
+      "sources": [
+        "https://za.china-embassy.gov.cn/eng/zt/18thpartycongress/201211/t20121116_7635963.htm",
+        "https://us.china-embassy.gov.cn/eng/zt/18th_CPC_National_Congress_Eng/201211/t20121115_4917562.htm",
+        "https://en.moj.gov.cn/2022-10/23/c_823553.htm",
+        "https://english.www.gov.cn/news/202606/08/content_WS6a269d70c6d00ca5f9a0b75f.html"
+      ]
+    }
+  ],
+  "parties": [
+    {
+      "nation": "China",
+      "party": "cn_cpc",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://cpc.people.com.cn/BIG5/64162/64165/66002/4463025.html",
+        "https://english.www.gov.cn/news/topnews/202212/02/content_WS6389d626c6d0a757729e3f58.html",
+        "https://news.cctv.com/news/china/20021115/100209.shtml",
+        "https://eu.china-mission.gov.cn/eng/more/ac/200403/t20040308_8303537.htm",
+        "https://us.china-embassy.gov.cn/eng/zt/18th_CPC_National_Congress_Eng/201211/t20121115_4917562.htm",
+        "https://za.china-embassy.gov.cn/eng/zt/18thpartycongress/201211/t20121116_7635963.htm",
+        "https://en.moj.gov.cn/2022-10/23/c_823553.htm",
+        "https://english.www.gov.cn/news/202606/08/content_WS6a269d70c6d00ca5f9a0b75f.html",
+        "https://english.www.gov.cn/news/202609/07/content_WS6a9e7862c6d00ca5f9a0d0ab.html",
+        "https://english.www.gov.cn/news/topnews/202106/26/content_WS60d66223c6d0df57f98dbe58.html"
+      ],
+      "identity_note": "Formal General Secretary succession only. Politburo Standing Committee collective membership, the PRC presidency, premiership, Party CMC and state CMC are different offices. Do not replace Jiang with Deng because an executive-start record mentions informal influence.",
+      "components": [],
+      "terms": [
+        {
+          "id": "cn_cpc_jiang_zemin_19890624",
+          "person": "jiang_zemin",
+          "role": "General Secretary of the CPC Central Committee",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1989-06-24"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2002-11-15"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1989-06-24"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2002-11-15"
+          },
+          "sources": [
+            "https://cpc.people.com.cn/BIG5/64162/64165/66002/4463025.html",
+            "https://news.cctv.com/news/china/20021115/100209.shtml"
+          ],
+          "note": "The June 23-24 plenum elected Jiang. End normalized to Hu taking over as General Secretary, not Jiang leaving either military commission."
+        },
+        {
+          "id": "cn_cpc_hu_jintao_20021115",
+          "person": "hu_jintao",
+          "role": "General Secretary of the CPC Central Committee",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2002-11-15"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2012-11-15"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2002-11-15"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2012-11-15"
+          },
+          "sources": [
+            "https://news.cctv.com/news/china/20021115/100209.shtml",
+            "https://us.china-embassy.gov.cn/eng/zt/18th_CPC_National_Congress_Eng/201211/t20121115_4917562.htm"
+          ],
+          "note": "Hu personally announced his election on November 15, 2002. His PRC presidential tenure began later and is not represented by this interval."
+        },
+        {
+          "id": "cn_cpc_xi_jinping_20121115",
+          "person": "xi_jinping",
+          "role": "General Secretary of the CPC Central Committee",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2012-11-15"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2012-11-15"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://us.china-embassy.gov.cn/eng/zt/18th_CPC_National_Congress_Eng/201211/t20121115_4917562.htm",
+            "https://en.moj.gov.cn/2022-10/23/c_823553.htm",
+            "https://english.www.gov.cn/news/202606/08/content_WS6a269d70c6d00ca5f9a0b75f.html",
+            "https://english.www.gov.cn/news/202609/07/content_WS6a9e7862c6d00ca5f9a0d0ab.html"
+          ],
+          "note": "First elected November 15, 2012; reelection verified October 23, 2022; named General Secretary in the June 8, 2026 official report. The September 7, 2026 source describes the Central Committee with Xi at its core. Continuing incumbency at cutoff is the source-based current-office interpretation, not a future prediction."
+        }
+      ],
+      "gaps": []
+    }
+  ],
+  "related_roles": [
+    {
+      "party": "cn_cpc",
+      "person": "jiang_zemin",
+      "role": "Party Central Military Commission chairman",
+      "from": {
+        "kind": "month",
+        "value": "1989-11"
+      },
+      "until": {
+        "kind": "month",
+        "value": "2004-09"
+      },
+      "sources": [
+        "https://english.www.gov.cn/news/topnews/202212/02/content_WS6389d626c6d0a757729e3f58.html"
+      ],
+      "ingest_as_party_term": false,
+      "note": "Separate from General Secretary. State CMC began March 1990 and ended March 2005."
+    },
+    {
+      "party": "cn_cpc",
+      "person": "jiang_zemin",
+      "role": "President of the PRC",
+      "from": {
+        "kind": "month",
+        "value": "1993-03"
+      },
+      "until": {
+        "kind": "unknown"
+      },
+      "sources": [
+        "https://english.www.gov.cn/news/topnews/202212/02/content_WS6389d626c6d0a757729e3f58.html"
+      ],
+      "ingest_as_party_term": false,
+      "note": "Start is separate from 1989 party election; full executive chronology was not researched in this batch."
+    },
+    {
+      "party": "cn_cpc",
+      "organization": "Politburo Standing Committee",
+      "role": "Collective senior leadership",
+      "from": {
+        "kind": "unknown"
+      },
+      "until": {
+        "kind": "unknown"
+      },
+      "sources": [
+        "https://news.cctv.com/news/china/20021115/100209.shtml",
+        "https://us.china-embassy.gov.cn/eng/zt/18th_CPC_National_Congress_Eng/201211/t20121115_4917562.htm"
+      ],
+      "ingest_as_party_term": false,
+      "note": "The 2002 and 2012 statements identify different collective memberships. A complete member-by-member timeline is still required; they are not additional political parties."
+    }
+  ],
+  "unrepresented_party_inventory": [
+    {
+      "name": "Revolutionary Committee of the Chinese Kuomintang",
+      "status": "no_simulation_party_row",
+      "required_work": "Assign a distinct represented identity, then research chair terms, acting periods, people and dated cartoon references. Do not attach this party to cn_cpc as a coalition component.",
+      "sources": [
+        "https://english.www.gov.cn/news/topnews/202106/26/content_WS60d66223c6d0df57f98dbe58.html"
+      ]
+    },
+    {
+      "name": "China Democratic League",
+      "status": "no_simulation_party_row",
+      "required_work": "Assign a distinct represented identity, then research chair terms, acting periods, people and dated cartoon references. Do not attach this party to cn_cpc as a coalition component.",
+      "sources": [
+        "https://english.www.gov.cn/news/topnews/202106/26/content_WS60d66223c6d0df57f98dbe58.html"
+      ]
+    },
+    {
+      "name": "China National Democratic Construction Association",
+      "status": "no_simulation_party_row",
+      "required_work": "Assign a distinct represented identity, then research chair terms, acting periods, people and dated cartoon references. Do not attach this party to cn_cpc as a coalition component.",
+      "sources": [
+        "https://english.www.gov.cn/news/topnews/202106/26/content_WS60d66223c6d0df57f98dbe58.html"
+      ]
+    },
+    {
+      "name": "China Association for Promoting Democracy",
+      "status": "no_simulation_party_row",
+      "required_work": "Assign a distinct represented identity, then research chair terms, acting periods, people and dated cartoon references. Do not attach this party to cn_cpc as a coalition component.",
+      "sources": [
+        "https://english.www.gov.cn/news/topnews/202106/26/content_WS60d66223c6d0df57f98dbe58.html"
+      ]
+    },
+    {
+      "name": "Chinese Peasants and Workers Democratic Party",
+      "status": "no_simulation_party_row",
+      "required_work": "Assign a distinct represented identity, then research chair terms, acting periods, people and dated cartoon references. Do not attach this party to cn_cpc as a coalition component.",
+      "sources": [
+        "https://english.www.gov.cn/news/topnews/202106/26/content_WS60d66223c6d0df57f98dbe58.html"
+      ]
+    },
+    {
+      "name": "China Zhi Gong Party",
+      "status": "no_simulation_party_row",
+      "required_work": "Assign a distinct represented identity, then research chair terms, acting periods, people and dated cartoon references. Do not attach this party to cn_cpc as a coalition component.",
+      "sources": [
+        "https://english.www.gov.cn/news/topnews/202106/26/content_WS60d66223c6d0df57f98dbe58.html"
+      ]
+    },
+    {
+      "name": "Jiusan Society",
+      "status": "no_simulation_party_row",
+      "required_work": "Assign a distinct represented identity, then research chair terms, acting periods, people and dated cartoon references. Do not attach this party to cn_cpc as a coalition component.",
+      "sources": [
+        "https://english.www.gov.cn/news/topnews/202106/26/content_WS60d66223c6d0df57f98dbe58.html"
+      ]
+    },
+    {
+      "name": "Taiwan Democratic Self-Government League",
+      "status": "no_simulation_party_row",
+      "required_work": "Assign a distinct represented identity, then research chair terms, acting periods, people and dated cartoon references. Do not attach this party to cn_cpc as a coalition component.",
+      "sources": [
+        "https://english.www.gov.cn/news/topnews/202106/26/content_WS60d66223c6d0df57f98dbe58.html"
+      ]
+    }
+  ],
+  "boundary_review": [
+    {
+      "party": "cn_cpc",
+      "issue": "Keep the formal party office distinct from state and military offices and informal paramount leadership. The 2026 reference does not forecast leadership through 2035.",
+      "sources": [
+        "https://english.www.gov.cn/news/topnews/202212/02/content_WS6389d626c6d0a757729e3f58.html",
+        "https://us.china-embassy.gov.cn/eng/zt/18th_CPC_National_Congress_Eng/201211/t20121115_4917562.htm",
+        "https://english.www.gov.cn/news/202606/08/content_WS6a269d70c6d00ca5f9a0b75f.html"
+      ]
+    },
+    {
+      "party": "cn_cpc",
+      "issue": "Hu and Xi primary biographies give birth months, not exact birthdays. Do not upgrade month bounds from memory or replace existing Jiang identity facts.",
+      "sources": [
+        "https://eu.china-mission.gov.cn/eng/more/ac/200403/t20040308_8303537.htm",
+        "https://za.china-embassy.gov.cn/eng/zt/18thpartycongress/201211/t20121116_7635963.htm"
+      ]
+    }
+  ],
+  "portrait_references": [
+    {
+      "person": "jiang_zemin",
+      "appearance": "1989-06-23 through 1989-06-24 plenum",
+      "source_url": "https://cpc.people.com.cn/BIG5/64162/64165/66002/4463025.html",
+      "credit": "CPC history archive / People.com.cn",
+      "license": "Not verified; visual research only",
+      "date_note": "Archive image is captioned Jiang speaking at the meeting. Use as near-1990 appearance evidence, not the undated image on his 2022 obituary."
+    },
+    {
+      "person": "hu_jintao",
+      "appearance": "2002-11-15 leadership announcement",
+      "source_url": "https://news.cctv.com/news/china/20021115/100209.shtml",
+      "credit": "CCTV / Xinhua",
+      "license": "Not verified; visual research only",
+      "date_note": "Contemporary announcement includes an image. Identity and crop inspection remain required before any generated-avatar approval."
+    },
+    {
+      "person": "xi_jinping",
+      "appearance": "2012-11 leadership announcement",
+      "source_url": "https://za.china-embassy.gov.cn/eng/zt/18thpartycongress/201211/t20121116_7635963.htm",
+      "credit": "Chinese Embassy / Xinhua",
+      "license": "Not verified; visual research only",
+      "date_note": "Office-era bio imagery; independently confirm the original image date before assigning an exact appearance year."
+    }
+  ],
+  "source_quality": {
+    "primary": "CPC archive, contemporary televised leadership statements, diplomatic biographies, Ministry of Justice and State Council releases. Party/government narratives are used only for office and identity facts, not adopted as neutral political judgments.",
+    "current_cutoff": "Direct 2026 general-secretary observation plus September 7 official party-core reference. The period after the cutoff is deliberately excluded from historical assertions.",
+    "not_verified": "Complete memberships, collective committee terms, exact Hu/Xi birth days, all non-CPC chairs, copyright clearance and actual avatars remain pending."
+  }
+}

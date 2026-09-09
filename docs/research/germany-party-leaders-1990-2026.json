@@ -1,0 +1,2748 @@
+{
+  "schema": "spheres-party-leader-research-v3",
+  "reference_from": "1990-01-01",
+  "reference_through": "2026-09-07",
+  "source_checked_at": "2026-09-07",
+  "nation": "Germany",
+  "scope": {
+    "requested_through": "2035-12-31",
+    "history_through": "2026-09-07",
+    "future_from": "2026-09-08",
+    "future_policy": "Only explicitly fictional successors after the historical cutoff; no predictions of real future officeholders.",
+    "coverage": "partial",
+    "represented_party_ids": [
+      "de_union",
+      "de_spd",
+      "de_fdp",
+      "de_gruene"
+    ],
+    "claim": "Seven verified starter officeholders across all four represented baseline rows, with partial historical chair chronology through currently verified leadership. This is research staging, not complete German party coverage or finished art.",
+    "unrepresented_parties": "PDS/Die Linke, AfD, BSW, East German CDU/SDP/LDPD/NDPD/Greens/Bündnis 90 predecessors and other minor parties require distinct lifecycle-aware game IDs."
+  },
+  "ingestion": {
+    "status": "staged-requires-role-aware-integration-review",
+    "runtime_prerequisite": "No automatic import. Expand empty legacy de_union slots with de_union_cdu then de_union_csu only under explicit save migration review. Party/co-party chairs do not automatically become Chancellor. Chancellor selection requires Bundestag election on presidential proposal; keep executive eligibility separately reviewed.",
+    "executive_role_source": "https://www.bundestag.de/parlament/aufgaben/kanzlerwahl",
+    "people": "Compatible Person records. Preserve existing helmut_kohl ID, exact name, birth and office_links; merge sources. Do not overwrite unrelated existing identities.",
+    "parties": "Compatible Party/Term fields only. Seven 1990 officeholders are not collapsed into four faces. No fictional composite leader.",
+    "intervals": "Half-open [from, until). Same-day chair handovers belong to the incoming leader. Year/month bounds express uncertainty and can conservatively leave display gaps; they are not known vacancies. Open terms only verified through reference_through.",
+    "affiliations": "Only researched office windows, not complete party membership.",
+    "missing_life_dates": "Omitted birth/death dates remain unverified; absence of died is not evidence that someone is alive.",
+    "scope_clipping": "Kohl and Vogel starter windows begin at 1990-01-01 as a scope clip, not original accession."
+  },
+  "starter_leaders": [
+    {
+      "party": "de_union",
+      "component": "de_union_cdu",
+      "person": "helmut_kohl",
+      "at": "1990-01-01",
+      "role": "Federal chair",
+      "sources": [
+        "https://www.cdu.de/geschichte-der-cdu/",
+        "https://www.kas.de/en/web/geschichte-der-cdu/bundesvorstandsmitglieder-seit-1998"
+      ]
+    },
+    {
+      "party": "de_union",
+      "component": "de_union_csu",
+      "person": "theo_waigel",
+      "at": "1990-01-01",
+      "role": "Party chair",
+      "sources": [
+        "https://www.hss.de/fileadmin/user_upload/HSS/Dokumente/ACSP/CSU/CSU-Parteivorsitzende.pdf"
+      ]
+    },
+    {
+      "party": "de_spd",
+      "person": "hans_jochen_vogel",
+      "at": "1990-01-01",
+      "role": "Federal chair",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf",
+        "https://www.spdfraktion.de/hans-jochen-vogel",
+        "https://www.berlin.de/rbmskzl/politik/senat/buergermeistergalerie/artikel.4632.php",
+        "https://www.spd.de/ueber-uns/groessen-der-sozialdemokratie/groessen-der-sozialdemokratie-detailseite/speaker/hans-jochen-vogel"
+      ]
+    },
+    {
+      "party": "de_fdp",
+      "person": "otto_graf_lambsdorff",
+      "at": "1990-01-01",
+      "role": "Federal chair",
+      "sources": [
+        "https://www.freiheit.org/de/otto-graf-lambsdorffs-aufstieg-zum-bundesvorsitzenden-der-fdp",
+        "https://www.freiheit.org/sites/default/files/import/2017-09/11471-lambsdorff-papier.pdf",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "party": "de_gruene",
+      "person": "ralf_fuecks",
+      "at": "1990-01-01",
+      "role": "Federal board spokesperson",
+      "sources": [
+        "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf"
+      ]
+    },
+    {
+      "party": "de_gruene",
+      "person": "ruth_hammerbacher",
+      "at": "1990-01-01",
+      "role": "Federal board spokesperson",
+      "sources": [
+        "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf"
+      ]
+    },
+    {
+      "party": "de_gruene",
+      "person": "verena_krieger",
+      "at": "1990-01-01",
+      "role": "Federal board spokesperson",
+      "sources": [
+        "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "helmut_kohl",
+      "name": "Helmut Kohl",
+      "sources": [
+        "https://www.cdu.de/geschichte-der-cdu/",
+        "https://www.kas.de/en/web/geschichte-der-cdu/bundesvorstandsmitglieder-seit-1998"
+      ]
+    },
+    {
+      "id": "wolfgang_schaeuble",
+      "name": "Wolfgang Schäuble",
+      "sources": [
+        "https://www.kas.de/en/web/geschichte-der-cdu/bundesvorstandsmitglieder-seit-1998",
+        "https://www.kas.de/de/web/geschichte-der-cdu/personen/biogramm-detail/-/content/wolfgang-schaeuble-v1",
+        "https://www.bundestag.de/dokumente/textarchiv/13-wolfgang-schaeuble-675836"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1942-09-18"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2023-12-26"
+      }
+    },
+    {
+      "id": "angela_merkel",
+      "name": "Angela Merkel",
+      "sources": [
+        "https://www.kas.de/c/document_library/get_file?groupId=252038&uuid=331efc1e-a5e0-fb70-542c-63061406a1ac",
+        "https://www.kas.de/en/web/geschichte-der-cdu/bundesvorstandsmitglieder-seit-1998"
+      ]
+    },
+    {
+      "id": "annegret_kramp_karrenbauer",
+      "name": "Annegret Kramp-Karrenbauer",
+      "sources": [
+        "https://www.kas.de/en/web/geschichte-der-cdu/bundesvorstandsmitglieder-seit-1998"
+      ]
+    },
+    {
+      "id": "armin_laschet",
+      "name": "Armin Laschet",
+      "sources": [
+        "https://www.kas.de/en/web/geschichte-der-cdu/bundesvorstandsmitglieder-seit-1998"
+      ]
+    },
+    {
+      "id": "friedrich_merz",
+      "name": "Friedrich Merz",
+      "sources": [
+        "https://www.kas.de/en/web/geschichte-der-cdu/bundesvorstandsmitglieder-seit-1998",
+        "https://www.cdu.de/38-parteitag/"
+      ]
+    },
+    {
+      "id": "theo_waigel",
+      "name": "Theo Waigel",
+      "sources": [
+        "https://www.hss.de/fileadmin/user_upload/HSS/Dokumente/ACSP/CSU/CSU-Parteivorsitzende.pdf"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1939-04-22"
+      }
+    },
+    {
+      "id": "edmund_stoiber",
+      "name": "Edmund Stoiber",
+      "sources": [
+        "https://www.hss.de/fileadmin/user_upload/HSS/Dokumente/ACSP/CSU/CSU-Parteivorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "erwin_huber",
+      "name": "Erwin Huber",
+      "sources": [
+        "https://www.hss.de/fileadmin/user_upload/HSS/Dokumente/ACSP/CSU/CSU-Parteivorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "horst_seehofer",
+      "name": "Horst Seehofer",
+      "sources": [
+        "https://www.hss.de/fileadmin/user_upload/HSS/Dokumente/ACSP/CSU/CSU-Parteivorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "markus_soeder",
+      "name": "Markus Söder",
+      "sources": [
+        "https://www.hss.de/fileadmin/user_upload/HSS/Dokumente/ACSP/CSU/CSU-Parteivorsitzende.pdf",
+        "https://www.bayern.landtag.de/abgeordnete/abgeordnete-von-a-z/profil/?cHash=2078af803f014a5bdfe8a488f8c27254&tx_stbltabgeordnete_profile%5Babgeordneter%5D=4457&tx_stbltabgeordnete_profile%5Baction%5D=show&tx_stbltabgeordnete_profile%5Bcontroller%5D=Abgeordnete"
+      ]
+    },
+    {
+      "id": "hans_jochen_vogel",
+      "name": "Hans-Jochen Vogel",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf",
+        "https://www.spdfraktion.de/hans-jochen-vogel",
+        "https://www.berlin.de/rbmskzl/politik/senat/buergermeistergalerie/artikel.4632.php",
+        "https://www.spd.de/ueber-uns/groessen-der-sozialdemokratie/groessen-der-sozialdemokratie-detailseite/speaker/hans-jochen-vogel"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1926-02-03"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2020-07-26"
+      }
+    },
+    {
+      "id": "bjoern_engholm",
+      "name": "Björn Engholm",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "johannes_rau",
+      "name": "Johannes Rau",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "rudolf_scharping",
+      "name": "Rudolf Scharping",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "oskar_lafontaine",
+      "name": "Oskar Lafontaine",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "gerhard_schroeder",
+      "name": "Gerhard Schröder",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "franz_muentefering",
+      "name": "Franz Müntefering",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "matthias_platzeck",
+      "name": "Matthias Platzeck",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "kurt_beck",
+      "name": "Kurt Beck",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "frank_walter_steinmeier",
+      "name": "Frank-Walter Steinmeier",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "sigmar_gabriel",
+      "name": "Sigmar Gabriel",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "martin_schulz",
+      "name": "Martin Schulz",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "olaf_scholz",
+      "name": "Olaf Scholz",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "andrea_nahles",
+      "name": "Andrea Nahles",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "malu_dreyer",
+      "name": "Malu Dreyer",
+      "sources": [
+        "https://www.spd.de/fileadmin/Dokumente/Beschluesse/Parteispitze/20190603_PV_Beschluss.pdf",
+        "https://spd05.spd.de/fileadmin/pv/Dokumente/BPT2021_Dez/Berichte/SPD_PV_Jahrbuch_2019_2020.pdf"
+      ]
+    },
+    {
+      "id": "manuela_schwesig",
+      "name": "Manuela Schwesig",
+      "sources": [
+        "https://www.spd.de/fileadmin/Dokumente/Beschluesse/Parteispitze/20190603_PV_Beschluss.pdf",
+        "https://spd05.spd.de/fileadmin/pv/Dokumente/BPT2021_Dez/Berichte/SPD_PV_Jahrbuch_2019_2020.pdf",
+        "https://www.spd.de/aktuelles/detail/news/persoenliche-erklaerung-von-manuela-schwesig/10/09/2019/"
+      ]
+    },
+    {
+      "id": "thorsten_schaefer_guembel",
+      "name": "Thorsten Schäfer-Gümbel",
+      "sources": [
+        "https://www.spd.de/fileadmin/Dokumente/Beschluesse/Parteispitze/20190603_PV_Beschluss.pdf",
+        "https://spd05.spd.de/fileadmin/pv/Dokumente/BPT2021_Dez/Berichte/SPD_PV_Jahrbuch_2019_2020.pdf"
+      ]
+    },
+    {
+      "id": "saskia_esken",
+      "name": "Saskia Esken",
+      "sources": [
+        "https://spd05.spd.de/fileadmin/pv/Dokumente/BPT2021_Dez/Berichte/SPD_PV_Jahrbuch_2019_2020.pdf",
+        "https://www.spd.de/service/pressemitteilungen/detail/news/baerbel-bas-und-lars-klingbeil-als-spd-vorsitzende-gewaehlt/27/06/2025"
+      ]
+    },
+    {
+      "id": "norbert_walter_borjans",
+      "name": "Norbert Walter-Borjans",
+      "sources": [
+        "https://spd05.spd.de/fileadmin/pv/Dokumente/BPT2021_Dez/Berichte/SPD_PV_Jahrbuch_2019_2020.pdf",
+        "https://www.spd.de/service/pressemitteilungen/detail/news/saskia-esken-und-lars-klingbeil-als-spd-vorsitzende-gewaehlt/11/12/2021/"
+      ]
+    },
+    {
+      "id": "lars_klingbeil",
+      "name": "Lars Klingbeil",
+      "sources": [
+        "https://www.spd.de/service/pressemitteilungen/detail/news/saskia-esken-und-lars-klingbeil-als-spd-vorsitzende-gewaehlt/11/12/2021/",
+        "https://www.spd.de/service/pressemitteilungen/detail/news/baerbel-bas-und-lars-klingbeil-als-spd-vorsitzende-gewaehlt/27/06/2025",
+        "https://www.spd.de/ueber-uns"
+      ]
+    },
+    {
+      "id": "baerbel_bas",
+      "name": "Bärbel Bas",
+      "sources": [
+        "https://www.spd.de/service/pressemitteilungen/detail/news/baerbel-bas-und-lars-klingbeil-als-spd-vorsitzende-gewaehlt/27/06/2025",
+        "https://www.spd.de/ueber-uns"
+      ]
+    },
+    {
+      "id": "otto_graf_lambsdorff",
+      "name": "Otto Graf Lambsdorff",
+      "sources": [
+        "https://www.freiheit.org/de/otto-graf-lambsdorffs-aufstieg-zum-bundesvorsitzenden-der-fdp",
+        "https://www.freiheit.org/sites/default/files/import/2017-09/11471-lambsdorff-papier.pdf",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1926-12-20"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2009-12-05"
+      }
+    },
+    {
+      "id": "klaus_kinkel",
+      "name": "Klaus Kinkel",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf",
+        "https://www.freiheit.org/de/wolfgang-gerhardt-buergerliche-politik-umbruchzeiten"
+      ]
+    },
+    {
+      "id": "wolfgang_gerhardt",
+      "name": "Wolfgang Gerhardt",
+      "sources": [
+        "https://www.freiheit.org/de/wolfgang-gerhardt-buergerliche-politik-umbruchzeiten",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "guido_westerwelle",
+      "name": "Guido Westerwelle",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "philipp_roesler",
+      "name": "Philipp Rösler",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "christian_lindner",
+      "name": "Christian Lindner",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf",
+        "https://www.fdp.de/neues-team-im-kampf-fuer-die-freiheit"
+      ]
+    },
+    {
+      "id": "christian_duerr",
+      "name": "Christian Dürr",
+      "sources": [
+        "https://www.fdp.de/neues-team-im-kampf-fuer-die-freiheit",
+        "https://www.fdp.de/pressemitteilung/fdp-bundesparteitag-wahlergebnisse-praesidium-4"
+      ]
+    },
+    {
+      "id": "wolfgang_kubicki",
+      "name": "Wolfgang Kubicki",
+      "sources": [
+        "https://www.fdp.de/pressemitteilung/fdp-bundesparteitag-wahlergebnisse-praesidium-4"
+      ]
+    },
+    {
+      "id": "ralf_fuecks",
+      "name": "Ralf Fücks",
+      "sources": [
+        "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf"
+      ]
+    },
+    {
+      "id": "ruth_hammerbacher",
+      "name": "Ruth Hammerbacher",
+      "sources": [
+        "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf"
+      ]
+    },
+    {
+      "id": "verena_krieger",
+      "name": "Verena Krieger",
+      "sources": [
+        "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf"
+      ]
+    },
+    {
+      "id": "renate_damus",
+      "name": "Renate Damus",
+      "sources": [
+        "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf"
+      ]
+    },
+    {
+      "id": "heide_ruehle",
+      "name": "Heide Rühle",
+      "sources": [
+        "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf"
+      ]
+    },
+    {
+      "id": "hans_christian_stroebele",
+      "name": "Hans-Christian Ströbele",
+      "sources": [
+        "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf"
+      ]
+    },
+    {
+      "id": "christine_weiske",
+      "name": "Christine Weiske",
+      "sources": [
+        "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf"
+      ]
+    },
+    {
+      "id": "ludger_volmer",
+      "name": "Ludger Volmer",
+      "sources": [
+        "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf",
+        "https://www.gruene.de/unsere-gruene-geschichte"
+      ]
+    },
+    {
+      "id": "marianne_birthler",
+      "name": "Marianne Birthler",
+      "sources": [
+        "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "juergen_trittin",
+      "name": "Jürgen Trittin",
+      "sources": [
+        "https://www.gruene.de/unsere-gruene-geschichte",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "krista_sager",
+      "name": "Krista Sager",
+      "sources": [
+        "https://www.gruene.de/unsere-gruene-geschichte",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "gunda_roestel",
+      "name": "Gunda Röstel",
+      "sources": [
+        "https://www.gruene.de/unsere-gruene-geschichte",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "antje_radcke",
+      "name": "Antje Radcke",
+      "sources": [
+        "https://www.gruene.de/unsere-gruene-geschichte",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "renate_kuenast",
+      "name": "Renate Künast",
+      "sources": [
+        "https://www.gruene.de/unsere-gruene-geschichte",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "fritz_kuhn",
+      "name": "Fritz Kuhn",
+      "sources": [
+        "https://www.gruene.de/unsere-gruene-geschichte",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "claudia_roth",
+      "name": "Claudia Roth",
+      "sources": [
+        "https://www.bundestag.de/webarchiv/abgeordnete/biografien19/R/roth_claudia-523038",
+        "https://www.gruene.de/unsere-gruene-geschichte",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "angelika_beer",
+      "name": "Angelika Beer",
+      "sources": [
+        "https://www.gruene.de/unsere-gruene-geschichte",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "reinhard_buetikofer",
+      "name": "Reinhard Bütikofer",
+      "sources": [
+        "https://www.gruene.de/unsere-gruene-geschichte",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "cem_oezdemir",
+      "name": "Cem Özdemir",
+      "sources": [
+        "https://www.gruene.de/unsere-gruene-geschichte",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "simone_peter",
+      "name": "Simone Peter",
+      "sources": [
+        "https://www.gruene.de/unsere-gruene-geschichte",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "annalena_baerbock",
+      "name": "Annalena Baerbock",
+      "sources": [
+        "https://www.gruene.de/unsere-gruene-geschichte",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "robert_habeck",
+      "name": "Robert Habeck",
+      "sources": [
+        "https://www.gruene.de/unsere-gruene-geschichte",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "id": "ricarda_lang",
+      "name": "Ricarda Lang",
+      "sources": [
+        "https://gruene-rlp.de/2022/01/29/aufbruch-in-regierungsverantwortung/",
+        "https://www.gruene.de/artikel/neustartklar-mit-neuem-bundesvorstand"
+      ]
+    },
+    {
+      "id": "omid_nouripour",
+      "name": "Omid Nouripour",
+      "sources": [
+        "https://gruene-rlp.de/2022/01/29/aufbruch-in-regierungsverantwortung/",
+        "https://www.gruene.de/artikel/neustartklar-mit-neuem-bundesvorstand"
+      ]
+    },
+    {
+      "id": "franziska_brantner",
+      "name": "Franziska Brantner",
+      "sources": [
+        "https://www.gruene.de/artikel/neustartklar-mit-neuem-bundesvorstand",
+        "https://www.gruene.de/leute/unser-bundesvorstand"
+      ]
+    },
+    {
+      "id": "felix_banaszak",
+      "name": "Felix Banaszak",
+      "sources": [
+        "https://www.gruene.de/artikel/neustartklar-mit-neuem-bundesvorstand",
+        "https://www.gruene.de/leute/unser-bundesvorstand"
+      ]
+    }
+  ],
+  "parties": [
+    {
+      "nation": "Germany",
+      "party": "de_union",
+      "kind": "coalition",
+      "coverage": "partial",
+      "sources": [
+        "https://www.kas.de/en/web/geschichte-der-cdu/bundesvorstandsmitglieder-seit-1998",
+        "https://www.hss.de/fileadmin/user_upload/HSS/Dokumente/ACSP/CSU/CSU-Parteivorsitzende.pdf",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ],
+      "identity_note": "CDU and CSU are distinct parties; the Union is a parliamentary/electoral alliance without one party chair. Parent ID retained. Western 1987 baseline does not independently represent the East German CDU before October 1990.",
+      "components": [
+        {
+          "id": "de_union_cdu",
+          "name": "Christian Democratic Union of Germany",
+          "sources": [
+            "https://www.kas.de/en/web/geschichte-der-cdu/bundesvorstandsmitglieder-seit-1998",
+            "https://www.cdu.de/geschichte-der-cdu/"
+          ]
+        },
+        {
+          "id": "de_union_csu",
+          "name": "Christian Social Union in Bavaria",
+          "sources": [
+            "https://www.hss.de/fileadmin/user_upload/HSS/Dokumente/ACSP/CSU/CSU-Parteivorsitzende.pdf"
+          ]
+        }
+      ],
+      "terms": [
+        {
+          "id": "de_union_helmut_kohl_1",
+          "person": "helmut_kohl",
+          "component": "de_union_cdu",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1998-11-07"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1998-11-07"
+          },
+          "sources": [
+            "https://www.cdu.de/geschichte-der-cdu/",
+            "https://www.kas.de/en/web/geschichte-der-cdu/bundesvorstandsmitglieder-seit-1998"
+          ],
+          "note": "Coverage clipped at game start; chair since 1973. Preserve existing helmut_kohl name, birth, office_links and sources. Party role is separate from Chancellor."
+        },
+        {
+          "id": "de_union_wolfgang_schaeuble_1",
+          "person": "wolfgang_schaeuble",
+          "component": "de_union_cdu",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1998-11-07"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2000-02"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1998-11-07"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2000-02"
+          },
+          "sources": [
+            "https://www.kas.de/en/web/geschichte-der-cdu/bundesvorstandsmitglieder-seit-1998",
+            "https://www.kas.de/de/web/geschichte-der-cdu/personen/biogramm-detail/-/content/wolfgang-schaeuble-v1",
+            "https://www.bundestag.de/dokumente/textarchiv/13-wolfgang-schaeuble-675836"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_union_angela_merkel_1",
+          "person": "angela_merkel",
+          "component": "de_union_cdu",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2000-04-10"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2018-12"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2000-04-10"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2018-12"
+          },
+          "sources": [
+            "https://www.kas.de/c/document_library/get_file?groupId=252038&uuid=331efc1e-a5e0-fb70-542c-63061406a1ac",
+            "https://www.kas.de/en/web/geschichte-der-cdu/bundesvorstandsmitglieder-seit-1998"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_union_annegret_kramp_karrenbauer_1",
+          "person": "annegret_kramp_karrenbauer",
+          "component": "de_union_cdu",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "2018-12"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2021-01"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2018-12"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2021-01"
+          },
+          "sources": [
+            "https://www.kas.de/en/web/geschichte-der-cdu/bundesvorstandsmitglieder-seit-1998"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_union_armin_laschet_1",
+          "person": "armin_laschet",
+          "component": "de_union_cdu",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "2021-01"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2022-01"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2021-01"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2022-01"
+          },
+          "sources": [
+            "https://www.kas.de/en/web/geschichte-der-cdu/bundesvorstandsmitglieder-seit-1998"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_union_friedrich_merz_1",
+          "person": "friedrich_merz",
+          "component": "de_union_cdu",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "2022-01"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2022-01"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.kas.de/en/web/geschichte-der-cdu/bundesvorstandsmitglieder-seit-1998",
+            "https://www.cdu.de/38-parteitag/"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_union_theo_waigel_1",
+          "person": "theo_waigel",
+          "component": "de_union_csu",
+          "role": "Party chair",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1988-11-19"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1999-01-16"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1988-11-19"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1999-01-16"
+          },
+          "sources": [
+            "https://www.hss.de/fileadmin/user_upload/HSS/Dokumente/ACSP/CSU/CSU-Parteivorsitzende.pdf"
+          ],
+          "note": "Archive lists same-day chair handovers; until is the incoming chair's first day. Honorary chair titles are not serving party leadership."
+        },
+        {
+          "id": "de_union_edmund_stoiber_1",
+          "person": "edmund_stoiber",
+          "component": "de_union_csu",
+          "role": "Party chair",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1999-01-16"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2007-09-29"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1999-01-16"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2007-09-29"
+          },
+          "sources": [
+            "https://www.hss.de/fileadmin/user_upload/HSS/Dokumente/ACSP/CSU/CSU-Parteivorsitzende.pdf"
+          ],
+          "note": "Archive lists same-day chair handovers; until is the incoming chair's first day. Honorary chair titles are not serving party leadership."
+        },
+        {
+          "id": "de_union_erwin_huber_1",
+          "person": "erwin_huber",
+          "component": "de_union_csu",
+          "role": "Party chair",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2007-09-29"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2008-10-25"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2007-09-29"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2008-10-25"
+          },
+          "sources": [
+            "https://www.hss.de/fileadmin/user_upload/HSS/Dokumente/ACSP/CSU/CSU-Parteivorsitzende.pdf"
+          ],
+          "note": "Archive lists same-day chair handovers; until is the incoming chair's first day. Honorary chair titles are not serving party leadership."
+        },
+        {
+          "id": "de_union_horst_seehofer_1",
+          "person": "horst_seehofer",
+          "component": "de_union_csu",
+          "role": "Party chair",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2008-10-25"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2019-01-19"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2008-10-25"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2019-01-19"
+          },
+          "sources": [
+            "https://www.hss.de/fileadmin/user_upload/HSS/Dokumente/ACSP/CSU/CSU-Parteivorsitzende.pdf"
+          ],
+          "note": "Archive lists same-day chair handovers; until is the incoming chair's first day. Honorary chair titles are not serving party leadership."
+        },
+        {
+          "id": "de_union_markus_soeder_1",
+          "person": "markus_soeder",
+          "component": "de_union_csu",
+          "role": "Party chair",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2019-01-19"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2019-01-19"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.hss.de/fileadmin/user_upload/HSS/Dokumente/ACSP/CSU/CSU-Parteivorsitzende.pdf",
+            "https://www.bayern.landtag.de/abgeordnete/abgeordnete-von-a-z/profil/?cHash=2078af803f014a5bdfe8a488f8c27254&tx_stbltabgeordnete_profile%5Babgeordneter%5D=4457&tx_stbltabgeordnete_profile%5Baction%5D=show&tx_stbltabgeordnete_profile%5Bcontroller%5D=Abgeordnete"
+          ],
+          "note": "Archive lists same-day chair handovers; until is the incoming chair's first day. Honorary chair titles are not serving party leadership."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "month",
+            "value": "2000-02"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2000-04-10"
+          },
+          "reason": "CDU: resignation announcement versus legal end of Schäuble's tenure needs primary protocol review. No invented acting chair. Other component remains known.",
+          "sources": [
+            "https://www.bundestag.de/dokumente/textarchiv/13-wolfgang-schaeuble-675836",
+            "https://www.kas.de/en/web/geschichte-der-cdu/bundesvorstandsmitglieder-seit-1998"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-09-08"
+          },
+          "reason": "Coarse CDU handovers in December 2018 and January 2021/2022 need exact election versus postal ratification audit. East German precursor leadership, split parties and unrepresented minor parties are outside these four exact baseline rows.",
+          "sources": [
+            "https://www.kas.de/en/web/geschichte-der-cdu/bundesvorstandsmitglieder-seit-1998",
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "Germany",
+      "party": "de_spd",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf",
+        "https://spd05.spd.de/fileadmin/pv/Dokumente/BPT2021_Dez/Berichte/SPD_PV_Jahrbuch_2019_2020.pdf",
+        "https://www.spd.de/service/pressemitteilungen/detail/news/baerbel-bas-und-lars-klingbeil-als-spd-vorsitzende-gewaehlt/27/06/2025",
+        "https://www.spd.de/ueber-uns"
+      ],
+      "identity_note": "SPD party leadership, including interim teams and later co-chairs; parliamentary and national executive offices are separate.",
+      "components": [],
+      "terms": [
+        {
+          "id": "de_spd_hans_jochen_vogel_1",
+          "person": "hans_jochen_vogel",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1991-05"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1991-05"
+          },
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf",
+            "https://www.spdfraktion.de/hans-jochen-vogel",
+            "https://www.berlin.de/rbmskzl/politik/senat/buergermeistergalerie/artikel.4632.php",
+            "https://www.spd.de/ueber-uns/groessen-der-sozialdemokratie/groessen-der-sozialdemokratie-detailseite/speaker/hans-jochen-vogel"
+          ],
+          "note": "Coverage clipped at 1990-01-01; party chair since 1987. May 1991 handover day not yet verified."
+        },
+        {
+          "id": "de_spd_bjoern_engholm_1",
+          "person": "bjoern_engholm",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1991-05"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1993-05-03"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1991-05"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1993-05-03"
+          },
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_spd_johannes_rau_1",
+          "person": "johannes_rau",
+          "role": "Federal chair",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "1993-05-03"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1993-06-25"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1993-05-03"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1993-06-25"
+          },
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_spd_rudolf_scharping_1",
+          "person": "rudolf_scharping",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1993-06-25"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1995"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1993-06-25"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "1995"
+          },
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_spd_oskar_lafontaine_1",
+          "person": "oskar_lafontaine",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1995"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1999"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1995"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "1999"
+          },
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_spd_gerhard_schroeder_1",
+          "person": "gerhard_schroeder",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1999"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2004"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1999"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2004"
+          },
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_spd_franz_muentefering_1",
+          "person": "franz_muentefering",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "2004"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2005"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "2004"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2005"
+          },
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_spd_matthias_platzeck_1",
+          "person": "matthias_platzeck",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "2005"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2006"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "2005"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2006"
+          },
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_spd_kurt_beck_1",
+          "person": "kurt_beck",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "2006"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2008-09-07"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "2006"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2008-09-07"
+          },
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_spd_frank_walter_steinmeier_1",
+          "person": "frank_walter_steinmeier",
+          "role": "Federal chair",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2008-09-07"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2008-10-18"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2008-09-07"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2008-10-18"
+          },
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_spd_franz_muentefering_2",
+          "person": "franz_muentefering",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2008-10-18"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2009-11-13"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2008-10-18"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2009-11-13"
+          },
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_spd_sigmar_gabriel_1",
+          "person": "sigmar_gabriel",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2009-11-13"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2017-03-19"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2009-11-13"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2017-03-19"
+          },
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_spd_martin_schulz_1",
+          "person": "martin_schulz",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2017-03-19"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2018-02-13"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2017-03-19"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2018-02-13"
+          },
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_spd_olaf_scholz_1",
+          "person": "olaf_scholz",
+          "role": "Federal chair",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2018-02-13"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2018-04-22"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2018-02-13"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2018-04-22"
+          },
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_spd_andrea_nahles_1",
+          "person": "andrea_nahles",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2018-04-22"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2019-06-03"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2018-04-22"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2019-06-03"
+          },
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_spd_malu_dreyer_1",
+          "person": "malu_dreyer",
+          "role": "Acting federal chair",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2019-06-03"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2019-12-06"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2019-06-03"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2019-12-06"
+          },
+          "sources": [
+            "https://www.spd.de/fileadmin/Dokumente/Beschluesse/Parteispitze/20190603_PV_Beschluss.pdf",
+            "https://spd05.spd.de/fileadmin/pv/Dokumente/BPT2021_Dez/Berichte/SPD_PV_Jahrbuch_2019_2020.pdf"
+          ],
+          "note": "Joint interim team; departures are separate. Dreyer continues after the other two leave."
+        },
+        {
+          "id": "de_spd_manuela_schwesig_1",
+          "person": "manuela_schwesig",
+          "role": "Acting federal chair",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2019-06-03"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2019-09-10"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2019-06-03"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2019-09-10"
+          },
+          "sources": [
+            "https://www.spd.de/fileadmin/Dokumente/Beschluesse/Parteispitze/20190603_PV_Beschluss.pdf",
+            "https://spd05.spd.de/fileadmin/pv/Dokumente/BPT2021_Dez/Berichte/SPD_PV_Jahrbuch_2019_2020.pdf",
+            "https://www.spd.de/aktuelles/detail/news/persoenliche-erklaerung-von-manuela-schwesig/10/09/2019/"
+          ],
+          "note": "Joint interim team; departures are separate. Dreyer continues after the other two leave."
+        },
+        {
+          "id": "de_spd_thorsten_schaefer_guembel_1",
+          "person": "thorsten_schaefer_guembel",
+          "role": "Acting federal chair",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2019-06-03"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2019-10-01"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2019-06-03"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2019-10-01"
+          },
+          "sources": [
+            "https://www.spd.de/fileadmin/Dokumente/Beschluesse/Parteispitze/20190603_PV_Beschluss.pdf",
+            "https://spd05.spd.de/fileadmin/pv/Dokumente/BPT2021_Dez/Berichte/SPD_PV_Jahrbuch_2019_2020.pdf"
+          ],
+          "note": "SPD yearbook gives service through 30 September 2019, normalized to exclusive 1 October. This corrects Bundestag handbook's contradictory 6 December end."
+        },
+        {
+          "id": "de_spd_saskia_esken_1",
+          "person": "saskia_esken",
+          "role": "Federal co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "day",
+            "value": "2019-12-06"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2025-06-27"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2019-12-06"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2025-06-27"
+          },
+          "sources": [
+            "https://spd05.spd.de/fileadmin/pv/Dokumente/BPT2021_Dez/Berichte/SPD_PV_Jahrbuch_2019_2020.pdf",
+            "https://www.spd.de/service/pressemitteilungen/detail/news/baerbel-bas-und-lars-klingbeil-als-spd-vorsitzende-gewaehlt/27/06/2025"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_spd_norbert_walter_borjans_1",
+          "person": "norbert_walter_borjans",
+          "role": "Federal co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "day",
+            "value": "2019-12-06"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2021-12"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2019-12-06"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2021-12"
+          },
+          "sources": [
+            "https://spd05.spd.de/fileadmin/pv/Dokumente/BPT2021_Dez/Berichte/SPD_PV_Jahrbuch_2019_2020.pdf",
+            "https://www.spd.de/service/pressemitteilungen/detail/news/saskia-esken-und-lars-klingbeil-als-spd-vorsitzende-gewaehlt/11/12/2021/"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_spd_lars_klingbeil_1",
+          "person": "lars_klingbeil",
+          "role": "Federal co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "2021-12"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2021-12"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.spd.de/service/pressemitteilungen/detail/news/saskia-esken-und-lars-klingbeil-als-spd-vorsitzende-gewaehlt/11/12/2021/",
+            "https://www.spd.de/service/pressemitteilungen/detail/news/baerbel-bas-und-lars-klingbeil-als-spd-vorsitzende-gewaehlt/27/06/2025",
+            "https://www.spd.de/ueber-uns"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_spd_baerbel_bas_1",
+          "person": "baerbel_bas",
+          "role": "Federal co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "day",
+            "value": "2025-06-27"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2025-06-27"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.spd.de/service/pressemitteilungen/detail/news/baerbel-bas-und-lars-klingbeil-als-spd-vorsitzende-gewaehlt/27/06/2025",
+            "https://www.spd.de/ueber-uns"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "month",
+            "value": "1991-05"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2006"
+          },
+          "reason": "Coarse handovers 1991, 1995, 1999, 2004, 2005 and 2006 are not day-accurate. Acting versus elected subphases for Schröder and Beck remain to be verified; source summary office windows are retained without invented dates.",
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "2021-12"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2022-01"
+          },
+          "reason": "11 December 2021 digital election announced with subsequent postal confirmation. Exact legally effective handover remains unverified; month precision retained.",
+          "sources": [
+            "https://www.spd.de/service/pressemitteilungen/detail/news/saskia-esken-und-lars-klingbeil-als-spd-vorsitzende-gewaehlt/11/12/2021/"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "Germany",
+      "party": "de_fdp",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.freiheit.org/de/otto-graf-lambsdorffs-aufstieg-zum-bundesvorsitzenden-der-fdp",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf",
+        "https://www.fdp.de/neues-team-im-kampf-fuer-die-freiheit",
+        "https://www.fdp.de/pressemitteilung/fdp-bundesparteitag-wahlergebnisse-praesidium-4"
+      ],
+      "identity_note": "Federal FDP party chairs. Party leadership is separate from parliamentary group leadership. The 1990 merger does not make earlier East German LDPD/NDPD/FDP chairs retroactively heads of the West German baseline row.",
+      "components": [],
+      "terms": [
+        {
+          "id": "de_fdp_otto_graf_lambsdorff_1",
+          "person": "otto_graf_lambsdorff",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1988"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1993"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1988"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "1993"
+          },
+          "sources": [
+            "https://www.freiheit.org/de/otto-graf-lambsdorffs-aufstieg-zum-bundesvorsitzenden-der-fdp",
+            "https://www.freiheit.org/sites/default/files/import/2017-09/11471-lambsdorff-papier.pdf",
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_fdp_klaus_kinkel_1",
+          "person": "klaus_kinkel",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1993"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1995-06-10"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1993"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1995-06-10"
+          },
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf",
+            "https://www.freiheit.org/de/wolfgang-gerhardt-buergerliche-politik-umbruchzeiten"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_fdp_wolfgang_gerhardt_1",
+          "person": "wolfgang_gerhardt",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1995-06-10"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2001"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1995-06-10"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2001"
+          },
+          "sources": [
+            "https://www.freiheit.org/de/wolfgang-gerhardt-buergerliche-politik-umbruchzeiten",
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_fdp_guido_westerwelle_1",
+          "person": "guido_westerwelle",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "2001"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2011"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "2001"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2011"
+          },
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_fdp_philipp_roesler_1",
+          "person": "philipp_roesler",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "2011"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2013"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "2011"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2013"
+          },
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_fdp_christian_lindner_1",
+          "person": "christian_lindner",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "2013"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2025-05-16"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "2013"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2025-05-16"
+          },
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf",
+            "https://www.fdp.de/neues-team-im-kampf-fuer-die-freiheit"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_fdp_christian_duerr_1",
+          "person": "christian_duerr",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2025-05-16"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-05-30"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2025-05-16"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2026-05-30"
+          },
+          "sources": [
+            "https://www.fdp.de/neues-team-im-kampf-fuer-die-freiheit",
+            "https://www.fdp.de/pressemitteilung/fdp-bundesparteitag-wahlergebnisse-praesidium-4"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_fdp_wolfgang_kubicki_1",
+          "person": "wolfgang_kubicki",
+          "role": "Federal chair",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2026-05-30"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2026-05-30"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.fdp.de/pressemitteilung/fdp-bundesparteitag-wahlergebnisse-praesidium-4"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "year",
+            "value": "1993"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2013"
+          },
+          "reason": "Day-accurate congress handovers in 1993, 2001, 2011 and 2013 require protocol audit; years are deliberate uncertainty, not January 1 assumptions.",
+          "sources": [
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "Germany",
+      "party": "de_gruene",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf",
+        "https://www.gruene.de/unsere-gruene-geschichte",
+        "https://www.gruene.de/leute/unser-bundesvorstand"
+      ],
+      "identity_note": "Die Grünen before the 1993 association with Bündnis 90; current Bündnis 90/Die Grünen thereafter. A single party can have three or two equal spokespersons. No invented leader chosen from co-chairs and no fake faction components.",
+      "components": [],
+      "terms": [
+        {
+          "id": "de_gruene_ralf_fuecks_1",
+          "person": "ralf_fuecks",
+          "role": "Federal board spokesperson",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "1989-03"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1990-06"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1989-03"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1990-06"
+          },
+          "sources": [
+            "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf"
+          ],
+          "note": "Elected at Duisburg congress 3–5 March 1989; succeeded at Dortmund 8–10 June 1990. Exact voting day not resolved, hence month bounds."
+        },
+        {
+          "id": "de_gruene_ruth_hammerbacher_1",
+          "person": "ruth_hammerbacher",
+          "role": "Federal board spokesperson",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "1989-03"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1990-06"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1989-03"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1990-06"
+          },
+          "sources": [
+            "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf"
+          ],
+          "note": "Elected at Duisburg congress 3–5 March 1989; succeeded at Dortmund 8–10 June 1990. Exact voting day not resolved, hence month bounds."
+        },
+        {
+          "id": "de_gruene_verena_krieger_1",
+          "person": "verena_krieger",
+          "role": "Federal board spokesperson",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "1989-03"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1990-06"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1989-03"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1990-06"
+          },
+          "sources": [
+            "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf"
+          ],
+          "note": "Elected at Duisburg congress 3–5 March 1989; succeeded at Dortmund 8–10 June 1990. Exact voting day not resolved, hence month bounds."
+        },
+        {
+          "id": "de_gruene_renate_damus_1",
+          "person": "renate_damus",
+          "role": "Federal board spokesperson",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "1990-06"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1991-04"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1990-06"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1991-04"
+          },
+          "sources": [
+            "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_heide_ruehle_1",
+          "person": "heide_ruehle",
+          "role": "Federal board spokesperson",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "1990-06"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1991-04"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1990-06"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1991-04"
+          },
+          "sources": [
+            "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_hans_christian_stroebele_1",
+          "person": "hans_christian_stroebele",
+          "role": "Federal board spokesperson",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "1990-06"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1991-04"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1990-06"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1991-04"
+          },
+          "sources": [
+            "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_christine_weiske_1",
+          "person": "christine_weiske",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "1991-04"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1993-05"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1991-04"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1993-05"
+          },
+          "sources": [
+            "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_ludger_volmer_1",
+          "person": "ludger_volmer",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "1991-04"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1994-12"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1991-04"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1994-12"
+          },
+          "sources": [
+            "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf",
+            "https://www.gruene.de/unsere-gruene-geschichte"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_marianne_birthler_1",
+          "person": "marianne_birthler",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "1993-05"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1994"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1993-05"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "1994"
+          },
+          "sources": [
+            "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf",
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_juergen_trittin_1",
+          "person": "juergen_trittin",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "1994-12"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1998"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1994-12"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "1998"
+          },
+          "sources": [
+            "https://www.gruene.de/unsere-gruene-geschichte",
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_krista_sager_1",
+          "person": "krista_sager",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "1994-12"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1996"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1994-12"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "1996"
+          },
+          "sources": [
+            "https://www.gruene.de/unsere-gruene-geschichte",
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_gunda_roestel_1",
+          "person": "gunda_roestel",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "year",
+            "value": "1996"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2000-06"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1996"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2000-06"
+          },
+          "sources": [
+            "https://www.gruene.de/unsere-gruene-geschichte",
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_antje_radcke_1",
+          "person": "antje_radcke",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "1998-12"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2000-06"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1998-12"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2000-06"
+          },
+          "sources": [
+            "https://www.gruene.de/unsere-gruene-geschichte",
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_renate_kuenast_1",
+          "person": "renate_kuenast",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "2000-06"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2001"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2000-06"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2001"
+          },
+          "sources": [
+            "https://www.gruene.de/unsere-gruene-geschichte",
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_fritz_kuhn_1",
+          "person": "fritz_kuhn",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "2000-06"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2002-12-08"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2000-06"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2002-12-08"
+          },
+          "sources": [
+            "https://www.gruene.de/unsere-gruene-geschichte",
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_claudia_roth_1",
+          "person": "claudia_roth",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "year",
+            "value": "2001"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2002-12-08"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "2001"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2002-12-08"
+          },
+          "sources": [
+            "https://www.bundestag.de/webarchiv/abgeordnete/biografien19/R/roth_claudia-523038",
+            "https://www.gruene.de/unsere-gruene-geschichte"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_angelika_beer_1",
+          "person": "angelika_beer",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "day",
+            "value": "2002-12-08"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2004-10"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2002-12-08"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2004-10"
+          },
+          "sources": [
+            "https://www.gruene.de/unsere-gruene-geschichte",
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_reinhard_buetikofer_1",
+          "person": "reinhard_buetikofer",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "day",
+            "value": "2002-12-08"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2008-11"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2002-12-08"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2008-11"
+          },
+          "sources": [
+            "https://www.gruene.de/unsere-gruene-geschichte",
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_claudia_roth_2",
+          "person": "claudia_roth",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "2004-10"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2013-10"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2004-10"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2013-10"
+          },
+          "sources": [
+            "https://www.bundestag.de/webarchiv/abgeordnete/biografien19/R/roth_claudia-523038",
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_cem_oezdemir_1",
+          "person": "cem_oezdemir",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "2008-11"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2018-01"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2008-11"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2018-01"
+          },
+          "sources": [
+            "https://www.gruene.de/unsere-gruene-geschichte",
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_simone_peter_1",
+          "person": "simone_peter",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "2013-10"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2018-01"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2013-10"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2018-01"
+          },
+          "sources": [
+            "https://www.gruene.de/unsere-gruene-geschichte",
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_annalena_baerbock_1",
+          "person": "annalena_baerbock",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "2018-01"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2022-01"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2018-01"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2022-01"
+          },
+          "sources": [
+            "https://www.gruene.de/unsere-gruene-geschichte",
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_robert_habeck_1",
+          "person": "robert_habeck",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "2018-01"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2022-01"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2018-01"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2022-01"
+          },
+          "sources": [
+            "https://www.gruene.de/unsere-gruene-geschichte",
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_ricarda_lang_1",
+          "person": "ricarda_lang",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "2022-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2024-11-16"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2022-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2024-11-16"
+          },
+          "sources": [
+            "https://gruene-rlp.de/2022/01/29/aufbruch-in-regierungsverantwortung/",
+            "https://www.gruene.de/artikel/neustartklar-mit-neuem-bundesvorstand"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_omid_nouripour_1",
+          "person": "omid_nouripour",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "2022-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2024-11-16"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2022-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2024-11-16"
+          },
+          "sources": [
+            "https://gruene-rlp.de/2022/01/29/aufbruch-in-regierungsverantwortung/",
+            "https://www.gruene.de/artikel/neustartklar-mit-neuem-bundesvorstand"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_franziska_brantner_1",
+          "person": "franziska_brantner",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "day",
+            "value": "2024-11-16"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2024-11-16"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.gruene.de/artikel/neustartklar-mit-neuem-bundesvorstand",
+            "https://www.gruene.de/leute/unser-bundesvorstand"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        },
+        {
+          "id": "de_gruene_felix_banaszak_1",
+          "person": "felix_banaszak",
+          "role": "Federal spokesperson / co-chair",
+          "kind": "co_leader",
+          "from": {
+            "kind": "day",
+            "value": "2024-11-16"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2024-11-16"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.gruene.de/artikel/neustartklar-mit-neuem-bundesvorstand",
+            "https://www.gruene.de/leute/unser-bundesvorstand"
+          ],
+          "note": "Office dates only; membership history is not fully researched. Coarse bounds preserve source uncertainty."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-09-08"
+          },
+          "reason": "Month/year handovers are deliberately coarse: multi-day congresses, Birthler's 1994 resignation, Trittin's 1998 transition, Künast/Roth 2001 and 2022 postal confirmation need exact-date audit. Full separate Bündnis 90 and East German Green leadership before association is not researched; do not backfill it into this Western baseline row.",
+          "sources": [
+            "https://www.boell.de/sites/default/files/uploads/2008/08/bdk_1979-1993_die_gruenen.pdf",
+            "https://www.gruene.de/unsere-gruene-geschichte",
+            "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+          ]
+        }
+      ]
+    }
+  ],
+  "portrait_reference_audit": [
+    {
+      "person": "helmut_kohl",
+      "era": "1989–1990",
+      "reference_date": {
+        "kind": "year",
+        "value": "1989"
+      },
+      "page": "https://commons.wikimedia.org/wiki/File:Helmut_Kohl_1989.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Helmut_Kohl_1989.jpg",
+      "provenance": "CDU election poster; KAS/ACDP 10-030:200.",
+      "license": "CC BY-SA 3.0 Germany",
+      "appearance": "Broad heavy face and neck; high receding forehead; short side-parted gray-brown hair; large square silver metal glasses; clean-shaven. Gray-blue suit, white shirt and dark tie.",
+      "audit": "Visually inspected. Official campaign-poster source dated 1989; not a separately dated 1990 photograph."
+    },
+    {
+      "person": "theo_waigel",
+      "era": "1990",
+      "reference_date": {
+        "kind": "day",
+        "value": "1990-01-12"
+      },
+      "page": "https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_183-1990-0112-030,_Berlin,_Gespr%C3%A4ch_Hans_Modrow,_Theo_Waigel.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/8/83/Bundesarchiv_Bild_183-1990-0112-030%2C_Berlin%2C_Gespr%C3%A4ch_Hans_Modrow%2C_Theo_Waigel.jpg",
+      "provenance": "Bundesarchiv Bild 183-1990-0112-030, Peer Grimm.",
+      "license": "CC BY-SA 3.0 Germany",
+      "appearance": "Second from left in profile: dense dark side-parted wavy hair, heavy dark eyebrows, broad long face, prominent straight nose; no glasses or facial hair. Dark suit, white shirt and dark tie.",
+      "audit": "Visually inspected. Hans Modrow is at right and Franz Bertele far left; do not substitute either face."
+    },
+    {
+      "person": "hans_jochen_vogel",
+      "era": "1990",
+      "reference_date": {
+        "kind": "day",
+        "value": "1990-04-20"
+      },
+      "page": "https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_183-1990-0420-019,_Berlin,_4._Volkskammertagung,_Hans-Jochen_Vogel,_Bertele.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Bundesarchiv_Bild_183-1990-0420-019%2C_Berlin%2C_4._Volkskammertagung%2C_Hans-Jochen_Vogel%2C_Bertele.jpg",
+      "provenance": "Bundesarchiv Bild 183-1990-0420-019, Gabriele Senft.",
+      "license": "CC BY-SA 3.0 Germany",
+      "appearance": "Foreground center leaning forward: swept-back thick silver-gray hair with high receding temples; broad rectangular face, strong straight nose and jaw; dark thick-rim rounded-square glasses; clean-shaven, dark suit and light shirt.",
+      "audit": "Visually inspected. Far-left foreground man is Franz Bertele; do not use his face."
+    },
+    {
+      "person": "otto_graf_lambsdorff",
+      "era": "1990",
+      "reference_date": {
+        "kind": "year",
+        "value": "1990"
+      },
+      "page": "https://bilddatenbank.bundestag.de/site/picture-detail?id=2320136",
+      "image": "https://bilddatenbank.bundestag.de/fotos/file7c4op7fieo82cr70e8e.jpg",
+      "provenance": "German Bundestag image 2320136, Alfred Hennig / Color Press.",
+      "license": "Restricted archive photograph; no free commercial redistribution license established. Reference only, do not ship photo.",
+      "appearance": "High bald domed crown with thin gray curling hair at sides and back; blue-gray eyes, arched pale brows, prominent long nose, rounded cheeks and slight closed-mouth smile; no glasses or facial hair. Gray suit, finely striped blue-white shirt, dark diagonal-striped tie, white pocket square.",
+      "audit": "Visually inspected. Archive labels January 1, 1990, which may be a year-only placeholder; reference deliberately retains year precision."
+    },
+    {
+      "person": "ralf_fuecks",
+      "era": "1989–1990",
+      "reference_date": {
+        "kind": "month",
+        "value": "1989-03"
+      },
+      "page": "https://commons.wikimedia.org/wiki/File:BDK_Duisburg_Gr%C3%BCne_1989_12_Ralf_F%C3%BCcks.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/BDK_Duisburg_Gr%C3%BCne_1989_12_Ralf_F%C3%BCcks.jpg/500px-BDK_Duisburg_Gr%C3%BCne_1989_12_Ralf_F%C3%BCcks.jpg",
+      "provenance": "Photographer Kasa Fue; Duisburg 1989 Green congress.",
+      "license": "CC BY-SA 4.0",
+      "appearance": "Left foreground: dark medium-length wavy hair with loose center/side part, thin metal glasses, rounded face, clean-shaven; dark blazer and open white shirt.",
+      "audit": "Visually inspected. Scene dated by congress attribution; 2023 metadata is digitization. Do not substitute the bald man in turquoise standing behind."
+    },
+    {
+      "person": "ruth_hammerbacher",
+      "era": "1989–1990",
+      "reference_date": {
+        "kind": "month",
+        "value": "1989-03"
+      },
+      "page": "https://commons.wikimedia.org/wiki/File:BDK_Duisburg_Gr%C3%BCne_1989_19_Ruth_Hammerbacher.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d3/BDK_Duisburg_Gr%C3%BCne_1989_19_Ruth_Hammerbacher.jpg/500px-BDK_Duisburg_Gr%C3%BCne_1989_19_Ruth_Hammerbacher.jpg",
+      "provenance": "Photographer Kasa Fue; Duisburg 1989 Green congress.",
+      "license": "CC BY-SA 4.0",
+      "appearance": "Center foreground: jaw-length center-parted brown bob tucked behind ears, narrow long oval face, no glasses; blue jacket, purple-blue scarf and long circular pendant.",
+      "audit": "Visually inspected. Scene dated by congress attribution; 2023 metadata is digitization."
+    },
+    {
+      "person": "verena_krieger",
+      "era": "1989–1990",
+      "reference_date": {
+        "kind": "month",
+        "value": "1989-03"
+      },
+      "page": "https://commons.wikimedia.org/wiki/File:BDK_Duisburg_Gr%C3%BCne_1989_13_Verena_Krieger.jpg",
+      "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/BDK_Duisburg_Gr%C3%BCne_1989_13_Verena_Krieger.jpg/500px-BDK_Duisburg_Gr%C3%BCne_1989_13_Verena_Krieger.jpg",
+      "provenance": "Photographer Kasa Fue; Duisburg 1989 Green congress.",
+      "license": "CC BY-SA 4.0",
+      "appearance": "Woman facing camera at right in embrace: long straight light-brown/dark-blond side-parted hair, narrow youthful face, long straight nose, broad smile, no glasses; magenta shirt.",
+      "audit": "Visually inspected. Scene dated by congress attribution; 2022/2023 metadata is digitization."
+    }
+  ],
+  "research_issues": [
+    {
+      "issue": "Bundestag handbook correction",
+      "detail": "SPD's own 2019/2020 yearbook ends Schäfer-Gümbel's acting service on 30 September, contrary to handbook's 6 December. Primary party record takes precedence.",
+      "sources": [
+        "https://spd05.spd.de/fileadmin/pv/Dokumente/BPT2021_Dez/Berichte/SPD_PV_Jahrbuch_2019_2020.pdf",
+        "https://www.bundestag.de/resource/blob/196158/a50c45785740e75aed39894943924fb6/Kapitel_05_07_Partei-_und_Fraktionsvorsitzende.pdf"
+      ]
+    },
+    {
+      "issue": "Current FDP leadership",
+      "detail": "Party election results dated 30 May 2026 identify Wolfgang Kubicki as chair, succeeding Christian Dürr. No extrapolation from 2025.",
+      "sources": [
+        "https://www.fdp.de/pressemitteilung/fdp-bundesparteitag-wahlergebnisse-praesidium-4"
+      ]
+    },
+    {
+      "issue": "Copyright",
+      "detail": "Reference photographs have individual provenance and permissions. Otto Lambsdorff archive photo has restricted redistribution; use only as observed reference for new artwork. No photographs are shipped by this artifact."
+    }
+  ]
+}

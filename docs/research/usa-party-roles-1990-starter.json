@@ -1,0 +1,470 @@
+{
+  "schema": "spheres-party-leader-research-v3",
+  "scope": "United States 1990 starting-party role audit, with bounded surrounding tenure facts; not a complete 1990-2026 US roster",
+  "source_checked_at": "2026-09-07",
+  "reference_from": "1990-01-01",
+  "reference_through": "2026-09-07",
+  "ingestion": {
+    "status": "identities-imported-party-terms-deferred",
+    "people": "Imported six new identities and enriched two existing people by exact ID, preserving every existing fact, source and office link.",
+    "parties": "Research-only national committee chair records. Runtime executive succession is not yet role-aware; do not import these generic leader terms until committee, chamber and executive roles have separate eligibility.",
+    "related_roles": "Research observations, outside the core Party schema. Do not merge into national committee chair terms without a role-aware UI/model decision.",
+    "boundaries": "Intervals are half-open. Month/year bounds are uncertainty, not exact resignation dates. Related role records use coarse bounds where specific congressional swearing, adjournment, caucus election, or handover dates were not independently checked.",
+    "review": "docs/research/usa-party-roles-ingestion-review.json"
+  },
+  "existing_simulation": {
+    "source_file": "spheres-sim/src/government.rs",
+    "party_ids": [
+      "us_dem",
+      "us_rep"
+    ],
+    "baseline": "1988 House popular vote shares, Democratic 0.534 and Republican 0.455",
+    "identity_note": "Source code explicitly models congressional support. It does not establish that the president, DNC/RNC chair, Speaker, or floor leader is interchangeable.",
+    "existing_executive_link": {
+      "person": "george_h_w_bush",
+      "since": "1989-01-20",
+      "action": "Preserve; presidency is separate from party administration and congressional leadership."
+    },
+    "display_recommendation": "For a national party organization card, show the DNC/RNC chair with the role label. For House negotiation cards, use the Speaker/House minority leader or the particular floor office involved. For Senate negotiations, use the Senate floor leaders. Do not assign a single unqualified United States opposition leader."
+  },
+  "people": [
+    {
+      "id": "ron_brown",
+      "name": "Ron Brown",
+      "born": {
+        "kind": "day",
+        "value": "1941-08-01"
+      },
+      "died": {
+        "kind": "day",
+        "value": "1996-04-03"
+      },
+      "sources": [
+        "https://www.govinfo.gov/content/pkg/CDOC-104sdoc27/pdf/CDOC-104sdoc27.pdf"
+      ]
+    },
+    {
+      "id": "lee_atwater",
+      "name": "Lee Atwater",
+      "born": {
+        "kind": "day",
+        "value": "1951-02-27"
+      },
+      "died": {
+        "kind": "day",
+        "value": "1991-03-29"
+      },
+      "sources": [
+        "https://www.reaganlibrary.gov/archives/speech/appointments-august-6-1985",
+        "https://www.presidency.ucsb.edu/documents/statement-the-death-lee-atwater"
+      ]
+    },
+    {
+      "id": "jeanie_austin",
+      "name": "Jeanie Austin",
+      "sources": [
+        "https://www.presidency.ucsb.edu/documents/remarks-the-republican-national-committee",
+        "https://www.presidency.ucsb.edu/documents/remarks-reception-for-supporters-the-annual-republican-congressional-fundraising-dinner",
+        "https://www.washingtonpost.com/archive/local/2000/04/26/jeanie-austin-dies-at-66/d7347710-f171-4b8a-ae00-a549c69b61a9/"
+      ],
+      "died": {
+        "kind": "month",
+        "value": "2000-04"
+      }
+    },
+    {
+      "id": "tom_foley",
+      "name": "Tom Foley",
+      "born": {
+        "kind": "day",
+        "value": "1929-03-06"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2013-10-18"
+      },
+      "sources": [
+        "https://history.house.gov/People/Detail/13275"
+      ]
+    },
+    {
+      "id": "robert_h_michel",
+      "name": "Robert H. Michel",
+      "born": {
+        "kind": "day",
+        "value": "1923-03-02"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2017-02-17"
+      },
+      "sources": [
+        "https://history.house.gov/People/Detail/18193"
+      ]
+    },
+    {
+      "id": "dick_gephardt",
+      "name": "Dick Gephardt",
+      "born": {
+        "kind": "day",
+        "value": "1941-01-31"
+      },
+      "sources": [
+        "https://history.house.gov/People/Detail/13727"
+      ]
+    },
+    {
+      "id": "george_j_mitchell",
+      "name": "George J. Mitchell",
+      "born": {
+        "kind": "day",
+        "value": "1933-08-20"
+      },
+      "sources": [
+        "https://digitalcollections.bowdoin.edu/view/697/interview-with-george-mitchell-3-by-andrea-l-hommedieu",
+        "https://www.senate.gov/senators/majority-minority-leaders.htm"
+      ]
+    },
+    {
+      "id": "bob_dole",
+      "name": "Bob Dole",
+      "born": {
+        "kind": "day",
+        "value": "1923-07-22"
+      },
+      "sources": [
+        "https://www.senate.gov/senators/FeaturedBios/Featured_Bio_DoleRobertJ.htm",
+        "https://history.house.gov/People/Detail/12331",
+        "https://www.house.gov/feature-stories/2021-12-9-former-senator-robert-dole-honored-at-capitol"
+      ],
+      "died": {
+        "kind": "day",
+        "value": "2021-12-05"
+      }
+    }
+  ],
+  "parties": [
+    {
+      "nation": "USA",
+      "party": "us_dem",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.govinfo.gov/content/pkg/CDOC-104sdoc27/pdf/CDOC-104sdoc27.pdf",
+        "https://www.govinfo.gov/link/crec/142/H/3445"
+      ],
+      "identity_note": "Democratic Party national organization. DNC chair Ron Brown is distinct from Democratic House Speaker Tom Foley, House majority floor leader Dick Gephardt, and Senate majority leader George J. Mitchell.",
+      "components": [],
+      "terms": [
+        {
+          "id": "us_dem_ron_brown_dnc_1989",
+          "person": "ron_brown",
+          "role": "Chair of the Democratic National Committee",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1989-02-10"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1993-01"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1989-02-10"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1993-01"
+          },
+          "sources": [
+            "https://www.govinfo.gov/content/pkg/CDOC-104sdoc27/pdf/CDOC-104sdoc27.pdf",
+            "https://www.govinfo.gov/link/crec/142/H/3445"
+          ],
+          "note": "Congressional tribute records election by acclamation February 10, 1989. Handover day in January 1993 remains unverified here. This is national party administration, not House leadership, Senate leadership, or the presidency."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "month",
+            "value": "1993-01"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "reason": "January 1993 handover day and subsequent national committee leadership were not audited in this 1990 starter task.",
+          "sources": [
+            "https://www.govinfo.gov/content/pkg/CDOC-104sdoc27/pdf/CDOC-104sdoc27.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "USA",
+      "party": "us_rep",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.presidency.ucsb.edu/documents/remarks-the-republican-national-committee",
+        "https://www.presidency.ucsb.edu/documents/remarks-reception-for-supporters-the-annual-republican-congressional-fundraising-dinner",
+        "https://www.reaganlibrary.gov/sites/default/files/2026-02/40-399-5730359-410-006-2025.pdf"
+      ],
+      "identity_note": "Republican Party national organization. RNC chair Lee Atwater and cochair Jeanie Austin are distinct from President George H. W. Bush, House minority leader Robert H. Michel, and Senate minority leader Bob Dole.",
+      "components": [],
+      "terms": [
+        {
+          "id": "us_rep_lee_atwater_rnc_1989",
+          "person": "lee_atwater",
+          "role": "Chair of the Republican National Committee",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1989-01-18"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1991"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1989-01-18"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "1991"
+          },
+          "sources": [
+            "https://www.reaganlibrary.gov/sites/default/files/2026-02/40-399-5730359-410-006-2025.pdf",
+            "https://www.presidency.ucsb.edu/documents/remarks-the-republican-national-committee",
+            "https://www.presidency.ucsb.edu/documents/remarks-reception-for-supporters-the-annual-republican-congressional-fundraising-dinner",
+            "https://www.presidency.ucsb.edu/documents/letter-accepting-the-resignation-clayton-k-yeutter-secretary-agriculture",
+            "https://www.presidency.ucsb.edu/documents/statement-the-death-lee-atwater"
+          ],
+          "note": "January 19, 1989 White House news summary records election the preceding Wednesday. Contemporary presidential remarks confirm Atwater remained chair in January and June 1990. The precise 1991 handover to Clayton Yeutter requires review: January 25 election versus March 1 departure from Agriculture must not be conflated. The year bound deliberately leaves 1991 unresolved; March 29 death is not asserted as the chairmanship end."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "year",
+            "value": "1991"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "reason": "Precise 1991 Atwater-Yeutter effective handover, Atwater's illness-period delegation/acting authority, ceremonial general chair status, and later RNC leadership require a separate audit.",
+          "sources": [
+            "https://www.presidency.ucsb.edu/documents/letter-accepting-the-resignation-clayton-k-yeutter-secretary-agriculture",
+            "https://www.presidency.ucsb.edu/documents/statement-the-death-lee-atwater"
+          ]
+        }
+      ]
+    }
+  ],
+  "related_roles": [
+    {
+      "party": "us_dem",
+      "institution": "U.S. House of Representatives",
+      "record": {
+        "id": "us_dem_tom_foley_speaker_1989",
+        "person": "tom_foley",
+        "role": "Speaker of the U.S. House of Representatives",
+        "kind": "leader",
+        "from": {
+          "kind": "day",
+          "value": "1989-06-06"
+        },
+        "until": {
+          "kind": "month",
+          "value": "1995-01"
+        },
+        "affiliation_from": {
+          "kind": "day",
+          "value": "1989-06-06"
+        },
+        "affiliation_until": {
+          "kind": "month",
+          "value": "1995-01"
+        },
+        "sources": [
+          "https://history.house.gov/People/Detail/13275",
+          "https://history.house.gov/People/Office/Speakers-List/"
+        ],
+        "note": "House elected Foley Speaker June 6, 1989. Congress-specific re-elections and between-Congress vacancies should be represented separately in an exact office registry. In the 1990 House setting this is the senior Democratic leadership role, not DNC chair."
+      }
+    },
+    {
+      "party": "us_dem",
+      "institution": "U.S. House of Representatives",
+      "record": {
+        "id": "us_dem_dick_gephardt_majority_1989",
+        "person": "dick_gephardt",
+        "role": "House Majority Leader",
+        "kind": "leader",
+        "from": {
+          "kind": "day",
+          "value": "1989-06-14"
+        },
+        "until": {
+          "kind": "month",
+          "value": "1995-01"
+        },
+        "affiliation_from": {
+          "kind": "day",
+          "value": "1989-06-14"
+        },
+        "affiliation_until": {
+          "kind": "month",
+          "value": "1995-01"
+        },
+        "sources": [
+          "https://history.house.gov/People/Office/Majority-Leaders/",
+          "https://history.house.gov/People/Detail/13727"
+        ],
+        "note": "Official House table records election June 14, 1989. Distinct floor leadership role under Speaker Foley. January 1995 change of congressional control ends majority role; Gephardt continued afterward as minority leader, which is not staged here."
+      }
+    },
+    {
+      "party": "us_rep",
+      "institution": "U.S. House of Representatives",
+      "record": {
+        "id": "us_rep_robert_h_michel_minority_1981",
+        "person": "robert_h_michel",
+        "role": "House Minority Leader",
+        "kind": "leader",
+        "from": {
+          "kind": "year",
+          "value": "1981"
+        },
+        "until": {
+          "kind": "month",
+          "value": "1995-01"
+        },
+        "affiliation_from": {
+          "kind": "year",
+          "value": "1981"
+        },
+        "affiliation_until": {
+          "kind": "month",
+          "value": "1995-01"
+        },
+        "sources": [
+          "https://history.house.gov/People/Office/Minority-Leaders/",
+          "https://history.house.gov/People/Detail/18193"
+        ],
+        "note": "Official House leadership tables cover the 97th through 103rd Congresses. This is House opposition leadership despite a Republican president; not national opposition to the presidency. Exact initial caucus election/effective day was not audited."
+      }
+    },
+    {
+      "party": "us_dem",
+      "institution": "U.S. Senate",
+      "record": {
+        "id": "us_dem_george_j_mitchell_majority_1989",
+        "person": "george_j_mitchell",
+        "role": "Senate Majority Leader",
+        "kind": "leader",
+        "from": {
+          "kind": "year",
+          "value": "1989"
+        },
+        "until": {
+          "kind": "year",
+          "value": "1995"
+        },
+        "affiliation_from": {
+          "kind": "year",
+          "value": "1989"
+        },
+        "affiliation_until": {
+          "kind": "year",
+          "value": "1995"
+        },
+        "sources": [
+          "https://www.senate.gov/senators/majority-minority-leaders.htm",
+          "https://digitalcollections.bowdoin.edu/view/697/interview-with-george-mitchell-3-by-andrea-l-hommedieu"
+        ],
+        "note": "Official Senate table lists the 101st through 103rd Congresses. Exact caucus election/effective day and 1995 transition day are not resolved by this staging pass."
+      }
+    },
+    {
+      "party": "us_rep",
+      "institution": "U.S. Senate",
+      "record": {
+        "id": "us_rep_bob_dole_minority_1987",
+        "person": "bob_dole",
+        "role": "Senate Minority Leader",
+        "kind": "leader",
+        "from": {
+          "kind": "year",
+          "value": "1987"
+        },
+        "until": {
+          "kind": "year",
+          "value": "1995"
+        },
+        "affiliation_from": {
+          "kind": "year",
+          "value": "1987"
+        },
+        "affiliation_until": {
+          "kind": "year",
+          "value": "1995"
+        },
+        "sources": [
+          "https://www.senate.gov/senators/majority-minority-leaders.htm",
+          "https://history.house.gov/People/Detail/12331"
+        ],
+        "note": "Minority role only. Dole held majority leadership before and afterward; those are distinct office terms, not evidence of a 1990 RNC chairmanship."
+      }
+    },
+    {
+      "party": "us_rep",
+      "institution": "Republican National Committee",
+      "person": "jeanie_austin",
+      "role": "Cochair of the Republican National Committee",
+      "kind": "co_leader",
+      "observed_dates": [
+        "1990-01-02",
+        "1990-06-12"
+      ],
+      "sources": [
+        "https://www.presidency.ucsb.edu/documents/remarks-the-republican-national-committee",
+        "https://www.presidency.ucsb.edu/documents/remarks-reception-for-supporters-the-annual-republican-congressional-fundraising-dinner"
+      ],
+      "note": "Contemporary presidential remarks explicitly identify cochair. Exact full tenure and any acting chair authority during Atwater's illness remain unverified, so no artificial continuous Term is staged."
+    }
+  ],
+  "coverage_gaps": [
+    "This covers the two represented US party identities, not every real American minor party.",
+    "Subsequent national chairs and congressional succession after starter-era bounds are not researched here.",
+    "No national committee cochair tenure is inferred from a pair of dated observations.",
+    "Existing historical avatars need dated likeness references before US cartoon art generation.",
+    "No fictional successor is a historical claimant. Fiction after the historical cutoff must remain clearly labeled."
+  ],
+  "sources": [
+    "https://www.govinfo.gov/content/pkg/CDOC-104sdoc27/pdf/CDOC-104sdoc27.pdf",
+    "https://www.govinfo.gov/link/crec/142/H/3445",
+    "https://www.reaganlibrary.gov/archives/speech/appointments-august-6-1985",
+    "https://www.reaganlibrary.gov/sites/default/files/2026-02/40-399-5730359-410-006-2025.pdf",
+    "https://www.presidency.ucsb.edu/documents/remarks-the-republican-national-committee",
+    "https://www.presidency.ucsb.edu/documents/remarks-reception-for-supporters-the-annual-republican-congressional-fundraising-dinner",
+    "https://www.presidency.ucsb.edu/documents/statement-the-death-lee-atwater",
+    "https://www.presidency.ucsb.edu/documents/letter-accepting-the-resignation-clayton-k-yeutter-secretary-agriculture",
+    "https://history.house.gov/People/Detail/13275",
+    "https://history.house.gov/People/Detail/18193",
+    "https://history.house.gov/People/Detail/13727",
+    "https://history.house.gov/People/Office/Speakers-List/",
+    "https://history.house.gov/People/Office/Majority-Leaders/",
+    "https://history.house.gov/People/Office/Minority-Leaders/",
+    "https://www.senate.gov/senators/majority-minority-leaders.htm",
+    "https://digitalcollections.bowdoin.edu/view/697/interview-with-george-mitchell-3-by-andrea-l-hommedieu",
+    "https://www.senate.gov/senators/FeaturedBios/Featured_Bio_DoleRobertJ.htm",
+    "https://history.house.gov/People/Detail/12331",
+    "https://www.house.gov/feature-stories/2021-12-9-former-senator-robert-dole-honored-at-capitol",
+    "https://www.washingtonpost.com/archive/local/2000/04/26/jeanie-austin-dies-at-66/d7347710-f171-4b8a-ae00-a549c69b61a9/"
+  ],
+  "biographical_notes": {
+    "jeanie_austin": "RNC role is confirmed by contemporary presidential remarks. April 2000 death is supported by a contemporaneous Associated Press obituary (secondary biographical source); exact day and birth date require primary confirmation. This is not the later librarian/author with the same name."
+  }
+}

@@ -1,0 +1,2742 @@
+{
+  "schema": "spheres-party-leader-research-v3",
+  "reference_from": "1990-01-01",
+  "reference_through": "2026-09-07",
+  "source_checked_at": "2026-09-07",
+  "nation": "France",
+  "scope": {
+    "requested_through": "2035-12-31",
+    "history_through": "2026-09-07",
+    "future_from": "2026-09-08",
+    "future_policy": "Use invented successor identities after the historical cutoff. Research informs institutions and political careers; it does not predict offices held by real people. Label fiction.",
+    "coverage": "partial",
+    "represented_party_ids": [
+      "fr_ps",
+      "fr_rpr",
+      "fr_udf",
+      "fr_pcf",
+      "fr_fn"
+    ],
+    "claim": "All five represented top-level parties have real 1990 leaders. The six UDF constituent streams are retained. This is a partial research staging file, not a complete France roster or finished avatar delivery.",
+    "unrepresented_parties": "Greens/EELV/Les Écologistes, MRG/PRG, LCR/NPA, LO, MDC/MRC, La France insoumise, Renaissance and other post-1990 formations need distinct game identities. UMP/LR and the multiple UDF successor organizations must not silently replace the 1990 rows."
+  },
+  "ingestion": {
+    "status": "staged-requires-role-aware-integration-review",
+    "runtime_prerequisite": "Do not import automatically. The runtime's generic party-to-executive mapping and the 11 UDF component slots need a deliberate role-aware integration and save-migration decision. A party chair, constituent executive, parliamentary leader and national executive must not become interchangeable. No runtime import or save migration is performed by this artifact.",
+    "people": "Compatible Person records; preserve existing Michel Rocard and François Mitterrand IDs, names and office_links when merging. François Mitterrand is not inserted as 1990 PS first secretary.",
+    "parties": "Compatible Party/Term fields only. Sources and research limitations remain explicit. UDF federation and components are distinct. Do not replace existing save-hash IDs.",
+    "intervals": "Half-open [from, until). Month/year bounds are uncertainty windows, not known vacancies. When a source lists a final inclusive day, normalize to the next day or successor start; election dates and assumption of office are distinguished.",
+    "affiliations": "Only evidenced office/coverage windows are supplied, not complete party membership. Open terms are verified only through reference_through.",
+    "missing_life_dates": "Unverified births/deaths are omitted; absence of died is not evidence of life at the current date.",
+    "scope_clipping": "Some constituent terms start at 1990-01-01 to describe the researched game period, not the actual date they first took office. Clipped windows are identified in term notes."
+  },
+  "starter_leaders": [
+    {
+      "party": "fr_ps",
+      "person": "pierre_mauroy",
+      "at": "1990-01-01",
+      "role": "First secretary",
+      "sources": [
+        "https://archives-socialistes.fr/image/65063/43952?crop=centre&download=1&force-inline=&format=pdf&realHeight=1754&realWidth=1240&region=full&size=%21800%2C800",
+        "https://www.parti-socialiste.paris/histoire"
+      ]
+    },
+    {
+      "party": "fr_rpr",
+      "person": "jacques_chirac",
+      "at": "1990-01-01",
+      "role": "President",
+      "sources": [
+        "https://www.elysee.fr/jacques-chirac"
+      ]
+    },
+    {
+      "party": "fr_udf",
+      "component": "fr_udf_federation",
+      "person": "valery_giscard_d_estaing",
+      "at": "1990-01-01",
+      "role": "Federal president",
+      "sources": [
+        "https://www.charles-de-gaulle.org/lhomme/biographies/valery-giscard-destaing/",
+        "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html"
+      ]
+    },
+    {
+      "party": "fr_pcf",
+      "person": "georges_marchais",
+      "at": "1990-01-01",
+      "role": "General secretary",
+      "sources": [
+        "https://www.georgesmarchais.fr/biographie/"
+      ]
+    },
+    {
+      "party": "fr_fn",
+      "person": "jean_marie_le_pen",
+      "at": "1990-01-01",
+      "role": "President",
+      "sources": [
+        "https://www2.assemblee-nationale.fr/sycomore/fiche/7607",
+        "https://www.vie-publique.fr/files/discours/PDF/lepen890609.pdf"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "pierre_mauroy",
+      "name": "Pierre Mauroy",
+      "sources": [
+        "https://archives-socialistes.fr/image/65063/43952?crop=centre&download=1&force-inline=&format=pdf&realHeight=1754&realWidth=1240&region=full&size=%21800%2C800",
+        "https://www.parti-socialiste.paris/histoire",
+        "https://www.senat.fr/senateur/mauroy_pierre92037v.html"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1928-07-05"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2013-06-07"
+      }
+    },
+    {
+      "id": "laurent_fabius",
+      "name": "Laurent Fabius",
+      "sources": [
+        "https://www.parti-socialiste.paris/histoire",
+        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
+      ]
+    },
+    {
+      "id": "michel_rocard",
+      "name": "Michel Rocard",
+      "sources": [
+        "https://www.parti-socialiste.paris/histoire",
+        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
+      ]
+    },
+    {
+      "id": "henri_emmanuelli",
+      "name": "Henri Emmanuelli",
+      "sources": [
+        "https://www.parti-socialiste.paris/histoire",
+        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
+      ]
+    },
+    {
+      "id": "lionel_jospin",
+      "name": "Lionel Jospin",
+      "sources": [
+        "https://www.parti-socialiste.paris/histoire",
+        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
+      ]
+    },
+    {
+      "id": "francois_hollande",
+      "name": "François Hollande",
+      "sources": [
+        "https://www.parti-socialiste.paris/histoire",
+        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
+      ]
+    },
+    {
+      "id": "martine_aubry",
+      "name": "Martine Aubry",
+      "sources": [
+        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires",
+        "https://www.parti-socialiste.paris/histoire",
+        "https://www.ladepeche.fr/article/2011/06/30/1119097-harlem-desir-devient-premier-secretaire-par-interim-du-ps.html"
+      ]
+    },
+    {
+      "id": "harlem_desir",
+      "name": "Harlem Désir",
+      "sources": [
+        "https://www.ladepeche.fr/article/2011/06/30/1119097-harlem-desir-devient-premier-secretaire-par-interim-du-ps.html",
+        "https://www.ladepeche.fr/article/2012/10/18/1469031-ps-harlem-desir-elu-sans-surprise-premier-secretaire.html",
+        "https://www.cnews.fr/politique/2012-10-19/harlem-desir-elu-sans-surprise-premier-secretaire-179402",
+        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
+      ]
+    },
+    {
+      "id": "jean_christophe_cambadelis",
+      "name": "Jean-Christophe Cambadélis",
+      "sources": [
+        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires",
+        "https://www.parti-socialiste.paris/histoire"
+      ]
+    },
+    {
+      "id": "rachid_temal",
+      "name": "Rachid Temal",
+      "sources": [
+        "https://www.histoire-immigration.fr/sites/default/files/musee/atoms/files/20190122-dossier_conference_politique-ville.pdf",
+        "https://www.ladepeche.fr/article/2018/04/07/2775687-ps-congres-aubervilliers-tente-rassurer-avenir.html"
+      ]
+    },
+    {
+      "id": "olivier_faure",
+      "name": "Olivier Faure",
+      "sources": [
+        "https://parti-socialiste.fr/le-premier-secretaire/",
+        "https://www.ladepeche.fr/article/2018/04/07/2775687-ps-congres-aubervilliers-tente-rassurer-avenir.html",
+        "https://www.histoire-immigration.fr/sites/default/files/musee/atoms/files/20190122-dossier_conference_politique-ville.pdf"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1968-08-18"
+      }
+    },
+    {
+      "id": "jacques_chirac",
+      "name": "Jacques Chirac",
+      "sources": [
+        "https://www.elysee.fr/jacques-chirac",
+        "https://www.france-politique.fr/chronologie-rpr.htm"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1932-11-29"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2019-09-26"
+      }
+    },
+    {
+      "id": "alain_juppe",
+      "name": "Alain Juppé",
+      "sources": [
+        "https://www.economie.gouv.fr/saef/alain-juppe",
+        "https://www.france-politique.fr/chronologie-rpr.htm",
+        "https://www.elysee.fr/jacques-chirac/1997/07/06/message-de-m-jacques-chirac-president-de-la-republique-adresse-aux-militants-du-rpr-le-6-juillet-1997-paru-dans-la-lettre-de-la-nation-magazine-du-11"
+      ]
+    },
+    {
+      "id": "philippe_seguin",
+      "name": "Philippe Séguin",
+      "sources": [
+        "https://www.elysee.fr/jacques-chirac/1997/07/06/message-de-m-jacques-chirac-president-de-la-republique-adresse-aux-militants-du-rpr-le-6-juillet-1997-paru-dans-la-lettre-de-la-nation-magazine-du-11",
+        "https://www.vie-publique.fr/discours/234907-nicolas-sarkozy-16041999-vie-politique-rpr"
+      ]
+    },
+    {
+      "id": "nicolas_sarkozy",
+      "name": "Nicolas Sarkozy",
+      "sources": [
+        "https://www.vie-publique.fr/discours/234907-nicolas-sarkozy-16041999-vie-politique-rpr",
+        "https://www.lemonde.fr/archives/article/2002/09/21/mme-alliot-marie-dernier-patron-du-rpr-a-resiste-jusqu-au-bout_4259392_1819218.html"
+      ]
+    },
+    {
+      "id": "michele_alliot_marie",
+      "name": "Michèle Alliot-Marie",
+      "sources": [
+        "https://www.vie-publique.fr/discours/134486-communique-de-m-jacques-chirac-president-de-la-republique-en-date-du",
+        "https://www.lemonde.fr/archives/article/2002/09/21/mme-alliot-marie-dernier-patron-du-rpr-a-resiste-jusqu-au-bout_4259392_1819218.html",
+        "https://www.lemonde.fr/archives/article/2002/09/23/a-l-enterrement-du-rpr-les-dirigeants-gaullistes-etalent-leurs-rivalites_291500_1819218.html"
+      ]
+    },
+    {
+      "id": "georges_marchais",
+      "name": "Georges Marchais",
+      "sources": [
+        "https://www.georgesmarchais.fr/biographie/",
+        "https://www.cinearchives.org/catalogue-28eme-congres-du-parti-communiste-francais-1104-430-1-0.html",
+        "https://pandor.u-bourgogne.fr/pleade/docsearch-term.xsp?base=ead&f=lftitle&fLoaded=true&p=5&qid=sdx_q0&r=FRMSH021_00060&v=La+Pens%C3%A9e"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1920-06-07"
+      },
+      "died": {
+        "kind": "day",
+        "value": "1997-11-16"
+      }
+    },
+    {
+      "id": "robert_hue",
+      "name": "Robert Hue",
+      "sources": [
+        "https://pandor.u-bourgogne.fr/pleade/docsearch-term.xsp?base=ead&f=lftitle&fLoaded=true&p=5&qid=sdx_q0&r=FRMSH021_00060&v=La+Pens%C3%A9e",
+        "https://www.cinearchives.org/catalogue-28eme-congres-du-parti-communiste-francais-1104-430-1-0.html",
+        "https://www.lemonde.fr/archives/article/2001/10/29/l-invention-d-une-direction-bicephale-ne-calme-pas-le-malaise-communiste_238806_1819218.html",
+        "https://www1.rfi.fr/actufr/articles/035/article_18113.asp"
+      ]
+    },
+    {
+      "id": "marie_george_buffet",
+      "name": "Marie-George Buffet",
+      "sources": [
+        "https://sport.pcf.fr/10993",
+        "https://www.lemonde.fr/archives/article/2001/10/29/l-invention-d-une-direction-bicephale-ne-calme-pas-le-malaise-communiste_238806_1819218.html",
+        "https://meuse.pcf.fr/10676"
+      ]
+    },
+    {
+      "id": "pierre_laurent",
+      "name": "Pierre Laurent",
+      "sources": [
+        "https://meuse.pcf.fr/10676",
+        "https://www.pcf.fr/bio_sg"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1957-07-01"
+      }
+    },
+    {
+      "id": "fabien_roussel",
+      "name": "Fabien Roussel",
+      "sources": [
+        "https://www.pcf.fr/bio_sg",
+        "https://www.pcf.fr/le_conseil_national_du_pcf_a_adopte_son_nouvel_executif_national"
+      ]
+    },
+    {
+      "id": "valery_giscard_d_estaing",
+      "name": "Valéry Giscard d'Estaing",
+      "sources": [
+        "https://www.charles-de-gaulle.org/lhomme/biographies/valery-giscard-destaing/",
+        "https://www.france-politique.fr/chronologie-udf.htm",
+        "https://www.elysee.fr/valery-giscard-d-estaing"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1926-02-02"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2020-12-02"
+      }
+    },
+    {
+      "id": "francois_leotard",
+      "name": "François Léotard",
+      "sources": [
+        "https://www.ina.fr/ina-eclaire-actu/francois-leotard-corse-ministre-frere-udf-giscard",
+        "https://www.vie-publique.fr/discours/252044-francois-leotard-12121996-debat-relatif-la-monnaie-unique",
+        "https://www.france-politique.fr/chronologie-udf.htm",
+        "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/010083/",
+        "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html",
+        "https://www.lemonde.fr/archives/article/1995/06/30/l-election-de-m-leotard-fragilise-m-giscard-d-estaing_3863017_1819218.html"
+      ]
+    },
+    {
+      "id": "francois_bayrou",
+      "name": "François Bayrou",
+      "sources": [
+        "https://www.mouvementdemocrate.fr/fiche/francois-bayrou-2366",
+        "https://www.mouvementdemocrate.fr/mouvement-d%C3%A9mocrate/le-sens-de-notre-histoire-2461",
+        "https://www.france-politique.fr/chronologie-udf.htm",
+        "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/010083/",
+        "https://www.vie-publique.fr/discours/218201-jacques-delors-11121994-tf1-bilan-presidence-commission-europeenne",
+        "https://www.vie-publique.fr/discours/228827-articles-de-m-francois-bayrou-ministre-de-leducation-nationale-de-l"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1951-05-25"
+      }
+    },
+    {
+      "id": "gerard_longuet",
+      "name": "Gérard Longuet",
+      "sources": [
+        "https://archives.defense.gouv.fr/ministre/archives-gerard-longuet/le-ministre/biographie/biographie-gerard-longuet.html",
+        "https://www.lemonde.fr/archives/article/1995/06/30/l-election-de-m-leotard-fragilise-m-giscard-d-estaing_3863017_1819218.html"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1946-02-24"
+      }
+    },
+    {
+      "id": "alain_madelin",
+      "name": "Alain Madelin",
+      "sources": [
+        "https://www.france-politique.fr/chronologie-udf.htm"
+      ]
+    },
+    {
+      "id": "pierre_mehaignerie",
+      "name": "Pierre Méhaignerie",
+      "sources": [
+        "https://www.vie-publique.fr/discours/231294-article-de-m-pierre-mehaignerie-president-du-cds-dans-democratie-mod",
+        "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html",
+        "https://www.vie-publique.fr/discours/218201-jacques-delors-11121994-tf1-bilan-presidence-commission-europeenne"
+      ]
+    },
+    {
+      "id": "yves_galland",
+      "name": "Yves Galland",
+      "sources": [
+        "https://parti-radical.fr/news/hommage-du-parti-radical-a-yves-galland-ancien-president-du-parti-radical/",
+        "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html",
+        "https://www.france-politique.fr/chronologie-parti-radical.htm"
+      ]
+    },
+    {
+      "id": "andre_rossinot",
+      "name": "André Rossinot",
+      "sources": [
+        "https://www.france-politique.fr/chronologie-parti-radical.htm",
+        "https://www.lemonde.fr/archives/article/1995/08/30/les-petits-partis-de-l-udf-preparent-leur-regroupement_3862784_1819218.html"
+      ]
+    },
+    {
+      "id": "thierry_cornillet",
+      "name": "Thierry Cornillet",
+      "sources": [
+        "https://www.france-politique.fr/chronologie-parti-radical.htm"
+      ]
+    },
+    {
+      "id": "francois_loos",
+      "name": "François Loos",
+      "sources": [
+        "https://www.france-politique.fr/chronologie-parti-radical.htm",
+        "https://www.france-politique.fr/chronologie-udf.htm"
+      ]
+    },
+    {
+      "id": "andre_santini",
+      "name": "André Santini",
+      "sources": [
+        "https://www.vie-publique.fr/discours/246314-declaration-de-m-andre-santini-secretaire-general-du-psd-sur-le-psd-e",
+        "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html",
+        "https://lcp.fr/actualites/andre-santini-maire-historique-d-issy-les-moulineaux-est-mort-437101"
+      ],
+      "born": {
+        "kind": "year",
+        "value": "1940"
+      },
+      "died": {
+        "kind": "year",
+        "value": "2026"
+      }
+    },
+    {
+      "id": "herve_de_charette",
+      "name": "Hervé de Charette",
+      "sources": [
+        "https://www.perspectivesetrealites.fr/",
+        "https://www.lemonde.fr/archives/article/1995/06/30/l-election-de-m-leotard-fragilise-m-giscard-d-estaing_3863017_1819218.html",
+        "https://www.france-politique.fr/chronologie-udf.htm"
+      ]
+    },
+    {
+      "id": "paul_girod",
+      "name": "Paul Girod",
+      "sources": [
+        "https://www.senat.fr/senateur/girod_paul78003a.html",
+        "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1931-06-27"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2021-09-28"
+      }
+    },
+    {
+      "id": "pierre_andre_wiltzer",
+      "name": "Pierre-André Wiltzer",
+      "sources": [
+        "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/051513/?lang=en",
+        "https://www.france-politique.fr/chronologie-udf.htm"
+      ]
+    },
+    {
+      "id": "jean_marie_le_pen",
+      "name": "Jean-Marie Le Pen",
+      "sources": [
+        "https://www2.assemblee-nationale.fr/sycomore/fiche/7607",
+        "https://www.vie-publique.fr/files/discours/PDF/lepen890609.pdf",
+        "https://www.lemonde.fr/politique/article/2011/01/16/que-va-faire-bruno-gollnisch_5981762_823448.html"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1928-06-20"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2025-01-07"
+      }
+    },
+    {
+      "id": "marine_le_pen",
+      "name": "Marine Le Pen",
+      "sources": [
+        "https://www.lemonde.fr/politique/article/2011/01/16/que-va-faire-bruno-gollnisch_5981762_823448.html",
+        "https://www2.assemblee-nationale.fr/sycomore/fiche/7607",
+        "https://www.europe1.fr/politique/marine-le-pen-redevient-presidente-du-fn-a-la-place-de-steeve-briois-3330899",
+        "https://www.rtl.fr/actu/politique/marine-le-pen-front-national-rassemblement-national-7793611515",
+        "https://www.hatvp.fr/livraison/dossiers/bardella-jordan-di33114-europe.pdf"
+      ]
+    },
+    {
+      "id": "jean_francois_jalkh",
+      "name": "Jean-François Jalkh",
+      "sources": [
+        "https://www.lorientlejour.com/article/1048551/jean-francois-jalkh-dorigine-libanaise-president-par-interim-du-fn.html",
+        "https://www.europe1.fr/politique/marine-le-pen-redevient-presidente-du-fn-a-la-place-de-steeve-briois-3330899"
+      ]
+    },
+    {
+      "id": "steeve_briois",
+      "name": "Steeve Briois",
+      "sources": [
+        "https://www.europe1.fr/politique/marine-le-pen-redevient-presidente-du-fn-a-la-place-de-steeve-briois-3330899"
+      ]
+    },
+    {
+      "id": "jordan_bardella",
+      "name": "Jordan Bardella",
+      "sources": [
+        "https://www.hatvp.fr/livraison/dossiers/bardella-jordan-di33114-europe.pdf",
+        "https://www.rtl.fr/actu/politique/rassemblement-national-jordan-bardella-est-elu-president-du-parti-et-succede-a-marine-le-pen-7900202730",
+        "https://rassemblementnational.fr/communiques/composition-du-bureau-national-et-bureau-executif",
+        "https://rassemblementnational.fr/membre/jordan-bardella"
+      ]
+    }
+  ],
+  "parties": [
+    {
+      "nation": "France",
+      "party": "fr_ps",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.parti-socialiste.paris/histoire",
+        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires",
+        "https://parti-socialiste.fr/le-premier-secretaire/"
+      ],
+      "identity_note": "Parti socialiste. Party first secretary is a separate office from President of the Republic, prime minister and presidential nominee. Provisional/acting leadership is labelled. Party factions and allied parties are not fabricated as constituent parties.",
+      "components": [],
+      "terms": [
+        {
+          "id": "fr_ps_pierre_mauroy_19880514_leader",
+          "person": "pierre_mauroy",
+          "role": "First secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1988-05-14"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1992-01-09"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1988-05-14"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1992-01-09"
+          },
+          "sources": [
+            "https://archives-socialistes.fr/image/65063/43952?crop=centre&download=1&force-inline=&format=pdf&realHeight=1754&realWidth=1240&region=full&size=%21800%2C800",
+            "https://www.parti-socialiste.paris/histoire"
+          ]
+        },
+        {
+          "id": "fr_ps_laurent_fabius_19920109_leader",
+          "person": "laurent_fabius",
+          "role": "First secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1992-01-09"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1993-04-03"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1992-01-09"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1993-04-03"
+          },
+          "sources": [
+            "https://www.parti-socialiste.paris/histoire",
+            "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
+          ]
+        },
+        {
+          "id": "fr_ps_michel_rocard_19930403_acting",
+          "person": "michel_rocard",
+          "role": "Chair of provisional collective leadership",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "1993-04-03"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1993-10"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1993-04-03"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1993-10"
+          },
+          "sources": [
+            "https://www.parti-socialiste.paris/histoire"
+          ],
+          "note": "April committee installed a provisional collective direction, not an immediate regular first-secretary election. Exact October assumption day is not independently verified here."
+        },
+        {
+          "id": "fr_ps_michel_rocard_199310_leader",
+          "person": "michel_rocard",
+          "role": "First secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1993-10"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1994-06-19"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1993-10"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1994-06-19"
+          },
+          "sources": [
+            "https://www.parti-socialiste.paris/histoire",
+            "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
+          ]
+        },
+        {
+          "id": "fr_ps_henri_emmanuelli_19940619_leader",
+          "person": "henri_emmanuelli",
+          "role": "First secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1994-06-19"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1995-10-14"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1994-06-19"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1995-10-14"
+          },
+          "sources": [
+            "https://www.parti-socialiste.paris/histoire",
+            "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
+          ]
+        },
+        {
+          "id": "fr_ps_lionel_jospin_19951014_leader",
+          "person": "lionel_jospin",
+          "role": "First secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1995-10-14"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1997-06"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1995-10-14"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1997-06"
+          },
+          "sources": [
+            "https://www.parti-socialiste.paris/histoire",
+            "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
+          ],
+          "note": "1995 convention date is sourced; exact June 1997 delegation date remains unverified."
+        },
+        {
+          "id": "fr_ps_francois_hollande_199706_acting",
+          "person": "francois_hollande",
+          "role": "Delegated first secretary",
+          "kind": "acting",
+          "from": {
+            "kind": "month",
+            "value": "1997-06"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1997-11"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1997-06"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1997-11"
+          },
+          "sources": [
+            "https://www.parti-socialiste.paris/histoire"
+          ]
+        },
+        {
+          "id": "fr_ps_francois_hollande_199711_leader",
+          "person": "francois_hollande",
+          "role": "First secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1997-11"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2008-11"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1997-11"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2008-11"
+          },
+          "sources": [
+            "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires",
+            "https://www.parti-socialiste.paris/histoire"
+          ]
+        },
+        {
+          "id": "fr_ps_martine_aubry_200811_leader",
+          "person": "martine_aubry",
+          "role": "First secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "2008-11"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2011-06-30"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2008-11"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2011-06-30"
+          },
+          "sources": [
+            "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires",
+            "https://www.parti-socialiste.paris/histoire",
+            "https://www.ladepeche.fr/article/2011/06/30/1119097-harlem-desir-devient-premier-secretaire-par-interim-du-ps.html"
+          ]
+        },
+        {
+          "id": "fr_ps_harlem_desir_20110630_acting",
+          "person": "harlem_desir",
+          "role": "Acting first secretary during presidential primary",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2011-06-30"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2011-10"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2011-06-30"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2011-10"
+          },
+          "sources": [
+            "https://www.ladepeche.fr/article/2011/06/30/1119097-harlem-desir-devient-premier-secretaire-par-interim-du-ps.html"
+          ],
+          "note": "Aubry delegated day-to-day leadership during the primary. October return boundary needs primary confirmation."
+        },
+        {
+          "id": "fr_ps_martine_aubry_201110_leader",
+          "person": "martine_aubry",
+          "role": "First secretary (resumed exercise)",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "2011-10"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2012-09"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2011-10"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2012-09"
+          },
+          "sources": [
+            "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires",
+            "https://www.parti-socialiste.paris/histoire"
+          ],
+          "note": "Month bounds retained for delegation/resumption audit; do not infer a permanent resignation in 2011."
+        },
+        {
+          "id": "fr_ps_harlem_desir_201209_acting",
+          "person": "harlem_desir",
+          "role": "Acting first secretary",
+          "kind": "acting",
+          "from": {
+            "kind": "month",
+            "value": "2012-09"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2012-10"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2012-09"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2012-10"
+          },
+          "sources": [
+            "https://www.ladepeche.fr/article/2012/10/18/1469031-ps-harlem-desir-elu-sans-surprise-premier-secretaire.html",
+            "https://www.cnews.fr/politique/2012-10-19/harlem-desir-elu-sans-surprise-premier-secretaire-179402"
+          ],
+          "note": "Contemporary reports call Désir acting since September. Elected October 18; formal congress investiture October 28 needs a separate day-precision import decision."
+        },
+        {
+          "id": "fr_ps_harlem_desir_201210_leader",
+          "person": "harlem_desir",
+          "role": "First secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "2012-10"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2014-04"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2012-10"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2014-04"
+          },
+          "sources": [
+            "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires",
+            "https://www.ladepeche.fr/article/2012/10/18/1469031-ps-harlem-desir-elu-sans-surprise-premier-secretaire.html"
+          ]
+        },
+        {
+          "id": "fr_ps_jean_christophe_cambadelis_20140415_leader",
+          "person": "jean_christophe_cambadelis",
+          "role": "First secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2014-04-15"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2017-06"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2014-04-15"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2017-06"
+          },
+          "sources": [
+            "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires",
+            "https://www.parti-socialiste.paris/histoire"
+          ],
+          "note": "The party's Paris federation history dates election to April 15, 2014. The term stops at the June 2017 resignation-announcement month; legal mandate and collective leadership through September need separate review."
+        },
+        {
+          "id": "fr_ps_rachid_temal_20170930_acting",
+          "person": "rachid_temal",
+          "role": "National coordinator acting for the party direction",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2017-09-30"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2018-04-07"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2017-09-30"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2018-04-07"
+          },
+          "sources": [
+            "https://www.histoire-immigration.fr/sites/default/files/musee/atoms/files/20190122-dossier_conference_politique-ville.pdf",
+            "https://www.ladepeche.fr/article/2018/04/07/2775687-ps-congres-aubervilliers-tente-rassurer-avenir.html"
+          ],
+          "note": "Coordinator of the interim/collective direction, not an elected sole first secretary."
+        },
+        {
+          "id": "fr_ps_olivier_faure_20180407_leader",
+          "person": "olivier_faure",
+          "role": "First secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2018-04-07"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2018-04-07"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://parti-socialiste.fr/le-premier-secretaire/",
+            "https://www.ladepeche.fr/article/2018/04/07/2775687-ps-congres-aubervilliers-tente-rassurer-avenir.html",
+            "https://www.histoire-immigration.fr/sites/default/files/musee/atoms/files/20190122-dossier_conference_politique-ville.pdf"
+          ],
+          "note": "April 7 formal investiture used, distinct from March membership votes. Current official profile compresses these as March 15; the April investiture is contemporaneously documented. Official profile reconfirms leadership in 2026."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "month",
+            "value": "1993-10"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1993-11-01"
+          },
+          "reason": "Exact October 1993 provisional-to-elected handover day not independently confirmed.",
+          "sources": [
+            "https://www.parti-socialiste.paris/histoire"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "1997-06"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1997-12-01"
+          },
+          "reason": "Hollande's delegated and regular terms need exact June and November dates; month bounds are not actual vacancies.",
+          "sources": [
+            "https://www.parti-socialiste.paris/histoire",
+            "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "2008-11"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2008-12-01"
+          },
+          "reason": "Election recount/confirmation and formal handover dates require day-level verification.",
+          "sources": [
+            "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "2011-10"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2011-11-01"
+          },
+          "reason": "Aubry resumption date after primary needs primary event confirmation.",
+          "sources": [
+            "https://www.ladepeche.fr/article/2011/06/30/1119097-harlem-desir-devient-premier-secretaire-par-interim-du-ps.html"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "2012-09"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2012-11-01"
+          },
+          "reason": "Distinguish September delegation, October 18 election and October 28 investiture.",
+          "sources": [
+            "https://www.ladepeche.fr/article/2012/10/18/1469031-ps-harlem-desir-elu-sans-surprise-premier-secretaire.html"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "2014-04"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2014-04-15"
+          },
+          "reason": "Cambadélis's April 15 election is documented. Désir's final exercise of office after the April government appointment needs a separate source; the coarse preceding end is not a proven vacancy.",
+          "sources": [
+            "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires",
+            "https://www.parti-socialiste.paris/histoire"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "2017-06"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2017-09-30"
+          },
+          "reason": "Collective leadership and Cambadélis's remaining legal mandate are not fully modelled; do not appoint an invented sole leader.",
+          "sources": [
+            "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires",
+            "https://www.histoire-immigration.fr/sites/default/files/musee/atoms/files/20190122-dossier_conference_politique-ville.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "France",
+      "party": "fr_rpr",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.elysee.fr/jacques-chirac",
+        "https://www.economie.gouv.fr/saef/alain-juppe",
+        "https://www.lemonde.fr/archives/article/2002/09/23/a-l-enterrement-du-rpr-les-dirigeants-gaullistes-etalent-leurs-rivalites_291500_1819218.html"
+      ],
+      "identity_note": "Rassemblement pour la République existed from 1976 until its September 2002 merger/dissolution. UMP was a merger of several streams, not a timeless alias for the RPR. Ended rows must not acquire invented post-2002 RPR leaders.",
+      "components": [],
+      "terms": [
+        {
+          "id": "fr_rpr_jacques_chirac_19761205_leader",
+          "person": "jacques_chirac",
+          "role": "President",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1976-12-05"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1994-11"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1976-12-05"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1994-11"
+          },
+          "sources": [
+            "https://www.elysee.fr/jacques-chirac",
+            "https://www.france-politique.fr/chronologie-rpr.htm"
+          ],
+          "note": "Élysée gives November 12, 1994; secondary chronology groups Juppé interim succession under November 4 candidacy announcement. Month uncertainty retained."
+        },
+        {
+          "id": "fr_rpr_alain_juppe_199411_acting",
+          "person": "alain_juppe",
+          "role": "Acting president",
+          "kind": "acting",
+          "from": {
+            "kind": "month",
+            "value": "1994-11"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1995-10"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1994-11"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1995-10"
+          },
+          "sources": [
+            "https://www.economie.gouv.fr/saef/alain-juppe",
+            "https://www.france-politique.fr/chronologie-rpr.htm"
+          ]
+        },
+        {
+          "id": "fr_rpr_alain_juppe_199510_leader",
+          "person": "alain_juppe",
+          "role": "President",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1995-10"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1997-06"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1995-10"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1997-06"
+          },
+          "sources": [
+            "https://www.economie.gouv.fr/saef/alain-juppe",
+            "https://www.france-politique.fr/chronologie-rpr.htm",
+            "https://www.elysee.fr/jacques-chirac/1997/07/06/message-de-m-jacques-chirac-president-de-la-republique-adresse-aux-militants-du-rpr-le-6-juillet-1997-paru-dans-la-lettre-de-la-nation-magazine-du-11"
+          ],
+          "note": "Secondary chronology specifies October 15, 1995; primary government biography confirms 1995–97 presidency. June/July 1997 resignation-to-election handling needs review. Coverage stops at resignation month rather than assuming caretaker authority."
+        },
+        {
+          "id": "fr_rpr_philippe_seguin_19970706_leader",
+          "person": "philippe_seguin",
+          "role": "President",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1997-07-06"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1999-04"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1997-07-06"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1999-04"
+          },
+          "sources": [
+            "https://www.elysee.fr/jacques-chirac/1997/07/06/message-de-m-jacques-chirac-president-de-la-republique-adresse-aux-militants-du-rpr-le-6-juillet-1997-paru-dans-la-lettre-de-la-nation-magazine-du-11",
+            "https://www.vie-publique.fr/discours/234907-nicolas-sarkozy-16041999-vie-politique-rpr"
+          ]
+        },
+        {
+          "id": "fr_rpr_nicolas_sarkozy_199904_acting",
+          "person": "nicolas_sarkozy",
+          "role": "Acting president",
+          "kind": "acting",
+          "from": {
+            "kind": "month",
+            "value": "1999-04"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1999-12-04"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1999-04"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1999-12-04"
+          },
+          "sources": [
+            "https://www.vie-publique.fr/discours/234907-nicolas-sarkozy-16041999-vie-politique-rpr",
+            "https://www.lemonde.fr/archives/article/2002/09/21/mme-alliot-marie-dernier-patron-du-rpr-a-resiste-jusqu-au-bout_4259392_1819218.html"
+          ],
+          "note": "Already acting in April 16 statement after Séguin resignation; exact April 15/16 boundary remains month precision."
+        },
+        {
+          "id": "fr_rpr_michele_alliot_marie_19991204_leader",
+          "person": "michele_alliot_marie",
+          "role": "President",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1999-12-04"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2002-09-22"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1999-12-04"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2002-09-22"
+          },
+          "sources": [
+            "https://www.vie-publique.fr/discours/134486-communique-de-m-jacques-chirac-president-de-la-republique-en-date-du",
+            "https://www.lemonde.fr/archives/article/2002/09/21/mme-alliot-marie-dernier-patron-du-rpr-a-resiste-jusqu-au-bout_4259392_1819218.html",
+            "https://www.lemonde.fr/archives/article/2002/09/23/a-l-enterrement-du-rpr-les-dirigeants-gaullistes-etalent-leurs-rivalites_291500_1819218.html"
+          ],
+          "note": "December 4 election is corroborated by retrospective contemporary press; Élysée congratulates her December 5. September 21, 2002 dissolution day is included, with half-open end September 22."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "month",
+            "value": "1994-11"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1994-12-01"
+          },
+          "reason": "November 4/12 acting handover source conflict.",
+          "sources": [
+            "https://www.elysee.fr/jacques-chirac",
+            "https://www.france-politique.fr/chronologie-rpr.htm"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "1995-10"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1995-11-01"
+          },
+          "reason": "October 1995 acting-to-elected transition day only secondary-confirmed.",
+          "sources": [
+            "https://www.economie.gouv.fr/saef/alain-juppe",
+            "https://www.france-politique.fr/chronologie-rpr.htm"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "1997-06"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1997-07-06"
+          },
+          "reason": "Juppé announced resignation after June election defeat; caretaker status until July 6 successor vote needs exact review.",
+          "sources": [
+            "https://www.france-politique.fr/chronologie-rpr.htm",
+            "https://www.elysee.fr/jacques-chirac/1997/07/06/message-de-m-jacques-chirac-president-de-la-republique-adresse-aux-militants-du-rpr-le-6-juillet-1997-paru-dans-la-lettre-de-la-nation-magazine-du-11"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "1999-04"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1999-05-01"
+          },
+          "reason": "Séguin resignation and Sarkozy interim date unresolved within April.",
+          "sources": [
+            "https://www.vie-publique.fr/discours/234907-nicolas-sarkozy-16041999-vie-politique-rpr"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "2002-09-22"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "reason": "RPR dissolved into the multi-party UMP merger. A separate UMP/LR lineage and simulation identity are required; no post-dissolution RPR office is asserted.",
+          "sources": [
+            "https://www.lemonde.fr/archives/article/2002/09/23/a-l-enterrement-du-rpr-les-dirigeants-gaullistes-etalent-leurs-rivalites_291500_1819218.html"
+          ]
+        }
+      ],
+      "founded": {
+        "kind": "day",
+        "value": "1976-12-05"
+      },
+      "dissolved": {
+        "kind": "day",
+        "value": "2002-09-22"
+      }
+    },
+    {
+      "nation": "France",
+      "party": "fr_pcf",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.georgesmarchais.fr/biographie/",
+        "https://www.cinearchives.org/catalogue-28eme-congres-du-parti-communiste-francais-1104-430-1-0.html",
+        "https://sport.pcf.fr/10993",
+        "https://www.pcf.fr/le_conseil_national_du_pcf_a_adopte_son_nouvel_executif_national"
+      ],
+      "identity_note": "Parti communiste français. General secretary title became national secretary in 1994. President Robert Hue and national secretary Marie-George Buffet formed a dual leadership in 2001–03. Presidency is not interchangeable with national secretary.",
+      "components": [],
+      "terms": [
+        {
+          "id": "fr_pcf_georges_marchais_197212_leader",
+          "person": "georges_marchais",
+          "role": "General secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1972-12"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1994-01-29"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1972-12"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1994-01-29"
+          },
+          "sources": [
+            "https://www.georgesmarchais.fr/biographie/",
+            "https://www.cinearchives.org/catalogue-28eme-congres-du-parti-communiste-francais-1104-430-1-0.html",
+            "https://pandor.u-bourgogne.fr/pleade/docsearch-term.xsp?base=ead&f=lftitle&fLoaded=true&p=5&qid=sdx_q0&r=FRMSH021_00060&v=La+Pens%C3%A9e"
+          ]
+        },
+        {
+          "id": "fr_pcf_robert_hue_19940129_leader",
+          "person": "robert_hue",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1994-01-29"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2001-10"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1994-01-29"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2001-10"
+          },
+          "sources": [
+            "https://pandor.u-bourgogne.fr/pleade/docsearch-term.xsp?base=ead&f=lftitle&fLoaded=true&p=5&qid=sdx_q0&r=FRMSH021_00060&v=La+Pens%C3%A9e",
+            "https://www.cinearchives.org/catalogue-28eme-congres-du-parti-communiste-francais-1104-430-1-0.html",
+            "https://www.lemonde.fr/archives/article/2001/10/29/l-invention-d-une-direction-bicephale-ne-calme-pas-le-malaise-communiste_238806_1819218.html"
+          ]
+        },
+        {
+          "id": "fr_pcf_marie_george_buffet_200110_leader",
+          "person": "marie_george_buffet",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "2001-10"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2010-06-20"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2001-10"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2010-06-20"
+          },
+          "sources": [
+            "https://sport.pcf.fr/10993",
+            "https://www.lemonde.fr/archives/article/2001/10/29/l-invention-d-une-direction-bicephale-ne-calme-pas-le-malaise-communiste_238806_1819218.html",
+            "https://meuse.pcf.fr/10676"
+          ]
+        },
+        {
+          "id": "fr_pcf_robert_hue_200110_co_leader",
+          "person": "robert_hue",
+          "role": "President (dual leadership with national secretary)",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "2001-10"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2003"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2001-10"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2003"
+          },
+          "sources": [
+            "https://www.lemonde.fr/archives/article/2001/10/29/l-invention-d-une-direction-bicephale-ne-calme-pas-le-malaise-communiste_238806_1819218.html",
+            "https://www1.rfi.fr/actufr/articles/035/article_18113.asp"
+          ],
+          "note": "Separate president role. October 2001 creation is documented; announcement planned departure at April 2003 congress. Exact effective end remains unverified, so year precision is conservative."
+        },
+        {
+          "id": "fr_pcf_pierre_laurent_20100620_leader",
+          "person": "pierre_laurent",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2010-06-20"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2018-11-25"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2010-06-20"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2018-11-25"
+          },
+          "sources": [
+            "https://meuse.pcf.fr/10676",
+            "https://www.pcf.fr/bio_sg"
+          ]
+        },
+        {
+          "id": "fr_pcf_fabien_roussel_20181125_leader",
+          "person": "fabien_roussel",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2018-11-25"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2018-11-25"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.pcf.fr/bio_sg",
+            "https://www.pcf.fr/le_conseil_national_du_pcf_a_adopte_son_nouvel_executif_national"
+          ],
+          "note": "Current leadership rechecked using the party's August 24, 2026 executive announcement, not merely a stale 2018 biography."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "month",
+            "value": "2001-10"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2001-11-01"
+          },
+          "reason": "Exact 2001 statutory transition days need primary congress documents.",
+          "sources": [
+            "https://www.lemonde.fr/archives/article/2001/10/29/l-invention-d-une-direction-bicephale-ne-calme-pas-le-malaise-communiste_238806_1819218.html",
+            "https://sport.pcf.fr/10993"
+          ]
+        },
+        {
+          "from": {
+            "kind": "year",
+            "value": "2003"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2004-01-01"
+          },
+          "reason": "Hue presidency's effective end is not day-verified; Buffet remains evidenced national secretary.",
+          "sources": [
+            "https://www1.rfi.fr/actufr/articles/035/article_18113.asp"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "France",
+      "party": "fr_udf",
+      "kind": "coalition",
+      "coverage": "partial",
+      "sources": [
+        "https://www.charles-de-gaulle.org/lhomme/biographies/valery-giscard-destaing/",
+        "https://www.france-politique.fr/chronologie-udf.htm",
+        "https://www.mouvementdemocrate.fr/fiche/francois-bayrou-2366",
+        "https://www.mouvementdemocrate.fr/mouvement-d%C3%A9mocrate/le-sens-de-notre-histoire-2461",
+        "https://www.senat.fr/senateur/girod_paul78003a.html",
+        "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/051513/?lang=en",
+        "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/010083/",
+        "https://www.vie-publique.fr/discours/228827-articles-de-m-francois-bayrou-ministre-de-leducation-nationale-de-l"
+      ],
+      "identity_note": "1990 UDF was a federation of distinct political organizations. Its federal president is recorded alongside constituent executives, not as their replacement. The 1998 Nouvelle UDF reorganization merged some components while others remained associated or departed. MoDem, Nouveau Centre, UMP and later organizations are separate branches; this row is not assigned an invented single 2007–2026 successor chain.",
+      "components": [
+        {
+          "id": "fr_udf_federation",
+          "name": "UDF federal / national leadership",
+          "sources": [
+            "https://www.charles-de-gaulle.org/lhomme/biographies/valery-giscard-destaing/",
+            "https://www.france-politique.fr/chronologie-udf.htm",
+            "https://www.mouvementdemocrate.fr/fiche/francois-bayrou-2366",
+            "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/010083/"
+          ]
+        },
+        {
+          "id": "fr_udf_pr",
+          "name": "Parti républicain (PR)",
+          "sources": [
+            "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html",
+            "https://archives.defense.gouv.fr/ministre/archives-gerard-longuet/le-ministre/biographie/biographie-gerard-longuet.html"
+          ]
+        },
+        {
+          "id": "fr_udf_dl",
+          "name": "Démocratie libérale (DL; former PR)",
+          "sources": [
+            "https://www.france-politique.fr/chronologie-udf.htm"
+          ]
+        },
+        {
+          "id": "fr_udf_cds",
+          "name": "Centre des démocrates sociaux (CDS)",
+          "sources": [
+            "https://www.vie-publique.fr/discours/231294-article-de-m-pierre-mehaignerie-president-du-cds-dans-democratie-mod",
+            "https://www.vie-publique.fr/discours/218201-jacques-delors-11121994-tf1-bilan-presidence-commission-europeenne",
+            "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/010083/"
+          ]
+        },
+        {
+          "id": "fr_udf_fd",
+          "name": "Force démocrate (CDS/PSD merger)",
+          "sources": [
+            "https://www.france-politique.fr/chronologie-udf.htm",
+            "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/010083/"
+          ]
+        },
+        {
+          "id": "fr_udf_radical",
+          "name": "Parti radical (Valoisien)",
+          "sources": [
+            "https://parti-radical.fr/news/hommage-du-parti-radical-a-yves-galland-ancien-president-du-parti-radical/",
+            "https://www.france-politique.fr/chronologie-parti-radical.htm"
+          ]
+        },
+        {
+          "id": "fr_udf_psd",
+          "name": "Parti social-démocrate (PSD)",
+          "sources": [
+            "https://www.vie-publique.fr/discours/246314-declaration-de-m-andre-santini-secretaire-general-du-psd-sur-le-psd-e",
+            "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html"
+          ]
+        },
+        {
+          "id": "fr_udf_perspectives",
+          "name": "Clubs Perspectives et Réalités",
+          "sources": [
+            "https://www.perspectivesetrealites.fr/"
+          ]
+        },
+        {
+          "id": "fr_udf_ppdf",
+          "name": "Parti populaire pour la démocratie française (PPDF)",
+          "sources": [
+            "https://www.france-politique.fr/chronologie-udf.htm",
+            "https://www.lemonde.fr/archives/article/1995/06/30/l-election-de-m-leotard-fragilise-m-giscard-d-estaing_3863017_1819218.html"
+          ]
+        },
+        {
+          "id": "fr_udf_direct",
+          "name": "Adhérents directs de l'UDF",
+          "sources": [
+            "https://www.senat.fr/senateur/girod_paul78003a.html",
+            "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/051513/?lang=en"
+          ]
+        },
+        {
+          "id": "fr_udf_pril",
+          "name": "Pôle républicain, indépendant et libéral (PRIL)",
+          "sources": [
+            "https://www.france-politique.fr/chronologie-udf.htm"
+          ]
+        }
+      ],
+      "terms": [
+        {
+          "id": "fr_udf_fr_udf_federation_valery_giscard_d_estaing_198806_leader",
+          "person": "valery_giscard_d_estaing",
+          "role": "Federal president",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1988-06"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1996-03-31"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1988-06"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1996-03-31"
+          },
+          "sources": [
+            "https://www.charles-de-gaulle.org/lhomme/biographies/valery-giscard-destaing/",
+            "https://www.france-politique.fr/chronologie-udf.htm"
+          ],
+          "component": "fr_udf_federation",
+          "note": "June 30, 1988 election is secondary-referenced; conservative month precision retained."
+        },
+        {
+          "id": "fr_udf_fr_udf_federation_francois_leotard_19960331_leader",
+          "person": "francois_leotard",
+          "role": "Federal president",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1996-03-31"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1998-09-17"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1996-03-31"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1998-09-17"
+          },
+          "sources": [
+            "https://www.ina.fr/ina-eclaire-actu/francois-leotard-corse-ministre-frere-udf-giscard",
+            "https://www.vie-publique.fr/discours/252044-francois-leotard-12121996-debat-relatif-la-monnaie-unique",
+            "https://www.france-politique.fr/chronologie-udf.htm",
+            "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/010083/"
+          ],
+          "component": "fr_udf_federation",
+          "note": "The specialist chronology dates Bayrou's election to September 16, 1998; the National Archives biography dates his assumption of the UDF presidency to September 17. This uses the assumption date for the handover."
+        },
+        {
+          "id": "fr_udf_fr_udf_federation_francois_bayrou_19980917_leader",
+          "person": "francois_bayrou",
+          "role": "National president",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1998-09-17"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2007-12-01"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1998-09-17"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2007-12-01"
+          },
+          "sources": [
+            "https://www.mouvementdemocrate.fr/fiche/francois-bayrou-2366",
+            "https://www.mouvementdemocrate.fr/mouvement-d%C3%A9mocrate/le-sens-de-notre-histoire-2461",
+            "https://www.france-politique.fr/chronologie-udf.htm",
+            "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/010083/"
+          ],
+          "component": "fr_udf_federation",
+          "note": "National Archives biography gives September 17, 1998 through November 30, 2007. The latter is included by the half-open end December 1. This is the evidenced presidency window, not a claim about UDF's exact legal dissolution or a single successor lineage. Election on September 16 and assumption on September 17 are distinguished."
+        },
+        {
+          "id": "fr_udf_fr_udf_pr_francois_leotard_19900101_leader",
+          "person": "francois_leotard",
+          "role": "President of the Parti républicain",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1990-02-15"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1990-02-15"
+          },
+          "sources": [
+            "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html"
+          ],
+          "component": "fr_udf_pr",
+          "note": "RESEARCH COVERAGE WINDOW, not full term. Contemporary February 14, 1990 report identifies Léotard as PR president. Window begins at the game start and includes that observation; actual 1990 handover to Longuet remains unverified."
+        },
+        {
+          "id": "fr_udf_fr_udf_pr_gerard_longuet_1990_leader",
+          "person": "gerard_longuet",
+          "role": "President of the Parti républicain",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1995-06-28"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1995-06-28"
+          },
+          "sources": [
+            "https://archives.defense.gouv.fr/ministre/archives-gerard-longuet/le-ministre/biographie/biographie-gerard-longuet.html",
+            "https://www.lemonde.fr/archives/article/1995/06/30/l-election-de-m-leotard-fragilise-m-giscard-d-estaing_3863017_1819218.html"
+          ],
+          "component": "fr_udf_pr",
+          "note": "Government biography confirms 1990–95 presidency; exact 1990 start day not established."
+        },
+        {
+          "id": "fr_udf_fr_udf_pr_francois_leotard_19950628_leader",
+          "person": "francois_leotard",
+          "role": "President of the Parti républicain",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1995-06-28"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1997-06"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1995-06-28"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1997-06"
+          },
+          "sources": [
+            "https://www.lemonde.fr/archives/article/1995/06/30/l-election-de-m-leotard-fragilise-m-giscard-d-estaing_3863017_1819218.html",
+            "https://www.france-politique.fr/chronologie-udf.htm"
+          ],
+          "component": "fr_udf_pr",
+          "note": "Contemporary press confirmsJune 28, 1995 election. PR-to-DL transition datedJune 24, 1997 in specialist chronology; day-level primary confirmation remains pending."
+        },
+        {
+          "id": "fr_udf_fr_udf_dl_alain_madelin_199706_leader",
+          "person": "alain_madelin",
+          "role": "President of Démocratie libérale while associated with UDF",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1997-06"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1998-05"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1997-06"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1998-05"
+          },
+          "sources": [
+            "https://www.france-politique.fr/chronologie-udf.htm"
+          ],
+          "component": "fr_udf_dl",
+          "note": "UDF-affiliated window only. DL subsequently left UDF and had an independent existence until 2002; that separate branch is not silently shown under UDF after departure."
+        },
+        {
+          "id": "fr_udf_fr_udf_cds_pierre_mehaignerie_19900101_leader",
+          "person": "pierre_mehaignerie",
+          "role": "President of the Centre des démocrates sociaux",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1994-12-10"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1994-12-10"
+          },
+          "sources": [
+            "https://www.vie-publique.fr/discours/231294-article-de-m-pierre-mehaignerie-president-du-cds-dans-democratie-mod",
+            "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html",
+            "https://www.vie-publique.fr/discours/218201-jacques-delors-11121994-tf1-bilan-presidence-commission-europeenne"
+          ],
+          "component": "fr_udf_cds",
+          "note": "Start clipped to researched campaign scope; not an assertion that his presidency began in 1990."
+        },
+        {
+          "id": "fr_udf_fr_udf_cds_francois_bayrou_19941210_leader",
+          "person": "francois_bayrou",
+          "role": "President of the Centre des démocrates sociaux",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1994-12-10"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1995-11-25"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1994-12-10"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1995-11-25"
+          },
+          "sources": [
+            "https://www.vie-publique.fr/discours/218201-jacques-delors-11121994-tf1-bilan-presidence-commission-europeenne",
+            "https://www.france-politique.fr/chronologie-udf.htm",
+            "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/010083/",
+            "https://www.vie-publique.fr/discours/228827-articles-de-m-francois-bayrou-ministre-de-leducation-nationale-de-l"
+          ],
+          "component": "fr_udf_cds",
+          "note": "December 11, 1994 television transcript dates his election to the previous day. National Archives and the 1995 founding-congress articles support the CDS-to-Force démocrate transition on November 25, 1995; that day belongs to the new office."
+        },
+        {
+          "id": "fr_udf_fr_udf_fd_francois_bayrou_19951125_leader",
+          "person": "francois_bayrou",
+          "role": "President of Force démocrate",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1995-11-25"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1998-09-17"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1995-11-25"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1998-09-17"
+          },
+          "sources": [
+            "https://www.france-politique.fr/chronologie-udf.htm",
+            "https://www.mouvementdemocrate.fr/fiche/francois-bayrou-2366",
+            "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/010083/",
+            "https://www.vie-publique.fr/discours/228827-articles-de-m-francois-bayrou-ministre-de-leducation-nationale-de-l"
+          ],
+          "component": "fr_udf_fd",
+          "note": "National Archives biography gives the Force démocrate presidency as November 25, 1995 to September 17, 1998. This ends on the transition to the UDF presidency, not on Force démocrate's later November merger into Nouvelle UDF. The identity and office lifecycles are distinct."
+        },
+        {
+          "id": "fr_udf_fr_udf_radical_yves_galland_1988_leader",
+          "person": "yves_galland",
+          "role": "President of the Parti radical",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1988"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1993"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1988"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "1993"
+          },
+          "sources": [
+            "https://parti-radical.fr/news/hommage-du-parti-radical-a-yves-galland-ancien-president-du-parti-radical/",
+            "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html",
+            "https://www.france-politique.fr/chronologie-parti-radical.htm"
+          ],
+          "component": "fr_udf_radical",
+          "note": "Official party obituary says 1988–1994 whereas specialist chronology gives 1993 succession. The conservative guaranteed window ends before that conflict;1993–94 transition remains unresolved."
+        },
+        {
+          "id": "fr_udf_fr_udf_radical_andre_rossinot_1994_leader",
+          "person": "andre_rossinot",
+          "role": "President of the Parti radical",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1994"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1997"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1994"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "1997"
+          },
+          "sources": [
+            "https://www.france-politique.fr/chronologie-parti-radical.htm",
+            "https://www.lemonde.fr/archives/article/1995/08/30/les-petits-partis-de-l-udf-preparent-leur-regroupement_3862784_1819218.html"
+          ],
+          "component": "fr_udf_radical",
+          "note": "Start-year deliberately conservative because Galland's party obituary and secondary succession list conflict. Contemporary 1995 report confirms Rossinot in office."
+        },
+        {
+          "id": "fr_udf_fr_udf_radical_thierry_cornillet_1997_leader",
+          "person": "thierry_cornillet",
+          "role": "President of the Parti radical",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1997"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1999-11-21"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1997"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1999-11-21"
+          },
+          "sources": [
+            "https://www.france-politique.fr/chronologie-parti-radical.htm"
+          ],
+          "component": "fr_udf_radical"
+        },
+        {
+          "id": "fr_udf_fr_udf_radical_francois_loos_19991121_leader",
+          "person": "francois_loos",
+          "role": "President of the Parti radical while associated with UDF",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1999-11-21"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2002-10"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1999-11-21"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2002-10"
+          },
+          "sources": [
+            "https://www.france-politique.fr/chronologie-parti-radical.htm",
+            "https://www.france-politique.fr/chronologie-udf.htm"
+          ],
+          "component": "fr_udf_radical",
+          "note": "This is the UDF association window. Radical congress approved association with UMP inOctober 2002, with dissenting UDF supporters. Do not end the independent Radical organization here."
+        },
+        {
+          "id": "fr_udf_fr_udf_psd_andre_santini_1986_leader",
+          "person": "andre_santini",
+          "role": "General secretary of the Parti social-démocrate",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1986"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1995-11"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1986"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1995-11"
+          },
+          "sources": [
+            "https://www.vie-publique.fr/discours/246314-declaration-de-m-andre-santini-secretaire-general-du-psd-sur-le-psd-e",
+            "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html"
+          ],
+          "component": "fr_udf_psd",
+          "note": "Primary 1986 convention record gives general-secretary title; some newspaper reports loosely call him president. Max Lejeune's separate president/honorary-president status is unresolved and not conflated with Santini's documented executive role."
+        },
+        {
+          "id": "fr_udf_fr_udf_perspectives_herve_de_charette_1989_leader",
+          "person": "herve_de_charette",
+          "role": "President of the federation of Clubs Perspectives et Réalités",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1989"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1995-07"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1989"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1995-07"
+          },
+          "sources": [
+            "https://www.perspectivesetrealites.fr/",
+            "https://www.lemonde.fr/archives/article/1995/06/30/l-election-de-m-leotard-fragilise-m-giscard-d-estaing_3863017_1819218.html"
+          ],
+          "component": "fr_udf_perspectives",
+          "note": "Current federation history calls this presidency 1989–2013, spanning organizational changes. Political-party branch becomes PPDF inJuly 1995; the club institution and party organization require separate lifecycle handling."
+        },
+        {
+          "id": "fr_udf_fr_udf_ppdf_herve_de_charette_199507_leader",
+          "person": "herve_de_charette",
+          "role": "President of the PPDF while associated with UDF",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1995-07"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2002"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1995-07"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2002"
+          },
+          "sources": [
+            "https://www.france-politique.fr/chronologie-udf.htm",
+            "https://www.lemonde.fr/archives/article/1995/06/30/l-election-de-m-leotard-fragilise-m-giscard-d-estaing_3863017_1819218.html"
+          ],
+          "component": "fr_udf_ppdf",
+          "note": "Association end-year is uncertain here. PPDF's later Convention démocrate branch and UMP association are not an uninterrupted UDF constituent membership."
+        },
+        {
+          "id": "fr_udf_fr_udf_direct_paul_girod_1984_leader",
+          "person": "paul_girod",
+          "role": "Delegate-general for direct UDF members",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1984"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1990-02-15"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1984"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1990-02-15"
+          },
+          "sources": [
+            "https://www.senat.fr/senateur/girod_paul78003a.html",
+            "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html"
+          ],
+          "component": "fr_udf_direct",
+          "note": "RESEARCH COVERAGE END, not resignation. Senate biography confirms 1984–1990; contemporary February 14, 1990 report identifies him. End includes that observation while leaving actual 1990 successor date unresolved."
+        },
+        {
+          "id": "fr_udf_fr_udf_direct_pierre_andre_wiltzer_1990_leader",
+          "person": "pierre_andre_wiltzer",
+          "role": "Delegate-general for direct UDF members",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1998-11"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1998-11"
+          },
+          "sources": [
+            "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/051513/?lang=en",
+            "https://www.france-politique.fr/chronologie-udf.htm"
+          ],
+          "component": "fr_udf_direct",
+          "note": "National Archives biography confirms 1990–98; exact 1990 handover day not established. Direct members merged into Nouvelle UDF inNovember 1998."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "1990-02-15"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1991-01-01"
+          },
+          "reason": "PR Léotard/Longuet and direct-member Girod/Wiltzer handovers remain unresolved within 1990. Short clipped observation windows must not be mistaken for resignation dates.",
+          "sources": [
+            "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html",
+            "https://archives.defense.gouv.fr/ministre/archives-gerard-longuet/le-ministre/biographie/biographie-gerard-longuet.html",
+            "https://www.senat.fr/senateur/girod_paul78003a.html",
+            "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/051513/?lang=en"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1995-11"
+          },
+          "reason": "PSD president/honorary-president distinction and possible co-leadership with Santini require organizational minutes; Santini's general-secretary role is evidenced.",
+          "sources": [
+            "https://www.vie-publique.fr/discours/246314-declaration-de-m-andre-santini-secretaire-general-du-psd-sur-le-psd-e",
+            "https://www.senat.fr/senateur/lejeune_max000206.html"
+          ]
+        },
+        {
+          "from": {
+            "kind": "year",
+            "value": "1993"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1995-01-01"
+          },
+          "reason": "Radical 1993/1994 succession conflict and exact date unresolved.",
+          "sources": [
+            "https://parti-radical.fr/news/hommage-du-parti-radical-a-yves-galland-ancien-president-du-parti-radical/",
+            "https://www.france-politique.fr/chronologie-parti-radical.htm"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "1995-07"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1995-12-01"
+          },
+          "reason": "PPDF's July 1995 formation still needs a primary statutory record. The November 25 Force démocrate transition is supported; the exact end of Santini's PSD executive role and the other merger participants' office transitions remain unresolved.",
+          "sources": [
+            "https://www.lemonde.fr/archives/article/1995/06/30/l-election-de-m-leotard-fragilise-m-giscard-d-estaing_3863017_1819218.html",
+            "https://www.france-politique.fr/chronologie-udf.htm",
+            "https://www.vie-publique.fr/discours/228827-articles-de-m-francois-bayrou-ministre-de-leducation-nationale-de-l",
+            "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/010083/"
+          ]
+        },
+        {
+          "from": {
+            "kind": "year",
+            "value": "1997"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2003-01-01"
+          },
+          "reason": "Several constituent handover, departure and merger dates use coarse precision; PRIL collective leadership has no verified sole chair and is retained without an invented leader.",
+          "sources": [
+            "https://www.france-politique.fr/chronologie-udf.htm",
+            "https://www.france-politique.fr/chronologie-parti-radical.htm"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "2007-12-01"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "reason": "UDF split/transition into MoDem, Nouveau Centre and other currents; legal residual UDF and later revival/name-use questions unresolved. Separate game identities and branch-specific leadership research required.",
+          "sources": [
+            "https://www.mouvementdemocrate.fr/mouvement-d%C3%A9mocrate/le-sens-de-notre-histoire-2461",
+            "https://www.mouvementdemocrate.fr/fiche/francois-bayrou-2366",
+            "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/010083/"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "France",
+      "party": "fr_fn",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www2.assemblee-nationale.fr/sycomore/fiche/7607",
+        "https://www.vie-publique.fr/files/discours/PDF/lepen890609.pdf",
+        "https://rassemblementnational.fr/communiques/composition-du-bureau-national-et-bureau-executif",
+        "https://rassemblementnational.fr/membre/jordan-bardella"
+      ],
+      "identity_note": "Front national (FN), renamed Rassemblement national (RN) in 2018. This is a party, not a 1990 electoral coalition requiring invented component leaders. Founding factions, Mégret's separate split, presidential candidates, honorary president and RN parliamentary leader are distinct from serving party president.",
+      "components": [],
+      "terms": [
+        {
+          "id": "fr_fn_federal_jean_marie_le_pen_1972_leader",
+          "person": "jean_marie_le_pen",
+          "role": "President of the Front national",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1972"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2011-01-16"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1972"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2011-01-16"
+          },
+          "sources": [
+            "https://www2.assemblee-nationale.fr/sycomore/fiche/7607",
+            "https://www.vie-publique.fr/files/discours/PDF/lepen890609.pdf",
+            "https://www.lemonde.fr/politique/article/2011/01/16/que-va-faire-bruno-gollnisch_5981762_823448.html"
+          ]
+        },
+        {
+          "id": "fr_fn_federal_marine_le_pen_20110116_leader",
+          "person": "marine_le_pen",
+          "role": "President of the Front national",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2011-01-16"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2017-04"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2011-01-16"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2017-04"
+          },
+          "sources": [
+            "https://www.lemonde.fr/politique/article/2011/01/16/que-va-faire-bruno-gollnisch_5981762_823448.html",
+            "https://www2.assemblee-nationale.fr/sycomore/fiche/7607",
+            "https://www.europe1.fr/politique/marine-le-pen-redevient-presidente-du-fn-a-la-place-de-steeve-briois-3330899"
+          ]
+        },
+        {
+          "id": "fr_fn_federal_jean_francois_jalkh_20170425_acting",
+          "person": "jean_francois_jalkh",
+          "role": "Acting president of the Front national",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2017-04-25"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2017-04-28"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2017-04-25"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2017-04-28"
+          },
+          "sources": [
+            "https://www.lorientlejour.com/article/1048551/jean-francois-jalkh-dorigine-libanaise-president-par-interim-du-fn.html",
+            "https://www.europe1.fr/politique/marine-le-pen-redevient-presidente-du-fn-a-la-place-de-steeve-briois-3330899"
+          ],
+          "note": "Very brief interim appointment. Contemporary reporting and quoted party declarations used; original bureau minutes not located."
+        },
+        {
+          "id": "fr_fn_federal_steeve_briois_20170428_acting",
+          "person": "steeve_briois",
+          "role": "Acting president of the Front national",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2017-04-28"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2017-05-15"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2017-04-28"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2017-05-15"
+          },
+          "sources": [
+            "https://www.europe1.fr/politique/marine-le-pen-redevient-presidente-du-fn-a-la-place-de-steeve-briois-3330899"
+          ],
+          "note": "May 15 return of Marine is confirmed by Briois's own announcement quoted in this contemporary report."
+        },
+        {
+          "id": "fr_fn_federal_marine_le_pen_20170515_leader",
+          "person": "marine_le_pen",
+          "role": "President of FN / RN",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2017-05-15"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2021-09"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2017-05-15"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2021-09"
+          },
+          "sources": [
+            "https://www.europe1.fr/politique/marine-le-pen-redevient-presidente-du-fn-a-la-place-de-steeve-briois-3330899",
+            "https://www.rtl.fr/actu/politique/marine-le-pen-front-national-rassemblement-national-7793611515",
+            "https://www.hatvp.fr/livraison/dossiers/bardella-jordan-di33114-europe.pdf"
+          ],
+          "note": "2018 name change does not create a fictional new person or independent party presidency. September 2021 delegation to Bardella precedes his 2022 election."
+        },
+        {
+          "id": "fr_fn_federal_jordan_bardella_202109_acting",
+          "person": "jordan_bardella",
+          "role": "Acting president of the Rassemblement national",
+          "kind": "acting",
+          "from": {
+            "kind": "month",
+            "value": "2021-09"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2022-11-05"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2021-09"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2022-11-05"
+          },
+          "sources": [
+            "https://www.hatvp.fr/livraison/dossiers/bardella-jordan-di33114-europe.pdf",
+            "https://www.rtl.fr/actu/politique/rassemblement-national-jordan-bardella-est-elu-president-du-parti-et-succede-a-marine-le-pen-7900202730",
+            "https://rassemblementnational.fr/communiques/composition-du-bureau-national-et-bureau-executif"
+          ],
+          "note": "HATVP self-declaration verifies 2021–22 interim. September 12/13 start is inconsistent across sources; month precision retained."
+        },
+        {
+          "id": "fr_fn_federal_jordan_bardella_20221105_leader",
+          "person": "jordan_bardella",
+          "role": "President of the Rassemblement national",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2022-11-05"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2022-11-05"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://rassemblementnational.fr/communiques/composition-du-bureau-national-et-bureau-executif",
+            "https://rassemblementnational.fr/membre/jordan-bardella",
+            "https://www.hatvp.fr/livraison/dossiers/bardella-jordan-di33114-europe.pdf"
+          ],
+          "note": "Party's datedNovember 5, 2022 executive announcement confirms election. Current party profile still identifies him as president through research cutoff."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "month",
+            "value": "2017-04"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2017-04-25"
+          },
+          "reason": "Marine Le Pen's precise temporary-leave boundary and interim appointment formalities need original party record; no claim that she resigned permanently.",
+          "sources": [
+            "https://www.lorientlejour.com/article/1048551/jean-francois-jalkh-dorigine-libanaise-president-par-interim-du-fn.html",
+            "https://www.europe1.fr/politique/marine-le-pen-redevient-presidente-du-fn-a-la-place-de-steeve-briois-3330899"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "2021-09"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2021-10-01"
+          },
+          "reason": "Interim start September 12 versus 13 requires original party record. Formal presidency remains separate from acting exercise.",
+          "sources": [
+            "https://www.hatvp.fr/livraison/dossiers/bardella-jordan-di33114-europe.pdf",
+            "https://www.rtl.fr/actu/politique/rassemblement-national-jordan-bardella-est-elu-president-du-parti-et-succede-a-marine-le-pen-7900202730"
+          ]
+        }
+      ]
+    }
+  ],
+  "lifecycle_notes": [
+    {
+      "party": "fr_ps",
+      "note": "The President of the Republic and the PS first secretary are separate offices. Mitterrand's existing identity and office link must remain intact; Mauroy is the 1990 party leader. Acting and collective directions are distinct from elected first-secretary mandates.",
+      "sources": [
+        "https://www.parti-socialiste.paris/histoire",
+        "https://archives-socialistes.fr/les-collections/les-inventaires/premiers-secretaires"
+      ]
+    },
+    {
+      "party": "fr_rpr",
+      "note": "The RPR's dissolution congress was September 21, 2002; this file includes that final calendar day and ends on September 22. The multi-party UMP merger and later LR name belong to a separately researched lineage, not an automatic continuation of this exact row.",
+      "sources": [
+        "https://www.lemonde.fr/archives/article/2002/09/23/a-l-enterrement-du-rpr-les-dirigeants-gaullistes-etalent-leurs-rivalites_291500_1819218.html",
+        "https://www.france-politique.fr/chronologie-rpr.htm"
+      ]
+    },
+    {
+      "party": "fr_udf",
+      "note": "UDF was a federation with six constituent streams at the 1990 start. Federal leadership, PR, CDS, Radical, PSD, club federation and direct members remain separately addressable. The PSD's documented general secretary is retained while Max Lejeune's formal/honorary presidency status is left unresolved.",
+      "sources": [
+        "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html",
+        "https://www.vie-publique.fr/discours/246314-declaration-de-m-andre-santini-secretaire-general-du-psd-sur-le-psd-e",
+        "https://www.senat.fr/senateur/girod_paul78003a.html",
+        "https://www.perspectivesetrealites.fr/"
+      ]
+    },
+    {
+      "party": "fr_udf",
+      "note": "Later Force démocrate, Démocratie libérale, PPDF and PRIL identities are distinct components. A component's period associated with UDF is not its entire existence or the leader's entire career. Force démocrate's Bayrou presidency ends in September 1998; its later November merger is a different event.",
+      "sources": [
+        "https://www.france-politique.fr/chronologie-udf.htm",
+        "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/010083/",
+        "https://www.vie-publique.fr/discours/228827-articles-de-m-francois-bayrou-ministre-de-leducation-nationale-de-l"
+      ]
+    },
+    {
+      "party": "fr_udf",
+      "note": "The 2007 transition generated multiple branches, including MoDem and Nouveau Centre. Bayrou's evidenced UDF presidency ends after November 30, 2007. Residual legal UDF, later name use and the independent successor organizations need separate lifecycle decisions; this file does not invent a unique chain through 2026.",
+      "sources": [
+        "https://www.mouvementdemocrate.fr/mouvement-d%C3%A9mocrate/le-sens-de-notre-histoire-2461",
+        "https://rdf.archives-nationales.culture.gouv.fr/garance/entities/agent/010083/"
+      ]
+    },
+    {
+      "party": "fr_pcf",
+      "note": "Marchais's general-secretary title differs from Hue's and successors' national-secretary title. In 2001 Hue became president alongside Buffet as national secretary, so both offices are recorded. Hue's later presidency end remains coarse; no disappearance of Buffet's leadership is implied.",
+      "sources": [
+        "https://www.cinearchives.org/catalogue-28eme-congres-du-parti-communiste-francais-1104-430-1-0.html",
+        "https://sport.pcf.fr/10993",
+        "https://www.lemonde.fr/archives/article/2001/10/29/l-invention-d-une-direction-bicephale-ne-calme-pas-le-malaise-communiste_238806_1819218.html",
+        "https://www1.rfi.fr/actufr/articles/035/article_18113.asp"
+      ]
+    },
+    {
+      "party": "fr_fn",
+      "note": "The FN became RN in June 2018. The 2017 acting appointments and Bardella's 2021 acting role are distinct from election as president in November 2022. Marine Le Pen's later parliamentary leadership does not make her the serving party president.",
+      "sources": [
+        "https://www.rtl.fr/actu/politique/marine-le-pen-front-national-rassemblement-national-7793611515",
+        "https://www.europe1.fr/politique/marine-le-pen-redevient-presidente-du-fn-a-la-place-de-steeve-briois-3330899",
+        "https://www.hatvp.fr/livraison/dossiers/bardella-jordan-di33114-europe.pdf",
+        "https://rassemblementnational.fr/communiques/composition-du-bureau-national-et-bureau-executif",
+        "https://rassemblementnational.fr/membre/jordan-bardella"
+      ]
+    }
+  ],
+  "portrait_reference_audit": [
+    {
+      "person": "pierre_mauroy",
+      "era": "1990",
+      "reference_date": {
+        "kind": "day",
+        "value": "1990-02-07"
+      },
+      "page": "https://commons.wikimedia.org/wiki/File:Pierre_Mauroy_1990.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/6/68/Pierre_Mauroy_1990.jpg",
+      "provenance": "Bundesarchiv, Bild 183-1990-0207-031; photograph by Peer Grimm.",
+      "license": "CC BY-SA 3.0 Germany; verify linked file conditions and attribution before redistributing a photograph or derivative photographic asset.",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+      "appearance": "Broad rounded face and full neck; light silver-gray thinning hair brushed back with a soft side part; very large thin metal rounded-square spectacles; heavy cheeks, clean-shaven. Dark subtly checked suit, white shirt and small-pattern tie.",
+      "audit": "Visually inspected original file. The archival caption calls him Socialist International president, an anachronism for 1990; do not use that caption as evidence of his political office.",
+      "asset_use": "Appearance reference for an original cartoon. No photograph was added to the repository."
+    },
+    {
+      "person": "jacques_chirac",
+      "era": "1990",
+      "reference_date": {
+        "kind": "year",
+        "value": "1990"
+      },
+      "page": "https://commons.wikimedia.org/wiki/File:Jacques_Chirac_1990_(crop).jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Jacques_Chirac_1990_%28crop%29.jpg",
+      "original_source": "https://www.flickr.com/photos/inra_dist/34509500576/",
+      "provenance": "INRA, DIST; photograph by Jean Weber.",
+      "license": "CC BY 2.0; verify linked file attribution and conditions before redistribution.",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "appearance": "High forehead and receding hairline; short dark hair slicked back with graying temples; long oval face, prominent straight nose and ears. No glasses or facial hair. Narrow closed-mouth smile, gray plaid jacket, white collar and dark plain tie.",
+      "audit": "Visually inspected crop. Year 1990 is retained. The metadata's July 3 date and agricultural-show caption do not provide a confidently reconciled day; do not promote that value to an exact reference date.",
+      "asset_use": "Appearance reference for an original cartoon. No photograph was added to the repository."
+    },
+    {
+      "person": "valery_giscard_d_estaing",
+      "era": "1990",
+      "reference_date": {
+        "kind": "day",
+        "value": "1990-03-09"
+      },
+      "page": "https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_183-1990-0309-027,_Dresden,_Volkskammerwahl,_BFD-Wahlkundgebung.jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/1/14/Bundesarchiv_Bild_183-1990-0309-027%2C_Dresden%2C_Volkskammerwahl%2C_BFD-Wahlkundgebung.jpg",
+      "provenance": "Bundesarchiv, Bild 183-1990-0309-027; photograph by Ulrich Häßler; Dresden BFD election rally.",
+      "license": "CC BY-SA 3.0 Germany; verify linked file conditions and attribution before redistributing a photograph or derivative photographic asset.",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+      "appearance": "The standing speaker at far left, viewed in profile: very bald rounded domed crown, thin gray fringe around ears and back, long oval face, long straight nose, thin lips and slender neck. No spectacles or facial hair. Light trench coat.",
+      "audit": "Visually inspected full photograph and identity position. Its caption describes a European Parliament role; the UDF presidency is established by separate historical sources.",
+      "asset_use": "Appearance reference for an original cartoon. No photograph was added to the repository."
+    },
+    {
+      "person": "georges_marchais",
+      "era": "1990",
+      "reference_date": {
+        "kind": "month",
+        "value": "1990-10"
+      },
+      "page": "https://www.georgesmarchais.fr/ressources/photos/",
+      "image": "https://www.georgesmarchais.fr/wp-content/uploads/2016/01/georges-marchais-1990-oct-dedicace-livre-democratie-humanite-AD93.jpg",
+      "provenance": "Commemorative Georges Marchais gallery; filename identifies L'Humanité / AD93 and a Démocratie book signing.",
+      "license": "No free redistribution license established. Copyrighted reference only; do not ship the photograph.",
+      "appearance": "Seated center-left shaking hands: large receding/bare forehead, dark hair at the sides and back, thick dark eyebrows, prominent curved nose, broad cheek and jaw, animated broad smile. No glasses or facial hair. Dark vertically striped open-collar shirt.",
+      "audit": "Visually inspected photograph. October 1990 is an attribution from the filename, not a separately verified exact event date. The book was published earlier in 1990; publication date is not this image date. The older man behind the subject is not Marchais.",
+      "asset_use": "Observed appearance for an original cartoon only. No photograph was added to the repository."
+    },
+    {
+      "person": "jean_marie_le_pen",
+      "era": "1989–1990",
+      "reference_date": {
+        "kind": "day",
+        "value": "1989-12-08"
+      },
+      "page": "https://www.tf1info.fr/politique/videos-quand-bernard-tapie-faisait-le-show-a-la-tele-face-a-jean-marie-le-pen-1538703.html",
+      "image": "https://photos.tf1info.fr/images/1280/720/export_goio6phfo252o-5be715-0%401x.jpeg",
+      "date_corroboration": "https://www.gettyimages.com.au/detail/news-photo/jean-marie-le-pen-frances-far-right-leader-and-founder-of-news-photo/51350223",
+      "provenance": "TF1 television-debate retrospective image; the event date is corroborated by a separate AFP/Getty photograph credited to Jean-Pierre Muller. That photographer credit is not asserted for the TF1 frame.",
+      "license": "No free redistribution license established for the TF1 frame or AFP/Getty photograph. Copyrighted reference only; do not ship either photograph.",
+      "appearance": "Le Pen is at far left, with the host in the middle and Bernard Tapie at right. Broad rounded face, full cheeks and neck, receding light blond-gray wavy hair brushed back, high forehead and thin light-rim spectacles. Clean-shaven; dark suit, burgundy-red tie, red pocket square and light shirt. No eyepatch in this period.",
+      "audit": "Visually inspected full TF1 frame and identified subject position. Reference is December 1989, close to the 1990 game start. Do not confuse Tapie's face with Le Pen's or reuse an earlier eyepatch-era depiction.",
+      "asset_use": "Observed appearance for an original cartoon only. No photograph was added to the repository."
+    }
+  ],
+  "open_questions": [
+    "Resolve exact PS handover dates in October 1993, June/November 1997, November 2008, October 2011 and September/October 2012; separate votes, investitures, delegation and formal mandates.",
+    "Complete the PS collective leadership and Cambadélis legal-mandate audit between June and September 2017.",
+    "Resolve RPR November 1994 handover date conflict, October 1995 acting-to-elected transition, June/July 1997 caretaker status and April 1999 interim start.",
+    "Verify the PCF October 2001 dual-office transition and the effective end of Hue's presidency in 2003 against primary congress records.",
+    "Resolve the UDF PR and direct-member transitions within 1990, Radical Galland/Rossinot succession in 1993 versus 1994, PSD presidency versus general secretary, and PRIL collective leadership.",
+    "Obtain primary statutory records for UDF constituent formation, affiliation, departure and merger dates; do not extend leaders' UDF association windows to the entire existence of their independent parties.",
+    "Decide and research separate game identities for UMP/LR and all UDF successor branches, then research their leadership without rewriting existing party IDs or save hashes.",
+    "Verify the original FN/RN acting-leadership documents for April 2017 and the September 12/13, 2021 delegation discrepancy.",
+    "Research all unrepresented parties and any additional genuinely independent coalition components before claiming coverage of every French party.",
+    "Complete birth/death and period-portrait audits for the non-starter identities. Missing life dates are unknown, not permission to use a deceased person in a later campaign.",
+    "Build clearly labelled fictional successors only after the historical cutoff, using institutions and career research. This France staging file supplies no invented future names or predicted real-person offices."
+  ],
+  "constituent_starter_leaders": [
+    {
+      "party": "fr_udf",
+      "component": "fr_udf_pr",
+      "person": "francois_leotard",
+      "role": "President of the Parti républicain",
+      "at": "1990-01-01",
+      "sources": [
+        "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html"
+      ]
+    },
+    {
+      "party": "fr_udf",
+      "component": "fr_udf_cds",
+      "person": "pierre_mehaignerie",
+      "role": "President of the Centre des démocrates sociaux",
+      "at": "1990-01-01",
+      "sources": [
+        "https://www.vie-publique.fr/discours/231294-article-de-m-pierre-mehaignerie-president-du-cds-dans-democratie-mod",
+        "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html"
+      ]
+    },
+    {
+      "party": "fr_udf",
+      "component": "fr_udf_radical",
+      "person": "yves_galland",
+      "role": "President of the Parti radical",
+      "at": "1990-01-01",
+      "sources": [
+        "https://parti-radical.fr/news/hommage-du-parti-radical-a-yves-galland-ancien-president-du-parti-radical/",
+        "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html"
+      ]
+    },
+    {
+      "party": "fr_udf",
+      "component": "fr_udf_psd",
+      "person": "andre_santini",
+      "role": "General secretary of the Parti social-démocrate; presidency status separately unresolved",
+      "at": "1990-01-01",
+      "sources": [
+        "https://www.vie-publique.fr/discours/246314-declaration-de-m-andre-santini-secretaire-general-du-psd-sur-le-psd-e",
+        "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html"
+      ]
+    },
+    {
+      "party": "fr_udf",
+      "component": "fr_udf_perspectives",
+      "person": "herve_de_charette",
+      "role": "President of the federation of Clubs Perspectives et Réalités",
+      "at": "1990-01-01",
+      "sources": [
+        "https://www.perspectivesetrealites.fr/"
+      ]
+    },
+    {
+      "party": "fr_udf",
+      "component": "fr_udf_direct",
+      "person": "paul_girod",
+      "role": "Delegate-general for direct UDF members",
+      "at": "1990-01-01",
+      "sources": [
+        "https://www.senat.fr/senateur/girod_paul78003a.html",
+        "https://www.lemonde.fr/archives/article/1990/02/14/apres-les-assises-du-rpr-mm-pasqua-et-seguin-contestent-les-resultats-du-vote-sur-les-motions_3963807_1819218.html"
+      ]
+    }
+  ],
+  "life_date_notes": [
+    {
+      "person": "andre_santini",
+      "note": "LCP's June 1, 2026 obituary places death in the night spanning May 31/June 1 and birth in 1940. Year precision is deliberate; no invented exact birth or death day. A death record or family/municipal announcement can refine this.",
+      "sources": [
+        "https://lcp.fr/actualites/andre-santini-maire-historique-d-issy-les-moulineaux-est-mort-437101"
+      ]
+    }
+  ],
+  "source_quality": {
+    "primary_sources": "Official party histories and biographies; National Archives authority records; Senate and Assembly biographies; Élysée and government speech archives; HATVP office-holder disclosure; broadcaster footage for observed appearance.",
+    "qualification": "A public archive's biographical summary is an institutional source but is not always the original appointment instrument. Contemporary statements and congress records are preferred for exact office dates. Official sites can contain caption or timeline errors; conflicts are recorded rather than silently resolved.",
+    "secondary_sources": "France-politique.fr is Laurent de Boissieu's specialist chronology, not an official party or government source. Le Monde, AFP reports carried by La Dépêche, RFI, RTL, Europe 1, L'Orient-Le Jour and LCP reporting are identified as secondary/contemporary reporting where used; quoted first-person announcements provide corroboration but are not original minutes.",
+    "precision": "The dataset deliberately preserves month/year precision and marked observation windows when exact appointment dates have not been established. The research is partial, not certified complete."
+  },
+  "counts": {
+    "people": 40,
+    "party_rows": 5,
+    "leadership_windows": 54,
+    "udf_components": 11,
+    "top_level_1990_starters": 5,
+    "constituent_1990_starters": 6,
+    "visually_audited_starter_references": 5
+  }
+}

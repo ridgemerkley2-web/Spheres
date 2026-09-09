@@ -1,0 +1,24 @@
+{
+  "imported_parties": [
+    {
+      "nation": "USA",
+      "party": "us_dem",
+      "terms": 1,
+      "components": []
+    },
+    {
+      "nation": "USA",
+      "party": "us_rep",
+      "terms": 1,
+      "components": []
+    }
+  ],
+  "people_changed": 0,
+  "office_links_changed": 0,
+  "executive_grants_added": 0,
+  "save_files_changed": 0,
+  "source_file": "docs/research/usa-party-roles-1990-starter.json",
+  "source_sha256": "c2a058c28df0f842f7b14a453949584d57f2fb7b68ccf887c1f5610a22414404",
+  "status": "party_terms_imported",
+  "validation": "Run native registry, succession and saved-campaign checks after import."
+}

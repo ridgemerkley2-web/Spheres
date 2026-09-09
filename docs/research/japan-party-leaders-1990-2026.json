@@ -1,0 +1,1906 @@
+{
+  "schema": "spheres-party-leader-research-v3",
+  "reference_from": "1990-01-01",
+  "reference_through": "2026-09-07",
+  "source_checked_at": "2026-09-07",
+  "nation": "Japan",
+  "scope": {
+    "requested_through": "2035-12-31",
+    "history_through": "2026-09-07",
+    "future_from": "2026-09-08",
+    "future_policy": "Use invented successor identities after the historical cutoff. Research informs institutional career paths and party policy; it does not predict offices held by real people. Label fiction and preserve historical source facts.",
+    "coverage": "partial",
+    "represented_party_ids": [
+      "jp_ldp",
+      "jp_jsp",
+      "jp_komeito",
+      "jp_jcp",
+      "jp_dsp"
+    ],
+    "unrepresented_parties": "DPJ/CDP, Nippon Ishin, DPP, Reiwa, Sanseito, the Conservative Party, New Socialist Party and other parties are not covered by the five 1990 simulation rows. Each needs a separate game identity before coverage can be claimed.",
+    "claim": "All five represented parties have real leaders identified at the 1990 start. This research does not claim complete world history, exhaustive Japanese chronology or finished avatars."
+  },
+  "ingestion": {
+    "status": "ready-for-reviewed-partial-import",
+    "people": "Compatible with Person: id, name, native, born/died DateBound and sources.",
+    "parties": "Compatible with Party and Term. Replace existing Japan rows and merge people by exact ID while preserving office_links. Coverage is partial; do not promote uncertain month boundaries to exact dates.",
+    "intervals": "Term windows are half-open [from, until). End dates are normalized to the successor's start where a source gives an inclusive final day. Month/year bounds express uncertainty, not a known vacancy.",
+    "affiliations": "Only evidenced leadership windows are included. These are not complete party-membership histories."
+  },
+  "starter_leaders": [
+    {
+      "party": "jp_ldp",
+      "person": "toshiki_kaifu",
+      "at": "1990-01-01",
+      "corroborated_at": "1990-02-02",
+      "sources": [
+        "https://www.jnpc.or.jp/archive/conferences/20132/report"
+      ]
+    },
+    {
+      "party": "jp_jsp",
+      "person": "takako_doi",
+      "at": "1990-01-01",
+      "corroborated_at": "1990-02-02",
+      "sources": [
+        "https://www.jnpc.or.jp/archive/conferences/20132/report"
+      ]
+    },
+    {
+      "party": "jp_komeito",
+      "person": "koshiro_ishida",
+      "at": "1990-01-01",
+      "corroborated_at": "1990-02-02",
+      "sources": [
+        "https://www.jnpc.or.jp/archive/conferences/20132/report"
+      ]
+    },
+    {
+      "party": "jp_jcp",
+      "person": "tetsuzo_fuwa",
+      "at": "1990-01-01",
+      "corroborated_at": "1990-02-02",
+      "sources": [
+        "https://www.jnpc.or.jp/archive/conferences/20132/report"
+      ]
+    },
+    {
+      "party": "jp_dsp",
+      "person": "eiichi_nagasue",
+      "at": "1990-01-01",
+      "corroborated_at": "1990-02-02",
+      "sources": [
+        "https://www.jnpc.or.jp/archive/conferences/20132/report"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "toshiki_kaifu",
+      "name": "Toshiki Kaifu",
+      "native": "海部俊樹",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/",
+        "https://www.jimin.jp/aboutus/history/14.html",
+        "https://www.kantei.go.jp/jp/rekidainaikaku/077.html"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1931-01-02"
+      }
+    },
+    {
+      "id": "kiichi_miyazawa",
+      "name": "Kiichi Miyazawa",
+      "native": "宮沢喜一",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/"
+      ]
+    },
+    {
+      "id": "yohei_kono",
+      "name": "Yōhei Kōno",
+      "native": "河野洋平",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/"
+      ]
+    },
+    {
+      "id": "ryutaro_hashimoto",
+      "name": "Ryūtarō Hashimoto",
+      "native": "橋本龍太郎",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/"
+      ]
+    },
+    {
+      "id": "keizo_obuchi",
+      "name": "Keizō Obuchi",
+      "native": "小渕恵三",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/"
+      ]
+    },
+    {
+      "id": "yoshiro_mori",
+      "name": "Yoshirō Mori",
+      "native": "森喜朗",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/"
+      ]
+    },
+    {
+      "id": "junichiro_koizumi",
+      "name": "Jun'ichirō Koizumi",
+      "native": "小泉純一郎",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/"
+      ]
+    },
+    {
+      "id": "shinzo_abe",
+      "name": "Shinzō Abe",
+      "native": "安倍晋三",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/"
+      ]
+    },
+    {
+      "id": "yasuo_fukuda",
+      "name": "Yasuo Fukuda",
+      "native": "福田康夫",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/"
+      ]
+    },
+    {
+      "id": "taro_aso",
+      "name": "Tarō Asō",
+      "native": "麻生太郎",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/"
+      ]
+    },
+    {
+      "id": "sadakazu_tanigaki",
+      "name": "Sadakazu Tanigaki",
+      "native": "谷垣禎一",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/"
+      ]
+    },
+    {
+      "id": "yoshihide_suga",
+      "name": "Yoshihide Suga",
+      "native": "菅義偉",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/"
+      ]
+    },
+    {
+      "id": "fumio_kishida",
+      "name": "Fumio Kishida",
+      "native": "岸田文雄",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/"
+      ]
+    },
+    {
+      "id": "shigeru_ishiba",
+      "name": "Shigeru Ishiba",
+      "native": "石破茂",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/"
+      ]
+    },
+    {
+      "id": "sanae_takaichi",
+      "name": "Sanae Takaichi",
+      "native": "高市早苗",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/"
+      ]
+    },
+    {
+      "id": "takako_doi",
+      "name": "Takako Doi",
+      "native": "土井たか子",
+      "sources": [
+        "https://www.jnpc.or.jp/archive/conferences/21625/report",
+        "https://www.jnpc.or.jp/archive/conferences/20132/report",
+        "https://kotobank.jp/word/%E5%9C%9F%E4%BA%95%E3%81%9F%E3%81%8B%E5%AD%90-102930",
+        "https://sdp.or.jp/policy-legislation/1996-1990/%E6%94%BF%E7%AD%96%E8%B3%87%E6%96%999611_362.pdf"
+      ]
+    },
+    {
+      "id": "makoto_tanabe",
+      "name": "Makoto Tanabe",
+      "native": "田辺誠",
+      "sources": [
+        "https://www.jnpc.or.jp/archive/conferences/20274/report/",
+        "https://kotobank.jp/word/%E6%97%A5%E6%9C%AC%E7%A4%BE%E4%BC%9A%E5%85%9A-110180"
+      ]
+    },
+    {
+      "id": "sadao_yamahana",
+      "name": "Sadao Yamahana",
+      "native": "山花貞夫",
+      "sources": [
+        "https://ndlsearch.ndl.go.jp/en/books/R000000004-I3481460",
+        "https://kotobank.jp/word/%E6%97%A5%E6%9C%AC%E7%A4%BE%E4%BC%9A%E5%85%9A-110180"
+      ]
+    },
+    {
+      "id": "tomiichi_murayama",
+      "name": "Tomiichi Murayama",
+      "native": "村山富市",
+      "sources": [
+        "https://kotobank.jp/word/%E6%97%A5%E6%9C%AC%E7%A4%BE%E4%BC%9A%E5%85%9A-110180",
+        "https://sdp.or.jp/policy-legislation/1996-1990/%E6%94%BF%E7%AD%96%E8%B3%87%E6%96%999611_362.pdf",
+        "https://sdp.or.jp/sdp-journal/kettou-3/"
+      ]
+    },
+    {
+      "id": "mizuho_fukushima",
+      "name": "Mizuho Fukushima",
+      "native": "福島みずほ",
+      "sources": [
+        "https://www.japantimes.co.jp/news/2003/11/16/national/sdp-hands-fukushima-huge-task-as-new-leader/",
+        "https://hiroshima.sdp.or.jp/20200222_special.html",
+        "https://sdp.or.jp/sdp-paper/toushu-116/"
+      ]
+    },
+    {
+      "id": "tadatomo_yoshida",
+      "name": "Tadatomo Yoshida",
+      "native": "吉田忠智",
+      "sources": [
+        "https://www.sdp-ishikawa.jp/archives/date/2013/10",
+        "https://hiroshima.sdp.or.jp/special.html"
+      ]
+    },
+    {
+      "id": "seiji_mataichi",
+      "name": "Seiji Mataichi",
+      "native": "又市征治",
+      "sources": [
+        "https://sdp.or.jp/sdp-paper/mataichi/",
+        "https://hiroshima.sdp.or.jp/special.html",
+        "https://hiroshima.sdp.or.jp/20200222_special.html"
+      ]
+    },
+    {
+      "id": "koshiro_ishida",
+      "name": "Kōshirō Ishida",
+      "native": "石田幸四郎",
+      "sources": [
+        "https://www.jnpc.or.jp/archive/conferences/20132/report",
+        "https://ndlsearch.ndl.go.jp/en/books/R000000004-I2927496"
+      ]
+    },
+    {
+      "id": "tomio_fujii",
+      "name": "Tomio Fujii",
+      "native": "藤井富雄",
+      "sources": [
+        "https://digital.komei-shimbun.jp/ex-keyword/active-supporters/0365202601012601"
+      ]
+    },
+    {
+      "id": "toshiko_hamayotsu",
+      "name": "Toshiko Hamayotsu",
+      "native": "浜四津敏子",
+      "sources": [
+        "https://www.komei.or.jp/result/story/"
+      ]
+    },
+    {
+      "id": "takenori_kanzaki",
+      "name": "Takenori Kanzaki",
+      "native": "神崎武法",
+      "sources": [
+        "https://www.komei.or.jp/about/history/",
+        "https://www.komei.or.jp/youthblog/archives/002/",
+        "https://www.jnpc.or.jp/archive/conferences/20953/report/",
+        "https://www.jstage.jst.go.jp/article/yoron/83/0/83_KJ00005350454/_pdf/-char/en"
+      ]
+    },
+    {
+      "id": "akihiro_ota",
+      "name": "Akihiro Ōta",
+      "native": "太田昭宏",
+      "sources": [
+        "https://www.komei.or.jp/youthblog/archives/002/",
+        "https://www.komei.or.jp/km/k-murakami/files/2015/06/ab979ae2a4f38345e3c0e387174d4860.pdf"
+      ]
+    },
+    {
+      "id": "natsuo_yamaguchi",
+      "name": "Natsuo Yamaguchi",
+      "native": "山口那津男",
+      "sources": [
+        "https://www.komei.or.jp/km/k-murakami/files/2015/06/ab979ae2a4f38345e3c0e387174d4860.pdf",
+        "https://www.komei.or.jp/km/ashiya-tahara/2024/09/28/"
+      ]
+    },
+    {
+      "id": "keiichi_ishii",
+      "name": "Keiichi Ishii",
+      "native": "石井啓一",
+      "sources": [
+        "https://www.komei.or.jp/km/ashiya-tahara/2024/09/28/",
+        "https://www.komei.or.jp/special/komei60/page/52/"
+      ]
+    },
+    {
+      "id": "tetsuo_saito",
+      "name": "Tetsuo Saitō",
+      "native": "斉藤鉄夫",
+      "sources": [
+        "https://www.komei.or.jp/special/komei60/page/52/",
+        "https://www.komei.or.jp/komeinews/p504957/"
+      ]
+    },
+    {
+      "id": "toshiko_takeya",
+      "name": "Toshiko Takeya",
+      "native": "竹谷とし子",
+      "sources": [
+        "https://www.komei.or.jp/komeinews/p504957/",
+        "https://www.komei.or.jp/komeinews/p506839/",
+        "https://www.komei.or.jp/about/profile/"
+      ]
+    },
+    {
+      "id": "tetsuzo_fuwa",
+      "name": "Tetsuzō Fuwa",
+      "native": "不破哲三",
+      "sources": [
+        "https://www.jnpc.or.jp/archive/conferences/20132/report",
+        "https://news.tv-asahi.co.jp/news_politics/articles/000476094.html",
+        "https://www.jcp.or.jp/page-15799/",
+        "https://www.jcp.or.jp/jcp/yakuin/3yaku/FUWA/index_2000.html"
+      ],
+      "died": {
+        "kind": "day",
+        "value": "2025-12-30"
+      }
+    },
+    {
+      "id": "kazuo_shii",
+      "name": "Kazuo Shii",
+      "native": "志位和夫",
+      "sources": [
+        "https://www.jcp.or.jp/jcp/yakuin/3yaku/FUWA/index_2000.html",
+        "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html"
+      ]
+    },
+    {
+      "id": "tomoko_tamura",
+      "name": "Tomoko Tamura",
+      "native": "田村智子",
+      "sources": [
+        "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html",
+        "https://www.jcp.or.jp/web_senkyo/2542/"
+      ]
+    },
+    {
+      "id": "eiichi_nagasue",
+      "name": "Eiichi Nagasue",
+      "native": "永末英一",
+      "sources": [
+        "https://www.jnpc.or.jp/archive/conferences/20132/report",
+        "https://ndlsearch.ndl.go.jp/books/R100000002-I000002913813",
+        "https://www.arsvi.com/d/c0132089a02.htm"
+      ],
+      "born": {
+        "kind": "year",
+        "value": "1918"
+      },
+      "died": {
+        "kind": "year",
+        "value": "1994"
+      }
+    },
+    {
+      "id": "keigo_ouchi",
+      "name": "Keigo Ōuchi",
+      "native": "大内啓伍",
+      "sources": [
+        "https://oisr-org.ws.hosei.ac.jp/research/dglb/explanation/exp_detail/?exp_id=4-012-9003764"
+      ]
+    },
+    {
+      "id": "takashi_yonezawa",
+      "name": "Takashi Yonezawa",
+      "native": "米沢隆",
+      "sources": [
+        "https://www.jnpc.or.jp/archive/conferences/20523/report",
+        "https://ndlsearch.ndl.go.jp/file/rnavi/kensei/umezawashouhei/index_umezawashouhei.pdf"
+      ]
+    }
+  ],
+  "parties": [
+    {
+      "nation": "Japan",
+      "party": "jp_ldp",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/"
+      ],
+      "identity_note": "The LDP presidency is separate from the office of Prime Minister. Presidents remain party leaders during periods out of government.",
+      "components": [],
+      "terms": [
+        {
+          "id": "jp_ldp_toshiki_kaifu_19890808",
+          "person": "toshiki_kaifu",
+          "role": "President of the Liberal Democratic Party (総裁)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1989-08-08"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1991-10-31"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1989-08-08"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1991-10-31"
+          },
+          "sources": [
+            "https://www.jimin.jp/aboutus/history/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Transcribed from the party's listed effective tenure dates. End is the next listed effective term start. Election and prime-ministerial dates can differ; see boundary_review."
+        },
+        {
+          "id": "jp_ldp_kiichi_miyazawa_19911031",
+          "person": "kiichi_miyazawa",
+          "role": "President of the Liberal Democratic Party (総裁)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1991-10-31"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1993-07-30"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1991-10-31"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1993-07-30"
+          },
+          "sources": [
+            "https://www.jimin.jp/aboutus/history/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Transcribed from the party's listed effective tenure dates. End is the next listed effective term start. Election and prime-ministerial dates can differ; see boundary_review."
+        },
+        {
+          "id": "jp_ldp_yohei_kono_19930730",
+          "person": "yohei_kono",
+          "role": "President of the Liberal Democratic Party (総裁)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1993-07-30"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1995-10-01"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1993-07-30"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1995-10-01"
+          },
+          "sources": [
+            "https://www.jimin.jp/aboutus/history/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Transcribed from the party's listed effective tenure dates. End is the next listed effective term start. Election and prime-ministerial dates can differ; see boundary_review."
+        },
+        {
+          "id": "jp_ldp_ryutaro_hashimoto_19951001",
+          "person": "ryutaro_hashimoto",
+          "role": "President of the Liberal Democratic Party (総裁)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1995-10-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1998-07-24"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1995-10-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1998-07-24"
+          },
+          "sources": [
+            "https://www.jimin.jp/aboutus/history/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Transcribed from the party's listed effective tenure dates. End is the next listed effective term start. Election and prime-ministerial dates can differ; see boundary_review."
+        },
+        {
+          "id": "jp_ldp_keizo_obuchi_19980724",
+          "person": "keizo_obuchi",
+          "role": "President of the Liberal Democratic Party (総裁)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1998-07-24"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2000-04-05"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1998-07-24"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2000-04-05"
+          },
+          "sources": [
+            "https://www.jimin.jp/aboutus/history/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Transcribed from the party's listed effective tenure dates. End is the next listed effective term start. Election and prime-ministerial dates can differ; see boundary_review."
+        },
+        {
+          "id": "jp_ldp_yoshiro_mori_20000405",
+          "person": "yoshiro_mori",
+          "role": "President of the Liberal Democratic Party (総裁)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2000-04-05"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2001-04-24"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2000-04-05"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2001-04-24"
+          },
+          "sources": [
+            "https://www.jimin.jp/aboutus/history/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Transcribed from the party's listed effective tenure dates. End is the next listed effective term start. Election and prime-ministerial dates can differ; see boundary_review."
+        },
+        {
+          "id": "jp_ldp_junichiro_koizumi_20010424",
+          "person": "junichiro_koizumi",
+          "role": "President of the Liberal Democratic Party (総裁)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2001-04-24"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2006-10-01"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2001-04-24"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2006-10-01"
+          },
+          "sources": [
+            "https://www.jimin.jp/aboutus/history/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Transcribed from the party's listed effective tenure dates. End is the next listed effective term start. Election and prime-ministerial dates can differ; see boundary_review."
+        },
+        {
+          "id": "jp_ldp_shinzo_abe_20061001",
+          "person": "shinzo_abe",
+          "role": "President of the Liberal Democratic Party (総裁)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2006-10-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2007-09-23"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2006-10-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2007-09-23"
+          },
+          "sources": [
+            "https://www.jimin.jp/aboutus/history/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Transcribed from the party's listed effective tenure dates. End is the next listed effective term start. Election and prime-ministerial dates can differ; see boundary_review."
+        },
+        {
+          "id": "jp_ldp_yasuo_fukuda_20070923",
+          "person": "yasuo_fukuda",
+          "role": "President of the Liberal Democratic Party (総裁)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2007-09-23"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2008-09-22"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2007-09-23"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2008-09-22"
+          },
+          "sources": [
+            "https://www.jimin.jp/aboutus/history/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Transcribed from the party's listed effective tenure dates. End is the next listed effective term start. Election and prime-ministerial dates can differ; see boundary_review."
+        },
+        {
+          "id": "jp_ldp_taro_aso_20080922",
+          "person": "taro_aso",
+          "role": "President of the Liberal Democratic Party (総裁)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2008-09-22"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2009-10-01"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2008-09-22"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2009-10-01"
+          },
+          "sources": [
+            "https://www.jimin.jp/aboutus/history/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Transcribed from the party's listed effective tenure dates. End is the next listed effective term start. Election and prime-ministerial dates can differ; see boundary_review."
+        },
+        {
+          "id": "jp_ldp_sadakazu_tanigaki_20091001",
+          "person": "sadakazu_tanigaki",
+          "role": "President of the Liberal Democratic Party (総裁)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2009-10-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2012-10-01"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2009-10-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2012-10-01"
+          },
+          "sources": [
+            "https://www.jimin.jp/aboutus/history/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Transcribed from the party's listed effective tenure dates. End is the next listed effective term start. Election and prime-ministerial dates can differ; see boundary_review."
+        },
+        {
+          "id": "jp_ldp_shinzo_abe_20121001",
+          "person": "shinzo_abe",
+          "role": "President of the Liberal Democratic Party (総裁)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2012-10-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2020-09-14"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2012-10-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2020-09-14"
+          },
+          "sources": [
+            "https://www.jimin.jp/aboutus/history/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Transcribed from the party's listed effective tenure dates. End is the next listed effective term start. Election and prime-ministerial dates can differ; see boundary_review."
+        },
+        {
+          "id": "jp_ldp_yoshihide_suga_20200914",
+          "person": "yoshihide_suga",
+          "role": "President of the Liberal Democratic Party (総裁)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2020-09-14"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2021-10-01"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2020-09-14"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2021-10-01"
+          },
+          "sources": [
+            "https://www.jimin.jp/aboutus/history/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Transcribed from the party's listed effective tenure dates. End is the next listed effective term start. Election and prime-ministerial dates can differ; see boundary_review."
+        },
+        {
+          "id": "jp_ldp_fumio_kishida_20211001",
+          "person": "fumio_kishida",
+          "role": "President of the Liberal Democratic Party (総裁)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2021-10-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2024-10-01"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2021-10-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2024-10-01"
+          },
+          "sources": [
+            "https://www.jimin.jp/aboutus/history/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Transcribed from the party's listed effective tenure dates. End is the next listed effective term start. Election and prime-ministerial dates can differ; see boundary_review."
+        },
+        {
+          "id": "jp_ldp_shigeru_ishiba_20241001",
+          "person": "shigeru_ishiba",
+          "role": "President of the Liberal Democratic Party (総裁)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2024-10-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2025-10-04"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2024-10-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2025-10-04"
+          },
+          "sources": [
+            "https://www.jimin.jp/aboutus/history/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Transcribed from the party's listed effective tenure dates. End is the next listed effective term start. Election and prime-ministerial dates can differ; see boundary_review."
+        },
+        {
+          "id": "jp_ldp_sanae_takaichi_20251004",
+          "person": "sanae_takaichi",
+          "role": "President of the Liberal Democratic Party (総裁)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2025-10-04"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2025-10-04"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.jimin.jp/aboutus/history/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Transcribed from the party's listed effective tenure dates. End is the next listed effective term start. Election and prime-ministerial dates can differ; see boundary_review."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "reason": "Effective tenure dates are transcribed. Membership outside office windows, temporary presidential authority and differences between election and effective dates require further review.",
+          "sources": [
+            "https://www.jimin.jp/aboutus/history/"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_jsp",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://sdp.or.jp/sdp-journal/kettou-3/",
+        "https://kotobank.jp/word/%E6%97%A5%E6%9C%AC%E7%A4%BE%E4%BC%9A%E5%85%9A-110180"
+      ],
+      "identity_note": "jp_jsp is the 1990 game row. The January 1996 name change to Social Democratic Party is recorded as organizational continuity, with explicit historical components. JSP is not DPJ/CDP.",
+      "components": [
+        {
+          "id": "jp_jsp_1945",
+          "name": "Japan Socialist Party",
+          "sources": [
+            "https://sdp.or.jp/sdp-journal/kettou-3/"
+          ],
+          "dissolved": {
+            "kind": "month",
+            "value": "1996-01"
+          }
+        },
+        {
+          "id": "jp_sdp_1996",
+          "name": "Social Democratic Party (renamed Japan Socialist Party)",
+          "sources": [
+            "https://sdp.or.jp/sdp-journal/kettou-3/"
+          ],
+          "founded": {
+            "kind": "month",
+            "value": "1996-01"
+          }
+        }
+      ],
+      "terms": [
+        {
+          "id": "jp_jsp_takako_doi_198609",
+          "person": "takako_doi",
+          "component": "jp_jsp_1945",
+          "role": "Chair of the Japan Socialist Party (中央執行委員長)",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1986-09"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1991-07"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1986-09"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1991-07"
+          },
+          "sources": [
+            "https://www.jnpc.or.jp/archive/conferences/21625/report",
+            "https://www.jnpc.or.jp/archive/conferences/20132/report",
+            "https://kotobank.jp/word/%E6%97%A5%E6%9C%AC%E7%A4%BE%E4%BC%9A%E5%85%9A-110180"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Appointment in September 1986 is corroborated by a contemporary appearance on 29 September. July 1991 turnover remains at month precision."
+        },
+        {
+          "id": "jp_jsp_makoto_tanabe_199107",
+          "person": "makoto_tanabe",
+          "component": "jp_jsp_1945",
+          "role": "Chair of the Japan Socialist Party (中央執行委員長)",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1991-07"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1993-01-19"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1991-07"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1993-01-19"
+          },
+          "sources": [
+            "https://www.jnpc.or.jp/archive/conferences/20274/report/",
+            "https://ndlsearch.ndl.go.jp/en/books/R000000004-I3481460",
+            "https://kotobank.jp/word/%E6%97%A5%E6%9C%AC%E7%A4%BE%E4%BC%9A%E5%85%9A-110180"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. JNPC identifies Tanabe as party chair on 9 August 1991. His July appointment remains at month precision."
+        },
+        {
+          "id": "jp_jsp_sadao_yamahana_19930119",
+          "person": "sadao_yamahana",
+          "component": "jp_jsp_1945",
+          "role": "Chair of the Japan Socialist Party (中央執行委員長)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1993-01-19"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1993-09"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1993-01-19"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1993-09"
+          },
+          "sources": [
+            "https://ndlsearch.ndl.go.jp/en/books/R000000004-I3481460",
+            "https://kotobank.jp/word/%E6%97%A5%E6%9C%AC%E7%A4%BE%E4%BC%9A%E5%85%9A-110180"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. NDL catalogs Yamahana's inaugural address at the 19 January 1993 party congress. September turnover remains at month precision."
+        },
+        {
+          "id": "jp_jsp_tomiichi_murayama_199309",
+          "person": "tomiichi_murayama",
+          "component": "jp_jsp_1945",
+          "role": "Chair of the Japan Socialist Party (中央執行委員長)",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1993-09"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1996-01"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1993-09"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1996-01"
+          },
+          "sources": [
+            "https://kotobank.jp/word/%E6%97%A5%E6%9C%AC%E7%A4%BE%E4%BC%9A%E5%85%9A-110180",
+            "https://sdp.or.jp/sdp-journal/kettou-3/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Party chair, separately from his 1994–1996 prime-ministerial term. The January 1996 name-change boundary remains at month precision."
+        },
+        {
+          "id": "jp_jsp_tomiichi_murayama_199601",
+          "person": "tomiichi_murayama",
+          "component": "jp_sdp_1996",
+          "role": "Leader of the Social Democratic Party (党首)",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1996-01"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1996-09"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1996-01"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1996-09"
+          },
+          "sources": [
+            "https://sdp.or.jp/sdp-journal/kettou-3/",
+            "https://sdp.or.jp/policy-legislation/1996-1990/%E6%94%BF%E7%AD%96%E8%B3%87%E6%96%999611_362.pdf"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Same organization after its name change. Exact name-change and handover days need primary confirmation."
+        },
+        {
+          "id": "jp_jsp_takako_doi_199609",
+          "person": "takako_doi",
+          "component": "jp_sdp_1996",
+          "role": "Leader of the Social Democratic Party (党首)",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1996-09"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2003-11"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1996-09"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2003-11"
+          },
+          "sources": [
+            "https://sdp.or.jp/policy-legislation/1996-1990/%E6%94%BF%E7%AD%96%E8%B3%87%E6%96%999611_362.pdf",
+            "https://sdp.or.jp/statement/statement_2003/danwa0211.html",
+            "https://kotobank.jp/word/%E5%9C%9F%E4%BA%95%E3%81%9F%E3%81%8B%E5%AD%90-102930"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. SDP leadership is separate from Doi's 1993–1996 term as Speaker of the House of Representatives."
+        },
+        {
+          "id": "jp_jsp_mizuho_fukushima_200311",
+          "person": "mizuho_fukushima",
+          "component": "jp_sdp_1996",
+          "role": "Leader of the Social Democratic Party (党首)",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "2003-11"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2013-07"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2003-11"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2013-07"
+          },
+          "sources": [
+            "https://www.japantimes.co.jp/news/2003/11/16/national/sdp-hands-fukushima-huge-task-as-new-leader/",
+            "https://www.sdp-ishikawa.jp/archives/date/2013/10"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Appointment and resignation months retained. Exact days and the following caretaker interval remain under review."
+        },
+        {
+          "id": "jp_jsp_tadatomo_yoshida_201310",
+          "person": "tadatomo_yoshida",
+          "component": "jp_sdp_1996",
+          "role": "Leader of the Social Democratic Party (党首)",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "2013-10"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2018-02"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2013-10"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2018-02"
+          },
+          "sources": [
+            "https://www.sdp-ishikawa.jp/archives/date/2013/10",
+            "https://hiroshima.sdp.or.jp/special.html"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Elected on 14 October 2013. Formal assumption on 26 October needs direct national-party confirmation; month precision avoids confusing election with assumption."
+        },
+        {
+          "id": "jp_jsp_seiji_mataichi_201802",
+          "person": "seiji_mataichi",
+          "component": "jp_sdp_1996",
+          "role": "Leader of the Social Democratic Party (党首)",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "2018-02"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2020-02"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2018-02"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2020-02"
+          },
+          "sources": [
+            "https://hiroshima.sdp.or.jp/special.html",
+            "https://sdp.or.jp/sdp-paper/mataichi/",
+            "https://hiroshima.sdp.or.jp/20200222_special.html"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Party congress held 24–25 February 2018. The exact effective day is not established here."
+        },
+        {
+          "id": "jp_jsp_mizuho_fukushima_202002",
+          "person": "mizuho_fukushima",
+          "component": "jp_sdp_1996",
+          "role": "Leader of the Social Democratic Party (党首)",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "2020-02"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2020-02"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://hiroshima.sdp.or.jp/20200222_special.html",
+            "https://sdp.or.jp/sdp-paper/toushu-116/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Returned at the 22–23 February 2020 congress. Re-elected on 6 April 2026, with congress approval scheduled later that month. Open means the researched record through 7 September 2026, not a prediction through 2035."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "month",
+            "value": "2013-07"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2013-10"
+          },
+          "reason": "The caretaker interval after Fukushima's resignation needs primary verification of Seiji Mataichi's acting role and the effective transfer date.",
+          "sources": [
+            "https://www.sdp-ishikawa.jp/archives/date/2013/10"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "reason": "Several transition months deliberately retain uncertainty. Unresolved days are not assertions of historical vacancies. Full membership windows remain unresearched.",
+          "sources": [
+            "https://sdp.or.jp/sdp-journal/kettou-3/"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_komeito",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.komei.or.jp/about/history/"
+      ],
+      "identity_note": "The existing game row spans distinct historical organizations, shown as explicit components. They are not a simultaneous coalition. National New Komei (1994) and New Peace Party (1998) require separate verified components before claiming their leaders.",
+      "components": [
+        {
+          "id": "jp_komeito_1964",
+          "name": "Komeito (1964 organization)",
+          "sources": [
+            "https://www.komei.or.jp/about/history/"
+          ],
+          "founded": {
+            "kind": "day",
+            "value": "1964-11-17"
+          },
+          "dissolved": {
+            "kind": "day",
+            "value": "1994-12-05"
+          }
+        },
+        {
+          "id": "jp_komei_1994",
+          "name": "Komei (local assembly and House of Councillors organization)",
+          "sources": [
+            "https://www.komei.or.jp/about/history/"
+          ],
+          "founded": {
+            "kind": "day",
+            "value": "1994-12-05"
+          },
+          "dissolved": {
+            "kind": "day",
+            "value": "1998-11-07"
+          }
+        },
+        {
+          "id": "jp_komeito_1998",
+          "name": "Komeito (reconstituted in 1998)",
+          "sources": [
+            "https://www.komei.or.jp/about/history/"
+          ],
+          "founded": {
+            "kind": "day",
+            "value": "1998-11-07"
+          }
+        }
+      ],
+      "terms": [
+        {
+          "id": "jp_komeito_koshiro_ishida_1989",
+          "person": "koshiro_ishida",
+          "component": "jp_komeito_1964",
+          "role": "Chair of Komeito (中央執行委員長)",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1989"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1994-12-05"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1989"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1994-12-05"
+          },
+          "sources": [
+            "https://ndlsearch.ndl.go.jp/en/books/R000000004-I2927496",
+            "https://www.jnpc.or.jp/archive/conferences/20132/report",
+            "https://www.komei.or.jp/about/history/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. A contemporary July 1989 interview identifies Ishida as the new chair. The exact appointment day is unconfirmed here. This term ends at the first split, not the later New Frontier merger."
+        },
+        {
+          "id": "jp_komeito_tomio_fujii_199412",
+          "person": "tomio_fujii",
+          "component": "jp_komei_1994",
+          "role": "Representative (代表)",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1994-12"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1998-01"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1994-12"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1998-01"
+          },
+          "sources": [
+            "https://digital.komei-shimbun.jp/ex-keyword/active-supporters/0365202601012601",
+            "https://www.komei.or.jp/result/story/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Leader of the local Komei organization. The party's official historical account places Hamayotsu's assumption in January 1998; conflicting secondary tables are noted for review."
+        },
+        {
+          "id": "jp_komeito_toshiko_hamayotsu_199801",
+          "person": "toshiko_hamayotsu",
+          "component": "jp_komei_1994",
+          "role": "Representative (代表)",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1998-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1998-11-07"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1998-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1998-11-07"
+          },
+          "sources": [
+            "https://www.komei.or.jp/result/story/",
+            "https://www.komei.or.jp/about/history/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Leader of Komei, separate from her later deputy representative role in the reconstituted Komeito."
+        },
+        {
+          "id": "jp_komeito_takenori_kanzaki_19981107",
+          "person": "takenori_kanzaki",
+          "component": "jp_komeito_1998",
+          "role": "Representative (代表)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1998-11-07"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2006-09-30"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1998-11-07"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2006-09-30"
+          },
+          "sources": [
+            "https://www.komei.or.jp/about/history/",
+            "https://www.komei.or.jp/youthblog/archives/002/",
+            "https://www.jnpc.or.jp/archive/conferences/20953/report/",
+            "https://www.jstage.jst.go.jp/article/yoron/83/0/83_KJ00005350454/_pdf/-char/en"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Leader of reconstituted Komeito; his earlier New Peace Party role requires a separate component record."
+        },
+        {
+          "id": "jp_komeito_akihiro_ota_20060930",
+          "person": "akihiro_ota",
+          "component": "jp_komeito_1998",
+          "role": "Representative (代表)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2006-09-30"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2009-09-08"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2006-09-30"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2009-09-08"
+          },
+          "sources": [
+            "https://www.komei.or.jp/youthblog/archives/002/",
+            "https://www.komei.or.jp/km/k-murakami/files/2015/06/ab979ae2a4f38345e3c0e387174d4860.pdf"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Until Yamaguchi was selected."
+        },
+        {
+          "id": "jp_komeito_natsuo_yamaguchi_20090908",
+          "person": "natsuo_yamaguchi",
+          "component": "jp_komeito_1998",
+          "role": "Representative (代表)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2009-09-08"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2024-09-28"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2009-09-08"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2024-09-28"
+          },
+          "sources": [
+            "https://www.komei.or.jp/km/k-murakami/files/2015/06/ab979ae2a4f38345e3c0e387174d4860.pdf",
+            "https://www.komei.or.jp/km/ashiya-tahara/2024/09/28/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Selected at the emergency representatives' meeting on 8 September 2009; succeeded at the congress on 28 September 2024."
+        },
+        {
+          "id": "jp_komeito_keiichi_ishii_20240928",
+          "person": "keiichi_ishii",
+          "component": "jp_komeito_1998",
+          "role": "Representative (代表)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2024-09-28"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2024-11-09"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2024-09-28"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2024-11-09"
+          },
+          "sources": [
+            "https://www.komei.or.jp/km/ashiya-tahara/2024/09/28/",
+            "https://www.komei.or.jp/special/komei60/page/52/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. A resignation announcement is not automatically an office-ending date; this interval ends when the successor was selected."
+        },
+        {
+          "id": "jp_komeito_tetsuo_saito_20241109",
+          "person": "tetsuo_saito",
+          "component": "jp_komeito_1998",
+          "role": "Representative (代表)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2024-11-09"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-01-22"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2024-11-09"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2026-01-22"
+          },
+          "sources": [
+            "https://www.komei.or.jp/special/komei60/page/52/",
+            "https://www.komei.or.jp/komeinews/p504957/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Left to join the Centrist Reform Alliance, a separate party not currently represented by an existing game ID."
+        },
+        {
+          "id": "jp_komeito_toshiko_takeya_20260122",
+          "person": "toshiko_takeya",
+          "component": "jp_komeito_1998",
+          "role": "Acting representative of Komeito (代表代理; publicly styled代表)",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2026-01-22"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-03-14"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2026-01-22"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2026-03-14"
+          },
+          "sources": [
+            "https://www.komei.or.jp/komeinews/p504957/",
+            "https://www.komei.or.jp/komeinews/p506839/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Chosen as acting representative on 22 January. The official party newspaper styled her 'representative' while a congress appointment was pending."
+        },
+        {
+          "id": "jp_komeito_toshiko_takeya_20260314",
+          "person": "toshiko_takeya",
+          "component": "jp_komeito_1998",
+          "role": "Representative (代表)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2026-03-14"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2026-03-14"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.komei.or.jp/komeinews/p506839/",
+            "https://www.komei.or.jp/about/profile/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Formally selected at the extraordinary congress on 14 March 2026. Current official profile checked on 7 September 2026."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "1994-12-05"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1998-11-07"
+          },
+          "reason": "Local Komei chronology is included, but the national New Komei and New Peace Party branches have unverified terms. Do not substitute New Frontier leaders for Komei leaders.",
+          "sources": [
+            "https://www.komei.or.jp/about/history/"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "reason": "Early appointment precision and party membership outside the leadership windows need further review.",
+          "sources": [
+            "https://www.jnpc.or.jp/archive/conferences/20132/report"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_jcp",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.jnpc.or.jp/archive/conferences/20132/report",
+        "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html",
+        "https://www.jcp.or.jp/web_senkyo/2542/"
+      ],
+      "identity_note": "The Executive Committee chair is the public party leader. Central Committee chair and secretary-general are separate offices.",
+      "components": [],
+      "terms": [
+        {
+          "id": "jp_jcp_tetsuzo_fuwa_1989",
+          "person": "tetsuzo_fuwa",
+          "role": "Chair of the Executive Committee (幹部会委員長)",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1989"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2000-11"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1989"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2000-11"
+          },
+          "sources": [
+            "https://www.jnpc.or.jp/archive/conferences/20132/report",
+            "https://news.tv-asahi.co.jp/news_politics/articles/000476094.html",
+            "https://www.jcp.or.jp/jcp/yakuin/3yaku/FUWA/index_2000.html"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Fuwa's second Executive Committee chair term. This is separate from his later Central Committee chair role. Exact 1989 and November 2000 transfer dates need primary confirmation."
+        },
+        {
+          "id": "jp_jcp_kazuo_shii_200011",
+          "person": "kazuo_shii",
+          "role": "Chair of the Executive Committee (幹部会委員長)",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "2000-11"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2024-01-18"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2000-11"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2024-01-18"
+          },
+          "sources": [
+            "https://www.jcp.or.jp/jcp/yakuin/3yaku/FUWA/index_2000.html",
+            "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Shii became Central Committee chair in 2024; that position must not be confused with the Executive Committee leadership transferred to Tamura."
+        },
+        {
+          "id": "jp_jcp_tomoko_tamura_20240118",
+          "person": "tomoko_tamura",
+          "role": "Chair of the Executive Committee (幹部会委員長)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2024-01-18"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2024-01-18"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html",
+            "https://www.jcp.or.jp/web_senkyo/2542/"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Selected on 18 January 2024. Current party profile checked on 7 September 2026."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "month",
+            "value": "2000-11"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2000-12"
+          },
+          "reason": "The exact November 2000 handover day needs primary confirmation. Month precision leaves unresolved days rather than inventing a precise boundary.",
+          "sources": [
+            "https://www.jcp.or.jp/jcp/yakuin/3yaku/FUWA/index_2000.html"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_dsp",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://oisr-org.ws.hosei.ac.jp/research/dglb/explanation/exp_detail/?exp_id=4-012-9003764",
+        "https://www.jnpc.or.jp/archive/conferences/20132/report",
+        "https://ndlsearch.ndl.go.jp/file/rnavi/kensei/umezawashouhei/index_umezawashouhei.pdf"
+      ],
+      "identity_note": "The Democratic Socialist Party is separate from the modern Social Democratic Party. DSP dissolved on 9 December 1994. No continuing real DSP chair is asserted after dissolution.",
+      "components": [],
+      "terms": [
+        {
+          "id": "jp_dsp_eiichi_nagasue_198902",
+          "person": "eiichi_nagasue",
+          "role": "Chair of the Democratic Socialist Party (中央執行委員長)",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1989-02"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1990-04"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1989-02"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1990-04"
+          },
+          "sources": [
+            "https://www.arsvi.com/d/c0132089a02.htm",
+            "https://www.jnpc.or.jp/archive/conferences/20132/report",
+            "https://oisr-org.ws.hosei.ac.jp/research/dglb/explanation/exp_detail/?exp_id=4-012-9003764"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. The National Diet Library reads the given name as Eiichi, not Eigo. Selected at the February 1989 congress; the April 1990 handover remains at month precision."
+        },
+        {
+          "id": "jp_dsp_keigo_ouchi_199004",
+          "person": "keigo_ouchi",
+          "role": "Chair of the Democratic Socialist Party (中央執行委員長)",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1990-04"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1994-06"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1990-04"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1994-06"
+          },
+          "sources": [
+            "https://oisr-org.ws.hosei.ac.jp/research/dglb/explanation/exp_detail/?exp_id=4-012-9003764"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. Hosei's compilation titles the April 1990 congress entry 24 April, while other accounts distinguish the approval and closing sessions. Month precision is retained."
+        },
+        {
+          "id": "jp_dsp_takashi_yonezawa_199406",
+          "person": "takashi_yonezawa",
+          "role": "Chair of the Democratic Socialist Party (中央執行委員長)",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1994-06"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1994-12-09"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1994-06"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1994-12-09"
+          },
+          "sources": [
+            "https://www.jnpc.or.jp/archive/conferences/20523/report",
+            "https://ndlsearch.ndl.go.jp/file/rnavi/kensei/umezawashouhei/index_umezawashouhei.pdf"
+          ],
+          "note": "Affiliation is limited to this evidenced leadership window; wider membership dates are not claimed. JNPC identifies the new chair on 14 June 1994. NDL item 27 catalogs the party's dissolution-congress booklet dated 9 December 1994. The June assumption day remains unresolved."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "month",
+            "value": "1990-04"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1990-05"
+          },
+          "reason": "The April 1990 handover day needs reconciliation between congress opening and closing sessions.",
+          "sources": [
+            "https://oisr-org.ws.hosei.ac.jp/research/dglb/explanation/exp_detail/?exp_id=4-012-9003764"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "1994-06"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1994-07"
+          },
+          "reason": "Yonezawa's precise June 1994 assumption day needs the congress record; JNPC confirms him by 14 June.",
+          "sources": [
+            "https://www.jnpc.or.jp/archive/conferences/20523/report"
+          ]
+        }
+      ],
+      "dissolved": {
+        "kind": "day",
+        "value": "1994-12-09"
+      }
+    }
+  ],
+  "boundary_review": [
+    {
+      "party": "jp_ldp",
+      "issue": "The official LDP history distinguishes selection from effective tenure: Koizumi to 30 September 2006 and Abe from 1 October, despite Abe's election on 20 September. Similar differences occur in 2009, 2012, 2021 and 2024. This staging file transcribes the listed effective term dates rather than silently substituting election or prime-ministerial dates.",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/"
+      ]
+    },
+    {
+      "party": "jp_jsp",
+      "issue": "Election, ratification and effective term dates can differ. Doi's September 1986 start, Tanabe's July 1991 start, the 2013 October handover and the 2020 February handover retain month precision until primary office-effective records resolve them.",
+      "sources": [
+        "https://www.jnpc.or.jp/archive/conferences/21625/report",
+        "https://www.sdp-ishikawa.jp/archives/date/2013/10",
+        "https://hiroshima.sdp.or.jp/20200222_special.html"
+      ]
+    },
+    {
+      "party": "jp_komeito",
+      "issue": "The official party history puts Hamayotsu's assumption in January 1998, while some secondary chronologies give September 1997. Local Komei and national New Peace/New Komei were separate organizations.",
+      "sources": [
+        "https://www.komei.or.jp/result/story/",
+        "https://www.komei.or.jp/about/history/"
+      ]
+    },
+    {
+      "party": "jp_dsp",
+      "issue": "The April 1990 congress spans 24–26 April in available accounts. The June 1994 handover remains at month precision. NDL item 27 confirms the dissolution congress on 9 December 1994.",
+      "sources": [
+        "https://oisr-org.ws.hosei.ac.jp/research/dglb/explanation/exp_detail/?exp_id=4-012-9003764",
+        "https://ndlsearch.ndl.go.jp/file/rnavi/kensei/umezawashouhei/index_umezawashouhei.pdf"
+      ]
+    }
+  ],
+  "portrait_references": [
+    {
+      "person": "toshiki_kaifu",
+      "appearance": "Official premiership-era portrait, associated with 1989–1991",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Toshiki_Kaifu_19890810.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Toshiki_Kaifu_19890810.jpg",
+      "credit": "Cabinet Public Relations Office / Prime Minister of Japan website",
+      "license": "CC-BY-4.0 / Government of Japan Standard Terms of Use2.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "date_note": "Commons lists the capture date as unknown. The photograph is associated with the 1989 inauguration; do not assert 10 August as the actual exposure date."
+    },
+    {
+      "person": "takako_doi",
+      "appearance": "April 1991",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Takako_Doi_19910417.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Takako_Doi_19910417.jpg",
+      "credit": "Ministry of Foreign Affairs of Japan, Protocol Office",
+      "license": "CC-BY-4.0 / Government of Japan Standard Terms of Use2.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "date_note": "Commons metadata says 7 April, while the filename says 17 April. Keep month precision pending reconciliation."
+    },
+    {
+      "person": "koshiro_ishida",
+      "appearance": "1993-08-09",
+      "source_url": "https://commons.wikimedia.org/wiki/File:K%C5%8Dshir%C5%8D_Ishida_Hosokawa_Cabinet_19930809_kaidan2.jpg",
+      "credit": "Japan Defense Agency, 1993 film",
+      "license": "CC-BY-3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "person": "tetsuzo_fuwa",
+      "appearance": "1990-02-02",
+      "source_url": "https://www.jnpc.or.jp/archive/conferences/20132/report",
+      "image_context_url": "https://s3-us-west-2.amazonaws.com/jnpc-prd-public-oregon/files/1990/03/jnpc-b-199003.pdf",
+      "license": "Not verified; visual research only",
+      "date_note": "Do not use Commons Fuwa_Tetsuzo.png, dated 1956, as a 1990 age reference."
+    },
+    {
+      "person": "eiichi_nagasue",
+      "appearance": "1989–1990",
+      "source_url": "https://www.jnpc.or.jp/archive/conferences/20132/report",
+      "image_context_url": "https://www.badminton-archive.com/download/tournament/1989/26/12/1/1",
+      "license": "Not verified; visual research only",
+      "date_note": "Commons Eiichi_Nagasue_197102.jpg is from 1971, too early to establish his appearance in 1990."
+    }
+  ],
+  "source_quality": {
+    "primary": "Official party records, parliamentary/archival catalogs and contemporary event organizers are preferred. The NDL entries describe primary historical documents without implying the full documents were read.",
+    "secondary": "Named encyclopedia entries and broadcaster coverage support limited chronology when precise primary dates were not retrieved. Such boundaries retain month or year precision.",
+    "not_verified": "Photo copyright clearance, exhaustive biographical dates, complete memberships, acting periods and every minor split branch remain separate research tasks."
+  }
+}

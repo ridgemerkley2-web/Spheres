@@ -1,0 +1,80 @@
+{
+  "provider": "OpenAI built-in image_gen",
+  "generated_at": "2026-09-07",
+  "reviewed_at": "2026-09-07",
+  "reviewer": "Codex: inspected the exact period references and final cartoons; likeness and full-body pose remain artistic interpretations",
+  "jobs": [
+    {
+      "person_id": "rajiv_gandhi",
+      "name": "Rajiv Gandhi",
+      "year": 1990,
+      "from": "1990-01-01",
+      "to": "1995-01-01",
+      "asset": "spheres-web/ui/person-portraits/rajiv-gandhi-cartoon-1990-v1.png",
+      "source": "https://www.indiacontent.in/rajiv-gandhi/pr-632149/",
+      "refs": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\spheres-web\\ui\\person-portraits\\margaret-thatcher-cartoon-1990-v3.png",
+        "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-india-china-references-20260907\\rajiv_gandhi-1990.jpg"
+      ],
+      "reference_note": "Observed 1990/1991 period appearance reference only. Copyright source photographs remain outside the game. Full-body pose and costume are artistic interpretations; portrait availability does not assert any party office or uncertain term date.",
+      "prompt": "Create one polished 2D CARTOON full-body avatar of Rajiv Gandhi circa 1990. IMAGE 1 is approved STYLE ONLY: match its bold dark clean ink outlines, expressive simplified facial features, flat graphic cel shading, slightly enlarged head and about 5.5-head adult body proportions. IMAGE 2 is the period IDENTITY reference only. Indian man in his mid-forties in the reference, warm medium-brown skin, strong dark eyebrows, dark combed-back hair graying at temples, broad forehead, straight prominent nose, clean-shaven, NO glasses. A crisp white Gandhi cap and simple white high-collar kurta with white pajama trousers, dark slip-on shoes. Calm closed-mouth smile, hands relaxed together, no jewelry or political emblems. Preserve recognizable identity cues while rendering the face as a clearly drawn cartoon, no photographic skin detail. Full head, hands and shoes visible with comfortable margins; slight three-quarter stance toward viewer; perfectly flat opaque dark teal background #192D34. Portrait 1024x1536. No other people, reference-photo background, labels, text, flags, insignia, campaign slogans, watermark, checkerboard, photorealism, painterly texture or plastic 3D render.",
+      "generated_source": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-7c7c851a-77dc-4576-a44e-4dc7856a3f70.png"
+    },
+    {
+      "person_id": "lal_krishna_advani",
+      "name": "Lal Krishna Advani",
+      "year": 1990,
+      "from": "1990-01-01",
+      "to": "1995-01-01",
+      "asset": "spheres-web/ui/person-portraits/lal-krishna-advani-cartoon-1990-v2.png",
+      "source": "https://timescontent.timesofindia.com/photo/news/Janata-Dal/132427",
+      "refs": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\spheres-web\\ui\\person-portraits\\margaret-thatcher-cartoon-1990-v3.png",
+        "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-india-china-references-20260907\\advani-bommai-19900722.jpg"
+      ],
+      "reference_note": "Observed 1990/1991 period appearance reference only. Copyright source photographs remain outside the game. Full-body pose and costume are artistic interpretations; portrait availability does not assert any party office or uncertain term date.",
+      "prompt": "Create one polished 2D CARTOON full-body avatar of Lal Krishna Advani circa 1990. IMAGE 1 is approved STYLE ONLY: match its bold dark clean ink outlines, expressive simplified facial features, flat graphic cel shading, slightly enlarged head and about 5.5-head adult body proportions. IMAGE 2 is the period IDENTITY reference only. Identity is CENTER MAN with spectacles and small white moustache in IMAGE 2, NOT white-haired man at right. Bald high forehead with a short white fringe, very large dark rounded-square spectacles, long nose and narrow face, small neatly trimmed white moustache, warm medium brown skin. Long light cream kurta, white dhoti draped to ankles, dark brown sandals. Hands loosely clasped at waist, composed approachable expression. Preserve recognizable identity cues while rendering the face as a clearly drawn cartoon, no photographic skin detail. Full head, hands and shoes visible with comfortable margins; slight three-quarter stance toward viewer; perfectly flat opaque dark teal background #192D34. Portrait 1024x1536. No other people, reference-photo background, labels, text, flags, insignia, campaign slogans, watermark, checkerboard, photorealism, painterly texture or plastic 3D render.",
+      "revision": {
+        "prompt": "Edit this supplied 2D cartoon avatar of Lal Krishna Advani. Preserve the exact person, facial likeness, white moustache, glasses, body, clothing, hands, proportions and pose. Replace the ENTIRE black/brown vignette and halo background with one perfectly uniform flat opaque dark teal solid color #192D34, matching our game avatars. NO vignette, gradients, glow, texture, shadows on the background, text or borders. Keep full body and sandals in frame, portrait 1024x1536. Do not alter his identity or outfit.",
+        "refs": [
+          "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-6cce8875-f626-4c22-9930-4bd10c76ebf1.png"
+        ],
+        "reason": "First generated background did not match the approved flat dark teal game-avatar style.",
+        "previous_original": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-6cce8875-f626-4c22-9930-4bd10c76ebf1.png"
+      },
+      "generated_source": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-00821b33-b69c-4123-8f26-e868c69a534e.png"
+    },
+    {
+      "person_id": "e_m_s_namboodiripad",
+      "name": "E. M. S. Namboodiripad",
+      "year": 1990,
+      "from": "1990-01-01",
+      "to": "1995-01-01",
+      "asset": "spheres-web/ui/person-portraits/e-m-s-namboodiripad-cartoon-1990-v1.png",
+      "source": "https://timescontent.timesofindia.com/photo/news/EMS-Namboodiripad/35156",
+      "refs": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\spheres-web\\ui\\person-portraits\\margaret-thatcher-cartoon-1990-v3.png",
+        "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-india-china-references-20260907\\e_m_s_namboodiripad-19910329.jpg"
+      ],
+      "reference_note": "Observed 1990/1991 period appearance reference only. Copyright source photographs remain outside the game. Full-body pose and costume are artistic interpretations; portrait availability does not assert any party office or uncertain term date.",
+      "prompt": "Create one polished 2D CARTOON full-body avatar of E. M. S. Namboodiripad circa 1990. IMAGE 1 is approved STYLE ONLY: match its bold dark clean ink outlines, expressive simplified facial features, flat graphic cel shading, slightly enlarged head and about 5.5-head adult body proportions. IMAGE 2 is the period IDENTITY reference only. Elderly Indian man in the reference, high receding forehead with fluffy short white side hair, large thick black rounded-square spectacles, lined narrow face and full lower cheeks, prominent nose, clean shaven, warm medium-brown skin. Loose short-sleeved off-white collared shirt with very subtle grid weave, simple white mundu draped to ankles and brown sandals. Slight stoop, gentle attentive expression, one hand holding a thin closed brown book. Preserve recognizable identity cues while rendering the face as a clearly drawn cartoon, no photographic skin detail. Full head, hands and shoes visible with comfortable margins; slight three-quarter stance toward viewer; perfectly flat opaque dark teal background #192D34. Portrait 1024x1536. No other people, reference-photo background, labels, text, flags, insignia, campaign slogans, watermark, checkerboard, photorealism, painterly texture or plastic 3D render.",
+      "generated_source": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-70fa8a20-4321-447a-9098-2e2874200e23.png"
+    },
+    {
+      "person_id": "s_r_bommai",
+      "name": "S. R. Bommai",
+      "year": 1990,
+      "from": "1990-01-01",
+      "to": "1995-01-01",
+      "asset": "spheres-web/ui/person-portraits/s-r-bommai-cartoon-1990-v1.png",
+      "source": "https://timescontent.timesofindia.com/photo/news/Janata-Dal/132427",
+      "refs": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\spheres-web\\ui\\person-portraits\\margaret-thatcher-cartoon-1990-v3.png",
+        "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-india-china-references-20260907\\advani-bommai-19900722.jpg"
+      ],
+      "reference_note": "Observed 1990/1991 period appearance reference only. Copyright source photographs remain outside the game. Full-body pose and costume are artistic interpretations; portrait availability does not assert any party office or uncertain term date.",
+      "prompt": "Create one polished 2D CARTOON full-body avatar of S. R. Bommai circa 1990. IMAGE 1 is approved STYLE ONLY: match its bold dark clean ink outlines, expressive simplified facial features, flat graphic cel shading, slightly enlarged head and about 5.5-head adult body proportions. IMAGE 2 is the period IDENTITY reference only. Identity is the MAN AT LEFT wearing white short-sleeved shirt and thin spectacles in IMAGE 2, NOT center or right men. Broad rounded face, slick combed-back gray hair over high receding forehead, narrow thin-metal spectacles, prominent nose and full cheeks, clean-shaven, medium brown skin. White short-sleeved collared shirt and simple white dhoti draped to ankles, dark sandals. Stocky build, gentle reserved smile, hands relaxed, one holding a thin closed blue folder. Preserve recognizable identity cues while rendering the face as a clearly drawn cartoon, no photographic skin detail. Full head, hands and shoes visible with comfortable margins; slight three-quarter stance toward viewer; perfectly flat opaque dark teal background #192D34. Portrait 1024x1536. No other people, reference-photo background, labels, text, flags, insignia, campaign slogans, watermark, checkerboard, photorealism, painterly texture or plastic 3D render.",
+      "generated_source": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-cdd5b157-8e56-440e-aff1-bc7ab53a57bb.png"
+    }
+  ]
+}

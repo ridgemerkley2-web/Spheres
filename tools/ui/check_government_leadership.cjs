@@ -22,6 +22,106 @@ function fixture(){
 const show=(data=fixture(),state={})=>render(data,{tab:'leadership',...state});
 const reference=(data,date='1990-01-01')=>({...copy(data.party_leadership),date,enabled:false});
 
+function futureFixture(){
+ const data=fixture(),fiction={origin:'fictional_successor',nation:'UK',party:'uk_tiny',component:null,profile_id:'parliamentary_proportional',profile_label:'Coalition negotiator',ideology:'Liberal',fictional_biography:'An invented local organizer who built a career negotiating coalition agreements.',eligible_from:'2026-09-08',eligible_until_exclusive:'2036-01-01',editorial_status:'authored_fiction_needs_country_review',research_basis:[{id:'party_roles',url:'https://www.parliament.uk/about/mps-and-lords/members/partysystem/',fact:'Parties organize parliamentary work.',applies_to:'Institutional framing only; not evidence of a real person.'}],assumptions:['Names and biographies are fictional.']};
+ data.party_leadership.future_policy={historical_reference_through:'2026-09-07',from:'2026-09-08',until_exclusive:'2036-01-01',eligible:false,selection:'actual_succession_events_only',incumbents_retained:true};
+ data.party_leadership.parties[2].future_preview=[{person:{id:'fictional_uk_tiny_1',name:'Clara Rowan',born:day('1988-04-03'),sources:[],fiction},component:null,eligible:false,origin:'fictional_successor',role:'fictional successor candidate'}];
+ return data;
+}
+
+test('future organization disclosures preserve counterfactual play and escape research notes',()=>{
+ const data=futureFixture(),entry=data.party_leadership.parties[2].future_preview[0];
+ entry.historical_continuation={status:'ceased',note:'Closed in history <script>bad()</script>',sources:[source,'javascript:bad()']};
+ let html=show(freeze(copy(data)));assert.match(html,/Historical organization has closed/);assert.match(html,/A party that survives in your campaign/);assert.match(html,/does not remove serving leaders/);assert.match(html,/&lt;script&gt;bad\(\)&lt;\/script&gt;/);assert.doesNotMatch(html,/<script>bad|href="javascript:|data-command/);
+ entry.historical_continuation.status='unverified';html=show(data);assert.match(html,/Historical continuation needs review/);assert.doesNotMatch(html,/Historical organization has closed/);
+ delete entry.historical_continuation;assert.doesNotMatch(show(data),/Historical continuation needs review|Historical organization has closed/);
+});
+
+test('party-only offices stay distinct from national office eligibility',()=>{
+ const data=fixture(),p=data.party_leadership.parties[0];
+ p.historical[0].term.role='National committee chair';p.historical[0].executive_eligibility={authorized:false,role:'party_only',note:'This office does not confer a presidential nomination.'};
+ const html=show(data);assert.match(html,/National committee chair/);assert.match(html,/Party office only/);assert.match(html,/does not confer a presidential nomination/);assert.match(html,/National office requires a separate eligible role/);assert.doesNotMatch(html,/Presidential contender/);
+});
+
+test('future paired leadership explains vacancies without replacing existing single chairs',()=>{
+ const data=futureFixture(),party=data.party_leadership.parties[2];party.future_leadership_seats={target_holders:2,historical_single_chair_retained:true,gameplay_assumption:'Keeping two chairs is an authored game assumption.',sources:[source]};
+ const html=show(data);assert.match(html,/Future succession: two co-leaders/);assert.match(html,/existing single chair remains in office/);assert.match(html,/calendar does not replace a leader/);assert.match(html,/authored game assumption/);assert.doesNotMatch(html,/data-command|data-gov-confirm=/);
+ const ref=reference(data);assert.doesNotMatch(show(data,{leadershipMode:'reference',leadershipReference:{data:ref},leadershipDate:ref.date}),/Future succession: two co-leaders/);
+});
+
+test('explicit contenders use the supplied national role without scheduling election outcomes',()=>{
+ const data=fixture(),p=data.party_leadership.parties[0];p.eligible[0].executive_eligibility={authorized:true,role:'presidential_contender',condition:'Requires an election event.'};
+ const html=show(data);assert.match(html,/Presidential contender/);assert.match(html,/Requires an election event/);assert.doesNotMatch(html,/data-gov-confirm=|data-command|Will become president/);
+});
+
+test('a future party successor does not gain national eligibility from age or biography',()=>{
+ const data=futureFixture(),p=data.party_leadership.parties[2];p.future_candidates=copy(p.future_preview);p.future_candidates[0].eligible=true;p.future_candidates[0].executive_eligibility={authorized:false,role:'party_only',note:'A separate nomination is required.'};
+ const html=show(data);assert.match(html,/Eligible for future campaign succession/);assert.match(html,/Party office only/);assert.doesNotMatch(html,/Presidential contender|National office contender/);
+});
+
+test('older payloads do not invent missing executive eligibility',()=>{
+ const html=show();assert.doesNotMatch(html,/gov-ui-executive-role|leadership-office-policy/);
+});
+
+test('government-role explanations retain campaign appointments and escape sourced prose',()=>{
+ const data=fixture();data.party_leadership.executive_policy={institution:{fact:'Party chairs and heads of government are separate offices.',gameplay_assumption:'<img src=x onerror=evil>',sources:['javascript:evil()',source]}};
+ const html=show(freeze(data));assert.match(html,/Existing campaign appointments remain in place/);assert.match(html,/Party chairs and heads of government are separate offices/);assert.match(html,/&lt;img src=x onerror=evil&gt;/);assert.doesNotMatch(html,/<img src=x|href="javascript:/);
+});
+
+test('1990 campaign offers a separate fictional future preview without filling its historical gap',()=>{
+ const html=show(futureFixture());assert.match(html,/No researched leadership roster for this simulation party/);assert.match(html,/data-gov-detail="leader-future:uk_tiny"/);assert.match(html,/Future candidates through 2035/);assert.match(html,/Fictional successor/);assert.match(html,/Future cast preview · no appointment/);assert.match(html,/existing leaders remain in place until an actual succession event/);assert.doesNotMatch(html,/data-gov-confirm=|data-gov-review=|data-command|Appoint Clara|Elect Clara/);
+});
+
+test('future biography, pending cartoon and researched background have distinct honest labels',()=>{
+ const html=show(futureFixture());assert.match(html,/Clara Rowan/);assert.match(html,/Fictional avatar pending/);assert.match(html,/Coalition negotiator · Liberal/);assert.match(html,/An invented local organizer/);assert.match(html,/Fictional birth date: 1988-04-03/);assert.match(html,/does not establish a real person or predict who will win/);assert.match(html,/Country-specific editorial review is still pending/);assert.match(html,/https:\/\/www.parliament.uk\/about\/mps-and-lords\/members\/partysystem\//);
+});
+
+test('future preview does not show a misleading age calculated at the 1990 campaign date',()=>{
+ const data=futureFixture();data.party_leadership.parties[2].future_preview[0].person.age_label='2 years at this date';assert.doesNotMatch(show(data),/2 years at this date/);assert.match(show(data),/Fictional birth date: 1988-04-03/);
+});
+
+test('a registered fictional cartoon is labelled as an imagined appearance rather than historical likeness',()=>{
+ const data=futureFixture(),p=data.party_leadership.parties[2].future_preview[0].person;p.portrait={url:'/art/people/fictional-character-v1.png',status:'fictional-character',from:'2026-09-08',to:'2036-01-01',credit:'Original fictional character.'};const html=show(data);assert.match(html,/alt="Fictional cartoon avatar of Clara Rowan"/);assert.match(html,/Imagined appearance: from 2026-09-08 to before 2036-01-01/);assert.match(html,/Original fictional character/);
+});
+
+test('historical reference controls remain bounded and exclude fictional previews',()=>{
+ const data=futureFixture(),ref=reference(data),html=show(data,{leadershipMode:'reference',leadershipDate:ref.date,leadershipReference:{data:ref}});
+ assert.match(html,/max="2026-09-07"/);assert.match(html,/historical view contains source records only/);assert.doesNotMatch(html,/Clara Rowan|data-gov-detail="leader-future:|data-gov-person="fictional_/);assert.match(html,/Neil Kinnock/);
+});
+
+test('future names are searchable in campaign mode without entering historical search results',()=>{
+ const data=futureFixture();assert.match(show(data,{leadershipQuery:'clara rowan'}),/1 of 3 parties shown/);
+ const ref=reference(data);assert.match(show(data,{leadershipMode:'reference',leadershipDate:ref.date,leadershipQuery:'clara rowan',leadershipReference:{data:ref}}),/0 of 3 parties shown/);
+});
+
+test('actual future eligibility is taken from the server and never inferred from the biography',()=>{
+ const data=futureFixture(),p=data.party_leadership.parties[2];p.future_candidates=copy(p.future_preview);p.future_candidates[0].eligible=true;data.party_leadership.future_policy.eligible=true;data.party_leadership.date='2030-04-01';
+ const html=show(data);assert.match(html,/Eligible for future campaign succession/);assert.equal((html.match(/data-gov-person="fictional_uk_tiny_1"/g)||[]).length,1);assert.doesNotMatch(html,/Will win|Guaranteed winner/);
+});
+
+test('rule-off campaigns expose future cast previews without claiming active succession eligibility',()=>{
+ const data=futureFixture(),p=data.party_leadership.parties[2];p.future_candidates=copy(p.future_preview);p.future_candidates[0].eligible=true;data.party_leadership.enabled=false;const html=show(data);assert.match(html,/Historical party succession is off/);assert.match(html,/Future cast preview · no appointment/);assert.doesNotMatch(html,/Eligible for future campaign succession/);
+});
+
+test('seated fictional leaders stay visibly fictional in leadership and executive overview',()=>{
+ const data=futureFixture(),p=data.party_leadership.parties[2],entry=copy(p.future_preview[0]);Object.assign(entry,{since_label:'1 April 2030',role:'Party leader',historical_reference_continues:false,reason:'election'});p.campaign=[entry];p.future_preview=[];data.party_leadership.executive_person=entry.person;data.leader={name:entry.person.name,office:'Prime minister'};
+ const html=show(data,{leadershipQuery:'clara'});assert.match(html,/Party leader · Since 1 April 2030/);assert.match(html,/Fictional successor/);assert.doesNotMatch(html,/Your campaign has continued beyond this historical term/);
+ const overview=render(data,{tab:'overview'});assert.match(overview,/<h3>Clara Rowan<\/h3>/);assert.match(overview,/Fictional successor/);assert.match(overview,/data-gov-detail="executive-fiction"/);assert.match(overview,/Fictional avatar pending/);
+});
+
+test('future coalition previews retain separate component identities',()=>{
+ const data=futureFixture(),p=data.party_leadership.parties[1],entry=data.party_leadership.parties[2].future_preview[0];p.future_preview=[{...copy(entry),component:'snp'},{...copy(entry),component:'plaid_cymru',person:{...copy(entry.person),id:'fictional_plaid_1',name:'Ffion Ellis'}}];
+ const html=show(data,{leadershipQuery:'ffion'});assert.match(html,/1 of 3 parties shown/);assert.match(html,/Ffion Ellis/);assert.match(html,/<p class="gov-ui-kicker">Plaid Cymru<\/p>/);assert.match(html,/<p class="gov-ui-kicker">Scottish National Party<\/p>/);
+});
+
+test('archived sequential organizations do not appear as current future successors or search matches',()=>{
+ const data=futureFixture(),p=data.party_leadership.parties[2];p.future_preview.push({...copy(p.future_preview[0]),component_available:false,person:{...copy(p.future_preview[0].person),id:'fictional_archived_1',name:'Archived Organization Person'}});const html=show(data);assert.match(html,/Clara Rowan/);assert.doesNotMatch(html,/Archived Organization Person/);assert.match(show(data,{leadershipQuery:'Archived Organization Person'}),/0 of 3 parties shown/);
+});
+
+test('future text and research links are escaped and rendering does not mutate the catalogue',()=>{
+ const data=futureFixture(),fiction=data.party_leadership.parties[2].future_preview[0].person.fiction;fiction.fictional_biography='<img src=x onerror="evil">';fiction.research_basis.push({url:'javascript:evil()',fact:'<script>evil()</script>',applies_to:'untrusted'});const before=JSON.stringify(data),html=show(freeze(data));assert.equal(JSON.stringify(data),before);assert.match(html,/&lt;img src=x onerror=&quot;evil&quot;&gt;/);assert.doesNotMatch(html,/<img src=x|<script>|href="javascript:/);
+});
+
 test('leadership gets an accessible active tab when the API supplies its read model',()=>{
  const html=show();assert.match(html,/id="gov-tab-leadership" role="tab"[^>]*aria-selected="true" tabindex="0"/);assert.match(html,/id="gov-panel-leadership" role="tabpanel" aria-labelledby="gov-tab-leadership"/);
  assert.equal((html.match(/role="tab"/g)||[]).length,5);
@@ -79,9 +179,15 @@ test('candidate evidence is a disclosure, not a promised election outcome',()=>{
 test('known people without art keep names and explicit avatar placeholders',()=>{
  const html=show();assert.match(html,/Alex Salmond/);assert.match(html,/Avatar not yet available/);assert.match(html,/class="gov-ui-person-art gov-ui-art-pending"/);
 });
-test('character artwork is uncropped, compact and explicitly labelled',()=>{
- const html=show();assert.match(html,/alt="Character avatar of Neil Kinnock"/);assert.match(html,/width="240" height="360"/);assert.match(html,/Appearance reference: 1990 to 1999/);
+test('cartoon artwork is uncropped, compact and explicitly labelled',()=>{
+ const html=show();assert.match(html,/alt="Cartoon avatar of Neil Kinnock"/);assert.match(html,/width="240" height="360"/);assert.match(html,/Appearance reference: from 1990 to before 1999/);assert.doesNotMatch(html,/<canvas|data-person-turn|data-person-open/);
  const css=fs.readFileSync(path.resolve(__dirname,'../../spheres-web/ui/government-ui.css'),'utf8');assert.match(css,/\.gov-ui-person-art img\s*\{[^}]*object-fit:contain/);assert.match(css,/\.gov-ui-person-art\s*\{[^}]*min-width:90px/);
+});
+test('overview displays only the exact bound executive cartoon and preserves the person name',()=>{
+ const data=fixture(),person=data.party_leadership.parties[0].campaign[0].person;
+ data.leader={name:person.name};data.party_leadership.executive_person=person;
+ let html=render(data,{tab:'overview'});assert.match(html,/alt="Cartoon avatar of Neil Kinnock"/);assert.match(html,/<h3>Neil Kinnock<\/h3>/);assert.match(html,/Avatar: Original painted character artwork/);assert.match(html,/data-gov-detail="executive-avatar"/);assert.match(html,/https:\/\/members.parliament.uk\/member\/693\/career/);assert.doesNotMatch(html,/<canvas|View in 3D/);
+ delete data.party_leadership.executive_person;html=render(data,{tab:'overview'});assert.doesNotMatch(html,/Cartoon avatar of/);assert.match(html,/<h3>Neil Kinnock<\/h3>/);
 });
 test('untrusted image URLs cannot become avatar requests',()=>{
  for(const url of ['javascript:alert(1)','https://example.com/face.png','//example.com/a.png','/art/../private/a.png','/art/a.svg','/art/a.png" onerror="evil']){
@@ -112,7 +218,7 @@ test('missing leadership payload and backend errors remain explicit',()=>{
  const data=fixture();data.party_leadership={error:'Catalogue invalid'};assert.match(show(data),/Catalogue invalid/);
 });
 test('unknown person references do not fabricate a name, face or biography',()=>{
- const data=fixture();data.party_leadership.parties[0].campaign=[{person:null,person_id:'unknown'}];const html=show(data);assert.match(html,/Identity not established/);assert.match(html,/does not name a verified person/);assert.doesNotMatch(html,/Character avatar of unknown/);
+ const data=fixture();data.party_leadership.parties[0].campaign=[{person:null,person_id:'unknown'}];const html=show(data);assert.match(html,/Identity not established/);assert.match(html,/does not name a verified person/);assert.doesNotMatch(html,/Cartoon avatar of unknown/);
 });
 test('party, person, component, image credits and search text are HTML escaped',()=>{
  const data=fixture(),attack='<img src=x onerror="evil">';data.party_leadership.parties[0].party_name=attack;data.party_leadership.parties[0].campaign[0].person.name=attack;data.party_leadership.parties[0].campaign[0].person.portrait.credit=attack;data.party_leadership.parties[1].components[0].name=attack;

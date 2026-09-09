@@ -1,3 +1,9 @@
+# Archived 3D production study
+
+**Superseded on 7 September 2026:** the user now wants fixed cartoon avatars. [The cartoon character roadmap](CARTOON_CHARACTER_ROADMAP.md) governs current production. The following records prior work; its 100k triangle, rigging and rotation requirements are no longer active. Government uses static illustrations and does not load these character modules.
+
+---
+
 # Physical historical characters
 
 The requested direction is **actual rotatable 3D cartoon characters**. This supersedes the earlier generated headshots and full-body raster studies. Those images remain as production history; none is registered as an accepted person avatar. National-selector artwork remains a separate national-symbol system.

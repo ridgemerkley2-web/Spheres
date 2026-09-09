@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-09-07",
+  "source": "docs/research/canada-party-leaders-1990-2026.json",
+  "source_before_sha256": "6d47a408fb4c5a4d32d9692bdc14c1c1f8bb6e343838e63db5163dcda271d11e",
+  "source_after_sha256": "9844f2d18ec9d75348b6c6cb7e34866077455437ace804bd0228f91eead3d92d",
+  "notes_before_sha256": "65de145f7ad84cce0c5f9f1ec4c2a94bbf7fe25c96f943bec40d0265ea8ed4d0",
+  "notes_after_sha256": "dc207b0ba8f018aa2244eaaadd9a892a9f7634e01ac854d3ec06777af1cf85b1",
+  "source_hash_scope": "These source and notes hashes bracket the paired McLaughlin continuity and Mulroney prose corrections. Each receipt lists its own exact changes.",
+  "type": "narrow_new_term_identity_continuity_correction",
+  "nation": "Canada",
+  "party": "ca_ndp",
+  "registry_before_sha256": "ab7e0e1c76e51c783201c3d9be702d6e8cba0d1c84cb8f427cf42dbedd0aeb3a",
+  "registry_after_sha256": "bee6b286090db5238843fbc2240c94d7b3d152f3681176e2a67ffa4be2cdf63b",
+  "changed_new_term_ids": [
+    "ca_ndp_audrey_mclaughlin_19900101_leader"
+  ],
+  "removed_new_term_ids": [
+    "ca_ndp_audrey_mclaughlin_acting_1994"
+  ],
+  "before_terms": [
+    {
+      "id": "ca_ndp_audrey_mclaughlin_19900101_leader",
+      "person": "audrey_mclaughlin",
+      "role": "Federal party leader",
+      "kind": "leader",
+      "from": {
+        "kind": "day",
+        "value": "1990-01-01"
+      },
+      "until": {
+        "kind": "month",
+        "value": "1994-04"
+      },
+      "affiliation_from": {
+        "kind": "day",
+        "value": "1990-01-01"
+      },
+      "affiliation_until": {
+        "kind": "month",
+        "value": "1994-04"
+      },
+      "sources": [
+        "https://recherche-collection-search.bac-lac.gc.ca/eng/Home/Record?IdNumber=1765141&app=fonandcol",
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+        "https://epe.lac-bac.gc.ca/100/200/301/nlc-bnc/celebrating_women-ef/women97/eaudrey.htm?nodisclaimer=1"
+      ],
+      "note": "Opening scope clip, not first election. National Library dates original election to 1989-12-02 and April 1994 announcement of stepping down; exact transition to interim status not verified."
+    },
+    {
+      "id": "ca_ndp_audrey_mclaughlin_acting_1994",
+      "person": "audrey_mclaughlin",
+      "role": "Federal party leader (interim)",
+      "kind": "acting",
+      "from": {
+        "kind": "month",
+        "value": "1994-04"
+      },
+      "until": {
+        "kind": "day",
+        "value": "1995-10-14"
+      },
+      "affiliation_from": {
+        "kind": "month",
+        "value": "1994-04"
+      },
+      "affiliation_until": {
+        "kind": "day",
+        "value": "1995-10-14"
+      },
+      "sources": [
+        "https://recherche-collection-search.bac-lac.gc.ca/eng/Home/Record?IdNumber=1765141&app=fonandcol",
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+        "https://epe.lac-bac.gc.ca/100/200/301/nlc-bnc/celebrating_women-ef/women97/eaudrey.htm?nodisclaimer=1"
+      ],
+      "note": "National Library describes McLaughlin as interim leader after the April 1994 departure announcement, pending the October 1995 convention. Month precision preserves uncertain effective day."
+    }
+  ],
+  "after_terms": [
+    {
+      "id": "ca_ndp_audrey_mclaughlin_19900101_leader",
+      "person": "audrey_mclaughlin",
+      "role": "Federal party leader",
+      "kind": "leader",
+      "from": {
+        "kind": "day",
+        "value": "1990-01-01"
+      },
+      "until": {
+        "kind": "day",
+        "value": "1995-10-14"
+      },
+      "affiliation_from": {
+        "kind": "day",
+        "value": "1990-01-01"
+      },
+      "affiliation_until": {
+        "kind": "day",
+        "value": "1995-10-14"
+      },
+      "sources": [
+        "https://recherche-collection-search.bac-lac.gc.ca/eng/Home/Record?IdNumber=1765141&app=fonandcol",
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+        "https://epe.lac-bac.gc.ca/100/200/301/nlc-bnc/celebrating_women-ef/women97/eaudrey.htm?nodisclaimer=1"
+      ],
+      "note": "Continuous identity window, clipped to the 1990 reference start rather than her original election on 1989-12-02. The National Library records her April 1994 announcement of stepping down and continued service as interim leader until Alexa McDonough was chosen on 1995-10-14. The exact day of the elected-to-interim status change is uncertain; it does not create a leadership vacancy or break in her party affiliation. This record groups the same person's elected and interim service without asserting an exact April transition day."
+    }
+  ],
+  "explanation": "The National Library confirms McLaughlin remained leader when she changed to interim status after her April 1994 announcement. Only the status-transition day is uncertain. Merge the two newly imported, never-launched windows into continuous identity and affiliation, retaining the first new term ID and explaining the elected/interim transition in its note. Both affected IDs are absent from the prior Git HEAD and archived player campaign. The unchanged April gap note remains a status-date research task, explicitly not a vacancy.",
+  "review_coordination": "Parent authorized this narrow correction; country researcher confirmed continuous leadership through 14 October 1995. The lifecycle owner held registry writes and the parent held Australia import during the patch.",
+  "source_basis": [
+    "https://recherche-collection-search.bac-lac.gc.ca/eng/Home/Record?IdNumber=1765141&app=fonandcol",
+    "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+    "https://epe.lac-bac.gc.ca/100/200/301/nlc-bnc/celebrating_women-ef/women97/eaudrey.htm?nodisclaimer=1"
+  ],
+  "validation": {
+    "staging_matches_live_party": true,
+    "all_live_people_identical": true,
+    "all_office_links_identical": true,
+    "all_other_terms_identical": true,
+    "all_party_nonterm_fields_identical": true,
+    "all_other_roster_fields_identical": true,
+    "all_staged_person_facts_identical": true,
+    "affected_ids_absent_from_git_head": true,
+    "affected_ids_absent_from_7843_archive": true,
+    "archive_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\cartoon-avatar-preview\\saves\\before-leadership-2035.json",
+    "archive_sha256": "44cae2cacb2f0e6a83aa6deef7d1e465fc6f0a652dbe5ab018d9aead3f631db9",
+    "archive_unchanged": true,
+    "confirmed_identity_dates": [
+      "1994-03-31",
+      "1994-04-01",
+      "1994-04-15",
+      "1994-04-30",
+      "1994-05-01",
+      "1995-10-13"
+    ],
+    "next_leader_from": "1995-10-14",
+    "native_validation": "Parent/future_successors final native registry and read-only save audit will use these corrected inputs.",
+    "invariant_sha256": {
+      "all_live_people": "de1f5bfa188d9d3a10b63ba5a1bf46efcfcdf07124bb5a416dfea5a5992510e7",
+      "all_office_links": "da9674f5ba093f37dc09e99c9ba365a440b19322d53fbabb69e7c7edbc6af8e8",
+      "all_other_terms": "13752d0be5b268a25f80bf72da60b9180a90a100d99b669b85e4004dd7a36085",
+      "all_party_nonterm_fields": "27e78c82e3c6ff390d892d0d9a8db94c104206b6eea5975377c11572922bba13",
+      "all_other_roster_fields": "d44b82286828bdcb0718809326dbc96303bf0eaaff92d73f51c3daccb783a63a"
+    }
+  },
+  "people_changed": 0,
+  "office_links_changed": 0,
+  "other_terms_changed": 0,
+  "other_parties_changed": 0,
+  "save_files_changed": 0,
+  "runtime_precision_policy_changed": false,
+  "importer_policy_changed": false,
+  "canada_term_count_before": 27,
+  "canada_term_count_after": 26,
+  "paired_receipt": "canada-mulroney-prose-correction.json"
+}

@@ -1,0 +1,41 @@
+{
+  "provider": "Built-in image_gen",
+  "created_on": "2026-09-07",
+  "purpose": "Fixed cartoon leader avatars. Replaces active rotatable 3D character presentation.",
+  "style_reference": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+  "reuse": {
+    "person_id": "margaret_thatcher",
+    "asset": "margaret-thatcher-cartoon-1990-v3.png",
+    "note": "Earlier generated cartoon study reinstated after the user's change of direction. Prior prompts preserved in tools/avatars/person-prompts/."
+  },
+  "assets": [
+    {
+      "person_id": "neil_kinnock",
+      "asset": "neil-kinnock-cartoon-1990-v1.png",
+      "prompt": "Create one production-ready 2D CARTOON full-body game avatar of Neil Kinnock circa 1990, age 47. Reference image 1 (Margaret Thatcher) is STYLE AND COMPOSITION ONLY: match its bold dark clean outlines, shaped cel shading, slightly enlarged expressive head, polished illustrated cartoon finish and quiet solid dark teal background. Do not copy Thatcher's identity, hair, outfit or props. Reference image 2 is an earlier generated Neil Kinnock likeness study used only for recognizable identity cues; it is not a source photograph. Preserve Kinnock's high balding forehead, sparse reddish-brown hair around the sides, rounded face, blue eyes and affable smile. Make him distinctly a drawn cartoon, not a photograph, oil portrait, plastic render or 3D model. Charcoal blue business suit, white shirt, burgundy tie, black shoes, slim document folder held in one hand. Full figure from head to shoes with generous breathing room, standing relaxed in a slight three-quarter pose facing the viewer. Match reference 1's approximately 5.5-head body proportions, line weight and detailed but graphic cloth folds. Portrait 1024x1536 composition, clean opaque uniform deep teal background (#142b33), no lettering, frame, flags, watermarks, gradients or checkerboard. The face must remain distinctive and readable as a small in-game avatar.",
+      "identity_reference": "spheres-web/ui/person-portraits/neil-kinnock-1990-v1.png",
+      "generated_source": "exec-7cc152e9-6728-4daa-8c75-e66dd564212b.png"
+    },
+    {
+      "person_id": "paddy_ashdown",
+      "asset": "paddy-ashdown-cartoon-1990-v1.png",
+      "prompt": "Create one production-ready 2D CARTOON full-body game avatar of Paddy Ashdown circa 1990, age 48. Reference image 1 (Margaret Thatcher) is STYLE AND COMPOSITION ONLY: match its bold dark clean outlines, shaped cel shading, slightly enlarged expressive head, polished illustrated cartoon finish and quiet solid dark teal background. Do not copy Thatcher's identity, hair, outfit or props. Reference image 2 is an earlier generated Paddy Ashdown likeness study for identity cues only; it is not a source photograph. Preserve his recognizable broad angular face, squared jaw, straight prominent nose, deep-set blue eyes, strong brows, swept side-parted brown hair lightly greying at the temples, and composed closed-mouth expression. Make him distinctly a drawn cartoon, not a photograph, oil portrait, plastic render or 3D model. Tailored dark teal-charcoal business suit, white shirt, muted golden ochre tie, black shoes, arms at ease, one hand lightly resting on a slim closed black folder. Full figure from head to shoes with generous breathing room, standing in a slight three-quarter pose facing the viewer. Match reference 1's approximately 5.5-head body proportions, line weight and graphic cloth folds. Portrait 1024x1536 composition, clean opaque uniform deep teal background (#142b33), no lettering, frame, flags, watermarks, gradients or checkerboard. The face must remain distinctive and readable as a small in-game avatar.",
+      "identity_reference": "spheres-web/ui/person-portraits/paddy-ashdown-1990-v1.png",
+      "generated_source": "exec-95a8275f-aa02-44bb-8ce3-d3e2c75231c4.png"
+    },
+    {
+      "person_id": "george_h_w_bush",
+      "asset": "george-h-w-bush-cartoon-1990-v1.png",
+      "prompt": "Create one production-ready 2D CARTOON full-body game avatar of George H. W. Bush, the elder President Bush, circa 1990 at age 65. The supplied Margaret Thatcher image is STYLE AND COMPOSITION ONLY: match its bold dark clean outlines, shaped cel shading, slightly enlarged expressive head, polished illustrated cartoon finish and quiet solid dark teal background. Do not copy Thatcher's identity, hair, outfit or props. Depict the recognizable elder George Herbert Walker Bush, NOT George W. Bush: long narrow face, high forehead, side-parted straight grey-brown hair combed across, long prominent nose with narrow bridge, blue eyes under straight brows, thin lips and gentle reserved smile, lean tall build. Make him distinctly a drawn cartoon, not a photograph, oil portrait, plastic render or 3D model. Dark navy single-breasted business suit, white shirt, burgundy-red subtly striped tie, black shoes, relaxed statesmanlike pose with one hand resting gently over the other at his waist. Full figure from head to shoes with generous breathing room, standing in a slight three-quarter pose facing the viewer. Match reference's approximately 5.5-head body proportions, line weight and graphic cloth folds. Portrait 1024x1536 composition, clean opaque uniform deep teal background (#142b33), no lettering, frame, flags, logos, watermarks, gradients or checkerboard. The face must remain distinctive and readable as a small in-game avatar.",
+      "identity_reference": "Named historical subject; no source photograph supplied",
+      "generated_source": "exec-6a72d5dc-ad23-4e14-8f85-df5cb19bc0a9.png"
+    }
+  ],
+  "review": {
+    "reviewer": "Codex visual QA",
+    "identity": "Exact manifest person IDs checked against existing researched registry. Likenesses are artistic interpretations, not documentary portraits.",
+    "visual": "Full figures, visible hands and shoes, consistent outlined cartoon shading, simple dark teal backgrounds. Inspected each generated output.",
+    "era": "Existing early-1990s appearance window retained. Portrait availability does not determine party office terms.",
+    "user_style_approval": "Pending user feedback; do not describe these as user-approved final likenesses."
+  }
+}

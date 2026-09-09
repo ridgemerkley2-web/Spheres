@@ -179,8 +179,11 @@
 #govScreen .gov-ui-person-copy { min-width:0; }
 #govScreen .gov-ui-person-copy>.gov-ui-kicker { font-size:10px; margin-bottom:5px; }
 #govScreen .gov-ui-person-copy>h4 { font:600 23px/1.22 var(--serif,Georgia,serif); }
-#govScreen .gov-ui-person-art { width:106px; min-width:90px; margin:0; padding:8px 4px; min-height:152px; border:1px solid #cfc9aa3b; border-radius:8px 8px 25px 8px; background:radial-gradient(ellipse at 50% 45%,#78908835,transparent 75%),linear-gradient(160deg,#273c4140,#081b2359); overflow:hidden; }
+#govScreen .gov-ui-person-art { box-sizing:border-box; width:106px; min-width:90px; margin:0; padding:5px; min-height:152px; border:1px solid #cfc9aa52; border-radius:10px; background:radial-gradient(ellipse at 50% 45%,#78908835,transparent 75%),linear-gradient(160deg,#273c4140,#081b2359); overflow:hidden; }
 #govScreen .gov-ui-person-art img { display:block; width:100%; height:152px; object-fit:contain; object-position:center bottom; filter:drop-shadow(0 4px 3px #07141d6b); }
+#govScreen .gov-ui-cartoon-art img { border-radius:6px; }
+#govScreen .gov-ui-leadership>.gov-ui-cartoon-art { float:right; width:156px; margin:0 0 16px 20px; }
+#govScreen .gov-ui-leadership>.gov-ui-cartoon-art img { height:218px; }
 #govScreen .gov-ui-person-art figcaption { margin:6px 2px 0; text-align:center; color:#b4c6bc; font-size:9px; line-height:1.5; overflow-wrap:anywhere; }
 #govScreen .gov-ui-person-art figcaption span { display:block; color:#92aaa6; }
 #govScreen .gov-ui-art-pending { min-height:152px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:12px 8px; border-style:dashed; }
@@ -209,6 +212,15 @@
 #govScreen .gov-ui-coverage-gaps { font-size:12px; }
 #govScreen .gov-ui-coverage-gaps small { color:#9cb4aa; font-size:11px; }
 #govScreen .gov-ui-person.is-missing { grid-template-columns:minmax(0,1fr); }
+#govScreen .gov-ui-fiction-badge { display:inline-block; margin:7px 0 3px; padding:4px 8px; border:1px solid #d7bd7877; border-radius:5px; color:#ead3a0; background:#bb975419; font:600 10px/1.4 system-ui,sans-serif; letter-spacing:.035em; }
+#govScreen .gov-ui .gov-ui-fiction-profile { margin:5px 0; color:#c4cab5; font-size:11px; }
+#govScreen .gov-ui .gov-ui-fiction-biography { margin:8px 0; color:#c3d0c7; font-size:12px; line-height:1.65; }
+#govScreen .gov-ui-future-policy { margin:18px 0; padding:16px 18px; border-left:3px solid #d7bd78; border-radius:0 9px 9px 0; background:linear-gradient(110deg,#aa8a4521,#263f421b); }
+#govScreen .gov-ui-future-policy p { margin:0; font-size:12px; }
+#govScreen .gov-ui-future-policy .gov-ui-kicker { margin-bottom:6px; color:#dcc490; font-size:10px; }
+#govScreen .gov-ui-future-disclosure>summary { color:#e1c98f; }
+#govScreen .gov-ui-fiction-basis { padding:5px 0; border-top:1px solid var(--gov-line); }
+#govScreen .gov-ui-fiction-person .gov-ui-art-pending { border-color:#d3b56855; background:#bc994310; }
 @media(max-width:1000px) {
   #govScreen .gov-ui { padding-left:24px; padding-right:24px; }
   #govScreen .gov-ui-hero { min-height:330px; padding:30px; }
@@ -262,6 +274,8 @@
   #govScreen .gov-ui-person { grid-template-columns:90px minmax(0,1fr); gap:13px; }
   #govScreen .gov-ui-person-art { width:90px; min-height:132px; }
   #govScreen .gov-ui-person-art img { height:132px; }
+  #govScreen .gov-ui-leadership>.gov-ui-cartoon-art { width:106px; margin-left:14px; }
+  #govScreen .gov-ui-leadership>.gov-ui-cartoon-art img { height:152px; }
   #govScreen .gov-ui-person-copy>h4 { font-size:21px; }
 }
 @media(max-width:390px) {
@@ -320,3 +334,6 @@
   #govScreen .gov-ui-leadership>.gov-ui-person-model canvas { height:185px; }
   .person-3d-dialog { padding:17px; }
 }
+.gov-ui-executive-role{display:inline-block;margin:5px 0;padding:4px 8px;border:1px solid #52646c;border-radius:5px;color:#c9d6da;background:#21323a;font-size:11px;font-weight:600}
+.gov-ui-executive-role.is-authorized{border-color:#537e73;color:#c0e5d7;background:#243c38}
+.gov-ui-office-policy{margin:12px 0}

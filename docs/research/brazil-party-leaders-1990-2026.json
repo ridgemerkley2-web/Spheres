@@ -1,0 +1,1567 @@
+{
+  "schema": "spheres-party-leader-research-v3",
+  "reference_from": "1990-01-01",
+  "reference_through": "2026-09-07",
+  "source_checked_at": "2026-09-07",
+  "nation": "Brazil",
+  "scope": {
+    "coverage": "partial",
+    "represented_party_ids": [
+      "br_pmdb",
+      "br_pfl",
+      "br_prn",
+      "br_pt",
+      "br_pdt",
+      "br_pds"
+    ],
+    "history_through": "2026-09-07",
+    "future_from": "2026-09-08",
+    "requested_through": "2035-12-31",
+    "claim": "All six game rows inventoried, with partial organizational terms and explicit date/lifecycle gaps. This is not every Brazilian party or full 1990–2026 coverage."
+  },
+  "ingestion": {
+    "status": "party-office-import-only-after-role-and-lifecycle-review",
+    "people": "Preserve every existing identity field and office link; do not create duplicates for existing Sarney or Collor.",
+    "parties": "Default party-only. Brazil elects a state president separately; party chairs are not automatically presidential nominees. Acting/titular leave and dated observations must be reviewed before campaign appointment.",
+    "intervals": "Half-open bounds; year/month precision retains uncertainty. Open is historical-cutoff limited, never a forecast of office through 2035.",
+    "future": "Fictional successors after September 7, 2026 stay separate and require surviving-party/lifecycle conditions."
+  },
+  "people": [
+    {
+      "id": "ulysses_guimaraes",
+      "name": "Ulysses Guimarães",
+      "sources": [
+        "https://www.mdb.org.br/quem-somos/"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1916-10-06"
+      },
+      "died": {
+        "kind": "day",
+        "value": "1992-10-12"
+      }
+    },
+    {
+      "id": "jarbas_vasconcelos",
+      "name": "Jarbas Vasconcelos",
+      "sources": [
+        "https://www.mdb.org.br/quem-somos/",
+        "https://imagem.camara.leg.br/Imagem/d/pdf/DCD08DEZ1989.pdf"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1942-08-23"
+      }
+    },
+    {
+      "id": "orestes_quercia",
+      "name": "Orestes Quércia",
+      "sources": [
+        "https://www.mdb.org.br/quem-somos/"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1938-08-18"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2010-12-24"
+      }
+    },
+    {
+      "id": "jose_fogaca",
+      "name": "José Fogaça",
+      "sources": [
+        "https://www.mdb.org.br/quem-somos/"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1947-01-13"
+      }
+    },
+    {
+      "id": "luiz_henrique_da_silveira",
+      "name": "Luiz Henrique da Silveira",
+      "sources": [
+        "https://www.mdb.org.br/quem-somos/"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1940-02-25"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2015-05-10"
+      }
+    },
+    {
+      "id": "paes_de_andrade",
+      "name": "Paes de Andrade",
+      "sources": [
+        "https://www.mdb.org.br/quem-somos/"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1927-05-18"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2015-06-17"
+      }
+    },
+    {
+      "id": "jader_barbalho",
+      "name": "Jader Barbalho",
+      "sources": [
+        "https://www.mdb.org.br/quem-somos/"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1944-10-27"
+      }
+    },
+    {
+      "id": "maguito_vilela",
+      "name": "Maguito Vilela",
+      "sources": [
+        "https://www.mdb.org.br/quem-somos/"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1949-01-24"
+      }
+    },
+    {
+      "id": "michel_temer",
+      "name": "Michel Temer",
+      "sources": [
+        "https://www.mdb.org.br/quem-somos/"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1940-09-23"
+      }
+    },
+    {
+      "id": "iris_de_araujo",
+      "name": "Íris de Araújo",
+      "sources": [
+        "https://www.mdb.org.br/quem-somos/"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1943-05-07"
+      }
+    },
+    {
+      "id": "valdir_raupp",
+      "name": "Valdir Raupp",
+      "sources": [
+        "https://www.mdb.org.br/quem-somos/"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1955-08-24"
+      }
+    },
+    {
+      "id": "romero_juca",
+      "name": "Romero Jucá",
+      "sources": [
+        "https://www.mdb.org.br/quem-somos/"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1954-11-30"
+      }
+    },
+    {
+      "id": "baleia_rossi",
+      "name": "Baleia Rossi",
+      "sources": [
+        "https://www.mdb.org.br/quem-somos/"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1972-06-09"
+      }
+    },
+    {
+      "id": "luiz_gushiken",
+      "name": "Luiz Gushiken",
+      "sources": [
+        "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/",
+        "https://www.camara.leg.br/deputados/67836/biografia",
+        "https://fpabramo.org.br/2024/09/18/acervo-de-gushiken-e-incorporado-ao-centro-de-memoria-da-fpa/"
+      ]
+    },
+    {
+      "id": "luiz_inacio_lula_da_silva",
+      "name": "Luiz Inácio Lula da Silva",
+      "sources": [
+        "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/",
+        "https://www.camara.leg.br/deputados/139289/biografia"
+      ]
+    },
+    {
+      "id": "jose_dirceu",
+      "name": "José Dirceu",
+      "sources": [
+        "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/"
+      ]
+    },
+    {
+      "id": "jose_genoino",
+      "name": "José Genoino",
+      "sources": [
+        "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/"
+      ]
+    },
+    {
+      "id": "tarso_genro",
+      "name": "Tarso Genro",
+      "sources": [
+        "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/"
+      ]
+    },
+    {
+      "id": "marco_aurelio_garcia",
+      "name": "Marco Aurélio Garcia",
+      "sources": [
+        "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/"
+      ]
+    },
+    {
+      "id": "ricardo_berzoini",
+      "name": "Ricardo Berzoini",
+      "sources": [
+        "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/"
+      ]
+    },
+    {
+      "id": "jose_eduardo_dutra",
+      "name": "José Eduardo Dutra",
+      "sources": [
+        "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/"
+      ]
+    },
+    {
+      "id": "rui_falcao",
+      "name": "Rui Falcão",
+      "sources": [
+        "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/"
+      ]
+    },
+    {
+      "id": "gleisi_hoffmann",
+      "name": "Gleisi Hoffmann",
+      "sources": [
+        "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/"
+      ]
+    },
+    {
+      "id": "edinho_silva",
+      "name": "Edinho Silva",
+      "sources": [
+        "https://fpabramo.org.br/focusbrasil/2025/08/04/confira-integra-do-discurso-de-edinho-silva-em-cerimonia-que-o-empossou-presidente-nacional-do-pt/",
+        "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+      ]
+    },
+    {
+      "id": "hugo_napoleao",
+      "name": "Hugo Napoleão",
+      "sources": [
+        "https://www2.camara.leg.br/atividade-legislativa/comissoes/comissoes-permanentes/credn/arquivos/deputado-hugo-napoleao"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1943-10-31"
+      }
+    },
+    {
+      "id": "leonel_brizola",
+      "name": "Leonel Brizola",
+      "sources": [
+        "https://pdt.org.br/index.php/o-pdt/lideres-historicos/",
+        "https://pdt.org.br/index.php/pdt-40-anos-de-brizola-a-ciro/"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1922-11-22"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2004-06-21"
+      }
+    },
+    {
+      "id": "carlos_lupi",
+      "name": "Carlos Lupi",
+      "sources": [
+        "https://pdt.org.br/index.php/o-pdt/lideres-historicos/",
+        "https://www.flb-ap.org.br/tribunas/avancar-igualdade/",
+        "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1957-03-16"
+      }
+    },
+    {
+      "id": "daniel_sampaio_tourinho",
+      "name": "Daniel Sampaio Tourinho",
+      "sources": [
+        "https://hemeroteca-pdf.bn.gov.br/325538/per325538_1990_00212.pdf",
+        "https://agir36.org.br/category/destaques/",
+        "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+      ]
+    },
+    {
+      "id": "paulo_maluf",
+      "name": "Paulo Maluf",
+      "sources": [
+        "https://atlas.fgv.br/verbete/6099",
+        "https://imagem.camara.gov.br/Imagem/d/pdf/DCD19MAR1992.pdf"
+      ]
+    }
+  ],
+  "parties": [
+    {
+      "nation": "Brazil",
+      "party": "br_pmdb",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.mdb.org.br/quem-somos/",
+        "https://imagem.camara.leg.br/Imagem/d/pdf/DCD08DEZ1989.pdf",
+        "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+      ],
+      "identity_note": "Organizational party presidency, not President of Brazil, PMDB parliamentary leader or president of Congress. PMDB later resumed the MDB name; no separate national executive entitlement follows.",
+      "components": [],
+      "terms": [
+        {
+          "id": "br_pmdb_ulysses_guimaraes_1980",
+          "person": "ulysses_guimaraes",
+          "role": "Titular national president of PMDB",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1980"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1991-03-24"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1980"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1991-03-24"
+          },
+          "sources": [
+            "https://www.mdb.org.br/quem-somos/"
+          ],
+          "note": "Predecessor MDB leadership began in 1972; term clipped to the new PMDB organizational era. Acting substitution in 1989/1990 is separately recorded; do not treat this as simultaneous active control."
+        },
+        {
+          "id": "br_pmdb_jarbas_vasconcelos_19890426",
+          "person": "jarbas_vasconcelos",
+          "role": "Acting national president of PMDB",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "1989-04-26"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1990-01-02"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1989-04-26"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1990-01-02"
+          },
+          "sources": [
+            "https://www.mdb.org.br/quem-somos/",
+            "https://imagem.camara.leg.br/Imagem/d/pdf/DCD08DEZ1989.pdf"
+          ],
+          "note": "December 1989 parliamentary record explicitly says em exercício. Organizational office, not national presidency."
+        },
+        {
+          "id": "br_pmdb_orestes_quercia_19910324",
+          "person": "orestes_quercia",
+          "role": "National party president",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1991-03-24"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1993-04-23"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1991-03-24"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1993-04-23"
+          },
+          "sources": [
+            "https://www.mdb.org.br/quem-somos/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "br_pmdb_luiz_henrique_da_silveira_19930912",
+          "person": "luiz_henrique_da_silveira",
+          "role": "National party president",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1993-09-12"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1995-10-01"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1993-09-12"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1995-10-01"
+          },
+          "sources": [
+            "https://www.mdb.org.br/quem-somos/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "br_pmdb_paes_de_andrade_19951001",
+          "person": "paes_de_andrade",
+          "role": "National party president",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1995-10-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1998-09-15"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1995-10-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1998-09-15"
+          },
+          "sources": [
+            "https://www.mdb.org.br/quem-somos/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "br_pmdb_jader_barbalho_19980915",
+          "person": "jader_barbalho",
+          "role": "National party president",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1998-09-15"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2001-05-15"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1998-09-15"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2001-05-15"
+          },
+          "sources": [
+            "https://www.mdb.org.br/quem-somos/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "br_pmdb_maguito_vilela_20010515",
+          "person": "maguito_vilela",
+          "role": "National party president",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2001-05-15"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2001-09-09"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2001-05-15"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2001-09-09"
+          },
+          "sources": [
+            "https://www.mdb.org.br/quem-somos/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "br_pmdb_michel_temer_20010909",
+          "person": "michel_temer",
+          "role": "National party president",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2001-09-09"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2009-03-10"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2001-09-09"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2009-03-10"
+          },
+          "sources": [
+            "https://www.mdb.org.br/quem-somos/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "br_pmdb_iris_de_araujo_20090310",
+          "person": "iris_de_araujo",
+          "role": "Acting national president of PMDB",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2009-03-10"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2010-01-27"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2009-03-10"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2010-01-27"
+          },
+          "sources": [
+            "https://www.mdb.org.br/quem-somos/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "br_pmdb_michel_temer_20100127",
+          "person": "michel_temer",
+          "role": "National party president",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2010-01-27"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2010-06-15"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2010-01-27"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2010-06-15"
+          },
+          "sources": [
+            "https://www.mdb.org.br/quem-somos/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "br_pmdb_valdir_raupp_20100615",
+          "person": "valdir_raupp",
+          "role": "Acting national president of PMDB",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2010-06-15"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2014-03-11"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2010-06-15"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2014-03-11"
+          },
+          "sources": [
+            "https://www.mdb.org.br/quem-somos/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "br_pmdb_romero_juca_20160405",
+          "person": "romero_juca",
+          "role": "Interim national president of PMDB / MDB",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2016-04-05"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2019-10-06"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2016-04-05"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2019-10-06"
+          },
+          "sources": [
+            "https://www.mdb.org.br/quem-somos/"
+          ],
+          "note": "Source explicitly establishes interim start; recover transition to elected status and any intervening substitutes."
+        },
+        {
+          "id": "br_pmdb_baleia_rossi_20191006",
+          "person": "baleia_rossi",
+          "role": "National president of MDB",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2019-10-06"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2019-10-06"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.mdb.org.br/quem-somos/",
+            "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+          ],
+          "note": ""
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "1989-04-26"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1990-01-02"
+          },
+          "reason": "Titular Ulysses and acting Jarbas overlap intentionally; runtime must distinguish leave and acting control.",
+          "sources": [
+            "https://www.mdb.org.br/quem-somos/",
+            "https://imagem.camara.leg.br/Imagem/d/pdf/DCD08DEZ1989.pdf"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "1993-01-26"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1993-09-12"
+          },
+          "reason": "Official table gives Fogaça January 26–April 6 overlapping Quércia through April 23; do not import disputed boundary as fact.",
+          "sources": [
+            "https://www.mdb.org.br/quem-somos/"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "2014-01-14"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2016-04-05"
+          },
+          "reason": "Table dates Temer return January 14 while Raupp ends March 11; resolve original minutes before importing Temer return.",
+          "sources": [
+            "https://www.mdb.org.br/quem-somos/"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "Brazil",
+      "party": "br_pfl",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www2.camara.leg.br/atividade-legislativa/comissoes/comissoes-permanentes/credn/arquivos/deputado-hugo-napoleao",
+        "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+      ],
+      "identity_note": "PFL renamed DEM by TSE approval June 12, 2007; DEM merged with PSL into a new party União Brasil on February 8, 2022. A merged successor is not unchanged PFL historical continuity.",
+      "components": [],
+      "terms": [
+        {
+          "id": "br_pfl_hugo_napoleao_1989",
+          "person": "hugo_napoleao",
+          "role": "National president of the PFL",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1989"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1992"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1989"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "1992"
+          },
+          "sources": [
+            "https://www2.camara.leg.br/atividade-legislativa/comissoes/comissoes-permanentes/credn/arquivos/deputado-hugo-napoleao"
+          ],
+          "note": ""
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "year",
+            "value": "1992"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2022-02-08"
+          },
+          "reason": "Later PFL/DEM presidents and acting substitutions not yet researched in this bounded batch.",
+          "sources": [
+            "https://www2.camara.leg.br/atividade-legislativa/comissoes/comissoes-permanentes/credn/arquivos/deputado-hugo-napoleao",
+            "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "2022-02-08"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-09-07"
+          },
+          "reason": "The original organization is dissolved by merger; União Brasil requires its own identity and leadership records.",
+          "sources": [
+            "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+          ]
+        }
+      ],
+      "dissolved": {
+        "kind": "day",
+        "value": "2022-02-08"
+      }
+    },
+    {
+      "nation": "Brazil",
+      "party": "br_prn",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://hemeroteca-pdf.bn.gov.br/325538/per325538_1990_00212.pdf",
+        "https://agir36.org.br/category/destaques/",
+        "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+      ],
+      "identity_note": "PRN national party president is distinct from Fernando Collor, its 1989 presidential candidate. PRN changed to PTC and then AGIR; registration, internal renaming and legal approval dates differ.",
+      "components": [],
+      "terms": [
+        {
+          "id": "br_prn_daniel_sampaio_tourinho_20260705",
+          "person": "daniel_sampaio_tourinho",
+          "role": "National president of AGIR",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2026-07-05"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2026-07-05"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://agir36.org.br/category/destaques/",
+            "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+          ],
+          "note": "Verified current observation start, not actual accession; earlier tenure remains a gap."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-07-05"
+          },
+          "reason": "Tourinho is explicitly national president in the February 2, 1990 newspaper report of party broadcast. Exact appointment and uninterrupted PRN/PTC/AGIR tenure have not been proven.",
+          "sources": [
+            "https://hemeroteca-pdf.bn.gov.br/325538/per325538_1990_00212.pdf",
+            "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "Brazil",
+      "party": "br_pt",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/",
+        "https://www.camara.leg.br/deputados/67836/biografia",
+        "https://fpabramo.org.br/2024/09/18/acervo-de-gushiken-e-incorporado-ao-centro-de-memoria-da-fpa/",
+        "https://www.camara.leg.br/deputados/139289/biografia",
+        "https://fpabramo.org.br/focusbrasil/2025/08/04/confira-integra-do-discurso-de-edinho-silva-em-cerimonia-que-o-empossou-presidente-nacional-do-pt/",
+        "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+      ],
+      "identity_note": "National party presidency is separate from presidential candidacy and state presidency. Lula was the 1989 presidential candidate while Gushiken chaired the party.",
+      "components": [],
+      "terms": [
+        {
+          "id": "br_pt_luiz_gushiken_1988",
+          "person": "luiz_gushiken",
+          "role": "National party president",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1988"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1988"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "sources": [
+            "https://www.camara.leg.br/deputados/67836/biografia",
+            "https://fpabramo.org.br/2024/09/18/acervo-de-gushiken-e-incorporado-ao-centro-de-memoria-da-fpa/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "br_pt_luiz_inacio_lula_da_silva_1990",
+          "person": "luiz_inacio_lula_da_silva",
+          "role": "National party president",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1994"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "1994"
+          },
+          "sources": [
+            "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/",
+            "https://www.camara.leg.br/deputados/139289/biografia"
+          ],
+          "note": ""
+        },
+        {
+          "id": "br_pt_jose_dirceu_1995",
+          "person": "jose_dirceu",
+          "role": "National party president",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1995"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2002"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1995"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2002"
+          },
+          "sources": [
+            "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "br_pt_jose_genoino_2003",
+          "person": "jose_genoino",
+          "role": "National party president",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "2003"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2005"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "2003"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2005"
+          },
+          "sources": [
+            "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "br_pt_tarso_genro_2005",
+          "person": "tarso_genro",
+          "role": "Interim national president of PT",
+          "kind": "acting",
+          "from": {
+            "kind": "year",
+            "value": "2005"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2005"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "2005"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2005"
+          },
+          "sources": [
+            "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/"
+          ],
+          "note": "Same-year coarse bounds do not imply an exact-day tenure."
+        },
+        {
+          "id": "br_pt_marco_aurelio_garcia_2006",
+          "person": "marco_aurelio_garcia",
+          "role": "Interim national president of PT",
+          "kind": "acting",
+          "from": {
+            "kind": "year",
+            "value": "2006"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2007"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "2006"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2007"
+          },
+          "sources": [
+            "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "br_pt_ricardo_berzoini_2007",
+          "person": "ricardo_berzoini",
+          "role": "National party president",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "2007"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2010"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "2007"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2010"
+          },
+          "sources": [
+            "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "br_pt_jose_eduardo_dutra_2010",
+          "person": "jose_eduardo_dutra",
+          "role": "National party president",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "2010"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2011"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "2010"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2011"
+          },
+          "sources": [
+            "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "br_pt_rui_falcao_2011",
+          "person": "rui_falcao",
+          "role": "National party president",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "2011"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2017"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "2011"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2017"
+          },
+          "sources": [
+            "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "br_pt_gleisi_hoffmann_2017",
+          "person": "gleisi_hoffmann",
+          "role": "National party president",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "2017"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2025"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "2017"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2025"
+          },
+          "sources": [
+            "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "br_pt_edinho_silva_202508",
+          "person": "edinho_silva",
+          "role": "National party president",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "2025-08"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2025-08"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://fpabramo.org.br/focusbrasil/2025/08/04/confira-integra-do-discurso-de-edinho-silva-em-cerimonia-que-o-empossou-presidente-nacional-do-pt/",
+            "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+          ],
+          "note": "August inauguration verified; exact ceremony date requires original convention minutes before day precision."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "reason": "Exact Gushiken/Lula handover needs July 1990 national meeting minutes.",
+          "sources": [
+            "https://www.camara.leg.br/deputados/67836/biografia",
+            "https://www.camara.leg.br/deputados/139289/biografia"
+          ]
+        },
+        {
+          "from": {
+            "kind": "year",
+            "value": "1994"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1995"
+          },
+          "reason": "Rui Falcão interim term is absent from the party retrospective; recover original election record.",
+          "sources": [
+            "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/"
+          ]
+        },
+        {
+          "from": {
+            "kind": "year",
+            "value": "2002"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2003"
+          },
+          "reason": "Dirceu/Genoino boundary remains coarse.",
+          "sources": [
+            "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/"
+          ]
+        },
+        {
+          "from": {
+            "kind": "year",
+            "value": "2005"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2007"
+          },
+          "reason": "Retrospective omits first Berzoini phase and exact interim transitions; do not treat the short list as exhaustive.",
+          "sources": [
+            "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/"
+          ]
+        },
+        {
+          "from": {
+            "kind": "year",
+            "value": "2025"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2025-08"
+          },
+          "reason": "Humberto Costa acting interval and precise Gleisi departure require original resolutions.",
+          "sources": [
+            "https://pt.org.br/em-encontro-historico-gleisi-reune-ex-presidentes-do-pt/",
+            "https://fpabramo.org.br/focusbrasil/2025/08/04/confira-integra-do-discurso-de-edinho-silva-em-cerimonia-que-o-empossou-presidente-nacional-do-pt/"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "Brazil",
+      "party": "br_pdt",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://pdt.org.br/index.php/o-pdt/lideres-historicos/",
+        "https://pdt.org.br/index.php/pdt-40-anos-de-brizola-a-ciro/",
+        "https://www.flb-ap.org.br/tribunas/avancar-igualdade/",
+        "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+      ],
+      "identity_note": "PDT presidency is distinct from Brizola governorship, the earlier PTB and presidential candidacy. Do not treat deceased historical inspirations Vargas/Goulart as leaders of this 1980 party.",
+      "components": [],
+      "terms": [
+        {
+          "id": "br_pdt_leonel_brizola_1980",
+          "person": "leonel_brizola",
+          "role": "National party president",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1980"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2004-06-21"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1980"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2004-06-21"
+          },
+          "sources": [
+            "https://pdt.org.br/index.php/o-pdt/lideres-historicos/",
+            "https://pdt.org.br/index.php/pdt-40-anos-de-brizola-a-ciro/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "br_pdt_carlos_lupi_200406",
+          "person": "carlos_lupi",
+          "role": "National party president",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "2004-06"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "2004-06"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://pdt.org.br/index.php/o-pdt/lideres-historicos/",
+            "https://www.flb-ap.org.br/tribunas/avancar-igualdade/",
+            "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+          ],
+          "note": "PDT biography uses June 21; foundation account gives interim executive meeting June 28. Month precision preserves disagreement; later ministry-related leave requires acting-office research."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "2004-06-21"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2004-06"
+          },
+          "reason": "Conflicting Lupi assumption dates: do not invent exact succession day.",
+          "sources": [
+            "https://pdt.org.br/index.php/o-pdt/lideres-historicos/",
+            "https://www.flb-ap.org.br/tribunas/avancar-igualdade/"
+          ]
+        },
+        {
+          "from": {
+            "kind": "year",
+            "value": "2023"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-09-07"
+          },
+          "reason": "Investigate ministerial leave and André Figueiredo acting presidency; current chair listed in TSE does not prove uninterrupted active control.",
+          "sources": [
+            "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+          ]
+        }
+      ],
+      "founded": {
+        "kind": "day",
+        "value": "1980-05-26"
+      }
+    },
+    {
+      "nation": "Brazil",
+      "party": "br_pds",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://atlas.fgv.br/verbete/6099",
+        "https://imagem.camara.gov.br/Imagem/d/pdf/DCD19MAR1992.pdf",
+        "https://hemeroteca-pdf.bn.gov.br/761036/per761036_1989_22490.pdf"
+      ],
+      "identity_note": "PDS merged with PDC in April 1993 to form PPR. Subsequent PPR/PPB/PP/Progressistas identities and leaders require separate continuity research. Parliamentary leadership is not party presidency.",
+      "components": [],
+      "terms": [],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1993-04"
+          },
+          "reason": "January 1990 party presidency unresolved. Jarbas Passarinho was on leave in November 1989; Maluf is explicitly party president in March 1992. Do not backdate either from candidacy or a later observation.",
+          "sources": [
+            "https://imagem.camara.gov.br/Imagem/d/pdf/DCD19MAR1992.pdf",
+            "https://hemeroteca-pdf.bn.gov.br/761036/per761036_1989_22490.pdf"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "1993-04"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-09-07"
+          },
+          "reason": "PDS no longer exists under its historical identity after merger; successor organization chain not ingested.",
+          "sources": [
+            "https://atlas.fgv.br/verbete/6099"
+          ]
+        }
+      ],
+      "dissolved": {
+        "kind": "month",
+        "value": "1993-04"
+      }
+    }
+  ],
+  "starter_leaders": [
+    {
+      "party": "br_pmdb",
+      "person_ids": [
+        "jarbas_vasconcelos",
+        "ulysses_guimaraes"
+      ],
+      "status": "acting_and_titular_must_be_distinguished"
+    },
+    {
+      "party": "br_pfl",
+      "person_ids": [
+        "hugo_napoleao"
+      ],
+      "status": "verified"
+    },
+    {
+      "party": "br_prn",
+      "person_ids": [],
+      "status": "exact_January_boundary_unresolved_Tourinho_observed_February"
+    },
+    {
+      "party": "br_pt",
+      "person_ids": [
+        "luiz_gushiken"
+      ],
+      "status": "verified"
+    },
+    {
+      "party": "br_pdt",
+      "person_ids": [
+        "leonel_brizola"
+      ],
+      "status": "verified"
+    },
+    {
+      "party": "br_pds",
+      "person_ids": [],
+      "status": "party_president_boundary_unresolved"
+    }
+  ],
+  "related_roles": [
+    {
+      "party": "br_prn",
+      "person": "daniel_sampaio_tourinho",
+      "observed": "1990-02-01",
+      "role": "National party president in party broadcast",
+      "source": "https://hemeroteca-pdf.bn.gov.br/325538/per325538_1990_00212.pdf",
+      "note": "Contemporary February 2 report describes yesterday broadcast; not proof of an exact January accession."
+    },
+    {
+      "party": "br_pds",
+      "person": "paulo_maluf",
+      "observed": "1992-03-19",
+      "role": "President of the PDS",
+      "source": "https://imagem.camara.gov.br/Imagem/d/pdf/DCD19MAR1992.pdf",
+      "note": "Contemporary Chamber record identifies office; full tenure unknown."
+    },
+    {
+      "party": "br_prn",
+      "person": "fernando_collor_de_mello",
+      "role": "1989 presidential candidate / elected state President",
+      "source": "https://www.tse.jus.br/jurisprudencia/julgados-historicos",
+      "note": "Not PRN national organizational chairman."
+    }
+  ],
+  "boundary_review": [
+    {
+      "party": "br_pmdb",
+      "source": "https://www.mdb.org.br/quem-somos/",
+      "note": "Fogaça and Temer/Raupp table conflicts deliberately withheld. Jarbas acting and Ulysses titular overlap is real office distinction, not two independent national presidents."
+    },
+    {
+      "party": "br_pt",
+      "source": "https://fpabramo.org.br/2024/09/18/acervo-de-gushiken-e-incorporado-ao-centro-de-memoria-da-fpa/",
+      "note": "2024 foundation accession article and parliamentary biography agree Gushiken 1988–1990; older archive guide gives inconsistent 1989–1991, so exact original minutes remain needed."
+    }
+  ],
+  "unrepresented_party_inventory": [
+    {
+      "names": [
+        "PSDB",
+        "PSB",
+        "PPS/Cidadania",
+        "PCB",
+        "PCdoB",
+        "PV",
+        "PL",
+        "PTB",
+        "PDC",
+        "PRONA",
+        "PRTB",
+        "PSOL",
+        "PSD",
+        "Republicanos",
+        "NOVO",
+        "REDE",
+        "UP",
+        "União Brasil",
+        "PRD",
+        "Missão"
+      ],
+      "source": "https://www.tse.jus.br/partidos/partidos-registrados-no-tse",
+      "status": "separate_identity_and_leadership_backlog",
+      "note": "Historical and current examples, not complete inventory. Electoral alliances and federations need member-party records, not one invented coalition leader."
+    }
+  ],
+  "portrait_references": [
+    {
+      "person": "luiz_gushiken",
+      "period": "1987 bank strike",
+      "source": "https://memorialdademocracia.com.br/card/bancarios-fazem-greve-nacional",
+      "image_url": "https://memorialdademocracia.com.br/publico/image/1379",
+      "credit": "Juan Esteves / Folhapress",
+      "download_status": "HTTP 403; no local file or approved avatar claimed",
+      "rights": "Visual reference only; reproduction rights not cleared."
+    }
+  ],
+  "source_quality": {
+    "primary": "Chamber biographies and contemporary records, party and party-foundation histories, and electoral-court party registry.",
+    "supporting": "FGV institutional research establishes PDS merger; contemporary National Library press establishes point observations, not whole tenure.",
+    "limitations": "Day precision is withheld when source conflicts, a source is coarse, or title/candidacy differs. All art remains a separate production and review task."
+  },
+  "name_era_review": [
+    {
+      "party": "br_pfl",
+      "name_eras": [
+        {
+          "id": "br_dem_2007",
+          "name": "Democratas renamed organizational phase",
+          "founded": {
+            "kind": "day",
+            "value": "2007-06-12"
+          },
+          "dissolved": {
+            "kind": "day",
+            "value": "2022-02-08"
+          },
+          "sources": [
+            "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+          ]
+        }
+      ],
+      "policy": "TSE-certified name changes, not coalition components. Dates reflect reviewed legal approvals; uncertain year bounds are retained."
+    },
+    {
+      "party": "br_prn",
+      "name_eras": [
+        {
+          "id": "br_ptc_2001",
+          "name": "Partido Trabalhista Cristão renamed phase",
+          "founded": {
+            "kind": "day",
+            "value": "2001-04-24"
+          },
+          "sources": [
+            "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+          ]
+        },
+        {
+          "id": "br_agir_2022",
+          "name": "AGIR renamed phase",
+          "founded": {
+            "kind": "year",
+            "value": "2022"
+          },
+          "sources": [
+            "https://www.tse.jus.br/partidos/partidos-registrados-no-tse"
+          ]
+        }
+      ],
+      "policy": "TSE-certified name changes, not coalition components. Dates reflect reviewed legal approvals; uncertain year bounds are retained."
+    }
+  ]
+}

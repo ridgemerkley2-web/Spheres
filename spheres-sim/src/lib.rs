@@ -1586,6 +1586,10 @@ pub fn load(s: &str) -> Result<WorldState, String> {
         }
     }
     companies::validate_state(&w)?;
+    // This one documented upgrade expands only the old empty Japanese
+    // organization slots. It never fills a research gap or changes a person;
+    // populated or mixed obsolete bindings still fail closed.
+    party_leadership::migrate_legacy_empty_components(&mut w)?;
     party_leadership::validate_state(&w)?;
     Ok(w)
 }

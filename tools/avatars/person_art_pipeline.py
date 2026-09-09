@@ -4,9 +4,8 @@
 This tool never downloads, generates, edits, approves or substitutes an image.
 It reads authored person IDs, records actual coverage, and optionally writes
 prompt/job documents. Nation avatars are not a source of identity mappings.
-The active avatar direction is physical 3D: use person_models.json and
-build_person_models.cjs. This raster tool remains for optional reference studies;
-its coverage is not the count of completed 3D characters.
+The active direction is fixed cartoon illustrations; see CARTOON_CHARACTER_ROADMAP.md.
+This manifest counts registered exact-person images, not archived physical models.
 """
 
 from __future__ import annotations
@@ -26,7 +25,8 @@ ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_MANIFEST = ROOT / "spheres-web/data/person_portraits.json"
 DEFAULT_REGISTRY = ROOT / "spheres-sim/data/party_leaders.json"
 SCHEMA_VERSION = 1
-JOB_VERSION = "person-character-v3"
+JOB_VERSION = "person-cartoon-v4"
+STYLE_ANCHOR = "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png"
 BUILTIN_GENERATOR = "OpenAI built-in image_gen"
 ART_ROOTS = (
     "spheres-web/ui/person-portraits",
@@ -273,7 +273,7 @@ def validate_manifest(manifest: Any, repo_root: Path = ROOT, known_people: dict[
                     errors.append(f"{at}.identity_source.kind: observed_portrait or authored_identity required")
             review = portrait.get("review")
             if not isinstance(review, dict):
-                errors.append(f"{at}.review: explicit human visual/likeness review required")
+                errors.append(f"{at}.review: explicit visual/likeness review and named reviewer required")
             else:
                 for field in ("identity", "likeness", "era", "visual"):
                     if review.get(field) is not True:
@@ -460,13 +460,14 @@ Status: pending; this document is not evidence that an image exists or is review
 Create one small full-body CARTOON character avatar of {job['name']}, identified by the authored
 person ID {job['person_id']}. Use an observed, rights-reviewed likeness if
 available. Preserve that person's recognizable identity through simplified
-facial shapes. Match the ACTUAL existing USA country-selector cartoon:
-spheres-web/ui/leader-art/USA-leader-088ed05335f8.png. Inspect that reference first;
+facial shapes. Match the current fixed 2D cartoon style anchor:
+{STYLE_ANCHOR}. Inspect that reference first;
 it supplies style and composition only, never this person's face or costume.
-Use clean outlines, simplified animated shapes, restrained shading, and adult
-proportions of about 5.5 heads tall. Show the entire figure including feet in a
-compact portrait frame with real transparent alpha around the character. Do not
-paint a flat, checkerboard, pastel or photographic background. Keep coherent
+Use bold dark outlines, simplified expressive facial shapes, graphic cel shading,
+and a slightly enlarged head with adult proportions of about 5.5 heads tall.
+Show the entire figure including hands and feet in a compact portrait frame
+against an intentionally opaque, quiet dark teal background. Transparency is
+not required. Do not paint a checkerboard or photographic setting. Keep coherent
 period clothing and a readable silhouette. Avoid photorealistic facial texture,
 realistic painterly rendering or a miniature photographic person. A source
 headshot supplies identity, not the final composition. No readable text,
@@ -480,11 +481,16 @@ Use the built-in image_gen tool for generated artwork. Save the exact final
 submitted prompt, tool output/generation record, source identity and its rights,
 the actual file/hash/dimensions, crop and reviewed visual era. Explicitly review
 identity, likeness, era and image quality before adding a ready manifest entry.
-Record `background_mode: transparent` for the final cartoon and verify actual
-transparent alpha; the validator checks this declaration against image pixels.
-An archival portrait instead needs its exact file page, creator, rights basis,
-license URL, credit and observed-person review. Leave this job pending until
-the physical file and all required provenance exist.
+Record `style: cartoon`, `method: generated`, `status: illustrated-likeness`,
+`composition: full-body`, and `background_mode: opaque`. Bind the artwork only
+to `identity_source.person_id: {job['person_id']}` and the reviewed half-open
+appearance era; never substitute a national figure or another person's image.
+The job's portrait template is incomplete: its review flags start false and
+may become true only after the corresponding checks actually take place.
+Record the actual reviewer and exact review date. If Codex performs the checks,
+identify the reviewer as Codex; do not imply human review or user approval.
+An illustrated likeness is an artistic interpretation, not an official photo.
+Leave this job pending until the physical file and all required provenance exist.
 """
 
 
@@ -499,7 +505,15 @@ def build_jobs(manifest: dict, registry: dict, repo_root: Path = ROOT,
         sources = sources if isinstance(sources, list) and all(web_url(s) for s in sources) else []
         for gap in person["missing_eras"]:
             content = {"version": JOB_VERSION, "person_id": person["person_id"], "name": person["name"],
-                       "from": gap["from"], "to": gap["to"], "identity_sources": sources}
+                       "from": gap["from"], "to": gap["to"], "identity_sources": sources,
+                       "style_anchor": STYLE_ANCHOR,
+                       "portrait_template": {
+                           "from": gap["from"], "to": gap["to"], "style": "cartoon", "method": "generated",
+                           "status": "illustrated-likeness", "composition": "full-body", "background_mode": "opaque",
+                           "identity_source": {"person_id": person["person_id"], "kind": None, "source_url": None},
+                           "review": {"identity": False, "likeness": False, "era": False, "visual": False,
+                                      "reviewer": None, "reviewed_at": None},
+                       }}
             jobs.append(dict(content, id=f"{person['person_id']}-{digest(content)[:12]}",
                              status="needs_source_and_visual_review" if sources else "blocked_missing_identity_sources"))
     return {"version": SCHEMA_VERSION, "job_version": JOB_VERSION, "registry_sha256": digest(registry),
@@ -622,9 +636,18 @@ def self_test() -> int:
             self.assertEqual(a["jobs"][0]["from"], "2000-01-01")
             self.assertIn("not evidence that an image exists", prompt_for_job(a["jobs"][0]))
             self.assertIn("small full-body CARTOON character avatar", prompt_for_job(a["jobs"][0]))
-            self.assertIn("real transparent alpha", prompt_for_job(a["jobs"][0]))
-            self.assertIn("USA-leader-088ed05335f8.png", prompt_for_job(a["jobs"][0]))
-            self.assertEqual(a["job_version"], "person-character-v3")
+            self.assertIn("intentionally opaque, quiet dark teal background", prompt_for_job(a["jobs"][0]))
+            self.assertIn(STYLE_ANCHOR, prompt_for_job(a["jobs"][0]))
+            self.assertIn("do not imply human review or user approval", prompt_for_job(a["jobs"][0]))
+            self.assertEqual(a["job_version"], "person-cartoon-v4")
+            template = a["jobs"][0]["portrait_template"]
+            self.assertEqual((template["style"], template["method"], template["status"]),
+                             ("cartoon", "generated", "illustrated-likeness"))
+            self.assertEqual(template["identity_source"]["person_id"], person_id)
+            self.assertEqual((template["from"], template["to"]), (a["jobs"][0]["from"], a["jobs"][0]["to"]))
+            self.assertTrue(all(template["review"][field] is False for field in ("identity", "likeness", "era", "visual")))
+            self.assertIsNone(template["review"]["reviewer"])
+            self.assertIsNone(template["review"]["reviewed_at"])
 
         def test_transparency_is_checked_from_pixels(self):
             usa = figures["USA"]["leader_art"]["asset"]

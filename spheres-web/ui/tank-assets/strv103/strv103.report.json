@@ -1,0 +1,327 @@
+{
+  "version": 1,
+  "asset": "strv103.glb",
+  "source": "https://opengameart.org/content/stridsvagn-103",
+  "source_archive": "stridsvagn103_0.7z",
+  "source_blend_sha256": "b2a5742c939b4ad6c153cfe71b01969c3c2bea2673689d5ebf4c624dfe912d03",
+  "author": "Lukasz Wesiora (canisferus)",
+  "license": "CC-BY-3.0",
+  "license_url": "https://creativecommons.org/licenses/by/3.0/",
+  "bpy_version": "5.2.1 LTS",
+  "source_autoexecution": false,
+  "source_units": {
+    "system": "NONE",
+    "scale_length": 1.0
+  },
+  "scale_policy": "Source numeric scale retained; physical meters not independently calibrated.",
+  "source_bounds_blender_z_up": {
+    "min": [
+      -1.7718960046768188,
+      -4.497889995574951,
+      -1.6615811586380005
+    ],
+    "max": [
+      1.7718969583511353,
+      4.453962802886963,
+      1.090922474861145
+    ]
+  },
+  "translation_blender": [
+    -4.76837158203125e-07,
+    0.02196359634399414,
+    1.6615811586380005
+  ],
+  "glb_coordinates": "Right-handed Y-up; Blender (x,y,z) becomes glTF (x,z,-y); cannon faces +Z. Ground Y=0.",
+  "triangles": 25675,
+  "mesh_objects": 16,
+  "source_triangles": 25679,
+  "degenerate_faces_removed": 4,
+  "degenerate_filter": "Remove indexed triangles whose world-coordinate edge cross-product length is below 1e-10 (twice area in preserved source units). Vertex/UV/normal streams retained.",
+  "objects": [
+    {
+      "source_name": "Body.004_Plane.015",
+      "triangles": 8753,
+      "source_vertices": 4789,
+      "materials": [
+        "Body"
+      ],
+      "uv_layer": "UVMap",
+      "world_transform_baked": true,
+      "source_triangles": 8753,
+      "degenerate_faces_removed": 0
+    },
+    {
+      "source_name": "Cube.028_Cube.099",
+      "triangles": 10290,
+      "source_vertices": 5669,
+      "materials": [
+        "Details"
+      ],
+      "uv_layer": "UVMap",
+      "world_transform_baked": true,
+      "source_triangles": 10294,
+      "degenerate_faces_removed": 4
+    },
+    {
+      "source_name": "Wheel5.L",
+      "triangles": 738,
+      "source_vertices": 440,
+      "materials": [
+        "Details"
+      ],
+      "uv_layer": "UVMap",
+      "world_transform_baked": true,
+      "source_triangles": 738,
+      "degenerate_faces_removed": 0
+    },
+    {
+      "source_name": "Wheel4.R",
+      "triangles": 380,
+      "source_vertices": 192,
+      "materials": [
+        "Details"
+      ],
+      "uv_layer": "UVMap",
+      "world_transform_baked": true,
+      "source_triangles": 380,
+      "degenerate_faces_removed": 0
+    },
+    {
+      "source_name": "Wheel3.R",
+      "triangles": 380,
+      "source_vertices": 192,
+      "materials": [
+        "Details"
+      ],
+      "uv_layer": "UVMap",
+      "world_transform_baked": true,
+      "source_triangles": 380,
+      "degenerate_faces_removed": 0
+    },
+    {
+      "source_name": "Wheel2.R",
+      "triangles": 380,
+      "source_vertices": 192,
+      "materials": [
+        "Details"
+      ],
+      "uv_layer": "UVMap",
+      "world_transform_baked": true,
+      "source_triangles": 380,
+      "degenerate_faces_removed": 0
+    },
+    {
+      "source_name": "Wheel1.R",
+      "triangles": 380,
+      "source_vertices": 192,
+      "materials": [
+        "Details"
+      ],
+      "uv_layer": "UVMap",
+      "world_transform_baked": true,
+      "source_triangles": 380,
+      "degenerate_faces_removed": 0
+    },
+    {
+      "source_name": "Gear.R",
+      "triangles": 610,
+      "source_vertices": 360,
+      "materials": [
+        "Details"
+      ],
+      "uv_layer": "UVMap",
+      "world_transform_baked": true,
+      "source_triangles": 610,
+      "degenerate_faces_removed": 0
+    },
+    {
+      "source_name": "Wheel5.R",
+      "triangles": 738,
+      "source_vertices": 440,
+      "materials": [
+        "Details"
+      ],
+      "uv_layer": "UVMap",
+      "world_transform_baked": true,
+      "source_triangles": 738,
+      "degenerate_faces_removed": 0
+    },
+    {
+      "source_name": "Wheel4.L",
+      "triangles": 380,
+      "source_vertices": 192,
+      "materials": [
+        "Details"
+      ],
+      "uv_layer": "UVMap",
+      "world_transform_baked": true,
+      "source_triangles": 380,
+      "degenerate_faces_removed": 0
+    },
+    {
+      "source_name": "Wheel3.L",
+      "triangles": 380,
+      "source_vertices": 192,
+      "materials": [
+        "Details"
+      ],
+      "uv_layer": "UVMap",
+      "world_transform_baked": true,
+      "source_triangles": 380,
+      "degenerate_faces_removed": 0
+    },
+    {
+      "source_name": "Wheel2.L",
+      "triangles": 380,
+      "source_vertices": 192,
+      "materials": [
+        "Details"
+      ],
+      "uv_layer": "UVMap",
+      "world_transform_baked": true,
+      "source_triangles": 380,
+      "degenerate_faces_removed": 0
+    },
+    {
+      "source_name": "Wheel1.L",
+      "triangles": 380,
+      "source_vertices": 192,
+      "materials": [
+        "Details"
+      ],
+      "uv_layer": "UVMap",
+      "world_transform_baked": true,
+      "source_triangles": 380,
+      "degenerate_faces_removed": 0
+    },
+    {
+      "source_name": "Gear.L",
+      "triangles": 610,
+      "source_vertices": 360,
+      "materials": [
+        "Details"
+      ],
+      "uv_layer": "UVMap",
+      "world_transform_baked": true,
+      "source_triangles": 610,
+      "degenerate_faces_removed": 0
+    },
+    {
+      "source_name": "Track.L",
+      "triangles": 448,
+      "source_vertices": 224,
+      "materials": [
+        "Details"
+      ],
+      "uv_layer": "UVMap",
+      "world_transform_baked": true,
+      "source_triangles": 448,
+      "degenerate_faces_removed": 0
+    },
+    {
+      "source_name": "Track.R",
+      "triangles": 448,
+      "source_vertices": 224,
+      "materials": [
+        "Details"
+      ],
+      "uv_layer": "UVMap",
+      "world_transform_baked": true,
+      "source_triangles": 448,
+      "degenerate_faces_removed": 0
+    }
+  ],
+  "textures": [
+    {
+      "material": "Body",
+      "semantic": "base_color",
+      "source": "Body_d.jpg",
+      "source_sha256": "568fec10c48bdb09563e8c73d7d7adbdd6f6ecad6f553e2d426a7a3a337b11d6",
+      "converted": "body-base_color.jpg",
+      "converted_sha256": "092fdb533ec9b717b4ecd2b68337cae634eee97a9493ad4ed34b28a73a88e38f",
+      "dimensions": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "material": "Body",
+      "semantic": "normal",
+      "source": "Body_n.jpg",
+      "source_sha256": "a2e19084fba4efa650f8725a39533628b5e9c9438a2128574fcb07543f931392",
+      "converted": "body-normal.png",
+      "converted_sha256": "dd51475952d8707935ede7c6e4c8e05a048bc20e867ef28cadbba47defaab153",
+      "dimensions": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "material": "Body",
+      "semantic": "roughness",
+      "source": "Body_g.jpg",
+      "source_sha256": "76139d15ba350663eb5e4d292245cbaded8a718a9053e9ea9767b541565ae377",
+      "converted": "body-roughness.png",
+      "converted_sha256": "8ba5a40baa7eb035c6fde8cc6b0c69c5f9563edee56dd6d508cc9bca72dec9a8",
+      "dimensions": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "material": "Details",
+      "semantic": "base_color",
+      "source": "Details_d.jpg",
+      "source_sha256": "2725945857112e4eccb65d890d6623612dc8422b16393d303052470686c3fe8f",
+      "converted": "details-base_color.jpg",
+      "converted_sha256": "bb35d87aec3eef1c50e2b5f1f072f736197d2ba7fde70539f3789d8065be3f08",
+      "dimensions": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "material": "Details",
+      "semantic": "normal",
+      "source": "Details_n.jpg",
+      "source_sha256": "dfebc2a5e672bb7b66f6d3897c9602151082ff218c37f2a5355f409bed596e06",
+      "converted": "details-normal.png",
+      "converted_sha256": "bd16fe077bf0d6595bf0c7a92e90f0638e12130c5b9a41657d366a3d342de835",
+      "dimensions": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "material": "Details",
+      "semantic": "roughness",
+      "source": "Details_g.jpg",
+      "source_sha256": "bf689997baebae28b6083192632322ccf413999e773b3090501398329d08320d",
+      "converted": "details-roughness.png",
+      "converted_sha256": "451c8a211f516a45fad44f4b264f23bd90bdbf4cdc3db7167afa7ae3861c1012",
+      "dimensions": [
+        2048,
+        2048
+      ]
+    }
+  ],
+  "embedded_roughness_encoding": [
+    {
+      "image": "body-roughness",
+      "encoding": "JPEG quality=95, 4:4:4, 2048x2048",
+      "roughness_rms_error_8bit": 1.6286993026733398,
+      "bytes": 1535686
+    },
+    {
+      "image": "details-roughness",
+      "encoding": "JPEG quality=95, 4:4:4, 2048x2048",
+      "roughness_rms_error_8bit": 1.6805419921875,
+      "bytes": 1698471
+    }
+  ],
+  "zero_tangent_corners_repaired": 2,
+  "material_conversion": "Dielectric metallic=0, IOR=1.5; source diffuse is sRGB; tangent OpenGL normals renormalized after resizing; roughness=clamp(1-gloss,0.20,0.95). Legacy colored specular/glass mixture cannot be represented exactly by core metallic-roughness and is omitted.",
+  "animation": "Static evaluated meshes; no rig, animations, moving track simulation or turret.",
+  "bytes": 14517724,
+  "sha256": "2ee7df0f4b98ddadf94a0cf85070f96b5a3b80811338839dbc8d370849a2c9f4"
+}

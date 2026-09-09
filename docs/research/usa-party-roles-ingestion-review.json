@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-09-07",
+  "source_file": "docs/research/usa-party-roles-1990-starter.json",
+  "source_sha256": "c2a058c28df0f842f7b14a453949584d57f2fb7b68ccf887c1f5610a22414404",
+  "status": "identities_imported_terms_deferred",
+  "added_person_ids": [
+    "ron_brown",
+    "lee_atwater",
+    "jeanie_austin",
+    "robert_h_michel",
+    "dick_gephardt",
+    "bob_dole"
+  ],
+  "enriched_person_ids": [
+    "tom_foley",
+    "george_j_mitchell"
+  ],
+  "deferred_term_ids": [
+    "us_dem_ron_brown_dnc_1989",
+    "us_rep_lee_atwater_rnc_1989"
+  ],
+  "related_roles_status": "research_only_not_runtime_terms",
+  "historical_party_terms_added": 0,
+  "portrait_assets_added": 0,
+  "preserved": [
+    "Every pre-existing person fact and source",
+    "All simulation party terms and components",
+    "All executive office links, including George H. W. Bush",
+    "All existing registered portrait assets"
+  ],
+  "runtime_blocker": {
+    "file": "spheres-sim/src/party_leadership.rs",
+    "functions": [
+      "eligible",
+      "on_succession_with"
+    ],
+    "reason": "Party leadership selection currently permits a sole seated leader or eligible leader term to become an executive successor without filtering the textual role for executive candidacy. Importing DNC/RNC chair terms would therefore risk selecting a national committee chair as president.",
+    "required_before_term_ingestion": [
+      "Represent national committee, House, Senate and national executive offices separately",
+      "Require role-aware executive candidacy when selecting presidential successors",
+      "Keep party administration avatars distinct from parliamentary negotiation roles and the elected president",
+      "Add regression tests that a DNC/RNC chair cannot be appointed president solely because of committee office"
+    ]
+  },
+  "scope_note": "Eight researched people only: six new identities and two enrichments. This does not complete USA party history, verify uncertain term boundaries, or create new cartoon art."
+}

@@ -43,7 +43,9 @@
   uniform vec3 uEye;
   uniform float uHeight;
   uniform float uCharacter;
+  uniform float uMilitary;
   __SURFACE__
+  __MILITARY__
   out vec4 outColor;
   void main() {
     vec3 N = normalize(vNrm);
@@ -64,6 +66,7 @@
       outColor = vec4(c, 1.0);
       return;
     }
+    __MILITARY_LIGHTING__
     vec3 key = normalize(vec3(-0.45, 0.82, 0.55));
     vec3 fil = normalize(vec3(0.7, 0.15, -0.5));
     float sky = 0.5 + 0.5 * N.y;
@@ -113,9 +116,13 @@
   /// treatments is to look at them on the same mesh in the same frame.
   const DEFAULT_SURFACE = "vec3 surface(vec3 albedo, vec3 N, vec3 P, vec3 V) { return albedo; }";
   let surfaceGlsl = DEFAULT_SURFACE;
-  function fragSource() { return FRAG_TEMPLATE.replace("__SURFACE__", surfaceGlsl); }
+  function fragSource() { return FRAG_TEMPLATE.replace("__SURFACE__", surfaceGlsl)
+    .replace("__MILITARY__", root.MilitarySurface?.glsl || "")
+    .replace("__MILITARY_LIGHTING__", root.MilitarySurface ? "if(uMilitary>.5){outColor=vec4(militaryLighting(vCol,N,vPos,V,1.,uHeight),1.);return;}" : ""); }
 
-  let gl = null, prog = null, uMVP = null, uEye = null, uHeight = null, uCharacter = null, glCanvas = null;
+  let gl = null, prog = null, uMVP = null, uEye = null, uHeight = null, uCharacter = null, uMilitary = null, glCanvas = null;
+  const militaryIds = new Set(root.ArsenalModels?.ids?.() || []);
+  let material = null, materialTried = false;
   let lost = false;
   const sprites = new Map();
   let available = null;
@@ -160,6 +167,7 @@
     uEye = gl.getUniformLocation(prog, "uEye");
     uHeight = gl.getUniformLocation(prog, "uHeight");
     uCharacter = gl.getUniformLocation(prog, "uCharacter");
+    uMilitary = gl.getUniformLocation(prog, "uMilitary");
     gl.enable(gl.DEPTH_TEST);
     // No back-face culling, deliberately. Three parts of the deck are open
     // shells — a dish is a paraboloid with no back, a rotodome is a disc, a
@@ -185,6 +193,7 @@
       glCanvas.addEventListener("webglcontextlost", (event) => {
         event.preventDefault();
         lost = true;
+        material?.dispose(true);material=null;materialTried=false;
         vaos.clear();
         cachedTriangles = 0;
         sprites.clear();
@@ -534,6 +543,13 @@
     gl.uniform1f(uHeight, entry.geom.bounds ? (entry.geom.bounds.max[1] - entry.geom.bounds.min[1])
       : (entry.geom.max ? entry.geom.max[1] - entry.geom.min[1] : 2.0));
     gl.uniform1f(uCharacter, entry.geom.assetKind === "character" ? 1 : 0);
+    gl.uniform1f(uMilitary, militaryIds.has(id) || String(id).startsWith("veh:") ? 1 : 0);
+    if(!materialTried&&(militaryIds.has(id)||String(id).startsWith('veh:'))){
+      materialTried=true;material=root.MilitarySurface?.create?.(gl,()=>{
+        sprites.clear();mounted.forEach((state,canvas)=>{if(canvas.isConnected)paint(canvas,state);});
+      })||null;
+    }
+    material?.bind(prog);
     gl.bindVertexArray(entry.vao);
     gl.drawArrays(gl.TRIANGLES, 0, entry.count);
     gl.bindVertexArray(null);
@@ -781,6 +797,7 @@
     uEye = gl.getUniformLocation(prog, "uEye");
     uHeight = gl.getUniformLocation(prog, "uHeight");
     uCharacter = gl.getUniformLocation(prog, "uCharacter");
+    uMilitary = gl.getUniformLocation(prog, "uMilitary");
     sprites.clear();
     mounted.forEach((state, canvas) => { if (canvas.isConnected) paint(canvas, state); });
     return true;

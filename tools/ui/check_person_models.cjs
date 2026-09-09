@@ -47,12 +47,19 @@ test('camera is manually controlled, bounded and resettable without changing its
   assert.deepEqual(viewer.change(v,'face'),{yaw:12,pitch:2,zoom:3});
   assert.deepEqual(viewer.change(viewer.change(v,'face'),'reset'),start);
 });
-test('Government shows the actual bound executive model and provides accessible manual controls',()=>{
+test('archived characters remain in the art studio but are not loaded by the active game',()=>{
+  const index=fs.readFileSync(path.resolve(__dirname,'../../spheres-web/ui/index.html'),'utf8');
+  assert.doesNotMatch(index,/Person3D|src="\/person-(?:model-data|models|3d)\.js"/);
+  assert.match(index,/src="\/arsenal3d\.js"/,'equipment keeps its 3D renderer');
+  const studio=fs.readFileSync(path.resolve(__dirname,'character-studio.html'),'utf8');
+  assert.match(studio,/Person3D\.scan/);assert.match(studio,/person-models\.js/);
+});
+test('Government ignores retired model payloads instead of reviving 3D controls',()=>{
   const person={id:'margaret_thatcher',name:'Margaret Thatcher',portrait:{method:'procedural_3d',model_id:'margaret_thatcher_1990_v2'}};
   const data={nation:'UK',leader:{name:person.name},party_leadership:{executive_person:person,parties:[]},actions:[]};
   const html=render(data,{tab:'overview'});
-  assert.match(html,/data-person-model="margaret_thatcher_1990_v2"/);assert.match(html,/Open 3D character of Margaret Thatcher/);
-  assert.match(html,/Rotate Margaret Thatcher left/);assert.match(html,/3D likeness study/);assert.doesNotMatch(html,/src="[^"]*Thatcher/);
+  assert.match(html,/Margaret Thatcher/);assert.match(html,/Avatar not yet available/);
+  assert.doesNotMatch(html,/data-person-model=|data-person-open|data-person-turn|<canvas|View in 3D/);
   person.portrait.model_id='x" onerror="alert(1)';assert.doesNotMatch(render(data,{tab:'overview'}),/data-person-model=/);
   delete data.party_leadership.executive_person;assert.doesNotMatch(render(data,{tab:'overview'}),/data-person-model=/);
 });

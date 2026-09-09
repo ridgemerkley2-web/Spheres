@@ -1,0 +1,1264 @@
+{
+  "version": 1,
+  "historical_reference_through": "2026-09-07",
+  "fictional_from": "2026-09-08",
+  "fictional_until_exclusive": "2036-01-01",
+  "candidates_per_component": 4,
+  "status": "authored_gameplay_profiles",
+  "scope": "Every current simulation party in POLITIES and D4_POLITIES, including researched coalition components; not every real-world party.",
+  "research": [
+    {
+      "id": "idea_party_organization",
+      "url": "https://www.idea.int/publications/catalogue/html/political-parties-constitutional-roles-recognition-rights-and",
+      "fact": "Political parties recruit candidates, organize leadership selection, formulate programmes and aggregate interests. Selection institutions differ between parties.",
+      "applies_to": "Institutional framing only; not evidence for any fictional person or a forecast."
+    },
+    {
+      "id": "uk_parliament_party_roles",
+      "url": "https://www.parliament.uk/about/mps-and-lords/members/partysystem/",
+      "fact": "Government and opposition parties have distinct parliamentary roles; party leaders and shadow teams organize parliamentary work.",
+      "applies_to": "Parliamentary career archetype example; not a universal constitutional rule."
+    }
+  ],
+  "assumptions": [
+    "All candidate names, biographies, birthdays, appearances and future careers are invented game content. Coincidental resemblance is unintentional.",
+    "Name pools are authored examples, not an exhaustive or demographic representation of any country; bilingual and multiethnic populations require further editorial review.",
+    "Existing simulation institutions and ideology supply fictional career themes. This does not forecast real institutions or party survival after the research cutoff.",
+    "Four stable candidates per party component become eligible after the cutoff, only through actual gameplay succession. No candidate is a scheduled election winner.",
+    "Historical gaps before the cutoff remain unfilled; no fictional candidate may be presented as a historical leader.",
+    "Names use authored romanized forms; native spellings are not invented."
+  ],
+  "profiles": [
+    {
+      "id": "parliamentary_majoritarian",
+      "label": "Parliamentary organizer",
+      "basis": [
+        "idea_party_organization",
+        "uk_parliament_party_roles"
+      ],
+      "career": "An invented legislator who built support through constituency work and party organization."
+    },
+    {
+      "id": "parliamentary_proportional",
+      "label": "Coalition negotiator",
+      "basis": [
+        "idea_party_organization"
+      ],
+      "career": "An invented party organizer with experience in coalition talks and legislative negotiation."
+    },
+    {
+      "id": "party_institution",
+      "label": "Party administrator",
+      "basis": [
+        "idea_party_organization"
+      ],
+      "career": "An invented organizer whose career developed through the party's internal institutions."
+    },
+    {
+      "id": "coalition_component",
+      "label": "Coalition component representative",
+      "basis": [
+        "idea_party_organization"
+      ],
+      "career": "An invented representative of this component, preserving its identity within the campaign coalition."
+    }
+  ],
+  "party_research": [
+    {
+      "nation": "Japan",
+      "party": "jp_ldp",
+      "research": [
+        {
+          "id": "japan_ldp_presidential_rules",
+          "url": "https://www.jimin.jp/english/the-president/rules/",
+          "fact": "The published LDP presidential rules describe voting by party Diet members and eligible party members and associated organizations. The candidate chapter identifies LDP Diet membership and nomination by at least twenty party Diet members.",
+          "applies_to": "Institutional background for Japan's LDP pilot only, checked on 2026-09-07. Continuing these rules after the cutoff is a gameplay assumption. The four candidates, their Diet membership, nomination prospects and careers are fictional."
+        }
+      ],
+      "biographies": [
+        "An invented LDP Diet member who developed a following through constituency casework and organizing legislative committees. A hypothetical leadership bid would seek nominations from fellow LDP Diet members and support within the party electorate. No part of this career is a claim about a real person or a predicted winner.",
+        "An invented former regional administrator who subsequently became an LDP Diet member. Their fictional career connects prefectural concerns with national legislation; a hypothetical presidential candidacy would still need support from fellow party Diet members. This regional-to-Diet career is authored game fiction.",
+        "An invented LDP Diet member specializing in budget scrutiny and economic-policy proposals. Their fictional leadership pitch emphasizes explaining fiscal choices to legislators and party members while seeking the required Diet-member nominations. The expertise, career and candidacy are invented, not researched personal facts.",
+        "An invented LDP Diet member whose fictional career centers on negotiating legislation and coordinating parliamentary colleagues. A possible party-leadership bid would seek Diet-member nominations and backing across the party electorate. These negotiations and future ambitions are game fiction, not a forecast."
+      ]
+    }
+  ],
+  "name_pools": {
+    "hebrew": {
+      "female": ["Yael", "Tamar", "Noa", "Shira"],
+      "male": ["Eitan", "Amit", "Ido", "Oren"],
+      "surnames": ["Shalev", "Tal", "Levi", "Barak"],
+      "family_first": false
+    },
+    "anglophone": {
+      "female": [
+        "Maya",
+        "Clara",
+        "Amara",
+        "Elena"
+      ],
+      "male": [
+        "Adrian",
+        "Daniel",
+        "Malik",
+        "Julian"
+      ],
+      "surnames": [
+        "Hale",
+        "Rowan",
+        "Mercer",
+        "Ellis",
+        "Reed",
+        "Bennett"
+      ],
+      "family_first": false
+    },
+    "russian": {
+      "female": [
+        "Irina",
+        "Marina",
+        "Vera",
+        "Alina"
+      ],
+      "male": [
+        "Anton",
+        "Pavel",
+        "Denis",
+        "Viktor"
+      ],
+      "surnames": [
+        "Zorin",
+        "Volkov",
+        "Melnikov",
+        "Orlov"
+      ],
+      "family_first": false
+    },
+    "ukrainian": {
+      "female": [
+        "Olena",
+        "Iryna",
+        "Kateryna",
+        "Lesia"
+      ],
+      "male": [
+        "Andrii",
+        "Dmytro",
+        "Taras",
+        "Oleh"
+      ],
+      "surnames": [
+        "Melnyk",
+        "Tkachenko",
+        "Koval",
+        "Bondarenko"
+      ],
+      "family_first": false
+    },
+    "chinese": {
+      "female": [
+        "Yue",
+        "Min",
+        "Jing",
+        "Lan"
+      ],
+      "male": [
+        "Wei",
+        "Jun",
+        "Bo",
+        "Tao"
+      ],
+      "surnames": [
+        "Lin",
+        "Chen",
+        "Lu",
+        "Tang",
+        "Zhou",
+        "Shen"
+      ],
+      "family_first": true
+    },
+    "japanese": {
+      "female": [
+        "Haruka",
+        "Naomi",
+        "Emi",
+        "Ayaka"
+      ],
+      "male": [
+        "Daichi",
+        "Haruto",
+        "Ren",
+        "Naoki"
+      ],
+      "surnames": [
+        "Morikawa",
+        "Fujita",
+        "Okazaki",
+        "Nakano",
+        "Mizuno",
+        "Asano"
+      ],
+      "family_first": true
+    },
+    "korean": {
+      "female": [
+        "Ji-eun",
+        "Min-seo",
+        "Su-jin",
+        "Hye-jin"
+      ],
+      "male": [
+        "Min-jun",
+        "Ji-ho",
+        "Hyun-woo",
+        "Seong-jun"
+      ],
+      "surnames": [
+        "Han",
+        "Seo",
+        "Lim",
+        "Kang",
+        "Yoon",
+        "Shin"
+      ],
+      "family_first": true
+    },
+    "german": {
+      "female": [
+        "Clara",
+        "Leonie",
+        "Miriam",
+        "Anna"
+      ],
+      "male": [
+        "Felix",
+        "Martin",
+        "Jonas",
+        "Lukas"
+      ],
+      "surnames": [
+        "Falk",
+        "Hartmann",
+        "Lindner",
+        "Winter",
+        "Seidel",
+        "Keller"
+      ],
+      "family_first": false
+    },
+    "french": {
+      "female": [
+        "Amelie",
+        "Elise",
+        "Nadia",
+        "Camille"
+      ],
+      "male": [
+        "Julien",
+        "Adrien",
+        "Lucien",
+        "Malik"
+      ],
+      "surnames": [
+        "Moreau",
+        "Perrin",
+        "Renaud",
+        "Delcourt",
+        "Marchand",
+        "Faure"
+      ],
+      "family_first": false
+    },
+    "italian": {
+      "female": [
+        "Elena",
+        "Chiara",
+        "Giulia",
+        "Lucia"
+      ],
+      "male": [
+        "Matteo",
+        "Andrea",
+        "Paolo",
+        "Lorenzo"
+      ],
+      "surnames": [
+        "Bellini",
+        "Moretti",
+        "Rinaldi",
+        "Conti",
+        "Leone",
+        "Ferri"
+      ],
+      "family_first": false
+    },
+    "spanish": {
+      "female": [
+        "Elena",
+        "Marina",
+        "Lucia",
+        "Ines"
+      ],
+      "male": [
+        "Adrian",
+        "Mateo",
+        "Daniel",
+        "Rafael"
+      ],
+      "surnames": [
+        "Varela",
+        "Medina",
+        "Serrano",
+        "Salcedo",
+        "Navarro",
+        "Rios"
+      ],
+      "family_first": false
+    },
+    "portuguese": {
+      "female": [
+        "Mariana",
+        "Ines",
+        "Beatriz",
+        "Clara"
+      ],
+      "male": [
+        "Tiago",
+        "Rafael",
+        "Diogo",
+        "Andre"
+      ],
+      "surnames": [
+        "Moura",
+        "Almeida",
+        "Duarte",
+        "Neves",
+        "Cardoso",
+        "Fonseca"
+      ],
+      "family_first": false
+    },
+    "dutch": {
+      "female": [
+        "Lotte",
+        "Nora",
+        "Eva",
+        "Mila"
+      ],
+      "male": [
+        "Bram",
+        "Thijs",
+        "Daan",
+        "Floris"
+      ],
+      "surnames": [
+        "Vermeer",
+        "Bakker",
+        "Visser",
+        "van Dalen"
+      ],
+      "family_first": false
+    },
+    "nordic": {
+      "female": [
+        "Freja",
+        "Ingrid",
+        "Linnea",
+        "Alma"
+      ],
+      "male": [
+        "Erik",
+        "Jonas",
+        "Emil",
+        "Oskar"
+      ],
+      "surnames": [
+        "Lind",
+        "Berg",
+        "Lund",
+        "Dahl"
+      ],
+      "family_first": false
+    },
+    "finnish": {
+      "female": [
+        "Aino",
+        "Leena",
+        "Liisa",
+        "Maarja"
+      ],
+      "male": [
+        "Mikko",
+        "Juhani",
+        "Timo",
+        "Marko"
+      ],
+      "surnames": [
+        "Laine",
+        "Salonen",
+        "Niemi",
+        "Saar"
+      ],
+      "family_first": false
+    },
+    "polish": {
+      "female": [
+        "Anna",
+        "Marta",
+        "Ewa",
+        "Joanna"
+      ],
+      "male": [
+        "Piotr",
+        "Adam",
+        "Marek",
+        "Jan"
+      ],
+      "surnames": [
+        "Nowak",
+        "Zielinski",
+        "Maj",
+        "Wilk"
+      ],
+      "family_first": false
+    },
+    "czech_slovak": {
+      "female": [
+        "Eva",
+        "Jana",
+        "Petra",
+        "Lenka"
+      ],
+      "male": [
+        "Pavel",
+        "Martin",
+        "Jan",
+        "Adam"
+      ],
+      "surnames": [
+        "Novak",
+        "Dvorak",
+        "Marek",
+        "Havelka"
+      ],
+      "family_first": false
+    },
+    "hungarian": {
+      "female": [
+        "Eszter",
+        "Anna",
+        "Judit",
+        "Reka"
+      ],
+      "male": [
+        "Adam",
+        "Daniel",
+        "Gabor",
+        "Marton"
+      ],
+      "surnames": [
+        "Varga",
+        "Fekete",
+        "Nemeth",
+        "Balogh"
+      ],
+      "family_first": true
+    },
+    "romanian": {
+      "female": [
+        "Elena",
+        "Ioana",
+        "Andreea",
+        "Irina"
+      ],
+      "male": [
+        "Andrei",
+        "Mihai",
+        "Victor",
+        "Radu"
+      ],
+      "surnames": [
+        "Marin",
+        "Stan",
+        "Barbu",
+        "Dumitrescu"
+      ],
+      "family_first": false
+    },
+    "south_slavic": {
+      "female": [
+        "Mila",
+        "Ivana",
+        "Elena",
+        "Marija"
+      ],
+      "male": [
+        "Milan",
+        "Marko",
+        "Ivan",
+        "Nikola"
+      ],
+      "surnames": [
+        "Jovanovic",
+        "Petrovic",
+        "Markovic",
+        "Nikolic"
+      ],
+      "family_first": false
+    },
+    "albanian": {
+      "female": [
+        "Arta",
+        "Elira",
+        "Mira",
+        "Era"
+      ],
+      "male": [
+        "Arben",
+        "Ilir",
+        "Adrian",
+        "Luan"
+      ],
+      "surnames": [
+        "Dervishi",
+        "Hoxha",
+        "Kola",
+        "Shehu"
+      ],
+      "family_first": false
+    },
+    "greek": {
+      "female": [
+        "Eleni",
+        "Maria",
+        "Sofia",
+        "Anna"
+      ],
+      "male": [
+        "Andreas",
+        "Nikos",
+        "Dimitris",
+        "Alexis"
+      ],
+      "surnames": [
+        "Markou",
+        "Alexiou",
+        "Petrou",
+        "Ioannou"
+      ],
+      "family_first": false
+    },
+    "baltic": {
+      "female": [
+        "Ilze",
+        "Laima",
+        "Inga",
+        "Asta"
+      ],
+      "male": [
+        "Marius",
+        "Andris",
+        "Edgars",
+        "Tomas"
+      ],
+      "surnames": [
+        "Petrauskas",
+        "Ozols",
+        "Kalnins",
+        "Stankevicius"
+      ],
+      "family_first": false
+    },
+    "arabic": {
+      "female": [
+        "Salma",
+        "Leila",
+        "Nadia",
+        "Hana"
+      ],
+      "male": [
+        "Karim",
+        "Sami",
+        "Nabil",
+        "Adil"
+      ],
+      "surnames": [
+        "Mansour",
+        "Haddad",
+        "Nasser",
+        "Farid",
+        "Saleh",
+        "Rahmani"
+      ],
+      "family_first": false
+    },
+    "persian": {
+      "female": [
+        "Leila",
+        "Shirin",
+        "Mina",
+        "Niloofar"
+      ],
+      "male": [
+        "Arman",
+        "Dariush",
+        "Navid",
+        "Farhad"
+      ],
+      "surnames": [
+        "Rahimi",
+        "Azimi",
+        "Farzan",
+        "Mehrabi"
+      ],
+      "family_first": false
+    },
+    "turkish": {
+      "female": [
+        "Aylin",
+        "Selin",
+        "Leyla",
+        "Deniz"
+      ],
+      "male": [
+        "Emre",
+        "Kerem",
+        "Arda",
+        "Murat"
+      ],
+      "surnames": [
+        "Demir",
+        "Kaya",
+        "Arslan",
+        "Yilmaz"
+      ],
+      "family_first": false
+    },
+    "central_asian": {
+      "female": [
+        "Aida",
+        "Aziza",
+        "Kamila",
+        "Dinara"
+      ],
+      "male": [
+        "Timur",
+        "Azamat",
+        "Rustam",
+        "Alisher"
+      ],
+      "surnames": [
+        "Karimov",
+        "Ismailov",
+        "Rakhimov",
+        "Usmanov"
+      ],
+      "family_first": false
+    },
+    "georgian": {
+      "female": [
+        "Nino",
+        "Maia",
+        "Tamar",
+        "Ana"
+      ],
+      "male": [
+        "Giorgi",
+        "Irakli",
+        "Levan",
+        "David"
+      ],
+      "surnames": [
+        "Kapanadze",
+        "Gelashvili",
+        "Maisuradze",
+        "Japaridze"
+      ],
+      "family_first": false
+    },
+    "armenian": {
+      "female": [
+        "Ani",
+        "Mariam",
+        "Lilit",
+        "Nare"
+      ],
+      "male": [
+        "Aram",
+        "Hayk",
+        "Levon",
+        "Tigran"
+      ],
+      "surnames": [
+        "Sargsyan",
+        "Avetisyan",
+        "Grigoryan",
+        "Martirosyan"
+      ],
+      "family_first": false
+    },
+    "south_asian": {
+      "female": [
+        "Maya",
+        "Anika",
+        "Meera",
+        "Kavita"
+      ],
+      "male": [
+        "Arjun",
+        "Ravi",
+        "Nikhil",
+        "Vivek"
+      ],
+      "surnames": [
+        "Desai",
+        "Mehta",
+        "Rao",
+        "Sen",
+        "Patel",
+        "Nair"
+      ],
+      "family_first": false
+    },
+    "bengali": {
+      "female": [
+        "Farhana",
+        "Nadia",
+        "Tahmina",
+        "Shaila"
+      ],
+      "male": [
+        "Arif",
+        "Imran",
+        "Kamrul",
+        "Rafiq"
+      ],
+      "surnames": [
+        "Rahman",
+        "Ahmed",
+        "Chowdhury",
+        "Haque"
+      ],
+      "family_first": false
+    },
+    "pakistani": {
+      "female": [
+        "Ayesha",
+        "Sana",
+        "Nadia",
+        "Farah"
+      ],
+      "male": [
+        "Adil",
+        "Imran",
+        "Kamran",
+        "Sameer"
+      ],
+      "surnames": [
+        "Malik",
+        "Raza",
+        "Qureshi",
+        "Siddiqui"
+      ],
+      "family_first": false
+    },
+    "sinhala": {
+      "female": [
+        "Anjali",
+        "Nimali",
+        "Amaya",
+        "Malini"
+      ],
+      "male": [
+        "Nimal",
+        "Ruwan",
+        "Tharindu",
+        "Kasun"
+      ],
+      "surnames": [
+        "Perera",
+        "Fernando",
+        "Silva",
+        "Jayasinghe"
+      ],
+      "family_first": false
+    },
+    "nepali": {
+      "female": [
+        "Anita",
+        "Maya",
+        "Deepa",
+        "Sita"
+      ],
+      "male": [
+        "Arun",
+        "Bikash",
+        "Nabin",
+        "Suresh"
+      ],
+      "surnames": [
+        "Shrestha",
+        "Gurung",
+        "Thapa",
+        "Rai"
+      ],
+      "family_first": false
+    },
+    "mongolian": {
+      "female": [
+        "Oyun",
+        "Naran",
+        "Sarangerel",
+        "Enkhmaa"
+      ],
+      "male": [
+        "Bataa",
+        "Temuulen",
+        "Bilguun",
+        "Erdene"
+      ],
+      "surnames": [
+        "Bat",
+        "Enkh",
+        "Dorj",
+        "Gan"
+      ],
+      "family_first": false
+    },
+    "vietnamese": {
+      "female": [
+        "Lan",
+        "Mai",
+        "Hoa",
+        "Thao"
+      ],
+      "male": [
+        "Minh",
+        "Duc",
+        "Huy",
+        "Quang"
+      ],
+      "surnames": [
+        "Tran",
+        "Nguyen",
+        "Le",
+        "Pham"
+      ],
+      "family_first": true
+    },
+    "thai": {
+      "female": [
+        "Narin",
+        "Siriporn",
+        "Mali",
+        "Anong"
+      ],
+      "male": [
+        "Anan",
+        "Kiet",
+        "Prasert",
+        "Sakchai"
+      ],
+      "surnames": [
+        "Wongchai",
+        "Srisawat",
+        "Chaiyaporn",
+        "Thongchai"
+      ],
+      "family_first": false
+    },
+    "burmese": {
+      "female": [
+        "May Thiri",
+        "Su Myat",
+        "Khin Thida",
+        "Nandar"
+      ],
+      "male": [
+        "Aung Min",
+        "Kyaw Htet",
+        "Min Zaw",
+        "Thura"
+      ],
+      "surnames": [
+        ""
+      ],
+      "family_first": false
+    },
+    "khmer_lao": {
+      "female": [
+        "Sophea",
+        "Maly",
+        "Chanthou",
+        "Bounmy"
+      ],
+      "male": [
+        "Dara",
+        "Sokha",
+        "Chan",
+        "Somchai"
+      ],
+      "surnames": [
+        "Phan",
+        "Vong",
+        "Keo",
+        "Som"
+      ],
+      "family_first": false
+    },
+    "malay": {
+      "female": [
+        "Aina",
+        "Nur",
+        "Siti",
+        "Maya"
+      ],
+      "male": [
+        "Arif",
+        "Farid",
+        "Hafiz",
+        "Daniel"
+      ],
+      "surnames": [
+        "Rahman",
+        "Ismail",
+        "Aziz",
+        "Hamdan"
+      ],
+      "family_first": false
+    },
+    "filipino": {
+      "female": [
+        "Elena",
+        "Marisol",
+        "Teresa",
+        "Lucia"
+      ],
+      "male": [
+        "Rafael",
+        "Adrian",
+        "Miguel",
+        "Paolo"
+      ],
+      "surnames": [
+        "Reyes",
+        "Navarro",
+        "Santos",
+        "Mendoza"
+      ],
+      "family_first": false
+    },
+    "west_african": {
+      "female": [
+        "Ama",
+        "Amina",
+        "Adjoa",
+        "Mariama"
+      ],
+      "male": [
+        "Kofi",
+        "Kwame",
+        "Moussa",
+        "Sekou"
+      ],
+      "surnames": [
+        "Mensah",
+        "Owusu",
+        "Diop",
+        "Bello",
+        "Traore",
+        "Balogun"
+      ],
+      "family_first": false
+    },
+    "central_african": {
+      "female": [
+        "Aline",
+        "Clarisse",
+        "Marie",
+        "Nadine"
+      ],
+      "male": [
+        "Alain",
+        "Pascal",
+        "Serge",
+        "Daniel"
+      ],
+      "surnames": [
+        "Mbala",
+        "Ngoma",
+        "Mbemba",
+        "Moukoko"
+      ],
+      "family_first": false
+    },
+    "east_african": {
+      "female": [
+        "Amina",
+        "Neema",
+        "Zuri",
+        "Grace"
+      ],
+      "male": [
+        "Baraka",
+        "Juma",
+        "Daniel",
+        "Joseph"
+      ],
+      "surnames": [
+        "Mwangi",
+        "Otieno",
+        "Kamau",
+        "Okello"
+      ],
+      "family_first": false
+    },
+    "ethiopian": {
+      "female": [
+        "Hana",
+        "Selam",
+        "Meseret",
+        "Tigist"
+      ],
+      "male": [
+        "Dawit",
+        "Samuel",
+        "Daniel",
+        "Abel"
+      ],
+      "surnames": [
+        "Bekele",
+        "Tesfaye",
+        "Girma",
+        "Mekonnen"
+      ],
+      "family_first": false
+    },
+    "southern_african": {
+      "female": [
+        "Lindiwe",
+        "Thandiwe",
+        "Naledi",
+        "Nomsa"
+      ],
+      "male": [
+        "Thabo",
+        "Themba",
+        "Sipho",
+        "Daniel"
+      ],
+      "surnames": [
+        "Dube",
+        "Moyo",
+        "Ndlovu",
+        "Khosa"
+      ],
+      "family_first": false
+    },
+    "malagasy": {
+      "female": [
+        "Fara",
+        "Soa",
+        "Hanta",
+        "Lala"
+      ],
+      "male": [
+        "Hery",
+        "Andry",
+        "Tiana",
+        "Nivo"
+      ],
+      "surnames": [
+        "Rakoto",
+        "Ranaivo",
+        "Randria",
+        "Razafy"
+      ],
+      "family_first": false
+    },
+    "pacific": {
+      "female": [
+        "Malia",
+        "Ana",
+        "Alisi",
+        "Mele"
+      ],
+      "male": [
+        "Sione",
+        "Manu",
+        "Tavita",
+        "Tevita"
+      ],
+      "surnames": [
+        "Latu",
+        "Tau",
+        "Tui",
+        "Moala"
+      ],
+      "family_first": false
+    }
+  },
+  "country_name_pools": {
+    "Israel": "hebrew",
+    "USA": "anglophone",
+    "UK": "anglophone",
+    "Canada": "anglophone",
+    "Australia": "anglophone",
+    "NewZealand": "anglophone",
+    "Ireland": "anglophone",
+    "Jamaica": "anglophone",
+    "TrinidadTobago": "south_asian",
+    "Bahamas": "anglophone",
+    "Belize": "anglophone",
+    "Guyana": "south_asian",
+    "USSR": "russian",
+    "Russia": "russian",
+    "Belarus": "russian",
+    "Ukraine": "ukrainian",
+    "China": "chinese",
+    "Taiwan": "chinese",
+    "Singapore": "chinese",
+    "Japan": "japanese",
+    "NorthKorea": "korean",
+    "SouthKorea": "korean",
+    "Germany": "german",
+    "Austria": "german",
+    "Switzerland": "german",
+    "Luxembourg": "german",
+    "France": "french",
+    "Belgium": "french",
+    "Haiti": "french",
+    "Seychelles": "french",
+    "Italy": "italian",
+    "Malta": "italian",
+    "Spain": "spanish",
+    "Argentina": "spanish",
+    "Mexico": "spanish",
+    "Chile": "spanish",
+    "Colombia": "spanish",
+    "Venezuela": "spanish",
+    "Peru": "spanish",
+    "Cuba": "spanish",
+    "Bolivia": "spanish",
+    "Ecuador": "spanish",
+    "Uruguay": "spanish",
+    "DominicanRepublic": "spanish",
+    "Guatemala": "spanish",
+    "Honduras": "spanish",
+    "ElSalvador": "spanish",
+    "Nicaragua": "spanish",
+    "CostaRica": "spanish",
+    "Panama": "spanish",
+    "Paraguay": "spanish",
+    "EquatorialGuinea": "spanish",
+    "Brazil": "portuguese",
+    "Portugal": "portuguese",
+    "Angola": "portuguese",
+    "Mozambique": "portuguese",
+    "CapeVerde": "portuguese",
+    "SaoTome": "portuguese",
+    "EastTimor": "portuguese",
+    "Netherlands": "dutch",
+    "Suriname": "dutch",
+    "Sweden": "nordic",
+    "Denmark": "nordic",
+    "Norway": "nordic",
+    "Iceland": "nordic",
+    "Finland": "finnish",
+    "Estonia": "finnish",
+    "Poland": "polish",
+    "Czechoslovakia": "czech_slovak",
+    "Hungary": "hungarian",
+    "Romania": "romanian",
+    "Moldova": "romanian",
+    "Yugoslavia": "south_slavic",
+    "Serbia": "south_slavic",
+    "Croatia": "south_slavic",
+    "Slovenia": "south_slavic",
+    "Bosnia": "south_slavic",
+    "Montenegro": "south_slavic",
+    "Macedonia": "south_slavic",
+    "Bulgaria": "south_slavic",
+    "Albania": "albanian",
+    "Greece": "greek",
+    "Cyprus": "greek",
+    "Lithuania": "baltic",
+    "Latvia": "baltic",
+    "Iraq": "arabic",
+    "Kuwait": "arabic",
+    "SaudiArabia": "arabic",
+    "Egypt": "arabic",
+    "Syria": "arabic",
+    "Jordan": "arabic",
+    "Lebanon": "arabic",
+    "UAE": "arabic",
+    "Qatar": "arabic",
+    "Oman": "arabic",
+    "Yemen": "arabic",
+    "Bahrain": "arabic",
+    "Algeria": "arabic",
+    "Morocco": "arabic",
+    "Tunisia": "arabic",
+    "Libya": "arabic",
+    "Sudan": "arabic",
+    "Comoros": "arabic",
+    "Chad": "arabic",
+    "Iran": "persian",
+    "Afghanistan": "persian",
+    "Tajikistan": "persian",
+    "Turkey": "turkish",
+    "Azerbaijan": "turkish",
+    "Turkmenistan": "turkish",
+    "Kazakhstan": "central_asian",
+    "Uzbekistan": "central_asian",
+    "Kyrgyzstan": "central_asian",
+    "Georgia": "georgian",
+    "Armenia": "armenian",
+    "India": "south_asian",
+    "Mauritius": "south_asian",
+    "Fiji": "south_asian",
+    "Bangladesh": "bengali",
+    "Pakistan": "pakistani",
+    "Maldives": "pakistani",
+    "SriLanka": "sinhala",
+    "Nepal": "nepali",
+    "Bhutan": "nepali",
+    "Mongolia": "mongolian",
+    "Vietnam": "vietnamese",
+    "Thailand": "thai",
+    "Myanmar": "burmese",
+    "Cambodia": "khmer_lao",
+    "Laos": "khmer_lao",
+    "Indonesia": "malay",
+    "Malaysia": "malay",
+    "Brunei": "malay",
+    "Philippines": "filipino",
+    "Nigeria": "west_african",
+    "Ghana": "west_african",
+    "Senegal": "west_african",
+    "Zaire": "central_african",
+    "Congo": "central_african",
+    "Cameroon": "central_african",
+    "CentralAfricanRepublic": "central_african",
+    "Gabon": "central_african",
+    "Kenya": "east_african",
+    "Tanzania": "east_african",
+    "Uganda": "east_african",
+    "Ethiopia": "ethiopian",
+    "SouthAfrica": "southern_african",
+    "Zimbabwe": "southern_african",
+    "Zambia": "southern_african",
+    "Malawi": "southern_african",
+    "Botswana": "southern_african",
+    "Namibia": "southern_african",
+    "Lesotho": "southern_african",
+    "Swaziland": "southern_african",
+    "Madagascar": "malagasy",
+    "SolomonIslands": "pacific",
+    "Vanuatu": "pacific",
+    "Samoa": "pacific",
+    "Tonga": "pacific",
+    "PapuaNewGuinea": "pacific"
+  }
+}

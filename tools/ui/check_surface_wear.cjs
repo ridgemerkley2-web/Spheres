@@ -155,7 +155,7 @@ function swWeather(albedoIn, N, P, depth) {
   const headroom = albedo.map((v) => Math.min(v, 1.0 - v));
   albedo = albedo.map((v, i) => v + Math.max(tooth, 0.0) * headroom[i] + Math.min(tooth, 0.0) * v);
   const dust = upFace * (0.55 + 0.45 * lowly) * (0.35 + 0.65 * blotch)
-    * (1.0 - 0.55 * darkness) * (1.0 - 0.55 * mark);
+    * (1.0 - 0.60 * darkness) * (1.0 - 0.55 * mark);
   albedo = albedo.map((v, i) => mix(v, SW_DUST[i], swSoft(dust) * 0.26));
   const source = smoothstep(-0.05, 0.45, m2);
   const streak = smoothstep(0.04, 0.42, streakN) * source * vertFace * fStreak
@@ -375,7 +375,7 @@ test('the shader has not changed under the port without anyone looking', () => {
   // hash. Re-pinning first defeats the whole file.
   const canonical = CODE.replace(/\s+/g, ' ').trim();
   const digest = crypto.createHash('sha256').update(canonical).digest('hex');
-  assert.equal(digest, '8b16735582c05b5e3eb9871d95a40f56dbf947a19e33856bba6ebf2664037a49', 'shader body changed; re-transcribe the port before re-pinning');
+  assert.equal(digest, '3d1a0091b0ff64fa76a4ba641678b142c8bd1b2d7775f72ebac968dd0d5c40f4', 'shader body changed; re-transcribe the port before re-pinning');
 });
 
 test('the port is a literal-for-literal transcription, in order', () => {
@@ -701,6 +701,20 @@ test('no fragment of a real tank moves further than the finish selector moves it
   // And the other end: a treatment nobody can see is not worth 425 ops.
   assert.ok(p50 > 0.02, `the median fragment moved only ${(100 * p50).toFixed(1)}%`);
   assert.ok(p50 < 0.12, `the median fragment moved ${(100 * p50).toFixed(1)}%, which is a re-grade`);
+});
+
+test('the upward black grille lip stays black under a strong low dust patch', () => {
+  // Actual newly exposed chassis vertex that failed the whole-mesh contract:
+  // the prior dark cap raised its luminance by 103.61%. Keep this spatial case
+  // even if a later geometry rebuild happens to move the grille elsewhere.
+  const base = [0.03500000014901161, 0.04500000178813934, 0.03999999910593033];
+  const normal = [0, 1, 0];
+  const point = [0.9648000001907349, 0.7470666766166687, -3.5899999141693115];
+  const result = swWeather(base, normal, point, TANK_CARD_DISTANCE);
+  assert.ok(lumOf(result) < lumOf(base) * 2, 'a dark fitting must not more than double under the dust treatment');
+  assert.ok(lumOf(result) > lumOf(base), 'the correction must preserve visible deposited dust');
+  const expected = [0.07790708969663611, 0.08354517238322444, 0.07109499709846848];
+  result.forEach((value, i) => assert.ok(Math.abs(value - expected[i]) < 1e-9));
 });
 
 test('the final clamp never fires, and no layer pins flat against a bound', () => {

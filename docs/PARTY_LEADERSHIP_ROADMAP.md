@@ -1,6 +1,6 @@
-# Historical party leadership and characters, 1990–2026
+# Historical party leadership and fictional succession, 1990–2035
 
-**Current art direction:** the user confirmed actual rotatable 3D cartoon characters. See [the physical character roadmap](CHARACTER_3D_ROADMAP.md). Four early-1990s likeness studies are integrated; zero raster person avatars are accepted. The raster pipeline below is retained for reference-image provenance and optional future image work, not as the current production route.
+**Current direction:** user-approved fixed cartoons, real people through 7 September 2026 and fictional successors afterward through 2035. Historical and fictional illustrations are registered separately; physical models are archived. See [the cartoon roadmap](CARTOON_CHARACTER_ROADMAP.md), [future succession](FICTIONAL_SUCCESSION_2035.md), and [current measured coverage](LEADERSHIP_PRODUCTION_2035.md). Historical pilot counts below describe the earlier UK baseline; the production report includes the subsequent worldwide research and artwork batches.
 
 The intended result is a government screen in which each party has the appropriate historical people available for the campaign date, and changes in government show those people's own portraits. Elections and other gameplay determine who takes power. The historical record supplies candidates, identity, affiliation and eligibility; it does not force the campaign to reproduce real election winners.
 
@@ -84,7 +84,7 @@ Each completed portrait requires:
 | `review` | `identity`, `likeness`, `era`, `visual` explicitly true, plus `reviewer` and exact `reviewed_at` date |
 | `crop` | Optional normalized `x`, `y`, `width`, `height`, entirely inside the image |
 | `width`, `height` | Optional declared dimensions; when present they must match the physical image |
-| `background_mode` | For the final cartoon, record `transparent`; this declaration requires actual fully transparent and visible alpha pixels |
+| `background_mode` | Current cartoon art uses an intentionally opaque dark teal background; record `opaque`. If another asset declares `transparent`, it must contain actual fully transparent and visible alpha pixels |
 
 Files may live in `spheres-web/ui/person-portraits/`, or reuse the existing `portraits/`, `leader-art/` and `display-art/` folders. Paths escaping those directories are refused, including resolved symlink escapes. The same physical file or exact image hash cannot be attributed to two distinct people. Overlapping portrait eras are refused so that selection remains unambiguous. There is no nearest-person, nation, or nearest-era fallback.
 
@@ -115,7 +115,7 @@ The existing national-avatar fetcher should not be mistaken for this pipeline: d
 
 ## Visual style and size
 
-Before confirming actual rotatable 3D characters, the user selected small full-body cartoon character avatars and rejected the first realistic full-body attempts. The following describes the superseded raster study direction, not the current physical-model requirement. The actual USA selector character (`spheres-web/ui/leader-art/USA-leader-088ed05335f8.png`) is the style anchor: clean outlines, simplified animated facial shapes, restrained shading, about 5.5-head adult proportions and true transparent alpha. Show the complete figure including feet. A flat or checkerboard background is not transparency, and a realistic painterly miniature does not satisfy this direction. Existing national art supplies style and composition only, never the person's identity or costume. A photographic or generated headshot is an identity study rather than the final avatar. Preserve rejected v1 files and prompts as provenance rather than treating them as approved final characters. Review age, hairstyle, clothing and office-era context against the observed source. Keep source limitations explicit; avoid manufactured insignia or generic national costumes.
+The current production direction is fixed 2D cartoon characters, as detailed in [the cartoon character roadmap](CARTOON_CHARACTER_ROADMAP.md). The style anchor is `spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png`: bold dark outlines, simplified expressive faces, graphic cel shading, a slightly enlarged head and about 5.5-head adult proportions. Show the complete figure including hands and feet on an intentionally opaque, quiet dark teal background. Transparency is not required. The anchor supplies style and composition only, never another person's identity or costume. A realistic painterly miniature does not satisfy this direction. A photographic or generated headshot supplies an identity reference rather than the final composition. Preserve earlier images and submitted prompts as provenance. Review age, hairstyle, clothing and office-era context against the identity sources, keep source limitations explicit, and avoid invented insignia or generic national costumes. Record the actual reviewer; Codex visual review must not be presented as human review or user approval.
 
 A person can retain one suitable portrait over several years. Add another era version when there is a meaningful, reviewed appearance change; there is no requirement to render a new picture for every calendar year. Party or office changes alone do not change a person's face.
 
@@ -131,12 +131,12 @@ From the repository root, with Python 3 and Pillow available:
 py -3 tools/avatars/person_art_pipeline.py self-test
 py -3 tools/avatars/person_art_pipeline.py validate
 py -3 tools/avatars/person_art_pipeline.py coverage --from 1990-01-01 --to 2027-01-01
-py -3 tools/avatars/person_art_pipeline.py jobs --out work/person-jobs-v3.json --prompts-dir work/person-prompts-v3
+py -3 tools/avatars/person_art_pipeline.py jobs --out work/person-jobs-v4.json --prompts-dir work/person-prompts-v4
 ```
 
 `--manifest`, `--registry` and `--repo` select explicit inputs. A missing manifest may be used for coverage/jobs and reports zero ready portraits; validation itself refuses a missing manifest. `--executives spheres-sim/data/leaders_1990.json` adds executive linkage coverage. Records without `person_id` remain unresolved unless an authored `--executive-map` supplies exact `{nation, office, name, person_id}` entries. Repeated names are never resolved automatically.
 
-Job IDs include a digest of the authored person, requested era, sources and job version. The retained `person-character-v3` raster prompt implements the earlier cartoon/transparent-USA study style, so earlier headshot and realistic full-body jobs are not silently reused. Jobs and prompts are new versioned documents; the writer refuses to overwrite different existing content. This preserves an earlier submitted prompt and prevents silent provenance edits. Output reports distinguish ready, partial, missing, pending and missing identity sources. Party history gaps and date uncertainty remain separate from artwork coverage. CLI output is UTF-8 so authored native names remain intact when redirected on Windows.
+Job IDs include a digest of the authored person, requested era, sources, style anchor, target metadata and job version. The current `person-cartoon-v4` job prompt follows the fixed-cartoon roadmap. Its incomplete portrait template carries `style: cartoon`, `method: generated`, `status: illustrated-likeness`, the exact person ID and a half-open appearance era. Review flags start false and reviewer/date remain unset until actual review; a queued job does not authorize an active portrait. Earlier prompt versions and submitted prompts remain unchanged. Jobs and prompts are new versioned documents; the writer refuses to overwrite different existing content. Output reports distinguish ready, partial, missing, pending and missing identity sources. Party history gaps and date uncertainty remain separate from artwork coverage. CLI output is UTF-8 so authored native names remain intact when redirected on Windows.
 
 Importable helpers are `people_from_registry`, `executive_links`, `validate_manifest`, `select_portrait`, `coverage_report`, `build_jobs` and `prompt_for_job`. `select_portrait` returns only a valid exact-person depiction covering the requested day. Invalid manifests do not authorize a partial asset set. The module does not modify a campaign or serve arbitrary asset paths.
 

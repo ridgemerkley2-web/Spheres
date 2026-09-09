@@ -1,0 +1,1150 @@
+{
+  "schema": "spheres-party-leader-research-v3",
+  "reference_from": "1990-01-01",
+  "reference_through": "2026-09-07",
+  "source_checked_at": "2026-09-07",
+  "nation": "SouthAfrica",
+  "scope": {
+    "coverage": "partial",
+    "represented_party_ids": [
+      "za_anc",
+      "za_np",
+      "za_ifp",
+      "za_dp",
+      "za_pac",
+      "za_ff",
+      "za_acdp"
+    ],
+    "history_through": "2026-09-07",
+    "future_from": "2026-09-08",
+    "requested_through": "2035-12-31",
+    "claim": "All seven represented rows inventoried. Verified partial terms and explicit gaps; this is not all South African parties or full-period coverage."
+  },
+  "ingestion": {
+    "status": "party-office-import-only-after-role-and-lifecycle-review",
+    "people": "Preserve every saved identity field. Unknown life facts are omitted.",
+    "parties": "Default party-only. Do not authorize state executive appointments without separate constitutional/candidacy research. Reject one-day observations as tenure or campaign appointment evidence.",
+    "intervals": "Half-open bounds. Month/year means uncertainty. Open stops at the historical cutoff; no real future office is promised.",
+    "future": "Separate authored fictional successors only after September 7, 2026; inactive or unformed organizations need lifecycle guards."
+  },
+  "people": [
+    {
+      "id": "oliver_tambo",
+      "name": "Oliver Tambo",
+      "sources": [
+        "https://www.anc1912.org.za/history/",
+        "https://www.anc1912.org.za/wp-content/uploads/2024/10/ANC-Today-25-October-2024.pdf"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1917-10-27"
+      },
+      "died": {
+        "kind": "day",
+        "value": "1993-04-24"
+      }
+    },
+    {
+      "id": "nelson_mandela",
+      "name": "Nelson Mandela",
+      "sources": [
+        "https://www.anc1912.org.za/wp-content/uploads/2022/07/ANC-Today-1-July-2022.pdf",
+        "https://www.anc1912.org.za/50th-national-conference-address-by-anc-president-thabo-mbeki-at-the-mafikeng-stadium/"
+      ]
+    },
+    {
+      "id": "thabo_mbeki",
+      "name": "Thabo Mbeki",
+      "sources": [
+        "https://www.anc1912.org.za/50th-national-conference-address-by-anc-president-thabo-mbeki-at-the-mafikeng-stadium/",
+        "https://www.derebus.org.za/wp-content/uploads/2020/11/S-v-Zuma-and-Another-and-a-related-matter-2020-2-BCLR-153-KZD.pdf"
+      ]
+    },
+    {
+      "id": "jacob_zuma",
+      "name": "Jacob Zuma",
+      "sources": [
+        "https://www.derebus.org.za/wp-content/uploads/2020/11/S-v-Zuma-and-Another-and-a-related-matter-2020-2-BCLR-153-KZD.pdf",
+        "https://www.gov.za/about-sa/history"
+      ]
+    },
+    {
+      "id": "cyril_ramaphosa",
+      "name": "Cyril Ramaphosa",
+      "sources": [
+        "https://www.gov.za/about-sa/history",
+        "https://www.anc1912.org.za/officials/"
+      ]
+    },
+    {
+      "id": "f_w_de_klerk",
+      "name": "F. W. de Klerk",
+      "sources": [
+        "https://www.worldstatesmen.org/South_Africa.html",
+        "https://en.wikipedia.org/wiki/F._W._de_Klerk",
+        "https://fwdeklerk.org/constitutional-transformation-of-south-africa/"
+      ],
+      "native": "Frederik Willem de Klerk",
+      "born": {
+        "kind": "day",
+        "value": "1936-03-18"
+      }
+    },
+    {
+      "id": "marthinus_van_schalkwyk",
+      "name": "Marthinus van Schalkwyk",
+      "sources": [
+        "https://www.justice.gov.za/trc/media/1997/9709/s970922c.htm",
+        "https://mg.co.za/news/south-africa/2005-04-10-final-hour-arrives-for-the-nnp/"
+      ]
+    },
+    {
+      "id": "mangosuthu_buthelezi",
+      "name": "Mangosuthu Buthelezi",
+      "sources": [
+        "https://ifp.org.za/who-we-are/our-history/",
+        "https://ifp.org.za/newsroom/building-on-a-strong-legacy-in-a-new-season-of-struggle-for-economic-and-social-justice-structured-on-democratic-ideals/"
+      ]
+    },
+    {
+      "id": "velenkosini_hlabisa",
+      "name": "Velenkosini Hlabisa",
+      "sources": [
+        "https://ifp.org.za/who-we-are/our-history/",
+        "https://ifp.org.za/newsroom/building-on-a-strong-legacy-in-a-new-season-of-struggle-for-economic-and-social-justice-structured-on-democratic-ideals/",
+        "https://ifp.org.za/newsroom/ifp-marks-51-years-as-president-velenkosini-hlabisa-leads-human-rights-day-commemoration-in-mpumalanga/"
+      ]
+    },
+    {
+      "id": "zach_de_beer",
+      "name": "Zach de Beer",
+      "sources": [
+        "https://sahistory.org.za/sites/default/files/SAIRR%20Survey%201988-89.pdf",
+        "https://www.nelsonmandela.org/omalley/cis/omalley/OMalleyWeb/dat/SAIRR%20Survey%201991-92.pdf"
+      ]
+    },
+    {
+      "id": "denis_worrall",
+      "name": "Denis Worrall",
+      "sources": [
+        "https://sahistory.org.za/sites/default/files/SAIRR%20Survey%201988-89.pdf",
+        "https://www.nelsonmandela.org/omalley/cis/omalley/OMalleyWeb/dat/SAIRR%20Survey%201991-92.pdf"
+      ]
+    },
+    {
+      "id": "wynand_malan",
+      "name": "Wynand Malan",
+      "sources": [
+        "https://sahistory.org.za/sites/default/files/SAIRR%20Survey%201988-89.pdf",
+        "https://www.nelsonmandela.org/omalley/cis/omalley/OMalleyWeb/dat/SAIRR%20Survey%201991-92.pdf"
+      ]
+    },
+    {
+      "id": "geordin_hill_lewis",
+      "name": "Geordin Hill-Lewis",
+      "sources": [
+        "https://www.da.org.za/2026/04/da-announces-leadership-election-results",
+        "https://www.da.org.za/"
+      ]
+    },
+    {
+      "id": "zephania_mothopeng",
+      "name": "Zephania Mothopeng",
+      "sources": [
+        "https://thepresidency.gov.za/sites/default/files/2022-07/National%20Orders%20Booklet%202014_0.pdf"
+      ],
+      "died": {
+        "kind": "day",
+        "value": "1990-10-23"
+      }
+    },
+    {
+      "id": "clarence_makwetu",
+      "name": "Clarence Makwetu",
+      "sources": [
+        "https://www.presidency.gov.za/sites/default/files/2022-07/National%20Orders%20Booklet%202004_0.pdf"
+      ]
+    },
+    {
+      "id": "narius_moloto",
+      "name": "Narius Moloto",
+      "sources": [
+        "https://www.saflii.org/za/cases/ZAGPPHC/2020/294.html",
+        "https://pac.org.za/"
+      ]
+    },
+    {
+      "id": "mzwanele_nyhontso",
+      "name": "Mzwanele Nyhontso",
+      "sources": [
+        "https://www.saflii.org/za/cases/ZAGPPHC/2020/294.html",
+        "https://parliament.gov.za/ministers"
+      ]
+    },
+    {
+      "id": "constand_viljoen",
+      "name": "Constand Viljoen",
+      "sources": [
+        "https://comsec-web-static.s3.eu-west-1.amazonaws.com/s3fs-public/ilibrary/pdfs/9168.pdf?VersionId=BKqZHJq62lL5oA5MW.AU5dzLiK.QvyUI",
+        "https://www.vfplus.org.za/media-releases/dr-pieter-mulder-not-available-as-ff-plus-leader/"
+      ]
+    },
+    {
+      "id": "pieter_mulder",
+      "name": "Pieter Mulder",
+      "sources": [
+        "https://www.vfplus.org.za/media-releases/dr-pieter-mulder-not-available-as-ff-plus-leader/"
+      ]
+    },
+    {
+      "id": "pieter_groenewald",
+      "name": "Pieter Groenewald",
+      "sources": [
+        "https://www.vfplus.org.za/media-releases/ministers-post-for-ff-plus-leader-necessitates-minor-changes-to-partys-parliamentary-leadership/"
+      ]
+    },
+    {
+      "id": "corne_mulder",
+      "name": "Corné Mulder",
+      "sources": [
+        "https://www.vfplus.org.za/media-releases/ministers-post-for-ff-plus-leader-necessitates-minor-changes-to-partys-parliamentary-leadership/",
+        "https://www.vfplus.org.za/latest-news/president-needs-to-take-note-of-freedom-front-plus-proposals-to-make-south-africa-a-winning-country/",
+        "https://www.vfplus.org.za/leadership/"
+      ]
+    },
+    {
+      "id": "kenneth_meshoe",
+      "name": "Kenneth Meshoe",
+      "sources": [
+        "https://www.parliament.gov.za/storage/app/media/ProjectsAndEvents/20_years_of_the_constitution/books/Final_Bill_of_Rights_Book_PRINTv3.pdf",
+        "https://acdp.org.za/violent-attack-on-mps-in-philippi-condemned/"
+      ]
+    }
+  ],
+  "parties": [
+    {
+      "nation": "SouthAfrica",
+      "party": "za_anc",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.anc1912.org.za/history/",
+        "https://www.anc1912.org.za/wp-content/uploads/2022/07/ANC-Today-1-July-2022.pdf",
+        "https://www.anc1912.org.za/50th-national-conference-address-by-anc-president-thabo-mbeki-at-the-mafikeng-stadium/",
+        "https://www.derebus.org.za/wp-content/uploads/2020/11/S-v-Zuma-and-Another-and-a-related-matter-2020-2-BCLR-153-KZD.pdf",
+        "https://www.gov.za/about-sa/history",
+        "https://www.anc1912.org.za/officials/"
+      ],
+      "identity_note": "ANC organizational presidency is separate from state President, party national chairperson and secretary-general. Tambo remained president after Mandela was released in 1990.",
+      "components": [],
+      "terms": [
+        {
+          "id": "za_anc_oliver_tambo_1969",
+          "person": "oliver_tambo",
+          "role": "President of the ANC",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1969"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1991-07-05"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1969"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1991-07-05"
+          },
+          "sources": [
+            "https://www.anc1912.org.za/history/",
+            "https://www.anc1912.org.za/wp-content/uploads/2022/07/ANC-Today-1-July-2022.pdf"
+          ],
+          "note": "Official history gives 1969; other records describe acting leadership from 1967. This pre-1990 distinction needs review; both establish the 1990 incumbent."
+        },
+        {
+          "id": "za_anc_nelson_mandela_19910705",
+          "person": "nelson_mandela",
+          "role": "President of the ANC",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1991-07-05"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1997-12"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1991-07-05"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1997-12"
+          },
+          "sources": [
+            "https://www.anc1912.org.za/wp-content/uploads/2022/07/ANC-Today-1-July-2022.pdf",
+            "https://www.anc1912.org.za/50th-national-conference-address-by-anc-president-thabo-mbeki-at-the-mafikeng-stadium/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "za_anc_thabo_mbeki_199712",
+          "person": "thabo_mbeki",
+          "role": "President of the ANC",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1997-12"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2007-12-18"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1997-12"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2007-12-18"
+          },
+          "sources": [
+            "https://www.anc1912.org.za/50th-national-conference-address-by-anc-president-thabo-mbeki-at-the-mafikeng-stadium/",
+            "https://www.derebus.org.za/wp-content/uploads/2020/11/S-v-Zuma-and-Another-and-a-related-matter-2020-2-BCLR-153-KZD.pdf"
+          ],
+          "note": "The December 20 closing address establishes the new president; exact election day remains unresolved."
+        },
+        {
+          "id": "za_anc_jacob_zuma_20071218",
+          "person": "jacob_zuma",
+          "role": "President of the ANC",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2007-12-18"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2017-12-18"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2007-12-18"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2017-12-18"
+          },
+          "sources": [
+            "https://www.derebus.org.za/wp-content/uploads/2020/11/S-v-Zuma-and-Another-and-a-related-matter-2020-2-BCLR-153-KZD.pdf",
+            "https://www.gov.za/about-sa/history"
+          ],
+          "note": ""
+        },
+        {
+          "id": "za_anc_cyril_ramaphosa_20171218",
+          "person": "cyril_ramaphosa",
+          "role": "President of the ANC",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2017-12-18"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2017-12-18"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.gov.za/about-sa/history",
+            "https://www.anc1912.org.za/officials/"
+          ],
+          "note": ""
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "month",
+            "value": "1997-12"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1997-12"
+          },
+          "reason": "Exact Mandela/Mbeki election and handover day must be recovered.",
+          "sources": [
+            "https://www.anc1912.org.za/50th-national-conference-address-by-anc-president-thabo-mbeki-at-the-mafikeng-stadium/"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "SouthAfrica",
+      "party": "za_np",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://fwdeklerk.org/constitutional-transformation-of-south-africa/",
+        "https://www.justice.gov.za/trc/media/1997/9709/s970922c.htm",
+        "https://mg.co.za/news/south-africa/2005-04-10-final-hour-arrives-for-the-nnp/",
+        "https://www.gov.za/news/independent-electoral-commission-cancellation-registration-political-parties-31-aug-2006"
+      ],
+      "identity_note": "National Party renamed New National Party. The April 2005 dissolution decision is distinct from final IEC cancellation of registration effective July 3, 2006. This is not a current historical party.",
+      "components": [],
+      "terms": [
+        {
+          "id": "za_np_f_w_de_klerk_19890202",
+          "person": "f_w_de_klerk",
+          "role": "National leader of the National Party",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1989-02-02"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1997-09"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1989-02-02"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1997-09"
+          },
+          "sources": [
+            "https://fwdeklerk.org/constitutional-transformation-of-south-africa/",
+            "https://www.justice.gov.za/trc/media/1997/9709/s970922c.htm"
+          ],
+          "note": ""
+        },
+        {
+          "id": "za_np_marthinus_van_schalkwyk_199709",
+          "person": "marthinus_van_schalkwyk",
+          "role": "National leader of the NP / NNP",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1997-09"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2005-04"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1997-09"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2005-04"
+          },
+          "sources": [
+            "https://www.justice.gov.za/trc/media/1997/9709/s970922c.htm",
+            "https://mg.co.za/news/south-africa/2005-04-10-final-hour-arrives-for-the-nnp/"
+          ],
+          "note": "End marks last reviewed dissolution decision, not a verified resignation or final legal dissolution day."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "month",
+            "value": "1997-09"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1997-09"
+          },
+          "reason": "Exact election day requires original party minutes; contemporary accounts conflict.",
+          "sources": [
+            "https://www.justice.gov.za/trc/media/1997/9709/s970922c.htm"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "2005-04"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-09-07"
+          },
+          "reason": "Resolve final 2006 closure and associated office end. Do not project this party unchanged into current history.",
+          "sources": [
+            "https://mg.co.za/news/south-africa/2005-04-10-final-hour-arrives-for-the-nnp/"
+          ]
+        }
+      ],
+      "dissolved": {
+        "kind": "day",
+        "value": "2006-07-03"
+      }
+    },
+    {
+      "nation": "SouthAfrica",
+      "party": "za_ifp",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://ifp.org.za/who-we-are/our-history/",
+        "https://ifp.org.za/newsroom/building-on-a-strong-legacy-in-a-new-season-of-struggle-for-economic-and-social-justice-structured-on-democratic-ideals/",
+        "https://ifp.org.za/newsroom/ifp-marks-51-years-as-president-velenkosini-hlabisa-leads-human-rights-day-commemoration-in-mpumalanga/"
+      ],
+      "identity_note": "Inkatha began as a national cultural liberation movement in 1975 and became an electoral party in 1990. Organizational presidency is separate from KwaZulu administration and traditional offices.",
+      "components": [],
+      "terms": [
+        {
+          "id": "za_ifp_mangosuthu_buthelezi_19750321",
+          "person": "mangosuthu_buthelezi",
+          "role": "President of Inkatha / IFP",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1975-03-21"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2019-08-24"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1975-03-21"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2019-08-24"
+          },
+          "sources": [
+            "https://ifp.org.za/who-we-are/our-history/",
+            "https://ifp.org.za/newsroom/building-on-a-strong-legacy-in-a-new-season-of-struggle-for-economic-and-social-justice-structured-on-democratic-ideals/"
+          ],
+          "note": "Movement-to-party continuity is explicit; do not backdate the legal party form to 1975."
+        },
+        {
+          "id": "za_ifp_velenkosini_hlabisa_20190824",
+          "person": "velenkosini_hlabisa",
+          "role": "President of the IFP",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2019-08-24"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2019-08-24"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://ifp.org.za/newsroom/building-on-a-strong-legacy-in-a-new-season-of-struggle-for-economic-and-social-justice-structured-on-democratic-ideals/",
+            "https://ifp.org.za/newsroom/ifp-marks-51-years-as-president-velenkosini-hlabisa-leads-human-rights-day-commemoration-in-mpumalanga/"
+          ],
+          "note": ""
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "reason": "Exact movement-to-party legal conversion date remains under review.",
+          "sources": [
+            "https://ifp.org.za/who-we-are/our-history/"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "SouthAfrica",
+      "party": "za_dp",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://sahistory.org.za/sites/default/files/SAIRR%20Survey%201988-89.pdf",
+        "https://www.nelsonmandela.org/omalley/cis/omalley/OMalleyWeb/dat/SAIRR%20Survey%201991-92.pdf",
+        "https://www.da.org.za/why-the-da/history/",
+        "https://www.da.org.za/2026/04/da-announces-leadership-election-results"
+      ],
+      "identity_note": "Initial DP had three co-leaders. DA history is a later organizational phase; NP participation in the initial alliance must not duplicate NP leaders as DP incumbents. The verified 2026 DA result is withheld in related_roles until legal integration and an appropriate DA identity are reviewed; it is not an original DP term.",
+      "components": [],
+      "terms": [
+        {
+          "id": "za_dp_zach_de_beer_198904",
+          "person": "zach_de_beer",
+          "role": "Joint leader of the Democratic Party",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "1989-04"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1989-04"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "sources": [
+            "https://sahistory.org.za/sites/default/files/SAIRR%20Survey%201988-89.pdf",
+            "https://www.nelsonmandela.org/omalley/cis/omalley/OMalleyWeb/dat/SAIRR%20Survey%201991-92.pdf"
+          ],
+          "note": "Year precision deliberately leaves the 1990 reorganization uncertain."
+        },
+        {
+          "id": "za_dp_denis_worrall_198904",
+          "person": "denis_worrall",
+          "role": "Joint leader of the Democratic Party",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "1989-04"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1989-04"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "sources": [
+            "https://sahistory.org.za/sites/default/files/SAIRR%20Survey%201988-89.pdf",
+            "https://www.nelsonmandela.org/omalley/cis/omalley/OMalleyWeb/dat/SAIRR%20Survey%201991-92.pdf"
+          ],
+          "note": "Year precision deliberately leaves the 1990 reorganization uncertain."
+        },
+        {
+          "id": "za_dp_wynand_malan_198904",
+          "person": "wynand_malan",
+          "role": "Joint leader of the Democratic Party",
+          "kind": "co_leader",
+          "from": {
+            "kind": "month",
+            "value": "1989-04"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1989-04"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "sources": [
+            "https://sahistory.org.za/sites/default/files/SAIRR%20Survey%201988-89.pdf",
+            "https://www.nelsonmandela.org/omalley/cis/omalley/OMalleyWeb/dat/SAIRR%20Survey%201991-92.pdf"
+          ],
+          "note": "Year precision deliberately leaves the 1990 reorganization uncertain."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-09-07"
+          },
+          "reason": "Source the sole-leader handover, Tony Leon, Helen Zille, Mmusi Maimane and John Steenhuisen terms separately; current title is not proof of all previous boundaries.",
+          "sources": [
+            "https://www.nelsonmandela.org/omalley/cis/omalley/OMalleyWeb/dat/SAIRR%20Survey%201991-92.pdf",
+            "https://www.da.org.za/why-the-da/history/",
+            "https://www.da.org.za/2026/04/da-announces-leadership-election-results"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "SouthAfrica",
+      "party": "za_pac",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://thepresidency.gov.za/sites/default/files/2022-07/National%20Orders%20Booklet%202014_0.pdf",
+        "https://www.presidency.gov.za/sites/default/files/2022-07/National%20Orders%20Booklet%202004_0.pdf",
+        "https://www.saflii.org/za/cases/ZAGPPHC/2020/294.html"
+      ],
+      "identity_note": "PAC organizational presidency, PAM front leadership and parliamentary representative are different offices. Later leadership disputes require claim and court-order modeling.",
+      "components": [],
+      "terms": [
+        {
+          "id": "za_pac_zephania_mothopeng_198608",
+          "person": "zephania_mothopeng",
+          "role": "President of the PAC",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1986-08"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1990-10-23"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1986-08"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1990-10-23"
+          },
+          "sources": [
+            "https://thepresidency.gov.za/sites/default/files/2022-07/National%20Orders%20Booklet%202014_0.pdf"
+          ],
+          "note": ""
+        },
+        {
+          "id": "za_pac_clarence_makwetu_1990",
+          "person": "clarence_makwetu",
+          "role": "President of the PAC",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1996"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "1996"
+          },
+          "sources": [
+            "https://www.presidency.gov.za/sites/default/files/2022-07/National%20Orders%20Booklet%202004_0.pdf"
+          ],
+          "note": "Appointment followed Mothopeng death; exact day unverified. Do not appoint Makwetu before October 23 using year bounds."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "1990-10-23"
+          },
+          "until": {
+            "kind": "year",
+            "value": "1990"
+          },
+          "reason": "Exact Makwetu election date unresolved.",
+          "sources": [
+            "https://www.presidency.gov.za/sites/default/files/2022-07/National%20Orders%20Booklet%202004_0.pdf"
+          ]
+        },
+        {
+          "from": {
+            "kind": "year",
+            "value": "1996"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-09-07"
+          },
+          "reason": "Mogoba/Pheko/Mphahlele and later contested claimants remain an explicit backlog. A party-controlled website is insufficient to adjudicate a leadership dispute.",
+          "sources": [
+            "https://www.saflii.org/za/cases/ZAGPPHC/2020/294.html",
+            "https://pac.org.za/"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "SouthAfrica",
+      "party": "za_ff",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://comsec-web-static.s3.eu-west-1.amazonaws.com/s3fs-public/ilibrary/pdfs/9168.pdf?VersionId=BKqZHJq62lL5oA5MW.AU5dzLiK.QvyUI",
+        "https://www.vfplus.org.za/media-releases/dr-pieter-mulder-not-available-as-ff-plus-leader/",
+        "https://www.vfplus.org.za/media-releases/ministers-post-for-ff-plus-leader-necessitates-minor-changes-to-partys-parliamentary-leadership/",
+        "https://www.vfplus.org.za/latest-news/president-needs-to-take-note-of-freedom-front-plus-proposals-to-make-south-africa-a-winning-country/"
+      ],
+      "identity_note": "Freedom Front formed in March 1994; later FF Plus merger history and parliamentary leadership must remain distinct. There is no January 1990 FF leader.",
+      "components": [],
+      "terms": [
+        {
+          "id": "za_ff_constand_viljoen_199403",
+          "person": "constand_viljoen",
+          "role": "Leader of the Freedom Front",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1994-03"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2001"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1994-03"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2001"
+          },
+          "sources": [
+            "https://comsec-web-static.s3.eu-west-1.amazonaws.com/s3fs-public/ilibrary/pdfs/9168.pdf?VersionId=BKqZHJq62lL5oA5MW.AU5dzLiK.QvyUI",
+            "https://www.vfplus.org.za/media-releases/dr-pieter-mulder-not-available-as-ff-plus-leader/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "za_ff_pieter_mulder_2001",
+          "person": "pieter_mulder",
+          "role": "Leader of the Freedom Front / FF Plus",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "2001"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2016-11-12"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "2001"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2016-11-12"
+          },
+          "sources": [
+            "https://www.vfplus.org.za/media-releases/dr-pieter-mulder-not-available-as-ff-plus-leader/"
+          ],
+          "note": ""
+        },
+        {
+          "id": "za_ff_corne_mulder_20250716",
+          "person": "corne_mulder",
+          "role": "Leader of the FF Plus",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2025-07-16"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2025-07-16"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.vfplus.org.za/latest-news/president-needs-to-take-note-of-freedom-front-plus-proposals-to-make-south-africa-a-winning-country/",
+            "https://www.vfplus.org.za/leadership/"
+          ],
+          "note": "Conservative verified observation start, not the actual election date. Retrieve February 2025 congress result."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1994-03"
+          },
+          "reason": "Party did not yet exist.",
+          "sources": [
+            "https://comsec-web-static.s3.eu-west-1.amazonaws.com/s3fs-public/ilibrary/pdfs/9168.pdf?VersionId=BKqZHJq62lL5oA5MW.AU5dzLiK.QvyUI"
+          ]
+        },
+        {
+          "from": {
+            "kind": "year",
+            "value": "2001"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2001"
+          },
+          "reason": "Exact Viljoen/Mulder handover remains unresolved.",
+          "sources": [
+            "https://www.vfplus.org.za/media-releases/dr-pieter-mulder-not-available-as-ff-plus-leader/"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "2016-11-12"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2025-07-16"
+          },
+          "reason": "Recover Groenewald election, 2025 handover and exact leadership intervals; July 2024 observation alone is not complete coverage.",
+          "sources": [
+            "https://www.vfplus.org.za/media-releases/dr-pieter-mulder-not-available-as-ff-plus-leader/",
+            "https://www.vfplus.org.za/media-releases/ministers-post-for-ff-plus-leader-necessitates-minor-changes-to-partys-parliamentary-leadership/",
+            "https://www.vfplus.org.za/latest-news/president-needs-to-take-note-of-freedom-front-plus-proposals-to-make-south-africa-a-winning-country/"
+          ]
+        }
+      ],
+      "founded": {
+        "kind": "month",
+        "value": "1994-03"
+      }
+    },
+    {
+      "nation": "SouthAfrica",
+      "party": "za_acdp",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.parliament.gov.za/storage/app/media/ProjectsAndEvents/20_years_of_the_constitution/books/Final_Bill_of_Rights_Book_PRINTv3.pdf",
+        "https://acdp.org.za/violent-attack-on-mps-in-philippi-condemned/"
+      ],
+      "identity_note": "Founded December 1993. Meshoe party presidency is distinct from his later parliamentary membership. No party or leader should be assigned in January 1990.",
+      "components": [],
+      "terms": [
+        {
+          "id": "za_acdp_kenneth_meshoe_199312",
+          "person": "kenneth_meshoe",
+          "role": "President of the ACDP",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1993-12"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1993-12"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.parliament.gov.za/storage/app/media/ProjectsAndEvents/20_years_of_the_constitution/books/Final_Bill_of_Rights_Book_PRINTv3.pdf",
+            "https://acdp.org.za/violent-attack-on-mps-in-philippi-condemned/"
+          ],
+          "note": "Parliament records founding month; latest reviewed party statement August 22, 2025. Near-cutoff incumbent confirmation still required."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1993-12"
+          },
+          "reason": "Party did not yet exist.",
+          "sources": [
+            "https://www.parliament.gov.za/storage/app/media/ProjectsAndEvents/20_years_of_the_constitution/books/Final_Bill_of_Rights_Book_PRINTv3.pdf"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "2025-08-22"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-09-07"
+          },
+          "reason": "Obtain a near-cutoff party official list rather than assume continuity from the 2025 statement.",
+          "sources": [
+            "https://acdp.org.za/violent-attack-on-mps-in-philippi-condemned/"
+          ]
+        }
+      ],
+      "founded": {
+        "kind": "month",
+        "value": "1993-12"
+      }
+    }
+  ],
+  "starter_leaders": [
+    {
+      "party": "za_anc",
+      "person_ids": [
+        "oliver_tambo"
+      ],
+      "status": "verified"
+    },
+    {
+      "party": "za_np",
+      "person_ids": [
+        "f_w_de_klerk"
+      ],
+      "status": "verified"
+    },
+    {
+      "party": "za_ifp",
+      "person_ids": [
+        "mangosuthu_buthelezi"
+      ],
+      "status": "verified_movement_president"
+    },
+    {
+      "party": "za_dp",
+      "person_ids": [
+        "zach_de_beer",
+        "denis_worrall",
+        "wynand_malan"
+      ],
+      "status": "joint_leadership_transition_needs_review"
+    },
+    {
+      "party": "za_pac",
+      "person_ids": [
+        "zephania_mothopeng"
+      ],
+      "status": "verified"
+    },
+    {
+      "party": "za_ff",
+      "person_ids": [],
+      "status": "not_yet_formed"
+    },
+    {
+      "party": "za_acdp",
+      "person_ids": [],
+      "status": "not_yet_formed"
+    }
+  ],
+  "related_roles": [
+    {
+      "party": "za_pac",
+      "source": "https://www.saflii.org/za/cases/ZAGPPHC/2020/294.html",
+      "note": "Court discusses the March 2019 settlement naming Moloto party president and Nyhontso parliamentary representative. Do not collapse these offices or infer that this resolves 2026 disputes."
+    },
+    {
+      "party": "za_ff",
+      "person": "corne_mulder",
+      "observed": "2024-07-22",
+      "role": "parliamentary leader",
+      "source": "https://www.vfplus.org.za/media-releases/ministers-post-for-ff-plus-leader-necessitates-minor-changes-to-partys-parliamentary-leadership/",
+      "note": "The same statement explicitly names Pieter Groenewald national party leader."
+    },
+    {
+      "party": "za_dp",
+      "person": "geordin_hill_lewis",
+      "observed": "2026-04-12",
+      "role": "Elected federal leader of the separate DA organizational phase",
+      "sources": [
+        "https://www.da.org.za/2026/04/da-announces-leadership-election-results",
+        "https://www.da.org.za/"
+      ],
+      "note": "Do not ingest as original DP leader. Establish DP-to-DA alliance and legal integration boundaries, then add the correct DA organization identity."
+    }
+  ],
+  "lifecycle_review": [
+    {
+      "party": "za_np",
+      "dissolved": {
+        "kind": "day",
+        "value": "2006-07-03"
+      },
+      "current_historical_continuation_verified": false,
+      "source": "https://www.gov.za/news/independent-electoral-commission-cancellation-registration-political-parties-31-aug-2006",
+      "note": "IEC August 31, 2006 statement explicitly records NNP registration cancellation on request effective July 3, 2006, Gazette 29015 notice931. Separate from the April2005 decision and unresolved office end."
+    },
+    {
+      "party": "za_dp",
+      "source": "https://www.da.org.za/why-the-da/history/",
+      "note": "DP-to-DA transition and the withdrawal of NNP need distinct organization intervals, not simultaneous duplicated leaders."
+    },
+    {
+      "party": "za_dp",
+      "dissolved": {
+        "kind": "unknown"
+      },
+      "current_historical_continuation_verified": false,
+      "source": "https://www.da.org.za/why-the-da/history/",
+      "note": "DA began in 2000 through an alliance/merger arrangement. Original DP integration and legal ending need exact primary records; no current historical DP leadership is claimed."
+    }
+  ],
+  "unrepresented_party_inventory": [
+    {
+      "names": [
+        "Conservative Party",
+        "SACP",
+        "AZAPO",
+        "UDM",
+        "COPE",
+        "EFF",
+        "MK Party",
+        "Patriotic Alliance",
+        "ActionSA",
+        "Rise Mzansi",
+        "GOOD",
+        "Al Jama-ah",
+        "ATM",
+        "UAT",
+        "BOSA"
+      ],
+      "status": "requires_exact_game_rows_and_independent_leadership_research",
+      "note": "Examples of omitted party organizations, not a complete inventory. SACP and trade union alliance partners must not be treated as ANC internal leaders."
+    }
+  ],
+  "portrait_references": [
+    {
+      "person": "oliver_tambo",
+      "date": "1990-03-12",
+      "source": "https://sahistory.org.za/node/124361",
+      "image_url": "https://sahistory.org.za/sites/default/files/images_new/tambo_mandela_sweden.jpg",
+      "identity_note": "Tambo with Mandela in Sweden; Tambo wears light suit and sunglasses.",
+      "download_status": "HTTP 403; no local file or approved avatar claimed",
+      "rights": "Visual research only; reproduction rights not cleared."
+    }
+  ],
+  "source_quality": {
+    "primary": "Party publications, parliamentary biographies, government awards, court judgment and Commonwealth observation records are preferred.",
+    "secondary": "NP dissolution reporting and SAIRR historical research are labelled supporting evidence, not original party minutes.",
+    "date_conflicts": "DA promotional timeline misaligns years and simplifies initial co-leaders. Exact old transitions remain gaps; 2026 election uses the dated primary result."
+  }
+}

@@ -1,0 +1,2226 @@
+{
+  "schema": "spheres-party-leader-research-v3",
+  "reference_from": "1990-01-01",
+  "reference_through": "2026-09-07",
+  "source_checked_at": "2026-09-07",
+  "nation": "Australia",
+  "scope": {
+    "requested_through": "2035-12-31",
+    "history_through": "2026-09-07",
+    "future_from": "2026-09-08",
+    "future_policy": "Only explicitly fictional successors after cutoff; no invented historical terms or predictions about real people.",
+    "coverage": "partial",
+    "represented_party_ids": [
+      "au_alp",
+      "au_lib",
+      "au_nat",
+      "au_dem"
+    ],
+    "claim": "All four exact opening parties researched. Regular parliamentary leadership chronology with documented gaps, not all Australian parties or finished art.",
+    "unrepresented_parties": "Greens, One Nation, Country Liberal Party, Queensland LNP identity, United Australia, Katter's Australian Party, Centre Alliance and other omitted parties require distinct reviewed IDs/affiliations. Do not allocate fabricated opening support."
+  },
+  "ingestion": {
+    "status": "staged-requires-role-aware-integration-review",
+    "runtime_prerequisite": "Every new term is party-only. Preserve Bob Hawke's seated executive binding. Separate Governor-General appointment and House-confidence review is required before executive eligibility. Organisational president and parliamentary party leader are different mandates; neither silently becomes PM.",
+    "executive_role_sources": [
+      "https://www.aph.gov.au/About_Parliament/House_of_Representatives/Powers_practice_and_procedure/Practice7/HTML/Chapter2/The_Ministry",
+      "https://www.democrats.org.au/constitution/"
+    ],
+    "people": "Compatible Person fields; preserve existing Bob Hawke identity/native/birth. Only evidenced life dates supplied.",
+    "parties": "Four exact separate baseline party rows; Liberal and Nationals are not collapsed into one leader. State parties and organisational structures remain separate review.",
+    "intervals": "Half-open [from,until). Incoming leader owns the transition day when both boundaries refer to the same transition. Inclusive final-day statements without an incoming transition are converted to next-day exclusive bounds. Coarse dates deliberately express uncertainty.",
+    "affiliations": "Office windows only, not lifetime memberships or future promotion grants.",
+    "scope_clipping": "1990-01-01 bounds are opening scope clips, not original election dates.",
+    "missing_life_dates": "Omitted life facts are unknown; do not infer that a real person remains alive or eligible.",
+    "open_terms": "Verified only through 2026-09-07. Future transitions require fictional metadata."
+  },
+  "starter_leaders": [
+    {
+      "party": "au_alp",
+      "person": "bob_hawke",
+      "at": "1990-01-01",
+      "role": "Federal parliamentary party leader",
+      "sources": [
+        "https://www.naa.gov.au/sites/default/files/2021-06/research-guide-bob-Hawke.pdf",
+        "https://pmtranscripts.pmc.gov.au/sites/default/files/original/00008367.pdf"
+      ]
+    },
+    {
+      "party": "au_lib",
+      "person": "andrew_peacock",
+      "at": "1990-01-01",
+      "role": "Federal parliamentary party leader",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+        "https://www.moadoph.gov.au/explore/democracy/election-speeches/andrew-peacock-1990"
+      ]
+    },
+    {
+      "party": "au_nat",
+      "person": "charles_blunt",
+      "at": "1990-01-01",
+      "role": "Federal parliamentary party leader",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse",
+        "https://web.archive.org/web/20080801021845/http://parlinfoweb.aph.gov.au/piweb/view_document.aspx?TABLE=biogs&ID=8081"
+      ]
+    },
+    {
+      "party": "au_dem",
+      "person": "janine_haines",
+      "at": "1990-01-01",
+      "role": "Federal parliamentary party leader",
+      "sources": [
+        "https://biography.senate.gov.au/haines-janine/",
+        "https://biography.senate.gov.au/macklin-michael-john/",
+        "https://biography.senate.gov.au/powell-janet-frances/"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "bob_hawke",
+      "name": "Bob Hawke",
+      "native": "Robert James Lee Hawke",
+      "born": {
+        "kind": "day",
+        "value": "1929-12-09"
+      },
+      "sources": [
+        "https://www.naa.gov.au/sites/default/files/2021-06/research-guide-bob-Hawke.pdf",
+        "https://pmtranscripts.pmc.gov.au/sites/default/files/original/00008367.pdf"
+      ]
+    },
+    {
+      "id": "paul_keating",
+      "name": "Paul Keating",
+      "sources": [
+        "https://pmtranscripts.pmc.gov.au/sites/default/files/original/00008367.pdf",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+      ]
+    },
+    {
+      "id": "kim_beazley",
+      "name": "Kim Beazley",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+      ]
+    },
+    {
+      "id": "simon_crean",
+      "name": "Simon Crean",
+      "born": {
+        "kind": "day",
+        "value": "1949-02-26"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2023-06-25"
+      },
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=dt4",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+      ]
+    },
+    {
+      "id": "mark_latham",
+      "name": "Mark Latham",
+      "born": {
+        "kind": "day",
+        "value": "1961-02-28"
+      },
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=K26&lang=en"
+      ]
+    },
+    {
+      "id": "kevin_rudd",
+      "name": "Kevin Rudd",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=DZS&lang=en"
+      ]
+    },
+    {
+      "id": "julia_gillard",
+      "name": "Julia Gillard",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+      ]
+    },
+    {
+      "id": "chris_bowen",
+      "name": "Chris Bowen",
+      "born": {
+        "kind": "day",
+        "value": "1973-01-17"
+      },
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=DZS&lang=en",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+      ]
+    },
+    {
+      "id": "bill_shorten",
+      "name": "Bill Shorten",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=R36&lang=en"
+      ]
+    },
+    {
+      "id": "anthony_albanese",
+      "name": "Anthony Albanese",
+      "born": {
+        "kind": "day",
+        "value": "1963-03-02"
+      },
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=R36&lang=en"
+      ]
+    },
+    {
+      "id": "andrew_peacock",
+      "name": "Andrew Peacock",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+        "https://www.moadoph.gov.au/explore/democracy/election-speeches/andrew-peacock-1990"
+      ]
+    },
+    {
+      "id": "john_hewson",
+      "name": "John Hewson",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+      ]
+    },
+    {
+      "id": "alexander_downer",
+      "name": "Alexander Downer",
+      "born": {
+        "kind": "day",
+        "value": "1951-09-09"
+      },
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=4G4",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+      ]
+    },
+    {
+      "id": "john_howard",
+      "name": "John Howard",
+      "born": {
+        "kind": "day",
+        "value": "1939-07-26"
+      },
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=ZD4&lang=en",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+      ]
+    },
+    {
+      "id": "brendan_nelson",
+      "name": "Brendan Nelson",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+      ]
+    },
+    {
+      "id": "malcolm_turnbull",
+      "name": "Malcolm Turnbull",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+      ]
+    },
+    {
+      "id": "tony_abbott",
+      "name": "Tony Abbott",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+      ]
+    },
+    {
+      "id": "scott_morrison",
+      "name": "Scott Morrison",
+      "born": {
+        "kind": "day",
+        "value": "1968-05-13"
+      },
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?=1&MPID=E3L",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+      ]
+    },
+    {
+      "id": "peter_dutton",
+      "name": "Peter Dutton",
+      "born": {
+        "kind": "day",
+        "value": "1970-11-18"
+      },
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=00AKI"
+      ]
+    },
+    {
+      "id": "sussan_ley",
+      "name": "Sussan Ley",
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?=1&MPID=00AMN",
+        "https://www.liberal.org.au/2026/02/13/transcript-of-press-conference"
+      ]
+    },
+    {
+      "id": "angus_taylor",
+      "name": "Angus Taylor",
+      "sources": [
+        "https://www.liberal.org.au/2026/02/13/transcript-of-press-conference"
+      ]
+    },
+    {
+      "id": "charles_blunt",
+      "name": "Charles Blunt",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse",
+        "https://web.archive.org/web/20080801021845/http://parlinfoweb.aph.gov.au/piweb/view_document.aspx?TABLE=biogs&ID=8081"
+      ],
+      "native": "Charles William Blunt",
+      "born": {
+        "kind": "day",
+        "value": "1951-01-19"
+      }
+    },
+    {
+      "id": "tim_fischer",
+      "name": "Tim Fischer",
+      "native": "Timothy Andrew Fischer",
+      "born": {
+        "kind": "day",
+        "value": "1946-05-03"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2019-08-22"
+      },
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=DG4",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+      ]
+    },
+    {
+      "id": "john_anderson",
+      "name": "John Anderson",
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=4K4&lang=en"
+      ]
+    },
+    {
+      "id": "mark_vaile",
+      "name": "Mark Vaile",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=GT4"
+      ]
+    },
+    {
+      "id": "warren_truss",
+      "name": "Warren Truss",
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=GT4",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?=1&MPID=e5d"
+      ]
+    },
+    {
+      "id": "barnaby_joyce",
+      "name": "Barnaby Joyce",
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?=1&MPID=e5d",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+      ]
+    },
+    {
+      "id": "michael_mccormack",
+      "name": "Michael McCormack",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+      ]
+    },
+    {
+      "id": "david_littleproud",
+      "name": "David Littleproud",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+        "https://davidlittleproud.com.au/statement/",
+        "https://vic.nationals.org.au/media-releases/statement-from-leader-of-the-nationals-victoria-danny-obrien-2/"
+      ]
+    },
+    {
+      "id": "matt_canavan",
+      "name": "Matt Canavan",
+      "born": {
+        "kind": "day",
+        "value": "1980-12-17"
+      },
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=245212",
+        "https://vic.nationals.org.au/media-releases/statement-from-leader-of-the-nationals-victoria-danny-obrien-2/"
+      ]
+    },
+    {
+      "id": "janine_haines",
+      "name": "Janine Haines",
+      "sources": [
+        "https://biography.senate.gov.au/haines-janine/",
+        "https://biography.senate.gov.au/macklin-michael-john/",
+        "https://biography.senate.gov.au/powell-janet-frances/",
+        "https://www.aph.gov.au/-/media/05_About_Parliament/54_Parliamentary_Depts/544_Parliamentary_Library/Handbook/handbook_46th_parliament.pdf"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1945-05-08"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2004-11-20"
+      }
+    },
+    {
+      "id": "michael_macklin",
+      "name": "Michael Macklin",
+      "born": {
+        "kind": "day",
+        "value": "1943-02-25"
+      },
+      "sources": [
+        "https://biography.senate.gov.au/macklin-michael-john/",
+        "https://biography.senate.gov.au/powell-janet-frances/"
+      ]
+    },
+    {
+      "id": "janet_powell",
+      "name": "Janet Powell",
+      "born": {
+        "kind": "day",
+        "value": "1942-09-29"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2013-09-30"
+      },
+      "sources": [
+        "https://biography.senate.gov.au/powell-janet-frances/",
+        "https://biography.senate.gov.au/coulter-john-richard/"
+      ]
+    },
+    {
+      "id": "john_coulter",
+      "name": "John Coulter",
+      "native": "John Richard Coulter",
+      "born": {
+        "kind": "day",
+        "value": "1930-12-03"
+      },
+      "sources": [
+        "https://biography.senate.gov.au/coulter-john-richard/",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=XW4"
+      ]
+    },
+    {
+      "id": "cheryl_kernot",
+      "name": "Cheryl Kernot",
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=XW4"
+      ]
+    },
+    {
+      "id": "meg_lees",
+      "name": "Meg Lees",
+      "born": {
+        "kind": "day",
+        "value": "1948-10-19"
+      },
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=8U4",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=3I6"
+      ]
+    },
+    {
+      "id": "natasha_stott_despoja",
+      "name": "Natasha Stott Despoja",
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=3I6"
+      ]
+    },
+    {
+      "id": "aden_ridgeway",
+      "name": "Aden Ridgeway",
+      "born": {
+        "kind": "day",
+        "value": "1962-09-18"
+      },
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=8G6"
+      ]
+    },
+    {
+      "id": "brian_greig",
+      "name": "Brian Greig",
+      "born": {
+        "kind": "day",
+        "value": "1966-02-22"
+      },
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=86X",
+        "https://www.equal.org.au/briangreig_oam",
+        "https://www.aph.gov.au/binaries/hansard/senate/dailys/ds260802.pdf"
+      ]
+    },
+    {
+      "id": "andrew_bartlett",
+      "name": "Andrew Bartlett",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse",
+        "https://www.aph.gov.au/binaries/hansard/senate/dailys/ds080205.pdf",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=1M6"
+      ]
+    },
+    {
+      "id": "lyn_allison",
+      "name": "Lyn Allison",
+      "born": {
+        "kind": "day",
+        "value": "1946-10-21"
+      },
+      "sources": [
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=1M6",
+        "https://www.aph.gov.au/binaries/hansard/senate/dailys/ds080205.pdf"
+      ]
+    },
+    {
+      "id": "leonie_green",
+      "name": "Leonie Green",
+      "sources": [
+        "https://www.democrats.org.au/our-people/",
+        "https://www.democrats.org.au/constitution/"
+      ]
+    }
+  ],
+  "parties": [
+    {
+      "nation": "Australia",
+      "party": "au_alp",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse",
+        "https://www.naa.gov.au/sites/default/files/2021-06/research-guide-bob-Hawke.pdf",
+        "https://pmtranscripts.pmc.gov.au/sites/default/files/original/00008367.pdf",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=dt4",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=K26&lang=en",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=DZS&lang=en",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=R36&lang=en"
+      ],
+      "identity_note": "Australian Labor Party parliamentary leadership. Party election is distinct from national president, Opposition office, and prime-ministerial swearing-in.",
+      "components": [],
+      "terms": [
+        {
+          "id": "au_alp_bob_hawke_1",
+          "person": "bob_hawke",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1991-12-19"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1991-12-19"
+          },
+          "sources": [
+            "https://www.naa.gov.au/sites/default/files/2021-06/research-guide-bob-Hawke.pdf",
+            "https://pmtranscripts.pmc.gov.au/sites/default/files/original/00008367.pdf"
+          ],
+          "note": "Existing identity/native/birth preserved. Scope-clipped opening. Keating's original 19 December 1991 acceptance transcript resolves erroneous 16 December date in the summary quick guide; PM handover followed separately."
+        },
+        {
+          "id": "au_alp_paul_keating_1",
+          "person": "paul_keating",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1991-12-19"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1996-03"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1991-12-19"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1996-03"
+          },
+          "sources": [
+            "https://pmtranscripts.pmc.gov.au/sites/default/files/original/00008367.pdf",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+          ],
+          "note": "March 1996 departure day not settled here; incoming Beazley elected 19 March. Do not substitute PM endpoint 11 March without party-role evidence."
+        },
+        {
+          "id": "au_alp_kim_beazley_1",
+          "person": "kim_beazley",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1996-03-19"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2001-11-22"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1996-03-19"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2001-11-22"
+          },
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+          ]
+        },
+        {
+          "id": "au_alp_simon_crean_1",
+          "person": "simon_crean",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2001-11-22"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2003-12-02"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2001-11-22"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2003-12-02"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=dt4",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+          ],
+          "note": "Individual parliamentary biography dates party term to 2 December, not 28 November announcement of stepping down."
+        },
+        {
+          "id": "au_alp_mark_latham_1",
+          "person": "mark_latham",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2003-12-02"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2005-01-18"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2003-12-02"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2005-01-18"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=K26&lang=en"
+          ]
+        },
+        {
+          "id": "au_alp_kim_beazley_2",
+          "person": "kim_beazley",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2005-01-28"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2006-12-04"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2005-01-28"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2006-12-04"
+          },
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+          ]
+        },
+        {
+          "id": "au_alp_kevin_rudd_1",
+          "person": "kevin_rudd",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2006-12-04"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2010-06-24"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2006-12-04"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2010-06-24"
+          },
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+          ]
+        },
+        {
+          "id": "au_alp_julia_gillard_1",
+          "person": "julia_gillard",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2010-06-24"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2013-06-26"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2010-06-24"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2013-06-26"
+          },
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+          ]
+        },
+        {
+          "id": "au_alp_kevin_rudd_2",
+          "person": "kevin_rudd",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2013-06-26"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2013-09-13"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2013-06-26"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2013-09-13"
+          },
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=DZS&lang=en"
+          ],
+          "note": "Bowen's party acting role starts 13 September; Opposition role starts 18 September. These offices are not conflated."
+        },
+        {
+          "id": "au_alp_chris_bowen_1",
+          "person": "chris_bowen",
+          "role": "Acting federal parliamentary party leader",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2013-09-13"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2013-10-13"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2013-09-13"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2013-10-13"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=DZS&lang=en",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+          ]
+        },
+        {
+          "id": "au_alp_bill_shorten_1",
+          "person": "bill_shorten",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2013-10-13"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2019-05-27"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2013-10-13"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2019-05-27"
+          },
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=R36&lang=en"
+          ],
+          "note": "Continued as interim caretaker after May 2019 defeat while successor selection completed. Exact regular-to-interim status transition requires further review; no new person inserted."
+        },
+        {
+          "id": "au_alp_anthony_albanese_1",
+          "person": "anthony_albanese",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2019-05-27"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2019-05-27"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=R36&lang=en"
+          ],
+          "note": "Individual parliamentary biography gives 27 May; do not substitute 30 May party-room meeting or 23 May 2022 PM appointment."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "1996-03-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1996-03-19"
+          },
+          "reason": "Keating's effective party departure/interim arrangements pending exact primary verification.",
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "2005-01-18"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2005-01-28"
+          },
+          "reason": "Caretaker acting leadership after Latham needs primary role-and-date verification; do not invent a Macklin or Evans appointment from holiday substitution reports.",
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=K26&lang=en",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "Australia",
+      "party": "au_lib",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+        "https://www.moadoph.gov.au/explore/democracy/election-speeches/andrew-peacock-1990",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=4G4",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=ZD4&lang=en",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?=1&MPID=E3L",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=00AKI",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?=1&MPID=00AMN",
+        "https://www.liberal.org.au/2026/02/13/transcript-of-press-conference"
+      ],
+      "identity_note": "Liberal Party federal parliamentary head, distinct from federal organisational president and coalition partner.",
+      "components": [],
+      "terms": [
+        {
+          "id": "au_lib_andrew_peacock_1",
+          "person": "andrew_peacock",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1990-04-03"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1990-04-03"
+          },
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+            "https://www.moadoph.gov.au/explore/democracy/election-speeches/andrew-peacock-1990"
+          ],
+          "note": "Opening scope clip. April 3 succession, not March 3 typo in Parliament House chronology."
+        },
+        {
+          "id": "au_lib_john_hewson_1",
+          "person": "john_hewson",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-04-03"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1994-05-23"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-04-03"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1994-05-23"
+          },
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+          ]
+        },
+        {
+          "id": "au_lib_alexander_downer_1",
+          "person": "alexander_downer",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1994-05-23"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1995-01-30"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1994-05-23"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1995-01-30"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=4G4",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+          ],
+          "note": "Party biography endpoint 30 January; 26 January departure announcement is not the effective transition."
+        },
+        {
+          "id": "au_lib_john_howard_1",
+          "person": "john_howard",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1995-01-30"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2007-11-25"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1995-01-30"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2007-11-25"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=ZD4&lang=en",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+          ],
+          "note": "Biography lists last party-leadership day 24 November 2007; converted to 25 November exclusive. PM tenure continued separately until December."
+        },
+        {
+          "id": "au_lib_brendan_nelson_1",
+          "person": "brendan_nelson",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2007-11-29"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2008-09-16"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2007-11-29"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2008-09-16"
+          },
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+          ],
+          "note": "Party election 29 November precedes Opposition office 3 December."
+        },
+        {
+          "id": "au_lib_malcolm_turnbull_1",
+          "person": "malcolm_turnbull",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2008-09-16"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2009-12-01"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2008-09-16"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2009-12-01"
+          },
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+          ]
+        },
+        {
+          "id": "au_lib_tony_abbott_1",
+          "person": "tony_abbott",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2009-12-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2015-09-14"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2009-12-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2015-09-14"
+          },
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+          ]
+        },
+        {
+          "id": "au_lib_malcolm_turnbull_2",
+          "person": "malcolm_turnbull",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2015-09-14"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2018-08-24"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2015-09-14"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2018-08-24"
+          },
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+          ],
+          "note": "Party victory 14 September, separate PM swearing-in 15 September."
+        },
+        {
+          "id": "au_lib_scott_morrison_1",
+          "person": "scott_morrison",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2018-08-24"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2022-05-22"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2018-08-24"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2022-05-22"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?=1&MPID=E3L",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+          ],
+          "note": "Biography lists party endpoint 21 May; 22 May exclusive. PM office and leadership-election gap treated separately."
+        },
+        {
+          "id": "au_lib_peter_dutton_1",
+          "person": "peter_dutton",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2022-05-30"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2025-05-13"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2022-05-30"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2025-05-13"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=00AKI"
+          ],
+          "note": "Official biography retains party-leadership span through incoming Ley election despite 3 May seat defeat. Acting delegation after defeat needs separate evidence, not presumed office resignation."
+        },
+        {
+          "id": "au_lib_sussan_ley_1",
+          "person": "sussan_ley",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2025-05-13"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-02-13"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2025-05-13"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2026-02-13"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?=1&MPID=00AMN",
+            "https://www.liberal.org.au/2026/02/13/transcript-of-press-conference"
+          ]
+        },
+        {
+          "id": "au_lib_angus_taylor_1",
+          "person": "angus_taylor",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2026-02-13"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2026-02-13"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.liberal.org.au/2026/02/13/transcript-of-press-conference"
+          ],
+          "note": "Contemporary official party acceptance press conference; deputy Jane Hume is a separate office."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "2007-11-25"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2007-11-29"
+          },
+          "reason": "Transition between Howard's last day and Nelson election not assigned to an unverified caretaker.",
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=ZD4&lang=en",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "2022-05-22"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2022-05-30"
+          },
+          "reason": "Post-election caretaker role pending primary appointment review.",
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?=1&MPID=E3L",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "Australia",
+      "party": "au_nat",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=DG4",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=4K4&lang=en",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=GT4",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?=1&MPID=e5d",
+        "https://davidlittleproud.com.au/statement/",
+        "https://vic.nationals.org.au/media-releases/statement-from-leader-of-the-nationals-victoria-danny-obrien-2/",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=245212",
+        "https://web.archive.org/web/20080801021845/http://parlinfoweb.aph.gov.au/piweb/view_document.aspx?TABLE=biogs&ID=8081"
+      ],
+      "identity_note": "Federal parliamentary head of National Party / The Nationals. Liberal coalition head, federal organisational president, Senate leader and state-affiliate heads are distinct.",
+      "components": [],
+      "terms": [
+        {
+          "id": "au_nat_charles_blunt_1",
+          "person": "charles_blunt",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1990-04"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1990-04"
+          },
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse",
+            "https://web.archive.org/web/20080801021845/http://parlinfoweb.aph.gov.au/piweb/view_document.aspx?TABLE=biogs&ID=8081"
+          ],
+          "note": "Opening scope clip. April transition remains coarse: parliamentary sources disagree among 6, 9 and 10 April; electorate defeat occurred 24 March. Archived parliamentary biography dated 24 April 1997 ends Blunt's party office 6 April 1990, while Fischer's personal parliamentary biography begins 9 April and a summary guide says 10 April; this April transition remains coarse pending reconciliation."
+        },
+        {
+          "id": "au_nat_tim_fischer_1",
+          "person": "tim_fischer",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1990-04"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1999-07-01"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1990-04"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1999-07-01"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=DG4",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+          ],
+          "note": "Individual biography gives 9 April 1990, chronology 6 April, quick guide 10 April; precision retained as month. Biography and Anderson agree 1 July 1999 party handover, not 20 July ministerial handover."
+        },
+        {
+          "id": "au_nat_john_anderson_1",
+          "person": "john_anderson",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1999-07-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2005-06-23"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1999-07-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2005-06-23"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=4K4&lang=en"
+          ],
+          "note": "Federal party term begins 1 July 1999; Deputy PM office starts 20 July. 2003 branding transition does not imply a new identity."
+        },
+        {
+          "id": "au_nat_mark_vaile_1",
+          "person": "mark_vaile",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2005-06-23"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2007-11"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2005-06-23"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2007-11"
+          },
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=GT4"
+          ],
+          "note": "November 2007 resignation day/continued caretaker mandate need final verification; no ministerial endpoint substituted."
+        },
+        {
+          "id": "au_nat_warren_truss_1",
+          "person": "warren_truss",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2007-12-03"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2016-02-11"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2007-12-03"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2016-02-11"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=GT4",
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?=1&MPID=e5d"
+          ],
+          "note": "Matching individual biographies settle 11 February party transition. Quick guide's 12 February entry is not used as effective start."
+        },
+        {
+          "id": "au_nat_barnaby_joyce_1",
+          "person": "barnaby_joyce",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2016-02-11"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2017-10-27"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2016-02-11"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2017-10-27"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?=1&MPID=e5d"
+          ],
+          "note": "Official parliamentary biography splits term at loss of parliamentary eligibility. Not an uninterrupted 2016–2018 office."
+        },
+        {
+          "id": "au_nat_barnaby_joyce_2",
+          "person": "barnaby_joyce",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2017-12-06"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2018-02-26"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2017-12-06"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2018-02-26"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?=1&MPID=e5d"
+          ],
+          "note": "Biography dates resumption 6 December, not merely election day 2 December."
+        },
+        {
+          "id": "au_nat_michael_mccormack_1",
+          "person": "michael_mccormack",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2018-02-26"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2021-06-21"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2018-02-26"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2021-06-21"
+          },
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+          ]
+        },
+        {
+          "id": "au_nat_barnaby_joyce_3",
+          "person": "barnaby_joyce",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2021-06-21"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2022-05-30"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2021-06-21"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2022-05-30"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?=1&MPID=e5d",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges"
+          ]
+        },
+        {
+          "id": "au_nat_david_littleproud_1",
+          "person": "david_littleproud",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2022-05-30"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2026-03"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2022-05-30"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2026-03"
+          },
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+            "https://davidlittleproud.com.au/statement/",
+            "https://vic.nationals.org.au/media-releases/statement-from-leader-of-the-nationals-victoria-danny-obrien-2/"
+          ],
+          "note": "Personal statement of 10 March expresses intention to resign and asks a party-room meeting; exact effective instant not assumed. Canavan elected 11 March."
+        },
+        {
+          "id": "au_nat_matt_canavan_1",
+          "person": "matt_canavan",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2026-03-11"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2026-03-11"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=245212",
+            "https://vic.nationals.org.au/media-releases/statement-from-leader-of-the-nationals-victoria-danny-obrien-2/"
+          ],
+          "note": "Senator becomes federal parliamentary leader. Bridget McKenzie's separate Senate-leader role does not make her coequal federal party head."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "1990-04-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1990-05-01"
+          },
+          "reason": "Conflicting primary summary dates for Blunt/Fischer transition; coarse bounds are uncertainty, not known simultaneous leaders or a vacancy.",
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=DG4",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "2007-11-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2007-12-03"
+          },
+          "reason": "Vaile resignation and interim arrangements not fully dated in this pass.",
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=GT4"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "2017-10-27"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2017-12-06"
+          },
+          "reason": "Nigel Scullion's acting parliamentary mandate after Joyce/Nash disqualification requires exact appointment/endpoint sources. Julie Bishop's primary account distinguishes acting PM from Nationals acting leader; no automatic executive promotion.",
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?=1&MPID=e5d",
+            "https://www.foreignminister.gov.au/minister/julie-bishop/transcript-eoe/abc-730-interview-leigh-sales-0"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "2026-03-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-03-11"
+          },
+          "reason": "Littleproud resignation effective day is uncertain; March 10 statement is intention and request for meeting, not automatically a vacancy.",
+          "sources": [
+            "https://davidlittleproud.com.au/statement/",
+            "https://vic.nationals.org.au/media-releases/statement-from-leader-of-the-nationals-victoria-danny-obrien-2/"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "Australia",
+      "party": "au_dem",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://biography.senate.gov.au/haines-janine/",
+        "https://www.democrats.org.au/constitution/",
+        "https://www.democrats.org.au/our-people/",
+        "https://biography.senate.gov.au/macklin-michael-john/",
+        "https://biography.senate.gov.au/powell-janet-frances/",
+        "https://biography.senate.gov.au/coulter-john-richard/",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=XW4",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=8U4",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=3I6",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=8G6",
+        "https://www.aph.gov.au/binaries/hansard/senate/dailys/ds080205.pdf",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=1M6",
+        "https://www.aph.gov.au/binaries/hansard/senate/dailys/ds260802.pdf",
+        "https://www.aph.gov.au/binaries/senate/work/journals/2004/jnlp_125.pdf",
+        "https://www.aph.gov.au/binaries/hansard/senate/dailys/ds161104.pdf",
+        "https://www.democrats.org.au/posts/33s8yqOs4q2GiUF4vk7TvE/national-president-leonie-green-on-6-news-australia",
+        "https://www.linkedin.com/posts/leonietgreen_late-last-year-i-was-elected-national-president-activity-7418572350570328064-gkEd"
+      ],
+      "identity_note": "Australian Democrats parliamentary leadership through loss of Senate representation in 2008, then organisational presidency only where observed. The two mandates are never flattened into one parliamentary office.",
+      "components": [],
+      "terms": [
+        {
+          "id": "au_dem_janine_haines_1",
+          "person": "janine_haines",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1990-03"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1990-03"
+          },
+          "sources": [
+            "https://biography.senate.gov.au/haines-janine/",
+            "https://biography.senate.gov.au/macklin-michael-john/",
+            "https://biography.senate.gov.au/powell-janet-frances/"
+          ],
+          "note": "Opening scope clip. Senate resignation 1 March versus continued campaign leadership until 24 March needs mandate-specific handling; kept at month precision."
+        },
+        {
+          "id": "au_dem_michael_macklin_1",
+          "person": "michael_macklin",
+          "role": "Acting federal parliamentary party leader",
+          "kind": "acting",
+          "from": {
+            "kind": "month",
+            "value": "1990-03"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1990-07-01"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1990-03"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1990-07-01"
+          },
+          "sources": [
+            "https://biography.senate.gov.au/macklin-michael-john/",
+            "https://biography.senate.gov.au/powell-janet-frances/"
+          ],
+          "note": "Senate biography describes acting March–June; transition start not day-precise. Powell assumed office 1 July."
+        },
+        {
+          "id": "au_dem_janet_powell_1",
+          "person": "janet_powell",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-07-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1991-08-19"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-07-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1991-08-19"
+          },
+          "sources": [
+            "https://biography.senate.gov.au/powell-janet-frances/",
+            "https://biography.senate.gov.au/coulter-john-richard/"
+          ],
+          "note": "Membership postal vote in May; assumption of office 1 July. Party-room vote 19 August 1991 precipitates acting Coulter role."
+        },
+        {
+          "id": "au_dem_john_coulter_1",
+          "person": "john_coulter",
+          "role": "Acting federal parliamentary party leader",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "1991-08-19"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1991-10"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1991-08-19"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1991-10"
+          },
+          "sources": [
+            "https://biography.senate.gov.au/coulter-john-richard/",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+          ]
+        },
+        {
+          "id": "au_dem_john_coulter_2",
+          "person": "john_coulter",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1991-10"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1993-04-29"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1991-10"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1993-04-29"
+          },
+          "sources": [
+            "https://biography.senate.gov.au/coulter-john-richard/",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse",
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=XW4"
+          ],
+          "note": "Month precision: Senate biography says membership ballot two months later; summary chronology dates confirmation 3 October. Contemporary ballot documentation not yet audited."
+        },
+        {
+          "id": "au_dem_cheryl_kernot_1",
+          "person": "cheryl_kernot",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1993-04-29"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1997-10-15"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1993-04-29"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1997-10-15"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=XW4"
+          ],
+          "note": "Parliamentary party biography dates election 29 April, not 19 May."
+        },
+        {
+          "id": "au_dem_meg_lees_1",
+          "person": "meg_lees",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1997-12-05"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2001-04-06"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1997-12-05"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2001-04-06"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=8U4",
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=3I6"
+          ],
+          "note": "Regular leadership dates from official parliamentary biography; separate earlier acting mandate held as gap."
+        },
+        {
+          "id": "au_dem_natasha_stott_despoja_1",
+          "person": "natasha_stott_despoja",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2001-04-06"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2002-08-21"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2001-04-06"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2002-08-21"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=3I6"
+          ]
+        },
+        {
+          "id": "au_dem_aden_ridgeway_1",
+          "person": "aden_ridgeway",
+          "role": "Interim federal parliamentary party leader",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2002-08-21"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2002-08-22"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2002-08-21"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2002-08-22"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=8G6"
+          ],
+          "note": "One-day interim role in individual parliamentary biography. Subsequent Brian Greig appointment not silently omitted from gap."
+        },
+        {
+          "id": "au_dem_brian_greig_1",
+          "person": "brian_greig",
+          "role": "Interim federal parliamentary party leader",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2002-08-26"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2002-10-05"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2002-08-26"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2002-10-05"
+          },
+          "sources": [
+            "https://www.aph.gov.au/binaries/hansard/senate/dailys/ds260802.pdf",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+          ],
+          "note": "Observed-office clip at Allison's 26 August Senate announcement, not first appointment day; national-executive decision likely earlier but exact original record remains unaudited."
+        },
+        {
+          "id": "au_dem_andrew_bartlett_1",
+          "person": "andrew_bartlett",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2002-10-05"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2003-12"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2002-10-05"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2003-12"
+          },
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+          ],
+          "note": "Regular election documented in Parliament House chronology. Temporary leave in December 2003 needs acting-role audit."
+        },
+        {
+          "id": "au_dem_andrew_bartlett_2",
+          "person": "andrew_bartlett",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2004-02-10"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2004-12-13"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2004-02-10"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2004-12-13"
+          },
+          "sources": [
+            "https://www.aph.gov.au/binaries/senate/work/journals/2004/jnlp_125.pdf",
+            "https://www.aph.gov.au/binaries/hansard/senate/dailys/ds161104.pdf",
+            "https://www.aph.gov.au/binaries/hansard/senate/dailys/ds080205.pdf",
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=1M6"
+          ],
+          "note": "Observed-office clip at 10 February 2004 Senate journal, not the resumption date. Bartlett's 16 November statement says membership ballot ongoing and existing leadership arrangements remain until mid-December, resolving the mistaken November3 endpoint."
+        },
+        {
+          "id": "au_dem_lyn_allison_1",
+          "person": "lyn_allison",
+          "role": "Federal parliamentary party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2004-12-13"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2008-07-01"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2004-12-13"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2008-07-01"
+          },
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=1M6",
+            "https://www.aph.gov.au/binaries/hansard/senate/dailys/ds080205.pdf"
+          ],
+          "note": "Individual parliamentary term starts 13 December 2004. Inclusive last Senate term day 30 June 2008 converted to next-day bound."
+        },
+        {
+          "id": "au_dem_leonie_green_1",
+          "person": "leonie_green",
+          "role": "National president (organisational)",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2026-01-29"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2026-01-29"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.democrats.org.au/our-people/",
+            "https://www.democrats.org.au/constitution/",
+            "https://www.democrats.org.au/posts/33s8yqOs4q2GiUF4vk7TvE/national-president-leonie-green-on-6-news-australia",
+            "https://www.linkedin.com/posts/leonietgreen_late-last-year-i-was-elected-national-president-activity-7418572350570328064-gkEd"
+          ],
+          "note": "Observed-office clip at official January29,2026 interview post, not election date. Green's own January2026 statement says elected late2025; exact day remains unknown. National president is organisational, not parliamentary leader."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "1990-03-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1990-04-01"
+          },
+          "reason": "Haines campaigning outside Senate versus Macklin acting parliamentary mandate not reconciled to an exact day.",
+          "sources": [
+            "https://biography.senate.gov.au/haines-janine/",
+            "https://biography.senate.gov.au/macklin-michael-john/",
+            "https://biography.senate.gov.au/powell-janet-frances/"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "1991-10-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1991-11-01"
+          },
+          "reason": "Acting-to-elected Coulter transition requires exact ballot/effect date; no invented vacancy.",
+          "sources": [
+            "https://biography.senate.gov.au/coulter-john-richard/",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "1997-10-15"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1997-12-05"
+          },
+          "reason": "Meg Lees interim mandate before formal parliamentary leadership listing requires dated original appointment evidence.",
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=XW4",
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=8U4"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "2002-08-22"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2002-08-26"
+          },
+          "reason": "Brian Greig appointment precedes the 26 August Senate announcement; exact original national-executive effective date needs confirmation.",
+          "sources": [
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=86X",
+            "https://www.equal.org.au/briangreig_oam",
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse",
+            "https://www.aph.gov.au/binaries/hansard/senate/dailys/ds260802.pdf"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "2003-12-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2004-02-10"
+          },
+          "reason": "Bartlett's temporary absence and Lyn Allison acting leadership in December 2003–February 2004 need exact original records before import.",
+          "sources": [
+            "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse",
+            "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=1M6"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "2008-07-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-01-29"
+          },
+          "reason": "Full post-parliamentary presidency sequence, deregistration/re-registration and organisational continuity need legal/party review. Do not invent parliamentary leaders while party has no federal MPs.",
+          "sources": [
+            "https://www.democrats.org.au/our-people/",
+            "https://www.democrats.org.au/constitution/"
+          ]
+        }
+      ]
+    }
+  ],
+  "portrait_reference_audit": [
+    {
+      "person": "bob_hawke",
+      "status": "inspected-dated-reference",
+      "source_page": "https://press.anu.edu.au/downloads/press/n2237/pdf/book.pdf",
+      "pdf_page_one_based": 141,
+      "photo_date": "1986",
+      "archive_reference": "National Archives of Australia A8746, KN8/5/86/2",
+      "local_file": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-australia-reference-audit\\hawke-anu-book-page141.png",
+      "local_document": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-australia-reference-audit\\hawke-anu-book.pdf",
+      "rights": "Book Australia Goes to Washington, ANU Press2016, all rights reserved; photograph credited National Archives of Australia. Photograph license not independently cleared. Visual research reference only, no photograph shipped.",
+      "observed_appearance": "Hawke is RIGHT of Ronald Reagan, seated by the White House fireplace. Silver-gray hair swept into a raised quiff, broad oval face, strong eyebrows, broad grin, clean-shaven, no glasses; dark suit, white shirt and blue tie. Small printed photograph limits fine detail.",
+      "era_use": "Dated1986 reference for an original1990 cartoon interpretation; not claimed as1990 photography."
+    },
+    {
+      "person": "andrew_peacock",
+      "status": "inspected-undated-reference",
+      "source_page": "https://www.moadoph.gov.au/explore/democracy/election-speeches/andrew-peacock-1990",
+      "media_url": "https://www.moadoph.gov.au/sites/default/files/2026-04/andrew-peacock_portrait.jpg",
+      "photo_date": null,
+      "local_file": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-australia-reference-audit\\peacock-undated-museum.jpg",
+      "rights": "Museum of Australian Democracy reference photograph. Individual photograph rights not cleared; reference only, not shipped.",
+      "observed_appearance": "Short side-parted medium-dark hair, long oval face, strong brows, straight nose and closed serious mouth; clean-shaven, no glasses, dark suit and diagonally striped tie.",
+      "era_use": "Museum photograph exposure unknown. The page refers to his1990 election speech, which does not date the photograph;2026 upload is not the photo date. Original1990 cartoon interpretation must retain this limitation."
+    },
+    {
+      "person": "charles_blunt",
+      "status": "inspected-dated-reference-low-detail",
+      "source_page": "https://www.page.org.au/wp-content/uploads/2020/01/Milestone-A-Centenary-of-Achievement-Final-small-size.pdf",
+      "pdf_page_one_based": 76,
+      "printed_page": 70,
+      "photo_date": "1987 parliamentary group associated with the11July1987 election; exposure day unknown",
+      "local_file": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-australia-reference-audit\\blunt-1987-party-group-page76.png",
+      "local_document": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-australia-reference-audit\\nationals-milestone-page-centre.pdf",
+      "rights": "Milestone: A Centenary of Achievement, National Party of Australia publisher, copyright Paul Davey2020. Photo credited Federal Secretariat. Copyrighted reference only, no photograph shipped.",
+      "observed_appearance": "Caption identifies Charles Blunt as second row, sixth from left (behind Bruce Lloyd; around x641,y611 in1078-pixel page render). Short dark side-parted hair, elongated face and straight nose, dark suit, white shirt and tie. No obvious facial hair or eyewear, but small face does not justify fine-detail or eye-color claims.",
+      "era_use": "1987 contextual likeness reference for an original1990 cartoon interpretation. Detail is limited and individual headshot remains desirable.",
+      "retrieval_note": "Live Nationals URL returned404; archived2024 capture was truncated to1MB and could not render. Full110-page PDF retrieved from Page Research Centre mirror with original publisher and copyright page preserved."
+    },
+    {
+      "person": "janine_haines",
+      "status": "inspected-dated-publication-reference",
+      "source_page": "https://filefaustralia.org/wp-content/uploads/2025/02/1990-Marzo-Nuovo-Paese.pdf",
+      "pdf_page_one_based": 8,
+      "printed_page": 6,
+      "publication_date": "1990-03",
+      "photo_date": null,
+      "local_file": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-australia-reference-audit\\haines-march1990-newspaper-page8.png",
+      "local_document": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-australia-reference-audit\\haines-march1990-newspaper.pdf",
+      "rights": "Nuovo Paese, March1990 interview by Piero Ammirato, publication photograph/photographer rights not independently identified. Copyrighted reference only, not shipped.",
+      "observed_appearance": "Large dark curly bouffant/shag hairstyle with short fringe; oversized pale/translucent double-rim glasses with rounded rectangular lenses; narrow oval face, straight nose, slight closed smile and light collared jacket.",
+      "era_use": "Period publication March1990; exact camera exposure date unknown. PDFpage8 is Haines; page9 depicts Gordon Bilney and must not be used for her.",
+      "rejected_reference": "Museum1989-interview image downloaded separately depicted microphones rather than Haines; rejected after visual inspection."
+    }
+  ],
+  "research_issues": [
+    {
+      "issue": "Not exhaustive",
+      "detail": "All exact starter rows have real leaders, but omitted modern parties and transient acting mandates remain gaps. No future fictional identities are created in this source research artifact."
+    },
+    {
+      "issue": "Summary-source date errors",
+      "detail": "Parliamentary summaries contain discrepancies: Keating Dec1991, Hewson Apr1990, Fischer Apr1990 and Jul1999, Truss Feb2016. Individual party-role biographies and contemporary announcements take precedence. Unresolved Fischer starting day remains coarse.",
+      "sources": [
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Quick_Guides/2022-23/PartyChangesChallenges",
+        "https://www.aph.gov.au/About_Parliament/Parliamentary_departments/Parliamentary_Library/Research/Chronologies/2023-24/35thAnniversaryofParliamentHouse",
+        "https://pmtranscripts.pmc.gov.au/sites/default/files/original/00008367.pdf",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=DG4",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=4K4&lang=en",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?MPID=GT4",
+        "https://www.aph.gov.au/Senators_and_Members/Parliamentarian?=1&MPID=e5d"
+      ]
+    },
+    {
+      "issue": "Democrats role/lifecycle",
+      "detail": "Current president Leonie Green is not a parliamentary leader. No modern organisational term is backfilled into the 2008–2026 gap, and no party president is automatically prime-minister eligible.",
+      "sources": [
+        "https://www.democrats.org.au/our-people/",
+        "https://www.democrats.org.au/constitution/"
+      ]
+    },
+    {
+      "issue": "Future eligibility",
+      "detail": "New party terms are separately reviewed party-only data. Missing life dates cannot be used as implicit alive status. Preserve existing game facts on merge; staged life corrections need the explicitly reviewed path."
+    },
+    {
+      "issue": "Greig and Bartlett observed-office windows",
+      "detail": "Original Senate announcements support conservative office clips for Greig (26 August2002) and Bartlett after temporary absence (10 February2004). The earlier actual appointments/resumption remain explicitly unverified.",
+      "sources": [
+        "https://www.aph.gov.au/binaries/hansard/senate/dailys/ds260802.pdf",
+        "https://www.aph.gov.au/binaries/senate/work/journals/2004/jnlp_125.pdf",
+        "https://www.aph.gov.au/binaries/hansard/senate/dailys/ds161104.pdf"
+      ]
+    }
+  ]
+}

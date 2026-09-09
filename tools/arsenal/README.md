@@ -3,6 +3,27 @@
 Forty-six procedural meshes, one for every id in `spheres-sim/src/arsenal.rs`'s
 `DECK`, plus the two things that keep them honest.
 
+## Vehicle workshops
+
+The September 8 visual rebuild adds three dedicated inspection pages:
+
+- [Tank workshop](tank-inspection.html): four configurable tank families,
+  component picking, camouflage and condition controls, GLB export, and an
+  optional licensed Strv 103 reference.
+- [Armored vehicle workshop](armored-inspection.html): IFVs, APCs, scouts,
+  self-propelled artillery and mobile air defense, with role-specific component
+  lists and paired weapons, ammunition and sensors.
+- [Military collection](military-inspection.html): configurable equipment beside
+  a selection of the separate arsenal formation models.
+
+Serve the repository root over loopback HTTP to use these pages, including
+their local texture and reference assets. For example, run
+`python -m http.server 7841 --bind 127.0.0.1` from the root, then open
+`http://127.0.0.1:7841/tools/arsenal/armored-inspection.html`.
+These are artwork previews; they do not place orders or alter campaign saves.
+The [armored rebuild report](../../docs/art/ARMORED_VEHICLE_REBUILD.md) records
+the geometry, integration limits and verification.
+
 ## Source and integration attribution
 
 This static catalogue deck comes from the existing Claude-assisted Arsenal
@@ -40,7 +61,7 @@ This static catalogue renderer has **no build step and no CDN** (CLAUDE.md;
 `main.rs` asserts it). It generates its meshes without a glTF loader or
 forty-six binary payloads, the way `mapgen.rs` builds the map: author the recipe,
 ship the recipe, let the client bake it. The current near-detail deck contains
-**272,491 triangles** across 46 models; cards can use the coarse geometry.
+**342,955 triangles** across 46 models; the coarse deck contains **39,508**.
 The browser downloads the source generator rather than separate binary models.
 
 It also means the models are **diffable**. A tank here is forty lines of

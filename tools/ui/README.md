@@ -150,3 +150,47 @@ desktop/tablet/mobile cards and true 390×844 order/action viewports, checking
 control bounds against both the viewport and fixed-header scroll region. This
 is intentionally a blocked-but-eligible fresh order, not a fixture granting
 power, resources or cash. Rust integration tests verify actual paid operation.
+
+
+## Static government character review
+
+`tools/ui/leadership-government-review.html` reuses the production government renderer and styles on the existing repository static host. It presents three separately labeled snapshots: a newly generated 1990 starting campaign, a read-only 1990 historical reference, and a 2030 fictional-cast reference. It never loads a user save, submits game commands, advances time, or starts a process/server.
+
+After research imports and artwork registration are frozen, generate native views, refresh the future catalog, and enrich the static fixture:
+
+```powershell
+$env:CARGO_TARGET_DIR='company-sim-target'
+cargo run -p spheres-sim --example export_party_leadership_views -- tools/ui/leadership-native-views.json
+cargo run -p spheres-sim --example export_future_leadership -- spheres-web/data/future_candidates_2035.json
+python tools/ui/export_leadership_review.py --input tools/ui/leadership-native-views.json
+```
+
+The enrichment script requires both existing physical portrait validators to pass, preserves all input files, and records their hashes. Historical and fictional identity/appearance records remain separate. Missing art stays pending. The static page maps only already accepted `/art/people/<filename>.png` routes to repository portrait assets after rendering; the production URL validator is unchanged. Its sample snapshots are not live or saved campaign state.
+
+Focused checks:
+
+```powershell
+python -m unittest discover -s tools/ui -p test_export_leadership_review.py
+node --test tools/ui/check_leadership_government_review.cjs
+```
+
+The generated JSON files are review artifacts. Regenerate them after subsequent data or art updates; a static page does not hot-reload a campaign.
+
+## Military model inspection
+
+`tools/arsenal/military-inspection.html` uses the actual configurable equipment and arsenal renderers on a repository-root static host. It offers component presets, paint, camera controls, part inspection, GLB download and sixteen catalogue cards. It has no game API connection. The two tactical aircraft currently have inspection geometry only; their detail-level selector is disabled.
+
+The paint normal/roughness images are bundled locally under `spheres-web/ui/military-textures`, with source, license and hashes in that directory's README. They are renderer resources, not embedded GLB textures. The exporter retains geometry, paint and component metadata.
+
+Focused checks:
+
+```powershell
+node --test tools/ui/check_equipment_mesh.cjs tools/ui/check_equipment_mesh_detail.cjs tools/ui/check_equipment_realism.cjs tools/ui/check_equipment_model.cjs tools/ui/check_equipment_shadows.cjs tools/ui/check_equipment_export.cjs tools/ui/check_arsenal_models.cjs tools/ui/check_arsenal_model_detail.cjs tools/ui/check_arsenal_realism.cjs tools/ui/check_military_surface.cjs tools/ui/check_military_textures.cjs
+node tools/ui/build_equipment_models.cjs --check
+```
+
+After approved geometry edits, regenerate shipping assets with `node tools/ui/build_equipment_models.cjs` and component evidence with `node tools/ui/build_component_coverage.cjs`. Preserve the geometry correctness contracts and component-distinction thresholds. Coarse hashes remain fixed unless the approved art work deliberately changes those silhouettes; the tank rebuild records its intentional changes in `docs/art/TANK_GEOMETRY_DIRECTION.md`. See `docs/art/TANK_REBUILD.md` for the latest tank integration and `docs/art/MILITARY_REALISM_UPDATE.md` for the preceding broader pass.
+
+The tank-only workshop is `tools/arsenal/tank-inspection.html`. It uses actual configurable meshes and allows optional inspection of a separately credited textured Strv 103. Focused checks: `node --test tools/ui/check_tank_redesign.cjs tools/ui/check_tank_surface.cjs tools/ui/check_tank_workshop.cjs`. Canonical GLBs preserve generator colours for exact specification rebuilds; selected live finishes are sampled into vertex colours only when exported from the designer.
+
+The supporting armored vehicle workshop is `tools/arsenal/armored-inspection.html`: IFV, APC, reconnaissance, artillery and mobile air defense, using native-compatible component pairings with campaign research/capacity left to the game. Focused checks: `node --test tools/ui/check_specialist_redesign.cjs tools/ui/check_tank_surface.cjs tools/ui/check_armored_workshop.cjs tools/ui/check_arsenal_inf_mech.cjs`. See `docs/art/ARMORED_VEHICLE_REBUILD.md` for the complete integration, preservation audits and intentional specialist silhouette changes.

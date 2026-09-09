@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-09-07",
+  "type": "narrow_existing_party_lifecycle_correction",
+  "nation": "SouthAfrica",
+  "party": "za_np",
+  "source": "docs/research/south-africa-party-leaders-1990-2026.json",
+  "source_sha256": "a943413758c520ca9ddfefcd2ad3419ace81609a6076f0ef3712be61dfcce824",
+  "registry_before_sha256": "3f71c67d10c0ad687fb153b8ba79acd8ae4a435429136046a5331f9ec70e054d",
+  "changed_fields": {
+    "dissolved": {
+      "before": {
+        "kind": "unknown"
+      },
+      "after": {
+        "kind": "day",
+        "value": "2006-07-03"
+      }
+    },
+    "sources": {
+      "before": [
+        "https://fwdeklerk.org/constitutional-transformation-of-south-africa/",
+        "https://www.justice.gov.za/trc/media/1997/9709/s970922c.htm",
+        "https://mg.co.za/news/south-africa/2005-04-10-final-hour-arrives-for-the-nnp/"
+      ],
+      "after": [
+        "https://fwdeklerk.org/constitutional-transformation-of-south-africa/",
+        "https://www.justice.gov.za/trc/media/1997/9709/s970922c.htm",
+        "https://mg.co.za/news/south-africa/2005-04-10-final-hour-arrives-for-the-nnp/",
+        "https://www.gov.za/news/independent-electoral-commission-cancellation-registration-political-parties-31-aug-2006"
+      ]
+    },
+    "identity_note": {
+      "before": "National Party renamed New National Party. The 2005 dissolution vote is distinct from the announced final deregistration after 2006 local election results. This is not a verified current party.",
+      "after": "National Party renamed New National Party. The April 2005 dissolution decision is distinct from final IEC cancellation of registration effective July 3, 2006. This is not a current historical party."
+    }
+  },
+  "facts_preserved": {
+    "every_person": true,
+    "every_term": true,
+    "every_office_link": true,
+    "every_gap_notice": true,
+    "all_other_party_rows": true
+  },
+  "explanation": "IEC primary statement specifies final registration cancellation effective 3 July 2006. This corrects an unknown legal boundary only; it does not invent a leader resignation date, replace any holder, or change a saved identity. Original term-ingestion receipt remains immutable.",
+  "gap_notice_note": "Original gap notices are intentionally preserved under the narrow correction scope; the party legal bound controls reference eligibility."
+}

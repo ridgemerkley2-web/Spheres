@@ -91,6 +91,10 @@ const CHRONICLE_UI_JS: &str = include_str!("../ui/chronicle-ui.js");
 const PROGRAMS_CSS: &str = include_str!("../ui/programs.css");
 const PROGRAMS_UI_JS: &str = include_str!("../ui/programs-ui.js");
 const DECISION_TOOLS_JS: &str = include_str!("../ui/decision-tools.js");
+const TUTORIAL_MODEL_JS: &str = include_str!("../ui/tutorial-model.js");
+const ADVISOR_MODEL_JS: &str = include_str!("../ui/advisor-model.js");
+const GUIDANCE_UI_JS: &str = include_str!("../ui/guidance-ui.js");
+const GUIDANCE_UI_CSS: &str = include_str!("../ui/guidance-ui.css");
 const PERFORMANCE_UI_JS: &str = include_str!("../ui/performance-ui.js");
 const DECISION_TOOLS_CSS: &str = include_str!("../ui/decision-tools.css");
 const PROGRAMS_ART_SVG: &str = include_str!("../ui/programs-art.svg");
@@ -135,6 +139,10 @@ const ARSENAL3D_CSS: &str = include_str!("../ui/arsenal3d.css");
 mod arsenal_model_tests;
 const EQUIPMENT_MESH_JS: &str = include_str!("../ui/equipment-mesh.js");
 const EQUIPMENT_MODEL_JS: &str = include_str!("../ui/equipment-model.js");
+const MILITARY_SURFACE_JS: &str = include_str!("../ui/military-surface.js");
+const TANK_SURFACE_JS: &str = include_str!("../ui/tank-surface.js");
+const MILITARY_PAINT_NORMAL: &[u8] = include_bytes!("../ui/military-textures/paint-normal.jpg");
+const MILITARY_PAINT_ROUGHNESS: &[u8] = include_bytes!("../ui/military-textures/paint-roughness.jpg");
 const EQUIPMENT_EXPORT_JS: &str = include_str!("../ui/equipment-export.js");
 const MILITARY_OPERATIONS_JS: &str = include_str!("../ui/operations-ui.js");
 const MILITARY_OPERATIONS_CSS: &str = include_str!("../ui/operations-ui.css");
@@ -203,7 +211,7 @@ fn fresh_session_id() -> String {
 }
 
 fn exchange_read_path(path: &str) -> bool {
-    matches!(path, "/api/equipment" | "/api/equipment-preview" | "/api/competition" | "/api/industry" | "/api/cash-flow" | "/api/goods-quotes" |
+    matches!(path, "/api/equipment" | "/api/equipment-preview" | "/api/competition" | "/api/industry" | "/api/guidance" | "/api/cash-flow" | "/api/goods-quotes" |
         "/api/industry-module-quotes" | "/api/materials-quote" | "/api/construction-preview")
 }
 
@@ -5398,6 +5406,16 @@ fn domination_json(w: &WorldState, player: NationId) -> serde_json::Value {
     })
 }
 
+/// Advice reads the state and construction board from the same locked Game.
+/// No player means a valid setup snapshot with no production board; this read
+/// never selects a nation, opens accounts, submits orders, or advances time.
+fn guidance_json(g: &Game) -> serde_json::Value {
+    serde_json::json!({
+        "state": state_json(g, None),
+        "production": g.world.player.map(|me| production_json(&g.world, me)),
+    })
+}
+
 fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
     let w = &g.world;
     let nations: Vec<serde_json::Value> = w
@@ -7237,8 +7255,16 @@ fn main() {
             (Method::Get, "/equipment-ui.js") => Response::from_string(EQUIPMENT_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/equipment-mesh.js") => Response::from_string(EQUIPMENT_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/equipment-model.js") => Response::from_string(EQUIPMENT_MODEL_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/military-surface.js") => Response::from_string(MILITARY_SURFACE_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/tank-surface.js") => Response::from_string(TANK_SURFACE_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/military-textures/paint-normal.jpg") => Response::from_data(MILITARY_PAINT_NORMAL).with_header(Header::from_bytes("Content-Type","image/jpeg").unwrap()),
+            (Method::Get, "/military-textures/paint-roughness.jpg") => Response::from_data(MILITARY_PAINT_ROUGHNESS).with_header(Header::from_bytes("Content-Type","image/jpeg").unwrap()),
             (Method::Get, "/equipment-export.js") => Response::from_string(EQUIPMENT_EXPORT_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/decision-tools.js") => Response::from_string(DECISION_TOOLS_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/tutorial-model.js") => Response::from_string(TUTORIAL_MODEL_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/advisor-model.js") => Response::from_string(ADVISOR_MODEL_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/guidance-ui.js") => Response::from_string(GUIDANCE_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/guidance-ui.css") => Response::from_string(GUIDANCE_UI_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, "/performance-ui.js") => Response::from_string(PERFORMANCE_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/area-art.js") => Response::from_string(AREA_ART_JS)
                 .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap())
@@ -7770,6 +7796,10 @@ fn main() {
                 let g=game.lock().unwrap();
                 match g.world.player {Some(me)=>json_response(competition_json(&g.world,me)),None=>json_error(400,serde_json::json!({"error":"Choose a nation first."}))}
             }
+            (Method::Get, "/api/guidance") => {
+                let g = game.lock().unwrap();
+                json_response(guidance_json(&g))
+            }
             (Method::Get, "/api/industry") => {
                 let g=game.lock().unwrap();
                 match g.world.player {
@@ -8181,6 +8211,59 @@ mod tests {
         assert!(exchange_session_matches(&Method::Get,"/api/industry?session_id=123-456-7",&empty,"123-456-7"));
         assert!(!exchange_session_matches(&Method::Get,"/api/industry",&empty,"123-456-7"));
         assert!(!exchange_session_matches(&Method::Get,"/api/industry?session_id=another",&empty,"123-456-7"));
+    }
+
+    #[test]
+    fn guidance_without_a_player_is_a_read_only_setup_snapshot() {
+        let g = Game::new(42, None);
+        let before = save(&g.world);
+        let view = guidance_json(&g);
+        assert_eq!(view["state"], state_json(&g, None));
+        assert_eq!(view["state"]["session_id"], g.session_id);
+        assert!(view["state"]["player"].is_null());
+        assert!(view["production"].is_null());
+        assert_eq!(save(&g.world), before);
+    }
+
+    #[test]
+    fn guidance_route_requires_the_exact_active_campaign_session() {
+        assert!(exchange_read_path("/api/guidance"));
+        let empty = serde_json::json!({});
+        let current = "123-456-7";
+        for method in [Method::Get, Method::Head] {
+            assert!(exchange_session_matches(&method,
+                "/api/guidance?unused=1&session_id=123-456-7", &empty, current));
+            for url in ["/api/guidance", "/api/guidance?session_id=",
+                "/api/guidance?session_id=another", "/api/guidance?session_id=123-456-70"] {
+                assert!(!exchange_session_matches(&method, url, &empty, current),
+                    "unbound or stale guidance must fail closed: {url}");
+            }
+        }
+    }
+
+    #[test]
+    fn guidance_serves_one_players_state_and_production_at_the_same_date_without_orders() {
+        let mut g = Game::new(42, Some(NationId::Japan));
+        g.world.year = 2002;
+        g.world.month = 6;
+        g.world.day = 21;
+        for daily in [false, true] {
+            g.world.rules.daily_simulation = daily;
+            let before = save(&g.world);
+            let view = guidance_json(&g);
+            assert_eq!(view["state"], state_json(&g, None));
+            assert_eq!(view["production"], production_json(&g.world, NationId::Japan));
+            assert_eq!(view["state"]["session_id"], g.session_id);
+            assert_eq!(view["state"]["player"], "Japan");
+            assert_eq!(view["production"]["nation"], view["state"]["player"]);
+            assert_eq!(view["state"]["date"], g.world.date_str());
+            assert_eq!(view["state"]["year"], 2002);
+            assert_eq!(view["state"]["month"], 6);
+            assert_eq!(view["state"]["day"], 21);
+            assert_eq!(view["state"]["t"], month_index(2002, 6));
+            assert_eq!(save(&g.world), before,
+                "Reading advice must not open budgets, settle work, or change the saved world");
+        }
     }
 
     fn cash_flow_posted_fixture() -> Game {

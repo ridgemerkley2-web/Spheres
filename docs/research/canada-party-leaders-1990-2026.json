@@ -1,0 +1,1221 @@
+{
+  "schema": "spheres-party-leader-research-v3",
+  "reference_from": "1990-01-01",
+  "reference_through": "2026-09-07",
+  "source_checked_at": "2026-09-07",
+  "nation": "Canada",
+  "scope": {
+    "requested_through": "2035-12-31",
+    "history_through": "2026-09-07",
+    "future_from": "2026-09-08",
+    "future_policy": "Only explicitly fictional successors after cutoff; no invented historical terms or real-person predictions.",
+    "coverage": "partial",
+    "represented_party_ids": [
+      "ca_pc",
+      "ca_lib",
+      "ca_ndp",
+      "ca_reform"
+    ],
+    "claim": "All four exact opening rows researched; original-party histories with explicit lifecycle/transition gaps. Not all Canadian parties and not finished cartoon assets.",
+    "unrepresented_parties": "Bloc Québécois, Green Party, post-2003 Conservative Party, Canadian Alliance identity slice, People's Party and omitted smaller parties require reviewed IDs and lifecycle rules. Bloc was absent on January1,1990; do not fabricate an opening vote share."
+  },
+  "ingestion": {
+    "status": "staged-requires-role-aware-integration-review",
+    "runtime_prerequisite": "No automatic party-head→prime-minister promotion. Keep actual party leadership separate from parliamentary substitutes and Governor General appointment/House confidence. Preserve existing person IDs, life facts and office_links; merger/rename changes require reviewed identity display and save migration.",
+    "executive_role_sources": [
+      "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+      "https://www.gg.ca/en/governor-general/role-and-responsibilities/constitutional-duties/swearing-process"
+    ],
+    "people": "Compatible Person fields. brian_mulroney native/birth preserved; verified death remains staged and was not imported. Changing the saved identity requires a separately reviewed migration. Omitted life dates are unknown, not evidence of continued life or candidacy.",
+    "parties": "Compatible Party/Term fields. Four separate party rows, no invented composite components.",
+    "intervals": "Half-open [from,until); inclusive last-day statements converted to next-day exclusive bounds. Year/month precision deliberately expresses uncertainty.",
+    "affiliations": "Office windows only, not whole party memberships or automatic eligibility grants.",
+    "scope_clipping": "All initial rows begin at1990-01-01 as scope clips, not original elections.",
+    "missing_life_dates": "Missing death/birth data must not license gameplay promotion; eligibility needs a separate life-date review.",
+    "open_terms": "Verified only through2026-09-07; future succession requires clearly fictional people."
+  },
+  "starter_leaders": [
+    {
+      "party": "ca_pc",
+      "person": "brian_mulroney",
+      "at": "1990-01-01",
+      "role": "Federal party leader",
+      "sources": [
+        "https://www.ourcommons.ca/marleaumontpetit/DocumentViewer.aspx?DocId=1001&Language=E&Sec=Ch25&Seq=8"
+      ]
+    },
+    {
+      "party": "ca_lib",
+      "person": "john_turner",
+      "at": "1990-01-01",
+      "role": "Federal party leader",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+      ]
+    },
+    {
+      "party": "ca_ndp",
+      "person": "audrey_mclaughlin",
+      "at": "1990-01-01",
+      "role": "Federal party leader",
+      "sources": [
+        "https://recherche-collection-search.bac-lac.gc.ca/eng/Home/Record?IdNumber=1765141&app=fonandcol",
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+      ]
+    },
+    {
+      "party": "ca_reform",
+      "person": "preston_manning",
+      "at": "1990-01-01",
+      "role": "Federal party leader",
+      "sources": [
+        "https://www.alberta.ca/aoe-preston-manning",
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+        "https://elections.ca/content.aspx?dir=pre&document=decision&lang=e&section=med"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "brian_mulroney",
+      "name": "Brian Mulroney",
+      "sources": [
+        "https://www.ourcommons.ca/marleaumontpetit/DocumentViewer.aspx?DocId=1001&Language=E&Sec=Ch25&Seq=8",
+        "https://www.pm.gc.ca/en/news/news-releases/2024/03/05/prime-minister-announces-state-funeral-right-honourable-brian"
+      ],
+      "native": "Martin Brian Mulroney",
+      "born": {
+        "kind": "day",
+        "value": "1939-03-20"
+      },
+      "died": {
+        "kind": "day",
+        "value": "2024-02-29"
+      }
+    },
+    {
+      "id": "kim_campbell",
+      "name": "Kim Campbell",
+      "sources": [
+        "https://recherche-collection-search.bac-lac.gc.ca/eng/home/record?app=FonAndCol&idnumber=107227",
+        "https://www.ourcommons.ca/marleaumontpetit/DocumentViewer.aspx?DocId=1001&Language=E&Sec=Ch25&Seq=8"
+      ]
+    },
+    {
+      "id": "jean_charest",
+      "name": "Jean Charest",
+      "sources": [
+        "https://www.assnat.qc.ca/fr/deputes/charest-jean-525/biographie.html",
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+      ]
+    },
+    {
+      "id": "elsie_wayne",
+      "name": "Elsie Wayne",
+      "sources": [
+        "https://sencanada.ca/en/content/sen/chamber/361/debates/092db_1998-11-17-e",
+        "https://www.ourcommons.ca/Members/en/elsie-wayne%28142%29/roles",
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+      ]
+    },
+    {
+      "id": "joe_clark",
+      "name": "Joe Clark",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+      ]
+    },
+    {
+      "id": "peter_mackay",
+      "name": "Peter MacKay",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+      ]
+    },
+    {
+      "id": "john_turner",
+      "name": "John Turner",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+      ]
+    },
+    {
+      "id": "jean_chretien",
+      "name": "Jean Chrétien",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+      ]
+    },
+    {
+      "id": "paul_martin",
+      "name": "Paul Martin",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+        "https://www.ourcommons.ca/marleaumontpetit/DocumentViewer.aspx?DocId=1001&Language=E&Sec=Ch25&Seq=8"
+      ]
+    },
+    {
+      "id": "bill_graham",
+      "name": "Bill Graham",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+      ]
+    },
+    {
+      "id": "stephane_dion",
+      "name": "Stéphane Dion",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+      ]
+    },
+    {
+      "id": "michael_ignatieff",
+      "name": "Michael Ignatieff",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+      ]
+    },
+    {
+      "id": "bob_rae",
+      "name": "Bob Rae",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+      ]
+    },
+    {
+      "id": "justin_trudeau",
+      "name": "Justin Trudeau",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+      ]
+    },
+    {
+      "id": "mark_carney",
+      "name": "Mark Carney",
+      "sources": [
+        "https://www.youtube.com/watch?v=tJZ0Ib3f6jw",
+        "https://elections.ca/content.aspx?dir=oth%2Flea%2Flis&document=index&lang=e&section=fin",
+        "https://liberal.ca/"
+      ]
+    },
+    {
+      "id": "audrey_mclaughlin",
+      "name": "Audrey McLaughlin",
+      "sources": [
+        "https://recherche-collection-search.bac-lac.gc.ca/eng/Home/Record?IdNumber=1765141&app=fonandcol",
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+      ]
+    },
+    {
+      "id": "alexa_mcdonough",
+      "name": "Alexa McDonough",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+      ]
+    },
+    {
+      "id": "jack_layton",
+      "name": "Jack Layton",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+      ]
+    },
+    {
+      "id": "nycole_turmel",
+      "name": "Nycole Turmel",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+        "https://www.ndp.ca/news/statement-new-democrat-interim-leader-nycole-turmel"
+      ]
+    },
+    {
+      "id": "thomas_mulcair",
+      "name": "Thomas Mulcair",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+      ]
+    },
+    {
+      "id": "jagmeet_singh",
+      "name": "Jagmeet Singh",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+      ]
+    },
+    {
+      "id": "don_davies",
+      "name": "Don Davies",
+      "sources": [
+        "https://www.tdndp.ca/new_democrats_select_don_davies_as_interim_leader"
+      ]
+    },
+    {
+      "id": "avi_lewis",
+      "name": "Avi Lewis",
+      "sources": [
+        "https://www.ndp.ca/news/avi-lewis-elected-leader-ndp",
+        "https://www.ndp.ca/avilewis",
+        "https://elections.ca/content.aspx?dir=oth%2Flea%2Flis&document=index&lang=e&section=fin"
+      ]
+    },
+    {
+      "id": "preston_manning",
+      "name": "Preston Manning",
+      "sources": [
+        "https://www.alberta.ca/aoe-preston-manning",
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+        "https://elections.ca/content.aspx?dir=pre&document=decision&lang=e&section=med"
+      ]
+    }
+  ],
+  "parties": [
+    {
+      "nation": "Canada",
+      "party": "ca_pc",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+        "https://www.assnat.qc.ca/fr/deputes/charest-jean-525/biographie.html",
+        "https://recherche-collection-search.bac-lac.gc.ca/eng/home/record?app=FonAndCol&idnumber=107227",
+        "https://www.elections.ca/content.aspx?dir=rep%2Foff%2Fsta2003&document=fo&lang=e&section=res"
+      ],
+      "identity_note": "Original federal Progressive Conservative Party only. Elections Canada records replacement of its registration by the newly merged Conservative Party on 7 December 2003. Provincial parties of the same name and the post-merger Conservative Party are distinct. A counterfactual campaign may retain the original party; its future templates do not assert historical survival.",
+      "components": [],
+      "terms": [
+        {
+          "id": "ca_pc_brian_mulroney_19900101_leader",
+          "person": "brian_mulroney",
+          "role": "Federal party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1993-06-13"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1993-06-13"
+          },
+          "sources": [
+            "https://www.ourcommons.ca/marleaumontpetit/DocumentViewer.aspx?DocId=1001&Language=E&Sec=Ch25&Seq=8"
+          ],
+          "note": "Scope-clipped opening; Kim Campbell elected party leader on June 13, before the prime-ministerial handover on June 25."
+        },
+        {
+          "id": "ca_pc_kim_campbell_19930613_leader",
+          "person": "kim_campbell",
+          "role": "Federal party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1993-06-13"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1993-12"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1993-06-13"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1993-12"
+          },
+          "sources": [
+            "https://www.ourcommons.ca/marleaumontpetit/DocumentViewer.aspx?DocId=1001&Language=E&Sec=Ch25&Seq=8",
+            "https://recherche-collection-search.bac-lac.gc.ca/eng/home/record?app=FonAndCol&idnumber=107227"
+          ],
+          "note": "LAC confirms December resignation but not the exact day; do not stretch the coarse end to Charest's appointment without review."
+        },
+        {
+          "id": "ca_pc_jean_charest_19931214_acting",
+          "person": "jean_charest",
+          "role": "Federal party leader",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "1993-12-14"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1995-04-29"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1993-12-14"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1995-04-29"
+          },
+          "sources": [
+            "https://www.assnat.qc.ca/fr/deputes/charest-jean-525/biographie.html"
+          ],
+          "note": "Quebec Assembly explicitly distinguishes interim through April28 from elected leadership from April29."
+        },
+        {
+          "id": "ca_pc_jean_charest_19950429_leader",
+          "person": "jean_charest",
+          "role": "Federal party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1995-04-29"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1998-04"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1995-04-29"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1998-04"
+          },
+          "sources": [
+            "https://www.assnat.qc.ca/fr/deputes/charest-jean-525/biographie.html",
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+          ],
+          "note": "Official sources disagree on April2 vs April3 resignation. Month precision deliberately retains uncertainty."
+        },
+        {
+          "id": "ca_pc_elsie_wayne_19980403_acting",
+          "person": "elsie_wayne",
+          "role": "Federal party leader",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "1998-04-03"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1998-11-14"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1998-04-03"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1998-11-14"
+          },
+          "sources": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+            "https://sencanada.ca/en/content/sen/chamber/361/debates/092db_1998-11-17-e",
+            "https://www.ourcommons.ca/Members/en/elsie-wayne%28142%29/roles"
+          ],
+          "note": "Parliamentary role data starts April3; November17 Senate statement says she completed party interim on preceding Saturday Nov14. Continued House leadership after Nov14 is a separate role."
+        },
+        {
+          "id": "ca_pc_joe_clark_19981114_leader",
+          "person": "joe_clark",
+          "role": "Federal party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1998-11-14"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2003-05-31"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1998-11-14"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2003-05-31"
+          },
+          "sources": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+          ],
+          "note": "Last day May30 inclusive converted to exclusive May31."
+        },
+        {
+          "id": "ca_pc_peter_mackay_20030531_leader",
+          "person": "peter_mackay",
+          "role": "Federal party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2003-05-31"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2003-12-07"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2003-05-31"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2003-12-07"
+          },
+          "sources": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+          ],
+          "note": "PC ratified merger Dec6; new Conservative Party registered Dec7. Cut at registration, not a claim of an ordinary chair handover."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "month",
+            "value": "1993-12"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1993-12-14"
+          },
+          "reason": "Campbell departure day not verified.",
+          "sources": [
+            "https://recherche-collection-search.bac-lac.gc.ca/eng/home/record?app=FonAndCol&idnumber=107227",
+            "https://www.assnat.qc.ca/fr/deputes/charest-jean-525/biographie.html"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "1998-04"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1998-04-03"
+          },
+          "reason": "Charest April2/April3 official-source disagreement; do not invent vacancy.",
+          "sources": [
+            "https://www.assnat.qc.ca/fr/deputes/charest-jean-525/biographie.html",
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "2003-12-07"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-09-08"
+          },
+          "reason": "Original PC merged with Canadian Alliance. New Conservative Party requires a distinct reviewed identity and save migration; not a PC rename.",
+          "sources": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+          ]
+        }
+      ],
+      "dissolved": {
+        "kind": "day",
+        "value": "2003-12-07"
+      }
+    },
+    {
+      "nation": "Canada",
+      "party": "ca_lib",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+        "https://www.youtube.com/watch?v=tJZ0Ib3f6jw",
+        "https://liberal.ca/"
+      ],
+      "identity_note": "Federal Liberal Party; provincial Liberal organizations are not substitutes. National Board president is a separate organizational role.",
+      "components": [],
+      "terms": [
+        {
+          "id": "ca_lib_john_turner_19900101_leader",
+          "person": "john_turner",
+          "role": "Federal party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1990-06-23"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1990-06-23"
+          },
+          "sources": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+          ],
+          "note": "Scope-clipped opening. Turner stayed party leader after resigning House Opposition role Feb7; do not insert Herb Gray as national party head."
+        },
+        {
+          "id": "ca_lib_jean_chretien_19900623_leader",
+          "person": "jean_chretien",
+          "role": "Federal party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-06-23"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2003-11-14"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-06-23"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2003-11-14"
+          },
+          "sources": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+            "https://www.ourcommons.ca/marleaumontpetit/DocumentViewer.aspx?DocId=1001&Language=E&Sec=Ch25&Seq=8"
+          ]
+        },
+        {
+          "id": "ca_lib_paul_martin_20031114_leader",
+          "person": "paul_martin",
+          "role": "Federal party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2003-11-14"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2006-03-18"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2003-11-14"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2006-03-18"
+          },
+          "sources": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+            "https://www.ourcommons.ca/marleaumontpetit/DocumentViewer.aspx?DocId=1001&Language=E&Sec=Ch25&Seq=8"
+          ],
+          "note": "Party term differs from PM term; remained party head after February6,2006 parliamentary resignation."
+        },
+        {
+          "id": "ca_lib_bill_graham_20060318_acting",
+          "person": "bill_graham",
+          "role": "Federal party leader",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2006-03-18"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2006-12-02"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2006-03-18"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2006-12-02"
+          },
+          "sources": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+          ]
+        },
+        {
+          "id": "ca_lib_stephane_dion_20061202_leader",
+          "person": "stephane_dion",
+          "role": "Federal party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2006-12-02"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2008-12-10"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2006-12-02"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2008-12-10"
+          },
+          "sources": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+          ],
+          "note": "Dec8 announcement of intended departure is not assumed effective departure; interim successor Dec10."
+        },
+        {
+          "id": "ca_lib_michael_ignatieff_20081210_acting",
+          "person": "michael_ignatieff",
+          "role": "Federal party leader",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2008-12-10"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2009-05-02"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2008-12-10"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2009-05-02"
+          },
+          "sources": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+          ]
+        },
+        {
+          "id": "ca_lib_michael_ignatieff_20090502_leader",
+          "person": "michael_ignatieff",
+          "role": "Federal party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2009-05-02"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2011-05"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2009-05-02"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2011-05"
+          },
+          "sources": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+          ],
+          "note": "Precise effective resignation after May2 defeat not established in this audit."
+        },
+        {
+          "id": "ca_lib_bob_rae_20110525_acting",
+          "person": "bob_rae",
+          "role": "Federal party leader",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2011-05-25"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2013-04-14"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2011-05-25"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2013-04-14"
+          },
+          "sources": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+          ]
+        },
+        {
+          "id": "ca_lib_justin_trudeau_20130414_leader",
+          "person": "justin_trudeau",
+          "role": "Federal party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2013-04-14"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2025-03-09"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2013-04-14"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2025-03-09"
+          },
+          "sources": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+            "https://www.youtube.com/watch?v=tJZ0Ib3f6jw"
+          ],
+          "note": "Remained party head pending successor, despite January2025 announcement."
+        },
+        {
+          "id": "ca_lib_mark_carney_20250309_leader",
+          "person": "mark_carney",
+          "role": "Federal party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2025-03-09"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2025-03-09"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.youtube.com/watch?v=tJZ0Ib3f6jw",
+            "https://elections.ca/content.aspx?dir=oth%2Flea%2Flis&document=index&lang=e&section=fin",
+            "https://liberal.ca/"
+          ],
+          "note": "CPAC original victory speech March9 plus Elections Canada contest date; open only through source cutoff."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "month",
+            "value": "2011-05"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2011-05-25"
+          },
+          "reason": "Ignatieff announcement versus effective resignation needs verification.",
+          "sources": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "Canada",
+      "party": "ca_ndp",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+        "https://recherche-collection-search.bac-lac.gc.ca/eng/Home/Record?IdNumber=1765141&app=fonandcol",
+        "https://www.ndp.ca/news/statement-new-democrat-interim-leader-nycole-turmel",
+        "https://www.tdndp.ca/new_democrats_select_don_davies_as_interim_leader",
+        "https://www.ndp.ca/news/avi-lewis-elected-leader-ndp",
+        "https://epe.lac-bac.gc.ca/100/200/301/nlc-bnc/celebrating_women-ef/women97/eaudrey.htm?nodisclaimer=1"
+      ],
+      "identity_note": "Federal NDP. Federal party leadership is separate from provincial affiliates, organizational president, or parliamentary substitutes Bill Blaikie/Guy Caron.",
+      "components": [],
+      "terms": [
+        {
+          "id": "ca_ndp_audrey_mclaughlin_19900101_leader",
+          "person": "audrey_mclaughlin",
+          "role": "Federal party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1995-10-14"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1995-10-14"
+          },
+          "sources": [
+            "https://recherche-collection-search.bac-lac.gc.ca/eng/Home/Record?IdNumber=1765141&app=fonandcol",
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+            "https://epe.lac-bac.gc.ca/100/200/301/nlc-bnc/celebrating_women-ef/women97/eaudrey.htm?nodisclaimer=1"
+          ],
+          "note": "Continuous identity window, clipped to the 1990 reference start rather than her original election on 1989-12-02. The National Library records her April 1994 announcement of stepping down and continued service as interim leader until Alexa McDonough was chosen on 1995-10-14. The exact day of the elected-to-interim status change is uncertain; it does not create a leadership vacancy or break in her party affiliation. This record groups the same person's elected and interim service without asserting an exact April transition day."
+        },
+        {
+          "id": "ca_ndp_alexa_mcdonough_19951014_leader",
+          "person": "alexa_mcdonough",
+          "role": "Federal party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1995-10-14"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2003-01-25"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1995-10-14"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2003-01-25"
+          },
+          "sources": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+          ]
+        },
+        {
+          "id": "ca_ndp_jack_layton_20030125_leader",
+          "person": "jack_layton",
+          "role": "Federal party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2003-01-25"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2011-07-28"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2003-01-25"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2011-07-28"
+          },
+          "sources": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+            "https://www.ndp.ca/news/statement-new-democrat-interim-leader-nycole-turmel"
+          ],
+          "note": "Active leadership window ends when Turmel becomes interim during illness; this is not Layton's death date or a resignation."
+        },
+        {
+          "id": "ca_ndp_nycole_turmel_20110728_acting",
+          "person": "nycole_turmel",
+          "role": "Federal party leader",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2011-07-28"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2012-03-24"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2011-07-28"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2012-03-24"
+          },
+          "sources": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+            "https://www.ndp.ca/news/statement-new-democrat-interim-leader-nycole-turmel"
+          ],
+          "note": "Original July28 Federal Council acceptance explicitly confirms interim party leadership, not just House Opposition."
+        },
+        {
+          "id": "ca_ndp_thomas_mulcair_20120324_leader",
+          "person": "thomas_mulcair",
+          "role": "Federal party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2012-03-24"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2017-10-01"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2012-03-24"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2017-10-01"
+          },
+          "sources": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+          ],
+          "note": "Stayed leader after losing April2016 review until election of successor."
+        },
+        {
+          "id": "ca_ndp_jagmeet_singh_20171001_leader",
+          "person": "jagmeet_singh",
+          "role": "Federal party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2017-10-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2025-05-05"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2017-10-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2025-05-05"
+          },
+          "sources": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+            "https://www.tdndp.ca/new_democrats_select_don_davies_as_interim_leader"
+          ],
+          "note": "Dates are party leadership, not House role held initially by Guy Caron."
+        },
+        {
+          "id": "ca_ndp_don_davies_20250505_acting",
+          "person": "don_davies",
+          "role": "Federal party leader",
+          "kind": "acting",
+          "from": {
+            "kind": "day",
+            "value": "2025-05-05"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-03-29"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2025-05-05"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2026-03-29"
+          },
+          "sources": [
+            "https://www.tdndp.ca/new_democrats_select_don_davies_as_interim_leader",
+            "https://www.ndp.ca/news/avi-lewis-elected-leader-ndp",
+            "https://elections.ca/content.aspx?dir=oth%2Flea%2Flis&document=index&lang=e&section=fin"
+          ]
+        },
+        {
+          "id": "ca_ndp_avi_lewis_20260329_leader",
+          "person": "avi_lewis",
+          "role": "Federal party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2026-03-29"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2026-03-29"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.ndp.ca/news/avi-lewis-elected-leader-ndp",
+            "https://www.ndp.ca/avilewis",
+            "https://elections.ca/content.aspx?dir=oth%2Flea%2Flis&document=index&lang=e&section=fin"
+          ],
+          "note": "Current as checked through cutoff; never describe 2027–2035 predicted tenure as historical fact."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "1994-04-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1994-05-01"
+          },
+          "reason": "McLaughlin continues; elected-to-interim status transition day is not verified, not a vacant leadership or party departure.",
+          "sources": [
+            "https://epe.lac-bac.gc.ca/100/200/301/nlc-bnc/celebrating_women-ef/women97/eaudrey.htm?nodisclaimer=1"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "Canada",
+      "party": "ca_reform",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.alberta.ca/aoe-preston-manning",
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+        "https://elections.ca/content.aspx?dir=pre&document=decision&lang=e&section=med",
+        "https://www.elections.ca/content.aspx?dir=rep%2Foff%2Fsta2003&document=fo&lang=e&section=res"
+      ],
+      "identity_note": "The baseline Reform row follows the same legal registration renamed Canadian Reform Conservative Alliance, retroactive to 27 March 2000, until the merger replaced that registration on 7 December 2003. The 2000 rename is not a legal dissolution. The intervening Alliance leadership and precise name-phase presentation remain unreviewed here; the frozen Reform label must not be read as the contemporary party name after 2000. Counterfactual campaign survival remains possible.",
+      "components": [],
+      "terms": [
+        {
+          "id": "ca_reform_preston_manning_19900101_leader",
+          "person": "preston_manning",
+          "role": "Federal party leader",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2000-03-27"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2000-03-27"
+          },
+          "sources": [
+            "https://www.alberta.ca/aoe-preston-manning",
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+            "https://elections.ca/content.aspx?dir=pre&document=decision&lang=e&section=med"
+          ],
+          "note": "Scope-clipped opening; March26 inclusive last Reform day. Legal registered-name change to Canadian Reform Conservative Alliance from March27 requires reviewed historical identity display."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "2000-03-27"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-09-08"
+          },
+          "reason": "Registered-name change to Canadian Alliance, then 2003 merger into new Conservative Party; no automatic successor assignment under frozen Reform label.",
+          "sources": [
+            "https://elections.ca/content.aspx?dir=pre&document=decision&lang=e&section=med",
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+          ]
+        }
+      ],
+      "dissolved": {
+        "kind": "day",
+        "value": "2003-12-07"
+      }
+    }
+  ],
+  "portrait_reference_audit": [
+    {
+      "person": "brian_mulroney",
+      "status": "inspected-dated-reference",
+      "source_page": "https://commons.wikimedia.org/wiki/File:President_George_H._W._Bush_walks_with_Canadian_Prime_Minister_Brian_Mulroney.jpg",
+      "media_url": "https://upload.wikimedia.org/wikipedia/commons/f/f5/President_George_H._W._Bush_walks_with_Canadian_Prime_Minister_Brian_Mulroney.jpg",
+      "original_institution_url": "https://twitter.com/Bush41Library/status/1762900938820321475",
+      "photo_date": "1989-02-10",
+      "local_file": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-canada-reference-audit\\mulroney-1989.jpg",
+      "rights": "George Bush Presidential Library and Museum photograph; Commons marks US federal-government work public domain. Reference only; no photograph added to game.",
+      "observed_appearance": "Mulroney is LEFT, Bush is right. Swept-back dark hair with gray temples, long rectangular face, distinctive large angular chin, long nose, broad smile, clean-shaven, no glasses, dark overcoat.",
+      "era_use": "Dated 1989 visual reference for an original 1990 cartoon interpretation."
+    },
+    {
+      "person": "john_turner",
+      "status": "inspected-dated-reference",
+      "source_page": "https://commons.wikimedia.org/wiki/File:John_Turner_1987_crop_(cropped)_(cropped).jpg",
+      "media_url": "https://upload.wikimedia.org/wikipedia/commons/1/19/John_Turner_1987_crop_%28cropped%29_%28cropped%29.jpg",
+      "photo_date": "1987-04-05",
+      "local_file": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-canada-reference-audit\\turner-1987.jpg",
+      "rights": "Cropped US federal-government photograph; Commons marks public domain. Reference only; no photograph added to game.",
+      "observed_appearance": "Short silver-gray side-parted hair, pronounced brows and hooded eyes, broad square jaw, long straight nose, slight smile, clean-shaven, no glasses, charcoal suit, white shirt and burgundy diagonal striped tie.",
+      "era_use": "Dated 1987 visual reference for an original 1990 cartoon interpretation; not a 1990 photograph."
+    },
+    {
+      "person": "preston_manning",
+      "status": "inspected-undated-reference",
+      "source_page": "https://www.glenbow.org/wp-content/uploads/2024/10/Manning_Preston.pdf",
+      "pdf_page_one_based": 1,
+      "publication_copyright_year": 2005,
+      "photo_date": null,
+      "local_file": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-canada-reference-audit\\manning-glenbow.png",
+      "local_document": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-canada-reference-audit\\manning-glenbow.pdf",
+      "rights": "Copyright Glenbow Museum 2005, All Rights Reserved. Reference only; no claim of free photograph license and no photograph shipped.",
+      "observed_appearance": "Short brown/gray swept-back hair, long face, prominent ears and straight nose, smiling with teeth, clean-shaven and no glasses in this photograph; dark suit, white shirt, blue patterned tie.",
+      "era_use": "Undated, evidently later facial-structure reference. The 2005 copyright and 2024 upload are not exposure dates. Early-1990 eyewear/hair and age need a dated reference; do not claim exact 1990 appearance."
+    },
+    {
+      "person": "audrey_mclaughlin",
+      "status": "inspected-undated-reference",
+      "source_page": "https://epe.lac-bac.gc.ca/100/200/301/nlc-bnc/celebrating_women-ef/women97/eaudrey.htm?nodisclaimer=1",
+      "rights": "National Library of Canada exhibit credits Canapress Photo Service. Copyrighted reference only, not a free shipping license.",
+      "observed_appearance": "Short dark side-swept pixie cut around ears; dark brows, slender oval/angular face, small straight nose, narrow chin, no glasses; light padded-shoulder blazer with ornamental lapel brooch and patterned collared blouse.",
+      "limitation": "Separate 1993 Yukon brochure remains catalog-only; the visually inspected file is the National Library Canapress image.",
+      "media_url": "https://epe.lac-bac.gc.ca/100/200/301/nlc-bnc/celebrating_women-ef/women97/images/taudrey.gif?nodisclaimer=1",
+      "local_file": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-canada-reference-audit\\audrey-lac-1997.png",
+      "source_revision": "1997-09-23",
+      "photo_date": null,
+      "era_use": "Parliamentary-era reference published by 1997; precise exposure unknown. Original 1990 cartoon interpretation, not a claim this photograph was made in 1990.",
+      "uninspected_additional_reference": {
+        "printed_page": 63,
+        "pdf_page_one_based": 71,
+        "item_date": "1993 federal election campaign brochure",
+        "archive_reference": "Yukon Archives, Audrey McLaughlin fonds, 97/53 Box 27, file Audrey Biography",
+        "source": "https://yukon.ca/sites/default/files/tc/tc-for-the-record-yukon-archives-1972-2012.pdf"
+      }
+    }
+  ],
+  "research_issues": [
+    {
+      "issue": "Canada executive role mapping",
+      "detail": "House appendix is a table of leaders IN the House. Its footnotes distinguish actual party leaders from Gray, Blaikie, Caron, Hill and other parliamentary substitutes. A separate GG/House-confidence selection policy must be reviewed before import.",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+        "https://www.gg.ca/en/governor-general/role-and-responsibilities/constitutional-duties/swearing-process"
+      ]
+    },
+    {
+      "issue": "Alliance continuation held for identity review",
+      "detail": "Known primary chronology after Reform: Deborah Grey acting2000-03-27→2000-07-08; Stockwell Day2000-07-08→2001-12-12; John Reynolds acting2001-12-12→2002-03-20; Stephen Harper2002-03-20 through merger ratification2003-12-05. These are not silently imported under the Reform label.",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+        "https://elections.ca/content.aspx?dir=pre&document=decision&lang=e&section=med"
+      ]
+    },
+    {
+      "issue": "Current Conservative Party outside exact baseline",
+      "detail": "Registered2003-12-07 after PC/Alliance merger. John Lynch-Staunton acting fromDec8,2003, not House substitute Grant Hill. Modern Conservative and Bloc/Green/other national heads need a distinct roster batch.",
+      "sources": [
+        "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html"
+      ]
+    },
+    {
+      "issue": "NDP temporary absence",
+      "detail": "Layton's active-party window is clipped at interim appointment. Preserve his historical identity and do not interpret2011-07-28 as death or party departure.",
+      "sources": [
+        "https://www.ndp.ca/news/statement-new-democrat-interim-leader-nycole-turmel"
+      ]
+    },
+    {
+      "issue": "Life and appearance audit incomplete",
+      "detail": "Only verified facts imported. Audrey McLaughlin secondary birth dates conflict. Remaining biographies and era images need separate checks; no inferred death dates."
+    }
+  ]
+}

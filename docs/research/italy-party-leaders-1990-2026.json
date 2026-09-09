@@ -1,0 +1,1308 @@
+{
+  "schema": "spheres-party-leader-research-v3",
+  "reference_from": "1990-01-01",
+  "reference_through": "2026-09-07",
+  "source_checked_at": "2026-09-07",
+  "nation": "Italy",
+  "scope": {
+    "requested_through": "2035-12-31",
+    "history_through": "2026-09-07",
+    "future_from": "2026-09-08",
+    "future_policy": "Only clearly fictional successors after the historical cutoff; no predictions of real future officeholders.",
+    "coverage": "partial",
+    "represented_party_ids": [
+      "it_dc",
+      "it_pci",
+      "it_psi",
+      "it_msi",
+      "it_pri",
+      "it_psdi",
+      "it_pli"
+    ],
+    "claim": "Verified starter for each of the seven exact baseline rows. Original-party leadership windows and explicit lifecycle/hand-over gaps, not an exhaustive roster of modern Italy or completed avatar art.",
+    "unrepresented_parties": "Successor/split organizations and omitted baseline minor parties require distinct reviewed IDs: PPI, CCD, CDU/UDC, PDS/DS/PD, Rifondazione, PdCI, AN/Fiamma Tricolore, FI/PdL/FdI/FLI, Lega, Greens, Radicals, SI/SDI/later PSI, renewed PLI/PSDI/DC and others."
+  },
+  "ingestion": {
+    "status": "staged-requires-role-aware-integration-review",
+    "runtime_prerequisite": "No automatic import. Preserve exact seven party IDs and current person IDs. Party secretary is not automatically President of the Council. Italy requires presidential appointment and confidence of both chambers; executive selection must be separately reviewed. Original party lifecycle transitions and successor IDs need explicit save migration before historical follow-through.",
+    "executive_role_sources": [
+      "https://www.senato.it/istituzione/la-costituzione/parte-ii/titolo-iii/sezione-i",
+      "https://www.senato.it/istituzione/la-costituzione/parte-ii/titolo-iii/sezione-i/articolo-94"
+    ],
+    "people": "Compatible Person records. Existing giulio_andreotti and its executive office_links must remain untouched; he is not the DC party secretary in 1990.",
+    "parties": "Compatible Party/Term fields; no fabricated components for individual deputies. Preserve the seven small/large baseline rows separately.",
+    "intervals": "Half-open [from, until). Same-day handovers belong to the incoming holder. Coarse month/year dates express uncertainty, not vacancies; conservative resolution may leave visible gaps.",
+    "affiliations": "Research only office windows, not complete membership. Re-check eligibility and life dates before gameplay promotion.",
+    "scope_clipping": "All seven initial windows start at 1990-01-01 as a scope clip, not original appointment.",
+    "missing_life_dates": "Omitted birth/death bounds are unverified. Missing death does not mean alive.",
+    "open_terms": "Current terms verified only through the research cutoff; the latest dated PRI source is 18 April 2026."
+  },
+  "starter_leaders": [
+    {
+      "party": "it_dc",
+      "person": "arnaldo_forlani",
+      "at": "1990-01-01",
+      "role": "National secretary",
+      "sources": [
+        "https://documenti.camera.it/leg19/resoconti/assemblea/html/sed0146/stenografico.pdf",
+        "https://archivio.quirinale.it/diari-pdf/1990_02_16-02_28-CO.pdf",
+        "https://www.comune.brescia.it/aree-tematiche/anagrafe-e-stato-civile/cimiteri/onoranze-al-famedio/sindaci-della-citta/martinazzoli-fermo-mino"
+      ]
+    },
+    {
+      "party": "it_pci",
+      "person": "achille_occhetto",
+      "at": "1990-01-01",
+      "role": "General secretary",
+      "sources": [
+        "https://siusa-archivi.cultura.gov.it/cgi-bin/siusa/pagina.pl?Chiave=139&TipoPag=profist",
+        "https://www.senato.it/legislature/10"
+      ]
+    },
+    {
+      "party": "it_psi",
+      "person": "bettino_craxi",
+      "at": "1990-01-01",
+      "role": "National secretary",
+      "sources": [
+        "https://www.fondazionecraxi.org/bettino-craxi-biografia/",
+        "https://bush41library.tamu.edu/files/memcons-telcons/1989-12-06--Craxi.pdf",
+        "https://www.radioradicale.it/scheda/51740/assemblea-nazionale-del-psi-lelezione-del-segretario"
+      ]
+    },
+    {
+      "party": "it_msi",
+      "person": "gianfranco_fini",
+      "at": "1990-01-01",
+      "role": "National secretary",
+      "sources": [
+        "https://www.esteri.it/it/ministero/storia/ministri_esteri/gianfranco_fini/",
+        "https://www.radioradicale.it/scheda/34480/xvi-congresso-del-movimento-sociale-italiano-destra-nazionale"
+      ]
+    },
+    {
+      "party": "it_pri",
+      "person": "giorgio_la_malfa",
+      "at": "1990-01-01",
+      "role": "National secretary",
+      "sources": [
+        "https://siusa-archivi.cultura.gov.it/cgi-bin/pagina.pl?Chiave=61463&TipoPag=prodente",
+        "https://www.radioradicale.it/scheda/53042/consiglio-nazionale-del-pri"
+      ]
+    },
+    {
+      "party": "it_psdi",
+      "person": "antonio_cariglia",
+      "at": "1990-01-01",
+      "role": "National secretary",
+      "sources": [
+        "https://fondazioneturati.it/la-fondazione-turati/la-storia/antonio-cariglia/",
+        "https://www.radioradicale.it/scheda/46314/consiglio-nazionale-del-psdi"
+      ]
+    },
+    {
+      "party": "it_pli",
+      "person": "renato_altissimo",
+      "at": "1990-01-01",
+      "role": "National secretary",
+      "sources": [
+        "https://documenti.camera.it/leg17/resoconti/assemblea/html/sed0414/stenografico.pdf",
+        "https://www.radioradicale.it/scheda/54398/consiglio-nazionale-del-pli"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "arnaldo_forlani",
+      "name": "Arnaldo Forlani",
+      "sources": [
+        "https://documenti.camera.it/leg19/resoconti/assemblea/html/sed0146/stenografico.pdf",
+        "https://archivio.quirinale.it/diari-pdf/1990_02_16-02_28-CO.pdf"
+      ]
+    },
+    {
+      "id": "mino_martinazzoli",
+      "name": "Mino Martinazzoli",
+      "sources": [
+        "https://www.comune.brescia.it/aree-tematiche/anagrafe-e-stato-civile/cimiteri/onoranze-al-famedio/sindaci-della-citta/martinazzoli-fermo-mino",
+        "https://www.radioradicale.it/scheda/59821/i-principi-ispiratori-del-nuovo-partito-popolare"
+      ]
+    },
+    {
+      "id": "achille_occhetto",
+      "name": "Achille Occhetto",
+      "sources": [
+        "https://siusa-archivi.cultura.gov.it/cgi-bin/siusa/pagina.pl?Chiave=139&TipoPag=profist",
+        "https://www.senato.it/legislature/10"
+      ]
+    },
+    {
+      "id": "bettino_craxi",
+      "name": "Bettino Craxi",
+      "sources": [
+        "https://www.fondazionecraxi.org/bettino-craxi-biografia/",
+        "https://bush41library.tamu.edu/files/memcons-telcons/1989-12-06--Craxi.pdf"
+      ]
+    },
+    {
+      "id": "giorgio_benvenuto",
+      "name": "Giorgio Benvenuto",
+      "sources": [
+        "https://www.radioradicale.it/scheda/51740/assemblea-nazionale-del-psi-lelezione-del-segretario",
+        "https://www.radioradicale.it/scheda/54237/crisi-del-psi-la-candidatura-di-del-turco-alla-segreteria-in-sostituzione-del"
+      ]
+    },
+    {
+      "id": "ottaviano_del_turco",
+      "name": "Ottaviano Del Turco",
+      "sources": [
+        "https://documenti.camera.it/leg19/resoconti/assemblea/html/sed0349/stenografico.pdf",
+        "https://www.radioradicale.it/scheda/64369/il-dibattito-interno-al-pds-per-la-successione-ad-achille-occhetto-alla-segreteria-del"
+      ]
+    },
+    {
+      "id": "gianfranco_fini",
+      "name": "Gianfranco Fini",
+      "sources": [
+        "https://www.esteri.it/it/ministero/storia/ministri_esteri/gianfranco_fini/",
+        "https://www.radioradicale.it/scheda/34480/xvi-congresso-del-movimento-sociale-italiano-destra-nazionale",
+        "https://www.radioradicale.it/scheda/40086/msi-elezioni-di-gianfranco-fini-alla-segreteria-del-partito"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1952-01-03"
+      }
+    },
+    {
+      "id": "pino_rauti",
+      "name": "Pino Rauti",
+      "sources": [
+        "https://www.radioradicale.it/scheda/34480/xvi-congresso-del-movimento-sociale-italiano-destra-nazionale"
+      ]
+    },
+    {
+      "id": "giorgio_la_malfa",
+      "name": "Giorgio La Malfa",
+      "sources": [
+        "https://siusa-archivi.cultura.gov.it/cgi-bin/pagina.pl?Chiave=61463&TipoPag=prodente",
+        "https://www.radioradicale.it/scheda/53042/consiglio-nazionale-del-pri",
+        "https://www.radioradicale.it/scheda/59862/conferenza-programmatica-e-consiglio-nazionale-del-pri"
+      ]
+    },
+    {
+      "id": "giorgio_bogi",
+      "name": "Giorgio Bogi",
+      "sources": [
+        "https://www.radioradicale.it/scheda/53042/consiglio-nazionale-del-pri",
+        "https://www.radioradicale.it/scheda/59862/conferenza-programmatica-e-consiglio-nazionale-del-pri"
+      ]
+    },
+    {
+      "id": "francesco_nucara",
+      "name": "Francesco Nucara",
+      "sources": [
+        "https://siusa-archivi.cultura.gov.it/cgi-bin/pagina.pl?Chiave=61463&TipoPag=prodente",
+        "https://www.prinazionale.it/new/html/primapagina/primopiano.htm"
+      ]
+    },
+    {
+      "id": "saverio_collura",
+      "name": "Saverio Collura",
+      "sources": [
+        "https://www.prinazionale.it/new/html/primapagina/primopiano.htm"
+      ]
+    },
+    {
+      "id": "corrado_de_rinaldis_saponaro",
+      "name": "Corrado De Rinaldis Saponaro",
+      "sources": [
+        "https://www.prinazionale.it/new/30%20Dicembre%202016/ANNO.HTM",
+        "https://www.prinazionale.it/new/index.html",
+        "https://www.prinazionale.it/new/18%20Aprile%202026/DOCUMENTO%20POLITICO%20CN%20PRI%20-%2018%20APRILE%202026%20-%20ROMA.pdf"
+      ]
+    },
+    {
+      "id": "antonio_cariglia",
+      "name": "Antonio Cariglia",
+      "sources": [
+        "https://fondazioneturati.it/la-fondazione-turati/la-storia/antonio-cariglia/",
+        "https://www.senato.it/node/75361/printable/print?did=482"
+      ],
+      "born": {
+        "kind": "day",
+        "value": "1924-03-28"
+      }
+    },
+    {
+      "id": "carlo_vizzini",
+      "name": "Carlo Vizzini",
+      "sources": [
+        "https://www.radioradicale.it/scheda/46314/consiglio-nazionale-del-psdi",
+        "https://archivio.unita.news/assets/main/1993/05/01/page_005.pdf"
+      ]
+    },
+    {
+      "id": "enrico_ferri",
+      "name": "Enrico Ferri",
+      "sources": [
+        "https://archivio.unita.news/assets/main/1993/05/01/page_005.pdf",
+        "https://www.radioradicale.it/scheda/69953/congresso-nazionale-straordinario-del-psdi"
+      ]
+    },
+    {
+      "id": "gianfranco_schietroma",
+      "name": "Gianfranco Schietroma",
+      "sources": [
+        "https://www.radioradicale.it/scheda/69953/congresso-nazionale-straordinario-del-psdi",
+        "https://www.radioradicale.it/scheda/106443/il-nostro-futuro-ha-radici-antiche-org-in-occasione-dellapertura-della-campagna",
+        "https://archivio.unita.news/assets/derived/1998/05/11/issue_full.pdf"
+      ]
+    },
+    {
+      "id": "renato_altissimo",
+      "name": "Renato Altissimo",
+      "sources": [
+        "https://documenti.camera.it/leg17/resoconti/assemblea/html/sed0414/stenografico.pdf",
+        "https://www.radioradicale.it/scheda/54398/consiglio-nazionale-del-pli"
+      ]
+    },
+    {
+      "id": "raffaele_costa",
+      "name": "Raffaele Costa",
+      "sources": [
+        "https://www.radioradicale.it/scheda/54398/consiglio-nazionale-del-pli",
+        "https://www.radioradicale.it/scheda/54328/lelezione-di-raffaele-costa-a-segretario-del-partito-e-le-scissioni-nel-pli",
+        "https://dgagaeta.cultura.gov.it/public/uploads/documents/Saggi/Saggi_39.pdf"
+      ]
+    }
+  ],
+  "parties": [
+    {
+      "nation": "Italy",
+      "party": "it_dc",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://documenti.camera.it/leg19/resoconti/assemblea/html/sed0146/stenografico.pdf",
+        "https://archivio.quirinale.it/diari-pdf/1990_02_16-02_28-CO.pdf",
+        "https://www.comune.brescia.it/aree-tematiche/anagrafe-e-stato-civile/cimiteri/onoranze-al-famedio/sindaci-della-citta/martinazzoli-fermo-mino",
+        "https://www.radioradicale.it/scheda/59821/i-principi-ispiratori-del-nuovo-partito-popolare"
+      ],
+      "identity_note": "Original Christian Democracy baseline. Its 1994 transformation into PPI and the CCD split require distinct successor identities; legal claims to DC continuity remain outside this partial audit.",
+      "components": [],
+      "terms": [
+        {
+          "id": "it_dc_arnaldo_forlani_19900101",
+          "person": "arnaldo_forlani",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1992-10-12"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1992-10-12"
+          },
+          "sources": [
+            "https://documenti.camera.it/leg19/resoconti/assemblea/html/sed0146/stenografico.pdf",
+            "https://archivio.quirinale.it/diari-pdf/1990_02_16-02_28-CO.pdf",
+            "https://www.comune.brescia.it/aree-tematiche/anagrafe-e-stato-civile/cimiteri/onoranze-al-famedio/sindaci-della-citta/martinazzoli-fermo-mino"
+          ],
+          "note": "Scope-clipped start; party secretary again from 1989. The 22 February 1990 presidential diary explicitly identifies his party role, distinct from Prime Minister Giulio Andreotti. Successor elected 12 October 1992."
+        },
+        {
+          "id": "it_dc_mino_martinazzoli_19921012",
+          "person": "mino_martinazzoli",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1992-10-12"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1994-01"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1992-10-12"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1994-01"
+          },
+          "sources": [
+            "https://www.comune.brescia.it/aree-tematiche/anagrafe-e-stato-civile/cimiteri/onoranze-al-famedio/sindaci-della-citta/martinazzoli-fermo-mino",
+            "https://www.radioradicale.it/scheda/59821/i-principi-ispiratori-del-nuovo-partito-popolare"
+          ],
+          "note": "National secretary elected 12 October 1992. January 1994 endpoint is coarse because the municipal biography gives a conflicting PPI date; the original 18 January speech supports the organizational transition, not a resolved legal dissolution date."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "month",
+            "value": "1994-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-09-08"
+          },
+          "reason": "Original baseline party underwent transformation and fragmentation. PPI, CCD, CDU, UDC, later PD participation and multiple modern DC claimants cannot be silently substituted under it_dc. Lifecycle/role-aware migration must precede their leadership import.",
+          "sources": [
+            "https://www.radioradicale.it/scheda/59821/i-principi-ispiratori-del-nuovo-partito-popolare",
+            "https://www.comune.brescia.it/aree-tematiche/anagrafe-e-stato-civile/cimiteri/onoranze-al-famedio/sindaci-della-citta/martinazzoli-fermo-mino"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "Italy",
+      "party": "it_pci",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://siusa-archivi.cultura.gov.it/cgi-bin/siusa/pagina.pl?Chiave=139&TipoPag=profist"
+      ],
+      "identity_note": "Original Italian Communist Party, not all later communist or centre-left successor organizations.",
+      "components": [],
+      "terms": [
+        {
+          "id": "it_pci_achille_occhetto_19900101",
+          "person": "achille_occhetto",
+          "role": "General secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1991-02-03"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1991-02-03"
+          },
+          "sources": [
+            "https://siusa-archivi.cultura.gov.it/cgi-bin/siusa/pagina.pl?Chiave=139&TipoPag=profist",
+            "https://www.senato.it/legislature/10"
+          ],
+          "note": "Scope-clipped start; secretary from 1988. Original PCI voted dissolution on 3 February 1991. PDS and Rifondazione followed separate paths."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "1991-02-03"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-09-08"
+          },
+          "reason": "PCI's original organization ended at its final congress. PDS/DS/PD, Rifondazione, PdCI and later parties using the PCI name need separate identities and split/merger history.",
+          "sources": [
+            "https://siusa-archivi.cultura.gov.it/cgi-bin/siusa/pagina.pl?Chiave=139&TipoPag=profist"
+          ]
+        }
+      ],
+      "dissolved": {
+        "kind": "day",
+        "value": "1991-02-03"
+      }
+    },
+    {
+      "nation": "Italy",
+      "party": "it_psi",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.fondazionecraxi.org/bettino-craxi-biografia/",
+        "https://www.radioradicale.it/scheda/51740/assemblea-nazionale-del-psi-lelezione-del-segretario",
+        "https://documenti.camera.it/leg19/resoconti/assemblea/html/sed0349/stenografico.pdf",
+        "https://siusa-archivi.cultura.gov.it/cgi-bin/siusa/pagina.pl?Chiave=91573&RicLin=en&TipoPag=prodente"
+      ],
+      "identity_note": "Original PSI through 1994; later Socialist parties bearing similar names are not automatically the same runtime identity.",
+      "components": [],
+      "terms": [
+        {
+          "id": "it_psi_bettino_craxi_19900101",
+          "person": "bettino_craxi",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1993-02"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1993-02"
+          },
+          "sources": [
+            "https://www.fondazionecraxi.org/bettino-craxi-biografia/",
+            "https://bush41library.tamu.edu/files/memcons-telcons/1989-12-06--Craxi.pdf",
+            "https://www.radioradicale.it/scheda/51740/assemblea-nazionale-del-psi-lelezione-del-segretario"
+          ],
+          "note": "Scope-clipped start; secretary from 1976. Departure month retained pending exact resignation/effective handover audit; Benvenuto elected 12 February."
+        },
+        {
+          "id": "it_psi_giorgio_benvenuto_19930212",
+          "person": "giorgio_benvenuto",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1993-02-12"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1993-05"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1993-02-12"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1993-05"
+          },
+          "sources": [
+            "https://www.radioradicale.it/scheda/51740/assemblea-nazionale-del-psi-lelezione-del-segretario",
+            "https://www.radioradicale.it/scheda/54237/crisi-del-psi-la-candidatura-di-del-turco-alla-segreteria-in-sostituzione-del"
+          ],
+          "note": "Original party assembly recording documents election; by the 25 May interview he had resigned. Exact effective resignation day is not imposed."
+        },
+        {
+          "id": "it_psi_ottaviano_del_turco_19930528",
+          "person": "ottaviano_del_turco",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1993-05-28"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1994-06"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1993-05-28"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1994-06"
+          },
+          "sources": [
+            "https://documenti.camera.it/leg19/resoconti/assemblea/html/sed0349/stenografico.pdf",
+            "https://www.radioradicale.it/scheda/64369/il-dibattito-interno-al-pds-per-la-successione-ad-achille-occhetto-alla-segreteria-del"
+          ],
+          "note": "Camera commemoration dates election 28 May 1993. June 1994 resignation is recorded; the relationship between his statutory title and subsequent coordination remains unresolved."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "month",
+            "value": "1993-02"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1993-02-12"
+          },
+          "reason": "Exact Craxi resignation and effective caretaker interval need original minutes. The month boundary is uncertainty, not a claimed vacancy.",
+          "sources": [
+            "https://www.radioradicale.it/scheda/51740/assemblea-nazionale-del-psi-lelezione-del-segretario"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "1993-05"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1993-05-28"
+          },
+          "reason": "Benvenuto's resignation-to-election transition needs effective dates.",
+          "sources": [
+            "https://www.radioradicale.it/scheda/54237/crisi-del-psi-la-candidatura-di-del-turco-alla-segreteria-in-sostituzione-del",
+            "https://documenti.camera.it/leg19/resoconti/assemblea/html/sed0349/stenografico.pdf"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "1994-06"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1994-11-13"
+          },
+          "reason": "Valdo Spini's coordination and the laburista departure need exact mandates and effective endpoints. His 20 September first-person speech confirms coordination but cannot justify a fabricated continuous general-secretary term.",
+          "sources": [
+            "https://www.radioradicale.it/scheda/67613/riunione-del-comitato-promotore-della-costituente-laburista",
+            "https://www.radioradicale.it/scheda/64369/il-dibattito-interno-al-pds-per-la-successione-ad-achille-occhetto-alla-segreteria-del",
+            "https://siusa-archivi.cultura.gov.it/cgi-bin/siusa/pagina.pl?Chiave=91573&RicLin=en&TipoPag=prodente"
+          ]
+        },
+        {
+          "from": {
+            "kind": "day",
+            "value": "1994-11-13"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-09-08"
+          },
+          "reason": "Original PSI dissolved. Socialisti Italiani, PS, SDI, Nuovo PSI, later PSI and other branches require distinct IDs and separately researched succession.",
+          "sources": [
+            "https://siusa-archivi.cultura.gov.it/cgi-bin/siusa/pagina.pl?Chiave=91573&RicLin=en&TipoPag=prodente"
+          ]
+        }
+      ],
+      "dissolved": {
+        "kind": "day",
+        "value": "1994-11-13"
+      }
+    },
+    {
+      "nation": "Italy",
+      "party": "it_msi",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://www.esteri.it/it/ministero/storia/ministri_esteri/gianfranco_fini/",
+        "https://www.radioradicale.it/scheda/34480/xvi-congresso-del-movimento-sociale-italiano-destra-nazionale",
+        "https://www.radioradicale.it/scheda/40086/msi-elezioni-di-gianfranco-fini-alla-segreteria-del-partito"
+      ],
+      "identity_note": "Original MSI-DN baseline. AN emerged at Fiuggi and Rauti's Fiamma Tricolore split requires separate party identity.",
+      "components": [],
+      "terms": [
+        {
+          "id": "it_msi_gianfranco_fini_19900101",
+          "person": "gianfranco_fini",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1990-01-14"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1990-01-14"
+          },
+          "sources": [
+            "https://www.esteri.it/it/ministero/storia/ministri_esteri/gianfranco_fini/",
+            "https://www.radioradicale.it/scheda/34480/xvi-congresso-del-movimento-sociale-italiano-destra-nazionale"
+          ],
+          "note": "Scope-clipped start; secretary since December 1987. Fini is the correct 1 January 1990 starter. The congress recording on 14 January contains the election and farewell to incoming secretary Rauti."
+        },
+        {
+          "id": "it_msi_pino_rauti_19900114",
+          "person": "pino_rauti",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-14"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1991-07"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-14"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1991-07"
+          },
+          "sources": [
+            "https://www.radioradicale.it/scheda/34480/xvi-congresso-del-movimento-sociale-italiano-destra-nazionale",
+            "https://www.radioradicale.it/scheda/40086/msi-elezioni-di-gianfranco-fini-alla-segreteria-del-partito"
+          ],
+          "note": "Incoming election appears in the 14 January congress recording. July 1991 endpoint is month-level: recording/publication on 9 July does not prove that election occurred on that day."
+        },
+        {
+          "id": "it_msi_gianfranco_fini_199107",
+          "person": "gianfranco_fini",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1991-07"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1995-01"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1991-07"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1995-01"
+          },
+          "sources": [
+            "https://www.esteri.it/it/ministero/storia/ministri_esteri/gianfranco_fini/",
+            "https://www.radioradicale.it/scheda/40086/msi-elezioni-di-gianfranco-fini-alla-segreteria-del-partito"
+          ],
+          "note": "Foreign Ministry biography distinguishes return as MSI secretary in July 1991 from AN presidency at the January 1995 Fiuggi congress."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "month",
+            "value": "1995-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-09-08"
+          },
+          "reason": "Fiuggi transformation/split requires AN and Fiamma Tricolore identities. Later PdL, FLI and FdI are not a single linear extension of the original MSI row.",
+          "sources": [
+            "https://www.esteri.it/it/ministero/storia/ministri_esteri/gianfranco_fini/"
+          ]
+        }
+      ],
+      "dissolved": {
+        "kind": "month",
+        "value": "1995-01"
+      }
+    },
+    {
+      "nation": "Italy",
+      "party": "it_pri",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://siusa-archivi.cultura.gov.it/cgi-bin/pagina.pl?Chiave=61463&TipoPag=prodente",
+        "https://www.radioradicale.it/scheda/53042/consiglio-nazionale-del-pri",
+        "https://www.radioradicale.it/scheda/59862/conferenza-programmatica-e-consiglio-nazionale-del-pri",
+        "https://www.prinazionale.it/new/html/primapagina/primopiano.htm",
+        "https://www.prinazionale.it/new/30%20Dicembre%202016/ANNO.HTM",
+        "https://www.prinazionale.it/new/index.html",
+        "https://www.prinazionale.it/new/18%20Aprile%202026/DOCUMENTO%20POLITICO%20CN%20PRI%20-%2018%20APRILE%202026%20-%20ROMA.pdf"
+      ],
+      "identity_note": "Continuing PRI. The operational national secretary/coordinator is distinguished from party president, deputy coordinators and parliamentary leaders.",
+      "components": [],
+      "terms": [
+        {
+          "id": "it_pri_giorgio_la_malfa_19900101",
+          "person": "giorgio_la_malfa",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1993-02"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1993-02"
+          },
+          "sources": [
+            "https://siusa-archivi.cultura.gov.it/cgi-bin/pagina.pl?Chiave=61463&TipoPag=prodente",
+            "https://www.radioradicale.it/scheda/53042/consiglio-nazionale-del-pri"
+          ],
+          "note": "Scope-clipped start; elected secretary 12 September 1987. Exact February resignation day requires original minutes."
+        },
+        {
+          "id": "it_pri_giorgio_bogi_199302",
+          "person": "giorgio_bogi",
+          "role": "Acting national secretary",
+          "kind": "acting",
+          "from": {
+            "kind": "month",
+            "value": "1993-02"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1994-01"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1993-02"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1994-01"
+          },
+          "sources": [
+            "https://www.radioradicale.it/scheda/53042/consiglio-nazionale-del-pri",
+            "https://www.radioradicale.it/scheda/59862/conferenza-programmatica-e-consiglio-nazionale-del-pri"
+          ],
+          "note": "Acting/regent leadership after La Malfa's withdrawal. Not a separate permanent party presidency; exact handovers remain month-level."
+        },
+        {
+          "id": "it_pri_giorgio_la_malfa_199401",
+          "person": "giorgio_la_malfa",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1994-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2001-10-06"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1994-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2001-10-06"
+          },
+          "sources": [
+            "https://www.radioradicale.it/scheda/59862/conferenza-programmatica-e-consiglio-nazionale-del-pri",
+            "https://siusa-archivi.cultura.gov.it/cgi-bin/pagina.pl?Chiave=61463&TipoPag=prodente"
+          ],
+          "note": "January return is documented by the 21–22 January council, but precise effective day is not imposed. Became party president when Nucara succeeded as secretary on 6 October 2001."
+        },
+        {
+          "id": "it_pri_francesco_nucara_20011006",
+          "person": "francesco_nucara",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2001-10-06"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2013-05-11"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2001-10-06"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "2013-05-11"
+          },
+          "sources": [
+            "https://siusa-archivi.cultura.gov.it/cgi-bin/pagina.pl?Chiave=61463&TipoPag=prodente",
+            "https://www.prinazionale.it/new/html/primapagina/primopiano.htm"
+          ],
+          "note": "Secretary elected 6 October 2001. Conservative observed-office endpoint: party archive explicitly still calls him secretary for 10 May 2013; half-open scope clip ends the following day, not a claimed resignation. Party president elected 15 March 2014. Exact secretary retirement and intermediate committee mandate need minutes."
+        },
+        {
+          "id": "it_pri_saverio_collura_20140424",
+          "person": "saverio_collura",
+          "role": "National political coordinator",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2014-04-24"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2016"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2014-04-24"
+          },
+          "affiliation_until": {
+            "kind": "year",
+            "value": "2016"
+          },
+          "sources": [
+            "https://www.prinazionale.it/new/html/primapagina/primopiano.htm"
+          ],
+          "note": "Conservative observed-office clip: April 2014 party archive labels Collura national coordinator, and 2015 archive entries retain that role. His successor dates replacement to 2016; exact initial appointment and end day need council minutes."
+        },
+        {
+          "id": "it_pri_corrado_de_rinaldis_saponaro_2016",
+          "person": "corrado_de_rinaldis_saponaro",
+          "role": "National political coordinator",
+          "kind": "leader",
+          "from": {
+            "kind": "year",
+            "value": "2016"
+          },
+          "until": {
+            "kind": "month",
+            "value": "2017-12"
+          },
+          "affiliation_from": {
+            "kind": "year",
+            "value": "2016"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "2017-12"
+          },
+          "sources": [
+            "https://www.prinazionale.it/new/30%20Dicembre%202016/ANNO.HTM",
+            "https://www.prinazionale.it/new/index.html"
+          ],
+          "note": "His December 2016 first-person statement confirms appointment earlier in 2016. Morelli and Piro served on the coordination team; September agenda identifies them as deputies, so they are not fabricated equal secretaries."
+        },
+        {
+          "id": "it_pri_corrado_de_rinaldis_saponaro_20171218",
+          "person": "corrado_de_rinaldis_saponaro",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "2017-12-18"
+          },
+          "until": {
+            "kind": "open"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "2017-12-18"
+          },
+          "affiliation_until": {
+            "kind": "open"
+          },
+          "sources": [
+            "https://www.prinazionale.it/new/index.html",
+            "https://www.prinazionale.it/new/18%20Aprile%202026/DOCUMENTO%20POLITICO%20CN%20PRI%20-%2018%20APRILE%202026%20-%20ROMA.pdf"
+          ],
+          "note": "Observed-office clip, not asserted accession day: 18 December 2017 party declaration labels him secretary after the December congress. Current office verified by 18 April 2026 National Council resolution; no claim about future real holders."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "2013-05-11"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2014-04-24"
+          },
+          "reason": "End of conservatively verified Nucara secretary coverage. Later presidency and coordinator structure do not establish his resignation day. The 2013-14 committee transition and exact Collura appointment require minutes.",
+          "sources": [
+            "https://www.prinazionale.it/new/html/primapagina/primopiano.htm"
+          ]
+        },
+        {
+          "from": {
+            "kind": "year",
+            "value": "2016"
+          },
+          "until": {
+            "kind": "year",
+            "value": "2017"
+          },
+          "reason": "The 2016 coordinator handover is verified only to year precision. This denotes uncertainty overlapping the staged boundary, not a claimed full-year vacancy.",
+          "sources": [
+            "https://www.prinazionale.it/new/30%20Dicembre%202016/ANNO.HTM",
+            "https://www.prinazionale.it/new/html/primapagina/primopiano.htm"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "2017-12"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2017-12-18"
+          },
+          "reason": "December congress and subsequent council election require precise effective secretary accession; observed declaration is the safe start of the staged secretary window.",
+          "sources": [
+            "https://www.prinazionale.it/new/index.html"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "Italy",
+      "party": "it_psdi",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://fondazioneturati.it/la-fondazione-turati/la-storia/antonio-cariglia/",
+        "https://www.radioradicale.it/scheda/46314/consiglio-nazionale-del-psdi",
+        "https://archivio.unita.news/assets/main/1993/05/01/page_005.pdf",
+        "https://www.radioradicale.it/scheda/69953/congresso-nazionale-straordinario-del-psdi",
+        "https://www.radioradicale.it/scheda/106443/il-nostro-futuro-ha-radici-antiche-org-in-occasione-dellapertura-della-campagna"
+      ],
+      "identity_note": "Original baseline PSDI. Its late-1990s merger, remnant organizations and 2004 revival/modern disputed leadership need separate legal and lifecycle review.",
+      "components": [],
+      "terms": [
+        {
+          "id": "it_psdi_antonio_cariglia_19900101",
+          "person": "antonio_cariglia",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1992-05-07"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1992-05-07"
+          },
+          "sources": [
+            "https://fondazioneturati.it/la-fondazione-turati/la-storia/antonio-cariglia/",
+            "https://www.radioradicale.it/scheda/46314/consiglio-nazionale-del-psdi"
+          ],
+          "note": "Scope-clipped start; foundation biography dates secretary tenure 1988–1992. Do not confuse Senate group leadership or later party presidency with this role."
+        },
+        {
+          "id": "it_psdi_carlo_vizzini_19920507",
+          "person": "carlo_vizzini",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1992-05-07"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1993-03"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1992-05-07"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1993-03"
+          },
+          "sources": [
+            "https://www.radioradicale.it/scheda/46314/consiglio-nazionale-del-psdi",
+            "https://archivio.unita.news/assets/main/1993/05/01/page_005.pdf"
+          ],
+          "note": "May council documents incoming secretary. March resignation needs original effective-day confirmation; not extended through successor election."
+        },
+        {
+          "id": "it_psdi_enrico_ferri_19930430",
+          "person": "enrico_ferri",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1993-04-30"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1994-12"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1993-04-30"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1994-12"
+          },
+          "sources": [
+            "https://archivio.unita.news/assets/main/1993/05/01/page_005.pdf",
+            "https://www.radioradicale.it/scheda/69953/congresso-nazionale-straordinario-del-psdi"
+          ],
+          "note": "Contemporary 1 May 1993 newspaper report explicitly describes election at 15:00 the previous day. Late-1994 resignation and caretaker committee need original minutes; do not carry him into January as if no interruption occurred."
+        },
+        {
+          "id": "it_psdi_gianfranco_schietroma_19950129",
+          "person": "gianfranco_schietroma",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1995-01-29"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1998-05"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1995-01-29"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1998-05"
+          },
+          "sources": [
+            "https://www.radioradicale.it/scheda/69953/congresso-nazionale-straordinario-del-psdi",
+            "https://www.radioradicale.it/scheda/106443/il-nostro-futuro-ha-radici-antiche-org-in-occasione-dellapertura-della-campagna",
+            "https://archivio.unita.news/assets/derived/1998/05/11/issue_full.pdf"
+          ],
+          "note": "29 January congress records acclamation and speech as new secretary. Schietroma's group joined SDI in May 1998; this is not proof every PSDI remnant ceased legal existence."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "month",
+            "value": "1993-03"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1993-04-30"
+          },
+          "reason": "Vizzini resignation and interim management need original records.",
+          "sources": [
+            "https://archivio.unita.news/assets/main/1993/05/01/page_005.pdf"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "1994-12"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1995-01-29"
+          },
+          "reason": "National caretaker committee preceded the congress. Schietroma chaired coordination, while Carlo Flamment also appears on the regency committee; do not invent a sole permanent secretary or erase the collective body.",
+          "sources": [
+            "https://www.radioradicale.it/scheda/69953/congresso-nazionale-straordinario-del-psdi"
+          ]
+        },
+        {
+          "from": {
+            "kind": "month",
+            "value": "1998-05"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-09-08"
+          },
+          "reason": "Majority joined SDI; remnant, renewed PSDI and contested modern office claims have not been role/lifecycle-audited. No automatic continuity under it_psdi is asserted.",
+          "sources": [
+            "https://www.radioradicale.it/scheda/106443/il-nostro-futuro-ha-radici-antiche-org-in-occasione-dellapertura-della-campagna",
+            "https://archivio.unita.news/assets/derived/1998/05/11/issue_full.pdf"
+          ]
+        }
+      ]
+    },
+    {
+      "nation": "Italy",
+      "party": "it_pli",
+      "kind": "party",
+      "coverage": "partial",
+      "sources": [
+        "https://documenti.camera.it/leg17/resoconti/assemblea/html/sed0414/stenografico.pdf",
+        "https://www.radioradicale.it/scheda/54398/consiglio-nazionale-del-pli",
+        "https://www.radioradicale.it/scheda/54328/lelezione-di-raffaele-costa-a-segretario-del-partito-e-le-scissioni-nel-pli",
+        "https://dgagaeta.cultura.gov.it/public/uploads/documents/Saggi/Saggi_39.pdf"
+      ],
+      "identity_note": "Original Liberal Party through dissolution on 6 February 1994, not the later refounded organization or all liberal successors.",
+      "components": [],
+      "terms": [
+        {
+          "id": "it_pli_renato_altissimo_19900101",
+          "person": "renato_altissimo",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "until": {
+            "kind": "month",
+            "value": "1993-05"
+          },
+          "affiliation_from": {
+            "kind": "day",
+            "value": "1990-01-01"
+          },
+          "affiliation_until": {
+            "kind": "month",
+            "value": "1993-05"
+          },
+          "sources": [
+            "https://documenti.camera.it/leg17/resoconti/assemblea/html/sed0414/stenografico.pdf",
+            "https://www.radioradicale.it/scheda/54398/consiglio-nazionale-del-pli"
+          ],
+          "note": "Scope-clipped start; secretary 1986–1993. Month retained because publication and council recording dates do not by themselves establish exact handover day."
+        },
+        {
+          "id": "it_pli_raffaele_costa_199305",
+          "person": "raffaele_costa",
+          "role": "National secretary",
+          "kind": "leader",
+          "from": {
+            "kind": "month",
+            "value": "1993-05"
+          },
+          "until": {
+            "kind": "day",
+            "value": "1994-02-06"
+          },
+          "affiliation_from": {
+            "kind": "month",
+            "value": "1993-05"
+          },
+          "affiliation_until": {
+            "kind": "day",
+            "value": "1994-02-06"
+          },
+          "sources": [
+            "https://www.radioradicale.it/scheda/54398/consiglio-nazionale-del-pli",
+            "https://www.radioradicale.it/scheda/54328/lelezione-di-raffaele-costa-a-segretario-del-partito-e-le-scissioni-nel-pli",
+            "https://dgagaeta.cultura.gov.it/public/uploads/documents/Saggi/Saggi_39.pdf"
+          ],
+          "note": "May 1993 interview says elected the previous day while council recording is dated 28 May; keep month-level accession until minutes resolve it. National Archives proceedings date final dissolution vote 6 February 1994."
+        }
+      ],
+      "gaps": [
+        {
+          "from": {
+            "kind": "day",
+            "value": "1994-02-06"
+          },
+          "until": {
+            "kind": "day",
+            "value": "2026-09-08"
+          },
+          "reason": "Original PLI dissolved. Federation of Liberals, Union of the Centre, later renewed Liberal parties and other branches require their own IDs and researched leadership.",
+          "sources": [
+            "https://dgagaeta.cultura.gov.it/public/uploads/documents/Saggi/Saggi_39.pdf"
+          ]
+        }
+      ],
+      "dissolved": {
+        "kind": "day",
+        "value": "1994-02-06"
+      }
+    }
+  ],
+  "portrait_reference_audit": [
+    {
+      "person": "arnaldo_forlani",
+      "local_reference": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-italy-reference-audit\\forlani-1992.jpg",
+      "reference_date": "1992 (Camera XI legislature; exact exposure not independently verified)",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Arnaldo_Forlani_(XI).jpg",
+      "primary_source_url": "https://dati.camera.it/ocd/deputato.rdf/d2620_11",
+      "media_url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Arnaldo_Forlani_%28XI%29.jpg",
+      "provenance": "Camera dei deputati official portrait; Commons describes CC BY-SA 4.0 attribution to dati.camera.it. Photographic reference remains outside shipped assets.",
+      "observed_appearance": "Swept short salt-gray hair; long angular narrow face; large thin metal aviator glasses; clean-shaven; faint smile; dark pinstripe suit, white shirt and patterned tie."
+    },
+    {
+      "person": "achille_occhetto",
+      "local_reference": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-italy-reference-audit\\occhetto-1992.jpg",
+      "reference_date": "1992–1994 XI legislature, attributed 1992 by file title; Commons 2021 date is upload metadata, not verified exposure",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Achille_Occhetto_1992.jpg",
+      "primary_source_url": "http://legislature.camera.it/chiosco.asp?cp=1&position=XI%20Legislatura%20/%20I%20Deputati&content=deputati/legislatureprecedenti/Leg11/framedeputato.asp?Deputato=d16310",
+      "media_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Achille_Occhetto_1992.jpg",
+      "provenance": "Camera dei deputati XI legislature portrait, via Commons CC BY-SA 4.0. Photo is later than PCI dissolution and is used only for an early-1990s likeness interpretation.",
+      "observed_appearance": "Dense wavy dark hair parted near the center; thick dark moustache; heavy eyes and eyebrows; broad rounded face; no glasses; dark suit, white shirt, bold irregular-striped dark tie."
+    },
+    {
+      "person": "bettino_craxi",
+      "local_reference": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-italy-reference-audit\\craxi-circa1989.jpg",
+      "reference_date": "Circa 1989, as catalogued",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Bettino_Craxi_MEP_Portrait.jpg",
+      "primary_source_url": "https://multimedia.europarl.europa.eu/en/photo/portrait-of-bettino-craxi-mep_NPC0059_Bettino_CRAXI_001",
+      "media_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Bettino_Craxi_MEP_Portrait.jpg",
+      "provenance": "European Parliament Multimedia Centre portrait; Commons uses EU attribution reuse template, not public domain or a generic CC license. Reference only unless exact EP conditions are checked before shipping.",
+      "observed_appearance": "Broad heavy face and neck; high bald crown with thin dark-graying side hair; large brown rectangular tortoiseshell glasses with pale temple arms; round cheeks; full straight mouth; clean-shaven; navy suit, white shirt and red tie."
+    },
+    {
+      "person": "gianfranco_fini",
+      "local_reference": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-italy-reference-audit\\fini-1992.jpg",
+      "reference_date": "1992, Camera XI legislature; exact exposure not independently verified",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Gianfranco_Fini_1992.jpg",
+      "primary_source_url": "https://dati.camera.it/ocd/deputato.rdf/d23480_11",
+      "media_url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Gianfranco_Fini_1992.jpg",
+      "provenance": "Official Camera dei deputati portrait via Commons, CC BY-SA 4.0. Reference photo is not shipped.",
+      "observed_appearance": "Tidy short dark side-part hair; long lean oval face; thin metal large aviator glasses; straight prominent nose; clean-shaven; gray suit, white shirt and narrow dark tie."
+    },
+    {
+      "person": "giorgio_la_malfa",
+      "local_reference": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-italy-reference-audit\\lamalfa-1994.jpg",
+      "reference_date": "1994 European Parliament portrait; not 1990 photography",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Giorgio_La_Malfa_MEP_1994_(02).jpg",
+      "primary_source_url": "https://multimedia.europarl.europa.eu/en/photo/mep-4th-parliamentary-term_19940000_LA_MALFA_Giorgio",
+      "media_url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Giorgio_La_Malfa_MEP_1994_%2802%29.jpg",
+      "provenance": "European Parliament Multimedia Centre official portrait; Commons EU attribution reuse template. Do not call it public domain or misattribute photography to the Commission. Reference only without independently checking reuse conditions.",
+      "observed_appearance": "Thick gray side-swept hair; large brown rectangular glasses; rounded rectangular face; greenish-hazel eyes in the image; full lips and small smile; clean-shaven; dark suit, white shirt, cream/navy/red diagonal tie."
+    },
+    {
+      "person": "antonio_cariglia",
+      "local_reference": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-italy-reference-audit\\cariglia-1992.jpg",
+      "reference_date": "Camera XI legislature 1992–1994; exposure date unverified",
+      "page_url": "https://legislature.camera.it/_dati/leg11/deputati/foto/d1370.jpg",
+      "primary_source_url": "https://legislature.camera.it/_dati/leg11/deputati/foto/d1370.jpg",
+      "media_url": "https://legislature.camera.it/_dati/leg11/deputati/foto/d1370.jpg",
+      "provenance": "Direct official Camera portrait path for deputy d1370. JPEG fetched and visually inspected. License not independently verified; copyrighted reference only, not a shippable/free photo claim.",
+      "observed_appearance": "Grayscale portrait: close-cropped receding gray hair; tall broad forehead; dark thick low eyebrows; deep-set eyes; long straight nose; angular broad jaw; serious closed mouth; clean-shaven; no glasses; subtly pinstriped dark suit, white shirt and small-pattern tie."
+    },
+    {
+      "person": "renato_altissimo",
+      "local_reference": "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-italy-reference-audit\\altissimo-1992.jpg",
+      "reference_date": "1992 Camera XI portrait; Commons says 22 April 1992, potentially legislature indexing rather than exposure",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Renato_Altissimo_(1992).jpg",
+      "media_url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Renato_Altissimo_%281992%29.jpg",
+      "provenance": "Camera dei deputati official portrait via Commons, CC BY-SA 4.0. Exact day of photographic exposure not independently confirmed.",
+      "observed_appearance": "High bald forehead; short dark side and back hair; thick dark eyebrows; intense eyes; long prominent nose; full round cheeks; clean-shaven; no glasses; dark suit, white shirt and dark tie."
+    }
+  ],
+  "research_issues": [
+    "DC municipal Martinazzoli biography dates PPI creation differently from the original 18 January 1994 speech; retain a month-level transition and do not invent a legal dissolution.",
+    "MSI 14 January 1990 congress recording supports Rauti's election; Fini remains the 1 January starter. July 1991 recording date is not automatically the election date.",
+    "PRI SIUSA summary compresses La Malfa's 1987–2001 span and omits Bogi's regency, so original council recordings supply the interruption.",
+    "PRI 2016 coordination was a team. Paolo Morelli and Salvatore Piro are described as deputy coordinators in the September agenda, not equal national secretaries. Their roles belong in a later office taxonomy, not fake coalition components.",
+    "PSDI SIUSA Assisi organizational page explicitly says its national history was taken from Wikipedia. It was not used as independent primary proof of national legal continuity.",
+    "Contemporary l'Unità reports are original event reporting for Ferri's election and the SDI merger. Claims are limited to the actual reported events; copyrighted text is not reproduced.",
+    "Exact PSI 1994 coordination and PSDI 1994–95 regency remain gaps. Do not collapse coordinator, deputy, president and secretary into a made-up sole chair.",
+    "All terms remain partial until lifecycle migration and presidency/parliamentary-role policy are reviewed; no runtime changes or asset generation belong to this staging task."
+  ],
+  "portrait_policy": {
+    "status": "reference-audit-only",
+    "inspected": true,
+    "shipped_photographs": false,
+    "art_scope": "Original cartoon likenesses in established game style, interpreted for early 1990s. Preserve actual source dates and avoid claiming later portraits were photographed in 1990.",
+    "licensing": "Observed appearance can inform original cartoon design. Reference provenance does not itself grant permission to ship the source photograph. Keep generated-art provenance separate."
+  }
+}

@@ -299,8 +299,13 @@ vec3 swWeather(vec3 albedo, vec3 N, vec3 P, float depth) {
   // moved the colour more than twice as far as the winter repaint does. So the
   // sign is the other way: the darker the base, the less coverage it takes, and
   // the treatment stays quieter than the finish selector on every material.
+  // The enlarged tank exposes an upward-facing black grille lip inside a
+  // strong dust patch. The former dark cap still doubled that lip's luminance
+  // (0.04144 to 0.08438). Reduce the dark-surface allowance from 45% to 40%;
+  // painted material above the darkness band keeps the same coverage. This
+  // retains the smooth patch variation and does not clamp the finished colour.
   float dust = upFace * (0.55 + 0.45 * lowly) * (0.35 + 0.65 * blotch)
-    * (1.0 - 0.55 * darkness) * (1.0 - 0.55 * mark);
+    * (1.0 - 0.60 * darkness) * (1.0 - 0.55 * mark);
   albedo = mix(albedo, SW_DUST, swSoft(dust) * 0.26);
 
   // 3. GRIME: the splash band, the undersides, and streaks. THE STREAKS ARE AN

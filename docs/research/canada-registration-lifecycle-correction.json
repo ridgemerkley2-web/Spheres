@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-09-07",
+  "type": "narrow_existing_party_lifecycle_correction",
+  "nation": "Canada",
+  "source": "docs/research/canada-party-leaders-1990-2026.json",
+  "source_before_sha256": "dc6586f246fbd1de2e2e39bdccc4c5b45d068912b10b0b381123795c683b5869",
+  "registry_before_sha256": "1a81110749bbd9a60298d0ccc76027a0e5454e65eb34c87412a844f304c51a58",
+  "corrections": [
+    {
+      "party": "ca_pc",
+      "changed_fields": {
+        "dissolved": {
+          "before": null,
+          "after": {
+            "kind": "day",
+            "value": "2003-12-07"
+          }
+        },
+        "sources": {
+          "before": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+            "https://www.assnat.qc.ca/fr/deputes/charest-jean-525/biographie.html",
+            "https://recherche-collection-search.bac-lac.gc.ca/eng/home/record?app=FonAndCol&idnumber=107227"
+          ],
+          "after": [
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+            "https://www.assnat.qc.ca/fr/deputes/charest-jean-525/biographie.html",
+            "https://recherche-collection-search.bac-lac.gc.ca/eng/home/record?app=FonAndCol&idnumber=107227",
+            "https://www.elections.ca/content.aspx?dir=rep%2Foff%2Fsta2003&document=fo&lang=e&section=res"
+          ]
+        },
+        "identity_note": {
+          "before": "Original federal Progressive Conservative Party only. Provincial parties of the same name and the post-2003 Conservative Party are distinct; brief PC/Democratic Representative parliamentary coalition needs separate component review if represented.",
+          "after": "Original federal Progressive Conservative Party only. Elections Canada records replacement of its registration by the newly merged Conservative Party on 7 December 2003. Provincial parties of the same name and the post-merger Conservative Party are distinct. A counterfactual campaign may retain the original party; its future templates do not assert historical survival."
+        }
+      }
+    },
+    {
+      "party": "ca_reform",
+      "changed_fields": {
+        "dissolved": {
+          "before": null,
+          "after": {
+            "kind": "day",
+            "value": "2003-12-07"
+          }
+        },
+        "sources": {
+          "before": [
+            "https://www.alberta.ca/aoe-preston-manning",
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+            "https://elections.ca/content.aspx?dir=pre&document=decision&lang=e&section=med"
+          ],
+          "after": [
+            "https://www.alberta.ca/aoe-preston-manning",
+            "https://www.ourcommons.ca/procedure-and-practice-4/app08-e.html",
+            "https://elections.ca/content.aspx?dir=pre&document=decision&lang=e&section=med",
+            "https://www.elections.ca/content.aspx?dir=rep%2Foff%2Fsta2003&document=fo&lang=e&section=res"
+          ]
+        },
+        "identity_note": {
+          "before": "Exact baseline Reform row; the 2000 change was an officially registered name change/reorganization, unlike the 2003 multi-party merger. Record distinct lifecycle slices before continuation.",
+          "after": "The baseline Reform row follows the same legal registration renamed Canadian Reform Conservative Alliance, retroactive to 27 March 2000, until the merger replaced that registration on 7 December 2003. The 2000 rename is not a legal dissolution. The intervening Alliance leadership and precise name-phase presentation remain unreviewed here; the frozen Reform label must not be read as the contemporary party name after 2000. Counterfactual campaign survival remains possible."
+        }
+      }
+    }
+  ],
+  "facts_preserved": {
+    "every_person": true,
+    "every_term": true,
+    "every_office_link": true,
+    "every_gap_notice": true,
+    "all_other_party_rows": true
+  },
+  "sources": [
+    "https://www.elections.ca/content.aspx?dir=rep%2Foff%2Fsta2003&document=fo&lang=e&section=res",
+    "https://elections.ca/content.aspx?dir=pre&document=decision&lang=e&section=med"
+  ],
+  "explanation": "Elections Canada records replacement of both legal registrations on 7 December 2003. The Reform-to-Alliance change was a legal name change, not a 2000 dissolution. Unreviewed intervening Alliance leadership remains a historical gap. Only lifecycle/source/note fields are synchronized into staging and runtime; saved holders and fictional identity hashes are unchanged."
+}

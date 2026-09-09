@@ -1,0 +1,54 @@
+{
+  "imported_parties": [
+    {
+      "nation": "France",
+      "party": "fr_ps",
+      "terms": 16,
+      "components": []
+    },
+    {
+      "nation": "France",
+      "party": "fr_rpr",
+      "terms": 6,
+      "components": []
+    },
+    {
+      "nation": "France",
+      "party": "fr_pcf",
+      "terms": 6,
+      "components": []
+    },
+    {
+      "nation": "France",
+      "party": "fr_udf",
+      "terms": 19,
+      "components": [
+        "fr_udf_federation",
+        "fr_udf_pr",
+        "fr_udf_dl",
+        "fr_udf_cds",
+        "fr_udf_fd",
+        "fr_udf_radical",
+        "fr_udf_psd",
+        "fr_udf_perspectives",
+        "fr_udf_ppdf",
+        "fr_udf_direct",
+        "fr_udf_pril"
+      ]
+    },
+    {
+      "nation": "France",
+      "party": "fr_fn",
+      "terms": 7,
+      "components": []
+    }
+  ],
+  "people_changed": 0,
+  "office_links_changed": 0,
+  "executive_grants_added": 0,
+  "save_files_changed": 0,
+  "source_file": "docs/research/france-party-leaders-1990-2026.json",
+  "source_sha256": "8c5d6b1932c98d81f86dcff27c9582803cd44b5f76c57207bd3ea195e279cd2a",
+  "status": "party_terms_imported",
+  "validation": "Run native registry, succession and saved-campaign checks after import."
+}

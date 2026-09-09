@@ -1,0 +1,1594 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-09-07",
+  "historical_default": "party_only",
+  "institutions": [
+    {
+      "nation": "USA",
+      "fact": "Political parties select presidential nominees through a nomination process; the Electoral College chooses the president. Holding a national party committee chair is not itself a presidential nomination.",
+      "sources": [
+        "https://www.usa.gov/election"
+      ],
+      "gameplay_assumption": "A separately reviewed presidential contender role is required for a new named national executive. The generic government event does not implement a complete presidential nomination or Electoral College simulation."
+    },
+    {
+      "nation": "France",
+      "fact": "Constitution articles 6 and 7 separate the directly elected President of the Republic from party leadership; article 8 gives the President appointment of the Prime Minister.",
+      "sources": [
+        "https://www.elysee.fr/en/french-presidency/constitution-of-4-october-1958"
+      ],
+      "gameplay_assumption": "A party first secretary, party president or constituent leader is not automatically a national president. The current single-office government engine does not model separate presidential and parliamentary mandates or cohabitation; a new named executive therefore requires an explicit presidential contender grant."
+    },
+    {
+      "nation": "UK",
+      "fact": "The government must command the confidence of the House of Commons; party leadership and government formation are related but distinct.",
+      "sources": [
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "gameplay_assumption": "The exact pre-policy UK party terms retain their existing parliamentary gameplay selection behavior. This is a compatibility allowance, not proof of each person's Commons membership or eligibility on every reference date. New unreviewed terms are party-only."
+    },
+    {
+      "nation": "Japan",
+      "fact": "Constitution article 67 provides that the Diet designates the Prime Minister from its members. A party presidency is a separate office.",
+      "sources": [
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "gameplay_assumption": "The exact pre-policy Japan party terms retain their existing parliamentary gameplay selection behavior. This is a compatibility allowance, not a newly completed audit of every Diet membership interval. New unreviewed terms are party-only."
+    },
+    {
+      "nation": "Germany",
+      "fact": "The Bundestag elects the Federal Chancellor following nomination by the Federal President; the President appoints the elected candidate. Party chairmanship is a different office.",
+      "sources": [
+        "https://www.bundestag.de/en/parliament/function/chancellor"
+      ],
+      "gameplay_assumption": "New historical party offices are reference/party-only. Fictional party successors require a separately authored and reviewed executive contender grant before the existing government simulation can select their identity for national office. This gate does not add a full constitutional or nomination simulation."
+    },
+    {
+      "nation": "Italy",
+      "fact": "Constitution article 92 provides that the President of the Republic appoints the President of the Council of Ministers. The appointment is distinct from holding a party office.",
+      "sources": [
+        "https://www.quirinale.it/allegati_statici/costituzione/costituzione_inglese.pdf"
+      ],
+      "gameplay_assumption": "New historical party offices are reference/party-only. Fictional party successors require a separately authored and reviewed executive contender grant before the existing government simulation can select their identity for national office. This gate does not add a full constitutional or nomination simulation."
+    },
+    {
+      "nation": "India",
+      "fact": "The President appoints the Prime Minister under article 75(1); the official 2024 appointment explains the assessment of majority support in the Lok Sabha. Party chairmanship is not itself that appointment.",
+      "sources": [
+        "https://www.presidentofindia.gov.in/press_releases/press-communique-13"
+      ],
+      "gameplay_assumption": "New historical party offices are reference/party-only. Fictional party successors require a separately authored and reviewed executive contender grant before the existing government simulation can select their identity for national office. This gate does not add a full constitutional or nomination simulation."
+    },
+    {
+      "nation": "China",
+      "fact": "Constitution article 62 distinguishes National People's Congress selection of state offices, including the President and the Premier of the State Council, from political party offices.",
+      "sources": [
+        "https://www.npc.gov.cn/englishnpc/constitution2019/201911/t20191120_384295.html"
+      ],
+      "gameplay_assumption": "New historical party offices are reference/party-only. Fictional party successors require a separately authored and reviewed executive contender grant before the existing government simulation can select their identity for national office. This gate does not add a full constitutional or nomination simulation."
+    },
+    {
+      "nation": "Brazil",
+      "fact": "The electoral court records the 1989 direct presidential election. Election to the federal presidency is a distinct process from holding a party administrative role.",
+      "sources": [
+        "https://www.tse.jus.br/eleicoes/historia/cronologia-das-eleicoes"
+      ],
+      "gameplay_assumption": "New historical party offices are party-only. A fictional successor needs an individually reviewed executive contender grant before a new named national-office selection. The government simulation still decides when succession happens; no national appointment is inferred from a party chair title."
+    },
+    {
+      "nation": "SouthAfrica",
+      "fact": "Under section 86 of the 1996 Constitution, the National Assembly elects the President from its members. This current institutional source is not projected backwards onto the different 1990 constitutional order.",
+      "sources": [
+        "https://www.gov.za/documents/constitution/constitution-republic-south-africa-1996-chapter-5-president-and-national"
+      ],
+      "gameplay_assumption": "New historical party offices are party-only. A fictional successor needs an individually reviewed executive contender grant before a new named national-office selection. The government simulation still decides when succession happens; no national appointment is inferred from a party chair title."
+    },
+    {
+      "nation": "Canada",
+      "fact": "The Governor General invites the person best placed to command House of Commons confidence to form a government. This is distinct from a party administrative appointment.",
+      "sources": [
+        "https://www.gg.ca/en/governor-general/role-and-responsibilities/constitutional-duties/swearing-process"
+      ],
+      "gameplay_assumption": "New historical party offices are party-only. A fictional successor needs an individually reviewed executive contender grant before a new named national-office selection. The government simulation still decides when succession happens; no national appointment is inferred from a party chair title."
+    },
+    {
+      "nation": "Australia",
+      "fact": "The parliamentary education office distinguishes a government supported by a House of Representatives majority and the Prime Minister as its leader. A party administrative role is not automatically that parliamentary leadership role.",
+      "sources": [
+        "https://peo.gov.au/understand-our-parliament/your-questions-on-notice/questions/what-traditions-guide-how-the-government-works"
+      ],
+      "gameplay_assumption": "New historical party offices are party-only. A fictional successor needs an individually reviewed executive contender grant before a new named national-office selection. The government simulation still decides when succession happens; no national appointment is inferred from a party chair title."
+    }
+  ],
+  "historical_grants": [
+    {
+      "nation": "Japan",
+      "party": "jp_ldp",
+      "person": "toshiki_kaifu",
+      "term": "jp_ldp_toshiki_kaifu_19890808",
+      "component": null,
+      "source_role": "President of the Liberal Democratic Party (総裁)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_ldp",
+      "person": "kiichi_miyazawa",
+      "term": "jp_ldp_kiichi_miyazawa_19911031",
+      "component": null,
+      "source_role": "President of the Liberal Democratic Party (総裁)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_ldp",
+      "person": "yohei_kono",
+      "term": "jp_ldp_yohei_kono_19930730",
+      "component": null,
+      "source_role": "President of the Liberal Democratic Party (総裁)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_ldp",
+      "person": "ryutaro_hashimoto",
+      "term": "jp_ldp_ryutaro_hashimoto_19951001",
+      "component": null,
+      "source_role": "President of the Liberal Democratic Party (総裁)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_ldp",
+      "person": "keizo_obuchi",
+      "term": "jp_ldp_keizo_obuchi_19980724",
+      "component": null,
+      "source_role": "President of the Liberal Democratic Party (総裁)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_ldp",
+      "person": "yoshiro_mori",
+      "term": "jp_ldp_yoshiro_mori_20000405",
+      "component": null,
+      "source_role": "President of the Liberal Democratic Party (総裁)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_ldp",
+      "person": "junichiro_koizumi",
+      "term": "jp_ldp_junichiro_koizumi_20010424",
+      "component": null,
+      "source_role": "President of the Liberal Democratic Party (総裁)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_ldp",
+      "person": "shinzo_abe",
+      "term": "jp_ldp_shinzo_abe_20061001",
+      "component": null,
+      "source_role": "President of the Liberal Democratic Party (総裁)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_ldp",
+      "person": "yasuo_fukuda",
+      "term": "jp_ldp_yasuo_fukuda_20070923",
+      "component": null,
+      "source_role": "President of the Liberal Democratic Party (総裁)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_ldp",
+      "person": "taro_aso",
+      "term": "jp_ldp_taro_aso_20080922",
+      "component": null,
+      "source_role": "President of the Liberal Democratic Party (総裁)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_ldp",
+      "person": "sadakazu_tanigaki",
+      "term": "jp_ldp_sadakazu_tanigaki_20091001",
+      "component": null,
+      "source_role": "President of the Liberal Democratic Party (総裁)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_ldp",
+      "person": "shinzo_abe",
+      "term": "jp_ldp_shinzo_abe_20121001",
+      "component": null,
+      "source_role": "President of the Liberal Democratic Party (総裁)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_ldp",
+      "person": "yoshihide_suga",
+      "term": "jp_ldp_yoshihide_suga_20200914",
+      "component": null,
+      "source_role": "President of the Liberal Democratic Party (総裁)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_ldp",
+      "person": "fumio_kishida",
+      "term": "jp_ldp_fumio_kishida_20211001",
+      "component": null,
+      "source_role": "President of the Liberal Democratic Party (総裁)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_ldp",
+      "person": "shigeru_ishiba",
+      "term": "jp_ldp_shigeru_ishiba_20241001",
+      "component": null,
+      "source_role": "President of the Liberal Democratic Party (総裁)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_ldp",
+      "person": "sanae_takaichi",
+      "term": "jp_ldp_sanae_takaichi_20251004",
+      "component": null,
+      "source_role": "President of the Liberal Democratic Party (総裁)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jimin.jp/aboutus/history/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_jsp",
+      "person": "takako_doi",
+      "term": "jp_jsp_takako_doi_198609",
+      "component": "jp_jsp_1945",
+      "source_role": "Chair of the Japan Socialist Party (中央執行委員長)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jnpc.or.jp/archive/conferences/21625/report",
+        "https://www.jnpc.or.jp/archive/conferences/20132/report",
+        "https://kotobank.jp/word/%E6%97%A5%E6%9C%AC%E7%A4%BE%E4%BC%9A%E5%85%9A-110180",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_jsp",
+      "person": "makoto_tanabe",
+      "term": "jp_jsp_makoto_tanabe_199107",
+      "component": "jp_jsp_1945",
+      "source_role": "Chair of the Japan Socialist Party (中央執行委員長)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jnpc.or.jp/archive/conferences/20274/report/",
+        "https://ndlsearch.ndl.go.jp/en/books/R000000004-I3481460",
+        "https://kotobank.jp/word/%E6%97%A5%E6%9C%AC%E7%A4%BE%E4%BC%9A%E5%85%9A-110180",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_jsp",
+      "person": "sadao_yamahana",
+      "term": "jp_jsp_sadao_yamahana_19930119",
+      "component": "jp_jsp_1945",
+      "source_role": "Chair of the Japan Socialist Party (中央執行委員長)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://ndlsearch.ndl.go.jp/en/books/R000000004-I3481460",
+        "https://kotobank.jp/word/%E6%97%A5%E6%9C%AC%E7%A4%BE%E4%BC%9A%E5%85%9A-110180",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_jsp",
+      "person": "tomiichi_murayama",
+      "term": "jp_jsp_tomiichi_murayama_199309",
+      "component": "jp_jsp_1945",
+      "source_role": "Chair of the Japan Socialist Party (中央執行委員長)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://kotobank.jp/word/%E6%97%A5%E6%9C%AC%E7%A4%BE%E4%BC%9A%E5%85%9A-110180",
+        "https://sdp.or.jp/sdp-journal/kettou-3/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_jsp",
+      "person": "tomiichi_murayama",
+      "term": "jp_jsp_tomiichi_murayama_199601",
+      "component": "jp_sdp_1996",
+      "source_role": "Leader of the Social Democratic Party (党首)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://sdp.or.jp/sdp-journal/kettou-3/",
+        "https://sdp.or.jp/policy-legislation/1996-1990/%E6%94%BF%E7%AD%96%E8%B3%87%E6%96%999611_362.pdf",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_jsp",
+      "person": "takako_doi",
+      "term": "jp_jsp_takako_doi_199609",
+      "component": "jp_sdp_1996",
+      "source_role": "Leader of the Social Democratic Party (党首)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://sdp.or.jp/policy-legislation/1996-1990/%E6%94%BF%E7%AD%96%E8%B3%87%E6%96%999611_362.pdf",
+        "https://sdp.or.jp/statement/statement_2003/danwa0211.html",
+        "https://kotobank.jp/word/%E5%9C%9F%E4%BA%95%E3%81%9F%E3%81%8B%E5%AD%90-102930",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_jsp",
+      "person": "mizuho_fukushima",
+      "term": "jp_jsp_mizuho_fukushima_200311",
+      "component": "jp_sdp_1996",
+      "source_role": "Leader of the Social Democratic Party (党首)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.japantimes.co.jp/news/2003/11/16/national/sdp-hands-fukushima-huge-task-as-new-leader/",
+        "https://www.sdp-ishikawa.jp/archives/date/2013/10",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_jsp",
+      "person": "tadatomo_yoshida",
+      "term": "jp_jsp_tadatomo_yoshida_201310",
+      "component": "jp_sdp_1996",
+      "source_role": "Leader of the Social Democratic Party (党首)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.sdp-ishikawa.jp/archives/date/2013/10",
+        "https://hiroshima.sdp.or.jp/special.html",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_jsp",
+      "person": "seiji_mataichi",
+      "term": "jp_jsp_seiji_mataichi_201802",
+      "component": "jp_sdp_1996",
+      "source_role": "Leader of the Social Democratic Party (党首)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://hiroshima.sdp.or.jp/special.html",
+        "https://sdp.or.jp/sdp-paper/mataichi/",
+        "https://hiroshima.sdp.or.jp/20200222_special.html",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_jsp",
+      "person": "mizuho_fukushima",
+      "term": "jp_jsp_mizuho_fukushima_202002",
+      "component": "jp_sdp_1996",
+      "source_role": "Leader of the Social Democratic Party (党首)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://hiroshima.sdp.or.jp/20200222_special.html",
+        "https://sdp.or.jp/sdp-paper/toushu-116/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_komeito",
+      "person": "koshiro_ishida",
+      "term": "jp_komeito_koshiro_ishida_1989",
+      "component": "jp_komeito_1964",
+      "source_role": "Chair of Komeito (中央執行委員長)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://ndlsearch.ndl.go.jp/en/books/R000000004-I2927496",
+        "https://www.jnpc.or.jp/archive/conferences/20132/report",
+        "https://www.komei.or.jp/about/history/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_komeito",
+      "person": "tomio_fujii",
+      "term": "jp_komeito_tomio_fujii_199412",
+      "component": "jp_komei_1994",
+      "source_role": "Representative (代表)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://digital.komei-shimbun.jp/ex-keyword/active-supporters/0365202601012601",
+        "https://www.komei.or.jp/result/story/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_komeito",
+      "person": "toshiko_hamayotsu",
+      "term": "jp_komeito_toshiko_hamayotsu_199801",
+      "component": "jp_komei_1994",
+      "source_role": "Representative (代表)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.komei.or.jp/result/story/",
+        "https://www.komei.or.jp/about/history/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_komeito",
+      "person": "takenori_kanzaki",
+      "term": "jp_komeito_takenori_kanzaki_19981107",
+      "component": "jp_komeito_1998",
+      "source_role": "Representative (代表)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.komei.or.jp/about/history/",
+        "https://www.komei.or.jp/youthblog/archives/002/",
+        "https://www.jnpc.or.jp/archive/conferences/20953/report/",
+        "https://www.jstage.jst.go.jp/article/yoron/83/0/83_KJ00005350454/_pdf/-char/en",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_komeito",
+      "person": "akihiro_ota",
+      "term": "jp_komeito_akihiro_ota_20060930",
+      "component": "jp_komeito_1998",
+      "source_role": "Representative (代表)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.komei.or.jp/youthblog/archives/002/",
+        "https://www.komei.or.jp/km/k-murakami/files/2015/06/ab979ae2a4f38345e3c0e387174d4860.pdf",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_komeito",
+      "person": "natsuo_yamaguchi",
+      "term": "jp_komeito_natsuo_yamaguchi_20090908",
+      "component": "jp_komeito_1998",
+      "source_role": "Representative (代表)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.komei.or.jp/km/k-murakami/files/2015/06/ab979ae2a4f38345e3c0e387174d4860.pdf",
+        "https://www.komei.or.jp/km/ashiya-tahara/2024/09/28/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_komeito",
+      "person": "keiichi_ishii",
+      "term": "jp_komeito_keiichi_ishii_20240928",
+      "component": "jp_komeito_1998",
+      "source_role": "Representative (代表)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.komei.or.jp/km/ashiya-tahara/2024/09/28/",
+        "https://www.komei.or.jp/special/komei60/page/52/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_komeito",
+      "person": "tetsuo_saito",
+      "term": "jp_komeito_tetsuo_saito_20241109",
+      "component": "jp_komeito_1998",
+      "source_role": "Representative (代表)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.komei.or.jp/special/komei60/page/52/",
+        "https://www.komei.or.jp/komeinews/p504957/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_komeito",
+      "person": "toshiko_takeya",
+      "term": "jp_komeito_toshiko_takeya_20260122",
+      "component": "jp_komeito_1998",
+      "source_role": "Acting representative of Komeito (代表代理; publicly styled代表)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.komei.or.jp/komeinews/p504957/",
+        "https://www.komei.or.jp/komeinews/p506839/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_komeito",
+      "person": "toshiko_takeya",
+      "term": "jp_komeito_toshiko_takeya_20260314",
+      "component": "jp_komeito_1998",
+      "source_role": "Representative (代表)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.komei.or.jp/komeinews/p506839/",
+        "https://www.komei.or.jp/about/profile/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_jcp",
+      "person": "tetsuzo_fuwa",
+      "term": "jp_jcp_tetsuzo_fuwa_1989",
+      "component": null,
+      "source_role": "Chair of the Executive Committee (幹部会委員長)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jnpc.or.jp/archive/conferences/20132/report",
+        "https://news.tv-asahi.co.jp/news_politics/articles/000476094.html",
+        "https://www.jcp.or.jp/jcp/yakuin/3yaku/FUWA/index_2000.html",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_jcp",
+      "person": "kazuo_shii",
+      "term": "jp_jcp_kazuo_shii_200011",
+      "component": null,
+      "source_role": "Chair of the Executive Committee (幹部会委員長)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jcp.or.jp/jcp/yakuin/3yaku/FUWA/index_2000.html",
+        "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_jcp",
+      "person": "tomoko_tamura",
+      "term": "jp_jcp_tomoko_tamura_20240118",
+      "component": null,
+      "source_role": "Chair of the Executive Committee (幹部会委員長)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html",
+        "https://www.jcp.or.jp/web_senkyo/2542/",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_dsp",
+      "person": "eiichi_nagasue",
+      "term": "jp_dsp_eiichi_nagasue_198902",
+      "component": null,
+      "source_role": "Chair of the Democratic Socialist Party (中央執行委員長)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.arsvi.com/d/c0132089a02.htm",
+        "https://www.jnpc.or.jp/archive/conferences/20132/report",
+        "https://oisr-org.ws.hosei.ac.jp/research/dglb/explanation/exp_detail/?exp_id=4-012-9003764",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_dsp",
+      "person": "keigo_ouchi",
+      "term": "jp_dsp_keigo_ouchi_199004",
+      "component": null,
+      "source_role": "Chair of the Democratic Socialist Party (中央執行委員長)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://oisr-org.ws.hosei.ac.jp/research/dglb/explanation/exp_detail/?exp_id=4-012-9003764",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "Japan",
+      "party": "jp_dsp",
+      "person": "takashi_yonezawa",
+      "term": "jp_dsp_takashi_yonezawa_199406",
+      "component": null,
+      "source_role": "Chair of the Democratic Socialist Party (中央執行委員長)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.jnpc.or.jp/archive/conferences/20523/report",
+        "https://ndlsearch.ndl.go.jp/file/rnavi/kensei/umezawashouhei/index_umezawashouhei.pdf",
+        "https://www.shugiin.go.jp/internet/itdb_kenpou.nsf/html/kenpou/en/constitution.htm"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_con",
+      "person": "margaret_thatcher",
+      "term": "uk_con_margaret_thatcher_1975_02_11",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.margaretthatcher.org/document/102618",
+        "https://johnmajorarchive.org.uk/1990/11/doorstep-interview-27-november-1990/",
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+        "https://www.margaretthatcher.org/essential/chronology",
+        "https://www.margaretthatcher.org/archive/MTobit",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_con",
+      "person": "john_major",
+      "term": "uk_con_john_major_1990_11_27",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://johnmajorarchive.org.uk/1990/11/doorstep-interview-27-november-1990/",
+        "https://johnmajorarchive.org.uk/1995/06/mr-majors-resignation-speech-22-june-1995/",
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+        "https://www.margaretthatcher.org/essential/chronology",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_con",
+      "person": "john_major",
+      "term": "uk_con_john_major_1995_07_04",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_con",
+      "person": "william_hague",
+      "term": "uk_con_william_hague_1997_06_19",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_con",
+      "person": "iain_duncan_smith",
+      "term": "uk_con_iain_duncan_smith_2001_09_13",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_con",
+      "person": "michael_howard",
+      "term": "uk_con_michael_howard_2003_11_06",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_con",
+      "person": "david_cameron",
+      "term": "uk_con_david_cameron_2005_12_06",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+        "https://members.parliament.uk/member/8/career",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_con",
+      "person": "theresa_may",
+      "term": "uk_con_theresa_may_2016_07_11",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://members.parliament.uk/member/8/career",
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_con",
+      "person": "boris_johnson",
+      "term": "uk_con_boris_johnson_2019_07_23",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://members.parliament.uk/member/1423/career",
+        "https://hansard.parliament.uk/pdf/commons/2019-07-23",
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_con",
+      "person": "liz_truss",
+      "term": "uk_con_liz_truss_2022_09_05",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_con",
+      "person": "rishi_sunak",
+      "term": "uk_con_rishi_sunak_2022_10_24",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_con",
+      "person": "kemi_badenoch",
+      "term": "uk_con_kemi_badenoch_2024_11_02",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN01366/SN01366.pdf",
+        "https://www.conservatives.com/news/conservatives-announce-new-shadow-cabinet",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lab",
+      "person": "neil_kinnock",
+      "term": "uk_lab_neil_kinnock_1983_10_02",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf",
+        "https://members.parliament.uk/member/693/career",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lab",
+      "person": "john_smith",
+      "term": "uk_lab_john_smith_1992_07_18",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lab",
+      "person": "margaret_beckett",
+      "term": "uk_lab_margaret_beckett_1994_05_12",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lab",
+      "person": "tony_blair",
+      "term": "uk_lab_tony_blair_1994_07_21",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lab",
+      "person": "gordon_brown",
+      "term": "uk_lab_gordon_brown_2007_06_24",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lab",
+      "person": "harriet_harman",
+      "term": "uk_lab_harriet_harman_2010_05_11",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lab",
+      "person": "ed_miliband",
+      "term": "uk_lab_ed_miliband_2010_09_25",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lab",
+      "person": "harriet_harman",
+      "term": "uk_lab_harriet_harman_2015_05_08",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lab",
+      "person": "jeremy_corbyn",
+      "term": "uk_lab_jeremy_corbyn_2015_09_12",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03938/SN03938.pdf",
+        "https://labour.org.uk/wp-content/uploads/2023/01/The-Forde-Report.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lab",
+      "person": "keir_starmer",
+      "term": "uk_lab_keir_starmer_2020_04_04",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://labour.org.uk/wp-content/uploads/2023/01/The-Forde-Report.pdf",
+        "https://www.itv.com/news/2026-06-22/keir-starmer-resigns-as-labour-leader-his-speech-in-full",
+        "https://labour.org.uk/updates/members-updates/andy-burnham-elected-leader-of-the-labour-party/",
+        "https://www.gov.uk/government/people/andy-burnham",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lab",
+      "person": "andy_burnham",
+      "term": "uk_lab_andy_burnham_2026_07_17",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://labour.org.uk/updates/members-updates/andy-burnham-elected-leader-of-the-labour-party/",
+        "https://www.gov.uk/government/people/andy-burnham",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lib",
+      "person": "paddy_ashdown",
+      "term": "uk_lib_paddy_ashdown_1988_07_28",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf",
+        "https://www.libdems.org.uk/internal-elections/election-results/leadership",
+        "https://www.ohr.int/63900/",
+        "https://members.parliament.uk/member/258/contact",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lib",
+      "person": "charles_kennedy",
+      "term": "uk_lib_charles_kennedy_1999_08_09",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf",
+        "https://www.libdems.org.uk/internal-elections/election-results/leadership",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lib",
+      "person": "menzies_campbell",
+      "term": "uk_lib_menzies_campbell_2006_01_07",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lib",
+      "person": "menzies_campbell",
+      "term": "uk_lib_menzies_campbell_2006_03_02",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lib",
+      "person": "vince_cable",
+      "term": "uk_lib_vince_cable_2007_10_15",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf",
+        "https://members.parliament.uk/member/207/contact",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lib",
+      "person": "nick_clegg",
+      "term": "uk_lib_nick_clegg_2007_12_18",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf",
+        "https://members.parliament.uk/member/1563/career",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lib",
+      "person": "tim_farron",
+      "term": "uk_lib_tim_farron_2015_07_16",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://members.parliament.uk/member/1591/career",
+        "https://researchbriefings.files.parliament.uk/documents/SN03872/SN03872.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lib",
+      "person": "vince_cable",
+      "term": "uk_lib_vince_cable_2017_07_20",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://members.parliament.uk/member/207/contact",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lib",
+      "person": "jo_swinson",
+      "term": "uk_lib_jo_swinson_2019_07_22",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://members.parliament.uk/member/207/contact",
+        "https://members.parliament.uk/member/188/career",
+        "https://search.electoralcommission.org.uk/Api/Accounts/Documents/22616",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lib",
+      "person": "ed_davey",
+      "term": "uk_lib_ed_davey_2019_12_13",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://members.parliament.uk/member/188/career",
+        "https://search.electoralcommission.org.uk/Api/Accounts/Documents/22616",
+        "https://www.markpack.org.uk/files/2020/02/Liberal-Democrat-federal-conference-agenda-and-directory-Spring-2020.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lib",
+      "person": "sal_brinton",
+      "term": "uk_lib_sal_brinton_2019_12",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://search.electoralcommission.org.uk/Api/Accounts/Documents/22616",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lib",
+      "person": "mark_pack",
+      "term": "uk_lib_mark_pack_2020_01_01",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://search.electoralcommission.org.uk/Api/Accounts/Documents/22616",
+        "https://www.markpack.org.uk/files/2020/02/Liberal-Democrat-federal-conference-agenda-and-directory-Spring-2020.pdf",
+        "https://www.northwestlibdems.org.uk/fileadmin/groups/147/Documents/Conference/Conference_Spring_2024.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_lib",
+      "person": "ed_davey",
+      "term": "uk_lib_ed_davey_2020_08_27",
+      "component": null,
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://members.parliament.uk/member/188/career",
+        "https://www.londonlibdems.org.uk/",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_nat",
+      "person": "gordon_wilson",
+      "term": "uk_nat_gordon_wilson_1979",
+      "component": "snp",
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://members.parliament.uk/member/1314/career",
+        "https://www.parliament.scot/chamber-and-committees/research-prepared-for-parliament/research-briefings/2019/6/27/sb-1946",
+        "https://manuscripts.nls.uk/repositories/2/resources/16187",
+        "https://members.parliament.uk/member/577/career",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_nat",
+      "person": "alex_salmond",
+      "term": "uk_nat_alex_salmond_1990",
+      "component": "snp",
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.parliament.scot/chamber-and-committees/research-prepared-for-parliament/research-briefings/2019/6/27/sb-1946",
+        "https://www.parliament.scot/msps/current-and-previous-msps/john-swinney",
+        "https://members.parliament.uk/member/577/career",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_nat",
+      "person": "john_swinney",
+      "term": "uk_nat_john_swinney_2000_09_26",
+      "component": "snp",
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.parliament.scot/msps/current-and-previous-msps/john-swinney",
+        "https://www.parliament.scot/chamber-and-committees/research-prepared-for-parliament/research-briefings/2019/6/27/sb-1946",
+        "https://members.parliament.uk/member/577/career",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_nat",
+      "person": "alex_salmond",
+      "term": "uk_nat_alex_salmond_2004_09_03",
+      "component": "snp",
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.parliament.scot/chamber-and-committees/research-prepared-for-parliament/research-briefings/2019/6/27/sb-1946",
+        "https://www.parliament.scot/msps/current-and-previous-msps/nicola-sturgeon",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_nat",
+      "person": "nicola_sturgeon",
+      "term": "uk_nat_nicola_sturgeon_2014_11_14",
+      "component": "snp",
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.parliament.scot/msps/current-and-previous-msps/nicola-sturgeon",
+        "https://www.parliament.scot/msps/current-and-previous-msps/humza-yousaf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_nat",
+      "person": "humza_yousaf",
+      "term": "uk_nat_humza_yousaf_2023_03_27",
+      "component": "snp",
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://www.parliament.scot/msps/current-and-previous-msps/humza-yousaf",
+        "https://search.electoralcommission.org.uk/Api/Accounts/Documents/27288",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_nat",
+      "person": "john_swinney",
+      "term": "uk_nat_john_swinney_2024_05_06",
+      "component": "snp",
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://search.electoralcommission.org.uk/Api/Accounts/Documents/27288",
+        "https://www.parliament.scot/msps/current-and-previous-msps/john-swinney",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_nat",
+      "person": "dafydd_elis_thomas",
+      "term": "uk_nat_dafydd_elis_thomas_1984",
+      "component": "plaid_cymru",
+      "source_role": "party president (then political leader)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://senedd.wales/senedd-now/news/our-senedd-s-founding-father-a-tribute-to-lord-dafydd-elis-thomas/",
+        "https://members.parliament.uk/member/2816/career",
+        "https://members.parliament.uk/member/547/career",
+        "https://archives.library.wales/index.php/elis-thomas-dafydd-1946",
+        "https://www.library.wales/plaidcymru100",
+        "https://senedd.wales/senedd-now/news/members-to-pay-tribute-in-the-senedd/",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_nat",
+      "person": "dafydd_wigley",
+      "term": "uk_nat_dafydd_wigley_1991",
+      "component": "plaid_cymru",
+      "source_role": "party president (then political leader)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://members.parliament.uk/member/547/career",
+        "https://senedd.cymru/NAfW%20Documents/ke-1997-2003.pdf%20-%2023052011/ke-1997-2003-English.pdf",
+        "https://www.library.wales/plaidcymru100",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_nat",
+      "person": "ieuan_wyn_jones",
+      "term": "uk_nat_ieuan_wyn_jones_2000_08_03",
+      "component": "plaid_cymru",
+      "source_role": "party president (then political leader)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://senedd.cymru/NAfW%20Documents/ke-1997-2003.pdf%20-%2023052011/ke-1997-2003-English.pdf",
+        "https://senedd.wales/NAfW%20Documents/ke-2003-2007.pdf%20-%2023052011/ke-2003-2007-English.pdf",
+        "https://senedd.wales/people/ieuan-wyn-jones/",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_nat",
+      "person": "ieuan_wyn_jones",
+      "term": "uk_nat_ieuan_wyn_jones_2003_09_15",
+      "component": "plaid_cymru",
+      "source_role": "Assembly group leader (political leadership separate from presidency)",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://senedd.wales/NAfW%20Documents/ke-2003-2007.pdf%20-%2023052011/ke-2003-2007-English.pdf",
+        "https://senedd.wales/people/leanne-wood-ms/",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_nat",
+      "person": "leanne_wood",
+      "term": "uk_nat_leanne_wood_2012_03_15",
+      "component": "plaid_cymru",
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://senedd.wales/people/leanne-wood-ms/",
+        "https://record.senedd.wales/Plenary/5353",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_nat",
+      "person": "adam_price",
+      "term": "uk_nat_adam_price_2018",
+      "component": "plaid_cymru",
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://record.senedd.wales/Plenary/5353",
+        "https://search.electoralcommission.org.uk/Api/Accounts/Documents/26185",
+        "https://www.partyof.wales/news?force=2&page=30",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_nat",
+      "person": "llyr_gruffydd",
+      "term": "uk_nat_llyr_gruffydd_2023_05",
+      "component": "plaid_cymru",
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://search.electoralcommission.org.uk/Api/Accounts/Documents/26185",
+        "https://www.partyof.wales/addo_mwy_o_bwerau_i_gymru_pledge_greater_powers_to_wales",
+        "https://researchbriefings.files.parliament.uk/documents/CBP-8318/CBP-8318.pdf",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    },
+    {
+      "nation": "UK",
+      "party": "uk_nat",
+      "person": "rhun_ap_iorwerth",
+      "term": "uk_nat_rhun_ap_iorwerth_2023_06_16",
+      "component": "plaid_cymru",
+      "source_role": "party leader",
+      "executive_role": "parliamentary_government_contender",
+      "basis": "existing_parliamentary_gameplay",
+      "sources": [
+        "https://researchbriefings.files.parliament.uk/documents/CBP-8318/CBP-8318.pdf",
+        "https://www.partyof.wales/leader_hp",
+        "https://www.parliament.uk/about/how/role/relations-with-other-institutions/parliament-government/"
+      ],
+      "note": "Preserves this exact pre-policy parliamentary gameplay binding. Sources establish the party role and institutional distinction; this allowance is not a complete audit of national-office eligibility on every date."
+    }
+  ],
+  "future_office_grants": []
+}

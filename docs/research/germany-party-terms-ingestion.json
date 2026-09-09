@@ -1,0 +1,39 @@
+{
+  "imported_parties": [
+    {
+      "nation": "Germany",
+      "party": "de_union",
+      "terms": 11,
+      "components": [
+        "de_union_cdu",
+        "de_union_csu"
+      ]
+    },
+    {
+      "nation": "Germany",
+      "party": "de_spd",
+      "terms": 22,
+      "components": []
+    },
+    {
+      "nation": "Germany",
+      "party": "de_fdp",
+      "terms": 8,
+      "components": []
+    },
+    {
+      "nation": "Germany",
+      "party": "de_gruene",
+      "terms": 27,
+      "components": []
+    }
+  ],
+  "people_changed": 0,
+  "office_links_changed": 0,
+  "executive_grants_added": 0,
+  "save_files_changed": 0,
+  "source_file": "docs/research/germany-party-leaders-1990-2026.json",
+  "source_sha256": "23b61cd435c001c8d36f4acdc80fe10ec095396a1a1cfc4181c49bd81764e9a4",
+  "status": "party_terms_imported",
+  "validation": "Run native registry, succession and saved-campaign checks after import."
+}

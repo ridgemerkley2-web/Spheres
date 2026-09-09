@@ -30,3 +30,12 @@
 # rule should hold for all of them, not only the four that happened to be
 # hashed today.
 *.json text eol=lf
+# These source files are also byte-hashed by the leadership production inventory.
+spheres-sim/src/nations.rs text eol=lf
+spheres-sim/src/government.rs text eol=lf
+
+# Retain the third-party license verbatim, including its original trailing space.
+spheres-web/ui/tank-assets/strv103/License.original.txt -text -whitespace
+# The optional reference viewer is a checksum-verified upstream distribution.
+tools/arsenal/vendor/model-viewer/model-viewer.min.js -text
+tools/arsenal/vendor/model-viewer/*LICENSE -text

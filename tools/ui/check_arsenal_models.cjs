@@ -498,7 +498,8 @@ test('every model in the deck holds the catalogue and map budgets, and no class 
     `the budget must cover the whole deck; ungraded: ${models.ids().filter(id=>!BUDGETED.has(models.meta(id).cls)).map(id=>`${id} (${models.meta(id).cls})`).join(', ')}`);
   for(const id of graded){
     const near=models.build(id).count/3,far=models.build(id,null,{lod:'far'}).count/3;
-    assert(near>=4000&&near<=12000,`${id}: catalogue preview is ${near} triangles, outside 4000..12000`);
+    // September close-up detail pass: 16k per card; map meshes retain the 1.5k cap.
+    assert(near>=4000&&near<=16000,`${id}: catalogue preview is ${near} triangles, outside 4000..16000`);
     assert(far>=300&&far<=1500,`${id}: map form is ${far} triangles, outside 300..1500`);
   }
 });

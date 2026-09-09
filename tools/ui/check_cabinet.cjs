@@ -117,7 +117,7 @@ test('overview routes annual renewal, building counts and advice without changin
   assert.match(html, /2 building projects/);
   assert.match(html, /1 reported needing attention/);
   assert.match(html, /onclick="openConstruction\(\)"/);
-  assert.match(html, /closeGameDrawers\(\); openAdvisor\(\)/);
+  assert.match(html, /openGuidance\('advisors'\)/);
   assert.deepEqual(plain(c, '({m, queued})'), before);
 });
 

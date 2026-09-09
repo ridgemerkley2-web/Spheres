@@ -1,0 +1,65 @@
+{
+  "provider": "OpenAI built-in image_gen",
+  "generated_at": "2026-09-07",
+  "reviewed_at": "2026-09-07",
+  "reviewer": "Codex: inspected reference identities and final cartoon files; age, pose and colors remain artistic interpretations with reference date limitations recorded",
+  "jobs": [
+    {
+      "person_id": "john_turner",
+      "name": "John Turner",
+      "year": 1990,
+      "from": "1990-01-01",
+      "to": "1995-01-01",
+      "asset": "spheres-web/ui/person-portraits/john-turner-cartoon-1990-v1.png",
+      "source": "https://commons.wikimedia.org/wiki/File:John_Turner_1987_crop_(cropped)_(cropped).jpg",
+      "refs": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\spheres-web\\ui\\person-portraits\\margaret-thatcher-cartoon-1990-v3.png",
+        "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-canada-reference-audit\\turner-1987.jpg"
+      ],
+      "reference_note": "April 1987 Reagan official visit photograph; period reference. Source photographs are not shipped; pose, clothing colors and age interpretation are artistic.",
+      "prompt": "Create one polished 2D CARTOON full-body avatar of John Turner around 1990. IMAGE 1 is approved STYLE ONLY: bold clean dark outlines, expressive simplified features, flat cel shading and slightly enlarged head on about 5.5-head adult body proportions. IMAGE 2 is IDENTITY reference only: April 1987 Reagan official visit photograph; period reference. Subject: Canadian man aged 60 with short silver-gray side-part hair, pronounced dark eyebrows, hooded eyes, broad square jaw, straight prominent nose, restrained half smile, clean-shaven and no glasses. Charcoal suit white shirt burgundy diagonal-striped tie, small plain burgundy pocket square, black shoes. Relaxed standing posture, both hands visible at waist or side. Clearly drawn cartoon matching image1. Full head, hands and shoes visible with comfortable margins. Flat opaque dark teal #192D34 background, no vignette. Portrait 1024x1536. No text, flags, watermarks, logos, other people, photographic skin detail, painterly textures or plastic 3D.",
+      "generated_source": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-d8435df3-97cb-4a8e-8109-16c0ae182510.png"
+    },
+    {
+      "person_id": "brian_mulroney",
+      "name": "Brian Mulroney",
+      "year": 1990,
+      "from": "1990-01-01",
+      "to": "1995-01-01",
+      "asset": "spheres-web/ui/person-portraits/brian-mulroney-cartoon-1990-v2.png",
+      "source": "https://commons.wikimedia.org/wiki/File:President_George_H._W._Bush_walks_with_Canadian_Prime_Minister_Brian_Mulroney.jpg",
+      "refs": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\spheres-web\\ui\\person-portraits\\margaret-thatcher-cartoon-1990-v3.png",
+        "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-canada-reference-audit\\mulroney-1989.jpg"
+      ],
+      "reference_note": "Bush presidential library photograph dates 10 February 1989. Mulroney LEFT, George Bush RIGHT is not the subject. Source photographs are not shipped; pose, clothing colors and age interpretation are artistic.",
+      "prompt": "Create one polished 2D CARTOON full-body avatar of Brian Mulroney around 1990. IMAGE 1 is approved STYLE ONLY: bold clean dark outlines, expressive simplified features, flat cel shading and slightly enlarged head on about 5.5-head adult body proportions. IMAGE 2 is IDENTITY reference only: Bush presidential library photograph dates 10 February 1989. Mulroney LEFT, George Bush RIGHT is not the subject. Subject: Canadian man aged 50, dark smoothly swept-back side-parted hair with gray temples, long rectangular face, large angular chin, long nose and broad easy smile, clean-shaven, no glasses. Navy suit and white shirt, muted red patterned tie, polished black shoes. Relaxed standing posture, both hands visible at waist or side. Clearly drawn cartoon matching image1. Full head, hands and shoes visible with comfortable margins. Flat opaque dark teal #192D34 background, no vignette. Portrait 1024x1536. No text, flags, watermarks, logos, other people, photographic skin detail, painterly textures or plastic 3D.",
+      "generated_source": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-a5910db5-75be-4901-9777-274b99262db2.png",
+      "revision": {
+        "path": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-8b9fa499-c1d5-460b-bdaa-63c864c5072d.png",
+        "prompt": "Correct ONLY the identity/face and hair of IMAGE 1, keeping its body, suit, illustrated style, framing and dark teal background. This should be BRIAN MULRONEY, the man on the far LEFT of IMAGE 2 (NOT the taller George H. W. Bush on the right). Current cartoon face looks too much like Bush. Mulroney has a notably long rectangular face with a broad projecting square chin and jaw, broader rounded lower cheeks, dark dense gray-templed short side-part hair with flatter crown, large wider mouth and smile, straight long nose; heavy dark brows, age50. Enlarge and strengthen the square lower jaw/chin to his recognizable caricature. Keep the full body 2D cartoon, bold dark outlines and flat cel shading, portrait1024x1536. No other changes.",
+        "refs": [
+          "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-8b9fa499-c1d5-460b-bdaa-63c864c5072d.png",
+          "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-canada-reference-audit\\mulroney-1989.jpg"
+        ],
+        "reason": "Corrected initial facial interpretation that resembled the other person in the source photograph."
+      }
+    },
+    {
+      "person_id": "audrey_mclaughlin",
+      "name": "Audrey McLaughlin",
+      "year": 1990,
+      "from": "1990-01-01",
+      "to": "1995-01-01",
+      "asset": "spheres-web/ui/person-portraits/audrey-mclaughlin-cartoon-1990-v1.png",
+      "source": "https://epe.lac-bac.gc.ca/100/200/301/nlc-bnc/celebrating_women-ef/women97/eaudrey.htm?nodisclaimer=1",
+      "refs": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\spheres-web\\ui\\person-portraits\\margaret-thatcher-cartoon-1990-v3.png",
+        "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-canada-reference-audit\\audrey-lac-1997.png"
+      ],
+      "reference_note": "National Library of Canada 1997 exhibit, Canapress reference, photograph exposure date unknown. Parliamentary-era likeness is an artistic early-1990s interpretation. Source photographs are not shipped; pose, clothing colors and age interpretation are artistic.",
+      "prompt": "Create one polished 2D CARTOON full-body avatar of Audrey McLaughlin around 1990. IMAGE 1 is approved STYLE ONLY: bold clean dark outlines, expressive simplified features, flat cel shading and slightly enlarged head on about 5.5-head adult body proportions. IMAGE 2 is IDENTITY reference only: National Library of Canada 1997 exhibit, Canapress reference, photograph exposure date unknown. Parliamentary-era likeness is an artistic early-1990s interpretation. Subject: Canadian woman aged 53, short dark side-swept pixie hair covering tops of ears, dark defined eyebrows, slender angular oval face, small straight nose and narrow chin, no glasses, composed slightly smiling expression. Pale gray padded-shoulder blazer, understated plain brooch, muted blue patterned collared blouse, dark knee-length skirt, dark closed-toe low heels. Relaxed standing posture, both hands visible at waist or side. Clearly drawn cartoon matching image1. Full head, hands and shoes visible with comfortable margins. Flat opaque dark teal #192D34 background, no vignette. Portrait 1024x1536. No text, flags, watermarks, logos, other people, photographic skin detail, painterly textures or plastic 3D.",
+      "generated_source": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-9388717f-2aa0-409b-82a8-2d4b114b1426.png"
+    }
+  ]
+}

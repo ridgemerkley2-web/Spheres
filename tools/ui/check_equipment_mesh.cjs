@@ -16,7 +16,9 @@ function digest(mesh) { return crypto.createHash("sha256").update(Buffer.from(me
 // catalogue card; LOD2 is the map pin. The upper LOD0 figures are the art budget
 // for this pass, not the binding constraint — see the export-ceiling check near
 // the bottom of this file, which is what actually limits LOD0 today.
-const BANDS = [{ tank: [20000, 150000], ground: [8000, 45000] }, { tank: [4000, 12000], ground: [4000, 12000] }, { tank: [300, 1500], ground: [300, 1500] }];
+// September inspection pass: 283 single-option specialists peak at 45,826;
+// the loaded fixtures peak at 46,106. 48k reserves 4.1% for selected designs.
+const BANDS = [{ tank: [20000, 150000], ground: [8000, 48000] }, { tank: [4000, 12000], ground: [4000, 12000] }, { tank: [300, 1500], ground: [300, 1500] }];
 
 // The normals contract, and why it is not the one that used to be here.
 //
@@ -481,16 +483,12 @@ check('the reference exports stay under the byte cap check_equipment_export.cjs 
   // This is the constraint that actually limits LOD0, and it is not a triangle
   // budget. The exporter writes three attributes x three vertices x three floats
   // x four bytes = 108 bytes for every triangle, with no index buffer, and
-  // check_equipment_export.cjs holds the committed GLBs under 6 MB for a tank and
-  // under 2.5 MB for a specialist. That works out at about 55,500 and 23,100
-  // triangles. Anything larger has to buy an indexed exporter or a raised cap
-  // first, so this check goes red here rather than in a file this pass does not
-  // own. The glTF JSON around the buffer measures about 5 KB with the part table
-  // in it; 32 KB is allowed for it so the ceiling is the byte cap and not a
-  // guess. Today's headroom is roughly 3,000 triangles on the heavy tank and
-  // 1,500 on the infantry fighting vehicle — the next art pass will hit this
-  // before it hits the 150,000 art budget above, and that is the point.
-  const perTriangle=108,header=32768,tankCap=(6000000-header)/perTriangle,groundCap=(2500000-header)/perTriangle;
+  // The user-requested September inspection pass changes the shipping contract
+  // to 12 MB per tank and 5 MB per specialist. The additional bytes carry paired
+  // wheels, guide horns, cooling louvers and service fittings, not subdivisions.
+  // The 32 KB JSON reserve stays intact, as do every catalogue/map LOD budget.
+  // These are art delivery budgets, not loosened geometry correctness checks.
+  const perTriangle=108,header=32768,tankCap=(12000000-header)/perTriangle,groundCap=(5000000-header)/perTriangle;
   const catalogue={mobility:'engine_diesel_900',transmission:'transmission_manual',tracks:'tracks_standard',suspension:'suspension_torsion',turret:'turret_standard',armament:'gun_105',ammunition:'ammo_mixed',protection:'protection_standard',active_protection:'aps_none',sensors:'optics_day',fire_control:'fcs_basic',communications:'comms_radio'};
   const exported=[
     {platform:'tank_standard',components:catalogue},

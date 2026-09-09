@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "historical_cutoff": "2026-09-07",
+  "registry": {
+    "people": 590,
+    "terms": 393,
+    "sha256": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494"
+  },
+  "native_tests": {
+    "command": "cargo test -p spheres-sim party_leadership --lib",
+    "passed": 44,
+    "failed": 0
+  },
+  "repeat_import_audit": {
+    "countries": [
+      "France",
+      "Germany",
+      "China",
+      "India",
+      "Italy",
+      "Brazil",
+      "SouthAfrica",
+      "Canada",
+      "Australia"
+    ],
+    "all_exact_no_ops": true,
+    "source_files_changed": false
+  },
+  "archived_save_audit": {
+    "example": "audit_leadership_save_upgrade",
+    "fixture_name": "cartoon-avatar-preview/save.json",
+    "valid": true,
+    "expanded_legacy_party_slots": 4,
+    "new_component_slots": 18,
+    "holders_assigned": 0,
+    "other_campaign_state_unchanged": true,
+    "save_roundtrip_stable": true,
+    "input_file_unchanged": true
+  },
+  "future_export": {
+    "templates": 2556,
+    "parties": 624,
+    "countries_with_party_rows": 148
+  },
+  "static_review": {
+    "page": "tools/ui/leadership-government-review.html",
+    "fixture": "tools/ui/leadership-government-review.json",
+    "fixture_sha256": "0b311ec68cff9d9152f7e495e6018b6d1865ae0188ca409bd0843a12c5039b01",
+    "country_count": 12,
+    "rendered_readings": 36,
+    "accepted_asset_references": 273,
+    "missing_assets": 0,
+    "historical_portraits": 53,
+    "fictional_portraits": 4,
+    "focused_python_tests_passed": 3,
+    "focused_javascript_tests_passed": 4,
+    "server_started": false,
+    "existing_host_http_status": 200,
+    "browser_visual_qa": "Parent reviewing through its available browser; this report does not claim screenshot validation."
+  },
+  "fixture_source_hashes": {
+    "tools/ui/leadership-native-views.json": "aab9a0ce1bc60ea97216f8fbabcfa35481759cbf5a4d74e5699b0bec7eedac27",
+    "spheres-sim/data/party_leaders.json": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494",
+    "spheres-web/data/person_portraits.json": "57326e67cf743c25fd5bf4cfb254c9642e85c47ddbcbad5cfb01cd542bd43212",
+    "spheres-web/data/fictional_portraits.json": "d49022bbabaa3170ea25d48ae02edf99c130fac3494f70f568b29d00ffe76058",
+    "spheres-web/data/future_candidates_2035.json": "75afd1f5ef49b82b0569feacf025a786f7daf49ca9da7436b6acc677fbedc492"
+  }
+}

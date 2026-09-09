@@ -1,5 +1,5 @@
 /* Original equipment mesh viewer. Visual state never enters a simulation command.
-   Uses WebGL triangles, perspective/depth, directional light and projected shadows.
+   Uses WebGL triangles, perspective/depth and cached directional mesh shadows.
    No CDN, remote assets, timers while hidden, or shared state with the globe. */
 (function(root,factory){const api=factory(root);if(typeof module==='object'&&module.exports)module.exports=api;else root.EquipmentModel=api;})(typeof globalThis!=='undefined'?globalThis:this,function(root){
   'use strict';
@@ -15,7 +15,25 @@
   }
   function perspective(fov,aspect,near,far){const f=1/Math.tan(fov/2),d=1/(near-far);return new Float32Array([f/aspect,0,0,0,0,f,0,0,0,0,(far+near)*d,-1,0,0,2*far*near*d,0]);}
   function multiply(a,b){const out=new Float32Array(16);for(let c=0;c<4;c++)for(let r=0;r<4;r++)for(let k=0;k<4;k++)out[c*4+r]+=a[k*4+r]*b[c*4+k];return out;}
-  function modelKey(spec){const c=spec?.components||{};return JSON.stringify([spec?.platform,...Object.keys(c).sort().map(k=>[k,c[k]])]);}
+  const KEY_LIGHT=normalize([-.55,.85,.65]);
+  function shadowFrame(bounds,resolution){
+    // Include the ground projection of every corner, so tall radar, wings and
+    // long barrels retain their shadows without spending texels on empty sky.
+    const points=[];
+    for(const x of [bounds.min[0],bounds.max[0]])for(const y of [bounds.min[1],bounds.max[1]])for(const z of [bounds.min[2],bounds.max[2]]){
+      points.push([x,y,z],[x-KEY_LIGHT[0]*y/KEY_LIGHT[1],0,z-KEY_LIGHT[2]*y/KEY_LIGHT[1]]);
+    }
+    const center=[0,1,2].map(i=>(Math.min(...points.map(p=>p[i]))+Math.max(...points.map(p=>p[i])))/2);
+    const radius=Math.max(.1,...points.map(p=>Math.hypot(...p.map((v,i)=>v-center[i]))));
+    const view=lookAt(center.map((v,i)=>v+KEY_LIGHT[i]*(radius*3+1)),center);
+    const lightPoints=points.map(p=>[0,1,2].map(r=>view[r]*p[0]+view[4+r]*p[1]+view[8+r]*p[2]+view[12+r]));
+    const pad=Math.max(.05,radius*.045),lo=[0,1,2].map(i=>Math.min(...lightPoints.map(p=>p[i]))-pad),hi=[0,1,2].map(i=>Math.max(...lightPoints.map(p=>p[i]))+pad);
+    const span=hi.map((v,i)=>Math.max(.1,v-lo[i]));
+    const projection=new Float32Array([2/span[0],0,0,0,0,2/span[1],0,0,0,0,-2/span[2],0,-(hi[0]+lo[0])/span[0],-(hi[1]+lo[1])/span[1],(hi[2]+lo[2])/span[2],1]);
+    const texelWorld=Math.max(span[0],span[1])/resolution;
+    return {matrix:multiply(projection,view),normalBias:texelWorld*.75,depthBias:Math.max(.000015,texelWorld*.12/span[2]),floorExtent:Math.max(24,...points.map(p=>Math.max(Math.abs(p[0]),Math.abs(p[2]))+radius*.5))};
+  }
+  function modelKey(spec){const c=spec?.components||{},asked=Math.round(Number(spec?.lod)),lod=Number.isFinite(asked)?Math.min(2,Math.max(0,asked)):0;return JSON.stringify([spec?.platform,lod,...Object.keys(c).sort().map(k=>[k,c[k]])]);}
   function frame(bounds,aspect,yaw,pitch,zoom=1){
     const size=bounds.max.map((v,i)=>v-bounds.min[i]);
     const center=bounds.min.map((v,i)=>(v+bounds.max[i])/2);
@@ -36,7 +54,8 @@
     const tone=FINISHES[finish];if(!tone)return colors;
     const out=new Float32Array(colors);
     for(let i=0;i<out.length;i+=3){const r=colors[i],g=colors[i+1],b=colors[i+2];
-      // Only olive-painted surfaces change. Rubber, steel, lenses and lamps keep their material.
+      // Legacy non-armour palette conversion. Armoured vehicles use TankSurface's explicit
+      // material mask, since green-biased steel must never be treated as paint.
       if(g>r*1.025&&g>b*1.06&&g>.12){const shade=clamp((r*.25+g*.65+b*.10)/.30,.4,1.5);for(let k=0;k<3;k++)out[i+k]=clamp(tone[k]*shade,0,1);}
     }return out;
   }
@@ -64,26 +83,53 @@
     return {part:mesh.parts?.find(part=>vertex>=part.first&&vertex<part.first+part.count)||null,vertex,distance:nearest,point:origin.map((v,i)=>v+direction[i]*nearest)};
   }
   const VERTEX=`precision highp float;
-attribute vec3 aPosition;attribute vec3 aNormal;attribute vec3 aColor;
+attribute vec3 aPosition;attribute vec3 aNormal;attribute vec3 aColor;attribute vec4 aSurface;
 uniform mat4 uVP;uniform mediump float uMode;
-varying mediump vec3 vPosition;varying mediump vec3 vNormal;varying mediump vec3 vColor;
-void main(){vec3 p=aPosition;if(uMode>1.5){p=vec3(p.x+p.y*.55,.016,p.z-p.y*.65);}vPosition=p;vNormal=aNormal;vColor=aColor;gl_Position=uVP*vec4(p,1.);}`;
-  const FRAGMENT=`precision mediump float;
-uniform vec3 uEye;uniform float uMode;uniform float uHighlight;
-varying vec3 vPosition;varying vec3 vNormal;varying vec3 vColor;
-vec3 floorColor(vec3 p){float radius=length(p.xz*.095);vec3 c=mix(vec3(.135,.172,.177),vec3(.063,.088,.105),smoothstep(.1,1.3,radius));
+varying highp vec3 vPosition;varying mediump vec3 vNormal;varying mediump vec3 vColor;varying mediump vec4 vSurface;
+void main(){vec3 p=aPosition;if(uMode>1.5){p=vec3(p.x+p.y*.55,.016,p.z-p.y*.65);}vPosition=p;vNormal=aNormal;vColor=aColor;vSurface=aSurface;gl_Position=uVP*vec4(p,1.);}`;
+  const SHADOW_VERTEX=`precision highp float;
+attribute vec3 aPosition;uniform mat4 uLightVP;
+void main(){gl_Position=uLightVP*vec4(aPosition,1.);}`;
+  const SHADOW_FRAGMENT=`precision highp float;
+void main(){vec4 depth=fract(min(gl_FragCoord.z,.9999999)*vec4(16777216.,65536.,256.,1.));depth-=depth.xxyz*vec4(0.,.00390625,.00390625,.00390625);gl_FragColor=depth*(256./255.);}`;
+  const SHADOW_SAMPLE=`uniform sampler2D uShadowMap;uniform mat4 uLightVP;
+uniform float uShadowTexel;uniform float uShadowNormalBias;uniform float uShadowDepthBias;
+float shadowVisibility(vec3 position,vec3 normal){
+  vec3 n=normalize(normal),light=normalize(vec3(-.55,.85,.65));
+  float slope=1.-abs(dot(n,light));
+  vec4 clip=uLightVP*vec4(position+n*uShadowNormalBias*(.35+slope),1.);
+  vec3 p=clip.xyz/clip.w*.5+.5;
+  if(p.x<=uShadowTexel||p.x>=1.-uShadowTexel||p.y<=uShadowTexel||p.y>=1.-uShadowTexel||p.z<=0.||p.z>=1.)return 1.;
+  float visibility=0.,depth=p.z-uShadowDepthBias*(1.+2.*slope);
+  for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++){
+    vec4 packed=texture2D(uShadowMap,p.xy+vec2(float(x),float(y))*uShadowTexel);
+    float stored=dot(packed,vec4(.000000059604644775390625,.0000152587890625,.00390625,1.))*(255./256.);
+    visibility+=step(depth,stored);
+  }
+  return visibility/9.;
+}`;
+  function fragmentSource(shadows){return `precision highp float;
+uniform vec3 uEye;uniform mediump float uMode;uniform float uHighlight;uniform float uHeight;uniform float uTankEnabled;
+varying highp vec3 vPosition;varying mediump vec3 vNormal;varying mediump vec3 vColor;varying mediump vec4 vSurface;
+${shadows?SHADOW_SAMPLE:'float shadowVisibility(vec3 position,vec3 normal){return 1.;}'}
+${root.MilitarySurface?.glsl||''}
+${root.TankSurface?.glsl||''}
+vec3 floorColor(vec3 p){float radius=length(p.xz*.095);vec3 c=uTankEnabled>.5?mix(vec3(.205,.220,.218),vec3(.105,.125,.132),smoothstep(.1,1.3,radius)):mix(vec3(.135,.172,.177),vec3(.063,.088,.105),smoothstep(.1,1.3,radius));
 float grid=pow(abs(cos(p.x*3.14159265)),80.)+pow(abs(cos(p.z*3.14159265)),80.);c+=vec3(.008)*grid*(1.-smoothstep(4.,12.,length(p.xz)));
 float contact=exp(-pow(p.x/1.9,4.)-pow(p.z/3.7,4.));return c*(1.-.28*contact);}
-void main(){if(uMode>.5){vec3 c=floorColor(vPosition);if(uMode>1.5)c*=.53;gl_FragColor=vec4(c,1.);return;}
-vec3 n=normalize(vNormal),view=normalize(uEye-vPosition),light=normalize(vec3(-.55,1.,.65));
+void main(){if(uMode>.5){vec3 c=floorColor(vPosition);if(uMode>1.5)c*=.53;else c*=mix(.48,1.,shadowVisibility(vPosition,vec3(0.,1.,0.)));gl_FragColor=vec4(c,1.);return;}
+float visibility=shadowVisibility(vPosition,vNormal);
+${root.TankSurface?.glsl?'if(uTankEnabled>.5){vec3 painted=tankLighting(vColor,vNormal,vPosition,uEye-vPosition,visibility,vSurface);float rim=pow(1.-abs(dot(normalize(vNormal),normalize(uEye-vPosition))),2.);painted=mix(painted,mix(painted,vec3(.65,.73,.72),.10+rim*.38),uHighlight);gl_FragColor=vec4(painted,1.);return;}':''}
+${root.MilitarySurface?'vec3 painted=militaryLighting(vColor,vNormal,vPosition,uEye-vPosition,visibility,uHeight);gl_FragColor=vec4(mix(painted,painted*.70+vec3(.20,.13,.015),uHighlight),1.);return;':''}
+vec3 n=normalize(vNormal),view=normalize(uEye-vPosition),light=normalize(vec3(-.55,.85,.65));
 float key=max(dot(n,light),0.),fill=max(dot(n,normalize(vec3(.8,.35,-.7))),0.);
 vec3 ambient=mix(vec3(.25,.29,.32),vec3(.58,.64,.65),n.y*.5+.5);
 float specular=pow(max(dot(n,normalize(light+view)),0.),45.)*.19;
 vec3 base=pow(max(vColor,vec3(.001)),vec3(2.2));
-vec3 lit=base*(ambient*.6+vec3(1.10,1.05,.91)*key+vec3(.31,.40,.48)*fill)+vec3(specular);
+vec3 lit=base*(ambient*.6+vec3(1.10,1.05,.91)*key*visibility+vec3(.31,.40,.48)*fill)+vec3(specular*visibility);
 float cavity=mix(.78,1.,smoothstep(.08,1.3,vPosition.y));lit*=cavity;
 lit=mix(lit,lit*.65+vec3(.32,.20,.035),uHighlight);
-gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;
+gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;}
 
   function mount(host,spec){
     if(!host||!host.querySelector)throw new Error('A model preview host is required.');
@@ -95,9 +141,9 @@ gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;
     slot.appendChild(canvas);
     const status=host.querySelector('[data-model-status]')||doc.createElement('p');
     if(!status.parentNode){status.setAttribute('data-model-status','');status.setAttribute('role','status');slot.appendChild(status);}
-    let gl=null,program=null,buffers=[],floorBuffers=[],uniforms={},attributes={},mesh=null,painted=null,key=null,draft=spec;
+    let gl=null,program=null,buffers=[],floorBuffers=[],uniforms={},attributes={},mesh=null,painted=null,key=null,draft=spec,shadow=null,material=null,tankData=null;
     let disposed=false,lost=false,raf=0,turntable=false,visible=true,lastTime=0,ready=false;
-    let yaw=VIEWS.hero[0],pitch=VIEWS.hero[1],zoomFactor=1,finish='olive',viewName='hero';
+    let yaw=VIEWS.hero[0],pitch=VIEWS.hero[1],zoomFactor=1,finish='olive',wear='service',viewName='hero';
     let width=0,height=0,resizeObserver=null,intersectionObserver=null,selectedPart=null,gesture=null;
     const partSelect=host.querySelector('[data-model-part]');
     const events=[],pointers=new Map(),urls=new Set();
@@ -107,6 +153,10 @@ gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;
       host.querySelectorAll('[data-model-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.modelView===viewName)));
       host.querySelectorAll('[data-model-turntable]').forEach(b=>{b.setAttribute('aria-pressed',String(turntable));b.textContent=turntable?'Stop rotation':'Auto rotate';});
       host.querySelectorAll('[data-model-finish]').forEach(b=>{if(b.tagName==='SELECT')b.value=finish;else b.setAttribute('aria-pressed',String(b.dataset.modelFinish===finish));});
+      host.querySelectorAll('[data-model-wear]').forEach(b=>{b.disabled=!tankData;if(b.tagName==='SELECT')b.value=wear;else b.setAttribute('aria-pressed',String(b.dataset.modelWear===wear));});
+      // Keep the existing attribute/API names; support now includes the five
+      // specialist armoured platforms with authored material metadata.
+      host.querySelectorAll('[data-model-tank-only]').forEach(b=>{b.hidden=!tankData;});
       host.querySelectorAll('[data-model-export]').forEach(b=>b.disabled=!mesh||!root.EquipmentExport);
       if(partSelect){partSelect.disabled=!mesh;partSelect.value=selectedPart||'';}
     }
@@ -130,25 +180,109 @@ gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;
       const aspect=width/height,camera=frame(mesh.bounds,aspect,yaw,pitch,zoomFactor),ray=rayAt(camera,(clientX-rect.left)/rect.width*2-1,1-(clientY-rect.top)/rect.height*2,aspect),hit=raycast(mesh,ray.origin,ray.direction);
       return hit?.part?.slot?selectPart(hit.part.name,true,canvas):null;
     }
-    function shader(type,source){const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){const log=gl.getShaderInfoLog(s);gl.deleteShader(s);throw new Error(log||'Shader compilation failed');}return s;}
+    function shader(type,source){
+      const s=gl.createShader(type);if(!s)throw new Error('Graphics shader memory unavailable');
+      try{gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(s)||'Shader compilation failed');return s;}
+      catch(error){gl.deleteShader(s);throw error;}
+    }
+    function makeProgram(vertex,fragment){
+      let vs=null,fs=null,p=null;
+      try{vs=shader(gl.VERTEX_SHADER,vertex);fs=shader(gl.FRAGMENT_SHADER,fragment);p=gl.createProgram();if(!p)throw new Error('Graphics program memory unavailable');gl.attachShader(p,vs);gl.attachShader(p,fs);gl.linkProgram(p);if(!gl.getProgramParameter(p,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(p)||'Shader linking failed');return p;}
+      catch(error){if(p)gl.deleteProgram(p);throw error;}
+      finally{if(vs)gl.deleteShader(vs);if(fs)gl.deleteShader(fs);}
+    }
     function makeBuffer(data){const b=gl.createBuffer();if(!b)throw new Error('Graphics memory unavailable');try{gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,data,gl.STATIC_DRAW);return b;}catch(error){gl.deleteBuffer(b);throw error;}}
-    function release(){if(!gl||lost)return;buffers.forEach(b=>gl.deleteBuffer(b));floorBuffers.forEach(b=>gl.deleteBuffer(b));buffers=[];floorBuffers=[];if(program)gl.deleteProgram(program);program=null;ready=false;}
-    function upload(){if(!ready||!mesh||lost)return;buffers.forEach(b=>gl.deleteBuffer(b));buffers=[];painted=finishColors(mesh.colors,finish);for(const data of [mesh.positions,mesh.normals,painted])buffers.push(makeBuffer(data));}
+    function releaseShadow(){
+      if(shadow&&gl&&!lost){if(shadow.framebuffer)gl.deleteFramebuffer(shadow.framebuffer);if(shadow.depth)gl.deleteRenderbuffer(shadow.depth);if(shadow.texture)gl.deleteTexture(shadow.texture);if(shadow.program)gl.deleteProgram(shadow.program);}
+      shadow=null;
+    }
+    function createShadow(){
+      // WebGL 1 core RGBA + DEPTH_COMPONENT16 needs no depth-texture extension.
+      // Minimal mocks and devices lacking these methods retain projected shadows.
+      const methods=['createFramebuffer','deleteFramebuffer','bindFramebuffer','checkFramebufferStatus','framebufferTexture2D','createTexture','deleteTexture','bindTexture','texImage2D','texParameteri','activeTexture','createRenderbuffer','deleteRenderbuffer','bindRenderbuffer','renderbufferStorage','framebufferRenderbuffer','getParameter','disable','disableVertexAttribArray','uniform1i'];
+      if(methods.some(name=>typeof gl[name]!=='function'))return;
+      let limit;
+      try{limit=Math.min(gl.getParameter(gl.MAX_TEXTURE_SIZE),gl.getParameter(gl.MAX_RENDERBUFFER_SIZE));
+        if(!Number.isFinite(limit)||limit<512||gl.getParameter(gl.MAX_TEXTURE_IMAGE_UNITS)<1)return;
+        if(gl.getShaderPrecisionFormat&&!gl.getShaderPrecisionFormat(gl.FRAGMENT_SHADER,gl.HIGH_FLOAT)?.precision)return;
+      }catch(error){return;}
+      shadow={size:limit>=1024?1024:512,dirty:true,valid:false,frame:null};
+      try{
+        shadow.texture=gl.createTexture();if(!shadow.texture)throw new Error('Shadow texture unavailable');
+        gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,shadow.texture);
+        gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.NEAREST);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.NEAREST);
+        gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+        gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,shadow.size,shadow.size,0,gl.RGBA,gl.UNSIGNED_BYTE,null);
+        shadow.depth=gl.createRenderbuffer();if(!shadow.depth)throw new Error('Shadow depth unavailable');
+        gl.bindRenderbuffer(gl.RENDERBUFFER,shadow.depth);gl.renderbufferStorage(gl.RENDERBUFFER,gl.DEPTH_COMPONENT16,shadow.size,shadow.size);
+        shadow.framebuffer=gl.createFramebuffer();if(!shadow.framebuffer)throw new Error('Shadow framebuffer unavailable');
+        gl.bindFramebuffer(gl.FRAMEBUFFER,shadow.framebuffer);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,shadow.texture,0);gl.framebufferRenderbuffer(gl.FRAMEBUFFER,gl.DEPTH_ATTACHMENT,gl.RENDERBUFFER,shadow.depth);
+        if(gl.checkFramebufferStatus(gl.FRAMEBUFFER)!==gl.FRAMEBUFFER_COMPLETE)throw new Error('Shadow framebuffer incomplete');
+        shadow.program=makeProgram(SHADOW_VERTEX,SHADOW_FRAGMENT);
+        shadow.position=gl.getAttribLocation(shadow.program,'aPosition');shadow.matrix=gl.getUniformLocation(shadow.program,'uLightVP');
+        if(shadow.position<0)throw new Error('Shadow position attribute unavailable');
+      }catch(error){releaseShadow();}
+      finally{gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.bindRenderbuffer(gl.RENDERBUFFER,null);gl.bindTexture(gl.TEXTURE_2D,null);}
+    }
+    function locateProgram(){
+      for(const name of ['aPosition','aNormal','aColor'])attributes[name]=gl.getAttribLocation(program,name);
+      attributes.aSurface=root.TankSurface?.glsl?gl.getAttribLocation(program,'aSurface'):-1;
+      for(const name of ['uVP','uEye','uMode','uHighlight','uHeight','uTankEnabled','uTankCamo','uTankWear','uTankHeight','uShadowMap','uLightVP','uShadowTexel','uShadowNormalBias','uShadowDepthBias'])uniforms[name]=gl.getUniformLocation(program,name);
+    }
+    function release(){
+      if(gl&&!lost){buffers.forEach(b=>gl.deleteBuffer(b));floorBuffers.forEach(b=>gl.deleteBuffer(b));if(program)gl.deleteProgram(program);}
+      buffers=[];floorBuffers=[];program=null;releaseShadow();material?.dispose(lost);material=null;ready=false;
+    }
+    function upload(){
+      if(!ready||!mesh||lost)return;buffers.forEach(b=>gl.deleteBuffer(b));buffers=[];
+      if(shadow){shadow.dirty=true;shadow.valid=false;shadow.frame=shadowFrame(mesh.bounds,shadow.size);}
+      const extent=shadow?.frame.floorExtent||shadowFrame(mesh.bounds,512).floorExtent;
+      gl.bindBuffer(gl.ARRAY_BUFFER,floorBuffers[0]);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-extent,0,-extent,extent,0,-extent,extent,0,extent,-extent,0,-extent,extent,0,extent,-extent,0,extent]),gl.STATIC_DRAW);
+      if(!painted)painted=previewColors();for(const data of [mesh.positions,mesh.normals,painted])buffers.push(makeBuffer(data));
+      if(tankData)buffers.push(makeBuffer(tankData.parameters));
+    }
     function initialize(){
       gl=canvas.getContext('webgl',{alpha:false,antialias:true,depth:true,premultipliedAlpha:false,preserveDrawingBuffer:false});
       if(!gl)throw new Error('WebGL is unavailable');
-      const vs=shader(gl.VERTEX_SHADER,VERTEX);let fs=null;
-      try{fs=shader(gl.FRAGMENT_SHADER,FRAGMENT);program=gl.createProgram();gl.attachShader(program,vs);gl.attachShader(program,fs);gl.linkProgram(program);}
-      finally{gl.deleteShader(vs);if(fs)gl.deleteShader(fs);}
-      if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(program)||'Shader linking failed');
-      for(const name of ['aPosition','aNormal','aColor'])attributes[name]=gl.getAttribLocation(program,name);
-      for(const name of ['uVP','uEye','uMode','uHighlight'])uniforms[name]=gl.getUniformLocation(program,name);
+      createShadow();
+      try{program=makeProgram(VERTEX,fragmentSource(Boolean(shadow)));}
+      catch(error){if(!shadow)throw error;releaseShadow();program=makeProgram(VERTEX,fragmentSource(false));}
+      locateProgram();material=root.MilitarySurface?.create?.(gl,schedule)||null;
       const floor=new Float32Array([-24,0,-24,24,0,-24,24,0,24,-24,0,-24,24,0,24,-24,0,24]);
       floorBuffers=[];for(const data of [floor,new Float32Array(Array.from({length:18},(_,i)=>i%3===1?1:0)),new Float32Array(18).fill(.12)])floorBuffers.push(makeBuffer(data));
       gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);gl.clearColor(.063,.088,.105,1);ready=true;upload();
       say('3D model ready. Drag to rotate or use the view controls.');
     }
-    function bind(list){['aPosition','aNormal','aColor'].forEach((name,i)=>{gl.bindBuffer(gl.ARRAY_BUFFER,list[i]);gl.enableVertexAttribArray(attributes[name]);gl.vertexAttribPointer(attributes[name],3,gl.FLOAT,false,0,0);});}
+    function bind(list){['aPosition','aNormal','aColor'].forEach((name,i)=>{gl.bindBuffer(gl.ARRAY_BUFFER,list[i]);gl.enableVertexAttribArray(attributes[name]);gl.vertexAttribPointer(attributes[name],3,gl.FLOAT,false,0,0);});
+      if(attributes.aSurface>=0){if(list[3]){gl.bindBuffer(gl.ARRAY_BUFFER,list[3]);gl.enableVertexAttribArray(attributes.aSurface);gl.vertexAttribPointer(attributes.aSurface,4,gl.FLOAT,false,0,0);}else{gl.disableVertexAttribArray?.(attributes.aSurface);gl.vertexAttrib4f?.(attributes.aSurface,.85,0,255,1);}}
+    }
+    function drawShadow(){
+      if(!shadow||!shadow.dirty)return true;
+      let failed=false;
+      try{
+        gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,null);
+        gl.bindFramebuffer(gl.FRAMEBUFFER,shadow.framebuffer);gl.viewport(0,0,shadow.size,shadow.size);
+        // Dithering would corrupt the packed depth bytes. Blending is never
+        // enabled on this private context, and the target has no multisampling.
+        gl.disable(gl.DITHER);gl.clearColor(1,1,1,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+        gl.useProgram(shadow.program);gl.uniformMatrix4fv(shadow.matrix,false,shadow.frame.matrix);
+        for(const index of Object.values(attributes))if(index>=0&&index!==shadow.position)gl.disableVertexAttribArray(index);
+        gl.bindBuffer(gl.ARRAY_BUFFER,buffers[0]);gl.enableVertexAttribArray(shadow.position);gl.vertexAttribPointer(shadow.position,3,gl.FLOAT,false,0,0);
+        gl.drawArrays(gl.TRIANGLES,0,mesh.positions.length/3);
+        if(gl.getError&&gl.getError()!==gl.NO_ERROR)throw new Error('Shadow pass failed');
+        shadow.dirty=false;shadow.valid=true;
+      }catch(error){failed=true;}
+      finally{gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.enable(gl.DITHER);gl.clearColor(.063,.088,.105,1);}
+      if(failed){
+        // An optional pass must never strand the renderer on an offscreen FBO
+        // or leave a sampler pointing at a deleted/incomplete texture.
+        releaseShadow();const old=program;program=null;
+        try{program=makeProgram(VERTEX,fragmentSource(false));locateProgram();}
+        catch(error){release();say('3D rendering is unavailable. You can still edit and review this design.');return false;}
+        finally{if(old)gl.deleteProgram(old);}
+      }
+      return true;
+    }
     function schedule(){if(!disposed&&!lost&&ready&&!raf&&visible&&!doc.hidden)raf=root.requestAnimationFrame(draw);}
     function resize(){
       if(disposed)return;const rect=slot.getBoundingClientRect();if(rect.width<1||rect.height<1)return;
@@ -162,11 +296,21 @@ gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;
       if(turntable&&lastTime)yaw+=(Math.min(64,time-lastTime)/1000)*.22;lastTime=time;
       if(!width||!height){resize();return;}
       const camera=frame(mesh.bounds,width/height,yaw,pitch,zoomFactor);
+      if(!drawShadow())return;
+      if(tankData)gl.clearColor(.105,.125,.132,1);else gl.clearColor(.063,.088,.105,1);
       gl.viewport(0,0,width,height);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.useProgram(program);
       gl.uniformMatrix4fv(uniforms.uVP,false,camera.matrix);gl.uniform3fv(uniforms.uEye,camera.eye);
+      gl.uniform1f(uniforms.uHeight,mesh.bounds.max[1]-mesh.bounds.min[1]);
+      gl.uniform1f(uniforms.uTankEnabled,tankData?1:0);gl.uniform1f(uniforms.uTankCamo,finish==='woodland'?1:0);gl.uniform1f(uniforms.uTankWear,root.TankSurface?.wearLevels?.[wear]||0);gl.uniform1f(uniforms.uTankHeight,mesh.bounds.max[1]-mesh.bounds.min[1]);
       gl.uniform1f(uniforms.uHighlight,0);
+      material?.bind(program);
+      if(shadow?.valid){
+        gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,shadow.texture);gl.uniform1i(uniforms.uShadowMap,0);
+        gl.uniformMatrix4fv(uniforms.uLightVP,false,shadow.frame.matrix);gl.uniform1f(uniforms.uShadowTexel,1/shadow.size);
+        gl.uniform1f(uniforms.uShadowNormalBias,shadow.frame.normalBias);gl.uniform1f(uniforms.uShadowDepthBias,shadow.frame.depthBias);
+      }
       bind(floorBuffers);gl.uniform1f(uniforms.uMode,1);gl.drawArrays(gl.TRIANGLES,0,6);
-      bind(buffers);gl.uniform1f(uniforms.uMode,2);gl.drawArrays(gl.TRIANGLES,0,mesh.positions.length/3);
+      bind(buffers);if(!shadow?.valid){gl.uniform1f(uniforms.uMode,2);gl.drawArrays(gl.TRIANGLES,0,mesh.positions.length/3);}
       gl.uniform1f(uniforms.uMode,0);gl.drawArrays(gl.TRIANGLES,0,mesh.positions.length/3);
       const selected=mesh.parts?.find(p=>p.name===selectedPart);
       if(selected){gl.uniform1f(uniforms.uHighlight,1);gl.drawArrays(gl.TRIANGLES,selected.first,selected.count);gl.uniform1f(uniforms.uHighlight,0);}
@@ -178,23 +322,25 @@ gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;
     function view(name){if(!VIEWS[name])return;stopRotation();[yaw,pitch]=VIEWS[name];viewName=name;setControls();schedule();say(`${name==='hero'?'Three-quarter':name.charAt(0).toUpperCase()+name.slice(1)} view.`);}
     function reset(){zoomFactor=1;view('hero');}
     function toggleRotation(){turntable=!turntable;viewName='';lastTime=0;setControls();schedule();}
+    function previewColors(){return tankData?root.TankSurface.bake(mesh,{finish,wear,baseOnly:true}):finishColors(mesh.colors,finish);}
+    function repaint(){if(mesh)painted=previewColors();if(mesh&&ready&&!lost){gl.bindBuffer(gl.ARRAY_BUFFER,buffers[2]);gl.bufferData(gl.ARRAY_BUFFER,painted,gl.STATIC_DRAW);}setControls();schedule();}
     function setFinish(value){
-      if(disposed||!Object.prototype.hasOwnProperty.call(FINISHES,value))return;
-      finish=value;if(mesh)painted=finishColors(mesh.colors,finish);
-      if(mesh&&ready&&!lost){gl.bindBuffer(gl.ARRAY_BUFFER,buffers[2]);gl.bufferData(gl.ARRAY_BUFFER,painted,gl.STATIC_DRAW);}
-      setControls();schedule();
+      if(disposed||!Object.prototype.hasOwnProperty.call(FINISHES,value)&&!(tankData&&Object.prototype.hasOwnProperty.call(root.TankSurface.finishes,value)))return;
+      finish=value;repaint();
     }
+    function setWear(value){if(disposed||!tankData||!Object.prototype.hasOwnProperty.call(root.TankSurface.wearLevels,value))return;wear=value;repaint();}
     function update(next){
       if(disposed)return;draft=next;const nextKey=modelKey(next);if(nextKey===key){resize();return;}
       try{const candidate=root.EquipmentMesh.build(next);if(!candidate.positions?.length||candidate.positions.length!==candidate.normals.length||candidate.positions.length!==candidate.colors.length)throw new Error('Invalid model geometry');
         const oldSlot=mesh?.parts?.find(p=>p.name===selectedPart)?.slot;
-        mesh=candidate;key=nextKey;selectedPart=(mesh.parts?.find(p=>p.name===selectedPart)||mesh.parts?.find(p=>oldSlot&&p.slot===oldSlot))?.name||null;
-        painted=finishColors(mesh.colors,finish);upload();refreshParts();setControls();resize();
+        mesh=candidate;tankData=root.TankSurface?.supports?.(mesh,draft?.platform)?root.TankSurface.prepare(mesh):null;if(!tankData&&finish==='woodland')finish='olive';
+        key=nextKey;selectedPart=(mesh.parts?.find(p=>p.name===selectedPart)||mesh.parts?.find(p=>oldSlot&&p.slot===oldSlot))?.name||null;
+        painted=previewColors();upload();refreshParts();setControls();resize();
         if(ready&&!lost)say('3D model ready. Drag to rotate or use the view controls.');
         else if(!lost)say('3D rendering is unavailable on this graphics device. Component choices and cost reviews still work.');
       }catch(error){
         // Never retain a previous configuration under the new draft's name.
-        mesh=null;painted=null;key=null;selectedPart=null;refreshParts();
+        mesh=null;tankData=null;painted=null;key=null;selectedPart=null;if(shadow){shadow.dirty=true;shadow.valid=false;shadow.frame=null;}refreshParts();
         if(raf)root.cancelAnimationFrame(raf);raf=0;
         if(gl&&!lost){buffers.forEach(b=>gl.deleteBuffer(b));if(ready)gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);}
         buffers=[];setControls();
@@ -203,7 +349,10 @@ gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;
     }
     function exportGlb(){
       if(!mesh||!root.EquipmentExport)return null;
-      return root.EquipmentExport.glb({...mesh,colors:painted||mesh.colors},draft?.name||'Spheres equipment');
+      // Fragment camouflage/wear is sampled at vertices for the simple GLB
+      // format. Large faces therefore export an approximation of the preview.
+      const colors=tankData?root.TankSurface.bake(mesh,{finish,wear}):painted||mesh.colors;
+      return root.EquipmentExport.glb({...mesh,colors},draft?.name||'Spheres equipment');
     }
     function download(){
       try{const data=exportGlb();if(!data)return;const url=root.URL.createObjectURL(new root.Blob([data],{type:'model/gltf-binary'}));urls.add(url);
@@ -218,6 +367,7 @@ gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;
     host.querySelectorAll('[data-model-reset]').forEach(b=>on(b,'click',reset));
     host.querySelectorAll('[data-model-turntable]').forEach(b=>on(b,'click',toggleRotation));
     host.querySelectorAll('[data-model-finish]').forEach(b=>on(b,b.tagName==='SELECT'?'change':'click',()=>setFinish(b.tagName==='SELECT'?b.value:b.dataset.modelFinish)));
+    host.querySelectorAll('[data-model-wear]').forEach(b=>on(b,b.tagName==='SELECT'?'change':'click',()=>setWear(b.tagName==='SELECT'?b.value:b.dataset.modelWear)));
     host.querySelectorAll('[data-model-export]').forEach(b=>on(b,'click',download));
     if(partSelect)on(partSelect,'change',()=>selectPart(partSelect.value,true,host));
     on(canvas,'pointerdown',e=>{if(e.pointerType==='mouse'&&e.button!==0)return;e.preventDefault();canvas.focus({preventScroll:true});stopRotation();pointers.set(e.pointerId,[e.clientX,e.clientY]);gesture=pointers.size===1?{id:e.pointerId,start:[e.clientX,e.clientY],dragged:false}:null;canvas.setPointerCapture?.(e.pointerId);});
@@ -232,15 +382,15 @@ gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;
     for(const event of ['pointercancel','lostpointercapture'])on(canvas,event,e=>{pointers.delete(e.pointerId);gesture=null;});
     on(canvas,'wheel',e=>{e.preventDefault();zoom(clamp(e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?height:1)/120,-4,4));},{passive:false});
     on(canvas,'keydown',e=>{const keys={ArrowLeft:[-.15,0],ArrowRight:[.15,0],ArrowUp:[0,.1],ArrowDown:[0,-.1]};if(keys[e.key])rotate(...keys[e.key]);else if(e.key==='+'||e.key==='=')zoom(-1);else if(e.key==='-')zoom(1);else if(e.key==='Home'||e.key==='0')reset();else return;e.preventDefault();e.stopPropagation();});
-    on(canvas,'webglcontextlost',e=>{e.preventDefault();lost=true;ready=false;gesture=null;pointers.clear();if(raf)root.cancelAnimationFrame(raf);raf=0;say('The 3D preview is waiting for the graphics device. Your design is preserved.');});
+    on(canvas,'webglcontextlost',e=>{e.preventDefault();lost=true;release();gesture=null;pointers.clear();if(raf)root.cancelAnimationFrame(raf);raf=0;say('The 3D preview is waiting for the graphics device. Your design is preserved.');});
     on(canvas,'webglcontextrestored',()=>{if(disposed)return;lost=false;buffers=[];floorBuffers=[];program=null;try{initialize();resize();}catch(error){release();say('3D rendering is unavailable. You can still edit and review this design.');}});
     on(doc,'visibilitychange',()=>{lastTime=0;if(doc.hidden&&raf){root.cancelAnimationFrame(raf);raf=0;}else schedule();});
     if(root.ResizeObserver){resizeObserver=new root.ResizeObserver(resize);resizeObserver.observe(slot);}else on(root,'resize',resize);
     if(root.IntersectionObserver){intersectionObserver=new root.IntersectionObserver(entries=>{visible=entries[0]?.isIntersecting!==false;lastTime=0;if(!visible&&raf){root.cancelAnimationFrame(raf);raf=0;}else schedule();});intersectionObserver.observe(canvas);}
-    function dispose(){if(disposed)return;disposed=true;if(raf)root.cancelAnimationFrame(raf);raf=0;resizeObserver?.disconnect();intersectionObserver?.disconnect();events.forEach(([n,e,f,o])=>n.removeEventListener(e,f,o));pointers.clear();gesture=null;urls.forEach(url=>root.URL.revokeObjectURL(url));urls.clear();release();canvas.remove();mesh=null;painted=null;}
+    function dispose(){if(disposed)return;disposed=true;if(raf)root.cancelAnimationFrame(raf);raf=0;resizeObserver?.disconnect();intersectionObserver?.disconnect();events.forEach(([n,e,f,o])=>n.removeEventListener(e,f,o));pointers.clear();gesture=null;urls.forEach(url=>root.URL.revokeObjectURL(url));urls.clear();release();canvas.remove();mesh=null;painted=null;tankData=null;}
     try{initialize();}catch(error){release();root.console?.warn('Equipment 3D preview:',error.message);say('3D rendering is unavailable on this graphics device. Component choices and cost reviews still work.');}
     update(spec);setControls();resize();
-    return {update,resize,dispose,view,rotate,zoom,reset,toggleRotation,setFinish,exportGlb,selectPart,pickAt};
+    return {update,resize,dispose,view,rotate,zoom,reset,toggleRotation,setFinish,setWear,exportGlb,selectPart,pickAt};
   }
-  return {mount,modelKey,frame,finishColors,rayAt,raycast,math:{lookAt,perspective,multiply},views:VIEWS};
+  return {mount,modelKey,frame,finishColors,rayAt,raycast,shadowFrame,math:{lookAt,perspective,multiply},views:VIEWS};
 });

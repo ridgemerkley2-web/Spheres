@@ -30,7 +30,10 @@ fn equipment_project_supply(_w:&WorldState,_me:NationId,p:&eq::ProjectSupply)->V
     if !ended&&!short&&p.remaining.iter().zip(p.stock).any(|(need,have)|*need>have+1e-9) {
         warnings.push("Current stock does not cover the entire remaining material bill. Review supply before later fabrication or refit work; future deliveries are not counted as stock here.".into());
     }
-    if p.earliest_work_day>p.plan_day {
+    // Equipment finance uses MAX for "not started", not a calendar date.
+    if p.earliest_work_day==i32::MAX {
+        warnings.push("Programme funding has not started, so a first work date is not yet available.".into());
+    } else if p.earliest_work_day>p.plan_day {
         warnings.push(format!("This order cannot work before {}. No work is charged on its issue date.",super::settled_day_json(p.earliest_work_day)["label"].as_str().unwrap_or("its first eligible date")));
     }
     let metrics=vec![metric("Planning date",super::settled_day_json(p.plan_day)["label"].clone()),
@@ -89,6 +92,23 @@ mod supply_view_tests {
         assert_eq!(q["valid"],false);assert_eq!(q["supply"]["stage"],"unavailable");
         assert!(!q["supply"]["resources"].as_array().unwrap().is_empty());
         assert_eq!(q["actions"][0]["enabled"],false);
+    }
+    #[test]
+    fn unstarted_funding_has_no_calendar_date_and_preview_remains_read_only() {
+        let mut g=fixture();
+        g.world.nation_mut(NationId::USA).equipment.as_mut().unwrap().finance_from_day=i32::MAX;
+        let before=spheres_sim::save(&g.world);
+        let q=preview(&g.world,NationId::USA,&g.session_id,&json!({"command":order(&g,2)})).unwrap();
+        assert_eq!(q["valid"],true,"{}",q["blockers"]);
+        let warnings=q["supply"]["warnings"].as_array().unwrap();
+        assert!(warnings.iter().any(|w|w.as_str().is_some_and(|s|s.contains("a first work date is not yet available"))));
+        assert!(!warnings.iter().any(|w|w.as_str().is_some_and(|s|s.starts_with("This order cannot work before "))));
+        assert_eq!(spheres_sim::save(&g.world),before);
+        let today=spheres_sim::clock::absolute_day(&g.world);
+        g.world.nation_mut(NationId::USA).equipment.as_mut().unwrap().finance_from_day=today;
+        let q=preview(&g.world,NationId::USA,&g.session_id,&json!({"command":order(&g,2)})).unwrap();
+        assert!(q["supply"]["warnings"].as_array().unwrap().iter()
+            .any(|w|w.as_str().is_some_and(|s|s.starts_with("This order cannot work before "))));
     }
     #[test]
     fn national_supply_counts_stock_once_and_retains_paused_outstanding_bills() {

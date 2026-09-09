@@ -626,7 +626,14 @@
       const ry = Math.max(1e-3, (s[2] == null ? s[1] : s[2]) * (o.h == null ? o.w : o.h) / 2);
       return { z: s[0] * o.len, pts: o.sharp ? ringSuper(rx, ry, seg, o.sharp) : ring(rx, ry, seg) };
     });
-    if (o.soft) m.soft((mm) => mm.loft(secs, o.col, o.caps));
+    if (o.soft && o.hardCaps) {
+      m.soft((mm) => mm.loft(secs, o.col, false));
+      if (o.caps !== false) {
+        m.fan(secs[0].pts.map((p) => [p[0], p[1], secs[0].z]).reverse(), o.col);
+        const last = secs[secs.length - 1];
+        m.fan(last.pts.map((p) => [p[0], p[1], last.z]), o.col);
+      }
+    } else if (o.soft) m.soft((mm) => mm.loft(secs, o.col, o.caps));
     else m.loft(secs, o.col, o.caps);
   }
 
@@ -688,6 +695,10 @@
       return pts;
     };
     m.save().move(o.x || 0, o.y || 0, o.z || 0);
+    // Detailed aircraft exhausts open aft. Reverse within the original axial
+    // interval: the former +Z mouth pointed into the fuselage and hid its bore.
+    // The coarse catalogue contract keeps its original silhouette/buffers.
+    if (!m.far) m.move(0, 0, L).rotY(180);
     m.soft((mm) => mm.loft([
       { z: 0, pts: ring(R * 1.16, R * 1.16, seg) },
       { z: L * 0.28, pts: ring(R * 1.12, R * 1.12, seg) },
@@ -701,6 +712,44 @@
       { z: L * 0.1, pts: ring(R * 0.6, R * 0.6, seg) }], shade(P.exhaust, 0.45), false);
     m.save().move(0, 0, L * 0.1);
     m.fan(ring(R * 0.6, R * 0.6, seg).map((p) => [p[0], p[1], 0]), P.black);
+    m.restore();
+    if (!m.far) {
+      // Flameholder spokes and the centre fairing sit inside the visible bore.
+      // There is no turbine disc at the mouth of an afterburning nozzle.
+      rotorFace(m, { r: R * 0.56, z: L * 0.14, depth: L * 0.09,
+        blades: 8, open: true, col: shade(P.exhaust, 1.12) });
+      // External petal actuators terminate on the existing shroud envelope.
+      for (let i = 0; i < 9; i += 1) {
+        m.save().rotZ(i * 40).move(0, R * 1.015, L * 0.36).rotX(12);
+        m.bar(-R * 0.026, R * 0.026, -R * 0.026, R * 0.026, 0, L * 0.25,
+          shade(P.metal, 0.68));
+        m.restore();
+      }
+    }
+    m.restore();
+  }
+
+  // A recessed compressor or an open flameholder, facing +Z. The swept blades
+  // have thickness and a canted chord; this is visible machinery,
+  // not a subdivided black end cap. S-duct and ramjet recipes never request it.
+  function rotorFace(m, o) {
+    if (m.far) return;
+    const R = o.r, D = o.depth, n = o.blades || 12, col = o.col || P.metal;
+    m.save().move(0, 0, o.z || 0);
+    for (let i = 0; i < n; i += 1) {
+      m.save().rotZ(i * 360 / n).rotX(o.open ? 90 : 72);
+      m.slab([[R * 0.18, -D * 0.12], [R * 0.9, -D * 0.45],
+        [R * 0.98, D * (o.open ? 0.02 : 0.65)], [R * 0.2, D * 0.2]],
+      R * (o.open ? 0.035 : 0.018), R * 0.006, shade(col, i % 2 ? 0.9 : 1.06));
+      m.restore();
+    }
+    m.soft((mm) => mm.loft([
+      { z: -D * 0.3, pts: ring(R * 0.22, R * 0.22, 12) },
+      { z: D * 0.4, pts: ring(R * 0.18, R * 0.18, 12) },
+      { z: D * 0.8, pts: ring(R * 0.035, R * 0.035, 12) },
+    ], shade(col, 0.78), false));
+    m.save().move(0, 0, D * 0.8);
+    discCap(m, R * 0.035, 12, col, false);
     m.restore();
     m.restore();
   }
@@ -731,6 +780,8 @@
     m.save().move(0, 0, -L * 1.1);
     m.fan(rect(0.62).map((p) => [p[0], p[1], 0]), P.black);
     m.restore();
+    if (o.compressor) rotorFace(m, { r: Math.min(W, H) * 0.29,
+      z: -L * 0.96, depth: Math.min(W, H) * 0.23, col: shade(P.metal, 0.66) });
     if (o.splitter) {
       m.save().move(-o.splitter * (W / 2 + 0.02), 0, -L * 0.5).rotZ(90);
       m.slab([[-H * 0.44, L * 0.62], [H * 0.44, L * 0.55], [H * 0.44, -L * 0.5],
@@ -749,36 +800,45 @@
     const stations = o.stations || [[0, .3, .28], [.1, .68, .66], [.24, .94, .92],
       [.42, 1, 1], [.62, .98, .94], [.8, .82, .74], [.92, .5, .48], [1, .16, .18]];
     m.save().move(o.x || 0, o.y, o.z);
-    bodyLoft(m, { len: L, w: W, h: H, col: o.col || P.canopy, seg, soft: true, stations });
     if (!m.far) {
-      // Frame bands: the same section a touch larger over a short run, which is
-      // exactly what a canopy bow is. Two of them — the windscreen arch and the
-      // aft bow — plus the sill rail down each side.
+      // A canopy is a glazed hood seated on a sill, not an ellipsoid pushed
+      // through the fuselage. Keep the established upper envelope, close its
+      // base flat, and give the forward windscreen a distinct planar rake.
+      const at = (t) => {
+        let a = stations[0], b = stations[stations.length - 1];
+        for (let i = 0; i + 1 < stations.length; i += 1) {
+          if (t >= stations[i][0] && t <= stations[i + 1][0]) { a = stations[i]; b = stations[i + 1]; }
+        }
+        const f = (t - a[0]) / Math.max(1e-6, b[0] - a[0]);
+        return [t, a[1] + (b[1] - a[1]) * f, a[2] + (b[2] - a[2]) * f];
+      };
+      const section = (s, k = 1) => ({ z: s[0] * L,
+        pts: Array.from({ length: 8 }, (_, i) => [Math.cos(i * Math.PI / 7) * W * .5 * s[1] * k,
+          Math.sin(i * Math.PI / 7) * H * .5 * s[2] * k]) });
+      const rear = stations.filter((s) => s[0] < .8).concat([at(.8)]).map((s) => section(s));
+      const front = [section(at(.8)), section(stations[stations.length - 1])];
+      m.soft((mm) => mm.loft(rear, o.col || P.canopy, false, 7));
+      m.soft((mm) => mm.loft(front, shade(o.col || P.canopy, 1.08), false, 7));
+      [rear[0], front[1]].forEach((s, i) => {
+        const pts = s.pts.map((p) => [p[0], p[1], s.z]);
+        m.fan(i ? pts : pts.reverse(), o.frame || P.greyDark);
+      });
       (o.frames || [[.2, .26], [.74, .8]]).forEach((f) => {
-        const at = (t) => {
-          let a = stations[0], b = stations[stations.length - 1];
-          for (let i = 0; i + 1 < stations.length; i += 1) {
-            if (t >= stations[i][0] && t <= stations[i + 1][0]) { a = stations[i]; b = stations[i + 1]; }
-          }
-          const k = (t - a[0]) / Math.max(1e-6, b[0] - a[0]);
-          return [t, a[1] + (b[1] - a[1]) * k, a[2] + (b[2] - a[2]) * k];
-        };
-        bodyLoft(m, { len: L, w: W * 1.07, h: H * 1.07, col: shade(o.frame || P.greyDark, 1.0),
-          seg, stations: [at(f[0]), at(f[1])] });
+        m.loft([section(at(f[0]), 1.07), section(at(f[1]), 1.07)],
+          o.frame || P.greyDark, false);
       });
+      // Sills follow the local canopy width so they meet the frame at both ends.
       m.both((mm) => {
-        mm.save().move(W * 0.44, -H * 0.06, L * 0.5);
-        mm.slab([[-W * 0.06, -L * 0.44], [W * 0.06, -L * 0.44], [W * 0.06, L * 0.4],
-          [-W * 0.06, L * 0.4]], H * 0.12, H * 0.03, shade(o.frame || P.greyDark, 0.9));
-        mm.restore();
+        const rails = stations.map((s) => ({ z: s[0] * L,
+          pts: [[W * s[1] * .49, -H * .035], [W * s[1] * .52, -H * .035],
+            [W * s[1] * .52, H * .035], [W * s[1] * .49, H * .035]] }));
+        mm.loft(rails, o.frame || P.greyDark);
       });
-      // The seat, dark, under the glass. Nothing here is transparent, so it is
-      // drawn as a headrest breaking the canopy line rather than as furniture.
-      m.save().move(0, H * 0.1, L * 0.34);
-      m.slab([[-W * 0.24, -L * 0.1], [W * 0.24, -L * 0.1], [W * 0.24, L * 0.06],
-        [-W * 0.24, L * 0.06]], H * 0.44, H * 0.08, P.black);
       m.restore();
+      return;
     }
+    // The far canopy keeps the original recipe and exact buffers.
+    bodyLoft(m, { len: L, w: W, h: H, col: o.col || P.canopy, seg, soft: true, stations });
     m.restore();
   }
 
@@ -816,6 +876,40 @@
     [.62, .96, .92], [.7, .88, .86], [.76, .78, .78], [.82, .66, .68], [.88, .5, .53],
     [.94, .34, .36], [.975, .19, .2], [1, .06, .06]];
 
+  // Monotone cubic fairing through authored frames. Insert a station only where
+  // curvature moves the skin visibly away from the straight chord; constant
+  // barrels and linear tapers gain nothing. Original sections remain untouched.
+  function fairStations(stations) {
+    const slopes = [1, 2].map((axis) => {
+      const ds = stations.slice(1).map((s, i) =>
+        (s[axis] - stations[i][axis]) / (s[0] - stations[i][0]));
+      return stations.map((s, i) => {
+        if (!i) return ds[0];
+        if (i === stations.length - 1) return ds[i - 1];
+        if (ds[i - 1] * ds[i] <= 0) return 0;
+        const left = s[0] - stations[i - 1][0], right = stations[i + 1][0] - s[0];
+        const w0 = 2 * right + left, w1 = right + 2 * left;
+        return (w0 + w1) / (w0 / ds[i - 1] + w1 / ds[i]);
+      });
+    });
+    const out = [];
+    stations.forEach((a, i) => {
+      out.push(a.slice());
+      if (i + 1 === stations.length) return;
+      const b = stations[i + 1], dt = b[0] - a[0];
+      const middle = [ (a[0] + b[0]) / 2 ];
+      let bend = 0;
+      for (let axis = 1; axis <= 2; axis += 1) {
+        const linear = (a[axis] + b[axis]) / 2;
+        const curved = linear + dt * (slopes[axis - 1][i] - slopes[axis - 1][i + 1]) / 8;
+        middle.push(Math.max(Math.min(a[axis], b[axis]), Math.min(Math.max(a[axis], b[axis]), curved)));
+        bend = Math.max(bend, Math.abs(middle[axis] - linear));
+      }
+      if (bend > .0055) out.push(middle);
+    });
+    return out;
+  }
+
   /// The fighter family. Nine of the deck's aircraft are this function with a
   /// different table: what separates an F-15E from an F-22 at the size a card
   /// draws them is planform, tail cant and whether the section is oval or
@@ -837,7 +931,9 @@
     // smoothed: averaging a chine away is how a Raptor stops being a Raptor.
     bodyLoft(m, {
       len: L, w, h, col, seg, sharp: faceted ? 3.2 : null, soft: !faceted,
-      stations: o.stations || (m.far ? JET_STATIONS : JET_STATIONS_FINE),
+      hardCaps: !m.far,
+      stations: o.stations || (m.far ? JET_STATIONS :
+        (faceted ? JET_STATIONS_FINE : fairStations(JET_STATIONS_FINE))),
     });
 
     const wingY = o.wingY == null ? -h * 0.1 : o.wingY;
@@ -945,7 +1041,7 @@
     // the last, whose entire point is that it does not have one.
     if (o.intake === "nose") {
       intakeDuct(m, { x: 0, y: 0, z: L * 0.995, w: h * 0.46, h: h * 0.46,
-        len: L * 0.12, sharp: 2, col: shade(col, 0.94) });
+        len: L * 0.12, sharp: 2, col: shade(col, 0.94), compressor: true });
       // The shock cone. A supersonic nose inlet without its centrebody is a
       // hoover, and the cone is half of what makes this shape read as 1960s.
       m.save().move(0, 0, L * 0.95);
@@ -957,12 +1053,12 @@
         intakeDuct(mm, {
           x: w * 0.52, y: -h * 0.1, z: iz, w: w * 0.36, h: h * 0.36, len: L * 0.17,
           sharp: o.intake === "dsi" ? 2.4 : 3.4, col: shade(col, 0.92),
-          splitter: o.intake === "side" ? 1 : 0, yaw: -4,
+          splitter: o.intake === "side" ? 1 : 0, yaw: -4, compressor: !faceted,
         });
       });
     } else if (o.intake === "chin") {
       intakeDuct(m, { x: 0, y: -h * 0.34, z: L * 0.72, w: w * 0.5, h: h * 0.26,
-        len: L * 0.14, sharp: 3.0, col: shade(col, 0.9) });
+        len: L * 0.14, sharp: 3.0, col: shade(col, 0.9), compressor: true });
     }
     if (m.far) return m;
 
@@ -1140,6 +1236,7 @@
         shade(P.rubber, 1.2 + (i % 2) * 0.12));
       m.bar(-t * 0.1, t * 0.1, g * 0.8, g * 3.0, -pitch * 0.2, pitch * 0.2,
         shade(P.track, 1.5));
+      trackPin(m, { w: t, r: g * 0.7, z: pitch * 0.43 });
       m.restore();
     }
     for (let i = 0; i < n; i += 1) {
@@ -1314,6 +1411,16 @@
           shade(col, 0.74 + (i % 2) * 0.08));
         m.restore();
       }
+      // Grille perimeter and a central support bridge connect the slats to the
+      // powerpack access cover. These sit on the deck, within the old fenders.
+      [-1, 0, 1].forEach((side) => {
+        const x = side * W * 0.31;
+        m.bar(x - W * 0.012, x + W * 0.012, roof + H * 0.002, roof + H * 0.035,
+          L * 0.11, L * 0.402, shade(col, 0.88));
+      });
+      [0.11, 0.402].forEach((z) => m.bar(-W * 0.322, W * 0.322,
+        roof + H * 0.002, roof + H * 0.035, L * z - H * 0.012, L * z + H * 0.012,
+        shade(col, 0.88)));
       m.both((mm) => louvre(mm, { x: W / 2 * 1.005, y0: fender + H * 0.02, y1: fender + H * 0.2,
         z: L * 0.09, w: W * 0.16, t: H * 0.01, d: H * 0.035, yaw: 90,
         col: shade(P.exhaust, 1.05), n: 5 }));
@@ -1399,6 +1506,15 @@
       { z: t.h * 0.1, pts: ring(t.h * 0.4, t.h * 0.34, bs) },
       { z: t.h * 0.2, pts: ring(t.h * 0.3, t.h * 0.26, bs) },
     ], shade(col, 0.9), false));
+    if (!m.far) {
+      // Retaining screws on the blast-bag collar, seated on its forward lip.
+      for (let i = 0; i < 8; i += 1) {
+        const a = i * Math.PI / 4;
+        m.save().move(Math.cos(a) * t.h * 0.265, Math.sin(a) * t.h * 0.225, t.h * 0.18);
+        socketFastener(m, { r: t.h * 0.026, h: t.h * 0.032, col: shade(col, 0.76) });
+        m.restore();
+      }
+    }
     m.save().move(0, 0, t.h * 0.18);
     m.soft((mm) => mm.loft([
       { z: 0, pts: ring(GR * 1.5, GR * 1.5, bs) },
@@ -1928,10 +2044,15 @@
     const L = o.len, B = o.beam, fb = o.freeboard, d = o.draft, sheer = o.sheer || 0;
     const boot = o.boot || P.hull, col = o.col || P.navy;
     const under = bilgeProfile(m.lod(o.bilge || 5, 2), o.flat == null ? 0.36 : o.flat);
+    // The forebody narrows at the waterline while the established deck edge
+    // stays put. This makes bow flare a change in section, rather than a stripe
+    // painted onto a vertical side. Midship beam and every axial datum remain.
+    const bow = (s) => m.far ? 0 : Math.min(1, Math.max(0, (s[0] - .66) / .32));
     const wet = st.map((s) => ({ z: s[0] * L,
-      pts: hullRing(B / 2 * s[1], -d * (1 - s[3]), 0, under) }));
+      pts: hullRing(B / 2 * s[1] * (1 - .24 * bow(s)), -d * (1 - s[3]), 0, under) }));
     const dry = st.map((s) => ({ z: s[0] * L,
-      pts: hullRing(B / 2 * s[1], 0, fb + sheer * s[2], TOPSIDE_PROFILE) }));
+      pts: hullRing(B / 2 * s[1], 0, fb + sheer * s[2],
+        TOPSIDE_PROFILE.map((p) => [p[0] * (1 - .24 * bow(s) * (1 - p[1])), p[1]])) }));
     m.soft((mm) => bandLoft(mm, wet, boot));
     m.soft((mm) => bandLoft(mm, dry, col));
     // A TRANSOM AND A STEM ARE FANS, AND THE HUB MATTERS. `fan` takes its hub
@@ -2046,6 +2167,17 @@
         m.bar(-t, t, -t, t, 0, len, col);
         m.restore();
       });
+      if (!m.far) {
+        // A diagonal stay stiffens the open rail without changing its outline.
+        const inset = Math.min(len * 0.12, h * 0.2);
+        const rise = h * 0.72 + (yb - ya) * (1 - 2 * inset / len);
+        const run = len - 2 * inset;
+        m.save().move(0, h * 0.1 + (yb - ya) * inset / len, inset)
+          .rotX(-Math.atan2(rise, run) / DEG);
+        m.bar(-t * 0.68, t * 0.68, -t * 0.68, t * 0.68, 0, Math.hypot(run, rise),
+          shade(col, 0.78));
+        m.restore();
+      }
       m.restore();
     }
   }
@@ -2062,9 +2194,79 @@
       const az = a[0] * L, bz = b[0] * L;
       const ay = y + sheer * a[2], by = y + sheer * b[2];
       const c = shade(col, 1 + ((i % 3) - 1) * 0.04);
+      if (!m.far) {
+        // A parabolic crown sheds water without the former roof-like ridge.
+        // Centre and edge heights are exact inherited datums.
+        const fractions = [-1, -.5, 0, .5, 1];
+        for (let j = 0; j + 1 < fractions.length; j += 1) {
+          const u = fractions[j], v = fractions[j + 1];
+          m.quad([ax * v, ay + cam * (1 - v * v), az],
+            [ax * u, ay + cam * (1 - u * u), az],
+            [bx * u, by + cam * (1 - u * u), bz],
+            [bx * v, by + cam * (1 - v * v), bz], c);
+        }
+        continue;
+      }
       m.quad([ax, ay, az], [0, ay + cam, az], [0, by + cam, bz], [bx, by, bz], c);
       m.quad([0, ay + cam, az], [-ax, ay, az], [-bx, by, bz], [0, by + cam, bz], c);
     }
+  }
+
+  // A recessed pane with a structural surround. The reveal joins the opening
+  // to the glass; there is no solid hull face behind the pane to hide it.
+  function glazingPanel(m, corners, depth, frame, glass) {
+    const at = (u, v) => corners[0].map((_, axis) =>
+      corners[0][axis] * (1 - u) * (1 - v) + corners[1][axis] * (1 - u) * v
+      + corners[2][axis] * u * v + corners[3][axis] * u * (1 - v));
+    const u = corners[1].map((n, i) => n - corners[0][i]);
+    const v = corners[3].map((n, i) => n - corners[0][i]);
+    const normal = [u[1] * v[2] - u[2] * v[1], u[2] * v[0] - u[0] * v[2], u[0] * v[1] - u[1] * v[0]];
+    const len = Math.hypot(...normal);
+    const edge = [at(.08, .1), at(.08, .9), at(.92, .9), at(.92, .1)];
+    const pane = edge.map((p) => p.map((n, i) => n - normal[i] * depth / len));
+    for (let i = 0; i < 4; i += 1) {
+      const j = (i + 1) % 4;
+      m.quad(corners[i], corners[j], edge[j], edge[i], frame);
+      m.quad(edge[i], edge[j], pane[j], pane[i], shade(frame, .72));
+    }
+    m.quad(pane[0], pane[1], pane[2], pane[3], glass);
+  }
+
+  function houseSkin(m, o) {
+    const H = o.h, y1 = o.y + H, hw = o.w / 2, d = o.z1 - o.z0;
+    const tum = o.tumble == null ? .93 : o.tumble;
+    const cham = o.cham == null ? Math.min(hw, H) * .26 : o.cham;
+    const glass0 = y1 - cham - H * .19, glass1 = glass0 + H * .15;
+    const sideWidth = (y) => 1 - (1 - tum) * (y - o.y) / (H - cham);
+    const levels = [[o.y, 1], [glass0, sideWidth(glass0)], [glass1, sideWidth(glass1)],
+      [y1 - cham, tum], [y1, tum * .66]];
+    const st = [[o.z0, o.aft == null ? .86 : o.aft], [o.z0 + d * .1, 1],
+      [o.z0 + d * .68, 1], [o.z1 - d * .08, .97], [o.z1, o.fwd == null ? .78 : o.fwd]];
+    const ringAt = (layer) => st.map((s) => [hw * s[1] * layer[1], layer[0], s[0]])
+      .concat(st.slice().reverse().map((s) => [-hw * s[1] * layer[1], layer[0], s[0]]));
+    const rings = levels.map(ringAt), col = o.col || shade(P.navy, 1.07);
+    for (let level = 0; level + 1 < rings.length; level += 1) {
+      const lower = rings[level], upper = rings[level + 1];
+      for (let i = 0; i < lower.length; i += 1) {
+        const j = (i + 1) % lower.length;
+        if (level !== 1) { m.quad(lower[i], upper[i], upper[j], lower[j], col); continue; }
+        const length = Math.hypot(...lower[i].map((n, k) => n - lower[j][k]));
+        const n = Math.max(1, Math.min(o.plain ? 2 : 4, Math.ceil(length / Math.max(1, H * .85))));
+        const lerp = (a, b, t) => a.map((x, k) => x + (b[k] - x) * t);
+        for (let k = 0; k < n; k += 1) {
+          glazingPanel(m, [lerp(lower[i], lower[j], k / n), lerp(upper[i], upper[j], k / n),
+            lerp(upper[i], upper[j], (k + 1) / n), lerp(lower[i], lower[j], (k + 1) / n)],
+          H * .012, shade(col, .94), o.glass || P.glass);
+        }
+      }
+    }
+    [0, rings.length - 1].forEach((level) => {
+      const ring = rings[level], centre = [0, levels[level][0], (o.z0 + o.z1) / 2];
+      for (let i = 0; i < ring.length; i += 1) {
+        const j = (i + 1) % ring.length;
+        m.tri(centre, ring[level ? j : i], ring[level ? i : j], shade(col, level ? 1.08 : .82));
+      }
+    });
   }
 
   /// A superstructure block. A real one is a box with its corners knocked off,
@@ -2083,7 +2285,8 @@
         [-w * tum * 0.66, y1], [-w * tum, y1 - cham], [-w, y0]];
     };
     const d = z1 - z0;
-    m.loft([
+    if (!m.far) houseSkin(m, o);
+    else m.loft([
       { z: z0, pts: sect(o.aft == null ? 0.86 : o.aft) },
       { z: z0 + d * 0.1, pts: sect(1) },
       { z: z0 + d * 0.68, pts: sect(1) },
@@ -2097,10 +2300,7 @@
       return [[w, b - c], [w, a + c], [w - c, a], [-w + c, a],
         [-w, a + c], [-w, b - c], [-w + c, b], [w - c, b]];
     };
-    // The bridge window band and the roof lip, both right round the block. A
-    // deckhouse without a window line is a shipping container.
-    strip(m, plan(0.995), { y: y1 - cham - H * 0.19, h: H * 0.15, t: hw * 0.02,
-      closed: true, col: o.glass || P.glass });
+    // The overhanging weather lip remains separate from the framed glazing.
     strip(m, plan(1.0), { y: y1 - H * 0.05, h: H * 0.06, t: hw * 0.045,
       closed: true, col: shade(col, 0.88) });
     // Watertight doors port and starboard on their coamings, and the vertical
@@ -2112,6 +2312,13 @@
       mm.save().move(hw * tum * 0.99, y0, z0 + d * 0.3).rotZ(90);
       mm.slab([[H * 0.03, -H * 0.15], [H * 0.44, -H * 0.13], [H * 0.44, H * 0.13],
         [H * 0.03, H * 0.15]], hw * 0.06, hw * 0.016, shade(col, 0.8));
+      // Door dogs and a centre handle on the outside (-Y) face of the door.
+      [-1, 1].forEach((s) => {
+        mm.bar(H * 0.12, H * 0.33, -hw * 0.04, -hw * 0.025,
+          s * H * 0.105 - H * 0.012, s * H * 0.105 + H * 0.012, shade(P.metal, 0.72));
+      });
+      mm.bar(H * 0.21, H * 0.25, -hw * 0.06, -hw * 0.028,
+        -H * 0.035, H * 0.035, shade(P.metal, 0.85));
       mm.restore();
       for (let i = 0; i < 3; i += 1) {
         mm.save().move(hw * tum * 0.985, y0, z0 + d * (0.16 + i * 0.24)).rotZ(90);
@@ -2147,6 +2354,12 @@
       m.slab([[-w * 0.4, -h * 0.17], [w * 0.4, -h * 0.17], [w * 0.4, h * 0.17],
         [-w * 0.4, h * 0.17]], t * 0.5, t * 0.16, shade(P.sensor, 1.1));
       m.restore();
+      // Feed rows are raised across the face, within the existing aperture rim.
+      for (let i = 0; i < 7; i += 1) {
+        const x = (i - 3) * w * 0.105;
+        m.bar(x - w * 0.013, x + w * 0.013, t * 0.96, t * 1.18,
+          -h * 0.145, h * 0.145, shade(P.glass, 0.84 + (i % 2) * 0.15));
+      }
     }
     m.restore();
     m.restore();
@@ -2461,7 +2674,8 @@
       const side = edge.filter((p, i) => i % 2 === 0);
       [0.34, 0.66].forEach((f, i) => {
         const k = topsideK(f) / DECK_K * 1.004;
-        strip(m, side.map((p) => [p[0] * k, p[1], p[2] * f]),
+        strip(m, side.map((p) => [p[0] * k *
+          (1 - .24 * Math.min(1, Math.max(0, (p[1] / L - .66) / .32)) * (1 - f)), p[1], p[2] * f]),
           { y: fb * f, h: B * 0.013, t: B * 0.006, closed: true,
             col: shade(o.col || P.navy, i ? 0.9 : 1.1) });
       });
@@ -2515,23 +2729,50 @@
     const run = (a, b) => hull.map((s) => ({ z: s.z, pts: [s.pts[a], s.pts[b]] }));
     m.soft((mm) => bandLoft(mm, run(0, 1), col0));
     m.soft((mm) => bandLoft(mm, run(2, 3), col0));
-    bandLoft(m, run(1, 2), shade(col0, 0.94));
+    if (m.far) bandLoft(m, run(1, 2), shade(col0, 0.94));
     bandLoft(m, run(3, 0), shade(col0, 0.86));
     m.fan(hull[0].pts.map((q) => [q[0], q[1], hull[0].z]).slice().reverse(),
       shade(o.col || shade(P.black, 1.7), 0.8));
     m.fan(hull[4].pts.map((q) => [q[0], q[1], hull[4].z]),
       shade(o.col || shade(P.black, 1.7), 0.9));
     if (!m.far) {
-      m.save().move(0, W * 0.5, -L * 0.04);
+      // An open cockpit well replaces the full-width lid. Its inner sides
+      // descend to a raised sole, leaving the keel and exterior hull intact.
+      const well = hull.map((s) => {
+        const hw = s.pts[0][0], top = s.pts[1][1], floor = Math.max(s.pts[0][1] + W * .08, W * .14);
+        return { z: s.z, pts: [[hw * .84, top * .92], [hw * .68, floor],
+          [-hw * .68, floor], [-hw * .84, top * .92]] };
+      });
+      bandLoft(m, well, shade(P.greyDark, .82));
+      // Inflatable collars have circular sections and taper into the bow.
+      // Their outer edges stay on the old gunwale, so boat stowage still fits.
+      m.both((mm) => {
+        const collar = hull.map((s) => {
+          const hw = s.pts[0][0], r = hw * .2, x = hw * 1.06 - r;
+          return { z: s.z, pts: ring(r, r, 10).map((p) => [p[0] + x, p[1] + s.pts[1][1] - r * .35]) };
+        });
+        mm.soft((q) => q.loft(collar, shade(P.black, 1.55), false));
+        [collar[0], collar[collar.length - 1]].forEach((s, i) => {
+          const pts = s.pts.map((p) => [p[0], p[1], s.z]);
+          mm.fan(i ? pts : pts.reverse(), shade(P.black, 1.3));
+        });
+      });
+      m.save().move(0, W * 0.2, -L * 0.04);
       m.bar(-W * 0.22, W * 0.22, 0, W * 0.42, -W * 0.24, W * 0.24, shade(P.grey, 0.9));
+      m.save().move(0, W * .42, W * .12).rotX(-18);
+      m.slab([[-W * .19, -W * .03], [W * .19, -W * .03], [W * .19, W * .03], [-W * .19, W * .03]],
+        W * .2, W * .014, P.glass);
+      m.restore();
       m.restore();
       m.save().move(0, W * 0.1, -L * 0.54).rotX(10);
       m.bar(-W * 0.12, W * 0.12, -W * 0.5, W * 0.3, -W * 0.2, W * 0.14, P.black);
       m.restore();
-      m.save().move(0, W * 0.5, L * 0.12);
-      m.slab([[-W * 0.4, -L * 0.22], [W * 0.4, -L * 0.22], [W * 0.4, L * 0.22],
-        [-W * 0.4, L * 0.22]], W * 0.06, W * 0.02, shade(P.grey, 1.1));
-      m.restore();
+      [-.22, .25].forEach((z) => {
+        m.save().move(0, W * .33, L * z);
+        m.slab([[-W * .34, -L * .045], [W * .34, -L * .045], [W * .34, L * .045],
+          [-W * .34, L * .045]], W * .05, W * .014, shade(P.grey, 1.1));
+        m.restore();
+      });
     }
     m.restore();
   }
@@ -2851,6 +3092,29 @@
   function jointBand(m, o) {
     const seg = o.seg, r = o.r, w = o.w, k = o.k == null ? 1.045 : o.k;
     m.save().move(0, 0, o.z);
+    if (!m.far) {
+      // Two retaining lips with a recessed gasket between them. The outer
+      // radius and axial envelope are unchanged; the groove replaces skin.
+      const lip = r * k, groove = r * (1 + (k - 1) * 0.35);
+      m.soft((mm) => mm.loft([
+        { z: -w * 0.5, pts: ring(r, r, seg) },
+        { z: -w * 0.28, pts: ring(lip, lip, seg) },
+        { z: -w * 0.09, pts: ring(lip, lip, seg) },
+        { z: -w * 0.045, pts: ring(groove, groove, seg) },
+      ], o.col, false));
+      m.soft((mm) => mm.loft([
+        { z: -w * 0.045, pts: ring(groove, groove, seg) },
+        { z: w * 0.045, pts: ring(groove, groove, seg) },
+      ], shade(o.col, 0.46), false));
+      m.soft((mm) => mm.loft([
+        { z: w * 0.045, pts: ring(groove, groove, seg) },
+        { z: w * 0.09, pts: ring(lip, lip, seg) },
+        { z: w * 0.28, pts: ring(lip, lip, seg) },
+        { z: w * 0.5, pts: ring(r, r, seg) },
+      ], o.col, false));
+      m.restore();
+      return;
+    }
     m.soft((mm) => mm.loft([
       { z: -w * 0.5, pts: ring(r, r, seg) },
       { z: -w * 0.28, pts: ring(r * k, r * k, seg) },
@@ -3923,20 +4187,53 @@
   /// the entire difference. Skipped whole at the far level of detail.
   function boltRun(m, o) {
     if (m.far) return;
-    const n = o.n, seg = m.lod(6, 4), r = o.r;
+    const n = o.n, r = o.r;
     for (let i = 0; i < n; i += 1) {
       const t = n === 1 ? 0.5 : i / (n - 1);
       m.save().move(o.x0 + ((o.x1 == null ? o.x0 : o.x1) - o.x0) * t,
         o.y0 + ((o.y1 == null ? o.y0 : o.y1) - o.y0) * t,
         o.z0 + ((o.z1 == null ? o.z0 : o.z1) - o.z0) * t)
         .rotY(o.yaw || 0).rotX(o.pitch == null ? -90 : o.pitch);
-      m.soft((mm) => mm.loft([
-        { z: 0, pts: ring(r, r, seg) },
-        { z: r * 0.72, pts: ring(r * 0.88, r * 0.88, seg) },
-        { z: r, pts: ring(r * 0.42, r * 0.42, seg) },
-      ], o.col, false));
+      socketFastener(m, { r, h: r, col: o.col });
       m.restore();
     }
+  }
+
+  // A washer, a hard hexagonal head and a recessed socket, inside the original
+  // fastener's radius/height. No rear cap is emitted against the mounting face.
+  function socketFastener(m, o) {
+    if (m.far) return;
+    const R = o.r, H = o.h, col = o.col || P.metal;
+    m.soft((mm) => mm.loft([
+      { z: 0, pts: ring(R, R, 6) },
+      { z: H * 0.2, pts: ring(R, R, 6) },
+      { z: H * 0.3, pts: ring(R * 0.74, R * 0.74, 6) },
+    ], shade(col, 0.8), false));
+    m.loft([
+      { z: H * 0.3, pts: ring(R * 0.74, R * 0.74, 6) },
+      { z: H * 0.82, pts: ring(R * 0.74, R * 0.74, 6) },
+      { z: H, pts: ring(R * 0.62, R * 0.62, 6) },
+    ], col, false);
+    const outer = ring(R * 0.62, R * 0.62, 6), inner = ring(R * 0.25, R * 0.25, 6);
+    for (let i = 0; i < 6; i += 1) {
+      const j = (i + 1) % 6, at = (p) => [p[0], p[1], H];
+      m.quad(at(outer[i]), at(outer[j]), at(inner[j]), at(inner[i]), shade(col, 1.12));
+    }
+    m.loft([{ z: H, pts: inner }, { z: H * 0.62, pts: inner }], shade(col, 0.38), false);
+    m.fan(inner.map((p) => [p[0], p[1], H * 0.62]), shade(col, 0.3));
+  }
+
+  // The exposed pin and its retaining head connect adjacent track shoes.
+  // Pin ends stay inside belt width; links retain their original ground datum.
+  function trackPin(m, o) {
+    if (m.far) return;
+    m.save().move(-o.w * 0.5, 0, o.z).rotY(90);
+    m.soft((mm) => mm.tube(o.r, o.r, o.w, 6, shade(P.metal, 0.48), false));
+    discCap(m, o.r, 6, shade(P.metal, 0.72), true);
+    m.save().move(0, 0, o.w);
+    discCap(m, o.r, 6, shade(P.metal, 0.72), false);
+    m.restore();
+    m.restore();
   }
 
   /// A louvre stack: the angled slats over a generator's air intake or a radio
@@ -3945,6 +4242,15 @@
   function louvre(m, o) {
     if (m.far) return;
     const n = o.n || 6;
+    // A recessed back and the two upright mounting cheeks give the angled
+    // blades an opening to sit in. The old slat extents remain the outer edge.
+    m.save().move(o.x || 0, 0, o.z || 0).rotY(o.yaw || 0);
+    m.bar(-o.w * 0.49, o.w * 0.49, o.y0, o.y1, -o.d * 0.76, -o.d * 0.62,
+      shade(o.col, 0.35));
+    [-1, 1].forEach((s) => m.bar(s * o.w * 0.465 - o.w * 0.022,
+      s * o.w * 0.465 + o.w * 0.022, o.y0, o.y1, -o.d * 0.72, o.d * 0.7,
+      shade(o.col, 0.82)));
+    m.restore();
     for (let i = 0; i < n; i += 1) {
       m.save().move(o.x || 0, o.y0 + (o.y1 - o.y0) * ((i + 0.5) / n), o.z || 0)
         .rotY(o.yaw || 0).rotX(32);
@@ -4204,6 +4510,7 @@
       // halves of the road wheel, and is what keeps the track on the vehicle.
       m.bar(-o.w * 0.11, o.w * 0.11, o.t, o.t * 3.0, -o.pitch * 0.2, o.pitch * 0.2,
         shade(P.track, 1.45));
+      trackPin(m, { w: o.w, r: o.t * 0.7, z: o.pitch * 0.43 });
       m.restore();
     }
     // Sprocket and idler, with teeth: a smooth disc at the end of a track is a
@@ -4413,18 +4720,15 @@
     inf_mech: {
       name: "Mechanised Infantry Formation", cls: "Infantry", span: 6.7,
       build(m) {
-        // NOT A TANK WITH A SMALL TURRET, which is what this used to be. An
-        // infantry fighting vehicle is a different machine and the difference
-        // is legible: a long flat roof with a ramp under it because the
-        // section rides inside, a one- or two-man turret set well back so the
-        // troop compartment can be forward of the engine, a cannon rather than
-        // a gun, and missiles bolted on the outside of the turret because
-        // there is no room for them in it. `armour` is shared with the three
-        // Armour entries and may not move, so the hull is lofted here.
+        // An original tracked IFV with a front engine/driver station, a low
+        // cannon turret at the bay's forward bulkhead and a rear troop ramp.
+        // The independent formation keeps its own identity and dismount; it
+        // is not remapped to the configurable ground_ifv vehicle. The far
+        // recipe is kept exactly as shipped while the near surfaces improve.
         const L = 6.7, W = 2.9, belly = 0.6;
         const sec = (t, hw, y0, y1, y2, k) => ({
           z: t * L,
-          pts: [[hw, y0], [hw, y1], [hw * k, y2], [0, y2 + 0.05],
+          pts: [[hw, y0], [hw, y1], [hw * k, y2], [0, y2 + (m.far ? 0.05 : 0.025)],
             [-hw * k, y2], [-hw, y1], [-hw, y0]],
         });
         const hull = [
@@ -4435,36 +4739,53 @@
           sec(0.94, 1.16, belly + 0.12, 0.86, 0.98, 0.9),
           sec(1, 0.92, belly + 0.2, 0.76, 0.86, 0.88),
         ];
-        m.loft(m.far ? [hull[0], hull[3], hull[6], hull[8]] : hull, P.olive);
+        m.loft(m.far ? [hull[0], hull[3], hull[6], hull[8]] : [
+          sec(0, 1.30, belly, 1.38, 1.76, 0.98), sec(0.05, 1.40, belly, 1.42, 1.78, 0.97),
+          sec(0.24, 1.45, belly, 1.44, 1.78, 0.96), sec(0.46, 1.45, belly, 1.44, 1.78, 0.96),
+          sec(0.62, 1.45, belly, 1.36, 1.76, 0.96), sec(0.76, 1.42, belly, 1.18, 1.46, 0.94),
+          sec(0.90, 1.27, belly + 0.08, 0.94, 1.08, 0.92),
+          sec(1, 0.92, belly + 0.20, 0.82, 0.89, 0.88),
+        ], P.olive);
         // Running gear, built out of links rather than drawn as a band. This is
         // where the triangles go and it is where the eye goes: at 90 px the
         // wheel line and the link line are found before the turret is.
         m.both((mm) => linkedTrack(mm, {
           x: W / 2 * 0.96, w: W * 0.17, r: 0.42, z0: 0.6, z1: L - 0.75,
-          t: 0.045, pitch: 0.28, links: 26, wheels: 5,
+          t: 0.045, pitch: 0.28, links: 26, wheels: m.far ? 5 : 6,
         }));
         if (!m.far) {
-          // Applique armour: the panels a modern IFV is uparmoured with, each
-          // standing proud of the flank on its own bolt line. The bolts are
-          // the detail — a plate with nothing round its edge is a decal.
+          // Broad, thin flank modules follow the continuous crew-bay armour.
+          // Narrow seams and attachment pairs replace bright alternating tiles
+          // and oversized rows of hardware, leaving budget for mechanisms.
           m.both((mm) => {
             for (let i = 0; i < 4; i += 1) {
-              const z0 = 0.55 + i * 1.28;
+              const z0 = 0.32 + i * 1.08;
               mm.save().move(W / 2 * 0.99, 0, 0).rotZ(90);
-              mm.slab([[1.36, z0], [1.68, z0 + 0.05], [1.68, z0 + 1.1], [1.36, z0 + 1.05]],
-                0.09, 0.03, shade(P.olive, i % 2 ? 1.08 : 0.94));
+              mm.slab([[1.20, z0], [1.65, z0 + 0.03], [1.65, z0 + 1.01], [1.20, z0 + 1.02]],
+                0.06, 0.007, shade(P.olive, 0.96));
               mm.restore();
-              boltRun(mm, { n: 4, r: 0.028, x0: W / 2 * 1.03, y0: 1.4, y1: 1.62,
-                z0: z0 + 0.12, z1: z0 + 0.92, pitch: 0, yaw: 90,
-                col: shade(P.metal, 0.62) });
+              boltRun(mm, { n: 2, r: 0.022, x0: W / 2 * 1.015, y0: 1.34, y1: 1.54,
+                z0: z0 + 0.12, z1: z0 + 0.89, pitch: 0, yaw: 90,
+                col: shade(P.track, 1.4) });
             }
-            // Skirt plates over the top run, hinged so they can be lifted.
-            for (let i = 0; i < 3; i += 1) {
+            // Four serviceable guards stop above the road-wheel centres.
+            // The exposed lower suspension remains readable beside the belt.
+            for (let i = 0; i < 4; i += 1) {
               mm.save().move(W / 2 * 1.02, 0, 0).rotZ(90);
-              mm.slab([[0.72, 0.75 + i * 1.6], [1.34, 0.75 + i * 1.6],
-                [1.34, 2.25 + i * 1.6], [0.72, 2.25 + i * 1.6]], 0.07, 0.025,
-              shade(P.olive, 0.86));
+              const z = 0.54 + i * 1.28, bottom = i === 3 ? 0.93 : 0.84;
+              mm.slab([[bottom, z], [1.24, z], [1.24, z + 1.20], [bottom, z + 1.20]], 0.055, 0.007,
+                shade(P.olive, 0.91));
               mm.restore();
+              mm.bar(W / 2 * 1.015, W / 2 * 1.055, 1.23, 1.28, z + 0.16, z + 0.42, shade(P.track, 1.35));
+            }
+            // Every road wheel has an inboard arm reaching the hull mount.
+            // These connect the wheel line instead of adding decorative discs.
+            for (let i = 0; i < 6; i += 1) {
+              const z = 0.978 + i * (4.594 / 5);
+              mm.save().move(1.17, 0.59, z - 0.20).rotX(42);
+              mm.bar(-0.055, 0.055, -0.035, 0.035, 0, 0.35, shade(P.exhaust, 0.82));
+              mm.restore();
+              mm.bar(1.08, 1.22, 0.56, 0.66, z - 0.28, z - 0.12, shade(P.track, 1.28));
             }
           });
           // The trim vane folded back on the glacis, and the driver's three
@@ -4473,27 +4794,39 @@
           m.slab([[-1.16, -0.36], [1.16, -0.36], [1.16, 0.36], [-1.16, 0.36]], 0.07, 0.024,
             shade(P.olive, 1.12));
           m.restore();
-          m.save().move(-0.62, 1.76, L * 0.76);
+          m.save().move(-0.64, 1.695, 4.50).rotX(17.7);
           m.slab([[-0.3, -0.3], [0.3, -0.3], [0.3, 0.3], [-0.3, 0.3]], 0.08, 0.026,
-            shade(P.olive, 1.14));
+            shade(P.olive, 1.02));
           m.restore();
           for (let i = 0; i < 3; i += 1) {
-            m.save().move(-0.86 + i * 0.24, 1.8, L * 0.79);
+            m.save().move(-0.88 + i * 0.24, 1.582, 4.82).rotX(17.7);
             m.bar(-0.07, 0.07, 0, 0.06, -0.045, 0.045, P.sensor);
+            m.bar(-0.054, 0.054, 0.012, 0.05, 0.045, 0.052, shade(P.glass, 0.72));
             m.restore();
           }
-          boltRun(m, { n: 5, r: 0.03, x0: -1.0, x1: 1.0, y0: 1.14, z0: L * 0.9 + 0.3,
+          boltRun(m, { n: 3, r: 0.024, x0: -1.0, x1: 1.0, y0: 1.14, z0: L * 0.9 + 0.3,
             pitch: -60, col: shade(P.metal, 0.66) });
+          // Two full-sized roof exits over the rear troop compartment. The
+          // hatch, hinge and periscope have separate physical surfaces.
+          m.both((mm) => {
+            mm.save().move(0.60, 1.812, 1.55);
+            mm.slab([[-0.39, -0.72], [0.39, -0.72], [0.39, 0.72], [-0.39, 0.72]], 0.04, 0.006, shade(P.olive, 1.02));
+            mm.restore();
+            mm.bar(0.94, 1.03, 1.81, 1.875, 1.02, 1.22, shade(P.track, 1.35));
+            mm.bar(0.94, 1.03, 1.81, 1.875, 1.88, 2.08, shade(P.track, 1.35));
+            mm.bar(1.05, 1.17, 1.79, 1.875, 0.73, 0.96, P.sensor);
+            mm.bar(1.172, 1.179, 1.815, 1.86, 0.77, 0.92, shade(P.glass, 0.72));
+          });
         }
-        // The turret, set back over the engine deck. Faceted, low and offset —
-        // an IFV turret is a box for a cannon and two sights, not a casting.
-        m.save().move(0.16, 1.74, L * 0.36);
+        // Low welded cannon housing between the front power pack and the
+        // rear crew bay. Keep the old far transform and sections untouched.
+        m.save().move(0.16, m.far ? 1.74 : 1.80, m.far ? L * 0.36 : 3.22);
         m.loft([
-          { z: -0.78, pts: trap(0.6, 0, 0.52, 0.8) },
-          { z: -0.5, pts: trap(0.7, 0, 0.62, 0.82) },
-          { z: 0.3, pts: trap(0.7, 0, 0.62, 0.82) },
-          { z: 0.62, pts: trap(0.56, 0, 0.5, 0.8) },
-        ], shade(P.olive, 1.06));
+          { z: -0.78, pts: trap(0.6, 0, m.far ? 0.52 : 0.40, 0.8) },
+          { z: -0.5, pts: trap(0.7, 0, m.far ? 0.62 : 0.48, 0.82) },
+          { z: 0.3, pts: trap(0.7, 0, m.far ? 0.62 : 0.48, 0.82) },
+          { z: 0.62, pts: trap(0.56, 0, m.far ? 0.5 : 0.36, 0.8) },
+        ], shade(P.olive, m.far ? 1.06 : 0.98));
         // The mantlet, the cannon and its thermal sleeve. A 25 mm chain gun is
         // a thin barrel with a fat sleeve on it, which is exactly how a card
         // tells it apart from a 120 mm tank gun.
@@ -4527,8 +4860,8 @@
           }
           m.bar(-0.05, 0.05, -0.04, 0.42, -0.5, 0.2, shade(P.olive, 0.8));
           m.restore();
-          m.save().move(-0.3, 0.62, 0.12);
-          m.bar(-0.16, 0.16, 0, 0.3, -0.16, 0.16, shade(P.sensor, 1.15));
+          m.save().move(-0.3, 0.48, 0.12);
+          m.bar(-0.16, 0.16, 0, 0.25, -0.16, 0.16, shade(P.sensor, 1.05));
           m.save().move(0, 0.14, 0.16);
           m.soft((mm) => mm.tube(0.1, 0.1, 0.05, 10, shade(P.glass, 1.05), false));
           discCap(m, 0.09, 10, shade(P.glass, 1.2), false);
@@ -4547,39 +4880,43 @@
           });
           // Roof hatch and the crew's periscope ring: the turret has two men in
           // it and the hatch is the only thing on a card that says so.
-          m.save().move(-0.16, 0.62, -0.2);
-          m.slab([[-0.28, -0.28], [0.28, -0.28], [0.28, 0.28], [-0.28, 0.28]], 0.09, 0.03,
-            shade(P.olive, 1.16));
+          m.save().move(-0.16, 0.49, -0.2);
+          m.slab([[-0.28, -0.28], [0.28, -0.28], [0.28, 0.28], [-0.28, 0.28]], 0.05, 0.007,
+            shade(P.olive, 1.02));
           m.restore();
           for (let i = 0; i < 6; i += 1) {
-            m.save().move(-0.16, 0.63, -0.2).rotY(i * 60).move(0, 0, 0.34);
+            m.save().move(-0.16, 0.49, -0.2).rotY(i * 60).move(0, 0, 0.34);
             m.bar(-0.06, 0.06, 0, 0.07, -0.04, 0.04, P.sensor);
             m.restore();
           }
         }
         m.restore();
         if (m.far) return;
-        // The ramp is the whole point of the vehicle: it is a bus that shoots.
-        // Hinged at the bottom, with its own door in it and the grab handles
-        // the section pulls itself out by.
-        m.save().move(0, 1.15, 0.05);
-        m.slab([[-1.12, -0.06], [1.12, -0.06], [1.12, 0.06], [-1.12, 0.06]], 1.1, 0.05,
-          shade(P.olive, 0.82));
+        // A thin rear ramp sits outside the rear bulkhead, with a lower hinge,
+        // inset personnel door and recessed seal. It is not a deep block
+        // intersecting the troop compartment.
+        m.save().move(0, 1.15, -0.015).rotX(90);
+        m.slab([[-1.08, -0.53], [1.08, -0.53], [1.08, 0.53], [-1.08, 0.53]], 0.06, 0.008,
+          shade(P.olive, 0.94));
         m.restore();
-        m.save().move(0.42, 1.06, 0.13).rotX(90);
-        m.slab([[-0.28, -0.42], [0.28, -0.42], [0.28, 0.42], [-0.28, 0.42]], 0.07, 0.024,
-          shade(P.olive, 0.9));
+        m.bar(-1.08, 1.08, 0.61, 0.67, -0.075, -0.035, shade(P.track, 1.3));
+        m.save().move(0.42, 1.16, -0.055).rotX(90);
+        m.slab([[-0.29, -0.40], [0.29, -0.40], [0.29, 0.40], [-0.29, 0.40]], 0.022, 0.003,
+          shade(P.olive, 0.88));
         m.restore();
         m.both((mm) => {
-          mm.bar(0.86, 0.96, 0.9, 1.0, 0.12, 0.3, shade(P.metal, 0.7));
-          mm.bar(0.86, 0.96, 1.34, 1.44, 0.12, 0.3, shade(P.metal, 0.7));
+          mm.bar(0.86, 0.91, 0.96, 1.18, -0.086, -0.044, shade(P.track, 1.45));
         });
-        boltRun(m, { n: 5, r: 0.03, x0: -1.0, x1: 1.0, y0: 0.66, z0: 0.14,
+        boltRun(m, { n: 3, r: 0.024, x0: -1.0, x1: 1.0, y0: 0.66, z0: -0.065,
           pitch: 0, col: shade(P.metal, 0.6) });
         // Engine louvres over the deck, the exhaust outlet on the flank, the
         // stowage basket across the back and the two aerials.
-        louvre(m, { n: 6, y0: 1.78, y1: 1.78, z: L * 0.62, w: 1.5, t: 0.035, d: 0.11,
-          col: shade(P.olive, 0.78) });
+        // Equal y endpoints formerly stacked all six blades on one another.
+        // Spread the bank along the engine deck instead.
+        m.save().move(0.65, 1.678, 4.55).rotX(107.7);
+        louvre(m, { n: 8, y0: -0.42, y1: 0.42, z: 0, w: 0.86, t: 0.018, d: 0.045,
+          col: shade(P.olive, 0.82) });
+        m.restore();
         m.save().move(W / 2 * 0.99, 0, L * 0.66).rotZ(90);
         m.slab([[1.0, -0.1], [1.36, -0.1], [1.36, 0.5], [1.0, 0.5]], 0.08, 0.026, P.exhaust);
         m.restore();
@@ -4806,6 +5143,20 @@
         m.save().move(0, 1.15, L * 0.6);
         facetBody(m, { len: 3.4, w: 2.2, h: 1.4, col: P.sensor,
           stations: [[0, .5, .5], [.2, .8, .8], [.4, 1, 1], [.72, .9, .9], [1, .3, .4]] });
+        if (!m.far) {
+          // Structural bows follow the actual pentagonal glass sections.
+          [[.22, .82, .25, .85], [.8, .72857, .83, .66429]].forEach((f) => {
+            m.loft([{ z: f[0] * 3.4, pts: pent(f[1] * 1.12, -f[1] * .49,
+              f[1] * .427, f[1] * .496) },
+            { z: f[2] * 3.4, pts: pent(f[3] * 1.12, -f[3] * .49,
+              f[3] * .427, f[3] * .496) }], shade(P.stealth, 1.3), false);
+          });
+          // Canopy release rail, with two rectangular lock blocks each side.
+          m.both((mm) => {
+            mm.bar(.78, .84, -.29, -.23, .84, 2.45, shade(P.stealth, 1.22));
+            [.96, 2.2].forEach((z) => mm.bar(.74, .87, -.31, -.2, z, z + .13, P.greyDark));
+          });
+        }
         m.restore();
         // The platypus exhaust: a wide flat slot with a row of vanes across it,
         // which is how the plume is spread thin enough to cool before it leaves
@@ -4870,6 +5221,7 @@
               P.greyDark);
             mm.soft((s) => bodyLoft(s, {
               len: 4.6, w: 2.2, h: 2.2, col: shade(P.white, 0.9), seg: s.lod(16, 8),
+              caps: s.far,
               stations: [[0, .82, .82], [.06, .96, .96], [.3, 1, 1], [.72, .98, .98],
                 [.94, .92, .92], [1, .86, .86]],
             }));
@@ -4883,6 +5235,7 @@
               { z: -1.5, pts: ring(0.86, 0.86, s.lod(16, 8)) }], shade(P.black, 1.6), false));
             mm.save().move(0, 0, -1.5);
             mm.fan(ring(0.86, 0.86, mm.lod(16, 8)).map((p) => [p[0], p[1], 0]), P.sensor);
+            rotorFace(mm, { r: .79, z: .04, depth: .28, blades: 14, col: shade(P.metal, .78) });
             mm.move(0, 0, 0.1);
             mm.soft((s) => s.tube(0.02, 0.3, 0.8, s.lod(12, 6), shade(P.metal, 0.8), false));
             mm.restore();
@@ -5058,6 +5411,12 @@
         m.restore();
         m.save().move(0, 1.62, L * 0.79).rotX(-22);
         m.slab([[-1.2, -0.9], [1.2, -0.9], [0.86, 0.9], [-0.86, 0.9]], 0.2, 0.07, P.canopy);
+        if (!m.far) {
+          // Four panes divided by real mullions, flush against the windscreen.
+          [-.54, 0, .54].forEach((x) => m.bar(x - .025, x + .025, .08, .13,
+            -.75, .75, shade(P.stealth, 1.3)));
+          m.bar(-.86, .86, .08, .13, -.025, .025, shade(P.stealth, 1.3));
+        }
         m.restore();
         if (m.far) return;
         m.save().move(0, 1.8, L * 0.5);
@@ -5235,6 +5594,17 @@
           mm.slab([[half * 0.52, -L * 0.02], [half * 0.86, -L * 0.06], [half * 0.86, -L * 0.16],
             [half * 0.52, -L * 0.14]], 0.12, 0.04, shade(P.stealthLit, 0.82));
           mm.restore();
+          if (!mm.far) {
+            // Flush hinge knuckles bridge the elevon gaps. They remain inside
+            // the wing's old span and the separate control-surface envelope.
+            [[2.0, -.15], [4.1, -.2], [5.6, -.22], [8.1, -.29]].forEach((p) => {
+              mm.save().move(p[0], .04, p[1]).rotY(90);
+              drum(mm, { r: .042, len: .2, seg: 8, col: P.greyDark });
+              mm.restore();
+              mm.bar(p[0] + .065, p[0] + .135, -.025, .055,
+                p[1] - .16, p[1] + .12, shade(P.stealthLit, .85));
+            });
+          }
           mm.save().move(2.6, -0.2, L * 0.42);
           mm.slab([[-0.6, -0.9], [0.6, -0.9], [0.6, 0.9], [-0.6, 0.9]], 0.24, 0.08,
             shade(P.stealthLit, 0.86));
@@ -5472,12 +5842,16 @@
         if (m.far) return;
         m.save().move(0, 0.5, -0.5).rotX(24);
         m.soft((s) => s.tube(0.09, 0.09, 0.4, s.lod(12, 6), shade(P.metal, 0.7), false));
+        jointBand(m, { z: .1, r: .09, w: .055, k: 1.14, seg: 12, col: P.greyDark });
+        jointBand(m, { z: .3, r: .09, w: .055, k: 1.14, seg: 12, col: P.greyDark });
         m.restore();
         m.save().move(0.22, 0.42, -0.46).rotX(30);
         m.soft((s) => s.tube(0.06, 0.06, 0.34, s.lod(12, 6), shade(P.red, 0.9), false));
+        jointBand(m, { z: .09, r: .06, w: .045, k: 1.14, seg: 12, col: P.greyDark });
         m.restore();
         m.save().move(-0.22, 0.42, -0.46).rotX(30);
         m.soft((s) => s.tube(0.06, 0.06, 0.34, s.lod(12, 6), shade(P.glass, 0.8), false));
+        jointBand(m, { z: .09, r: .06, w: .045, k: 1.14, seg: 12, col: P.greyDark });
         m.restore();
         // The bulkhead ring it bolts to, and the bolts. A refit is a thing with
         // a mounting interface; without one it is a prop.
@@ -5596,11 +5970,25 @@
             shade(P.metal, 0.7), false).restore());
           m.save().move(0, -g[2], 0).rotY(90);
           m.soft((s) => s.tube(g[3], g[3], 0.08, s.lod(12, 6), P.rubber, false));
+          // Tyre sidewalls surround a recessed hub, closing the formerly open
+          // wheel tube without capping across the central bearing.
+          [0, .08].forEach((z) => {
+            const outer = ring(g[3], g[3], 12), inner = ring(g[3] * .45, g[3] * .45, 12);
+            for (let i = 0; i < 12; i += 1) {
+              const j = (i + 1) % 12, pt = (p) => [p[0], p[1], z];
+              const q = [pt(outer[i]), pt(outer[j]), pt(inner[j]), pt(inner[i])];
+              if (!z) q.reverse();
+              m.quad(q[0], q[1], q[2], q[3], shade(P.rubber, 1.2));
+            }
+          });
           m.save().move(0, 0, 0.04);
           m.soft((s) => s.tube(g[3] * 0.45, g[3] * 0.45, 0.03, s.lod(10, 5),
             shade(P.metal, 0.8), false));
           m.restore();
           m.restore();
+          // Torque link behind the oleo and the fork around the axle.
+          m.bar(-.028, .028, -g[2] * .76, -g[2] * .38, -.075, -.035, shade(P.metal, .7));
+          m.bar(-.025, .025, -g[2], -g[2] + g[3] * 1.2, -.05, .05, shade(P.metal, .84));
           m.restore();
         });
       // The engine's cooling intake and exhaust, and the fuselage panel line
@@ -5631,7 +6019,8 @@
       const a = (i / n) * Math.PI * 2 + (o.phase || 0);
       m.save().move((o.x || 0) + Math.cos(a) * R, o.y || 0, (o.z || 0) + Math.sin(a) * R)
         .rotX(-90);
-      drum(m, { r, r1: r * 0.84, len: o.h, seg: m.lod(6, 4), col });
+      if (m.far) drum(m, { r, r1: r * 0.84, len: o.h, seg: 4, col });
+      else socketFastener(m, { r, h: o.h, col });
       m.restore();
     }
   }
@@ -5643,7 +6032,8 @@
       const t = n === 1 ? 0.5 : i / (n - 1);
       for (let s = -1; s <= 1; s += 2) {
         m.save().move(o.x + s * o.w, o.y, o.z0 + (o.z1 - o.z0) * t).rotX(-90);
-        drum(m, { r: o.br, r1: o.br * 0.84, len: o.h, seg: m.lod(6, 4), col });
+        if (m.far) drum(m, { r: o.br, r1: o.br * 0.84, len: o.h, seg: 4, col });
+        else socketFastener(m, { r: o.br, h: o.h, col });
         m.restore();
       }
     }
@@ -6731,6 +7121,11 @@
             for (let k = 0; k < 5; k += 1) {
               const z = 0.6 + k * 1.2;
               m.bar(-0.42, 0.42, -0.42, 0.42, z - 0.06, z + 0.06, shade(P.green, 0.84));
+              // Band clamp and its captive screw, seated on the outside flank.
+              m.bar(.405, .455, -.075, .075, z - .09, z + .09, shade(P.green, .72));
+              m.save().move(.452, 0, z).rotY(90);
+              socketFastener(m, { r: .048, h: .045, col: shade(P.metal, .63) });
+              m.restore();
             }
           }
           // The frangible mouth cover, dished and dark: a sealed round shows a
@@ -7144,6 +7539,18 @@
           m.soft((mm) => mm.tube(0.05, 0.04, 0.07, mm.lod(8, 4), P.sensor));
           m.restore();
         }
+        // Clevis pins on the existing flap actuator fairings. Thermal tiles
+        // stay plain; only the moving control mechanism receives hardware.
+        m.both((mm) => {
+          [[.5, -.2, .12], [.92, .09, .72]].forEach((p) => {
+            mm.save().move(p[0] - .065, p[1], p[2]).rotY(90);
+            drum(mm, { r: .045, len: .13, seg: 8, col: shade(P.metal, .72) });
+            mm.restore();
+            mm.save().move(p[0], p[1] - .08, p[2] - .03).rotX(-90);
+            socketFastener(mm, { r: .024, h: .025, col: P.greyDark });
+            mm.restore();
+          });
+        });
         // The thermal courses. Belly first, because it is the surface that
         // faces the flow and the one a card sees from any angle above it.
         m.save().move(0, -0.352, 0);
@@ -8251,24 +8658,14 @@
   /// Build once, keep. A card that scrolls in and out of view rebuilds nothing,
   /// and the same id always yields the same mesh.
   ///
-  /// WHAT THAT NOW COSTS, MEASURED RATHER THAN REMEMBERED. This comment used to
-  /// say the whole deck was under a megabyte of Float32Array, and at 452
-  /// triangles a model it was. ALL SIX CLASSES HAVE NOW HAD THEIR DETAIL PASS —
-  /// Air, Missile, Infantry, Naval, Armour and now Space — and every one of the
-  /// forty-six models is between four and twelve thousand triangles, so the
-  /// deck's detailed meshes come to 272,491 triangles: 28.07 MiB of attribute
-  /// arrays if every one of them is built, plus 4.07 MiB for the 39,508
-  /// triangles of coarse variant behind them if every one of those is built
-  /// too. Both figures are read off `byteLength` rather than derived: three
-  /// Float32Arrays a mesh, nine floats a triangle, so a triangle is 108 bytes
-  /// wherever it sits. The cache only fills with what is actually drawn, so a
-  /// page showing a dozen cards pays for a dozen; a page that builds all
-  /// forty-six pays the lot. This was the last line in the file waiting on the
-  /// last class, and it is now a measurement of the finished deck rather than
-  /// of a deck mid-pass: the Space pass added 19,846 triangles on two models,
-  /// and it is the pass that gave the coarse level its first real work here —
-  /// those two had no coarse variant at all before it, being 542 triangles at
-  /// both levels, and they are 1,354 and 876 now.
+  /// Close-up mechanical and structural detail: 342,955 near triangles over all 46 models,
+  /// with 4,142–15,196 per catalogue card. Building every near mesh retains
+  /// 35.32 MiB of position/normal/colour buffers. The unchanged far deck is
+  /// 39,508 triangles / 4.07 MiB. These are CPU attribute buffers, not a total
+  /// renderer memory estimate; GPU uploads and framebuffer storage are separate.
+  /// Each triangle stores 27 Float32 values (108 bytes). The cache remains lazy,
+  /// so a page pays only for models and LODs it actually requests.
+  /// See docs/art/ARSENAL_INF_MECH_PASS.md for current measurements and contracts.
   ///
   /// THE THIRD ARGUMENT IS OPTIONAL AND THE SIGNATURE DID NOT MOVE.
   /// `build(id, cls)` returns the detailed mesh it always returned; only

@@ -128,8 +128,8 @@ test('generated models for every vehicle type contain complete portable meshes a
   const folder = path.resolve(__dirname, '../../spheres-web/ui/equipment-models');
   const results = ['balanced', 'mobile', 'heavy', 'light', 'destroyer'].map(id => {
     const bytes = fs.readFileSync(path.join(folder, `spheres-tank-${id}.glb`));
-    // Preserve the complete 41k–46k triangle model, including wheels and individual track links.
-    assert.ok(bytes.byteLength < 6000000, `${id} should remain a modest standalone asset`);
+    // Inspection detail has its own 12 MB budget; map meshes retain their smaller caps.
+    assert.ok(bytes.byteLength < 12000000, `${id} exceeds the inspection asset budget`);
     const model = decode(bytes);
     const positions = model.values(0), normals = model.values(1), colors = model.values(2);
     assert.ok(positions.length > 1000, 'The vehicle should contain modeled details, not a placeholder triangle.');
@@ -154,7 +154,7 @@ test('specialist GLB assets preserve complete geometry, all thirteen slots and p
   const expected=[['ifv','ground_ifv','troop_compartment'],['apc','ground_apc','troop_compartment'],['recon','ground_recon','recon_package'],['artillery','ground_artillery','artillery_loader'],['air-defense','ground_air_defense','radar']];
   for(const [id,platform,mission] of expected){
     const bytes=fs.readFileSync(path.join(folder,`spheres-ground-${id}.glb`)),model=decode(bytes),extras=model.json.meshes[0].extras;
-    assert(bytes.byteLength>500000&&bytes.byteLength<2500000);
+    assert(bytes.byteLength>500000&&bytes.byteLength<5000000);
     assert.equal(extras.specification.platform,platform);assert.equal(Object.keys(extras.specification.components).length,13);assert(extras.specification.components[mission]);
     const positions=model.values(0),normals=model.values(1),colors=model.values(2);
     assert.equal(positions.length,extras.triangleCount*9);assert(positions.every(Number.isFinite));assert.equal(positions.length,normals.length);assert.equal(positions.length,colors.length);

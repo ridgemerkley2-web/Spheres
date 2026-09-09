@@ -1,0 +1,48 @@
+{
+  "imported_parties": [
+    {
+      "nation": "Brazil",
+      "party": "br_pmdb",
+      "terms": 13,
+      "components": []
+    },
+    {
+      "nation": "Brazil",
+      "party": "br_pfl",
+      "terms": 1,
+      "components": []
+    },
+    {
+      "nation": "Brazil",
+      "party": "br_prn",
+      "terms": 1,
+      "components": []
+    },
+    {
+      "nation": "Brazil",
+      "party": "br_pt",
+      "terms": 11,
+      "components": []
+    },
+    {
+      "nation": "Brazil",
+      "party": "br_pdt",
+      "terms": 2,
+      "components": []
+    },
+    {
+      "nation": "Brazil",
+      "party": "br_pds",
+      "terms": 0,
+      "components": []
+    }
+  ],
+  "people_changed": 0,
+  "office_links_changed": 0,
+  "executive_grants_added": 0,
+  "save_files_changed": 0,
+  "source_file": "docs/research/brazil-party-leaders-1990-2026.json",
+  "source_sha256": "b51e86411eaf0a82f856b8b4979344ed2b08ef3e959886c984ba5f1167a6e6d6",
+  "status": "party_terms_imported",
+  "validation": "Run native registry, succession and saved-campaign checks after import."
+}

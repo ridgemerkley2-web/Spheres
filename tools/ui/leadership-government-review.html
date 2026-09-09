@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Spheres · Government character review</title>
+  <link rel="stylesheet" href="../../spheres-web/ui/government-ui.css">
+  <style>
+    :root{color-scheme:dark;font:15px/1.6 system-ui,sans-serif;background:#101c23;color:#f1efe6}*{box-sizing:border-box}body{margin:0}a{color:#b1d4c0}button,input,select{font:inherit}button,select{cursor:pointer}.review-header,.review-controls,.review-context,.review-sources{max-width:1400px;margin:auto;padding-left:32px;padding-right:32px}.review-header{padding-top:38px;padding-bottom:24px}.review-eyebrow{color:#e5c58b;text-transform:uppercase;letter-spacing:.17em;font-size:11px;font-weight:700}.review-header h1{font:500 clamp(30px,4vw,50px)/1.15 Georgia,serif;letter-spacing:-.025em;margin:12px 0}.review-header p{max-width:880px;color:#bccbc9;margin-bottom:8px}.review-links{display:flex;gap:22px;flex-wrap:wrap;font-size:13px}.review-controls{display:grid;grid-template-columns:minmax(180px,1fr) minmax(245px,1.35fr) minmax(200px,1.3fr);gap:15px;padding-top:18px;padding-bottom:18px;border-top:1px solid #9dbab62d;border-bottom:1px solid #9dbab62d}.review-controls label{display:grid;gap:6px;color:#bccbc9;font-size:12px;font-weight:650}.review-controls input,.review-controls select{width:100%;min-height:46px;padding:10px 13px;border:1px solid #bad0c044;border-radius:8px;background:#253b44;color:#f1efe6;font-size:14px}.review-context{display:flex;justify-content:space-between;align-items:center;gap:24px;padding-top:20px;padding-bottom:2px}.review-context p{margin:5px 0;max-width:900px;color:#bccbc9;font-size:13px}.review-context strong{color:#e5c58b;font-size:14px}.review-disclosures{display:flex;gap:9px;flex-wrap:wrap}.review-disclosures button{color:#f1efe6;white-space:nowrap;background:#ffffff06;border:1px solid #bad0c044;border-radius:8px;padding:9px 13px;font-size:12px}.review-sources{padding-top:16px;padding-bottom:40px;font-size:12px;color:#bccbc9}.review-sources details{border-top:1px solid #9dbab62d;padding-top:16px}.review-sources summary{cursor:pointer;color:#e5c58b}.review-sources pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:11px}#load-status{max-width:1400px;margin:16px auto;padding:0 32px;color:#b1d4c0}.review-error{padding:25px;background:#42282b;border:1px solid #c29083;border-radius:12px}#govScreen .gov-ui-tabs,#govScreen .gov-ui-hero-actions,#govScreen .gov-ui-leadership-tools,#govScreen .gov-ui-footer{display:none}#govScreen .gov-ui-hero-summary{margin:10px 0}#govScreen .gov-ui-hero-compact{min-height:150px}#govScreen .gov-ui-leadership-grid{margin-top:18px}#govScreen .gov-ui-hero-copy{width:70%;max-width:880px}#govScreen .gov-ui-hero h1{font-size:clamp(30px,4vw,48px)}:focus-visible{outline:3px solid #e5c58b;outline-offset:4px}@media(max-width:800px){.review-controls{grid-template-columns:1fr}.review-header,.review-controls,.review-context,.review-sources{padding-left:18px;padding-right:18px}.review-context{align-items:flex-start;flex-direction:column;gap:12px}#govScreen .gov-ui-hero-copy{width:100%}.review-header{padding-top:25px}}
+  </style>
+</head>
+<body>
+  <header class="review-header">
+    <span class="review-eyebrow">Spheres / Government character review</span>
+    <h1>People behind the power.</h1>
+    <p>Browse the game’s party leadership cards and cartoon cast with their dates, roles and research. This is a <strong>static, read-only review</strong> generated from the simulation. It has no connection to your live campaign.</p>
+    <nav class="review-links" aria-label="Review resources"><a href="leadership-art-progress.html">Character production inventory</a><a href="leadership-government-review.json">Native view fixture &amp; provenance</a><a href="../../docs/PARTY_EXECUTIVE_ELIGIBILITY.md">Leadership rules &amp; research</a></nav>
+  </header>
+  <form class="review-controls" id="review-controls" aria-label="Static snapshot controls">
+    <label>Country<select id="nation" disabled><option>Loading countries…</option></select></label>
+    <label>Snapshot<select id="snapshot" disabled><option value="campaign">1 Jan 1990 · Sample starting campaign</option><option value="history">1 Jan 1990 · Historical reference</option><option value="future">1 Jan 2030 · Fictional cast reference</option></select></label>
+    <label>Find a party, component or person<input id="search" type="search" placeholder="Search this country…" autocomplete="off" disabled></label>
+  </form>
+  <section class="review-context" aria-label="Snapshot explanation"><div><strong id="snapshot-title">Preparing the review</strong><p id="snapshot-note"></p></div><div class="review-disclosures"><button type="button" id="expand" disabled>Open all details</button><button type="button" id="collapse" disabled>Close details</button></div></section>
+  <p id="load-status" role="status">Loading the exported game records…</p>
+  <main id="govScreen" aria-label="Read-only government leadership"><div id="govBody"></div></main>
+  <footer class="review-sources"><details><summary>How this review was produced</summary><p>Both dates were read from one new, in-memory 1990 world. The exporter verifies that the reads leave the world unchanged. No user save is loaded, no time advances, and no person is appointed by this page. Historical references end on 7 September 2026. All later successor characters are invented; their backgrounds are gameplay designs with research disclosed separately.</p><p>Artwork is selected for the exact person and appearance interval only after the existing physical asset validators pass. Missing illustrations stay visibly pending. The renderer’s production URL validator is unchanged; this static host maps accepted image filenames to their repository files after rendering.</p><pre id="provenance"></pre></details></footer>
+  <script src="../../spheres-web/ui/government-ui.js"></script>
+  <script src="leadership-government-review.js"></script>
+</body>
+</html>

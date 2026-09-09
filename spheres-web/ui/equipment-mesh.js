@@ -29,6 +29,12 @@
     black: [0.035, 0.045, 0.040], glass: [0.13, 0.33, 0.34], lens: [0.20, 0.44, 0.48],
     amber: [0.62, 0.37, 0.16], canvas: [0.30, 0.31, 0.21], cable: [0.25, 0.27, 0.24]
   };
+  // Authored surface classes follow palette tokens through color shading.
+  // Consumers must not reverse-engineer material identity from final RGB.
+  const materialTokens=new WeakMap();
+  const MATERIAL_CODES={hull:0,upper:0,edge:0,shade:0,armor:0,steel:1,bright:1,track:2,
+    rubber:3,black:3,glass:4,lens:4,canvas:5,cable:6,amber:7};
+  for(const [name,color] of Object.entries(PALETTE))materialTokens.set(color,MATERIAL_CODES[name]);
   const DEFAULT_COMPONENTS = {
     mobility: "drive_standard", protection: "protection_standard", armament: "armament_standard",
     sensors: "sensors_optical", communications: "comms_radio"
@@ -84,7 +90,11 @@
   const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
   const normal = a => { const length = Math.hypot(...a); return length > 1e-10 ? mul(a, 1 / length) : [0, 1, 0]; };
   const mean = points => mul(points.reduce((sum, point) => add(sum, point), [0, 0, 0]), 1 / points.length);
-  const shade = (color, amount) => color.map(value => Math.max(0, Math.min(1, value * amount)));
+  const shade = (color, amount) => {
+    const out=color.map(value=>Math.max(0,Math.min(1,value*amount)));
+    materialTokens.set(out,materialTokens.get(color)??255);
+    return out;
+  };
 
   // The three levels. segScale thins every turned surface, dense thins every
   // repeated run (track links, louvres, skirt panels), and cull drops a feature
@@ -118,7 +128,7 @@
     const D = detail || LEVELS[0];
     const span = Math.max(1, Number(hull) || 6) / 6;
     let cull = D.cull * span;
-    const positions = [], normals = [], colors = [], parts = [], smoothing = [];
+    const positions = [], normals = [], colors = [], materialClasses = [], parts = [], smoothing = [];
     const bounds = { min: [Infinity, Infinity, Infinity], max: [-Infinity, -Infinity, -Infinity] };
     let smoothed = 0;
 
@@ -149,6 +159,7 @@
       positions.push(point[0], point[1], point[2]);
       normals.push(n[0], n[1], n[2]);
       colors.push(color[0], color[1], color[2]);
+      materialClasses.push(materialTokens.get(color)??255);
       for (let axis = 0; axis < 3; axis++) {
         bounds.min[axis] = Math.min(bounds.min[axis], point[axis]);
         bounds.max[axis] = Math.max(bounds.max[axis], point[axis]);
@@ -350,7 +361,7 @@
     // turned surfaces. At the map-pin level the turned surfaces collapse into
     // the tyre alone, which is the whole of the wheel that a pin can show and
     // the reason eight run-flats still fit the coarse budget.
-    function wheelBody(center, axis, radius, halfWidth, tyre, rim, hub, dual) {
+    function wheelBody(center, axis, radius, halfWidth, tyre, rim, hub, dual, paired=dual) {
       const a = normal(axis);
       // THE MAP PIN. Segment counts are already on the floor at LOD2, so the
       // only saving left on a wheel is fewer turned SURFACES, not thinner ones:
@@ -366,11 +377,25 @@
       }
       // The tyre: crown, two shoulders and two bead flanks, one continuous
       // turned surface from bead to bead.
-      revolve(add(center, mul(a, -halfWidth)), a, [
+      const tyreProfile = [
         { r: radius * 0.72, h: 0, s: 1 }, { r: radius * 0.955, h: halfWidth * 0.36, s: 1 },
         { r: radius, h: halfWidth * 0.76, s: 1 }, { r: radius, h: halfWidth * 1.24, s: 1 },
         { r: radius * 0.955, h: halfWidth * 1.64, s: 1 }, { r: radius * 0.72, h: halfWidth * 2, s: 1 }
-      ], tyre, 20, Infinity);
+      ];
+      if (D.level===0&&paired) {
+        // Two actual wheels, with daylight for the track's central guide horn.
+        // The old single tyre crossed that channel. Outer wheel faces retain
+        // their locations, so the running-gear silhouette and unit scale stay put.
+        for (const side of [-1,1]) {
+          const outward=mul(a,side), seat=add(center,mul(outward,halfWidth*.44));
+          revolve(seat,outward,[{r:radius*.72,h:0},{r:radius*.94,h:halfWidth*.098,s:1},
+            {r:radius,h:halfWidth*.28,s:1},{r:radius*.94,h:halfWidth*.462,s:1},{r:radius*.72,h:halfWidth*.56}],tyre,16,Infinity);
+          // The inboard face is an annular pressed disc. It needs a true hole,
+          // not several hidden concentric surfaces behind the suspension arm.
+          revolve(seat,mul(outward,-1),[{r:radius*.72,h:0},{r:radius*.20,h:0}],rim,12,Infinity);
+        }
+        cylinder(add(center,mul(a,-halfWidth*.51)),add(center,mul(a,halfWidth*.51)),radius*.20,hub,16);
+      } else revolve(add(center, mul(a, -halfWidth)), a, tyreProfile, tyre, 20, Infinity);
       for (const side of dual ? [-1, 1] : [1]) {
         const outer = add(center, mul(a, side * halfWidth)), inward = mul(a, -side);
         if (dual) {
@@ -405,14 +430,14 @@
     }
     return {
       level: D.level, seg, many, keep, gauge, always, dense: D.dense,
-      triangle, face, part, box, loft, cylinder, tube, socket, rod, revolve, studs, wheelBody,
+      triangle, turned, face, part, box, loft, cylinder, tube, socket, rod, revolve, studs, wheelBody,
       finish(description) {
         // Flat tread shoes meet a curved belt at their corners. Seat the actual
         // lowest vertex on the ground, rather than clipping the shoe geometry.
         const ground = bounds.min[1];
         for (let i = 1; i < positions.length; i += 3) positions[i] -= ground;
         bounds.max[1] -= ground; bounds.min[1] = 0;
-        return { positions: new Float32Array(positions), normals: new Float32Array(normals), colors: new Float32Array(colors),
+        return { positions: new Float32Array(positions), normals: new Float32Array(normals), colors: new Float32Array(colors), materialClasses:new Uint8Array(materialClasses),
           bounds, parts, smoothing, lod: D.level, triangleCount: positions.length / 9, description };
       }
     };
@@ -421,6 +446,23 @@
     return [[-width + bevel, y, rear + offset], [width - bevel, y, rear + offset], [width, y, rear + bevel + offset],
       [width, y, front - bevel + offset], [width - bevel, y, front + offset], [-width + bevel, y, front + offset],
       [-width, y, front - bevel + offset], [-width, y, rear + bevel + offset]];
+  }
+  function inspectionBow(b,width,front,low,high,color) {
+    // Folded upper/lower armor replaces the inspection-only cylindrical nose
+    // bulge. Both ends sit on the existing bow, behind its applique and tow eyes.
+    b.loft([octagon(low,width*.93,front-.11,front+.065,.045),
+      octagon(high,width*.85,front-.50,front-.355,.045)],color);
+    inspectionSeam(b,[-width*.73,high+.004,front-.355],[width*.73,high+.004,front-.355],
+      normal([0,.70,.71]),color,true);
+  }
+  function cheekSection(y,width,rear,front,corner,offset=0){
+    // A recessed gun opening and long oblique cheeks give the shell a fighting
+    // compartment, instead of one octagonal slab with a rod through its front.
+    return [[-width+corner,y,rear+offset],[width-corner,y,rear+offset],
+      [width,y,rear+corner+offset],[width,y,front-.73+offset],
+      [width*.77,y,front-.26+offset],[width*.29,y,front+offset],
+      [-width*.29,y,front+offset],[-width*.77,y,front-.26+offset],
+      [-width,y,front-.73+offset],[-width,y,rear+corner+offset]];
   }
   // A chamfered prism reads as a machined fitting where a raw box reads as a toy:
   // the cut edge catches its own flat normal and draws a highlight line. It costs
@@ -433,6 +475,65 @@
       [hx - k, hy], [-hx + k, hy], [-hx, hy - k], [-hx, -hy + k]];
     const ring = end => section.map(([u, v]) => add(center, add(mul(axes[0], u), add(mul(axes[1], v), mul(axes[2], end * size[2] / 2)))));
     b.loft([ring(-1), ring(1)], color);
+  }
+  // Inspection fittings stay inside the existing semantic part. In particular,
+  // a hinge cannot create a new picking ID or leave a coarse part empty.
+  // The surface frame is orthonormal: U/V lie on the plate, N points out of it.
+  function inspectionHinge(b, center, axis, outward, length, radius, color) {
+    if(b.level!==0)return;
+    const u=normal(axis),n=normal(outward),v=normal(cross(n,u));
+    for(const side of [-1,1])b.box(add(center,mul(v,side*radius*1.5)),[length*.90,radius*.35,radius*2.0],color,[u,n,v]);
+    for(let k=0;k<3;k++){
+      const start=add(center,mul(u,length*(-.5+k/3)));
+      b.cylinder(start,add(start,mul(u,length*.30)),radius,k===1?shade(color,.82):color,10);
+    }
+    for(const side of [-1,1])b.cylinder(add(center,mul(u,side*length*.49)),add(center,mul(u,side*length*.55)),radius*.55,PALETTE.bright,8);
+  }
+  function inspectionLatch(b, center, u, n, size, color) {
+    if(b.level!==0)return;
+    const v=normal(cross(n,u)),at=(x,y,z)=>add(center,add(mul(u,x),add(mul(n,y),mul(v,z))));
+    beveled(b,at(0,0,0),[size*.64,size*.16,size*1.25],shade(color,.8),size*.12,[u,n,v]);
+    b.box(at(0,size*.13,0),[size*.30,size*.15,size*.72],color,[u,n,v]);
+    b.rod(at(-size*.27,size*.14,size*.15),at(size*.27,size*.14,size*.15),size*.09,PALETTE.steel,8);
+    b.rod(at(0,size*.16,-size*.16),at(0,size*.16,-size*.58),size*.07,PALETTE.bright,8);
+  }
+  function inspectionSeam(b, a, end, n, color, welded=false) {
+    if(b.level!==0)return;
+    const line=sub(end,a),length=Math.hypot(...line),u=normal(line),v=normal(cross(n,u));
+    if(length<.05)return;
+    // A narrow recessed-color joint sits on the armor; intermittent shallow
+    // raised beads cover it only on welded joints. No free-standing wire seam.
+    b.box(mean([a,end]),[length,.006,welded?.024:.013],shade(color,.62),[u,n,v]);
+    if(welded){
+      const count=Math.min(28,Math.ceil(length/.085));
+      for(let i=0;i<count;i++)b.box(add(add(a,mul(u,length*(i+.5)/count)),mul(n,.006)),
+        [length/count*.78,.009,.019],shade(color,1.08),[u,n,v]);
+    }
+  }
+  function inspectionPanel(b, center, width, depth, u, n, color) {
+    if(b.level!==0)return;
+    const v=normal(cross(n,u)),at=(x,z)=>add(center,add(mul(u,x),mul(v,z)));
+    b.box(add(center,mul(n,.007)),[width,.012,depth],shade(color,.94),[u,n,v]);
+    for(const sign of [-1,1]){
+      inspectionSeam(b,at(sign*width/2,-depth/2),at(sign*width/2,depth/2),n,color);
+      inspectionSeam(b,at(-width/2,sign*depth/2),at(width/2,sign*depth/2),n,color);
+    }
+    for(const sign of [-1,1])inspectionHinge(b,add(at(sign*width*.29,-depth*.49),mul(n,.028)),u,n,Math.min(.19,width*.24),.022,color);
+    inspectionLatch(b,add(at(0,depth*.40),mul(n,.025)),u,n,.12,PALETTE.bright);
+  }
+  function inspectionGuideHorn(b, center, inward, tangent, width, depth, height) {
+    const u=[1,0,0],ring=(h,w,d)=>[-1,1].flatMap((x,i)=>(i?[1,-1]:[-1,1]).map(z=>add(center,add(mul(inward,h),add(mul(u,x*w/2),mul(tangent,z*d/2))))));
+    // A tapered cast horn, broad foot seated in the shoe, clear of its pad.
+    b.loft([ring(0,width,depth),ring(height*.65,width*.64,depth*.63),ring(height,width*.22,depth*.35)],PALETTE.steel);
+  }
+  function inspectionTrackConnector(b, center, tangent, inward, trackWidth, pitch) {
+    if(b.level!==0)return;
+    const pin=add(center,mul(tangent,pitch*.46)),basis=[[1,0,0],inward,tangent];
+    for(const side of [-1,1]){
+      const edge=add(pin,[side*(trackWidth/2-.018),0,0]);
+      b.box(edge,[.074,.061,pitch*.44],PALETTE.steel,basis);
+      b.cylinder(add(edge,[side*.027,0,0]),add(edge,[side*.050,0,0]),.027,PALETTE.bright,6);
+    }
   }
   // Restrained wear, varied by loop index so the same input still gives the same
   // bytes. shade() scales all three channels together, so a weathered panel keeps
@@ -468,18 +569,83 @@
     const swept=s.air_wing==='air_wing_swept',stable=s.air_wing==='air_wing_stable',span=(strike?6.15:5.15)+(stable?.75:0),wingZ=strike?.15:-.1;
     const twin=s.air_engine==='air_engine_twin',efficient=s.air_engine==='air_engine_efficient',mapping=s.air_radar==='air_radar_mapping',digital=s.air_avionics==='air_avionics_digital',ecm=s.air_countermeasures==='air_countermeasures_ecm',heavy=s.air_hardpoints==='air_hardpoints_heavy',guided=s.air_payload==='air_payload_guided',extended=s.air_fuel==='air_fuel_extended';
     const ring=(z,rx,ry,cy=y,cx=0,n=32)=>Array.from({length:n},(_,i)=>[cx+rx*Math.cos(TAU*i/n),cy+ry*Math.sin(TAU*i/n),z]);
-    const body=(rows,color,cx=0)=>b.loft(rows.map(([z,rx,ry,cy])=>ring(z,rx,ry,cy??y,cx)),color);
+    const roundedSections=input=>{
+      const points=input.map(p=>[p[0],p[1],p[2],p[3]??y,p[4]??0]);
+      const slopes=points.map((p,k)=>p.map((_,axis)=>{
+        if(axis===0)return 1;
+        const before=points[Math.max(0,k-1)],after=points[Math.min(points.length-1,k+1)];
+        const a=k?(p[axis]-before[axis])/(p[0]-before[0]):(after[axis]-p[axis])/(after[0]-p[0]);
+        const d=k<points.length-1?(after[axis]-p[axis])/(after[0]-p[0]):a;
+        return a*d>0?2*a*d/(a+d):0;
+      })),result=[];
+      for(let k=0;k<points.length-1;k++)for(let j=0;j<3;j++){
+        const t=j/3,t2=t*t,t3=t2*t,p=points[k],q=points[k+1],dz=q[0]-p[0],row=[p[0]+dz*t];
+        for(let axis=1;axis<5;axis++){
+          const value=(2*t3-3*t2+1)*p[axis]+(t3-2*t2+t)*dz*slopes[k][axis]+(-2*t3+3*t2)*q[axis]+(t3-t2)*dz*slopes[k+1][axis];
+          row.push(Math.max(Math.min(p[axis],q[axis]),Math.min(Math.max(p[axis],q[axis]),value)));
+        }
+        result.push(row);
+      }
+      result.push(points[points.length-1]);return result;
+    };
+    const body=(input,color,cx=0,options={})=>{
+      const rows=options.rounded?roundedSections(input):input;
+      const rings=rows.map(([z,rx,ry,cy,dx])=>ring(z,rx,ry,cy??y,cx+(dx??0)));
+      const center=mean(rings.flat());
+      if(!options.open){b.face(rings[0],shade(color,.84),center);b.face(rings[rings.length-1],shade(color,1.08),center);}
+      // Elliptical fuselage/canopy normals follow the actual ring radii and
+      // taper. Shared normals remove the old longitudinal prism stripes without
+      // subdividing a single triangle or rounding a wing's sharp trailing edge.
+      const normals=rows.map((row,k)=>{
+        const before=rows[Math.max(0,k-1)],after=rows[Math.min(rows.length-1,k+1)],dz=after[0]-before[0];
+        const dx=(after[1]-before[1])/dz,dy=(after[2]-before[2])/dz,dc=((after[3]??y)-(before[3]??y))/dz,dcx=((after[4]??0)-(before[4]??0))/dz;
+        return Array.from({length:32},(_,i)=>{
+          const angle=TAU*i/32,co=Math.cos(angle),si=Math.sin(angle);
+          return mul(normal([row[2]*co,row[1]*si,-row[1]*si*(dc+dy*si)-row[2]*co*(dcx+dx*co)]),options.inward?-1:1);
+        });
+      });
+      for(let k=0;k<rings.length-1;k++)for(let i=0;i<32;i++){
+        const j=(i+1)%32,a=rings[k][i],d=rings[k][j],e=rings[k+1][j],f=rings[k+1][i];
+        if(options.inward){
+          b.turned(a,e,d,color,normals[k][i],normals[k+1][j],normals[k][j]);
+          b.turned(a,f,e,color,normals[k][i],normals[k+1][i],normals[k+1][j]);
+        }else{
+          b.turned(a,d,e,color,normals[k][i],normals[k][j],normals[k+1][j]);
+          b.turned(a,e,f,color,normals[k][i],normals[k+1][j],normals[k+1][i]);
+        }
+      }
+    };
     // Closed tapered plates support both horizontal swept wings and vertical fins.
     const plate=(outline,thickness,color,vertical=false)=> {
       const d=vertical?[thickness/2,0,0]:[0,thickness/2,0];
       b.loft([outline.map(p=>sub(p,d)),outline.map(p=>add(p,d))],color);
     };
+    const airfoil=(outline,thickness,color)=>{
+      const sections=[];
+      for(let j=0;j<=5;j++){
+        const spanFraction=j/5,lead=add(outline[0],mul(sub(outline[1],outline[0]),spanFraction));
+        const trail=add(outline[3],mul(sub(outline[2],outline[3]),spanFraction)),chord=sub(trail,lead),points=[];
+        // A restrained original biconvex section: a rounded leading edge, a
+        // deep root and a sharp trailing edge. No real airfoil rating implied.
+        for(let i=0;i<=16;i++){
+          const f=i/16,h=thickness*(1-spanFraction*.68)*Math.sin(Math.PI*Math.pow(f,.65));
+          points.push(add(add(lead,mul(chord,f)),[0,h,0]));
+        }
+        for(let i=15;i>=1;i--){const f=i/16,h=thickness*(1-spanFraction*.68)*Math.sin(Math.PI*Math.pow(f,.65));points.push(add(add(lead,mul(chord,f)),[0,-h*.62,0]));}
+        sections.push(points);
+      }
+      b.loft(sections,color);
+    };
     const panel=(a,z,width,depth)=>b.box([a,y+w*.90,z],[width,.015,depth],c.dark);
     b.part('air_wing / airframe and wing roots',()=>{
-      body([[rear,.16,.19],[rear+length*.08,w*.56,w*.55],[rear+length*.20,w*.83,w*.83],[rear+length*.37,w,w*.90],[rear+length*.55,w,w*.95],[rear+length*.72,w*.81,w*.86],[front-length*.15,w*.56,w*.59],[front-length*.10,w*.43,w*.47]],c.paint);
+      body([[rear,.16,.19],[rear+length*.08,w*.56,w*.55],[rear+length*.20,w*.83,w*.83],[rear+length*.37,w,w*.90],[rear+length*.55,w,w*.95],[rear+length*.72,w*.81,w*.86],[front-length*.15,w*.56,w*.59],[front-length*.10,w*.43,w*.47]],c.paint,0,{rounded:true});
       for(const side of [-1,1]) {
-        plate([[side*w*.5,y,wingZ+1.85],[side*w*2,y-.03,wingZ+.6],[side*w*2,y-.08,wingZ-1.3],[side*w*.5,y,wingZ-2.0]],.22,c.paint);
+        body([[wingZ-2.05,.055,.035,y],[wingZ-1.30,w*.68,.125,y],
+          [wingZ-.10,w*.80,.21,y+.012],[wingZ+.85,w*.53,.14,y+.015],[wingZ+1.86,.055,.035,y]],c.paint,side*w*.90,{rounded:true});
         for(let i=0;i<5;i++)b.box([side*w*.99,y-.02,rear+2.3+i*.18],[.017,.29,.045],c.dark);
+        // Service bay doors lie on the nearly cylindrical waist, with their
+        // hinges reaching the fuselage instead of detached decorative squares.
+        inspectionPanel(b,[side*w*.991,y,wingZ+1.02],.58,.38,[0,0,1],[side,0,0],c.paint);
       }
     },'air_wing');
     b.part(`air_radar / ${mapping?'terrain-mapping radome and sensor fairing':'basic ranging radome'}`,()=>{
@@ -494,6 +660,12 @@
       body(rows,c.glass);
       for(const [rz,rx,ry,cy] of [rows[1],rows[2]])for(let i=0;i<16;i++){const t=TAU*i/32,t2=TAU*(i+1)/32;b.rod([rx*Math.cos(t),cy+ry*Math.sin(t),rz],[rx*Math.cos(t2),cy+ry*Math.sin(t2),rz],.027,c.edge,8);}
       for(const side of [-1,1])b.rod([side*w*.49,y+w*.89,z-canopyLength*.3],[side*w*.22,y+w*.87,z+canopyLength*.46],.025,c.edge);
+      for(const side of [-1,1]){
+        b.rod([side*w*.28,rows[0][3],rows[0][0]],[side*w*.53,rows[1][3],rows[1][0]],.024,c.black,10);
+        b.rod([side*w*.53,rows[1][3],rows[1][0]],[side*w*.49,rows[2][3],rows[2][0]],.024,c.black,10);
+        inspectionHinge(b,[side*w*.51,y+w*.91,z-.23],[0,0,1],[side,0,0],.27,.027,c.edge);
+        inspectionLatch(b,[side*w*.33,y+w*.91,z+canopyLength*.32],[0,0,1],[side,0,0],.075,c.edge);
+      }
       plate([[0,y+w*.8,rear+length*.46],[0,y+w*.8+.47,rear+length*.43],[0,y+w*.8,rear+length*.40]],.035,c.dark,true);
       if(digital){body([[.35,.21,.2,y-.73],[1.55,.21,.20,y-.73],[1.87,.11,.14,y-.73]],c.dark,.58);b.cylinder([.58,y-.73,1.86],[.58,y-.73,1.89],.105,PALETTE.lens,28);b.box([0,y+w*.96,z-1.3],[.25,.13,.5],c.edge);}
       else for(const side of [-1,1])b.rod([side*.22,y+w*.85,z-1.1],[side*.28,y+w*.85+.35,z-1.55],.012,c.steel);
@@ -502,12 +674,18 @@
       const lead=wingZ+(swept?-1.20:stable?.1:.55),trail=lead-(swept?1.05:1.45);
       b.part(`air_wing / ${side<0?'port':'starboard'} ${swept?'swept':stable?'high-stability':'straight'} wing`,()=>{
         const root=side*w*.76,tip=side*span,dihedral=stable?.32:.12;
-        plate([[root,y,wingZ+1.7],[tip,y+dihedral,lead],[tip,y+dihedral,trail],[root,y,wingZ-1.95]],.15,c.paint);
+        airfoil([[root,y,wingZ+1.7],[tip,y+dihedral,lead],[tip,y+dihedral,trail],[root,y,wingZ-1.95]],.145,c.paint);
         // Separate flaps, leading-edge strips, panel joins and navigation lenses.
         const outline=[[side*(w+.25),y-.04,wingZ-1.82],[side*(span-.23),y+dihedral-.04,trail+.10],[side*(span-.23),y+dihedral-.04,trail-.10],[side*(w+.25),y-.04,wingZ-2.02]];
         plate(outline,.085,c.upper);
         b.rod([root,y+.086,wingZ+1.65],[tip,y+dihedral+.086,lead-.02],.017,c.edge,8);
         for(let k=1;k<=3;k++){const f=k/4,xx=side*(w+(span-w)*f),zz=wingZ+1.7+(lead-wingZ-1.7)*f;b.rod([xx,y+dihedral*f+.083,zz-.18],[xx,y+dihedral*f+.083,zz-1.02],.011,c.dark,8);}
+        for(const f of [.27,.55,.79]){
+          const x=side*(w+(span-w)*f),trailing=wingZ-1.95+(trail-wingZ+1.95)*f;
+          // Actuator fairing below each flap and a hinge at the actual join.
+          beveled(b,[x,y+dihedral*f-.085,trailing+.20],[.12,.12,.48],c.upper,.035);
+          inspectionHinge(b,[x,y+dihedral*f-.025,trailing+.035],[side,0,0],[0,-1,0],.23,.025,c.steel);
+        }
         if(stable)plate([[tip,y+.2,trail+.2],[tip,y+.8,trail+.35],[tip,y+.8,lead-.1],[tip,y+.2,lead]],.055,c.upper,true);
         b.cylinder([tip,y+dihedral,lead-.08],[tip+side*.07,y+dihedral,lead-.08],.064,side<0?[.60,.07,.06]:[.06,.47,.22],14);
       },'air_wing');
@@ -527,15 +705,41 @@
     const engineXs=twin?[-.73,.73]:[0],engineRadius=twin?.54:efficient?.52:.43;
     engineXs.forEach((x,index)=>{
       b.part(`air_engine / ${twin?(index?'starboard':'port')+' twin turbofan':efficient?'efficient turbofan':'economical turbine'} nacelle`,()=>{
-        const ey=y-.15,inlet=strike?1.0:.35,exhaust=rear+.03;
-        body([[exhaust,engineRadius*.87,engineRadius*.87,ey],[rear+1.1,engineRadius,engineRadius,ey],[rear+2.8,engineRadius*1.13,engineRadius*1.04,ey],[inlet-.45,engineRadius*.95,engineRadius,ey],[inlet,engineRadius*.89,engineRadius*.89,ey]],c.paint,x);
-        b.tube([x,ey,inlet-.42],[x,ey,inlet+.04],engineRadius*.87,engineRadius*.73,c.edge,36);
-        b.cylinder([x,ey,inlet-.43],[x,ey,inlet-.39],engineRadius*.71,c.black,36);
-        for(let k=0;k<20;k++){const t=TAU*k/20;plate([[x+Math.cos(t)*.07,ey+Math.sin(t)*.07,inlet-.37],[x+Math.cos(t+.12)*engineRadius*.69,ey+Math.sin(t+.12)*engineRadius*.69,inlet-.36],[x+Math.cos(t+.23)*engineRadius*.69,ey+Math.sin(t+.23)*engineRadius*.69,inlet-.34]],.008,c.steel);}
-        b.cylinder([x,ey,inlet-.4],[x,ey,inlet-.17],.075,c.edge,20,.02);
+        const ey=y-.15,housingFront=wingZ+.03,exhaust=rear+.03;
+        // The engine casing ends behind the duct throat. Extending a capped
+        // casing to the lip would put a solid painted disc across the intake.
+        body([[exhaust,engineRadius*.87,engineRadius*.87,ey],[rear+1.1,engineRadius,engineRadius,ey],[rear+2.8,engineRadius*1.13,engineRadius*1.04,ey],
+          [housingFront-.60,engineRadius*.95,engineRadius,ey],[housingFront,engineRadius*.89,engineRadius*.89,ey]],c.paint,x);
+        // Exposed side ducts feed the selected engine installation. A single
+        // central circular mouth was hidden inside the fuselage; two exposed
+        // intakes still belong to ONE engine part when a single engine is fitted.
+        for(const side of twin?[Math.sign(x)]:[-1,1]){
+          const r=engineRadius*(twin?.66:.65),mouthX=side*(w+r+.045),mouthZ=wingZ+.95;
+          body([[mouthZ-1.72,r*.51,r*.72,ey,x-mouthX],[mouthZ-.78,r*.89,r*.96,ey,-side*.115],
+            [mouthZ-.14,r*1.02,r*1.02,ey,0],[mouthZ,r*1.03,r*1.03,ey,0]],c.paint,mouthX,{rounded:true,open:true});
+          b.revolve([mouthX,ey,mouthZ-.08],[0,0,1],[{r:r*1.03,h:0,s:1},{r:r*1.075,h:.055,s:1},
+            {r:r*1.04,h:.10,s:1},{r:r*.88,h:.105},{r:r*.84,h:.06,s:1},{r:r*.84,h:0,s:1}],c.edge,32);
+          body([[mouthZ-.66,r*.72,r*.72,ey,-side*.030],[mouthZ-.31,r*.79,r*.80,ey,-side*.008],
+            [mouthZ-.08,r*.84,r*.84,ey,0]],c.dark,mouthX,{rounded:true,open:true,inward:true});
+          const hubX=mouthX-side*.030,fanZ=mouthZ-.675;
+          b.cylinder([hubX,ey,fanZ-.015],[hubX,ey,fanZ],r*.73,c.black,28);
+          for(let k=0;k<16;k++){
+            const t=TAU*k/16;
+            b.face([[hubX+Math.cos(t)*r*.12,ey+Math.sin(t)*r*.12,fanZ+.012],
+              [hubX+Math.cos(t+.13)*r*.68,ey+Math.sin(t+.13)*r*.68,fanZ+.026],
+              [hubX+Math.cos(t+.30)*r*.67,ey+Math.sin(t+.30)*r*.67,fanZ+.014]],c.steel,[hubX,ey,fanZ-.1]);
+          }
+          b.cylinder([hubX,ey,fanZ],[hubX,ey,fanZ+.12],r*.15,c.edge,16,r*.04);
+        }
         b.tube([x,ey,exhaust+.28],[x,ey,exhaust-.34],engineRadius*.86,engineRadius*.68,c.steel,40);
         b.cylinder([x,ey,exhaust+.29],[x,ey,exhaust+.27],engineRadius*.67,c.black,36);
         for(let k=0;k<24;k++){const a=TAU*k/24;b.rod([x+Math.cos(a)*engineRadius*.86,ey+Math.sin(a)*engineRadius*.86,exhaust+.12],[x+Math.cos(a)*engineRadius*.86,ey+Math.sin(a)*engineRadius*.86,exhaust-.34],.013,c.edge,8);}
+        // Overlapping tapered nozzle petals seat on the existing exhaust lip.
+        // Each is a plate with real thickness, not a bright wire floating aft.
+        for(let k=0;k<16;k++){
+          const a=TAU*k/16,radial=[Math.cos(a),Math.sin(a),0],tangent=[-Math.sin(a),Math.cos(a),0];
+          beveled(b,add([x,ey,exhaust-.10],mul(radial,engineRadius*.875)),[engineRadius*.24,.017,.43],shade(c.steel,1+(k%3)*.05),.008,[tangent,radial,[0,0,1]]);
+        }
         if(efficient)for(const side of [-1,1])b.box([x+side*engineRadius,ey, rear+2.3],[.08,.22,.8],c.upper);
       },'air_engine');
     });
@@ -546,6 +750,14 @@
       b.box([x,top,z],[.45,.12,.78],c.dark);b.box([x+(x<0?-.24:.24),top-.15,z],[.035,.36,.79],c.upper);
       b.cylinder([x,gy,z],[x,top,z-.12],.059,c.steel,20);b.cylinder([x,gy+.20,z-.01],[x,top-.17,z-.10],.031,c.edge,16);
       b.rod([x,gy+.28,z],[x,top,z-.49],.035,c.steel,12);
+      const scissor=[x+.13,gy+.25,z+.095];
+      b.rod([x+.047,gy+.12,z-.012],scissor,.024,c.steel,12);
+      b.rod(scissor,[x+.047,gy+.43,z-.045],.024,c.steel,12);
+      b.cylinder(add(scissor,[-.035,0,0]),add(scissor,[.035,0,0]),.038,c.edge,14);
+      b.rod([x-.072,top-.04,z-.105],[x-.080,gy+.43,z-.035],.012,c.black,10);
+      b.rod([x-.080,gy+.43,z-.035],[x-.13,gy+.10,z+.12],.012,c.black,10);
+      beveled(b,[x+.135,gy+r*.25,z+r*.26],[.09,r*.36,r*.24],c.steel,.017);
+      inspectionHinge(b,[x+(x<0?-.24:.24),top-.025,z],[0,0,1],[1,0,0],.34,.025,c.steel);
       b.cylinder([x-.11,gy,z],[x+.11,gy,z],r,c.rubber,40);
       for(const side of [-1,1]){
         b.cylinder([x+side*.111,gy,z],[x+side*.128,gy,z],r*.50,c.edge,28);
@@ -598,13 +810,15 @@
   function buildGround(spec, detail) {
     const s=spec.components,c=PALETTE;
     const scout=spec.platform==='ground_recon',carrier=spec.platform==='ground_apc',ifv=spec.platform==='ground_ifv',artillery=spec.platform==='ground_artillery',aa=spec.platform==='ground_air_defense';
-    const wheeled=carrier||scout,w=scout?1.03:carrier?1.16:artillery?1.43:1.28,length=scout?4.45:carrier?5.50:artillery?6.55:5.75;
+    const wheeled=carrier||scout,w=scout?1.03:carrier?1.16:artillery?1.43:1.28,length=scout?4.95:carrier?6.40:artillery?7.15:ifv?6.55:6.45;
     const b=createBuilder(detail,length);
-    const rear=-length/2,front=length/2,deck=scout?1.67:carrier?1.98:ifv?1.78:1.52;
+    const rear=-length/2,front=length/2,deck=scout?1.58:carrier?1.94:ifv?1.78:artillery?1.48:1.46;
+    const roofFront=front-(scout?1.10:carrier?1.36:ifv?1.34:1.20),tireRadius=scout?.58:.63;
     const modular=s.protection==='ground_armor_modular',hydro=s.suspension==='suspension_hydro';
-    const mountZ=artillery?-.63:aa?.12:scout?.15:.73;
+    const mountZ=artillery?-.76:aa?-.20:scout?.18:.22;
     const mg=s.turret==='ground_station_mg',howitzer=s.turret==='ground_turret_howitzer',aaMount=s.turret==='ground_turret_aa';
-    const mountTop=deck+(mg?.37:howitzer?1.42:aaMount?.91:.76),gunY=mountTop-(howitzer?.52:mg?.08:.24);
+    const mountTop=deck+(mg?.37:howitzer?1.26:aaMount?.72:.56),gunY=mountTop-(howitzer?.47:mg?.08:.18);
+    const mountWidth=howitzer?1.19:aaMount?.91:mg?.42:.80;
     const labels={engine_diesel_600:'compact diesel',engine_diesel_900:'standard diesel',engine_diesel_1200:'high-output diesel',ground_engine_750:'managed diesel',ground_gun_25:'25 mm autocannon',ground_gun_35:'35 mm autocannon',ground_mg_127:'12.7 mm machine gun',ground_howitzer_122:'122 mm howitzer',ground_howitzer_155:'155 mm howitzer',ground_aa_gun:'twin air-defense cannon',ground_aa_missiles:'short-range missile launcher',ground_ammo_autocannon:'autocannon',ground_ammo_ball:'machine gun',ground_ammo_he:'artillery',ground_ammo_guided:'guided artillery',ground_ammo_aa:'air-defense cannon',ground_ammo_missiles:'missile',optics_day:'daylight',optics_night:'night',optics_thermal:'thermal',fcs_basic:'basic',fcs_stabilized:'stabilized',fcs_digital:'digital',comms_radio:'field radio',comms_data:'tactical data',ground_comms_secure:'secure radio',ground_comms_network:'networked command',aps_soft:'soft-kill',aps_hard:'active interception'};
     const label=id=>labels[id]||String(id).replace(/^ground_/,'').replace(/_/g,' ');
     function hatch(x,y,z,r=.25) {
@@ -617,10 +831,13 @@
         b.rod([x-r*.30,y+.13,z],[x+r*.30,y+.13,z],.021,c.bright,10);
         b.studs([x,y+.048,z],[0,1,0],r*.99,8,r*.075,.022,c.bright);
       }
+      inspectionHinge(b,[x,y+.082,z-r*.83],[1,0,0],[0,1,0],r*.76,.032,c.steel);
+      inspectionLatch(b,[x,y+.13,z+r*.57],[1,0,0],[0,1,0],.10,c.bright);
     }
     function wheel(side,z,r,x,width,label) {
       b.part(`running gear / ${label}`,()=>{
-        b.wheelBody([side*x,r,z],[1,0,0],r,width/2,c.rubber,c.upper,c.shade,false);
+        const centerY=r+(wheeled?0:.075);
+        b.wheelBody([side*x,centerY,z],[b.level===0?side:1,0,0],r,width/2,c.rubber,c.upper,c.shade,false,b.level===0&&!wheeled);
         // A smooth cylinder is the fastest way to make a wheeled hull look
         // unfinished. Two shoulder rows, a centre row staggered off their pitch,
         // and a bead ring on each sidewall.
@@ -628,39 +845,57 @@
           const shoulders=b.many(32,8),centres=b.many(16,4);
           for(let j=0;j<shoulders;j++) {
             const a=TAU*j/shoulders,radial=[0,Math.cos(a),Math.sin(a)],tangent=[0,-Math.sin(a),Math.cos(a)];
-            for(const strip of [-1,1])b.box([side*x+strip*width*.23,r+Math.cos(a)*(r+.006),z+Math.sin(a)*(r+.006)],[width*.43,b.gauge(.035),.075],c.track,[[1,0,0],radial,tangent]);
+            for(const strip of [-1,1])b.box([side*x+strip*width*.23,r+Math.cos(a)*(r+.006),z+Math.sin(a)*(r+.006)],[width*.43,b.gauge(.035),.075],shade(c.rubber,1.28),[[1,0,0],radial,tangent]);
           }
           for(let j=0;j<centres;j++) {
             const a=TAU*(j+.5)/centres,radial=[0,Math.cos(a),Math.sin(a)],tangent=[0,-Math.sin(a),Math.cos(a)];
             b.box([side*x,r+Math.cos(a)*(r+.004),z+Math.sin(a)*(r+.004)],[width*.30,b.gauge(.031),.11],c.rubber,[[1,0,0],radial,tangent]);
           }
-          for(const bead of [-1,1])b.cylinder([side*x+bead*width*.47,r,z],[side*x+bead*width*.50,r,z],r*.985,c.black,24);
+          // The bead is an annulus, never a filled cap hiding the painted rim
+          // and wheel nuts. Its open inner edge follows the tire's bead seat.
+          for(const bead of [-1,1])b.revolve([side*x+bead*width*.485,r,z],[bead,0,0],[
+            {r:r*.735,h:0},{r:r*.885,h:-.036,s:1},{r:r*.948,h:-.060}],c.rubber,24);
         }
       },wheeled?'wheels':'tracks');
     }
     b.part('protection / specialist sloped hull',()=>{
-      // Two extra rings for the price of 32 triangles. The old three-ring loft ran
-      // one unbroken plane from the belly to the deck, which is what made this hull
-      // read as a wedge of soap next to the tank's folded plate.
-      const shoulder=.94+(deck-.94)*.42;
-      b.loft([octagon(.44,w-.24,rear+.25,front-.44,.25),octagon(.78,w-.06,rear+.06,front-.11,.26),
-        octagon(.94,w,rear,front,.27),octagon(shoulder,w-.045,rear+.03,front-.24,.29),
-        octagon(deck,w-.14,rear+.10,front-.62,.30)],c.hull);
-      b.loft([octagon(deck,w-.14,rear+.10,front-.62,.30),octagon(deck+.065,w-.20,rear+.16,front-.69,.28)],c.upper);
-      // Splash plate and bolted nose beam: a wheeled hull needs a hard line where
-      // the glacis meets the deck or the whole front is one continuous slope.
-      b.box([0,deck-.10,front-.60],[w*1.62,.055,.19],c.edge);
-      beveled(b,[0,1.03,front-.02],[w*1.52,.22,.16],c.armor,.05);
-      if(b.keep(0.30))for(let i=-3;i<=3;i++)b.box([i*w*.32,1.03,front+.055],[.05,.05,.03],c.bright);
+      // Longitudinal sections give the carrier a continuous troop roof, the
+      // scout a short, strongly raked bow and the tracked mission hulls low
+      // sponsons. The roof and glacis meet; no roof slab or cross-hull drum is
+      // laid over a generic octagon. These primary forms survive every LOD.
+      const shoulder=wheeled?1.18:1.03;
+      const section=(z,top,topWidth,sideWidth,chine=shoulder,bottom=.44)=>[
+        [-topWidth,top,z],[topWidth,top,z],[sideWidth,chine,z],[sideWidth*.96,.79,z],
+        [sideWidth*.72,bottom,z],[-sideWidth*.72,bottom,z],[-sideWidth*.96,.79,z],[-sideWidth,chine,z]];
+      const aftTop=w-(scout?.29:carrier?.12:.18),roofWidth=w-(scout?.28:carrier?.16:.20);
+      b.loft([section(rear+.08,deck-.045,aftTop,w-.08),section(rear+.32,deck+.045,roofWidth,w),
+        section(roofFront,deck+.045,roofWidth,w),section(front-.30,1.07,w*.84,w*.94,.98,.53),
+        section(front,1.005,w*.79,w*.87,.94,.58)],c.hull);
+      // A thin roof skin shares the same rake endpoints, with a visible plate
+      // seam instead of a freestanding second box.
+      b.loft([octagon(deck+.045,roofWidth,rear+.32,roofFront,.10),
+        octagon(deck+.065,roofWidth-.012,rear+.33,roofFront-.012,.10)],c.upper);
+      b.loft([octagon(1.075,w*.85,front-.34,front-.20,.035),
+        octagon(deck+.04,roofWidth,roofFront-.045,roofFront+.035,.035)],c.armor);
+      // A shallow chin break carries tow loads visually and catches the lower
+      // highlight; it follows the bow instead of protruding like a bumper.
+      b.loft([octagon(.91,w*.86,front-.105,front+.025,.035),
+        octagon(1.04,w*.83,front-.225,front-.10,.035)],c.armor);
+      for(const side of [-1,1]){
+        inspectionSeam(b,[side*(roofWidth-.045),deck+.069,rear+.47],[side*(roofWidth-.045),deck+.069,roofFront-.12],[0,1,0],c.upper,true);
+        inspectionPanel(b,[side*.24,deck+.071,roofFront-.30],.30,.28,[1,0,0],[0,1,0],c.upper);
+      }
+      b.box([0,deck+.068,roofFront-.055],[roofWidth*1.72,.032,.070],c.edge);
+      if(b.keep(0.30))for(let i=-3;i<=3;i++)b.box([i*w*.25,.98,front-.016],[.032,.032,.022],c.bright);
       for(const side of [-1,1]) {
         b.rod([side*w*.44,.86,front-.04],[side*w*.44,.86,front+.14],.055,c.bright,12);
         b.box([side*(w-.055),shoulder,0],[.05,.045,length-.70],c.shade);
-        beveled(b,[side*(w+.06),wheeled?1.33:1.18,0],[.25,.075,length-.40],c.edge,.028);
+        beveled(b,[side*(w+.06),wheeled?tireRadius*2+.14:1.18,0],[.25,.060,length-.40],c.edge,.022);
         for(const z of [rear+.21,front-.12]) {
           b.rod([side*w*.66,.74,z],[side*w*.66,.74,z+(z>0?.16:-.16)],.063,c.bright,12);
           if(b.keep(0.30)) {
             b.box([side*w*.77,1.08,z],[.15,.14,.07],c.shade);
-            b.cylinder([side*w*.77,1.08,z],[side*w*.77,1.08,z+(z>0?.055:-.055)],.045,z>0?c.lens:c.amber,12);
+            b.cylinder([side*w*.77,1.08,z],[side*w*.77,1.08,z+(z>0?.035:-.035)],.036,z>0?shade(c.bright,1.35):c.amber,12);
           }
           if(z>0&&b.keep(0.30)) {
             for(const dx of [-.085,.085])b.rod([side*w*.77+dx,1.00,z+.09],[side*w*.77+dx,1.18,z+.09],.012,c.steel,6);
@@ -673,35 +908,42 @@
           b.socket([side*(w-.10),.98,z],[side*(w+.12),.98,z],.085,.050,c.steel,18);
         if(modular)for(let j=0;j<b.many(6,2);j++) {
           const j6=j*6/b.many(6,2),z=rear+.58+j6*(length-.97)/6;
-          b.box([side*(w+.065),deck-.27,z],[.17,.44,(length-1.10)/6],c.armor);
-          if(b.keep(0.30))for(const dz of [-.15,.15])b.cylinder([side*(w+.15),deck-.13,z+dz],[side*(w+.18),deck-.13,z+dz],.027,c.bright,6);
+          const panelY=deck-.25,panelZ=Math.min(z,roofFront-.24);
+          beveled(b,[side*(w-.015),panelY,panelZ],[.20,.39,(length-1.10)/6-.035],c.armor,.045);
+          if(b.keep(0.30))for(const dz of [-.15,.15])b.cylinder([side*(w+.078),deck-.13,panelZ+dz],[side*(w+.101),deck-.13,panelZ+dz],.027,c.bright,6);
         }
       }
-      // The cast transition between the glacis and the lower plate, turned
-      // rather than folded: on a real hull this is one poured casting.
-      if(b.keep(0.30))b.revolve([0,1.02,front-.30],[1,0,0],[
-        {r:.26,h:-w*.98},{r:.34,h:-w*.72,s:1},{r:.38,h:-w*.30,s:1},
-        {r:.38,h:w*.30,s:1},{r:.34,h:w*.72,s:1},{r:.26,h:w*.98}],c.armor,24);
-      if(modular)b.box([0,1.17,front-.22],[w*1.37,.22,.20],c.armor);
+      if(modular)b.loft([octagon(1.13,w*.78,front-.40,front-.29,.04),
+        octagon(deck+.075,roofWidth*.92,roofFront-.10,roofFront-.015,.04)],c.armor);
     });
     for(const side of [-1,1]) {
       const lane=side<0?'port':'starboard';
-      const x=w+(wheeled?.02:.09),width=wheeled?.40:(s.tracks==='tracks_wide'?.60:.45),r=wheeled?.56:.46;
+      const x=w+(wheeled?.02:.09),width=wheeled?.40:(s.tracks==='tracks_wide'?.60:.45),r=wheeled?tireRadius:artillery?.345:aa?.35:.36;
       const half=length/2-(wheeled?.69:.63),count=wheeled?(s.wheels==='ground_wheels_runflat'?4:3):artillery?7:6;
-      for(let j=0;j<count;j++)wheel(side,-half+2*half*j/(count-1),r,x,width,`${lane} ${wheeled?'road tire':'road wheel'} ${j+1}`);
+      // All six/seven paired tyres and the two independent end gears must fit
+      // in the return span. Keep daylight between the projected wheel circles,
+      // rather than concealing the first road wheel behind a sprocket disc.
+      const axleHalf=wheeled?half:half-.82,axleY=r+(wheeled?0:.075);
+      const axleZ=j=>-axleHalf+2*axleHalf*j/(count-1);
+      for(let j=0;j<count;j++)wheel(side,axleZ(j),r,x,width,`${lane} ${wheeled?'road tire':'road wheel'} ${j+1}`);
       b.part(`suspension / ${lane} ${hydro?'hydropneumatic struts':'torsion arms'}`,()=>{
         for(let j=0;j<count;j++) {
-          const z=-half+2*half*j/(count-1);
-          b.rod([side*(w-.30),.87,z-.15],[side*x,r,z],b.gauge(hydro?.066:.044),c.steel,12);
-          if(hydro)b.cylinder([side*(w-.24),.80,z-.12],[side*(x-.10),r+.10,z-.025],.104,c.bright,14);
+          const z=axleZ(j);
+          b.rod([side*(w-.30),.87,z-.15],[side*x,axleY,z],b.gauge(hydro?.066:.044),c.steel,12);
+          if(hydro)b.cylinder([side*(w-.24),.80,z-.12],[side*(x-.10),axleY+.10,z-.025],.104,c.bright,14);
           // Trailing arm, damper and the bearing housing it swings on. A single
           // rod per wheel is what made the underside read as scaffolding.
           if(b.keep(0.30)) {
             b.cylinder([side*(w-.20),.94,z-.10],[side*(w-.04),.94,z-.10],.088,c.shade,12);
             b.revolve([side*(w-.05),.94,z-.10],[side,0,0],[
               {r:.052,h:0,s:1},{r:.052,h:.10,s:1},{r:.030,h:.13,s:1},{r:0,h:.15}],c.bright,12);
-            b.cylinder([side*(w-.16),.88,z+.10],[side*(x-.12),r+.16,z+.03],.046,c.steel,6);
+            b.cylinder([side*(w-.16),.88,z+.10],[side*(x-.12),axleY+.16,z+.03],.046,c.steel,6);
             b.box([side*(w-.10),.99,z-.10],[.13,.16,.14],c.steel);
+            if(b.level===0){
+              b.studs([side*(w-.033),.94,z-.10],[side,0,0],.067,6,.011,.012,c.bright);
+              b.cylinder([side*(w-.19),.88,z+.10],[side*(w-.11),.81,z+.087],.061,c.shade,12);
+              b.socket([side*(x-.11),axleY+.16,z+.03],[side*(x-.075),axleY+.16,z+.03],.059,.032,c.steel,10);
+            }
             // A steered axle needs a track rod; a torsion bar does not.
             if(wheeled)b.cylinder([side*(w-.12),.70,z],[side*(x-.06),.70,z+.19],.038,c.bright,12);
           }
@@ -716,13 +958,19 @@
         // and eyes sit on the deck edge above both, so they are always present.
         const railX=side*(w-.17);
         if(!modular) {
-          const binY=(wheeled?1.3675:1.2175)+.18;
-          beveled(b,[side*(w+.07),binY,-length*.12],[.24,.34,length*.44],weathered(c.hull,side>0?1:2),.06);
-          b.box([side*(w+.07),binY+.185,-length*.12],[.27,.028,length*.44+.03],c.edge);
-          if(b.keep(0.30))for(let j=0;j<4;j++)b.box([side*(w+.19),binY,-length*.12+(j-1.5)*length*.10],[.03,.10,.05],c.bright);
+          const binY=wheeled?deck-.18:1.40,binZ=rear+1.12,binLength=scout?.82:artillery?1.38:1.12;
+          // Shallow rear tool lockers leave the fighting compartment's sloped
+          // sides visible. A single enormous box used to hide half each hull.
+          beveled(b,[side*(w-.035),binY,binZ],[.19,.22,binLength],weathered(c.hull,side>0?1:2),.035);
+          b.box([side*(w-.035),binY+.125,binZ],[.21,.020,binLength+.02],c.edge);
+          if(b.keep(0.30))for(const dz of [-binLength*.31,binLength*.31])b.box([side*(w+.063),binY,binZ+dz],[.023,.075,.04],c.bright);
+          for(const dz of [-binLength*.31,binLength*.31]){
+            inspectionHinge(b,[side*(w-.05),binY+.13,binZ+dz],[0,0,1],[0,1,0],.13,.018,c.steel);
+            inspectionLatch(b,[side*(w+.075),binY+.04,binZ+dz],[0,0,1],[side,0,0],.085,c.bright);
+          }
         }
         if(b.keep(0.30))for(let j=0;j<b.many(3,1);j++) {
-          const z=rear+.85+j*(length-1.9)/2;
+          const z=rear+.85+j*(roofFront-rear-1.15)/2;
           b.rod([railX,deck+.07,z-.16],[railX,deck+.16,z-.16],.017,c.steel,6);
           b.rod([railX,deck+.07,z+.16],[railX,deck+.16,z+.16],.017,c.steel,6);
           b.rod([railX,deck+.16,z-.16],[railX,deck+.16,z+.16],.017,c.steel,6);
@@ -733,7 +981,7 @@
       if(wheeled)b.part(`running gear / ${lane} wheel arches and mud flaps`,()=>{
         const R=r+.14,arc=b.many(6,3);
         for(let j=0;j<count;j++) {
-          const z=-half+2*half*j/(count-1);
+          const z=axleZ(j);
           for(let k=0;k<arc;k++) {
             const t0=Math.PI*(.16+.68*k/arc),t1=Math.PI*(.16+.68*(k+1)/arc),t=(t0+t1)/2;
             const radial=[0,Math.sin(t),Math.cos(t)],tangent=[0,Math.cos(t),-Math.sin(t)],span=R*(t1-t0)*1.08;
@@ -748,7 +996,22 @@
         }
       },'wheels');
       if(!wheeled)b.part(`tracks / ${lane} continuous articulated belt`,()=>{
-        const radius=.53,centerY=.53,span=half,perimeter=span*4+TAU*radius,steps=b.many(Math.ceil(perimeter/.18),12,8);
+        const radius=.53,centerY=.53,span=half,perimeter=span*4+TAU*radius,steps=b.many(Math.ceil(perimeter/.205),12,8);
+        // Separate end gears now turn the belt; the six/seven paired road
+        // wheels sit between them. End fittings stay inside the existing belt
+        // part so picking IDs and road-wheel count retain their meaning.
+        if(b.level<2)for(const end of [-1,1]){
+          const z=end*span,outer=side*x+side*width*.38;
+          b.revolve([outer,centerY,z],[side,0,0],[{r:.36,h:-.07},{r:.43,h:-.035,s:1},
+            {r:.43,h:.018,s:1},{r:.32,h:.040},{r:.12,h:.055},{r:0,h:.055}],c.steel,20);
+          if(b.level===0){
+            b.studs([outer+side*.042,centerY,z],[side,0,0],.23,8,.025,.024,c.bright);
+            if(end>0)for(let j=0;j<12;j++){
+              const a=TAU*j/12,radial=[0,Math.cos(a),Math.sin(a)],tangent=[0,-Math.sin(a),Math.cos(a)];
+              b.box([outer,centerY+Math.cos(a)*.443,z+Math.sin(a)*.443],[.09,.055,.072],c.bright,[[1,0,0],radial,tangent]);
+            }
+          }
+        }
         function point(distance,rr) {
           let t=distance%perimeter;
           if(t<2*span)return {y:centerY+rr,z:span-t,tangent:[0,0,-1]};t-=2*span;
@@ -763,6 +1026,11 @@
           b.face([[side*x-width/2,p.y,p.z],[side*x+width/2,p.y,p.z],[side*x+width/2,q.y,q.z],[side*x-width/2,q.y,q.z]],c.track,inner);
           const radial=cross([1,0,0],p.tangent);
           b.box([side*x,p.y,p.z],[width+.025,b.gauge(.048),perimeter/steps*.82],c.steel,[[1,0,0],radial,p.tangent]);
+          if(b.level===0){
+            const center=[side*x,p.y,p.z],inward=mul(radial,-1),pitch=perimeter/steps;
+            inspectionTrackConnector(b,center,p.tangent,inward,width,pitch);
+            inspectionGuideHorn(b,add(center,mul(inward,.022)),inward,p.tangent,.075,pitch*.44,.13);
+          }
           // The shoe face. A padded track is not a steel grouser in a different
           // colour — it is a rubber block that covers nearly the whole shoe and
           // stands twice as proud, which is why a padded hull sits higher on its
@@ -777,7 +1045,7 @@
       });
     }
     b.part(`mobility / ${label(s.mobility)} engine deck`,()=>{
-      const z=front-1.12,x=w*.44,managed=s.mobility==='ground_engine_750',power=s.mobility==='engine_diesel_1200';
+      const z=scout?rear+.93:roofFront-.43,x=w*.44,managed=s.mobility==='ground_engine_750',power=s.mobility==='engine_diesel_1200';
       b.box([x,deck+.105,z],[.66,.07,.75],c.shade);
       const vents=power?14:managed?11:s.mobility==='engine_diesel_900'?9:7;
       if(b.keep(0.30))for(let i=0;i<b.many(vents,3);i++)b.box([x,deck+.151,z-.31+i*.62/(b.many(vents,3)-1)],[.57,.022,.027],c.bright);
@@ -785,11 +1053,18 @@
       // is most of what a card crop shows of a low hull.
       for(const dx of [-.315,.315])b.box([x+dx,deck+.145,z],[.055,.070,.80],c.upper);
       for(const dz of [-.375,.375])b.box([x,deck+.145,z+dz],[.72,.070,.055],c.upper);
+      if(b.level===0){
+        // Crossbars join the existing louvres to their frame, and the separate
+        // service panel is seated on the deck alongside the cooling bank.
+        for(const dx of [-.19,0,.19])b.box([x+dx,deck+.167,z],[.016,.025,.70],c.shade);
+        inspectionPanel(b,[-w*.42,deck+.071,z-.04],.54,.61,[1,0,0],[0,1,0],c.upper);
+        for(const dz of [-.25,.25])inspectionHinge(b,[x-.36,deck+.16,z+dz],[0,0,1],[0,1,0],.13,.022,c.steel);
+      }
       if(b.keep(0.30))for(const dz of [-.30,.30])b.box([x-.40,deck+.10,z+dz],[.10,.075,.10],c.steel);
       if(managed)b.box([x,deck+.17,z+.44],[.49,.14,.16],c.upper);
       for(let j=0;j<(power?2:1);j++) {
-        b.cylinder([w-.14,deck-.34,front-1.18-j*.30],[w+.14,deck-.34,front-1.18-j*.30],.09,c.steel,16);
-        b.tube([w+.14,deck-.34,front-1.18-j*.30],[w+.24,deck-.23,front-1.18-j*.30],.095,.066,c.steel,16);
+        b.cylinder([w-.14,deck-.34,z-.06-j*.30],[w+.04,deck-.34,z-.06-j*.30],.075,c.steel,16);
+        b.tube([w+.04,deck-.34,z-.06-j*.30],[w+.12,deck-.26,z-.06-j*.30],.080,.054,c.steel,16);
       }
       // AIR CLEANERS, and the reason they are here. Four engines are legal on
       // these hulls and the only thing that used to separate them was how many
@@ -854,26 +1129,37 @@
       }
     });
     b.part(`turret / ${mg?'protected weapon station':howitzer?'enclosed howitzer turret':aaMount?'air-defense cradle':'autocannon turret'}`,()=>{
-      const radius=mg?.36:howitzer?1.07:aaMount?.78:.63;
-      b.cylinder([0,deck+.066,mountZ],[0,deck+.18,mountZ],radius,c.steel,40);
+      const radius=mg?.34:howitzer?.97:aaMount?.74:.62;
+      b.cylinder([0,deck+.05,mountZ],[0,deck+.105,mountZ],radius,c.steel,32);
       if(mg) {
-        b.cylinder([0,deck+.18,mountZ],[0,mountTop-.05,mountZ],.16,c.upper,20);
-        beveled(b,[0,mountTop-.03,mountZ+.10],[.49,.32,.085],c.armor,.05);
-        for(const side of [-1,1])b.box([side*.235,mountTop-.015,mountZ-.03],[.05,.29,.32],c.upper);
+        b.loft([octagon(deck+.105,.23,-.20,.23,.07,mountZ),octagon(mountTop-.07,.17,-.17,.16,.04,mountZ)],c.upper);
+        beveled(b,[0,mountTop-.03,mountZ+.15],[.45,.28,.065],c.armor,.045);
+        for(const side of [-1,1])b.box([side*.215,mountTop-.025,mountZ-.01],[.045,.25,.32],c.upper);
         // A bare pedestal reads as a pipe. The bolted ring hatch it stands on and
         // the discharger cluster behind it are what make it a fighting position.
-        b.cylinder([0,deck+.09,mountZ],[0,deck+.155,mountZ],.50,c.shade,28);
-        if(b.keep(0.30))for(let j=0;j<8;j++){const a=TAU*j/8;b.box([Math.sin(a)*.50,deck+.185,mountZ+Math.cos(a)*.50],[.07,.042,.07],c.bright);}
+        b.cylinder([0,deck+.07,mountZ],[0,deck+.115,mountZ],.42,c.shade,24);
+        if(b.keep(0.30))for(let j=0;j<8;j++){const a=TAU*j/8;b.box([Math.sin(a)*.42,deck+.132,mountZ+Math.cos(a)*.42],[.045,.024,.045],c.bright);}
         if(b.keep(0.30))for(const side of [-1,1])for(let j=0;j<3;j++)
           b.cylinder([side*(.42+j*.10),deck+.24,mountZ-.34],[side*(.46+j*.11),deck+.46,mountZ-.44],.055,c.steel,10);
       } else {
-        const tw=howitzer?1.18:aaMount?.83:.75,back=howitzer?-1.31:aaMount?-.63:-.73,ahead=howitzer?.94:aaMount?.58:.61;
-        b.loft([octagon(deck+.19,tw,back,ahead,.19,mountZ),octagon(mountTop,tw*(aaMount?.80:.85),back+.14,ahead-.17,.19,mountZ)],c.upper);
-        hatch(-tw*.40,mountTop,mountZ-.24,howitzer?.31:.23);
+        const tw=mountWidth,back=howitzer?-1.49:aaMount?-.92:-.94,ahead=howitzer?1.05:aaMount?.67:.75;
+        // A broad fighting compartment tapers into a narrow gun opening. Its
+        // bustle is part of the shell, rather than a high octagonal block
+        // balanced on an exposed turntable. The howitzer keeps useful height
+        // and rear loading volume; the IFV and radar mount stay low.
+        b.loft([cheekSection(deck+.095,tw*.93,back+.10,ahead-.06,.16,mountZ),
+          cheekSection(deck+(howitzer?.37:.23),tw,back,ahead,.17,mountZ),
+          cheekSection(mountTop-.085,tw*.91,back+.06,ahead-.16,.17,mountZ),
+          cheekSection(mountTop,tw*.84,back+.15,ahead-.25,.17,mountZ)],c.upper);
+        for(const side of [-1,1])inspectionSeam(b,[side*tw*.69,mountTop+.004,mountZ+back+.35],
+          [side*tw*.69,mountTop+.004,mountZ+ahead-.36],[0,1,0],c.upper,true);
+        hatch(-tw*.40,mountTop,mountZ-.30,howitzer?.28:.21);
         for(const side of [-1,1]) {
-          b.box([side*tw*.93,mountTop-.20,mountZ-.20],[.075,.10,.38],c.shade);
-          if(modular)b.box([side*(tw+.03),mountTop-.29,mountZ+.09],[.13,.30,.60],c.armor);
+          b.box([side*tw*.91,mountTop-.17,mountZ-.38],[.045,.065,.29],c.shade);
+          if(b.keep(0.30))inspectionLatch(b,[side*tw*.68,mountTop+.012,mountZ+back+.42],[0,0,1],[0,1,0],.09,c.steel);
         }
+        if(modular)b.loft([cheekSection(deck+.18,tw+.055,back+.20,ahead+.005,.16,mountZ),
+          cheekSection(mountTop-.10,tw*.95,back+.28,ahead-.16,.16,mountZ)],c.armor);
       }
     });
     b.part(`armament / ${label(s.armament)} installation`,()=>{
@@ -891,10 +1177,15 @@
         const thick=s.armament==='ground_howitzer_155'||s.armament==='ground_gun_35';
         const extent=indirect?(thick?4.35:3.82):small?1.02:twin?2.55:thick?2.64:2.23;
         const radius=indirect?(thick?.112:.087):small?.027:twin?.040:thick?.052:.039;
-        const start=mountZ+(indirect?.70:small?.12:.39),rise=indirect?.36:twin?.20:0;
-        const offsets=twin?[-.46,.46]:[0];
+        const start=mountZ+(indirect?.79:small?.12:.57),rise=indirect?.36:twin?.20:0;
+        const offsets=twin?[-mountWidth-.10,mountWidth+.10]:[0];
         for(const x of offsets) {
-          b.cylinder([x,gunY,start-.08],[x,gunY,start+.30],radius*2.6,c.shade,24);
+          if(!small){
+            const size=indirect?[.43,.42,.44]:twin?[.26,.27,.66]:[.28,.25,.33];
+            beveled(b,[x,gunY,start-.05],size,c.armor,indirect?.085:.045);
+            if(twin)b.cylinder([x-Math.sign(x)*.23,gunY,start-.21],[x+Math.sign(x)*.11,gunY,start-.21],.16,c.steel,18);
+          }
+          b.cylinder([x,gunY,start-.08],[x,gunY,start+.19],radius*1.75,c.shade,20);
           b.always(()=>{
             b.cylinder([x,gunY,start+.25],[x,gunY+rise,start+extent-.22],radius*1.18,c.upper,24,radius);
             b.tube([x,gunY+rise,start+extent-.23],[x,gunY+rise,start+extent],radius*1.08,radius*.68,c.steel,24);
@@ -904,10 +1195,15 @@
             b.box([x,gunY+rise,start+extent-.065],[radius*3.6,radius*2.6,.25],c.steel);
             if(b.keep(0.30))for(const side of [-1,1])b.box([x+side*radius*1.82,gunY+rise,start+extent-.05],[.009,radius*1.2,.13],c.black);
             b.rod([x+.19,gunY+.13,start],[x+.19,gunY+.13,start+.91],.060,c.steel,16);
+            if(b.level===0){
+              b.cylinder([x+.19,gunY+.13,start+.03],[x+.19,gunY+.13,start+.52],.085,c.shade,16);
+              for(const dz of [.10,.46])b.box([x+.095,gunY+.13,start+dz],[.19,.11,.05],c.steel);
+              b.rod([x+.24,gunY+.14,start+.10],[x+.24,gunY+.14,start+.46],.012,c.cable,8);
+            }
           } else if(small) {
             b.box([.12,gunY-.05,start+.12],[.13,.13,.28],c.steel);
             b.box([0,gunY,start+.10],[.105,.095,.42],c.black);
-          } else if(b.keep(0.30))for(let j=0;j<4;j++)b.cylinder([x,gunY+rise*j/4,start+.50+j*.16],[x,gunY+rise*j/4,start+.535+j*.16],radius*1.45,c.steel,16);
+          } else if(b.keep(0.30))for(let j=0;j<2;j++)b.cylinder([x,gunY+rise*j*.28,start+.46+j*.43],[x,gunY+rise*j*.28,start+.485+j*.43],radius*1.28,c.steel,16);
         }
       }
     });
@@ -920,7 +1216,7 @@
       // its label off the selection, which is why the coverage report scored the
       // whole slot absent: a belt box and a rack of upright projectiles do not
       // look alike at any distance, and they should not have.
-      const ammo=s.ammunition,tw=howitzer?1.18:aaMount?.83:mg?.50:.75,dk=deck+.065;
+      const ammo=s.ammunition,tw=mountWidth,dk=deck+.065;
       // A lidded deck locker: body, raised lid, over-centre catches, grab rail.
       const locker=(cx,cy,cz,size,tint)=>{
         // The chamfer and the lid rim are inspection detail. At the map pin the
@@ -940,10 +1236,10 @@
         // Belt-fed ready boxes on the turret flanks, with the feed chute to the
         // breech and a spent-link bag under it.
         for(const side of [-1,1]) {
-          locker(side*(tw+.28),mountTop-.28,mountZ-.04,[.28,.38,.70],weathered(c.hull,side>0?1:2));
+          locker(side*(tw+.11),mountTop-.23,mountZ-.25,[.22,.29,.58],weathered(c.hull,side>0?1:2));
           if(b.keep(0.30)) {
-            b.box([side*(tw+.10),mountTop-.14,mountZ+.16],[.16,.11,.34],c.steel);
-            for(let j=0;j<b.many(5,2);j++)b.box([side*(tw+.10),mountTop-.14,mountZ+.03+j*.07],[.17,.055,.032],c.bright);
+            b.box([side*(tw-.005),mountTop-.14,mountZ-.03],[.15,.09,.30],c.steel);
+            for(let j=0;j<b.many(5,2);j++)b.box([side*(tw-.005),mountTop-.14,mountZ-.14+j*.055],[.155,.04,.024],c.bright);
           }
         }
         if(b.keep(0.30)) {
@@ -1022,14 +1318,14 @@
       }
     });
     b.part(`sensors / ${label(s.sensors)} observation fittings`,()=>{
-      hatch(-w*.42,deck+.065,front-1.12,.25);
-      if(b.keep(0.30))for(let j=-1;j<=1;j++)b.box([-w*.42+j*.16,deck+.19,front-.90],[.13,.085,.065],c.glass);
+      hatch(-w*.42,deck+.065,roofFront-.40,.25);
+      if(b.keep(0.30))for(let j=-1;j<=1;j++)b.box([-w*.42+j*.16,deck+.19,roofFront-.18],[.13,.085,.065],c.glass);
       // Coaming and guard bar over the driver's blocks. From above they are the
       // only fitting that says which end of a low flat hull is the front.
-      b.box([-w*.42,deck+.135,front-.90],[.52,.055,.11],c.shade);
+      b.box([-w*.42,deck+.135,roofFront-.18],[.52,.055,.11],c.shade);
       if(b.keep(0.30)) {
-        for(const dx of [-.25,.25])b.rod([-w*.42+dx,deck+.24,front-.86],[-w*.42+dx,deck+.30,front-.86],.016,c.steel,6);
-        b.rod([-w*.42-.25,deck+.30,front-.86],[-w*.42+.25,deck+.30,front-.86],.016,c.steel,6);
+        for(const dx of [-.25,.25])b.rod([-w*.42+dx,deck+.24,roofFront-.14],[-w*.42+dx,deck+.30,roofFront-.14],.016,c.steel,6);
+        b.rod([-w*.42-.25,deck+.30,roofFront-.14],[-w*.42+.25,deck+.30,roofFront-.14],.016,c.steel,6);
       }
       const night=s.sensors==='optics_night',thermal=s.sensors==='optics_thermal',y=mg?deck+.17:mountTop;
       b.box([.32,y+.075,mountZ+.15],[thermal?.28:.21,thermal?.16:.12,.24],c.shade);
@@ -1046,8 +1342,8 @@
         b.box([.44,y-.09,mountZ+.20],[.11,.22,.13],c.steel);
         if(b.keep(0.30)) {
           b.studs([.44,y+.11,mountZ+.17],[0,0,1],.175,8,.026,.020,c.bright);
-          b.box([-w*.42,deck+.26,front-.90],[.30,.10,.14],c.shade);
-          b.box([-w*.42,deck+.26,front-.83],[.22,.055,.016],c.glass);
+          b.box([-w*.42,deck+.26,roofFront-.18],[.30,.10,.14],c.shade);
+          b.box([-w*.42,deck+.26,roofFront-.11],[.22,.055,.016],c.glass);
         }
       }
       if(thermal)b.always(()=>{b.cylinder([.32,y+.15,mountZ+.15],[.32,y+.38,mountZ+.15],.085,c.steel,20);b.box([.32,y+.44,mountZ+.15],[.32,.15,.24],c.upper);b.box([.32,y+.44,mountZ+.278],[.22,.09,.02],c.lens);})
@@ -1116,7 +1412,7 @@
     });
     if(s.active_protection!=='aps_none')b.part(`active_protection / ${label(s.active_protection)} perimeter system`,()=>{
       for(const side of [-1,1]) {
-        const x=side*(w-.20),z=front-.82;
+        const x=side*(w-.20),z=roofFront-.20;
         b.box([x,deck+.09,z],[.16,.17,.18],c.shade);
         b.box([x,deck+.09,z+.095],[.10,.095,.015],c.lens);
         const count=s.active_protection==='aps_hard'?4:2;
@@ -1125,20 +1421,21 @@
       }
     });
     if(s.troop_compartment)b.part(`troop_compartment / ${s.troop_compartment==='ground_troops_protected'?'reinforced troop bay':'troop bay and rear egress'}`,()=>{
-      const protectedBay=s.troop_compartment==='ground_troops_protected',height=protectedBay?.19:.045;
-      b.box([0,deck+height/2,rear+1.02],[w*1.34,height,1.33],c.upper);
+      const protectedBay=s.troop_compartment==='ground_troops_protected',height=protectedBay?.18:.065;
+      if(protectedBay)b.loft([octagon(deck+.04,w*.77,rear+.30,rear+2.15,.11),
+        octagon(deck+height,w*.66,rear+.36,rear+2.08,.12)],c.upper);
       // Roof edge lip and a stowage basket forward of the hatches. Crews stow on
       // the roof of a carrier, and the top view had nothing between the hatches.
-      for(const dx of [-w*.67,w*.67])b.box([dx,deck+height+.03,rear+1.02],[.06,.075,1.35],c.edge);
-      for(const dz of [rear+.36,rear+1.68])b.box([0,deck+height+.03,dz],[w*1.36,.075,.06],c.edge);
+      for(const dx of [-w*.67,w*.67])b.box([dx,deck+height+.018,rear+1.20],[.035,.035,1.70],c.edge);
+      for(const dz of [rear+.36,rear+2.04])b.box([0,deck+height+.018,dz],[w*1.36,.035,.035],c.edge);
       if(b.keep(0.30)) {
         for(let j=0;j<2;j++)b.rod([-w*.55,deck+height+.05,rear+.30+j*.44],[w*.55,deck+height+.05,rear+.30+j*.44],.018,c.steel,6);
         for(let j=0;j<b.many(5,2);j++)b.rod([(j-2)*w*.275,deck+height+.05,rear+.28],[(j-2)*w*.275,deck+height+.05,rear+.76],.014,c.steel,6);
       }
-      beveled(b,[0,deck+height+.17,rear+.52],[w*.66,.22,.40],c.canvas,.055);
+      beveled(b,[0,deck+height+.09,rear+.56],[w*.52,.12,.30],c.canvas,.04);
       // Roof hatches, vision blocks and the periscope cluster each crewman gets.
       for(const side of [-1,1]) {
-        hatch(side*w*.37,deck+height,rear+1.01,.25);
+        hatch(side*w*.37,deck+height,rear+1.25,.25);
         if(b.keep(0.30))for(let j=0;j<3;j++) {
           b.box([side*(w-.09),deck-.17,rear+.48+j*.43],[.045,.075,.14],c.glass);
           b.box([side*(w-.05),deck-.17,rear+.48+j*.43],[.045,.11,.19],c.armor);
@@ -1157,6 +1454,9 @@
       if(b.keep(0.30))for(let j=0;j<b.many(5,2);j++)b.box([0,.81+j*.135,rear-.085],[w*.90,.020,.025],c.steel);
       b.box([0,deck-.27,rear-.10],[.17,.055,.035],c.bright);
       b.box([w*.32,deck-.46,rear-.090],[.44,.72,.028],c.edge);
+      inspectionHinge(b,[w*.32-.24,deck-.25,rear-.13],[0,1,0],[0,0,-1],.16,.025,c.steel);
+      inspectionHinge(b,[w*.32-.24,deck-.66,rear-.13],[0,1,0],[0,0,-1],.16,.025,c.steel);
+      inspectionSeam(b,[w*.32-.23,deck-.83,rear-.109],[w*.32+.23,deck-.83,rear-.109],[0,0,-1],c.edge);
       b.box([w*.32,deck-.25,rear-.106],[.19,.12,.016],c.glass);
       if(b.keep(0.30))b.box([w*.32+.18,deck-.46,rear-.108],[.05,.10,.042],c.bright);
       for(const side of [-1,1]) {
@@ -1174,7 +1474,7 @@
       b.box([0,.63,rear-.13],[w*.66,.070,.18],c.steel);
     });
     if(s.recon_package)b.part(`recon_package / ${s.recon_package==='ground_recon_mast'?'elevated observation mast':'scout observation station'}`,()=>{
-      const elevated=s.recon_package==='ground_recon_mast',z=rear+.94,y=deck+(elevated?1.72:.39);
+      const elevated=s.recon_package==='ground_recon_mast',z=rear+1.65,y=deck+(elevated?1.72:.39);
       b.cylinder([.12,deck,z],[.12,deck+.21,z],.20,c.shade,24);
       b.cylinder([.12,deck+.19,z],[.12,y-.15,z],b.gauge(elevated?.06:.095),c.bright,20,b.gauge(elevated?.036:.095));
       if(elevated)b.cylinder([.12,deck+.26,z],[.12,deck+.77,z],.095,c.steel,20);
@@ -1185,8 +1485,8 @@
       hatch(-.39,deck+.065,z-.25,.25);
     });
     if(s.artillery_loader)b.part(`artillery_loader / ${s.artillery_loader==='ground_loader_assisted'?'assisted loading installation':'manual loading access'}`,()=>{
-      const assisted=s.artillery_loader==='ground_loader_assisted',z=mountZ-1.27;
-      b.box([0,deck+.65,z],[assisted?1.35:.86,assisted?.71:.56,assisted?.49:.13],c.shade);
+      const assisted=s.artillery_loader==='ground_loader_assisted',z=mountZ-1.43;
+      beveled(b,[0,deck+.65,z],[assisted?1.35:.86,assisted?.71:.56,assisted?.49:.13],c.shade,.075);
       b.box([0,deck+.65,z-(assisted?.26:.08)],[.56,.40,.025],c.upper);
       for(const side of [-1,1]) {
         if(b.keep(0.30))b.rod([side*.42,deck+.41,z-.12],[side*.42,deck+.93,z-.12],.024,c.bright);
@@ -1204,14 +1504,14 @@
       b.cylinder([0,mountTop,z],[0,y-.16,z],b.gauge(.11),c.steel,24);
       b.cylinder([0,mountTop+.03,z],[0,mountTop+.18,z],.28,c.shade,24);
       b.always(()=>{
-        b.box([0,y,z],[tracking?1.24:1.02,tracking?.55:.38,.14],c.upper);
-        b.box([0,y,z+.079],[tracking?1.13:.91,tracking?.44:.27,.024],c.glass);
+        beveled(b,[0,y,z],[tracking?1.24:1.02,tracking?.55:.38,.14],c.upper,.065);
+        beveled(b,[0,y,z+.079],[tracking?1.13:.91,tracking?.44:.27,.024],c.steel,.055);
       });
       if(b.keep(0.30))for(let i=-4;i<=4;i++)b.box([i*.105,y,z+.095],[.014,tracking?.44:.27,.012],c.shade);
       if(tracking) {
         b.rod([.63,mountTop-.02,mountZ+.14],[.83,mountTop+.41,mountZ+.13],.07,c.steel,16);
         b.cylinder([.83,mountTop+.46,mountZ+.12],[.83,mountTop+.46,mountZ+.26],.27,c.upper,32,.31);
-        b.cylinder([.83,mountTop+.46,mountZ+.265],[.83,mountTop+.46,mountZ+.28],.265,c.glass,32);
+        b.revolve([.83,mountTop+.46,mountZ+.265],[0,0,1],[{r:.265,h:0},{r:.24,h:.07,s:1},{r:.13,h:.12,s:1},{r:0,h:.14}],c.upper,24);
       }
     });
     const names={ground_ifv:'tracked infantry fighting vehicle',ground_apc:'wheeled armored personnel carrier',ground_recon:'wheeled reconnaissance vehicle',ground_artillery:'self-propelled artillery',ground_air_defense:'mobile air-defense vehicle'};
@@ -1228,11 +1528,14 @@
     const mobile = ["drive_mobile","engine_diesel_1200","engine_turbine_1500"].includes(chosen.mobility), reinforced = chosen.protection === "protection_heavy", active = chosen.protection === "protection_active" || chosen.active_protection === "aps_hard";
     const heavyGun = ["armament_heavy","gun_120","gun_125"].includes(chosen.armament), integrated = ["sensors_integrated","optics_thermal"].includes(chosen.sensors), data = chosen.communications === "comms_data";
     const compact=chosen.turret==='turret_compact',casemate=chosen.turret==='turret_casemate',autoload=chosen.turret==='turret_autoload',large=chosen.turret==='turret_heavy';
-    const hullWidth = heavy ? 1.64 : 1.43, rear = heavy ? -3.32 : -2.91, front = heavy ? 3.04 : 2.76;
+    // A tank's long load-bearing hull and broad, low turret are its primary
+    // forms. These dimensions belong to all three tank LODs; stretching only
+    // the close view would make the vehicle change size on the map.
+    const hullWidth = heavy ? 1.48 : 1.34, rear = heavy ? -3.80 : -3.44, front = heavy ? 3.50 : 3.24;
     const b = createBuilder(detail, front - rear), c = PALETTE;
-    const wheelHalfSpan = heavy ? 2.65 : 2.31, trackX = hullWidth + 0.20, trackWidth = (heavy ? 0.77 : 0.68)+(chosen.tracks==='tracks_wide'?.19:0);
-    const trackRadius = 0.67, trackCenterY = 0.67, turretY = heavy ? 1.68 : 1.58, turretZ = 0.13;
-    const turretWidth = (heavy ? 1.37 : 1.18)*(compact?.80:casemate?1.13:large?1.08:1), turretTop = turretY + (casemate?.65:compact?.68:autoload?.73:heavyGun?.97:.87);
+    const wheelHalfSpan = heavy ? 3.10 : 2.78, trackX = hullWidth + 0.15, trackWidth = (heavy ? 0.70 : 0.64)+(chosen.tracks==='tracks_wide'?.19:0);
+    const trackRadius = 0.65, trackCenterY = 0.65, turretY = heavy ? 1.55 : 1.53, turretZ = 0.13;
+    const turretWidth = (heavy ? 1.53 : 1.40)*(compact?.82:casemate?1.02:large?1.08:1), turretTop = turretY + (casemate?.65:compact?.63:autoload?.68:heavyGun?.84:.74);
     const pathLength = wheelHalfSpan * 4 + TAU * trackRadius;
     function trackPoint(distance, radius = trackRadius) {
       // Both radii share the same angular path so the belt has consistent thickness.
@@ -1261,6 +1564,8 @@
         octagon(1.47, hullWidth, rear + 0.06, front - 0.43, 0.32)], c.hull);
       b.loft([octagon(1.475, hullWidth + 0.015, rear + 0.05, front - 0.43, 0.32),
         octagon(1.54, hullWidth - 0.025, rear + 0.11, front - 0.49, 0.32)], c.upper);
+      for(const side of [-1,1])inspectionSeam(b,[side*(hullWidth-.075),1.544,rear+.46],
+        [side*(hullWidth-.075),1.544,front-.86],[0,1,0],c.upper,true);
       b.box([0, 0.58, rear - 0.03], [hullWidth * 1.5, 0.22, 0.12], c.shade);
       // Bolted nose beam and a rear plate. Without a hard horizontal at each end
       // the hull is a single smooth wedge from any three-quarter view.
@@ -1277,12 +1582,9 @@
         if (b.keep(0.30)) for (const [z, out] of [[front + 0.02, 0.20], [rear - 0.02, -0.20]])
           b.socket([x * 0.62, 1.10, z], [x * 0.62, 1.10, z + out], 0.088, 0.052, c.steel, 18);
       }
-      // The cast nose transition between the glacis and the lower plate. Turned
-      // rather than folded, because on a real hull this is one poured casting.
-      if (b.keep(0.30)) b.revolve([0, 1.14, front - 0.30], [1, 0, 0], [
-        { r: 0.30, h: -hullWidth * 0.98 }, { r: 0.40, h: -hullWidth * 0.72, s: 1 },
-        { r: 0.44, h: -hullWidth * 0.30, s: 1 }, { r: 0.44, h: hullWidth * 0.30, s: 1 },
-        { r: 0.40, h: hullWidth * 0.72, s: 1 }, { r: 0.30, h: hullWidth * 0.98 }], c.armor, 18);
+      // The close-view glacis is folded armor, not a cylindrical bulge laid on
+      // top of the bow. The distant mesh preserves its original silhouette.
+      inspectionBow(b,hullWidth,front,1.02,1.42,c.armor);
     });
 
     b.part("chassis / glacis applique, splash guard and spare track links", () => {
@@ -1290,7 +1592,7 @@
       // a colour change. The basis is the measured glacis slope so the plates lie
       // on the surface rather than floating at their own angle.
       const up = [0, 0.7407, -0.6745], out = [0, 0.6745, 0.7407], slope = [[1, 0, 0], up, out];
-      for (let i = 0; i < b.many(5, 2); i++) {
+      if(!reinforced)for (let i = 0; i < b.many(5, 2); i++) {
         const x = (i - 2) * hullWidth * 0.38;
         beveled(b, [x, 1.234, front - 0.131], [hullWidth * 0.35, 0.42, 0.09], weathered(c.armor, i), 0.06, slope);
       }
@@ -1303,9 +1605,14 @@
           b.rod([x, 1.05, front + 0.10], [x, 1.16, front + 0.06], 0.036, c.bright, 8);
           b.rod([x, 1.42, front - 0.34], [x, 1.53, front - 0.44], 0.030, c.steel, 8);
         }
-        // Headlight guards, one turned housing each. The nose used to be armour
-        // and nothing else from the front three-quarter view.
-        if (b.keep(0.30)) b.revolve([x * 1.12, 1.44, front - 0.40], [0, 0.55, 0.83], [
+        // Compact lamps stand on brackets attached to the upper deck edge. Their
+        // clear faces use neutral metal-glass tones, distinct from sight optics.
+        if(b.level===0){
+          b.box([x*1.12,1.53,front-.55],[.12,.08,.15],c.steel);
+          b.revolve([x*1.12,1.58,front-.55],[0,.08,1],[
+            {r:0,h:0},{r:.077,h:.014},{r:.083,h:.095,s:1},
+            {r:.069,h:.120,c:shade(c.bright,1.35)},{r:0,h:.123}],c.shade,10);
+        }else if (b.keep(0.30)) b.revolve([x * 1.12, 1.44, front - 0.40], [0, 0.55, 0.83], [
           { r: 0.00, h: 0 }, { r: 0.118, h: 0.030 }, { r: 0.126, h: 0.115, s: 1 },
           { r: 0.092, h: 0.155, c: c.lens }, { r: 0, h: 0.158 }], c.shade, 10);
       }
@@ -1342,32 +1649,62 @@
               b.cylinder(add(pinCenter, [rim * (trackWidth / 2 - 0.025), 0, 0]), add(pinCenter, [rim * (trackWidth / 2 + 0.050), 0, 0]), 0.025, c.bright, 6);
             }
             b.box(add(center, mul(outward, 0.032)), [trackWidth + 0.070, 0.023, step * 0.14], c.bright, basis);
-            // Guide horn, inboard of the shoe, riding between the road wheels.
-            b.box(add(center, mul(outward, -0.088)), [0.070, 0.13, step * 0.30], c.steel, basis);
-            b.box(add(center, mul(outward, -0.155)), [0.060, 0.055, step * 0.22], c.bright, basis);
+            // The inspection horn tapers into the now-open paired-wheel channel;
+            // distant levels keep their original readable block silhouettes.
+            if(b.level===0){
+              inspectionGuideHorn(b,add(center,mul(outward,-.022)),mul(outward,-1),tangent,.075,step*.42,.16);
+              inspectionTrackConnector(b,center,tangent,mul(outward,-1),trackWidth,step);
+            }else{
+              b.box(add(center, mul(outward, -0.088)), [0.070, 0.13, step * 0.30], c.steel, basis);
+              b.box(add(center, mul(outward, -0.155)), [0.060, 0.055, step * 0.22], c.bright, basis);
+            }
           }
         }
       });
       b.part(`running gear / ${label} suspension, road wheels and sprockets`, () => {
-        const wheels = heavy ? 7 : 6, first = -wheelHalfSpan + 0.62, last = wheelHalfSpan - 0.62;
+        const wheels = heavy ? 7 : 6, first = -wheelHalfSpan + 0.46, last = wheelHalfSpan - 0.46;
         for (let i = 0; i < wheels; i++) {
-          const z = first + (last - first) * i / (wheels - 1), wheelY = 0.48, wheelRadius = 0.335;
+          const z = first + (last - first) * i / (wheels - 1), wheelY = heavy?.54:.53, wheelRadius = heavy?.41:.40;
           b.rod([side * (hullWidth - 0.14), 0.90, z - 0.24], [x, wheelY, z], b.gauge(0.085), c.steel, 12);
           // Bump stop above each arm. It is the fitting that tells the eye the
           // arm swings, and it survives the shrink to card size as a shadow.
           b.box([side * (hullWidth - 0.05), 1.02, z - 0.19], [0.17, 0.13, 0.16], c.shade);
-          if(chosen.suspension==='suspension_hydro') {b.cylinder([x+side*.25,.86,z-.18],[x+side*.25,.53,z],.065,c.bright,12);b.cylinder([x+side*.25,.99,z-.25],[x+side*.25,.76,z-.13],.10,c.shade,12);}
+          if(b.level===0){
+            const pivot=[side*(hullWidth-.03),.90,z-.24];
+            b.cylinder(add(pivot,[-side*.11,0,0]),add(pivot,[side*.065,0,0]),.12,c.shade,16);
+            b.studs(add(pivot,[side*.067,0,0]),[side,0,0],.087,6,.016,.015,c.bright);
+            b.cylinder([x,.48,z],[x,.58,z-.07],.12,c.steel,12);
+          }
+          if(chosen.suspension==='suspension_hydro') {
+            b.cylinder([x+side*.25,.86,z-.18],[x+side*.25,.53,z],.065,c.bright,12);
+            b.cylinder([x+side*.25,.99,z-.25],[x+side*.25,.76,z-.13],.10,c.shade,12);
+            if(b.level===0){
+              // The pressure reservoir and its mount distinguish a hydraulic
+              // unit from a torsion arm. A thin piston alone disappeared behind
+              // the newly separated wheels. This assembly is carried by the
+              // existing upper strut, below the fender and inside the track width.
+              const reservoir=[x+side*.19,.925,z-.46];
+              b.revolve(reservoir,[0,0,1],[{r:0,h:0},{r:.055,h:0},{r:.116,h:.045,s:1},
+                {r:.128,h:.095,s:1},{r:.128,h:.285,s:1},{r:.105,h:.34,s:1},{r:.050,h:.385},{r:0,h:.385}],c.shade,16);
+              for(const dz of [.105,.265]){
+                b.cylinder(add(reservoir,[0,0,dz-.018]),add(reservoir,[0,0,dz+.018]),.135,c.steel,16);
+                b.box([x+side*.135,.91,z-.46+dz],[.17,.095,.062],c.steel);
+              }
+              b.rod([x+side*.19,.925,z-.075],[x+side*.25,.90,z-.20],.026,c.cable,10);
+              b.socket([x+side*.19,.925,z-.455],[x+side*.19,.925,z-.495],.036,.017,c.bright,10);
+            }
+          }
           b.wheelBody([x, wheelY, z], [1, 0, 0], wheelRadius, 0.27, c.rubber, c.upper, c.shade, true);
         }
-        // Drive sprocket forward, idler aft. Toothed wheels at both ends is the
-        // tell that one track end was drawn twice rather than designed, and the
-        // spoked idler web gives the rear of the running gear its own read.
+        // Rear drive sprocket follows the rear powerpack; the front idler has a
+        // distinct tensioning web. Both are concentric with the track return,
+        // rather than tiny wheels floating inside a much larger belt curve.
         for (const end of [-1, 1]) {
-          const z = end * wheelHalfSpan, y = trackCenterY + 0.21, r = 0.36;
+          const z = end * wheelHalfSpan, y = trackCenterY, r = 0.51;
           b.cylinder([x - 0.28, y, z], [x + 0.28, y, z], r, c.steel, 18);
           b.cylinder([x + side * 0.281, y, z], [x + side * 0.326, y, z], r * 0.75, c.hull, 18);
           b.cylinder([x + side * 0.325, y, z], [x + side * 0.355, y, z], 0.13, c.bright, 12);
-          if (end > 0) { if (b.keep(0.30)) for (let tooth = 0; tooth < b.many(14, 5); tooth++) {
+          if (end < 0) { if (b.keep(0.30)) for (let tooth = 0; tooth < b.many(14, 5); tooth++) {
             const angle = TAU * tooth / b.many(14, 5), radial = [0, Math.sin(angle), Math.cos(angle)], tangent = [0, Math.cos(angle), -Math.sin(angle)];
             b.box([x, y + radial[1] * r, z + radial[2] * r], [0.49, 0.075, 0.10], c.bright, [[1, 0, 0], radial, tangent]);
           } } else {
@@ -1417,19 +1754,24 @@
         // green plate between the skirt line and the turret.
         const top = 1.4725;
         for (let i = 0; i < b.many(3, 1); i++) {
-          const z = (i - 1) * wheelHalfSpan * 0.70, length = i === 1 ? 1.06 : 0.88;
-          beveled(b, [x, top + 0.17, z], [trackWidth + 0.03, 0.33, length], weathered(c.hull, i + (side > 0 ? 1 : 0)), 0.06);
-          b.box([x, top + 0.345, z], [trackWidth + 0.06, 0.026, length + 0.03], c.edge);
-          if (b.keep(0.30)) for (const dz of [-length * 0.30, length * 0.30]) b.box([x + side * (trackWidth / 2 + 0.005), top + 0.20, z + dz], [0.030, 0.090, 0.055], c.bright);
-          if (b.keep(0.30)) b.rod([x - 0.15, top + 0.372, z - length * 0.35], [x + 0.15, top + 0.372, z - length * 0.35], 0.016, c.steel, 6);
+          const z = (i - 1) * wheelHalfSpan * 0.70, length = i === 1 ? 1.32 : 1.12;
+          beveled(b, [x, top + 0.10, z], [trackWidth + 0.03, 0.20, length], weathered(c.hull, i + (side > 0 ? 1 : 0)), 0.06);
+          b.box([x, top + 0.212, z], [trackWidth + 0.06, 0.026, length + 0.03], c.edge);
+          if (b.keep(0.30)) for (const dz of [-length * 0.30, length * 0.30]) b.box([x + side * (trackWidth / 2 + 0.005), top + 0.125, z + dz], [0.030, 0.055, 0.055], c.bright);
+          if (b.keep(0.30)) b.rod([x - 0.15, top + 0.237, z - length * 0.35], [x + 0.15, top + 0.237, z - length * 0.35], 0.016, c.steel, 6);
+          inspectionSeam(b,[x-trackWidth*.40,top+.230,z-length*.43],[x+trackWidth*.40,top+.230,z-length*.43],[0,1,0],c.upper);
+          for(const dz of [-length*.29,length*.29]){
+            inspectionHinge(b,[x-side*trackWidth*.43,top+.241,z+dz],[0,0,1],[0,1,0],.15,.025,c.steel);
+            inspectionLatch(b,[x+side*(trackWidth*.5+.035),top+.125,z+dz],[0,0,1],[side,0,0],.10,c.bright);
+          }
         }
         // Pioneer tools clamped outboard: two long thin runs that catch the light
         // along the whole flank for the price of two rods.
-        if (b.keep(0.30)) for (let i = 0; i < 2; i++) b.rod([x + side * (trackWidth / 2 + 0.055), top + 0.11 + i * 0.115, -0.62], [x + side * (trackWidth / 2 + 0.055), top + 0.11 + i * 0.115, 0.66], 0.027, i ? c.steel : c.cable, 8);
+        if (b.keep(0.30)) for (let i = 0; i < 2; i++) b.rod([x + side * (trackWidth / 2 + 0.055), top + 0.07 + i * 0.085, -0.62], [x + side * (trackWidth / 2 + 0.055), top + 0.07 + i * 0.085, 0.66], 0.027, i ? c.steel : c.cable, 8);
         // Tie-down sockets along the bin line. Five per side, and they are what a
         // crew actually lashes stowage to.
         if (b.keep(0.30)) for (let i = 0; i < b.many(5, 2); i++)
-          b.socket([x, top + 0.36, -1.30 + i * 0.65], [x, top + 0.44, -1.30 + i * 0.65], 0.070, 0.042, c.steel, 18);
+          b.socket([x, top + 0.235, -1.30 + i * 0.65], [x, top + 0.295, -1.30 + i * 0.65], 0.070, 0.042, c.steel, 18);
       });
     }
 
@@ -1478,6 +1820,11 @@
       }
       // Bolted powerpack access panel forward of the grilles, clear of the ring.
       beveled(b, [0, 1.585, engineFront + 0.30], [0.86, 0.075, 0.44], c.edge, 0.07);
+      inspectionPanel(b,[0,1.625,engineFront+.30],.73,.34,[1,0,0],[0,1,0],c.upper);
+      if(b.level===0)for(const x of [-hullWidth*.40,hullWidth*.40]){
+        for(const dx of [-.23,.23])b.box([x+dx,1.637,mid],[.018,.021,engineFront-engineRear-.08],c.shade);
+        for(const z of [engineRear+.25,engineFront-.25])inspectionHinge(b,[x-hullWidth*.365,1.65,z],[0,0,1],[0,1,0],.17,.026,c.steel);
+      }
       if (b.keep(0.30)) {
         for (const dx of [-0.24, 0.24]) b.box([dx, 1.632, engineFront + 0.30], [0.072, 0.048, 0.28], c.bright);
         b.studs([0, 1.610, engineFront + 0.30], [0, 1, 0], 0.34, 8, 0.030, 0.024, c.bright);
@@ -1515,11 +1862,11 @@
             { r: 0.205, h: 0.255 }, { r: 0.175, h: 0.255 }], c.upper, 20);
         }
       }
-      // Air cleaners. Every engine deck on the model was flat plate and stripes
-      // until these two drums stood up off it.
+      // Low protected intake caps follow the engine-deck surface. The large
+      // standing drums previously competed with the turret's main silhouette.
       for (const side of [-1, 1]) if (b.keep(0.30)) b.revolve([side * (hullWidth - 0.60), 1.585, rear + 1.30], [0, 1, 0], [
-        { r: 0.11, h: 0 }, { r: 0.235, h: 0.055, s: 1 }, { r: 0.255, h: 0.150, s: 1 },
-        { r: 0.255, h: 0.330, s: 1 }, { r: 0.225, h: 0.395, s: 1 }, { r: 0.110, h: 0.420 }], c.steel, 24);
+        { r: 0.11, h: 0 }, { r: 0.255, h: 0.018 }, { r: 0.270, h: 0.045, s: 1 },
+        { r: 0.255, h: 0.075, s: 1 }, { r: 0.220, h: 0.095 }, { r: 0.110, h: 0.100 }], c.steel, 24);
       for (const x of [-hullWidth + 0.18, hullWidth - 0.18]) {
         b.box([x, 1.635, rear + 0.72], [0.21, 0.18, 0.75], c.hull);
         if (b.keep(0.30)) for (const z of [rear + 0.41, rear + 1.01]) b.box([x, 1.733, z], [0.22, 0.02, 0.053], c.bright);
@@ -1527,78 +1874,78 @@
     });
 
     b.part("turret / ring and faceted armor shell", () => {
-      if(!casemate)b.cylinder([0, 1.53, turretZ], [0, turretY + 0.06, turretZ], turretWidth * 0.88, c.steel, 48);
-      else b.box([0,1.57,-.1],[turretWidth*1.95,.27,2.9],c.hull);
-      if(casemate)b.loft([octagon(1.47,hullWidth*.97,-1.87,2.23,.16),octagon(turretTop,turretWidth*.82,-1.35,.87,.14)],c.upper);
-      // The extra ring below the roof turns one long slab side into a shoulder
-      // and a roof chamfer, which is what makes a turret read as cast armour.
-      else b.loft([octagon(turretY, turretWidth * 0.88, -1.56, 1.20, 0.35, turretZ),
-        octagon(turretY + 0.23, turretWidth, -1.64, 1.37, 0.47, turretZ),
-        octagon(turretTop - 0.26, turretWidth * 0.92, -1.50, 1.04, 0.42, turretZ),
-        octagon(turretTop - 0.08, turretWidth * 0.84, -1.36, 0.83, 0.37, turretZ),
-        octagon(turretTop, turretWidth * 0.77, -1.25, 0.73, 0.32, turretZ)], c.upper);
-      // A bolted collar at the ring. Without it the shell floats on the deck;
-      // with it the two big volumes get a shadow line where they meet.
-      if (!casemate) {
-        b.cylinder([0, 1.495, turretZ], [0, 1.578, turretZ], turretWidth * 0.96, c.shade, 24);
-        if (b.keep(0.30)) for (let i = 0; i < b.many(12, 4); i++) {
-          const angle = TAU * i / b.many(12, 4);
-          b.box([Math.sin(angle) * turretWidth * 0.96, 1.588, turretZ + Math.cos(angle) * turretWidth * 0.96], [0.075, 0.030, 0.075], c.bright);
+      // The ring lives under the overhang, not on a tall cylindrical pedestal.
+      // A broad shoulder carries a continuous rear bustle and two wedge cheeks.
+      // Roof and belly have only a narrow bevel, leaving large readable planes.
+      if(!casemate){
+        b.cylinder([0,1.49,turretZ],[0,turretY+.055,turretZ],turretWidth*.80,c.steel,40);
+        const section=(y,w,back,nose)=>[
+          [-w*.78,y,back],[w*.78,y,back],[w,y,back+.32],
+          [w,y,nose-.94],[w*.76,y,nose-.30],[w*.30,y,nose],
+          [-w*.30,y,nose],[-w*.76,y,nose-.30],[-w,y,nose-.94],[-w,y,back+.32]
+        ];
+        b.loft([
+          section(turretY,turretWidth*.88,-1.89,1.42),
+          section(turretY+.20,turretWidth,-1.98,1.78),
+          section(turretTop-.055,turretWidth*.86,-1.87,1.17),
+          section(turretTop,turretWidth*.835,-1.83,1.12)
+        ],c.upper);
+        b.cylinder([0,1.50,turretZ],[0,1.56,turretZ],turretWidth*.84,c.shade,24);
+        for(const side of [-1,1]){
+          // Edge joints separate the removable cheek package without placing
+          // another shallow, disconnected plate in front of the turret volume.
+          inspectionSeam(b,[side*turretWidth*.78,turretY+.225,1.38],
+            [side*turretWidth*.68,turretTop-.065,.86],normal([side,.22,1]),c.armor,true);
+          if(b.keep(.30))b.socket([side*(turretWidth*.86-.13),turretTop-.10,-.66],
+            [side*(turretWidth*.86+.025),turretTop-.02,-.66],.065,.038,c.steel,16);
         }
+        // The rear armor remains part of the rotating body. These shallow
+        // service panels read as access in that body, rather than a second box.
+        beveled(b,[0,turretY+.40,-1.948],[turretWidth*1.38,.30,.070],c.armor,.022);
+        if(b.keep(.30))for(const x of [-turretWidth*.52,0,turretWidth*.52])
+          b.box([x,turretY+.47,-1.986],[.23,.025,.016],c.steel);
+      }else{
+        // The fixed casemate grows directly from the hull shoulder and keeps
+        // the lower gun opening broad; it is not a turret on a square plinth.
+        b.loft([octagon(1.44,hullWidth*.97,-2.10,2.48,.20),
+          octagon(1.44+(turretTop-1.44)*.56,turretWidth*.91,-1.94,1.51,.25),
+          octagon(turretTop,turretWidth*.83,-1.72,1.05,.18)],c.upper);
       }
-      // Separate cheek castings belong to the rotating turret, not the fixed hull mounting.
-      for (const side of casemate?[]:[-1, 1]) {
-        const cheek = [[side * 0.43, turretY + 0.25, 1.49], [side * (turretWidth - 0.27), turretY + 0.28, 1.45],
-          [side * turretWidth, turretY + 0.29, 0.94], [side * (turretWidth - 0.16), turretTop - 0.10, 0.73],
-          [side * 0.46, turretTop - 0.13, 0.89]];
-        const inside = cheek.map(point => [point[0], point[1] - 0.10, point[2] - 0.055]), center = mean([...cheek, ...inside]);
-        b.face(cheek, c.armor, center); b.face(inside, c.shade, center);
-        for (let i = 0; i < cheek.length; i++) { const next = (i + 1) % cheek.length; b.face([cheek[i], cheek[next], inside[next], inside[i]], c.edge, center); }
-        // Lifting eye on each shoulder, which is where a turret is actually slung.
-        if (b.keep(0.30)) b.socket([side * (turretWidth - 0.20), turretTop - 0.13, -0.62], [side * (turretWidth + 0.02), turretTop - 0.05, -0.62], 0.080, 0.048, c.steel, 18);
-      }
-      beveled(b, [0, turretY + 0.41, -1.59], [turretWidth * 1.56, 0.38, 0.27], c.shade, 0.07);
-      if (b.keep(0.30)) for (const x of [-turretWidth * 0.57, 0, turretWidth * 0.57]) b.box([x, turretY + 0.56, -1.739], [0.27, 0.09, 0.024], c.steel);
     });
 
     b.part(`armament / ${heavyGun ? "heavy weapon, enlarged mantlet and sleeved barrel" : "standard weapon, mantlet and barrel"}`, () => {
-      const gunY = turretY + 0.49, radius = chosen.armament==='gun_90'?.085:chosen.armament==='gun_125'?.15:heavyGun ? 0.132 : 0.105, muzzle = chosen.armament==='gun_90'?4.78:chosen.armament==='gun_125'?6.67:heavyGun ? 6.36 : 5.68;
-      beveled(b, [0, gunY, 1.20], [heavyGun ? 0.90 : 0.75, heavyGun ? 0.68 : 0.55, 0.61], c.shade, 0.10);
-      b.cylinder([-0.45, gunY, 1.45], [0.45, gunY, 1.45], heavyGun ? 0.35 : 0.29, c.armor, 32);
-      b.cylinder([0, gunY, 1.46], [0, gunY, 1.99], radius * 1.85, c.steel, 32, radius * 1.34);
-      // Canvas boot over the mantlet gap. It is the only soft material on the
-      // model, and it stops the barrel reading as a rod pushed into a box.
-      b.cylinder([0, gunY, 1.63], [0, gunY, 1.94], radius * 2.42, c.canvas, 16, radius * 1.54);
-      if (b.keep(0.30)) for (const [z, scale] of [[1.66, 2.44], [1.89, 1.70]]) b.cylinder([0, gunY, z], [0, gunY, z + 0.028], radius * scale, c.steel, 16);
-      b.cylinder([0, gunY, 1.94], [0, gunY, muzzle - 0.23], radius * 1.10, c.upper, 36, radius);
-      // The bore evacuator is a turned drum, not a straight sleeve: it swells at
-      // the middle and tapers back to the tube at each end.
-      b.revolve([0, gunY, 3.24], [0, 0, 1], [
-        { r: radius * 1.06, h: 0 }, { r: radius * (heavyGun ? 1.62 : 1.47), h: 0.15, s: 1 },
-        { r: radius * (heavyGun ? 1.66 : 1.51), h: 0.42, s: 1 }, { r: radius * (heavyGun ? 1.62 : 1.47), h: 0.66, s: 1 },
-        { r: radius * 1.06, h: 0.80 }], c.shade, 32);
-      const sleeveCount = b.many(heavyGun ? 7 : 4, 2);
-      if (b.keep(0.30)) for (let i = 0; i < sleeveCount; i++) {
-        const z = 2.31 + (muzzle - 2.80) * i / (sleeveCount - 1);
-        b.cylinder([0, gunY, z], [0, gunY, z + 0.063], radius * 1.19, c.bright, 32);
+      const gunY=turretY+.43,radius=chosen.armament==='gun_90'?.070:chosen.armament==='gun_125'?.103:heavyGun?.096:.083;
+      const bore=chosen.armament==='gun_90'?.045:chosen.armament==='gun_125'?.0625:heavyGun?.060:.0525;
+      const muzzle=chosen.armament==='gun_90'?5.65:chosen.armament==='gun_125'?7.57:heavyGun?7.25:6.55;
+      // The trunnion sits within a low armored opening. Only the short collar
+      // and a restrained fabric seal project ahead of the turret cheeks.
+      beveled(b,[0,gunY,1.43],[heavyGun?.76:.65,heavyGun?.49:.43,.50],c.shade,.09);
+      b.cylinder([-.27,gunY,1.53],[.27,gunY,1.53],heavyGun?.225:.205,c.armor,28);
+      b.cylinder([0,gunY,1.65],[0,gunY,1.83],radius*1.75,c.steel,28,radius*1.28);
+      b.revolve([0,gunY,1.72],[0,0,1],[{r:radius*1.93,h:0},
+        {r:radius*1.88,h:.06,s:1},{r:radius*1.48,h:.18,s:1},{r:radius*1.19,h:.24}],c.canvas,24);
+      b.cylinder([0,gunY,1.94],[0,gunY,muzzle-.20],radius*1.08,c.upper,36,radius);
+      const evacuator=2.05+(muzzle-2.05)*.41;
+      b.revolve([0,gunY,evacuator],[0,0,1],[{r:radius*1.08,h:0},
+        {r:radius*1.48,h:.13,s:1},{r:radius*1.52,h:.49,s:1},
+        {r:radius*1.41,h:.64,s:1},{r:radius*1.07,h:.72}],c.upper,32);
+      if(b.keep(.30)){
+        // Thin sleeve joints follow the same continuous barrel. Their height
+        // stays subordinate to the bore evacuator instead of forming beads.
+        for(const z of [2.23,evacuator-.15,evacuator+.86,muzzle-.67])
+          b.cylinder([0,gunY,z],[0,gunY,z+.032],radius*1.13,c.steel,24);
+        const sleeve=muzzle-1.72;
+        b.revolve([0,gunY,sleeve],[0,0,1],[{r:radius*1.04,h:0},
+          {r:radius*1.12,h:.07,s:1},{r:radius*1.12,h:1.16,s:1},{r:radius*1.03,h:1.25}],c.upper,28);
+        inspectionSeam(b,[radius*1.115,gunY,sleeve+.12],[radius*1.115,gunY,sleeve+1.06],[1,0,0],c.upper);
+        for(const dz of [.22,.88])inspectionLatch(b,[radius*1.13,gunY,sleeve+dz],[0,0,1],[1,0,0],.037,c.steel);
       }
-      // The thermal sleeve is the barrel's outermost turned surface, and the
-      // straps that clamp it are what break the tube into readable lengths.
-      if (b.keep(0.30)) {
-        const sleeve = muzzle - 1.90;
-        b.revolve([0, gunY, sleeve], [0, 0, 1], [
-          { r: radius * 1.12, h: 0 }, { r: radius * 1.30, h: 0.09, s: 1 }, { r: radius * 1.30, h: 0.52, s: 1 },
-          { r: radius * 1.26, h: 0.90, s: 1 }, { r: radius * 1.26, h: 1.24, s: 1 }, { r: radius * 1.10, h: 1.33 }], c.upper, 32);
-        b.cylinder([0, gunY, 1.24], [0, gunY, 1.42], radius * 2.30, c.steel, 24);
-        for (let strap = 0; strap < 4; strap++) b.cylinder([0, gunY, sleeve + 0.12 + strap * 0.33], [0, gunY, sleeve + 0.16 + strap * 0.33], radius * 1.38, c.bright, 8);
-        b.cylinder([0, gunY, muzzle - 0.62], [0, gunY, muzzle - 0.50], radius * 1.22, c.shade, 10);
-      }
-      b.always(() => b.tube([0, gunY, muzzle - 0.42], [0, gunY, muzzle], radius * 1.06, radius * 0.74, c.steel, 40));
-      b.cylinder([0, gunY, muzzle - 0.455], [0, gunY, muzzle - 0.425], radius * 0.73, c.black, 32);
-      if (b.keep(0.30)) {
-        b.box([0, gunY + radius * 1.12, muzzle - 0.21], [0.088, 0.052, 0.18], c.shade);
-        b.box([0.37, gunY - 0.02, 1.54], [0.14, 0.13, 0.12], c.black);
-        b.tube([0.37, gunY - 0.02, 1.55], [0.37, gunY - 0.02, 1.76], 0.041, 0.025, c.steel, 16);
+      b.always(()=>b.tube([0,gunY,muzzle-.30],[0,gunY,muzzle],radius*1.035,bore,c.steel,40));
+      b.cylinder([0,gunY,muzzle-.325],[0,gunY,muzzle-.305],bore*.99,c.black,32);
+      if(b.keep(.30)){
+        b.box([0,gunY+radius*1.07,muzzle-.19],[.059,.034,.15],c.shade);
+        b.box([.32,gunY-.025,1.62],[.095,.083,.10],c.black);
+        b.tube([.32,gunY-.025,1.63],[.32,gunY-.025,1.79],.031,.018,c.steel,16);
       }
     });
 
@@ -1614,6 +1961,8 @@
           const angle = -0.84 + i * 0.42, x = hatch.x + Math.sin(angle) * (hatch.radius + 0.02), z = hatch.z + Math.cos(angle) * (hatch.radius + 0.02);
           b.box([x, turretTop + 0.065, z], [0.085, 0.055, 0.060], c.glass);
         }
+        inspectionHinge(b,[hatch.x,turretTop+.17,hatch.z-hatch.radius*.88],[1,0,0],[0,1,0],hatch.radius*.90,.035,c.steel);
+        inspectionLatch(b,[hatch.x,turretTop+.222,hatch.z+hatch.radius*.52],[1,0,0],[0,1,0],.105,c.bright);
       }
       // Pintle machine gun beside the commander's hatch. At card size this is the
       // single detail that separates a turret from a smooth casting; it is a crew
@@ -1691,24 +2040,36 @@
 
     b.part(`protection / ${reinforced ? "reinforced modular armor blocks" : active ? "active-protection sensors and intercept modules" : "standard armor fixtures"}`, () => {
       if (reinforced) {
-        for (const side of [-1, 1]) {
-          for (let row = 0; row < 2; row++) for (let i = 0; i < b.many(4, 2); i++) {
-            const z = -0.92 + i * 0.47, y = turretY + 0.34 + row * 0.235, x = side * (turretWidth + 0.05 - row * 0.075);
-            b.box([x, y, z], [0.23, 0.21, 0.40], i % 2 ? c.armor : c.hull);
-            if (b.keep(0.30)) b.box([x + side * 0.122, y, z], [0.018, 0.13, 0.30], c.edge);
+        for(const side of [-1,1]){
+          // The cheek is one deep wedge module. Its armor face sweeps back from
+          // the gun opening into the flank; horizontal stair-step boxes cannot
+          // approximate this surface without breaking its primary silhouette.
+          const ring=(y,points)=>points.map(([x,z])=>[side*x,y,z]);
+          const bottom=ring(turretY+.19,[[.39,1.86],[turretWidth*.83,1.75],
+            [turretWidth*1.065,.66],[turretWidth*.93,.40],[.48,.90]]);
+          const top=ring(turretTop-.065,[[.38,1.14],[turretWidth*.74,1.08],
+            [turretWidth*.91,.43],[turretWidth*.82,.21],[.45,.67]]);
+          b.loft([bottom,top],c.armor);
+          inspectionSeam(b,[side*turretWidth*.62,turretY+.215,1.808],
+            [side*turretWidth*.57,turretTop-.061,1.112],normal([side*.10,.76,.65]),c.armor);
+          // Flank modules are a single aligned row, clear of the main wedge.
+          for(let i=0;i<b.many(4,2);i++){
+            const z=-1.55+i*.42,x=side*(turretWidth*.94+.055),y=turretY+.40;
+            beveled(b,[x,y,z],[.18,.36,.385],weathered(c.armor,i),.025,
+              [normal([1,side*.34,0]),normal([-side*.34,1,0]),[0,0,1]]);
           }
-          const cheekX = side * 0.89;
-          for (let i = 0; i < b.many(3, 1); i++) {
-            const y = turretY + 0.28 + i * 0.17, z = 1.50 - i * 0.16;
-            b.box([cheekX, y, z], [0.65, 0.14, 0.18], c.armor);
-          }
-          for (let i = 0; i < b.many(6, 2); i++) {
-            const z = -wheelHalfSpan + 0.42 + i * (wheelHalfSpan * 2 - 0.84) / 5;
-            b.box([side * (trackX + trackWidth / 2 + 0.13), 1.18, z], [b.gauge(0.12), 0.43, 0.61], c.armor);
-            if (b.keep(0.30)) b.box([side * (trackX + trackWidth / 2 + 0.198), 1.18, z], [0.014, 0.33, 0.50], c.edge);
+          for(let i=0;i<b.many(6,2);i++){
+            const z=-wheelHalfSpan+.42+i*(wheelHalfSpan*2-.84)/5;
+            b.box([side*(trackX+trackWidth/2+.13),1.18,z],[b.gauge(.12),.43,.61],c.armor);
+            if(b.keep(.30))b.box([side*(trackX+trackWidth/2+.198),1.18,z],[.014,.33,.50],c.edge);
           }
         }
-        for (let row = 0; row < 2; row++) for (let i = 0; i < b.many(5, 3); i++) b.box([(i - 2) * 0.40, 1.37 - row * 0.15, front - 0.16 + row * 0.19], [0.36, 0.15, 0.19], c.armor);
+        // A continuous sloped glacis bank replaces the two horizontal rows.
+        const up=[0,.7407,-.6745],out=[0,.6745,.7407],center=[0,1.25,front-.20];
+        beveled(b,center,[hullWidth*1.62,.57,.12],c.armor,.045,[[1,0,0],up,out]);
+        for(const x of [-hullWidth*.49,0,hullWidth*.49])
+          inspectionSeam(b,add([x,center[1],center[2]],add(mul(up,-.235),mul(out,.063))),
+            add([x,center[1],center[2]],add(mul(up,.235),mul(out,.063))),out,c.armor);
       }
       if(!active&&!reinforced) {
         for (const side of [-1, 1]) for (let i = 0; i < b.many(3, 1); i++) {
@@ -1734,7 +2095,7 @@
     });
 
     b.part("stowage / bustle rack, canvas rolls, tow cable and tools", () => {
-      const rackRear = -2.03, rackFront = -1.50, rackY = turretY + 0.24, rackHalf = turretWidth * 0.82;
+      const rackRear = -2.18, rackFront = -1.68, rackY = turretY + 0.30, rackHalf = turretWidth * 0.82;
       b.box([0, rackY, (rackRear + rackFront) / 2], [rackHalf * 2, 0.047, rackFront - rackRear], c.steel);
       if (b.keep(0.30)) for (const x of [-rackHalf, rackHalf]) {
         b.rod([x, rackY, rackRear], [x, rackY + 0.43, rackRear], 0.023, c.bright);
@@ -1831,11 +2192,11 @@
         const x=(i-1.5)*(bayHalf*0.62);
         b.revolve([x,roof+0.08,mid],[0,1,0],[{r:0.082,h:0},{r:0.082,h:0.26,s:1},{r:0.062,h:0.30},{r:0,h:0.30}],c.canvas,12,0.34);
       }
-      // Two brackets down to the engine deck, so the compartment is carried and
-      // not floating behind the turret.
+      // Brackets return to the rotating bustle, never to the fixed engine deck.
+      // A turret magazine must move with its parent assembly.
       if(b.keep(0.30))for(const side of [-1,1]) {
-        b.rod([side*bayHalf*0.78,bayY-bayH/2,bayFront-0.05],[side*bayHalf*0.86,1.60,bayFront-0.34],0.030,c.steel,8);
-        b.box([side*bayHalf*0.86,1.60,bayFront-0.34],[0.13,0.055,0.17],c.shade);
+        b.rod([side*bayHalf*.78,bayY-bayH/2,bayFront-.05],[side*bayHalf*.86,turretY+.18,bayFront+.16],.030,c.steel,8);
+        b.box([side*bayHalf*.86,turretY+.18,bayFront+.16],[.13,.055,.17],c.shade);
       }
     });
 
@@ -1856,7 +2217,7 @@
       if(chosen.sensors==='optics_night'){b.cylinder([-.45,turretTop+.05,.55],[-.45,turretTop+.26,.55],.17,c.shade,20);b.box([-.45,turretTop+.19,.73],[.22,.13,.03],c.lens);}
     });
     b.part('fire_control / stabilization and rangefinding equipment',()=>{
-      if(chosen.fire_control==='fcs_stabilized')b.cylinder([0,turretY+.49,2.02],[0,turretY+.49,2.20],.20,c.bright,24);
+      if(chosen.fire_control==='fcs_stabilized')b.cylinder([0,turretY+.43,2.02],[0,turretY+.43,2.20],.16,c.bright,24);
       if(chosen.fire_control==='fcs_digital'){b.box([.64,turretTop-.12,.87],[.33,.27,.34],c.shade);b.box([.64,turretTop-.12,1.05],[.25,.14,.025],c.lens);if(b.keep(0.30))b.rod([.64,turretTop-.24,.7],[.80,turretY+.37,.38],.022,c.cable);}
     });
     const result=b.finish(`Original ${spec.platform.replace('tank_','')} tank game model. Visual interpretation of the selected specifications. Internal ammunition loads affect game ratings and are recorded in the exported specification metadata.`);

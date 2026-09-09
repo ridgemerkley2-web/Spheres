@@ -1,0 +1,54 @@
+{
+  "imported_parties": [
+    {
+      "nation": "Italy",
+      "party": "it_dc",
+      "terms": 2,
+      "components": []
+    },
+    {
+      "nation": "Italy",
+      "party": "it_pci",
+      "terms": 1,
+      "components": []
+    },
+    {
+      "nation": "Italy",
+      "party": "it_psi",
+      "terms": 3,
+      "components": []
+    },
+    {
+      "nation": "Italy",
+      "party": "it_msi",
+      "terms": 3,
+      "components": []
+    },
+    {
+      "nation": "Italy",
+      "party": "it_pri",
+      "terms": 7,
+      "components": []
+    },
+    {
+      "nation": "Italy",
+      "party": "it_psdi",
+      "terms": 4,
+      "components": []
+    },
+    {
+      "nation": "Italy",
+      "party": "it_pli",
+      "terms": 2,
+      "components": []
+    }
+  ],
+  "people_changed": 0,
+  "office_links_changed": 0,
+  "executive_grants_added": 0,
+  "save_files_changed": 0,
+  "source_file": "docs/research/italy-party-leaders-1990-2026.json",
+  "source_sha256": "711647fe96e8c5e4f4c04c48c113ccb6b2bc61c3328c2d28c91b19f6feb68575",
+  "status": "party_terms_imported",
+  "validation": "Run native registry, succession and saved-campaign checks after import."
+}

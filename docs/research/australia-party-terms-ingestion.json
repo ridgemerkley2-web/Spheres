@@ -1,0 +1,36 @@
+{
+  "imported_parties": [
+    {
+      "nation": "Australia",
+      "party": "au_alp",
+      "terms": 12,
+      "components": []
+    },
+    {
+      "nation": "Australia",
+      "party": "au_lib",
+      "terms": 12,
+      "components": []
+    },
+    {
+      "nation": "Australia",
+      "party": "au_nat",
+      "terms": 11,
+      "components": []
+    },
+    {
+      "nation": "Australia",
+      "party": "au_dem",
+      "terms": 14,
+      "components": []
+    }
+  ],
+  "people_changed": 0,
+  "office_links_changed": 0,
+  "executive_grants_added": 0,
+  "save_files_changed": 0,
+  "source_file": "docs/research/australia-party-leaders-1990-2026.json",
+  "source_sha256": "9f9a3a5225f0abda0fc87c1bdb7fd27f52d7ba19a93b2f28e2d0d77ca347af13",
+  "status": "party_terms_imported",
+  "validation": "Run native registry, succession and saved-campaign checks after import."
+}

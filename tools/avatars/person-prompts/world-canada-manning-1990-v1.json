@@ -1,0 +1,25 @@
+{
+  "provider": "OpenAI built-in image_gen",
+  "generated_at": "2026-09-07",
+  "reviewed_at": "2026-09-07",
+  "reviewer": "Codex visually inspected both period references and the completed cartoon; likeness, pose and age interpretation remain artistic",
+  "jobs": [
+    {
+      "person_id": "preston_manning",
+      "name": "Preston Manning",
+      "year": 1990,
+      "from": "1990-01-01",
+      "to": "1995-01-01",
+      "asset": "spheres-web/ui/person-portraits/preston-manning-cartoon-1990-v1.png",
+      "source": "https://corporate.pickering.ca/PLHCWebLink/0/edoc/172568/BN1992_01_24.pdf",
+      "refs": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\spheres-web\\ui\\person-portraits\\margaret-thatcher-cartoon-1990-v3.png",
+        "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-canada-reference-audit\\manning-1992-10-26-cp.jpg",
+        "C:\\Users\\ridge\\AppData\\Local\\Temp\\spheres-canada-reference-audit\\manning-1992-01-24-news-page1.png"
+      ],
+      "reference_note": "Contemporary Weekend Bay News front page24–26January1992 and Canadian Press/Dave Buston26October1992 Calgary photo establish early1990s large thin double-bridge glasses and dark side-part hair. CP photo republished at https://globalnews.ca/news/6663274/preston-manning-calgary-western-alienation/. Appearance around1990 is an artistic interpretation based on1992references; reference photos are not shipped.",
+      "prompt": "Create one polished 2D CARTOON full-body avatar of Preston Manning around1990. IMAGE1 is approved STYLE ONLY: bold clean dark outlines, graphic flat cel shading, expressive simplified features and slightly enlarged head on about5.5-head adult proportions. IMAGE2 and IMAGE3 are precise early1992 IDENTITY references of Preston Manning, main large foreground face. Canadian man aged47: short dark brown smoothly side-parted hair, long rectangular face, prominent ears, long strong straight nose, wide toothy smile, clean-shaven, very large thin metal double-bridge aviator/rounded-square eyeglasses. These distinctive glasses must be clearly visible. Dark charcoal suit, pale blue shirt, muted blue tie, black shoes; relaxed standing posture with one hand holding a plain slim closed folder. Full head, hands and shoes visible with comfortable margins. Flat opaque dark teal #192D34 background no vignette. Portrait1024x1536. No other people, text, watermark, slogans, logos, flags, photographic skin detail, painterly textures or plastic3D.",
+      "generated_source": "C:\\Users\\ridge\\.codex\\generated_images\\01a07203-dc69-7c53-8cd5-f90f0854d05f\\exec-8bd70767-8443-4ef6-b684-34aa8f51e2f5.png"
+    }
+  ]
+}

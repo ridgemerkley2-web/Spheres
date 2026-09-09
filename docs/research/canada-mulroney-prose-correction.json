@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-09-07",
+  "source": "docs/research/canada-party-leaders-1990-2026.json",
+  "source_before_sha256": "6d47a408fb4c5a4d32d9692bdc14c1c1f8bb6e343838e63db5163dcda271d11e",
+  "source_after_sha256": "9844f2d18ec9d75348b6c6cb7e34866077455437ace804bd0228f91eead3d92d",
+  "notes_before_sha256": "65de145f7ad84cce0c5f9f1ec4c2a94bbf7fe25c96f943bec40d0265ea8ed4d0",
+  "notes_after_sha256": "dc207b0ba8f018aa2244eaaadd9a892a9f7634e01ac854d3ec06777af1cf85b1",
+  "source_hash_scope": "These source and notes hashes bracket the paired McLaughlin continuity and Mulroney prose corrections. Each receipt lists its own exact changes.",
+  "type": "documentation_only_import_claim_correction",
+  "nation": "Canada",
+  "person": "brian_mulroney",
+  "explanation": "The earlier import preserved Brian Mulroney's saved identity and did not add the staged death. Correct the prose to match that receipt; do not alter historical person facts to make prose true.",
+  "changes": [
+    {
+      "field": "ingestion.people",
+      "before": "Compatible Person fields. brian_mulroney native/birth preserved; verified death added. Omitted life dates are unknown, not evidence of continued life or candidacy.",
+      "after": "Compatible Person fields. brian_mulroney native/birth preserved; verified death remains staged and was not imported. Changing the saved identity requires a separately reviewed migration. Omitted life dates are unknown, not evidence of continued life or candidacy."
+    },
+    {
+      "file": "docs/research/canada-party-leaders-1990-2026-notes.md",
+      "before": "The verified death on 29 February 2024 is added.",
+      "after": "The verified death remains a staged research fact and was not imported; changing the saved identity requires a separately reviewed migration."
+    }
+  ],
+  "people_changed": 0,
+  "office_links_changed": 0,
+  "save_files_changed": 0,
+  "staged_person_facts_changed": 0,
+  "validation": {
+    "all_live_people_sha256": "de1f5bfa188d9d3a10b63ba5a1bf46efcfcdf07124bb5a416dfea5a5992510e7",
+    "all_live_people_unchanged": true,
+    "all_staged_person_facts_unchanged": true,
+    "archive_unchanged": true
+  },
+  "paired_receipt": "canada-mclaughlin-continuity-correction.json"
+}

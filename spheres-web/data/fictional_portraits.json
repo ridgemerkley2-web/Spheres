@@ -1,0 +1,157 @@
+{
+  "version": 1,
+  "people": {
+    "fictional_v1_japan_jp_ldp_main_01": {
+      "name": "Nakano Emi",
+      "appearance_seed": "e49a2c19d1b91a71",
+      "portraits": [
+        {
+          "from": "2026-09-08",
+          "to": "2036-01-01",
+          "method": "generated",
+          "style": "cartoon",
+          "asset": "spheres-web/ui/person-portraits/fictional-japan-ldp-01-cartoon-2030-v1.png",
+          "sha256": "4e72a5e65e6483f4449ac56e8554842d9d83c175e176d4f77d2cd0eda0097e5b",
+          "width": 1024,
+          "height": 1536,
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-09-07",
+          "license": "generated",
+          "prompt_record": "tools/avatars/person-prompts/expansion-2035-batch3.json",
+          "generation_record": "Built-in image_gen. Exact submitted prompt, reference roles, correction inputs where relevant, and retained original output filename are recorded in tools/avatars/person-prompts/expansion-2035-batch3.json",
+          "status": "fictional-character",
+          "credit": "Original fictional Spheres character generated with OpenAI image_gen; not a real person.",
+          "era_note": "Invented future appearance around2030; no real person or election forecast. Fictional biography and country-specific editorial research remain separately labelled.",
+          "design_source": {
+            "kind": "authored_fiction",
+            "person_id": "fictional_v1_japan_jp_ldp_main_01",
+            "appearance_seed": "e49a2c19d1b91a71",
+            "catalog": "spheres-web/data/future_candidates_2035.json"
+          },
+          "review": {
+            "design": true,
+            "visual": true,
+            "reviewer": "Codex visual QA; original fictional design in the user-approved cartoon style",
+            "reviewed_at": "2026-09-07"
+          }
+        }
+      ]
+    },
+    "fictional_v1_japan_jp_ldp_main_02": {
+      "name": "Mizuno Naoki",
+      "appearance_seed": "e49a2919d1b91558",
+      "portraits": [
+        {
+          "from": "2026-09-08",
+          "to": "2036-01-01",
+          "method": "generated",
+          "style": "cartoon",
+          "asset": "spheres-web/ui/person-portraits/fictional-japan-ldp-02-cartoon-2030-v1.png",
+          "sha256": "ccdcb58e5c02d49b91b438e3dc384e15058efc3c57f8f5345d4670cc8ceef47e",
+          "width": 1024,
+          "height": 1536,
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-09-07",
+          "license": "generated",
+          "prompt_record": "tools/avatars/person-prompts/expansion-2035-batch3.json",
+          "generation_record": "Built-in image_gen. Exact submitted prompt, reference roles, correction inputs where relevant, and retained original output filename are recorded in tools/avatars/person-prompts/expansion-2035-batch3.json",
+          "status": "fictional-character",
+          "credit": "Original fictional Spheres character generated with OpenAI image_gen; not a real person.",
+          "era_note": "Invented future appearance around2030; no real person or election forecast. Fictional biography and country-specific editorial research remain separately labelled.",
+          "design_source": {
+            "kind": "authored_fiction",
+            "person_id": "fictional_v1_japan_jp_ldp_main_02",
+            "appearance_seed": "e49a2919d1b91558",
+            "catalog": "spheres-web/data/future_candidates_2035.json"
+          },
+          "review": {
+            "design": true,
+            "visual": true,
+            "reviewer": "Codex visual QA; original fictional design in the user-approved cartoon style",
+            "reviewed_at": "2026-09-07"
+          }
+        }
+      ]
+    },
+    "fictional_v1_japan_jp_ldp_main_03": {
+      "name": "Okazaki Haruka",
+      "appearance_seed": "e49a2a19d1b9170b",
+      "portraits": [
+        {
+          "from": "2026-09-08",
+          "to": "2036-01-01",
+          "method": "generated",
+          "style": "cartoon",
+          "asset": "spheres-web/ui/person-portraits/fictional-japan-ldp-03-cartoon-2030-v1.png",
+          "sha256": "8bfbe4042a0b0c9a94b534c8c373b4e538978d8e24138642b9e48de696f60b76",
+          "width": 1024,
+          "height": 1536,
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-09-07",
+          "license": "generated",
+          "prompt_record": "tools/avatars/person-prompts/expansion-2035-batch3.json",
+          "generation_record": "Built-in image_gen. Exact submitted prompt, reference roles, correction inputs where relevant, and retained original output filename are recorded in tools/avatars/person-prompts/expansion-2035-batch3.json",
+          "status": "fictional-character",
+          "credit": "Original fictional Spheres character generated with OpenAI image_gen; not a real person.",
+          "era_note": "Invented future appearance around2030; no real person or election forecast. Fictional biography and country-specific editorial research remain separately labelled.",
+          "design_source": {
+            "kind": "authored_fiction",
+            "person_id": "fictional_v1_japan_jp_ldp_main_03",
+            "appearance_seed": "e49a2a19d1b9170b",
+            "catalog": "spheres-web/data/future_candidates_2035.json"
+          },
+          "review": {
+            "design": true,
+            "visual": true,
+            "reviewer": "Codex visual QA; original fictional design in the user-approved cartoon style",
+            "reviewed_at": "2026-09-07"
+          }
+        }
+      ]
+    },
+    "fictional_v1_japan_jp_ldp_main_04": {
+      "name": "Nakano Haruto",
+      "appearance_seed": "e49a2f19d1b91f8a",
+      "portraits": [
+        {
+          "from": "2026-09-08",
+          "to": "2036-01-01",
+          "method": "generated",
+          "style": "cartoon",
+          "asset": "spheres-web/ui/person-portraits/fictional-japan-ldp-04-cartoon-2030-v1.png",
+          "sha256": "70d461fab389822f25564a5fb0a647f5adab7171cd4365a185f14b9cc2f7e898",
+          "width": 1024,
+          "height": 1536,
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-09-07",
+          "license": "generated",
+          "prompt_record": "tools/avatars/person-prompts/expansion-2035-batch3.json",
+          "generation_record": "Built-in image_gen. Exact submitted prompt, reference roles, correction inputs where relevant, and retained original output filename are recorded in tools/avatars/person-prompts/expansion-2035-batch3.json",
+          "status": "fictional-character",
+          "credit": "Original fictional Spheres character generated with OpenAI image_gen; not a real person.",
+          "era_note": "Invented future appearance around2030; no real person or election forecast. Fictional biography and country-specific editorial research remain separately labelled.",
+          "design_source": {
+            "kind": "authored_fiction",
+            "person_id": "fictional_v1_japan_jp_ldp_main_04",
+            "appearance_seed": "e49a2f19d1b91f8a",
+            "catalog": "spheres-web/data/future_candidates_2035.json"
+          },
+          "review": {
+            "design": true,
+            "visual": true,
+            "reviewer": "Codex visual QA; original fictional design in the user-approved cartoon style",
+            "reviewed_at": "2026-09-07"
+          }
+        }
+      ]
+    }
+  }
+}
