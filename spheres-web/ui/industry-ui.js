@@ -1,7 +1,7 @@
 /* Industry displays server-owned operations and navigation. It creates no orders,
    converts no capacity into output, and never treats a missing receipt as zero. */
 const IDESK = {open:false,data:null,state:null,session:null,nation:null,seq:0,loading:false,stale:true,error:"",
-  query:"",filter:"all",details:new Set(),focus:null,scroll:0};
+  query:"",filter:"all",details:new Set(),focus:null,scroll:0,revealSite:null};
 const INDUSTRY_FILTERS = [["all","All"],["attention","Needs attention"],["producing","Producing"],["supporting","Supporting"]];
 const INDUSTRY_NAV = new Set(["construction","budget","resources","trade","research","manufacture","province","inherited"]);
 
@@ -24,7 +24,16 @@ function industryOrdersPending() {
 }
 function industryCurrent(data=IDESK.data,state=IDESK.state) {
   return industryActive() && !!data && data===IDESK.data && state===S && state===IDESK.state
+    && industryDateMatches(data,state)
     && !IDESK.loading && !IDESK.stale && !IDESK.error && !industryOrdersPending();
+}
+function industryDateMatches(data,state) {
+  if(!data||!state)return false;
+  const months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],dates=[];
+  if(typeof state.date==="string")dates.push(state.date);
+  if(Number.isInteger(state.year)&&Number.isInteger(state.month)&&state.month>=1&&state.month<=12&&Number.isInteger(state.day))
+    dates.push(`${state.day} ${months[state.month-1]} ${state.year}`);
+  return dates.every(date=>data.date===date)&&(!Number.isInteger(state.as_of_day)||data.as_of_day===state.as_of_day);
 }
 function industryActions(rows) {
   return (Array.isArray(rows)?rows:[]).filter(row=>row && INDUSTRY_NAV.has(row.action));
@@ -64,9 +73,37 @@ function industryProgressText(fraction) {
   return `${fraction>0&&percent===0?"<0.1":industryNumber(percent)}% complete`;
 }
 function industryStatus(site) {
+  if(site.lifecycle?.readiness?.label)return site.lifecycle.readiness.label;
   if(site.productive===false && !industryNeedsAttention(site) && !site.research) return "Supporting";
   if(site.productive===true && !site.has_receipt && !industryNeedsAttention(site)) return "Awaiting first operation";
   return String(site.status||"Recorded").replace(/_/g," ").replace(/^./,letter=>letter.toUpperCase());
+}
+function industryMeasure(value,unit="") {
+  if(!Number.isFinite(value))return "—";
+  if(unit==="share")return `${industryNumber(value*100)}%`;
+  const money=/^\$bn(?:\/(day|year))?$/.exec(unit);
+  if(money)return industryMoney(value)+(money[1]?` / ${money[1]}`:"");
+  return `${industryNumber(value)}${unit?` ${unit}`:""}`;
+}
+function industryLifecycleHtml(site) {
+  const life=site.lifecycle;if(!life)return "";
+  const staff=life.staffing||{},ready=life.readiness||{},op=life.operation;
+  const key=String(site.id??`${site.kind}:${site.district}`),support=site.productive===false&&!site.research&&!op;
+  const assigned=Number.isFinite(staff.assigned)?`${industryNumber(staff.assigned)} assigned workers`:"Assignment not recorded";
+  const requirements=(Array.isArray(ready.requirements)?ready.requirements:[]);
+  const operation=op?`<section class="industry-operation" aria-label="Recorded facility operation"><h4>${industryText(op.label||"Recorded operation")} · ${industryText(op.date||"Date unavailable")}</h4>
+    ${op.reason?`<p class="industry-note">${industryText(op.reason)}</p>`:""}
+    <dl class="industry-site-metrics">${industryMetric("Recorded output",industryMeasure(op.output,op.output_unit),"Produced on this receipt date")}${industryMetric("Recorded operating spending",industryMoney(op.cash_spent_bn),op.owner_verified===false?"Province receipt; government not retained":"Recorded on this date")}${industryMetric("Recorded power use",industryMeasure(op.power_used_daily,"modeled units"))}${industryMetric("Recorded value added",industryMoney(op.value_added_bn),"On this day; not cash revenue")}</dl>
+    <p class="industry-note">${industryText(op.note)}</p></section>`:"";
+  const effects=Array.isArray(life.effects)?life.effects:[];
+  return `<ol class="industry-lifecycle" aria-label="Facility operating stages"><li><strong>1 · Installed</strong><span>${industryText(life.installed_label||"Completed capacity")}</span></li>
+    <li><strong>2 · Staffing and readiness</strong><span>${industryText(assigned)}</span><small>${industryText(ready.label||"Current readiness unavailable")}</small></li>
+    <li><strong>3 · Recorded operation</strong><span>${industryText(op?.date|| (support?"Support capability":"Awaiting first operation"))}</span><small>${industryText(op?.label||(support?"Supports activity; no separate output receipt":"A completed building is not proof of production"))}</small></li></ol>
+    ${operation}<details data-industry-detail="${industryText(key+":requirements")}" ${IDESK.details.has(key+":requirements")?"open":""}><summary>Workers, inputs and operating requirements</summary>
+      <p class="industry-note">${industryText(life.installed_note)}</p><h4>${industryText(staff.label||"Workforce")}</h4>
+      <dl class="industry-site-metrics">${industryMetric("Required positions",industryMeasure(staff.required))}${industryMetric("Assigned workers",industryMeasure(staff.assigned),staff.matched_date?`Matched ${staff.matched_date}`:Number.isFinite(staff.assigned)?"Opening workforce assignment":"No matching staffing receipt")}${industryMetric("Qualified staffing coverage",industryMeasure(staff.available),"Feasible coverage of the required positions")}${industryMetric("Workers used in recorded operation",industryMeasure(staff.used),op?.date||"No recorded worker use")}</dl><p class="industry-note">${industryText(staff.note)}</p>
+      <h4>Current operating readiness</h4><p class="industry-note">${industryText(ready.note)}</p>${requirements.length?`<dl class="industry-requirements">${requirements.map(row=>`<div class="${row.ready===false?"limited":""}"><dt>${industryText(row.label||"Requirement")}</dt><dd><span>Needed: ${industryText(industryMeasure(row.required,row.unit))}</span><span>Current: ${industryText(industryMeasure(row.available,row.unit))}</span></dd>${row.note?`<small>${industryText(row.note)}</small>`:""}</div>`).join("")}</dl>`:""}</details>
+    ${effects.length?`<details data-industry-detail="${industryText(key+":effects")}" ${IDESK.details.has(key+":effects")?"open":""}><summary>Province and country effects</summary><p class="industry-note">These are recorded economic contributions, not a completion bonus or another Treasury receipt.</p><dl class="industry-effects">${effects.map(row=>`<div><dt>${industryText(row.label)}</dt><dd>${industryText(industryMeasure(row.value,row.unit))}</dd><small>${industryText(row.note)}</small></div>`).join("")}</dl></details>`:""}`;
 }
 function industrySiteHtml(site) {
   const actual=site.has_receipt===true;
@@ -81,11 +118,11 @@ function industrySiteHtml(site) {
   const scale=Number.isFinite(site.capacity_micros)?`${industryNumber(site.capacity_micros/10000)}% of a standard workshop`
     :Number.isFinite(site.level)?`Level ${industryNumber(site.level)}`:"";
   const detailKey=String(site.id??`${site.kind}:${site.district}`);
-  return `<article class="industry-site${industryNeedsAttention(site)?" needs-attention":""}"><header><div><p class="industry-place">${industryText(site.district_name||site.district||"Province")}</p><h3>${industryText(site.name||"Facility")}</h3>${scale?`<p class="industry-note">${industryText(scale)}</p>`:""}</div><span class="industry-status${industryNeedsAttention(site)?" attention":""}">${industryText(industryStatus(site))}</span></header>
+  return `<article class="industry-site${industryNeedsAttention(site)?" needs-attention":""}" data-industry-site="${industryText(detailKey)}" tabindex="-1"><header><div><p class="industry-place">${industryText(site.district_name||site.district||"Province")}</p><h3>${industryText(site.name||"Facility")}</h3>${scale?`<p class="industry-note">${industryText(scale)}</p>`:""}</div><span class="industry-status${industryNeedsAttention(site)?" attention":""}">${industryText(industryStatus(site))}</span></header>
     ${site.reason&&(!supporting||site.reason!==site.effect)?`<p class="industry-reason">${industryText(site.reason)}</p>`:""}
     ${supporting?`<p class="industry-support">${industryText(site.effect||"Supports other activity in this province.")}</p>`:""}
-    ${metrics.length?`<dl class="industry-site-metrics">${metrics.join("")}</dl>`:""}
-    ${!supporting&&!actual?`<p class="industry-note">Operating spending will appear after work is recorded.</p>`:""}
+    ${industryLifecycleHtml(site)}${metrics.length&&!site.lifecycle?.operation?`<dl class="industry-site-metrics">${metrics.join("")}</dl>`:""}
+    ${!supporting&&!actual&&!site.lifecycle?`<p class="industry-note">Operating spending will appear after work is recorded.</p>`:""}
     ${!supporting&&site.effect?`<details data-industry-detail="${industryText(detailKey)}" ${IDESK.details.has(detailKey)?"open":""}><summary>Facility role</summary><p>${industryText(site.effect)}</p></details>`:""}
     <div class="industry-actions">${industryActions(site.actions).map(action=>industryButton(action,industryActionLabel(action))).join("")}</div></article>`;
 }
@@ -110,8 +147,12 @@ function industryContentHtml() {
     :IDESK.loading||IDESK.stale?`<p class="industry-message" role="status">${data?"Updating the operations reading…":"Loading your industry…"}</p>`
     :industryOrdersPending()?`<p class="industry-message" role="status">Finish or review the pending turn or order before opening another task.</p>`:"";
   if(!data) return hero+status;
-  const goods=(Array.isArray(data.goods)?data.goods:[]).map(good=>industryMetric(good.name||good.good,`${industryNumber(good.stock)} packs in stock`,Number.isFinite(good.capacity)?`${industryNumber(good.capacity)} packs of storage for this good`:"Storage capacity unavailable")).join("");
-  const power=industryMetric("Modeled power capacity",`${industryNumber(data.power?.capacity_daily)} units / day`,Number.isFinite(data.power?.used_daily)?`${industryNumber(data.power.used_daily)} units used in the recorded operation`:"Capacity is not recorded output");
+  const goods=(Array.isArray(data.goods)?data.goods:[]).map(good=>{
+    const unit=good.unit||(good.good==="advanced_components"?"components":"packs");
+    return industryMetric(good.name||good.good,`${industryNumber(good.stock)} ${unit} in stock`,Number.isFinite(good.capacity)?`${industryNumber(good.capacity)} ${unit} of storage for this good`:"Storage capacity unavailable");
+  }).join("");
+  const powerUse=Number.isFinite(data.power?.used_daily)?`${industryNumber(data.power.used_daily)} units used${data.power.receipt_label?` · ${data.power.receipt_label}`:" in the recorded operation"}`:"Capacity is not recorded output";
+  const power=industryMetric("Modeled power capacity",`${industryNumber(data.power?.capacity_daily)} units / day`,powerUse+(data.power?.note?` · ${data.power.note}`:""));
   const toolbar=`<div class="industry-toolbar"><label for="industrySearch">Find a province or facility</label><div class="industry-search"><input id="industrySearch" type="search" value="${industryText(IDESK.query)}" placeholder="Province, workshop, grid…" autocomplete="off" aria-controls="industrySiteList"><button type="button" data-industry-clear ${IDESK.query?"":"disabled"}>Clear search</button></div><div class="industry-filters" aria-label="Facility filters">${INDUSTRY_FILTERS.map(([key,label])=>`<button type="button" data-industry-filter="${key}" aria-pressed="${IDESK.filter===key}">${label} <span>${sites.filter(site=>industryMatchesFilter(site,key)).length}</span></button>`).join("")}</div><p class="industry-note" role="status" aria-live="polite">${visible.length} of ${sites.length} completed facilities shown</p></div>`;
   const cards=visible.length?`<div class="industry-sites" id="industrySiteList">${visible.map(industrySiteHtml).join("")}</div>`
     :sites.length?`<div class="industry-empty" id="industrySiteList"><h3>No facilities match these filters</h3><p>Try another province or facility name, or show all facilities.</p><button type="button" data-industry-reset>Clear search and filters</button></div>`
@@ -133,6 +174,7 @@ function industryRememberView() {
   else if(INDUSTRY_FILTERS.some(([key])=>key===active?.dataset?.industryFilter)) IDESK.focus={filter:active.dataset.industryFilter};
   else if(active?.dataset && "industryRefresh" in active.dataset) IDESK.focus={control:"refresh"};
   else if(active?.dataset && "industryRetry" in active.dataset) IDESK.focus={control:"retry"};
+  else if(active?.dataset?.industryDetailFocus) IDESK.focus={detail:active.dataset.industryDetailFocus};
   root.querySelectorAll("details[data-industry-detail]").forEach(detail=>{
     if(detail.open) IDESK.details.add(detail.dataset.industryDetail); else IDESK.details.delete(detail.dataset.industryDetail);
   });
@@ -176,7 +218,7 @@ function industryBind(fetchIfNeeded=true) {
   };});
   root.querySelectorAll("details[data-industry-detail]").forEach(detail=>{detail.ontoggle=()=>{
     if(detail.open) IDESK.details.add(detail.dataset.industryDetail); else IDESK.details.delete(detail.dataset.industryDetail);
-  };});
+  };const summary=detail.querySelector?.("summary");if(summary)summary.dataset.industryDetailFocus=detail.dataset.industryDetail;});
   for(const key of ["retry","refresh"]) {
     const button=root.querySelector(`[data-industry-${key}]`);
     if(button) button.onclick=()=>{if(!industryOrdersPending()){IDESK.focus={control:key};industryFetch(true);}};
@@ -190,6 +232,13 @@ function industryBind(fetchIfNeeded=true) {
     const key=IDESK.focus.control;
     const button=root.querySelector(`[data-industry-${key}]`) || (key==="retry"?root.querySelector("[data-industry-refresh]"):null);
     if(button&&!button.disabled){button.focus({preventScroll:true});IDESK.focus=null;}
+  } else if(IDESK.focus?.detail) {
+    const detail=Array.from(root.querySelectorAll("details[data-industry-detail]")).find(node=>node.dataset.industryDetail===IDESK.focus.detail);
+    const summary=detail?.querySelector?.("summary");if(summary){summary.focus({preventScroll:true});IDESK.focus=null;}
+  }
+  if(industryCurrent()&&IDESK.revealSite){
+    const site=Array.from(root.querySelectorAll("[data-industry-site]")).find(node=>node.dataset.industrySite===IDESK.revealSite);
+    if(site){IDESK.revealSite=null;site.focus({preventScroll:true});site.scrollIntoView({block:"start"});}
   }
   if(fetchIfNeeded&&IDESK.stale&&!IDESK.loading&&!IDESK.error) industryFetch();
 }
@@ -200,7 +249,7 @@ async function industryFetch(force=false) {
   try {
     const data=await api(`/api/industry?session_id=${encodeURIComponent(state.session_id)}`);
     if(seq!==IDESK.seq||S!==state||!industryActive()) return false;
-    if(!data||data.session_id!==state.session_id||data.nation!==state.player||!Array.isArray(data.sites)||!Array.isArray(data.goods)||!Array.isArray(data.queue)) throw new Error("The industry reading did not match this campaign. Retry to read the current operations.");
+    if(!data||data.session_id!==state.session_id||data.nation!==state.player||!industryDateMatches(data,state)||!Array.isArray(data.sites)||!Array.isArray(data.goods)||!Array.isArray(data.queue)) throw new Error("The industry reading did not match this campaign date. Retry to read the current operations.");
     IDESK.data=data;IDESK.state=state;IDESK.stale=false;return true;
   } catch(error) {
     if(seq===IDESK.seq&&S===state&&industryActive()){IDESK.error=error.message||"The operations service could not be reached.";IDESK.stale=true;}
@@ -217,7 +266,7 @@ function industryOnStateChanged() {
 function industryResetCampaign() {
   if(IDESK.session===S?.session_id&&IDESK.nation===S?.player) return;
   IDESK.data=null;IDESK.state=null;IDESK.session=S?.session_id;IDESK.nation=S?.player;
-  IDESK.query="";IDESK.filter="all";IDESK.details.clear();IDESK.focus=null;IDESK.scroll=0;
+  IDESK.query="";IDESK.filter="all";IDESK.details.clear();IDESK.focus=null;IDESK.scroll=0;IDESK.revealSite=null;
   IDESK.stale=true;IDESK.loading=false;++IDESK.seq;
 }
 function industryClose() {
@@ -227,6 +276,11 @@ function openIndustry(options={}) {
   if(typeof S==="undefined"||!S?.player) return false;
   industryResetCampaign();
   if(typeof options.query==="string"||typeof options.district==="string") IDESK.query=options.query??options.district;
+  if(typeof options.district==="string"&&typeof options.kind==="string"){
+    IDESK.query=`${options.district} ${options.kind.replace(/_/g," ")}`;
+    IDESK.revealSite=`site:${options.district}:${options.kind}`;IDESK.filter="all";
+  }
+  if(typeof options.site==="string")IDESK.revealSite=options.site;
   if(INDUSTRY_FILTERS.some(([key])=>key===options.filter)) IDESK.filter=options.filter;
   IDESK.open=true;IDESK.error="";openIndustryCabinet();industryBind();return true;
 }

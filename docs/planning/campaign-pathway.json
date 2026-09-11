@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "date": "2026-09-10",
+  "date": "2026-09-11",
   "status": "in_progress",
   "baseline": "5f7f355502f17bd6bd8f0383a2d14f0024fa7884",
   "target": "CP1: Spheres Certified Campaign, 1990-01-01 through 2035-12-31",
@@ -181,7 +181,7 @@
       "id": "S07",
       "phase": "nation",
       "title": "Finish construction, jobs and operating outcomes",
-      "status": "planned",
+      "status": "in_progress",
       "depends": [
         "S06"
       ],
@@ -779,14 +779,13 @@
   "last_completed_session": "S06",
   "next_session": "S07",
   "execution": {
-    "authorized_through": "S06",
-    "stop_boundary": "S06",
-    "status": "stopped",
-    "previous_stop": "S05",
+    "authorized_through": "S07",
+    "stop_boundary": "S07",
+    "status": "in_progress",
+    "previous_stop": "S06",
     "instruction": "Next",
     "instruction_date": "2026-09-11",
-    "next_session_requires_instruction": true,
-    "stopped_after": "S06"
+    "next_session_requires_instruction": true
   },
   "gate_decisions": {
     "G1": {

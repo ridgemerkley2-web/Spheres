@@ -67,12 +67,26 @@ pub struct MineFunding {
     pub reason: Option<String>,
 }
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub struct OperationContext {
+    pub nation: NationId,
+    pub day: i32,
+    pub installed_capacity: f64,
+    pub jobs_required: f64,
+    pub jobs_assigned: Option<f64>,
+    pub jobs_used: f64,
+}
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 pub struct SiteStatus {
     pub district: String,
     pub kind: K,
     pub level: u8,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub capacity_micros: Option<u32>,
+    /// Prospective dated context only; old receipts are never backfilled from
+    /// today's owner, expanded plant or rematched population.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub operation: Option<OperationContext>,
     pub status: String,
     pub reason: Option<String>,
     pub output_daily: f64,
@@ -572,7 +586,7 @@ fn energy_dispatch(w: &WorldState, nation: NationId) -> Vec<(CompanyTarget, f64,
         Some((target, capacity * modifier.work_rate, modifier))
     }).collect()
 }
-pub(crate) fn energy_company_rates(w: &WorldState, nation: NationId) -> (f64, f64) {
+pub fn energy_company_rates(w: &WorldState, nation: NationId) -> (f64, f64) {
     if !w.sector_contractors.enabled || !w.sector_contractors.assignments.iter().any(|a|
         a.nation == nation && a.target.sector() == CompanySector::Energy) { return (1.0, 0.0); }
     let dispatch = energy_dispatch(w, nation);
@@ -597,7 +611,7 @@ pub(crate) fn record_energy_work(w: &mut WorldState, nation: NationId, power: f6
         companies::record_work(w, nation, &target, base, actual - base, base_cash_bn * cap / capacity * modifier.fee_rate);
     }
 }
-pub(crate) fn manufacturing_company(w: &WorldState, nation: NationId, district: &str) -> companies::CompanyModifiers {
+pub fn manufacturing_company(w: &WorldState, nation: NationId, district: &str) -> companies::CompanyModifiers {
     companies::modifiers(w, nation, &CompanyTarget::Facility { district: district.into(), sector: CompanySector::Manufacturing })
 }
 pub(crate) fn record_manufacturing_work(w: &mut WorldState, nation: NationId, district: &str, output: f64, base_cash_bn: f64) {
@@ -607,7 +621,7 @@ pub(crate) fn record_manufacturing_work(w: &mut WorldState, nation: NationId, di
     companies::record_work(w, nation, &target, base, output - base, base_cash_bn * modifier.fee_rate);
     companies::record_sector_activity(w, nation, CompanySector::Manufacturing, output);
 }
-pub(crate) fn plant_rate(w: &WorldState, district: &str, kind: K) -> f64 {
+pub fn plant_rate(w: &WorldState, district: &str, kind: K) -> f64 {
     let base = if is_processing(kind) { 1.0 } else { 0.5 };
     let capacity = if kind==K::StarterIndustry {crate::industrial_modules::capacity(w,district)} else {site_level(w,district,kind) as f64};
     base * capacity
@@ -620,7 +634,7 @@ fn operating_districts(w:&WorldState)->Vec<String>{
     w.production.industry.sites.keys().chain(w.production.industry.modules.keys()).cloned()
         .collect::<std::collections::BTreeSet<_>>().into_iter().collect()
 }
-pub(crate) fn power_per_pack(w: &WorldState, district: &str, kind: K) -> f64 {
+pub fn power_per_pack(w: &WorldState, district: &str, kind: K) -> f64 {
     (if is_processing(kind) { 1.0 } else { 2.0 })
         * (1.0 - site_level(w, district, K::Efficiency) as f64 * 0.1).max(0.5)
 }
@@ -638,7 +652,7 @@ pub(crate) fn operating_recipe(kind: K, output: f64, power: f64) -> [f64; 12] {
 }
 /// Keep industrial ingredients and generating fuel separate: a materials
 /// specialist saves ingredients, while the dispatched generators save fuel.
-pub(crate) fn company_operating_recipe(w: &WorldState, nation: NationId, district: &str, kind: K, output: f64, power: f64) -> [f64; 12] {
+pub fn company_operating_recipe(w: &WorldState, nation: NationId, district: &str, kind: K, output: f64, power: f64) -> [f64; 12] {
     let company = manufacturing_company(w, nation, district);
     let (fuel_rate, _) = energy_company_rates(w, nation);
     if company.input_rate == 1.0 && fuel_rate == 1.0 { return operating_recipe(kind, output, power); }
@@ -782,6 +796,13 @@ pub fn tick_day(w: &mut WorldState) {
                 kind,
                 level,
                 capacity_micros: if kind==K::StarterIndustry {w.production.industry.modules.get(d).copied()} else {None},
+                operation: crate::industry_operations::enabled(w).then(|| {
+                    let installed = if kind==K::StarterIndustry {crate::industrial_modules::capacity(w,d)} else {level as f64};
+                    OperationContext { nation, day:today, installed_capacity:installed,
+                        jobs_required:installed*crate::industry_operations::jobs_per_level(kind),
+                        jobs_assigned:crate::industry_operations::current_site_staffing(w,d,kind).map(|s|s.jobs_assigned),
+                        jobs_used:0.0 }
+                }),
                 status: "blocked".into(),
                 reason: None,
                 output_daily: 0.0,
@@ -942,6 +963,9 @@ pub fn tick_day(w: &mut WorldState) {
             }
             .into();
             status.output_daily = output;
+            if let Some(context)=status.operation.as_mut() {
+                context.jobs_used=context.jobs_required*(output/target).clamp(0.0,1.0);
+            }
             status.power_used_daily = output * per_power;
             status.cash_spent_daily_bn = cash + energy_cash;
             if output + EPS < target {
@@ -1204,6 +1228,7 @@ pub fn snapshot(w: &WorldState, nation: NationId) -> Snapshot {
                     .or_else(|| research_operations.iter().find(|s| k == K::ResearchCenter && s.district == *d)
                         .map(|s| SiteStatus {
                             district: d.clone(), kind: k, level, capacity_micros: None, status: s.status.clone(),
+                            operation:None,
                             reason: Some(s.reason.clone()), output_daily: 0.0,
                             power_used_daily: 0.0, cash_spent_daily_bn: s.cash_spent_daily_bn,
                         }))
@@ -1212,6 +1237,7 @@ pub fn snapshot(w: &WorldState, nation: NationId) -> Snapshot {
                         kind: k,
                         level,
                         capacity_micros,
+                        operation:None,
                         status: "ready".into(),
                         reason: Some(production::catalog(k).effect.into()),
                         output_daily: 0.0,

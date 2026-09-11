@@ -35,6 +35,7 @@ test('map construction sprites resolve coarse geometry separately from close car
 
 const names=['logisticsEscAttr','constructionMoney','productionQueue','productionCatalog','productionProvinces',
   'productionCompleted','productionProject','productionKind','productionStatus','productionTone','productionProvince',
+  'constructionOrdersPending','constructionResponseMatches','constructionActionCurrent','constructionOutcomeAction','constructionOutcomeButton','productionBuiltHtml',
   'productionProgress','productionPriorityChoices','productionCanCancel','productionSummary','productionFundingLabel',
   'productionEligible','productionCardHtml','productionSiteStripHtml','productionSite3d','siteArtReady','productionCatalogHtml','productionProvinceHtml','constructionBudgetHtml',
   'productionCapabilityPairs','productionModuleLabel','constructionSiteContext','constructionProvinceRefusal',
@@ -50,6 +51,7 @@ function fixture(){
   const c=vm.createContext({requests,notices,routes,console,Number,Math,Promise,
     PROD:{open:true,mode:'build',view:'queue',seq:0,loading:false,data:null,stale:false,busy:false,budgetDraft:null,moduleSeq:0,moduleLoading:false,session:'one',previewSeq:0,previewLoading:false,preview:null,previewRequest:null},
     MANU:{},GLOBE:null,PROD_ICON:{civilian_industry:'⚙'},S:{session_id:'one',player:'USA'},advancing:false,pendingAdvance:null,
+    COMMAND_CHANNEL:{busy:false,pending:null},SESSION:{busy:false},COMP:{busy:false},openIndustry:options=>routes.push({industry:plain(options)}),
     clamp:(v,a,b)=>Math.max(a,Math.min(b,v)),fmtQ:String,
     renderProductionPanel(){},openProduction(){routes.push('construction-shell');},
     $:()=>({querySelector:()=>null}),
@@ -190,6 +192,8 @@ test('setting a daily budget converts display units only and zero sends an expli
   const c=fixture();
   assert.equal(await c.constructionSetBudget('2.75'),true);
   assert.deepEqual(c.requests[0],{url:'/api/command',body:{commands:[{kind:'construction_budget',daily_budget_bn:.00275}]}});
+  // The normal state adoption refreshes this ledger before the next order.
+  c.PROD.stale=false;
   assert.equal(await c.constructionSetBudget('0'),true);
   assert.equal(c.requests[1].body.commands[0].daily_budget_bn,0);
   assert.equal(c.PROD.budgetDraft,null);
@@ -419,6 +423,48 @@ test('cancel explains sunk spending and respects server permission; priorities r
   c.PROD.stale=false;await c.productionCancel(7);assert.match(c.notices.find(x=>x.includes('Cancel Factory')),/Money already spent/);
   assert.equal(c.requests[1].body.commands[0].kind,'cancel_project');
   c.PROD.stale=false;c.PROD.data.queue[0].actions={};await c.productionCancel(7);assert.equal(c.requests.length,2);
+});
+
+test('cancellation refuses a replacement campaign project or ledger after its review awaited confirmation',async()=>{
+  for(const replace of [c=>{c.S={session_id:'two',player:'USA'};c.PROD.dataState=c.S;},
+    c=>{c.PROD.data=plain(c.PROD.data);},c=>{c.PROD.data.queue[0]=project();},
+    c=>{c.PROD.data.queue[0].actions.cancel=false;},c=>{c.COMMAND_CHANNEL.pending={};}]){
+    const c=fixture();c.PROD.data.queue=[project()];let confirm;c.campaignConfirm=()=>new Promise(resolve=>{confirm=resolve;});
+    const pending=c.productionCancel(7);replace(c);confirm(true);await pending;
+    assert.equal(c.requests.length,0,'A stale cancellation review cannot cancel a new or changed project');
+  }
+});
+
+test('pending receipts and stale construction readings disable funding priority and reviewed starts',async()=>{
+  for(const change of [c=>{c.COMMAND_CHANNEL.pending={};},c=>{c.COMMAND_CHANNEL.busy=true;},c=>{c.SESSION.busy=true;},c=>{c.COMP.pending={};}]){
+    const c=fixture();c.PROD.data.queue=[project()];reviewed(c);change(c);
+    assert.equal(await c.constructionSetBudget('1'),false);await c.productionSetPriority(7,'high');await c.productionCancel(7);
+    assert.equal(await c.constructionConfirmPreview(),false);assert.equal(c.requests.length,0);assert.equal(c.notices.length,0);
+    assert.match(c.productionCardHtml(project()),/data-prod-cancel="7" disabled/);
+    assert.match(c.constructionBudgetHtml(),/type="submit" disabled/);
+    assert.match(c.constructionPreviewHtml(),/data-construction-confirm disabled/);
+  }
+  const c=fixture();c.PROD.stale=true;assert.equal(await c.constructionSetBudget('1'),false);assert.equal(c.requests.length,0);
+});
+
+test('construction date or identity mismatch cannot authorize a project while exact old-state responses are discarded',async()=>{
+  for(const data of [{date:'3 Jan 1990',nation:'USA'},{date:'2 Jan 1990',nation:'France'},{session_id:'two'}]){
+    const c=fixture();c.S.date='2 Jan 1990';c.PROD.stale=true;c.api=async()=>({...plain(c.PROD.data),...data});
+    await c.productionFetch();assert.equal(c.PROD.stale,true);assert.match(c.PROD.error,/campaign date/);assert.equal(c.constructionActionCurrent(),false);
+  }
+  const c=fixture(),old=c.PROD.data;c.PROD.stale=true;let respond;c.api=()=>new Promise(resolve=>{respond=resolve;});
+  const pending=c.productionFetch();c.S={session_id:'one',player:'USA',date:'3 Jan 1990'};respond({...plain(old),date:'2 Jan 1990'});await pending;
+  assert.equal(c.PROD.data,old);assert.equal(c.constructionActionCurrent(),false);
+});
+
+test('completed province outcomes keep exact facility targets and never execute unreviewed commands',()=>{
+  const c=fixture(),action={action:'industry',district:'US-CA',kind:'processing_plant',label:'Inspect Materials Processing outcome',command:'start_project'};
+  c.PROD.data.completed=[{province:{id:'US-CA',name:'California'},capabilities:{processing_plant:1},outcome_actions:[action,{action:'start_project',district:'US-CA',kind:'arms_plant'}]}];c.PROD.showBuilt=true;
+  const html=c.productionBuiltHtml();assert.match(html,/data-construction-completed="US-CA"/);assert.match(html,/data-construction-outcome=/);assert.doesNotMatch(html,/start_project/);
+  assert.equal(c.constructionOutcomeAction(action),true);assert.deepEqual(c.routes,[{industry:{district:'US-CA',kind:'processing_plant'}}]);assert.equal(c.requests.length,0);
+  const captured=c.PROD.data;c.PROD.data=plain(captured);assert.equal(c.constructionOutcomeAction(action,captured,c.S),false);
+  assert.equal(c.constructionOutcomeAction({...action,action:'start_project'}),false);assert.equal(c.constructionOutcomeAction({...action,enabled:false}),false);
+  assert.equal(c.routes.length,1);
 });
 test('shared construction route carries province/project intent and resets previous-campaign drafts',()=>{
   const c=fixture();c.openConstruction({province:'US-CA'});assert.equal(c.PROD.view,'catalog');assert.equal(c.PROD.provinceFilter,'US-CA');

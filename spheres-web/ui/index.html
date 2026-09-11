@@ -17043,6 +17043,33 @@ function openConstructionCabinet(tab) {
 function constructionMoney(value) {
   return Number.isFinite(value) ? economyMoney(value) : "—";
 }
+function constructionOrdersPending() {
+  return PROD.busy||advancing||!!pendingAdvance
+    ||(typeof COMMAND_CHANNEL!=="undefined"&&!!(COMMAND_CHANNEL.busy||COMMAND_CHANNEL.pending))
+    ||(typeof SESSION!=="undefined"&&SESSION.busy)||(typeof COMP!=="undefined"&&!!(COMP.busy||COMP.pending));
+}
+function constructionResponseMatches(data,state) {
+  if(!data||!state)return false;
+  return (data.nation==null||data.nation===state.player)&&(data.session_id==null||data.session_id===state.session_id)
+    &&(data.date==null||state.date==null||data.date===state.date)
+    &&(!Number.isInteger(state.as_of_day)||data.as_of_day==null||data.as_of_day===state.as_of_day);
+}
+function constructionActionCurrent(data=PROD.data,state=PROD.dataState) {
+  return !!(data&&data===PROD.data&&state===S&&PROD.open&&PROD.mode==="build"&&!PROD.stale&&!PROD.loading
+    &&constructionResponseMatches(data,state)&&!constructionOrdersPending());
+}
+function constructionOutcomeAction(action,data=PROD.data,state=PROD.dataState) {
+  if(!constructionActionCurrent(data,state)||!action||action.enabled===false||action.available===false)return false;
+  if(action.action==="industry"&&typeof action.district==="string"&&typeof action.kind==="string"){
+    openIndustry({district:action.district,kind:action.kind});return true;
+  }
+  return false;
+}
+function constructionOutcomeButton(action,label) {
+  if(action?.action!=="industry"||typeof action.district!=="string"||typeof action.kind!=="string")return "";
+  const clean={action:"industry",district:action.district,kind:action.kind};
+  return `<button type="button" data-construction-outcome="${logisticsEscAttr(JSON.stringify(clean))}" ${constructionActionCurrent()&&action.enabled!==false&&action.available!==false?"":"disabled"}>${escText(label||action.label||"Inspect staffing and operation")}</button>`;
+}
 function constructionPreviewNoticeHtml() {
   const notice=PROD.data?.preview_notice;
   return notice?`<p class="construction-preview-status" role="status">${escText(notice)}</p>`:"";
@@ -17054,8 +17081,7 @@ function constructionSuggestionItems(data = PROD.data) {
     (!PROD.provinceFilter || item.district===PROD.provinceFilter)).slice(0,3);
 }
 function constructionSuggestionsCurrent(data = PROD.data) {
-  return !!(data && data===PROD.data && PROD.dataState===S && PROD.open && PROD.mode==="build" && PROD.view==="queue" &&
-    !PROD.stale && !PROD.loading && !PROD.busy && !PROD.previewLoading && !advancing && !pendingAdvance);
+  return constructionActionCurrent(data)&&PROD.view==="queue"&&!PROD.previewLoading;
 }
 function constructionSuggestionsHtml() {
   const suggestions=PROD.data?.suggestions, items=constructionSuggestionItems(), current=constructionSuggestionsCurrent();
@@ -17078,15 +17104,17 @@ function constructionBudgetHtml() {
   const b = PROD.data?.construction_budget;
   if (!b) return `<section class="construction-funding"><h3>Construction funding</h3><p>The funding ledger is loading. Your projects remain in the queue.</p></section>`;
   const amount = PROD.budgetDraft ?? (Number.isFinite(b.daily_budget_bn) ? String(+(b.daily_budget_bn * 1000).toFixed(6)) : "");
+  const editable=b.can_set!==false&&constructionActionCurrent();
   return `<section class="construction-funding" aria-labelledby="constructionFundingTitle">
     <div class="construction-funding-top"><div><div class="cab-kicker">Fund work as it happens</div><h3 id="constructionFundingTitle">Daily construction budget</h3><p>Choose the most your projects can spend each day. Unused money is not charged.</p></div><div class="construction-funding-links"><button type="button" data-construction-cash-flow>Review national cash flow →</button><button type="button" data-construction-budget-link>Review annual budget →</button></div></div>
-    <form id="constructionBudgetForm" class="construction-budget-form"><label for="constructionDailyBudget">Funding limit <span>$ millions / day</span></label><div><input id="constructionDailyBudget" name="daily_budget" type="number" min="0" step="any" inputmode="decimal" required value="${logisticsEscAttr(amount)}" ${b.can_set === false || PROD.busy ? "disabled" : ""} aria-describedby="constructionBudgetHelp"><button type="submit" ${b.can_set === false || PROD.busy ? "disabled" : ""}>${PROD.busy ? "Applying…" : "Apply budget"}</button></div></form>
+    <form id="constructionBudgetForm" class="construction-budget-form"><label for="constructionDailyBudget">Funding limit <span>$ millions / day</span></label><div><input id="constructionDailyBudget" name="daily_budget" type="number" min="0" step="any" inputmode="decimal" required value="${logisticsEscAttr(amount)}" ${editable?"":"disabled"} aria-describedby="constructionBudgetHelp"><button type="submit" ${editable?"":"disabled"}>${PROD.busy ? "Applying…" : "Apply budget"}</button></div></form>
     <p id="constructionBudgetHelp" class="construction-note">Set zero to pause construction. Projects keep their progress and still take time to finish.${b.explicit ? "" : b.enrolled ? " The current amount follows your capital budget." : " The current amount is the default from your capital budget; applying it opens construction funding."}</p>
     <dl class="construction-ledger"><div><dt>Available for work</dt><dd>${constructionMoney(b.available_bn)}</dd></div><div><dt>Planned / day</dt><dd>${constructionMoney(b.planned_daily_bn)}</dd></div><div><dt>Last recorded spending</dt><dd>${constructionMoney(b.spent_today_bn)}</dd></div><div><dt>Spent this year</dt><dd>${constructionMoney(b.spent_ytd_bn)}</dd></div></dl>
     ${b.reason ? `<p class="work-reason" role="status">${escText(b.reason)}</p>` : ""}<p class="construction-note">Backed by ${constructionMoney(b.authority_bn)} of available capital funding. Raising this limit does not increase your annual budget.</p>${b.available_bn < b.daily_budget_bn && b.authority_bn < b.daily_budget_bn ? `<p class="work-reason">Increase capital funding in your annual budget or lower this daily limit.</p>` : ""}
     ${PROD.actionError ? `<p class="construction-error" role="alert">${escText(PROD.actionError)}</p>` : ""}</section>`;
 }
 async function constructionSetBudget(value) {
+  if(!constructionActionCurrent())return false;
   const text = String(value).trim(), millions = Number(text);
   if (!text || !Number.isFinite(millions) || millions < 0) {
     PROD.actionError = "Enter a funding limit of zero or more in millions of dollars per day.";
@@ -17168,7 +17196,7 @@ function constructionPreviewHtml() {
   const heading=`<div class="construction-heading"><div><div class="cab-kicker">Review before building${r?` · ${escText(q?.district_name||province?.name||r.district)}`:""}</div><h2 id="constructionPreviewTitle" tabindex="-1">${escText(name)}</h2><p>See what changes for this province and your country before adding the project.</p></div></div>`;
   const status=PROD.previewLoading ? "Reading the project's effects and current funding…" : PROD.previewError || (q?.reason || "");
   const refresh=r&&!PROD.previewLoading&&!current ? `<button type="button" data-construction-preview-refresh>Refresh impact preview</button>` : "";
-  const footer=`<div class="construction-preview-actions"><button type="button" data-prod-back>← ${r?.commodity?"Choose a deposit":r?.capacity_micros!=null?"Workshop sizes":"Choose a province"}</button>${refresh}<button type="button" class="construction-confirm" data-construction-confirm ${!current||q?.can_start!==true||PROD.busy||advancing||pendingAdvance?"disabled":""}>${PROD.busy?"Adding project…":"Add to construction queue"}</button></div>`;
+  const footer=`<div class="construction-preview-actions"><button type="button" data-prod-back>← ${r?.commodity?"Choose a deposit":r?.capacity_micros!=null?"Workshop sizes":"Choose a province"}</button>${refresh}<button type="button" class="construction-confirm" data-construction-confirm ${!current||q?.can_start!==true||constructionOrdersPending()?"disabled":""}>${PROD.busy?"Adding project…":"Add to construction queue"}</button></div>`;
   if (!current) return `${heading}<p id="constructionPreviewStatus" class="construction-preview-status" role="status">${escText(status||"Choose a project and province to review its effects.")}</p>${footer}`;
   const operating=Array.isArray(q.operating_requirements)?q.operating_requirements:[];
   return `${heading}<p id="constructionPreviewStatus" class="construction-preview-status" role="status">${escText(status)}</p>
@@ -17179,7 +17207,7 @@ function constructionPreviewHtml() {
 }
 async function constructionPreviewProject(kind,district,capacityMicros,commodity) {
   if (PROD.data?.preview_notice) return false;
-  if (PROD.busy || advancing || pendingAdvance || !district || !kind) return false;
+  if (constructionOrdersPending() || !district || !kind) return false;
   const request={district,project_kind:kind};
   if (kind==="resource_mine") {
     if (typeof commodity!=="string" || !commodity || capacityMicros!=null) return false;
@@ -17213,7 +17241,7 @@ async function constructionPreviewProject(kind,district,capacityMicros,commodity
   }
 }
 async function constructionConfirmPreview() {
-  if (!constructionPreviewCurrent() || PROD.preview.can_start!==true || PROD.busy || advancing || pendingAdvance) return false;
+  if (!constructionPreviewCurrent() || PROD.preview.can_start!==true || constructionOrdersPending()) return false;
   const r=PROD.previewRequest, q=PROD.preview;
   if (r.capacity_micros==null && r.project_kind!=="resource_mine") return productionStart(r.project_kind,r.district);
   const command=r.project_kind==="resource_mine" ? {kind:"develop_resource",commodity:r.commodity,district:r.district} : {kind:"start_industry_module",district:r.district,capacity_micros:r.capacity_micros};
@@ -17230,7 +17258,8 @@ async function productionFetch() {
   const seq = ++PROD.seq, state = S, session = S?.session_id;
   try {
     const data = await api("/api/production");
-    if (seq !== PROD.seq || session !== S?.session_id) return;
+    if (seq !== PROD.seq || session !== S?.session_id || state !== S || !PROD.open || PROD.mode!=="build") return;
+    if(!constructionResponseMatches(data,state))throw new Error("The construction reading did not match this campaign date. Refresh before issuing an order.");
     data.queue = Array.isArray(data.queue) ? data.queue : [];
     data.catalog = Array.isArray(data.catalog) ? data.catalog : [];
     data.provinces = Array.isArray(data.provinces) ? data.provinces : [];
@@ -17403,6 +17432,7 @@ function productionCardHtml(p) {
   const priorityControls = p.actions ? ["high", "normal", "low"].filter(v => v === priority || choices.includes(v)) : [];
   const eta = Number.isFinite(p.eta_days) ? `About ${Math.max(0,Math.ceil(p.eta_days))} days remaining` : "ETA pending funding";
   const reason = p.reason || f.reason || p.status_reason || "";
+  const current=constructionActionCurrent();
   return `<article class="work-card ${tone}${String(PROD.selected) === String(p.id) ? " selected" : ""}" tabindex="0" data-prod-project="${logisticsEscAttr(p.id)}">
     <div class="work-top"><span class="work-art" aria-hidden="true">${PROD_ICON[kind] || "◆"}</span><div class="work-title"><b>${escText(p.name || kind.replace(/_/g," "))}</b><span>${escText(province.name || province.id || "Province")}</span></div><span class="work-state">${escText(productionStatus(p))}</span></div>
     <dl class="construction-project-money"><div><dt>${companyFees?"Base contract":"Total cost"}</dt><dd>${constructionMoney(f.cost_bn)}</dd></div><div><dt>${companyFees?"Base work paid":"Spent"}</dt><dd>${constructionMoney(f.spent_bn)}</dd></div><div><dt>${companyFees?"Base work remaining":"Remaining"}</dt><dd>${constructionMoney(f.remaining_bn)}</dd></div><div><dt>Planned / day${companyFees?" · including fees":""}</dt><dd>${constructionMoney(f.daily_request_bn)}</dd></div>${companyFees?`<div><dt>Service fees paid</dt><dd>${constructionMoney(f.company_fees_bn)}</dd></div><div><dt>Next service fee</dt><dd>${constructionMoney(f.next_company_fee_bn)}</dd></div>`:""}</dl>
@@ -17411,8 +17441,8 @@ function productionCardHtml(p) {
     <div class="work-line"><span><b>${escText(progressText)}%</b> complete</span><span>${escText(eta)}</span></div>
     ${reason ? `<p class="work-reason">${escText(reason)}</p>` : ""}
     ${p.legacy_prepaid ? `<p class="construction-note">Previously paid project · its existing work continues without a second construction charge.</p>` : ""}
-    <div class="work-actions">${priorityControls.length?`<span class="construction-note">Priority</span>`:""}${priorityControls.map(v=>`<button type="button" data-prod-priority="${v}" data-prod-id="${logisticsEscAttr(p.id)}" ${priority===v||PROD.busy?"disabled":""} class="${priority===v?"on":""}" aria-pressed="${priority===v}">${escText(v)}</button>`).join("")}<button type="button" data-prod-map="${logisticsEscAttr(p.id)}">Show on map</button>${productionCanCancel(p)?`<button type="button" class="cancel" data-prod-cancel="${logisticsEscAttr(p.id)}" ${PROD.busy?"disabled":""}>Cancel</button>`:""}</div>
-    <details class="operations-details"><summary>After completion</summary><p>${escText(p.effect || p.description || "Adds the completed upgrade to this province.")}</p><p>Operating facilities use their normal running budget and inputs.</p></details>
+    <div class="work-actions">${priorityControls.length?`<span class="construction-note">Priority</span>`:""}${priorityControls.map(v=>`<button type="button" data-prod-priority="${v}" data-prod-id="${logisticsEscAttr(p.id)}" ${priority===v||!current?"disabled":""} class="${priority===v?"on":""}" aria-pressed="${priority===v}">${escText(v)}</button>`).join("")}<button type="button" data-prod-map="${logisticsEscAttr(p.id)}">Show on map</button>${productionCanCancel(p)?`<button type="button" class="cancel" data-prod-cancel="${logisticsEscAttr(p.id)}" ${current?"":"disabled"}>Cancel</button>`:""}</div>
+    <details class="operations-details"><summary>After completion</summary><p>${escText(p.effect || p.description || "Adds the completed upgrade to this province.")}</p><p>Installed capacity comes first. Staffing, operating funding, inputs and support determine what can run; a dated receipt shows actual output.</p>${constructionOutcomeButton(p.outcome_action,"Inspect this facility’s operating path")}</details>
   </article>`;
 }
 
@@ -17491,7 +17521,8 @@ function productionBuiltHtml() {
     const caps = productionCapabilityPairs(row.capabilities).map(([name, level]) =>
       `<span class="built-cap">${escText(String(name).replace(/_/g, " "))} ${escText(level)}</span>`).join("")
       + (productionModuleLabel(row) ? `<span class="built-cap">${escText(productionModuleLabel(row))}</span>` : "");
-    return `<div class="built-row"><b>${escText(province.name || province.id || "Province")}</b><div class="built-caps">${caps}</div></div>`;
+    const actions=Array.isArray(row.outcome_actions)?row.outcome_actions:[];
+    return `<div class="built-row" data-construction-completed="${logisticsEscAttr(province.id||"")}"><b>${escText(province.name || province.id || "Province")}</b><div class="built-caps">${caps}</div><div class="work-actions">${actions.map(action=>constructionOutcomeButton(action)).join("")}</div></div>`;
   }).join("")}</div>` : "";
   return `<button type="button" class="built-toggle" data-prod-built aria-expanded="${PROD.showBuilt}"><span>Completed province upgrades</span><b>${workshops ? `${total} full-site levels · ${workshops} workshop province${workshops === 1 ? "" : "s"}` : total} ${PROD.showBuilt ? "−" : "+"}</b></button><button type="button" onclick="openIndustry()">Manage completed industry →</button>${detail}`;
 }
@@ -17833,12 +17864,17 @@ function wireProductionPanel() {
   };
   const retry = body.querySelector("[data-prod-retry]");
   if (retry) retry.onclick = () => { PROD.stale = true; PROD.error = null; productionFetch(); };
+  const outcomeData=PROD.data,outcomeState=PROD.dataState;
+  body.querySelectorAll("[data-construction-outcome]").forEach(button=>{
+    let action;try{action=JSON.parse(button.dataset.constructionOutcome);}catch{return;}
+    button.onclick=()=>constructionOutcomeAction(action,outcomeData,outcomeState);
+  });
   const built = body.querySelector("[data-prod-built]");
   if (built) built.onclick = () => { PROD.showBuilt = !PROD.showBuilt; renderProductionPanel(); };
 }
 
 async function productionCommand(command, success) {
-  if (PROD.busy || advancing || pendingAdvance) return false;
+  if (constructionOrdersPending()) return false;
   const session = S?.session_id;
   PROD.busy=true; PROD.actionError=""; renderProductionPanel();
   try {
@@ -17865,13 +17901,14 @@ async function productionStart(kind, district) {
 }
 async function productionSetPriority(project, priority) {
   const p=productionProject(project);
-  if (!p || !productionPriorityChoices(p).includes(priority) || PROD.stale || PROD.busy) return;
+  if (!p || !productionPriorityChoices(p).includes(priority) || !constructionActionCurrent()) return;
   await productionCommand({ kind: "set_project_priority", project: +project, priority }, `Project priority set to ${priority}.`);
 }
 async function productionCancel(project) {
-  const p = productionProject(project);
-  if (!p || !productionCanCancel(p) || PROD.stale || PROD.busy) return;
-  if (!await campaignConfirm(`Cancel ${p.name || productionKind(p).replace(/_/g, " ")} in ${productionProvince(p).name || "this province"}?\n\nMoney already spent on completed work is not refunded.`)) return;
+  const p = productionProject(project),data=PROD.data,state=S;
+  if (!p || !productionCanCancel(p) || !constructionActionCurrent(data,state)) return;
+  if (!await campaignConfirm(`Cancel ${p.name || productionKind(p).replace(/_/g, " ")} in ${productionProvince(p).name || "this province"}?\n\nMoney already spent on completed work is not refunded. Base work paid: ${constructionMoney(p.finance?.spent_bn)}. Unfinished base work: ${constructionMoney(p.finance?.remaining_bn)}.`)) return;
+  if(!constructionActionCurrent(data,state)||productionProject(project)!==p||!productionCanCancel(p))return;
   await productionCommand({ kind: "cancel_project", project: +project }, "Project cancelled.");
 }
 

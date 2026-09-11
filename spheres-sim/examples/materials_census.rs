@@ -520,10 +520,10 @@ mod tests {
         w.production.industry.last_day = Some(today);
         w.production.industry.operations = vec![
             industry::SiteStatus { district: district.clone(), kind: K::StarterIndustry, level: 0,
-                capacity_micros: Some(100_000), status: "running".into(), reason: None,
+                capacity_micros: Some(100_000), operation:None, status: "running".into(), reason: None,
                 output_daily: 3.0, power_used_daily: 3.0, cash_spent_daily_bn: 0.01 },
             industry::SiteStatus { district: district.clone(), kind: K::MachineryWorks, level: 1,
-                capacity_micros: None, status: "running".into(), reason: None,
+                capacity_micros: None, operation:None, status: "running".into(), reason: None,
                 output_daily: 2.0, power_used_daily: 4.0, cash_spent_daily_bn: 0.01 },
         ];
         w.commerce = Some(commerce::Commerce { goods_deliveries: vec![

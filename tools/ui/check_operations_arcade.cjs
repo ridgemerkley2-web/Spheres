@@ -28,6 +28,8 @@ const helpers = [
   'productionCardHtml', 'productionSiteStripHtml', 'productionSite3d', 'siteArtReady', 'productionSummary', 'productionStartAllowed', 'productionBuiltHtml',
   'productionFundingLabel', 'productionCatalogHtml', 'productionEligible', 'productionProvinceHtml',
   'constructionMoney', 'constructionBudgetHtml', 'constructionInvalidatePreview', 'constructionPreviewNoticeHtml',
+  'constructionOrdersPending', 'constructionResponseMatches', 'constructionActionCurrent',
+  'constructionOutcomeAction', 'constructionOutcomeButton',
   'constructionSiteContext', 'constructionProvinceRefusal', 'constructionProvinceMatches', 'constructionProvinceChoices', 'constructionRevealProject',
   'constructionSuggestionItems', 'constructionSuggestionsCurrent', 'constructionSuggestionsHtml',
   'manufacturingLines', 'manufacturingCatalog', 'manufacturingProvinces', 'manufacturingHoldings',

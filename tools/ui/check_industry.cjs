@@ -13,7 +13,7 @@ function control(extra={}) { return {disabled:false,listeners:[],addEventListene
 function fixture(){
   const calls=[],requests=[],doc={activeElement:null},scroller={scrollTop:0};
   let html='';
-  const mount={dataset:{industrySession:'one'},attributes:{},actions:[],filters:[],details:[],controls:{},
+  const mount={dataset:{industrySession:'one'},attributes:{},actions:[],filters:[],details:[],sites:[],controls:{},
     setAttribute(key,value){this.attributes[key]=value;},
     get innerHTML(){return html;},
     set innerHTML(value){
@@ -21,7 +21,12 @@ function fixture(){
       doc.activeElement=null;
       this.actions=[...value.matchAll(/<button\b([^>]*?)data-industry-action="([^"]+)"([^>]*)>/g)].map(m=>control({dataset:{industryAction:decode(m[2])},disabled:/\bdisabled\b/.test(m[3])}));
       this.filters=[...value.matchAll(/data-industry-filter="([^"]+)"/g)].map(m=>control({dataset:{industryFilter:m[1]},focus(){if(!this.disabled)doc.activeElement=this;}}));
-      this.details=[...value.matchAll(/<details data-industry-detail="([^"]+)"([^>]*)>/g)].map(m=>({dataset:{industryDetail:decode(m[1])},open:/\bopen\b/.test(m[2])}));
+      this.details=[...value.matchAll(/<details data-industry-detail="([^"]+)"([^>]*)>/g)].map(m=>{
+        const summary={dataset:{},focus(){doc.activeElement=this;}};
+        return {dataset:{industryDetail:decode(m[1])},open:/\bopen\b/.test(m[2]),querySelector:selector=>selector==='summary'?summary:null};
+      });
+      this.sites=[...value.matchAll(/data-industry-site="([^"]+)"/g)].map(m=>({dataset:{industrySite:decode(m[1])},
+        focus(){doc.activeElement=this;calls.push('focus-site:'+this.dataset.industrySite);},scrollIntoView(){calls.push('reveal-site:'+this.dataset.industrySite);}}));
       this.controls={};
       const input=/id="industrySearch"[^>]*value="([^"]*)"/.exec(value);
       if(input){const search=control({id:'industrySearch',value:decode(input[1]),selectionStart:0,selectionEnd:0,
@@ -32,7 +37,7 @@ function fixture(){
       }
     },
     querySelector(selector){const filter=/^\[data-industry-filter="([^"]+)"\]$/.exec(selector);return filter?this.filters.find(button=>button.dataset.industryFilter===filter[1])||null:this.controls[selector]||null;},
-    querySelectorAll(selector){return selector==='[data-industry-action]'?this.actions:selector==='[data-industry-filter]'?this.filters:selector==='details[data-industry-detail]'?this.details:[];},
+    querySelectorAll(selector){return selector==='[data-industry-action]'?this.actions:selector==='[data-industry-filter]'?this.filters:selector==='details[data-industry-detail]'?this.details:selector==='[data-industry-site]'?this.sites:[];},
   };
   doc.querySelector=selector=>selector==='#industryRoot'?mount:selector==='#left'?scroller:null;
   const c=vm.createContext({console,window:{},document:doc,S:{session_id:'one',player:'USA'},CAB:{tab:'industry',busy:false},
@@ -56,6 +61,24 @@ test('industry renders served inventories and modeled power separately from date
   const c=fixture(),data=loaded(c),before=plain(data),html=c.industryContentHtml();
   for(const text of ['From construction to production','Current date · 2 Jan 1990','Latest industry settlement · 1 Jan 1990','12.75 packs in stock','2 packs in stock','250 packs of storage for this good','10 units / day','2.5 intermediate packs','$30k','Recorded · 1 Jan 1990'])assert(html.includes(text),text);
   assert.doesNotMatch(html,/GDP bonus|Guaranteed|2\.5 packs in stock/);
+  assert.deepEqual(plain(data),before);assert.equal(c.requests.length,0);
+});
+
+test('component inventory retains its own units beside industrial packs',()=>{
+  const c=fixture(),data=reading();
+  data.goods.push({good:'advanced_components',name:'Advanced components',stock:17.5,capacity:800});
+  loaded(c,data);const before=plain(data),html=c.industryContentHtml();
+  assert.match(html,/17\.5 components in stock/);assert.match(html,/800 components of storage/);
+  assert.match(html,/12\.75 packs in stock/);assert.doesNotMatch(html,/17\.5 packs|800 packs/);
+  data.goods[2].unit='component units';assert.match(c.industryContentHtml(),/17\.5 component units in stock/);
+  data.goods[2].unit='<img>';assert.doesNotMatch(c.industryContentHtml(),/<img/);assert.match(c.industryContentHtml(),/&lt;img&gt; in stock/);
+  delete data.goods[2].unit;assert.deepEqual(plain(data),before);assert.equal(c.requests.length,0);
+});
+
+test('the power summary preserves its native receipt date and limited scope',()=>{
+  const c=fixture(),data=reading({power:{capacity_daily:10,used_daily:2.5,receipt_label:'1 Jan 1990',note:'Displayed facility receipts only; not total national consumption.'}});
+  loaded(c,data);const before=plain(data),html=c.industryContentHtml();
+  assert.match(html,/2\.5 units used · 1 Jan 1990/);assert.match(html,/Displayed facility receipts only; not total national consumption/);
   assert.deepEqual(plain(data),before);assert.equal(c.requests.length,0);
 });
 
@@ -141,6 +164,79 @@ test('GET industry is session-bound, validates identity and binds accepted readi
   for(const bad of [reading({session_id:'other'}),reading({nation:'Canada'}),reading({sites:null})]){
     c.api=async()=>bad;assert.equal(await c.industryFetch(true),false);assert.match(c.desk.error,/did not match this campaign/);assert.equal(c.industryCurrent(),false);
   }
+});
+
+test('industry rejects same-session readings from another date before enabling facility navigation',async()=>{
+  for(const state of [{date:'3 Jan 1990'},{year:1990,month:1,day:3},{date:'2 Jan 1990',as_of_day:5}]){
+    const c=fixture();Object.assign(c.S,state);assert.equal(await c.industryFetch(),false);
+    assert.match(c.desk.error,/campaign date/);assert.equal(c.industryCurrent(),false);assert.equal(c.calls.length,0);
+  }
+  const c=fixture();Object.assign(c.S,{date:'2 Jan 1990',year:1990,month:1,day:2,as_of_day:4});
+  assert.equal(await c.industryFetch(),true);c.S.day=3;
+  assert.equal(c.industryNavigateCurrent({action:'budget',ministry:'industry'}),false);
+});
+
+function lifecycle(){return {installed_label:'2.5 installed level equivalents',installed_note:'Construction is not a second GDP award.',
+  staffing:{required:1200,assigned:800,available:600,used:450,matched_date:'1990-01-04',label:'Current workforce and recorded use',note:'Matched workers are separate from dated use.'},
+  readiness:{label:'Limited for current work',note:'Only a receipt proves operation.',requirements:[{id:'workers',label:'Qualified staffing',required:1,available:.5,unit:'share',ready:false,note:'Shared people, not new workers.'},{id:'inputs',label:'Operating inputs',required:1,available:.8,unit:'share',ready:false,note:'Not a construction requirement.'}]},
+  operation:{date:'1990-01-03',label:'Recorded facility operation',output:.75,output_unit:'intermediate packs',cash_spent_bn:.000012,power_used_daily:.4,value_added_bn:.00003,note:'Actual dated charges; not a second bill.'},
+  effects:[{label:'Recorded annualized incremental value added',value:.01,unit:'$bn/year',note:'The same provincial and national contribution counted once.'}]};}
+
+test('facility stages distinguish installed capacity assigned qualified and actually used workers from dated paid output',()=>{
+  const c=fixture();loaded(c);const site=productive({lifecycle:lifecycle()}),before=plain(site),html=c.industrySiteHtml(site);
+  for(const text of ['1 · Installed','2.5 installed level equivalents','2 · Staffing and readiness','800 assigned workers','3 · Recorded operation','1990-01-03',
+    'Required positions</dt><dd>1,200','Assigned workers</dt><dd>800','Qualified staffing coverage</dt><dd>600','Workers used in recorded operation</dt><dd>450',
+    'Matched 1990-01-04','0.75 intermediate packs','$12k','Recorded value added','$30k','Needed: 100%','Current: 50%',
+    'Province and country effects','$10m / year','not a completion bonus'])assert(html.includes(text),text);
+  assert.equal(html.split('Recorded operating spending').length-1,1,'The same operating bill appears once');
+  assert.doesNotMatch(html,/2.5 intermediate packs/,'Present capacity cannot replace dated output');
+  assert.deepEqual(plain(site),before);assert.equal(c.requests.length,0);assert.equal(c.calls.length,0);
+  site.lifecycle.staffing.matched_date=null;
+  const opening=c.industrySiteHtml(site);assert.match(opening,/Opening workforce assignment/);assert.doesNotMatch(opening,/No matching staffing receipt/);
+});
+
+test('installed but unstaffed facilities retain unknown employment and no invented first operating receipt',()=>{
+  const c=fixture();loaded(c);const life=lifecycle();life.staffing={required:20,assigned:null,available:12,used:null,matched_date:null};life.operation=null;life.effects=[];
+  const html=c.industrySiteHtml(productive({has_receipt:false,output_daily:null,cash_spent_daily_bn:null,power_used_daily:null,lifecycle:life}));
+  assert.match(html,/Assignment not recorded/);assert.match(html,/Assigned workers<\/dt><dd>—/);assert.match(html,/Workers used in recorded operation<\/dt><dd>—/);
+  assert.match(html,/No matching staffing receipt/);assert.doesNotMatch(html,/Opening workforce assignment/);
+  assert.match(html,/Awaiting first operation/);assert.doesNotMatch(html,/Recorded operating spending|Recorded value added|\$0|Province and country effects/);
+  const support=c.industrySiteHtml(supporting({lifecycle:{...life,readiness:{label:'Installed support capability',requirements:[]}}}));
+  assert.match(support,/Supports activity; no separate output receipt/);assert.doesNotMatch(support,/Awaiting first operation|0 packs/);
+});
+
+test('lifecycle labels and units are escaped while unknown effects never become zero',()=>{
+  const c=fixture();loaded(c);const life=lifecycle();life.installed_label='<img>';life.readiness.requirements[0].unit='<svg>';life.effects[0].value=null;life.operation.note='<script>';
+  const html=c.industrySiteHtml(productive({lifecycle:life}));assert.doesNotMatch(html,/<img|<svg|<script/);assert.match(html,/&lt;img&gt;/);
+  assert.match(html,/incremental value added<\/dt><dd>—/);
+});
+
+test('an exact completed facility link resets old filters and preserves its stable identity',()=>{
+  const c=fixture();loaded(c);c.desk.query='old';c.desk.filter='attention';
+  assert.equal(c.openIndustry({district:'US-CA',kind:'processing_plant'}),true);
+  assert.equal(c.desk.query,'US-CA processing plant');assert.equal(c.desk.filter,'all');
+  assert.equal(c.desk.revealSite,'site:US-CA:processing_plant');
+  assert.deepEqual(plain(c.industryVisibleSites()).map(site=>site.id),['site:US-CA:processing_plant']);
+  assert.match(c.industrySiteHtml(productive()),/data-industry-site="site:US-CA:processing_plant" tabindex="-1"/);
+  assert.deepEqual(c.calls,['open-cabinet']);assert.equal(c.requests.length,0);
+  c.S={session_id:'replacement',player:'France'};c.industryResetCampaign();assert.equal(c.desk.revealSite,null);
+});
+
+test('facility deep links wait for a current matching card then focus it only once',()=>{
+  const c=fixture();loaded(c,reading({sites:[]}));c.desk.revealSite='site:US-CA:processing_plant';c.industryRender();
+  assert.equal(c.desk.revealSite,'site:US-CA:processing_plant');assert.equal(c.calls.length,0);
+  c.desk.data=reading();c.industryRender();assert.equal(c.desk.revealSite,null);
+  assert.deepEqual(c.calls,['focus-site:site:US-CA:processing_plant','reveal-site:site:US-CA:processing_plant']);
+  c.industryRender();assert.equal(c.calls.length,2,'Refreshing must not steal focus back to a completed facility');
+});
+
+test('expanded workforce requirements and summary focus survive a refreshed native reading',async()=>{
+  const c=fixture(),data=reading({sites:[productive({lifecycle:lifecycle()})]});loaded(c,data);c.industryRender();
+  const key='site:US-CA:processing_plant:requirements',detail=c.mount.details.find(row=>row.dataset.industryDetail===key);
+  detail.open=true;detail.ontoggle();detail.querySelector('summary').focus();c.scroller.scrollTop=325;
+  c.api=async()=>plain(data);assert.equal(await c.industryFetch(true),true);
+  const fresh=c.mount.details.find(row=>row.dataset.industryDetail===key);
+  assert.equal(fresh.open,true);assert.equal(c.document.activeElement,fresh.querySelector('summary'));assert.equal(c.scroller.scrollTop,325);
 });
 
 test('late reads are rejected after state adoption, close, tab switch and newer request',async()=>{

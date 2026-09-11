@@ -456,6 +456,7 @@ fn fresh_input_blockers_call_for_supply_not_duplicate_factories_and_expire() {
             kind: K::ProcessingPlant,
             level: 1,
             capacity_micros: None,
+            operation: None,
             status: "blocked".into(),
             reason: Some(reason.into()),
             output_daily: 0.0,

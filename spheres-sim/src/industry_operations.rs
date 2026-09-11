@@ -199,6 +199,45 @@ pub fn district_worker_fraction(w: &WorldState, district: &str, kind: K) -> f64 
     }
     w.districts.get(district).map_or(0.0, |&nation| worker_fraction(w, nation, kind))
 }
+
+#[derive(Clone, Debug, Serialize, PartialEq)]
+pub struct SiteStaffing {
+    /// None means the explicit opening enrollment, which is not a paid day.
+    pub matched_day: Option<i32>,
+    pub jobs_required: f64,
+    pub jobs_assigned: f64,
+    pub assigned_by_qualification: [f64; 3],
+    pub qualified_fraction: f64,
+}
+/// Attribute existing shared-sector assignments to one installed facility.
+/// Employees remain assigned during an input shortage; useful operating labor
+/// is a separate receipt. A changed site must await normal workforce matching.
+pub fn current_site_staffing(w: &WorldState, district: &str, kind: K) -> Option<SiteStaffing> {
+    if !enabled(w) || !crate::population::active(w) { return None; }
+    let owner = *w.districts.get(district)?;
+    let p = w.population_system.provinces.get(district)?;
+    if p.last_owner != owner { return None; }
+    let sector = workforce_sector(kind);
+    let mut expected = [0.0; 3];
+    for other in production::PROJECT_KINDS {
+        if workforce_sector(other) != sector { continue; }
+        let people = levels(w, district, other) * jobs_per_level(other) / 1_000_000.0;
+        for (grade, share) in skill_recipe(other).into_iter().enumerate() {
+            expected[grade] += people * share;
+        }
+    }
+    // The same installed-kind order and arithmetic produced project_jobs.
+    if expected != p.project_jobs[sector] { return None; }
+    let jobs_required = levels(w, district, kind) * jobs_per_level(kind);
+    let assigned_by_qualification = std::array::from_fn(|grade| {
+        let need = jobs_required / 1_000_000.0 * skill_recipe(kind)[grade];
+        let total = p.jobs[sector][grade] + p.project_jobs[sector][grade];
+        if total > 0.0 { p.filled[sector][grade] * (need / total) * 1_000_000.0 } else { 0.0 }
+    });
+    Some(SiteStaffing { matched_day: w.population_system.last_day, jobs_required,
+        jobs_assigned: assigned_by_qualification.iter().sum(), assigned_by_qualification,
+        qualified_fraction: district_worker_fraction(w,district,kind) })
+}
 fn skilled(kind: K) -> bool { matches!(kind, K::OfficeDistrict | K::AdvancedIndustry | K::ResearchCenter) }
 
 /// The macro unemployment result supplies available new hires. Existing
@@ -307,12 +346,12 @@ fn production_company(w: &WorldState, nation: NationId, district: &str, kind: K)
     if kind == K::AdvancedIndustry { industry::manufacturing_company(w, nation, district) }
     else { crate::sector_contractors::CompanyModifiers::default() }
 }
-pub(crate) fn operating_raw_recipe(w: &WorldState, nation: NationId, district: &str, kind: K, work: f64, power: f64) -> [f64; 12] {
+pub fn operating_raw_recipe(w: &WorldState, nation: NationId, district: &str, kind: K, work: f64, power: f64) -> [f64; 12] {
     let company = production_company(w, nation, district, kind);
     let (fuel_rate, _) = industry::energy_company_rates(w, nation);
     raw_recipe(kind, work * company.work_rate * company.input_rate, power * fuel_rate)
 }
-pub(crate) fn intermediate_requirement(w: &WorldState, nation: NationId, district: &str, kind: K, work: f64) -> f64 {
+pub fn intermediate_requirement(w: &WorldState, nation: NationId, district: &str, kind: K, work: f64) -> f64 {
     let company = production_company(w, nation, district, kind);
     work * intermediates_per_level(kind) * company.work_rate * company.input_rate
 }
@@ -323,7 +362,7 @@ pub(crate) fn advanced_output_daily(w: &WorldState, district: &str, work: f64) -
         production_company(w,*n,district,K::AdvancedIndustry).work_rate);
     work * rate * ADVANCED_OUTPUT_DAY
 }
-pub(crate) fn operating_cash_required(w: &WorldState, nation: NationId, district: &str, kind: K, work: f64) -> f64 {
+pub fn operating_cash_required(w: &WorldState, nation: NationId, district: &str, kind: K, work: f64) -> f64 {
     let company=production_company(w,nation,district,kind);
     work * company.work_rate * OPERATING_CASH_LEVEL_DAY_BN * (1.0 + company.fee_rate)
 }
@@ -678,6 +717,7 @@ pub fn has_state(w: &WorldState) -> bool {
         || c.cargo.iter().any(|r|r.good==advanced)
         || c.goods_deliveries.iter().any(|r|r.good==advanced));
     commercial_components || !w.production.rebuild_sites.is_empty()
+        || w.production.industry.operations.iter().any(|r|r.operation.is_some())
         || !w.production.operations.is_empty()
         || w.production.projects.iter().any(|p|matches!(p.kind,K::OfficeDistrict|K::Shipyard|K::AdvancedIndustry))
         || !w.manufacturing.shipyard_lines.is_empty()
@@ -694,6 +734,24 @@ pub fn validate(w: &WorldState) -> Result<(), String> {
         }
     }
     let day=clock::absolute_day(w);
+    let mut operating_identities=std::collections::BTreeSet::new();
+    for receipt in &w.production.industry.operations {
+        if let Some(r)=&receipt.operation {
+            if !matches!(receipt.kind,K::ProcessingPlant|K::StarterIndustry|K::MachineryWorks)
+                || w.nation_opt(r.nation).is_none() || !w.districts.contains_key(&receipt.district)
+                || Some(r.day)!=w.production.industry.last_day || r.day>day
+                || !operating_identities.insert((r.day,&receipt.district,receipt.kind.key()))
+                || [r.installed_capacity,r.jobs_required,r.jobs_used].iter().any(|v|!v.is_finite()||*v<0.0)
+                || r.installed_capacity<=0.0 || r.installed_capacity>production::MAX_PROVINCE_LEVEL as f64
+                || r.installed_capacity!=if receipt.kind==K::StarterIndustry {receipt.capacity_micros.unwrap_or(0) as f64/1_000_000.0}else{receipt.level as f64}
+                || r.jobs_required!=r.installed_capacity*jobs_per_level(receipt.kind)
+                || r.jobs_used>r.jobs_required+EPS
+                || r.jobs_assigned.is_some_and(|v|!v.is_finite()||v<0.0||v>r.jobs_required+EPS)
+                || r.jobs_assigned.is_some_and(|v|r.jobs_used>v+EPS) {
+                return Err("Civilian operating receipt has invalid dated ownership or workforce quantities.".into());
+            }
+        }
+    }
     if state.support_day.is_some_and(|d|d>day) || state.last_day.is_some_and(|d|d>day)
         || state.last_day.is_some_and(|d|state.support_day.is_none_or(|support|support<d)) {
         return Err("Industry operating dates are inconsistent with the campaign clock.".into());

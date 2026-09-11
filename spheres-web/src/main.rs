@@ -37,6 +37,7 @@ mod government_view;
 mod fiscal_recovery_view;
 mod money_commitments;
 mod money_view;
+mod construction_outcomes;
 mod companies_view;
 mod transport;
 #[cfg(test)]
@@ -3553,42 +3554,42 @@ fn industry_json(w: &WorldState, me: NationId) -> serde_json::Value {
     use spheres_sim::industry;
     let snapshot = industry::snapshot(w, me);
     let today = spheres_sim::clock::absolute_day(w);
-    let operation_day = snapshot.settled_day.filter(|day| *day <= today);
     let mut sites = Vec::new();
     for site in &snapshot.sites {
         let kind = site.kind;
         let spec = production::catalog(kind);
-        let productive = matches!(kind, ProjectKind::ProcessingPlant | ProjectKind::StarterIndustry | ProjectKind::MachineryWorks);
-        let operation = operation_day.and_then(|_| w.production.industry.operations.iter()
-            .find(|row| row.district == site.district && row.kind == kind));
+        let productive = matches!(kind, ProjectKind::ProcessingPlant | ProjectKind::StarterIndustry | ProjectKind::MachineryWorks
+            | ProjectKind::OfficeDistrict | ProjectKind::AdvancedIndustry);
+        let lifecycle = construction_outcomes::for_site(w,me,&site.district,kind);
+        let operation = lifecycle.get("operation").filter(|row|row.is_object());
         let research = snapshot.research_operations.iter().find(|row|
             kind == ProjectKind::ResearchCenter && row.district == site.district
                 && row.nation == me && row.day <= today);
-        let receipt_day = research.map(|row| row.day).or_else(|| operation.map(|_| operation_day.unwrap()));
+        let receipt_day = operation.and_then(|row|row["day"].as_i64()).map(|day|day as i32);
         let has_receipt = receipt_day.is_some();
-        let status = operation.map(|row| row.status.as_str())
-            .or_else(|| research.map(|row| row.status.as_str()))
+        let status = operation.and_then(|row| row["status"].as_str())
             .unwrap_or(if productive { "awaiting_settlement" } else { "ready" });
-        let reason = operation.and_then(|row| row.reason.clone())
-            .or_else(|| research.map(|row| row.reason.clone()))
+        let reason = operation.and_then(|row| row["reason"].as_str()).map(str::to_owned)
             .or_else(|| (!has_receipt).then(|| if productive {
                 "No operating receipt has settled for this facility yet. Its first daily operation will report output or the exact constraint.".to_string()
             } else { spec.effect.to_string() }));
         let output_unit = match kind {
             ProjectKind::ProcessingPlant | ProjectKind::StarterIndustry => Some("intermediate packs"),
             ProjectKind::MachineryWorks => Some("capital-goods packs"),
+            ProjectKind::OfficeDistrict => Some("service value added ($bn/day)"),
+            ProjectKind::AdvancedIndustry => Some("advanced components"),
             _ => None,
         };
         let mut actions = vec![serde_json::json!({"action":"province","label":"Inspect province","district":site.district})];
         let budget = |ministry: &str, department: usize, label: &str| serde_json::json!({
             "action":"budget","label":label,"ministry":ministry,"department":department});
         if productive {
-            actions.push(budget("industry", if kind == ProjectKind::MachineryWorks {0} else {2}, "Review factory operating funds"));
+            actions.push(budget("industry", if matches!(kind,ProjectKind::MachineryWorks|ProjectKind::OfficeDistrict|ProjectKind::AdvancedIndustry) {0} else {2}, "Review facility operating funds"));
             actions.push(budget("industry", 1, "Review energy funding"));
             actions.push(serde_json::json!({"action":"resources","label":"Inspect raw input supplies"}));
             if spheres_sim::commerce::active(w) {
                 actions.push(serde_json::json!({"action":"trade","label":"Inspect goods and trade",
-                    "good":if kind == ProjectKind::MachineryWorks {"capital_goods"} else {"intermediates"}}));
+                    "good":if kind == ProjectKind::MachineryWorks {"capital_goods"} else if kind==ProjectKind::AdvancedIndustry {"advanced_components"} else {"intermediates"}}));
             }
         } else if kind == ProjectKind::Generation {
             actions.push(budget("industry", 1, "Review energy funding"));
@@ -3596,7 +3597,12 @@ fn industry_json(w: &WorldState, me: NationId) -> serde_json::Value {
         } else if kind == ProjectKind::ResearchCenter {
             actions.push(budget("science", 0, "Review research funding"));
             actions.push(serde_json::json!({"action":"research","label":"Inspect research projects"}));
-        } else if kind == ProjectKind::ArmsPlant {
+        } else if matches!(kind,ProjectKind::ArmsPlant|ProjectKind::Shipyard) {
+            if kind==ProjectKind::Shipyard {
+                actions.push(budget("industry", 0, "Review dock operating funds"));
+                actions.push(budget("industry", 1, "Review energy funding"));
+                actions.push(serde_json::json!({"action":"resources","label":"Inspect generating fuel"}));
+            }
             actions.push(budget("defense", 3, "Review equipment funding"));
             actions.push(serde_json::json!({"action":"manufacture","label":"Manage equipment production","district":site.district}));
         }
@@ -3610,13 +3616,12 @@ fn industry_json(w: &WorldState, me: NationId) -> serde_json::Value {
             "productive":productive,"status":status,"reason":reason,
             "has_receipt":has_receipt,"attention":attention,"receipt_day":receipt_day,
             "receipt_label":receipt_day.map(|day|settled_day_json(day)["label"].clone()),
-            "output_daily":if productive {operation.map(|row|row.output_daily)} else {None},
-            "output_unit":output_unit,"power_used_daily":operation.map(|row|row.power_used_daily),
-            "cash_spent_daily_bn":operation.map(|row|row.cash_spent_daily_bn)
-                .or_else(||research.map(|row|row.cash_spent_daily_bn)),
+            "output_daily":if productive {operation.and_then(|row|row["output"].as_f64())} else {None},
+            "output_unit":output_unit,"power_used_daily":operation.and_then(|row|row["power_used_daily"].as_f64()),
+            "cash_spent_daily_bn":operation.and_then(|row|row["cash_spent_bn"].as_f64()),
             "research":research.map(|row|serde_json::json!({"day":row.day,"technology_name":row.technology_name,
                 "prototype_credit":row.prototype_credit,"goods_used":row.goods_used})),
-            "actions":actions,
+            "actions":actions,"lifecycle":lifecycle,
         }));
     }
     let mut queue: Vec<_> = production::projects_for(w, me)
@@ -3632,16 +3637,27 @@ fn industry_json(w: &WorldState, me: NationId) -> serde_json::Value {
             "district":row["province"]["id"],"district_name":row["province"]["name"],
             "progress":row["progress"],"eta_days":row["eta_days"]})));
     let daily=spheres_sim::clock::is_daily(w);
-    let settlement_day=operation_day.into_iter().chain(snapshot.research_operations.iter()
-        .filter(|row|row.nation==me&&row.day<=today).map(|row|row.day)).max();
+    let settlement_day=sites.iter().filter_map(|site|site["receipt_day"].as_i64()).max();
+    let dated_power:Vec<f64>=sites.iter().filter(|site|site["receipt_day"].as_i64()==settlement_day)
+        .filter_map(|site|site["power_used_daily"].as_f64()).collect();
+    let power_used=(!dated_power.is_empty()).then(||dated_power.iter().sum::<f64>());
+    let mut goods=vec![serde_json::json!({"good":"intermediates","name":"Intermediate packs","stock":snapshot.goods.intermediates,"capacity":snapshot.capacity_each}),
+        serde_json::json!({"good":"capital_goods","name":"Capital-goods packs","stock":snapshot.goods.capital_goods,"capacity":snapshot.capacity_each})];
+    if spheres_sim::industry_operations::enabled(w) {
+        goods.push(serde_json::json!({"good":"advanced_components","name":"Advanced components",
+            "stock":spheres_sim::industry_operations::advanced_component_stock(w,me),
+            "capacity":spheres_sim::industry_operations::advanced_component_capacity(w,me)}));
+    }
     serde_json::json!({"nation":me,"name":me.name(),"date":w.date_str(),"as_of_day":today,
         "enabled":daily&&w.rules.production_system&&w.rules.resource_market,"daily":daily,
-        "settlement":settlement_day.map(|day|serde_json::json!({"day":day,"label":settled_day_json(day)["label"]})),
+        "settlement":settlement_day.map(|day|serde_json::json!({"day":day,"label":settled_day_json(day as i32)["label"]})),
         "summary":{"facility_count":sites.len(),"attention_count":sites.iter().filter(|row|row["attention"]==true).count(),"queued_count":queue.len()},
         "sites":sites,"queue":queue,
-        "goods":[{"good":"intermediates","name":"Intermediate packs","stock":snapshot.goods.intermediates,"capacity":snapshot.capacity_each},
-            {"good":"capital_goods","name":"Capital-goods packs","stock":snapshot.goods.capital_goods,"capacity":snapshot.capacity_each}],
-        "power":{"capacity_daily":snapshot.power_capacity_daily,"used_daily":operation_day.map(|_|snapshot.power_used_daily)},
+        "goods":goods,
+        "power":{"capacity_daily":snapshot.power_capacity_daily,"used_daily":power_used,
+            "receipt_day":settlement_day,"receipt_label":settlement_day.map(|day|settled_day_json(day as i32)["label"].clone()),
+            "recorded_facility_count":dated_power.len(),
+            "note":"Sum of displayed facility power receipts on the stated date only. Excludes earlier receipts and activities without saved power use; this is not total national consumption."},
         "note":"Completed facilities operate automatically when their inputs, power and operating funds are available. Output and spending are dated receipts; goods are inventory, not treasury cash. Support upgrades provide their stated capabilities and are not separate pack producers. Actual value added is recorded in the province economy, without a second completion or sales bonus. Construction funding and operating purchases remain distinct uses of the annual capital budget."})
 }
 
@@ -3874,6 +3890,7 @@ fn production_project_json(w: &WorldState, me: NationId, p: &Project) -> serde_j
         "name": spec.name,
         "description": spec.description,
         "effect": spec.effect,
+        "outcome_action": construction_outcomes::action(&p.district,p.kind),
         "province": {
             "id": p.district,
             "name": spheres_sim::districts::name_of(&p.district).unwrap_or(&p.district),
@@ -4218,6 +4235,10 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
             },
             "capabilities": district_capabilities_json(w,district),
             "module_capacity": spheres_sim::industrial_modules::capacity(w,district),
+            "outcome_actions":served_construction_catalog(w).filter(|spec|
+                production::level(w,district,spec.kind)>0 || (spec.kind==ProjectKind::StarterIndustry
+                    && spheres_sim::industrial_modules::capacity(w,district)>0.0))
+                .map(|spec|construction_outcomes::action(district,spec.kind)).collect::<Vec<_>>(),
         }))
         .collect::<Vec<_>>();
 
@@ -4272,6 +4293,7 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
     };
     serde_json::json!({
         "mode": "province_projects",
+        "date":w.date_str(),"as_of_day":spheres_sim::clock::absolute_day(w),
         "preview_notice": if spheres_sim::clock::is_daily(w) { None } else if w.daily.activate_after_month.is_some() {
             Some("Construction effects reviews need daily play. This older campaign will switch after the current month finishes.")
         } else { Some("Construction effects reviews need daily play.") },
@@ -8020,7 +8042,11 @@ fn main() {
             (Method::Get, "/api/production") => {
                 let g = game.lock().unwrap();
                 match g.world.player {
-                    Some(me) => json_response(production_json(&g.world, me)),
+                    Some(me) => {
+                        let mut value=production_json(&g.world,me);
+                        value["session_id"]=serde_json::json!(g.session_id);
+                        json_response(value)
+                    },
                     None => json_error(
                         400,
                         serde_json::json!({ "error": "no nation chosen" }),
@@ -8316,6 +8342,7 @@ mod tests {
         g.world.production.industry.last_day=Some(day);
         g.world.production.industry.operations.push(spheres_sim::industry::SiteStatus{
             district:district.clone(),kind:ProjectKind::StarterIndustry,level:0,capacity_micros:Some(12_345),
+            operation:None,
             status:"limited".into(),reason:Some("Iron supply limits output to 50% of the planned line rate.".into()),
             output_daily:0.0061725,power_used_daily:0.0061725,cash_spent_daily_bn:0.00000007407});
         let before=save(&g.world);

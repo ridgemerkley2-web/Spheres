@@ -108,23 +108,28 @@ struct PlantCapacity {
 }
 fn plant_capacity(w: &WorldState, district: &str) -> PlantCapacity {
     let mut out = PlantCapacity::default();
+    let owner = w.districts.get(district).copied();
+    let company = owner.map_or_else(Default::default, |n| industry::manufacturing_company(w,n,district));
+    let energy_fee = owner.map_or(0.0, |n| industry::energy_company_rates(w,n).1);
     for kind in [K::ProcessingPlant, K::StarterIndustry, K::MachineryWorks] {
         let rate = industry::plant_rate(w, district, kind);
         let power = rate * industry::power_per_pack(w, district, kind);
         if kind == K::MachineryWorks {
             out.capital_goods += rate;
-            out.intermediate_input += rate;
+            out.intermediate_input += rate * company.input_rate;
         } else {
             out.intermediates += rate;
         }
         out.power += power;
-        let raw = industry::operating_recipe(kind, rate, power);
+        let raw = owner.map_or_else(|| industry::operating_recipe(kind,rate,power),
+            |n| industry::company_operating_recipe(w,n,district,kind,rate,power));
         for (total, amount) in out.raw.iter_mut().zip(raw) {
             *total += amount;
         }
         // Exact current civilian-operation and generating-service rates from
         // industry::tick_day. Raw purchases are separate from these cash bills.
-        out.cash_bn += rate * 0.00001 + power * 0.000002;
+        out.cash_bn += rate * 0.00001 * (1.0 + company.fee_rate)
+            + power * 0.000002 * (1.0 + energy_fee);
     }
     out
 }
@@ -464,6 +469,7 @@ pub fn preview(
         cost_bn:cost,minimum_days:minimum,eta_days:eta,can_start,reason,province_effects:vec![],national_effects:vec![],operating_requirements:vec![],notes:vec![
             "After values describe completed facilities at the current rules, prices and ownership. Rated output requires operating inputs and funding; it is not guaranteed production, GDP, tax income or profit.".into(),
             "Construction is paid as work progresses. No raw materials, manufactured goods or political capital are charged to start this building; paid work is sunk if cancelled.".into(),
+            "The initial cost is unassigned base work. Choosing a construction contractor later can add separately reviewed service fees within the same funding budget.".into(),
             "ETA holds today's allocation to this new normal-priority project constant. Queue completions, budget changes and fiscal renewals can change the finish date.".into(),
         ]};
     if let Some(why) = schedule_reason {
@@ -532,18 +538,19 @@ pub fn preview(
         }
         K::Generation => {
             out.province_effects.push(effect(
-                "Installed generation contribution",
+                "Base installed generation contribution",
                 modules::effective_capacity(w, district, kind) * 10.0,
                 modules::effective_capacity(&after, district, kind) * 10.0,
                 "modeled power units/day",
-                "Adds to the shared national civilian generation pool.",
+                "Base installed capacity before its operator's bonus. The national generation row includes current contractor terms.",
             ));
             out.national_effects.push(effect("National civilian generation",industry::power_capacity(w,nation),industry::power_capacity(&after,nation),"modeled power units/day","Dispatchable modeled capacity; actual output is demand-, grid-, fuel- and funding-limited."));
             let delta = (industry::power_capacity(&after, nation)
                 - industry::power_capacity(w, nation))
             .max(0.0);
-            out.operating_requirements.push(requirement("Coal if all added generation is used",Some(delta*0.02),&format!("{}/day",resources::Commodity::Coal.unit()),"Charged only when civilian plants use this power; idle generation consumes no fuel."));
-            out.operating_requirements.push(requirement("Generating service bill at full added output",Some(delta*0.000002),"$bn/day","Industry / Electricity operating authority; no bill when idle. Fuel purchases are separate."));
+            let (fuel_rate,energy_fee)=industry::energy_company_rates(&after,nation);
+            out.operating_requirements.push(requirement("Coal if all added generation is used",Some(delta*0.02*fuel_rate),&format!("{}/day",resources::Commodity::Coal.unit()),"Current pooled generation terms after completion, including contractor fuel savings. Charged only when plants use this power; idle generation consumes no fuel."));
+            out.operating_requirements.push(requirement("Generating service bill at full added output",Some(delta*0.000002*(1.0+energy_fee)),"$bn/day","Industry / Electricity authority at current pooled dispatch terms, including operator fees; no bill when idle. Fuel purchases are separate."));
         }
         K::Warehouse => {
             for label in [
@@ -564,10 +571,11 @@ pub fn preview(
             out.operating_requirements.push(requirement("Military manufacturing enabled",Some(flag(w.rules.manufacturing_system&&w.rules.resource_market)),"enabled","Military manufacturing and the physical resource market must be enabled before a line can operate."));
         }
         K::ResearchCenter => {
-            out.province_effects.push(effect("Prototype credit ceiling",research_capacity(w,district),research_capacity(&after,district),"acquisition-cost units/day","Conditional on useful focused research, Science operating authority and manufactured supplies; one target per center per day."));
-            out.national_effects.push(effect("National prototype credit ceiling",owned_sum(w,nation,research_capacity),owned_sum(&after,nation,research_capacity),"acquisition-cost units/day","All centers also share each target's daily cap (25% of domain effort) and lifetime cap (20% of its current base research cost)."));
+            out.province_effects.push(effect("Base prototype-service capacity",research_capacity(w,district),research_capacity(&after,district),"acquisition-cost units/day","Unassigned base capacity. The research target selected each day determines contractor work bonuses and fees; useful focus, staffing, supplies and Science authority still limit actual credit."));
+            out.national_effects.push(effect("National base prototype-service capacity",owned_sum(w,nation,research_capacity),owned_sum(&after,nation,research_capacity),"acquisition-cost units/day","Base capacity before research-target contractor bonuses. All centers also share each target's daily cap (25% of domain effort) and lifetime cap (20% of its current base research cost)."));
             out.operating_requirements.push(requirement("Prototype operations enabled",Some(flag(industry::research_enabled(w))),"enabled","Current research operations require daily simulation, production, the resource market and either Economic Competition or the industry extension. Disabled operations generate zero prototype credit."));
-            out.operating_requirements.push(requirement("Science operating cash per added level",Some(industry::PROTOTYPE_CASH_PER_LEVEL_DAY_BN),"$bn/day","Maximum daily bill while a full added level performs useful prototype work; no generic research-output or GDP bonus."));
+            out.operating_requirements.push(requirement("Base Science operating cash per added level",Some(industry::PROTOTYPE_CASH_PER_LEVEL_DAY_BN),"$bn/day","Base service charge for a full added level of useful work, before the selected research target's contractor fee. It is not a maximum bill or an immediate charge."));
+            out.operating_requirements.push(requirement("Research-target contractor terms",None,"target-specific","Actual credit and fees use the contractor assigned to the active research target selected on the operating date. A building quote cannot guarantee one target's bonus or fee for all future work; review the research contract separately."));
             out.operating_requirements.push(requirement(
                 "Intermediate packs per added level",
                 Some(industry::PROTOTYPE_INTERMEDIATES_PER_LEVEL_DAY),
@@ -628,8 +636,8 @@ fn add_operation_effects(out: &mut ConstructionPreview, w: &WorldState, after: &
             out.province_effects.push(effect("Potential annual service value added",operations::office_annual_value_added(w,district,current),operations::office_annual_value_added(after,district,next),"$bn/year","Full supplied operation only; available skills, electricity, inputs, operating funds and existing domestic service demand cap realized GDP. Completion grants no GDP or cash."));
         }
         K::AdvancedIndustry => {
-            out.province_effects.push(effect("Rated advanced-component output",current*operations::ADVANCED_OUTPUT_DAY,next*operations::ADVANCED_OUTPUT_DAY,"components/day","Finite output only after actual operating inputs and funds settle. Components are separate from equipment and create no military capability."));
-            out.national_effects.push(effect("National advanced-component output capacity",owned_sum(w,nation,|w,d|production::level(w,d,kind) as f64*operations::ADVANCED_OUTPUT_DAY),owned_sum(after,nation,|w,d|production::level(w,d,kind) as f64*operations::ADVANCED_OUTPUT_DAY),"components/day","Installed capacity, not a promise of production. Supplier component contracts remain a later integration; no existing paid equipment work is repriced."));
+            out.province_effects.push(effect("Rated advanced-component output",operations::advanced_output_daily(w,district,current),operations::advanced_output_daily(after,district,next),"components/day","Finite output at current contractor terms only after actual operating inputs and funds settle. Components are separate from equipment and create no military capability."));
+            out.national_effects.push(effect("National advanced-component output capacity",owned_sum(w,nation,|w,d|operations::advanced_output_daily(w,d,production::level(w,d,kind) as f64)),owned_sum(after,nation,|w,d|operations::advanced_output_daily(w,d,production::level(w,d,kind) as f64)),"components/day","Installed capacity at current contractor terms, not a promise of production. Adopted suppliers can buy finite component stock; existing paid equipment work retains its frozen terms."));
         }
         K::Shipyard => {
             out.province_effects.push(effect("Additional naval berths",current,next,"slots","Optional new naval line reservations. Existing paid naval lines retain their original Arms Plant berth, and factory leases are preserved."));
@@ -639,11 +647,12 @@ fn add_operation_effects(out: &mut ConstructionPreview, w: &WorldState, after: &
     }
     let power = delta*operations::power_per_level(after,district,kind);
     out.operating_requirements.push(requirement("Additional operating electricity",Some(power),"modeled power units/day","Requires shared generation and local grid capacity. Construction itself needs only funding."));
-    out.operating_requirements.push(requirement("Operating service cash",Some(delta*operations::OPERATING_CASH_LEVEL_DAY_BN),"$bn/day","Industry operating authority, charged only for supplied operation; no contractor fee in this integration."));
-    out.operating_requirements.push(requirement("Generation service cash",Some(power*operations::ENERGY_CASH_POWER_DAY_BN),"$bn/day","Electricity authority pays actual generation once. Fuel purchases remain separate."));
-    let packs=delta*operations::intermediates_per_level(kind);
+    let energy_fee = industry::energy_company_rates(after,nation).1;
+    out.operating_requirements.push(requirement("Operating service cash",Some(operations::operating_cash_required(after,nation,district,kind,delta)),"$bn/day","Industry operating authority, including current contractor fees, charged only for supplied operation."));
+    out.operating_requirements.push(requirement("Generation service cash",Some(power*operations::ENERGY_CASH_POWER_DAY_BN*(1.0+energy_fee)),"$bn/day","Electricity authority pays actual generation and its current contractor fee once. Fuel purchases remain separate."));
+    let packs=operations::intermediate_requirement(after,nation,district,kind,delta);
     if packs>0.0 { out.operating_requirements.push(requirement("Intermediate packs",Some(packs),"packs/day","Consumed by operation, never by construction.")); }
-    let raw=operations::raw_recipe(kind,delta,power);
+    let raw=operations::operating_raw_recipe(after,nation,district,kind,delta,power);
     for c in resources::ALL {
         if raw[c.idx()]>0.0 { out.operating_requirements.push(requirement(c.name(),Some(raw[c.idx()]),&format!("{}/day",c.unit()),"Full added operating recipe; shortages reduce output without consuming an incomplete bundle.")); }
     }
@@ -794,7 +803,7 @@ mod tests {
                     manufacturing::plant_slots(&completed, &d) as f64,
                 ),
                 K::ResearchCenter => near(
-                    row(&p.province_effects, "Prototype credit ceiling")
+                    row(&p.province_effects, "Base prototype-service capacity")
                         .after
                         .unwrap(),
                     research_capacity(&completed, &d),
@@ -934,7 +943,7 @@ mod tests {
         w.rules.economic_competition = false;
         let p = preview(&w, USA, &d, K::ResearchCenter, None);
         assert!(p.can_start);
-        let r = row(&p.province_effects, "Prototype credit ceiling");
+        let r = row(&p.province_effects, "Base prototype-service capacity");
         assert_eq!(r.before, Some(0.0));
         assert_eq!(r.after, Some(0.0));
         assert_eq!(

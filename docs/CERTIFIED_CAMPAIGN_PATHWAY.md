@@ -436,7 +436,7 @@ Evidence: [S06 money, recovery and verification](campaign-certification/S06/READ
 
 #### S07 — Finish construction, jobs and operating outcomes
 
-**Status:** Planned · **Requires:** S06
+**Status:** In progress · **Requires:** S06
 
 **Completion marker:** Build → staff → operate → understand the province/national effect through one connected flow.
 
