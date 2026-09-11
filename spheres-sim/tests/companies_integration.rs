@@ -1840,7 +1840,7 @@ fn s03_both_supplier_generations_keep_certification_stock_invoices_and_party_ide
             let mut w=base.clone();w.companies.version=version;
             purchase(&mut w,company,id,1);
             apply(&mut w,companies::CompanyOrder::Inventory{company,product:id,stock_target:0});
-            if party {spheres_sim::party_leadership::enable_campaign(&mut w).unwrap();}
+            if party {w.rules.ideology_blocs=true;spheres_sim::party_leadership::enable_campaign(&mut w).unwrap();}
             let old=spheres_sim::save(&w);
             assert_eq!(spheres_sim::save(&spheres_sim::load(&old).unwrap()),old);
             spheres_sim::connected_economy::enable(&mut w).unwrap();

@@ -1188,12 +1188,13 @@ fn live_site_blocker(w: &WorldState, id: NationId, job: &EquipmentProject) -> Op
         })
         .collect();
     jobs.sort_by_key(|p| (p.priority.dispatch_rank(), p.id));
-    // Existing directed lines retain their occupied plant places. New project
-    // starts preflight all reservations; malformed/reduced-capacity saves use
-    // stable priority order rather than running more work than the site holds.
+    // Existing directed lines and dated public work retain dispatch priority
+    // after capacity loss. New starts preflight company leases too, but the
+    // company scheduler already yields to public work (including work finished
+    // today); subtracting leases here would block both existing entitlements.
     let legacy = crate::manufacturing::lines_for(w, id)
         .filter(|l| l.district == district && !w.manufacturing.shipyard_lines.contains(&l.id))
-        .count() + crate::companies::reserved_slots(w, id, district);
+        .count();
     let remaining =
         (crate::manufacturing::plant_slots(w, district) as usize).saturating_sub(legacy);
     if jobs
