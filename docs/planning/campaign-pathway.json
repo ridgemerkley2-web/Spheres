@@ -166,7 +166,7 @@
       "id": "S06",
       "phase": "nation",
       "title": "Explain the country's money and recovery",
-      "status": "planned",
+      "status": "in_progress",
       "depends": [
         "S05"
       ],
@@ -779,10 +779,12 @@
   "last_completed_session": "S05",
   "next_session": "S06",
   "execution": {
-    "authorized_through": "S05",
-    "stop_boundary": "S05",
-    "status": "stopped",
-    "stopped_after": "S05",
+    "authorized_through": "S06",
+    "stop_boundary": "S06",
+    "status": "in_progress",
+    "previous_stop": "S05",
+    "instruction": "Next",
+    "instruction_date": "2026-09-11",
     "next_session_requires_instruction": true
   },
   "gate_decisions": {

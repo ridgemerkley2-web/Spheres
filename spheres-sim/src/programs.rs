@@ -627,10 +627,16 @@ pub fn finish_day(w: &mut WorldState) {
             0.0
         };
         p.settled_day = Some(today);
-        bills.push((n.id, net, net / p.basis_gdp.max(0.1)));
+        let detail = crate::fiscal_journal::FiscalDetail {
+            revenue_bn:p.revenue_today_bn, spending_bn:spent, interest_bn:p.interest_today_bn,
+            departments_bn:Some(p.spent_today_bn), prepaid_used_bn:p.prepaid_used_today_bn.iter().flatten().sum(),
+            construction_bn:p.construction_spent_today_bn, supplier_inclusions_bn:Default::default(),
+        };
+        bills.push((n.id, net, net / p.basis_gdp.max(0.1), detail));
     }
-    for (id, net, share) in bills {
-        crate::economy::charge(w, id, net, share);
+    for (id, net, share, detail) in bills {
+        crate::economy::charge_for(w, id, net, share, crate::fiscal_journal::CashCause::BudgetSettlement);
+        crate::fiscal_journal::record_fiscal_detail(w,id,detail);
     }
 }
 

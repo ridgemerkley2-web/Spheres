@@ -1242,10 +1242,10 @@ fn apply_market_net(w: &mut WorldState, market: &mut MarketState, id: NationId, 
         let used = credit.min(net_cost);
         set_market_cash(market, id, credit - used);
         let borrowed = net_cost - used;
-        crate::economy::charge(w, id, borrowed, borrowed / gdp);
+        crate::economy::charge_for(w, id, borrowed, borrowed / gdp, crate::fiscal_journal::CashCause::ResourceMarket);
     } else if net_cost < 0.0 {
         let on_the_books = w.nation(id).on_the_books();
-        let excess = crate::economy::charge(w, id, net_cost, net_cost / gdp);
+        let excess = crate::economy::charge_for(w, id, net_cost, net_cost / gdp, crate::fiscal_journal::CashCause::ResourceMarket);
         if excess > 0.0 && !on_the_books {
             let credit = cash_slot(&market.cash, id)
                 .ok()
@@ -2255,9 +2255,9 @@ fn settle(w: &mut WorldState, payer: NationId, payee: NationId, bn_per_year: f64
     let bn_per_year = bn_per_year * crate::clock::month_fraction(w);
     let bn = bn_per_year / 12.0;
     let g = w.nation(payer).gdp.max(0.1);
-    crate::economy::charge(w, payer, bn, bn_per_year / 12.0 / g);
+    crate::economy::charge_for(w, payer, bn, bn_per_year / 12.0 / g, crate::fiscal_journal::CashCause::ResourceTransfer);
     let g = w.nation(payee).gdp.max(0.1);
-    crate::economy::charge(w, payee, -bn, -(bn_per_year / 12.0 / g));
+    crate::economy::charge_for(w, payee, -bn, -(bn_per_year / 12.0 / g), crate::fiscal_journal::CashCause::ResourceTransfer);
 }
 
 /// Offers past their month are gone (spec section 4.8), and the lapse is
@@ -5143,7 +5143,7 @@ pub fn start_mine(
     // Only the legacy monthly simulation commits the whole bill upfront.
     // Existing prepaid rows without a funding ledger keep their paid status.
     let pay_as_built = crate::clock::is_daily(w);
-    if !pay_as_built { crate::economy::charge(w, nation, investment_bn, investment_bn / gdp); }
+    if !pay_as_built { crate::economy::charge_for(w, nation, investment_bn, investment_bn / gdp, crate::fiscal_journal::CashCause::LegacyMineConstruction); }
     else { crate::industry::enroll_mine(w, district, c, crate::clock::days_for_months(w, MINE_BUILD_MONTHS)); }
     let project = MineProject {
         district: district.to_string(),
@@ -7755,7 +7755,7 @@ mod tests {
         assert!(!body.contains("treasury_bn") && !body.contains("debt_bn"),
             "resources.rs reaches a nation's treasury directly");
         assert_eq!(
-            body.matches("economy::charge(").count(),
+            body.matches("economy::charge_for(").count(),
             5,
             "settle's two legs, the spot ledger's two arms, and the mine"
         );

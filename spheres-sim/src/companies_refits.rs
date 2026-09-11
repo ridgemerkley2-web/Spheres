@@ -360,7 +360,7 @@ fn refund_cancelled_refit(w: &mut WorldState, i: usize, j: usize, day: i32) {
         return;
     }
     let gdp = w.nation(n).gdp.max(0.1);
-    crate::economy::charge(w, n, -refund, -refund / gdp);
+    crate::economy::charge_for(w, n, -refund, -refund / gdp, crate::fiscal_journal::CashCause::RefitRefund);
     let c = &mut w.companies.firms[i];
     c.refit_refunds_bn += refund;
     let p = &mut c.refits[j];
@@ -426,6 +426,8 @@ fn settle_refit_advance(w: &mut WorldState, i: usize, r: &Receivable, day: i32) 
     p.reason="The service deposit is held in locked escrow. The company must fund the real conversion from its own working capital.".into();
     transaction(c, day, "refit_advance", r.amount_bn, r.product, 0);
     c.receivables.retain(|x| x.id != r.id);
+    let nation=c.nation;
+    crate::fiscal_journal::supplier_settled(w,nation,day,crate::fiscal_journal::SupplierInclusion::RefitEscrow,r.amount_bn);
     refund_cancelled_refit(w, i, j, day);
 }
 
@@ -509,7 +511,7 @@ fn tick_company_refit(w: &mut WorldState, i: usize, j: usize, day: i32, facility
             return;
         }
         let gdp = w.nation(c.nation).gdp.max(0.1);
-        crate::economy::charge(w, c.nation, -raw_cost, -raw_cost / gdp);
+        crate::economy::charge_for(w, c.nation, -raw_cost, -raw_cost / gdp, crate::fiscal_journal::CashCause::SupplierInputs);
         }
         let c = &mut w.companies.firms[i];
         c.cash_bn = if operating.is_some() { (c.cash_bn-needed).max(0.0) } else { c.cash_bn-needed };

@@ -424,7 +424,7 @@ fn tick_ammo_manufacturing(
         return;
     }
     let gdp = w.nation(c.nation).gdp.max(0.1);
-    crate::economy::charge(w, c.nation, -materials, -materials / gdp);
+    crate::economy::charge_for(w, c.nation, -materials, -materials / gdp, crate::fiscal_journal::CashCause::SupplierInputs);
     let c = &mut w.companies.firms[i];
     c.cash_bn -= materials + fabrication;
     c.materials_expense_bn += materials;

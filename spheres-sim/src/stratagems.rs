@@ -253,7 +253,7 @@ pub const DECK: &[Stratagem] = &[
                 let gdp = n_of(w, id).gdp;
                 let owed_bn = n_of(w, id).debt_bn.unwrap_or(ratio * gdp);
                 let share = ratio * 0.55 - ratio;
-                crate::economy::charge(w, id, -(owed_bn * 0.45), share);
+                crate::economy::charge_for(w, id, -(owed_bn * 0.45), share, crate::fiscal_journal::CashCause::DebtRestructuring);
                 let n = w.nation_mut(id);
                 n.stability = (n.stability + 4.0).min(100.0);
             }
@@ -299,7 +299,7 @@ pub const DECK: &[Stratagem] = &[
             // debt and BANKS the rest, where the ratio arithmetic could only
             // clamp at zero and lose it.
             let gdp = n_of(w, id).gdp;
-            crate::economy::charge(w, id, -(0.08 * gdp), -0.08);
+            crate::economy::charge_for(w, id, -(0.08 * gdp), -0.08, crate::fiscal_journal::CashCause::AssetSale);
             let name = id.name();
             w.headline(format!("{} sells the state's industry.", name));
         },

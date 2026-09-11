@@ -745,7 +745,7 @@ fn the_stratagem_deck_moves_money_only_through_the_one_channel() {
         );
     }
     assert_eq!(
-        body.matches("economy::charge(").count(),
+        body.matches("economy::charge_for(").count(),
         2,
         "the debt write-down and the privatisation proceeds"
     );

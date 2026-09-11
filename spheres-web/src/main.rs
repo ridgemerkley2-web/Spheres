@@ -35,6 +35,8 @@ mod s05_campaign_api_tests;
 mod equipment_view;
 mod government_view;
 mod fiscal_recovery_view;
+mod money_commitments;
+mod money_view;
 mod companies_view;
 mod transport;
 #[cfg(test)]
@@ -3453,6 +3455,7 @@ fn cash_flow_json(w: &WorldState, me: NationId) -> serde_json::Value {
         "note":"Daily figures cover the government budget. Trade, transfers and other transactions may also change the treasury. Budget surpluses reduce debt before building cash; deficits use cash before adding debt. Available funding is authorization, not a separate cash balance, and can include previously paid equipment."});
     view["priorities"]=serde_json::Value::Array(cash_flow_priorities(&view));
     view["connected_economy"]=connected_economy_json(w,me);
+    view["money"]=money_view::view(w,me);
     view
 }
 
@@ -3492,7 +3495,7 @@ fn cash_flow_priorities(view:&serde_json::Value)->Vec<serde_json::Value> {
                 "Recorded revenue covered ministry spending. Interest exceeded the remaining amount, leaving the government budget in deficit. Review the debt-service terms alongside the current policy settings.".to_string()
             } else {
                 format!("Ministry spending exceeded recorded revenue before interest. {} Review the funding plan and the services it supports.",
-                    if interest>0.0 {"Interest then increased the government budget deficit."} else {"No interest was charged in this posting."})
+                    if interest>0.0 {"Interest then increased the government budget deficit."} else if interest<0.0 {"A net interest credit reduced, but did not eliminate, the government budget deficit."} else {"No interest was charged in this posting."})
             };
             let mut metrics=vec![metric("Recorded revenue",revenue,&period),metric("Ministry spending",spent,&period),
                 metric("Balance before interest",primary,&period),metric("Interest",interest,&period),metric("Final budget balance",balance,&period)];
@@ -8584,6 +8587,18 @@ mod tests {
         assert!(first["detail"].as_str().unwrap().contains("construction was smaller than the deficit"));
         assert_eq!(view,cash_flow_json(&g.world,me));
         assert_eq!(save(&g.world),before,"Advice neither edits the annual plan nor chooses a rate");
+    }
+
+    #[test]
+    fn cash_flow_priorities_explain_a_negative_interest_credit() {
+        let view=serde_json::json!({"on_the_books":true,"annual":{"renewed":true},
+            "settled":{"label":"1990-01-01","revenue_bn":1.0,"ministry_spend_bn":3.0,
+                "primary_balance_bn":-2.0,"interest_bn":-0.5,"balance_bn":-1.5}});
+        let priorities=cash_flow_priorities(&view);
+        assert_eq!(priorities[0]["id"],"primary_deficit");
+        let detail=priorities[0]["detail"].as_str().unwrap();
+        assert!(detail.contains("interest credit reduced"));assert!(!detail.contains("No interest"));
+        assert_eq!(priorities[0]["metrics"][3]["amount_bn"],-0.5);
     }
 
     #[test]

@@ -916,6 +916,14 @@ pub fn settle_receivables(w: &mut WorldState) {
             }
             transaction(c, day, &r.kind, r.amount_bn, r.product, 0);
             c.receivables.retain(|x| x.id != r.id);
+            let inclusion = match r.kind.as_str() {
+                "capitalization" => crate::fiscal_journal::SupplierInclusion::Capitalization,
+                "development" => crate::fiscal_journal::SupplierInclusion::Development,
+                "sale" => crate::fiscal_journal::SupplierInclusion::Equipment,
+                "ammo_sale" => crate::fiscal_journal::SupplierInclusion::Ammunition,
+                _ => unreachable!("only known receipts reach their settlement"),
+            };
+            crate::fiscal_journal::supplier_settled(w,n,day,inclusion,r.amount_bn);
             if let Some(id) = r.delivery {
                 if r.kind == "ammo_sale" {
                     if let Some(d) = w
@@ -1218,7 +1226,7 @@ pub fn tick_day(w: &mut WorldState) {
                 continue;
             }
             let cash = w.nation(c.nation).gdp.max(0.1);
-            crate::economy::charge(w, c.nation, -inputs_cost, -inputs_cost / cash);
+            crate::economy::charge_for(w, c.nation, -inputs_cost, -inputs_cost / cash, crate::fiscal_journal::CashCause::SupplierInputs);
             let c = &mut w.companies.firms[i];
             c.cash_bn -= inputs_cost;
             c.materials_expense_bn += inputs_cost;

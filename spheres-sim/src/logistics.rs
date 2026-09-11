@@ -533,7 +533,7 @@ fn record_terminal_work(w: &mut WorldState, route: &RoutePlan, tonnes: f64) {
         let fee = tonnes * COMPANY_HANDLING_BN_PER_TONNE * modifiers.fee_rate;
         if fee > 0.0 {
             let share = fee / w.nation(owner).gdp.max(0.1);
-            crate::economy::charge(w, owner, fee, share);
+            crate::economy::charge_for(w, owner, fee, share, crate::fiscal_journal::CashCause::FreightService);
         }
         crate::sector_contractors::record_work(w, owner, &target, tonnes, bonus, fee);
     }

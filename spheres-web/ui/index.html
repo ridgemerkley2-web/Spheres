@@ -5566,11 +5566,11 @@ function openCashFlow() {
 }
 
 const CONNECTED_ECONOMY_UI={busy:false,error:"",session:null,action:null};
-function connectedEconomyPanelHtml(view,compact=false) {
+function connectedEconomyPanelHtml(view,compact=false,options={}) {
   if(!view||!globalThis.FiscalRecoveryUI)return "";
   if(CONNECTED_ECONOMY_UI.session!==S?.session_id){CONNECTED_ECONOMY_UI.session=S?.session_id;CONNECTED_ECONOMY_UI.error="";}
   const message=CONNECTED_ECONOMY_UI.error?`<p class="cf-message" role="alert">${escText(CONNECTED_ECONOMY_UI.error)}</p>`:"";
-  const content=compact&&view.enabled?FiscalRecoveryUI.render(view.recovery,{compact:true}):FiscalRecoveryUI.renderConnected(view);
+  const content=compact&&view.enabled?FiscalRecoveryUI.render(view.recovery,{compact:true}):FiscalRecoveryUI.renderConnected(view,options);
   return `<div data-connected-economy>${message}${content}</div>`;
 }
 function connectedEconomyNavigate(action) {
@@ -5598,7 +5598,8 @@ async function connectedEconomyAct(view,state,command,label,detail,current) {
   }
 }
 function connectedEconomyBind(container,view,state=S,current=()=>state===S) {
-  const panel=container?.querySelector("[data-connected-economy]");if(!panel||!view||!globalThis.FiscalRecoveryUI)return;
+  if(!container||!view||!globalThis.FiscalRecoveryUI)return;
+  for(const panel of container.querySelectorAll("[data-connected-economy]")) {
   panel.connectedEconomyCleanup?.();
   panel.connectedEconomyCleanup=FiscalRecoveryUI.bind(panel,{
     isCurrent:()=>state===S&&current(),isBusy:()=>CONNECTED_ECONOMY_UI.busy||cashFlowOrdersPending(),canUpgrade:view.upgrade?.available===true,
@@ -5612,6 +5613,7 @@ function connectedEconomyBind(container,view,state=S,current=()=>state===S) {
       return connectedEconomyAct(view,state,{kind:"population_policy",policy},quote.name,quote.description+"\n\nCosts "+quote.political_cost+" political capital. Existing students keep their courses; new training follows this focus and existing education funding. The enacted policy sets when another review becomes available.",current);
     }
   });
+  }
 }
 
 function cashFlowNavigate(action) {

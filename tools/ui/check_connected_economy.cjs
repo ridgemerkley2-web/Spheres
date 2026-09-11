@@ -22,6 +22,22 @@ function harness(){
 const command={kind:'enable_connected_economy'};
 function issue(c){return c.connectedEconomyAct({},c.S,command,'Adopt connected economy','Synthetic reviewed effect',()=>true);}
 
+test('relocated recovery and population controls both bind once and share current-state guards',()=>{
+  const c=harness(),bindings=[],cleaned=[];
+  c.FiscalRecoveryUI={bind:(panel,options)=>{bindings.push({panel,options});return ()=>cleaned.push(panel.id);}};
+  const panels=[{id:'recovery'},{id:'population'}],container={querySelectorAll:selector=>{
+    assert.equal(selector,'[data-connected-economy]');return panels;
+  }};
+  let current=true;const state=c.S;
+  c.connectedEconomyBind(container,{upgrade:{available:true}},state,()=>current);
+  assert.equal(bindings.length,2);assert(bindings.every(b=>b.options.isCurrent()));
+  current=false;assert(bindings.every(b=>!b.options.isCurrent()));current=true;
+  c.pending=true;assert(bindings.every(b=>b.options.isBusy()));c.pending=false;
+  c.connectedEconomyBind(container,{},state,()=>current);
+  assert.deepEqual(cleaned,['recovery','population']);assert.equal(bindings.length,4);
+  c.S={...state};assert(bindings.every(b=>!b.options.isCurrent()),'same session with a replacement reading still invalidates old handlers');
+});
+
 test('economy adoption awaits review and sends one order through the normal command lane',async()=>{
   const c=harness(),pending=issue(c);
   assert.equal(c.calls.filter(x=>x[0]==='api').length,0);

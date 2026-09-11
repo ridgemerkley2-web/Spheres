@@ -629,6 +629,46 @@ fn service_advance_is_locked_until_return_and_fresh_or_prepaid_refund_posts_once
 }
 
 #[test]
+fn s06_actual_refit_escrow_and_refund_explain_cash_once_without_restoring_authority() {
+    use spheres_sim::{fiscal_journal as journal, fiscal_recovery as fiscal};
+    use journal::{CashCause, SupplierInclusion};
+    let (base, _, company, product, _) = ready("tank_standard");
+    for prepaid in [false, true] {
+        for cancel_before_close in [false, true] {
+            let mut w = base.clone();
+            programs::begin_day(&mut w);
+            let cost = companies::refit_quote(&w, HOME, company, SOURCE, product, 3).cost_bn;
+            let p = w.nation_mut(HOME).program_budget.as_mut().unwrap();
+            p.available_bn[D][3] = if prepaid { 0.0 } else { cost };
+            p.prepaid_bn[D][3] = if prepaid { cost } else { 0.0 };
+            fiscal::enable(&mut w);
+            let opening = net_public(&w);
+            let refit = book(&mut w, company, product, 3);
+            assert!(journal::view(&w, HOME).is_none());
+            if cancel_before_close { near(cancel(&mut w, company, refit), cost); }
+            let fresh = close(&mut w);
+            if !cancel_before_close { near(cancel(&mut w, company, refit), cost); }
+            let report = journal::view(&w, HOME).unwrap();
+            let row = report.days.last().unwrap();
+            let detail = row.fiscal.as_ref().unwrap();
+            near(detail.supplier_inclusions_bn[&SupplierInclusion::RefitEscrow], cost);
+            near(detail.spending_bn, fresh);
+            near(detail.prepaid_used_bn, if prepaid { cost } else { 0.0 });
+            near(row.flows[&CashCause::RefitRefund].inflow_bn, cost);
+            assert_eq!(row.flows[&CashCause::RefitRefund].postings, 1);
+            assert_eq!(row.flows[&CashCause::BudgetSettlement].postings, 1);
+            near(net_public(&w), opening - fresh + cost);
+            near(programs::available_bn(&w, HOME, D, 3), 0.0);
+            let saved = spheres_sim::save(&w);
+            let mut resumed = load_exact(&w);
+            companies::settle_receivables(&mut resumed);
+            assert_eq!(spheres_sim::save(&resumed), saved);
+            fiscal::validate(&w).unwrap();
+        }
+    }
+}
+
+#[test]
 fn every_supported_platform_returns_the_exact_revision_preserving_current_age_and_no_ammunition() {
     for platform in equipment::PLATFORMS {
         let (mut w, district, company, product, target) = ready(platform.id);

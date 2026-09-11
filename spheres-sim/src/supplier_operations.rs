@@ -544,7 +544,7 @@ pub(crate) fn consume(w: &mut WorldState, i: usize, q: &Packet) -> Result<(), St
         .map_err(|(r, _, _)| format!("Missing {}.", r.name()))?;
     industry_operations::take_advanced_components(w, nation, q.components)?;
     let gdp = w.nation(nation).gdp.max(0.1);
-    crate::economy::charge(w, nation, -q.inputs_cost_bn, -q.inputs_cost_bn / gdp);
+    crate::economy::charge_for(w, nation, -q.inputs_cost_bn, -q.inputs_cost_bn / gdp, crate::fiscal_journal::CashCause::SupplierInputs);
     let c = &mut w.companies.firms[i];
     c.cash_bn = (c.cash_bn - q.inputs_cost_bn).max(0.0);
     c.materials_expense_bn += q.inputs_cost_bn;

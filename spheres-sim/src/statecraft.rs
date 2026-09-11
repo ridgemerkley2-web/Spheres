@@ -130,7 +130,7 @@ fn pacts_upkeep(w: &mut WorldState) {
             // pushed into `debt_gdp` and is what the closed-books arm writes;
             // the dollars beside it are what a nation keeping a treasury pays.
             let bn = w.nation(id).gdp * PACT_UPKEEP / 12.0 * dt;
-            crate::economy::charge(w, id, bn, PACT_UPKEEP / 12.0 * dt);
+            crate::economy::charge_for(w, id, bn, PACT_UPKEEP / 12.0 * dt, crate::fiscal_journal::CashCause::PactUpkeep);
         }
         if w.relation(a, b) < 85.0 {
             w.shift_relation(a, b, 0.20 * dt);
@@ -171,7 +171,7 @@ fn aid_flows(w: &mut WorldState) {
         // Same two representations as the pact upkeep above: the ratio is
         // the pre-treasury line unchanged, the dollars are the same money.
         let fiscal_bn = w.nation(f.patron).gdp * fiscal / 12.0 * dt;
-        crate::economy::charge(w, f.patron, fiscal_bn, fiscal / 12.0 * dt);
+        crate::economy::charge_for(w, f.patron, fiscal_bn, fiscal / 12.0 * dt, crate::fiscal_journal::CashCause::ForeignAid);
 
         let (client_gdp, client_mil_share, client_strength) = {
             let c = w.nation(f.client);
@@ -780,7 +780,7 @@ pub fn covert_action(
     // Running a service costs money whether or not anything comes of it.
     // 0.0008 of output is the pre-treasury line unchanged.
     let service_bn = w.nation(sponsor).gdp * 0.0008;
-    crate::economy::charge(w, sponsor, service_bn, 0.0008);
+    crate::economy::charge_for(w, sponsor, service_bn, 0.0008, crate::fiscal_journal::CashCause::CovertOperation);
 
     let (success_p, expose_p) = covert_odds(w, sponsor, target);
 

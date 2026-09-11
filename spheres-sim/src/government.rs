@@ -7094,7 +7094,7 @@ pub fn secure_pillar(w: &mut WorldState, id: NationId, pillar: Pillar) -> Result
     // 0.008 of output is the pre-treasury line unchanged; the dollars beside
     // it are the same money, for a nation that keeps a treasury.
     let envelope_bn = w.nation(id).gdp * 0.008;
-    crate::economy::charge(w, id, envelope_bn, 0.008);
+    crate::economy::charge_for(w, id, envelope_bn, 0.008, crate::fiscal_journal::CashCause::Patronage);
     w.headline(format!("{} buys the loyalty of {}.", id.name(), name));
     Ok(())
 }

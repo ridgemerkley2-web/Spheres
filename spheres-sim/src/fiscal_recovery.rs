@@ -51,6 +51,9 @@ pub fn validate(w: &WorldState) -> Result<(), String> {
         let refuse=|reason:&str|format!("Invalid saved fiscal observations for {}: {reason}.",id.name());
         let Some(n)=w.nation_opt(*id) else{return Err(refuse("unknown nation"));};
         let Some(started)=f.started_day.filter(|day|*day<=today) else{return Err(refuse("missing or future enrollment date"));};
+        if let Some(journal)=&f.money_journal {
+            crate::fiscal_journal::validate(journal,started,today,month).map_err(|e|refuse(&e))?;
+        }
         if !nonnegative(&[f.opening_debt_bn,f.opening_treasury_bn,f.confidence_pressure,f.observed_month_fraction])
             || !f.opening_gdp.is_finite() || f.opening_gdp<=0.0
             || f.confidence_pressure>MAX_CONFIDENCE_PRESSURE
@@ -111,6 +114,9 @@ pub fn validate(w: &WorldState) -> Result<(), String> {
 #[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]
 #[serde(default)]
 pub struct NationFiscal {
+    /// Prospective reporting only. Old saves and read-only views never create it.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub money_journal: Option<crate::fiscal_journal::MoneyJournal>,
     pub started_day: Option<i32>,
     pub last_day: Option<i32>,
     pub last_ai_review_day: Option<i32>,

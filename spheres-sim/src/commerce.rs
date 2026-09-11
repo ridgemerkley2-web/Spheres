@@ -619,7 +619,7 @@ fn accept_lot(
     });
     c.accounts.entry(buyer).or_default().imports_reserved_bn += total;
     change_stock(w, seller, good, -quantity);
-    economy::charge(w, buyer, total, 0.0);
+    economy::charge_for(w, buyer, total, 0.0, crate::fiscal_journal::CashCause::GoodsImportEscrow);
     Ok(id)
 }
 pub fn propose(
@@ -797,7 +797,7 @@ fn refund(w: &mut WorldState, index: usize, status: &str, reason: &str) {
     // Returns may temporarily exceed warehouse capacity: lossless, and future
     // production/import unloading pauses until the excess is consumed.
     change_stock(w, seller, good, qty);
-    economy::charge(w, buyer, -cash, 0.0);
+    economy::charge_for(w, buyer, -cash, 0.0, crate::fiscal_journal::CashCause::GoodsRefund);
 }
 pub fn cancel(w: &mut WorldState, nation: NationId, contract: u64) -> Result<(), String> {
     if let Some(e) = cancel_refusal(w, nation, contract) {
@@ -995,7 +995,7 @@ pub fn tick_day(w: &mut WorldState) {
             .entry(c.seller)
             .or_default()
             .exports_received_bn += payment;
-        economy::charge(w, c.seller, -payment, 0.0);
+        economy::charge_for(w, c.seller, -payment, 0.0, crate::fiscal_journal::CashCause::GoodsExportReceipt);
     }
     let ledger = w.commerce.as_mut().unwrap();
     ledger.sourcing.retain(|r| r.day > today - 365);

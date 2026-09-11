@@ -498,6 +498,27 @@ fn pay(treasury: f64, debt: f64, bn: f64) -> (f64, f64) {
 /// the `None` arm, which is character for character the `debt_bn` that
 /// `apply_market_net` computed for itself before this became one channel.
 pub fn charge(w: &mut WorldState, id: NationId, bn: f64, share: f64) -> f64 {
+    charge_for(w, id, bn, share, crate::fiscal_journal::CashCause::Other)
+}
+
+/// The same payment and legacy ratio arithmetic, with a reporting-only cause.
+pub fn charge_for(w: &mut WorldState, id: NationId, bn: f64, share: f64,
+    cause: crate::fiscal_journal::CashCause) -> f64
+{
+    let before = if crate::fiscal_recovery::enabled(w) {
+        let n=w.nation(id); n.treasury_bn.zip(n.debt_bn)
+    } else { None };
+    let result = charge_unreported(w,id,bn,share);
+    if let Some(before)=before {
+        let n=w.nation(id);
+        if let Some(after)=n.treasury_bn.zip(n.debt_bn) {
+            crate::fiscal_journal::record_payment(w,id,cause,bn,before,after);
+        }
+    }
+    result
+}
+
+fn charge_unreported(w: &mut WorldState, id: NationId, bn: f64, share: f64) -> f64 {
     let n = w.nation_mut(id);
     match (n.treasury_bn, n.debt_bn) {
         (Some(treasury), Some(debt)) => {
@@ -1668,10 +1689,11 @@ pub fn tick(w: &mut WorldState) {
                 // not the reporting share multiplied back up by GDP, which
                 // would not be the same float.
                 let interest_bn = books.interest_bn / 12.0 * dt;
-                if fiscal_enabled {
-                    fiscal_receipts.push((id, revenue_bn, spend_bn, interest_bn));
-                }
+                let journal_before = (treasury, debt);
                 let (treasury, debt) = pay(treasury, debt, spend_bn + interest_bn - revenue_bn);
+                if fiscal_enabled {
+                    fiscal_receipts.push((id, revenue_bn, spend_bn, interest_bn, journal_before, (treasury,debt)));
+                }
                 n.treasury_bn = Some(treasury);
                 n.debt_bn = Some(debt);
                 refresh_debt_ratio(n);
@@ -1737,8 +1759,13 @@ pub fn tick(w: &mut WorldState) {
     // Hold this exact first multiplier transiently so both can be paid in one
     // province-map pass, in the same arithmetic order.
     w.district_population_growth = district_growth;
-    for (id, revenue, spending, interest) in fiscal_receipts {
+    for (id, revenue, spending, interest, before, after) in fiscal_receipts {
         crate::fiscal_recovery::record_fiscal(&mut w.fiscal_recovery, id, fiscal_day, revenue, spending, interest);
+        crate::fiscal_journal::record_payment(w,id,crate::fiscal_journal::CashCause::BudgetSettlement,
+            spending+interest-revenue,before,after);
+        crate::fiscal_journal::record_fiscal_detail(w,id,crate::fiscal_journal::FiscalDetail {
+            revenue_bn:revenue,spending_bn:spending,interest_bn:interest,..Default::default()
+        });
     }
 }
 

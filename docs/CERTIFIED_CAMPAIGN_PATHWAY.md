@@ -1,6 +1,6 @@
 # Spheres — pathway to a certified campaign
 
-**Approved pathway · 10 September 2026 · S01–S05 complete; execution stopped after S05.**
+**Approved pathway · 10 September 2026 · S01–S05 complete; S06 in progress.**
 
 Source baseline: `5f7f355502f17bd6bd8f0383a2d14f0024fa7884`,
 `codex/resume-spheres`. This plan follows the
@@ -60,7 +60,7 @@ deliverables as finished.
 | Marker | Meaning |
 | --- | --- |
 | `S00` | Complete: user approved beginning S01 on 10 September 2026. |
-| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S05 are complete; S06–S30 remain planned. Execution is stopped after S05. |
+| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S05 are complete; S06 is in progress and S07–S30 remain planned. The current execution boundary is S06. |
 | `C01`–`C07` | Character-production workstreams, with uniquely numbered country batches below. |
 | `E01`–`E06` | Retained expansion work after the first certified release. |
 | `G0`–`G5` | Evidence gates joining groups of sessions. |
@@ -422,7 +422,7 @@ Evidence: [S05 source-bound qualification](campaign-certification/S05/README.md)
 
 #### S06 — Explain the country's money and recovery
 
-**Status:** Planned · **Requires:** S05
+**Status:** In progress · **Requires:** S05
 
 **Completion marker:** A single dated explanation of treasury changes, upcoming commitments and useful recovery actions.
 
@@ -894,4 +894,4 @@ Evidence: [S05 source-bound qualification](campaign-certification/S05/README.md)
 
 ## Authorized execution boundary
 
-S04 and S05 are complete on the recorded runtime and evidence. G1 decision: **earned**. The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work. Execution stops after S05. S06 remains planned and requires a new instruction; no later campaign, content or release certificate is awarded.
+S04 and S05 are complete on the recorded runtime and evidence. G1 decision: **earned**. The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work. Execution stopped after S05 as requested. On 11 September 2026, “Next” authorized S06. S06 is now in progress; execution will stop after it. S07 and later sessions still require a new instruction. No later campaign, content or release certificate is awarded.

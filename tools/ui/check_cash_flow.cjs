@@ -13,19 +13,28 @@ const tick=()=>new Promise(resolve=>setImmediate(resolve));
 function fixture(){
   const calls=[],requests=[],doc={activeElement:null},scroller={scrollTop:0};let html='';
   function control(extra={}){return {disabled:false,dataset:{},listeners:[],addEventListener(type,callback){this.listeners.push(type);this['on'+type]=callback;},focus(){if(!this.disabled)doc.activeElement=this;},...extra};}
-  const mount={dataset:{cashFlowSession:'one'},attributes:{},actions:[],controls:{},
+  const mount={dataset:{cashFlowSession:'one'},attributes:{},actions:[],controls:{},details:[],
     setAttribute(key,value){this.attributes[key]=value;},get innerHTML(){return html;},
     set innerHTML(value){html=value;doc.activeElement=null;this.controls={};
-      this.actions=[...value.matchAll(/<button\b([^>]*?)data-cash-flow-action="([^"]+)"([^>]*)>/g)].map(m=>control({dataset:{cashFlowAction:decode(m[2])},disabled:/\bdisabled\b/.test(m[3])}));
-      for(const m of value.matchAll(/<(h1|summary|button)\b([^>]*?)data-cash-flow-focus="([^"]+)"([^>]*)>/g)){
-        const key=m[3],button=control({dataset:{cashFlowFocus:key},disabled:/\bdisabled\b/.test(m[4])});
+      this.actions=[...value.matchAll(/<button\b([^>]*?)data-cash-flow-action="([^"]+)"([^>]*)>/g)].map(m=>control({dataset:{cashFlowAction:decode(m[2]),cashFlowFocus:decode(/data-cash-flow-focus="([^"]+)"/.exec(m[1])?.[1]||'')},disabled:/\bdisabled\b/.test(m[3])}));
+      for(const m of value.matchAll(/<(h1|summary|button|select)\b([^>]*?)data-cash-flow-focus="([^"]+)"([^>]*)>/g)){
+        const key=decode(m[3]),button=this.actions.find(action=>action.dataset.cashFlowFocus===key)||control({dataset:{cashFlowFocus:key},disabled:/\bdisabled\b/.test(m[4]),textContent:decode(value.slice(m.index+m[0].length,value.indexOf('</',m.index+m[0].length)))});
         this.controls[`[data-cash-flow-focus="${key}"]`]=button;
         if(key==='refresh'||key==='retry')this.controls[`[data-cash-flow-${key}]`]=button;
         if(key==='title')this.controls['#cashFlowTitle']=button;
+        if(key==='day'){
+          button.value=/<option value="([^"]+)"[^>]*\bselected\b/.exec(value.slice(m.index+m[0].length,value.indexOf('</select>',m.index)))?.[1]||'latest';
+          this.controls['[data-cash-flow-day]']=button;this.controls['#cashFlowDay']=button;
+        }
       }
-      const detail=/<details\b[^>]*id="cashFlowBudgetDetails"([^>]*)>/.exec(value);
-      if(detail)this.controls['#cashFlowBudgetDetails']={open:/\bopen\b/.test(detail[1])};
-    },querySelector(selector){return this.controls[selector]||null;},querySelectorAll(selector){return selector==='[data-cash-flow-action]'?this.actions:[];},
+      this.details=[...value.matchAll(/<details\b([^>]*)>/g)].map(m=>{
+        const id=/\bid="([^"]+)"/.exec(m[1])?.[1]||'',key=decode(/data-cash-flow-detail="([^"]+)"/.exec(m[1])?.[1]||'');
+        const summary=/<summary\b[^>]*data-cash-flow-focus="([^"]+)"/.exec(value.slice(m.index+m[0].length));
+        const detail={id,dataset:key?{cashFlowDetail:key}:{},open:/\bopen\b/.test(m[1]),querySelector:selector=>selector==='summary'?this.controls[`[data-cash-flow-focus="${decode(summary?.[1]||'')}"]`]:null};
+        if(id)this.controls['#'+id]=detail;return detail;
+      });
+    },querySelector(selector){return this.controls[selector]||null;},querySelectorAll(selector){return selector==='[data-cash-flow-action]'?this.actions:selector==='details'?this.details:selector==='details[data-cash-flow-detail]'?this.details.filter(detail=>detail.dataset.cashFlowDetail):[];},
+    contains(element){return this.actions.includes(element)||Object.values(this.controls).includes(element);},
   };
   doc.querySelector=selector=>selector==='#cashFlowRoot'?mount:selector==='#left'?scroller:mount.querySelector(selector);
   const c=vm.createContext({console,document:doc,S:{session_id:'one',player:'USA'},CAB:{tab:'overview',busy:false,draft:{tax:.31}},queued:[],
@@ -102,7 +111,7 @@ test('only alerts represented by a displayed priority ID are suppressed',()=>{
 
 test('dated government spending is separate from current balances and the enacted annual plan',()=>{
   const c=fixture(),data=loaded(c),before=plain(data),html=c.cashFlowContentHtml();
-  for(const text of ['Your cash flow','Reading for 11 Feb 1990','Latest daily government budget','10 Feb 1990','Budget outflow','Budget balance','Industry and research operations','Treasury cash','Public debt','Cash minus debt','Enacted annual plan','Fiscal year 1990','Available authorization'])assert(html.includes(text),text);
+  for(const text of ['Money and recovery','Reading for 11 Feb 1990','Latest daily government budget','10 Feb 1990','Budget outflow','Budget balance','Industry and research operations','Treasury cash','Public debt','Cash minus debt','Enacted annual plan','Fiscal year 1990','Available authorization'])assert(html.includes(text),text);
   assert.match(html,/Treasury cash<\/dt><dd>\$5bn/);assert.match(html,/Public debt<\/dt><dd>\$20bn/);
   assert.match(html,/Budget outflow<\/dt><dd>\$600m/);assert.match(html,/Budget balance<\/dt><dd>\+\$100m/);
   assert.match(html,/Total annual cost at full use<\/dt><dd>\$103bn/);assert.match(html,/Annual balance at full use<\/dt><dd>-\$13bn/);
@@ -255,4 +264,137 @@ test('external text and attributes are escaped, and standalone assets parse with
   assert.match(c.cashFlowButton({action:'budget',label:'<img>',ministry:'" onclick="bad()'}),/&quot;/);
   new vm.Script(source);assert.match(css,/\.cash-flow/);assert.match(css,/@media\(max-width:530px\)/);assert.match(css,/focus-visible/);
   assert.doesNotMatch(source,/\/api\/command|start_project|spend_construction/);
+});
+
+function moneyReading(){
+  const reconciliation={day:39,label:'10 Feb 1990',opening_treasury_bn:5,opening_debt_bn:20,closing_treasury_bn:4.9,closing_debt_bn:20.3,
+    cash_change_bn:-.1,debt_change_bn:.3,net_change_bn:-.4,entries:[{id:'budget',label:'Government settlement',payment_bn:.2,inflow_bn:.7,outflow_bn:.9,cash_change_bn:-.1,debt_change_bn:.1,count:1,note:'Budget settlement has its own cash and borrowing effects.'},
+    {id:'supplier',label:'Supplier purchase',payment_bn:.2,inflow_bn:0,outflow_bn:.2,cash_change_bn:0,debt_change_bn:.2,count:2,note:'Public purchase only; company cash is separate.'}]};
+  const earlier={...reconciliation,day:38,label:'9 Feb 1990',opening_treasury_bn:3,closing_treasury_bn:5,cash_change_bn:2,debt_change_bn:0,net_change_bn:2,entries:[{id:'refund',label:'Returned public escrow',inflow_bn:2,outflow_bn:0,cash_change_bn:2,debt_change_bn:0,count:1}]};
+  return {available:true,coverage_note:'Observed from enrollment; no earlier receipts were fabricated.',reconciliation,
+    recent_days:[{day:39,label:'10 Feb 1990',cash_change_bn:-.1,debt_change_bn:.3,reconciliation},{day:38,label:'9 Feb 1990',cash_change_bn:2,debt_change_bn:0,reconciliation:earlier}],
+    commitments:[{id:'orders',title:'Approved purchases',amount_bn:.125,note:'Unsettled public invoices only.',items:[{id:'purchase:12',label:'Tank purchase',amount_bn:.125,status:'Awaiting settlement',due_label:'Next daily settlement',action:{action:'trade',label:'Review purchases'}}]},
+      {id:'paid',title:'Already paid; delivery pending',amount_bn:.3,note:'This is not another cash bill.',items:[{id:'delivery:9',label:'Paid aircraft',amount_bn:.3,status:'Paid in transit',due_label:'18 Feb 1990',action:{action:'industry'}}]}],
+    decisions:[{id:'tax:1',label:'Tax decision',date:'9 Feb 1990',detail:'Approved tax policy change.',before_label:'Tax take 20%',after_label:'Tax take 21%',baseline_label:'Baseline: 9 Feb 1990',observed_label:'Observed through 10 Feb 1990',cash_change_bn:-.05,debt_change_bn:.2,note:'Other public transactions also occurred.'}]};
+}
+
+test('money reconciliation displays authoritative cash debt and financing without recomputing a receipt',()=>{
+  const c=fixture(),data=reading({money:moneyReading()});loaded(c,data);
+  // Deliberately disagreeing values detect accidental browser-side summation.
+  data.money.reconciliation.entries[0].outflow_bn=9;
+  data.money.reconciliation.net_change_bn=-.456;
+  const before=plain(data),html=c.cashFlowContentHtml();
+  for(const text of ['Money and recovery','Why cash and debt changed','Opening cash</dt><dd>$5bn','Closing cash</dt><dd>$4.9bn','Cash change</dt><dd>-$100m',
+    'Closing debt</dt><dd>$20.3bn','Change in cash minus debt</dt><dd>-$456m','Money paid</dt><dd>$9bn','Supplier purchase','2 recorded postings'])assert(html.includes(text),text);
+  assert(html.indexOf('Why cash and debt changed')<html.indexOf('What may be paid next'));
+  assert(html.indexOf('What may be paid next')<html.indexOf('Decisions and recorded results'));
+  assert.match(html,/financing movements/);assert.match(html,/no earlier receipts were fabricated/);
+  assert.deepEqual(plain(data),before);assert.equal(c.requests.length,0);assert.equal(c.calls.length,0);
+});
+
+test('commitments and approved decisions remain distinct from paid money and cannot create orders',()=>{
+  const c=fixture(),data=reading({money:moneyReading()});loaded(c,data);c.cashFlowRender();
+  const commitment=c.cashFlowCommitmentsHtml(data.money),decision=c.cashFlowDecisionsHtml(data.money);
+  assert.match(commitment,/Approved purchases/);assert.match(commitment,/Next daily settlement/);assert.match(commitment,/Already paid; delivery pending/);
+  assert.match(commitment,/This is not another cash bill/);assert.match(commitment,/18 Feb 1990/);
+  for(const text of ['Before the decision','Tax take 20%','Approved change','Tax take 21%','Baseline: 9 Feb 1990','Observed through 10 Feb 1990','Observed cash change</dt><dd>-$50m','Other public transactions also occurred'])assert(decision.includes(text),text);
+  const button=c.mount.actions.find(button=>JSON.parse(button.dataset.cashFlowAction).label==='Review purchases');
+  assert.equal(button.onclick(),true);assert.deepEqual(c.calls,[{action:'trade'}]);assert.equal(c.requests.length,0);
+  c.flow.stale=true;assert.equal(button.onclick(),false);assert.equal(c.calls.length,1);
+  data.money.commitments[0].items[0].action={action:'buy_equipment'};assert.doesNotMatch(c.cashFlowCommitmentsHtml(data.money),/buy_equipment/);
+});
+
+test('unavailable money coverage and unknown future bills remain explicit without fabricated zeroes',()=>{
+  const c=fixture();loaded(c,reading({money:{available:false,reason:'Observation starts after enrollment.',coverage_note:'Historical transactions are not reconstructed.',reconciliation:null,commitments:[],decisions:[]}}));
+  const html=c.cashFlowReconciliationHtml(c.flow.data.money);assert.match(html,/not available yet/);assert.match(html,/Historical transactions are not reconstructed/);assert.doesNotMatch(html,/\$0|Opening cash/);
+  const money=moneyReading();money.commitments[0].amount_bn=null;money.commitments[0].items[0].amount_bn=null;money.commitments[0].items[0].due_label=null;
+  assert.match(c.cashFlowCommitmentsHtml(money),/Reported amount<\/dt><dd>—/);assert.match(c.cashFlowCommitmentsHtml(money),/Timing not fixed/);
+  money.decisions[0].cash_change_bn=null;assert.match(c.cashFlowDecisionsHtml(money),/Observed cash change<\/dt><dd>—/);
+  assert.equal(c.cashFlowReconciliationHtml(undefined),'');assert.equal(c.cashFlowCommitmentsHtml(undefined),'');
+});
+
+test('empty commitment categories stay hidden while recorded items and nonzero totals remain visible',()=>{
+  const c=fixture(),money=moneyReading();
+  money.commitments=[
+    {id:'zero',title:'Unused category',amount_bn:0,items:[]},
+    {id:'unknown-empty',title:'Empty unknown category',amount_bn:null,items:[]},
+    {id:'known',title:'Amount awaiting itemization',amount_bn:.2,items:[]},
+    {id:'item',title:'Timing still unknown',amount_bn:null,items:[{label:'Existing obligation',amount_bn:null}]},
+    {id:'paid',title:'Already paid item',amount_bn:0,items:[{label:'Paid in transit',amount_bn:0}]}
+  ];
+  const before=plain(money),html=c.cashFlowCommitmentsHtml(money);
+  assert.doesNotMatch(html,/Unused category|Empty unknown category/);
+  for(const label of ['Amount awaiting itemization','Timing still unknown','Existing obligation','Already paid item'])assert(html.includes(label),label);
+  assert.deepEqual(plain(money),before);
+  money.commitments=money.commitments.slice(0,2);
+  assert.match(c.cashFlowCommitmentsHtml(money),/No commitments are listed/);
+});
+
+test('reconciliation distinguishes a day still in progress from a completed recorded day',()=>{
+  const c=fixture(),data=reading({money:moneyReading()});loaded(c,data);
+  data.money.reconciliation.period_note='Today so far';
+  data.money.recent_days[1].reconciliation.period_note='Recorded day';
+  assert.match(c.cashFlowReconciliationHtml(data.money),/10 Feb 1990 · Today so far/);
+  assert.equal(c.cashFlowSelectDay('38'),true);
+  assert.match(c.cashFlowReconciliationHtml(data.money),/9 Feb 1990 · Recorded day/);
+  data.money.recent_days[1].reconciliation.period_note='<img>';
+  assert.doesNotMatch(c.cashFlowReconciliationHtml(data.money),/<img>/);
+});
+
+test('selected retained day disclosures and action focus survive refresh but never a campaign replacement',async()=>{
+  const c=fixture();loaded(c,reading({money:moneyReading()}));c.cashFlowRender();
+  const picker=c.mount.querySelector('[data-cash-flow-day]');picker.focus();picker.value='38';assert.equal(picker.onchange(),true);
+  assert.equal(c.flow.selectedDay,38);assert.match(c.mount.innerHTML,/Returned public escrow/);assert.doesNotMatch(c.mount.innerHTML,/Government settlement/);
+  assert.equal(c.document.activeElement,c.mount.querySelector('[data-cash-flow-focus="day"]'));
+  const detail=c.mount.details.find(detail=>detail.dataset.cashFlowDetail==='money:entry:38:refund');assert(detail);detail.open=true;detail.ontoggle();
+  const summary=detail.querySelector('summary');summary.focus();c.scroller.scrollTop=510;
+  c.api=async()=>reading({money:moneyReading()});assert.equal(await c.cashFlowFetch(true),true);
+  assert.equal(c.flow.selectedDay,38);assert.equal(c.mount.details.find(detail=>detail.dataset.cashFlowDetail==='money:entry:38:refund').open,true);
+  assert.equal(c.document.activeElement.dataset.cashFlowFocus,summary.dataset.cashFlowFocus);assert.equal(c.scroller.scrollTop,510);
+  const action=c.mount.actions.find(button=>JSON.parse(button.dataset.cashFlowAction).label==='Review purchases');action.focus();c.cashFlowRender();
+  assert.equal(c.document.activeElement.dataset.cashFlowFocus,action.dataset.cashFlowFocus);
+  c.COMMAND_CHANNEL.pending={};assert.equal(c.cashFlowSelectDay('latest'),false);assert.equal(c.flow.selectedDay,38);c.COMMAND_CHANNEL.pending=null;
+  c.S={session_id:'replacement',player:'France'};c.cashFlowResetCampaign();
+  assert.equal(c.flow.selectedDay,null);assert.deepEqual(plain(c.flow.disclosures),{});assert.equal(c.flow.data,null);
+});
+
+test('discarded or malformed retained days cannot become selectable fabricated receipts',async()=>{
+  const c=fixture(),data=reading({money:moneyReading()});loaded(c,data);c.cashFlowRender();
+  assert.equal(c.cashFlowSelectDay('37'),false);assert.equal(c.cashFlowSelectDay('38'),true);
+  c.api=async()=>reading({money:{...moneyReading(),recent_days:[]}});assert.equal(await c.cashFlowFetch(true),true);
+  assert.equal(c.flow.selectedDay,null);assert.match(decode(c.mount.innerHTML),/outside this reading's retained history/);assert.match(c.mount.innerHTML,/Government settlement/);
+  assert.equal(c.document.activeElement,c.mount.querySelector('[data-cash-flow-refresh]'),'Removing the day selector leaves focus on a usable reading control');
+  const malformed=moneyReading();malformed.recent_days[1].reconciliation.day=37;
+  assert.equal(c.cashFlowRetainedDays(malformed).length,1);
+});
+
+test('a same-session reading with a mismatched calendar date is refused before enabling navigation',async()=>{
+  for(const state of [{date:'10 Feb 1990'},{year:1990,month:2,day:10},{date:'11 Feb 1990',as_of_day:41}]){
+    const c=fixture();Object.assign(c.S,state);assert.equal(await c.cashFlowFetch(),false);assert.match(c.flow.error,/did not match this campaign date/);assert.equal(c.cashFlowCurrent(),false);
+  }
+  const c=fixture();Object.assign(c.S,{date:'11 Feb 1990',year:1990,month:2,day:11});assert.equal(await c.cashFlowFetch(),true);
+  c.S.day=12;assert.equal(c.cashFlowCurrent(),false);assert.equal(c.cashFlowNavigateCurrent('budget'),false);
+});
+
+test('signed net interest and recovery placement preserve the served model and suppress only duplicate recovery',()=>{
+  const c=fixture(),data=reading({money:moneyReading()});data.settled.interest_bn=-.005;
+  const recovery=require(path.join(base,'spheres-web/ui/fiscal-recovery-ui.js'));
+  const view={enabled:true,date:data.date,recovery:{available:true,enabled:true,name:'United States',date:data.date,
+    assessment:{status_label:'Observed fiscal pressure',reason:'Served diagnosis',next_action:'Review spending',months_observed:1},actions:[{id:'tax',label:'Review taxes'}]}};
+  data.connected_economy=view;c.FiscalRecoveryUI=recovery;let options;
+  c.connectedEconomyPanelHtml=(value,compact,opt)=>{options=plain(opt);return recovery.renderConnected(value,opt);};
+  loaded(c,data);const html=c.cashFlowContentHtml();
+  assert.match(c.cashFlowSettlementHtml(data),/Net interest<\/dt><dd>-\$5m/);assert.doesNotMatch(c.cashFlowSettlementHtml(data),/Interest paid/);
+  assert.equal(html.split('Observed fiscal pressure').length-1,1);assert.equal(options.recovery,false);
+  assert(html.indexOf('Observed fiscal pressure')<html.indexOf('Decisions and recorded results'));
+  assert.match(recovery.renderConnected(view),/Observed fiscal pressure/);assert.doesNotMatch(recovery.renderConnected(view,{recovery:false}),/Observed fiscal pressure/);
+});
+
+test('money labels and retained-day options cannot inject markup or financial commands',()=>{
+  const c=fixture(),data=reading({money:moneyReading()});
+  data.money.reconciliation.entries[0].label='<img src=x>';data.money.coverage_note='<script>alert(1)</script>';
+  data.money.commitments[0].items[0].label='<svg>';data.money.decisions[0].after_label='<iframe>';data.money.recent_days[1].label='" onclick="spend()';
+  loaded(c,data);const before=plain(data),html=c.cashFlowContentHtml();
+  assert.doesNotMatch(html,/<img|<script|<svg|<iframe/);assert.match(html,/&quot; onclick=&quot;spend\(\)/);assert.deepEqual(plain(data),before);
+  assert.match(html,/<label for="cashFlowDay">Recorded day<\/label>/);assert.match(html,/data-cash-flow-focus="day"/);
 });

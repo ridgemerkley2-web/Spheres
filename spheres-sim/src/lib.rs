@@ -32,6 +32,7 @@ pub mod industry;
 pub mod industry_operations;
 pub mod population;
 pub mod fiscal_recovery;
+pub mod fiscal_journal;
 pub mod fiscal_recovery_ai;
 pub mod connected_economy;
 pub mod industry_planning;
@@ -891,6 +892,7 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
             return Err(standing_refusal(payer, held, price));
         }
     }
+    let journal_policy = fiscal_journal::before_policy(w, c);
     let outcome = dispatch(w, c);
     if outcome.is_ok() {
         if let Some((payer, price, _)) = bill {
@@ -899,6 +901,7 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
             let held = w.nation(payer).political_capital;
             w.nation_mut(payer).political_capital = (held - price).max(0.0);
         }
+        if let Some(policy) = journal_policy { fiscal_journal::after_policy(w, policy); }
     }
     outcome
 }
@@ -1524,6 +1527,7 @@ pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
         equipment::tick_supply_automation(w);
         campaign_aims::tick(w);
         fiscal_recovery::tick(w);
+        fiscal_journal::finish_day(w);
         clock::advance_date(w);
         return w.headlines[before..].to_vec();
     }
