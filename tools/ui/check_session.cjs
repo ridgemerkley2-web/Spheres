@@ -171,6 +171,25 @@ test('older-sequence conflicts retain orders for explicit review instead of mark
   assert(c.calls.some(x=>x[0]==='banner'&&x[1].includes('Review current state')));
 });
 
+test('delayed boot success and failure preserve the menu the player selected while discovery was pending',async()=>{
+  for(const destination of ['saves','nation'])for(const failed of [false,true]){
+    const c=fixture(['bootSession','renderSessionActions','showMenuView','renderMainMenuState']);
+    c.COMMAND_CHANNEL={pending:null,busy:false};c.pickedNation='France';c.setupNations=[];
+    c.buildSetup=async()=>{};c.restorePendingAdvance=()=>{};
+    let resolve,reject;c.api=()=>new Promise((yes,no)=>{resolve=yes;reject=no;});
+    run(c,'showMenuView("home",false)');const pending=run(c,'bootSession()');
+    c.destination=destination;run(c,'showMenuView(destination,false)');
+    if(failed)reject(new Error('Delayed discovery unavailable'));else resolve({player:'France',date:'31 Jan 1990',session_id:'existing'});
+    await pending;
+    assert.equal(c.$('#setup').dataset.menuView,destination);
+    assert.equal(c.$('#campaignHome').hidden,true);
+    assert.equal(c.$('#savedCampaigns').hidden,destination!=='saves');
+    assert.equal(c.$('#newCampaignPicker').hidden,destination!=='nation');
+    if(failed)assert.match(c.$('#sessionStatus').textContent,/Delayed discovery unavailable/);
+    else assert.equal(c.$('#continueBtn').hidden,false);
+  }
+});
+
 test('review requires confirmation and never resubmits old orders, retaining newer draft edits',async()=>{
   const c=fixture(['advance','reviewPendingTurn']);
   c.api=async()=>{const error=new Error('Older request');error.requiresReview=true;throw error;};

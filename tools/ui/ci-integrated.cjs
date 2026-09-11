@@ -41,6 +41,7 @@ async function capabilities({page,url,player}){
 async function withinPanel(page,selector,label){
   const box=await page.locator(selector).evaluate(element=>({scroll:element.scrollWidth,width:element.clientWidth}));
   assert(box.width>0&&box.scroll<=box.width+1,label+' overflows horizontally: '+JSON.stringify(box));
+  assert(!/\bNaN\b|\bundefined\b/.test(await page.locator(selector).innerText()),label+' contains an invalid numeric or missing-value label');
 }
 async function archive(page,url,run,slot){
   const response=await page.request.post(url+'/api/save',{data:{slot}});assert(response.ok(),'Could not capture '+slot);
@@ -59,6 +60,8 @@ async function panels({page,url,run,out,player}){
   const eligible=production.catalog.find(row=>row.kind!=='starter_industry'&&row.actions?.start!==false&&row.eligible_provinces?.length);
   assert(eligible,'The technical USA fixture needs an eligible native construction preview');
   const kind=eligible.kind,province=eligible.eligible_provinces[0];
+  const governmentAction=government.actions.findIndex(action=>action.command&&!action.refusal);
+  assert(governmentAction>=0,'The native technical fixture must expose a reviewable government decision');
   const sizes=[{width:1440,height:1000,name:'desktop'},{width:390,height:844,name:'mobile'}],views=[];
   for(const size of sizes){
     await page.setViewportSize({width:size.width,height:size.height});
@@ -66,6 +69,16 @@ async function panels({page,url,run,out,player}){
     assert((await page.locator('#govScreen .gov-ui h1').innerText()).includes(government.nation_name));
     await withinPanel(page,'#govScreen .gov-ui','Government '+size.name);
     await page.screenshot({path:path.join(out,'government-'+size.name+'.png')});
+    await page.locator('#gov-tab-decisions').click();
+    const governmentResponse=page.waitForResponse(response=>response.url()===url+'/api/government/preview'&&response.request().method()==='POST');
+    await page.locator('#govScreen [data-gov-review="'+governmentAction+'"]').click();
+    const governmentReading=await governmentResponse;assert(governmentReading.ok());const governmentPreview=await governmentReading.json();
+    await page.locator('#govReviewTitle').waitFor({state:'visible'});await page.waitForFunction(()=>!!gov.review&&!gov.review.loading);
+    assert.equal(governmentPreview.valid,true);assert.deepEqual(governmentPreview.command,government.actions[governmentAction].command);
+    assert.equal(await page.locator('#govReview [data-gov-confirm]').isEnabled(),true);
+    await withinPanel(page,'#govReview','Government decision review '+size.name);
+    await page.screenshot({path:path.join(out,'government-review-'+size.name+'.png')});
+    await page.locator('#govReview [aria-label="Close decision review"]').click();await page.locator('#govReview').waitFor({state:'hidden'});
     await page.locator('#govScreen .tbar .x').click();
 
     await page.locator('#productionDockBtn').click();await page.locator('#productionPanel [data-prod-new]').waitFor({state:'visible'});
@@ -97,12 +110,19 @@ async function panels({page,url,run,out,player}){
     if(size.width===390)assert((await page.locator('#company-search').boundingBox()).width>=200,'Mobile search must retain usable width');
     await page.screenshot({path:path.join(out,'companies-'+size.name+'.png')});
     await page.locator('#cabinetDrawer [data-close-drawers]').click();
-    views.push({viewport:size.name,width:size.width,height:size.height,government:true,construction_preview:{kind,province,cost_bn:preview.cost_bn},company_rows:expected.length,filtering:true});
+    views.push({viewport:size.name,width:size.width,height:size.height,government:true,government_review_cancel:{action:governmentAction,price_pc:governmentPreview.price_pc},construction_preview:{kind,province,cost_bn:preview.cost_bn},company_rows:expected.length,filtering:true});
   }
+  await page.setViewportSize({width:1440,height:1000});
+  const draftsBefore=await page.evaluate(()=>JSON.parse(JSON.stringify({queued,pendingAdvance,command:COMMAND_CHANNEL.pending})));
+  await page.getByRole('button',{name:'Tutorial',exact:true}).click();await page.locator('#guidanceDialog').waitFor({state:'visible'});
+  await page.locator('[data-guidance-lesson="budget-treasury"]').click();await page.locator('[data-guidance-open-lesson]').click();
+  await page.locator('#cabinet-budget').waitFor({state:'visible'});assert(await page.locator('#guidanceDialog').isHidden());
+  assert.deepEqual(await page.evaluate(()=>JSON.parse(JSON.stringify({queued,pendingAdvance,command:COMMAND_CHANNEL.pending}))),draftsBefore,'Tutorial navigation must not queue orders or start a turn');
+  await page.screenshot({path:path.join(out,'tutorial-budget-destination.png')});await page.locator('#cabinetDrawer [data-close-drawers]').click();
   const after=await archive(page,url,run,'s05-preview-after');
   assert.deepEqual(after,before,'Government reads, construction previews and company filtering must preserve the entire saved campaign and history');
   assert.deepEqual(await json(page,url,'/api/production'),production);assert.deepEqual(await json(page,url,'/api/companies'),companies);
   await page.setViewportSize({width:1440,height:1000});
-  return {technical_fixture:'USA fresh campaign; a UI/API regression fixture, not a campaign certification focus country',views,archive_purity:true,capabilities:await capabilities({page,url,player})};
+  return {technical_fixture:'USA fresh campaign; a UI/API regression fixture, not a campaign certification focus country',views,tutorial_destination:'budget',tutorial_orders_unchanged:true,archive_purity:true,capabilities:await capabilities({page,url,player})};
 }
 module.exports={verifyBuild,capabilities,panels};

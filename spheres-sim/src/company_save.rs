@@ -46,10 +46,12 @@ pub(crate) fn decode(s: &str) -> Result<WorldState, String> {
     if !payload.is_object() { return Err("The saved campaign must be an object.".into()); }
     // Serde also accepts sequences for defaulted structs. Military books have
     // object identities, so classify their outer shape before typed decoding.
-    // The older empty/null representation contains no ownership to migrate.
+    // The older empty object/null representation contains no ownership to migrate.
     for key in ["campaign", "campaign_supply", "campaign_peace"] {
         if let Some(book) = payload.get(key) {
-            if book.is_null() { payload.as_object_mut().unwrap().remove(key); }
+            if book.is_null() || book.as_object().is_some_and(|fields|fields.is_empty()) {
+                payload.as_object_mut().unwrap().remove(key);
+            }
             else if !book.is_object() {
                 return Err(format!("The saved {key} book must be an object or empty null."));
             }
@@ -89,7 +91,10 @@ pub(crate) fn decode(s: &str) -> Result<WorldState, String> {
         let _: crate::sector_contractors::Companies = serde_json::from_value(roster.clone()).map_err(|e| format!("Contractor migration: {e}"))?;
         payload["sector_contractors"] = roster;
     }
-    let w: WorldState = serde_json::from_value(payload).map_err(|e| e.to_string())?;
+    let mut w: WorldState = serde_json::from_value(payload).map_err(|e| e.to_string())?;
+    if master || master_warfare {
+        crate::fiscal_recovery::retain_original_master_receipts(&mut w)?;
+    }
     if party != (w.rules.historical_party_leadership && w.party_leadership.is_some())
         || (!party && w.party_leadership.is_some()) {
         return Err("Campaign party identities require their enabled rule, saved book and matching save envelope.".into());

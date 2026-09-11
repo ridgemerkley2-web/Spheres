@@ -67,8 +67,16 @@ pub fn validate(w: &WorldState) -> Result<(), String> {
             || n.debt_bn.is_none_or(|debt|!debt.is_finite()||debt<0.0)) {
             return Err(refuse("living government has invalid current cash or debt"));
         }
+        let valid_receipt=|r:&Receipt| r.day>=started && r.day<=today
+            && r.revenue_bn.is_finite() && r.interest_bn.is_finite() && nonnegative(&[r.spending_bn]);
+        if f.legacy_ordinary_receipt.as_ref().is_some_and(|legacy|
+            !valid_receipt(&legacy.receipt) || legacy.receipt.day>legacy.observed_through_day
+                || f.last_day.is_none_or(|last|legacy.observed_through_day>last)) {
+            return Err(refuse("invalid retained original-master receipt"));
+        }
         if let Some(receipt)=&f.pending {
-            if receipt.day<started || receipt.day>today || f.last_day.is_some_and(|last|receipt.day<=last)
+            let retained=f.legacy_ordinary_receipt.as_ref().is_some_and(|legacy|legacy.receipt==*receipt);
+            if receipt.day<started || receipt.day>today || (f.last_day.is_some_and(|last|receipt.day<=last)&&!retained)
                 || !receipt.revenue_bn.is_finite() || !receipt.interest_bn.is_finite()
                 || !nonnegative(&[receipt.spending_bn]) {
                 return Err(refuse("invalid or already observed pending receipt"));
@@ -120,6 +128,12 @@ pub struct NationFiscal {
     pub accumulating: Option<Observation>,
     /// An ordinary non-program fiscal settlement posts exactly one receipt.
     pub pending: Option<Receipt>,
+    /// Exact historical artifact from the recognized original-master decoder.
+    /// Its observer kept an old ordinary receipt when a program budget took
+    /// over. Retain the evidence, without claiming it was observed or paying it
+    /// again. `tick` may drain `pending`; this copy remains after continuation.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub legacy_ordinary_receipt: Option<LegacyOrdinaryReceipt>,
     pub previous_adjustment: Option<f64>,
     pub previous_trend: Option<f64>,
     pub previous_primary: Option<f64>,
@@ -137,6 +151,41 @@ pub struct Receipt {
     /// The existing real-rate fiscal model can post negative net interest.
     /// Observation must retain that exact signed amount, never clamp or reprice.
     pub interest_bn: f64,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub struct LegacyOrdinaryReceipt {
+    pub receipt: Receipt,
+    /// Original last observed day, not a new observation or import timestamp.
+    pub observed_through_day: i32,
+}
+
+/// Called only after the save classifier recognizes the original master
+/// dialect. Master's program branch never drained `pending`, leaving ordinary
+/// receipts behind after budget enrollment. Add provenance without changing
+/// any original receipt, date, observation, quantity, balance or RNG state.
+/// The normal validator still rejects malformed values and all other stale
+/// pending receipts. No simulation system, payment or observation runs here.
+pub(crate) fn retain_original_master_receipts(w: &mut WorldState) -> Result<(), String> {
+    if !enabled(w) { return Ok(()); }
+    for (id, f) in &mut w.fiscal_recovery.nations {
+        if f.legacy_ordinary_receipt.is_some() {
+            return Err("The original master fiscal dialect cannot contain later receipt provenance.".into());
+        }
+        let Some(receipt) = f.pending.as_ref() else { continue; };
+        let Some(last) = f.last_day.filter(|last|receipt.day<=*last) else { continue; };
+        // The source program observer, rather than the ordinary branch, must
+        // own the most recently observed receipt. This is the old code's exact
+        // stale-pending pattern; a free-standing corrupt pending row is refused.
+        if w.nations.iter().find(|n|n.id==*id).and_then(|n|n.program_budget.as_ref())
+            .is_some_and(|p|p.settled_day==Some(last)) {
+            f.legacy_ordinary_receipt=Some(LegacyOrdinaryReceipt {
+                receipt:receipt.clone(), observed_through_day:last,
+            });
+        }
+    }
+    Ok(())
 }
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]

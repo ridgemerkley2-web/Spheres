@@ -3737,11 +3737,12 @@ async function bootSession() {
     if (SESSION.live.player) restorePendingAdvance(SESSION.live, false);
     renderSessionActions();
     syncAdvanceControls();
-    showMenuView("home", false);
+    // Discovery can finish after the player has opened Saves or the roster.
+    showMenuView($("#setup").dataset.menuView || "home", false);
   } catch (error) {
     renderSessionActions();
     $("#sessionStatus").textContent = error.message;
-    showMenuView("home", false);
+    showMenuView($("#setup").dataset.menuView || "home", false);
     banner(error.message);
   }
   await roster;

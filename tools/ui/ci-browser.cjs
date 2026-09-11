@@ -16,10 +16,18 @@ async function port(){const s=net.createServer();await new Promise(r=>s.listen(0
     browser=await chromium.launch({headless:true});const page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
     page.setDefaultTimeout(30000);const errors=[];page.on('pageerror',e=>errors.push(e.message));
     const buildEvidence=await integrated.verifyBuild({page,url,root,run,binary});
-    await page.goto(url);await page.locator('#campaignHome').waitFor({state:'visible'});
+    // Delay only the first real discovery response; menu choices must survive
+    // its completion. No synthetic state or response body is supplied.
+    let releaseBoot,bootHeld=false;const bootGate=new Promise(resolve=>{releaseBoot=resolve;});
+    await page.route('**/api/state',async route=>{if(bootHeld)return route.continue();bootHeld=true;const response=await route.fetch();await bootGate;await route.fulfill({response});});
+    await page.goto(url,{waitUntil:'domcontentloaded'});await page.locator('#campaignHome').waitFor({state:'visible'});
     assert(await page.locator('#newCampaignPicker').isHidden());
     await page.locator('#openSavesBtn').click();await page.locator('#savedCampaigns').waitFor({state:'visible'});
     await page.locator('#menuSaveEmpty').waitFor({state:'visible'});
+    releaseBoot();await page.waitForFunction(()=>!!SESSION.live?.session_id);
+    assert.equal(await page.locator('#setup').getAttribute('data-menu-view'),'saves','Delayed live-world discovery must retain the player-selected Saves view');
+    assert(await page.locator('#savedCampaigns').isVisible());assert(await page.locator('#campaignHome').isHidden());
+    await page.unroute('**/api/state');
     assert(await page.locator('#loadBtn').isDisabled(),'A fresh disposable folder has no campaign to load');
     await page.locator('#savedCampaigns [data-menu-back]').click();
     await page.locator('#newCampaignBtn').click();await page.locator('#newCampaignPicker').waitFor({state:'visible'});
@@ -32,17 +40,42 @@ async function port(){const s=net.createServer();await new Promise(r=>s.listen(0
     const integrationEvidence=await integrated.panels({page,url,run,out,player:initial.player});
     // Let the normal command channel create the receipt. Lose only the first
     // already-committed response, then recover via the visible receipt button.
-    let lost=false;await page.route('**/api/command',async route=>{if(lost)return route.continue();lost=true;await route.fetch();await route.abort('failed');});
-    const lostError=await page.evaluate(async()=>{try{await api('/api/command',{commands:[{kind:'tax',value:0.29}]});return null;}catch(error){return error.message;}});
-    assert(lostError,'The lost response must be visible as an uncertain command outcome');
+    let lost=false;const commandRequests=[];await page.route('**/api/command',async route=>{commandRequests.push(route.request().postDataJSON());if(lost)return route.continue();lost=true;await route.fetch();await route.abort('failed');});
+    const lostResponse=await page.evaluate(()=>api('/api/command',{commands:[{kind:'tax',value:0.29}]}));
+    // Legacy panels receive an unchanged state with errors, not an exception.
+    assert.equal(lostResponse.command_pending,true,'A committed response loss must retain uncertainty');
+    assert(Array.isArray(lostResponse.errors)&&lostResponse.errors.some(message=>typeof message==='string'&&message.length>0),'The pending legacy-panel response must explain its error');
     await page.locator('#retryCommandBtn').waitFor({state:'visible'});const committed=await state();
+    const pendingReceipt=await page.evaluate(()=>JSON.parse(JSON.stringify(COMMAND_CHANNEL.pending)));
+    assert(pendingReceipt&&pendingReceipt.session_id===committed.session_id);
+    assert.equal(commandRequests.length,1);
+    await page.reload();await page.locator('#continueBtn').waitFor({state:'visible'});await page.locator('#continueBtn').click();await page.locator('#app').waitFor({state:'visible'});
+    await page.locator('#retryCommandBtn').waitFor({state:'visible'});
+    assert.deepEqual(await page.evaluate(()=>JSON.parse(JSON.stringify(COMMAND_CHANNEL.pending))),pendingReceipt,'Reload must retain the exact frozen receipt');
+    assert.equal(commandRequests.length,1,'Boot and Continue must not retry an uncertain command automatically');
+    assert.deepEqual(await state(),committed,'Reload and Continue must not change the committed campaign');
     await page.locator('#retryCommandBtn').click();await page.locator('#pendingCommand').waitFor({state:'hidden'});
+    assert.equal(commandRequests.length,2);assert.deepEqual(commandRequests[1],commandRequests[0],'Visible retry must send the identical receipt and payload');
     const recovered=await state();assert.equal(recovered.nations.find(n=>n.id==='USA').political_capital,committed.nations.find(n=>n.id==='USA').political_capital);
     assert.equal(recovered.nations.find(n=>n.id==='USA').tax,0.29);
     await page.unroute('**/api/command');
     const saved=await page.request.post(url+'/api/save',{data:{slot:'ci-smoke'}});assert(saved.ok());
     const history=await (await page.request.get(url+'/api/history?nations=USA')).json();
-    const loaded=await page.request.post(url+'/api/load',{data:{slot:'ci-smoke'}});assert(loaded.ok());
+    if(await page.locator('.arc-time-menu').getAttribute('open')===null)await page.locator('.arc-time-menu > summary').click();
+    await page.locator('#campaignsBtn').click();await page.locator('#campaignHome').waitFor({state:'visible'});
+    await page.locator('#openSavesBtn').click();await page.locator('#savedCampaigns').waitFor({state:'visible'});
+    await page.locator('#saveSlots').selectOption('ci-smoke');
+    await page.locator('#loadBtn').click();await page.locator('#campaignConfirmDialog').waitFor({state:'visible'});
+    assert(await page.locator('#campaignConfirmCancel').evaluate(element=>element===document.activeElement),'Load confirmation must initially focus Cancel');
+    assert((await page.locator('#campaignConfirmMessage').innerText()).includes('ci-smoke'));
+    await page.locator('#campaignConfirmCancel').click();await page.locator('#campaignConfirmDialog').waitFor({state:'hidden'});
+    assert.deepEqual(await state(),recovered,'Cancelling a named load must preserve the live campaign');
+    await page.locator('#loadBtn').click();await page.locator('#campaignConfirmDialog').waitFor({state:'visible'});
+    const loadResponse=page.waitForResponse(response=>response.url()===url+'/api/load'&&response.request().method()==='POST');
+    await page.locator('#campaignConfirmAccept').click();const loaded=await loadResponse;assert(loaded.ok());
+    const loadRequest=loaded.request().postDataJSON();assert.equal(loadRequest.slot,'ci-smoke');assert.equal(loadRequest.backup,false);
+    await page.locator('#app').waitFor({state:'visible'});const restoredState=await state();
+    assert.equal(restoredState.player,recovered.player);assert.equal(restoredState.date,recovered.date);assert.notEqual(restoredState.session_id,recovered.session_id);
     const loadedCapabilities=await integrated.capabilities({page,url,player:initial.player});
     assert.deepEqual(loadedCapabilities,integrationEvidence.capabilities);
     const restored=await(await page.request.get(url+'/api/history?nations=USA')).json();
@@ -52,6 +85,6 @@ async function port(){const s=net.createServer();await new Promise(r=>s.listen(0
     await page.screenshot({path:path.join(out,'research-desktop.png')});await page.setViewportSize({width:414,height:896});
     assert(await page.evaluate(()=>document.querySelector('#decisionDialog').scrollWidth<=document.querySelector('#decisionDialog').clientWidth+1));
     await page.screenshot({path:path.join(out,'research-mobile.png')});assert.deepEqual(errors,[]);
-    fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({passed:true,build:initial.build,build_evidence:buildEvidence,integrated:integrationEvidence,loaded_capabilities:loadedCapabilities,lost_committed_response_recovered:lost,save_history_roundtrip:true},null,2));
+    fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({passed:true,build:initial.build,build_evidence:buildEvidence,integrated:integrationEvidence,loaded_capabilities:loadedCapabilities,delayed_boot_navigation_preserved:true,lost_committed_response_recovered:lost,pending_receipt_reload_recovered:true,identical_retry_requests:commandRequests.length,visible_named_load:{slot:loadRequest.slot,cancel_preserved_state:true,new_session:true},save_history_roundtrip:true},null,2));
   }finally{if(browser)await browser.close();server.kill();log.end();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

@@ -24,13 +24,18 @@ fn owned(w: &WorldState) -> Value {
 
 fn party_case(mut game: Game, expected_equipment_version: u32) {
     let assets = owned(&game.world);
+    let history = game.history.clone();
+    let epoch = game.history_epoch;
     spheres_sim::party_leadership::enable_campaign(&mut game.world).unwrap();
     assert_eq!(
         owned(&game.world),
         assets,
         "Party adoption must not change paid property or RNG"
     );
-    game.snapshot();
+    // Loaded games already contain this day's snapshot. Party enrollment is
+    // not a new day, and appending it would fabricate a duplicate timestamp.
+    assert_eq!(game.history, history);
+    assert_eq!(game.history_epoch, epoch);
     let text = save(&game.world);
     let envelope: Value = serde_json::from_str(&text).unwrap();
     assert_eq!(envelope["format"], "spheres-party-leadership-save");
@@ -130,10 +135,10 @@ fn malformed_archives_and_mismatched_direct_party_books_refuse_clearly() {
     let mut game = Game::new(1990, Some(NationId::France));
     play_rules(&mut game);
     spheres_sim::party_leadership::enable_campaign(&mut game.world).unwrap();
-    game.snapshot();
     let standalone: Value = serde_json::from_str(&save(&game.world)).unwrap();
     let archive: Value = serde_json::from_str(&storage::encode(&game).unwrap()).unwrap();
     assert!(storage::decode(&standalone.to_string()).is_ok());
+    assert!(storage::decode(&archive.to_string()).is_ok(), "Negative cases must begin with a valid archive");
     let mut cases: Vec<(&str, Value)> = Vec::new();
     for field in ["world", "history", "log", "saved_date"] {
         let mut bad = archive.clone();
