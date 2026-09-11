@@ -59,6 +59,56 @@
       if(g>r*1.025&&g>b*1.06&&g>.12){const shade=clamp((r*.25+g*.65+b*.10)/.30,.4,1.5);for(let k=0;k<3;k++)out[i+k]=clamp(tone[k]*shade,0,1);}
     }return out;
   }
+  // Surface metadata is authored in vertex units, like selectable part ranges.
+  // Reject ambiguous ownership rather than render stale or opaque canopy data.
+  function surfaceRanges(mesh){
+    const count=mesh.positions.length/3;
+    if(mesh.assetKind!=='aircraft')return {opaque:[{first:0,count}],glass:[]};
+    if(mesh.surfaces!==undefined&&!Array.isArray(mesh.surfaces))throw new TypeError('Invalid aircraft surface ranges.');
+    const glass=(mesh.surfaces||[]).map(surface=>{
+      if(!surface||surface.material!=='glass'||!Number.isSafeInteger(surface.first)||!Number.isSafeInteger(surface.count)||surface.first<0||surface.count<=0||surface.first%3||surface.count%3||surface.first+surface.count>count||!Number.isFinite(surface.opacity)||surface.opacity<=0||surface.opacity>=1)throw new TypeError('Invalid aircraft surface ranges.');
+      const owners=(mesh.parts||[]).filter(p=>Number.isSafeInteger(p.first)&&Number.isSafeInteger(p.count)&&p.first>=0&&p.count>0&&p.first%3===0&&p.count%3===0&&p.first+p.count<=count&&surface.first<p.first+p.count&&surface.first+surface.count>p.first);
+      if(owners.length!==1||surface.first<owners[0].first||surface.first+surface.count>owners[0].first+owners[0].count)throw new TypeError('Aircraft glass must belong to exactly one model part.');
+      const center=[0,0,0];for(let i=surface.first*3;i<(surface.first+surface.count)*3;i+=3)for(let axis=0;axis<3;axis++)center[axis]+=mesh.positions[i+axis]/surface.count;
+      return {first:surface.first,count:surface.count,material:'glass',opacity:surface.opacity,part:owners[0].name,center};
+    }).sort((a,b)=>a.first-b.first);
+    const opaque=[];let first=0;
+    for(const surface of glass){if(surface.first<first)throw new TypeError('Aircraft surface ranges overlap.');if(surface.first>first)opaque.push({first,count:surface.first-first});first=surface.first+surface.count;}
+    if(first<count)opaque.push({first,count:count-first});
+    return {opaque,glass};
+  }
+  function partBounds(mesh,value,region){
+    if(!mesh?.positions||!Array.isArray(mesh.parts)||typeof value!=='string'||!value)return null;
+    const exact=mesh.parts.find(p=>p.name===value);let parts=exact?[exact]:mesh.parts.filter(p=>p.slot===value);
+    if(!parts.length)return null;
+    if(!exact&&parts[0].slot==='air_engine'&&region==='front'&&parts.length>1){
+      // Looking between both intakes puts the eye inside the nose. Inspect the
+      // outboard positive-X nacelle, leaving the complete airframe rendered.
+      const candidates=parts.map(part=>({part,bounds:partBounds(mesh,part.name)?.bounds})).filter(p=>p.bounds).sort((a,b)=>(b.bounds.min[0]+b.bounds.max[0])-(a.bounds.min[0]+a.bounds.max[0]));
+      if(!candidates.length)return null;parts=[candidates[0].part];
+    }
+    let ranges=parts;
+    // The avionics assembly includes radio aerials elsewhere on the airframe.
+    // Authored canopy triangles identify the cockpit itself at every mesh LOD.
+    if(parts[0].slot==='air_avionics'&&mesh.assetKind==='aircraft'){
+      const glass=surfaceRanges(mesh).glass.filter(s=>parts.some(p=>p.name===s.part));if(glass.length)ranges=glass;
+    }
+    const min=[Infinity,Infinity,Infinity],max=[-Infinity,-Infinity,-Infinity],count=mesh.positions.length/3;
+    for(const part of ranges){
+      if(!Number.isSafeInteger(part.first)||!Number.isSafeInteger(part.count)||part.first<0||part.count<=0||part.first%3||part.count%3||part.first+part.count>count)return null;
+      for(let i=part.first*3;i<(part.first+part.count)*3;i++){const v=mesh.positions[i];if(!Number.isFinite(v))return null;min[i%3]=Math.min(min[i%3],v);max[i%3]=Math.max(max[i%3],v);}
+    }
+    if(parts[0].slot==='air_engine'&&(region==='rear'||region==='front')){
+      const depth=Math.min(1.6,(max[2]-min[2])*.22),edge=region==='rear'?min[2]+depth:max[2]-depth;
+      min.fill(Infinity);max.fill(-Infinity);
+      for(const part of ranges)for(let i=part.first*3;i<(part.first+part.count)*3;i+=3){
+        const z=mesh.positions[i+2];if(region==='rear'?z>edge:z<edge)continue;
+        for(let axis=0;axis<3;axis++){min[axis]=Math.min(min[axis],mesh.positions[i+axis]);max[axis]=Math.max(max[axis],mesh.positions[i+axis]);}
+      }
+    }
+    if(![...min,...max].every(Number.isFinite)||Math.hypot(...max.map((v,i)=>v-min[i]))<.001)return null;
+    return {bounds:{min,max},part:parts[0],parts};
+  }
   function rayAt(camera,x,y,aspect){
     const forward=normalize(camera.center.map((v,i)=>v-camera.eye[i])),right=normalize(cross(forward,[0,1,0])),up=cross(right,forward),tangent=Math.tan(38*Math.PI/360);
     return {origin:camera.eye,direction:normalize(forward.map((v,i)=>v+right[i]*x*tangent*Math.max(.25,aspect)+up[i]*y*tangent))};
@@ -109,7 +159,7 @@ float shadowVisibility(vec3 position,vec3 normal){
   return visibility/9.;
 }`;
   function fragmentSource(shadows){return `precision highp float;
-uniform vec3 uEye;uniform mediump float uMode;uniform float uHighlight;uniform float uHeight;uniform float uTankEnabled;
+uniform vec3 uEye;uniform mediump float uMode;uniform float uHighlight;uniform float uHeight;uniform float uTankEnabled;uniform float uAircraftEnabled;uniform float uAircraftGlass;uniform float uSurfaceOpacity;
 varying highp vec3 vPosition;varying mediump vec3 vNormal;varying mediump vec3 vColor;varying mediump vec4 vSurface;
 ${shadows?SHADOW_SAMPLE:'float shadowVisibility(vec3 position,vec3 normal){return 1.;}'}
 ${root.MilitarySurface?.glsl||''}
@@ -119,6 +169,32 @@ float grid=pow(abs(cos(p.x*3.14159265)),80.)+pow(abs(cos(p.z*3.14159265)),80.);c
 float contact=exp(-pow(p.x/1.9,4.)-pow(p.z/3.7,4.));return c*(1.-.28*contact);}
 void main(){if(uMode>.5){vec3 c=floorColor(vPosition);if(uMode>1.5)c*=.53;else c*=mix(.48,1.,shadowVisibility(vPosition,vec3(0.,1.,0.)));gl_FragColor=vec4(c,1.);return;}
 float visibility=shadowVisibility(vPosition,vNormal);
+if(uAircraftEnabled>.5){
+  vec3 n=normalize(vNormal),view=normalize(uEye-vPosition),light=normalize(vec3(-.55,.85,.65));
+  if(uAircraftGlass>.5){
+    if(!gl_FrontFacing)n=-n;
+    float fresnel=pow(1.-max(dot(n,view),0.),4.);
+    float reflection=pow(max(dot(n,normalize(light+view)),0.),110.);
+    vec3 sky=mix(vec3(.12,.19,.23),vec3(.66,.78,.82),n.y*.5+.5);
+    vec3 glass=mix(vColor*.48,sky,.42+fresnel*.40)+vec3(.55,.62,.64)*reflection;
+    glass=mix(glass,vec3(.62,.79,.80),uHighlight*.22);
+    gl_FragColor=vec4(glass,clamp(uSurfaceOpacity+fresnel*.30+reflection*.22,0.,.82));return;
+  }
+  // Deliberately clean airframe finish: broad hangar reflections, matte paint,
+  // and restrained neutral-metal highlights; no tank dirt or camouflage mask.
+  float key=max(dot(n,light),0.),fill=max(dot(n,normalize(vec3(.8,.35,-.7))),0.);
+  float tone=max(vColor.r,max(vColor.g,vColor.b));
+  float chroma=tone-min(vColor.r,min(vColor.g,vColor.b));
+  float metal=(1.-smoothstep(.025,.12,chroma))*(1.-smoothstep(.16,.30,tone));
+  float highlight=pow(max(dot(n,normalize(light+view)),0.),mix(34.,78.,metal))*mix(.065,.19,metal);
+  vec3 base=pow(max(vColor,vec3(.001)),vec3(2.2));
+  vec3 ambient=mix(vec3(.29,.34,.39),vec3(.69,.76,.79),n.y*.5+.5);
+  vec3 lit=base*(ambient*.65+vec3(1.12,1.08,.98)*key*mix(.36,1.,visibility)+vec3(.30,.38,.46)*fill)+vec3(highlight*visibility);
+  vec3 painted=pow(max(lit,vec3(0.)),vec3(1./2.2));
+  float rim=pow(1.-abs(dot(n,view)),2.);
+  painted=mix(painted,mix(painted,vec3(.68,.80,.82),.10+rim*.35),uHighlight);
+  gl_FragColor=vec4(painted,1.);return;
+}
 ${root.TankSurface?.glsl?'if(uTankEnabled>.5){vec3 painted=tankLighting(vColor,vNormal,vPosition,uEye-vPosition,visibility,vSurface);float rim=pow(1.-abs(dot(normalize(vNormal),normalize(uEye-vPosition))),2.);painted=mix(painted,mix(painted,vec3(.65,.73,.72),.10+rim*.38),uHighlight);gl_FragColor=vec4(painted,1.);return;}':''}
 ${root.MilitarySurface?'vec3 painted=militaryLighting(vColor,vNormal,vPosition,uEye-vPosition,visibility,uHeight);gl_FragColor=vec4(mix(painted,painted*.70+vec3(.20,.13,.015),uHighlight),1.);return;':''}
 vec3 n=normalize(vNormal),view=normalize(uEye-vPosition),light=normalize(vec3(-.55,.85,.65));
@@ -141,16 +217,17 @@ gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;}
     slot.appendChild(canvas);
     const status=host.querySelector('[data-model-status]')||doc.createElement('p');
     if(!status.parentNode){status.setAttribute('data-model-status','');status.setAttribute('role','status');slot.appendChild(status);}
-    let gl=null,program=null,buffers=[],floorBuffers=[],uniforms={},attributes={},mesh=null,painted=null,key=null,draft=spec,shadow=null,material=null,tankData=null;
+    let gl=null,program=null,buffers=[],floorBuffers=[],uniforms={},attributes={},mesh=null,painted=null,key=null,draft=spec,shadow=null,material=null,tankData=null,ranges=null;
     let disposed=false,lost=false,raf=0,turntable=false,visible=true,lastTime=0,ready=false;
     let yaw=VIEWS.hero[0],pitch=VIEWS.hero[1],zoomFactor=1,finish='olive',wear='service',viewName='hero';
-    let width=0,height=0,resizeObserver=null,intersectionObserver=null,selectedPart=null,gesture=null;
+    let width=0,height=0,resizeObserver=null,intersectionObserver=null,selectedPart=null,gesture=null,focus=null;
     const partSelect=host.querySelector('[data-model-part]');
-    const events=[],pointers=new Map(),urls=new Set();
+    const events=[],pointers=new Map(),urls=new Set(),focusTargets=new Map();
     const on=(node,event,handler,options)=>{node.addEventListener(event,handler,options);events.push([node,event,handler,options]);};
     const say=text=>{status.textContent=text;};
     function setControls(){
       host.querySelectorAll('[data-model-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.modelView===viewName)));
+      host.querySelectorAll('[data-model-focus]').forEach(b=>{const region=b.dataset.modelFocusRegion||'rear';b.disabled=!ready||lost||!mesh||!focusTarget(b.dataset.modelFocus,region);b.setAttribute('aria-pressed',String(focus?.value===b.dataset.modelFocus&&focus?.region===region));b.setAttribute('title',region==='front'&&mesh?.assetKind!=='aircraft'?'Intake interior close-up is available on the tactical aircraft.':'Inspect the modeled component.');});
       host.querySelectorAll('[data-model-turntable]').forEach(b=>{b.setAttribute('aria-pressed',String(turntable));b.textContent=turntable?'Stop rotation':'Auto rotate';});
       host.querySelectorAll('[data-model-finish]').forEach(b=>{if(b.tagName==='SELECT')b.value=finish;else b.setAttribute('aria-pressed',String(b.dataset.modelFinish===finish));});
       host.querySelectorAll('[data-model-wear]').forEach(b=>{b.disabled=!tankData;if(b.tagName==='SELECT')b.value=wear;else b.setAttribute('aria-pressed',String(b.dataset.modelWear===wear));});
@@ -177,7 +254,7 @@ gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;}
     function pickAt(clientX,clientY){
       if(disposed||lost||!ready||!mesh)return null;
       const rect=canvas.getBoundingClientRect();if(!rect.width||!rect.height||clientX<rect.left||clientX>rect.left+rect.width||clientY<rect.top||clientY>rect.top+rect.height)return null;
-      const aspect=width/height,camera=frame(mesh.bounds,aspect,yaw,pitch,zoomFactor),ray=rayAt(camera,(clientX-rect.left)/rect.width*2-1,1-(clientY-rect.top)/rect.height*2,aspect),hit=raycast(mesh,ray.origin,ray.direction);
+      const aspect=width/height,camera=currentCamera(),ray=rayAt(camera,(clientX-rect.left)/rect.width*2-1,1-(clientY-rect.top)/rect.height*2,aspect),hit=raycast(mesh,ray.origin,ray.direction);
       return hit?.part?.slot?selectPart(hit.part.name,true,canvas):null;
     }
     function shader(type,source){
@@ -227,7 +304,7 @@ gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;}
     function locateProgram(){
       for(const name of ['aPosition','aNormal','aColor'])attributes[name]=gl.getAttribLocation(program,name);
       attributes.aSurface=root.TankSurface?.glsl?gl.getAttribLocation(program,'aSurface'):-1;
-      for(const name of ['uVP','uEye','uMode','uHighlight','uHeight','uTankEnabled','uTankCamo','uTankWear','uTankHeight','uShadowMap','uLightVP','uShadowTexel','uShadowNormalBias','uShadowDepthBias'])uniforms[name]=gl.getUniformLocation(program,name);
+      for(const name of ['uVP','uEye','uMode','uHighlight','uHeight','uTankEnabled','uAircraftEnabled','uAircraftGlass','uSurfaceOpacity','uTankCamo','uTankWear','uTankHeight','uShadowMap','uLightVP','uShadowTexel','uShadowNormalBias','uShadowDepthBias'])uniforms[name]=gl.getUniformLocation(program,name);
     }
     function release(){
       if(gl&&!lost){buffers.forEach(b=>gl.deleteBuffer(b));floorBuffers.forEach(b=>gl.deleteBuffer(b));if(program)gl.deleteProgram(program);}
@@ -262,13 +339,13 @@ gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;}
       try{
         gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,null);
         gl.bindFramebuffer(gl.FRAMEBUFFER,shadow.framebuffer);gl.viewport(0,0,shadow.size,shadow.size);
-        // Dithering would corrupt the packed depth bytes. Blending is never
-        // enabled on this private context, and the target has no multisampling.
+        // Dithering would corrupt the packed depth bytes. The glass pass restores
+        // blending/depth writes, and this target has no multisampling.
         gl.disable(gl.DITHER);gl.clearColor(1,1,1,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
         gl.useProgram(shadow.program);gl.uniformMatrix4fv(shadow.matrix,false,shadow.frame.matrix);
         for(const index of Object.values(attributes))if(index>=0&&index!==shadow.position)gl.disableVertexAttribArray(index);
         gl.bindBuffer(gl.ARRAY_BUFFER,buffers[0]);gl.enableVertexAttribArray(shadow.position);gl.vertexAttribPointer(shadow.position,3,gl.FLOAT,false,0,0);
-        gl.drawArrays(gl.TRIANGLES,0,mesh.positions.length/3);
+        for(const range of ranges.opaque)gl.drawArrays(gl.TRIANGLES,range.first,range.count);
         if(gl.getError&&gl.getError()!==gl.NO_ERROR)throw new Error('Shadow pass failed');
         shadow.dirty=false;shadow.valid=true;
       }catch(error){failed=true;}
@@ -295,12 +372,13 @@ gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;}
       raf=0;if(disposed||lost||!ready||!mesh||!visible||doc.hidden||!canvas.isConnected)return;
       if(turntable&&lastTime)yaw+=(Math.min(64,time-lastTime)/1000)*.22;lastTime=time;
       if(!width||!height){resize();return;}
-      const camera=frame(mesh.bounds,width/height,yaw,pitch,zoomFactor);
+      const camera=currentCamera();
       if(!drawShadow())return;
       if(tankData)gl.clearColor(.105,.125,.132,1);else gl.clearColor(.063,.088,.105,1);
       gl.viewport(0,0,width,height);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.useProgram(program);
       gl.uniformMatrix4fv(uniforms.uVP,false,camera.matrix);gl.uniform3fv(uniforms.uEye,camera.eye);
       gl.uniform1f(uniforms.uHeight,mesh.bounds.max[1]-mesh.bounds.min[1]);
+      gl.uniform1f(uniforms.uAircraftEnabled,mesh.assetKind==='aircraft'?1:0);gl.uniform1f(uniforms.uAircraftGlass,0);gl.uniform1f(uniforms.uSurfaceOpacity,1);
       gl.uniform1f(uniforms.uTankEnabled,tankData?1:0);gl.uniform1f(uniforms.uTankCamo,finish==='woodland'?1:0);gl.uniform1f(uniforms.uTankWear,root.TankSurface?.wearLevels?.[wear]||0);gl.uniform1f(uniforms.uTankHeight,mesh.bounds.max[1]-mesh.bounds.min[1]);
       gl.uniform1f(uniforms.uHighlight,0);
       material?.bind(program);
@@ -310,17 +388,45 @@ gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;}
         gl.uniform1f(uniforms.uShadowNormalBias,shadow.frame.normalBias);gl.uniform1f(uniforms.uShadowDepthBias,shadow.frame.depthBias);
       }
       bind(floorBuffers);gl.uniform1f(uniforms.uMode,1);gl.drawArrays(gl.TRIANGLES,0,6);
-      bind(buffers);if(!shadow?.valid){gl.uniform1f(uniforms.uMode,2);gl.drawArrays(gl.TRIANGLES,0,mesh.positions.length/3);}
-      gl.uniform1f(uniforms.uMode,0);gl.drawArrays(gl.TRIANGLES,0,mesh.positions.length/3);
+      bind(buffers);if(!shadow?.valid){gl.uniform1f(uniforms.uMode,2);for(const range of ranges.opaque)gl.drawArrays(gl.TRIANGLES,range.first,range.count);}
+      gl.uniform1f(uniforms.uMode,0);for(const range of ranges.opaque)gl.drawArrays(gl.TRIANGLES,range.first,range.count);
       const selected=mesh.parts?.find(p=>p.name===selectedPart);
-      if(selected){gl.uniform1f(uniforms.uHighlight,1);gl.drawArrays(gl.TRIANGLES,selected.first,selected.count);gl.uniform1f(uniforms.uHighlight,0);}
+      if(selected){gl.uniform1f(uniforms.uHighlight,1);for(const range of ranges.opaque){const first=Math.max(range.first,selected.first),end=Math.min(range.first+range.count,selected.first+selected.count);if(end>first)gl.drawArrays(gl.TRIANGLES,first,end-first);}gl.uniform1f(uniforms.uHighlight,0);}
+      if(ranges.glass.length){
+        const blending=['blendFunc','depthMask','disable'].every(name=>typeof gl[name]==='function');
+        // Transparent ranges are far-to-near; back faces precede front faces on
+        // each convex canopy. Opaque cockpit geometry already owns the depth.
+        const forward=normalize(camera.center.map((v,i)=>v-camera.eye[i]));
+        const glass=[...ranges.glass].sort((a,b)=>dot(b.center,forward)-dot(a.center,forward));
+        try{
+          if(blending){gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);gl.depthMask(false);gl.uniform1f(uniforms.uAircraftGlass,1);}
+          for(const range of glass){
+            gl.uniform1f(uniforms.uSurfaceOpacity,range.opacity);gl.uniform1f(uniforms.uHighlight,range.part===selectedPart?1:0);
+            if(blending&&typeof gl.cullFace==='function'){gl.enable(gl.CULL_FACE);gl.cullFace(gl.FRONT);gl.drawArrays(gl.TRIANGLES,range.first,range.count);gl.cullFace(gl.BACK);gl.drawArrays(gl.TRIANGLES,range.first,range.count);gl.disable(gl.CULL_FACE);}
+            else gl.drawArrays(gl.TRIANGLES,range.first,range.count);
+          }
+        }finally{if(blending){gl.depthMask(true);gl.disable(gl.BLEND);if(typeof gl.cullFace==='function')gl.disable(gl.CULL_FACE);}gl.uniform1f(uniforms.uAircraftGlass,0);gl.uniform1f(uniforms.uHighlight,0);gl.uniform1f(uniforms.uSurfaceOpacity,1);}
+      }
       if(turntable)schedule();
     }
     function stopRotation(){turntable=false;lastTime=0;setControls();}
+    function currentCamera(){return frame(focus?.bounds||mesh.bounds,width/height,yaw,pitch,zoomFactor);}
+    function focusTarget(value,region){const key=JSON.stringify([value,region]);if(!focusTargets.has(key)){const target=partBounds(mesh,value,region);focusTargets.set(key,region==='front'&&target?.part.slot==='air_engine'&&mesh.assetKind!=='aircraft'?null:target);}return focusTargets.get(key);}
+    function clearFocus(restoreAngle=false){if(!focus)return;zoomFactor=focus.overviewZoom;if(restoreAngle){yaw=focus.overviewYaw;pitch=focus.overviewPitch;viewName=focus.overviewView;}focus=null;}
+    function focusPart(value,region='rear'){
+      if(disposed||lost||!ready||!mesh)return null;
+      if(region!=='rear'&&region!=='front')return null;const target=focusTarget(value,region);if(!target)return null;
+      const overview=focus||{overviewZoom:zoomFactor,overviewYaw:yaw,overviewPitch:pitch,overviewView:viewName};
+      stopRotation();focus={value,region,bounds:target.bounds,overviewZoom:overview.overviewZoom,overviewYaw:overview.overviewYaw,overviewPitch:overview.overviewPitch,overviewView:overview.overviewView};
+      [yaw,pitch]=target.part.slot==='air_engine'?[region==='front'?(target.bounds.min[0]+target.bounds.max[0]<0?-.2:.2):Math.PI,.12]:target.part.slot==='air_avionics'?[2.85,.9]:VIEWS.hero;zoomFactor=1;viewName='';
+      selectPart(target.part.name,true);setControls();schedule();
+      say(`${target.part.slot==='air_avionics'?'Cockpit':target.part.slot==='air_engine'?(region==='front'?'Intakes':'Engines'):target.part.label||target.part.name} close-up. Drag to orbit; choose a normal view or Reset to see the whole aircraft.`);
+      return target.part;
+    }
     function rotate(dy,dp){if(!Number.isFinite(dy)||!Number.isFinite(dp))return;stopRotation();yaw=(yaw+dy)%(Math.PI*2);pitch=clamp(pitch+dp,.055,1.50);viewName='';setControls();schedule();}
     function zoom(delta){if(!Number.isFinite(delta))return;stopRotation();zoomFactor=clamp(zoomFactor*Math.exp(delta*.12),.5,2.25);schedule();}
-    function view(name){if(!VIEWS[name])return;stopRotation();[yaw,pitch]=VIEWS[name];viewName=name;setControls();schedule();say(`${name==='hero'?'Three-quarter':name.charAt(0).toUpperCase()+name.slice(1)} view.`);}
-    function reset(){zoomFactor=1;view('hero');}
+    function view(name){if(!VIEWS[name])return;stopRotation();clearFocus();[yaw,pitch]=VIEWS[name];viewName=name;setControls();schedule();say(`${name==='hero'?'Three-quarter':name.charAt(0).toUpperCase()+name.slice(1)} view.`);}
+    function reset(){clearFocus();zoomFactor=1;view('hero');}
     function toggleRotation(){turntable=!turntable;viewName='';lastTime=0;setControls();schedule();}
     function previewColors(){return tankData?root.TankSurface.bake(mesh,{finish,wear,baseOnly:true}):finishColors(mesh.colors,finish);}
     function repaint(){if(mesh)painted=previewColors();if(mesh&&ready&&!lost){gl.bindBuffer(gl.ARRAY_BUFFER,buffers[2]);gl.bufferData(gl.ARRAY_BUFFER,painted,gl.STATIC_DRAW);}setControls();schedule();}
@@ -333,14 +439,14 @@ gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;}
       if(disposed)return;draft=next;const nextKey=modelKey(next);if(nextKey===key){resize();return;}
       try{const candidate=root.EquipmentMesh.build(next);if(!candidate.positions?.length||candidate.positions.length!==candidate.normals.length||candidate.positions.length!==candidate.colors.length)throw new Error('Invalid model geometry');
         const oldSlot=mesh?.parts?.find(p=>p.name===selectedPart)?.slot;
-        mesh=candidate;tankData=root.TankSurface?.supports?.(mesh,draft?.platform)?root.TankSurface.prepare(mesh):null;if(!tankData&&finish==='woodland')finish='olive';
+        const nextRanges=surfaceRanges(candidate);clearFocus(true);mesh=candidate;ranges=nextRanges;focusTargets.clear();tankData=root.TankSurface?.supports?.(mesh,draft?.platform)?root.TankSurface.prepare(mesh):null;if(!tankData&&finish==='woodland')finish='olive';
         key=nextKey;selectedPart=(mesh.parts?.find(p=>p.name===selectedPart)||mesh.parts?.find(p=>oldSlot&&p.slot===oldSlot))?.name||null;
         painted=previewColors();upload();refreshParts();setControls();resize();
         if(ready&&!lost)say('3D model ready. Drag to rotate or use the view controls.');
         else if(!lost)say('3D rendering is unavailable on this graphics device. Component choices and cost reviews still work.');
       }catch(error){
         // Never retain a previous configuration under the new draft's name.
-        mesh=null;tankData=null;painted=null;key=null;selectedPart=null;if(shadow){shadow.dirty=true;shadow.valid=false;shadow.frame=null;}refreshParts();
+        clearFocus(true);mesh=null;ranges=null;focusTargets.clear();tankData=null;painted=null;key=null;selectedPart=null;if(shadow){shadow.dirty=true;shadow.valid=false;shadow.frame=null;}refreshParts();
         if(raf)root.cancelAnimationFrame(raf);raf=0;
         if(gl&&!lost){buffers.forEach(b=>gl.deleteBuffer(b));if(ready)gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);}
         buffers=[];setControls();
@@ -362,6 +468,7 @@ gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;}
       }catch(error){say('The 3D file could not be exported. The design is still available.');}
     }
     host.querySelectorAll('[data-model-view]').forEach(b=>on(b,'click',()=>view(b.dataset.modelView)));
+    host.querySelectorAll('[data-model-focus]').forEach(b=>on(b,'click',()=>focusPart(b.dataset.modelFocus,b.dataset.modelFocusRegion||'rear')));
     host.querySelectorAll('[data-model-rotate]').forEach(b=>on(b,'click',()=>{const moves={left:[-.18,0],right:[.18,0],up:[0,.12],down:[0,-.12]};const d=moves[b.dataset.modelRotate];if(d)rotate(...d);}));
     host.querySelectorAll('[data-model-zoom]').forEach(b=>on(b,'click',()=>zoom(b.dataset.modelZoom==='in'?-1:1)));
     host.querySelectorAll('[data-model-reset]').forEach(b=>on(b,'click',reset));
@@ -382,15 +489,15 @@ gl_FragColor=vec4(pow(max(lit,vec3(0.)),vec3(1./2.2)),1.);}`;}
     for(const event of ['pointercancel','lostpointercapture'])on(canvas,event,e=>{pointers.delete(e.pointerId);gesture=null;});
     on(canvas,'wheel',e=>{e.preventDefault();zoom(clamp(e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?height:1)/120,-4,4));},{passive:false});
     on(canvas,'keydown',e=>{const keys={ArrowLeft:[-.15,0],ArrowRight:[.15,0],ArrowUp:[0,.1],ArrowDown:[0,-.1]};if(keys[e.key])rotate(...keys[e.key]);else if(e.key==='+'||e.key==='=')zoom(-1);else if(e.key==='-')zoom(1);else if(e.key==='Home'||e.key==='0')reset();else return;e.preventDefault();e.stopPropagation();});
-    on(canvas,'webglcontextlost',e=>{e.preventDefault();lost=true;release();gesture=null;pointers.clear();if(raf)root.cancelAnimationFrame(raf);raf=0;say('The 3D preview is waiting for the graphics device. Your design is preserved.');});
-    on(canvas,'webglcontextrestored',()=>{if(disposed)return;lost=false;buffers=[];floorBuffers=[];program=null;try{initialize();resize();}catch(error){release();say('3D rendering is unavailable. You can still edit and review this design.');}});
+    on(canvas,'webglcontextlost',e=>{e.preventDefault();lost=true;release();gesture=null;pointers.clear();if(raf)root.cancelAnimationFrame(raf);raf=0;setControls();say('The 3D preview is waiting for the graphics device. Your design is preserved.');});
+    on(canvas,'webglcontextrestored',()=>{if(disposed)return;lost=false;buffers=[];floorBuffers=[];program=null;try{initialize();resize();}catch(error){release();say('3D rendering is unavailable. You can still edit and review this design.');}setControls();});
     on(doc,'visibilitychange',()=>{lastTime=0;if(doc.hidden&&raf){root.cancelAnimationFrame(raf);raf=0;}else schedule();});
     if(root.ResizeObserver){resizeObserver=new root.ResizeObserver(resize);resizeObserver.observe(slot);}else on(root,'resize',resize);
     if(root.IntersectionObserver){intersectionObserver=new root.IntersectionObserver(entries=>{visible=entries[0]?.isIntersecting!==false;lastTime=0;if(!visible&&raf){root.cancelAnimationFrame(raf);raf=0;}else schedule();});intersectionObserver.observe(canvas);}
     function dispose(){if(disposed)return;disposed=true;if(raf)root.cancelAnimationFrame(raf);raf=0;resizeObserver?.disconnect();intersectionObserver?.disconnect();events.forEach(([n,e,f,o])=>n.removeEventListener(e,f,o));pointers.clear();gesture=null;urls.forEach(url=>root.URL.revokeObjectURL(url));urls.clear();release();canvas.remove();mesh=null;painted=null;tankData=null;}
     try{initialize();}catch(error){release();root.console?.warn('Equipment 3D preview:',error.message);say('3D rendering is unavailable on this graphics device. Component choices and cost reviews still work.');}
     update(spec);setControls();resize();
-    return {update,resize,dispose,view,rotate,zoom,reset,toggleRotation,setFinish,setWear,exportGlb,selectPart,pickAt};
+    return {update,resize,dispose,view,rotate,zoom,reset,toggleRotation,setFinish,setWear,exportGlb,selectPart,focusPart,pickAt};
   }
-  return {mount,modelKey,frame,finishColors,rayAt,raycast,shadowFrame,math:{lookAt,perspective,multiply},views:VIEWS};
+  return {mount,modelKey,frame,finishColors,surfaceRanges,partBounds,rayAt,raycast,shadowFrame,math:{lookAt,perspective,multiply},views:VIEWS};
 });

@@ -8,7 +8,7 @@ const hash=m=>crypto.createHash('sha256').update(Buffer.from(m.positions.buffer)
 function vertices(mesh,name,color){const p=mesh.parts.find(p=>p.name===name);assert(p,name);const out=[];for(let i=p.first*3;i<(p.first+p.count)*3;i+=3)if(!color||color.every((v,k)=>Math.abs(mesh.colors[i+k]-v)<1e-6))out.push({p:Array.from(mesh.positions.subarray(i,i+3)),n:Array.from(mesh.normals.subarray(i,i+3))});return out;}
 function span(v,axis){const values=v.map(v=>v.p[axis]);return [Math.min(...values),Math.max(...values)];}
 // Specialist pins intentionally updated by the later specialist proportion pass;
-// all aircraft pins retain the pre-tank-redesign bytes. The dedicated specialist
+// aircraft pins updated for the approved 100k+ inspection/LOD pass. The dedicated specialist
 // test additionally freezes approved tank/air material sidecars.
 const nonTankReviewed={
   "ground_ifv/0": "4e6ebec21677943fcbbda5eab877c430809ad10f55f1a475bfa95969a9967047",
@@ -26,12 +26,12 @@ const nonTankReviewed={
   "ground_air_defense/0": "48f8fb87e23fff8d3eeac21715797c1046ce637fb0f00a271c130b0a46e36846",
   "ground_air_defense/1": "36c715bf0fcb113a2eebb6f393706aeda342db8b93e24eec3b531a9b17bdf774",
   "ground_air_defense/2": "d897cdd61f676e5b10ddc35f2838ee5ea7c43e71d05fede729d856f708f1bb4e",
-  "air_light_attack/0": "269fdb652e4e1df8fc34b22b4bca1801a3cd7a38877b7da0fbd172d9a7ef3e1e",
-  "air_light_attack/1": "269fdb652e4e1df8fc34b22b4bca1801a3cd7a38877b7da0fbd172d9a7ef3e1e",
-  "air_light_attack/2": "269fdb652e4e1df8fc34b22b4bca1801a3cd7a38877b7da0fbd172d9a7ef3e1e",
-  "air_tactical_strike/0": "84f36ee62aecf2702c36e1b2bd37eca3bd61bef3a21d2d0185e18ce4864424e6",
-  "air_tactical_strike/1": "84f36ee62aecf2702c36e1b2bd37eca3bd61bef3a21d2d0185e18ce4864424e6",
-  "air_tactical_strike/2": "84f36ee62aecf2702c36e1b2bd37eca3bd61bef3a21d2d0185e18ce4864424e6"
+  "air_light_attack/0": "28a1b5c57f200275d2ebb6ef5f497e1d605084225bc2ab875daf5092806c8a95",
+  "air_light_attack/1": "621d2f7f9de5965f7b3dcfe5fe0e5627b75f797d387902e4b9b301b452cdf6c9",
+  "air_light_attack/2": "a8360e68b8fda267b6ab625f2d720ec3044f1f1621b5976ad896041b12c818c1",
+  "air_tactical_strike/0": "d5131474281d9237b339033989459829b486a127e972cbaf15c55a911f720bc3",
+  "air_tactical_strike/1": "3654f2e71b8166c4e84f54d12806c46293b0b1bf8366ee4252c5593de637832d",
+  "air_tactical_strike/2": "d8e2c8637fc0b95c610d917f50cf04d31a60fa6ec1010d61732df82cf1a73db5"
 };
 
 test('every aircraft and specialist default matches its reviewed geometry and colors at every LOD',()=>{

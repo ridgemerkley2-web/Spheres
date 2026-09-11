@@ -36,6 +36,17 @@
       return {name: part.name, first: part.first, count: part.count,
         ...(typeof part.slot==='string'?{slot:part.slot}:{}),...(typeof part.label==='string'?{label:part.label}:{})};
     });
+    let aircraftSurfaces=null;
+    if(mesh.assetKind==='aircraft'){
+      if(mesh.surfaces!==undefined&&!Array.isArray(mesh.surfaces))throw new TypeError('Invalid aircraft surface ranges.');
+      aircraftSurfaces=(mesh.surfaces||[]).map(surface=>{
+        if(!surface||surface.material!=='glass'||!Number.isSafeInteger(surface.first)||!Number.isSafeInteger(surface.count)||surface.first<0||surface.count<=0||surface.first%3||surface.count%3||surface.first+surface.count>count||!Number.isFinite(surface.opacity)||surface.opacity<=0||surface.opacity>=1)throw new TypeError('Invalid aircraft surface ranges.');
+        const owners=parts.filter(p=>p.count>0&&surface.first<p.first+p.count&&surface.first+surface.count>p.first);
+        if(owners.length!==1||surface.first<owners[0].first||surface.first+surface.count>owners[0].first+owners[0].count)throw new TypeError('Aircraft glass must belong to exactly one model part.');
+        return {first:surface.first,count:surface.count,material:'glass',opacity:surface.opacity};
+      }).sort((a,b)=>a.first-b.first);
+      for(let i=1;i<aircraftSurfaces.length;i++)if(aircraftSurfaces[i].first<aircraftSurfaces[i-1].first+aircraftSurfaces[i-1].count)throw new TypeError('Aircraft surface ranges overlap.');
+    }
     const byteLength = size * 4;
     const binary = new Uint8Array(byteLength * 3);
     const data = new DataView(binary.buffer);
@@ -69,6 +80,32 @@
         {bufferView: 2, componentType: 5126, count, type: "VEC3"}
       ]
     };
+    if(aircraftSurfaces){
+      // Global accessors 0/1/2 remain the exact original buffers for tooling.
+      // Draw primitives use slices of those same buffers, without duplication.
+      document.meshes[0].extras.assetKind='aircraft';
+      document.meshes[0].extras.surfaces=aircraftSurfaces;
+      document.materials[0]={name:'Aircraft matte paint and fittings',pbrMetallicRoughness:{baseColorFactor:[1,1,1,1],metallicFactor:.08,roughnessFactor:.62}};
+      if(aircraftSurfaces.length){
+        const opaque=[];let first=0;
+        for(const surface of aircraftSurfaces){if(surface.first>first)opaque.push({first,count:surface.first-first,material:0});first=surface.first+surface.count;}
+        if(first<count)opaque.push({first,count:count-first,material:0});
+        const glassMaterials=new Map();
+        const transparent=aircraftSurfaces.map(surface=>{
+          if(!glassMaterials.has(surface.opacity)){
+            glassMaterials.set(surface.opacity,document.materials.length);
+            document.materials.push({name:'Aircraft canopy glass',pbrMetallicRoughness:{baseColorFactor:[1,1,1,surface.opacity],metallicFactor:0,roughnessFactor:.12},alphaMode:'BLEND',doubleSided:true});
+          }
+          return {...surface,material:glassMaterials.get(surface.opacity)};
+        });
+        document.meshes[0].primitives=[...opaque,...transparent].map(range=>{
+          const firstAccessor=document.accessors.length,minimum=[Infinity,Infinity,Infinity],maximum=[-Infinity,-Infinity,-Infinity];
+          for(let i=range.first*3;i<(range.first+range.count)*3;i++){minimum[i%3]=Math.min(minimum[i%3],mesh.positions[i]);maximum[i%3]=Math.max(maximum[i%3],mesh.positions[i]);}
+          for(let index=0;index<3;index++)document.accessors.push({bufferView:index,byteOffset:range.first*12,componentType:5126,count:range.count,type:'VEC3',...(index===0?{min:minimum,max:maximum}:{})});
+          return {attributes:{POSITION:firstAccessor,NORMAL:firstAccessor+1,COLOR_0:firstAccessor+2},material:range.material,mode:4};
+        });
+      }
+    }
     const json = new TextEncoder().encode(JSON.stringify(document));
     const jsonLength = (json.byteLength + 3) & ~3;
     const binaryLength = (binary.byteLength + 3) & ~3;

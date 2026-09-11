@@ -9,17 +9,17 @@ Runtime loader: runtime geometry is generated locally; no GLB asset fetch or bui
 
 | asset | game id | LOD0 tris | LOD1 tris | LOD2 tris | size |
 | --- | --- | --- | --- | --- | --- |
-| `ground.tank_standard.baseline.v1` | `tank_standard` | 47288 | 9425 | 1164 | 4.146 x 3.867 x 8.9 m |
-| `ground.tank_heavy.baseline.v1` | `tank_heavy` | 50816 | 9010 | 1200 | 4.656 x 3.966 x 9.31 m |
-| `ground.tank_light.baseline.v1` | `tank_light` | 47288 | 9425 | 1164 | 3.317 x 3.093 x 7.12 m |
-| `ground.tank_destroyer.baseline.v1` | `tank_destroyer` | 47288 | 9425 | 1164 | 4.146 x 3.867 x 8.9 m |
-| `ground.ground_ifv.baseline.v1` | `ground_ifv` | 20746 | 5828 | 1120 | 3.215 x 2.84 x 6.445 m |
-| `ground.ground_apc.baseline.v1` | `ground_apc` | 20710 | 4675 | 942 | 2.98 x 3.015 x 5.88 m |
-| `ground.ground_recon.baseline.v1` | `ground_recon` | 18418 | 4984 | 932 | 2.72 x 2.705 x 4.61 m |
-| `ground.ground_artillery.baseline.v1` | `ground_artillery` | 20822 | 6050 | 1092 | 3.515 x 3.139 x 7.625 m |
-| `ground.ground_air_defense.baseline.v1` | `ground_air_defense` | 18950 | 5590 | 1040 | 3.215 x 3.599 x 5.935 m |
-| `aviation.air_light_attack.baseline.v1` | `air_light_attack` | 11524 | — | — | 10.44 x 3.352 x 12.73 m |
-| `aviation.air_tactical_strike.baseline.v1` | `air_tactical_strike` | 14724 | — | — | 12.44 x 4.082 x 17.73 m |
+| `ground.tank_standard.baseline.v1` | `tank_standard` | 68872 | 8050 | 1168 | 3.826 x 3.688 x 10.3 m |
+| `ground.tank_heavy.baseline.v1` | `tank_heavy` | 74144 | 5834 | 1204 | 4.166 x 3.708 x 10.66 m |
+| `ground.tank_light.baseline.v1` | `tank_light` | 68872 | 8050 | 1168 | 3.061 x 2.95 x 8.24 m |
+| `ground.tank_destroyer.baseline.v1` | `tank_destroyer` | 68872 | 8050 | 1168 | 3.826 x 3.688 x 10.3 m |
+| `ground.ground_ifv.baseline.v1` | `ground_ifv` | 44222 | 5862 | 1144 | 3.254 x 2.841 x 6.93 m |
+| `ground.ground_apc.baseline.v1` | `ground_apc` | 26746 | 4197 | 982 | 2.98 x 2.975 x 6.78 m |
+| `ground.ground_recon.baseline.v1` | `ground_recon` | 23726 | 4476 | 944 | 2.72 x 2.615 x 5.117 m |
+| `ground.ground_artillery.baseline.v1` | `ground_artillery` | 45330 | 5182 | 1144 | 3.554 x 2.943 x 7.885 m |
+| `ground.ground_air_defense.baseline.v1` | `ground_air_defense` | 41178 | 5632 | 1112 | 3.254 x 3.35 x 6.56 m |
+| `aviation.air_light_attack.baseline.v1` | `air_light_attack` | 197632 | — | — | 10.44 x 3.352 x 12.73 m |
+| `aviation.air_tactical_strike.baseline.v1` | `air_tactical_strike` | 228640 | — | — | 11.84 x 4.082 x 17.73 m |
 | `site.infrastructure.v1` | `infrastructure` | 8846-23496 | 244-708 | — | 64 x 11.78 x 46 m |
 | `site.civilian_industry.v1` | `civilian_industry` | 8066-32042 | 180-546 | — | 66 x 14.19 x 46.16 m |
 | `site.power_grid.v1` | `power_grid` | 9390-31292 | 276-664 | — | 66 x 24.2 x 48 m |

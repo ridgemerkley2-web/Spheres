@@ -367,3 +367,108 @@ test('browser UMD API reads the same model as the Node API', () => {
   assert.equal(browser.description, node.description);
   assert.throws(() => context.EquipmentImport.fromGlb(new Uint8Array(64)), /Cannot import this GLB/);
 });
+
+function aircraftFixture(surfaces=[{first:3,count:3,material:'glass',opacity:.24}]) {
+  const base=fixture(),mesh={...base,assetKind:'aircraft',surfaces,triangleCount:4,
+    parts:[{name:'Airframe',first:0,count:3,slot:'air_wing'},
+      {name:'Cockpit',first:3,count:6,slot:'air_avionics'},
+      {name:'Tail',first:9,count:3,slot:'air_wing'}],
+    specification:{platform:'air_tactical_strike',components:{air_avionics:'air_avionics_analog'}}};
+  for(const field of ['positions','normals','colors']) {
+    mesh[field]=new Float32Array(base[field].length*2);
+    mesh[field].set(base[field]);mesh[field].set(base[field],base[field].length);
+  }
+  for(let i=base.positions.length+2;i<mesh.positions.length;i+=3)mesh.positions[i]+=2;
+  return mesh;
+}
+
+test('tactical inspection and cheaper aircraft meshes round trip with their original arrays and glass',()=>{
+  for(const lod of [0,1,2]) {
+    const generated=build({platform:'air_tactical_strike',lod,
+      components:{air_avionics:'air_avionics_digital',air_payload:'air_payload_guided',air_fuel:'air_fuel_extended'}});
+    const returned=fromGlb(glb(generated,'Tactical aircraft'));
+    identical('positions',returned.positions,generated.positions);
+    identical('colors',returned.colors,generated.colors);
+    close('normals',returned.normals,generated.normals);
+    assert.deepEqual(returned.parts,generated.parts);
+    assert.deepEqual(returned.specification,generated.specification);
+    assert.equal(returned.assetKind,'aircraft');
+    assert.deepEqual(returned.surfaces,generated.surfaces);
+    assert.equal(returned.triangleCount,generated.triangleCount);
+    wholeParts(returned);
+    const again=fromGlb(glb(returned,'Returned tactical aircraft'));
+    identical('positions',again.positions,returned.positions);
+    assert.deepEqual(again.surfaces,returned.surfaces);
+    assert.deepEqual(again.parts,returned.parts);
+    assert.equal(again.assetKind,returned.assetKind);
+  }
+});
+
+test('aircraft partitions preserve shared and distinct glass opacities without concatenating draw slices',()=>{
+  for(const surfaces of [[],[{first:3,count:3,material:'glass',opacity:.24}],
+    [{first:3,count:3,material:'glass',opacity:.24},{first:6,count:3,material:'glass',opacity:.24}],
+    [{first:3,count:3,material:'glass',opacity:.24},{first:6,count:3,material:'glass',opacity:.36}]]) {
+    const mesh=aircraftFixture(surfaces),returned=fromGlb(glb(mesh,'Surface fixture'));
+    identical('positions',returned.positions,mesh.positions);
+    identical('colors',returned.colors,mesh.colors);
+    assert.deepEqual(returned.parts,mesh.parts);
+    assert.deepEqual(returned.surfaces,surfaces);
+    assert.deepEqual(fromGlb(glb(returned)).surfaces,surfaces);
+  }
+  const transparent=aircraftFixture([{first:0,count:12,material:'glass',opacity:.24}]);
+  transparent.parts=[{name:'Complete canopy',first:0,count:12,slot:'air_avionics'}];
+  assert.deepEqual(fromGlb(glb(transparent)).surfaces,transparent.surfaces);
+});
+
+const aircraftOriginal=glb(aircraftFixture(),'Aircraft fixture');
+const AIRCRAFT_REFUSALS=[
+  ['missing aircraft marker',m=>{delete m.document.meshes[0].extras.assetKind;},/aircraft dialect marker/],
+  ['missing game-art marker',m=>{delete m.document.meshes[0].extras.gameArt;},/aircraft dialect/],
+  ['foreign generator dialect',m=>{m.document.asset.generator='Other exporter';},/aircraft dialect/],
+  ['missing surface metadata',m=>{delete m.document.meshes[0].extras.surfaces;},/surface ranges are not an array/],
+  ['non-array surface metadata',m=>{m.document.meshes[0].extras.surfaces={};},/surface ranges are not an array/],
+  ['unsupported surface material',m=>{m.document.meshes[0].extras.surfaces[0].material='water';},/bounded glass triangle range/],
+  ['surface extension metadata',m=>{m.document.meshes[0].extras.surfaces[0].texture='glass.png';},/bounded glass triangle range/],
+  ['negative surface first',m=>{m.document.meshes[0].extras.surfaces[0].first=-3;},/bounded glass triangle range/],
+  ['partial triangle surface',m=>{m.document.meshes[0].extras.surfaces[0].first=4;},/bounded glass triangle range/],
+  ['empty glass surface',m=>{m.document.meshes[0].extras.surfaces[0].count=0;},/bounded glass triangle range/],
+  ['surface beyond global arrays',m=>{m.document.meshes[0].extras.surfaces[0].count=12;},/bounded glass triangle range/],
+  ['overlapping surfaces',m=>{m.document.meshes[0].extras.surfaces.push({...m.document.meshes[0].extras.surfaces[0]});},/overlap or are out of order/],
+  ['glass crossing semantic parts',m=>{m.document.meshes[0].extras.surfaces[0].first=0;m.document.meshes[0].extras.surfaces[0].count=6;},/exactly one model part/],
+  ['unowned glass',m=>{m.document.meshes[0].extras.parts.splice(1,1);},/exactly one model part/],
+  ['fully opaque glass metadata',m=>{m.document.meshes[0].extras.surfaces[0].opacity=1;},/glass opacity/],
+  ['invisible glass metadata',m=>{m.document.meshes[0].extras.surfaces[0].opacity=0;},/glass opacity/],
+  ['missing draw slice',m=>{m.document.meshes[0].primitives.pop();},/primitive\/accessor counts/],
+  ['extra accessor',m=>{m.document.accessors.push({...m.document.accessors[3]});},/primitive\/accessor counts/],
+  ['shifted draw slice',m=>{m.document.accessors[3].byteOffset=36;},/accessor slice/],
+  ['wrong slice count',m=>{m.document.accessors[3].count=6;},/accessor slice/],
+  ['mispaired primitive attribute',m=>{m.document.meshes[0].primitives[0].attributes.NORMAL=3;},/expected slices/],
+  ['unsupported draw attribute',m=>{m.document.meshes[0].primitives[2].attributes.TEXCOORD_0=9;},/TEXCOORD_0/],
+  ['indexed glass primitive',m=>{m.document.meshes[0].primitives[2].indices=0;},/indexed/],
+  ['glass primitive morph targets',m=>{m.document.meshes[0].primitives[2].targets=[];},/morph targets/],
+  ['paint assigned to glass slice',m=>{m.document.meshes[0].primitives[2].material=0;},/primitive material/],
+  ['glass opacity disagreement',m=>{m.document.materials[1].pbrMetallicRoughness.baseColorFactor[3]=.5;},/shading and opacity/],
+  ['opaque glass draw material',m=>{m.document.materials[1].alphaMode='OPAQUE';},/shading and opacity/],
+  ['unsupported material texture',m=>{m.document.materials[0].pbrMetallicRoughness.baseColorTexture={index:0};},/shading and opacity/],
+  ['unsupported material extension',m=>{m.document.materials[1].extensions={KHR_materials_transmission:{transmissionFactor:1}};},/shading and opacity/],
+  ['unused material',m=>{m.document.materials.push({...m.document.materials[1]});},/material count/],
+  ['wrong slice bounds',m=>{m.document.accessors[3].max=[9,9,9];},/POSITION slice bounds/],
+  ['extra global buffer view',m=>{m.document.bufferViews.push({...m.document.bufferViews[0]});},/three packed buffer views/],
+  ['overlapping global arrays',m=>{m.document.bufferViews[2].byteOffset=0;},/global accessors 0\/1\/2/],
+  ['negative slice byte offset',m=>{m.document.accessors[3].byteOffset=-36;},/negative byte offset/]
+];
+for(const [name,mutate,expected] of AIRCRAFT_REFUSALS) test(`aircraft import refuses ${name}`,()=>{
+  const damaged=split(aircraftOriginal);mutate(damaged);
+  assert.throws(()=>fromGlb(pack(damaged)),error=>{
+    assert.match(error.message,/^Cannot import this GLB: /);assert.match(error.message,expected);return true;
+  });
+});
+
+test('browser aircraft import preserves the same continuous arrays and surface metadata as Node',()=>{
+  const context=vm.createContext({TextDecoder,Uint8Array,Float32Array,DataView,ArrayBuffer});
+  vm.runInContext(fs.readFileSync(source,'utf8'),context);
+  const browser=context.EquipmentImport.fromGlb(aircraftOriginal),node=fromGlb(aircraftOriginal);
+  for(const field of ['positions','normals','colors'])assert.deepEqual(Array.from(browser[field]),Array.from(node[field]));
+  for(const field of ['parts','bounds','specification','surfaces'])assert.equal(JSON.stringify(browser[field]),JSON.stringify(node[field]));
+  assert.equal(browser.assetKind,'aircraft');
+});

@@ -6,6 +6,13 @@ Govern through budgets, production, trade, diplomacy and military commitments.
 The browser advances by **calendar day**, with pause, five speeds and one-day steps.
 The command-line historical runner retains its separate monthly calibration mode.
 
+**Playset review, 10 September 2026:** the latest task branch adds cartoon
+leadership, guidance, detailed armored vehicles and a detailed aircraft workshop.
+The new flight-command screen is still a campaign-independent prototype.
+`master` contains separate population, industry, warfare and fiscal work awaiting
+integration with this branch. See the [full game review](docs/GAME_REVIEW_2026_09_10.md)
+for implemented systems, remaining gaps and the recommended development order.
+
 ## Play
 
 For the ready-built Windows release, extract the whole ZIP to a writable folder

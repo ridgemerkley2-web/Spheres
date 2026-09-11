@@ -54,7 +54,7 @@ test('casemate armor has an intermediate shoulder within the redesigned tank env
 test('aircraft root fairings rise off the wing into the fuselage instead of using flat join plates',()=>{
   for(const platform of ['air_light_attack','air_tactical_strike']){
     const strike=platform==='air_tactical_strike',mesh=build({platform}),w=strike?.77:.58,y=strike?2.10:1.72,z=strike?.15:-.1,shift=mesh.bounds.max[1]-(y+(strike?2:1.65));
-    const fairing=points(mesh,'air_wing / airframe and wing roots',paint).filter(v=>Math.abs(v.p[0])>w*1.04&&Math.abs(v.p[2]-(z-.10))<.05);
+    const fairing=points(mesh,'air_wing / airframe and wing roots',strike?[.48,.52,.54]:paint).filter(v=>Math.abs(v.p[0])>w*1.04&&Math.abs(v.p[2]-(z-.10))<.05);
     assert(fairing.length>20);assert(Math.max(...fairing.map(v=>v.p[1]))>y+shift+.16);
     assert(Math.min(...fairing.map(v=>v.p[1]))<y+shift-.11,'Fairing has a joined lower surface too');
   }
@@ -62,7 +62,9 @@ test('aircraft root fairings rise off the wing into the fuselage instead of usin
 test('forebody shapes contain curved intermediate sections rather than only linearly joined endpoints',()=>{
   for(const platform of ['air_light_attack','air_tactical_strike']){
     const strike=platform==='air_tactical_strike',mesh=build({platform}),y=strike?2.10:1.72;
-    const vertices=points(mesh,'air_wing / airframe and wing roots',paint).filter(v=>Math.abs(v.p[0])<1e-5&&v.p[1]>y&&v.p[2]>2.05);
+    // The tactical cockpit is now an actual cutout; sample the curved nose
+    // ahead of that opening rather than requiring painted metal over the seats.
+    const vertices=points(mesh,'air_wing / airframe and wing roots',strike?[.48,.52,.54]:paint).filter(v=>Math.abs(v.p[0])<1e-5&&v.p[1]>y&&v.p[2]>(strike?5.60:2.05));
     const byZ=new Map(vertices.map(v=>[v.p[2].toFixed(5),v.p[1]]));assert(byZ.size>=6,`${platform} curved forebody has ${byZ.size} sections`);
     const line=[...byZ].map(([z,h])=>[Number(z),h]).sort((a,b)=>a[0]-b[0]);
     for(let i=1;i<line.length;i++)assert(line[i][1]<=line[i-1][1]+1e-5,'Nose taper does not bulge between authored endpoints');
@@ -71,10 +73,10 @@ test('forebody shapes contain curved intermediate sections rather than only line
 test('every engine choice exposes two actual inlet throats with unobstructed depth to the fan',()=>{
   for(const platform of ['air_light_attack','air_tactical_strike'])for(const engine of ['air_engine_economical','air_engine_efficient','air_engine_twin']){
     const strike=platform==='air_tactical_strike';if(!strike&&engine==='air_engine_twin')continue;
-    const mesh=build({platform,components:{air_engine:engine}}),twin=engine==='air_engine_twin',w=strike?.77:.58,y=strike?2.10:1.72,r=(twin?.54:engine==='air_engine_efficient'?.52:.43)*(twin?.66:.65),x=w+r+.045,z=(strike?.15:-.1)+.95;
+    const mesh=build({platform,components:{air_engine:engine}}),twin=engine==='air_engine_twin',w=strike?.77:.58,y=strike?2.10:1.72,r=(twin?.54:engine==='air_engine_efficient'?.52:.43)*(strike?(twin?.70:.75):(twin?.66:.65)),x=strike?1.10+r*.65:w+r+.045,z=strike?1.60:.85;
     const shift=mesh.bounds.max[1]-(y+(strike?2:1.65));
     for(const side of [-1,1]){
-      const hit=raycast(mesh,[side*x,y-.15+shift,20],[0,0,-1]);assert(hit,`${platform} ${engine} inlet is visible`);assert.equal(hit.part.slot,'air_engine');
+      const hit=raycast(mesh,[side*x,y-(strike?.37:.15)+shift,20],[0,0,-1]);assert(hit,`${platform} ${engine} inlet is visible`);assert.equal(hit.part.slot,'air_engine');
       const depth=z-hit.point[2];assert(depth>.45&&depth<.72,`${platform} ${engine}: throat depth ${depth}; no casing cap may block the mouth`);
     }
     assert.equal(mesh.parts.filter(p=>p.slot==='air_engine').length,twin?2:1,'Intake ducts do not invent extra engines or picking IDs');
@@ -83,7 +85,13 @@ test('every engine choice exposes two actual inlet throats with unobstructed dep
 test('changed profiles remain inside existing shipping geometry allowances',()=>{
   for(const platform of ground)assert(build({platform}).triangleCount*108+32768<5000000,platform);
   for(const platform of ['tank_standard','tank_heavy','tank_light','tank_destroyer'])assert(build({platform,components:{suspension:'suspension_hydro',turret:'turret_heavy'}}).triangleCount*108+32768<12000000,platform);
-  for(const platform of ['air_light_attack','air_tactical_strike'])assert(build({platform}).triangleCount<40000,platform);
+  // Aircraft now have a user-requested 100k+ inspection mesh; retain bounded
+  // catalogue/map budgets instead of applying the old 40k inspection allowance.
+  for(const platform of ['air_light_attack','air_tactical_strike']){
+    const count=build({platform}).triangleCount;assert(count>=100000&&count<=250000,platform);
+    assert(build({platform,lod:1}).triangleCount<18000,platform);
+    assert(build({platform,lod:2}).triangleCount<2500,platform);
+  }
 });
 test('affected armor, duct and curved shell configurations retain the full existing normal contract',()=>{
   const file=path.join(__dirname,'check_equipment_mesh.cjs'),src=fs.readFileSync(file,'utf8'),context={assert};

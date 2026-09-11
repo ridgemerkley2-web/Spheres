@@ -102,6 +102,20 @@ The OBJ output is **derived and not checked in**. Regenerating is a second. If
 one of these is ever replaced by something hand-modelled, the exported OBJ is
 the thing for the new mesh to match — same axes, same metres, same origin.
 
+## Arcade flight command preview
+
+Open `flight-command.html` on the existing static workshop server. Command,
+Aircraft, Bases and Reports demonstrate the approved arcade interaction design.
+The fictional squadron can preview support/strike orders; incompatible roles and
+distant regions explain why they are blocked. These orders never reach a campaign.
+
+The Aircraft bench uses the same component-driven meshes as the equipment designer,
+with eight specifications, assembly picking, orbit controls and GLB downloads.
+The two base inspection aircraft have 197,632 and 210,336 triangles. Catalogue
+meshes have 10,752 and 13,044; map meshes have 1,272 and 1,620. Loaded variants
+are tested separately. Remaining aircraft families and live fleet integration
+follow `MILITARY_FLIGHT_LAYER_PLAN.md`.
+
 ## Adding a kit
 
 Add it to `DECK` in `spheres-sim/src/arsenal.rs`, then add a model under the

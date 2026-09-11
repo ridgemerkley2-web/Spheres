@@ -5,7 +5,9 @@
 
    It reads THIS pipeline's dialect: one non-indexed vertex-coloured triangle
    list at the origin, three tightly packed VEC3/FLOAT accessors, no textures and
-   no extensions. Everything else is refused by name. A half-import would put
+   no extensions. Our marked aircraft dialect may draw bounded opaque/glass
+   slices of those SAME arrays; the slices never replace the original vertices.
+   Everything else is refused by name. A half-import would put
    geometry on screen that the part ranges, the picker and the re-export no
    longer describe, and a wrong model that renders is worse than a refusal. */
 (function (root, factory) {
@@ -104,17 +106,22 @@
     }
 
     const materials = list(document.materials);
-    if (materials.length > 1)
-      refuse(`it defines ${materials.length} materials; one shader paints every triangle here, so any surface beyond the first material would silently take the wrong shading.`);
-
     const meshes = list(document.meshes);
     if (meshes.length !== 1)
       refuse(`it defines ${meshes.length} meshes; the viewer holds one mesh with one set of part ranges.`);
     const mesh = meshes[0], primitives = list(mesh.primitives);
-    if (primitives.length !== 1)
+    const extras = isObject(mesh.extras) ? mesh.extras : {}, aircraft = extras.assetKind === "aircraft";
+    if (extras.surfaces !== undefined && !aircraft)
+      refuse("its surface ranges have no aircraft dialect marker; arbitrary multi-material models are not supported.");
+    if (!aircraft && materials.length > 1)
+      refuse(`it defines ${materials.length} materials; only the marked aircraft dialect supports separate surface shading.`);
+    if (!aircraft && primitives.length !== 1)
       refuse(`its mesh ${named(mesh)} holds ${primitives.length} primitives; the part ranges index one continuous vertex list, and concatenating primitives would move every range.`);
+    if (aircraft && (!primitives.length || document.asset.generator !== "Spheres Equipment Designer" || extras.gameArt !== true))
+      refuse("its aircraft dialect requires a Spheres Equipment Designer game-art mesh with draw primitives.");
 
-    const primitive = primitives[0];
+    function primitiveAttributes(primitive) {
+    if (!isObject(primitive)) refuse("its primitive is not an object.");
     if (primitive.indices !== undefined)
       refuse(`its primitive is indexed (indices accessor ${primitive.indices}); nothing here uploads an index buffer, and the part ranges address vertices directly, so an indexed mesh cannot keep its parts.`);
     const mode = primitive.mode === undefined ? 4 : primitive.mode;
@@ -122,6 +129,8 @@
       refuse(`its primitive is drawn as ${MODES[mode] || `mode ${mode}`}; only mode 4, independent triangles, matches the runtime.`);
     if (isObject(primitive.extensions) && Object.keys(primitive.extensions).length)
       refuse(`its primitive carries the extension${Object.keys(primitive.extensions).length > 1 ? "s" : ""} ${Object.keys(primitive.extensions).join(", ")}, which nothing here decodes.`);
+    if (primitive.targets !== undefined)
+      refuse("its primitive carries morph targets; the viewer draws only the original rigid triangles.");
 
     const attributes = isObject(primitive.attributes) ? primitive.attributes : {};
     const foreign = Object.keys(attributes).filter(name => !SEMANTICS.includes(name));
@@ -131,6 +140,10 @@
       if (attributes[name] === undefined) refuse(`its primitive has no ${name} attribute; all three are required to draw it and to export it again.`);
       if (!Number.isSafeInteger(attributes[name])) refuse(`its ${name} attribute is ${JSON.stringify(attributes[name])} rather than an accessor index.`);
     }
+    return attributes;
+    }
+    const drawAttributes = primitives.map(primitiveAttributes);
+    const attributes = aircraft ? {POSITION: 0, NORMAL: 1, COLOR_0: 2} : drawAttributes[0];
 
     const nodes = list(document.nodes);
     if (nodes.length !== 1)
@@ -167,8 +180,8 @@
     if (Number.isSafeInteger(buffers[0].byteLength) && buffers[0].byteLength > binary.length)
       refuse(`its buffer declares ${buffers[0].byteLength} bytes but the BIN chunk holds ${binary.length}.`);
 
-    function plan(name) {
-      const index = attributes[name], accessor = list(document.accessors)[index];
+    function plan(name, index = attributes[name]) {
+      const accessor = list(document.accessors)[index];
       if (!isObject(accessor)) refuse(`${name} points at accessor ${index}, which the document does not define.`);
       if (accessor.type !== "VEC3")
         refuse(`${name} is ${JSON.stringify(accessor.type)}, not VEC3; three floats per vertex are bound for position, normal and colour alike, so even a VEC4 colour carrying alpha cannot be taken.`);
@@ -182,12 +195,18 @@
         refuse(`${name} declares a vertex count of ${JSON.stringify(accessor.count)}.`);
       if (accessor.bufferView === undefined)
         refuse(`${name} has no bufferView, so every one of its ${accessor.count} vertices would read as zero.`);
+      if (!Number.isSafeInteger(accessor.bufferView) || accessor.bufferView < 0)
+        refuse(`${name} has an invalid bufferView index.`);
       const bufferView = list(document.bufferViews)[accessor.bufferView];
       if (!isObject(bufferView)) refuse(`${name} points at buffer view ${accessor.bufferView}, which the document does not define.`);
       if ((bufferView.buffer || 0) !== 0) refuse(`${name} reads buffer ${bufferView.buffer}; only the embedded buffer 0 exists here.`);
       if (bufferView.byteStride !== undefined && bufferView.byteStride !== 12)
         refuse(`${name} reads an interleaved buffer view with a byteStride of ${bufferView.byteStride} bytes; one tightly packed VEC3 float array per attribute is bound, which is a stride of 12.`);
-      const first = bufferView.byteOffset || 0, start = first + (accessor.byteOffset || 0), length = accessor.count * 12;
+      const first = bufferView.byteOffset === undefined ? 0 : bufferView.byteOffset;
+      const offset = accessor.byteOffset === undefined ? 0 : accessor.byteOffset;
+      if (!Number.isSafeInteger(first) || first < 0 || !Number.isSafeInteger(offset) || offset < 0)
+        refuse(`${name} has an invalid or negative byte offset.`);
+      const start = first + offset, length = accessor.count * 12;
       if (start % 4 !== 0)
         refuse(`${name} starts at byte ${start} of the buffer, which is not the 4-byte alignment a float accessor requires.`);
       if (!Number.isSafeInteger(bufferView.byteLength) || start + length > first + bufferView.byteLength)
@@ -211,11 +230,21 @@
       return out;
     }
 
-    const plans = SEMANTICS.map(plan), count = plans[0].count;
+    const plans = SEMANTICS.map(name => plan(name)), count = plans[0].count;
     if (plans[1].count !== count || plans[2].count !== count)
       refuse(`POSITION has ${count} vertices, NORMAL has ${plans[1].count} and COLOR_0 has ${plans[2].count}; the three must describe the same vertices.`);
     if (count % 3 !== 0)
       refuse(`the primitive holds ${count} vertices, which is not a whole number of triangles.`);
+    if (aircraft) {
+      const views = list(document.bufferViews);
+      if (views.length !== 3 || buffers[0].byteLength !== count * 36 || binary.length !== count * 36)
+        refuse("its aircraft global arrays must occupy exactly three packed buffer views in one embedded buffer.");
+      for (let a = 0; a < 3; a++) {
+        if (plans[a].accessor.bufferView !== a || (plans[a].accessor.byteOffset || 0) !== 0 ||
+            views[a].buffer !== 0 || views[a].byteOffset !== a * count * 12 || views[a].byteLength !== count * 12)
+          refuse("its aircraft global accessors 0/1/2 do not describe the original continuous arrays.");
+      }
+    }
     const positions = read("POSITION", plans[0]), normals = read("NORMAL", plans[1]), colors = read("COLOR_0", plans[2]);
     // A zero-length normal has no direction to shade with, and equipment-export.js
     // refuses to write one back, so accepting it would import a model that draws
@@ -249,7 +278,6 @@
         refuse(`the declared POSITION bounds do not contain the geometry: component ${i} is ${positions[i]}, outside ${min[axis]} to ${max[axis]} on ${"XYZ"[axis]}. A camera framed on those bounds would cut the model off.`);
     }
 
-    const extras = isObject(mesh.extras) ? mesh.extras : {};
     if (extras.parts !== undefined && !Array.isArray(extras.parts))
       refuse("its mesh extras.parts is not an array; the part selector reads a list of named vertex ranges.");
     const parts = list(extras.parts).map((part, index) => {
@@ -274,10 +302,78 @@
     if (extras.specification !== undefined && !isObject(extras.specification))
       refuse("its extras.specification is not an object; a platform and a component map are read from it.");
 
+    let surfaces;
+    if (aircraft) {
+      // This is a checked inverse of our writer, not a generic glTF primitive
+      // merger. Every draw range must describe exactly the metadata the picker
+      // and translucent pass will use after import.
+      if (!Array.isArray(extras.surfaces)) refuse("its aircraft surface ranges are not an array.");
+      let end = 0;
+      surfaces = extras.surfaces.map(surface => {
+        if (!isObject(surface) || Object.keys(surface).some(key => !["first", "count", "material", "opacity"].includes(key)) ||
+            surface.material !== "glass" || !Number.isSafeInteger(surface.first) || !Number.isSafeInteger(surface.count) ||
+            surface.first < 0 || surface.count <= 0 || surface.first % 3 || surface.count % 3 || surface.first + surface.count > count)
+          refuse("its aircraft surface range is not a bounded glass triangle range.");
+        if (!Number.isFinite(surface.opacity) || surface.opacity <= 0 || surface.opacity >= 1)
+          refuse("its aircraft glass opacity must be strictly between zero and one.");
+        if (surface.first < end) refuse("its aircraft surface ranges overlap or are out of order.");
+        end = surface.first + surface.count;
+        const owners = parts.filter(p => p.count > 0 && surface.first < p.first + p.count && end > p.first);
+        if (owners.length !== 1 || surface.first < owners[0].first || end > owners[0].first + owners[0].count)
+          refuse("its aircraft glass must belong to exactly one model part.");
+        return {first: surface.first, count: surface.count, material: "glass", opacity: surface.opacity};
+      });
+      const opaque = [], transparent = [], opacities = [];
+      end = 0;
+      for (const surface of surfaces) {
+        if (surface.first > end) opaque.push({first: end, count: surface.first - end, material: 0});
+        end = surface.first + surface.count;
+        let index = opacities.indexOf(surface.opacity);
+        if (index < 0) { index = opacities.length; opacities.push(surface.opacity); }
+        transparent.push({...surface, material: index + 1});
+      }
+      if (end < count) opaque.push({first: end, count: count - end, material: 0});
+      const ranges = [...opaque, ...transparent], accessors = list(document.accessors);
+      if (primitives.length !== ranges.length || accessors.length !== (surfaces.length ? 3 + ranges.length * 3 : 3))
+        refuse("its aircraft primitive/accessor counts do not match the declared surface partition.");
+      if (materials.length !== opacities.length + 1)
+        refuse("its aircraft material count does not match the declared glass opacities.");
+      for (let index = 0; index < materials.length; index++) {
+        const material = materials[index], pbr = isObject(material) && material.pbrMetallicRoughness, glass = index > 0;
+        const allowed = glass ? ["name", "pbrMetallicRoughness", "alphaMode", "doubleSided"] : ["name", "pbrMetallicRoughness"];
+        if (!isObject(material) || Object.keys(material).some(key => !allowed.includes(key)) || !isObject(pbr) ||
+            Object.keys(pbr).some(key => !["baseColorFactor", "metallicFactor", "roughnessFactor"].includes(key)) ||
+            JSON.stringify(pbr.baseColorFactor) !== JSON.stringify([1, 1, 1, glass ? opacities[index - 1] : 1]) ||
+            pbr.metallicFactor !== (glass ? 0 : .08) || pbr.roughnessFactor !== (glass ? .12 : .62) ||
+            (glass && (material.alphaMode !== "BLEND" || material.doubleSided !== true)))
+          refuse(`its aircraft material ${index} does not match the supported paint/glass shading and opacity.`);
+      }
+      for (let i = 0; i < ranges.length; i++) {
+        const range = ranges[i], expected = surfaces.length ? 3 + i * 3 : 0;
+        if (primitives[i].material !== range.material)
+          refuse("its aircraft primitive material does not match its opaque/glass surface range.");
+        for (let a = 0; a < 3; a++) {
+          const name = SEMANTICS[a];
+          if (drawAttributes[i][name] !== expected + a)
+            refuse("its aircraft primitive attributes are not the expected slices of global accessors 0/1/2.");
+          const slice = plan(name, expected + a);
+          if (slice.accessor.bufferView !== a || slice.count !== range.count || slice.start !== plans[a].start + range.first * 12)
+            refuse("its aircraft primitive accessor slice does not match the declared surface range.");
+        }
+        const position = accessors[expected], minimum = [Infinity, Infinity, Infinity], maximum = [-Infinity, -Infinity, -Infinity];
+        for (let j = range.first * 3; j < (range.first + range.count) * 3; j++) {
+          minimum[j % 3] = Math.min(minimum[j % 3], positions[j]); maximum[j % 3] = Math.max(maximum[j % 3], positions[j]);
+        }
+        if (JSON.stringify(position.min) !== JSON.stringify(minimum) || JSON.stringify(position.max) !== JSON.stringify(maximum))
+          refuse("its aircraft POSITION slice bounds do not match the geometry in that surface range.");
+      }
+    }
+
     return {
       positions, normals, colors, bounds: {min, max}, parts, triangleCount,
       description: typeof extras.description === "string" ? extras.description : "",
-      specification: extras.specification
+      specification: extras.specification,
+      ...(aircraft ? {assetKind: "aircraft", surfaces} : {})
     };
   }
 

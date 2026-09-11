@@ -28,13 +28,14 @@ test('changing detail level replaces the displayed and exported geometry; equiva
   f.controller.dispose();assert.equal(f.gpu.size,0);
 });
 function fixture({noGraphics=false,withMaterials=false}={}){
-  let next=1,builds=0,draws=0,clears=0;const gpu=new Set(),frames=new Map(),observers=[],uploads=[];
+  let next=1,builds=0,draws=0,clears=0;const gpu=new Set(),frames=new Map(),observers=[],uploads=[],matrices=[];
   const allocate=()=>{const id=next++;gpu.add(id);return id;},release=id=>gpu.delete(id);
   const gl={createShader:allocate,deleteShader:release,createProgram:allocate,deleteProgram:release,createBuffer:allocate,deleteBuffer:release,
     getShaderParameter:()=>true,getProgramParameter:()=>true,getAttribLocation:()=>1,getUniformLocation:()=>({}),drawArrays:()=>draws++,
     ARRAY_BUFFER:1,STATIC_DRAW:2,VERTEX_SHADER:3,FRAGMENT_SHADER:4,COMPILE_STATUS:5,LINK_STATUS:6,DEPTH_TEST:7,LEQUAL:8,FLOAT:9,TRIANGLES:10,COLOR_BUFFER_BIT:16,DEPTH_BUFFER_BIT:32};
   for(const k of ['shaderSource','compileShader','attachShader','linkProgram','bindBuffer','bufferData','enable','depthFunc','clearColor','enableVertexAttribArray','vertexAttribPointer','viewport','clear','useProgram','uniformMatrix4fv','uniform3fv','uniform1f'])gl[k]=()=>{};
   gl.clear=()=>clears++;gl.bufferData=(_,data)=>uploads.push(data);
+  gl.uniformMatrix4fv=(_location,_transpose,matrix)=>matrices.push(new Float32Array(matrix));
   function node(){return {listeners:new Map(),attrs:{},style:{},children:[],dispatched:[],isConnected:true,dataset:{},setAttribute(k,v){this.attrs[k]=v;},appendChild(c){this.children.push(c);c.parentNode=this;},replaceChildren(...children){this.children=[];children.forEach(c=>this.appendChild(c));},remove(){this.isConnected=false;},focus(){doc.activeElement=this;},dispatchEvent(e){this.dispatched.push(e);},
     addEventListener(e,f){this.listeners.set(e,f);},removeEventListener(e,f){if(this.listeners.get(e)===f)this.listeners.delete(e);},getBoundingClientRect:()=>({left:100,top:70,width:900,height:500})};}
   const doc=node();doc.hidden=false;doc.body=node();const canvas=node();canvas.getContext=()=>noGraphics?null:gl;
@@ -47,7 +48,7 @@ function fixture({noGraphics=false,withMaterials=false}={}){
   if(withMaterials)ctx.MilitarySurface={glsl:require('../../spheres-web/ui/military-surface.js').glsl,create(context,ready){assert.equal(context,gl);const pack={ready,binds:[],disposals:[],bind(program){this.binds.push(program);},dispose(lost){this.disposals.push(lost);}};materialPacks.push(pack);return pack;}};
   vm.runInNewContext(source,ctx);const controller=ctx.module.exports.mount(host,{platform:'tank_standard',components:{},name:'Test'});
   function flush(){const batch=[...frames];frames.clear();for(const [,fn] of batch)fn(100);}
-  return {controller,ctx,host,slot,status,canvas,doc,gl,gpu,frames,observers,uploads,exportButton,partSelect,flush,materialPacks,builds:()=>builds,draws:()=>draws,clears:()=>clears};
+  return {controller,ctx,host,slot,status,canvas,doc,gl,gpu,frames,observers,uploads,matrices,exportButton,partSelect,flush,materialPacks,builds:()=>builds,draws:()=>draws,clears:()=>clears};
 }
 
 test('material readiness redraws the designer and paint/geometry updates reuse its texture pack',()=>{
@@ -228,7 +229,7 @@ test('aircraft fit all camera views and expose each specification through visibl
   const {build}=require('../../spheres-web/ui/equipment-mesh.js');
   for(const platform of ['air_light_attack','air_tactical_strike']){
     const mesh=build({platform});
-    for(const aspect of [.55,1,1.8])for(const [yaw,pitch] of Object.values(viewer.views)){
+    for(const aspect of [.55,1,1135/657,1.8])for(const [yaw,pitch] of Object.values(viewer.views)){
       const camera=viewer.frame(mesh.bounds,aspect,yaw,pitch),m=camera.matrix;
       for(const x of [mesh.bounds.min[0],mesh.bounds.max[0]])for(const y of [0,mesh.bounds.max[1]])for(const z of [mesh.bounds.min[2],mesh.bounds.max[2]]){
         const p=[x,y,z,1],clip=[0,0,0,0];for(let r=0;r<4;r++)for(let k=0;k<4;k++)clip[r]+=m[k*4+r]*p[k];
@@ -254,4 +255,12 @@ test('aircraft fit all camera views and expose each specification through visibl
       assert(found,`${platform} exposes visible ${slot} geometry`);
     }
   }
+});
+
+test('named views preserve an explicit user zoom while Reset returns to the complete-model fit',()=>{
+  const f=fixture();f.controller.view('top');f.flush();const fittedTop=new Float32Array(f.matrices.at(-1));
+  f.controller.zoom(-2);f.flush();const zoomedTop=new Float32Array(f.matrices.at(-1));assert.notDeepEqual(zoomedTop,fittedTop);
+  f.controller.view('side');f.flush();f.controller.view('top');f.flush();assert.deepEqual(f.matrices.at(-1),zoomedTop,'Changing the viewing angle must retain an intentional closer inspection');
+  f.controller.reset();f.controller.view('top');f.flush();assert.deepEqual(f.matrices.at(-1),fittedTop,'Reset restores the original complete-model fit');assert.equal(f.builds(),1);
+  f.controller.dispose();assert.equal(f.gpu.size,0);
 });

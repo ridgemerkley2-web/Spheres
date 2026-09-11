@@ -10,7 +10,7 @@
    as hard as they were. tools/ui/check_equipment_mesh.cjs recounts both from
    the buffer and rejects a per-face skew that only looks smooth.
 
-   Ground level of detail. Aircraft retain their inspection geometry. build(spec) still returns the inspection mesh. spec.lod
+   Level of detail. build(spec) returns the inspection mesh. spec.lod
    selects 0 (inspection), 1 (catalogue card) or 2 (map pin); the part list,
    its order, its slots and its labels are identical at every level so a
    selection survives the swap. */
@@ -430,6 +430,7 @@
     }
     return {
       level: D.level, seg, many, keep, gauge, always, dense: D.dense,
+      cursor: () => positions.length / 3,
       triangle, turned, face, part, box, loft, cylinder, tube, socket, rod, revolve, studs, wheelBody,
       finish(description) {
         // Flat tread shoes meet a curved belt at their corners. Seat the actual
@@ -562,13 +563,18 @@
 
   // Parked, original aircraft concepts. All selectable fittings have the same
   // eight semantic slots as the simulation; dimensions are visual art only.
-  function buildAircraft(spec) {
-    const s=spec.components,b=createBuilder(),strike=spec.platform==='air_tactical_strike';
-    const c={paint:[.37,.41,.36],upper:[.45,.49,.42],edge:[.53,.56,.48],dark:[.19,.23,.21],steel:PALETTE.steel,black:PALETTE.black,glass:[.09,.22,.28],rubber:PALETTE.rubber};
+  function buildAircraft(spec,detail) {
+    const s=spec.components,b=createBuilder(detail),strike=spec.platform==='air_tactical_strike';
+    // Spend inspection geometry on curved airframe/duct sections and wing
+    // profiles. Catalogue and map builds sample the same authored surfaces.
+    const level=detail.level,radial=[160,32,8][level],steps=[16,3,1][level];
+    const wingSections=[40,5,2][level],wingChord=[80,16,4][level];
+    const c=strike?{paint:[.48,.52,.54],upper:[.55,.58,.59],edge:[.39,.43,.45],dark:[.20,.24,.26],steel:[.25,.27,.28],black:PALETTE.black,glass:[.40,.53,.56],rubber:PALETTE.rubber}:{paint:[.37,.41,.36],upper:[.45,.49,.42],edge:[.53,.56,.48],dark:[.19,.23,.21],steel:PALETTE.steel,black:PALETTE.black,glass:[.09,.22,.28],rubber:PALETTE.rubber};
+    const surfaces=[];
     const length=strike?16.8:11.8,y=strike?2.10:1.72,w=strike?.77:.58,rear=-length*.49,front=length*.51;
-    const swept=s.air_wing==='air_wing_swept',stable=s.air_wing==='air_wing_stable',span=(strike?6.15:5.15)+(stable?.75:0),wingZ=strike?.15:-.1;
+    const swept=s.air_wing==='air_wing_swept',stable=s.air_wing==='air_wing_stable',span=(strike?5.85:5.15)+(stable?.75:0),wingZ=strike?.15:-.1;
     const twin=s.air_engine==='air_engine_twin',efficient=s.air_engine==='air_engine_efficient',mapping=s.air_radar==='air_radar_mapping',digital=s.air_avionics==='air_avionics_digital',ecm=s.air_countermeasures==='air_countermeasures_ecm',heavy=s.air_hardpoints==='air_hardpoints_heavy',guided=s.air_payload==='air_payload_guided',extended=s.air_fuel==='air_fuel_extended';
-    const ring=(z,rx,ry,cy=y,cx=0,n=32)=>Array.from({length:n},(_,i)=>[cx+rx*Math.cos(TAU*i/n),cy+ry*Math.sin(TAU*i/n),z]);
+    const ring=(z,rx,ry,cy=y,cx=0,n=radial)=>Array.from({length:n},(_,i)=>[cx+rx*Math.cos(TAU*i/n),cy+ry*Math.sin(TAU*i/n),z]);
     const roundedSections=input=>{
       const points=input.map(p=>[p[0],p[1],p[2],p[3]??y,p[4]??0]);
       const slopes=points.map((p,k)=>p.map((_,axis)=>{
@@ -578,8 +584,8 @@
         const d=k<points.length-1?(after[axis]-p[axis])/(after[0]-p[0]):a;
         return a*d>0?2*a*d/(a+d):0;
       })),result=[];
-      for(let k=0;k<points.length-1;k++)for(let j=0;j<3;j++){
-        const t=j/3,t2=t*t,t3=t2*t,p=points[k],q=points[k+1],dz=q[0]-p[0],row=[p[0]+dz*t];
+      for(let k=0;k<points.length-1;k++)for(let j=0;j<steps;j++){
+        const t=j/steps,t2=t*t,t3=t2*t,p=points[k],q=points[k+1],dz=q[0]-p[0],row=[p[0]+dz*t];
         for(let axis=1;axis<5;axis++){
           const value=(2*t3-3*t2+1)*p[axis]+(t3-2*t2+t)*dz*slopes[k][axis]+(-2*t3+3*t2)*q[axis]+(t3-t2)*dz*slopes[k+1][axis];
           row.push(Math.max(Math.min(p[axis],q[axis]),Math.min(Math.max(p[axis],q[axis]),value)));
@@ -590,7 +596,9 @@
     };
     const body=(input,color,cx=0,options={})=>{
       const rows=options.rounded?roundedSections(input):input;
-      const rings=rows.map(([z,rx,ry,cy,dx])=>ring(z,rx,ry,cy??y,cx+(dx??0)));
+      const power=options.squared?.65:1;
+      const curve=a=>Math.sign(a)*Math.pow(Math.abs(a),power);
+      const rings=rows.map(([z,rx,ry,cy,dx])=>options.squared?Array.from({length:radial},(_,i)=>[cx+(dx??0)+rx*curve(Math.cos(TAU*i/radial)),(cy??y)+ry*curve(Math.sin(TAU*i/radial)),z]):ring(z,rx,ry,cy??y,cx+(dx??0)));
       const center=mean(rings.flat());
       if(!options.open){b.face(rings[0],shade(color,.84),center);b.face(rings[rings.length-1],shade(color,1.08),center);}
       // Elliptical fuselage/canopy normals follow the actual ring radii and
@@ -599,13 +607,17 @@
       const normals=rows.map((row,k)=>{
         const before=rows[Math.max(0,k-1)],after=rows[Math.min(rows.length-1,k+1)],dz=after[0]-before[0];
         const dx=(after[1]-before[1])/dz,dy=(after[2]-before[2])/dz,dc=((after[3]??y)-(before[3]??y))/dz,dcx=((after[4]??0)-(before[4]??0))/dz;
-        return Array.from({length:32},(_,i)=>{
-          const angle=TAU*i/32,co=Math.cos(angle),si=Math.sin(angle);
+        return Array.from({length:radial},(_,i)=>{
+          const angle=TAU*i/radial,co=Math.cos(angle),si=Math.sin(angle);
+          if(options.squared){const nx=Math.sign(co)*Math.pow(Math.abs(co),2-power)/row[1],ny=Math.sign(si)*Math.pow(Math.abs(si),2-power)/row[2];return mul(normal([nx,ny,-nx*(dcx+dx*curve(co))-ny*(dc+dy*curve(si))]),options.inward?-1:1);}
           return mul(normal([row[2]*co,row[1]*si,-row[1]*si*(dc+dy*si)-row[2]*co*(dcx+dx*co)]),options.inward?-1:1);
         });
       });
-      for(let k=0;k<rings.length-1;k++)for(let i=0;i<32;i++){
-        const j=(i+1)%32,a=rings[k][i],d=rings[k][j],e=rings[k+1][j],f=rings[k+1][i];
+      for(let k=0;k<rings.length-1;k++)for(let i=0;i<radial;i++){
+        if(options.upper&&i>=radial/2)continue;
+        const zmid=(rows[k][0]+rows[k+1][0])/2;
+        if(options.cockpit&&zmid>2.20&&zmid<5.55&&Math.sin(TAU*(i+.5)/radial)>.38)continue;
+        const j=(i+1)%radial,a=rings[k][i],d=rings[k][j],e=rings[k+1][j],f=rings[k+1][i];
         if(options.inward){
           b.turned(a,e,d,color,normals[k][i],normals[k+1][j],normals[k][j]);
           b.turned(a,f,e,color,normals[k][i],normals[k+1][i],normals[k+1][j]);
@@ -622,30 +634,46 @@
     };
     const airfoil=(outline,thickness,color)=>{
       const sections=[];
-      for(let j=0;j<=5;j++){
-        const spanFraction=j/5,lead=add(outline[0],mul(sub(outline[1],outline[0]),spanFraction));
+      for(let j=0;j<=wingSections;j++){
+        const spanFraction=j/wingSections,lead=add(outline[0],mul(sub(outline[1],outline[0]),spanFraction));
         const trail=add(outline[3],mul(sub(outline[2],outline[3]),spanFraction)),chord=sub(trail,lead),points=[];
         // A restrained original biconvex section: a rounded leading edge, a
         // deep root and a sharp trailing edge. No real airfoil rating implied.
-        for(let i=0;i<=16;i++){
-          const f=i/16,h=thickness*(1-spanFraction*.68)*Math.sin(Math.PI*Math.pow(f,.65));
+        for(let i=0;i<=wingChord;i++){
+          const f=i/wingChord,h=thickness*(1-spanFraction*.68)*Math.sin(Math.PI*Math.pow(f,.65));
           points.push(add(add(lead,mul(chord,f)),[0,h,0]));
         }
-        for(let i=15;i>=1;i--){const f=i/16,h=thickness*(1-spanFraction*.68)*Math.sin(Math.PI*Math.pow(f,.65));points.push(add(add(lead,mul(chord,f)),[0,-h*.62,0]));}
+        for(let i=wingChord-1;i>=1;i--){const f=i/wingChord,h=thickness*(1-spanFraction*.68)*Math.sin(Math.PI*Math.pow(f,.65));points.push(add(add(lead,mul(chord,f)),[0,-h*.62,0]));}
         sections.push(points);
       }
       b.loft(sections,color);
     };
+    const airframeRows=strike?[[rear,.17,.15],[rear+length*.08,.46,.27],[rear+length*.20,.94,.38],[rear+length*.37,1.04,.44],[rear+length*.55,.94,.49],[rear+length*.72,.63,.47],[front-length*.15,.47,.39],[front-length*.10,w*.43,w*.47]]:null;
+    const skinRows=strike?roundedSections(airframeRows):null;
+    const skin=(z,angle,offset=.006)=>{
+      const k=Math.max(1,skinRows.findIndex(p=>p[0]>=z)),a=skinRows[k-1],q=skinRows[k],t=Math.max(0,Math.min(1,(z-a[0])/(q[0]-a[0])));
+      return [(a[1]+(q[1]-a[1])*t+offset)*Math.cos(angle),y+(a[2]+(q[2]-a[2])*t+offset)*Math.sin(angle),z];
+    };
     const panel=(a,z,width,depth)=>b.box([a,y+w*.90,z],[width,.015,depth],c.dark);
     b.part('air_wing / airframe and wing roots',()=>{
-      body([[rear,.16,.19],[rear+length*.08,w*.56,w*.55],[rear+length*.20,w*.83,w*.83],[rear+length*.37,w,w*.90],[rear+length*.55,w,w*.95],[rear+length*.72,w*.81,w*.86],[front-length*.15,w*.56,w*.59],[front-length*.10,w*.43,w*.47]],c.paint,0,{rounded:true});
+      body(strike?airframeRows:[[rear,.16,.19],[rear+length*.08,w*.56,w*.55],[rear+length*.20,w*.83,w*.83],[rear+length*.37,w,w*.90],[rear+length*.55,w,w*.95],[rear+length*.72,w*.81,w*.86],[front-length*.15,w*.56,w*.59],[front-length*.10,w*.43,w*.47]],c.paint,0,{rounded:true,cockpit:strike});
       for(const side of [-1,1]) {
-        body([[wingZ-2.05,.055,.035,y],[wingZ-1.30,w*.68,.125,y],
+        body(strike?[[wingZ-3.65,.12,.055,y,side*.10],[wingZ-2.0,.69,.24,y],[wingZ-.10,.78,.28,y+.035],[wingZ+2.35,.57,.12,y+.12,side*.04],[wingZ+4.25,.045,.035,y+.17,-side*.20]]:[[wingZ-2.05,.055,.035,y],[wingZ-1.30,w*.68,.125,y],
           [wingZ-.10,w*.80,.21,y+.012],[wingZ+.85,w*.53,.14,y+.015],[wingZ+1.86,.055,.035,y]],c.paint,side*w*.90,{rounded:true});
-        for(let i=0;i<5;i++)b.box([side*w*.99,y-.02,rear+2.3+i*.18],[.017,.29,.045],c.dark);
+        if(!strike)for(let i=0;i<5;i++)b.box([side*w*.99,y-.02,rear+2.3+i*.18],[.017,.29,.045],c.dark);
         // Service bay doors lie on the nearly cylindrical waist, with their
         // hinges reaching the fuselage instead of detached decorative squares.
-        inspectionPanel(b,[side*w*.991,y,wingZ+1.02],.58,.38,[0,0,1],[side,0,0],c.paint);
+        if(!strike)inspectionPanel(b,[side*w*.991,y,wingZ+1.02],.58,.38,[0,0,1],[side,0,0],c.paint);
+      }
+      if(strike&&level<2){
+        // Thin access seams follow the new curved skin, including the dorsal
+        // engine covers. Their subdued edges stay attached at every sample.
+        const n=level===0?24:8,seam=shade(c.paint,.80);
+        for(const z of [-5.35,-2.45,.85,6.08])for(let j=0;j<n;j++){
+          const a=.26+(Math.PI-.52)*j/n,q=.26+(Math.PI-.52)*(j+1)/n;
+          b.rod(skin(z,a),skin(z,q),.006,seam,6);
+        }
+        for(const angle of [Math.PI*.30,Math.PI*.70])for(let j=0;j<n;j++)b.rod(skin(-5.35+6.20*j/n,angle),skin(-5.35+6.20*(j+1)/n,angle),.006,seam,6);
       }
     },'air_wing');
     b.part(`air_radar / ${mapping?'terrain-mapping radome and sensor fairing':'basic ranging radome'}`,()=>{
@@ -655,9 +683,138 @@
       if(mapping){body([[front-1.65,.17,.12,y-.43],[front-1.14,.20,.16,y-.40],[front-.85,.04,.05,y-.36]],c.dark);b.cylinder([0,y-.5,front-1.05],[0,y-.52,front-.96],.10,PALETTE.lens,24);}
     },'air_radar');
     b.part(`air_avionics / ${digital?'digital mission cockpit and targeting pod':'analog cockpit and radio aerials'}`,()=>{
+      if(strike){
+        // The upper fuselage has a genuine opening. An open-bottom glazing shell
+        // sits above the coaming and two seats instead of enclosing a solid tube.
+        const cy=y+.40,rows=[[2.06,.03,.025,cy],[2.40,.39,.38,cy],[3.15,.49,.61,cy],[4.65,.45,.59,cy],[5.35,.29,.35,cy],[5.66,.03,.025,cy]];
+        const upholstery=[.28,.29,.25],webbing=[.49,.46,.35],instrument=[.61,.71,.65];
+        // Instrument graphics are physical inset faces on the panel. Their
+        // straight strokes stay legible without inventing tiny rendered text.
+        const panelFace=(x,yy,z,width,height,color)=>b.face([[x-width/2,yy-height/2,z],[x+width/2,yy-height/2,z],[x+width/2,yy+height/2,z],[x-width/2,yy+height/2,z]],color,[x,yy,z+.1]);
+        const panelLine=(a,q,width,color)=>{
+          const d=sub(q,a),across=mul(normal([-d[1],d[0],0]),width/2);
+          b.face([sub(a,across),sub(q,across),add(q,across),add(a,across)],color,add(mean([a,q]),[0,0,.1]));
+        };
+        const belt=(a,q,width)=>{
+          const along=normal(sub(q,a)),across=normal(cross([0,0,1],along)),out=normal(cross(across,along));
+          b.box(mean([a,q]),[width,Math.hypot(...sub(q,a)),.007],webbing,[across,along,out]);
+        };
+        b.box([0,cy-.27,3.86],[.79,.08,3.18],c.black);
+        for(const side of [-1,1]){
+          b.box([side*.405,cy-.13,3.84],[.055,.28,2.86],c.dark);
+          b.rod([side*.28,cy,2.26],[side*.47,cy,3.15],.027,c.edge,12);
+          b.rod([side*.47,cy,3.15],[side*.43,cy,4.65],.027,c.edge,12);
+          b.rod([side*.43,cy,4.65],[side*.25,cy,5.40],.027,c.edge,12);
+        }
+        for(const z of [3.03,4.43]){
+          beveled(b,[0,cy-.10,z],[.46,.16,.51],[.17,.19,.17],.04);
+          beveled(b,[0,cy+.10,z-.22],[.44,.46,.14],[.12,.14,.13],.04);
+          b.box([0,cy+.385,z-.24],[.27,.14,.17],c.black);
+          if(level===2)for(const side of [-1,1])b.rod([side*.09,cy+.33,z-.14],[side*.16,cy+.01,z+.06],.021,[.51,.48,.36],10);
+          b.box([0,cy+.01,z+.36],[.54,.22,.14],c.dark);
+          if(level<2){
+            b.always(()=>{
+              // Three rounded rectangular sections shape the seat pan; the
+              // central cushion rises out of the supporting shell at its edge.
+              const cushion=(width,depth,yy)=>[[-width*.40,yy,z-depth/2],[width*.40,yy,z-depth/2],[width/2,yy,z-depth*.38],[width/2,yy,z+depth*.38],[width*.40,yy,z+depth/2],[-width*.40,yy,z+depth/2],[-width/2,yy,z+depth*.38],[-width/2,yy,z-depth*.38]];
+              b.loft([cushion(.40,.43,cy-.025),cushion(.405,.425,cy+.004),cushion(.35,.38,cy+.026)],upholstery);
+              beveled(b,[0,cy+.115,z-.126],[.33,.33,.047],upholstery,.045);
+              beveled(b,[0,cy+.385,z-.149],[.235,.108,.022],[.23,.25,.22],.023);
+              for(const side of [-1,1]){
+                belt([side*.10,cy+.29,z-.093],[side*.155,cy+.036,z+.11],.045);
+                belt([side*.205,cy+.024,z+.085],[side*.025,cy+.038,z+.125],.036);
+                b.box([side*.115,cy+.215,z-.040],[.060,.027,.013],c.steel);
+                beveled(b,[side*.31,cy-.04,z+.025],[.15,.14,.63],c.dark,.018);
+                // Pedals rest below the instrument panel, clear of the seat pan.
+                b.box([side*.105,cy-.205,z+.34],[.14,.105,.025],c.steel,[[1,0,0],[0,.9,-.43589],[0,.43589,.9]]);
+              }
+              beveled(b,[0,cy+.041,z+.129],[.061,.045,.021],c.steel,.009);
+              b.cylinder([-.31,cy+.03,z+.02],[-.31,cy+.125,z-.015],.012,c.steel,10);
+              b.cylinder([-.35,cy+.125,z-.015],[-.27,cy+.125,z-.015],.025,c.black,12);
+              b.cylinder([0,cy+.015,z+.13],[0,cy+.046,z+.13],.042,c.black,12);
+              b.rod([0,cy+.035,z+.13],[0,cy+.127,z+.18],.014,c.steel,10);
+              beveled(b,[0,cy+.146,z+.185],[.050,.071,.045],c.black,.011);
+
+              if(digital){
+                for(const [i,x] of [-.17,0,.17].entries()){
+                  b.box([x,cy+.050,z+.278],[.147,.124,.024],c.black);
+                  panelFace(x,cy+.050,z+.264,.126,.102,[.045,.105,.09]);
+                  if(i===1){
+                    panelFace(x,cy+.075,z+.263,.118,.047,[.15,.31,.39]);
+                    panelFace(x,cy+.026,z+.263,.118,.047,[.32,.25,.17]);
+                    panelLine([x-.044,cy+.049,z+.262],[x+.044,cy+.049,z+.262],.004,instrument);
+                    panelLine([x,cy+.041,z+.261],[x,cy+.066,z+.261],.003,instrument);
+                  }else if(i===0){
+                    const n=level===0?24:8;
+                    for(let k=0;k<n;k++){
+                      const a=TAU*k/n,q=TAU*(k+1)/n;
+                      panelLine([x+Math.cos(a)*.038,cy+.050+Math.sin(a)*.038,z+.263],[x+Math.cos(q)*.038,cy+.050+Math.sin(q)*.038,z+.263],.0025,[.17,.46,.30]);
+                    }
+                    panelLine([x,cy+.050,z+.262],[x+.023,cy+.078,z+.262],.003,[.47,.72,.43]);
+                    panelFace(x-.013,cy+.070,z+.261,.007,.005,instrument);
+                  }else for(let k=0;k<3;k++){
+                    panelFace(x,cy+.077-k*.027,z+.263,.101,.014,[.08,.17,.13]);
+                    panelFace(x-.018+k*.009,cy+.077-k*.027,z+.262,.065-k*.018,.010,[.28,.64,.40]);
+                  }
+                  if(level===0)for(const dx of [-.045,-.015,.015,.045])b.box([x+dx,cy-.021,z+.266],[.012,.009,.008],[.38,.41,.37]);
+                }
+              }else{
+                const gauges=level===0?[[-.17,.064],[0,.064],[.17,.064],[-.085,-.040],[.085,-.040]]:[[-.17,.045],[0,.045],[.17,.045]];
+                for(const [index,[x,yy]] of gauges.entries()){
+                  b.cylinder([x,cy+yy,z+.284],[x,cy+yy,z+.271],.048,c.steel,24);
+                  const n=level===0?24:8;
+                  b.face(Array.from({length:n},(_,k)=>[x+Math.cos(TAU*k/n)*.039,cy+yy+Math.sin(TAU*k/n)*.039,z+.270]),c.black,[x,cy+yy,z+.4]);
+                  if(level===0)for(let k=0;k<12;k++){
+                    const a=TAU*k/12;panelLine([x+Math.cos(a)*.028,cy+yy+Math.sin(a)*.028,z+.269],[x+Math.cos(a)*.035,cy+yy+Math.sin(a)*.035,z+.269],.002,instrument);
+                  }
+                  const a=.6+index*.85;
+                  panelLine([x,cy+yy,z+.268],[x+Math.cos(a)*.028,cy+yy+Math.sin(a)*.028,z+.268],.0035,instrument);
+                  panelFace(x,cy+yy,z+.267,.006,.006,[.59,.32,.18]);
+                }
+              }
+              if(level===0){
+                // Console switches, throttle gate, pedal hinges and upholstered
+                // seams reward a close view without cluttering catalogue LODs.
+                for(const side of [-1,1]){
+                  for(let k=0;k<4;k++){
+                    const zz=z-.22+k*.14;
+                    b.box([side*.31,cy+.034,zz],[.097,.008,.073],[.28,.30,.28]);
+                    b.cylinder([side*.31,cy+.041,zz],[side*.31,cy+.061,zz-.006],.009,c.steel,10);
+                    b.cylinder([side*.35,cy+.039,zz],[side*.35,cy+.046,zz],.010,k===3?[.65,.33,.15]:[.24,.43,.30],10);
+                  }
+                  b.rod([side*.105,cy-.252,z+.245],[side*.105,cy-.205,z+.34],.013,c.steel,12);
+                  for(const dz of [-.032,0,.032])b.box([side*.105,cy-.164,z+.321+dz],[.12,.004,.009],c.dark);
+                  b.rod([side*.17,cy+.032,z-.11],[side*.17,cy+.032,z+.11],.004,[.39,.39,.32],6);
+                  b.cylinder([side*.18,cy+.265,z-.124],[side*.18,cy+.265,z-.107],.014,c.steel,12);
+                }
+                b.box([-.31,cy+.035,z+.12],[.042,.009,.16],c.black);
+                b.box([0,cy+.157,z+.157],[.022,.021,.009],[.48,.15,.10]);
+                for(const yy of [.054,.069,.084])b.tube([0,cy+yy,z+.152],[0,cy+yy+.006,z+.152],.022,.015,c.black,12);
+              }
+            });
+          }
+        }
+        // Canopy frames follow sampled cross-sections. Only the clear shell is
+        // translucent, so brackets, seats and instruments keep physical depth.
+        for(const [z,rx,ry] of [[2.40,.39,.38],[3.70,.48,.61],[5.35,.29,.35]]){
+          const n=[40,16,6][level];for(let k=0;k<n;k++){
+            const a=Math.PI*k/n,q=Math.PI*(k+1)/n;
+            b.rod([rx*Math.cos(a),cy+ry*Math.sin(a),z],[rx*Math.cos(q),cy+ry*Math.sin(q),z],.018,c.edge,10);
+          }
+        }
+        if(level===0)for(const side of [-1,1]){
+          for(const [a,q] of [[[side*.28,cy-.009,2.26],[side*.47,cy-.009,3.15]],[[side*.47,cy-.009,3.15],[side*.43,cy-.009,4.65]],[[side*.43,cy-.009,4.65],[side*.25,cy-.009,5.40]]])b.rod(a,q,.013,c.black,12);
+          for(const [z,x] of [[2.67,.366],[3.31,.465],[4.18,.443],[4.94,.363]]){
+            inspectionHinge(b,[side*x,cy-.010,z],[0,0,1],[side,0,0],.082,.010,c.steel);
+            b.cylinder([side*x,cy-.004,z+.077],[side*x,cy+.013,z+.077],.012,c.steel,12);
+          }
+        }
+        const first=b.cursor();body(rows,c.glass,0,{rounded:true,upper:true,open:true});
+        surfaces.push({first,count:b.cursor()-first,material:'glass',opacity:.24});
+      }else{
       const z=front-length*.29,canopyLength=strike?2.95:2.35;
       const rows=[[z-canopyLength*.52,w*.28,.12,y+w*.8],[z-canopyLength*.3,w*.53,.41,y+w*.91],[z+canopyLength*.19,w*.49,.49,y+w*.91],[z+canopyLength*.46,w*.22,.20,y+w*.87]];
-      body(rows,c.glass);
+      body(rows,c.glass,0,{rounded:true});
       for(const [rz,rx,ry,cy] of [rows[1],rows[2]])for(let i=0;i<16;i++){const t=TAU*i/32,t2=TAU*(i+1)/32;b.rod([rx*Math.cos(t),cy+ry*Math.sin(t),rz],[rx*Math.cos(t2),cy+ry*Math.sin(t2),rz],.027,c.edge,8);}
       for(const side of [-1,1])b.rod([side*w*.49,y+w*.89,z-canopyLength*.3],[side*w*.22,y+w*.87,z+canopyLength*.46],.025,c.edge);
       for(const side of [-1,1]){
@@ -666,18 +823,31 @@
         inspectionHinge(b,[side*w*.51,y+w*.91,z-.23],[0,0,1],[side,0,0],.27,.027,c.edge);
         inspectionLatch(b,[side*w*.33,y+w*.91,z+canopyLength*.32],[0,0,1],[side,0,0],.075,c.edge);
       }
-      plate([[0,y+w*.8,rear+length*.46],[0,y+w*.8+.47,rear+length*.43],[0,y+w*.8,rear+length*.40]],.035,c.dark,true);
-      if(digital){body([[.35,.21,.2,y-.73],[1.55,.21,.20,y-.73],[1.87,.11,.14,y-.73]],c.dark,.58);b.cylinder([.58,y-.73,1.86],[.58,y-.73,1.89],.105,PALETTE.lens,28);b.box([0,y+w*.96,z-1.3],[.25,.13,.5],c.edge);}
-      else for(const side of [-1,1])b.rod([side*.22,y+w*.85,z-1.1],[side*.28,y+w*.85+.35,z-1.55],.012,c.steel);
+      }
+      const z=front-length*.29;
+      if(strike)plate([[0,y+.46,-.32],[0,y+.73,-.64],[0,y+.46,-.88]],.025,c.dark,true);
+      else plate([[0,y+w*.8,rear+length*.46],[0,y+w*.8+.47,rear+length*.43],[0,y+w*.8,rear+length*.40]],.035,c.dark,true);
+      if(digital){body([[.35,.21,.2,y-.73],[1.55,.21,.20,y-.73],[1.87,.11,.14,y-.73]],c.dark,.58);b.cylinder([.58,y-.73,1.86],[.58,y-.73,1.89],.105,PALETTE.lens,28);b.box([0,strike?skin(1.55,Math.PI/2)[1]+.025:y+w*.96,strike?1.55:z-1.3],[.25,.13,.5],c.edge);}
+      else for(const side of [-1,1])b.rod([side*.22,strike?y+.47:y+w*.85,strike?1.30:z-1.1],[side*.28,strike?y+.70:y+w*.85+.35,strike?.95:z-1.55],.012,c.steel);
     },'air_avionics');
     for(const side of [-1,1]) {
-      const lead=wingZ+(swept?-1.20:stable?.1:.55),trail=lead-(swept?1.05:1.45);
+      const lead=wingZ+(swept?(strike?-1.85:-1.20):stable?.1:.55),trail=lead-(swept?(strike?1.40:1.05):1.45);
       b.part(`air_wing / ${side<0?'port':'starboard'} ${swept?'swept':stable?'high-stability':'straight'} wing`,()=>{
         const root=side*w*.76,tip=side*span,dihedral=stable?.32:.12;
-        airfoil([[root,y,wingZ+1.7],[tip,y+dihedral,lead],[tip,y+dihedral,trail],[root,y,wingZ-1.95]],.145,c.paint);
+        airfoil([[root,y,wingZ+1.7],[tip,y+dihedral,lead],[tip,y+dihedral,trail],[root,y,wingZ-1.95]],strike?.12:.145,c.paint);
         // Separate flaps, leading-edge strips, panel joins and navigation lenses.
-        const outline=[[side*(w+.25),y-.04,wingZ-1.82],[side*(span-.23),y+dihedral-.04,trail+.10],[side*(span-.23),y+dihedral-.04,trail-.10],[side*(w+.25),y-.04,wingZ-2.02]];
-        plate(outline,.085,c.upper);
+        if(strike){
+          // Separate inboard flap and outboard aileron live aft of the skin,
+          // with a genuine hinge gap and a short break between the controls.
+          for(const [a,q] of [[.08,.53],[.55,.95]]){
+            const point=f=>[root+(tip-root)*f,y+dihedral*f,wingZ-1.95+(trail-wingZ+1.95)*f];
+            const u=point(a),v=point(q),depth=.22;
+            plate([add(u,[0,0,-.025]),add(v,[0,0,-.025]),add(v,[0,-.015,-depth]),add(u,[0,-.015,-depth])],.035,c.upper);
+          }
+        }else{
+          const outline=[[side*(w+.25),y-.04,wingZ-1.82],[side*(span-.23),y+dihedral-.04,trail+.10],[side*(span-.23),y+dihedral-.04,trail-.10],[side*(w+.25),y-.04,wingZ-2.02]];
+          plate(outline,.085,c.upper);
+        }
         b.rod([root,y+.086,wingZ+1.65],[tip,y+dihedral+.086,lead-.02],.017,c.edge,8);
         for(let k=1;k<=3;k++){const f=k/4,xx=side*(w+(span-w)*f),zz=wingZ+1.7+(lead-wingZ-1.7)*f;b.rod([xx,y+dihedral*f+.083,zz-.18],[xx,y+dihedral*f+.083,zz-1.02],.011,c.dark,8);}
         for(const f of [.27,.55,.79]){
@@ -691,38 +861,71 @@
       },'air_wing');
       b.part(`air_wing / ${side<0?'port':'starboard'} tailplane`,()=>{
         const tz=rear+1.3;
-        plate([[side*.17,y+.12,tz+1.5],[side*(strike?2.85:2.23),y+.23,tz-.02],[side*(strike?2.8:2.2),y+.23,tz-.71],[side*.17,y+.12,tz-.37]],.10,c.upper);
+        plate([[side*(strike?.70:.17),y+.12,tz+1.5],[side*(strike?3.05:2.23),y+.23,tz-.02],[side*(strike?2.75:2.2),y+.23,tz-(strike?.85:.71)],[side*(strike?.70:.17),y+.12,tz-(strike?.45:.37)]],strike?.065:.10,c.upper);
         b.rod([side*.30,y+.18,tz-.28],[side*(strike?2.7:2.1),y+.29,tz-.63],.015,c.dark,8);
       },'air_wing');
     }
     b.part('air_wing / vertical stabilizers and rudders',()=>{
       for(const side of strike?[-1,1]:[0]){
-        const x=side*.62,tz=rear+1.3,h=strike?2.0:1.65;
+        const x=side*(strike?.96:.62),tz=rear+1.3,h=strike?2.0:1.65;
         plate([[x,y+.16,tz+1.75],[x+side*.4,y+h,tz+.55],[x+side*.5,y+h,tz-.22],[x,y+.16,tz-.57]],.12,c.paint,true);
         b.rod([x+side*.44,y+h-.11,tz-.10],[x+side*.02,y+.3,tz-.44],.018,c.dark,8);
       }
     },'air_wing');
-    const engineXs=twin?[-.73,.73]:[0],engineRadius=twin?.54:efficient?.52:.43;
+    const engineXs=twin?(strike?[-.84,.84]:[-.73,.73]):[0],engineRadius=twin?.54:efficient?.52:.43;
     engineXs.forEach((x,index)=>{
       b.part(`air_engine / ${twin?(index?'starboard':'port')+' twin turbofan':efficient?'efficient turbofan':'economical turbine'} nacelle`,()=>{
-        const ey=y-.15,housingFront=wingZ+.03,exhaust=rear+.03;
+        const ey=y-(strike?.37:.15),housingFront=wingZ+.03,exhaust=rear+.03;
         // The engine casing ends behind the duct throat. Extending a capped
         // casing to the lip would put a solid painted disc across the intake.
         body([[exhaust,engineRadius*.87,engineRadius*.87,ey],[rear+1.1,engineRadius,engineRadius,ey],[rear+2.8,engineRadius*1.13,engineRadius*1.04,ey],
-          [housingFront-.60,engineRadius*.95,engineRadius,ey],[housingFront,engineRadius*.89,engineRadius*.89,ey]],c.paint,x);
+          [housingFront-.60,engineRadius*.95,engineRadius,ey],[housingFront,engineRadius*.89,engineRadius*.89,ey]],c.paint,x,{open:strike&&level<2});
+        // Closed swept vanes have actual front/back surfaces. Their curved
+        // radial sections catch highlights through the inlet and nozzle.
+        const fan=(cx,cz,r,direction,count)=>{
+          const sections=level===0?7:2;
+          for(let blade=0;blade<count;blade++){
+            const phase=TAU*blade/count,rings=[];
+            for(let j=0;j<=sections;j++){
+              const t=j/sections,angle=phase+.25*t*t,reach=r*(.17+.55*t),half=.032+.075*t;
+              const depth=cz+direction*(.017+.043*Math.sin(Math.PI*t)),thick=.006*(1-.42*t);
+              const p=(a,z)=>[cx+Math.cos(a)*reach,ey+Math.sin(a)*reach,z];
+              rings.push([p(angle-half,depth-thick),p(angle+half,depth-thick),p(angle+half,depth+thick),p(angle-half,depth+thick)]);
+            }
+            // Keep the thin fan vanes visible in catalogue detail as well.
+            b.always(()=>b.loft(rings,blade%3?[.39,.42,.43]:[.45,.47,.47]));
+          }
+        };
         // Exposed side ducts feed the selected engine installation. A single
         // central circular mouth was hidden inside the fuselage; two exposed
         // intakes still belong to ONE engine part when a single engine is fitted.
         for(const side of twin?[Math.sign(x)]:[-1,1]){
-          const r=engineRadius*(twin?.66:.65),mouthX=side*(w+r+.045),mouthZ=wingZ+.95;
+          const r=engineRadius*(strike?(twin?.70:.75):(twin?.66:.65)),mouthX=side*(strike?1.10+r*.65:w+r+.045),mouthZ=wingZ+(strike?1.45:.95);
           body([[mouthZ-1.72,r*.51,r*.72,ey,x-mouthX],[mouthZ-.78,r*.89,r*.96,ey,-side*.115],
-            [mouthZ-.14,r*1.02,r*1.02,ey,0],[mouthZ,r*1.03,r*1.03,ey,0]],c.paint,mouthX,{rounded:true,open:true});
-          b.revolve([mouthX,ey,mouthZ-.08],[0,0,1],[{r:r*1.03,h:0,s:1},{r:r*1.075,h:.055,s:1},
+            [mouthZ-.14,r*1.02,r*1.02,ey,0],[mouthZ,r*1.03,r*1.03,ey,0]],c.paint,mouthX,{rounded:true,open:true,squared:strike});
+          if(strike){
+            const outside=Array.from({length:radial},(_,k)=>{const a=TAU*k/radial;return [mouthX+Math.sign(Math.cos(a))*Math.pow(Math.abs(Math.cos(a)),.65)*r*1.03,ey+Math.sign(Math.sin(a))*Math.pow(Math.abs(Math.sin(a)),.65)*r*1.03,mouthZ];});
+            const inside=outside.map(p=>[mouthX+(p[0]-mouthX)*.84,ey+(p[1]-ey)*.84,mouthZ+.012]);
+            for(let k=0;k<radial;k++){const q=(k+1)%radial;b.face([outside[k],outside[q],inside[q],inside[k]],c.edge,[mouthX,ey,mouthZ-.15]);}
+          }else b.revolve([mouthX,ey,mouthZ-.08],[0,0,1],[{r:r*1.03,h:0,s:1},{r:r*1.075,h:.055,s:1},
             {r:r*1.04,h:.10,s:1},{r:r*.88,h:.105},{r:r*.84,h:.06,s:1},{r:r*.84,h:0,s:1}],c.edge,32);
           body([[mouthZ-.66,r*.72,r*.72,ey,-side*.030],[mouthZ-.31,r*.79,r*.80,ey,-side*.008],
-            [mouthZ-.08,r*.84,r*.84,ey,0]],c.dark,mouthX,{rounded:true,open:true,inward:true});
+            [mouthZ-.08,r*.84,r*.84,ey,0]],c.dark,mouthX,{rounded:true,open:true,inward:true,squared:strike});
+          if(strike)body([[mouthZ-.08,r*.84,r*.84,ey],[mouthZ+.012,r*.8652,r*.8652,ey]],c.dark,mouthX,{open:true,inward:true,squared:true});
           const hubX=mouthX-side*.030,fanZ=mouthZ-.675;
+          if(strike)b.face(Array.from({length:radial},(_,k)=>{const a=TAU*k/radial;return [hubX+Math.sign(Math.cos(a))*Math.pow(Math.abs(Math.cos(a)),.65)*r*.735,ey+Math.sign(Math.sin(a))*Math.pow(Math.abs(Math.sin(a)),.65)*r*.735,fanZ-.016];}),c.black,[hubX,ey,fanZ-.10]);
           b.cylinder([hubX,ey,fanZ-.015],[hubX,ey,fanZ],r*.73,c.black,28);
+          if(strike&&level<2){
+            fan(hubX,fanZ,r,1,level===0?28:20);
+            b.revolve([hubX,ey,fanZ+.013],[0,0,1],[{r:r*.18,h:0,s:1},{r:r*.18,h:.026,s:1},{r:r*.14,h:.079,s:1},{r:r*.065,h:.119,s:1},{r:0,h:.145}],c.edge,level===0?64:24);
+            // Fan containment collar, seated behind the duct exit. Small
+            // peripheral fasteners remain outside the clear throat samples.
+            b.revolve([hubX,ey,fanZ],[0,0,1],[{r:r*.725,h:-.015},{r:r*.77,h:-.015},{r:r*.77,h:.018},{r:r*.725,h:.018}],c.steel,level===0?96:28);
+            if(level===0)for(let k=0;k<12;k++){
+              const a=TAU*k/12;
+              b.cylinder([hubX+Math.cos(a)*r*.748,ey+Math.sin(a)*r*.748,fanZ+.018],[hubX+Math.cos(a)*r*.748,ey+Math.sin(a)*r*.748,fanZ+.025],.006,c.edge,8);
+            }
+          }else{
           for(let k=0;k<16;k++){
             const t=TAU*k/16;
             b.face([[hubX+Math.cos(t)*r*.12,ey+Math.sin(t)*r*.12,fanZ+.012],
@@ -730,7 +933,50 @@
               [hubX+Math.cos(t+.30)*r*.67,ey+Math.sin(t+.30)*r*.67,fanZ+.014]],c.steel,[hubX,ey,fanZ-.1]);
           }
           b.cylinder([hubX,ey,fanZ],[hubX,ey,fanZ+.12],r*.15,c.edge,16,r*.04);
+          }
         }
+        if(strike&&level<2){
+          const R=engineRadius,segments=level===0?96:32,metal=[.30,.29,.27],liner=[.16,.18,.19];
+          // The outer collar converges to a thin outlet rim, then returns
+          // inward along a deep liner. No flat casing cap crosses the cavity.
+          b.revolve([x,ey,exhaust],[0,0,-1],[
+            {r:R*.96,h:-.28,s:1},{r:R*.965,h:-.19,s:1},
+            {r:R*.89,h:.02,s:1},{r:R*.79,h:.34},
+            {r:R*.65,h:.34,c:liner},{r:R*.71,h:.12,s:1,c:liner},
+            {r:R*.81,h:-.40,s:1,c:liner},{r:R*.72,h:-.90,c:liner},{r:0,h:-.90}
+          ],metal,segments);
+          const petals=level===0?20:12;
+          for(let k=0;k<petals;k++){
+            const a=TAU*k/petals,half=TAU/petals*.44,rings=[];
+            for(const [z,r] of [[exhaust+.20,R*.967],[exhaust-.035,R*.89],[exhaust-.34,R*.795]]){
+              const p=(angle,rr)=>[x+Math.cos(angle)*rr,ey+Math.sin(angle)*rr,z];
+              rings.push([p(a-half,r-.005),p(a+half,r-.005),p(a+half,r+.010),p(a-half,r+.010)]);
+            }
+            b.loft(rings,k%3?[.36,.35,.32]:[.30,.31,.30]);
+            if(level===0){
+              const radial=[Math.cos(a),Math.sin(a),0],tangent=[-Math.sin(a),Math.cos(a),0];
+              const p=add([x,ey,exhaust+.32],mul(radial,R*.98)),q=add([x,ey,exhaust-.035],mul(radial,R*.925));
+              b.cylinder(p,q,.017,c.steel,12);
+              const knuckle=add(q,mul(radial,.006));
+              b.cylinder(add(knuckle,mul(tangent,-.028)),add(knuckle,mul(tangent,.028)),.027,c.edge,10);
+              b.box(add(p,mul(radial,-.016)),[.045,.045,.09],c.steel,[tangent,radial,[0,0,1]]);
+            }
+          }
+          // Recessed liner ribs, a turbine face and central exhaust cone are
+          // visible through the mouth, with no fire effect on a parked model.
+          const coreZ=exhaust+.855;
+          fan(x,coreZ,R,-1,level===0?22:14);
+          b.revolve([x,ey,coreZ],[0,0,-1],[{r:R*.18,h:0,s:1},{r:R*.19,h:.05,s:1},{r:R*.15,h:.14,s:1},{r:R*.07,h:.235,s:1},{r:0,h:.27}],c.steel,level===0?48:20);
+          for(let j=0;j<(level===0?7:3);j++){
+            const z=exhaust+.20+j*(level===0?.085:.235),radius=R*(z<exhaust+.40?.785:.81-(z-exhaust-.40)*.18);
+            b.revolve([x,ey,z],[0,0,1],[{r:radius,h:-.012},{r:radius-.012,h:-.004},{r:radius-.012,h:.004},{r:radius,h:.012}],j%2?[.23,.24,.23]:[.19,.21,.22],segments);
+          }
+          if(level===0)for(const side of [-1,1]){
+            // Service seams and access latches remain seated on each nacelle.
+            const yy=ey+R*.67,xx=x+side*R*.69;
+            for(const dz of [.66,1.62,2.70])b.rod([xx,yy,exhaust+dz-.26],[xx,yy,exhaust+dz+.26],.007,c.edge,8);
+          }
+        }else{
         b.tube([x,ey,exhaust+.28],[x,ey,exhaust-.34],engineRadius*.86,engineRadius*.68,c.steel,40);
         b.cylinder([x,ey,exhaust+.29],[x,ey,exhaust+.27],engineRadius*.67,c.black,36);
         for(let k=0;k<24;k++){const a=TAU*k/24;b.rod([x+Math.cos(a)*engineRadius*.86,ey+Math.sin(a)*engineRadius*.86,exhaust+.12],[x+Math.cos(a)*engineRadius*.86,ey+Math.sin(a)*engineRadius*.86,exhaust-.34],.013,c.edge,8);}
@@ -739,6 +985,22 @@
         for(let k=0;k<16;k++){
           const a=TAU*k/16,radial=[Math.cos(a),Math.sin(a),0],tangent=[-Math.sin(a),Math.cos(a),0];
           beveled(b,add([x,ey,exhaust-.10],mul(radial,engineRadius*.875)),[engineRadius*.24,.017,.43],shade(c.steel,1+(k%3)*.05),.008,[tangent,radial,[0,0,1]]);
+        }
+        if(level===0){
+          // Recessed heat-shield corrugations sit inside the nozzle. The
+          // actuator links attach each petal to its collar, leaving the throat open.
+          for(let j=0;j<5;j++){
+            const z=exhaust+.015+j*.047;
+            b.tube([x,ey,z],[x,ey,z+.018],engineRadius*.695,engineRadius*.667,c.dark,96);
+          }
+          for(let k=0;k<16;k++){
+            const a=TAU*k/16,radial=[Math.cos(a),Math.sin(a),0];
+            const p=add([x,ey,exhaust+.21],mul(radial,engineRadius*.90));
+            const q=add([x,ey,exhaust-.09],mul(radial,engineRadius*.895));
+            b.cylinder(p,q,.021,c.steel,16);
+            b.cylinder(add(q,mul(radial,-.015)),add(q,mul(radial,.026)),.038,c.edge,16);
+          }
+        }
         }
         if(efficient)for(const side of [-1,1])b.box([x+side*engineRadius,ey, rear+2.3],[.08,.22,.8],c.upper);
       },'air_engine');
@@ -784,9 +1046,13 @@
       }
     },'air_payload');
     b.part(`air_fuel / ${extended?'extended fuel tanks and refueling fitting':'internal fuel access panels'}`,()=>{
-      for(const side of [-1,1]){panel(side*.25,-.55,.23,.32);b.cylinder([side*.25,y+w*.91,-.55],[side*.25,y+w*.925,-.55],.075,c.edge,20);}
+      for(const side of [-1,1]){
+        if(strike){const p=skin(-.55,Math.PI/2-side*.26);b.cylinder(add(p,[0,-.025,0]),add(p,[0,.012,0]),.075,c.edge,20);}
+        else {panel(side*.25,-.55,.23,.32);b.cylinder([side*.25,y+w*.91,-.55],[side*.25,y+w*.925,-.55],.075,c.edge,20);}
+      }
       if(extended)for(const side of [-1,1]){
-        const x=side*(span-.55),z=wingZ-.10,fy=y+.10;
+        const x=side*(strike?3.75:span-.55),z=wingZ-(strike?1.3:.10),fy=y+(strike?-.80:.10);
+        if(strike)plate([[x,y-.01,z+.38],[x,fy+.29,z+.22],[x,fy+.29,z-.57],[x,y-.01,z-.68]],.10,c.upper,true);
         body([[z-1.75,.035,.035,fy],[z-1.21,.25,.25,fy],[z+.63,.27,.27,fy],[z+1.38,.08,.08,fy],[z+1.47,.025,.025,fy]],c.upper,x);
         for(const dz of [-.8,.3])b.tube([x,fy,z+dz-.018],[x,fy,z+dz+.018],.273,.261,c.edge,32);
       }
@@ -802,6 +1068,7 @@
     },'air_countermeasures');
     const mesh=b.finish(`Visual interpretation of an original ${strike?'twin-seat tactical strike':'light attack'} aircraft. Component-driven parked game model; performance and procurement values belong to the simulation.`);
     mesh.specification={platform:spec.platform,components:{...s}};
+    if(strike){mesh.assetKind='aircraft';mesh.surfaces=surfaces;}
     return mesh;
   }
 
@@ -1522,7 +1789,7 @@
 
   function build(rawSpec) {
     const spec = resolveSpec(rawSpec), chosen = spec.components, heavy = spec.platform === "tank_heavy";
-    if(Object.hasOwn(AIR_DEFAULTS,spec.platform))return buildAircraft(spec);
+    if(Object.hasOwn(AIR_DEFAULTS,spec.platform))return buildAircraft(spec,levelOf(rawSpec));
     const detail = levelOf(rawSpec);
     if(Object.hasOwn(GROUND_DEFAULTS,spec.platform))return buildGround(spec, detail);
     const mobile = ["drive_mobile","engine_diesel_1200","engine_turbine_1500"].includes(chosen.mobility), reinforced = chosen.protection === "protection_heavy", active = chosen.protection === "protection_active" || chosen.active_protection === "aps_hard";

@@ -176,7 +176,8 @@ test('both aircraft GLBs preserve generated geometry, eight specifications and s
   const {build}=require('../../spheres-web/ui/equipment-mesh.js');
   for(const [id,platform] of [['light-attack','air_light_attack'],['tactical-strike','air_tactical_strike']]){
     const mesh=build({platform}),bytes=fs.readFileSync(path.resolve(__dirname,`../../spheres-web/ui/equipment-models/spheres-air-${id}.glb`)),model=decode(bytes),extras=model.json.meshes[0].extras;
-    assert(bytes.byteLength>700000&&bytes.byteLength<3000000);assert.deepEqual(extras.specification,mesh.specification);assert.deepEqual(extras.parts,mesh.parts);
+    // 100k+ inspection aircraft use 108 bytes per triangle plus GLB metadata.
+    assert(bytes.byteLength>10800000&&bytes.byteLength<28000000);assert.deepEqual(extras.specification,mesh.specification);assert.deepEqual(extras.parts,mesh.parts);
     assert.equal(Object.keys(extras.specification.components).length,8);
     assert.deepEqual(model.values(0),Array.from(mesh.positions));assert.deepEqual(model.values(2),Array.from(mesh.colors));
     const normals=model.values(1);assert(normals.every((n,i)=>Math.abs(n-mesh.normals[i])<1e-7),'export normalization preserves surface orientation');

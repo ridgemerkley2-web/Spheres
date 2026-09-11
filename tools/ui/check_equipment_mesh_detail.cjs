@@ -74,11 +74,11 @@ test('tank guide horns taper toward their tips instead of hiding rectangular blo
 });
 test('aircraft wings have curved span-varying airfoil volume rather than flat slabs',()=>{
   for(const platform of ['air_light_attack','air_tactical_strike']){
-    const mesh=meshes.get(platform),strike=platform==='air_tactical_strike',w=strike?.77:.58,span=strike?6.15:5.15;
+    const mesh=meshes.get(platform),strike=platform==='air_tactical_strike',w=strike?.77:.58,span=strike?5.85:5.15;
     const x=w*.76+(span-w*.76)*.2;
-    const points=vertices(mesh,p=>p.name.startsWith('air_wing / starboard ')&&p.name.endsWith('wing'),airPaint).filter(p=>Math.abs(p[0]-x)<1e-5);
+    const points=vertices(mesh,p=>p.name.startsWith('air_wing / starboard ')&&p.name.endsWith('wing'),strike?[.48,.52,.54]:airPaint).filter(p=>Math.abs(p[0]-x)<1e-5);
     assert(new Set(points.map(p=>p[1].toFixed(5))).size>=24,`${platform} upper and lower curved section`);
-    const height=Math.max(...points.map(p=>p[1]))-Math.min(...points.map(p=>p[1]));assert(height>.18&&height<.24,'The wing has a useful but bounded root section');
+    const height=Math.max(...points.map(p=>p[1]))-Math.min(...points.map(p=>p[1]));assert(height>(strike?.16:.18)&&height<(strike?.19:.24),'The wing has a useful but bounded root section; the tactical rebuild has a thinner profile');
   }
 });
 test('aircraft fuselage and canopy normals are shared curved surfaces',()=>{

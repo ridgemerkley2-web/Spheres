@@ -150,7 +150,9 @@ function validate(mesh, ground = false, level = 0) {
   assert.equal(mesh.positions.length, mesh.colors.length);
   assert.equal(mesh.positions.length, mesh.triangleCount * 9);
   assert.equal(mesh.lod, level);
-  const [low, high] = air ? [8000, 60000] : BANDS[level][ground ? "ground" : "tank"];
+  // User-approved aircraft inspection budget: 100k+ triangles, with separate
+  // cheaper catalogue/map recipes. Ground budgets and geometric checks stay fixed.
+  const [low, high] = air ? [[100000,250000],[4000,18000],[300,2500]][level] : BANDS[level][ground ? "ground" : "tank"];
   assert.ok(mesh.triangleCount >= low && mesh.triangleCount <= high, `${mesh.triangleCount} triangles at LOD${level}`);
   let previous = 0;
   const names = new Set();
