@@ -98,6 +98,22 @@ pub fn enabled(w: &WorldState) -> bool {
 pub fn advanced_component_stock(w: &WorldState, nation: NationId) -> f64 {
     w.production.operations.advanced_components.get(&nation).copied().unwrap_or(0.0)
 }
+/// Transfer a preflighted finite component bundle out of sovereign inventory.
+/// The caller owns its corporate payment and acquisition receipt; this helper
+/// cannot create a public bill, material stock or a second GDP contribution.
+pub(crate) fn take_advanced_components(w: &mut WorldState, nation: NationId, amount: f64) -> Result<(), String> {
+    if !amount.is_finite() || amount < 0.0 {
+        return Err("The component transfer must be finite and nonnegative.".into());
+    }
+    if amount == 0.0 { return Ok(()); }
+    if !enabled(w) { return Err("Connected industry is required for advanced components.".into()); }
+    let available = advanced_component_stock(w, nation);
+    if !available.is_finite() || available < amount {
+        return Err("The national warehouse lacks the complete advanced-component bundle.".into());
+    }
+    *w.production.operations.advanced_components.entry(nation).or_default() = available - amount;
+    Ok(())
+}
 pub fn advanced_component_capacity(w: &WorldState, nation: NationId) -> f64 {
     industry::goods_capacity(w,nation)
 }
@@ -287,19 +303,29 @@ pub fn intermediates_per_level(kind: K) -> f64 {
     match kind { K::OfficeDistrict => OFFICE_INTERMEDIATES_DAY,
         K::AdvancedIndustry => ADVANCED_INTERMEDIATES_DAY, _ => 0.0 }
 }
-/// Operating recipes are independent of supplier ownership. Contractor terms
-/// remain neutral until a typed service-company integration is introduced.
-pub(crate) fn operating_raw_recipe(_w: &WorldState, _nation: NationId, _district: &str, kind: K, work: f64, power: f64) -> [f64; 12] {
-    raw_recipe(kind, work, power)
+fn production_company(w: &WorldState, nation: NationId, district: &str, kind: K) -> crate::sector_contractors::CompanyModifiers {
+    if kind == K::AdvancedIndustry { industry::manufacturing_company(w, nation, district) }
+    else { crate::sector_contractors::CompanyModifiers::default() }
 }
-pub(crate) fn intermediate_requirement(_w: &WorldState, _nation: NationId, _district: &str, kind: K, work: f64) -> f64 {
-    work * intermediates_per_level(kind)
+pub(crate) fn operating_raw_recipe(w: &WorldState, nation: NationId, district: &str, kind: K, work: f64, power: f64) -> [f64; 12] {
+    let company = production_company(w, nation, district, kind);
+    let (fuel_rate, _) = industry::energy_company_rates(w, nation);
+    raw_recipe(kind, work * company.work_rate * company.input_rate, power * fuel_rate)
 }
-pub(crate) fn advanced_output_daily(_w: &WorldState, _district: &str, work: f64) -> f64 {
-    work * ADVANCED_OUTPUT_DAY
+pub(crate) fn intermediate_requirement(w: &WorldState, nation: NationId, district: &str, kind: K, work: f64) -> f64 {
+    let company = production_company(w, nation, district, kind);
+    work * intermediates_per_level(kind) * company.work_rate * company.input_rate
 }
-pub(crate) fn operating_cash_required(_w: &WorldState, _nation: NationId, _district: &str, _kind: K, work: f64) -> f64 {
-    work * OPERATING_CASH_LEVEL_DAY_BN
+/// Rated output at current contractor terms. Deliberately independent of
+/// available inputs: a shortage must remain visible in forward demand.
+pub(crate) fn advanced_output_daily(w: &WorldState, district: &str, work: f64) -> f64 {
+    let rate=w.districts.get(district).map_or(1.0,|n|
+        production_company(w,*n,district,K::AdvancedIndustry).work_rate);
+    work * rate * ADVANCED_OUTPUT_DAY
+}
+pub(crate) fn operating_cash_required(w: &WorldState, nation: NationId, district: &str, kind: K, work: f64) -> f64 {
+    let company=production_company(w,nation,district,kind);
+    work * company.work_rate * OPERATING_CASH_LEVEL_DAY_BN * (1.0 + company.fee_rate)
 }
 fn support(kind: K) -> bool { matches!(kind, K::Shipyard) }
 fn own_producer(kind: K) -> bool { matches!(kind, K::OfficeDistrict | K::AdvancedIndustry) || support(kind) }
@@ -338,8 +364,9 @@ pub fn site(w: &WorldState, district: &str, kind: K) -> FacilityOperation {
     let mut constraint = "Ready for assigned work; operating inputs and funding are checked when used.".to_string();
     if own_producer(kind) && count > 0.0 {
         if let Some(n) = owner {
+            let (_, energy_fee) = industry::energy_company_rates(w,n);
             funding_fraction = ratio(programs::available_bn(w, n, BUDGET_INDUSTRY, 0), operating_cash_required(w,n,district,kind,count))
-                .min(ratio(programs::available_bn(w, n, BUDGET_INDUSTRY, 1), power * ENERGY_CASH_POWER_DAY_BN));
+                .min(ratio(programs::available_bn(w, n, BUDGET_INDUSTRY, 1), power * ENERGY_CASH_POWER_DAY_BN * (1.0 + energy_fee)));
             let raw = operating_raw_recipe(w,n,district,kind,count,power);
             for c in resources::ALL {
                 input_fraction = input_fraction.min(ratio(resources::stockpile(w, n, c), raw[c.idx()]));
@@ -353,14 +380,16 @@ pub fn site(w: &WorldState, district: &str, kind: K) -> FacilityOperation {
     } else if matches!(kind, K::ProcessingPlant | K::StarterIndustry | K::MachineryWorks) && count > 0.0 {
         if let Some(n) = owner {
             let rate = industry::plant_rate(w,district,kind);
-            let raw = industry::operating_recipe(kind,rate,power);
+            let company = industry::manufacturing_company(w,n,district);
+            let (_, energy_fee) = industry::energy_company_rates(w,n);
+            let raw = industry::company_operating_recipe(w,n,district,kind,rate,power);
             for c in resources::ALL { input_fraction=input_fraction.min(ratio(resources::stockpile(w,n,c),raw[c.idx()])); }
             let goods = w.production.industry.goods.get(&n).cloned().unwrap_or_default();
-            if kind==K::MachineryWorks { input_fraction=input_fraction.min(ratio(goods.intermediates,rate)); }
+            if kind==K::MachineryWorks { input_fraction=input_fraction.min(ratio(goods.intermediates,rate * company.input_rate)); }
             let stored=if kind==K::MachineryWorks {goods.capital_goods}else{goods.intermediates};
             input_fraction=input_fraction.min(ratio((industry::goods_capacity(w,n)-stored).max(0.0),rate));
-            funding_fraction=ratio(programs::available_bn(w,n,BUDGET_INDUSTRY,if kind==K::MachineryWorks {0}else{2}),rate*0.00001)
-                .min(ratio(programs::available_bn(w,n,BUDGET_INDUSTRY,1),power*ENERGY_CASH_POWER_DAY_BN));
+            funding_fraction=ratio(programs::available_bn(w,n,BUDGET_INDUSTRY,if kind==K::MachineryWorks {0}else{2}),rate*0.00001*(1.0 + company.fee_rate))
+                .min(ratio(programs::available_bn(w,n,BUDGET_INDUSTRY,1),power*ENERGY_CASH_POWER_DAY_BN*(1.0 + energy_fee)));
         } else { input_fraction=0.0; funding_fraction=0.0; }
     }
     let demand = owner.map_or(0.0, |n| demand_fraction(w, n, kind));
@@ -437,7 +466,9 @@ pub fn intermediate_demand_daily(w: &WorldState, nation: NationId) -> f64 {
             + intermediate_requirement(w,nation,d,K::AdvancedIndustry,levels(w,d,K::AdvancedIndustry))).sum()
 }
 
-fn remaining_power(w: &WorldState, nation: NationId, d: &str) -> (f64, f64) {
+/// Remaining public operating capacity before any supplier's own dated usage.
+/// Supplier operations subtract their receipts once when preparing new work.
+pub(crate) fn remaining_power(w: &WorldState, nation: NationId, d: &str) -> (f64, f64) {
     let day = clock::absolute_day(w);
     let mut national = industry::power_capacity(w, nation) - support_power_used(w, nation);
     let mut local = grid_capacity(w, d) - support_grid_used(w, d);
@@ -473,7 +504,8 @@ fn operate(w: &mut WorldState, d: &str, k: K) {
     let intermediate_draw = intermediate_requirement(w,nation,d,k,work);
     if work > EPS && resources::consume_stockpile_atomic(w, nation, &raw).is_ok() {
         let cash = operating_cash_required(w,nation,d,k,work);
-        let energy_cash = power * ENERGY_CASH_POWER_DAY_BN;
+        let (_, energy_fee) = industry::energy_company_rates(w,nation);
+        let energy_cash = power * ENERGY_CASH_POWER_DAY_BN * (1.0 + energy_fee);
         programs::spend_operating(w, nation, BUDGET_INDUSTRY, 0, cash).expect("preflighted factory service cash");
         programs::spend_operating(w, nation, BUDGET_INDUSTRY, 1, energy_cash).expect("preflighted generating service cash");
         let goods = w.production.industry.goods.entry(nation).or_default();
@@ -484,6 +516,8 @@ fn operate(w: &mut WorldState, d: &str, k: K) {
             *components=((*components+output)*1e9).round()/1e9;
             receipt.output_daily = output;
             gdp_projects::record_advanced(w, nation, d, work, output, power, raw, cash, energy_cash);
+            industry::record_manufacturing_work(w, nation, d, output / ADVANCED_OUTPUT_DAY,
+                output / ADVANCED_OUTPUT_DAY * OPERATING_CASH_LEVEL_DAY_BN);
         } else if k == K::OfficeDistrict {
             receipt.output_daily = office_annual_value_added(w, d, work) / gdp_projects::DAYS_PER_ACCOUNTING_YEAR;
             receipt.annual_gdp_bn = receipt.output_daily * gdp_projects::DAYS_PER_ACCOUNTING_YEAR;
@@ -493,6 +527,7 @@ fn operate(w: &mut WorldState, d: &str, k: K) {
             receipt.output_daily = work;
             gdp_projects::record_power_dispatch(w,nation,power,raw[C::Coal.idx()],energy_cash);
         }
+        industry::record_energy_work(w,nation,power,power * ENERGY_CASH_POWER_DAY_BN);
         receipt.operating_capacity = work;
         receipt.utilization = ratio(work, receipt.installed_capacity);
         receipt.jobs_filled = work * jobs_per_level(k);

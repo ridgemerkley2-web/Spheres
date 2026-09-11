@@ -47,7 +47,7 @@ pub(crate) fn encode(g: &Game) -> Result<String, String> {
 pub(crate) fn decode(text: &str) -> Result<Game, String> {
     let value: Value =
         serde_json::from_str(text).map_err(|e| format!("Cannot read campaign: {e}"))?;
-    if value.get("format").is_none() || matches!(value["format"].as_str(), Some("spheres-equipment-save" | "spheres-party-leadership-save" | "spheres-economy-save")) {
+    if value.get("format").is_none() || matches!(value["format"].as_str(), Some("spheres-equipment-save" | "spheres-party-leadership-save" | "spheres-economy-save" | "spheres-companies-save")) {
         // The original CLI/browser format is still supported and uses every
         // simulation migration. It cannot invent an archive it never recorded.
         let mut g = crate::loaded_play_game(crate::load(text)?);
@@ -240,6 +240,34 @@ pub(crate) fn autosave(root: &Path, g: &mut Game) {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn combined_company_save_import_retains_capability_and_archive_without_load_adoption() {
+        let mut g=crate::Game::new(1990,Some(crate::NationId::France));
+        crate::play_rules(&mut g);
+        let old=crate::save(&g.world);
+        let legacy=decode(&old).unwrap();
+        assert!(!legacy.world.sector_contractors.enabled);
+        assert!(!spheres_sim::supplier_operations::enabled(&legacy.world));
+        spheres_sim::connected_economy::enable(&mut g.world).unwrap();
+        spheres_sim::resources::tick(&mut g.world);
+        spheres_sim::company_network::enable(&mut g.world).unwrap();
+        g.record("Company network explicitly adopted.".into());
+        let saved=crate::save(&g.world);
+        let value:Value=serde_json::from_str(&saved).unwrap();
+        assert_eq!(value["format"],"spheres-companies-save");
+        let loaded=decode(&saved).unwrap();
+        assert_eq!(crate::save(&loaded.world),saved);
+        let twice=decode(&crate::save(&loaded.world)).unwrap();
+        assert_eq!(crate::save(&twice.world),saved);
+        let archived=decode(&encode(&g).unwrap()).unwrap();
+        assert_eq!(crate::save(&archived.world),saved);
+        assert_eq!(archived.log,g.log);
+        assert_eq!(archived.history,g.history);
+        for field in ["equipment_version","party_leadership_version","economy_version","supplier_operations_version"] {
+            let mut unknown=value.clone();unknown[field]=json!(999);
+            assert!(decode(&unknown.to_string()).is_err(),"unknown {field} cannot be silently stripped");
+        }
+    }
     fn root() -> PathBuf {
         let p = std::env::temp_dir().join(format!("spheres-storage-{}", crate::fresh_session_id()));
         fs::create_dir_all(&p).unwrap();

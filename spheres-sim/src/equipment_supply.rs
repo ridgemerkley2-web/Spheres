@@ -73,14 +73,29 @@ fn work_inputs(job: &EquipmentProject, step: f64) -> [f64; 12] {
         / unit_days).min(job.quantity as f64);
     let batch = job.recipe_per_unit.map(|x| x * job.quantity as f64);
     let target = crate::resources::scale_bundle(&batch, units_worked / job.quantity.max(1) as f64);
-    std::array::from_fn(|i| (target[i] - job.resources_used[i]).max(0.0))
+    std::array::from_fn(|i| (target[i] - job.resources_used[i] - job.company_inputs_saved[i]).max(0.0))
+}
+fn work_company(w: &WorldState, id: NationId, job: &EquipmentProject) -> companies::CompanyModifiers {
+    companies::modifiers(w, id, &CompanyTarget::CustomEquipment { project: job.id })
+}
+fn company_inputs(nominal: [f64; 12], company: companies::CompanyModifiers) -> [f64; 12] {
+    if company.input_rate == 1.0 { nominal }
+    else { nominal.map(|v| (v * company.input_rate * 1e9).floor() / 1e9) }
+}
+fn company_work_capacity(_w: &WorldState, _job: &EquipmentProject, company: companies::CompanyModifiers) -> f64 {
+    // Public jobs keep their existing plant entitlement and frozen recipe.
+    // Explicit supplier operations do not impose a new component or staffing bill here.
+    company.work_rate
+}
+fn company_payment(job: &EquipmentProject, step: f64, company: companies::CompanyModifiers) -> f64 {
+    supply_payment(job, step) * (1.0 + company.fee_rate)
 }
 fn supply_ended(job: &EquipmentProject) -> bool {
     matches!(job.status, ProjectStatus::Complete | ProjectStatus::Cancelled)
 }
 fn supply_remaining(job: &EquipmentProject) -> [f64; 12] {
     if supply_ended(job) || job.kind == ProjectKind::Development { return [0.0; 12]; }
-    std::array::from_fn(|i| (job.recipe_per_unit[i] * job.quantity as f64 - job.resources_used[i]).max(0.0))
+    std::array::from_fn(|i| (job.recipe_per_unit[i] * job.quantity as f64 - job.resources_used[i] - job.company_inputs_saved[i]).max(0.0))
 }
 fn supply_department(job: &EquipmentProject) -> usize {
     if job.kind == ProjectKind::Development { 4 } else { 3 }
@@ -152,37 +167,38 @@ pub fn supply_plan(w: &WorldState, id: NationId) -> Vec<ProjectSupply> {
     let mut out = vec![];
     for job in jobs {
         let department = supply_department(job); let terms = work_terms(job);
+        let company = work_company(w,id,job); let billed_rate = terms.rate * (1.0 + company.fee_rate);
         let stage = if job.status == ProjectStatus::Complete { "complete" }
             else if job.status == ProjectStatus::Cancelled { "cancelled" }
             else if terms.tooling { "tooling" }
             else { match job.kind { ProjectKind::Development => "development", ProjectKind::Production => "production", ProjectKind::Refit => "refit" } };
         let mut p = ProjectSupply { project_id:job.id, stage:stage.into(), plan_day:day,
             earliest_work_day:job.started_day.saturating_add(1).max(state.finance_from_day),
-            remaining:supply_remaining(job), planned_day:[0.0;12], stock, shortfall:[0.0;12],
+            remaining:company_inputs(supply_remaining(job),company), planned_day:[0.0;12], stock, shortfall:[0.0;12],
             planned_payment_bn:0.0, planned_work_days:0.0, executable_payment_bn:0.0,
             executable_work_days:0.0, executable_raw:[0.0;12],
-            remaining_payment_bn:if supply_ended(job){0.0}else{(job.cost_bn-job.spent_bn).max(0.0)},
+            remaining_payment_bn:if supply_ended(job){0.0}else{(job.cost_bn-job.spent_bn).max(0.0) * (1.0 + company.fee_rate)},
             remaining_work_days:if supply_ended(job){0.0}else{(job.minimum_days as f64-job.work_days).max(0.0)},
             department, funding_available_bn:funds[department], daily_cap_bn:job.daily_budget_bn, blockers:vec![] };
         let blocker = supply_static_blocker(w,id,job)
             .or_else(|| (day < p.earliest_work_day).then(|| "Waiting for the first eligible work date.".into()))
             .or_else(|| (funds[department] <= 0.0).then(|| "No renewed departmental funding is available for this work.".into()));
         if let Some(reason) = blocker { if !supply_ended(job) { p.blockers.push(reason); } out.push(p); continue; }
-        p.planned_work_days = 1.0_f64.min(terms.stage_remaining).min(job.daily_budget_bn / terms.rate).min(funds[department] / terms.rate);
-        p.planned_payment_bn = supply_payment(job,p.planned_work_days);
+        p.planned_work_days = company_work_capacity(w,job,company).min(terms.stage_remaining).min(job.daily_budget_bn / billed_rate).min(funds[department] / billed_rate);
+        p.planned_payment_bn = company_payment(job,p.planned_work_days,company);
         if p.planned_payment_bn > funds[department] || p.planned_payment_bn > job.daily_budget_bn + 1e-12 {
             p.planned_work_days=0.0; p.planned_payment_bn=0.0;
             p.blockers.push("The remaining contract payment exceeds this funding date's authority.".into());
             out.push(p); continue;
         }
-        p.planned_day = work_inputs(job,p.planned_work_days);
+        p.planned_day = company_inputs(work_inputs(job,p.planned_work_days),company);
         p.shortfall = std::array::from_fn(|i| (p.planned_day[i]-stock[i]).max(0.0));
         let mut fraction = 1.0_f64;
         for i in 0..12 { if p.planned_day[i]>1e-12 && stock[i]+1e-12<p.planned_day[i] { fraction=fraction.min((stock[i]/p.planned_day[i]).clamp(0.0,1.0)); } }
         p.executable_work_days = p.planned_work_days * fraction;
         if p.executable_work_days > 1e-12 {
-            p.executable_raw = work_inputs(job,p.executable_work_days);
-            p.executable_payment_bn = supply_payment(job,p.executable_work_days);
+            p.executable_raw = company_inputs(work_inputs(job,p.executable_work_days),company);
+            p.executable_payment_bn = company_payment(job,p.executable_work_days,company);
             // Settlement's final atomic preflight is intentionally strict,
             // including a rounding remainder after proportional work.
             if p.executable_raw.iter().zip(stock).any(|(need,have)|*need>1e-12 && *need>have)
@@ -216,13 +232,15 @@ pub fn next_work_supply(w: &WorldState, id: NationId) -> NextWorkSupply {
     for job in jobs {
         if supply_static_blocker(w,id,job).is_some() || day<=job.started_day || day<state.finance_from_day {continue;}
         let d=supply_department(job);let terms=work_terms(job);
-        let step=1.0_f64.min(terms.stage_remaining).min(job.daily_budget_bn/terms.rate).min(funds[d]/terms.rate);
+        let company=work_company(w,id,job);let billed_rate=terms.rate*(1.0+company.fee_rate);
+        let step=company_work_capacity(w,job,company).min(terms.stage_remaining).min(job.daily_budget_bn/billed_rate).min(funds[d]/billed_rate);
         if step<=1e-12 {continue;}
-        let payment=supply_payment(job,step);
+        let base_payment=supply_payment(job,step);
+        let payment=base_payment*(1.0+company.fee_rate);
         if payment>funds[d] || payment>job.daily_budget_bn+1e-12 {continue;}
         funds[d]=(funds[d]-payment).max(0.0);
         if d==3 {out.procurement_payment_bn+=payment;}
-        for (total,raw) in out.raw.iter_mut().zip(work_inputs(job,step)) {*total+=raw;}
+        for (total,raw) in out.raw.iter_mut().zip(company_inputs(work_inputs(job,step),company)) {*total+=raw;}
     }
     out
 }
@@ -247,7 +265,7 @@ fn equipment_project_raw_supply_demand(w: &WorldState, id: NationId) -> Equipmen
 
     let mut jobs:Vec<_> = state.projects.iter().filter(|p|supply_static_blocker(w,id,p).is_none()).cloned().collect();
     jobs.sort_by_key(|p|(p.priority.dispatch_rank(),p.id));
-    for job in &jobs { for (r,q) in out.remaining.iter_mut().zip(supply_remaining(job)) { *r+=q; } }
+    for job in &jobs { for (r,q) in out.remaining.iter_mut().zip(company_inputs(supply_remaining(job),work_company(w,id,job))) { *r+=q; } }
     out.next_work=next_work_supply(w,id).raw;
     if jobs.is_empty() { return out; }
     out.procurement_calendar=jobs.iter().any(|p|supply_department(p)==3);
@@ -272,17 +290,20 @@ fn equipment_project_raw_supply_demand(w: &WorldState, id: NationId) -> Equipmen
             for job in &mut jobs {
                 if supply_ended(job) || day<=job.started_day || day<state.finance_from_day { continue; }
                 let d=supply_department(job); let terms=work_terms(job);
-                let step=1.0_f64.min(terms.stage_remaining).min(job.daily_budget_bn/terms.rate).min(funds[d]/terms.rate);
+                let company=work_company(w,id,job);let billed_rate=terms.rate*(1.0+company.fee_rate);
+                let step=company_work_capacity(w,job,company).min(terms.stage_remaining).min(job.daily_budget_bn/billed_rate).min(funds[d]/billed_rate);
                 if step<=1e-12 { continue; }
-                let payment=supply_payment(job,step);
+                let base_payment=supply_payment(job,step);
+                let payment=base_payment*(1.0+company.fee_rate);
                 if payment>funds[d] || payment>job.daily_budget_bn+1e-12 { continue; }
                 let from_prepaid=prepaid[d].min(payment);prepaid[d]-=from_prepaid;
                 let from_carry=carry[d].min(payment); carry[d]-=from_carry;
                 if d==3 { procurement_claim+=payment-from_carry; }
                 funds[d]=(funds[d]-payment).max(0.0);
-                let raw=work_inputs(job,step);
-                for i in 0..12 { used[i]+=raw[i]; job.resources_used[i]+=raw[i]; }
-                job.work_days=(job.work_days+step).min(job.minimum_days as f64); job.spent_bn+=payment;
+                let nominal=work_inputs(job,step); let raw=company_inputs(nominal,company);
+                for i in 0..12 { used[i]+=raw[i]; job.resources_used[i]+=raw[i]; job.company_inputs_saved[i]+=nominal[i]-raw[i]; }
+                job.work_days=(job.work_days+step).min(job.minimum_days as f64);
+                job.spent_bn+=base_payment; job.company_fees_bn+=payment-base_payment;
                 if job.kind!=ProjectKind::Development {
                     let each=job.minimum_days.saturating_sub(job.tooling_days).max(1) as f64/job.quantity.max(1) as f64;
                     job.completed_units=(((job.work_days-job.tooling_days as f64).max(0.0)/each+1e-9).floor() as u32).min(job.quantity);
@@ -487,4 +508,49 @@ mod supply_tests {
         for i in 0..12 {approx(reported[i],target.raw[i]);}
         assert_eq!(crate::save(&w),before);
     }
+    #[test]
+    fn contractor_supply_preview_matches_partial_recipe_and_actual_fee_settlement() {
+        let (mut fixture,d,r)=fixture();let id=start_production(&mut fixture,USA,&r,&d,2,1.0).unwrap();
+        let tooling=job(&fixture,id).tooling_days;for _ in 0..tooling {next(&mut fixture);}
+        open_next(&mut fixture);
+        for saving in [false,true] {
+            let mut w=fixture.clone();companies::enable(&mut w);
+            let c=w.sector_contractors.roster.iter().filter(|c|c.nation==USA&&c.sector==CompanySector::Defense)
+                .max_by(|a,b|if saving{a.input_saving.total_cmp(&b.input_saving)}else{a.work_bonus.total_cmp(&b.work_bonus)}).unwrap().id;
+            companies::assign(&mut w,USA,c,CompanyTarget::CustomEquipment{project:id}).unwrap();
+            let full=plan(&w,id);let ci=Commodity::Iron.idx();
+            resources::set_stockpile_for_test(&mut w,USA,Commodity::Iron,full.planned_day[ci]*0.5);
+            let before=serde_json::to_value(&w).unwrap();let planned=plan(&w,id);
+            let funded=next_work_supply(&w,USA);assert_eq!(funded.raw,full.planned_day);
+            assert_eq!(raw_supply_demand(&w,USA).next_work,funded.raw);
+            assert_eq!(before,serde_json::to_value(&w).unwrap());
+            assert!(planned.executable_work_days>0.0&&planned.executable_work_days<planned.planned_work_days);
+            let old=job(&w,id).clone();tick_day(&mut w);let actual=job(&w,id);
+            approx(actual.work_days-old.work_days,planned.executable_work_days);
+            approx(actual.spent_bn-old.spent_bn+actual.company_fees_bn-old.company_fees_bn,planned.executable_payment_bn);
+            for i in 0..12 {approx(actual.resources_used[i]-old.resources_used[i],planned.executable_raw[i]);}
+            assert!(actual.company_fees_bn>old.company_fees_bn);
+            validate_state(w.nation(USA)).unwrap();companies::validate(&w).unwrap();
+        }
+    }
+    #[test]
+    fn contractor_opening_quote_stays_frozen_when_an_earlier_job_trains_the_company() {
+        let (mut w,d,r)=fixture();let a=start_production(&mut w,USA,&r,&d,2,1.0).unwrap();
+        let b=start_production(&mut w,USA,&r,&d,2,1.0).unwrap();
+        let tooling=job(&w,a).tooling_days;for _ in 0..tooling {next(&mut w);}open_next(&mut w);
+        companies::enable(&mut w);
+        let c=w.sector_contractors.roster.iter_mut().find(|c|c.nation==USA&&c.sector==CompanySector::Defense&&c.capacity>=2).unwrap();
+        c.experience=179.999999;let c=c.id;
+        for id in [a,b]{companies::assign(&mut w,USA,c,CompanyTarget::CustomEquipment{project:id}).unwrap();}
+        let plans=supply_plan(&w,USA);let previous=[job(&w,a).clone(),job(&w,b).clone()];
+        tick_day(&mut w);assert!(w.sector_contractors.roster.iter().find(|row|row.id==c).unwrap().level()>0);
+        for (id,old) in [a,b].into_iter().zip(previous) {
+            let p=plans.iter().find(|p|p.project_id==id).unwrap();let actual=job(&w,id);
+            approx(actual.work_days-old.work_days,p.executable_work_days);
+            approx(actual.spent_bn-old.spent_bn+actual.company_fees_bn-old.company_fees_bn,p.executable_payment_bn);
+            for i in 0..12 {approx(actual.resources_used[i]-old.resources_used[i],p.executable_raw[i]);}
+        }
+        validate_state(w.nation(USA)).unwrap();
+    }
+
 }

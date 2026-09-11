@@ -328,7 +328,7 @@ pub fn facility_blocker(w: &WorldState, c: &Company) -> Option<String> {
         return Some("The company's leased plant is outside government control.".into());
     }
     let old = crate::manufacturing::lines_for(w, c.nation)
-        .filter(|l| l.district == c.district)
+        .filter(|l| l.district == c.district && !w.manufacturing.shipyard_lines.contains(&l.id))
         .count()
         + equipment::occupied_site_slots_today(
             w.nation(c.nation),
@@ -361,7 +361,7 @@ fn token(w: &WorldState, n: NationId, params: serde_json::Value) -> String {
     // national rights/fiscal state and the complete sparse supplier book so a
     // replay, second buyer, facility change or amended design cannot reuse it.
     let nstate = w.nation_opt(n);
-    let bytes = serde_json::to_vec(&(
+    let legacy_state = (
         clock::absolute_day(w),
         params,
         &w.companies,
@@ -381,8 +381,12 @@ fn token(w: &WorldState, n: NationId, params: serde_json::Value) -> String {
         w.rules.production_system,
         w.rules.manufacturing_system,
         w.rules.military_operations,
-    ))
-    .unwrap_or_default();
+    );
+    let bytes = if crate::supplier_operations::enabled(w) {
+        let staffing: Vec<_> = w.companies.firms.iter().filter(|c|c.nation==n)
+            .map(|c|(c.id,crate::industry_operations::district_worker_fraction(w,&c.district,crate::production::ProjectKind::ArmsPlant))).collect();
+        serde_json::to_vec(&(legacy_state, &w.supplier_operations, staffing))
+    } else { serde_json::to_vec(&legacy_state) }.unwrap_or_default();
     let hash = bytes.iter().fold(0xcbf29ce484222325u64, |h, b| {
         (h ^ *b as u64).wrapping_mul(0x100000001b3)
     });
@@ -456,7 +460,7 @@ pub fn capitalization_quote(w: &WorldState, n: NationId, id: u32, amount: f64) -
     };
     finish_quote(w, n, serde_json::json!(["capitalize", id, amount]), q)
 }
-fn material_cost(w: &WorldState, recipe: &[f64; 12]) -> f64 {
+pub(crate) fn material_cost(w: &WorldState, recipe: &[f64; 12]) -> f64 {
     resources::ALL
         .iter()
         .map(|c| recipe[c.idx()] * resources::market_current_price(w, *c) / 1e9)
@@ -490,7 +494,7 @@ pub fn development_quote(
         ..Quote::default()
     };
     if let Some(p) = profile {
-        let raw = material_cost(w, &p.recipe);
+        let raw = material_cost(w, &p.recipe) + crate::supplier_operations::new_refit_inputs_bn(w,p.fabrication_cost_bn,p.production_days);
         q.unit_price_bn = (p.fabrication_cost_bn + raw) * (1.0 + MARGIN);
         q.company_cash_needed_bn =
             p.tooling_cost_bn + (p.fabrication_cost_bn + raw) * target as f64;
@@ -518,6 +522,14 @@ pub fn development_quote(
             q.first_stock_days = None;
             q.note.push_str(" First stock has no dated estimate while earlier licensed products have unfinished work or unmet stock targets, or a contracted refit is pending. All work shares this plant slot; development completion remains separately estimated.");
         }
+    }
+    if crate::supplier_operations::enabled(w) {
+        let fraction=c.map_or(0.0,|c|crate::supplier_operations::work_fraction(w,c));
+        q.eta_days=if fraction>0.0 {q.eta_days.map(|d|(d as f64/fraction).ceil() as u32)}else{None};
+        // First stock requires future component purchases and utility inputs in
+        // several phases. The operations panel quotes only today's exact work.
+        q.first_stock_days=None;
+        q.note.push_str(" Supplier operations require the existing qualified plant workforce, shared power and purchased physical inputs. Development timing assumes today's staffed fraction continues. First stock has no guaranteed date before its complete paid packets are available.");
     }
     finish_quote(
         w,
@@ -1080,6 +1092,10 @@ pub fn tick_day(w: &mut WorldState) {
             continue;
         };
         let profile = &r.profile;
+        if crate::supplier_operations::applies(w, &c, p.id) {
+            tick_operating_product(w, i, j, day);
+            continue;
+        }
         if p.certified_day.is_none() {
             if w.companies.next_id == u32::MAX {
                 blocked(w,i,j,"The corporate transaction identity limit is reached; no new work can be invoiced.".into());
@@ -1248,6 +1264,75 @@ pub fn tick_day(w: &mut WorldState) {
             p.reason="Finished company-owned equipment is available to buy. It adds no government capability or upkeep.".into();
         }
         let _ = inputs_cost;
+        let finished_id = if p.unit_work_days == 0.0 { Some(p.id) } else { None };
+        if let Some(id) = finished_id { crate::supplier_operations::finish_unit(w, id); }
+    }
+}
+
+/// The existing scheduler calls this only for explicitly adopted, new work.
+/// Input acquisition and financial fabrication remain the same company owners.
+fn tick_operating_product(w: &mut WorldState, i: usize, j: usize, day: i32) {
+    let c = w.companies.firms[i].clone();
+    let original = c.products[j].clone();
+    let Some(q) = crate::supplier_operations::quote_next_packet(w, &c) else { return };
+    if let Some(reason) = q.reason.clone() { blocked(w,i,j,reason); return; }
+    let profile = equipment::profile(w.nation(c.nation), &original.revision_id).unwrap().clone();
+    if q.phase == "development" {
+        if w.companies.next_id == u32::MAX {
+            blocked(w,i,j,"The corporate transaction identity limit is reached.".into()); return;
+        }
+        // The pure packet quote preflighted both public authority and all private
+        // operating inputs. No other scheduler runs between these postings.
+        if let Err(reason) = programs::spend_operating(w,c.nation,BUDGET_DEFENSE,4,q.public_payment_bn) {
+            blocked(w,i,j,reason); return;
+        }
+    }
+    if let Err(reason) = crate::supplier_operations::consume(w,i,&q) { blocked(w,i,j,reason); return; }
+    if q.phase == "development" {
+        receipt(w,i,"development",q.public_payment_bn,Some(original.id),None);
+    }
+    let nation = c.nation;
+    let c = &mut w.companies.firms[i];
+    transaction(c,day,"supplier_inputs",q.inputs_cost_bn,Some(original.id),q.starts);
+    if q.phase == "tooling" { c.cash_bn = (c.cash_bn-q.labor_bn).max(0.0); c.tooling_expense_bn += q.labor_bn; }
+    if q.phase == "manufacturing" { c.cash_bn = (c.cash_bn-q.labor_bn).max(0.0); c.fabrication_expense_bn += q.labor_bn; }
+    let p = &mut c.products[j];
+    match q.phase.as_str() {
+        "development" => {
+            p.development_spent_bn += q.public_payment_bn;
+            p.development_work_days = (p.development_work_days + q.work_days).min(profile.development_days as f64);
+            let progress = p.development_work_days / profile.development_days.max(1) as f64;
+            p.status = if progress < 0.5 { "engineering" } else if progress < 0.8 { "prototype" } else { "trials" }.into();
+            p.reason = "Paid engineering uses this plant's qualified staff and purchased utility inputs. The government pays only actual R&D work.".into();
+            if p.development_work_days + 1e-9 >= profile.development_days as f64 {
+                p.development_work_days = profile.development_days as f64;
+                // Eliminate accumulation drift without adding another invoice.
+                p.development_spent_bn = profile.development_cost_bn;
+                p.certified_day = Some(day); p.status = "tooling".into();
+                w.nation_mut(nation).equipment.as_mut().unwrap().revisions.get_mut(&original.revision_id).unwrap().certified_day = Some(day);
+            }
+        }
+        "tooling" => {
+            p.tooling_work_days = (p.tooling_work_days + q.work_days).min(profile.tooling_days as f64);
+            p.tooling_spent_bn += q.labor_bn;
+            p.status = "tooling".into();
+            p.reason = "The company pays tooling and utility inputs for actual qualified work at its existing leased plant.".into();
+        }
+        "manufacturing" => {
+            if q.starts > 0 { p.unit_inputs = profile.recipe; }
+            p.unit_material_cost_bn += q.inputs_cost_bn;
+            p.unit_spent_bn += q.inputs_cost_bn + q.labor_bn;
+            p.unit_work_days = (p.unit_work_days + q.work_days).min(profile.production_days as f64);
+            p.status = "manufacturing".into();
+            p.reason = "Qualified staff are assembling paid, finite company stock. Components were purchased once; utilities are paid for each actual work packet.".into();
+            if q.units > 0 {
+                p.stock += 1; p.produced_units += 1; p.stock_cost_bn += p.unit_spent_bn;
+                p.unit_work_days=0.0; p.unit_spent_bn=0.0; p.unit_material_cost_bn=0.0; p.unit_inputs=[0.0;12];
+                p.status="in_stock".into();
+                p.reason="Finished equipment belongs to the company until a reviewed government purchase settles and arrives.".into();
+            }
+        }
+        _ => {}
     }
 }
 
@@ -1268,7 +1353,7 @@ pub fn view(w: &WorldState, n: NationId) -> serde_json::Value {
         value["products"]=serde_json::json!(c.products.iter().map(|p|{
             let mut v=serde_json::to_value(p).unwrap();
             if let Some(r)=w.nation(n).equipment.as_ref().and_then(|s|s.revisions.get(&p.revision_id)) {
-                let x=&r.profile;let inputs=material_cost(w,&x.recipe);let new_cost=x.fabrication_cost_bn+inputs;
+                let x=&r.profile;let inputs=material_cost(w,&x.recipe);let new_cost=x.fabrication_cost_bn+inputs+crate::supplier_operations::new_refit_inputs_bn(w,x.fabrication_cost_bn,x.production_days);
                 let development_left=(x.development_cost_bn-p.development_spent_bn).max(0.0);
                 let dev_days=if p.certified_day.is_some(){Some(0)}else if p.daily_budget_bn>0.0{Some(((development_left/p.daily_budget_bn).ceil() as u32).max((x.development_days as f64-p.development_work_days).max(0.0).ceil() as u32))}else{None};
                 let tool_days=(x.tooling_days as f64-p.tooling_work_days).max(0.0).ceil() as u32;
@@ -1283,6 +1368,15 @@ pub fn view(w: &WorldState, n: NationId) -> serde_json::Value {
                 v["unit_price_bn"]=serde_json::json!(if p.stock>0 {p.stock_cost_bn/p.stock as f64*(1.0+MARGIN)}else{new_cost*(1.0+MARGIN)});v["estimated_stock_days"]=serde_json::json!(eta);v["company_cash_needed_bn"]=serde_json::json!(cash_needed);v["maintenance_bn_day"]=serde_json::json!(x.maintenance_bn_day);v["estimate_note"]=serde_json::json!(if earlier_backlog {"First stock has no dated estimate while earlier licensed products need unfinished work or restocking on this same plant slot. Development completion remains separately estimated."}else{"Estimate assumes renewed Defense R&D authority, the current daily funding ceiling, sufficient settled company cash and continuing materials/facility access. Other licensed products wait for the current work packet."});
                 let target=equipment::fleet_target_plans_world(w,n).into_iter().find(|target|target.revision==p.revision_id);
                 v["fleet_target"]=serde_json::json!(target);
+                if crate::supplier_operations::applies(w,c,p.id) {
+                    let packet=crate::supplier_operations::quote_next_packet(w,c).filter(|q|q.work_id==p.id);
+                    let fraction=crate::supplier_operations::work_fraction(w,c);
+                    let ready=packet.as_ref().is_some_and(|q|q.reason.is_none());
+                    v["estimated_stock_days"]=serde_json::json!(if ready&&p.certified_day.is_some()&&tool_days==0&&fraction>0.0 {Some(((x.production_days as f64-p.unit_work_days)/fraction).ceil() as u32)}else{None});
+                    v["company_cash_needed_bn"]=serde_json::json!(packet.as_ref().map_or(cash_needed,|q|q.cash_required_bn));
+                    v["development_remaining_days"]=serde_json::json!(if p.certified_day.is_some(){Some(0)}else if ready&&packet.as_ref().is_some_and(|q|q.work_days>0.0){Some(((x.development_days as f64-p.development_work_days)/packet.as_ref().unwrap().work_days).ceil() as u32)}else{None});
+                    v["estimate_note"]=serde_json::json!("Conditional estimate at today's qualified staffing and shared power. The operations panel shows exact next-packet cash and physical inputs. Future supply and public funding are not reserved.");
+                }
             }
             v
         }).collect::<Vec<_>>());value

@@ -313,7 +313,7 @@ fn company_board(w: &WorldState, me: NationId) -> Value {
     for firm in firms {
         let id=company_count(firm,"id");
         let mut firm_actions=vec![intent("Review additional investment",json!({"kind":"company_capitalize","company":id,"amount_mn":25.0}),vec![company_cash_input("amount_mn","Additional company capital",25.0)])];
-        firm_actions.push(nav("Design a vehicle for this company",json!({"action":"equipment","tab":"designer"})));
+        firm_actions.push(nav("Design a vehicle for this company",json!({"action":"equipment","tab":"designer","company":id})));
         firm_actions.push(nav("Inspect domestic material availability",json!({"action":"resources"})));
         let district=company_text(firm,"district");
         let block=firm["facility_blocker"].as_str();

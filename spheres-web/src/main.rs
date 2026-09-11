@@ -27,6 +27,7 @@ mod storage;
 mod equipment_view;
 mod government_view;
 mod fiscal_recovery_view;
+mod companies_view;
 mod transport;
 #[cfg(test)]
 mod performance;
@@ -109,6 +110,8 @@ const INDUSTRY_UI_JS: &str = include_str!("../ui/industry-ui.js");
 const INDUSTRY_CSS: &str = include_str!("../ui/industry-ui.css");
 const CASH_FLOW_UI_JS: &str = include_str!("../ui/cash-flow-ui.js");
 const FISCAL_RECOVERY_UI_JS: &str = include_str!("../ui/fiscal-recovery-ui.js");
+const COMPANIES_UI_JS: &str = include_str!("../ui/companies-ui.js");
+const COMPANIES_CSS: &str = include_str!("../ui/companies.css");
 const CASH_FLOW_CSS: &str = include_str!("../ui/cash-flow-ui.css");
 const PERSON_MODELS_JS: &str = include_str!("../ui/person-models.js");
 const PERSON_3D_JS: &str = include_str!("../ui/person-3d.js");
@@ -213,7 +216,7 @@ fn fresh_session_id() -> String {
 }
 
 fn exchange_read_path(path: &str) -> bool {
-    matches!(path, "/api/equipment" | "/api/equipment-preview" | "/api/competition" | "/api/industry" | "/api/guidance" | "/api/cash-flow" | "/api/goods-quotes" |
+    matches!(path, "/api/companies" | "/api/companies-preview" | "/api/equipment" | "/api/equipment-preview" | "/api/competition" | "/api/industry" | "/api/guidance" | "/api/cash-flow" | "/api/goods-quotes" |
         "/api/industry-module-quotes" | "/api/materials-quote" | "/api/construction-preview")
 }
 
@@ -4529,7 +4532,10 @@ fn manufacturing_line_json(
         });
     };
     let def = &spheres_sim::arsenal::registry()[kit as usize];
-    let planned_units_day = daily_allocation / def.unit_cost.max(1e-12);
+    let output_rate=plan.map_or(1.0,|p|p.company.work_rate/(1.0+p.company.fee_rate));
+    let monthly_output_rate=monthly_plans.iter().find(|p|p.line==line.id)
+        .map_or(1.0,|p|p.company.work_rate/(1.0+p.company.fee_rate));
+    let planned_units_day = daily_allocation * output_rate / def.unit_cost.max(1e-12);
     let period_days = if w.rules.daily_simulation {
         1.0
     } else {
@@ -4540,7 +4546,8 @@ fn manufacturing_line_json(
     } else {
         line.settled_day.map(|_| line.ordered_today_bn / period_days)
     };
-    let actual_units_day = actual_bn_day.map(|value| value / def.unit_cost.max(1e-12));
+    let actual_units_day = if effective_blocked { Some(0.0) }
+        else { line.settled_day.map(|_|line.ordered_today_units/period_days) };
     let actual_throughput = if effective_blocked {
         Some(0.0)
     } else {
@@ -4561,7 +4568,7 @@ fn manufacturing_line_json(
         "allocation_bn_month": round(monthly_allocation, 6),
         "allocation_bn_day": round(daily_allocation, 6),
         "ordered_bn": round(line.ordered_bn, 6),
-        "units_ordered_month": round(if effective_blocked { 0.0 } else { monthly_allocation / def.unit_cost.max(1e-12) }, 6),
+        "units_ordered_month": round(if effective_blocked { 0.0 } else { monthly_allocation * monthly_output_rate / def.unit_cost.max(1e-12) }, 6),
         "units_planned_day": round(if effective_blocked { 0.0 } else { planned_units_day }, 6),
         "units_ordered_day": actual_units_day.map(|value| round(value, 6)),
         "allocation_bn_actual_day": actual_bn_day.map(|value| round(value, 6)),
@@ -6393,6 +6400,14 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
         "resume_automatic_bank" => Command::ResumeAutomaticBank { nation:me },
         "enable_economic_competition" => Command::EnableEconomicCompetition { nation:me },
         "enable_connected_economy" => Command::EnableConnectedEconomy { nation:me },
+        "enable_companies" => Command::EnableCompanies { nation:me },
+        "assign_sector_contractor" => Command::AssignSectorContractor { nation:me,
+            company:u32::try_from(v.get("company")?.as_u64()?).ok()?,
+            target:serde_json::from_value(v.get("target")?.clone()).ok()?,
+            quote:v.get("quote")?.as_str().filter(|s|!s.is_empty()&&s.len()<=256)?.to_string() },
+        "unassign_sector_contractor" => Command::UnassignSectorContractor { nation:me,
+            target:serde_json::from_value(v.get("target")?.clone()).ok()?,
+            quote:v.get("quote")?.as_str().filter(|s|!s.is_empty()&&s.len()<=256)?.to_string() },
         "enable_population" => Command::EnablePopulation { nation:me },
         "enable_fiscal_recovery" => Command::EnableFiscalRecovery { nation:me },
         "population_policy" => Command::SetPopulationPolicy { nation:me,
@@ -7285,6 +7300,8 @@ fn main() {
             (Method::Get, "/cash-flow-ui.css") => Response::from_string(CASH_FLOW_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, "/cash-flow-ui.js") => Response::from_string(CASH_FLOW_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/fiscal-recovery-ui.js") => Response::from_string(FISCAL_RECOVERY_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/companies-ui.js") => Response::from_string(COMPANIES_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/companies.css") => Response::from_string(COMPANIES_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, "/arsenal-models.js") => Response::from_string(ARSENAL_MODELS_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/arsenal3d.js") => Response::from_string(ARSENAL3D_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()).with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
             (Method::Get, "/surface-grain.js") => Response::from_string(SURFACE_GRAIN_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
@@ -7879,6 +7896,14 @@ fn main() {
             (Method::Get, "/api/equipment") => {
                 let g=game.lock().unwrap();
                 match g.world.player {Some(me)=>json_response(equipment_view::view(&g.world,me,&g.session_id)),None=>json_error(400,serde_json::json!({"error":"Choose a nation first."}))}
+            }
+            (Method::Get, "/api/companies") => {
+                let g=game.lock().unwrap();
+                match g.world.player {Some(me)=>json_response(companies_view::snapshot(&g.world,me,&g.session_id)),None=>json_error(400,serde_json::json!({"error":"Choose a nation first."}))}
+            }
+            (Method::Post, "/api/companies-preview") => {
+                let g=game.lock().unwrap();
+                match g.world.player {Some(me)=>match companies_view::preview(&g.world,me,&g.session_id,&payload){Ok(v)=>json_response(v),Err(e)=>json_error(400,serde_json::json!({"error":e}))},None=>json_error(400,serde_json::json!({"error":"Choose a nation first."}))}
             }
             (Method::Post, "/api/equipment-preview") => {
                 let g=game.lock().unwrap();

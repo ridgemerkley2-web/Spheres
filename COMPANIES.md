@@ -1,5 +1,47 @@
 # Companies & Procurement
 
+## Integrated company directory (S03)
+
+The Cabinet's **Companies** page joins the equipment supplier board with
+fictional domestic service specialists. It shows each company's role, work,
+costs and reason for a blocked operation. Supplier links open that exact firm's
+equipment designs and purchase reviews. Service specialists have their own
+logos and names; they are modeled game companies, not asserted historical firms.
+
+Existing campaigns use **Adopt the company network** explicitly, after adopting
+the connected daily economy and opening the physical resource market. Loading
+a campaign never performs this upgrade. Existing suppliers, certifications,
+stock, paid deliveries and fixed refit agreements keep their ownership and terms.
+
+Review a specialist's eligible assignment before confirming. Construction,
+mining, manufacturing, energy, logistics, research and public equipment work
+have separate fee explanations. A changed date, company, target or agreement
+requires a fresh review. Service fees are earned only when the work owner pays
+for actual work; merely signing or inspecting an assignment costs nothing.
+
+**Construction still needs only money.** Its frozen building contract and any
+new service fee are shown separately. Both fit the same construction budget;
+no materials, construction-capacity balance or crew allocation is required.
+Past paid work is never repriced. A service agreement claims no second factory
+slot and creates no additional workers.
+
+After adoption, new supplier work uses the leased Arms Plant's existing staff,
+available power, real generating fuel and settled corporate cash. A new vehicle
+also purchases its frozen component recipe from the national warehouse. The
+company page explains missing inputs and the next conditional work packet.
+Available corporate cash, refit working capital, public escrow, receivables and
+earned revenue remain separate. Warehouse sales transfer stock and money once
+and award no sale GDP. Existing vehicle work in progress and already booked
+manufacturer refits retain their original inputs and timing. New recipes use
+versioned game coefficients; they are not historical engineering measurements.
+
+The combined save is `spheres-companies-save` version 1, retaining the supplier
+equipment generation and explicit party/economy/operating capabilities. Legacy
+supplier IDs and the imported contractor roster occupy distinct namespaces.
+See [S03 integration evidence](docs/campaign-certification/S03/README.md) for
+verification status and rollout limits. The guide below documents the preserved
+supplier lifecycle.
+
 7 September 2026 · the accepted domestic route covers all nine implemented ground
 platforms and both tactical aircraft. Company-made ammunition now uses the same
 contractor and reviewed stock purchases. That extension is accepted through final

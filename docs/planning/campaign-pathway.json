@@ -12,53 +12,53 @@
     "South Africa",
     "Tonga",
     "Saudi Arabia",
-    "USSR → Russia"
+    "USSR â†’ Russia"
   ],
   "phases": [
     {
       "id": "review",
       "name": "Review the scope",
-      "gate": "G0 · Approved ✓"
+      "gate": "G0 Â· Approved âœ“"
     },
     {
       "id": "integration",
-      "name": "1 · One integrated game",
-      "gate": "G1 · Unified playset"
+      "name": "1 Â· One integrated game",
+      "gate": "G1 Â· Unified playset"
     },
     {
       "id": "nation",
-      "name": "2 · A country you can govern",
-      "gate": "G2 · Connected national economy"
+      "name": "2 Â· A country you can govern",
+      "gate": "G2 Â· Connected national economy"
     },
     {
       "id": "military",
-      "name": "3 · A military you can use",
-      "gate": "G3 · Complete military loop"
+      "name": "3 Â· A military you can use",
+      "gate": "G3 Â· Complete military loop"
     },
     {
       "id": "experience",
-      "name": "4 · A campaign you can understand",
-      "gate": "G4 · Complete player journey"
+      "name": "4 Â· A campaign you can understand",
+      "gate": "G4 Â· Complete player journey"
     },
     {
       "id": "qualification",
-      "name": "5 · Prove the campaign",
-      "gate": "G5 · Release candidate qualified"
+      "name": "5 Â· Prove the campaign",
+      "gate": "G5 Â· Release candidate qualified"
     },
     {
       "id": "release",
-      "name": "6 · Certify the exact release",
-      "gate": "CP1 · Certified Campaign"
+      "name": "6 Â· Certify the exact release",
+      "gate": "CP1 Â· Certified Campaign"
     },
     {
       "id": "content",
-      "name": "Parallel · Characters and world coverage",
-      "gate": "WC1 · World content complete"
+      "name": "Parallel Â· Characters and world coverage",
+      "gate": "WC1 Â· World content complete"
     },
     {
       "id": "expansion",
-      "name": "After CP1 · Complete the wider feature roster",
-      "gate": "CP2 · Expanded campaign qualification"
+      "name": "After CP1 Â· Complete the wider feature roster",
+      "gate": "CP2 Â· Expanded campaign qualification"
     }
   ],
   "sessions": [
@@ -113,7 +113,7 @@
       "id": "S03",
       "phase": "integration",
       "title": "Reconcile companies and procurement",
-      "status": "planned",
+      "status": "in_progress",
       "depends": [
         "S01"
       ],
@@ -179,7 +179,7 @@
       "depends": [
         "S06"
       ],
-      "output": "Build → staff → operate → understand the province/national effect through one connected flow.",
+      "output": "Build â†’ staff â†’ operate â†’ understand the province/national effect through one connected flow.",
       "accept": [
         "Preview, prioritize, fund, pause, cancel and finish both ordinary and small-country projects through actual controls.",
         "Construction uses financial funding; operating plants still disclose their real inputs, workforce and support needs.",
@@ -197,7 +197,7 @@
       ],
       "output": "A useful domestic/foreign supplier market, including a viable path for countries without an arms industry.",
       "accept": [
-        "Complete design → development → stock → purchase → delivery → service across the eleven existing platforms and supported ammunition families using a justified representative matrix.",
+        "Complete design â†’ development â†’ stock â†’ purchase â†’ delivery â†’ service across the eleven existing platforms and supported ammunition families using a justified representative matrix.",
         "An affordable imported lot changes seller stock and buyer funds once, without granting component research.",
         "Sanctions, access loss, stale quotes, limited stock and cancellations preserve ownership and explain delays or refunds."
       ]
@@ -473,16 +473,16 @@
     {
       "id": "S25",
       "phase": "qualification",
-      "title": "Run the complete 1990–2035 campaign matrix",
+      "title": "Run the complete 1990â€“2035 campaign matrix",
       "status": "planned",
       "depends": [
         "S24"
       ],
-      "output": "Eight country cases × three recorded seeds reach 2035-12-31 with journals, checkpoints and reconciled terminal saves.",
+      "output": "Eight country cases Ã— three recorded seeds reach 2035-12-31 with journals, checkpoints and reconciled terminal saves.",
       "accept": [
         "Use ordinary legal commands and the released rules; label forced edge-case fixtures separately.",
         "Compare uninterrupted and scheduled save/resume runs; check money, population, industry, company property, force and ammunition invariants.",
-        "A controlled valid USSR→Russia case proves succession continuity; ordinary seeds are not required to reproduce history or guaranteed victory."
+        "A controlled valid USSRâ†’Russia case proves succession continuity; ordinary seeds are not required to reproduce history or guaranteed victory."
       ]
     },
     {
@@ -496,7 +496,7 @@
       "output": "Recorded opening and later-campaign usability sessions, with concrete confusion points and task success.",
       "accept": [
         "Use at least five first-time participants, with at least eight sessions collectively covering the certified country set.",
-        "At least four of five newcomers complete budget → construction → recorded result → save without coaching; all can identify who governs and an actionable blocker.",
+        "At least four of five newcomers complete budget â†’ construction â†’ recorded result â†’ save without coaching; all can identify who governs and an actionable blocker.",
         "Include keyboard/narrow layout and later-game saves; agent-operated browser checks do not count as independent human evidence."
       ]
     },

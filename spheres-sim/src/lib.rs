@@ -7,6 +7,10 @@ pub mod construction_preview;
 pub mod construction_suggestions;
 pub mod commerce;
 pub mod companies;
+pub mod sector_contractors;
+pub mod supplier_operations;
+pub mod company_network;
+mod company_save;
 pub mod data;
 pub mod districts;
 pub mod domination;
@@ -89,6 +93,9 @@ pub enum Command {
     EnablePopulation { nation: NationId },
     EnableFiscalRecovery { nation: NationId },
     SetPopulationPolicy { nation: NationId, policy: population::Policy },
+    EnableCompanies { nation: NationId },
+    AssignSectorContractor { nation: NationId, company: u32, target: sector_contractors::CompanyTarget, quote: String },
+    UnassignSectorContractor { nation: NationId, target: sector_contractors::CompanyTarget, quote: String },
     Company { nation: NationId, order: companies::CompanyOrder },
     Equipment { nation: NationId, order: EquipmentOrder },
     SetInterestRate { nation: NationId, rate: f64 },
@@ -406,6 +413,8 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         }
         Command::EnableConnectedEconomy { nation } | Command::EnablePopulation { nation }
         | Command::EnableFiscalRecovery { nation } => (*nation, 0.0, REFUSABLE),
+        Command::EnableCompanies { nation } | Command::AssignSectorContractor { nation, .. }
+        | Command::UnassignSectorContractor { nation, .. } => (*nation, 0.0, REFUSABLE),
         Command::SetPopulationPolicy { nation, policy } =>
             (*nation, population::policy_quote(w, *nation, *policy).political_cost, REFUSABLE),
         Command::SetConstructionBudget { nation, .. } => (*nation, 0.0, REFUSABLE),
@@ -662,6 +671,11 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
 fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
     match c {
         Command::EnableConnectedEconomy { nation } => connected_economy::enrollment_refusal(w, *nation),
+        Command::EnableCompanies { nation } => company_network::enrollment_refusal(w, *nation),
+        Command::AssignSectorContractor { nation, company, target, quote } =>
+            sector_contractors::assignment_review_error(w, *nation, *company, target, quote),
+        Command::UnassignSectorContractor { nation, target, quote } =>
+            sector_contractors::release_review_error(w, *nation, target, quote),
         Command::EnablePopulation { nation } | Command::EnableFiscalRecovery { nation }
             => connected_economy::daily_enrollment_refusal(w, *nation),
         Command::SetPopulationPolicy { nation, policy } => population::policy_quote(w, *nation, *policy).reason,
@@ -876,6 +890,11 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
 fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
     match c {
         Command::EnableConnectedEconomy { .. } => connected_economy::enable(w)?,
+        Command::EnableCompanies { .. } => company_network::enable(w)?,
+        Command::AssignSectorContractor { nation, company, target, quote } =>
+            sector_contractors::assign_reviewed(w, *nation, *company, target.clone(), quote)?,
+        Command::UnassignSectorContractor { nation, target, quote } =>
+            sector_contractors::unassign_reviewed(w, *nation, target, quote)?,
         Command::EnablePopulation { .. } => population::enable(w)?,
         Command::EnableFiscalRecovery { .. } => fiscal_recovery::enable(w),
         Command::SetPopulationPolicy { nation, policy } => population::apply_policy(w, *nation, *policy)?,
@@ -1477,6 +1496,9 @@ pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
         programs::finish_day(w);
         companies::settle_receivables(w);
         province_economy::finish_day(w);
+        // Contractor identities observe work after its public owner has paid.
+        // This is not a second procurement or corporate settlement pass.
+        sector_contractors::tick_day(w);
         // Optional spot purchases use cash left after today's incurred fiscal
         // bills. Running this inside SYSTEMS could consume cash those bills
         // still require and indirectly cause borrowing at settlement.
@@ -1531,6 +1553,17 @@ fn equipment_save_version(w: &WorldState) -> u32 {
 }
 pub fn save(w: &WorldState) -> String {
     let equipment_version=equipment_save_version(w);
+    if company_network::has_state(w) {
+        #[derive(Serialize)]
+        struct CompanySave<'a> { format: &'static str, version:u32, equipment_version:u32,
+            party_leadership_version:u32, economy_version:u32, supplier_operations_version:u32,
+            world:&'a WorldState }
+        return serde_json::to_string_pretty(&CompanySave {format:"spheres-companies-save",version:1,
+            equipment_version,party_leadership_version:if w.rules.historical_party_leadership {1}else{0},
+            economy_version:if connected_economy::has_state(w) {1}else{0},
+            supplier_operations_version:w.supplier_operations.version,world:w,
+        }).expect("serialize integrated company save");
+    }
     if connected_economy::has_state(w) {
         #[derive(Serialize)]
         struct EconomySave<'a> { format: &'static str, version:u32, equipment_version:u32, party_leadership_version:u32, world:&'a WorldState }
@@ -1553,49 +1586,7 @@ pub fn save(w: &WorldState) -> String {
     } else { serde_json::to_string_pretty(w).expect("serialize") }
 }
 pub fn load(s: &str) -> Result<WorldState, String> {
-    let shape: serde_json::Value = serde_json::from_str(s).map_err(|e| e.to_string())?;
-    let economy_envelope=shape["format"]=="spheres-economy-save";
-    let party_envelope=shape["format"]=="spheres-party-leadership-save"
-        || (economy_envelope && shape["party_leadership_version"].as_u64()==Some(1));
-    let payload=if shape.get("format").is_some() {&shape["world"]} else {&shape};
-    // The pinned master's contractor/war dialects share old format numbers.
-    // Refuse them before serde can silently discard property owned by S03/S04.
-    if payload["rules"].get("operational_warfare").is_some_and(|v| !v.is_null() && *v != false && v.as_u64() != Some(0))
-        || ["campaign", "campaign_supply", "campaign_peace"].iter().any(|k|
-            // Only an explicitly empty book is safe to omit. Unknown shapes
-            // must not let serde discard unrecognized military ownership.
-            payload.get(*k).is_some_and(|v| !v.is_null() && !v.as_object().is_some_and(|o| o.is_empty())))
-        || ["enabled", "roster", "assignments"].iter().any(|k| payload["companies"].get(*k).is_some()) {
-        return Err("This campaign contains the separate contractor or operational-war save dialect. Its property must be migrated in the company/war integration sessions before this build can adopt it.".into());
-    }
-    let mut w: WorldState = if shape.get("format").is_some() {
-        if !(economy_envelope&&shape["version"].as_u64()==Some(1)
-            &&matches!(shape["equipment_version"].as_u64(),Some(0..=5))
-            &&matches!(shape["party_leadership_version"].as_u64(),Some(0..=1)))
-            && !(shape["format"]=="spheres-party-leadership-save"&&shape["version"].as_u64()==Some(1)&&matches!(shape["equipment_version"].as_u64(),Some(0..=5)))
-            && !(shape["format"]=="spheres-equipment-save"&&matches!(shape["version"].as_u64(),Some(1..=5))) {
-            return Err("This save format or version is not supported by this build.".into());
-        }
-        #[derive(Deserialize)]
-        struct WrappedSave { world: WorldState }
-        serde_json::from_str::<WrappedSave>(s).map_err(|e| e.to_string())?.world
-    } else { serde_json::from_str(s).map_err(|e| e.to_string())? };
-    if party_envelope != (w.rules.historical_party_leadership && w.party_leadership.is_some())
-        || (!party_envelope && w.party_leadership.is_some()) {
-        return Err("Campaign party identities require their enabled rule, saved book and matching save envelope.".into());
-    }
-    let envelope=if party_envelope || economy_envelope {shape["equipment_version"].as_u64().unwrap()} else {shape.get("format").and_then(|_|shape["version"].as_u64()).unwrap_or(0)};
-    if (party_envelope || economy_envelope) && envelope!=equipment_save_version(&w) as u64 {
-        return Err("Party leadership save has an incorrect equipment format version.".into());
-    }
-    let expected_company_envelope=match w.companies.version {companies::TANK_VERSION=>2,companies::EQUIPMENT_VERSION=>3,companies::AMMUNITION_VERSION=>4,companies::VERSION=>5,_=>0};
-    if (!w.companies.is_empty() && (expected_company_envelope==0||envelope!=expected_company_envelope))
-        || (w.companies.is_empty()&&envelope>=2) {
-        return Err("Company property requires its matching tank, equipment, ammunition or refit-service save envelope; refusing to discard or silently downgrade corporate assets.".into());
-    }
-    if economy_envelope != connected_economy::has_state(&w) {
-        return Err("Connected economy state requires its versioned economy save envelope. Refusing to discard or silently enable economic ownership.".into());
-    }
+    let mut w = company_save::decode(s)?;
     migrate_legacy_wars(&mut w);
     if w.theatres.is_empty() {
         w.theatres = theatre::default_theatres();
@@ -1647,6 +1638,7 @@ pub fn load(s: &str) -> Result<WorldState, String> {
     party_leadership::migrate_legacy_empty_components(&mut w)?;
     party_leadership::validate_state(&w)?;
     connected_economy::validate(&w)?;
+    company_network::validate(&w)?;
     Ok(w)
 }
 

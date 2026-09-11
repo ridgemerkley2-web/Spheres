@@ -15,6 +15,8 @@ include!("company_view.rs");
 include!("company_ammunition_view.rs");
 include!("company_refit_view.rs");
 
+pub(crate) fn company_directory_board(w: &WorldState, me: NationId) -> Value { company_board(w,me) }
+
 fn metric(label:&str,value:impl serde::Serialize)->Value {json!({"label":label,"value":value})}
 fn cost(label:&str,amount:f64,period:&str)->Value {json!({"label":label,"amount_bn":amount,"period":period})}
 fn nav(label:&str,action:Value)->Value {json!({"label":label,"navigate":action,"enabled":true})}

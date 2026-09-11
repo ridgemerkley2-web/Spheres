@@ -106,7 +106,7 @@ fn equipment_pending(p: &Product) -> bool {
 }
 /// The one development job takes priority, followed by paid refit contracts.
 /// Then one globally ordered equipment/ammunition product gets the work packet.
-fn scheduled_product(c: &Company) -> Option<u32> {
+pub(crate) fn scheduled_product(c: &Company) -> Option<u32> {
     c.products
         .iter()
         .find(|p| p.cancelled_day.is_none() && p.certified_day.is_none())
@@ -163,7 +163,7 @@ pub fn ammo_supply_quote(w: &WorldState, n: NationId, id: u32, family: &str, tar
         .or_else(|| c.and_then(|c| facility_blocker(w, c)))
         .or_else(|| c.and_then(|c| c.ammunition_products.iter().any(|p| p.family == family).then(|| "The company already supplies this ammunition family. Adjust its stock buffer instead.".into())));
     if let Some(def) = equipment::ammo_def(family) {
-        let cost = material_cost(w, &def.recipe) + def.fabrication_bn;
+        let cost = material_cost(w, &def.recipe) + def.fabrication_bn + crate::supplier_operations::ammunition_inputs_bn(w,family);
         q.unit_price_bn = cost * (1.0 + MARGIN);
         q.company_cash_needed_bn = cost * target as f64;
         q.minimum_days = (target as f64 / def.rounds_per_day).ceil() as u32;
@@ -185,6 +185,10 @@ pub fn ammo_supply_quote(w: &WorldState, n: NationId, id: u32, family: &str, tar
                 q.eta_days = Some(q.minimum_days);
             }
         }
+    }
+    if crate::supplier_operations::enabled(w) {
+        // A supply agreement is not a reservation of future staffed input packets.
+        q.first_stock_days=None; q.eta_days=None;
     }
     q.note = "Authorizes a finite company-owned stock buffer using an already certified ammunition family. No public fee, rounds or activation are granted. The company buys actual domestic raw inputs and pays the existing fabrication cost at the existing plant rate. This product shares the contractor's one leased Arms Plant slot with equipment. Converting this family stops new automatic public reserve batches; existing targets and already commissioned public batches remain. Government purchases require a separate review and seven accessible delivery days after fiscal settlement. Rates, margin and delivery timing are game assumptions.".into();
     finish_quote(
@@ -367,6 +371,10 @@ fn tick_ammo_manufacturing(
         ammo_blocked(w, i, j, reason);
         return;
     }
+    if crate::supplier_operations::applies(w, &c, p.id) {
+        tick_operating_ammunition(w, i, j, day);
+        return;
+    }
     let def = equipment::ammo_def(&p.family).unwrap();
     let raw_unit = material_cost(w, &def.recipe);
     let unit = raw_unit + def.fabrication_bn;
@@ -443,6 +451,29 @@ fn tick_ammo_manufacturing(
     p.status = "in_stock".into();
     p.reason="Paid ammunition is finished company-owned stock. It enters no national ammunition book until a reviewed purchase settles and arrives.".into();
 }
+fn tick_operating_ammunition(w: &mut WorldState, i: usize, j: usize, day: i32) {
+    let c = w.companies.firms[i].clone();
+    let original = c.ammunition_products[j].clone();
+    let Some(q) = crate::supplier_operations::quote_next_packet(w,&c) else { return };
+    if let Some(reason) = q.reason.clone() { ammo_blocked(w,i,j,reason); return; }
+    if let Err(reason) = crate::supplier_operations::consume(w,i,&q) { ammo_blocked(w,i,j,reason); return; }
+    let def = equipment::ammo_def(&original.family).unwrap();
+    let c = &mut w.companies.firms[i];
+    c.cash_bn = (c.cash_bn-q.labor_bn).max(0.0); c.fabrication_expense_bn += q.labor_bn;
+    transaction(c,day,"ammo_inputs",q.inputs_cost_bn,Some(original.id),q.units);
+    transaction(c,day,"ammo_fabrication",q.labor_bn,Some(original.id),q.units);
+    let p = &mut c.ammunition_products[j];
+    p.stock += q.units; p.produced_units += q.units;
+    p.stock_cost_bn += q.inputs_cost_bn + q.labor_bn;
+    p.materials_expense_bn += q.inputs_cost_bn; p.fabrication_expense_bn += q.labor_bn;
+    p.last_work_day=Some(day);
+    // Preserve the immutable ammunition recipe ledger; utility coal has its
+    // own supplier receipt and must never count as fabricated ammunition.
+    for k in 0..12 { p.resources_used[k] += def.recipe[k] * q.units as f64; }
+    p.status="in_stock".into();
+    p.reason="Whole paid rounds or stores are company stock. Qualified staff, finite inputs and shared power constrain the actual packet.".into();
+}
+
 fn ammo_delivery_blocker(w: &WorldState, d: &AmmoDelivery) -> Option<String> {
     if !w.nation_opt(d.buyer).is_some_and(|n| n.alive) {
         return Some(
@@ -504,7 +535,7 @@ fn ammo_product_view(w: &WorldState, c: &Company, p: &AmmoProduct) -> serde_json
     let Some(def) = equipment::ammo_def(&p.family) else {
         return serde_json::to_value(p).unwrap();
     };
-    let unit = material_cost(w, &def.recipe) + def.fabrication_bn;
+    let unit = material_cost(w, &def.recipe) + def.fabrication_bn + crate::supplier_operations::ammunition_inputs_bn(w,&p.family);
     let remaining = p.stock_target.saturating_sub(p.stock);
     let next = remaining.min(def.rounds_per_day as u32);
     let full_cash = unit * remaining as f64;
@@ -549,6 +580,14 @@ fn ammo_product_view(w: &WorldState, c: &Company, p: &AmmoProduct) -> serde_json
     v["incoming"] = serde_json::json!(ammo_inbound_units(w, c.nation, &p.family));
     v["reserve_status"] = serde_json::json!(equipment::ammo_reserve_status(w, c.nation, &p.family));
     v["estimate_note"]=serde_json::json!("Stock-buffer timing assumes sufficient settled company cash, all remaining raw inputs, continuous access and no earlier product using the shared slot. This family uses reviewed government purchases; existing reserve targets and previously commissioned public work remain.");
+    if crate::supplier_operations::applies(w,c,p.id) {
+        let packet=crate::supplier_operations::quote_next_packet(w,c).filter(|q|q.work_id==p.id);
+        v["company_cash_needed_bn"]=serde_json::json!(packet.as_ref().map_or(0.0,|q|q.cash_required_bn));
+        v["estimated_stock_days"]=serde_json::Value::Null;
+        v["eta_days"]=serde_json::Value::Null;
+        v["first_stock_days"]=serde_json::json!(packet.as_ref().filter(|q|q.reason.is_none()&&q.units>0).map(|_|1));
+        v["estimate_note"]=serde_json::json!("The operations panel quotes the exact whole-round packet permitted by today's staff, shared power, company cash and physical stock. Future packets are not reserved.");
+    }
     v
 }
 fn ammo_deliveries_view(w: &WorldState, n: NationId) -> Vec<serde_json::Value> {

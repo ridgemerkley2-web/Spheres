@@ -2433,6 +2433,7 @@
 <link rel="stylesheet" href="/guidance-ui.css">
 <link rel="stylesheet" href="/province-economy.css">
 <link rel="stylesheet" href="/industry-ui.css">
+<link rel="stylesheet" href="/companies.css">
 <link rel="stylesheet" href="/cash-flow-ui.css">
 <link rel="stylesheet" href="/equipment-ui.css">
 <link rel="stylesheet" href="/government-ui.css">
@@ -2760,6 +2761,7 @@
     <button id="cab-tab-construction" type="button" role="tab" aria-selected="false" aria-controls="productionPanel" tabindex="-1" data-cab-tab="construction">03 <span>Construction</span></button>
     <button id="cab-tab-industry" role="tab" aria-selected="false" aria-controls="cabinet-industry" tabindex="-1" data-cab-tab="industry">04 <span>Industry</span></button>
     <button id="cab-tab-policy" role="tab" aria-selected="false" aria-controls="cabinet-policy" tabindex="-1" data-cab-tab="policy">05 <span>Money &amp; policy</span></button>
+    <button id="cab-tab-companies" role="tab" aria-selected="false" aria-controls="cabinet-companies" tabindex="-1" data-cab-tab="companies">06 <span>Companies</span></button>
   </nav>
   <div class="col" id="left"></div>
   <footer id="cabinetDraft" class="cab-draft" aria-label="Cabinet orders"></footer>
@@ -3189,6 +3191,7 @@
 <script src="/province-economy-ui.js"></script>
 <script src="/competition-ui.js"></script>
 <script src="/industry-ui.js"></script>
+<script src="/companies-ui.js"></script>
 <script src="/cash-flow-ui.js"></script>
 <script src="/fiscal-recovery-ui.js"></script>
 <script src="/equipment-mesh.js"></script>
@@ -4257,6 +4260,7 @@ function closeGameDrawers() {
   $("#drawerScrim").classList.remove("open");
   if (wasCabinet) {
     if (typeof industryClose === "function") industryClose();
+    if (typeof companiesClose === "function") companiesClose();
     if (typeof cashFlowClose === "function") cashFlowClose();
     $("#app").inert = false;
     if (CAB.lastFocus && CAB.lastFocus.isConnected) CAB.lastFocus.focus({ preventScroll: true });
@@ -4316,7 +4320,7 @@ function cabinetKeys(e) {
   if (e.key === "Escape") { e.preventDefault(); closeGameDrawers(); return; }
   if (e.target.closest('[role="tablist"]') && ["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) {
     e.preventDefault();
-    const tabs = ["overview", "budget", "construction", "industry", "policy"];
+    const tabs = ["overview", "budget", "construction", "industry", "policy", "companies"];
     const index = tabs.indexOf(CAB.tab);
     const next = e.key === "Home" ? 0 : e.key === "End" ? tabs.length-1 : (index + (e.key === "ArrowRight" ? 1 : tabs.length-1)) % tabs.length;
     selectCabinetTab(tabs[next]);
@@ -4350,6 +4354,7 @@ async function adopt(state, withHistory, allowCampaignChange = false) {
   S = state;
   if (typeof GUIDANCE !== "undefined") GUIDANCE.changed();
   if (typeof industryOnStateChanged === "function") industryOnStateChanged();
+  if (typeof companiesOnStateChanged === "function") companiesOnStateChanged();
   if (typeof cashFlowOnStateChanged === "function") cashFlowOnStateChanged();
   if (typeof equipmentOnStateChanged === "function") equipmentOnStateChanged();
   if (typeof invalidateProgramPreview === "function") invalidateProgramPreview();
@@ -5483,8 +5488,10 @@ function moneyCard(m) {
 function selectCabinetTab(tab, mounting = false) {
   if (tab === "construction") { openConstruction(); return; }
   if (tab === "industry" && !mounting) { openIndustry(); return; }
-  if (!["overview", "budget", "industry", "policy"].includes(tab)) return;
+  if (tab === "companies" && !mounting) { openCompanies(); return; }
+  if (!["overview", "budget", "industry", "policy", "companies"].includes(tab)) return;
   if (CAB.tab === "industry" && tab !== "industry" && typeof industryClose === "function") industryClose();
+  if (CAB.tab === "companies" && tab !== "companies" && typeof companiesClose === "function") companiesClose();
   if (CAB.tab === "overview" && tab !== "overview" && typeof cashFlowClose === "function") cashFlowClose();
   CAB.tab = tab;
   document.querySelectorAll("[data-cab-tab]").forEach(b => {
@@ -5502,6 +5509,13 @@ function openIndustryCabinet() {
   if (!cabinetIsOpen()) toggleGameDrawer("cabinetDrawer");
   selectCabinetTab("industry", true);
   $("#cab-tab-industry").focus({preventScroll:true});
+}
+
+function openCompaniesCabinet() {
+  closeProduction();
+  if (!cabinetIsOpen()) toggleGameDrawer("cabinetDrawer");
+  selectCabinetTab("companies", true);
+  $("#cab-tab-companies").focus({preventScroll:true});
 }
 
 function industryNavigate(action) {
@@ -5701,6 +5715,7 @@ async function equipmentNavigate(action) {
   if (!action || !S?.player || equipmentExternalPending()) return false;
   if (action.action==="equipment") {
     if (!["research","designer","library","companies","development","production","ammunition","service"].includes(action.tab)) return false;
+    if (Number.isSafeInteger(action.company) && action.company >= 0) EQUIP.companyFirm=action.company;
     equipmentSelectTab(action.tab); return true;
   }
   if (action.action==="research" && action.equipment===true) {
@@ -5890,6 +5905,7 @@ function renderLeft(m) {
     </section>
 
     <section id="cabinet-industry" class="cab-page" role="tabpanel" aria-labelledby="cab-tab-industry" hidden>${typeof industryPanelHtml === "function" ? industryPanelHtml() : ""}</section>
+    <section id="cabinet-companies" class="cab-page" role="tabpanel" aria-labelledby="cab-tab-companies" hidden>${typeof companiesPanelHtml === "function" ? companiesPanelHtml() : ""}</section>
 
     <section id="cabinet-policy" class="cab-page" role="tabpanel" aria-labelledby="cab-tab-policy" hidden>
       <div class="area-heading"><div class="cab-section-head"><div><div class="cab-kicker">The engine room</div><h2>Money with a purpose.</h2></div><p>Policy controls show your draft. The treasury shows the plan running now. All money is in constant 1990 dollars.</p></div>${globalThis.AreaArt?.html("treasury", "compact") || ""}</div>
@@ -5926,6 +5942,7 @@ function renderLeft(m) {
   $("#cabinetResearch").querySelectorAll("[data-tree]").forEach(b => { b.onclick = () => { closeGameDrawers(); openTech(b.dataset.tree); }; });
   selectCabinetTab(CAB.tab, true);
   if (typeof industryBind === "function") industryBind();
+  if (typeof companiesBind === "function") companiesBind();
   if (typeof cashFlowBind === "function") cashFlowBind();
   connectedEconomyBind($("#cabinet-budget"),S.connected_economy,S);
   openDetails.forEach(id => { const el = document.getElementById(id); if (el) el.open = true; });
@@ -16690,6 +16707,7 @@ function productionSite3d(p) {
 function productionCardHtml(p) {
   const tone = productionTone(p), kind = productionKind(p), province = productionProvince(p);
   const frac = productionProgress(p), percent = Math.round(frac * 1000) / 10, f = p.finance || {};
+  const companyFees=(f.company_fees_bn>0||f.next_company_fee_bn>0);
   const progressText = frac > 0 && percent === 0 ? "<0.1" : String(percent);
   const choices = productionPriorityChoices(p), priority = String(p.priority || "normal");
   const priorityControls = p.actions ? ["high", "normal", "low"].filter(v => v === priority || choices.includes(v)) : [];
@@ -16697,7 +16715,7 @@ function productionCardHtml(p) {
   const reason = p.reason || f.reason || p.status_reason || "";
   return `<article class="work-card ${tone}${String(PROD.selected) === String(p.id) ? " selected" : ""}" tabindex="0" data-prod-project="${logisticsEscAttr(p.id)}">
     <div class="work-top"><span class="work-art" aria-hidden="true">${PROD_ICON[kind] || "◆"}</span><div class="work-title"><b>${escText(p.name || kind.replace(/_/g," "))}</b><span>${escText(province.name || province.id || "Province")}</span></div><span class="work-state">${escText(productionStatus(p))}</span></div>
-    <dl class="construction-project-money"><div><dt>Total cost</dt><dd>${constructionMoney(f.cost_bn)}</dd></div><div><dt>Spent</dt><dd>${constructionMoney(f.spent_bn)}</dd></div><div><dt>Remaining</dt><dd>${constructionMoney(f.remaining_bn)}</dd></div><div><dt>Planned / day</dt><dd>${constructionMoney(f.daily_request_bn)}</dd></div></dl>
+    <dl class="construction-project-money"><div><dt>${companyFees?"Base contract":"Total cost"}</dt><dd>${constructionMoney(f.cost_bn)}</dd></div><div><dt>${companyFees?"Base work paid":"Spent"}</dt><dd>${constructionMoney(f.spent_bn)}</dd></div><div><dt>${companyFees?"Base work remaining":"Remaining"}</dt><dd>${constructionMoney(f.remaining_bn)}</dd></div><div><dt>Planned / day${companyFees?" · including fees":""}</dt><dd>${constructionMoney(f.daily_request_bn)}</dd></div>${companyFees?`<div><dt>Service fees paid</dt><dd>${constructionMoney(f.company_fees_bn)}</dd></div><div><dt>Next service fee</dt><dd>${constructionMoney(f.next_company_fee_bn)}</dd></div>`:""}</dl>
     ${productionSiteStripHtml(p)}
     <div class="work-progress" role="progressbar" aria-label="${logisticsEscAttr(p.name || "Project")} progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${percent}"><i style="width:${percent}%"></i></div>
     <div class="work-line"><span><b>${escText(progressText)}%</b> complete</span><span>${escText(eta)}</span></div>

@@ -1831,3 +1831,45 @@ fn s02_connected_economy_preserves_supplier_stock_receivables_and_party_identiti
     assert_eq!(spheres_sim::save(&a),spheres_sim::save(&b));
     reconcile_company(&a,company);
 }
+
+#[test]
+fn s03_both_supplier_generations_keep_certification_stock_invoices_and_party_identity() {
+    let (base,_,company,id)=ready(2);
+    for version in [companies::TANK_VERSION,companies::EQUIPMENT_VERSION] {
+        for party in [false,true] {
+            let mut w=base.clone();w.companies.version=version;
+            purchase(&mut w,company,id,1);
+            apply(&mut w,companies::CompanyOrder::Inventory{company,product:id,stock_target:0});
+            if party {spheres_sim::party_leadership::enable_campaign(&mut w).unwrap();}
+            let old=spheres_sim::save(&w);
+            assert_eq!(spheres_sim::save(&spheres_sim::load(&old).unwrap()),old);
+            spheres_sim::connected_economy::enable(&mut w).unwrap();
+            let companies=w.companies.clone();let national=w.nation(HOME).equipment.clone();
+            let people=serde_json::to_value(&w.party_leadership).unwrap();
+            spheres_sim::company_network::enable(&mut w).unwrap();
+            assert_eq!(w.companies,companies);
+            assert_eq!(serde_json::to_value(&w.nation(HOME).equipment).unwrap(),serde_json::to_value(national).unwrap());
+            assert_eq!(serde_json::to_value(&w.party_leadership).unwrap(),people);
+            let text=spheres_sim::save(&w);let mut b=spheres_sim::load(&text).unwrap();
+            assert!(spheres_sim::save(&b)==text);b=spheres_sim::load(&spheres_sim::save(&b)).unwrap();
+            real_day(&mut w);real_day(&mut b);assert!(spheres_sim::save(&w)==spheres_sim::save(&b));
+            assert_eq!(w.companies.version,version);reconcile_company(&w,company);
+        }
+    }
+}
+
+#[test]
+fn s03_company_adoption_preserves_unsettled_prior_year_capital() {
+    let(mut w,d)=fixture();w.month=12;w.day=31;
+    let c=establish(&mut w,&d,1.0);
+    let p=w.nation_mut(HOME).program_budget.as_mut().unwrap();
+    p.revenue_today_bn=0.0;p.interest_today_bn=0.0;p.fiscal_staged=true;
+    programs::finish_day(&mut w);clock::advance_date(&mut w);
+    spheres_sim::connected_economy::enable(&mut w).unwrap();
+    let before=w.companies.clone();spheres_sim::company_network::enable(&mut w).unwrap();
+    assert_eq!(w.companies,before);assert_eq!(firm(&w,c).cash_bn,0.0);
+    let mut resumed=spheres_sim::load(&spheres_sim::save(&w)).unwrap();
+    real_day(&mut w);real_day(&mut resumed);assert!(spheres_sim::save(&w)==spheres_sim::save(&resumed));
+    near(firm(&w,c).capital_received_bn,1.0);assert!(firm(&w,c).receivables.is_empty());
+    let before=w.companies.clone();companies::settle_receivables(&mut w);assert_eq!(w.companies,before);
+}

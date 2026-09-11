@@ -1363,3 +1363,25 @@ fn export_company_ammunition_qa_stages() {
     std::fs::write(directory.join("README.txt"), format!("Synthetic company ammunition browser QA. France is endowed with explicit starting cash, authority, raw stocks, one Arms Plant in {district}, and certified APC/light-attack specifications. The compatible certifications are test prerequisites, not historical claims. One company ({company}) buys real warehouse inputs and fabricates 30,000 machine-gun rounds and 120 unguided aircraft stores through actual commands and complete daily ticks. Reviewed purchases buy 20,000 rounds and 60 stores, settle once, and arrive through the ordinary seven-day shipment path. No progress, completed production, receipt, or ammunition stock is fabricated. Physical ground ammunition remains unactivated. No live save is touched.\n")).unwrap();
     println!("Synthetic ammunition QA stages: {}", directory.display());
 }
+
+#[test]
+fn s03_ammunition_property_keeps_pending_and_consumed_supplier_provenance() {
+    let(mut w,_,company,p)=ready(GROUND,120);
+    purchase(&mut w,company,p,60);
+    company_order(&mut w,companies::CompanyOrder::AmmoInventory{company,product:p,stock_target:0});
+    spheres_sim::connected_economy::enable(&mut w).unwrap();
+    let before=w.companies.clone();spheres_sim::company_network::enable(&mut w).unwrap();assert_eq!(w.companies,before);
+    let mut b=spheres_sim::load(&spheres_sim::save(&w)).unwrap();
+    b=spheres_sim::load(&spheres_sim::save(&b)).unwrap();
+    for _ in 0..12 {real_day(&mut w);real_day(&mut b);assert!(spheres_sim::save(&w)==spheres_sim::save(&b));}
+    assert_eq!(national_stock(&w,GROUND),60.0);reconcile(&w,company);
+    // Synthetic ammunition consumption uses the same conserved national stock
+    // and spent counters; the delivery receipt is immutable provenance.
+    let a=w.nation_mut(HOME).equipment.as_mut().unwrap().ammunition.as_mut().unwrap();
+    *a.stocks.get_mut(GROUND).unwrap()-=17.0;*a.consumed.entry(GROUND.into()).or_default()+=17.0;
+    let receipt=serde_json::to_value(&a.supplier_receipts).unwrap();
+    let text=spheres_sim::save(&w);let b=spheres_sim::load(&text).unwrap();
+    assert!(spheres_sim::save(&b)==text);
+    assert_eq!(serde_json::to_value(&b.nation(HOME).equipment.as_ref().unwrap().ammunition.as_ref().unwrap().supplier_receipts).unwrap(),receipt);
+    assert_eq!(national_stock(&b,GROUND),43.0);
+}

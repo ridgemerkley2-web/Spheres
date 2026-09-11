@@ -1184,6 +1184,13 @@ pub struct WorldState {
     /// Explicitly capitalized corporate property; absent on the legacy path.
     #[serde(default, skip_serializing_if = "crate::companies::Companies::is_empty")]
     pub companies: crate::companies::Companies,
+    /// Modeled service-company identities and assignments have their own ID
+    /// namespace; they never replace or acquire equipment supplier property.
+    #[serde(default, skip_serializing_if = "crate::sector_contractors::Companies::is_empty")]
+    pub sector_contractors: crate::sector_contractors::Companies,
+    /// Explicit adoption of prospective supplier inputs and operating receipts.
+    #[serde(default, skip_serializing_if = "crate::supplier_operations::SupplierOperations::is_empty")]
+    pub supplier_operations: crate::supplier_operations::SupplierOperations,
 
     /// The universal world-domination campaign: formal subject hierarchy,
     /// deterministic agenda cards, progress seals and completed legacy. Empty

@@ -1312,3 +1312,29 @@ fn export_company_refit_qa_stages() {
     }
     std::fs::write(dir.join("README.txt"),"SYNTHETIC QA ONLY. Each fixture starts with explicitly endowed French opening cash, raw materials, one existing test Arms Plant, learned components and four certified source vehicles aged 120 months. Company formation, target development/certification, service reservation, escrow settlement, all physical conversion work and cancellation use real commands and the full daily tick. No completed work, target stock or returned vehicles were fabricated. Company 1 owns target product 3; source revision is synthetic-source. Ready: source4, target0, goals source1/target3. Contract: quantity3. Partial cancellation refunds/releases2 untouched units and finishes the one started unit. Complete: source1,target3. No company vehicle stock, new ammunition, public fake orders or shipping. Use copies; these are not live player saves.\n").unwrap();
 }
+
+#[test]
+fn s03_combined_save_preserves_partial_cancel_refit_escrow_and_exact_reserved_sources() {
+    let(mut w,_,company,product,_)=ready("ground_ifv");
+    let id=book(&mut w,company,product,3);
+    for _ in 0..7 {day(&mut w);}
+    assert!(service(&w,company,id).unit_work_days>0.0);
+    cancel(&mut w,company,id);
+    assert_eq!(service(&w,company,id).cancelled_units,2);
+    spheres_sim::connected_economy::enable(&mut w).unwrap();
+    let old_company=w.companies.clone();let old_holding=w.nation(HOME).arsenal.held.clone();
+    let old_equipment=serde_json::to_value(&w.nation(HOME).equipment).unwrap();
+    spheres_sim::company_network::enable(&mut w).unwrap();
+    assert_eq!(w.companies,old_company);
+    assert_eq!(serde_json::to_value(&w.nation(HOME).arsenal.held).unwrap(),serde_json::to_value(old_holding).unwrap());
+    assert_eq!(serde_json::to_value(&w.nation(HOME).equipment).unwrap(),old_equipment);
+    assert!(w.supplier_operations.grandfathered_refits.contains(&id));
+    let mut b=load_exact(&load_exact(&w));
+    for _ in 0..100 {
+        day(&mut w);day(&mut b);assert_same(&w,&b);
+        if service(&w,company,id).completed_units==1 {break;}
+    }
+    assert_eq!(service(&w,company,id).completed_units,1);
+    assert_eq!(total_units(&w),4);assert_eq!(available(&w,SOURCE),3);
+    reconcile(&w,company);load_exact(&w);
+}

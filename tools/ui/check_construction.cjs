@@ -228,6 +228,12 @@ test('project names, reasons and quoted attributes cannot inject HTML',()=>{
   const html=c.productionCardHtml(p);assert.doesNotMatch(html,/<img>|<script>|<iframe>/);
   assert.match(html,/aria-label="Factory&quot; onclick=&quot;bad\(\)&lt;img> progress"/);
 });
+test('service fees remain separate from frozen construction base work and the daily total',()=>{
+  const c=fixture(),p=project();p.finance.company_fees_bn=.002;p.finance.next_company_fee_bn=.0001;
+  const before=plain(p),html=c.productionCardHtml(p);
+  for(const text of ['Base contract','Base work paid','Base work remaining','Service fees paid','Next service fee','including fees','$2m','$100k','$85m','$1.25m'])assert(html.includes(text),text);
+  assert.deepEqual(plain(p),before,'the interface does not reprice remaining work or add fees again');
+});
 test('the first paid work remains visible below one percent without inventing progress on unstarted projects',()=>{
   const c=fixture(),p=project();
   p.progress=.00125;

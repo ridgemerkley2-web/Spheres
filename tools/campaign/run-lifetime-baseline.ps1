@@ -13,7 +13,8 @@ param(
     [Parameter(Mandatory)][ValidateNotNullOrEmpty()][string]$FixtureRoot,
     [Parameter(Mandatory)][ValidateNotNullOrEmpty()][string]$EvidenceRoot,
     [Parameter(Mandatory)][ValidateNotNullOrEmpty()][string]$CandidateRevision,
-    [switch]$ConnectedEconomy
+    [switch]$ConnectedEconomy,
+    [switch]$CompanyNetwork
 )
 
 Set-StrictMode -Version Latest
@@ -76,6 +77,7 @@ function Record-MemorySample {
 
 try {
     if ($CandidateRevision -notmatch '^[0-9a-f]{40}$') { throw 'CandidateRevision must be the full pinned Git SHA.' }
+    if ($CompanyNetwork -and -not $ConnectedEconomy) { throw 'CompanyNetwork requires explicit ConnectedEconomy adoption.' }
     if (-not (Test-Path -LiteralPath $TestBinary -PathType Leaf)) { throw "Test binary does not exist: $TestBinary" }
     if (-not (Test-Path -LiteralPath $FixtureRoot -PathType Container)) { throw "Fixture root does not exist: $FixtureRoot" }
     $binaryPath = (Resolve-Path -LiteralPath $TestBinary).ProviderPath
@@ -125,6 +127,10 @@ try {
     if ($ConnectedEconomy) {
         $start.Environment['SPHERES_PROFILE_CONNECTED_ECONOMY'] = '1'
         $result.child_profile_environment['SPHERES_PROFILE_CONNECTED_ECONOMY'] = '1'
+    }
+    if ($CompanyNetwork) {
+        $start.Environment['SPHERES_PROFILE_COMPANY_NETWORK'] = '1'
+        $result.child_profile_environment['SPHERES_PROFILE_COMPANY_NETWORK'] = '1'
     }
     $process = [Diagnostics.Process]::new()
     $process.StartInfo = $start

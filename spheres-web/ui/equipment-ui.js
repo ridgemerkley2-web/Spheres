@@ -2,8 +2,9 @@
    only a fresh, reviewed server action can create work or change inventory. */
 const EQUIP={open:false,data:null,state:null,session:null,nation:null,seq:0,loading:false,stale:true,error:"",busy:false,message:"",
   tab:"designer",draft:null,preset:null,draftSeq:0,preview:null,previewState:null,previewSeq:0,previewLoading:false,previewError:"",previewKey:null,
-  query:"",researchBranch:"chassis",researchState:"all",comparisonId:null,companyProduct:null,companyFamily:"all",automaticName:null,selectedSlot:null,advanced:false,details:new Set(),focus:null,scroll:0,request:null,review:null};
+  query:"",researchBranch:"chassis",researchState:"all",comparisonId:null,companyProduct:null,companyFamily:"all",companyFirm:null,automaticName:null,selectedSlot:null,advanced:false,details:new Set(),focus:null,scroll:0,request:null,review:null};
 const EQUIPMENT_TABS=[["research","Research"],["designer","Designer"],["library","Library"],["companies","Companies & Procurement"],["development","Development"],["production","Production"],["ammunition","Ammunition"],["service","In service"]];
+EQUIP.companyFirm=null;
 const EQUIPMENT_BRANCHES=[["chassis","Chassis","The foundation of every vehicle"],["engines","Engines & running gear","Power, traction and mobility"],["weapons","Weapons","Armament, ammunition and firepower"],["armor","Armor & protection","Survivability and active defenses"],["optics","Optics & fire control","Find, track and engage targets"],["communications","Communications","Connect the force"]];
 const EQUIPMENT_RESEARCH_STATES=[["all","All states"],["available","Available"],["researching","In progress"],["known","Known"],["locked","Locked"]];
 const EQUIPMENT_COMPANY_FAMILIES=[["all","All equipment"],["ground","Ground vehicles"],["aircraft","Aircraft"],["ammunition","Ammunition"]];
@@ -242,6 +243,7 @@ function equipmentCompanyFamily(row){
 }
 function equipmentCompanyUnit(row,plural=false){const family=equipmentCompanyFamily(row),unit=row?.unit_label||(family==="aircraft"?"aircraft":family==="ammunition"?"unit":"vehicle");return plural&&["vehicle","tank","round","store","unit"].includes(unit)?`${unit}s`:unit;}
 function equipmentCompanyMatches(row,key){
+  if(EQUIP.companyFirm!=null&&String(key==="firms"?row.id:row.company)!==String(EQUIP.companyFirm))return false;
   const query=EQUIP.query.trim().toLocaleLowerCase("en-US"),platform=equipmentRows("platforms").find(item=>item.id===row?.spec?.platform);
   return (key!=="products"||EQUIP.companyFamily==="all"||equipmentCompanyFamily(row)===EQUIP.companyFamily)&&(!query||[row.name,row.id,row.supplier_name,row.status,row.detail,row.ammo_family,row.platform_name,platform?.name,...(Array.isArray(row.metrics)?row.metrics.flatMap(metric=>[metric.label,metric.value]):[])].join(" ").toLocaleLowerCase("en-US").includes(query));
 }
@@ -330,6 +332,8 @@ function equipmentContentHtml(){
   const status=EQUIP.error?`<div class="eq-message error" role="alert"><strong>The equipment reading could not be refreshed.</strong><p>${equipmentText(EQUIP.error)}</p><div class="eq-actions"><button type="button" data-equipment-refresh data-equipment-focus="retry" ${equipmentPending()?"disabled":""}>Retry equipment</button></div></div>`:EQUIP.loading||EQUIP.stale?`<p class="eq-message" role="status">${data?"Updating the equipment reading…":"Loading platforms, components and programmes…"}</p>`:equipmentPending()?'<p class="eq-message" role="status">An order or turn is being resolved. New actions will be available when it finishes.</p>':"";
   if(!data)return header+status;
   const message=EQUIP.message?`<p class="eq-message" role="status">${equipmentText(EQUIP.message)}</p>`:"";
+  const selectedFirm=equipmentCompanyRows("firms").find(firm=>String(firm.id)===String(EQUIP.companyFirm));
+  const companyContext=`<div class="eq-actions"><button type="button" data-equipment-directory>Country company directory</button>${EQUIP.companyFirm!=null?`<span class="eq-field-note">Manufacturer: ${equipmentText(selectedFirm?.name||"Unavailable in this campaign")}</span><button type="button" data-equipment-all-companies>Show all manufacturers</button>`:""}</div>`;
   const unavailable=data.enabled===false?`<div class="eq-message"><strong>Equipment design is not active in this campaign.</strong><p>${equipmentText(data.reason)}</p><div class="eq-actions">${equipmentActions(data.actions,"actions")}</div></div>`:"";
   let body="";
   if(EQUIP.tab==="designer")body=equipmentDesignerHtml();
@@ -342,7 +346,7 @@ function equipmentContentHtml(){
   else body=equipmentServiceHtml(data.service)+equipmentServiceHtml(data.aviation,false,"aviation")+equipmentServiceHtml(data.maintenance,false,"maintenance")+equipmentCompanyServicesHtml()+equipmentTargetsHtml()+equipmentModernizationHtml()+equipmentCollectionHtml("lots","Equipment in service","Inspect delivered models and compatible refits. A refit withdraws real equipment until the work is complete.","No designer-built equipment has entered service. Your inherited equipment remains in the existing arsenal.");
   if(EQUIP.review?.quote?.refit)body="";
   const funding=!EQUIP.review?.quote?.refit&&["companies","development","production","service"].includes(EQUIP.tab)&&Array.isArray(data.funding?.metrics)?`<section class="eq-panel eq-funding"><h3>Current funding</h3>${equipmentMetrics(data.funding.metrics)}${data.funding.note?`<p class="eq-field-note">${equipmentText(data.funding.note)}</p>`:""}</section>`:"";
-  return `${header}${status}${message}${unavailable}${equipmentReviewHtml()}${funding}<div role="tabpanel" aria-label="${equipmentText(EQUIPMENT_TABS.find(row=>row[0]===EQUIP.tab)?.[1])}">${body}</div>${data.enabled!==false&&data.actions?.length?`<section class="eq-next"><h3>Funding and facilities</h3><div class="eq-actions">${equipmentActions(data.actions,"actions")}</div></section>`:""}${data.note?`<p class="eq-field-note">${equipmentText(data.note)}</p>`:""}`;
+  return `${header}${status}${message}${unavailable}${companyContext}${equipmentReviewHtml()}${funding}<div role="tabpanel" aria-label="${equipmentText(EQUIPMENT_TABS.find(row=>row[0]===EQUIP.tab)?.[1])}">${body}</div>${data.enabled!==false&&data.actions?.length?`<section class="eq-next"><h3>Funding and facilities</h3><div class="eq-actions">${equipmentActions(data.actions,"actions")}</div></section>`:""}${data.note?`<p class="eq-field-note">${equipmentText(data.note)}</p>`:""}`;
 }
 function equipmentRememberView(){
   if(!EQUIP.open)return;const root=document.querySelector("#equipmentRoot");if(!root||root.dataset.equipmentSession!==String(EQUIP.session??""))return;
@@ -356,7 +360,7 @@ function equipmentRender(){if(!equipmentActive())return;const root=document.quer
 function equipmentResetCampaign(){
   if(EQUIP.session===S?.session_id&&EQUIP.nation===S?.player)return;
   equipmentDisposeModel();
-  Object.assign(EQUIP,{session:S?.session_id,nation:S?.player,data:null,state:null,loading:false,stale:true,error:"",busy:false,message:"",draft:null,preset:null,comparisonId:null,companyProduct:null,companyFamily:"all",automaticName:null,selectedSlot:null,preview:null,previewState:null,previewLoading:false,previewError:"",previewKey:null,query:"",researchBranch:"chassis",researchState:"all",advanced:false,focus:null,scroll:0,request:null,review:null});EQUIP.details.clear();++EQUIP.seq;++EQUIP.previewSeq;++EQUIP.draftSeq;
+  Object.assign(EQUIP,{session:S?.session_id,nation:S?.player,data:null,state:null,loading:false,stale:true,error:"",busy:false,message:"",draft:null,preset:null,comparisonId:null,companyProduct:null,companyFamily:"all",companyFirm:null,automaticName:null,selectedSlot:null,preview:null,previewState:null,previewLoading:false,previewError:"",previewKey:null,query:"",researchBranch:"chassis",researchState:"all",advanced:false,focus:null,scroll:0,request:null,review:null});EQUIP.details.clear();++EQUIP.seq;++EQUIP.previewSeq;++EQUIP.draftSeq;
 }
 function equipmentSetDraft(row,{preset=false}={}){
   const spec=row?.editable_spec||row?.spec||row;if(!spec?.platform)return false;
@@ -401,6 +405,11 @@ function equipmentInvoke(path,scope,data,state){
   if(!action.command||typeof action.command!=="object")return false;
   const command=equipmentCopy(action.command);
   for(const field of Array.isArray(action.inputs)?action.inputs:[])if(!["__proto__","prototype","constructor"].includes(field.key)&&field.value!==undefined)command[field.key]=field.value;
+  if(command.kind==="company_develop"&&EQUIP.companyFirm!=null){
+    const option=action.inputs?.find(field=>field.key==="company")?.options?.find(row=>String(row.value)===String(EQUIP.companyFirm));
+    if(!option||option.enabled===false)return false;
+    command.company=option.value;
+  }
   EQUIP.review={path,scope,data,state,action,command,quote:null,quoteState:null,quoteKey:null,seq:0,loading:false,error:""};equipmentRememberView();EQUIP.focus={key:"review"};const scroller=typeof equipmentScroller==="function"?equipmentScroller():document.querySelector("#equipmentRoot")?.parentElement;if(scroller)scroller.scrollTop=0;EQUIP.scroll=0;equipmentRender();document.querySelector("#equipmentActionReviewTitle")?.focus({preventScroll:true});if(action.requires_preview)equipmentFetchOrderPreview();return true;
 }
 async function equipmentFetchOrderPreview(){
@@ -467,6 +476,8 @@ function equipmentBind(fetchIfNeeded=true){
   root.querySelectorAll("[data-equipment-research]").forEach(button=>button.onclick=()=>{if(!equipmentCurrent(data,state))return;const component=equipmentComponent(button.dataset.equipmentResearch);if(component?.tech)equipmentNavigate({action:"research",...equipmentCopy(component.tech)});});
   const search=root.querySelector("#equipmentSearch");if(search)search.oninput=()=>{EQUIP.query=search.value;equipmentRender();};
   const clear=root.querySelector("[data-equipment-clear]");if(clear)clear.onclick=()=>{EQUIP.query="";EQUIP.focus={key:"search"};equipmentRender();};
+  const allCompanies=root.querySelector("[data-equipment-all-companies]");if(allCompanies)allCompanies.onclick=()=>{if(!equipmentPending()){EQUIP.companyFirm=null;EQUIP.review=null;equipmentRender();}};
+  const directory=root.querySelector("[data-equipment-directory]");if(directory)directory.onclick=()=>{if(equipmentCurrent(data,state)&&typeof openCompanies==="function")openCompanies();};
   root.querySelectorAll("[data-equipment-branch]").forEach(button=>button.onclick=()=>{if(!EQUIPMENT_BRANCHES.some(([id])=>id===button.dataset.equipmentBranch))return;EQUIP.researchBranch=button.dataset.equipmentBranch;EQUIP.review=null;equipmentRender();});
   root.querySelectorAll("[data-equipment-research-filter]").forEach(button=>button.onclick=()=>{if(!EQUIPMENT_RESEARCH_STATES.some(([id])=>id===button.dataset.equipmentResearchFilter))return;EQUIP.researchState=button.dataset.equipmentResearchFilter;equipmentRender();});
   root.querySelectorAll("[data-equipment-prerequisite]").forEach(button=>button.onclick=()=>equipmentFollowPrerequisite(button.dataset.equipmentPrerequisite,data,state));
@@ -491,6 +502,7 @@ function equipmentOnStateChanged(){equipmentResetCampaign();EQUIP.state=null;EQU
 function equipmentClose(){equipmentRememberView();equipmentDisposeModel();EQUIPMENT_TREE.observer?.disconnect();EQUIPMENT_TREE.observer=null;EQUIP.open=false;EQUIP.loading=false;EQUIP.previewLoading=false;EQUIP.stale=true;EQUIP.previewKey=null;EQUIP.review=null;EQUIP.focus=null;++EQUIP.seq;++EQUIP.previewSeq;}
 async function openEquipment(options={}){
   if(typeof S==="undefined"||!S?.player)return false;equipmentResetCampaign();EQUIP.open=true;
+  if(Object.hasOwn(options,"company"))EQUIP.companyFirm=Number.isSafeInteger(options.company)&&options.company>=0?options.company:null;
   if(EQUIPMENT_TABS.some(row=>row[0]===options.tab))EQUIP.tab=options.tab;
   if(options.design!=null||options.revision!=null||options.preset!=null){EQUIP.request=options;EQUIP.tab="designer";}
   if(typeof openEquipmentDrawer==="function")openEquipmentDrawer();EQUIP.focus={key:"title"};equipmentRender();

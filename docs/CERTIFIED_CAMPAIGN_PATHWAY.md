@@ -1,6 +1,6 @@
 # Spheres — pathway to a certified campaign
 
-**Approved pathway · 10 September 2026 · S01–S02 complete; S03 next.**
+**Approved pathway · 10 September 2026 · S01–S02 complete; S03 in progress.**
 
 Source baseline: `5f7f355502f17bd6bd8f0383a2d14f0024fa7884`,
 `codex/resume-spheres`. This plan follows the
@@ -60,7 +60,7 @@ deliverables as finished.
 | Marker | Meaning |
 | --- | --- |
 | `S00` | Complete: user approved beginning S01 on 10 September 2026. |
-| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S02 are complete; S03–S30 remain planned. |
+| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S02 are complete; S03 is in progress; S04–S30 remain planned. |
 | `C01`–`C07` | Character-production workstreams, with uniquely numbered country batches below. |
 | `E01`–`E06` | Retained expansion work after the first certified release. |
 | `G0`–`G5` | Evidence gates joining groups of sessions. |
@@ -379,7 +379,7 @@ Evidence: [S02 ownership, accounting and verification](campaign-certification/S0
 
 #### S03 — Reconcile companies and procurement
 
-**Status:** Planned · **Requires:** S01
+**Status:** In progress · **Requires:** S01
 
 **Completion marker:** One company directory combining persistent identities with real supplier stock, development, ammunition and refit accounts.
 

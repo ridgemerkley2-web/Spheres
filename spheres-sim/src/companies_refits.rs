@@ -218,7 +218,7 @@ pub fn refit_quote(
             (String::new(), 0.0, 0, [0.0; 12])
         }
     };
-    let raw = material_cost(w, &recipe);
+    let raw = material_cost(w, &recipe) + crate::supplier_operations::new_refit_inputs_bn(w,labor,days);
     let unit = (raw + labor) * (1.0 + MARGIN);
     let total = unit * quantity as f64;
     reason = reason
@@ -250,6 +250,10 @@ pub fn refit_quote(
         .all(|r| resources::stockpile(w, n, *r) >= recipe[r.idx()] * quantity as f64);
     let known = reason.is_none() && queue_clear && capital >= raw + labor;
     let mut q=RefitQuote {valid:reason.is_none(),reason,token:String::new(),company:company_id,source_revision:source.into(),target_revision:target,product,quantity,available_units:available,reserved_units:reserved,cost_bn:total,unit_price_bn:unit,unit_days:days,minimum_days:days.saturating_mul(quantity),eta_days:if known&&all_raw{Some(days.saturating_mul(quantity).saturating_add(1))}else{None},first_return_days:if known&&raw_ready{Some(days.saturating_add(1))}else{None},unit_fabrication_cost_bn:labor,unit_material_cost_bn:raw,recipe_per_unit:recipe,company_cash_needed_bn:raw+labor,company_available_cash_bn:capital,maintenance_bn_day_before:required,maintenance_bn_day_after:(required+change).max(0.0),note:"Fixed-price manufacturer service: the full Defense procurement payment settles into locked public escrow. The company buys real inputs and reserves its own labor capital. Only a completed whole conversion earns the fixed unit fee and returns the unit to the same Arsenal, preserving current cohort age. Source units remain government property, pay source upkeep and cannot fight, retire or be reserved again. Work uses the existing conversion rules and one shared plant slot: active development first, contracted refits next, finite stock afterward. Cancel unstarted units for their full fixed fee; an already started unit remains reserved until its conversion finishes. Cancellation before fiscal close waits for the original payment to settle before refund. Refunds return treasury cash or retire debt; they do not recreate departmental authority. No new delivery stage, ammunition or models are granted. Price, margin and durations are game assumptions.".into()};
+    if crate::supplier_operations::enabled(w) {
+        q.eta_days=None; q.first_return_days=None;
+        q.note.push_str(" This new contract includes the frozen component and utility quote in its fixed fee. Actual conversion uses qualified staff, shared power and company-paid inputs; escrow never finances that work. The operations panel shows today's exact packet after booking.");
+    }
     q.token = token(w, n, serde_json::json!(["refit", &q]));
     q
 }
@@ -312,6 +316,7 @@ fn start_company_refit(
         delivery: None,
         refit: Some(id),
     });
+    crate::supplier_operations::book_refit(w,company,id,&q.target_revision,q.unit_fabrication_cost_bn);
     w.nation_mut(n)
         .equipment
         .as_mut()
@@ -462,13 +467,34 @@ fn tick_company_refit(w: &mut WorldState, i: usize, j: usize, day: i32, facility
         block_refit(w,i,j,"The government reservation does not match this service. Property and held funds remain recorded.".into());
         return;
     }
+    let operating = if crate::supplier_operations::applies(w,&c,p.id) {
+        crate::supplier_operations::quote_next_packet(w,&c)
+    } else { None };
+    if let Some(q) = &operating {
+        if let Some(reason) = q.reason.clone() { block_refit(w,i,j,reason); return; }
+        // Check the whole-unit property handoff before buying any inputs for
+        // this finishing packet. The real handoff below uses identical state.
+        if q.units > 0 {
+            let mut probe = w.nation(c.nation).clone();
+            if let Err(reason) = crate::arsenal::complete_refit(&mut probe,&p.source_revision,&p.target_revision,1) {
+                block_refit(w,i,j,reason); return;
+            }
+        }
+        if let Err(reason) = crate::supplier_operations::consume(w,i,q) { block_refit(w,i,j,reason); return; }
+        if p.unit_started_day.is_some() {
+            let p = &mut w.companies.firms[i].refits[j];
+            p.unit_material_cost_bn += q.inputs_cost_bn;
+            p.materials_expense_bn += q.inputs_cost_bn;
+        }
+    }
     if p.unit_started_day.is_none() {
-        let raw_cost = material_cost(w, &p.recipe_per_unit);
-        let needed = raw_cost + p.unit_fabrication_cost_bn;
-        if c.cash_bn < needed {
+        let raw_cost = operating.as_ref().map_or_else(|| material_cost(w, &p.recipe_per_unit), |q| q.inputs_cost_bn);
+        let needed = if operating.is_some() { p.unit_fabrication_cost_bn } else { raw_cost + p.unit_fabrication_cost_bn };
+        if operating.is_none() && w.companies.firms[i].cash_bn < needed {
             block_refit(w,i,j,"Company working capital must cover the next unit's real inputs and reserve its entire conversion labor. Public service escrow cannot finance this work.".into());
             return;
         }
+        if operating.is_none() {
         if let Err((r, _, _)) = resources::consume_stockpile_atomic(w, c.nation, &p.recipe_per_unit)
         {
             block_refit(
@@ -484,9 +510,10 @@ fn tick_company_refit(w: &mut WorldState, i: usize, j: usize, day: i32, facility
         }
         let gdp = w.nation(c.nation).gdp.max(0.1);
         crate::economy::charge(w, c.nation, -raw_cost, -raw_cost / gdp);
+        }
         let c = &mut w.companies.firms[i];
-        c.cash_bn -= needed;
-        c.materials_expense_bn += raw_cost;
+        c.cash_bn = if operating.is_some() { (c.cash_bn-needed).max(0.0) } else { c.cash_bn-needed };
+        if operating.is_none() { c.materials_expense_bn += raw_cost; }
         transaction(c, day, "refit_materials", raw_cost, Some(p.product), 1);
         transaction(
             c,
@@ -507,12 +534,13 @@ fn tick_company_refit(w: &mut WorldState, i: usize, j: usize, day: i32, facility
         }
     }
     let p = w.companies.firms[i].refits[j].clone();
-    let next = (p.unit_work_days + 1.0).min(p.unit_days as f64);
-    let finishing = next >= p.unit_days as f64;
+    let work = operating.as_ref().map_or(1.0,|q|q.work_days);
+    let next = (p.unit_work_days + work).min(p.unit_days as f64);
+    let finishing = next + 1e-9 >= p.unit_days as f64;
     let payment = if finishing {
         p.working_capital_locked_bn
     } else {
-        (p.unit_fabrication_cost_bn / p.unit_days.max(1) as f64).min(p.working_capital_locked_bn)
+        (p.unit_fabrication_cost_bn / p.unit_days.max(1) as f64 * work).min(p.working_capital_locked_bn)
     };
     if finishing {
         if let Err(reason) = crate::arsenal::complete_refit(
@@ -664,6 +692,14 @@ fn refit_view(w: &WorldState, c: &Company, p: &RefitContract) -> serde_json::Val
             v["source_spec"] = serde_json::json!(r.spec);
         }
     }
+    if crate::supplier_operations::applies(w,c,p.id) {
+        let packet=crate::supplier_operations::quote_next_packet(w,c).filter(|q|q.work_id==p.id);
+        let fraction=crate::supplier_operations::work_fraction(w,c);
+        let ready=packet.as_ref().is_some_and(|q|q.reason.is_none())&&fraction>0.0;
+        v["eta_days"]=serde_json::Value::Null;
+        v["first_return_days"]=serde_json::json!(if ready{Some(((p.unit_days as f64-p.unit_work_days)/fraction).ceil() as u32)}else{None});
+        v["company_cash_needed_bn"]=serde_json::json!(packet.as_ref().map_or(next_cost,|q|q.cash_required_bn));
+    }
     v["estimate_note"]=serde_json::json!("Refits share the manufacturer's single leased slot. Active development takes priority; refits precede finite stock. Estimates require continuing facility and input access. Public escrow is earned only on whole-unit return; separately locked company labor cannot finance other work.");
     v
 }
@@ -767,7 +803,7 @@ fn validate_company_refits(w: &WorldState, ids: &mut BTreeSet<u32>) -> Result<()
                     p.settled_day.is_none_or(|s| d <= s)
                         || p.last_work_day.is_none_or(|last| d > last)
                 })
-                || p.unit_work_days.fract() != 0.0
+                || p.unit_work_days.fract() != 0.0 && !w.supplier_operations.contracts.get(&p.id).is_some_and(|t| t.kind == "refit")
                 || p.unit_work_days >= days as f64
                 || active > 0
                     && (remaining == 0
