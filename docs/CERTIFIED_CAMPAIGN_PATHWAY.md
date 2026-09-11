@@ -1,6 +1,6 @@
 # Spheres — pathway to a certified campaign
 
-**Approved pathway · 10 September 2026 · S01 complete; S02 in verification.**
+**Approved pathway · 10 September 2026 · S01–S02 complete; S03 next.**
 
 Source baseline: `5f7f355502f17bd6bd8f0383a2d14f0024fa7884`,
 `codex/resume-spheres`. This plan follows the
@@ -60,7 +60,7 @@ deliverables as finished.
 | Marker | Meaning |
 | --- | --- |
 | `S00` | Complete: user approved beginning S01 on 10 September 2026. |
-| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01 is complete; S02 is in verification; S03–S30 remain planned. |
+| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S02 are complete; S03–S30 remain planned. |
 | `C01`–`C07` | Character-production workstreams, with uniquely numbered country batches below. |
 | `E01`–`E06` | Retained expansion work after the first certified release. |
 | `G0`–`G5` | Evidence gates joining groups of sessions. |
@@ -365,13 +365,15 @@ approval does not itself earn G1 or any campaign certificate.
 
 #### S02 — Reconcile economy, population and fiscal ownership
 
-**Status:** Verification · **Requires:** S01
+**Status:** Complete · **Requires:** S01
 
 **Completion marker:** One daily economy with one owner for population, jobs, GDP, government cash and debt.
 
-- [ ] Integrate useful master workforce, industry and fiscal changes while preserving financial construction.
-- [ ] Population, workforce and GDP contributions are applied once; existing balances are not reopened or charged twice.
-- [ ] Map old project IDs and paid entitlements explicitly; publish before/after accounting fixtures.
+- [x] Integrate useful master workforce, industry and fiscal changes while preserving financial construction.
+- [x] Population, workforce and GDP contributions are applied once; existing balances are not reopened or charged twice.
+- [x] Map old project IDs and paid entitlements explicitly; publish before/after accounting fixtures.
+
+Evidence: [S02 ownership, accounting and verification](campaign-certification/S02/README.md).
 
 <a id="s03"></a>
 

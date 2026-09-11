@@ -1,6 +1,6 @@
 # S02 — Connected economy integration
 
-Status: implementation and verification in progress. This is an integration session, not the CP1 campaign certificate. The playable integration branch is `codex/campaign-certification`; the original active playset is retained until the unified-playset gate.
+Status: complete. Runtime candidate: `c4cc32b1d6201413f5d34d71616355455ad934db`. This is an integration session, not the CP1 campaign certificate. The playable integration branch is `codex/campaign-certification`; the original active playset is retained until the unified-playset gate.
 
 ## Ownership contract
 
@@ -50,11 +50,11 @@ Factory and naval entitlements follow [manufacturing's reservation rules](../../
 - A newly ordered naval line uses an available Arms Plant slot first. If those slots are full, an available optional Shipyard slot may be reserved by adding that line's unchanged instance ID to `manufacturing.shipyard_lines`. Dock occupancy is counted separately from Arms Plant occupancy.
 - New dock lines use actual dock operating readiness plus the existing equipment budget, recipe and delivery lead time. They do not impose a new dock requirement on old naval lines. Losing access blocks the affected work without erasing paid orders; stopping a line releases its reservation and leaves already ordered deliveries owned.
 
-The [S02 industry fixtures](../../../spheres-sim/tests/s02_industry.rs) exercise the thirteen retained keys, all sixteen financial construction contracts, frozen paid work, old naval and company reservations, optional new dock reservations, and separate component stock. Final execution evidence remains pending below.
+The [S02 industry fixtures](../../../spheres-sim/tests/s02_industry.rs) exercise the thirteen retained keys, all sixteen financial construction contracts, frozen paid work, old naval and company reservations, optional new dock reservations, and separate component stock. Final execution evidence is recorded below.
 
 ## Adoption and saves
 
-Fresh integration-browser campaigns explicitly enable the connected economy. An older campaign must use the visible upgrade action; loading alone does not enable population, rebuilt industry or fiscal recovery. Adoption is staged atomically. The same command is available to a living daily player government, costs no political capital and cannot reset existing training or fiscal clocks.
+Fresh integration-browser campaigns explicitly enable the connected economy. An older campaign must use the visible upgrade action; loading alone does not enable population, rebuilt industry or fiscal recovery. Adoption is staged atomically. The same command is available to a living daily player government with production enabled, costs no political capital and cannot reset existing training or fiscal clocks.
 
 Legacy peace terms changed national residents by a percentage while transferring whole provinces. That can leave the old provincial estimates above the current national total. Initial adoption keeps that national total and proportionally reduces only the excess mapped estimates; an under-mapped country's remainder stays explicitly unallocated. The affected country's source note records the original estimate, retained total and scale. Ownership, assets, GDP, cash and debt are unchanged. Loading alone does not make this adjustment, and already-enabled population books still refuse inconsistencies rather than repairing them. The year-10 Kuwait benchmark exposed this case; the regression reproduces its exact resident totals through the existing province-transfer API.
 
@@ -73,6 +73,38 @@ The new economic validators are read-only. The surrounding loader retains its do
 
 ## Evidence and remaining gates
 
-The acceptance tests cover financial-only construction, existing project and company property, real daily fiscal settlement, population training and succession, explicit adoption, and deterministic save/resume. Before/after accounting fixtures and final test results will be linked here after verification.
+The [preservation checks](PRESERVATION_CHECKS.md) map the twelve S01 cases to executable checks and their limits. [manifest.json](manifest.json) records exact revisions, evidence hashes, protected files and scope.
+
+| Check | Actual result |
+| --- | --- |
+| Locked release Rust workspace | 1,333 passed; 0 failed; 72 ignored. [Output](evidence/native-tests.log). |
+| Separate legacy archive replay | 1 passed; unchanged year-30 archive, public adoption and two daily save/resume steps. [Output](evidence/legacy-archive-tests.log), [input and binary hashes](evidence/legacy-archive-run.json). |
+| Full UI suite | 1,384 passed; 0 failed; 1 optional archived fixture skipped. [Output](evidence/ui-tests.log). |
+| Final source-sensitive UI follow-up | 86 passed; 0 failed. [Output](evidence/ui-source-followup.log). |
+| Explicit adoption with paid work | GDP, people, cash, debt, progress and frozen financial contract are unchanged. [Before/after](evidence/adoption.json). |
+| Daily save/resume | Leap-February midmonth adoption reaches 1 March 2000 with identical uninterrupted/resumed state hashes. [Accounting](evidence/daily-replay.json). |
+| Production-panel browser review | Actual native France snapshots, desktop and 390px, training/upgrade/disclosures and no horizontal overflow or console errors. [Scope and hashes](evidence/browser-review.json), [snapshots](evidence/ui-fixture.json). |
+| Protected user saves | All eight S01-monitored files retain their original SHA256 values. |
+
+The final native run was rebuilt from the clean runtime candidate. The full UI run used the final presentation; after the last catalogue adapter change, all six source-sensitive UI files were rerun. No tests were removed or limits widened: legacy portfolio expectations remain unchanged and paired upgraded checks cover the appended facilities. The three new meshes also preserve the original thirteen builders.
+
+### Dated performance comparison
+
+The isolated runner explicitly adopts the connected economy through the public command after loading each copied S01 checkpoint. It reconstructs the same controlled industry/war stress, then records 31 daily samples. The six rows total 186 days, with no 30-year warmup and no input-file changes. The USA fixture is technical workload coverage, not a required USA campaign. Measured alone after functional checks on SPHERES-REF-WIN-01; other workstation apps were not controlled.
+
+| Case / checkpoint age | Simulation/history p95 ms | Whole turn median / p95 / max ms |
+| --- | ---: | ---: |
+| idle_human / 0 years | 35.8 | 89.5 / 103.9 / 107.0 |
+| idle_human / 10 years | 137.1 | 207.7 / 242.2 / 246.8 |
+| idle_human / 30 years | 190.3 | 262.1 / 294.4 / 298.6 |
+| industry_and_war / 0 years | 68.3 | 93.4 / 137.9 / 238.2 |
+| industry_and_war / 10 years | 198.6 | 219.9 / 296.9 / 401.4 |
+| industry_and_war / 30 years | 234.8 | 296.1 / 339.2 / 428.3 |
+
+All six cases meet the frozen S01 limits: simulation/history p95 ≤300 ms; whole turn p95 ≤400 ms and maximum ≤750 ms. Sampled private memory peaked at 408.2 MiB; observed OS peak working set was 421.3 MiB, both below 1 GiB. These are process-wide observations across loading and stepping, not per-case steady memory, browser/GPU memory or sustained throughput.
+
+[Exact timings, rules and workload](evidence/lifetime/profile.json) · [Binary/input hashes and sampling](evidence/lifetime/runner-result.json). Reproduce with `tools/campaign/run-lifetime-baseline.ps1 -ConnectedEconomy`, the clean candidate's release test binary, the copied S01 fixture root and a new evidence directory.
+
+The browser review uses production rendering with real simulation snapshots on the already-running static server. It does not qualify live campaign commands or a packaged build. Linux/remote CI, 2035 performance, feature-rich company/war workloads and the pre-existing art-budget audit remain later gates.
 
 S03 integrates contractor identities and supplier consumption. S04 integrates operational warfare. S05 qualifies their combined saves and earns G1. S22 and S25 still own performance qualification and full 1990–2035 country campaigns; passing this session does not earn those markers.

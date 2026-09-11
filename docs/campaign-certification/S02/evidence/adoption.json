@@ -1,0 +1,95 @@
+{
+  "after": {
+    "cash": 57.434,
+    "contracts": {
+      "1": {
+        "contract_cost_bn": 0.2,
+        "goods_used": {
+          "capital_goods": 0.0,
+          "intermediates": 0.0
+        },
+        "last_day": 0,
+        "last_spent_bn": 0.0005555555555555556,
+        "spent_bn": 0.0005555555555555556
+      }
+    },
+    "debt": 444.02309101887573,
+    "gdp": 1269.9952083352828,
+    "population": 57.000903680022915,
+    "projects": [
+      {
+        "district": "FRA_auvergne-rh-ne-alpes",
+        "id": 1,
+        "kind": "infrastructure",
+        "nation": "France",
+        "priority": "high",
+        "progress_days": 1.0,
+        "resources_used": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "status": "building",
+        "total_days": 360
+      }
+    ]
+  },
+  "before": {
+    "cash": 57.434,
+    "contracts": {
+      "1": {
+        "contract_cost_bn": 0.2,
+        "goods_used": {
+          "capital_goods": 0.0,
+          "intermediates": 0.0
+        },
+        "last_day": 0,
+        "last_spent_bn": 0.0005555555555555556,
+        "spent_bn": 0.0005555555555555556
+      }
+    },
+    "debt": 444.02309101887573,
+    "gdp": 1269.9952083352828,
+    "population": 57.000903680022915,
+    "projects": [
+      {
+        "district": "FRA_auvergne-rh-ne-alpes",
+        "id": 1,
+        "kind": "infrastructure",
+        "nation": "France",
+        "priority": "high",
+        "progress_days": 1.0,
+        "resources_used": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "status": "building",
+        "total_days": 360
+      }
+    ]
+  },
+  "date": "2 Jan 1990",
+  "fiscal_enabled": true,
+  "fixture": "Financial construction already in progress; explicitly upgraded daily France",
+  "industry_enabled": true,
+  "population_enabled": true
+}

@@ -1,0 +1,10 @@
+{
+  "candidate_revision": "c4cc32b1d6201413f5d34d71616355455ad934db",
+  "test_binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s02_population-291e33abbb7c36b5.exe",
+  "test_binary_sha256": "7934eefa82e7653226102ec39ab15f0dcbb8563bfb2a64d1835007c9e7c77aaf",
+  "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\lifetime-legacy\\saves\\profile-idle_human-30.json",
+  "sha256_before": "c5a61334fa8ce8d23983103a26b0a12e9d70deef60c7648077e9857b9cd31a5a",
+  "command": "archived_legacy_checkpoint_adoption_preserves_accounts_and_replays --ignored --exact --nocapture",
+  "exit_code": 0,
+  "sha256_after": "c5a61334fa8ce8d23983103a26b0a12e9d70deef60c7648077e9857b9cd31a5a"
+}

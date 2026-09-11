@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "candidate_revision": "75534efdb2be73df8a52c6458292ac4300c5d290",
+  "started_utc": "2026-09-11T02:08:12.7249645Z",
+  "finished_utc": "2026-09-11T02:08:17.0170901Z",
+  "test_binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+  "test_binary_sha256": "81ed69bed013a2f0a1a106cef756928b15f23a9c6c8200a0b77d090f77e2a465",
+  "fixture_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\lifetime-legacy",
+  "evidence_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S02-lifetime-candidate",
+  "arguments": [
+    "performance::campaign_lifetime_profile",
+    "--ignored",
+    "--exact",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "child_profile_environment": {
+    "SPHERES_PROFILE_INPUT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\lifetime-legacy",
+    "SPHERES_PROFILE_OUT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S02-lifetime-candidate\\profile.json",
+    "SPHERES_PROFILE_CONNECTED_ECONOMY": "1"
+  },
+  "exit_code": 101,
+  "wall_duration_seconds": 3.670897,
+  "profile_json": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S02-lifetime-candidate\\profile.json",
+  "memory": {
+    "nominal_interval_ms": 100,
+    "samples": 32,
+    "failed_samples": 1,
+    "max_sampled_private_bytes": 285618176,
+    "max_sampled_working_set_bytes": 290738176,
+    "os_peak_working_set_bytes": 313712640,
+    "max_observed_sample_gap_ms": 139.598,
+    "limits": "Samples cover only this test process and may miss short peaks. OS peak working set is the largest OS high-water reading observed while accessible; its final value may be unavailable, and it is not private-memory peak. Timing includes process startup and profiler work; no throughput inference is made."
+  },
+  "fixtures": [
+    {
+      "checkpoint_years": 0,
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\lifetime-legacy\\saves\\profile-idle_human-0.json",
+      "sha256_before": "0a900f8c7c943267bb35cd5c433c64a2afeab38e5902d1ca4383eb155621cbbf",
+      "sha256_after": "0a900f8c7c943267bb35cd5c433c64a2afeab38e5902d1ca4383eb155621cbbf",
+      "unchanged": true
+    },
+    {
+      "checkpoint_years": 10,
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\lifetime-legacy\\saves\\profile-idle_human-10.json",
+      "sha256_before": "5d6b022e8273c5bbd569d96cc9ac4de1f4086fa69de110f835c63718d7469b53",
+      "sha256_after": "5d6b022e8273c5bbd569d96cc9ac4de1f4086fa69de110f835c63718d7469b53",
+      "unchanged": true
+    },
+    {
+      "checkpoint_years": 30,
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\lifetime-legacy\\saves\\profile-idle_human-30.json",
+      "sha256_before": "c5a61334fa8ce8d23983103a26b0a12e9d70deef60c7648077e9857b9cd31a5a",
+      "sha256_after": "c5a61334fa8ce8d23983103a26b0a12e9d70deef60c7648077e9857b9cd31a5a",
+      "unchanged": true
+    }
+  ],
+  "passed": false,
+  "failures": [
+    "Profile test exited with code 101."
+  ]
+}

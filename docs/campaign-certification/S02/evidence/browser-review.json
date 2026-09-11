@@ -1,0 +1,41 @@
+{
+  "scope": "Read-only browser review of actual deterministic native snapshots using the production presentation. No live game server, API mutation, saved campaign, or packaged build was exercised.",
+  "reviewed_utc": "2026-09-11T01:59:16.637012+00:00",
+  "url": "http://127.0.0.1:7841/artifacts/s02-connected-economy-review.html",
+  "viewports": [
+    {
+      "width": 1271,
+      "height": 715,
+      "observations": "Desktop metrics, training disclosure, and upgrade snapshot reviewed."
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "document_scroll_width": 381,
+      "horizontal_overflow_elements": 0,
+      "observations": "Training controls, readable provenance, upgrade review and expanded fiscal measurement reviewed."
+    }
+  ],
+  "interactions": [
+    "Legacy / fresh / after-three-days snapshot selection",
+    "Trade schools review callback: Trade schools",
+    "Upgrade review exposes retained property, timed training and financial construction",
+    "Fiscal disclosure exposes partial-month observation and provisional forecasts"
+  ],
+  "console_errors": [],
+  "console_warnings": [],
+  "files": {
+    "fixture": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S02-ui-fixture.json",
+      "sha256": "1d68fca7af83757de38050ebae43e6b6307e49048f7be7aa7bd137606315743b"
+    },
+    "presentation": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-web\\ui\\fiscal-recovery-ui.js",
+      "sha256": "bb6cf64c6c8f03d96bfe3984c425264f584db8dba47fe86ace4a64111421b8fe"
+    },
+    "review_page": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\artifacts\\s02-connected-economy-review.html",
+      "sha256": "747c579accf75a2500b62c567f914b3f7729e3101b1ee44385a784b85756673a"
+    }
+  }
+}

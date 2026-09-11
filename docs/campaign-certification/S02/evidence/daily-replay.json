@@ -1,0 +1,499 @@
+{
+  "direct_hash": "0f89f15d88c63368",
+  "equal": true,
+  "final_date": "1 Mar 2000",
+  "fiscal": {
+    "accumulating": null,
+    "confidence_pressure": 0.0,
+    "improving_months": 1,
+    "last_ai_review_day": null,
+    "last_day": 3711,
+    "last_restructuring_day": null,
+    "months_observed": 0,
+    "observations": [
+      {
+        "closing_debt_bn": 438.4408353747965,
+        "closing_gdp": 1269.434765175754,
+        "closing_treasury_bn": 0.0,
+        "gdp_years": 54.72873756563855,
+        "interest_bn": 1.165028733460792,
+        "month": 121,
+        "opening_debt_bn": 444.5,
+        "opening_gdp": 1270.0,
+        "opening_treasury_bn": 0.0,
+        "revenue_bn": 22.986069777568197,
+        "spending_bn": 15.761876418903901,
+        "tax_gdp_years": 22.986069777568197,
+        "year_fraction": 0.04310344827586206
+      }
+    ],
+    "observed_month_fraction": 0.5172413793103448,
+    "opening_debt_bn": 444.5,
+    "opening_gdp": 1270.0,
+    "opening_treasury_bn": 0.0,
+    "pending": null,
+    "previous_adjustment": 0.0,
+    "previous_primary": 0.13200000000000012,
+    "previous_trend": -0.10712083540032497,
+    "started_day": 3697,
+    "stress_months": 0
+  },
+  "fixture": "2000 leap February, adoption on day15, save/load after every date",
+  "population": {
+    "annual_graduates_m": 0.0,
+    "children_m": 11.511860455547712,
+    "classes": [
+      {
+        "discontent": 0.035538895910076876,
+        "income_index": 70.0051988013106,
+        "key": "agricultural",
+        "living_standards": 100.00742685901515,
+        "name": "Agricultural households",
+        "people_m": 8.810854900335244,
+        "share": 0.1545398098791371,
+        "wealth_index": 34.98021041917353
+      },
+      {
+        "discontent": 0.059276010170290494,
+        "income_index": 85.01285188427944,
+        "key": "routine_workers",
+        "living_standards": 100.01511986385817,
+        "name": "Wage workers",
+        "people_m": 34.42935172529933,
+        "share": 0.6038807278153283,
+        "wealth_index": 44.99505870460148
+      },
+      {
+        "discontent": 0.04722551072968876,
+        "income_index": 115.00066504315826,
+        "key": "skilled_workers",
+        "living_standards": 100.0005782983985,
+        "name": "Skilled workers",
+        "people_m": 3.468063125132856,
+        "share": 0.060828809697738316,
+        "wealth_index": 70.02474067127201
+      },
+      {
+        "discontent": 0.047225510729688704,
+        "income_index": 155.00089636251775,
+        "key": "professionals",
+        "living_standards": 100.00057829839854,
+        "name": "Professionals & managers",
+        "people_m": 3.4591228449330442,
+        "share": 0.06067199980607927,
+        "wealth_index": 100.06432539812417
+      },
+      {
+        "discontent": 0.038500470569249934,
+        "income_index": 125.01007216042512,
+        "key": "proprietors",
+        "living_standards": 100.0080577283401,
+        "name": "Small business owners",
+        "people_m": 5.7649065017241945,
+        "share": 0.10111476863766765,
+        "wealth_index": 135.03464185089382
+      },
+      {
+        "discontent": 0.017769447955038438,
+        "income_index": 280.01039056177905,
+        "key": "capital_owners",
+        "living_standards": 100.0037109149211,
+        "name": "Capital owners",
+        "people_m": 1.0811973422697994,
+        "share": 0.018963884164049233,
+        "wealth_index": 320.1880324371582
+      }
+    ],
+    "courses": [
+      {
+        "days_remaining": 535,
+        "name": "Trade qualifications",
+        "people_m": 0.21349989394809374,
+        "progress": 0.023722627737226276
+      },
+      {
+        "days_remaining": 1448,
+        "name": "University degrees",
+        "people_m": 0.1334374337175586,
+        "progress": 0.008898015058179328
+      }
+    ],
+    "education": [
+      {
+        "key": "below_basic",
+        "name": "Learning foundations",
+        "people_m": 7.503621665287647,
+        "share": 0.19999999999999998
+      },
+      {
+        "key": "basic",
+        "name": "Basic education",
+        "people_m": 20.728754850357127,
+        "share": 0.5525
+      },
+      {
+        "key": "secondary",
+        "name": "Secondary education",
+        "people_m": 5.227022852039377,
+        "share": 0.13932000000000003
+      },
+      {
+        "key": "vocational",
+        "name": "Trades & technical",
+        "people_m": 2.032731109126424,
+        "share": 0.054180000000000006
+      },
+      {
+        "key": "tertiary",
+        "name": "University graduates",
+        "people_m": 2.025977849627665,
+        "share": 0.054
+      }
+    ],
+    "education_budget_bn": 48.89862715457005,
+    "employed_m": 22.470227484440304,
+    "employment_rate": 0.598916856066701,
+    "labor_force_m": 24.547335069967318,
+    "living_standards": 100.00812651953652,
+    "military_m": 0.4505991578066465,
+    "notes": [
+      "Province age and education shares use national observations. Jobs, ownership, wages and class shares are game estimates, not a historical census.",
+      "Modeled starting values where observations are unavailable: literacy, education_attainment_secondary_25_plus, education_attainment_tertiary_25_plus.",
+      "Courses have calendar delays; enrollment and qualification counts are separate. Gross enrollment is never treated as an observed attainment rate.",
+      "Adopted in 2000 using current residents. Unobserved current age and qualification shares are modeled from the sourced 1990 profile; this is not a contemporary census."
+    ],
+    "outside_workforce_m": 12.173236770998622,
+    "participation_rate": 0.6542796576092115,
+    "policies": [
+      {
+        "available": false,
+        "cooldown_days": 0,
+        "description": "Keep schools, technical training and universities moving together.",
+        "name": "Balanced opportunity",
+        "policy": "balanced",
+        "political_cost": 0.0,
+        "reason": "This focus is already active.",
+        "selected": true
+      },
+      {
+        "available": true,
+        "cooldown_days": 0,
+        "description": "Prioritize 18-month technical courses to fill skilled vacancies.",
+        "name": "Trade schools",
+        "policy": "trade_schools",
+        "political_cost": 8.0,
+        "reason": null,
+        "selected": false
+      },
+      {
+        "available": true,
+        "cooldown_days": 0,
+        "description": "Prioritize four-year degrees for professionals and researchers.",
+        "name": "University drive",
+        "policy": "universities",
+        "political_cost": 8.0,
+        "reason": null,
+        "selected": false
+      },
+      {
+        "available": true,
+        "cooldown_days": 0,
+        "description": "Help adults seek jobs with six-month foundations and two-year secondary catch-up courses.",
+        "name": "Back to work",
+        "policy": "back_to_work",
+        "political_cost": 8.0,
+        "reason": null,
+        "selected": false
+      }
+    ],
+    "policy": "balanced",
+    "population_m": 57.01349643969447,
+    "provinces": [
+      {
+        "district": "FRA_auvergne-rh-ne-alpes",
+        "employed_m": 2.6274113741651877,
+        "living_standards": 100.00812651953652,
+        "name": "Auvergne-Rhône-Alpes",
+        "population_m": 6.6665061192775426,
+        "students_m": 0.9155093160154603,
+        "unemployed_m": 0.24287320185599004,
+        "unemployment_rate": 0.08461641883351641,
+        "vacancies_m": 0.0
+      },
+      {
+        "district": "FRA_bourgogne-franche-comt",
+        "employed_m": 1.0674505219354402,
+        "living_standards": 100.00812651953652,
+        "name": "Bourgogne-Franche-Comté",
+        "population_m": 2.708432149788364,
+        "students_m": 0.3719481870356018,
+        "unemployed_m": 0.09867321449336486,
+        "unemployment_rate": 0.08461641883351641,
+        "vacancies_m": 0.0
+      },
+      {
+        "district": "FRA_bretagne",
+        "employed_m": 1.0148571805427795,
+        "living_standards": 100.00812651953652,
+        "name": "Bretagne",
+        "population_m": 2.5749875603057495,
+        "students_m": 0.35362228098266757,
+        "unemployed_m": 0.09381158020726121,
+        "unemployment_rate": 0.08461641883351656,
+        "vacancies_m": 0.0
+      },
+      {
+        "district": "FRA_centre-val-de-loire",
+        "employed_m": 0.9355952270567444,
+        "living_standards": 100.00812651953652,
+        "name": "Centre-Val de Loire",
+        "population_m": 2.373876952680236,
+        "students_m": 0.3260038206473097,
+        "unemployed_m": 0.08648474718149213,
+        "unemployment_rate": 0.08461641883351625,
+        "vacancies_m": 1.1102230246251565e-16
+      },
+      {
+        "district": "FRA_corse",
+        "employed_m": 0.08200135016655077,
+        "living_standards": 100.00812651953652,
+        "name": "Corse",
+        "population_m": 0.20806125300725836,
+        "students_m": 0.02857299041235073,
+        "unemployed_m": 0.007580057948783317,
+        "unemployment_rate": 0.08461641883351688,
+        "vacancies_m": 0.0
+      },
+      {
+        "district": "FRA_grand-est",
+        "employed_m": 2.0709413153017486,
+        "living_standards": 100.00812651953652,
+        "name": "Grand Est",
+        "population_m": 5.254579883026647,
+        "students_m": 0.7216099030866342,
+        "unemployed_m": 0.19143410622670531,
+        "unemployment_rate": 0.08461641883351659,
+        "vacancies_m": 0.0
+      },
+      {
+        "district": "FRA_guadeloupe",
+        "employed_m": 0.1254288098181458,
+        "living_standards": 100.00812651953652,
+        "name": "Guadeloupe",
+        "population_m": 0.3182493371263746,
+        "students_m": 0.04370508745389344,
+        "unemployed_m": 0.011594414542411807,
+        "unemployment_rate": 0.08461641883351623,
+        "vacancies_m": 0.0
+      },
+      {
+        "district": "FRA_guyane-fran-aise",
+        "employed_m": 0.043743225479928934,
+        "living_standards": 100.00812651953652,
+        "name": "Guyane française",
+        "population_m": 0.11098927377961082,
+        "students_m": 0.015242124180939913,
+        "unemployed_m": 0.0040435454212778,
+        "unemployment_rate": 0.08461641883351634,
+        "vacancies_m": 0.0
+      },
+      {
+        "district": "FRA_hauts-de-france",
+        "employed_m": 2.274765989311485,
+        "living_standards": 100.00812651953652,
+        "name": "Hauts-de-France",
+        "population_m": 5.771742307573656,
+        "students_m": 0.7926316660753165,
+        "unemployed_m": 0.21027529405163303,
+        "unemployment_rate": 0.08461641883351653,
+        "vacancies_m": 4.440892098500626e-16
+      },
+      {
+        "district": "FRA_le-de-france",
+        "employed_m": 4.196642969197596,
+        "living_standards": 100.00812651953652,
+        "name": "Île-de-France",
+        "population_m": 10.648102657113604,
+        "students_m": 1.4623007923576214,
+        "unemployed_m": 0.3879301600798213,
+        "unemployment_rate": 0.08461641883351606,
+        "vacancies_m": 0.0
+      },
+      {
+        "district": "FRA_martinique",
+        "employed_m": 0.1272839833364225,
+        "living_standards": 100.00812651953652,
+        "name": "Martinique",
+        "population_m": 0.3229564514113781,
+        "students_m": 0.04435151406812974,
+        "unemployed_m": 0.011765903459911714,
+        "unemployment_rate": 0.08461641883351681,
+        "vacancies_m": 0.0
+      },
+      {
+        "district": "FRA_mayotte",
+        "employed_m": 0.0246525990520519,
+        "living_standards": 100.00812651953652,
+        "name": "Mayotte",
+        "population_m": 0.06255080725180234,
+        "students_m": 0.008590083881827805,
+        "unemployed_m": 0.0022788421047108404,
+        "unemployment_rate": 0.0846164188335165,
+        "vacancies_m": 0.0
+      },
+      {
+        "district": "FRA_normandie",
+        "employed_m": 1.2066338704756845,
+        "living_standards": 100.00812651953652,
+        "name": "Normandie",
+        "population_m": 3.061580748393289,
+        "students_m": 0.4204459797587937,
+        "unemployed_m": 0.11153907396150653,
+        "unemployment_rate": 0.08461641883351612,
+        "vacancies_m": 0.0
+      },
+      {
+        "district": "FRA_nouvelle-aquitaine",
+        "employed_m": 1.9419389508845424,
+        "living_standards": 100.00812651953652,
+        "name": "Nouvelle-Aquitaine",
+        "population_m": 4.927263399492801,
+        "students_m": 0.676659627095118,
+        "unemployed_m": 0.17950935869722628,
+        "unemployment_rate": 0.0846164188335164,
+        "vacancies_m": 2.220446049250313e-16
+      },
+      {
+        "district": "FRA_occitanie",
+        "employed_m": 1.7543803562864362,
+        "living_standards": 100.00812651953652,
+        "name": "Occitanie",
+        "population_m": 4.4513727449474505,
+        "students_m": 0.6113057040887173,
+        "unemployed_m": 0.162171778121317,
+        "unemployment_rate": 0.08461641883351678,
+        "vacancies_m": 2.220446049250313e-16
+      },
+      {
+        "district": "FRA_pays-de-la-loire",
+        "employed_m": 1.1389192486295479,
+        "living_standards": 100.00812651953652,
+        "name": "Pays de la Loire",
+        "population_m": 2.8897690765171005,
+        "students_m": 0.3968511336147255,
+        "unemployed_m": 0.1052796555917952,
+        "unemployment_rate": 0.0846164188335163,
+        "vacancies_m": 0.0
+      },
+      {
+        "district": "FRA_provence-alpes-c-te-d-azur",
+        "employed_m": 1.6111243775682667,
+        "living_standards": 100.00812651953652,
+        "name": "Provence-Alpes-Côte-d'Azur",
+        "population_m": 4.087890700172025,
+        "students_m": 0.5613888222555221,
+        "unemployed_m": 0.14892945201341834,
+        "unemployment_rate": 0.0846164188335164,
+        "vacancies_m": 0.0
+      },
+      {
+        "district": "FRA_r-union",
+        "employed_m": 0.22645613523174116,
+        "living_standards": 100.00812651953652,
+        "name": "Réunion",
+        "population_m": 0.5745850178295797,
+        "students_m": 0.07890759076103523,
+        "unemployed_m": 0.020933199568393207,
+        "unemployment_rate": 0.08461641883351649,
+        "vacancies_m": 0.0
+      }
+    ],
+    "research_multiplier": 0.9995671388522399,
+    "retirees_m": 7.98352765770852,
+    "school_coverage": 0.6500000000000001,
+    "sectors": [
+      {
+        "employed_m": 3.854273617936714,
+        "jobs_m": 3.854273617936714,
+        "key": "agriculture",
+        "name": "Agriculture",
+        "staffing": 1.0,
+        "vacancies_m": 0.0,
+        "wage_index": 78.0
+      },
+      {
+        "employed_m": 0.5912806118425641,
+        "jobs_m": 0.5912806118425641,
+        "key": "extraction",
+        "name": "Extraction",
+        "staffing": 1.0,
+        "vacancies_m": 0.0,
+        "wage_index": 125.0
+      },
+      {
+        "employed_m": 4.129578876360766,
+        "jobs_m": 4.129578876360766,
+        "key": "manufacturing",
+        "name": "Manufacturing",
+        "staffing": 1.0,
+        "vacancies_m": 0.0,
+        "wage_index": 105.0
+      },
+      {
+        "employed_m": 0.4817842022420893,
+        "jobs_m": 0.4817842022420893,
+        "key": "utilities",
+        "name": "Utilities",
+        "staffing": 1.0,
+        "vacancies_m": 0.0,
+        "wage_index": 130.0
+      },
+      {
+        "employed_m": 1.6862447078473126,
+        "jobs_m": 1.6862447078473126,
+        "key": "construction",
+        "name": "Construction",
+        "staffing": 1.0,
+        "vacancies_m": 0.0,
+        "wage_index": 100.0
+      },
+      {
+        "employed_m": 1.970935372808547,
+        "jobs_m": 1.970935372808547,
+        "key": "transport",
+        "name": "Transport & logistics",
+        "staffing": 1.0,
+        "vacancies_m": 0.0,
+        "wage_index": 110.00000000000006
+      },
+      {
+        "employed_m": 6.504086730268205,
+        "jobs_m": 6.504086730268205,
+        "key": "services",
+        "name": "Market services",
+        "staffing": 1.0,
+        "vacancies_m": 0.0,
+        "wage_index": 100.0
+      },
+      {
+        "employed_m": 3.2520433651341025,
+        "jobs_m": 3.252043365134103,
+        "key": "public_services",
+        "name": "Public services",
+        "staffing": 0.9999999999999999,
+        "vacancies_m": 4.440892098500626e-16,
+        "wage_index": 114.99999999999999
+      }
+    ],
+    "skilled_vacancies_m": 9.997021656674154e-17,
+    "social_mobility": 0.011752550754817712,
+    "students_m": 7.829646623771667,
+    "training_capacity_m": 1.5007243330575293,
+    "underemployment_rate": 0.0,
+    "unemployed_m": 2.0771075855270134,
+    "unemployment_rate": 0.08461641883351613,
+    "vacancies_m": 9.992007221626409e-16,
+    "working_age_m": 37.51810832643824
+  },
+  "resumed_hash": "0f89f15d88c63368"
+}

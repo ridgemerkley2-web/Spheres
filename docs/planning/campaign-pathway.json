@@ -96,7 +96,7 @@
       "id": "S02",
       "phase": "integration",
       "title": "Reconcile economy, population and fiscal ownership",
-      "status": "verification",
+      "status": "complete",
       "depends": [
         "S01"
       ],
@@ -106,7 +106,8 @@
         "Population, workforce and GDP contributions are applied once; existing balances are not reopened or charged twice.",
         "Map old project IDs and paid entitlements explicitly; publish before/after accounting fixtures."
       ],
-      "evidence": "../campaign-certification/S02/README.md"
+      "evidence": "../campaign-certification/S02/README.md",
+      "completed_date": "2026-09-10"
     },
     {
       "id": "S03",
@@ -769,6 +770,6 @@
     "instruction": "Okay lets begin development with s1",
     "scope_changes": []
   },
-  "last_completed_session": "S01",
-  "next_session": "S02"
+  "last_completed_session": "S02",
+  "next_session": "S03"
 }
