@@ -1,0 +1,15 @@
+{
+  "source_revision":"8b1ff717ae5c21d1b96d183fbd987164ed10b03b",
+  "fixture_sha256":"8df8f6e989b63772155e7fc8088f3003f3cb4f7be13795b792c6e985b827eb62",
+  "native_fixture_revision":"5d07fa4d5956ad168504086a00db327b085d3170",
+  "final_native_fixture_parity":"The final 8b1ff717 export matches every JSON field except the four intentionally fresh transport session IDs; both fixtures are retained.",
+  "url":"http://127.0.0.1:7841/artifacts/s03-companies-review/index.html",
+  "method":"CUA screenshot, rendered DOM, visible local filters and browser console",
+  "scope":"Recorded native paid-work fixture rendered with committed Companies JS/CSS. Synthetic starting plant/appropriation disclosed. No game executable, API or campaign writes; this does not qualify live campaign navigation.",
+  "desktop":"Three-column cards, readable fees and corporate ownership distinctions; 17 firms = 1 manufacturer + 16 specialists.",
+  "narrow":{"width":390,"height":844,"scroll_width":375,"search_width":345,"horizontal_overflow":false,"temporary_viewport_restored":true},
+  "interactions":["Manufacturer filter shows 1 of 17", "Construction filter shows 2 of 17", "Copperwind search shows 2 of 17", "Recorded assignment review states 7% fee within construction ceiling; confirmation disabled in static fixture"],
+  "console_errors":[],"console_warnings":[],
+  "correction":"Initial narrow search field was crushed beside the availability checkbox; committed responsive stacking and singular count labels verified after reload.",
+  "automation_notes":"AX pressed buttons were initially interpreted as checkboxes; DOM roles corrected the locator. One post-reload selector timed out before the subsequent visible DOM and search interaction succeeded. Neither produced a page console error."
+}

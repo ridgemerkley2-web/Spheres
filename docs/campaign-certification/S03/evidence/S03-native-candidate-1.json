@@ -1,0 +1,12 @@
+{
+  "command": "cargo test --locked --release --workspace --no-fail-fast",
+  "revision_before": "5d07fa4d5956ad168504086a00db327b085d3170",
+  "clean_before": true,
+  "started_utc": "2026-09-11T04:02:17.5935100Z",
+  "finished_utc": "2026-09-11T04:11:21.0006702Z",
+  "exit_code": 101,
+  "revision_after": "5d07fa4d5956ad168504086a00db327b085d3170",
+  "clean_after": true,
+  "web_test_binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+  "web_test_binary_sha256": "c144b3a4a9bf6ef23dac57681a94f3c48faa18609548b584c319293227318772"
+}

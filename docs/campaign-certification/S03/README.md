@@ -1,6 +1,6 @@
 # S03 — Companies and procurement integration
 
-Status: in progress. Input: `cd9eb8f18579a9c37fd10b1d4ba86b0d50b2a03a` on `codex/campaign-certification`. This session follows the [S01 property contract](../S01/COMPANY_AND_SAVE_CONTRACT.md) and [completed S02 economy](../S02/README.md). The original active playset remains unchanged until S05.
+Status: complete for the S03 integration scope. Input: `cd9eb8f18579a9c37fd10b1d4ba86b0d50b2a03a` on `codex/campaign-certification`. This session follows the [S01 property contract](../S01/COMPANY_AND_SAVE_CONTRACT.md) and [completed S02 economy](../S02/README.md). The original active playset remains unchanged until S05.
 
 ## Ownership contract
 
@@ -20,14 +20,14 @@ The existing `Company` orders and pre-open/post-close receivable settlement rema
 
 ## Acceptance and evidence
 
-- [ ] Reconcile the two company roles and render one directory with persistent identities.
-- [ ] Preserve company cash, held money, earned revenue, inventories and physical entitlements.
-- [ ] Connect prospective operating inputs without repricing existing property.
-- [ ] Preserve supplier/party/economy envelopes and supported contractor work across two loads and deterministic continuation.
-- [ ] Retain certification, incoming equipment/ammunition purchases and partial refit reservations.
-- [ ] Verify the combined public and supplier flows, UI and bounded performance; publish exact evidence and limitations.
+- [x] Reconcile the two company roles and render one directory with persistent identities.
+- [x] Preserve company cash, held money, earned revenue, inventories and physical entitlements.
+- [x] Connect prospective operating inputs without repricing existing property.
+- [x] Preserve supplier/party/economy envelopes and supported contractor work across two loads and deterministic continuation.
+- [x] Retain certification, incoming equipment/ammunition purchases and partial refit reservations.
+- [x] Verify the combined public and supplier flows, UI and bounded performance; publish exact evidence and limitations.
 
-No completed-test, release, active-playset or campaign-certification claim is made by this work-in-progress document.
+The integrated source is verified locally. Active-playset replacement, the S05 live-browser matrix, remote CI and campaign certification are separate gates.
 
 ## Current run boundary
 
@@ -52,3 +52,13 @@ The operating book explicitly records inherited program, vehicle-WIP and fixed
 refit identities. New work commissioned on the adoption date is distinguished
 by identity, not guessed from a date comparison. Cost bases include actual
 operating purchases; raw unit recipes remain separate from advanced components.
+
+## Verified result
+
+Runtime candidate `8b1ff717ae5c21d1b96d183fbd987164ed10b03b`: 1,377 native tests passed, 0 failed, 72 ignored. The full UI run passed 1,397 with one optional external advisor fixture skipped; 83 relevant checks passed again after the final responsive fix. See [manifest](manifest.json) and its hashed evidence files.
+
+The first full native run caught circular blocking between public refits and company leases after a capacity reduction. Public dated dispatch now retains priority; supplier scheduling yields once and new starts still count both reservations. The other failed case lacked the political-institutions prerequisite in its new fixture. Both corrected cases pass in the final full run.
+
+All six copied lifetime cases met the frozen latency and memory limits. This is 186 bounded legacy-workload days after explicit company/economy adoption, not a full supplier-heavy or 2035 campaign. The Companies fixture passed local search, role/sector filters, reviewed-fee display and 390px layout with no console errors. Campaign-changing controls were disabled in that static review; no live server was launched. All eight protected campaign/archive hashes remain unchanged.
+
+The first timing run exceeded the late busy p95 bars (307.1ms simulation / 432.0ms whole turn). A same-binary economy-only control measured 374.5ms whole-turn p95; the subsequent company-enabled run measured 391.9ms. No code or targets changed between these runs. The substantial shared-component timing variation is recorded rather than attributed to a specific system cause. Final headroom is narrow; S04 and S22 must remeasure it. All three runs are retained in evidence.

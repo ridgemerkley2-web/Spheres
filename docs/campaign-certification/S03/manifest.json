@@ -1,0 +1,196 @@
+{
+  "session": "S03",
+  "status": "complete",
+  "runtime_candidate_revision": "8b1ff717ae5c21d1b96d183fbd987164ed10b03b",
+  "integration_input": "cd9eb8f18579a9c37fd10b1d4ba86b0d50b2a03a",
+  "verified_utc": "2026-09-11T04:29:05.119503+00:00",
+  "native": {
+    "passed": 1377,
+    "failed": 0,
+    "ignored": 72
+  },
+  "ui": {
+    "passed": 1397,
+    "failed": 0,
+    "skipped": 1,
+    "final_source_followup_passed": 83
+  },
+  "performance": [
+    {
+      "scenario": "idle_human",
+      "checkpoint_years": 0,
+      "simulation_p95_ms": 36.2501,
+      "whole_p95_ms": 109.8237,
+      "whole_max_ms": 117.0954
+    },
+    {
+      "scenario": "idle_human",
+      "checkpoint_years": 10,
+      "simulation_p95_ms": 165.0771,
+      "whole_p95_ms": 261.4453,
+      "whole_max_ms": 304.3765
+    },
+    {
+      "scenario": "idle_human",
+      "checkpoint_years": 30,
+      "simulation_p95_ms": 240.9161,
+      "whole_p95_ms": 372.9515,
+      "whole_max_ms": 382.1609
+    },
+    {
+      "scenario": "industry_and_war",
+      "checkpoint_years": 0,
+      "simulation_p95_ms": 95.0192,
+      "whole_p95_ms": 180.8236,
+      "whole_max_ms": 370.2925
+    },
+    {
+      "scenario": "industry_and_war",
+      "checkpoint_years": 10,
+      "simulation_p95_ms": 257.2022,
+      "whole_p95_ms": 380.2935,
+      "whole_max_ms": 472.05740000000003
+    },
+    {
+      "scenario": "industry_and_war",
+      "checkpoint_years": 30,
+      "simulation_p95_ms": 253.16230000000002,
+      "whole_p95_ms": 391.9391,
+      "whole_max_ms": 505.9534
+    }
+  ],
+  "protected_campaigns_unchanged": 8,
+  "files": [
+    {
+      "path": "evidence/.gitattributes",
+      "sha256": "d63ee73e00c9734f0ed5446c050accab94bb949633d18ce2352ff778d45da0b2",
+      "bytes": 44
+    },
+    {
+      "path": "evidence/initial-latency-failure/memory-samples.csv",
+      "sha256": "83faa4fa7e68cd329ad15e7a748359b01f6dc680dc380437408692f39dbdc413",
+      "bytes": 18311
+    },
+    {
+      "path": "evidence/initial-latency-failure/profile.json",
+      "sha256": "e068bcb1180556c8046fb923d1108c3c577a2ca25650706ae142cf1088542df9",
+      "bytes": 57094
+    },
+    {
+      "path": "evidence/initial-latency-failure/runner-result.json",
+      "sha256": "418bdd0f236cd5da716f66bd3ada426144ba3df60eea81a8e1c8ea336b218a40",
+      "bytes": 3649
+    },
+    {
+      "path": "evidence/initial-latency-failure/stderr.log",
+      "sha256": "f3699ffabe0dbecdabdef33b305e0890e69b0e1fa42250a46c697f560f282278",
+      "bytes": 1084
+    },
+    {
+      "path": "evidence/initial-latency-failure/stdout.log",
+      "sha256": "3e9ce9b9f87a011cdba6091314c1d8e4ca1c97de2eaccfa66591b9798e48ddda",
+      "bytes": 166
+    },
+    {
+      "path": "evidence/lifetime/memory-samples.csv",
+      "sha256": "ae341763c79962b773774763097e08c3ed8d118851f592f9c2b19c9edab49cde",
+      "bytes": 17208
+    },
+    {
+      "path": "evidence/lifetime/profile.json",
+      "sha256": "3ee137eee5375f111631cc6e2b85f6b651f07a572fb4b9a27470476e8819dec4",
+      "bytes": 57059
+    },
+    {
+      "path": "evidence/lifetime/runner-result.json",
+      "sha256": "d1adc897d9acf423d677faacb652948600b8bf5b899fc5f5f7851bd543511387",
+      "bytes": 3640
+    },
+    {
+      "path": "evidence/lifetime/stderr.log",
+      "sha256": "0cad1e500345a0493d099923bd4a4777f3a43d2d4de9fd0164e5fd99a1a4d373",
+      "bytes": 1066
+    },
+    {
+      "path": "evidence/lifetime/stdout.log",
+      "sha256": "77ce2ab3bd14a9f4e4896b7b6cedc0676fc7ae56019d6e143bb9a1aa3e2b266f",
+      "bytes": 166
+    },
+    {
+      "path": "evidence/paired-economy-only-control/memory-samples.csv",
+      "sha256": "83bf6708400ea7fd722afe62ef458c224ebd81bee8f2b707102d450dcebb5081",
+      "bytes": 16950
+    },
+    {
+      "path": "evidence/paired-economy-only-control/profile.json",
+      "sha256": "13bb099aa1cf52d46a0659b004ef75d2d3b57fcbb4f3b6c60d147619efd01d25",
+      "bytes": 57071
+    },
+    {
+      "path": "evidence/paired-economy-only-control/runner-result.json",
+      "sha256": "57540b2443d6f607b9e3517f03c0f3522bc4a4bf2cdc2fbb6d17df4edbbef681",
+      "bytes": 3601
+    },
+    {
+      "path": "evidence/paired-economy-only-control/stderr.log",
+      "sha256": "66a906ab44c7a07482ce78eb92bf4acf1d0fd309d44562818235519aa7c35af5",
+      "bytes": 1078
+    },
+    {
+      "path": "evidence/paired-economy-only-control/stdout.log",
+      "sha256": "82df67ef9537c89ee4100370a7153514c94f844dcb6f2af8243aacd5354ec88d",
+      "bytes": 166
+    },
+    {
+      "path": "evidence/S03-browser-review.json",
+      "sha256": "80b174754350bc98ca4417aebb37a1344d6c92cbd221acfee31ecee25d7bb986",
+      "bytes": 1779
+    },
+    {
+      "path": "evidence/S03-native-candidate-1.json",
+      "sha256": "8dcebf1a30b4fb3ef41f9506f99d85988fd383fa2b75b146771631e05782ae78",
+      "bytes": 678
+    },
+    {
+      "path": "evidence/S03-native-candidate-1.log",
+      "sha256": "4c117ec640afe8f6bd97089097f8220054ea498787db8ee56a5ad0c712e90277",
+      "bytes": 144732
+    },
+    {
+      "path": "evidence/S03-native-verified.json",
+      "sha256": "75deb08cedc79f73d1bb922a1d654ca1409c5e8523000c7b8d5bf4548f44743d",
+      "bytes": 676
+    },
+    {
+      "path": "evidence/S03-native-verified.log",
+      "sha256": "22b7076a565e16ed41464e30f23c88d41cde9c92f473c47dc658ed6c67a86df7",
+      "bytes": 143207
+    },
+    {
+      "path": "evidence/S03-reviewed-ui-fixture.json",
+      "sha256": "8df8f6e989b63772155e7fc8088f3003f3cb4f7be13795b792c6e985b827eb62",
+      "bytes": 78497
+    },
+    {
+      "path": "evidence/S03-ui-candidate-1.log",
+      "sha256": "153b62273372c1c23125a0dcb4fa62f778f6072141016a6b4ad1f4616ea9c69a",
+      "bytes": 139939
+    },
+    {
+      "path": "evidence/S03-ui-fixture.json",
+      "sha256": "2c8d759de38a49b3531c3b2906665192d7687a81e81bf89558ad94911c90672c",
+      "bytes": 78493
+    },
+    {
+      "path": "evidence/S03-ui-followup.log",
+      "sha256": "3b16c5924d3693e85e30c6ed18d2ec7f6755c55faa1bf71e61f1aa80d4d51966",
+      "bytes": 8555
+    }
+  ],
+  "limits": [
+    "Native paid Companies fixture reviewed in static browser; live integrated executable/browser qualification remains S05.",
+    "Lifetime sample: six copied legacy cases, 31 days each; no feature-rich supplier or 2035 performance claim.",
+    "One optional external advisor fixture skipped; 72 native diagnostics not part of default suite.",
+    "GitHub publication is separately verified; a local commit is not a push."
+  ]
+}
