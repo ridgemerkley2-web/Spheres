@@ -420,6 +420,29 @@ test('mount opens a paused tutorial and routes only after an explicit lesson cli
   assert.equal(ui.session.state().progress.started, true);
 });
 
+test('hosts can suppress the floating launcher without disabling guidance or tutorial return progress', () => {
+  for (const launcher of [undefined, false]) {
+    const f = fixture(); const document = dialogDocument(); let pauses = 0;
+    const ui = Guidance.mount({...f.adapter, document, launcher, pause() { pauses++; }});
+    const button = document.body.children.find(node => node.id === 'guidanceLauncher');
+    assert(button);
+    ui.changed(); assert.equal(button.hidden, launcher === false);
+    ui.open('tutorial');
+    const box = document.body.children.find(node => node.tagName === 'DIALOG');
+    assert.equal(box.open, true); assert.equal(pauses, 1);
+    box.dispatch('click', {target: box.querySelector('[data-guidance-open-lesson]')});
+    assert.equal(box.open, false); assert.deepEqual(f.navigation, [{kind: 'home'}]);
+    assert.equal(ui.session.state().progress.started, true);
+    assert.match(button.textContent, /Tutorial/);
+    assert.equal(button.hidden, launcher === false, 'following a lesson must retain the host visibility choice');
+    f.available = false; ui.changed(); assert.equal(button.hidden, true);
+    f.available = true; ui.changed(); assert.equal(button.hidden, launcher === false);
+    ui.open('tutorial'); assert.equal(box.open, true, 'the host entry point still reopens the saved lesson');
+    assert.equal(ui.session.state().progress.started, true);
+    assert.deepEqual(f.navigation, [{kind: 'home'}], 'reopening guidance issues no extra order');
+  }
+});
+
 test('refresh and hiding the focused last card retain enabled focus inside the guidance dialog', async () => {
   const f = fixture(); const document = dialogDocument();
   const ui = Guidance.mount({...f.adapter, document, pause() {}});

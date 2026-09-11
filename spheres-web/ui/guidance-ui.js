@@ -109,7 +109,10 @@
     const launcher=doc.createElement('button');launcher.type='button';launcher.id='guidanceLauncher';launcher.className='guidance-launcher';launcher.hidden=true;
     launcher.onclick=()=>open(returnToTutorial?'tutorial':'advisors');doc.body.append(launcher);
     function updateLauncher(){
-      const m=session.state(),l=lessonFor(m.progress);launcher.hidden=!adapter.canNavigate();
+      const m=session.state(),l=lessonFor(m.progress);
+      // Hosts with their own guidance navigation can omit the floating entry.
+      // Standalone hosts retain it, including the return-to-tutorial shortcut.
+      launcher.hidden=adapter.launcher===false||!adapter.canNavigate();
       launcher.textContent=returnToTutorial&&l?`↖ Tutorial · ${Tutorial.lessons.indexOf(l)+1}/${Tutorial.lessons.length}`:'✦ Guidance · F1';
       launcher.setAttribute('aria-label',returnToTutorial&&l?`Return to tutorial: ${l.title}`:'Open tutorial and advisors');
     }

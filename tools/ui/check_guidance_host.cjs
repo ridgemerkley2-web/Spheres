@@ -25,6 +25,22 @@ const reviewNames = ['homeNation', 'openConstructionCabinet', 'openConstruction'
 const forbiddenNames = ['api', 'advance', 'advanceDay', 'clockPlay', 'clockPause', 'clockToggle', 'clockStep',
   'clockSpeed', 'clockSetSpeed', 'saveGame', 'saveCampaign', 'saveNamedCampaign', 'cabinetEnact',
   'equipmentCommand', 'constructionStart', 'sendCommand'];
+
+test('campaign mount uses its standard guidance navigation and suppresses the redundant floating launcher', () => {
+  const start = page.indexOf('const GUIDANCE = GuidanceUI.mount({'); assert(start >= 0);
+  const end = page.indexOf('\n});', start); assert(end > start);
+  let adapter;
+  const c = vm.createContext({GuidanceUI: {mount(value) {adapter = value;}},
+    guidanceBusy() {}, guidanceNavigate() {}, localStorage: {}, S: null,
+    gameIsUp: () => true, clockPause() {throw Error('mount must not change time');}});
+  run(c, page.slice(start, end + 4));
+  assert.equal(adapter.launcher, false);
+  assert.equal(adapter.canNavigate(), true, 'normal campaign navigation remains available');
+  const nav = /<nav class="decision-nav" aria-label="Map assistance">([\s\S]*?)<\/nav>/.exec(page)?.[1];
+  assert(nav, 'the campaign must supply its own visible guidance entry points');
+  assert.match(nav, /onclick="openGuidance\('advisors'\)"[^>]*>Advisors<\/button>/);
+  assert.match(nav, /onclick="openGuidance\('tutorial'\)"[^>]*>Tutorial<\/button>/);
+});
 function hostFixture() {
   const calls = [], flags = {externalPending: false, domination: true, keys: true};
   const c = vm.createContext({flags, S: {player: 'Japan', session_id: 'safe-session', date: '1990-01-01'},

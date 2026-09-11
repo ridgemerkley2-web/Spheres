@@ -18651,6 +18651,7 @@ function guidanceNavigate(action) {
   return true;
 }
 const GUIDANCE = GuidanceUI.mount({
+  launcher:false, // Campaign navigation provides Advisors, Tutorial and F1 without covering room controls.
   getState:()=>S, canNavigate:()=>gameIsUp(), pause:()=>clockPause(), busy:guidanceBusy,
   supports:kind=>GUIDANCE_ROUTES.has(kind), navigate:guidanceNavigate,
   readSnapshot:state=>api("/api/guidance?session_id="+encodeURIComponent(state.session_id)),

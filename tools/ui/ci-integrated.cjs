@@ -1,7 +1,7 @@
 // Helpers for the disposable binary/browser CI lane. No mocked campaign data.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),cp=require('node:child_process');
 const hash=value=>crypto.createHash('sha256').update(value).digest('hex');
-const ASSETS=['index.html','campaign-transport.js','campaign-ui.js','fiscal-recovery-ui.js','cash-flow-ui.js','companies-ui.js','companies.css','government-ui.js','government-ui.css','campaign-operations-ui.js','campaign-operations-ui.css','map-controls.js','map-controls.css','guidance-ui.css','globe3d.js','city-layer.js','city-mesh.js','water-detail.js','equipment-mesh.js'];
+const ASSETS=['index.html','campaign-transport.js','campaign-ui.js','fiscal-recovery-ui.js','cash-flow-ui.js','companies-ui.js','companies.css','government-ui.js','government-ui.css','campaign-operations-ui.js','campaign-operations-ui.css','map-controls.js','map-controls.css','guidance-ui.js','guidance-ui.css','globe3d.js','city-layer.js','city-mesh.js','water-detail.js','equipment-mesh.js'];
 function git(root,args){const r=cp.spawnSync('git',args,{cwd:root,windowsHide:true,maxBuffer:32*1024*1024});assert.equal(r.status,0,'Cannot verify committed source: '+r.stderr);return r.stdout;}
 async function json(page,url,route){const response=await page.request.get(url+route);assert(response.ok(),route+' returned '+response.status());return response.json();}
 async function verifyBuild({page,url,root,run,binary}){
@@ -48,21 +48,34 @@ async function archive(page,url,run,slot){
   const value=JSON.parse(fs.readFileSync(path.join(run,'saves',slot+'.json'),'utf8'));
   delete value.saved_unix;return value;
 }
-async function guidanceClearsDock(page){
-  await page.locator('#guidanceLauncher').waitFor({state:'visible'});
-  // Allow the actual ResizeObserver to settle after changing viewport/rooms.
-  // Never move or hide the launcher, force a click, or invoke a layout helper.
-  await page.waitForFunction(()=>{
-    const launcher=document.getElementById('guidanceLauncher').getBoundingClientRect();
-    const dock=document.getElementById('commandDock').getBoundingClientRect();
-    return launcher.height>0&&dock.height>0&&launcher.bottom<=dock.top-8;
-  },null,{timeout:5000});
-  return page.evaluate(()=>{
-    const launcher=document.getElementById('guidanceLauncher').getBoundingClientRect();
-    const dock=document.getElementById('commandDock').getBoundingClientRect();
-    return {launcher_bottom:launcher.bottom,dock_top:dock.top,gap_px:dock.top-launcher.bottom,
-      measured_clearance:getComputedStyle(document.documentElement).getPropertyValue('--command-dock-clearance').trim()};
-  });
+async function campaignGuidance(page){
+  const nav=page.locator('.decision-nav');
+  for(const name of ['Advisors','Tutorial']){
+    const button=nav.getByRole('button',{name,exact:true});
+    assert(await button.isVisible()&&await button.isEnabled(),name+' must remain an accessible campaign entry point');
+  }
+  assert(await page.locator('#guidanceLauncher').isHidden(),'Campaign navigation replaces the redundant floating launcher');
+  const adviceResponse=page.waitForResponse(response=>new URL(response.url()).pathname==='/api/guidance'&&response.request().method()==='GET');
+  await nav.getByRole('button',{name:'Advisors',exact:true}).click();
+  await page.locator('#guidanceDialog').getByRole('heading',{name:'What needs your attention?',exact:true}).waitFor();
+  assert((await adviceResponse).ok(),'Standard Advisors must load its current native campaign reading');
+  await page.locator('#guidanceDialog .guidance-cards[aria-busy="false"]').waitFor();
+  await page.getByRole('button',{name:'Close tutorial and advisors',exact:true}).click();
+  await page.keyboard.press('F1');
+  await page.locator('#guidanceDialog').getByRole('heading',{name:'Your first steps in Spheres',exact:true}).waitFor();
+  await page.getByRole('button',{name:'Close tutorial and advisors',exact:true}).click();
+  await nav.getByRole('button',{name:'Tutorial',exact:true}).click();
+  await page.locator('#guidanceDialog').getByRole('heading',{name:'Your first steps in Spheres',exact:true}).waitFor();
+  await page.getByRole('button',{name:'Close tutorial and advisors',exact:true}).click();
+  // Reproduce the actual obstructed city action using its ordinary UI path.
+  await nav.getByRole('button',{name:'Find',exact:true}).click();
+  await page.locator('#worldFindInput').fill('Paris');
+  await page.locator('[data-find-kind="city"]').filter({has:page.getByText('Paris',{exact:true})}).click();
+  await page.locator('#mapCityCard').waitFor({state:'visible'});
+  await page.getByRole('button',{name:'Close city',exact:true}).click();
+  assert(await page.locator('#mapCityCard').isHidden(),'Natural Close city click must close the city card');
+  assert(await page.locator('#guidanceDialog').isHidden(),'Close city must not open Guidance');
+  return {standard_advisors:true,standard_tutorial:true,f1:true,floating_launcher:false,natural_city_close:true};
 }
 async function panels({page,url,run,out,player}){
   await page.evaluate(()=>clockPause());
@@ -100,7 +113,7 @@ async function panels({page,url,run,out,player}){
     await page.locator('#govReview [aria-label="Close decision review"]').click();await page.locator('#govReview').waitFor({state:'hidden'});
     await page.locator('#govScreen .tbar .x').click();
 
-    const guidanceDock=await guidanceClearsDock(page);
+    const guidanceEntries=await campaignGuidance(page);
     await page.locator('#productionDockBtn').click();await page.locator('#productionPanel [data-prod-new]').waitFor({state:'visible'});
     await page.locator('#productionPanel [data-prod-new]').click();
     await page.locator('[data-prod-kind="'+kind+'"]').click();
@@ -130,7 +143,7 @@ async function panels({page,url,run,out,player}){
     if(size.width===390)assert((await page.locator('#company-search').boundingBox()).width>=200,'Mobile search must retain usable width');
     await page.screenshot({path:path.join(out,'companies-'+size.name+'.png')});
     await page.locator('#cabinetDrawer [data-close-drawers]').click();
-    views.push({viewport:size.name,width:size.width,height:size.height,guidance_dock:guidanceDock,government:true,government_review_cancel:{action:governmentAction,price_pc:governmentPreview.price_pc},construction_preview:{kind,province,cost_bn:preview.cost_bn},company_rows:expected.length,filtering:true});
+    views.push({viewport:size.name,width:size.width,height:size.height,guidance_entries:guidanceEntries,government:true,government_review_cancel:{action:governmentAction,price_pc:governmentPreview.price_pc},construction_preview:{kind,province,cost_bn:preview.cost_bn},company_rows:expected.length,filtering:true});
   }
   await page.setViewportSize({width:1440,height:1000});
   const draftsBefore=await page.evaluate(()=>JSON.parse(JSON.stringify({queued,pendingAdvance,command:COMMAND_CHANNEL.pending})));
