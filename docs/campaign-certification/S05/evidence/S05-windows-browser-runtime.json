@@ -1,0 +1,16 @@
+{
+  "captured_utc": "2026-09-11T06:35:06.9400003Z",
+  "platform": "Windows",
+  "os": "Microsoft Windows 11 Home",
+  "os_version": "10.0.26200",
+  "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor           ",
+  "logical_processors": 16.0,
+  "browser_channel": "chrome",
+  "browser_path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+  "browser_product_version": "152.0.7977.83",
+  "node": "v24.12.0",
+  "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18)",
+  "cargo": "cargo 1.98.0 (797e8a9bc 2026-08-05)",
+  "wrapper_sha256": "68815cca04aa2c20cec67e8d719641695e9b93ea94121b28aa7517c88f211758",
+  "scope": "Final browser used installed Chrome through the documented Playwright channel option. The committed CI assertions were unchanged by the wrapper. Bundled headless-shell launch failed because its expected executable was absent, even after a completed reinstall; cause unestablished. Local evidence, not hosted CI."
+}

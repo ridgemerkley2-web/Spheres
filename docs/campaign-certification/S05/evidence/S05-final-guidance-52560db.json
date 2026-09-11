@@ -1,0 +1,15 @@
+{
+  "revision_before": "52560dba660c17f06c6cfab7bbdb1212a3a9e432",
+  "clean_before": true,
+  "command": [
+    "node",
+    "--test",
+    "tools/ui/check_guidance_ui.cjs",
+    "tools/ui/check_guidance_host.cjs"
+  ],
+  "started_utc": "2026-09-11T05:56:03.290087+00:00",
+  "exit_code": 0,
+  "finished_utc": "2026-09-11T05:56:03.485142+00:00",
+  "revision_after": "52560dba660c17f06c6cfab7bbdb1212a3a9e432",
+  "clean_after": true
+}

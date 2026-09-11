@@ -1,0 +1,60 @@
+{
+  "candidate": "8c9159786d3736a9953706262a52c50898225f0e",
+  "status": "native, Node and active saves passed; one external master comparator failure retained",
+  "native": {
+    "passed": 1475,
+    "failed": 0,
+    "ignored": 75,
+    "completed_targets": 60
+  },
+  "node": {
+    "tests": 1460,
+    "pass": 1459,
+    "fail": 0,
+    "skipped": 1
+  },
+  "external_checks": [
+    {
+      "name": "master-archive",
+      "exit_code": 101
+    },
+    {
+      "name": "active-fixtures",
+      "exit_code": 0
+    },
+    {
+      "name": "party-versions",
+      "exit_code": 0
+    }
+  ],
+  "original_active_rows": 28,
+  "party_equipment_versions": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "web_test_binary": {
+    "path": "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-0c882886cd9a3582",
+    "bytes": 341923464,
+    "sha256": "98ede88fde599d12533e5384adbef331be83616dddc07a468f13df46f46cf870",
+    "sha256_after": "98ede88fde599d12533e5384adbef331be83616dddc07a468f13df46f46cf870"
+  },
+  "source_clean_before_and_after": true,
+  "fixtures_unchanged": true,
+  "known_failures": [
+    {
+      "test": "actual_pinned_master_archive_preserves_property_history_and_next_day",
+      "scope": "external master archive exact property comparison",
+      "path": "conflicts[0].front.KW-JA",
+      "before_json": -0.22152066,
+      "after_to_value": -0.22152066230773926,
+      "diagnosis": "Conflict.front is stored as f32, while serde_json::to_value promotes it into Value f64. Parent is preparing exact serialized-wire comparison plus f32 bit preservation checks. This run itself retains the failure; no tolerance or source change was applied."
+    }
+  ],
+  "limits": [
+    "Local WSL GNU/Linux evidence; no Linux server/browser or GitHub Actions run.",
+    "Process-only translated GIT_DIR/GIT_WORK_TREE and core.autocrlf=true match the existing Windows checkout without editing source or Git configuration files.",
+    "No game source changes were made by this runner. Root was notified that the final source snapshot completed before applying fixes."
+  ]
+}

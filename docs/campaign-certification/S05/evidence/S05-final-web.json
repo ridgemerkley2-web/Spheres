@@ -1,0 +1,21 @@
+{
+  "revision_before": "261897909e12564275b802f99e3301adbfad61b2",
+  "clean_before": true,
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-web",
+    "--no-fail-fast"
+  ],
+  "started_utc": "2026-09-11T05:42:16.566555+00:00",
+  "exit_code": 0,
+  "finished_utc": "2026-09-11T05:45:09.902152+00:00",
+  "revision_after": "261897909e12564275b802f99e3301adbfad61b2",
+  "clean_after": true,
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+  "binary_sha256": "17a07e07303054817b4bc04cdac0297fd75ea4f89281fc1c05abe3f56bd8d6b0",
+  "metadata_correction": "Concurrent release build made newest-executable selection ambiguous. Correct identity below is the test executable named in the Cargo test log; initial metadata retained separately."
+}

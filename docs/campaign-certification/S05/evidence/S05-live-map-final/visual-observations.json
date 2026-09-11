@@ -1,0 +1,59 @@
+{
+  "candidate": "261897909e12564275b802f99e3301adbfad61b2",
+  "binary_sha256": "6a3276b53f83b485b770a5632bd18134f0109574d72e3b3e06593a053151e44f",
+  "method": "Actual in-app browser, visible controls, native campaign loading/saving, screenshot inspection and rendered district cards; screenshots emitted inline in the task, no local screenshot artifact claimed.",
+  "viewport_observed": [
+    1280,
+    720
+  ],
+  "france_save_date": "1990-03-22",
+  "checks": [
+    {
+      "site": "Paris",
+      "zoom": 1500,
+      "result": "Visible narrow Seine corridor clear of generated buildings; ground pick identifies Ile-de-France / FRA_le-de-france."
+    },
+    {
+      "site": "Singapore",
+      "zoom": 1500,
+      "result": "Generated city stops at visible dark ocean coast; dry buildings retained; pick opens Singapore national dossier."
+    },
+    {
+      "site": "Kathmandu",
+      "zoom": [
+        128,
+        1500
+      ],
+      "result": "Peaks and valley visible, camera above terrain; ground pick identifies Bagmati / NP-BA."
+    },
+    {
+      "site": "Chicago",
+      "zoom": [
+        247.8,
+        1500
+      ],
+      "result": "Lake Michigan edge visible, city on land side; ground pick identifies Illinois / US-IL."
+    },
+    {
+      "site": "World",
+      "zoom": 1,
+      "result": "World overview remains available."
+    },
+    {
+      "site": "Ljubljana",
+      "date": "2000-02-01",
+      "zoom": [
+        128,
+        1500
+      ],
+      "result": "Untouched original legacy successor checkpoint loaded through confirmed saved-campaign UI; Slovenia alive with 12 districts; city and ground visible; ground pick identifies Osrednjeslovenska / SVN_osrednjeslovenska / Slovenia. Saved native slot successor-reviewed."
+    }
+  ],
+  "failed_check": "Raised floating Guidance launcher clears dock but overlaps natural Close city target. This candidate is not the final layout. Campaign launcher removed in 52560db; existing Advisors/Tutorial/F1 retained.",
+  "limits": [
+    "Procedural city blocks, not surveyed buildings. DEM sampling resolution unchanged (about 1855 metres).",
+    "Geneva has no authored Lake Geneva coverage: retained gap owned by later map/content work, not recorded as a lake pass.",
+    "Namibia and East Timor lack authored activation sites; no invented activation claim. Existing modeled Slovenia successor used for reload and picking.",
+    "Portrait/history accuracy in this legacy campaign is not certified by this map check."
+  ]
+}

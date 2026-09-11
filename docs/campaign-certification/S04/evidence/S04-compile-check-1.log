@@ -1,0 +1,18 @@
+   Compiling spheres-web v0.6.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-web)
+    Checking spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Checking spheres-cli v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-cli)
+warning: unused `Result` that must be used
+  --> spheres-sim\tests\campaign_population.rs:29:5
+   |
+29 |     population::enable(&mut w);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: this `Result` may be an `Err` variant, which should be handled
+   = note: `#[warn(unused_must_use)]` (part of `#[warn(unused)]`) on by default
+help: use `let _ = ...` to ignore the resulting value
+   |
+29 |     let _ = population::enable(&mut w);
+   |     +++++++
+
+warning: `spheres-sim` (test "campaign_population") generated 1 warning
+    Finished `release` profile [optimized] target(s) in 23.70s

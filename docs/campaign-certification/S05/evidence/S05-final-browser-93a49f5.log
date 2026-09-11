@@ -1,0 +1,14 @@
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 's05-preview-after'
+- 'ci-smoke'
+
+    at C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-browser.cjs:81:62 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 's05-preview-after',
+  expected: 'ci-smoke',
+  operator: 'strictEqual',
+  diff: 'simple'
+}

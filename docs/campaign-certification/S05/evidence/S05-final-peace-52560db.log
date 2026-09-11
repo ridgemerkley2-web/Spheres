@@ -1,0 +1,77 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+error[E0308]: mismatched types
+  --> spheres-sim\tests\s04_peace_boundaries.rs:67:5
+   |
+65 | fn propose(w: &mut WorldState, n: N, terms: Terms) -> u32 {
+   |                                                       --- expected `u32` because of return type
+66 |     order(w, n, PeaceOrder::Propose { conflict: 1, terms }).unwrap();
+67 |     w.campaign_peace.offers.last().unwrap().id
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `u64`
+   |
+help: you can convert a `u64` to a `u32` and panic if the converted value doesn't fit
+   |
+67 |     w.campaign_peace.offers.last().unwrap().id.try_into().unwrap()
+   |                                               ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> spheres-sim\tests\s04_peace_boundaries.rs:74:13
+   |
+74 |             offer,
+   |             ^^^^^ expected `u64`, found `u32`
+   |
+help: you can convert a `u32` to a `u64`
+   |
+74 |             offer: offer.into(),
+   |             ++++++      +++++++
+
+error[E0308]: mismatched types
+   --> spheres-sim\tests\s04_peace_boundaries.rs:115:39
+    |
+115 |             .filter(|r| r.offer.id == offer && r.outcome == "accepted")
+    |                                       ^^^^^ expected `u64`, found `u32`
+
+error[E0277]: can't compare `u64` with `u32`
+   --> spheres-sim\tests\s04_peace_boundaries.rs:115:36
+    |
+115 |             .filter(|r| r.offer.id == offer && r.outcome == "accepted")
+    |                                    ^^ no implementation for `u64 == u32`
+    |
+    = help: the trait `PartialEq<u32>` is not implemented for `u64`
+help: `u64` implements trait `PartialEq<Rhs>`
+   --> /rustc/88d9e12ae178fab0fb5cc050a94da85685d449ea/library\core\src\cmp.rs:1876:12
+    |
+    = note: `PartialEq`
+   ::: /rustc/88d9e12ae178fab0fb5cc050a94da85685d449ea/library\core\src\cmp.rs:1900:5
+    |
+    = note: in this macro invocation
+    |
+   ::: C:\Users\ridge\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_json-1.0.151\src\value\partial_eq.rs:76:13
+    |
+ 76 |               impl PartialEq<Value> for $ty {
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `PartialEq<Value>`
+...
+ 97 | / partialeq_numeric! {
+ 98 | |     eq_i64[i8 i16 i32 i64 isize]
+ 99 | |     eq_u64[u8 u16 u32 u64 usize]
+100 | |     eq_f32[f32]
+101 | |     eq_f64[f64]
+102 | |     eq_bool[bool]
+103 | | }
+    | |_- in this macro invocation
+    = note: this error originates in the macro `partial_eq_impl` which comes from the expansion of the macro `partialeq_numeric` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0616]: field `districts_epoch` of struct `WorldState` is private
+   --> spheres-sim\tests\s04_peace_boundaries.rs:216:19
+    |
+216 |     let epoch = w.districts_epoch;
+    |                   ^^^^^^^^^^^^^^^ private field
+
+error[E0616]: field `districts_epoch` of struct `WorldState` is private
+   --> spheres-sim\tests\s04_peace_boundaries.rs:222:26
+    |
+222 |         assert_eq!(state.districts_epoch, epoch + 1);
+    |                          ^^^^^^^^^^^^^^^ private field
+
+Some errors have detailed explanations: E0277, E0308, E0616.
+For more information about an error, try `rustc --explain E0277`.
+error: could not compile `spheres-sim` (test "s04_peace_boundaries") due to 6 previous errors

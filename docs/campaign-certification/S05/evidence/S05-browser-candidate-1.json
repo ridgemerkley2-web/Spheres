@@ -1,0 +1,13 @@
+{
+  "candidate": "99802fc590a12427772824902fdaaafdd0e91e55",
+  "captured_utc": "2026-09-11T05:09:40.399237+00:00",
+  "platform": "Windows",
+  "command": "node tools/ui/ci-browser.cjs",
+  "exit_code": 1,
+  "binary_sha256": "6a1de97970bf37bf04c79605f27519aa309e782e853363d253d6248d6791f9de",
+  "log": "S05-browser-candidate-1.log",
+  "log_sha256": "40907b0a6e340b4ec8f8a85b39e0f016bc0ceb0f265408406683270c0861cdc2",
+  "disposable_server_log": "SPHERES is running at http://127.0.0.1:54318\nPress Ctrl-C to stop the server.\n",
+  "observed_failure": "Saves Back button became hidden after bootSession unconditionally returned menu to home. Existing script reached this action after build/asset checks, but did not persist their returned metadata. No complete browser qualification claim.",
+  "policy_disposition": "This renewed S05 disposable compiled-server CI command was permitted and ran. Earlier refused preview attempts were not retried via alternate launch to bypass a current rejection."
+}

@@ -1,0 +1,27 @@
+{
+  "candidate": "99802fc590a12427772824902fdaaafdd0e91e55",
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+  "binary_sha256": "626d1c39c0686191c89e18eeeae3893793d5e70b3d86e8a9026be929dea29c6c",
+  "started_utc": "2026-09-11T04:59:12.457486+00:00",
+  "checks": [
+    {
+      "test": "s05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day",
+      "exit_code": 101,
+      "log": "1.log"
+    },
+    {
+      "test": "s05_active_fixture_tests::original_active_company_stages_preserve_property_across_load_and_explicit_adoption",
+      "exit_code": 0,
+      "log": "2.log"
+    },
+    {
+      "test": "s05_save_matrix_tests::standalone_party_v1_preserves_real_supplier_books_for_equipment_versions_2_through_5",
+      "exit_code": 101,
+      "log": "3.log"
+    }
+  ],
+  "binary_unchanged": true,
+  "finished_utc": "2026-09-11T04:59:53.248433+00:00",
+  "candidate_after": "99802fc590a12427772824902fdaaafdd0e91e55",
+  "clean_after": true
+}

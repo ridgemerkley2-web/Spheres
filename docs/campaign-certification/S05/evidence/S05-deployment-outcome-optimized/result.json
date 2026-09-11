@@ -1,0 +1,895 @@
+{
+  "protocol": "s05-deployment-outcome-v1",
+  "passed": true,
+  "comparison_passed": true,
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+  "binary_sha256": "b641b6e96baa98c095fcdb239ff868ecbc5bbef2246a722d5387f0a9ffd324f3",
+  "revision": "db9d17c8d726aa102aa143ceb3599009c558ffee",
+  "runner_sha256": "21e2ed538058132b6998438f5d38b429290363d7571e8965123a196eec9e5749",
+  "node_version": "v24.12.0",
+  "source_archive": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-pinned-master\\profile-campaigns\\saves\\profile-industry_and_war-0.json",
+  "source_archive_sha256": "5fba07caf82335609aab312f14a37f775dcac84e4821bddc36ab63a5bf795463",
+  "baseline": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S05-deployment-outcome-preopt",
+  "output": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S05-deployment-outcome-optimized",
+  "started_utc": "2026-09-11T06:20:39.122Z",
+  "finished_utc": "2026-09-11T06:20:55.437Z",
+  "server_pid": 27304,
+  "server_port": 54103,
+  "stopped_own_server": true,
+  "launch_arguments": [
+    "--no-open",
+    "--port",
+    "54103"
+  ],
+  "sanitized_environment_keys": [],
+  "checkpoint_days": [
+    0,
+    1,
+    15,
+    31
+  ],
+  "checkpoints": [
+    {
+      "label": "day00",
+      "elapsed_days": 0,
+      "date": {
+        "year": 1990,
+        "month": 2,
+        "day": 1
+      },
+      "saved_date": "1 Feb 1990",
+      "archive": "saves\\outcome-day00.json",
+      "archive_sha256": "07efac52149164d4d4fd96ce716744d286a14f0d898d3a0300124979ca445613",
+      "canonical_archive": "day00.canonical.json",
+      "canonical_sha256": "f4079c5373f558124b76013260bb23f9b672cda5eb6e87a754d652389e6a0812",
+      "canonical_world_sha256": "988800dcf70f5d49e7b767c2618bef590100f28dd44cb1d3b63260507ae44857",
+      "history_sha256": "99dc196cffd78b1b813f3500b9ed3469dc8ac3826ef8bd3d205e6f9bd8c201ed",
+      "log_sha256": "4e9fca55aae3b27f692d2bfb73874717b1af0f5595c07132a939f0d228e91f16",
+      "rng_state": "8741119043410840586",
+      "history_count": 32,
+      "log_count": 169,
+      "actual_rules": {
+        "ai_aggression": 1,
+        "crisis_intensity": 1,
+        "daily_simulation": true,
+        "economic_competition": true,
+        "fiscal_recovery": true,
+        "ideology_blocs": true,
+        "industry_rebuild": true,
+        "logistics_routes": true,
+        "manufacturing_system": true,
+        "military_operations": true,
+        "operational_warfare": 1,
+        "physical_logistics": true,
+        "production_system": true,
+        "resource_market": true,
+        "seed": 1990
+      },
+      "workload": {
+        "conflicts": 1,
+        "sectors": 4,
+        "transfers": 43,
+        "service_buffers": 4,
+        "service_cargo": 11
+      }
+    },
+    {
+      "label": "day01",
+      "elapsed_days": 1,
+      "date": {
+        "year": 1990,
+        "month": 2,
+        "day": 2
+      },
+      "saved_date": "2 Feb 1990",
+      "archive": "saves\\outcome-day01.json",
+      "archive_sha256": "d08aa2b6992b2ac66ae1ea99666ce909980303c64843b813f1cf02560c533045",
+      "canonical_archive": "day01.canonical.json",
+      "canonical_sha256": "3d7076fe2b203e04979ba6efbb5cae97c14591e1701f4c406c4066fdd67c7ba0",
+      "canonical_world_sha256": "2f1f4dc319593746e982058ceb6658268232a752e1f69c139909feec06b14b5c",
+      "history_sha256": "949d972723085a892f466a4404f99f3a3daaa6ccefe227cd2174a6ff151bda4a",
+      "log_sha256": "8eca05b8298cb7ad5f286c76b2c964e3aba1516d0a0c297ceccef8558e500eaf",
+      "rng_state": "1894003519153256643",
+      "history_count": 33,
+      "log_count": 172,
+      "actual_rules": {
+        "ai_aggression": 1,
+        "crisis_intensity": 1,
+        "daily_simulation": true,
+        "economic_competition": true,
+        "fiscal_recovery": true,
+        "ideology_blocs": true,
+        "industry_rebuild": true,
+        "logistics_routes": true,
+        "manufacturing_system": true,
+        "military_operations": true,
+        "operational_warfare": 1,
+        "physical_logistics": true,
+        "production_system": true,
+        "resource_market": true,
+        "seed": 1990
+      },
+      "workload": {
+        "conflicts": 1,
+        "sectors": 4,
+        "transfers": 46,
+        "service_buffers": 4,
+        "service_cargo": 12
+      }
+    },
+    {
+      "label": "day15-before-reload",
+      "elapsed_days": 15,
+      "date": {
+        "year": 1990,
+        "month": 2,
+        "day": 16
+      },
+      "saved_date": "16 Feb 1990",
+      "archive": "saves\\outcome-day15-before-reload.json",
+      "archive_sha256": "e2bc38db5ae5678e32d39fb20a1224f2750862427db7d8406ed26819008c1d83",
+      "canonical_archive": "day15-before-reload.canonical.json",
+      "canonical_sha256": "dc93427388283f399ea2f6c2a5eefe70453978b2f0e781b2fa6879f650a179d7",
+      "canonical_world_sha256": "ebafd26b848e2440898cf4b2b68d39f6270a3c145a8310dd6cf5447e5bb8a65f",
+      "history_sha256": "5003848eec8dc26e7e09dfa04afa828917c8cd516c13b930529e136f62c0fb5e",
+      "log_sha256": "e48ba856a3e30b957fd6145a15c4275b207a980572b32dded66c60a26cefe223",
+      "rng_state": "13647561761577042667",
+      "history_count": 47,
+      "log_count": 174,
+      "actual_rules": {
+        "ai_aggression": 1,
+        "crisis_intensity": 1,
+        "daily_simulation": true,
+        "economic_competition": true,
+        "fiscal_recovery": true,
+        "ideology_blocs": true,
+        "industry_rebuild": true,
+        "logistics_routes": true,
+        "manufacturing_system": true,
+        "military_operations": true,
+        "operational_warfare": 1,
+        "physical_logistics": true,
+        "production_system": true,
+        "resource_market": true,
+        "seed": 1990
+      },
+      "workload": {
+        "conflicts": 1,
+        "sectors": 5,
+        "transfers": 46,
+        "service_buffers": 6,
+        "service_cargo": 27
+      }
+    },
+    {
+      "label": "day15-after-reload",
+      "elapsed_days": 15,
+      "date": {
+        "year": 1990,
+        "month": 2,
+        "day": 16
+      },
+      "saved_date": "16 Feb 1990",
+      "archive": "saves\\outcome-day15-after-reload.json",
+      "archive_sha256": "b68905b46a35b2de1e66655adc7a1d07cefccdbf5afd1042c0c4f7472bbb7bee",
+      "canonical_archive": "day15-after-reload.canonical.json",
+      "canonical_sha256": "dc93427388283f399ea2f6c2a5eefe70453978b2f0e781b2fa6879f650a179d7",
+      "canonical_world_sha256": "ebafd26b848e2440898cf4b2b68d39f6270a3c145a8310dd6cf5447e5bb8a65f",
+      "history_sha256": "5003848eec8dc26e7e09dfa04afa828917c8cd516c13b930529e136f62c0fb5e",
+      "log_sha256": "e48ba856a3e30b957fd6145a15c4275b207a980572b32dded66c60a26cefe223",
+      "rng_state": "13647561761577042667",
+      "history_count": 47,
+      "log_count": 174,
+      "actual_rules": {
+        "ai_aggression": 1,
+        "crisis_intensity": 1,
+        "daily_simulation": true,
+        "economic_competition": true,
+        "fiscal_recovery": true,
+        "ideology_blocs": true,
+        "industry_rebuild": true,
+        "logistics_routes": true,
+        "manufacturing_system": true,
+        "military_operations": true,
+        "operational_warfare": 1,
+        "physical_logistics": true,
+        "production_system": true,
+        "resource_market": true,
+        "seed": 1990
+      },
+      "workload": {
+        "conflicts": 1,
+        "sectors": 5,
+        "transfers": 46,
+        "service_buffers": 6,
+        "service_cargo": 27
+      }
+    },
+    {
+      "label": "day31",
+      "elapsed_days": 31,
+      "date": {
+        "year": 1990,
+        "month": 3,
+        "day": 4
+      },
+      "saved_date": "4 Mar 1990",
+      "archive": "saves\\outcome-day31.json",
+      "archive_sha256": "61f06e1fb8424ae26be956d9e48cfd2b80997af88ddb0f4bb8e074c315431b27",
+      "canonical_archive": "day31.canonical.json",
+      "canonical_sha256": "d99e40ad18bd39b9e0bb168f7a000ecaf89285d4aadffcd72e70594feb95b65a",
+      "canonical_world_sha256": "f325c6e5f1cf3118f04838ea39ed57a17cb0fe0addfbd2fcf84601455c4416a4",
+      "history_sha256": "be6c14fb0fd59cfb11cf3ed0be9139732951dfb9fa1b99ba8c7f9f3290790ce7",
+      "log_sha256": "eda9e093ce6116ccd20621b480adea818b7c43d2a93ec2300b7db83866c9fef2",
+      "rng_state": "4718148278708819658",
+      "history_count": 63,
+      "log_count": 181,
+      "actual_rules": {
+        "ai_aggression": 1,
+        "crisis_intensity": 1,
+        "daily_simulation": true,
+        "economic_competition": true,
+        "fiscal_recovery": true,
+        "ideology_blocs": true,
+        "industry_rebuild": true,
+        "logistics_routes": true,
+        "manufacturing_system": true,
+        "military_operations": true,
+        "operational_warfare": 1,
+        "physical_logistics": true,
+        "production_system": true,
+        "resource_market": true,
+        "seed": 1990
+      },
+      "workload": {
+        "conflicts": 1,
+        "sectors": 6,
+        "transfers": 47,
+        "service_buffers": 7,
+        "service_cargo": 44
+      }
+    }
+  ],
+  "requests": [
+    {
+      "route": "/api/state",
+      "payload": null,
+      "status": 200,
+      "session_id": "27304-1789107639187113600-0",
+      "date": "1 Jan 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/load",
+      "payload": {
+        "slot": "source-master"
+      },
+      "status": 200,
+      "session_id": "27304-1789107640082661600-1",
+      "date": "1 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/save",
+      "payload": {
+        "slot": "outcome-day00",
+        "session_id": "27304-1789107640082661600-1"
+      },
+      "status": 200,
+      "session_id": null,
+      "date": "1 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": true
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107640082661600-1",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 1
+      },
+      "status": 200,
+      "session_id": "27304-1789107640082661600-1",
+      "date": "2 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/save",
+      "payload": {
+        "slot": "outcome-day01",
+        "session_id": "27304-1789107640082661600-1"
+      },
+      "status": 200,
+      "session_id": null,
+      "date": "2 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": true
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107640082661600-1",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 2
+      },
+      "status": 200,
+      "session_id": "27304-1789107640082661600-1",
+      "date": "3 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107640082661600-1",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 3
+      },
+      "status": 200,
+      "session_id": "27304-1789107640082661600-1",
+      "date": "4 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107640082661600-1",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 4
+      },
+      "status": 200,
+      "session_id": "27304-1789107640082661600-1",
+      "date": "5 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107640082661600-1",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 5
+      },
+      "status": 200,
+      "session_id": "27304-1789107640082661600-1",
+      "date": "6 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107640082661600-1",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 6
+      },
+      "status": 200,
+      "session_id": "27304-1789107640082661600-1",
+      "date": "7 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107640082661600-1",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 7
+      },
+      "status": 200,
+      "session_id": "27304-1789107640082661600-1",
+      "date": "8 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107640082661600-1",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 8
+      },
+      "status": 200,
+      "session_id": "27304-1789107640082661600-1",
+      "date": "9 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107640082661600-1",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 9
+      },
+      "status": 200,
+      "session_id": "27304-1789107640082661600-1",
+      "date": "10 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107640082661600-1",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 10
+      },
+      "status": 200,
+      "session_id": "27304-1789107640082661600-1",
+      "date": "11 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107640082661600-1",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 11
+      },
+      "status": 200,
+      "session_id": "27304-1789107640082661600-1",
+      "date": "12 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107640082661600-1",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 12
+      },
+      "status": 200,
+      "session_id": "27304-1789107640082661600-1",
+      "date": "13 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107640082661600-1",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 13
+      },
+      "status": 200,
+      "session_id": "27304-1789107640082661600-1",
+      "date": "14 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107640082661600-1",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 14
+      },
+      "status": 200,
+      "session_id": "27304-1789107640082661600-1",
+      "date": "15 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107640082661600-1",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 15
+      },
+      "status": 200,
+      "session_id": "27304-1789107640082661600-1",
+      "date": "16 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/save",
+      "payload": {
+        "slot": "outcome-day15-before-reload",
+        "session_id": "27304-1789107640082661600-1"
+      },
+      "status": 200,
+      "session_id": null,
+      "date": "16 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": true
+    },
+    {
+      "route": "/api/load",
+      "payload": {
+        "slot": "outcome-day15-before-reload"
+      },
+      "status": 200,
+      "session_id": "27304-1789107648270388100-2",
+      "date": "16 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/save",
+      "payload": {
+        "slot": "outcome-day15-after-reload",
+        "session_id": "27304-1789107648270388100-2"
+      },
+      "status": 200,
+      "session_id": null,
+      "date": "16 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": true
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107648270388100-2",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 16
+      },
+      "status": 200,
+      "session_id": "27304-1789107648270388100-2",
+      "date": "17 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107648270388100-2",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 17
+      },
+      "status": 200,
+      "session_id": "27304-1789107648270388100-2",
+      "date": "18 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107648270388100-2",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 18
+      },
+      "status": 200,
+      "session_id": "27304-1789107648270388100-2",
+      "date": "19 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107648270388100-2",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 19
+      },
+      "status": 200,
+      "session_id": "27304-1789107648270388100-2",
+      "date": "20 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107648270388100-2",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 20
+      },
+      "status": 200,
+      "session_id": "27304-1789107648270388100-2",
+      "date": "21 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107648270388100-2",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 21
+      },
+      "status": 200,
+      "session_id": "27304-1789107648270388100-2",
+      "date": "22 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107648270388100-2",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 22
+      },
+      "status": 200,
+      "session_id": "27304-1789107648270388100-2",
+      "date": "23 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107648270388100-2",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 23
+      },
+      "status": 200,
+      "session_id": "27304-1789107648270388100-2",
+      "date": "24 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107648270388100-2",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 24
+      },
+      "status": 200,
+      "session_id": "27304-1789107648270388100-2",
+      "date": "25 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107648270388100-2",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 25
+      },
+      "status": 200,
+      "session_id": "27304-1789107648270388100-2",
+      "date": "26 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107648270388100-2",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 26
+      },
+      "status": 200,
+      "session_id": "27304-1789107648270388100-2",
+      "date": "27 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107648270388100-2",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 27
+      },
+      "status": 200,
+      "session_id": "27304-1789107648270388100-2",
+      "date": "28 Feb 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107648270388100-2",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 28
+      },
+      "status": 200,
+      "session_id": "27304-1789107648270388100-2",
+      "date": "1 Mar 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107648270388100-2",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 29
+      },
+      "status": 200,
+      "session_id": "27304-1789107648270388100-2",
+      "date": "2 Mar 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107648270388100-2",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 30
+      },
+      "status": 200,
+      "session_id": "27304-1789107648270388100-2",
+      "date": "3 Mar 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/advance",
+      "payload": {
+        "days": 1,
+        "commands": [],
+        "session_id": "27304-1789107648270388100-2",
+        "client_id": "s05-outcome-replay",
+        "request_seq": 31
+      },
+      "status": 200,
+      "session_id": "27304-1789107648270388100-2",
+      "date": "4 Mar 1990",
+      "error": null,
+      "reason": null,
+      "ok": null
+    },
+    {
+      "route": "/api/save",
+      "payload": {
+        "slot": "outcome-day31",
+        "session_id": "27304-1789107648270388100-2"
+      },
+      "status": 200,
+      "session_id": null,
+      "date": "4 Mar 1990",
+      "error": null,
+      "reason": null,
+      "ok": true
+    }
+  ],
+  "comparison": [
+    {
+      "label": "day00",
+      "equal": true,
+      "baseline_sha256": "f4079c5373f558124b76013260bb23f9b672cda5eb6e87a754d652389e6a0812",
+      "candidate_sha256": "f4079c5373f558124b76013260bb23f9b672cda5eb6e87a754d652389e6a0812",
+      "first_difference": null
+    },
+    {
+      "label": "day01",
+      "equal": true,
+      "baseline_sha256": "3d7076fe2b203e04979ba6efbb5cae97c14591e1701f4c406c4066fdd67c7ba0",
+      "candidate_sha256": "3d7076fe2b203e04979ba6efbb5cae97c14591e1701f4c406c4066fdd67c7ba0",
+      "first_difference": null
+    },
+    {
+      "label": "day15-before-reload",
+      "equal": true,
+      "baseline_sha256": "dc93427388283f399ea2f6c2a5eefe70453978b2f0e781b2fa6879f650a179d7",
+      "candidate_sha256": "dc93427388283f399ea2f6c2a5eefe70453978b2f0e781b2fa6879f650a179d7",
+      "first_difference": null
+    },
+    {
+      "label": "day15-after-reload",
+      "equal": true,
+      "baseline_sha256": "dc93427388283f399ea2f6c2a5eefe70453978b2f0e781b2fa6879f650a179d7",
+      "candidate_sha256": "dc93427388283f399ea2f6c2a5eefe70453978b2f0e781b2fa6879f650a179d7",
+      "first_difference": null
+    },
+    {
+      "label": "day31",
+      "equal": true,
+      "baseline_sha256": "d99e40ad18bd39b9e0bb168f7a000ecaf89285d4aadffcd72e70594feb95b65a",
+      "candidate_sha256": "d99e40ad18bd39b9e0bb168f7a000ecaf89285d4aadffcd72e70594feb95b65a",
+      "first_difference": null
+    }
+  ],
+  "rules_commands": [],
+  "session_changed_on_load": true,
+  "session_changed_on_day15_reload": true,
+  "reload_archive_unchanged": true,
+  "source_unchanged_after": true,
+  "binary_unchanged_after": true,
+  "scope": "Outcome equality only, no timing/performance claim. Genuine pinned-master technical USA fixture retains its original date and complete books. Normal HTTP load/31 one-day advances/save and day-15 reload in a private fresh directory; no new rule or gameplay commands. Every persisted archive field is compared except top-level saved_unix; numeric wire tokens and all history/log entries remain exact. No existing game process or user save is touched.",
+  "failure": null
+}

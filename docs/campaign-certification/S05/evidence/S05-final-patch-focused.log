@@ -1,0 +1,33 @@
+✔ terrain river channels and their casings continue shrinking through zoom1500 (0.9042ms)
+✔ rendered coast decode and lake encode filtering own water even above sea level (0.1682ms)
+✔ Paris keeps dry blocks but no generated lot intersects the displayed Seine corridor (615.8645ms)
+✔ Singapore blocks follow rendered ocean and globe mesh adds no second water plate (205.0657ms)
+✔ default card geometry remains exactly unchanged when optional water support is unused (4.5603ms)
+✔ binding reserves the measured command dock height, bottom offset and an eight pixel gap (6.2263ms)
+✔ body-mounted Guidance inherits measured clearance through desktop, wrapped mobile and inset changes (5.4607ms)
+✔ repeated binding and map redraw share one observer and one dock observation (18.3786ms)
+✔ dock observer updates a wrapped height and leaves identical measurements untouched (4.4075ms)
+✔ window resizing remeasures the dock bottom inset and clamps a negative inset to zero (2.6521ms)
+✔ a hidden dock preserves the CSS fallback until a visible size can be measured (3.0833ms)
+✔ switching from History to Terrain changes only the view even while a day is in flight (3.7717ms)
+✔ unknown shading cannot replace the active mode or repaint the map (2.1399ms)
+✔ each detail toggle changes exactly its own flag and repaints without simulation commands (31.2202ms)
+✔ unknown detail keys cannot introduce state or repaint the map (2.3382ms)
+✔ the optional coordinate grid starts off and preserves its choice through map rebuilds (7.3097ms)
+✔ sync exposes current shading and every toggle state through native controls (2.9989ms)
+✔ zoom buttons reflect both camera limits and immediately refresh after a click (3.4442ms)
+✔ pending days and busy campaign transport leave every view control available (3.2079ms)
+✔ World, Home and turn buttons use only their existing camera handlers (4.4677ms)
+✔ repeated installation binds one action and restores focus to the rebuilt mode button (7.5845ms)
+✔ detail selection survives redraw and Escape returns focus without reaching game shortcuts (3.753ms)
+✔ ordinary redraw restores map focus but never steals focus from another screen control (5.3144ms)
+✔ missing legacy detail preferences default on while explicit false remains off (2.8602ms)
+✔ unmounted controls allow harmless sync and install calls (1.9411ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 983.7423

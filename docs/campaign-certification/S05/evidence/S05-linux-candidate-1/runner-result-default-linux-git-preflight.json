@@ -1,0 +1,23 @@
+{
+  "format": "spheres-s05-linux-qualification",
+  "version": 1,
+  "candidate": "99802fc590a12427772824902fdaaafdd0e91e55",
+  "started_utc": "2026-09-11T04:57:52.155884+00:00",
+  "status": "runner_error",
+  "source": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+  "environment": {
+    "GIT_DIR": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+    "GIT_WORK_TREE": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+    "GIT_OPTIONAL_LOCKS": "0",
+    "CARGO_BUILD_JOBS": "4",
+    "CARGO_HOME": "/home/ridge/.cache/spheres-s05-tools/cargo",
+    "RUSTUP_HOME": "/home/ridge/.cache/spheres-s05-tools/rustup",
+    "CARGO_TARGET_DIR": "/home/ridge/.cache/spheres-s05-target",
+    "CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+    "CC": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+    "TMPDIR": "/home/ridge/.cache/spheres-s05-runs/tmp"
+  },
+  "checks": [],
+  "error": "{\"captured_utc\": \"2026-09-11T04:57:52.155901+00:00\", \"head\": \"99802fc590a12427772824902fdaaafdd0e91e55\", \"status_porcelain\": \" M .gitattributes\\n M .github/workflows/daily-calibration.yml\\n M .github/workflows/verify.yml\\n M .gitignore\\n M AI_INDUSTRIAL_SUPPLY.md\\n M AI_INDUSTRIAL_SUPPLY_RESULTS.md\\n M AMMUNITION.md\\n M ART_DIRECTION.md\\n M AUDIT_FIXES_2026-09-03.md\\n M AUDIT_IMPLEMENTATION.md\\n M AVIATION.md\\n M BIBLE.md\\n M BUGS.md\\n M CAMPAIGN_AIMS.md\\n M CASH_FLOW.md\\n M CLAUDE.md\\n M COMPANIES.md\\n M COMPANIES_AND_PROCUREMENT_PLAN.md\\n M CONSTRUCTION.md\\n M CURRENT_ARCHITECTURE.md\\n M Cargo.lock\\n M Cargo.toml\\n M DAILY.md\\n M DAILY_CALIBRATION.md\\n M DECISIONS.md\\n M ECONOMIC_COMPETITION.md\\n M ECONOMIC_COMPETITION_RESULTS.md\\n M EQUIPMENT_DESIGNER.md\\n M HEADLESS_BASELINE_2026-09-04.md\\n M HISTORICAL_INDUSTRY_1990_AUDIT.md\\n M INDUSTRIAL_CAPACITY_PLANNING.md\\n M INVESTMENT_COMPLETION_AUDIT.md\\n M LOGISTICS.md\\n M MANUFACTURING.md\\n M MATERIALS_AI_INTEGRATION.md\\n M MATERIALS_AI_INTEGRATION_RESULTS.md\\n M MATERIALS_OPERATIONS.md\\n M MATERIALS_OPERATIONS_RESULTS.md\\n M MILITARY_EQUIPMENT_DESIGNER_PLAN.md\\n M MILITARY_FLIGHT_LAYER_PLAN.md\\n M MILITARY_OPERATIONS.md\\n M MINISTRY_BUDGET_DESIGN.md\\n M PAGE_ART.md\\n M PERFORMANCE.md\\n M PLAN.md\\n M PLAYER_DECISIONS.md\\n M PLAYTEST.md\\n M PROCUREMENT.md\\n M PROVINCE_ECONOMY.md\\n M \\\"Play SPHERES.cmd\\\"\\n M README.md\\n M ROADMAP.md\\n M SECTOR_PROFILES.md\\n M SMALL_COUNTRY_MODULES.md\\n M SPEC.md\\n M STARTING_INDUSTRY.md\\n M STRATEGIC_RAW_MATERIALS.md\\n M TECH_REFERENCE_REPAIR.md\\n M docs/ADVISOR_MODEL.md\\n M docs/CARTOON_CHARACTER_ROADMAP.md\\n M docs/CERTIFIED_CAMPAIGN_PATHWAY.md\\n M docs/CHARACTER_3D_ROADMAP.md\\n M docs/FICTIONAL_SUCCESSION_2035.md\\n M docs/GAME_REVIEW_2026_09_10.md\\n M docs/GUIDANCE.md\\n M docs/GUIDANCE_VALIDATION.md\\n M docs/INTEGRATION_2026_09_07.md\\n M docs/LEADERSHIP_PRODUCTION_2035.md\\n M docs/PARTY_EXECUTIVE_ELIGIBILITY.md\\n M docs/PARTY_LEADERSHIP_ROADMAP.md\\n M docs/PLAYSET_HANDOFF_2026_09_08.md\\n M docs/art/3D_ASSET_BACKLOG.csv\\n M docs/art/3D_MODEL_MASTER_ROADMAP.md\\n M docs/art/AIRCRAFT_REFERENCE_REVIEW.md\\n M docs/art/ARMORED_VEHICLE_REBUILD.md\\n M docs/art/ARMORED_WORKSHOP_DRAFTS.md\\n M docs/art/ARSENAL_INF_MECH_PASS.md\\n M docs/art/ARSENAL_MESH_DETAIL.md\\n M docs/art/ARSENAL_REALISM_PASS.md\\n M docs/art/BUDGET_DECISION.md\\n M docs/art/CLAUDE_3D_ART_HANDOFF.md\\n M docs/art/COMPONENT_COVERAGE.md\\n M docs/art/EQUIPMENT_MESH_DETAIL.md\\n M docs/art/EQUIPMENT_REALISM_PASS.md\\n M docs/art/FLIGHT_LAYER_BUILDOUT.md\\n M docs/art/FREE_MILITARY_ASSET_RESEARCH.md\\n M docs/art/MILITARY_REALISM_UPDATE.md\\n M docs/art/MILITARY_VISUAL_UPGRADE.md\\n M docs/art/P0_BUDGETS.md\\n M docs/art/P0_MANIFEST.md\\n M docs/art/SCATTER_SCALE_FINDING.md\\n M docs/art/SPECIALIST_GROUND_REDESIGN.md\\n M docs/art/TANK_ASSET_RESEARCH.md\\n M docs/art/TANK_GEOMETRY_DIRECTION.md\\n M docs/art/TANK_REBUILD.md\\n M docs/art/TANK_SURFACE_DIRECTION.md\\n M docs/art/build_asset_backlog.py\\n M docs/campaign-certificati",
+  "finished_utc": "2026-09-11T04:58:15.476359+00:00"
+}

@@ -1,0 +1,52 @@
+{
+  "candidate": "db9d17c8d726aa102aa143ceb3599009c558ffee",
+  "status": "passed for the requested full Linux workspace, Node and external fixture scope",
+  "native_full_workspace": {
+    "passed": 1480,
+    "failed": 0,
+    "ignored": 75,
+    "completed_targets": 61
+  },
+  "node": {
+    "tests": 1473,
+    "pass": 1472,
+    "fail": 0,
+    "skipped": 1
+  },
+  "external_checks": [
+    {
+      "name": "master-archive",
+      "exit_code": 0
+    },
+    {
+      "name": "active-fixtures",
+      "exit_code": 0
+    },
+    {
+      "name": "party-versions",
+      "exit_code": 0
+    }
+  ],
+  "original_active_rows": 28,
+  "party_equipment_versions": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "genuine_master_archive_bytes": 18848817,
+  "web_test_binary": {
+    "path": "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-0c882886cd9a3582",
+    "bytes": 341948952,
+    "sha256": "d0136cf4dc98a9c12a7d3fcefe9b9816a020ae89568a2bd17866a813fc29b5fd",
+    "sha256_after": "d0136cf4dc98a9c12a7d3fcefe9b9816a020ae89568a2bd17866a813fc29b5fd"
+  },
+  "source_clean_before_and_after": true,
+  "fixtures_unchanged": true,
+  "limits": [
+    "All checks are bound to this exact candidate. Earlier candidate failures remain separate and immutable.",
+    "Local WSL GNU/Linux native and Node checks only; no Linux browser, server, GitHub Actions or performance run.",
+    "Process-only Git paths and core.autocrlf match the Windows worktree. Native Linux Git completed all strict source checks; no source/Git configuration edits.",
+    "Original-active binary hashes verify the source-associated current binaries, not a nonexistent historical S01 cryptographic pin. The original-master binary does have its S01 hash pin."
+  ]
+}

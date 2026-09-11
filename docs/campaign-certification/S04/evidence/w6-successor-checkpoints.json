@@ -1,0 +1,146 @@
+{
+  "kind": "read-only original checkpoint inventory",
+  "runtime_checks": "No load, commands, UI review, build or simulation execution was performed by this inventory.",
+  "recorded_false_flags": "Absent flags are left absent; this inventory does not claim every current rule existed in the original version.",
+  "recommended_checkpoint": "profile-idle_human-10.json",
+  "recommended_successor": "Slovenia",
+  "recommended_city": "Ljubljana",
+  "fixtures": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\lifetime-legacy\\saves\\profile-idle_human-10.json",
+      "bytes": 39688734,
+      "sha256": "5d6b022e8273c5bbd569d96cc9ac4de1f4086fa69de110f835c63718d7469b53",
+      "unchanged_after_read": true,
+      "format": "spheres-campaign",
+      "version": 1,
+      "saved_date": "1 Feb 2000",
+      "player_label": "United States",
+      "world_player": "USA",
+      "year": 2000,
+      "month": 2,
+      "dissolution_flags": [
+        "yugoslavia_dissolved",
+        "ussr_dissolved"
+      ],
+      "recorded_rules": {
+        "ai_aggression": 1.0,
+        "crisis_intensity": 1.0,
+        "daily_simulation": true,
+        "logistics_routes": true,
+        "manufacturing_system": true,
+        "military_operations": true,
+        "physical_logistics": true,
+        "production_system": true,
+        "resource_market": true,
+        "seed": 1990
+      },
+      "nations": [
+        {
+          "id": "USSR",
+          "alive": false,
+          "district_count": 0
+        },
+        {
+          "id": "Yugoslavia",
+          "alive": false,
+          "district_count": 0
+        },
+        {
+          "id": "Serbia",
+          "alive": true,
+          "district_count": 28
+        },
+        {
+          "id": "Croatia",
+          "alive": true,
+          "district_count": 18
+        },
+        {
+          "id": "Slovenia",
+          "alive": true,
+          "district_count": 12
+        },
+        {
+          "id": "Russia",
+          "alive": true,
+          "district_count": 86
+        },
+        {
+          "id": "Ukraine",
+          "alive": true,
+          "district_count": 25
+        }
+      ],
+      "namibia_present": false,
+      "history_epoch": 85
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\lifetime-legacy\\saves\\profile-idle_human-30.json",
+      "bytes": 51282713,
+      "sha256": "c5a61334fa8ce8d23983103a26b0a12e9d70deef60c7648077e9857b9cd31a5a",
+      "unchanged_after_read": true,
+      "format": "spheres-campaign",
+      "version": 1,
+      "saved_date": "1 Jan 2020",
+      "player_label": "United States",
+      "world_player": "USA",
+      "year": 2020,
+      "month": 1,
+      "dissolution_flags": [
+        "yugoslavia_dissolved",
+        "ussr_dissolved"
+      ],
+      "recorded_rules": {
+        "ai_aggression": 1.0,
+        "crisis_intensity": 1.0,
+        "daily_simulation": true,
+        "logistics_routes": true,
+        "manufacturing_system": true,
+        "military_operations": true,
+        "physical_logistics": true,
+        "production_system": true,
+        "resource_market": true,
+        "seed": 1990
+      },
+      "nations": [
+        {
+          "id": "USSR",
+          "alive": false,
+          "district_count": 0
+        },
+        {
+          "id": "Yugoslavia",
+          "alive": false,
+          "district_count": 0
+        },
+        {
+          "id": "Serbia",
+          "alive": true,
+          "district_count": 28
+        },
+        {
+          "id": "Croatia",
+          "alive": true,
+          "district_count": 18
+        },
+        {
+          "id": "Slovenia",
+          "alive": true,
+          "district_count": 12
+        },
+        {
+          "id": "Russia",
+          "alive": true,
+          "district_count": 86
+        },
+        {
+          "id": "Ukraine",
+          "alive": true,
+          "district_count": 25
+        }
+      ],
+      "namibia_present": false,
+      "history_epoch": 324
+    }
+  ]
+}

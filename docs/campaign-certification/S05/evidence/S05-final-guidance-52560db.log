@@ -1,0 +1,39 @@
+✔ campaign mount uses its standard guidance navigation and suppresses the redundant floating launcher (1.5793ms)
+✔ every actual guidance route opens its existing review and preserves routing details without orders (25.819ms)
+✔ unknown routes, pending work and absent campaigns return before closing or navigating anything (40.6647ms)
+✔ actual document keyboard listener keeps N, speed keys and Space inert behind open guidance (1.1492ms)
+✔ guidance scripts, styles and artwork are referenced and served, and every inline script parses (16.0364ms)
+✔ missing saved progress begins fresh and persists only the tutorial preference key (1.5178ms)
+✔ corrupted and future-schema storage recover without restoring invented completions (0.4267ms)
+✔ missing or denied storage uses memory and explicitly discloses visit-only progress (0.6596ms)
+✔ failed preference writes retain the latest learning state in memory (0.1369ms)
+✔ fresh advice evaluates exactly the validated snapshot using the actual advisor model (1.2201ms)
+✔ all four snapshot identity fields must match exactly before advice becomes ready (0.2674ms)
+✔ replacing the state object while loading rejects even an otherwise matching old response (0.131ms)
+✔ in-place session, player, turn or date mutation cannot keep ready advice actionable (0.3943ms)
+✔ a response matching a mutated request object cannot bypass the original request identity (0.1532ms)
+✔ changed invalidates loading requests and late success or failure cannot replace stale state (0.2121ms)
+✔ cancel discards late refresh responses without repainting closed guidance (0.2645ms)
+✔ out-of-order refresh completion cannot replace the latest success or latest error (0.3085ms)
+✔ a failed refresh is retryable and successful retry clears the old error (0.2237ms)
+✔ navigation requires a campaign and readiness for advice, but tutorial reading is independent (0.1683ms)
+✔ busy state blocks tutorial and advice navigation without calling the adapter (0.1921ms)
+✔ tutorial navigation is explicit, read-only routing and never marks a lesson complete (0.099ms)
+✔ reading choices survive refresh, campaign switches, filters and view changes (0.1743ms)
+✔ hide and restore affect advice visibility only, and a new campaign clears hidden advice (0.2304ms)
+✔ render distinguishes unavailable, loading, stale and empty ready briefings (0.1328ms)
+✔ render escapes untrusted advice, attributes, snapshot names and notices without routing injection (0.222ms)
+✔ filters, invalid view input and glossary queries remain presentation choices (0.1523ms)
+✔ rendered tutorial completion excludes skips and keeps skipped chapters replayable (0.167ms)
+✔ subscriptions unsubscribe cleanly without affecting model progress (0.0613ms)
+✔ mount opens a paused tutorial and routes only after an explicit lesson click (1.2897ms)
+✔ hosts can suppress the floating launcher without disabling guidance or tutorial return progress (1.7368ms)
+✔ refresh and hiding the focused last card retain enabled focus inside the guidance dialog (1.3245ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 156.2159

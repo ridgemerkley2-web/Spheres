@@ -1,0 +1,17 @@
+
+running 1 test
+test s05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day ... 
+thread 's05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day' (53160) panicked at spheres-web\src\s05_master_migration_tests.rs:28:14:
+assertion `left == right` failed: conflicts[0].front.KW-JA: changed original property
+  left: Number(-0.22152066)
+ right: Number(-0.22152066230773926)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+
+failures:
+
+failures:
+    s05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 313 filtered out; finished in 1.53s
+

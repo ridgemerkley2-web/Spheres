@@ -1,0 +1,210 @@
+{
+  "session": "S04",
+  "runtime_candidate_revision": "db9d17c8d726aa102aa143ceb3599009c558ffee",
+  "recorded_utc": "2026-09-11T06:32:48.176359+00:00",
+  "native_windows": {
+    "passed": 1480,
+    "failed": 0,
+    "ignored": 75
+  },
+  "node_windows": {
+    "passed": 1472,
+    "failed": 0,
+    "skipped": 1
+  },
+  "performance": [
+    {
+      "run": "S05-lifetime-confirmation-1",
+      "scenario": "idle_human",
+      "checkpoint_years": 0,
+      "simulation_p95_ms": 42.9142,
+      "whole_p95_ms": 117.9424,
+      "whole_max_ms": 119.2358
+    },
+    {
+      "run": "S05-lifetime-confirmation-1",
+      "scenario": "idle_human",
+      "checkpoint_years": 10,
+      "simulation_p95_ms": 148.7703,
+      "whole_p95_ms": 255.1383,
+      "whole_max_ms": 257.5527
+    },
+    {
+      "run": "S05-lifetime-confirmation-1",
+      "scenario": "idle_human",
+      "checkpoint_years": 30,
+      "simulation_p95_ms": 203.016,
+      "whole_p95_ms": 302.08849999999995,
+      "whole_max_ms": 335.6657
+    },
+    {
+      "run": "S05-lifetime-confirmation-1",
+      "scenario": "industry_and_war",
+      "checkpoint_years": 0,
+      "simulation_p95_ms": 90.2533,
+      "whole_p95_ms": 162.1209,
+      "whole_max_ms": 299.4134
+    },
+    {
+      "run": "S05-lifetime-confirmation-1",
+      "scenario": "industry_and_war",
+      "checkpoint_years": 10,
+      "simulation_p95_ms": 209.9048,
+      "whole_p95_ms": 310.3976,
+      "whole_max_ms": 438.2098
+    },
+    {
+      "run": "S05-lifetime-confirmation-1",
+      "scenario": "industry_and_war",
+      "checkpoint_years": 30,
+      "simulation_p95_ms": 291.2679,
+      "whole_p95_ms": 397.80199999999996,
+      "whole_max_ms": 512.5046
+    },
+    {
+      "run": "S05-lifetime-confirmation-2",
+      "scenario": "idle_human",
+      "checkpoint_years": 0,
+      "simulation_p95_ms": 37.0114,
+      "whole_p95_ms": 110.3017,
+      "whole_max_ms": 129.8099
+    },
+    {
+      "run": "S05-lifetime-confirmation-2",
+      "scenario": "idle_human",
+      "checkpoint_years": 10,
+      "simulation_p95_ms": 145.5377,
+      "whole_p95_ms": 261.2079,
+      "whole_max_ms": 269.7874
+    },
+    {
+      "run": "S05-lifetime-confirmation-2",
+      "scenario": "idle_human",
+      "checkpoint_years": 30,
+      "simulation_p95_ms": 185.5279,
+      "whole_p95_ms": 298.3448,
+      "whole_max_ms": 328.2331
+    },
+    {
+      "run": "S05-lifetime-confirmation-2",
+      "scenario": "industry_and_war",
+      "checkpoint_years": 0,
+      "simulation_p95_ms": 83.73899999999999,
+      "whole_p95_ms": 150.2696,
+      "whole_max_ms": 292.2688
+    },
+    {
+      "run": "S05-lifetime-confirmation-2",
+      "scenario": "industry_and_war",
+      "checkpoint_years": 10,
+      "simulation_p95_ms": 227.7553,
+      "whole_p95_ms": 329.2041,
+      "whole_max_ms": 440.8812
+    },
+    {
+      "run": "S05-lifetime-confirmation-2",
+      "scenario": "industry_and_war",
+      "checkpoint_years": 30,
+      "simulation_p95_ms": 261.161,
+      "whole_p95_ms": 359.92089999999996,
+      "whole_max_ms": 501.4265
+    }
+  ],
+  "files": [
+    {
+      "path": "evidence/.gitattributes",
+      "sha256": "d63ee73e00c9734f0ed5446c050accab94bb949633d18ce2352ff778d45da0b2",
+      "bytes": 44
+    },
+    {
+      "path": "evidence/S04-browser-review.json",
+      "sha256": "f76e1513a9d8ca9fe1f1275ebbc54213674bd8b81cd2562c77a0980f07399858",
+      "bytes": 3412
+    },
+    {
+      "path": "evidence/S04-compile-check-1.log",
+      "sha256": "5aa780869a2c55fcc18423a5f32101dfe6b2f00abafc5dbbcdb2f26170b3e845",
+      "bytes": 1075
+    },
+    {
+      "path": "evidence/S04-native-candidate-1.exit",
+      "sha256": "bdc830287616dae1818ced3e7c186e1387155900ad30d5983ec02da1519c4a95",
+      "bytes": 5
+    },
+    {
+      "path": "evidence/S04-native-candidate-1.json",
+      "sha256": "96103e785dcf3e29b3777871345d2c3082264df3dec3a7ee221344ffdeeb13d2",
+      "bytes": 678
+    },
+    {
+      "path": "evidence/S04-native-candidate-1.log",
+      "sha256": "6ac45364e286ca0376ccd6c7d80302140b8cbb5b7c60ffce2919c1d0624f3241",
+      "bytes": 154427
+    },
+    {
+      "path": "evidence/S04-review-artifact-build.log",
+      "sha256": "699b4e4452f53d903a1a903b32204eac5b596a3bc1e3afa62b3154a26306e647",
+      "bytes": 2802
+    },
+    {
+      "path": "evidence/S04-review-artifact-fixed.log",
+      "sha256": "b8e9a9c8f61ea4a782ddd23b3dd231025cb75e67eae8e8f3b13614e7f3d4a561",
+      "bytes": 2802
+    },
+    {
+      "path": "evidence/S04-ui-candidate-1.json",
+      "sha256": "f4fcb5b22007421e7ca6aff9e2a1a67ad3b7951e9fe127d88e6af17f02b0e294",
+      "bytes": 228
+    },
+    {
+      "path": "evidence/S04-ui-candidate-1.log",
+      "sha256": "b5c84cf62d325d173d39087ed331b5fedc300538fbb404117c5a911d81b869c2",
+      "bytes": 145381
+    },
+    {
+      "path": "evidence/S04-ui-fixture.json",
+      "sha256": "93b98965e2a7ce740f0402c84447b013e1831591c1d1a16ee3f78610148cefa1",
+      "bytes": 4583546
+    },
+    {
+      "path": "evidence/w6-successor-checkpoints.json",
+      "sha256": "29d37806a0b54c89308984fe269f5f84c88a76da32af99fe9116e00226a94297",
+      "bytes": 4234
+    },
+    {
+      "path": "evidence/w6-successor-review.md",
+      "sha256": "4db9db44d20607aede8043d5080b6027f484cd5811187ea360edbca037b3276a",
+      "bytes": 4631
+    },
+    {
+      "path": "evidence/W_MATRIX_ANCHORS.final.json",
+      "sha256": "9523dd3e67f64ec52ad1efb667a19a2ef1fc15014b2a3a253af794d5fc33b214",
+      "bytes": 19989
+    },
+    {
+      "path": "evidence/W_MATRIX_ANCHORS.initial.json",
+      "sha256": "794ce1eece8a0ef48102ca49837f51d156f9a006395fc963005d9dbc8c30649f",
+      "bytes": 11656
+    }
+  ],
+  "note": "Final acceptance and exact platform/A-B scope are in README.md. Evidence preserves intermediate failures; filename final on an intermediate record does not supersede its embedded source revision. Full raw canonical A/B archives and expanded original fixtures remain in the isolated local workspace; their hashes, reproducible runner and compressed original inputs are included.",
+  "status": "complete",
+  "gate": "S04 scope complete",
+  "native_linux": {
+    "passed": 1480,
+    "failed": 0,
+    "ignored": 75
+  },
+  "node_linux": {
+    "passed": 1472,
+    "failed": 0,
+    "skipped": 1
+  },
+  "qualification_limits": [
+    "First optimized timing trial missed the oldest busy p95 bars; both predefined confirmations passed unchanged limits, with narrow headroom retained for S22.",
+    "75 native ignored cases are not default-suite passes; the three original archive checks ran separately on each OS.",
+    "Local WSL native/Node evidence and Windows Chrome browser evidence; no Linux browser or hosted CI claim.",
+    "No full 1990\u20132035, all-country/successor, human-playtest or packaged-release certificate."
+  ],
+  "stop_boundary": "S05"
+}

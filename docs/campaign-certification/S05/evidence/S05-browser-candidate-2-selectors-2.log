@@ -1,0 +1,31 @@
+locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator('#productionDockBtn')
+    - locator resolved to <button type="button" class="dockbtn" aria-expanded="false" id="productionDockBtn" aria-controls="productionPanel" aria-label="Economy construction: 0 building, 0 slowed, 0 paused, 0 blocked">…</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <button type="button" id="guidanceLauncher" class="guidance-launcher" aria-label="Open tutorial and advisors">✦ Guidance · F1</button> intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <button type="button" id="guidanceLauncher" class="guidance-launcher" aria-label="Open tutorial and advisors">✦ Guidance · F1</button> intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is visible, enabled and stable
+       - scrolling into view if needed
+       - done scrolling
+       - <button type="button" id="guidanceLauncher" class="guidance-launcher" aria-label="Open tutorial and advisors">✦ Guidance · F1</button> intercepts pointer events
+     - retrying click action
+       - waiting 500ms
+
+    at Object.panels (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-integrated.cjs:87:46)
+    at async C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-browser.cjs:45:31 {
+  name: 'TimeoutError'
+}

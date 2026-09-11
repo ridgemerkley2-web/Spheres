@@ -1,6 +1,6 @@
 # Spheres — pathway to a certified campaign
 
-**Approved pathway · 10 September 2026 · S01–S03 complete; S04 in progress.**
+**Approved pathway · 10 September 2026 · S01–S05 complete; execution stopped after S05.**
 
 Source baseline: `5f7f355502f17bd6bd8f0383a2d14f0024fa7884`,
 `codex/resume-spheres`. This plan follows the
@@ -60,7 +60,7 @@ deliverables as finished.
 | Marker | Meaning |
 | --- | --- |
 | `S00` | Complete: user approved beginning S01 on 10 September 2026. |
-| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S03 are complete; S04 is in progress; S05–S30 remain planned. |
+| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S05 are complete; S06–S30 remain planned. Execution is stopped after S05. |
 | `C01`–`C07` | Character-production workstreams, with uniquely numbered country batches below. |
 | `E01`–`E06` | Retained expansion work after the first certified release. |
 | `G0`–`G5` | Evidence gates joining groups of sessions. |
@@ -391,25 +391,29 @@ Evidence: [S02 ownership, accounting and verification](campaign-certification/S0
 
 #### S04 — Reconcile warfare, diplomacy and map control
 
-**Status:** In progress · **Requires:** S01
+**Status:** Complete · **Requires:** S01
 
 **Completion marker:** One operational warfare path connected to existing ownership, freight, diplomacy and equipment.
 
-- [ ] Use one allocation/result path for simultaneous conflicts and settle losses once.
-- [ ] Physical control, legal ownership, access and negotiated peace affect the same facilities and routes.
-- [ ] Integrate later map/coast improvements without breaking displaced-terrain selection or saved country identities.
+- [x] Use one allocation/result path for simultaneous conflicts and settle losses once.
+- [x] Physical control, legal ownership, access and negotiated peace affect the same facilities and routes.
+- [x] Integrate later map/coast improvements without breaking displaced-terrain selection or saved country identities.
+
+Evidence: [S04 source-bound qualification](campaign-certification/S04/README.md).
 
 <a id="s05"></a>
 
 #### S05 — Qualify the unified save and command system
 
-**Status:** Planned · **Requires:** S02, S03, S04
+**Status:** Complete · **Requires:** S02, S03, S04
 
 **Completion marker:** G1: an integrated build that loads old campaigns and preserves unfinished transactions.
 
-- [ ] Load representative active-branch, master and legacy saves; retain people, money, work, stock, deliveries and refits.
-- [ ] Exercise lost-response retry, stale-session rejection, backup recovery and save/resume during paid work.
-- [ ] Run integrated Rust/UI checks and record remaining known failures with owners; no unresolved critical ownership or migration defects.
+- [x] Load representative active-branch, master and legacy saves; retain people, money, work, stock, deliveries and refits.
+- [x] Exercise lost-response retry, stale-session rejection, backup recovery and save/resume during paid work.
+- [x] Run integrated Rust/UI checks and record remaining known failures with owners; no unresolved critical ownership or migration defects.
+
+Evidence: [S05 source-bound qualification](campaign-certification/S05/README.md).
 
 
 ### 2 · A country you can govern
@@ -887,3 +891,7 @@ Evidence: [S02 ownership, accounting and verification](campaign-certification/S0
 - [ ] Expand the scenario matrix for every new family and company/naval mechanic.
 - [ ] Repeat affected long-run, save, human-usability and performance gates; CP1 evidence alone cannot certify new mechanics.
 - [ ] Publish updated scope and content coverage without claiming every nation received a full human 45-year playthrough.
+
+## Authorized execution boundary
+
+S04 and S05 are complete on the recorded runtime and evidence. G1 decision: **earned**. The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work. Execution stops after S05. S06 remains planned and requires a new instruction; no later campaign, content or release certificate is awarded.

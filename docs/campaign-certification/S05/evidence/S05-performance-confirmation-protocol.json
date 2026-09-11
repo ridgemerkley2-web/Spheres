@@ -1,0 +1,15 @@
+{
+  "candidate": "db9d17c8d726aa102aa143ceb3599009c558ffee",
+  "test_binary_sha256": "f0f92df8fe0f03c1325c6ba825e43514b9954ef11331ba6849677a5cefc02a96",
+  "prior_run": "S05-lifetime-runtime-final",
+  "prior_structural_runner_passed": true,
+  "prior_latency_acceptance_passed": false,
+  "reason": "The optimized oldest busy workload measured simulation p95 303.4502 ms and whole-turn p95 413.2666 ms, exceeding unchanged 300/400 ms bars. Other five cases passed; the busy30 medians were 203.6573/307.3303 ms. Profile records contain distributions, not per-day timings, so no specific spike cause is inferred.",
+  "fixed_followup_plan": "Run exactly two further independent full six-case profiles sequentially on the same unchanged binary and original fixtures. Both must meet every original latency and memory bar. Preserve the initial failing run and both followups. If either followup fails, the performance gate remains open for diagnosis; do not continue retrying until a favorable sample appears.",
+  "runs": ["S05-lifetime-confirmation-1", "S05-lifetime-confirmation-2"],
+  "simulation_p95_limit_ms": 300,
+  "whole_turn_p95_limit_ms": 400,
+  "whole_turn_max_limit_ms": 750,
+  "sampled_private_memory_limit_bytes": 1073741824,
+  "limitations": "Same-host repeated timing measures variability, not its cause. Passing bounded legacy workloads does not certify full supplier-heavy or 2035 performance. S22 retains performance and broader load ownership. No source, workload or threshold changes for these confirmations."
+}

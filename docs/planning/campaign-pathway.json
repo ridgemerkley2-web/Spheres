@@ -23,7 +23,7 @@
     {
       "id": "integration",
       "name": "1 · One integrated game",
-      "gate": "G1 · Unified playset"
+      "gate": "G1 · Unified playset ✓"
     },
     {
       "id": "nation",
@@ -128,7 +128,7 @@
       "id": "S04",
       "phase": "integration",
       "title": "Reconcile warfare, diplomacy and map control",
-      "status": "in_progress",
+      "status": "complete",
       "depends": [
         "S01"
       ],
@@ -137,13 +137,16 @@
         "Use one allocation/result path for simultaneous conflicts and settle losses once.",
         "Physical control, legal ownership, access and negotiated peace affect the same facilities and routes.",
         "Integrate later map/coast improvements without breaking displaced-terrain selection or saved country identities."
-      ]
+      ],
+      "completed_date": "2026-09-10",
+      "evidence": "../campaign-certification/S04/README.md",
+      "runtime_candidate": "db9d17c8d726aa102aa143ceb3599009c558ffee"
     },
     {
       "id": "S05",
       "phase": "integration",
       "title": "Qualify the unified save and command system",
-      "status": "planned",
+      "status": "complete",
       "depends": [
         "S02",
         "S03",
@@ -154,7 +157,10 @@
         "Load representative active-branch, master and legacy saves; retain people, money, work, stock, deliveries and refits.",
         "Exercise lost-response retry, stale-session rejection, backup recovery and save/resume during paid work.",
         "Run integrated Rust/UI checks and record remaining known failures with owners; no unresolved critical ownership or migration defects."
-      ]
+      ],
+      "completed_date": "2026-09-10",
+      "evidence": "../campaign-certification/S05/README.md",
+      "runtime_candidate": "db9d17c8d726aa102aa143ceb3599009c558ffee"
     },
     {
       "id": "S06",
@@ -770,6 +776,22 @@
     "instruction": "Okay lets begin development with s1",
     "scope_changes": []
   },
-  "last_completed_session": "S03",
-  "next_session": "S04"
+  "last_completed_session": "S05",
+  "next_session": "S06",
+  "execution": {
+    "authorized_through": "S05",
+    "stop_boundary": "S05",
+    "status": "stopped",
+    "stopped_after": "S05",
+    "next_session_requires_instruction": true
+  },
+  "gate_decisions": {
+    "G1": {
+      "status": "earned",
+      "date": "2026-09-10",
+      "candidate": "db9d17c8d726aa102aa143ceb3599009c558ffee",
+      "evidence": "docs/campaign-certification/S05/manifest.json",
+      "reason": "The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work."
+    }
+  }
 }

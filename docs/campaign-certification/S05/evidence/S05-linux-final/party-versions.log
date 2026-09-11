@@ -1,0 +1,10 @@
+
+running 1 test
+test s05_save_matrix_tests::standalone_party_v1_preserves_real_supplier_books_for_equipment_versions_2_through_5 ... S05_PARTY_ENVELOPE {"continuation_days":1,"equipment_version":2,"file":"companies/04-transit.json","loaders":"native, browser standalone, browser archive","party_version":1,"source_sha256":"c2c1c3466292243cb801a9da3f47055d155586416724a5407d9238c99fe4ab66"}
+S05_PARTY_ENVELOPE {"continuation_days":1,"equipment_version":3,"file":"companies/09-mixed-transit.json","loaders":"native, browser standalone, browser archive","party_version":1,"source_sha256":"ac797051b97a9110dc5e3e40ee1e05214c28829b79327d86b6444dea3cfd9eb4"}
+S05_PARTY_ENVELOPE {"continuation_days":1,"equipment_version":4,"file":"ammunition/03-ammunition-transit.json","loaders":"native, browser standalone, browser archive","party_version":1,"source_sha256":"0936456996109e5282f0c48af24870f58227f2c9ab57742eb51bd7804a930a70"}
+S05_PARTY_ENVELOPE {"continuation_days":1,"equipment_version":5,"file":"refits/ground-04-active-work.json","loaders":"native, browser standalone, browser archive","party_version":1,"source_sha256":"1f0eef204247c98db435cba8355e85245ece44649a0a8f725e2ee1131d5dcc33"}
+ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 313 filtered out; finished in 1.13s
+

@@ -1,0 +1,23 @@
+{
+  "revision_before": "93a49f58e999e65c2df1649c62d9f21ba8ea1d6a",
+  "clean_before": true,
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-sim",
+    "--test",
+    "s04_peace_boundaries",
+    "--",
+    "--nocapture"
+  ],
+  "started_utc": "2026-09-11T05:59:36.719961+00:00",
+  "exit_code": 0,
+  "finished_utc": "2026-09-11T05:59:38.088825+00:00",
+  "revision_after": "93a49f58e999e65c2df1649c62d9f21ba8ea1d6a",
+  "clean_after": true,
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\s04_peace_boundaries-f1dd253f304e7815.exe",
+  "binary_sha256": "fc727027bb685f04e96d949e7f58c865e87ae28fbcfb7f2dfe9d39516b79b28d"
+}

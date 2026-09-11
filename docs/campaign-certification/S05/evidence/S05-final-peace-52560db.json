@@ -1,0 +1,21 @@
+{
+  "revision_before": "52560dba660c17f06c6cfab7bbdb1212a3a9e432",
+  "clean_before": true,
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-sim",
+    "--test",
+    "s04_peace_boundaries",
+    "--",
+    "--nocapture"
+  ],
+  "started_utc": "2026-09-11T05:56:03.199817+00:00",
+  "exit_code": 101,
+  "finished_utc": "2026-09-11T05:56:03.578061+00:00",
+  "revision_after": "52560dba660c17f06c6cfab7bbdb1212a3a9e432",
+  "clean_after": true
+}

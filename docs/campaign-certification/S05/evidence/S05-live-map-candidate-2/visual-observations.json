@@ -1,0 +1,21 @@
+{
+  "candidate": "8c9159786d3736a9953706262a52c50898225f0e",
+  "binary_sha256": "c9d04969f7d9e2840cc9198ae926568f15c45d5f6c0a6271cc03d36d4ecddaf4",
+  "url": "http://127.0.0.1:56892/",
+  "method": "CUA real-browser visible controls and screenshots; no hidden game state mutation",
+  "viewport": [1280, 720],
+  "campaign": "Fresh France, daily, seed selected by normal new-campaign UI, initially paused 1 Jan 1990",
+  "screenshots": "Inline CUA screenshot outputs in this task; API provided no filesystem export. No durable screenshot file/hash is claimed by this record.",
+  "observations": [
+    {"place":"World", "zoom":1, "result":"Globe and controls visible."},
+    {"place":"Kathmandu", "zooms":[128,774.8,1500], "result":"Peaks and valley visible; camera stays above ground. At maximum zoom ground click (604,418) selected Bagmati / NP-BA / Nepal."},
+    {"place":"Geneva", "zooms":[247.8,1500], "result":"Alpine relief/city visible; Lake Geneva not visibly rendered. Existing lake-coverage limitation, not a lake-edge pass."},
+    {"place":"Chicago", "zooms":[247.8,1500], "result":"Lake Michigan and shoreline visible; city on land. Ground click (598,421) at maximum zoom selected Illinois / US-IL / United States."},
+    {"place":"Paris", "zoom":1500, "result":"FAIL: overly wide river bands under/across city blocks. Narrow presentation correction requested."},
+    {"place":"Singapore", "zoom":1500, "result":"FAIL: city blocks extended over visible ocean south of island. Ground click (633,408) opened Singapore national dossier. Mask alignment correction requested."},
+    {"place":"Guidance launcher", "result":"FAIL: floating Guidance overlaps Construction in lower-right corner; separate CI natural click was intercepted. Adaptive dock clearance correction requested."},
+    {"place":"Namibia", "date":"22 Mar 1990", "result":"80 normal +1 DAY clicks advanced the disposable France campaign. Find Namibia returned zero matches. Source inspection confirms absent birth site; record later successor coverage limitation, not successful activation."}
+  ],
+  "save": "Normal visible Save default action wrote disposable save.json and save.json.bak. This does not replace any user campaign.",
+  "next": "Rebuild corrected presentation, repeat failed map/control cases and selection after native save/load. Review a supported successor from a genuine original checkpoint."
+}

@@ -1,0 +1,301 @@
+{
+  "format": "spheres-original-exporter-run",
+  "version": 1,
+  "started_utc": "2026-09-11T04:36:27.819695+00:00",
+  "source_revision": "5f7f355502f17bd6bd8f0383a2d14f0024fa7884",
+  "source_worktree_head": "038fe0b1a3edb1772586ec0b5a7451629b7297c4",
+  "source_association": "S01 pinned native log lists these exact executable paths; original exporter source files and relevant clean runtime trees match pinned source; file timestamps and cargo fingerprints recorded. No S01 historical SHA-256 inventory exists for these three exporter binaries. Current hashes are verified before and after this run, not claimed as historical cryptographic matches.",
+  "historically_pinned_binary_hashes": false,
+  "s01_manifest_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S01\\manifest.json",
+  "s01_manifest_sha256": "c640c612d13aa4f68009c452974dce37e8d76545805508a86ba895c04e875a0d",
+  "s01_native_log_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S01\\evidence\\active-native.log",
+  "s01_native_log_sha256": "7731cce7e5d56a026687cd0ab2826d9fb9ba3e6364b49f99b00286de06aead30",
+  "s01_native_log_hash_verified": true,
+  "source_binaries": [
+    {
+      "name": "companies",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target\\release\\deps\\companies_integration-b294d37d0a85b120.exe",
+      "bytes": 27459760,
+      "sha256_before": "c937e7d7b227bb220c61b112efe9746175f669ccf203d7cc18e3f77b485438e8",
+      "mtime_utc": "2026-09-11T00:39:05.562509+00:00",
+      "source_path": "spheres-sim/tests/companies_integration.rs",
+      "source_blob_sha256": "42571740eb06be1fa08661bc7a958c96ce88247bdf20797dbcf76e04600a1ec8",
+      "source_worktree_matches_pinned_blob": true,
+      "fingerprint_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target\\release\\.fingerprint\\spheres-sim-b294d37d0a85b120\\test-integration-test-companies_integration.json",
+      "fingerprint_sha256": "206eadba33019095326e9d9acc11ddc77280a6616319052ab2326924b337deb4",
+      "fingerprint": {
+        "rustc": 17842111379289628597,
+        "features": "[]",
+        "declared_features": "[]",
+        "target": 1905409875936836093,
+        "profile": 10220379689200424945,
+        "path": 16094939652070646332,
+        "deps": [
+          [
+            5330460842384404171,
+            "serde_json",
+            false,
+            9549504514480835826
+          ],
+          [
+            6557439603276904804,
+            "serde",
+            false,
+            8797380983843503739
+          ],
+          [
+            16667601271768093717,
+            "spheres_sim",
+            false,
+            14263400836163255155
+          ]
+        ],
+        "local": [
+          {
+            "CheckDepInfo": {
+              "dep_info": "release\\.fingerprint\\spheres-sim-b294d37d0a85b120\\dep-test-integration-test-companies_integration",
+              "checksum": false
+            }
+          }
+        ],
+        "rustflags": [],
+        "config": 9396254390672932401,
+        "compile_kind": 0
+      },
+      "sha256_after": "c937e7d7b227bb220c61b112efe9746175f669ccf203d7cc18e3f77b485438e8"
+    },
+    {
+      "name": "ammunition",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target\\release\\deps\\company_ammunition-1bf48242777f9167.exe",
+      "bytes": 26208147,
+      "sha256_before": "d143625688cc014e9ab99ed860ab2789a8db93343ee2549d5022fb0b335dbc7a",
+      "mtime_utc": "2026-09-11T00:38:38.388279+00:00",
+      "source_path": "spheres-sim/tests/company_ammunition.rs",
+      "source_blob_sha256": "fc6112e36a1147ac3aee165704bd740bf110a7b1170e5e9761d68ec52bf49e9f",
+      "source_worktree_matches_pinned_blob": true,
+      "fingerprint_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target\\release\\.fingerprint\\spheres-sim-1bf48242777f9167\\test-integration-test-company_ammunition.json",
+      "fingerprint_sha256": "6971a0c60b80c8f75f53feb4dc0f56e9385c5066caeef8e7dd7a3c7af66d2a12",
+      "fingerprint": {
+        "rustc": 17842111379289628597,
+        "features": "[]",
+        "declared_features": "[]",
+        "target": 17237300737904246271,
+        "profile": 10220379689200424945,
+        "path": 1492929581772914683,
+        "deps": [
+          [
+            5330460842384404171,
+            "serde_json",
+            false,
+            9549504514480835826
+          ],
+          [
+            6557439603276904804,
+            "serde",
+            false,
+            8797380983843503739
+          ],
+          [
+            16667601271768093717,
+            "spheres_sim",
+            false,
+            14263400836163255155
+          ]
+        ],
+        "local": [
+          {
+            "CheckDepInfo": {
+              "dep_info": "release\\.fingerprint\\spheres-sim-1bf48242777f9167\\dep-test-integration-test-company_ammunition",
+              "checksum": false
+            }
+          }
+        ],
+        "rustflags": [],
+        "config": 9396254390672932401,
+        "compile_kind": 0
+      },
+      "sha256_after": "d143625688cc014e9ab99ed860ab2789a8db93343ee2549d5022fb0b335dbc7a"
+    },
+    {
+      "name": "refits",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target\\release\\deps\\company_refits-63b8194ed38c206a.exe",
+      "bytes": 26185674,
+      "sha256_before": "1444ce20a27398f9ccf8cc163a6f9bf49bb95124a565cf7fa0606db20d67b9a9",
+      "mtime_utc": "2026-09-11T00:39:07.816613+00:00",
+      "source_path": "spheres-sim/tests/company_refits.rs",
+      "source_blob_sha256": "209486bdb8847d077c9b1449fce31111dc9fea9a4a56a60908b75ef3b9b7608f",
+      "source_worktree_matches_pinned_blob": true,
+      "fingerprint_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target\\release\\.fingerprint\\spheres-sim-63b8194ed38c206a\\test-integration-test-company_refits.json",
+      "fingerprint_sha256": "2ed07a875c7ac5dbeffcf4c16fa2cd2a33374577e452611151dcc5acb020b17b",
+      "fingerprint": {
+        "rustc": 17842111379289628597,
+        "features": "[]",
+        "declared_features": "[]",
+        "target": 6867706315100274883,
+        "profile": 10220379689200424945,
+        "path": 17624097218693425481,
+        "deps": [
+          [
+            5330460842384404171,
+            "serde_json",
+            false,
+            9549504514480835826
+          ],
+          [
+            6557439603276904804,
+            "serde",
+            false,
+            8797380983843503739
+          ],
+          [
+            16667601271768093717,
+            "spheres_sim",
+            false,
+            14263400836163255155
+          ]
+        ],
+        "local": [
+          {
+            "CheckDepInfo": {
+              "dep_info": "release\\.fingerprint\\spheres-sim-63b8194ed38c206a\\dep-test-integration-test-company_refits",
+              "checksum": false
+            }
+          }
+        ],
+        "rustflags": [],
+        "config": 9396254390672932401,
+        "compile_kind": 0
+      },
+      "sha256_after": "1444ce20a27398f9ccf8cc163a6f9bf49bb95124a565cf7fa0606db20d67b9a9"
+    }
+  ],
+  "tools": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s05-staging\\tools\\campaign\\active-fixture-layout.json",
+      "sha256": "b5d9da5df793360774e177fe98c54f47e3bcee89865f5d09d60dbcea8b3013d6"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s05-staging\\tools\\campaign\\manifest-active-fixtures.cjs",
+      "sha256": "b1762e788751f120fe783f781febfc2ba229314a01e44b3f854a619daaafd44f"
+    }
+  ],
+  "runs": [
+    {
+      "binary": "companies",
+      "test": "export_company_qa_stages",
+      "environment": "SPHERES_COMPANY_QA_DIR",
+      "directory": "companies",
+      "files": 5,
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target\\release\\deps\\companies_integration-b294d37d0a85b120.exe",
+        "--exact",
+        "--ignored",
+        "--nocapture",
+        "export_company_qa_stages",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active",
+      "environment_value": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\companies",
+      "started_utc": "2026-09-11T04:36:27.846132+00:00",
+      "elapsed_seconds": 0.9867498999228701,
+      "exit_code": 0,
+      "log_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\evidence\\export_company_qa_stages.log",
+      "log_sha256": "d61dd822e2331fe22acb13adcf60039bab7fa935b3a91cee5a62d41eae96ce5a"
+    },
+    {
+      "binary": "companies",
+      "test": "export_company_platform_qa_stages",
+      "environment": "SPHERES_COMPANY_QA_DIR",
+      "directory": "companies",
+      "files": 5,
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target\\release\\deps\\companies_integration-b294d37d0a85b120.exe",
+        "--exact",
+        "--ignored",
+        "--nocapture",
+        "export_company_platform_qa_stages",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active",
+      "environment_value": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\companies",
+      "started_utc": "2026-09-11T04:36:28.837955+00:00",
+      "elapsed_seconds": 1.903394699911587,
+      "exit_code": 0,
+      "log_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\evidence\\export_company_platform_qa_stages.log",
+      "log_sha256": "d9384cf38279fbc39bf6e5990fb310c7ccf866f20aa5cbde1424515bc0962372"
+    },
+    {
+      "binary": "ammunition",
+      "test": "export_company_ammunition_qa_stages",
+      "environment": "SPHERES_COMPANY_AMMO_QA_DIR",
+      "directory": "ammunition",
+      "files": 4,
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target\\release\\deps\\company_ammunition-1bf48242777f9167.exe",
+        "--exact",
+        "--ignored",
+        "--nocapture",
+        "export_company_ammunition_qa_stages",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active",
+      "environment_value": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\ammunition",
+      "started_utc": "2026-09-11T04:36:30.747134+00:00",
+      "elapsed_seconds": 0.13068669999483973,
+      "exit_code": 0,
+      "log_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\evidence\\export_company_ammunition_qa_stages.log",
+      "log_sha256": "2002d07de9f74dfb9127d35b0de80294db03b231dfdd3375d846b0c339a63226"
+    },
+    {
+      "binary": "refits",
+      "test": "export_company_refit_qa_stages",
+      "environment": "SPHERES_COMPANY_REFIT_QA_DIR",
+      "directory": "refits",
+      "files": 14,
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target\\release\\deps\\company_refits-63b8194ed38c206a.exe",
+        "--exact",
+        "--ignored",
+        "--nocapture",
+        "export_company_refit_qa_stages",
+        "--test-threads=1"
+      ],
+      "cwd": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active",
+      "environment_value": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\refits",
+      "started_utc": "2026-09-11T04:36:30.885626+00:00",
+      "elapsed_seconds": 2.489426900050603,
+      "exit_code": 0,
+      "log_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\evidence\\export_company_refit_qa_stages.log",
+      "log_sha256": "ce92660bfc574779b90121d9ee4f3e15f237adc96c4b8feebe2b97b821b8bc5c"
+    }
+  ],
+  "finished_utc": "2026-09-11T04:36:33.925666+00:00",
+  "status": "passed",
+  "exporter_tests_passed": 4,
+  "fixture_count": 28,
+  "manifest_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\active-fixture-manifest.json",
+  "manifest_sha256": "3f897d3bcd3c24664980a026b710d84e5f8d23cddc2d180d0185efc969a1bd4f",
+  "manifest_create_command": [
+    "node",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s05-staging\\tools\\campaign\\manifest-active-fixtures.cjs",
+    "--root",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active",
+    "--source-revision",
+    "5f7f355502f17bd6bd8f0383a2d14f0024fa7884",
+    "--companies-binary",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target\\release\\deps\\companies_integration-b294d37d0a85b120.exe",
+    "--ammunition-binary",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target\\release\\deps\\company_ammunition-1bf48242777f9167.exe",
+    "--refits-binary",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target\\release\\deps\\company_refits-63b8194ed38c206a.exe"
+  ],
+  "manifest_verify_command": [
+    "node",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s05-staging\\tools\\campaign\\manifest-active-fixtures.cjs",
+    "--root",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active",
+    "--verify"
+  ],
+  "manifest_verified": true,
+  "source_binaries_unchanged": true
+}

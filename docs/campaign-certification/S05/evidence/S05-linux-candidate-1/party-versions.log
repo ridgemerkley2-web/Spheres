@@ -1,0 +1,15 @@
+
+running 1 test
+test s05_save_matrix_tests::standalone_party_v1_preserves_real_supplier_books_for_equipment_versions_2_through_5 ... 
+thread 's05_save_matrix_tests::standalone_party_v1_preserves_real_supplier_books_for_equipment_versions_2_through_5' (7240) panicked at spheres-web/src/s05_save_matrix_tests.rs:55:74:
+called `Result::unwrap()` on an `Err` value: "The campaign history has invalid dates. The live campaign was kept."
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+
+failures:
+
+failures:
+    s05_save_matrix_tests::standalone_party_v1_preserves_real_supplier_books_for_equipment_versions_2_through_5
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 313 filtered out; finished in 0.20s
+

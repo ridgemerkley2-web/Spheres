@@ -1,0 +1,53 @@
+{
+  "source_revision": "ae9c5d9752138700494123b0a2778fdaec3e790d",
+  "native_fixture_sha256": "93b98965e2a7ce740f0402c84447b013e1831591c1d1a16ee3f78610148cefa1",
+  "native_test": "campaign_api_tests::recorded_warfare_review_uses_native_adoption_and_executed_daily_reports",
+  "fixture_note": "Synthetic native QA: France reviews and explicitly enables warfare; a separate Iraq/Iran test conflict starts at authored fixture escalation. Its operation is issued through the real browser parser/receipt channel and resolved by three complete daily ticks. No battlefield report, equipment, supply or historical war outcome is fabricated.",
+  "synthetic_setup": "The native QA fixture sets Iraq political capital to 150 and each conflict posture to escalation rung 8. It does not grant equipment or fabricate supply, casualties or reports.",
+  "assets": {
+    "campaign-operations-ui.js": {
+      "sha256": "ab7ec85f87a44ab316a700a7206a05f7057b8bfabd51d1d4d9dd5ddb5e0a7bf5",
+      "source": "spheres-web/ui/campaign-operations-ui.js"
+    },
+    "campaign-operations-ui.css": {
+      "sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+      "source": "spheres-web/ui/campaign-operations-ui.css"
+    },
+    "map-controls.js": {
+      "sha256": "fb6e307071025ac7ed712b923942ac413949348e303d1e7dd169f5818412f1d0",
+      "source": "spheres-web/ui/map-controls.js"
+    },
+    "map-controls.css": {
+      "sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+      "source": "spheres-web/ui/map-controls.css"
+    },
+    "globe3d.js": {
+      "sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+      "source": "spheres-web/ui/globe3d.js"
+    },
+    "decision-tools.css": {
+      "sha256": "b61588dd1e1ae0c42635722125842bbfd29af02ad705164e4a5b687f9a54c7b6",
+      "source": "spheres-web/ui/decision-tools.css"
+    },
+    "campaign-confirm-only.js": {
+      "sha256": "7ca72e562b503df9ec6452059bf9149546192f8c1897b13419300e841dd5e302",
+      "source": "spheres-web/ui/campaign-ui.js"
+    }
+  },
+  "confirmation_source_sha256": "83256fa3995145bb64b030bc9d8cf63fedd4b3e5873c69ab7f7562018aa98591",
+  "scope": "Native recorded adoption and three-day operation. Shipped confirmation dialog closes locally without issuing commands. Map control adapter changes local camera settings only; terrain rendering, city picking, placement and campaign clock are not exercised. No live game or endpoint.",
+  "reviewed_utc": "2026-09-11T04:53:23.083391+00:00",
+  "native_fixture_candidate": "ff446b60d7b28c756cca8a9fce3a0e0947fd4e5f",
+  "presentation_candidate": "ae9c5d9752138700494123b0a2778fdaec3e790d",
+  "browser": "Codex in-app browser",
+  "reviewed": [
+    "Actual native effects visible in shipped confirmation dialog; cancelled without an order",
+    "Recorded Iraq report shows 19.36 force points in transit, 0 fielded and no fabricated battle losses",
+    "390x844 confirmation client/scroll width 341px",
+    "Camera controls initially overflowed; after scoped wrap fix document client/scroll width 375px, control groups 325px",
+    "Local adapter zoom changes 24.0x to32.4x; no actual terrain or city rendering in this artifact"
+  ],
+  "console_warn_or_error": [],
+  "viewport_reset": true,
+  "result": "presentation checks passed; live campaign, map and combined binary qualification remains S05"
+}

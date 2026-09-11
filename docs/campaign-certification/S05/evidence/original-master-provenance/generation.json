@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "source_revision": "485c223f60d5ff6e46f6ae17164bf1ee3a8764d9",
+  "test_binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\master-target\\release\\deps\\spheres_web-08880ad35fc922f5.exe",
+  "test_binary_sha256": "2bedd29560bed02e157a6953d64c45faf91ee21aeac85083aed78a3e74f4f622",
+  "arguments": [
+    "performance::campaign_lifetime_profile",
+    "--ignored",
+    "--exact",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "child_environment": {
+    "SPHERES_PROFILE_OUT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-pinned-master\\profile.json",
+    "SPHERES_PROFILE_YEARS": "0",
+    "SPHERES_PROFILE_SCENARIO": "industry_and_war"
+  },
+  "started_utc": "2026-09-11T04:33:41.0754802Z",
+  "finished_utc": "2026-09-11T04:33:59.8184784Z",
+  "exit_code": 0,
+  "passed": true,
+  "archive": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-pinned-master\\profile-campaigns\\saves\\profile-industry_and_war-0.json",
+  "archive_sha256": "5fba07caf82335609aab312f14a37f775dcac84e4821bddc36ab63a5bf795463",
+  "actual_saved_date": "1 Feb 1990",
+  "actual_rules": {
+    "ai_aggression": 1.0,
+    "crisis_intensity": 1.0,
+    "daily_simulation": true,
+    "economic_competition": true,
+    "fiscal_recovery": true,
+    "ideology_blocs": true,
+    "industry_rebuild": true,
+    "logistics_routes": true,
+    "manufacturing_system": true,
+    "military_operations": true,
+    "operational_warfare": 1,
+    "physical_logistics": true,
+    "production_system": true,
+    "resource_market": true,
+    "seed": 1990
+  },
+  "property_counts": {
+    "nations": 137,
+    "history": 32,
+    "log": 169,
+    "contractor_roster": 763,
+    "contractor_assignments": 244,
+    "conflicts": 1,
+    "campaign_sectors": 4,
+    "campaign_transfers": 43,
+    "supply_buffers": 4,
+    "supply_cargo": 11
+  },
+  "failure": null,
+  "scope": "One fresh pinned-master technical USA scenario, 31 days. USA is not required campaign scope. No input archive, server or Cargo. Incidental profiler timings are not candidate performance or long-run balance qualification."
+}

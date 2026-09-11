@@ -1,0 +1,33 @@
+✔ menu navigation displays one view, resets scroll and ignores unknown destinations (1.7709ms)
+✔ menu focus reaches a usable heading for empty saves and touch nation selection (0.7706ms)
+✔ leaving and reopening nation choice preserves the selection, search, sorting and seed (1.7375ms)
+✔ an unavailable roster remains navigable without inventing a selected nation (0.8152ms)
+✔ save rendering distinguishes unknown, empty and populated inventories (0.8643ms)
+✔ load actions stay locked for active work and unconfirmed receipts without losing the selected slot (2.6775ms)
+✔ edits added and replacements made while an advance is in flight survive its response (2.5338ms)
+✔ network failure is visible, retains the submitted draft, and never rejects unhandled (0.7515ms)
+✔ save failure is surfaced instead of becoming an unhandled rejection (0.774ms)
+✔ boot offers explicit continue and load without starting a replacement campaign (0.8656ms)
+✔ globe starts with an uninitialized center while real zero stays valid (1.0652ms)
+✔ only unchanged submitted object references are removed, even if another command has the same value (0.7434ms)
+✔ uncertain retry resends the identical frozen turn, never newly added draft orders (0.9111ms)
+✔ an explicit non-advancing server refusal unlocks the retained draft for correction (0.659ms)
+✔ a display failure after acknowledgement cannot cause a committed turn to be retried (0.6498ms)
+✔ reload restores the same pending receipt and only its still-matching draft references (2.9668ms)
+✔ pending orders from a replaced campaign never enter the current queue or retry path (0.7996ms)
+✔ API rejects a delayed old-campaign response and transmits identity on immediate mutations (1.059ms)
+✔ server refusal metadata distinguishes certain rejection from uncertain transport failure (0.605ms)
+✔ boot reads state and roster without mutating the campaign and reveals Continue (1.322ms)
+✔ older-sequence conflicts retain orders for explicit review instead of marking them safe to resend (0.7027ms)
+✔ delayed boot success and failure preserve the menu the player selected while discovery was pending (3.9625ms)
+✔ review requires confirmation and never resubmits old orders, retaining newer draft edits (1.9469ms)
+✔ campaign changes and modal entry close global More and Map menus without closing room disclosures (1.5008ms)
+✔ starting a replacement campaign cannot reuse the previous named save target (1.2578ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 201.5236

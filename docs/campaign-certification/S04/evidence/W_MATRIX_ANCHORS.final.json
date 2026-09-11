@@ -1,0 +1,344 @@
+{
+  "candidate": "db9d17c8d726aa102aa143ceb3599009c558ffee",
+  "description": "Source-only rebinding of final W1–W6 and route-preservation anchors; this script does not execute tests.",
+  "evidence": {
+    "native": "../../S05/evidence/S05-final-native-db9d17c.log",
+    "node": "../../S05/evidence/S05-final-node-db9d17c.log"
+  },
+  "assertion_corrections": {
+    "cession": "Asserts exact district ownership map and recorded district delta after one consented transfer. Does not assert one district_epoch increment.",
+    "party": "All holder identities/dates remain exact; occupied or unrelated assignments remain entirely equal. An empty target-party component may update vacancy-review reason/date, without creating a holder."
+  },
+  "anchors": [
+    {
+      "source": "spheres-sim/src/campaign_supply.rs",
+      "line": 574,
+      "test": "campaign_supply::tests::dispatch_arrival_and_consumption_are_conserved_and_same_day_idempotent",
+      "committed_lf_sha256": "fc6f080340c245d8ccef2753b2cc6d37aabd283885412054e5641f092f9f1894",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/src/campaign_supply.rs",
+      "line": 596,
+      "test": "campaign_supply::tests::commercial_usage_cannot_be_reset_or_overbooked_and_reserves_run_out",
+      "committed_lf_sha256": "fc6f080340c245d8ccef2753b2cc6d37aabd283885412054e5641f092f9f1894",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/src/campaign_supply.rs",
+      "line": 613,
+      "test": "campaign_supply::tests::military_transit_requires_explicit_host_access_and_contested_is_never_friendly",
+      "committed_lf_sha256": "fc6f080340c245d8ccef2753b2cc6d37aabd283885412054e5641f092f9f1894",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/src/campaign_supply.rs",
+      "line": 626,
+      "test": "campaign_supply::tests::saved_booked_cargo_holds_on_permission_revocation_then_arrives_once",
+      "committed_lf_sha256": "fc6f080340c245d8ccef2753b2cc6d37aabd283885412054e5641f092f9f1894",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/src/campaign_supply.rs",
+      "line": 649,
+      "test": "campaign_supply::tests::source_and_edge_capacity_are_shared_across_requests_and_sea_needs_real_ships",
+      "committed_lf_sha256": "fc6f080340c245d8ccef2753b2cc6d37aabd283885412054e5641f092f9f1894",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/aviation_ammunition.rs",
+      "line": 230,
+      "test": "aviation_ammunition::aircraft_require_exact_paid_stores_and_partial_coverage_gates_strike_once",
+      "committed_lf_sha256": "39e34937c4d1f15324f5f6c3dbbee28d7457e6e9509fa0488859fe7915fe5956",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/aviation_ammunition.rs",
+      "line": 277,
+      "test": "aviation_ammunition::inaccessible_grounded_in_transit_and_refitting_aircraft_cannot_fly",
+      "committed_lf_sha256": "39e34937c4d1f15324f5f6c3dbbee28d7457e6e9509fa0488859fe7915fe5956",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/aviation_ammunition.rs",
+      "line": 320,
+      "test": "aviation_ammunition::aviation_does_not_activate_ground_stores_or_supply_ground_firing",
+      "committed_lf_sha256": "39e34937c4d1f15324f5f6c3dbbee28d7457e6e9509fa0488859fe7915fe5956",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_identity.rs",
+      "line": 95,
+      "test": "campaign_identity::immediate_redeclaration_cannot_inherit_previous_coalition_orders_or_deployed_force",
+      "committed_lf_sha256": "043e1fa95d9516571d8168130829da56e5c9e3c4982d6c70c2701e99d9c07c42",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_identity.rs",
+      "line": 188,
+      "test": "campaign_identity::upgrading_a_save_seeds_identity_from_closed_history_and_persists_reservations",
+      "committed_lf_sha256": "043e1fa95d9516571d8168130829da56e5c9e3c4982d6c70c2701e99d9c07c42",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_operations.rs",
+      "line": 134,
+      "test": "campaign_operations::migration_and_two_wars_conserve_national_force_through_losses_and_transfers",
+      "committed_lf_sha256": "58650311665a95d0abdd70de809d14703bacc80baf5e69c46814d3a9d5a1e7d6",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_operations.rs",
+      "line": 204,
+      "test": "campaign_operations::changed_focus_moves_existing_cohorts_on_saved_dates_without_resetting_fatigue",
+      "committed_lf_sha256": "58650311665a95d0abdd70de809d14703bacc80baf5e69c46814d3a9d5a1e7d6",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_operations.rs",
+      "line": 289,
+      "test": "campaign_operations::unsupported_missions_buy_no_capability_and_standoff_cannot_occupy_ground",
+      "committed_lf_sha256": "58650311665a95d0abdd70de809d14703bacc80baf5e69c46814d3a9d5a1e7d6",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_peace_audit.rs",
+      "line": 55,
+      "test": "campaign_peace_audit::debt_free_closed_books_recipient_keeps_every_reparation_dollar",
+      "committed_lf_sha256": "70a3089f64d957f17c879f285b79b0ae74ba7fbad4cac317f5c3251fe7522949",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_peace_audit.rs",
+      "line": 97,
+      "test": "campaign_peace_audit::changing_coalition_sides_requires_fresh_consent_even_with_same_nations",
+      "committed_lf_sha256": "70a3089f64d957f17c879f285b79b0ae74ba7fbad4cac317f5c3251fe7522949",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_peace_audit.rs",
+      "line": 140,
+      "test": "campaign_peace_audit::changing_the_principal_requires_fresh_terms_even_with_unchanged_coalitions",
+      "committed_lf_sha256": "70a3089f64d957f17c879f285b79b0ae74ba7fbad4cac317f5c3251fe7522949",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_peace_audit.rs",
+      "line": 181,
+      "test": "campaign_peace_audit::occupation_belongs_to_its_actual_front_not_first_matching_war",
+      "committed_lf_sha256": "70a3089f64d957f17c879f285b79b0ae74ba7fbad4cac317f5c3251fe7522949",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_peace.rs",
+      "line": 69,
+      "test": "campaign_peace::human_and_every_ally_must_consent_and_replaying_response_is_inert",
+      "committed_lf_sha256": "ecdec68f073142530d03f84044057465c420172d576f12770c618cc656902a8f",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_peace.rs",
+      "line": 117,
+      "test": "campaign_peace::peace_tick_never_accepts_for_the_human",
+      "committed_lf_sha256": "ecdec68f073142530d03f84044057465c420172d576f12770c618cc656902a8f",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_peace.rs",
+      "line": 139,
+      "test": "campaign_peace::cash_reparations_transfer_once_without_a_gdp_reward",
+      "committed_lf_sha256": "ecdec68f073142530d03f84044057465c420172d576f12770c618cc656902a8f",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_peace.rs",
+      "line": 219,
+      "test": "campaign_peace::proposal_cannot_outlive_changed_coalition_or_save_roundtrip",
+      "committed_lf_sha256": "ecdec68f073142530d03f84044057465c420172d576f12770c618cc656902a8f",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_peace.rs",
+      "line": 250,
+      "test": "campaign_peace::occupation_is_idempotent_and_does_not_award_inventory_or_ownership",
+      "committed_lf_sha256": "ecdec68f073142530d03f84044057465c420172d576f12770c618cc656902a8f",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_population.rs",
+      "line": 102,
+      "test": "campaign_population::two_front_coalition_casualties_post_one_national_population_debit",
+      "committed_lf_sha256": "a5deb7ef812f91f0b9e0c548d566f75670685bb75f65a4fcc9b0c5ddd81b59ef",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/companies_integration.rs",
+      "line": 708,
+      "test": "companies_integration::occupation_stops_work_and_holds_paid_transit_without_transferring_cash_or_designs",
+      "committed_lf_sha256": "c4dc6323deb0d25a7d644903372f6aea2d1d68f4d7653d93daae7b82b0d4208f",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/company_ammunition.rs",
+      "line": 1393,
+      "test": "company_ammunition::s05_paid_company_air_stores_survive_pending_save_then_feed_operational_strike",
+      "committed_lf_sha256": "ac0f0be807e729538cf87b95966dc06ffdd5ddc51a6ef42cafe0306c2fa2db43",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/military_operations.rs",
+      "line": 47,
+      "test": "military_operations::occupation_stops_an_arms_line_and_recapture_resumes_without_transfer",
+      "committed_lf_sha256": "4d68579e3a887e4f4d68bea04e47c6758d99a6b3e76b8d69221f1dcea4e78da9",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/military_operations.rs",
+      "line": 100,
+      "test": "military_operations::all_theatres_use_one_opening_force_and_equipment_snapshot",
+      "committed_lf_sha256": "4d68579e3a887e4f4d68bea04e47c6758d99a6b3e76b8d69221f1dcea4e78da9",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/s02_integration.rs",
+      "line": 78,
+      "test": "s02_integration::versioned_economy_refuses_downgrade_and_separate_master_property",
+      "committed_lf_sha256": "e9fbc72cd6bfeacc8e7067edb8c42e64623192931196da73215dc4f986d64a52",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/s04_peace_boundaries.rs",
+      "line": 122,
+      "test": "s04_peace_boundaries::consented_cession_transfers_one_district_and_residents_without_acquiring_its_company",
+      "committed_lf_sha256": "d6d9be00b2d4fda7b78747a6e76dc3d89bfb8af70d9ec82846489e529dfbafb1",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/s04_peace_boundaries.rs",
+      "line": 277,
+      "test": "s04_peace_boundaries::consented_political_transition_uses_reviewed_executive_identity_and_preserves_party_incumbents",
+      "committed_lf_sha256": "d6d9be00b2d4fda7b78747a6e76dc3d89bfb8af70d9ec82846489e529dfbafb1",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/tests/s04_peace_boundaries.rs",
+      "line": 403,
+      "test": "s04_peace_boundaries::nuclear_and_last_district_limits_refuse_proposals_and_changed_pending_terms_atomically",
+      "committed_lf_sha256": "d6d9be00b2d4fda7b78747a6e76dc3d89bfb8af70d9ec82846489e529dfbafb1",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-web/src/main.rs",
+      "line": 17578,
+      "test": "tests::the_back_a_movement_card_quotes_the_odds_the_sim_rolls",
+      "committed_lf_sha256": "89285240d60ab2b783a753e7bbaee48eae450cf2e32ca2eaf677293ddd15ad80",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "tools/ui/check_city_layer.cjs",
+      "line": 193,
+      "test": "the relief the host is drawing is the relief the city is seated at",
+      "committed_lf_sha256": "fcd325b6c8134cbdbf389a1ee490962fbc151b124f659d0d2f51e8f5565794e5",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "tools/ui/check_city_layer.cjs",
+      "line": 238,
+      "test": "a re-seat moves the city and touches nothing else",
+      "committed_lf_sha256": "fcd325b6c8134cbdbf389a1ee490962fbc151b124f659d0d2f51e8f5565794e5",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "tools/ui/check_city_mesh.cjs",
+      "line": 988,
+      "test": "the declared budget holds for every one of the 1,249 real records",
+      "committed_lf_sha256": "e40982cf7f996a5bf6d0bf1c582933455cd5145a600f8d18e0bc2b2056602bea",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "tools/ui/check_city_water.cjs",
+      "line": 38,
+      "test": "terrain river channels and their casings continue shrinking through zoom1500",
+      "committed_lf_sha256": "61cabe39ed62ddb3e4c484d42cf4217011a9b3fceeb2841e34ee8e0a46a95ecc",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "tools/ui/check_city_water.cjs",
+      "line": 46,
+      "test": "rendered coast decode and lake encode filtering own water even above sea level",
+      "committed_lf_sha256": "61cabe39ed62ddb3e4c484d42cf4217011a9b3fceeb2841e34ee8e0a46a95ecc",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "tools/ui/check_city_water.cjs",
+      "line": 56,
+      "test": "Paris keeps dry blocks but no generated lot intersects the displayed Seine corridor",
+      "committed_lf_sha256": "61cabe39ed62ddb3e4c484d42cf4217011a9b3fceeb2841e34ee8e0a46a95ecc",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "tools/ui/check_city_water.cjs",
+      "line": 73,
+      "test": "Singapore blocks follow rendered ocean and globe mesh adds no second water plate",
+      "committed_lf_sha256": "61cabe39ed62ddb3e4c484d42cf4217011a9b3fceeb2841e34ee8e0a46a95ecc",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "tools/ui/check_city_water.cjs",
+      "line": 89,
+      "test": "default card geometry remains exactly unchanged when optional water support is unused",
+      "committed_lf_sha256": "61cabe39ed62ddb3e4c484d42cf4217011a9b3fceeb2841e34ee8e0a46a95ecc",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "tools/ui/check_globe_terrain.cjs",
+      "line": 65,
+      "test": "tilted projection and picking round-trip sourced coordinates at close zoom and multiple pixel ratios",
+      "committed_lf_sha256": "458a97400396e4bc9b0cba3b99ee2034ff46b8dc7dd2371a35c3ee2e62e64140",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "tools/ui/check_globe_terrain.cjs",
+      "line": 159,
+      "test": "the relief ramp and the zoom ceiling are one derivation, and the camera clears the rock at every zoom",
+      "committed_lf_sha256": "458a97400396e4bc9b0cba3b99ee2034ff46b8dc7dd2371a35c3ee2e62e64140",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "tools/ui/check_map_detail.cjs",
+      "line": 102,
+      "test": "political painting keeps transferred ownership and data overlays independent of scenery",
+      "committed_lf_sha256": "5ad9301dbcec5eb60e796b905b83c37ea671fec5b095da330d097ae449445825",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "tools/ui/check_terrain_surface.cjs",
+      "line": 181,
+      "test": "cache evicts older regions and never exceeds its decoded memory budget",
+      "committed_lf_sha256": "989678389417f72373e10168d9196300574b223f2a049d4c527ef1e5a8b69be7",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "tools/ui/check_terrain_surface.cjs",
+      "line": 260,
+      "test": "Baikal surface replaces its bed in geometry, slope and picking height together",
+      "committed_lf_sha256": "989678389417f72373e10168d9196300574b223f2a049d4c527ef1e5a8b69be7",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/src/campaign_supply.rs",
+      "line": 713,
+      "test": "campaign_supply::tests::movement_snapshot_matches_fresh_quotes_and_preserves_the_world",
+      "committed_lf_sha256": "fc6f080340c245d8ccef2753b2cc6d37aabd283885412054e5641f092f9f1894",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    },
+    {
+      "source": "spheres-sim/src/campaign_supply.rs",
+      "line": 727,
+      "test": "campaign_supply::tests::later_movement_snapshot_observes_capacity_and_permission_changes",
+      "committed_lf_sha256": "fc6f080340c245d8ccef2753b2cc6d37aabd283885412054e5641f092f9f1894",
+      "status": "definition verified in the exact committed runtime; execution evidence is reported separately"
+    }
+  ],
+  "source_path_base": "repository root at candidate"
+}

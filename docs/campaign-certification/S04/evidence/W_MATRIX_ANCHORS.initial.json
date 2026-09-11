@@ -1,0 +1,277 @@
+{
+  "candidate": "261897909e12564275b802f99e3301adbfad61b2",
+  "staged_addition": "peace-boundaries/peace-boundaries.patch",
+  "description": "Read-only source name/line lookup; no test execution or pass inference.",
+  "anchors": [
+    {
+      "source": "spheres-sim/src/campaign_supply.rs",
+      "line": 554,
+      "test": "campaign_supply::tests::dispatch_arrival_and_consumption_are_conserved_and_same_day_idempotent",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/src/campaign_supply.rs",
+      "line": 576,
+      "test": "campaign_supply::commercial_usage_cannot_be_reset_or_overbooked_and_reserves_run_out",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/src/campaign_supply.rs",
+      "line": 593,
+      "test": "campaign_supply::military_transit_requires_explicit_host_access_and_contested_is_never_friendly",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/src/campaign_supply.rs",
+      "line": 606,
+      "test": "campaign_supply::saved_booked_cargo_holds_on_permission_revocation_then_arrives_once",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/src/campaign_supply.rs",
+      "line": 629,
+      "test": "campaign_supply::source_and_edge_capacity_are_shared_across_requests_and_sea_needs_real_ships",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/aviation_ammunition.rs",
+      "line": 230,
+      "test": "aviation_ammunition::aircraft_require_exact_paid_stores_and_partial_coverage_gates_strike_once",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/aviation_ammunition.rs",
+      "line": 277,
+      "test": "aviation_ammunition::inaccessible_grounded_in_transit_and_refitting_aircraft_cannot_fly",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/aviation_ammunition.rs",
+      "line": 320,
+      "test": "aviation_ammunition::aviation_does_not_activate_ground_stores_or_supply_ground_firing",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_identity.rs",
+      "line": 95,
+      "test": "campaign_identity::immediate_redeclaration_cannot_inherit_previous_coalition_orders_or_deployed_force",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_identity.rs",
+      "line": 188,
+      "test": "campaign_identity::upgrading_a_save_seeds_identity_from_closed_history_and_persists_reservations",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_operations.rs",
+      "line": 134,
+      "test": "campaign_operations::migration_and_two_wars_conserve_national_force_through_losses_and_transfers",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_operations.rs",
+      "line": 204,
+      "test": "campaign_operations::changed_focus_moves_existing_cohorts_on_saved_dates_without_resetting_fatigue",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_operations.rs",
+      "line": 289,
+      "test": "campaign_operations::unsupported_missions_buy_no_capability_and_standoff_cannot_occupy_ground",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_peace_audit.rs",
+      "line": 55,
+      "test": "campaign_peace_audit::debt_free_closed_books_recipient_keeps_every_reparation_dollar",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_peace_audit.rs",
+      "line": 97,
+      "test": "campaign_peace_audit::changing_coalition_sides_requires_fresh_consent_even_with_same_nations",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_peace_audit.rs",
+      "line": 140,
+      "test": "campaign_peace_audit::changing_the_principal_requires_fresh_terms_even_with_unchanged_coalitions",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_peace_audit.rs",
+      "line": 181,
+      "test": "campaign_peace_audit::occupation_belongs_to_its_actual_front_not_first_matching_war",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_peace.rs",
+      "line": 69,
+      "test": "campaign_peace::human_and_every_ally_must_consent_and_replaying_response_is_inert",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_peace.rs",
+      "line": 117,
+      "test": "campaign_peace::peace_tick_never_accepts_for_the_human",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_peace.rs",
+      "line": 139,
+      "test": "campaign_peace::cash_reparations_transfer_once_without_a_gdp_reward",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_peace.rs",
+      "line": 219,
+      "test": "campaign_peace::proposal_cannot_outlive_changed_coalition_or_save_roundtrip",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_peace.rs",
+      "line": 250,
+      "test": "campaign_peace::occupation_is_idempotent_and_does_not_award_inventory_or_ownership",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/campaign_population.rs",
+      "line": 102,
+      "test": "campaign_population::two_front_coalition_casualties_post_one_national_population_debit",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/companies_integration.rs",
+      "line": 708,
+      "test": "companies_integration::occupation_stops_work_and_holds_paid_transit_without_transferring_cash_or_designs",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/company_ammunition.rs",
+      "line": 1393,
+      "test": "company_ammunition::s05_paid_company_air_stores_survive_pending_save_then_feed_operational_strike",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/military_operations.rs",
+      "line": 47,
+      "test": "military_operations::occupation_stops_an_arms_line_and_recapture_resumes_without_transfer",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/military_operations.rs",
+      "line": 100,
+      "test": "military_operations::all_theatres_use_one_opening_force_and_equipment_snapshot",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/s02_integration.rs",
+      "line": 78,
+      "test": "s02_integration::versioned_economy_refuses_downgrade_and_separate_master_property",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "spheres-sim/tests/s04_peace_boundaries.rs",
+      "line": 122,
+      "test": "s04_peace_boundaries::consented_cession_transfers_one_district_and_residents_without_acquiring_its_company",
+      "status": "staged, execution pending"
+    },
+    {
+      "source": "spheres-sim/tests/s04_peace_boundaries.rs",
+      "line": 275,
+      "test": "s04_peace_boundaries::consented_political_transition_uses_reviewed_executive_identity_and_preserves_party_incumbents",
+      "status": "staged, execution pending"
+    },
+    {
+      "source": "spheres-sim/tests/s04_peace_boundaries.rs",
+      "line": 380,
+      "test": "s04_peace_boundaries::nuclear_and_last_district_limits_refuse_proposals_and_changed_pending_terms_atomically",
+      "status": "staged, execution pending"
+    },
+    {
+      "source": "spheres-web/src/main.rs",
+      "line": 17578,
+      "test": "tests::the_back_a_movement_card_quotes_the_odds_the_sim_rolls",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "tools/ui/check_city_layer.cjs",
+      "line": 193,
+      "test": "the relief the host is drawing is the relief the city is seated at",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "tools/ui/check_city_layer.cjs",
+      "line": 238,
+      "test": "a re-seat moves the city and touches nothing else",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "tools/ui/check_city_mesh.cjs",
+      "line": 988,
+      "test": "the declared budget holds for every one of the 1,249 real records",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "tools/ui/check_city_water.cjs",
+      "line": 38,
+      "test": "terrain river channels and their casings continue shrinking through zoom1500",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "tools/ui/check_city_water.cjs",
+      "line": 46,
+      "test": "rendered coast decode and lake encode filtering own water even above sea level",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "tools/ui/check_city_water.cjs",
+      "line": 56,
+      "test": "Paris keeps dry blocks but no generated lot intersects the displayed Seine corridor",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "tools/ui/check_city_water.cjs",
+      "line": 73,
+      "test": "Singapore blocks follow rendered ocean and globe mesh adds no second water plate",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "tools/ui/check_city_water.cjs",
+      "line": 89,
+      "test": "default card geometry remains exactly unchanged when optional water support is unused",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "tools/ui/check_globe_terrain.cjs",
+      "line": 65,
+      "test": "tilted projection and picking round-trip sourced coordinates at close zoom and multiple pixel ratios",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "tools/ui/check_globe_terrain.cjs",
+      "line": 159,
+      "test": "the relief ramp and the zoom ceiling are one derivation, and the camera clears the rock at every zoom",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "tools/ui/check_map_detail.cjs",
+      "line": 102,
+      "test": "political painting keeps transferred ownership and data overlays independent of scenery",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "tools/ui/check_terrain_surface.cjs",
+      "line": 181,
+      "test": "cache evicts older regions and never exceeds its decoded memory budget",
+      "status": "current source verified; final result pending"
+    },
+    {
+      "source": "tools/ui/check_terrain_surface.cjs",
+      "line": 260,
+      "test": "Baikal surface replaces its bed in geometry, slope and picking height together",
+      "status": "current source verified; final result pending"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "candidate": "261897909e12564275b802f99e3301adbfad61b2",
+  "status": "passed for the explicitly requested final affected-web, Node and external-save scope",
+  "native_affected_web": {
+    "passed": 308,
+    "failed": 0,
+    "ignored": 6,
+    "completed_targets": 1
+  },
+  "node": {
+    "tests": 1466,
+    "pass": 1465,
+    "fail": 0,
+    "skipped": 1
+  },
+  "external_checks": [
+    {
+      "name": "master-archive",
+      "exit_code": 0
+    },
+    {
+      "name": "active-fixtures",
+      "exit_code": 0
+    },
+    {
+      "name": "party-versions",
+      "exit_code": 0
+    }
+  ],
+  "original_active_rows": 28,
+  "party_equipment_versions": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "genuine_master_archive_bytes": 18848817,
+  "web_test_binary": {
+    "path": "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-0c882886cd9a3582",
+    "bytes": 341934480,
+    "sha256": "fb9a2f713ffed2015d29ee648eb35bffb14a7675e885f4b6edbe951ff69b87a9",
+    "sha256_after": "fb9a2f713ffed2015d29ee648eb35bffb14a7675e885f4b6edbe951ff69b87a9"
+  },
+  "source_clean_before_and_after": true,
+  "fixtures_unchanged": true,
+  "reused_full_native_evidence": {
+    "candidate": "8c9159786d3736a9953706262a52c50898225f0e",
+    "passed": 1475,
+    "failed": 0,
+    "ignored": 75,
+    "evidence": "../S05-linux-candidate-2/runner-result.json",
+    "reuse_basis": "Exact Rust diff contains only spheres-web/src/s05_master_migration_tests.rs. No simulation production Rust changes. The full workspace suite was not rerun or relabeled as this final commit."
+  },
+  "limits": [
+    "This evidence is bound to 261897909e12564275b802f99e3301adbfad61b2. Subsequent patches require their own declared checks.",
+    "Local WSL GNU/Linux affected web default tests, full Node and three separately invoked external checks only. No Linux server/browser, GitHub Actions or performance run.",
+    "Translated process-only Git paths and core.autocrlf policy match the existing Windows worktree without editing source/Git configuration.",
+    "No source edits were made by the qualification runner. Final clean source and fixture checks completed before parent was notified that Linux workloads had stopped."
+  ]
+}

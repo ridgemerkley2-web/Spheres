@@ -1,0 +1,23 @@
+{
+  "candidate": "93a49f58e999e65c2df1649c62d9f21ba8ea1d6a",
+  "binary_sha256": "183558cfc758128da47c04d08fc0eb4918dce681f0fc95c804364992c30f3997",
+  "url": "http://127.0.0.1:59461/",
+  "method": "Actual in-app browser. Confirmed native load of previously saved successor-reviewed slot; no capability adoption, no time advance. Visible Find, Zoom in and Close city controls; rendered district card read after ground click.",
+  "date": "2000-02-01",
+  "player": "United States",
+  "zoom": 1500,
+  "viewport_observed": [
+    2555,
+    1272
+  ],
+  "viewport_note": "Requested 1280x720 via browser viewport capability but rendered DOM remained 2555x1272; recorded actual dimensions. Temporary override reset afterward.",
+  "checks": [
+    "Ljubljana Find opens city card; natural Close city click closes it and does not open Guidance. Campaign uses existing Advisors/Tutorial entrypoints; no redundant floating launcher.",
+    "At 1500x terrain camera remains above ground and generated Ljubljana blocks visible.",
+    "Ground click at viewport (1190,705) opens Osrednjeslovenska / Slovenia / SVN_osrednjeslovenska, population 530k, area 2587 square kilometres, terrain mountain, GDP $5.324bn.",
+    "Province Close succeeds; clock remains paused at 1 Feb 2000; browser warning/error log read is empty."
+  ],
+  "scope": "Confirms modeled successor map, picking and city controls after a native roundtrip. Assets unchanged from 2618979. This is a manual pre-optimization build, not a claim of manual inspection on final db9d17c; final CI is separately pinned.",
+  "environment_note": "Earlier IAB navigation/asset startup stalled for minutes while direct local HTTP responses succeeded; completed after session reset. Cause not established, not claimed as an application or security-policy diagnosis.",
+  "recorded_utc": "2026-09-11T06:17:11.921031+00:00"
+}

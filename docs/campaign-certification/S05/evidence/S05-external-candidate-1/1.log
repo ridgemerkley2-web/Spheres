@@ -1,0 +1,15 @@
+
+running 1 test
+test s05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day ... 
+thread 's05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day' (25380) panicked at spheres-web\src\s05_master_migration_tests.rs:84:10:
+Original master archive must migrate without replacing its date or property: "Invalid saved fiscal observations for Soviet Union: invalid or already observed pending receipt."
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+
+failures:
+
+failures:
+    s05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 313 filtered out; finished in 0.55s
+

@@ -1,0 +1,63 @@
+{
+  "candidate": "99802fc590a12427772824902fdaaafdd0e91e55",
+  "status": "failed; retained candidate-1 evidence before central fixes",
+  "native": {
+    "passed": 1471,
+    "failed": 2,
+    "ignored": 75,
+    "completed_targets": 59
+  },
+  "node": {
+    "tests": 1459,
+    "pass": 1458,
+    "fail": 0,
+    "skipped": 1
+  },
+  "external_checks": [
+    {
+      "name": "master-archive",
+      "exit_code": 101
+    },
+    {
+      "name": "active-fixtures",
+      "exit_code": 0
+    },
+    {
+      "name": "party-versions",
+      "exit_code": 101
+    }
+  ],
+  "original_active_rows": 28,
+  "web_test_binary": {
+    "path": "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-0c882886cd9a3582",
+    "bytes": 341865024,
+    "sha256": "e824fb5fa4057bdcaae3a4f15eb8ee7e6a72ea5d69eaf42efb4229bf0db8ffd3",
+    "sha256_after": "e824fb5fa4057bdcaae3a4f15eb8ee7e6a72ea5d69eaf42efb4229bf0db8ffd3"
+  },
+  "source_clean_before_and_after": true,
+  "fixtures_unchanged": true,
+  "known_failures": [
+    {
+      "test": "versioned_economy_refuses_downgrade_and_separate_master_property",
+      "scope": "native simulation; empty legacy peace record shape"
+    },
+    {
+      "test": "standalone_party_v1_with_no_equipment_and_native_equipment_v1_uses_both_loaders",
+      "scope": "native web; duplicate history date fixture"
+    },
+    {
+      "test": "actual_pinned_master_archive_preserves_property_history_and_next_day",
+      "scope": "external master archive; Soviet Union pending receipt validation"
+    },
+    {
+      "test": "standalone_party_v1_preserves_real_supplier_books_for_equipment_versions_2_through_5",
+      "scope": "external active party versions; duplicate history date fixture"
+    }
+  ],
+  "limits": [
+    "Local WSL GNU/Linux evidence; no Linux server/browser or GitHub Actions run.",
+    "One default-Git preflight failed because Linux did not inherit Windows core.autocrlf=true. That attempt is preserved. Process-only matching checkout configuration then passed exact clean-source checks.",
+    "Source provenance uses explicit translated GIT_DIR/GIT_WORK_TREE because the existing Windows worktree pointer is not directly valid in Linux.",
+    "No game source changes were made by this runner. Root was notified that the final source snapshot completed before applying fixes."
+  ]
+}

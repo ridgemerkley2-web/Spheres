@@ -1,0 +1,380 @@
+{
+  "format": "spheres-s05-preservation-provenance",
+  "version": 2,
+  "captured_utc": "2026-09-11T06:20:17.608Z",
+  "candidate": "db9d17c8d726aa102aa143ceb3599009c558ffee",
+  "candidate_clean": true,
+  "expected_candidate": "db9d17c8d726aa102aa143ceb3599009c558ffee",
+  "previous_record": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s05-staging\\preservation-provenance-2618979.json",
+  "supporting_script": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s05-staging\\audit-preservation-runtime-final.cjs",
+  "supporting_script_sha256": "76ea0ca84acf1fad3e88b1e5983266f6cdac98508f0421e9a04ced457687c785",
+  "supporting_log": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S05-preservation-runtime-final.log",
+  "supporting_log_sha256": "a74c66d1b786e2f134c665a8219703ccafd8fc28517d4bd0ed7972be0cdf4f6b",
+  "exit_file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S05-preservation-runtime-final.exit",
+  "original_active_provenance": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\evidence\\run-provenance.json",
+  "protected_campaign_files": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\pre-claude-ebddf7a-campaign.json",
+      "bytes": 4099603,
+      "sha256": "9d373109fc4b1d4e838b73a3e24624679e872360f3f5b52225e8c3f928bb2bac",
+      "matches_s01": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\pre-company-ammunition-campaign.json",
+      "bytes": 4099603,
+      "sha256": "d104aec43643a9b40b39d2284384fa32a983c434f597a753a227ba44379e7d14",
+      "matches_s01": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\pre-company-refits-campaign.json",
+      "bytes": 4099603,
+      "sha256": "671b7170a4fd811900052a37fa1d6d620dddc3fd6e27a539c575513243ae38b0",
+      "matches_s01": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\pre-government-room-20260907-campaign.json",
+      "bytes": 4099603,
+      "sha256": "b34dbabfd8f4f5b7ebce6532021b10b9e9a71991f09076e4e08090a52e198690",
+      "matches_s01": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\save.json",
+      "bytes": 4099603,
+      "sha256": "bdd0587be567a505356cccd3d2cc9ef413e325ccab632043d2e9049302354a1d",
+      "matches_s01": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\save.json.bak",
+      "bytes": 4099603,
+      "sha256": "b34dbabfd8f4f5b7ebce6532021b10b9e9a71991f09076e4e08090a52e198690",
+      "matches_s01": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\saves\\auto-2.json",
+      "bytes": 3723656,
+      "sha256": "850a092eaa2c11cca02910574e48bbe9f3fbfab69742f39fee52f743e870beea",
+      "matches_s01": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\saves\\auto-3.json",
+      "bytes": 4439498,
+      "sha256": "d9bb968255066b86d84559b924af04052a2ed8dfcea7587c305015362fe6b1fd",
+      "matches_s01": true
+    }
+  ],
+  "fixture_files": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\companies\\01-eligible.json",
+      "bytes": 827718,
+      "sha256": "be937d77a21e19ba976cce77cb4a9442d91e15e178554ba1ffd58d7d6394952d",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\companies\\02-development.json",
+      "bytes": 1071940,
+      "sha256": "215bf13811b6cc330619bbedb322b50224a3b5035b7b9307c5548eea9c3ef0ec",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\companies\\03-stock.json",
+      "bytes": 1365613,
+      "sha256": "e49f1ed26b68e25b9674eb818fd349d63e6c5b2fcab03cbd664fcd0446569396",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\companies\\04-transit.json",
+      "bytes": 1360329,
+      "sha256": "c2c1c3466292243cb801a9da3f47055d155586416724a5407d9238c99fe4ab66",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\companies\\05-arrived.json",
+      "bytes": 1387846,
+      "sha256": "ddc818e9bb3137e9663f51b0532a249b38d630434760cbb3b5dd9c72e290be8e",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\companies\\06-ground-stock.json",
+      "bytes": 1340432,
+      "sha256": "0a70345d4c8a1adad1e44049b1e4910f786371ace622723bc875b0a92ca8ba69",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\companies\\07-aircraft-development.json",
+      "bytes": 1346879,
+      "sha256": "c83bdf97394c4349aaa77807548df8f4d60aee136cbd261f6de3d6b74f77b649",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\companies\\08-mixed-stock.json",
+      "bytes": 1638470,
+      "sha256": "6dfc30bdc4e97db7b86cb6834836892e89958028ac199dc3d00ec5b56c5ccdfb",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\companies\\09-mixed-transit.json",
+      "bytes": 1640216,
+      "sha256": "ac797051b97a9110dc5e3e40ee1e05214c28829b79327d86b6444dea3cfd9eb4",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\companies\\10-mixed-arrived.json",
+      "bytes": 1662137,
+      "sha256": "e257356f32f7fc0e84e08ae7f59a4847c989121f9895030e96e11dc64156e386",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\ammunition\\01-ammunition-stock.json",
+      "bytes": 1077157,
+      "sha256": "d5f34853c363ff3ea3a76e154bd58e836197e6eb30ce4131c734815c68dab5ad",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\ammunition\\02-ammunition-awaiting-settlement.json",
+      "bytes": 1078987,
+      "sha256": "e1906791acbe036928d6cafafd70d4631eb72e3fea6426b17eae9e1632f81532",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\ammunition\\03-ammunition-transit.json",
+      "bytes": 1079052,
+      "sha256": "0936456996109e5282f0c48af24870f58227f2c9ab57742eb51bd7804a930a70",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\ammunition\\04-ammunition-arrived.json",
+      "bytes": 1079936,
+      "sha256": "c29152dabebbf018efc69717bb038f08442b0c796beb58097a925da1891a6756",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\refits\\ground-01-ready.json",
+      "bytes": 1301120,
+      "sha256": "f493c4ec09a638745b5614e81b41ee2e4213c224bc19b4007b7c54c31c3e743c",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\refits\\ground-02-awaiting-settlement.json",
+      "bytes": 1303968,
+      "sha256": "bdfe6d3d1026fdc3f54ec139a9b8f99ea63c60c6258801d734c1ff3aae84c9b0",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\refits\\ground-03-escrow-settled.json",
+      "bytes": 1303836,
+      "sha256": "4de50b35c0bb176c64726e27b78971348e2c880a50679559275962cf10ae792c",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\refits\\ground-04-active-work.json",
+      "bytes": 1304108,
+      "sha256": "1f0eef204247c98db435cba8355e85245ece44649a0a8f725e2ee1131d5dcc33",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\refits\\ground-05-partial-cancel.json",
+      "bytes": 1304205,
+      "sha256": "9e7a615909e31aa817ae6930b7b37e373f37b726aa4eab5976d6a82700ac7906",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\refits\\ground-06-cancelled-remainder-returned.json",
+      "bytes": 1327050,
+      "sha256": "872a9263855bb724575f0e8ead6e451e0e226be145ab9f0e28f2a1ed18e3a5ad",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\refits\\ground-07-complete.json",
+      "bytes": 1394108,
+      "sha256": "ecc5cb47bad6bf14bbcb6d2b4f008637809d7919e6bece1e2f1ab138074d20b0",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\refits\\aircraft-01-ready.json",
+      "bytes": 1320222,
+      "sha256": "f670547ade019885f9df6d531b780eee819525190812a988f0b37b15946ae807",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\refits\\aircraft-02-awaiting-settlement.json",
+      "bytes": 1323047,
+      "sha256": "babcb0a8afcc27ca18bb768794504bc1a45984a6e6b11cc7e6bea7791b6ed899",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\refits\\aircraft-03-escrow-settled.json",
+      "bytes": 1322909,
+      "sha256": "f03469085666551d6ae0d91ad78ff1bad99031a94c36678be4402797d0226325",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\refits\\aircraft-04-active-work.json",
+      "bytes": 1344916,
+      "sha256": "b795c8a07b34eb2c3a7739e02af086810d7303ae2b6457f79cfd21a788280fae",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\refits\\aircraft-05-partial-cancel.json",
+      "bytes": 1345026,
+      "sha256": "db06b773846fd83ebc16c032b924fd5d2aff4dc0a8f9c22766b396bc70a38efb",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\refits\\aircraft-06-cancelled-remainder-returned.json",
+      "bytes": 1369343,
+      "sha256": "02d180d9e69a4aab5c8247c462b918d8171fec0c8a4d5e3204ccf58d8542bdcd",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-original-active\\refits\\aircraft-07-complete.json",
+      "bytes": 1416295,
+      "sha256": "96ab1d6be4644a764461dde54e4f739aee7a0c432621123eecf297bfee1085b1",
+      "matches_recorded_manifest": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\s05-pinned-master\\profile-campaigns\\saves\\profile-industry_and_war-0.json",
+      "bytes": 18848817,
+      "sha256": "5fba07caf82335609aab312f14a37f775dcac84e4821bddc36ab63a5bf795463",
+      "matches_recorded_manifest": true
+    }
+  ],
+  "source_binaries": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target\\release\\deps\\companies_integration-b294d37d0a85b120.exe",
+      "bytes": 27459760,
+      "sha256": "c937e7d7b227bb220c61b112efe9746175f669ccf203d7cc18e3f77b485438e8",
+      "matches_export_generation_hash": true,
+      "historical_s01_hash_pin": false,
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\spheres-sim\\tests\\companies_integration.rs",
+      "source_sha256": "42571740eb06be1fa08661bc7a958c96ce88247bdf20797dbcf76e04600a1ec8",
+      "fingerprint_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target\\release\\.fingerprint\\spheres-sim-b294d37d0a85b120\\test-integration-test-companies_integration.json",
+      "fingerprint_sha256": "206eadba33019095326e9d9acc11ddc77280a6616319052ab2326924b337deb4"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target\\release\\deps\\company_ammunition-1bf48242777f9167.exe",
+      "bytes": 26208147,
+      "sha256": "d143625688cc014e9ab99ed860ab2789a8db93343ee2549d5022fb0b335dbc7a",
+      "matches_export_generation_hash": true,
+      "historical_s01_hash_pin": false,
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\spheres-sim\\tests\\company_ammunition.rs",
+      "source_sha256": "fc6112e36a1147ac3aee165704bd740bf110a7b1170e5e9761d68ec52bf49e9f",
+      "fingerprint_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target\\release\\.fingerprint\\spheres-sim-1bf48242777f9167\\test-integration-test-company_ammunition.json",
+      "fingerprint_sha256": "6971a0c60b80c8f75f53feb4dc0f56e9385c5066caeef8e7dd7a3c7af66d2a12"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target\\release\\deps\\company_refits-63b8194ed38c206a.exe",
+      "bytes": 26185674,
+      "sha256": "1444ce20a27398f9ccf8cc163a6f9bf49bb95124a565cf7fa0606db20d67b9a9",
+      "matches_export_generation_hash": true,
+      "historical_s01_hash_pin": false,
+      "source_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\spheres-sim\\tests\\company_refits.rs",
+      "source_sha256": "209486bdb8847d077c9b1449fce31111dc9fea9a4a56a60908b75ef3b9b7608f",
+      "fingerprint_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target\\release\\.fingerprint\\spheres-sim-63b8194ed38c206a\\test-integration-test-company_refits.json",
+      "fingerprint_sha256": "2ed07a875c7ac5dbeffcf4c16fa2cd2a33374577e452611151dcc5acb020b17b"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\master-target\\release\\deps\\spheres_web-08880ad35fc922f5.exe",
+      "bytes": 195749397,
+      "sha256": "2bedd29560bed02e157a6953d64c45faf91ee21aeac85083aed78a3e74f4f622",
+      "matches_export_generation_hash": true,
+      "historical_s01_hash_pin": true
+    }
+  ],
+  "source_worktrees": [
+    {
+      "name": "original_active",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres",
+      "expected_source_revision": "5f7f355502f17bd6bd8f0383a2d14f0024fa7884",
+      "head": "038fe0b1a3edb1772586ec0b5a7451629b7297c4",
+      "clean": true,
+      "head_exactly_matches_source_pin": false,
+      "changed_paths_since_source_pin": [
+        "docs/CERTIFIED_CAMPAIGN_PATHWAY.md",
+        "docs/campaign-certification/S01/COMPANY_AND_SAVE_CONTRACT.md",
+        "docs/campaign-certification/S01/ECONOMY_INTEGRATION.md",
+        "docs/campaign-certification/S01/PERFORMANCE_BASELINE.md",
+        "docs/campaign-certification/S01/README.md",
+        "docs/campaign-certification/S01/RUNTIME_AND_VALIDATION.md",
+        "docs/campaign-certification/S01/evidence-index.json",
+        "docs/campaign-certification/S01/evidence/.gitattributes",
+        "docs/campaign-certification/S01/evidence/active-art-audit.log",
+        "docs/campaign-certification/S01/evidence/active-native.log",
+        "docs/campaign-certification/S01/evidence/active-profile-runner.log",
+        "docs/campaign-certification/S01/evidence/active-profile/memory-samples.csv",
+        "docs/campaign-certification/S01/evidence/active-profile/profile.json",
+        "docs/campaign-certification/S01/evidence/active-profile/runner-result.json",
+        "docs/campaign-certification/S01/evidence/active-profile/stderr.log",
+        "docs/campaign-certification/S01/evidence/active-profile/stdout.log",
+        "docs/campaign-certification/S01/evidence/active-ui-unit.log",
+        "docs/campaign-certification/S01/evidence/branch-divergence.txt",
+        "docs/campaign-certification/S01/evidence/hardware.json",
+        "docs/campaign-certification/S01/evidence/master-art-audit.log",
+        "docs/campaign-certification/S01/evidence/master-native.log",
+        "docs/campaign-certification/S01/evidence/master-profile-runner.log",
+        "docs/campaign-certification/S01/evidence/master-profile/memory-samples.csv",
+        "docs/campaign-certification/S01/evidence/master-profile/profile.json",
+        "docs/campaign-certification/S01/evidence/master-profile/runner-result.json",
+        "docs/campaign-certification/S01/evidence/master-profile/stderr.log",
+        "docs/campaign-certification/S01/evidence/master-profile/stdout.log",
+        "docs/campaign-certification/S01/evidence/master-ui-unit.log",
+        "docs/campaign-certification/S01/evidence/merge-tree.log",
+        "docs/campaign-certification/S01/evidence/protected-campaigns-before.json",
+        "docs/campaign-certification/S01/evidence/remote-refs.txt",
+        "docs/campaign-certification/S01/evidence/runner-existing-evidence-guard.log",
+        "docs/campaign-certification/S01/manifest.json",
+        "docs/planning/campaign-pathway.json",
+        "tools/campaign/run-lifetime-baseline.ps1"
+      ],
+      "runtime_and_data_paths_changed_since_pin": [],
+      "qualified_result": "Original runtime/data source is unchanged. HEAD is a later documentation/verification commit and is not represented as the exact original commit."
+    },
+    {
+      "name": "master",
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\master-baseline",
+      "expected_source_revision": "485c223f60d5ff6e46f6ae17164bf1ee3a8764d9",
+      "head": "485c223f60d5ff6e46f6ae17164bf1ee3a8764d9",
+      "clean": true,
+      "head_exactly_matches_source_pin": true,
+      "changed_paths_since_source_pin": [],
+      "runtime_and_data_paths_changed_since_pin": [],
+      "qualified_result": "Runtime/data source is unchanged from pinned source; HEAD also matches pin."
+    }
+  ],
+  "counts": {
+    "protected_campaign_files": 8,
+    "original_active_fixtures": 28,
+    "original_master_archives": 1,
+    "source_binaries": 4,
+    "source_worktrees": 2
+  },
+  "actions": {
+    "user_campaign_file_writes": false,
+    "fixture_file_writes": false,
+    "integration_source_edits": false,
+    "server_browser_or_tests_launched": false,
+    "linux_commands_run": false,
+    "only_new_outputs": [
+      "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S05-preservation-runtime-final.json",
+      "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S05-preservation-runtime-final.log",
+      "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S05-preservation-runtime-final.exit"
+    ]
+  },
+  "limitations": [
+    "Original active HEAD is 038fe0b; the S01 runtime/data pin is 5f7f355. The intervening recorded documentation and verification changes are listed, not relabeled as the original commit.",
+    "The three active exporter binaries lack S01 historical SHA256 pins. Their current hashes are compared with the original export-run before/after hashes and unchanged original source/fingerprint evidence. Only the master producer has the recorded S01 binary SHA256 pin.",
+    "This is input/source preservation evidence, not a test-suite result, gameplay balance result, or performance measurement."
+  ],
+  "passed": true,
+  "failure": null,
+  "previous_record_sha256": "a6e49405c09737057b69b9eae1037863efcffc48972e4457fd4b70f644d35b16",
+  "s01_manifest_sha256": "c640c612d13aa4f68009c452974dce37e8d76545805508a86ba895c04e875a0d",
+  "protected_campaign_manifest": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\docs\\campaign-certification\\S01\\evidence\\protected-campaigns-before.json",
+  "protected_campaign_manifest_sha256": "ebf6d3bb448fb89cbcb5db24e020a5a42494bc31be48764d22fe5eb50c3deca3",
+  "active_fixture_manifest_sha256": "3f897d3bcd3c24664980a026b710d84e5f8d23cddc2d180d0185efc969a1bd4f",
+  "original_active_provenance_sha256": "39d4e82bfdfd2ee6ed347a3b7481c928b6cfcc149020be0160ab0e7375a419c7",
+  "master_generation_sha256": "c5fc55572751ac6fb75e1bf5074f09e2327ceea8d0bae55bceb63019de2f5ec6",
+  "candidate_after": "db9d17c8d726aa102aa143ceb3599009c558ffee",
+  "candidate_clean_after": true,
+  "status": "passed with explicit original-active HEAD and historical exporter-hash qualifications",
+  "finished_utc": "2026-09-11T06:20:18.926Z"
+}
