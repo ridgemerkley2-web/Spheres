@@ -1,0 +1,61 @@
+System.Threading.Tasks.VoidTaskResult
+System.Threading.Tasks.VoidTaskResult
+{
+  "schema_version": 1,
+  "candidate_revision": "485c223f60d5ff6e46f6ae17164bf1ee3a8764d9",
+  "started_utc": "2026-09-11T00:51:06.1621638Z",
+  "finished_utc": "2026-09-11T00:52:32.7427761Z",
+  "test_binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\master-target\\release\\deps\\spheres_web-08880ad35fc922f5.exe",
+  "test_binary_sha256": "2bedd29560bed02e157a6953d64c45faf91ee21aeac85083aed78a3e74f4f622",
+  "fixture_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\lifetime-legacy",
+  "evidence_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S01\\master-profile",
+  "arguments": [
+    "performance::campaign_lifetime_profile",
+    "--ignored",
+    "--exact",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "child_profile_environment": {
+    "SPHERES_PROFILE_INPUT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\lifetime-legacy",
+    "SPHERES_PROFILE_OUT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S01\\master-profile\\profile.json"
+  },
+  "exit_code": 0,
+  "wall_duration_seconds": 86.081407,
+  "profile_json": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S01\\master-profile\\profile.json",
+  "memory": {
+    "nominal_interval_ms": 100,
+    "samples": 738,
+    "failed_samples": 1,
+    "max_sampled_private_bytes": 434003968,
+    "max_sampled_working_set_bytes": 434204672,
+    "os_peak_working_set_bytes": 434237440,
+    "max_observed_sample_gap_ms": 136.308,
+    "limits": "Samples cover only this test process and may miss short peaks. OS peak working set is the largest OS high-water reading observed while accessible; its final value may be unavailable, and it is not private-memory peak. Timing includes process startup and profiler work; no throughput inference is made."
+  },
+  "fixtures": [
+    {
+      "checkpoint_years": 0,
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\lifetime-legacy\\saves\\profile-idle_human-0.json",
+      "sha256_before": "0a900f8c7c943267bb35cd5c433c64a2afeab38e5902d1ca4383eb155621cbbf",
+      "sha256_after": "0a900f8c7c943267bb35cd5c433c64a2afeab38e5902d1ca4383eb155621cbbf",
+      "unchanged": true
+    },
+    {
+      "checkpoint_years": 10,
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\lifetime-legacy\\saves\\profile-idle_human-10.json",
+      "sha256_before": "5d6b022e8273c5bbd569d96cc9ac4de1f4086fa69de110f835c63718d7469b53",
+      "sha256_after": "5d6b022e8273c5bbd569d96cc9ac4de1f4086fa69de110f835c63718d7469b53",
+      "unchanged": true
+    },
+    {
+      "checkpoint_years": 30,
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\lifetime-legacy\\saves\\profile-idle_human-30.json",
+      "sha256_before": "c5a61334fa8ce8d23983103a26b0a12e9d70deef60c7648077e9857b9cd31a5a",
+      "sha256_after": "c5a61334fa8ce8d23983103a26b0a12e9d70deef60c7648077e9857b9cd31a5a",
+      "unchanged": true
+    }
+  ],
+  "passed": true,
+  "failures": []
+}

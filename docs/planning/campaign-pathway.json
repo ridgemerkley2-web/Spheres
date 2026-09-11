@@ -1,0 +1,773 @@
+{
+  "version": 1,
+  "date": "2026-09-10",
+  "status": "in_progress",
+  "baseline": "5f7f355502f17bd6bd8f0383a2d14f0024fa7884",
+  "target": "CP1: Spheres Certified Campaign, 1990-01-01 through 2035-12-31",
+  "countries": [
+    "France",
+    "Japan",
+    "India",
+    "Brazil",
+    "South Africa",
+    "Tonga",
+    "Saudi Arabia",
+    "USSR → Russia"
+  ],
+  "phases": [
+    {
+      "id": "review",
+      "name": "Review the scope",
+      "gate": "G0 · Approved ✓"
+    },
+    {
+      "id": "integration",
+      "name": "1 · One integrated game",
+      "gate": "G1 · Unified playset"
+    },
+    {
+      "id": "nation",
+      "name": "2 · A country you can govern",
+      "gate": "G2 · Connected national economy"
+    },
+    {
+      "id": "military",
+      "name": "3 · A military you can use",
+      "gate": "G3 · Complete military loop"
+    },
+    {
+      "id": "experience",
+      "name": "4 · A campaign you can understand",
+      "gate": "G4 · Complete player journey"
+    },
+    {
+      "id": "qualification",
+      "name": "5 · Prove the campaign",
+      "gate": "G5 · Release candidate qualified"
+    },
+    {
+      "id": "release",
+      "name": "6 · Certify the exact release",
+      "gate": "CP1 · Certified Campaign"
+    },
+    {
+      "id": "content",
+      "name": "Parallel · Characters and world coverage",
+      "gate": "WC1 · World content complete"
+    },
+    {
+      "id": "expansion",
+      "name": "After CP1 · Complete the wider feature roster",
+      "gate": "CP2 · Expanded campaign qualification"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "S00",
+      "phase": "review",
+      "title": "Approve the certification scope",
+      "status": "complete",
+      "depends": [],
+      "output": "A reviewed scope, country matrix, content standard and definition of certification.",
+      "accept": [
+        "Confirm CP1 countries, full end-of-2035 endpoint and supported aircraft/mission families.",
+        "Accept or revise the character coverage, playtest sample and provisional performance targets.",
+        "Record changes in this pathway before any implementation starts."
+      ]
+    },
+    {
+      "id": "S01",
+      "phase": "integration",
+      "title": "Freeze branches and the test baseline",
+      "status": "complete",
+      "depends": [
+        "S00"
+      ],
+      "output": "One integration manifest with exact source revisions, compatibility risks, test inventory and reference hardware.",
+      "accept": [
+        "Fetch and record current active/master/Claude-related revisions; do not rely on September 10 commit counts.",
+        "Inventory save versions, company ledgers, population owners, project IDs and known failures, including the obsolete art audit.",
+        "Create isolated integration/test locations and record baseline results without altering the user's campaign."
+      ],
+      "evidence": "../campaign-certification/S01/README.md",
+      "completed_date": "2026-09-10"
+    },
+    {
+      "id": "S02",
+      "phase": "integration",
+      "title": "Reconcile economy, population and fiscal ownership",
+      "status": "planned",
+      "depends": [
+        "S01"
+      ],
+      "output": "One daily economy with one owner for population, jobs, GDP, government cash and debt.",
+      "accept": [
+        "Integrate useful master workforce, industry and fiscal changes while preserving financial construction.",
+        "Population, workforce and GDP contributions are applied once; existing balances are not reopened or charged twice.",
+        "Map old project IDs and paid entitlements explicitly; publish before/after accounting fixtures."
+      ]
+    },
+    {
+      "id": "S03",
+      "phase": "integration",
+      "title": "Reconcile companies and procurement",
+      "status": "planned",
+      "depends": [
+        "S01"
+      ],
+      "output": "One company directory combining persistent identities with real supplier stock, development, ammunition and refit accounts.",
+      "accept": [
+        "Resolve the two different companies.rs responsibilities explicitly; a textual merge is insufficient.",
+        "Company property stays separate from government holdings, held money and earned revenue.",
+        "Existing certification, incoming purchases, ammunition contracts and refit reservations survive migration without duplication."
+      ]
+    },
+    {
+      "id": "S04",
+      "phase": "integration",
+      "title": "Reconcile warfare, diplomacy and map control",
+      "status": "planned",
+      "depends": [
+        "S01"
+      ],
+      "output": "One operational warfare path connected to existing ownership, freight, diplomacy and equipment.",
+      "accept": [
+        "Use one allocation/result path for simultaneous conflicts and settle losses once.",
+        "Physical control, legal ownership, access and negotiated peace affect the same facilities and routes.",
+        "Integrate later map/coast improvements without breaking displaced-terrain selection or saved country identities."
+      ]
+    },
+    {
+      "id": "S05",
+      "phase": "integration",
+      "title": "Qualify the unified save and command system",
+      "status": "planned",
+      "depends": [
+        "S02",
+        "S03",
+        "S04"
+      ],
+      "output": "G1: an integrated build that loads old campaigns and preserves unfinished transactions.",
+      "accept": [
+        "Load representative active-branch, master and legacy saves; retain people, money, work, stock, deliveries and refits.",
+        "Exercise lost-response retry, stale-session rejection, backup recovery and save/resume during paid work.",
+        "Run integrated Rust/UI checks and record remaining known failures with owners; no unresolved critical ownership or migration defects."
+      ]
+    },
+    {
+      "id": "S06",
+      "phase": "nation",
+      "title": "Explain the country's money and recovery",
+      "status": "planned",
+      "depends": [
+        "S05"
+      ],
+      "output": "A single dated explanation of treasury changes, upcoming commitments and useful recovery actions.",
+      "accept": [
+        "Reconcile budget settlement, trade, transfers, supplier payments and refunds to actual cash/debt movements.",
+        "Keep annual authority, actual spending and future commitments visibly distinct.",
+        "A player can diagnose fiscal distress and see the recorded consequence of a corrective decision after reload."
+      ]
+    },
+    {
+      "id": "S07",
+      "phase": "nation",
+      "title": "Finish construction, jobs and operating outcomes",
+      "status": "planned",
+      "depends": [
+        "S06"
+      ],
+      "output": "Build → staff → operate → understand the province/national effect through one connected flow.",
+      "accept": [
+        "Preview, prioritize, fund, pause, cancel and finish both ordinary and small-country projects through actual controls.",
+        "Construction uses financial funding; operating plants still disclose their real inputs, workforce and support needs.",
+        "Staffing and realized output drive explained local/national effects without double-counting people or GDP; actual charges match the reviewed rules."
+      ]
+    },
+    {
+      "id": "S08",
+      "phase": "nation",
+      "title": "Complete supplier choice and reviewed imports",
+      "status": "planned",
+      "depends": [
+        "S05",
+        "S07"
+      ],
+      "output": "A useful domestic/foreign supplier market, including a viable path for countries without an arms industry.",
+      "accept": [
+        "Complete design → development → stock → purchase → delivery → service across the eleven existing platforms and supported ammunition families using a justified representative matrix.",
+        "An affordable imported lot changes seller stock and buyer funds once, without granting component research.",
+        "Sanctions, access loss, stale quotes, limited stock and cancellations preserve ownership and explain delays or refunds."
+      ]
+    },
+    {
+      "id": "S09",
+      "phase": "nation",
+      "title": "Make research and design benefits readable",
+      "status": "planned",
+      "depends": [
+        "S05",
+        "S03"
+      ],
+      "output": "Research choices show which legal model choices unlock and why the player might want them.",
+      "accept": [
+        "Recommend legal affordable/advanced builds from actually researched components.",
+        "Compare acquisition, development, upkeep and role effects before commissioning; estimates retain stated conditions.",
+        "Research unlocks parts but never upgrades existing holdings for free; drafts and exact revisions survive navigation and saving."
+      ]
+    },
+    {
+      "id": "S10",
+      "phase": "nation",
+      "title": "Qualify government, succession and diplomacy",
+      "status": "planned",
+      "depends": [
+        "S05",
+        "C01"
+      ],
+      "output": "G2: governable nations with trustworthy political decisions, leaders and diplomatic consequences.",
+      "accept": [
+        "Test parliamentary, presidential, authoritarian and monarchical/institutional cases through review, confirmation and dated result.",
+        "Preserve saved incumbents; historical browsing and future candidate eligibility do not replace an officeholder automatically.",
+        "Validate offers, deadlines, standing policies, sanctions, party/executive roles, unaffordable/stale reviews and foreign inspection."
+      ]
+    },
+    {
+      "id": "S11",
+      "phase": "military",
+      "title": "Finish the ground equipment-to-operation loop",
+      "status": "planned",
+      "depends": [
+        "S05",
+        "S09"
+      ],
+      "output": "Procured ground equipment produces understandable capability and losses in the integrated operations model.",
+      "accept": [
+        "Field, supply, repair/refit and retire representative tank and specialist holdings through ordinary controls.",
+        "Reports explain relevant reconnaissance, protection, fire-support and air-defense effects without a second hidden strength system.",
+        "Shared deployments, stores and losses conserve holdings across simultaneous conflicts and reloads."
+      ]
+    },
+    {
+      "id": "S12",
+      "phase": "military",
+      "title": "Create real squadrons from owned aircraft",
+      "status": "planned",
+      "depends": [
+        "S11",
+        "S08"
+      ],
+      "output": "Saved squadrons refer to actual national aircraft, with simple establishment and revision choices.",
+      "accept": [
+        "Buy and receive aircraft, assign them, change squadron size and reload with the same exact holdings.",
+        "Aircraft cannot occupy two squadrons or serve while reserved for incompatible work.",
+        "Resolve legacy fractional holdings explicitly; rounding creates no aircraft, free capability or lost property."
+      ]
+    },
+    {
+      "id": "S13",
+      "phase": "military",
+      "title": "Connect airbases, access and range",
+      "status": "planned",
+      "depends": [
+        "S12",
+        "S07"
+      ],
+      "output": "Geographic bases, visible rebasing and three clear improvements: Capacity, Support and Protection.",
+      "accept": [
+        "Financially funded base improvements change the stated capacity only when completed.",
+        "Rebasing takes visible time and respects access; transit aircraft cannot simultaneously fly a mission.",
+        "Mission geography, unavailable access and insufficient capacity have actionable explanations on the map."
+      ]
+    },
+    {
+      "id": "S14",
+      "phase": "military",
+      "title": "Fund automatic routine air-force support",
+      "status": "planned",
+      "depends": [
+        "S12",
+        "S13",
+        "S06",
+        "S08"
+      ],
+      "output": "One readiness view backed by maintenance, compatible stores and an explicitly bounded support policy.",
+      "accept": [
+        "Fund routine support once and let the game perform allowed maintenance/supply within that cap.",
+        "No unapproved equipment purchase, invented ammunition, new spending authority or duplicate delivery is created.",
+        "Shortages and repairs explain readiness changes; aircraft in transit/refit/repair are excluded from available sorties."
+      ]
+    },
+    {
+      "id": "S15",
+      "phase": "military",
+      "title": "Connect tactical missions to campaign results",
+      "status": "planned",
+      "depends": [
+        "S11",
+        "S13",
+        "S14"
+      ],
+      "output": "Support army and Strike target create reviewed campaign orders and dated results.",
+      "accept": [
+        "Use eligible targets, range, shared allocation, actual compatible stores and the integrated resolver.",
+        "Settle ammunition, aircraft loss and target effects once, including simultaneous missions and interrupted responses.",
+        "Invalid or unsupported launches are refused with a useful reason; save/resume during orders produces equivalent outcomes."
+      ]
+    },
+    {
+      "id": "S16",
+      "phase": "military",
+      "title": "Add fighters and defensive aviation",
+      "status": "planned",
+      "depends": [
+        "S15",
+        "S09"
+      ],
+      "output": "G3: Defend skies works with a researched, company-supplied fighter platform.",
+      "accept": [
+        "The fighter has legal component research, development, purchase, delivery, upkeep and stores.",
+        "Interception changes a hostile strike's result; fighter and ground-air-defense contributions remain distinct and coordinated.",
+        "A target aircraft cannot be destroyed twice, and depleted defense visibly loses effectiveness."
+      ]
+    },
+    {
+      "id": "S17",
+      "phase": "experience",
+      "title": "Make AI countries use the same rules",
+      "status": "planned",
+      "depends": [
+        "S08",
+        "S10",
+        "S16"
+      ],
+      "output": "Opponents and suppliers participate in affordable development, procurement, support and operations.",
+      "accept": [
+        "AI buys real stock, pays real support and respects development, delivery, basing, access and ammunition.",
+        "Bound reassessment and budgets so countries do not redesign or rebase every day.",
+        "Test major, small-country, domestic and imported acquisition paths; document any difficulty modifiers rather than hiding economic privileges."
+      ]
+    },
+    {
+      "id": "S18",
+      "phase": "experience",
+      "title": "Replace flight-demo data and finish playable aircraft art",
+      "status": "planned",
+      "depends": [
+        "S16",
+        "S14"
+      ],
+      "output": "Command, Aircraft, Bases and Reports use campaign truth and the three CP1 aircraft families have finished inspection assets.",
+      "accept": [
+        "Remove fictional fleet counts and demonstration mission assignments from the campaign flow.",
+        "Each released configurable aircraft has a meaningful 100,000+ triangle inspection mesh, cheaper LODs, working component selection and validated export.",
+        "Cockpit, engine and exterior quality are reviewed visually; unsupported future missions do not appear as functional campaign actions."
+      ]
+    },
+    {
+      "id": "S19",
+      "phase": "experience",
+      "title": "Build outcome-aware tutorial and advisor guidance",
+      "status": "planned",
+      "depends": [
+        "S06",
+        "S07",
+        "S10",
+        "S18"
+      ],
+      "output": "An optional first-hour route that recognizes successful campaign outcomes, plus concise current advice.",
+      "accept": [
+        "Detect actual budget enactment, useful project progress/output, purchase/service and mission results instead of only lessons read.",
+        "Advice explains why, opens the relevant real control and never enacts an order on its own.",
+        "Skipping, returning, stale readings, reloads and later campaigns preserve useful progress without false completions."
+      ]
+    },
+    {
+      "id": "S20",
+      "phase": "experience",
+      "title": "Unify map, province and accessible room navigation",
+      "status": "planned",
+      "depends": [
+        "S07",
+        "S10",
+        "S18"
+      ],
+      "output": "A consistent desktop/narrow-screen journey from map to province, facility, company and military decisions.",
+      "accept": [
+        "City/province inspection shows current ownership, construction, operating output and problems from actual records.",
+        "Primary controls work by keyboard and touch; focus, return navigation, loading and error states remain usable at 390px.",
+        "Retain honest geography/representative-city labels and consistent art framing, typography and information hierarchy."
+      ]
+    },
+    {
+      "id": "S21",
+      "phase": "experience",
+      "title": "Finish campaign goals, history and late-game continuation",
+      "status": "planned",
+      "depends": [
+        "S10",
+        "S15"
+      ],
+      "output": "G4: a coherent journey from choosing a nation to pursuing goals and understanding later outcomes.",
+      "accept": [
+        "Peaceful and military aims expose progress and blockers without granting invented completion rewards.",
+        "History explains significant economic, government and military changes and survives save/load.",
+        "Success, defeat, collapse and successor transition each have a valid continuation or clear terminal result; the full 2035 endpoint is supported."
+      ]
+    },
+    {
+      "id": "S22",
+      "phase": "qualification",
+      "title": "Repair art measurement and qualify performance",
+      "status": "planned",
+      "depends": [
+        "S18",
+        "S20"
+      ],
+      "output": "A current art/memory audit and measured performance on the agreed reference machine and low-detail profile.",
+      "accept": [
+        "Repair vertex-layout accounting, distinguish resident buffers from frame geometry, and regenerate measured records.",
+        "Validate inspection/city cache limits, lazy loading, context recovery and repeated room visits; do not silently widen budgets to pass.",
+        "Measure agreed map FPS, control latency, day-tick throughput, cold loading and memory at early/mid/late dates; keep logs and traces."
+      ]
+    },
+    {
+      "id": "S23",
+      "phase": "qualification",
+      "title": "Audit certified-country history and cartoon coverage",
+      "status": "planned",
+      "depends": [
+        "C06",
+        "S10",
+        "S20"
+      ],
+      "output": "Every certified-country party/component and served historical/future appearance is covered by the agreed content standard.",
+      "accept": [
+        "Close the eight-country census, sourced office intervals and matching cartoon appearance jobs; no wrong-person reuse.",
+        "Test annual and adjacent handover dates, historical cutoff, future eligibility, 2030 and end of 2035.",
+        "Institutions and genuine uncertainties are disclosed; unresolved required historical identities/art block the relevant country certificate."
+      ]
+    },
+    {
+      "id": "S24",
+      "phase": "qualification",
+      "title": "Run worldwide startup and adversarial recovery checks",
+      "status": "planned",
+      "depends": [
+        "S17",
+        "S19",
+        "S20",
+        "S21",
+        "S22",
+        "S23"
+      ],
+      "output": "All starting/successor identities and core recovery paths have an explicit pass/fail result.",
+      "accept": [
+        "All 137 starting nations pass selection, map/government/budget/guidance, seven-day advance, save and reload checks.",
+        "All 23 successor identities receive labeled activation/load/UI fixtures; no fixture is claimed as organic history.",
+        "Test network loss, duplicate/stale requests, interrupted saves, backups and reload at construction, delivery, refit, rebasing and mission boundaries."
+      ]
+    },
+    {
+      "id": "S25",
+      "phase": "qualification",
+      "title": "Run the complete 1990–2035 campaign matrix",
+      "status": "planned",
+      "depends": [
+        "S24"
+      ],
+      "output": "Eight country cases × three recorded seeds reach 2035-12-31 with journals, checkpoints and reconciled terminal saves.",
+      "accept": [
+        "Use ordinary legal commands and the released rules; label forced edge-case fixtures separately.",
+        "Compare uninterrupted and scheduled save/resume runs; check money, population, industry, company property, force and ammunition invariants.",
+        "A controlled valid USSR→Russia case proves succession continuity; ordinary seeds are not required to reproduce history or guaranteed victory."
+      ]
+    },
+    {
+      "id": "S26",
+      "phase": "qualification",
+      "title": "Observe independent human playtests",
+      "status": "planned",
+      "depends": [
+        "S24"
+      ],
+      "output": "Recorded opening and later-campaign usability sessions, with concrete confusion points and task success.",
+      "accept": [
+        "Use at least five first-time participants, with at least eight sessions collectively covering the certified country set.",
+        "At least four of five newcomers complete budget → construction → recorded result → save without coaching; all can identify who governs and an actionable blocker.",
+        "Include keyboard/narrow layout and later-game saves; agent-operated browser checks do not count as independent human evidence."
+      ]
+    },
+    {
+      "id": "S27",
+      "phase": "qualification",
+      "title": "Repair observed failures and freeze the candidate",
+      "status": "planned",
+      "depends": [
+        "S25",
+        "S26"
+      ],
+      "output": "G5: a release candidate with no critical or core-path significant defects and a complete evidence index.",
+      "accept": [
+        "Fix related defect groups in numbered repair batches; add meaningful regressions for actual failures.",
+        "Recheck affected campaign countries, migrations, performance and user tasks; repeat qualification if a fix changes their assumptions.",
+        "Freeze rules/data/assets and candidate hash only when every required cell passes; record deferred nonblocking issues with scope and ownership."
+      ]
+    },
+    {
+      "id": "S28",
+      "phase": "release",
+      "title": "Verify the exact packaged release",
+      "status": "planned",
+      "depends": [
+        "S27"
+      ],
+      "output": "Matching Windows/Linux CI evidence and a clean-machine-tested distributable with embedded assets.",
+      "accept": [
+        "Run locked Rust/UI/real-browser checks on the exact candidate and inspect both remote CI results.",
+        "Test the packaged build's first run, offline assets, saves, recovery, build identity and supported layouts; development previews are insufficient.",
+        "Verify generated assets, license inventory, archive/executable hashes and a reproducible package; changed bytes reopen affected qualification."
+      ]
+    },
+    {
+      "id": "S29",
+      "phase": "release",
+      "title": "Audit the campaign certificate",
+      "status": "planned",
+      "depends": [
+        "S28"
+      ],
+      "output": "A dated CP1 evidence report naming exact scope, builds, countries, seeds, content coverage and limitations.",
+      "accept": [
+        "Every required campaign, content, usability, recovery and performance gate links to actual evidence.",
+        "Zero open severity-0/1 issues and zero severity-2 issues on certified core paths; no pending result is counted as passing.",
+        "State that certification is an internal Spheres release qualification, with version-specific scope and requalification rules."
+      ]
+    },
+    {
+      "id": "S30",
+      "phase": "release",
+      "title": "Publish and prove the certified campaign release",
+      "status": "planned",
+      "depends": [
+        "S29"
+      ],
+      "output": "CP1: the tagged playable build, package, player guide, certificate and verified recovery path.",
+      "accept": [
+        "Publish the exact audited revision and package with release notes, checksums and disclosed limitations.",
+        "Install the distributed package and run a final start/save/reload/continue smoke without touching the user's existing campaign.",
+        "Keep a reproducible prior package and old-save backups; document rollback compatibility rather than assuming older builds can read newer saves."
+      ]
+    },
+    {
+      "id": "C01",
+      "phase": "content",
+      "title": "Freeze the worldwide party and institution census",
+      "status": "planned",
+      "depends": [
+        "S01"
+      ],
+      "output": "A country/party/component inventory, frozen research cutoff and uniquely numbered historical/future work orders.",
+      "accept": [
+        "Recount current nations and represented parties; separately inventory unrepresented minor, dissolved and successor organizations.",
+        "Resolve party leader, chair, executive, coalition component and collective institution roles before illustrating them.",
+        "Create explicit certified-country and worldwide backlogs; the existing 705 jobs and 2,556 templates are baselines, not completed work."
+      ]
+    },
+    {
+      "id": "C02",
+      "phase": "content",
+      "title": "Research historical leadership in bounded batches",
+      "status": "planned",
+      "depends": [
+        "C01"
+      ],
+      "output": "CH-[nation]-B###: at most ten reviewed leadership chains/people per work session.",
+      "accept": [
+        "Record sources, role, dates, uncertainty, life constraints and party/component mapping.",
+        "Preserve historical facts separately from campaign incumbents and future invention.",
+        "Repeat first for certified countries, then every remaining country until its census and dated intervals close."
+      ]
+    },
+    {
+      "id": "C03",
+      "phase": "content",
+      "title": "Produce matching historical cartoon batches",
+      "status": "planned",
+      "depends": [
+        "C02"
+      ],
+      "output": "CA-[nation]-B###: six to eight physically reviewed cartoons/appearance variants per session.",
+      "accept": [
+        "Use the approved cartoon style, exact identity and justified appearance eras; do not generate a redundant portrait for every calendar year.",
+        "Retain prompts, sources/rights, hashes and visual review at small-card and full size.",
+        "Only existing reviewed image files count as delivered; queues, templates and proxy faces do not."
+      ]
+    },
+    {
+      "id": "C04",
+      "phase": "content",
+      "title": "Research and illustrate fictional successor batches",
+      "status": "planned",
+      "depends": [
+        "C02"
+      ],
+      "output": "CF-[nation]-B###: a small reviewed set of institution-appropriate invented successors with distinct cartoons.",
+      "accept": [
+        "Separate fictional identity, biography and appearance from real historical people and office records.",
+        "Use researched political institutions/career patterns and label the candidates as invented.",
+        "Apply only through eligible gameplay succession after the frozen historical cutoff and through 2035; dates alone do not replace incumbents."
+      ]
+    },
+    {
+      "id": "C05",
+      "phase": "content",
+      "title": "Integrate and review each country batch",
+      "status": "planned",
+      "depends": [
+        "C03",
+        "C04",
+        "S10"
+      ],
+      "output": "CI-[nation]-B###: exact manifest bindings and passing date/role/save checks for each content batch.",
+      "accept": [
+        "Link only accepted identities and appearance windows; distinguish unknown, unresearched and genuinely inapplicable roles.",
+        "Test co-leaders, minor components, deaths, dissolutions and executive eligibility at boundary dates.",
+        "Preview production screens without overwriting a campaign; validate physical assets, source records and save compatibility."
+      ]
+    },
+    {
+      "id": "C06",
+      "phase": "content",
+      "title": "Close the eight certified country casts",
+      "status": "planned",
+      "depends": [
+        "C05"
+      ],
+      "output": "CS-[nation]: eight separate signed-off content manifests feeding S23.",
+      "accept": [
+        "Every represented party/component in each certified country has its required sourced historical chain and matching served artwork.",
+        "Every supported fictional pool has reviewed identities, biographies and cartoons through the agreed endpoint.",
+        "No required identity or art job is silently waived; institutional exceptions are explained by the census."
+      ]
+    },
+    {
+      "id": "C07",
+      "phase": "content",
+      "title": "Finish and audit the rest of the world",
+      "status": "planned",
+      "depends": [
+        "C06"
+      ],
+      "output": "WC1: the complete worldwide census, history, cartoon and future-candidate coverage ledger.",
+      "accept": [
+        "Repeat CH/CA/CF/CI country batches for all remaining represented and newly required organizations, including minor parties.",
+        "New political organizations requiring runtime changes receive explicit implementation and requalification work, not just extra portrait files.",
+        "Publish country/date coverage and unresolved historical uncertainties; WC1 requires actual finished deliverables, not a template count."
+      ]
+    },
+    {
+      "id": "E01",
+      "phase": "expansion",
+      "title": "Reconnaissance, early warning, tankers and transports",
+      "status": "planned",
+      "depends": [
+        "S30"
+      ],
+      "output": "New support families with finite useful effects, real missions and complete procurement/support loops.",
+      "accept": [
+        "Add each role's consumer before presenting its mission as playable.",
+        "Transport and support do not duplicate deployed forces, cargo, range benefits or intelligence.",
+        "Every released aircraft meets the detailed inspection/LOD/art contract and receives a saved-campaign scenario."
+      ]
+    },
+    {
+      "id": "E02",
+      "phase": "expansion",
+      "title": "Bombers, electronic warfare and target repair",
+      "status": "planned",
+      "depends": [
+        "E01"
+      ],
+      "output": "Long-range strike and electronic support with understandable infrastructure effects and recovery.",
+      "accept": [
+        "Use existing allocation, targeting, finite payloads and cost accounting.",
+        "Damaged facilities and repair show actual economic consequences without duplicate destruction or GDP effects.",
+        "Qualify role balance, counterplay, models and migration before release."
+      ]
+    },
+    {
+      "id": "E03",
+      "phase": "expansion",
+      "title": "Helicopters and reusable drones",
+      "status": "planned",
+      "depends": [
+        "E01"
+      ],
+      "output": "Rotary-wing and reusable drone families with supported army/recon/transport roles.",
+      "accept": [
+        "Differentiate reusable aircraft from expendable ammunition.",
+        "Keep range, support, basing and losses within the existing aircraft lifecycle.",
+        "Complete detailed models, component families, AI choices and campaign examples."
+      ]
+    },
+    {
+      "id": "E04",
+      "phase": "expansion",
+      "title": "Naval operations and maritime/carrier aviation",
+      "status": "planned",
+      "depends": [
+        "E01",
+        "E02"
+      ],
+      "output": "A unified naval operating foundation followed by maritime missions and carrier-compatible aircraft.",
+      "accept": [
+        "Establish ship ownership, deployment, deck capacity, supply and port/basing consumers before carrier missions.",
+        "Ship and aircraft allocations cannot duplicate a hull, airframe, cargo or weapon load.",
+        "Qualify maritime patrol, naval weapons, deck operations, models and integrated campaigns in separate numbered sub-sessions."
+      ]
+    },
+    {
+      "id": "E05",
+      "phase": "expansion",
+      "title": "Deepen national company identity and historical fleets",
+      "status": "planned",
+      "depends": [
+        "S30"
+      ],
+      "output": "Broader important-company research, supplier competition, civilian links and era-appropriate equipment catalogs.",
+      "accept": [
+        "Keep sourced real-company facts distinct from fictional businesses and future products.",
+        "Add exports/licensing/competition only through existing property, permission and finance systems.",
+        "Models, company traits and civilian effects must have real consumers; new identifiers and saves receive migration checks."
+      ]
+    },
+    {
+      "id": "E06",
+      "phase": "expansion",
+      "title": "Qualify the expanded world campaign",
+      "status": "planned",
+      "depends": [
+        "C07",
+        "E01",
+        "E02",
+        "E03",
+        "E04",
+        "E05"
+      ],
+      "output": "CP2: a new exact-build certificate covering the expanded features and published country/date scope.",
+      "accept": [
+        "Expand the scenario matrix for every new family and company/naval mechanic.",
+        "Repeat affected long-run, save, human-usability and performance gates; CP1 evidence alone cannot certify new mechanics.",
+        "Publish updated scope and content coverage without claiming every nation received a full human 45-year playthrough."
+      ]
+    }
+  ],
+  "approval": {
+    "date": "2026-09-10",
+    "instruction": "Okay lets begin development with s1",
+    "scope_changes": []
+  },
+  "last_completed_session": "S01",
+  "next_session": "S02"
+}

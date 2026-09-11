@@ -1,0 +1,1767 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.24
+   Compiling quote v1.0.47
+   Compiling serde_core v1.0.229
+   Compiling zmij v1.0.23
+   Compiling serde_json v1.0.151
+   Compiling serde v1.0.229
+   Compiling memchr v2.8.3
+   Compiling itoa v1.0.18
+   Compiling ascii v1.1.0
+   Compiling chunked_transfer v1.5.0
+   Compiling log v0.4.33
+   Compiling httpdate v1.0.3
+   Compiling spheres-web v0.6.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-baseline\spheres-web)
+   Compiling tiny_http v0.12.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-baseline\vendor\tiny_http)
+warning: unused import: `path::PathBuf`
+ --> vendor\tiny_http\src\connection.rs:7:5
+  |
+7 |     path::PathBuf,
+  |     ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `SequentialWriter`
+ --> vendor\tiny_http\src\util\mod.rs:7:28
+  |
+7 | pub use self::sequential::{SequentialWriter, SequentialWriterBuilder};
+  |                            ^^^^^^^^^^^^^^^^
+
+warning: trait `MustBeShareDummy` is never used
+   --> vendor\tiny_http\src\lib.rs:164:7
+    |
+164 | trait MustBeShareDummy: Sync + Send {}
+    |       ^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+   Compiling syn v3.0.3
+warning: `tiny_http` (lib) generated 3 warnings (run `cargo fix --lib -p tiny_http` to apply 2 suggestions)
+   Compiling serde_derive v1.0.229
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-baseline\spheres-sim)
+   Compiling spheres-cli v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-baseline\spheres-cli)
+    Finished `release` profile [optimized] target(s) in 2m 44s
+     Running unittests src\main.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\spheres_cli-5f49f29ff8ac500c.exe)
+
+running 1 test
+test tests::a_dissolution_is_not_a_destruction ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.11s
+
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 747 tests
+test blocs::tests::the_1990_census_meets_the_design_brief ... ignored, RED BY DESIGN and filed as BUGS.md P-6: the transcribed rows disagree with three bars of the brief (Communist 17 vs 11-13; Islamist adds Algeria; Libya Non-Aligned); Ridge rules on the rows or the bars
+test blocs::tests::the_1990_ruling_bloc_census ... ok
+test blocs::tests::backing_never_enters_support ... ok
+test blocs::tests::a_backing_stock_does_not_cool_with_the_lens_off ... ok
+test arsenal::ranking_tests::daily_procurement_places_only_daily_funding_and_is_idempotent ... ok
+test blocs::tests::gravity_appears_with_an_aid_flow_and_vanishes_the_month_it_stops ... ok
+test blocs::tests::every_road_reads_closed_while_takeover_is_off ... ok
+test blocs::tests::politics_is_null_off_and_served_whole_on ... ok
+test blocs::tests::a_crackdown_halves_the_foreign_backing_of_every_non_ruling_bloc ... ok
+test blocs::tests::exposure_halves_backing_and_taints_the_bloc ... ok
+test blocs::tests::the_court_outranks_the_chamber_in_jordan ... ok
+test arsenal::ranking_tests::daily_procurement_books_one_row_per_kit_per_delivery_month ... ok
+test blocs::tests::back_bloc_is_refused_off_and_against_the_ruling_bloc ... ok
+test blocs::tests::the_discontent_gauge_reads_the_pains ... ok
+test campaign::tests::difficult_terrain_and_crossing_stop_real_local_throughput ... ok
+test arsenal::ranking_tests::daily_legacy_order_migration_respects_februarys_leap_day ... ok
+test blocs::tests::the_bloc_layer_is_inert_at_1990 ... ok
+test blocs::tests::two_clean_ops_reach_the_sponsor_cap_and_three_sponsors_the_total_cap ... ok
+test campaign::tests::physical_dry_ground_keeps_maneuver_and_observation_but_cannot_fire ... ok
+test campaign::tests::custom_strike_uses_paid_stores_and_installed_quality_without_buying_other_air_roles ... ok
+test campaign::tests::specialist_roles_affect_their_actual_local_outcomes_once ... ok
+test blocs::tests::refusal_of_says_exactly_what_apply_command_would ... ok
+test campaign::tests::supported_transport_opens_one_remote_contact_without_copying_home_defenders ... ok
+test campaign::tests::physical_air_defense_requires_paid_interceptors_and_cannot_attack_ground ... ok
+test campaign_supply::tests::blocked_or_already_due_cargo_does_not_promise_an_arrival_in_view ... ok
+test campaign_supply::tests::military_transit_requires_explicit_host_access_and_contested_is_never_friendly ... ok
+test campaign::tests::partial_aircraft_launch_losses_match_campaign_pools_receipts_and_national_settlement ... ok
+test campaign_supply::tests::deployment_quote_is_pure_and_cannot_use_unconsented_foreign_ground ... ok
+test campaign_supply::tests::garrison_coverage_recovers_real_occupied_corridor_capacity ... ok
+test clock::tests::calendar_and_leap_days_are_exact ... ok
+test campaign_supply::tests::tactical_strike_aircraft_do_not_supply_unmodeled_convoy_air_cover ... ok
+test campaign_supply::tests::dispatch_arrival_and_consumption_are_conserved_and_same_day_idempotent ... ok
+test campaign_supply::tests::request_order_and_sector_recreation_do_not_create_local_stock ... ok
+test campaign_supply::tests::source_and_edge_capacity_are_shared_across_requests_and_sea_needs_real_ships ... ok
+test clock::tests::daily_rates_sum_to_a_year_without_multiplying_hazards ... ok
+test commerce::tests::accepted_counter_honors_signed_price_but_not_stock_already_sold ... ok
+test commerce::tests::cancel_refunds_only_undispatched_and_debt_retirement_conserves_net_money ... ok
+test commerce::tests::cash_only_handles_tiny_exact_cash_and_insufficient_funds_without_new_debt ... ok
+test campaign_supply::tests::garrison_service_is_separate_from_frontline_forecast_coverage ... ok
+test commerce::tests::advanced_components_counteroffer_escrow_freight_and_delivery_conserve_separate_inventory ... ok
+test commerce::tests::counteroffer_has_no_escrow_until_acceptance_and_revalidates_consent_stock_expiry ... ok
+test commerce::tests::closure_full_warehouse_and_reload_hold_then_release_without_duplicate_payment ... ok
+test commerce::tests::advanced_components_sales_quotes_and_offer_acceptance_require_rebuild_rules ... ok
+test commerce::tests::dependency_requires_delivery_and_scales_reference_value_not_price ... ok
+test commerce::tests::construction_queue_creates_no_goods_demand_and_preserves_paid_cargo ... ok
+test commerce::tests::fully_paid_inflight_orders_still_count_toward_outstanding_limit ... ok
+test commerce::tests::disabled_legacy_save_stays_byte_identical_and_views_are_pure ... ok
+test commerce::tests::partial_dispatch_cancellation_preserves_paid_cargo_and_remaining_stock ... ok
+test commerce::tests::leap_day_routes_and_daily_save_resume_use_absolute_dates ... ok
+test commerce::tests::expiry_and_dead_government_return_only_undispatched_escrow ... ok
+test commerce::tests::manufactured_lot_conserves_cash_stock_and_gdp_through_exact_delivery_once ... ok
+test commerce::tests::raw_and_manufactured_freight_compete_for_the_same_edge_capacity ... ok
+test commerce::tests::invalid_inputs_and_identifier_overflow_are_atomic ... ok
+test companies::tests::assignments_validate_ownership_sector_capacity_and_replacement ... ok
+test companies::tests::ai_uses_ordinary_contracts_only_when_competition_is_enabled_and_never_for_player ... ok
+test companies::tests::growth_requires_sustained_real_activity_not_spikes_or_idle_gdp ... ok
+test commerce::tests::thirty_day_demand_never_invents_consumers_or_double_orders ... ok
+test companies::tests::country_size_unique_identities_and_real_tradeoffs ... ok
+test companies::tests::sustained_growth_spawns_unique_company_once_with_cooldown_and_save_continuity ... ok
+test companies::tests::unlimited_roster_growth_cannot_clone_a_domestic_sector_profile_or_logo ... ok
+test companies::tests::work_receipts_idle_days_capacity_progression_and_capture_cleanup ... ok
+test companies::tests::default_is_inert_and_enable_is_idempotent_and_deterministic ... ok
+test construction_capacity::tests::capacity_losses_reduce_grants_without_forgetting_requested_allocations ... ok
+test construction_capacity::tests::assignment_validation_pause_resume_and_save_are_exact ... ok
+test construction_capacity::tests::infrastructure_and_explicit_capacity_use_one_work_rate ... ok
+test construction_capacity::tests::mine_manual_requests_and_building_manual_requests_cannot_overbook ... ok
+test construction_capacity::tests::priority_weights_and_site_caps_conserve_the_national_pool ... ok
+test construction_capacity::tests::buildings_and_mines_share_one_pool_even_when_a_building_completes_first ... ok
+test construction_preview::tests::automation_and_efficiency_use_the_installed_plant_operating_recipe ... ok
+test construction_capacity::tests::new_capabilities_preserve_the_original_seven_slot_save_schema ... ok
+test construction_preview::tests::disabled_research_pilot_is_explicit_and_promises_no_credit ... ok
+test construction_preview::tests::all_standard_capability_deltas_match_actual_completion_helpers ... ok
+test construction_capacity::tests::population_crews_cap_work_without_squaring_a_factory_capacity_shortage ... ok
+test construction_preview::tests::empty_military_factory_preview_discloses_its_actual_routine_service_bill ... ok
+test construction_preview::tests::advanced_company_forecasts_match_output_recipe_and_keep_unfunded_shortages ... ok
+test construction_preview::tests::foreign_province_refuses_without_awarding_national_capacity ... ok
+test construction_capacity::tests::dated_allocation_commands_and_construction_settlement_replay_after_save ... ok
+test construction_preview::tests::infrastructure_respects_the_weaker_mapped_endpoint ... ok
+test construction_preview::tests::legacy_empty_military_factory_preview_does_not_claim_rebuild_operating_costs ... ok
+test construction_preview::tests::invalid_or_full_module_capacity_never_overflows_or_mutates ... ok
+test construction_preview::tests::module_preview_matches_real_fractional_completion_and_lead_time ... ok
+test construction_preview::tests::zero_budget_has_no_eta_and_no_invented_gdp_gain ... ok
+test construction_suggestions::tests::advice_is_pure_deterministic_and_does_not_require_the_ai_pilot ... ok
+test construction_suggestions::tests::first_workshop_prefers_existing_compatible_investment_and_explains_ties ... ok
+test construction_preview::tests::every_kind_preview_is_pure_and_has_cost_effects_and_operating_requirements ... ok
+test construction_suggestions::tests::no_warehouse_is_suggested_for_unsold_stock_without_use ... ok
+test data::tests::a_duplicate_id_is_caught_in_pass_two ... ok
+test data::tests::a_bad_leader_row_is_refused ... ok
+test construction_suggestions::tests::real_full_capacity_power_and_grid_gaps_have_numeric_evidence ... ok
+test construction_suggestions::tests::paused_budget_and_ineligible_actor_produce_no_arbitrary_order ... ok
+test data::tests::a_dyad_stated_twice_is_caught ... ok
+test construction_suggestions::tests::queued_workshop_suppresses_redundant_startup_and_its_own_utilities ... ok
+test construction_suggestions::tests::processing_order_must_fit_the_evidenced_gap_and_count_queued_supply ... ok
+test data::tests::a_missing_field_names_the_file ... ok
+test data::tests::a_granted_technology_the_tree_does_not_have_is_refused ... ok
+test data::tests::a_misspelled_tech_1990_key_is_refused ... ok
+test data::tests::a_granted_technology_with_no_source_is_refused ... ok
+test data::tests::a_missing_start_nation_names_itself ... ok
+test data::tests::a_technology_that_did_not_exist_yet_cannot_be_held_in_1990 ... ok
+test data::tests::a_well_formed_grant_reaches_the_nation_it_was_written_for ... ok
+test data::tests::an_unknown_field_inside_the_block_is_refused ... ok
+test data::tests::a_plausible_real_rate_is_not_refused ... ok
+test data::tests::an_unknown_field_is_refused ... ok
+test data::tests::a_relation_naming_an_unknown_nation_is_caught ... ok
+test data::tests::every_embedded_nation_parses_and_validates ... ok
+test data::tests::every_leader_row_loads_and_ties_to_its_polity ... ok
+test data::tests::provenance_is_required ... ok
+test data::tests::every_nation_carries_its_sourcing ... ok
+test data::tests::the_same_technology_granted_twice_is_refused ... ok
+test data::tests::the_true_brazilian_hyperinflation_is_refused_at_the_door ... ok
+test districts::tests::a_disagreeing_duplicate_is_refused ... ok
+test data::tests::the_authored_endowment_leaves_every_transcribed_trend_exactly_where_it_was ... ok
+test districts::tests::bad_adjacency_is_refused ... ok
+test districts::tests::adjacency_is_a_valid_graph ... ok
+test districts::tests::embedded_districts_parse_clean ... ok
+test districts::tests::bad_terrain_is_refused ... ok
+test districts::tests::embedded_adjacency_is_transcribed_land_borders ... ok
+test districts::tests::every_start_nation_the_map_can_draw_has_a_list ... ok
+test districts::tests::famous_terrain_is_transcribed ... ok
+test districts::tests::embedded_terrain_is_transcribed ... ok
+test districts::tests::province_population_follows_its_current_owners_demography ... ok
+test domination::tests::an_annexed_overlord_passes_its_subjects_to_the_winner ... ok
+test districts::tests::opening_population_covers_every_province_and_closes_to_national_totals ... ok
+test districts::tests::finance_consent_transfer_reprices_open_books_and_preserves_closed_books ... ok
+test data::tests::every_nation_can_show_its_working ... ok
+test data::tests::a_nation_can_show_what_it_was_granted_and_why ... ok
+test domination::tests::custom_arsenal_prices_do_not_inflate_domination_power ... ok
+test domination::tests::choosing_is_free_and_observational ... ok
+test domination::tests::a_chosen_campaign_has_the_same_future_after_save_load ... ok
+test dyads::diag::appetite_table ... ignored
+test dyads::diag::calibration_dashboard ... ignored
+test dyads::diag::war_census ... ignored
+test domination::tests::campaign_settlement_matches_the_daily_calendar ... ok
+test dyads::tests::a_claim_pressed_by_force_stops_being_a_war_aim ... ok
+test dyads::tests::the_derived_table_keeps_the_orderings_the_old_one_encoded ... ok
+test domination::tests::formal_hierarchy_is_transitive_and_is_the_only_victory ... ok
+test domination::tests::milestones_and_legacy_observe_without_rewarding ... ok
+test economic_ai::ammunition_forecast_tests::ammunition_and_vehicle_orders_preserve_separate_funding_and_one_material_bill ... ok
+test dyads::tests::the_breakup_is_asymmetric_because_the_census_was ... ok
+test economic_ai::ammunition_forecast_tests::ammunition_only_preserves_standing_procurement_and_adds_its_material_bill_once ... ok
+test domination::tests::old_save_without_campaign_data_loads_and_replays_identically ... ok
+test economic_ai::sale_forecast_tests::rebuild_ai_sees_office_choices_and_can_offer_components_without_changing_legacy_reserve_schema ... ok
+test economy::daily_tests::daily_economy_posts_growth_population_and_the_days_cash_only ... ok
+test economy::daily_tests::daily_economic_shocks_are_saved_and_are_not_redrawn_each_day ... ok
+test blocs::tests::the_pillar_map_and_overrides_read_as_transcribed ... ok
+test economy::daily_tests::finance_loading_a_stale_small_country_ratio_repairs_only_the_quotient ... ok
+test blocs::tests::the_bloc_layer_is_deterministic_when_on ... ok
+test economy::daily_tests::finance_small_gdp_charge_keeps_the_exact_stock_ratio ... ok
+test economy::daily_tests::finance_shock_therapy_refreshes_ratio_without_billing_the_gdp_loss ... ok
+test economy::daily_tests::finance_small_gdp_interest_share_matches_the_cash_bill ... ok
+test economy::daily_tests::finance_ratio_refresh_is_inert_without_books_and_safe_without_output ... ok
+test economy::daily_tests::stability_explanation_preserves_original_arithmetic ... ok
+test equipment::ammunition_operation_tests::ammunition_compatibility_separates_every_weapon_caliber_and_load ... ok
+test equipment::ammunition_operation_tests::ammunition_air_only_offense_uses_no_ground_rounds_and_aa_requires_real_air_exposure ... ok
+test equipment::ammunition_operation_tests::ammunition_mixed_fleet_replaces_scalar_supply_only_for_its_physical_share ... ok
+test equipment::ammunition_operation_tests::ammunition_opening_plan_conserves_shared_stock_across_theatres_and_is_pure ... ok
+test equipment::ammunition_operation_tests::ammunition_inactive_mode_preserves_old_readings_and_saved_consumption_continues ... ok
+test equipment::ammunition_operation_tests::ammunition_physical_stores_do_not_change_valuation_or_standing_force ... ok
+test equipment::ammunition_operation_tests::ammunition_wrong_family_transit_and_refit_reservations_cannot_supply_firing ... ok
+test equipment::ammunition_production_tests::completing_an_ordinary_vehicle_contract_keeps_its_factory_place_until_tomorrow ... ok
+test equipment::ammunition_production_tests::fabrication_pays_and_consumes_once_then_fiscal_owner_posts_cash_once ... ok
+test equipment::ammunition_production_tests::completing_a_batch_cannot_reuse_a_lost_factory_slot_on_the_same_work_date ... ok
+test equipment::ammunition_production_tests::finite_raw_forecast_uses_d2_after_maintenance_and_retains_no_parallel_d3_claim ... ok
+test equipment::ammunition_production_tests::missing_raw_inputs_or_loss_of_factory_control_prevent_paid_fabrication ... ok
+test equipment::ammunition_production_tests::completed_and_cancelled_history_never_prevents_later_paid_replenishment ... ok
+test equipment::ammunition_production_tests::ordinary_equipment_and_ammunition_reserve_the_same_finite_factory_slots ... ok
+test blocs::tests::an_absent_islamist_bloc_becomes_present_after_one_sponsor_operation ... ok
+test equipment::ammunition_production_tests::review_order_and_activation_never_grant_rounds_or_spend_an_open_day ... ok
+test equipment::ammunition_production_tests::save_roundtrip_resumes_fractional_work_without_repaying_or_duplicating_stock ... ok
+test equipment::ammunition_production_tests::rebuilt_ammunition_factory_stops_in_an_outage_without_losing_its_material_plan ... ok
+test equipment::ammunition_production_tests::shared_d2_authority_is_used_after_maintenance_and_never_twice_for_parallel_orders ... ok
+test equipment::ammunition_production_tests::tiny_daily_raw_inputs_accumulate_on_the_warehouse_quantum_and_finish_fully_paid ... ok
+test commerce::tests::real_system_order_delivers_goods_before_industry_and_replays ... ok
+test equipment::ammunition_production_tests::zero_paused_and_cancelled_orders_preserve_paid_work_and_free_only_closed_slots ... ok
+test equipment::ammunition_reserve_tests::first_automatic_review_is_prospective_and_repeated_support_is_byte_identical ... ok
+test equipment::ammunition_reserve_tests::maintenance_and_existing_paid_work_own_authority_before_any_new_reserve_batch ... ok
+test equipment::ammunition_reserve_tests::expired_authority_zero_cap_and_missing_factory_wait_without_granting_or_importing ... ok
+test equipment::ammunition_production_tests::unfinished_limit_counts_paused_batches_and_preserves_identifier_exhaustion ... ok
+test equipment::ammunition_reserve_tests::manual_reserve_review_and_save_need_no_maintenance_and_grant_nothing ... ok
+test equipment::ammunition_reserve_tests::reserve_gap_nets_stock_and_all_unfinished_commitments_including_paused_work ... ok
+test economy::daily_tests::finance_first_budget_roundtrip_keeps_original_ratio_rounding ... ok
+test equipment::ammunition_production_tests::malformed_orders_and_forged_conservation_or_dates_are_rejected ... ok
+test equipment::ammunition_reserve_tests::unscheduled_targets_are_not_raw_purchase_demand_but_a_real_batch_exposes_missing_inputs ... ok
+test equipment::aviation_tests::aircraft_components_change_frozen_air_effects_and_keep_ground_neutral ... ok
+test equipment::aviation_tests::aircraft_research_installation_and_payload_pairing_reject_before_spending ... ok
+test equipment::ammunition_reserve_tests::target_and_batch_are_bounded_and_a_large_plan_never_stacks_new_batch_ceilings ... ok
+test equipment::fleet_target_tests::fleet_target_partial_refit_preserves_projection_and_cancel_keeps_completed_conversion ... ok
+test equipment::aviation_tests::aviation_reviews_are_pure_complete_and_do_not_grant_stores ... ok
+test campaign_supply::tests::saved_booked_cargo_holds_on_permission_revocation_then_arrives_once ... ok
+test equipment::fleet_target_tests::fleet_target_completion_counts_orders_once_and_cancelled_work_not_at_all ... ok
+test equipment::aviation_tests::version_seven_ground_library_remains_sparse_and_airframe_changes_are_new_builds ... ok
+test equipment::fleet_target_tests::fleet_target_refit_suggestions_protect_source_goals_and_use_only_delivered_stock ... ok
+test economic_ai::sale_forecast_tests::shared_sale_forecast_matches_independent_reads_and_command_effects ... ok
+test equipment::fleet_target_tests::fleet_target_refit_transfers_conserve_counts_and_cancellation_releases_source ... ok
+test equipment::maintenance_tests::activation_is_prospective_and_does_not_reclassify_an_open_day ... ok
+test equipment::maintenance_tests::delivered_vehicles_are_billed_but_pending_orders_are_not_and_retirement_lowers_future_cost ... ok
+test equipment::maintenance_tests::fiscal_expiry_limits_invoices_but_eligible_prepaid_funds_are_not_charged_again ... ok
+test equipment::maintenance_tests::invoice_is_prorated_paid_once_and_posted_once_by_the_fiscal_owner ... ok
+test equipment::ammunition_reserve_tests::receipt_roundtrip_preserves_continuation_and_rejects_forged_dates_or_orders ... ok
+test equipment::aviation_tests::aircraft_paid_lifecycle_conserves_fabrication_raw_inputs_and_refits ... ok
+test equipment::fleet_target_tests::fleet_target_setting_changes_only_preference_and_roundtrips ... ok
+test equipment::fleet_target_tests::fleet_target_refusals_and_invalid_saves_are_atomic ... ok
+test equipment::maintenance_tests::zero_funding_reduces_supported_stock_without_deleting_or_rejuvenating_it ... ok
+test equipment::maintenance_tests::powered_shipyard_repair_quote_matches_the_paid_naval_invoice_and_preserves_inventory ... ok
+test equipment::maintenance_tests::malformed_limit_and_version_three_plan_are_refused_without_mutation ... ok
+test equipment::service_tests::retirement_preserves_receipts_and_funding_while_future_support_matches_survivors ... ok
+test equipment::replenishment_tests::held_or_late_paid_cargo_is_not_purchased_again ... ok
+test equipment::service_tests::retirement_quote_is_pure_and_quotes_physical_requirement_only ... ok
+test equipment::maintenance_tests::forged_payment_splits_support_and_future_invoice_dates_are_rejected ... ok
+test equipment::service_tests::retiring_all_unreserved_vehicles_still_allows_the_reserved_refit_to_finish ... ok
+test equipment::service_tests::full_retirement_removes_only_delivered_row_and_later_delivery_starts_fresh ... ok
+test equipment::service_tests::partial_retirement_changes_only_units_and_preserves_refits_age_and_losses ... ok
+test equipment::service_tests::retiring_specialists_removes_their_realized_operational_role ... ok
+test equipment::replenishment_tests::equipment_replenishment_review_is_pure_and_command_conserves_existing_ledgers ... ok
+test equipment::replenishment_tests::paused_work_and_invalid_or_stale_supply_requests_change_nothing ... ok
+test equipment::maintenance_tests::invoice_and_target_envelope_roundtrip_preserves_continuation_and_rejects_forged_receipts ... ok
+test equipment::supply_automation_tests::bounded_audit_history_retains_latest_guard_and_does_not_exhaust_policy_lifetime ... ok
+test equipment::supply_automation_tests::automatic_purchase_is_the_same_transaction_as_manual_with_exact_cash_floor ... ok
+test equipment::supply_automation_tests::failed_reviews_advance_cadence_and_edits_do_not_create_catch_up_or_same_day_credit ... ok
+test equipment::supply_automation_tests::paused_work_and_expired_fabrication_authority_create_no_purchase_demand ... ok
+test equipment::supply_automation_tests::disable_and_clear_preserve_cargo_and_frozen_history_while_stopping_future_purchases ... ok
+test equipment::service_tests::retirement_refusals_are_atomic_and_pending_or_legacy_stock_cannot_be_used ... ok
+test equipment::supply_automation_tests::policy_illustrations_and_configuration_are_pure_until_a_later_review ... ok
+test equipment::supply_tests::company_raw_horizon_tracks_base_contract_and_signed_ingredient_receipts ... ok
+test equipment::supply_tests::supply_exact_fractional_preflight_does_not_claim_rejected_work ... ok
+test equipment::supply_tests::supply_finished_batch_consumes_its_bill_once_and_reload_preserves_it ... ok
+test equipment::supply_tests::supply_full_custom_calendar_appropriation_leaves_no_invented_legacy_draw ... ok
+test equipment::supply_tests::supply_forecast_nets_custom_appropriation_and_never_repeats_procurement_bank ... ok
+test equipment::supply_tests::supply_horizon_uses_one_shared_funding_pool_and_respects_enacted_year ... ok
+test equipment::supply_tests::supply_national_target_cannot_assign_one_dollar_to_two_stock_blocked_projects ... ok
+test equipment::supply_tests::supply_tooling_start_dates_and_pauses_are_finite_and_pure ... ok
+test domination::tests::every_starting_nation_gets_three_deterministic_cards_and_one_direct_card ... ok
+test equipment::supply_tests::supply_zero_funding_invalid_sites_and_closed_projects_do_not_create_demand ... ok
+test equipment::supply_tests::supply_prepaid_balance_can_fund_work_after_annual_authority_expires ... ok
+test equipment::tests::actual_system_order_keeps_seven_full_delivery_days_and_supports_arrivals ... ok
+test equipment::supply_tests::supply_stock_sharing_matches_atomic_settlement_and_partial_conservation ... ok
+test equipment::tests::component_research_consumes_effort_but_changes_no_stock_or_macro_knowledge ... ok
+test equipment::tests::development_obeys_activation_budget_calendar_and_exact_contract_once ... ok
+test equipment::tests::each_new_specification_has_a_separate_price_or_rating_and_research_gate ... ok
+test equipment::tests::disabled_military_rules_refuse_design_work_without_mutation ... ok
+test equipment::supply_tests::remaining_components_include_future_fabrication_and_follow_actual_work ... ok
+test equipment::tests::gun_mounting_and_light_chassis_limits_are_enforced_before_spending ... ok
+test equipment::tests::detailed_revision_development_and_refit_quotes_survive_reload ... ok
+test equipment::tests::every_vehicle_in_a_batch_consumes_its_recipe_and_false_paid_work_is_rejected ... ok
+test equipment::tests::load_validation_refuses_missing_designs_and_invented_reservations ... ok
+test equipment::service_tests::retirement_save_load_continues_the_same_dated_refit_and_delivery_schedule ... ok
+test equipment::tests::refit_reserves_real_stock_cancel_releases_it_and_completion_keeps_age ... ok
+test equipment::tests::old_revisions_keep_identity_and_prices_when_a_detailed_draft_is_saved ... ok
+test equipment::tests::production_requires_materials_and_delivers_only_whole_revisioned_orders ... ok
+test exact::tests::dump_pins ... ignored
+test campaign_supply::tests::commercial_usage_cannot_be_reset_or_overbooked_and_reserves_run_out ... ok
+test equipment::tests::research_focus_switches_charge_one_half_bank_and_shared_quota_survives_reload ... ok
+test exact::tests::agrees_with_the_platform_libm_to_a_few_ulps ... ok
+test exact::tests::transcendentals_are_pinned_to_the_bit ... ok
+test equipment::tests::separate_specifications_have_valid_distinct_types_and_require_every_slot ... ok
+test equipment::tests::previews_and_unfunded_drafts_are_pure_and_locked_components_are_not_developed ... ok
+test exact::tests::the_identities_are_exact ... ok
+test exact::tests::the_range_reduction_constants_are_what_they_claim ... ok
+test fiscal_recovery::tests::forecast_can_stabilize_high_debt_and_exhaust_cash_without_free_debt_relief ... ok
+test fiscal_recovery::tests::already_enacted_taxes_reduce_the_current_policy_gap_once ... ok
+test fiscal_recovery::tests::explicit_books_open_without_grants_or_writeoffs ... ok
+test fiscal_recovery::tests::pressure_is_bounded_and_inert_when_disabled ... ok
+test fiscal_recovery::tests::receipt_is_consumed_once_and_never_spends_authorization ... ok
+test equipment::tests::saved_midwork_continues_identically_and_revision_prices_are_frozen ... ok
+test fiscal_recovery::tests::quarterly_cash_bills_are_recognized_without_annualizing_one_large_purchase ... ok
+test equipment::supply_automation_tests::persisted_receipt_rejects_forged_costs_floors_fills_and_dates_after_policy_changes ... ok
+test fiscal_recovery::tests::sustained_other_obligations_get_an_actionable_gap_but_one_offs_do_not_recur ... ok
+test fiscal_recovery_ai::tests::consolidation_does_not_try_to_seat_an_illegal_inherited_envelope ... ok
+test fiscal_recovery_ai::tests::consolidation_updates_live_departments_for_the_single_cabinet_price ... ok
+test fiscal_recovery_ai::tests::existing_ai_department_budgets_renew_without_industrial_competition ... ok
+test fiscal_recovery::tests::inherited_debt_gets_a_full_year_then_neglect_and_actual_recovery_diverge ... ok
+test fiscal_recovery::tests::improving_results_do_not_hide_severe_unresolved_fiscal_stress ... ok
+test fiscal_recovery_ai::tests::repeated_recovery_votes_keep_inherited_operating_floors ... ok
+test fiscal_recovery_ai::tests::unused_capital_authority_is_never_quoted_as_a_recovery_saving ... ok
+test equipment::tests::company_custom_equipment_recipes_survive_reassignment_and_save_load ... ok
+test fiscal_recovery_ai::tests::exhausted_consolidation_is_refused_without_charging_or_changing_state ... ok
+test fiscal_recovery_ai::tests::recovery_budget_cuts_cash_services_and_preserves_protected_departments ... ok
+test exact::tests::nothing_in_the_sim_calls_the_platform_transcendentals ... ok
+test fiscal_recovery_ai::tests::restructuring_pays_once_retires_stock_and_has_a_shared_cooldown ... ok
+test gdp_projects::tests::a_migrated_module_expansion_changes_capacity_without_a_gdp_completion_award ... ok
+test fiscal_recovery_ai::tests::quarterly_ai_pays_ordinary_tax_price_and_never_changes_player_policy ... ok
+test gdp_projects::tests::blocked_plants_and_enablers_do_not_create_output ... ok
+test equipment::tests::ground_families_complete_paid_development_and_share_physical_production ... ok
+test gdp_projects::tests::completion_keeps_actual_work_receipt_and_legacy_work_is_not_incremental ... ok
+test equipment::supply_tests::company_supply_preview_and_settlement_share_joint_raw_component_and_operating_limits ... ok
+test government::tests::a_ban_takes_seats_and_not_the_cabinet ... ok
+test gdp_projects::tests::legacy_and_rebuilt_construction_kinds_use_paid_work_not_completion_bonuses ... ok
+test gdp_projects::tests::power_dispatch_is_shared_across_generator_provinces_not_credited_twice ... ok
+test gdp_projects::tests::disabled_adapter_is_byte_inert_and_readers_never_settle ... ok
+test gdp_projects::tests::new_mine_receipts_follow_actual_posting_without_january_february_gdp_jumps ... ok
+test gdp_projects::tests::mine_construction_hook_records_paid_work_but_not_inherited_extraction ... ok
+test government::tests::a_player_can_widen_their_own_coalition_and_pay_for_it ... ok
+test gdp_projects::tests::military_order_is_a_payment_not_fabricated_delivered_production ... ok
+test government::tests::a_regime_s_movements_move_with_the_pains_and_revert ... ok
+test gdp_projects::tests::installed_migration_scale_accounts_for_subsequent_upgrades_without_awarding_output ... ok
+test gdp_projects::tests::actual_factory_chain_conserves_value_added_and_internal_power ... ok
+test government::tests::a_paid_army_seats_the_islamists_and_a_hostile_one_annuls_the_algerian_way ... ok
+test gdp_projects::tests::fractional_workshop_records_only_real_intermediates_and_balances_internal_power ... ok
+test government::tests::a_coalition_costs_what_a_majority_does_not ... ok
+test government::tests::a_surge_is_news_once_per_crossing ... ok
+test government::tests::an_election_changes_the_government_of_the_day_and_never_unseats_a_crown ... ok
+test government::tests::buying_an_institution_is_a_real_price_and_not_a_button ... ok
+test government::tests::d4_tables_are_read_under_the_switch_and_invisible_off ... ok
+test government::tests::d4_tables_are_transcribed_beside_the_live_table_and_not_in_it ... ok
+test government::tests::convening_a_round_table_opens_the_country_in_six_months ... ok
+test government::tests::banning_a_majority_party_keeps_its_support_and_zeroes_its_seats ... ok
+test government::tests::a_state_with_no_parties_never_loops_through_the_polls ... ok
+test government::tests::daily_government_age_and_support_do_not_jump_a_month_per_day ... ok
+test government::tests::every_bloc_override_has_a_source ... ok
+test government::tests::every_government_is_reachable_in_january_1990 ... ok
+test government::tests::declaring_a_programme_moves_the_named_pillars_and_the_patrons_relations ... ok
+test government::tests::every_successor_flag_has_a_source ... ok
+test government::tests::a_war_going_badly_is_worth_votes_to_the_nationalists ... ok
+test blocs::tests::a_bloc_share_sums_to_one_everywhere ... ok
+test blocs::tests::the_ai_backs_a_bloc_only_under_its_conditions ... ok
+test economy::daily_tests::finance_small_gdp_daily_and_program_settlement_resume_exactly ... ok
+test government::tests::the_ai_s_levers_ride_the_deck_s_one_draw ... ok
+test government::tests::suspending_the_constitution_keeps_the_incumbent_s_colour ... ok
+test government::tests::the_army_target_is_the_share_arm_off_and_the_pay_arm_is_the_ruled_form ... ok
+test government::tests::the_liberalisation_seam_reseeds_parties_from_movements ... ok
+test government::tests::opening_up_a_regime_produces_an_election_without_anything_scheduling_one ... ok
+test government::tests::the_party_table_is_data_and_not_guesswork ... ok
+test government::tests::the_regime_s_own_coup_keeps_its_colour_under_the_lens_and_latches_the_deposed_movement_on_the_roads ... ok
+test government::tests::refusal_of_agrees_with_apply_command_for_every_lever_over_poland_and_iraq ... ok
+test government::tests::the_seat_formula_decides_whether_a_plurality_is_a_government ... ok
+test industrial_modules::tests::expansions_pay_added_capacity_and_reserve_caps_against_legacy_orders ... ok
+test government::tests::party_support_moves_with_prices_rather_than_with_a_slider ... ok
+test industrial_modules::tests::full_facility_requires_a_whole_paid_estate_but_retrofits_recognize_partial_processing ... ok
+test industrial_modules::tests::legacy_save_stays_absent_and_recommendation_fits_money_and_work ... ok
+test government::tests::the_algeria_shaped_annulment_fires_under_its_conditions_and_not_under_the_court ... ok
+test industrial_modules::tests::manual_daily_workshop_needs_no_economic_competition_opt_in ... ok
+test government::tests::the_sponsor_payoff_and_exposure_fire_on_takeover ... ok
+test industrial_modules::tests::mixed_queue_shares_budget_with_independent_site_work ... ok
+test industrial_modules::tests::missing_construction_inputs_do_not_block_work_and_operating_output_is_fractional ... ok
+test industrial_modules::tests::proportional_quote_is_pure_and_includes_turnkey_inputs ... ok
+test industrial_modules::tests::recommendation_fits_exact_slowest_calendar_release_cash_bill ... ok
+test industrial_modules::tests::range_ownership_ambiguous_and_overflow_orders_refuse_atomically ... ok
+test industrial_modules::tests::scale_survives_save_capture_and_gdp_changes_without_integer_unlock ... ok
+test industry::tests::company_cannot_charge_or_claim_bonus_through_module_commissioning_ceiling ... ok
+test industrial_modules::tests::unfinished_module_replays_identically_after_reload_and_keeps_frozen_price ... ok
+test industry::tests::civilian_chain_conserves_inputs_power_cash_and_produces_real_goods ... ok
+test industry::tests::company_generators_charge_for_dispatch_and_save_only_generating_fuel ... ok
+test industry::tests::company_factories_save_real_inputs_and_missing_inputs_charge_nothing ... ok
+test industry::tests::completed_project_closes_exact_cash_and_preserves_inventory ... ok
+test industry::tests::company_construction_is_funded_performed_work_and_replays_once ... ok
+test industry::tests::construction_uses_pooled_civilian_capital_not_maintenance_or_procurement ... ok
+test industry::tests::legacy_daily_rows_gain_financing_and_budget_activation_preserves_sunk_work ... ok
+test industry::tests::manufactured_goods_remain_available_for_operations_during_construction ... ok
+test industry::tests::full_civilian_chain_bootstraps_from_raw_inputs_without_seeded_goods ... ok
+test industry::tests::goods_storage_upgrade_and_retrofits_have_distinct_operating_consumers ... ok
+test industry::tests::new_industrial_demand_does_not_mint_opening_resources ... ok
+test industry::tests::mine_preview_reserves_only_budget_left_after_the_building_queue ... ok
+test industry::tests::mine_construction_uses_partial_budget_and_no_materials ... ok
+test industry::tests::partial_budget_scales_cash_and_work_without_consuming_inputs ... ok
+test industry::tests::no_power_or_fuel_pauses_only_new_activity_and_does_not_partially_draw ... ok
+test industry::tests::new_mines_share_funding_but_have_independent_site_lead_times ... ok
+test industry::tests::rebuilt_construction_scales_company_fees_with_reserved_physical_inputs ... ok
+test arsenal::ranking_tests::the_ranked_pick_is_the_folded_pick ... ok
+test industry_construction_tests::no_iron_pauses_without_spending_or_consuming_other_inputs ... ok
+test industry::tests::whole_queue_reserves_one_budget_without_material_or_site_capacity_gates ... ok
+test industry::tests::untouched_industry_is_byte_inert_and_absent_from_saves ... ok
+test industry_construction_tests::prepared_materials_replace_raw_draw_once_and_save_replay_matches ... ok
+test industry_manufacturing_tests::advanced_naval_orders_consume_components_and_power_outages_stop_real_output ... ok
+test industry_construction_tests::preset_is_four_ordinary_jobs_and_refusal_is_atomic ... ok
+test industry_manufacturing_tests::company_naval_output_uses_its_frozen_component_recipe_and_actual_unit_receipt ... ok
+test industry_manufacturing_tests::a_shipyard_and_a_military_factory_supply_separate_production_slots ... ok
+test industry_manufacturing_tests::component_blocked_priority_line_cannot_reserve_raw_inputs_from_a_working_line ... ok
+test government::tests::a_communist_movement_at_discontent_0_70_with_an_unpaid_army_takes_power ... ok
+test industry_operations::tests::all_receipts_share_power_and_workers_and_stale_output_is_not_current ... ok
+test government::tests::the_round_table_walks_authoritarianism_to_the_floor_and_opens_the_state ... ok
+test industry_operations::tests::civilian_construction_capacity_requires_a_paid_complete_service_bundle ... ok
+test industry_manufacturing_tests::custom_equipment_supply_preview_matches_joint_component_and_raw_shortages ... ok
+test government::tests::a_western_winner_is_refused_in_a_party_less_polity ... ok
+test industry_operations::tests::inherited_account_is_reconciled_without_stock_cash_or_gdp_awards ... ok
+test industry_operations::tests::company_components_and_inherited_power_share_one_paid_physical_bundle ... ok
+test industry_operations::tests::inherited_factory_headcounts_reconcile_to_population_manufacturing_jobs ... ok
+test industry_operations::tests::a_full_day_matches_new_jobs_before_factory_service_and_retains_employees ... ok
+test industry_operations::tests::legacy_world_does_not_gain_a_second_operating_system ... ok
+test industry_operations::tests::missing_component_raw_input_never_partially_consumes_a_bundle ... ok
+test logistics::tests::bilateral_sanctions_close_a_route ... ok
+test industry_operations::tests::population_staffing_limits_processor_output_once_without_shrinking_nameplate ... ok
+test industry_operations::tests::population_jobs_match_operations_including_rebuild_only_sites ... ok
+test logistics::tests::built_infrastructure_grows_land_capacity ... ok
+test industry_operations::tests::office_and_components_consume_inputs_and_post_value_added_once ... ok
+test industry_operations::tests::research_centers_need_professionals_and_do_not_double_ordinary_research ... ok
+test logistics::tests::clearing_tree_exhaustion_preserves_unreachable_and_blocked_results ... ok
+test logistics::tests::clearing_frozen_capacities_preserve_live_usage_and_dispatches ... ok
+test logistics::tests::daily_capacity_is_prorated_shared_and_resets_on_the_next_day ... ok
+test logistics::tests::company_terminal_capacity_and_fees_follow_actual_dispatch ... ok
+test logistics::tests::completed_freight_terminal_increases_only_its_real_gateway_capacity ... ok
+test logistics::tests::clearing_tree_pauses_resumes_and_keeps_first_settled_goal ... ok
+test logistics::tests::daily_cargo_is_held_then_resumes_without_losing_its_paid_quantity ... ok
+test logistics::tests::daily_cargo_arrives_on_its_exact_day_and_only_once ... ok
+test logistics::tests::disabled_world_stays_empty ... ok
+test logistics::tests::every_commodity_shares_the_same_capacity ... ok
+test logistics::tests::materials_segment_capacity_profile ... ignored, observer-only Materials freight-capacity microprofile
+test logistics::tests::land_only_is_a_real_policy ... ok
+test logistics::tests::held_cargo_survives_save_and_arrives_once_after_reopening ... ok
+test logistics::tests::military_routing_all_search_paths_refuse_a_contested_endpoint ... ok
+test logistics::tests::military_routing_daily_market_profile ... ignored, bounded observer of the actual daily world; no timing threshold
+test logistics::tests::military_routing_alternates_replay_after_save_and_keep_actual_arrival_dates ... ok
+test logistics::tests::military_routing_contract_forecasts_and_frozen_barter_legs_share_capacity ... ok
+test logistics::tests::indexed_lazy_route_search_is_identical_to_original_graph_walk ... ok
+test logistics::tests::military_routing_replans_a_cached_departure_after_endpoint_cession ... ok
+test industry_operations::tests::snapshot_keeps_current_funding_constraints_separate_from_dated_output ... ok
+test logistics::tests::military_routing_goods_use_alternates_and_an_exhausted_graph_moves_nothing ... ok
+test logistics::tests::network_is_real_and_connected ... ok
+test logistics::tests::military_routing_uses_an_alternate_after_the_fastest_corridor_fills ... ok
+test logistics::tests::military_routing_warns_of_a_hold_before_due_without_rebooking_paid_cargo ... ok
+test logistics::tests::ocean_freight_takes_time_and_is_idempotent ... ok
+test logistics::tests::old_monthly_cargo_migrates_its_remaining_term_without_dispatching_again ... ok
+test logistics::tests::military_routing_search_budget_exhaustion_preserves_nominal_capacity ... ok
+test industry::tests::migrated_contract_preserves_paid_history_and_only_prices_unfinished_work ... ok
+test logistics::tests::overseas_land_only_is_unreachable ... ok
+test logistics::tests::clearing_tree_limit_falls_back_without_changing_routes ... ok
+test manufacturing::tests::a_line_requires_the_player_owned_plant_and_charges_eight_pc_atomically ... ok
+test manufacturing::tests::daily_manufacturing_places_a_daily_slice_without_shrinking_forecasts ... ok
+test manufacturing::tests::daily_manufacturing_two_days_stock_is_not_a_monthly_shortage ... ok
+test manufacturing::tests::daily_shortfalls_include_banked_cash_and_prior_successful_bundles ... ok
+test manufacturing::tests::company_level_up_does_not_change_a_reserved_defense_recipe_mid_settlement ... ok
+test manufacturing::tests::company_defense_lines_spend_one_envelope_and_use_the_delivered_recipe ... ok
+test manufacturing::tests::a_directed_line_is_identical_under_daily_and_monthly_calendars ... ok
+test manufacturing::tests::default_world_is_inert_and_serializes_no_manufacturing ... ok
+test manufacturing::tests::disabling_resource_gates_makes_directed_lines_materially_ungated ... ok
+test manufacturing::tests::directed_settlement_buys_once_and_writes_no_macro_or_force_quantity ... ok
+test manufacturing::tests::enrolled_lines_spend_only_the_exact_shared_department_residual_once ... ok
+test manufacturing::tests::priorities_split_one_budget_and_high_priority_consumes_scarcity_first ... ok
+test manufacturing::tests::two_levels_are_two_slots_not_three ... ok
+test manufacturing::tests::enabling_the_system_with_no_lines_preserves_legacy_procurement_exactly ... ok
+test manufacturing::tests::province_loss_blocks_without_consuming_or_ordering ... ok
+test manufacturing::tests::tiny_daily_manufacturing_funding_accumulates_instead_of_disappearing ... ok
+test nations::tests::every_name_the_old_parser_took_still_parses_to_the_same_nation ... ok
+test nations::tests::identity_is_a_code_on_disk_and_an_index_in_memory ... ok
+test nations::tests::the_roster_knows_who_touches_whom ... ok
+test nations::tests::the_roster_is_internally_consistent ... ok
+test operations::aviation_loss_tests::land_battle_preserves_parked_custom_aircraft_and_legacy_writeoff_arithmetic ... ok
+test operations::aviation_loss_tests::mixed_inventory_losses_follow_each_aircrafts_launch_coverage_once ... ok
+test operations::campaign_ammo_tests::campaign_orders_change_physical_rounds_and_full_reserve_does_not_fire ... ok
+test operations::campaign_ammo_tests::air_defense_rounds_follow_actual_enemy_missions_and_reserves ... ok
+test operations::aviation_loss_tests::grounded_aircraft_in_a_fighting_coalition_take_no_force_or_inventory_loss ... ok
+test operations::campaign_ammo_tests::garrison_service_never_launches_or_pays_for_parked_aircraft ... ok
+test politics::tests::the_hazard_doubles_every_seven_years_from_1_5_percent_at_65 ... ok
+test operations::campaign_ammo_tests::custom_tactical_aircraft_pay_only_for_the_supported_ordered_strike ... ok
+test production::tests::a_larger_queue_shares_unchanged_national_throughput ... ok
+test manufacturing::tests::save_load_keeps_lines_and_existing_orders_outlive_a_stopped_line ... ok
+test production::tests::an_empty_input_pauses_without_consuming_then_resumes ... ok
+test production::tests::completion_leaves_a_province_level_that_speeds_future_work ... ok
+test production::tests::a_partial_input_scales_progress_and_every_resource_draw ... ok
+test industrial_modules::tests::tiny_module_needs_ninety_dates_and_pays_exact_scaled_turnkey_bill ... ok
+test operations::campaign_ammo_tests::custom_ammunition_does_not_erase_the_same_operations_support_demand ... ok
+test operations::campaign_ammo_tests::local_loss_quotes_match_national_settlement_with_shared_partial_aircraft_stores ... ok
+test production::tests::daily_cancellation_preserves_paid_cash_without_refunding_or_granting_assets ... ok
+test production::tests::daily_parallel_sites_do_not_share_a_workforce_or_planning_ceiling ... ok
+test production::tests::daily_priority_reserves_one_cash_budget_across_different_project_kinds ... ok
+test production::tests::daily_ownership_duplicates_and_foreign_project_actions_refuse_atomically ... ok
+test production::tests::daily_completion_charges_exact_frozen_cash_once_and_survives_midday_reload ... ok
+test production::tests::daily_work_uses_money_without_materials_market_or_political_capital ... ok
+test production::tests::daily_zero_and_partial_budget_preserve_work_and_resume_without_double_building ... ok
+test production::tests::every_unit_recorded_as_used_leaves_the_same_physical_stockpile ... ok
+test production::tests::fresh_market_consumes_the_same_opening_cover_that_it_reports ... ok
+test production::tests::equal_priority_projects_report_shared_capacity_neutrally ... ok
+test production::tests::ownership_queue_limit_and_foreign_project_clicks_are_refused_atomically ... ok
+test production::tests::company_old_daily_project_migrates_before_work_and_waits_for_real_funding ... ok
+test production::tests::high_priority_work_gets_a_scarce_daily_bundle_first ... ok
+test production::tests::legacy_monthly_batch_matches_repeated_calendar_days ... ok
+test programs::tests::all_calendar_months_accrue_one_twelfth_with_constant_gdp ... ok
+test production::tests::production_off_is_byte_inert_and_absent_from_default_saves ... ok
+test production::tests::projects_and_capabilities_survive_save_and_load ... ok
+test programs::tests::child_totals_equal_parent_and_preview_never_accrues_real_authority ... ok
+test programs::tests::civilian_operating_spend_is_cash_cost_but_not_new_macro_capital ... ok
+test production::tests::production_is_not_advertised_without_a_physical_resource_market ... ok
+test programs::tests::construction_cash_ceiling_is_shared_atomic_and_charged_once ... ok
+test programs::tests::construction_budget_activation_is_free_and_preserves_appropriations ... ok
+test programs::tests::defense_department_transfers_change_real_force_and_preview_together ... ok
+test programs::tests::draft_preview_is_unpriced_statewise_and_refill_moves_to_defense_only ... ok
+test programs::tests::construction_quote_is_pure_and_day_rollover_restores_only_the_daily_ceiling ... ok
+test programs::tests::fiscal_card_annualizes_only_posted_actual_expenses_not_authority ... ok
+test programs::tests::inherited_procurement_bank_is_spent_without_being_charged_again ... ok
+test programs::tests::next_day_and_draft_previews_never_report_unposted_spending ... ok
+test government::tests::support_finds_an_equilibrium_rather_than_running_away ... ok
+test programs::tests::shared_pool_and_fiscal_settlement_spend_each_dollar_once ... ok
+test programs::tests::rollover_expires_authority_but_never_refunds_cash_or_prepaid_orders ... ok
+test programs::tests::re_enactment_and_invalid_commands_cannot_mint_or_lose_balances ... ok
+test programs::tests::unenrolled_default_and_daily_worlds_remain_byte_identical ... ok
+test programs::tests::unused_capital_is_not_spent_or_given_a_growth_reward ... ok
+test programs::tests::save_load_preserves_open_day_authority_spend_and_settlement_guards ... ok
+test programs::tests::zero_construction_budget_preserves_banked_funding_and_invalid_changes_are_atomic ... ok
+test province_economy::tests::consent_reattributes_project_output_without_transferring_gdp_twice ... ok
+test province_economy::tests::disabled_ledger_is_absent_and_preserves_the_known_default_start ... ok
+test province_economy::tests::annexation_keeps_war_damage_and_empty_countries_have_explicit_remainders ... ok
+test production::tests::daily_financial_batch_matches_single_steps_with_saved_continuation ... ok
+test province_economy::tests::first_observed_existing_asset_is_absorbed_but_subsequent_upgrades_are_not ... ok
+test province_economy::tests::frozen_public_investment_prevents_a_second_project_growth_channel ... ok
+test province_economy::tests::new_project_metadata_is_visible_but_unposted_work_has_zero_gdp ... ok
+test province_economy::tests::opening_covers_every_live_nation_and_reconciles_without_repricing ... ok
+test province_economy::tests::nonfinite_receipt_cannot_poison_gdp_and_microstate_debt_uses_actual_output ... ok
+test programs::tests::full_daily_world_batches_and_saved_continuation_are_identical ... ok
+test province_economy::tests::oversized_inherited_asset_first_observation_is_not_an_upgrade_windfall ... ok
+test province_economy::tests::finance_province_output_refreshes_debt_ratio_without_touching_cash ... ok
+test province_economy::tests::output_heavy_cession_to_small_economy_cannot_mint_gdp_on_transfer_or_restart ... ok
+test resources::raw_replenishment_tests::reviewed_dispatch_opens_freight_without_losing_or_double_crediting_arrivals ... ok
+test resources::raw_replenishment_tests::reviewed_raw_purchase_conserves_stock_cash_and_existing_freight_under_one_cap ... ok
+test resources::raw_replenishment_tests::ordinary_settlement_after_reviewed_purchase_never_replays_its_payment_or_freight ... ok
+test resources::raw_replenishment_tests::reviewed_raw_purchase_never_borrows_or_takes_a_sellers_operating_reserve ... ok
+test resources::tests::a_contract_delivers_and_expires ... ok
+test resources::tests::a_closed_contract_preserves_goods_suspends_finance_and_ages ... ok
+test government::tests::a_regime_that_stops_paying_its_army_is_removed_by_it ... ok
+test government::tests::the_ai_takes_each_lever_only_under_its_thresholds ... ok
+test resources::tests::a_counter_re_offered_is_accepted ... ok
+test province_economy::tests::pending_transition_and_save_resume_preserve_accounting_dates ... ok
+test resources::tests::a_debt_free_exporter_keeps_the_value_as_trade_cash ... ok
+test resources::tests::a_deficit_alone_never_raises_appetite ... ok
+test resources::tests::a_deal_is_a_pure_function_of_state ... ok
+test resources::tests::a_district_sold_by_consent_moves_its_share ... ok
+test resources::tests::a_closed_market_delays_the_line_and_says_so ... ok
+test resources::tests::a_pure_financial_contract_has_no_route_to_close ... ok
+test resources::tests::a_lapsed_offer_is_a_refusal_the_ai_remembers ... ok
+test government::tests::an_unpaid_army_removes_an_elected_government_and_a_paid_one_never_does ... ok
+test resources::tests::a_lower_procurement_target_releases_stock_without_erasing_it ... ok
+test resources::tests::a_legacy_partial_stockpile_migrates_without_a_refill ... ok
+test resources::tests::a_mine_builds_for_a_year_and_follows_the_district ... ok
+test resources::tests::ammunition_daily_report_adds_funded_inputs_once_without_authorizing_imports ... ok
+test resources::tests::an_untracked_leg_is_refused_uncharged ... ok
+test resources::tests::a_starved_ai_asks_before_it_wants_and_the_universal_refusal_is_headlined_once ... ok
+test programs::tests::dated_budget_reallocation_replays_without_duplicate_accrual ... ok
+test government::tests::every_succession_rule_seats_the_right_description_and_never_a_name ... ok
+test resources::tests::audit_trade_prepaid_procurement_orders_its_missing_backlog_inputs_once ... ok
+test resources::tests::company_mine_bonus_requires_funding_and_posts_output_once ... ok
+test resources::tests::audit_trade_accept_revalidates_before_mutation_or_political_cost ... ok
+test resources::tests::daily_bundle_splits_every_goods_and_cash_leg_at_the_same_capacity_fraction ... ok
+test resources::tests::daily_and_monthly_settlement_emit_the_same_route_ledger ... ok
+test resources::tests::completed_rebuild_mines_release_their_saved_manual_allocation ... ok
+test resources::tests::cooling_is_on_the_lattice ... ok
+test resources::tests::daily_contract_expires_on_the_actual_leap_month_day ... ok
+test resources::tests::a_contract_is_leverage ... ok
+test resources::tests::cover_counts_down_and_folds_back ... ok
+test resources::tests::daily_mine_progress_migrates_old_saves_and_pauses_without_losing_days ... ok
+test resources::tests::daily_play_cools_a_refusal_once_a_month_not_once_a_day ... ok
+test resources::tests::daily_mine_start_waits_for_budget_without_upfront_charge_or_material_gates ... ok
+test resources::tests::daily_procurement_keeps_monthly_reserves_and_tests_only_todays_recipe ... ok
+test resources::tests::daily_spot_does_not_rebuy_stock_already_on_its_way ... ok
+test resources::tests::daily_contract_dispatch_and_cash_share_one_fraction_and_survive_save_load ... ok
+test resources::tests::daily_extraction_is_visible_immediately_and_totals_one_year ... ok
+test resources::tests::expiring_authority_sizes_a_civilian_contract_from_civilian_work_only ... ok
+test resources::tests::final_month_contract_cash_still_reduces_the_whole_market_cap ... ok
+test resources::tests::force_majeure_is_pro_rata_and_uncharged ... ok
+test resources::tests::freight_bundle_shares_capacity_and_charges_only_the_uniform_fraction ... ok
+test resources::tests::freight_contract_cargo_arrives_once_even_after_its_contract_expires ... ok
+test resources::tests::freight_sanctions_hold_paid_cargo_without_loss_or_a_second_charge ... ok
+test resources::tests::freight_modern_bundles_pay_only_the_common_service_fraction_after_diversion ... ok
+test resources::tests::freight_pending_orders_do_not_buy_the_same_reserve_twice ... ok
+test resources::tests::cancelling_is_charged_never_refused ... ok
+test resources::tests::freight_unreachable_contract_keeps_goods_and_money_with_their_owners ... ok
+test resources::tests::every_refusal_has_its_sentence ... ok
+test resources::tests::logistics_is_inert_without_the_market_and_empty_rows_do_not_change_saves ... ok
+test resources::tests::market_off_never_materialises_the_new_ledger ... ok
+test resources::tests::have_is_the_transcribed_figure ... ok
+test resources::tests::negotiated_trade_uses_the_same_retained_cash_ledger_as_spot ... ok
+test resources::tests::kit_need_magnitudes ... ok
+test resources::tests::priced_out_is_not_a_refusal ... ok
+test resources::tests::physical_contracts_clear_before_spot_and_force_majeure_is_pro_rata ... ok
+test resources::tests::sanctions_remove_a_route_without_creating_or_destroying_supply ... ok
+test resources::tests::spot_route_profile_for_real_day_32 ... ignored
+test resources::tests::open_contracts_are_pro_rata_and_spot_fills_are_audited_deterministically ... ok
+test resources::tests::economic_review_projects_nothing_during_cooldown_then_once_when_due ... ok
+test resources::tests::ownership_moves_have ... ok
+test resources::tests::the_1990_resource_table_loads_and_holds_its_invariants ... ok
+test resources::tests::the_buy_pass_ask_census ... ignored, instrument; run with --ignored --nocapture
+test resources::tests::supply_is_pure_and_reads_the_closed_doors ... ok
+test resources::tests::the_aim_cedes_first ... ok
+test resources::tests::the_civilian_buy_wave_builds_one_global_raw_projection ... ok
+test resources::tests::the_dead_take_their_contracts_with_them ... ok
+test resources::tests::the_inherited_military_pass_never_asks_a_route_less_seller ... ok
+test resources::tests::the_last_resort_predicate ... ok
+test province_economy::tests::annual_output_replaces_itself_and_only_inherited_output_compounds ... ok
+test resources::tests::the_market_gate_consumes_one_atomic_recipe_and_a_stall_consumes_none ... ok
+test resources::tests::the_physical_market_is_conserved_paid_bounded_and_deterministic ... ok
+test resources::tests::the_loader_refuses_a_bad_table ... ok
+test tech::diag::roster_decomposition ... ignored
+test resources::tests::the_resource_war_headline_is_a_war ... ok
+test resources::tests::the_trade_arms_write_only_what_the_register_allows ... ok
+test resources::tests::freight_saves_and_daily_monthly_execution_agree ... ok
+test tech::tests::a_granted_oil_producer_does_not_find_new_barrels_on_the_first_tick ... ok
+test resources::tests::a_contract_touches_no_growth ... ok
+test tech::tests::authoring_gap_overpayment ... ignored
+test tech::tests::credited_revelation_cannot_move_the_world_productivity_benchmark ... ok
+test tech::tests::daily_research_accrues_a_days_points_before_the_month_ends ... ok
+test tech::tests::diffusion_makes_the_follower_cheaper_than_the_leader ... ok
+test tech::tests::a_successor_is_not_paid_twice_for_what_it_inherited ... ok
+test tech::tests::granting_the_1990_stock_does_not_move_the_transcribed_trend ... ok
+test tech::tests::the_registry_is_the_size_this_source_says_it_is ... ok
+test resources::tests::two_worlds_with_the_same_deals_are_byte_identical ... ok
+test tech::tests::the_1990_endowment_does_not_move_year_one_growth ... ok
+test tech::tests::tree_is_well_formed ... ok
+test tech::tests::a_held_technology_needs_no_prerequisite ... ok
+test tests::a_concession_prefers_the_ground_actually_held ... ok
+test province_economy::tests::zero_activity_enable_preserves_every_other_daily_state_field ... ok
+test tests::a_fiscal_year_budget_carries_ten_ministries_into_the_sim ... ok
+test resources::tests::spot_read_cache_matches_uncached_full_ledger_on_all_country_civilian_demand ... ok
+test tests::a_government_cannot_spend_standing_it_has_not_got ... ok
+test tests::a_month_stepped_world_lands_on_the_first ... ok
+test resources::tests::audit_trade_prepaid_staff_and_freight_eventually_feed_the_retained_order ... ok
+test tech::tests::a_developed_economy_out_researches_a_poor_one ... ok
+test tests::a_dissolution_makes_no_choice_between_its_successors ... ok
+test blocs::tests::the_bloc_layer_is_inert_over_time ... ok
+test tests::a_player_can_get_into_somebody_elses_war ... ok
+test tests::a_parliament_can_refuse_a_superpower ... ok
+test tests::a_pocket_collapses_without_an_assault ... ok
+test tests::a_quarrel_is_not_an_invasion_and_the_world_knows_the_difference ... ok
+test tests::a_pegged_rate_is_a_governed_rate ... ok
+test tests::a_refusal_the_world_made_is_not_reported_as_poverty ... ok
+test tests::a_river_crossing_slows_the_taking ... ok
+test resources::tests::modern_spot_search_budget_and_read_caches_preserve_every_saved_ledger ... ok
+test tests::a_settled_peace_moves_the_biggest_district ... ok
+test tests::a_state_defends_itself_more_cheaply_than_it_invades ... ok
+test tests::a_save_taken_mid_war_resumes_the_same_war ... ok
+test resources::tests::the_stall_mask_equals_twelve_calls ... ok
+test tests::abandoning_an_ally_is_felt_by_every_other_ally ... ok
+test tech::tests::a_generous_tree_cannot_break_the_world ... ok
+test tests::a_war_costs_a_government_at_home ... ok
+test tests::an_arcade_budget_is_one_atomic_affordable_choice ... ok
+test tests::a_player_who_sets_a_rate_keeps_it ... ok
+test tests::a_research_programme_moves_a_technology_forward_faster ... ok
+test tests::an_endowment_cannot_pay_the_diffusion_floor ... ok
+test tests::an_island_never_pockets ... ok
+test tests::afghanistan_does_not_end ... ok
+test tests::an_old_save_reseeds_its_districts ... ok
+test tests::annexation_moves_every_district ... ok
+test tests::anomaly_sweep ... ignored
+test resources::tests::spot_tree_cache_preserves_materials_and_full_ledgers_across_seed_and_policy ... ok
+test tests::an_old_save_reloads_a_front ... ok
+test tests::burned_flag_provenance ... ignored
+test tests::century_run_profile ... ignored, timing instrument; run with --ignored --nocapture
+test tests::aid_props_up_a_client_regime_and_the_patron_pays_for_it ... ok
+test tests::china_trouble_readout ... ignored
+test tests::concession_cedes_the_value_ranked_subset ... ok
+test tests::conquest_funnel ... ignored
+test tests::conquest_seed_scan ... ignored
+test tests::conquest_size_rule_scan ... ignored
+test tests::convergence_channel_readout ... ignored
+test tests::an_embargo_erodes_before_it_ends ... ok
+test tests::covert_action_is_deniable_until_it_is_not ... ok
+test tests::daily_clock_observes_gregorian_leap_days ... ok
+test tests::daily_clock_preserves_the_calibrated_monthly_world ... ok
+test tests::desert_storm_is_quick_when_they_stand_and_fight ... ok
+test tests::a_poor_nation_still_picks_up_what_everyone_has ... ok
+test government::tests::a_stable_democracy_never_sees_the_roads_over_thirty_five_years ... ok
+test tests::determinism_same_seed_same_world ... ok
+test tests::brazil_grinds_down_its_hyperinflation ... ok
+test tests::embargo_starves_the_aggressor_and_outlasts_the_war ... ok
+test tests::different_seeds_diverge ... ok
+test tests::encirclement_emerges_from_the_map ... ok
+test tests::every_nation_with_a_polygon_has_districts ... ok
+test tests::enacting_the_inherited_budget_unchanged_is_a_no_op ... ok
+test tests::economic_invariants_50_years ... ok
+test tests::golden_hash_of_a_known_run ... ok
+test tests::convergence_outruns_the_frontier ... ok
+test tests::guarantees_are_usually_but_not_always_honoured ... ok
+test tests::gulf_war_incidence_scan ... ignored
+test tests::instrument_spread ... ignored
+test tests::japans_bubble_becomes_a_lost_decade ... ok
+test tests::magazines_are_not_a_bottomless_tap ... ok
+test tests::magazines_run_dry ... ok
+test logistics::tests::clearing_trees_match_original_pair_routes_across_policy_and_ownership ... ok
+test tests::monthly_saves_load_on_the_first_day ... ok
+test tests::mountain_ground_is_taken_more_slowly ... ok
+test politics::tests::a_transcribed_leader_dies_in_most_seeds_over_forty_years_and_never_on_a_fixed_date ... ok
+test tests::nigeria_has_a_good_gulf_war ... ok
+test tests::no_power_goes_above_rung_five_without_a_host ... ok
+test tests::nuclear_taboo_holds ... ok
+test tests::oil_shock_propagates_to_importer_inflation ... ok
+test tests::player_commands_clamp_to_valid_ranges ... ok
+test tests::private_investment_and_jobs_are_economic_outcomes ... ok
+test tests::redirecting_a_laboratory_forfeits_half_of_what_it_had_banked ... ok
+test tests::resource_war_census ... ignored, census; 200 seeds x 480 months x 7 arms, about twenty minutes in release
+test tests::resource_war_census_one ... ignored, census, count one; 200 seeds x 480 months x 7 arms, one thread per arm
+test tests::revoking_a_base_brings_a_superpower_down_the_ladder ... ok
+test tests::an_idle_player_cannot_break_the_world ... ok
+test tests::roster_scale_readout ... ignored
+test tests::sanction_weight_readout ... ignored
+test tests::nothing_in_the_model_ever_gives_a_deterrent_up ... ok
+test tests::mature_economies_do_not_run_hot ... ok
+test tests::rich_democracies_settle_near_target ... ok
+test tests::expanded_roster_holds_the_economic_invariants ... ok
+test tests::saves_name_nations_rather_than_numbering_them ... ok
+test tests::save_load_roundtrip_continuity ... ok
+test tests::saves_name_technologies_rather_than_numbering_them ... ok
+test tests::every_nation_has_a_home ... ok
+test tests::a_pact_drags_a_great_power_into_a_war_it_did_not_start ... ok
+test tests::the_1990_start_is_pinned ... ok
+test tests::the_aggregate_tracks_the_scalar_it_replaced ... ok
+test tests::the_cold_and_the_open_read_from_the_map ... ok
+test tests::state_hash_agrees_with_the_serialized_world ... ok
+test tests::a_century_holds_together ... ok
+test tests::the_daily_clock_preserves_the_market_on_world ... ok
+test tests::the_daily_clock_preserves_the_political_arm_on_world ... ok
+test tests::the_fiscal_ai_arrests_a_debt_spiral ... ok
+test tests::the_ladder_binds_the_instruments_rather_than_duplicating_them ... ok
+test tests::the_front_is_deterministic ... ok
+test tests::the_last_defender_to_quit_is_the_loser ... ok
+test tests::the_nuclear_flag_tracks_a_deterrent_other_capitals_could_see ... ok
+test tests::the_resource_layer_is_inert_at_1990 ... ok
+test tests::slovenia_escapes_the_wars_that_consume_bosnia ... ok
+test tests::arms_transfers_build_a_client_army ... ok
+test tests::the_market_switch_is_off_for_the_suite_and_deterministic_when_on ... ok
+test tests::stable_democracies_never_hyperinflate ... ok
+test tests::superpowers_compete_for_the_same_clients ... ok
+test tests::gates_write_nothing_the_growth_model_reads ... ok
+test tests::ussr_dissolution_hands_ukraine_its_districts ... ok
+test tests::war_census ... ignored
+test tests::ukraine_leaves_the_union_without_the_bomb ... ok
+test war::ammunition_firing_tests::air_defense_never_gets_free_offensive_damage_and_only_loaded_interception_works ... ok
+test war::ammunition_firing_tests::ground_ammunition_scales_fires_linearly_and_retains_nonfiring_roles ... ok
+test war::ammunition_firing_tests::tactical_aircraft_cannot_add_coalition_seizure_but_mixed_legacy_force_remains ... ok
+test tests::some_wars_end_at_the_table ... ok
+test tests::ussr_collapses_in_the_nineties ... ok
+test war::domination_conquest_tests::a_dead_loser_cannot_pay_two_queued_conquests ... ok
+test war::domination_conquest_tests::a_large_capitulation_writes_the_formal_subject_relation ... ok
+test war::domination_conquest_tests::annexation_retires_daily_clocks_of_cancelled_conflicts ... ok
+test war::domination_conquest_tests::an_annexed_winner_cannot_collect_another_queued_conquest ... ok
+test war::domination_conquest_tests::annexing_an_overlord_transfers_its_subject_tree ... ok
+test war::domination_conquest_tests::queued_conquest_cannot_collect_again_after_first_ending_merges_the_sphere ... ok
+test war::domination_conquest_tests::sphere_absorption_preserves_external_coalitions_and_reconciles_descendants ... ok
+test war::domination_conquest_tests::same_sphere_queued_terms_helpers_are_financially_inert ... ok
+test war::domination_conquest_tests::sphere_reconciliation_is_inert_without_both_daily_and_competition ... ok
+test war::domination_conquest_tests::sphere_subjugation_withdraws_only_new_subtree_and_never_awards_terms ... ok
+test war::domination_conquest_tests::settlement_helpers_ignore_dead_or_identical_parties ... ok
+test war::domination_conquest_tests::sphere_transfer_does_not_withdraw_old_parent_or_sibling_and_is_idempotent ... ok
+test war::domination_conquest_tests::war_terms_reprice_surviving_open_books_without_a_second_cash_bill ... ok
+test war::ground_role_tests::ground_specialist_ratings_are_consumed_by_distinct_battle_equations ... ok
+test world::perf_refactor_guards::pairs_mut_walks_the_triangle_in_order ... ok
+test world::perf_refactor_guards::every_relation_is_reached_by_its_own_pair ... ok
+test world::perf_refactor_guards::pair_flag_is_the_formatted_flag ... ok
+test tests::the_war_layer_holds_its_own_invariants ... ok
+test world::perf_refactor_guards::the_position_index_answers_what_the_scan_answered ... ok
+test tests::a_burned_aggressor_does_not_come_back_for_the_same_prize ... ok
+test tests::the_frontier_does_not_run_away ... ok
+test tests::yugoslavia_comes_apart_in_the_nineties ... ok
+test tests::sanctions_cost_the_target_real_growth ... ok
+test tests::the_resource_pass_stays_under_budget ... ok
+test tests::the_resource_layer_is_inert_over_time ... ok
+test tests::gulf_war_emerges ... ok
+test tests::a_trade_agreement_lifts_the_smaller_partner_and_then_binds_it ... ok
+test tests::the_resources_row_is_free ... ok
+test tests::a_dead_nation_holds_no_districts has been running for over 60 seconds
+test tests::a_large_nation_is_subjugated_rather_than_swallowed has been running for over 60 seconds
+test tests::china_growth_miracle has been running for over 60 seconds
+test tests::china_growth_miracle ... ok
+test tests::a_large_nation_is_subjugated_rather_than_swallowed ... ok
+test tests::a_dead_nation_holds_no_districts ... ok
+
+test result: ok. 721 passed; 0 failed; 26 ignored; 0 measured; 0 filtered out; finished in 191.94s
+
+     Running tests\agency.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\agency-a3a8c9a157e8ccc4.exe)
+
+running 11 tests
+test reused_conflict_id_cannot_consume_an_old_defense_answer ... ok
+test human_treaties_and_defense_decisions_wait_for_consent ... ok
+test standing_policy_is_explicit_and_does_not_retroactively_answer_requests ... ok
+test legacy_requests_use_one_settlement_date_and_remain_answerable_after_landing ... ok
+test peg_requires_an_explicit_exit_before_changing_rate ... ok
+test untouched_legacy_world_and_read_only_decision_view_create_no_state ... ok
+test player_sanction_survives_neutral_relations_and_duplicate_is_free ... ok
+test automatic_bank_and_ai_peg_use_the_same_explicit_regime ... ok
+test defense_acceptance_and_expiry_have_exactly_one_explicit_consequence ... ok
+test treaty_answers_revalidate_and_survive_save_resume_without_random_acceptance ... ok
+test a_later_sphere_agreement_retires_the_call_without_abandonment_costs ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests\ammunition_reserves.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\ammunition_reserves-3b21317465587fd0.exe)
+
+running 5 tests
+test repeated_support_settlement_cannot_create_a_second_batch_or_spend_on_its_start_date ... ok
+test paused_manual_commitments_prevent_auto_stacking_and_cancellation_frees_only_the_remainder ... ok
+test manual_targets_spend_nothing_and_automatic_authority_starts_on_a_later_date ... ok
+test policy_edits_disable_and_clear_preserve_existing_manual_and_automatic_batch_contracts ... ok
+test save_resume_preserves_automatic_review_dates_batches_and_funding_exactly ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.13s
+
+     Running tests\aviation_ammunition.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\aviation_ammunition-60f253769cc7a907.exe)
+
+running 5 tests
+test inaccessible_grounded_in_transit_and_refitting_aircraft_cannot_fly ... ok
+test aviation_does_not_activate_ground_stores_or_supply_ground_firing ... ok
+test aircraft_require_exact_paid_stores_and_partial_coverage_gates_strike_once ... ok
+test only_actually_launched_custom_raids_create_defender_air_defense_demand ... ok
+test air_only_consumption_is_conserved_across_conflicts_and_saved_continuations ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
+
+     Running tests\bloc_census.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\bloc_census-b35be4d742aae476.exe)
+
+running 11 tests
+test a1_coups_against_elected_governments_are_spread_not_three_micro_polities ... ignored
+test a2_an_islamist_takeover_without_a_ballot_in_most_seeds_by_2000 ... ignored
+test a3_a_communist_takeover_without_a_ballot_is_rare ... ignored
+test a4_the_democratisation_wave_opens_fifteen_regimes_by_1996 ... ignored
+test a5_ex_communists_return_by_ballot_in_most_seeds ... ignored
+test a7_ballots_flip_the_ruling_bloc_three_times_as_often_as_takeovers ... ignored
+test bloc_census ... ignored
+test a10_discontent_leads_the_roster_by_a_quarter_before_a_takeover ... ok
+test a9_four_coups_in_five_strike_nations_under_8000_a_head ... ok
+test a6_no_road_reaches_a_1990_democracy_in_thirty_five_years ... ok
+test a8_six_of_the_eight_big_regimes_keep_their_bloc_in_most_seeds ... ok
+
+test result: ok. 4 passed; 0 failed; 7 ignored; 0 measured; 0 filtered out; finished in 25.93s
+
+     Running tests\campaign_aims.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\campaign_aims-2be19e47a88ff554.exe)
+
+running 8 tests
+test diplomacy_counts_distinct_trusted_relationships_and_loses_sanctioned_partners ... ok
+test prosperity_requires_fixed_real_per_person_gain_and_sustained_conditions ... ok
+test science_counts_new_acquisitions_and_goal_changes_require_explicit_sandbox ... ok
+test supply_does_not_reward_switches_off_or_zero_demand ... ok
+test optional_aim_views_and_absent_ticks_are_pure_and_legacy_safe ... ok
+test stability_counts_each_real_date_once_and_roundtrips_mid_streak ... ok
+test actual_daily_tick_observes_after_settlement_and_save_resume_matches ... ok
+test completed_campaign_records_survive_abandoned_aims_and_reload ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests\campaign_identity.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\campaign_identity-0966ffdf9a4be971.exe)
+
+running 6 tests
+test legacy_identity_and_default_serialization_remain_unchanged ... ok
+test previews_and_exhausted_creation_commands_are_atomic ... ok
+test migration_adopts_old_counter_and_garrison_ids_before_cleanup ... ok
+test upgrading_a_save_seeds_identity_from_closed_history_and_persists_reservations ... ok
+test an_agency_only_old_save_cannot_reapply_a_previous_wars_call_to_arms ... ok
+test immediate_redeclaration_cannot_inherit_previous_coalition_orders_or_deployed_force ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.27s
+
+     Running tests\campaign_movement_audit.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\campaign_movement_audit-b4f77a617ddb3a6b.exe)
+
+running 1 test
+test a_due_withdrawal_reaches_friendly_fallback_after_leaving_contested_origin ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+     Running tests\campaign_operations.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\campaign_operations-b8e5a9d3c1f42d71.exe)
+
+running 8 tests
+test invalid_orders_are_atomic_and_default_legacy_saves_stay_unenrolled ... ok
+test forecasts_are_pure_and_read_saved_observations_not_exact_enemy_inventories ... ok
+test enrollment_only_migrates_existing_wars_even_after_day_zero_save ... ok
+test empty_campaign_activation_does_not_teleport_the_first_new_deployment ... ok
+test unsupported_missions_buy_no_capability_and_standoff_cannot_occupy_ground ... ok
+test changed_focus_moves_existing_cohorts_on_saved_dates_without_resetting_fatigue ... ok
+test continuous_breakthrough_exhausts_more_cohesion_than_holding_and_orders_do_not_refresh_it ... ok
+test migration_and_two_wars_conserve_national_force_through_losses_and_transfers ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.58s
+
+     Running tests\campaign_peace.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\campaign_peace-173c85cd2d91706a.exe)
+
+running 8 tests
+test cash_reparations_transfer_once_without_a_gdp_reward ... ok
+test peace_tick_never_accepts_for_the_human ... ok
+test unheld_or_duplicate_cession_and_invalid_garrison_cost_nothing ... ok
+test occupation_is_idempotent_and_does_not_award_inventory_or_ownership ... ok
+test human_and_every_ally_must_consent_and_replaying_response_is_inert ... ok
+test a_losing_ai_accepts_return_of_its_land_without_accepting_regime_change ... ok
+test proposal_cannot_outlive_changed_coalition_or_save_roundtrip ... ok
+test old_rules_omit_operational_state_and_unknown_versions_are_refused ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests\campaign_peace_audit.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\campaign_peace_audit-453b48c35ba3626f.exe)
+
+running 4 tests
+test debt_free_closed_books_recipient_keeps_every_reparation_dollar ... ok
+test occupation_belongs_to_its_actual_front_not_first_matching_war ... ok
+test changing_coalition_sides_requires_fresh_consent_even_with_same_nations ... ok
+test changing_the_principal_requires_fresh_terms_even_with_unchanged_coalitions ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests\campaign_population.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\campaign_population-55dc9aa0af33f98a.exe)
+
+running 3 tests
+test empty_military_staffing_blocks_replacements_without_posting_combat_deaths ... ok
+test two_front_coalition_casualties_post_one_national_population_debit ... ok
+test people_and_operational_war_replay_preserve_the_same_force_and_population_accounts ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.98s
+
+     Running tests\capital_damage_audit.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\capital_damage_audit-5a4f2806f5fd2509.exe)
+
+running 5 tests
+test capital_damage_audit ... ignored
+test capital_shape_probe ... ignored
+test china_floor_exposure ... ignored
+test invest_share_trajectory ... ignored
+test roster_safety_readout ... ignored
+
+test result: ok. 0 passed; 0 failed; 5 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\daily.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\daily-928f866bbd1ec015.exe)
+
+running 7 tests
+test daily_combat_and_diplomacy_progress_without_a_monthly_burst ... ok
+test daily_command_timing_changes_real_outcomes ... ok
+test the_ai_buy_pass_asks_once_a_month_in_daily_play ... ok
+test daily_batch_is_the_same_dated_schedule_including_save_resume ... ok
+test daily_ministries_and_province_accounts_close_and_resume_together ... ok
+test daily_mode_survives_a_year_across_several_seeds ... ok
+test a_year_of_dated_commands_replays_the_same_stepped_resumed_or_batched ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 11.10s
+
+     Running tests\daily_balance.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\daily_balance-25927ce9b4edb6c4.exe)
+
+running 11 tests
+test daily_integrator_channel_probe ... ignored, dated calibration diagnosis; not a balance target or census
+test monthly_private_investment_pressure_keeps_the_original_arithmetic ... ok
+test daily_research_never_pays_for_more_than_six_acquisitions_per_domain_per_month ... ok
+test focus_switch_and_repeated_tick_do_not_refresh_calendar_quota ... ok
+test unpaid_future_and_rejected_prerequisite_gates_do_not_spend_quota ... ok
+test older_midmonth_save_holds_slots_but_never_invents_acquisitions ... ok
+test monthly_research_keeps_old_loop_and_never_writes_a_quota ... ok
+test additive_private_investment_pressure_conserves_28_29_30_31_day_months ... ok
+test research_quota_resets_on_actual_months_including_leap_and_year_boundaries ... ok
+test actual_economy_settlement_uses_the_additive_pressure_fraction ... ok
+test research_quota_survives_reload_and_daily_batching ... ok
+
+test result: ok. 10 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.09s
+
+     Running tests\economic_ai_supply.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\economic_ai_supply-a9527e9cd276d171.exe)
+
+running 18 tests
+test domestic_order_never_multiplies_one_day_of_raw_stock_into_a_monthly_promise ... ok
+test cached_export_reserve_cannot_hide_a_stale_or_disabled_sale_policy ... ok
+test export_policy_protects_one_review_tranche_not_the_entire_forecast ... ok
+test domestic_stock_cover_prevents_an_order_import_or_processor ... ok
+test import_wait_uses_the_same_gdp_cap_as_the_actual_purchase ... ok
+test accepted_import_is_replanned_before_a_stale_processor_can_start ... ok
+test player_and_default_paths_remain_byte_inert ... ok
+test ninety_day_forecast_counts_operating_use_three_times_and_no_construction_goods ... ok
+test route_less_foreign_supply_creates_no_dead_contract_or_war_evidence_and_allows_a_mine ... ok
+test forecast_nets_stock_imports_and_domestic_contracts_exactly_once ... ok
+test inherited_materials_places_one_finite_tranche_before_buying_abroad ... ok
+test a_partial_quote_accumulates_paid_startup_stock_before_machinery_is_eligible ... ok
+test reachable_raw_trade_prevents_a_mine_even_while_paid_work_is_active ... ok
+test closed_raw_market_can_start_one_mapped_mine_without_an_active_project ... ok
+test a_successful_domestic_materials_order_cannot_also_start_a_mine ... ok
+test warehouse_requires_real_turnover_and_unsold_output_does_not_justify_one ... ok
+test a_contract_signed_after_clearing_blocks_a_same_review_mine ... ok
+test supply_actions_replay_through_freight_and_review_boundaries ... ok
+
+test result: ok. 18 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.13s
+
+     Running tests\economic_competition.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\economic_competition-9a74937bbf658ef8.exe)
+
+running 18 tests
+test enrolled_fiscal_plans_are_not_silently_overwritten_by_legacy_ai ... ok
+test export_policy_protects_commissioned_consumers_before_their_completion ... ok
+test full_intermediate_storage_cannot_preempt_the_first_capital_goods_producer ... ok
+test lost_province_project_is_cancelled_without_refund_then_replanned ... ok
+test january_stranded_cleanup_preserves_zero_cost_annual_renewal ... ok
+test funding_horizon_exposes_micro_economy_delays_without_discounting_the_site ... ok
+test an_unaffordable_new_priority_cannot_prevent_free_annual_renewal ... ok
+test daily_construction_uses_budget_without_pc_or_materials_and_keeps_ownership_rules ... ok
+test year_renewal_precedes_fiscal_adjustment_and_preserves_work ... ok
+test a_queued_warehouse_never_spawns_a_material_prerequisite ... ok
+test actual_export_offer_allows_specialization_without_inventing_a_processor ... ok
+test disabled_monthly_player_and_dead_paths_remain_byte_inert ... ok
+test ai_sells_only_surplus_and_buys_real_goods_with_cash_not_free_inputs ... ok
+test routine_goods_replenishment_defers_a_processor_until_the_trade_route_closes ... ok
+test a_loaded_warehouse_keeps_paid_work_and_resumes_without_material_prerequisites ... ok
+test viable_paid_work_is_nonzero_in_every_size_tier_and_every_mapped_country ... ok
+test all_137_starting_countries_are_independently_eligible_not_a_rich_whitelist ... ok
+test daily_competition_replays_across_save_resume_and_review_boundaries ... ok
+
+test result: ok. 18 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.18s
+
+     Running tests\economic_sovereignty.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\economic_sovereignty-bcfdd3bb9f7d99b3.exe)
+
+running 9 tests
+test departure_is_available_when_poor_and_preserves_descendants ... ok
+test a_subject_cannot_join_the_opposing_coalition_against_its_sphere ... ok
+test delivered_industrial_value_reaches_the_shared_dependency_and_compact_gate ... ok
+test a_voluntary_merger_cannot_hide_descendants_war_or_sanctions ... ok
+test human_consent_and_affordability_cannot_be_bypassed ... ok
+test consenting_compact_counts_control_without_transferring_output_or_provinces ... ok
+test compact_save_resume_and_default_off_are_exact ... ok
+test economic_compact_requires_trust_protection_and_asymmetric_dependence ... ok
+test neglected_compact_unravels_on_three_reviews_not_three_days ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.32s
+
+     Running tests\economic_sphere_intervention.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\economic_sphere_intervention-e2f04fc665d7a877.exe)
+
+running 3 tests
+test spontaneous_intervention_cannot_oppose_a_later_joining_sphere_member ... ok
+test joining_alongside_a_sphere_member_is_still_allowed ... ok
+test a_guarantee_cannot_oppose_any_member_of_its_sphere_or_roll_loyalty ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests\endowment_channel_probe.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\endowment_channel_probe-e27348ab24ae1963.exe)
+
+running 1 test
+test endowment_channel_probe ... ignored
+
+test result: ok. 0 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\endowment_margin_probe.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\endowment_margin_probe-488fbc7e5941f1ce.exe)
+
+running 1 test
+test endowment_margin_probe ... ignored
+
+test result: ok. 0 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\equipment_integration.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\equipment_integration-000a867ef2a8afc0.exe)
+
+running 12 tests
+test legacy_inventory_serialization_and_fractional_loss_remain_exact ... ok
+test extreme_activation_split_cannot_multiply_force_beyond_the_legacy_maximum ... ok
+test custom_production_and_legacy_manufacturing_share_one_site_capacity ... ok
+test fractional_custom_attrition_carries_until_one_whole_vehicle_is_lost ... ok
+test custom_price_changes_book_value_but_not_combat_and_components_only_change_land ... ok
+test upkeep_allocates_existing_service_spending_and_reduces_legacy_refill ... ok
+test refits_reserve_once_preserve_current_age_and_exclude_battlefield_losses ... ok
+test custom_delivery_waits_and_never_merges_into_the_legacy_base_kit ... ok
+test custom_and_legacy_procurement_share_residual_prepaid_authority_once ... ok
+test mapped_hardware_discovery_does_not_upgrade_unmodified_custom_stock ... ok
+test development_switches_only_on_next_funding_day_and_pays_only_delivered_work ... ok
+test zero_maintenance_funding_removes_custom_readiness_without_an_extra_charge ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests\equipment_supply_automation.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\equipment_supply_automation-3c9e371ffd8bfaa5.exe)
+
+running 6 tests
+test an_unbuilt_fleet_target_is_not_a_material_purchase_contract ... ok
+test paid_late_cargo_reduces_need_and_policy_edit_or_clear_keeps_its_history ... ok
+test prospective_purchase_uses_only_cash_above_the_floor_after_fiscal_settlement ... ok
+test absent_and_disabled_policies_keep_the_daily_economy_identical ... ok
+test cash_blocked_reviews_wait_the_interval_and_overdue_reviews_do_not_catch_up ... ok
+test weekly_reviews_and_save_resume_preserve_one_cap_per_due_date ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.24s
+
+     Running tests\fiscal_recovery_integration.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\fiscal_recovery_integration-587f24a3918bd64e.exe)
+
+running 10 tests
+test fiscal_confidence_uses_one_prorated_stability_arm_without_an_inflation_charge ... ok
+test post_economy_gdp_shock_changes_the_ratio_without_erasing_debt_or_charging_again ... ok
+test unopened_player_and_ai_pay_the_same_explicit_interest_rule ... ok
+test enabled_ai_and_player_pay_identical_domestic_recovery_consequences ... ok
+test legacy_ai_retains_its_original_domestic_policy_gates ... ok
+test department_receipts_still_post_once_with_recovery_monitoring ... ok
+test government_coup_refreshes_the_ratio_at_the_actual_gdp_mutation ... ok
+test draft_tax_forecast_changes_without_rewriting_posted_recovery_results ... ok
+test legacy_save_requires_explicit_upgrade_without_a_cash_or_debt_grant ... ok
+test fiscal_state_survives_midmonth_save_and_daily_replay ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.29s
+
+     Running tests\ground_equipment_integration.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\ground_equipment_integration-c54337aa7a4381ac.exe)
+
+running 5 tests
+test every_family_has_a_complete_compatible_starter_and_rejects_foreign_mission_hardware ... ok
+test component_research_follows_branches_and_never_retrofits_frozen_stock ... ok
+test specialists_need_fielded_supported_inventory_and_cannot_create_strategic_lift ... ok
+test specialist_stock_and_shared_deployments_continue_identically_after_reload ... ok
+test old_tank_versions_keep_their_serialized_profiles_when_the_library_is_upgraded ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests\growth_decomposition.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\growth_decomposition-28aebc30560859e1.exe)
+
+running 20 tests
+test china_seeds ... ignored
+test decade_shape ... ignored
+test demand_gap_readout ... ignored
+test developing_decomposition ... ignored
+test developing_panel ... ignored
+test frontier_readout ... ignored
+test growth_decomposition ... ignored
+test gulf_war_wide_scan ... ignored
+test mature_panel ... ignored
+test mature_panel_wide ... ignored
+test mature_sanction_exposure ... ignored
+test money_works_reach ... ignored
+test off_equation_output ... ignored
+test oil_effect_readout ... ignored
+test old_save_is_not_paid_twice ... ignored
+test peak_sustained_growth ... ignored
+test run_hot_readout ... ignored
+test trade_pact_churn ... ignored
+test transition_decomposition ... ignored
+test transition_trajectory ... ignored
+
+test result: ok. 0 passed; 0 failed; 20 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\industry_planning.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\industry_planning-af3421fc92732ad0.exe)
+
+running 13 tests
+test fresh_input_blockers_call_for_supply_not_duplicate_factories_and_expire ... ok
+test player_can_override_capacity_advice_without_free_or_instant_factories ... ok
+test real_demand_can_expand_but_stock_or_inbound_supply_defers_it ... ok
+test pending_lines_and_automation_count_once_not_as_missing_capacity ... ok
+test ownership_changes_reassociate_assets_but_not_foreign_sponsored_work ... ok
+test existing_empty_estates_do_not_all_receive_grids_before_a_useful_factory ... ok
+test all_starting_country_gdp_estimates_remain_uninvented_factory_assets ... ok
+test a_full_unsold_stockpile_does_not_commission_a_warehouse ... ok
+test a_factory_on_another_owned_province_is_not_invisible ... ok
+test existing_fractional_grid_and_processor_are_not_bought_again ... ok
+test queued_fractional_workshop_reserves_every_component_without_free_output ... ok
+test exports_use_delivery_dates_and_goods_not_promises_or_high_prices ... ok
+test repeated_reviews_do_not_stack_producers_behind_unsold_goods ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests\materials.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\materials-b069f1a00077503a.exe)
+
+running 18 tests
+test pending_quantity_tracks_current_physical_capacity_after_efficiency_changes ... ok
+test expired_cancelled_lost_provinces_and_full_storage_never_spend_or_transfer_orders ... ok
+test resource_forecast_does_not_increase_initial_stockpile_cover ... ok
+test missing_component_spends_nothing_and_does_not_grant_free_goods ... ok
+test manual_ingredients_are_reserved_against_surplus_sales_not_bought ... ok
+test funded_factories_and_contracts_share_exact_same_generation_grid_and_cash ... ok
+test materials_forecast_does_not_issue_automatic_raw_purchases_in_actual_spot_clearing ... ok
+test tiny_country_fractional_delivery_is_finite_and_below_its_provincial_capacity ... ok
+test orders_without_any_power_assets_still_expire_and_history_pruning_keeps_receipts ... ok
+test department_cap_and_id_exhaustion_are_finite_and_zero_authority_is_atomic ... ok
+test contracts_request_real_grid_and_generation_in_the_shared_investment_plan ... ok
+test paid_delivery_conserves_inputs_operating_authority_and_exact_finite_quantity ... ok
+test unactivated_default_and_new_campaign_are_inert_and_quotes_are_pure ... ok
+test company_materials_orders_deliver_faster_with_recipe_and_fees_reconciled ... ok
+test bad_quantities_durations_identity_and_capacity_refuse_without_mutation ... ok
+test all_137_countries_have_honest_capacity_quotes_without_reseeding_or_free_inventory ... ok
+test save_resume_and_readonly_snapshots_preserve_daily_deliveries_and_reservations ... ok
+test full_daily_player_materials_order_never_signs_or_funds_automatic_raw_imports ... ok
+
+test result: ok. 18 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.24s
+
+     Running tests\materials_accounting.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\materials_accounting-10d9daa8956f91cd.exe)
+
+running 8 tests
+test paid_conversion_and_generation_conserve_intermediate_value_once ... ok
+test explicit_materials_do_not_remove_background_from_macro_growth ... ok
+test legacy_absence_stays_byte_inert_and_new_coverage_validates ... ok
+test unused_or_underutilized_reservation_does_not_mint_gdp_or_erase_background ... ok
+test low_book_value_transfer_reconciles_individual_observation_and_background_view ... ok
+test territorial_transfer_moves_observation_without_a_new_award_or_stale_national_claim ... ok
+test real_order_paused_resumed_and_cancelled_uses_same_accounting_without_legacy_drag ... ok
+test full_throughput_replaces_only_spare_capacity_rate_and_never_accumulates ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.21s
+
+     Running tests\materials_ai_bootstrap.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\materials_ai_bootstrap-91eefffad94fb461.exe)
+
+running 12 tests
+test an_existing_valid_startup_order_covers_one_first_machine_without_becoming_stock ... ok
+test a_queued_machine_needs_only_the_net_seven_pack_operating_startup_topup ... ok
+test bootstrap_requires_the_whole_raw_lot_not_just_one_feasible_day ... ok
+test empty_daily_authority_keeps_the_machine_target_but_places_neither_half_of_the_pair ... ok
+test a_preexisting_export_offer_protects_the_new_machine_startup_lot_immediately ... ok
+test bootstrap_keeps_enough_political_capital_for_both_commands_and_the_ai_reserve ... ok
+test player_and_fractional_specialist_do_not_get_an_ai_first_machine_imposed ... ok
+test a_first_machine_can_source_a_bounded_lot_without_inventing_commerce_demand ... ok
+test absent_power_grid_or_inputs_never_turns_inherited_estimates_into_a_supply_promise ... ok
+test the_review_pairs_the_order_with_one_machine_not_a_duplicate_processor_or_import ... ok
+test cancelled_or_expired_partial_orders_are_topped_up_only_for_the_missing_startup_packs ... ok
+test ai_order_delivers_exactly_fifteen_paid_packs_with_save_continuity ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.24s
+
+     Running tests\materials_ai_timing.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\materials_ai_timing-7bd75d32cbd8413a.exe)
+
+running 5 tests
+test a_future_order_cannot_run_when_a_caller_reenters_industry_on_the_signing_date ... ok
+test default_world_and_unactivated_inherited_estimates_remain_exactly_inert ... ok
+test the_materials_settlement_marker_also_defers_a_later_order_and_old_saves_keep_dates ... ok
+test a_player_order_before_settlement_keeps_today_as_its_first_service_date ... ok
+test ai_signing_after_industry_gets_thirty_future_paid_service_dates ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.67s
+
+     Running tests\materials_ai_warehouse.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\materials_ai_warehouse-5fde6aee6983f189.exe)
+
+running 2 tests
+test a_queued_warehouse_preserves_existing_material_orders_without_buying_prerequisites ... ok
+test a_reachable_capital_supplier_does_not_trigger_imports_for_warehouse_construction ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests\materials_planning.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\materials_planning-87bfa331f849c626.exe)
+
+running 4 tests
+test cancelled_and_lost_province_contracts_do_not_mask_future_shortages ... ok
+test ai_does_not_order_unsupplied_or_unpowered_inherited_capacity ... ok
+test finite_domestic_orders_cover_demand_without_becoming_factories_stock_or_imports ... ok
+test ai_orders_a_feasible_finite_quantity_then_accounts_for_its_existing_order ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests\military_operations.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\military_operations-30db56be7c17a0dc.exe)
+
+running 9 tests
+test simultaneous_home_conflicts_cannot_duplicate_the_national_army ... ok
+test controller_handles_contested_recaptured_and_conflicting_fronts ... ok
+test occupation_stops_an_arms_line_and_recapture_resumes_without_transfer ... ok
+test battlefield_material_losses_consume_inventory_but_not_pending_orders ... ok
+test equal_equipment_value_cannot_substitute_ships_for_land_capability ... ok
+test all_theatres_use_one_opening_force_and_equipment_snapshot ... ok
+test a_zero_deployment_ally_loses_no_force_or_equipment_in_either_cadence ... ok
+test an_overseas_ceiling_is_shared_and_player_allocation_releases_reserves ... ok
+test daily_batched_and_saved_schedules_replay_identically ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+
+     Running tests\ministries.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\ministries-11cf09cc663b3986.exe)
+
+running 19 tests
+test the_counterintel_arm_carries_the_exposure_ceiling ... ok
+test health_returns_the_wounded_only_in_war ... ok
+test education_owns_the_research_multiplier ... ok
+test science_buys_reach_and_not_a_bigger_bank ... ok
+test diplomacy_keeps_the_shield_and_nothing_else_in_the_economy ... ok
+test the_pensions_standing_arm_dies_with_the_ceiling ... ok
+test pensions_own_the_labour_force_and_the_standing_ceiling ... ok
+test industry_refills_the_magazines ... ok
+test infrastructure_raises_the_ground_but_never_oil ... ok
+test health_buys_births_in_peace_and_nothing_else ... ok
+test housing_buys_births_and_contentment_and_not_demand ... ok
+test a_stability_arm_is_the_integrators_own_fixed_point ... ok
+test defense_has_no_gap_arm_at_all ... ok
+test security_alone_suppresses_separatism_and_only_upward ... ok
+test the_science_arm_is_the_capacity_the_sim_reaches ... ok
+test the_infrastructure_stock_is_built_and_lost_over_years ... ok
+test the_ministry_map_is_exactly_this ... ok
+test the_enacted_ministry_map_is_exactly_this ... ok
+test a_funded_foreign_service_catches_more_spies ... ok
+
+test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.42s
+
+     Running tests\population.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\population-c1e01d4c6b40b3a1.exe)
+
+running 8 tests
+test decade_daily_population_census ... ignored, Release census: two independent ten-year daily campaigns; diagnostic balance evidence, not historical calibration
+test economic_ai_population_timing ... ignored, Diagnostic timing only: compare 32 Economic Competition days including the first monthly review
+test second_seed_daily_population_census ... ignored, Release census: standalone second ordinary browser campaign, sharing the decade invariants
+test secondary_catch_up_connects_basic_adults_to_delayed_technical_training ... ok
+test no_teachers_or_researchers_means_no_course_progress_or_research ... ok
+test combat_losses_remove_military_adults_without_killing_students_or_dependents ... ok
+test disabled_views_ticks_and_repeated_dates_are_pure ... ok
+test dated_policy_replay_survives_batching_and_midmonth_resume ... ok
+
+test result: ok. 5 passed; 0 failed; 3 ignored; 0 measured; 0 filtered out; finished in 2.21s
+
+     Running tests\population_effects.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\population_effects-3e9b084058db8f3d.exe)
+
+running 5 tests
+test education_funding_quotes_places_and_cannot_instantly_create_researchers ... ok
+test a_daily_tick_posts_demography_once_across_population_economy_and_technology ... ok
+test economic_readers_quote_counted_unemployment_from_the_opening_day ... ok
+test population_policy_price_is_paid_once_and_cooldown_refusal_is_atomic ... ok
+test old_saves_require_explicit_population_upgrade_and_idempotent_enable ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.10s
+
+     Running tests\population_integration.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\population_integration-50514ed0fbd3dbcd.exe)
+
+running 5 tests
+test a_routine_job_loss_hurts_worker_households_and_class_hardship_reaches_politics ... ok
+test technical_training_fills_jobs_after_its_calendar_delay_and_needs_funding ... ok
+test opening_sources_are_respected_and_income_does_not_invent_qualifications ... ok
+test transfer_keeps_resident_qualifications_courses_and_household_history ... ok
+test competing_jobs_conserve_workers_across_different_country_sizes ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.27s
+
+     Running tests\research.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\research-290821f29a7ed850.exe)
+
+running 10 tests
+test overflowing_unsanitized_research_shares_cannot_zero_the_budget ... ok
+test an_allocation_of_none_reads_the_computed_weights ... ok
+test an_allocation_is_priced_like_the_preset ... ok
+test an_unnormalisable_allocation_is_refused ... ok
+test the_served_weights_are_the_spent_weights ... ok
+test the_default_board_serializes_no_allocation ... ok
+test a_dormant_arm_is_exactly_one ... ok
+test overflowing_saved_research_shares_fall_back_to_real_spending ... ok
+test a_max_concentration_allocation_does_not_flood_past_the_cap ... ok
+test the_decomposition_is_the_old_scalar_bit_for_bit ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.45s
+
+     Running tests\research_centers.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\research_centers-265720260bb38e3d.exe)
+
+running 17 tests
+test defeated_owner_has_no_operating_center_or_inheritable_science_credit ... ok
+test quote_and_real_research_charge_use_the_same_credit ... ok
+test many_centers_share_effort_and_stop_at_the_useful_remaining_bill ... ok
+test contested_laboratory_cannot_spend_even_with_legal_ownership ... ok
+test target_switch_keeps_credit_on_its_original_technology ... ok
+test acquired_robotics_opens_the_existing_industrial_upgrade_gate ... ok
+test gdp_discloses_actual_service_but_never_values_credit_as_output ... ok
+test completed_center_has_a_paid_price_side_effect_not_a_research_multiplier ... ok
+test captured_building_uses_new_owners_budget_but_never_steals_credits ... ok
+test unavailable_research_inputs_pause_without_partial_charges ... ok
+test prototype_credits_save_stable_technology_ids_and_never_reassign_retired_ids ... ok
+test finite_partial_work_for_small_and_large_nations_and_no_shortage_hiding ... ok
+test rebuilt_center_supports_automatic_research_without_economic_competition ... ok
+test default_and_monthly_paths_are_byte_inert_even_with_completed_labs ... ok
+test unfinished_centers_and_absent_or_ineligible_focus_never_buy_work ... ok
+test company_research_bonus_is_specific_supplied_prototype_work_with_real_fees ... ok
+test save_resume_and_repeated_reads_or_ticks_do_not_duplicate_work ... ok
+
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.08s
+
+     Running tests\sample_size_audit.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\sample_size_audit-d292f348eb8d20d4.exe)
+
+running 3 tests
+test desert_storm_variance ... ignored
+test panel_variance ... ignored
+test statecraft_variance ... ignored
+
+test result: ok. 0 passed; 0 failed; 3 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\sector_profiles.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\sector_profiles-366adc4735173778.exe)
+
+running 2 tests
+test old_frozen_accounts_are_not_backfilled_on_read_or_load ... ok
+test profiles_reconcile_and_enrichment_changes_only_frozen_accounts ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.07s
+
+     Running tests\small_country_modules.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\small_country_modules-253d11de2bf01184.exe)
+
+running 9 tests
+test money_budget_controls_progress_without_political_capital_or_raw_inputs ... ok
+test a_zero_construction_budget_does_not_queue_an_unfinishable_minimum_module ... ok
+test a_productive_small_module_does_not_force_full_size_machinery_or_idle_expansion ... ok
+test module_planning_does_not_erase_paid_full_size_work ... ok
+test module_expansion_requires_delivered_demand_not_just_an_offer_or_idle_inventory ... ok
+test an_acquired_tiny_module_does_not_replace_an_established_full_size_chain ... ok
+test small_planner_orders_actual_enacted_size_while_rich_full_site_path_remains ... ok
+test frozen_size_and_daily_accounts_replay_across_save_and_batch_boundaries ... ok
+test all_131_mapped_countries_can_complete_a_paid_productive_module_at_normal_gdp_and_budget ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.20s
+
+     Running tests\starting_industry.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\starting_industry-d4ea265ce4461bca.exe)
+
+running 11 tests
+test structured_source_evidence_and_note_arrays_survive_the_saved_profile ... ok
+test dataset_covers_exactly_the_137_canonical_starters_with_valid_distinct_profiles ... ok
+test dataset_rejects_missing_roster_invalid_shares_overlapping_mix_and_absent_provenance ... ok
+test microstates_retain_fractional_capacity_and_the_six_map_gaps_stay_unallocated ... ok
+test economic_and_population_growth_never_respawn_or_resize_inherited_factories ... ok
+test an_unmapped_country_keeps_its_unlocated_industry_when_it_acquires_a_province ... ok
+test inherited_records_follow_transferred_land_and_do_not_duplicate_in_the_old_owner ... ok
+test seeding_adds_only_frozen_estimate_records_not_gdp_cash_goods_or_work ... ok
+test old_campaigns_and_default_headless_worlds_do_not_receive_a_backfilled_endowment ... ok
+test all_country_estimates_reconcile_to_existing_manufacturing_gdp_without_double_counting ... ok
+test registration_leaves_the_macro_timeline_unchanged_and_saves_resume_exactly ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+
+     Running tests\starting_industry_planning.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\starting_industry_planning-bef8a055eb400e0b.exe)
+
+running 4 tests
+test inherited_pressure_ranks_candidates_without_inventing_physical_demand ... ok
+test actual_and_queued_factories_count_once_beside_inherited_capacity ... ok
+test manufacturing_pressure_excludes_installation_and_uses_reconciled_transfer_receipts ... ok
+test inherited_sectors_cover_the_opening_economy_but_are_not_usable_packs ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests\starting_industry_priority.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\starting_industry_priority-0db4f80fa1587b37.exe)
+
+running 1 test
+test real_ai_candidate_uses_inherited_priority_only_between_evidenced_pack_expansions ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests\strategic_raw_supply.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\strategic_raw_supply-4ff13bf138af2e37.exe)
+
+running 13 tests
+test one_day_contract_uses_one_day_of_flow_not_a_full_horizon ... ok
+test intermediary_exports_are_claimed_once_from_the_combined_inbound_pool ... ok
+test expiring_fiscal_authority_stops_at_the_year_boundary ... ok
+test cold_raw_forecast_matches_warmed_have_and_is_byte_pure ... ok
+test partially_completed_projects_and_mines_create_no_physical_input_claims ... ok
+test recurring_contracts_share_one_opening_stockpile_once ... ok
+test exact_success_after_a_real_arsenal_block_clears_red_even_at_zero_stock ... ok
+test pending_window_is_phase_stable_and_has_an_exclusive_end ... ok
+test capacity_limited_contract_is_phase_stable_across_month_boundary ... ok
+test projected_contract_arrival_respects_transit_boundary_and_capacity ... ok
+test reciprocal_physical_terms_settle_as_one_atomic_bundle ... ok
+test physical_intermediary_waits_for_arrival_then_reexports_once ... ok
+test finite_materials_orders_cap_each_item_before_summing_horizons ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+
+     Running tests\treasury.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\treasury-99e44355339c4fd9.exe)
+
+running 10 tests
+test the_effective_rate_rises_with_debt_and_is_bounded ... ok
+test the_stratagem_deck_moves_money_only_through_the_one_channel ... ok
+test the_median_1990_borrower_pays_the_policy_rate_and_a_debtor_pays_more ... ok
+test a_money_leg_between_unequal_economies_conserves ... ok
+test privatisation_proceeds_retire_debt_in_dollars ... ok
+test a_stratagem_that_writes_down_debt_writes_down_the_stock ... ok
+test a_net_creditor_reads_as_un_desperate ... ok
+test the_closed_books_arm_is_the_arithmetic_that_shipped ... ok
+test the_treasury_is_inert_while_the_books_are_closed ... ok
+test debt_is_charged_once_and_not_twice ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.38s
+
+     Running unittests src\main.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\spheres_web-08880ad35fc922f5.exe)
+
+running 276 tests
+test arsenal_model_tests::component_illustrations_are_embedded_and_allowlisted ... ok
+test arsenal_model_tests::the_card_renderer_ships_a_surface_treatment ... ok
+test arsenal_model_tests::catalogue_renderer_is_shared_and_fallback_keeps_existing_controls ... ok
+test arsenal_model_tests::a_selected_city_shows_a_birds_eye_and_denies_the_street_plan ... ok
+test arsenal_model_tests::claude_models_cover_the_live_equipment_deck_in_both_directions ... ok
+test companies_view::tests::company_commands_use_current_player_and_reject_malformed_ids ... ok
+test campaign_api_tests::diplomatic_parser_binds_the_actor_and_refuses_forged_nested_fields ... ok
+test campaign_api_tests::operation_parser_binds_the_actor_and_preserves_intent ... ok
+test campaign_api_tests::operation_parser_refuses_invalid_numbers_missing_fields_and_unknown_enums ... ok
+test equipment_view::ammunition_view_tests::ammunition_activation_is_reviewed_prospective_and_has_no_starting_stock ... ok
+test equipment_view::ammunition_reserve_view_tests::automatic_reserve_authorization_and_clearing_explain_retained_orders ... ok
+test equipment_view::ammunition_view_tests::malformed_ammunition_commands_cannot_mutate_or_bypass_compatibility ... ok
+test companies_view::tests::company_directory_reads_never_enroll_or_advance_a_campaign ... ok
+test equipment_view::ammunition_reserve_view_tests::reserve_reviews_are_pure_and_targets_create_no_work_or_rounds ... ok
+test equipment_view::ammunition_reserve_view_tests::reserve_parser_rejects_ambiguous_automation_and_invalid_targets_without_mutation ... ok
+test campaign_api_tests::invalid_or_foreign_operations_leave_the_saved_world_unchanged ... ok
+test equipment_view::planning_tests::comparisons_use_frozen_revision_prices_and_explain_role_changes ... ok
+test equipment_view::maintenance_view_tests::shipyard_repair_review_uses_the_exact_invoice_requirement ... ok
+test equipment_view::planning_tests::comparison_reports_real_deltas_and_is_pure ... ok
+test equipment_view::maintenance_view_tests::malformed_maintenance_values_are_refused_and_unconfigured_campaign_remains_legacy ... ok
+test equipment_view::service_view_tests::empty_fleet_explains_next_step_without_inventing_service_coverage ... ok
+test equipment_view::replenishment_view_tests::malformed_supply_choices_cannot_bypass_the_review_contract ... ok
+test equipment_view::planning_tests::modernization_proposes_valid_known_upgrades_without_touching_the_fleet ... ok
+test equipment_view::planning_tests::ground_research_lists_its_unlocks_and_established_starter_components ... ok
+test equipment_view::aviation_view_tests::aviation_mismatched_guidance_is_blocked_and_refit_comparison_uses_strike ... ok
+test equipment_view::service_view_tests::retirement_quote_is_pure_matches_sim_and_only_confirmed_command_removes_available_stock ... ok
+test campaign_api_tests::operational_enemy_views_hide_exact_posture_and_label_the_public_force_estimate ... ok
+test equipment_view::ammunition_view_tests::ammunition_reading_and_order_review_are_pure_and_do_not_grant_rounds ... ok
+test equipment_view::planning_tests::research_tree_reflects_dependencies_and_never_changes_knowledge ... ok
+test equipment_view::replenishment_view_tests::supply_review_exposes_actual_payment_and_partial_shipments_without_mutation ... ok
+test equipment_view::aviation_view_tests::aviation_catalogue_and_previews_show_real_role_costs_and_are_pure ... ok
+test equipment_view::supply_automation_view_tests::empty_material_outlook_does_not_block_a_valid_future_policy ... ok
+test equipment_view::supply_view_tests::invalid_plant_retains_material_bill_but_cannot_confirm ... ok
+test equipment_view::service_view_tests::retirement_rejects_reserved_or_stale_quantities_and_malformed_commands ... ok
+test equipment_view::maintenance_view_tests::maintenance_review_is_pure_and_confirmed_limit_starts_a_dated_invoice ... ok
+test equipment_view::supply_view_tests::inactive_equipment_finance_has_no_invented_calendar_date_in_a_pure_review ... ok
+test equipment_view::supply_automation_view_tests::purchasing_policy_parser_and_semantic_limits_fail_closed ... ok
+test equipment_view::supply_automation_view_tests::purchasing_policy_review_is_pure_and_manual_is_the_default ... ok
+test equipment_view::tests::equipment_drafts_can_keep_unknown_components_but_cannot_develop_them ... ok
+test equipment_view::target_view_tests::target_suggestions_are_reviewed_and_honor_source_goal ... ok
+test equipment_view::supply_view_tests::production_quote_discloses_whole_recipe_before_order_without_mutation ... ok
+test equipment_view::tests::equipment_routes_require_current_campaign_on_get_and_post ... ok
+test equipment_view::tests::equipment_order_parser_keeps_nation_authority_and_rejects_fractional_units ... ok
+test equipment_view::tests::equipment_research_appears_in_current_research_without_adding_technology_nodes ... ok
+test equipment_view::aviation_view_tests::aviation_store_reviews_keep_ground_activation_separate_and_archive_exactly ... ok
+test history::tests::selected_series_and_delta_equal_full_history ... ok
+test campaign_api_tests::protected_aim_retry_charges_political_capital_once ... ok
+test equipment_view::service_view_tests::service_reading_separates_available_reserved_and_incoming_without_changing_world ... ok
+test equipment_view::supply_view_tests::production_review_discloses_future_components_before_tooling_or_eligible_work ... ok
+test equipment_view::supply_view_tests::fabrication_gap_survives_save_and_is_visible_in_the_project_review ... ok
+test equipment_view::target_view_tests::target_library_action_and_preview_are_pure_and_only_confirmation_saves ... ok
+test manufacturing_component_view_tests::manufacturing_line_component_quote_uses_simulation_units_and_stays_read_only ... ok
+test manufacturing_component_view_tests::loaded_manufacturing_history_is_distinct_from_a_missing_dated_receipt ... ok
+test equipment_view::tests::detailed_catalogue_prices_every_vehicle_type_with_its_independent_slots ... ok
+test history::tests::event_pages_preserve_the_entire_archive_across_new_dispatches ... ok
+test manufacturing_component_view_tests::manufacturing_current_funding_and_blockers_do_not_rewrite_the_dated_run ... ok
+test page_art_assets::tests::every_page_painting_is_embedded_and_requests_are_allowlisted ... ok
+test performance::campaign_lifetime_profile ... ignored, 30-year actual daily worlds; run alone for meaningful timing
+test military_operations_api_tests::allocation_parser_binds_the_player_and_rejects_malformed_numbers ... ok
+test equipment_view::supply_view_tests::national_supply_counts_stock_once_and_retains_paused_outstanding_bills ... ok
+test history::tests::multidecade_archive_preserves_dates_lifespans_and_daily_detail ... ok
+test storage::tests::listing_metadata_handles_split_utf8_escapes_and_trailing_data ... ok
+test industry_rebuild_tests::component_trade_is_an_explicit_third_good_only_in_rebuild ... ok
+test campaign_api_tests::a_war_declared_before_the_first_browser_tick_still_requires_deployment ... ok
+test tests::a_body_that_is_not_json_is_a_failed_request_not_an_empty_one ... ok
+test manufacturing_component_view_tests::manufacturing_site_payload_keeps_land_and_naval_slot_pools_separate ... ok
+test tests::a_deal_the_page_sends_is_the_sims_own ... ok
+test tests::a_focused_slider_does_not_kill_every_shortcut ... ok
+test tests::a_dossier_figure_stays_inside_its_own_column ... ok
+test equipment_view::tests::equipment_reads_and_order_quotes_are_pure_and_use_simulation_prices ... ok
+test storage::tests::save_listing_preserves_metadata_and_full_json_readability ... ok
+test tests::a_globe_that_cannot_draw_says_so ... ok
+test tests::a_globe_that_comes_back_clears_every_mark_of_the_failure ... ok
+test tests::a_headline_is_only_about_the_nations_it_names ... ok
+test equipment_view::tests::equipment_archives_roundtrip_and_old_world_shape_refuses_them ... ok
+test tests::a_join_the_server_cannot_read_is_refused_not_rewritten ... ok
+test equipment_view::supply_automation_view_tests::dated_purchase_receipts_keep_their_original_limits_after_edit_and_clear ... ok
+test tests::a_nation_can_show_where_its_figures_came_from ... ok
+test tests::a_name_at_the_edge_of_the_world_is_not_cut_by_it ... ok
+test tests::a_nation_with_a_space_in_its_name_survives_the_query_string ... ok
+test tests::a_nation_the_roster_does_not_know_is_refused_not_ignored ... ok
+test tests::a_major_event_stops_the_clock_and_the_server_is_what_decides ... ok
+test tests::a_one_day_advance_still_reports_the_event_the_clock_must_stop_on ... ok
+test tests::a_price_the_player_cannot_pay_is_marked_and_refused ... ok
+test tests::a_seed_the_server_cannot_use_is_refused_not_replaced ... ok
+test storage::tests::slots_cannot_escape_root_and_three_autosaves_rotate ... ok
+test tests::a_series_that_ends_early_is_labelled_where_it_ends ... ok
+test tests::a_span_the_server_cannot_use_does_not_move_the_clock_some_other_distance ... ok
+test military_operations_api_tests::browser_rules_allocation_command_and_snapshot_agree_across_load ... ok
+test industry_rebuild_tests::rebuild_catalog_roles_and_preset_preview_are_pure_and_actor_scoped ... ok
+test tests::a_stability_arm_is_quoted_as_where_order_settles ... ok
+test storage::tests::failed_write_keeps_previous_valid_campaign_and_archive ... ok
+test tests::a_theatre_the_server_cannot_use_is_refused_not_replaced ... ok
+test tests::an_aim_is_carried_onto_the_quarrel_it_opened ... ok
+test tests::an_aim_the_server_cannot_read_is_refused_not_replaced ... ok
+test tests::a_refused_start_says_so_instead_of_freezing_the_setup_screen ... ok
+test tests::browser_growth_model_gap ... ignored
+test campaign_api_tests::campaign_views_are_pure_and_orders_survive_the_browser_load_path ... ok
+test tests::a_nation_the_world_is_not_holding_is_refused_not_fatal ... ok
+test tests::a_successor_is_not_told_it_is_a_bug ... ok
+test tests::browser_surface_posts_days_not_months ... ok
+test tests::cabinet_city_art_is_accessible_embedded_and_served_without_external_assets ... ok
+test tests::browser_advance_rejects_every_malformed_batch_before_mutation ... ok
+test tests::cash_flow_annual_estimates_and_construction_quote_reuse_authoritative_sources ... ok
+test tests::cash_flow_open_day_never_masquerades_as_a_closed_posting ... ok
+test industry_rebuild_tests::allocations_parse_validate_and_render_the_same_grants ... ok
+test tests::cash_flow_priorities_keep_annual_estimates_separate_from_a_settled_surplus ... ok
+test tests::cash_flow_posted_components_reconcile_without_recharging_prepaid_equipment ... ok
+test tests::cash_flow_priorities_decompose_the_same_dated_interest_deficit_without_mutation ... ok
+test tests::cash_flow_route_is_bound_to_the_current_campaign ... ok
+test tests::browser_clock_advances_daily_and_histories_settle_monthly ... ok
+test tests::classify_corpus ... ignored
+test tests::cash_flow_priorities_put_funding_and_renewal_first_and_keep_the_three_item_limit ... ok
+test tests::choosing_a_domination_agenda_reaches_the_sim_by_stable_id ... ok
+test tests::cash_flow_read_preserves_unknown_opening_balances_and_does_not_enroll ... ok
+test tests::cash_flow_priorities_use_actual_ministry_sources_and_stable_ties ... ok
+test tests::competition_commands_bind_actor_and_reject_overflow ... ok
+test tests::competition_capacity_plan_is_exact_read_only_and_keeps_fractional_assets ... ok
+test tests::competition_browser_reads_are_pure_and_cover_every_starting_economy ... ok
+test tests::agency_browser_contract_revalidates_and_preserves_pending_decisions ... ok
+test tests::competition_enable_is_explicit_and_never_grants_money_or_factories ... ok
+test tests::construction_requirements_explain_exact_site_refusals_without_mutation ... ok
+test tests::daily_browser_history_records_real_first_day_progress ... ok
+test tests::construction_suggestions_are_read_only_owned_and_match_reviewed_contracts ... ok
+test tests::daily_research_and_manufacturing_cards_quote_the_sims_actual_draw ... ok
+test tests::daily_manufacturing_two_days_stock_shows_no_false_monthly_shortage ... ok
+test tests::daily_quotes_preserve_stock_units_and_the_actual_january_ledger_in_february ... ok
+test tests::department_contract_is_strict_read_only_and_has_fifty_rows_and_ten_investments ... ok
+test tests::construction_impact_preview_is_read_only_scoped_and_validates_the_reviewed_project ... ok
+test tests::campaign_aim_browser_commands_freeze_and_close_model_targets ... ok
+test tests::a_microstates_history_is_not_flattened_into_steps ... ok
+test tests::economic_ledgers_cover_every_living_country_and_reconcile_without_mutation ... ok
+test tests::economic_readings_refresh_daily_and_distinguish_settlement_date ... ok
+test tests::department_assets_and_snapshot_are_wired_without_enrolling_on_read ... ok
+test tests::every_kit_in_the_deck_has_a_model ... ok
+test tests::every_nation_has_a_historical_figure_and_flag ... ok
+test tests::every_district_figure_says_apportioned ... ok
+test tests::exchange_reads_require_the_exact_active_campaign_session ... ok
+test tests::every_nation_on_the_board_has_somewhere_to_be_drawn ... ok
+test tests::every_ministry_arm_on_the_card_is_the_arm_the_sim_charges ... ok
+test storage::tests::envelope_load_preserves_sim_timeline_and_archive_legacy_still_loads ... ok
+test tests::headlines_land_in_the_right_bucket ... ok
+test tests::first_budget_quote_includes_opening_debt_and_ordered_policy_without_mutating_world ... ok
+test tests::headlines_name_the_nations_they_are_about ... ok
+test tests::industry_board_is_pure_without_competition_and_never_invents_opening_output ... ok
+test tests::industry_board_keeps_research_credit_separate_from_factory_output ... ok
+test tests::domination_is_a_complete_server_authored_campaign_contract ... ok
+test tests::funded_construction_api_is_actor_bound_pure_and_quotes_the_shared_cash_limit ... ok
+test tests::industry_board_route_requires_the_current_campaign ... ok
+test tests::construction_resource_quote_names_committed_work_and_full_contract_cost ... ok
+test tests::browser_new_snapshot_and_first_history_are_daily ... ok
+test tests::logistics_policy_button_reaches_one_strict_atomic_command ... ok
+test tests::industry_board_serves_exact_dated_receipts_and_current_owned_assets ... ok
+test tests::logistics_cargo_labels_distinguish_in_transit_held_and_actually_arrived ... ok
+test performance::aged_checkpoint_stress_uses_priced_commands_and_preserves_the_archive ... ok
+test tests::logistics_small_shipments_preserve_physical_quantity_before_display_units ... ok
+test tests::module_only_province_is_visible_without_rounding_integer_capabilities ... ok
+test tests::month_index_counts_from_january_1990 ... ok
+test tests::browser_advance_lost_response_retry_is_exactly_once_and_session_bound ... ok
+test tests::module_quotes_are_pure_scaled_actor_bound_and_reject_invalid_capacity ... ok
+test tests::no_two_domain_tabs_wear_the_same_label ... ok
+test tests::manufacturing_api_uses_real_plants_budget_arsenal_and_session_identity ... ok
+test tests::o_says_why_it_does_nothing_in_resources_shading ... ok
+test tests::pausing_retires_the_day_that_is_already_in_flight ... ok
+test tests::fiscal_recovery_stability_disclosure_reconciles_with_the_charged_flow ... ok
+test tests::logistics_api_is_a_stable_view_of_the_latest_audit ... ok
+test tests::population_commands_bind_the_player_and_validate_policy ... ok
+test tests::no_nation_on_the_board_is_shown_as_nothing ... ok
+test tests::population_upgrade_is_explicit_and_reads_are_session_bound ... ok
+test tests::one_nation_can_be_asked_for_alone ... ok
+test tests::production_api_names_the_full_planning_portfolio ... ok
+test tests::production_board_is_wired_end_to_end ... ok
+test tests::province_economy_assets_ship_locally_and_keep_accounting_in_rust ... ok
+test tests::province_economy_api_is_live_for_foreign_owners_and_keeps_population ... ok
+test tests::province_dossier_reads_live_population_and_exact_geometry ... ok
+test tests::resource_contract_full_term_cost_follows_leap_day_payments ... ok
+test tests::room_paintings_are_embedded_webp_and_paths_are_allowlisted ... ok
+test tests::research_card_discloses_old_midmonth_hold_without_inventing_acquisitions ... ok
+test tests::strategic_supply_mission_has_one_ranked_objective_and_honest_idle_state ... ok
+test tests::strategic_supply_red_requires_an_authoritative_recorded_block ... ok
+test tests::strategic_supply_command_serves_the_live_twelve_line_forecast ... ok
+test tests::fiscal_recovery_upgrade_is_explicit_and_bound_to_the_actual_player ... ok
+test tests::ten_ministry_budget_reaches_the_atomic_fiscal_command ... ok
+test tests::fiscal_recovery_browser_state_quotes_the_shared_assessment_without_mutation ... ok
+test tests::the_back_a_movement_card_quotes_the_odds_the_sim_rolls ... ok
+test tests::the_bar_hatches_foreign_backing_and_names_the_sponsor_only_after_exposure ... ok
+test tests::stability_read_model_uses_the_integrators_terms_and_calendar_scale ... ok
+test tests::the_browser_carries_a_pause_play_toggle_and_a_truthful_readout ... ok
+test tests::the_board_keys_are_on_the_card ... ok
+test tests::the_arcade_market_strip_and_foreign_ledger_are_served ... ok
+test tests::production_api_is_player_scoped_stable_and_live ... ok
+test tests::the_browser_computes_one_balance ... ok
+test tests::the_budget_card_reads_the_sim ... ok
+test tests::the_button_reaches_the_sim_through_the_command_route ... ok
+test tests::the_clock_keys_are_hoi4s ... ok
+test tests::the_clock_does_not_run_without_a_game ... ok
+test tests::the_commodity_key_does_not_spend_the_first_press_on_the_fetch ... ok
+test tests::the_conflict_sheet_is_rebuilt_every_tick ... ok
+test tests::the_clock_never_has_two_days_in_flight ... ok
+test tests::the_equipment_models_are_self_contained_and_degrade_to_the_glyph ... ok
+test tests::the_event_log_cannot_be_squeezed_out_of_existence ... ok
+test tests::the_eight_research_shares_add_to_a_hundred ... ok
+test tests::the_find_hint_is_painted_on_something ... ok
+test tests::the_front_edges_are_two_independent_rings ... ok
+test tests::the_globe_and_the_shader_project_the_same_world ... ok
+test tests::materials_quote_and_commands_are_pure_bounded_and_actor_bound ... ok
+test tests::the_globe_ships_its_camera_and_its_cities ... ok
+test tests::the_globe_survives_a_tick ... ok
+test tests::the_government_screen_has_its_own_key_and_escape_closes_it ... ok
+test tests::the_government_commands_parse_from_the_page ... ok
+test tests::the_conflict_sheet_quotes_the_price_the_queue_charges ... ok
+test tests::the_header_carries_the_discontent_chip_and_the_ruling_swatch ... ok
+test tests::the_ideology_map_mode_colours_by_ruling_bloc_and_hatches_the_watch ... ok
+test tests::the_levers_and_the_covert_kinds_parse_from_the_page ... ok
+test tests::the_government_screen_is_served_not_computed ... ok
+test tests::loading_a_legacy_midmonth_save_finishes_its_open_books_before_daily_play ... ok
+test tests::the_logistics_dispatch_board_is_wired_end_to_end ... ok
+test tests::the_map_hover_ignores_events_the_capture_retargeted ... ok
+test tests::the_map_resolves_a_click_from_the_press_not_the_click ... ok
+test tests::the_levers_are_served_with_the_sim_s_price_refusal_and_effects ... ok
+test tests::the_map_shading_chips_are_not_sliced_by_a_narrow_column ... ok
+test tests::economic_order_receipts_are_once_only_current_and_campaign_bound ... ok
+test tests::the_board_reads_the_sim ... ok
+test tests::population_view_is_pure_and_preserves_simulation_units ... ok
+test tests::the_map_ships_terrain_and_rivers ... ok
+test tests::the_mine_card_develops_a_mapped_province ... ok
+test tests::the_now_marker_does_not_paint_over_an_era_name ... ok
+test tests::the_panel_exists_and_is_wired_to_the_route ... ok
+test tests::the_money_card_is_one_set_of_books ... ok
+test tests::the_pause_key_reaches_the_clock_from_every_screen ... ok
+test tests::the_picker_is_a_keyboard_playable_full_screen_showcase ... ok
+test tests::the_market_is_on_for_the_browser_and_off_for_the_suite ... ok
+test tests::the_picker_shows_the_board_it_will_deal ... ok
+test tests::the_clock_still_moves_after_your_nation_is_gone ... ok
+test tests::the_political_arm_s_headlines_are_filed_and_promoted ... ok
+test tests::the_port_and_the_browser_flag_come_from_the_command_line_then_the_environment ... ok
+test tests::the_political_arm_is_on_in_play_and_null_headless ... ok
+test tests::the_research_card_and_the_sim_agree_on_the_month ... ok
+test tests::the_resource_headlines_land_in_the_right_bucket ... ok
+test tests::the_shortcut_card_opens_before_a_game_exists ... ok
+test tests::the_shortcut_card_swallows_the_keys_behind_it ... ok
+test tests::new_campaign_industrial_estimates_are_visible_without_reseeding_loaded_saves ... ok
+test tests::the_six_presence_rows_print_no_number ... ok
+test tests::the_speed_ladder_is_five_levels_of_real_milliseconds ... ok
+test tests::the_force_line_is_the_force_the_sim_sustains ... ok
+test tests::the_state_payload_carries_district_deltas ... ok
+test tests::the_stock_tip_is_painted_on_something ... ok
+test tests::the_take_card_is_greyed_until_the_trade_route_has_closed ... ok
+test industry_rebuild_tests::construction_summary_and_markers_follow_live_inputs_and_assignments_without_settling ... ok
+test tests::the_talks_answer_is_the_sims_and_says_why ... ok
+test tests::the_tech_graph_resolves_a_click_from_the_press_not_the_click ... ok
+test tests::the_tech_legend_is_painted_on_something ... ok
+test tests::the_war_card_says_which_side_holds_what ... ok
+test tests::the_tech_screens_keys_are_all_on_the_card ... ok
+test tests::the_war_decoration_takes_no_pointer_events ... ok
+test tests::the_tree_payload_carries_the_list_price ... ok
+test tests::the_watch_reads_calibration_pending_and_the_dock_names_the_road ... ok
+test tests::the_world_tint_and_the_dossier_are_served ... ok
+test tests::the_world_offers_the_player_something_and_says_why ... ok
+test tests::the_state_payload_carries_the_offers ... ok
+test transport::tests::malformed_immediate_batch_never_half_commits ... ok
+test tests::the_page_can_see_who_is_running_the_central_bank ... ok
+test tests::welfare_reuses_pensions_budget_and_save_slot ... ok
+test tests::the_war_card_takes_its_class_from_the_sim ... ok
+test tests::the_research_board_never_quotes_a_schedule_in_millennia ... ok
+test tests::a_nation_with_no_debt_is_not_shown_paying_it_down ... ok
+test transport::tests::diplomatic_receipt_retry_posts_one_cost_and_one_dispatch ... ok
+test tests::materials_signing_and_cancellation_receipts_are_once_only_without_free_packs ... ok
+test tests::the_series_ends_when_a_nation_does ... ok
+test tests::the_basing_panel_does_not_sell_what_the_theatre_already_gives ... ok
+test tests::a_funded_project_is_not_reported_as_stalled ... ok
+test tests::the_panel_prices_sanctions_the_way_the_sim_charges_them ... ok
+test tests::the_log_filters_reach_the_world_the_sim_writes ... ok
+test tests::the_policy_panel_reads_the_sim ... ok
+test tests::a_dissolved_state_is_not_served_as_a_live_belligerent ... ok
+test tests::the_ladder_offers_only_what_the_world_will_sell ... ok
+
+test result: ok. 273 passed; 0 failed; 3 ignored; 0 measured; 0 filtered out; finished in 57.47s
+
+     Running tests\transport_task_pool.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\master-target\release\deps\transport_task_pool-2b5a75aeb93a0641.exe)
+
+running 1 test
+test transport_task_pool::queued_connection_tests::an_idle_worker_reserved_by_a_queued_connection_cannot_strand_the_next_connection ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests spheres_sim
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

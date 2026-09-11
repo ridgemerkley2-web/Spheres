@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "candidate_revision": "5f7f355502f17bd6bd8f0383a2d14f0024fa7884",
+  "started_utc": "2026-09-11T00:59:46.0366091Z",
+  "finished_utc": "2026-09-11T00:59:46.0735280Z",
+  "test_binary": null,
+  "test_binary_sha256": null,
+  "fixture_root": null,
+  "evidence_root": null,
+  "arguments": [
+    "performance::campaign_lifetime_profile",
+    "--ignored",
+    "--exact",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "child_profile_environment": null,
+  "exit_code": null,
+  "wall_duration_seconds": null,
+  "profile_json": null,
+  "memory": {
+    "nominal_interval_ms": 100,
+    "samples": 0,
+    "failed_samples": 0,
+    "max_sampled_private_bytes": null,
+    "max_sampled_working_set_bytes": null,
+    "os_peak_working_set_bytes": null,
+    "max_observed_sample_gap_ms": null,
+    "limits": "Samples cover only this test process and may miss short peaks. OS peak working set is the largest OS high-water reading observed while accessible; its final value may be unavailable, and it is not private-memory peak. Timing includes process startup and profiler work; no throughput inference is made."
+  },
+  "fixtures": [],
+  "passed": false,
+  "failures": [
+    "Evidence already exists; choose a new folder: C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S01\\active-profile"
+  ]
+}

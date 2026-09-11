@@ -1,0 +1,1 @@
+tank_standard baseline: vertex layout changed (attributes: positions, normals, colors, materialClasses). The triangles*3*3*4*3 upload arithmetic in tools/ui/bench_art.cjs no longer holds; fix the tool before trusting a budget.

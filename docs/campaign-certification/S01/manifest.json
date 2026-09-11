@@ -1,0 +1,925 @@
+{
+  "schema_version": 1,
+  "session": "S01",
+  "status": "complete",
+  "local_date": "2026-09-10",
+  "verification_finished_utc": "2026-09-11T01:00:45.920596+00:00",
+  "approval": {
+    "instruction": "Okay lets begin development with s1",
+    "scope_changes": [],
+    "S00": "complete",
+    "G0": "earned"
+  },
+  "gate_status": {
+    "G1": "not_earned",
+    "CP1": "not_earned",
+    "WC1": "not_earned",
+    "CP2": "not_earned"
+  },
+  "source": {
+    "remote_url": "https://github.com/ridgemerkley2-web/Spheres.git",
+    "fetch": "git fetch origin --prune",
+    "fetch_exit_code": 0,
+    "active": "5f7f355502f17bd6bd8f0383a2d14f0024fa7884",
+    "master": "485c223f60d5ff6e46f6ae17164bf1ee3a8764d9",
+    "remote_snapshot": [
+      {
+        "name": "origin",
+        "commit": "485c223f60d5ff6e46f6ae17164bf1ee3a8764d9",
+        "committer_date": "2026-09-08T13:19:09-07:00",
+        "subject": "Record completed fiscal campaigns and final cross-platform QA"
+      },
+      {
+        "name": "origin/claude/admiring-euclid-a867c9",
+        "commit": "485c223f60d5ff6e46f6ae17164bf1ee3a8764d9",
+        "committer_date": "2026-09-08T13:19:09-07:00",
+        "subject": "Record completed fiscal campaigns and final cross-platform QA"
+      },
+      {
+        "name": "origin/codex/claude-map-economy",
+        "commit": "19725c8d6317c310fd6a1b721e1bae38f2cab3a8",
+        "committer_date": "2026-09-01T15:02:24-07:00",
+        "subject": "feat: integrate Claude globe with daily annual economy"
+      },
+      {
+        "name": "origin/codex/company-system",
+        "commit": "0e6b8c6af0f5340f080b2216574dd6df9fa57345",
+        "committer_date": "2026-09-07T20:11:05-07:00",
+        "subject": "feat: add country-scaled companies with contractor bonuses and unique identities"
+      },
+      {
+        "name": "origin/codex/fix-conflict-lifecycle",
+        "commit": "b5f26c46741e5ea8dd28ecbac126b9b900177b87",
+        "committer_date": "2026-08-31T18:31:30-07:00",
+        "subject": "fix: bound conflict retrace lifecycles"
+      },
+      {
+        "name": "origin/codex/industry-rebuild",
+        "commit": "f2709d120673bf24c02460fb68babe4be5a5ba80",
+        "committer_date": "2026-09-07T20:44:19-07:00",
+        "subject": "Rebuild construction and industry around clear project outcomes"
+      },
+      {
+        "name": "origin/codex/map-first-ui",
+        "commit": "4cf0fb107faac2dc81f5c220830759505f848e3f",
+        "committer_date": "2026-09-01T12:04:04-07:00",
+        "subject": "feat: replace the map with an interactive WebGL globe"
+      },
+      {
+        "name": "origin/codex/population-rebuild",
+        "commit": "825f7964ab3cceba9594e353634bb53f0ea86030",
+        "committer_date": "2026-09-07T21:14:53-07:00",
+        "subject": "Rebuild population, household classes, education and employment"
+      },
+      {
+        "name": "origin/codex/resume-spheres",
+        "commit": "5f7f355502f17bd6bd8f0383a2d14f0024fa7884",
+        "committer_date": "2026-09-10T17:09:16-07:00",
+        "subject": "Add detailed aircraft workshop and full game review"
+      },
+      {
+        "name": "origin/codex/trading-system",
+        "commit": "3f7eaf21d75d496ed306e26a317953af1ed910d3",
+        "committer_date": "2026-09-02T08:50:48-07:00",
+        "subject": "feat: integrate province resources trade and mines"
+      },
+      {
+        "name": "origin/codex/war-overhaul",
+        "commit": "eab54c35dbcb1f2bb486113e7361f5c57fb2f308",
+        "committer_date": "2026-09-08T05:59:39-07:00",
+        "subject": "Make integration checks portable and isolate the resource timing gate"
+      },
+      {
+        "name": "origin/feat/arsenal-models-codex",
+        "commit": "092569227023ff4278a5d699018af46bd39c7c94",
+        "committer_date": "2026-09-06T18:28:09-07:00",
+        "subject": "feat(arsenal): a 3D model for every kit in the deck, drawn from one WebGL2 context"
+      },
+      {
+        "name": "origin/feat/art-p0",
+        "commit": "3b755687710bca6dbf8963bbe4f9acd878423f63",
+        "committer_date": "2026-09-07T20:51:48-07:00",
+        "subject": "The coast bake's own registration check was passing on luck"
+      },
+      {
+        "name": "origin/feat/coalition-government",
+        "commit": "c454c81a2ddf95917745ce1a96363e501bed449d",
+        "committer_date": "2026-08-12T07:26:14-07:00",
+        "subject": "Phase 1.2 and 1.4: relations as a matrix, and a century as an invariant"
+      },
+      {
+        "name": "origin/feat/commitment-ladder",
+        "commit": "1fa764565c8c1fd499397878e18e3264424ceee1",
+        "committer_date": "2026-08-12T11:16:29-07:00",
+        "subject": "Commit B: the commitment ladder, and war becomes a decision"
+      },
+      {
+        "name": "origin/feat/exact-floats",
+        "commit": "3055c90fe0ae8fcbcc2d385a3edacf1e2d421052",
+        "committer_date": "2026-08-12T07:57:01-07:00",
+        "subject": "Phase 1.3: transcendentals that give the same bits on every machine"
+      },
+      {
+        "name": "origin/feat/financial-system",
+        "commit": "9098e42c3c6618fcb47dbde48ccb10907b98e578",
+        "committer_date": "2026-08-09T20:40:19-07:00",
+        "subject": "Add currencies, FX regimes and financial contagion"
+      },
+      {
+        "name": "origin/feat/government",
+        "commit": "f350a98a8fc1b0bb3b797c92e99473f81ccc42f8",
+        "committer_date": "2026-08-12T13:29:54-07:00",
+        "subject": "The player surface, the module's own tests, and six defects they caught"
+      },
+      {
+        "name": "origin/feat/hoi4-map-and-tech",
+        "commit": "fc0f0c299149bd4859fcc4653f4e56ae28dda5ba",
+        "committer_date": "2026-09-06T18:28:45-07:00",
+        "subject": "fix(arsenal): the deck-parity test looked for the checkout's own line ending"
+      },
+      {
+        "name": "origin/feat/hoi4-speed",
+        "commit": "ab1244ad1c1877bbe8f5b8eb5db822eb8fd1b78e",
+        "committer_date": "2026-09-04T19:58:49-07:00",
+        "subject": "feat(web): HOI4 pause/play clock with five speeds"
+      },
+      {
+        "name": "origin/feat/ideology-blocs",
+        "commit": "98b55a169d06bfcd91b53a1f6bddd39523ee2676",
+        "committer_date": "2026-09-05T21:55:17-07:00",
+        "subject": "test(web): reach the played world through loaded_play_game"
+      },
+      {
+        "name": "origin/feat/ideology-roads",
+        "commit": "cbcc3648bc4f0d5e1f93f552975af73cc44e391f",
+        "committer_date": "2026-09-06T04:38:40-07:00",
+        "subject": "docs(blocs): S3/S4 shipped - SPEC section 4 as built, ROADMAP Done entry, BUGS R-1..R-10"
+      },
+      {
+        "name": "origin/feat/influence",
+        "commit": "04228ca78aa19021f0d9f5b1872ee5433b073c5a",
+        "committer_date": "2026-08-17T15:31:52-07:00",
+        "subject": "Influence projection: the namesake system becomes a stock that decays"
+      },
+      {
+        "name": "origin/feat/ladder-fixes",
+        "commit": "54be487d95247f12c44b1ff7f864342e6a16a353",
+        "committer_date": "2026-08-12T13:26:26-07:00",
+        "subject": "The world stops parking on rung 5, and appetite reaches the ladder"
+      },
+      {
+        "name": "origin/feat/land-nations-as-data",
+        "commit": "14254f87b290b5600a84b7065ad1cdcf03cf56ba",
+        "committer_date": "2026-08-12T13:09:13-07:00",
+        "subject": "Roadmap: nations are data, and the unbounded rate channel is next"
+      },
+      {
+        "name": "origin/feat/nations-as-data",
+        "commit": "96b4ea11cc0492647a95a14ea84a12b5d1e7ce08",
+        "committer_date": "2026-08-12T07:52:12-07:00",
+        "subject": "Phase 1.1: nations become data"
+      },
+      {
+        "name": "origin/feat/r-anglo",
+        "commit": "0f5d274229e66d58818ef8931a732b9db7fb7602",
+        "committer_date": "2026-08-12T17:43:19-07:00",
+        "subject": "Source tfp_trend for all three, the one field I had left unjustified"
+      },
+      {
+        "name": "origin/feat/r-easteur",
+        "commit": "be5da8393fa5ace4b78b07f4c4a1fb97c178c858",
+        "committer_date": "2026-08-12T17:44:14-07:00",
+        "subject": "Add the Eastern European roster: Czechoslovakia, Hungary, Romania, Bulgaria, Albania"
+      },
+      {
+        "name": "origin/feat/r-latam",
+        "commit": "b0fc9e69363a63125ee4d85c427205b85339424c",
+        "committer_date": "2026-08-12T17:42:52-07:00",
+        "subject": "Requery every GDP and population against the World Bank series"
+      },
+      {
+        "name": "origin/feat/r-mideast",
+        "commit": "2a874450de667640e9360fb6eef28df472d1bea8",
+        "committer_date": "2026-08-12T17:55:15-07:00",
+        "subject": "Diagnosis of the two calibration tests this branch turns red, for the integrator"
+      },
+      {
+        "name": "origin/feat/r-nafrica",
+        "commit": "c6cffc765e658129974c91583d21c640930d2561",
+        "committer_date": "2026-08-12T17:47:02-07:00",
+        "subject": "Add North Africa: Algeria, Morocco, Tunisia, Libya, Sudan"
+      },
+      {
+        "name": "origin/feat/r-postsoviet",
+        "commit": "6266705be544a1ef77025ba9a18e96e572127b69",
+        "committer_date": "2026-08-12T17:51:37-07:00",
+        "subject": "Twelve republics take up their own seats, not two"
+      },
+      {
+        "name": "origin/feat/r-seasia",
+        "commit": "97c7ed92c0e92670d59d06ee617f98232f7df4ce",
+        "committer_date": "2026-08-12T17:54:52-07:00",
+        "subject": "Record the two thirty-year outcomes this region gets wrong, and why they are the model's and not the data's"
+      },
+      {
+        "name": "origin/feat/r-southasia",
+        "commit": "8bcb594794554253fb98cd6122603eee9f3a176f",
+        "committer_date": "2026-08-12T17:49:59-07:00",
+        "subject": "Diagnose china_growth_miracle: a third red test, and why it is not mine to fix"
+      },
+      {
+        "name": "origin/feat/r-ssafrica",
+        "commit": "c0140120ba7d58fc75fc7bd3eecfa7098487499d",
+        "committer_date": "2026-08-12T17:54:24-07:00",
+        "subject": "Fix a garbled sentence in zimbabwe.json's strength note"
+      },
+      {
+        "name": "origin/feat/r-westeur",
+        "commit": "ac7ff504940654f81c4ce23ca064d85e3fcd721a",
+        "committer_date": "2026-08-12T18:08:29-07:00",
+        "subject": "Check all eleven party tables against their published results"
+      },
+      {
+        "name": "origin/feat/r2-caribbean",
+        "commit": "aa382a66832d0d31cbf9bf26a336f0afd6a3f090",
+        "committer_date": "2026-08-16T20:55:20-07:00",
+        "subject": "Measure the one red instead of asserting it"
+      },
+      {
+        "name": "origin/feat/r2-centafrica",
+        "commit": "395257366a343b7333d10f9b28475fea4e06f333",
+        "committer_date": "2026-08-16T21:17:40-07:00",
+        "subject": "Re-pin both hashes locally, and say what was checked first"
+      },
+      {
+        "name": "origin/feat/r2-centam",
+        "commit": "1e1f9bdee89af809f8c518afbc371a1190d2a777",
+        "committer_date": "2026-08-16T21:01:19-07:00",
+        "subject": "Re-pin both hashes locally at 115 nations; leave the one red alone"
+      },
+      {
+        "name": "origin/feat/r2-gulf2",
+        "commit": "144241b10d32ca708d2291a3b0800b170b4ff08a",
+        "committer_date": "2026-08-16T20:41:51-07:00",
+        "subject": "Re-pin the golden hash locally, and say which test master also fails"
+      },
+      {
+        "name": "origin/feat/r2-hornafrica",
+        "commit": "d1c64fa794c1f8746a95a3ffef6b33ad78bb9413",
+        "committer_date": "2026-08-16T18:09:46-07:00",
+        "subject": "The last red: an arms test that measured the world, not the aid"
+      },
+      {
+        "name": "origin/feat/r2-indianocean",
+        "commit": "fe207e450de790d59339709157a33f4da2e04a70",
+        "committer_date": "2026-08-16T20:43:17-07:00",
+        "subject": "Who governs an island when nobody voted, and where to draw a country the basemap cannot see"
+      },
+      {
+        "name": "origin/feat/r2-pacific",
+        "commit": "95e56615cba084c442f25367e9cbb744e5496c1b",
+        "committer_date": "2026-08-16T21:14:29-07:00",
+        "subject": "The cost floor was a clamp nothing had ever been small enough to touch"
+      },
+      {
+        "name": "origin/feat/r2-seasia2",
+        "commit": "8d386411138eee83d003b63827a1b79cb33878b5",
+        "committer_date": "2026-08-16T21:23:04-07:00",
+        "subject": "Five nations at the bottom of the table: Brunei, PNG, East Timor, Bhutan, Maldives"
+      },
+      {
+        "name": "origin/feat/r2-smalleurope",
+        "commit": "7a4507f4f4cf9067a29afadf067f4b0b70266f6a",
+        "committer_date": "2026-08-16T21:18:38-07:00",
+        "subject": "Write down what the war model does with the weakest state on the board"
+      },
+      {
+        "name": "origin/feat/r2-southafrica2",
+        "commit": "1147f515b8e7df64eca0efb9c0d6572e6f3d4f1a",
+        "committer_date": "2026-08-16T21:07:55-07:00",
+        "subject": "Relations, the map, both hashes, and two reds that are seed luck rather than mine"
+      },
+      {
+        "name": "origin/feat/r2-southam2",
+        "commit": "ce7465d44d627c28d31d4b4636c1e5d78200621e",
+        "committer_date": "2026-08-16T20:58:10-07:00",
+        "subject": "A sanctions bar that was passing on the luck of one seed"
+      },
+      {
+        "name": "origin/feat/r2-westafrica2",
+        "commit": "4df2d940aacf01e0865147ffddb4ee49032751e6",
+        "committer_date": "2026-08-16T20:39:35-07:00",
+        "subject": "West Africa: eleven roster rows, and Ghana and Senegal stop being islands"
+      },
+      {
+        "name": "origin/feat/roster-anglo",
+        "commit": "5ae65ae07b4a66edf2ba9864e6b3aa2f7acf0966",
+        "committer_date": "2026-08-12T14:56:49-07:00",
+        "subject": "Add Canada, Australia and New Zealand to the 1990 roster"
+      },
+      {
+        "name": "origin/feat/roster-easteur",
+        "commit": "6cd45252ec0081ba82f6363ac52d6c781e8795a5",
+        "committer_date": "2026-08-12T15:01:01-07:00",
+        "subject": "Add the Eastern European roster: Czechoslovakia, Hungary, Romania, Bulgaria, Albania, East Germany"
+      },
+      {
+        "name": "origin/feat/roster-easteur-relations",
+        "commit": "cfc3db5988e0a00644eca4de043a28e3762a0e28",
+        "committer_date": "2026-08-12T15:13:12-07:00",
+        "subject": "OPTIONAL, NOT ON THE ROSTER TIP: Eastern European relations for 1990"
+      },
+      {
+        "name": "origin/feat/roster-expansion",
+        "commit": "b71092dfea713fa5492f222124865e5cecd403c4",
+        "committer_date": "2026-08-09T20:27:55-07:00",
+        "subject": "Eight more nations, and a Ukraine that has to be born"
+      },
+      {
+        "name": "origin/feat/roster-latam",
+        "commit": "539558e3634c3977aa50eaf51f0f453eb8196225",
+        "committer_date": "2026-08-12T15:14:34-07:00",
+        "subject": "Record why an honest Mexico breaks the patronage calibration"
+      },
+      {
+        "name": "origin/feat/roster-mideast",
+        "commit": "25d0e4d778fe3a3270b2d20fd0d3e70d559da436",
+        "committer_date": "2026-08-12T15:23:22-07:00",
+        "subject": "Park the Middle East relations block unloaded, with the measurement that says why"
+      },
+      {
+        "name": "origin/feat/roster-nafrica",
+        "commit": "5b0ded41899aeb2d9f9a262c38baf707d0474d64",
+        "committer_date": "2026-08-12T15:15:12-07:00",
+        "subject": "Relations for the Maghreb, Libya and Sudan in 1990"
+      },
+      {
+        "name": "origin/feat/roster-postsoviet",
+        "commit": "0f003aebad469be1b8a2a660a01e6bdd40d5e861",
+        "committer_date": "2026-08-12T15:17:00-07:00",
+        "subject": "Drop a relation write the Baltic block already overwrote"
+      },
+      {
+        "name": "origin/feat/roster-seasia",
+        "commit": "ee5cfb661615f4577a1757b39507897afd3342b5",
+        "committer_date": "2026-08-12T15:20:00-07:00",
+        "subject": "Source the East Asian investment shares and add the region's defining dyads"
+      },
+      {
+        "name": "origin/feat/roster-southasia",
+        "commit": "a9e9c48d285e248c61c23accf976cf9c5aa1cb4c",
+        "committer_date": "2026-08-12T15:07:20-07:00",
+        "subject": "Roster: add Bangladesh, Sri Lanka, Nepal, Afghanistan and Myanmar"
+      },
+      {
+        "name": "origin/feat/roster-ssafrica",
+        "commit": "5ec7ada71f5d384e1d23b24de3239f90b4ef7821",
+        "committer_date": "2026-08-12T15:08:32-07:00",
+        "subject": "Sub-Saharan Africa: 1990 relations for the twelve"
+      },
+      {
+        "name": "origin/feat/roster-westeur",
+        "commit": "23422f328180a9f0da63c1798e7a9e3c42b6c097",
+        "committer_date": "2026-08-12T15:00:20-07:00",
+        "subject": "Add twelve Western European nations to the 1990 roster"
+      },
+      {
+        "name": "origin/feat/runtime-nation-ids",
+        "commit": "b526acdd129b1c89c55d74bf678cff497b3ff121",
+        "committer_date": "2026-08-12T08:46:45-07:00",
+        "subject": "Address three of QA's four findings; two items still open"
+      },
+      {
+        "name": "origin/feat/statecraft",
+        "commit": "5ad25fc6faf4e60cb7955d3127394cb8dd72f5b2",
+        "committer_date": "2026-08-10T16:50:25-07:00",
+        "subject": "Price statecraft in political capital, and let a government renege"
+      },
+      {
+        "name": "origin/feat/stratagems",
+        "commit": "c454c81a2ddf95917745ce1a96363e501bed449d",
+        "committer_date": "2026-08-12T07:26:14-07:00",
+        "subject": "Phase 1.2 and 1.4: relations as a matrix, and a century as an invariant"
+      },
+      {
+        "name": "origin/feat/tech-aerospace",
+        "commit": "c725bd49726d57a8b2ae9815d72b7e4088396ced",
+        "committer_date": "2026-08-10T04:55:34-07:00",
+        "subject": "Aerospace: the reconnaissance-strike complex, 1990 to the sixth generation"
+      },
+      {
+        "name": "origin/feat/tech-agriculture",
+        "commit": "6fec07544a6590d95566776d953b19c0a6551682",
+        "committer_date": "2026-08-10T04:58:05-07:00",
+        "subject": "Agriculture: the branch a poor country can actually climb"
+      },
+      {
+        "name": "origin/feat/tech-biotech",
+        "commit": "07cb5d7ec4fd3225d7ac3c71f0058abd2f81426f",
+        "committer_date": "2026-08-09T20:39:26-07:00",
+        "subject": "State hashing and the calibration tests SPEC demands"
+      },
+      {
+        "name": "origin/feat/tech-eras",
+        "commit": "e0830bf3069c6feb4515502394c5ef8327af72a2",
+        "committer_date": "2026-08-09T20:34:48-07:00",
+        "subject": "Technology eras: a frontier, catch-up diffusion, and paradigms that rotate"
+      },
+      {
+        "name": "origin/feat/tech-materials",
+        "commit": "5c35a45adecac923b01ab8a7eb4492eb10698cb0",
+        "committer_date": "2026-08-10T04:53:48-07:00",
+        "subject": "Materials & Manufacturing: thirty-two technologies, mostly in chains"
+      },
+      {
+        "name": "origin/feat/tech-transport",
+        "commit": "07cb5d7ec4fd3225d7ac3c71f0058abd2f81426f",
+        "committer_date": "2026-08-09T20:39:26-07:00",
+        "subject": "State hashing and the calibration tests SPEC demands"
+      },
+      {
+        "name": "origin/feat/ui-depth",
+        "commit": "2e6640bd29c2f5b88465d31eccb68001ef5a012e",
+        "committer_date": "2026-08-09T20:40:43-07:00",
+        "subject": "Web UI: a history the game can be read from"
+      },
+      {
+        "name": "origin/feat/web-stratagems",
+        "commit": "f0f55214d37f20f5a408852aa8bcebf76b271a07",
+        "committer_date": "2026-08-12T13:01:21-07:00",
+        "subject": "Bound the offer list, and tighten a test that could not fail"
+      },
+      {
+        "name": "origin/fix/deterrence-curve",
+        "commit": "c36ce5f72b9ab65a04de81436538dc2c4b99af5b",
+        "committer_date": "2026-08-12T16:58:08-07:00",
+        "subject": "Deterrence is a curve, not a wall — and the critical path unblocks"
+      },
+      {
+        "name": "origin/fix/poor-nation-headroom",
+        "commit": "d5ab5ffdf22d76c0f8df8cbbfbaf0a1c3a1bd7b2",
+        "committer_date": "2026-08-13T20:15:37-07:00",
+        "subject": "Record the tail finding, and that three tests were reading one seed each"
+      },
+      {
+        "name": "origin/fix/resource-pass-budget",
+        "commit": "37d7da2608d91ceb8bef0f0a81c58bd6af5852d4",
+        "committer_date": "2026-09-02T14:54:57-07:00",
+        "subject": "test: tighten the market-on row bar to one that can go red"
+      },
+      {
+        "name": "origin/fix/single-seed-tests",
+        "commit": "36e85b07c47d883aac2bf6250d7ad30c6ce3e516",
+        "committer_date": "2026-08-13T20:04:27-07:00",
+        "subject": "Two tests read one seed and asserted an absolute; both now read ten"
+      },
+      {
+        "name": "origin/fix/trade-level-effect",
+        "commit": "5cd662c6feb448ec6b1149a0b509174a2816a8b4",
+        "committer_date": "2026-08-12T06:59:53-07:00",
+        "subject": "Diagnose the embargo, and lock the erosion instead of the deadline"
+      },
+      {
+        "name": "origin/influence-parked",
+        "commit": "6ebe98d2c70cf3fb02b756fa13b1cfd519476095",
+        "committer_date": "2026-08-18T12:22:45-07:00",
+        "subject": "PARKED: influence merge, red on one calibration bound"
+      },
+      {
+        "name": "origin/ladder-rebase",
+        "commit": "9ffc7793837dde0356e29597a090841b12da9f58",
+        "committer_date": "2026-08-17T16:01:12-07:00",
+        "subject": "Merge branch 'perf/century-run' into ladder-rebase"
+      },
+      {
+        "name": "origin/master",
+        "commit": "485c223f60d5ff6e46f6ae17164bf1ee3a8764d9",
+        "committer_date": "2026-09-08T13:19:09-07:00",
+        "subject": "Record completed fiscal campaigns and final cross-platform QA"
+      },
+      {
+        "name": "origin/perf/century-run",
+        "commit": "12c3e29e2befa6349fa653f0bbb2506b6bf65c70",
+        "committer_date": "2026-08-17T14:39:13-07:00",
+        "subject": "The century run was never the technology tree: it was a triangle walked wrong"
+      },
+      {
+        "name": "origin/preserved/qa-worktree-edits",
+        "commit": "6bd117178374a1c69dacf29e096998b5c044346d",
+        "committer_date": "2026-08-30T12:23:57-07:00",
+        "subject": "preserve: uncommitted edits from 22 QA worktrees, before deleting them"
+      },
+      {
+        "name": "origin/qa/allmerge",
+        "commit": "147229c0335ca7a65caf4388c40b5370cfcb1f6e",
+        "committer_date": "2026-08-12T18:36:26-07:00",
+        "subject": "QA probes (not for merge)"
+      },
+      {
+        "name": "origin/qa/lens-emergent",
+        "commit": "d90a7103374d24da7ec2d710e4a5263192987e6f",
+        "committer_date": "2026-08-12T15:44:13-07:00",
+        "subject": "QA lens: emergent-history measurement harness (ignored tests, scratch only)"
+      },
+      {
+        "name": "origin/qa/merge-trial",
+        "commit": "d8c18a82ea7fe55372d30bac0f3e3328f1720780",
+        "committer_date": "2026-08-12T08:32:50-07:00",
+        "subject": "Merge branch 'feat/nations-as-data' into qa/merge-trial"
+      },
+      {
+        "name": "origin/qa/roster-merge-lens",
+        "commit": "23bf714b1742325a645f79eadc095420861249ef",
+        "committer_date": "2026-08-12T15:39:51-07:00",
+        "subject": "QA: tidy ALL_NATION_IDS terminator"
+      },
+      {
+        "name": "origin/wip/ids-merged",
+        "commit": "75ad9b4634a0626f42d994e5046d8817d3012b42",
+        "committer_date": "2026-08-12T14:39:08-07:00",
+        "subject": "WIP: feat/runtime-nation-ids merged and conflicts resolved — NOT for master yet"
+      },
+      {
+        "name": "origin/wip/ladder-merged",
+        "commit": "89819f60d955a11b35ec0a45ef86051c77cfac76",
+        "committer_date": "2026-08-12T14:30:14-07:00",
+        "subject": "WIP: feat/ladder-fixes merged and conflicts resolved — NOT for master yet"
+      },
+      {
+        "name": "origin/worktree-wf_63f836e8-099-1",
+        "commit": "9f845f75f3f240132612028d65bc6daa88fca9fc",
+        "committer_date": "2026-08-10T04:54:09-07:00",
+        "subject": "Computing & Software: thirty-two technologies"
+      },
+      {
+        "name": "origin/worktree-wf_63f836e8-099-2",
+        "commit": "d2fe7a2ecc1d32ff02ac29170a8d654a32865491",
+        "committer_date": "2026-08-10T04:53:44-07:00",
+        "subject": "Communications & Space: thirty technologies, four chains"
+      },
+      {
+        "name": "origin/worktree-wf_63f836e8-099-6",
+        "commit": "f881652c5bbd505de3dc2e876794e21d97788d8b",
+        "committer_date": "2026-08-10T04:52:31-07:00",
+        "subject": "Tech: the Biotech & Medicine domain"
+      },
+      {
+        "name": "origin/worktree-wf_63f836e8-099-7",
+        "commit": "843d20197543baa90177e5fa87292eaecf9f91a6",
+        "committer_date": "2026-08-10T04:50:59-07:00",
+        "subject": "Tech: the transport domain, from the box to the driverless corridor"
+      }
+    ],
+    "active_only_commits": 11,
+    "master_only_commits": 26,
+    "merge_bases": [
+      "ebddf7a47fc5d46fb0b01fd88dde9135e0384ce3",
+      "fa2b4a025094a904dfa1401aea0f1f4a0d4f2c85"
+    ],
+    "trial_merge": {
+      "command": "git merge-tree --write-tree --messages 5f7f355502f17bd6bd8f0383a2d14f0024fa7884 485c223f60d5ff6e46f6ae17164bf1ee3a8764d9",
+      "exit_code": 1,
+      "advisory_tree": "c4c253e6bb05c40b018e3464984a5261255cc9e1",
+      "conflict_paths": [
+        "COMPANIES.md",
+        "ROADMAP.md",
+        "docs/art/P0_MANIFEST.md",
+        "spheres-sim/src/companies.rs",
+        "spheres-sim/src/lib.rs",
+        "spheres-web/src/equipment_supply_view.rs",
+        "spheres-web/src/main.rs",
+        "spheres-web/ui/arsenal-models.js",
+        "spheres-web/ui/index.html"
+      ],
+      "branch_merge_performed": false
+    }
+  },
+  "hardware": {
+    "id": "SPHERES-REF-WIN-01",
+    "captured_utc": "2026-09-11T00:46:59.3835985Z",
+    "os": "Microsoft Windows 11 Home",
+    "os_version": "10.0.26200",
+    "os_build": "26200",
+    "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor           ",
+    "physical_cores": 8,
+    "logical_processors": 16,
+    "usable_physical_memory_bytes": 33408655360,
+    "gpu_query": "nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader,nounits",
+    "gpu_query_result": "NVIDIA GeForce RTX 5070, 12227, 591.86",
+    "displays": [
+      {
+        "Name": "NVIDIA GeForce RTX 5070",
+        "DriverVersion": "32.0.15.9186",
+        "CurrentHorizontalResolution": 3440,
+        "CurrentVerticalResolution": 1440
+      },
+      {
+        "Name": "AMD Radeon(TM) Graphics",
+        "DriverVersion": "32.0.13018.6",
+        "CurrentHorizontalResolution": null,
+        "CurrentVerticalResolution": null
+      }
+    ],
+    "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18)",
+    "cargo": "cargo 1.98.0 (797e8a9bc 2026-08-05)",
+    "node": "v24.12.0",
+    "git": "git version 2.51.1.windows.1",
+    "ci_node_major": 22,
+    "baseline_measurement_configuration": "release tests; native workstation; existing apps not controlled; no concurrent task compilation/tests during lifetime samples"
+  },
+  "locations": {
+    "primary_repo": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres",
+    "worktrees": {
+      "active": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration",
+        "input_revision": "5f7f355502f17bd6bd8f0383a2d14f0024fa7884",
+        "input_tree": "06dcdca2421efe8ed02d02c3edd275bdaa980a17",
+        "branch": "codex/campaign-certification",
+        "clean_at_verification": true
+      },
+      "master": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\master-baseline",
+        "input_revision": "485c223f60d5ff6e46f6ae17164bf1ee3a8764d9",
+        "input_tree": "530ab069b448bde786cf31c38784b671e0f8cbc2",
+        "branch": "detached",
+        "clean_at_verification": true
+      }
+    },
+    "evidence": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S01",
+    "migration_campaigns": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\disposable-campaigns",
+    "fixtures": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures",
+    "active_build_cache": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\Spheres\\company-sim-target",
+    "master_build_cache": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\master-target"
+  },
+  "protected_campaign_files": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\pre-claude-ebddf7a-campaign.json",
+      "bytes": 4099603,
+      "sha256": "9d373109fc4b1d4e838b73a3e24624679e872360f3f5b52225e8c3f928bb2bac",
+      "sha256_after": "9d373109fc4b1d4e838b73a3e24624679e872360f3f5b52225e8c3f928bb2bac",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\pre-company-ammunition-campaign.json",
+      "bytes": 4099603,
+      "sha256": "d104aec43643a9b40b39d2284384fa32a983c434f597a753a227ba44379e7d14",
+      "sha256_after": "d104aec43643a9b40b39d2284384fa32a983c434f597a753a227ba44379e7d14",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\pre-company-refits-campaign.json",
+      "bytes": 4099603,
+      "sha256": "671b7170a4fd811900052a37fa1d6d620dddc3fd6e27a539c575513243ae38b0",
+      "sha256_after": "671b7170a4fd811900052a37fa1d6d620dddc3fd6e27a539c575513243ae38b0",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\pre-government-room-20260907-campaign.json",
+      "bytes": 4099603,
+      "sha256": "b34dbabfd8f4f5b7ebce6532021b10b9e9a71991f09076e4e08090a52e198690",
+      "sha256_after": "b34dbabfd8f4f5b7ebce6532021b10b9e9a71991f09076e4e08090a52e198690",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\save.json",
+      "bytes": 4099603,
+      "sha256": "bdd0587be567a505356cccd3d2cc9ef413e325ccab632043d2e9049302354a1d",
+      "sha256_after": "bdd0587be567a505356cccd3d2cc9ef413e325ccab632043d2e9049302354a1d",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\save.json.bak",
+      "bytes": 4099603,
+      "sha256": "b34dbabfd8f4f5b7ebce6532021b10b9e9a71991f09076e4e08090a52e198690",
+      "sha256_after": "b34dbabfd8f4f5b7ebce6532021b10b9e9a71991f09076e4e08090a52e198690",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\saves\\auto-2.json",
+      "bytes": 3723656,
+      "sha256": "850a092eaa2c11cca02910574e48bbe9f3fbfab69742f39fee52f743e870beea",
+      "sha256_after": "850a092eaa2c11cca02910574e48bbe9f3fbfab69742f39fee52f743e870beea",
+      "unchanged": true
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\economy-preview\\saves\\auto-3.json",
+      "bytes": 4439498,
+      "sha256": "d9bb968255066b86d84559b924af04052a2ed8dfcea7587c305015362fe6b1fd",
+      "sha256_after": "d9bb968255066b86d84559b924af04052a2ed8dfcea7587c305015362fe6b1fd",
+      "unchanged": true
+    }
+  ],
+  "checks": [
+    {
+      "id": "active-native",
+      "candidate": "5f7f355502f17bd6bd8f0383a2d14f0024fa7884",
+      "command": "cargo test --locked --release --workspace --no-fail-fast",
+      "exit_code": 0,
+      "status": "passed_with_exclusions",
+      "totals": {
+        "passed": 1271,
+        "failed": 0,
+        "ignored": 71,
+        "completed_test_targets_including_doc_tests": 44
+      },
+      "log": "evidence/active-native.log",
+      "sha256": "7731cce7e5d56a026687cd0ab2826d9fb9ba3e6364b49f99b00286de06aead30"
+    },
+    {
+      "id": "active-ui-unit",
+      "candidate": "5f7f355502f17bd6bd8f0383a2d14f0024fa7884",
+      "command": "node tools/ui/run-unit.cjs",
+      "exit_code": 0,
+      "status": "passed_with_exclusions",
+      "totals": {
+        "tests": 1372,
+        "pass": 1371,
+        "fail": 0,
+        "skipped": 1
+      },
+      "log": "evidence/active-ui-unit.log",
+      "sha256": "b85c0cd00bf35267a21c80b82c61f77480e0d8c239b56b64f80031838900c198"
+    },
+    {
+      "id": "active-art-audit",
+      "candidate": "5f7f355502f17bd6bd8f0383a2d14f0024fa7884",
+      "command": "node tools/ui/bench_art.cjs --check",
+      "exit_code": 1,
+      "status": "known_failure",
+      "log": "evidence/active-art-audit.log",
+      "sha256": "974f9d459a03b8ea4e4f49d5dd06bd012c581fcefc2c693f0ecfbec857a96555",
+      "reason": "unsupported materialClasses vertex layout",
+      "measured_over_budget_rows": null
+    },
+    {
+      "id": "active-profile",
+      "candidate": "5f7f355502f17bd6bd8f0383a2d14f0024fa7884",
+      "status": "measured_within_budget_not_qualified",
+      "exit_code": 0,
+      "engineering_budgets": {
+        "simulation_history_p95_ms": 300,
+        "whole_turn_p95_ms": 400,
+        "whole_turn_max_ms": 750,
+        "headless_os_peak_working_set_bytes": 1073741824,
+        "headless_max_sampled_private_bytes": 1073741824
+      },
+      "budget_violations": [],
+      "command": "tools/campaign/run-lifetime-baseline.ps1 (exact arguments in runner-result.json)",
+      "result": "evidence/active-profile/runner-result.json",
+      "result_sha256": "0e8c477e345a2c47851058c2c986600de464a826bd911b72b29f536ace01c652",
+      "profile": "evidence/active-profile/profile.json",
+      "profile_sha256": "fccf9e7d6ae365d06b39fd42499f15965e1c654134b05b807f797c994f3563fe",
+      "independent_cases": 6,
+      "samples_per_case": 31,
+      "ignored_tests_explicitly_executed": 1
+    },
+    {
+      "id": "master-native",
+      "candidate": "485c223f60d5ff6e46f6ae17164bf1ee3a8764d9",
+      "command": "cargo test --locked --release --workspace --no-fail-fast",
+      "exit_code": 0,
+      "status": "passed_with_exclusions",
+      "totals": {
+        "passed": 1339,
+        "failed": 0,
+        "ignored": 70,
+        "completed_test_targets_including_doc_tests": 52
+      },
+      "log": "evidence/master-native.log",
+      "sha256": "449e2cee812c8494eb3bc184eb3448df9449b2ddce36cdfb602ad5fba5102055"
+    },
+    {
+      "id": "master-ui-unit",
+      "candidate": "485c223f60d5ff6e46f6ae17164bf1ee3a8764d9",
+      "command": "node tools/ui/run-unit.cjs",
+      "exit_code": 0,
+      "status": "passed",
+      "totals": {
+        "tests": 1093,
+        "pass": 1093,
+        "fail": 0,
+        "skipped": 0
+      },
+      "log": "evidence/master-ui-unit.log",
+      "sha256": "82b62b7b2728539580910c5fef8abc4883c01c522b7ac65bed7db4c1645e579f"
+    },
+    {
+      "id": "master-art-audit",
+      "candidate": "485c223f60d5ff6e46f6ae17164bf1ee3a8764d9",
+      "command": "node tools/ui/bench_art.cjs --check",
+      "exit_code": 1,
+      "status": "known_failure",
+      "log": "evidence/master-art-audit.log",
+      "sha256": "ddee89cbd845be36fbeb3b3967b3d2b75ce257d1cb66db2257c2c2341ec6e7eb",
+      "reason": "stale P0_BUDGETS.md and 33 over-budget rows",
+      "measured_over_budget_rows": 33
+    },
+    {
+      "id": "master-profile",
+      "candidate": "485c223f60d5ff6e46f6ae17164bf1ee3a8764d9",
+      "status": "measured_with_budget_failures",
+      "exit_code": 0,
+      "engineering_budgets": {
+        "simulation_history_p95_ms": 300,
+        "whole_turn_p95_ms": 400,
+        "whole_turn_max_ms": 750,
+        "headless_os_peak_working_set_bytes": 1073741824,
+        "headless_max_sampled_private_bytes": 1073741824
+      },
+      "budget_violations": [
+        {
+          "scenario": "industry_and_war",
+          "checkpoint_years": 0,
+          "metric": "simulation_history_p95_ms",
+          "measured": 584.4245,
+          "ceiling": 300
+        },
+        {
+          "scenario": "industry_and_war",
+          "checkpoint_years": 0,
+          "metric": "whole_turn_p95_ms",
+          "measured": 625.7388000000001,
+          "ceiling": 400
+        },
+        {
+          "scenario": "industry_and_war",
+          "checkpoint_years": 0,
+          "metric": "whole_turn_max_ms",
+          "measured": 5453.8924,
+          "ceiling": 750
+        },
+        {
+          "scenario": "industry_and_war",
+          "checkpoint_years": 10,
+          "metric": "simulation_history_p95_ms",
+          "measured": 3335.8299,
+          "ceiling": 300
+        },
+        {
+          "scenario": "industry_and_war",
+          "checkpoint_years": 10,
+          "metric": "whole_turn_p95_ms",
+          "measured": 3412.5949,
+          "ceiling": 400
+        },
+        {
+          "scenario": "industry_and_war",
+          "checkpoint_years": 10,
+          "metric": "whole_turn_max_ms",
+          "measured": 9531.1923,
+          "ceiling": 750
+        },
+        {
+          "scenario": "industry_and_war",
+          "checkpoint_years": 30,
+          "metric": "simulation_history_p95_ms",
+          "measured": 7626.6867999999995,
+          "ceiling": 300
+        },
+        {
+          "scenario": "industry_and_war",
+          "checkpoint_years": 30,
+          "metric": "whole_turn_p95_ms",
+          "measured": 7704.9833,
+          "ceiling": 400
+        },
+        {
+          "scenario": "industry_and_war",
+          "checkpoint_years": 30,
+          "metric": "whole_turn_max_ms",
+          "measured": 15527.2053,
+          "ceiling": 750
+        }
+      ],
+      "command": "tools/campaign/run-lifetime-baseline.ps1 (exact arguments in runner-result.json)",
+      "result": "evidence/master-profile/runner-result.json",
+      "result_sha256": "94b39b7261c87d9225086465fd540a346e50e25d6ee308ad9a4aad0a6efec07a",
+      "profile": "evidence/master-profile/profile.json",
+      "profile_sha256": "a24b4a5238d1cf89428d9e627ae20f4c03452941db1244c2d8ceda804dc01a72",
+      "independent_cases": 6,
+      "samples_per_case": 31,
+      "ignored_tests_explicitly_executed": 1
+    }
+  ],
+  "preservation_contracts": [
+    "ECONOMY_INTEGRATION.md",
+    "COMPANY_AND_SAVE_CONTRACT.md",
+    "RUNTIME_AND_VALIDATION.md"
+  ],
+  "performance_contract": "PERFORMANCE_BASELINE.md",
+  "current_session_changes": "Approved pathway, source/ownership/test baseline, and headless measurement tooling only; no game runtime changes.",
+  "output_revision": "The Git commit containing this manifest; resolve with git log -1 --format=%H -- docs/campaign-certification/S01/manifest.json. Full output SHA is also reported at session close.",
+  "next_session": {
+    "id": "S02",
+    "status": "planned",
+    "branch": "codex/campaign-certification",
+    "goal": "Reconcile population, financial construction, operating output, GDP and fiscal ownership."
+  },
+  "limitations": [
+    "Neither branch has been merged with the other.",
+    "Default suites exclude ignored cases; profile test is explicitly invoked separately.",
+    "Node contract tests are not live browser playtests.",
+    "No fresh GitHub CI/Linux/package/UI FPS or latency claim.",
+    "Technical USA legacy workloads do not add a USA campaign requirement and do not cover modern supplier/party/operational ledgers."
+  ]
+}

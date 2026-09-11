@@ -1,0 +1,33 @@
+{
+  "id": "SPHERES-REF-WIN-01",
+  "captured_utc": "2026-09-11T00:46:59.3835985Z",
+  "os": "Microsoft Windows 11 Home",
+  "os_version": "10.0.26200",
+  "os_build": "26200",
+  "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor           ",
+  "physical_cores": 8,
+  "logical_processors": 16,
+  "usable_physical_memory_bytes": 33408655360,
+  "gpu_query": "nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv,noheader,nounits",
+  "gpu_query_result": "NVIDIA GeForce RTX 5070, 12227, 591.86",
+  "displays": [
+    {
+      "Name": "NVIDIA GeForce RTX 5070",
+      "DriverVersion": "32.0.15.9186",
+      "CurrentHorizontalResolution": 3440,
+      "CurrentVerticalResolution": 1440
+    },
+    {
+      "Name": "AMD Radeon(TM) Graphics",
+      "DriverVersion": "32.0.13018.6",
+      "CurrentHorizontalResolution": null,
+      "CurrentVerticalResolution": null
+    }
+  ],
+  "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18)",
+  "cargo": "cargo 1.98.0 (797e8a9bc 2026-08-05)",
+  "node": "v24.12.0",
+  "git": "git version 2.51.1.windows.1",
+  "ci_node_major": 22,
+  "baseline_measurement_configuration": "release tests; native workstation; existing apps not controlled; no concurrent task compilation/tests during lifetime samples"
+}

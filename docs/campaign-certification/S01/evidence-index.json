@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "files": [
+    {
+      "path": "evidence/.gitattributes",
+      "bytes": 117,
+      "sha256": "12ab0a5d0a93b0c5f1547cd280dc88875adc30cbeec1d27823a6f03d948b00fe"
+    },
+    {
+      "path": "evidence/active-art-audit.log",
+      "bytes": 228,
+      "sha256": "974f9d459a03b8ea4e4f49d5dd06bd012c581fcefc2c693f0ecfbec857a96555"
+    },
+    {
+      "path": "evidence/active-native.log",
+      "bytes": 129863,
+      "sha256": "7731cce7e5d56a026687cd0ab2826d9fb9ba3e6364b49f99b00286de06aead30"
+    },
+    {
+      "path": "evidence/active-profile/memory-samples.csv",
+      "bytes": 12067,
+      "sha256": "ae113d0fe95a60e3c050b2cdce34c3e89fe9011fe29915c6c18881010ca0c1a1"
+    },
+    {
+      "path": "evidence/active-profile/profile.json",
+      "bytes": 56202,
+      "sha256": "fccf9e7d6ae365d06b39fd42499f15965e1c654134b05b807f797c994f3563fe"
+    },
+    {
+      "path": "evidence/active-profile/runner-result.json",
+      "bytes": 3536,
+      "sha256": "0e8c477e345a2c47851058c2c986600de464a826bd911b72b29f536ace01c652"
+    },
+    {
+      "path": "evidence/active-profile/stderr.log",
+      "bytes": 1066,
+      "sha256": "75ba232c3c0ebce65ced15c23bffec022ae1d8ecebf49d969bd3bb66ba9a0b08"
+    },
+    {
+      "path": "evidence/active-profile/stdout.log",
+      "bytes": 166,
+      "sha256": "86f9ac65dbcce269d2f2b7479dc1f9c6b379b0b659050012df7312863db3405c"
+    },
+    {
+      "path": "evidence/active-profile-runner.log",
+      "bytes": 3614,
+      "sha256": "9a39e166b37053b2b54e2f6dd051a4b7f69dbac5fd29063997562a00d7dd0fea"
+    },
+    {
+      "path": "evidence/active-ui-unit.log",
+      "bytes": 137480,
+      "sha256": "b85c0cd00bf35267a21c80b82c61f77480e0d8c239b56b64f80031838900c198"
+    },
+    {
+      "path": "evidence/branch-divergence.txt",
+      "bytes": 3974,
+      "sha256": "59c21697f05b66272fb7c8b220f2a8b26e3f37323befa9809879c3d0004a380b"
+    },
+    {
+      "path": "evidence/hardware.json",
+      "bytes": 1259,
+      "sha256": "7922ba6e60175987df47020638ad5ccc5df6be50c1a28e281cb135e75060aa60"
+    },
+    {
+      "path": "evidence/master-art-audit.log",
+      "bytes": 4633,
+      "sha256": "ddee89cbd845be36fbeb3b3967b3d2b75ce257d1cb66db2257c2c2341ec6e7eb"
+    },
+    {
+      "path": "evidence/master-native.log",
+      "bytes": 139504,
+      "sha256": "449e2cee812c8494eb3bc184eb3448df9449b2ddce36cdfb602ad5fba5102055"
+    },
+    {
+      "path": "evidence/master-profile/memory-samples.csv",
+      "bytes": 29849,
+      "sha256": "433636d8a1c89467b38411571d8ca9d53b09e1be6b90c848d3ceb7cdae4ccc7d"
+    },
+    {
+      "path": "evidence/master-profile/profile.json",
+      "bytes": 57044,
+      "sha256": "a24b4a5238d1cf89428d9e627ae20f4c03452941db1244c2d8ceda804dc01a72"
+    },
+    {
+      "path": "evidence/master-profile/runner-result.json",
+      "bytes": 3546,
+      "sha256": "94b39b7261c87d9225086465fd540a346e50e25d6ee308ad9a4aad0a6efec07a"
+    },
+    {
+      "path": "evidence/master-profile/stderr.log",
+      "bytes": 1066,
+      "sha256": "d65789d78085f4c070936d76227071f1eff7ec6bddaea59f8a70ea909ea0a4d0"
+    },
+    {
+      "path": "evidence/master-profile/stdout.log",
+      "bytes": 166,
+      "sha256": "5a8633e5ea73ef154b3db579802e1eef2f9ddaf620e99ffbb92d35843154ad61"
+    },
+    {
+      "path": "evidence/master-profile-runner.log",
+      "bytes": 3624,
+      "sha256": "fbfdb59efd050f8e9665001360c3adaa0e840a0e32444566cb182cf74e0b4701"
+    },
+    {
+      "path": "evidence/master-ui-unit.log",
+      "bytes": 109365,
+      "sha256": "82b62b7b2728539580910c5fef8abc4883c01c522b7ac65bed7db4c1645e579f"
+    },
+    {
+      "path": "evidence/merge-tree.log",
+      "bytes": 3610,
+      "sha256": "ace40a4ddb390a40998e32bc7acdd339fa677cb3e1116f6b70c8520f3871627d"
+    },
+    {
+      "path": "evidence/protected-campaigns-before.json",
+      "bytes": 2069,
+      "sha256": "ebf6d3bb448fb89cbcb5db24e020a5a42494bc31be48764d22fe5eb50c3deca3"
+    },
+    {
+      "path": "evidence/remote-refs.txt",
+      "bytes": 14434,
+      "sha256": "8b7b9f5d88ad09c3fb2160af5228046ad8163932fa0e39443b8f631f4ed74c57"
+    },
+    {
+      "path": "evidence/runner-existing-evidence-guard.log",
+      "bytes": 1408,
+      "sha256": "acef82009f98f99ab0b386cc16915e393d1442855f46ac2a333bdbc83a8ae212"
+    }
+  ]
+}
