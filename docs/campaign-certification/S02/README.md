@@ -58,6 +58,8 @@ Fresh integration-browser campaigns explicitly enable the connected economy. An 
 
 Legacy peace terms changed national residents by a percentage while transferring whole provinces. That can leave the old provincial estimates above the current national total. Initial adoption keeps that national total and proportionally reduces only the excess mapped estimates; an under-mapped country's remainder stays explicitly unallocated. The affected country's source note records the original estimate, retained total and scale. Ownership, assets, GDP, cash and debt are unchanged. Loading alone does not make this adjustment, and already-enabled population books still refuse inconsistencies rather than repairing them. The year-10 Kuwait benchmark exposed this case; the regression reproduces its exact resident totals through the existing province-transfer API.
 
+The year-30 checkpoint also exposed a positive rounding remainder in China's provincial totals. Workforce allocation now divides positive demand proportionally even for such tiny resident accounts; it cannot send the entire remainder into the last sector and overfill its jobs. The remainder is retained, and the same strict staffing validation applies. Regression checks cover zero, tiny and ordinary populations; a separately invoked archive check adopts the unchanged checkpoint and compares two daily save/resume steps.
+
 | Saved form | S02 behavior |
 | --- | --- |
 | Legacy raw world | Retains disabled connected-economy defaults until explicit adoption. Existing compatibility repairs can still normalize older supported saves; loading does not enroll the new economic books. |

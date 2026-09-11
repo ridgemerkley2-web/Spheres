@@ -310,6 +310,105 @@ fn initial_population_reconciliation_refuses_nonfinite_or_negative_resident_esti
     assert_eq!(save(&w), before);
 }
 
+#[test]
+#[ignore = "requires unchanged SPHERES_POPULATION_LEGACY_CHECKPOINT input; no campaign warmup"]
+fn archived_legacy_checkpoint_adoption_preserves_accounts_and_replays() {
+    let path = std::env::var_os("SPHERES_POPULATION_LEGACY_CHECKPOINT")
+        .expect("provide the original archived legacy checkpoint path");
+    let input = std::fs::read_to_string(&path).unwrap();
+    // The performance archives use the browser presentation envelope. Follow
+    // storage::decode's simulation boundary without editing the input archive;
+    // this test does not claim to validate its presentation history or log.
+    let envelope: serde_json::Value = serde_json::from_str(&input).unwrap();
+    let mut direct = if envelope["format"] == "spheres-campaign" {
+        assert_eq!(envelope["version"], 1);
+        load(&serde_json::to_string(&envelope["world"]).unwrap()).unwrap()
+    } else {
+        load(&input).unwrap()
+    };
+    assert!(!direct.population_system.enabled);
+    let nation = direct
+        .player
+        .expect("archived checkpoint has an actual player");
+    let before = direct.clone();
+    let command = spheres_sim::Command::EnableConnectedEconomy { nation };
+    let input_hash = spheres_sim::state_hash(&direct);
+    spheres_sim::apply_command(&mut direct, &command).unwrap();
+    spheres_sim::connected_economy::validate(&direct).unwrap();
+    assert_eq!(direct.districts, before.districts);
+    assert_eq!(
+        serde_json::to_value(&direct.production).unwrap(),
+        serde_json::to_value(&before.production).unwrap()
+    );
+    assert_eq!(
+        serde_json::to_value(&direct.companies).unwrap(),
+        serde_json::to_value(&before.companies).unwrap()
+    );
+    assert_eq!(
+        serde_json::to_value(&direct.manufacturing).unwrap(),
+        serde_json::to_value(&before.manufacturing).unwrap()
+    );
+    assert_eq!(direct.rng, before.rng);
+    for prior in &before.nations {
+        let after = direct.nation(prior.id);
+        assert_eq!(
+            (after.population, after.gdp, after.debt_gdp),
+            (prior.population, prior.gdp, prior.debt_gdp)
+        );
+        if prior.on_the_books() {
+            assert_eq!(
+                (after.treasury_bn, after.debt_bn),
+                (prior.treasury_bn, prior.debt_bn)
+            );
+        }
+        assert_eq!(
+            serde_json::to_value(&after.arsenal).unwrap(),
+            serde_json::to_value(&prior.arsenal).unwrap()
+        );
+        assert_eq!(
+            serde_json::to_value(&after.equipment).unwrap(),
+            serde_json::to_value(&prior.equipment).unwrap()
+        );
+        if prior.alive {
+            let mapped: f64 = before
+                .districts
+                .iter()
+                .filter(|(_, owner)| **owner == prior.id)
+                .map(|(d, _)| districts::population_of(&before, d).unwrap_or(0.0))
+                .sum();
+            let residual = prior.population - mapped;
+            if residual > 0.0 {
+                let preserved = direct.population_system.unallocated[&prior.id].population_m();
+                assert!(
+                    preserved > 0.0,
+                    "{} positive residual must not disappear",
+                    prior.id.name()
+                );
+                assert!(
+                    (preserved - residual).abs() <= residual * 1e-12,
+                    "{} residual changed: {residual:e} -> {preserved:e}",
+                    prior.id.name()
+                );
+            }
+        }
+    }
+    let enrolled = save(&direct);
+    spheres_sim::apply_command(&mut direct, &command).unwrap();
+    assert_eq!(save(&direct), enrolled);
+    let mut resumed = load(&enrolled).unwrap();
+    assert_eq!(save(&resumed), enrolled);
+    for _ in 0..2 {
+        spheres_sim::tick_day(&mut direct, &[]);
+        spheres_sim::tick_day(&mut resumed, &[]);
+        spheres_sim::connected_economy::validate(&direct).unwrap();
+        spheres_sim::connected_economy::validate(&resumed).unwrap();
+        assert_eq!(save(&direct), save(&resumed));
+        resumed = load(&save(&resumed)).unwrap();
+    }
+    eprintln!("Archived population adoption: input={}; date={}; canonical_input_hash={input_hash:016x}; final_hash={:016x}",
+        std::path::Path::new(&path).display(), before.date_str(), spheres_sim::state_hash(&resumed));
+}
+
 fn training_world(id: N) -> (WorldState, String) {
     let mut w = daily();
     let d = district(&w, id);

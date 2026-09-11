@@ -1232,7 +1232,11 @@ fn match_jobs(p: &mut ProvincePopulation) {
             let assigned = if s == last {
                 left
             } else {
-                (filled * ratio(total, demand)).min(left)
+                // filled > 0 already establishes positive demand. The general
+                // ratio helper deliberately ignores tiny denominators; using
+                // it here would send a small cohort's entire remaining pool
+                // to the last sector and overfill that sector's jobs.
+                (filled * (total / demand)).min(left)
             };
             if total > 0.0 {
                 p.filled[s][grade] = assigned;
@@ -2159,4 +2163,42 @@ pub fn district_skill_staffing(w: &WorldState, d: &str, sector: usize, recipe: [
         }
     }
     result
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn tiny_resident_accounts_keep_each_sector_within_its_job_demand() {
+        let w = crate::init::world_1990(crate::world::GameRules {
+            daily_simulation: true,
+            ..Default::default()
+        });
+        // China's unallocated rounding residual in the unchanged 2020 legacy
+        // checkpoint is 2.546585164964199e-11 million. Small accounts are still
+        // real finite accounts; a ratio cutoff must not redirect their workers
+        // into one sector or create a staffing reference above 100%.
+        for people in [0.0, 2.546585164964199e-11, 1e-13, 1e-11, 1e-9, 0.01, 1000.0] {
+            let mut p = seed_province(&w, NationId::China, None, people);
+            match_jobs(&mut p);
+            for s in 0..8 {
+                for g in 0..GRADES {
+                    let demand = p.jobs[s][g] + p.project_jobs[s][g];
+                    assert!(p.filled[s][g] <= demand + people * 1e-12,
+                        "people={people:e}; sector={s}; grade={g}; filled={:e}; demand={demand:e}; raw_staffing={:?}",
+                        p.filled[s][g], p.raw_staffing(s));
+                }
+                assert!(
+                    p.raw_staffing(s) <= 1.0 + 1e-12,
+                    "people={people:e}; sector={s}; staffing={}",
+                    p.raw_staffing(s)
+                );
+            }
+            assert!(
+                (p.employed_m() - p.employed_by_skill.iter().sum::<f64>()).abs() <= people * 1e-12
+            );
+            assert!(p.employed_m() <= p.labor_force_m + people * 1e-12);
+        }
+    }
 }
