@@ -2,11 +2,12 @@
 // transit. Local agent UI verification uses the computer-use browser instead.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),net=require('node:net'),cp=require('node:child_process');
 const {chromium}=require('playwright');
+const integrated=require('./ci-integrated.cjs');
 const root=path.resolve(__dirname,'../..'),out=path.join(root,'artifacts/browser-ci');
 async function port(){const s=net.createServer();await new Promise(r=>s.listen(0,'127.0.0.1',r));const p=s.address().port;await new Promise(r=>s.close(r));return p;}
 (async()=>{
   fs.mkdirSync(out,{recursive:true});const run=fs.mkdtempSync(path.join(out,'campaign-')),p=await port(),url=`http://127.0.0.1:${p}`;
-  const binary=process.env.SPHERES_BINARY||path.join(root,'target/release/spheres-web'+(process.platform==='win32'?'.exe':''));
+  const binary=path.resolve(process.env.SPHERES_BINARY||path.join(root,'target/release/spheres-web'+(process.platform==='win32'?'.exe':'')));
   const server=cp.spawn(binary,['--port',String(p),'--no-open'],{cwd:run,windowsHide:true,stdio:['ignore','pipe','pipe']});
   const log=fs.createWriteStream(path.join(run,'server.log'));server.stdout.pipe(log);server.stderr.pipe(log);
   let browser;
@@ -14,6 +15,7 @@ async function port(){const s=net.createServer();await new Promise(r=>s.listen(0
     for(let n=0;;n++){try{if((await fetch(url+'/api/state')).ok)break;}catch(_){}if(n>=200)throw Error('Disposable server failed to start');await new Promise(r=>setTimeout(r,100));}
     browser=await chromium.launch({headless:true});const page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
     page.setDefaultTimeout(30000);const errors=[];page.on('pageerror',e=>errors.push(e.message));
+    const buildEvidence=await integrated.verifyBuild({page,url,root,run,binary});
     await page.goto(url);await page.locator('#campaignHome').waitFor({state:'visible'});
     assert(await page.locator('#newCampaignPicker').isHidden());
     await page.locator('#openSavesBtn').click();await page.locator('#savedCampaigns').waitFor({state:'visible'});
@@ -27,6 +29,7 @@ async function port(){const s=net.createServer();await new Promise(r=>s.listen(0
     await page.getByRole('button',{name:'Advisor',exact:true}).click();await page.getByRole('heading',{name:'Fund your plan',exact:true}).waitFor();await page.getByRole('button',{name:'Close Your development advisor',exact:true}).click();
     await page.getByRole('button',{name:'Find',exact:true}).click();await page.locator('#worldFindInput').fill('California');await page.locator('[data-find-id="US-CA"]').click();await page.locator('#provinceDossier').waitFor({state:'visible'});
     await page.evaluate(()=>closeProvince());
+    const integrationEvidence=await integrated.panels({page,url,run,out,player:initial.player});
     // Let the normal command channel create the receipt. Lose only the first
     // already-committed response, then recover via the visible receipt button.
     let lost=false;await page.route('**/api/command',async route=>{if(lost)return route.continue();lost=true;await route.fetch();await route.abort('failed');});
@@ -40,6 +43,8 @@ async function port(){const s=net.createServer();await new Promise(r=>s.listen(0
     const saved=await page.request.post(url+'/api/save',{data:{slot:'ci-smoke'}});assert(saved.ok());
     const history=await (await page.request.get(url+'/api/history?nations=USA')).json();
     const loaded=await page.request.post(url+'/api/load',{data:{slot:'ci-smoke'}});assert(loaded.ok());
+    const loadedCapabilities=await integrated.capabilities({page,url,player:initial.player});
+    assert.deepEqual(loadedCapabilities,integrationEvidence.capabilities);
     const restored=await(await page.request.get(url+'/api/history?nations=USA')).json();
     delete restored.session_id;delete history.session_id;assert.deepEqual(restored,history);
     await page.reload();await page.locator('#continueBtn').click();
@@ -47,6 +52,6 @@ async function port(){const s=net.createServer();await new Promise(r=>s.listen(0
     await page.screenshot({path:path.join(out,'research-desktop.png')});await page.setViewportSize({width:414,height:896});
     assert(await page.evaluate(()=>document.querySelector('#decisionDialog').scrollWidth<=document.querySelector('#decisionDialog').clientWidth+1));
     await page.screenshot({path:path.join(out,'research-mobile.png')});assert.deepEqual(errors,[]);
-    fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({passed:true,build:initial.build,lost_committed_response_recovered:lost,save_history_roundtrip:true},null,2));
+    fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({passed:true,build:initial.build,build_evidence:buildEvidence,integrated:integrationEvidence,loaded_capabilities:loadedCapabilities,lost_committed_response_recovered:lost,save_history_roundtrip:true},null,2));
   }finally{if(browser)await browser.close();server.kill();log.end();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

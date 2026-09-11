@@ -1385,3 +1385,212 @@ fn s03_ammunition_property_keeps_pending_and_consumed_supplier_provenance() {
     assert_eq!(serde_json::to_value(&b.nation(HOME).equipment.as_ref().unwrap().ammunition.as_ref().unwrap().supplier_receipts).unwrap(),receipt);
     assert_eq!(national_stock(&b,GROUND),43.0);
 }
+
+/// S05 seam coverage. Opening compatible aircraft, cash, raw materials and
+/// factory/utilities are disclosed technical endowments. All subsequent
+/// ammunition, payment, shipment, construction and firing use real daily paths.
+#[test]
+fn s05_paid_company_air_stores_survive_pending_save_then_feed_operational_strike() {
+    let (mut w, district) = fixture(&[AIR]);
+    arsenal::deliver_design(w.nation_mut(HOME), "synthetic-air_bomb_unguided", 5, 0.0).unwrap();
+    w.production
+        .provinces
+        .iter_mut()
+        .find(|s| s.district == district)
+        .unwrap()
+        .power_grid = 10;
+    w.production
+        .industry
+        .sites
+        .insert(district.clone(), [0, 1, 0, 0, 0, 0, 0]);
+    w.rules.ideology_blocs = true;
+    spheres_sim::government::ensure_all(&mut w);
+    spheres_sim::party_leadership::enable_campaign(&mut w).unwrap();
+    spheres_sim::apply_command(&mut w, &Command::EnableConnectedEconomy { nation: HOME }).unwrap();
+    spheres_sim::apply_command(&mut w, &Command::EnableCompanies { nation: HOME }).unwrap();
+    let company = establish(&mut w, &district, 1.0);
+    real_day(&mut w);
+    let product = supply(&mut w, company, AIR, 120);
+    for _ in 0..20 {
+        if ammo(&w, company, product).stock == 120 {
+            break;
+        }
+        real_day(&mut w);
+    }
+    assert_eq!(
+        ammo(&w, company, product).stock,
+        120,
+        "Real supplier input/work must fill the shelf"
+    );
+    assert_eq!(w.supplier_operations.contracts[&product].kind, "ammunition");
+    assert_eq!(w.supplier_operations.contracts[&product].units_started, 120);
+    assert_eq!(
+        national_stock(&w, AIR),
+        0.0,
+        "Company stock is not government stock"
+    );
+    let purchase_quote = purchase(&mut w, company, product, 60);
+    assert!(purchase_quote.valid);
+    company_order(
+        &mut w,
+        companies::CompanyOrder::AmmoInventory {
+            company,
+            product,
+            stock_target: 0,
+        },
+    );
+    spheres_sim::apply_command(
+        &mut w,
+        &Command::SetConstructionBudget {
+            nation: HOME,
+            daily_budget_bn: 0.01,
+        },
+    )
+    .unwrap();
+    spheres_sim::apply_command(
+        &mut w,
+        &Command::StartProject {
+            nation: HOME,
+            district: district.clone(),
+            kind: production::ProjectKind::Infrastructure,
+        },
+    )
+    .unwrap();
+    let building = w
+        .production
+        .projects
+        .iter()
+        .filter(|p| {
+            p.nation == HOME
+                && p.district == district
+                && p.kind == production::ProjectKind::Infrastructure
+        })
+        .max_by_key(|p| p.id)
+        .unwrap()
+        .id;
+    real_day(&mut w);
+    assert_eq!(
+        national_stock(&w, AIR),
+        0.0,
+        "A settled shipment still needs its delivery time"
+    );
+    assert_eq!(ammo(&w, company, product).stock, 60);
+    let paid_building = w.production.industry.projects[&building].spent_bn;
+    assert!(paid_building > 0.0);
+    assert!(
+        w.companies
+            .ammunition_deliveries
+            .iter()
+            .any(|d| d.company == company && d.delivered_day.is_none())
+    );
+    let saved = spheres_sim::save(&w);
+    let mut resumed = spheres_sim::load(&saved).unwrap();
+    assert_eq!(spheres_sim::save(&resumed), saved);
+    for _ in 0..12 {
+        if national_stock(&w, AIR) == 60.0 {
+            break;
+        }
+        real_day(&mut w);
+        real_day(&mut resumed);
+        assert!(spheres_sim::save(&w) == spheres_sim::save(&resumed));
+    }
+    assert_eq!(national_stock(&w, AIR), 60.0);
+    assert_eq!(ammo(&w, company, product).stock, 60);
+    assert_eq!(
+        w.nation(HOME)
+            .equipment
+            .as_ref()
+            .unwrap()
+            .ammunition
+            .as_ref()
+            .unwrap()
+            .supplier_receipts
+            .len(),
+        1
+    );
+    assert!(w.production.industry.projects[&building].spent_bn > paid_building);
+    assert_eq!(
+        w.production
+            .projects
+            .iter()
+            .find(|p| p.id == building)
+            .unwrap()
+            .resources_used,
+        [0.0; 12]
+    );
+    assert_eq!(
+        w.production.industry.projects[&building].goods_used,
+        spheres_sim::industry::Goods::default()
+    );
+
+    let theatre = spheres_sim::war::theatre_between(&w, HOME, N::Germany);
+    spheres_sim::apply_command(
+        &mut w,
+        &Command::OpenConflict {
+            opener: HOME,
+            target: N::Germany,
+            theatre,
+        },
+    )
+    .unwrap();
+    let conflict = w.conflict_between(HOME, N::Germany).unwrap().id;
+    spheres_sim::apply_command(
+        &mut w,
+        &Command::SetCommitment {
+            conflict,
+            nation: HOME,
+            rung: 6,
+        },
+    )
+    .unwrap();
+    let identities = serde_json::to_value(&w.party_leadership).unwrap();
+    spheres_sim::apply_command(&mut w, &Command::EnableOperationalWarfare { nation: HOME })
+        .unwrap();
+    assert_eq!(
+        serde_json::to_value(&w.party_leadership).unwrap(),
+        identities,
+        "Warfare adoption cannot reseat party leaders"
+    );
+    let mut order =
+        spheres_sim::campaign::OperationOrder::automatic(w.conflict(conflict).unwrap(), HOME);
+    order.air = spheres_sim::campaign::AirMission::GroundSupport;
+    spheres_sim::apply_command(&mut w, &Command::SetOperation { order }).unwrap();
+    assert!(
+        equipment::ammunition_overview(&w, HOME)
+            .families
+            .iter()
+            .any(|f| f.family == AIR && f.required > 0.0)
+    );
+    let mut resumed = spheres_sim::load(&spheres_sim::save(&w)).unwrap();
+    real_day(&mut w);
+    real_day(&mut resumed);
+    assert!(spheres_sim::save(&w) == spheres_sim::save(&resumed));
+    let national = w
+        .nation(HOME)
+        .equipment
+        .as_ref()
+        .unwrap()
+        .ammunition
+        .as_ref()
+        .unwrap();
+    assert!(
+        national.consumed[AIR] > 0.0,
+        "Reviewed strike must consume the delivered stores"
+    );
+    near(national.stocks[AIR] + national.consumed[AIR], 60.0);
+    assert_eq!(national.supplier_receipts.len(), 1);
+    assert!(
+        national.orders.is_empty(),
+        "Corporate delivery must not fabricate a public ammunition order"
+    );
+    assert_eq!(
+        ammo(&w, company, product).stock,
+        60,
+        "Firing cannot consume unsold company inventory"
+    );
+    assert_eq!(w.rules.operational_warfare, 1);
+    assert!(w.campaign.initialized);
+    spheres_sim::party_leadership::validate_state(&w).unwrap();
+    spheres_sim::load(&spheres_sim::save(&w)).unwrap();
+    reconcile(&w, company);
+}

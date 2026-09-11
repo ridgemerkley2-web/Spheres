@@ -1340,6 +1340,19 @@ fn sort_shipment_audits(rows: &mut [ShipmentAudit]) {
     });
 }
 
+/// Materialize the existing procurement cover without producing, clearing,
+/// charging, or advancing time. Fresh browser setup calls this before explicit
+/// company adoption; loading does not. Existing physical books are untouched.
+pub fn materialize_opening_market(w: &mut WorldState) -> Result<(), String> {
+    if !w.rules.resource_market {
+        return Err("Opening a physical ledger requires the resource market rule.".into());
+    }
+    if w.resources.market.is_none() {
+        w.resources.market = Some(new_market_state(w));
+    }
+    Ok(())
+}
+
 fn new_market_state(w: &WorldState) -> MarketState {
     let mut prices = [0.0; 12];
     for c in ALL {

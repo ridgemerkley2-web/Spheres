@@ -241,6 +241,44 @@ pub(crate) fn autosave(root: &Path, g: &mut Game) {
 mod tests {
     use super::*;
     #[test]
+    fn integrated_paid_work_survives_interrupted_write_and_valid_backup_recovery() {
+        let crate::s05_campaign_api_tests::PaidWorkFixture{mut game,formation,assignment,..}=crate::s05_campaign_api_tests::paid_work_fixture();
+        let root=root();let path=root.join("save.json");
+        let open_world=crate::save(&game.world);let open_history=game.history.clone();let open_log=game.log.clone();
+        write(&root,"default",&game).unwrap();
+        let original=fs::read(&path).unwrap();
+        let failed=atomic_write(&path,true,|file|{
+            file.write_all(b"incomplete integrated campaign")?;
+            Err(std::io::Error::other("injected write interruption"))
+        });
+        assert!(failed.is_err());assert_eq!(fs::read(&path).unwrap(),original);
+        let restored=read(&root,"default",false).unwrap();
+        assert_eq!(crate::save(&restored.world),open_world);assert_eq!(restored.history,open_history);assert_eq!(restored.log,open_log);
+        game.advance_days(1,vec![]);
+        let closed_world=crate::save(&game.world);
+        write(&root,"default",&game).unwrap();
+        let backup_path=path.with_extension("json.bak");
+        assert_eq!(fs::read(&backup_path).unwrap(),original);
+        fs::write(&path,b"corrupted newest integrated campaign").unwrap();
+        assert!(read(&root,"default",false).is_err());
+        let mut backup=read(&root,"default",true).unwrap();
+        assert_eq!(crate::save(&backup.world),open_world);assert_eq!(backup.history,open_history);assert_eq!(backup.log,open_log);
+        assert_ne!(backup.session_id,game.session_id);
+        for payload in [&formation,&assignment] {
+            assert!(crate::immediate_request(&mut backup,payload).unwrap_err().requires_review);
+            assert_eq!(crate::save(&backup.world),open_world);
+        }
+        backup.advance_days(1,vec![]);
+        assert_eq!(crate::save(&backup.world),closed_world,"The recovered receivable settles exactly once on its original day");
+        assert_eq!(backup.history,game.history);assert_eq!(backup.log,game.log);
+        write(&root,"default",&game).unwrap();
+        assert_eq!(fs::read(&backup_path).unwrap(),original,"Damaged newest bytes cannot replace the valid integrated backup");
+        let twice=read(&root,"default",false).unwrap();
+        assert_eq!(crate::save(&twice.world),closed_world);
+        assert!(!fs::read_dir(&root).unwrap().any(|entry|entry.unwrap().file_name().to_string_lossy().contains("tmp-")));
+        fs::remove_dir_all(root).unwrap();
+    }
+    #[test]
     fn integrated_warfare_archive_and_standalone_import_keep_every_capability() {
         let mut g=crate::Game::new(1990,Some(crate::NationId::France));crate::play_rules(&mut g);
         spheres_sim::connected_economy::enable(&mut g.world).unwrap();

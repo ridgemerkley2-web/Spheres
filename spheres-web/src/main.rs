@@ -24,6 +24,14 @@ mod portrait_assets;
 mod person_portraits;
 mod page_art_assets;
 mod storage;
+#[cfg(test)]
+mod s05_master_migration_tests;
+#[cfg(test)]
+mod s05_active_fixture_tests;
+#[cfg(test)]
+mod s05_save_matrix_tests;
+#[cfg(test)]
+mod s05_campaign_api_tests;
 mod equipment_view;
 mod government_view;
 mod fiscal_recovery_view;
@@ -7049,18 +7057,27 @@ fn play_rules(g: &mut Game) {
     spheres_sim::province_economy::enable(&mut g.world);
 }
 
-/// New campaigns receive the modeled 1990 industrial inheritance and enroll in
-/// the connected economy. Existing campaigns require an explicit reviewed
-/// command for the new accounts; loading never grants or reseeds those assets.
+/// New campaigns receive the modeled 1990 industrial inheritance and explicitly
+/// adopt the connected economy, company operations and daily operational warfare.
+/// Existing saves keep those upgrades opt-in; loading never grants supplier stock.
 fn fresh_play_rules(g: &mut Game) -> Result<(), String> {
     spheres_sim::clock::enable_daily_play(&mut g.world);
-    spheres_sim::starting_industry::enable_new_world(&mut g.world)?;
-    spheres_sim::starting_industry::enrich_new_world(&mut g.world)?;
+    if spheres_sim::starting_industry::enable_new_world(&mut g.world)? {
+        spheres_sim::starting_industry::enrich_new_world(&mut g.world)?;
+    }
     play_rules(g);
     spheres_sim::party_leadership::enable_campaign(&mut g.world)?;
     spheres_sim::connected_economy::enable(&mut g.world)?;
+    // Seat the cover already reported by the market before company enrollment;
+    // this posts no production, purchases, deliveries or simulated day.
+    resources::materialize_opening_market(&mut g.world)?;
+    spheres_sim::company_network::enable(&mut g.world)?;
+    spheres_sim::operational_warfare::enable(&mut g.world)?;
     Ok(())
 }
+
+#[cfg(test)]
+mod s05_fresh_startup_tests;
 
 /// Retain the established browser migration for logistics, production and
 /// manufacturing before warming a save. Connected economy flags and dated
@@ -7199,8 +7216,9 @@ fn main() {
     let env_port = std::env::var("PORT").ok();
     let port = listen_port(&args, env_port.as_deref());
 
+    // Setup and /api/new adopt the same capabilities before the first response.
     let mut boot = Game::new(1990, None);
-    fresh_play_rules(&mut boot).expect("embedded 1990 industrial estimates must validate");
+    fresh_play_rules(&mut boot).expect("fresh 1990 campaign capabilities must validate");
     let game: Mutex<Game> = Mutex::new(boot);
 
     let addr = format!("127.0.0.1:{}", port);

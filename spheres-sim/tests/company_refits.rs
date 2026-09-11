@@ -1338,3 +1338,129 @@ fn s03_combined_save_preserves_partial_cancel_refit_escrow_and_exact_reserved_so
     assert_eq!(total_units(&w),4);assert_eq!(available(&w,SOURCE),3);
     reconcile(&w,company);load_exact(&w);
 }
+
+/// This starts from the existing fixture's genuinely developed target and paid
+/// partial refit; its four opening source vehicles are synthetic. The seam is
+/// preserving that fixed contract through S02/S03/S04 adoption and full daily
+/// continuation, with a separately funded building and durable party identities.
+#[test]
+fn s05_partial_refit_and_paid_building_continue_once_across_all_capability_adoption() {
+    let (mut w, district, company, product, target) = ready("ground_ifv");
+    let refit = book(&mut w, company, product, 3);
+    for _ in 0..7 {
+        day(&mut w);
+    }
+    assert!(service(&w, company, refit).unit_work_days > 0.0);
+    cancel(&mut w, company, refit);
+    assert_eq!(service(&w, company, refit).cancelled_units, 2);
+    assert_eq!(available(&w, SOURCE), 3);
+    w.rules.ideology_blocs = true;
+    spheres_sim::government::ensure_all(&mut w);
+    spheres_sim::party_leadership::enable_campaign(&mut w).unwrap();
+    let identities = serde_json::to_value(&w.party_leadership).unwrap();
+    let existing_service = service(&w, company, refit).clone();
+    let original_holdings = serde_json::to_value(&w.nation(HOME).arsenal.held).unwrap();
+    spheres_sim::apply_command(&mut w, &Command::EnableConnectedEconomy { nation: HOME }).unwrap();
+    spheres_sim::apply_command(&mut w, &Command::EnableCompanies { nation: HOME }).unwrap();
+    spheres_sim::apply_command(&mut w, &Command::EnableOperationalWarfare { nation: HOME })
+        .unwrap();
+    assert_eq!(
+        service(&w, company, refit),
+        &existing_service,
+        "Adoption must not reprice WIP, escrow or locked labor"
+    );
+    assert_eq!(
+        serde_json::to_value(&w.nation(HOME).arsenal.held).unwrap(),
+        original_holdings
+    );
+    assert_eq!(
+        serde_json::to_value(&w.party_leadership).unwrap(),
+        identities
+    );
+    assert!(w.supplier_operations.grandfathered_refits.contains(&refit));
+    spheres_sim::apply_command(
+        &mut w,
+        &Command::SetConstructionBudget {
+            nation: HOME,
+            daily_budget_bn: 0.01,
+        },
+    )
+    .unwrap();
+    spheres_sim::apply_command(
+        &mut w,
+        &Command::StartProject {
+            nation: HOME,
+            district: district.clone(),
+            kind: production::ProjectKind::Infrastructure,
+        },
+    )
+    .unwrap();
+    let building = w
+        .production
+        .projects
+        .iter()
+        .filter(|p| {
+            p.nation == HOME
+                && p.district == district
+                && p.kind == production::ProjectKind::Infrastructure
+        })
+        .max_by_key(|p| p.id)
+        .unwrap()
+        .id;
+    real_day(&mut w);
+    assert!(w.production.industry.projects[&building].spent_bn > 0.0);
+    let mut resumed = load_exact(&load_exact(&w));
+    for _ in 0..100 {
+        if service(&w, company, refit).completed_units == 1 {
+            break;
+        }
+        real_day(&mut w);
+        real_day(&mut resumed);
+        assert_same(&w, &resumed);
+    }
+    let finished = service(&w, company, refit);
+    assert_eq!(finished.completed_units, 1);
+    assert_eq!(finished.cancelled_units, 2);
+    assert_eq!(
+        total_units(&w),
+        4,
+        "A refit neither creates nor destroys the customer's vehicles"
+    );
+    assert_eq!(available(&w, SOURCE), 3);
+    assert_eq!(units(&w, &target), 1);
+    near(finished.escrow_bn, 0.0);
+    near(finished.working_capital_locked_bn, 0.0);
+    assert!(
+        !w.supplier_operations.contracts.contains_key(&refit),
+        "Old paid refit cannot acquire a new component bill"
+    );
+    assert!(
+        firm(&w, company).products.iter().all(|p| p.stock == 0),
+        "Returned vehicles belong to the customer"
+    );
+    let construction = w
+        .production
+        .projects
+        .iter()
+        .find(|p| p.id == building)
+        .unwrap();
+    assert!(construction.progress_days > 1.0);
+    assert_eq!(construction.resources_used, [0.0; 12]);
+    assert_eq!(
+        w.production.industry.projects[&building].goods_used,
+        spheres_sim::industry::Goods::default()
+    );
+    assert!(w.campaign.initialized);
+    spheres_sim::party_leadership::validate_state(&w).unwrap();
+    real_day(&mut w);
+    real_day(&mut resumed);
+    assert_same(&w, &resumed);
+    assert_eq!(
+        total_units(&w),
+        4,
+        "Later ticks cannot return the finished unit twice"
+    );
+    assert_eq!(units(&w, &target), 1);
+    reconcile(&w, company);
+    load_exact(&w);
+}

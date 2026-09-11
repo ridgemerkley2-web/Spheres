@@ -1,0 +1,40 @@
+{
+  "source_revision": "5f7f355502f17bd6bd8f0383a2d14f0024fa7884",
+  "scope": "Synthetic opening endowments from original active test binaries; company work uses their actual commands and daily ticks. Exactly 28 native saves, plus their current browser archive round trips. No live player save or historical company claim.",
+  "exporters": [
+    {"binary":"companies","test":"export_company_qa_stages","environment":"SPHERES_COMPANY_QA_DIR","directory":"companies","files":5},
+    {"binary":"companies","test":"export_company_platform_qa_stages","environment":"SPHERES_COMPANY_QA_DIR","directory":"companies","files":5},
+    {"binary":"ammunition","test":"export_company_ammunition_qa_stages","environment":"SPHERES_COMPANY_AMMO_QA_DIR","directory":"ammunition","files":4},
+    {"binary":"refits","test":"export_company_refit_qa_stages","environment":"SPHERES_COMPANY_REFIT_QA_DIR","directory":"refits","files":14}
+  ],
+  "fixtures": [
+    {"file":"companies/01-eligible.json","family":"tank","phase":"eligible"},
+    {"file":"companies/02-development.json","family":"tank","phase":"development"},
+    {"file":"companies/03-stock.json","family":"tank","phase":"stock"},
+    {"file":"companies/04-transit.json","family":"tank","phase":"transit"},
+    {"file":"companies/05-arrived.json","family":"tank","phase":"arrived"},
+    {"file":"companies/06-ground-stock.json","family":"mixed","phase":"ground-stock"},
+    {"file":"companies/07-aircraft-development.json","family":"mixed","phase":"development"},
+    {"file":"companies/08-mixed-stock.json","family":"mixed","phase":"stock"},
+    {"file":"companies/09-mixed-transit.json","family":"mixed","phase":"transit"},
+    {"file":"companies/10-mixed-arrived.json","family":"mixed","phase":"arrived"},
+    {"file":"ammunition/01-ammunition-stock.json","family":"ammunition","phase":"stock"},
+    {"file":"ammunition/02-ammunition-awaiting-settlement.json","family":"ammunition","phase":"awaiting-settlement"},
+    {"file":"ammunition/03-ammunition-transit.json","family":"ammunition","phase":"transit"},
+    {"file":"ammunition/04-ammunition-arrived.json","family":"ammunition","phase":"arrived"},
+    {"file":"refits/ground-01-ready.json","family":"ground-refit","phase":"ready"},
+    {"file":"refits/ground-02-awaiting-settlement.json","family":"ground-refit","phase":"awaiting-settlement"},
+    {"file":"refits/ground-03-escrow-settled.json","family":"ground-refit","phase":"escrow-settled"},
+    {"file":"refits/ground-04-active-work.json","family":"ground-refit","phase":"active-work"},
+    {"file":"refits/ground-05-partial-cancel.json","family":"ground-refit","phase":"partial-cancel"},
+    {"file":"refits/ground-06-cancelled-remainder-returned.json","family":"ground-refit","phase":"cancelled-remainder-returned"},
+    {"file":"refits/ground-07-complete.json","family":"ground-refit","phase":"complete"},
+    {"file":"refits/aircraft-01-ready.json","family":"aircraft-refit","phase":"ready"},
+    {"file":"refits/aircraft-02-awaiting-settlement.json","family":"aircraft-refit","phase":"awaiting-settlement"},
+    {"file":"refits/aircraft-03-escrow-settled.json","family":"aircraft-refit","phase":"escrow-settled"},
+    {"file":"refits/aircraft-04-active-work.json","family":"aircraft-refit","phase":"active-work"},
+    {"file":"refits/aircraft-05-partial-cancel.json","family":"aircraft-refit","phase":"partial-cancel"},
+    {"file":"refits/aircraft-06-cancelled-remainder-returned.json","family":"aircraft-refit","phase":"cancelled-remainder-returned"},
+    {"file":"refits/aircraft-07-complete.json","family":"aircraft-refit","phase":"complete"}
+  ]
+}
