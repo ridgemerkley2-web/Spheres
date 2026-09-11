@@ -1,0 +1,80 @@
+/* Scoped campaign command surface. The simulation owns every displayed value. */
+.campaign-command {
+  --campaign-ink: #f2efe4; --campaign-muted: #b9c8c4; --campaign-line: #819b8c45;
+  --campaign-gold: #edcf92; --campaign-mint: #b2d8c1;
+  margin: 18px 0; padding: 24px; min-width: 0; color: var(--campaign-ink);
+  background: linear-gradient(140deg, #273b36, #1b2b2b 62%, #223031);
+  border: 1px solid var(--campaign-line); border-radius: 18px;
+  font: 400 14px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif;
+  box-shadow: 0 12px 28px #08141125;
+}
+.campaign-command *, .campaign-command *::before, .campaign-command *::after { box-sizing: border-box; }
+.campaign-command .campaign-heading { display: flex; gap: 16px; align-items: start; justify-content: space-between; margin: 0 0 20px; }
+.campaign-command .campaign-kicker { color: var(--campaign-mint); font-size: 10px; line-height: 1.4; font-weight: 750; text-transform: uppercase; letter-spacing: .16em; }
+.campaign-command h3 { margin: 6px 0 0; font: 550 25px/1.2 Georgia, serif; letter-spacing: -.025em; color: var(--campaign-ink); }
+.campaign-command .campaign-tag { padding: 6px 10px; border: 1px solid var(--campaign-line); border-radius: 20px; color: var(--campaign-gold); font-size: 11px; text-align: center; max-width: 45%; }
+.campaign-command .campaign-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 0 0 18px; }
+.campaign-command .campaign-metric { padding: 13px 12px; border: 1px solid #a6b7a927; border-radius: 10px; background: #d6e3c507; min-width: 0; }
+.campaign-command dt { color: var(--campaign-muted); font-size: 11px; line-height: 1.4; }
+.campaign-command dd { margin: 5px 0; color: var(--campaign-ink); font-size: 25px; line-height: 1.2; font-weight: 650; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.campaign-command small { display: block; color: var(--campaign-muted); font-size: 10px; line-height: 1.5; }
+.campaign-command .campaign-brief { border-left: 3px solid var(--campaign-mint); background: #11252370; padding: 16px 18px; border-radius: 0 10px 10px 0; }
+.campaign-command p { margin: 8px 0; font-size: 13px; line-height: 1.6; overflow-wrap: anywhere; }
+.campaign-command .campaign-secondary { color: var(--campaign-muted); font-size: 12px; }
+.campaign-command .campaign-estimates { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 16px 0 0; }
+.campaign-command .campaign-estimates dd { font-size: 17px; color: var(--campaign-gold); }
+.campaign-command .campaign-caption { color: var(--campaign-muted); font-size: 11px; margin: 12px 0 0; line-height: 1.6; }
+.campaign-command .campaign-force-detail { margin: -7px 0 16px; }
+.campaign-command .campaign-order { margin-top: 22px; }
+.campaign-command fieldset { padding: 0; margin: 0 0 16px; border: 0; min-width: 0; }
+.campaign-command legend { margin-bottom: 10px; padding: 0; color: var(--campaign-ink); font-size: 13px; font-weight: 650; }
+.campaign-command .campaign-approaches { display: grid; grid-template-columns: repeat(auto-fit, minmax(126px, 1fr)); gap: 7px; }
+.campaign-command .campaign-approach { position: relative; margin: 0; min-width: 0; }
+.campaign-command .campaign-approach input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.campaign-command .campaign-approach > span { display: block; height: 100%; min-height: 65px; padding: 11px; background: #162928; border: 1px solid var(--campaign-line); border-radius: 8px; cursor: pointer; }
+.campaign-command .campaign-approach strong { display: block; color: var(--campaign-ink); font-size: 12px; font-weight: 650; }
+.campaign-command .campaign-approach input:checked + span { background: #c0ddbe; border-color: #d6e4c7; box-shadow: inset 0 0 0 1px #d6e4c7; }
+.campaign-command .campaign-approach input:checked + span :is(strong, small) { color: #16372e; }
+.campaign-command .campaign-approach input:focus-visible + span { outline: 3px solid var(--campaign-gold); outline-offset: 3px; }
+.campaign-command .campaign-order-fields { display: grid; grid-template-columns: 1.5fr 1fr; gap: 14px 12px; }
+.campaign-command .campaign-order-fields > label, .campaign-command .campaign-peace-fields > label { display: grid; gap: 6px; font-size: 12px; color: var(--campaign-muted); min-width: 0; }
+.campaign-command .campaign-mission-constraints { margin: 12px 0 0; padding-left: 19px; color: var(--campaign-gold); font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
+.campaign-command .campaign-mission-constraints li + li { margin-top: 5px; }
+.campaign-command :is(select, input[type="number"]) { width: 100%; min-width: 0; min-height: 42px; border: 1px solid #7f9e8d80; border-radius: 7px; background: #122321; padding: 9px 10px; color: var(--campaign-ink); font: 400 13px/1.3 system-ui, sans-serif; color-scheme: dark; }
+.campaign-command .campaign-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+.campaign-command button { min-height: 42px; padding: 10px 14px; color: var(--campaign-ink); background: #2e4840; border: 1px solid var(--campaign-line); border-radius: 8px; font: 650 12px/1.4 system-ui, sans-serif; cursor: pointer; white-space: normal; }
+.campaign-command button.campaign-primary { background: var(--campaign-gold); color: #29382c; border-color: var(--campaign-gold); }
+.campaign-command button:hover:not(:disabled) { filter: brightness(1.08); }
+.campaign-command button:disabled { opacity: .6; cursor: wait; }
+.campaign-command :is(button, select, input, summary):focus-visible { outline: 3px solid var(--campaign-gold); outline-offset: 3px; }
+.campaign-command .campaign-status { color: var(--campaign-gold); font-size: 12px; flex: 1 1 170px; overflow-wrap: anywhere; }
+.campaign-command .campaign-receipt { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--campaign-line); }
+.campaign-command summary { color: var(--campaign-mint); font-size: 12px; cursor: pointer; }
+.campaign-command .campaign-no-report { padding-top: 15px; border-top: 1px solid var(--campaign-line); }
+.campaign-command .campaign-peace { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--campaign-line); }
+.campaign-command .campaign-peace h4 { margin: 0 0 10px; color: var(--campaign-ink); font-size: 16px; }
+.campaign-command .campaign-peace-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.campaign-command .campaign-peace-offer { border: 1px solid #d8c08955; background: #d8c08909; border-radius: 10px; padding: 14px; margin-top: 14px; }
+.campaign-command :is(.campaign-peace-compose, .campaign-garrison) { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--campaign-line); }
+.campaign-command :is(.campaign-peace-compose, .campaign-garrison) form { margin-top: 14px; }
+.campaign-command .campaign-occupation-list { display: grid; gap: 10px; margin-top: 16px; }
+.campaign-command .campaign-occupation-list > article { padding: 12px; border: 1px solid var(--campaign-line); border-radius: 8px; }
+.campaign-command .campaign-occupation-list > article > dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 10px 0 0; }
+.campaign-command .campaign-occupation-list .campaign-metric { padding: 0; background: none; border: 0; }
+.campaign-command .campaign-occupation-list dd { font-size: 18px; }
+.campaign-command [hidden] { display: none !important; }
+@media (max-width: 700px) {
+  .campaign-command { padding: 18px; }
+  .campaign-command .campaign-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .campaign-command .campaign-estimates { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .campaign-command .campaign-estimates > div { display: grid; grid-template-columns: 1fr 1fr; column-gap: 12px; align-items: center; }
+  .campaign-command .campaign-estimates dd { margin: 0; text-align: right; }
+  .campaign-command .campaign-estimates small { grid-column: 1 / -1; }
+}
+@media (max-width: 450px) {
+  .campaign-command { padding: 14px; border-radius: 12px; }
+  .campaign-command h3 { font-size: 22px; }
+  .campaign-command .campaign-order-fields, .campaign-command .campaign-peace-fields { grid-template-columns: minmax(0, 1fr); }
+  .campaign-command .campaign-approaches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .campaign-command .campaign-actions button { width: 100%; }
+}

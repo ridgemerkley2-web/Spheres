@@ -1,5 +1,9 @@
 pub mod agency;
 pub mod campaign_aims;
+pub mod campaign;
+pub mod campaign_supply;
+pub mod campaign_peace;
+pub mod operational_warfare;
 pub mod arsenal;
 pub mod blocs;
 pub mod commitment;
@@ -90,6 +94,8 @@ pub enum EquipmentOrder {
 pub enum Command {
     /// Explicitly adopt the connected daily economy using current balances.
     EnableConnectedEconomy { nation: NationId },
+    /// Explicitly adopt daily operational command without minting force or supply.
+    EnableOperationalWarfare { nation: NationId },
     EnablePopulation { nation: NationId },
     EnableFiscalRecovery { nation: NationId },
     SetPopulationPolicy { nation: NationId, policy: population::Policy },
@@ -291,6 +297,8 @@ pub enum Command {
     SetCommitment { conflict: u32, nation: NationId, rung: u8 },
     /// Optional national force ceiling, 0..10000 basis points; None is staff allocation.
     SetForceAllocation { conflict: u32, nation: NationId, share_bp: Option<u16> },
+    SetOperation { order: campaign::OperationOrder },
+    WarDiplomacy { nation: NationId, order: campaign_peace::PeaceOrder },
     SetObjective { conflict: u32, nation: NationId, objective: Objective },
     /// Name what a quarrel is for (resources.rs): a district of the other
     /// side's that holds a line the opener could not buy. Free; refused
@@ -411,6 +419,7 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
             let base = command_price(w, &annual).map_or(0.0, |(_, p, _)|p);
             (*nation, base + programs::department_price(w, *nation, *fiscal_year, allocations, departments), REFUSABLE)
         }
+        Command::EnableOperationalWarfare { nation } => (*nation, 0.0, REFUSABLE),
         Command::EnableConnectedEconomy { nation } | Command::EnablePopulation { nation }
         | Command::EnableFiscalRecovery { nation } => (*nation, 0.0, REFUSABLE),
         Command::EnableCompanies { nation } | Command::AssignSectorContractor { nation, .. }
@@ -612,6 +621,8 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
         ),
         Command::SetObjective { nation, .. } => (*nation, 3.0, REFUSABLE),
         Command::SetForceAllocation { nation, .. } => (*nation, 0.0, REFUSABLE),
+        Command::SetOperation { order } => (order.nation, 0.0, REFUSABLE),
+        Command::WarDiplomacy { nation, order } => (*nation, campaign_peace::price(order), REFUSABLE),
         // Saying which district a quarrel is for costs nothing: the quarrel
         // was the purchase. Refusable so a bad aim is refused, not charged.
         Command::SetAim { nation, .. } => (*nation, 0.0, REFUSABLE),
@@ -670,6 +681,9 @@ fn command_price(w: &WorldState, c: &Command) -> Option<(NationId, f64, bool)> {
 /// this returns the sim's own prose rather than composing its own.
 fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
     match c {
+        Command::DeclareWar { .. } => w.conflict_id_refusal(),
+        Command::OpenConflict { opener, target, .. } if w.conflict_between(*opener, *target).is_none() => w.conflict_id_refusal(),
+        Command::EnableOperationalWarfare { nation } => operational_warfare::enrollment_refusal(w, *nation),
         Command::EnableConnectedEconomy { nation } => connected_economy::enrollment_refusal(w, *nation),
         Command::EnableCompanies { nation } => company_network::enrollment_refusal(w, *nation),
         Command::AssignSectorContractor { nation, company, target, quote } =>
@@ -728,6 +742,8 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
         Command::SetForceAllocation { conflict, nation, share_bp } => {
             operations::allocation_refusal(w, *conflict, *nation, *share_bp)
         }
+        Command::SetOperation { order } => campaign::order_refusal(w, order),
+        Command::WarDiplomacy { nation, order } => campaign_peace::refusal(w, *nation, order),
         // A hard bar — the wrong shape, an unsourced line, a seller at war,
         // ground that is being fought over — costs the asker nothing and is
         // never quoted a price. A counter is not a bar: it reaches
@@ -889,6 +905,7 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
 
 fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
     match c {
+        Command::EnableOperationalWarfare { .. } => operational_warfare::enable(w)?,
         Command::EnableConnectedEconomy { .. } => connected_economy::enable(w)?,
         Command::EnableCompanies { .. } => company_network::enable(w)?,
         Command::AssignSectorContractor { nation, company, target, quote } =>
@@ -1297,6 +1314,8 @@ fn dispatch(w: &mut WorldState, c: &Command) -> Result<(), String> {
         Command::SetForceAllocation { conflict, nation, share_bp } => {
             operations::set_allocation(w, *conflict, *nation, *share_bp)?;
         }
+        Command::SetOperation { order } => campaign::set_order(w, order)?,
+        Command::WarDiplomacy { nation, order } => campaign_peace::apply(w, *nation, order)?,
         Command::SetAim { conflict, district, commodity, .. } => {
             resources::set_aim(w, *conflict, district, *commodity)?
         }
@@ -1553,6 +1572,21 @@ fn equipment_save_version(w: &WorldState) -> u32 {
 }
 pub fn save(w: &WorldState) -> String {
     let equipment_version=equipment_save_version(w);
+    if operational_warfare::has_state(w) {
+        #[derive(Serialize)]
+        struct IntegratedSave<'a> { format:&'static str, version:u32,
+            equipment_version:u32, party_leadership_version:u32, economy_version:u32,
+            company_network_version:u32, supplier_operations_version:u32, warfare_version:u32,
+            world:&'a WorldState }
+        return serde_json::to_string_pretty(&IntegratedSave {
+            format:"spheres-integrated-save", version:1, equipment_version,
+            party_leadership_version:if w.rules.historical_party_leadership {1}else{0},
+            economy_version:if connected_economy::has_state(w) {1}else{0},
+            company_network_version:if company_network::has_state(w) {1}else{0},
+            supplier_operations_version:w.supplier_operations.version,
+            warfare_version:w.rules.operational_warfare as u32, world:w,
+        }).expect("serialize integrated campaign save");
+    }
     if company_network::has_state(w) {
         #[derive(Serialize)]
         struct CompanySave<'a> { format: &'static str, version:u32, equipment_version:u32,
@@ -1639,6 +1673,7 @@ pub fn load(s: &str) -> Result<WorldState, String> {
     party_leadership::validate_state(&w)?;
     connected_economy::validate(&w)?;
     company_network::validate(&w)?;
+    operational_warfare::validate(&w)?;
     Ok(w)
 }
 

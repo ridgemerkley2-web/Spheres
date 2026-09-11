@@ -6,19 +6,28 @@ use serde_json::Value;
 pub(crate) fn decode(s: &str) -> Result<WorldState, String> {
     let shape: Value = serde_json::from_str(s).map_err(|e| e.to_string())?;
     let format = shape.get("format").and_then(Value::as_str);
-    let combined = format == Some("spheres-companies-save");
+    let integrated = format == Some("spheres-integrated-save");
+    let combined = format == Some("spheres-companies-save")
+        || (integrated && shape["company_network_version"].as_u64() == Some(1));
     let economy = format == Some("spheres-economy-save")
-        || (combined && shape["economy_version"].as_u64() == Some(1));
+        || ((combined || integrated) && shape["economy_version"].as_u64() == Some(1));
     let party = format == Some("spheres-party-leadership-save")
-        || ((combined || format == Some("spheres-economy-save"))
+        || ((combined || integrated || format == Some("spheres-economy-save"))
             && shape["party_leadership_version"].as_u64() == Some(1));
     let equipment = match format {
-        Some("spheres-companies-save" | "spheres-economy-save" | "spheres-party-leadership-save") => shape["equipment_version"].as_u64(),
+        Some("spheres-integrated-save" | "spheres-companies-save" | "spheres-economy-save" | "spheres-party-leadership-save") => shape["equipment_version"].as_u64(),
         Some("spheres-equipment-save") => shape["version"].as_u64(),
         None => Some(0),
         _ => None,
     };
     let valid = match format {
+        Some("spheres-integrated-save") => shape["version"] == 1
+            && shape["warfare_version"] == 1
+            && matches!(shape["company_network_version"].as_u64(), Some(0..=1))
+            && matches!(shape["economy_version"].as_u64(), Some(0..=1))
+            && matches!(shape["supplier_operations_version"].as_u64(), Some(0..=1))
+            && matches!(shape["party_leadership_version"].as_u64(), Some(0..=1))
+            && matches!(equipment, Some(0..=5)),
         Some("spheres-companies-save") => shape["version"] == 1
             && matches!(shape["economy_version"].as_u64(), Some(0..=1))
             && matches!(shape["supplier_operations_version"].as_u64(), Some(0..=1))
@@ -35,15 +44,18 @@ pub(crate) fn decode(s: &str) -> Result<WorldState, String> {
     if !valid { return Err("This save format or version is not supported by this build.".into()); }
     let mut payload = if format.is_some() { shape["world"].clone() } else { shape.clone() };
     if !payload.is_object() { return Err("The saved campaign must be an object.".into()); }
-    if payload["rules"].get("operational_warfare").is_some_and(|v| !v.is_null() && *v != false && v.as_u64() != Some(0))
-        || ["campaign", "campaign_supply", "campaign_peace"].iter().any(|k|
-            payload.get(*k).is_some_and(|v| !v.is_null() && !v.as_object().is_some_and(|o| o.is_empty()))) {
-        return Err("This campaign contains operational-war property. Integrate that save dialect in S04/S05 before adopting it; no military ownership was discarded.".into());
-    }
     let contractor_keys = ["enabled", "roster", "assignments", "growth", "news", "next_id", "last_day", "last_month"];
     let supplier_keys = ["version", "next_id", "firms", "deliveries", "ammunition_deliveries", "last_tick_day"];
     let old = payload.get("companies");
     let master = old.is_some_and(|b| ["enabled", "roster", "assignments", "growth", "news", "last_day", "last_month"].iter().any(|k| b.get(*k).is_some()));
+    // The pinned master wrote operational books in raw worlds or equipment v1.
+    // It never owned the active supplier book or the later company namespaces.
+    let master_warfare = payload["rules"]["operational_warfare"].as_u64() == Some(1)
+        && matches!(format, None | Some("spheres-equipment-save"))
+        && equipment.is_some_and(|v| v <= 1)
+        && payload.get("sector_contractors").is_none()
+        && payload.get("supplier_operations").is_none()
+        && (old.is_none() || master);
     if let Some(book) = old {
         let keys = book.as_object().ok_or("The company book has an unrecognized ownership shape.")?;
         let allowed = if master { &contractor_keys[..] } else { &supplier_keys[..] };
@@ -72,7 +84,7 @@ pub(crate) fn decode(s: &str) -> Result<WorldState, String> {
         return Err("Campaign party identities require their enabled rule, saved book and matching save envelope.".into());
     }
     let envelope = equipment.unwrap();
-    if matches!(format, Some("spheres-companies-save" | "spheres-economy-save" | "spheres-party-leadership-save"))
+    if matches!(format, Some("spheres-integrated-save" | "spheres-companies-save" | "spheres-economy-save" | "spheres-party-leadership-save"))
         && envelope != equipment_save_version(&w) as u64 {
         return Err("The campaign has an incorrect equipment format version.".into());
     }
@@ -84,14 +96,17 @@ pub(crate) fn decode(s: &str) -> Result<WorldState, String> {
         || (w.companies.is_empty() && envelope >= 2) {
         return Err("Company property requires its matching tank, equipment, ammunition or refit-service save envelope; refusing to discard or silently downgrade corporate assets.".into());
     }
-    if economy != connected_economy::has_state(&w) && !master {
+    if economy != connected_economy::has_state(&w) && !master && !master_warfare {
         return Err("Connected economy state requires its versioned economy save envelope. Refusing to discard or silently enable economic ownership.".into());
     }
     if combined != company_network::has_state(&w) && !master {
         return Err("Company identities, operating contracts and service receipts require their versioned combined company save envelope.".into());
     }
-    if combined && shape["supplier_operations_version"].as_u64() != Some(w.supplier_operations.version as u64) {
+    if (combined || integrated) && shape["supplier_operations_version"].as_u64() != Some(w.supplier_operations.version as u64) {
         return Err("Supplier operating property requires its declared capability version.".into());
+    }
+    if integrated != crate::operational_warfare::has_state(&w) && !master_warfare {
+        return Err("Operational orders, forces, supplies and peace require their integrated save capability or the recognized original master dialect.".into());
     }
     Ok(w)
 }

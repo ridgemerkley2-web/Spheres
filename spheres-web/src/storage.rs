@@ -47,7 +47,7 @@ pub(crate) fn encode(g: &Game) -> Result<String, String> {
 pub(crate) fn decode(text: &str) -> Result<Game, String> {
     let value: Value =
         serde_json::from_str(text).map_err(|e| format!("Cannot read campaign: {e}"))?;
-    if value.get("format").is_none() || matches!(value["format"].as_str(), Some("spheres-equipment-save" | "spheres-party-leadership-save" | "spheres-economy-save" | "spheres-companies-save")) {
+    if value.get("format").is_none() || matches!(value["format"].as_str(), Some("spheres-equipment-save" | "spheres-party-leadership-save" | "spheres-economy-save" | "spheres-companies-save" | "spheres-integrated-save")) {
         // The original CLI/browser format is still supported and uses every
         // simulation migration. It cannot invent an archive it never recorded.
         let mut g = crate::loaded_play_game(crate::load(text)?);
@@ -240,6 +240,22 @@ pub(crate) fn autosave(root: &Path, g: &mut Game) {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn integrated_warfare_archive_and_standalone_import_keep_every_capability() {
+        let mut g=crate::Game::new(1990,Some(crate::NationId::France));crate::play_rules(&mut g);
+        spheres_sim::connected_economy::enable(&mut g.world).unwrap();
+        spheres_sim::resources::tick(&mut g.world);
+        spheres_sim::company_network::enable(&mut g.world).unwrap();
+        spheres_sim::operational_warfare::enable(&mut g.world).unwrap();
+        let saved=crate::save(&g.world);let value:Value=serde_json::from_str(&saved).unwrap();
+        assert_eq!(value["format"],"spheres-integrated-save");
+        let once=decode(&saved).unwrap();assert_eq!(crate::save(&once.world),saved);
+        let twice=decode(&crate::save(&once.world)).unwrap();assert_eq!(crate::save(&twice.world),saved);
+        assert_eq!(crate::save(&decode(&encode(&g).unwrap()).unwrap().world),saved);
+        for field in ["equipment_version","party_leadership_version","economy_version","company_network_version","supplier_operations_version","warfare_version"] {
+            let mut bad=value.clone();bad[field]=json!(999);assert!(decode(&bad.to_string()).is_err(),"unknown {field}");
+        }
+    }
     #[test]
     fn combined_company_save_import_retains_capability_and_archive_without_load_adoption() {
         let mut g=crate::Game::new(1990,Some(crate::NationId::France));

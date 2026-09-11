@@ -382,7 +382,7 @@ pub fn open_conflict(
     if let Some(c) = w.conflict_between(opener, target) {
         return Ok(c.id);
     }
-    let id = w.next_conflict_id();
+    let id = w.allocate_conflict_id()?;
     crate::agency::retire_conflict(w,id);
     let mut b_def = Belligerent::new(target, 1, Objective::Hold);
     b_def.stake = if theatre::is_home(w, target, th) { 1.0 } else { 0.45 };

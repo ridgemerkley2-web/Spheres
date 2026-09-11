@@ -257,7 +257,7 @@ pub fn project(
 /// one — kept so the map's front line never vanishes along an edge where the
 /// uncapped pass captured a district exactly to the pole (the seam rule the
 /// referee required, recorded here and in the UI spec). Then the aggregate.
-fn finish(c: &mut Conflict, k: &Contested) {
+pub(crate) fn finish(c: &mut Conflict, k: &Contested) {
     let mut deviated: BTreeSet<&str> = BTreeSet::new();
     for (d, &(is_a, _)) in &k.k {
         if let Some(&h) = c.front.get(d) {

@@ -28,6 +28,35 @@ fn profile_counts(w: &WorldState) -> (usize, usize) {
     )
 }
 
+// S05 qualification instrumentation is outside the timed server request. These
+// are observed saved books, not synthetic work injected by the profiler.
+fn profile_capabilities(w:&WorldState)->serde_json::Value {
+    serde_json::json!({"population":spheres_sim::population::active(w),"fiscal_recovery":w.rules.fiscal_recovery,
+        "industry_rebuild":w.rules.industry_rebuild,"supplier_operations_version":w.supplier_operations.version,
+        "sector_contractors":w.sector_contractors.enabled,"operational_warfare":w.rules.operational_warfare,
+        "campaign_initialized":w.campaign.initialized,"party_leadership":w.party_leadership.is_some()})
+}
+fn profile_owned_work(w:&WorldState)->serde_json::Value {
+    let firms=&w.companies.firms;
+    serde_json::json!({"suppliers":firms.len(),
+        "supplier_development":firms.iter().flat_map(|c|&c.products).filter(|p|p.certified_day.is_none()&&p.cancelled_day.is_none()).count(),
+        "supplier_equipment_wip":firms.iter().flat_map(|c|&c.products).filter(|p|p.unit_work_days>0.0||p.unit_inputs.iter().any(|x|*x>0.0)).count(),
+        "supplier_equipment_stock":firms.iter().flat_map(|c|&c.products).map(|p|p.stock as u64).sum::<u64>(),
+        "supplier_ammunition_stock":firms.iter().flat_map(|c|&c.ammunition_products).map(|p|p.stock as u64).sum::<u64>(),
+        "supplier_receivables":firms.iter().map(|c|c.receivables.len()).sum::<usize>(),
+        "supplier_pending_equipment_deliveries":w.companies.deliveries.iter().filter(|d|d.delivered_day.is_none()).count(),
+        "supplier_pending_ammunition_deliveries":w.companies.ammunition_deliveries.iter().filter(|d|d.delivered_day.is_none()).count(),
+        "supplier_active_refits":firms.iter().flat_map(|c|&c.refits).filter(|p|p.completed_units+p.cancelled_units<p.quantity).count(),
+        "supplier_refit_escrow_bn":firms.iter().flat_map(|c|&c.refits).map(|p|p.escrow_bn).sum::<f64>(),
+        "supplier_refit_locked_capital_bn":firms.iter().flat_map(|c|&c.refits).map(|p|p.working_capital_locked_bn).sum::<f64>(),
+        "supplier_retained_operation_receipts":w.supplier_operations.receipts.len(),"supplier_receipt_day":w.supplier_operations.last_day,
+        "advanced_components":w.production.operations.advanced_components.values().sum::<f64>(),
+        "contractor_roster":w.sector_contractors.roster.len(),"contractor_assignments":w.sector_contractors.assignments.len(),
+        "operational_sectors":w.campaign.sectors.len(),"operational_transfers":w.campaign.transfers.len(),
+        "operational_supply_buffers":w.campaign_supply.buffers.len(),"operational_supply_cargo":w.campaign_supply.cargo.len(),
+        "operational_supply_receipt_day":w.campaign_supply.last_day})
+}
+
 fn profile_command(
     w: &mut WorldState,
     command: Command,
@@ -514,6 +543,13 @@ fn campaign_lifetime_profile() {
                 apply_command(&mut g.world, &Command::EnableCompanies { nation:player })
                     .expect("profile explicit company network enrollment");
             }
+            if std::env::var("SPHERES_PROFILE_OPERATIONAL_WARFARE").as_deref()==Ok("1") {
+                let player=g.world.player.expect("profile has a player");
+                apply_command(&mut g.world,&Command::EnableOperationalWarfare{nation:player})
+                    .expect("profile explicit operational warfare enrollment");
+            }
+            let starting_capabilities=profile_capabilities(&g.world);
+            let starting_owned_work=profile_owned_work(&g.world);
             let measured_hash = format!("{:016x}", spheres_sim::state_hash(&g.world));
             let measured_rules = serde_json::to_value(&g.world.rules).unwrap();
             let starting_counts = profile_counts(&g.world);
@@ -567,7 +603,7 @@ fn campaign_lifetime_profile() {
                 max_projects = max_projects.max(projects);
                 min_wars = min_wars.min(wars);
                 min_projects = min_projects.min(projects);
-                sample_activity.push(serde_json::json!({"date":g.world.date_str(),"active_wars":wars,"player_projects":projects}));
+                sample_activity.push(serde_json::json!({"date":g.world.date_str(),"active_wars":wars,"player_projects":projects,"capabilities":profile_capabilities(&g.world),"owned_work":profile_owned_work(&g.world)}));
             }
             let start = Instant::now();
             let selected = history::request(&g, "/api/history?nations=USA");
@@ -586,6 +622,9 @@ fn campaign_lifetime_profile() {
                 "source_rules":checkpoint_rules,"actual_rules":measured_rules,"stress_fixture":fixture,
                 "connected_economy_adoption":std::env::var("SPHERES_PROFILE_CONNECTED_ECONOMY").as_deref()==Ok("1"),
                 "company_network_adoption":std::env::var("SPHERES_PROFILE_COMPANY_NETWORK").as_deref()==Ok("1"),
+                "operational_warfare_adoption":std::env::var("SPHERES_PROFILE_OPERATIONAL_WARFARE").as_deref()==Ok("1"),
+                "starting_capabilities":starting_capabilities,"starting_owned_work":starting_owned_work,
+                "ending_capabilities":profile_capabilities(&g.world),"ending_owned_work":profile_owned_work(&g.world),
                 "stress_export":stress_export,
                 "source_slot":if input.is_some(){source_slot}else{slot.clone()},
                 "starting_history_points":starting_history_points,"starting_dispatches":starting_dispatches,

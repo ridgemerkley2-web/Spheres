@@ -2441,6 +2441,7 @@
 <link rel="stylesheet" href="/competition.css">
 <link rel="stylesheet" href="/agency.css">
 <link rel="stylesheet" href="/operations-ui.css">
+<link rel="stylesheet" href="/campaign-operations-ui.css">
 <link rel="stylesheet" href="/area-art.css">
 <style>
 .session-pending button { min-height:44px; white-space:normal; }
@@ -3206,11 +3207,14 @@
 <script src="/surface-material.js"></script>
 <script src="/site-mesh.js"></script>
 <script src="/town-mesh.js"></script>
+<script src="/city-mesh.js"></script>
+<script src="/city-layer.js"></script>
 <script src="/equipment-import.js"></script>
 <script src="/equipment-ui.js"></script>
 <script src="/government-ui.js"></script>
 <script src="/agency-ui.js"></script>
 <script src="/operations-ui.js"></script>
+<script src="/campaign-operations-ui.js"></script>
 <script>
 "use strict";
 const WORLD = window.WORLD;
@@ -8509,8 +8513,8 @@ function bar(frac, color, mark) {
 }
 
 function renderWars() {
-  const forces = window.MilitaryOperationsUI?.html(S.operations, S.wars) || "";
-  if (!S.wars.length) { $("#warsCard").innerHTML = forces + `<div class="arc-empty"><div class="arc-seal" style="margin:0 auto 20px" aria-hidden="true">✦</div><strong>A moment of peace.</strong>No active conflicts. This board will show the sides, stakes and next decisions when tensions become a conflict.</div>`; return; }
+  const forces = (window.CampaignOperationsUI?.adoptionHtml(S.warfare_adoption)||"")+(window.MilitaryOperationsUI?.html(S.operations, S.wars) || "");
+  if (!S.wars.length) { $("#warsCard").innerHTML = forces + `<div class="arc-empty"><div class="arc-seal" style="margin:0 auto 20px" aria-hidden="true">✦</div><strong>A moment of peace.</strong>No active conflicts. This board will show the sides, stakes and next decisions when tensions become a conflict.</div>`; bindForceAllocations($("#warsCard")); return; }
   const cards = S.wars.map((w) => {
     const mine = myPosture(w);
     const theirs = mine
@@ -8699,7 +8703,7 @@ window.openConflict = function (id, keepScroll) {
         onclick="zoomTheatre(${w.id});closeSheet()">⌖</span><span class="close" onclick="closeSheet()">&times;</span></div>
     <div class="card" style="margin-top:12px"><h3>Where each side stands</h3>
       ${w.posture.map((b) => `<div class="prow"><b>${b.name}</b> rung ${b.rung} — ${b.rung_name}
-        <span class="tiny">· ${b.objective} · ${b.roe} · resolve ${b.resolve.toFixed(2)}${
+        <span class="tiny">· ${b.objective} · ${b.roe} · resolve ${Number.isFinite(b.resolve) ? b.resolve.toFixed(2) : "unconfirmed"}${
           b.home ? " · at home" : ""}${b.access ? "" : " · no host"}</span></div>`).join("")}
       <div class="tiny" style="margin-top:8px">ground held — ${w.control >= 0 ? w.attacker : w.defender} by ${
         Math.abs(w.control * 100).toFixed(0)}%</div>
@@ -8709,6 +8713,7 @@ window.openConflict = function (id, keepScroll) {
         t.rough + t.urbanisation > 0.8 ? " · cover enough that a force which will not stand in the open is very hard to kill" : ""}</div>
       ${frontLine}
     </div>
+    ${mine ? window.CampaignOperationsUI?.html(w) || "" : ""}
     ${mine ? `<div class="card" style="margin-top:12px"><h3>The ladder</h3>${rows}
       <div class="tiny" style="margin-top:10px">${force}</div></div>
     <div class="card" style="margin-top:12px"><h3>Objective <span>· ${priceTag(w, "objective")}</span></h3>
@@ -8742,7 +8747,36 @@ window.openConflict = function (id, keepScroll) {
   bindForceAllocations($("#sheet"));
 };
 
+const WARFARE_UPGRADE={busy:false};
+async function reviewWarfareAdoption(view,state=S) {
+  const current=()=>state===S&&view===S.warfare_adoption&&view?.available===true&&!view.enabled;
+  const pending=()=>COMMAND_CHANNEL.busy||COMMAND_CHANNEL.pending||advancing||pendingAdvance||SESSION.busy;
+  if(!current()||pending()||WARFARE_UPGRADE.busy)return false;
+  WARFARE_UPGRADE.busy=true;
+  try {
+    if(!await campaignConfirm(view.effect,{title:"Enable campaign operations",confirmLabel:"Enable operations"}))return false;
+    if(!current()||pending())return false;
+    const response=await api("/api/command",{commands:[{kind:"enable_operational_warfare"}]});
+    if(state.session_id!==S?.session_id)return false;
+    if(response.command_pending)throw new Error("This order awaits confirmation. Use the pending order controls before sending another.");
+    if(response.errors?.length)throw new Error(response.errors.join(" "));
+    await adopt(response,false);return true;
+  } catch(error) {if(state.session_id===S?.session_id)banner(error.message||"The operations upgrade could not be confirmed.");return false;}
+  finally {WARFARE_UPGRADE.busy=false;}
+}
+
 function bindForceAllocations(container) {
+  const campaignState=S;
+  const adoption=campaignState.warfare_adoption;
+  container?.querySelectorAll("[data-warfare-enable]").forEach(button=>button.onclick=()=>reviewWarfareAdoption(adoption,campaignState));
+  window.CampaignOperationsUI?.bind(container, async command => {
+    if (campaignState!==S || !container?.isConnected || COMMAND_CHANNEL.busy || COMMAND_CHANNEL.pending || advancing || pendingAdvance) throw new Error("The campaign or current order changed. Reopen this conflict before submitting.");
+    const response = await api("/api/command", { commands: [command] });
+    if (campaignState!==S) throw new Error("The campaign changed before this order was confirmed.");
+    if (response.command_pending) throw new Error("This order awaits confirmation. Use the pending order controls before sending another.");
+    if (response.errors?.length) throw new Error(response.errors[0]);
+    await adopt(response, false);
+  }, clockPause);
   window.MilitaryOperationsUI?.bind(container, async command => {
     const response = await api("/api/command", { commands: [command] });
     if (response.errors?.length) throw new Error(response.errors[0]);
@@ -9775,6 +9809,59 @@ void main() {
 }
 `;
 
+/// THE CITY LAYER, drawn by the globe rather than pasted over it.
+///
+/// city-layer.js has already moved the mesh into the SAME sphere space the
+/// terrain surface uses, so this reuses that camera transform verbatim — the
+/// vertex half is terrain-surface.js's own, with a colour added. A city is
+/// therefore depth-tested against the ground it stands on: a hill in front of
+/// it hides it, which is the whole reason for drawing it here instead of as a
+/// sprite on the 2D overlay.
+///
+/// The lighting is deliberately its OWN and much simpler than the map's: the
+/// map shades a height field through ramps and has no idea what a wall is.
+/// Lambert against a sun tilted off the local up, plus an ambient that leans
+/// on how skyward a face is, which is enough to separate a roof from a wall.
+const GLSL_CITY_VS = `#version 300 es
+precision highp float;
+layout(location=0) in vec3 aPos;
+layout(location=1) in vec3 aNormal;
+layout(location=2) in vec3 aColor;
+uniform mat3 uInvRot;
+uniform vec3 uCamera;
+uniform mat3 uRayBasis;
+uniform vec2 uHalf;
+out vec3 vColor;
+out vec3 vNormal;
+out vec3 vWorld;
+void main() {
+  vColor = aColor;
+  vNormal = aNormal;
+  vWorld = aPos;
+  vec3 local = transpose(uInvRot) * aPos;
+  vec3 eye = transpose(uRayBasis) * (local - uCamera);
+  const float nearPlane = 0.001;
+  const float farPlane = 10.0;
+  float A = (farPlane + nearPlane) / (nearPlane - farPlane);
+  float B = 2.0 * farPlane * nearPlane / (nearPlane - farPlane);
+  gl_Position = vec4(eye.xy / uHalf, A * eye.z + B, -eye.z);
+}`;
+const GLSL_CITY_FS = `#version 300 es
+precision highp float;
+in vec3 vColor;
+in vec3 vNormal;
+in vec3 vWorld;
+uniform float uFade;
+out vec4 fragColor;
+void main() {
+  vec3 N = normalize(vNormal);
+  vec3 up = normalize(vWorld);
+  vec3 sun = normalize(up * 0.72 + vec3(-0.42, 0.36, 0.24));
+  float d = max(dot(N, sun), 0.0);
+  float sky = max(dot(N, up), 0.0);
+  vec3 lit = vColor * (0.44 + 0.16 * sky + 0.70 * d);
+  fragColor = vec4(lit, uFade);
+}`;
 const GLSL_MAP = `#version 300 es
 precision highp float;
 precision highp sampler2D;
@@ -10139,6 +10226,29 @@ void main() {
   // half of this shader is worth skipping outright over the ocean and the test
   // for that is isLand. They depend only on uniforms and on sdf, so nothing is
   // reordered across a dependency. See the micro-relief gate below.
+  // THE COASTLINE IS PUSHED OUT TO SEA, AND IT STAYS THAT WAY FOR NOW. The
+  // bias shifts the land test outward along the distance field: 1.20 canvas
+  // units at world zoom, 0.15 once the camera is in. 0.15 canvas units is
+  // 2.0 km of real ground, applied at every close zoom, so at ZOOM_MAX the
+  // shore is drawn crisply about 300 device pixels out to sea.
+  //
+  // MEASURED against Natural Earth 10m admin-0 rasterised at 334 m over ten
+  // coastal regions: the shoreline the map draws sits a median 3.02 km from
+  // the true one, p90 6.80 km, with 6.47% of area on the wrong side. Most of
+  // that median is this one constant.
+  //
+  // REMOVING IT WAS TRIED, ON THE MESH PATH ONLY, AND REVERTED after looking
+  // at the result. The ground's water edge moved 2 km landward -- toward the
+  // truth -- and immediately de-registered from the national outline drawn
+  // over it, which comes from world.js at a median 24 km per segment and did
+  // not move. A border line standing out over open water reads as a bug, and
+  // it is one: the two layers disagree about where the coast is, and this
+  // constant is what was hiding that. It is the vector bake that is wrong,
+  // not the bias, so the bias holds the two together until the bake is
+  // replaced. That is one job -- re-bake world.js and districts.js from
+  // ne_10m_admin_0, then take the shoreline from the elevation tiles, which
+  // are 1,855 m against the coast field's 16,698 -- and it needs a 40 MB
+  // download this repo does not carry. Recorded rather than half-done.
   float bias = mix(1.20, 0.15, tDetail);
   float aa   = 0.75 / max(uPxPerWorld, 1e-6);
   float isLand = smoothstep(-aa, aa, sdf + bias);
@@ -10379,6 +10489,194 @@ void main() {
   // point of the floor that world zoom be flat, only that it be quieter.
   li  = 1.0 + (li - 1.0) * uShade * mix(0.75, 1.0, tRelief);
 
+  // ================================================== PROCEDURAL LAND COVER
+  //
+  // WHAT THIS IS, said before anything else: INVENTED GROUND. No dataset in
+  // this repo knows where a field or a wood is. The finest thing the map has
+  // is ETOPO at 1,855 m per sample and a vegetation index at 33 km per pixel,
+  // so everything below is generated, on exactly the footing make_occlusion.py
+  // states for its sky-view factor. It changes only how the ground is COLOURED.
+  // It never touches h, sampleHeight, or any metre the simulation reads.
+  //
+  // WHY IT EXISTS. Every detail ramp above is a smoothstep on log2(zoom) and
+  // the last completes at zoom 21, while the camera goes to 192 — so a
+  // six-fold zoom range added nothing and the ground went SOFTER the closer
+  // you got. What makes real ground legible at 50 m/px is not relief, it is
+  // parcels and woodland.
+  //
+  // THE GATES ARE IN METRES PER PIXEL, NOT ZOOM, and that is the whole trick:
+  // a feature fades in when the screen can resolve it and not before, so it
+  // cannot alias, it is free when far away, and it behaves the same on a phone
+  // and on a 4K panel. fwidth gives the true screen footprint on both the
+  // globe and the raised mesh without either needing to know about the other.
+  float worldPerPx = max(fwidth(world.x), fwidth(world.y));
+  float mPerPx = worldPerPx * mx;
+  vec2 wm = vec2(world.x, world.y);
+
+  // Cover can only sit where the existing model already says ground is ground:
+  // not under snow, not on bare rock, not in the sea.
+  float ground = (1.0 - snow) * (1.0 - rock) * smoothstep(0.0, 1.5, sdf);
+
+  // One countryside's worth of world. Every generated pattern below is anchored
+  // to this lattice so that its coordinates stay small and local instead of
+  // being measured from the canvas origin thousands of cells away -- see the
+  // note on the field rotation for what happens when they are not.
+  const float REGION_W = 50.0;
+
+  // ---------------------------------------------- WHAT THE GROUND IS DOING
+  //
+  // DERIVED, from data: whether anything grows here at all (V, from cover.png),
+  // how steep the ground is (slope, from the same elevation the mesh and the
+  // height texture already carry), how high it is, and whether it is sea, snow
+  // or bare rock. GENERATED, and the legend says so: how a green region divides
+  // between worked land and woodland, and every pattern drawn inside either.
+  //
+  // WHY THE DIVISION HAS TO BE GENERATED. cover.png is 33 km per texel and it
+  // carries GREENNESS, not land use. Measured at 21 regions, cropland runs
+  // V 0.71-0.85 and closed forest 0.82-1.00 -- Borneo and the English midlands
+  // read 0.824 apiece. The index separates the EXTREME and nothing in the
+  // middle: only closed canopy reaches 0.90 (Amazon 0.93-1.00, Congo 1.00), so
+  // above that the worked term is faded out and below it the split comes from
+  // slope and from noise. Borneo and the taiga still read as worked ground,
+  // and that is a stated limit of a 33 km greenness index, not an oversight.
+  //
+  // THE SLOPE GATES ARE MEASURED, NOT CHOSEN. Dimensionless ground slope at
+  // ETOPO's own 1,855 m sampling, p50 / p90 over about 12,000 land cells each:
+  //
+  //     Iowa 0.0036 / 0.0086      Amazon 0.0030 / 0.0087
+  //     Kansas 0.0038 / 0.0095    English midlands 0.0090 / 0.0242
+  //     Sahara 0.0120 / 0.0372    Appalachians 0.0268 / 0.0751
+  //     Tibet 0.0266 / 0.0682     Scottish highlands 0.0609 / 0.1318
+  //     Alps 0.1733 / 0.3195
+  //
+  // The gates that stood here before -- fields fading out over 0.10 to 0.34,
+  // woodland thinning over 0.42 to 0.80 -- are an order of magnitude above that
+  // whole spread. So fields drew at full strength on Scottish moorland and the
+  // woodland thinning never fired anywhere but the Alps' 99th percentile: the
+  // two terms could not tell any two places apart. These can.
+  float ploughable = 1.0 - smoothstep(0.012, 0.055, slope);
+  float closed     = smoothstep(0.88, 0.97, V);
+  float allot      = vnoise(wm * 0.125);              // ~8 world units, ~110 km
+  float workedMix  = ploughable * (1.0 - closed) * smoothstep(0.20, 0.56, allot + 0.30);
+  float treeMix    = (1.0 - workedMix) * (1.0 - smoothstep(0.28, 0.55, slope));
+
+  // ---- FIELDS. Real parcels run about 100-400 m across; 260 m is the middle.
+  float fieldW  = 260.0 / max(mx, 1e-6);            // one parcel, in world units
+  float fieldPx = 260.0 / max(mPerPx, 1e-6);
+  float tField  = smoothstep(2.5, 7.0, fieldPx) * ground * workedMix
+                * smoothstep(0.26, 0.52, V)
+                * (1.0 - smoothstep(1400.0, 2600.0, h));
+  if (tField > 0.0) {
+    // ROTATED ABOUT THE REGION'S OWN CORNER, NOT ABOUT THE CANVAS ORIGIN, and
+    // that distinction is the difference between fields and moire.
+    //
+    // The first draft used vnoise(wm * 0.55), which turns over every 1.8 world
+    // units, so the angle swept several radians across one screen. That was
+    // fixed to one turn per REGION_W world units. But the rotation was still
+    // taken about the Robinson origin, and Chicago sits |wm| = 933 world units
+    // from it -- 48,000 parcel widths of lever arm. An angle drifting a
+    // fraction of a degree across the frame then sweeps the lattice through
+    // hundreds of cells while the ground advances tens, so the parcels arrive
+    // as interference fringes rather than as fields.
+    //
+    // MEASURED on a line of real ground across a real frame, counting the
+    // distinct 260 m cells the lattice visits against the cells the ground
+    // itself crosses: at zoom 512, 435 ground parcels drew 991 cells (2.28x);
+    // at ZOOM_MAX, 145 drew 348 (2.39x). Anchoring both the angle and the
+    // rotation origin to the region cell brings those to 524 (1.21x) and 179
+    // (1.23x), and about 1.2x is what a straight line crossing a rotated
+    // lattice costs by geometry alone.
+    //
+    // The angle is CONSTANT within a cell, which is what removes the sweep
+    // entirely rather than merely shortening it. The price is an orientation
+    // seam at the cell boundary every REGION_W world units -- about 680 km at
+    // this latitude -- where one survey grain gives way to the next. Farmland
+    // really does that at a river or a county line, and it is far rarer than
+    // the fringes it replaces.
+    vec2  cell = floor(wm / REGION_W) * REGION_W;
+    float a = 6.2831853 * vnoise(cell * 0.02);
+    vec2  e = vec2(cos(a), sin(a));
+    vec2  rel = wm - cell;
+    vec2  fu = vec2(dot(rel, e), dot(rel, vec2(-e.y, e.x))) / fieldW;
+
+    // Boundaries wander. A parcel edge that is exactly straight for kilometres
+    // reads as graph paper laid over the ground; real ones follow a ditch, a
+    // hedge or the fall of the land. The warp is a fifth of a parcel, so the
+    // lattice stays a lattice and its cells stay countable.
+    vec2 warp = vec2(vnoise(fu * 0.7 + 11.3), vnoise(fu * 0.7 + 31.7)) - 0.5;
+    fu += warp * 0.22;
+
+    float hc = hash12(floor(fu));
+    // Parcel tone. 0.17 was measured on screen and read as a faint mottle
+    // rather than as farmland; 0.30 is what makes a parcel a parcel.
+    base *= 1.0 + 0.30 * (hc - 0.5) * 2.0 * tField;
+    // The boundary: a hedge, a track, a ditch. Held to a fraction of a parcel
+    // so it stays a line rather than becoming a grid of its own.
+    vec2  gq = abs(fract(fu) - 0.5);
+    float lineW = clamp(0.055 * fieldPx / max(fieldPx - 1.0, 1.0), 0.02, 0.09);
+    float edge = smoothstep(0.5 - lineW, 0.5, max(gq.x, gq.y));
+    base *= 1.0 - 0.24 * edge * tField;
+
+    // HALF THE PARCELS ARE WORKED IN TWO. A 130 m half-parcel is 8.9 screen
+    // pixels at ZOOM_MAX against the 2.5 the gate asks for, so this is the one
+    // sub-parcel scale that actually arrives on a 1x display; a 40 m tillage
+    // grain measures 1.7 px there and would never have turned on at all.
+    float subPx = 130.0 / max(mPerPx, 1e-6);
+    float tSub = smoothstep(2.5, 6.0, subPx) * step(0.5, hash12(floor(fu) + 7.0));
+    if (tSub > 0.0) {
+      vec2 sq = abs(fract(fu * 2.0) - 0.5);
+      float sEdge = smoothstep(0.5 - lineW * 1.6, 0.5, max(sq.x, sq.y));
+      base *= 1.0 - 0.11 * sEdge * tField * tSub;
+    }
+  }
+
+  // ---- WOODLAND, at three scales rather than one. The shipped term was a
+  // single 700 m blob, which is why wooded ground read as a soft mottle at
+  // every zoom instead of resolving into stands as the camera came down. Each
+  // octave is gated on its own screen size, so it costs nothing until the
+  // screen can show it: at ZOOM_MAX on a 1x display 320 m is 21.8 px, 130 m is
+  // 8.9 and 55 m is 3.7; at zoom 512 only the first two are open.
+  float tWood = ground * treeMix * smoothstep(0.44, 0.72, V);
+  if (tWood > 0.0) {
+    float standPx = 320.0 / max(mPerPx, 1e-6);
+    float clumpPx = 130.0 / max(mPerPx, 1e-6);
+    float grainPx =  55.0 / max(mPerPx, 1e-6);
+    float stand = smoothstep(0.46, 0.74, vnoise(wm * (mx / 320.0)))
+                * smoothstep(2.5, 8.0, standPx);
+    float clump = (vnoise(wm * (mx / 130.0)) - 0.5) * smoothstep(2.5, 6.0, clumpPx);
+    float grain = (vnoise(wm * (mx /  55.0)) - 0.5) * smoothstep(2.5, 6.0, grainPx);
+    // The finer octaves MODULATE the stand rather than adding to it, so they
+    // can only break up canopy the stand octave already put there. A tree
+    // cannot stand where the wood does not.
+    float canopy = clamp(stand * (1.0 + 0.42 * clump + 0.26 * grain), 0.0, 1.0);
+    base = mix(base, base * vec3(0.62, 0.80, 0.55), canopy * tWood * 0.78);
+  }
+
+  // ---- ARID GROUND, which had nothing at all. Measured, 31.9% of land area
+  // (42.8 of 134.3 million km2) fell through both terms above, and half of
+  // that is desert: the Sahara reads V 0.016, the Gobi 0.000, the Australian
+  // interior 0.251. Those places were a flat tint at every zoom.
+  float tArid = ground * (1.0 - smoothstep(0.06, 0.24, V))
+              * (1.0 - smoothstep(0.10, 0.30, slope))
+              * smoothstep(2.5, 7.0, 200.0 / max(mPerPx, 1e-6));
+  if (tArid > 0.0) {
+    // Dunes run in ranks across the prevailing wind, so the pattern is
+    // stretched about 6:1 along one direction, and that direction is constant
+    // within a region -- the same anchoring the parcels use, for the same
+    // reason.
+    vec2  acell = floor(wm / REGION_W) * REGION_W;
+    float ad = 6.2831853 * vnoise(acell * 0.02 + 5.0);
+    vec2  ae = vec2(cos(ad), sin(ad));
+    vec2  ar = wm - acell;
+    vec2  du = vec2(dot(ar, ae), dot(ar, vec2(-ae.y, ae.x))) * (mx / 200.0);
+    float ridge = vnoise(vec2(du.x * 0.17, du.y));
+    base *= 1.0 + 0.16 * (ridge - 0.5) * 2.0 * tArid;
+    // Gravel and stone, an octave down, wherever the screen can hold it.
+    float gPx = 60.0 / max(mPerPx, 1e-6);
+    float gg = (vnoise(wm * (mx / 60.0)) - 0.5) * smoothstep(2.5, 6.0, gPx);
+    base *= 1.0 + 0.09 * gg * tArid;
+  }
+
   vec3 land = base * li;
   land = mix(land, mix(SNOW_SHAD, SNOW_LIT, clamp(li * 0.72, 0.0, 1.0)), snow);
 
@@ -10588,7 +10886,22 @@ void main() {
   // alone, which is what a mode with no political reading wants.
   vec2 overlayUv = (world - uOverlayRegion.xy) / uOverlayRegion.zw;
   float overlayInside = step(0.0, overlayUv.x)*step(0.0,overlayUv.y)*step(overlayUv.x,1.0)*step(overlayUv.y,1.0);
-  vec4 pol = texture(uPol, overlayUv) * overlayInside;
+  // CLIPPED TO THE WATER'S EDGE. The political texture is rasterised from
+  // world.js and districts.js, whose rings carry a median 24 km per segment,
+  // so a nation's fill runs into the sea wherever its outline is coarser than
+  // the shader's own land test -- which, now that the test is no longer biased
+  // seaward, is everywhere with an indented coast. Multiplying by isLand ends
+  // the fill exactly where the water begins.
+  //
+  // THE WHOLE VECTOR IS SCALED, not just the alpha. pol is PREMULTIPLIED (see
+  // the note above), so scaling only .a leaves .rgb at full strength and paints
+  // a bright fringe along every coastline -- brighter, not absent, which is the
+  // opposite of the intent.
+  //
+  // Against the OCEAN field only. The lake field is a separate signal and the
+  // Great Lakes are deliberately covered as land by world.js; clipping against
+  // them would take the nation colour off them.
+  vec4 pol = texture(uPol, overlayUv) * overlayInside * mix(1.0, isLand, float(uMesh == 1));
   col = col * (1.0 - pol.a * uPolOp) + pol.rgb * uPolOp;
   // The selection rides ABOVE the ramp, at full strength: the point of a
   // highlight is to be seen, and dimming it with the same camera ramp that
@@ -10658,6 +10971,261 @@ void main() {
 /// ONE exit. Never throws, never leaves a blank map: the canvas goes away and
 /// one class comes off the svg, which restores #relief and lands the page on
 /// precisely today's rendering with all seven modes intact.
+/// DRAW THE CITIES THAT ARE BIG ENOUGH ON SCREEN TO BE WORTH IT.
+///
+/// The selection is a SCREEN question, not a population one: a city earns its
+/// buffers when it covers enough pixels to read as a city, and below that the
+/// map's own drawn symbol says more for nothing. So the gate is metres per
+/// pixel, the same rule the procedural cover layer uses, and it means the
+/// layer costs nothing at world zoom without needing a zoom threshold of its
+/// own to keep in step with anything.
+///
+/// Each city is uploaded once and kept. They are big — tens of thousands of
+/// triangles — so the cache is bounded by COUNT here and by the budget below;
+/// a player who tours the world would otherwise walk the same unbounded-cache
+/// path arsenal3d had to be rescued from.
+/// cellPx is the grid pitch the map asks the city for, in screen pixels: the
+/// same 3 px legibility floor the card was derived from, with headroom. The
+/// cache came down 14 -> 8 with it -- a city at map resolution is three to six
+/// times the triangles of one at card resolution.
+/// THE CITY LAYER'S BUDGET, and the two caps are two different worries.
+///
+/// `cache` bounds the NUMBER of cities kept, so a pan across a continent does
+/// not leave a hundred vertex arrays behind. Two frames' worth of the draw
+/// budget is what a player who pans back and forth needs, so it is 2 x 4.
+///
+/// `cacheTriangles` bounds their SIZE, and it is the cap that matters now that
+/// a city is up to 302,396 triangles at the map's span: eight of those would
+/// be 2.4M triangles, 249 MiB of buffers, held for a pan the player has
+/// already finished. MEASURED 2026-09-07 rather than guessed -- the selector
+/// was run at every city in the table and at the midpoint of every close pair
+/// of cities over 1.2M, at 24 zooms from 110 to the ceiling, 18,455 distinct
+/// (city, span) meshes: the largest set of cities drawable in ONE frame is
+/// 385,012 triangles, Seoul at span 180 beside Incheon at 140, at zoom 602.
+/// The cap is 800,000 -- 2.08x that worst frame, so the frame being drawn can
+/// never evict itself (which would rebuild a city every frame at ~120 ms
+/// each) and a second frame's worth still survives a pan away and back. It
+/// costs at most 82 MiB of buffers and 27 MiB of kept model positions.
+/// Metres of ground per device pixel at the centre of the view, measured the
+/// way the city layer measures it at a city: project two points a known ground
+/// distance apart and divide. 0.01/cos(lat) degrees of longitude spans a
+/// constant 1,113.2 m at every latitude, which is the whole point of the
+/// cosine -- and why the metres must not carry it a second time.
+function groundMetresPerPixel(view) {
+  const lat = GLOBE.pitch * 180 / Math.PI, lon = -GLOBE.yaw * 180 / Math.PI;
+  const cosLat = Math.max(Math.cos(lat * Math.PI / 180), 0.02);
+  const a = GLOBE.projectGeo(lon, lat, view, 1.0);
+  const b = GLOBE.projectGeo(lon + 0.01 / cosLat, lat, view, 1.0);
+  if (!a || !b) return Infinity;
+  const px = Math.hypot(b[0] - a[0], b[1] - a[1]);
+  return px > 0 ? 0.01 * 111320 / px : Infinity;
+}
+
+const CITY_LAYER = { minPx: 110, budget: 4, cache: 8, cacheTriangles: 800000, cellPx: 4.5, maxSpan: 181 };
+/// What cityBuffers hands back when it declined to build this frame. A
+/// distinct token rather than null, because null already means "this city
+/// cannot be built at all" and the caller has to schedule another frame for
+/// the first and not for the second.
+const DEFERRED = Symbol("city build deferred");
+
+/// Draws the cities in view and RETURNS THE MILLISECONDS IT SPENT BUILDING
+/// them, which the caller subtracts from the frame it hands the performance
+/// guard. That is not book-keeping for its own sake: glPerf kills the globe
+/// outright above 16 ms a frame, and one city mesh is ~120 ms of CPU. Measured
+/// in the running game before this was separated, walking the zoom ramp from
+/// 512 to the ceiling put the rolling average at 16.4 ms and the guard tore
+/// the whole globe down with "the ground costs 16.4 ms a frame" -- a verdict
+/// on the ground that the ground had not earned. The guard's own contract
+/// says so in the line above `t1`: it times the DRAW SUBMISSION, and mesh
+/// construction is paid when coverage changes.
+function drawCityLayer(view, cw, ch) {
+  const g = GLR; if (!g || !g.progCity || !window.CityLayer || !window.CityMesh) return 0;
+  if (!window.CITIES || !window.TerrainSurface) return 0;
+  const surface = g.surface; if (!surface || !surface.ready) return 0;
+  let box = null;
+  try { box = TerrainSurface.footprint(view); } catch (e) { return 0; }
+  if (!box) return 0;
+
+  // Metres per pixel AT EACH CITY, from the same projection the rest of the
+  // frame uses. Not once at the footprint midpoint: a pitched footprint's
+  // midpoint is tilted toward the horizon, and it read 29.1 m/px for a view
+  // whose city sat elsewhere -- which under-resolved Chicago and would gate a
+  // small city out that was plainly big enough on screen. Four cities at most,
+  // so this is cheap.
+  //
+  // THE STEP IS A CONSTANT GROUND DISTANCE, and the cos(latitude) is what makes
+  // it one. 0.01/cos(lat) degrees of longitude spans 0.01 * 111320 = 1,113.2 m
+  // of ground at EVERY latitude -- that is the entire point of dividing by the
+  // cosine -- so the metres in the numerator must NOT carry the cosine as well.
+  // The first version did, and was therefore cos(lat) too small: 19.6 m/px
+  // reported at Chicago where the ground is 26.3. That inflated every city's
+  // screen size by 1/cos(lat), so a city was admitted at 110*cos(lat) = 82 real
+  // pixels at Chicago and at 55 at latitude 60, and Chicago was asked for span
+  // 181 where 136 was resolvable. Three independent measurements agree on the
+  // corrected figure; docs/art/SCATTER_SCALE_FINDING.md carries them.
+  const scaleAt = (c) => {
+    const cosLat = Math.max(Math.cos(c.lat * Math.PI / 180), 0.02);
+    const a = GLOBE.projectGeo(c.lon, c.lat, view, 1.0);
+    const b = GLOBE.projectGeo(c.lon + 0.01 / cosLat, c.lat, view, 1.0);
+    if (!a || !b) return NaN;
+    const px = Math.hypot(b[0] - a[0], b[1] - a[1]);
+    return px > 0 ? 0.01 * 111320 / px : NaN;
+  };
+
+  const picked = CityLayer.select(CITIES, box, { mPerPx: scaleAt, minPx: CITY_LAYER.minPx, budget: CITY_LAYER.budget });
+  if (!picked.length) return 0;
+
+  const gl = g.gl;
+  gl.useProgram(g.progCity);
+  const u = g.uCity || (g.uCity = {
+    invRot: gl.getUniformLocation(g.progCity, "uInvRot"),
+    camera: gl.getUniformLocation(g.progCity, "uCamera"),
+    rayBasis: gl.getUniformLocation(g.progCity, "uRayBasis"),
+    half: gl.getUniformLocation(g.progCity, "uHalf"),
+    fade: gl.getUniformLocation(g.progCity, "uFade"),
+  });
+  gl.uniformMatrix3fv(u.invRot, false, view.invBasis);
+  gl.uniform3fv(u.camera, view.camera);
+  gl.uniformMatrix3fv(u.rayBasis, false, view.rayBasis);
+  gl.uniform2f(u.half, view.halfTan * (cw / ch), view.halfTan);
+
+  // ONE NEW CITY A FRAME. Four cities can enter the frame together -- panning
+  // into a cluster does exactly that -- and four builds at ~120 ms is half a
+  // second of stall in one frame. The rest arrive on the frames after, which
+  // is what the fade below was already written for, and `schedule()` asks for
+  // those frames rather than waiting for the player to move again.
+  let built = 0, spent = 0;
+  for (const hit of picked) {
+    const t0 = performance.now();
+    const entry = cityBuffers(gl, hit, view, built > 0);
+    spent += performance.now() - t0;
+    if (entry === DEFERRED) { built += 1; GLOBE?.schedule(); continue; }
+    if (!entry) continue;
+    if (entry.fresh) { built += 1; entry.fresh = false; }
+    // Fade in over the last stretch rather than appearing whole, so a city
+    // arrives as the ground resolves instead of popping into being.
+    const t = Math.min(1, Math.max(0, (hit.screenPx / CITY_LAYER.minPx - 1) / 0.6));
+    gl.uniform1f(u.fade, t);
+    gl.bindVertexArray(entry.vao);
+    gl.drawArrays(gl.TRIANGLES, 0, entry.count);
+  }
+  gl.bindVertexArray(null);
+  return spent;
+}
+
+
+/// One city's buffers, built once per span and re-seated when the relief
+/// steps. The mesh is asked for the terrain under it so it sits on the real
+/// ground rather than on a plane at sea level.
+function cityBuffers(gl, hit, view, defer) {
+  const key = hit.index;
+  const cache = GLR.cityCache;
+  const exaggeration = view.terrainExaggeration;
+  // The map has the pixels the card did not: ask for as many cells as keep
+  // the pitch at CITY_LAYER.cellPx on screen, capped where the buffers get
+  // silly. Chicago at 20 m/px goes 81 cells -> ~180, 224 m -> ~90 m blocks.
+  const wantSpan = Math.min(CITY_LAYER.maxSpan, Math.round(hit.screenPx / CITY_LAYER.cellPx));
+  const had = cache.get(key);
+  if (had) {
+    cache.delete(key); cache.set(key, had);   // LRU touch
+    // A city built for a wider view is kept as the camera comes in until the
+    // view could resolve a quarter again as many cells, then rebuilt at the
+    // finer span. Going back out the finer mesh stays: it is right, only
+    // over-resolved, and a rebuild on every notch would be the hitch.
+    const outgrown = had.span < CITY_LAYER.maxSpan && wantSpan >= Math.round(had.span * 1.25);
+    if (!outgrown) {
+      // THE RELIEF RAMP MOVES THE GROUND, so it has to move the city. The
+      // buffers hold sphere-space positions baked at one exaggeration; when
+      // the globe steps its relief the terrain re-meshes, and a city left
+      // where it was would sink into the new ground or float over it.
+      // Re-seating the kept model-space positions is ~15 ms for the largest
+      // city (measured at span 181) against ~120 ms to rebuild it, so only
+      // the positions go back to the GPU. Normals do not depend on the
+      // exaggeration -- a radial scale does not turn a wall -- and colours
+      // never did, so both stay where they are, and positionsOnly stops
+      // place() computing a set of normals nobody would upload.
+      if (had.exaggeration !== exaggeration) {
+        try {
+          const placed = CityLayer.place(had.model, hit.city, { exaggeration, positionsOnly: true });
+          if (placed) {
+            gl.bindBuffer(gl.ARRAY_BUFFER, had.bufs[0]);
+            gl.bufferData(gl.ARRAY_BUFFER, placed.positions, gl.STATIC_DRAW);
+            had.exaggeration = exaggeration;
+          }
+        } catch (e) { /* keep the old seating rather than drop the city */ }
+      }
+      return had;
+    }
+    if (defer) return had;          // outgrown, but not at the cost of a stall
+    cache.delete(key);
+    for (const b of had.bufs) gl.deleteBuffer(b);
+    gl.deleteVertexArray(had.vao);
+  }
+  if (defer) return DEFERRED;
+  let placed = null, model = null;
+  try {
+    const surface = GLR.surface;
+    const mesh = CityMesh.build(hit.city, {
+      lod: "close",
+      maxSpan: wantSpan,
+      height: (lon, lat) => (surface && surface.ready ? surface.sampleHeight(lon, lat) : null),
+      // THE COAST COMES FROM THE ELEVATION, and it only half works — which is
+      // worth saying rather than discovering. Measured: Sydney reads 0 m and
+      // the Tasman 15 km out reads -104; Amsterdam reads 0 and the North Sea
+      // -23, so an ocean separates cleanly and a city below sea level is not
+      // wrongly drowned. A LAKE does not: Chicago is 190 m and Lake Michigan
+      // is 175, because the model gives a lake a surface height. So a city
+      // stops at an ocean and runs into a lake, at the tiles' own 1,855 m
+      // resolution. coast.png would know the difference and is useless here
+      // for the opposite reason: at 16.7 km per pixel it is one pixel across a
+      // whole city.
+      land: (lon, lat) => {
+        if (!surface || !surface.ready) return true;
+        const e = surface.sampleHeight(lon, lat);
+        return !(Number.isFinite(e) && e < -1);
+      },
+    });
+    placed = CityLayer.place(mesh, hit.city, { exaggeration });
+    // What a re-seat needs and nothing more: the positions and the datum the
+    // mesh was seated on. Normals and colours are already on the GPU, and
+    // keeping them here too would double the heap the cache holds.
+    model = { positions: mesh.positions, datum: mesh.datum, relief: mesh.relief,
+      extentMetres: mesh.extentMetres, bounds: mesh.bounds };
+  } catch (e) { placed = null; }
+  if (!placed) return null;
+  const vao = gl.createVertexArray();
+  gl.bindVertexArray(vao);
+  const bufs = [];
+  [[placed.positions, 0], [placed.normals, 1], [placed.colors, 2]].forEach((pair) => {
+    const b = gl.createBuffer(); bufs.push(b);
+    gl.bindBuffer(gl.ARRAY_BUFFER, b);
+    gl.bufferData(gl.ARRAY_BUFFER, pair[0], gl.STATIC_DRAW);
+    gl.enableVertexAttribArray(pair[1]);
+    gl.vertexAttribPointer(pair[1], 3, gl.FLOAT, false, 0, 0);
+  });
+  gl.bindVertexArray(null);
+  const entry = { vao, bufs, count: placed.count, tris: placed.triangleCount,
+    model, span: wantSpan, exaggeration, fresh: true };
+  cache.set(key, entry);
+  // Bounded BY BOTH COUNT AND SIZE, and the buffers go with the vertex array:
+  // deleting the array does NOT free them, which is the trap arsenal3d's cache
+  // had to be taught. Eviction takes the oldest, which is never the city just
+  // built and -- because the cap is twice the largest frame the selector can
+  // produce -- never one being drawn this frame either. The `cache.size > 1`
+  // guard is the backstop for that reasoning rather than a substitute for it:
+  // a single city over the whole cap would otherwise delete itself and be
+  // rebuilt every frame.
+  let held = 0;
+  for (const e of cache.values()) held += e.tris;
+  while (cache.size > 1 && (cache.size > CITY_LAYER.cache || held > CITY_LAYER.cacheTriangles)) {
+    const oldest = cache.keys().next().value;
+    const dead = cache.get(oldest); cache.delete(oldest);
+    held -= dead.tris;
+    for (const b of dead.bufs) gl.deleteBuffer(b);
+    gl.deleteVertexArray(dead.vao);
+  }
+  return entry;
+}
 function glFail(reason) {
   document.getElementById("mapRenderStatus")?.remove();
   if (!GL.reason) GL.reason = String(reason);
@@ -11028,6 +11596,8 @@ async function glInit() {
 
   const progMap = await ShaderLoader.program(gl, GLSL_VS, GLSL_MAP, "map");
   const progSurface = await ShaderLoader.program(gl, TerrainSurface.vertexSource, GLSL_MAP, "terrain surface");
+  const progCity = window.CityLayer && window.CityMesh
+    ? await ShaderLoader.program(gl, GLSL_CITY_VS, GLSL_CITY_FS, "city layer") : null;
   const progGrid = GL.grid ? glProgram(gl, GLSL_GRID, "grid") : null;
   if (GL.forceFail === "link") throw new Error("forced failure (?glfail=link)");
   if (GL.forceFail === "tex") throw new Error("forced failure (?glfail=tex)");
@@ -11109,7 +11679,7 @@ async function glInit() {
     return o;
   };
   GLR = {
-    gl, progMap, progSurface, progGrid, vao, phys: dec.tex, lake, ramp, seaRamp, heightDetail,
+    gl, progMap, progSurface, progGrid, progCity, cityCache: new Map(), vao, phys: dec.tex, lake, ramp, seaRamp, heightDetail,
     u: U(progMap, ["invRot", "camDist", "half", "res",
       "world", "texPerWorld", "pxPerWorld", "lk", "maxLod",
       "ground", "terrainView", "sat", "shade", "sea", "hazeMax", "shimmer", "time", "ao", "glint",
@@ -11564,7 +12134,17 @@ function glDrawGlobe(view) {
   if (view.zoom >= 12) {
     const footprint = TerrainSurface.footprint(view);
     if (footprint) {
-      const box = TerrainSurface.paddedBounds(footprint, 3);
+      // PAD FOR THE RELIEF ACTUALLY BEING DRAWN. paddedBounds' margin is a
+      // terrain-displacement budget -- 9000 * exaggeration / R / DEG * 1.8 --
+      // and the mesh itself is built with paddedBounds(box, view
+      // .terrainExaggeration) in terrain-surface.js. Leaving a literal 3 here
+      // padded the political texture for 3x relief while it was being drawn
+      // onto ground at 1x, so the region was larger than the view and every
+      // texel was coarser than it needed to be. Measured at Chicago: the
+      // region falls 13.25x8.00 -> 6.75x3.75 world units at ZOOM_MAX, and the
+      // texture goes from 4.90 to 2.50 screen pixels per texel. It is strictly
+      // less work as well as more resolution.
+      const box = TerrainSurface.paddedBounds(footprint, view.terrainExaggeration);
       if (box.west >= -180 && box.east <= 180) {
         const points=[];
         for(let row=0;row<=8;row++) for(const lon of [box.west,box.east])
@@ -11597,13 +12177,51 @@ function glDrawGlobe(view) {
   if (terrainActive) GLR.surface.update(view);
   const terrainStatus = document.getElementById('terrainStatus');
   if (terrainStatus) {
-    const text = terrainActive ? (GLR.surface.ready ? 'Raised terrain · 3× relief' : GLR.surface.loading ? 'Loading local terrain…' : 'Global relief') : '';
+    // THE LEGEND HAS TO SAY WHEN THE GROUND STOPS BEING MEASURED. Past about
+    // 40 m per pixel the parcels and woodland under the camera are generated,
+    // not surveyed — the finest data here is ETOPO at 1,855 m — and a surface
+    // that looks like farmland beside a real place name is exactly where
+    // someone would assume otherwise. Relief stays measured throughout; it is
+    // the COVER that is invented, and the wording separates the two.
+    //
+    // THE MULTIPLIER IS LIVE, so the legend reads it rather than repeating a
+    // number. It is 3× at map zooms and comes down to 1× as the camera dives
+    // (globe3d's exaggerationFor, which the view carries), and a legend that
+    // said 3× while the mountains were drawn at life size would be wrong in
+    // exactly the place a player checks.
+    // WHEN THE DISCLOSURE APPEARS IS DERIVED FROM THE COVER'S OWN GATES, not
+    // from a zoom number written down beside them. It read `view.zoom >= 320`,
+    // and the shipped woodland term was fully on by zoom 252 on a 1x display
+    // and 126 on a retina one -- so the map drew generated cover for most of a
+    // zoom decade while the legend said it was not.
+    //
+    // The coarsest generated feature fades in at 2.5 screen pixels, so it
+    // starts appearing at COVER_ONSET_M / 2.5 metres per pixel. Two measured
+    // conversions turn that into something the host can test. The shader gates
+    // on fwidth(world) * mx, which is 1.633x the cross-track scale at screen
+    // centre under the 55-degree pitch; and the near edge of the frame is
+    // 0.58x the centre. Those very nearly cancel (0.95x), so the centre's
+    // cross-track metres per pixel is, to within 5%, the figure at which the
+    // frame's nearest ground first resolves the coarsest generated feature.
+    // Erring toward disclosing is the safe direction and that is the direction
+    // the 5% falls in.
+    const coverOnset = 320 / 2.5;              // the woodland stand, in m/px
+    const generated = terrainActive && GLR.surface.ready
+      && groundMetresPerPixel(view) <= coverOnset;
+    const relief = String(view.terrainExaggeration);
+    const text = terrainActive
+      ? (GLR.surface.ready
+          ? (generated ? `Raised terrain · ${relief}× relief · generated ground cover`
+                       : `Raised terrain · ${relief}× relief`)
+          : GLR.surface.loading ? 'Loading local terrain…' : 'Global relief')
+      : '';
     if (terrainStatus.textContent !== text) terrainStatus.textContent = text;
     terrainStatus.dataset.ready = String(terrainActive && GLR.surface.ready);
   }
   // Tile decoding/mesh construction is CPU work, paid when coverage changes;
   // the existing GPU fallback guard must time only the actual draw submission.
   const t1 = performance.now();
+  let cityBuildMs = 0;
   for (const isMesh of [false, true]) {
   if (isMesh && !terrainActive) continue;
   const u = isMesh ? GLR.uSurface : GLR.u;
@@ -11657,11 +12275,15 @@ function glDrawGlobe(view) {
   gl.activeTexture(gl.TEXTURE5); gl.bindTexture(gl.TEXTURE_2D, GLR.lake);
   gl.activeTexture(gl.TEXTURE6); gl.bindTexture(gl.TEXTURE_2D, GLR.heightDetail?.texture || GLR.phys);
   if (isMesh) GLR.surface.draw(GLR.progSurface, view);
+  if (isMesh) cityBuildMs += drawCityLayer(view, cw, ch) || 0;
   else gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
   gl.disable(gl.DEPTH_TEST);
 
-  glPerf(t1 - t0, performance.now() - t1);
+  // Construction comes off the frame before the guard sees it, for the reason
+  // written over drawCityLayer: the guard judges whether this GPU can DRAW the
+  // ground, and a city mesh being built on the CPU is not evidence about that.
+  glPerf(t1 - t0, performance.now() - t1 - cityBuildMs);
 }
 
 /// Kept as the name the rest of the page calls. The flat map's glDraw() took no
@@ -13224,20 +13846,46 @@ function renderMapCity() {
   const text = document.createElement('p');
   text.textContent = `${city.capital ? 'Capital · ' : ''}${Math.abs(city.lat).toFixed(2)}°${city.lat<0?'S':'N'} ${Math.abs(city.lon).toFixed(2)}°${city.lon<0?'W':'E'}`;
   const note = document.createElement('p'); note.className = 'map-city-note'; note.textContent = 'City location · zoom to explore the surrounding terrain';
-  // A representative block, not this city's streets. TownMesh says the same in
-  // its own description and the caption says it here, because a settlement
-  // drawn beside a real place name is exactly where someone would assume
-  // otherwise. It is 3,700 triangles at map detail and 75,000 close; this is a
-  // deliberate click on one card, so it gets the close one.
-  let vignette = null;
-  if (registerMeshProviders() && window.TownMesh) {
+  // A BIRDS-EYE OF THE CITY, and three things about it are worth stating here.
+  //
+  // WHAT IS SOURCED: the extent follows the record's population, the ground
+  // follows real ETOPO relief and stops at the real coastline when the terrain
+  // layer has loaded. WHAT IS NOT: every street, block and building. So the
+  // caption denies the plan explicitly — a convincing city drawn beside a real
+  // name is exactly where someone would assume otherwise.
+  //
+  // THE CAMERA IS STEEPER THAN A CARD'S. arsenal3d rests at 20 degrees, which
+  // is a low oblique: a city is 32 km wide and 600 m tall, 1.8%, so at 20
+  // degrees it is a plate and the plan — the grid, the parks, the coast, which
+  // is the whole read — is edge-on. It gets 58 degrees instead.
+  //
+  // AND THE SIZE IS IN THE CAPTION, because it cannot be in the picture. Every
+  // card frames its model to fill it, so Tokyo at 32 km and Reykjavik at 3 km
+  // fill it identically; fixing the scale instead would make the small ones a
+  // few pixels wide. The framing shows the shape, the caption carries the size.
+  let vignette = null, cityMesh = null;
+  const cityIndex = cityIndexFor(city);
+  if (cityIndex >= 0 && registerMeshProviders() && window.CityMesh) {
+    try { cityMesh = CityMesh.build(CITIES[cityIndex], { lod: 'close' }); } catch (e) { cityMesh = null; }
+  }
+  if (cityMesh) {
     vignette = document.createElement('div');
     vignette.className = 'map-city-view';
-    vignette.innerHTML = Arsenal3D.canvasHtml(townBlockFor(city));
+    const canvas = document.createElement('canvas');
+    canvas.className = 'kit3d';
+    vignette.append(canvas);
     const caption = document.createElement('p');
     caption.className = 'map-city-caption';
-    caption.textContent = 'Representative buildings for a settlement of this size — not a street map of ' + city.name + '.';
+    const km = cityMesh.extentMetres ? cityMesh.extentMetres / 1000
+      : (cityMesh.bounds.max[0] - cityMesh.bounds.min[0]) / 1000;
+    caption.textContent = 'Massing for a city of ' + city.pop.toLocaleString()
+      + ' across about ' + (km >= 10 ? Math.round(km) : km.toFixed(1)) + ' km'
+      + (cityMesh.assumed && cityMesh.assumed.land === false ? ', to the real coastline' : '')
+      + ' — the size and setting follow the record, the streets do not.';
     vignette.append(caption);
+    // Mounted directly rather than through scan(), because scan() cannot pass a
+    // camera and this one needs the steeper angle above.
+    vignette._mountCity = () => Arsenal3D.mount(canvas, 'city:' + cityIndex + '/close', { pitch: 58 });
   }
   const actions = document.createElement('div');
   const focus = document.createElement('button'); focus.textContent = 'Explore city'; focus.onclick = () => selectMapCity(city, true);
@@ -13251,7 +13899,7 @@ function renderMapCity() {
   if (vignette) card.append(vignette);
   card.append(actions);
   stage.append(card);
-  if (vignette) { installSurfaceTreatment(); Arsenal3D.scan(card); }
+  if (vignette) { installSurfaceTreatment(); vignette._mountCity(); }
 }
 
 /// The keyboard, and the buttons that stand for it. Arrows turn the globe by a
@@ -16630,6 +17278,19 @@ function registerMeshProviders() {
       });
     });
   }
+  if (window.CityMesh && window.CITIES) {
+    // The id is the city's INDEX in the shipped Natural Earth table. It has to
+    // encode which city, and it cannot encode the record itself: canvasHtml
+    // strips everything outside [a-z0-9_:/.-], so a name with a space or an
+    // accent — Sao Paulo, Nizhny Novgorod — would collide with its neighbours
+    // the moment the punctuation was stripped out.
+    Arsenal3D.register("city", (rest) => {
+      const [index, lod] = String(rest).split("/");
+      const record = CITIES[Number(index)];
+      if (!record) return null;
+      return CityMesh.build(record, { lod: lod === "map" ? "map" : "close" });
+    });
+  }
   if (window.TownMesh) {
     Arsenal3D.register("town", (rest) => {
       const [id, district, lod] = String(rest).split("/");
@@ -16647,19 +17308,29 @@ function registerMeshProviders() {
 /// would mean a fresh 75,000-triangle build on every click and an unbounded
 /// cache, where eight layouts across five districts is forty meshes at worst
 /// and instant after the first few.
-function townBlockFor(city) {
-  let h = 2166136261;
-  const key = String((city && (city.id || city.name)) || "city");
-  for (let i = 0; i < key.length; i += 1) { h ^= key.charCodeAt(i); h = Math.imul(h, 16777619); }
-  const layout = (h >>> 0) % 8;
-  const pop = +(city && city.pop) || 0;
-  // Character follows what the source record actually says, and nothing more.
-  const district = city && city.capital ? "civic"
-    : pop > 2000000 ? "commercial"
-    : pop > 400000 ? "mixed"
-    : pop > 90000 ? "residential" : "industrial";
-  return `town:${layout}/${district}/close`;
+/// WHICH CITY THIS CARD IS SHOWING.
+///
+/// This used to be townBlockFor, and it hashed the city's NAME into one of
+/// eight generic town blocks — so Tokyo and a ninety-thousand-person town were
+/// handed the same 148 x 104 m street corner. Ridge's words: "the town asset
+/// makes no sense to me. I would rather it just be a birds eye of the city."
+///
+/// A city cannot be assembled from those blocks. A million people is about
+/// 40 km2 of built-up ground, which is 2,599 of them and 507 MILLION triangles;
+/// even at map LOD it is 8.5M. City massing at roughly 100 m cells draws the
+/// whole place for less than the single block cost.
+function cityIndexFor(city) {
+  if (!city || typeof window === "undefined" || !window.CITIES) return -1;
+  // Matched on the coordinates rather than the name: the table has repeated
+  // names (there are several Springfields) and the selected record may be a
+  // copy rather than the same object.
+  for (let i = 0; i < CITIES.length; i += 1) {
+    const c = CITIES[i];
+    if (c.name === city.name && c.lon === city.lon && c.lat === city.lat) return i;
+  }
+  return -1;
 }
+
 
 function siteArtReady() {
   if (typeof window === "undefined") return false;

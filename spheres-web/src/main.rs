@@ -137,6 +137,17 @@ const SITE_MESH_JS: &str = include_str!("../ui/site-mesh.js");
 /// The temperate town block kit. Layout varies by a seeded hash of the block id,
 /// never by a random number, so a settlement is the same one every session.
 const TOWN_MESH_JS: &str = include_str!("../ui/town-mesh.js");
+/// The birds-eye city. A town BLOCK on the city card was the wrong asset — one
+/// generic 148x104 m block, picked by hashing the name, so Tokyo and a 90,000-
+/// person town got the same picture. A city cannot be built from blocks either:
+/// a million people is about 40 km2, which is 2,599 blocks and 507 MILLION
+/// triangles. The primitive here is city massing at roughly 100 m cells, and the
+/// whole city costs less than the single block it replaces.
+const CITY_MESH_JS: &str = include_str!("../ui/city-mesh.js");
+/// Puts the birds-eye city into the globe's OWN sphere space, so the map can
+/// draw a city depth-tested against the ground it stands on rather than
+/// pasted over it. It invents nothing: it is a change of coordinates.
+const CITY_LAYER_JS: &str = include_str!("../ui/city-layer.js");
 /// The reverse leg of the art pipeline: glTF back into the runtime mesh shape.
 const EQUIPMENT_IMPORT_JS: &str = include_str!("../ui/equipment-import.js");
 const ARSENAL3D_CSS: &str = include_str!("../ui/arsenal3d.css");
@@ -151,6 +162,10 @@ const MILITARY_PAINT_ROUGHNESS: &[u8] = include_bytes!("../ui/military-textures/
 const EQUIPMENT_EXPORT_JS: &str = include_str!("../ui/equipment-export.js");
 const MILITARY_OPERATIONS_JS: &str = include_str!("../ui/operations-ui.js");
 const MILITARY_OPERATIONS_CSS: &str = include_str!("../ui/operations-ui.css");
+const CAMPAIGN_OPERATIONS_JS: &str = include_str!("../ui/campaign-operations-ui.js");
+const CAMPAIGN_OPERATIONS_CSS: &str = include_str!("../ui/campaign-operations-ui.css");
+#[cfg(test)]
+mod campaign_api_tests;
 /// Baked country outlines — see `src/bin/mapgen.rs`.
 const WORLD_JS: &str = include_str!("../ui/world.js");
 /// Baked admin-1 district outlines, same projection and canvas as world.js.
@@ -828,6 +843,7 @@ fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
         // conflict is still served while the row for the dead one is not.
         .filter(|b| w.nation_opt(b.nation).is_some_and(|n| n.alive))
         .map(|b| {
+            let disclosed = !spheres_sim::campaign::enabled(w) || w.player==Some(b.nation);
             let defending = spheres_sim::commitment::defending_home(w, c, b.nation);
             // THE LADDER, PRICED AND ADJUDICATED BY THE SIM, one entry per rung.
             //
@@ -872,12 +888,12 @@ fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
                 "ceiling": b.ceiling,
                 "objective": b.objective.label(),
                 "roe": b.roe.label(),
-                "resolve": b.resolve,
-                "red_line": b.red_line,
-                "stake": b.stake,
+                "resolve": disclosed.then_some(b.resolve),
+                "red_line": disclosed.then_some(b.red_line),
+                "stake": disclosed.then_some(b.stake),
                 "months_at_rung": b.months_at_rung,
-                "munitions": w.nation_opt(b.nation).map(|n| n.munitions),
-                "deployable": spheres_sim::war::deployable_fraction(w, b.nation),
+                "munitions": disclosed.then(|| w.nation_opt(b.nation).map(|n| n.munitions)).flatten(),
+                "deployable": disclosed.then(|| spheres_sim::war::deployable_fraction(w, b.nation)),
                 "access": spheres_sim::theatre::has_access(w, b.nation, c.theatre),
                 "home": spheres_sim::theatre::is_home(w, b.nation, c.theatre),
                 // Whether this belligerent is answering on its own ground, which
@@ -885,8 +901,8 @@ fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
                 // so the price the UI quotes and the price the queue charges
                 // cannot drift apart.
                 "defending_home": defending,
-                "committed": spheres_sim::war::committed_force(w, c, b.nation),
-                "force_share_bp": b.force_share_bp,
+                "committed": disclosed.then(|| spheres_sim::war::committed_force(w, c, b.nation)),
+                "force_share_bp": disclosed.then_some(b.force_share_bp).flatten(),
                 "rungs": rungs,
             })
         })
@@ -943,6 +959,8 @@ fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
         "attacker_allies": c.side_a.iter().skip(1).map(|a| a.name()).collect::<Vec<_>>(),
         "defender_allies": c.side_b.iter().skip(1).map(|a| a.name()).collect::<Vec<_>>(),
         "posture": posture,
+        "operation": w.player.and_then(|n|spheres_sim::campaign::view(w,c.id,n)),
+        "peace": w.player.map(|n|spheres_sim::campaign_peace::view(w,c,n)),
         "start": month_name(c.start_month, c.start_year),
     })
 }
@@ -1051,7 +1069,8 @@ fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
         "stability": n.stability,
         "political_capital": n.political_capital,
         "separatism": n.separatism,
-        "mil_strength": n.mil_strength,
+        "mil_strength": if spheres_sim::campaign::enabled(w) && me!=Some(n.id) { (n.mil_strength/10.0).round()*10.0 } else {n.mil_strength},
+        "military_estimated": spheres_sim::campaign::enabled(w) && me!=Some(n.id),
         "war_exhaustion": n.war_exhaustion,
         "nuclear": n.nuclear,
         "oil_mbd": n.oil_mbd,
@@ -5466,6 +5485,14 @@ fn guidance_json(g: &Game) -> serde_json::Value {
     })
 }
 
+fn warfare_adoption_json(w: &WorldState, nation: NationId) -> serde_json::Value {
+    let enabled=spheres_sim::campaign::enabled(w);
+    let reason=spheres_sim::operational_warfare::enrollment_refusal(w,nation);
+    serde_json::json!({"enabled":enabled,"available":!enabled&&reason.is_none(),"reason":reason,
+        "effect":"Enable theatre operations, deployment journeys, supply reports and negotiated peace. Existing equipment, supplier stock and paid contracts retain their property. This changes future campaign rules; save a separate slot first if you want to retain the former rules.",
+        "command":{"kind":"enable_operational_warfare"}})
+}
+
 fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
     let w = &g.world;
     let nations: Vec<serde_json::Value> = w
@@ -5562,6 +5589,7 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         "wars": wars,
         "operations": w.player.filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive))
             .map(|id| spheres_sim::operations::view(w, id)),
+        "warfare_adoption":w.player.filter(|id|w.nation_opt(*id).is_some_and(|n|n.alive)).map(|id|warfare_adoption_json(w,id)),
         // The sim's held/contested threshold for per-district front control,
         // served so the browser never re-derives it (its literal is only a
         // fallback for a server that predates this key).
@@ -6401,6 +6429,7 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
         "enable_economic_competition" => Command::EnableEconomicCompetition { nation:me },
         "enable_connected_economy" => Command::EnableConnectedEconomy { nation:me },
         "enable_companies" => Command::EnableCompanies { nation:me },
+        "enable_operational_warfare" => Command::EnableOperationalWarfare { nation:me },
         "assign_sector_contractor" => Command::AssignSectorContractor { nation:me,
             company:u32::try_from(v.get("company")?.as_u64()?).ok()?,
             target:serde_json::from_value(v.get("target")?.clone()).ok()?,
@@ -6740,6 +6769,15 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
                 value => Some(value.as_u64()?.try_into().ok()?),
             },
         },
+        "operation" => Command::SetOperation { order: spheres_sim::campaign::OperationOrder {
+            conflict:v.get("conflict")?.as_u64()?.try_into().ok()?, nation:me,
+            target:match v.get("target")? {serde_json::Value::Null=>None,x=>Some(x.as_str()?.to_string())},
+            approach:serde_json::from_value(v.get("approach")?.clone()).ok()?,
+            reserve_bp:v.get("reserve_bp")?.as_u64()?.try_into().ok()?,
+            air:serde_json::from_value(v.get("air")?.clone()).ok()?,
+            naval:serde_json::from_value(v.get("naval")?.clone()).ok()?,
+        }},
+        "war_diplomacy" => Command::WarDiplomacy {nation:me,order:serde_json::from_value(v.get("order")?.clone()).ok()?},
         "objective" => Command::SetObjective {
             conflict: conflict()?,
             nation: me,
@@ -7250,6 +7288,18 @@ fn main() {
                     .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()));
                 continue;
             }
+            (Method::Get, "/campaign-operations-ui.js") => {
+                let _=request.respond(Response::from_string(CAMPAIGN_OPERATIONS_JS)
+                    .with_header(Header::from_bytes("Content-Type","text/javascript; charset=utf-8").unwrap())
+                    .with_header(Header::from_bytes("Cache-Control","no-cache").unwrap()));
+                continue;
+            }
+            (Method::Get, "/campaign-operations-ui.css") => {
+                let _=request.respond(Response::from_string(CAMPAIGN_OPERATIONS_CSS)
+                    .with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap())
+                    .with_header(Header::from_bytes("Cache-Control","no-cache").unwrap()));
+                continue;
+            }
             (Method::Get, "/operations-ui.css") => {
                 let _ = request.respond(Response::from_string(MILITARY_OPERATIONS_CSS)
                     .with_header(Header::from_bytes("Content-Type", "text/css; charset=utf-8").unwrap())
@@ -7309,6 +7359,8 @@ fn main() {
             (Method::Get, "/surface-material.js") => Response::from_string(SURFACE_MATERIAL_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/site-mesh.js") => Response::from_string(SITE_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/town-mesh.js") => Response::from_string(TOWN_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/city-mesh.js") => Response::from_string(CITY_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/city-layer.js") => Response::from_string(CITY_LAYER_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/equipment-import.js") => Response::from_string(EQUIPMENT_IMPORT_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/arsenal3d.css") => Response::from_string(ARSENAL3D_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, path) if path.starts_with("/art/components/") => {
@@ -11778,11 +11830,10 @@ mod tests {
         );
         // `#version 300 es` must be the first bytes of every shader string -- a leading
         // newline is a silent compile failure, and nothing downstream would report it.
-        assert_eq!(
-            INDEX.matches(" = `#version 300 es").count(),
-            4,
-            "expected four inline GLSL strings, each opening on the version directive"
-        );
+        let declared=INDEX.matches("const GLSL_").count();
+        let opened=INDEX.matches(" = `#version 300 es").count();
+        assert!(declared>=5,"only {declared} inline GLSL constants found");
+        assert_eq!(opened,declared,"every shader must start at its version directive");
         // The one failure exit. It no longer reveals a fallback map, because
         // there is none: it says what happened where the map would have been.
         assert!(INDEX.contains("function glFail("));

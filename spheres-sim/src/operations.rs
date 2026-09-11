@@ -84,9 +84,24 @@ pub struct Deployment {
     pub capabilities: Capabilities,
     pub rung: u8,
     pub burn_monthly: f64,
+    /// Normalized operation activity before the legacy magazine share is
+    /// removed. Campaign transport uses this quote, never physical rounds.
+    #[serde(skip)]
+    pub(crate) support_burn_monthly: f64,
+    #[serde(skip)]
+    force_loss_multiplier: f64,
     /// Present only after physical custom ammunition has been activated.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub ammunition: Option<crate::equipment::GroundAmmoEffects>,
+}
+
+impl Deployment {
+    /// A pure own-force casualty quote, shared by forecasts, local cohorts and
+    /// national settlement. Parked custom aircraft are not exposed force.
+    pub(crate) fn actual_loss(&self, raw_amount: f64) -> f64 {
+        let raw = if raw_amount.is_finite() { raw_amount.clamp(0.0,self.deployed.max(0.0)) } else { 0.0 };
+        raw * self.force_loss_multiplier
+    }
 }
 
 #[derive(Clone, Debug, Serialize)]
@@ -121,7 +136,8 @@ fn allocate_base(w: &WorldState, id: NationId, extra: Option<&Conflict>) -> Vec<
             .min(b.force_share_bp.map_or(f64::INFINITY, |bp| n.mil_strength.max(0.0) * bp.min(10_000) as f64 / 10_000.0));
         Some(Deployment { conflict: c.id, nation: id, overseas, allocation_bp: b.force_share_bp,
             requested, deployed: requested, effective_force: 0.0, quality: war::quality(w, id),
-            capabilities: cap, rung: b.rung, burn_monthly: 0.0, ammunition: None })
+            capabilities: cap, rung: b.rung, burn_monthly: 0.0, support_burn_monthly: 0.0,
+            force_loss_multiplier: 1.0, ammunition: None })
     }).collect();
     let abroad: f64 = rows.iter().filter(|r| r.overseas).map(|r| r.deployed).sum();
     if abroad > overseas_limit {
@@ -140,6 +156,8 @@ fn allocate_base(w: &WorldState, id: NationId, extra: Option<&Conflict>) -> Vec<
         // actual national share, so repeated conflicts cannot duplicate supply.
         let reference = n.mil_strength.max(0.0) * war::RUNG_COMMIT[r.rung.min(9) as usize];
         r.burn_monthly = if reference > 0.0 { war::BURN_BY_RUNG[r.rung.min(9) as usize] * roe * r.deployed / reference } else { 0.0 };
+        if crate::campaign::enabled(w) { r.burn_monthly *= crate::campaign::consumption_multiplier(w,r.conflict,id); }
+        r.support_burn_monthly = r.burn_monthly;
     }
     rows
 }
@@ -155,12 +173,18 @@ fn ammo_deployments_base(w: &WorldState, id: NationId, rows: &[Deployment], extr
         let roe = posture.map_or(1.0, |b| war::roe_burn(b.roe));
         let rung = row.rung.min(9) as usize;
         let reference = war::RUNG_COMMIT[rung];
-        let intensity = if reference > 0.0 {
+        let mut intensity = if reference > 0.0 {
             war::BURN_BY_RUNG[rung] / reference / (war::BURN_BY_RUNG[8] / war::RUNG_COMMIT[8]) * roe
         } else { 0.0 };
+        if crate::campaign::enabled(w) {
+            intensity *= if row.rung == 6 {
+                crate::campaign::aircraft_consumption_multiplier(w, row.conflict, id)
+            } else { crate::campaign::consumption_multiplier(w, row.conflict, id) };
+        }
         crate::equipment::AmmoDeployment {
             ground: row.rung != 6,
-            aircraft_share: if row.rung == 6 && strength > 0.0 && conflict.is_some_and(|c| theatre::has_access(w,id,c.theatre)) {
+            aircraft_share: if row.rung == 6 && strength > 0.0 && conflict.is_some_and(|c|
+                theatre::has_access(w,id,c.theatre) && crate::campaign::custom_strike_ordered(w,c,id)) {
                 (row.deployed / strength).clamp(0.0,1.0)
             } else { 0.0 },
             deployed_share: if strength > 0.0 { (row.deployed / strength).clamp(0.0, 1.0) } else { 0.0 },
@@ -171,15 +195,26 @@ fn ammo_deployments_base(w: &WorldState, id: NationId, rows: &[Deployment], extr
 
 fn launched_enemy_air(w: &WorldState, id: NationId, conflict: u32, extra: Option<&Conflict>) -> f64 {
     let rows = allocate_base(w, id, extra);
-    let Some(index) = rows.iter().position(|r| r.conflict == conflict && r.rung == 6) else { return 0.0; };
+    let campaign = crate::campaign::enabled(w);
+    let Some(index) = rows.iter().position(|r| r.conflict == conflict &&
+        (r.rung == 6 || (campaign && r.rung >= 6))) else { return 0.0; };
     let row = &rows[index];
+    let mission_share = if campaign {
+        w.conflict(conflict).or_else(|| extra.filter(|c| c.id == conflict))
+            .map_or(0.0, |c| crate::campaign::air_exposure_share(w,c,id))
+    } else { 1.0 };
+    if mission_share <= 0.0 { return 0.0; }
+    // Campaign ground support can expose legacy aircraft at the invasion
+    // rungs. Custom tactical aircraft remain parked there, as the shared
+    // mission quote excludes them; no ground weapon coverage becomes a raid.
+    if row.rung != 6 { return row.deployed * mission_share; }
     // Preserve the old legacy-air exposure rule. Only nations with actual
     // custom aircraft need the new supported, based and paid-store check.
-    if !crate::equipment::has_aviation_holdings(w.nation(id)) { return row.deployed; }
+    if !crate::equipment::has_aviation_holdings(w.nation(id)) { return row.deployed * mission_share; }
     let deployments = ammo_deployments_base(w, id, &rows, extra);
     let plan = crate::equipment::plan_ammunition(w, id, &deployments);
     let effects = crate::equipment::ammunition_effects(w, id, &deployments[index], row.capabilities, &plan);
-    row.deployed * effects.fire_fraction
+    row.deployed * effects.fire_fraction * mission_share
 }
 
 fn ammo_deployments(w: &WorldState, id: NationId, rows: &[Deployment], extra: Option<&Conflict>) -> Vec<crate::equipment::AmmoDeployment> {
@@ -204,6 +239,9 @@ fn allocate(w: &WorldState, id: NationId, extra: Option<&Conflict>) -> Vec<Deplo
         let effects = crate::equipment::ammunition_effects(w, id, deployment, row.capabilities, &plan);
         row.effective_force = row.deployed * effects.fire_fraction;
         row.burn_monthly *= effects.legacy_share;
+        if crate::equipment::has_aviation_holdings(w.nation(id)) {
+            row.force_loss_multiplier = effects.maneuver_fraction;
+        }
         row.ammunition = Some(effects);
     }
     rows
@@ -301,12 +339,16 @@ impl Snapshot {
         }
         scalar_dry
     }
+    /// Convert raw contact casualties to the same exposed-force debit used by
+    /// national settlement. Campaign cohorts call this before removing local
+    /// force; record_loss still receives the unconverted deployment fraction.
+    pub fn actual_loss(&self, cid: u32, id: NationId, raw_amount: f64) -> f64 {
+        self.rows.get(&(cid,id)).map_or(0.0, |r| r.actual_loss(raw_amount))
+    }
     pub fn record_loss(&mut self, cid: u32, id: NationId, fraction: f64) {
         if let Some(r) = self.rows.get(&(cid,id)) {
             let raw = r.deployed * fraction.clamp(0.0,1.0);
-            let force = if self.aircraft_exposure.contains_key(&(id,cid)) {
-                raw * r.ammunition.map_or(1.0, |a| a.maneuver_fraction)
-            } else { raw };
+            let force = self.actual_loss(cid, id, raw);
             self.losses.insert((id,cid), (raw, r.rung, force));
         }
     }
@@ -360,3 +402,7 @@ impl Snapshot {
 #[cfg(test)]
 #[path = "operations_aviation_loss_tests.rs"]
 mod aviation_loss_tests;
+
+#[cfg(test)]
+#[path = "operations_campaign_ammo_tests.rs"]
+mod campaign_ammo_tests;
