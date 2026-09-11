@@ -1,0 +1,56 @@
+{
+  "candidate": "e2f66bca0614cce254f3bb15122cff0dadff128b",
+  "rows": [
+    {
+      "scenario": "idle_human",
+      "age": 0,
+      "sim_p95_ms": 39.102900000000005,
+      "whole_p95_ms": 108.0115,
+      "whole_max_ms": 109.5648,
+      "passed": true
+    },
+    {
+      "scenario": "idle_human",
+      "age": 10,
+      "sim_p95_ms": 141.8725,
+      "whole_p95_ms": 238.0801,
+      "whole_max_ms": 241.2445,
+      "passed": true
+    },
+    {
+      "scenario": "idle_human",
+      "age": 30,
+      "sim_p95_ms": 162.3299,
+      "whole_p95_ms": 258.4294,
+      "whole_max_ms": 321.3489,
+      "passed": true
+    },
+    {
+      "scenario": "industry_and_war",
+      "age": 0,
+      "sim_p95_ms": 83.8041,
+      "whole_p95_ms": 146.7005,
+      "whole_max_ms": 280.5171,
+      "passed": true
+    },
+    {
+      "scenario": "industry_and_war",
+      "age": 10,
+      "sim_p95_ms": 201.0777,
+      "whole_p95_ms": 291.58729999999997,
+      "whole_max_ms": 425.0684,
+      "passed": true
+    },
+    {
+      "scenario": "industry_and_war",
+      "age": 30,
+      "sim_p95_ms": 250.2204,
+      "whole_p95_ms": 341.934,
+      "whole_max_ms": 471.75640000000004,
+      "passed": true
+    }
+  ],
+  "sampled_private_bytes": 401223680,
+  "memory_passed": true,
+  "passed": true
+}

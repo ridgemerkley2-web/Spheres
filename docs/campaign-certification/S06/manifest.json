@@ -1,0 +1,570 @@
+{
+  "session": "S06",
+  "status": "complete",
+  "completed_date": "2026-09-11",
+  "runtime_revision": "e2f66bca0614cce254f3bb15122cff0dadff128b",
+  "baseline": "1b985107ef3b5c6aa31fec130568d0286a126f5d",
+  "binary": {
+    "revision_before": "e2f66bca0614cce254f3bb15122cff0dadff128b",
+    "clean_before": true,
+    "command": [
+      "cargo",
+      "build",
+      "--locked",
+      "--release",
+      "-p",
+      "spheres-web"
+    ],
+    "started_utc": "2026-09-11T11:19:01.830943+00:00",
+    "exit_code": 0,
+    "finished_utc": "2026-09-11T11:21:58.236750+00:00",
+    "revision_after": "e2f66bca0614cce254f3bb15122cff0dadff128b",
+    "clean_after": true,
+    "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+    "binary_sha256": "8f3e95af0a6b3e9f0592e748a17f43a6b0e92bde4375be8aff222039709ef023"
+  },
+  "windows_native": {
+    "passed": 1501,
+    "failed": 0,
+    "ignored": 75,
+    "targets": 62
+  },
+  "linux_native": {
+    "passed": 1501,
+    "failed": 0,
+    "ignored": 75,
+    "targets": 62
+  },
+  "node_each_platform": {
+    "passed": 1483,
+    "failed": 0,
+    "skipped": 1
+  },
+  "external_save_checks_each_platform": 3,
+  "browser": {
+    "france_journey": "evidence/money-browser/result.json",
+    "executed_harness_sha256": "2e6fb47abc963cadb9a6be5a6ae4876b58cb6914965505b8092edfd2d5e2cf68",
+    "committed_harness_sha256": "f3a9b43efdb6567ec3feb96db389c93dd361f0af3cedf15a6015e5f4a7641e82",
+    "harness_equivalence": "Only the helper require path changes at the ignored execution location; the resolved helper and all assertions are identical. Native/browser comparisons share JSON serialization, which normalizes signed zero.",
+    "general_regression": "evidence/general-browser/result.json",
+    "reviewed_screenshots": [
+      "money-desktop.png",
+      "money-decision-mobile.png"
+    ],
+    "scope": "Real France budget/tax/recovery navigation and three daily enacts, pure previews, desktop/narrow layout, retained date/disclosures/focus, stale-date response rejection, named save/load and reload/Continue."
+  },
+  "performance": {
+    "candidate": "e2f66bca0614cce254f3bb15122cff0dadff128b",
+    "rows": [
+      {
+        "scenario": "idle_human",
+        "age": 0,
+        "sim_p95_ms": 39.102900000000005,
+        "whole_p95_ms": 108.0115,
+        "whole_max_ms": 109.5648,
+        "passed": true
+      },
+      {
+        "scenario": "idle_human",
+        "age": 10,
+        "sim_p95_ms": 141.8725,
+        "whole_p95_ms": 238.0801,
+        "whole_max_ms": 241.2445,
+        "passed": true
+      },
+      {
+        "scenario": "idle_human",
+        "age": 30,
+        "sim_p95_ms": 162.3299,
+        "whole_p95_ms": 258.4294,
+        "whole_max_ms": 321.3489,
+        "passed": true
+      },
+      {
+        "scenario": "industry_and_war",
+        "age": 0,
+        "sim_p95_ms": 83.8041,
+        "whole_p95_ms": 146.7005,
+        "whole_max_ms": 280.5171,
+        "passed": true
+      },
+      {
+        "scenario": "industry_and_war",
+        "age": 10,
+        "sim_p95_ms": 201.0777,
+        "whole_p95_ms": 291.58729999999997,
+        "whole_max_ms": 425.0684,
+        "passed": true
+      },
+      {
+        "scenario": "industry_and_war",
+        "age": 30,
+        "sim_p95_ms": 250.2204,
+        "whole_p95_ms": 341.934,
+        "whole_max_ms": 471.75640000000004,
+        "passed": true
+      }
+    ],
+    "sampled_private_bytes": 401223680,
+    "memory_passed": true,
+    "passed": true
+  },
+  "preservation": "evidence/S06-preservation.json",
+  "limits": [
+    "Recording begins prospectively; older transactions are not reconstructed.",
+    "45 dated days and 12 decisions retained.",
+    "Monthly totals can contain pre-decision days; balances are observed since the decision, not causal attribution.",
+    "Future recurring flows and optional purchases are not priced as fixed commitments.",
+    "Bounded six-workload performance sample; broader supplier-heavy and 2035 qualification remains S22.",
+    "S06 completion does not earn G2 or CP1."
+  ],
+  "next_session": "S07",
+  "stop_after": "S06",
+  "evidence_files": [
+    {
+      "file": "evidence/general-browser/companies-desktop.png",
+      "bytes": 873775,
+      "sha256": "d7f6cf26bfc71e019ec77006d1a9bfcf45c581c5032278fab66e7b199efcf119"
+    },
+    {
+      "file": "evidence/general-browser/companies-mobile.png",
+      "bytes": 203054,
+      "sha256": "a1aa3ce7dc5145ba97170571e158a17303a872b84a0f4a8c57860b1002c948b5"
+    },
+    {
+      "file": "evidence/general-browser/construction-preview-desktop.png",
+      "bytes": 1097816,
+      "sha256": "cd083b51d596133c0326d929899615625c4a8343c4bca46a6b1ba0d88c09b0c7"
+    },
+    {
+      "file": "evidence/general-browser/construction-preview-mobile.png",
+      "bytes": 236418,
+      "sha256": "1efbd290883f605a4803f6189e050a155e49640f1ab2bfd448ca178193f653b9"
+    },
+    {
+      "file": "evidence/general-browser/government-desktop.png",
+      "bytes": 774278,
+      "sha256": "55c605b6455e18a0a23b1421d407a63bea5601e94092a10c4a9d49c1abddcc4a"
+    },
+    {
+      "file": "evidence/general-browser/government-mobile.png",
+      "bytes": 117811,
+      "sha256": "f03f5cf5657155d27fa21bd3de4cc756731f39116d589fd527c7631531f0b541"
+    },
+    {
+      "file": "evidence/general-browser/government-review-desktop.png",
+      "bytes": 512861,
+      "sha256": "55638adaa1f4c2af9223ba3146c3d0f4510ce45684328992162c8758b98d6cbc"
+    },
+    {
+      "file": "evidence/general-browser/government-review-mobile.png",
+      "bytes": 93513,
+      "sha256": "185087cf46101801cb8265fc141eda04dc862b640a88329dd5b8dd7b885f3b47"
+    },
+    {
+      "file": "evidence/general-browser/research-desktop.png",
+      "bytes": 818798,
+      "sha256": "5256712ec4f565cc70c9115238e821614cdc7f447df70ac2df4dcac28a10b216"
+    },
+    {
+      "file": "evidence/general-browser/research-mobile.png",
+      "bytes": 298093,
+      "sha256": "fcf9ba27ceb866f9e412c1d22e6919ac5fd0fabe8af27f15b232bcba40520da7"
+    },
+    {
+      "file": "evidence/general-browser/result.json",
+      "bytes": 17512,
+      "sha256": "901201b1a0aa654dd0571582c2d9518f309f0b390c98b47433bb5665d035d058"
+    },
+    {
+      "file": "evidence/general-browser/tutorial-budget-destination.png",
+      "bytes": 1333055,
+      "sha256": "1217df83fedef2b3b9df3a9ae4ad0717bded80e94e94538f391e1f19d000dd46"
+    },
+    {
+      "file": "evidence/money-browser/approved-money.json",
+      "bytes": 173710,
+      "sha256": "b560a31dbce3514cccf0b42c51dea2de669ea2846d8e298f69629b3a5c97e0cb"
+    },
+    {
+      "file": "evidence/money-browser/before-load-money.json",
+      "bytes": 178184,
+      "sha256": "a3f561df82f55f29c89cbcc05c7e05630f3159afd392af58d6d1cad958b8b60a"
+    },
+    {
+      "file": "evidence/money-browser/budget-money.json",
+      "bytes": 167492,
+      "sha256": "47a9c5aef90be3e7fa1a99155a4777fba8e3e7a9a62e87dc1a61c709ec544120"
+    },
+    {
+      "file": "evidence/money-browser/ci-money-final-source.cjs",
+      "bytes": 23632,
+      "sha256": "f6212d7a83d24a58f72843816b4480eb94114ca0096b4fe8ad3f923c5131868d"
+    },
+    {
+      "file": "evidence/money-browser/ci-money-signed-zero.patch",
+      "bytes": 1128,
+      "sha256": "3f9f176f8a231f41bc346334d23d59cd35fa3451a252e6e7427eafab0292996c"
+    },
+    {
+      "file": "evidence/money-browser/ci-money.cjs",
+      "bytes": 23645,
+      "sha256": "2e6fb47abc963cadb9a6be5a6ae4876b58cb6914965505b8092edfd2d5e2cf68"
+    },
+    {
+      "file": "evidence/money-browser/initial-money.json",
+      "bytes": 156205,
+      "sha256": "768245460863f3fb4d85c731af6a8d2748d8dd6956c556156dd4b19bb9f5466f"
+    },
+    {
+      "file": "evidence/money-browser/loaded-money.json",
+      "bytes": 178184,
+      "sha256": "d5df6384fecc3b273b890db6748e78604d2b39f69414e49ac7522cca283e4528"
+    },
+    {
+      "file": "evidence/money-browser/money-decision-desktop.png",
+      "bytes": 484450,
+      "sha256": "5b54447d962dbd7a69846aaf738b6880f1a569a26b8109a297945a287804122b"
+    },
+    {
+      "file": "evidence/money-browser/money-decision-mobile.png",
+      "bytes": 119345,
+      "sha256": "b9afd608fcad27455b90409e0c8548959ddc2b12754e1c1c270eba25c6e56395"
+    },
+    {
+      "file": "evidence/money-browser/money-desktop.png",
+      "bytes": 775978,
+      "sha256": "b3f55263385e04ff2c45ec95516aa8e716e3faa002a5c95b8c9b9148676199d1"
+    },
+    {
+      "file": "evidence/money-browser/money-entry-desktop.png",
+      "bytes": 328635,
+      "sha256": "c25e7a0cb53d6c384a85663e26d56ac811f3374fe439aef2ddbb8b871c639789"
+    },
+    {
+      "file": "evidence/money-browser/money-entry-mobile.png",
+      "bytes": 116050,
+      "sha256": "a2065979f81a740f3fcebac6282a04bda1d6de9e6037651ec99149d0becfbc7a"
+    },
+    {
+      "file": "evidence/money-browser/money-initial-desktop.png",
+      "bytes": 991059,
+      "sha256": "3973e6824f74c04ab1ed0b3a61c2ce5928b36785edf08fd2bf08a6fa3bf9c4fb"
+    },
+    {
+      "file": "evidence/money-browser/money-loaded-desktop.png",
+      "bytes": 774297,
+      "sha256": "05474e371e3fdb3e98eb6f68e3e4fcf761e9bc1c293426006d27f673163edc31"
+    },
+    {
+      "file": "evidence/money-browser/money-mobile.png",
+      "bytes": 252226,
+      "sha256": "b8637c6b0915cea9866494dbac5d51a4d7edbba02a6d8dea717ac61edac4b6c5"
+    },
+    {
+      "file": "evidence/money-browser/money-recovery-desktop.png",
+      "bytes": 687456,
+      "sha256": "f0bc6b875d2e567cbc4d8fd1d38b05316187ce4f39247ec6acb93df7da94a25e"
+    },
+    {
+      "file": "evidence/money-browser/money-recovery-mobile.png",
+      "bytes": 164909,
+      "sha256": "96fb52f03c9331e14eb932c18996e6750413022cef63c4e3c4f0b65f420e65d2"
+    },
+    {
+      "file": "evidence/money-browser/named-save-desktop.png",
+      "bytes": 959021,
+      "sha256": "f7c1b2ff1e1bc29704b581eb0a8d77f47e824e7f1c97e3019e4e3b9a2aae13f4"
+    },
+    {
+      "file": "evidence/money-browser/result.json",
+      "bytes": 24823,
+      "sha256": "479c8de823a5cf1ee83c6590195d2d1049fe8d50f15a84af70892ea94036552e"
+    },
+    {
+      "file": "evidence/money-browser/S06-money-browser-candidate-1.log",
+      "bytes": 1282,
+      "sha256": "0c9cf2aadfd6323de5addfa42bca1f72ac2054ff2e5e3c61e4aab334708c92ca"
+    },
+    {
+      "file": "evidence/money-browser/S06-money-browser-candidate-2.log",
+      "bytes": 501,
+      "sha256": "70383d8f577075dbf5dd032c0a5a24cc0073a7304ad6a5ebb7045e6496acecef"
+    },
+    {
+      "file": "evidence/money-browser/S06-money-browser-candidate-3.log",
+      "bytes": 190,
+      "sha256": "ad201874cc48eabae28227b9e11382298f628964d6ab05fe53f8e6c1a150588f"
+    },
+    {
+      "file": "evidence/money-browser/server.log",
+      "bytes": 78,
+      "sha256": "c0189da59baaf6e4cbddaec221966cd3260e3c7a65e5347436f936a2e6c10356"
+    },
+    {
+      "file": "evidence/money-browser/tax-draft-desktop.png",
+      "bytes": 773888,
+      "sha256": "999b42b217352416dca9c06518a7f5dedcf34952f87ff4e8a870a6c6c0b5c2f1"
+    },
+    {
+      "file": "evidence/money-browser-attempts/france-Cq8S1i.json",
+      "bytes": 18375,
+      "sha256": "f7fc1a15d6c6adadedc958585e7b1de671d19b085a1c9b772dce3a2802385f9d"
+    },
+    {
+      "file": "evidence/money-browser-attempts/france-rzUpdM.json",
+      "bytes": 16428,
+      "sha256": "61ea8b4752e85099b828bbfcbec25f52baeb5080cb1c8109cd41d1451ebc41e9"
+    },
+    {
+      "file": "evidence/run-s06-external.py",
+      "bytes": 2063,
+      "sha256": "6c379229e682d8eec32428023605cc84fce42427178de4659a3b6af14e24e0c7"
+    },
+    {
+      "file": "evidence/run-s06-final.py",
+      "bytes": 2761,
+      "sha256": "08d96b9b360080d5d41fb9a60228c1e43391e4979538e76b8e2853adc33e09d8"
+    },
+    {
+      "file": "evidence/run-s06-linux.py",
+      "bytes": 7234,
+      "sha256": "d43495889a7d07efab06eef5e0aa855b508f952877eb86ead6983c314ade9c75"
+    },
+    {
+      "file": "evidence/s05-installed-browser.cjs",
+      "bytes": 480,
+      "sha256": "68815cca04aa2c20cec67e8d719641695e9b93ea94121b28aa7517c88f211758"
+    },
+    {
+      "file": "evidence/S06-development/findings.json",
+      "bytes": 1636,
+      "sha256": "c525ae1f8128d3dc6cae4b170d3c548b71381c07905cf5fd3911561160ec4dd9"
+    },
+    {
+      "file": "evidence/S06-development/node.log",
+      "bytes": 149373,
+      "sha256": "5a25f63a84d00cd9bec50a91d2074233c8bacd04ecde7232e317950104a33925"
+    },
+    {
+      "file": "evidence/S06-external-final/1.log",
+      "bytes": 611,
+      "sha256": "99c55d021eaee8a9771d5ac25f2446676fc8ea02518bbf121a8e0bdb816b3cde"
+    },
+    {
+      "file": "evidence/S06-external-final/2.log",
+      "bytes": 9540,
+      "sha256": "be90c401003f7e56097ae92fe97ffd8e8a9e9b397c239431112fb2c405c9a847"
+    },
+    {
+      "file": "evidence/S06-external-final/3.log",
+      "bytes": 1288,
+      "sha256": "d86f162d20d445e89bde6253b13b6a052894aff932ebe705b7a41c82c2116436"
+    },
+    {
+      "file": "evidence/S06-external-final/result.json",
+      "bytes": 1140,
+      "sha256": "4c87ea331ef4e3d3ab2c0394cf7cce406ef95c00995c88b62549b8dca61fa8a2"
+    },
+    {
+      "file": "evidence/S06-final-binary.json",
+      "bytes": 684,
+      "sha256": "b261b7f1d56a572a99919c81d702b8bb7527988c244774c267343ca571f01dd3"
+    },
+    {
+      "file": "evidence/S06-final-binary.log",
+      "bytes": 273,
+      "sha256": "7cf63088331bb92ddbf5e39dbe686fdfa9c482f94ba9d40d853907673369e7ec"
+    },
+    {
+      "file": "evidence/S06-final-browser-installed.json",
+      "bytes": 744,
+      "sha256": "2585cfa7e12be352df1a24ef7f925ededf51ef54372143fec7ac31b5775bb7f1"
+    },
+    {
+      "file": "evidence/S06-final-browser-installed.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "evidence/S06-final-money-browser.json",
+      "bytes": 633,
+      "sha256": "fdabdd488c5bf33d99f4cc669afa1a6335e170ff426d9841435c2ed908442756"
+    },
+    {
+      "file": "evidence/S06-final-money-browser.log",
+      "bytes": 2406,
+      "sha256": "ae91b93cecb03bcde4012faa42720cb2dacdafb849f8b67d921f17ee213e9352"
+    },
+    {
+      "file": "evidence/S06-final-native.json",
+      "bytes": 718,
+      "sha256": "f250fcc2d5c2d8109c688bf41306a6089dfd7f3ce5d8e4d91da29e23a09e5df6"
+    },
+    {
+      "file": "evidence/S06-final-native.log",
+      "bytes": 157288,
+      "sha256": "117e3c95a32f45f87a81a147e48eed60df95116edadf31397a61dabb9703f345"
+    },
+    {
+      "file": "evidence/S06-final-node.json",
+      "bytes": 377,
+      "sha256": "3bdda06e0edc97eb9203cd3bca4277c0b4f7b3d33f417d1d1af683293d246742"
+    },
+    {
+      "file": "evidence/S06-final-node.log",
+      "bytes": 147225,
+      "sha256": "f8eea2cd5358dc18ea8bfc979fc66416e0bf74c0fdcbc3dbe5099c8938fe8351"
+    },
+    {
+      "file": "evidence/S06-linux-final/active-fixtures-source-after.json",
+      "bytes": 343,
+      "sha256": "ccadacdbe2aa504c11789fddaaf438738ace5a11fd2057bf070098b6cfbc39a4"
+    },
+    {
+      "file": "evidence/S06-linux-final/active-fixtures.log",
+      "bytes": 9540,
+      "sha256": "2d5e1186cbbe85dd40b47e924c01f8fa474e60e97d3f9a5f0d4520ab1e179bd4"
+    },
+    {
+      "file": "evidence/S06-linux-final/fixtures-after.json",
+      "bytes": 9594,
+      "sha256": "3fe13c095fcb4bef6313770e2cc65821f7647daefabd1bdbad3637a6441192e0"
+    },
+    {
+      "file": "evidence/S06-linux-final/fixtures-before.json",
+      "bytes": 9594,
+      "sha256": "272ed3b53e6ff89d2f115faef00edc83f425751c24e7e7fa6f5c08113fb577be"
+    },
+    {
+      "file": "evidence/S06-linux-final/master-archive-source-after.json",
+      "bytes": 343,
+      "sha256": "5a8f006612281473f9f36373435ce42f3f5bad5a709c216961e75fd4c9445b47"
+    },
+    {
+      "file": "evidence/S06-linux-final/master-archive.log",
+      "bytes": 615,
+      "sha256": "474e19c18ddf4f7144f527d07e476128fd96f96cd69474cf5a159462cf5ffe66"
+    },
+    {
+      "file": "evidence/S06-linux-final/native-source-after.json",
+      "bytes": 343,
+      "sha256": "828359d0b1fa0ed2a4ea00131cb7e76c9bc6564286a9afd0936938db870ba0b2"
+    },
+    {
+      "file": "evidence/S06-linux-final/native.log",
+      "bytes": 152140,
+      "sha256": "93e449901f7dc6b37e459a3c562aec4d0a221e3455b26df298105724e558773c"
+    },
+    {
+      "file": "evidence/S06-linux-final/node-source-after.json",
+      "bytes": 343,
+      "sha256": "6e58e0ab6478558f5b7742f753759d2590af9b75576520836498a93a4f97e63c"
+    },
+    {
+      "file": "evidence/S06-linux-final/node.log",
+      "bytes": 349152,
+      "sha256": "118734226934c6ad33d9f7e25dddc316ebecd8b6cd4ff57c64fe9465b904bb42"
+    },
+    {
+      "file": "evidence/S06-linux-final/party-versions-source-after.json",
+      "bytes": 343,
+      "sha256": "06e5bb812c1b13be34788fcb5a0589ae9d6feb41b52b94d699079d0b18040716"
+    },
+    {
+      "file": "evidence/S06-linux-final/party-versions.log",
+      "bytes": 1288,
+      "sha256": "1231e4edcebe2d71e11bcc1b908b208b30b63aa133e8708b1e34f06e768c1795"
+    },
+    {
+      "file": "evidence/S06-linux-final/runner-result.json",
+      "bytes": 30627,
+      "sha256": "0f6b42d04c8af1ed47254893a362f6f9b654238d4e07f32f1dc93965255ac562"
+    },
+    {
+      "file": "evidence/S06-linux-final/source-after.json",
+      "bytes": 343,
+      "sha256": "bed5b7c9cec2207a5fb4323dfa4daa7dd1b809abf0a6b1c6670c310bdd4b9d95"
+    },
+    {
+      "file": "evidence/S06-linux-final/source-before.json",
+      "bytes": 343,
+      "sha256": "439fac1b9dca39d8dacbead3639dee6f1c4574eaa920a5a5ef9281ef727b72df"
+    },
+    {
+      "file": "evidence/S06-linux-final/toolchain-versions.log",
+      "bytes": 1352,
+      "sha256": "c2ec9e62ea80772c7e166b3f708eee3229824e979dbce4d0584c3195379e8aa3"
+    },
+    {
+      "file": "evidence/S06-native-journal-targeted-2.exit",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "file": "evidence/S06-native-journal-targeted-2.log",
+      "bytes": 1832,
+      "sha256": "643ad82b31483a8ee141d870d2ebd2241dee8091a177c5a7c0b7f85fd1c3f1b1"
+    },
+    {
+      "file": "evidence/S06-native-journal-targeted.exit",
+      "bytes": 5,
+      "sha256": "bdc830287616dae1818ced3e7c186e1387155900ad30d5983ec02da1519c4a95"
+    },
+    {
+      "file": "evidence/S06-native-journal-targeted.log",
+      "bytes": 1953,
+      "sha256": "9a48df6a401934fe06d760244df119d89778fc5063b0b8a671bad8d86f973887"
+    },
+    {
+      "file": "evidence/S06-performance/acceptance.json",
+      "bytes": 1321,
+      "sha256": "d59851dcf4eae60ba2f4747ffd0c088a080eaee58021d582492df01b6ba79977"
+    },
+    {
+      "file": "evidence/S06-performance/memory-samples.csv",
+      "bytes": 14807,
+      "sha256": "7d95b5a470ef3bf08da1defce6340985b2953f76b85b7495b7593b4bfc0b1166"
+    },
+    {
+      "file": "evidence/S06-performance/profile.json",
+      "bytes": 316566,
+      "sha256": "31b90811f1f64eb7ae18b11f5c34d033ab47ac174c68f335696492ef77f1cfc5"
+    },
+    {
+      "file": "evidence/S06-performance/runner-result.json",
+      "bytes": 3680,
+      "sha256": "fdcb2dddd76ae79d115c6bde23bfd051a2570ef62dde582fd96856b87402a995"
+    },
+    {
+      "file": "evidence/S06-performance/stderr.log",
+      "bytes": 1048,
+      "sha256": "4de3d7cc1d7eb6fa7f0efc883b4057dfe882323ad06833ee712eaca8f005d511"
+    },
+    {
+      "file": "evidence/S06-performance/stdout.log",
+      "bytes": 166,
+      "sha256": "078a33865cba4cc4f514393fc330d38d0b2c2421a6e9f7df2db8890e11ac97e2"
+    },
+    {
+      "file": "evidence/S06-performance-protocol.json",
+      "bytes": 955,
+      "sha256": "878c8e4e092448b56eb243156cdb8038a36bf26344ee889f2f711282bb972951"
+    },
+    {
+      "file": "evidence/S06-preservation.json",
+      "bytes": 2605,
+      "sha256": "ec0d8e08d5dcf209482ce23a2b9b32b7659c4785fe795cc3c6328f8d7157379c"
+    },
+    {
+      "file": "evidence/S06-web-money-recheck.exit",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "file": "evidence/S06-web-money-recheck.log",
+      "bytes": 1692,
+      "sha256": "ebdad7f1a2dcfd18e5addab13b260742f1899585b6d16bd0933d4828fd09aca5"
+    }
+  ]
+}

@@ -5,7 +5,7 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path'),net=require('node:net');
 const cp=require('node:child_process'),crypto=require('node:crypto');
 const {chromium}=require('playwright');
-const integrated=require('./ci-integrated.cjs');
+const integrated=require('../../tools/ui/ci-integrated.cjs');
 const root=path.resolve(__dirname,'../..');
 const hash=value=>crypto.createHash('sha256').update(value).digest('hex');
 const copy=value=>JSON.parse(JSON.stringify(value));

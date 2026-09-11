@@ -1,0 +1,25 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 4.69s
+     Running tests\company_refits.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\company_refits-63b8194ed38c206a.exe)
+
+running 1 test
+test s06_actual_refit_escrow_and_refund_explain_cash_once_without_restoring_authority ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 15 filtered out; finished in 0.14s
+
+     Running tests\s06_money_journal.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s06_money_journal-7f3b2e72085e9b56.exe)
+
+running 10 tests
+test s06_reporting_preserves_each_existing_cash_and_debt_operation_bit_for_bit ... ok
+test s06_unattributed_stock_changes_are_visible_and_never_repaired_by_reading ... ok
+test s06_tiny_real_payments_keep_stock_precision_without_accepting_forged_money ... ok
+test s06_refused_policy_is_atomic_and_bounded_history_rejects_forged_money ... ok
+test s06_old_saves_views_and_enrollment_do_not_backfill_money_history ... ok
+test s06_real_ordinary_settlement_reports_signed_interest_and_no_second_charge ... ok
+test s06_goods_escrow_refund_and_dispatch_receipts_have_their_actual_cash_dates ... ok
+test s06_company_receipts_are_budget_inclusions_and_prepaid_money_is_not_paid_twice ... ok
+test s06_unknown_owned_journal_fields_are_refused_at_each_nested_level ... ok
+test s06_policy_and_real_later_receipts_survive_reload_without_driving_the_simulation ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.08s
+

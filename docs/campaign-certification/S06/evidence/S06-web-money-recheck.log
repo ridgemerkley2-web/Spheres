@@ -1,0 +1,19 @@
+   Compiling spheres-web v0.6.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-web)
+    Finished `release` profile [optimized] target(s) in 43.52s
+     Running unittests src\main.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_web-960ae70db4690868.exe)
+
+running 11 tests
+test money_view::tests::fiscal_details_keep_signed_interest_and_inclusions_out_of_cash_legs ... ok
+test money_commitments::tests::paid_property_is_separate_from_fresh_bills_and_cargo_does_not_invent_a_price ... ok
+test money_commitments::tests::missing_saved_model_terms_are_unknown_and_cancelled_or_certified_work_is_excluded ... ok
+test tests::the_money_card_is_one_set_of_books ... ok
+test money_commitments::tests::building_totals_use_frozen_paid_terms_and_include_hidden_paused_projects ... ok
+test money_commitments::tests::unfinished_model_and_public_work_use_saved_base_prices_without_repricing_or_counting_fees_twice ... ok
+test money_commitments::tests::accepted_supplier_invoice_is_not_added_to_fresh_fiscal_cash_or_paid_delivery ... ok
+test money_view::tests::old_accounts_and_other_countries_are_not_created_by_reads ... ok
+test tests::competition_enable_is_explicit_and_never_grants_money_or_factories ... ok
+test money_view::tests::approved_correction_records_settings_and_only_later_observed_outcomes ... ok
+test money_view::tests::payments_reconcile_actual_cash_and_debt_and_survive_reload_without_preview_writes ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 313 filtered out; finished in 0.05s
+

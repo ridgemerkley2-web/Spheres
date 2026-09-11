@@ -1,0 +1,15 @@
+diff --git a/tools/ui/ci-money.cjs b/tools/ui/ci-money.cjs
+index 0785a27..6e2fc4c 100644
+--- a/tools/ui/ci-money.cjs
++++ b/tools/ui/ci-money.cjs
+@@ -43,7 +43,9 @@ async function verifyReading(page,url,reading){
+   const state=await get(page,url,'/api/state');
+   assert.equal(reading.session_id,state.session_id);assert.equal(reading.nation,'France');assert.equal(reading.date,state.date);
+   const native=await get(page,url,'/api/cash-flow?session_id='+encodeURIComponent(state.session_id));
+-  assert.deepEqual(reading,native,'Accepted browser reading must be the native response');
++  // The browser observation uses JSON.stringify, which loses the sign of zero.
++  // Normalize the native observation through that same serialization only.
++  assert.deepEqual(reading,copy(native),'Accepted browser reading must be the native response');
+   const country=state.nations.find(n=>n.id==='France');assert(country);
+   assert.equal(reading.balances.treasury_bn,country.treasury);assert.equal(reading.balances.debt_bn,country.debt_bn);
+   if(!reading.money.available){assert.equal(reading.money.reconciliation,null);return state;}

@@ -1,0 +1,8 @@
+S06 money evidence: C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\artifacts\browser-money-ci\france-rzUpdM\result.json
+page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:64841/", waiting until "domcontentloaded"
+
+    at C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\artifacts\s06-tools\ci-money.cjs:151:16 {
+  name: 'TimeoutError'
+}

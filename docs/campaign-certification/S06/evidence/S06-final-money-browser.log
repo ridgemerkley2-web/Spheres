@@ -1,0 +1,49 @@
+S06 money evidence: C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\artifacts\browser-money-ci\france-Cq8S1i\result.json
+AssertionError [ERR_ASSERTION]: Accepted browser reading must be the native response
++ actual - expected
+... Skipped lines
+
+  {
+    actions: [
+      {
+        action: 'budget',
+        label: 'Review annual budget'
+...
+        inherited_power_used_daily: 40.70616129814623,
++       jobs_filled: 0,
++       jobs_required: 0,
+-       jobs_filled: -0,
+-       jobs_required: -0,
+        nation: 'France',
+        note: 'Jobs and qualifications use the shared population ledger. Inherited manufacturing headcounts are divided among its model factory groups; new-site jobs filled report workers utilized in dated production, while assigned employees remain in the population accounts. Available workers are remaining jobseekers, not the pool already employed by these factories. Inherited value added is already inside GDP; only actual new production reaches the province ledger and normal fiscal taxes. Staffing caps each operating bundle once; nameplate capacity remains physical capacity.',
+        power_capacity_daily: 4.070616129814622,
+        power_required_daily: 0,
+        workers_available: 2321407.8619931093
+...
+          spending_gdp: 0.288,
++         stability_change_per_month: 0,
+-         stability_change_per_month: -0,
+          status: 'watch',
+          status_label: 'Fiscal watch',
+          stress_months: 0
+        },
+        available: true,
+...
+      note: 'Construction draws from one daily cash budget within civilian capital appropriations. Work is paid as delivered; unused daily budget is not charged. Existing procurement funds stay reserved for equipment.',
++     planned_daily_bn: 0,
+-     planned_daily_bn: -0,
+      queued_count: 0,
+      reason: null,
+      spent_day: null,
+      spent_today_bn: null,
+      spent_ytd_bn: null
+
+    at verifyReading (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-money.cjs:46:10)
+    at async C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-money.cjs:158:38 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [Object],
+  expected: [Object],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}

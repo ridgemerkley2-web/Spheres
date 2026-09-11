@@ -1,0 +1,35 @@
+{
+  "baseline": "1b985107ef3b5c6aa31fec130568d0286a126f5d",
+  "scope": "Development checks before source freeze, not final qualification",
+  "findings": [
+    {
+      "check": "release spheres-web money_",
+      "result": "10 passed, 1 failed",
+      "cause": "Journal validation did not scale payment conservation tolerance to opening/closing stock magnitudes; ordinary Japan daily save could be refused.",
+      "fix": "Forward error allowance based on actual stock/payment and fiscal gross operands; unchanged payment arithmetic."
+    },
+    {
+      "check": "full Node",
+      "result": "1480 passed, 1 failed, 1 skipped",
+      "log": "node.log",
+      "cause": "Eight edited host lines had LF while index.html requires CRLF.",
+      "fix": "Restored consistent CRLF; focused host/government controls 81 passed."
+    },
+    {
+      "check": "native journal first targeted run",
+      "result": "9 passed, 1 failed",
+      "cause": "Unknown-field test used old plain-world JSON pointer rather than integrated /world envelope.",
+      "fix": "Corrected fixture path; no runtime workaround."
+    },
+    {
+      "check": "independent accounting review",
+      "result": "resolved",
+      "details": [
+        "Record one outer Fiscal Consolidation decision without repricing its child policy changes.",
+        "Distinguish monthly totals that can include pre-decision days from balances since the decision.",
+        "Refuse unsupported nested fields in new journal-owned types.",
+        "Goods escrow settles at dispatch; distinguish noncash restructuring from cash receipts."
+      ]
+    }
+  ]
+}
