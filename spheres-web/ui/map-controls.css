@@ -20,7 +20,7 @@
 #app.map-controls-ready .decision-nav button { min-height: 44px; }
 
 .map-controls { position: absolute; top: 12px; left: 12px; z-index: 5; max-width: calc(100% - 24px); display: flex; flex-direction: column; align-items: flex-start; gap: 7px; font-family: var(--arc-font); color: var(--arc-text); }
-.map-view-controls, .map-camera-controls { display: flex; align-items: center; gap: 5px; padding: 5px; border: 1px solid #c6b5e34a; border-radius: 14px; background: #15202eea; box-shadow: 0 5px 20px #0004; }
+.map-view-controls, .map-camera-controls { display: flex; flex-wrap: wrap; max-width: 100%; box-sizing: border-box; align-items: center; gap: 5px; padding: 5px; border: 1px solid #c6b5e34a; border-radius: 14px; background: #15202eea; box-shadow: 0 5px 20px #0004; }
 .map-controls button, .map-detail-menu > summary { min-width: 44px; min-height: 44px; padding: 9px 12px; border: 1px solid #b5c5d230; border-radius: 9px; background: #263547; color: #edf1f4; font: 650 13px/1.2 var(--arc-font); cursor: pointer; white-space: nowrap; }
 .map-controls button:hover:not(:disabled), .map-detail-menu > summary:hover { border-color: var(--arc-mint); background: #35495a; }
 .map-controls button[aria-pressed="true"] { color: #172c29; background: var(--arc-mint); border-color: var(--arc-mint); }

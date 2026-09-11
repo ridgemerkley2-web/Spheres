@@ -17616,7 +17616,7 @@ mod tests {
         assert!(INDEX.contains("if (!isMe) fillCovertDash(n.id);"));
         assert!(INDEX.contains(r#"<div id="covertDash" class="tiny muted">"#));
         for computed in ["0.12 +", "(60.0 -", "0.0008", "clamp(0.05"] {
-            assert!(!INDEX.contains(computed), "the page derives a covert number of its own: `{computed}`");
+            assert!(!card.contains(computed), "the covert card derives a number of its own: `{computed}`");
         }
     }
 

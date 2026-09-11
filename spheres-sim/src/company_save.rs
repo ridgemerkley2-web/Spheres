@@ -44,6 +44,17 @@ pub(crate) fn decode(s: &str) -> Result<WorldState, String> {
     if !valid { return Err("This save format or version is not supported by this build.".into()); }
     let mut payload = if format.is_some() { shape["world"].clone() } else { shape.clone() };
     if !payload.is_object() { return Err("The saved campaign must be an object.".into()); }
+    // Serde also accepts sequences for defaulted structs. Military books have
+    // object identities, so classify their outer shape before typed decoding.
+    // The older empty/null representation contains no ownership to migrate.
+    for key in ["campaign", "campaign_supply", "campaign_peace"] {
+        if let Some(book) = payload.get(key) {
+            if book.is_null() { payload.as_object_mut().unwrap().remove(key); }
+            else if !book.is_object() {
+                return Err(format!("The saved {key} book must be an object or empty null."));
+            }
+        }
+    }
     let contractor_keys = ["enabled", "roster", "assignments", "growth", "news", "next_id", "last_day", "last_month"];
     let supplier_keys = ["version", "next_id", "firms", "deliveries", "ammunition_deliveries", "last_tick_day"];
     let old = payload.get("companies");
