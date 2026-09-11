@@ -56,6 +56,8 @@ The [S02 industry fixtures](../../../spheres-sim/tests/s02_industry.rs) exercise
 
 Fresh integration-browser campaigns explicitly enable the connected economy. An older campaign must use the visible upgrade action; loading alone does not enable population, rebuilt industry or fiscal recovery. Adoption is staged atomically. The same command is available to a living daily player government, costs no political capital and cannot reset existing training or fiscal clocks.
 
+Legacy peace terms changed national residents by a percentage while transferring whole provinces. That can leave the old provincial estimates above the current national total. Initial adoption keeps that national total and proportionally reduces only the excess mapped estimates; an under-mapped country's remainder stays explicitly unallocated. The affected country's source note records the original estimate, retained total and scale. Ownership, assets, GDP, cash and debt are unchanged. Loading alone does not make this adjustment, and already-enabled population books still refuse inconsistencies rather than repairing them. The year-10 Kuwait benchmark exposed this case; the regression reproduces its exact resident totals through the existing province-transfer API.
+
 | Saved form | S02 behavior |
 | --- | --- |
 | Legacy raw world | Retains disabled connected-economy defaults until explicit adoption. Existing compatibility repairs can still normalize older supported saves; loading does not enroll the new economic books. |

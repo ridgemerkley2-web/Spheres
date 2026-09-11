@@ -696,6 +696,12 @@ fn seed_province(w: &WorldState, id: NationId, d: Option<&str>, pop: f64) -> Pro
 }
 /// Explicit, checked enrollment from current residents. A refused upgrade is
 /// atomic; repeated enrollment never resets cohorts, courses or policy dates.
+/// Before cohort ownership exists, the legacy national population is the
+/// authoritative total: old peace terms transfer a national percentage but
+/// whole geographic provinces, so their resident estimates can disagree.
+/// Only initial enrollment scales excess mapped estimates proportionally;
+/// missing residents remain explicitly unallocated. Existing cohorts are never
+/// repaired here, and this migration cannot change land, assets, GDP or cash.
 pub fn enable(w: &mut WorldState) -> Result<(), String> {
     if w.population_system.enabled {
         return validate(w);
@@ -704,6 +710,7 @@ pub fn enable(w: &mut WorldState) -> Result<(), String> {
     if !clock::is_daily(w) {
         return Err("Population accounts require the active daily calendar.".into());
     }
+    let mut adjustments = BTreeMap::new();
     for n in w.nations.iter().filter(|n| n.alive) {
         if !n.population.is_finite()
             || n.population < 0.0
@@ -723,19 +730,34 @@ pub fn enable(w: &mut WorldState) -> Result<(), String> {
             .filter(|(_, owner)| **owner == n.id)
             .try_fold(0.0, |total, (district, _)| {
                 let value = districts::population_of(w, district).unwrap_or(0.0);
-                if value.is_finite() && value >= 0.0 {
-                    Some(total + value)
+                let next = total + value;
+                if value.is_finite() && value >= 0.0 && next.is_finite() {
+                    Some(next)
                 } else {
                     None
                 }
             })
             .ok_or_else(|| format!("{} has invalid resident data.", n.id.name()))?;
         if mapped > n.population + population_tolerance(n.population) {
-            return Err(format!("{} mapped residents exceed the national population; reconcile the existing resident ledger before enrollment.", n.id.name()));
+            adjustments.insert(n.id, (mapped, n.population, n.population / mapped));
         }
     }
     let mut enrolled = w.clone();
+    for (district, owner) in &enrolled.districts {
+        if let Some((_, _, factor)) = adjustments.get(owner) {
+            if let Some(basis) = enrolled.district_population.get_mut(district) {
+                // Keep each district's relative share and its owner's existing
+                // demographic scale. The national resident total is unchanged.
+                *basis *= factor;
+            }
+        }
+    }
     enroll(&mut enrolled);
+    for (id, (mapped, current, factor)) in adjustments {
+        enrolled.population_system.nations.get_mut(&id).unwrap().source_notes.push(format!(
+            "At enrollment, legacy province population estimates were proportionally reconciled from {mapped:.6} million to the current national total of {current:.6} million (scale {factor:.9}). National residents, province ownership, assets, GDP and government finances were preserved."
+        ));
+    }
     validate(&enrolled)?;
     *w = enrolled;
     Ok(())

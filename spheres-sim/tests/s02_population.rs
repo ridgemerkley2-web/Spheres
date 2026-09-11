@@ -148,7 +148,7 @@ fn france_japan_india_enroll_current_midcampaign_residents_without_reseeding_mon
 #[test]
 fn inconsistent_enrollment_is_atomic_and_loaded_books_fail_closed() {
     let mut invalid = daily();
-    invalid.nation_mut(N::France).population = 0.0;
+    invalid.nation_mut(N::France).population = -1.0;
     let before = save(&invalid);
     assert!(population::enable(&mut invalid).is_err());
     assert_eq!(save(&invalid), before);
@@ -191,6 +191,123 @@ fn inconsistent_enrollment_is_atomic_and_loaded_books_fail_closed() {
         .province_ids
         .clear();
     assert!(population::validate(&bad).is_err());
+}
+
+#[test]
+fn legacy_peace_resident_estimates_reconcile_only_on_initial_enrollment() {
+    let mut w = daily();
+    w.year = 2000;
+    w.month = 2;
+    w.day = 1;
+    // Reproduce the legacy owner's real mismatch: peace changes the national
+    // population by 12%, but transfers one whole, geographically ranked
+    // province. The archived year-10 profile has KW-JA held by Iraq and Kuwait
+    // at 2.7777589574380315m nationally versus 2.9105141907285716m mapped.
+    let growth = 1.5031163189599712;
+    districts::grow_populations_compounded(&mut w, &[(N::Kuwait, growth)], &[]);
+    w.nation_mut(N::Kuwait).population *= growth;
+    let ceded = w.nation(N::Kuwait).population * 0.12;
+    w.nation_mut(N::Kuwait).population -= ceded;
+    w.nation_mut(N::Iraq).population += ceded;
+    let transferred = districts::cede_share_preferring(
+        &mut w,
+        N::Iraq,
+        N::Kuwait,
+        0.12,
+        &std::collections::BTreeSet::from(["KW-JA".to_string()]),
+    );
+    assert_eq!(transferred, vec!["KW-JA".to_string()]);
+    w.nation_mut(N::Kuwait).gdp = 27.319304594919576;
+    w.nation_mut(N::Kuwait).treasury_bn = Some(7.25);
+    w.nation_mut(N::Kuwait).debt_bn = Some(12.75);
+    w.nation_mut(N::Kuwait).debt_gdp = 12.75 / w.nation(N::Kuwait).gdp;
+    // An under-mapped country has real unlocated residents; do not scale its
+    // known provinces upward or erase that separate residual to fix Kuwait.
+    w.nation_mut(N::France).population += 2.0;
+    let mapped: Vec<_> = w.districts.iter().filter(|(_, id)| **id == N::Kuwait)
+        .map(|(d, _)| (d.clone(), districts::population_of(&w, d).unwrap())).collect();
+    let mapped_total: f64 = mapped.iter().map(|(_, p)| p).sum();
+    let national = w.nation(N::Kuwait).population;
+    assert!(mapped_total > national + 0.1, "fixture must expose the real legacy overshoot");
+    close(national, 2.7777589574380315);
+    close(mapped_total, 2.9105141907285716);
+    let transferred_people = districts::population_of(&w, "KW-JA").unwrap();
+    let before = w.clone();
+    let legacy = save(&w);
+    let mut resumed = load(&legacy).unwrap();
+    assert!(!resumed.population_system.enabled);
+    assert_eq!(save(&resumed), legacy, "loading alone cannot repair estimates or enroll");
+    population::enable(&mut w).unwrap();
+    population::enable(&mut resumed).unwrap();
+    population::validate(&w).unwrap();
+    assert_eq!(save(&w), save(&resumed));
+    for (d, amount) in mapped {
+        close(districts::population_of(&w, &d).unwrap(), amount * national / mapped_total);
+        close(w.population_system.provinces[&d].population_m(), amount * national / mapped_total);
+    }
+    close(w.population_system.unallocated[&N::France].population_m(), 2.0);
+    assert_eq!(districts::population_of(&w, "KW-JA").unwrap(), transferred_people);
+    for (d, owner) in &w.districts {
+        if *owner != N::Kuwait {
+            assert_eq!(w.district_population.get(d), before.district_population.get(d));
+        }
+    }
+    let snapshot = population::snapshot(&w, N::Kuwait).unwrap();
+    close(snapshot.population_m, national);
+    assert!(snapshot.courses.is_empty());
+    assert_eq!(snapshot.annual_graduates_m, 0.0);
+    assert!(snapshot.notes.iter().any(|note| note.contains("legacy province population estimates were proportionally reconciled")));
+    assert!(!population::snapshot(&w, N::France).unwrap().notes.iter().any(|note| note.contains("proportionally reconciled")));
+    // Whitelist the only adoption changes. In particular this compares every
+    // national population/GDP/cash/debt record, province ownership, arsenal,
+    // other property and RNG instead of merely checking an aggregate total.
+    let mut outside_population = w.clone();
+    outside_population.population_system = before.population_system.clone();
+    outside_population.district_population = before.district_population.clone();
+    for n in &mut outside_population.nations {
+        n.population_outcomes = before.nation(n.id).population_outcomes.clone();
+    }
+    assert_eq!(save(&outside_population), legacy);
+    let once = save(&w);
+    population::enable(&mut w).unwrap();
+    assert_eq!(save(&w), once, "enrollment adjustment and note are one-time only");
+    resumed = load(&once).unwrap();
+    next_population_day(&mut w);
+    next_population_day(&mut resumed);
+    population::validate(&w).unwrap();
+    assert_eq!(save(&w), save(&resumed));
+
+    // Once cohorts own residents, either side of a mismatched book is an error;
+    // enable/load may not use initial migration to hide corruption.
+    for alter_mapping in [false, true] {
+        let mut corrupt = w.clone();
+        if alter_mapping {
+            *corrupt.district_population.get_mut("KW-KU").unwrap() *= 1.1;
+        } else {
+            corrupt.nation_mut(N::Kuwait).population *= 0.9;
+        }
+        let before = save(&corrupt);
+        assert!(population::enable(&mut corrupt).is_err());
+        assert_eq!(save(&corrupt), before);
+        assert!(load(&before).is_err());
+    }
+}
+
+#[test]
+fn initial_population_reconciliation_refuses_nonfinite_or_negative_resident_estimates_atomically() {
+    for amount in [-1.0, f64::INFINITY, f64::NAN] {
+        let mut w = daily();
+        w.district_population.insert("KW-KU".into(), amount);
+        let before = save(&w);
+        assert!(population::enable(&mut w).is_err());
+        assert_eq!(save(&w), before);
+    }
+    let mut w = daily();
+    w.district_population.insert("KW-KU".into(), f64::MAX);
+    w.district_population.insert("KW-HA".into(), f64::MAX);
+    let before = save(&w);
+    assert!(population::enable(&mut w).is_err(), "a nonfinite mapped total is not a scaling estimate");
+    assert_eq!(save(&w), before);
 }
 
 fn training_world(id: N) -> (WorldState, String) {
