@@ -28,6 +28,12 @@
     if (app.style.getPropertyValue("--map-dock-space") !== space) {
       app.style.setProperty("--map-dock-space", space);
     }
+    // Guidance is mounted on body, outside #app. Publish the same measured
+    // clearance on the document so it also reaches launchers created later.
+    const pageStyle = document.documentElement.style;
+    if (pageStyle.getPropertyValue("--command-dock-clearance") !== space) {
+      pageStyle.setProperty("--command-dock-clearance", space);
+    }
   }
   function bindDockSizing() {
     const dock = document.getElementById("commandDock");

@@ -35,6 +35,32 @@ fn compare_recorded_field(before: &Value, after: &Value, field: &str) {
     }
 }
 
+fn world_payload(mut value: &Value) -> &Value {
+    while value.get("format").is_some() && value.get("world").is_some() {
+        value = &value["world"];
+    }
+    value
+}
+
+fn original_front_bits_survive(source: &Value, world: &WorldState) {
+    // Conflict.front is BTreeMap<String, f32> in both pinned master and this
+    // candidate. Check its native bits as well as the exact wire JSON below;
+    // no decimal tolerance or ownership-wide float normalization is permitted.
+    for before in source["conflicts"].as_array().unwrap() {
+        let id = before["id"].as_u64().unwrap();
+        let after = world.conflicts.iter().find(|c|u64::from(c.id)==id)
+            .expect("An original conflict disappeared");
+        let front: std::collections::BTreeMap<String, f32> =
+            serde_json::from_value(before["front"].clone()).unwrap();
+        assert_eq!(front.len(), after.front.len(), "Conflict {id}: front keys changed");
+        for (district, value) in front {
+            let actual = after.front.get(&district).expect("An original front district disappeared");
+            assert_eq!(value.to_bits(), actual.to_bits(),
+                "Conflict {id}, {district}: original native f32 bits changed");
+        }
+    }
+}
+
 fn assert_game_equal(a: &Game, b: &Game) {
     assert!(
         save(&a.world) == save(&b.world),
@@ -64,10 +90,7 @@ fn actual_pinned_master_archive_preserves_property_history_and_next_day() {
     let archive: Value = serde_json::from_str(text).unwrap();
     assert_eq!(archive["format"], "spheres-campaign");
     assert_eq!(archive["version"], 1);
-    let mut source = &archive["world"];
-    while source.get("format").is_some() && source.get("world").is_some() {
-        source = &source["world"];
-    }
+    let source = world_payload(&archive["world"]);
     assert_eq!(source["year"], 1990);
     assert_eq!(source["month"], 2);
     assert_eq!(source.get("day").and_then(Value::as_u64).unwrap_or(1), 1);
@@ -84,7 +107,14 @@ fn actual_pinned_master_archive_preserves_property_history_and_next_day() {
         .expect("Original master archive must migrate without replacing its date or property");
     let independently_loaded = storage::decode(text).unwrap();
     assert_game_equal(&first, &independently_loaded);
-    let migrated = serde_json::to_value(&first.world).unwrap();
+    original_front_bits_survive(source, &first.world);
+    // Compare the actual native save representation. `to_value` promotes an
+    // f32 front value to f64 (for example -0.22152066 becomes
+    // -0.22152066230773926); the real serializer retains its f32 wire number.
+    // This is not a migration difference. Every saved number, including all
+    // f64 money/quantities, still receives the exact equality check below.
+    let migrated_save: Value = serde_json::from_str(&save(&first.world)).unwrap();
+    let migrated = world_payload(&migrated_save);
     // Compare original values, allowing only newly introduced default fields.
     // Debt ratio is derived on old open-book load; nominal cash/debt are checked.
     for field in [
@@ -114,7 +144,7 @@ fn actual_pinned_master_archive_preserves_property_history_and_next_day() {
         "campaign_supply",
         "campaign_peace",
     ] {
-        compare_recorded_field(source, &migrated, field);
+        compare_recorded_field(source, migrated, field);
     }
     let source_nations = source["nations"].as_array().unwrap();
     let loaded_nations = migrated["nations"].as_array().unwrap();

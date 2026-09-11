@@ -598,6 +598,11 @@
   ///                 `noHeightSamples`.
   ///         land    (lon, lat) -> boolean. Missing: everything is land,
   ///                 reported in `assumed.land`.
+  ///         water   (lon, lat, halfCellMetres) -> true excludes the entire
+  ///                 block footprint. Optional rendered water mask; both this
+  ///                 and `land` are applied before any ground or buildings.
+  ///         waterSurface false lets a globe draw its own water through the
+  ///                 excluded cells. Standalone cards keep their water plate.
   ///         seed    anything; hashed. Default: the city's own name, longitude
   ///                 and latitude, so two records that share a name in
   ///                 different places are different cities and the same record
@@ -627,6 +632,7 @@
       : seedOf(o.seed);
     const height = typeof o.height === "function" ? o.height : null;
     const land = typeof o.land === "function" ? o.land : null;
+    const water = typeof o.water === "function" ? o.water : null;
 
     const extent = extentMetres(pop);
     // Span first, cell second. The span is what the budget is written against,
@@ -749,6 +755,11 @@
         //    a 100 m staircase at close detail and a 400 m one at map detail,
         //    which is stated in the description rather than hidden.
         if (land && !land(lonAt(x), latAt(z))) {
+          cls[idx] = CLS.WATER; counts.water += 1; continue;
+        }
+        // Optional globe footprint mask. Defaults leave inspection cards and
+        // the original land sampler byte-identical; the host owns water data.
+        if (water && water(lonAt(x), latAt(z), cell / 2)) {
           cls[idx] = CLS.WATER; counts.water += 1; continue;
         }
 
@@ -934,7 +945,7 @@
       landKm2: q((counts.footprint - counts.water) * cellKm2, 0.0001),
       builtKm2: q(counts.plot * cellKm2, 0.0001),
       waterKm2: q(counts.water * cellKm2, 0.0001),
-      assumed: { height: !height, land: !land },
+      assumed: { height: !height, land: !land && !water },
       popFloored: popRaw < POP_FLOOR,
       origin: { lon: lon0, lat: lat0 },
       metresPerDegree: { lon: q(mLon, 0.001), lat: M_LAT },
@@ -1306,7 +1317,7 @@
       }
     });
     if (p.counts.water > 0) {
-      b.part("ground / water", "water", () => {
+      if (opts?.waterSurface !== false) b.part("ground / water", "water", () => {
         const { cell, half, waterLevel } = p;
         for (let j = 0; j < span; j += 1) {
           const z0 = (j - half - 0.5) * cell, z1 = z0 + cell;

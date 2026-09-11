@@ -124,7 +124,9 @@ function makeDocument() {
     get innerHTML() {return this._html || '';}
   }
   document.createElement = tag => new Element(tag);
+  document.documentElement = new Element('html');
   document.body = new Element('body'); document.activeElement = document.body;
+  document.documentElement.appendChild(document.body);
   document.querySelectorAll = selector => document.body.querySelectorAll(selector);
   document.querySelector = selector => document.querySelectorAll(selector)[0] || null;
   document.getElementById = id => document.querySelector('#' + id);
@@ -135,7 +137,10 @@ function makeDocument() {
 }
 
 function fixture(options = {}) {
-  const document = makeDocument(), calls = [], observers = [], windowListeners = new Map(), styleWrites = [];
+  const document = makeDocument(), calls = [], observers = [], windowListeners = new Map(), styleWrites = [], pageStyleWrites = [];
+  const pageStyleValues = new Map();
+  document.documentElement.style.setProperty = (name, value) => {pageStyleValues.set(name, String(value)); pageStyleWrites.push([name, String(value)]);};
+  document.documentElement.style.getPropertyValue = name => pageStyleValues.get(name) || '';
   let dock = null;
   const measurement = options.dock ? {...options.dock} : null;
   class ResizeObserver {
@@ -186,7 +191,7 @@ function fixture(options = {}) {
   const mount = () => {root.innerHTML = c.MapControls.html(); c.MapControls.bind(); c.MapControls.sync();};
   c.renderMap = () => {calls.push(['renderMap']); mount();};
   mount();
-  return {c, document, root, calls, mount, simulation, app, dock, measurement, observers, styleWrites, windowListeners,
+  return {c, document, root, calls, mount, simulation, app, dock, measurement, observers, styleWrites, pageStyleWrites, windowListeners,
     resizeWindow() {for (const listener of windowListeners.get('resize') || []) listener({type: 'resize'});},
     one: selector => {const found = document.querySelector(selector); assert(found, 'Missing actual rendered control ' + selector); return found;},
     assertViewOnly() {assert.equal(c.S.day, 12); assert.equal(c.clock.running, true); assert.equal(JSON.stringify(c.queued), originalOrders);},
@@ -197,6 +202,28 @@ test('binding reserves the measured command dock height, bottom offset and an ei
   const f = fixture({dock: {height: 137.2, bottom: 11.5}});
   assert.equal(f.app.style.getPropertyValue('--map-dock-space'), '157px');
   assert.deepEqual(f.styleWrites, [['--map-dock-space', '157px']]); f.assertViewOnly();
+});
+
+test('body-mounted Guidance inherits measured clearance through desktop, wrapped mobile and inset changes', () => {
+  const f = fixture({dock: {height: 80, bottom: 10}});
+  // The real launcher is created after map binding, as a sibling of #app.
+  const launcher = f.document.createElement('button'); launcher.id = 'guidanceLauncher';
+  f.document.body.appendChild(launcher);
+  assert.equal(f.app.contains(launcher), false);
+  const pageStyle = f.document.documentElement.style;
+  assert.equal(pageStyle.getPropertyValue('--command-dock-clearance'), '98px');
+  f.measurement.height = 148.4; f.measurement.bottom = 6; f.observers[0].deliver();
+  assert.equal(pageStyle.getPropertyValue('--command-dock-clearance'), '163px', 'wrapped dock uses its new measured height');
+  f.measurement.bottom = 12; f.resizeWindow();
+  assert.equal(pageStyle.getPropertyValue('--command-dock-clearance'), '169px', 'bottom-only changes also reach the body launcher');
+  const writes = f.pageStyleWrites.length;
+  f.resizeWindow(); f.observers[0].deliver(); f.mount();
+  assert.equal(f.pageStyleWrites.length, writes, 'unchanged measurements do not churn global styles');
+  f.measurement.height = 0; f.observers[0].deliver();
+  assert.equal(pageStyle.getPropertyValue('--command-dock-clearance'), '169px', 'temporarily hidden rooms retain the last valid clearance');
+  f.measurement.height = 54; f.observers[0].deliver();
+  assert.equal(pageStyle.getPropertyValue('--command-dock-clearance'), '74px', 'returning to a smaller visible dock releases unused space');
+  f.assertViewOnly();
 });
 
 test('repeated binding and map redraw share one observer and one dock observation', () => {

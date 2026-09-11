@@ -1,7 +1,7 @@
 // Helpers for the disposable binary/browser CI lane. No mocked campaign data.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),cp=require('node:child_process');
 const hash=value=>crypto.createHash('sha256').update(value).digest('hex');
-const ASSETS=['index.html','campaign-transport.js','campaign-ui.js','fiscal-recovery-ui.js','cash-flow-ui.js','companies-ui.js','companies.css','government-ui.js','government-ui.css','campaign-operations-ui.js','campaign-operations-ui.css','map-controls.js','map-controls.css','globe3d.js','city-layer.js','city-mesh.js','equipment-mesh.js'];
+const ASSETS=['index.html','campaign-transport.js','campaign-ui.js','fiscal-recovery-ui.js','cash-flow-ui.js','companies-ui.js','companies.css','government-ui.js','government-ui.css','campaign-operations-ui.js','campaign-operations-ui.css','map-controls.js','map-controls.css','guidance-ui.css','globe3d.js','city-layer.js','city-mesh.js','water-detail.js','equipment-mesh.js'];
 function git(root,args){const r=cp.spawnSync('git',args,{cwd:root,windowsHide:true,maxBuffer:32*1024*1024});assert.equal(r.status,0,'Cannot verify committed source: '+r.stderr);return r.stdout;}
 async function json(page,url,route){const response=await page.request.get(url+route);assert(response.ok(),route+' returned '+response.status());return response.json();}
 async function verifyBuild({page,url,root,run,binary}){
@@ -29,7 +29,7 @@ async function verifyBuild({page,url,root,run,binary}){
   return {revision,build,binary_sha256:hash(fs.readFileSync(binary)),assets};
 }
 async function capabilities({page,url,player}){
-  const state=await json(page,url,'/api/state'),companies=await json(page,url,'/api/companies');
+  const state=await json(page,url,'/api/state'),companies=await json(page,url,'/api/companies?session_id='+encodeURIComponent(state.session_id));
   assert.equal(state.player,player);assert.equal(state.simulation_cadence,'daily');
   assert.equal(state.connected_economy?.enabled,true,'Connected economy must be retained');
   assert.equal(state.population_enabled,true);assert.equal(state.fiscal_recovery_enabled,true);
@@ -48,12 +48,31 @@ async function archive(page,url,run,slot){
   const value=JSON.parse(fs.readFileSync(path.join(run,'saves',slot+'.json'),'utf8'));
   delete value.saved_unix;return value;
 }
+async function guidanceClearsDock(page){
+  await page.locator('#guidanceLauncher').waitFor({state:'visible'});
+  // Allow the actual ResizeObserver to settle after changing viewport/rooms.
+  // Never move or hide the launcher, force a click, or invoke a layout helper.
+  await page.waitForFunction(()=>{
+    const launcher=document.getElementById('guidanceLauncher').getBoundingClientRect();
+    const dock=document.getElementById('commandDock').getBoundingClientRect();
+    return launcher.height>0&&dock.height>0&&launcher.bottom<=dock.top-8;
+  },null,{timeout:5000});
+  return page.evaluate(()=>{
+    const launcher=document.getElementById('guidanceLauncher').getBoundingClientRect();
+    const dock=document.getElementById('commandDock').getBoundingClientRect();
+    return {launcher_bottom:launcher.bottom,dock_top:dock.top,gap_px:dock.top-launcher.bottom,
+      measured_clearance:getComputedStyle(document.documentElement).getPropertyValue('--command-dock-clearance').trim()};
+  });
+}
 async function panels({page,url,run,out,player}){
   await page.evaluate(()=>clockPause());
   const before=await archive(page,url,run,'s05-preview-before');
   assert.equal(before.world.format,'spheres-integrated-save','A fresh integrated campaign must preserve the combined save envelope');
+  const current=await json(page,url,'/api/state');assert.equal(current.player,player);
+  const companyPath='/api/companies?session_id='+encodeURIComponent(current.session_id);
   const government=await json(page,url,'/api/government?nation='+encodeURIComponent(player));
-  const companies=await json(page,url,'/api/companies'),production=await json(page,url,'/api/production');
+  const companies=await json(page,url,companyPath),production=await json(page,url,'/api/production');
+  assert.equal(companies.session_id,current.session_id);assert.equal(companies.nation,player);
   assert.equal(government.nation,player);assert.equal(government.mine,true);
   assert.equal(production.nation,player);assert(Array.isArray(production.catalog));
   const expected=companies.directory.map(row=>row.reference).sort();assert(expected.length>0,'Fresh game must contain the actual enrolled service directory');
@@ -81,6 +100,7 @@ async function panels({page,url,run,out,player}){
     await page.locator('#govReview [aria-label="Close decision review"]').click();await page.locator('#govReview').waitFor({state:'hidden'});
     await page.locator('#govScreen .tbar .x').click();
 
+    const guidanceDock=await guidanceClearsDock(page);
     await page.locator('#productionDockBtn').click();await page.locator('#productionPanel [data-prod-new]').waitFor({state:'visible'});
     await page.locator('#productionPanel [data-prod-new]').click();
     await page.locator('[data-prod-kind="'+kind+'"]').click();
@@ -110,7 +130,7 @@ async function panels({page,url,run,out,player}){
     if(size.width===390)assert((await page.locator('#company-search').boundingBox()).width>=200,'Mobile search must retain usable width');
     await page.screenshot({path:path.join(out,'companies-'+size.name+'.png')});
     await page.locator('#cabinetDrawer [data-close-drawers]').click();
-    views.push({viewport:size.name,width:size.width,height:size.height,government:true,government_review_cancel:{action:governmentAction,price_pc:governmentPreview.price_pc},construction_preview:{kind,province,cost_bn:preview.cost_bn},company_rows:expected.length,filtering:true});
+    views.push({viewport:size.name,width:size.width,height:size.height,guidance_dock:guidanceDock,government:true,government_review_cancel:{action:governmentAction,price_pc:governmentPreview.price_pc},construction_preview:{kind,province,cost_bn:preview.cost_bn},company_rows:expected.length,filtering:true});
   }
   await page.setViewportSize({width:1440,height:1000});
   const draftsBefore=await page.evaluate(()=>JSON.parse(JSON.stringify({queued,pendingAdvance,command:COMMAND_CHANNEL.pending})));
@@ -121,7 +141,7 @@ async function panels({page,url,run,out,player}){
   await page.screenshot({path:path.join(out,'tutorial-budget-destination.png')});await page.locator('#cabinetDrawer [data-close-drawers]').click();
   const after=await archive(page,url,run,'s05-preview-after');
   assert.deepEqual(after,before,'Government reads, construction previews and company filtering must preserve the entire saved campaign and history');
-  assert.deepEqual(await json(page,url,'/api/production'),production);assert.deepEqual(await json(page,url,'/api/companies'),companies);
+  assert.deepEqual(await json(page,url,'/api/production'),production);assert.deepEqual(await json(page,url,companyPath),companies);
   await page.setViewportSize({width:1440,height:1000});
   return {technical_fixture:'USA fresh campaign; a UI/API regression fixture, not a campaign certification focus country',views,tutorial_destination:'budget',tutorial_orders_unchanged:true,archive_purity:true,capabilities:await capabilities({page,url,player})};
 }

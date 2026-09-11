@@ -184,7 +184,43 @@
     return Math.sqrt(km2) * 1000;
   }
 
-  const api = { place, select, extentFor, baseElevation,
+  /// The near-view water mask already drawn by the globe, not a DEM sea-level
+  /// guess. Coast is decoded per texel before linear filtering (uPhys.b);
+  /// lakes filter encoded bytes before decoding (uLake). Both are land-positive.
+  /// Cities only draw on the close mesh path, where LOD=0 and coast bias=.15.
+  function waterSampler(coast, lake, width, height, worldWidth, worldHeight) {
+    if (!coast || !lake || coast.length!==width*height || lake.length!==width*height)
+      throw Error("City water mask must match the rendered coast/lake grid");
+    const decode = byte => {const s=byte/255*2-1;return Math.sign(s)*8*s*s;};
+    function sample(bytes,x,y,decoded) {
+      const fx=x/worldWidth*width-.5,fy=y/worldHeight*height-.5;
+      const ix=Math.floor(fx),iy=Math.floor(fy),tx=fx-ix,ty=fy-iy;
+      const at=(cx,cy)=>{const v=bytes[Math.max(0,Math.min(height-1,cy))*width+Math.max(0,Math.min(width-1,cx))];return decoded?decode(v):v;};
+      return (at(ix,iy)*(1-tx)+at(ix+1,iy)*tx)*(1-ty)+(at(ix,iy+1)*(1-tx)+at(ix+1,iy+1)*tx)*ty;
+    }
+    return (x,y) => !Number.isFinite(x)||!Number.isFinite(y)||x<0||y<0||x>worldWidth||y>worldHeight
+      || sample(coast,x,y,true)+.15<=0 || sample(lake,x,y,false)<=127.5;
+  }
+
+  /// Reject a whole procedural block when its footprint crosses the actual
+  /// displayed water or a drawn river. The nine samples keep coastline/lake
+  /// corners off water; a segment-distance test catches rivers between them.
+  function waterFootprint(city, project, renderedWater, riverWater) {
+    const lon=city.lon,lat=city.lat,mLon=EARTH_METRES*DEG*Math.max(Math.cos(lat*DEG),.02),mLat=EARTH_METRES*DEG;
+    const center=project(lon,lat),east=project(lon+100/mLon,lat),north=project(lon,lat+100/mLat);
+    const unitsPerMetre=Math.max(Math.hypot(east[0]-center[0],east[1]-center[1]),Math.hypot(north[0]-center[0],north[1]-center[1]))/100;
+    return (longitude,latitude,halfCell) => {
+      const p=project(longitude,latitude),padding=Math.SQRT2*halfCell*unitsPerMetre*1.02;
+      if (riverWater(p[0],p[1],padding)) return true;
+      for (const dx of [-halfCell,0,halfCell]) for (const dz of [-halfCell,0,halfCell]) {
+        const q=project(longitude+dx/mLon,latitude+dz/mLat);
+        if(renderedWater(q[0],q[1])) return true;
+      }
+      return false;
+    };
+  }
+
+  const api = { place, select, extentFor, baseElevation, waterSampler, waterFootprint,
     EARTH_METRES, EXAGGERATION };
   if (typeof module === "object" && module.exports) module.exports = api;
   else root.CityLayer = api;

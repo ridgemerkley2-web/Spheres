@@ -59,7 +59,7 @@
       const group = groups.get(key);
       group.length += length;
       group.parts.push(...parts);
-      entries.push({path: river.d, group});
+      entries.push({path: river.d, group, parts});
     }
     const labels = [];
     for (const group of groups.values()) {
@@ -104,6 +104,35 @@
 
   function buildLabels(rivers) { return prepare(rivers).labels; }
 
+  function strokeWidths(baseWidth, tier, zoom) {
+    // The host shrinks authored map-unit strokes on close approach. A fixed
+    // minimum or casing here would undo that and turn rivers into broad bands.
+    const scale = Math.min(1, 10 / Math.max(1, zoom));
+    const width = clamp(baseWidth * [1.12, .85, .62][tier], .14 * scale, .88 * scale);
+    return {width, casing: Math.min(1.15 * scale, width + .25 * scale)};
+  }
+
+  // A conservative footprint exclusion, using the same bundled polylines and
+  // drawn stroke as paint(). This is a display corridor, not surveyed banks.
+  // Filter once per city so each cell only checks nearby course segments.
+  function riverMask(rivers, bounds, style, zoom) {
+    const segments = [];
+    for (const entry of prepare(rivers).entries) {
+      const radius = strokeWidths(style.riverWidth, entry.group.tier, zoom).casing / 2;
+      for (const part of entry.parts) for (let i = 1; i < part.points.length; i++) {
+        const a = part.points[i - 1], b = part.points[i];
+        if (Math.max(a.x,b.x)+radius < bounds[0] || Math.min(a.x,b.x)-radius > bounds[2]
+            || Math.max(a.y,b.y)+radius < bounds[1] || Math.min(a.y,b.y)-radius > bounds[3]) continue;
+        segments.push({a,b,radius});
+      }
+    }
+    return (x,y,padding=0) => segments.some(({a,b,radius}) => {
+      const dx=b.x-a.x,dy=b.y-a.y,den=dx*dx+dy*dy;
+      const t=den>0?clamp(((x-a.x)*dx+(y-a.y)*dy)/den,0,1):0;
+      return Math.hypot(x-a.x-t*dx,y-a.y-t*dy)<=radius+padding;
+    });
+  }
+
   function paint(ctx, rivers, style = {}, settings = {}) {
     if (!ctx || typeof settings.path !== "function") return 0;
     const opacity = Number(style.riverOpacity), baseWidth = Number(style.riverWidth);
@@ -126,13 +155,13 @@
         const tier = entry.group.tier;
         const visibility = tier === 0 ? .65 + .35 * fade(zoom, 1, 3) : fade(zoom, tier === 1 ? 1.3 : 2.4, tier === 1 ? 2.5 : 4);
         if (!(visibility > 0)) continue;
-        const width = clamp(baseWidth * [1.12, .85, .62][tier], .14, .88);
+        const {width, casing} = strokeWidths(baseWidth, tier, zoom);
         const resolved = settings.path(entry.path);
         const close = fade(zoom, 2.4, 5);
         if (close > 0) {
           ctx.globalAlpha = clamp(opacity, 0, 1) * visibility * close * .2;
           ctx.strokeStyle = "#173d4b";
-          ctx.lineWidth = Math.min(1.15, width + .25);
+          ctx.lineWidth = casing;
           ctx.stroke(resolved);
         }
         ctx.globalAlpha = clamp(opacity, 0, 1) * visibility;
@@ -200,5 +229,5 @@
     } finally { ctx.restore(); }
     return drawn;
   }
-  window.WaterDetail = Object.freeze({paint, buildLabels, drawLabels});
+  window.WaterDetail = Object.freeze({paint, buildLabels, drawLabels, riverMask});
 })();

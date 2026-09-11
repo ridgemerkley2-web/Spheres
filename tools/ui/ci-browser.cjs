@@ -34,7 +34,12 @@ async function port(){const s=net.createServer();await new Promise(r=>s.listen(0
     await page.locator('#nationPick [aria-label^="United States;"]').click();await page.locator('#startBtn').click();await page.locator('#app').waitFor({state:'visible'});
     const state=async()=> (await page.request.get(url+'/api/state')).json();
     const initial=await state();assert.equal(initial.player,'USA');assert.equal(initial.simulation_cadence,'daily');
-    await page.getByRole('button',{name:'Advisor',exact:true}).click();await page.getByRole('heading',{name:'Fund your plan',exact:true}).waitFor();await page.getByRole('button',{name:'Close Your development advisor',exact:true}).click();
+    const adviceResponse=page.waitForResponse(response=>new URL(response.url()).pathname==='/api/guidance'&&response.request().method()==='GET');
+    await page.getByRole('button',{name:'Advisors',exact:true}).click();
+    await page.locator('#guidanceDialog').getByRole('heading',{name:'What needs your attention?',exact:true}).waitFor();
+    assert((await adviceResponse).ok(),'The current advisory council must load its native campaign reading');
+    await page.locator('#guidanceDialog .guidance-cards[aria-busy="false"]').waitFor();
+    await page.getByRole('button',{name:'Close tutorial and advisors',exact:true}).click();
     await page.getByRole('button',{name:'Find',exact:true}).click();await page.locator('#worldFindInput').fill('California');await page.locator('[data-find-id="US-CA"]').click();await page.locator('#provinceDossier').waitFor({state:'visible'});
     await page.evaluate(()=>closeProvince());
     const integrationEvidence=await integrated.panels({page,url,run,out,player:initial.player});
@@ -81,7 +86,7 @@ async function port(){const s=net.createServer();await new Promise(r=>s.listen(0
     const restored=await(await page.request.get(url+'/api/history?nations=USA')).json();
     delete restored.session_id;delete history.session_id;assert.deepEqual(restored,history);
     await page.reload();await page.locator('#continueBtn').click();
-    await page.locator('#techBtn').click();await page.locator('#techMenu .dfoot').click();await page.getByRole('button',{name:'Research list',exact:true}).click();await page.locator('#researchListQuery').fill('');await page.locator('[data-research-id]').first().waitFor();
+    await page.locator('#techBtn').click();await page.locator('#techMenu').getByRole('button',{name:/^Explore technology/}).click();await page.getByRole('button',{name:'Research list',exact:true}).click();await page.locator('#researchListQuery').fill('');await page.locator('[data-research-id]').first().waitFor();
     await page.screenshot({path:path.join(out,'research-desktop.png')});await page.setViewportSize({width:414,height:896});
     assert(await page.evaluate(()=>document.querySelector('#decisionDialog').scrollWidth<=document.querySelector('#decisionDialog').clientWidth+1));
     await page.screenshot({path:path.join(out,'research-mobile.png')});assert.deepEqual(errors,[]);

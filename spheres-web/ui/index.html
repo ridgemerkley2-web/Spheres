@@ -11133,7 +11133,8 @@ function cityBuffers(gl, hit, view, defer) {
     // view could resolve a quarter again as many cells, then rebuilt at the
     // finer span. Going back out the finer mesh stays: it is right, only
     // over-resolved, and a rebuild on every notch would be the hitch.
-    const outgrown = had.span < CITY_LAYER.maxSpan && wantSpan >= Math.round(had.span * 1.25);
+    const outgrown = (had.span < CITY_LAYER.maxSpan && wantSpan >= Math.round(had.span * 1.25))
+      || view.zoom < had.waterZoomFloor;
     if (!outgrown) {
       // THE RELIEF RAMP MOVES THE GROUND, so it has to move the city. The
       // buffers hold sphere-space positions baked at one exaggeration; when
@@ -11164,27 +11165,28 @@ function cityBuffers(gl, hit, view, defer) {
   }
   if (defer) return DEFERRED;
   let placed = null, model = null;
+  const waterZoomFloor = Math.max(12, view.zoom / 2);
   try {
     const surface = GLR.surface;
+    if (!GLR.cityWater) return null; // markers/picking remain; no guessed offshore blocks
+    const halfExtent = CityMesh.extentMetres(hit.city.pop) * .6;
+    const metric = CityMesh.metresPerDegree(hit.city.lat);
+    const corners = [-1,1].flatMap(dx => [-1,1].map(dy => Globe3D.project(
+      hit.city.lon+dx*halfExtent/metric.lon, hit.city.lat+dy*halfExtent/metric.lat)));
+    const bounds = [Math.min(...corners.map(p=>p[0])),Math.min(...corners.map(p=>p[1])),
+      Math.max(...corners.map(p=>p[0])),Math.max(...corners.map(p=>p[1]))];
+    const riverWater = WaterDetail.riverMask(RIVERS.rivers,bounds,
+      mapDetailStyle("terrain",waterZoomFloor),waterZoomFloor);
     const mesh = CityMesh.build(hit.city, {
       lod: "close",
       maxSpan: wantSpan,
       height: (lon, lat) => (surface && surface.ready ? surface.sampleHeight(lon, lat) : null),
-      // THE COAST COMES FROM THE ELEVATION, and it only half works — which is
-      // worth saying rather than discovering. Measured: Sydney reads 0 m and
-      // the Tasman 15 km out reads -104; Amsterdam reads 0 and the North Sea
-      // -23, so an ocean separates cleanly and a city below sea level is not
-      // wrongly drowned. A LAKE does not: Chicago is 190 m and Lake Michigan
-      // is 175, because the model gives a lake a surface height. So a city
-      // stops at an ocean and runs into a lake, at the tiles' own 1,855 m
-      // resolution. coast.png would know the difference and is useless here
-      // for the opposite reason: at 16.7 km per pixel it is one pixel across a
-      // whole city.
-      land: (lon, lat) => {
-        if (!surface || !surface.ready) return true;
-        const e = surface.sampleHeight(lon, lat);
-        return !(Number.isFinite(e) && e < -1);
-      },
+      // Match the water actually rendered, including its inherited coastal
+      // bias. DEM elevation is still height, never a competing land mask.
+      // The cell footprint clears bundled river strokes conservatively. It
+      // does not claim surveyed banks or add lakes absent from the data.
+      water: CityLayer.waterFootprint(hit.city,Globe3D.project,GLR.cityWater,riverWater),
+      waterSurface: false, // the globe owns water; no procedural city water plates
     });
     placed = CityLayer.place(mesh, hit.city, { exaggeration });
     // What a re-seat needs and nothing more: the positions and the datum the
@@ -11206,7 +11208,7 @@ function cityBuffers(gl, hit, view, defer) {
   });
   gl.bindVertexArray(null);
   const entry = { vao, bufs, count: placed.count, tris: placed.triangleCount,
-    model, span: wantSpan, exaggeration, fresh: true };
+    model, span: wantSpan, exaggeration, waterZoomFloor, fresh: true };
   cache.set(key, entry);
   // Bounded BY BOTH COUNT AND SIZE, and the buffers go with the vertex array:
   // deleting the array does NOT free them, which is the trap arsenal3d's cache
@@ -11625,6 +11627,20 @@ async function glInit() {
   // on GLR for the water path to sample. LINEAR, because the whole point of an
   // odd-symmetric signed distance is that filtering it preserves the shoreline.
   const lake = glUpload(gl, bmps[3], gl.R8, gl.RED, gl.LINEAR);
+  // Reuse the exact decoded source bitmaps already supplied to the GPU. Two
+  // L8 arrays cost 4.9 MB; no extra fetch, world polygons or DEM sea-level guess.
+  let cityWater = null;
+  if (window.CityLayer?.waterSampler) {
+    try {
+      const canvas=document.createElement("canvas");canvas.width=GLBAKE.W;canvas.height=GLBAKE.H;
+      const context=canvas.getContext("2d",{willReadFrequently:true});
+      const channel=bitmap=>{context.clearRect(0,0,canvas.width,canvas.height);context.drawImage(bitmap,0,0);
+        const rgba=context.getImageData(0,0,canvas.width,canvas.height).data,out=new Uint8Array(GLBAKE.W*GLBAKE.H);
+        for(let i=0;i<out.length;i++)out[i]=rgba[i*4];return out;};
+      cityWater=CityLayer.waterSampler(channel(bmps[1]),channel(bmps[3]),GLBAKE.W,GLBAKE.H,WORLD.w,GLPROJ.H_EXT);
+      canvas.width=canvas.height=1;
+    } catch(error) { console.warn("[glmap] city water mask unavailable; retaining city markers only",error); }
+  }
   for (const b of bmps) { if (b.close) b.close(); }
   // The upload-path assertion for the one texture the decode readback cannot
   // reach. Runs on a 4x1 data: URI, so it touches no network and costs nothing.
@@ -11680,7 +11696,7 @@ async function glInit() {
     return o;
   };
   GLR = {
-    gl, progMap, progSurface, progGrid, progCity, cityCache: new Map(), vao, phys: dec.tex, lake, ramp, seaRamp, heightDetail,
+    gl, progMap, progSurface, progGrid, progCity, cityCache: new Map(), cityWater, vao, phys: dec.tex, lake, ramp, seaRamp, heightDetail,
     u: U(progMap, ["invRot", "camDist", "half", "res",
       "world", "texPerWorld", "pxPerWorld", "lk", "maxLod",
       "ground", "terrainView", "sat", "shade", "sea", "hazeMax", "shimmer", "time", "ao", "glint",
