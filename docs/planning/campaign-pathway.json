@@ -196,7 +196,7 @@
       "id": "S08",
       "phase": "nation",
       "title": "Complete supplier choice and reviewed imports",
-      "status": "planned",
+      "status": "in_progress",
       "depends": [
         "S05",
         "S07"
@@ -779,14 +779,13 @@
   "last_completed_session": "S07",
   "next_session": "S08",
   "execution": {
-    "authorized_through": "S07",
-    "stop_boundary": "S07",
-    "status": "stopped",
-    "previous_stop": "S06",
+    "authorized_through": "S08",
+    "stop_boundary": "S08",
+    "status": "in_progress",
+    "previous_stop": "S07",
     "instruction": "Next",
     "instruction_date": "2026-09-11",
-    "next_session_requires_instruction": true,
-    "stopped_after": "S07"
+    "next_session_requires_instruction": true
   },
   "gate_decisions": {
     "G1": {

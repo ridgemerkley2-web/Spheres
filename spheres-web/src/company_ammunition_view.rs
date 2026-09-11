@@ -108,7 +108,7 @@ fn company_ammunition_preview(w:&WorldState,me:NationId,session:&str,command:&Va
             costs.push(cost("Government purchase now",0.0,"no stores purchased by supply authorization"));
         }
     }
-    json!({"session_id":session,"nation":me,"valid":blockers.is_empty(),"blockers":blockers,"metrics":metrics,"costs":costs,"timing":timing,"requirements":requirements,"service_effects":effects,
+    json!({"session_id":session,"nation":me,"date":w.date_str(),"as_of_day":spheres_sim::clock::absolute_day(w),"valid":blockers.is_empty(),"blockers":blockers,"metrics":metrics,"costs":costs,"timing":timing,"requirements":requirements,"service_effects":effects,
         "actions":[action,nav("Review ammunition stores and reserves",json!({"action":"equipment","tab":"ammunition"})),nav("Review Maintenance & supply funding",json!({"action":"budget","ministry":"defense","department":2}))],"detail":detail})
 }
 
@@ -153,7 +153,12 @@ fn company_ammo_rows(w:&WorldState,me:NationId,raw:&Value)->(Vec<Value>,Vec<Valu
 }
 
 fn company_ammunition_market(w:&WorldState,me:NationId)->Value {
-    let raw=companies::view(w,me);let (mut offers,deliveries)=company_ammo_rows(w,me,&raw);
+    let raw=companies::view(w,me);let (mut offers,mut deliveries)=company_ammo_rows(w,me,&raw);
+    let supplier_market=company_supplier_market(w,me);
+    offers.extend(supplier_market["offers"].as_array().into_iter().flatten()
+        .filter(|row|row["origin"]=="foreign"&&row["ammunition"]==true).cloned());
+    deliveries.extend(supplier_market["deliveries"].as_array().into_iter().flatten()
+        .filter(|row|row["family"]=="ammunition").cloned());
     let mut actions=vec![];
     if let Some(firm)=raw["companies"].as_array().and_then(|rows|rows.first()) {
         for def in eq::ammo_catalog() {
@@ -163,9 +168,10 @@ fn company_ammunition_market(w:&WorldState,me:NationId)->Value {
                 "detail":"A certified model uses this family. Authorize company-funded inventory, then review purchases when finished stock is available. Existing public batches continue.","metrics":company_ammo_need_metrics(&need,def.id),
                 "actions":[company_ammo_supply_action(w,me,company_count(firm,"id"),def.id)]}));
         }
-    }else{actions.push(nav("Establish an equipment manufacturer",json!({"action":"equipment","tab":"companies"})));}
+    }else{actions.push(nav("Review domestic suppliers and import access",json!({"action":"equipment","tab":"companies"})));}
     actions.push(nav("Review Maintenance & supply funding",json!({"action":"budget","ministry":"defense","department":2})));
-    json!({"overview":{"title":"Buy ammunition from manufacturers","status":if offers.is_empty(){"Prepare a supplier and compatible design"}else{"Company stock and reviewed purchases"},
+    json!({"nation":me,"date":w.date_str(),"as_of_day":spheres_sim::clock::absolute_day(w),
+        "overview":{"title":"Buy ammunition from manufacturers","status":if offers.is_empty(){"Prepare a supplier and compatible design"}else{"Company stock and reviewed purchases"},
         "detail":"Companies pay to manufacture compatible ammunition using their existing plant and working capital. Buy finished stock with Maintenance & supply funds after fleet upkeep, then follow its delivery into national stores. Supplier inventory and your national reserve are separate targets.","metrics":[],"warnings":["Company supply stops future automatic public batches only for the supplied family. Existing paid batches and reserve targets remain. Purchases and ground ammunition activation are separate decisions."],"actions":actions},"offers":offers,"deliveries":deliveries})
 }
 

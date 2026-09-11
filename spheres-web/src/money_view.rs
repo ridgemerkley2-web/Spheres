@@ -24,6 +24,7 @@ fn cause(cause: CashCause) -> (&'static str, &'static str) {
         Patronage => ("Political patronage", "Recorded patronage expense."),
         SupplierInputs => ("Supplier input receipts", "Company payments for public warehouse stock or utility services. Company balances remain separate."),
         RefitRefund => ("Refit refunds", "Unused prepaid refit money returned to the public account."),
+        EquipmentImportRefund => ("Equipment import refunds", "Settled equipment-import escrow returned to the public account."),
         DebtRestructuring => ("Debt restructuring", "Noncash debt relief from approved restructuring. Cancelled debt is not cash revenue."),
         AssetSale => ("Public asset sales", "Actual public proceeds from the approved sale."),
         LegacyMineConstruction => ("Existing mine construction", "Recorded construction expense under the campaign's existing rules."),

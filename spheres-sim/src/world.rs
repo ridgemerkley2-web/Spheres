@@ -1202,6 +1202,8 @@ pub struct WorldState {
     /// Explicit adoption of prospective supplier inputs and operating receipts.
     #[serde(default, skip_serializing_if = "crate::supplier_operations::SupplierOperations::is_empty")]
     pub supplier_operations: crate::supplier_operations::SupplierOperations,
+    #[serde(default, skip_serializing_if = "crate::supplier_catalogue::Catalogue::is_empty")]
+    pub supplier_catalogue: crate::supplier_catalogue::Catalogue,
 
     /// The universal world-domination campaign: formal subject hierarchy,
     /// deterministic agenda cards, progress seals and completed legacy. Empty

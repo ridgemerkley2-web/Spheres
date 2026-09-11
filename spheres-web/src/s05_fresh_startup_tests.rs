@@ -45,7 +45,7 @@ fn startup_unrelated(w: &WorldState) -> serde_json::Value {
     let object = value.as_object_mut().unwrap();
     // These are the only newly adopted owned books. Each is checked below for
     // grants or receipts; all remaining fields must match the S02 starting world.
-    for key in ["sector_contractors", "supplier_operations", "campaign"] { object.remove(key); }
+    for key in ["sector_contractors", "supplier_operations", "supplier_catalogue", "campaign"] { object.remove(key); }
     object.get_mut("rules").unwrap().as_object_mut().unwrap().remove("operational_warfare");
     let mut resources = w.resources.clone();
     resources.market = None;
@@ -82,6 +82,9 @@ fn assert_no_startup_settlement(w: &WorldState) {
     assert!(market.cash.is_empty() && market.fills.is_empty() && market.contract_fills.is_empty()
         && market.shipment_audits.is_empty() && market.contract_spend_bn.is_empty());
     assert!(w.companies.is_empty(), "startup cannot establish suppliers or grant corporate stock");
+    assert_eq!(w.supplier_catalogue, spheres_sim::supplier_catalogue::Catalogue {
+        enabled: true, plans: Default::default(),
+    }, "fresh supplier adoption is only permission metadata; no managed company or scheduled order exists yet");
     assert_eq!(w.companies.last_tick_day, None);
     assert!(w.supplier_operations.contracts.is_empty() && w.supplier_operations.receipts.is_empty());
     assert!(w.supplier_operations.grandfathered_units.is_empty()
@@ -149,7 +152,7 @@ fn fresh_start_adopts_all_capabilities_without_free_work_or_supplier_stock() {
     assert_eq!(fresh.world.supplier_operations.adopted_day, Some(0));
     assert_existing_cover(&fresh.world, &quoted);
     same_json(startup_unrelated(&base.world), startup_unrelated(&fresh.world),
-        "S03/S04 startup may only adopt their declared books and materialize existing cover");
+        "S03/S04/S08 startup may only adopt their declared books and materialize existing cover");
     assert_no_startup_settlement(&fresh.world);
     assert!(fresh.advance_receipts.is_empty() && fresh.command_receipts.is_empty());
 }
@@ -189,6 +192,7 @@ fn legacy_load_keeps_company_and_operational_upgrades_opt_in() {
     assert!(loaded.world.resources.market.is_none());
     assert!(loaded.world.companies.is_empty() && loaded.world.sector_contractors.is_empty()
         && loaded.world.supplier_operations.is_empty());
+    assert!(loaded.world.supplier_catalogue.is_empty());
     assert!(loaded.world.campaign.is_empty() && loaded.world.campaign_supply.is_empty()
         && loaded.world.campaign_peace.is_empty());
     let before = save(&loaded.world);

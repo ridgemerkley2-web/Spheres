@@ -115,7 +115,7 @@ fn company_refit_preview(w:&WorldState,me:NationId,session:&str,command:&Value,o
         requirements.push("The refund returns treasury cash or reduces debt once. It does not renew expired budget authority or restore already-used procurement appropriations. A payment awaiting fiscal settlement must settle before its refund can be released.".into());
     }
     if let Some(note)=quote["note"].as_str(){requirements.push(note.into());}
-    json!({"session_id":session,"nation":me,"valid":blockers.is_empty(),"blockers":blockers,"metrics":metrics,"costs":costs,"timing":timing,"requirements":requirements,
+    json!({"session_id":session,"nation":me,"date":w.date_str(),"as_of_day":spheres_sim::clock::absolute_day(w),"valid":blockers.is_empty(),"blockers":blockers,"metrics":metrics,"costs":costs,"timing":timing,"requirements":requirements,
         "refit":models,"comparison":company_refit_comparison(w,me,source,target),
         "service_effects":if effects.is_empty(){Value::Null}else{json!({"title":"What withdrawal changes now","detail":"The source vehicles leave deployable service immediately. Upgraded capability returns one vehicle at a time as conversion finishes. Reserved vehicles continue to age and require maintenance.","metrics":effects,"warnings":[]})},
         "actions":[action,nav("Review manufacturer and service contracts",json!({"action":"equipment","tab":"companies"})),nav("Review fleet in service",json!({"action":"equipment","tab":"service"}))],

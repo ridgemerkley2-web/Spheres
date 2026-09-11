@@ -57,6 +57,7 @@ pub fn ammo_inbound_units(w: &WorldState, n: NationId, family: &str) -> u64 {
         .iter()
         .filter(|d| d.buyer == n && d.family == family && d.delivered_day.is_none())
         .map(|d| d.quantity as u64)
+        .chain(w.companies.imports.contracts.iter().filter(|d|d.buyer==n && d.ammunition && d.family.as_deref()==Some(family) && d.delivered_day.is_none() && d.cancelled_day.is_none()).map(|d|d.quantity as u64))
         .sum()
 }
 fn ammo_source<'a>(
@@ -77,7 +78,7 @@ fn ammo_refusal(w: &WorldState, n: NationId, family: &str) -> Option<String> {
     actor(w, n)
         .or_else(|| equipment::ammo_actor_refusal(w, n))
         .or_else(|| equipment::ammo_def(family).is_none().then(|| "Choose a supported ammunition family.".into()))
-        .or_else(|| ammo_source(w, n, family).is_none().then(|| "Certify a compatible weapon configuration before licensing this ammunition family.".into()))
+        .or_else(|| w.nation(n).equipment.as_ref().is_none_or(|s|!s.revisions.values().any(|r|r.certified_day.is_some() && !imported_revision(w,n,&r.id) && equipment::ammunition_family(&r.spec)==Some(family))).then(|| "Certify a locally developed compatible weapon configuration before licensing this ammunition family. Imported use rights do not grant manufacturing rights.".into()))
 }
 fn ammo_indexes(
     w: &WorldState,
@@ -198,7 +199,7 @@ pub fn ammo_supply_quote(w: &WorldState, n: NationId, id: u32, family: &str, tar
         q,
     )
 }
-pub fn ammo_purchase_quote(
+fn ammo_purchase_terms(
     w: &WorldState,
     n: NationId,
     id: u32,
@@ -245,12 +246,10 @@ pub fn ammo_purchase_quote(
         q.reason = Some("This domestic company is missing.".into());
     }
     q.note = "Purchase existing finished company ammunition with Defense maintenance and supply authority after protecting today's actual fleet upkeep. Price is average paid input and fabrication cost plus the existing 15% margin. Company revenue settles once with the public fiscal day. Purchased stock becomes usable only after seven accessible transit days; no physical-ammunition activation, weapon model or public fabrication order is created.".into();
-    finish_quote(
-        w,
-        n,
-        serde_json::json!(["ammo_purchase", id, product, quantity]),
-        q,
-    )
+    q.valid=q.reason.is_none();q
+}
+pub fn ammo_purchase_quote(w:&WorldState,n:NationId,id:u32,product:u32,quantity:u32)->Quote {
+    finish_quote(w,n,serde_json::json!(["ammo_purchase",id,product,quantity]),ammo_purchase_terms(w,n,id,product,quantity))
 }
 fn start_ammo_supply(
     w: &mut WorldState,
@@ -692,9 +691,9 @@ fn validate_ammo_supplier_state(w: &WorldState, ids: &mut BTreeSet<u32>) -> Resu
                 .ammunition_deliveries
                 .iter()
                 .filter(|d| d.company == c.id && d.product == p.id);
-            if sold.clone().map(|d| d.quantity as u64).sum::<u64>() != p.sold_units as u64
+            if sold.clone().map(|d| d.quantity as u64).sum::<u64>() + imported_sold(w,c.id,p.id,true) != p.sold_units as u64
                 || !near(
-                    p.stock_cost_bn + sold.map(|d| d.cost_basis_bn).sum::<f64>(),
+                    p.stock_cost_bn + sold.map(|d| d.cost_basis_bn).sum::<f64>() + state.imports.contracts.iter().filter(|d|d.company==c.id && d.product==p.id && d.ammunition && d.cancelled_day.is_none()).map(|d|d.cost_basis_bn).sum::<f64>(),
                     p.materials_expense_bn + p.fabrication_expense_bn,
                 )
             {
@@ -797,6 +796,10 @@ fn validate_ammo_supplier_state(w: &WorldState, ids: &mut BTreeSet<u32>) -> Resu
     for n in &w.nations {
         if let Some(a) = n.equipment.as_ref().and_then(|s| s.ammunition.as_ref()) {
             for r in &a.supplier_receipts {
+                if imported_ammo_receipt(w,n.id,r) {
+                    if !received.insert(r.delivery) { return Err(fail()); }
+                    continue;
+                }
                 let d = state
                     .ammunition_deliveries
                     .iter()

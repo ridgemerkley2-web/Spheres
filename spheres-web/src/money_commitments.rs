@@ -92,6 +92,29 @@ pub(crate) fn view(w: &WorldState, me: NationId) -> Vec<Value> {
         }
     }
 
+    let mut imports = vec![];
+    for contract in w.companies.imports.contracts.iter().filter(|d|d.buyer==me) {
+        let label=if let Some(family)=&contract.family {
+            format!("{} rounds: {} from {}",contract.quantity,family,contract.seller.name())
+        } else {
+            format!("{} × {} from {}",contract.quantity,contract.source_revision.name,contract.seller.name())
+        };
+        if contract.settled_day.is_none() {
+            transfers.push(item(format!("import-transfer:{}",contract.id),label,
+                Some(contract.total_price_bn),&contract.status,
+                if contract.cancelled_day.is_some() {
+                    format!("Original payment settles after fiscal close of {}; its exact refund then settles once",date(contract.purchased_day))
+                } else {
+                    format!("Import payment enters protected escrow after fiscal close of {}",date(contract.purchased_day))
+                },None));
+        } else if contract.escrow_bn>0.0 {
+            let due=contract.due_day.map_or_else(||"No shipping date recorded".into(),
+                |day|format!("Scheduled arrival {}; holds can delay delivery",date(day)));
+            imports.push(item(format!("import-escrow:{}",contract.id),label,Some(contract.escrow_bn),
+                &contract.status,format!("{due}. {}",contract.reason),None));
+        }
+    }
+
     let mut deliveries = vec![];
     for delivery in w.companies.deliveries.iter().filter(|d|
         d.buyer==me && d.settled_day.is_some() && d.delivered_day.is_none()) {
@@ -159,8 +182,10 @@ pub(crate) fn view(w: &WorldState, me: NationId) -> Vec<Value> {
             "Fresh departmental expense already recorded on the open funding day. Prepaid funds are excluded. Tax revenue and interest determine the eventual net cash/debt movement. Supplier transfers below may describe this same expense; do not add them again.",pending),
         category("supplier_transfers","Supplier transfers awaiting settlement",
             "Accepted invoices already consume the approved programme ledger. Some can use previously paid funds. These transfers are not an additional Treasury bill and have no saved per-invoice split between fresh and prepaid money.",transfers),
-        category("paid_equipment_deliveries","Paid equipment awaiting delivery",
-            "Historical purchase prices of settled equipment and ammunition still in transit. Already paid; arrival does not charge this price again. Unsettled purchases are listed only under supplier transfers. Company-owned unsold stock is excluded.",deliveries),
+        category("paid_equipment_deliveries","Paid domestic equipment awaiting delivery",
+            "Historical purchase prices of settled domestic equipment and ammunition still in transit. Already paid; arrival does not charge this price again. Unsettled purchases are listed only under supplier transfers; foreign lots appear under paid import escrow. Company-owned unsold stock is excluded.",deliveries),
+        category("paid_import_escrow","Paid imports: owned stock and held funds",
+            "The buyer owns these reserved foreign equipment or ammunition lots. Their original payment is held in protected escrow until delivery earns the seller's payment or an eligible cancellation refunds it. This is already paid, not another Treasury bill. Delivered/refunded lots and unsettled purchases are excluded.",imports),
         category("refit_escrow","Paid refit deposits still held",
             "Unearned public money already paid into locked service deposits. Company working capital is a separate pool and is excluded. Completed work earns these deposits; only eligible cancelled units can refund them.",refits),
         category("goods_escrow","Paid goods money awaiting dispatch",
@@ -234,6 +259,47 @@ mod tests {
         assert_eq!(view(&w,me),rows);assert_eq!(save(&w),saved);
         w.nation_mut(me).program_budget.as_mut().unwrap().settled_day=Some(0);
         assert_eq!(group(&view(&w,me),"pending_fiscal_close")["amount_bn"],0.0);
+    }
+    #[test]
+    fn imported_commitments_follow_original_payment_escrow_and_release_without_an_extra_bill() {
+        // Read-model fixture only: exact synthetic ownership stages exercise
+        // categorisation; native S08 lifecycle tests own payment conservation.
+        let mut w=fixture();let me=NationId::France;
+        let spec=equipment::baseline_spec();
+        let revision=equipment::DesignRevision{id:"foreign-model".into(),name:"Foreign model".into(),
+            specification_key:equipment::specification_key(&spec),profile:equipment::design_preview(&w,me,&spec).profile.unwrap(),spec,created_day:0,certified_day:Some(0)};
+        let route=logistics::RoutePlan{mode:"sea".into(),nodes:vec![],segments:vec![],distance_km:100,
+            estimated_days:14,months:1,capacity_tonnes:50.0,bottleneck:"Test corridor".into(),chokepoints:vec![],dispatch_note:None};
+        let mut d=companies::ImportContract{id:1,seller:NationId::Japan,buyer:me,company:1,product:2,ammunition:false,
+            quantity:2,district:"JP-test".into(),source_revision:revision,buyer_revision:Some("import-1-2".into()),family:None,
+            route,transit_days:14,unit_price_bn:1.5,total_price_bn:3.0,cost_basis_bn:3.0/1.15,purchased_day:0,
+            settled_day:None,due_day:None,delivered_day:None,cancelled_day:None,refunded_day:None,escrow_bn:0.0,
+            refunded_bn:0.0,status:"awaiting_settlement".into(),reason:"Awaiting fiscal close".into()};
+        w.companies.imports.contracts.push(d.clone());
+        let saved=save(&w);let rows=view(&w,me);
+        assert_eq!(group(&rows,"supplier_transfers")["amount_bn"],3.0);
+        assert_eq!(group(&rows,"pending_fiscal_close")["amount_bn"],0.0,"No extra fresh bill is inferred from a foreign invoice");
+        assert_eq!(group(&rows,"paid_import_escrow")["amount_bn"],0.0);
+        assert_eq!(group(&view(&w,NationId::Tonga),"supplier_transfers")["amount_bn"],0.0);
+        assert_eq!(save(&w),saved);
+        d.settled_day=Some(0);d.due_day=Some(20);d.escrow_bn=3.0;
+        d.status="blocked".into();d.reason="Original shipping province unavailable".into();
+        w.companies.imports.contracts[0]=d.clone();
+        let saved=save(&w);let rows=view(&w,me);
+        assert_eq!(group(&rows,"supplier_transfers")["amount_bn"],0.0);
+        assert_eq!(group(&rows,"paid_equipment_deliveries")["amount_bn"],0.0,"The same foreign lot is not counted again as domestic delivery");
+        assert_eq!(group(&rows,"paid_import_escrow")["amount_bn"],3.0);
+        assert!(group(&rows,"paid_import_escrow")["items"][0]["due_label"].as_str().unwrap().contains("Original shipping province unavailable"));
+        assert_eq!(save(&w),saved);
+        for refund in [false,true] {
+            let mut ended=d.clone();ended.escrow_bn=0.0;
+            if refund {ended.cancelled_day=Some(5);ended.refunded_day=Some(5);ended.refunded_bn=3.0;}
+            else {ended.delivered_day=Some(20);}
+            w.companies.imports.contracts[0]=ended;
+            let rows=view(&w,me);
+            assert_eq!(group(&rows,"paid_import_escrow")["amount_bn"],0.0);
+            assert_eq!(group(&rows,"supplier_transfers")["amount_bn"],0.0);
+        }
     }
     #[test]
     fn paid_property_is_separate_from_fresh_bills_and_cargo_does_not_invent_a_price() {

@@ -83,6 +83,17 @@
 .eq-company-milestones dd { margin:0; color:#e1e4d7; text-align:right; font-size:12px; }
 .eq-company-milestones small { display:block; margin-top:4px; color:#abc0c5; }
 .eq-company-ownership { margin-top:22px!important; padding-top:18px; border-top:1px solid #b0c8cd2a; }
+.eq-market-filters { display:flex; flex-wrap:wrap; gap:16px; margin:18px 0; }
+.eq-market-filters>div { display:flex; flex-wrap:wrap; gap:7px; }
+.eq-market-filters button[aria-pressed=true] { background:#41553c; color:#edf2d7; border-color:#c0d4a877; }
+.eq-market-origin { color:#d3e1ca; font-weight:700; }
+.eq-market-terms { padding:0 12px; border-left:3px solid #a5baa46b; }
+.eq-market-blocked { color:#f1c5a3; }
+.eq-company-administration { margin-top:28px; }
+.eq-company-administration>summary { padding:15px 0; font-size:16px; font-weight:700; }
+.eq-market-browser .eq-toolbar label { min-width:0; flex:1 1 240px; }
+.eq-market-browser .eq-toolbar input { width:100%; box-sizing:border-box; }
+@media(max-width:480px) { .eq-market-filters { display:block; } .eq-market-filters>div { margin-bottom:12px; } .eq-market-filters button { flex:1 1 auto; min-height:42px; } }
 .eq-order-inputs label>small { display:block; color:#afc3c9; }
 @media(max-width:850px) { .eq-company-intro { grid-template-columns:1fr; padding:23px; gap:25px; } .eq-company-model { display:block; } .eq-company-model .eq-model-canvas { height:300px; } }
 @media(max-width:480px) { .eq-company-flow { gap:18px 12px; } .eq-company-flow b { font-size:21px; } .eq-company-flow small { font-size:11px; } .eq-company-intro { padding:20px; } .eq-company-model .eq-model-canvas { height:230px; } .eq-company-milestones>div { grid-template-columns:1fr; gap:4px; } .eq-company-milestones dd { text-align:left; } }

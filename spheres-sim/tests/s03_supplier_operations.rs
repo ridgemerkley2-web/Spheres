@@ -447,9 +447,18 @@ fn new_unit_purchases_components_once_and_shared_inputs_have_one_cash_owner() {
         "raw and power receipts cannot manufacture extra work"
     );
     let saved = spheres_sim::save(&w);
+    assert!(
+        !saved.contains("preproduction_inputs_bn"),
+        "old grandfathered work retains its absent zero-classification wire format"
+    );
     companies::tick_day(&mut w);
     assert_eq!(saved, spheres_sim::save(&w));
     let mut resumed = spheres_sim::load(&saved).unwrap();
+    assert_eq!(
+        spheres_sim::save(&resumed),
+        saved,
+        "valid older paid inventory stays byte-identical"
+    );
     let components = industry_operations::advanced_component_stock(&w, HOME);
     clock::advance_date(&mut w);
     clock::advance_date(&mut resumed);

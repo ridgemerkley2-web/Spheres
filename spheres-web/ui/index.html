@@ -5693,13 +5693,15 @@ function equipmentExternalPending() {
 }
 async function equipmentCommand(command) {
   if (!S?.player || equipmentExternalPending()) throw new Error("Wait for the current order or turn to finish before confirming equipment work.");
-  if (!command || !["equipment_save","equipment_research","equipment_develop","equipment_produce","equipment_refit","equipment_retire","equipment_maintenance","equipment_supply","equipment_target","equipment_pause","equipment_cancel","equipment_funding","equipment_ammo_order","equipment_ammo_activate","equipment_ammo_funding","equipment_ammo_pause","equipment_ammo_cancel","equipment_ammo_reserve","equipment_ammo_reserve_clear","equipment_supply_policy","equipment_supply_policy_clear","company_establish","company_capitalize","company_develop","company_purchase","company_funding","company_inventory","company_cancel","company_ammo_supply","company_ammo_inventory","company_ammo_purchase","company_refit","company_refit_cancel"].includes(command.kind)) throw new Error("This is not a reviewed equipment order.");
+  if (!command || !["equipment_save","equipment_research","equipment_develop","equipment_produce","equipment_refit","equipment_retire","equipment_maintenance","equipment_supply","equipment_target","equipment_pause","equipment_cancel","equipment_funding","equipment_ammo_order","equipment_ammo_activate","equipment_ammo_funding","equipment_ammo_pause","equipment_ammo_cancel","equipment_ammo_reserve","equipment_ammo_reserve_clear","equipment_supply_policy","equipment_supply_policy_clear","company_establish","company_capitalize","company_develop","company_purchase","company_funding","company_inventory","company_cancel","company_ammo_supply","company_ammo_inventory","company_ammo_purchase","company_refit","company_refit_cancel","company_enable_imports","company_import_purchase","company_import_cancel"].includes(command.kind)) throw new Error("This is not a reviewed equipment order.");
   const session=S.session_id;
   const response=await api("/api/command", {commands:[command]});
   if (session!==S?.session_id) throw new Error("The campaign changed. Review the equipment in the current campaign.");
   if (response.command_pending) throw new Error("The order is awaiting confirmation. Use the pending order controls before sending another.");
   if (response.errors?.length) throw new Error(response.errors.join(" "));
   await adopt(response,false);
+  const importMessages={company_enable_imports:"Supplier imports enabled. Companies fund their own construction, development and stock; no equipment was purchased.",company_import_purchase:"Import purchase accepted. Review its paid ownership and delivery status in Companies & Procurement; component research is unchanged.",company_import_cancel:"Import cancellation recorded. Review the contract status and its refund receipt before spending any returned funds."};
+  if(importMessages[command.kind]) { equipmentSelectTab("companies"); return {message:importMessages[command.kind]}; }
   const companyRefitMessages={company_refit:"Refit contract accepted. Review held funds, equipment withdrawn from service and manufacturer progress in In service.",company_refit_cancel:"Unstarted refit cancellation recorded. Review released vehicles, any unit already in work and the refund status in In service."};
   if(companyRefitMessages[command.kind]) { equipmentSelectTab("service"); return {message:companyRefitMessages[command.kind]}; }
   const companyAmmoMessages={company_ammo_supply:"Ammunition supply commissioned. The manufacturer funds its own finished stock; review available offers in Ammunition.",company_ammo_inventory:"Company ammunition stock target saved. This changes supplier restocking and places no government purchase.",company_ammo_purchase:"Ammunition purchase accepted. Paid rounds and mission stores enter the national magazine only after delivery."};
@@ -5728,7 +5730,7 @@ async function equipmentNavigate(action) {
   if (action.action==="research" && action.equipment===true) {
     equipmentSelectTab("research"); equipmentRevealRecord(action.id); return true;
   }
-  if (!["research","budget","construction","manufacture","resources"].includes(action.action)) return false;
+  if (!["research","budget","construction","manufacture","resources","trade"].includes(action.action)) return false;
   const state=S;
   closeEquipmentDrawer();
   if (action.action==="research") {
@@ -5736,7 +5738,7 @@ async function equipmentNavigate(action) {
     if (state!==S || !tech.open) return false;
     const index=tech.byId?.get(action.id);
     if (index!=null) { setTechView(tech.data?.[index]?.domain || action.domain || tech.curDomain,true); techNodeClick(index); }
-  } else if (action.action==="budget") {
+  } else if (action.action==="budget" || action.action==="trade") {
     return cashFlowNavigate(action);
   } else if (action.action==="construction") {
     openConstruction({kind:action.kind,province:action.district,project:action.project});

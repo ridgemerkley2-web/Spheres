@@ -24,6 +24,7 @@ pub enum CashCause {
     Patronage,
     SupplierInputs,
     RefitRefund,
+    EquipmentImportRefund,
     DebtRestructuring,
     AssetSale,
     LegacyMineConstruction,

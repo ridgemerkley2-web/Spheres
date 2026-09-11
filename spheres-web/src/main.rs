@@ -6691,7 +6691,7 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
             district: v.get("district")?.as_str()?.to_string(),
             kit: v.get("kit")?.as_str()?.to_string(),
         },
-        "company_establish" | "company_capitalize" | "company_develop" | "company_purchase" | "company_funding" | "company_inventory" | "company_cancel" | "company_ammo_supply" | "company_ammo_inventory" | "company_ammo_purchase" | "company_refit" | "company_refit_cancel" => Command::Company {
+        "company_establish" | "company_capitalize" | "company_develop" | "company_purchase" | "company_funding" | "company_inventory" | "company_cancel" | "company_ammo_supply" | "company_ammo_inventory" | "company_ammo_purchase" | "company_refit" | "company_refit_cancel" | "company_enable_imports" | "company_import_purchase" | "company_import_cancel" => Command::Company {
             nation: me,
             order: equipment_view::parse_company_order(v)?,
         },
@@ -7097,6 +7097,9 @@ fn fresh_play_rules(g: &mut Game) -> Result<(), String> {
     // this posts no production, purchases, deliveries or simulated day.
     resources::materialize_opening_market(&mut g.world)?;
     spheres_sim::company_network::enable(&mut g.world)?;
+    // Supplier programmes must fund their own actual work; enrollment itself
+    // creates neither an arms plant nor finished export stock.
+    spheres_sim::supplier_catalogue::enable(&mut g.world)?;
     spheres_sim::operational_warfare::enable(&mut g.world)?;
     Ok(())
 }

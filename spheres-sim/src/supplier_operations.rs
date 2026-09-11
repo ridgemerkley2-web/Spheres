@@ -54,6 +54,11 @@ pub struct SupplierContract {
     pub utility_cost_bn: f64,
     pub raw_used: [f64; 12],
     pub input_cost_bn: f64,
+    /// Inputs paid during development/tooling are operating expenses, never
+    /// part of the finished unit's inventory cost. This is a subset of the
+    /// existing input expense, not another charge.
+    #[serde(default, skip_serializing_if = "zero_preproduction_inputs")]
+    pub preproduction_inputs_bn: f64,
     pub work_days: f64,
 }
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
@@ -71,6 +76,80 @@ pub struct SupplierReceipt {
     pub power_used: f64,
     pub raw_used: [f64; 12],
     pub cash_paid_bn: f64,
+}
+
+fn zero_preproduction_inputs(value: &f64) -> bool {
+    *value == 0.0
+}
+
+pub(crate) fn preproduction_inputs_bn(w: &WorldState, company: u32) -> f64 {
+    w.supplier_operations
+        .contracts
+        .values()
+        .filter(|t| t.company == company)
+        .map(|t| t.preproduction_inputs_bn)
+        .sum()
+}
+
+/// Older paid-work books omitted the preproduction classification. Recover only
+/// an absent field whose entire saved input bill is provably utility expense
+/// before any physical unit started. No current price, clock, payment or work
+/// is consulted. A supplied zero is never treated as a migration request.
+pub(crate) fn retain_unclassified_preproduction_inputs(
+    w: &mut WorldState,
+    absent: &BTreeSet<u32>,
+) -> Result<(), String> {
+    for id in absent {
+        let Some(t) = w.supplier_operations.contracts.get(id) else {
+            continue;
+        };
+        if t.kind != "equipment"
+            || w.supplier_operations.grandfathered_programs.contains(id)
+            || t.input_cost_bn == 0.0
+        {
+            continue;
+        }
+        let c = w
+            .companies
+            .firms
+            .iter()
+            .find(|c| c.id == t.company)
+            .ok_or("The saved supplier input account has no original company.")?;
+        let p = c
+            .products
+            .iter()
+            .find(|p| p.id == *id && p.revision_id == t.reference)
+            .ok_or("The saved supplier input account has no original product.")?;
+        let proven = t.baseline_units == 0
+            && t.units_started == 0
+            && p.produced_units == 0
+            && p.sold_units == 0
+            && p.stock == 0
+            && p.stock_cost_bn == 0.0
+            && p.unit_work_days == 0.0
+            && p.unit_spent_bn == 0.0
+            && p.unit_material_cost_bn == 0.0
+            && p.unit_inputs.iter().all(|v| *v == 0.0)
+            && t.components_used == 0.0
+            && t.component_cost_bn == 0.0
+            && t.raw_used
+                .iter()
+                .enumerate()
+                .all(|(k, v)| k == resources::Commodity::Coal.idx() || *v == 0.0)
+            && t.input_cost_bn.is_finite()
+            && t.input_cost_bn > 0.0
+            && near(t.input_cost_bn, t.utility_cost_bn);
+        if !proven {
+            return Err(format!("Saved supplier programme {id} has no preproduction expense classification, and its physical inventory or inputs make that ownership ambiguous. Keep the original archive; this build cannot safely infer those older costs."));
+        }
+        let amount = t.input_cost_bn;
+        w.supplier_operations
+            .contracts
+            .get_mut(id)
+            .unwrap()
+            .preproduction_inputs_bn = amount;
+    }
+    Ok(())
 }
 
 pub fn enabled(w: &WorldState) -> bool {
@@ -498,6 +577,7 @@ fn empty_contract(
         utility_cost_bn: 0.0,
         raw_used: [0.0; 12],
         input_cost_bn: 0.0,
+        preproduction_inputs_bn: 0.0,
         work_days: 0.0,
     }
 }
@@ -544,7 +624,13 @@ pub(crate) fn consume(w: &mut WorldState, i: usize, q: &Packet) -> Result<(), St
         .map_err(|(r, _, _)| format!("Missing {}.", r.name()))?;
     industry_operations::take_advanced_components(w, nation, q.components)?;
     let gdp = w.nation(nation).gdp.max(0.1);
-    crate::economy::charge_for(w, nation, -q.inputs_cost_bn, -q.inputs_cost_bn / gdp, crate::fiscal_journal::CashCause::SupplierInputs);
+    crate::economy::charge_for(
+        w,
+        nation,
+        -q.inputs_cost_bn,
+        -q.inputs_cost_bn / gdp,
+        crate::fiscal_journal::CashCause::SupplierInputs,
+    );
     let c = &mut w.companies.firms[i];
     c.cash_bn = (c.cash_bn - q.inputs_cost_bn).max(0.0);
     c.materials_expense_bn += q.inputs_cost_bn;
@@ -566,6 +652,9 @@ pub(crate) fn consume(w: &mut WorldState, i: usize, q: &Packet) -> Result<(), St
     terms.power_used += q.power;
     terms.utility_cost_bn += q.utility_cost_bn;
     terms.input_cost_bn += q.inputs_cost_bn;
+    if matches!(q.phase.as_str(), "development" | "tooling") {
+        terms.preproduction_inputs_bn += q.inputs_cost_bn;
+    }
     terms.work_days += q.work_days;
     for k in 0..12 {
         terms.raw_used[k] += q.raw[k];
@@ -752,11 +841,19 @@ pub fn validate(w: &WorldState) -> Result<(), String> {
                 t.power_used,
                 t.utility_cost_bn,
                 t.input_cost_bn,
+                t.preproduction_inputs_bn,
                 t.work_days,
             ]
             .into_iter()
             .chain(t.raw_used)
             .all(|x| x.is_finite() && x >= 0.0)
+            || t.preproduction_inputs_bn > t.input_cost_bn + 1e-9
+            || t.preproduction_inputs_bn > t.utility_cost_bn + 1e-9
+            || (t.kind != "equipment" || s.grandfathered_programs.contains(id))
+                && t.preproduction_inputs_bn != 0.0
+            || t.kind == "equipment"
+                && t.units_started == 0
+                && !near(t.preproduction_inputs_bn, t.input_cost_bn)
             || t.input_cost_bn + 1e-9 < t.component_cost_bn + t.utility_cost_bn
             || t.input_cost_bn > c.materials_expense_bn + 1e-9
         {

@@ -1,7 +1,7 @@
 // Helpers for the disposable binary/browser CI lane. No mocked campaign data.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),cp=require('node:child_process');
 const hash=value=>crypto.createHash('sha256').update(value).digest('hex');
-const ASSETS=['index.html','campaign-transport.js','campaign-ui.js','fiscal-recovery-ui.js','cash-flow-ui.js','companies-ui.js','companies.css','government-ui.js','government-ui.css','campaign-operations-ui.js','campaign-operations-ui.css','map-controls.js','map-controls.css','guidance-ui.js','guidance-ui.css','globe3d.js','city-layer.js','city-mesh.js','water-detail.js','equipment-mesh.js'];
+const ASSETS=['index.html','campaign-transport.js','campaign-ui.js','fiscal-recovery-ui.js','cash-flow-ui.js','companies-ui.js','companies.css','government-ui.js','government-ui.css','campaign-operations-ui.js','campaign-operations-ui.css','map-controls.js','map-controls.css','guidance-ui.js','guidance-ui.css','globe3d.js','city-layer.js','city-mesh.js','water-detail.js','equipment-mesh.js','equipment-ui.js','equipment-ui.css'];
 function git(root,args){const r=cp.spawnSync('git',args,{cwd:root,windowsHide:true,maxBuffer:32*1024*1024});assert.equal(r.status,0,'Cannot verify committed source: '+r.stderr);return r.stdout;}
 async function json(page,url,route){const response=await page.request.get(url+route);assert(response.ok(),route+' returned '+response.status());return response.json();}
 async function verifyBuild({page,url,root,run,binary}){

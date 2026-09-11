@@ -462,7 +462,7 @@ pub fn ammo_order_quote(
         if !s
             .revisions
             .values()
-            .any(|r| r.certified_day.is_some() && ammunition_family(&r.spec) == Some(family))
+            .any(|r| r.certified_day.is_some() && !crate::companies::imported_revision(w,id,&r.id) && ammunition_family(&r.spec) == Some(family))
         {
             reason=Some("Certify a compatible weapon configuration before producing this ammunition family.".into());
         } else if s.ammunition.as_ref().is_some_and(|a| {

@@ -13,6 +13,7 @@ use std::collections::BTreeSet;
 /// Version four adds prepaid refit services with separately locked funds.
 /// Older books retain their versions until the new feature is actually used.
 pub const VERSION: u32 = 4;
+pub const IMPORT_VERSION: u32 = 5;
 pub const TANK_VERSION: u32 = 1;
 pub const EQUIPMENT_VERSION: u32 = 2;
 pub const AMMUNITION_VERSION: u32 = 3;
@@ -23,6 +24,7 @@ pub const MARGIN: f64 = 0.15;
 
 include!("companies_ammunition.rs");
 include!("companies_refits.rs");
+include!("companies_imports.rs");
 
 pub fn supported_platform(platform: &str) -> bool {
     equipment::PLATFORMS.iter().any(|p| p.id == platform)
@@ -52,6 +54,9 @@ pub fn platform_name(platform: &str) -> &str {
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 #[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
 pub enum CompanyOrder {
+    EnableImports { quote: String },
+    ImportPurchase { seller: NationId, company: u32, product: u32, ammunition: bool, quantity: u32, quote: String },
+    CancelImport { contract: u32, quote: String },
     Establish {
         name: String,
         district: String,
@@ -124,6 +129,8 @@ pub enum CompanyOrder {
 
 #[derive(Clone, Debug, Default, Serialize, Deserialize, PartialEq)]
 pub struct Companies {
+    #[serde(default, skip_serializing_if = "ImportBook::is_empty")]
+    pub imports: ImportBook,
     pub version: u32,
     pub next_id: u32,
     pub firms: Vec<Company>,
@@ -135,7 +142,8 @@ pub struct Companies {
 }
 impl Companies {
     pub fn is_empty(&self) -> bool {
-        self.firms.is_empty()
+        self.imports.is_empty()
+            && self.firms.is_empty()
             && self.deliveries.is_empty()
             && self.ammunition_deliveries.is_empty()
             && self.next_id == 0
@@ -308,7 +316,7 @@ pub fn reserved_slots(w: &WorldState, n: NationId, district: &str) -> usize {
 /// Establishing a company explicitly turns unassigned procurement authority
 /// into money held for reviewed purchases, without cancelling named public work.
 pub fn procurement_active(w: &WorldState, n: NationId) -> bool {
-    clock::is_daily(w) && w.companies.firms.iter().any(|c| c.nation == n)
+    clock::is_daily(w) && (imports_enabled(w,n) || w.companies.firms.iter().any(|c| c.nation == n))
 }
 pub fn licensed_revision(w: &WorldState, n: NationId, revision: &str) -> bool {
     w.companies.firms.iter().filter(|c| c.nation == n).any(|c| {
@@ -538,7 +546,7 @@ pub fn development_quote(
         q,
     )
 }
-pub fn purchase_quote(w: &WorldState, n: NationId, id: u32, product: u32, quantity: u32) -> Quote {
+fn purchase_terms(w: &WorldState, n: NationId, id: u32, product: u32, quantity: u32) -> Quote {
     let mut q = Quote {
         minimum_days: DELIVERY_DAYS,
         eta_days: Some(DELIVERY_DAYS),
@@ -576,12 +584,11 @@ pub fn purchase_quote(w: &WorldState, n: NationId, id: u32, product: u32, quanti
         q.reason = Some("This domestic company is missing.".into());
     }
     q.note="Buys only finished company-owned stock. Price includes paid materials and fabrication plus a 15% modeled margin; development and tooling are not charged again. Domestic delivery is seven days after fiscal settlement. Transit pauses if the shipping province is unavailable; paid property is retained and resumes on restored access.".into();
-    finish_quote(
-        w,
-        n,
-        serde_json::json!(["purchase", id, product, quantity]),
-        q,
-    )
+    q.valid=q.reason.is_none();
+    q
+}
+pub fn purchase_quote(w: &WorldState, n: NationId, id: u32, product: u32, quantity: u32) -> Quote {
+    finish_quote(w,n,serde_json::json!(["purchase",id,product,quantity]),purchase_terms(w,n,id,product,quantity))
 }
 
 fn accept(q: Quote, provided: &str) -> Result<Quote, String> {
@@ -635,6 +642,9 @@ fn apply_inner(w: &mut WorldState, n: NationId, order: &CompanyOrder) -> Result<
         return Err(reason);
     }
     match order {
+        CompanyOrder::EnableImports { quote } => enable_imports(w,n,quote)?,
+        CompanyOrder::ImportPurchase { seller,company,product,ammunition,quantity,quote } => purchase_import(w,n,*seller,*company,*product,*ammunition,*quantity,quote)?,
+        CompanyOrder::CancelImport { contract,quote } => cancel_import(w,n,*contract,quote)?,
         CompanyOrder::Establish {
             name,
             district,
@@ -881,6 +891,7 @@ fn transaction(
 /// Even prepaid authority waits for its public day's close, conservatively.
 /// Repeating this hook or loading between invoice and settlement pays once.
 pub fn settle_receivables(w: &mut WorldState) {
+    settle_imports(w);
     if w.companies.is_empty() {
         return;
     }
@@ -961,6 +972,7 @@ pub fn inbound_units(w: &WorldState, n: NationId, revision: &str) -> u32 {
         .iter()
         .filter(|d| d.buyer == n && d.revision_id == revision && d.delivered_day.is_none())
         .map(|d| d.quantity)
+        .chain(w.companies.imports.contracts.iter().filter(|d|d.buyer==n && !d.ammunition && d.buyer_revision.as_deref()==Some(revision) && d.delivered_day.is_none() && d.cancelled_day.is_none()).map(|d|d.quantity))
         .fold(0, u32::saturating_add)
 }
 
@@ -994,6 +1006,7 @@ pub fn tick_day(w: &mut WorldState) {
         return;
     }
     w.companies.last_tick_day = Some(day);
+    tick_imports(w,day);
     tick_ammo_deliveries(w, day);
     // Deliveries own their units until this one transfer into Arsenal. They
     // never also occupy the ordinary arsenal order book.
@@ -1443,7 +1456,7 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
     }
     let state = &w.companies;
     let day = clock::absolute_day(w);
-    if !(TANK_VERSION..=VERSION).contains(&state.version)
+    if !(TANK_VERSION..=IMPORT_VERSION).contains(&state.version)
         || state.firms.len() > crate::nations::nation_count()
         || state.deliveries.len() > 100_000
     {
@@ -1580,6 +1593,7 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
                 .filter(|d| d.company == c.id && d.product == p.id)
                 .map(|d| d.quantity as u64)
                 .sum::<u64>();
+            let sold = sold + imported_sold(w,c.id,p.id,false);
             if sold != p.sold_units as u64 {
                 return Err(
                     "Company sold units do not reconcile with purchased delivery ownership.".into(),
@@ -1725,6 +1739,7 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
                 .filter(|d| d.company == c.id && d.settled_day.is_some())
                 .map(|d| d.total_price_bn)
                 .sum::<f64>();
+        let settled_sales = settled_sales + w.companies.imports.contracts.iter().filter(|d|d.company==c.id && d.delivered_day.is_some()).map(|d|d.total_price_bn).sum::<f64>();
         let sold_cost = state
             .deliveries
             .iter()
@@ -1737,6 +1752,7 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
                 .filter(|d| d.company == c.id)
                 .map(|d| d.cost_basis_bn)
                 .sum::<f64>();
+        let sold_cost = sold_cost + w.companies.imports.contracts.iter().filter(|d|d.company==c.id && d.cancelled_day.is_none()).map(|d|d.cost_basis_bn).sum::<f64>();
         let inventory_cost = c
             .products
             .iter()
@@ -1755,7 +1771,8 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
         ) || !near(c.sales_revenue_bn, settled_sales)
             || !near(
                 c.materials_expense_bn + c.fabrication_expense_bn,
-                inventory_cost + sold_cost + refit_incurred_cost(c),
+                inventory_cost + sold_cost + refit_incurred_cost(c)
+                    + crate::supplier_operations::preproduction_inputs_bn(w, c.id),
             )
         {
             return Err("Company cumulative accounts do not reconcile with work, inventory and settled sales.".into());
@@ -1809,6 +1826,7 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
             return Err("An unsettled purchase has no matching company invoice.".into());
         }
     }
+    validate_imports(w,&mut identities)?;
     validate_ammo_supplier_state(w, &mut identities)?;
     validate_company_refits(w, &mut identities)?;
     if identities.last().is_some_and(|id| *id >= state.next_id) {

@@ -27,17 +27,17 @@ pub(crate) fn decode(s: &str) -> Result<WorldState, String> {
             && matches!(shape["economy_version"].as_u64(), Some(0..=1))
             && matches!(shape["supplier_operations_version"].as_u64(), Some(0..=1))
             && matches!(shape["party_leadership_version"].as_u64(), Some(0..=1))
-            && matches!(equipment, Some(0..=5)),
+            && matches!(equipment, Some(0..=6)),
         Some("spheres-companies-save") => shape["version"] == 1
             && matches!(shape["economy_version"].as_u64(), Some(0..=1))
             && matches!(shape["supplier_operations_version"].as_u64(), Some(0..=1))
             && matches!(shape["party_leadership_version"].as_u64(), Some(0..=1))
-            && matches!(equipment, Some(0..=5)),
+            && matches!(equipment, Some(0..=6)),
         Some("spheres-economy-save") => shape["version"] == 1
             && matches!(shape["party_leadership_version"].as_u64(), Some(0..=1))
-            && matches!(equipment, Some(0..=5)),
-        Some("spheres-party-leadership-save") => shape["version"] == 1 && matches!(equipment, Some(0..=5)),
-        Some("spheres-equipment-save") => matches!(equipment, Some(1..=5)),
+            && matches!(equipment, Some(0..=6)),
+        Some("spheres-party-leadership-save") => shape["version"] == 1 && matches!(equipment, Some(0..=6)),
+        Some("spheres-equipment-save") => matches!(equipment, Some(1..=6)),
         None => shape.get("format").is_none(),
         _ => false,
     };
@@ -58,7 +58,7 @@ pub(crate) fn decode(s: &str) -> Result<WorldState, String> {
         }
     }
     let contractor_keys = ["enabled", "roster", "assignments", "growth", "news", "next_id", "last_day", "last_month"];
-    let supplier_keys = ["version", "next_id", "firms", "deliveries", "ammunition_deliveries", "last_tick_day"];
+    let supplier_keys = ["version", "next_id", "firms", "deliveries", "ammunition_deliveries", "last_tick_day", "imports"];
     let old = payload.get("companies");
     let master = old.is_some_and(|b| ["enabled", "roster", "assignments", "growth", "news", "last_day", "last_month"].iter().any(|k| b.get(*k).is_some()));
     // The pinned master wrote operational books in raw worlds or equipment v1.
@@ -91,7 +91,15 @@ pub(crate) fn decode(s: &str) -> Result<WorldState, String> {
         let _: crate::sector_contractors::Companies = serde_json::from_value(roster.clone()).map_err(|e| format!("Contractor migration: {e}"))?;
         payload["sector_contractors"] = roster;
     }
+    // Presence belongs to the wire contract: an explicit zero is an assertion,
+    // never permission to repair a corrupt expense classification.
+    let unclassified_inputs: std::collections::BTreeSet<u32> = payload
+        .get("supplier_operations").and_then(|s|s.get("contracts"))
+        .and_then(Value::as_object).into_iter().flatten()
+        .filter(|(_,t)|t.get("preproduction_inputs_bn").is_none())
+        .filter_map(|(id,_)|id.parse().ok()).collect();
     let mut w: WorldState = serde_json::from_value(payload).map_err(|e| e.to_string())?;
+    crate::supplier_operations::retain_unclassified_preproduction_inputs(&mut w, &unclassified_inputs)?;
     if master || master_warfare {
         crate::fiscal_recovery::retain_original_master_receipts(&mut w)?;
     }
@@ -104,13 +112,14 @@ pub(crate) fn decode(s: &str) -> Result<WorldState, String> {
         && envelope != equipment_save_version(&w) as u64 {
         return Err("The campaign has an incorrect equipment format version.".into());
     }
-    let expected = match w.companies.version {
+    let expected = if !w.supplier_catalogue.is_empty() { 6 } else { match w.companies.version {
         companies::TANK_VERSION => 2, companies::EQUIPMENT_VERSION => 3,
-        companies::AMMUNITION_VERSION => 4, companies::VERSION => 5, _ => 0,
-    };
-    if (!w.companies.is_empty() && (expected == 0 || envelope != expected))
-        || (w.companies.is_empty() && envelope >= 2) {
-        return Err("Company property requires its matching tank, equipment, ammunition or refit-service save envelope; refusing to discard or silently downgrade corporate assets.".into());
+        companies::AMMUNITION_VERSION => 4, companies::VERSION => 5, companies::IMPORT_VERSION => 6, _ => 0,
+    }};
+    let supplier_capability = !w.companies.is_empty() || !w.supplier_catalogue.is_empty();
+    if (supplier_capability && (expected == 0 || envelope != expected))
+        || (!supplier_capability && envelope >= 2) {
+        return Err("Company property requires its matching tank, equipment, ammunition, refit-service or import save envelope; refusing to discard or silently downgrade corporate assets.".into());
     }
     if economy != connected_economy::has_state(&w) && !master && !master_warfare {
         return Err("Connected economy state requires its versioned economy save envelope. Refusing to discard or silently enable economic ownership.".into());

@@ -9,6 +9,7 @@
 //! priced war and construction work on a copy at the reported starting date.
 //! This measures an aged archive under new stress, not decades of economic AI.
 use super::*;
+use serde_json::{json, Value};
 use std::time::Instant;
 
 fn ms(start: Instant) -> f64 {
@@ -79,6 +80,59 @@ fn profile_command(
         "payer_pc_before":before,"payer_pc_after":w.nation(payer).political_capital}),
     );
     Ok(())
+}
+
+/// Separate from aged legacy regressions: sample the genuinely earned S08
+/// supplier world with a paid import in transit. Preparation is not timed.
+#[test]
+#[ignore = "requires the genuine earned-stock S08 campaign and an uncontended run"]
+fn s08_supplier_import_profile() {
+    let input=std::path::PathBuf::from(std::env::var("SPHERES_S08_PERFORMANCE_INPUT").expect("Set the exact purchased campaign path"));
+    let output=std::path::PathBuf::from(std::env::var("SPHERES_S08_PERFORMANCE_OUT").expect("Set a new JSON report path"));
+    assert!(input.is_absolute() && output.is_absolute() && input!=output && !output.exists());
+    let original=std::fs::read(&input).unwrap();
+    let mut g=storage::decode(std::str::from_utf8(&original).unwrap()).unwrap();
+    let buyer=g.world.player.unwrap();
+    assert!(g.world.supplier_catalogue.enabled && g.world.rules.economic_competition);
+    assert!(g.world.companies.imports.contracts.iter().any(|d|d.buyer==buyer && d.delivered_day.is_none() && d.cancelled_day.is_none()));
+    assert!(g.world.companies.firms.iter().any(|c|c.products.iter().any(|p|p.produced_units>0)));
+    let starting_date=g.world.date_str();
+    let starting_owned=profile_owned_work(&g.world);
+    let initial_imports=g.world.companies.imports.contracts.clone();
+    let mut simulation=vec![];let mut whole=vec![];let mut market=vec![];let mut quotes=vec![];let mut activity=vec![];
+    for _ in 0..31 {
+        let epoch=g.history_epoch;
+        let after=g.history.last().unwrap().t;
+        let all=Instant::now();let started=Instant::now();
+        g.advance_days(1,vec![]);simulation.push(ms(started));
+        let state=state_json(&g,None);let state_bytes=serde_json::to_vec(&state).unwrap().len();
+        let delta=history::request(&g,&format!("/api/history?nations={}&epoch={epoch}&after={after}",buyer.code()));
+        let delta_bytes=serde_json::to_vec(&delta).unwrap().len();whole.push(ms(all));
+        let before=spheres_sim::state_hash(&g.world);
+        let started=Instant::now();
+        let board=equipment_view::view(&g.world,buyer,&g.session_id);
+        let equipment_bytes=serde_json::to_vec(&board).unwrap().len();market.push(ms(started));
+        let offer=spheres_sim::companies::import_offers(&g.world,buyer).into_iter().find(|o|!o.ammunition && o.ready_stock>0);
+        if let Some(o)=offer {
+            let started=Instant::now();
+            let q=spheres_sim::companies::import_purchase_quote(&g.world,buyer,o.seller,o.company,o.product,false,1);
+            serde_json::to_vec(&q).unwrap();quotes.push(ms(started));
+        }
+        assert_eq!(spheres_sim::state_hash(&g.world),before,"Market reads and quotes cannot mutate the measured campaign");
+        activity.push(json!({"date":g.world.date_str(),"state_bytes":state_bytes,"delta_bytes":delta_bytes,
+            "equipment_bytes":equipment_bytes,"owned_work":profile_owned_work(&g.world),
+            "pending_imports":g.world.companies.imports.contracts.iter().filter(|d|d.delivered_day.is_none() && d.cancelled_day.is_none()).count(),
+            "delivered_imports":g.world.companies.imports.contracts.iter().filter(|d|d.delivered_day.is_some()).count()}));
+    }
+    let report=json!({"revision":env!("SPHERES_REVISION"),"input":input,"starting_date":starting_date,
+        "ending_date":g.world.date_str(),"starting_owned_work":starting_owned,"initial_imports":initial_imports,
+        "simulation_and_history_recording":summary(&simulation),"whole_server_turn":summary(&whole),
+        "equipment_market_read_and_serialization":summary(&market),"purchase_quote":if quotes.is_empty(){Value::Null}else{summary(&quotes)},
+        "sample_activity":activity,"source_unchanged":std::fs::read(&input).unwrap()==original,
+        "method":"31 consecutive actual one-day advances loaded from the earned S08 purchased campaign. No grants or setup mutations. Ordinary state/history response timing excludes network, disk autosave and browser rendering. Equipment board and purchase quote are separate sequential samples outside whole-turn timing. Run without concurrent compilation or simulations."});
+    std::fs::write(&output,serde_json::to_vec_pretty(&report).unwrap()).unwrap();
+    assert_eq!(std::fs::read(&input).unwrap(),original);
+    println!("S08 supplier performance written to {}",output.display());
 }
 
 /// Controlled benchmark setup only. No date advance, free output, inventory,

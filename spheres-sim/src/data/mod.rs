@@ -921,6 +921,7 @@ pub fn load_world(
         companies: Default::default(),
         sector_contractors: Default::default(),
         supplier_operations: Default::default(),
+        supplier_catalogue: Default::default(),
         domination: Default::default(),
         logistics: Default::default(),
         daily: Default::default(),

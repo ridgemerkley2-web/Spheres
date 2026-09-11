@@ -2090,3 +2090,25 @@ mod tests {
         assert_eq!(routes.search_nodes_left, 0);
     }
 }
+/// Validate immutable route geometry without applying today's ownership/access.
+/// Saved import lots may legitimately outlive a blockade or border change.
+pub(crate) fn valid_import_route_geometry(route:&RoutePlan)->bool {
+    let net=network();
+    if route.nodes.len()<2 || route.nodes.len()>net.nodes.len() || route.segments.len()+1!=route.nodes.len()
+        || !route.capacity_tonnes.is_finite() || route.capacity_tonnes<=0.0 || route.dispatch_note.is_some(){return false;}
+    let mut visited=BTreeSet::new();
+    for node in &route.nodes {
+        let Some(index)=net.index.get(&node.id) else{return false;};let actual=&net.nodes[*index];
+        if !visited.insert(&node.id)||node.name!=actual.name||node.kind!=actual.kind||node.lat!=actual.lat||node.lon!=actual.lon{return false;}
+    }
+    if route.nodes.first().unwrap().kind!="district"||route.nodes.last().unwrap().kind!="district"{return false;}
+    let mut distance=0u64;let mut travel=0u64;let(mut sea,mut land)=(false,false);let mut chokes=BTreeSet::new();
+    for (pair,key) in route.nodes.windows(2).zip(&route.segments){
+        let Some(edge)=net.edges.iter().find(|e|edge_key(e)==*key&&((e.a==pair[0].id&&e.b==pair[1].id)||(e.b==pair[0].id&&e.a==pair[1].id)))else{return false;};
+        distance+=edge.km as u64;travel+=edge.km as u64*if edge.kind=="sea"{3}else{4};sea|=edge.kind=="sea";land|=edge.kind=="land";if let Some(c)=&edge.chokepoint{chokes.insert(c.clone());}
+    }
+    let days=((travel+1679)/1680)as u32+2;
+    route.distance_km as u64==distance&&route.estimated_days==days&&route.months==((days+29)/30).max(1)
+        &&route.mode==match(land,sea){(true,true)=>"mixed",(false,true)=>"sea",_=>"land"}
+        &&route.chokepoints==chokes.into_iter().collect::<Vec<_>>()
+}

@@ -804,6 +804,105 @@ function companies(extra={}){return {overview:service({title:'Domestic manufactu
   deliveries:[{id:'delivery:1',name:'Sentinel 90 · 2 vehicles',status:'In transit',phase:'delivery',detail:'Purchased stock awaits arrival before it becomes usable.',receipt_label:'11 Feb 1990 · $9m paid',metrics:[{label:'Arrival',value:'18 Feb 1990'}],actions:[]}],...extra};}
 function companyQuote(command,extra={}){return quote({detail:'The government buys only the selected finished vehicles. Arrival adds them to service.',metrics:[{label:'Vehicles purchased',value:command.quantity??0},{label:'Company stock after purchase',value:command.quantity==null?8:8-command.quantity}],costs:[{label:'Purchase total',amount_bn:.009},{label:'Maintenance after delivery',amount_bn:.000032,period:'Per year'}],timing:[{label:'Delivery',value:'18 Feb 1990'}],service_effects:service({title:'Fleet after delivery',metrics:[{label:'Available tanks',value:'10 → 12'},{label:'Remaining fleet need',value:'18 → 16'}],roles:[],actions:[]}),actions:[{label:'Confirm purchase',command:{...command,quote:'company-quote'},enabled:true}],...extra});}
 
+function importAction(extra={}){return {label:'Review affordable lot',command:{kind:'company_import_purchase',seller:'France',company:21,product:7,ammunition:false,quantity:1},requires_preview:true,
+  inputs:[{key:'quantity',label:'Vehicles to buy',type:'number',value:1,min:1,max:2,step:1}],...extra};}
+function supplierMarket(extra={}){return {overview:service({title:'Supplier market',detail:'Import finished equipment without a domestic Arms Plant. Arrivals grant use rights, not component research.',metrics:[],actions:[]}),
+  offers:[{id:'offer:USA:1:3',company:1,seller_nation:'USA',seller_name:'United States',origin:'domestic',name:'Domestic heavy model',supplier_name:'National Armor',family:'ground',phase:'stock',spec:spec(),availability:{ready_stock:8,unit_price_bn:.02,affordable_quantity:0,review_quantity:1,delivery_days:7},access:{allowed:true,label:'Domestic access'},actions:[companyPurchaseAction()]},
+    {id:'offer:France:21:7',company:21,seller_nation:'France',seller_name:'France',origin:'foreign',name:'Export scout',supplier_name:'Atelier Maritime',family:'ground',phase:'stock',spec:{...spec(),components:{...spec().components,sensors:'thermal'}},availability:{ready_stock:2,unit_price_bn:.004,affordable_quantity:1,review_quantity:1,delivery_days:20},access:{allowed:true,label:'Import access open',reason:'Arrival requires continuous shipping access.'},service:{label:'After delivery',detail:'Maintenance and compatible ammunition are funded separately; no component research is granted.'},actions:[importAction()]},
+    {id:'offer:Japan:22:2',company:22,seller_nation:'Japan',origin:'foreign',name:'Restricted model',supplier_name:'Pacific Works',family:'ground',phase:'blocked',availability:{ready_stock:3,unit_price_bn:.006,affordable_quantity:2},access:{allowed:false,label:'Imports blocked',reason:'Sanctions prevent this purchase.'},blockers:['Sanctions prevent this purchase.'],actions:[importAction({enabled:false})]}],
+  programs:[],deliveries:[{id:'import:9',name:'Earlier paid scout',status:'Shipping paused',phase:'blocked',detail:'Purchased equipment remains owned by the buyer while access is blocked.',blockers:['Shipping access lost.'],actions:[{label:'Review cancellation',command:{kind:'company_import_cancel',contract:9},requires_preview:true}]}],...extra};}
+
+test('supplier market leads with actual foreign stock and separates company administration and paid arrivals',()=>{
+  const c=fixture(),data=snapshot({companies:companies({firms:[],products:[],market:supplierMarket()})});loaded(c,data);const before=plain(data),draft=plain(c.eq.draft);c.equipmentSelectTab('companies');
+  const html=c.mount.innerHTML;for(const text of ['Choose equipment for your country','no domestic Arms Plant','Domestic supplier','Foreign supplier','Atelier Maritime','Affordable from current funding','Suggested lot to review','20','accessible days','Maintenance and compatible ammunition','grants no component research','Deliveries and access','Shipping access lost.','Your manufacturers and development'])assert(html.includes(text),text);
+  assert(html.indexOf('equipmentMarketTitle')<html.indexOf('company-administration'));assert.equal((html.match(/id="equipmentSearch"/g)||[]).length,1);
+  assert.deepEqual(plain(data),before);assert.deepEqual(plain(c.eq.draft),draft);assert.equal(c.calls.length,0);assert.equal(c.requests.length,0);
+});
+
+test('supplier location and affordable filters use native quantities and retain original offer action paths',async()=>{
+  const c=fixture();loaded(c,snapshot({companies:companies({market:supplierMarket()})}));c.equipmentSelectTab('companies');
+  assert.equal(c.mount.querySelector('[data-equipment-market-origin="foreign"]').onclick(),true);
+  assert.equal(c.mount.querySelector('[data-equipment-market-availability="affordable"]').onclick(),true);
+  assert.match(c.mount.innerHTML,/1 of 3 supplier offers shown/);assert(c.mount.querySelector('[data-equipment-action="companies.market.offers.1.actions.0"]'));
+  assert(!c.mount.querySelector('[data-equipment-action="companies.market.offers.0.actions.0"]'));assert(!c.mount.querySelector('[data-equipment-action="companies.market.offers.2.actions.0"]'));
+  assert.match(c.mount.innerHTML,/Earlier paid scout/,'Paid ownership remains visible under offer filters');
+  c.api=async(...args)=>{c.requests.push(plain(args));return companyQuote(plain(args[1].command));};c.mount.querySelector('[data-equipment-action="companies.market.offers.1.actions.0"]').onclick();await tick();
+  assert.deepEqual(c.requests[0][1].command,importAction().command);assert.equal(c.calls.length,0);
+  const oldConfirm=c.mount.querySelector('[data-equipment-intent="0"]');const input=c.mount.querySelector('[data-equipment-order-input="quantity"]');input.value='2';input.oninput();assert.equal(await oldConfirm.onclick(),false);await tick();
+  assert.equal(c.requests.at(-1)[1].command.quantity,2);c.api=async()=>snapshot({companies:companies({market:supplierMarket()})});assert.equal(await c.equipmentConfirm(0),true);
+  assert.deepEqual(c.calls,[{...importAction().command,quantity:2,quote:'company-quote'}]);
+});
+
+test('foreign model inspection uses the seller specification without unlocking parts or replacing the draft',()=>{
+  const c=fixture(),data=snapshot({companies:companies({market:supplierMarket()})});loaded(c,data);const before=plain(data),draft=plain(c.eq.draft);c.equipmentSelectTab('companies');
+  c.mount.querySelector('[data-equipment-market-model="1"]').onclick();assert.equal(c.eq.companyProduct,'offer:France:21:7');assert.equal(c.equipmentCompanyProduct().spec.components.sensors,'thermal');
+  assert.deepEqual(plain(c.eq.draft),draft);assert.deepEqual(plain(data),before);assert.equal(c.equipmentComponent('thermal').known,false);
+  assert.equal(c.modelMounts.filter(model=>model.disposals===0).length,1);
+  c.mount.querySelector('[data-equipment-company-model="1"]').onclick();assert.equal(c.equipmentCompanyProduct().name,'Sentinel Scout','Domestic development still inspects its own selected model');
+  assert.deepEqual(plain(c.eq.draft),draft);assert.equal(c.calls.length,0);
+});
+
+test('supplier commissioning is shown as paid work rather than invented ready inventory or dates',()=>{
+  const c=fixture();loaded(c,snapshot({companies:companies({firms:[],products:[],market:supplierMarket({offers:[],deliveries:[],programs:[{id:'catalogue:France',name:'Atelier founding project',phase:'development',status:'Building Arms Plant',progress:.25,detail:'Construction receives its existing capital allocation.',blockers:['Stock requires completed facilities and funded development.'],actions:[]}]})})}));c.equipmentSelectTab('companies');
+  for(const text of ['Suppliers preparing stock','not ready inventory','Atelier founding project','25% complete','Stock requires completed facilities','No supplier stock offers are listed'])assert(c.mount.innerHTML.includes(text),text);
+  assert.doesNotMatch(c.mount.innerHTML,/Price per vehicle|Available to buy|Expected arrival/);assert.equal(c.calls.length,0);
+});
+
+test('import cancellation reviews blocked access and dated refund terms before issuing the exact command',async()=>{
+  const c=fixture();loaded(c,snapshot({companies:companies({market:supplierMarket()})}));c.equipmentSelectTab('companies');
+  c.api=async(...args)=>companyQuote(plain(args[1].command),{detail:'Undelivered equipment returns to seller stock. The refund is credited only by the dated settlement receipt.',costs:[{label:'Refund due',amount_bn:.004}],actions:[{label:'Confirm cancellation',command:{kind:'company_import_cancel',contract:9,quote:'cancel-token'}}]});
+  c.mount.querySelector('[data-equipment-action="companies.market.deliveries.0.actions.0"]').onclick();await tick();assert.match(c.mount.innerHTML,/Refund due/);assert.match(c.mount.innerHTML,/dated settlement receipt/);assert.equal(c.calls.length,0);
+  c.mount.querySelector('[data-equipment-dismiss]').onclick();assert.equal(c.calls.length,0);
+  c.mount.querySelector('[data-equipment-action="companies.market.deliveries.0.actions.0"]').onclick();await tick();c.api=async()=>snapshot();assert.equal(await c.equipmentConfirm(0),true);assert.deepEqual(c.calls,[{kind:'company_import_cancel',contract:9,quote:'cancel-token'}]);
+});
+
+test('import filters and reviews cannot act across replaced campaigns, stale dates or pending receipts',async()=>{
+  for(const change of [c=>c.S={...c.S,session_id:'two'},c=>c.eq.stale=true,c=>c.COMMAND_CHANNEL.pending={},c=>c.eq.data=snapshot()]){
+    const c=fixture();loaded(c,snapshot({companies:companies({market:supplierMarket()})}));c.equipmentSelectTab('companies');const family=c.mount.querySelector('[data-equipment-company-family="ground"]'),filter=c.mount.querySelector('[data-equipment-market-origin="foreign"]'),purchase=c.mount.querySelector('[data-equipment-action="companies.market.offers.1.actions.0"]');change(c);assert.equal(filter.onclick(),false);assert.equal(family.onclick(),false);assert.equal(purchase.onclick(),false);assert.equal(c.calls.length,0);
+  }
+  const c=fixture();c.S.date='11 Feb 1990';loaded(c,snapshot({companies:companies({market:supplierMarket()})}));c.equipmentSelectTab('companies');
+  c.api=async(...args)=>companyQuote(args[1].command,{date:'10 Feb 1990'});c.mount.querySelector('[data-equipment-action="companies.market.offers.1.actions.0"]').onclick();await tick();assert.equal(await c.equipmentConfirm(0),false);assert.match(c.mount.innerHTML,/did not match this campaign/);
+  c.eq.review=null;c.api=async()=>snapshot({date:'10 Feb 1990'});assert.equal(await c.equipmentFetch(),false);assert.equal(c.calls.length,0);
+});
+
+test('market zero matches keeps an explicit route to unavailable offers and restores focused filters',()=>{
+  const c=fixture();loaded(c,snapshot({companies:companies({market:supplierMarket()})}));c.equipmentSelectTab('companies');
+  c.mount.querySelector('[data-equipment-market-origin="domestic"]').onclick();c.mount.querySelector('[data-equipment-market-availability="affordable"]').onclick();
+  assert.match(c.mount.innerHTML,/No offers match these filters/);assert.equal(c.document.activeElement?.dataset?.equipmentFocus,'market-availability:affordable');
+  assert.equal(c.mount.querySelector('[data-equipment-market-reset]').onclick(),true);assert.equal(c.eq.marketOrigin,'all');assert.equal(c.eq.marketAvailability,'all');assert.match(c.mount.innerHTML,/Sanctions prevent this purchase/);
+});
+
+test('domestic and foreign paid deliveries retain separate original action paths outside the offer filters',()=>{
+  const domestic={id:'delivery:44',name:'Domestic paid scout',status:'In transit',actions:[{label:'Review delivered fleet',navigate:{action:'equipment',tab:'service'}}]},c=fixture();
+  loaded(c,snapshot({companies:companies({deliveries:[domestic],market:supplierMarket()})}));c.equipmentSelectTab('companies');
+  c.mount.querySelector('[data-equipment-market-origin="foreign"]').onclick();c.mount.querySelector('[data-equipment-market-availability="affordable"]').onclick();
+  assert.equal((c.mount.innerHTML.match(/data-equipment-record="delivery:44"/g)||[]).length,1);assert.match(c.mount.innerHTML,/Domestic paid scout/);assert.match(c.mount.innerHTML,/Earlier paid scout/);
+  assert(c.mount.querySelector('[data-equipment-action="companies.market.deliveries.0.actions.0"]'));
+  c.mount.querySelector('[data-equipment-action="companies.deliveries.0.actions.0"]').onclick();assert.deepEqual(c.calls,[{action:'equipment',tab:'service'}]);assert.equal(c.requests.length,0);
+});
+
+test('import ammunition preserves exact family and store units without a guessed vehicle or researched components',async()=>{
+  const cmd={kind:'company_import_purchase',seller:'France',company:21,product:11,ammunition:true,quantity:2};
+  const ammo={id:'supplier:France:21:ammo:11',name:'Precision stores',supplier_name:'Air Supply',origin:'foreign',seller_nation:'France',family:'ammunition',ammo_family:'precision_store',unit_label:'store',spec:spec(),
+    availability:{ready_stock:12,unit_price_bn:.0008,affordable_quantity:2,review_quantity:2},service:{label:'Exact-family stores',detail:'Stores do not unlock components or activate ground ammunition.'},actions:[importAction({command:cmd,inputs:[{key:"quantity",label:"Stores to buy",type:"number",value:2,min:1,max:12,step:1}]})]};
+  const c=fixture();loaded(c,snapshot({companies:companies({products:[],market:supplierMarket({offers:[ammo]})})}));c.equipmentSelectTab('companies');const before=plain(c.eq.data),draft=plain(c.eq.draft);
+  assert.match(c.mount.innerHTML,/Price per store/);assert.match(c.mount.innerHTML,/12 <span>stores/);assert.match(c.mount.innerHTML,/Stores do not unlock components/);assert.equal(c.mount.querySelector('[data-equipment-market-model="0"]'),null);assert.equal(c.modelMounts.filter(m=>m.disposals===0).length,0);
+  c.api=async(...args)=>companyQuote(plain(args[1].command));c.mount.querySelector('[data-equipment-action="companies.market.offers.0.actions.0"]').onclick();await tick();assert.deepEqual(plain(c.eq.review.command),cmd);assert.deepEqual(plain(c.eq.data),before);assert.deepEqual(plain(c.eq.draft),draft);assert.equal(c.calls.length,0);
+});
+
+test('paused supplier programmes link to existing Exchange enrollment without adopting rules or spending',async()=>{
+  const c=shellFixture();loaded(c);c.room.hidden=false;c.eq.draft.name='Unfinished export model';const original=plain(c.eq.draft);
+  assert.equal(await c.equipmentNavigate({action:'trade'}),true);assert.equal(c.room.hidden,true);assert.deepEqual(c.calls,[['budget',{action:'trade'}]]);assert.equal(c.requests.length,0);assert.deepEqual(plain(c.eq.draft),original);
+  c.room.hidden=false;c.eq.open=true;c.COMMAND_CHANNEL.pending={};const before=c.calls.length;assert.equal(await c.equipmentNavigate({action:'trade'}),false);assert.equal(c.calls.length,before);assert.equal(c.room.hidden,false);
+});
+
+test('new import commands use the existing transaction channel without modifying drafts or research',async()=>{
+  for(const command of [{kind:'company_enable_imports',quote:'enable-token'}, {...importAction().command,quote:'buy-token'}, {kind:'company_import_cancel',contract:9,quote:'cancel-token'}]){
+    const c=shellFixture();loaded(c);c.room.hidden=false;c.eq.draft.name='Unfinished design';const draft=plain(c.eq.draft);c.api=async(...args)=>{c.requests.push(plain(args));return {session_id:'one',player:'USA'};};c.adopt=async state=>{c.S=state;};
+    const result=await c.equipmentCommand(command);assert.deepEqual(c.requests,[['/api/command',{commands:[command]}]]);assert.equal(c.eq.tab,'companies');assert.deepEqual(plain(c.eq.draft),draft);assert(result.message);
+  }
+});
+
 test('companies explain separate ownership and show server-priced stock, delivery and fleet need without issuing orders',()=>{
   const c=fixture(),data=snapshot({companies:companies()});loaded(c,data);const before=plain(data);c.equipmentSelectTab('companies');
   for(const text of ['Companies &amp; Procurement','Design it. Commission it. Buy it.','Fund engineering &amp; trials','Company cash &amp; facilities','Available to buy','Price per vehicle','$4.5m','Remaining fleet need','After owned stock and paid deliveries','$16k/year','18 Feb 1990','Company inventory remains the supplier’s property','does not authorize spending','Existing public development and production'])assert(c.mount.innerHTML.includes(text),text);

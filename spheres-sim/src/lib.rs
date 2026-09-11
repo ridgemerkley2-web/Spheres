@@ -11,6 +11,7 @@ pub mod construction_preview;
 pub mod construction_suggestions;
 pub mod commerce;
 pub mod companies;
+pub mod supplier_catalogue;
 pub mod sector_contractors;
 pub mod supplier_operations;
 pub mod company_network;
@@ -1398,6 +1399,7 @@ pub const SYSTEMS: &[(&str, fn(&mut WorldState))] = &[
     // politicians get their turn with it.
     ("tech", tech::tick),
     ("equipment", equipment::tick_day),
+    ("supplier_catalogue", supplier_catalogue::tick_day),
     ("companies", companies::tick_day),
     // Pacts decide who is obliged to join a war and patronage decides who can
     // still afford one, so the standing arrangements are settled before the
@@ -1567,10 +1569,11 @@ pub fn state_hash(w: &WorldState) -> u64 {
 }
 
 fn equipment_save_version(w: &WorldState) -> u32 {
+    if !w.supplier_catalogue.is_empty() { return 6; }
     if !w.companies.is_empty() {
         match w.companies.version {
             companies::TANK_VERSION=>2, companies::EQUIPMENT_VERSION=>3,
-            companies::AMMUNITION_VERSION=>4, _=>5,
+            companies::AMMUNITION_VERSION=>4, companies::IMPORT_VERSION=>6, _=>5,
         }
     } else if w.nations.iter().any(|n|n.equipment.is_some()) {1} else {0}
 }
@@ -1670,6 +1673,7 @@ pub fn load(s: &str) -> Result<WorldState, String> {
         }
     }
     companies::validate_state(&w)?;
+    supplier_catalogue::validate(&w)?;
     // This one documented upgrade expands only the old empty Japanese
     // organization slots. It never fills a research gap or changes a person;
     // populated or mixed obsolete bindings still fail closed.

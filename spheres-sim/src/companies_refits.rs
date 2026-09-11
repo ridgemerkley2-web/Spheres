@@ -299,7 +299,7 @@ fn start_company_refit(
     let id = next_id(w);
     let invoice = next_id(w);
     let day = clock::absolute_day(w);
-    w.companies.version = VERSION;
+    w.companies.version = w.companies.version.max(VERSION);
     let c = w
         .companies
         .firms

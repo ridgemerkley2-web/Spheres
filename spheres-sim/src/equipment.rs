@@ -715,6 +715,7 @@ pub fn development_quote(
                     .values()
                     .find(|r| {
                         r.specification_key == v.specification_key
+                            && !crate::companies::imported_revision(w,id,&r.id)
                             && (r.certified_day.is_some()
                                 || s.projects.iter().any(|p| {
                                     p.revision_id == r.id
@@ -885,6 +886,9 @@ pub fn production_quote(
     if reason.is_none() && !w.rules.resource_market {
         reason = Some("Equipment manufacturing requires the resource market.".into());
     }
+    if reason.is_none() && crate::companies::imported_revision(w,id,revision) {
+        reason=Some("Imported equipment includes use and maintenance rights, not a domestic manufacturing license. Develop a locally researched revision to build it.".into());
+    }
     if reason.is_none() && crate::companies::licensed_revision(w,id,revision) {
         reason=Some("This equipment revision is licensed to its manufacturer. Buy the company's finished stock instead of creating a second public production line.".into());
     }
@@ -992,7 +996,8 @@ pub fn refit_quote(
     quantity: u32,
     budget: f64,
 ) -> ProjectQuote {
-    let mut reason = actor_refusal(w, id).or_else(|| budget_refusal(budget));
+    let mut reason = actor_refusal(w, id).or_else(|| budget_refusal(budget))
+        .or_else(||crate::companies::imported_revision(w,id,target).then(||"An imported target model grants no domestic conversion license. Develop a locally researched target or use manufacturer service.".into()));
     if reason.is_none() && !w.rules.resource_market {
         reason = Some("Equipment refits require the resource market.".into());
     }
