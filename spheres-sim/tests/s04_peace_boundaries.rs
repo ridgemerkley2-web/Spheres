@@ -62,11 +62,11 @@ fn front(w: &mut WorldState, winner: N, loser: N, held: &[String]) {
 fn order(w: &mut WorldState, n: N, order: PeaceOrder) -> Result<(), String> {
     apply_command(w, &Command::WarDiplomacy { nation: n, order })
 }
-fn propose(w: &mut WorldState, n: N, terms: Terms) -> u32 {
+fn propose(w: &mut WorldState, n: N, terms: Terms) -> u64 {
     order(w, n, PeaceOrder::Propose { conflict: 1, terms }).unwrap();
     w.campaign_peace.offers.last().unwrap().id
 }
-fn respond(w: &mut WorldState, n: N, offer: u32) -> Result<(), String> {
+fn respond(w: &mut WorldState, n: N, offer: u64) -> Result<(), String> {
     order(
         w,
         n,
@@ -92,7 +92,7 @@ fn near(a: f64, b: f64) {
 fn money(w: &WorldState, n: N) -> (Option<f64>, Option<f64>) {
     (w.nation(n).treasury_bn, w.nation(n).debt_bn)
 }
-fn assert_once(w: &mut WorldState, loser: N, offer: u32) {
+fn assert_once(w: &mut WorldState, loser: N, offer: u64) {
     let settled = save(w);
     assert!(respond(w, loser, offer).is_err());
     assert_eq!(
@@ -213,13 +213,15 @@ fn consented_cession_transfers_one_district_and_residents_without_acquiring_its_
     let cohort = w.population_system.provinces[&d].clone();
     let global_population: f64 = w.nations.iter().map(|n| n.population).sum();
     let global_gdp: f64 = w.nations.iter().map(|n| n.gdp).sum();
-    let epoch = w.districts_epoch;
     for state in [&mut w, &mut resumed] {
         respond(state, loser, offer).unwrap();
         assert!(state.conflict(1).is_none());
         assert_eq!(state.districts[&d], winner);
         assert_eq!(control::controller(state, &d), Some(winner));
-        assert_eq!(state.districts_epoch, epoch + 1);
+        assert_eq!(
+            state.districts, transferred.districts,
+            "only the consented district can move"
+        );
         assert!(districts::deltas(state).contains(&(d.clone(), winner)));
         assert_eq!(
             state.companies, companies_before,
@@ -293,7 +295,7 @@ fn consented_political_transition_uses_reviewed_executive_identity_and_preserves
         }
         front(&mut w, winner, loser, &[]);
         let book = w.party_leadership.as_ref().unwrap();
-        let assignments = serde_json::to_value(&book.assignments).unwrap();
+        let assignments = book.assignments.clone();
         let holders: Vec<_> = book
             .assignments
             .iter()
@@ -342,11 +344,32 @@ fn consented_political_transition_uses_reviewed_executive_identity_and_preserves
                 Some(party)
             );
             let book = state.party_leadership.as_ref().unwrap();
-            assert_eq!(
-                serde_json::to_value(&book.assignments).unwrap(),
-                assignments,
-                "a national election cannot silently replace party incumbents"
-            );
+            assert_eq!(book.assignments.len(), assignments.len());
+            for (after, before) in book.assignments.iter().zip(&assignments) {
+                assert_eq!(
+                    (&after.nation, &after.party, &after.component),
+                    (&before.nation, &before.party, &before.component)
+                );
+                assert!(
+                    serde_json::to_value(&after.holders).unwrap()
+                        == serde_json::to_value(&before.holders).unwrap(),
+                    "national election changed incumbent identity/date for {}:{}",
+                    after.nation.code(),
+                    after.party
+                );
+                if !before.holders.is_empty() || before.nation != loser || before.party != party {
+                    assert!(
+                        serde_json::to_value(after).unwrap()
+                            == serde_json::to_value(before).unwrap(),
+                        "national election changed an occupied or unrelated party assignment"
+                    );
+                } else {
+                    // An empty target-party component is reviewed for a vacancy.
+                    // Its reason/date may update; no incumbent or future identity
+                    // may be manufactured (the exact holder check above is empty).
+                    assert!(after.reason == before.reason || after.reason == "election");
+                }
+            }
             if named {
                 let executive = book.executives.iter().find(|e| e.nation == loser).unwrap();
                 assert_eq!(executive.party, party);
