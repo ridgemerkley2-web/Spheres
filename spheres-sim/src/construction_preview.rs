@@ -1,7 +1,7 @@
 //! Read-only construction decisions. Completion is applied only to a cloned
 //! world; quoted output is installed capacity, never an invented GDP return.
 use crate::{
-    clock, districts, industrial_modules as modules, industry, logistics, manufacturing,
+    clock, districts, industrial_modules as modules, industry, industry_operations as operations, logistics, manufacturing,
     production::{self, Project, ProjectKind as K},
     programs, resources,
     world::{NationId, WorldState},
@@ -86,7 +86,7 @@ fn eligible_estate(w: &WorldState, district: &str) -> f64 {
     flag(modules::effective_capacity(w, district, K::CivilianIndustry) >= 1.0)
 }
 fn grid(w: &WorldState, district: &str) -> f64 {
-    modules::effective_capacity(w, district, K::PowerGrid) * 5.0
+    operations::grid_capacity(w, district)
 }
 fn research_capacity(w: &WorldState, district: &str) -> f64 {
     if industry::research_enabled(w) && !resources::district_contested(w, district) {
@@ -418,6 +418,11 @@ pub fn preview(
         }
     }
     let mut after = w.clone();
+    if operations::enabled(w) {
+        after.production.operations.support_day=None;
+        after.production.operations.last_day=None;
+        after.production.operations.receipts.clear();
+    }
     // Hypothetical completion can still inform a technology/prerequisite
     // decision. Invalid ownership, size and full sites must never overflow.
     let owned = w.districts.get(district) == Some(&nation);
@@ -507,6 +512,9 @@ pub fn preview(
 
     let financial_rows = out.national_effects.len();
     match kind {
+        K::OfficeDistrict | K::Shipyard | K::AdvancedIndustry => {
+            add_operation_effects(&mut out, w, &after, nation, district, kind);
+        }
         K::Infrastructure | K::FreightTerminal => {
             add_freight_effects(&mut out, w, &after, nation, district)
         }
@@ -544,6 +552,9 @@ pub fn preview(
             ] {
                 out.national_effects.push(effect(label,industry::goods_capacity(w,nation),industry::goods_capacity(&after,nation),"packs","Each warehouse level adds 250 to each shared national goods store. Existing inventory is preserved and no stock is granted."));
             }
+            if operations::enabled(w) {
+                out.national_effects.push(effect("National advanced-component storage",operations::advanced_component_capacity(w,nation),operations::advanced_component_capacity(&after,nation),"components","Separate finite inventory; storage adds no free components."));
+            }
             out.operating_requirements.push(requirement("Separate warehouse upkeep",Some(0.0),"$bn/day","No recurring warehouse invoice in the current model. More storage helps producers only when storage is their constraint."));
         }
         K::ArmsPlant => {
@@ -555,7 +566,7 @@ pub fn preview(
         K::ResearchCenter => {
             out.province_effects.push(effect("Prototype credit ceiling",research_capacity(w,district),research_capacity(&after,district),"acquisition-cost units/day","Conditional on useful focused research, Science operating authority and manufactured supplies; one target per center per day."));
             out.national_effects.push(effect("National prototype credit ceiling",owned_sum(w,nation,research_capacity),owned_sum(&after,nation,research_capacity),"acquisition-cost units/day","All centers also share each target's daily cap (25% of domain effort) and lifetime cap (20% of its current base research cost)."));
-            out.operating_requirements.push(requirement("Prototype operations enabled",Some(flag(industry::research_enabled(w))),"enabled","Current research operations require daily simulation, Economic Competition, production and the resource market. Disabled operations generate zero prototype credit."));
+            out.operating_requirements.push(requirement("Prototype operations enabled",Some(flag(industry::research_enabled(w))),"enabled","Current research operations require daily simulation, production, the resource market and either Economic Competition or the industry extension. Disabled operations generate zero prototype credit."));
             out.operating_requirements.push(requirement("Science operating cash per added level",Some(industry::PROTOTYPE_CASH_PER_LEVEL_DAY_BN),"$bn/day","Maximum daily bill while a full added level performs useful prototype work; no generic research-output or GDP bonus."));
             out.operating_requirements.push(requirement(
                 "Intermediate packs per added level",
@@ -603,6 +614,39 @@ pub fn preview(
     }
     out.national_effects.rotate_left(financial_rows);
     out
+}
+
+fn add_operation_effects(out: &mut ConstructionPreview, w: &WorldState, after: &WorldState, nation: NationId, district: &str, kind: K) {
+    let current = production::level(w,district,kind) as f64;
+    let next = production::level(after,district,kind) as f64;
+    let delta = (next-current).max(0.0);
+    out.province_effects.push(effect("Installed facility levels",current,next,"levels","Paid construction adds capacity; operating funding and supplies determine actual output."));
+    out.province_effects.push(effect("Facility jobs required",current*operations::jobs_per_level(kind),next*operations::jobs_per_level(kind),"jobs","Required positions, not an instant employment award. The population ledger matches people with the required qualifications."));
+    out.national_effects.push(effect("National facility jobs required",owned_sum(w,nation,|w,d|production::level(w,d,kind) as f64*operations::jobs_per_level(kind)),owned_sum(after,nation,|w,d|production::level(w,d,kind) as f64*operations::jobs_per_level(kind)),"jobs","Additional operating demand; each worker can fill only one job."));
+    match kind {
+        K::OfficeDistrict => {
+            out.province_effects.push(effect("Potential annual service value added",operations::office_annual_value_added(w,district,current),operations::office_annual_value_added(after,district,next),"$bn/year","Full supplied operation only; available skills, electricity, inputs, operating funds and existing domestic service demand cap realized GDP. Completion grants no GDP or cash."));
+        }
+        K::AdvancedIndustry => {
+            out.province_effects.push(effect("Rated advanced-component output",current*operations::ADVANCED_OUTPUT_DAY,next*operations::ADVANCED_OUTPUT_DAY,"components/day","Finite output only after actual operating inputs and funds settle. Components are separate from equipment and create no military capability."));
+            out.national_effects.push(effect("National advanced-component output capacity",owned_sum(w,nation,|w,d|production::level(w,d,kind) as f64*operations::ADVANCED_OUTPUT_DAY),owned_sum(after,nation,|w,d|production::level(w,d,kind) as f64*operations::ADVANCED_OUTPUT_DAY),"components/day","Installed capacity, not a promise of production. Supplier component contracts remain a later integration; no existing paid equipment work is repriced."));
+        }
+        K::Shipyard => {
+            out.province_effects.push(effect("Additional naval berths",current,next,"slots","Optional new naval line reservations. Existing paid naval lines retain their original Arms Plant berth, and factory leases are preserved."));
+            out.operating_requirements.push(requirement("Naval procurement",None,"programme-specific","A separate order needs its existing procurement budget, resource recipe and lead time. The building delivers no ship."));
+        }
+        _ => {}
+    }
+    let power = delta*operations::power_per_level(after,district,kind);
+    out.operating_requirements.push(requirement("Additional operating electricity",Some(power),"modeled power units/day","Requires shared generation and local grid capacity. Construction itself needs only funding."));
+    out.operating_requirements.push(requirement("Operating service cash",Some(delta*operations::OPERATING_CASH_LEVEL_DAY_BN),"$bn/day","Industry operating authority, charged only for supplied operation; no contractor fee in this integration."));
+    out.operating_requirements.push(requirement("Generation service cash",Some(power*operations::ENERGY_CASH_POWER_DAY_BN),"$bn/day","Electricity authority pays actual generation once. Fuel purchases remain separate."));
+    let packs=delta*operations::intermediates_per_level(kind);
+    if packs>0.0 { out.operating_requirements.push(requirement("Intermediate packs",Some(packs),"packs/day","Consumed by operation, never by construction.")); }
+    let raw=operations::raw_recipe(kind,delta,power);
+    for c in resources::ALL {
+        if raw[c.idx()]>0.0 { out.operating_requirements.push(requirement(c.name(),Some(raw[c.idx()]),&format!("{}/day",c.unit()),"Full added operating recipe; shortages reduce output without consuming an incomplete bundle.")); }
+    }
 }
 
 #[cfg(test)]

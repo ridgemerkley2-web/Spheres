@@ -92,6 +92,7 @@ function cashFlowContentHtml() {
   const extraActions=(Array.isArray(data.actions)?data.actions:[]).filter(action=>!["budget","construction","industry","policy"].includes(action.action));
   return `${heading}${status}${draftHtml}<dl class="cf-balances">${cashFlowMetric("Treasury cash",balances.treasury_bn,"Cash currently held")}${cashFlowMetric("Public debt",balances.debt_bn,"Outstanding debt")}${cashFlowMetric("Cash minus debt",balances.net_position_bn,"Net financial position",true)}</dl>
     ${cashFlowSettlementHtml(data)}${cashFlowPrioritiesHtml(data)}${alerts}${cashFlowConstructionHtml(data)}${cashFlowAnnualHtml(data)}
+    ${typeof connectedEconomyPanelHtml==="function"?connectedEconomyPanelHtml(data.connected_economy):""}
     ${extraActions.length?`<div class="cf-actions cf-next-actions">${extraActions.map(action=>cashFlowButton(action)).join("")}</div>`:""}`;
 }
 function cashFlowRememberView() {
@@ -123,6 +124,7 @@ function cashFlowBind(fetchIfNeeded=true) {
   cashFlowResetCampaign();CFLOW.open=true;
   const root=document.querySelector("#cashFlowRoot");if(!root)return;
   const data=CFLOW.data,state=CFLOW.state;
+  if(typeof connectedEconomyBind==="function")connectedEconomyBind(root,data?.connected_economy,state,()=>cashFlowCurrent(data,state));
   root.querySelectorAll("[data-cash-flow-action]").forEach(button=>{
     let action;try{action=JSON.parse(button.dataset.cashFlowAction);}catch{return;}
     button.onclick=()=>cashFlowNavigateCurrent(action,data,state);

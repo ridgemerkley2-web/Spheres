@@ -96,7 +96,7 @@
       "id": "S02",
       "phase": "integration",
       "title": "Reconcile economy, population and fiscal ownership",
-      "status": "planned",
+      "status": "verification",
       "depends": [
         "S01"
       ],
@@ -105,7 +105,8 @@
         "Integrate useful master workforce, industry and fiscal changes while preserving financial construction.",
         "Population, workforce and GDP contributions are applied once; existing balances are not reopened or charged twice.",
         "Map old project IDs and paid entitlements explicitly; publish before/after accounting fixtures."
-      ]
+      ],
+      "evidence": "../campaign-certification/S02/README.md"
     },
     {
       "id": "S03",

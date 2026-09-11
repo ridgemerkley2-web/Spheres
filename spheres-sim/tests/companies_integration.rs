@@ -1803,3 +1803,31 @@ fn export_company_qa_stages() {
     )).unwrap();
     println!("Synthetic company QA saves: {}", path.display());
 }
+
+
+#[test]
+fn s02_connected_economy_preserves_supplier_stock_receivables_and_party_identities() {
+    let (mut w, district, company, product_id) = ready(2);
+    w.rules.ideology_blocs=true;
+    spheres_sim::government::ensure_all(&mut w);
+    spheres_sim::party_leadership::enable_campaign(&mut w).unwrap();
+    let _purchase = purchase(&mut w, company, product_id, 1);
+    let supplier = serde_json::to_value(&w.companies).unwrap();
+    let equipment = serde_json::to_value(&w.nation(HOME).equipment).unwrap();
+    let arsenal = serde_json::to_value(&w.nation(HOME).arsenal).unwrap();
+    let parties = serde_json::to_value(&w.party_leadership).unwrap();
+    let public = net_public(&w);
+    let slots = companies::reserved_slots(&w, HOME, &district);
+    spheres_sim::connected_economy::enable(&mut w).unwrap();
+    let restored = spheres_sim::load(&spheres_sim::save(&w)).unwrap();
+    assert_eq!(serde_json::to_value(&restored.companies).unwrap(),supplier);
+    assert_eq!(serde_json::to_value(&restored.nation(HOME).equipment).unwrap(),equipment);
+    assert_eq!(serde_json::to_value(&restored.nation(HOME).arsenal).unwrap(),arsenal);
+    assert_eq!(serde_json::to_value(&restored.party_leadership).unwrap(),parties);
+    assert_eq!(net_public(&restored),public);
+    assert_eq!(companies::reserved_slots(&restored,HOME,&district),slots);
+    let mut a=w;let mut b=restored;
+    for _ in 0..3 {real_day(&mut a);real_day(&mut b);}
+    assert_eq!(spheres_sim::save(&a),spheres_sim::save(&b));
+    reconcile_company(&a,company);
+}

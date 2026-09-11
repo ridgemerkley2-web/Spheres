@@ -26,6 +26,7 @@ mod page_art_assets;
 mod storage;
 mod equipment_view;
 mod government_view;
+mod fiscal_recovery_view;
 mod transport;
 #[cfg(test)]
 mod performance;
@@ -107,6 +108,7 @@ const COMPETITION_UI_JS: &str = include_str!("../ui/competition-ui.js");
 const INDUSTRY_UI_JS: &str = include_str!("../ui/industry-ui.js");
 const INDUSTRY_CSS: &str = include_str!("../ui/industry-ui.css");
 const CASH_FLOW_UI_JS: &str = include_str!("../ui/cash-flow-ui.js");
+const FISCAL_RECOVERY_UI_JS: &str = include_str!("../ui/fiscal-recovery-ui.js");
 const CASH_FLOW_CSS: &str = include_str!("../ui/cash-flow-ui.css");
 const PERSON_MODELS_JS: &str = include_str!("../ui/person-models.js");
 const PERSON_3D_JS: &str = include_str!("../ui/person-3d.js");
@@ -3249,6 +3251,14 @@ fn ministry_key(index: usize) -> &'static str {
     }
 }
 
+/// Preserve the original construction portfolio in campaigns that have not
+/// adopted rebuilt industry. The global registry still parses saved kind IDs.
+fn served_construction_catalog(w: &WorldState) -> impl Iterator<Item=production::ProjectSpec> + '_ {
+    let rebuilt=spheres_sim::industry_operations::enabled(w);
+    production::catalog_all().into_iter().filter(move |spec| rebuilt || !matches!(spec.kind,
+        ProjectKind::OfficeDistrict | ProjectKind::Shipyard | ProjectKind::AdvancedIndustry))
+}
+
 /// The simulation supplies all amounts, eligibility and prices. This adapter
 /// groups the fifty ledger rows for the cabinet without creating another model.
 fn programs_json(w: &WorldState, me: NationId, preview: Option<programs::ProgramPreview>) -> serde_json::Value {
@@ -3272,7 +3282,7 @@ fn programs_json(w: &WorldState, me: NationId, preview: Option<programs::Program
                 "description":if r.capital {"Shared project authorization. Only actual work is charged; unused funds carry within the financial year."} else {"Automatically delivered through the ministry's existing service model; not a separate new simulation."}
             })).collect::<Vec<_>>()})
     }).collect::<Vec<_>>();
-    let choices = production::catalog_all().iter().filter(|c| c.funding_ministry == BUDGET_INDUSTRY && c.kind != ProjectKind::StarterIndustry).map(|c| {
+    let choices = served_construction_catalog(w).filter(|c| c.funding_ministry == BUDGET_INDUSTRY && c.kind != ProjectKind::StarterIndustry).map(|c| {
         let enabled = w.districts.iter().any(|(id,owner)| *owner == me && production_start_allowed(w,me,id,c.kind));
         serde_json::json!({"id":c.kind.key(),"project_kind":c.kind.key(),"department":production::funding_department(c.kind),
             "name":c.name,"description":c.description,"effect":c.effect,"total_days":c.total_days,"pc_cost":c.political_cost,
@@ -3289,9 +3299,32 @@ fn programs_json(w: &WorldState, me: NationId, preview: Option<programs::Program
         "industry":spheres_sim::industry::snapshot(w,me)})
 }
 
-/// Cash/debt are current stocks. A retained closed programme day supplies the
-/// government budget posting; it is not a journal of every trade or event.
-/// Annual authorizations and next-work quotes never become actual cash flows.
+/// The sim's current readings and reviewed policy quotes. Browser presentation
+/// never opens accounts, trains workers or operates sites.
+fn connected_economy_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let enabled=spheres_sim::population::active(w)&&w.rules.industry_rebuild&&spheres_sim::fiscal_recovery::enabled(w);
+    let refusal=spheres_sim::connected_economy::enrollment_refusal(w,me);
+    let available=!enabled&&refusal.is_none();
+    let industry=w.rules.industry_rebuild.then(|| {
+        let mut value=serde_json::to_value(spheres_sim::industry_operations::snapshot(w,me)).unwrap();
+        if let Some(rows)=value["facilities"].as_array_mut() {
+            for row in rows {
+                row["recorded_date"]=row["recorded_day"].as_i64()
+                    .and_then(|day|i32::try_from(day).ok())
+                    .map(|day|settled_day_json(day)["label"].clone()).unwrap_or(serde_json::Value::Null);
+            }
+        }
+        value
+    });
+    serde_json::json!({"nation":me,"name":me.name(),"date":w.date_str(),"enabled":enabled,
+        "upgrade":{"available":available,"reason":refusal,"command":available.then(||serde_json::json!({"kind":"enable_connected_economy"})),
+            "effect":"Adopt connected population, industry operation and fiscal recovery for this campaign. Keep current residents, GDP, cash, debt, paid projects and supplier property. Training produces graduates only after its course time. Construction remains funded with money as work progresses; operation still needs workers, power and inputs. Unopened treasuries receive no cash and recognize existing debt. This changes campaign rules and future economic behavior; it grants no factories, equipment or debt relief."},
+        "population":spheres_sim::population::snapshot(w,me),
+        "industry":industry,
+        "recovery":fiscal_recovery_view::view(w,me)})
+}
+
+/// Current stocks and retained public receipts; full-use authority is a forecast.
 fn cash_flow_json(w: &WorldState, me: NationId) -> serde_json::Value {
     let n=w.nation(me);
     let today=spheres_sim::clock::absolute_day(w);
@@ -3389,6 +3422,7 @@ fn cash_flow_json(w: &WorldState, me: NationId) -> serde_json::Value {
         "ministries":ministries,"construction":construction,"alerts":alerts,"actions":actions,
         "note":"Daily figures cover the government budget. Trade, transfers and other transactions may also change the treasury. Budget surpluses reduce debt before building cash; deficits use cash before adding debt. Available funding is authorization, not a separate cash balance, and can include previously paid equipment."});
     view["priorities"]=serde_json::Value::Array(cash_flow_priorities(&view));
+    view["connected_economy"]=connected_economy_json(w,me);
     view
 }
 
@@ -3772,7 +3806,8 @@ fn capabilities_json(c: &production::ProvinceCapabilities) -> serde_json::Value 
 
 fn district_capabilities_json(w: &WorldState, district: &str) -> serde_json::Value {
     let mut result = capabilities_json(&production::province_capabilities(w,district));
-    for kind in production::PROJECT_KINDS.into_iter().filter(|kind| spheres_sim::industry::extended(*kind)) {
+    for kind in served_construction_catalog(w).map(|spec|spec.kind).filter(|kind| spheres_sim::industry::extended(*kind)
+        || matches!(kind,ProjectKind::OfficeDistrict|ProjectKind::Shipyard|ProjectKind::AdvancedIndustry)) {
         result[kind.key()] = serde_json::json!(production::level(w,district,kind));
     }
     result
@@ -4073,8 +4108,7 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
         .map(|(district, _)| district)
         .collect::<Vec<_>>();
 
-    let catalog = production::catalog_all()
-        .iter()
+    let catalog = served_construction_catalog(w)
         .filter(|spec|spec.kind!=ProjectKind::StarterIndustry)
         .map(|spec| {
             let eligible = owned
@@ -4121,12 +4155,11 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 .filter(|p| p.district.as_str() == district.as_str())
                 .map(|p| p.id)
                 .collect::<Vec<_>>();
-            let start = production::catalog_all()
-                .iter()
+            let start = served_construction_catalog(w)
                 .filter(|spec| production_start_allowed(w, me, district, spec.kind))
                 .map(|spec| spec.kind.key())
                 .collect::<Vec<_>>();
-            let start_refusals = production::catalog_all().iter()
+            let start_refusals = served_construction_catalog(w)
                 .filter(|spec| spec.kind != ProjectKind::StarterIndustry)
                 .filter_map(|spec| production_start_refusal(w, me, district, spec.kind)
                     .map(|reason| (spec.kind.key(), reason)))
@@ -4188,15 +4221,14 @@ fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
         .collect::<Vec<_>>();
 
     let can_start = owned.iter().any(|district| {
-        production::catalog_all()
-            .iter()
+        served_construction_catalog(w)
             .any(|spec| production_start_allowed(w, me, district, spec.kind))
     });
 
     let start_reason = if can_start { None } else {
         let mut counts = BTreeMap::<String, usize>::new();
         for district in &owned {
-            for spec in production::catalog_all() {
+            for spec in served_construction_catalog(w) {
                 if let Some(reason) = production_start_refusal(w, me, district, spec.kind) {
                     *counts.entry(reason).or_default() += 1;
                 }
@@ -4403,6 +4435,10 @@ fn manufacturing_summary_json(w: &WorldState, me: NationId) -> serde_json::Value
         .filter(|(_, owner)| **owner == me)
         .map(|(district, _)| spheres_sim::manufacturing::used_slots(w, me, district))
         .sum::<usize>();
+    let naval_slots=w.districts.iter().filter(|(_,owner)|**owner==me)
+        .map(|(district,_)|spheres_sim::manufacturing::naval_slots(w,district) as usize).sum::<usize>();
+    let used_naval_slots=w.districts.iter().filter(|(_,owner)|**owner==me)
+        .map(|(district,_)|spheres_sim::manufacturing::used_naval_slots(w,me,district)).sum::<usize>();
     let n = w.nation(me);
     let pipeline_value = n
         .arsenal
@@ -4421,6 +4457,8 @@ fn manufacturing_summary_json(w: &WorldState, me: NationId) -> serde_json::Value
         "capacity": owned_plants,
         "used_slots": used_slots,
         "free_slots": owned_plants.saturating_sub(used_slots),
+        "naval_slots":naval_slots,"used_naval_slots":used_naval_slots,
+        "free_naval_slots":naval_slots.saturating_sub(used_naval_slots),
         "plants": owned_plants,
         "producing": producing,
         "slowed": slowed,
@@ -4560,10 +4598,12 @@ fn manufacturing_json(w: &WorldState, me: NationId) -> serde_json::Value {
         .filter(|(_, owner)| **owner == me)
         .filter_map(|(district, _)| {
             let slots = spheres_sim::manufacturing::plant_slots(w, district) as usize;
-            if slots == 0 {
+            let naval_slots=spheres_sim::manufacturing::naval_slots(w,district) as usize;
+            if slots == 0 && naval_slots == 0 {
                 return None;
             }
             let used = spheres_sim::manufacturing::used_slots(w, me, district);
+            let used_naval=spheres_sim::manufacturing::used_naval_slots(w,me,district);
             let active = lines
                 .iter()
                 .filter(|line| line.district == *district)
@@ -4580,6 +4620,8 @@ fn manufacturing_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 "arms_plants": slots,
                 "used_slots": used,
                 "free_slots": slots.saturating_sub(used),
+                "naval_slots":naval_slots,"used_naval_slots":used_naval,
+                "free_naval_slots":naval_slots.saturating_sub(used_naval),
                 "active_lines": active,
                 "actions": { "start": start },
             }))
@@ -4616,6 +4658,7 @@ fn manufacturing_json(w: &WorldState, me: NationId) -> serde_json::Value {
                 "service_months": def.service_months,
                 "requirements_per_bn": manufacturing_recipe_per_bn_json(index as u16),
                 "eligible_provinces": eligible,
+                "naval":spheres_sim::manufacturing::is_naval(def.id),
                 "pc_cost": round(pc_cost, 3),
                 "actions": { "start": !eligible.is_empty() },
             })
@@ -5478,6 +5521,10 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         "dispatch_count":g.log.len(),
         "storage_notice":g.storage_notice,
         "simulation_cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
+        "connected_economy":w.player.filter(|id|w.nation_opt(*id).is_some_and(|n|n.alive)).map(|id|connected_economy_json(w,id)),
+        "fiscal_recovery_enabled":w.rules.fiscal_recovery,
+        "fiscal_recovery":w.player.and_then(|id|spheres_sim::fiscal_recovery::assessment(w,id)),
+        "population_enabled":spheres_sim::population::active(w),
         "simulation_transition": w.daily.activate_after_month.map(|closing_month| {
             let next = closing_month + 1;
             let year = 1990 + next.div_euclid(12);
@@ -6345,6 +6392,11 @@ fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<
         "break_currency_peg" => Command::BreakCurrencyPeg { nation:me },
         "resume_automatic_bank" => Command::ResumeAutomaticBank { nation:me },
         "enable_economic_competition" => Command::EnableEconomicCompetition { nation:me },
+        "enable_connected_economy" => Command::EnableConnectedEconomy { nation:me },
+        "enable_population" => Command::EnablePopulation { nation:me },
+        "enable_fiscal_recovery" => Command::EnableFiscalRecovery { nation:me },
+        "population_policy" => Command::SetPopulationPolicy { nation:me,
+            policy:spheres_sim::population::Policy::parse(v.get("policy")?.as_str()?)? },
         "propose_economic_union" => Command::ProposeEconomicUnion { patron:me,partner:target()? },
         "join_economic_union" => Command::JoinEconomicUnion { nation:me,patron:target()? },
         "leave_economic_union" => Command::LeaveEconomicUnion { nation:me },
@@ -6944,21 +6996,22 @@ fn play_rules(g: &mut Game) {
     spheres_sim::province_economy::enable(&mut g.world);
 }
 
-/// New campaigns alone receive the modeled 1990 industrial inheritance.
-/// Loading an existing campaign must never retroactively grant/reseed assets.
+/// New campaigns receive the modeled 1990 industrial inheritance and enroll in
+/// the connected economy. Existing campaigns require an explicit reviewed
+/// command for the new accounts; loading never grants or reseeds those assets.
 fn fresh_play_rules(g: &mut Game) -> Result<(), String> {
     spheres_sim::clock::enable_daily_play(&mut g.world);
     spheres_sim::starting_industry::enable_new_world(&mut g.world)?;
     spheres_sim::starting_industry::enrich_new_world(&mut g.world)?;
     play_rules(g);
     spheres_sim::party_leadership::enable_campaign(&mut g.world)?;
+    spheres_sim::connected_economy::enable(&mut g.world)?;
     Ok(())
 }
 
-/// Adopt a save under the current browser rules before warming or snapshotting
-/// it. Older browser saves predate the logistics, production and manufacturing switches;
-/// serde reads missing fields as false, but continuing in the browser migrates
-/// them to the same rule set as a new game.
+/// Retain the established browser migration for logistics, production and
+/// manufacturing before warming a save. Connected economy flags and dated
+/// accounts remain exactly as loaded; this path never adopts the S02 upgrade.
 fn loaded_play_game(w: WorldState) -> Game {
     let mut g = Game { world: w, log: vec![], history: vec![], history_epoch:0, autosaved_month:0, storage_notice:None, session_id: fresh_session_id(), advance_receipts: Default::default(),command_receipts:Default::default() };
     play_rules(&mut g);
@@ -7231,6 +7284,7 @@ fn main() {
             (Method::Get, "/industry-ui.js") => Response::from_string(INDUSTRY_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/cash-flow-ui.css") => Response::from_string(CASH_FLOW_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
             (Method::Get, "/cash-flow-ui.js") => Response::from_string(CASH_FLOW_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/fiscal-recovery-ui.js") => Response::from_string(FISCAL_RECOVERY_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/arsenal-models.js") => Response::from_string(ARSENAL_MODELS_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
             (Method::Get, "/arsenal3d.js") => Response::from_string(ARSENAL3D_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()).with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
             (Method::Get, "/surface-grain.js") => Response::from_string(SURFACE_GRAIN_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
@@ -8115,7 +8169,8 @@ mod tests {
         assert_eq!(save(&g.world),before);
         assert_eq!(view["enabled"],true);
         let sites=view["sites"].as_array().unwrap();
-        assert_eq!(sites.len(),production::PROJECT_KINDS.len());
+        assert_eq!(sites.len(),13,"this fixture installs only the thirteen original kinds");
+        assert!(sites.iter().all(|row| !["office_district","shipyard","advanced_industry"].contains(&row["kind"].as_str().unwrap())));
         assert!(sites.iter().all(|row|row["district"]==district&&row["has_receipt"]==false
             &&row["output_daily"].is_null()&&row["cash_spent_daily_bn"].is_null()));
         let module=sites.iter().find(|row|row["kind"]=="starter_industry").unwrap();
@@ -8133,6 +8188,21 @@ mod tests {
         assert!(view["settlement"].is_null());
         assert!(sites.iter().flat_map(|row|row["actions"].as_array().unwrap()).all(|action|
             !action.as_object().unwrap().contains_key("command")&&action["action"]!="trade"));
+
+        // Enabling a catalogue entry does not install a facility or invent a
+        // receipt. Only explicitly completed new levels expand this portfolio.
+        g.world.rules.industry_rebuild=true;
+        assert_eq!(industry_json(&g.world,me)["sites"].as_array().unwrap().len(),13);
+        g.world.production.rebuild_sites.insert(district.clone(),[1,1,1]);
+        let expanded_before=save(&g.world);
+        let expanded=industry_json(&g.world,me);
+        assert_eq!(expanded["sites"].as_array().unwrap().len(),16);
+        for kind in ["office_district","shipyard","advanced_industry"] {
+            let row=expanded["sites"].as_array().unwrap().iter().find(|r|r["kind"]==kind).unwrap();
+            assert_eq!(row["district"],district);assert_eq!(row["level"],1);
+            assert_eq!(row["has_receipt"],false);assert!(row["output_daily"].is_null());
+        }
+        assert_eq!(save(&g.world),expanded_before);
     }
 
     #[test]
@@ -8885,6 +8955,18 @@ mod tests {
         assert!(parse_command(&g.world,&invalid,me).is_none());
         invalid=payload.clone();invalid["fiscal_year"]=serde_json::json!(1991);
         assert!(program_preview_json(&g.world,me,&invalid).is_err());
+
+        let mut expanded=g.world.clone();expanded.rules.industry_rebuild=true;
+        let expanded_before=save(&expanded);let expanded_view=programs_json(&expanded,me,None);
+        let choices=expanded_view["investment_choices"].as_array().unwrap();
+        assert_eq!(choices.len(),12);
+        assert_eq!(choices.iter().filter(|c|["office_district","advanced_industry"].contains(&c["id"].as_str().unwrap()))
+            .map(|c|c["id"].as_str().unwrap()).collect::<Vec<_>>(),vec!["office_district","advanced_industry"]);
+        assert!(!choices.iter().any(|c|c["id"]=="shipyard"),"shipyard remains a Defense investment");
+        let retained=choices.iter().filter(|c|!["office_district","advanced_industry"].contains(&c["id"].as_str().unwrap()))
+            .map(|c|c["id"].clone()).collect::<Vec<_>>();
+        let original=view["investment_choices"].as_array().unwrap().iter().map(|c|c["id"].clone()).collect::<Vec<_>>();
+        assert_eq!(retained,original);assert_eq!(save(&expanded),expanded_before);
     }
 
     #[test]
@@ -15840,9 +15922,16 @@ mod tests {
         assert!(migrated.world.rules.production_system);
         assert!(migrated.world.rules.manufacturing_system);
 
-        let src = include_str!("main.rs");
-        let needle = concat!("play_rules", "(&mut ");
-        assert_eq!(src.matches(needle).count(), 4, "boot, /api/new, loaded saves, and this test");
+        // Exercise the same factories as boot and /api/new. Counting source
+        // mentions also counted test fixtures and the fresh_play_rules name.
+        let mut boot = Game::new(1990, Some(NationId::Iraq));
+        fresh_play_rules(&mut boot).unwrap();
+        let (_, started) = new_game(&mut g, 1990, Some(NationId::Iraq));
+        assert!(started);
+        for world in [&boot.world, &g.world] {
+            assert!(world.rules.resource_market && world.rules.logistics_routes);
+            assert!(world.rules.production_system && world.rules.manufacturing_system);
+        }
     }
 
     /// A quarrel opened from the TAKE card carries its aim: `apply_orders`
@@ -16402,7 +16491,7 @@ mod tests {
         assert!(include_str!("main.rs").contains("(Method::Get, \"/api/logistics\")"));
     }
 
-    /// The production endpoint is a view of the sim's five-item catalog and
+    /// The production endpoint is a view of the campaign's enabled catalog and
     /// the seated nation's live queue. It serves exact recipes/funding and
     /// authorizes starts against current province ownership; the daily state
     /// carries only compact counts.
@@ -16417,6 +16506,20 @@ mod tests {
         let opening = production_json(&g.world, me);
         assert_eq!(opening["mode"], "province_projects");
         assert_eq!(opening["catalog"].as_array().unwrap().len(), 12);
+        assert!(opening["provinces"].as_array().unwrap().iter().all(|p| ["office_district","shipyard","advanced_industry"].iter().all(|k|
+            p["capabilities"].get(*k).is_none() && p["start_refusals"].get(*k).is_none())));
+        let mut expanded=g.world.clone();expanded.rules.daily_simulation=true;expanded.rules.industry_rebuild=true;
+        let expanded_before=save(&expanded);let expanded_view=production_json(&expanded,me);
+        let expanded_catalog=expanded_view["catalog"].as_array().unwrap();
+        assert_eq!(expanded_catalog.len(),15);
+        assert_eq!(expanded_catalog[..12].iter().map(|c|c["kind"].clone()).collect::<Vec<_>>(),
+            opening["catalog"].as_array().unwrap().iter().map(|c|c["kind"].clone()).collect::<Vec<_>>());
+        assert_eq!(expanded_catalog[12..].iter().map(|c|c["kind"].as_str().unwrap()).collect::<Vec<_>>(),
+            vec!["office_district","shipyard","advanced_industry"]);
+        assert!(expanded_view["provinces"].as_array().unwrap().iter().all(|p| ["office_district","shipyard","advanced_industry"].iter().all(|k|
+            p["capabilities"].get(*k).is_some_and(|v|*v==0))));
+        assert_eq!(save(&expanded),expanded_before);
+
         assert_eq!(opening["summary"]["active"], 0);
         assert_eq!(
             opening["summary"]["queue_capacity"],
@@ -16641,6 +16744,7 @@ mod tests {
         }
 
         let full = production_json(&g.world, me);
+        assert_eq!(full["catalog"].as_array().unwrap().len(),12,"legacy queue refusals cover only its original portfolio");
         assert_eq!(
             full["summary"]["active"],
             production::MAX_QUEUED_PROJECTS
@@ -17634,5 +17738,89 @@ mod military_operations_api_tests {
         let before = save(&g.world);
         assert!(apply_command(&mut g.world, &invalid).is_err());
         assert_eq!(save(&g.world), before);
+    }
+}
+
+#[cfg(test)]
+mod s02_connected_economy_api_tests {
+    use super::*;
+
+    #[test]
+    fn s02_shipyard_only_province_exposes_naval_start_and_separate_reserved_slots() {
+        // Synthetic completed shipyard, with no arms plant or inherited asset.
+        let mut g=Game::new(1990,Some(NationId::France));play_rules(&mut g);
+        g.world.rules.industry_rebuild=true;g.world.production=Default::default();
+        g.world.nation_mut(NationId::France).political_capital=1000.0;
+        let district=g.world.districts.iter().find(|(_,n)|**n==NationId::France).unwrap().0.clone();
+        g.world.production.rebuild_sites.insert(district.clone(),[0,1,0]);
+        let before=save(&g.world);let view=manufacturing_json(&g.world,NationId::France);
+        assert_eq!(save(&g.world),before);
+        let site=view["provinces"].as_array().unwrap().iter().find(|p|p["id"]==district).unwrap();
+        assert_eq!(site["arms_plants"],0);assert_eq!(site["free_slots"],0);
+        assert_eq!(site["naval_slots"],1);assert_eq!(site["free_naval_slots"],1);
+        let kit=view["catalog"].as_array().unwrap().iter().find(|k|k["id"]=="nav_patrol").unwrap();
+        assert_eq!(kit["naval"],true);assert_eq!(kit["actions"]["start"],true);
+        assert!(kit["eligible_provinces"].as_array().unwrap().iter().any(|d|d==&district));
+        let command=parse_command(&g.world,&serde_json::json!({"kind":"start_manufacturing_line","district":district,"kit":"nav_patrol"}),NationId::France).unwrap();
+        apply_command(&mut g.world,&command).unwrap();
+        let view=manufacturing_json(&g.world,NationId::France);
+        assert_eq!(view["summary"]["used_slots"],0);
+        assert_eq!(view["summary"]["used_naval_slots"],1);assert_eq!(view["summary"]["free_naval_slots"],0);
+    }
+
+    #[test]
+    fn s02_parser_binds_enrollment_and_training_to_the_player() {
+        let g=Game::new(1990,Some(NationId::France));
+        for (kind, expected) in [
+            ("enable_connected_economy",Command::EnableConnectedEconomy{nation:NationId::France}),
+            ("enable_population",Command::EnablePopulation{nation:NationId::France}),
+            ("enable_fiscal_recovery",Command::EnableFiscalRecovery{nation:NationId::France}),
+        ] {
+            let parsed=parse_command(&g.world,&serde_json::json!({"kind":kind,"nation":"Japan"}),NationId::France).unwrap();
+            assert_eq!(parsed,expected);
+        }
+        let parsed=parse_command(&g.world,&serde_json::json!({"kind":"population_policy","nation":"Japan","policy":"trade_schools"}),NationId::France).unwrap();
+        assert!(matches!(parsed,Command::SetPopulationPolicy{nation:NationId::France,policy:spheres_sim::population::Policy::TradeSchools}));
+        for policy in [serde_json::Value::Null,serde_json::json!(1),serde_json::json!("instant_graduates")] {
+            assert!(parse_command(&g.world,&serde_json::json!({"kind":"population_policy","policy":policy}),NationId::France).is_none());
+        }
+    }
+
+    #[test]
+    fn s02_new_campaign_and_loaded_legacy_have_distinct_economy_enrollment() {
+        let legacy=loaded_play_game(Game::new(1990,Some(NationId::France)).world);
+        let before=save(&legacy.world);
+        let view=connected_economy_json(&legacy.world,NationId::France);
+        assert_eq!(view["enabled"],false);
+        assert_eq!(view["upgrade"]["available"],true);
+        assert!(view["population"].is_null());assert!(view["industry"].is_null());
+        assert_eq!(save(&legacy.world),before);
+        let mut fresh=Game::new(1990,Some(NationId::France));fresh_play_rules(&mut fresh).unwrap();
+        let before=save(&fresh.world);let view=connected_economy_json(&fresh.world,NationId::France);
+        assert_eq!(view["enabled"],true);assert_eq!(view["upgrade"]["available"],false);
+        assert_eq!(view["population"]["policies"].as_array().unwrap().len(),4);
+        assert_eq!(view["industry"]["advanced_components_stock"],0.0);
+        assert_eq!(view["recovery"],fiscal_recovery_view::view(&fresh.world,NationId::France));
+        assert_eq!(save(&fresh.world),before);
+        let resumed=loaded_play_game(load(&before).unwrap());
+        assert_eq!(connected_economy_json(&resumed.world,NationId::France),view);
+    }
+
+    #[test]
+    fn s02_connected_reading_is_pure_and_exposes_the_same_snapshot_in_cash_flow_and_state() {
+        let mut g=Game::new(1990,Some(NationId::France));fresh_play_rules(&mut g).unwrap();
+        let fresh=connected_economy_json(&g.world,NationId::France);
+        for _ in 0..3 {spheres_sim::tick_day(&mut g.world,&[]);}
+        let before=save(&g.world);let reading=connected_economy_json(&g.world,NationId::France);
+        assert_eq!(state_json(&g,None)["connected_economy"],reading);
+        assert_eq!(cash_flow_json(&g.world,NationId::France)["connected_economy"],reading);
+        assert_eq!(save(&g.world),before);
+        if let Some(path)=std::env::var_os("SPHERES_S02_UI_FIXTURE") {
+            let legacy=loaded_play_game(Game::new(1990,Some(NationId::France)).world);
+            let evidence=serde_json::json!({"provenance":"Actual deterministic S02 browser rules, France seed 1990; fresh start and three simulated days. No activity is mocked.",
+                "legacy":connected_economy_json(&legacy.world,NationId::France),"fresh":fresh,"after_three_days":reading,
+                "fiscal":fiscal_recovery_view::view(&g.world,NationId::France)});
+            std::fs::write(path,serde_json::to_string_pretty(&evidence).unwrap()).unwrap();
+        }
     }
 }

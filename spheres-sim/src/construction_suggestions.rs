@@ -3,7 +3,7 @@
 use crate::{
     clock,
     commerce::Good,
-    districts, industrial_modules as modules, industry, industry_planning,
+    districts, industrial_modules as modules, industry, industry_operations, industry_planning,
     production::{self, ProjectKind as K},
     programs,
     world::{NationId, WorldState},
@@ -126,6 +126,15 @@ fn queued_summary(w: &WorldState, nation: NationId) -> Option<String> {
 /// An empty stockpile alone may merely mean today's inputs were just consumed.
 fn operating_blocker(w: &WorldState, nation: NationId) -> Option<String> {
     let today = clock::absolute_day(w);
+    if industry_operations::enabled(w) {
+        if let Some(o) = w.production.operations.receipts.iter().find(|o| {
+            o.nation == Some(nation) && o.recorded_day.is_some_and(|d|d>=today-1 && d<=today)
+                && o.operating_capacity + EPS < o.installed_capacity
+                && (o.worker_fraction + EPS < 1.0 || o.input_fraction + EPS < 1.0 || o.funding_fraction + EPS < 1.0)
+        }) {
+            return Some(format!("{} in {} reports: {} Restore operating workers, supplies or funds before adding more capacity.",o.name,districts::name_of(&o.district).unwrap_or(&o.district),o.reason));
+        }
+    }
     if !w
         .production
         .industry
@@ -209,11 +218,7 @@ pub fn suggestions(w: &WorldState, nation: NationId) -> Suggestions {
             .iter()
             .find(|p| eligible(w, nation, &p.district, K::Warehouse, None))
         {
-            let label = if good.good == Good::Intermediates {
-                "intermediate packs"
-            } else {
-                "capital-goods packs"
-            };
+            let label = good.good.name();
             candidates.push(Ranked {rank:2,gap:good.demand_daily*industry_planning::STOCK_COVER_DAYS-storage,
                 item:item(w,nation,&site.district,K::Warehouse,None,"Bottleneck",
                 format!("Storage for {label} is tight against current modeled use; a full pile alone would not justify an expansion."),

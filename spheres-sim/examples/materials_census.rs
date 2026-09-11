@@ -229,6 +229,8 @@ fn observe_bootstrap(w: &WorldState, settled_day: i32, owners: &BTreeMap<String,
             let Some(c) = countries.get_mut(&delivery.buyer) else { continue; };
             if delivery.quantity <= 0.0 { continue; }
             match delivery.good {
+                // This census reports the original Materials/Machinery chain.
+                Good::AdvancedComponents => {},
                 Good::Intermediates => {
                     c.bootstrap.first_day.intermediate_import_delivered.get_or_insert(settled_day);
                     c.bootstrap.supply_and_use.imported_intermediates_delivered += delivery.quantity;

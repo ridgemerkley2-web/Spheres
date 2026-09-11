@@ -360,7 +360,7 @@ fn fiscal_command(
     let n = w.nation(nation);
     let current = n.budget_for(w.year);
     let mut allocations = current.allocations;
-    if n.program_budget.is_some() && !renewal {
+    if n.program_budget.is_some() && !renewal && !crate::fiscal_recovery::enabled(w) {
         let terms = economy::growth_terms(
             n,
             n.state_invest_gdp,
@@ -487,6 +487,7 @@ pub fn supply_forecast(w: &WorldState, nation: NationId) -> SupplyForecast {
                     && match good {
                         Good::Intermediates => matches!(op.kind, K::ProcessingPlant | K::StarterIndustry),
                         Good::CapitalGoods => op.kind == K::MachineryWorks,
+                        Good::AdvancedComponents => false,
                     }
             }).map(|op| op.output_daily).sum()
         } else { 0.0 };

@@ -2,7 +2,7 @@
 // views draw. The contract this file defends is not "the meshes are pretty": it
 // is that a stage is a pure function of the work the server has recorded, that
 // nothing in the generator can advance a building by being looked at, that every
-// one of the thirteen project kinds has something correct to show, and — added
+// one of the sixteen project kinds has something correct to show, and — added
 // with the detail pass — that the SHADING is right: curved surfaces are smooth,
 // flat surfaces are not, and no surface is lit from behind.
 const {test}=require('node:test');
@@ -16,6 +16,21 @@ const file=path.resolve(__dirname,'../../spheres-web/ui/site-mesh.js');
 const site=require(file);
 const source=fs.readFileSync(file,'utf8');
 const STAGES=['site','foundation','frame','enclosed','complete'];
+const LEGACY_KINDS=['infrastructure','civilian_industry','power_grid','research_center','arms_plant',
+  'machinery_works','generation','processing_plant','freight_terminal','warehouse','automation','efficiency','starter_industry'];
+
+// S02 adds three facilities without changing any existing construction art.
+// Pin all prior geometry buffers, semantic ranges and bounds across stages,
+// levels and both LODs, including a stopped pose. Recorded from 038fe0b.
+test('the original thirteen facility meshes keep their exact geometry and semantics',()=>{
+  const hash=crypto.createHash('sha256');
+  for(const key of LEGACY_KINDS)for(const stage of STAGES)for(const lod of [0,1])for(let level=1;level<=5;level++)for(const status of ['building','paused']){
+    const mesh=site.build(key,stage,{lod,level,status,variant:11});
+    hash.update(JSON.stringify([key,stage,lod,level,status,mesh.bounds,mesh.parts,mesh.shading]));
+    for(const buffer of [mesh.positions,mesh.normals,mesh.colors])hash.update(Buffer.from(buffer.buffer,buffer.byteOffset,buffer.byteLength));
+  }
+  assert.equal(hash.digest('hex'),'2dcd7ea75ab815aa937fae5e5119580579fd0e2fb4b9db044076aa0df4db3557');
+});
 
 // BUDGET, and what moved. LOD1 is unchanged and is the hard one: sites are drawn
 // as baked sprites on the globe overlay and there can be many, so 100..800
@@ -166,7 +181,7 @@ test('the kind table is exactly PROJECT_KINDS, in both directions',()=>{
   const rust=fs.readFileSync(path.resolve(__dirname,'../../spheres-sim/src/production.rs'),'utf8');
   const block=rust.slice(rust.indexOf('impl ProjectKind {'),rust.indexOf('pub fn parse'));
   const keys=[...block.matchAll(/=>\s*"([a-z_]+)"/g)].map(match=>match[1]);
-  assert.equal(keys.length,13,'thirteen project kinds in production.rs');
+  assert.equal(keys.length,16,'sixteen project kinds in production.rs');
   assert.deepEqual(site.kinds().slice().sort(),keys.slice().sort());
   for(const key of keys)assert(site.meta(key),`${key}: covered by the art`);
   assert.equal(site.meta('not_a_project_kind'),null);
@@ -614,11 +629,18 @@ const COMPOSITION={
     ['enclosed','controls kiosk and panel line']],
   starter_industry:[['frame','blockwork store'],['enclosed','office pod and canopy'],
     ['enclosed','open stock rack and compressor'],['complete','open lean-to']],
+  office_district:[['frame','framed floors and columns (office floors)'],
+    ['enclosed','spandrel panels and strip glazing (office floors)'],['enclosed','office air handling terrace'],
+    ['enclosed','office entrance canopy'],['complete','office pedestrian forecourt']],
+  shipyard:[['foundation','dry dock base and retaining walls'],['frame','shipyard lifting gantry'],
+    ['enclosed','dock pump house and shore cabinets'],['complete','caisson gate and quay bollards']],
+  advanced_industry:[['frame','controlled process service gallery'],['enclosed','filtered air supply bank'],
+    ['enclosed','enclosed process supply cabinets'],['complete','clean loading vestibule']],
 };
 
 test('every kind is composed of what section E says it is',()=>{
   assert.deepEqual(Object.keys(COMPOSITION).slice().sort(),site.kinds().slice().sort(),
-    'COMPOSITION covers exactly the thirteen project kinds');
+    'COMPOSITION covers exactly the sixteen project kinds');
   for(const key of site.kinds()){
     for(const [stage,fragment] of COMPOSITION[key]){
       const mesh=site.build(key,stage,{lod:0});

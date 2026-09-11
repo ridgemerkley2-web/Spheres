@@ -185,7 +185,8 @@ pub fn validation(
     if !clock::is_daily(w) {
         return Some("Department programmes require daily simulation.".into());
     }
-    if !crate::economic_ai::may_direct(w, nation) {
+    if !crate::economic_ai::may_direct(w, nation)
+        && !(crate::fiscal_recovery::enabled(w) && enrolled(w, nation)) {
         return Some("Only the player may enroll a department budget.".into());
     }
     if !w.nation_opt(nation).is_some_and(|n| n.alive) {

@@ -8,6 +8,7 @@
 //! what a power grid, laboratory, or arms plant actually produces.
 
 use serde::{Deserialize, Serialize};
+use std::collections::BTreeMap;
 
 use crate::resources::{self, Commodity, ALL};
 use crate::world::{
@@ -38,9 +39,12 @@ pub enum ProjectKind {
     Automation,
     Efficiency,
     StarterIndustry,
+    OfficeDistrict,
+    Shipyard,
+    AdvancedIndustry,
 }
 
-pub const PROJECT_KINDS: [ProjectKind; 13] = [
+pub const PROJECT_KINDS: [ProjectKind; 16] = [
     ProjectKind::Infrastructure,
     ProjectKind::CivilianIndustry,
     ProjectKind::PowerGrid,
@@ -54,6 +58,9 @@ pub const PROJECT_KINDS: [ProjectKind; 13] = [
     ProjectKind::Automation,
     ProjectKind::Efficiency,
     ProjectKind::StarterIndustry,
+    ProjectKind::OfficeDistrict,
+    ProjectKind::Shipyard,
+    ProjectKind::AdvancedIndustry,
 ];
 
 impl ProjectKind {
@@ -72,6 +79,9 @@ impl ProjectKind {
             Self::Automation => "automation",
             Self::Efficiency => "efficiency",
             Self::StarterIndustry => "starter_industry",
+            Self::OfficeDistrict => "office_district",
+            Self::Shipyard => "shipyard",
+            Self::AdvancedIndustry => "advanced_industry",
         }
     }
 
@@ -230,6 +240,11 @@ pub struct Production {
     pub next_id: u32,
     #[serde(default, skip_serializing_if = "crate::industry::Industry::is_empty")]
     pub industry: crate::industry::Industry,
+    /// Office District, Shipyard, Advanced Industry: append-only site identities.
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
+    pub rebuild_sites: BTreeMap<String, [u8; 3]>,
+    #[serde(default, skip_serializing_if = "crate::industry_operations::State::is_empty")]
+    pub operations: crate::industry_operations::State,
 }
 
 fn is_zero(value: &u32) -> bool {
@@ -242,6 +257,8 @@ impl Production {
             && self.provinces.is_empty()
             && self.next_id == 0
             && self.industry.is_empty()
+            && self.rebuild_sites.is_empty()
+            && self.operations.is_empty()
     }
 }
 
@@ -330,20 +347,69 @@ pub fn catalog(kind: ProjectKind) -> ProjectSpec {
                 12.0, 15.0, 4.0, 10.0, 0.0, 0.0, 55.0, 0.0, 0.0, 2.0, 3.0, 0.0,
             ],
         },
+        // MODEL build times, input recipes and costs are gameplay conversions,
+        // not observations of historical factories or construction contracts.
+        ProjectKind::OfficeDistrict => ProjectSpec {
+            kind,
+            name: "Office District",
+            description: "Service businesses and professional employment.",
+            effect: "Creates service jobs and additional taxable value added when skilled workers, electricity and domestic demand are available. GDP and tax receipts are reported separately.",
+            total_days: 360,
+            political_cost: 10.0,
+            funding_ministry: BUDGET_INDUSTRY,
+            funding_label: "Industry & Energy",
+            funding_required: 0.020,
+            recipe: [4.0, 10.0, 0.0, 8.0, 0.0, 0.0, 25.0, 0.0, 0.0, 0.0, 4.0, 0.0],
+        },
+        ProjectKind::Shipyard => ProjectSpec {
+            kind,
+            name: "Shipyard",
+            description: "Coastal docks, marine tooling, and naval production berths.",
+            effect: "Provides optional additional naval production berths at a mapped coastal gateway. Existing paid naval lines retain their Arms Plant berth; new dock operations need workers, electricity and operating funds.",
+            total_days: 840,
+            political_cost: 16.0,
+            funding_ministry: BUDGET_DEFENSE,
+            funding_label: "Defense",
+            funding_required: 0.025,
+            recipe: [15.0, 20.0, 4.0, 12.0, 0.0, 0.0, 80.0, 0.0, 0.0, 2.0, 5.0, 0.0],
+        },
+        ProjectKind::AdvancedIndustry => ProjectSpec {
+            kind,
+            name: "Advanced Industry",
+            description: "Electronics, precision components, and advanced machine production.",
+            effect: "Produces advanced component packs for storage and trade. Supplier component contracts are a later integration step; existing equipment orders are unchanged. Needs skilled workers, electricity, intermediate packs, copper, rare earths and operating funds.",
+            total_days: 660,
+            political_cost: 14.0,
+            funding_ministry: BUDGET_INDUSTRY,
+            funding_label: "Industry & Energy",
+            funding_required: 0.020,
+            recipe: [8.0, 12.0, 0.0, 20.0, 0.0, 5.0, 35.0, 0.0, 0.0, 2.0, 8.0, 0.0],
+        },
         _ => crate::industry::catalog(kind),
     }
 }
 
-pub fn catalog_all() -> [ProjectSpec; 13] {
+pub fn catalog_all() -> [ProjectSpec; 16] {
     PROJECT_KINDS.map(catalog)
 }
 
 /// Unified capability lookup; old save records retain their original shape.
 pub fn level(w: &WorldState, district: &str, kind: ProjectKind) -> u8 {
-    if crate::industry::extended(kind) {
+    if let Some(index) = rebuild_site_index(kind) {
+        w.production.rebuild_sites.get(district).map_or(0, |row| row[index])
+    } else if crate::industry::extended(kind) {
         crate::industry::site_level(w, district, kind)
     } else {
         province_capabilities(w, district).level(kind)
+    }
+}
+
+fn rebuild_site_index(kind: ProjectKind) -> Option<usize> {
+    match kind {
+        ProjectKind::OfficeDistrict => Some(0),
+        ProjectKind::Shipyard => Some(1),
+        ProjectKind::AdvancedIndustry => Some(2),
+        _ => None,
     }
 }
 
@@ -351,7 +417,8 @@ pub fn funding_department(kind: ProjectKind) -> usize {
     match kind {
         ProjectKind::PowerGrid | ProjectKind::Generation => 1,
         ProjectKind::ProcessingPlant => 2,
-        ProjectKind::FreightTerminal | ProjectKind::Warehouse | ProjectKind::ArmsPlant => 3,
+        ProjectKind::FreightTerminal | ProjectKind::Warehouse | ProjectKind::ArmsPlant | ProjectKind::Shipyard => 3,
+        ProjectKind::AdvancedIndustry => 2,
         ProjectKind::Automation | ProjectKind::Efficiency => 4,
         _ => 0,
     }
@@ -541,6 +608,12 @@ pub(crate) fn start_project_common_error(
     if !w.rules.production_system {
         return Some("Production and construction are not enabled in this game.".into());
     }
+    if rebuild_site_index(kind).is_some() && !crate::industry_operations::enabled(w) {
+        return Some("Enable the daily industry extension before placing this facility.".into());
+    }
+    if kind == ProjectKind::Shipyard && !crate::logistics::has_terminal(district) {
+        return Some("A Shipyard requires a mapped coastal freight gateway.".into());
+    }
     if !crate::clock::is_daily(w) && !w.rules.resource_market {
         return Some("Legacy monthly production requires the resource market to be enabled.".into());
     }
@@ -697,6 +770,11 @@ fn set_paused(w: &mut WorldState, id: u32, reason: String) {
 }
 
 pub(crate) fn complete_capability(w: &mut WorldState, district: &str, kind: ProjectKind) {
+    if let Some(index) = rebuild_site_index(kind) {
+        let row = w.production.rebuild_sites.entry(district.to_string()).or_insert([0; 3]);
+        row[index] = row[index].saturating_add(1).min(MAX_PROVINCE_LEVEL);
+        return;
+    }
     if crate::industry::extended(kind) {
         crate::industry::complete_site(w, district, kind);
         return;

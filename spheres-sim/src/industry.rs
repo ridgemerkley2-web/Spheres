@@ -246,6 +246,9 @@ pub fn work_cost_bn(kind: K) -> f64 {
         K::Automation => 0.08,
         K::Efficiency => 0.06,
         K::StarterIndustry => 0.58,
+        K::OfficeDistrict => 0.16,
+        K::Shipyard => 0.32,
+        K::AdvancedIndustry => 0.24,
     }
 }
 pub fn project_cost_bn(p: &Project) -> f64 {
@@ -525,6 +528,7 @@ pub fn power_capacity(w: &WorldState, nation: NationId) -> f64 {
     legacy + w.production.industry.modules.iter()
         .filter(|(d,_)| w.districts.get(*d)==Some(&nation) && !resources::district_contested(w,d))
         .map(|(_,micros)| *micros as f64 / 1_000_000.0 * 10.0).sum::<f64>()
+        + crate::industry_operations::inherited_power_headroom(w, nation)
 }
 pub(crate) fn plant_rate(w: &WorldState, district: &str, kind: K) -> f64 {
     let base = if is_processing(kind) { 1.0 } else { 0.5 };
@@ -617,6 +621,8 @@ pub fn raw_demand_components(w: &WorldState, nation: NationId) -> RawDemandCompo
         }
     }
 
+    let additional = crate::industry_operations::demand_daily(w, nation);
+    for i in 0..12 { out.operating_daily[i] += additional[i]; }
     // Turnkey construction creates financial commitments, not raw-stock demand.
     out.operating_daily = out.operating_daily.map(q);
     out.projects_remaining = out.projects_remaining.map(q);
@@ -649,6 +655,8 @@ fn resource_demand_daily_inner(w: &WorldState, nation: NationId, include_materia
         let materials = crate::materials::resource_demand_daily(w, nation);
         for i in 0..12 { out[i] += materials[i]; }
     }
+    let additional = crate::industry_operations::demand_daily(w, nation);
+    for i in 0..12 { out[i] += additional[i]; }
     out
 }
 /// Runs after raw resource settlement. Processing precedes machinery, in
@@ -705,10 +713,10 @@ pub fn tick_day(w: &mut WorldState) {
             }
             let available_power = power
                 .entry(nation)
-                .or_insert_with(|| power_capacity(w, nation));
+                .or_insert_with(|| (power_capacity(w, nation) - crate::industry_operations::support_power_used(w, nation)).max(0.0));
             let grid = grids
                 .entry(d.clone())
-                .or_insert_with(|| crate::industrial_modules::effective_capacity(w, d, K::PowerGrid) * 5.0);
+                .or_insert_with(|| (crate::industry_operations::grid_capacity(w, d) - crate::industry_operations::support_grid_used(w, d)).max(0.0));
             let per_power = power_per_pack(w, d, kind);
             let target = plant_rate(w, d, kind);
             let pile = w
@@ -727,7 +735,10 @@ pub fn tick_day(w: &mut WorldState) {
             let dept = if is_processing(kind) { 2 } else { 0 };
             let cash_per_pack = 0.00001;
             let generating_cost_per_power = 0.000002;
-            let mut output = target
+            let staffing = if crate::industry_operations::enabled(w) {
+                crate::industry_operations::district_worker_fraction(w, d, kind)
+            } else { 1.0 };
+            let mut output = (target * staffing)
                 .min(room)
                 .min(*available_power / per_power)
                 .min(*grid / per_power)
@@ -742,7 +753,9 @@ pub fn tick_day(w: &mut WorldState) {
             if output <= EPS {
                 status.status = "paused".into();
                 status.reason = Some(
-                    if room <= EPS {
+                    if staffing <= EPS {
+                        "Qualified workers are unavailable for this operating line."
+                    } else if room <= EPS {
                         "Storage is full; use these packs or build a Warehouse."
                     } else if *available_power <= EPS {
                         "No spare modeled generation; build Power Generation."
@@ -869,7 +882,7 @@ pub fn tick_day(w: &mut WorldState) {
 }
 
 pub(crate) fn research_enabled(w: &WorldState) -> bool {
-    clock::is_daily(w) && w.rules.economic_competition && w.rules.production_system
+    clock::is_daily(w) && (w.rules.economic_competition || w.rules.industry_rebuild) && w.rules.production_system
         && w.rules.resource_market
 }
 
@@ -1017,7 +1030,10 @@ pub fn research_day(w: &mut WorldState) {
                     operation.status = "paused".into();
                     operation.reason = "PAUSED: prototype testing is waiting for both intermediate and capital-goods packs.".into();
                 } else {
-                    let desired = (level as f64).min(useful / PROTOTYPE_WORK_PER_LEVEL_DAY);
+                    let staffing = if crate::industry_operations::enabled(w) {
+                        crate::industry_operations::district_worker_fraction(w, &district, K::ResearchCenter)
+                    } else { 1.0 };
+                    let desired = (level as f64 * staffing).min(useful / PROTOTYPE_WORK_PER_LEVEL_DAY);
                     let work = desired
                         .min(authority / PROTOTYPE_CASH_PER_LEVEL_DAY_BN)
                         .min(goods.intermediates / PROTOTYPE_INTERMEDIATES_PER_LEVEL_DAY)

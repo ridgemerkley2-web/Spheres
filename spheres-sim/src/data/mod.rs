@@ -809,6 +809,7 @@ impl NationRecord {
                 - crate::economy::transition(
                     self.economy.gdp_bn * 1000.0 / self.economy.population_m,
                 ),
+            population_outcomes: None,
             inflation: self.economy.inflation,
             interest_rate: self.economy.interest_rate,
             tax_rate: self.economy.tax_rate,
@@ -919,6 +920,8 @@ pub fn load_world(
         logistics: Default::default(),
         daily: Default::default(),
         province_economy: None,
+        population_system: Default::default(),
+        fiscal_recovery: Default::default(),
         starting_industry: None,
         materials: None,
         commerce: None,

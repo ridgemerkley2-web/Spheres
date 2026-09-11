@@ -338,6 +338,7 @@ impl Snapshot {
                     }
                 }
             }
+            crate::population::record_casualties(w, id, loss / opening.max(1e-12));
             let n = w.nation_mut(id);
             n.mil_strength = (opening - loss).max(0.0);
             if let Some(m) = self.magazines.get(&id) { n.munitions = *m; }

@@ -3190,6 +3190,7 @@
 <script src="/competition-ui.js"></script>
 <script src="/industry-ui.js"></script>
 <script src="/cash-flow-ui.js"></script>
+<script src="/fiscal-recovery-ui.js"></script>
 <script src="/equipment-mesh.js"></script>
 <script src="/equipment-export.js"></script>
 <script src="/military-surface.js"></script>
@@ -5545,6 +5546,55 @@ function openCashFlow() {
   if (typeof cashFlowReveal === "function") cashFlowReveal();
 }
 
+const CONNECTED_ECONOMY_UI={busy:false,error:"",session:null,action:null};
+function connectedEconomyPanelHtml(view,compact=false) {
+  if(!view||!globalThis.FiscalRecoveryUI)return "";
+  if(CONNECTED_ECONOMY_UI.session!==S?.session_id){CONNECTED_ECONOMY_UI.session=S?.session_id;CONNECTED_ECONOMY_UI.error="";}
+  const message=CONNECTED_ECONOMY_UI.error?`<p class="cf-message" role="alert">${escText(CONNECTED_ECONOMY_UI.error)}</p>`:"";
+  const content=compact&&view.enabled?FiscalRecoveryUI.render(view.recovery,{compact:true}):FiscalRecoveryUI.renderConnected(view);
+  return `<div data-connected-economy>${message}${content}</div>`;
+}
+function connectedEconomyNavigate(action) {
+  if(action==="plays"){
+    openConstructionCabinet("overview");const panel=$("#cabinetPlays");if(!panel)return false;
+    panel.open=true;panel.querySelector("summary")?.focus();panel.scrollIntoView({block:"start"});return true;
+  }
+  return cashFlowNavigate(action==="tax"?{action:"policy",control:"tax"}:{action});
+}
+async function connectedEconomyAct(view,state,command,label,detail,current) {
+  if(state!==S||!state?.player||!current()||CONNECTED_ECONOMY_UI.busy||cashFlowOrdersPending())return false;
+  const action={};CONNECTED_ECONOMY_UI.action=action;CONNECTED_ECONOMY_UI.busy=true;CONNECTED_ECONOMY_UI.error="";
+  try {
+    if(!await campaignConfirm(detail,{title:label,confirmLabel:label}))return false;
+    if(state!==S||!current()||CONNECTED_ECONOMY_UI.action!==action||cashFlowOrdersPending())return false;
+    const response=await api("/api/command",{commands:[command]});
+    if(state!==S||CONNECTED_ECONOMY_UI.action!==action)return false;
+    if(response.errors?.length)throw new Error(response.errors.join(" "));
+    await adopt(response,false);banner(label+" — completed.");return true;
+  }catch(error){
+    if(S?.session_id===state.session_id){CONNECTED_ECONOMY_UI.error=error.message||"The order could not be confirmed. Check its receipt before retrying.";banner(CONNECTED_ECONOMY_UI.error);}
+    return false;
+  }finally{
+    if(CONNECTED_ECONOMY_UI.action===action){CONNECTED_ECONOMY_UI.action=null;CONNECTED_ECONOMY_UI.busy=false;if(S?.session_id===state.session_id)renderLeft(me());}
+  }
+}
+function connectedEconomyBind(container,view,state=S,current=()=>state===S) {
+  const panel=container?.querySelector("[data-connected-economy]");if(!panel||!view||!globalThis.FiscalRecoveryUI)return;
+  panel.connectedEconomyCleanup?.();
+  panel.connectedEconomyCleanup=FiscalRecoveryUI.bind(panel,{
+    isCurrent:()=>state===S&&current(),isBusy:()=>CONNECTED_ECONOMY_UI.busy||cashFlowOrdersPending(),canUpgrade:view.upgrade?.available===true,
+    onNavigate:connectedEconomyNavigate,
+    onEnable:()=>{
+      if(!view.upgrade?.available||!view.upgrade.command)return false;
+      return connectedEconomyAct(view,state,JSON.parse(JSON.stringify(view.upgrade.command)),"Adopt connected economy",view.upgrade.effect+"\n\nThis upgrades the campaign's rules. Existing saves remain available through Campaigns; save a separate slot first if you want to retain the former rules.",current);
+    },
+    onPolicy:policy=>{
+      const quote=view.population?.policies?.find(row=>row.policy===policy&&row.available===true);if(!quote)return false;
+      return connectedEconomyAct(view,state,{kind:"population_policy",policy},quote.name,quote.description+"\n\nCosts "+quote.political_cost+" political capital. Existing students keep their courses; new training follows this focus and existing education funding. The enacted policy sets when another review becomes available.",current);
+    }
+  });
+}
+
 function cashFlowNavigate(action) {
   if (!action || !S?.player || advancing || pendingAdvance) return false;
   if (typeof industryOrdersPending === "function" && industryOrdersPending()) return false;
@@ -5826,6 +5876,7 @@ function renderLeft(m) {
       <div id="cabinetBudgetSummary" class="cab-budget-summary">${cabinetBudgetSummary(m)}</div>
       ${!money.on_the_books ? `<p class="cab-alert">First budget: enacting opens the treasury and starts cash interest charges. The server's proposed totals include this interest at your draft policy rate.</p>` : ""}
       ${interestRow(m)}
+      ${connectedEconomyPanelHtml(S.connected_economy,true)}
       <div class="cab-budget-workbench"><div class="cab-ministry-tiles" aria-label="Choose a ministry">${cabinetMinistryTiles(m, fiscal)}</div>
         <section class="cab-inspector" id="cabinetInspector" tabindex="-1" aria-label="${spec.name} funding">
           <button class="cab-back" id="cabinetMinistriesBtn">← All ministries</button>
@@ -5876,6 +5927,7 @@ function renderLeft(m) {
   selectCabinetTab(CAB.tab, true);
   if (typeof industryBind === "function") industryBind();
   if (typeof cashFlowBind === "function") cashFlowBind();
+  connectedEconomyBind($("#cabinet-budget"),S.connected_economy,S);
   openDetails.forEach(id => { const el = document.getElementById(id); if (el) el.open = true; });
   $("#left").scrollTop = scroll;
   paintCabinetDraft(m);
@@ -16841,13 +16893,16 @@ function manufacturingLinesHtml() {
   const data = MANU.data || {}, summary = data.summary || {}, finance = data.finance || {};
   const lines = manufacturingLines(), capacity = +summary.capacity || 0;
   const usedSlots = +summary.used_slots || 0, freeSlots = +summary.free_slots || 0;
+  const navalSlots=+summary.naval_slots||0, freeNaval=+summary.free_naval_slots||0;
   const share = (+finance.procurement_share || 0) * 100;
   const list = lines.length ? `<div class="production-list">${lines.map(manufacturingLineHtml).join("")}</div>` : "";
   let empty = "";
-  if (!lines.length && capacity <= 0) {
+  if (!lines.length && freeNaval > 0) {
+    empty = `<div class="factory-bridge"><b>Shipyard berths are ready</b>${freeNaval} free berth${freeNaval===1?"":"s"} can host naval programmes. Arms-plant and company reservations stay separate.</div>`;
+  } else if (!lines.length && capacity <= 0 && navalSlots <= 0) {
     empty = `<div class="factory-bridge"><b>No arms-plant capacity</b>Build an Arms Plant in a province to open a directed equipment line. Until then, military staff keep the inherited procurement programme running.<button type="button" data-manu-build-plant>Build an Arms Plant</button></div>`;
-  } else if (freeSlots <= 0) {
-    empty = `<div class="factory-bridge"><b>${capacity === 1 ? "The plant slot is" : `All ${capacity} plant slots are`} assigned</b>Existing equipment and ammunition work use these plants. Complete or cancel work to free a slot, or review another plant.<button type="button" data-manu-build-plant>Build another Arms Plant</button></div>`;
+  } else if (freeSlots <= 0 && freeNaval <= 0) {
+    empty = `<div class="factory-bridge"><b>${navalSlots>0?"All plant slots and shipyard berths are":capacity === 1 ? "The plant slot is" : `All ${capacity} plant slots are`} assigned</b>Existing equipment and ammunition work use these sites. Complete or cancel work to free a slot, or review another plant.<button type="button" data-manu-build-plant>Build another Arms Plant</button></div>`;
   } else if (!lines.length) {
     empty = `<div class="factory-bridge"><b>Staff procurement is active</b>Your ${capacity} plant slot${capacity === 1 ? " is" : "s are"} ready. Start a line to replace automatic buying with your own equipment plan.</div>`;
   }
@@ -16855,8 +16910,8 @@ function manufacturingLinesHtml() {
     <div class="factory-bridge"><b>Your own vehicle programme</b>Choose ground or aircraft components, commission a manufacturer, and buy finished stock for your force.<button type="button" data-equipment-companies>Companies &amp; Procurement</button><button type="button" data-equipment-open>Open equipment designer</button></div>
     <div class="manufacturing-hero"><div class="stamp">Daily defense procurement</div><div class="money">${manufacturingBn(finance.procurement_budget_bn_day)} <small>per day</small></div>
       <p>${share.toFixed(0)}% of the defense budget buys equipment. The treasury already carries that spending; imported materials settle through the resource market.</p></div>
-    <div class="manufacturing-summary"><span>Plant slots<b>${usedSlots}/${capacity}</b></span><span>Force equipped<b>${Math.round((+summary.adequacy || 0) * 100)}%</b></span><span class="${+summary.blocked ? "warn" : ""}">Pipeline<b>${manufacturingBn(summary.pipeline_value_bn)}</b></span></div>
-    <button type="button" class="production-new" data-manu-new>${freeSlots > 0 && data.actions && data.actions.start === true ? "＋ Start equipment line" : "Browse equipment catalogue"}</button>${empty}${list}
+    <div class="manufacturing-summary"><span>Plant slots<b>${usedSlots}/${capacity}</b></span>${navalSlots>0?`<span>Shipyard berths<b>${+summary.used_naval_slots||0}/${navalSlots}</b></span>`:""}<span>Force equipped<b>${Math.round((+summary.adequacy || 0) * 100)}%</b></span><span class="${+summary.blocked ? "warn" : ""}">Pipeline<b>${manufacturingBn(summary.pipeline_value_bn)}</b></span></div>
+    <button type="button" class="production-new" data-manu-new>${(freeSlots > 0 || freeNaval > 0) && data.actions && data.actions.start === true ? "＋ Start equipment line" : "Browse equipment catalogue"}</button>${empty}${list}
     ${manufacturingLedgerHtml()}`;
 }
 
@@ -16873,9 +16928,9 @@ function manufacturingCatalogHtml() {
     return `<button type="button" class="equipment-choice${kit.unlocked ? "" : " locked"}" data-class-mark="${logisticsEscAttr(manufacturingClassMark(kit.class))}" ${available ? `data-manu-kit="${logisticsEscAttr(kit.id)}"` : "disabled"}>
       ${manufacturingKit3d(kit.id, kit.class)}<b>${escText(kit.name)}</b><span>${escText(kit.class)} · service life ${Math.round((+kit.service_months || 0) / 12)} years</span><em>${escText(meta)}</em></button>`;
   }).join("");
-  return `${operationsHeroHtml("manufacturing", "Step 1 · Choose a programme", "Make your next move.", "Browse equipment your nation knows how to build. Choose a programme, then place it in a free arms-plant slot.")}
+  return `${operationsHeroHtml("manufacturing", "Step 1 · Choose a programme", "Make your next move.", "Browse equipment your nation knows how to build. Choose a programme, then place it in an available arms plant or a shipyard berth for naval equipment.")}
     <div class="production-stamp"><b>Equipment catalogue</b><span>Locked programmes stay tucked away until you need them</span></div>
-    ${!(MANU.data?.actions?.start === true && +MANU.data?.summary?.free_slots > 0) ? `<div class="factory-bridge"><b>Explore your next programme</b>You can inspect equipment before a plant is ready. Starting a line requires a free, completed arms-plant slot.<button type="button" data-manu-build-plant>Review arms-plant construction</button></div>` : ""}
+    ${!(MANU.data?.actions?.start === true && (+MANU.data?.summary?.free_slots > 0 || +MANU.data?.summary?.free_naval_slots > 0)) ? `<div class="factory-bridge"><b>Explore your next programme</b>You can inspect equipment before a site is ready. Starting a line requires a free, completed arms-plant slot or an eligible shipyard berth for naval equipment.<button type="button" data-manu-build-plant>Review arms-plant construction</button></div>` : ""}
     <div class="factory-bridge"><b>Design ground equipment or aircraft</b>Design a model of your own. Your manufacturer can develop ground vehicles or tactical aircraft and offer finished equipment for purchase.<button type="button" data-equipment-companies>Companies &amp; Procurement</button><button type="button" data-equipment-open>Open equipment designer</button></div>
     <div class="factory-classes">${classes.map((name) => `<button type="button" data-manu-class="${logisticsEscAttr(name)}" class="${MANU.classFilter === name ? "on" : ""}">${escText(name)}</button>`).join("")}</div>
     <div class="equipment-catalog">${cards || `<div class="production-empty">No equipment in this filter is ready.</div>`}</div>
@@ -16888,11 +16943,14 @@ function manufacturingProvinceHtml() {
   if (!kit) { MANU.view = "catalog"; return manufacturingCatalogHtml(); }
   const eligible = new Set((kit.eligible_provinces || []).map(String));
   const provinces = manufacturingProvinces().filter((province) => eligible.has(String(province.id)) || (province.actions && Array.isArray(province.actions.start) && province.actions.start.map(String).includes(String(kit.id))));
-  const picks = provinces.map((province) => `<button type="button" class="province-pick" data-manu-province="${logisticsEscAttr(province.id)}"><b>${escText(province.name || province.id)}</b><span>${+province.free_slots || 0} free · arms plant ${+province.arms_plants || 0}</span></button>`).join("");
+  const picks = provinces.map((province) => {
+    const dock=kit.naval===true&&+province.free_naval_slots>0;
+    return `<button type="button" class="province-pick" data-manu-province="${logisticsEscAttr(province.id)}"><b>${escText(province.name || province.id)}</b><span>${dock?`${+province.free_naval_slots} free · shipyard ${+province.naval_slots||0}`:`${+province.free_slots||0} free · arms plant ${+province.arms_plants||0}`}</span></button>`;
+  }).join("");
   const recipe = (kit.requirements_per_bn || []).map((row) => `<span class="work-need">${escText(row.name || row.commodity)} · ${fmtQ(row.quantity || row.required || 0)} ${escText(row.unit || "")} / $bn</span>`).join("");
-  return `<div class="production-stamp"><b>${manufacturingClassMark(kit.class)} ${escText(kit.name)}</b><span>step 2 of 2<br>choose a plant</span></div>
+  return `<div class="production-stamp"><b>${manufacturingClassMark(kit.class)} ${escText(kit.name)}</b><span>step 2 of 2<br>choose a ${kit.naval?"shipyard or plant":"plant"}</span></div>
     <div class="project-brief"><b>${manufacturingBn(kit.unit_cost_bn, 3)} per unit · first delivery in ${kit.lead_days} days</b>${recipe ? `<details class="operations-details"><summary>Materials per $bn of orders</summary><div class="work-needs">${recipe}</div></details>` : ""}</div>
-    <div class="province-picks">${picks || `<div class="production-empty">No owned arms plant has a free slot.</div>`}</div>
+    <div class="province-picks">${picks || `<div class="production-empty">${kit.naval?"No owned shipyard berth or arms-plant slot is available.":"No owned arms plant has a free slot."}</div>`}</div>
     <button type="button" class="production-back" data-manu-back>Choose another equipment line</button>`;
 }
 

@@ -47,7 +47,7 @@ pub(crate) fn encode(g: &Game) -> Result<String, String> {
 pub(crate) fn decode(text: &str) -> Result<Game, String> {
     let value: Value =
         serde_json::from_str(text).map_err(|e| format!("Cannot read campaign: {e}"))?;
-    if value.get("format").is_none() || value["format"] == "spheres-equipment-save" {
+    if value.get("format").is_none() || matches!(value["format"].as_str(), Some("spheres-equipment-save" | "spheres-party-leadership-save" | "spheres-economy-save")) {
         // The original CLI/browser format is still supported and uses every
         // simulation migration. It cannot invent an archive it never recorded.
         let mut g = crate::loaded_play_game(crate::load(text)?);

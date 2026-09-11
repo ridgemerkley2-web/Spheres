@@ -285,6 +285,8 @@ pub struct Nation {
     /// field existed was doing.
     #[serde(default)]
     pub pop_growth_offset: f64,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub population_outcomes: Option<crate::population::PopulationOutcomes>,
     /// Annual inflation rate (0.04 = 4%)
     pub inflation: f64,
     /// Central bank policy rate, annual
@@ -990,6 +992,11 @@ pub struct GameRules {
     /// Explicitly enabled for the daily review campaign; absent from legacy saves.
     #[serde(default, skip_serializing_if = "is_false")]
     pub economic_competition: bool,
+    /// Explicit connected-economy enrollment; never inferred while loading.
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub industry_rebuild: bool,
+    #[serde(default, skip_serializing_if = "is_false")]
+    pub fiscal_recovery: bool,
     /// The political arm, stage S1: the five ideological blocs, the leader
     /// table, the discontent gauge and the takeover watch as READOUTS. OFF by
     /// default on the `resource_market` pattern, so every test and the headless
@@ -1034,6 +1041,8 @@ impl Default for GameRules {
             production_system: false,
             manufacturing_system: false,
             economic_competition: false,
+            industry_rebuild: false,
+            fiscal_recovery: false,
             ideology_blocs: false,
             ideology_takeover: false,
             historical_party_leadership: false,
@@ -1188,6 +1197,11 @@ pub struct WorldState {
     pub daily: crate::clock::DailyState,
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub province_economy: Option<crate::province_economy::ProvinceEconomy>,
+    /// Explicit population and workforce ownership; absent in legacy worlds.
+    #[serde(default, skip_serializing_if = "crate::population::PopulationState::is_empty")]
+    pub population_system: crate::population::PopulationState,
+    #[serde(default, skip_serializing_if = "crate::fiscal_recovery::State::is_empty")]
+    pub fiscal_recovery: crate::fiscal_recovery::State,
     /// Explicit new-campaign estimates of manufacturing already inside GDP.
     /// Absent legacy saves remain absent; no load or tick backfills this stock.
     #[serde(default, skip_serializing_if = "Option::is_none")]

@@ -501,6 +501,14 @@ fn campaign_lifetime_profile() {
             } else {
                 serde_json::Value::Null
             };
+            // S02 compares the same frozen S01 checkpoints after the public,
+            // explicit upgrade command; fixture files remain byte-identical.
+            if std::env::var("SPHERES_PROFILE_CONNECTED_ECONOMY").as_deref() == Ok("1") {
+                let player=g.world.player.expect("profile has a player");
+                apply_command(&mut g.world, &Command::EnableConnectedEconomy {
+                    nation: player,
+                }).expect("profile connected economy enrollment");
+            }
             let measured_hash = format!("{:016x}", spheres_sim::state_hash(&g.world));
             let measured_rules = serde_json::to_value(&g.world.rules).unwrap();
             let starting_counts = profile_counts(&g.world);
@@ -571,6 +579,7 @@ fn campaign_lifetime_profile() {
             results.push(serde_json::json!({"scenario":name,"checkpoint_years":age,"starting_date":date,"history_points":g.history.len(),"dispatches_retained":g.log.len(),
                 "checkpoint_world_hash":checkpoint_hash,"source_world_hash":checkpoint_hash,"measured_start_world_hash":measured_hash,
                 "source_rules":checkpoint_rules,"actual_rules":measured_rules,"stress_fixture":fixture,
+                "connected_economy_adoption":std::env::var("SPHERES_PROFILE_CONNECTED_ECONOMY").as_deref()==Ok("1"),
                 "stress_export":stress_export,
                 "source_slot":if input.is_some(){source_slot}else{slot.clone()},
                 "starting_history_points":starting_history_points,"starting_dispatches":starting_dispatches,

@@ -8,6 +8,7 @@
 //! model remain owned by `arsenal.rs`.
 
 use serde::{Deserialize, Serialize};
+use std::collections::BTreeSet;
 
 use crate::arsenal::{self, DECK};
 use crate::production::{self, Priority};
@@ -71,6 +72,10 @@ pub struct Manufacturing {
     pub lines: Vec<ManufacturingLine>,
     #[serde(default, skip_serializing_if = "is_zero")]
     pub next_id: u32,
+    /// Explicit new dock reservations. Missing means the original Arms Plant
+    /// entitlement, including every legacy paid naval line.
+    #[serde(default, skip_serializing_if = "BTreeSet::is_empty")]
+    pub shipyard_lines: BTreeSet<u32>,
 }
 
 fn is_zero(value: &u32) -> bool {
@@ -79,7 +84,7 @@ fn is_zero(value: &u32) -> bool {
 
 impl Manufacturing {
     pub fn is_empty(&self) -> bool {
-        self.lines.is_empty() && self.next_id == 0
+        self.lines.is_empty() && self.next_id == 0 && self.shipyard_lines.is_empty()
     }
 }
 
@@ -116,9 +121,37 @@ pub fn plant_slots(w: &WorldState, district: &str) -> u8 {
     production::province_capabilities(w, district).arms_plants
 }
 
+pub fn is_naval(kit: &str) -> bool {
+    arsenal::index_of(kit).is_some_and(|i| DECK[i as usize].class == arsenal::Class::Naval)
+}
+pub fn naval_slots(w: &WorldState, district: &str) -> u8 {
+    if !crate::industry_operations::enabled(w) { return 0; }
+    production::level(w, district, production::ProjectKind::Shipyard)
+}
+pub fn used_naval_slots(w: &WorldState, nation: NationId, district: &str) -> usize {
+    lines_for(w,nation).filter(|l| l.district == district && w.manufacturing.shipyard_lines.contains(&l.id)).count()
+}
+fn available_dock(w: &WorldState, nation: NationId, district: &str, kit: &str) -> bool {
+    is_naval(kit) && used_naval_slots(w,nation,district) < naval_slots(w,district) as usize
+}
+/// Component stock has no retroactive claim against paid equipment work. The
+/// typed supplier integration will introduce explicit new consumer contracts.
+pub fn advanced_components_demand_daily(_w: &WorldState, _nation: NationId) -> f64 { 0.0 }
+
+pub fn validate_state(w: &WorldState) -> Result<(), String> {
+    for id in &w.manufacturing.shipyard_lines {
+        let line = w.manufacturing.lines.iter().find(|l| l.id == *id)
+            .ok_or_else(|| format!("Shipyard reservation {id} has no manufacturing line."))?;
+        if !is_naval(&line.kit) {
+            return Err(format!("Shipyard reservation {id} must refer to naval equipment."));
+        }
+    }
+    Ok(())
+}
+
 pub fn used_slots(w: &WorldState, nation: NationId, district: &str) -> usize {
     lines_for(w, nation)
-        .filter(|line| line.district == district)
+        .filter(|line| line.district == district && !w.manufacturing.shipyard_lines.contains(&line.id))
         .count() + crate::equipment::reserved_site_slots(w.nation(nation), district)
         + crate::companies::reserved_slots(w, nation, district)
 }
@@ -157,8 +190,10 @@ fn line_error(w: &WorldState, line: &ManufacturingLine) -> Option<String> {
     // Existing legacy lines retain their slots. The equipment dispatcher uses
     // only the remainder; subtracting custom reservations here as well would
     // deadlock both queues after a site loses capacity.
-    let slots = plant_slots(w, &line.district) as usize;
+    let dock = w.manufacturing.shipyard_lines.contains(&line.id);
+    let slots = if dock { naval_slots(w, &line.district) } else { plant_slots(w, &line.district) } as usize;
     if slots == 0 {
+        if dock { return Some("BLOCKED: the reserved Shipyard is unavailable; paid orders remain owned.".into()); }
         return Some(format!("BLOCKED: {} has no arms plant.", line.district));
     }
 
@@ -166,7 +201,8 @@ fn line_error(w: &WorldState, line: &ManufacturingLine) -> Option<String> {
     // or future save carries too many lines, the same priority order used for
     // scarce material decides which physical slots still run.
     let mut at_site: Vec<&ManufacturingLine> = lines_for(w, line.nation)
-        .filter(|candidate| candidate.district == line.district)
+        .filter(|candidate| candidate.district == line.district
+            && w.manufacturing.shipyard_lines.contains(&candidate.id) == dock)
         .collect();
     at_site.sort_by_key(|candidate| (dispatch_rank(candidate.priority), candidate.id));
     if at_site
@@ -232,10 +268,11 @@ pub fn start_line_error(
         _ => {}
     }
     let slots = plant_slots(w, district) as usize;
-    if slots == 0 {
+    let dock_available = available_dock(w, nation, district, kit);
+    if slots == 0 && !dock_available {
         return Some(format!("{} has no completed arms plant.", district));
     }
-    if used_slots(w, nation, district) >= slots {
+    if used_slots(w, nation, district) >= slots && !dock_available {
         return Some(format!(
             "All {} arms-plant slots in {} are assigned.",
             slots, district
@@ -265,6 +302,10 @@ pub fn start_line(
     }
     let id = w.manufacturing.next_id.max(1);
     w.manufacturing.next_id = id.saturating_add(1);
+    if used_slots(w,nation,district) >= plant_slots(w,district) as usize
+        && available_dock(w,nation,district,kit) {
+        w.manufacturing.shipyard_lines.insert(id);
+    }
     w.manufacturing.lines.push(ManufacturingLine {
         id,
         nation,
@@ -338,6 +379,7 @@ pub fn stop_line(w: &mut WorldState, nation: NationId, line: u32) -> Result<(), 
         ));
     }
     let removed = w.manufacturing.lines.remove(index);
+    w.manufacturing.shipyard_lines.remove(&line);
     let name = arsenal::index_of(&removed.kit)
         .and_then(|i| DECK.get(i as usize))
         .map_or(removed.kit.as_str(), |def| def.name);
@@ -453,6 +495,13 @@ pub fn tick_line_shortfalls(w: &WorldState, line_id: u32) -> [f64; 12] {
     shortfalls_for_plans(w, line.nation, line_id, tick_allocations(w, line.nation))
 }
 
+fn operation_ceiling(w: &WorldState, line_id: u32) -> f64 {
+    if !w.manufacturing.shipyard_lines.contains(&line_id) { return 1.0; }
+    w.manufacturing.lines.iter().find(|line|line.id==line_id)
+        .map(|line| crate::industry_operations::shipyard_operating_fraction(w, &line.district))
+        .unwrap_or(0.0)
+}
+
 fn shortfalls_for_plans(w: &WorldState, nation: NationId, line_id: u32, plans: Vec<LinePlan>) -> [f64; 12] {
     if !w.rules.resource_gates {
         return [0.0; 12];
@@ -471,7 +520,7 @@ fn shortfalls_for_plans(w: &WorldState, nation: NationId, line_id: u32, plans: V
         if plan.line == line_id {
             return shortfalls;
         }
-        let mut throughput: f64 = 1.0;
+        let mut throughput = operation_ceiling(w, plan.line);
         for commodity in ALL {
             let want = plan.required[commodity.idx()];
             if want > 1e-12 {
@@ -546,11 +595,18 @@ pub(crate) fn settle_nation(w: &mut WorldState, nation: NationId) {
             continue;
         }
 
-        let mut throughput = 1.0;
+        let mut throughput = operation_ceiling(w, opening_line.id);
+        if throughput <= 1e-12 {
+            banked += plan.budget_bn;
+            let line = w.manufacturing.lines.iter_mut().find(|line|line.id==plan.line).unwrap();
+            line.status = LineStatus::Paused;
+            line.reason = Some("PAUSED: the naval dock needs qualified workers, electricity and operating funds.".into());
+            continue;
+        }
         let mut required = plan.required;
         let mut limiting_input = None;
         if w.rules.resource_gates {
-            throughput = resources::bundle_throughput(w, nation, &plan.required);
+            throughput = throughput.min(resources::bundle_throughput(w, nation, &plan.required));
             limiting_input = resources::limiting_bundle_input(w, nation, &plan.required);
             if throughput <= 1e-12 {
                 banked += plan.budget_bn;
@@ -614,7 +670,7 @@ pub(crate) fn settle_nation(w: &mut WorldState, nation: NationId) {
         };
         line.reason = if throughput + 1e-12 < 1.0 {
             limiting_input.map_or_else(
-                || Some(format!("SLOWED: physical inputs limit this line to {:.0}% throughput today.", throughput * 100.0)),
+                || Some(format!("SLOWED: dock readiness or physical inputs limit this line to {:.0}% throughput today.", throughput * 100.0)),
                 |(commodity, want, have)| Some(format!(
                     "SLOWED: {} limits this line to {:.0}% throughput; full speed needs {:.2}, with {:.2} available before production.",
                     commodity.name(), throughput * 100.0, want, have

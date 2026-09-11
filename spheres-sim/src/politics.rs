@@ -157,7 +157,8 @@ pub fn tick(w: &mut WorldState) {
         // An enrolled opponent uses priced department/tax commands through
         // economic_ai. Direct aggregate writes would disagree with its plan
         // and silently bypass political costs and shared project authority.
-        if Some(*id) == w.player || crate::programs::enrolled(w, *id) {
+        if Some(*id) == w.player || crate::programs::enrolled(w, *id)
+            || crate::fiscal_recovery::enabled(w) {
             continue;
         }
         let n = w.nation_mut(*id);
@@ -486,6 +487,7 @@ fn dissolve_ussr(w: &mut WorldState) {
         population: pop * 0.51,
         tfp_trend: 0.008,
         pop_growth_offset: pop_off,
+        population_outcomes: None,
         inflation: 0.90, // transition price liberalization
         interest_rate: 0.20,
         tax_rate: 0.28,
@@ -553,6 +555,7 @@ fn dissolve_ussr(w: &mut WorldState) {
         population: pop * 0.18,
         tfp_trend: 0.002,
         pop_growth_offset: pop_off,
+        population_outcomes: None,
         inflation: 1.10,
         interest_rate: 0.18,
         tax_rate: 0.30,
@@ -808,6 +811,7 @@ fn dissolve_ussr(w: &mut WorldState) {
             population: pop * r.pop,
             tfp_trend: r.tfp,
             pop_growth_offset: pop_off,
+        population_outcomes: None,
             inflation: r.infl,
             interest_rate: r.rate,
             tax_rate: 0.30,
@@ -1240,6 +1244,7 @@ fn dissolve_yugoslavia(w: &mut WorldState) {
             population: pop * p,
             tfp_trend: tfp,
             pop_growth_offset: pop_off,
+        population_outcomes: None,
             inflation: infl,
             interest_rate: 0.25,
             tax_rate: 0.33,

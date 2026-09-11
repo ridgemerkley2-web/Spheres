@@ -404,8 +404,8 @@ fn current_output(w: &WorldState, order: &Order) -> f64 {
 }
 fn remaining_power(w: &WorldState, nation: NationId, district: &str) -> (f64, f64) {
     let day = clock::absolute_day(w);
-    let mut national = industry::power_capacity(w, nation);
-    let mut local = crate::industrial_modules::effective_capacity(w, district, K::PowerGrid) * 5.0;
+    let mut national = industry::power_capacity(w, nation) - crate::industry_operations::support_power_used(w, nation);
+    let mut local = crate::industry_operations::grid_capacity(w, district) - crate::industry_operations::support_grid_used(w, district);
     if w.production.industry.last_day == Some(day) {
         for op in &w.production.industry.operations {
             if w.districts.get(&op.district) == Some(&nation) {
@@ -464,8 +464,12 @@ fn feasible(
             "Energy systems has insufficient operating authority.",
         ),
     ];
-    let mut output = target;
+    let staffing = if crate::industry_operations::enabled(w) {
+        crate::industry_operations::district_worker_fraction(w, district, K::ProcessingPlant)
+    } else { 1.0 };
+    let mut output = target * staffing;
     let mut blockers = Vec::new();
+    if staffing + 1e-12 < 1.0 { blockers.push("Qualified workers limit this operating contract.".into()); }
     for (limit, message) in limits {
         output = output.min(limit);
         if limit + 1e-12 < target {
@@ -771,9 +775,9 @@ pub(crate) fn operate(
         } else {
             let available_power = power
                 .entry(o.nation)
-                .or_insert_with(|| industry::power_capacity(w, o.nation));
+                .or_insert_with(|| (industry::power_capacity(w, o.nation) - crate::industry_operations::support_power_used(w, o.nation)).max(0.0));
             let grid = grids.entry(o.district.clone()).or_insert_with(|| {
-                crate::industrial_modules::effective_capacity(w, &o.district, K::PowerGrid) * 5.0
+                (crate::industry_operations::grid_capacity(w, &o.district) - crate::industry_operations::support_grid_used(w, &o.district)).max(0.0)
             });
             let target = o
                 .reserved_daily

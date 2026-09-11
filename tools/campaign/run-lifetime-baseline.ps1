@@ -12,7 +12,8 @@ param(
     [Parameter(Mandatory)][ValidateNotNullOrEmpty()][string]$TestBinary,
     [Parameter(Mandatory)][ValidateNotNullOrEmpty()][string]$FixtureRoot,
     [Parameter(Mandatory)][ValidateNotNullOrEmpty()][string]$EvidenceRoot,
-    [Parameter(Mandatory)][ValidateNotNullOrEmpty()][string]$CandidateRevision
+    [Parameter(Mandatory)][ValidateNotNullOrEmpty()][string]$CandidateRevision,
+    [switch]$ConnectedEconomy
 )
 
 Set-StrictMode -Version Latest
@@ -121,6 +122,10 @@ try {
     $start.Environment['SPHERES_PROFILE_INPUT'] = $inputPath
     $start.Environment['SPHERES_PROFILE_OUT'] = $result.profile_json
     $result.child_profile_environment = [ordered]@{ SPHERES_PROFILE_INPUT = $inputPath; SPHERES_PROFILE_OUT = $result.profile_json }
+    if ($ConnectedEconomy) {
+        $start.Environment['SPHERES_PROFILE_CONNECTED_ECONOMY'] = '1'
+        $result.child_profile_environment['SPHERES_PROFILE_CONNECTED_ECONOMY'] = '1'
+    }
     $process = [Diagnostics.Process]::new()
     $process.StartInfo = $start
     $watch.Start()
