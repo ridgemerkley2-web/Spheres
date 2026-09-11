@@ -134,10 +134,11 @@ async function campaigns(page){
   const write=(name,value)=>fs.writeFileSync(path.join(run,name),JSON.stringify(value,null,2));
   const screenshot=async(name,locator)=>{if(locator)await locator.scrollIntoViewIfNeeded();await page.screenshot({path:path.join(run,name+'.png')});evidence.screenshots.push(name+'.png');};
   try{
+    const startupDeadline=Date.now()+20000;
     for(let attempt=0;;attempt++){
       if(launchError)throw launchError;if(server.exitCode!==null)throw Error('Disposable server exited with '+server.exitCode);
-      try{if((await fetch(url+'/api/state')).ok)break;}catch(_){}
-      if(attempt>=200)throw Error('Disposable server failed to start');await new Promise(resolve=>setTimeout(resolve,100));
+      try{const response=await fetch(url+'/api/build',{headers:{Connection:'close'},signal:AbortSignal.timeout(Math.max(1,Math.min(2000,startupDeadline-Date.now())))});await response.arrayBuffer();if(response.ok)break;}catch(_){}
+      if(attempt>=200||Date.now()>=startupDeadline)throw Error('Disposable server failed to start');await new Promise(resolve=>setTimeout(resolve,100));
     }
     browser=await chromium.launch({headless:true,...(process.env.SPHERES_BROWSER_CHANNEL?{channel:process.env.SPHERES_BROWSER_CHANNEL}:{})});
     evidence.browser_version=browser.version();

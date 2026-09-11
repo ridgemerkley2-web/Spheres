@@ -1,0 +1,16 @@
+{
+  "passed": false,
+  "nation": "Tonga",
+  "run": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\tonga-NPEta5",
+  "url": "http://127.0.0.1:65475",
+  "actions": [],
+  "screenshots": [],
+  "errors": [],
+  "advance_count": 0,
+  "commands": [],
+  "observations": [],
+  "fixture": "Fresh campaign through the normal nation selector; no seeded funds, materials, workforce, completed capacity or synthetic responses",
+  "browser_version": "152.0.7977.83",
+  "failed_stage": "launch",
+  "failure": "apiRequestContext.get: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - → GET http://127.0.0.1:65475/api/build\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n    at json (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-integrated.cjs:6:71)\n    at Object.verifyBuild (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-integrated.cjs:10:91)\n    at journey (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-construction.cjs:124:37)\n    at async C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-construction.cjs:230:156"
+}

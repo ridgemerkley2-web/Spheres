@@ -1,6 +1,6 @@
 # Spheres — pathway to a certified campaign
 
-**Approved pathway · 10 September 2026 · S01–S06 complete; execution stopped after S06.**
+**Approved pathway · 10 September 2026 · S01–S07 complete; execution stopped after S07.**
 
 Source baseline: `5f7f355502f17bd6bd8f0383a2d14f0024fa7884`,
 `codex/resume-spheres`. This plan follows the
@@ -60,7 +60,7 @@ deliverables as finished.
 | Marker | Meaning |
 | --- | --- |
 | `S00` | Complete: user approved beginning S01 on 10 September 2026. |
-| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S06 are complete; S07–S30 remain planned. Execution is stopped after S06. |
+| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S07 are complete; S08–S30 remain planned. Execution is stopped after S07. |
 | `C01`–`C07` | Character-production workstreams, with uniquely numbered country batches below. |
 | `E01`–`E06` | Retained expansion work after the first certified release. |
 | `G0`–`G5` | Evidence gates joining groups of sessions. |
@@ -436,13 +436,15 @@ Evidence: [S06 money, recovery and verification](campaign-certification/S06/READ
 
 #### S07 — Finish construction, jobs and operating outcomes
 
-**Status:** In progress · **Requires:** S06
+**Status:** Complete · **Requires:** S06
 
 **Completion marker:** Build → staff → operate → understand the province/national effect through one connected flow.
 
-- [ ] Preview, prioritize, fund, pause, cancel and finish both ordinary and small-country projects through actual controls.
-- [ ] Construction uses financial funding; operating plants still disclose their real inputs, workforce and support needs.
-- [ ] Staffing and realized output drive explained local/national effects without double-counting people or GDP; actual charges match the reviewed rules.
+- [x] Preview, prioritize, fund, pause, cancel and finish both ordinary and small-country projects through actual controls.
+- [x] Construction uses financial funding; operating plants still disclose their real inputs, workforce and support needs.
+- [x] Staffing and realized output drive explained local/national effects without double-counting people or GDP; actual charges match the reviewed rules.
+
+Evidence: [S07 construction, staffing and operating outcomes](campaign-certification/S07/README.md).
 
 <a id="s08"></a>
 
@@ -896,4 +898,4 @@ Evidence: [S06 money, recovery and verification](campaign-certification/S06/READ
 
 ## Authorized execution boundary
 
-S04 and S05 are complete on the recorded runtime and evidence. G1 decision: **earned**. The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work. Execution stopped after S05 as requested. On 11 September 2026, “Next” authorized S06. S06 is complete on its recorded runtime and evidence; execution has stopped after S06. S07 and later sessions still require a new instruction. No later campaign, content or release certificate is awarded.
+S04 and S05 are complete on the recorded runtime and evidence. G1 decision: **earned**. The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work. Execution stopped after S05 as requested. On 11 September 2026, “Next” authorized S06. S06 is complete on its recorded runtime and evidence. On 11 September 2026, “Next” authorized S07. S07 is now complete on its recorded runtime and evidence; execution has stopped after S07. S08 and later sessions still require a new instruction. No later campaign, content or release certificate is awarded.

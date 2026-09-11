@@ -1,0 +1,249 @@
+{
+  "as_of_day": 635,
+  "daily": true,
+  "date": "28 Sep 1991",
+  "enabled": true,
+  "goods": [
+    {
+      "capacity": 250,
+      "good": "intermediates",
+      "name": "Intermediate packs",
+      "stock": 0
+    },
+    {
+      "capacity": 250,
+      "good": "capital_goods",
+      "name": "Capital-goods packs",
+      "stock": 0
+    },
+    {
+      "capacity": 250,
+      "good": "advanced_components",
+      "name": "Advanced components",
+      "stock": 0
+    }
+  ],
+  "name": "Tonga",
+  "nation": "Tonga",
+  "note": "Completed facilities operate automatically when their inputs, power and operating funds are available. Output and spending are dated receipts; goods are inventory, not treasury cash. Support upgrades provide their stated capabilities and are not separate pack producers. Actual value added is recorded in the province economy, without a second completion or sales bonus. Construction funding and operating purchases remain distinct uses of the annual capital budget.",
+  "power": {
+    "capacity_daily": 0.3416545291417159,
+    "note": "Sum of displayed facility power receipts on the stated date only. Excludes earlier receipts and activities without saved power use; this is not total national consumption.",
+    "receipt_day": 634,
+    "receipt_label": "27 Sep 1991",
+    "recorded_facility_count": 1,
+    "used_daily": 0
+  },
+  "queue": [],
+  "session_id": "26908-1789135750736514000-2",
+  "settlement": {
+    "day": 634,
+    "label": "27 Sep 1991"
+  },
+  "sites": [
+    {
+      "actions": [
+        {
+          "action": "province",
+          "district": "TO-01",
+          "label": "Inspect province"
+        },
+        {
+          "action": "budget",
+          "department": 2,
+          "label": "Review facility operating funds",
+          "ministry": "industry"
+        },
+        {
+          "action": "budget",
+          "department": 1,
+          "label": "Review energy funding",
+          "ministry": "industry"
+        },
+        {
+          "action": "resources",
+          "label": "Inspect raw input supplies"
+        },
+        {
+          "action": "construction",
+          "district": "TO-01",
+          "label": "Review province construction"
+        }
+      ],
+      "attention": true,
+      "capacity_micros": 34154,
+      "cash_spent_daily_bn": 0,
+      "district": "TO-01",
+      "district_name": "Eua",
+      "effect": "Paid fractional processing capacity, with matching power and operating inputs. No stock is granted.",
+      "has_receipt": true,
+      "id": "site:TO-01:starter_industry",
+      "kind": "starter_industry",
+      "level": 0,
+      "lifecycle": {
+        "effects": [],
+        "id": "site:TO-01:starter_industry",
+        "installed_capacity": 0.034154,
+        "installed_label": "0.034154 installed level equivalents",
+        "installed_note": "Installed capacity includes all completed additions at this site. Older saves do not retain each building's completion date or paid contract history; none is reconstructed. Finishing construction is not proof of staffed output or a second GDP award.",
+        "operation": {
+          "actual_operating_capacity": null,
+          "actual_utilization": null,
+          "assigned_workers": 133.03945838761507,
+          "cash_spent_bn": 0,
+          "date": "1991-09-27",
+          "day": 634,
+          "installed_capacity": 0.034154,
+          "label": "Recorded province operation",
+          "note": "Actual output, worker use and operating charges on the recorded date. Current capacity or shortages do not rewrite this receipt. Charges belong to the existing fiscal settlement, not a second bill.",
+          "output": 0,
+          "output_unit": "intermediate packs",
+          "owner_verified": true,
+          "power_used_daily": 0,
+          "reason": "Missing bauxite for the complete operating bundle.",
+          "required_workers": 136.61599999999999,
+          "status": "paused",
+          "used_workers": 0,
+          "value_added_bn": null
+        },
+        "outcome_action": {
+          "action": "industry",
+          "district": "TO-01",
+          "kind": "starter_industry",
+          "label": "Inspect Starter Industry outcome"
+        },
+        "readiness": {
+          "fraction": 0,
+          "label": "Blocked for current work",
+          "note": "Operating inputs or storage limit output; replenish raw stocks and intermediate packs, or use finished inventory. This is current readiness; only a dated receipt proves operation.",
+          "requirements": [
+            {
+              "available": 0.9403272469491869,
+              "id": "workers",
+              "label": "Qualified staffing",
+              "note": "Coverage of the required qualifications. Assigned people are shared with other employers; these are not newly created workers.",
+              "ready": false,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 1,
+              "id": "power",
+              "label": "Power and local grid",
+              "note": "Current utility support; actual dispatch is shared with other operating facilities.",
+              "ready": true,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 0,
+              "id": "inputs",
+              "label": "Operating inputs and storage",
+              "note": "Raw materials, intermediate goods and finished-goods room required for operation. They are not construction requirements.",
+              "ready": false,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 1,
+              "id": "funding",
+              "label": "Operating department funds",
+              "note": "Conditional current operating authorization. Availability is neither cash already spent nor a payment guarantee.",
+              "ready": true,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 0,
+              "id": "raw_bauxite",
+              "label": "bauxite operating input",
+              "note": "Required for one full operating day at installed capacity; available is shared national inventory, not a daily delivery or a reservation. Actual operation may be lower. Construction does not require this input.",
+              "ready": false,
+              "required": 0.0068308,
+              "unit": "t"
+            },
+            {
+              "available": 0,
+              "id": "raw_coal",
+              "label": "coal operating input",
+              "note": "Required for one full operating day at installed capacity; available is shared national inventory, not a daily delivery or a reservation. Actual operation may be lower. Construction does not require this input.",
+              "ready": false,
+              "required": 0.00922158,
+              "unit": "kt"
+            },
+            {
+              "available": 0,
+              "id": "raw_iron",
+              "label": "iron operating input",
+              "note": "Required for one full operating day at installed capacity; available is shared national inventory, not a daily delivery or a reservation. Actual operation may be lower. Construction does not require this input.",
+              "ready": false,
+              "required": 0.034154,
+              "unit": "t"
+            },
+            {
+              "available": 0.3416545291417159,
+              "id": "national_power",
+              "label": "National generating support",
+              "note": "Required per full installed operating day, compared with total modeled support. Capacity is shared with other consumers; this does not reserve power or report historical dispatch.",
+              "ready": true,
+              "required": 0.034154,
+              "unit": "power units/day"
+            },
+            {
+              "available": 0.17078349775644971,
+              "id": "local_grid",
+              "label": "Local grid support",
+              "note": "Required per full installed operating day, compared with total modeled support. Capacity is shared with other consumers; this does not reserve power or report historical dispatch.",
+              "ready": true,
+              "required": 0.034154,
+              "unit": "power units/day"
+            },
+            {
+              "available": 0.0000045590011570878786,
+              "id": "operating_authority",
+              "label": "Facility operating authority",
+              "note": "Rated charge for one full installed operating day at current contractor terms. Available is current department spending authority, not Treasury cash or a payment already made; actual work may be lower.",
+              "ready": true,
+              "required": 3.4153999999999997e-7,
+              "unit": "$bn"
+            },
+            {
+              "available": 0.0000045590011570878786,
+              "id": "energy_authority",
+              "label": "Generating service authority",
+              "note": "Rated charge for one full installed operating day at current contractor terms. Available is current department spending authority, not Treasury cash or a payment already made; actual work may be lower.",
+              "ready": true,
+              "required": 6.830799999999999e-8,
+              "unit": "$bn"
+            }
+          ]
+        },
+        "staffing": {
+          "assigned": 133.03945838761507,
+          "available": 128.4637471692101,
+          "label": "Current workforce and recorded use",
+          "matched_date": "1991-09-27",
+          "matched_day": 634,
+          "note": "Assigned workers come from the population ledger's dated workforce match. Qualified staffing coverage is current feasible coverage of installed job requirements; workers used belong to the separate operating receipt date.",
+          "required": 136.61599999999999,
+          "used": 0
+        }
+      },
+      "name": "Starter Industry",
+      "output_daily": 0,
+      "output_unit": "intermediate packs",
+      "power_used_daily": 0,
+      "productive": true,
+      "reason": "Missing bauxite for the complete operating bundle.",
+      "receipt_day": 634,
+      "receipt_label": "27 Sep 1991",
+      "research": null,
+      "status": "paused"
+    }
+  ],
+  "summary": {
+    "attention_count": 1,
+    "facility_count": 1,
+    "queued_count": 0
+  }
+}

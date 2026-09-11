@@ -1,0 +1,99 @@
+DIAGNOSTIC {"pid":50784,"url":"http://127.0.0.1:57782","dir":"C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-diagnosis-QMJ9Yu"}
+{
+  "started": "2026-09-11T14:00:33.343Z",
+  "source_revision": "041007fbfda48cc027d0c24a1189705a1dcaa89b",
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+  "binary_sha256": "e845d3179f72e1ec49ae68197b48cad94dcfd0648ab5f358e0e9d28115d6d3c7",
+  "node": "v24.12.0",
+  "run": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-diagnosis-QMJ9Yu",
+  "scope": "GET-only fresh disposable startup; no country selection, commands, advance, load or save; no original campaign inputs",
+  "url": "http://127.0.0.1:57782",
+  "pid": 50784,
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1789133708,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "041007fbfda4",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-diagnosis-QMJ9Yu",
+    "version": "0.6.0"
+  },
+  "unconsumed_state": {
+    "status": 200,
+    "content_length": null,
+    "body_used": false
+  },
+  "build_while_state_unread": {
+    "ok": false,
+    "error": "timeout 2000ms",
+    "ms": 2006.5117000000002
+  },
+  "state_consumed": {
+    "bytes": 2097914,
+    "ms": 7.889300000000276
+  },
+  "build_after_state_consumed": {
+    "ok": true,
+    "status": 200,
+    "bytes": 481,
+    "ms": 1.915299999999661
+  },
+  "drained_readiness_repeats": [
+    {
+      "status": 200,
+      "bytes": 481,
+      "next_build": {
+        "ok": true,
+        "status": 200,
+        "bytes": 481,
+        "ms": 0.8712999999997919
+      }
+    },
+    {
+      "status": 200,
+      "bytes": 481,
+      "next_build": {
+        "ok": true,
+        "status": 200,
+        "bytes": 481,
+        "ms": 0.8018999999999323
+      }
+    },
+    {
+      "status": 200,
+      "bytes": 481,
+      "next_build": {
+        "ok": true,
+        "status": 200,
+        "bytes": 481,
+        "ms": 0.7415999999998348
+      }
+    },
+    {
+      "status": 200,
+      "bytes": 481,
+      "next_build": {
+        "ok": true,
+        "status": 200,
+        "bytes": 481,
+        "ms": 0.7436999999999898
+      }
+    },
+    {
+      "status": 200,
+      "bytes": 481,
+      "next_build": {
+        "ok": true,
+        "status": 200,
+        "bytes": 481,
+        "ms": 0.5407000000000153
+      }
+    }
+  ],
+  "exit": {
+    "code": null,
+    "signal": "SIGTERM"
+  },
+  "ended": "2026-09-11T14:00:35.800Z",
+  "server_stopped": true
+}

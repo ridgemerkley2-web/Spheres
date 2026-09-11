@@ -1,0 +1,1487 @@
+{
+  "format": "spheres-s07-evidence-inventory",
+  "version": 1,
+  "session": "S07",
+  "status": "evidence_collected_only",
+  "runtime_revision": "041007fbfda48cc027d0c24a1189705a1dcaa89b",
+  "collected_utc": "2026-09-11T14:15:10.522585+00:00",
+  "scope": "Evidence collection is not a completion decision, G2 award or CP1 certificate.",
+  "qualification": {
+    "windows_native": {
+      "passed": 1514,
+      "failed": 0,
+      "ignored": 75,
+      "targets": 63
+    },
+    "linux_native": {
+      "passed": 1514,
+      "failed": 0,
+      "ignored": 75,
+      "targets": 63
+    },
+    "windows_node_proof": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-final-node.json",
+    "linux_status": "passed",
+    "windows_external_checks": 3,
+    "performance": {
+      "candidate": "041007fbfda48cc027d0c24a1189705a1dcaa89b",
+      "evaluated_utc": "2026-09-11T14:14:26.780075+00:00",
+      "rows": [
+        {
+          "scenario": "idle_human",
+          "age": 0,
+          "sim_p95_ms": 39.059799999999996,
+          "whole_p95_ms": 110.7607,
+          "whole_max_ms": 116.6498,
+          "passed": true
+        },
+        {
+          "scenario": "idle_human",
+          "age": 10,
+          "sim_p95_ms": 139.3661,
+          "whole_p95_ms": 246.518,
+          "whole_max_ms": 249.2649,
+          "passed": true
+        },
+        {
+          "scenario": "idle_human",
+          "age": 30,
+          "sim_p95_ms": 194.4561,
+          "whole_p95_ms": 298.6434,
+          "whole_max_ms": 326.8114,
+          "passed": true
+        },
+        {
+          "scenario": "industry_and_war",
+          "age": 0,
+          "sim_p95_ms": 89.9097,
+          "whole_p95_ms": 153.0993,
+          "whole_max_ms": 300.678,
+          "passed": true
+        },
+        {
+          "scenario": "industry_and_war",
+          "age": 10,
+          "sim_p95_ms": 218.3306,
+          "whole_p95_ms": 333.10459999999995,
+          "whole_max_ms": 433.2695,
+          "passed": true
+        },
+        {
+          "scenario": "industry_and_war",
+          "age": 30,
+          "sim_p95_ms": 251.44230000000002,
+          "whole_p95_ms": 346.0141,
+          "whole_max_ms": 487.88160000000005,
+          "passed": true
+        }
+      ],
+      "sampled_private_bytes": 449568768,
+      "memory_passed": true,
+      "runner_passed": true,
+      "passed": true
+    }
+  },
+  "browser": {
+    "France": {
+      "result": "evidence/browser/france/result.json",
+      "original_result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\result.json",
+      "result_sha256": "0d08200e67d5f47778efd58c8ac2bd7a39cae0f162e49be4a32d5d8ebac78386",
+      "binary_sha256": "e845d3179f72e1ec49ae68197b48cad94dcfd0648ab5f358e0e9d28115d6d3c7",
+      "screenshots": [
+        "funded-queue.png",
+        "paused-queue.png",
+        "completed-construction.png",
+        "operating-desktop.png",
+        "requirements-desktop.png",
+        "operating-mobile.png",
+        "requirements-mobile.png"
+      ]
+    },
+    "Tonga": {
+      "result": "evidence/browser/tonga/result.json",
+      "original_result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\result.json",
+      "result_sha256": "d823671824716099e5c4fcf080125f52cd71f75edd2ce8f6ee53be9bb3616ded",
+      "binary_sha256": "e845d3179f72e1ec49ae68197b48cad94dcfd0648ab5f358e0e9d28115d6d3c7",
+      "screenshots": [
+        "funded-queue.png",
+        "paused-queue.png",
+        "completed-construction.png",
+        "operating-desktop.png",
+        "requirements-desktop.png",
+        "operating-mobile.png",
+        "requirements-mobile.png"
+      ]
+    }
+  },
+  "external_references": [
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\saves\\auto-1.json",
+      "bytes": 30419023,
+      "sha256": "a11caec6fea1dc6b898cd0b1007f707d7234c6f1ef264c099834e9f99488faaa",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\saves\\auto-1.json.bak",
+      "bytes": 26186397,
+      "sha256": "65b3e07f525b0c1710fb447db1babdb62824174f676d67e750fd447a8769217f",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\saves\\auto-2.json",
+      "bytes": 31900201,
+      "sha256": "c00efca41ceb066d3449616fb990d0d79b3388166c9a05e8285e9075e957d78a",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\saves\\auto-2.json.bak",
+      "bytes": 27705132,
+      "sha256": "fb7e6d75963f3946b78f73dff020f717885189f5437b0c264a327a30bbed33e7",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\saves\\auto-3.json",
+      "bytes": 33212593,
+      "sha256": "deae89e8c3dc6c8ce2e3580317f08ff907522ce5dbadd628c2355756c8a68654",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\saves\\auto-3.json.bak",
+      "bytes": 29088450,
+      "sha256": "783743647333e5baac66892a597a34016c81ffe26dabc18a3419a76ee2f640c6",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\saves\\s07-france-complete.json",
+      "bytes": 34426888,
+      "sha256": "460e58f084ef52fc58152529f00b34843fc837386722f43d657b54c40ce91095",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\saves\\s07-france-paid.json",
+      "bytes": 14816618,
+      "sha256": "b57d40a6462871b483f284fd054f714a59f2390888687cbc0fb8e97662629415",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\saves\\auto-1.json",
+      "bytes": 42510998,
+      "sha256": "ff2df4552b71008e2e784b464290e49df67e5e3b8821cd2fb05c35e9f96bc218",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\saves\\auto-1.json.bak",
+      "bytes": 38493661,
+      "sha256": "6e0cb2b089e01dc7d4d81471598deeffde17661e15aa0afdd334363f81ce5006",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\saves\\auto-2.json",
+      "bytes": 43738929,
+      "sha256": "3c12c53588e8b9f80477c3d06e2b2659e33583ef8731779142c34965ca2a269b",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\saves\\auto-2.json.bak",
+      "bytes": 39901094,
+      "sha256": "02e0b730dbe593e1510b532b2ac5a95608a48008c17738b90e0d0c208dea0557",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\saves\\auto-3.json",
+      "bytes": 44576291,
+      "sha256": "73dcd1ad96b1c3e811a0e5403883318201ddcafe73c95fe0e0475d7032f88c3a",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\saves\\auto-3.json.bak",
+      "bytes": 41220928,
+      "sha256": "761c26f80e7cbfe7fedec3ca33b688616ba6219012d61c46e7bc5320c7f0241d",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\saves\\s07-tonga-complete.json",
+      "bytes": 46586875,
+      "sha256": "df99fb0d65a7e02a509d42c4530e385ff4684e0d5df801d8c9e6378df36ff438",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\saves\\s07-tonga-paid.json",
+      "bytes": 14813962,
+      "sha256": "0df7c80e87c712c34b28f56efeef30e687cc45f18f2a97d1addf82febf05920f",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-general-browser\\campaign-L9jmGH\\saves\\ci-smoke.json",
+      "bytes": 13149852,
+      "sha256": "3e95c16b482dcab14d7c47a1d85a5306c78d8ba344cbe15e96c0632fa1f5b20f",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-general-browser\\campaign-L9jmGH\\saves\\s05-preview-after.json",
+      "bytes": 13148723,
+      "sha256": "41598bdd4756cd982e7f093e601c8ff72e596a48f0f9f857dd0095865d6d510c",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-general-browser\\campaign-L9jmGH\\saves\\s05-preview-before.json",
+      "bytes": 13148723,
+      "sha256": "e0b726e8c470893b3c35b193411ac8b64a229697b103e68d257f60701c1e9b9f",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-startup-harness\\tonga-candidate-1-construction\\tonga-luNj8r\\saves\\auto-1.json",
+      "bytes": 49209314,
+      "sha256": "152be0bf959764e621b9b35b4b96bd1d88af7ee4c68afbdab0800b1a96f39745",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-startup-harness\\tonga-candidate-1-construction\\tonga-luNj8r\\saves\\auto-1.json.bak",
+      "bytes": 45872549,
+      "sha256": "a59cd1f34a1ba5d31e014d08af9a4e0cf640327443aa6601df5e008580658357",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-startup-harness\\tonga-candidate-1-construction\\tonga-luNj8r\\saves\\auto-2.json",
+      "bytes": 50464397,
+      "sha256": "706d4d31a71e9e197443d66d79fddfffe2c01140dfd437ade2afaf489bbf485a",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-startup-harness\\tonga-candidate-1-construction\\tonga-luNj8r\\saves\\auto-2.json.bak",
+      "bytes": 46838025,
+      "sha256": "703d94c642ec03a06205e09860c3956fc795506f7070a181b994de3818e4ff18",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-startup-harness\\tonga-candidate-1-construction\\tonga-luNj8r\\saves\\auto-3.json",
+      "bytes": 51726084,
+      "sha256": "dd1affdffdc73152fd9cb5f63121501309b7edc40f5bc57f47998cb308b33aa3",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-startup-harness\\tonga-candidate-1-construction\\tonga-luNj8r\\saves\\auto-3.json.bak",
+      "bytes": 48269421,
+      "sha256": "6e738827c7e5e9dcaf536375b03a5673f709ef30e72c8b84ad9827ee366a37a3",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-startup-harness\\tonga-candidate-1-construction\\tonga-luNj8r\\saves\\s07-tonga-paid.json",
+      "bytes": 14813962,
+      "sha256": "adf792cddff25a0cc87120c69192f439899322ea6b30357a93e88839133aabe8",
+      "reason": "Original campaign/archive/binary or unsupported artifact; not copied"
+    },
+    {
+      "kind": "server",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+      "bytes": 353971901,
+      "sha256": "e845d3179f72e1ec49ae68197b48cad94dcfd0648ab5f358e0e9d28115d6d3c7",
+      "reason": "Qualified executable; hash-only provenance"
+    },
+    {
+      "kind": "windows_web_tests",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+      "bytes": 345586560,
+      "sha256": "f9495c660ba1204413d7962d0a19b587c6d5f293bc77cd7137672303f9195d85",
+      "reason": "Qualified executable; hash-only provenance"
+    },
+    {
+      "path": "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-0c882886cd9a3582",
+      "bytes": 342622240,
+      "sha256": "b4d65db8bd55455715f2eb4f6161ee6d0ed09501b1eda3bedd7b6537054f1bc0",
+      "sha256_after": "b4d65db8bd55455715f2eb4f6161ee6d0ed09501b1eda3bedd7b6537054f1bc0",
+      "kind": "linux_web_tests",
+      "reason": "Linux before/after captured hashes; executable not copied or read from Windows"
+    }
+  ],
+  "evidence_files": [
+    {
+      "file": "evidence/additional/accept-s07-performance.py",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\accept-s07-performance.py",
+      "bytes": 1821,
+      "sha256": "ef06060565e1e73341a9bc20473354c3806847dfeb693de8afb0fdcd0db685ed"
+    },
+    {
+      "file": "evidence/additional/audit-s07-index.py",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\audit-s07-index.py",
+      "bytes": 1092,
+      "sha256": "e2fd50b9d9bca69857356eb2f0173a9692b63f4a159e132f1c71e666054e3848"
+    },
+    {
+      "file": "evidence/additional/audit-s07-preservation.py",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\audit-s07-preservation.py",
+      "bytes": 1675,
+      "sha256": "3a6065efcc374110d6ba8fe4a3b40d7d50775c58f29398f9f02f9112262c687a"
+    },
+    {
+      "file": "evidence/additional/ci-money.cjs",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-startup-harness\\ci-money.cjs",
+      "bytes": 24154,
+      "sha256": "5e50dc0567b26237ca672ccb202ad34c773c3b124aa94b983b58e69818060581"
+    },
+    {
+      "file": "evidence/additional/finalize-s07-docs.py",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\finalize-s07-docs.py",
+      "bytes": 27269,
+      "sha256": "b5475b4b6503239d3af883c3991b60798acbceacfd9f297df04e7e9431fa32f7"
+    },
+    {
+      "file": "evidence/additional/launch-s07-review.py",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\launch-s07-review.py",
+      "bytes": 2441,
+      "sha256": "5af5e795c80e615ccf574cd382a2b238e3eb3aeb5dffeee212a0b24ab9f5fe83"
+    },
+    {
+      "file": "evidence/additional/record-s07-harness.py",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\record-s07-harness.py",
+      "bytes": 2653,
+      "sha256": "b72e9c12ad1339f06ba83775416b46d1df4c3e68b1eb57130cecc866d220a5d4"
+    },
+    {
+      "file": "evidence/browser/france/completed-construction.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\completed-construction.json",
+      "bytes": 46289,
+      "sha256": "8d5a0f5f858c83f599b9d2e5dbc13ba8c8e0aeadfeefe2e3fe2876553cdf9cdd"
+    },
+    {
+      "file": "evidence/browser/france/completed-construction.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\completed-construction.png",
+      "bytes": 1131756,
+      "sha256": "080da64c2c7a7e35c9da577a54adc4af9894bf9c8d6662fcc7b400119f434d0a"
+    },
+    {
+      "file": "evidence/browser/france/completed-industry.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\completed-industry.json",
+      "bytes": 19852,
+      "sha256": "a52eb10468119663fcbcab3c6fcc9175133212ad3d431e47fc52c83e3bda3311"
+    },
+    {
+      "file": "evidence/browser/france/funded-queue.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\funded-queue.png",
+      "bytes": 682705,
+      "sha256": "b66543df36a2ba583998558b16daeef4cd93c001ecf91a6fb4c27cab70cdfede"
+    },
+    {
+      "file": "evidence/browser/france/initial-construction.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\initial-construction.json",
+      "bytes": 45712,
+      "sha256": "9693042f464f3f92639751d3adf8727cfdae54e9a85d3aa7e6b6d13bcccee31a"
+    },
+    {
+      "file": "evidence/browser/france/operating-desktop.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\operating-desktop.png",
+      "bytes": 884880,
+      "sha256": "3d331936fe93e3034a626f5bb56d097f6b23c32b2327b07d3a2b840006f412c4"
+    },
+    {
+      "file": "evidence/browser/france/operating-mobile.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\operating-mobile.png",
+      "bytes": 103941,
+      "sha256": "55c326ced62e6e1fd4bf70929a64a74faa653494c13de814d80eda5457cd16e8"
+    },
+    {
+      "file": "evidence/browser/france/paused-queue.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\paused-queue.png",
+      "bytes": 1169185,
+      "sha256": "31d85ed1499c30abc97fabd5ece2fd4e871427a845ca70a040b1756d7fac234a"
+    },
+    {
+      "file": "evidence/browser/france/requirements-desktop.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\requirements-desktop.png",
+      "bytes": 875085,
+      "sha256": "475f943f1e76c05faae5c23c8a23e2886882a045ba4ab161f1bcf079226de7b8"
+    },
+    {
+      "file": "evidence/browser/france/requirements-mobile.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\requirements-mobile.png",
+      "bytes": 107009,
+      "sha256": "2c483c921e4b306f381848a80655c26ed5e31376b70c95d12d836f1df39e0014"
+    },
+    {
+      "file": "evidence/browser/france/result.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\result.json",
+      "bytes": 54344,
+      "sha256": "0d08200e67d5f47778efd58c8ac2bd7a39cae0f162e49be4a32d5d8ebac78386"
+    },
+    {
+      "file": "evidence/browser/france/server.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c\\server.log",
+      "bytes": 78,
+      "sha256": "4c8350fcb29c2fc2ac073162dc74afaac2089f9b2034e0972f10188ea939aad3"
+    },
+    {
+      "file": "evidence/browser/tonga/completed-construction.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\completed-construction.json",
+      "bytes": 24122,
+      "sha256": "9e225f6ae21177f5e0143d9f637b94a967521d76e1c55e5f29a385f84b7a9c72"
+    },
+    {
+      "file": "evidence/browser/tonga/completed-construction.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\completed-construction.png",
+      "bytes": 1128373,
+      "sha256": "3149aa7e95a2c6dc5e0d65888fbe613d06ff776f314dd2780d087305b869fb2f"
+    },
+    {
+      "file": "evidence/browser/tonga/completed-industry.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\completed-industry.json",
+      "bytes": 10372,
+      "sha256": "dc3c2632e702024546aa069577068dbc8b14790b8ce120490c9e49d6acf0e708"
+    },
+    {
+      "file": "evidence/browser/tonga/funded-queue.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\funded-queue.png",
+      "bytes": 671352,
+      "sha256": "ab65fd13a6f1967f0cdae354dfc1dd264196caee4f347dd45f50610207b6373e"
+    },
+    {
+      "file": "evidence/browser/tonga/initial-construction.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\initial-construction.json",
+      "bytes": 23368,
+      "sha256": "f003baa348afe557dcc08961ed47f4447dc0d061906211f216c5b11c3f13db4a"
+    },
+    {
+      "file": "evidence/browser/tonga/operating-desktop.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\operating-desktop.png",
+      "bytes": 882484,
+      "sha256": "b66b97cd80f3af3a7b33f35e14bf39f030e2cbd6923f706cebcda0b48d59de27"
+    },
+    {
+      "file": "evidence/browser/tonga/operating-mobile.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\operating-mobile.png",
+      "bytes": 101938,
+      "sha256": "1ca0569a2528f68e7b8b540471bbb65138380bec2bd79f426e1ac744851d312e"
+    },
+    {
+      "file": "evidence/browser/tonga/paused-queue.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\paused-queue.png",
+      "bytes": 1168814,
+      "sha256": "777b98d3daf0c6677044d1c5a37dac1ba182a9ac4330b9102f2dc9272663510c"
+    },
+    {
+      "file": "evidence/browser/tonga/requirements-desktop.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\requirements-desktop.png",
+      "bytes": 880190,
+      "sha256": "11f67107a85ff6bfac3253883fbea2aec7e46f5cf5ffb130b51f13781b817032"
+    },
+    {
+      "file": "evidence/browser/tonga/requirements-mobile.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\requirements-mobile.png",
+      "bytes": 106584,
+      "sha256": "b6a8c8944f7edfc2edbe4f519f5a66a4c46bf0d4b85c6803354b33ef8ff5924a"
+    },
+    {
+      "file": "evidence/browser/tonga/result.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\result.json",
+      "bytes": 55068,
+      "sha256": "d823671824716099e5c4fcf080125f52cd71f75edd2ce8f6ee53be9bb3616ded"
+    },
+    {
+      "file": "evidence/browser/tonga/server.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction\\tonga-QcjiiL\\server.log",
+      "bytes": 78,
+      "sha256": "a4a1f592b04ebb9c1d77f45bc1ae135d462fc03fdbb44e2655db4dd85806ab02"
+    },
+    {
+      "file": "evidence/collectors/ci-construction.cjs",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-construction.cjs",
+      "bytes": 21257,
+      "sha256": "82578835a3759b459b312ead0db5023f256ce5898d779e77379ec294a20d805a"
+    },
+    {
+      "file": "evidence/collectors/ci-integrated.cjs",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-integrated.cjs",
+      "bytes": 15515,
+      "sha256": "c90a610e671f1db7f22bf7fb034742e2584bcc10621f49e06e34262d81e6816b"
+    },
+    {
+      "file": "evidence/collectors/collect-s07-evidence.py",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\collect-s07-evidence.py",
+      "bytes": 16038,
+      "sha256": "8595f2035edfd8e466653d6e950f0fc189301bfe7d9cb392b221b5b3f31b7de8"
+    },
+    {
+      "file": "evidence/collectors/run-s07-external.py",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s07-external.py",
+      "bytes": 2063,
+      "sha256": "3091a6238b6494ee9e3d1d67cc074ecd0b2f0a454bd6c4c890605348118630aa"
+    },
+    {
+      "file": "evidence/collectors/run-s07-final.py",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s07-final.py",
+      "bytes": 2881,
+      "sha256": "6f8658e8deeb293f206b88e768082b803ca99d983c97fd59a30406541cdfc547"
+    },
+    {
+      "file": "evidence/collectors/run-s07-linux.py",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s07-linux.py",
+      "bytes": 7260,
+      "sha256": "258488d09b6f61b4e16112c0725401984609760df7311c0d63bf86c5d6344b2f"
+    },
+    {
+      "file": "evidence/collectors/run-s07-renewal-browser.py",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s07-renewal-browser.py",
+      "bytes": 4579,
+      "sha256": "a6bd0901fd5160d557b6340cb1d1331a1acd2acfb68272d750cb7a9bc7ce40dc"
+    },
+    {
+      "file": "evidence/collectors/run-s07-startup-browser.py",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s07-startup-browser.py",
+      "bytes": 4454,
+      "sha256": "c2877bd0949108013b7f51620103379ed20f6ca5267d1a0333ce7e517de92fac"
+    },
+    {
+      "file": "evidence/failed-browser-attempts/france-eXE1kF/result.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-eXE1kF\\result.json",
+      "bytes": 16691,
+      "sha256": "7a92d8dd02f438cc1d95d642e15b238f4eb28e3fe994b0d6b224e53221996eec"
+    },
+    {
+      "file": "evidence/failed-browser-attempts/france-eXE1kF/server.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-eXE1kF\\server.log",
+      "bytes": 78,
+      "sha256": "9dcfa7182444a9dbc2cc7ed468b949d7be96a57a087c877771c1ed99b9962ecd"
+    },
+    {
+      "file": "evidence/failed-browser-attempts/tonga-NPEta5/failure.html",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\tonga-NPEta5\\failure.html",
+      "bytes": 39,
+      "sha256": "a7fe83ec64bb23eb28090598db3d166ed98e52e39d1afbbfd74c579553f93e4e"
+    },
+    {
+      "file": "evidence/failed-browser-attempts/tonga-NPEta5/failure.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\tonga-NPEta5\\failure.png",
+      "bytes": 6489,
+      "sha256": "cb9c3b8047859412e8abcaed51ad9ecefb4bd820c8849af4992e593d500d1836"
+    },
+    {
+      "file": "evidence/failed-browser-attempts/tonga-NPEta5/result.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\tonga-NPEta5\\result.json",
+      "bytes": 1689,
+      "sha256": "d2719c3e1fb0b979f647bf5aec2f463c35042820b14c794d911c2156e483e85c"
+    },
+    {
+      "file": "evidence/failed-browser-attempts/tonga-NPEta5/server.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\tonga-NPEta5\\server.log",
+      "bytes": 78,
+      "sha256": "1e675d76c1fb47feaefe0d6804805528ac6999e5580a003604ba248c8507c532"
+    },
+    {
+      "file": "evidence/failed-browser-attempts/tonga-luNj8r/failure.html",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-startup-harness\\tonga-candidate-1-construction\\tonga-luNj8r\\failure.html",
+      "bytes": 1434613,
+      "sha256": "3d167d1ab59cbea6965727f99b63efa7b78e2f8d9a0949328d3936faf2b01331"
+    },
+    {
+      "file": "evidence/failed-browser-attempts/tonga-luNj8r/failure.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-startup-harness\\tonga-candidate-1-construction\\tonga-luNj8r\\failure.png",
+      "bytes": 311518,
+      "sha256": "24c7a5c5df7882254c28d9e45f550f34169eee3bd7a61b11beda0b47e5876a14"
+    },
+    {
+      "file": "evidence/failed-browser-attempts/tonga-luNj8r/funded-queue.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-startup-harness\\tonga-candidate-1-construction\\tonga-luNj8r\\funded-queue.png",
+      "bytes": 671352,
+      "sha256": "ab65fd13a6f1967f0cdae354dfc1dd264196caee4f347dd45f50610207b6373e"
+    },
+    {
+      "file": "evidence/failed-browser-attempts/tonga-luNj8r/initial-construction.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-startup-harness\\tonga-candidate-1-construction\\tonga-luNj8r\\initial-construction.json",
+      "bytes": 23368,
+      "sha256": "86f7c4834e465e500d2616cb7232f34df0b485b498075ca2d40338d898fa8807"
+    },
+    {
+      "file": "evidence/failed-browser-attempts/tonga-luNj8r/paused-queue.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-startup-harness\\tonga-candidate-1-construction\\tonga-luNj8r\\paused-queue.png",
+      "bytes": 1168814,
+      "sha256": "777b98d3daf0c6677044d1c5a37dac1ba182a9ac4330b9102f2dc9272663510c"
+    },
+    {
+      "file": "evidence/failed-browser-attempts/tonga-luNj8r/result.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-startup-harness\\tonga-candidate-1-construction\\tonga-luNj8r\\result.json",
+      "bytes": 51591,
+      "sha256": "3579863a6ddc77417111693e721bebe22b152e38fe30123cd1d6a849fabe7550"
+    },
+    {
+      "file": "evidence/failed-browser-attempts/tonga-luNj8r/server.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-startup-harness\\tonga-candidate-1-construction\\tonga-luNj8r\\server.log",
+      "bytes": 78,
+      "sha256": "0e5a76d4a11472ed662d96d02621f8f43a083b752392d00a9fd17b097c5a5600"
+    },
+    {
+      "file": "evidence/qualification/S07-external-final/1.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-external-final\\1.log",
+      "bytes": 611,
+      "sha256": "c8028a0f81f31cc51946379b1be876398ce80f5532a04fd8a4bcfc122efc20d8"
+    },
+    {
+      "file": "evidence/qualification/S07-external-final/2.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-external-final\\2.log",
+      "bytes": 9540,
+      "sha256": "214c06262ee5f30bef006fd332729554e692f97755da3993c2a4da4cd78d772a"
+    },
+    {
+      "file": "evidence/qualification/S07-external-final/3.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-external-final\\3.log",
+      "bytes": 1288,
+      "sha256": "ff30597f699e52ec28f9de659e4f11c581b70e6d8aabd7c0bc0f01b0a43ee86a"
+    },
+    {
+      "file": "evidence/qualification/S07-external-final/result.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-external-final\\result.json",
+      "bytes": 1140,
+      "sha256": "d78a5d839303be9a6447b5851a8aad8d445f5c3fbc828ede164538112c90856f"
+    },
+    {
+      "file": "evidence/qualification/S07-final-binary.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-final-binary.json",
+      "bytes": 684,
+      "sha256": "07dc36be9df253ff55aee0a8d0d06519a5aaa421e1f548ead85273b7f1b3b64f"
+    },
+    {
+      "file": "evidence/qualification/S07-final-binary.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-final-binary.log",
+      "bytes": 219,
+      "sha256": "d7157a9cfe9019c99c008253b3f6c0acbdbc7832d9a2a6465a19eb2362e3262f"
+    },
+    {
+      "file": "evidence/qualification/S07-final-construction-browser-retry.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-final-construction-browser-retry.json",
+      "bytes": 640,
+      "sha256": "cb6cb4f0adef4ad3bc8bf30c6f615c2e901f339835dcabdab383deab034277b2"
+    },
+    {
+      "file": "evidence/qualification/S07-final-construction-browser-retry.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-final-construction-browser-retry.log",
+      "bytes": 2358,
+      "sha256": "58e5608f39b9b4d8876796786bc0672a7f9bee25caa0f92a465df6bae87b4432"
+    },
+    {
+      "file": "evidence/qualification/S07-final-construction-browser.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-final-construction-browser.json",
+      "bytes": 640,
+      "sha256": "9cb908db48ca816f49c8359875ca528484b7631b31ebf6602d09c7ef79c20b95"
+    },
+    {
+      "file": "evidence/qualification/S07-final-construction-browser.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-final-construction-browser.log",
+      "bytes": 676,
+      "sha256": "9ffbd87724df134a2805990f0a31f944d090946524a1d14651daa5aab1b18105"
+    },
+    {
+      "file": "evidence/qualification/S07-final-native-contract.exit",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-final-native-contract.exit",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "file": "evidence/qualification/S07-final-native-contract.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-final-native-contract.log",
+      "bytes": 1101,
+      "sha256": "0e43ce72f17b8a5f00f45c28e5c1605eaf3d2ad9c38a8350be4887a8694d6024"
+    },
+    {
+      "file": "evidence/qualification/S07-final-native.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-final-native.json",
+      "bytes": 718,
+      "sha256": "e8af262cf69345ede4793cd53187fa6461a110ce835abf021667011f6aa47c86"
+    },
+    {
+      "file": "evidence/qualification/S07-final-native.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-final-native.log",
+      "bytes": 159044,
+      "sha256": "5b5c33ce03dd796694c6b7d8820b707c4862565c02e911a43f132442bd153c75"
+    },
+    {
+      "file": "evidence/qualification/S07-final-node.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-final-node.json",
+      "bytes": 377,
+      "sha256": "ab5ae94ec1085cab494df092650db11364ba3be6c3c037a14e01109da1c47b5c"
+    },
+    {
+      "file": "evidence/qualification/S07-final-node.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-final-node.log",
+      "bytes": 148620,
+      "sha256": "34dac2b2581381a25f18b21685acab1e198b0530d3c0d4f7ba4c4d46d70a0ca3"
+    },
+    {
+      "file": "evidence/qualification/S07-general-browser/campaign-L9jmGH/server.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-general-browser\\campaign-L9jmGH\\server.log",
+      "bytes": 78,
+      "sha256": "e370ec5e9da190eca839ace971eea3b18acebeabb1fa82a4146ac3928ed02aa1"
+    },
+    {
+      "file": "evidence/qualification/S07-general-browser/companies-desktop.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-general-browser\\companies-desktop.png",
+      "bytes": 873775,
+      "sha256": "d7f6cf26bfc71e019ec77006d1a9bfcf45c581c5032278fab66e7b199efcf119"
+    },
+    {
+      "file": "evidence/qualification/S07-general-browser/companies-mobile.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-general-browser\\companies-mobile.png",
+      "bytes": 203054,
+      "sha256": "a1aa3ce7dc5145ba97170571e158a17303a872b84a0f4a8c57860b1002c948b5"
+    },
+    {
+      "file": "evidence/qualification/S07-general-browser/construction-preview-desktop.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-general-browser\\construction-preview-desktop.png",
+      "bytes": 1088531,
+      "sha256": "99312f72c998a0cde8085b81d8b09e6a3908fc34e722226ffee856cc9a53dbfa"
+    },
+    {
+      "file": "evidence/qualification/S07-general-browser/construction-preview-mobile.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-general-browser\\construction-preview-mobile.png",
+      "bytes": 236418,
+      "sha256": "1efbd290883f605a4803f6189e050a155e49640f1ab2bfd448ca178193f653b9"
+    },
+    {
+      "file": "evidence/qualification/S07-general-browser/government-desktop.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-general-browser\\government-desktop.png",
+      "bytes": 774280,
+      "sha256": "4a302ba67ea2d8b10e952f9d36f25667686286142e8b4efda9bcaf316743d1b1"
+    },
+    {
+      "file": "evidence/qualification/S07-general-browser/government-mobile.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-general-browser\\government-mobile.png",
+      "bytes": 117811,
+      "sha256": "f03f5cf5657155d27fa21bd3de4cc756731f39116d589fd527c7631531f0b541"
+    },
+    {
+      "file": "evidence/qualification/S07-general-browser/government-review-desktop.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-general-browser\\government-review-desktop.png",
+      "bytes": 512861,
+      "sha256": "55638adaa1f4c2af9223ba3146c3d0f4510ce45684328992162c8758b98d6cbc"
+    },
+    {
+      "file": "evidence/qualification/S07-general-browser/government-review-mobile.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-general-browser\\government-review-mobile.png",
+      "bytes": 93513,
+      "sha256": "185087cf46101801cb8265fc141eda04dc862b640a88329dd5b8dd7b885f3b47"
+    },
+    {
+      "file": "evidence/qualification/S07-general-browser/research-desktop.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-general-browser\\research-desktop.png",
+      "bytes": 464419,
+      "sha256": "57e4268c51e23278d89f6bae99cf00e0dff559cd28c3e7066e9eb44d8da718c3"
+    },
+    {
+      "file": "evidence/qualification/S07-general-browser/research-mobile.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-general-browser\\research-mobile.png",
+      "bytes": 298093,
+      "sha256": "fcf9ba27ceb866f9e412c1d22e6919ac5fd0fabe8af27f15b232bcba40520da7"
+    },
+    {
+      "file": "evidence/qualification/S07-general-browser/result.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-general-browser\\result.json",
+      "bytes": 17512,
+      "sha256": "420839ea66280e2090f357bd4794f72be4a90163bd0cdc66090fb335e3a532a8"
+    },
+    {
+      "file": "evidence/qualification/S07-general-browser/tutorial-budget-destination.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-general-browser\\tutorial-budget-destination.png",
+      "bytes": 1333061,
+      "sha256": "5ac5ca3c1e5e7f026e770da9461afa570d260dfd4d20c282306721427c46bcd0"
+    },
+    {
+      "file": "evidence/qualification/S07-harness-correction.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-harness-correction.json",
+      "bytes": 3260,
+      "sha256": "9c337831765b21582d914a62bd88941302aea3b4cf2304bf42642c72aa27abf2"
+    },
+    {
+      "file": "evidence/qualification/S07-harness-sources/candidate-wrapper.cjs",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-harness-sources\\candidate-wrapper.cjs",
+      "bytes": 1040,
+      "sha256": "2a28e0eb68796bc50a50ebd082912cf37e8349f95e624eceef1a1107372c8633"
+    },
+    {
+      "file": "evidence/qualification/S07-harness-sources/ci-browser-candidate.cjs",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-harness-sources\\ci-browser-candidate.cjs",
+      "bytes": 12489,
+      "sha256": "40b84e0ae4488dbb420a2f8d461819b4b2eb8617d79baceee88c45fcee375a29"
+    },
+    {
+      "file": "evidence/qualification/S07-harness-sources/ci-construction-candidate.cjs",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-harness-sources\\ci-construction-candidate.cjs",
+      "bytes": 21494,
+      "sha256": "2bc69da55b24d3aab7d53f4d8c1a3bb215741ce3a8e27b5a303b3388bd4ef6dd"
+    },
+    {
+      "file": "evidence/qualification/S07-harness-sources/ci-construction-original.cjs",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-harness-sources\\ci-construction-original.cjs",
+      "bytes": 21257,
+      "sha256": "82578835a3759b459b312ead0db5023f256ce5898d779e77379ec294a20d805a"
+    },
+    {
+      "file": "evidence/qualification/S07-harness-sources/ci-construction-renewal-candidate.cjs",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-harness-sources\\ci-construction-renewal-candidate.cjs",
+      "bytes": 23493,
+      "sha256": "c2b0a61eda7d7e20e4fc6d171fe6b14fc285dee4a5ebac55c114571722411dcb"
+    },
+    {
+      "file": "evidence/qualification/S07-linux-final/active-fixtures-source-after.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\active-fixtures-source-after.json",
+      "bytes": 343,
+      "sha256": "bc1488effb883e8327ffdef220c7cc1d8fa8453d9435fa7d19c6a79ac00687c6"
+    },
+    {
+      "file": "evidence/qualification/S07-linux-final/active-fixtures.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\active-fixtures.log",
+      "bytes": 9540,
+      "sha256": "6274081b9dab4f16272f7440df8bb0608c60dbc9468262cd1fdb5d8348bcad4e"
+    },
+    {
+      "file": "evidence/qualification/S07-linux-final/fixtures-after.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\fixtures-after.json",
+      "bytes": 9594,
+      "sha256": "9a8374b3eb65ba3ec31e98e59d8245adb48c3303748522094eed7abcfbe00a35"
+    },
+    {
+      "file": "evidence/qualification/S07-linux-final/fixtures-before.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\fixtures-before.json",
+      "bytes": 9594,
+      "sha256": "bab5884834a6cca4e3d90d8ef109183740ff3bb32eeb7cc925bd0f7087197624"
+    },
+    {
+      "file": "evidence/qualification/S07-linux-final/master-archive-source-after.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\master-archive-source-after.json",
+      "bytes": 343,
+      "sha256": "a1faf079e7bc93c57cc5a2d1ff9cb45ff1e8faef08a242175485005745d6db5b"
+    },
+    {
+      "file": "evidence/qualification/S07-linux-final/master-archive.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\master-archive.log",
+      "bytes": 615,
+      "sha256": "3495324a2ed839ce023428fc276cb0b0d6bd3fad6166ac3fefd891d0fd571722"
+    },
+    {
+      "file": "evidence/qualification/S07-linux-final/native-source-after.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\native-source-after.json",
+      "bytes": 343,
+      "sha256": "17b8d81d8e65dc78927616da8e72428486e26932d595820ebcf3efb404641601"
+    },
+    {
+      "file": "evidence/qualification/S07-linux-final/native.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\native.log",
+      "bytes": 153813,
+      "sha256": "9f1cbe42bf1bbc00a0af6b6a4859ee25f7beeafdc18838ef38cb03e530036456"
+    },
+    {
+      "file": "evidence/qualification/S07-linux-final/node-source-after.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\node-source-after.json",
+      "bytes": 343,
+      "sha256": "e5eb02d71863869a48ea9449899863ed24224e9d4c07a49a23f1c33bf237fbe4"
+    },
+    {
+      "file": "evidence/qualification/S07-linux-final/node.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\node.log",
+      "bytes": 352452,
+      "sha256": "63ea233cd23fe8df4c3e6a98da2cf757109bb6140743407a25a3ee2176c95809"
+    },
+    {
+      "file": "evidence/qualification/S07-linux-final/party-versions-source-after.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\party-versions-source-after.json",
+      "bytes": 343,
+      "sha256": "32612620a72bf06b065e7b5267238057c12fa322465527ad266b1bbae3ec298e"
+    },
+    {
+      "file": "evidence/qualification/S07-linux-final/party-versions.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\party-versions.log",
+      "bytes": 1288,
+      "sha256": "ba825c07bddcfe98566e2cc479e04cd002bb54c6c7cb8002d89c0980a189b8f5"
+    },
+    {
+      "file": "evidence/qualification/S07-linux-final/runner-result.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\runner-result.json",
+      "bytes": 30200,
+      "sha256": "76ccda9c108d2b213098d1a9d10d0b2a4abcbad34419c873e714de4da71facdf"
+    },
+    {
+      "file": "evidence/qualification/S07-linux-final/source-after.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\source-after.json",
+      "bytes": 343,
+      "sha256": "ff646bcc6e37e97e38f0549c37655b5677d19c629b8b530e05beb91cd1027c85"
+    },
+    {
+      "file": "evidence/qualification/S07-linux-final/source-before.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\source-before.json",
+      "bytes": 343,
+      "sha256": "a7cefe11cc29102a83127b8c7d74da3a26382ec445318220c65ef754bfdc2818"
+    },
+    {
+      "file": "evidence/qualification/S07-linux-final/toolchain-versions.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\toolchain-versions.log",
+      "bytes": 1352,
+      "sha256": "c2ec9e62ea80772c7e166b3f708eee3229824e979dbce4d0584c3195379e8aa3"
+    },
+    {
+      "file": "evidence/qualification/S07-native-focused-1.exit",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-native-focused-1.exit",
+      "bytes": 5,
+      "sha256": "bdc830287616dae1818ced3e7c186e1387155900ad30d5983ec02da1519c4a95"
+    },
+    {
+      "file": "evidence/qualification/S07-native-focused-1.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-native-focused-1.log",
+      "bytes": 1814,
+      "sha256": "2ff9043255ea16a17b8b5e74582528120f2c0394c81fdfb4fdcbf76c5809f532"
+    },
+    {
+      "file": "evidence/qualification/S07-native-focused-2.exit",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-native-focused-2.exit",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "file": "evidence/qualification/S07-native-focused-2.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-native-focused-2.log",
+      "bytes": 852,
+      "sha256": "a0c88062c40532f0484704c011243eeca4bf423b9ecb90238d3707eeb802709f"
+    },
+    {
+      "file": "evidence/qualification/S07-native-focused-final.exit",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-native-focused-final.exit",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "file": "evidence/qualification/S07-native-focused-final.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-native-focused-final.log",
+      "bytes": 3440,
+      "sha256": "359f7a5c8dbe77980d01c2ebaad9926af952d6497b7bdaae972a3d0ef3f71086"
+    },
+    {
+      "file": "evidence/qualification/S07-node-development.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-node-development.log",
+      "bytes": 152101,
+      "sha256": "555ec420bb4d4acc656d93837c873d2ea30fb640a95720cf37fb9198650c1818"
+    },
+    {
+      "file": "evidence/qualification/S07-node-development.log.exit",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-node-development.log.exit",
+      "bytes": 3,
+      "sha256": "f1b2f662800122bed0ff255693df89c4487fbdcf453d3524a42d4ec20c3d9c04"
+    },
+    {
+      "file": "evidence/qualification/S07-performance-protocol.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-performance-protocol.json",
+      "bytes": 999,
+      "sha256": "51802de1b3eeddc9e098db0905884bcc868553fe24019daa631b12e391f5e516"
+    },
+    {
+      "file": "evidence/qualification/S07-performance/acceptance.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-performance\\acceptance.json",
+      "bytes": 1412,
+      "sha256": "f39f1e1640b27d5535aff2c57f0eb933222a68ba620844f5c581747c1491bf5e"
+    },
+    {
+      "file": "evidence/qualification/S07-performance/memory-samples.csv",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-performance\\memory-samples.csv",
+      "bytes": 15532,
+      "sha256": "7e8f5f15eaf45ce7e5a6eb33796cdb48ef029a8acd646391212322b31e15edd2"
+    },
+    {
+      "file": "evidence/qualification/S07-performance/profile.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-performance\\profile.json",
+      "bytes": 316583,
+      "sha256": "9f19aec33b8c95e9eb442e58e6cd725b74c3578cb79035f9a72e2051116f9da3"
+    },
+    {
+      "file": "evidence/qualification/S07-performance/runner-result.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-performance\\runner-result.json",
+      "bytes": 3679,
+      "sha256": "f8dfcb98dabe71c9d18c0a4aa9b16d48e6011e37433efb573df708e20db9c36b"
+    },
+    {
+      "file": "evidence/qualification/S07-performance/stderr.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-performance\\stderr.log",
+      "bytes": 1048,
+      "sha256": "e12c74fae79e7e644ad1f8a4bc9061dbf42d45d8e1691c0e94bea969c23cf881"
+    },
+    {
+      "file": "evidence/qualification/S07-performance/stdout.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-performance\\stdout.log",
+      "bytes": 166,
+      "sha256": "0e105ea3b7608746ddc29c879803f8230b9b1e2803adfea85cabfe676a5f6a07"
+    },
+    {
+      "file": "evidence/qualification/S07-preservation-before.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-preservation-before.json",
+      "bytes": 2431,
+      "sha256": "02562ec68d445aba93484a0f43d165cdd0ac33152015e28a7431b4ccae2aec57"
+    },
+    {
+      "file": "evidence/qualification/S07-preservation.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-preservation.json",
+      "bytes": 13522,
+      "sha256": "b137b1de4b723b13a8bea0bcaed0bc91a82050306b0a3341f8d99f4fe0a555ee"
+    },
+    {
+      "file": "evidence/qualification/S07-renewal-harness/candidates.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-renewal-harness\\candidates.json",
+      "bytes": 1807,
+      "sha256": "e870cdb526da10b29ea542c7791fdf2c51597146133b3be769c664dec7835a2b"
+    },
+    {
+      "file": "evidence/qualification/S07-renewal-harness/construction-startup-renewal.patch",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-renewal-harness\\construction-startup-renewal.patch",
+      "bytes": 4265,
+      "sha256": "94c408261bd5ab55bbd2fbae670d3804dacbb59492d1b92c11dff5dd8b6af7b5"
+    },
+    {
+      "file": "evidence/qualification/S07-renewal-harness/final-three-file.patch",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-renewal-harness\\final-three-file.patch",
+      "bytes": 6771,
+      "sha256": "65cc48363c338d40cbd23106f66eabee61a5edfe4faeeb8dfdbf52eb608999e2"
+    },
+    {
+      "file": "evidence/qualification/S07-renewal-harness/renewal-only-from-startup.patch",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-renewal-harness\\renewal-only-from-startup.patch",
+      "bytes": 3036,
+      "sha256": "c6a88a94207e8f13c9ecbf6b3aebe36ce94296191e97a3dd69fdc541da168128"
+    },
+    {
+      "file": "evidence/qualification/S07-renewal-harness/retained-attempts.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-renewal-harness\\retained-attempts.json",
+      "bytes": 1961,
+      "sha256": "ee7c336851886cd7418b177e1e6dbad31384c43bf242bcc4ef6887a2cbd0823d"
+    },
+    {
+      "file": "evidence/qualification/S07-renewal-harness/tonga-candidate-2.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-renewal-harness\\tonga-candidate-2.json",
+      "bytes": 2128,
+      "sha256": "05e116b5b07955e2c14a41f1f231b7e53e670d63629ef6fe0363315f8ac85783"
+    },
+    {
+      "file": "evidence/qualification/S07-renewal-harness/tonga-candidate-2.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-renewal-harness\\tonga-candidate-2.log",
+      "bytes": 2164,
+      "sha256": "779131c482958bc272df5060a7dba75c33f6205aca7cc0cd05771f870c19873b"
+    },
+    {
+      "file": "evidence/qualification/S07-research-focused.exit",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-research-focused.exit",
+      "bytes": 3,
+      "sha256": "13bf7b3039c63bf5a50491fa3cfd8eb4e699d1ba1436315aef9cbe5711530354"
+    },
+    {
+      "file": "evidence/qualification/S07-research-focused.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-research-focused.log",
+      "bytes": 2488,
+      "sha256": "f6d7878b05ee977cf1acba2d8f58e1a3afedb549dcad562298e9b8c323666a4c"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-diagnosis-QMJ9Yu/result.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-diagnosis-QMJ9Yu\\result.json",
+      "bytes": 2746,
+      "sha256": "c310f90633c9ececee47f2397e8f95a69c4d91e1b8af2e98732c4e052a24b24a"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-diagnosis-QMJ9Yu/server.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-diagnosis-QMJ9Yu\\server.log",
+      "bytes": 78,
+      "sha256": "aec2c09e9cd659b957a0d43ecd9542a2af392d515ddef2d3a7ba2e2be8dccc16"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-diagnosis.cjs",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-diagnosis.cjs",
+      "bytes": 3202,
+      "sha256": "01d1a8a30ada6fc498c684dff18d0f61cc3d9b1a6f69560404d8359a7c649941"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-diagnosis.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-diagnosis.log",
+      "bytes": 3055,
+      "sha256": "365a6a78921da72a67e20b3dd799ffe7c0047d26ac2f90eba48c3dd368cd7c66"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-diagnosis.md",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-diagnosis.md",
+      "bytes": 4135,
+      "sha256": "501c1eec3c5debf2342cc64b9fc912ec5c7c5781f8434a4d3415fde6e752892f"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/candidates.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\candidates.json",
+      "bytes": 2192,
+      "sha256": "f96e15b81d4e53497d45937716b2c7021356c78ec09b2f2fe7001115e082ef00"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-browser-artifacts/companies-desktop.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-browser-artifacts\\companies-desktop.png",
+      "bytes": 873775,
+      "sha256": "d7f6cf26bfc71e019ec77006d1a9bfcf45c581c5032278fab66e7b199efcf119"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-browser-artifacts/companies-mobile.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-browser-artifacts\\companies-mobile.png",
+      "bytes": 203054,
+      "sha256": "a1aa3ce7dc5145ba97170571e158a17303a872b84a0f4a8c57860b1002c948b5"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-browser-artifacts/construction-preview-desktop.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-browser-artifacts\\construction-preview-desktop.png",
+      "bytes": 1088531,
+      "sha256": "99312f72c998a0cde8085b81d8b09e6a3908fc34e722226ffee856cc9a53dbfa"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-browser-artifacts/construction-preview-mobile.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-browser-artifacts\\construction-preview-mobile.png",
+      "bytes": 236418,
+      "sha256": "1efbd290883f605a4803f6189e050a155e49640f1ab2bfd448ca178193f653b9"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-browser-artifacts/government-desktop.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-browser-artifacts\\government-desktop.png",
+      "bytes": 774280,
+      "sha256": "4a302ba67ea2d8b10e952f9d36f25667686286142e8b4efda9bcaf316743d1b1"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-browser-artifacts/government-mobile.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-browser-artifacts\\government-mobile.png",
+      "bytes": 117811,
+      "sha256": "f03f5cf5657155d27fa21bd3de4cc756731f39116d589fd527c7631531f0b541"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-browser-artifacts/government-review-desktop.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-browser-artifacts\\government-review-desktop.png",
+      "bytes": 512861,
+      "sha256": "55638adaa1f4c2af9223ba3146c3d0f4510ce45684328992162c8758b98d6cbc"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-browser-artifacts/government-review-mobile.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-browser-artifacts\\government-review-mobile.png",
+      "bytes": 93513,
+      "sha256": "185087cf46101801cb8265fc141eda04dc862b640a88329dd5b8dd7b885f3b47"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-browser-artifacts/research-desktop.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-browser-artifacts\\research-desktop.png",
+      "bytes": 464419,
+      "sha256": "57e4268c51e23278d89f6bae99cf00e0dff559cd28c3e7066e9eb44d8da718c3"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-browser-artifacts/research-mobile.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-browser-artifacts\\research-mobile.png",
+      "bytes": 298093,
+      "sha256": "fcf9ba27ceb866f9e412c1d22e6919ac5fd0fabe8af27f15b232bcba40520da7"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-browser-artifacts/result.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-browser-artifacts\\result.json",
+      "bytes": 17512,
+      "sha256": "420839ea66280e2090f357bd4794f72be4a90163bd0cdc66090fb335e3a532a8"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-browser-artifacts/tutorial-budget-destination.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-browser-artifacts\\tutorial-budget-destination.png",
+      "bytes": 1333061,
+      "sha256": "5ac5ca3c1e5e7f026e770da9461afa570d260dfd4d20c282306721427c46bcd0"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-prior-browser-artifacts/companies-desktop.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-prior-browser-artifacts\\companies-desktop.png",
+      "bytes": 873775,
+      "sha256": "d7f6cf26bfc71e019ec77006d1a9bfcf45c581c5032278fab66e7b199efcf119"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-prior-browser-artifacts/companies-mobile.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-prior-browser-artifacts\\companies-mobile.png",
+      "bytes": 203054,
+      "sha256": "a1aa3ce7dc5145ba97170571e158a17303a872b84a0f4a8c57860b1002c948b5"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-prior-browser-artifacts/construction-preview-desktop.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-prior-browser-artifacts\\construction-preview-desktop.png",
+      "bytes": 1097816,
+      "sha256": "cd083b51d596133c0326d929899615625c4a8343c4bca46a6b1ba0d88c09b0c7"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-prior-browser-artifacts/construction-preview-mobile.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-prior-browser-artifacts\\construction-preview-mobile.png",
+      "bytes": 236418,
+      "sha256": "1efbd290883f605a4803f6189e050a155e49640f1ab2bfd448ca178193f653b9"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-prior-browser-artifacts/government-desktop.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-prior-browser-artifacts\\government-desktop.png",
+      "bytes": 774278,
+      "sha256": "55c605b6455e18a0a23b1421d407a63bea5601e94092a10c4a9d49c1abddcc4a"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-prior-browser-artifacts/government-mobile.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-prior-browser-artifacts\\government-mobile.png",
+      "bytes": 117811,
+      "sha256": "f03f5cf5657155d27fa21bd3de4cc756731f39116d589fd527c7631531f0b541"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-prior-browser-artifacts/government-review-desktop.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-prior-browser-artifacts\\government-review-desktop.png",
+      "bytes": 512861,
+      "sha256": "55638adaa1f4c2af9223ba3146c3d0f4510ce45684328992162c8758b98d6cbc"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-prior-browser-artifacts/government-review-mobile.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-prior-browser-artifacts\\government-review-mobile.png",
+      "bytes": 93513,
+      "sha256": "185087cf46101801cb8265fc141eda04dc862b640a88329dd5b8dd7b885f3b47"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-prior-browser-artifacts/research-desktop.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-prior-browser-artifacts\\research-desktop.png",
+      "bytes": 818798,
+      "sha256": "5256712ec4f565cc70c9115238e821614cdc7f447df70ac2df4dcac28a10b216"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-prior-browser-artifacts/research-mobile.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-prior-browser-artifacts\\research-mobile.png",
+      "bytes": 298093,
+      "sha256": "fcf9ba27ceb866f9e412c1d22e6919ac5fd0fabe8af27f15b232bcba40520da7"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-prior-browser-artifacts/result.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-prior-browser-artifacts\\result.json",
+      "bytes": 17512,
+      "sha256": "901201b1a0aa654dd0571582c2d9518f309f0b390c98b47433bb5665d035d058"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1-prior-browser-artifacts/tutorial-budget-destination.png",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-prior-browser-artifacts\\tutorial-budget-destination.png",
+      "bytes": 1333055,
+      "sha256": "1217df83fedef2b3b9df3a9ae4ad0717bded80e94e94538f391e1f19d000dd46"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1.json",
+      "bytes": 2300,
+      "sha256": "ee344488cc87ecca057582727fe4807febf708c9fdcfcae39d1f6318d64fe7b1"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/general-candidate-1.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/money-startup-only.patch",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\money-startup-only.patch",
+      "bytes": 1360,
+      "sha256": "5d9834cc2a2ef39267efacd4de92820b7c64112b6cc340183a530af150ae020c"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/money-unexecuted.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\money-unexecuted.json",
+      "bytes": 1185,
+      "sha256": "00854bbb1c39e86655cc476db84fa054bb1f6bb39a7f45e529db09683de503a2"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/startup-all-three.patch",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\startup-all-three.patch",
+      "bytes": 3805,
+      "sha256": "8d5b1f407c87575faa199177bb35f25078b6ee9bc50a6214e0a47f722b76f384"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/startup-only.patch",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\startup-only.patch",
+      "bytes": 2445,
+      "sha256": "f09184466f90302e08b80cd006a6db0bd3648d7aad880cc16c3c2d4c51ddd12b"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/tonga-candidate-1.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\tonga-candidate-1.json",
+      "bytes": 2128,
+      "sha256": "2776e3f0f495395797760db6866e1d63bc6be60cb4469ac9ae2489b6715b037e"
+    },
+    {
+      "file": "evidence/qualification/S07-startup-harness/tonga-candidate-1.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\tonga-candidate-1.log",
+      "bytes": 3304,
+      "sha256": "97265e00393b8708b209e32ba3fc0c6567744149fbb1a19ae3fe829f369ef09c"
+    },
+    {
+      "file": "evidence/qualification/S07-tonga-funding-diagnosis/read-1789135526209.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-tonga-funding-diagnosis\\read-1789135526209.json",
+      "bytes": 5267157,
+      "sha256": "f346364edcf9b8d87470fbd1c1c3050fcd829abe389ed0ccfe9eef4445d587f2"
+    },
+    {
+      "file": "evidence/qualification/S07-tonga-funding-diagnosis/summary.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-tonga-funding-diagnosis\\summary.json",
+      "bytes": 5897,
+      "sha256": "3578af29f40678487a127e54ee3fe0282431dfc39cc83ec965c04c01875dc803"
+    },
+    {
+      "file": "evidence/qualification/S07-visual-review.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-visual-review.json",
+      "bytes": 3400,
+      "sha256": "c003379347de9d99a0550bc5a009665d568c0b43ff6089eee0bc4af63f52140f"
+    },
+    {
+      "file": "evidence/qualification/S07-web-outcomes-final.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-web-outcomes-final.log",
+      "bytes": 1492,
+      "sha256": "807461e4ef4bb7ce02743b8b773a925bae2c256cd01869893438158364e17bcc"
+    },
+    {
+      "file": "evidence/qualification/S07-web-outcomes-focused.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-web-outcomes-focused.log",
+      "bytes": 1374,
+      "sha256": "0f854b91a11c411b7be37b15139a980f0efb13f0e40ee462b3c91ec6755c8a2c"
+    },
+    {
+      "file": "evidence/selected/S07-external-final/1.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-external-final\\1.log",
+      "bytes": 611,
+      "sha256": "c8028a0f81f31cc51946379b1be876398ce80f5532a04fd8a4bcfc122efc20d8"
+    },
+    {
+      "file": "evidence/selected/S07-external-final/2.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-external-final\\2.log",
+      "bytes": 9540,
+      "sha256": "214c06262ee5f30bef006fd332729554e692f97755da3993c2a4da4cd78d772a"
+    },
+    {
+      "file": "evidence/selected/S07-external-final/3.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-external-final\\3.log",
+      "bytes": 1288,
+      "sha256": "ff30597f699e52ec28f9de659e4f11c581b70e6d8aabd7c0bc0f01b0a43ee86a"
+    },
+    {
+      "file": "evidence/selected/S07-external-final/result.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-external-final\\result.json",
+      "bytes": 1140,
+      "sha256": "d78a5d839303be9a6447b5851a8aad8d445f5c3fbc828ede164538112c90856f"
+    },
+    {
+      "file": "evidence/selected/S07-final-binary.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-final-binary.json",
+      "bytes": 684,
+      "sha256": "07dc36be9df253ff55aee0a8d0d06519a5aaa421e1f548ead85273b7f1b3b64f"
+    },
+    {
+      "file": "evidence/selected/S07-final-native.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-final-native.json",
+      "bytes": 718,
+      "sha256": "e8af262cf69345ede4793cd53187fa6461a110ce835abf021667011f6aa47c86"
+    },
+    {
+      "file": "evidence/selected/S07-final-node.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-final-node.json",
+      "bytes": 377,
+      "sha256": "ab5ae94ec1085cab494df092650db11364ba3be6c3c037a14e01109da1c47b5c"
+    },
+    {
+      "file": "evidence/selected/S07-linux-final/active-fixtures-source-after.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\active-fixtures-source-after.json",
+      "bytes": 343,
+      "sha256": "bc1488effb883e8327ffdef220c7cc1d8fa8453d9435fa7d19c6a79ac00687c6"
+    },
+    {
+      "file": "evidence/selected/S07-linux-final/active-fixtures.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\active-fixtures.log",
+      "bytes": 9540,
+      "sha256": "6274081b9dab4f16272f7440df8bb0608c60dbc9468262cd1fdb5d8348bcad4e"
+    },
+    {
+      "file": "evidence/selected/S07-linux-final/fixtures-after.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\fixtures-after.json",
+      "bytes": 9594,
+      "sha256": "9a8374b3eb65ba3ec31e98e59d8245adb48c3303748522094eed7abcfbe00a35"
+    },
+    {
+      "file": "evidence/selected/S07-linux-final/fixtures-before.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\fixtures-before.json",
+      "bytes": 9594,
+      "sha256": "bab5884834a6cca4e3d90d8ef109183740ff3bb32eeb7cc925bd0f7087197624"
+    },
+    {
+      "file": "evidence/selected/S07-linux-final/master-archive-source-after.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\master-archive-source-after.json",
+      "bytes": 343,
+      "sha256": "a1faf079e7bc93c57cc5a2d1ff9cb45ff1e8faef08a242175485005745d6db5b"
+    },
+    {
+      "file": "evidence/selected/S07-linux-final/master-archive.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\master-archive.log",
+      "bytes": 615,
+      "sha256": "3495324a2ed839ce023428fc276cb0b0d6bd3fad6166ac3fefd891d0fd571722"
+    },
+    {
+      "file": "evidence/selected/S07-linux-final/native-source-after.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\native-source-after.json",
+      "bytes": 343,
+      "sha256": "17b8d81d8e65dc78927616da8e72428486e26932d595820ebcf3efb404641601"
+    },
+    {
+      "file": "evidence/selected/S07-linux-final/native.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\native.log",
+      "bytes": 153813,
+      "sha256": "9f1cbe42bf1bbc00a0af6b6a4859ee25f7beeafdc18838ef38cb03e530036456"
+    },
+    {
+      "file": "evidence/selected/S07-linux-final/node-source-after.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\node-source-after.json",
+      "bytes": 343,
+      "sha256": "e5eb02d71863869a48ea9449899863ed24224e9d4c07a49a23f1c33bf237fbe4"
+    },
+    {
+      "file": "evidence/selected/S07-linux-final/node.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\node.log",
+      "bytes": 352452,
+      "sha256": "63ea233cd23fe8df4c3e6a98da2cf757109bb6140743407a25a3ee2176c95809"
+    },
+    {
+      "file": "evidence/selected/S07-linux-final/party-versions-source-after.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\party-versions-source-after.json",
+      "bytes": 343,
+      "sha256": "32612620a72bf06b065e7b5267238057c12fa322465527ad266b1bbae3ec298e"
+    },
+    {
+      "file": "evidence/selected/S07-linux-final/party-versions.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\party-versions.log",
+      "bytes": 1288,
+      "sha256": "ba825c07bddcfe98566e2cc479e04cd002bb54c6c7cb8002d89c0980a189b8f5"
+    },
+    {
+      "file": "evidence/selected/S07-linux-final/runner-result.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\runner-result.json",
+      "bytes": 30200,
+      "sha256": "76ccda9c108d2b213098d1a9d10d0b2a4abcbad34419c873e714de4da71facdf"
+    },
+    {
+      "file": "evidence/selected/S07-linux-final/source-after.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\source-after.json",
+      "bytes": 343,
+      "sha256": "ff646bcc6e37e97e38f0549c37655b5677d19c629b8b530e05beb91cd1027c85"
+    },
+    {
+      "file": "evidence/selected/S07-linux-final/source-before.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\source-before.json",
+      "bytes": 343,
+      "sha256": "a7cefe11cc29102a83127b8c7d74da3a26382ec445318220c65ef754bfdc2818"
+    },
+    {
+      "file": "evidence/selected/S07-linux-final/toolchain-versions.log",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-linux-final\\toolchain-versions.log",
+      "bytes": 1352,
+      "sha256": "c2ec9e62ea80772c7e166b3f708eee3229824e979dbce4d0584c3195379e8aa3"
+    },
+    {
+      "file": "evidence/selected/S07-performance-protocol.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-performance-protocol.json",
+      "bytes": 999,
+      "sha256": "51802de1b3eeddc9e098db0905884bcc868553fe24019daa631b12e391f5e516"
+    },
+    {
+      "file": "evidence/selected/S07-preservation.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-preservation.json",
+      "bytes": 13522,
+      "sha256": "b137b1de4b723b13a8bea0bcaed0bc91a82050306b0a3341f8d99f4fe0a555ee"
+    },
+    {
+      "file": "evidence/selected/acceptance.json",
+      "original_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-performance\\acceptance.json",
+      "bytes": 1412,
+      "sha256": "f39f1e1640b27d5535aff2c57f0eb933222a68ba620844f5c581747c1491bf5e"
+    }
+  ],
+  "inventory_note": "This inventory excludes itself to avoid a recursive hash. No save or binary bytes are duplicated."
+}

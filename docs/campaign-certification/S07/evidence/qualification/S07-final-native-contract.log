@@ -1,0 +1,14 @@
+    Blocking waiting for file lock on build directory
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 1m 18s
+     Running tests\s07_construction_operations.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s07_construction_operations-aace449c529ecf98.exe)
+
+running 5 tests
+test s07_research_building_quotes_base_terms_without_inventing_one_future_target_contract ... ok
+test s07_generation_preview_uses_the_same_pooled_fuel_and_cash_terms_as_actual_dispatch ... ok
+test s07_contractor_preview_matches_actual_expanded_plant_recipe_and_cash ... ok
+test s07_assigned_workers_remain_employed_when_inputs_block_and_receipts_keep_original_capacity ... ok
+test s07_financial_queue_pause_cancel_complete_then_staff_and_operate_france_and_tonga ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.75s
+

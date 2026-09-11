@@ -1,0 +1,16 @@
+   Compiling spheres-web v0.6.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-web)
+    Finished `release` profile [optimized] target(s) in 44.19s
+     Running unittests src\main.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_web-960ae70db4690868.exe)
+
+running 8 tests
+test construction_outcomes::tests::s07_legacy_and_captured_receipts_do_not_gain_new_national_or_worker_attribution ... ok
+test construction_outcomes::tests::s07_rated_operating_recipe_is_native_scaled_and_separate_from_recorded_consumption ... ok
+test construction_outcomes::tests::s07_power_summary_never_combines_different_receipt_dates ... ok
+test construction_outcomes::tests::s07_shipyard_separates_dock_operation_energy_and_equipment_funding_actions ... ok
+test construction_outcomes::tests::s07_new_industry_receipts_match_gdp_date_and_do_not_double_count_inherited_output ... ok
+test construction_outcomes::tests::s07_starter_package_has_one_producer_and_completed_construction_links_to_it ... ok
+test construction_outcomes::tests::s07_expansion_keeps_dated_capacity_workers_and_charges_separate_from_current_jobs ... ok
+test construction_outcomes::tests::s07_new_capacity_waits_for_matching_and_never_invents_completed_output ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 324 filtered out; finished in 0.10s
+

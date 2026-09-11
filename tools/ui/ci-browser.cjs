@@ -12,7 +12,8 @@ async function port(){const s=net.createServer();await new Promise(r=>s.listen(0
   const log=fs.createWriteStream(path.join(run,'server.log'));server.stdout.pipe(log);server.stderr.pipe(log);
   let browser;
   try{
-    for(let n=0;;n++){try{if((await fetch(url+'/api/state')).ok)break;}catch(_){}if(n>=200)throw Error('Disposable server failed to start');await new Promise(r=>setTimeout(r,100));}
+    const startupDeadline=Date.now()+20000;
+    for(let n=0;;n++){try{const response=await fetch(url+'/api/build',{headers:{Connection:'close'},signal:AbortSignal.timeout(Math.max(1,Math.min(2000,startupDeadline-Date.now())))});await response.arrayBuffer();if(response.ok)break;}catch(_){}if(n>=200||Date.now()>=startupDeadline)throw Error('Disposable server failed to start');await new Promise(r=>setTimeout(r,100));}
     browser=await chromium.launch({headless:true});const page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
     page.setDefaultTimeout(30000);const errors=[];page.on('pageerror',e=>errors.push(e.message));
     const buildEvidence=await integrated.verifyBuild({page,url,root,run,binary});

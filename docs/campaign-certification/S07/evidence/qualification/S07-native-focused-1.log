@@ -1,0 +1,36 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+error[E0603]: function `stage_fiscal` is private
+   --> spheres-sim\tests\s07_construction_operations.rs:99:15
+    |
+ 99 |     programs::stage_fiscal(w.nation_mut(n), 0.0, 0.0);
+    |               ^^^^^^^^^^^^ private function
+    |
+note: the function `stage_fiscal` is defined here
+   --> spheres-sim\src\programs.rs:590:1
+    |
+590 | pub(crate) fn stage_fiscal(n: &mut Nation, revenue_share: f64, annual_interest_bn: f64) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0603]: function `stage_fiscal` is private
+   --> spheres-sim\tests\s07_construction_operations.rs:275:19
+    |
+275 |         programs::stage_fiscal(w.nation_mut(n), 0.0, 0.0);
+    |                   ^^^^^^^^^^^^ private function
+    |
+note: the function `stage_fiscal` is defined here
+   --> spheres-sim\src\programs.rs:590:1
+    |
+590 | pub(crate) fn stage_fiscal(n: &mut Nation, revenue_share: f64, annual_interest_bn: f64) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `industrial_modules`
+ --> spheres-sim\tests\s07_construction_operations.rs:7:5
+  |
+7 |     industrial_modules, industry, industry_operations as ops, load, population,
+  |     ^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+For more information about this error, try `rustc --explain E0603`.
+warning: `spheres-sim` (test "s07_construction_operations") generated 1 warning
+error: could not compile `spheres-sim` (test "s07_construction_operations") due to 2 previous errors; 1 warning emitted

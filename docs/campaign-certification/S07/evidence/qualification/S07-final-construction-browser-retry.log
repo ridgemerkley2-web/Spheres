@@ -1,0 +1,21 @@
+France: 5 Jan 1990 [{"id":1,"progress":0.0164,"spent_bn":0.0009666666666666665,"status":"building","reason":null},{"id":2,"progress":0.0083,"spent_bn":0.0013333333333333335,"status":"building","reason":null}]
+France: 6 Mar 1990 [{"id":1,"progress":0.3452,"spent_bn":0.020300000000000012,"status":"building","reason":null},{"id":2,"progress":0.175,"spent_bn":0.028000000000000035,"status":"building","reason":null}]
+France: 5 May 1990 [{"id":1,"progress":0.674,"spent_bn":0.03963333333333344,"status":"building","reason":null},{"id":2,"progress":0.3417,"spent_bn":0.054666666666666565,"status":"building","reason":null}]
+France: 4 Jul 1990 [{"id":2,"progress":0.5083,"spent_bn":0.08133333333333308,"status":"building","reason":null}]
+France: 2 Sep 1990 [{"id":2,"progress":0.675,"spent_bn":0.10799999999999958,"status":"building","reason":null}]
+France: 1 Nov 1990 [{"id":2,"progress":0.8417,"spent_bn":0.13466666666666627,"status":"building","reason":null}]
+S07 France journey passed: C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\artifacts\browser-construction-ci\france-xUfR8c\result.json
+S07 failed evidence: C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\artifacts\browser-construction-ci\tonga-NPEta5\result.json
+apiRequestContext.get: Timeout 30000ms exceeded.
+Call log:
+[2m  - → GET http://127.0.0.1:65475/api/build[22m
+[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36[22m
+[2m    - accept: */*[22m
+[2m    - accept-encoding: gzip,deflate,br[22m
+
+    at json (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-integrated.cjs:6:71)
+    at Object.verifyBuild (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-integrated.cjs:10:91)
+    at journey (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-construction.cjs:124:37)
+    at async C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-construction.cjs:230:156 {
+  name: 'TimeoutError'
+}

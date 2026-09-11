@@ -1,0 +1,142 @@
+{
+  "at": "2026-09-11T14:05:26.209Z",
+  "url": "http://127.0.0.1:54072",
+  "read_only": true,
+  "source_record": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-tonga-funding-diagnosis\\read-1789135526209.json",
+  "consistency_note": "Journey remained active; separate read endpoints can be one day apart. No cross-endpoint atomic snapshot claimed.",
+  "state": {
+    "date": "5 Aug 1991",
+    "year": 1991,
+    "day": 5,
+    "player": "Tonga",
+    "programs": {
+      "fiscal_year": 1990
+    }
+  },
+  "production": {
+    "budget": {
+      "authority_bn": 0,
+      "available_bn": 0,
+      "can_set": true,
+      "daily_budget_bn": 0.0001085451612903226,
+      "default_daily_bn": 0.000028197162185576548,
+      "enrolled": true,
+      "explicit": true,
+      "note": "Construction draws from one daily cash budget within civilian capital appropriations. Work is paid as delivered; unused daily budget is not charged. Existing procurement funds stay reserved for equipment.",
+      "planned_daily_bn": 0,
+      "reason": null,
+      "spent_day": 581,
+      "spent_today_bn": 0,
+      "spent_ytd_bn": 0
+    },
+    "queue": [
+      {
+        "id": 1,
+        "kind": "starter_industry",
+        "progress": 0.5689,
+        "status": "paused",
+        "reason": "PAUSED: today's construction budget is exhausted; completed work is preserved.",
+        "finance": {
+          "company_fees_bn": 0,
+          "cost_bn": 0.01980932,
+          "daily_budget_bn": 0.0001085451612903226,
+          "daily_request_bn": 0,
+          "department": 0,
+          "department_draws_bn": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "department_name": "Construction budget",
+          "goods_recipe": {
+            "capital_goods": 0,
+            "intermediates": 0
+          },
+          "goods_used": {
+            "capital_goods": 0,
+            "intermediates": 0
+          },
+          "next_company_fee_bn": 0,
+          "next_goods": {
+            "capital_goods": 0,
+            "intermediates": 0
+          },
+          "next_work_days": 0,
+          "reason": "PAUSED: today's construction budget is exhausted; completed work is preserved.",
+          "remaining_bn": 0.00853881623660849,
+          "spent_bn": 0.01127050376339151,
+          "spent_today_bn": 0
+        }
+      }
+    ]
+  },
+  "cash_flow": {
+    "date": "6 Aug 1991",
+    "annual": {
+      "authorized_spend_bn": 0.03660313268105764,
+      "balance_at_full_use_bn": -0.01308783943188761,
+      "basis_gdp_bn": 0.11845674006814767,
+      "fiscal_year": 1991,
+      "interest_bn": 0.002545189565822461,
+      "note": "Tax and oil-related revenue are annual estimates using current GDP. Full use means all ministry allocations plus interest. The spending run-rate scales one recorded day's ministry spending to a year; it is not spending so far this year. Review the first budget to see opening debt and interest.",
+      "posted_spending_day": 581,
+      "posted_spending_run_rate_bn": 0.025922759265756243,
+      "renewed": false,
+      "resource_revenue_bn": 0,
+      "revenue_basis_gdp_bn": 0.11845674006814767,
+      "revenue_bn": 0.02606048281499249,
+      "tax_revenue_bn": 0.02606048281499249,
+      "total_at_full_use_bn": 0.0391483222468801
+    },
+    "balances": {
+      "debt_bn": 0.06968077353752851,
+      "debt_gdp": 0.5882381491964193,
+      "net_position_bn": -0.06968077353752851,
+      "treasury_bn": 0
+    },
+    "alerts": [
+      {
+        "action": "budget",
+        "detail": "The current year has no renewed plan. Standing services continue; new capital authorization requires renewal.",
+        "id": "renew_budget",
+        "level": "attention",
+        "title": "Annual budget needs review"
+      },
+      {
+        "action": "budget",
+        "detail": "This comparison assumes every authorized ministry dollar is used. It is separate from the latest settled surplus or deficit; review allocations, taxes and interest.",
+        "id": "annual_full_use_gap",
+        "level": "attention",
+        "title": "Full-use annual plan exceeds estimated revenue"
+      }
+    ],
+    "settled": {
+      "balance_bn": -0.000006494162039049587,
+      "construction_bn": 0,
+      "day": 581,
+      "fiscal_year": 1991,
+      "interest_bn": 0.000006860337786119686,
+      "label": "5 Aug 1991",
+      "ministry_spend_bn": 0.00006968483673590388,
+      "note": "Revenue minus ministry spending and interest; positive is a surplus. The four spending categories are included once in ministry spending. Prepaid equipment is already paid. Trade and other direct transactions are separate.",
+      "other_capital_bn": 0,
+      "plant_operating_bn": 0,
+      "prepaid_used_bn": 0,
+      "primary_balance_bn": 3.661757470700981e-7,
+      "revenue_bn": 0.00007005101248297398,
+      "services_bn": 0.00006968483673590389,
+      "total_outflow_bn": 0.00007654517452202356
+    }
+  },
+  "finding": "Expired unrenewed annual capital authorization. Explicit daily construction ceiling retained; already-paid progress preserved. Expected fiscal rule, not credit-limit or annual-reset regression.",
+  "code_evidence": [
+    "programs.rs:323 expires unspent authority on new year",
+    "programs.rs:354 capital accrues only for a current-year authorized plan",
+    "programs.rs:466 set_construction_budget reapplies existing allocations through SetAnnualBudget and install; UI unchanged daily amount can renew",
+    "programs.rs:1205 rollover_expires_authority_but_never_refunds_cash_or_prepaid_orders asserts intentional expiry, renewal, next-day resumption",
+    "industry.rs:452 generic exhausted-daily-budget wording obscures annual-authorization cause"
+  ],
+  "actions_taken": "Read-only GET /api/state, /api/production and /api/cash-flow, all bodies consumed; no commands, no source edits, no stop/restart."
+}

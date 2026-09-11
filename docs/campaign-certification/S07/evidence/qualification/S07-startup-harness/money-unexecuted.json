@@ -1,0 +1,19 @@
+{
+  "revision": "041007fbfda48cc027d0c24a1189705a1dcaa89b",
+  "source": "tools/ui/ci-money.cjs",
+  "candidate": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-startup-harness\\ci-money.cjs",
+  "checkout_sha256": "f3a9b43efdb6567ec3feb96db389c93dd361f0af3cedf15a6015e5f4a7641e82",
+  "committed_blob_sha256": "f6212d7a83d24a58f72843816b4480eb94114ca0096b4fe8ad3f923c5131868d",
+  "candidate_sha256": "5e50dc0567b26237ca672ccb202ad34c773c3b124aa94b983b58e69818060581",
+  "patch_sha256": "5d9834cc2a2ef39267efacd4de92820b7c64112b6cc340183a530af150ae020c",
+  "combined_patch_sha256": "8d5b1f407c87575faa199177bb35f25078b6ee9bc50a6214e0a47f722b76f384",
+  "syntax_command": [
+    "node",
+    "--check",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-startup-harness\\ci-money.cjs"
+  ],
+  "syntax_exit_code": 0,
+  "executed_browser_journey": false,
+  "reason": "Same unread-readiness pattern; syntax-checked only during S07. No S06 journey rerun or outcome inferred.",
+  "clean_after": true
+}

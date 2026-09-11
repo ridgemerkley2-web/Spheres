@@ -1,0 +1,1441 @@
+{
+  "passed": true,
+  "nation": "France",
+  "run": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c",
+  "url": "http://127.0.0.1:57662",
+  "actions": [
+    {
+      "id": 1,
+      "quote": {
+        "as_of_day": 0,
+        "can_start": true,
+        "capacity_micros": 101388,
+        "cost_bn": 0.058805039999999996,
+        "district": "FRA_le-de-france",
+        "district_name": "Île-de-France",
+        "eta_days": 183,
+        "minimum_days": 183,
+        "name": "Starter Industry",
+        "nation_name": "France",
+        "national_effects": [
+          {
+            "after": 0.101388,
+            "before": 0,
+            "detail": "Rated output with sufficient operating funds, inputs, shared generation, local grid and storage; not guaranteed production or sales.",
+            "label": "National intermediate production capacity",
+            "unit": "packs/day"
+          },
+          {
+            "after": 0,
+            "before": 0,
+            "detail": "Rated output with sufficient operating funds, inputs, shared generation, local grid and storage; not guaranteed production or sales.",
+            "label": "National capital-goods production capacity",
+            "unit": "packs/day"
+          },
+          {
+            "after": 0,
+            "before": 0,
+            "detail": "A partial starter workshop runs its own fractional processing line without granting a full-estate unlock prematurely.",
+            "label": "Provinces meeting the estate prerequisite",
+            "unit": "provinces"
+          },
+          {
+            "after": 5.084496129814623,
+            "before": 4.070616129814622,
+            "detail": "The paid package includes matching fractional generation; no operating inventory is granted.",
+            "label": "National civilian generation",
+            "unit": "modeled power units/day"
+          },
+          {
+            "after": 0.058805039999999996,
+            "after_label": "If queued",
+            "before": 0,
+            "detail": "Remaining cash bills for this country's funded buildings and mines. No lump-sum treasury debit at order time.",
+            "label": "Unpaid construction commitments",
+            "unit": "$bn"
+          },
+          {
+            "after": 0.00463031811023622,
+            "after_label": "If queued",
+            "before": null,
+            "detail": "A scale comparison for the total contract, not an annual tax increase or projected GDP return.",
+            "label": "Quoted contract / current annual GDP",
+            "unit": "% of annual GDP"
+          },
+          {
+            "after": 0.39957204301075266,
+            "after_label": "If queued",
+            "before": 0.39957204301075266,
+            "detail": "Starting a project shares this budget; it does not increase the budget automatically.",
+            "label": "National daily construction budget",
+            "unit": "$bn/day"
+          },
+          {
+            "after": 0.00032222222222222217,
+            "after_label": "If queued",
+            "before": 0,
+            "detail": "Exact opening-queue quote at normal priority, bounded by remaining capital authority and the shared daily cap.",
+            "label": "Today's funding for this proposed project",
+            "unit": "$bn/day"
+          }
+        ],
+        "notes": [
+          "After values describe completed facilities at the current rules, prices and ownership. Rated output requires operating inputs and funding; it is not guaranteed production, GDP, tax income or profit.",
+          "Construction is paid as work progresses. No raw materials, manufactured goods or political capital are charged to start this building; paid work is sunk if cancelled.",
+          "The initial cost is unassigned base work. Choosing a construction contractor later can add separately reviewed service fees within the same funding budget.",
+          "ETA holds today's allocation to this new normal-priority project constant. Queue completions, budget changes and fiscal renewals can change the finish date."
+        ],
+        "operating_requirements": [
+          {
+            "detail": "Change at full rated output after completion. These are operating inputs; construction itself needs only funding.",
+            "label": "Change in bauxite demand",
+            "unit": "t/day",
+            "value": 0.0202776
+          },
+          {
+            "detail": "Change at full rated output after completion. These are operating inputs; construction itself needs only funding.",
+            "label": "Change in coal demand",
+            "unit": "kt/day",
+            "value": 0.02737476
+          },
+          {
+            "detail": "Change at full rated output after completion. These are operating inputs; construction itself needs only funding.",
+            "label": "Change in iron demand",
+            "unit": "t/day",
+            "value": 0.101388
+          },
+          {
+            "detail": "Full-output plant and generating-service bills, paid from Industry operating authority. Raw-stock purchases are additional; idle capacity is not billed.",
+            "label": "Change in operating cash",
+            "unit": "$bn/day",
+            "value": 0.0000012166560000000002
+          },
+          {
+            "detail": "Shared by civilian lines; having generation does not supply the required local grid, raw stocks or operating funds.",
+            "label": "Shared national generation",
+            "unit": "modeled power units/day",
+            "value": 5.084496129814623
+          },
+          {
+            "detail": "Operating production requires daily simulation, production and the resource market. Rated capacity is idle while these rules are disabled.",
+            "label": "Civilian operations enabled",
+            "unit": "enabled",
+            "value": 1
+          },
+          {
+            "detail": "Rated output with sufficient operating funds, inputs, shared generation, local grid and storage; not guaranteed production or sales.",
+            "label": "Local grid ceiling after completion",
+            "unit": "modeled power units/day",
+            "value": 1.4010061176144664
+          }
+        ],
+        "project_kind": "starter_industry",
+        "province_effects": [
+          {
+            "after": 0.101388,
+            "before": 0,
+            "detail": "Completed physical assets only; other queued projects are not assumed complete.",
+            "label": "Installed starter capacity",
+            "unit": "standard packages"
+          },
+          {
+            "after": 0.101388,
+            "before": 0,
+            "detail": "Rated output with sufficient operating funds, inputs, shared generation, local grid and storage; not guaranteed production or sales.",
+            "label": "Intermediate production capacity",
+            "unit": "packs/day"
+          },
+          {
+            "after": 0,
+            "before": 0,
+            "detail": "Rated output with sufficient operating funds, inputs, shared generation, local grid and storage; not guaranteed production or sales.",
+            "label": "Capital-goods production capacity",
+            "unit": "packs/day"
+          },
+          {
+            "after": 0.101388,
+            "before": 0,
+            "detail": "Rated output with sufficient operating funds, inputs, shared generation, local grid and storage; not guaranteed production or sales.",
+            "label": "Power needed at full local output",
+            "unit": "modeled power units/day"
+          },
+          {
+            "after": 0.0000012166560000000002,
+            "before": 0,
+            "detail": "Rated output with sufficient operating funds, inputs, shared generation, local grid and storage; not guaranteed production or sales.",
+            "label": "Operating bill at full local output",
+            "unit": "$bn/day"
+          },
+          {
+            "after": 0,
+            "before": 0,
+            "detail": "The package contributes fractional estate capacity. Full Machinery Works and Processing Plant orders need one whole estate equivalent.",
+            "label": "Full industrial plant prerequisite",
+            "unit": "eligible"
+          },
+          {
+            "after": 1.4010061176144664,
+            "before": 0.8940661176144664,
+            "detail": "The paid package includes matching fractional local grid capacity.",
+            "label": "Local industrial grid ceiling",
+            "unit": "modeled power units/day"
+          }
+        ],
+        "reason": null
+      },
+      "payload": {
+        "commands": [
+          {
+            "kind": "start_industry_module",
+            "district": "FRA_le-de-france",
+            "capacity_micros": 101388
+          }
+        ],
+        "session_id": "31768-1789134796475303600-1",
+        "client_id": "504bf1be-0785-4014-a2ea-c4eff7466131",
+        "request_seq": 2
+      }
+    },
+    {
+      "id": 2,
+      "quote": {
+        "as_of_day": 0,
+        "can_start": true,
+        "capacity_micros": null,
+        "cost_bn": 0.16,
+        "district": "FRA_le-de-france",
+        "district_name": "Île-de-France",
+        "eta_days": 360,
+        "minimum_days": 360,
+        "name": "Office District",
+        "nation_name": "France",
+        "national_effects": [
+          {
+            "after": 10000,
+            "before": 0,
+            "detail": "Additional operating demand; each worker can fill only one job.",
+            "label": "National facility jobs required",
+            "unit": "jobs"
+          },
+          {
+            "after": 0.21880504,
+            "after_label": "If queued",
+            "before": 0.058805039999999996,
+            "detail": "Remaining cash bills for this country's funded buildings and mines. No lump-sum treasury debit at order time.",
+            "label": "Unpaid construction commitments",
+            "unit": "$bn"
+          },
+          {
+            "after": 0.012598425196850394,
+            "after_label": "If queued",
+            "before": null,
+            "detail": "A scale comparison for the total contract, not an annual tax increase or projected GDP return.",
+            "label": "Quoted contract / current annual GDP",
+            "unit": "% of annual GDP"
+          },
+          {
+            "after": 0.39957204301075266,
+            "after_label": "If queued",
+            "before": 0.39957204301075266,
+            "detail": "Starting a project shares this budget; it does not increase the budget automatically.",
+            "label": "National daily construction budget",
+            "unit": "$bn/day"
+          },
+          {
+            "after": 0.00044444444444444447,
+            "after_label": "If queued",
+            "before": 0,
+            "detail": "Exact opening-queue quote at normal priority, bounded by remaining capital authority and the shared daily cap.",
+            "label": "Today's funding for this proposed project",
+            "unit": "$bn/day"
+          }
+        ],
+        "notes": [
+          "After values describe completed facilities at the current rules, prices and ownership. Rated output requires operating inputs and funding; it is not guaranteed production, GDP, tax income or profit.",
+          "Construction is paid as work progresses. No raw materials, manufactured goods or political capital are charged to start this building; paid work is sunk if cancelled.",
+          "The initial cost is unassigned base work. Choosing a construction contractor later can add separately reviewed service fees within the same funding budget.",
+          "ETA holds today's allocation to this new normal-priority project constant. Queue completions, budget changes and fiscal renewals can change the finish date."
+        ],
+        "operating_requirements": [
+          {
+            "detail": "Requires shared generation and local grid capacity. Construction itself needs only funding.",
+            "label": "Additional operating electricity",
+            "unit": "modeled power units/day",
+            "value": 0.25
+          },
+          {
+            "detail": "Industry operating authority, including current contractor fees, charged only for supplied operation.",
+            "label": "Operating service cash",
+            "unit": "$bn/day",
+            "value": 0.00001
+          },
+          {
+            "detail": "Electricity authority pays actual generation and its current contractor fee once. Fuel purchases remain separate.",
+            "label": "Generation service cash",
+            "unit": "$bn/day",
+            "value": 5e-7
+          },
+          {
+            "detail": "Consumed by operation, never by construction.",
+            "label": "Intermediate packs",
+            "unit": "packs/day",
+            "value": 0.01
+          },
+          {
+            "detail": "Full added operating recipe; shortages reduce output without consuming an incomplete bundle.",
+            "label": "coal",
+            "unit": "kt/day",
+            "value": 0.005
+          }
+        ],
+        "project_kind": "office_district",
+        "province_effects": [
+          {
+            "after": 1,
+            "before": 0,
+            "detail": "Completed physical assets only; other queued projects are not assumed complete.",
+            "label": "Completed facility levels",
+            "unit": "levels"
+          },
+          {
+            "after": 1,
+            "before": 0,
+            "detail": "Paid construction adds capacity; operating funding and supplies determine actual output.",
+            "label": "Installed facility levels",
+            "unit": "levels"
+          },
+          {
+            "after": 10000,
+            "before": 0,
+            "detail": "Required positions, not an instant employment award. The population ledger matches people with the required qualifications.",
+            "label": "Facility jobs required",
+            "unit": "jobs"
+          },
+          {
+            "after": 0.0987225,
+            "before": 0,
+            "detail": "Full supplied operation only; available skills, electricity, inputs, operating funds and existing domestic service demand cap realized GDP. Completion grants no GDP or cash.",
+            "label": "Potential annual service value added",
+            "unit": "$bn/year"
+          }
+        ],
+        "reason": null
+      },
+      "payload": {
+        "commands": [
+          {
+            "kind": "start_project",
+            "project_kind": "office_district",
+            "district": "FRA_le-de-france"
+          }
+        ],
+        "session_id": "31768-1789134796475303600-1",
+        "client_id": "504bf1be-0785-4014-a2ea-c4eff7466131",
+        "request_seq": 3
+      }
+    },
+    {
+      "cancel_candidate": {
+        "id": 3,
+        "quote": {
+          "as_of_day": 0,
+          "can_start": true,
+          "capacity_micros": null,
+          "cost_bn": 0.06,
+          "district": "FRA_le-de-france",
+          "district_name": "Île-de-France",
+          "eta_days": 240,
+          "minimum_days": 240,
+          "name": "Industrial Warehouses",
+          "nation_name": "France",
+          "national_effects": [
+            {
+              "after": 500,
+              "before": 250,
+              "detail": "Each warehouse level adds 250 to each shared national goods store. Existing inventory is preserved and no stock is granted.",
+              "label": "National intermediate-pack storage",
+              "unit": "packs"
+            },
+            {
+              "after": 500,
+              "before": 250,
+              "detail": "Each warehouse level adds 250 to each shared national goods store. Existing inventory is preserved and no stock is granted.",
+              "label": "National capital-goods storage",
+              "unit": "packs"
+            },
+            {
+              "after": 500,
+              "before": 250,
+              "detail": "Separate finite inventory; storage adds no free components.",
+              "label": "National advanced-component storage",
+              "unit": "components"
+            },
+            {
+              "after": 0.27880504,
+              "after_label": "If queued",
+              "before": 0.21880504,
+              "detail": "Remaining cash bills for this country's funded buildings and mines. No lump-sum treasury debit at order time.",
+              "label": "Unpaid construction commitments",
+              "unit": "$bn"
+            },
+            {
+              "after": 0.004724409448818898,
+              "after_label": "If queued",
+              "before": null,
+              "detail": "A scale comparison for the total contract, not an annual tax increase or projected GDP return.",
+              "label": "Quoted contract / current annual GDP",
+              "unit": "% of annual GDP"
+            },
+            {
+              "after": 0.39957204301075266,
+              "after_label": "If queued",
+              "before": 0.39957204301075266,
+              "detail": "Starting a project shares this budget; it does not increase the budget automatically.",
+              "label": "National daily construction budget",
+              "unit": "$bn/day"
+            },
+            {
+              "after": 0.00025,
+              "after_label": "If queued",
+              "before": 0,
+              "detail": "Exact opening-queue quote at normal priority, bounded by remaining capital authority and the shared daily cap.",
+              "label": "Today's funding for this proposed project",
+              "unit": "$bn/day"
+            }
+          ],
+          "notes": [
+            "After values describe completed facilities at the current rules, prices and ownership. Rated output requires operating inputs and funding; it is not guaranteed production, GDP, tax income or profit.",
+            "Construction is paid as work progresses. No raw materials, manufactured goods or political capital are charged to start this building; paid work is sunk if cancelled.",
+            "The initial cost is unassigned base work. Choosing a construction contractor later can add separately reviewed service fees within the same funding budget.",
+            "ETA holds today's allocation to this new normal-priority project constant. Queue completions, budget changes and fiscal renewals can change the finish date."
+          ],
+          "operating_requirements": [
+            {
+              "detail": "No recurring warehouse invoice in the current model. More storage helps producers only when storage is their constraint.",
+              "label": "Separate warehouse upkeep",
+              "unit": "$bn/day",
+              "value": 0
+            }
+          ],
+          "project_kind": "warehouse",
+          "province_effects": [
+            {
+              "after": 1,
+              "before": 0,
+              "detail": "Completed physical assets only; other queued projects are not assumed complete.",
+              "label": "Completed facility levels",
+              "unit": "levels"
+            }
+          ],
+          "reason": null
+        },
+        "payload": {
+          "commands": [
+            {
+              "kind": "start_project",
+              "project_kind": "warehouse",
+              "district": "FRA_le-de-france"
+            }
+          ],
+          "session_id": "31768-1789134796475303600-1",
+          "client_id": "504bf1be-0785-4014-a2ea-c4eff7466131",
+          "request_seq": 4
+        }
+      }
+    }
+  ],
+  "screenshots": [
+    "funded-queue.png",
+    "paused-queue.png",
+    "completed-construction.png",
+    "operating-desktop.png",
+    "requirements-desktop.png",
+    "operating-mobile.png",
+    "requirements-mobile.png"
+  ],
+  "errors": [],
+  "advance_count": 361,
+  "commands": [
+    {
+      "commands": [
+        {
+          "kind": "construction_budget",
+          "daily_budget_bn": 0.39957204301075266
+        }
+      ],
+      "session_id": "31768-1789134796475303600-1",
+      "client_id": "504bf1be-0785-4014-a2ea-c4eff7466131",
+      "request_seq": 1
+    },
+    {
+      "commands": [
+        {
+          "kind": "start_industry_module",
+          "district": "FRA_le-de-france",
+          "capacity_micros": 101388
+        }
+      ],
+      "session_id": "31768-1789134796475303600-1",
+      "client_id": "504bf1be-0785-4014-a2ea-c4eff7466131",
+      "request_seq": 2
+    },
+    {
+      "commands": [
+        {
+          "kind": "start_project",
+          "project_kind": "office_district",
+          "district": "FRA_le-de-france"
+        }
+      ],
+      "session_id": "31768-1789134796475303600-1",
+      "client_id": "504bf1be-0785-4014-a2ea-c4eff7466131",
+      "request_seq": 3
+    },
+    {
+      "commands": [
+        {
+          "kind": "start_project",
+          "project_kind": "warehouse",
+          "district": "FRA_le-de-france"
+        }
+      ],
+      "session_id": "31768-1789134796475303600-1",
+      "client_id": "504bf1be-0785-4014-a2ea-c4eff7466131",
+      "request_seq": 4
+    },
+    {
+      "commands": [
+        {
+          "kind": "set_project_priority",
+          "project": 3,
+          "priority": "high"
+        }
+      ],
+      "session_id": "31768-1789134796475303600-1",
+      "client_id": "504bf1be-0785-4014-a2ea-c4eff7466131",
+      "request_seq": 5
+    },
+    {
+      "commands": [
+        {
+          "kind": "set_project_priority",
+          "project": 3,
+          "priority": "low"
+        }
+      ],
+      "session_id": "31768-1789134796475303600-1",
+      "client_id": "504bf1be-0785-4014-a2ea-c4eff7466131",
+      "request_seq": 7
+    },
+    {
+      "commands": [
+        {
+          "kind": "set_project_priority",
+          "project": 1,
+          "priority": "high"
+        }
+      ],
+      "session_id": "31768-1789134796475303600-1",
+      "client_id": "504bf1be-0785-4014-a2ea-c4eff7466131",
+      "request_seq": 8
+    },
+    {
+      "commands": [
+        {
+          "kind": "construction_budget",
+          "daily_budget_bn": 0
+        }
+      ],
+      "session_id": "31768-1789134796475303600-1",
+      "client_id": "504bf1be-0785-4014-a2ea-c4eff7466131",
+      "request_seq": 10
+    },
+    {
+      "commands": [
+        {
+          "kind": "cancel_project",
+          "project": 3
+        }
+      ],
+      "session_id": "31768-1789134796475303600-1",
+      "client_id": "504bf1be-0785-4014-a2ea-c4eff7466131",
+      "request_seq": 12
+    },
+    {
+      "commands": [
+        {
+          "kind": "construction_budget",
+          "daily_budget_bn": 0.39957204301075266
+        }
+      ],
+      "session_id": "31768-1789134796475303600-1",
+      "client_id": "504bf1be-0785-4014-a2ea-c4eff7466131",
+      "request_seq": 13
+    }
+  ],
+  "observations": [
+    {
+      "date": "5 Jan 1990",
+      "queue": [
+        {
+          "id": 1,
+          "progress": 0.0164,
+          "spent_bn": 0.0009666666666666665,
+          "status": "building",
+          "reason": null
+        },
+        {
+          "id": 2,
+          "progress": 0.0083,
+          "spent_bn": 0.0013333333333333335,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.0027999999999999995
+    },
+    {
+      "date": "20 Jan 1990",
+      "queue": [
+        {
+          "id": 1,
+          "progress": 0.0986,
+          "spent_bn": 0.005799999999999998,
+          "status": "building",
+          "reason": null
+        },
+        {
+          "id": 2,
+          "progress": 0.05,
+          "spent_bn": 0.008,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.014300000000000002
+    },
+    {
+      "date": "4 Feb 1990",
+      "queue": [
+        {
+          "id": 1,
+          "progress": 0.1808,
+          "spent_bn": 0.010633333333333328,
+          "status": "building",
+          "reason": null
+        },
+        {
+          "id": 2,
+          "progress": 0.0917,
+          "spent_bn": 0.014666666666666679,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.02580000000000003
+    },
+    {
+      "date": "19 Feb 1990",
+      "queue": [
+        {
+          "id": 1,
+          "progress": 0.263,
+          "spent_bn": 0.015466666666666658,
+          "status": "building",
+          "reason": null
+        },
+        {
+          "id": 2,
+          "progress": 0.1333,
+          "spent_bn": 0.021333333333333357,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.037300000000000035
+    },
+    {
+      "date": "6 Mar 1990",
+      "queue": [
+        {
+          "id": 1,
+          "progress": 0.3452,
+          "spent_bn": 0.020300000000000012,
+          "status": "building",
+          "reason": null
+        },
+        {
+          "id": 2,
+          "progress": 0.175,
+          "spent_bn": 0.028000000000000035,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.04880000000000002
+    },
+    {
+      "date": "21 Mar 1990",
+      "queue": [
+        {
+          "id": 1,
+          "progress": 0.4274,
+          "spent_bn": 0.02513333333333337,
+          "status": "building",
+          "reason": null
+        },
+        {
+          "id": 2,
+          "progress": 0.2167,
+          "spent_bn": 0.034666666666666686,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.0603
+    },
+    {
+      "date": "5 Apr 1990",
+      "queue": [
+        {
+          "id": 1,
+          "progress": 0.5096,
+          "spent_bn": 0.029966666666666725,
+          "status": "building",
+          "reason": null
+        },
+        {
+          "id": 2,
+          "progress": 0.2583,
+          "spent_bn": 0.04133333333333331,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.07179999999999999
+    },
+    {
+      "date": "20 Apr 1990",
+      "queue": [
+        {
+          "id": 1,
+          "progress": 0.5918,
+          "spent_bn": 0.03480000000000008,
+          "status": "building",
+          "reason": null
+        },
+        {
+          "id": 2,
+          "progress": 0.3,
+          "spent_bn": 0.04799999999999994,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.08329999999999997
+    },
+    {
+      "date": "5 May 1990",
+      "queue": [
+        {
+          "id": 1,
+          "progress": 0.674,
+          "spent_bn": 0.03963333333333344,
+          "status": "building",
+          "reason": null
+        },
+        {
+          "id": 2,
+          "progress": 0.3417,
+          "spent_bn": 0.054666666666666565,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.09479999999999995
+    },
+    {
+      "date": "20 May 1990",
+      "queue": [
+        {
+          "id": 1,
+          "progress": 0.7562,
+          "spent_bn": 0.04446666666666679,
+          "status": "building",
+          "reason": null
+        },
+        {
+          "id": 2,
+          "progress": 0.3833,
+          "spent_bn": 0.06133333333333319,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.10629999999999994
+    },
+    {
+      "date": "4 Jun 1990",
+      "queue": [
+        {
+          "id": 1,
+          "progress": 0.8384,
+          "spent_bn": 0.04930000000000015,
+          "status": "building",
+          "reason": null
+        },
+        {
+          "id": 2,
+          "progress": 0.425,
+          "spent_bn": 0.06799999999999982,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.11779999999999992
+    },
+    {
+      "date": "19 Jun 1990",
+      "queue": [
+        {
+          "id": 1,
+          "progress": 0.9206,
+          "spent_bn": 0.05413333333333348,
+          "status": "building",
+          "reason": null
+        },
+        {
+          "id": 2,
+          "progress": 0.4667,
+          "spent_bn": 0.07466666666666645,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.1292999999999999
+    },
+    {
+      "date": "4 Jul 1990",
+      "queue": [
+        {
+          "id": 2,
+          "progress": 0.5083,
+          "spent_bn": 0.08133333333333308,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.14063837333333307
+    },
+    {
+      "date": "19 Jul 1990",
+      "queue": [
+        {
+          "id": 2,
+          "progress": 0.55,
+          "spent_bn": 0.0879999999999997,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.1473050399999997
+    },
+    {
+      "date": "3 Aug 1990",
+      "queue": [
+        {
+          "id": 2,
+          "progress": 0.5917,
+          "spent_bn": 0.09466666666666633,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.15397170666666632
+    },
+    {
+      "date": "18 Aug 1990",
+      "queue": [
+        {
+          "id": 2,
+          "progress": 0.6333,
+          "spent_bn": 0.10133333333333296,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.16063837333333295
+    },
+    {
+      "date": "2 Sep 1990",
+      "queue": [
+        {
+          "id": 2,
+          "progress": 0.675,
+          "spent_bn": 0.10799999999999958,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.16730503999999957
+    },
+    {
+      "date": "17 Sep 1990",
+      "queue": [
+        {
+          "id": 2,
+          "progress": 0.7167,
+          "spent_bn": 0.11466666666666624,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.1739717066666662
+    },
+    {
+      "date": "2 Oct 1990",
+      "queue": [
+        {
+          "id": 2,
+          "progress": 0.7583,
+          "spent_bn": 0.12133333333333296,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.18063837333333282
+    },
+    {
+      "date": "17 Oct 1990",
+      "queue": [
+        {
+          "id": 2,
+          "progress": 0.8,
+          "spent_bn": 0.12799999999999964,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.18730503999999945
+    },
+    {
+      "date": "1 Nov 1990",
+      "queue": [
+        {
+          "id": 2,
+          "progress": 0.8417,
+          "spent_bn": 0.13466666666666627,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.19397170666666608
+    },
+    {
+      "date": "16 Nov 1990",
+      "queue": [
+        {
+          "id": 2,
+          "progress": 0.8833,
+          "spent_bn": 0.1413333333333329,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.2006383733333327
+    },
+    {
+      "date": "1 Dec 1990",
+      "queue": [
+        {
+          "id": 2,
+          "progress": 0.925,
+          "spent_bn": 0.1479999999999997,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.2073050399999995
+    },
+    {
+      "date": "16 Dec 1990",
+      "queue": [
+        {
+          "id": 2,
+          "progress": 0.9667,
+          "spent_bn": 0.15466666666666654,
+          "status": "building",
+          "reason": null
+        }
+      ],
+      "spent_ytd_bn": 0.21397170666666634
+    },
+    {
+      "date": "28 Dec 1990",
+      "queue": [],
+      "spent_ytd_bn": 0.2193050399999998
+    }
+  ],
+  "fixture": "Fresh campaign through the normal nation selector; no seeded funds, materials, workforce, completed capacity or synthetic responses",
+  "browser_version": "152.0.7977.83",
+  "build": {
+    "revision": "041007fbfda48cc027d0c24a1189705a1dcaa89b",
+    "build": {
+      "branch": "codex/campaign-certification",
+      "built_at_unix_seconds": 1789133708,
+      "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+      "distribution": "Local offline game server; source and attribution accompany the release",
+      "revision": "041007fbfda4",
+      "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-construction-ci\\france-xUfR8c",
+      "version": "0.6.0"
+    },
+    "binary_sha256": "e845d3179f72e1ec49ae68197b48cad94dcfd0648ab5f358e0e9d28115d6d3c7",
+    "assets": {
+      "index.html": {
+        "served_sha256": "18ae149cf54b0f44d8a4eb50e28d2be37f4d2de3be0075aecee0887c8f13a4f6",
+        "served_bytes": 1142819,
+        "checkout_sha256": "18ae149cf54b0f44d8a4eb50e28d2be37f4d2de3be0075aecee0887c8f13a4f6",
+        "checkout_bytes": 1142819,
+        "committed_sha256": "b318887bed4fba7b8b83fb68ba0214874a00a5068e5389281091ce844fac20c7",
+        "committed_bytes": 1124110,
+        "canonical_checkout_sha256": "b318887bed4fba7b8b83fb68ba0214874a00a5068e5389281091ce844fac20c7",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 18709
+        }
+      },
+      "campaign-transport.js": {
+        "served_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+        "served_bytes": 4775,
+        "checkout_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+        "checkout_bytes": 4775,
+        "committed_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+        "committed_bytes": 4693,
+        "canonical_checkout_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 82
+        }
+      },
+      "campaign-ui.js": {
+        "served_sha256": "20641a249ff5b59589736dd9f36f3cdd7b7ab53df29d107d4cf3feccecbf49ba",
+        "served_bytes": 13683,
+        "checkout_sha256": "20641a249ff5b59589736dd9f36f3cdd7b7ab53df29d107d4cf3feccecbf49ba",
+        "checkout_bytes": 13683,
+        "committed_sha256": "9aa62da51602a3d612312e157d37726cc6d2ed73efd17a7e5f2634386b1be312",
+        "committed_bytes": 13473,
+        "canonical_checkout_sha256": "9aa62da51602a3d612312e157d37726cc6d2ed73efd17a7e5f2634386b1be312",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 210
+        }
+      },
+      "fiscal-recovery-ui.js": {
+        "served_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "served_bytes": 11098,
+        "checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "checkout_bytes": 11098,
+        "committed_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "committed_bytes": 11098,
+        "canonical_checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "cash-flow-ui.js": {
+        "served_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+        "served_bytes": 30198,
+        "checkout_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+        "checkout_bytes": 30198,
+        "committed_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+        "committed_bytes": 29951,
+        "canonical_checkout_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 247
+        }
+      },
+      "companies-ui.js": {
+        "served_sha256": "e6df56df771ada42296548f6f81c1de7cb1802e152fb231747dc8ade74ee3d0f",
+        "served_bytes": 32908,
+        "checkout_sha256": "e6df56df771ada42296548f6f81c1de7cb1802e152fb231747dc8ade74ee3d0f",
+        "checkout_bytes": 32908,
+        "committed_sha256": "affa2f175ce1d1b073d6b0e7f2efd394d09f016e04d5be50dc66ec57a56f3ceb",
+        "committed_bytes": 32867,
+        "canonical_checkout_sha256": "affa2f175ce1d1b073d6b0e7f2efd394d09f016e04d5be50dc66ec57a56f3ceb",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 41
+        }
+      },
+      "companies.css": {
+        "served_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+        "served_bytes": 13908,
+        "checkout_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+        "checkout_bytes": 13908,
+        "committed_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+        "committed_bytes": 13798,
+        "canonical_checkout_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 110
+        }
+      },
+      "government-ui.js": {
+        "served_sha256": "52d573a271754ac4deb119b54e971660461d7da2c52acc68c5f5ba56b6cc2669",
+        "served_bytes": 51030,
+        "checkout_sha256": "52d573a271754ac4deb119b54e971660461d7da2c52acc68c5f5ba56b6cc2669",
+        "checkout_bytes": 51030,
+        "committed_sha256": "44da269aeb1b4d5be7838fc41650882f3e23b4d30cf75cc684f51cb424102a84",
+        "committed_bytes": 50763,
+        "canonical_checkout_sha256": "44da269aeb1b4d5be7838fc41650882f3e23b4d30cf75cc684f51cb424102a84",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 267
+        }
+      },
+      "government-ui.css": {
+        "served_sha256": "f57d830d425de71983e6660cac2497e82da791ed6bb9be86e97245057254eb95",
+        "served_bytes": 34278,
+        "checkout_sha256": "f57d830d425de71983e6660cac2497e82da791ed6bb9be86e97245057254eb95",
+        "checkout_bytes": 34278,
+        "committed_sha256": "b6dfbf9f03befa8a7020a86fde085bf61bd448ff362ccf2b70a55be6b6d065fe",
+        "committed_bytes": 33939,
+        "canonical_checkout_sha256": "b6dfbf9f03befa8a7020a86fde085bf61bd448ff362ccf2b70a55be6b6d065fe",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 339
+        }
+      },
+      "campaign-operations-ui.js": {
+        "served_sha256": "4da1d39397733cad49125c2fd30e3d57175f89b71e5ddcb75ba35c6a0a730c00",
+        "served_bytes": 21110,
+        "checkout_sha256": "4da1d39397733cad49125c2fd30e3d57175f89b71e5ddcb75ba35c6a0a730c00",
+        "checkout_bytes": 21110,
+        "committed_sha256": "ab7ec85f87a44ab316a700a7206a05f7057b8bfabd51d1d4d9dd5ddb5e0a7bf5",
+        "committed_bytes": 20888,
+        "canonical_checkout_sha256": "ab7ec85f87a44ab316a700a7206a05f7057b8bfabd51d1d4d9dd5ddb5e0a7bf5",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 222
+        }
+      },
+      "campaign-operations-ui.css": {
+        "served_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+        "served_bytes": 8447,
+        "checkout_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+        "checkout_bytes": 8447,
+        "committed_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+        "committed_bytes": 8367,
+        "canonical_checkout_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 80
+        }
+      },
+      "map-controls.js": {
+        "served_sha256": "ce7553d9b43a38b00581e67ef66aa23e5f03a8b4abde9c85171f28f3e6bb4e9e",
+        "served_bytes": 10651,
+        "checkout_sha256": "ce7553d9b43a38b00581e67ef66aa23e5f03a8b4abde9c85171f28f3e6bb4e9e",
+        "checkout_bytes": 10651,
+        "committed_sha256": "79b99912a9406b43f22d786ea7063d47fc05d738e432e9749561eb1fdff03fd7",
+        "committed_bytes": 10442,
+        "canonical_checkout_sha256": "79b99912a9406b43f22d786ea7063d47fc05d738e432e9749561eb1fdff03fd7",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 209
+        }
+      },
+      "map-controls.css": {
+        "served_sha256": "07d2f965f3cb90a04095ac7ec3679307548549d4ea9612d299d2a8b75e35527a",
+        "served_bytes": 9732,
+        "checkout_sha256": "07d2f965f3cb90a04095ac7ec3679307548549d4ea9612d299d2a8b75e35527a",
+        "checkout_bytes": 9732,
+        "committed_sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+        "committed_bytes": 9631,
+        "canonical_checkout_sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 101
+        }
+      },
+      "guidance-ui.js": {
+        "served_sha256": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+        "served_bytes": 21247,
+        "checkout_sha256": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+        "checkout_bytes": 21247,
+        "committed_sha256": "39eb68189c78ea74ee89b4bc92ac6153326accfe0d2300ea401ee696bddc38ea",
+        "committed_bytes": 21072,
+        "canonical_checkout_sha256": "39eb68189c78ea74ee89b4bc92ac6153326accfe0d2300ea401ee696bddc38ea",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 175
+        }
+      },
+      "guidance-ui.css": {
+        "served_sha256": "169531e25171ef1448b38b0832050712392c94e74f8bb0f96e8727f77d3a5b2f",
+        "served_bytes": 7496,
+        "checkout_sha256": "169531e25171ef1448b38b0832050712392c94e74f8bb0f96e8727f77d3a5b2f",
+        "checkout_bytes": 7496,
+        "committed_sha256": "4f959346eae6c81209da51b76717fd1d4b04a6bcfe0f0ae84032adc465e288ad",
+        "committed_bytes": 7490,
+        "canonical_checkout_sha256": "4f959346eae6c81209da51b76717fd1d4b04a6bcfe0f0ae84032adc465e288ad",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 6
+        }
+      },
+      "globe3d.js": {
+        "served_sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9",
+        "served_bytes": 36245,
+        "checkout_sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9",
+        "checkout_bytes": 36245,
+        "committed_sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "committed_bytes": 35548,
+        "canonical_checkout_sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 697
+        }
+      },
+      "city-layer.js": {
+        "served_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+        "served_bytes": 12449,
+        "checkout_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+        "checkout_bytes": 12449,
+        "committed_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+        "committed_bytes": 12222,
+        "canonical_checkout_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 227
+        }
+      },
+      "city-mesh.js": {
+        "served_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+        "served_bytes": 87641,
+        "checkout_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+        "checkout_bytes": 87641,
+        "committed_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+        "committed_bytes": 86075,
+        "canonical_checkout_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 1566
+        }
+      },
+      "water-detail.js": {
+        "served_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+        "served_bytes": 11962,
+        "checkout_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+        "checkout_bytes": 11962,
+        "committed_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+        "committed_bytes": 11729,
+        "canonical_checkout_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 233
+        }
+      },
+      "equipment-mesh.js": {
+        "served_sha256": "0a312b09000429d644f369812d1be5a1fab3b545aa3e7301721a19d319f6f361",
+        "served_bytes": 178146,
+        "checkout_sha256": "0a312b09000429d644f369812d1be5a1fab3b545aa3e7301721a19d319f6f361",
+        "checkout_bytes": 178146,
+        "committed_sha256": "74400279143ac848f2b1f51eca03f9350a5020b27eec31fe0e5809eb6bf3b547",
+        "committed_bytes": 175650,
+        "canonical_checkout_sha256": "74400279143ac848f2b1f51eca03f9350a5020b27eec31fe0e5809eb6bf3b547",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 2496
+        }
+      }
+    }
+  },
+  "assets": {
+    "industry-ui.js": {
+      "served_sha256": "a9714eef44be287fb217f639dada9c3c46824e628d2f61f5ae8e9e46defca612",
+      "committed_sha256": "91732bc28103e2f8522df58d07b44f9533720b4764c2d52df998c4341d878a6d"
+    },
+    "industry-ui.css": {
+      "served_sha256": "e1c4d07466458a3cec30f59a6a7d0bfed08777206f0b5f98075e3a69fec6cff2",
+      "committed_sha256": "df7e9be6e2cd0aa1d95d6391bab6eabc3061942ddb1bec5417ae38edd70974b8"
+    }
+  },
+  "district": "FRA_le-de-france",
+  "pause": {
+    "date": "4 Jan 1990",
+    "progress_retained": true,
+    "no_spending": true
+  },
+  "cancellation": {
+    "id": 3,
+    "spent_bn": 0.0005,
+    "cancel_review_pure": true,
+    "no_refund": true
+  },
+  "paid_save": {
+    "slot": "s07-france-paid",
+    "date": "4 Jan 1990",
+    "new_session": true,
+    "exact_construction": true,
+    "cancel_pure": true
+  },
+  "construction_accounting": {
+    "actual_paid_bn": 0.21930503999999976,
+    "reviewed_completed_plus_cancelled_work_bn": 0.21930504,
+    "exact_within_bn": 1e-9
+  },
+  "completed_date": "28 Dec 1990",
+  "operating": {
+    "site": "site:FRA_le-de-france:starter_industry",
+    "operation": {
+      "actual_operating_capacity": null,
+      "actual_utilization": null,
+      "assigned_workers": 405.55199999999996,
+      "cash_spent_bn": 0.0000012166560000000002,
+      "date": "1990-12-27",
+      "day": 360,
+      "installed_capacity": 0.101388,
+      "label": "Recorded province operation",
+      "note": "Actual output, worker use and operating charges on the recorded date. Current capacity or shortages do not rewrite this receipt. Charges belong to the existing fiscal settlement, not a second bill.",
+      "output": 0.101388,
+      "output_unit": "intermediate packs",
+      "owner_verified": true,
+      "power_used_daily": 0.101388,
+      "reason": null,
+      "required_workers": 405.552,
+      "status": "running",
+      "used_workers": 405.552,
+      "value_added_bn": 0.00000851359765431551
+    },
+    "staffing": {
+      "assigned": 405.55199999999996,
+      "available": 405.552,
+      "label": "Current workforce and recorded use",
+      "matched_date": "1990-12-27",
+      "matched_day": 360,
+      "note": "Assigned workers come from the population ledger's dated workforce match. Qualified staffing coverage is current feasible coverage of installed job requirements; workers used belong to the separate operating receipt date.",
+      "required": 405.552,
+      "used": 405.552
+    },
+    "readiness": {
+      "fraction": 1,
+      "label": "Ready for the next operation",
+      "note": "Ready for assigned work; operating inputs and funding are checked when used. This is current readiness; only a dated receipt proves operation.",
+      "requirements": [
+        {
+          "available": 1,
+          "id": "workers",
+          "label": "Qualified staffing",
+          "note": "Coverage of the required qualifications. Assigned people are shared with other employers; these are not newly created workers.",
+          "ready": true,
+          "required": 1,
+          "unit": "share"
+        },
+        {
+          "available": 1,
+          "id": "power",
+          "label": "Power and local grid",
+          "note": "Current utility support; actual dispatch is shared with other operating facilities.",
+          "ready": true,
+          "required": 1,
+          "unit": "share"
+        },
+        {
+          "available": 1,
+          "id": "inputs",
+          "label": "Operating inputs and storage",
+          "note": "Raw materials, intermediate goods and finished-goods room required for operation. They are not construction requirements.",
+          "ready": true,
+          "required": 1,
+          "unit": "share"
+        },
+        {
+          "available": 1,
+          "id": "funding",
+          "label": "Operating department funds",
+          "note": "Conditional current operating authorization. Availability is neither cash already spent nor a payment guarantee.",
+          "ready": true,
+          "required": 1,
+          "unit": "share"
+        },
+        {
+          "available": 484727.573382819,
+          "id": "raw_bauxite",
+          "label": "bauxite operating input",
+          "note": "Required for one full operating day at installed capacity; available is shared national inventory, not a daily delivery or a reservation. Actual operation may be lower. Construction does not require this input.",
+          "ready": true,
+          "required": 0.0202776,
+          "unit": "t"
+        },
+        {
+          "available": 12677.257748384,
+          "id": "raw_coal",
+          "label": "coal operating input",
+          "note": "Required for one full operating day at installed capacity; available is shared national inventory, not a daily delivery or a reservation. Actual operation may be lower. Construction does not require this input.",
+          "ready": true,
+          "required": 0.02737476,
+          "unit": "kt"
+        },
+        {
+          "available": 8636110.985194126,
+          "id": "raw_iron",
+          "label": "iron operating input",
+          "note": "Required for one full operating day at installed capacity; available is shared national inventory, not a daily delivery or a reservation. Actual operation may be lower. Construction does not require this input.",
+          "ready": true,
+          "required": 0.101388,
+          "unit": "t"
+        },
+        {
+          "available": 5.084496129814623,
+          "id": "national_power",
+          "label": "National generating support",
+          "note": "Required per full installed operating day, compared with total modeled support. Capacity is shared with other consumers; this does not reserve power or report historical dispatch.",
+          "ready": true,
+          "required": 0.101388,
+          "unit": "power units/day"
+        },
+        {
+          "available": 1.4010061176144664,
+          "id": "local_grid",
+          "label": "Local grid support",
+          "note": "Required per full installed operating day, compared with total modeled support. Capacity is shared with other consumers; this does not reserve power or report historical dispatch.",
+          "ready": true,
+          "required": 0.101388,
+          "unit": "power units/day"
+        },
+        {
+          "available": 2.8465072191320817,
+          "id": "operating_authority",
+          "label": "Facility operating authority",
+          "note": "Rated charge for one full installed operating day at current contractor terms. Available is current department spending authority, not Treasury cash or a payment already made; actual work may be lower.",
+          "ready": true,
+          "required": 0.0000010138800000000002,
+          "unit": "$bn"
+        },
+        {
+          "available": 2.846650905883752,
+          "id": "energy_authority",
+          "label": "Generating service authority",
+          "note": "Rated charge for one full installed operating day at current contractor terms. Available is current department spending authority, not Treasury cash or a payment already made; actual work may be lower.",
+          "ready": true,
+          "required": 2.0277600000000002e-7,
+          "unit": "$bn"
+        }
+      ]
+    },
+    "exact_response": true,
+    "matched_focus": true
+  },
+  "completed_save": {
+    "slot": "s07-france-complete",
+    "date": "28 Dec 1990",
+    "new_session": true,
+    "exact_construction": true,
+    "cancel_pure": true,
+    "exact_industry": true
+  },
+  "finished_utc": "2026-09-11T13:54:52.647Z"
+}

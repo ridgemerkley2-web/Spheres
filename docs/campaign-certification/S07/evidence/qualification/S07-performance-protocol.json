@@ -1,0 +1,13 @@
+{
+  "candidate": "041007fbfda48cc027d0c24a1189705a1dcaa89b",
+  "declared_utc": "2026-09-11T13:39:41.717157+00:00",
+  "test_binary_sha256": "f9495c660ba1204413d7962d0a19b587c6d5f293bc77cd7137672303f9195d85",
+  "fixture_root": "../fixtures/lifetime-legacy",
+  "workloads": "The unchanged six S05 copied checkpoints: ages 0/10/30, idle and industry+war, 31 days each. Explicit connected economy, company network and operational warfare adoption.",
+  "plan": "Run one full sample after this task native builds/tests and browser checks finish. Preserve the complete result. A failed bar requires diagnosis; do not silently retry for a favorable sample.",
+  "simulation_p95_limit_ms": 300,
+  "whole_turn_p95_limit_ms": 400,
+  "whole_turn_max_limit_ms": 750,
+  "sampled_private_memory_limit_bytes": 1073741824,
+  "scope": "Regression sample for S07, not full supplier-heavy or 2035 performance certification. Existing S05 timing variability and S22 performance ownership remain documented."
+}

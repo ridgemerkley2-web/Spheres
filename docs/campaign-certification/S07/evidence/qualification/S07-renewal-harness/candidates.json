@@ -1,0 +1,24 @@
+{
+  "revision": "041007fbfda48cc027d0c24a1189705a1dcaa89b",
+  "clean_before": true,
+  "clean_after": true,
+  "executed_browser_journeys": false,
+  "previous_candidate_sha256": "2bc69da55b24d3aab7d53f4d8c1a3bb215741ce3a8e27b5a303b3388bd4ef6dd",
+  "sources": [
+    {
+      "source": "tools/ui/ci-construction.cjs",
+      "candidate": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\ci-construction.cjs",
+      "checkout_sha256": "82578835a3759b459b312ead0db5023f256ce5898d779e77379ec294a20d805a",
+      "committed_blob_sha256": "82578835a3759b459b312ead0db5023f256ce5898d779e77379ec294a20d805a",
+      "candidate_sha256": "c2b0a61eda7d7e20e4fc6d171fe6b14fc285dee4a5ebac55c114571722411dcb"
+    }
+  ],
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+  "binary_sha256": "e845d3179f72e1ec49ae68197b48cad94dcfd0648ab5f358e0e9d28115d6d3c7",
+  "wrapper_sha256": "2a28e0eb68796bc50a50ebd082912cf37e8349f95e624eceef1a1107372c8633",
+  "runner_sha256": "a6bd0901fd5160d557b6340cb1d1331a1acd2acfb68272d750cb7a9bc7ce40dc",
+  "syntax_exit_code": 0,
+  "renewal_patch_sha256": "c6a88a94207e8f13c9ecbf6b3aebe36ce94296191e97a3dd69fdc541da168128",
+  "combined_patch_sha256": "65cc48363c338d40cbd23106f66eabee61a5edfe4faeeb8dfdbf52eb608999e2",
+  "behavior": "Reads native cash-flow annual renewal once per observed calendar year while work remains; existing visible Apply budget reapplies the SAME original daily limit only when annual.renewed is false. Asserts renewal changes neither date nor queue progress/paid work. Existing800-day bound and all other assertions retained."
+}

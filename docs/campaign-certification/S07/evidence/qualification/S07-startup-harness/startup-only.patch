@@ -1,0 +1,28 @@
+--- a/tools/ui/ci-construction.cjs
++++ b/tools/ui/ci-construction.cjs
+@@ -109,10 +109,11 @@
+   const takeDay=async()=>{const board=await day(page,url);const paid=board.construction_budget.spent_today_bn;
+     assert(Number.isFinite(paid)&&paid>=0);totalConstructionPaid+=paid;return board;};
+   try{
++    const startupDeadline=Date.now()+30000;
+     for(let attempt=0;;attempt++){
+       if(launchError)throw launchError;if(server.exitCode!==null)throw Error('Server exited '+server.exitCode);
+-      try{if((await fetch(url+'/api/state')).ok)break;}catch(_){}
+-      if(attempt>300)throw Error('Server start timeout');await new Promise(r=>setTimeout(r,100));
++      try{const response=await fetch(url+'/api/build',{headers:{Connection:'close'},signal:AbortSignal.timeout(Math.max(1,Math.min(2000,startupDeadline-Date.now())))});await response.arrayBuffer();if(response.ok)break;}catch(_){}
++      if(attempt>300||Date.now()>=startupDeadline)throw Error('Server start timeout');await new Promise(r=>setTimeout(r,100));
+     }
+     browser=await chromium.launch({headless:true,channel:process.env.SPHERES_BROWSER_CHANNEL||'chrome'});evidence.browser_version=browser.version();
+     page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});page.setDefaultTimeout(45000);
+--- a/tools/ui/ci-browser.cjs
++++ b/tools/ui/ci-browser.cjs
+@@ -12,7 +12,8 @@
+   const log=fs.createWriteStream(path.join(run,'server.log'));server.stdout.pipe(log);server.stderr.pipe(log);
+   let browser;
+   try{
+-    for(let n=0;;n++){try{if((await fetch(url+'/api/state')).ok)break;}catch(_){}if(n>=200)throw Error('Disposable server failed to start');await new Promise(r=>setTimeout(r,100));}
++    const startupDeadline=Date.now()+20000;
++    for(let n=0;;n++){try{const response=await fetch(url+'/api/build',{headers:{Connection:'close'},signal:AbortSignal.timeout(Math.max(1,Math.min(2000,startupDeadline-Date.now())))});await response.arrayBuffer();if(response.ok)break;}catch(_){}if(n>=200||Date.now()>=startupDeadline)throw Error('Disposable server failed to start');await new Promise(r=>setTimeout(r,100));}
+     browser=await chromium.launch({headless:true});const page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
+     page.setDefaultTimeout(30000);const errors=[];page.on('pageerror',e=>errors.push(e.message));
+     const buildEvidence=await integrated.verifyBuild({page,url,root,run,binary});

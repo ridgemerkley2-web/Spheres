@@ -1,0 +1,42 @@
+{
+  "session": "S07",
+  "runtime_revision": "041007fbfda48cc027d0c24a1189705a1dcaa89b",
+  "reviewer": "aircraft_visual_qa",
+  "France": {
+    "result": "artifacts/browser-construction-ci/france-xUfR8c/result.json",
+    "screenshots_reviewed": ["operating-desktop.png", "operating-mobile.png", "requirements-desktop.png", "requirements-mobile.png"],
+    "blocking_defects": [],
+    "findings": [
+      "Installed, staffing and dated operation stages are legible over the art.",
+      "Visible dated output 0.10139 packs, operating spending $1.217k and value added $8.514k match the native receipt.",
+      "Requirements columns and units wrap without horizontal clipping at 390 pixels."
+    ],
+    "minor_polish": [
+      "The mobile completion toast covers the Cabinet title temporarily.",
+      "The active Industry tab lies beyond the visible horizontal navigation.",
+      "Detailed requirements are long and expose fractional-worker precision."
+    ]
+  },
+  "Tonga": {
+    "result": "artifacts/s07-renewal-harness/tonga-candidate-2-construction/tonga-QcjiiL/result.json",
+    "result_absolute": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration/artifacts/s07-renewal-harness/tonga-candidate-2-construction/tonga-QcjiiL/result.json",
+    "screenshots_reviewed": ["operating-desktop.png", "operating-mobile.png", "requirements-desktop.png", "requirements-mobile.png"],
+    "viewports": [{"width": 1440, "height": 1000}, {"width": 390, "height": 844}],
+    "blocking_defects": [],
+    "findings": [
+      "The completed 3.4154% workshop remains visibly installed while its operation is clearly blocked for missing bauxite; completion does not imply production.",
+      "The dated 27 September 1991 receipt visibly shows zero output, zero operating spending, zero power use and unknown value added, matching the native result.",
+      "Required positions 136.62, assigned workers 133.04, qualified staffing coverage 128.46 and zero workers used are labeled separately and match the native result.",
+      "Amber shortage values use both labels and quantities: qualified staffing 94.033%, operating inputs 0%, bauxite needed 0.0068308 t against current 0 t. Power and department funds are separately shown as available.",
+      "Desktop and mobile cards remain legible over the art. Long requirement notes wrap inside the card without visible horizontal clipping.",
+      "The successful journey result records 635 advances, completion on 28 September 1991, and an explicit 1 January 1991 renewal of the same daily funding ceiling; renewal preserved paid work and progress. No page errors were recorded."
+    ],
+    "minor_polish": [
+      "The mobile completion toast temporarily covers the Cabinet title, as in the France view.",
+      "The active Industry tab lies beyond the initially visible mobile navigation.",
+      "The full requirements disclosure is long, and worker/capacity figures expose detailed fractional precision.",
+      "The same missing-bauxite explanation appears above the lifecycle and inside the dated receipt."
+    ]
+  },
+  "scope": "Read-only inspection of eight screenshots and their actual France/Tonga journey results. This covers the displayed successful and blocked operating outcomes at desktop and mobile sizes; it does not award full campaign certification or claim the Tonga workshop produced goods."
+}

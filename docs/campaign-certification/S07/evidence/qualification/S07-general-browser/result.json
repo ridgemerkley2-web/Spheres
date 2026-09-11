@@ -1,0 +1,366 @@
+{
+  "passed": true,
+  "build": {
+    "revision": "041007fbfda4",
+    "version": "0.6.0"
+  },
+  "build_evidence": {
+    "revision": "041007fbfda48cc027d0c24a1189705a1dcaa89b",
+    "build": {
+      "branch": "codex/campaign-certification",
+      "built_at_unix_seconds": 1789133708,
+      "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+      "distribution": "Local offline game server; source and attribution accompany the release",
+      "revision": "041007fbfda4",
+      "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-ci\\campaign-L9jmGH",
+      "version": "0.6.0"
+    },
+    "binary_sha256": "e845d3179f72e1ec49ae68197b48cad94dcfd0648ab5f358e0e9d28115d6d3c7",
+    "assets": {
+      "index.html": {
+        "served_sha256": "18ae149cf54b0f44d8a4eb50e28d2be37f4d2de3be0075aecee0887c8f13a4f6",
+        "served_bytes": 1142819,
+        "checkout_sha256": "18ae149cf54b0f44d8a4eb50e28d2be37f4d2de3be0075aecee0887c8f13a4f6",
+        "checkout_bytes": 1142819,
+        "committed_sha256": "b318887bed4fba7b8b83fb68ba0214874a00a5068e5389281091ce844fac20c7",
+        "committed_bytes": 1124110,
+        "canonical_checkout_sha256": "b318887bed4fba7b8b83fb68ba0214874a00a5068e5389281091ce844fac20c7",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 18709
+        }
+      },
+      "campaign-transport.js": {
+        "served_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+        "served_bytes": 4775,
+        "checkout_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+        "checkout_bytes": 4775,
+        "committed_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+        "committed_bytes": 4693,
+        "canonical_checkout_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 82
+        }
+      },
+      "campaign-ui.js": {
+        "served_sha256": "20641a249ff5b59589736dd9f36f3cdd7b7ab53df29d107d4cf3feccecbf49ba",
+        "served_bytes": 13683,
+        "checkout_sha256": "20641a249ff5b59589736dd9f36f3cdd7b7ab53df29d107d4cf3feccecbf49ba",
+        "checkout_bytes": 13683,
+        "committed_sha256": "9aa62da51602a3d612312e157d37726cc6d2ed73efd17a7e5f2634386b1be312",
+        "committed_bytes": 13473,
+        "canonical_checkout_sha256": "9aa62da51602a3d612312e157d37726cc6d2ed73efd17a7e5f2634386b1be312",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 210
+        }
+      },
+      "fiscal-recovery-ui.js": {
+        "served_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "served_bytes": 11098,
+        "checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "checkout_bytes": 11098,
+        "committed_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "committed_bytes": 11098,
+        "canonical_checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "cash-flow-ui.js": {
+        "served_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+        "served_bytes": 30198,
+        "checkout_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+        "checkout_bytes": 30198,
+        "committed_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+        "committed_bytes": 29951,
+        "canonical_checkout_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 247
+        }
+      },
+      "companies-ui.js": {
+        "served_sha256": "e6df56df771ada42296548f6f81c1de7cb1802e152fb231747dc8ade74ee3d0f",
+        "served_bytes": 32908,
+        "checkout_sha256": "e6df56df771ada42296548f6f81c1de7cb1802e152fb231747dc8ade74ee3d0f",
+        "checkout_bytes": 32908,
+        "committed_sha256": "affa2f175ce1d1b073d6b0e7f2efd394d09f016e04d5be50dc66ec57a56f3ceb",
+        "committed_bytes": 32867,
+        "canonical_checkout_sha256": "affa2f175ce1d1b073d6b0e7f2efd394d09f016e04d5be50dc66ec57a56f3ceb",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 41
+        }
+      },
+      "companies.css": {
+        "served_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+        "served_bytes": 13908,
+        "checkout_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+        "checkout_bytes": 13908,
+        "committed_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+        "committed_bytes": 13798,
+        "canonical_checkout_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 110
+        }
+      },
+      "government-ui.js": {
+        "served_sha256": "52d573a271754ac4deb119b54e971660461d7da2c52acc68c5f5ba56b6cc2669",
+        "served_bytes": 51030,
+        "checkout_sha256": "52d573a271754ac4deb119b54e971660461d7da2c52acc68c5f5ba56b6cc2669",
+        "checkout_bytes": 51030,
+        "committed_sha256": "44da269aeb1b4d5be7838fc41650882f3e23b4d30cf75cc684f51cb424102a84",
+        "committed_bytes": 50763,
+        "canonical_checkout_sha256": "44da269aeb1b4d5be7838fc41650882f3e23b4d30cf75cc684f51cb424102a84",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 267
+        }
+      },
+      "government-ui.css": {
+        "served_sha256": "f57d830d425de71983e6660cac2497e82da791ed6bb9be86e97245057254eb95",
+        "served_bytes": 34278,
+        "checkout_sha256": "f57d830d425de71983e6660cac2497e82da791ed6bb9be86e97245057254eb95",
+        "checkout_bytes": 34278,
+        "committed_sha256": "b6dfbf9f03befa8a7020a86fde085bf61bd448ff362ccf2b70a55be6b6d065fe",
+        "committed_bytes": 33939,
+        "canonical_checkout_sha256": "b6dfbf9f03befa8a7020a86fde085bf61bd448ff362ccf2b70a55be6b6d065fe",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 339
+        }
+      },
+      "campaign-operations-ui.js": {
+        "served_sha256": "4da1d39397733cad49125c2fd30e3d57175f89b71e5ddcb75ba35c6a0a730c00",
+        "served_bytes": 21110,
+        "checkout_sha256": "4da1d39397733cad49125c2fd30e3d57175f89b71e5ddcb75ba35c6a0a730c00",
+        "checkout_bytes": 21110,
+        "committed_sha256": "ab7ec85f87a44ab316a700a7206a05f7057b8bfabd51d1d4d9dd5ddb5e0a7bf5",
+        "committed_bytes": 20888,
+        "canonical_checkout_sha256": "ab7ec85f87a44ab316a700a7206a05f7057b8bfabd51d1d4d9dd5ddb5e0a7bf5",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 222
+        }
+      },
+      "campaign-operations-ui.css": {
+        "served_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+        "served_bytes": 8447,
+        "checkout_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+        "checkout_bytes": 8447,
+        "committed_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+        "committed_bytes": 8367,
+        "canonical_checkout_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 80
+        }
+      },
+      "map-controls.js": {
+        "served_sha256": "ce7553d9b43a38b00581e67ef66aa23e5f03a8b4abde9c85171f28f3e6bb4e9e",
+        "served_bytes": 10651,
+        "checkout_sha256": "ce7553d9b43a38b00581e67ef66aa23e5f03a8b4abde9c85171f28f3e6bb4e9e",
+        "checkout_bytes": 10651,
+        "committed_sha256": "79b99912a9406b43f22d786ea7063d47fc05d738e432e9749561eb1fdff03fd7",
+        "committed_bytes": 10442,
+        "canonical_checkout_sha256": "79b99912a9406b43f22d786ea7063d47fc05d738e432e9749561eb1fdff03fd7",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 209
+        }
+      },
+      "map-controls.css": {
+        "served_sha256": "07d2f965f3cb90a04095ac7ec3679307548549d4ea9612d299d2a8b75e35527a",
+        "served_bytes": 9732,
+        "checkout_sha256": "07d2f965f3cb90a04095ac7ec3679307548549d4ea9612d299d2a8b75e35527a",
+        "checkout_bytes": 9732,
+        "committed_sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+        "committed_bytes": 9631,
+        "canonical_checkout_sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 101
+        }
+      },
+      "guidance-ui.js": {
+        "served_sha256": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+        "served_bytes": 21247,
+        "checkout_sha256": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+        "checkout_bytes": 21247,
+        "committed_sha256": "39eb68189c78ea74ee89b4bc92ac6153326accfe0d2300ea401ee696bddc38ea",
+        "committed_bytes": 21072,
+        "canonical_checkout_sha256": "39eb68189c78ea74ee89b4bc92ac6153326accfe0d2300ea401ee696bddc38ea",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 175
+        }
+      },
+      "guidance-ui.css": {
+        "served_sha256": "169531e25171ef1448b38b0832050712392c94e74f8bb0f96e8727f77d3a5b2f",
+        "served_bytes": 7496,
+        "checkout_sha256": "169531e25171ef1448b38b0832050712392c94e74f8bb0f96e8727f77d3a5b2f",
+        "checkout_bytes": 7496,
+        "committed_sha256": "4f959346eae6c81209da51b76717fd1d4b04a6bcfe0f0ae84032adc465e288ad",
+        "committed_bytes": 7490,
+        "canonical_checkout_sha256": "4f959346eae6c81209da51b76717fd1d4b04a6bcfe0f0ae84032adc465e288ad",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 6
+        }
+      },
+      "globe3d.js": {
+        "served_sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9",
+        "served_bytes": 36245,
+        "checkout_sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9",
+        "checkout_bytes": 36245,
+        "committed_sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "committed_bytes": 35548,
+        "canonical_checkout_sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 697
+        }
+      },
+      "city-layer.js": {
+        "served_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+        "served_bytes": 12449,
+        "checkout_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+        "checkout_bytes": 12449,
+        "committed_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+        "committed_bytes": 12222,
+        "canonical_checkout_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 227
+        }
+      },
+      "city-mesh.js": {
+        "served_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+        "served_bytes": 87641,
+        "checkout_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+        "checkout_bytes": 87641,
+        "committed_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+        "committed_bytes": 86075,
+        "canonical_checkout_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 1566
+        }
+      },
+      "water-detail.js": {
+        "served_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+        "served_bytes": 11962,
+        "checkout_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+        "checkout_bytes": 11962,
+        "committed_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+        "committed_bytes": 11729,
+        "canonical_checkout_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 233
+        }
+      },
+      "equipment-mesh.js": {
+        "served_sha256": "0a312b09000429d644f369812d1be5a1fab3b545aa3e7301721a19d319f6f361",
+        "served_bytes": 178146,
+        "checkout_sha256": "0a312b09000429d644f369812d1be5a1fab3b545aa3e7301721a19d319f6f361",
+        "checkout_bytes": 178146,
+        "committed_sha256": "74400279143ac848f2b1f51eca03f9350a5020b27eec31fe0e5809eb6bf3b547",
+        "committed_bytes": 175650,
+        "canonical_checkout_sha256": "74400279143ac848f2b1f51eca03f9350a5020b27eec31fe0e5809eb6bf3b547",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 2496
+        }
+      }
+    }
+  },
+  "integrated": {
+    "technical_fixture": "USA fresh campaign; a UI/API regression fixture, not a campaign certification focus country",
+    "views": [
+      {
+        "viewport": "desktop",
+        "width": 1440,
+        "height": 1000,
+        "guidance_entries": {
+          "standard_advisors": true,
+          "standard_tutorial": true,
+          "f1": true,
+          "floating_launcher": false,
+          "natural_city_close": true
+        },
+        "government": true,
+        "government_review_cancel": {
+          "action": 0,
+          "price_pc": 22.521980673998826
+        },
+        "construction_preview": {
+          "kind": "infrastructure",
+          "province": "US-AK",
+          "cost_bn": 0.2
+        },
+        "company_rows": 30,
+        "filtering": true
+      },
+      {
+        "viewport": "mobile",
+        "width": 390,
+        "height": 844,
+        "guidance_entries": {
+          "standard_advisors": true,
+          "standard_tutorial": true,
+          "f1": true,
+          "floating_launcher": false,
+          "natural_city_close": true
+        },
+        "government": true,
+        "government_review_cancel": {
+          "action": 0,
+          "price_pc": 22.521980673998826
+        },
+        "construction_preview": {
+          "kind": "infrastructure",
+          "province": "US-AK",
+          "cost_bn": 0.2
+        },
+        "company_rows": 30,
+        "filtering": true
+      }
+    ],
+    "tutorial_destination": "budget",
+    "tutorial_orders_unchanged": true,
+    "archive_purity": true,
+    "capabilities": {
+      "daily": true,
+      "population": true,
+      "fiscal": true,
+      "connected_economy": true,
+      "companies": true,
+      "supplier_operations": true,
+      "operational_warfare": true
+    }
+  },
+  "loaded_capabilities": {
+    "daily": true,
+    "population": true,
+    "fiscal": true,
+    "connected_economy": true,
+    "companies": true,
+    "supplier_operations": true,
+    "operational_warfare": true
+  },
+  "delayed_boot_navigation_preserved": true,
+  "lost_committed_response_recovered": true,
+  "pending_receipt_reload_recovered": true,
+  "identical_retry_requests": 2,
+  "visible_named_load": {
+    "slot": "ci-smoke",
+    "cancel_preserved_state": true,
+    "new_session": true
+  },
+  "save_history_roundtrip": true
+}

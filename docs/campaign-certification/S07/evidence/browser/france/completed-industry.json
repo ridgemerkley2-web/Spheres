@@ -1,0 +1,453 @@
+{
+  "as_of_day": 361,
+  "daily": true,
+  "date": "28 Dec 1990",
+  "enabled": true,
+  "goods": [
+    {
+      "capacity": 250,
+      "good": "intermediates",
+      "name": "Intermediate packs",
+      "stock": 18.037064
+    },
+    {
+      "capacity": 250,
+      "good": "capital_goods",
+      "name": "Capital-goods packs",
+      "stock": 0
+    },
+    {
+      "capacity": 250,
+      "good": "advanced_components",
+      "name": "Advanced components",
+      "stock": 0
+    }
+  ],
+  "name": "France",
+  "nation": "France",
+  "note": "Completed facilities operate automatically when their inputs, power and operating funds are available. Output and spending are dated receipts; goods are inventory, not treasury cash. Support upgrades provide their stated capabilities and are not separate pack producers. Actual value added is recorded in the province economy, without a second completion or sales bonus. Construction funding and operating purchases remain distinct uses of the annual capital budget.",
+  "power": {
+    "capacity_daily": 5.084496129814623,
+    "note": "Sum of displayed facility power receipts on the stated date only. Excludes earlier receipts and activities without saved power use; this is not total national consumption.",
+    "receipt_day": 360,
+    "receipt_label": "27 Dec 1990",
+    "recorded_facility_count": 2,
+    "used_daily": 0.35138800000000003
+  },
+  "queue": [],
+  "session_id": "31768-1789134803328671000-2",
+  "settlement": {
+    "day": 360,
+    "label": "27 Dec 1990"
+  },
+  "sites": [
+    {
+      "actions": [
+        {
+          "action": "province",
+          "district": "FRA_le-de-france",
+          "label": "Inspect province"
+        },
+        {
+          "action": "budget",
+          "department": 2,
+          "label": "Review facility operating funds",
+          "ministry": "industry"
+        },
+        {
+          "action": "budget",
+          "department": 1,
+          "label": "Review energy funding",
+          "ministry": "industry"
+        },
+        {
+          "action": "resources",
+          "label": "Inspect raw input supplies"
+        },
+        {
+          "action": "construction",
+          "district": "FRA_le-de-france",
+          "label": "Review province construction"
+        }
+      ],
+      "attention": false,
+      "capacity_micros": 101388,
+      "cash_spent_daily_bn": 0.0000012166560000000002,
+      "district": "FRA_le-de-france",
+      "district_name": "Île-de-France",
+      "effect": "Paid fractional processing capacity, with matching power and operating inputs. No stock is granted.",
+      "has_receipt": true,
+      "id": "site:FRA_le-de-france:starter_industry",
+      "kind": "starter_industry",
+      "level": 0,
+      "lifecycle": {
+        "effects": [
+          {
+            "label": "Recorded annualized incremental value added",
+            "note": "From the 1990-12-27 operating receipt at constant model prices. This is the same province/national GDP contribution, counted once; it is not profit, sales or a Treasury payment. Constant 1990 dollars; modeled project accounting, not sales or profit.",
+            "unit": "$bn/year",
+            "value": 0.0031074631438251614
+          }
+        ],
+        "id": "site:FRA_le-de-france:starter_industry",
+        "installed_capacity": 0.101388,
+        "installed_label": "0.101388 installed level equivalents",
+        "installed_note": "Installed capacity includes all completed additions at this site. Older saves do not retain each building's completion date or paid contract history; none is reconstructed. Finishing construction is not proof of staffed output or a second GDP award.",
+        "operation": {
+          "actual_operating_capacity": null,
+          "actual_utilization": null,
+          "assigned_workers": 405.55199999999996,
+          "cash_spent_bn": 0.0000012166560000000002,
+          "date": "1990-12-27",
+          "day": 360,
+          "installed_capacity": 0.101388,
+          "label": "Recorded province operation",
+          "note": "Actual output, worker use and operating charges on the recorded date. Current capacity or shortages do not rewrite this receipt. Charges belong to the existing fiscal settlement, not a second bill.",
+          "output": 0.101388,
+          "output_unit": "intermediate packs",
+          "owner_verified": true,
+          "power_used_daily": 0.101388,
+          "reason": null,
+          "required_workers": 405.552,
+          "status": "running",
+          "used_workers": 405.552,
+          "value_added_bn": 0.00000851359765431551
+        },
+        "outcome_action": {
+          "action": "industry",
+          "district": "FRA_le-de-france",
+          "kind": "starter_industry",
+          "label": "Inspect Starter Industry outcome"
+        },
+        "readiness": {
+          "fraction": 1,
+          "label": "Ready for the next operation",
+          "note": "Ready for assigned work; operating inputs and funding are checked when used. This is current readiness; only a dated receipt proves operation.",
+          "requirements": [
+            {
+              "available": 1,
+              "id": "workers",
+              "label": "Qualified staffing",
+              "note": "Coverage of the required qualifications. Assigned people are shared with other employers; these are not newly created workers.",
+              "ready": true,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 1,
+              "id": "power",
+              "label": "Power and local grid",
+              "note": "Current utility support; actual dispatch is shared with other operating facilities.",
+              "ready": true,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 1,
+              "id": "inputs",
+              "label": "Operating inputs and storage",
+              "note": "Raw materials, intermediate goods and finished-goods room required for operation. They are not construction requirements.",
+              "ready": true,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 1,
+              "id": "funding",
+              "label": "Operating department funds",
+              "note": "Conditional current operating authorization. Availability is neither cash already spent nor a payment guarantee.",
+              "ready": true,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 484727.573382819,
+              "id": "raw_bauxite",
+              "label": "bauxite operating input",
+              "note": "Required for one full operating day at installed capacity; available is shared national inventory, not a daily delivery or a reservation. Actual operation may be lower. Construction does not require this input.",
+              "ready": true,
+              "required": 0.0202776,
+              "unit": "t"
+            },
+            {
+              "available": 12677.257748384,
+              "id": "raw_coal",
+              "label": "coal operating input",
+              "note": "Required for one full operating day at installed capacity; available is shared national inventory, not a daily delivery or a reservation. Actual operation may be lower. Construction does not require this input.",
+              "ready": true,
+              "required": 0.02737476,
+              "unit": "kt"
+            },
+            {
+              "available": 8636110.985194126,
+              "id": "raw_iron",
+              "label": "iron operating input",
+              "note": "Required for one full operating day at installed capacity; available is shared national inventory, not a daily delivery or a reservation. Actual operation may be lower. Construction does not require this input.",
+              "ready": true,
+              "required": 0.101388,
+              "unit": "t"
+            },
+            {
+              "available": 5.084496129814623,
+              "id": "national_power",
+              "label": "National generating support",
+              "note": "Required per full installed operating day, compared with total modeled support. Capacity is shared with other consumers; this does not reserve power or report historical dispatch.",
+              "ready": true,
+              "required": 0.101388,
+              "unit": "power units/day"
+            },
+            {
+              "available": 1.4010061176144664,
+              "id": "local_grid",
+              "label": "Local grid support",
+              "note": "Required per full installed operating day, compared with total modeled support. Capacity is shared with other consumers; this does not reserve power or report historical dispatch.",
+              "ready": true,
+              "required": 0.101388,
+              "unit": "power units/day"
+            },
+            {
+              "available": 2.8465072191320817,
+              "id": "operating_authority",
+              "label": "Facility operating authority",
+              "note": "Rated charge for one full installed operating day at current contractor terms. Available is current department spending authority, not Treasury cash or a payment already made; actual work may be lower.",
+              "ready": true,
+              "required": 0.0000010138800000000002,
+              "unit": "$bn"
+            },
+            {
+              "available": 2.846650905883752,
+              "id": "energy_authority",
+              "label": "Generating service authority",
+              "note": "Rated charge for one full installed operating day at current contractor terms. Available is current department spending authority, not Treasury cash or a payment already made; actual work may be lower.",
+              "ready": true,
+              "required": 2.0277600000000002e-7,
+              "unit": "$bn"
+            }
+          ]
+        },
+        "staffing": {
+          "assigned": 405.55199999999996,
+          "available": 405.552,
+          "label": "Current workforce and recorded use",
+          "matched_date": "1990-12-27",
+          "matched_day": 360,
+          "note": "Assigned workers come from the population ledger's dated workforce match. Qualified staffing coverage is current feasible coverage of installed job requirements; workers used belong to the separate operating receipt date.",
+          "required": 405.552,
+          "used": 405.552
+        }
+      },
+      "name": "Starter Industry",
+      "output_daily": 0.101388,
+      "output_unit": "intermediate packs",
+      "power_used_daily": 0.101388,
+      "productive": true,
+      "reason": null,
+      "receipt_day": 360,
+      "receipt_label": "27 Dec 1990",
+      "research": null,
+      "status": "running"
+    },
+    {
+      "actions": [
+        {
+          "action": "province",
+          "district": "FRA_le-de-france",
+          "label": "Inspect province"
+        },
+        {
+          "action": "budget",
+          "department": 0,
+          "label": "Review facility operating funds",
+          "ministry": "industry"
+        },
+        {
+          "action": "budget",
+          "department": 1,
+          "label": "Review energy funding",
+          "ministry": "industry"
+        },
+        {
+          "action": "resources",
+          "label": "Inspect raw input supplies"
+        },
+        {
+          "action": "construction",
+          "district": "FRA_le-de-france",
+          "label": "Review province construction"
+        }
+      ],
+      "attention": false,
+      "capacity_micros": null,
+      "cash_spent_daily_bn": 0.000010500000000000001,
+      "district": "FRA_le-de-france",
+      "district_name": "Île-de-France",
+      "effect": "Creates service jobs and additional taxable value added when skilled workers, electricity and domestic demand are available. GDP and tax receipts are reported separately.",
+      "has_receipt": true,
+      "id": "site:FRA_le-de-france:office_district",
+      "kind": "office_district",
+      "level": 1,
+      "lifecycle": {
+        "effects": [
+          {
+            "label": "Recorded annualized incremental value added",
+            "note": "From the 1990-12-27 operating receipt at constant model prices. This is the same province/national GDP contribution, counted once; it is not profit, sales or a Treasury payment. Constant 1990 dollars; modeled project accounting, not sales or profit.",
+            "unit": "$bn/year",
+            "value": 0.09872250000000002
+          }
+        ],
+        "id": "site:FRA_le-de-france:office_district",
+        "installed_capacity": 1,
+        "installed_label": "1.000000 installed level equivalents",
+        "installed_note": "Installed capacity includes all completed additions at this site. Older saves do not retain each building's completion date or paid contract history; none is reconstructed. Finishing construction is not proof of staffed output or a second GDP award.",
+        "operation": {
+          "actual_operating_capacity": 1,
+          "actual_utilization": 1,
+          "assigned_workers": null,
+          "cash_spent_bn": 0.000010500000000000001,
+          "date": "1990-12-27",
+          "day": 360,
+          "installed_capacity": 1,
+          "label": "Recorded facility operation",
+          "note": "Actual output, labor use and operating charges on the recorded date. Current capacity or shortages do not rewrite this receipt. These charges are included in the existing fiscal settlement, not a second bill.",
+          "output": 0.00027047260273972603,
+          "output_unit": "service value added ($bn/day)",
+          "owner_verified": true,
+          "power_used_daily": 0.25,
+          "reason": "Workers, electricity, operating inputs and funding supplied the full operating bundle.",
+          "required_workers": 10000,
+          "status": "running",
+          "used_workers": 10000,
+          "value_added_bn": 0.0002704726027397261
+        },
+        "outcome_action": {
+          "action": "industry",
+          "district": "FRA_le-de-france",
+          "kind": "office_district",
+          "label": "Inspect Office District outcome"
+        },
+        "readiness": {
+          "fraction": 1,
+          "label": "Ready for the next operation",
+          "note": "Ready for assigned work; operating inputs and funding are checked when used. This is current readiness; only a dated receipt proves operation.",
+          "requirements": [
+            {
+              "available": 1,
+              "id": "workers",
+              "label": "Qualified staffing",
+              "note": "Coverage of the required qualifications. Assigned people are shared with other employers; these are not newly created workers.",
+              "ready": true,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 1,
+              "id": "power",
+              "label": "Power and local grid",
+              "note": "Current utility support; actual dispatch is shared with other operating facilities.",
+              "ready": true,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 1,
+              "id": "inputs",
+              "label": "Operating inputs and storage",
+              "note": "Raw materials, intermediate goods and finished-goods room required for operation. They are not construction requirements.",
+              "ready": true,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 1,
+              "id": "funding",
+              "label": "Operating department funds",
+              "note": "Conditional current operating authorization. Availability is neither cash already spent nor a payment guarantee.",
+              "ready": true,
+              "required": 1,
+              "unit": "share"
+            },
+            {
+              "available": 12677.257748384,
+              "id": "raw_coal",
+              "label": "coal operating input",
+              "note": "Required for one full operating day at installed capacity; available is shared national inventory, not a daily delivery or a reservation. Actual operation may be lower. Construction does not require this input.",
+              "ready": true,
+              "required": 0.005,
+              "unit": "kt"
+            },
+            {
+              "available": 18.037064,
+              "id": "intermediate_packs",
+              "label": "Intermediate operating inputs",
+              "note": "Required for one full operating day at installed capacity; available is shared national inventory, not a daily delivery or a reservation. Actual operation may be lower. Construction does not require this input.",
+              "ready": true,
+              "required": 0.01,
+              "unit": "packs"
+            },
+            {
+              "available": 5.084496129814623,
+              "id": "national_power",
+              "label": "National generating support",
+              "note": "Required per full installed operating day, compared with total modeled support. Capacity is shared with other consumers; this does not reserve power or report historical dispatch.",
+              "ready": true,
+              "required": 0.25,
+              "unit": "power units/day"
+            },
+            {
+              "available": 1.4010061176144664,
+              "id": "local_grid",
+              "label": "Local grid support",
+              "note": "Required per full installed operating day, compared with total modeled support. Capacity is shared with other consumers; this does not reserve power or report historical dispatch.",
+              "ready": true,
+              "required": 0.25,
+              "unit": "power units/day"
+            },
+            {
+              "available": 2.8466774525716705,
+              "id": "operating_authority",
+              "label": "Facility operating authority",
+              "note": "Rated charge for one full installed operating day at current contractor terms. Available is current department spending authority, not Treasury cash or a payment already made; actual work may be lower.",
+              "ready": true,
+              "required": 0.00001,
+              "unit": "$bn"
+            },
+            {
+              "available": 2.846650905883752,
+              "id": "energy_authority",
+              "label": "Generating service authority",
+              "note": "Rated charge for one full installed operating day at current contractor terms. Available is current department spending authority, not Treasury cash or a payment already made; actual work may be lower.",
+              "ready": true,
+              "required": 5e-7,
+              "unit": "$bn"
+            }
+          ]
+        },
+        "staffing": {
+          "assigned": 10000,
+          "available": 10000,
+          "label": "Current workforce and recorded use",
+          "matched_date": "1990-12-27",
+          "matched_day": 360,
+          "note": "Assigned workers come from the population ledger's dated workforce match. Qualified staffing coverage is current feasible coverage of installed job requirements; workers used belong to the separate operating receipt date.",
+          "required": 10000,
+          "used": 10000
+        }
+      },
+      "name": "Office District",
+      "output_daily": 0.00027047260273972603,
+      "output_unit": "service value added ($bn/day)",
+      "power_used_daily": 0.25,
+      "productive": true,
+      "reason": "Workers, electricity, operating inputs and funding supplied the full operating bundle.",
+      "receipt_day": 360,
+      "receipt_label": "27 Dec 1990",
+      "research": null,
+      "status": "running"
+    }
+  ],
+  "summary": {
+    "attention_count": 0,
+    "facility_count": 2,
+    "queued_count": 0
+  }
+}

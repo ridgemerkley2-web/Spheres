@@ -1,0 +1,31 @@
+{
+  "revision_before": "041007fbfda48cc027d0c24a1189705a1dcaa89b",
+  "clean_before": true,
+  "lane": "tonga",
+  "command": [
+    "node",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\run.cjs",
+    "tonga"
+  ],
+  "candidate": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\ci-construction.cjs",
+  "candidate_sha256": "c2b0a61eda7d7e20e4fc6d171fe6b14fc285dee4a5ebac55c114571722411dcb",
+  "source_sha256": "82578835a3759b459b312ead0db5023f256ce5898d779e77379ec294a20d805a",
+  "wrapper_sha256": "2a28e0eb68796bc50a50ebd082912cf37e8349f95e624eceef1a1107372c8633",
+  "runner_sha256": "a6bd0901fd5160d557b6340cb1d1331a1acd2acfb68272d750cb7a9bc7ce40dc",
+  "manifest_sha256": "e870cdb526da10b29ea542c7791fdf2c51597146133b3be769c664dec7835a2b",
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+  "binary_sha256_before": "e845d3179f72e1ec49ae68197b48cad94dcfd0648ab5f358e0e9d28115d6d3c7",
+  "browser_channel": "chrome",
+  "artifact_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-renewal-harness\\tonga-candidate-2-construction",
+  "started_utc": "2026-09-11T14:09:02.366073+00:00",
+  "exit_code": 0,
+  "wall_seconds": 171.44393210008275,
+  "finished_utc": "2026-09-11T14:11:53.813417+00:00",
+  "revision_after": "041007fbfda48cc027d0c24a1189705a1dcaa89b",
+  "clean_after": true,
+  "binary_sha256_after": "e845d3179f72e1ec49ae68197b48cad94dcfd0648ab5f358e0e9d28115d6d3c7",
+  "candidate_sha256_after": "c2b0a61eda7d7e20e4fc6d171fe6b14fc285dee4a5ebac55c114571722411dcb",
+  "source_sha256_after": "82578835a3759b459b312ead0db5023f256ce5898d779e77379ec294a20d805a",
+  "log_sha256": "779131c482958bc272df5060a7dba75c33f6205aca7cc0cd05771f870c19873b",
+  "preservation_passed": true
+}

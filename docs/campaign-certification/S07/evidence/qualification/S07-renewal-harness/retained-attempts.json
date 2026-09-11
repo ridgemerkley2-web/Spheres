@@ -1,0 +1,31 @@
+{
+  "runtime_revision": "041007fbfda48cc027d0c24a1189705a1dcaa89b",
+  "binary_sha256": "e845d3179f72e1ec49ae68197b48cad94dcfd0648ab5f358e0e9d28115d6d3c7",
+  "path_base": "integration worktree",
+  "failed_attempts": [{
+    "journey": "Tonga startup candidate 1 without annual renewal",
+    "result": "artifacts/s07-startup-harness/tonga-candidate-1-construction/tonga-luNj8r/result.json",
+    "result_sha256": "3579863a6ddc77417111693e721bebe22b152e38fe30123cd1d6a849fabe7550",
+    "candidate_sha256": "2bc69da55b24d3aab7d53f4d8c1a3bb215741ce3a8e27b5a303b3388bd4ef6dd",
+    "wrapper_proof": "../evidence/S07-startup-harness/tonga-candidate-1.json",
+    "passed": false,
+    "advance_count": 803,
+    "failure": "Construction did not finish within the declared 800-day bound",
+    "diagnosis": "../evidence/S07-tonga-funding-diagnosis",
+    "collector_argument": "--failed-attempt artifacts/s07-startup-harness/tonga-candidate-1-construction/tonga-luNj8r/result.json"
+  }],
+  "passed_general_candidate": {
+    "result": "../evidence/S07-startup-harness/general-candidate-1-browser-artifacts/result.json",
+    "result_sha256": "420839ea66280e2090f357bd4794f72be4a90163bd0cdc66090fb335e3a532a8",
+    "candidate_sha256": "40b84e0ae4488dbb420a2f8d461819b4b2eb8617d79baceee88c45fcee375a29",
+    "wrapper_proof": "../evidence/S07-startup-harness/general-candidate-1.json",
+    "wrapper_sha256": "2a28e0eb68796bc50a50ebd082912cf37e8349f95e624eceef1a1107372c8633",
+    "passed": true
+  },
+  "renewal_candidate": {
+    "candidate_sha256": "c2b0a61eda7d7e20e4fc6d171fe6b14fc285dee4a5ebac55c114571722411dcb",
+    "preparation_manifest": "../evidence/S07-renewal-harness/candidates.json",
+    "execution_result": "Not yet available when this retained-attempt map was prepared"
+  },
+  "limits": "Retain original failed attempts and their evidence. The earlier France DOMContentLoaded timeout cause remains uncertain. This file does not assert the renewal candidate passes."
+}

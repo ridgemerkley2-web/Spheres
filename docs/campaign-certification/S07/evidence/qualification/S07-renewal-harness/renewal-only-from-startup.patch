@@ -1,0 +1,40 @@
+--- a/tools/ui/ci-construction.cjs
++++ b/tools/ui/ci-construction.cjs
+@@ -167,9 +167,36 @@
+     assert(!(await read(page,url,'/api/production')).queue.some(p=>p.id===cancelled.id));
+     evidence.cancellation={id:cancelled.id,spent_bn:cancelledPaid,cancel_review_pure:true,no_refund:true};
+     await budget(page,funded*1000);stage='paid save and reload';evidence.paid_save=await saveLoad(page,url,'s07-'+nation.toLowerCase()+'-paid');
+-    stage='finish through visible daily controls';let board;
++    stage='finish through visible daily controls';let board;const reviewedYears=new Set();evidence.annual_renewals=[];
+     for(let days=0;days<800;days++){
+       board=await takeDay();
++      if(board.queue.some(p=>p.id===workshop.id||p.id===ordinary?.id)){
++        // Production serves the date, while Money owns the annual renewal flag.
++        // Read once per observed calendar year; renew through the same visible
++        // Apply budget control without raising its original daily ceiling.
++        const yearMatch=/ (\d{4})$/.exec(board.date);assert(yearMatch,'Missing native calendar year');
++        const year=Number(yearMatch[1]);
++        if(!reviewedYears.has(year)){
++          const moneyRoute='/api/cash-flow?session_id='+encodeURIComponent(board.session_id);
++          const money=await read(page,url,moneyRoute);
++          assert.equal(money.date,board.date);assert.equal(money.annual.fiscal_year,year);
++          assert.equal(typeof money.annual.renewed,'boolean');reviewedYears.add(year);
++          if(money.annual.renewed===false){
++            const paidWork=rows=>rows.map(p=>({id:p.id,progress:p.progress,spent_bn:p.finance.spent_bn}));
++            const beforeWork=paidWork(board.queue),date=board.date;
++            await budget(page,funded*1000);
++            const renewedBoard=await read(page,url,'/api/production');
++            const renewedMoney=await read(page,url,moneyRoute);
++            assert.equal(renewedBoard.date,date,'Renewal unexpectedly advanced time');
++            assert.deepEqual(paidWork(renewedBoard.queue),beforeWork,'Annual renewal changed paid work or progress');
++            assert.equal(renewedMoney.annual.fiscal_year,year);assert.equal(renewedMoney.annual.renewed,true);
++            assert(Math.abs(renewedBoard.construction_budget.daily_budget_bn-funded)<1e-12,'Renewal changed the reviewed daily ceiling');
++            evidence.annual_renewals.push({date,fiscal_year:year,daily_budget_bn:funded,renewed:true,
++              queue_progress_and_paid_work_unchanged:true,control:'constructionBudgetForm Apply budget'});
++            board=renewedBoard;
++          }
++        }
++      }
+       if(days%15===0||!board.queue.length){
+         evidence.observations.push({date:(await read(page,url,'/api/state')).date,queue:board.queue.map(p=>({id:p.id,progress:p.progress,spent_bn:p.finance.spent_bn,status:p.status,reason:p.reason})),spent_ytd_bn:board.construction_budget.spent_ytd_bn});
+         if(!board.queue.some(p=>p.id===workshop.id||p.id===ordinary?.id))break;

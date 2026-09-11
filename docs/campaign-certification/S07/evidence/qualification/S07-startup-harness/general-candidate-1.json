@@ -1,0 +1,32 @@
+{
+  "revision_before": "041007fbfda48cc027d0c24a1189705a1dcaa89b",
+  "clean_before": true,
+  "lane": "browser",
+  "command": [
+    "node",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-startup-harness\\run.cjs",
+    "browser"
+  ],
+  "candidate": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\s07-startup-harness\\ci-browser.cjs",
+  "candidate_sha256": "40b84e0ae4488dbb420a2f8d461819b4b2eb8617d79baceee88c45fcee375a29",
+  "source_sha256": "9bef96d198ab9fcc8c38756c399fec732256e72f85387696019e0c174964b7f9",
+  "wrapper_sha256": "2a28e0eb68796bc50a50ebd082912cf37e8349f95e624eceef1a1107372c8633",
+  "runner_sha256": "c2877bd0949108013b7f51620103379ed20f6ca5267d1a0333ce7e517de92fac",
+  "manifest_sha256": "f96e15b81d4e53497d45937716b2c7021356c78ec09b2f2fe7001115e082ef00",
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+  "binary_sha256_before": "e845d3179f72e1ec49ae68197b48cad94dcfd0648ab5f358e0e9d28115d6d3c7",
+  "browser_channel": "chrome",
+  "artifact_root": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-ci",
+  "started_utc": "2026-09-11T14:06:57.938187+00:00",
+  "exit_code": 0,
+  "wall_seconds": 15.824234600062482,
+  "finished_utc": "2026-09-11T14:07:13.762768+00:00",
+  "revision_after": "041007fbfda48cc027d0c24a1189705a1dcaa89b",
+  "clean_after": true,
+  "binary_sha256_after": "e845d3179f72e1ec49ae68197b48cad94dcfd0648ab5f358e0e9d28115d6d3c7",
+  "candidate_sha256_after": "40b84e0ae4488dbb420a2f8d461819b4b2eb8617d79baceee88c45fcee375a29",
+  "source_sha256_after": "9bef96d198ab9fcc8c38756c399fec732256e72f85387696019e0c174964b7f9",
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "archived_top_level_artifacts": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S07-startup-harness\\general-candidate-1-browser-artifacts",
+  "preservation_passed": true
+}

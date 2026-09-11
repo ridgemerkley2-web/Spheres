@@ -181,11 +181,11 @@
       "id": "S07",
       "phase": "nation",
       "title": "Finish construction, jobs and operating outcomes",
-      "status": "in_progress",
+      "status": "complete",
       "depends": [
         "S06"
       ],
-      "output": "Build → staff → operate → understand the province/national effect through one connected flow.",
+      "output": "Build, staff and operate facilities, then understand their province and national effects through one connected flow.",
       "accept": [
         "Preview, prioritize, fund, pause, cancel and finish both ordinary and small-country projects through actual controls.",
         "Construction uses financial funding; operating plants still disclose their real inputs, workforce and support needs.",
@@ -776,16 +776,17 @@
     "instruction": "Okay lets begin development with s1",
     "scope_changes": []
   },
-  "last_completed_session": "S06",
-  "next_session": "S07",
+  "last_completed_session": "S07",
+  "next_session": "S08",
   "execution": {
     "authorized_through": "S07",
     "stop_boundary": "S07",
-    "status": "in_progress",
+    "status": "stopped",
     "previous_stop": "S06",
     "instruction": "Next",
     "instruction_date": "2026-09-11",
-    "next_session_requires_instruction": true
+    "next_session_requires_instruction": true,
+    "stopped_after": "S07"
   },
   "gate_decisions": {
     "G1": {

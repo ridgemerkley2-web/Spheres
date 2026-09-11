@@ -1,0 +1,47 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 48.66s
+     Running tests\industry_planning.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\industry_planning-af3421fc92732ad0.exe)
+
+running 13 tests
+test queued_fractional_workshop_reserves_every_component_without_free_output ... ok
+test real_demand_can_expand_but_stock_or_inbound_supply_defers_it ... ok
+test pending_lines_and_automation_count_once_not_as_missing_capacity ... ok
+test player_can_override_capacity_advice_without_free_or_instant_factories ... ok
+test fresh_input_blockers_call_for_supply_not_duplicate_factories_and_expire ... ok
+test ownership_changes_reassociate_assets_but_not_foreign_sponsored_work ... ok
+test a_full_unsold_stockpile_does_not_commission_a_warehouse ... ok
+test a_factory_on_another_owned_province_is_not_invisible ... ok
+test all_starting_country_gdp_estimates_remain_uninvented_factory_assets ... ok
+test existing_empty_estates_do_not_all_receive_grids_before_a_useful_factory ... ok
+test existing_fractional_grid_and_processor_are_not_bought_again ... ok
+test repeated_reviews_do_not_stack_producers_behind_unsold_goods ... ok
+test exports_use_delivery_dates_and_goods_not_promises_or_high_prices ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests\s02_industry.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s02_industry-a9523e9a56a0f0e0.exe)
+
+running 11 tests
+test zero_budget_preserves_frozen_contract_and_historical_input_receipts ... ok
+test old_naval_line_and_company_lease_keep_their_arms_plant_entitlements ... ok
+test missing_rare_earths_never_consumes_an_incomplete_operating_bundle ... ok
+test appended_catalogue_preserves_all_legacy_keys_and_default_inertia ... ok
+test new_sparse_save_records_cannot_disappear_or_hide_behind_disabled_rules ... ok
+test dock_without_operating_inputs_cannot_spend_or_order_even_with_equipment_raw_inputs ... ok
+test all_sixteen_construction_contracts_are_financial_only_even_for_tonga ... ok
+test new_construction_previews_explain_conditional_operations_without_mutating_state ... ok
+test commissioned_operations_consume_real_complete_bundles_once_and_survive_save ... ok
+test funded_construction_ignores_empty_raw_goods_power_and_workforce ... ok
+test qualified_worker_shortage_caps_operations_without_inventing_employment ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+
+     Running tests\s07_construction_operations.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s07_construction_operations-aace449c529ecf98.exe)
+
+running 3 tests
+test s07_contractor_preview_matches_actual_expanded_plant_recipe_and_cash ... ok
+test s07_assigned_workers_remain_employed_when_inputs_block_and_receipts_keep_original_capacity ... ok
+test s07_financial_queue_pause_cancel_complete_then_staff_and_operate_france_and_tonga ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.79s
+

@@ -1,0 +1,58 @@
+{
+  "candidate": "041007fbfda48cc027d0c24a1189705a1dcaa89b",
+  "evaluated_utc": "2026-09-11T14:14:26.780075+00:00",
+  "rows": [
+    {
+      "scenario": "idle_human",
+      "age": 0,
+      "sim_p95_ms": 39.059799999999996,
+      "whole_p95_ms": 110.7607,
+      "whole_max_ms": 116.6498,
+      "passed": true
+    },
+    {
+      "scenario": "idle_human",
+      "age": 10,
+      "sim_p95_ms": 139.3661,
+      "whole_p95_ms": 246.518,
+      "whole_max_ms": 249.2649,
+      "passed": true
+    },
+    {
+      "scenario": "idle_human",
+      "age": 30,
+      "sim_p95_ms": 194.4561,
+      "whole_p95_ms": 298.6434,
+      "whole_max_ms": 326.8114,
+      "passed": true
+    },
+    {
+      "scenario": "industry_and_war",
+      "age": 0,
+      "sim_p95_ms": 89.9097,
+      "whole_p95_ms": 153.0993,
+      "whole_max_ms": 300.678,
+      "passed": true
+    },
+    {
+      "scenario": "industry_and_war",
+      "age": 10,
+      "sim_p95_ms": 218.3306,
+      "whole_p95_ms": 333.10459999999995,
+      "whole_max_ms": 433.2695,
+      "passed": true
+    },
+    {
+      "scenario": "industry_and_war",
+      "age": 30,
+      "sim_p95_ms": 251.44230000000002,
+      "whole_p95_ms": 346.0141,
+      "whole_max_ms": 487.88160000000005,
+      "passed": true
+    }
+  ],
+  "sampled_private_bytes": 449568768,
+  "memory_passed": true,
+  "runner_passed": true,
+  "passed": true
+}

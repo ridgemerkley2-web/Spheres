@@ -1,0 +1,1460 @@
+{
+  "actions": {
+    "start": true,
+    "start_reason": null
+  },
+  "as_of_day": 0,
+  "capacity": null,
+  "catalog": [
+    {
+      "actions": {
+        "start": true
+      },
+      "description": "Roads, rail, bridges, and freight terminals.",
+      "effect": "Improves provincial freight-network capacity.",
+      "eligible_provinces": [
+        "FRA_auvergne-rh-ne-alpes",
+        "FRA_bourgogne-franche-comt",
+        "FRA_bretagne",
+        "FRA_centre-val-de-loire",
+        "FRA_corse",
+        "FRA_grand-est",
+        "FRA_guadeloupe",
+        "FRA_guyane-fran-aise",
+        "FRA_hauts-de-france",
+        "FRA_le-de-france",
+        "FRA_martinique",
+        "FRA_mayotte",
+        "FRA_normandie",
+        "FRA_nouvelle-aquitaine",
+        "FRA_occitanie",
+        "FRA_pays-de-la-loire",
+        "FRA_provence-alpes-c-te-d-azur",
+        "FRA_r-union"
+      ],
+      "funding": {
+        "allocation": 0.0209,
+        "available_bn": 0,
+        "department_mode": false,
+        "department_name": "National construction budget",
+        "ministry": "infrastructure",
+        "ministry_name": "Infrastructure",
+        "ratio": 0,
+        "required": 0.025,
+        "work_cost_bn": 0.2
+      },
+      "kind": "infrastructure",
+      "name": "Infrastructure",
+      "pc_cost": 0,
+      "reason": null,
+      "requirements": [],
+      "start_reason": null,
+      "total_days": 360
+    },
+    {
+      "actions": {
+        "start": true
+      },
+      "description": "Factories, machine shops, and construction suppliers.",
+      "effect": "Enables Machinery Works and Materials Processing in this province.",
+      "eligible_provinces": [
+        "FRA_auvergne-rh-ne-alpes",
+        "FRA_bourgogne-franche-comt",
+        "FRA_bretagne",
+        "FRA_centre-val-de-loire",
+        "FRA_corse",
+        "FRA_grand-est",
+        "FRA_guadeloupe",
+        "FRA_guyane-fran-aise",
+        "FRA_hauts-de-france",
+        "FRA_le-de-france",
+        "FRA_martinique",
+        "FRA_mayotte",
+        "FRA_normandie",
+        "FRA_nouvelle-aquitaine",
+        "FRA_occitanie",
+        "FRA_pays-de-la-loire",
+        "FRA_provence-alpes-c-te-d-azur",
+        "FRA_r-union"
+      ],
+      "funding": {
+        "allocation": 0.0114,
+        "available_bn": 0,
+        "department_mode": false,
+        "department_name": "National construction budget",
+        "ministry": "industry",
+        "ministry_name": "Industry & Energy",
+        "ratio": 0,
+        "required": 0.02,
+        "work_cost_bn": 0.18
+      },
+      "kind": "civilian_industry",
+      "name": "Industrial Estates",
+      "pc_cost": 0,
+      "reason": null,
+      "requirements": [],
+      "start_reason": null,
+      "total_days": 540
+    },
+    {
+      "actions": {
+        "start": true
+      },
+      "description": "Substations and transmission for new industrial facilities.",
+      "effect": "Delivers 5 modeled power units/day per level to this province; requires national generation.",
+      "eligible_provinces": [
+        "FRA_auvergne-rh-ne-alpes",
+        "FRA_bourgogne-franche-comt",
+        "FRA_bretagne",
+        "FRA_centre-val-de-loire",
+        "FRA_corse",
+        "FRA_grand-est",
+        "FRA_guadeloupe",
+        "FRA_guyane-fran-aise",
+        "FRA_hauts-de-france",
+        "FRA_le-de-france",
+        "FRA_martinique",
+        "FRA_mayotte",
+        "FRA_normandie",
+        "FRA_nouvelle-aquitaine",
+        "FRA_occitanie",
+        "FRA_pays-de-la-loire",
+        "FRA_provence-alpes-c-te-d-azur",
+        "FRA_r-union"
+      ],
+      "funding": {
+        "allocation": 0.0114,
+        "available_bn": 0,
+        "department_mode": false,
+        "department_name": "National construction budget",
+        "ministry": "industry",
+        "ministry_name": "Industry & Energy",
+        "ratio": 0,
+        "required": 0.018,
+        "work_cost_bn": 0.12
+      },
+      "kind": "power_grid",
+      "name": "Power Grid",
+      "pc_cost": 0,
+      "reason": null,
+      "requirements": [],
+      "start_reason": null,
+      "total_days": 420
+    },
+    {
+      "actions": {
+        "start": true
+      },
+      "description": "Laboratories, computing rooms, and test facilities.",
+      "effect": "Funds prototype testing with Science authority and intermediate/capital goods; can cover up to 20% of an eligible discovery's research bill. Calendar and prerequisite gates still apply.",
+      "eligible_provinces": [
+        "FRA_auvergne-rh-ne-alpes",
+        "FRA_bourgogne-franche-comt",
+        "FRA_bretagne",
+        "FRA_centre-val-de-loire",
+        "FRA_corse",
+        "FRA_grand-est",
+        "FRA_guadeloupe",
+        "FRA_guyane-fran-aise",
+        "FRA_hauts-de-france",
+        "FRA_le-de-france",
+        "FRA_martinique",
+        "FRA_mayotte",
+        "FRA_normandie",
+        "FRA_nouvelle-aquitaine",
+        "FRA_occitanie",
+        "FRA_pays-de-la-loire",
+        "FRA_provence-alpes-c-te-d-azur",
+        "FRA_r-union"
+      ],
+      "funding": {
+        "allocation": 0.0057,
+        "available_bn": 0,
+        "department_mode": false,
+        "department_name": "National construction budget",
+        "ministry": "science",
+        "ministry_name": "Science",
+        "ratio": 0,
+        "required": 0.012,
+        "work_cost_bn": 0.2
+      },
+      "kind": "research_center",
+      "name": "Research Center",
+      "pc_cost": 0,
+      "reason": null,
+      "requirements": [],
+      "start_reason": null,
+      "total_days": 600
+    },
+    {
+      "actions": {
+        "start": true
+      },
+      "description": "Hardened tooling for equipment production lines.",
+      "effect": "Adds one arms-plant level for funded manufacturing lines; equipment still needs its recipe, procurement authority and production time.",
+      "eligible_provinces": [
+        "FRA_auvergne-rh-ne-alpes",
+        "FRA_bourgogne-franche-comt",
+        "FRA_bretagne",
+        "FRA_centre-val-de-loire",
+        "FRA_corse",
+        "FRA_grand-est",
+        "FRA_guadeloupe",
+        "FRA_guyane-fran-aise",
+        "FRA_hauts-de-france",
+        "FRA_le-de-france",
+        "FRA_martinique",
+        "FRA_mayotte",
+        "FRA_normandie",
+        "FRA_nouvelle-aquitaine",
+        "FRA_occitanie",
+        "FRA_pays-de-la-loire",
+        "FRA_provence-alpes-c-te-d-azur",
+        "FRA_r-union"
+      ],
+      "funding": {
+        "allocation": 0.036,
+        "available_bn": 0,
+        "department_mode": false,
+        "department_name": "National construction budget",
+        "ministry": "defense",
+        "ministry_name": "Defense",
+        "ratio": 0,
+        "required": 0.025,
+        "work_cost_bn": 0.25
+      },
+      "kind": "arms_plant",
+      "name": "Arms Plant",
+      "pc_cost": 0,
+      "reason": null,
+      "requirements": [],
+      "start_reason": null,
+      "total_days": 720
+    },
+    {
+      "actions": {
+        "start": false
+      },
+      "description": "Tool and machine production for civilian capital projects.",
+      "effect": "Uses intermediate packs, copper and power to produce 0.5 capital-goods packs/day per level.",
+      "eligible_provinces": [],
+      "funding": {
+        "allocation": 0.0114,
+        "available_bn": 0,
+        "department_mode": false,
+        "department_name": "National construction budget",
+        "ministry": "industry",
+        "ministry_name": "Industry & Energy",
+        "ratio": 0,
+        "required": 0.02,
+        "work_cost_bn": 0.1
+      },
+      "kind": "machinery_works",
+      "name": "Machinery Works",
+      "pc_cost": 0,
+      "reason": "Build an Industrial Estate in this province first.",
+      "requirements": [],
+      "start_reason": "Build an Industrial Estate in this province first.",
+      "total_days": 420
+    },
+    {
+      "actions": {
+        "start": true
+      },
+      "description": "New dispatchable generation for modeled industrial activity only.",
+      "effect": "Supplies up to 10 modeled power units/day per level; burns coal only when a factory runs.",
+      "eligible_provinces": [
+        "FRA_auvergne-rh-ne-alpes",
+        "FRA_bourgogne-franche-comt",
+        "FRA_bretagne",
+        "FRA_centre-val-de-loire",
+        "FRA_corse",
+        "FRA_grand-est",
+        "FRA_guadeloupe",
+        "FRA_guyane-fran-aise",
+        "FRA_hauts-de-france",
+        "FRA_le-de-france",
+        "FRA_martinique",
+        "FRA_mayotte",
+        "FRA_normandie",
+        "FRA_nouvelle-aquitaine",
+        "FRA_occitanie",
+        "FRA_pays-de-la-loire",
+        "FRA_provence-alpes-c-te-d-azur",
+        "FRA_r-union"
+      ],
+      "funding": {
+        "allocation": 0.0114,
+        "available_bn": 0,
+        "department_mode": false,
+        "department_name": "National construction budget",
+        "ministry": "industry",
+        "ministry_name": "Industry & Energy",
+        "ratio": 0,
+        "required": 0.02,
+        "work_cost_bn": 0.16
+      },
+      "kind": "generation",
+      "name": "Power Generation",
+      "pc_cost": 0,
+      "reason": null,
+      "requirements": [],
+      "start_reason": null,
+      "total_days": 480
+    },
+    {
+      "actions": {
+        "start": false
+      },
+      "description": "Converts ore and fuel into usable industrial intermediates.",
+      "effect": "Uses iron, bauxite, coal and power to produce 1 intermediate pack/day per level.",
+      "eligible_provinces": [],
+      "funding": {
+        "allocation": 0.0114,
+        "available_bn": 0,
+        "department_mode": false,
+        "department_name": "National construction budget",
+        "ministry": "industry",
+        "ministry_name": "Industry & Energy",
+        "ratio": 0,
+        "required": 0.02,
+        "work_cost_bn": 0.12
+      },
+      "kind": "processing_plant",
+      "name": "Materials Processing",
+      "pc_cost": 0,
+      "reason": "Build an Industrial Estate in this province first.",
+      "requirements": [],
+      "start_reason": "Build an Industrial Estate in this province first.",
+      "total_days": 360
+    },
+    {
+      "actions": {
+        "start": true
+      },
+      "description": "An upgrade to a mapped coastal freight gateway.",
+      "effect": "+25% modeled terminal throughput per level, shared by every shipment through this gateway.",
+      "eligible_provinces": [
+        "FRA_bretagne",
+        "FRA_corse",
+        "FRA_guadeloupe",
+        "FRA_guyane-fran-aise",
+        "FRA_hauts-de-france",
+        "FRA_martinique",
+        "FRA_mayotte",
+        "FRA_normandie",
+        "FRA_nouvelle-aquitaine",
+        "FRA_occitanie",
+        "FRA_pays-de-la-loire",
+        "FRA_provence-alpes-c-te-d-azur",
+        "FRA_r-union"
+      ],
+      "funding": {
+        "allocation": 0.0114,
+        "available_bn": 0,
+        "department_mode": false,
+        "department_name": "National construction budget",
+        "ministry": "industry",
+        "ministry_name": "Industry & Energy",
+        "ratio": 0,
+        "required": 0.02,
+        "work_cost_bn": 0.12
+      },
+      "kind": "freight_terminal",
+      "name": "Freight Terminal",
+      "pc_cost": 0,
+      "reason": null,
+      "requirements": [],
+      "start_reason": null,
+      "total_days": 360
+    },
+    {
+      "actions": {
+        "start": true
+      },
+      "description": "Storage for manufactured intermediate and capital-goods packs.",
+      "effect": "+250 storage capacity for each industrial good per level. Full storage pauses its producer; no stock is destroyed.",
+      "eligible_provinces": [
+        "FRA_auvergne-rh-ne-alpes",
+        "FRA_bourgogne-franche-comt",
+        "FRA_bretagne",
+        "FRA_centre-val-de-loire",
+        "FRA_corse",
+        "FRA_grand-est",
+        "FRA_guadeloupe",
+        "FRA_guyane-fran-aise",
+        "FRA_hauts-de-france",
+        "FRA_le-de-france",
+        "FRA_martinique",
+        "FRA_mayotte",
+        "FRA_normandie",
+        "FRA_nouvelle-aquitaine",
+        "FRA_occitanie",
+        "FRA_pays-de-la-loire",
+        "FRA_provence-alpes-c-te-d-azur",
+        "FRA_r-union"
+      ],
+      "funding": {
+        "allocation": 0.0114,
+        "available_bn": 0,
+        "department_mode": false,
+        "department_name": "National construction budget",
+        "ministry": "industry",
+        "ministry_name": "Industry & Energy",
+        "ratio": 0,
+        "required": 0.02,
+        "work_cost_bn": 0.06
+      },
+      "kind": "warehouse",
+      "name": "Industrial Warehouses",
+      "pc_cost": 0,
+      "reason": null,
+      "requirements": [],
+      "start_reason": null,
+      "total_days": 240
+    },
+    {
+      "actions": {
+        "start": false
+      },
+      "description": "Robot cells and controls fitted to a real civilian plant.",
+      "effect": "+20% local civilian line throughput per level, with proportionate inputs, power and cash. Requires Industrial Robot Cells.",
+      "eligible_provinces": [],
+      "funding": {
+        "allocation": 0.0114,
+        "available_bn": 0,
+        "department_mode": false,
+        "department_name": "National construction budget",
+        "ministry": "industry",
+        "ministry_name": "Industry & Energy",
+        "ratio": 0,
+        "required": 0.02,
+        "work_cost_bn": 0.08
+      },
+      "kind": "automation",
+      "name": "Factory Automation",
+      "pc_cost": 0,
+      "reason": "Build a Machinery Works or Materials Processing plant here first.",
+      "requirements": [],
+      "start_reason": "Build a Machinery Works or Materials Processing plant here first.",
+      "total_days": 300
+    },
+    {
+      "actions": {
+        "start": false
+      },
+      "description": "Process improvements fitted to a real civilian plant.",
+      "effect": "Cuts new local plant power and generating-fuel use by 10% per level, capped at 50%. Requires Lean Production.",
+      "eligible_provinces": [],
+      "funding": {
+        "allocation": 0.0114,
+        "available_bn": 0,
+        "department_mode": false,
+        "department_name": "National construction budget",
+        "ministry": "industry",
+        "ministry_name": "Industry & Energy",
+        "ratio": 0,
+        "required": 0.02,
+        "work_cost_bn": 0.06
+      },
+      "kind": "efficiency",
+      "name": "Energy Efficiency",
+      "pc_cost": 0,
+      "reason": "Build a Machinery Works or Materials Processing plant here first.",
+      "requirements": [],
+      "start_reason": "Build a Machinery Works or Materials Processing plant here first.",
+      "total_days": 240
+    },
+    {
+      "actions": {
+        "start": true
+      },
+      "description": "Service businesses and professional employment.",
+      "effect": "Creates service jobs and additional taxable value added when skilled workers, electricity and domestic demand are available. GDP and tax receipts are reported separately.",
+      "eligible_provinces": [
+        "FRA_auvergne-rh-ne-alpes",
+        "FRA_bourgogne-franche-comt",
+        "FRA_bretagne",
+        "FRA_centre-val-de-loire",
+        "FRA_corse",
+        "FRA_grand-est",
+        "FRA_guadeloupe",
+        "FRA_guyane-fran-aise",
+        "FRA_hauts-de-france",
+        "FRA_le-de-france",
+        "FRA_martinique",
+        "FRA_mayotte",
+        "FRA_normandie",
+        "FRA_nouvelle-aquitaine",
+        "FRA_occitanie",
+        "FRA_pays-de-la-loire",
+        "FRA_provence-alpes-c-te-d-azur",
+        "FRA_r-union"
+      ],
+      "funding": {
+        "allocation": 0.0114,
+        "available_bn": 0,
+        "department_mode": false,
+        "department_name": "National construction budget",
+        "ministry": "industry",
+        "ministry_name": "Industry & Energy",
+        "ratio": 0,
+        "required": 0.02,
+        "work_cost_bn": 0.16
+      },
+      "kind": "office_district",
+      "name": "Office District",
+      "pc_cost": 0,
+      "reason": null,
+      "requirements": [],
+      "start_reason": null,
+      "total_days": 360
+    },
+    {
+      "actions": {
+        "start": true
+      },
+      "description": "Coastal docks, marine tooling, and naval production berths.",
+      "effect": "Provides optional additional naval production berths at a mapped coastal gateway. Existing paid naval lines retain their Arms Plant berth; new dock operations need workers, electricity and operating funds.",
+      "eligible_provinces": [
+        "FRA_bretagne",
+        "FRA_corse",
+        "FRA_guadeloupe",
+        "FRA_guyane-fran-aise",
+        "FRA_hauts-de-france",
+        "FRA_martinique",
+        "FRA_mayotte",
+        "FRA_normandie",
+        "FRA_nouvelle-aquitaine",
+        "FRA_occitanie",
+        "FRA_pays-de-la-loire",
+        "FRA_provence-alpes-c-te-d-azur",
+        "FRA_r-union"
+      ],
+      "funding": {
+        "allocation": 0.036,
+        "available_bn": 0,
+        "department_mode": false,
+        "department_name": "National construction budget",
+        "ministry": "defense",
+        "ministry_name": "Defense",
+        "ratio": 0,
+        "required": 0.025,
+        "work_cost_bn": 0.32
+      },
+      "kind": "shipyard",
+      "name": "Shipyard",
+      "pc_cost": 0,
+      "reason": null,
+      "requirements": [],
+      "start_reason": null,
+      "total_days": 840
+    },
+    {
+      "actions": {
+        "start": true
+      },
+      "description": "Electronics, precision components, and advanced machine production.",
+      "effect": "Produces advanced component packs for storage and trade. Supplier component contracts are a later integration step; existing equipment orders are unchanged. Needs skilled workers, electricity, intermediate packs, copper, rare earths and operating funds.",
+      "eligible_provinces": [
+        "FRA_auvergne-rh-ne-alpes",
+        "FRA_bourgogne-franche-comt",
+        "FRA_bretagne",
+        "FRA_centre-val-de-loire",
+        "FRA_corse",
+        "FRA_grand-est",
+        "FRA_guadeloupe",
+        "FRA_guyane-fran-aise",
+        "FRA_hauts-de-france",
+        "FRA_le-de-france",
+        "FRA_martinique",
+        "FRA_mayotte",
+        "FRA_normandie",
+        "FRA_nouvelle-aquitaine",
+        "FRA_occitanie",
+        "FRA_pays-de-la-loire",
+        "FRA_provence-alpes-c-te-d-azur",
+        "FRA_r-union"
+      ],
+      "funding": {
+        "allocation": 0.0114,
+        "available_bn": 0,
+        "department_mode": false,
+        "department_name": "National construction budget",
+        "ministry": "industry",
+        "ministry_name": "Industry & Energy",
+        "ratio": 0,
+        "required": 0.02,
+        "work_cost_bn": 0.24
+      },
+      "kind": "advanced_industry",
+      "name": "Advanced Industry",
+      "pc_cost": 0,
+      "reason": null,
+      "requirements": [],
+      "start_reason": null,
+      "total_days": 660
+    }
+  ],
+  "completed": [],
+  "construction_budget": {
+    "authority_bn": 0,
+    "available_bn": 0,
+    "can_set": true,
+    "daily_budget_bn": 0.09989301075268817,
+    "default_daily_bn": 0.09989301075268817,
+    "enrolled": false,
+    "explicit": false,
+    "note": "Construction draws from one daily cash budget within civilian capital appropriations. Work is paid as delivered; unused daily budget is not charged. Existing procurement funds stay reserved for equipment.",
+    "planned_daily_bn": 0,
+    "reason": null,
+    "spent_day": null,
+    "spent_today_bn": 0,
+    "spent_ytd_bn": 0
+  },
+  "date": "1 Jan 1990",
+  "markers": [],
+  "mine_queue": [],
+  "mode": "province_projects",
+  "nation": "France",
+  "nation_name": "France",
+  "preview_notice": null,
+  "provinces": [
+    {
+      "actions": {
+        "start": [
+          "infrastructure",
+          "civilian_industry",
+          "power_grid",
+          "research_center",
+          "arms_plant",
+          "generation",
+          "warehouse",
+          "office_district",
+          "advanced_industry"
+        ]
+      },
+      "active_projects": [],
+      "capabilities": {
+        "advanced_industry": 0,
+        "arms_plants": 0,
+        "automation": 0,
+        "civilian_industry": 0,
+        "efficiency": 0,
+        "freight_terminal": 0,
+        "generation": 0,
+        "infrastructure": 0,
+        "machinery_works": 0,
+        "office_district": 0,
+        "power_grid": 0,
+        "processing_plant": 0,
+        "research_centers": 0,
+        "shipyard": 0,
+        "warehouse": 0
+      },
+      "id": "FRA_auvergne-rh-ne-alpes",
+      "module_capacity": 0,
+      "name": "Auvergne-Rhône-Alpes",
+      "start_refusals": {
+        "automation": "Build a Machinery Works or Materials Processing plant here first.",
+        "efficiency": "Build a Machinery Works or Materials Processing plant here first.",
+        "freight_terminal": "This province has no mapped coastal freight gateway to upgrade.",
+        "machinery_works": "Build an Industrial Estate in this province first.",
+        "processing_plant": "Build an Industrial Estate in this province first.",
+        "shipyard": "A Shipyard requires a mapped coastal freight gateway."
+      }
+    },
+    {
+      "actions": {
+        "start": [
+          "infrastructure",
+          "civilian_industry",
+          "power_grid",
+          "research_center",
+          "arms_plant",
+          "generation",
+          "warehouse",
+          "office_district",
+          "advanced_industry"
+        ]
+      },
+      "active_projects": [],
+      "capabilities": {
+        "advanced_industry": 0,
+        "arms_plants": 0,
+        "automation": 0,
+        "civilian_industry": 0,
+        "efficiency": 0,
+        "freight_terminal": 0,
+        "generation": 0,
+        "infrastructure": 0,
+        "machinery_works": 0,
+        "office_district": 0,
+        "power_grid": 0,
+        "processing_plant": 0,
+        "research_centers": 0,
+        "shipyard": 0,
+        "warehouse": 0
+      },
+      "id": "FRA_bourgogne-franche-comt",
+      "module_capacity": 0,
+      "name": "Bourgogne-Franche-Comté",
+      "start_refusals": {
+        "automation": "Build a Machinery Works or Materials Processing plant here first.",
+        "efficiency": "Build a Machinery Works or Materials Processing plant here first.",
+        "freight_terminal": "This province has no mapped coastal freight gateway to upgrade.",
+        "machinery_works": "Build an Industrial Estate in this province first.",
+        "processing_plant": "Build an Industrial Estate in this province first.",
+        "shipyard": "A Shipyard requires a mapped coastal freight gateway."
+      }
+    },
+    {
+      "actions": {
+        "start": [
+          "infrastructure",
+          "civilian_industry",
+          "power_grid",
+          "research_center",
+          "arms_plant",
+          "generation",
+          "freight_terminal",
+          "warehouse",
+          "office_district",
+          "shipyard",
+          "advanced_industry"
+        ]
+      },
+      "active_projects": [],
+      "capabilities": {
+        "advanced_industry": 0,
+        "arms_plants": 0,
+        "automation": 0,
+        "civilian_industry": 0,
+        "efficiency": 0,
+        "freight_terminal": 0,
+        "generation": 0,
+        "infrastructure": 0,
+        "machinery_works": 0,
+        "office_district": 0,
+        "power_grid": 0,
+        "processing_plant": 0,
+        "research_centers": 0,
+        "shipyard": 0,
+        "warehouse": 0
+      },
+      "id": "FRA_bretagne",
+      "module_capacity": 0,
+      "name": "Bretagne",
+      "start_refusals": {
+        "automation": "Build a Machinery Works or Materials Processing plant here first.",
+        "efficiency": "Build a Machinery Works or Materials Processing plant here first.",
+        "machinery_works": "Build an Industrial Estate in this province first.",
+        "processing_plant": "Build an Industrial Estate in this province first."
+      }
+    },
+    {
+      "actions": {
+        "start": [
+          "infrastructure",
+          "civilian_industry",
+          "power_grid",
+          "research_center",
+          "arms_plant",
+          "generation",
+          "warehouse",
+          "office_district",
+          "advanced_industry"
+        ]
+      },
+      "active_projects": [],
+      "capabilities": {
+        "advanced_industry": 0,
+        "arms_plants": 0,
+        "automation": 0,
+        "civilian_industry": 0,
+        "efficiency": 0,
+        "freight_terminal": 0,
+        "generation": 0,
+        "infrastructure": 0,
+        "machinery_works": 0,
+        "office_district": 0,
+        "power_grid": 0,
+        "processing_plant": 0,
+        "research_centers": 0,
+        "shipyard": 0,
+        "warehouse": 0
+      },
+      "id": "FRA_centre-val-de-loire",
+      "module_capacity": 0,
+      "name": "Centre-Val de Loire",
+      "start_refusals": {
+        "automation": "Build a Machinery Works or Materials Processing plant here first.",
+        "efficiency": "Build a Machinery Works or Materials Processing plant here first.",
+        "freight_terminal": "This province has no mapped coastal freight gateway to upgrade.",
+        "machinery_works": "Build an Industrial Estate in this province first.",
+        "processing_plant": "Build an Industrial Estate in this province first.",
+        "shipyard": "A Shipyard requires a mapped coastal freight gateway."
+      }
+    },
+    {
+      "actions": {
+        "start": [
+          "infrastructure",
+          "civilian_industry",
+          "power_grid",
+          "research_center",
+          "arms_plant",
+          "generation",
+          "freight_terminal",
+          "warehouse",
+          "office_district",
+          "shipyard",
+          "advanced_industry"
+        ]
+      },
+      "active_projects": [],
+      "capabilities": {
+        "advanced_industry": 0,
+        "arms_plants": 0,
+        "automation": 0,
+        "civilian_industry": 0,
+        "efficiency": 0,
+        "freight_terminal": 0,
+        "generation": 0,
+        "infrastructure": 0,
+        "machinery_works": 0,
+        "office_district": 0,
+        "power_grid": 0,
+        "processing_plant": 0,
+        "research_centers": 0,
+        "shipyard": 0,
+        "warehouse": 0
+      },
+      "id": "FRA_corse",
+      "module_capacity": 0,
+      "name": "Corse",
+      "start_refusals": {
+        "automation": "Build a Machinery Works or Materials Processing plant here first.",
+        "efficiency": "Build a Machinery Works or Materials Processing plant here first.",
+        "machinery_works": "Build an Industrial Estate in this province first.",
+        "processing_plant": "Build an Industrial Estate in this province first."
+      }
+    },
+    {
+      "actions": {
+        "start": [
+          "infrastructure",
+          "civilian_industry",
+          "power_grid",
+          "research_center",
+          "arms_plant",
+          "generation",
+          "warehouse",
+          "office_district",
+          "advanced_industry"
+        ]
+      },
+      "active_projects": [],
+      "capabilities": {
+        "advanced_industry": 0,
+        "arms_plants": 0,
+        "automation": 0,
+        "civilian_industry": 0,
+        "efficiency": 0,
+        "freight_terminal": 0,
+        "generation": 0,
+        "infrastructure": 0,
+        "machinery_works": 0,
+        "office_district": 0,
+        "power_grid": 0,
+        "processing_plant": 0,
+        "research_centers": 0,
+        "shipyard": 0,
+        "warehouse": 0
+      },
+      "id": "FRA_grand-est",
+      "module_capacity": 0,
+      "name": "Grand Est",
+      "start_refusals": {
+        "automation": "Build a Machinery Works or Materials Processing plant here first.",
+        "efficiency": "Build a Machinery Works or Materials Processing plant here first.",
+        "freight_terminal": "This province has no mapped coastal freight gateway to upgrade.",
+        "machinery_works": "Build an Industrial Estate in this province first.",
+        "processing_plant": "Build an Industrial Estate in this province first.",
+        "shipyard": "A Shipyard requires a mapped coastal freight gateway."
+      }
+    },
+    {
+      "actions": {
+        "start": [
+          "infrastructure",
+          "civilian_industry",
+          "power_grid",
+          "research_center",
+          "arms_plant",
+          "generation",
+          "freight_terminal",
+          "warehouse",
+          "office_district",
+          "shipyard",
+          "advanced_industry"
+        ]
+      },
+      "active_projects": [],
+      "capabilities": {
+        "advanced_industry": 0,
+        "arms_plants": 0,
+        "automation": 0,
+        "civilian_industry": 0,
+        "efficiency": 0,
+        "freight_terminal": 0,
+        "generation": 0,
+        "infrastructure": 0,
+        "machinery_works": 0,
+        "office_district": 0,
+        "power_grid": 0,
+        "processing_plant": 0,
+        "research_centers": 0,
+        "shipyard": 0,
+        "warehouse": 0
+      },
+      "id": "FRA_guadeloupe",
+      "module_capacity": 0,
+      "name": "Guadeloupe",
+      "start_refusals": {
+        "automation": "Build a Machinery Works or Materials Processing plant here first.",
+        "efficiency": "Build a Machinery Works or Materials Processing plant here first.",
+        "machinery_works": "Build an Industrial Estate in this province first.",
+        "processing_plant": "Build an Industrial Estate in this province first."
+      }
+    },
+    {
+      "actions": {
+        "start": [
+          "infrastructure",
+          "civilian_industry",
+          "power_grid",
+          "research_center",
+          "arms_plant",
+          "generation",
+          "freight_terminal",
+          "warehouse",
+          "office_district",
+          "shipyard",
+          "advanced_industry"
+        ]
+      },
+      "active_projects": [],
+      "capabilities": {
+        "advanced_industry": 0,
+        "arms_plants": 0,
+        "automation": 0,
+        "civilian_industry": 0,
+        "efficiency": 0,
+        "freight_terminal": 0,
+        "generation": 0,
+        "infrastructure": 0,
+        "machinery_works": 0,
+        "office_district": 0,
+        "power_grid": 0,
+        "processing_plant": 0,
+        "research_centers": 0,
+        "shipyard": 0,
+        "warehouse": 0
+      },
+      "id": "FRA_guyane-fran-aise",
+      "module_capacity": 0,
+      "name": "Guyane française",
+      "start_refusals": {
+        "automation": "Build a Machinery Works or Materials Processing plant here first.",
+        "efficiency": "Build a Machinery Works or Materials Processing plant here first.",
+        "machinery_works": "Build an Industrial Estate in this province first.",
+        "processing_plant": "Build an Industrial Estate in this province first."
+      }
+    },
+    {
+      "actions": {
+        "start": [
+          "infrastructure",
+          "civilian_industry",
+          "power_grid",
+          "research_center",
+          "arms_plant",
+          "generation",
+          "freight_terminal",
+          "warehouse",
+          "office_district",
+          "shipyard",
+          "advanced_industry"
+        ]
+      },
+      "active_projects": [],
+      "capabilities": {
+        "advanced_industry": 0,
+        "arms_plants": 0,
+        "automation": 0,
+        "civilian_industry": 0,
+        "efficiency": 0,
+        "freight_terminal": 0,
+        "generation": 0,
+        "infrastructure": 0,
+        "machinery_works": 0,
+        "office_district": 0,
+        "power_grid": 0,
+        "processing_plant": 0,
+        "research_centers": 0,
+        "shipyard": 0,
+        "warehouse": 0
+      },
+      "id": "FRA_hauts-de-france",
+      "module_capacity": 0,
+      "name": "Hauts-de-France",
+      "start_refusals": {
+        "automation": "Build a Machinery Works or Materials Processing plant here first.",
+        "efficiency": "Build a Machinery Works or Materials Processing plant here first.",
+        "machinery_works": "Build an Industrial Estate in this province first.",
+        "processing_plant": "Build an Industrial Estate in this province first."
+      }
+    },
+    {
+      "actions": {
+        "start": [
+          "infrastructure",
+          "civilian_industry",
+          "power_grid",
+          "research_center",
+          "arms_plant",
+          "generation",
+          "warehouse",
+          "office_district",
+          "advanced_industry"
+        ]
+      },
+      "active_projects": [],
+      "capabilities": {
+        "advanced_industry": 0,
+        "arms_plants": 0,
+        "automation": 0,
+        "civilian_industry": 0,
+        "efficiency": 0,
+        "freight_terminal": 0,
+        "generation": 0,
+        "infrastructure": 0,
+        "machinery_works": 0,
+        "office_district": 0,
+        "power_grid": 0,
+        "processing_plant": 0,
+        "research_centers": 0,
+        "shipyard": 0,
+        "warehouse": 0
+      },
+      "id": "FRA_le-de-france",
+      "module_capacity": 0,
+      "name": "Île-de-France",
+      "start_refusals": {
+        "automation": "Build a Machinery Works or Materials Processing plant here first.",
+        "efficiency": "Build a Machinery Works or Materials Processing plant here first.",
+        "freight_terminal": "This province has no mapped coastal freight gateway to upgrade.",
+        "machinery_works": "Build an Industrial Estate in this province first.",
+        "processing_plant": "Build an Industrial Estate in this province first.",
+        "shipyard": "A Shipyard requires a mapped coastal freight gateway."
+      }
+    },
+    {
+      "actions": {
+        "start": [
+          "infrastructure",
+          "civilian_industry",
+          "power_grid",
+          "research_center",
+          "arms_plant",
+          "generation",
+          "freight_terminal",
+          "warehouse",
+          "office_district",
+          "shipyard",
+          "advanced_industry"
+        ]
+      },
+      "active_projects": [],
+      "capabilities": {
+        "advanced_industry": 0,
+        "arms_plants": 0,
+        "automation": 0,
+        "civilian_industry": 0,
+        "efficiency": 0,
+        "freight_terminal": 0,
+        "generation": 0,
+        "infrastructure": 0,
+        "machinery_works": 0,
+        "office_district": 0,
+        "power_grid": 0,
+        "processing_plant": 0,
+        "research_centers": 0,
+        "shipyard": 0,
+        "warehouse": 0
+      },
+      "id": "FRA_martinique",
+      "module_capacity": 0,
+      "name": "Martinique",
+      "start_refusals": {
+        "automation": "Build a Machinery Works or Materials Processing plant here first.",
+        "efficiency": "Build a Machinery Works or Materials Processing plant here first.",
+        "machinery_works": "Build an Industrial Estate in this province first.",
+        "processing_plant": "Build an Industrial Estate in this province first."
+      }
+    },
+    {
+      "actions": {
+        "start": [
+          "infrastructure",
+          "civilian_industry",
+          "power_grid",
+          "research_center",
+          "arms_plant",
+          "generation",
+          "freight_terminal",
+          "warehouse",
+          "office_district",
+          "shipyard",
+          "advanced_industry"
+        ]
+      },
+      "active_projects": [],
+      "capabilities": {
+        "advanced_industry": 0,
+        "arms_plants": 0,
+        "automation": 0,
+        "civilian_industry": 0,
+        "efficiency": 0,
+        "freight_terminal": 0,
+        "generation": 0,
+        "infrastructure": 0,
+        "machinery_works": 0,
+        "office_district": 0,
+        "power_grid": 0,
+        "processing_plant": 0,
+        "research_centers": 0,
+        "shipyard": 0,
+        "warehouse": 0
+      },
+      "id": "FRA_mayotte",
+      "module_capacity": 0,
+      "name": "Mayotte",
+      "start_refusals": {
+        "automation": "Build a Machinery Works or Materials Processing plant here first.",
+        "efficiency": "Build a Machinery Works or Materials Processing plant here first.",
+        "machinery_works": "Build an Industrial Estate in this province first.",
+        "processing_plant": "Build an Industrial Estate in this province first."
+      }
+    },
+    {
+      "actions": {
+        "start": [
+          "infrastructure",
+          "civilian_industry",
+          "power_grid",
+          "research_center",
+          "arms_plant",
+          "generation",
+          "freight_terminal",
+          "warehouse",
+          "office_district",
+          "shipyard",
+          "advanced_industry"
+        ]
+      },
+      "active_projects": [],
+      "capabilities": {
+        "advanced_industry": 0,
+        "arms_plants": 0,
+        "automation": 0,
+        "civilian_industry": 0,
+        "efficiency": 0,
+        "freight_terminal": 0,
+        "generation": 0,
+        "infrastructure": 0,
+        "machinery_works": 0,
+        "office_district": 0,
+        "power_grid": 0,
+        "processing_plant": 0,
+        "research_centers": 0,
+        "shipyard": 0,
+        "warehouse": 0
+      },
+      "id": "FRA_normandie",
+      "module_capacity": 0,
+      "name": "Normandie",
+      "start_refusals": {
+        "automation": "Build a Machinery Works or Materials Processing plant here first.",
+        "efficiency": "Build a Machinery Works or Materials Processing plant here first.",
+        "machinery_works": "Build an Industrial Estate in this province first.",
+        "processing_plant": "Build an Industrial Estate in this province first."
+      }
+    },
+    {
+      "actions": {
+        "start": [
+          "infrastructure",
+          "civilian_industry",
+          "power_grid",
+          "research_center",
+          "arms_plant",
+          "generation",
+          "freight_terminal",
+          "warehouse",
+          "office_district",
+          "shipyard",
+          "advanced_industry"
+        ]
+      },
+      "active_projects": [],
+      "capabilities": {
+        "advanced_industry": 0,
+        "arms_plants": 0,
+        "automation": 0,
+        "civilian_industry": 0,
+        "efficiency": 0,
+        "freight_terminal": 0,
+        "generation": 0,
+        "infrastructure": 0,
+        "machinery_works": 0,
+        "office_district": 0,
+        "power_grid": 0,
+        "processing_plant": 0,
+        "research_centers": 0,
+        "shipyard": 0,
+        "warehouse": 0
+      },
+      "id": "FRA_nouvelle-aquitaine",
+      "module_capacity": 0,
+      "name": "Nouvelle-Aquitaine",
+      "start_refusals": {
+        "automation": "Build a Machinery Works or Materials Processing plant here first.",
+        "efficiency": "Build a Machinery Works or Materials Processing plant here first.",
+        "machinery_works": "Build an Industrial Estate in this province first.",
+        "processing_plant": "Build an Industrial Estate in this province first."
+      }
+    },
+    {
+      "actions": {
+        "start": [
+          "infrastructure",
+          "civilian_industry",
+          "power_grid",
+          "research_center",
+          "arms_plant",
+          "generation",
+          "freight_terminal",
+          "warehouse",
+          "office_district",
+          "shipyard",
+          "advanced_industry"
+        ]
+      },
+      "active_projects": [],
+      "capabilities": {
+        "advanced_industry": 0,
+        "arms_plants": 0,
+        "automation": 0,
+        "civilian_industry": 0,
+        "efficiency": 0,
+        "freight_terminal": 0,
+        "generation": 0,
+        "infrastructure": 0,
+        "machinery_works": 0,
+        "office_district": 0,
+        "power_grid": 0,
+        "processing_plant": 0,
+        "research_centers": 0,
+        "shipyard": 0,
+        "warehouse": 0
+      },
+      "id": "FRA_occitanie",
+      "module_capacity": 0,
+      "name": "Occitanie",
+      "start_refusals": {
+        "automation": "Build a Machinery Works or Materials Processing plant here first.",
+        "efficiency": "Build a Machinery Works or Materials Processing plant here first.",
+        "machinery_works": "Build an Industrial Estate in this province first.",
+        "processing_plant": "Build an Industrial Estate in this province first."
+      }
+    },
+    {
+      "actions": {
+        "start": [
+          "infrastructure",
+          "civilian_industry",
+          "power_grid",
+          "research_center",
+          "arms_plant",
+          "generation",
+          "freight_terminal",
+          "warehouse",
+          "office_district",
+          "shipyard",
+          "advanced_industry"
+        ]
+      },
+      "active_projects": [],
+      "capabilities": {
+        "advanced_industry": 0,
+        "arms_plants": 0,
+        "automation": 0,
+        "civilian_industry": 0,
+        "efficiency": 0,
+        "freight_terminal": 0,
+        "generation": 0,
+        "infrastructure": 0,
+        "machinery_works": 0,
+        "office_district": 0,
+        "power_grid": 0,
+        "processing_plant": 0,
+        "research_centers": 0,
+        "shipyard": 0,
+        "warehouse": 0
+      },
+      "id": "FRA_pays-de-la-loire",
+      "module_capacity": 0,
+      "name": "Pays de la Loire",
+      "start_refusals": {
+        "automation": "Build a Machinery Works or Materials Processing plant here first.",
+        "efficiency": "Build a Machinery Works or Materials Processing plant here first.",
+        "machinery_works": "Build an Industrial Estate in this province first.",
+        "processing_plant": "Build an Industrial Estate in this province first."
+      }
+    },
+    {
+      "actions": {
+        "start": [
+          "infrastructure",
+          "civilian_industry",
+          "power_grid",
+          "research_center",
+          "arms_plant",
+          "generation",
+          "freight_terminal",
+          "warehouse",
+          "office_district",
+          "shipyard",
+          "advanced_industry"
+        ]
+      },
+      "active_projects": [],
+      "capabilities": {
+        "advanced_industry": 0,
+        "arms_plants": 0,
+        "automation": 0,
+        "civilian_industry": 0,
+        "efficiency": 0,
+        "freight_terminal": 0,
+        "generation": 0,
+        "infrastructure": 0,
+        "machinery_works": 0,
+        "office_district": 0,
+        "power_grid": 0,
+        "processing_plant": 0,
+        "research_centers": 0,
+        "shipyard": 0,
+        "warehouse": 0
+      },
+      "id": "FRA_provence-alpes-c-te-d-azur",
+      "module_capacity": 0,
+      "name": "Provence-Alpes-Côte-d'Azur",
+      "start_refusals": {
+        "automation": "Build a Machinery Works or Materials Processing plant here first.",
+        "efficiency": "Build a Machinery Works or Materials Processing plant here first.",
+        "machinery_works": "Build an Industrial Estate in this province first.",
+        "processing_plant": "Build an Industrial Estate in this province first."
+      }
+    },
+    {
+      "actions": {
+        "start": [
+          "infrastructure",
+          "civilian_industry",
+          "power_grid",
+          "research_center",
+          "arms_plant",
+          "generation",
+          "freight_terminal",
+          "warehouse",
+          "office_district",
+          "shipyard",
+          "advanced_industry"
+        ]
+      },
+      "active_projects": [],
+      "capabilities": {
+        "advanced_industry": 0,
+        "arms_plants": 0,
+        "automation": 0,
+        "civilian_industry": 0,
+        "efficiency": 0,
+        "freight_terminal": 0,
+        "generation": 0,
+        "infrastructure": 0,
+        "machinery_works": 0,
+        "office_district": 0,
+        "power_grid": 0,
+        "processing_plant": 0,
+        "research_centers": 0,
+        "shipyard": 0,
+        "warehouse": 0
+      },
+      "id": "FRA_r-union",
+      "module_capacity": 0,
+      "name": "Réunion",
+      "start_refusals": {
+        "automation": "Build a Machinery Works or Materials Processing plant here first.",
+        "efficiency": "Build a Machinery Works or Materials Processing plant here first.",
+        "machinery_works": "Build an Industrial Estate in this province first.",
+        "processing_plant": "Build an Industrial Estate in this province first."
+      }
+    }
+  ],
+  "queue": [],
+  "queue_capacity": null,
+  "session_id": "31768-1789134796475303600-1",
+  "suggestions": {
+    "as_of_day": 0,
+    "items": [
+      {
+        "capacity_micros": 202777,
+        "caution": "The national economy already includes inherited industry. This adds a new modeled workshop; check future intermediate use and real operating inputs rather than assuming GDP, jobs or tax returns. Apply a positive construction budget before this order can advance.",
+        "cost_bn": 0.11761066,
+        "district": "FRA_le-de-france",
+        "district_name": "Île-de-France",
+        "eta_days": null,
+        "evidence": [
+          "No commissioned or queued intermediate/capital-goods line is recorded. Suggested package: 0.202777 of one standard workshop, sized against the current 0.099893 $bn/day construction budget.",
+          "Site has 0.000000 estate equivalents, 0.000000 installed civilian packs/day, 0.894066 local grid units/day and infrastructure level 0. Equally suitable sites use stable province order; this is not a forecast of economic returns."
+        ],
+        "id": "starter_industry:FRA_le-de-france:202777",
+        "minimum_days": 365,
+        "name": "Starter Industry",
+        "priority": "Development",
+        "project_kind": "starter_industry",
+        "reason": "Consider a first self-contained starter workshop: its paid package includes fractional processing, estate, generation and local grid capacity. This is a development option, not an observed shortage."
+      }
+    ],
+    "note": "Suggestions use installed and queued capacity, not promised GDP, tax income, jobs or investment returns. Review a project before ordering; nothing is started automatically."
+  },
+  "summary": {
+    "active": 0,
+    "attention": 0,
+    "attention_ids": [],
+    "blocked": 0,
+    "building": 0,
+    "capacity": null,
+    "completed": 0,
+    "construction_capacity_daily": null,
+    "feasible_work_daily": null,
+    "module_capacity": 0,
+    "module_provinces": 0,
+    "nominal_work_daily": null,
+    "paused": 0,
+    "queue_capacity": null,
+    "slowed": 0
+  }
+}

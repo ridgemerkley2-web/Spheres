@@ -1,0 +1,9 @@
+S07 failed evidence: C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\artifacts\browser-construction-ci\france-eXE1kF\result.json
+page.goto: Timeout 45000ms exceeded.
+Call log:
+[2m  - navigating to "http://127.0.0.1:62816/", waiting until "domcontentloaded"[22m
+
+    at journey (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-construction.cjs:125:42)
+    at async C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-construction.cjs:230:156 {
+  name: 'TimeoutError'
+}
