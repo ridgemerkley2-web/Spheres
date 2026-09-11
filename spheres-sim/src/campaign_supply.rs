@@ -236,13 +236,33 @@ fn choose_hub(w: &WorldState, g: &Graph, nation: NationId) -> Option<String> {
 /// IDs include sea/gateway geometry, not only districts. No dispatch, service,
 /// force or edge reservation is created by asking for a route.
 pub fn deployment_route(w:&WorldState,nation:NationId,district:&str)->Option<(Vec<String>,u32)> {
-    let g=Graph::new(w);
-    let hub=w.campaign_supply.sources.get(&nation).filter(|s|control::can_operate(w,nation,&s.district))
-        .map(|s|s.district.clone()).or_else(||choose_hub(w,&g,nation))?;
-    let request=SupplyRequest {key:String::new(),nation,conflict:0,district:district.into(),deployed:0.0,
-        burn_monthly:0.0,sea_escort:0.0,sea_denial:0.0};
-    let path=route(w,&g,&request,&hub).ok()?;
-    Some((path.nodes,path.days))
+    DeploymentRoutes::new(w).route(nation,district)
+}
+
+/// Pure movement quotes against one immutable world. The lifetime prevents
+/// control, access, inventory or freight reservations changing under this
+/// snapshot; a later settlement must create a new context. In particular,
+/// daily service dispatch cannot reuse it while reserving shared capacity.
+pub(crate) struct DeploymentRoutes<'w> {
+    world: &'w WorldState,
+    graph: Option<Graph>,
+    hubs: BTreeMap<NationId,Option<String>>,
+}
+impl<'w> DeploymentRoutes<'w> {
+    pub(crate) fn new(world:&'w WorldState)->Self {
+        Self {world,graph:None,hubs:BTreeMap::new()}
+    }
+    pub(crate) fn route(&mut self,nation:NationId,district:&str)->Option<(Vec<String>,u32)> {
+        let w=self.world;
+        let g=self.graph.get_or_insert_with(||Graph::new(w));
+        let hub=self.hubs.entry(nation).or_insert_with(||
+            w.campaign_supply.sources.get(&nation).filter(|s|control::can_operate(w,nation,&s.district))
+                .map(|s|s.district.clone()).or_else(||choose_hub(w,g,nation))).as_deref()?;
+        let request=SupplyRequest {key:String::new(),nation,conflict:0,district:district.into(),deployed:0.0,
+            burn_monthly:0.0,sea_escort:0.0,sea_denial:0.0};
+        let path=route(w,g,&request,hub).ok()?;
+        Some((path.nodes,path.days))
+    }
 }
 
 /// Validate the not-yet-traversed part of a troop journey. Already departed
@@ -688,6 +708,37 @@ mod tests {
         w.districts.insert(r.district.clone(),NationId::France);
         assert!(deployment_route(&w,r.nation,&r.district).is_none());
         assert!(!deployment_path_open(&w,r.nation,&path.0));
+    }
+    #[test]
+    fn movement_snapshot_matches_fresh_quotes_and_preserves_the_world() {
+        let (mut w,r)=fixture();open(&mut w);
+        let saved=crate::save(&w);
+        let mut batch=DeploymentRoutes::new(&w);
+        // Repeated destinations, different national hubs, no-access and
+        // unmapped destinations must retain exact path ordering and ETA.
+        for (nation,district) in [(r.nation,"DE-BB"),(r.nation,"DE-BE"),
+            (NationId::France,"DE-BB"),(NationId::USA,"DE-BB"),
+            (r.nation,"unknown-district"),(r.nation,"DE-BB")] {
+            assert_eq!(batch.route(nation,district),deployment_route(&w,nation,district));
+        }
+        assert_eq!(crate::save(&w),saved,"quotes cannot reserve freight or post any world state");
+    }
+    #[test]
+    fn later_movement_snapshot_observes_capacity_and_permission_changes() {
+        let (mut w,r)=fixture();open(&mut w);
+        assert!(DeploymentRoutes::new(&w).route(r.nation,&r.district).is_some());
+        saturate(&mut w);
+        assert!(DeploymentRoutes::new(&w).route(r.nation,&r.district).is_none(),
+            "a prior movement snapshot must not survive commercial reservation");
+        w.logistics.usage_tonnes.clear();
+        w.districts.insert(r.district.clone(),NationId::France);
+        assert!(DeploymentRoutes::new(&w).route(r.nation,&r.district).is_none());
+        w.access.push(Access{theatre:TheatreId::CentralEurope,host:NationId::France,
+            seeker:r.nation,since_year:1990,since_month:1});
+        assert!(DeploymentRoutes::new(&w).route(r.nation,&r.district).is_some());
+        w.access.clear();
+        assert!(DeploymentRoutes::new(&w).route(r.nation,&r.district).is_none(),
+            "new movement planning must observe revoked military access");
     }
     #[test]
     fn garrison_service_is_separate_from_frontline_forecast_coverage() {

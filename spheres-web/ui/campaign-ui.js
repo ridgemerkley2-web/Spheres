@@ -128,17 +128,22 @@ async function reviewCampaignCommand() {
     banner("Current state restored. The earlier order was not replayed or undone.");
   }catch(error){banner(error.message);}finally{syncCommandControls();finishCommandRecovery();}
 }
+let saveSlotsRead=0;
 async function refreshSaveSlots() {
   const select=document.getElementById("saveSlots");if(!select)return;
-  const previous=select.value||SESSION.slot||"default";
-  try {const result=await api("/api/saves");SESSION.saves=result.slots;select.replaceChildren();
+  const read=++saveSlotsRead;
+  try {const result=await api("/api/saves");if(read!==saveSlotsRead)return;
+    // A player can choose a different save while this read is in flight,
+    // including while a load confirmation is open. Retain that latest choice.
+    const previous=select.value||SESSION.slot||"default";
+    SESSION.saves=result.slots;select.replaceChildren();
     for(const entry of result.slots){const option=document.createElement("option");option.value=entry.slot;
       option.textContent=`${entry.slot} · ${entry.player||"campaign"} · ${entry.date||"legacy date"}${entry.readable?"":" · damaged; try backup"}`;
       option.dataset.backup=String(entry.backup);select.append(option);}
     if(!result.slots.length){const option=document.createElement("option");option.value="default";option.textContent="No saved campaign yet";select.append(option);}
     if([...select.options].some(o=>o.value===previous))select.value=previous;
     document.getElementById("saveSlotStatus").textContent=result.autosave;
-  }catch(error){document.getElementById("saveSlotStatus").textContent="Could not read save slots: "+error.message;}
+  }catch(error){if(read!==saveSlotsRead)return;document.getElementById("saveSlotStatus").textContent="Could not read save slots: "+error.message;}
   if(typeof renderMainMenuState === "function")renderMainMenuState();
 }
 async function saveNamedCampaign() {

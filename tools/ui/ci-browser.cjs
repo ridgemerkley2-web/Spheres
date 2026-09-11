@@ -67,15 +67,33 @@ async function port(){const s=net.createServer();await new Promise(r=>s.listen(0
     const saved=await page.request.post(url+'/api/save',{data:{slot:'ci-smoke'}});assert(saved.ok());
     const history=await (await page.request.get(url+'/api/history?nations=USA')).json();
     if(await page.locator('.arc-time-menu').getAttribute('open')===null)await page.locator('.arc-time-menu > summary').click();
+    const initialSaveList=page.waitForResponse(response=>new URL(response.url()).pathname==='/api/saves');
     await page.locator('#campaignsBtn').click();await page.locator('#campaignHome').waitFor({state:'visible'});
+    assert((await initialSaveList).ok());
+    await page.locator('#saveSlots option[value="ci-smoke"]').waitFor({state:'attached'});
+    // Hold the next actual list response until the player has reviewed a
+    // different selection. Its original body must not restore the old choice.
+    let releaseSaveList;const saveListGate=new Promise(resolve=>{releaseSaveList=resolve;});
+    await page.route('**/api/saves',async route=>{const response=await route.fetch();await saveListGate;await route.fulfill({response});});
     await page.locator('#openSavesBtn').click();await page.locator('#savedCampaigns').waitFor({state:'visible'});
     await page.locator('#saveSlots').selectOption('ci-smoke');
     await page.locator('#loadBtn').click();await page.locator('#campaignConfirmDialog').waitFor({state:'visible'});
     assert(await page.locator('#campaignConfirmCancel').evaluate(element=>element===document.activeElement),'Load confirmation must initially focus Cancel');
     assert((await page.locator('#campaignConfirmMessage').innerText()).includes('ci-smoke'));
+    // Observe the real select rebuild, not a timeout or a synthetic response.
+    await page.evaluate(()=>{window.__s05SaveListApplied=new Promise(resolve=>{
+      const observer=new MutationObserver(()=>{observer.disconnect();resolve();});
+      observer.observe(document.getElementById('saveSlots'),{childList:true});
+    });});
+    releaseSaveList();
+    await page.evaluate(async()=>{await window.__s05SaveListApplied;delete window.__s05SaveListApplied;});
+    await page.unroute('**/api/saves');
+    assert.equal(await page.locator('#saveSlots').inputValue(),'ci-smoke','A delayed native list response must preserve the latest selected save');
     await page.locator('#campaignConfirmCancel').click();await page.locator('#campaignConfirmDialog').waitFor({state:'hidden'});
     assert.deepEqual(await state(),recovered,'Cancelling a named load must preserve the live campaign');
+    assert.equal(await page.locator('#saveSlots').inputValue(),'ci-smoke','Cancelling must retain the reviewed selection');
     await page.locator('#loadBtn').click();await page.locator('#campaignConfirmDialog').waitFor({state:'visible'});
+    assert((await page.locator('#campaignConfirmMessage').innerText()).includes('ci-smoke'));
     const loadResponse=page.waitForResponse(response=>response.url()===url+'/api/load'&&response.request().method()==='POST');
     await page.locator('#campaignConfirmAccept').click();const loaded=await loadResponse;assert(loaded.ok());
     const loadRequest=loaded.request().postDataJSON();assert.equal(loadRequest.slot,'ci-smoke');assert.equal(loadRequest.backup,false);

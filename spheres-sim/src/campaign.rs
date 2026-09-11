@@ -997,6 +997,9 @@ pub(crate) fn prepare(w: &mut WorldState, snapshot: &operations::Snapshot) -> Op
                 );
             }
         }
+        // Only local campaign state changes during movement planning. Reuse
+        // one lazy freight graph while the world it quotes stays immutable.
+        let mut deployment_routes = crate::campaign_supply::DeploymentRoutes::new(w);
         // Transfer excess directly to a deficit if a friendly route exists.
         // A changed objective changes the request, never the arrival date.
         let keys: Vec<_> = state.sectors.keys().cloned().collect();
@@ -1049,7 +1052,7 @@ pub(crate) fn prepare(w: &mut WorldState, snapshot: &operations::Snapshot) -> Op
             }
             if excess > EPS && friendly(w, c, s.nation, &s.district, &owners) {
                 if let Some((mut path, days)) =
-                    crate::campaign_supply::deployment_route(w, s.nation, &s.district)
+                    deployment_routes.route(s.nation, &s.district)
                 {
                     path.reverse();
                     state.transfers.push(Transfer {
@@ -1078,23 +1081,25 @@ pub(crate) fn prepare(w: &mut WorldState, snapshot: &operations::Snapshot) -> Op
                 .sum::<f64>();
             let deficit =
                 (mass - state.sectors.get(&key).map_or(0.0, |s| s.strength) - arriving).max(0.0);
-            let preposition = migration && migration_conflicts.contains(&cid);
-            let deployment = if preposition {
-                Some((vec![], 0))
-            } else {
-                crate::campaign_supply::deployment_route(w, n, &d)
-            };
-            let Some((path, days)) = deployment else {
-                continue;
-            };
             let Some(reserve) = state.reserves.get_mut(&n) else {
                 continue;
             };
             let amount = deficit.min(reserve.strength);
             let cohesion = reserve.cohesion;
+            // A pure route quote cannot change the result when no force is
+            // available to move. Avoid searching the map for filled sectors.
             if amount <= EPS {
                 continue;
             }
+            let preposition = migration && migration_conflicts.contains(&cid);
+            let deployment = if preposition {
+                Some((vec![], 0))
+            } else {
+                deployment_routes.route(n, &d)
+            };
+            let Some((path, days)) = deployment else {
+                continue;
+            };
             reserve.strength -= amount;
             if preposition {
                 add_sector(&mut state, cid, n, d, amount, cohesion);

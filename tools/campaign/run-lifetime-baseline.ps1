@@ -200,7 +200,10 @@ if ($childStarted -and $result.exit_code -eq 0) {
                 if ($CompanyNetwork -and (-not $row.company_network_adoption -or $row.starting_capabilities.supplier_operations_version -ne 1 -or -not $row.starting_capabilities.sector_contractors)) {
                     throw "Requested company network is absent from $scenario year $age."
                 }
-                if ($OperationalWarfare -and (-not $row.operational_warfare_adoption -or $row.starting_capabilities.operational_warfare -ne 1 -or -not $row.starting_capabilities.campaign_initialized)) {
+                # Adoption records the existing conflict IDs without ticking
+                # or deploying force. Initialization belongs to the first
+                # measured daily settlement, which is checked below.
+                if ($OperationalWarfare -and (-not $row.operational_warfare_adoption -or $row.starting_capabilities.operational_warfare -ne 1)) {
                     throw "Requested operational warfare is absent from $scenario year $age."
                 }
                 if ($ConnectedEconomy -or $CompanyNetwork -or $OperationalWarfare) {
@@ -208,7 +211,7 @@ if ($childStarted -and $result.exit_code -eq 0) {
                         if ($null -eq $sample.owned_work) { throw 'Missing observed ownership workload counters.' }
                         if ($ConnectedEconomy -and (-not $sample.capabilities.population -or -not $sample.capabilities.fiscal_recovery -or -not $sample.capabilities.industry_rebuild)) { throw 'Connected economy dropped during measurement.' }
                         if ($CompanyNetwork -and ($sample.capabilities.supplier_operations_version -ne 1 -or -not $sample.capabilities.sector_contractors)) { throw 'Company capability dropped during measurement.' }
-                        if ($OperationalWarfare -and $sample.capabilities.operational_warfare -ne 1) { throw 'Operational warfare dropped during measurement.' }
+                        if ($OperationalWarfare -and ($sample.capabilities.operational_warfare -ne 1 -or -not $sample.capabilities.campaign_initialized)) { throw 'Operational warfare dropped or failed to initialize during measurement.' }
                     }
                 }
                 if ($row.whole_server_turn.samples -ne 31 -or $row.simulation_and_history_recording.samples -ne 31) {
