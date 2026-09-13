@@ -24,13 +24,37 @@ async function capture(page,url,run,name,stage){
 async function readable(locator,label){
   await locator.evaluate(e=>e.scrollIntoView({block:'center',inline:'nearest',behavior:'instant'}));
   const result=await locator.evaluate(e=>{
-    const rect=e.getBoundingClientRect(),range=document.createRange();range.selectNodeContents(e);
-    const ranges=Array.from(range.getClientRects()).filter(r=>r.width&&r.height),errors=[];
+    const rect=e.getBoundingClientRect(),ranges=[],errors=[],clips=new Map();
+    const box=r=>({left:r.left,top:r.top,right:r.right,bottom:r.bottom});
     const inside=r=>r.left>=-1&&r.right<=document.documentElement.clientWidth+1&&r.top>=-1&&r.bottom<=innerHeight+1;
     if(!inside(rect))errors.push('outside viewport');
-    for(const r of ranges){if(!inside(r)||r.left<rect.left-1||r.right>rect.right+1||r.top<rect.top-1||r.bottom>rect.bottom+1)errors.push('clipped text');
-      for(const fraction of [.2,.5,.8]){const hit=document.elementFromPoint(r.left+r.width*fraction,r.top+r.height/2);if(!hit||!(hit===e||e.contains(hit)))errors.push('obscured text');}}
-    return {text:e.textContent,rect:{left:rect.left,right:rect.right,top:rect.top,bottom:rect.bottom},errors};
+    const walker=document.createTreeWalker(e,NodeFilter.SHOW_TEXT);
+    for(let text=walker.nextNode();text;text=walker.nextNode()){
+      // Accessibility-only wording has no intended visual glyphs. Do not
+      // mistake its deliberate one-pixel clip for a truncated visible label.
+      if(!text.textContent.trim()||text.parentElement.closest('.gov-ui-sr-only'))continue;
+      const range=document.createRange();range.selectNodeContents(text);
+      const fragments=Array.from(range.getClientRects()).filter(r=>r.width&&r.height);
+      for(const r of fragments){
+        ranges.push(box(r));if(!inside(r))errors.push('text outside viewport');
+        // Font ink can exceed a visible-overflow line box (Palatino's 31px
+        // range within a 28.05px h4 line). Only real clip/scroll boundaries
+        // constrain that ink, including a clipping leaf when one exists.
+        for(let node=text.parentElement;node;node=node.parentElement){
+          if(!clips.has(node)){
+            const style=getComputedStyle(node),bounds=node.getBoundingClientRect();
+            const paint=/(^|\s)(paint|strict|content)(\s|$)/.test(style.contain);
+            const x=paint||/^(auto|scroll|hidden|clip)$/.test(style.overflowX),y=paint||/^(auto|scroll|hidden|clip)$/.test(style.overflowY);
+            clips.set(node,{element:node.id||node.className||node.tagName,x,y,left:bounds.left+node.clientLeft,right:bounds.left+node.clientLeft+node.clientWidth,top:bounds.top+node.clientTop,bottom:bounds.top+node.clientTop+node.clientHeight});
+          }
+          const clip=clips.get(node);
+          if(clip.x&&(r.left<clip.left-1||r.right>clip.right+1)||clip.y&&(r.top<clip.top-1||r.bottom>clip.bottom+1))errors.push('text clipped by '+clip.element);
+        }
+        for(const fraction of [.2,.5,.8]){const hit=document.elementFromPoint(r.left+r.width*fraction,r.top+r.height/2);if(!hit||!(hit===e||e.contains(hit)))errors.push('obscured text');}
+      }
+    }
+    if(!ranges.length)errors.push('no rendered text');
+    return {text:e.textContent,rect:box(rect),text_rects:ranges,clipping_ancestors:[...clips.values()].filter(c=>c.x||c.y),errors};
   });assert.deepEqual(result.errors,[],label+': '+JSON.stringify(result));return result;
 }
 async function within(locator,label){
