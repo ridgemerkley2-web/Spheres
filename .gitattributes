@@ -38,6 +38,10 @@ tools/avatars/leadership_production.py text eol=lf
 tools/avatars/person_art_pipeline.py text eol=lf
 tools/avatars/fictional_art_pipeline.py text eol=lf
 tools/avatars/campaign_census.py text eol=lf
+tools/avatars/campaign_research.py text eol=lf
+tools/avatars/import_cnccfp_census.py text eol=lf
+# The official C01 discovery snapshot is hashed as downloaded, not normalized.
+docs/campaign-certification/C01/research/sources/** -text -whitespace
 
 # Retain the third-party license verbatim, including its original trailing space.
 spheres-web/ui/tank-assets/strv103/License.original.txt -text -whitespace

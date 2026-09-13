@@ -1,0 +1,804 @@
+{
+  "version": 1,
+  "nation": "SaudiArabia",
+  "research_cutoff": "2026-09-07",
+  "sources": [
+    {
+      "id": "sa_basic_law_boe",
+      "title": "Basic Law of Governance, official English translation",
+      "url": "https://laws.boe.gov.sa/Files/Download/?attId=ed4842e1-9543-40b9-973b-ada200d4ed10",
+      "publisher": "Bureau of Experts at the Council of Ministers, Saudi Arabia",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_document_text_read_in_search_index; direct PDF extraction unavailable",
+      "claims": [
+        {
+          "id": "sa_basic_pm_rule",
+          "text": "Article 56 identifies the King as prime minister, assisted by the Council of Ministers. Article 57 assigns royal appointment and removal of ministers and establishes their collective responsibility before the King.",
+          "locator": "Articles 56-57",
+          "uncertainty": "The 27 September 2022 royal order expressly creates an exception. The translation is not proof that the King remains prime minister after that order."
+        }
+      ],
+      "scope_note": "Only the indexed official passages cited here were read. This is not a complete legal-version audit."
+    },
+    {
+      "id": "sa_basic_law_arabic",
+      "title": "Basic Law of Governance, Arabic law record",
+      "url": "https://laws.boe.gov.sa/BoeLaws/Laws/LawDetails/16b97fcb-4833-4f66-8531-a9a700f161b6/1",
+      "publisher": "Bureau of Experts at the Council of Ministers, Saudi Arabia",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_law_record_text_read_in_search_index; direct page extraction unavailable",
+      "claims": [
+        {
+          "id": "sa_basic_royal_government",
+          "text": "The Arabic law record identifies Royal Order A/90 of 27/8/1412 AH as the promulgating instrument; the Basic Law establishes monarchical government.",
+          "locator": "Companion Arabic record, law instrument and article 5",
+          "uncertainty": "Consolidated text and historical amendments need reconciliation. The law must not be imposed on the 1990 opening before its enactment."
+        }
+      ],
+      "scope_note": "Only indexed provisions and instrument metadata were read. No claim of a full historical consolidation audit."
+    },
+    {
+      "id": "sa_wipo_basic_law_history",
+      "title": "Basic Law of Governance, WIPO Lex version and publication record",
+      "url": "https://www.wipo.int/wipolex/en/legislation/details/21068",
+      "publisher": "World Intellectual Property Organization",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_or_pdf_text_read",
+      "claims": [
+        {
+          "id": "sa_basic_law_promulgation",
+          "text": "WIPO records promulgation on 1 March 1992, with a version incorporating amendments through 2010. It explicitly labels the available English text as an earlier 1992 reference version.",
+          "locator": "Version metadata and available materials",
+          "period": {
+            "from": "1992-03-01",
+            "through": "1992-03-01"
+          },
+          "uncertainty": "Do not treat English reference text as the full 2010 consolidation. Gazette publication and commencement require reconciliation with the Saudi record."
+        }
+      ],
+      "source_type": "intergovernmental_legal_repository"
+    },
+    {
+      "id": "sa_spa_pm_2022",
+      "title": "Three Royal Orders Issued",
+      "url": "https://www.spa.gov.sa/2387811",
+      "publisher": "Saudi Press Agency",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_article_full_text_read_in_search_index; direct page exposed no extracted article",
+      "claims": [
+        {
+          "id": "sa_mbs_pm_appointment",
+          "text": "King Salman appointed Crown Prince Mohammed bin Salman prime minister on 27 September 2022, expressly excepting Article 56 of the Basic Law and related Cabinet-law provisions.",
+          "locator": "First royal order, point 1",
+          "period": {
+            "from": "2022-09-27",
+            "through": "2022-09-27"
+          }
+        },
+        {
+          "id": "sa_king_cabinet_chair_exception",
+          "text": "The same order reserves chairing of Cabinet sessions attended by the King to the King, and separately reconstitutes the Cabinet with Mohammed bin Salman as prime minister.",
+          "locator": "First royal order, point 2; second order",
+          "period": {
+            "from": "2022-09-27",
+            "through": "2022-09-27"
+          }
+        },
+        {
+          "id": "sa_salman_king_observation",
+          "text": "The release identifies Salman bin Abdulaziz Al Saud as King.",
+          "locator": "Opening paragraph",
+          "period": {
+            "from": "2022-09-27",
+            "through": "2022-09-27"
+          },
+          "uncertainty": "This observation alone does not certify his full reign or continuity through the research cutoff."
+        }
+      ],
+      "published_date": "2022-09-27"
+    },
+    {
+      "id": "sa_boe_shura_law",
+      "title": "Shura Council Law, official English translation",
+      "url": "https://laws.boe.gov.sa/Files/Download/?attId=bd34f8d1-fdaa-449c-969d-ad4200ccb237",
+      "publisher": "Bureau of Experts at the Council of Ministers, Saudi Arabia",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_document_text_read_in_search_index; full direct PDF extraction unavailable",
+      "claims": [
+        {
+          "id": "sa_shura_composition",
+          "text": "Article 3 specifies a chairman and 150 members selected by the King, with women comprising at least one fifth of members.",
+          "locator": "Article 3",
+          "uncertainty": "A consolidated composition rule, not the membership or rule in force for every earlier year."
+        },
+        {
+          "id": "sa_shura_member_role",
+          "text": "Articles 1-2 establish the Council under its law and the Basic Law, with members charged to serve the public interest.",
+          "locator": "Articles 1-2"
+        }
+      ],
+      "scope_note": "No party membership, elected mandate or individual office holder is inferred from appointed Council membership."
+    },
+    {
+      "id": "sa_cedaw_state_report_2016",
+      "title": "Saudi Arabia combined third and fourth periodic reports, CEDAW/C/SAU/3-4",
+      "url": "https://documents.un.org/api/symbol/access?l=en&s=CEDAW%2FC%2FSAU%2F3-4&t=pdf",
+      "publisher": "Saudi Arabia state-party report, published by the United Nations",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_or_pdf_text_read",
+      "claims": [
+        {
+          "id": "sa_shura_women_2013",
+          "text": "The report attributes women's full Shura membership and the minimum one-fifth share to Royal Order A/44 dated 29/2/1434 AH. It reports thirty women in the sixth session.",
+          "locator": "Paragraphs 50 and 78",
+          "uncertainty": "The report converts the order date to 12 January 2013. Verify the original order and calendar conversion before assigning an exact effective day."
+        },
+        {
+          "id": "sa_municipal_elections_2015",
+          "text": "The report records municipal elections in 2015 and women's participation in voting and candidacy under the municipal-law framework.",
+          "locator": "Paragraphs 79-80",
+          "period": {
+            "from": "2015-01-01",
+            "through": "2015-12-31"
+          },
+          "uncertainty": "This is a state report, not the full election register or a party-registration law."
+        }
+      ],
+      "published_date": "2016-09-30",
+      "scope_note": "Claims are attributed to the submitting state. Report date is not an appointment date."
+    },
+    {
+      "id": "sa_boe_succession_law",
+      "title": "Succession Commission Law, official English translation",
+      "url": "https://laws.boe.gov.sa/Files/Download/?attId=818d5ee8-4c8b-4a2d-8494-ad4200c98377",
+      "publisher": "Bureau of Experts at the Council of Ministers, Saudi Arabia",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_document_text_read_in_search_index; full direct PDF extraction unavailable",
+      "claims": [
+        {
+          "id": "sa_succession_membership",
+          "text": "Article 1 defines membership from the founder-king's sons, specified substitutes and two royal appointees. Article 5 distinguishes a chairman, members and secretary general.",
+          "locator": "Articles 1 and 5"
+        },
+        {
+          "id": "sa_succession_function",
+          "text": "Articles 6-7 assign the commission roles in pledging allegiance following a king's death and choosing a crown prince through the prescribed nomination and voting procedure.",
+          "locator": "Articles 6-7",
+          "uncertainty": "The full implementing rules, exceptions and historical application were not audited."
+        }
+      ],
+      "scope_note": "The Arabic law record and Gregorian date metadata need reconciliation before binding a precise foundation date. Neither a party nor an electoral coalition is inferred."
+    },
+    {
+      "id": "sa_naas_declaration_2020",
+      "title": "Declaration of the National Assembly Party - NAAS",
+      "url": "https://the-naas.com/en/statement",
+      "publisher": "National Assembly Party (NAAS), its own declaration",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_or_pdf_text_read",
+      "claims": [
+        {
+          "id": "sa_naas_declaration",
+          "text": "A declaration dated 23 September 2020 announces the National Assembly Party. It advocates peaceful democratic change, an elected parliament and separation of state powers.",
+          "locator": "Declaration and closing date",
+          "period": {
+            "from": "2020-09-23",
+            "through": "2020-09-23"
+          },
+          "uncertainty": "A primary self-declaration establishes what the organization announced, not Saudi legal registration, permitted electoral participation or domestic membership."
+        }
+      ],
+      "published_date": "2020-09-23",
+      "source_type": "organization_self_declaration"
+    },
+    {
+      "id": "sa_uk_cdlr_motion_1995",
+      "title": "Vigil at the Saudi Arabian Embassy, Early Day Motion",
+      "url": "https://edm.parliament.uk/early-day-motion/11143/vigil-at-the-saudi-arabian-embassy",
+      "publisher": "UK Parliament, House of Commons Early Day Motions",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_or_pdf_text_read",
+      "claims": [
+        {
+          "id": "sa_cdlr_motion",
+          "text": "An Early Day Motion with initial signatures dated 20 April 1995 names the Committee for the Defence of Legitimate Rights as organizer of an embassy vigil on 21 April.",
+          "locator": "Motion text and sponsor signature dates",
+          "period": {
+            "from": "1995-04-20",
+            "through": "1995-04-21"
+          },
+          "uncertainty": "A tabled motion is not an adopted House resolution, government finding, founding instrument or proof of current activity."
+        }
+      ],
+      "source_type": "primary_parliamentary_motion"
+    },
+    {
+      "id": "sa_cat_conclusions_2016",
+      "title": "Concluding observations on Saudi Arabia's second periodic report, CAT/C/SAU/CO/2",
+      "url": "https://documents.un.org/api/symbol/access?l=en&s=CAT%2FC%2FSAU%2FCO%2F2&t=pdf",
+      "publisher": "United Nations Committee against Torture",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_or_pdf_text_read",
+      "claims": [
+        {
+          "id": "sa_civil_rights_associations_2016",
+          "text": "The Committee reports refusal of operating licences resulting in disbanding or suspended activity for groups including the Saudi Arabian Civil and Political Rights Association, Adala Center for Human Rights, Union for Human Rights, and Monitor for Human Rights in Saudi Arabia.",
+          "locator": "Paragraph 19",
+          "period": {
+            "from": "2016-06-08",
+            "through": "2016-06-08"
+          },
+          "uncertainty": "A collective finding; it does not specify which outcome or effective date applies to each organization. These are human-rights organizations, not established political parties."
+        }
+      ],
+      "published_date": "2016-06-08",
+      "scope_note": "The date is the UN document's distribution date; adoption occurred in the Committee's 18 April–13 May 2016 session."
+    }
+  ],
+  "organizations": [
+    {
+      "id": "sa_naas",
+      "name": "National Assembly Party (NAAS)",
+      "kind": "self_declared_political_party",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "formation_self_declared",
+        "from": "2020-09-23",
+        "until": null,
+        "precision": "day",
+        "note": "Start is the organization's dated declaration, not a Saudi registration or electoral eligibility date."
+      },
+      "roles": [],
+      "sources": [
+        "sa_naas_declaration_2020"
+      ],
+      "claim_ids": [
+        "sa_naas_declaration"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Source dated internal rules and secretary-general, chair, spokesperson and other leadership appointments; the declaration does not establish their terms.",
+          "Separate announced formation, legal status, overseas activity and any domestic organization.",
+          "No complete continuation, membership or successor history through cutoff has been established."
+        ]
+      }
+    },
+    {
+      "id": "sa_cdlr",
+      "name": "Committee for the Defence of Legitimate Rights",
+      "kind": "political_opposition_organization",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observations",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "Neither formation nor continuous existence throughout the requested period is established."
+      },
+      "roles": [],
+      "sources": [
+        "sa_uk_cdlr_motion_1995"
+      ],
+      "claim_ids": [
+        "sa_cdlr_motion"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Retrieve primary founding records, dated leadership and any split or successor documents.",
+          "Determine active intervals, legal status, components and dissolution or continuation; a 1995 parliamentary mention is insufficient.",
+          "Do not label all opposition organizations as registered political parties."
+        ]
+      }
+    },
+    {
+      "id": "sa_acpra",
+      "name": "Saudi Arabian Civil and Political Rights Association",
+      "kind": "human_rights_organization",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "disbanding_or_suspension_reported_collectively",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "Identified in paragraph 19 of the 2016 Committee observations. Individual outcome and effective dates remain unknown."
+      },
+      "roles": [],
+      "sources": [
+        "sa_cat_conclusions_2016"
+      ],
+      "claim_ids": [
+        "sa_civil_rights_associations_2016"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Retrieve this organization's original name, formation instrument, leaders and case-specific status records.",
+          "The UN's grouped disbanding-or-suspension finding does not establish this organization's precise outcome or end date.",
+          "Do not assign party seats, executive eligibility or a party leader avatar from this human-rights organization classification."
+        ]
+      }
+    },
+    {
+      "id": "sa_adala",
+      "name": "Adala Center for Human Rights",
+      "kind": "human_rights_organization",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "disbanding_or_suspension_reported_collectively",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "Identified in paragraph 19 of the 2016 Committee observations. Individual outcome and effective dates remain unknown."
+      },
+      "roles": [],
+      "sources": [
+        "sa_cat_conclusions_2016"
+      ],
+      "claim_ids": [
+        "sa_civil_rights_associations_2016"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Retrieve this organization's original name, formation instrument, leaders and case-specific status records.",
+          "The UN's grouped disbanding-or-suspension finding does not establish this organization's precise outcome or end date.",
+          "Do not assign party seats, executive eligibility or a party leader avatar from this human-rights organization classification."
+        ]
+      }
+    },
+    {
+      "id": "sa_union_human_rights",
+      "name": "Union for Human Rights",
+      "kind": "human_rights_organization",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "disbanding_or_suspension_reported_collectively",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "Identified in paragraph 19 of the 2016 Committee observations. Individual outcome and effective dates remain unknown."
+      },
+      "roles": [],
+      "sources": [
+        "sa_cat_conclusions_2016"
+      ],
+      "claim_ids": [
+        "sa_civil_rights_associations_2016"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Retrieve this organization's original name, formation instrument, leaders and case-specific status records.",
+          "The UN's grouped disbanding-or-suspension finding does not establish this organization's precise outcome or end date.",
+          "Do not assign party seats, executive eligibility or a party leader avatar from this human-rights organization classification."
+        ]
+      }
+    },
+    {
+      "id": "sa_monitor_human_rights",
+      "name": "Monitor for Human Rights in Saudi Arabia",
+      "kind": "human_rights_organization",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "disbanding_or_suspension_reported_collectively",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "Identified in paragraph 19 of the 2016 Committee observations. Individual outcome and effective dates remain unknown."
+      },
+      "roles": [],
+      "sources": [
+        "sa_cat_conclusions_2016"
+      ],
+      "claim_ids": [
+        "sa_civil_rights_associations_2016"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Retrieve this organization's original name, formation instrument, leaders and case-specific status records.",
+          "The UN's grouped disbanding-or-suspension finding does not establish this organization's precise outcome or end date.",
+          "Do not assign party seats, executive eligibility or a party leader avatar from this human-rights organization classification."
+        ]
+      }
+    }
+  ],
+  "institutions": [
+    {
+      "id": "sa_crown",
+      "name": "Saudi monarchy",
+      "kind": "monarchy",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observations",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "Neither formation nor continuous existence throughout the requested period is established."
+      },
+      "roles": [
+        {
+          "id": "sa_king",
+          "title": "King",
+          "kind": "head_of_state",
+          "sources": [
+            "sa_basic_law_boe",
+            "sa_spa_pm_2022",
+            "sa_basic_law_arabic"
+          ],
+          "claim_ids": [
+            "sa_basic_royal_government",
+            "sa_king_cabinet_chair_exception",
+            "sa_salman_king_observation"
+          ],
+          "holder_claims": [
+            "sa_salman_king_observation"
+          ]
+        },
+        {
+          "id": "sa_crown_prince",
+          "title": "Crown Prince",
+          "kind": "institutional_office",
+          "sources": [
+            "sa_spa_pm_2022",
+            "sa_boe_succession_law"
+          ],
+          "claim_ids": [
+            "sa_succession_function",
+            "sa_mbs_pm_appointment"
+          ],
+          "holder_claims": [
+            "sa_mbs_pm_appointment"
+          ]
+        }
+      ],
+      "sources": [
+        "sa_basic_law_boe",
+        "sa_wipo_basic_law_history",
+        "sa_spa_pm_2022",
+        "sa_basic_law_arabic"
+      ],
+      "claim_ids": [
+        "sa_basic_royal_government",
+        "sa_basic_law_promulgation",
+        "sa_salman_king_observation",
+        "sa_king_cabinet_chair_exception"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Complete 1990–2026 reigns, crown princes, acting arrangements and accession dates from dated royal records.",
+          "Do not treat the royal family or succession commission as a party, coalition or single interchangeable leader role.",
+          "The 2022 office observation is not a verified uninterrupted interval to September 2026."
+        ]
+      }
+    },
+    {
+      "id": "sa_prime_minister",
+      "name": "Office of the Prime Minister",
+      "kind": "executive_office",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observations",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "Neither formation nor continuous existence throughout the requested period is established."
+      },
+      "roles": [
+        {
+          "id": "sa_pm",
+          "title": "Prime Minister",
+          "kind": "head_of_government",
+          "sources": [
+            "sa_basic_law_boe",
+            "sa_spa_pm_2022"
+          ],
+          "claim_ids": [
+            "sa_basic_pm_rule",
+            "sa_king_cabinet_chair_exception",
+            "sa_mbs_pm_appointment"
+          ],
+          "holder_claims": [
+            "sa_mbs_pm_appointment"
+          ]
+        }
+      ],
+      "sources": [
+        "sa_basic_law_boe",
+        "sa_spa_pm_2022"
+      ],
+      "claim_ids": [
+        "sa_basic_pm_rule",
+        "sa_mbs_pm_appointment",
+        "sa_king_cabinet_chair_exception"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Reconcile the pre-1992 Cabinet framework, later laws and each deputy/acting office with exact effective dates.",
+          "Preserve the specific 27 September 2022 exception and the King's conditional Cabinet chairing; do not copy the Basic Law's default over it.",
+          "Independently verify later appointments and office observations through cutoff."
+        ]
+      }
+    },
+    {
+      "id": "sa_council_ministers",
+      "name": "Council of Ministers (Cabinet)",
+      "kind": "collective_executive",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observations",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "Neither formation nor continuous existence throughout the requested period is established."
+      },
+      "roles": [
+        {
+          "id": "sa_cabinet_ministers",
+          "title": "Ministers",
+          "kind": "collective_seat",
+          "sources": [
+            "sa_basic_law_boe",
+            "sa_spa_pm_2022"
+          ],
+          "claim_ids": [
+            "sa_basic_pm_rule",
+            "sa_king_cabinet_chair_exception"
+          ],
+          "holder_claims": []
+        }
+      ],
+      "sources": [
+        "sa_basic_law_boe",
+        "sa_spa_pm_2022"
+      ],
+      "claim_ids": [
+        "sa_basic_pm_rule",
+        "sa_king_cabinet_chair_exception"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Build dated Cabinet membership, changes in portfolios, ministerial offices and acting/deputy roles.",
+          "Cabinet collective responsibility is separate from the prime minister's office and the King's powers; none establishes a governing party."
+        ]
+      }
+    },
+    {
+      "id": "sa_shura",
+      "name": "Shura Council (Majlis Ash-Shura)",
+      "kind": "consultative_council",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observations",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "Neither formation nor continuous existence throughout the requested period is established."
+      },
+      "roles": [
+        {
+          "id": "sa_shura_chair",
+          "title": "Chairman of the Shura Council",
+          "kind": "institutional_office",
+          "sources": [
+            "sa_boe_shura_law"
+          ],
+          "claim_ids": [
+            "sa_shura_composition"
+          ],
+          "holder_claims": []
+        },
+        {
+          "id": "sa_shura_members",
+          "title": "Shura Council members",
+          "kind": "collective_seat",
+          "sources": [
+            "sa_boe_shura_law",
+            "sa_cedaw_state_report_2016"
+          ],
+          "claim_ids": [
+            "sa_shura_composition",
+            "sa_shura_member_role",
+            "sa_shura_women_2013"
+          ],
+          "holder_claims": []
+        }
+      ],
+      "sources": [
+        "sa_boe_shura_law",
+        "sa_cedaw_state_report_2016"
+      ],
+      "claim_ids": [
+        "sa_shura_composition",
+        "sa_shura_member_role",
+        "sa_shura_women_2013"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Reconstruct numerical and legal changes before using the consolidated 150-member rule for an earlier start year.",
+          "Verify chair, deputy, assistant, secretary-general and individual appointments independently.",
+          "Reconcile the 2013 royal order's exact Gregorian date; do not imply members are elected party representatives."
+        ]
+      }
+    },
+    {
+      "id": "sa_succession_commission",
+      "name": "Succession Commission (Allegiance Commission)",
+      "kind": "royal_succession_institution",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observations",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "Neither formation nor continuous existence throughout the requested period is established."
+      },
+      "roles": [
+        {
+          "id": "sa_succession_chair",
+          "title": "Chairman",
+          "kind": "institutional_office",
+          "sources": [
+            "sa_boe_succession_law"
+          ],
+          "claim_ids": [
+            "sa_succession_membership"
+          ],
+          "holder_claims": []
+        },
+        {
+          "id": "sa_succession_secretary",
+          "title": "Secretary General",
+          "kind": "institutional_office",
+          "sources": [
+            "sa_boe_succession_law"
+          ],
+          "claim_ids": [
+            "sa_succession_membership"
+          ],
+          "holder_claims": []
+        },
+        {
+          "id": "sa_succession_members",
+          "title": "Commission members",
+          "kind": "collective_seat",
+          "sources": [
+            "sa_boe_succession_law"
+          ],
+          "claim_ids": [
+            "sa_succession_membership"
+          ],
+          "holder_claims": []
+        }
+      ],
+      "sources": [
+        "sa_boe_succession_law"
+      ],
+      "claim_ids": [
+        "sa_succession_membership",
+        "sa_succession_function"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Verify the establishing royal order, effective date, implementing rules and historical membership.",
+          "Keep nominations, collective decisions and actual royal appointments distinct.",
+          "No named chairman or member terms are populated from unsourced memory."
+        ]
+      }
+    },
+    {
+      "id": "sa_municipal_councils",
+      "name": "Municipal councils",
+      "kind": "local_representative_institutions",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observations",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "Neither formation nor continuous existence throughout the requested period is established."
+      },
+      "roles": [
+        {
+          "id": "sa_municipal_members",
+          "title": "Municipal council members",
+          "kind": "collective_seat",
+          "sources": [
+            "sa_cedaw_state_report_2016"
+          ],
+          "claim_ids": [
+            "sa_municipal_elections_2015"
+          ],
+          "holder_claims": []
+        }
+      ],
+      "sources": [
+        "sa_cedaw_state_report_2016"
+      ],
+      "claim_ids": [
+        "sa_municipal_elections_2015"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Obtain municipal-law versions, elections, appointment proportions, district registers and later institutional changes.",
+          "A historical local election does not establish a national parliamentary election or a political party system."
+        ]
+      }
+    }
+  ],
+  "coverage": {
+    "status": "partial_primary_source_inventory",
+    "period": {
+      "from": "1990-01-01",
+      "through": "2026-09-07"
+    },
+    "exhaustive_organization_register_reviewed": false,
+    "unrepresented_organization_total": null,
+    "art_completion_claim": false,
+    "unresolved": [
+      "No exhaustive primary register of political organizations throughout 1990–2026 was located. This packet does not claim that Saudi Arabia has no political organizations.",
+      "Six documented organization identities are distinct in kind: one self-declared party, one historical opposition organization, and four human-rights organizations. They must not all become electoral party rows.",
+      "The current game has no Saudi party rows; empty represented_party_ids means no binding, not proof of historical absence or permission to collapse institutions into a fictional party.",
+      "Six institutional records are a bounded starting inventory, not all royal, religious, judicial, regional, administrative or advisory bodies.",
+      "Legal registration, permitted activity, actual political influence and executive eligibility remain separate unresolved questions; no blanket legal prohibition is inferred from the documents read.",
+      "Arabic originals, exact commencement dates, consolidated amendments and complete named role histories still require review. Undated current website office holders were deliberately not bound to the pre-cutoff roster.",
+      "No 2026 continuity is inferred solely from older appointments. No candidate, fictional successor, likeness or completed avatar is certified here; post-cutoff fiction remains under the separate policy."
+    ]
+  }
+}

@@ -1,0 +1,1593 @@
+{
+  "format": "spheres-c01-research-intake/v1",
+  "research_cutoff": "2026-09-07",
+  "c01_complete": false,
+  "g2_prerequisite_satisfied": false,
+  "runtime_roster_modified": false,
+  "counts": {
+    "country_packets": 3,
+    "countries_without_new_discovery_packet": 157,
+    "organization_observations": 584,
+    "institution_observations": 11,
+    "sources": 26,
+    "source_claims": 615,
+    "discovery_batches": 61,
+    "exhaustive_country_censuses": 0
+  },
+  "interpretation": "Source-backed discovery observations are not verified game parties, complete office histories or permission to create portraits. Reporting years do not establish organization lifespans. Unknown representation is not absence.",
+  "countries": [
+    {
+      "nation": "France",
+      "packet": "docs/campaign-certification/C01/research/france.json",
+      "organization_observations": 575,
+      "institution_observations": 0,
+      "role_observations": 0,
+      "source_claims": 577,
+      "mapping_pending": 575,
+      "country_census_complete": false,
+      "unrepresented_organization_count": null,
+      "coverage": {
+        "status": "partial_primary_source_inventory",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "scope": "575 unique reporting identities in the frozen 2024 submitted-accounts CSV; a discovery register, not a complete political or leadership roster.",
+        "unresolved": [
+          "60 of the 635 identities in the official reporting-obligation universe are absent from this submitted-accounts file; enumerate the full notice separately.",
+          "Earlier and later organization histories, non-reporting organizations, independent factions and coalition membership remain unenumerated.",
+          "No automatic match to the five existing simulation party rows or their historical components; an empty mapping means unreconciled, not unrepresented.",
+          "Overseas/local reporting identities need explicit territorial and campaign-jurisdiction review.",
+          "No chair, executive, lifespan, succession, cartoon likeness or 2035 continuation has been inferred from accounts."
+        ]
+      }
+    },
+    {
+      "nation": "SaudiArabia",
+      "packet": "docs/campaign-certification/C01/research/saudi-arabia.json",
+      "organization_observations": 6,
+      "institution_observations": 6,
+      "role_observations": 10,
+      "source_claims": 15,
+      "mapping_pending": 12,
+      "country_census_complete": false,
+      "unrepresented_organization_count": null,
+      "coverage": {
+        "status": "partial_primary_source_inventory",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "exhaustive_organization_register_reviewed": false,
+        "unrepresented_organization_total": null,
+        "art_completion_claim": false,
+        "unresolved": [
+          "No exhaustive primary register of political organizations throughout 1990–2026 was located. This packet does not claim that Saudi Arabia has no political organizations.",
+          "Six documented organization identities are distinct in kind: one self-declared party, one historical opposition organization, and four human-rights organizations. They must not all become electoral party rows.",
+          "The current game has no Saudi party rows; empty represented_party_ids means no binding, not proof of historical absence or permission to collapse institutions into a fictional party.",
+          "Six institutional records are a bounded starting inventory, not all royal, religious, judicial, regional, administrative or advisory bodies.",
+          "Legal registration, permitted activity, actual political influence and executive eligibility remain separate unresolved questions; no blanket legal prohibition is inferred from the documents read.",
+          "Arabic originals, exact commencement dates, consolidated amendments and complete named role histories still require review. Undated current website office holders were deliberately not bound to the pre-cutoff roster.",
+          "No 2026 continuity is inferred solely from older appointments. No candidate, fictional successor, likeness or completed avatar is certified here; post-cutoff fiction remains under the separate policy."
+        ]
+      }
+    },
+    {
+      "nation": "Tonga",
+      "packet": "docs/campaign-certification/C01/research/tonga.json",
+      "organization_observations": 3,
+      "institution_observations": 5,
+      "role_observations": 11,
+      "source_claims": 23,
+      "mapping_pending": 8,
+      "country_census_complete": false,
+      "unrepresented_organization_count": null,
+      "coverage": {
+        "status": "partial_primary_source_inventory",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "exhaustive_organization_register_reviewed": false,
+        "unrepresented_organization_total": null,
+        "art_completion_claim": false,
+        "unresolved": [
+          "No exhaustive primary list of every political organization active, minor, historical or dissolved during 1990–2026 has been established.",
+          "These three provisional organization identities and five institutions are research entries only; all represented_party_ids remain empty because the current Tonga game catalog has no party rows.",
+          "The ambiguous additional 'Democratic party' label in IPU 2010 remains an unresolved identity, not a counted fourth party.",
+          "Full leader/chair/parliamentary-role intervals, constitutional effective dates and 1990 opening office holders still require source-by-source verification.",
+          "The last verified observations are not automatic extensions to the 7 September 2026 cutoff; unknown gaps remain unknown.",
+          "No future candidate, fictional successor, portrait likeness or avatar completion is certified by this research packet. Fiction begins only after the preserved historical cutoff under the separate policy."
+        ]
+      }
+    }
+  ],
+  "work_orders": [
+    {
+      "id": "C01-France-DISC-B001",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_13",
+        "fr_cnccfp_40",
+        "fr_cnccfp_42",
+        "fr_cnccfp_46",
+        "fr_cnccfp_49",
+        "fr_cnccfp_52",
+        "fr_cnccfp_53",
+        "fr_cnccfp_60",
+        "fr_cnccfp_64",
+        "fr_cnccfp_65"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B002",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_68",
+        "fr_cnccfp_69",
+        "fr_cnccfp_70",
+        "fr_cnccfp_76",
+        "fr_cnccfp_78",
+        "fr_cnccfp_81",
+        "fr_cnccfp_90",
+        "fr_cnccfp_95",
+        "fr_cnccfp_96",
+        "fr_cnccfp_100"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B003",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_104",
+        "fr_cnccfp_116",
+        "fr_cnccfp_119",
+        "fr_cnccfp_121",
+        "fr_cnccfp_127",
+        "fr_cnccfp_148",
+        "fr_cnccfp_180",
+        "fr_cnccfp_182",
+        "fr_cnccfp_186",
+        "fr_cnccfp_192"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B004",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_195",
+        "fr_cnccfp_208",
+        "fr_cnccfp_210",
+        "fr_cnccfp_225",
+        "fr_cnccfp_233",
+        "fr_cnccfp_240",
+        "fr_cnccfp_242",
+        "fr_cnccfp_249",
+        "fr_cnccfp_256",
+        "fr_cnccfp_267"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B005",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_274",
+        "fr_cnccfp_275",
+        "fr_cnccfp_283",
+        "fr_cnccfp_292",
+        "fr_cnccfp_299",
+        "fr_cnccfp_308",
+        "fr_cnccfp_309",
+        "fr_cnccfp_320",
+        "fr_cnccfp_321",
+        "fr_cnccfp_325"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B006",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_332",
+        "fr_cnccfp_340",
+        "fr_cnccfp_341",
+        "fr_cnccfp_346",
+        "fr_cnccfp_347",
+        "fr_cnccfp_348",
+        "fr_cnccfp_352",
+        "fr_cnccfp_360",
+        "fr_cnccfp_366",
+        "fr_cnccfp_368"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B007",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_370",
+        "fr_cnccfp_373",
+        "fr_cnccfp_374",
+        "fr_cnccfp_377",
+        "fr_cnccfp_380",
+        "fr_cnccfp_387",
+        "fr_cnccfp_398",
+        "fr_cnccfp_401",
+        "fr_cnccfp_408",
+        "fr_cnccfp_410"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B008",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_413",
+        "fr_cnccfp_417",
+        "fr_cnccfp_421",
+        "fr_cnccfp_424",
+        "fr_cnccfp_426",
+        "fr_cnccfp_442",
+        "fr_cnccfp_455",
+        "fr_cnccfp_469",
+        "fr_cnccfp_470",
+        "fr_cnccfp_483"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B009",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_485",
+        "fr_cnccfp_501",
+        "fr_cnccfp_510",
+        "fr_cnccfp_511",
+        "fr_cnccfp_519",
+        "fr_cnccfp_529",
+        "fr_cnccfp_531",
+        "fr_cnccfp_532",
+        "fr_cnccfp_533",
+        "fr_cnccfp_542"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B010",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_543",
+        "fr_cnccfp_544",
+        "fr_cnccfp_556",
+        "fr_cnccfp_559",
+        "fr_cnccfp_563",
+        "fr_cnccfp_564",
+        "fr_cnccfp_568",
+        "fr_cnccfp_569",
+        "fr_cnccfp_570",
+        "fr_cnccfp_578"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B011",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_591",
+        "fr_cnccfp_594",
+        "fr_cnccfp_595",
+        "fr_cnccfp_596",
+        "fr_cnccfp_599",
+        "fr_cnccfp_602",
+        "fr_cnccfp_604",
+        "fr_cnccfp_607",
+        "fr_cnccfp_610",
+        "fr_cnccfp_623"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B012",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_633",
+        "fr_cnccfp_640",
+        "fr_cnccfp_643",
+        "fr_cnccfp_647",
+        "fr_cnccfp_655",
+        "fr_cnccfp_656",
+        "fr_cnccfp_666",
+        "fr_cnccfp_667",
+        "fr_cnccfp_677",
+        "fr_cnccfp_686"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B013",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_690",
+        "fr_cnccfp_691",
+        "fr_cnccfp_694",
+        "fr_cnccfp_695",
+        "fr_cnccfp_697",
+        "fr_cnccfp_699",
+        "fr_cnccfp_700",
+        "fr_cnccfp_702",
+        "fr_cnccfp_707",
+        "fr_cnccfp_709"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B014",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_710",
+        "fr_cnccfp_713",
+        "fr_cnccfp_716",
+        "fr_cnccfp_718",
+        "fr_cnccfp_722",
+        "fr_cnccfp_724",
+        "fr_cnccfp_740",
+        "fr_cnccfp_743",
+        "fr_cnccfp_752",
+        "fr_cnccfp_754"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B015",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_764",
+        "fr_cnccfp_769",
+        "fr_cnccfp_775",
+        "fr_cnccfp_781",
+        "fr_cnccfp_782",
+        "fr_cnccfp_783",
+        "fr_cnccfp_791",
+        "fr_cnccfp_794",
+        "fr_cnccfp_795",
+        "fr_cnccfp_797"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B016",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_799",
+        "fr_cnccfp_803",
+        "fr_cnccfp_806",
+        "fr_cnccfp_808",
+        "fr_cnccfp_813",
+        "fr_cnccfp_815",
+        "fr_cnccfp_821",
+        "fr_cnccfp_823",
+        "fr_cnccfp_824",
+        "fr_cnccfp_829"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B017",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_834",
+        "fr_cnccfp_835",
+        "fr_cnccfp_836",
+        "fr_cnccfp_838",
+        "fr_cnccfp_841",
+        "fr_cnccfp_843",
+        "fr_cnccfp_846",
+        "fr_cnccfp_847",
+        "fr_cnccfp_850",
+        "fr_cnccfp_853"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B018",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_862",
+        "fr_cnccfp_866",
+        "fr_cnccfp_870",
+        "fr_cnccfp_872",
+        "fr_cnccfp_879",
+        "fr_cnccfp_880",
+        "fr_cnccfp_881",
+        "fr_cnccfp_882",
+        "fr_cnccfp_886",
+        "fr_cnccfp_891"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B019",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_896",
+        "fr_cnccfp_900",
+        "fr_cnccfp_901",
+        "fr_cnccfp_902",
+        "fr_cnccfp_906",
+        "fr_cnccfp_908",
+        "fr_cnccfp_909",
+        "fr_cnccfp_910",
+        "fr_cnccfp_911",
+        "fr_cnccfp_913"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B020",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_916",
+        "fr_cnccfp_917",
+        "fr_cnccfp_918",
+        "fr_cnccfp_923",
+        "fr_cnccfp_928",
+        "fr_cnccfp_931",
+        "fr_cnccfp_934",
+        "fr_cnccfp_936",
+        "fr_cnccfp_938",
+        "fr_cnccfp_941"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B021",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_943",
+        "fr_cnccfp_945",
+        "fr_cnccfp_947",
+        "fr_cnccfp_950",
+        "fr_cnccfp_953",
+        "fr_cnccfp_961",
+        "fr_cnccfp_966",
+        "fr_cnccfp_967",
+        "fr_cnccfp_968",
+        "fr_cnccfp_974"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B022",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_975",
+        "fr_cnccfp_976",
+        "fr_cnccfp_979",
+        "fr_cnccfp_981",
+        "fr_cnccfp_983",
+        "fr_cnccfp_984",
+        "fr_cnccfp_986",
+        "fr_cnccfp_997",
+        "fr_cnccfp_1002",
+        "fr_cnccfp_1005"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B023",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1006",
+        "fr_cnccfp_1008",
+        "fr_cnccfp_1009",
+        "fr_cnccfp_1023",
+        "fr_cnccfp_1025",
+        "fr_cnccfp_1027",
+        "fr_cnccfp_1037",
+        "fr_cnccfp_1038",
+        "fr_cnccfp_1039",
+        "fr_cnccfp_1041"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B024",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1042",
+        "fr_cnccfp_1046",
+        "fr_cnccfp_1047",
+        "fr_cnccfp_1048",
+        "fr_cnccfp_1050",
+        "fr_cnccfp_1053",
+        "fr_cnccfp_1054",
+        "fr_cnccfp_1055",
+        "fr_cnccfp_1056",
+        "fr_cnccfp_1058"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B025",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1059",
+        "fr_cnccfp_1065",
+        "fr_cnccfp_1066",
+        "fr_cnccfp_1067",
+        "fr_cnccfp_1068",
+        "fr_cnccfp_1069",
+        "fr_cnccfp_1072",
+        "fr_cnccfp_1077",
+        "fr_cnccfp_1078",
+        "fr_cnccfp_1079"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B026",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1084",
+        "fr_cnccfp_1085",
+        "fr_cnccfp_1088",
+        "fr_cnccfp_1092",
+        "fr_cnccfp_1093",
+        "fr_cnccfp_1096",
+        "fr_cnccfp_1098",
+        "fr_cnccfp_1099",
+        "fr_cnccfp_1100",
+        "fr_cnccfp_1101"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B027",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1103",
+        "fr_cnccfp_1105",
+        "fr_cnccfp_1106",
+        "fr_cnccfp_1107",
+        "fr_cnccfp_1111",
+        "fr_cnccfp_1112",
+        "fr_cnccfp_1114",
+        "fr_cnccfp_1116",
+        "fr_cnccfp_1117",
+        "fr_cnccfp_1118"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B028",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1121",
+        "fr_cnccfp_1126",
+        "fr_cnccfp_1129",
+        "fr_cnccfp_1130",
+        "fr_cnccfp_1132",
+        "fr_cnccfp_1136",
+        "fr_cnccfp_1137",
+        "fr_cnccfp_1139",
+        "fr_cnccfp_1142",
+        "fr_cnccfp_1144"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B029",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1146",
+        "fr_cnccfp_1147",
+        "fr_cnccfp_1148",
+        "fr_cnccfp_1152",
+        "fr_cnccfp_1154",
+        "fr_cnccfp_1155",
+        "fr_cnccfp_1157",
+        "fr_cnccfp_1159",
+        "fr_cnccfp_1160",
+        "fr_cnccfp_1161"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B030",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1163",
+        "fr_cnccfp_1168",
+        "fr_cnccfp_1169",
+        "fr_cnccfp_1171",
+        "fr_cnccfp_1172",
+        "fr_cnccfp_1173",
+        "fr_cnccfp_1174",
+        "fr_cnccfp_1175",
+        "fr_cnccfp_1176",
+        "fr_cnccfp_1178"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B031",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1180",
+        "fr_cnccfp_1181",
+        "fr_cnccfp_1184",
+        "fr_cnccfp_1185",
+        "fr_cnccfp_1186",
+        "fr_cnccfp_1187",
+        "fr_cnccfp_1188",
+        "fr_cnccfp_1189",
+        "fr_cnccfp_1190",
+        "fr_cnccfp_1195"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B032",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1196",
+        "fr_cnccfp_1199",
+        "fr_cnccfp_1200",
+        "fr_cnccfp_1201",
+        "fr_cnccfp_1203",
+        "fr_cnccfp_1204",
+        "fr_cnccfp_1206",
+        "fr_cnccfp_1207",
+        "fr_cnccfp_1208",
+        "fr_cnccfp_1214"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B033",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1223",
+        "fr_cnccfp_1227",
+        "fr_cnccfp_1228",
+        "fr_cnccfp_1229",
+        "fr_cnccfp_1233",
+        "fr_cnccfp_1236",
+        "fr_cnccfp_1238",
+        "fr_cnccfp_1241",
+        "fr_cnccfp_1243",
+        "fr_cnccfp_1244"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B034",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1246",
+        "fr_cnccfp_1248",
+        "fr_cnccfp_1249",
+        "fr_cnccfp_1251",
+        "fr_cnccfp_1252",
+        "fr_cnccfp_1254",
+        "fr_cnccfp_1258",
+        "fr_cnccfp_1259",
+        "fr_cnccfp_1261",
+        "fr_cnccfp_1262"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B035",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1263",
+        "fr_cnccfp_1265",
+        "fr_cnccfp_1267",
+        "fr_cnccfp_1268",
+        "fr_cnccfp_1269",
+        "fr_cnccfp_1270",
+        "fr_cnccfp_1272",
+        "fr_cnccfp_1273",
+        "fr_cnccfp_1274",
+        "fr_cnccfp_1276"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B036",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1279",
+        "fr_cnccfp_1280",
+        "fr_cnccfp_1281",
+        "fr_cnccfp_1283",
+        "fr_cnccfp_1284",
+        "fr_cnccfp_1285",
+        "fr_cnccfp_1286",
+        "fr_cnccfp_1287",
+        "fr_cnccfp_1289",
+        "fr_cnccfp_1295"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B037",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1296",
+        "fr_cnccfp_1297",
+        "fr_cnccfp_1298",
+        "fr_cnccfp_1299",
+        "fr_cnccfp_1300",
+        "fr_cnccfp_1301",
+        "fr_cnccfp_1304",
+        "fr_cnccfp_1305",
+        "fr_cnccfp_1306",
+        "fr_cnccfp_1307"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B038",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1308",
+        "fr_cnccfp_1309",
+        "fr_cnccfp_1310",
+        "fr_cnccfp_1311",
+        "fr_cnccfp_1312",
+        "fr_cnccfp_1316",
+        "fr_cnccfp_1318",
+        "fr_cnccfp_1319",
+        "fr_cnccfp_1322",
+        "fr_cnccfp_1323"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B039",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1324",
+        "fr_cnccfp_1326",
+        "fr_cnccfp_1327",
+        "fr_cnccfp_1328",
+        "fr_cnccfp_1329",
+        "fr_cnccfp_1330",
+        "fr_cnccfp_1331",
+        "fr_cnccfp_1332",
+        "fr_cnccfp_1336",
+        "fr_cnccfp_1340"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B040",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1341",
+        "fr_cnccfp_1343",
+        "fr_cnccfp_1344",
+        "fr_cnccfp_1345",
+        "fr_cnccfp_1346",
+        "fr_cnccfp_1349",
+        "fr_cnccfp_1350",
+        "fr_cnccfp_1351",
+        "fr_cnccfp_1353",
+        "fr_cnccfp_1354"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B041",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1356",
+        "fr_cnccfp_1358",
+        "fr_cnccfp_1360",
+        "fr_cnccfp_1361",
+        "fr_cnccfp_1363",
+        "fr_cnccfp_1364",
+        "fr_cnccfp_1365",
+        "fr_cnccfp_1366",
+        "fr_cnccfp_1367",
+        "fr_cnccfp_1369"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B042",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1371",
+        "fr_cnccfp_1372",
+        "fr_cnccfp_1373",
+        "fr_cnccfp_1375",
+        "fr_cnccfp_1376",
+        "fr_cnccfp_1378",
+        "fr_cnccfp_1379",
+        "fr_cnccfp_1383",
+        "fr_cnccfp_1384",
+        "fr_cnccfp_1385"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B043",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1386",
+        "fr_cnccfp_1387",
+        "fr_cnccfp_1388",
+        "fr_cnccfp_1389",
+        "fr_cnccfp_1390",
+        "fr_cnccfp_1391",
+        "fr_cnccfp_1392",
+        "fr_cnccfp_1393",
+        "fr_cnccfp_1394",
+        "fr_cnccfp_1395"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B044",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1400",
+        "fr_cnccfp_1401",
+        "fr_cnccfp_1402",
+        "fr_cnccfp_1403",
+        "fr_cnccfp_1404",
+        "fr_cnccfp_1405",
+        "fr_cnccfp_1406",
+        "fr_cnccfp_1407",
+        "fr_cnccfp_1408",
+        "fr_cnccfp_1409"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B045",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1410",
+        "fr_cnccfp_1412",
+        "fr_cnccfp_1413",
+        "fr_cnccfp_1415",
+        "fr_cnccfp_1416",
+        "fr_cnccfp_1417",
+        "fr_cnccfp_1418",
+        "fr_cnccfp_1419",
+        "fr_cnccfp_1420",
+        "fr_cnccfp_1422"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B046",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1423",
+        "fr_cnccfp_1424",
+        "fr_cnccfp_1425",
+        "fr_cnccfp_1426",
+        "fr_cnccfp_1427",
+        "fr_cnccfp_1430",
+        "fr_cnccfp_1431",
+        "fr_cnccfp_1432",
+        "fr_cnccfp_1433",
+        "fr_cnccfp_1436"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B047",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1438",
+        "fr_cnccfp_1439",
+        "fr_cnccfp_1440",
+        "fr_cnccfp_1441",
+        "fr_cnccfp_1442",
+        "fr_cnccfp_1443",
+        "fr_cnccfp_1445",
+        "fr_cnccfp_1446",
+        "fr_cnccfp_1447",
+        "fr_cnccfp_1448"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B048",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1449",
+        "fr_cnccfp_1450",
+        "fr_cnccfp_1451",
+        "fr_cnccfp_1452",
+        "fr_cnccfp_1453",
+        "fr_cnccfp_1454",
+        "fr_cnccfp_1455",
+        "fr_cnccfp_1457",
+        "fr_cnccfp_1458",
+        "fr_cnccfp_1459"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B049",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1460",
+        "fr_cnccfp_1462",
+        "fr_cnccfp_1463",
+        "fr_cnccfp_1466",
+        "fr_cnccfp_1467",
+        "fr_cnccfp_1468",
+        "fr_cnccfp_1469",
+        "fr_cnccfp_1470",
+        "fr_cnccfp_1471",
+        "fr_cnccfp_1472"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B050",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1473",
+        "fr_cnccfp_1475",
+        "fr_cnccfp_1476",
+        "fr_cnccfp_1477",
+        "fr_cnccfp_1478",
+        "fr_cnccfp_1479",
+        "fr_cnccfp_1480",
+        "fr_cnccfp_1481",
+        "fr_cnccfp_1482",
+        "fr_cnccfp_1483"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B051",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1484",
+        "fr_cnccfp_1485",
+        "fr_cnccfp_1486",
+        "fr_cnccfp_1487",
+        "fr_cnccfp_1488",
+        "fr_cnccfp_1489",
+        "fr_cnccfp_1490",
+        "fr_cnccfp_1491",
+        "fr_cnccfp_1492",
+        "fr_cnccfp_1493"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B052",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1494",
+        "fr_cnccfp_1495",
+        "fr_cnccfp_1497",
+        "fr_cnccfp_1498",
+        "fr_cnccfp_1499",
+        "fr_cnccfp_1501",
+        "fr_cnccfp_1502",
+        "fr_cnccfp_1503",
+        "fr_cnccfp_1504",
+        "fr_cnccfp_1505"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B053",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1506",
+        "fr_cnccfp_1507",
+        "fr_cnccfp_1508",
+        "fr_cnccfp_1509",
+        "fr_cnccfp_1510",
+        "fr_cnccfp_1511",
+        "fr_cnccfp_1512",
+        "fr_cnccfp_1513",
+        "fr_cnccfp_1514",
+        "fr_cnccfp_1515"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B054",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1516",
+        "fr_cnccfp_1517",
+        "fr_cnccfp_1518",
+        "fr_cnccfp_1519",
+        "fr_cnccfp_1521",
+        "fr_cnccfp_1522",
+        "fr_cnccfp_1523",
+        "fr_cnccfp_1524",
+        "fr_cnccfp_1525",
+        "fr_cnccfp_1526"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B055",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1527",
+        "fr_cnccfp_1528",
+        "fr_cnccfp_1529",
+        "fr_cnccfp_1530",
+        "fr_cnccfp_1531",
+        "fr_cnccfp_1532",
+        "fr_cnccfp_1533",
+        "fr_cnccfp_1534",
+        "fr_cnccfp_1535",
+        "fr_cnccfp_1536"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B056",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1537",
+        "fr_cnccfp_1538",
+        "fr_cnccfp_1539",
+        "fr_cnccfp_1540",
+        "fr_cnccfp_1541",
+        "fr_cnccfp_1542",
+        "fr_cnccfp_1543",
+        "fr_cnccfp_1545",
+        "fr_cnccfp_1546",
+        "fr_cnccfp_1547"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B057",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1549",
+        "fr_cnccfp_1551",
+        "fr_cnccfp_1552",
+        "fr_cnccfp_1554",
+        "fr_cnccfp_1555",
+        "fr_cnccfp_1557",
+        "fr_cnccfp_1558",
+        "fr_cnccfp_1559",
+        "fr_cnccfp_1560",
+        "fr_cnccfp_1561"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-France-DISC-B058",
+      "nation": "France",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-France-ORG-001",
+        "C01-France-ROLE-001"
+      ],
+      "members": [
+        "fr_cnccfp_1562",
+        "fr_cnccfp_1563",
+        "fr_cnccfp_1564",
+        "fr_cnccfp_1573",
+        "fr_cnccfp_1584"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-SaudiArabia-DISC-B001",
+      "nation": "SaudiArabia",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-SaudiArabia-ORG-001",
+        "C01-SaudiArabia-ROLE-001"
+      ],
+      "members": [
+        "sa_naas",
+        "sa_cdlr",
+        "sa_acpra",
+        "sa_adala",
+        "sa_union_human_rights",
+        "sa_monitor_human_rights",
+        "sa_crown",
+        "sa_prime_minister",
+        "sa_council_ministers",
+        "sa_shura"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-SaudiArabia-DISC-B002",
+      "nation": "SaudiArabia",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-SaudiArabia-ORG-001",
+        "C01-SaudiArabia-ROLE-001"
+      ],
+      "members": [
+        "sa_succession_commission",
+        "sa_municipal_councils"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-Tonga-DISC-B001",
+      "nation": "Tonga",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-Tonga-ORG-001",
+        "C01-Tonga-ROLE-001"
+      ],
+      "members": [
+        "to_fihrdm",
+        "to_pdp",
+        "to_dpfi",
+        "to_crown",
+        "to_prime_minister",
+        "to_cabinet",
+        "to_privy_council",
+        "to_legislative_assembly"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    }
+  ],
+  "source_files": [
+    {
+      "path": "docs/campaign-certification/C01/research/france.json",
+      "bytes": 901522,
+      "sha256": "47887f3abfe65dd67ba89d3b912ccb575033d30a3ea0ca63e483f54d804ac814"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/saudi-arabia.json",
+      "bytes": 32202,
+      "sha256": "8c432b519fd01641e23de609fcfc6c98d893ab177be1038faf7b0d9cb0f45490"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/tonga.json",
+      "bytes": 31475,
+      "sha256": "26af19745bae9564fc1e81cfc139937aa8fba59066e3ad6bf915ace90fa92ed2"
+    },
+    {
+      "path": "tools/avatars/campaign_research.py",
+      "bytes": 10528,
+      "sha256": "82294ea6e849736551d2688e01e48fade211aed93ca85a2eb674ecee9cbb791b"
+    },
+    {
+      "path": "tools/avatars/import_cnccfp_census.py",
+      "bytes": 6348,
+      "sha256": "213a18ac60a0916f8bdf7b95d6d0768c1a60f10caf68a26558bc786b3f00d878"
+    },
+    {
+      "path": "docs/campaign-certification/C01/countries.json",
+      "bytes": 89406,
+      "sha256": "3f3ea61354fadbf85d182b6593f5cdf13e13a856d3fe59b64e1f3305c6622ca4"
+    },
+    {
+      "path": "docs/campaign-certification/C01/represented-organizations.json",
+      "bytes": 793318,
+      "sha256": "85603b71cc5488937fff54f38dbf36ad18af6124d6dc3a492dbb20760d2c8e66"
+    }
+  ]
+}

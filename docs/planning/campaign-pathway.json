@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "date": "2026-09-12",
+  "date": "2026-09-13",
   "status": "in_progress",
   "baseline": "5f7f355502f17bd6bd8f0383a2d14f0024fa7884",
   "target": "CP1: Spheres Certified Campaign, 1990-01-01 through 2035-12-31",
@@ -249,6 +249,11 @@
           "status": "complete",
           "title": "Reviewed political decisions and current-source census audit",
           "evidence": "docs/campaign-certification/S10/manifest.json"
+        },
+        {
+          "id": "S10.b",
+          "status": "in_progress",
+          "title": "Source-backed country discovery and government startup matrix"
         }
       ],
       "remaining": [
@@ -796,12 +801,12 @@
   "next_session": "S10",
   "execution": {
     "authorized_through": "S10",
-    "stop_boundary": "S10.a",
-    "status": "stopped",
-    "previous_stop": "S09",
-    "instruction": "Continue",
-    "instruction_date": "2026-09-12",
-    "next_session_requires_instruction": true
+    "stop_boundary": "S10.b",
+    "status": "running",
+    "previous_stop": "S10.a",
+    "instruction": "Next",
+    "instruction_date": "2026-09-13",
+    "next_session_requires_instruction": false
   },
   "gate_decisions": {
     "G1": {

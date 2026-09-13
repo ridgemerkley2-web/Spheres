@@ -1,5 +1,10 @@
 # C01 — worldwide party and institution census
 
+S10.b adds a separate [source-backed discovery intake](research/README.md) and
+[bounded research index](research-index.json). The counts below remain the
+original playable-catalogue baseline; new observations do not imply completed
+leadership histories, new artwork or an exhaustive country census.
+
 **Partial inventory recorded; C01 remains incomplete.** This is a reproducible
 prerequisite audit for S10, using the leadership data at
 `872442d7411d9986321248b41ccadf79e2851d1c`. It does not mark S10 or G2 complete.

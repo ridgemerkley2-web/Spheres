@@ -1,0 +1,801 @@
+{
+  "version": 1,
+  "nation": "Tonga",
+  "research_cutoff": "2026-09-07",
+  "sources": [
+    {
+      "id": "to_constitution_2020",
+      "title": "Constitution of Tonga, 2020 Revised Edition",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1988/1988-0002/ConstitutionofTonga.pdf_3.pdf",
+      "publisher": "Attorney General's Office, Tonga",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_or_pdf_text_read",
+      "claims": [
+        {
+          "id": "to_constitution_crown",
+          "text": "Clauses 30 and 41 describe a constitutional monarchy; royal signature is required for legislation. Clause 36 assigns military command to the King but requires Assembly consent for war.",
+          "locator": "Clauses 30, 36, 41"
+        },
+        {
+          "id": "to_constitution_pm_cabinet",
+          "text": "The King appoints the Assembly-recommended elected representative as prime minister. Cabinet exercises executive authority collectively and answers to the Assembly; ministers are nominated by the prime minister and appointed by the King. Reserved royal powers are excluded.",
+          "locator": "Clauses 50A, 51(1)-(2), 51(7)"
+        },
+        {
+          "id": "to_constitution_privy",
+          "text": "The King appoints Privy Council advisers. The Council also handles specified hereditary estate and title appeals.",
+          "locator": "Clause 50"
+        },
+        {
+          "id": "to_constitution_assembly",
+          "text": "The Assembly includes nobles' representatives, people's representatives and Cabinet. Its recommended Speaker must be an elected nobles' representative and is appointed by the King.",
+          "locator": "Clauses 59, 61"
+        }
+      ],
+      "edition": "2020 Revised Edition",
+      "scope_note": "Consolidated edition, not a complete amendment or commencement ledger. Do not backdate these provisions to 1990 or assume no later amendments."
+    },
+    {
+      "id": "to_constitution_older",
+      "title": "Act of Constitution of Tonga, older revised text",
+      "url": "https://ago.gov.to/cms/images/LEGISLATION/PRINCIPAL/1988/1988-0002/ActofConstitutionofTonga_1.pdf?zoom_highlight=Act+of+Constitution",
+      "publisher": "Attorney General's Office, Tonga",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_or_pdf_text_read",
+      "claims": [
+        {
+          "id": "to_older_ministers",
+          "text": "The older text gives the King appointment of ministers, serving at his pleasure or for their commission period. Ministers sit in the Privy Council and Assembly.",
+          "locator": "Clause 51"
+        },
+        {
+          "id": "to_older_assembly",
+          "text": "The older text includes Privy Councillors and Cabinet in the Assembly, specifies nine noble and nine people's elected representatives, and gives the King appointment of the Speaker.",
+          "locator": "Clauses 59-61"
+        }
+      ],
+      "scope_note": "The volume carries a 1988 Revised Edition label but includes later amendment notes, including Act 12 of 1990. It is not accepted as an exact 1 January 1990 legal snapshot."
+    },
+    {
+      "id": "to_reform_act_2010",
+      "title": "Act of Constitution of Tonga (Amendment) (No.2) Act 2010, Act 20",
+      "url": "https://ago.gov.to/cms/phocadownload/2010/Act%2020%20of%202010%20ConstitutionofTonga(Amendment)(No.2)Act2010RoyalAssent.pdf",
+      "publisher": "Attorney General's Office, Tonga",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_or_pdf_text_read",
+      "claims": [
+        {
+          "id": "to_reform_structure",
+          "text": "Act 20 replaces the prime minister, Cabinet, Privy Council, Assembly-composition and Speaker provisions. It changes the English description of royal government from governing to reigning.",
+          "locator": "Sections 6-7, 11-15, 18-19"
+        },
+        {
+          "id": "to_reform_passage",
+          "text": "The printed Act records Assembly passage on 20 July 2010. Passage alone does not establish commencement.",
+          "locator": "End of section 30, printed page 15",
+          "period": {
+            "from": "2010-07-20",
+            "through": "2010-07-20"
+          }
+        }
+      ],
+      "scope_note": "The extracted assent line has no legible date. The separate Assembly explanatory note supplies assent and procedure dates."
+    },
+    {
+      "id": "to_reform_procedure_2010",
+      "title": "Interim Speaker clarifies nomination and appointment of the Prime Minister",
+      "url": "https://parliament.gov.to/en/media-centre/latest-news/interim-speaker-clarifies-procedure-for-nomination-and-appointment-of-the-prime-minister",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_or_pdf_text_read",
+      "claims": [
+        {
+          "id": "to_reform_assent",
+          "text": "The Assembly explanatory note dates royal assent to Act 20 to 24 November 2010. It dates the return of election writs to 2 December 2010, starting the Schedule's nomination procedure except the interim Speaker appointment.",
+          "locator": "Explanatory note, introduction and points 1-4",
+          "period": {
+            "from": "2010-11-24",
+            "through": "2010-12-02"
+          },
+          "uncertainty": "This procedural commencement statement does not establish the effective date of every amendment."
+        }
+      ]
+    },
+    {
+      "id": "to_parliament_work_2025",
+      "title": "How Parliament works?",
+      "url": "https://parliament.gov.to/en/about-parliament/how-parliament-works",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_or_pdf_text_read",
+      "claims": [
+        {
+          "id": "to_parliament_seats",
+          "text": "The Assembly's account specifies seventeen people's representatives and nine nobles' representatives, elected by their respective electorates.",
+          "locator": "Composition and representative functions",
+          "period": {
+            "from": "2025-01-15",
+            "through": "2025-01-15"
+          }
+        },
+        {
+          "id": "to_parliament_party_warning",
+          "text": "The page describes Tonga as lacking a political party system. This is a description of parliamentary arrangements, not an exhaustive register establishing the absence of political organizations.",
+          "locator": "Opposition discussion",
+          "uncertainty": "Independent candidacy and informal opposition must not erase separately documented parties."
+        }
+      ],
+      "published_date": "2025-01-15",
+      "scope_note": "Date is the page's last update. Prefer the Constitution for formal appointment powers where explanatory shorthand differs."
+    },
+    {
+      "id": "to_ipu_2008",
+      "title": "Tonga: Legislative Assembly elections in 2008",
+      "url": "https://data.ipu.org/election-summary/HTML/2317_08.htm",
+      "publisher": "Inter-Parliamentary Union",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_or_pdf_text_read",
+      "claims": [
+        {
+          "id": "to_fihrdm_registered",
+          "text": "IPU reports FIHRDM's registration as a political party after the March 2005 election.",
+          "locator": "Election background",
+          "uncertainty": "Exact registration date, official registered name and original register entry are not supplied."
+        },
+        {
+          "id": "to_pdp_split_fuko",
+          "text": "IPU reports that an April 2005 split from FIHRDM produced the People's Democratic Party under Tesina Fuko's leadership.",
+          "locator": "Election background",
+          "period": {
+            "from": "2005-04-01",
+            "through": "2005-04-30"
+          },
+          "uncertainty": "A month-level formation and leadership observation, not an exact appointment or complete term."
+        },
+        {
+          "id": "to_2008_party_candidacy",
+          "text": "IPU reports that all 2008 candidates stood as independents while many campaigned under party banners; both FIHRDM and PDP candidates won seats.",
+          "locator": "Election background and results",
+          "period": {
+            "from": "2008-04-23",
+            "through": "2008-04-24"
+          }
+        }
+      ],
+      "source_type": "interparliamentary_election_record",
+      "scope_note": "IPU lists Legislative Assembly and Prime Minister's Office communications from 2008 and 2009 as its sources; original registration instruments were not inspected."
+    },
+    {
+      "id": "to_ipu_2010",
+      "title": "Tonga: Legislative Assembly elections in 2010",
+      "url": "https://data.ipu.org/election-summary/HTML/2317_10.htm",
+      "publisher": "Inter-Parliamentary Union",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_or_pdf_text_read",
+      "claims": [
+        {
+          "id": "to_dpfi_pohiva_2010",
+          "text": "IPU names the Democratic Party of the Friendly Islands among parties formed before the 2010 election and identifies its leader as 'Akilisi Pohiva, formerly of FIHRDM.",
+          "locator": "Election background",
+          "period": {
+            "from": "2010-11-25",
+            "through": "2010-11-25"
+          },
+          "uncertainty": "Attestation at the election, not an exact founding or leadership-start date."
+        },
+        {
+          "id": "to_2010_ambiguous_democratic",
+          "text": "IPU also mentions a 'Democratic party' without enough identifying detail in the account to establish a distinct legal entity.",
+          "locator": "Election background",
+          "uncertainty": "Do not automatically merge with DPFI or create an additional counted organization from this ambiguous label."
+        }
+      ],
+      "source_type": "interparliamentary_election_record",
+      "scope_note": "Not a comprehensive party register. Party seat totals in the narrative are not used in this packet."
+    },
+    {
+      "id": "to_nlnz_movement_archive",
+      "title": "Human Rights and Democracy Movement of Tonga: archival description",
+      "url": "https://natlib.govt.nz/records/40929126",
+      "publisher": "National Library of New Zealand",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_or_pdf_text_read",
+      "claims": [
+        {
+          "id": "to_movement_archive",
+          "text": "The catalog identifies material from the November 1992 Tongan Constitution and Democracy conference and a January 1999 draft-constitution conference in the movement's collection.",
+          "locator": "Collection description",
+          "uncertainty": "Catalog metadata was read, not the underlying correspondence or constitutions. It does not settle continuity between movement names and the later registered FIHRDM."
+        }
+      ],
+      "source_type": "official_archival_catalog",
+      "scope_note": "Evidence that primary records are held; not a claim that their complete contents were reviewed."
+    },
+    {
+      "id": "to_nlnz_pdp_archive",
+      "title": "Tongan political documents, 2005/2006",
+      "url": "https://natlib.govt.nz/records/40929112",
+      "publisher": "National Library of New Zealand",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_or_pdf_text_read",
+      "claims": [
+        {
+          "id": "to_pdp_constitution_archive",
+          "text": "The catalog for MS-Papers-12389-05 lists a copy of the People's Democratic Party constitution and rules among political records dated 2005/2006.",
+          "locator": "MS-Papers-12389-05 collection description",
+          "uncertainty": "The constitution itself was not inspected; its adoption date and office rules remain unresolved."
+        }
+      ],
+      "source_type": "official_archival_catalog"
+    },
+    {
+      "id": "to_pm_appointment_2025",
+      "title": "Lord Fakafanua appointed as the 20th Prime Minister of Tonga",
+      "url": "https://pmo.gov.to/wp-content/uploads/2025/12/Media-Release_18_12_2025_Lord-Fakafanua-appointed-as-the-20th-Prime-Minister-of-Tonga2.pdf",
+      "publisher": "Prime Minister's Office, Tonga",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_or_pdf_text_read",
+      "claims": [
+        {
+          "id": "to_fakafanua_appointment",
+          "text": "King Tupou VI appointed Lord Fakafanua prime minister on 18 December 2025, following the Assembly's prime-minister-designate election on 15 December.",
+          "locator": "Media release, opening paragraphs",
+          "period": {
+            "from": "2025-12-18",
+            "through": "2025-12-18"
+          }
+        },
+        {
+          "id": "to_tupou_vi_2025",
+          "text": "The appointment release identifies Tupou VI as King.",
+          "locator": "Media release, opening paragraph",
+          "period": {
+            "from": "2025-12-18",
+            "through": "2025-12-18"
+          },
+          "uncertainty": "This attestation does not supply accession or a complete reign chronology."
+        }
+      ],
+      "published_date": "2025-12-18"
+    },
+    {
+      "id": "to_speaker_appointment_2025",
+      "title": "Appointment of the Speaker of the Legislative Assembly of Tonga and Deputy",
+      "url": "https://parliament.gov.to/en/media-centre/latest-news/appointment-of-the-speaker-of-the-legislative-assembly-of-tonga-and-deputy",
+      "publisher": "Chief Clerk, Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_or_pdf_text_read",
+      "claims": [
+        {
+          "id": "to_speakers_appointment",
+          "text": "King Tupou VI appointed Lord Vaea Speaker and Lord Tu'iha'angana Deputy Speaker, with both instruments effective 18 December 2025. The release was issued the following day.",
+          "locator": "Appointment announcement",
+          "period": {
+            "from": "2025-12-18",
+            "through": "2025-12-18"
+          }
+        }
+      ],
+      "published_date": "2025-12-19"
+    },
+    {
+      "id": "to_cabinet_2026",
+      "title": "Prime Minister Lord Fakafanua announces Ministers of Cabinet",
+      "url": "https://parliament.gov.to/en/media-centre/latest-news/prime-minister-lord-fakafanua-announces-ministers-of-cabinet",
+      "publisher": "Legislative Assembly of Tonga",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_or_pdf_text_read",
+      "claims": [
+        {
+          "id": "to_cabinet_appointment",
+          "text": "The 5 January 2026 announcement states that the King's Cabinet appointments took effect on 31 December 2025; its list includes Dr Viliami Uasike Latu as Deputy Prime Minister and Minister for Justice.",
+          "locator": "Announcement and numbered ministerial list",
+          "period": {
+            "from": "2025-12-31",
+            "through": "2025-12-31"
+          },
+          "uncertainty": "This initial Cabinet list is not asserted to remain unchanged through September 2026."
+        }
+      ],
+      "published_date": "2026-01-05"
+    },
+    {
+      "id": "to_pm_august_2026",
+      "title": "Prime Minister Lord Fakafanua launches Tonga Rural Innovation Project III",
+      "url": "https://pmo.gov.to/prime-minister-lord-fakafanua-officially-launched-the-tonga-rural-innovation-project-iii-trip-iii/",
+      "publisher": "Prime Minister's Office, Tonga",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_or_pdf_text_read",
+      "claims": [
+        {
+          "id": "to_fakafanua_august",
+          "text": "The PMO identifies Lord Fakafanua as prime minister in its 3 August 2026 project-launch report.",
+          "locator": "Article heading and opening paragraph",
+          "period": {
+            "from": "2026-08-03",
+            "through": "2026-08-03"
+          },
+          "uncertainty": "A dated office observation, not evidence that no intervening or subsequent temporary arrangements existed."
+        }
+      ],
+      "published_date": "2026-08-03"
+    }
+  ],
+  "organizations": [
+    {
+      "id": "to_fihrdm",
+      "name": "Friendly Island Human Rights and Democracy Movement (FIHRDM)",
+      "kind": "political_movement_and_reported_registered_party",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observations",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "Neither formation nor continuous existence throughout the requested period is established."
+      },
+      "roles": [],
+      "sources": [
+        "to_ipu_2008",
+        "to_ipu_2010",
+        "to_nlnz_movement_archive"
+      ],
+      "claim_ids": [
+        "to_fihrdm_registered",
+        "to_2008_party_candidacy",
+        "to_dpfi_pohiva_2010",
+        "to_movement_archive"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Reconcile HRDM, HRDMT, FIHRDM and earlier pro-democracy movement names using original statutes and registration instruments; this provisional grouping is not a legal merger finding.",
+          "Identify leaders, chairs, acting officers, components and exact terms throughout 1990–2026.",
+          "Determine post-2010 continuation, dissolution or successor status; do not assume DPFI legally replaced all FIHRDM."
+        ]
+      }
+    },
+    {
+      "id": "to_pdp",
+      "name": "People's Democratic Party (PDP)",
+      "kind": "political_party",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observations",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "Neither formation nor continuous existence throughout the requested period is established."
+      },
+      "roles": [
+        {
+          "id": "to_pdp_leader",
+          "title": "Party leader",
+          "kind": "party_leader",
+          "sources": [
+            "to_ipu_2008"
+          ],
+          "claim_ids": [
+            "to_pdp_split_fuko"
+          ],
+          "holder_claims": [
+            "to_pdp_split_fuko"
+          ]
+        }
+      ],
+      "sources": [
+        "to_ipu_2008",
+        "to_nlnz_pdp_archive"
+      ],
+      "claim_ids": [
+        "to_pdp_split_fuko",
+        "to_2008_party_candidacy",
+        "to_pdp_constitution_archive"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Retrieve the archived constitution and registration instrument; distinguish party leader, chair and any parliamentary leader.",
+          "April 2005 is the reported formation month; the exact day is unknown.",
+          "Tesina Fuko's complete leadership interval and successors are unverified.",
+          "Continuation, dissolution and inactive periods after the 2008 observation remain unresolved."
+        ]
+      }
+    },
+    {
+      "id": "to_dpfi",
+      "name": "Democratic Party of the Friendly Islands (DPFI)",
+      "kind": "political_party",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observations",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "Neither formation nor continuous existence throughout the requested period is established."
+      },
+      "roles": [
+        {
+          "id": "to_dpfi_leader",
+          "title": "Party leader",
+          "kind": "party_leader",
+          "sources": [
+            "to_ipu_2010"
+          ],
+          "claim_ids": [
+            "to_dpfi_pohiva_2010"
+          ],
+          "holder_claims": [
+            "to_dpfi_pohiva_2010"
+          ]
+        }
+      ],
+      "sources": [
+        "to_ipu_2010"
+      ],
+      "claim_ids": [
+        "to_dpfi_pohiva_2010"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Obtain founding and amended statutes, registered local-language name, chairs and parliamentary leadership records.",
+          "'Akilisi Pohiva is a 2010 leadership observation, not an uninterrupted term through later premiership.",
+          "Research later leadership, factions, minor components and any splits independently."
+        ]
+      }
+    }
+  ],
+  "institutions": [
+    {
+      "id": "to_crown",
+      "name": "Crown of Tonga",
+      "kind": "constitutional_monarchy",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observations",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "Neither formation nor continuous existence throughout the requested period is established."
+      },
+      "roles": [
+        {
+          "id": "to_king",
+          "title": "King",
+          "kind": "head_of_state",
+          "sources": [
+            "to_constitution_2020",
+            "to_pm_appointment_2025"
+          ],
+          "claim_ids": [
+            "to_constitution_crown",
+            "to_tupou_vi_2025"
+          ],
+          "holder_claims": [
+            "to_tupou_vi_2025"
+          ]
+        }
+      ],
+      "sources": [
+        "to_constitution_2020",
+        "to_constitution_older",
+        "to_reform_act_2010",
+        "to_pm_appointment_2025"
+      ],
+      "claim_ids": [
+        "to_constitution_crown",
+        "to_reform_structure",
+        "to_tupou_vi_2025"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Source the 1990–2026 reign and regency chronology, including accession versus coronation dates.",
+          "Review each amendment and royal reserved power by effective period; a monarch is not a party leader."
+        ]
+      }
+    },
+    {
+      "id": "to_prime_minister",
+      "name": "Office of the Prime Minister",
+      "kind": "executive_office",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observations",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "Neither formation nor continuous existence throughout the requested period is established."
+      },
+      "roles": [
+        {
+          "id": "to_pm",
+          "title": "Prime Minister",
+          "kind": "head_of_government",
+          "sources": [
+            "to_constitution_2020",
+            "to_pm_appointment_2025",
+            "to_pm_august_2026"
+          ],
+          "claim_ids": [
+            "to_constitution_pm_cabinet",
+            "to_fakafanua_appointment",
+            "to_fakafanua_august"
+          ],
+          "holder_claims": [
+            "to_fakafanua_appointment",
+            "to_fakafanua_august"
+          ]
+        }
+      ],
+      "sources": [
+        "to_constitution_2020",
+        "to_constitution_older",
+        "to_reform_act_2010",
+        "to_reform_procedure_2010",
+        "to_pm_appointment_2025",
+        "to_pm_august_2026"
+      ],
+      "claim_ids": [
+        "to_constitution_pm_cabinet",
+        "to_older_ministers",
+        "to_reform_structure",
+        "to_reform_assent",
+        "to_fakafanua_appointment",
+        "to_fakafanua_august"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Complete prime minister, caretaker, interim and acting terms from 1990 through cutoff.",
+          "Keep Assembly nomination/election, royal appointment and actual effective date separate.",
+          "Pre-reform appointment rules cannot be replaced retrospectively by the post-2010 procedure."
+        ]
+      }
+    },
+    {
+      "id": "to_cabinet",
+      "name": "Cabinet of Tonga",
+      "kind": "collective_executive",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observations",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "Neither formation nor continuous existence throughout the requested period is established."
+      },
+      "roles": [
+        {
+          "id": "to_ministers",
+          "title": "Cabinet ministers",
+          "kind": "collective_seat",
+          "sources": [
+            "to_constitution_2020"
+          ],
+          "claim_ids": [
+            "to_constitution_pm_cabinet"
+          ],
+          "holder_claims": []
+        },
+        {
+          "id": "to_deputy_pm",
+          "title": "Deputy Prime Minister",
+          "kind": "institutional_office",
+          "sources": [
+            "to_cabinet_2026"
+          ],
+          "claim_ids": [
+            "to_cabinet_appointment"
+          ],
+          "holder_claims": [
+            "to_cabinet_appointment"
+          ]
+        }
+      ],
+      "sources": [
+        "to_constitution_2020",
+        "to_constitution_older",
+        "to_reform_act_2010",
+        "to_cabinet_2026"
+      ],
+      "claim_ids": [
+        "to_constitution_pm_cabinet",
+        "to_older_ministers",
+        "to_cabinet_appointment"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Build dated Cabinet and acting-minister membership; January 2026 appointments are only one observation.",
+          "Cabinet collective executive authority must not become a single party portrait or a claim that the King lacks reserved powers."
+        ]
+      }
+    },
+    {
+      "id": "to_privy_council",
+      "name": "Privy Council of Tonga",
+      "kind": "royal_advisory_and_appellate_institution",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observations",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "Neither formation nor continuous existence throughout the requested period is established."
+      },
+      "roles": [
+        {
+          "id": "to_privy_councillors",
+          "title": "Privy Councillors",
+          "kind": "collective_seat",
+          "sources": [
+            "to_constitution_2020"
+          ],
+          "claim_ids": [
+            "to_constitution_privy"
+          ],
+          "holder_claims": []
+        }
+      ],
+      "sources": [
+        "to_constitution_2020",
+        "to_constitution_older",
+        "to_reform_act_2010"
+      ],
+      "claim_ids": [
+        "to_constitution_privy",
+        "to_older_ministers",
+        "to_reform_structure"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Research membership and office holders by year.",
+          "Separate the older Cabinet/Privy Council relationship from the post-reform institution; review effective amendment dates."
+        ]
+      }
+    },
+    {
+      "id": "to_legislative_assembly",
+      "name": "Legislative Assembly of Tonga (Fale Alea)",
+      "kind": "legislature",
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observations",
+        "from": null,
+        "until": null,
+        "precision": "unknown",
+        "note": "Neither formation nor continuous existence throughout the requested period is established."
+      },
+      "roles": [
+        {
+          "id": "to_speaker",
+          "title": "Speaker",
+          "kind": "institutional_office",
+          "sources": [
+            "to_constitution_2020",
+            "to_speaker_appointment_2025"
+          ],
+          "claim_ids": [
+            "to_constitution_assembly",
+            "to_speakers_appointment"
+          ],
+          "holder_claims": [
+            "to_speakers_appointment"
+          ]
+        },
+        {
+          "id": "to_deputy_speaker",
+          "title": "Deputy Speaker",
+          "kind": "institutional_office",
+          "sources": [
+            "to_speaker_appointment_2025"
+          ],
+          "claim_ids": [
+            "to_speakers_appointment"
+          ],
+          "holder_claims": [
+            "to_speakers_appointment"
+          ]
+        },
+        {
+          "id": "to_peoples_representatives",
+          "title": "People's representatives",
+          "kind": "collective_seat",
+          "sources": [
+            "to_parliament_work_2025"
+          ],
+          "claim_ids": [
+            "to_parliament_seats"
+          ],
+          "holder_claims": []
+        },
+        {
+          "id": "to_nobles_representatives",
+          "title": "Nobles' representatives",
+          "kind": "collective_seat",
+          "sources": [
+            "to_parliament_work_2025"
+          ],
+          "claim_ids": [
+            "to_parliament_seats"
+          ],
+          "holder_claims": []
+        }
+      ],
+      "sources": [
+        "to_constitution_2020",
+        "to_constitution_older",
+        "to_parliament_work_2025",
+        "to_speaker_appointment_2025"
+      ],
+      "claim_ids": [
+        "to_constitution_assembly",
+        "to_older_assembly",
+        "to_parliament_seats",
+        "to_parliament_party_warning",
+        "to_speakers_appointment"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Build dated membership, Speakers, acting Speakers and numerical reforms; do not backdate seventeen people's seats to 1990.",
+          "Noble and people's electoral cohorts are not political parties. Independents can still have political organization affiliations.",
+          "Research formal parliamentary groups, informal opposition and coalition components separately."
+        ]
+      }
+    }
+  ],
+  "coverage": {
+    "status": "partial_primary_source_inventory",
+    "period": {
+      "from": "1990-01-01",
+      "through": "2026-09-07"
+    },
+    "exhaustive_organization_register_reviewed": false,
+    "unrepresented_organization_total": null,
+    "art_completion_claim": false,
+    "unresolved": [
+      "No exhaustive primary list of every political organization active, minor, historical or dissolved during 1990–2026 has been established.",
+      "These three provisional organization identities and five institutions are research entries only; all represented_party_ids remain empty because the current Tonga game catalog has no party rows.",
+      "The ambiguous additional 'Democratic party' label in IPU 2010 remains an unresolved identity, not a counted fourth party.",
+      "Full leader/chair/parliamentary-role intervals, constitutional effective dates and 1990 opening office holders still require source-by-source verification.",
+      "The last verified observations are not automatic extensions to the 7 September 2026 cutoff; unknown gaps remain unknown.",
+      "No future candidate, fictional successor, portrait likeness or avatar completion is certified by this research packet. Fiction begins only after the preserved historical cutoff under the separate policy."
+    ]
+  }
+}
