@@ -19,6 +19,11 @@ async function designer(page){
   await page.locator('[data-equipment-tab="designer"]').first().click();await ready(page);
 }
 async function draft(page){return page.evaluate(()=>JSON.parse(JSON.stringify(EQUIP.draft)));}
+async function withinPanel(page,selector,label){
+  const box=await page.locator(selector).evaluate(element=>({scroll:element.scrollWidth,width:element.clientWidth}));
+  assert(box.width>0&&box.scroll<=box.width+1,label+' overflows horizontally: '+JSON.stringify(box));
+  assert(!/\bNaN\b|\bundefined\b/.test(await page.locator(selector).innerText()),label+' contains an invalid numeric or missing-value label');
+}
 async function captures(page,url,run,slot){
   const slots=new Set(['s09-before-guidance','s09-after-guidance','s09-after-draft-save','s09-after-load','s09-after-continue']);
   assert(slots.has(slot));const base=fs.realpathSync(run),saves=path.join(base,'saves'),source=path.join(saves,slot+'.json');
@@ -123,7 +128,7 @@ async function main(){
     assert.equal(new Set(timings.map(r=>r.id)).size,12,'Board and all eleven platform reads');
     assert(timings.every(r=>r.passed),'Read performance exceeded the predeclared S09 limits');e.read_performance=timings.map(({samples_ms,...r})=>r);
     await shot('design-guidance-desktop','[data-equipment-guidance]');
-    await page.setViewportSize({width:390,height:844});await integrated.withinPanel(page,'#equipmentRoot','Designer mobile');await shot('design-guidance-mobile','[data-equipment-guidance]');
+    await page.setViewportSize({width:390,height:844});await withinPanel(page,'#equipmentRoot','Designer mobile');await shot('design-guidance-mobile','[data-equipment-guidance]');
     await page.setViewportSize({width:1440,height:1000});
     const name='S09 Atlas';await page.locator('#equipmentName').fill(name);await ready(page);const edited=await draft(page);
     await page.locator('[data-equipment-draft-status="unsaved"]').waitFor();
@@ -188,7 +193,7 @@ async function main(){
     await page.reload();await page.locator('#continueBtn').click();await page.locator('#app').waitFor();await idle(page);
     const continued=await reopenSaved(page,name);assert.equal(continued.name,name);assert.deepEqual(continued.components,chosen.components);assert.equal(continued.platform,chosen.platform);
     audit.compare(await captures(page,url,run,'s09-after-continue'),afterSave,'Continue changed the saved native campaign');
-    await page.setViewportSize({width:390,height:844});await integrated.withinPanel(page,'#equipmentRoot','Reopened designer mobile');await shot('reopened-draft-mobile','[data-equipment-draft-status]');
+    await page.setViewportSize({width:390,height:844});await withinPanel(page,'#equipmentRoot','Reopened designer mobile');await shot('reopened-draft-mobile','[data-equipment-draft-status]');
     assert.equal(e.commands.length,1);assert.deepEqual(e.errors,[]);e.checks.push('Named Save/Load cancellation, new session and Continue retain exact saved draft and native world');
     e.passed=true;e.finished_utc=new Date().toISOString();write('result.json',e);console.log(JSON.stringify({passed:true,result:path.join(out,'result.json')}));
   }catch(error){e.failed_stage=stage;e.failure=String(error.stack||error);write('result.json',e);if(page)try{await page.screenshot({path:path.join(out,'failure.png')});fs.writeFileSync(path.join(out,'failure.html'),await page.content());}catch{}throw error;}
