@@ -38,6 +38,11 @@ match, including the person roster and historical/fictional art manifests.
 705 job IDs are preserved from that source snapshot; the tool does not promote
 the entire older production audit to a fresh qualification.
 
+The four byte-hashed Python readers now have explicit LF checkout rules, matching
+the existing JSON and political source conventions. Census source hashes were
+regenerated after newline normalization; reader logic and catalogue contents
+were unchanged. The seven census tests and reproducibility check still pass.
+
 ## Certified cases first
 
 The approved pathway's eight cases use nine identity IDs because USSR → Russia

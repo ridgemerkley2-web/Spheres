@@ -1,0 +1,100 @@
+{
+  "schema": "s10-visual-review-v1",
+  "reviewed_utc": "2026-09-13T06:50:35.3756938Z",
+  "reviewer": "s08_forecast_review",
+  "scope": "Actual view_image inspection of the six non-policy captures from the completed fresh-France browser journey. Policy desktop/narrow captures were assigned separately to the root reviewer. No browser rerun or source edits.",
+  "status": "reviewed_with_nonblocking_observations",
+  "runtime_revision": "7aaa4517fbcc1c256481c2eefc5ef5e1c4153303",
+  "runtime_binary_sha256": "c7eef9f281e7009aac73c722413fcab7587277e77124b9ba56d8ed121b077878",
+  "driver_revision": "5275f3f268a8b0529f7ae8fe03e8b0be195ed601",
+  "driver_sha256": "d131f75651a287aa33a583ffa4596846a16d5a91fd9f2c27c978a61c3cb1d8f9",
+  "source_result": {
+    "passed": true,
+    "path": "evidence/S10-browser-final-2/france-XCMBuc/result.json",
+    "sha256": "21d16c6435916933db385910ce61794efbf5a6f0922507ddd842526a078a358a"
+  },
+  "blocking_visual_findings": [],
+  "nonblocking_findings": [
+    "The previous stale-review toast remains visible in the fresh-review capture; primary review controls are unobscured.",
+    "At 390px the horizontal government tab strip displays a partial Parliament & parties label and later tabs lie offscreen. This visual review does not establish their interaction behavior."
+  ],
+  "screenshots": [
+    {
+      "height": 1000,
+      "path": "evidence/S10-browser-final-2/france-XCMBuc/government-review-before-second-tab.png",
+      "filename": "government-review-before-second-tab.png",
+      "observations": [
+        "Review title, political and financial cost labels, full before/after effects table and both decision buttons are readable at desktop size.",
+        "A map-help banner is visible above the review without obscuring its title, effects or actions."
+      ],
+      "sha256": "07a9488844a687a10a0d439eda7ac8a3ac45545db0d58cade60af2a8abe71ade",
+      "width": 1440,
+      "bytes": 316967
+    },
+    {
+      "height": 1000,
+      "path": "evidence/S10-browser-final-2/france-XCMBuc/second-tab-policy-recorded.png",
+      "filename": "second-tab-policy-recorded.png",
+      "observations": [
+        "Decisions & commitments title and interior art are visible. The modal is scrolled to campaign aims.",
+        "The footer clearly states: Decision recorded on 1 Jan 1990. The figures now show the result. The standing-policy form is outside this capture."
+      ],
+      "sha256": "e15ae0a4421f23ec5f27c272d420d579e4634885644bcc980becfc971e83faa2",
+      "width": 1440,
+      "bytes": 483268
+    },
+    {
+      "height": 1000,
+      "path": "evidence/S10-browser-final-2/france-XCMBuc/government-stale-review-refused.png",
+      "filename": "government-stale-review-refused.png",
+      "observations": [
+        "The old review is absent. A readable persistent notice explicitly says the review is out of date and nothing was applied.",
+        "Current decision cards, their costs and Review decision buttons are readable. A duplicate toast partially overlaps the upper navigation, not the notice or decision cards."
+      ],
+      "sha256": "ca1fc94d90bfc654eca0f10f7b997a8093571b8ca477965f3cedf59d47895304",
+      "width": 1440,
+      "bytes": 205791
+    },
+    {
+      "height": 1000,
+      "path": "evidence/S10-browser-final-2/france-XCMBuc/government-fresh-review.png",
+      "filename": "government-fresh-review.png",
+      "observations": [
+        "Fresh review title, 17.14 PC and $0 costs, before/after table, Confirm decision and Keep considering are visible without clipping.",
+        "The preceding stale-review toast is still visible above this fresh review in the capture. It does not obscure review controls, but can momentarily suggest that the new review is stale."
+      ],
+      "sha256": "69b21b4aa2cb3cd64622d741e7ec60e2b5f61c4cf495ac769bcfec6e8ce13d96",
+      "width": 1440,
+      "bytes": 318888
+    },
+    {
+      "height": 1000,
+      "path": "evidence/S10-browser-final-2/france-XCMBuc/government-result-desktop.png",
+      "filename": "government-result-desktop.png",
+      "observations": [
+        "Readable completed-action feedback appears above the available decisions.",
+        "Expel French Communist Party now appears as an available action. Decision names, costs and review buttons are visible. Lower reform content continues below this viewport."
+      ],
+      "sha256": "d9e096e7defda046a38975e055a3c9d23b4443b4e7f711b99c2616209af01f1c",
+      "width": 1440,
+      "bytes": 200274
+    },
+    {
+      "height": 844,
+      "path": "evidence/S10-browser-final-2/france-XCMBuc/government-continued-narrow.png",
+      "filename": "government-continued-narrow.png",
+      "observations": [
+        "At 390 by 844 pixels, France and 1 Jan 1990 are readable over the government art. The selected Governing decisions tab, filters, search label/input and first card title/cost are readable.",
+        "The tab strip shows part of Parliament & parties and later tabs are offscreen. Horizontal interaction was not re-tested during this screenshot-only review. The first card continues below the viewport."
+      ],
+      "sha256": "bd003ea3b0d40c40a719036453efc5f7ba1ee7213fb8c6ce4c85bf382be70c90",
+      "width": 390,
+      "bytes": 114662
+    }
+  ],
+  "limitations": [
+    "Screenshot observations do not independently prove command effects, save equality or keyboard/accessibility behavior; those have separate native/browser evidence.",
+    "Only the visible regions were inspected; content below the viewport is not asserted absent or clipped.",
+    "No universal country or device visual qualification is claimed."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "runtime_revision": "7aaa4517fbcc1c256481c2eefc5ef5e1c4153303",
+  "source_result_sha256": "21d16c6435916933db385910ce61794efbf5a6f0922507ddd842526a078a358a",
+  "method": "Root visually inspected the two actual browser captures with view_image. No image transformation or alternate campaign state.",
+  "images": [
+    {
+      "name": "policy-review-desktop.png",
+      "sha256": "757be5e2cd3f4abe0430c1f0c652971263cf6d35dd70a15f1bc8adefaccdcb81"
+    },
+    {
+      "name": "policy-review-narrow.png",
+      "sha256": "cef072dc26e6724810cc539181b66594447ac57fcd244b2d8993a83dbddd4b50"
+    }
+  ],
+  "findings": [
+    "Desktop review is readable over the existing diplomacy art with clear before/after and confirmation actions.",
+    "390px review wraps into a tall scrollable table. Bottom controls require scrolling and were reached by the real browser cancellation path. No horizontal panel overflow."
+  ]
+}

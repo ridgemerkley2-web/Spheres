@@ -242,6 +242,18 @@
         "Test parliamentary, presidential, authoritarian and monarchical/institutional cases through review, confirmation and dated result.",
         "Preserve saved incumbents; historical browsing and future candidate eligibility do not replace an officeholder automatically.",
         "Validate offers, deadlines, standing policies, sanctions, party/executive roles, unaffordable/stale reviews and foreign inspection."
+      ],
+      "increments": [
+        {
+          "id": "S10.a",
+          "status": "complete",
+          "title": "Reviewed political decisions and current-source census audit",
+          "evidence": "docs/campaign-certification/S10/manifest.json"
+        }
+      ],
+      "remaining": [
+        "Complete the C01 organization and institution census prerequisite.",
+        "Finish the remaining S10 country/platform qualification before claiming G2."
       ]
     },
     {
@@ -784,8 +796,8 @@
   "next_session": "S10",
   "execution": {
     "authorized_through": "S10",
-    "stop_boundary": "S10",
-    "status": "in_progress",
+    "stop_boundary": "S10.a",
+    "status": "stopped",
     "previous_stop": "S09",
     "instruction": "Continue",
     "instruction_date": "2026-09-12",

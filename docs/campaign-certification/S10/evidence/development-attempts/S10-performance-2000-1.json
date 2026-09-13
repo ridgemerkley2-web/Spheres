@@ -1,0 +1,43 @@
+{
+  "revision": "7aaa4517fbcc1c256481c2eefc5ef5e1c4153303",
+  "clean_before": true,
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-web",
+    "--bin",
+    "spheres-web",
+    "decision_review::tests::mature_review_latency",
+    "--",
+    "--ignored",
+    "--nocapture"
+  ],
+  "runner_sha256": "7cbf37dcade405f9aa845e166b453813c02fd1a5c820467c95a1b65fe9789b55",
+  "started_utc": "2026-09-13T06:43:47.300874+00:00",
+  "source": {
+    "path": "fixtures\\lifetime-legacy\\saves\\profile-idle_human-10.json",
+    "bytes": 39688734,
+    "sha256_before": "5d6b022e8273c5bbd569d96cc9ac4de1f4086fa69de110f835c63718d7469b53",
+    "sha256_after": "5d6b022e8273c5bbd569d96cc9ac4de1f4086fa69de110f835c63718d7469b53"
+  },
+  "exit_code": 101,
+  "finished_utc": "2026-09-13T06:43:47.559375+00:00",
+  "revision_after": "7aaa4517fbcc1c256481c2eefc5ef5e1c4153303",
+  "clean_after": true,
+  "log_sha256": "bb6b47cf998aa707d842ccfb47f65c6664d49c6c5f0f46185c8d46851b6f846d",
+  "totals": {
+    "passed": 0,
+    "failed": 1,
+    "ignored": 0,
+    "completed_targets": 1
+  },
+  "test_binary": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+    "sha256": "6211c5c2456f8eff5199131d8aa9305a585ab50ce827bbdbe1dfd8b5c51fd2bd"
+  },
+  "measurements": [],
+  "passed": false
+}

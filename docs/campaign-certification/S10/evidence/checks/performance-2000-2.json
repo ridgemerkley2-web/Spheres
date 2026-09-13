@@ -1,0 +1,115 @@
+{
+  "revision": "7aaa4517fbcc1c256481c2eefc5ef5e1c4153303",
+  "clean_before": true,
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-web",
+    "--bin",
+    "spheres-web",
+    "decision_review::tests::mature_review_latency",
+    "--",
+    "--ignored",
+    "--nocapture"
+  ],
+  "runner_sha256": "7cbf37dcade405f9aa845e166b453813c02fd1a5c820467c95a1b65fe9789b55",
+  "started_utc": "2026-09-13T06:43:56.534883+00:00",
+  "source": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\lifetime-legacy\\saves\\profile-idle_human-10.json",
+    "bytes": 39688734,
+    "sha256_before": "5d6b022e8273c5bbd569d96cc9ac4de1f4086fa69de110f835c63718d7469b53",
+    "sha256_after": "5d6b022e8273c5bbd569d96cc9ac4de1f4086fa69de110f835c63718d7469b53"
+  },
+  "exit_code": 0,
+  "finished_utc": "2026-09-13T06:43:58.546267+00:00",
+  "revision_after": "7aaa4517fbcc1c256481c2eefc5ef5e1c4153303",
+  "clean_after": true,
+  "log_sha256": "f07c8da179dbaba8fda21b3463b314924e1327fee02cbb84873fb3881f06f180",
+  "totals": {
+    "passed": 1,
+    "failed": 0,
+    "ignored": 0,
+    "completed_targets": 1
+  },
+  "test_binary": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+    "sha256": "6211c5c2456f8eff5199131d8aa9305a585ab50ce827bbdbe1dfd8b5c51fd2bd"
+  },
+  "measurements": [
+    {
+      "date": "1 Feb 2000",
+      "nation": "USA",
+      "pure": true,
+      "rows": [
+        {
+          "kind": "decisions",
+          "max_limit_ms": 750,
+          "max_ms": 26.8289,
+          "p95_limit_ms": 300,
+          "p95_ms": 23.832,
+          "samples_ms": [
+            22.8801,
+            26.8289,
+            21.020400000000002,
+            21.291600000000003,
+            17.385399999999997,
+            23.832,
+            21.2877,
+            22.4675,
+            20.0437,
+            20.0729,
+            20.5242,
+            19.0519,
+            21.8273,
+            19.6844,
+            22.335,
+            19.591,
+            21.9145,
+            22.1304,
+            21.9945,
+            22.8567,
+            18.952199999999998
+          ]
+        },
+        {
+          "kind": "government",
+          "max_limit_ms": 750,
+          "max_ms": 33.5267,
+          "p95_limit_ms": 300,
+          "p95_ms": 27.2348,
+          "samples_ms": [
+            27.2348,
+            26.0528,
+            22.261699999999998,
+            24.5155,
+            25.0123,
+            23.5309,
+            19.642599999999998,
+            25.2279,
+            20.224,
+            25.9834,
+            21.4283,
+            17.9814,
+            22.736900000000002,
+            19.232699999999998,
+            20.9839,
+            21.5075,
+            23.7832,
+            19.3554,
+            20.1366,
+            33.5267,
+            22.5881
+          ]
+        }
+      ],
+      "samples": 21,
+      "scope": "native preview generation including cloned command and complete-world token; excludes HTTP and browser",
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\lifetime-legacy\\saves\\profile-idle_human-10.json",
+      "warmups": 3
+    }
+  ],
+  "passed": true
+}

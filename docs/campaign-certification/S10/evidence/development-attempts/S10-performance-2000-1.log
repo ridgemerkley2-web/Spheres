@@ -1,0 +1,41 @@
+warning: unused import: `path::PathBuf`
+ --> spheres-web\vendor\tiny_http\src\connection.rs:7:5
+  |
+7 |     path::PathBuf,
+  |     ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `SequentialWriter`
+ --> spheres-web\vendor\tiny_http\src\util\mod.rs:7:28
+  |
+7 | pub use self::sequential::{SequentialWriter, SequentialWriterBuilder};
+  |                            ^^^^^^^^^^^^^^^^
+
+warning: trait `MustBeShareDummy` is never used
+   --> spheres-web\vendor\tiny_http\src\lib.rs:164:7
+    |
+164 | trait MustBeShareDummy: Sync + Send {}
+    |       ^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `tiny_http` (lib) generated 3 warnings (run `cargo fix --lib -p tiny_http` to apply 2 suggestions)
+    Finished `release` profile [optimized] target(s) in 0.13s
+     Running unittests src\main.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_web-55caf82b2dcec446.exe)
+
+running 1 test
+
+thread 'decision_review::tests::mature_review_latency' (3568) panicked at spheres-web\src\decision_review.rs:262:51:
+called `Result::unwrap()` on an `Err` value: Os { code: 3, kind: NotFound, message: "The system cannot find the path specified." }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test decision_review::tests::mature_review_latency ... FAILED
+
+failures:
+
+failures:
+    decision_review::tests::mature_review_latency
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 376 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p spheres-web --bin spheres-web`

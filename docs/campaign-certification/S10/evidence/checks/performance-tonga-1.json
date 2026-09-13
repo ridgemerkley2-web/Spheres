@@ -1,0 +1,115 @@
+{
+  "revision": "7aaa4517fbcc1c256481c2eefc5ef5e1c4153303",
+  "clean_before": true,
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-web",
+    "--bin",
+    "spheres-web",
+    "decision_review::tests::mature_review_latency",
+    "--",
+    "--ignored",
+    "--nocapture"
+  ],
+  "runner_sha256": "7cbf37dcade405f9aa845e166b453813c02fd1a5c820467c95a1b65fe9789b55",
+  "started_utc": "2026-09-13T06:44:11.574410+00:00",
+  "source": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-purchased.campaign.json",
+    "bytes": 134238603,
+    "sha256_before": "73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9",
+    "sha256_after": "73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9"
+  },
+  "exit_code": 0,
+  "finished_utc": "2026-09-13T06:44:28.104353+00:00",
+  "revision_after": "7aaa4517fbcc1c256481c2eefc5ef5e1c4153303",
+  "clean_after": true,
+  "log_sha256": "9d0c976656961733b6703ad3d59880871474a6e2343f126c6bae0176b375aca7",
+  "totals": {
+    "passed": 1,
+    "failed": 0,
+    "ignored": 0,
+    "completed_targets": 1
+  },
+  "test_binary": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+    "sha256": "6211c5c2456f8eff5199131d8aa9305a585ab50ce827bbdbe1dfd8b5c51fd2bd"
+  },
+  "measurements": [
+    {
+      "date": "29 Oct 1995",
+      "nation": "Tonga",
+      "pure": true,
+      "rows": [
+        {
+          "kind": "decisions",
+          "max_limit_ms": 750,
+          "max_ms": 263.4707,
+          "p95_limit_ms": 300,
+          "p95_ms": 256.3218,
+          "samples_ms": [
+            232.9968,
+            233.2886,
+            252.08750000000003,
+            226.3639,
+            229.81560000000002,
+            223.8256,
+            226.7884,
+            226.41320000000002,
+            239.04919999999998,
+            247.674,
+            225.0332,
+            224.6835,
+            238.8245,
+            249.8083,
+            263.4707,
+            225.59689999999998,
+            246.0748,
+            231.7331,
+            232.2852,
+            243.3134,
+            256.3218
+          ]
+        },
+        {
+          "kind": "government",
+          "max_limit_ms": 750,
+          "max_ms": 249.22349999999997,
+          "p95_limit_ms": 300,
+          "p95_ms": 248.07750000000001,
+          "samples_ms": [
+            232.14280000000002,
+            240.9064,
+            228.1659,
+            228.8109,
+            234.31,
+            241.9624,
+            249.22349999999997,
+            226.69500000000002,
+            221.3491,
+            225.5884,
+            222.3057,
+            236.4665,
+            248.07750000000001,
+            214.292,
+            222.0525,
+            218.3947,
+            226.01170000000002,
+            233.4819,
+            245.26999999999998,
+            222.03410000000002,
+            214.0683
+          ]
+        }
+      ],
+      "samples": 21,
+      "scope": "native preview generation including cloned command and complete-world token; excludes HTTP and browser",
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-purchased.campaign.json",
+      "warmups": 3
+    }
+  ],
+  "passed": true
+}

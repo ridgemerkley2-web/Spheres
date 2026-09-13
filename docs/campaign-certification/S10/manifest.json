@@ -1,0 +1,119 @@
+{
+  "status": "increment_complete_parent_open",
+  "increment": "S10.a",
+  "parent_session": "S10",
+  "runtime_revision": "7aaa4517fbcc1c256481c2eefc5ef5e1c4153303",
+  "browser_driver_revision": "5275f3f268a8b0529f7ae8fe03e8b0be195ed601",
+  "binary_sha256": "c7eef9f281e7009aac73c722413fcab7587277e77124b9ba56d8ed121b077878",
+  "completed_utc": "2026-09-13T06:52:09.700139+00:00",
+  "checks": {
+    "windows_web": {
+      "passed": 367,
+      "failed": 0,
+      "ignored": 11,
+      "completed_targets": 2
+    },
+    "windows_agency_succession": {
+      "passed": 12,
+      "failed": 0,
+      "ignored": 0,
+      "completed_targets": 2
+    },
+    "windows_node": {
+      "tests": 1533,
+      "pass": 1532,
+      "fail": 0,
+      "skipped": 1
+    },
+    "census_tests": 7,
+    "real_browser": true,
+    "native_archive_comparisons": "Whole native campaign; no ignored paths. Review/cancel, stale refusal, Load/Continue.",
+    "protected_originals": 8,
+    "protected_worktrees": 2
+  },
+  "browser_actions": {
+    "command": {
+      "kind": "invite_to_government",
+      "party": "fr_pcf"
+    },
+    "price_pc": 17.1386273190299,
+    "before_pc": 62.02720000000001,
+    "after_pc": 44.88857268097011,
+    "date": "1 Jan 1990",
+    "events": [
+      {
+        "cat": "politics",
+        "date": "1 Jan 1990",
+        "t": 0,
+        "tags": [
+          "France"
+        ],
+        "text": "France brings French Communist Party into the government."
+      }
+    ]
+  },
+  "review": {
+    "url": "http://127.0.0.1:7848",
+    "player": "France",
+    "date": "1 Jan 1990"
+  },
+  "performance": {
+    "scope": "Native preview construction only, including cloned commands and full-world token; excludes HTTP/UI. Three warmups and21 samples per endpoint per save.",
+    "p95_limit_ms": 300,
+    "max_limit_ms": 750,
+    "cases": [
+      {
+        "nation": "USA",
+        "date": "1 Feb 2000",
+        "rows": [
+          {
+            "kind": "decisions",
+            "p95_ms": 23.832,
+            "max_ms": 26.8289
+          },
+          {
+            "kind": "government",
+            "p95_ms": 27.2348,
+            "max_ms": 33.5267
+          }
+        ]
+      },
+      {
+        "nation": "Tonga",
+        "date": "29 Oct 1995",
+        "rows": [
+          {
+            "kind": "decisions",
+            "p95_ms": 256.3218,
+            "max_ms": 263.4707
+          },
+          {
+            "kind": "government",
+            "p95_ms": 248.07750000000001,
+            "max_ms": 249.22349999999997
+          }
+        ]
+      }
+    ]
+  },
+  "coverage_limits": [
+    "C01 exhaustive organization/institution inventory remains incomplete.",
+    "S10 and G2 remain open; S11 was not started.",
+    "This increment has Windows qualification; Linux and full certified-country end-to-end sessions remain to be refreshed before closing S10.",
+    "The live browser journey is France on1Jan1990. Other government roles, accepted offers, conflict replies and peg caps use explicit native boundary fixtures.",
+    "Existing peg dispatch text still describes nominal penalties; the new review displays actual capped effects.",
+    "Visual observations retain a transient old toast and horizontally scrolling narrow government tabs."
+  ],
+  "development_failures_retained": [
+    "Rust borrow-check error in initial test setup, then repaired.",
+    "Mixed index.html line endings after edits; original CRLF convention restored.",
+    "Mature-save benchmark initially supplied a relative path; rerun with exact absolute source.",
+    "Browser driver initially used an owned one-page context; explicit shared context fixed the second-tab test."
+  ],
+  "evidence": {
+    "inventory": "evidence/inventory.json",
+    "sha256": "970af5ab85b2e90aa0fdbc273c7fc40a16720bb25a0e037d704e28f4590e9fb3",
+    "files": 75,
+    "stored_bytes": 40762532
+  }
+}

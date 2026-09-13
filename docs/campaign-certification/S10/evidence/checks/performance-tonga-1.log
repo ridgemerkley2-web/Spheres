@@ -1,0 +1,34 @@
+warning: unused import: `path::PathBuf`
+ --> spheres-web\vendor\tiny_http\src\connection.rs:7:5
+  |
+7 |     path::PathBuf,
+  |     ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `SequentialWriter`
+ --> spheres-web\vendor\tiny_http\src\util\mod.rs:7:28
+  |
+7 | pub use self::sequential::{SequentialWriter, SequentialWriterBuilder};
+  |                            ^^^^^^^^^^^^^^^^
+
+warning: trait `MustBeShareDummy` is never used
+   --> spheres-web\vendor\tiny_http\src\lib.rs:164:7
+    |
+164 | trait MustBeShareDummy: Sync + Send {}
+    |       ^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `tiny_http` (lib) generated 3 warnings (run `cargo fix --lib -p tiny_http` to apply 2 suggestions)
+    Finished `release` profile [optimized] target(s) in 0.09s
+     Running unittests src\main.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_web-55caf82b2dcec446.exe)
+
+running 1 test
+S10_REVIEW_LATENCY {"kind":"decisions","max_limit_ms":750,"max_ms":263.4707,"p95_limit_ms":300,"p95_ms":256.3218,"samples_ms":[232.9968,233.2886,252.08750000000003,226.3639,229.81560000000002,223.8256,226.7884,226.41320000000002,239.04919999999998,247.674,225.0332,224.6835,238.8245,249.8083,263.4707,225.59689999999998,246.0748,231.7331,232.2852,243.3134,256.3218]}
+S10_REVIEW_LATENCY {"kind":"government","max_limit_ms":750,"max_ms":249.22349999999997,"p95_limit_ms":300,"p95_ms":248.07750000000001,"samples_ms":[232.14280000000002,240.9064,228.1659,228.8109,234.31,241.9624,249.22349999999997,226.69500000000002,221.3491,225.5884,222.3057,236.4665,248.07750000000001,214.292,222.0525,218.3947,226.01170000000002,233.4819,245.26999999999998,222.03410000000002,214.0683]}
+S10_REVIEW_CONTEXT {"date":"29 Oct 1995","nation":"Tonga","pure":true,"rows":[{"kind":"decisions","max_limit_ms":750,"max_ms":263.4707,"p95_limit_ms":300,"p95_ms":256.3218,"samples_ms":[232.9968,233.2886,252.08750000000003,226.3639,229.81560000000002,223.8256,226.7884,226.41320000000002,239.04919999999998,247.674,225.0332,224.6835,238.8245,249.8083,263.4707,225.59689999999998,246.0748,231.7331,232.2852,243.3134,256.3218]},{"kind":"government","max_limit_ms":750,"max_ms":249.22349999999997,"p95_limit_ms":300,"p95_ms":248.07750000000001,"samples_ms":[232.14280000000002,240.9064,228.1659,228.8109,234.31,241.9624,249.22349999999997,226.69500000000002,221.3491,225.5884,222.3057,236.4665,248.07750000000001,214.292,222.0525,218.3947,226.01170000000002,233.4819,245.26999999999998,222.03410000000002,214.0683]}],"samples":21,"scope":"native preview generation including cloned command and complete-world token; excludes HTTP and browser","source":"C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-purchased.campaign.json","warmups":3}
+test decision_review::tests::mature_review_latency ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 376 filtered out; finished in 16.26s
+

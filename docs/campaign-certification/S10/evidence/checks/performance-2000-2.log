@@ -1,0 +1,34 @@
+warning: unused import: `path::PathBuf`
+ --> spheres-web\vendor\tiny_http\src\connection.rs:7:5
+  |
+7 |     path::PathBuf,
+  |     ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `SequentialWriter`
+ --> spheres-web\vendor\tiny_http\src\util\mod.rs:7:28
+  |
+7 | pub use self::sequential::{SequentialWriter, SequentialWriterBuilder};
+  |                            ^^^^^^^^^^^^^^^^
+
+warning: trait `MustBeShareDummy` is never used
+   --> spheres-web\vendor\tiny_http\src\lib.rs:164:7
+    |
+164 | trait MustBeShareDummy: Sync + Send {}
+    |       ^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `tiny_http` (lib) generated 3 warnings (run `cargo fix --lib -p tiny_http` to apply 2 suggestions)
+    Finished `release` profile [optimized] target(s) in 0.10s
+     Running unittests src\main.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_web-55caf82b2dcec446.exe)
+
+running 1 test
+S10_REVIEW_LATENCY {"kind":"decisions","max_limit_ms":750,"max_ms":26.8289,"p95_limit_ms":300,"p95_ms":23.832,"samples_ms":[22.8801,26.8289,21.020400000000002,21.291600000000003,17.385399999999997,23.832,21.2877,22.4675,20.0437,20.0729,20.5242,19.0519,21.8273,19.6844,22.335,19.591,21.9145,22.1304,21.9945,22.8567,18.952199999999998]}
+S10_REVIEW_LATENCY {"kind":"government","max_limit_ms":750,"max_ms":33.5267,"p95_limit_ms":300,"p95_ms":27.2348,"samples_ms":[27.2348,26.0528,22.261699999999998,24.5155,25.0123,23.5309,19.642599999999998,25.2279,20.224,25.9834,21.4283,17.9814,22.736900000000002,19.232699999999998,20.9839,21.5075,23.7832,19.3554,20.1366,33.5267,22.5881]}
+S10_REVIEW_CONTEXT {"date":"1 Feb 2000","nation":"USA","pure":true,"rows":[{"kind":"decisions","max_limit_ms":750,"max_ms":26.8289,"p95_limit_ms":300,"p95_ms":23.832,"samples_ms":[22.8801,26.8289,21.020400000000002,21.291600000000003,17.385399999999997,23.832,21.2877,22.4675,20.0437,20.0729,20.5242,19.0519,21.8273,19.6844,22.335,19.591,21.9145,22.1304,21.9945,22.8567,18.952199999999998]},{"kind":"government","max_limit_ms":750,"max_ms":33.5267,"p95_limit_ms":300,"p95_ms":27.2348,"samples_ms":[27.2348,26.0528,22.261699999999998,24.5155,25.0123,23.5309,19.642599999999998,25.2279,20.224,25.9834,21.4283,17.9814,22.736900000000002,19.232699999999998,20.9839,21.5075,23.7832,19.3554,20.1366,33.5267,22.5881]}],"samples":21,"scope":"native preview generation including cloned command and complete-world token; excludes HTTP and browser","source":"C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\fixtures\\lifetime-legacy\\saves\\profile-idle_human-10.json","warmups":3}
+test decision_review::tests::mature_review_latency ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 376 filtered out; finished in 1.80s
+

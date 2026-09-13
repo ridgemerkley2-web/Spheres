@@ -482,9 +482,10 @@ Evidence and recommendation funding limits: [S09 qualification](campaign-certifi
 
 **Completion marker:** G2: governable nations with trustworthy political decisions, leaders and diplomatic consequences.
 
-S10.a implements campaign-bound government and diplomatic decision reviews and
-qualifies existing government/leadership roles. The C01 census is being recounted
-against current sources; its worldwide research inventory is incomplete.
+**S10.a complete:** campaign-bound government and diplomatic reviews, native
+government/succession cases, Windows checks and a real two-tab France journey.
+The C01 census has been recounted against current sources; its worldwide
+research inventory is incomplete.
 S10 and G2 remain open until that dependency and the remaining acceptance
 evidence are complete. See [S10 progress and limits](campaign-certification/S10/README.md).
 

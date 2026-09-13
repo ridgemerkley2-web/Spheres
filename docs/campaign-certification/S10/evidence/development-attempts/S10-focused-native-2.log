@@ -1,0 +1,44 @@
+warning: unused import: `path::PathBuf`
+ --> spheres-web\vendor\tiny_http\src\connection.rs:7:5
+  |
+7 |     path::PathBuf,
+  |     ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `SequentialWriter`
+ --> spheres-web\vendor\tiny_http\src\util\mod.rs:7:28
+  |
+7 | pub use self::sequential::{SequentialWriter, SequentialWriterBuilder};
+  |                            ^^^^^^^^^^^^^^^^
+
+warning: trait `MustBeShareDummy` is never used
+   --> spheres-web\vendor\tiny_http\src\lib.rs:164:7
+    |
+164 | trait MustBeShareDummy: Sync + Send {}
+    |       ^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `tiny_http` (lib) generated 3 warnings (run `cargo fix --lib -p tiny_http` to apply 2 suggestions)
+   Compiling spheres-web v0.6.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-web)
+    Finished `release` profile [optimized] target(s) in 58.96s
+     Running unittests src\main.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_web-55caf82b2dcec446.exe)
+
+running 13 tests
+test s10_decision_tests::s10_foreign_malformed_self_and_unaffordable_decisions_refuse_purely ... ok
+test s10_government_tests::s10_foreign_and_newly_unaffordable_reviews_refuse_without_touching_either_country ... ok
+test s10_decision_tests::s10_reads_and_derived_caches_do_not_invalidate_a_review ... ok
+test s10_decision_tests::s10_government_review_has_the_same_server_staleness_guard ... ok
+test s10_decision_tests::s10_answered_offer_records_actual_date_once_and_late_confirmation_is_pure ... ok
+test s10_decision_tests::s10_standing_policy_preserves_pending_offers_and_deadlines_survive_reload ... ok
+test s10_decision_tests::s10_review_refuses_other_tab_changes_ticks_and_replacements_before_mutation ... ok
+test s10_government_tests::s10_four_government_roles_serve_actual_offices_and_all_authored_parties_purely ... ok
+test s10_decision_tests::s10_review_cannot_move_to_another_command_batch_channel_or_receipt ... ok
+test s10_government_tests::s10_reviewed_elections_and_institution_payments_match_native_results_and_reload ... ok
+test s10_government_tests::s10_actual_future_succession_respects_executive_review_and_recorded_monarchy_heir ... ok
+test s10_decision_tests::s10_review_is_pure_and_commits_exact_native_consequences_once ... ok
+test s10_government_tests::s10_historical_browsing_and_future_eligibility_never_replace_saved_incumbents ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 356 filtered out; finished in 0.39s
+

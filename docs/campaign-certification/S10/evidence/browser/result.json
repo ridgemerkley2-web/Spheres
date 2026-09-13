@@ -1,0 +1,656 @@
+{
+  "passed": true,
+  "run": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-final-2\\france-XCMBuc\\server",
+  "url": "http://127.0.0.1:49280",
+  "started_utc": "2026-09-13T06:46:24.493Z",
+  "test_source": {
+    "revision": "5275f3f268a8b0529f7ae8fe03e8b0be195ed601",
+    "driver_sha256": "d131f75651a287aa33a583ffa4596846a16d5a91fd9f2c27c978a61c3cb1d8f9",
+    "runtime_source_equal": true
+  },
+  "fixture": "Fresh France through ordinary controls, real same-campaign second tab; no state grants or substituted responses",
+  "screenshots": [
+    "policy-review-desktop.png",
+    "policy-review-narrow.png",
+    "government-review-before-second-tab.png",
+    "second-tab-policy-recorded.png",
+    "government-stale-review-refused.png",
+    "government-fresh-review.png",
+    "government-result-desktop.png",
+    "government-continued-narrow.png"
+  ],
+  "commands": [
+    {
+      "tab": "B",
+      "payload": {
+        "commands": [
+          {
+            "kind": "set_diplomatic_policy",
+            "policy": {
+              "defense_pacts": "review",
+              "trade_treaties": "decline",
+              "calls_to_arms": "review"
+            }
+          }
+        ],
+        "review_token": "decision-v1-f22f697094a58366",
+        "review_kind": "decisions",
+        "session_id": "29088-1789281986966417400-1",
+        "client_id": "f6b8ae11-67c5-4db7-8fa0-4a650c54aa27",
+        "request_seq": 1
+      }
+    },
+    {
+      "tab": "A",
+      "payload": {
+        "commands": [
+          {
+            "kind": "invite_to_government",
+            "party": "fr_pcf"
+          }
+        ],
+        "review_token": "decision-v1-4e90389bdf21a9a8",
+        "review_kind": "government",
+        "session_id": "29088-1789281986966417400-1",
+        "client_id": "c7242563-8957-43c9-8452-8ab13ea246d6",
+        "request_seq": 1
+      }
+    },
+    {
+      "tab": "A",
+      "payload": {
+        "commands": [
+          {
+            "kind": "invite_to_government",
+            "party": "fr_pcf"
+          }
+        ],
+        "review_token": "decision-v1-9166c314328cfea8",
+        "review_kind": "government",
+        "session_id": "29088-1789281986966417400-1",
+        "client_id": "c7242563-8957-43c9-8452-8ab13ea246d6",
+        "request_seq": 2
+      }
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "Desktop/narrow policy review and cancellation are whole-campaign pure",
+    "A genuine second-tab policy change invalidates the held government review; refusal has no native effect and refreshes current figures",
+    "A fresh government review applies once with the exact reviewed political cost and a dated native result",
+    "Named-save cancellation, actual Load and Continue preserve the exact native campaign, policy and recorded officeholder"
+  ],
+  "browser_version": "152.0.7977.83",
+  "build": {
+    "revision": "7aaa4517fbcc1c256481c2eefc5ef5e1c4153303",
+    "build": {
+      "branch": "codex/campaign-certification",
+      "built_at_unix_seconds": 1789281680,
+      "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+      "distribution": "Local offline game server; source and attribution accompany the release",
+      "revision": "7aaa4517fbcc",
+      "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-final-2\\france-XCMBuc\\server",
+      "version": "0.6.0"
+    },
+    "binary_sha256": "c7eef9f281e7009aac73c722413fcab7587277e77124b9ba56d8ed121b077878",
+    "assets": {
+      "index.html": {
+        "served_sha256": "44c61aef366bd5b53f30d6b7005834b3ecebd62f20f91becb4fa860cd97717c4",
+        "served_bytes": 1144204,
+        "checkout_sha256": "44c61aef366bd5b53f30d6b7005834b3ecebd62f20f91becb4fa860cd97717c4",
+        "checkout_bytes": 1144204,
+        "committed_sha256": "061da85874203c7e946b1f4102dd398647fbcc090bfc9b4248111ee9236d5b03",
+        "committed_bytes": 1125485,
+        "canonical_checkout_sha256": "061da85874203c7e946b1f4102dd398647fbcc090bfc9b4248111ee9236d5b03",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 18719
+        }
+      },
+      "campaign-transport.js": {
+        "served_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+        "served_bytes": 4775,
+        "checkout_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+        "checkout_bytes": 4775,
+        "committed_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+        "committed_bytes": 4693,
+        "canonical_checkout_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 82
+        }
+      },
+      "campaign-ui.js": {
+        "served_sha256": "20641a249ff5b59589736dd9f36f3cdd7b7ab53df29d107d4cf3feccecbf49ba",
+        "served_bytes": 13683,
+        "checkout_sha256": "20641a249ff5b59589736dd9f36f3cdd7b7ab53df29d107d4cf3feccecbf49ba",
+        "checkout_bytes": 13683,
+        "committed_sha256": "9aa62da51602a3d612312e157d37726cc6d2ed73efd17a7e5f2634386b1be312",
+        "committed_bytes": 13473,
+        "canonical_checkout_sha256": "9aa62da51602a3d612312e157d37726cc6d2ed73efd17a7e5f2634386b1be312",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 210
+        }
+      },
+      "fiscal-recovery-ui.js": {
+        "served_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "served_bytes": 11098,
+        "checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "checkout_bytes": 11098,
+        "committed_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "committed_bytes": 11098,
+        "canonical_checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "cash-flow-ui.js": {
+        "served_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+        "served_bytes": 30198,
+        "checkout_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+        "checkout_bytes": 30198,
+        "committed_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+        "committed_bytes": 29951,
+        "canonical_checkout_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 247
+        }
+      },
+      "companies-ui.js": {
+        "served_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "served_bytes": 32920,
+        "checkout_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "checkout_bytes": 32920,
+        "committed_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "committed_bytes": 32920,
+        "canonical_checkout_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "companies.css": {
+        "served_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+        "served_bytes": 13908,
+        "checkout_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+        "checkout_bytes": 13908,
+        "committed_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+        "committed_bytes": 13798,
+        "canonical_checkout_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 110
+        }
+      },
+      "government-ui.js": {
+        "served_sha256": "52d573a271754ac4deb119b54e971660461d7da2c52acc68c5f5ba56b6cc2669",
+        "served_bytes": 51030,
+        "checkout_sha256": "52d573a271754ac4deb119b54e971660461d7da2c52acc68c5f5ba56b6cc2669",
+        "checkout_bytes": 51030,
+        "committed_sha256": "44da269aeb1b4d5be7838fc41650882f3e23b4d30cf75cc684f51cb424102a84",
+        "committed_bytes": 50763,
+        "canonical_checkout_sha256": "44da269aeb1b4d5be7838fc41650882f3e23b4d30cf75cc684f51cb424102a84",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 267
+        }
+      },
+      "government-ui.css": {
+        "served_sha256": "f57d830d425de71983e6660cac2497e82da791ed6bb9be86e97245057254eb95",
+        "served_bytes": 34278,
+        "checkout_sha256": "f57d830d425de71983e6660cac2497e82da791ed6bb9be86e97245057254eb95",
+        "checkout_bytes": 34278,
+        "committed_sha256": "b6dfbf9f03befa8a7020a86fde085bf61bd448ff362ccf2b70a55be6b6d065fe",
+        "committed_bytes": 33939,
+        "canonical_checkout_sha256": "b6dfbf9f03befa8a7020a86fde085bf61bd448ff362ccf2b70a55be6b6d065fe",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 339
+        }
+      },
+      "campaign-operations-ui.js": {
+        "served_sha256": "4da1d39397733cad49125c2fd30e3d57175f89b71e5ddcb75ba35c6a0a730c00",
+        "served_bytes": 21110,
+        "checkout_sha256": "4da1d39397733cad49125c2fd30e3d57175f89b71e5ddcb75ba35c6a0a730c00",
+        "checkout_bytes": 21110,
+        "committed_sha256": "ab7ec85f87a44ab316a700a7206a05f7057b8bfabd51d1d4d9dd5ddb5e0a7bf5",
+        "committed_bytes": 20888,
+        "canonical_checkout_sha256": "ab7ec85f87a44ab316a700a7206a05f7057b8bfabd51d1d4d9dd5ddb5e0a7bf5",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 222
+        }
+      },
+      "campaign-operations-ui.css": {
+        "served_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+        "served_bytes": 8447,
+        "checkout_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+        "checkout_bytes": 8447,
+        "committed_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+        "committed_bytes": 8367,
+        "canonical_checkout_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 80
+        }
+      },
+      "map-controls.js": {
+        "served_sha256": "ce7553d9b43a38b00581e67ef66aa23e5f03a8b4abde9c85171f28f3e6bb4e9e",
+        "served_bytes": 10651,
+        "checkout_sha256": "ce7553d9b43a38b00581e67ef66aa23e5f03a8b4abde9c85171f28f3e6bb4e9e",
+        "checkout_bytes": 10651,
+        "committed_sha256": "79b99912a9406b43f22d786ea7063d47fc05d738e432e9749561eb1fdff03fd7",
+        "committed_bytes": 10442,
+        "canonical_checkout_sha256": "79b99912a9406b43f22d786ea7063d47fc05d738e432e9749561eb1fdff03fd7",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 209
+        }
+      },
+      "map-controls.css": {
+        "served_sha256": "07d2f965f3cb90a04095ac7ec3679307548549d4ea9612d299d2a8b75e35527a",
+        "served_bytes": 9732,
+        "checkout_sha256": "07d2f965f3cb90a04095ac7ec3679307548549d4ea9612d299d2a8b75e35527a",
+        "checkout_bytes": 9732,
+        "committed_sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+        "committed_bytes": 9631,
+        "canonical_checkout_sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 101
+        }
+      },
+      "guidance-ui.js": {
+        "served_sha256": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+        "served_bytes": 21247,
+        "checkout_sha256": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+        "checkout_bytes": 21247,
+        "committed_sha256": "39eb68189c78ea74ee89b4bc92ac6153326accfe0d2300ea401ee696bddc38ea",
+        "committed_bytes": 21072,
+        "canonical_checkout_sha256": "39eb68189c78ea74ee89b4bc92ac6153326accfe0d2300ea401ee696bddc38ea",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 175
+        }
+      },
+      "guidance-ui.css": {
+        "served_sha256": "169531e25171ef1448b38b0832050712392c94e74f8bb0f96e8727f77d3a5b2f",
+        "served_bytes": 7496,
+        "checkout_sha256": "169531e25171ef1448b38b0832050712392c94e74f8bb0f96e8727f77d3a5b2f",
+        "checkout_bytes": 7496,
+        "committed_sha256": "4f959346eae6c81209da51b76717fd1d4b04a6bcfe0f0ae84032adc465e288ad",
+        "committed_bytes": 7490,
+        "canonical_checkout_sha256": "4f959346eae6c81209da51b76717fd1d4b04a6bcfe0f0ae84032adc465e288ad",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 6
+        }
+      },
+      "globe3d.js": {
+        "served_sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9",
+        "served_bytes": 36245,
+        "checkout_sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9",
+        "checkout_bytes": 36245,
+        "committed_sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "committed_bytes": 35548,
+        "canonical_checkout_sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 697
+        }
+      },
+      "city-layer.js": {
+        "served_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+        "served_bytes": 12449,
+        "checkout_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+        "checkout_bytes": 12449,
+        "committed_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+        "committed_bytes": 12222,
+        "canonical_checkout_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 227
+        }
+      },
+      "city-mesh.js": {
+        "served_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+        "served_bytes": 87641,
+        "checkout_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+        "checkout_bytes": 87641,
+        "committed_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+        "committed_bytes": 86075,
+        "canonical_checkout_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 1566
+        }
+      },
+      "water-detail.js": {
+        "served_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+        "served_bytes": 11962,
+        "checkout_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+        "checkout_bytes": 11962,
+        "committed_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+        "committed_bytes": 11729,
+        "canonical_checkout_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 233
+        }
+      },
+      "equipment-mesh.js": {
+        "served_sha256": "0a312b09000429d644f369812d1be5a1fab3b545aa3e7301721a19d319f6f361",
+        "served_bytes": 178146,
+        "checkout_sha256": "0a312b09000429d644f369812d1be5a1fab3b545aa3e7301721a19d319f6f361",
+        "checkout_bytes": 178146,
+        "committed_sha256": "74400279143ac848f2b1f51eca03f9350a5020b27eec31fe0e5809eb6bf3b547",
+        "committed_bytes": 175650,
+        "canonical_checkout_sha256": "74400279143ac848f2b1f51eca03f9350a5020b27eec31fe0e5809eb6bf3b547",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 2496
+        }
+      },
+      "equipment-ui.js": {
+        "served_sha256": "af767b4d226a0ccdfae63a89e4864f8c5d8d9f82b37cb729b247729e28d34cb1",
+        "served_bytes": 126201,
+        "checkout_sha256": "af767b4d226a0ccdfae63a89e4864f8c5d8d9f82b37cb729b247729e28d34cb1",
+        "checkout_bytes": 126201,
+        "committed_sha256": "af767b4d226a0ccdfae63a89e4864f8c5d8d9f82b37cb729b247729e28d34cb1",
+        "committed_bytes": 126201,
+        "canonical_checkout_sha256": "af767b4d226a0ccdfae63a89e4864f8c5d8d9f82b37cb729b247729e28d34cb1",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "equipment-ui.css": {
+        "served_sha256": "cb3efe6b42f6c40639384219e6eac40cb1ac9c8804eb273f94be7f2b64206a67",
+        "served_bytes": 36916,
+        "checkout_sha256": "cb3efe6b42f6c40639384219e6eac40cb1ac9c8804eb273f94be7f2b64206a67",
+        "checkout_bytes": 36916,
+        "committed_sha256": "ca8931a3821837aeb68418af2e144de22cd300b44f0591b14ee0cb15a8377d30",
+        "committed_bytes": 36570,
+        "canonical_checkout_sha256": "ca8931a3821837aeb68418af2e144de22cd300b44f0591b14ee0cb15a8377d30",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 346
+        }
+      },
+      "agency-ui.js": {
+        "served_sha256": "c1493774b3f140d4772eb6f88b94d40ce5a2c81a18f555d2ace7e822f5b1b1d2",
+        "checkout_sha256": "c1493774b3f140d4772eb6f88b94d40ce5a2c81a18f555d2ace7e822f5b1b1d2",
+        "committed_sha256": "b8aa277c3deaf0ef519411a50eeb03186f1b9f369bce8a5068c49ef6c560423a",
+        "canonical_checkout_sha256": "b8aa277c3deaf0ef519411a50eeb03186f1b9f369bce8a5068c49ef6c560423a",
+        "served_bytes": 16182,
+        "newline_normalization": "CRLF to LF for source comparison only; served bytes equal checkout exactly"
+      },
+      "agency.css": {
+        "served_sha256": "abf609bf933e3227014d3117aa801c846292757cf5dedfa8a4b45b8760b50e78",
+        "checkout_sha256": "abf609bf933e3227014d3117aa801c846292757cf5dedfa8a4b45b8760b50e78",
+        "committed_sha256": "c62fed6798d619901956201100b85348353b1d1465e011dc8276fece2d671e6e",
+        "canonical_checkout_sha256": "c62fed6798d619901956201100b85348353b1d1465e011dc8276fece2d671e6e",
+        "served_bytes": 3503,
+        "newline_normalization": "CRLF to LF for source comparison only; served bytes equal checkout exactly"
+      }
+    }
+  },
+  "capabilities": {
+    "daily": true,
+    "population": true,
+    "fiscal": true,
+    "connected_economy": true,
+    "companies": true,
+    "supplier_operations": true,
+    "operational_warfare": true
+  },
+  "cancelled_policy_review": {
+    "changes": [
+      {
+        "after": "Decline",
+        "before": "Ask me",
+        "detail": "Future requests only; pending requests keep their deadline.",
+        "label": "Trade treaties"
+      },
+      {
+        "after": "France updates its standing diplomatic response policy. Existing requests still await their own answer.",
+        "before": "Pending",
+        "detail": "1 Jan 1990",
+        "label": "Dated result"
+      }
+    ],
+    "command": {
+      "kind": "set_diplomatic_policy",
+      "policy": {
+        "calls_to_arms": "review",
+        "defense_pacts": "review",
+        "trade_treaties": "decline"
+      }
+    },
+    "date_label": "1 Jan 1990",
+    "description": "The policy applies to future requests. Existing requests still need their own answer before their deadline.",
+    "nation": "France",
+    "reason": null,
+    "review_token": "decision-v1-f22f697094a58366",
+    "session_id": "29088-1789281986966417400-1",
+    "title": "Update standing diplomatic policy",
+    "valid": true,
+    "warnings": []
+  },
+  "held_government_review": {
+    "changes": [
+      {
+        "after": "44.9",
+        "before": "62.0",
+        "detail": "The actual immediate deduction, after the simulation's limits.",
+        "key": "political_capital",
+        "label": "Political capital"
+      },
+      {
+        "after": "Socialist Party + French Communist Party",
+        "before": "Socialist Party",
+        "detail": "The seated coalition after the command; a dormant cabinet remains a record in a regime.",
+        "key": "cabinet",
+        "label": "Cabinet"
+      },
+      {
+        "after": "62.4%",
+        "before": "56.5%",
+        "detail": "Seat arithmetic from the actual command. Public support and seats are separate stocks.",
+        "key": "seats",
+        "label": "Government seats"
+      },
+      {
+        "after": "1.8",
+        "before": "0.0",
+        "detail": "Strain determines the cost and standing consequences of holding this cabinet together.",
+        "key": "strain",
+        "label": "Coalition strain"
+      },
+      {
+        "after": "0.4 PC / month",
+        "before": "0.0 PC / month",
+        "detail": "Ongoing upkeep of the resulting cabinet; future country conditions can still change it.",
+        "key": "upkeep",
+        "label": "Coalition upkeep"
+      },
+      {
+        "after": "-3.3",
+        "before": "-0.0",
+        "detail": "The current composition's contribution to the standing target, including any electoral honeymoon; not a lump-sum PC award.",
+        "key": "composition",
+        "label": "Government standing modifier"
+      }
+    ],
+    "command": {
+      "kind": "invite_to_government",
+      "party": "fr_pcf"
+    },
+    "date_label": "1 Jan 1990",
+    "description": "into the government",
+    "effects": [],
+    "kind": "invite",
+    "money_cost_bn": 0,
+    "nation": "France",
+    "price_pc": 17.1386273190299,
+    "reason": null,
+    "review_token": "decision-v1-4e90389bdf21a9a8",
+    "session_id": "29088-1789281986966417400-1",
+    "title": "Invite French Communist Party",
+    "valid": true,
+    "warnings": []
+  },
+  "confirmed_policy_review": {
+    "changes": [
+      {
+        "after": "Decline",
+        "before": "Ask me",
+        "detail": "Future requests only; pending requests keep their deadline.",
+        "label": "Trade treaties"
+      },
+      {
+        "after": "France updates its standing diplomatic response policy. Existing requests still await their own answer.",
+        "before": "Pending",
+        "detail": "1 Jan 1990",
+        "label": "Dated result"
+      }
+    ],
+    "command": {
+      "kind": "set_diplomatic_policy",
+      "policy": {
+        "calls_to_arms": "review",
+        "defense_pacts": "review",
+        "trade_treaties": "decline"
+      }
+    },
+    "date_label": "1 Jan 1990",
+    "description": "The policy applies to future requests. Existing requests still need their own answer before their deadline.",
+    "nation": "France",
+    "reason": null,
+    "review_token": "decision-v1-f22f697094a58366",
+    "session_id": "29088-1789281986966417400-1",
+    "title": "Update standing diplomatic policy",
+    "valid": true,
+    "warnings": []
+  },
+  "stale_refusal": {
+    "error": "This decision review is out of date or no longer matches. Refresh the campaign and review it again; nothing was applied.",
+    "not_applied": true,
+    "requires_review": true
+  },
+  "confirmed_government_review": {
+    "changes": [
+      {
+        "after": "44.9",
+        "before": "62.0",
+        "detail": "The actual immediate deduction, after the simulation's limits.",
+        "key": "political_capital",
+        "label": "Political capital"
+      },
+      {
+        "after": "Socialist Party + French Communist Party",
+        "before": "Socialist Party",
+        "detail": "The seated coalition after the command; a dormant cabinet remains a record in a regime.",
+        "key": "cabinet",
+        "label": "Cabinet"
+      },
+      {
+        "after": "62.4%",
+        "before": "56.5%",
+        "detail": "Seat arithmetic from the actual command. Public support and seats are separate stocks.",
+        "key": "seats",
+        "label": "Government seats"
+      },
+      {
+        "after": "1.8",
+        "before": "0.0",
+        "detail": "Strain determines the cost and standing consequences of holding this cabinet together.",
+        "key": "strain",
+        "label": "Coalition strain"
+      },
+      {
+        "after": "0.4 PC / month",
+        "before": "0.0 PC / month",
+        "detail": "Ongoing upkeep of the resulting cabinet; future country conditions can still change it.",
+        "key": "upkeep",
+        "label": "Coalition upkeep"
+      },
+      {
+        "after": "-3.3",
+        "before": "-0.0",
+        "detail": "The current composition's contribution to the standing target, including any electoral honeymoon; not a lump-sum PC award.",
+        "key": "composition",
+        "label": "Government standing modifier"
+      }
+    ],
+    "command": {
+      "kind": "invite_to_government",
+      "party": "fr_pcf"
+    },
+    "date_label": "1 Jan 1990",
+    "description": "into the government",
+    "effects": [],
+    "kind": "invite",
+    "money_cost_bn": 0,
+    "nation": "France",
+    "price_pc": 17.1386273190299,
+    "reason": null,
+    "review_token": "decision-v1-9166c314328cfea8",
+    "session_id": "29088-1789281986966417400-1",
+    "title": "Invite French Communist Party",
+    "valid": true,
+    "warnings": []
+  },
+  "government_result": {
+    "command": {
+      "kind": "invite_to_government",
+      "party": "fr_pcf"
+    },
+    "price_pc": 17.1386273190299,
+    "before_pc": 62.02720000000001,
+    "after_pc": 44.88857268097011,
+    "date": "1 Jan 1990",
+    "events": [
+      {
+        "cat": "politics",
+        "date": "1 Jan 1990",
+        "t": 0,
+        "tags": [
+          "France"
+        ],
+        "text": "France brings French Communist Party into the government."
+      }
+    ]
+  },
+  "saved_slot": "s10-government-decisions",
+  "final_state": {
+    "player": "France",
+    "date": "1 Jan 1990",
+    "policy": {
+      "calls_to_arms": "review",
+      "defense_pacts": "review",
+      "trade_treaties": "decline"
+    },
+    "leader": {
+      "also": [
+        {
+          "name": "Michel Rocard",
+          "office": "Prime Minister of France",
+          "party": "fr_ps",
+          "since": "1988-05-10"
+        }
+      ],
+      "name": "Francois Mitterrand",
+      "native": "François Maurice Adrien Marie Mitterrand",
+      "office": "President of the Republic",
+      "party": "fr_ps",
+      "party_name": "Socialist Party",
+      "since": "1981-05-21"
+    },
+    "political_capital": 44.88857268097011
+  },
+  "finished_utc": "2026-09-13T06:46:40.914Z"
+}

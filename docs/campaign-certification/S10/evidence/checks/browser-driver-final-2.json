@@ -1,0 +1,20 @@
+{
+  "runtime_revision": "7aaa4517fbcc1c256481c2eefc5ef5e1c4153303",
+  "driver_revision": "5275f3f268a8b0529f7ae8fe03e8b0be195ed601",
+  "complete_runtime_source_equal": true,
+  "runner_sha256": "2742ef4ca7d9ac4544ee955a872c994684543bb657a5e2eeac38beed007c4ce4",
+  "driver_sha256": "d131f75651a287aa33a583ffa4596846a16d5a91fd9f2c27c978a61c3cb1d8f9",
+  "binary_sha256_before": "c7eef9f281e7009aac73c722413fcab7587277e77124b9ba56d8ed121b077878",
+  "command": [
+    "node",
+    "tools/ui/ci-government-decisions.cjs"
+  ],
+  "started_utc": "2026-09-13T06:46:23.687307+00:00",
+  "exit_code": 0,
+  "finished_utc": "2026-09-13T06:46:41.156017+00:00",
+  "revision_after": "5275f3f268a8b0529f7ae8fe03e8b0be195ed601",
+  "clean_after": true,
+  "binary_sha256_after": "c7eef9f281e7009aac73c722413fcab7587277e77124b9ba56d8ed121b077878",
+  "log_sha256": "ee1ca519b5cd22376aed24b5b3ce5684b28df4c9405e93b31738a1e42dc7b950",
+  "passed": true
+}
