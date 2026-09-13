@@ -1,3 +1,7 @@
 [workspace]
 members = ["spheres-sim", "spheres-cli", "spheres-web"]
+exclude = ["spheres-web/vendor/tiny_http"]
 resolver = "2"
+
+[patch.crates-io]
+tiny_http = { path = "spheres-web/vendor/tiny_http" }
