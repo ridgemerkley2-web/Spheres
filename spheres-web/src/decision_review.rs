@@ -120,6 +120,7 @@ fn decisions(w: &WorldState, nation: NationId, command: &Value) -> Value {
     let Some(native) = parse_command(w, command, nation) else { return invalid(command, "This decision cannot be read."); };
     let before_a = agency::view(w, nation);
     let offer = before_a.offers.iter().find(|o| kind == "respond_diplomacy" && Some(o.id) == command["offer"].as_u64());
+    let call_context = offer.and_then(|o|crate::diplomatic_commitments::call_context(w,nation,o.id));
     let mut title = target.map_or_else(|| title.to_string(), |target| format!("{title}: {}",target.name()));
     let mut description = description.to_string();
     if let Some(offer) = offer {
@@ -138,6 +139,7 @@ fn decisions(w: &WorldState, nation: NationId, command: &Value) -> Value {
         let mut refused = invalid(command, &reason);
         refused["title"] = json!(title);
         refused["description"] = json!(description);
+        refused["call_context"] = json!(call_context);
         return refused;
     }
     let (before_n, after_n) = (w.nation(nation), after.nation(nation));
@@ -159,7 +161,11 @@ fn decisions(w: &WorldState, nation: NationId, command: &Value) -> Value {
             if offer.days_remaining == 1 {"day"} else {"days"},offer.consequence));
         change(&mut rows,"Request status","Awaiting your reply",after.agency.history.iter().find(|h|h.offer.id==offer.id).map_or("Pending",|h|h.outcome.as_str()),"Recorded in the saved diplomatic ledger with its resolution date.");
         change(&mut rows,&format!("Trade integration with {}",offer.from_name),format!("{:.1}%",w.trade_depth(nation,offer.from)*100.0),format!("{:.1}%",after.trade_depth(nation,offer.from)*100.0),"The current treaty depth. Integration develops through subsequent economic settlements.");
+        rows.extend(crate::diplomatic_commitments::call_changes(w,&after,nation,offer.id));
     }
+    let before_upkeep=crate::diplomatic_commitments::total_upkeep(w,nation);
+    let after_upkeep=crate::diplomatic_commitments::total_upkeep(&after,nation);
+    change(&mut rows,"Defense pact upkeep estimate",before_upkeep["next_step_label"].as_str().unwrap(),after_upkeep["next_step_label"].as_str().unwrap(),"A current-conditions estimate from the same native per-pact charge used by settlement. No upkeep is paid by opening this review or replying; future conditions and settlement order can change the eventual charge.");
     if kind == "choose_campaign_aim" {
         if let Some(goal) = after.campaign_aims.active.as_ref() {
             let evaluation = spheres_sim::campaign_aims::evaluate(&after,goal);
@@ -191,12 +197,13 @@ fn decisions(w: &WorldState, nation: NationId, command: &Value) -> Value {
         }
     }
     if kind == "set_diplomatic_policy" && rows.is_empty() { warnings.push("These settings already match your standing policy.".into()); }
-    json!({"valid":true,"reason":null,"title":title,"command":command,"description":description,"changes":rows,"warnings":warnings})
+    json!({"valid":true,"reason":null,"title":title,"command":command,"description":description,"changes":rows,"warnings":warnings,"call_context":call_context})
 }
 
 /// Add human-readable ledger dates without changing the native save schema.
 pub(crate) fn agency_view(w: &WorldState, nation: NationId) -> Value {
     let mut view = serde_json::to_value(agency::view(w, nation)).unwrap();
+    view["commitments"] = crate::diplomatic_commitments::view(w,nation);
     for row in view["history"].as_array_mut().unwrap() {
         let day = row["resolved_day"].as_i64().unwrap() as i32;
         let (y,m,d) = clock::date_from_day(day);

@@ -43,6 +43,9 @@ mod construction_outcomes;
 mod companies_view;
 mod transport;
 mod decision_review;
+mod diplomatic_commitments;
+#[cfg(test)]
+mod s10e_commitment_fixture_tests;
 #[cfg(test)]
 mod s10_government_tests;
 #[cfg(test)]

@@ -48,4 +48,20 @@
 .agency-aim-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
 .agency-aims progress { width:100%; height:12px; accent-color:#7755b9; }
 .agency-aims details { margin-top:16px; }
+.agency-upkeep { padding:14px; margin:16px 0; border:1px solid #d8cce7; border-radius:10px; background:#f2edf7; }
+#agencyPanel .agency-group-title { margin:24px 0 12px; }
+.agency-commitment-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.agency-commitment { min-width:0; padding:16px; border:1px solid #ded8e7; border-radius:10px; background:#faf8fc; }
+.agency-facts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin:16px 0; }
+.agency-facts > div { min-width:0; }
+.agency-facts dt { font-size:12px; line-height:1.5; color:#6a5b77; }
+.agency-facts dd { margin:5px 0 0; font-size:14px; font-weight:650; line-height:1.5; font-variant-numeric:tabular-nums; }
+.agency-commitment .agency-facts { grid-template-columns:minmax(0,1fr); }
+.agency-commitment-notes { margin:12px 0; padding-left:18px; font-size:12px; line-height:1.65; color:#62556d; }
+.agency-commitment-notes li + li { margin-top:8px; }
+#agencyPanel .agency-fine-print { font-size:12px; line-height:1.65; color:#62556d; }
+#agencyBody #agencyCallContext { margin:18px 0; padding:16px; background:#f2edf7; border-color:#d8cce7; }
+[data-agency-offer] { scroll-margin:20px 0; }
+@media(max-width:600px) { .agency-commitment-grid { grid-template-columns:minmax(0,1fr); } .agency-commitment { padding:12px; } }
+@media(max-width:360px) { .agency-facts { grid-template-columns:minmax(0,1fr); } #agencyBody #agencyCallContext { padding:12px; } }
 @media(max-width:600px) { .agency-aim-grid { grid-template-columns:1fr; } }

@@ -41,7 +41,15 @@ const TRADE_LEVEL_GAIN: f64 = 0.25;
 
 /// Annual share of GDP a guarantee costs both signatories: garrisons, exercises,
 /// and forces sized for somebody else's border.
-const PACT_UPKEEP: f64 = 0.003;
+pub const PACT_UPKEEP: f64 = 0.003;
+
+/// One living signatory's charge for one pact at today's GDP and model cadence.
+/// A read-only estimate may quote this same amount; it is not a future invoice.
+/// Keep the operation order identical to the settlement owner below.
+pub fn pact_upkeep_charge(w: &WorldState, id: NationId) -> (f64, f64) {
+    let dt = crate::clock::month_fraction(w);
+    (w.nation(id).gdp * PACT_UPKEEP / 12.0 * dt, PACT_UPKEEP / 12.0 * dt)
+}
 
 /// The most output any patron can promise to clients. The Soviet Union, the
 /// most profligate patron of the era, disbursed roughly $6.9bn to the Third
@@ -129,8 +137,8 @@ fn pacts_upkeep(w: &mut WorldState) {
             // `PACT_UPKEEP / 12.0` is the exact share the pre-treasury line
             // pushed into `debt_gdp` and is what the closed-books arm writes;
             // the dollars beside it are what a nation keeping a treasury pays.
-            let bn = w.nation(id).gdp * PACT_UPKEEP / 12.0 * dt;
-            crate::economy::charge_for(w, id, bn, PACT_UPKEEP / 12.0 * dt, crate::fiscal_journal::CashCause::PactUpkeep);
+            let (bn, share) = pact_upkeep_charge(w, id);
+            crate::economy::charge_for(w, id, bn, share, crate::fiscal_journal::CashCause::PactUpkeep);
         }
         if w.relation(a, b) < 85.0 {
             w.shift_relation(a, b, 0.20 * dt);

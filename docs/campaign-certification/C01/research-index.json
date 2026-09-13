@@ -5,13 +5,13 @@
   "g2_prerequisite_satisfied": false,
   "runtime_roster_modified": false,
   "counts": {
-    "country_packets": 4,
-    "countries_without_new_discovery_packet": 156,
-    "organization_observations": 660,
+    "country_packets": 5,
+    "countries_without_new_discovery_packet": 155,
+    "organization_observations": 742,
     "institution_observations": 18,
-    "sources": 38,
-    "source_claims": 1344,
-    "discovery_batches": 70,
+    "sources": 40,
+    "source_claims": 1426,
+    "discovery_batches": 79,
     "exhaustive_country_censuses": 0
   },
   "interpretation": "Source-backed discovery observations are not verified game parties, complete office histories or permission to create portraits. Reporting years do not establish organization lifespans. Unknown representation is not absence.",
@@ -126,6 +126,54 @@
           ],
           "country_census_complete": false
         }
+      }
+    },
+    {
+      "nation": "India",
+      "packet": "docs/campaign-certification/C01/research/india.json",
+      "organization_observations": 82,
+      "institution_observations": 0,
+      "role_observations": 0,
+      "source_claims": 82,
+      "mapping_pending": 82,
+      "country_census_complete": false,
+      "unrepresented_organization_count": null,
+      "coverage": {
+        "status": "partial_primary_source_inventory",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "exhaustive_organization_register_reviewed": false,
+        "unrepresented_organization_total": null,
+        "art_completion_claim": false,
+        "bounded_registers": [
+          {
+            "kind": "national_party_recognition_rows",
+            "attested_on": "2024-03-23",
+            "records": 6,
+            "source": "in_eci_national_parties_20240323",
+            "specific_table_rows_reviewed": true
+          },
+          {
+            "kind": "state_party_jurisdiction_recognition_rows",
+            "attested_on": "2024-03-23",
+            "records": 76,
+            "jurisdictions": 26,
+            "source": "in_eci_state_parties_20240323",
+            "specific_table_rows_reviewed": true
+          }
+        ],
+        "interpretation": "These are recognition observations, not deduplicated organizations. Repeated names in different jurisdictions remain separate pending identity reconciliation. The March 2024 source tables are preserved with their qualifications; later notifications are not consolidated here.",
+        "unresolved": [
+          "No complete organization census for India from 1990 through 7 September 2026 has been established.",
+          "Registered unrecognized parties, delisted/inactive records, alliances, informal organizations and institutions remain outside this bounded intake.",
+          "Reconcile repeated names across states, name changes, splits and mergers against primary identity evidence. No deduplicated party total is asserted.",
+          "National and state recognition can change; inspect subsequent notifications before claiming status on any later date.",
+          "Preserve frozen-name and pending-court-order qualifications; no inferred successor or resolution is granted.",
+          "Research separately dated party leaders, chairs, parliamentary roles and executive offices before adding characters or portraits.",
+          "All game mappings, lifecycle intervals and leadership terms remain unknown. Fictional successor eligibility and portrait reuse rights have not been researched."
+        ]
       }
     },
     {
@@ -1768,6 +1816,214 @@
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
     },
     {
+      "id": "C01-India-DISC-B001",
+      "nation": "India",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-India-ORG-001",
+        "C01-India-ROLE-001"
+      ],
+      "members": [
+        "in_eci_20240323_np_01",
+        "in_eci_20240323_np_02",
+        "in_eci_20240323_np_03",
+        "in_eci_20240323_np_04",
+        "in_eci_20240323_np_05",
+        "in_eci_20240323_np_06",
+        "in_eci_20240323_sp_01_01",
+        "in_eci_20240323_sp_01_02",
+        "in_eci_20240323_sp_02_01",
+        "in_eci_20240323_sp_02_02"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-India-DISC-B002",
+      "nation": "India",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-India-ORG-001",
+        "C01-India-ROLE-001"
+      ],
+      "members": [
+        "in_eci_20240323_sp_02_03",
+        "in_eci_20240323_sp_03_01",
+        "in_eci_20240323_sp_03_02",
+        "in_eci_20240323_sp_03_03",
+        "in_eci_20240323_sp_03_04",
+        "in_eci_20240323_sp_04_01",
+        "in_eci_20240323_sp_04_02",
+        "in_eci_20240323_sp_04_03",
+        "in_eci_20240323_sp_04_04",
+        "in_eci_20240323_sp_04_05"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-India-DISC-B003",
+      "nation": "India",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-India-ORG-001",
+        "C01-India-ROLE-001"
+      ],
+      "members": [
+        "in_eci_20240323_sp_05_01",
+        "in_eci_20240323_sp_06_01",
+        "in_eci_20240323_sp_06_02",
+        "in_eci_20240323_sp_06_03",
+        "in_eci_20240323_sp_07_01",
+        "in_eci_20240323_sp_07_02",
+        "in_eci_20240323_sp_08_01",
+        "in_eci_20240323_sp_08_02",
+        "in_eci_20240323_sp_08_03",
+        "in_eci_20240323_sp_09_01"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-India-DISC-B004",
+      "nation": "India",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-India-ORG-001",
+        "C01-India-ROLE-001"
+      ],
+      "members": [
+        "in_eci_20240323_sp_09_02",
+        "in_eci_20240323_sp_09_03",
+        "in_eci_20240323_sp_10_01",
+        "in_eci_20240323_sp_11_01",
+        "in_eci_20240323_sp_11_02",
+        "in_eci_20240323_sp_11_03",
+        "in_eci_20240323_sp_11_04",
+        "in_eci_20240323_sp_11_05",
+        "in_eci_20240323_sp_12_01",
+        "in_eci_20240323_sp_12_02"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-India-DISC-B005",
+      "nation": "India",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-India-ORG-001",
+        "C01-India-ROLE-001"
+      ],
+      "members": [
+        "in_eci_20240323_sp_12_03",
+        "in_eci_20240323_sp_12_04",
+        "in_eci_20240323_sp_12_05",
+        "in_eci_20240323_sp_13_01",
+        "in_eci_20240323_sp_13_02",
+        "in_eci_20240323_sp_13_03",
+        "in_eci_20240323_sp_14_01",
+        "in_eci_20240323_sp_14_02",
+        "in_eci_20240323_sp_14_03",
+        "in_eci_20240323_sp_14_04"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-India-DISC-B006",
+      "nation": "India",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-India-ORG-001",
+        "C01-India-ROLE-001"
+      ],
+      "members": [
+        "in_eci_20240323_sp_14_05",
+        "in_eci_20240323_sp_15_01",
+        "in_eci_20240323_sp_15_02",
+        "in_eci_20240323_sp_15_03",
+        "in_eci_20240323_sp_16_01",
+        "in_eci_20240323_sp_16_02",
+        "in_eci_20240323_sp_16_03",
+        "in_eci_20240323_sp_16_04",
+        "in_eci_20240323_sp_16_05",
+        "in_eci_20240323_sp_17_01"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-India-DISC-B007",
+      "nation": "India",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-India-ORG-001",
+        "C01-India-ROLE-001"
+      ],
+      "members": [
+        "in_eci_20240323_sp_18_01",
+        "in_eci_20240323_sp_18_02",
+        "in_eci_20240323_sp_18_03",
+        "in_eci_20240323_sp_19_01",
+        "in_eci_20240323_sp_20_01",
+        "in_eci_20240323_sp_21_01",
+        "in_eci_20240323_sp_21_02",
+        "in_eci_20240323_sp_22_01",
+        "in_eci_20240323_sp_22_02",
+        "in_eci_20240323_sp_22_03"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-India-DISC-B008",
+      "nation": "India",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-India-ORG-001",
+        "C01-India-ROLE-001"
+      ],
+      "members": [
+        "in_eci_20240323_sp_22_04",
+        "in_eci_20240323_sp_23_01",
+        "in_eci_20240323_sp_23_02",
+        "in_eci_20240323_sp_23_03",
+        "in_eci_20240323_sp_23_04",
+        "in_eci_20240323_sp_24_01",
+        "in_eci_20240323_sp_24_02",
+        "in_eci_20240323_sp_24_03",
+        "in_eci_20240323_sp_25_01",
+        "in_eci_20240323_sp_25_02"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-India-DISC-B009",
+      "nation": "India",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-India-ORG-001",
+        "C01-India-ROLE-001"
+      ],
+      "members": [
+        "in_eci_20240323_sp_26_01",
+        "in_eci_20240323_sp_26_02"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
       "id": "C01-Japan-DISC-B001",
       "nation": "Japan",
       "status": "open",
@@ -1900,6 +2156,11 @@
       "path": "docs/campaign-certification/C01/research/france.json",
       "bytes": 1803439,
       "sha256": "6ac88df4bfc04728352b644ec419355bec519bb3ee8932dcf1df25b2964b112c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/india.json",
+      "bytes": 183777,
+      "sha256": "25e00e7364722357290cb785502abad018e60d512221cadd7fa5785f7569a4ae"
     },
     {
       "path": "docs/campaign-certification/C01/research/japan.json",

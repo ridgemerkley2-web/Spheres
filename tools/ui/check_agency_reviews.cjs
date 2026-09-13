@@ -51,6 +51,53 @@ const command={kind:'respond_diplomacy',offer:4,accept:true};
 function quote(cmd=command,extra={}){return {session_id:'campaign-one',nation:'France',valid:true,reason:null,title:'Accept Japan’s proposal',date_label:'1 Jan 1990',description:'A reviewed diplomatic commitment.',changes:[{label:'Political capital',before:'40.0',after:'30.0',detail:'Native immediate cost.'}],warnings:['Future requests retain their own deadlines.'],command:copy(cmd),review_token:'native-token',...extra};}
 const deferred=()=>{let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b;});return {promise,resolve,reject};};
 
+function commitments(){return {
+  note:'Saved commitments only.',upkeep:{next_step_label:'$8.200m per day at today’s conditions',annual_label:'$3.000bn',note:'Native estimate; no payment.'},
+  defense_pacts:[{partner:'Kuwait',partner_name:'<Kuwait>',since:'1990-01',status_label:'Saved defense pact',upkeep:{next_step_label:'$4.100m per day at today’s conditions'},warnings:['<Native warning>'],pending_offer_ids:[4]}],
+  trade_agreements:[{partner:'Japan',partner_name:'Japan',status_label:'Saved trade agreement',depth:.425,dependency:0,partner_dependency:.0196,warnings:[]}],
+  conflicts:[{conflict_id:7,theatre:'<Gulf>',started:'1989-12',side_label:'Defending coalition',rung:2,rung_name:'sanctions',shooting_label:'Below the shooting threshold',allies:[{name:'France',alive:true},{name:'<Kuwait>',alive:true}],opponents:[{name:'Iraq',alive:true}]}]
+};}
+test('saved commitments render native facts without mutations, invented dates or actions',()=>{
+  const f=fixture();f.state.agency.commitments=commitments();const before=copy(f.state);f.c.openAgency();f.c.renderAgency(f.state);
+  const html=f.node('agencyBody').innerHTML;
+  for(const text of ['1990-01','$4.100m','42.5%','0.0%','2.0%','1989-12','Defending coalition','2 · sanctions','Below the shooting threshold']) assert(html.includes(text),text);
+  assert.match(html,/&lt;Kuwait&gt;/);assert.match(html,/&lt;Gulf&gt;/);assert.match(html,/&lt;Native warning&gt;/);assert.doesNotMatch(html,/<Kuwait>|<Gulf>|<Native warning>/);
+  assert(html.indexOf('id="agencyInbox"')<html.indexOf('id="agencyCommitments"'));
+  assert(html.indexOf('id="agencyCommitments"')<html.indexOf('Standing diplomatic policy'));
+  assert.deepEqual(f.state,before);assert.equal(f.requests.length,0);
+});
+test('unavailable commitment data is distinct from an empty set or zero cost',()=>{
+  const f=fixture();f.c.openAgency();assert.match(f.html(),/Commitment details are not available/);assert.doesNotMatch(f.html(),/No saved defense pacts/);
+  f.state.agency.commitments={defense_pacts:[],trade_agreements:[],conflicts:[],upkeep:{next_step_label:'$0 per day at today’s conditions',annual_label:'$0'}};f.c.renderAgency(f.state);
+  assert.match(f.html(),/No saved defense pacts/);assert.match(f.html(),/No saved trade agreements/);assert.match(f.html(),/\$0 per day/);
+});
+test('View request focuses the exact inbox entry without choosing an answer or fetching a preview',()=>{
+  const f=fixture();f.state.agency.commitments=commitments();f.c.openAgency();
+  const button=f.node('agencyBody').querySelector('[data-agency-commitment-reply]');button.onclick();
+  const offer=f.node('agencyBody').querySelector('[data-agency-offer="4"]');
+  assert.equal(f.document.activeElement,offer);assert.equal(offer.attrs.tabindex,'-1');assert.equal(offer.lastScroll.block,'nearest');
+  assert.equal(f.review(),null);assert.equal(f.requests.length,0);
+  f.state.agency.offers=[];f.document.activeElement=null;button.onclick();assert.equal(f.document.activeElement,null);
+});
+test('Inspect conflict uses the current wars view and only navigates to a saved conflict',()=>{
+  const f=fixture(),opened=[];f.c.openConflict=id=>opened.push(id);f.state.agency.commitments=commitments();f.state.wars=[{id:7}];f.c.openAgency();
+  const button=f.node('agencyBody').querySelector('[data-agency-open-conflict]');button.onclick();assert.deepEqual(opened,[7]);assert.equal(f.node('agencyPanel').open,false);assert.equal(f.requests.length,0);
+  f.c.openAgency();f.state.wars=[];f.node('agencyBody').querySelector('[data-agency-open-conflict]').onclick();assert.deepEqual(opened,[7]);assert.equal(f.node('agencyPanel').open,true);
+});
+test('call review displays matched native coalitions and escapes every context field',async()=>{
+  const f=fixture(),context={requester_name:'<Kuwait>',guaranteed:true,requested_rung:2,requested_rung_name:'sanctions',status_label:'Review the native effects before answering.',note:'<Native posture note>',conflict:{theatre:'<Gulf>',started:'1990-01',defenders:[{name:'<Kuwait>',alive:true}],opponents:[{name:'Iraq',alive:true}]}};
+  f.api(()=>quote(command,{call_context:context}));await f.c.agencyReview(command);
+  const html=f.node('agencyReview').innerHTML;
+  assert.match(html,/What you are being asked to join/);assert.match(html,/Defense pact request/);assert.match(html,/2 · sanctions/);assert.match(html,/Defending coalition/);assert.match(html,/Opposing coalition/);
+  assert.match(html,/&lt;Kuwait&gt;/);assert.match(html,/&lt;Native posture note&gt;/);assert.doesNotMatch(html,/<Gulf>|<Kuwait>/);assert.equal(f.requests.length,1);
+});
+test('an unmatched call never borrows the coalitions of a reused current conflict ID',async()=>{
+  const f=fixture();f.state.wars=[{id:7,theatre:'Wrong theatre',side_b:['Wrong defender']}];
+  f.api(()=>quote(command,{valid:false,review_token:null,changes:[],call_context:{conflict_id:7,requester_name:'Kuwait',requested_rung:2,requested_rung_name:'sanctions',status_label:'The original conflict has ended or changed identity.',blocked:'Native refusal.',conflict:null,note:'Native context only.'}}));
+  await f.c.agencyReview(command);assert.match(f.html(),/original conflict has ended/);assert.match(f.html(),/Native refusal/);assert.doesNotMatch(f.html(),/Wrong theatre|Wrong defender/);
+  assert.equal(f.node('agencyReview').querySelector('[data-agency-confirm]').disabled,true);await f.c.agencyConfirm(f.review());assert.equal(f.requests.length,1);
+});
+
 test('inbox opens a dated native review and cancellation sends no command',async()=>{
   const f=fixture();f.api(async(route,payload)=>{assert.equal(route,'/api/decisions/preview');assert.deepEqual(copy(payload),{session_id:'campaign-one',nation:'France',command});return quote();});
   f.c.openAgency();await f.node('agencyBody').querySelector('[data-agency-accept]').onclick();
