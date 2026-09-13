@@ -1,7 +1,7 @@
 // S09: a fresh France campaign and the shipped research/designer controls.
 // Requires a clean committed release build. No granted research, funds or models.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
-const cp=require('node:child_process'),net=require('node:net');
+const cp=require('node:child_process'),net=require('node:net'),crypto=require('node:crypto');
 const {chromium}=require('playwright'),integrated=require('./ci-integrated.cjs');
 const audit=require('./supplier-archive-audit.cjs');
 const root=path.resolve(__dirname,'../..'),copy=x=>JSON.parse(JSON.stringify(x));
@@ -51,6 +51,9 @@ async function reopenSaved(page,name){
 async function main(){
   assert(process.env.SPHERES_BINARY,'Set the already built SPHERES_BINARY');
   assert.match(process.env.SPHERES_EXPECTED_REVISION||'',/^[a-f0-9]{40}$/);
+  const git=args=>cp.execFileSync('git',['-c','core.longpaths=true',...args],{cwd:root,encoding:'utf8',windowsHide:true});
+  const sourceRevision=git(['rev-parse','HEAD']).trim();assert.equal(git(['status','--porcelain']).trim(),'','Browser driver needs a clean committed checkout');
+  assert.equal(git(['diff','--name-only',process.env.SPHERES_EXPECTED_REVISION,sourceRevision,'--','spheres-sim','spheres-cli','spheres-web','Cargo.toml','Cargo.lock']).trim(),'','A newer browser-driver commit must preserve the complete runtime source');
   const binary=path.resolve(process.env.SPHERES_BINARY);assert(fs.statSync(binary).isFile());
   const output=path.resolve(process.env.SPHERES_RESEARCH_OUTPUT||path.join(root,'artifacts/browser-research-design-ci'));
   fs.mkdirSync(output,{recursive:true});const out=fs.mkdtempSync(path.join(output,'france-')),run=path.join(out,'server');fs.mkdirSync(run);fs.mkdirSync(path.join(run,'saves'));
@@ -58,7 +61,7 @@ async function main(){
   const server=cp.spawn(binary,['--port',String(port),'--no-open'],{cwd:run,windowsHide:true,stdio:['ignore','pipe','pipe']});
   const log=fs.createWriteStream(path.join(out,'server.log'));server.stdout.pipe(log);server.stderr.pipe(log);
   let browser,page,launchError,stage='launch';server.on('error',e=>{launchError=e;});
-  const e={passed:false,run,url,started_utc:new Date().toISOString(),fixture:'Fresh France, ordinary menus and controls; no state grants or substituted campaign responses',screenshots:[],commands:[],errors:[],checks:[]};
+  const e={passed:false,run,url,started_utc:new Date().toISOString(),test_source:{revision:sourceRevision,driver_sha256:crypto.createHash('sha256').update(fs.readFileSync(__filename)).digest('hex'),runtime_source_equal:true},fixture:'Fresh France, ordinary menus and controls; no state grants or substituted campaign responses',screenshots:[],commands:[],errors:[],checks:[]};
   const write=(name,value)=>fs.writeFileSync(path.join(out,name),JSON.stringify(value,null,2)+'\n');
   const telemetry=(event,details)=>fs.appendFileSync(path.join(out,'progress.jsonl'),JSON.stringify({utc:new Date().toISOString(),stage,event,...details})+'\n');
   const shot=async(name,selector)=>{if(selector)await page.locator(selector).scrollIntoViewIfNeeded();await page.screenshot({path:path.join(out,name+'.png')});e.screenshots.push(name+'.png');};
@@ -72,6 +75,10 @@ async function main(){
     }
     browser=await chromium.launch({headless:true,...(process.env.SPHERES_BROWSER_CHANNEL?{channel:process.env.SPHERES_BROWSER_CHANNEL}:{})});
     e.browser_version=browser.version();page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});page.setDefaultTimeout(30000);
+    const cdp=await page.context().newCDPSession(page);await cdp.send('Network.enable');await cdp.send('Page.enable');await cdp.send('Page.setLifecycleEventsEnabled',{enabled:true});
+    const network=path.join(out,'browser-lifecycle.jsonl'),observe=(kind,value)=>fs.appendFileSync(network,JSON.stringify({utc:new Date().toISOString(),stage,kind,value})+'\n');
+    for(const event of ['Network.requestWillBeSent','Network.responseReceived','Network.loadingFinished','Network.loadingFailed','Page.lifecycleEvent'])cdp.on(event,value=>observe(event,value));
+    page.on('console',message=>observe('console',{type:message.type(),text:message.text()}));page.on('crash',()=>observe('page-crash',{}));
     page.on('pageerror',error=>e.errors.push(error.message));page.on('request',r=>{if(new URL(r.url()).pathname==='/api/command'&&r.method()==='POST')e.commands.push(r.postDataJSON());});
     e.build=await integrated.verifyBuild({page,url,root,run,binary});
     stage='fresh France';await page.goto(url,{waitUntil:'domcontentloaded'});await page.locator('#campaignHome').waitFor();await page.waitForFunction(()=>!!SESSION.live?.session_id);
