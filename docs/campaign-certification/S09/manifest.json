@@ -2172,5 +2172,12 @@
     "board_p95_ms": 313.0021999999999,
     "board_max_ms": 324.03069999999934,
     "cause": "Unresolved isolated stalls; normal samples12\u201319ms. Observation and subsequent completed journey passed unchanged limits; no runtime performance improvement claimed."
+  },
+  "git_evidence_validation": {
+    "verified": true,
+    "stored_files_checked": 267,
+    "missing": 0,
+    "different": 0,
+    "method": "Every inventory storage file plus inventory.json was compared byte-for-byte by its Git blob identity with the staged index. The two saves-directory archives are explicitly tracked despite the general save-folder ignore rule."
   }
 }
