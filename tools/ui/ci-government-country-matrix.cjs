@@ -68,6 +68,14 @@ function quotedReading(key,board,facts){
   if(key==='strain')return pc(board.strain);
   if(key==='upkeep')return pc(board.upkeep)+' PC / month';
   if(key==='composition'){
+    if(board.electoral===false){
+      // Native government.rs::standing_modifier uses mean institutional
+      // loyalty here. The electoral upkeep sentence is not served for regimes.
+      // Read the retained archive's ordered pillar values; never skip this row.
+      const mean=g.pillars.length?g.pillars.reduce((sum,[,value])=>sum+value,0)/g.pillars.length:1;
+      const value=Math.min((mean-0.75)*24,2),sign=value<0||Object.is(value,-0)?'-':'+';
+      return sign+Math.abs(value).toFixed(1);
+    }
     const detail=board.briefing.stats.find(row=>row.key==='upkeep')?.detail||'';
     const found=detail.match(/standing target by ([+-]\d+\.\d) points/);assert(found,'Native composition reading is missing');return found[1];
   }
