@@ -15731,6 +15731,8 @@ function openGovernment(id) {
   if (gov.nation !== who) { gov.data = null; gov.review = null; gov.tab = "overview"; gov.query = ""; gov.queries = {}; gov.notice = ""; gov.leadershipMode = "campaign"; gov.leadershipDate = null; gov.leadershipQuery = ""; gov.leadershipReference = null; gov.leadershipRequest = null; gov.expandedDetails = new Set(); }
   gov.nation = who;
   $("#govScreen").style.display = "block";
+  // A toast from the previous room must not cover this room's controls.
+  if ($("#banner")) $("#banner").style.display = "none";
   renderGovernment();
   govFetch();
   $("#govScreen .tbar .x").focus({ preventScroll: true });
