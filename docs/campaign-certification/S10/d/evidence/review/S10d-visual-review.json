@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "method": "Codex inspected actual browser screenshots using view_image; browser layout assertions independently checked text bounds and hit visibility.",
+  "runtime_revision": "6ab4d2fccd1128cff14ecb7470aac82b9105e291",
+  "predecessor_images": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10d-inbox-final\\browser\\authored-france-osIwBQ\\reply-desk-1440.png",
+      "sha256": "ddf35161a8a411f0fcc48fb80422778bb57f3046c4d06ac926afa87ecf936dbc",
+      "observations": "Room art, nearest deadline and review controls readable."
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10d-inbox-final\\browser\\authored-france-osIwBQ\\reply-desk-320.png",
+      "sha256": "0b6a255c76432d998fb4da62f6e436962c20a29c152288d3eff5fbe9e7472e03",
+      "observations": "Close label wrapped onto two lines; corrected before the final build."
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10d-inbox-final\\browser\\authored-france-osIwBQ\\long-native-effects-320.png",
+      "sha256": "aa55d419de59a238ded360562ad8e9e9530e6def19c9d484d40ebb11cfa82bda",
+      "observations": "Stacked native Before/After fields retain readable phrases."
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10d-inbox-final\\browser\\authored-france-osIwBQ\\reply-recorded-390.png",
+      "sha256": "6da9876a1efcbdf655d14b036dcf15df4fe4a456cccf957023439011948b4b06",
+      "observations": "Recorded response and completion notice readable."
+    }
+  ],
+  "final_images": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10d-inbox-final-2\\browser\\authored-france-1S83XX\\reply-desk-320.png",
+      "sha256": "c7b440231e4e896c7f9563eb60b7e3a2d1ae3a2f9883ebfb3b612389e3b2fbbf",
+      "observations": "Close label now fits on one line; no horizontal overflow; long inbox can be scrolled normally."
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10d-inbox-final-2\\browser\\authored-france-1S83XX\\reply-recorded-390.png",
+      "sha256": "6da9876a1efcbdf655d14b036dcf15df4fe4a456cccf957023439011948b4b06",
+      "observations": "Confirmation remains visible and has focus without browser-driver scroll correction."
+    }
+  ],
+  "limits": "The pending offers are a disclosed authored native fixture, not historical opening diplomacy. This visual pass does not qualify a long campaign or new artwork."
+}

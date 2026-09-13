@@ -1,0 +1,37 @@
+{
+  "revision": "6ab4d2fccd1128cff14ecb7470aac82b9105e291",
+  "driver_revision": "6ab4d2fccd1128cff14ecb7470aac82b9105e291",
+  "started_utc": "2026-09-13T22:55:47.040616+00:00",
+  "runner_sha256": "65f3a8de8fba98b1d369f7b7857d9f599ab6475d4dd4072535e2605712b17f37",
+  "checks": [
+    {
+      "name": "export",
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+        "s10d_inbox_fixture_tests::s10d_export_disposable_diplomatic_inbox_fixture",
+        "--exact",
+        "--ignored",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "exit_code": 0,
+      "log": "export.log",
+      "log_sha256": "d6cead0bfb18e2387e87dc1f66db89edb7c7e276c3e4fcaa4afee548ca63fa51"
+    },
+    {
+      "name": "browser",
+      "command": [
+        "node",
+        "tools/ui/ci-diplomatic-inbox.cjs"
+      ],
+      "exit_code": 0,
+      "log": "browser.log",
+      "log_sha256": "678c16062bbc0694cd10bc26a0e3c48e24b1c1ebfca9aeac8b8d22e921b5f8ed"
+    }
+  ],
+  "clean_after": true,
+  "driver_revision_after": "6ab4d2fccd1128cff14ecb7470aac82b9105e291",
+  "binary_sha256_after": "45b113ea8885c155136d4e7e877e3208e72d452d9a9b2b703d2294e599342783",
+  "passed": true,
+  "finished_utc": "2026-09-13T22:56:09.678535+00:00"
+}

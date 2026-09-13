@@ -1,0 +1,3718 @@
+{
+  "passed": true,
+  "run": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10d-inbox-final-2\\browser\\authored-france-1S83XX\\server",
+  "url": "http://127.0.0.1:56809",
+  "started_utc": "2026-09-13T22:55:50.312Z",
+  "scope": "Disposable authored transaction and UI fixture. Not an ordinary campaign, historical treaty, simulated war or campaign-certification duration result.",
+  "fixture": {
+    "manifest_path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10d-inbox-fixture-2\\manifest.json",
+    "source": {
+      "after_agency": {
+        "automatic_bank": true,
+        "break_peg_pc": 12,
+        "expiry_rule": "New requests follow the visible standing policy. Review is the default. Reply before the stated date: the reply window closes when that date begins. A still-applicable unanswered request expires as a decline; changed circumstances can close it instead. Existing requests are not automatically answered by a policy change.",
+        "history": [
+          {
+            "date_label": "1990-01-01",
+            "from_name": "Japan",
+            "offer": {
+              "expires_day": 30,
+              "from": "Japan",
+              "id": 1,
+              "issued_day": 0,
+              "kind": {
+                "kind": "trade_treaty"
+              },
+              "to": "France"
+            },
+            "outcome": "accepted",
+            "resolved_day": 0,
+            "title": "Trade treaty"
+          }
+        ],
+        "monetary": {
+          "kind": "floating"
+        },
+        "offers": [
+          {
+            "accept_blocked": null,
+            "consequence": "Both signatories pay 0.3% of GDP annually. A later call to arms needs your response; abandoning a guarantee has diplomatic costs.",
+            "days_remaining": 30,
+            "expires": "1990-01-31",
+            "from": "Brazil",
+            "from_name": "Brazil",
+            "id": 2,
+            "title": "a mutual-defense pact"
+          },
+          {
+            "accept_blocked": null,
+            "consequence": "Accept: enter the defending side at rung 2, subject to normal access, nuclear and sphere rules. Decline or expiry can end the pact and reduce reputation and relations if the guarantee still applies. Review the exact current effects before responding.",
+            "days_remaining": 7,
+            "expires": "1990-01-08",
+            "from": "Kuwait",
+            "from_name": "Kuwait",
+            "id": 3,
+            "title": "a call to honor its defense pact"
+          }
+        ],
+        "policy": {
+          "calls_to_arms": "review",
+          "defense_pacts": "review",
+          "trade_treaties": "review"
+        }
+      },
+      "after_dispatch_count": 1,
+      "after_log": [
+        {
+          "cat": "diplomacy",
+          "date": "1 Jan 1990",
+          "t": 0,
+          "tags": [
+            "Japan",
+            "France"
+          ],
+          "text": "Japan and France sign a trade agreement."
+        }
+      ],
+      "authored_preconditions": [
+        "Integrated fresh France, seed 13, zero days advanced",
+        "All starting defense pacts, trade agreements and sanctions cleared",
+        "France political capital set to 100 and relations with Japan, Brazil and Kuwait set to 98",
+        "A France-Kuwait defense pact authored for a native Iraq-Kuwait test conflict"
+      ],
+      "before_agency": {
+        "automatic_bank": true,
+        "break_peg_pc": 12,
+        "expiry_rule": "New requests follow the visible standing policy. Review is the default. Reply before the stated date: the reply window closes when that date begins. A still-applicable unanswered request expires as a decline; changed circumstances can close it instead. Existing requests are not automatically answered by a policy change.",
+        "history": [],
+        "monetary": {
+          "kind": "floating"
+        },
+        "offers": [
+          {
+            "accept_blocked": null,
+            "consequence": "Opens market integration and long-term dependency. Ending the treaty later can damage both economies.",
+            "days_remaining": 30,
+            "expires": "1990-01-31",
+            "from": "Japan",
+            "from_name": "Japan",
+            "id": 1,
+            "title": "a trade treaty"
+          },
+          {
+            "accept_blocked": null,
+            "consequence": "Both signatories pay 0.3% of GDP annually. A later call to arms needs your response; abandoning a guarantee has diplomatic costs.",
+            "days_remaining": 30,
+            "expires": "1990-01-31",
+            "from": "Brazil",
+            "from_name": "Brazil",
+            "id": 2,
+            "title": "a mutual-defense pact"
+          },
+          {
+            "accept_blocked": null,
+            "consequence": "Accept: enter the defending side at rung 2, subject to normal access, nuclear and sphere rules. Decline or expiry can end the pact and reduce reputation and relations if the guarantee still applies. Review the exact current effects before responding.",
+            "days_remaining": 7,
+            "expires": "1990-01-08",
+            "from": "Kuwait",
+            "from_name": "Kuwait",
+            "id": 3,
+            "title": "a call to honor its defense pact"
+          }
+        ],
+        "policy": {
+          "calls_to_arms": "review",
+          "defense_pacts": "review",
+          "trade_treaties": "review"
+        }
+      },
+      "before_dispatch_count": 0,
+      "before_file": "before.json",
+      "before_log": [],
+      "command": {
+        "accept": true,
+        "kind": "respond_diplomacy",
+        "offer": 1
+      },
+      "compiled_revision": "6ab4d2fccd11",
+      "date": "1 Jan 1990",
+      "days_advanced": 0,
+      "expected_after_file": "expected-after.json",
+      "fixture": "s10d-authored-native-diplomatic-inbox",
+      "native_actions": [
+        "Japan proposes trade to France through statecraft::propose_trade",
+        "Brazil proposes defense pact through statecraft::propose_pact",
+        "Native Iraq-Kuwait conflict and 7-day guaranteed France reply queued after the 30-day treaties",
+        "Preview all six answer choices, then accept Japan trade through the protected native review transport"
+      ],
+      "player": "France",
+      "quotes": [
+        {
+          "changes": [
+            {
+              "after": "accepted",
+              "before": "Awaiting your reply",
+              "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+              "label": "Request status"
+            },
+            {
+              "after": "5.0%",
+              "before": "0.0%",
+              "detail": "The current treaty depth. Integration develops through subsequent economic settlements.",
+              "label": "Trade integration with Japan"
+            },
+            {
+              "after": "100.0",
+              "before": "98.0",
+              "detail": "Immediate relationship change.",
+              "label": "Relations with Japan"
+            },
+            {
+              "after": "Japan and France sign a trade agreement.",
+              "before": "Pending",
+              "detail": "1 Jan 1990",
+              "label": "Dated result"
+            }
+          ],
+          "command": {
+            "accept": true,
+            "kind": "respond_diplomacy",
+            "offer": 1
+          },
+          "date_label": "1 Jan 1990",
+          "description": "Reply before 1990-01-31. 30 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+          "nation": "France",
+          "reason": null,
+          "review_token": "decision-v1-218eb187882751a3",
+          "session_id": "38680-1789340147738804300-1",
+          "title": "Accept a trade treaty from Japan",
+          "valid": true,
+          "warnings": [
+            "Japan · reply before 1990-01-31 (30 days remaining). Opens market integration and long-term dependency. Ending the treaty later can damage both economies."
+          ]
+        },
+        {
+          "changes": [
+            {
+              "after": "declined",
+              "before": "Awaiting your reply",
+              "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+              "label": "Request status"
+            },
+            {
+              "after": "France declines a trade treaty from Japan.",
+              "before": "Pending",
+              "detail": "1 Jan 1990",
+              "label": "Dated result"
+            }
+          ],
+          "command": {
+            "accept": false,
+            "kind": "respond_diplomacy",
+            "offer": 1
+          },
+          "date_label": "1 Jan 1990",
+          "description": "Reply before 1990-01-31. 30 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+          "nation": "France",
+          "reason": null,
+          "review_token": "decision-v1-2438308ee6e028d2",
+          "session_id": "38680-1789340147738804300-1",
+          "title": "Decline a trade treaty from Japan",
+          "valid": true,
+          "warnings": [
+            "Japan · reply before 1990-01-31 (30 days remaining). Opens market integration and long-term dependency. Ending the treaty later can damage both economies."
+          ]
+        },
+        {
+          "changes": [
+            {
+              "after": "accepted",
+              "before": "Awaiting your reply",
+              "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+              "label": "Request status"
+            },
+            {
+              "after": "100.0",
+              "before": "98.0",
+              "detail": "Immediate relationship change.",
+              "label": "Relations with Brazil"
+            },
+            {
+              "after": "true",
+              "before": "false",
+              "detail": "A mutual-defense commitment; a later call to arms follows your response policy.",
+              "label": "Defense pact with Brazil"
+            },
+            {
+              "after": "Brazil and France sign a mutual defence pact.",
+              "before": "Pending",
+              "detail": "1 Jan 1990",
+              "label": "Dated result"
+            }
+          ],
+          "command": {
+            "accept": true,
+            "kind": "respond_diplomacy",
+            "offer": 2
+          },
+          "date_label": "1 Jan 1990",
+          "description": "Reply before 1990-01-31. 30 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+          "nation": "France",
+          "reason": null,
+          "review_token": "decision-v1-341e8db5a07c3d5f",
+          "session_id": "38680-1789340147738804300-1",
+          "title": "Accept a mutual-defense pact from Brazil",
+          "valid": true,
+          "warnings": [
+            "Brazil · reply before 1990-01-31 (30 days remaining). Both signatories pay 0.3% of GDP annually. A later call to arms needs your response; abandoning a guarantee has diplomatic costs."
+          ]
+        },
+        {
+          "changes": [
+            {
+              "after": "declined",
+              "before": "Awaiting your reply",
+              "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+              "label": "Request status"
+            },
+            {
+              "after": "France declines a mutual-defense pact from Brazil.",
+              "before": "Pending",
+              "detail": "1 Jan 1990",
+              "label": "Dated result"
+            }
+          ],
+          "command": {
+            "accept": false,
+            "kind": "respond_diplomacy",
+            "offer": 2
+          },
+          "date_label": "1 Jan 1990",
+          "description": "Reply before 1990-01-31. 30 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+          "nation": "France",
+          "reason": null,
+          "review_token": "decision-v1-99c87e221b96be8e",
+          "session_id": "38680-1789340147738804300-1",
+          "title": "Decline a mutual-defense pact from Brazil",
+          "valid": true,
+          "warnings": [
+            "Brazil · reply before 1990-01-31 (30 days remaining). Both signatories pay 0.3% of GDP annually. A later call to arms needs your response; abandoning a guarantee has diplomatic costs."
+          ]
+        },
+        {
+          "changes": [
+            {
+              "after": "75.0",
+              "before": "70.0",
+              "detail": "Diplomatic credibility, after its native limits.",
+              "label": "Reputation"
+            },
+            {
+              "after": "accepted",
+              "before": "Awaiting your reply",
+              "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+              "label": "Request status"
+            },
+            {
+              "after": "100.0",
+              "before": "98.0",
+              "detail": "Immediate relationship change.",
+              "label": "Relations with Kuwait"
+            },
+            {
+              "after": "France accepts Kuwait's call and enters the war at rung 2.",
+              "before": "Pending",
+              "detail": "1 Jan 1990",
+              "label": "Dated result"
+            }
+          ],
+          "command": {
+            "accept": true,
+            "kind": "respond_diplomacy",
+            "offer": 3
+          },
+          "date_label": "1 Jan 1990",
+          "description": "Reply before 1990-01-08. 7 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+          "nation": "France",
+          "reason": null,
+          "review_token": "decision-v1-0cba02b1a0352841",
+          "session_id": "38680-1789340147738804300-1",
+          "title": "Accept a call to honor its defense pact from Kuwait",
+          "valid": true,
+          "warnings": [
+            "Kuwait · reply before 1990-01-08 (7 days remaining). Accept: enter the defending side at rung 2, subject to normal access, nuclear and sphere rules. Decline or expiry can end the pact and reduce reputation and relations if the guarantee still applies. Review the exact current effects before responding."
+          ]
+        },
+        {
+          "changes": [
+            {
+              "after": "45.0",
+              "before": "70.0",
+              "detail": "Diplomatic credibility, after its native limits.",
+              "label": "Reputation"
+            },
+            {
+              "after": "declined",
+              "before": "Awaiting your reply",
+              "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+              "label": "Request status"
+            },
+            {
+              "after": "53.0",
+              "before": "98.0",
+              "detail": "Immediate relationship change.",
+              "label": "Relations with Kuwait"
+            },
+            {
+              "after": "false",
+              "before": "true",
+              "detail": "A mutual-defense commitment; a later call to arms follows your response policy.",
+              "label": "Defense pact with Kuwait"
+            },
+            {
+              "after": "France abandons its pact with Kuwait. The guarantee proves worthless.",
+              "before": "Pending",
+              "detail": "1 Jan 1990",
+              "label": "Dated result"
+            }
+          ],
+          "command": {
+            "accept": false,
+            "kind": "respond_diplomacy",
+            "offer": 3
+          },
+          "date_label": "1 Jan 1990",
+          "description": "Reply before 1990-01-08. 7 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+          "nation": "France",
+          "reason": null,
+          "review_token": "decision-v1-e84f3d1c254ed74b",
+          "session_id": "38680-1789340147738804300-1",
+          "title": "Decline a call to honor its defense pact from Kuwait",
+          "valid": true,
+          "warnings": [
+            "Kuwait · reply before 1990-01-08 (7 days remaining). Accept: enter the defending side at rung 2, subject to normal access, nuclear and sphere rules. Decline or expiry can end the pact and reduce reputation and relations if the guarantee still applies. Review the exact current effects before responding."
+          ]
+        }
+      ],
+      "scope": "Disposable authored transaction and UI fixture. Not an ordinary campaign, historical treaty, simulated war or campaign-certification duration result.",
+      "version": 1
+    },
+    "sha256": {
+      "manifest": "e0f0abb6264ded714973e73f16e4dd967309f8093fab5f88b237ad02ac97756f",
+      "before": "a7725716421fc1949422128faf20133e84c12e5ecbd4b73c60d531a948f8d58f",
+      "expected_after": "5d5680f4475000dfa225fe1f845d31e7094cbe9dcec99140cb494961e2781035"
+    }
+  },
+  "test_source": {
+    "revision": "6ab4d2fccd1128cff14ecb7470aac82b9105e291",
+    "driver_sha256": "177da9163f276d69698a4fa9152b0508febf2d202c65f4c5edcedb0d449102e1",
+    "review_assertions_sha256": "96c3626ebc461f3ab8a1a6327a1c889915293b616a1d758451ca28f6f4c8a31a",
+    "runtime_source_equal": true
+  },
+  "screenshots": [
+    "reply-desk-1440.png",
+    "reply-desk-390.png",
+    "reply-desk-320.png",
+    "long-native-effects-1440.png",
+    "long-native-effects-390.png",
+    "long-native-effects-320.png",
+    "reply-recorded-390.png",
+    "continued-reply-desk-320.png"
+  ],
+  "commands": [
+    {
+      "commands": [
+        {
+          "kind": "respond_diplomacy",
+          "offer": 1,
+          "accept": true
+        }
+      ],
+      "review_token": "decision-v1-2c7568134475171b",
+      "review_kind": "decisions",
+      "session_id": "15304-1789340155342273800-1",
+      "client_id": "c368399e-2577-4801-8e14-3a582be5f63c",
+      "request_seq": 1
+    }
+  ],
+  "advances": [],
+  "errors": [],
+  "checks": [
+    "Unsorted native offers render nearest deadline first with native dates and explicit review controls at 1440, 390 and 320 px",
+    "All six actual choice previews equal the native exporter, including unchanged world after review and cancellation; long prose reads at 320 px",
+    "Exactly one protected UI order removes its pending offer and records the native accepted result; complete native world equals native exporter execution",
+    "Ordinary named save, cancelled load, load and Continue retain pending deadlines, dated reply ledger and native dispatches; zero advance requests"
+  ],
+  "browser_version": "152.0.7977.83",
+  "build": {
+    "revision": "6ab4d2fccd1128cff14ecb7470aac82b9105e291",
+    "build": {
+      "branch": "codex/campaign-certification",
+      "built_at_unix_seconds": 1789340029,
+      "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+      "distribution": "Local offline game server; source and attribution accompany the release",
+      "revision": "6ab4d2fccd11",
+      "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10d-inbox-final-2\\browser\\authored-france-1S83XX\\server",
+      "version": "0.6.0"
+    },
+    "binary_sha256": "45b113ea8885c155136d4e7e877e3208e72d452d9a9b2b703d2294e599342783",
+    "assets": {
+      "index.html": {
+        "served_sha256": "8d24200cacdbf89b179f6b90dd7b327f189a7d5d41fcc720e6be3c2301fcb1e9",
+        "served_bytes": 1145068,
+        "checkout_sha256": "8d24200cacdbf89b179f6b90dd7b327f189a7d5d41fcc720e6be3c2301fcb1e9",
+        "checkout_bytes": 1145068,
+        "committed_sha256": "da8fcacd6066be3f2a9703fe75cd31083bacadaa1b837b5840e90a3cf7ad166b",
+        "committed_bytes": 1126331,
+        "canonical_checkout_sha256": "da8fcacd6066be3f2a9703fe75cd31083bacadaa1b837b5840e90a3cf7ad166b",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 18737
+        }
+      },
+      "campaign-transport.js": {
+        "served_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+        "served_bytes": 4775,
+        "checkout_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+        "checkout_bytes": 4775,
+        "committed_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+        "committed_bytes": 4693,
+        "canonical_checkout_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 82
+        }
+      },
+      "campaign-ui.js": {
+        "served_sha256": "20641a249ff5b59589736dd9f36f3cdd7b7ab53df29d107d4cf3feccecbf49ba",
+        "served_bytes": 13683,
+        "checkout_sha256": "20641a249ff5b59589736dd9f36f3cdd7b7ab53df29d107d4cf3feccecbf49ba",
+        "checkout_bytes": 13683,
+        "committed_sha256": "9aa62da51602a3d612312e157d37726cc6d2ed73efd17a7e5f2634386b1be312",
+        "committed_bytes": 13473,
+        "canonical_checkout_sha256": "9aa62da51602a3d612312e157d37726cc6d2ed73efd17a7e5f2634386b1be312",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 210
+        }
+      },
+      "fiscal-recovery-ui.js": {
+        "served_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "served_bytes": 11098,
+        "checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "checkout_bytes": 11098,
+        "committed_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "committed_bytes": 11098,
+        "canonical_checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "cash-flow-ui.js": {
+        "served_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+        "served_bytes": 30198,
+        "checkout_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+        "checkout_bytes": 30198,
+        "committed_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+        "committed_bytes": 29951,
+        "canonical_checkout_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 247
+        }
+      },
+      "companies-ui.js": {
+        "served_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "served_bytes": 32920,
+        "checkout_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "checkout_bytes": 32920,
+        "committed_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "committed_bytes": 32920,
+        "canonical_checkout_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "companies.css": {
+        "served_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+        "served_bytes": 13908,
+        "checkout_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+        "checkout_bytes": 13908,
+        "committed_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+        "committed_bytes": 13798,
+        "canonical_checkout_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 110
+        }
+      },
+      "government-ui.js": {
+        "served_sha256": "0c462497230b04b4ae8407dce0471eb944eaf11451d0cc50f35fcdc4693568f6",
+        "served_bytes": 50984,
+        "checkout_sha256": "0c462497230b04b4ae8407dce0471eb944eaf11451d0cc50f35fcdc4693568f6",
+        "checkout_bytes": 50984,
+        "committed_sha256": "0c462497230b04b4ae8407dce0471eb944eaf11451d0cc50f35fcdc4693568f6",
+        "committed_bytes": 50984,
+        "canonical_checkout_sha256": "0c462497230b04b4ae8407dce0471eb944eaf11451d0cc50f35fcdc4693568f6",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "government-ui.css": {
+        "served_sha256": "6fdcc3adc0f431128d77667c80cdad632c1db35149dcc7aecfab91accb87542f",
+        "served_bytes": 35931,
+        "checkout_sha256": "6fdcc3adc0f431128d77667c80cdad632c1db35149dcc7aecfab91accb87542f",
+        "checkout_bytes": 35931,
+        "committed_sha256": "ddb0a7f80200be5c1986a90ed770cd989c355cd220e5d45057b6c053f563e1bb",
+        "committed_bytes": 35603,
+        "canonical_checkout_sha256": "ddb0a7f80200be5c1986a90ed770cd989c355cd220e5d45057b6c053f563e1bb",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 328
+        }
+      },
+      "campaign-operations-ui.js": {
+        "served_sha256": "4da1d39397733cad49125c2fd30e3d57175f89b71e5ddcb75ba35c6a0a730c00",
+        "served_bytes": 21110,
+        "checkout_sha256": "4da1d39397733cad49125c2fd30e3d57175f89b71e5ddcb75ba35c6a0a730c00",
+        "checkout_bytes": 21110,
+        "committed_sha256": "ab7ec85f87a44ab316a700a7206a05f7057b8bfabd51d1d4d9dd5ddb5e0a7bf5",
+        "committed_bytes": 20888,
+        "canonical_checkout_sha256": "ab7ec85f87a44ab316a700a7206a05f7057b8bfabd51d1d4d9dd5ddb5e0a7bf5",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 222
+        }
+      },
+      "campaign-operations-ui.css": {
+        "served_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+        "served_bytes": 8447,
+        "checkout_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+        "checkout_bytes": 8447,
+        "committed_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+        "committed_bytes": 8367,
+        "canonical_checkout_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 80
+        }
+      },
+      "map-controls.js": {
+        "served_sha256": "ce7553d9b43a38b00581e67ef66aa23e5f03a8b4abde9c85171f28f3e6bb4e9e",
+        "served_bytes": 10651,
+        "checkout_sha256": "ce7553d9b43a38b00581e67ef66aa23e5f03a8b4abde9c85171f28f3e6bb4e9e",
+        "checkout_bytes": 10651,
+        "committed_sha256": "79b99912a9406b43f22d786ea7063d47fc05d738e432e9749561eb1fdff03fd7",
+        "committed_bytes": 10442,
+        "canonical_checkout_sha256": "79b99912a9406b43f22d786ea7063d47fc05d738e432e9749561eb1fdff03fd7",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 209
+        }
+      },
+      "map-controls.css": {
+        "served_sha256": "07d2f965f3cb90a04095ac7ec3679307548549d4ea9612d299d2a8b75e35527a",
+        "served_bytes": 9732,
+        "checkout_sha256": "07d2f965f3cb90a04095ac7ec3679307548549d4ea9612d299d2a8b75e35527a",
+        "checkout_bytes": 9732,
+        "committed_sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+        "committed_bytes": 9631,
+        "canonical_checkout_sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 101
+        }
+      },
+      "guidance-ui.js": {
+        "served_sha256": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+        "served_bytes": 21247,
+        "checkout_sha256": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+        "checkout_bytes": 21247,
+        "committed_sha256": "39eb68189c78ea74ee89b4bc92ac6153326accfe0d2300ea401ee696bddc38ea",
+        "committed_bytes": 21072,
+        "canonical_checkout_sha256": "39eb68189c78ea74ee89b4bc92ac6153326accfe0d2300ea401ee696bddc38ea",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 175
+        }
+      },
+      "guidance-ui.css": {
+        "served_sha256": "169531e25171ef1448b38b0832050712392c94e74f8bb0f96e8727f77d3a5b2f",
+        "served_bytes": 7496,
+        "checkout_sha256": "169531e25171ef1448b38b0832050712392c94e74f8bb0f96e8727f77d3a5b2f",
+        "checkout_bytes": 7496,
+        "committed_sha256": "4f959346eae6c81209da51b76717fd1d4b04a6bcfe0f0ae84032adc465e288ad",
+        "committed_bytes": 7490,
+        "canonical_checkout_sha256": "4f959346eae6c81209da51b76717fd1d4b04a6bcfe0f0ae84032adc465e288ad",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 6
+        }
+      },
+      "globe3d.js": {
+        "served_sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9",
+        "served_bytes": 36245,
+        "checkout_sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9",
+        "checkout_bytes": 36245,
+        "committed_sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "committed_bytes": 35548,
+        "canonical_checkout_sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 697
+        }
+      },
+      "city-layer.js": {
+        "served_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+        "served_bytes": 12449,
+        "checkout_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+        "checkout_bytes": 12449,
+        "committed_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+        "committed_bytes": 12222,
+        "canonical_checkout_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 227
+        }
+      },
+      "city-mesh.js": {
+        "served_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+        "served_bytes": 87641,
+        "checkout_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+        "checkout_bytes": 87641,
+        "committed_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+        "committed_bytes": 86075,
+        "canonical_checkout_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 1566
+        }
+      },
+      "water-detail.js": {
+        "served_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+        "served_bytes": 11962,
+        "checkout_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+        "checkout_bytes": 11962,
+        "committed_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+        "committed_bytes": 11729,
+        "canonical_checkout_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 233
+        }
+      },
+      "equipment-mesh.js": {
+        "served_sha256": "0a312b09000429d644f369812d1be5a1fab3b545aa3e7301721a19d319f6f361",
+        "served_bytes": 178146,
+        "checkout_sha256": "0a312b09000429d644f369812d1be5a1fab3b545aa3e7301721a19d319f6f361",
+        "checkout_bytes": 178146,
+        "committed_sha256": "74400279143ac848f2b1f51eca03f9350a5020b27eec31fe0e5809eb6bf3b547",
+        "committed_bytes": 175650,
+        "canonical_checkout_sha256": "74400279143ac848f2b1f51eca03f9350a5020b27eec31fe0e5809eb6bf3b547",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 2496
+        }
+      },
+      "equipment-ui.js": {
+        "served_sha256": "af767b4d226a0ccdfae63a89e4864f8c5d8d9f82b37cb729b247729e28d34cb1",
+        "served_bytes": 126201,
+        "checkout_sha256": "af767b4d226a0ccdfae63a89e4864f8c5d8d9f82b37cb729b247729e28d34cb1",
+        "checkout_bytes": 126201,
+        "committed_sha256": "af767b4d226a0ccdfae63a89e4864f8c5d8d9f82b37cb729b247729e28d34cb1",
+        "committed_bytes": 126201,
+        "canonical_checkout_sha256": "af767b4d226a0ccdfae63a89e4864f8c5d8d9f82b37cb729b247729e28d34cb1",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "equipment-ui.css": {
+        "served_sha256": "cb3efe6b42f6c40639384219e6eac40cb1ac9c8804eb273f94be7f2b64206a67",
+        "served_bytes": 36916,
+        "checkout_sha256": "cb3efe6b42f6c40639384219e6eac40cb1ac9c8804eb273f94be7f2b64206a67",
+        "checkout_bytes": 36916,
+        "committed_sha256": "ca8931a3821837aeb68418af2e144de22cd300b44f0591b14ee0cb15a8377d30",
+        "committed_bytes": 36570,
+        "canonical_checkout_sha256": "ca8931a3821837aeb68418af2e144de22cd300b44f0591b14ee0cb15a8377d30",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 346
+        }
+      },
+      "agency-ui.js": {
+        "served_sha256": "a163b8aace039d12bdc637e5524ad40e879d734e30661e4e7fb9aee3c660c50c",
+        "checkout_sha256": "a163b8aace039d12bdc637e5524ad40e879d734e30661e4e7fb9aee3c660c50c",
+        "committed_sha256": "a163b8aace039d12bdc637e5524ad40e879d734e30661e4e7fb9aee3c660c50c"
+      },
+      "agency.css": {
+        "served_sha256": "905b152e36187214eb399e92ca2fa052a4750f8c00ca1ad6f5b8bbc86d4f9e9a",
+        "checkout_sha256": "905b152e36187214eb399e92ca2fa052a4750f8c00ca1ad6f5b8bbc86d4f9e9a",
+        "committed_sha256": "12c9809778f9a58895b322849f5bcb244ea62b64398af42a315195afb93be9e7"
+      }
+    }
+  },
+  "capabilities": {
+    "daily": true,
+    "population": true,
+    "fiscal": true,
+    "connected_economy": true,
+    "companies": true,
+    "supplier_operations": true,
+    "operational_warfare": true
+  },
+  "inbox_layout": [
+    {
+      "width": 1440,
+      "ordered_ids": [
+        3,
+        1,
+        2
+      ],
+      "readings": [
+        {
+          "id": 3,
+          "title": {
+            "text": "Kuwait · a call to honor its defense pact",
+            "rect": {
+              "left": 337,
+              "right": 1103,
+              "top": 487.5,
+              "bottom": 511.5
+            },
+            "errors": []
+          },
+          "deadline": {
+            "text": "Reply before 1990-01-08 · 7 days remaining",
+            "rect": {
+              "left": 337,
+              "right": 1103,
+              "top": 490.5,
+              "bottom": 510
+            },
+            "errors": []
+          },
+          "accept": {
+            "text": "Review acceptance",
+            "rect": {
+              "left": 337,
+              "right": 472.578125,
+              "top": 479,
+              "bottom": 520.5
+            },
+            "errors": []
+          },
+          "decline": {
+            "text": "Review decline",
+            "rect": {
+              "left": 482.578125,
+              "right": 594.8125,
+              "top": 479,
+              "bottom": 520.5
+            },
+            "errors": []
+          }
+        },
+        {
+          "id": 1,
+          "title": {
+            "text": "Japan · a trade treaty",
+            "rect": {
+              "left": 337,
+              "right": 1103,
+              "top": 487.5,
+              "bottom": 511.5
+            },
+            "errors": []
+          },
+          "deadline": {
+            "text": "Reply before 1990-01-31 · 30 days remaining",
+            "rect": {
+              "left": 337,
+              "right": 1103,
+              "top": 490.5,
+              "bottom": 510
+            },
+            "errors": []
+          },
+          "accept": {
+            "text": "Review acceptance",
+            "rect": {
+              "left": 337,
+              "right": 472.578125,
+              "top": 479.5,
+              "bottom": 521
+            },
+            "errors": []
+          },
+          "decline": {
+            "text": "Review decline",
+            "rect": {
+              "left": 482.578125,
+              "right": 594.8125,
+              "top": 479.5,
+              "bottom": 521
+            },
+            "errors": []
+          }
+        },
+        {
+          "id": 2,
+          "title": {
+            "text": "Brazil · a mutual-defense pact",
+            "rect": {
+              "left": 337,
+              "right": 1103,
+              "top": 488,
+              "bottom": 512
+            },
+            "errors": []
+          },
+          "deadline": {
+            "text": "Reply before 1990-01-31 · 30 days remaining",
+            "rect": {
+              "left": 337,
+              "right": 1103,
+              "top": 490,
+              "bottom": 509.5
+            },
+            "errors": []
+          },
+          "accept": {
+            "text": "Review acceptance",
+            "rect": {
+              "left": 337,
+              "right": 472.578125,
+              "top": 479,
+              "bottom": 520.5
+            },
+            "errors": []
+          },
+          "decline": {
+            "text": "Review decline",
+            "rect": {
+              "left": 482.578125,
+              "right": 594.8125,
+              "top": 479,
+              "bottom": 520.5
+            },
+            "errors": []
+          }
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "ordered_ids": [
+        3,
+        1,
+        2
+      ],
+      "readings": [
+        {
+          "id": 3,
+          "title": {
+            "text": "Kuwait · a call to honor its defense pact",
+            "rect": {
+              "left": 48,
+              "right": 342,
+              "top": 398.140625,
+              "bottom": 446.140625
+            },
+            "errors": []
+          },
+          "deadline": {
+            "text": "Reply before 1990-01-08 · 7 days remaining",
+            "rect": {
+              "left": 48,
+              "right": 342,
+              "top": 412.140625,
+              "bottom": 431.640625
+            },
+            "errors": []
+          },
+          "accept": {
+            "text": "Review acceptance",
+            "rect": {
+              "left": 48,
+              "right": 183.578125,
+              "top": 401.140625,
+              "bottom": 442.640625
+            },
+            "errors": []
+          },
+          "decline": {
+            "text": "Review decline",
+            "rect": {
+              "left": 193.578125,
+              "right": 305.8125,
+              "top": 401.140625,
+              "bottom": 442.640625
+            },
+            "errors": []
+          }
+        },
+        {
+          "id": 1,
+          "title": {
+            "text": "Japan · a trade treaty",
+            "rect": {
+              "left": 48,
+              "right": 342,
+              "top": 409.640625,
+              "bottom": 433.640625
+            },
+            "errors": []
+          },
+          "deadline": {
+            "text": "Reply before 1990-01-31 · 30 days remaining",
+            "rect": {
+              "left": 48,
+              "right": 342,
+              "top": 412.640625,
+              "bottom": 432.140625
+            },
+            "errors": []
+          },
+          "accept": {
+            "text": "Review acceptance",
+            "rect": {
+              "left": 48,
+              "right": 183.578125,
+              "top": 401.640625,
+              "bottom": 443.140625
+            },
+            "errors": []
+          },
+          "decline": {
+            "text": "Review decline",
+            "rect": {
+              "left": 193.578125,
+              "right": 305.8125,
+              "top": 401.640625,
+              "bottom": 443.140625
+            },
+            "errors": []
+          }
+        },
+        {
+          "id": 2,
+          "title": {
+            "text": "Brazil · a mutual-defense pact",
+            "rect": {
+              "left": 48,
+              "right": 342,
+              "top": 410.140625,
+              "bottom": 434.140625
+            },
+            "errors": []
+          },
+          "deadline": {
+            "text": "Reply before 1990-01-31 · 30 days remaining",
+            "rect": {
+              "left": 48,
+              "right": 342,
+              "top": 412.140625,
+              "bottom": 431.640625
+            },
+            "errors": []
+          },
+          "accept": {
+            "text": "Review acceptance",
+            "rect": {
+              "left": 48,
+              "right": 183.578125,
+              "top": 401.140625,
+              "bottom": 442.640625
+            },
+            "errors": []
+          },
+          "decline": {
+            "text": "Review decline",
+            "rect": {
+              "left": 193.578125,
+              "right": 305.8125,
+              "top": 401.140625,
+              "bottom": 442.640625
+            },
+            "errors": []
+          }
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "ordered_ids": [
+        3,
+        1,
+        2
+      ],
+      "readings": [
+        {
+          "id": 3,
+          "title": {
+            "text": "Kuwait · a call to honor its defense pact",
+            "rect": {
+              "left": 48,
+              "right": 272,
+              "top": 397.640625,
+              "bottom": 445.640625
+            },
+            "errors": []
+          },
+          "deadline": {
+            "text": "Reply before 1990-01-08 · 7 days remaining",
+            "rect": {
+              "left": 48,
+              "right": 272,
+              "top": 402.640625,
+              "bottom": 441.640625
+            },
+            "errors": []
+          },
+          "accept": {
+            "text": "Review acceptance",
+            "rect": {
+              "left": 48,
+              "right": 183.578125,
+              "top": 401.640625,
+              "bottom": 443.140625
+            },
+            "errors": []
+          },
+          "decline": {
+            "text": "Review decline",
+            "rect": {
+              "left": 48,
+              "right": 160.234375,
+              "top": 401.140625,
+              "bottom": 442.640625
+            },
+            "errors": []
+          }
+        },
+        {
+          "id": 1,
+          "title": {
+            "text": "Japan · a trade treaty",
+            "rect": {
+              "left": 48,
+              "right": 272,
+              "top": 409.640625,
+              "bottom": 433.640625
+            },
+            "errors": []
+          },
+          "deadline": {
+            "text": "Reply before 1990-01-31 · 30 days remaining",
+            "rect": {
+              "left": 48,
+              "right": 272,
+              "top": 402.640625,
+              "bottom": 441.640625
+            },
+            "errors": []
+          },
+          "accept": {
+            "text": "Review acceptance",
+            "rect": {
+              "left": 48,
+              "right": 183.578125,
+              "top": 401.140625,
+              "bottom": 442.640625
+            },
+            "errors": []
+          },
+          "decline": {
+            "text": "Review decline",
+            "rect": {
+              "left": 48,
+              "right": 160.234375,
+              "top": 401.640625,
+              "bottom": 443.140625
+            },
+            "errors": []
+          }
+        },
+        {
+          "id": 2,
+          "title": {
+            "text": "Brazil · a mutual-defense pact",
+            "rect": {
+              "left": 48,
+              "right": 272,
+              "top": 410.140625,
+              "bottom": 434.140625
+            },
+            "errors": []
+          },
+          "deadline": {
+            "text": "Reply before 1990-01-31 · 30 days remaining",
+            "rect": {
+              "left": 48,
+              "right": 272,
+              "top": 402.140625,
+              "bottom": 441.140625
+            },
+            "errors": []
+          },
+          "accept": {
+            "text": "Review acceptance",
+            "rect": {
+              "left": 48,
+              "right": 183.578125,
+              "top": 401.140625,
+              "bottom": 442.640625
+            },
+            "errors": []
+          },
+          "decline": {
+            "text": "Review decline",
+            "rect": {
+              "left": 48,
+              "right": 160.234375,
+              "top": 401.640625,
+              "bottom": 443.140625
+            },
+            "errors": []
+          }
+        }
+      ]
+    }
+  ],
+  "cancelled_reviews": [
+    {
+      "changes": [
+        {
+          "after": "accepted",
+          "before": "Awaiting your reply",
+          "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+          "label": "Request status"
+        },
+        {
+          "after": "5.0%",
+          "before": "0.0%",
+          "detail": "The current treaty depth. Integration develops through subsequent economic settlements.",
+          "label": "Trade integration with Japan"
+        },
+        {
+          "after": "100.0",
+          "before": "98.0",
+          "detail": "Immediate relationship change.",
+          "label": "Relations with Japan"
+        },
+        {
+          "after": "Japan and France sign a trade agreement.",
+          "before": "Pending",
+          "detail": "1 Jan 1990",
+          "label": "Dated result"
+        }
+      ],
+      "command": {
+        "accept": true,
+        "kind": "respond_diplomacy",
+        "offer": 1
+      },
+      "date_label": "1 Jan 1990",
+      "description": "Reply before 1990-01-31. 30 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+      "nation": "France",
+      "reason": null,
+      "review_token": "decision-v1-2c7568134475171b",
+      "session_id": "15304-1789340155342273800-1",
+      "title": "Accept a trade treaty from Japan",
+      "valid": true,
+      "warnings": [
+        "Japan · reply before 1990-01-31 (30 days remaining). Opens market integration and long-term dependency. Ending the treaty later can damage both economies."
+      ]
+    },
+    {
+      "changes": [
+        {
+          "after": "declined",
+          "before": "Awaiting your reply",
+          "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+          "label": "Request status"
+        },
+        {
+          "after": "France declines a trade treaty from Japan.",
+          "before": "Pending",
+          "detail": "1 Jan 1990",
+          "label": "Dated result"
+        }
+      ],
+      "command": {
+        "accept": false,
+        "kind": "respond_diplomacy",
+        "offer": 1
+      },
+      "date_label": "1 Jan 1990",
+      "description": "Reply before 1990-01-31. 30 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+      "nation": "France",
+      "reason": null,
+      "review_token": "decision-v1-d36b99e957c61bdc",
+      "session_id": "15304-1789340155342273800-1",
+      "title": "Decline a trade treaty from Japan",
+      "valid": true,
+      "warnings": [
+        "Japan · reply before 1990-01-31 (30 days remaining). Opens market integration and long-term dependency. Ending the treaty later can damage both economies."
+      ]
+    },
+    {
+      "changes": [
+        {
+          "after": "accepted",
+          "before": "Awaiting your reply",
+          "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+          "label": "Request status"
+        },
+        {
+          "after": "100.0",
+          "before": "98.0",
+          "detail": "Immediate relationship change.",
+          "label": "Relations with Brazil"
+        },
+        {
+          "after": "true",
+          "before": "false",
+          "detail": "A mutual-defense commitment; a later call to arms follows your response policy.",
+          "label": "Defense pact with Brazil"
+        },
+        {
+          "after": "Brazil and France sign a mutual defence pact.",
+          "before": "Pending",
+          "detail": "1 Jan 1990",
+          "label": "Dated result"
+        }
+      ],
+      "command": {
+        "accept": true,
+        "kind": "respond_diplomacy",
+        "offer": 2
+      },
+      "date_label": "1 Jan 1990",
+      "description": "Reply before 1990-01-31. 30 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+      "nation": "France",
+      "reason": null,
+      "review_token": "decision-v1-825174018626e5e2",
+      "session_id": "15304-1789340155342273800-1",
+      "title": "Accept a mutual-defense pact from Brazil",
+      "valid": true,
+      "warnings": [
+        "Brazil · reply before 1990-01-31 (30 days remaining). Both signatories pay 0.3% of GDP annually. A later call to arms needs your response; abandoning a guarantee has diplomatic costs."
+      ]
+    },
+    {
+      "changes": [
+        {
+          "after": "declined",
+          "before": "Awaiting your reply",
+          "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+          "label": "Request status"
+        },
+        {
+          "after": "France declines a mutual-defense pact from Brazil.",
+          "before": "Pending",
+          "detail": "1 Jan 1990",
+          "label": "Dated result"
+        }
+      ],
+      "command": {
+        "accept": false,
+        "kind": "respond_diplomacy",
+        "offer": 2
+      },
+      "date_label": "1 Jan 1990",
+      "description": "Reply before 1990-01-31. 30 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+      "nation": "France",
+      "reason": null,
+      "review_token": "decision-v1-6830e99e258a5721",
+      "session_id": "15304-1789340155342273800-1",
+      "title": "Decline a mutual-defense pact from Brazil",
+      "valid": true,
+      "warnings": [
+        "Brazil · reply before 1990-01-31 (30 days remaining). Both signatories pay 0.3% of GDP annually. A later call to arms needs your response; abandoning a guarantee has diplomatic costs."
+      ]
+    },
+    {
+      "changes": [
+        {
+          "after": "75.0",
+          "before": "70.0",
+          "detail": "Diplomatic credibility, after its native limits.",
+          "label": "Reputation"
+        },
+        {
+          "after": "accepted",
+          "before": "Awaiting your reply",
+          "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+          "label": "Request status"
+        },
+        {
+          "after": "100.0",
+          "before": "98.0",
+          "detail": "Immediate relationship change.",
+          "label": "Relations with Kuwait"
+        },
+        {
+          "after": "France accepts Kuwait's call and enters the war at rung 2.",
+          "before": "Pending",
+          "detail": "1 Jan 1990",
+          "label": "Dated result"
+        }
+      ],
+      "command": {
+        "accept": true,
+        "kind": "respond_diplomacy",
+        "offer": 3
+      },
+      "date_label": "1 Jan 1990",
+      "description": "Reply before 1990-01-08. 7 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+      "nation": "France",
+      "reason": null,
+      "review_token": "decision-v1-6f972eb570be1d1b",
+      "session_id": "15304-1789340155342273800-1",
+      "title": "Accept a call to honor its defense pact from Kuwait",
+      "valid": true,
+      "warnings": [
+        "Kuwait · reply before 1990-01-08 (7 days remaining). Accept: enter the defending side at rung 2, subject to normal access, nuclear and sphere rules. Decline or expiry can end the pact and reduce reputation and relations if the guarantee still applies. Review the exact current effects before responding."
+      ]
+    },
+    {
+      "changes": [
+        {
+          "after": "45.0",
+          "before": "70.0",
+          "detail": "Diplomatic credibility, after its native limits.",
+          "label": "Reputation"
+        },
+        {
+          "after": "declined",
+          "before": "Awaiting your reply",
+          "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+          "label": "Request status"
+        },
+        {
+          "after": "53.0",
+          "before": "98.0",
+          "detail": "Immediate relationship change.",
+          "label": "Relations with Kuwait"
+        },
+        {
+          "after": "false",
+          "before": "true",
+          "detail": "A mutual-defense commitment; a later call to arms follows your response policy.",
+          "label": "Defense pact with Kuwait"
+        },
+        {
+          "after": "France abandons its pact with Kuwait. The guarantee proves worthless.",
+          "before": "Pending",
+          "detail": "1 Jan 1990",
+          "label": "Dated result"
+        }
+      ],
+      "command": {
+        "accept": false,
+        "kind": "respond_diplomacy",
+        "offer": 3
+      },
+      "date_label": "1 Jan 1990",
+      "description": "Reply before 1990-01-08. 7 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+      "nation": "France",
+      "reason": null,
+      "review_token": "decision-v1-f3049082d6cdc0f3",
+      "session_id": "15304-1789340155342273800-1",
+      "title": "Decline a call to honor its defense pact from Kuwait",
+      "valid": true,
+      "warnings": [
+        "Kuwait · reply before 1990-01-08 (7 days remaining). Accept: enter the defending side at rung 2, subject to normal access, nuclear and sphere rules. Decline or expiry can end the pact and reduce reputation and relations if the guarantee still applies. Review the exact current effects before responding."
+      ]
+    }
+  ],
+  "long_effect_layout": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "rows": [
+        {
+          "index": 0,
+          "label": "Reputation",
+          "before": {
+            "text": "70.0",
+            "rect": {
+              "left": 71,
+              "top": 419.140625,
+              "right": 180,
+              "bottom": 443.140625,
+              "width": 109,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 71,
+                "top": 420.140625,
+                "right": 102.953125,
+                "bottom": 441.140625,
+                "width": 31.953125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 109,
+                "clientWidth": 109
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 129,
+                "clientWidth": 129
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 292,
+                "clientWidth": 292
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 330,
+                "clientWidth": 330
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "45.0",
+            "rect": {
+              "left": 212,
+              "top": 419.140625,
+              "right": 319,
+              "bottom": 443.140625,
+              "width": 107,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 212,
+                "top": 420.140625,
+                "right": 243.953125,
+                "bottom": 441.140625,
+                "width": 31.953125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 107,
+                "clientWidth": 107
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 127,
+                "clientWidth": 127
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 292,
+                "clientWidth": 292
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 330,
+                "clientWidth": 330
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 1,
+          "label": "Request status",
+          "before": {
+            "text": "Awaiting your reply",
+            "rect": {
+              "left": 71,
+              "top": 397.640625,
+              "right": 180,
+              "bottom": 445.640625,
+              "width": 109,
+              "height": 48
+            },
+            "text_rects": [
+              {
+                "left": 71,
+                "top": 398.640625,
+                "right": 176.984375,
+                "bottom": 419.640625,
+                "width": 105.984375,
+                "height": 21
+              },
+              {
+                "left": 71,
+                "top": 422.640625,
+                "right": 109.046875,
+                "bottom": 443.640625,
+                "width": 38.046875,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 109,
+                "clientWidth": 109
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 129,
+                "clientWidth": 129
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 292,
+                "clientWidth": 292
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 330,
+                "clientWidth": 330
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "declined",
+            "rect": {
+              "left": 212,
+              "top": 397.640625,
+              "right": 319,
+              "bottom": 421.640625,
+              "width": 107,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 212,
+                "top": 398.640625,
+                "right": 275.578125,
+                "bottom": 419.640625,
+                "width": 63.578125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 107,
+                "clientWidth": 107
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 127,
+                "clientWidth": 127
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 292,
+                "clientWidth": 292
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 330,
+                "clientWidth": 330
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 2,
+          "label": "Relations with Kuwait",
+          "before": {
+            "text": "98.0",
+            "rect": {
+              "left": 71,
+              "top": 419.140625,
+              "right": 180,
+              "bottom": 443.140625,
+              "width": 109,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 71,
+                "top": 420.140625,
+                "right": 102.953125,
+                "bottom": 441.140625,
+                "width": 31.953125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 109,
+                "clientWidth": 109
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 129,
+                "clientWidth": 129
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 292,
+                "clientWidth": 292
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 330,
+                "clientWidth": 330
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "53.0",
+            "rect": {
+              "left": 212,
+              "top": 419.140625,
+              "right": 319,
+              "bottom": 443.140625,
+              "width": 107,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 212,
+                "top": 420.140625,
+                "right": 243.953125,
+                "bottom": 441.140625,
+                "width": 31.953125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 107,
+                "clientWidth": 107
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 127,
+                "clientWidth": 127
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 292,
+                "clientWidth": 292
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 330,
+                "clientWidth": 330
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 3,
+          "label": "Defense pact with Kuwait",
+          "before": {
+            "text": "true",
+            "rect": {
+              "left": 71,
+              "top": 409.640625,
+              "right": 180,
+              "bottom": 433.640625,
+              "width": 109,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 71,
+                "top": 410.640625,
+                "right": 101.984375,
+                "bottom": 431.640625,
+                "width": 30.984375,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 109,
+                "clientWidth": 109
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 129,
+                "clientWidth": 129
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 292,
+                "clientWidth": 292
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 330,
+                "clientWidth": 330
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "false",
+            "rect": {
+              "left": 212,
+              "top": 409.640625,
+              "right": 319,
+              "bottom": 433.640625,
+              "width": 107,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 212,
+                "top": 410.640625,
+                "right": 246.984375,
+                "bottom": 431.640625,
+                "width": 34.984375,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 107,
+                "clientWidth": 107
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 127,
+                "clientWidth": 127
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 292,
+                "clientWidth": 292
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 330,
+                "clientWidth": 330
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 4,
+          "label": "Dated result",
+          "before": {
+            "text": "Pending",
+            "rect": {
+              "left": 71,
+              "top": 347.140625,
+              "right": 180,
+              "bottom": 371.140625,
+              "width": 109,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 71,
+                "top": 348.140625,
+                "right": 132.734375,
+                "bottom": 369.140625,
+                "width": 61.734375,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 109,
+                "clientWidth": 109
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 129,
+                "clientWidth": 129
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 292,
+                "clientWidth": 292
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 330,
+                "clientWidth": 330
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "France abandons its pact with Kuwait. The guarantee proves worthless.",
+            "rect": {
+              "left": 212,
+              "top": 347.140625,
+              "right": 319,
+              "bottom": 515.140625,
+              "width": 107,
+              "height": 168
+            },
+            "text_rects": [
+              {
+                "left": 212,
+                "top": 348.140625,
+                "right": 261.3125,
+                "bottom": 369.140625,
+                "width": 49.3125,
+                "height": 21
+              },
+              {
+                "left": 212,
+                "top": 372.140625,
+                "right": 307.296875,
+                "bottom": 393.140625,
+                "width": 95.296875,
+                "height": 21
+              },
+              {
+                "left": 212,
+                "top": 396.140625,
+                "right": 281.859375,
+                "bottom": 417.140625,
+                "width": 69.859375,
+                "height": 21
+              },
+              {
+                "left": 212,
+                "top": 420.140625,
+                "right": 300.625,
+                "bottom": 441.140625,
+                "width": 88.625,
+                "height": 21
+              },
+              {
+                "left": 212,
+                "top": 444.140625,
+                "right": 288.328125,
+                "bottom": 465.140625,
+                "width": 76.328125,
+                "height": 21
+              },
+              {
+                "left": 212,
+                "top": 468.140625,
+                "right": 262.21875,
+                "bottom": 489.140625,
+                "width": 50.21875,
+                "height": 21
+              },
+              {
+                "left": 212,
+                "top": 492.140625,
+                "right": 288.765625,
+                "bottom": 513.140625,
+                "width": 76.765625,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 107,
+                "clientWidth": 107
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 127,
+                "clientWidth": 127
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 292,
+                "clientWidth": 292
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 330,
+                "clientWidth": 330
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "rows": [
+        {
+          "index": 0,
+          "label": "Reputation",
+          "before": {
+            "text": "70.0",
+            "rect": {
+              "left": 71,
+              "top": 371.640625,
+              "right": 249,
+              "bottom": 395.640625,
+              "width": 178,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 71,
+                "top": 372.640625,
+                "right": 102.953125,
+                "bottom": 393.640625,
+                "width": 31.953125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 178,
+                "clientWidth": 178
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 260,
+                "clientWidth": 260
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "45.0",
+            "rect": {
+              "left": 73,
+              "top": 448.140625,
+              "right": 249,
+              "bottom": 472.140625,
+              "width": 176,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 73,
+                "top": 449.140625,
+                "right": 104.953125,
+                "bottom": 470.140625,
+                "width": 31.953125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 176,
+                "clientWidth": 176
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 196,
+                "clientWidth": 196
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 260,
+                "clientWidth": 260
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 1,
+          "label": "Request status",
+          "before": {
+            "text": "Awaiting your reply",
+            "rect": {
+              "left": 71,
+              "top": 371.640625,
+              "right": 249,
+              "bottom": 395.640625,
+              "width": 178,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 71,
+                "top": 372.640625,
+                "right": 219.4375,
+                "bottom": 393.640625,
+                "width": 148.4375,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 178,
+                "clientWidth": 178
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 260,
+                "clientWidth": 260
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "declined",
+            "rect": {
+              "left": 73,
+              "top": 448.140625,
+              "right": 249,
+              "bottom": 472.140625,
+              "width": 176,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 73,
+                "top": 449.140625,
+                "right": 136.578125,
+                "bottom": 470.140625,
+                "width": 63.578125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 176,
+                "clientWidth": 176
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 196,
+                "clientWidth": 196
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 260,
+                "clientWidth": 260
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 2,
+          "label": "Relations with Kuwait",
+          "before": {
+            "text": "98.0",
+            "rect": {
+              "left": 71,
+              "top": 380.640625,
+              "right": 249,
+              "bottom": 404.640625,
+              "width": 178,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 71,
+                "top": 381.640625,
+                "right": 102.953125,
+                "bottom": 402.640625,
+                "width": 31.953125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 178,
+                "clientWidth": 178
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 260,
+                "clientWidth": 260
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "53.0",
+            "rect": {
+              "left": 73,
+              "top": 457.140625,
+              "right": 249,
+              "bottom": 481.140625,
+              "width": 176,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 73,
+                "top": 458.140625,
+                "right": 104.953125,
+                "bottom": 479.140625,
+                "width": 31.953125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 176,
+                "clientWidth": 176
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 196,
+                "clientWidth": 196
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 260,
+                "clientWidth": 260
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 3,
+          "label": "Defense pact with Kuwait",
+          "before": {
+            "text": "true",
+            "rect": {
+              "left": 71,
+              "top": 362.640625,
+              "right": 249,
+              "bottom": 386.640625,
+              "width": 178,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 71,
+                "top": 363.640625,
+                "right": 101.984375,
+                "bottom": 384.640625,
+                "width": 30.984375,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 178,
+                "clientWidth": 178
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 260,
+                "clientWidth": 260
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "false",
+            "rect": {
+              "left": 73,
+              "top": 439.140625,
+              "right": 249,
+              "bottom": 463.140625,
+              "width": 176,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 73,
+                "top": 440.140625,
+                "right": 107.984375,
+                "bottom": 461.140625,
+                "width": 34.984375,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 176,
+                "clientWidth": 176
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 196,
+                "clientWidth": 196
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 260,
+                "clientWidth": 260
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 4,
+          "label": "Dated result",
+          "before": {
+            "text": "Pending",
+            "rect": {
+              "left": 71,
+              "top": 344.640625,
+              "right": 249,
+              "bottom": 368.640625,
+              "width": 178,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 71,
+                "top": 345.640625,
+                "right": 132.734375,
+                "bottom": 366.640625,
+                "width": 61.734375,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 178,
+                "clientWidth": 178
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 260,
+                "clientWidth": 260
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "France abandons its pact with Kuwait. The guarantee proves worthless.",
+            "rect": {
+              "left": 73,
+              "top": 421.140625,
+              "right": 249,
+              "bottom": 517.140625,
+              "width": 176,
+              "height": 96
+            },
+            "text_rects": [
+              {
+                "left": 73,
+                "top": 422.140625,
+                "right": 222.03125,
+                "bottom": 443.140625,
+                "width": 149.03125,
+                "height": 21
+              },
+              {
+                "left": 73,
+                "top": 446.140625,
+                "right": 235.890625,
+                "bottom": 467.140625,
+                "width": 162.890625,
+                "height": 21
+              },
+              {
+                "left": 73,
+                "top": 470.140625,
+                "right": 203.96875,
+                "bottom": 491.140625,
+                "width": 130.96875,
+                "height": 21
+              },
+              {
+                "left": 73,
+                "top": 494.140625,
+                "right": 149.765625,
+                "bottom": 515.140625,
+                "width": 76.765625,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 176,
+                "clientWidth": 176
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 196,
+                "clientWidth": 196
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 260,
+                "clientWidth": 260
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "confirmed_review": {
+    "changes": [
+      {
+        "after": "accepted",
+        "before": "Awaiting your reply",
+        "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+        "label": "Request status"
+      },
+      {
+        "after": "5.0%",
+        "before": "0.0%",
+        "detail": "The current treaty depth. Integration develops through subsequent economic settlements.",
+        "label": "Trade integration with Japan"
+      },
+      {
+        "after": "100.0",
+        "before": "98.0",
+        "detail": "Immediate relationship change.",
+        "label": "Relations with Japan"
+      },
+      {
+        "after": "Japan and France sign a trade agreement.",
+        "before": "Pending",
+        "detail": "1 Jan 1990",
+        "label": "Dated result"
+      }
+    ],
+    "command": {
+      "accept": true,
+      "kind": "respond_diplomacy",
+      "offer": 1
+    },
+    "date_label": "1 Jan 1990",
+    "description": "Reply before 1990-01-31. 30 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+    "nation": "France",
+    "reason": null,
+    "review_token": "decision-v1-2c7568134475171b",
+    "session_id": "15304-1789340155342273800-1",
+    "title": "Accept a trade treaty from Japan",
+    "valid": true,
+    "warnings": [
+      "Japan · reply before 1990-01-31 (30 days remaining). Opens market integration and long-term dependency. Ending the treaty later can damage both economies."
+    ]
+  },
+  "settled_notice": {
+    "focused": true,
+    "visible": true,
+    "text": "Decision recorded on 1 Jan 1990. The figures now show the result."
+  },
+  "continued_layout": {
+    "width": 320,
+    "ordered_ids": [
+      3,
+      2
+    ],
+    "readings": [
+      {
+        "id": 3,
+        "title": {
+          "text": "Kuwait · a call to honor its defense pact",
+          "rect": {
+            "left": 48,
+            "right": 272,
+            "top": 397.640625,
+            "bottom": 445.640625
+          },
+          "errors": []
+        },
+        "deadline": {
+          "text": "Reply before 1990-01-08 · 7 days remaining",
+          "rect": {
+            "left": 48,
+            "right": 272,
+            "top": 402.640625,
+            "bottom": 441.640625
+          },
+          "errors": []
+        },
+        "accept": {
+          "text": "Review acceptance",
+          "rect": {
+            "left": 48,
+            "right": 183.578125,
+            "top": 401.640625,
+            "bottom": 443.140625
+          },
+          "errors": []
+        },
+        "decline": {
+          "text": "Review decline",
+          "rect": {
+            "left": 48,
+            "right": 160.234375,
+            "top": 401.140625,
+            "bottom": 442.640625
+          },
+          "errors": []
+        }
+      },
+      {
+        "id": 2,
+        "title": {
+          "text": "Brazil · a mutual-defense pact",
+          "rect": {
+            "left": 48,
+            "right": 272,
+            "top": 409.640625,
+            "bottom": 433.640625
+          },
+          "errors": []
+        },
+        "deadline": {
+          "text": "Reply before 1990-01-31 · 30 days remaining",
+          "rect": {
+            "left": 48,
+            "right": 272,
+            "top": 402.640625,
+            "bottom": 441.640625
+          },
+          "errors": []
+        },
+        "accept": {
+          "text": "Review acceptance",
+          "rect": {
+            "left": 48,
+            "right": 183.578125,
+            "top": 401.640625,
+            "bottom": 443.140625
+          },
+          "errors": []
+        },
+        "decline": {
+          "text": "Review decline",
+          "rect": {
+            "left": 48,
+            "right": 160.234375,
+            "top": 401.140625,
+            "bottom": 442.640625
+          },
+          "errors": []
+        }
+      }
+    ]
+  },
+  "saved_slot": "s10d-reviewed-inbox",
+  "finished_utc": "2026-09-13T22:56:09.196Z"
+}

@@ -261,6 +261,12 @@
           "status": "complete",
           "title": "Readable political reviews, sourced Tonga cartoon and France reporting universe",
           "evidence": "docs/campaign-certification/S10/c/manifest.json"
+        },
+        {
+          "id": "S10.d",
+          "status": "complete",
+          "title": "Deadline-ordered diplomatic replies and bounded Japan discovery",
+          "evidence": "docs/campaign-certification/S10/d/manifest.json"
         }
       ],
       "remaining": [
@@ -808,9 +814,9 @@
   "next_session": "S10",
   "execution": {
     "authorized_through": "S10",
-    "stop_boundary": "S10.c",
+    "stop_boundary": "S10.d",
     "status": "stopped",
-    "previous_stop": "S10.b",
+    "previous_stop": "S10.c",
     "instruction": "Next",
     "instruction_date": "2026-09-13",
     "next_session_requires_instruction": true

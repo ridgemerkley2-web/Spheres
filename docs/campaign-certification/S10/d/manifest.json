@@ -1,0 +1,96 @@
+{
+  "format": "spheres-s10d-increment/v1",
+  "status": "increment_complete_parent_open",
+  "created_utc": "2026-09-13T22:59:04.000214+00:00",
+  "runtime_revision": "6ab4d2fccd1128cff14ecb7470aac82b9105e291",
+  "logic_revision": "2b42cbeb44774ecdd31ca049cff3e89647269c73",
+  "final_delta": [
+    "spheres-web/ui/agency.css",
+    "tools/ui/ci-diplomatic-inbox.cjs"
+  ],
+  "binary_sha256": "45b113ea8885c155136d4e7e877e3208e72d452d9a9b2b703d2294e599342783",
+  "c01_complete": false,
+  "s10_complete": false,
+  "g2_earned": false,
+  "s11_started": false,
+  "historical_role_or_gameplay_authorization_changed": false,
+  "browser_elapsed_days": 0,
+  "qualification": {
+    "windows_web": {
+      "passed": 371,
+      "failed": 0,
+      "ignored": 12,
+      "completed_targets": 2
+    },
+    "windows_node": {
+      "tests": 1538,
+      "pass": 1537,
+      "fail": 0,
+      "skipped": 1
+    },
+    "windows_agency": {
+      "passed": 12,
+      "failed": 0,
+      "ignored": 0,
+      "completed_targets": 2
+    },
+    "linux_checks": [
+      {
+        "name": "web",
+        "totals": {
+          "passed": 371,
+          "failed": 0,
+          "ignored": 12,
+          "completed_targets": 2
+        }
+      },
+      {
+        "name": "agency",
+        "totals": {
+          "passed": 12,
+          "failed": 0,
+          "ignored": 0,
+          "completed_targets": 2
+        }
+      }
+    ],
+    "content_tests": 40,
+    "content_commands": 9,
+    "authored_browser": {
+      "inspections": 8,
+      "exact_comparisons": 6,
+      "ignored_paths": []
+    },
+    "ordinary_browser": {
+      "inspections": 8,
+      "exact_comparisons": 5,
+      "ignored_paths": []
+    },
+    "authored_offers": 3,
+    "cancelled_choices": 6,
+    "confirmed_replies": 1,
+    "new_long_campaign_or_performance_claim": false,
+    "not_refreshed": [
+      "Full Linux Node",
+      "Eight-country startup matrix",
+      "External old-save fixture matrix",
+      "Long campaign and Russia activation"
+    ]
+  },
+  "research_counts": {
+    "country_packets": 4,
+    "countries_without_new_discovery_packet": 156,
+    "organization_observations": 660,
+    "institution_observations": 18,
+    "sources": 38,
+    "source_claims": 1344,
+    "discovery_batches": 70,
+    "exhaustive_country_censuses": 0
+  },
+  "review_url": "http://127.0.0.1:7850",
+  "evidence": {
+    "inventory_sha256": "5fedfe52f6853fda0ab0437a068906d402006b94a01189f1b8666d9c07a854aa",
+    "logical_files": 125,
+    "stored_bytes": 76707801
+  }
+}

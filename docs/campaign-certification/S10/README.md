@@ -1,10 +1,21 @@
 # S10 — Government, succession and diplomacy
 
-Status: **S10.a, S10.b and S10.c complete; S10 and C01 remain in progress**.
+Status: **S10.a through S10.d complete; S10 and C01 remain in progress**.
 The [S10.b report](b/README.md) records source-backed country discoveries,
 Linux qualification and all eight ordinary government browser journeys.
 Parent source: `872442d7411d9986321248b41ccadf79e2851d1c`.
 Latest user instruction: Next. Work is limited to S10; S11 is not started.
+
+## S10.d — Clear diplomatic replies
+
+The [S10.d report](d/README.md) records deadline ordering, explicit review
+controls, sender/deadline preservation, accurate conditional guarantee warnings,
+phone layout and focused reply results. A disclosed three-request native fixture
+qualifies all six preview/cancel choices and one confirmed reply through
+Save/Load/Continue. A separate ordinary France journey also passes. Japan adds
+16 election-list organizations and seven separately classified parliamentary
+groups to the partial research intake. Native, interface and content checks pass
+within the report's exact source scope. S10, C01 and G2 remain open.
 
 ## S10.c — Readable reviews and bounded content
 

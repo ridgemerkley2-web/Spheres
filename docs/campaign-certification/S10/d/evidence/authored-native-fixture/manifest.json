@@ -1,0 +1,391 @@
+{
+  "after_agency": {
+    "automatic_bank": true,
+    "break_peg_pc": 12.0,
+    "expiry_rule": "New requests follow the visible standing policy. Review is the default. Reply before the stated date: the reply window closes when that date begins. A still-applicable unanswered request expires as a decline; changed circumstances can close it instead. Existing requests are not automatically answered by a policy change.",
+    "history": [
+      {
+        "date_label": "1990-01-01",
+        "from_name": "Japan",
+        "offer": {
+          "expires_day": 30,
+          "from": "Japan",
+          "id": 1,
+          "issued_day": 0,
+          "kind": {
+            "kind": "trade_treaty"
+          },
+          "to": "France"
+        },
+        "outcome": "accepted",
+        "resolved_day": 0,
+        "title": "Trade treaty"
+      }
+    ],
+    "monetary": {
+      "kind": "floating"
+    },
+    "offers": [
+      {
+        "accept_blocked": null,
+        "consequence": "Both signatories pay 0.3% of GDP annually. A later call to arms needs your response; abandoning a guarantee has diplomatic costs.",
+        "days_remaining": 30,
+        "expires": "1990-01-31",
+        "from": "Brazil",
+        "from_name": "Brazil",
+        "id": 2,
+        "title": "a mutual-defense pact"
+      },
+      {
+        "accept_blocked": null,
+        "consequence": "Accept: enter the defending side at rung 2, subject to normal access, nuclear and sphere rules. Decline or expiry can end the pact and reduce reputation and relations if the guarantee still applies. Review the exact current effects before responding.",
+        "days_remaining": 7,
+        "expires": "1990-01-08",
+        "from": "Kuwait",
+        "from_name": "Kuwait",
+        "id": 3,
+        "title": "a call to honor its defense pact"
+      }
+    ],
+    "policy": {
+      "calls_to_arms": "review",
+      "defense_pacts": "review",
+      "trade_treaties": "review"
+    }
+  },
+  "after_dispatch_count": 1,
+  "after_log": [
+    {
+      "cat": "diplomacy",
+      "date": "1 Jan 1990",
+      "t": 0,
+      "tags": [
+        "Japan",
+        "France"
+      ],
+      "text": "Japan and France sign a trade agreement."
+    }
+  ],
+  "authored_preconditions": [
+    "Integrated fresh France, seed 13, zero days advanced",
+    "All starting defense pacts, trade agreements and sanctions cleared",
+    "France political capital set to 100 and relations with Japan, Brazil and Kuwait set to 98",
+    "A France-Kuwait defense pact authored for a native Iraq-Kuwait test conflict"
+  ],
+  "before_agency": {
+    "automatic_bank": true,
+    "break_peg_pc": 12.0,
+    "expiry_rule": "New requests follow the visible standing policy. Review is the default. Reply before the stated date: the reply window closes when that date begins. A still-applicable unanswered request expires as a decline; changed circumstances can close it instead. Existing requests are not automatically answered by a policy change.",
+    "history": [],
+    "monetary": {
+      "kind": "floating"
+    },
+    "offers": [
+      {
+        "accept_blocked": null,
+        "consequence": "Opens market integration and long-term dependency. Ending the treaty later can damage both economies.",
+        "days_remaining": 30,
+        "expires": "1990-01-31",
+        "from": "Japan",
+        "from_name": "Japan",
+        "id": 1,
+        "title": "a trade treaty"
+      },
+      {
+        "accept_blocked": null,
+        "consequence": "Both signatories pay 0.3% of GDP annually. A later call to arms needs your response; abandoning a guarantee has diplomatic costs.",
+        "days_remaining": 30,
+        "expires": "1990-01-31",
+        "from": "Brazil",
+        "from_name": "Brazil",
+        "id": 2,
+        "title": "a mutual-defense pact"
+      },
+      {
+        "accept_blocked": null,
+        "consequence": "Accept: enter the defending side at rung 2, subject to normal access, nuclear and sphere rules. Decline or expiry can end the pact and reduce reputation and relations if the guarantee still applies. Review the exact current effects before responding.",
+        "days_remaining": 7,
+        "expires": "1990-01-08",
+        "from": "Kuwait",
+        "from_name": "Kuwait",
+        "id": 3,
+        "title": "a call to honor its defense pact"
+      }
+    ],
+    "policy": {
+      "calls_to_arms": "review",
+      "defense_pacts": "review",
+      "trade_treaties": "review"
+    }
+  },
+  "before_dispatch_count": 0,
+  "before_file": "before.json",
+  "before_log": [],
+  "command": {
+    "accept": true,
+    "kind": "respond_diplomacy",
+    "offer": 1
+  },
+  "compiled_revision": "6ab4d2fccd11",
+  "date": "1 Jan 1990",
+  "days_advanced": 0,
+  "expected_after_file": "expected-after.json",
+  "fixture": "s10d-authored-native-diplomatic-inbox",
+  "native_actions": [
+    "Japan proposes trade to France through statecraft::propose_trade",
+    "Brazil proposes defense pact through statecraft::propose_pact",
+    "Native Iraq-Kuwait conflict and 7-day guaranteed France reply queued after the 30-day treaties",
+    "Preview all six answer choices, then accept Japan trade through the protected native review transport"
+  ],
+  "player": "France",
+  "quotes": [
+    {
+      "changes": [
+        {
+          "after": "accepted",
+          "before": "Awaiting your reply",
+          "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+          "label": "Request status"
+        },
+        {
+          "after": "5.0%",
+          "before": "0.0%",
+          "detail": "The current treaty depth. Integration develops through subsequent economic settlements.",
+          "label": "Trade integration with Japan"
+        },
+        {
+          "after": "100.0",
+          "before": "98.0",
+          "detail": "Immediate relationship change.",
+          "label": "Relations with Japan"
+        },
+        {
+          "after": "Japan and France sign a trade agreement.",
+          "before": "Pending",
+          "detail": "1 Jan 1990",
+          "label": "Dated result"
+        }
+      ],
+      "command": {
+        "accept": true,
+        "kind": "respond_diplomacy",
+        "offer": 1
+      },
+      "date_label": "1 Jan 1990",
+      "description": "Reply before 1990-01-31. 30 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+      "nation": "France",
+      "reason": null,
+      "review_token": "decision-v1-218eb187882751a3",
+      "session_id": "38680-1789340147738804300-1",
+      "title": "Accept a trade treaty from Japan",
+      "valid": true,
+      "warnings": [
+        "Japan · reply before 1990-01-31 (30 days remaining). Opens market integration and long-term dependency. Ending the treaty later can damage both economies."
+      ]
+    },
+    {
+      "changes": [
+        {
+          "after": "declined",
+          "before": "Awaiting your reply",
+          "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+          "label": "Request status"
+        },
+        {
+          "after": "France declines a trade treaty from Japan.",
+          "before": "Pending",
+          "detail": "1 Jan 1990",
+          "label": "Dated result"
+        }
+      ],
+      "command": {
+        "accept": false,
+        "kind": "respond_diplomacy",
+        "offer": 1
+      },
+      "date_label": "1 Jan 1990",
+      "description": "Reply before 1990-01-31. 30 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+      "nation": "France",
+      "reason": null,
+      "review_token": "decision-v1-2438308ee6e028d2",
+      "session_id": "38680-1789340147738804300-1",
+      "title": "Decline a trade treaty from Japan",
+      "valid": true,
+      "warnings": [
+        "Japan · reply before 1990-01-31 (30 days remaining). Opens market integration and long-term dependency. Ending the treaty later can damage both economies."
+      ]
+    },
+    {
+      "changes": [
+        {
+          "after": "accepted",
+          "before": "Awaiting your reply",
+          "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+          "label": "Request status"
+        },
+        {
+          "after": "100.0",
+          "before": "98.0",
+          "detail": "Immediate relationship change.",
+          "label": "Relations with Brazil"
+        },
+        {
+          "after": "true",
+          "before": "false",
+          "detail": "A mutual-defense commitment; a later call to arms follows your response policy.",
+          "label": "Defense pact with Brazil"
+        },
+        {
+          "after": "Brazil and France sign a mutual defence pact.",
+          "before": "Pending",
+          "detail": "1 Jan 1990",
+          "label": "Dated result"
+        }
+      ],
+      "command": {
+        "accept": true,
+        "kind": "respond_diplomacy",
+        "offer": 2
+      },
+      "date_label": "1 Jan 1990",
+      "description": "Reply before 1990-01-31. 30 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+      "nation": "France",
+      "reason": null,
+      "review_token": "decision-v1-341e8db5a07c3d5f",
+      "session_id": "38680-1789340147738804300-1",
+      "title": "Accept a mutual-defense pact from Brazil",
+      "valid": true,
+      "warnings": [
+        "Brazil · reply before 1990-01-31 (30 days remaining). Both signatories pay 0.3% of GDP annually. A later call to arms needs your response; abandoning a guarantee has diplomatic costs."
+      ]
+    },
+    {
+      "changes": [
+        {
+          "after": "declined",
+          "before": "Awaiting your reply",
+          "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+          "label": "Request status"
+        },
+        {
+          "after": "France declines a mutual-defense pact from Brazil.",
+          "before": "Pending",
+          "detail": "1 Jan 1990",
+          "label": "Dated result"
+        }
+      ],
+      "command": {
+        "accept": false,
+        "kind": "respond_diplomacy",
+        "offer": 2
+      },
+      "date_label": "1 Jan 1990",
+      "description": "Reply before 1990-01-31. 30 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+      "nation": "France",
+      "reason": null,
+      "review_token": "decision-v1-99c87e221b96be8e",
+      "session_id": "38680-1789340147738804300-1",
+      "title": "Decline a mutual-defense pact from Brazil",
+      "valid": true,
+      "warnings": [
+        "Brazil · reply before 1990-01-31 (30 days remaining). Both signatories pay 0.3% of GDP annually. A later call to arms needs your response; abandoning a guarantee has diplomatic costs."
+      ]
+    },
+    {
+      "changes": [
+        {
+          "after": "75.0",
+          "before": "70.0",
+          "detail": "Diplomatic credibility, after its native limits.",
+          "label": "Reputation"
+        },
+        {
+          "after": "accepted",
+          "before": "Awaiting your reply",
+          "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+          "label": "Request status"
+        },
+        {
+          "after": "100.0",
+          "before": "98.0",
+          "detail": "Immediate relationship change.",
+          "label": "Relations with Kuwait"
+        },
+        {
+          "after": "France accepts Kuwait's call and enters the war at rung 2.",
+          "before": "Pending",
+          "detail": "1 Jan 1990",
+          "label": "Dated result"
+        }
+      ],
+      "command": {
+        "accept": true,
+        "kind": "respond_diplomacy",
+        "offer": 3
+      },
+      "date_label": "1 Jan 1990",
+      "description": "Reply before 1990-01-08. 7 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+      "nation": "France",
+      "reason": null,
+      "review_token": "decision-v1-0cba02b1a0352841",
+      "session_id": "38680-1789340147738804300-1",
+      "title": "Accept a call to honor its defense pact from Kuwait",
+      "valid": true,
+      "warnings": [
+        "Kuwait · reply before 1990-01-08 (7 days remaining). Accept: enter the defending side at rung 2, subject to normal access, nuclear and sphere rules. Decline or expiry can end the pact and reduce reputation and relations if the guarantee still applies. Review the exact current effects before responding."
+      ]
+    },
+    {
+      "changes": [
+        {
+          "after": "45.0",
+          "before": "70.0",
+          "detail": "Diplomatic credibility, after its native limits.",
+          "label": "Reputation"
+        },
+        {
+          "after": "declined",
+          "before": "Awaiting your reply",
+          "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+          "label": "Request status"
+        },
+        {
+          "after": "53.0",
+          "before": "98.0",
+          "detail": "Immediate relationship change.",
+          "label": "Relations with Kuwait"
+        },
+        {
+          "after": "false",
+          "before": "true",
+          "detail": "A mutual-defense commitment; a later call to arms follows your response policy.",
+          "label": "Defense pact with Kuwait"
+        },
+        {
+          "after": "France abandons its pact with Kuwait. The guarantee proves worthless.",
+          "before": "Pending",
+          "detail": "1 Jan 1990",
+          "label": "Dated result"
+        }
+      ],
+      "command": {
+        "accept": false,
+        "kind": "respond_diplomacy",
+        "offer": 3
+      },
+      "date_label": "1 Jan 1990",
+      "description": "Reply before 1990-01-08. 7 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+      "nation": "France",
+      "reason": null,
+      "review_token": "decision-v1-e84f3d1c254ed74b",
+      "session_id": "38680-1789340147738804300-1",
+      "title": "Decline a call to honor its defense pact from Kuwait",
+      "valid": true,
+      "warnings": [
+        "Kuwait · reply before 1990-01-08 (7 days remaining). Accept: enter the defending side at rung 2, subject to normal access, nuclear and sphere rules. Decline or expiry can end the pact and reduce reputation and relations if the guarantee still applies. Review the exact current effects before responding."
+      ]
+    }
+  ],
+  "scope": "Disposable authored transaction and UI fixture. Not an ordinary campaign, historical treaty, simulated war or campaign-certification duration result.",
+  "version": 1
+}

@@ -1,0 +1,21 @@
+{
+  "revision": "6ab4d2fccd1128cff14ecb7470aac82b9105e291",
+  "clean_before": true,
+  "command": [
+    "node",
+    "tools/ui/ci-government-decisions.cjs"
+  ],
+  "runner_sha256": "7cbf37dcade405f9aa845e166b453813c02fd1a5c820467c95a1b65fe9789b55",
+  "started_utc": "2026-09-13T22:55:46.497062+00:00",
+  "binary_sha256_before": "45b113ea8885c155136d4e7e877e3208e72d452d9a9b2b703d2294e599342783",
+  "exit_code": 0,
+  "finished_utc": "2026-09-13T22:56:07.874470+00:00",
+  "revision_after": "6ab4d2fccd1128cff14ecb7470aac82b9105e291",
+  "clean_after": true,
+  "log_sha256": "f37a6a35ea872825446461337a18b01837e7c3c6b3f91e12d6262ab12df31ede",
+  "binary": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+    "sha256": "45b113ea8885c155136d4e7e877e3208e72d452d9a9b2b703d2294e599342783"
+  },
+  "passed": true
+}
