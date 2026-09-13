@@ -73,11 +73,11 @@ async function main(){
       try{const r=await fetch(url+'/api/build',{headers:{Connection:'close'},signal:AbortSignal.timeout(2000)});await r.arrayBuffer();if(r.ok)break;}catch(error){if(Date.now()>=until)throw error;}
       assert(Date.now()<until,'Server startup exceeded 20 seconds');await new Promise(r=>setTimeout(r,100));
     }
-    browser=await chromium.launch({headless:true,...(process.env.SPHERES_BROWSER_CHANNEL?{channel:process.env.SPHERES_BROWSER_CHANNEL}:{})});
+    browser=await chromium.launch({headless:true,args:['--log-net-log='+path.join(out,'chrome-netlog.json')],...(process.env.SPHERES_BROWSER_CHANNEL?{channel:process.env.SPHERES_BROWSER_CHANNEL}:{})});
     e.browser_version=browser.version();page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});page.setDefaultTimeout(30000);
     const cdp=await page.context().newCDPSession(page);await cdp.send('Network.enable');await cdp.send('Page.enable');await cdp.send('Page.setLifecycleEventsEnabled',{enabled:true});
     const network=path.join(out,'browser-lifecycle.jsonl'),observe=(kind,value)=>fs.appendFileSync(network,JSON.stringify({utc:new Date().toISOString(),stage,kind,value})+'\n');
-    for(const event of ['Network.requestWillBeSent','Network.responseReceived','Network.loadingFinished','Network.loadingFailed','Page.lifecycleEvent'])cdp.on(event,value=>observe(event,value));
+    for(const event of ['Network.requestWillBeSent','Network.requestWillBeSentExtraInfo','Network.responseReceived','Network.responseReceivedExtraInfo','Network.loadingFinished','Network.loadingFailed','Page.lifecycleEvent'])cdp.on(event,value=>observe(event,value));
     page.on('console',message=>observe('console',{type:message.type(),text:message.text()}));page.on('crash',()=>observe('page-crash',{}));
     page.on('pageerror',error=>e.errors.push(error.message));page.on('request',r=>{if(new URL(r.url()).pathname==='/api/command'&&r.method()==='POST')e.commands.push(r.postDataJSON());});
     e.build=await integrated.verifyBuild({page,url,root,run,binary});
