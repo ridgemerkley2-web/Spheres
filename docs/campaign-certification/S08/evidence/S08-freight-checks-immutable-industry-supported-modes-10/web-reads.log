@@ -1,0 +1,22 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+   Compiling spheres-web v0.6.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-web)
+    Finished `release` profile [optimized] target(s) in 2m 00s
+     Running unittests src\main.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_web-960ae70db4690868.exe)
+
+running 13 tests
+test equipment_view::company_view_tests::s08_changed_stock_or_access_cannot_reuse_a_reviewed_import ... ok
+test equipment_view::company_view_tests::s08_declared_small_country_purchase_policy_uses_the_actual_priced_budget_review ... ok
+test equipment_view::company_view_tests::s08_fresh_tonga_paid_supplier_market_export ... ignored, Requires an empty SPHERES_S08_SUPPLIER_EXPORT directory; advances up to 3000 real fresh-campaign days
+test equipment_view::company_view_tests::s08_import_parser_keeps_foreign_seller_separate_from_authenticated_buyer ... ok
+test equipment_view::company_view_tests::s08_import_purchase_and_cancellation_reviews_retain_exact_native_quotes_and_no_research_grant ... ok
+test equipment_view::company_view_tests::s08_live_paid_product_work_is_distinct_from_last_capital_review ... ok
+test equipment_view::company_view_tests::s08_market_preserves_native_stock_affordability_and_foreign_identity_in_pure_reads ... ok
+test equipment_view::company_view_tests::s08_no_factory_country_can_review_import_access_without_any_opening_stock_grant ... ok
+test equipment_view::company_view_tests::s08_request_local_supplier_reads_preserve_both_board_sections ... ok
+test equipment_view::tests::s08_checked_read_matches_actual_command_refusals_and_price_order ... ok
+test performance::s08_daily_subsystem_diagnosis ... ignored, explicit saved-campaign subsystem diagnosis; not a performance acceptance run
+test performance::s08_read_model_diagnosis ... ignored, read-only component diagnosis on an explicit saved campaign; not an acceptance run
+test performance::s08_supplier_import_profile ... ignored, requires the genuine earned-stock S08 campaign and an uncontended run
+
+test result: ok. 9 passed; 0 failed; 4 ignored; 0 measured; 333 filtered out; finished in 0.88s
+

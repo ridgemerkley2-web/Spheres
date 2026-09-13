@@ -1,0 +1,20 @@
+{
+  "revision_before": "d770592aeead51f1313d507edd26b02d75a69bba",
+  "clean_before": true,
+  "command": [
+    "node",
+    "tools/ui/ci-money.cjs"
+  ],
+  "runner_sha256": "7002b85efb032055132756e1a28180033c5b7daa746d81b23ab6dd5c52c730f4",
+  "binary_sha256_before": "c5852894069c797c1cbf6b15a302f73f85a0f0b4a4edfee63eb1ca6b367f8435",
+  "started_utc": "2026-09-13T02:03:24.496340+00:00",
+  "exit_code": 0,
+  "finished_utc": "2026-09-13T02:03:37.041079+00:00",
+  "revision_after": "d770592aeead51f1313d507edd26b02d75a69bba",
+  "clean_after": true,
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+  "binary_sha256": "c5852894069c797c1cbf6b15a302f73f85a0f0b4a4edfee63eb1ca6b367f8435",
+  "log_sha256": "5a7a46de4015bcc853c31188a1a075071234bdfb4e347c99256eafb0eafb3de1",
+  "preservation_passed": true,
+  "passed": true
+}

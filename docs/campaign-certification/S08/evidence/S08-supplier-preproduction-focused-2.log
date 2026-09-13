@@ -1,0 +1,33 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 53.84s
+     Running tests\s03_supplier_operations.rs (C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration-target\release\deps\s03_supplier_operations-55b159e94df0414a.exe)
+
+running 10 tests
+test separate_shipyard_lease_cannot_steal_an_existing_arms_plant_slot ... ok
+test quarter_staffing_changes_real_work_and_cash_without_adding_workers ... ok
+test same_day_new_development_is_not_mistaken_for_a_grandfathered_program ... ok
+test existing_wip_finishes_under_original_terms_then_next_unit_requires_components ... ok
+test basic_ammunition_uses_only_whole_staffed_paid_packets_and_no_component_recipe ... ok
+test component_coal_staff_and_company_cash_shortages_cannot_partially_buy_a_unit ... ok
+test supplier_and_prior_industry_consumer_share_remaining_power_once ... ok
+test absent_operations_are_byte_inert_and_adoption_preserves_existing_property ... ok
+test new_refit_freezes_fee_and_component_recipe_preserving_escrow_and_source_ownership ... ok
+test new_unit_purchases_components_once_and_shared_inputs_have_one_cash_owner ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.49s
+
+     Running tests\s08_supplier_lifecycle.rs (C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration-target\release\deps\s08_supplier_lifecycle-7dac88676a2dc052.exe)
+
+running 9 tests
+test s08_missing_or_reidentified_supplier_retains_paid_import_before_any_buyer_mutation ... ok
+test s08_catalogue_only_adoption_is_versioned_without_assets_and_downgrades_are_refused ... ok
+test s08_import_sanctions_access_loss_and_stale_reviews_preserve_owned_stock_and_resume_once ... ok
+test s08_serialized_import_origin_route_and_escrow_corruption_is_rejected ... ok
+test s08_imported_rounds_and_guided_air_stores_keep_one_paid_receipt_without_research_grants ... ok
+test s08_import_cancellation_before_and_after_settlement_returns_exact_property_and_refund_once ... ok
+test s08_market_affordability_matches_review_at_sub_ulp_funding_boundaries ... ok
+test s08_eleven_paid_supplier_platforms_import_exact_models_without_factory_research_or_duplicate_payment ... ok
+test s08_new_physical_supplier_preserves_preproduction_expenses_through_each_saved_phase ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.11s
+

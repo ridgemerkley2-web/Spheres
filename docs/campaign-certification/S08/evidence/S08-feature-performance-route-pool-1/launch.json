@@ -1,0 +1,54 @@
+{
+  "format": "spheres-s08-feature-performance-qualification",
+  "version": 1,
+  "candidate": "d770592aeead51f1313d507edd26b02d75a69bba",
+  "source_before": {
+    "captured_utc": "2026-09-13T02:06:57.607350+00:00",
+    "revision": "d770592aeead51f1313d507edd26b02d75a69bba",
+    "status_porcelain": ""
+  },
+  "started_utc": "2026-09-13T02:06:58.946290+00:00",
+  "test_binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+  "executed_copy": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-feature-performance-route-pool-1\\spheres_web-960ae70db4690868.exe",
+  "binary_sha256_before": "96bb58155a19218d6d37afabfb8d26c83c53d3dbebf5ca116a870fe950c655f7",
+  "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-purchased.campaign.json",
+  "input_copy": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-feature-performance-route-pool-1\\purchased.campaign.json",
+  "input_sha256_before": "73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9",
+  "export_proof": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\runner-result.json",
+  "export_proof_sha256_before": "043e94f59023a48756793b2abaea3a2655cabf972abbe66f8498125e41ed59a8",
+  "plan": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-performance-plan.json",
+  "plan_sha256_before": "8d2cb23fe996ba9dc35da0aed5859072a83c2e61b55d4881cf047bc1ac195a28",
+  "declared_limits": {
+    "workload": "31 actual days loaded from fresh-world genuinely purchased foreign-stock campaign, retained supplier work and import transit; no injected property",
+    "simulation_p95_limit_ms": 300,
+    "whole_turn_p95_limit_ms": 400,
+    "whole_turn_max_limit_ms": 750,
+    "equipment_board_read_and_serialization_p95_limit_ms": 300,
+    "purchase_quote_p95_limit_ms": 250,
+    "limits": "Equipment board and quote sampled separately after ordinary state/history whole-turn; no network, disk autosave or browser rendering. Run only after builds and other simulations finish."
+  },
+  "runner": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s08-feature-performance.py",
+  "runner_sha256": "f2c71fd6e580f473480124015c890b469af42c15090912229fa3a05206e23e66",
+  "command": [
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-feature-performance-route-pool-1\\spheres_web-960ae70db4690868.exe",
+    "performance::s08_supplier_import_profile",
+    "--ignored",
+    "--exact",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "working_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration",
+  "environment": {
+    "SPHERES_S08_PERFORMANCE_INPUT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-feature-performance-route-pool-1\\purchased.campaign.json",
+    "SPHERES_S08_PERFORMANCE_OUT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-feature-performance-route-pool-1\\profile.json"
+  },
+  "sanitized_environment_keys": [],
+  "exit_code": null,
+  "passed": false,
+  "memory": {
+    "requested_interval_ms": 100,
+    "samples": 0,
+    "failed_reads": 0,
+    "note": "Child PID only. Sampled maxima can miss short peaks. OS peak working set is a separate Windows counter, not private-memory peak. No feature-case memory acceptance bar was declared; these observations do not imply throughput or browser performance."
+  }
+}

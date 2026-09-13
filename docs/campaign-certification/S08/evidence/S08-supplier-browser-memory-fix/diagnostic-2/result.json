@@ -1,0 +1,1209 @@
+{
+  "started_utc": "2026-09-11T17:34:33.358935+00:00",
+  "worker_sha256": "41e1ffd275bb3cce69749de3d77d7ffc472cf731556e8da1465f350ef5e3c4b3",
+  "note": "Tiny synthetic objects test only the audit tool. Native campaign observations below read retained failed-run files without modification.",
+  "probes": [
+    {
+      "signed_zero_is_distinct": {
+        "equal": false,
+        "path": [
+          "nations",
+          0,
+          "treasury"
+        ],
+        "kind": "number-binary64",
+        "left": "8000000000000000",
+        "right": "0000000000000000",
+        "token_offsets": {
+          "left": 354,
+          "right": 354
+        }
+      }
+    },
+    {
+      "only_plan_is_ignored": {
+        "equal": true,
+        "bytes_compared": 442
+      }
+    }
+  ],
+  "archives": [
+    {
+      "label": "delivered",
+      "duration_seconds": 6.730852600070648,
+      "projection": {
+        "version": 1,
+        "input": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-supplier-imports-ci\\supplier-g630Bz\\server\\saves\\s08-delivered.json",
+          "bytes": 131186946,
+          "sha256": "c91b38cb65c5ea9cbcddbed9440036d2de90b825b62e488ddf47aa72ec820d1a"
+        },
+        "requested": {
+          "buyer": "Tonga",
+          "revision": "import-3-48",
+          "seller": "France",
+          "company": 3,
+          "product": 48
+        },
+        "buyer": {
+          "id": "Tonga",
+          "tech_sha256": "e8a3122ad0f4e54fe5d01d61a118838ff3cc0bdcee385be92148d9799fd7831f",
+          "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+          "revision_ids": [
+            "import-3-48"
+          ],
+          "held_by_revision": {
+            "import-3-48": 1.0
+          },
+          "held_units": 1.0,
+          "buyer_revision": {
+            "certified_day": 2027,
+            "created_day": 1260,
+            "id": "import-3-48",
+            "name": "France Armored personnel carrier",
+            "profile": {
+              "component_costs": {
+                "active_protection": 1e-06,
+                "ammunition": 1.2e-05,
+                "armament": 3.5e-05,
+                "communications": 8e-05,
+                "fire_control": 8e-05,
+                "mobility": 0.00022,
+                "protection": 0.00016,
+                "sensors": 0.00015,
+                "suspension": 0.00012,
+                "transmission": 0.0001,
+                "troop_compartment": 9e-05,
+                "turret": 6e-05,
+                "wheels": 7e-05
+              },
+              "development_cost_bn": 0.04494,
+              "development_days": 245,
+              "fabrication_cost_bn": 0.001498,
+              "ground_roles": {
+                "air_defense": 0.0,
+                "fire_support": 0.0,
+                "protected_mobility": 0.782,
+                "reconnaissance": 0.1
+              },
+              "installation_capacity": 20,
+              "installation_used": 13,
+              "land": 0.75,
+              "land_factor": 0.895,
+              "maintenance_bn_day": 3.67e-07,
+              "mobility": 1.15,
+              "production_days": 33,
+              "protection": 0.68,
+              "recipe": [
+                0.0,
+                0.025,
+                0.0,
+                0.3,
+                0.0,
+                0.0,
+                15.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "recon": 1.0,
+              "reference_weight_bn": 0.0011,
+              "rules_version": 3,
+              "service_months": 360,
+              "tooling_cost_bn": 0.00749,
+              "tooling_days": 30,
+              "unit_cost_bn": 0.001498
+            },
+            "spec": {
+              "components": {
+                "active_protection": "aps_none",
+                "ammunition": "ground_ammo_ball",
+                "armament": "ground_mg_127",
+                "communications": "comms_radio",
+                "fire_control": "fcs_basic",
+                "mobility": "engine_diesel_600",
+                "protection": "ground_armor_light",
+                "sensors": "optics_day",
+                "suspension": "suspension_torsion",
+                "transmission": "transmission_manual",
+                "troop_compartment": "ground_troops_standard",
+                "turret": "ground_station_mg",
+                "wheels": "ground_wheels_standard"
+              },
+              "platform": "ground_apc"
+            },
+            "specification_key": "v3|10:ground_apc|17:active_protection:8:aps_none|10:ammunition:16:ground_ammo_ball|8:armament:13:ground_mg_127|14:communications:11:comms_radio|12:fire_control:9:fcs_basic|8:mobility:17:engine_diesel_600|10:protection:18:ground_armor_light|7:sensors:10:optics_day|10:suspension:18:suspension_torsion|12:transmission:19:transmission_manual|17:troop_compartment:22:ground_troops_standard|6:turret:17:ground_station_mg|6:wheels:22:ground_wheels_standard"
+          },
+          "maintenance_plan": null,
+          "program_budget": {
+            "day": 2155,
+            "settled_day": 2155,
+            "spent_today_bn": [
+              [
+                3.621832820117346e-06,
+                3.621832820117346e-06,
+                3.621832820117346e-06,
+                3.621832820117346e-06,
+                3.6218328201173444e-06
+              ],
+              [
+                2.6077196304844888e-06,
+                2.6077196304844888e-06,
+                2.6077196304844888e-06,
+                2.6077196304844888e-06,
+                2.607719630484489e-06
+              ],
+              [
+                2.8974662560938773e-06,
+                2.8974662560938773e-06,
+                2.8974662560938773e-06,
+                2.8974662560938773e-06,
+                2.897466256093877e-06
+              ],
+              [
+                4.056452758531428e-06,
+                4.056452758531428e-06,
+                4.056452758531428e-06,
+                4.056452758531428e-06,
+                4.056452758531428e-06
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                2.9792495778384626e-06
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.3435831429467575e-06,
+                1.3435831429467575e-06,
+                1.3435831429467575e-06,
+                1.3435831429467577e-06
+              ],
+              [
+                7.710998907346607e-07,
+                7.710998907346607e-07,
+                8.996165391904376e-07,
+                0.0,
+                0.0
+              ],
+              [
+                1.014113189632857e-06,
+                1.014113189632857e-06,
+                1.014113189632857e-06,
+                1.014113189632857e-06,
+                1.014113189632857e-06
+              ],
+              [
+                2.897466256093877e-07,
+                2.897466256093877e-07,
+                2.897466256093877e-07,
+                2.897466256093877e-07,
+                2.897466256093877e-07
+              ]
+            ],
+            "prepaid_used_today_bn": [
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          }
+        },
+        "supplier": {
+          "id": 3,
+          "nation": "France",
+          "product": {
+            "id": 48,
+            "stock": 0
+          }
+        },
+        "imports": {
+          "ids": [
+            3695
+          ],
+          "matching": [
+            {
+              "ammunition": false,
+              "buyer": "Tonga",
+              "buyer_revision": "import-3-48",
+              "cancelled_day": null,
+              "company": 3,
+              "cost_basis_bn": 0.0015996840242014226,
+              "delivered_day": 2155,
+              "district": "FRA_le-de-france",
+              "due_day": 2155,
+              "escrow_bn": 0.0,
+              "family": null,
+              "id": 3695,
+              "product": 48,
+              "purchased_day": 2128,
+              "quantity": 1,
+              "reason": "The buyer received the exact foreign model or ammunition. Ordinary upkeep and compatibility apply; no research or manufacturing license was granted.",
+              "refunded_bn": 0.0,
+              "refunded_day": null,
+              "route": {
+                "bottleneck": "R\u00e9union freight terminal",
+                "capacity_tonnes": 1451.6129032258063,
+                "chokepoints": [],
+                "distance_km": 13536,
+                "estimated_days": 27,
+                "mode": "sea",
+                "months": 1,
+                "nodes": [
+                  {
+                    "id": "FRA_r-union",
+                    "kind": "district",
+                    "lat": -21.11515,
+                    "lon": 55.53752,
+                    "name": "R\u00e9union"
+                  },
+                  {
+                    "id": "gateway:FRA_r-union",
+                    "kind": "gateway",
+                    "lat": -21.1019,
+                    "lon": 55.781,
+                    "name": "R\u00e9union coastal gateway"
+                  },
+                  {
+                    "id": "sea:1225",
+                    "kind": "sea",
+                    "lat": -25.0,
+                    "lon": 57.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1242",
+                    "kind": "sea",
+                    "lat": -30.0,
+                    "lon": 62.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1260",
+                    "kind": "sea",
+                    "lat": -35.0,
+                    "lon": 67.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1276",
+                    "kind": "sea",
+                    "lat": -40.0,
+                    "lon": 72.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1292",
+                    "kind": "sea",
+                    "lat": -45.0,
+                    "lon": 77.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1322",
+                    "kind": "sea",
+                    "lat": -45.0,
+                    "lon": 87.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1398",
+                    "kind": "sea",
+                    "lat": -45.0,
+                    "lon": 97.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1465",
+                    "kind": "sea",
+                    "lat": -45.0,
+                    "lon": 107.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1534",
+                    "kind": "sea",
+                    "lat": -45.0,
+                    "lon": 117.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1609",
+                    "kind": "sea",
+                    "lat": -45.0,
+                    "lon": 127.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1662",
+                    "kind": "sea",
+                    "lat": -45.0,
+                    "lon": 137.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1693",
+                    "kind": "sea",
+                    "lat": -45.0,
+                    "lon": 147.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1733",
+                    "kind": "sea",
+                    "lat": -45.0,
+                    "lon": 157.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1758",
+                    "kind": "sea",
+                    "lat": -40.0,
+                    "lon": 162.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1783",
+                    "kind": "sea",
+                    "lat": -35.0,
+                    "lon": 167.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1810",
+                    "kind": "sea",
+                    "lat": -30.0,
+                    "lon": 172.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1836",
+                    "kind": "sea",
+                    "lat": -25.0,
+                    "lon": 177.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:0007",
+                    "kind": "sea",
+                    "lat": -20.0,
+                    "lon": -177.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "gateway:TO-02",
+                    "kind": "gateway",
+                    "lat": -19.71061,
+                    "lon": -175.07225,
+                    "name": "Ha'apai coastal gateway"
+                  },
+                  {
+                    "id": "TO-02",
+                    "kind": "district",
+                    "lat": -19.75037,
+                    "lon": -175.06803,
+                    "name": "Ha'apai"
+                  }
+                ],
+                "segments": [
+                  "FRA_r-union|gateway:FRA_r-union",
+                  "gateway:FRA_r-union|sea:1225",
+                  "sea:1225|sea:1242",
+                  "sea:1242|sea:1260",
+                  "sea:1260|sea:1276",
+                  "sea:1276|sea:1292",
+                  "sea:1292|sea:1322",
+                  "sea:1322|sea:1398",
+                  "sea:1398|sea:1465",
+                  "sea:1465|sea:1534",
+                  "sea:1534|sea:1609",
+                  "sea:1609|sea:1662",
+                  "sea:1662|sea:1693",
+                  "sea:1693|sea:1733",
+                  "sea:1733|sea:1758",
+                  "sea:1758|sea:1783",
+                  "sea:1783|sea:1810",
+                  "sea:1810|sea:1836",
+                  "sea:0007|sea:1836",
+                  "gateway:TO-02|sea:0007",
+                  "TO-02|gateway:TO-02"
+                ]
+              },
+              "seller": "France",
+              "settled_day": 2128,
+              "source_revision": {
+                "certified_day": 2027,
+                "created_day": 1260,
+                "id": "France-design-1",
+                "name": "France Armored personnel carrier",
+                "profile": {
+                  "component_costs": {
+                    "active_protection": 1e-06,
+                    "ammunition": 1.2e-05,
+                    "armament": 3.5e-05,
+                    "communications": 8e-05,
+                    "fire_control": 8e-05,
+                    "mobility": 0.00022,
+                    "protection": 0.00016,
+                    "sensors": 0.00015,
+                    "suspension": 0.00012,
+                    "transmission": 0.0001,
+                    "troop_compartment": 9e-05,
+                    "turret": 6e-05,
+                    "wheels": 7e-05
+                  },
+                  "development_cost_bn": 0.04494,
+                  "development_days": 245,
+                  "fabrication_cost_bn": 0.001498,
+                  "ground_roles": {
+                    "air_defense": 0.0,
+                    "fire_support": 0.0,
+                    "protected_mobility": 0.782,
+                    "reconnaissance": 0.1
+                  },
+                  "installation_capacity": 20,
+                  "installation_used": 13,
+                  "land": 0.75,
+                  "land_factor": 0.895,
+                  "maintenance_bn_day": 3.67e-07,
+                  "mobility": 1.15,
+                  "production_days": 33,
+                  "protection": 0.68,
+                  "recipe": [
+                    0.0,
+                    0.025,
+                    0.0,
+                    0.3,
+                    0.0,
+                    0.0,
+                    15.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "recon": 1.0,
+                  "reference_weight_bn": 0.0011,
+                  "rules_version": 3,
+                  "service_months": 360,
+                  "tooling_cost_bn": 0.00749,
+                  "tooling_days": 30,
+                  "unit_cost_bn": 0.001498
+                },
+                "spec": {
+                  "components": {
+                    "active_protection": "aps_none",
+                    "ammunition": "ground_ammo_ball",
+                    "armament": "ground_mg_127",
+                    "communications": "comms_radio",
+                    "fire_control": "fcs_basic",
+                    "mobility": "engine_diesel_600",
+                    "protection": "ground_armor_light",
+                    "sensors": "optics_day",
+                    "suspension": "suspension_torsion",
+                    "transmission": "transmission_manual",
+                    "troop_compartment": "ground_troops_standard",
+                    "turret": "ground_station_mg",
+                    "wheels": "ground_wheels_standard"
+                  },
+                  "platform": "ground_apc"
+                },
+                "specification_key": "v3|10:ground_apc|17:active_protection:8:aps_none|10:ammunition:16:ground_ammo_ball|8:armament:13:ground_mg_127|14:communications:11:comms_radio|12:fire_control:9:fcs_basic|8:mobility:17:engine_diesel_600|10:protection:18:ground_armor_light|7:sensors:10:optics_day|10:suspension:18:suspension_torsion|12:transmission:19:transmission_manual|17:troop_compartment:22:ground_troops_standard|6:turret:17:ground_station_mg|6:wheels:22:ground_wheels_standard"
+              },
+              "status": "delivered",
+              "total_price_bn": 0.0018396366278316358,
+              "transit_days": 27,
+              "unit_price_bn": 0.0018396366278316358
+            }
+          ]
+        },
+        "canonical": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\diagnostic-2\\delivered.canonical",
+          "bytes": 121248846,
+          "sha256": "593b09d1b0d2a70d8d29872e573feaa376510c6314e630fe0ebc4475ae006af6",
+          "format": "s08-typed-canonical-world-v1-js-f64",
+          "ignored_paths": [
+            [
+              "nations",
+              119,
+              "equipment",
+              "maintenance_plan"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "label": "maintenance-approved",
+      "duration_seconds": 6.778767500072718,
+      "projection": {
+        "version": 1,
+        "input": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-supplier-imports-ci\\supplier-g630Bz\\server\\saves\\s08-maintenance-approved.json",
+          "bytes": 131187020,
+          "sha256": "bccb3dc9ccf967fa21a5a3505ebc03f64060b49de8a9993bc2ad3eed994c5b42"
+        },
+        "requested": {
+          "buyer": "Tonga",
+          "revision": "import-3-48",
+          "seller": "France",
+          "company": 3,
+          "product": 48
+        },
+        "buyer": {
+          "id": "Tonga",
+          "tech_sha256": "e8a3122ad0f4e54fe5d01d61a118838ff3cc0bdcee385be92148d9799fd7831f",
+          "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+          "revision_ids": [
+            "import-3-48"
+          ],
+          "held_by_revision": {
+            "import-3-48": 1.0
+          },
+          "held_units": 1.0,
+          "buyer_revision": {
+            "certified_day": 2027,
+            "created_day": 1260,
+            "id": "import-3-48",
+            "name": "France Armored personnel carrier",
+            "profile": {
+              "component_costs": {
+                "active_protection": 1e-06,
+                "ammunition": 1.2e-05,
+                "armament": 3.5e-05,
+                "communications": 8e-05,
+                "fire_control": 8e-05,
+                "mobility": 0.00022,
+                "protection": 0.00016,
+                "sensors": 0.00015,
+                "suspension": 0.00012,
+                "transmission": 0.0001,
+                "troop_compartment": 9e-05,
+                "turret": 6e-05,
+                "wheels": 7e-05
+              },
+              "development_cost_bn": 0.04494,
+              "development_days": 245,
+              "fabrication_cost_bn": 0.001498,
+              "ground_roles": {
+                "air_defense": 0.0,
+                "fire_support": 0.0,
+                "protected_mobility": 0.782,
+                "reconnaissance": 0.1
+              },
+              "installation_capacity": 20,
+              "installation_used": 13,
+              "land": 0.75,
+              "land_factor": 0.895,
+              "maintenance_bn_day": 3.67e-07,
+              "mobility": 1.15,
+              "production_days": 33,
+              "protection": 0.68,
+              "recipe": [
+                0.0,
+                0.025,
+                0.0,
+                0.3,
+                0.0,
+                0.0,
+                15.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "recon": 1.0,
+              "reference_weight_bn": 0.0011,
+              "rules_version": 3,
+              "service_months": 360,
+              "tooling_cost_bn": 0.00749,
+              "tooling_days": 30,
+              "unit_cost_bn": 0.001498
+            },
+            "spec": {
+              "components": {
+                "active_protection": "aps_none",
+                "ammunition": "ground_ammo_ball",
+                "armament": "ground_mg_127",
+                "communications": "comms_radio",
+                "fire_control": "fcs_basic",
+                "mobility": "engine_diesel_600",
+                "protection": "ground_armor_light",
+                "sensors": "optics_day",
+                "suspension": "suspension_torsion",
+                "transmission": "transmission_manual",
+                "troop_compartment": "ground_troops_standard",
+                "turret": "ground_station_mg",
+                "wheels": "ground_wheels_standard"
+              },
+              "platform": "ground_apc"
+            },
+            "specification_key": "v3|10:ground_apc|17:active_protection:8:aps_none|10:ammunition:16:ground_ammo_ball|8:armament:13:ground_mg_127|14:communications:11:comms_radio|12:fire_control:9:fcs_basic|8:mobility:17:engine_diesel_600|10:protection:18:ground_armor_light|7:sensors:10:optics_day|10:suspension:18:suspension_torsion|12:transmission:19:transmission_manual|17:troop_compartment:22:ground_troops_standard|6:turret:17:ground_station_mg|6:wheels:22:ground_wheels_standard"
+          },
+          "maintenance_plan": {
+            "daily_limit_bn": 2e-06,
+            "from_day": 2157,
+            "receipt": null
+          },
+          "program_budget": {
+            "day": 2155,
+            "settled_day": 2155,
+            "spent_today_bn": [
+              [
+                3.621832820117346e-06,
+                3.621832820117346e-06,
+                3.621832820117346e-06,
+                3.621832820117346e-06,
+                3.6218328201173444e-06
+              ],
+              [
+                2.6077196304844888e-06,
+                2.6077196304844888e-06,
+                2.6077196304844888e-06,
+                2.6077196304844888e-06,
+                2.607719630484489e-06
+              ],
+              [
+                2.8974662560938773e-06,
+                2.8974662560938773e-06,
+                2.8974662560938773e-06,
+                2.8974662560938773e-06,
+                2.897466256093877e-06
+              ],
+              [
+                4.056452758531428e-06,
+                4.056452758531428e-06,
+                4.056452758531428e-06,
+                4.056452758531428e-06,
+                4.056452758531428e-06
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                2.9792495778384626e-06
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                1.3435831429467575e-06,
+                1.3435831429467575e-06,
+                1.3435831429467575e-06,
+                1.3435831429467577e-06
+              ],
+              [
+                7.710998907346607e-07,
+                7.710998907346607e-07,
+                8.996165391904376e-07,
+                0.0,
+                0.0
+              ],
+              [
+                1.014113189632857e-06,
+                1.014113189632857e-06,
+                1.014113189632857e-06,
+                1.014113189632857e-06,
+                1.014113189632857e-06
+              ],
+              [
+                2.897466256093877e-07,
+                2.897466256093877e-07,
+                2.897466256093877e-07,
+                2.897466256093877e-07,
+                2.897466256093877e-07
+              ]
+            ],
+            "prepaid_used_today_bn": [
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ]
+          }
+        },
+        "supplier": {
+          "id": 3,
+          "nation": "France",
+          "product": {
+            "id": 48,
+            "stock": 0
+          }
+        },
+        "imports": {
+          "ids": [
+            3695
+          ],
+          "matching": [
+            {
+              "ammunition": false,
+              "buyer": "Tonga",
+              "buyer_revision": "import-3-48",
+              "cancelled_day": null,
+              "company": 3,
+              "cost_basis_bn": 0.0015996840242014226,
+              "delivered_day": 2155,
+              "district": "FRA_le-de-france",
+              "due_day": 2155,
+              "escrow_bn": 0.0,
+              "family": null,
+              "id": 3695,
+              "product": 48,
+              "purchased_day": 2128,
+              "quantity": 1,
+              "reason": "The buyer received the exact foreign model or ammunition. Ordinary upkeep and compatibility apply; no research or manufacturing license was granted.",
+              "refunded_bn": 0.0,
+              "refunded_day": null,
+              "route": {
+                "bottleneck": "R\u00e9union freight terminal",
+                "capacity_tonnes": 1451.6129032258063,
+                "chokepoints": [],
+                "distance_km": 13536,
+                "estimated_days": 27,
+                "mode": "sea",
+                "months": 1,
+                "nodes": [
+                  {
+                    "id": "FRA_r-union",
+                    "kind": "district",
+                    "lat": -21.11515,
+                    "lon": 55.53752,
+                    "name": "R\u00e9union"
+                  },
+                  {
+                    "id": "gateway:FRA_r-union",
+                    "kind": "gateway",
+                    "lat": -21.1019,
+                    "lon": 55.781,
+                    "name": "R\u00e9union coastal gateway"
+                  },
+                  {
+                    "id": "sea:1225",
+                    "kind": "sea",
+                    "lat": -25.0,
+                    "lon": 57.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1242",
+                    "kind": "sea",
+                    "lat": -30.0,
+                    "lon": 62.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1260",
+                    "kind": "sea",
+                    "lat": -35.0,
+                    "lon": 67.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1276",
+                    "kind": "sea",
+                    "lat": -40.0,
+                    "lon": 72.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1292",
+                    "kind": "sea",
+                    "lat": -45.0,
+                    "lon": 77.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1322",
+                    "kind": "sea",
+                    "lat": -45.0,
+                    "lon": 87.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1398",
+                    "kind": "sea",
+                    "lat": -45.0,
+                    "lon": 97.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1465",
+                    "kind": "sea",
+                    "lat": -45.0,
+                    "lon": 107.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1534",
+                    "kind": "sea",
+                    "lat": -45.0,
+                    "lon": 117.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1609",
+                    "kind": "sea",
+                    "lat": -45.0,
+                    "lon": 127.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1662",
+                    "kind": "sea",
+                    "lat": -45.0,
+                    "lon": 137.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1693",
+                    "kind": "sea",
+                    "lat": -45.0,
+                    "lon": 147.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1733",
+                    "kind": "sea",
+                    "lat": -45.0,
+                    "lon": 157.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1758",
+                    "kind": "sea",
+                    "lat": -40.0,
+                    "lon": 162.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1783",
+                    "kind": "sea",
+                    "lat": -35.0,
+                    "lon": 167.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1810",
+                    "kind": "sea",
+                    "lat": -30.0,
+                    "lon": 172.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:1836",
+                    "kind": "sea",
+                    "lat": -25.0,
+                    "lon": 177.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "sea:0007",
+                    "kind": "sea",
+                    "lat": -20.0,
+                    "lon": -177.5,
+                    "name": "Open sea"
+                  },
+                  {
+                    "id": "gateway:TO-02",
+                    "kind": "gateway",
+                    "lat": -19.71061,
+                    "lon": -175.07225,
+                    "name": "Ha'apai coastal gateway"
+                  },
+                  {
+                    "id": "TO-02",
+                    "kind": "district",
+                    "lat": -19.75037,
+                    "lon": -175.06803,
+                    "name": "Ha'apai"
+                  }
+                ],
+                "segments": [
+                  "FRA_r-union|gateway:FRA_r-union",
+                  "gateway:FRA_r-union|sea:1225",
+                  "sea:1225|sea:1242",
+                  "sea:1242|sea:1260",
+                  "sea:1260|sea:1276",
+                  "sea:1276|sea:1292",
+                  "sea:1292|sea:1322",
+                  "sea:1322|sea:1398",
+                  "sea:1398|sea:1465",
+                  "sea:1465|sea:1534",
+                  "sea:1534|sea:1609",
+                  "sea:1609|sea:1662",
+                  "sea:1662|sea:1693",
+                  "sea:1693|sea:1733",
+                  "sea:1733|sea:1758",
+                  "sea:1758|sea:1783",
+                  "sea:1783|sea:1810",
+                  "sea:1810|sea:1836",
+                  "sea:0007|sea:1836",
+                  "gateway:TO-02|sea:0007",
+                  "TO-02|gateway:TO-02"
+                ]
+              },
+              "seller": "France",
+              "settled_day": 2128,
+              "source_revision": {
+                "certified_day": 2027,
+                "created_day": 1260,
+                "id": "France-design-1",
+                "name": "France Armored personnel carrier",
+                "profile": {
+                  "component_costs": {
+                    "active_protection": 1e-06,
+                    "ammunition": 1.2e-05,
+                    "armament": 3.5e-05,
+                    "communications": 8e-05,
+                    "fire_control": 8e-05,
+                    "mobility": 0.00022,
+                    "protection": 0.00016,
+                    "sensors": 0.00015,
+                    "suspension": 0.00012,
+                    "transmission": 0.0001,
+                    "troop_compartment": 9e-05,
+                    "turret": 6e-05,
+                    "wheels": 7e-05
+                  },
+                  "development_cost_bn": 0.04494,
+                  "development_days": 245,
+                  "fabrication_cost_bn": 0.001498,
+                  "ground_roles": {
+                    "air_defense": 0.0,
+                    "fire_support": 0.0,
+                    "protected_mobility": 0.782,
+                    "reconnaissance": 0.1
+                  },
+                  "installation_capacity": 20,
+                  "installation_used": 13,
+                  "land": 0.75,
+                  "land_factor": 0.895,
+                  "maintenance_bn_day": 3.67e-07,
+                  "mobility": 1.15,
+                  "production_days": 33,
+                  "protection": 0.68,
+                  "recipe": [
+                    0.0,
+                    0.025,
+                    0.0,
+                    0.3,
+                    0.0,
+                    0.0,
+                    15.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "recon": 1.0,
+                  "reference_weight_bn": 0.0011,
+                  "rules_version": 3,
+                  "service_months": 360,
+                  "tooling_cost_bn": 0.00749,
+                  "tooling_days": 30,
+                  "unit_cost_bn": 0.001498
+                },
+                "spec": {
+                  "components": {
+                    "active_protection": "aps_none",
+                    "ammunition": "ground_ammo_ball",
+                    "armament": "ground_mg_127",
+                    "communications": "comms_radio",
+                    "fire_control": "fcs_basic",
+                    "mobility": "engine_diesel_600",
+                    "protection": "ground_armor_light",
+                    "sensors": "optics_day",
+                    "suspension": "suspension_torsion",
+                    "transmission": "transmission_manual",
+                    "troop_compartment": "ground_troops_standard",
+                    "turret": "ground_station_mg",
+                    "wheels": "ground_wheels_standard"
+                  },
+                  "platform": "ground_apc"
+                },
+                "specification_key": "v3|10:ground_apc|17:active_protection:8:aps_none|10:ammunition:16:ground_ammo_ball|8:armament:13:ground_mg_127|14:communications:11:comms_radio|12:fire_control:9:fcs_basic|8:mobility:17:engine_diesel_600|10:protection:18:ground_armor_light|7:sensors:10:optics_day|10:suspension:18:suspension_torsion|12:transmission:19:transmission_manual|17:troop_compartment:22:ground_troops_standard|6:turret:17:ground_station_mg|6:wheels:22:ground_wheels_standard"
+              },
+              "status": "delivered",
+              "total_price_bn": 0.0018396366278316358,
+              "transit_days": 27,
+              "unit_price_bn": 0.0018396366278316358
+            }
+          ]
+        },
+        "canonical": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\diagnostic-2\\maintenance-approved.canonical",
+          "bytes": 121248846,
+          "sha256": "593b09d1b0d2a70d8d29872e573feaa376510c6314e630fe0ebc4475ae006af6",
+          "format": "s08-typed-canonical-world-v1-js-f64",
+          "ignored_paths": [
+            [
+              "nations",
+              119,
+              "equipment",
+              "maintenance_plan"
+            ]
+          ]
+        }
+      }
+    }
+  ],
+  "comparison": {
+    "equal": true,
+    "bytes_compared": 121248846
+  },
+  "comparison_seconds": 16.289824899984524,
+  "completed": true,
+  "finished_utc": "2026-09-11T17:35:03.685399+00:00"
+}

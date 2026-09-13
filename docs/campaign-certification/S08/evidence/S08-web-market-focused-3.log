@@ -1,0 +1,9 @@
+   Compiling spheres-web v0.6.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-web)
+error[E0433]: cannot find type `Value` in this scope
+   --> spheres-web\src\performance.rs:130:106
+    |
+130 | ...market),"purchase_quote":if quotes.is_empty(){Value::Null}else{summary(&quotes)},
+    |                                                  ^^^^^ use of undeclared type `Value`
+
+For more information about this error, try `rustc --explain E0433`.
+error: could not compile `spheres-web` (bin "spheres-web" test) due to 1 previous error

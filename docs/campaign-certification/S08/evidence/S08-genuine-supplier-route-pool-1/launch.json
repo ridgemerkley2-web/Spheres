@@ -1,0 +1,33 @@
+{
+  "format": "spheres-s08-genuine-export-qualification",
+  "version": 1,
+  "candidate": "d770592aeead51f1313d507edd26b02d75a69bba",
+  "test_binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+  "test_binary_sha256_before": "96bb58155a19218d6d37afabfb8d26c83c53d3dbebf5ca116a870fe950c655f7",
+  "runner": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s08-supplier-export.py",
+  "runner_sha256": "41419d65aabd628d90ea697ca354b635b02be3f685cde945f47b9321ae05e923",
+  "source_before": {
+    "captured_utc": "2026-09-13T01:52:12.010276+00:00",
+    "revision": "d770592aeead51f1313d507edd26b02d75a69bba",
+    "status_porcelain": ""
+  },
+  "command": [
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+    "equipment_view::company_view_tests::s08_fresh_tonga_paid_supplier_market_export",
+    "--ignored",
+    "--exact",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "working_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration",
+  "export_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export",
+  "environment": {
+    "SPHERES_S08_SUPPLIER_EXPORT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export"
+  },
+  "sanitized_environment_keys": [],
+  "maximum_native_days": 3000,
+  "started_utc": "2026-09-13T01:52:12.405199+00:00",
+  "exit_code": null,
+  "passed": false,
+  "files": []
+}

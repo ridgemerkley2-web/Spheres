@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "date": "2026-09-11",
+  "date": "2026-09-12",
   "status": "in_progress",
   "baseline": "5f7f355502f17bd6bd8f0383a2d14f0024fa7884",
   "target": "CP1: Spheres Certified Campaign, 1990-01-01 through 2035-12-31",
@@ -196,7 +196,7 @@
       "id": "S08",
       "phase": "nation",
       "title": "Complete supplier choice and reviewed imports",
-      "status": "in_progress",
+      "status": "complete",
       "depends": [
         "S05",
         "S07"
@@ -206,7 +206,9 @@
         "Complete design → development → stock → purchase → delivery → service across the eleven existing platforms and supported ammunition families using a justified representative matrix.",
         "An affordable imported lot changes seller stock and buyer funds once, without granting component research.",
         "Sanctions, access loss, stale quotes, limited stock and cancellations preserve ownership and explain delays or refunds."
-      ]
+      ],
+      "completed_date": "2026-09-12",
+      "evidence": "../campaign-certification/S08/README.md"
     },
     {
       "id": "S09",
@@ -776,12 +778,12 @@
     "instruction": "Okay lets begin development with s1",
     "scope_changes": []
   },
-  "last_completed_session": "S07",
-  "next_session": "S08",
+  "last_completed_session": "S08",
+  "next_session": "S09",
   "execution": {
     "authorized_through": "S08",
     "stop_boundary": "S08",
-    "status": "in_progress",
+    "status": "stopped",
     "previous_stop": "S07",
     "instruction": "Next",
     "instruction_date": "2026-09-11",

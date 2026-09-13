@@ -1,0 +1,8 @@
+PASS success holds the real first response and continues later matches
+PASS fetch failure reaches the awaited result without calling the day callback
+PASS no interception fails explicitly using the 30-second fake timeout
+PASS fulfillError reaches the awaited result and still disposes once
+PASS disposeError reaches the awaited result and still disposes once
+PASS failed day callback releases the hold and keeps both cleanup causes visible
+PASS request parsing failure is forwarded without waiting for interception
+PASS nonmatching continue failures are not swallowed or treated as interception

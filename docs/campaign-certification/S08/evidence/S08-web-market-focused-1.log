@@ -1,0 +1,38 @@
+   Compiling spheres-web v0.6.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-web)
+    Finished `release` profile [optimized] target(s) in 45.34s
+     Running unittests src\main.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_web-960ae70db4690868.exe)
+
+running 6 tests
+test equipment_view::company_view_tests::s08_fresh_tonga_paid_supplier_market_export ... ignored, Requires an empty SPHERES_S08_SUPPLIER_EXPORT directory; advances up to 3000 real fresh-campaign days
+test equipment_view::company_view_tests::s08_import_parser_keeps_foreign_seller_separate_from_authenticated_buyer ... ok
+
+thread 'equipment_view::company_view_tests::s08_import_purchase_and_cancellation_reviews_retain_exact_native_quotes_and_no_research_grant' (26216) panicked at spheres-web\src\company_view.rs:788:59:
+called `Option::unwrap()` on a `None` value
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+thread 'equipment_view::company_view_tests::s08_market_preserves_native_stock_affordability_and_foreign_identity_in_pure_reads' (18380) panicked at spheres-web\src\company_view.rs:788:59:
+called `Option::unwrap()` on a `None` value
+test equipment_view::company_view_tests::s08_import_purchase_and_cancellation_reviews_retain_exact_native_quotes_and_no_research_grant ... FAILED
+test equipment_view::company_view_tests::s08_market_preserves_native_stock_affordability_and_foreign_identity_in_pure_reads ... FAILED
+
+thread 'equipment_view::company_view_tests::s08_changed_stock_or_access_cannot_reuse_a_reviewed_import' (38328) panicked at spheres-web\src\company_view.rs:788:59:
+called `Option::unwrap()` on a `None` value
+test equipment_view::company_view_tests::s08_changed_stock_or_access_cannot_reuse_a_reviewed_import ... FAILED
+
+thread 'equipment_view::company_view_tests::s08_no_factory_country_can_review_import_access_without_any_opening_stock_grant' (31048) panicked at spheres-web\src\company_view.rs:808:9:
+assertion `left == right` failed: {"actions":[{"command":{"kind":"company_enable_imports","quote":"company-v1-6dcd0e70b36c27da"},"detail":null,"enabled":false,"label":"Enable reviewed equipment imports","reason":"Activate a departmental budget before funding equipment development."},{"enabled":true,"label":"Review suppliers and deliveries","navigate":{"action":"equipment","tab":"companies"}},{"enabled":true,"label":"Review delivered fleet and upkeep","navigate":{"action":"equipment","tab":"service"}},{"enabled":true,"label":"Review compatible ammunition","navigate":{"action":"equipment","tab":"ammunition"}}],"as_of_day":0,"blockers":["Activate a departmental budget before funding equipment development."],"costs":[{"amount_bn":0.0,"label":"Quoted enrollment cost","period":"current native enrollment quote"}],"date":"1 Jan 1990","detail":"Open explicit purchases from foreign supplier stock. This also permits the modeled supplier programs to build and commission products using their own countries' existing budgets, cash and inputs. It grants no immediate manufacturer, equipment, research or inventory to you.","metrics":[{"label":"Equipment bought now","value":0},{"label":"Research granted","value":0}],"nation":"Tonga","quote":{"available_units":0,"company_cash_needed_bn":0.0,"cost_bn":0.0,"eta_days":null,"first_stock_days":null,"maintenance_bn_day":0.0,"minimum_days":0,"note":"Hold future unassigned Defense procurement authority for reviewed purchases, without changing allocations or granting money, factories, stock or component research. Existing paid domestic orders continue. Modeled foreign supplier programmes can start through their governments' ordinary paid construction and development; first stock requires actual funded work.","protected_maintenance_bn":0.0,"purchase_available_bn":0.0,"reason":"Activate a departmental budget before funding equipment development.","token":"company-v1-6dcd0e70b36c27da","unit_price_bn":0.0,"valid":false},"requirements":["Hold future unassigned Defense procurement authority for reviewed purchases, without changing allocations or granting money, factories, stock or component research. Existing paid domestic orders continue. Modeled foreign supplier programmes can start through their governments' ordinary paid construction and development; first stock requires actual funded work.","No arms plant is required in the buying country. Foreign companies still need actual paid construction, legal designs, development, tooling and manufacturing before stock can be sold; their first product can take years.","Existing owned manufacturers, public production, completed assets and saved contracts retain their property. This is a prospective campaign choice, not an imported-stock grant."],"session_id":"25580-1789142122827043000-4","timing":[],"valid":false}
+  left: Bool(false)
+ right: true
+test equipment_view::company_view_tests::s08_no_factory_country_can_review_import_access_without_any_opening_stock_grant ... FAILED
+
+failures:
+
+failures:
+    equipment_view::company_view_tests::s08_changed_stock_or_access_cannot_reuse_a_reviewed_import
+    equipment_view::company_view_tests::s08_import_purchase_and_cancellation_reviews_retain_exact_native_quotes_and_no_research_grant
+    equipment_view::company_view_tests::s08_market_preserves_native_stock_affordability_and_foreign_identity_in_pure_reads
+    equipment_view::company_view_tests::s08_no_factory_country_can_review_import_access_without_any_opening_stock_grant
+
+test result: FAILED. 1 passed; 4 failed; 1 ignored; 0 measured; 332 filtered out; finished in 0.13s
+
+error: test failed, to rerun pass `-p spheres-web --bin spheres-web`

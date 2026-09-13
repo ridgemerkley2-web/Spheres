@@ -1,0 +1,45 @@
+{
+  "record_origin": "Supplementary bounded audit after the interrupted browser run; original termination-result.json is unchanged.",
+  "passed": false,
+  "full_journey_passed": false,
+  "captured_utc": "2026-09-11T17:38:46.579655+00:00",
+  "candidate": "e6187df8044556a8262154e7a6c8baa32b283799",
+  "binary_sha256": "d878f36a4dec2c83cfb7477a49ce678d4579a26388b0b45f2504c974bba2ee90",
+  "termination_record": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\artifacts\\browser-supplier-imports-ci\\supplier-g630Bz\\termination-result.json",
+    "sha256": "0216bd9b11e4e6c084861a289ac6773b7b3d7dfc49601569a3761d74a6b21d15"
+  },
+  "diagnostic": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\diagnostic-2\\result.json",
+    "sha256": "5b0bfa1dd906da8c7bdc5484dc7b49d8cb7790952969ca0a06e58d7125a1152a",
+    "completed": true,
+    "comparison": {
+      "equal": true,
+      "bytes_compared": 121248846
+    }
+  },
+  "finding": "The retained delivered and maintenance-approved worlds match exactly across 121248846 typed canonical bytes after excluding only the approved Tonga equipment maintenance_plan. Signed zero is preserved. No other native state difference explains the interrupted assertion.",
+  "limitations": [
+    "No new browser was run.",
+    "The interrupted original journey did not reach a final result or prove later paid maintenance/save/load assertions.",
+    "The process crash cause remains unproven. Retained API bodies and full-world copies were concrete harness resource risks and are removed in the proposed candidate."
+  ],
+  "future_harness_files": {
+    "tools/ui/ci-supplier-imports.cjs": {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\ci-supplier-imports.cjs",
+      "sha256": "c05a8076e56499c89b36208ff0512e71562bb932a49fef3ac206dfaff4618617"
+    },
+    "tools/ui/supplier-archive-audit.cjs": {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\archive-audit.cjs",
+      "sha256": "9b389d38df506bd2744c983dcc21e35ff136c25cef1b5fcd6c092600ba38ed75"
+    },
+    "tools/ui/archive-worker.py": {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\archive-worker.py",
+      "sha256": "41e1ffd275bb3cce69749de3d77d7ffc472cf731556e8da1465f350ef5e3c4b3"
+    }
+  },
+  "future_patch": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\future-tracked-harness.patch",
+    "sha256": "a92b860d07dc62c135e63269c4c72b5bc98deae199391816107027a33cb06d58"
+  }
+}

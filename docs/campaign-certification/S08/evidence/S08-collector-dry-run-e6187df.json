@@ -1,0 +1,63 @@
+{
+  "candidate": "e6187df8044556a8262154e7a6c8baa32b283799",
+  "captured_utc": "2026-09-11T16:49:37.503371+00:00",
+  "scope": "Read-only collector dry-run and classification audit while native qualification continues; not the final package inventory. No compression/apply/restore test was run.",
+  "collector_sha256": "e49605a292de4c0c46a4583c87b4d959628f9532955aaff8c712e405bcb78721",
+  "dry_run_exit_code": 0,
+  "dry_run_observation": {
+    "original_file_count": 110,
+    "original_bytes_including_identical_copies": 1084847052,
+    "raw_copy_count": 99,
+    "raw_copy_bytes": 4360135,
+    "unique_compressed_objects": 11,
+    "unique_uncompressed_object_bytes": 1080486917,
+    "zip_parts": 23,
+    "external_hash_only_references": 2
+  },
+  "retained_failed_development_phases": [
+    "0000-fresh-before-decisions",
+    "0000-opening",
+    "0360-progress",
+    "0720-progress",
+    "1080-progress",
+    "1440-progress",
+    "1800-progress",
+    "2160-progress",
+    "2520-progress",
+    "2880-progress",
+    "3000-blocked-final"
+  ],
+  "binary_hash_only": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-tonga-procurement-policy\\check-repaired.exe",
+      "bytes": 34541048,
+      "sha256": "3d55c144fc2ea6eabf2865b559e183b80d898cf2f3c78df058a291bcb30620ba",
+      "reason": "Compiled binary excluded from copied package"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-tonga-procurement-policy\\check.exe",
+      "bytes": 36118643,
+      "sha256": "8694187c0853c33baf0521e39676cbe2feec95eb96cbca19c948b7bd9aa3c1dd",
+      "reason": "Compiled binary excluded from copied package"
+    }
+  ],
+  "old_browser_excluded": {
+    "path": "artifacts/browser-ci",
+    "revision": "041007fbfda48cc027d0c24a1189705a1dcaa89b",
+    "reason": "General browser artifact does not identify an S08 revision"
+  },
+  "pending_final_artifacts": [
+    "Windows/Linux native and external final outcomes",
+    "Qualified genuine ready/purchased/delivered export and replay phases",
+    "Final S08 browser screenshots/results",
+    "Legacy and S08 feature performance cases"
+  ],
+  "notes": [
+    "All parent evidence/S08-* roots are discovered, retaining failed logs and audits without labeling them passed.",
+    "General browser full SHA is read from build_evidence.revision; supplier-only S08 folder retains failed attempts even without a final build identity.",
+    "Genuine supplier campaign phases are compressed; legacy copied campaign saves are references only.",
+    "A post-qualification dry-run must be repeated once evidence has stopped changing; counts here intentionally describe only the observed moment.",
+    "Dry-run left S08/evidence and S08/.gitattributes absent. On apply, the local evidence/** -text rule preserves original evidence line endings."
+  ],
+  "source_status_after": ""
+}

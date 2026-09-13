@@ -1,0 +1,10 @@
+    Finished `release` profile [optimized] target(s) in 0.04s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 3 tests
+test logistics::freight_routing::access_read_tests::clearing_access_reuse_bounded_fallback_keeps_native_answers ... ok
+test logistics::freight_routing::access_read_tests::clearing_access_reuse_checks_changed_paths_and_new_clearing_closures ... ok
+test logistics::freight_routing::access_read_tests::clearing_access_reuse_preserves_dispatches_invalid_cache_and_alternates ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 818 filtered out; finished in 0.08s
+

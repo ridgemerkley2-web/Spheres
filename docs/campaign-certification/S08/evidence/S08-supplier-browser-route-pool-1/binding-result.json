@@ -1,0 +1,55 @@
+{
+  "candidate": "d770592aeead51f1313d507edd26b02d75a69bba",
+  "started_utc": "2026-09-13T02:04:08.965165+00:00",
+  "runner_sha256": "cb5c46398d899e822651023efad07a7723f5a3dbae93696a5b4d2972cf220415",
+  "proofs": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-final-native-route-pool-1.json",
+      "sha256": "544c8e3584d183a736c238a65cf53d30a2e5d3c386a0d08827570e879daa3913"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-final-binary-route-pool-1.json",
+      "sha256": "d5eb0a8cb0ab3ecd61dcf1ccb89cc517cf2bcbe9684d455dc257cd27848421a8"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\runner-result.json",
+      "sha256": "043e94f59023a48756793b2abaea3a2655cabf972abbe66f8498125e41ed59a8"
+    }
+  ],
+  "phases": [
+    {
+      "file": "2127-ready-before-purchase.campaign.json",
+      "sha256": "c7cd98c5224a6ae80722ae2d113de8036bf191d7168c7ee2eebfd74917a4a100",
+      "bytes": 134254304,
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-ready-before-purchase.campaign.json"
+    },
+    {
+      "file": "0360-progress.campaign.json",
+      "sha256": "347e96fc018afd567fef04eb55ab17a0c30a88245db45e2e236842ea3b39c1ab",
+      "bytes": 54641195,
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\0360-progress.campaign.json"
+    }
+  ],
+  "bound_environment": {
+    "SPHERES_SUPPLIER_SAVE": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-ready-before-purchase.campaign.json",
+    "SPHERES_SUPPLIER_PREPARATION_SAVE": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\0360-progress.campaign.json",
+    "SPHERES_SUPPLIER_PROVENANCE": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\runner-result.json",
+    "SPHERES_SUPPLIER_OUTPUT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-route-pool-1",
+    "SPHERES_SUPPLIER_SLOT": "s08-earned-stock",
+    "SPHERES_SUPPLIER_MAX_DAYS": "120",
+    "SPHERES_AUDIT_PYTHON": "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+    "SPHERES_SUPPLIER_OFFER": "supplier:France:3:equipment:48"
+  },
+  "removed_environment_keys": [],
+  "exit_code": 1,
+  "finished_utc": "2026-09-13T02:05:02.289997+00:00",
+  "command": [
+    "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s08-final.py",
+    "d770592aeead51f1313d507edd26b02d75a69bba",
+    "supplier-browser",
+    "supplier-browser-route-pool-1"
+  ],
+  "inputs_unchanged": true,
+  "passed": false
+}

@@ -1,0 +1,64 @@
+{
+  "runtime_revision": "d770592aeead51f1313d507edd26b02d75a69bba",
+  "reviewed_utc": "2026-09-13T02:40:22.060346+00:00",
+  "method": "Root visual inspection of actual saved desktop and 390-pixel-wide browser screenshots. General and Money images inspected earlier in this continuous qualification; supplier images inspected on this final run.",
+  "screenshots": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-general-browser-d770592\\companies-desktop.png",
+      "bytes": 863227,
+      "sha256": "51b0a83849d6ef9b4d6fa5d5d7c8da296a6fe0fdf69551a0d0c944f27a98c028"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-general-browser-d770592\\companies-mobile.png",
+      "bytes": 199665,
+      "sha256": "3e981a27374cb0592c77e8097af08cfcd69cc2f4829a9ae09e81b9f13e7e7918"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-money-browser-d770592\\money-desktop.png",
+      "bytes": 766803,
+      "sha256": "1a7800e7b7eeae43120fe6dd437e5c136b76390c9897abe911f8f2b626dd673e"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-money-browser-d770592\\money-mobile.png",
+      "bytes": 240270,
+      "sha256": "6d4e6b8bf18b6158df962d84ab5c31a34d659122d71a6353860fd80c21550769"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-2\\supplier-TDUttg\\market-desktop.png",
+      "bytes": 1045688,
+      "sha256": "2228c9e4f4594ff42cb2cbd9059b0a1cdbc44f77710e58672ae3bc0d15e71872"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-2\\supplier-TDUttg\\purchase-review-mobile.png",
+      "bytes": 79682,
+      "sha256": "944cdb6bb6ead4d7b5cc68369b80a72fc68cab9120f6baf1a0b11b13b846214b"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-2\\supplier-TDUttg\\exact-supplier-model.png",
+      "bytes": 613327,
+      "sha256": "14b4c52bd0231af075e533f9ed77aa96be5488c8106826ab804e708be0776dc4"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-2\\supplier-TDUttg\\paid-maintenance-desktop.png",
+      "bytes": 731577,
+      "sha256": "5d9eb96063aa9d3a4847a5712f5626b6f895b88da3f9692301394db12868bad3"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-2\\supplier-TDUttg\\paid-maintenance-mobile.png",
+      "bytes": 202473,
+      "sha256": "dccef6b572b189f521b2990749c733ba23299372b631e0c727618eced253f0d5"
+    }
+  ],
+  "observations": [
+    "Supplier market presents the procurement sequence and funding clearly.",
+    "The exact supplied APC mesh is displayed with model inspection controls.",
+    "Narrow purchase and service panels wrap within the viewport; no horizontal overflow or overlapping controls observed in these captures.",
+    "Paid maintenance panel shows the actual aggregate invoice, 69.3% support and the funding shortfall, rather than claiming full support.",
+    "General Companies and Money desktop/mobile screens remained legible."
+  ],
+  "limits": [
+    "Screenshot review is bounded to these frames; interaction correctness is established separately by the browser assertions.",
+    "Complete supplier browser result was still pending at visual review time.",
+    "Many large real named saves remain slow to list; audit capture isolation is test-only."
+  ]
+}

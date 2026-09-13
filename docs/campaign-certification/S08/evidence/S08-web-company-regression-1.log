@@ -1,0 +1,26 @@
+
+running 21 tests
+test equipment_view::company_view_tests::s08_fresh_tonga_paid_supplier_market_export ... ignored, Requires an empty SPHERES_S08_SUPPLIER_EXPORT directory; advances up to 3000 real fresh-campaign days
+test equipment_view::company_view_tests::s08_import_parser_keeps_foreign_seller_separate_from_authenticated_buyer ... ok
+test equipment_view::company_refit_view_tests::refit_parser_is_strict_and_keeps_player_authority ... ok
+test equipment_view::company_view_tests::company_parser_uses_player_authority_and_preserves_review_token ... ok
+test equipment_view::company_ammunition_view_tests::ammunition_parser_rejects_ambiguous_quantities_and_uses_player_authority ... ok
+test equipment_view::company_ammunition_view_tests::supplier_offer_and_review_preserve_state_and_explain_separate_ownership ... ok
+test equipment_view::company_ammunition_view_tests::converted_reserve_review_keeps_preference_and_removes_public_batch_recommendation ... ok
+test equipment_view::company_view_tests::company_quote_token_expires_when_funding_or_capital_changes ... ok
+test equipment_view::company_view_tests::tank_designer_commissions_supplier_and_retains_original_independent_specs ... ok
+test equipment_view::company_view_tests::company_board_and_review_are_pure_and_do_not_grant_opening_assets ... ok
+test equipment_view::company_view_tests::s08_market_preserves_native_stock_affordability_and_foreign_identity_in_pure_reads ... ok
+test equipment_view::company_view_tests::company_confirmation_owns_one_slot_and_only_one_capital_receivable ... ok
+test equipment_view::company_refit_view_tests::cancellation_review_and_card_explain_refund_pending_original_settlement ... ok
+test equipment_view::company_view_tests::s08_changed_stock_or_access_cannot_reuse_a_reviewed_import ... ok
+test equipment_view::company_view_tests::s08_import_purchase_and_cancellation_reviews_retain_exact_native_quotes_and_no_research_grant ... ok
+test equipment_view::company_refit_view_tests::manufacturer_refit_review_is_pure_and_compares_exact_upgrade_without_new_model_costs ... ok
+test equipment_view::company_view_tests::lost_company_response_replays_receipt_without_creating_another_company ... ok
+test equipment_view::company_refit_view_tests::refit_booking_replay_preserves_one_deposit_reservation_and_target_projection ... ok
+test equipment_view::company_view_tests::every_current_platform_commissions_its_exact_model_through_a_company ... ok
+test equipment_view::company_ammunition_view_tests::purchase_review_nets_only_paid_incoming_and_transport_retries_once ... ok
+test equipment_view::company_view_tests::s08_no_factory_country_can_review_import_access_without_any_opening_stock_grant ... ok
+
+test result: ok. 20 passed; 0 failed; 1 ignored; 0 measured; 318 filtered out; finished in 0.34s
+

@@ -1,0 +1,375 @@
+{
+  "actual_days_advanced": 3000,
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1789142077,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "68e863055ee6-modified",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration",
+    "version": "0.6.0"
+  },
+  "catalogue": {
+    "enabled": true,
+    "note": "Modeled export programmes, not historical firms. Governments fund actual facilities, development and limited stock through ordinary budgets. First stock has no guaranteed date; staffing, power, inputs, access and funding can delay work. Player governments retain control of their own companies.",
+    "programs": [
+      {
+        "company": 3,
+        "district": "FRA_le-de-france",
+        "facilities": [
+          {
+            "kind": "arms_plant",
+            "level": 1,
+            "name": "Arms Plant",
+            "progress": null,
+            "project": null,
+            "reason": null,
+            "status": null
+          },
+          {
+            "kind": "advanced_industry",
+            "level": 1,
+            "name": "Advanced Industry",
+            "progress": null,
+            "project": null,
+            "reason": null,
+            "status": null
+          }
+        ],
+        "last_review_day": 2970,
+        "nation": "France",
+        "nation_name": "France",
+        "platform": "ground_apc",
+        "platform_name": "Armored personnel carrier",
+        "products": [
+          {
+            "development_work_days": 245.0,
+            "id": 48,
+            "produced_units": 4,
+            "ready_stock": 4,
+            "reason": "The finite stock target is met. No public purchase is implied.",
+            "status": "in_stock",
+            "target": 4,
+            "tooling_work_days": 30.0
+          }
+        ],
+        "ready_stock": 4,
+        "reason": "Set an actual fleet maintenance plan before ordering ammunition. Both use Defense maintenance and supply authority.",
+        "status": "blocked",
+        "stock_target": 4
+      },
+      {
+        "company": 5,
+        "district": "GBR_south-east",
+        "facilities": [
+          {
+            "kind": "arms_plant",
+            "level": 1,
+            "name": "Arms Plant",
+            "progress": null,
+            "project": null,
+            "reason": null,
+            "status": null
+          },
+          {
+            "kind": "advanced_industry",
+            "level": 1,
+            "name": "Advanced Industry",
+            "progress": null,
+            "project": null,
+            "reason": null,
+            "status": null
+          }
+        ],
+        "last_review_day": 2971,
+        "nation": "UK",
+        "nation_name": "United Kingdom",
+        "platform": "ground_recon",
+        "platform_name": "Reconnaissance vehicle",
+        "products": [
+          {
+            "development_work_days": 86.85518475712146,
+            "id": 50,
+            "produced_units": 0,
+            "ready_stock": 0,
+            "reason": "Paid engineering uses this plant's qualified staff and purchased utility inputs. The government pays only actual R&D work.",
+            "status": "engineering",
+            "target": 4,
+            "tooling_work_days": 0.0
+          }
+        ],
+        "ready_stock": 0,
+        "reason": "Reviewed working capital is awaiting ordinary fiscal settlement.",
+        "status": "capital_settlement",
+        "stock_target": 4
+      },
+      {
+        "company": 7,
+        "district": "US-CA",
+        "facilities": [
+          {
+            "kind": "arms_plant",
+            "level": 1,
+            "name": "Arms Plant",
+            "progress": null,
+            "project": null,
+            "reason": null,
+            "status": null
+          },
+          {
+            "kind": "advanced_industry",
+            "level": 1,
+            "name": "Advanced Industry",
+            "progress": null,
+            "project": null,
+            "reason": null,
+            "status": null
+          }
+        ],
+        "last_review_day": 2972,
+        "nation": "USA",
+        "nation_name": "United States",
+        "platform": "tank_standard",
+        "platform_name": "Main battle tank",
+        "products": [
+          {
+            "development_work_days": 260.0,
+            "id": 53,
+            "produced_units": 2,
+            "ready_stock": 2,
+            "reason": "The finite stock target is met. No public purchase is implied.",
+            "status": "in_stock",
+            "target": 2,
+            "tooling_work_days": 30.0
+          }
+        ],
+        "ready_stock": 2,
+        "reason": "Set an actual fleet maintenance plan before ordering ammunition. Both use Defense maintenance and supply authority.",
+        "status": "blocked",
+        "stock_target": 2
+      },
+      {
+        "company": 9,
+        "district": "RU-MOS",
+        "facilities": [
+          {
+            "kind": "arms_plant",
+            "level": 1,
+            "name": "Arms Plant",
+            "progress": null,
+            "project": null,
+            "reason": null,
+            "status": null
+          },
+          {
+            "kind": "advanced_industry",
+            "level": 1,
+            "name": "Advanced Industry",
+            "progress": null,
+            "project": null,
+            "reason": null,
+            "status": null
+          }
+        ],
+        "last_review_day": 1323,
+        "nation": "USSR",
+        "nation_name": "Soviet Union",
+        "platform": "tank_heavy",
+        "platform_name": "Heavy tank",
+        "products": [
+          {
+            "development_work_days": 43.192616619434595,
+            "id": 57,
+            "produced_units": 0,
+            "ready_stock": 0,
+            "reason": "The commissioning government is inactive; property remains recorded.",
+            "status": "blocked",
+            "target": 2,
+            "tooling_work_days": 0.0
+          }
+        ],
+        "ready_stock": 0,
+        "reason": "This government is no longer active; recorded supplier property is retained.",
+        "status": "inactive",
+        "stock_target": 2
+      },
+      {
+        "company": 1,
+        "district": "CN-HA",
+        "facilities": [
+          {
+            "kind": "arms_plant",
+            "level": 1,
+            "name": "Arms Plant",
+            "progress": null,
+            "project": null,
+            "reason": null,
+            "status": null
+          },
+          {
+            "kind": "advanced_industry",
+            "level": 1,
+            "name": "Advanced Industry",
+            "progress": null,
+            "project": null,
+            "reason": null,
+            "status": null
+          }
+        ],
+        "last_review_day": 2974,
+        "nation": "China",
+        "nation_name": "China",
+        "platform": "tank_light",
+        "platform_name": "Light tank",
+        "products": [
+          {
+            "development_work_days": 245.0,
+            "id": 20,
+            "produced_units": 2,
+            "ready_stock": 2,
+            "reason": "The government warehouse lacks advanced components. Production and arrived purchases supply this shared finite stock.",
+            "status": "blocked",
+            "target": 3,
+            "tooling_work_days": 30.0
+          }
+        ],
+        "ready_stock": 2,
+        "reason": "Reviewed working capital is awaiting ordinary fiscal settlement.",
+        "status": "capital_settlement",
+        "stock_target": 3
+      },
+      {
+        "company": 12,
+        "district": "ZA-NL",
+        "facilities": [
+          {
+            "kind": "arms_plant",
+            "level": 1,
+            "name": "Arms Plant",
+            "progress": null,
+            "project": null,
+            "reason": null,
+            "status": null
+          },
+          {
+            "kind": "advanced_industry",
+            "level": 1,
+            "name": "Advanced Industry",
+            "progress": null,
+            "project": null,
+            "reason": null,
+            "status": null
+          }
+        ],
+        "last_review_day": 2975,
+        "nation": "SouthAfrica",
+        "nation_name": "South Africa",
+        "platform": "ground_artillery",
+        "platform_name": "Self-propelled artillery",
+        "products": [
+          {
+            "development_work_days": 270.0,
+            "id": 68,
+            "produced_units": 0,
+            "ready_stock": 0,
+            "reason": "Qualified staff are assembling paid, finite company stock. Components were purchased once; utilities are paid for each actual work packet.",
+            "status": "manufacturing",
+            "target": 2,
+            "tooling_work_days": 30.0
+          }
+        ],
+        "ready_stock": 0,
+        "reason": "Qualified staff are assembling paid, finite company stock. Components were purchased once; utilities are paid for each actual work packet.",
+        "status": "manufacturing",
+        "stock_target": 2
+      },
+      {
+        "company": 14,
+        "district": "JP-13",
+        "facilities": [
+          {
+            "kind": "arms_plant",
+            "level": 1,
+            "name": "Arms Plant",
+            "progress": null,
+            "project": null,
+            "reason": null,
+            "status": null
+          },
+          {
+            "kind": "advanced_industry",
+            "level": 1,
+            "name": "Advanced Industry",
+            "progress": null,
+            "project": null,
+            "reason": null,
+            "status": null
+          }
+        ],
+        "last_review_day": 2976,
+        "nation": "Japan",
+        "nation_name": "Japan",
+        "platform": "air_light_attack",
+        "platform_name": "Light attack aircraft",
+        "products": [
+          {
+            "development_work_days": 295.0,
+            "id": 74,
+            "produced_units": 1,
+            "ready_stock": 1,
+            "reason": "The finite stock target is met. No public purchase is implied.",
+            "status": "in_stock",
+            "target": 1,
+            "tooling_work_days": 45.0
+          }
+        ],
+        "ready_stock": 1,
+        "reason": "Set an actual fleet maintenance plan before ordering ammunition. Both use Defense maintenance and supply authority.",
+        "status": "blocked",
+        "stock_target": 1
+      }
+    ]
+  },
+  "date": "20 Mar 1998",
+  "passed": false,
+  "purchase": null,
+  "reason": "No genuinely produced French APC lot reached Tonga within the bounded journey. No financial or input blockers were bypassed.",
+  "seller_operations": {
+    "adopted_date": "1990-01-01",
+    "adopted_day": 0,
+    "as_of_day": 3000,
+    "companies": [
+      {
+        "company": 3,
+        "company_cash_available_bn": 0.01361166852244589,
+        "district": "FRA_le-de-france",
+        "grandfathered": false,
+        "last_receipt": null,
+        "locked_working_capital_bn": -0.0,
+        "nation": "France",
+        "next_packet": {
+          "company_cash_required_bn": 0.0,
+          "inputs": [],
+          "public_development_required_bn": 0.0,
+          "units": 0,
+          "work_days": 0.0
+        },
+        "phase": null,
+        "public_refit_escrow_bn": -0.0,
+        "readiness": {
+          "power_available": 0.8940661176144664,
+          "power_required": 0.0,
+          "slot_available": true,
+          "staffing_fraction": 1.0,
+          "work_fraction": 1.0
+        },
+        "reason": "The finite stock target is met; no work is scheduled.",
+        "work_id": null,
+        "work_kind": null
+      }
+    ],
+    "component_unit_price_bn": 0.0005,
+    "enabled": true,
+    "note": "Available work is a conditional plant estimate. Only dated receipts are paid work. Government warehouse inputs are purchased with settled company cash; company stock and public service escrow remain separately owned. Existing work is not charged again."
+  }
+}

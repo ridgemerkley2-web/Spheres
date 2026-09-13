@@ -1,0 +1,228 @@
+{
+  "passed": true,
+  "started_utc": "2026-09-13T02:32:14.233Z",
+  "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\ci-supplier-imports.audit-capture-isolation.cjs",
+  "source_sha256": "cd9c5ab5783d6ca6bf71aa913842436e851311fa00ce4b6a33881a25f3bdc33a",
+  "helper_sha256": "40197e97be30cded4ebc57c818b5685c4a27c110feb8949bdb0a3c811e0bdc49",
+  "prior_sha256": "c74f8a8d1f1ee090113179a5a34acfada0ffa28e8689de4e3aba8fa766e21b9c",
+  "verifier_sha256": "8817690b0e8ef3332a2af77aaf30066113df893dc4f5cdf7507d3907e1b9dcdf",
+  "complete_patch_sha256": "a3cfcc7a43185fe507aae8ff6f2bb0ec9f151d197a7762a8a9e1401f53769701",
+  "incremental_patch_sha256": "ea9323659787c1f2b2d8d42650b4e3fdaa43e3039806fb5eb5874e961bd0218d",
+  "retained_tiny_fixture_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs",
+  "tests": [
+    {
+      "name": "all actual callsites map to the closed audit-only inventory",
+      "passed": true,
+      "allowed_slots": [
+        "s08-preparation-before",
+        "s08-preparation-after",
+        "s08-preview-before",
+        "s08-preview-after",
+        "s08-purchase-before",
+        "s08-purchase-after",
+        "s08-cancel-review",
+        "s08-paid-transit",
+        "s08-import-midpoint-before",
+        "s08-import-midpoint-after",
+        "s08-delivered",
+        "s08-maintenance-review",
+        "s08-maintenance-approved",
+        "s08-import-complete-before",
+        "s08-import-complete-after",
+        "s08-continue",
+        "s08-maintenance-day-1",
+        "s08-maintenance-day-2",
+        "s08-maintenance-day-3",
+        "s08-maintenance-day-4",
+        "s08-maintenance-day-5",
+        "s08-maintenance-day-6",
+        "s08-maintenance-day-7"
+      ]
+    },
+    {
+      "name": "every audit name preserves exact native bytes outside visible slots",
+      "passed": true,
+      "moves": [
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-preparation-before.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-preparation-before-cgKCsf\\s08-preparation-before.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-preparation-after.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-preparation-after-rYJqhN\\s08-preparation-after.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-preview-before.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-preview-before-wM6l0u\\s08-preview-before.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-preview-after.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-preview-after-WuXBVz\\s08-preview-after.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-purchase-before.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-purchase-before-sMPUhm\\s08-purchase-before.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-purchase-after.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-purchase-after-xsR9cE\\s08-purchase-after.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-cancel-review.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-cancel-review-lyCVIF\\s08-cancel-review.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-paid-transit.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-paid-transit-pluL9y\\s08-paid-transit.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-import-midpoint-before.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-import-midpoint-before-RbfErb\\s08-import-midpoint-before.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-import-midpoint-after.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-import-midpoint-after-sd4qo9\\s08-import-midpoint-after.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-delivered.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-delivered-nMB6zg\\s08-delivered.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-maintenance-review.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-maintenance-review-QsIXLb\\s08-maintenance-review.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-maintenance-approved.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-maintenance-approved-ziBZ6Y\\s08-maintenance-approved.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-import-complete-before.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-import-complete-before-riD7E7\\s08-import-complete-before.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-import-complete-after.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-import-complete-after-PDqCqx\\s08-import-complete-after.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-continue.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-continue-mNsTSr\\s08-continue.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-maintenance-day-1.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-maintenance-day-1-V4QrB9\\s08-maintenance-day-1.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-maintenance-day-2.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-maintenance-day-2-kvmRLO\\s08-maintenance-day-2.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-maintenance-day-3.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-maintenance-day-3-bU9hZc\\s08-maintenance-day-3.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-maintenance-day-4.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-maintenance-day-4-qmFdlk\\s08-maintenance-day-4.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-maintenance-day-5.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-maintenance-day-5-rZn0jZ\\s08-maintenance-day-5.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-maintenance-day-6.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-maintenance-day-6-tFzZ55\\s08-maintenance-day-6.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        },
+        {
+          "from": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\saves\\s08-maintenance-day-7.json",
+          "to": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\supplier-audit-placement-vm-8ZFFHs\\1\\audit-captures\\s08-maintenance-day-7-fE6gWi\\s08-maintenance-day-7.json",
+          "before_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7",
+          "after_sha256": "892f80a5e55d4d4edacd7a137dc033b405f453037fdfecfeeacfb357d9b080a7"
+        }
+      ]
+    },
+    {
+      "name": "real slot names and unlisted maintenance days fail before saving or moving",
+      "passed": true
+    },
+    {
+      "name": "existing audit-named input cannot be overwritten by the capture POST",
+      "passed": true
+    },
+    {
+      "name": "exclusive target collision preserves both evidence and original capture",
+      "passed": true
+    },
+    {
+      "name": "escapeSaves is rejected before relocation",
+      "passed": true
+    },
+    {
+      "name": "escapeTarget is rejected before relocation",
+      "passed": true
+    },
+    {
+      "name": "auditError still retains exact capture in evidence directory",
+      "passed": true
+    },
+    {
+      "name": "buyerError still retains exact capture in evidence directory",
+      "passed": true
+    },
+    {
+      "name": "disposeError still retains exact capture in evidence directory",
+      "passed": true
+    },
+    {
+      "name": "rename failure preserves the original native capture",
+      "passed": true
+    },
+    {
+      "name": "failed native save response does not move or inspect a capture",
+      "passed": true
+    }
+  ],
+  "finished_utc": "2026-09-13T02:32:14.546Z"
+}

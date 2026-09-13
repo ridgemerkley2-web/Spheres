@@ -1,0 +1,19 @@
+# Tonga procurement-priority policy probe
+
+This is an explicit qualification play policy, not an economic rebalance or a default budget. Input campaign archives were read unchanged, and native `preview_with_plan` and `apply_command(Command::SetProgramBudget)` ran only in disposable process memory. No campaign ticks or servers were launched. No production code was changed by the policy probe.
+
+Keep the inherited total appropriation at **30.9% of GDP**. Move 2.5 percentage points from Infrastructure to Defense, leaving all other top-level shares unchanged:
+
+`[0.0465, 0.03348, 0.0372, 0.05208, 0.03825, 0.0345, 0.01725, 0.033, 0.01302, 0.00372]`
+
+These arrays are Health, Education, Housing, Pensions, Infrastructure, Industry, Science, Defense, Security, Diplomacy. In actual commands compute the two changes from the current inherited array to preserve its floating values. Defense departments become **[600, 600, 700, 8000, 100] basis points**: Personnel, Operations, Maintenance, Procurement, Research. Other ministries retain their existing five departmental shares. Renew these chosen shares through the ordinary current-year command each year.
+
+Fresh unchanged archive: native validation and actual command succeeded. Total before/after is exactly `0.30900000000000005`; political cost is 13.125, leaving 38.2062 from 51.3312. At $114m GDP, annual procurement authority is $3.0096m. Personnel and Operations each receive $225,720 annually (versus $182,400 default); Maintenance receives $263,340 (versus $182,400). Research receives $37,620 (versus $182,400). Infrastructure loses $2.85m annual authorization, falling from $7.2105m to $4.3605m. This is the practical tradeoff: less infrastructure investment and military research, with procurement prioritized and core military services preserved.
+
+The native prospective France APC profile is $44.94m development/245 full work-days, $7.49m tooling/30 full work-days, and $1.498m fabrication/33 full work-days. The native prospective price including current input/component/utility estimates and the 15% margin is $1.843873m; company working capital for tooling plus four vehicles is $13.903471m. These are estimates, not a ready-stock quote or historical prices. One vehicle's listed upkeep is $367/day (~$133,955/year); compatibility, actual upkeep policy and ammunition purchases still apply.
+
+The genuine day1440 archive initially refused native load because its paid preproduction utilities had no explicit cost classification. `day1440.log` retains that failure. After the separately tested preproduction-ledger repair, the **same unchanged archive** loaded and the same ordinary budget command passed: 15.085 political capital, $3.387479m annual procurement at then-current GDP. Existing cash/debt, authority, prepaid money, spent totals, equipment/research, corporate property and production property were asserted unchanged by the budget vote. The normal fiscal policy journal may also record the approved command; the output's short mutation description refers to economic balances/property.
+
+Authority is prospective, not cash. Neither preview nor approval gives an immediate $3m balance, refunds past expired authority, or carries unused authority across fiscal years. The buyer must accrue enough within a renewed fiscal year, wait for actual supplier stock, and pay through ordinary settlement. Reduced investment and changed spending channels can affect the campaign economy. A first-stock date and actual final purchase price remain unproven by this bounded policy probe.
+
+`provenance.json` records exact input and executable hashes. `check.rs` is the standalone probe linked to the already built release native library with rustc (no Cargo build or game launch). `fresh.json` and `day1440-repaired.json` contain the full native previews and assertions' successful outcomes. These developmental checks are not final source-pinned S08 qualification.

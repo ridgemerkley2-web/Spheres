@@ -1,0 +1,34 @@
+{
+  "captured_utc": "2026-09-11T17:52:17.346611+00:00",
+  "tracked_files": {
+    "ci-supplier-imports.cjs": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-supplier-imports.cjs",
+      "sha256": "e63b341549f2fda51d317884998287a99218def84c9d267267a6e70a03a44ba7"
+    },
+    "supplier-archive-audit.cjs": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\supplier-archive-audit.cjs",
+      "sha256": "3ab1d2e933fe700d74d41dda11e25573ac4d0401ecafe37dd259b1a18173dea7"
+    },
+    "archive-worker.py": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\archive-worker.py",
+      "sha256": "361b86a8c12623a553ad2f7e54dd0ccded74fa9cf03b51f4d0a3bfdf93530165"
+    }
+  },
+  "applied_patch": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\future-tracked-harness.patch",
+  "checks": [
+    "git apply --check passed before apply",
+    "Node --check passed for runner and audit helper",
+    "Python ast.parse passed for tracked worker",
+    "Small tracked-helper probes passed: exact whole-world mismatch; only selected plan excluded; unrelated cash change rejected; null legacy holdings retained; equal canonical bytes"
+  ],
+  "tracked_helper_probe": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-zUdukT\\result.json",
+  "qualification_executed": false,
+  "browser_executed": false,
+  "collector": {
+    "before_sha256": "e49605a292de4c0c46a4583c87b4d959628f9532955aaff8c712e405bcb78721",
+    "after_sha256": "f7d08cc3deaab0aaa2a42db53721d8ee46c0d3bd9d2c1d31c227fe7dd06b7116",
+    "syntax": "ast.parse passed",
+    "collect_or_apply_executed": false,
+    "change": "Include exact tracked audit helper/worker and actual Money journey runner as package dependencies."
+  }
+}

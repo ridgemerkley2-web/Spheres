@@ -1,0 +1,19 @@
+{
+  "captured_utc": "2026-09-13T02:08:08.214950+00:00",
+  "scope": "Parser and extracted add_browser/option-loop classification only; no collector execution or campaign reads.",
+  "collector_before_sha256": "f7d08cc3deaab0aaa2a42db53721d8ee46c0d3bd9d2c1d31c227fe7dd06b7116",
+  "collector_after_sha256": "01da2488261d744275547f482a73e5abda5f7b9c41ecd833a3df68c954541963",
+  "verification_runner_sha256": "10d41f4858b58d18b268f3de7c905f71ded9d2fd0aeb5ccab03e1d25e2c62fdd",
+  "checks": [
+    "parser repeat/default options",
+    "verified supplier result preserves failed status and source d770592aeead51f1313d507edd26b02d75a69bba",
+    "verified supplier result preserves failed status and source e6187df8044556a8262154e7a6c8baa32b283799",
+    "reject missing/short/pre-S08/unresolvable source None",
+    "reject missing/short/pre-S08/unresolvable source d770592aeead",
+    "reject missing/short/pre-S08/unresolvable source 68e863055ee6ddf6c9796547995dccf455557edd",
+    "reject missing/short/pre-S08/unresolvable source 0000000000000000000000000000000000000000",
+    "actual option loop uses verified supplier classification",
+    "named supplier campaigns are retained without widening ordinary/general roots"
+  ],
+  "passed": true
+}

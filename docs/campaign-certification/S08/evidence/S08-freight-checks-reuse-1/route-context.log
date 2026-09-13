@@ -1,0 +1,9 @@
+    Finished `release` profile [optimized] target(s) in 0.03s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 2 tests
+test logistics::tests::contract_forecast_context_preserves_invalid_closed_and_legacy_paths ... ok
+test logistics::tests::contract_forecast_context_preserves_quantities_atomic_order_and_alternates ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 771 filtered out; finished in 0.07s
+

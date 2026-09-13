@@ -1,0 +1,54 @@
+{
+  "actions": [
+    {
+      "command": {
+        "daily_budget_mn": 0.002,
+        "kind": "equipment_maintenance"
+      },
+      "detail": null,
+      "enabled": true,
+      "label": "Confirm maintenance plan",
+      "reason": null
+    }
+  ],
+  "blockers": [],
+  "costs": [],
+  "detail": "Review the expected fleet bill and your daily limit. Actual payment can be lower when departmental funding is insufficient; there is no loan or immediate spending from this confirmation.",
+  "metrics": [
+    {
+      "label": "Proposed daily payment ceiling",
+      "value": "$2.000k / day"
+    },
+    {
+      "label": "Inherited equipment requirement",
+      "value": "$931.50 / day"
+    },
+    {
+      "label": "Custom equipment requirement",
+      "value": "$367.00 / day"
+    },
+    {
+      "label": "Total current requirement",
+      "value": "$1.298k / day"
+    },
+    {
+      "label": "Coverage permitted by this ceiling",
+      "value": "100.0% before funding constraints"
+    }
+  ],
+  "nation": "Tonga",
+  "requirements": [
+    "This ceiling uses the existing Defense maintenance allocation. No cash is paid merely by setting the plan; actual daily invoices use the shared fiscal ledger once. Unused authorization stays available until normal fiscal expiry.",
+    "Invoices are allocated proportionally across inherited and custom equipment when the ceiling or funding is insufficient. More money cannot restore age-related condition or deploy refit reservations.",
+    "Inherited equipment upkeep is a game assumption of 4% of its catalog purchase value per year, spread over 365 days. Custom revisions use their frozen per-vehicle daily requirement.",
+    "Activating this plan replaces the automatic maintenance allocation expense prospectively. Existing receipts and other departments remain unchanged; old campaign saves retain their previous support behavior until activation."
+  ],
+  "session_id": "28248-1789265954785093500-3",
+  "timing": [
+    {
+      "label": "Effective",
+      "value": "Next funding day after confirmation"
+    }
+  ],
+  "valid": true
+}

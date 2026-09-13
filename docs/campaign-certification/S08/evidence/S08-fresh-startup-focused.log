@@ -1,0 +1,13 @@
+    Finished `release` profile [optimized] target(s) in 0.07s
+     Running unittests src\main.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_web-960ae70db4690868.exe)
+
+running 6 tests
+test s05_fresh_startup_tests::opening_market_refuses_a_disabled_market_without_changes ... ok
+test s05_fresh_startup_tests::legacy_load_keeps_company_and_operational_upgrades_opt_in ... ok
+test s05_fresh_startup_tests::setup_without_a_selected_nation_and_tiny_new_campaign_use_unified_rules ... ok
+test s05_fresh_startup_tests::fresh_start_adopts_all_capabilities_without_free_work_or_supplier_stock ... ok
+test s05_fresh_startup_tests::opening_market_preserves_legacy_cover_and_posts_nothing ... ok
+test s05_fresh_startup_tests::fresh_startup_repeat_and_save_resume_preserve_exact_owned_state ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 336 filtered out; finished in 0.37s
+

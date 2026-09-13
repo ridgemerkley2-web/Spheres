@@ -1,0 +1,24 @@
+{
+  "scope": "Focused tests from already-built development executable; no compilation. Source build provenance is planning-and-fixture-3.",
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_sim-de8a2e7790f15db6.exe",
+  "binary_sha256_before": "46c56947839c106a02471ac9a1c97027eb7dc57096c59334acfcec8d5cdfd6a8",
+  "checks": [
+    {
+      "filter": "spot_opening_pending",
+      "exit_code": 0,
+      "log_sha256": "39bed704ea094a8053472a1fe84626809d8ca29c023acae548a80a000d49b738"
+    },
+    {
+      "filter": "new_inbound_commodity_short_circuit",
+      "exit_code": 0,
+      "log_sha256": "c446629f223a5fae9748366f992f25ac146533862810d0b0392fd039601c0ebb"
+    },
+    {
+      "filter": "contract_forecast_context",
+      "exit_code": 0,
+      "log_sha256": "64547d61c72d706326dafe5aa18d334b4a26fb05d3535df82cabd04842e42dc2"
+    }
+  ],
+  "binary_sha256_after": "46c56947839c106a02471ac9a1c97027eb7dc57096c59334acfcec8d5cdfd6a8",
+  "passed": true
+}

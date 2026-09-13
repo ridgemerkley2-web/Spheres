@@ -1,0 +1,65 @@
+{
+  "protocol": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-performance-protocol-route-pool-1.json",
+  "protocol_sha256": "0a755a96c5d65cae9625c7fff783e65576a591135da524f7666448bef4b1536c",
+  "declared_plan": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-performance-plan.json",
+  "declared_plan_sha256": "8d2cb23fe996ba9dc35da0aed5859072a83c2e61b55d4881cf047bc1ac195a28",
+  "runner_result_sha256": "e69249fea0fd3a358cbe9e750f5f2893751b999dddac4bcf9aa14b1f70b486ef",
+  "profile_sha256": "2fe74832d3be2e2f1835f85d4ed287bf4d3e704d335dc97339ac7ba7ab3b29f8",
+  "runner_sha256": "f65cff545191d9d6b1f2999e514a69780ece3bd73966b21e1b6132b7e7af81ed",
+  "candidate": "d770592aeead51f1313d507edd26b02d75a69bba",
+  "evaluated_utc": "2026-09-13T02:09:12.042066+00:00",
+  "rows": [
+    {
+      "scenario": "idle_human",
+      "age": 0,
+      "sim_p95_ms": 40.5382,
+      "whole_p95_ms": 101.2415,
+      "whole_max_ms": 102.2336,
+      "passed": true
+    },
+    {
+      "scenario": "idle_human",
+      "age": 10,
+      "sim_p95_ms": 86.983,
+      "whole_p95_ms": 174.0694,
+      "whole_max_ms": 177.624,
+      "passed": true
+    },
+    {
+      "scenario": "idle_human",
+      "age": 30,
+      "sim_p95_ms": 138.161,
+      "whole_p95_ms": 235.4813,
+      "whole_max_ms": 268.754,
+      "passed": true
+    },
+    {
+      "scenario": "industry_and_war",
+      "age": 0,
+      "sim_p95_ms": 96.11,
+      "whole_p95_ms": 160.7744,
+      "whole_max_ms": 160.9957,
+      "passed": true
+    },
+    {
+      "scenario": "industry_and_war",
+      "age": 10,
+      "sim_p95_ms": 149.9666,
+      "whole_p95_ms": 228.5337,
+      "whole_max_ms": 280.2912,
+      "passed": true
+    },
+    {
+      "scenario": "industry_and_war",
+      "age": 30,
+      "sim_p95_ms": 239.40529999999998,
+      "whole_p95_ms": 329.3678,
+      "whole_max_ms": 361.8156,
+      "passed": true
+    }
+  ],
+  "sampled_private_bytes": 472342528,
+  "memory_passed": true,
+  "runner_passed": true,
+  "passed": true
+}

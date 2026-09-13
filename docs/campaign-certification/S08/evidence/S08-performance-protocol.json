@@ -1,0 +1,15 @@
+{
+  "workloads": "unchanged three copied checkpoints at ages0/10/30, each run as idle and industry+war (six workloads),31days,explicit connected-economy/company-network/warfare adoption",
+  "simulation_p95_limit_ms": 300,
+  "whole_turn_p95_limit_ms": 400,
+  "whole_turn_max_limit_ms": 750,
+  "sampled_private_memory_limit_bytes": 1073741824,
+  "candidate": "e6187df8044556a8262154e7a6c8baa32b283799",
+  "test_binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+  "test_binary_sha256": "08efa87e668186bddca8a7265c9068578708ebb7ed379b36e51fca22354df2ed",
+  "declared_plan_sha256": "8d2cb23fe996ba9dc35da0aed5859072a83c2e61b55d4881cf047bc1ac195a28",
+  "declared_utc": "2026-09-11T15:57:21.546117+00:00",
+  "bound_utc": "2026-09-11T16:54:43.777304+00:00",
+  "native_proof_sha256": "61d2887fc22c2a53bd9f5f9e94a341a5997d7653ae4d653e334fa3cb482de17a",
+  "note": "Bind the previously declared unchanged six workload thresholds to the qualified runtime before measurements; no threshold or scenario change. Separate genuine supplier case has its own declared limits."
+}

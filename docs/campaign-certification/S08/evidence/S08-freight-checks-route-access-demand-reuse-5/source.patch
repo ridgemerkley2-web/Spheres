@@ -1,0 +1,2150 @@
+diff --git a/spheres-sim/src/economic_ai.rs b/spheres-sim/src/economic_ai.rs
+index 694086a..e254287 100644
+--- a/spheres-sim/src/economic_ai.rs
++++ b/spheres-sim/src/economic_ai.rs
+@@ -628,6 +628,33 @@ pub fn raw_supply_forecast(w: &WorldState, nation: NationId) -> RawSupplyForecas
+     raw_supply_forecast_with_context(w, nation, &context)
+ }
+ 
++// Read the current cargo once for all windows. Each bucket still receives
++// quantities in original cargo order, and a reopened held route is eligible
++// exactly as in logistics::pending_within_days. This is local to this read;
++// AI commands between nation reviews may change the live cargo ledger.
++fn pending_supply_horizons(w: &WorldState, nation: NationId) -> [[f64; 3]; 12] {
++    let start = resources::forecast_start_day(w);
++    let ends = RAW_HORIZON_DAYS.map(|days| start.saturating_add(days.saturating_sub(1)));
++    // Match f64::sum's identity, including empty and signed-zero buckets.
++    let mut pending = [[-0.0; 3]; 12];
++    let mut access = crate::logistics::FreightAccessRead::new(w);
++    for cargo in &w.logistics.cargo {
++        if cargo.buyer != nation || cargo.commodity == Commodity::Oil
++            || !access.is_open(cargo.seller, cargo.buyer, &cargo.route) {
++            continue;
++        }
++        let due = cargo.due_day.unwrap_or_else(|| {
++            let year = 1990 + cargo.due_month.div_euclid(12);
++            let month = cargo.due_month.rem_euclid(12) as u32 + 1;
++            clock::date_day(year, month, crate::world::days_in_month(year, month))
++        });
++        for (window, end) in ends.into_iter().enumerate() {
++            if due <= end { pending[cargo.commodity.idx()][window] += cargo.quantity; }
++        }
++    }
++    pending
++}
++
+ /// Context-sharing variant for a deterministic multi-nation AI review wave.
+ /// The context is a read-only opening snapshot; this function still reads each
+ /// nation's current committed consumers and actual blocker receipts.
+@@ -646,6 +673,7 @@ pub fn raw_supply_forecast_with_context(
+     let military_monthly_budget = w.nation_opt(nation).map_or(0.0, crate::arsenal::budget_of);
+     let materials_remaining = crate::materials::resource_reserve(w, nation);
+     let immediate = resources::tick_draw(w, nation);
++    let pending_supply = pending_supply_horizons(w, nation);
+     let round = |value: f64| (value.max(0.0) * 1e9).round() / 1e9;
+ 
+     let mut lines = Vec::with_capacity(resources::ALL.len());
+@@ -692,14 +720,7 @@ pub fn raw_supply_forecast_with_context(
+         }
+ 
+         let stock = round(resources::stockpile(w, nation, commodity));
+-        let gross_pending: [f64; 3] = std::array::from_fn(|h| {
+-            round(crate::logistics::pending_within_days(
+-                w,
+-                nation,
+-                commodity,
+-                RAW_HORIZON_DAYS[h],
+-            ))
+-        });
++        let gross_pending = pending_supply[i].map(round);
+         let gross_domestic: [f64; 3] = std::array::from_fn(|h| {
+             round(
+                 resources::flow_from(resource_have, nation, commodity).max(0.0)
+@@ -1460,6 +1481,16 @@ pub fn candidate(w: &WorldState, nation: NationId) -> Result<(String, K, String)
+ }
+ 
+ pub fn tick(w: &mut WorldState) {
++    tick_impl(w, None);
++}
++
++/// Diagnostic observer only; timings never enter the campaign or decisions.
++#[doc(hidden)]
++pub fn tick_observed(w: &mut WorldState, observer: &mut dyn FnMut(Option<NationId>, std::time::Duration)) {
++    tick_impl(w, Some(observer));
++}
++
++fn tick_impl(w: &mut WorldState, mut observer: Option<&mut dyn FnMut(Option<NationId>, std::time::Duration)>) {
+     if !enabled(w) {
+         return;
+     }
+@@ -1480,9 +1511,17 @@ pub fn tick(w: &mut WorldState) {
+     if ids.is_empty() {
+         return;
+     }
++    let started = observer.as_ref().map(|_| std::time::Instant::now());
+     let raw_context = RawSupplyContext::new(w);
++    if let (Some(observer), Some(started)) = (observer.as_deref_mut(), started) {
++        observer(None, started.elapsed());
++    }
+     for nation in ids {
++        let started = observer.as_ref().map(|_| std::time::Instant::now());
+         evaluate_with_context(w, nation, &raw_context);
++        if let (Some(observer), Some(started)) = (observer.as_deref_mut(), started) {
++            observer(Some(nation), started.elapsed());
++        }
+     }
+ }
+ 
+@@ -2062,6 +2101,50 @@ mod ammunition_forecast_tests {
+     use crate::equipment as eq;
+     const USA:NationId=NationId::USA;
+ 
++    #[test]
++    fn s08_pending_windows_match_independent_reads_at_boundaries_and_closures() {
++        let mut w = crate::init::world_1990(GameRules {
++            daily_simulation: true, logistics_routes: true, physical_logistics: true,
++            military_operations: true, ..Default::default()
++        });
++        let buyer = NationId::Canada;
++        let route = crate::logistics::plan(&w, USA, buyer).unwrap();
++        let start = resources::forecast_start_day(&w);
++        for (i, offset) in [-1, 0, 29, 30, 89, 90, 364, 365].into_iter().enumerate() {
++            for commodity in resources::ALL {
++                let mut cargo = crate::logistics::Cargo {
++                    id: w.logistics.cargo.len() as u64 + 1, seller: USA, buyer, commodity,
++                    quantity: [1e9, 0.000001, 0.3][i % 3],
++                    source: resources::ShipmentSource::Spot, contract: None,
++                    route: route.clone(), dispatched_month: 0, due_month: 1,
++                    dispatched_day: Some(start - 1), due_day: Some(start + offset),
++                    hold_reason: Some("An old hold which has since reopened".into()),
++                };
++                w.logistics.cargo.push(cargo.clone());
++                cargo.id += 10000; cargo.due_day = None;
++                w.logistics.cargo.push(cargo);
++            }
++        }
++        let mut invalid = w.logistics.cargo[0].clone();
++        invalid.id = 30000; invalid.route.nodes[0].id = "missing-saved-route-node".into();
++        w.logistics.cargo.push(invalid);
++        for closed in [false, true] {
++            if closed { w.sanctions.push((USA, buyer)); }
++            let before = crate::save(&w);
++            for nation in [buyer, NationId::Mexico] {
++                let aggregate = pending_supply_horizons(&w, nation);
++                for c in resources::ALL.into_iter().filter(|c| *c != Commodity::Oil) {
++                    for (window, days) in RAW_HORIZON_DAYS.into_iter().enumerate() {
++                        assert_eq!(aggregate[c.idx()][window].to_bits(),
++                            crate::logistics::pending_within_days(&w, nation, c, days).to_bits(),
++                            "{nation:?} {c:?}, days={days}, closed={closed}");
++                    }
++                }
++            }
++            assert_eq!(crate::save(&w), before);
++        }
++    }
++
+     fn fixture(with_vehicle_order:bool)->(WorldState,String) {
+         let mut w=crate::init::world_1990(GameRules{daily_simulation:true,military_operations:true,
+             production_system:true,manufacturing_system:true,resource_market:true,..Default::default()});
+diff --git a/spheres-sim/src/fiscal_journal.rs b/spheres-sim/src/fiscal_journal.rs
+index 9b055e0..797a95c 100644
+--- a/spheres-sim/src/fiscal_journal.rs
++++ b/spheres-sim/src/fiscal_journal.rs
+@@ -362,7 +362,8 @@ pub(crate) fn after_policy(w: &mut WorldState, pending: PendingPolicy) {
+ 
+ /// Called after the existing fiscal observer has closed the actual day. This
+ /// updates existing decision evidence only; it cannot start a missing journal.
+-pub(crate) fn finish_day(w: &mut WorldState) {
++#[doc(hidden)]
++pub fn finish_day(w: &mut WorldState) {
+     if !fiscal_recovery::enabled(w) {
+         return;
+     }
+diff --git a/spheres-sim/src/freight_routing.rs b/spheres-sim/src/freight_routing.rs
+index a2bf077..ffb1e9d 100644
+--- a/spheres-sim/src/freight_routing.rs
++++ b/spheres-sim/src/freight_routing.rs
+@@ -2,6 +2,36 @@
+ //! Searches use integer travel costs and stable graph order, never random ties.
+ use super::*;
+ 
++/// Boolean validity of the nominal routes already present in the live freight
++/// cache, scoped to one spot clearing. That operation changes stock, usage,
++/// cash and contractor experience, but cannot change route access. Congestion
++/// alternatives and capacity are deliberately absent from this memo.
++pub(super) struct ClearingRouteAccess {
++    paths: BTreeMap<(NationId, NationId, RoutePolicy), (Vec<String>, bool)>,
++    cache_limit: usize,
++}
++
++impl Default for ClearingRouteAccess {
++    fn default() -> Self { Self { paths: BTreeMap::new(), cache_limit: 4_096 } }
++}
++
++impl ClearingRouteAccess {
++    pub(super) fn is_open(&mut self, w: &WorldState, seller: NationId, buyer: NationId,
++        policy: RoutePolicy, route: &RoutePlan) -> bool {
++        let key=(seller,buyer,policy);
++        if let Some((nodes,open))=self.paths.get(&key) {
++            if nodes.iter().map(String::as_str).eq(route.nodes.iter().map(|node|node.id.as_str())) {
++                return *open;
++            }
++        }
++        let open=route_open(w,seller,buyer,route).is_ok();
++        if self.paths.len()<self.cache_limit || self.paths.contains_key(&key) {
++            self.paths.insert(key,(route.nodes.iter().map(|node|node.id.clone()).collect(),open));
++        }
++        open
++    }
++}
++
+ fn remaining(w: &WorldState, route: &RoutePlan, used: &BTreeMap<String, f64>, capacities: Option<&[f64]>) -> f64 {
+     route.segments.iter().map(|edge| (route_segment_capacity_with(w, edge, capacities)
+         .unwrap_or(route.capacity_tonnes) - used.get(edge).copied().unwrap_or(0.0)).max(0.0))
+@@ -56,12 +86,22 @@ pub(super) struct Bundle {
+ /// choose a new route and break the common service fraction of a barter deal.
+ pub(super) fn prepare_bundle(w: &WorldState, legs: &[(NationId, NationId, Commodity, f64)],
+     used: &BTreeMap<String, f64>) -> Bundle {
++    prepare_bundle_with_context(w, legs, used, None)
++}
++
++pub(super) fn prepare_bundle_with_context(w: &WorldState, legs: &[(NationId, NationId, Commodity, f64)],
++    used: &BTreeMap<String, f64>, mut context: Option<&mut ContractForecastRoutes<'_>>) -> Bundle {
+     let mut result = Bundle { routes: vec![], demand: BTreeMap::new(), ratio: 1.0 };
+     for &(seller, buyer, commodity, quantity) in legs {
+         let route = if !quantity.is_finite() || quantity < 0.0 {
+             Err("Requested freight must be finite and non-negative.".into())
+         } else {
+-            plan(w, seller, buyer).map(|p| select(w, seller, buyer, p, quantity * tonnes_per_unit(commodity), used, None, None).0)
++            let nominal = match context.as_deref_mut() {
++                Some(read) => read.plan(seller, buyer),
++                None => plan(w, seller, buyer),
++            };
++            let capacities = context.as_ref().and_then(|read| read.capacities.as_deref());
++            nominal.map(|p| select(w, seller, buyer, p, quantity * tonnes_per_unit(commodity), used, capacities, None).0)
+         };
+         if quantity > 0.0 {
+             if let Ok(route) = &route {
+@@ -74,7 +114,8 @@ pub(super) fn prepare_bundle(w: &WorldState, legs: &[(NationId, NationId, Commod
+         result.routes.push(route);
+     }
+     for (edge, wanted) in &result.demand {
+-        let room = (route_segment_capacity(w, edge).unwrap_or(0.0) - used.get(edge).copied().unwrap_or(0.0)).max(0.0);
++        let capacities = context.as_ref().and_then(|read| read.capacities.as_deref());
++        let room = (route_segment_capacity_with(w, edge, capacities).unwrap_or(0.0) - used.get(edge).copied().unwrap_or(0.0)).max(0.0);
+         result.ratio = result.ratio.min((room / wanted.max(EPS)).clamp(0.0, 1.0));
+     }
+     result
+@@ -82,12 +123,24 @@ pub(super) fn prepare_bundle(w: &WorldState, legs: &[(NationId, NationId, Commod
+ 
+ pub(super) fn fresh_contract_ratios(w: &WorldState,
+     bundles: &[(u32, Vec<(NationId, NationId, Commodity, f64)>)]) -> BTreeMap<u32, f64> {
++    fresh_contract_ratios_impl(w, bundles, None)
++}
++
++pub(super) fn fresh_contract_ratios_with_context(context: &mut ContractForecastRoutes<'_>,
++    bundles: &[(u32, Vec<(NationId, NationId, Commodity, f64)>)]) -> BTreeMap<u32, f64> {
++    let world = context.world;
++    fresh_contract_ratios_impl(world, bundles, Some(context))
++}
++
++fn fresh_contract_ratios_impl(w: &WorldState,
++    bundles: &[(u32, Vec<(NationId, NationId, Commodity, f64)>)],
++    mut context: Option<&mut ContractForecastRoutes<'_>>) -> BTreeMap<u32, f64> {
+     let mut ordered: Vec<_> = bundles.iter().collect();
+     ordered.sort_by_key(|(id, _)| *id);
+     let mut used = BTreeMap::new();
+     let mut ratios = BTreeMap::new();
+     for (id, legs) in ordered {
+-        let bundle = prepare_bundle(w, legs, &used);
++        let bundle = prepare_bundle_with_context(w, legs, &used, context.as_deref_mut());
+         for (edge, wanted) in bundle.demand {
+             *used.entry(edge).or_default() += wanted * bundle.ratio;
+         }
+@@ -95,3 +148,91 @@ pub(super) fn fresh_contract_ratios(w: &WorldState,
+     }
+     ratios
+ }
++
++#[cfg(test)]
++mod access_read_tests {
++    use super::*;
++
++    fn world() -> WorldState {
++        crate::init::world_1990(crate::world::GameRules {
++            daily_simulation: true, resource_market: true, logistics_routes: true,
++            physical_logistics: true, military_operations: true, ..Default::default()
++        })
++    }
++
++    #[test]
++    fn clearing_access_reuse_preserves_dispatches_invalid_cache_and_alternates() {
++        let mut cached=world();
++        let (seller,buyer)=(NationId::Germany,NationId::France);
++        set_policy(&mut cached,buyer,RoutePolicy::LandOnly).unwrap();
++        begin_month(&mut cached);
++        let nominal=plan(&cached,seller,buyer).unwrap();
++        // The first lookup must reject an invalid preexisting nominal cache.
++        // Reserving the real nominal path also makes a later lot divert.
++        let mut invalid=nominal.clone(); invalid.nodes[0].id="missing-cached-node".into();
++        cached.logistics.route_cache.insert((seller,buyer,RoutePolicy::LandOnly),invalid);
++        for segment in &nominal.segments {
++            let capacity=route_segment_capacity(&cached,segment).unwrap();
++            cached.logistics.usage_tonnes.insert(segment.clone(),capacity);
++        }
++        let mut plain=cached.clone();
++        let mut cached_routes=ClearingRoutes::new(&cached);
++        let mut plain_routes=ClearingRoutes::new(&plain);
++        // Native access validation with the identical existing search trees,
++        // frozen capacity inputs and shared congestion-search budget.
++        plain_routes.access.cache_limit=0;
++        let mut diverted=false;
++        for (commodity,quantity) in [(Commodity::Iron,0.0),(Commodity::Copper,0.125),
++            (Commodity::Coal,100_000.0),(Commodity::Iron,0.25),(Commodity::Copper,1.0)] {
++            let actual=dispatch_in_clearing(&mut cached,seller,buyer,commodity,quantity,&mut cached_routes);
++            let expected=dispatch_in_clearing(&mut plain,seller,buyer,commodity,quantity,&mut plain_routes);
++            assert_eq!(actual,expected,"{commodity:?} {quantity}: exact route, quantity and refusal");
++            assert_eq!(cached_routes.search_nodes_left,plain_routes.search_nodes_left,"access caching cannot create search budget");
++            assert_eq!(crate::save(&cached),crate::save(&plain),"all capacity, cargo, cash and contractor receipts stay exact");
++            diverted|=actual.quantity>0.0 && actual.route.as_ref().is_some_and(|route|route.dispatch_note.is_some());
++        }
++        assert!(diverted,"the fixture must actually dispatch an alternate route");
++        assert_eq!(cached_routes.access.paths.len(),1);
++        assert!(plain_routes.access.paths.is_empty());
++    }
++
++    #[test]
++    fn clearing_access_reuse_checks_changed_paths_and_new_clearing_closures() {
++        let mut w=world();
++        let (seller,buyer)=(NationId::Germany,NationId::France);
++        let route=plan(&w,seller,buyer).unwrap();
++        let mut invalid=route.clone(); invalid.nodes[0].id="missing-cached-node".into();
++        let mut renamed=route.clone();
++        for node in &mut renamed.nodes {node.name="A different display name".into();}
++        let before=crate::save(&w);
++        let mut access=ClearingRouteAccess::default();
++        for candidate in [&invalid,&route,&renamed,&invalid,&route] {
++            assert_eq!(access.is_open(&w,seller,buyer,RoutePolicy::Fastest,candidate),
++                route_open(&w,seller,buyer,candidate).is_ok());
++            assert_eq!(access.paths.len(),1,"the exact changed path replaces only its endpoint/policy entry");
++        }
++        assert_eq!(crate::save(&w),before);
++        w.sanctions.push((seller,buyer));
++        let mut next_clearing=ClearingRouteAccess::default();
++        assert!(!next_clearing.is_open(&w,seller,buyer,RoutePolicy::Fastest,&route));
++        assert!(!next_clearing.is_open(&w,seller,buyer,RoutePolicy::Fastest,&route));
++        w.sanctions.pop();
++        let mut reopened=ClearingRouteAccess::default();
++        assert!(reopened.is_open(&w,seller,buyer,RoutePolicy::Fastest,&route));
++    }
++
++    #[test]
++    fn clearing_access_reuse_bounded_fallback_keeps_native_answers() {
++        let w=world();
++        let route=plan(&w,NationId::Germany,NationId::France).unwrap();
++        let mut access=ClearingRouteAccess {cache_limit:1,..Default::default()};
++        for (seller,buyer) in [(NationId::Germany,NationId::France),(NationId::France,NationId::Germany),
++            (NationId::Germany,NationId::Germany),(NationId::France,NationId::France)] {
++            for _ in 0..2 {
++                assert_eq!(access.is_open(&w,seller,buyer,RoutePolicy::Fastest,&route),
++                    route_open(&w,seller,buyer,&route).is_ok());
++            }
++        }
++        assert_eq!(access.paths.len(),1);
++    }
++}
+diff --git a/spheres-sim/src/industry.rs b/spheres-sim/src/industry.rs
+index 2233093..fdd9542 100644
+--- a/spheres-sim/src/industry.rs
++++ b/spheres-sim/src/industry.rs
+@@ -653,8 +653,13 @@ pub(crate) fn operating_recipe(kind: K, output: f64, power: f64) -> [f64; 12] {
+ /// Keep industrial ingredients and generating fuel separate: a materials
+ /// specialist saves ingredients, while the dispatched generators save fuel.
+ pub fn company_operating_recipe(w: &WorldState, nation: NationId, district: &str, kind: K, output: f64, power: f64) -> [f64; 12] {
+-    let company = manufacturing_company(w, nation, district);
+     let (fuel_rate, _) = energy_company_rates(w, nation);
++    company_operating_recipe_with_fuel(w, nation, district, kind, output, power, fuel_rate)
++}
++
++fn company_operating_recipe_with_fuel(w: &WorldState, nation: NationId, district: &str,
++    kind: K, output: f64, power: f64, fuel_rate: f64) -> [f64; 12] {
++    let company = manufacturing_company(w, nation, district);
+     if company.input_rate == 1.0 && fuel_rate == 1.0 { return operating_recipe(kind, output, power); }
+     let mut raw = operating_recipe(kind, output, 0.0).map(|v| q(v * company.input_rate));
+     raw[C::Coal.idx()] = q(raw[C::Coal.idx()] + power * 0.02 * fuel_rate);
+@@ -701,8 +706,12 @@ pub fn funded_days_in_horizon(
+ /// only committed facilities/projects and cumulative input receipts; it does
+ /// not inspect a forecast, market option, or prospective AI project.
+ pub fn raw_demand_components(w: &WorldState, nation: NationId) -> RawDemandComponents {
++    raw_demand_components_impl(w, nation, true)
++}
++fn raw_demand_components_impl(w: &WorldState, nation: NationId, reuse_fuel_rate: bool) -> RawDemandComponents {
+     let mut out = RawDemandComponents::default();
+     if programs::enrolled(w, nation) && w.nation_opt(nation).is_some_and(|n| n.alive) {
++        let fuel_rate = reuse_fuel_rate.then(|| energy_company_rates(w, nation).0);
+         for district in operating_districts(w) {
+             if w.districts.get(&district) != Some(&nation)
+                 || resources::district_contested(w, &district)
+@@ -711,11 +720,9 @@ pub fn raw_demand_components(w: &WorldState, nation: NationId) -> RawDemandCompo
+             }
+             for kind in [K::ProcessingPlant, K::StarterIndustry, K::MachineryWorks] {
+                 let rate = plant_rate(w, &district, kind);
+-                let raw = company_operating_recipe(w, nation, &district,
+-                    kind,
+-                    rate,
+-                    rate * power_per_pack(w, &district, kind),
+-                );
++                let power = rate * power_per_pack(w, &district, kind);
++                let raw = fuel_rate.map_or_else(|| company_operating_recipe(w, nation, &district, kind, rate, power),
++                    |fuel| company_operating_recipe_with_fuel(w, nation, &district, kind, rate, power, fuel));
+                 for i in 0..12 {
+                     out.operating_daily[i] += raw[i];
+                 }
+@@ -737,17 +744,27 @@ pub fn raw_demand_components(w: &WorldState, nation: NationId) -> RawDemandCompo
+ }
+ 
+ fn resource_demand_daily_inner(w: &WorldState, nation: NationId, include_materials: bool) -> [f64; 12] {
++    resource_demand_daily_impl(w, nation, include_materials, true)
++}
++
++fn resource_demand_daily_impl(w: &WorldState, nation: NationId, include_materials: bool,
++    reuse_fuel_rate: bool) -> [f64; 12] {
+     let mut out = [0.0; 12];
+     if !programs::enrolled(w, nation) {
+         return out;
+     }
++    // This immutable nation-wide rate is identical for every plant recipe in
++    // one demand read. Actual dispatch and contractor payments remain live.
++    let fuel_rate = reuse_fuel_rate.then(|| energy_company_rates(w, nation).0);
+     for d in operating_districts(w) {
+         if w.districts.get(&d) != Some(&nation) {
+             continue;
+         }
+         for k in [K::ProcessingPlant, K::StarterIndustry, K::MachineryWorks] {
+             let rate = plant_rate(w, &d, k);
+-            let raw = company_operating_recipe(w, nation, &d, k, rate, rate * power_per_pack(w, &d, k));
++            let power = rate * power_per_pack(w, &d, k);
++            let raw = fuel_rate.map_or_else(|| company_operating_recipe(w, nation, &d, k, rate, power),
++                |fuel| company_operating_recipe_with_fuel(w, nation, &d, k, rate, power, fuel));
+             for i in 0..12 {
+                 out[i] += raw[i];
+             }
+@@ -1390,6 +1407,37 @@ mod tests {
+             .max_by(|a,b|if saving {a.input_saving.total_cmp(&b.input_saving)}else{a.work_bonus.total_cmp(&b.work_bonus)}).unwrap().id
+     }
+     #[test]
++    fn s08_shared_demand_fuel_rate_preserves_exact_recipe_bits() {
++        let mut w = prepared();
++        let sites = districts(&w);
++        for district in sites.iter().take(3) { chain(&mut w, district); }
++        w.production.industry.modules.insert(sites[3].clone(), 375_000);
++        companies::enable(&mut w);
++        let energy = company_for(&w, CompanySector::Energy, true);
++        let factory = company_for(&w, CompanySector::Manufacturing, true);
++        for district in sites.iter().take(3) {
++            companies::assign(&mut w, USA, energy, CompanyTarget::Facility {
++                district: district.clone(), sector: CompanySector::Energy }).unwrap();
++            companies::assign(&mut w, USA, factory, CompanyTarget::Facility {
++                district: district.clone(), sector: CompanySector::Manufacturing }).unwrap();
++        }
++        for disabled in [false, true] {
++            if disabled { w.sector_contractors.enabled = false; }
++            let before = save(&w);
++            for nation in [USA, NationId::Canada, NationId::Tonga] {
++                let optimized = raw_demand_components_impl(&w, nation, true);
++                let original = raw_demand_components_impl(&w, nation, false);
++                assert_eq!(optimized, original);
++                assert_eq!(optimized.operating_daily.map(f64::to_bits), original.operating_daily.map(f64::to_bits));
++                for include in [false, true] {
++                    assert_eq!(resource_demand_daily_impl(&w, nation, include, true).map(f64::to_bits),
++                        resource_demand_daily_impl(&w, nation, include, false).map(f64::to_bits));
++                }
++            }
++            assert_eq!(save(&w), before);
++        }
++    }
++    #[test]
+     fn company_factories_save_real_inputs_and_missing_inputs_charge_nothing() {
+         let mut w = prepared();
+         let d = districts(&w)[0].clone();
+diff --git a/spheres-sim/src/industry_planning.rs b/spheres-sim/src/industry_planning.rs
+index c79dc54..c2b2872 100644
+--- a/spheres-sim/src/industry_planning.rs
++++ b/spheres-sim/src/industry_planning.rs
+@@ -19,6 +19,55 @@ pub const EXPORT_LOOKBACK_DAYS: i32 = 90;
+ const EPS: f64 = 1e-9;
+ fn is_zero(value: &f64) -> bool { *value == 0.0 }
+ 
++/// Immutable delivery totals for one planning read. Each sum receives rows in
++/// the original ledger order, including signed zero. The contract total uses
++/// every retained delivery: the legacy fallback must subtract old dated units
++/// too, even when they no longer contribute to the recent export window.
++struct DeliveryTotals {
++    nation: NationId,
++    recent: std::collections::BTreeMap<Good, f64>,
++    known: std::collections::BTreeMap<u64, f64>,
++}
++
++impl DeliveryTotals {
++    fn new(w: &WorldState, nation: NationId) -> Self {
++        let mut out = Self {
++            nation,
++            recent: std::collections::BTreeMap::new(),
++            known: std::collections::BTreeMap::new(),
++        };
++        let today = clock::absolute_day(w);
++        if let Some(c) = &w.commerce {
++            for row in c.contracts.iter().filter(|row| row.seller == nation
++                && row.accepted_day > today - EXPORT_LOOKBACK_DAYS && row.accepted_day <= today) {
++                out.known.entry(row.id).or_insert(-0.0);
++            }
++            for row in &c.goods_deliveries {
++                if let Some(known) = out.known.get_mut(&row.contract) { *known += row.quantity; }
++                if row.seller == nation && row.day > today - EXPORT_LOOKBACK_DAYS && row.day <= today {
++                    *out.recent.entry(row.good).or_insert(-0.0) += row.quantity;
++                }
++            }
++        }
++        out
++    }
++
++    fn delivered_daily(&self, w: &WorldState, good: Good) -> f64 {
++        let Some(c) = &w.commerce else { return 0.0; };
++        let today = clock::absolute_day(w);
++        let mut quantity = self.recent.get(&good).copied().unwrap_or(-0.0);
++        // Preserve contract order and the exact old addition/subtraction order.
++        for contract in c.contracts.iter().filter(|r| {
++            r.seller == self.nation && r.good == good
++                && r.accepted_day > today - EXPORT_LOOKBACK_DAYS && r.accepted_day <= today
++        }) {
++            let known = self.known.get(&contract.id).copied().unwrap_or(-0.0);
++            quantity += (contract.delivered_quantity - known).max(0.0);
++        }
++        quantity / EXPORT_LOOKBACK_DAYS as f64
++    }
++}
++
+ #[derive(Clone, Debug, Serialize, PartialEq)]
+ pub struct GoodsBalance {
+     pub good: Good,
+@@ -185,6 +234,11 @@ pub fn expansion_order(plan: &CapacityPlan) -> [K; 2] {
+ /// New dated rows capture late deliveries from older contracts too. Subtract
+ /// all known dated units from the legacy fallback so none are counted twice.
+ pub fn delivered_daily(w: &WorldState, nation: NationId, good: Good) -> f64 {
++    DeliveryTotals::new(w, nation).delivered_daily(w, good)
++}
++
++// Retained uncached oracle: no new policy, rounding or historical attribution.
++fn delivered_daily_uncached(w: &WorldState, nation: NationId, good: Good) -> f64 {
+     let Some(c) = &w.commerce else {
+         return 0.0;
+     };
+@@ -224,8 +278,10 @@ fn balance(
+     installed: f64,
+     committed: f64,
+     domestic: f64,
++    deliveries: Option<&DeliveryTotals>,
+ ) -> GoodsBalance {
+-    let exports = delivered_daily(w, nation, good);
++    let exports = deliveries.map_or_else(|| delivered_daily_uncached(w, nation, good),
++        |totals| totals.delivered_daily(w, good));
+     let demand = domestic + exports;
+     let stock = commerce::stock(w, nation, good);
+     let incoming = commerce::pending(w, nation, good);
+@@ -263,6 +319,10 @@ fn balance(
+ }
+ 
+ pub fn plan(w: &WorldState, nation: NationId) -> CapacityPlan {
++    plan_impl(w, nation, true)
++}
++
++fn plan_impl(w: &WorldState, nation: NationId, reuse_pure_reads: bool) -> CapacityPlan {
+     let mut out = CapacityPlan {
+         goods: vec![],
+         provinces: vec![],
+@@ -279,9 +339,11 @@ pub fn plan(w: &WorldState, nation: NationId) -> CapacityPlan {
+     let mut advanced_installed=0.0;
+     let mut advanced_committed=0.0;
+     let mut new_intermediate_demand=0.0;
+-    // The allocator walks the global construction queue. Resolve it once,
+-    // not again for every project/province in this read-only country plan.
+-    let work_plans = industry::project_plans(w);
++    // Turnkey construction is financial: every WorkPlan.goods is zero. Do not
++    // run the global cash/work allocator merely to sum those empty raw bills.
++    // Keep zero arithmetic and the old path for exact full-plan regression.
++    let work_plans = (!reuse_pure_reads).then(|| industry::project_plans(w));
++    let deliveries = reuse_pure_reads.then(|| DeliveryTotals::new(w, nation));
+     for (d, owner) in &w.districts {
+         if *owner != nation {
+             continue;
+@@ -300,7 +362,7 @@ pub fn plan(w: &WorldState, nation: NationId) -> CapacityPlan {
+             if !contested {
+                 // Actual next funded request, not the entire lifetime bill
+                 // mislabelled as a recurring daily factory order.
+-                if let Some(f) = work_plans.get(&p.id) {
++                if let Some(f) = work_plans.as_ref().and_then(|plans| plans.get(&p.id)) {
+                     construction.intermediates += f.goods.intermediates;
+                     construction.capital_goods += f.goods.capital_goods;
+                 }
+@@ -382,6 +444,7 @@ pub fn plan(w: &WorldState, nation: NationId) -> CapacityPlan {
+         machine_installed,
+         machine_committed,
+         capital_domestic,
++        deliveries.as_ref(),
+     );
+     let machine_consumers: f64 = out
+         .provinces
+@@ -417,12 +480,192 @@ pub fn plan(w: &WorldState, nation: NationId) -> CapacityPlan {
+         process_installed,
+         process_committed,
+         domestic,
++        deliveries.as_ref(),
+     ));
+     out.goods.push(capital);
+     if crate::industry_operations::enabled(w) {
+         out.goods.push(balance(w,nation,Good::AdvancedComponents,advanced_installed,advanced_committed,
+-            commerce::recurring_demand_daily(w,nation,Good::AdvancedComponents)));
++            commerce::recurring_demand_daily(w,nation,Good::AdvancedComponents), deliveries.as_ref()));
+     }
+     out.inherited_sectors = structural_sectors(w, nation, &out);
+     out
+ }
++
++#[cfg(test)]
++mod s08_read_parity_tests {
++    use super::*;
++    use crate::{init::world_1990, programs, world::GameRules, Command};
++
++    const GOODS: [Good; 3] = [Good::Intermediates, Good::CapitalGoods, Good::AdvancedComponents];
++
++    // Explicit ledger fixtures exercise ordered floating-point accumulation
++    // and old undated delivery fallback. They are not earned campaign stock.
++    fn delivery_fixture(w: &mut WorldState) {
++        let today = clock::absolute_day(w);
++        let mut ledger = commerce::Commerce::default();
++        for (index, (seller, good, accepted_offset, delivered)) in [
++            (NationId::USA, Good::Intermediates, -1, 1.0e9 + 2.0),
++            (NationId::Canada, Good::Intermediates, -30, 0.8),
++            (NationId::USA, Good::CapitalGoods, -90, 7.0),
++            (NationId::USA, Good::CapitalGoods, -89, 9.0),
++            (NationId::Canada, Good::AdvancedComponents, 0, 0.0),
++            (NationId::USA, Good::Intermediates, 1, 3.0),
++            (NationId::USA, Good::AdvancedComponents, -2, 1.0),
++        ].into_iter().enumerate() {
++            let id = 700 - index as u64;
++            ledger.contracts.push(commerce::Contract {
++                id, seller, buyer: NationId::France, good, quantity: delivered,
++                unit_price_bn: 0.0001, remaining_quantity: 0.0, escrow_bn: 0.0,
++                delivered_quantity: delivered, cancelled_quantity: 0.0, paid_bn: delivered * 0.0001,
++                accepted_day: today + accepted_offset, expires_day: today + accepted_offset + 30,
++                status: "delivered".into(), reason: None,
++            });
++        }
++        // Interleave contracts and dates. A known delivery outside the 90-day
++        // window still subtracts from the recent contract's legacy fallback.
++        for (contract, offset, quantity) in [
++            (700, -1, 1.0e9), (699, -1, 0.1), (700, -90, 0.5),
++            (700, 0, 1.0e-8), (698, -2, 0.2), (699, 0, 0.2),
++            (700, -89, 0.1), (697, -91, 4.0), (700, 1, 0.25),
++            (696, 0, -0.0), (700, 0, 1.0e-8), (699, -3, 0.3),
++            (695, 0, 0.4), (694, -365, 0.1),
++        ] {
++            let row = ledger.contracts.iter().find(|row| row.id == contract).unwrap();
++            ledger.goods_deliveries.push(commerce::GoodsDelivery {
++                contract, day: today + offset, buyer: row.buyer, seller: row.seller,
++                good: row.good, quantity,
++            });
++        }
++        // Oracle input deliberately disagrees with its contract's seller/good.
++        // Attribution is not silently repaired: known totals match by ID only.
++        ledger.goods_deliveries.push(commerce::GoodsDelivery {
++            contract: 700, day: today, buyer: NationId::Tonga, seller: NationId::France,
++            good: Good::AdvancedComponents, quantity: 0.15,
++        });
++        w.commerce = Some(ledger);
++    }
++
++    #[test]
++    fn s08_delivery_totals_preserve_exact_bits_windows_and_legacy_fallback() {
++        let mut w = world_1990(GameRules::default());
++        w.commerce = None;
++        for state in 0..3 {
++            if state == 1 { w.commerce = Some(commerce::Commerce::default()); }
++            if state == 2 { delivery_fixture(&mut w); }
++            let before = crate::save(&w);
++            for nation in [NationId::USA, NationId::Canada, NationId::France, NationId::Tonga] {
++                let totals = DeliveryTotals::new(&w, nation);
++                for good in GOODS {
++                    let expected = delivered_daily_uncached(&w, nation, good).to_bits();
++                    assert_eq!(totals.delivered_daily(&w, good).to_bits(), expected,
++                        "state={state}, {nation:?}/{good:?}");
++                    assert_eq!(delivered_daily(&w, nation, good).to_bits(), expected);
++                }
++            }
++            assert_eq!(delivered_daily(&w, NationId::Tonga, Good::Intermediates).to_bits(),
++                if state == 0 { 0.0f64.to_bits() } else { (-0.0f64).to_bits() });
++            assert_eq!(crate::save(&w), before, "delivery indexes cannot mutate a receipt");
++        }
++    }
++
++    #[test]
++    fn s08_capacity_plan_matches_full_old_allocator_and_delivery_reads() {
++        for daily in [false, true] {
++            let mut w = world_1990(GameRules {
++                daily_simulation: daily, production_system: true, resource_market: true,
++                economic_competition: true, ..GameRules::default()
++            });
++            w.conflicts.clear();
++            if daily {
++                crate::starting_industry::enable_new_world(&mut w).unwrap();
++                crate::province_economy::enable(&mut w);
++                w.rules.industry_rebuild = true;
++            }
++            let mut project_id = 900;
++            let mut owned = Vec::new();
++            for nation in [NationId::USA, NationId::Canada] {
++                let district = w.districts.iter().find(|(_, owner)| **owner == nation).unwrap().0.clone();
++                owned.push(district.clone());
++                w.production.provinces.push(production::ProvinceCapabilities {
++                    district: district.clone(), infrastructure: 1, civilian_industry: 1,
++                    power_grid: 1, research_centers: 1, arms_plants: 0,
++                });
++                w.production.industry.sites.insert(district.clone(), [1, 1, 1, 1, 0, 0, 0]);
++                w.production.industry.modules.insert(district.clone(), 250_000);
++                w.production.industry.goods.insert(nation, industry::Goods { intermediates: 0.25, capital_goods: 0.5 });
++                if daily {
++                    w.nation_mut(nation).political_capital = 1000.0;
++                    let allocations = w.nation(nation).budget_for(w.year).allocations;
++                    let year = w.year;
++                    crate::apply_command(&mut w, &Command::SetProgramBudget {
++                        nation, fiscal_year: year, allocations, departments: programs::default_departments(),
++                    }).unwrap();
++                }
++                for (kind, priority) in [(K::StarterIndustry, production::Priority::Low),
++                    (K::MachineryWorks, production::Priority::High),
++                    (K::ResearchCenter, production::Priority::Normal)] {
++                    w.production.projects.push(production::Project {
++                        id: project_id, nation, district: district.clone(), kind, priority,
++                        status: production::ProjectStatus::Building, reason: None,
++                        progress_days: 10.5, total_days: 1800, resources_used: [0.25; 12],
++                        capacity_micros: (kind == K::StarterIndustry).then_some(250_000),
++                        started_day: Some(clock::absolute_day(&w) - 10),
++                    });
++                    project_id -= 1;
++                }
++            }
++            let today = clock::absolute_day(&w);
++            w.materials = Some(crate::materials::Materials {
++                next_id: 2, orders: vec![crate::materials::Order {
++                    id: 1, nation: NationId::USA, district: owned[0].clone(), quantity: 2.0,
++                    delivered: 0.5, remaining: 1.5, delivery_days: 30, start_day: today - 1,
++                    deadline_day: today + 29, reserved_daily: 0.1, status: "running".into(),
++                    reason: None, last_day: Some(today - 1), closed_day: None,
++                    spent_conversion_bn: 0.000005, spent_energy_bn: 0.000001,
++                    output_today: 0.1, power_today: 0.1, raw_used: [0.0; 12],
++                }], ..Default::default()
++            });
++            delivery_fixture(&mut w);
++            for condition in 0..4 {
++                if condition == 1 {
++                    industry::begin_work_day(&mut w);
++                    for funding in w.production.industry.projects.values_mut() { funding.last_day = Some(today); }
++                    w.nation_mut(NationId::Canada).program_budget = None;
++                }
++                if condition == 2 {
++                    use crate::world::{Belligerent, Conflict, Objective};
++                    // An explicit synthetic conflict, not an assumed opening
++                    // war. Planning must still retain the contested branch.
++                    let mut conflict = Conflict {
++                        id: 999, theatre: crate::war::theatre_between(&w, NationId::USA, NationId::Canada),
++                        side_a: vec![NationId::USA], side_b: vec![NationId::Canada],
++                        posture: vec![Belligerent::new(NationId::USA, 8, Objective::Seize),
++                            Belligerent::new(NationId::Canada, 8, Objective::Hold)],
++                        control: 0.0, months: 0, quiet_months: 0, frozen_since: None,
++                        start_year: w.year, start_month: w.month, origin_attacker: NationId::USA,
++                        invasion_declared: true, front: Default::default(), pockets: vec![], aim: None,
++                    };
++                    conflict.front.insert(owned[0].clone(), 0.0);
++                    w.conflicts.push(conflict);
++                    assert!(resources::district_contested(&w, &owned[0]));
++                }
++                if condition == 3 {
++                    w.conflicts.clear();
++                    w.districts.insert(owned[0].clone(), NationId::Canada);
++                    w.nation_mut(NationId::USA).alive = false;
++                    w.rules.military_operations = true;
++                }
++                let before = crate::save(&w);
++                for work in industry::project_plans(&w).values() {
++                    assert_eq!(work.goods, industry::Goods::default(), "turnkey construction has no pack bill");
++                }
++                for nation in [NationId::USA, NationId::Canada, NationId::Tonga] {
++                    assert_eq!(serde_json::to_vec(&plan_impl(&w, nation, true)).unwrap(),
++                        serde_json::to_vec(&plan_impl(&w, nation, false)).unwrap(),
++                        "daily={daily}, condition={condition}, {nation:?}: all fields and signed zeros");
++                }
++                assert_eq!(crate::save(&w), before, "planning cannot settle work, receipts or authority");
++            }
++        }
++    }
++}
+diff --git a/spheres-sim/src/lib.rs b/spheres-sim/src/lib.rs
+index efcd481..6ab0dcc 100644
+--- a/spheres-sim/src/lib.rs
++++ b/spheres-sim/src/lib.rs
+@@ -696,6 +696,10 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
+             => connected_economy::daily_enrollment_refusal(w, *nation),
+         Command::SetPopulationPolicy { nation, policy } => population::policy_quote(w, *nation, *policy).reason,
+         Command::Company { nation, order } => companies::apply(&mut w.clone(), *nation, order).err(),
++        // Research has a complete read-only operation check. Preserve the
++        // world-before-price refusal order without copying unrelated history.
++        Command::Equipment { nation, order: EquipmentOrder::Research { component } }
++            => equipment::research_refusal(w, *nation, component),
+         Command::Equipment { nation, order } => apply_equipment_order(&mut w.clone(), *nation, order).err(),
+         Command::SetInterestRate { nation, .. } if agency::pegged_rate(w,*nation).is_some() => Some("Exit the currency peg before changing its policy rate.".into()),
+         Command::RespondDiplomacy { nation, offer, accept } => agency::response_error(w,*nation,*offer,*accept),
+diff --git a/spheres-sim/src/logistics.rs b/spheres-sim/src/logistics.rs
+index 039f59c..8de42a0 100644
+--- a/spheres-sim/src/logistics.rs
++++ b/spheres-sim/src/logistics.rs
+@@ -552,6 +552,7 @@ pub fn plan(w: &WorldState, seller: NationId, buyer: NationId) -> Result<RoutePl
+ /// unchanged. The first settled buyer goal is exactly where the pair search
+ /// would have stopped; later visits cannot rewrite its predecessor chain.
+ pub(crate) struct ClearingRoutes {
++    access: freight_routing::ClearingRouteAccess,
+     owned_nodes: Vec<Vec<usize>>,
+     effective_owners: Vec<Option<NationId>>,
+     trees: BTreeMap<(NationId, RoutePolicy, Vec<bool>), SearchTree>,
+@@ -582,7 +583,7 @@ impl ClearingRoutes {
+         }
+         let effective_owners = net.nodes.iter().map(|n| freight_controller(w, &n.id)).collect();
+         let capacities = if w.rules.military_operations { net.edges.iter().map(|e| segment_capacity(w, e).0).collect() } else { vec![] };
+-        Self { owned_nodes, effective_owners, trees: BTreeMap::new(), capacities, search_nodes_left: 32_768 }
++        Self { access: Default::default(), owned_nodes, effective_owners, trees: BTreeMap::new(), capacities, search_nodes_left: 32_768 }
+     }
+ 
+     fn plan(&mut self, w: &WorldState, seller: NationId, buyer: NationId) -> Result<RoutePlan, String> {
+@@ -928,6 +929,39 @@ pub fn freight_route_open(w: &WorldState, seller: NationId, buyer: NationId, rou
+     route_open(w, seller, buyer, route)
+ }
+ 
++const FREIGHT_ACCESS_READ_MAX_ROUTES: usize = 4_096;
++const FREIGHT_ACCESS_READ_MAX_NODE_IDS: usize = 131_072;
++
++/// Access checks for one immutable cargo read. A borrowed world and borrowed
++/// node IDs keep this cache local to the snapshot: permissions, ownership and
++/// control cannot change while it is in use. Names and other route metadata do
++/// not affect the boolean returned by `route_open`; every ordered node ID does.
++/// Once bounded storage is full, uncached checks preserve the same answer.
++pub struct FreightAccessRead<'w> {
++    world: &'w WorldState,
++    routes: BTreeMap<(NationId, NationId, Vec<&'w str>), bool>,
++    node_ids: usize,
++}
++
++impl<'w> FreightAccessRead<'w> {
++    pub fn new(world: &'w WorldState) -> Self {
++        Self { world, routes: BTreeMap::new(), node_ids: 0 }
++    }
++
++    pub fn is_open(&mut self, seller: NationId, buyer: NationId, route: &'w RoutePlan) -> bool {
++        let key = (seller, buyer, route.nodes.iter().map(|node| node.id.as_str()).collect::<Vec<_>>());
++        if let Some(open) = self.routes.get(&key) { return *open; }
++        let open = route_open(self.world, seller, buyer, route).is_ok();
++        if self.routes.len() < FREIGHT_ACCESS_READ_MAX_ROUTES
++            && key.2.len() <= FREIGHT_ACCESS_READ_MAX_NODE_IDS.saturating_sub(self.node_ids)
++        {
++            self.node_ids += key.2.len();
++            self.routes.insert(key, open);
++        }
++        open
++    }
++}
++
+ pub fn dispatch(
+     w: &mut WorldState,
+     seller: NationId,
+@@ -985,7 +1019,8 @@ fn dispatch_impl(
+         .route_cache
+         .get(&key)
+         .cloned()
+-        .filter(|r| route_open(w, seller, buyer, r).is_ok())
++        .filter(|r| routes.as_mut().map_or_else(|| route_open(w, seller, buyer, r).is_ok(),
++            |routes| routes.access.is_open(w, seller, buyer, policy, r)))
+         .map(Ok)
+         .unwrap_or_else(|| match routes.as_mut() {
+             Some(routes) => routes.plan(w, seller, buyer),
+@@ -1208,6 +1243,46 @@ pub fn fresh_contract_capacity_ratios(
+     result
+ }
+ 
++/// Pure routing inputs for one multi-date contract forecast. The immutable
++/// world borrow prevents reuse after ownership, policy, access or calendar
++/// changes. Only nominal route results and edge capacities are retained;
++/// quantities, congestion alternatives and each date's usage remain live.
++pub struct ContractForecastRoutes<'w> {
++    world: &'w WorldState,
++    nominal: BTreeMap<(NationId, NationId), Result<RoutePlan, String>>,
++    capacities: Option<Vec<f64>>,
++}
++
++impl<'w> ContractForecastRoutes<'w> {
++    pub fn new(world: &'w WorldState) -> Self {
++        Self { world, nominal: BTreeMap::new(), capacities: None }
++    }
++
++    pub fn plan(&mut self, seller: NationId, buyer: NationId) -> Result<RoutePlan, String> {
++        let world = self.world;
++        self.nominal.entry((seller, buyer))
++            .or_insert_with(|| plan(world, seller, buyer)).clone()
++    }
++
++    pub fn capacity_ratios(
++        &mut self,
++        bundles: &[(u32, Vec<(NationId, NationId, Commodity, f64)>)],
++    ) -> BTreeMap<u32, f64> {
++        if !enabled(self.world) || !self.world.rules.military_operations {
++            return fresh_contract_capacity_ratios(self.world, bundles);
++        }
++        if bundles.is_empty() { return BTreeMap::new(); }
++        // Avoid building capacities at all for an empty forecast. Every edge
++        // uses the identical native formula and the same frozen date as the
++        // uncached forecast, including contractor and control modifiers.
++        if self.capacities.is_none() {
++            self.capacities = Some(network().edges.iter()
++                .map(|edge| segment_capacity(self.world, edge).0).collect());
++        }
++        freight_routing::fresh_contract_ratios_with_context(self, bundles)
++    }
++}
++
+ pub fn begin_month(w: &mut WorldState) -> Vec<Cargo> {
+     if !enabled(w) {
+         return vec![];
+@@ -1587,6 +1662,89 @@ mod tests {
+             ..GameRules::default()
+         })
+     }
++
++    #[test]
++    fn freight_access_read_matches_exact_paths_pairs_and_ignored_metadata() {
++        for modern in [false, true] {
++            let mut w=world(); w.rules.daily_simulation=true; w.rules.military_operations=modern;
++            let (seller,buyer)=(NationId::Germany,NationId::France);
++            let nominal=plan(&w,seller,buyer).unwrap();
++            assert!(freight_route_open(&w,seller,buyer,&nominal).is_ok());
++            let mut renamed=nominal.clone();
++            for node in &mut renamed.nodes { node.name="A different display label".into(); }
++            renamed.segments.clear(); renamed.estimated_days+=50; renamed.capacity_tonnes=0.0;
++            let mut missing=nominal.clone();
++            missing.nodes.insert(1,nominal.nodes[0].clone());
++            missing.nodes[1].id="missing-saved-freight-node".into();
++            let mut repeated=nominal.clone(); repeated.nodes.insert(1,nominal.nodes[0].clone());
++            let mut reversed=nominal.clone(); reversed.nodes.reverse();
++            let mut empty=nominal.clone(); empty.nodes.clear();
++            let before=crate::save(&w);
++            let mut read=FreightAccessRead::new(&w);
++            assert!(read.is_open(seller,buyer,&nominal));
++            assert!(read.is_open(seller,buyer,&renamed));
++            assert_eq!(read.routes.len(),1,"equal IDs share access despite different presentation metadata");
++            for route in [&nominal,&renamed,&missing,&repeated,&reversed,&empty] {
++                for (from,to) in [(seller,buyer),(buyer,seller),(seller,seller)] {
++                    let expected=freight_route_open(&w,from,to,route).is_ok();
++                    assert_eq!(read.is_open(from,to,route),expected,"modern={modern} {from:?}->{to:?}");
++                    assert_eq!(read.is_open(from,to,route),expected,"duplicate rows keep their exact access answer");
++                }
++            }
++            assert!(!read.is_open(seller,buyer,&missing),"missing interior IDs cannot reuse an open path");
++            assert_eq!(crate::save(&w),before,"access reads cannot change cargo, money, policy or control");
++        }
++    }
++
++    #[test]
++    fn freight_access_read_new_snapshot_observes_closures_and_endpoint_control() {
++        let mut w=world(); w.rules.daily_simulation=true; w.rules.military_operations=true;
++        let (seller,buyer)=(NationId::Germany,NationId::France);
++        let route=plan(&w,seller,buyer).unwrap();
++        let check=|world:&WorldState,expected:bool| {
++            let before=crate::save(world);
++            let mut read=FreightAccessRead::new(world);
++            assert_eq!(read.is_open(seller,buyer,&route),expected);
++            assert_eq!(read.is_open(seller,buyer,&route),freight_route_open(world,seller,buyer,&route).is_ok());
++            assert_eq!(crate::save(world),before);
++        };
++        check(&w,true);
++        w.sanctions.push((seller,buyer)); check(&w,false);
++        w.sanctions.pop(); check(&w,true);
++        w.nation_mut(buyer).alive=false; check(&w,false);
++        w.nation_mut(buyer).alive=true; check(&w,true);
++        let endpoint=route.nodes.first().unwrap().id.clone();
++        crate::war::declare_war(&mut w,seller,NationId::Iraq).unwrap();
++        let conflict=w.conflict_between(seller,NationId::Iraq).unwrap().id;
++        // Isolate physical endpoint control from declaration's sanctions and
++        // coalition responses, whose refusals were exercised separately.
++        w.sanctions.clear();
++        let c=w.conflict_mut(conflict).unwrap();
++        c.side_a.retain(|id| *id==seller); c.side_b.retain(|id| *id==NationId::Iraq);
++        c.posture.retain(|p| p.nation==seller || p.nation==NationId::Iraq);
++        w.conflict_mut(conflict).unwrap().front.insert(endpoint.clone(),-1.0);
++        assert_eq!(crate::control::controller(&w,&endpoint),Some(NationId::Iraq));
++        check(&w,false);
++        w.conflict_mut(conflict).unwrap().front.remove(&endpoint); check(&w,true);
++        crate::war::join_side(w.conflict_mut(conflict).unwrap(),buyer,false,8,crate::world::Objective::Deny);
++        check(&w,false);
++    }
++
++    #[test]
++    fn freight_access_read_storage_limit_falls_back_to_native_checks() {
++        let w=world();
++        let mut route=plan(&w,NationId::Germany,NationId::France).unwrap();
++        route.nodes.clear();
++        let mut read=FreightAccessRead::new(&w);
++        let pairs=crate::nations::all_nations().iter().copied().flat_map(|seller|
++            crate::nations::all_nations().iter().copied().map(move |buyer|(seller,buyer)));
++        for (seller,buyer) in pairs.take(FREIGHT_ACCESS_READ_MAX_ROUTES+3) {
++            assert_eq!(read.is_open(seller,buyer,&route),freight_route_open(&w,seller,buyer,&route).is_ok());
++        }
++        assert_eq!(read.routes.len(),FREIGHT_ACCESS_READ_MAX_ROUTES);
++        assert_eq!(read.node_ids,0,"an empty ordered path owns no node-ID entries");
++    }
++
+     fn advance_month(w: &mut WorldState) {
+         if w.month == 12 {
+             w.month = 1;
+@@ -1951,6 +2109,73 @@ mod tests {
+         assert!(begin_month(&mut w).is_empty());
+     }
+ 
++    #[test]
++    fn contract_forecast_context_preserves_quantities_atomic_order_and_alternates() {
++        let mut w = world();
++        w.rules.daily_simulation = true;
++        w.rules.military_operations = true;
++        set_policy(&mut w, NationId::France, RoutePolicy::LandOnly).unwrap();
++        let seller=NationId::Germany;let buyer=NationId::France;
++        let nominal=plan(&w,seller,buyer).unwrap();
++        // Today's booked freight must not leak into a fresh forecast date.
++        for edge in &nominal.segments {
++            w.logistics.usage_tonnes.insert(edge.clone(),route_segment_capacity(&w,edge).unwrap());
++        }
++        let before=crate::save(&w);
++        let mut context=ContractForecastRoutes::new(&w);
++        assert!(context.capacities.is_none());
++        assert!(context.capacity_ratios(&[]).is_empty());
++        assert!(context.capacities.is_none(),"Empty forecasts build no capacity table");
++        for quantity in [0.0,0.125,1.0,100_000.0,0.25,500_000.0] {
++            let legs=vec![(seller,buyer,Commodity::Iron,quantity),(seller,buyer,Commodity::Copper,quantity*0.5)];
++            let bundles=vec![(3,legs.clone()),(1,legs.clone()),(2,legs)];
++            let expected=fresh_contract_capacity_ratios(&w,&bundles);
++            let actual=context.capacity_ratios(&bundles);
++            assert_eq!(actual,expected,"Exact capacity ratios for changing quantity {quantity}");
++            assert_eq!(context.capacity_ratios(&bundles),expected,"Each call starts a fresh local usage ledger");
++            if quantity==100_000.0 {assert!(actual[&1]>0.0&&actual[&1]<1.0);}
++        }
++        assert_eq!(context.nominal.len(),1,"All dates and commodities share one nominal pair read");
++        assert_eq!(context.capacities.as_ref().unwrap().len(),network().edges.len());
++        let used=w.logistics.usage_tonnes.clone();
++        let legs=[(seller,buyer,Commodity::Iron,1.0)];
++        let uncached=freight_routing::prepare_bundle(&w,&legs,&used);
++        let cached=freight_routing::prepare_bundle_with_context(&w,&legs,&used,Some(&mut context));
++        assert_eq!(cached.routes,uncached.routes,"Alternate route identity and timing remain exact");
++        assert_eq!(cached.demand,uncached.demand);
++        assert_eq!(cached.ratio.to_bits(),uncached.ratio.to_bits());
++        assert!(cached.routes[0].as_ref().unwrap().dispatch_note.is_some(),"The fixture actually requires an alternate");
++        assert_eq!(crate::save(&w),before,"Forecast cache posts no usage, cargo or service payments");
++    }
++
++    #[test]
++    fn contract_forecast_context_preserves_invalid_closed_and_legacy_paths() {
++        for mode in ["modern","sanctioned","dead","legacy","disabled"] {
++            let mut w=world();
++            w.rules.daily_simulation=true;
++            w.rules.military_operations=mode!="legacy";
++            if mode=="disabled" {w.rules.physical_logistics=false;}
++            if mode=="sanctioned" {w.sanctions.push((NationId::Germany,NationId::France));}
++            if mode=="dead" {w.nation_mut(NationId::France).alive=false;}
++            set_policy(&mut w,NationId::USA,RoutePolicy::LandOnly).unwrap();
++            let before=crate::save(&w);
++            let mut context=ContractForecastRoutes::new(&w);
++            for (seller,buyer) in [(NationId::Germany,NationId::France),(NationId::Japan,NationId::USA)] {
++                let expected=plan(&w,seller,buyer);
++                assert_eq!(context.plan(seller,buyer),expected,"{mode}");
++                assert_eq!(context.plan(seller,buyer),expected,"Cached refusal remains identical: {mode}");
++            }
++            for quantity in [0.0,-1.0,f64::NAN,f64::INFINITY,1.0,1_000_000.0] {
++                let bundles=vec![(9,vec![(NationId::Germany,NationId::France,Commodity::Iron,quantity),
++                    (NationId::Japan,NationId::USA,Commodity::Copper,1.0)]),
++                    (2,vec![(NationId::Germany,NationId::France,Commodity::Iron,1.0)])];
++                assert_eq!(context.capacity_ratios(&bundles),fresh_contract_capacity_ratios(&w,&bundles),"{mode} {quantity}");
++            }
++            if mode=="legacy"||mode=="disabled" {assert!(context.capacities.is_none());}
++            assert_eq!(crate::save(&w),before,"{mode} forecast mutated the world");
++        }
++    }
++
+     #[test]
+     fn military_routing_contract_forecasts_and_frozen_barter_legs_share_capacity() {
+         let mut w = world();
+diff --git a/spheres-sim/src/resources.rs b/spheres-sim/src/resources.rs
+index f1b5251..b684dde 100644
+--- a/spheres-sim/src/resources.rs
++++ b/spheres-sim/src/resources.rs
+@@ -1734,7 +1734,41 @@ pub(crate) fn scale_bundle(required: &[f64; 12], throughput: f64) -> [f64; 12] {
+     })
+ }
+ 
++/// The same ordered sum as `logistics::pending`, grouped in one cargo walk.
++/// Pending stock intentionally includes held and distant deliveries. It is
++/// already paid property, not a promise that the route can arrive today.
++fn opening_pending_cargo(w: &WorldState) -> Vec<[f64; 12]> {
++    let mut pending = vec![[-0.0; 12]; nation_count()];
++    for cargo in &w.logistics.cargo {
++        if let Some(nation) = pending.get_mut(cargo.buyer.index()) {
++            nation[cargo.commodity.idx()] += cargo.quantity;
++        }
++    }
++    pending
++}
++
+ fn clear_spot_market_impl(w: &mut WorldState, cache_pure_reads: bool) {
++    clear_spot_market_traced(w, cache_pure_reads, None);
++}
++
++/// Diagnostic observer; no timings are stored or used for market decisions.
++#[doc(hidden)]
++pub fn clear_spot_market_observed(w: &mut WorldState,
++    observer: &mut dyn FnMut(&str, Option<Commodity>, std::time::Duration)) {
++    clear_spot_market_traced(w, true, Some(observer));
++}
++
++fn clear_spot_market_traced(w: &mut WorldState, cache_pure_reads: bool,
++    mut observer: Option<&mut dyn FnMut(&str, Option<Commodity>, std::time::Duration)>) {
++    let mut started = observer.as_ref().map(|_| std::time::Instant::now());
++    macro_rules! observe {
++        ($label:expr, $commodity:expr) => {
++            if let (Some(observer), Some(started)) = (observer.as_deref_mut(), started.as_mut()) {
++                observer($label, $commodity, started.elapsed());
++                *started = std::time::Instant::now();
++            }
++        }
++    }
+     if !(w.rules.resource_gates && w.rules.resource_market) {
+         return;
+     }
+@@ -1767,12 +1801,17 @@ fn clear_spot_market_impl(w: &mut WorldState, cache_pure_reads: bool) {
+         .collect();
+     // Pure per-nation quote; computing it once also avoids rebuilding every
+     // directed line and industrial recipe for each separate commodity market.
++    let opening_civilian: Option<BTreeMap<NationId, [f64; 12]>> = cache_pure_reads.then(|| all_nations()
++        .iter().copied().filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive))
++        .map(|id| (id, crate::industry::automatic_resource_demand_daily(w, id))).collect());
+     let enrolled_bundles: BTreeMap<NationId, [f64; 12]> = all_nations()
+         .iter()
+         .copied()
+         .filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive) && crate::programs::enrolled(w, *id))
+-        .map(|id| (id, tick_draw_inner(w, id, false)))
++        .map(|id| (id, opening_civilian.as_ref().map_or_else(
++            || tick_draw_inner(w, id, false), |civilian| tick_draw_with_civilian(w, id, civilian[&id]))))
+         .collect();
++    observe!("opening_and_enrolled_draws", None);
+ 
+     // The entire clearing changes only local stock/finance ledgers and freight
+     // reservations. Recipes, ownership, diplomacy, policies and the calendar
+@@ -1781,7 +1820,14 @@ fn clear_spot_market_impl(w: &mut WorldState, cache_pure_reads: bool) {
+     // The uncached arm is retained as a regression oracle for full ledgers.
+     let opening_draws: Option<BTreeMap<NationId, [f64; 12]>> = cache_pure_reads.then(|| all_nations()
+         .iter().copied().filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive))
+-        .map(|id| (id, draw_inner(w, id, false))).collect());
++        .map(|id| (id, draw_with_civilian(w, id, opening_civilian.as_ref().unwrap()[&id]))).collect());
++    // Each commodity's order list is completed before any of that commodity
++    // dispatches. Earlier commodity passes can append only their own cargo;
++    // no arrivals or removals happen inside clearing. Thus the opening total
++    // is the exact live pending total at each order decision. Preserve cargo
++    // iteration/addition order and keep the old scan as the uncached oracle.
++    let opening_pending = (cache_pure_reads && crate::logistics::enabled(w))
++        .then(|| opening_pending_cargo(w));
+     // Manual Materials contracts protect their already-owned ingredients from
+     // automatic surplus sales, but never ask the spot market to buy them. This
+     // is a finite remaining-input reserve, not thirteen months of a new line.
+@@ -1795,6 +1841,17 @@ fn clear_spot_market_impl(w: &mut WorldState, cache_pure_reads: bool) {
+     // disabling pure-read caches must not disable that gameplay bound.
+     let mut route_search = ((cache_pure_reads || w.rules.military_operations) && crate::logistics::enabled(w))
+         .then(|| crate::logistics::ClearingRoutes::new(w));
++    // This predicate reads only sanctions, belligerency and relations. None
++    // changes during clearing; dispatch updates cargo, capacity, terminal work
++    // and finances instead. Cache the directed eligibility answer lazily while
++    // retaining every live route/capacity/contractor-modifier read below.
++    let mut trade_access = BTreeMap::new();
++    let mut can_trade = |world: &WorldState, buyer: NationId, seller: NationId| {
++        if cache_pure_reads {
++            *trade_access.entry((buyer, seller)).or_insert_with(|| open_to(world, buyer, seller))
++        } else { open_to(world, buyer, seller) }
++    };
++    observe!("draws_and_route_context", None);
+ 
+     for c in ALL.into_iter().filter(|c| *c != Commodity::Oil && c.tracked()) {
+         let ci = c.idx();
+@@ -1827,7 +1884,10 @@ fn clear_spot_market_impl(w: &mut WorldState, cache_pure_reads: bool) {
+             let next_bundle = enrolled_bundles.get(&id).map_or(need, |bundle| need.max(bundle[ci]));
+             let target = automatic_reserve + next_bundle;
+             let sell_target = market_reserve_target(&market, id, c) + next_bundle;
+-            let incoming = if crate::logistics::enabled(w) { crate::logistics::pending(w, id, c) } else { 0.0 };
++            let incoming = if crate::logistics::enabled(w) {
++                opening_pending.as_ref().map_or_else(
++                    || crate::logistics::pending(w, id, c), |pending| pending[id.index()][ci])
++            } else { 0.0 };
+             if quantity + incoming < target {
+                 let wanted = target - quantity - incoming;
+                 let cover = if need > 0.0 { quantity / need } else { BUFFER_MONTHS };
+@@ -1838,14 +1898,15 @@ fn clear_spot_market_impl(w: &mut WorldState, cache_pure_reads: bool) {
+         }
+         orders.sort_by(|a, b| a.2.total_cmp(&b.2).then_with(|| a.0.cmp(&b.0)));
+ 
++        observe!("orders", Some(c));
+         let executable_demand: f64 = orders
+             .iter()
+-            .filter(|(buyer, _, _)| offers.iter().any(|(seller, q)| *q > 0.0 && *seller != *buyer && open_to(w, *buyer, *seller)))
++            .filter(|(buyer, _, _)| offers.iter().any(|(seller, q)| *q > 0.0 && *seller != *buyer && can_trade(w, *buyer, *seller)))
+             .map(|(_, q, _)| *q)
+             .sum();
+         let executable_supply: f64 = offers
+             .iter()
+-            .filter(|(seller, q)| *q > 0.0 && orders.iter().any(|(buyer, _, _)| *buyer != *seller && open_to(w, *buyer, *seller)))
++            .filter(|(seller, q)| *q > 0.0 && orders.iter().any(|(buyer, _, _)| *buyer != *seller && can_trade(w, *buyer, *seller)))
+             .map(|(_, q)| *q)
+             .sum();
+         let old_price = if market.prices[ci].is_finite() && market.prices[ci] > 0.0 {
+@@ -1867,7 +1928,7 @@ fn clear_spot_market_impl(w: &mut WorldState, cache_pure_reads: bool) {
+                 if order_left <= 0.0 || cash_left <= 0.0 {
+                     break;
+                 }
+-                if seller == buyer || !open_to(w, buyer, seller) {
++                if seller == buyer || !can_trade(w, buyer, seller) {
+                     continue;
+                 }
+                 let seller_left = remaining.get(&seller).copied().unwrap_or(0.0);
+@@ -1946,6 +2007,7 @@ fn clear_spot_market_impl(w: &mut WorldState, cache_pure_reads: bool) {
+                 if let Some(audit) = failed_route { market.shipment_audits.push(audit); }
+             }
+         }
++        observe!("orders_and_dispatch", Some(c));
+         let total_wanted: f64 = orders.iter().map(|(_, q, _)| *q).sum();
+         market.cleared_volume[ci] = round_market(market.cleared_volume[ci]);
+         market.unmet_orders[ci] = round_market((total_wanted - market.cleared_volume[ci]).max(0.0));
+@@ -1982,6 +2044,7 @@ fn clear_spot_market_impl(w: &mut WorldState, cache_pure_reads: bool) {
+         apply_market_net(w, &mut market, id, net_cost);
+     }
+     w.resources.market = Some(market);
++    observe!("prices_and_finance", None);
+ }
+ 
+ /// Contracted specialists add funded work to commissioned non-oil mines.
+@@ -2711,9 +2774,12 @@ pub fn draw(w: &WorldState, id: NationId) -> [f64; 12] {
+     draw_inner(w, id, true)
+ }
+ fn draw_inner(w: &WorldState, id: NationId, include_materials: bool) -> [f64; 12] {
+-    let mut need = procurement_draw(w, id);
+     let civilian = if include_materials { crate::industry::resource_demand_daily(w, id) }
+         else { crate::industry::automatic_resource_demand_daily(w, id) };
++    draw_with_civilian(w, id, civilian)
++}
++fn draw_with_civilian(w: &WorldState, id: NationId, civilian: [f64; 12]) -> [f64; 12] {
++    let mut need = procurement_draw(w, id);
+     for i in 0..12 { need[i] += civilian[i] / crate::clock::month_fraction(w); }
+     need
+ }
+@@ -2743,6 +2809,13 @@ pub fn tick_draw(w: &WorldState, id: NationId) -> [f64; 12] {
+ }
+ fn tick_draw_inner(w: &WorldState, id: NationId, include_materials: bool) -> [f64; 12] {
+     if !crate::clock::is_daily(w) { return draw_inner(w, id, include_materials); }
++    if w.nation_opt(id).is_none() { return [0.0; 12]; }
++    let civilian = if include_materials { crate::industry::resource_demand_daily(w, id) }
++        else { crate::industry::automatic_resource_demand_daily(w, id) };
++    tick_draw_with_civilian(w, id, civilian)
++}
++fn tick_draw_with_civilian(w: &WorldState, id: NationId, civilian: [f64; 12]) -> [f64; 12] {
++    if !crate::clock::is_daily(w) { return draw_with_civilian(w, id, civilian); }
+     let Some(n) = w.nation_opt(id) else { return [0.0; 12] };
+     let mut need = if w.rules.manufacturing_system && crate::manufacturing::lines_for(w, id).next().is_some() {
+         let mut need = [0.0; 12];
+@@ -2753,8 +2826,6 @@ fn tick_draw_inner(w: &WorldState, id: NationId, include_materials: bool) -> [f6
+     } else if crate::companies::procurement_active(w,id) {[0.0;12]} else {
+         crate::arsenal::pick(n).map_or([0.0; 12], |kit| kit_need(kit, crate::arsenal::tick_line(w, id)))
+     };
+-    let civilian = if include_materials { crate::industry::resource_demand_daily(w, id) }
+-        else { crate::industry::automatic_resource_demand_daily(w, id) };
+     for i in 0..12 { need[i] += civilian[i]; }
+     need
+ }
+@@ -2951,6 +3022,17 @@ pub fn contract_supply_forecast_with(
+     w: &WorldState,
+     h: &Have,
+     horizons_days: [i32; 3],
++) -> ContractSupplyForecast {
++    contract_supply_forecast_impl(w, h, horizons_days, true)
++}
++
++// The uncached path is retained as a behavioral oracle. Both paths keep the
++// same dated stock simulation; only immutable route inputs may be reused.
++fn contract_supply_forecast_impl(
++    w: &WorldState,
++    h: &Have,
++    horizons_days: [i32; 3],
++    reuse_routes: bool,
+ ) -> ContractSupplyForecast {
+     #[cfg(test)]
+     meter::count_raw_projector();
+@@ -2964,6 +3046,7 @@ pub fn contract_supply_forecast_with(
+         return forecast;
+     }
+     let physical = crate::logistics::enabled(w);
++    let mut routes = crate::logistics::ContractForecastRoutes::new(w);
+     let mut contracts = vec![];
+     'contract: for contract in &w.resources.contracts {
+         let service_days = contract_days_left(w, contract);
+@@ -2992,7 +3075,9 @@ pub fn contract_supply_forecast_with(
+                 continue;
+             }
+             let travel_days = if physical {
+-                let Ok(route) = crate::logistics::plan(w, giver, receiver) else {
++                let route = if reuse_routes { routes.plan(giver, receiver) }
++                    else { crate::logistics::plan(w, giver, receiver) };
++                let Ok(route) = route else {
+                     // A negotiated bundle is atomic. One route-less physical
+                     // counterleg means no part of the bundle is secured.
+                     continue 'contract;
+@@ -3035,15 +3120,11 @@ pub fn contract_supply_forecast_with(
+     let forecast_start = forecast_start_day(w);
+     let mut arrival_events = BTreeMap::<i32, Vec<(NationId, Commodity, f64)>>::new();
+     if physical {
++        let mut access = crate::logistics::FreightAccessRead::new(w);
+         for cargo in &w.logistics.cargo {
+             if cargo.commodity == Commodity::Oil
+-                || crate::logistics::freight_route_open(
+-                    w,
+-                    cargo.seller,
+-                    cargo.buyer,
+-                    &cargo.route,
+-                )
+-                .is_err()
++                || if reuse_routes { !access.is_open(cargo.seller, cargo.buyer, &cargo.route) }
++                    else { crate::logistics::freight_route_open(w, cargo.seller, cargo.buyer, &cargo.route).is_err() }
+             {
+                 continue;
+             }
+@@ -3160,7 +3241,8 @@ pub fn contract_supply_forecast_with(
+                     )
+                 })
+                 .collect();
+-            crate::logistics::fresh_contract_capacity_ratios(w, &bundles)
++            if reuse_routes { routes.capacity_ratios(&bundles) }
++                else { crate::logistics::fresh_contract_capacity_ratios(w, &bundles) }
+         } else {
+             BTreeMap::new()
+         };
+@@ -3361,15 +3443,15 @@ pub fn has_new_inbound_contract(w: &WorldState, id: NationId, c: Commodity) -> b
+         };
+         contract.since == now
+             && contract_days_left(w, contract) > 0.0
++            && legs.is_some_and(|legs| {
++                commodity_legs(legs)
++                    .any(|(commodity, per_month)| commodity == c && per_month > 0.0)
++            })
+             && w.nation_opt(id).is_some_and(|nation| nation.alive)
+             && w.nation_opt(giver).is_some_and(|nation| nation.alive)
+             && hard_close_between(w, giver, id).is_none()
+             && (!crate::logistics::enabled(w)
+                 || crate::logistics::plan(w, giver, id).is_ok())
+-            && legs.is_some_and(|legs| {
+-                commodity_legs(legs)
+-                    .any(|(commodity, per_month)| commodity == c && per_month > 0.0)
+-            })
+     })
+ }
+ 
+@@ -5781,6 +5863,258 @@ mod tests {
+     use crate::init::world_1990;
+     use crate::world::GameRules;
+ 
++    #[test]
++    fn s08_forecast_route_reuse_preserves_every_dated_stock_and_receipt() {
++        for (physical, military) in [(false, false), (true, false), (true, true)] {
++            let mut w = world_1990(GameRules {
++                daily_simulation: true, production_system: true, resource_market: true,
++                physical_logistics: physical, logistics_routes: physical,
++                military_operations: military, ..Default::default()
++            });
++            tick(&mut w);
++            w.resources.contracts.clear();
++            // Finite opening stock, shared promises, an atomic counterleg and
++            // re-export make the requested route quantities vary by date.
++            for (id, from, to, days, amount) in [
++                (905, NationId::USA, NationId::Canada, 365, 1e7),
++                (903, NationId::USA, NationId::Mexico, 31, 1e7),
++                (902, NationId::Canada, NationId::Mexico, 90, 3e6),
++            ] {
++                w.resources.contracts.push(Contract {
++                    id, from, to, give: vec![Leg::Commodity { c: Commodity::Bauxite, per_month: amount }],
++                    take: vec![Leg::Commodity { c: Commodity::Iron, per_month: amount / 5.0 }],
++                    days_left: Some(days), months_left: 12, months_total: 12,
++                    since: month_abs(&w), depth: 0.0,
++                });
++            }
++            for nation in [NationId::USA, NationId::Canada, NationId::Mexico] {
++                set_stockpile_for_test(&mut w, nation, Commodity::Bauxite, 200_000.0);
++                set_stockpile_for_test(&mut w, nation, Commodity::Iron, 20_000.0);
++            }
++            for closed in [false, true] {
++                if closed { w.sanctions.push((NationId::Canada, NationId::USA)); }
++                let before = crate::save(&w);
++                let h = have(&w);
++                for horizons in [[0, 0, 0], [1, 31, 32], [30, 90, 365]] {
++                    assert_eq!(contract_supply_forecast_impl(&w, &h, horizons, true),
++                        contract_supply_forecast_impl(&w, &h, horizons, false),
++                        "physical={physical}, military={military}, closed={closed}, horizons={horizons:?}");
++                }
++                assert_eq!(crate::save(&w), before, "route reuse cannot mutate the forecast world");
++            }
++        }
++    }
++
++    fn pending_cargo_clearing_fixture() -> WorldState {
++        let mut w = built(world_1990(GameRules {
++            daily_simulation: true, resource_gates: true, resource_market: true,
++            logistics_routes: true, physical_logistics: true, military_operations: true,
++            ..GameRules::default()
++        }));
++        post_market_flows(&mut w);
++        // Explicit retained-cargo test inputs, using real nominal routes. No
++        // claim that this synthetic fixture earned its opening cargo in play.
++        let pairs = [(NationId::France,NationId::Germany,Commodity::Copper),
++            (NationId::Australia,NationId::Japan,Commodity::Iron),
++            (NationId::Canada,NationId::USA,Commodity::Coal)];
++        let routes: Vec<_> = pairs.iter().map(|(s,b,_)|crate::logistics::plan(&w,*s,*b).unwrap()).collect();
++        let today=crate::clock::absolute_day(&w);
++        for (index,quantity) in [1.0e9,1.0e-8,1.0e-8,0.1,0.2,0.3,0.0].into_iter().enumerate() {
++            for (pair,&(seller,buyer,commodity)) in pairs.iter().enumerate() {
++                let id=w.logistics.next_id; w.logistics.next_id+=1;
++                w.logistics.cargo.push(crate::logistics::Cargo {id,seller,buyer,commodity,quantity,
++                    source:ShipmentSource::Spot,contract:None,route:routes[pair].clone(),
++                    dispatched_month:month_abs(&w),due_month:month_abs(&w)+1,dispatched_day:Some(today),
++                    due_day:match index%3 {0=>Some(today+400),1=>None,_=>Some(today+2)},
++                    hold_reason:(pair==0).then(||"Retained while sanctions close the booked route.".into())});
++            }
++        }
++        w.sanctions.push((NationId::Germany,NationId::France));
++        w
++    }
++
++    #[test]
++    fn spot_opening_pending_preserves_ordered_bits_and_all_paid_delivery_horizons() {
++        let w=pending_cargo_clearing_fixture(); let before=crate::save(&w);
++        let grouped=opening_pending_cargo(&w);
++        for &buyer in all_nations() { for commodity in ALL {
++            assert_eq!(grouped[buyer.index()][commodity.idx()].to_bits(),
++                crate::logistics::pending(&w,buyer,commodity).to_bits(),
++                "{buyer:?}/{commodity:?}: retain the original cargo addition order");
++        }}
++        assert!(grouped[NationId::Germany.index()][Commodity::Copper.idx()]>0.0);
++        assert_eq!(crate::logistics::pending_within_days(&w,NationId::Germany,Commodity::Copper,365),0.0,
++            "closed-route property remains pending even when no horizon calls it deliverable");
++        assert!(crate::logistics::pending_within_days(&w,NationId::Japan,Commodity::Iron,30)>0.0);
++        assert!(grouped[NationId::Japan.index()][Commodity::Iron.idx()]
++            >crate::logistics::pending_within_days(&w,NationId::Japan,Commodity::Iron,365),
++            "a horizon must not remove far-future paid cargo from the restocking decision");
++        assert!(crate::save(&w)==before,"aggregation and horizon reads are pure");
++    }
++
++    #[test]
++    fn spot_opening_pending_matches_live_scans_through_multicommodity_dispatch() {
++        for physical in [false,true] {
++            let mut cached=pending_cargo_clearing_fixture(); cached.rules.physical_logistics=physical;
++            // Isolate an executable two-input recipe in this synthetic test.
++            // Default 1990 staff picks need not trade more than one commodity,
++            // and the large retained receipts deliberately suppress some buys.
++            // Germany's retained Copper does not cover its Coal or Iron recipe.
++            let (seller,buyer)=(NationId::Austria,NationId::Germany);
++            // As in the synthetic stock-flow fixtures below, grant the one
++            // material-gated armour technology explicitly. Legacy armour is
++            // intentionally exempt from raw inputs and cannot exercise this.
++            let kit=crate::arsenal::index_of("trophy").unwrap();
++            let tech=crate::tech::index_of(crate::arsenal::DECK[kit as usize].tech.unwrap()).unwrap();
++            if let Err(index)=cached.nation(buyer).tech.known.binary_search(&tech) {
++                cached.nation_mut(buyer).tech.known.insert(index,tech);
++            }
++            for nation in &mut cached.nations {
++                nation.mil_spend_gdp=0.0; nation.arsenal.banked=0.0;
++            }
++            cached.nation_mut(buyer).arsenal.preference=Some(crate::arsenal::DECK[kit as usize].id.into());
++            // A small standing line leaves room for both inputs on one day of
++            // the shared corridor. Route access remains the original world's.
++            cached.nation_mut(buyer).mil_spend_gdp=0.000001;
++            for stock in &mut cached.resources.market.as_mut().unwrap().stocks { stock.quantity=0.0; }
++            for commodity in [Commodity::Coal,Commodity::Iron] {
++                set_stockpile_for_test(&mut cached,seller,commodity,1_000.0);
++                assert!(draw(&cached,buyer)[commodity.idx()]>0.0,"the chosen recipe must demand {commodity:?}");
++                assert_eq!(crate::logistics::pending(&cached,buyer,commodity),0.0);
++            }
++            assert!(open_to(&cached,buyer,seller));
++            assert!(crate::logistics::plan(&cached,seller,buyer).is_ok());
++            let retained=cached.logistics.cargo.clone(); let mut original=cached.clone();
++            clear_spot_market_impl(&mut cached,true); clear_spot_market_impl(&mut original,false);
++            assert!(crate::save(&cached)==crate::save(&original),
++                "physical={physical}: prices, stocks, money, RNG, routes, capacity and cargo must match live scans");
++            assert!(cached.resources.market.as_ref().unwrap().fills.iter().map(|f|f.commodity)
++                .collect::<BTreeSet<_>>().len()>1,"fixture must actually settle several commodities");
++            for commodity in [Commodity::Coal,Commodity::Iron] {
++                assert!(cached.resources.market.as_ref().unwrap().fills.iter().any(|fill|
++                    fill.buyer==buyer && fill.seller==seller && fill.commodity==commodity && fill.quantity>0.0),
++                    "physical={physical}: the fixture must settle the {commodity:?} order");
++            }
++            if physical {
++                assert!(cached.logistics.cargo.len()>retained.len(),"earlier commodity dispatches must append cargo");
++                assert_eq!(&cached.logistics.cargo[..retained.len()],retained.as_slice(),
++                    "clearing cannot deliver or remove the opening paid property");
++                for commodity in [Commodity::Coal,Commodity::Iron] {
++                    assert!(cached.logistics.cargo[retained.len()..].iter().any(|cargo|
++                        cargo.buyer==buyer && cargo.seller==seller && cargo.commodity==commodity && cargo.quantity>0.0),
++                        "both commodity passes must append new paid cargo: {commodity:?}");
++                }
++            }
++            let settled=crate::save(&cached); clear_spot_market_impl(&mut cached,true);
++            assert!(crate::save(&cached)==settled,"repeat clearing remains idempotent");
++        }
++    }
++
++    #[test]
++    fn s08_spot_trade_access_reuse_preserves_finite_lots_and_every_closure() {
++        use crate::world::{Belligerent, Conflict, Objective};
++        for physical in [false, true] { for closure in 0..5 {
++            let mut cached = pending_cargo_clearing_fixture();
++            cached.rules.physical_logistics = physical;
++            let (seller, buyer) = (NationId::Austria, NationId::Germany);
++            // Explicit two-input procurement/stock fixture, never campaign
++            // availability evidence. Both passes share one finite seller.
++            let kit = crate::arsenal::index_of("trophy").unwrap();
++            let tech = crate::tech::index_of(crate::arsenal::DECK[kit as usize].tech.unwrap()).unwrap();
++            if let Err(index) = cached.nation(buyer).tech.known.binary_search(&tech) {
++                cached.nation_mut(buyer).tech.known.insert(index, tech);
++            }
++            for nation in &mut cached.nations { nation.mil_spend_gdp = 0.0; nation.arsenal.banked = 0.0; }
++            cached.nation_mut(buyer).arsenal.preference = Some(crate::arsenal::DECK[kit as usize].id.into());
++            cached.nation_mut(buyer).mil_spend_gdp = 0.000001;
++            for stock in &mut cached.resources.market.as_mut().unwrap().stocks { stock.quantity = 0.0; }
++            for commodity in [Commodity::Coal, Commodity::Iron] {
++                set_stockpile_for_test(&mut cached, seller, commodity, 1_000.0);
++                assert!(draw(&cached, buyer)[commodity.idx()] > 0.0);
++            }
++            cached.set_relation(buyer, seller, 100.0);
++            match closure {
++                1 => cached.sanctions.push((seller, buyer)),
++                2 => cached.sanctions.push((buyer, seller)),
++                3 => cached.set_relation(buyer, seller, relation_floor() - 1.0),
++                4 => cached.conflicts.push(Conflict {
++                    id: 992, theatre: crate::war::theatre_between(&cached, seller, buyer),
++                    side_a: vec![seller], side_b: vec![buyer],
++                    posture: vec![Belligerent::new(seller, 8, Objective::Seize),
++                        Belligerent::new(buyer, 8, Objective::Hold)],
++                    control: 0.0, months: 0, quiet_months: 0, frozen_since: None,
++                    start_year: cached.year, start_month: cached.month, origin_attacker: seller,
++                    invasion_declared: true, front: Default::default(), pockets: vec![], aim: None,
++                }),
++                _ => {},
++            }
++            assert_eq!(open_to(&cached, buyer, seller), closure == 0);
++            let sanctions = cached.sanctions.clone();
++            let conflicts = cached.conflicts.clone();
++            let relations = serde_json::to_vec(&cached.relations).unwrap();
++            let retained = cached.logistics.cargo.len();
++            let mut native = cached.clone();
++            clear_spot_market_impl(&mut cached, true);
++            clear_spot_market_impl(&mut native, false);
++            assert!(crate::save(&cached) == crate::save(&native),
++                "physical={physical}, closure={closure}: prices, orders, finite stock, cash, usage, cargo and audits");
++            assert_eq!(cached.sanctions, sanctions);
++            assert_eq!(cached.conflicts, conflicts);
++            assert_eq!(serde_json::to_vec(&cached.relations).unwrap(), relations,
++                "terminal handling and finance cannot change cached diplomacy");
++            for commodity in [Commodity::Coal, Commodity::Iron] {
++                let sold: f64 = cached.resources.market.as_ref().unwrap().fills.iter()
++                    .filter(|fill| fill.buyer == buyer && fill.seller == seller && fill.commodity == commodity)
++                    .map(|fill| fill.quantity).sum();
++                if closure == 0 {
++                    assert!(sold > 0.0 && sold <= 1_000.0, "both finite commodity lots actually settle");
++                    assert!((stockpile(&cached, seller, commodity) + sold - 1_000.0).abs() < 1e-8);
++                    if physical {
++                        assert!(cached.logistics.cargo[retained..].iter().any(|cargo|
++                            cargo.buyer == buyer && cargo.seller == seller && cargo.commodity == commodity
++                                && cargo.quantity > 0.0), "dispatch still uses the live route and edge ledger");
++                    }
++                } else {
++                    assert_eq!(sold, 0.0, "a cached decision cannot reopen a closed seller");
++                    assert_eq!(stockpile(&cached, seller, commodity), 1_000.0);
++                }
++            }
++        }}
++    }
++
++    #[test]
++    fn new_inbound_commodity_short_circuit_preserves_original_route_answers() {
++        fn original(w:&WorldState,id:NationId,c:Commodity)->bool {
++            w.resources.contracts.iter().any(|k| {
++                let (giver,legs)=if k.to==id {(k.from,Some(&k.give))}
++                    else if k.from==id {(k.to,Some(&k.take))} else {(id,None)};
++                k.since==month_abs(w)&&contract_days_left(w,k)>0.0
++                    &&w.nation_opt(id).is_some_and(|n|n.alive)&&w.nation_opt(giver).is_some_and(|n|n.alive)
++                    &&hard_close_between(w,giver,id).is_none()
++                    &&(!crate::logistics::enabled(w)||crate::logistics::plan(w,giver,id).is_ok())
++                    &&legs.is_some_and(|ls|commodity_legs(ls).any(|(commodity,amount)|commodity==c&&amount>0.0))
++            })
++        }
++        let mut w=pending_cargo_clearing_fixture();
++        for (id,(seller,buyer,commodity)) in [(NationId::France,NationId::Germany,Commodity::Copper),
++            (NationId::Australia,NationId::Japan,Commodity::Iron),
++            (NationId::Canada,NationId::USA,Commodity::Coal)].into_iter().enumerate() {
++            w.resources.contracts.push(Contract {id:id as u32,from:seller,to:buyer,
++                give:vec![Leg::Commodity{c:commodity,per_month:1.0}],take:vec![Leg::Money{bn_per_year:0.0}],
++                months_left:12,months_total:12,days_left:Some(365),since:month_abs(&w),depth:1.0});
++        }
++        for policy in [crate::logistics::RoutePolicy::Fastest,crate::logistics::RoutePolicy::LandOnly] {
++            crate::logistics::set_policy(&mut w,NationId::Japan,policy).unwrap(); let before=crate::save(&w);
++            for buyer in [NationId::France,NationId::Germany,NationId::Japan,NationId::USA,NationId::Tonga] {
++                for commodity in ALL {assert_eq!(has_new_inbound_contract(&w,buyer,commodity),original(&w,buyer,commodity));}
++            }
++            assert!(has_new_inbound_contract(&w,NationId::USA,Commodity::Coal));
++            assert!(!has_new_inbound_contract(&w,NationId::Germany,Commodity::Copper));
++            assert_eq!(has_new_inbound_contract(&w,NationId::Japan,Commodity::Iron),policy==crate::logistics::RoutePolicy::Fastest);
++            assert!(crate::save(&w)==before,"short circuit skips only pure route reads");
++        }
++    }
++
+     /// Diagnostic observer, not a performance bar or a changed economic path.
+     /// Compare real clearing with immutable searches for its actual endpoint
+     /// pairs and cache-hit dispatch validation. No timings enter WorldState.
+diff --git a/spheres-web/src/company_ammunition_view.rs b/spheres-web/src/company_ammunition_view.rs
+index a8b224f..c104ea6 100644
+--- a/spheres-web/src/company_ammunition_view.rs
++++ b/spheres-web/src/company_ammunition_view.rs
+@@ -152,9 +152,14 @@ fn company_ammo_rows(w:&WorldState,me:NationId,raw:&Value)->(Vec<Value>,Vec<Valu
+     (products,deliveries)
+ }
+ 
++#[cfg(test)]
+ fn company_ammunition_market(w:&WorldState,me:NationId)->Value {
+-    let raw=companies::view(w,me);let (mut offers,mut deliveries)=company_ammo_rows(w,me,&raw);
++    let raw=companies::view(w,me);
+     let supplier_market=company_supplier_market(w,me);
++    company_ammunition_market_from_reads(w,me,&raw,&supplier_market)
++}
++fn company_ammunition_market_from_reads(w:&WorldState,me:NationId,raw:&Value,supplier_market:&Value)->Value {
++    let (mut offers,mut deliveries)=company_ammo_rows(w,me,raw);
+     offers.extend(supplier_market["offers"].as_array().into_iter().flatten()
+         .filter(|row|row["origin"]=="foreign"&&row["ammunition"]==true).cloned());
+     deliveries.extend(supplier_market["deliveries"].as_array().into_iter().flatten()
+diff --git a/spheres-web/src/company_view.rs b/spheres-web/src/company_view.rs
+index 03ff4af..e857618 100644
+--- a/spheres-web/src/company_view.rs
++++ b/spheres-web/src/company_view.rs
+@@ -517,6 +517,10 @@ fn company_design_costs(p: &eq::CompiledProfile) -> Vec<Value> {
+ 
+ fn company_board(w: &WorldState, me: NationId) -> Value {
+     let raw=companies::view(w,me);
++    let market=company_supplier_market(w,me);
++    company_board_from_reads(w,me,&raw,&market)
++}
++fn company_board_from_reads(w:&WorldState,me:NationId,raw:&Value,market:&Value)->Value {
+     let empty=Vec::new();
+     let firms=raw["companies"].as_array().unwrap_or(&empty);
+     let site_options: Vec<_>=raw["sites"].as_array().unwrap_or(&empty).iter().filter(|s|company_count(s,"slots")>0).map(|s| {
+@@ -640,7 +644,7 @@ fn company_board(w: &WorldState, me: NationId) -> Value {
+             {"label":"Development","value":"Government funds engineering and trials","detail":"The design becomes certified; prototypes do not enter service."},
+             {"label":"Manufacturing","value":"Company funds its own finite stock","detail":"Capacity, cash and inputs constrain restocking."},
+             {"label":"Purchase","value":"Government buys finished equipment and ammunition","detail":"Vehicle purchases use procurement; ammunition uses Maintenance & supply after fleet upkeep. Delivery makes each purchase available."}],
+-        "warnings":warnings,"actions":actions},"firms":firm_rows,"products":product_rows,"deliveries":deliveries,"market":company_supplier_market(w,me),
++        "warnings":warnings,"actions":actions},"firms":firm_rows,"products":product_rows,"deliveries":deliveries,"market":market,
+         "service_overview":company_service_overview(),"services":company_refit_rows(w,me,&raw)})
+ }
+ 
+@@ -866,6 +870,29 @@ mod company_view_tests {
+         (g,company,product)
+     }
+ 
++    #[test]
++    fn s08_request_local_supplier_reads_preserve_both_board_sections() {
++        let (mut g,company,product)=foreign_stock_fixture();
++        for phase in ["stock","purchased"] {
++            if phase=="purchased" {
++                let q=companies::import_purchase_quote(&g.world,NationId::Tonga,ME,company,product,false,1);
++                assert!(q.valid);
++                spheres_sim::apply_command(&mut g.world,&Command::Company {nation:NationId::Tonga,
++                    order:CompanyOrder::ImportPurchase {seller:ME,company,product,ammunition:false,quantity:1,quote:q.token}}).unwrap();
++            }
++            let before=spheres_sim::save(&g.world);
++            for me in [ME,NationId::Tonga] {
++                // Independent standalone reads reconstruct the two former
++                // call paths; the response now shares their inputs once.
++                let independent_company=company_board(&g.world,me);
++                let independent_ammunition=ammunition_board(&g.world,me);
++                let combined=view(&g.world,me,&g.session_id);
++                assert_eq!(combined["companies"],independent_company,"{phase} {me:?}");
++                assert_eq!(combined["ammunition"],independent_ammunition,"{phase} {me:?}");
++            }
++            assert_eq!(spheres_sim::save(&g.world),before,"Shared supplier reads changed {phase}");
++        }
++    }
+     #[test]
+     fn s08_no_factory_country_can_review_import_access_without_any_opening_stock_grant() {
+         let mut g=super::super::Game::new(1990,Some(NationId::Tonga));
+diff --git a/spheres-web/src/equipment_ammunition_view.rs b/spheres-web/src/equipment_ammunition_view.rs
+index d95787e..e746851 100644
+--- a/spheres-web/src/equipment_ammunition_view.rs
++++ b/spheres-web/src/equipment_ammunition_view.rs
+@@ -28,7 +28,11 @@ fn ammo_order_action(w:&WorldState,me:NationId,family:&str,quantity:u32)->Value
+     action
+ }
+ 
++#[cfg(test)]
+ fn ammunition_board(w:&WorldState,me:NationId)->Value {
++    ammunition_board_with_market(w,me,company_ammunition_market(w,me))
++}
++fn ammunition_board_with_market(w:&WorldState,me:NationId,supplier_market:Value)->Value {
+     let n=w.nation(me);let equipment=n.equipment.as_ref();let state=equipment.and_then(|s|s.ammunition.as_ref());
+     let reading=eq::ammunition_overview(w,me);
+     let ground_active=eq::ammunition_active(n,spheres_sim::clock::absolute_day(w));
+@@ -116,7 +120,7 @@ fn ammunition_board(w:&WorldState,me:NationId)->Value {
+     let overview=json!({"title":"National ammunition stores","status":status,
+         "detail":if has_aircraft{"Acquire compatible aircraft mission stores before launching air raids. Aircraft need physical stores from their first deployment; ground ammunition activation is separate. Company purchases and public batches deliver into these exact-family stores. Actual consumption is shared across operations and recorded once."}else if ground_active{"Your custom ground fleet draws from compatible physical stores. Review manufacturer stock and existing public batches as rounds are used. The national plan shares ammunition across operations and records consumption once; fleet upkeep is protected before ammunition purchases."}else{"Acquire compatible stores, then review physical ground ammunition activation when ready. Company purchases and existing public batches add actual rounds only on arrival or completion. Fleet upkeep is protected before ammunition purchases; inherited equipment keeps its existing magazine."},
+         "metrics":overview_metrics,"warnings":warnings,"actions":actions});
+-    json!({"overview":overview,"supplier_market":company_ammunition_market(w,me),"reserves":ammunition_reserve_cards(w,me),"families":families,"orders":orders})
++    json!({"overview":overview,"supplier_market":supplier_market,"reserves":ammunition_reserve_cards(w,me),"families":families,"orders":orders})
+ }
+ 
+ fn ammunition_preview(w:&WorldState,me:NationId,session:&str,command:&Value,order:&EquipmentOrder)->Value {
+diff --git a/spheres-web/src/equipment_view.rs b/spheres-web/src/equipment_view.rs
+index cca76c0..aab8778 100644
+--- a/spheres-web/src/equipment_view.rs
++++ b/spheres-web/src/equipment_view.rs
+@@ -23,7 +23,14 @@ fn nav(label:&str,action:Value)->Value {json!({"label":label,"navigate":action,"
+ fn budget_input(amount:f64)->Value {json!({"key":"daily_budget_mn","label":"Project funding limit","type":"number","value":amount*1000.0,"min":0,"max":1_000_000,"step":0.01,"unit":"$m / day"})}
+ fn checked(w:&WorldState,me:NationId,label:&str,command:Value)->Value {
+     let reason=super::parse_command(w,&command,me).ok_or_else(||"Invalid equipment order.".to_string())
+-        .and_then(|c|spheres_sim::apply_command(&mut w.clone(),&c)).err();
++        .and_then(|c|match c {
++            // These two command families have complete native world-refusal
++            // checks. refusal_of also applies the same political-price gate,
++            // so there is no need to copy the world and dispatch again.
++            Command::Equipment {..}|Command::Company {..} =>
++                spheres_sim::refusal_of(w,&c).map_or(Ok(()),Err),
++            _ => spheres_sim::apply_command(&mut w.clone(),&c),
++        }).err();
+     let detail=(command["kind"]=="equipment_research").then_some("Changing focus costs 6 political capital and retains half the previous Aerospace progress. This uses existing research effort; it creates no vehicle or national military bonus.");
+     json!({"label":label,"command":command,"enabled":reason.is_none(),"reason":reason,"detail":detail})
+ }
+@@ -133,8 +140,15 @@ pub fn view(w:&WorldState,me:NationId,session:&str)->Value {
+     let research=research_board(w,me);
+     let comparison_options=comparison_options(&presets,&designs);
+     let modernization=modernization_board(w,me);
++    // The ammunition and company tabs share one native supplier snapshot for
++    // this response. Never reuse it across days, players or requests.
++    let company_raw=companies::view(w,me);
++    let supplier_market=company_supplier_market(w,me);
++    let ammo_market=company_ammunition_market_from_reads(w,me,&company_raw,&supplier_market);
++    let ammunition=ammunition_board_with_market(w,me,ammo_market);
++    let companies=company_board_from_reads(w,me,&company_raw,&supplier_market);
+     json!({"session_id":session,"nation":me,"name":me.name(),"date":w.date_str(),"enabled":spheres_sim::clock::is_daily(w)&&w.rules.military_operations,"reason":"Equipment programmes require daily time and military operations.",
+-        "platforms":platforms,"components":components,"presets":presets,"designs":designs,"development":development,"production":production,"lots":lots,"research":research,"comparison_options":comparison_options,"modernization":modernization,"supply":supply,"service":equipment_service_board(w,me),"maintenance":maintenance_board(w,me),"targets":targets_board(w,me),"replenishment":replenishment_board(w,me),"supply_automation":supply_automation_board(w,me),"ammunition":ammunition_board(w,me),"aviation":aviation_board(w,me),"companies":company_board(w,me),
++        "platforms":platforms,"components":components,"presets":presets,"designs":designs,"development":development,"production":production,"lots":lots,"research":research,"comparison_options":comparison_options,"modernization":modernization,"supply":supply,"service":equipment_service_board(w,me),"maintenance":maintenance_board(w,me),"targets":targets_board(w,me),"replenishment":replenishment_board(w,me),"supply_automation":supply_automation_board(w,me),"ammunition":ammunition,"aviation":aviation_board(w,me),"companies":companies,
+         "funding":{"metrics":[metric("Development","Defense · Research & development"),metric("Production and refit","Defense · Procurement"),metric("Service support","Defense · Maintenance; see the service plan"),metric("Unused development funds",format!("${:.3}m",spheres_sim::programs::available_bn(w,me,BUDGET_DEFENSE,4)*1000.0)),metric("Unused procurement funds",format!("${:.3}m",spheres_sim::programs::available_bn(w,me,BUDGET_DEFENSE,3)*1000.0))]},
+         "actions":[nav("Development funding",json!({"action":"budget","ministry":"defense","department":4})),nav("Procurement funding",json!({"action":"budget","ministry":"defense","department":3})),nav("Build an arms plant",json!({"action":"construction","kind":"arms_plant"})),nav("Review raw inputs",json!({"action":"resources"}))]})
+ }
+@@ -201,6 +215,54 @@ mod tests {
+     }
+     fn design()->Value {let s=eq::baseline_spec();json!({"name":"Test model","platform":s.platform,"components":s.components})}
+     #[test]
++    fn s08_checked_read_matches_actual_command_refusals_and_price_order() {
++        let me=NationId::USA;
++        let mut base=fixture().world;
++        let prerequisite=spheres_sim::tech::index_of("core_cmos_submicron").unwrap();
++        if !base.nation(me).tech.knows_index(prerequisite) {
++            base.nation_mut(me).tech.known.push(prerequisite);
++            base.nation_mut(me).tech.known.sort();
++        }
++        base.nation_mut(me).political_capital=100.0;
++        let component="tank_fire_control_1990";
++        assert_eq!(eq::research_refusal(&base,me,component),None);
++        for case in ["legal","unaffordable","locked_and_unaffordable","active","known","disabled","dead"] {
++            let mut w=base.clone();
++            match case {
++                "unaffordable"=>w.nation_mut(me).political_capital=0.0,
++                "locked_and_unaffordable"=>{w.nation_mut(me).tech.known.clear();w.nation_mut(me).political_capital=0.0;},
++                "active"=>eq::start_research(&mut w,me,component).unwrap(),
++                "known"=>{eq::save_draft(&mut w,me,"Known-state fixture",eq::baseline_spec()).unwrap();w.nation_mut(me).equipment.as_mut().unwrap().learned.insert(component.into());},
++                "disabled"=>w.rules.military_operations=false,
++                "dead"=>w.nation_mut(me).alive=false,
++                _=>{},
++            }
++            let before=spheres_sim::save(&w);
++            for command in [json!({"kind":"equipment_research","component":component}),
++                json!({"kind":"equipment_research","component":"missing-research"}),
++                json!({"kind":"equipment_ammo_activate"}),json!({"kind":"equipment_pause","project":999,"paused":true}),
++                json!({"kind":"company_enable_imports","quote":"stale"}),json!({"kind":"rate","value":5}),
++                json!({"kind":"not-a-command"})] {
++                // This is the former checked implementation, including its
++                // actual transactional dispatch and malformed-command path.
++                let old_reason=super::super::parse_command(&w,&command,me)
++                    .ok_or_else(||"Invalid equipment order.".to_string())
++                    .and_then(|c|spheres_sim::apply_command(&mut w.clone(),&c)).err();
++                let actual=checked(&w,me,"Review",command.clone());
++                assert_eq!(actual["reason"],json!(old_reason),"{case}: {command}");
++                assert_eq!(actual["enabled"],old_reason.is_none(),"{case}: {command}");
++                assert_eq!(actual["command"],command);
++                if command["kind"]=="equipment_research"&&command["component"]==component {
++                    if case=="legal" {assert_eq!(actual["enabled"],true);}
++                    else {assert_eq!(actual["enabled"],false);}
++                    if case=="unaffordable" {assert!(actual["reason"].as_str().unwrap().contains("standing"));}
++                    if case=="locked_and_unaffordable" {assert_eq!(actual["reason"],json!(eq::research_refusal(&w,me,component)));}
++                }
++            }
++            assert_eq!(spheres_sim::save(&w),before,"Read-only refusal altered {case}");
++        }
++    }
++    #[test]
+     fn equipment_reads_and_order_quotes_are_pure_and_use_simulation_prices() {
+         let g=fixture();let w=&g.world;let before=spheres_sim::save(w);
+         let board=view(w,NationId::USA,&g.session_id);
+diff --git a/spheres-web/src/performance.rs b/spheres-web/src/performance.rs
+index a94b792..56f020c 100644
+--- a/spheres-web/src/performance.rs
++++ b/spheres-web/src/performance.rs
+@@ -12,6 +12,8 @@ use super::*;
+ use serde_json::{json, Value};
+ use std::time::Instant;
+ 
++include!("s08_performance_diagnostics.rs");
++
+ fn ms(start: Instant) -> f64 {
+     start.elapsed().as_secs_f64() * 1000.0
+ }
+@@ -82,6 +84,41 @@ fn profile_command(
+     Ok(())
+ }
+ 
++/// Locate expensive reads without changing the source campaign. This is a
++/// component diagnosis, separate from the predefined acceptance measurements.
++#[test]
++#[ignore = "read-only component diagnosis on an explicit saved campaign; not an acceptance run"]
++fn s08_read_model_diagnosis() {
++    let input=std::path::PathBuf::from(std::env::var("SPHERES_S08_DIAGNOSTIC_INPUT").unwrap());
++    let output=std::path::PathBuf::from(std::env::var("SPHERES_S08_DIAGNOSTIC_OUT").unwrap());
++    assert!(input.is_absolute()&&output.is_absolute()&&!output.exists());
++    let g=storage::decode(&std::fs::read_to_string(&input).unwrap()).unwrap();
++    let w=&g.world;let me=w.player.unwrap();let before=spheres_sim::state_hash(w);let mut rows=Vec::new();
++    macro_rules! measure {($name:literal,$value:expr)=>{{let started=Instant::now();let value=$value;let bytes=serde_json::to_vec(&value).unwrap().len();rows.push(json!({"component":$name,"elapsed_ms":ms(started),"bytes":bytes}));}}}
++    measure!("nations",w.nations.iter().filter(|n|n.alive).map(|n|nation_json(w,n)).collect::<Vec<_>>());
++    measure!("connected_economy",connected_economy_json(w,me));
++    measure!("fiscal_recovery",spheres_sim::fiscal_recovery::assessment(w,me));
++    measure!("operations",spheres_sim::operations::view(w,me));
++    measure!("warfare_adoption",warfare_adoption_json(w,me));
++    measure!("theatres",theatres_json(w));
++    measure!("stratagems",stratagems_json(w,me));
++    measure!("research",research_json(w,me));
++    measure!("resources",resources_json(w,me));
++    measure!("logistics_summary",logistics_summary_json(w,me));
++    measure!("production_summary",production_summary_json(w,me));
++    measure!("manufacturing_summary",manufacturing_summary_json(w,me));
++    measure!("programs",programs_json(w,me,None));
++    measure!("domination",domination_json(w,me));
++    measure!("agency",spheres_sim::agency::view(w,me));
++    measure!("campaign_aims",spheres_sim::campaign_aims::view(w,me));
++    measure!("policy",policy_json(w,me));
++    measure!("ministries",ministries_json(w,me));
++    measure!("whole_state",state_json(&g,None));
++    measure!("equipment",equipment_view::view(w,me,&g.session_id));
++    assert_eq!(spheres_sim::state_hash(w),before,"Diagnosis changed the campaign");
++    std::fs::write(output,serde_json::to_vec_pretty(&json!({"revision":env!("SPHERES_REVISION"),"input":input,"date":w.date_str(),"rows":rows,"pure":true,"scope":"Single read-only diagnostic sample, including serialization; not an acceptance measurement."})).unwrap()).unwrap();
++}
++
+ /// Separate from aged legacy regressions: sample the genuinely earned S08
+ /// supplier world with a paid import in transit. Preparation is not timed.
+ #[test]
+diff --git a/tools/ui/ci-supplier-imports.cjs b/tools/ui/ci-supplier-imports.cjs
+index aecfbcd..93c75d4 100644
+--- a/tools/ui/ci-supplier-imports.cjs
++++ b/tools/ui/ci-supplier-imports.cjs
+@@ -5,19 +5,18 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
+ const cp=require('node:child_process'),crypto=require('node:crypto'),net=require('node:net');
+ const {chromium}=require('playwright'),integrated=require('./ci-integrated.cjs');
+ const root=path.resolve(__dirname,'../..'),hash=b=>crypto.createHash('sha256').update(b).digest('hex');
++const audit=require(process.env.SPHERES_SUPPLIER_ARCHIVE_AUDIT||'./supplier-archive-audit.cjs');
+ const copy=v=>JSON.parse(JSON.stringify(v));
+ const withoutSession=v=>{const r=copy(v);delete r.session_id;return r;};
+ const routeIs=(r,p)=>new URL(r.url()).pathname===p&&r.request().method()==='POST';
+ const q=value=>'"'+String(value).replace(/\\/g,'\\\\').replace(/"/g,'\\"')+'"';
+ async function port(){const s=net.createServer();await new Promise(r=>s.listen(0,'127.0.0.1',r));const p=s.address().port;await new Promise(r=>s.close(r));return p;}
+-async function read(page,url,p){const r=await page.request.get(url+p);assert(r.ok(),p+': '+r.status());return r.json();}
++async function read(page,url,p){const r=await page.request.get(url+p);try{assert(r.ok(),p+': '+r.status());return await r.json();}finally{await r.dispose();}}
+ async function state(page,url){return read(page,url,'/api/state');}
+ async function board(page,url){const s=await state(page,url);return read(page,url,'/api/equipment?session_id='+encodeURIComponent(s.session_id));}
+-function worldOf(value){while(value?.world&&typeof value.world==='object')value=value.world;assert(Array.isArray(value?.nations),'Evidence save must contain the native world');return value;}
+-function nation(w,id){const n=w.nations.find(n=>n.id===id);assert(n,'Missing nation '+id);return n;}
+-function contract(w,id){const d=w.companies?.imports?.contracts?.find(d=>d.id===id);assert(d,'Missing import contract '+id);return d;}
+-function held(w,buyer,revision){return (nation(w,buyer).arsenal?.held||[]).filter(h=>h.design_id===revision).reduce((s,h)=>s+h.units,0);}
+-function sourceProduct(w,offer){const c=w.companies.firms.find(c=>c.id===offer.company&&c.nation===offer.seller_nation);assert(c);const p=c.products.find(p=>p.id===offer.product);assert(p);return p;}
++function contract(w,id){const d=w.imports.matching.find(d=>d.id===id);assert(d,'Missing import contract '+id);return d;}
++function held(w,buyer,revision){assert.equal(w.buyer.id,buyer);return w.buyer.held_by_revision[revision]||0;}
++function sourceProduct(w,offer){const c=w.supplier;assert(c);assert.equal(c.id,offer.company);assert.equal(c.nation,offer.seller_nation);assert.equal(c.product?.id,offer.product);return c.product;}
+ async function idle(page){await page.waitForFunction(()=>!advancing&&!pendingAdvance&&!SESSION.busy&&!COMMAND_CHANNEL.busy&&!COMMAND_CHANNEL.pending&&!EQUIP.busy);}
+ async function closePanels(page){
+   if(await page.locator('#equipmentRoom').isVisible())await page.locator('[data-equipment-close]').click();
+@@ -41,13 +40,20 @@ async function campaigns(page){
+ }
+ async function loadSlot(page,slot){
+   await campaigns(page);await page.locator('#saveSlots option[value='+q(slot)+']').waitFor({state:'attached'});
+-  await page.locator('#saveSlots').selectOption(slot);await page.locator('#loadBtn').click();
+-  const response=page.waitForResponse(r=>routeIs(r,'/api/load'));await page.locator('#campaignConfirmAccept').click();assert((await response).ok());
++  await page.locator('#saveSlots').selectOption(slot);
++  // The actual host confirms only replacement of an existing live campaign.
++  // Register the response first: an initial load proceeds without a dialog.
++  const replacing=await page.evaluate(()=>!!SESSION.live?.player),response=page.waitForResponse(r=>routeIs(r,'/api/load'));
++  await page.locator('#loadBtn').click();
++  if(replacing){assert((await page.locator('#campaignConfirmMessage').innerText()).includes(slot));await page.locator('#campaignConfirmAccept').click();}
++  assert((await response).ok());
+   await page.locator('#app').waitFor({state:'visible'});await idle(page);
+ }
+ async function archive(page,url,run,slot){
+-  const response=await page.request.post(url+'/api/save',{data:{slot}});assert(response.ok(),'Could not capture '+slot);
+-  return worldOf(JSON.parse(fs.readFileSync(path.join(run,'saves',slot+'.json'),'utf8')));
++  const response=await page.request.post(url+'/api/save',{data:{slot}});
++  try{assert(response.ok(),'Could not capture '+slot);await response.body();}finally{await response.dispose();}
++  const buyer=await page.evaluate(()=>S.player);assert(buyer,'Snapshot must identify the actual player');
++  return audit.inspect(path.join(run,'saves',slot+'.json'),buyer);
+ }
+ async function saveLoad(page,url,run,slot){
+   const s=await state(page,url),b=await board(page,url),before=await archive(page,url,run,slot+'-before');
+@@ -58,12 +64,12 @@ async function saveLoad(page,url,run,slot){
+   await page.locator('#campaignConfirmCancel').click();assert.deepEqual(await state(page,url),s,'Cancelling load changed state');
+   await loadSlot(page,slot);const after=await state(page,url);assert.notEqual(after.session_id,s.session_id);assert.equal(after.date,s.date);
+   assert.deepEqual(withoutSession(await board(page,url)),withoutSession(b),'Save/load changed the equipment/market reading');
+-  assert.deepEqual(await archive(page,url,run,slot+'-after'),before,'Save/load changed native property or receipts');
++  audit.compare(await archive(page,url,run,slot+'-after'),before,'Save/load changed native property or receipts');
+   return {slot,date:s.date,new_session:true,exact_world:true,exact_market:true,cancel_pure:true};
+ }
+ async function day(page,url){
+   await closePanels(page);const response=page.waitForResponse(r=>routeIs(r,'/api/advance'));await page.locator('#stepBtn').click();
+-  const r=await response;assert(r.ok());assert.equal(r.request().postDataJSON().days,1);const v=await r.json();assert(!v.advance_pending);await idle(page);return state(page,url);
++  const r=await response;assert(r.ok());assert.equal(r.request().postDataJSON().days,1);const v=await r.json();assert(!v.advance_pending);await idle(page);const s=await state(page,url);return {date:s.date,session_id:s.session_id,player:s.player,simulation_cadence:s.simulation_cadence};
+ }
+ async function currentQuote(page){await page.waitForFunction(()=>equipmentReviewQuoteCurrent());return page.evaluate(()=>JSON.parse(JSON.stringify(EQUIP.review.quote)));}
+ async function reviewOffer(page,offer){
+@@ -82,10 +88,12 @@ async function confirm(page,kind){
+ async function noOverflow(page,selector){const b=await page.locator(selector).evaluate(e=>({width:e.clientWidth,scroll:e.scrollWidth}));assert(b.width>0&&b.scroll<=b.width+1,selector+' overflows '+JSON.stringify(b));}
+ async function extraAssets(page,url,revision){
+   const result={};for(const name of ['equipment-model.js']){
+-    const checkout=fs.readFileSync(path.join(root,'spheres-web/ui',name));const r=cp.spawnSync('git',['show',revision+':spheres-web/ui/'+name],{cwd:root,windowsHide:true,maxBuffer:8*1024*1024});assert.equal(r.status,0);
++    const checkout=fs.readFileSync(path.join(root,'spheres-web/ui',name));const r=cp.spawnSync('git',['-c','core.longpaths=true','show',revision+':spheres-web/ui/'+name],{cwd:root,windowsHide:true,maxBuffer:8*1024*1024});assert.equal(r.status,0);
+     assert(Buffer.from(checkout.toString('utf8').replace(/\r\n/g,'\n')).equals(r.stdout),'Uncommitted '+name);
+-    const response=await page.request.get(url+'/'+name);assert(response.ok());const actual=await response.body();assert(actual.equals(checkout),'Wrong embedded '+name);
+-    result[name]={served_sha256:hash(actual),committed_sha256:hash(r.stdout),newline_normalization:'CRLF to LF for checkout-to-commit only'};
++    const response=await page.request.get(url+'/'+name);
++    try{assert(response.ok());const actual=await response.body();assert(actual.equals(checkout),'Wrong embedded '+name);
++      result[name]={served_sha256:hash(actual),committed_sha256:hash(r.stdout),newline_normalization:'CRLF to LF for checkout-to-commit only'};
++    }finally{await response.dispose();}
+   }return result;
+ }
+ async function main(){
+@@ -94,7 +102,10 @@ async function main(){
+   const external=process.env.SPHERES_SUPPLIER_URL,slot=process.env.SPHERES_SUPPLIER_SLOT||'s08-earned-stock';
+   assert(/^[A-Za-z0-9_-]{1,60}$/.test(slot),'Use a simple named save slot');
+   const evidenceDir=fs.mkdtempSync(path.join(output,'supplier-'));
++  const telemetry=(event,detail={})=>fs.appendFileSync(path.join(evidenceDir,'progress.jsonl'),JSON.stringify({utc:new Date().toISOString(),pid:process.pid,event,stage,memory:process.memoryUsage(),...detail})+'\n');
++  const mark=value=>{stage=value;telemetry('stage');};
+   let run,input,url,server,log,browser,page,stage='launch',launchError;
++  audit.configure(evidenceDir,telemetry);telemetry('runner-start',{worker:process.env.SPHERES_SUPPLIER_ARCHIVE_AUDIT||'./supplier-archive-audit.cjs'});
+   if(external){
+     assert(process.env.SPHERES_SUPPLIER_SERVER_ROOT,'An external server must identify its disposable save root');
+     run=path.resolve(process.env.SPHERES_SUPPLIER_SERVER_ROOT);url=external.replace(/\/$/,'');input=path.join(run,'saves',slot+'.json');
+@@ -105,13 +116,13 @@ async function main(){
+     fs.copyFileSync(input,path.join(run,'saves',slot+'.json'));url='http://127.0.0.1:'+await port();
+   }
+   const preparation=process.env.SPHERES_SUPPLIER_PREPARATION_SAVE?path.resolve(process.env.SPHERES_SUPPLIER_PREPARATION_SAVE):null;
+-  const preparationSlot='s08-preparation-input',preparationHash=preparation?hash(fs.readFileSync(preparation)):null;
++  const preparationSlot='s08-preparation-input',preparationHash=preparation?audit.fileHash(preparation):null;
+   if(preparation){
+     const target=path.join(run,'saves',preparationSlot+'.json');
+     assert(!fs.existsSync(target),'Refuse to overwrite the preparation slot in this disposable server');
+     fs.copyFileSync(preparation,target);
+   }
+-  const inputHash=hash(fs.readFileSync(input)),e={passed:false,url,run,evidence_directory:evidenceDir,fixture:{path:input,sha256:inputHash,slot,
++  const inputHash=audit.fileHash(input),e={passed:false,url,run,evidence_directory:evidenceDir,fixture:{path:input,sha256:inputHash,slot,
+     note:'Supplied archive copied unchanged. This runner proves its UI journey; fixture creation provenance is recorded separately.'},commands:[],screenshots:[],errors:[],advances:[]};
+   if(process.env.SPHERES_SUPPLIER_PROVENANCE){const p=path.resolve(process.env.SPHERES_SUPPLIER_PROVENANCE);e.fixture.provenance={path:p,sha256:hash(fs.readFileSync(p)),record:JSON.parse(fs.readFileSync(p,'utf8'))};}
+   const write=(name,v)=>fs.writeFileSync(path.join(evidenceDir,name),JSON.stringify(v,null,2)+'\n');
+@@ -130,29 +141,29 @@ async function main(){
+     page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});page.setDefaultTimeout(30000);
+     page.on('pageerror',error=>e.errors.push(error.message));page.on('request',r=>{if(r.method()==='POST'&&new URL(r.url()).pathname==='/api/command')e.commands.push(r.postDataJSON());});
+     e.build=await integrated.verifyBuild({page,url,root,run,binary});e.assets=await extraAssets(page,url,e.build.revision);
+-    stage='load genuine input';await page.goto(url,{waitUntil:'domcontentloaded'});await page.locator('#campaignHome').waitFor({state:'visible'});await page.waitForFunction(()=>!!SESSION.live?.session_id);
++    mark('load genuine input');await page.goto(url,{waitUntil:'domcontentloaded'});await page.locator('#campaignHome').waitFor({state:'visible'});await page.waitForFunction(()=>!!SESSION.live?.session_id);
+     if(preparation){
+-      stage='genuine preparation snapshot';await loadSlot(page,preparationSlot);await market(page);
++      mark('genuine preparation snapshot');await loadSlot(page,preparationSlot);await market(page);
+       const prepState=await state(page,url),prepBoard=await board(page,url),prepWorld=await archive(page,url,run,'s08-preparation-before');
+       assert(prepBoard.companies.market.programs.length>0,'Preparation save must show actual supplier programmes');write('preparation-market.json',prepBoard);
+       for(const size of [{width:1440,height:1000,name:'desktop'},{width:390,height:844,name:'mobile'}]){
+         await page.setViewportSize({width:size.width,height:size.height});await noOverflow(page,'#equipmentRoot');
+         await shot('preparation-market-'+size.name,'#equipmentMarketTitle');await shot('preparation-programmes-'+size.name,'#equipmentMarketProgramsTitle');
+       }
+-      assert.deepEqual(await archive(page,url,run,'s08-preparation-after'),prepWorld,'Preparation browsing changed the paid programme');
++      audit.compare(await archive(page,url,run,'s08-preparation-after'),prepWorld,'Preparation browsing changed the paid programme');
+       e.preparation={path:preparation,sha256:preparationHash,slot:preparationSlot,date:prepState.date,player:prepState.player,
+         programs:prepBoard.companies.market.programs,pure:true,note:'Intentionally inspected an earlier genuine scenario snapshot, then loaded the separately supplied earned-stock snapshot. No reverse-time campaign operation or synthesized progress.'};
+       await page.setViewportSize({width:1440,height:1000});
+     }
+-    stage='load earned stock snapshot';await loadSlot(page,slot);e.opening=await state(page,url);const buyer=e.opening.player;assert(buyer);assert.equal(e.opening.simulation_cadence,'daily');
+-    stage='Companies to supplier market';await market(page);let data=await board(page,url);assert.deepEqual(await page.evaluate(()=>JSON.parse(JSON.stringify(EQUIP.data))),copy(data));write('initial-market.json',data);
++    mark('load earned stock snapshot');await loadSlot(page,slot);e.opening=await state(page,url);const buyer=e.opening.player;assert(buyer);assert.equal(e.opening.simulation_cadence,'daily');
++    mark('Companies to supplier market');await market(page);let data=await board(page,url);assert.deepEqual(await page.evaluate(()=>JSON.parse(JSON.stringify(EQUIP.data))),copy(data));write('initial-market.json',data);
+     assert(Array.isArray(data.companies.market.programs));
+     const sizes=[{width:1440,height:1000,name:'desktop'},{width:390,height:844,name:'mobile'}];
+     for(const size of sizes){await page.setViewportSize({width:size.width,height:size.height});await noOverflow(page,'#equipmentRoot');await shot('market-'+size.name,'#equipmentMarketTitle');if(data.companies.market.programs.length)await shot('programs-'+size.name,'#equipmentMarketProgramsTitle');}
+     await page.setViewportSize({width:1440,height:1000});
+     const choose=d=>d.companies.market.offers.find(o=>o.origin==='foreign'&&o.family!=='ammunition'&&o.spec&&o.availability.ready_stock>0&&o.availability.affordable_quantity>0&&o.access.allowed&&(!process.env.SPHERES_SUPPLIER_OFFER||o.id===process.env.SPHERES_SUPPLIER_OFFER));
+-    let offer=choose(data);assert(offer,'The supplied genuine fixture must expose an affordable accessible foreign equipment lot');e.offer=copy(offer);
+-    stage='exact model and preview purity';const beforeReview=await archive(page,url,run,'s08-preview-before');
++    let offer=choose(data);assert(offer,'The supplied genuine fixture must expose an affordable accessible foreign equipment lot');e.offer=copy(offer);audit.select({seller:offer.seller_nation,company:offer.company,product:offer.product});
++    mark('exact model and preview purity');const beforeReview=await archive(page,url,run,'s08-preview-before');
+     await page.locator('[data-equipment-market-origin="foreign"]').click();await page.locator('[data-equipment-market-availability="affordable"]').click();
+     const index=data.companies.market.offers.findIndex(o=>o.id===offer.id);await page.locator('[data-equipment-market-model="'+index+'"]').click();
+     assert.deepEqual(await page.evaluate(()=>JSON.parse(JSON.stringify(equipmentCompanyProduct().spec))),copy(offer.spec));
+@@ -165,47 +176,48 @@ async function main(){
+       await page.locator('[data-equipment-order-input="quantity"]').fill(initialQuantity);quote=await currentQuote(page);
+     }else e.quantity_edit={skipped:'Only one unit is within native stock/funding limits; no fabricated second unit or authority'};
+     for(const size of sizes){await page.setViewportSize({width:size.width,height:size.height});await noOverflow(page,'.eq-review');await shot('purchase-review-'+size.name,'.eq-review');}
+-    await page.setViewportSize({width:1440,height:1000});assert.deepEqual(await archive(page,url,run,'s08-preview-after'),beforeReview,'Model/quantity review changed property or research');
++    await page.setViewportSize({width:1440,height:1000});audit.compare(await archive(page,url,run,'s08-preview-after'),beforeReview,'Model/quantity review changed property or research');
+     await page.locator('[data-equipment-dismiss]').click();assert.equal(e.commands.length,0,'Review-only controls placed an order');
+-    stage='discard delayed review after real date change';
++    mark('discard delayed review after real date change');
+     let release,intercepted,handled;const seen=new Promise(r=>intercepted=r),heldResponse=new Promise(r=>release=r),completedResponse=new Promise(r=>handled=r);
+     await page.route('**/api/equipment-preview',async route=>{
+       if(route.request().postDataJSON()?.command?.kind!=='company_import_purchase')return route.continue();
+-      const response=await route.fetch();intercepted();await heldResponse;await route.fulfill({response});handled();
++      const response=await route.fetch();try{intercepted();await heldResponse;await route.fulfill({response});}finally{await response.dispose();handled();}
+     });
+     const current=await page.evaluate(()=>JSON.parse(JSON.stringify(EQUIP.data))),oi=current.companies.market.offers.findIndex(o=>o.id===offer.id),ai=current.companies.market.offers[oi].actions.findIndex(a=>a.command?.kind==='company_import_purchase');
+     await page.locator('[data-equipment-action='+q('companies.market.offers.'+oi+'.actions.'+ai)+']').click();await seen;
+     const oldDate=(await state(page,url)).date;await closePanels(page);e.advances.push(await day(page,url));release();await completedResponse;await page.unroute('**/api/equipment-preview');
+     await market(page);assert.notEqual((await state(page,url)).date,oldDate);assert.equal(await page.locator('.eq-review').count(),0,'Old-date review survived navigation and real advancement');assert.equal(e.commands.length,0);
+     e.stale_review={actual_delayed_response:true,advanced_visible_day:true,no_command:true,discarded:true};
+-    data=await board(page,url);offer=choose(data);assert(offer,'Affordable actual stock disappeared after the stale-review day');
++    data=await board(page,url);offer=choose(data);assert(offer,'Affordable actual stock disappeared after the stale-review day');audit.select({seller:offer.seller_nation,company:offer.company,product:offer.product});
+     e.purchase_offer={date:(await state(page,url)).date,offer:copy(offer),same_as_initial:offer.id===e.offer.id,
+       note:'Fresh native offer selected after the real date change; this is the actual purchase source.'};
+-    stage='reviewed purchase';const before=await archive(page,url,run,'s08-purchase-before');quote=await reviewOffer(page,offer);assert(quote.valid);e.purchase_command=await confirm(page,'company_import_purchase');
+-    const after=await archive(page,url,run,'s08-purchase-after'),oldIds=new Set((before.companies.imports?.contracts||[]).map(d=>d.id));
+-    const added=after.companies.imports.contracts.filter(d=>!oldIds.has(d.id));assert.equal(added.length,1);const purchased=added[0];e.contract_id=purchased.id;
++    mark('reviewed purchase');const before=await archive(page,url,run,'s08-purchase-before');quote=await reviewOffer(page,offer);assert(quote.valid);e.purchase_command=await confirm(page,'company_import_purchase');
++    const after=await archive(page,url,run,'s08-purchase-after'),oldIds=new Set(before.imports.ids);
++    const addedIds=after.imports.ids.filter(id=>!oldIds.has(id));assert.equal(addedIds.length,1);const purchased=contract(after,addedIds[0]);e.contract_id=purchased.id;
++    audit.select({seller:offer.seller_nation,company:offer.company,product:offer.product,revision:purchased.buyer_revision});
+     assert.equal(purchased.buyer,buyer);assert.equal(purchased.quantity,e.purchase_command.quantity);assert.equal(purchased.company,offer.company);assert.equal(purchased.product,offer.product);
+     assert.equal(purchased.seller,offer.seller_nation);assert.deepEqual(purchased.source_revision.spec,copy(offer.spec));
+     assert(purchased.buyer_revision,'An equipment import must retain its prospective model ID');
+-    assert(!nation(before,buyer).equipment?.revisions?.[purchased.buyer_revision],'The genuine input already installed this imported model');
++    assert(!before.buyer.revision_ids.includes(purchased.buyer_revision),'The genuine input already installed this imported model');
+     assert.equal(held(before,buyer,purchased.buyer_revision),0,'The genuine input already supplied this import to the fleet');
+     assert.equal(sourceProduct(before,offer).stock-sourceProduct(after,offer).stock,purchased.quantity,'The chosen stock was not reserved exactly once');
+-    assert.deepEqual(nation(after,buyer).equipment?.learned||[],nation(before,buyer).equipment?.learned||[],'Purchasing granted component research');
+-    assert.deepEqual(nation(after,buyer).tech,nation(before,buyer).tech,'Purchasing granted technology');
+-    assert(!nation(after,buyer).equipment?.revisions?.[purchased.buyer_revision],'Purchasing installed an unarrived model');
++    assert.equal(after.buyer.learned_sha256,before.buyer.learned_sha256,'Purchasing granted component research');
++    assert.equal(after.buyer.tech_sha256,before.buyer.tech_sha256,'Purchasing granted technology');
++    assert(!after.buyer.revision_ids.includes(purchased.buyer_revision),'Purchasing installed an unarrived model');
+     assert.equal(held(after,buyer,purchased.buyer_revision),held(before,buyer,purchased.buyer_revision),'Unarrived import entered service');
+     e.purchase={contract:purchased,stock_reserved_once:true,no_component_grant:true,no_early_service:true};
+-    stage='cancel preview and midpoint load';data=await board(page,url);const di=data.companies.market.deliveries.findIndex(d=>d.contract===purchased.id);assert(di>=0);
++    mark('cancel preview and midpoint load');data=await board(page,url);const di=data.companies.market.deliveries.findIndex(d=>d.contract===purchased.id);assert(di>=0);
+     const ca=data.companies.market.deliveries[di].actions.findIndex(a=>a.command?.kind==='company_import_cancel');assert(ca>=0);
+     await page.locator('[data-equipment-action='+q('companies.market.deliveries.'+di+'.actions.'+ca)+']').click();await currentQuote(page);await shot('cancellation-review','.eq-review');await page.locator('[data-equipment-dismiss]').click();
+-    assert.deepEqual(await archive(page,url,run,'s08-cancel-review'),after,'Cancellation review changed paid property');
++    audit.compare(await archive(page,url,run,'s08-cancel-review'),after,'Cancellation review changed paid property');
+     // Settle the real accepted payment through a visible day before saving the
+     // intermediate checkpoint. No early-arrival inventory is supplied by setup.
+     e.advances.push(await day(page,url));const transit=await archive(page,url,run,'s08-paid-transit'),inTransit=contract(transit,purchased.id);
+     assert(inTransit.settled_day!=null&&inTransit.delivered_day==null,'Intermediate checkpoint must contain a settled import still in transit');
+-    assert(!nation(transit,buyer).equipment?.revisions?.[purchased.buyer_revision]);assert.equal(held(transit,buyer,purchased.buyer_revision),0);
++    assert(!transit.buyer.revision_ids.includes(purchased.buyer_revision));assert.equal(held(transit,buyer,purchased.buyer_revision),0);
+     e.midpoint=await saveLoad(page,url,run,'s08-import-midpoint');e.midpoint.phase='Paid transit before arrival';e.midpoint.model_not_installed=true;
+-    stage='actual delivery';const maximum=Number(process.env.SPHERES_SUPPLIER_MAX_DAYS||120);assert(Number.isSafeInteger(maximum)&&maximum>=1&&maximum<=365);
++    mark('actual delivery');const maximum=Number(process.env.SPHERES_SUPPLIER_MAX_DAYS||120);assert(Number.isSafeInteger(maximum)&&maximum>=1&&maximum<=365);
+     let finalWorld;for(let i=0;i<maximum;i++){
+       e.advances.push(await day(page,url));data=await board(page,url);const delivery=data.companies.market.deliveries.find(d=>d.contract===purchased.id);assert(delivery);
+       if(i===0||i%7===0){await market(page);await shot('delivery-day-'+(i+1),'[data-equipment-record='+q(delivery.id)+']');}
+@@ -214,15 +226,15 @@ async function main(){
+     }
+     const delivered=contract(finalWorld,purchased.id);assert(delivered.delivered_day!=null);assert(delivered.settled_day!=null);assert.equal(delivered.escrow_bn,0);assert.equal(delivered.refunded_bn,0);
+     assert.deepEqual(delivered.source_revision,purchased.source_revision,'Delivery changed the frozen source model');
+-    const buyerRevision=nation(finalWorld,buyer).equipment.revisions[delivered.buyer_revision];assert(buyerRevision);assert.deepEqual(buyerRevision.spec,purchased.source_revision.spec);
++    const buyerRevision=finalWorld.buyer.buyer_revision;assert(buyerRevision);assert.equal(finalWorld.requested.revision,delivered.buyer_revision);assert.deepEqual(buyerRevision.spec,purchased.source_revision.spec);
+     assert.equal(held(finalWorld,buyer,delivered.buyer_revision)-held(before,buyer,delivered.buyer_revision),purchased.quantity,'Delivered quantity does not match the purchased lot');
+     e.delivered={contract:delivered,exact_revision:true,exact_quantity:true,escrow_released:true};
+-    stage='in service and maintenance';await market(page);await page.locator('[data-equipment-tab="service"]').first().click();await page.waitForFunction(()=>equipmentCurrent()&&EQUIP.tab==='service');
++    mark('in service and maintenance');await market(page);await page.locator('[data-equipment-tab="service"]').first().click();await page.waitForFunction(()=>equipmentCurrent()&&EQUIP.tab==='service');
+     const lot='[data-equipment-record='+q(delivered.buyer_revision)+']';await page.locator(lot).waitFor({state:'visible'});
+     assert.match(await page.locator(lot).innerText(),/Maintenance requirement/);assert.match(await page.locator(lot).innerText(),/Last settled maintenance coverage/);
+     for(const size of sizes){await page.setViewportSize({width:size.width,height:size.height});await noOverflow(page,'#equipmentRoot');await noOverflow(page,lot);await shot('delivered-service-'+size.name,lot);}
+     await page.setViewportSize({width:1440,height:1000});
+-    stage='review native maintenance recommendation';data=await board(page,url);
++    mark('review native maintenance recommendation');data=await board(page,url);
+     const maintenanceIndex=data.maintenance.actions.findIndex(a=>a.command?.kind==='equipment_maintenance'&&a.enabled!==false);
+     assert(maintenanceIndex>=0,'The native service board must expose the existing maintenance action');
+     const recommendation=copy(data.maintenance.actions[maintenanceIndex].command),maintenanceBefore=finalWorld,maintenanceDate=(await state(page,url)).date;
+@@ -230,21 +242,23 @@ async function main(){
+     await page.locator('[data-equipment-action='+q('maintenance.actions.'+maintenanceIndex)+']').click();
+     const maintenanceQuote=await currentQuote(page);assert(maintenanceQuote.valid,JSON.stringify(maintenanceQuote));
+     assert.equal(Number(await page.locator('[data-equipment-order-input="daily_budget_mn"]').inputValue()),recommendation.daily_budget_mn,'Use the native recommended limit without synthetic funding edits');
+-    assert.deepEqual(await archive(page,url,run,'s08-maintenance-review'),maintenanceBefore,'Maintenance review changed money or property');
++    audit.compare(await archive(page,url,run,'s08-maintenance-review'),maintenanceBefore,'Maintenance review changed money or property');
+     await shot('maintenance-review','.eq-review');write('maintenance-review.json',maintenanceQuote);
+-    stage='approve actual maintenance plan';e.maintenance_command=await confirm(page,'equipment_maintenance');
++    mark('approve actual maintenance plan');e.maintenance_command=await confirm(page,'equipment_maintenance');
+     assert.deepEqual(e.maintenance_command,recommendation,'Maintenance confirmation changed the native recommendation');
+-    const maintenanceApproved=await archive(page,url,run,'s08-maintenance-approved'),approvedPlan=nation(maintenanceApproved,buyer).equipment.maintenance_plan;
++    const maintenanceApproved=await archive(page,url,run,'s08-maintenance-approved'),approvedPlan=maintenanceApproved.buyer.maintenance_plan;
+     assert(approvedPlan);assert.equal(approvedPlan.daily_limit_bn,recommendation.daily_budget_mn/1000);
+-    const expectedApproval=copy(maintenanceBefore);nation(expectedApproval,buyer).equipment.maintenance_plan=copy(approvedPlan);
+-    assert.deepEqual(maintenanceApproved,expectedApproval,'Approving maintenance must only set its plan: no instant money, authority, research or property grant');
++    // Compare every native field exactly except the single approved plan;
++    // each parsed world is released when its audit child exits. Never format
++    // a whole-world assertion diff, even if this check finds a real defect.
++    audit.compareExceptMaintenance(maintenanceBefore,maintenanceApproved,'Approving maintenance must only set its plan: no instant money, authority, research or property grant');
+     assert.equal((await state(page,url)).date,maintenanceDate,'Maintenance approval advanced time');
+-    const priorReceiptDay=nation(maintenanceBefore,buyer).equipment.maintenance_plan?.receipt?.day??null;
++    const priorReceiptDay=maintenanceBefore.buyer.maintenance_plan?.receipt?.day??null;
+     e.maintenance={recommendation,command:e.maintenance_command,approved_plan:copy(approvedPlan),preview_pure:true,no_instant_grant:true,advances:[]};
+-    stage='settle positive maintenance for imported equipment';
++    mark('settle positive maintenance for imported equipment');
+     for(let i=0;i<7;i++){
+       const advanced=await day(page,url);e.advances.push(advanced);e.maintenance.advances.push(advanced);
+-      const observed=await archive(page,url,run,'s08-maintenance-day-'+(i+1)),n=nation(observed,buyer),plan=n.equipment.maintenance_plan,r=plan?.receipt;
++      const observed=await archive(page,url,run,'s08-maintenance-day-'+(i+1)),n=observed.buyer,plan=n.maintenance_plan,r=plan?.receipt;
+       if(r&&r.day>=approvedPlan.from_day&&r.day>=(delivered.delivered_day??r.day)&&(priorReceiptDay==null||r.day>priorReceiptDay)&&r.custom_required_bn>0&&r.custom_paid_bn>0){
+         const required=held(observed,buyer,delivered.buyer_revision)*buyerRevision.profile.maintenance_bn_day,paid=r.custom_paid_bn+r.legacy_paid_bn,tolerance=1e-12;
+         assert(required>0,'The imported model must remain physically present in the billed fleet');
+@@ -268,12 +282,12 @@ async function main(){
+     for(const size of sizes){await page.setViewportSize({width:size.width,height:size.height});await noOverflow(page,'#equipmentRoot');await shot('paid-maintenance-'+size.name,'section[aria-label="Maintenance and readiness"]');await shot('maintained-import-'+size.name,lot);}
+     await page.setViewportSize({width:1440,height:1000});e.complete=await saveLoad(page,url,run,'s08-import-complete');
+     await page.reload();await page.locator('#continueBtn').click();await page.locator('#app').waitFor({state:'visible'});await idle(page);
+-    assert.deepEqual(await archive(page,url,run,'s08-continue'),finalWorld,'Continue changed the completed native campaign');
++    audit.compare(await archive(page,url,run,'s08-continue'),finalWorld,'Continue changed the completed native campaign');
+     assert.equal(e.commands.length,2,'The journey must issue one purchase and one separate maintenance approval');
+     assert.deepEqual(e.commands.flatMap(request=>request.commands).map(command=>command.kind),['company_import_purchase','equipment_maintenance'],'The imported lot must be purchased exactly once; maintenance is a separate reviewed command');assert.deepEqual(e.errors,[]);
+-    assert.equal(hash(fs.readFileSync(input)),inputHash,'The original input archive changed');if(preparation)assert.equal(hash(fs.readFileSync(preparation)),preparationHash,'The original preparation archive changed');e.passed=true;e.finished_utc=new Date().toISOString();write('result.json',e);
++    assert.equal(audit.fileHash(input),inputHash,'The original input archive changed');if(preparation)assert.equal(audit.fileHash(preparation),preparationHash,'The original preparation archive changed');e.passed=true;e.finished_utc=new Date().toISOString();write('result.json',e);
+     console.log('S08 supplier journey passed: '+path.join(evidenceDir,'result.json'));
+-  }catch(error){e.failed_stage=stage;e.failure=error.stack||String(error);write('result.json',e);if(page)try{await page.screenshot({path:path.join(evidenceDir,'failure.png')});fs.writeFileSync(path.join(evidenceDir,'failure.html'),await page.content());}catch(_){}throw error;
+-  }finally{if(browser)await browser.close();if(server)server.kill();if(log)log.end();}
++  }catch(error){telemetry('failure',{error:String(error)});e.failed_stage=stage;e.failure=error.stack||String(error);write('result.json',e);if(page)try{await page.screenshot({path:path.join(evidenceDir,'failure.png')});fs.writeFileSync(path.join(evidenceDir,'failure.html'),await page.content());}catch(_){}throw error;
++  }finally{if(browser)await browser.close();if(server)server.kill();if(log)log.end();telemetry('runner-finished',{passed:e.passed});}
+ }
+ main().catch(error=>{console.error(error);process.exitCode=1;});

@@ -1,0 +1,273 @@
+{
+  "passed": false,
+  "record_origin": "Post-termination audit by the reviewing agent; this is not a result emitted by ci-supplier-imports.cjs.",
+  "captured_utc": "2026-09-11T17:24:51.913113+00:00",
+  "candidate": "e6187df8044556a8262154e7a6c8baa32b283799",
+  "build": {
+    "revision": "e6187df8044556a8262154e7a6c8baa32b283799",
+    "binary_sha256": "d878f36a4dec2c83cfb7477a49ce678d4579a26388b0b45f2504c974bba2ee90",
+    "identity_scope": "From the completed parent wrapper proof; the original in-memory browser result and asset report were not written."
+  },
+  "exit_code": 3221226505,
+  "exit_hex": "0xc0000409",
+  "original_result_missing": true,
+  "wrapper_proof": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-final-supplier-browser-load-fix-1.json",
+    "sha256": "ecb642934f1fe6f3966bdc02b2d490839cc9f9f991406e3a90e4e1ac97b38aae",
+    "record": {
+      "revision_before": "e6187df8044556a8262154e7a6c8baa32b283799",
+      "clean_before": true,
+      "command": [
+        "node",
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-harness-fix\\load-candidate.cjs"
+      ],
+      "runner_sha256": "313be83b7de76fb89ed0f72a2507feef3a9370c5708f33ea4bb70562841ae3fb",
+      "binary_sha256_before": "d878f36a4dec2c83cfb7477a49ce678d4579a26388b0b45f2504c974bba2ee90",
+      "started_utc": "2026-09-11T17:13:38.797288+00:00",
+      "exit_code": 3221226505,
+      "finished_utc": "2026-09-11T17:22:18.894107+00:00",
+      "revision_after": "e6187df8044556a8262154e7a6c8baa32b283799",
+      "clean_after": true,
+      "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+      "binary_sha256": "d878f36a4dec2c83cfb7477a49ce678d4579a26388b0b45f2504c974bba2ee90",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "preservation_passed": true,
+      "passed": false
+    }
+  },
+  "inferred_last_stage": "Artifacts reach delivered-service images, maintenance-review.json and s08-maintenance-approved.json. This identifies progress only; the interrupted original runner did not publish its completion assertions.",
+  "root_cause": "Unproven. Process terminated with0xC0000409 and empty stdout/stderr. Retained full-world objects and a large maintenance comparison are under review; no memory cause is asserted as established.",
+  "cleanup": {
+    "checked_utc": "2026-09-11T17:23:32.0604889Z",
+    "owned_port": 62964,
+    "matching_server_processes": 0,
+    "matching_playwright_headless_processes": 0,
+    "processes_stopped_by_auditor": [],
+    "application_events": "No matching Application Error/WER1000/1001 events found in the preceding20min."
+  },
+  "screenshots": [
+    "cancellation-review.png",
+    "delivered-service-desktop.png",
+    "delivered-service-mobile.png",
+    "delivery-day-1.png",
+    "delivery-day-15.png",
+    "delivery-day-22.png",
+    "delivery-day-8.png",
+    "exact-supplier-model.png",
+    "maintenance-review.png",
+    "market-desktop.png",
+    "market-mobile.png",
+    "preparation-market-desktop.png",
+    "preparation-market-mobile.png",
+    "preparation-programmes-desktop.png",
+    "preparation-programmes-mobile.png",
+    "programs-desktop.png",
+    "programs-mobile.png",
+    "purchase-review-desktop.png",
+    "purchase-review-mobile.png"
+  ],
+  "artifact_inventory": [
+    {
+      "path": "cancellation-review.png",
+      "bytes": 775503,
+      "last_write_utc": "2026-09-11T17:14:57.880235+00:00"
+    },
+    {
+      "path": "delivered-service-desktop.png",
+      "bytes": 173174,
+      "last_write_utc": "2026-09-11T17:20:56.206392+00:00"
+    },
+    {
+      "path": "delivered-service-mobile.png",
+      "bytes": 151575,
+      "last_write_utc": "2026-09-11T17:20:56.303341+00:00"
+    },
+    {
+      "path": "delivery-day-1.png",
+      "bytes": 591548,
+      "last_write_utc": "2026-09-11T17:16:25.947383+00:00"
+    },
+    {
+      "path": "delivery-day-15.png",
+      "bytes": 591528,
+      "last_write_utc": "2026-09-11T17:18:45.212113+00:00"
+    },
+    {
+      "path": "delivery-day-22.png",
+      "bytes": 591528,
+      "last_write_utc": "2026-09-11T17:19:59.592771+00:00"
+    },
+    {
+      "path": "delivery-day-8.png",
+      "bytes": 591528,
+      "last_write_utc": "2026-09-11T17:17:35.252851+00:00"
+    },
+    {
+      "path": "exact-supplier-model.png",
+      "bytes": 613327,
+      "last_write_utc": "2026-09-11T17:14:15.971821+00:00"
+    },
+    {
+      "path": "initial-market.json",
+      "bytes": 222008,
+      "last_write_utc": "2026-09-11T17:14:12.523061+00:00"
+    },
+    {
+      "path": "maintenance-review.json",
+      "bytes": 2065,
+      "last_write_utc": "2026-09-11T17:21:05.636907+00:00"
+    },
+    {
+      "path": "maintenance-review.png",
+      "bytes": 631243,
+      "last_write_utc": "2026-09-11T17:21:05.635903+00:00"
+    },
+    {
+      "path": "market-desktop.png",
+      "bytes": 1062537,
+      "last_write_utc": "2026-09-11T17:14:12.774177+00:00"
+    },
+    {
+      "path": "market-mobile.png",
+      "bytes": 303161,
+      "last_write_utc": "2026-09-11T17:14:13.145899+00:00"
+    },
+    {
+      "path": "preparation-market-desktop.png",
+      "bytes": 1045711,
+      "last_write_utc": "2026-09-11T17:13:50.746917+00:00"
+    },
+    {
+      "path": "preparation-market-mobile.png",
+      "bytes": 289219,
+      "last_write_utc": "2026-09-11T17:13:51.100577+00:00"
+    },
+    {
+      "path": "preparation-market.json",
+      "bytes": 186357,
+      "last_write_utc": "2026-09-11T17:13:50.499824+00:00"
+    },
+    {
+      "path": "preparation-programmes-desktop.png",
+      "bytes": 662366,
+      "last_write_utc": "2026-09-11T17:13:50.965758+00:00"
+    },
+    {
+      "path": "preparation-programmes-mobile.png",
+      "bytes": 212340,
+      "last_write_utc": "2026-09-11T17:13:51.173250+00:00"
+    },
+    {
+      "path": "programs-desktop.png",
+      "bytes": 796017,
+      "last_write_utc": "2026-09-11T17:14:12.991592+00:00"
+    },
+    {
+      "path": "programs-mobile.png",
+      "bytes": 298112,
+      "last_write_utc": "2026-09-11T17:14:13.235920+00:00"
+    },
+    {
+      "path": "purchase-review-desktop.png",
+      "bytes": 130293,
+      "last_write_utc": "2026-09-11T17:14:16.382579+00:00"
+    },
+    {
+      "path": "purchase-review-mobile.png",
+      "bytes": 79682,
+      "last_write_utc": "2026-09-11T17:14:16.477329+00:00"
+    },
+    {
+      "path": "server/saves/auto-2.json",
+      "bytes": 133414169,
+      "last_write_utc": "2026-09-11T17:16:15.426719+00:00"
+    },
+    {
+      "path": "server/saves/s08-cancel-review.json",
+      "bytes": 134334230,
+      "last_write_utc": "2026-09-11T17:14:59.341982+00:00"
+    },
+    {
+      "path": "server/saves/s08-delivered.json",
+      "bytes": 131186946,
+      "last_write_utc": "2026-09-11T17:20:53.211032+00:00"
+    },
+    {
+      "path": "server/saves/s08-earned-stock.json",
+      "bytes": 134254304,
+      "last_write_utc": "2026-09-11T17:10:22.993140+00:00"
+    },
+    {
+      "path": "server/saves/s08-import-midpoint-after.json",
+      "bytes": 134385684,
+      "last_write_utc": "2026-09-11T17:16:06.657787+00:00"
+    },
+    {
+      "path": "server/saves/s08-import-midpoint-before.json",
+      "bytes": 134385684,
+      "last_write_utc": "2026-09-11T17:15:18.224094+00:00"
+    },
+    {
+      "path": "server/saves/s08-import-midpoint.json",
+      "bytes": 134385684,
+      "last_write_utc": "2026-09-11T17:15:29.209008+00:00"
+    },
+    {
+      "path": "server/saves/s08-maintenance-approved.json",
+      "bytes": 131187020,
+      "last_write_utc": "2026-09-11T17:21:11.617415+00:00"
+    },
+    {
+      "path": "server/saves/s08-maintenance-review.json",
+      "bytes": 131186946,
+      "last_write_utc": "2026-09-11T17:21:04.638974+00:00"
+    },
+    {
+      "path": "server/saves/s08-paid-transit.json",
+      "bytes": 134385684,
+      "last_write_utc": "2026-09-11T17:15:08.360858+00:00"
+    },
+    {
+      "path": "server/saves/s08-preparation-after.json",
+      "bytes": 54641195,
+      "last_write_utc": "2026-09-11T17:13:51.926591+00:00"
+    },
+    {
+      "path": "server/saves/s08-preparation-before.json",
+      "bytes": 54641195,
+      "last_write_utc": "2026-09-11T17:13:50.195769+00:00"
+    },
+    {
+      "path": "server/saves/s08-preparation-input.json",
+      "bytes": 54641195,
+      "last_write_utc": "2026-09-11T16:54:55.812321+00:00"
+    },
+    {
+      "path": "server/saves/s08-preview-after.json",
+      "bytes": 134254304,
+      "last_write_utc": "2026-09-11T17:14:18.029744+00:00"
+    },
+    {
+      "path": "server/saves/s08-preview-before.json",
+      "bytes": 134254304,
+      "last_write_utc": "2026-09-11T17:14:14.886280+00:00"
+    },
+    {
+      "path": "server/saves/s08-purchase-after.json",
+      "bytes": 134334230,
+      "last_write_utc": "2026-09-11T17:14:51.922250+00:00"
+    },
+    {
+      "path": "server/saves/s08-purchase-before.json",
+      "bytes": 134350531,
+      "last_write_utc": "2026-09-11T17:14:44.114213+00:00"
+    },
+    {
+      "path": "server.log",
+      "bytes": 78,
+      "last_write_utc": "2026-09-11T17:13:39.512790+00:00"
+    }
+  ],
+  "inventory_note": "File sizes/timestamps recorded without reading full campaign bytes during the parent performance window. Final collector computes original and stored hashes. No artifact changed or removed.",
+  "next_action": "Retain this attempt. No retry during profiling; a reviewed memory-bounded test harness correction must retain exact financial/property checks."
+}

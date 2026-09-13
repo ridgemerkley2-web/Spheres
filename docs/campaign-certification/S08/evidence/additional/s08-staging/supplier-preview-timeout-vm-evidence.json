@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "started_utc": "2026-09-13T01:21:22.953Z",
+  "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-supplier-imports.cjs",
+  "source_sha256": "de8a13611ce1617133710b252253cd82e41d6a4b74d39799f7d29eb2b97ce7f1",
+  "helper_sha256": "4f58723b43215071a4b546596788a6b65320d42a6c6f03d4c8b46fca84cc9aed",
+  "patch_sha256": "1ea2ae115b06a531966da5f2a62e2877088301bd73520b036b4ef967b963b520",
+  "tests": [
+    {
+      "name": "success holds the real first response and continues later matches",
+      "passed": true
+    },
+    {
+      "name": "fetch failure reaches the awaited result without calling the day callback",
+      "passed": true
+    },
+    {
+      "name": "no interception fails explicitly using the 30-second fake timeout",
+      "passed": true
+    },
+    {
+      "name": "fulfillError reaches the awaited result and still disposes once",
+      "passed": true
+    },
+    {
+      "name": "disposeError reaches the awaited result and still disposes once",
+      "passed": true
+    },
+    {
+      "name": "failed day callback releases the hold and keeps both cleanup causes visible",
+      "passed": true
+    },
+    {
+      "name": "request parsing failure is forwarded without waiting for interception",
+      "passed": true
+    },
+    {
+      "name": "nonmatching continue failures are not swallowed or treated as interception",
+      "passed": true
+    }
+  ],
+  "finished_utc": "2026-09-13T01:21:22.979Z"
+}

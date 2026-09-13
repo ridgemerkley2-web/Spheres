@@ -1,0 +1,13 @@
+PASS frozen original deterministically reproduces last-interceptor double handling
+PASS candidate finishes held response before exact unroute and continues later matches
+PASS pending fulfill and pending dispose both keep this interceptor registered
+PASS unrelated page and context handlers retain exact identity
+PASS fetch failure propagates and does not run the date callback
+PASS no interception retains the explicit 30-second failure and cleanup
+PASS fulfillError remains visible and disposes exactly once
+PASS disposeError remains visible and disposes exactly once
+PASS failed visible day still releases the hold and preserves both error causes
+PASS request parse failure is forwarded without a missing-interception wait
+PASS nonmatching continue errors are not swallowed or claimed as interception
+PASS completion timeout still removes only this handler and fails explicitly
+PASS unroute errors remain visible after successful response settlement

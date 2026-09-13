@@ -1,0 +1,58 @@
+{
+  "captured_utc": "2026-09-11T16:09:23.611027+00:00",
+  "scope": "Parent qualification scripts only. AST syntax validated; no native test, browser, server, exporter or performance run executed by this review.",
+  "scripts": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s08-final.py",
+      "sha256": "7002b85efb032055132756e1a28180033c5b7daa746d81b23ab6dd5c52c730f4",
+      "syntax_validated": true,
+      "executed": false,
+      "before_sha256": "1ae28ba26a8d35e32465aa584f3c484dea259b2492822ecfbc1d690e8d19ec6b"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s08-linux.py",
+      "sha256": "dbc4f7d167aee78de08454c65d6cc8c75bc68a4102b8a2a7dbd46f855da97516",
+      "syntax_validated": true,
+      "executed": false,
+      "before_sha256": "d073b02ae0ca888c4491f3f14190c0189c1ac8f2e81830815451c02c91590206"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s08-external.py",
+      "sha256": "f39b133119dd892d332f301f09046034bb0f1403cba02d9fc07a83f87317511f",
+      "syntax_validated": true,
+      "executed": false,
+      "before_sha256": "81d696fa5ee45210c26b12f91c7a301b2cda21ac60662339014f19a4b22d4d61"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\accept-s08-performance.py",
+      "sha256": "0e49b662d41131e8bb93158656d31542464300f142f716f9a28eb775eaae70a6",
+      "syntax_validated": true,
+      "executed": false,
+      "before_sha256": "d34da3cb4c7d4e736ee12c956864f52819273a469f138d386d5c0a32a7662aab"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s08-supplier-export.py",
+      "sha256": "41419d65aabd628d90ea697ca354b635b02be3f685cde945f47b9321ae05e923",
+      "syntax_validated": true,
+      "executed": false
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s08-feature-performance.py",
+      "sha256": "f2c71fd6e580f473480124015c890b469af42c15090912229fa3a05206e23e66",
+      "syntax_validated": true,
+      "help_only_executed": true,
+      "profile_executed": false,
+      "scope": "Exact ignored supplier profile, copied same-hash binary/input, qualified export provenance, declared five feature bars, 100 ms process-memory observations without an undeclared memory bar."
+    }
+  ],
+  "notes": [
+    "Native totals are parsed, not fixed to S07 counts.",
+    "Linux Rust-diff baseline remains the last full S07 runtime 041007f and is labeled explicitly; it does not skip the complete workspace suite.",
+    "Original S05 active/master fixtures are still the intended external compatibility inputs; their names are not S07 carry-over mistakes.",
+    "tools/campaign/run-lifetime-baseline.ps1 remains unchanged and reusable for the six frozen regression cases.",
+    "The S08 feature workload is separate from the six-case collector and requires its own declared acceptance.",
+    "collect-s07-evidence.py is not reusable unchanged: S07 destination and France/Tonga construction assumptions are specific to that session.",
+    "Feature wrapper requires the qualified genuine export runner-result, same candidate/test binary, and exact purchased archive hash. Every measured attempt uses a new evidence folder; failures and copied inputs are retained. No native/server/profile run was executed in this audit."
+  ],
+  "updated_utc": "2026-09-11T16:31:48.161118+00:00"
+}

@@ -1,0 +1,10 @@
+    Finished `release` profile [optimized] target(s) in 0.03s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 3 tests
+test commerce::tests::commerce_market_read_reuse_matches_original_at_live_contract_and_cargo_limits ... ok
+test commerce::tests::commerce_preflight_does_not_replace_live_standalone_acceptance_checks ... ok
+test commerce::tests::commerce_preflight_reuse_matches_original_refusals_and_full_command_ledgers ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 791 filtered out; finished in 0.17s
+

@@ -1,0 +1,12 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 51.78s
+     Running tests\s08_supplier_lifecycle.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s08_supplier_lifecycle-7dac88676a2dc052.exe)
+
+running 4 tests
+test s08_import_sanctions_access_loss_and_stale_reviews_preserve_owned_stock_and_resume_once ... ok
+test s08_import_cancellation_before_and_after_settlement_returns_exact_property_and_refund_once ... ok
+test s08_imported_rounds_and_guided_air_stores_keep_one_paid_receipt_without_research_grants ... ok
+test s08_eleven_paid_supplier_platforms_import_exact_models_without_factory_research_or_duplicate_payment ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.27s
+

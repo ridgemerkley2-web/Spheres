@@ -1,0 +1,192 @@
+{
+  "version": 1,
+  "input": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1\\supplier-v6VJe7\\server\\saves\\s08-purchase-before.json",
+    "bytes": 134350531,
+    "sha256": "be6b189ae0a370d828e99a30e3adbdf1ceefa95376139c6958f3a6e232aa9888"
+  },
+  "requested": {
+    "buyer": "Tonga",
+    "revision": null,
+    "seller": "France",
+    "company": 3,
+    "product": 48
+  },
+  "buyer": {
+    "id": "Tonga",
+    "tech_sha256": "eefa8833c9e14d3e01036582e466823df5a0316734b569df54662ec88f5dcbe6",
+    "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+    "revision_ids": [],
+    "held_by_revision": {},
+    "held_units": 0,
+    "buyer_revision": null,
+    "maintenance_plan": null,
+    "program_budget": {
+      "day": 2127,
+      "settled_day": 2127,
+      "spent_today_bn": [
+        [
+          0.0000034927272445092707,
+          0.0000034927272445092707,
+          0.0000034927272445092707,
+          0.0000034927272445092707,
+          0.0000034927272445092724
+        ],
+        [
+          0.000002514763616046675,
+          0.000002514763616046675,
+          0.000002514763616046675,
+          0.000002514763616046675,
+          0.000002514763616046675
+        ],
+        [
+          0.000002794181795607417,
+          0.000002794181795607417,
+          0.000002794181795607417,
+          0.000002794181795607417,
+          0.000002794181795607418
+        ],
+        [
+          0.000003911854513850384,
+          0.000003911854513850384,
+          0.000003911854513850384,
+          0.000003911854513850384,
+          0.000003911854513850382
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0.000002873049830160854
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0.0000012956891390921492,
+          0.0000012956891390921492,
+          0.0000012956891390921492,
+          0.0000012956891390921494
+        ],
+        [
+          7.436128972181029e-7,
+          7.436128972181029e-7,
+          8.675483800877867e-7,
+          0,
+          0
+        ],
+        [
+          9.77963628462596e-7,
+          9.77963628462596e-7,
+          9.77963628462596e-7,
+          9.77963628462596e-7,
+          9.779636284625956e-7
+        ],
+        [
+          2.794181795607417e-7,
+          2.794181795607417e-7,
+          2.794181795607417e-7,
+          2.794181795607417e-7,
+          2.7941817956074175e-7
+        ]
+      ],
+      "prepaid_used_today_bn": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  "supplier": {
+    "id": 3,
+    "nation": "France",
+    "product": {
+      "id": 48,
+      "stock": 1
+    }
+  },
+  "imports": {
+    "ids": [],
+    "matching": []
+  },
+  "canonical": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1\\supplier-v6VJe7\\archive-audit\\005-s08-purchase-before.canonical",
+    "bytes": 126194951,
+    "sha256": "e08fff7c624fe5a0ff2fab69177a3bf198f60509729ef67d573165fff0ed1421",
+    "format": "s08-typed-canonical-world-v1-js-f64",
+    "ignored_paths": []
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "candidate": "e6187df8044556a8262154e7a6c8baa32b283799",
+  "created_utc": "2026-09-11T17:13:18.456154+00:00",
+  "source_file": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-supplier-imports.cjs",
+  "source_sha256": "c9844c1e8b584d19f422baaf3bebe04c312b2255bcf8f55e263787003e635098",
+  "candidate_runner": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-harness-fix\\ci-supplier-imports.cjs",
+  "candidate_sha256": "2ce26cf90192d92dc2d5f260bee96987b63522788ace6b8d03debc9e53c304f3",
+  "module_loader": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-harness-fix\\load-candidate.cjs",
+  "module_loader_sha256": "d0a031895c8cce904a0a5298805d986558f3d5906dff221640f9c0f6f6193109",
+  "parent_wrapper": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s08-supplier-browser-load-candidate.py",
+  "parent_wrapper_sha256": "313be83b7de76fb89ed0f72a2507feef3a9370c5708f33ea4bb70562841ae3fb",
+  "failed_run": "artifacts/browser-supplier-imports-ci/supplier-y0aPsr/result.json",
+  "reason": "Native initial load has no replacement confirmation; later live-campaign loads do. Register the real response before clicking and use current live-player presence solely to choose the expected confirmation flow.",
+  "unchanged_assertions": "Stock, price, model, no research grant, transit, cancellation purity, named replacement Cancel/Confirm, maintenance and save/load assertions unchanged.",
+  "executed": false
+}

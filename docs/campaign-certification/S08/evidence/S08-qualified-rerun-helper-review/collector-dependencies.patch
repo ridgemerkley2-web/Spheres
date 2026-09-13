@@ -1,0 +1,12 @@
+--- before/collect-s08-evidence.py
++++ after/collect-s08-evidence.py
+@@ -201,7 +201,8 @@
+     for pattern in ('run-s08-*.py', 'accept-s08-*.py', 's08-*.cjs', 's08-*.py'):
+         for path in sorted(BASE.glob(pattern)): add(path, 'runners/' + path.name)
+     add(Path(__file__), 'runners/' + Path(__file__).name)
+-    for name in ('ci-supplier-imports.cjs', 'ci-browser.cjs', 'ci-integrated.cjs'):
++    for name in ('ci-supplier-imports.cjs', 'supplier-archive-audit.cjs', 'archive-worker.py',
++                 'ci-browser.cjs', 'ci-integrated.cjs', 'ci-money.cjs'):
+         add(repo / 'tools/ui' / name, 'runners/tools/ui/' + name)
+     add(repo / 'tools/campaign/run-lifetime-baseline.ps1', 'runners/tools/campaign/run-lifetime-baseline.ps1')
+     # The Chrome fallback wrapper belongs to an earlier session but is an actual

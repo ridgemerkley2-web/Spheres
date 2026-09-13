@@ -1,0 +1,18013 @@
+#![recursion_limit = "256"]
+
+//! Local web front end for SPHERES.
+//!
+//! The simulation stays the single source of truth: this server owns one
+//! `WorldState`, applies commands through the same queue the CLI uses, and
+//! serves a browser UI that renders it. No game logic lives here.
+
+use spheres_sim::init::world_1990;
+use spheres_sim::logistics::{self, RoutePolicy};
+use spheres_sim::production::{self, Priority, Project, ProjectKind, ProjectStatus};
+use spheres_sim::programs;
+use spheres_sim::resources::{self, Commodity, Leg, Verdict, ALL};
+use spheres_sim::stratagems;
+use spheres_sim::theatre::TheatreId;
+use spheres_sim::world::*;
+use spheres_sim::{apply_command, load, save, tick_day, tick_month, Command};
+use std::collections::BTreeMap;
+use std::sync::Mutex;
+use tiny_http::{Header, Method, Response, Server};
+
+mod history;
+mod portrait_assets;
+mod person_portraits;
+mod page_art_assets;
+mod storage;
+#[cfg(test)]
+mod s05_master_migration_tests;
+#[cfg(test)]
+mod s05_active_fixture_tests;
+#[cfg(test)]
+mod s05_save_matrix_tests;
+#[cfg(test)]
+mod s05_campaign_api_tests;
+mod equipment_view;
+mod government_view;
+mod fiscal_recovery_view;
+mod money_commitments;
+mod money_view;
+mod construction_outcomes;
+mod companies_view;
+mod transport;
+#[cfg(test)]
+mod performance;
+#[cfg(test)]
+mod s08_route_pool_tests;
+use history::{Event, Snapshot};
+
+fn build_info()->serde_json::Value {serde_json::json!({
+    "version":env!("CARGO_PKG_VERSION"),"revision":env!("SPHERES_REVISION"),
+    "branch":env!("SPHERES_BRANCH"),"built_at_unix_seconds":env!("SPHERES_BUILD_EPOCH").parse::<u64>().ok(),
+    "save_directory":std::env::current_dir().ok().map(|p|p.display().to_string()),
+    "campaign_format":"versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution":"Local offline game server; source and attribution accompany the release"
+})}
+
+const INDEX: &str = include_str!("../ui/index.html");
+const CAMPAIGN_TRANSPORT_JS: &str = include_str!("../ui/campaign-transport.js");
+const CAMPAIGN_UI_JS: &str = include_str!("../ui/campaign-ui.js");
+const AREA_ART_JS: &str = include_str!("../ui/area-art.js");
+const MAIN_MENU_CSS: &str = include_str!("../ui/main-menu.css");
+const MAP_CONTROLS_CSS: &str = include_str!("../ui/map-controls.css");
+const MAP_CONTROLS_JS: &str = include_str!("../ui/map-controls.js");
+const TERRAIN_LABELS_JS: &str = include_str!("../ui/terrain-labels.js");
+const WATER_DETAIL_JS: &str = include_str!("../ui/water-detail.js");
+const HEIGHT_DETAIL_JS: &str = include_str!("../ui/height-detail.js");
+const TERRAIN_SURFACE_JS: &str = include_str!("../ui/terrain-surface.js");
+const CITY_DETAIL_JS: &str = include_str!("../ui/city-detail.js");
+const TERRAIN_TILES_MANIFEST: &str = include_str!("../ui/terrain-tiles/manifest.json");
+mod terrain_tiles { include!("../ui/terrain-tiles/embed.rs"); }
+const SHADER_LOADER_JS: &str = include_str!("../ui/shader-loader.js");
+const HEIGHT_DETAIL_PNG: &[u8] = include_bytes!("../ui/height-detail.png");
+const AREA_ART_CSS: &str = include_str!("../ui/area-art.css");
+/// Fixed local display assets only. Never resolve a request path on disk.
+fn area_art_asset(name: &str) -> Option<&'static [u8]> {
+    Some(match name {
+        "cabinet-v1.webp" => include_bytes!("../ui/area-art/cabinet-v1.webp"),
+        "treasury-v1.webp" => include_bytes!("../ui/area-art/treasury-v1.webp"),
+        "production-v1.webp" => include_bytes!("../ui/area-art/production-v1.webp"),
+        "research-v1.webp" => include_bytes!("../ui/area-art/research-v1.webp"),
+        "diplomacy-v1.webp" => include_bytes!("../ui/area-art/diplomacy-v1.webp"),
+        "military-v1.webp" => include_bytes!("../ui/area-art/military-v1.webp"),
+        "logistics-v1.webp" => include_bytes!("../ui/area-art/logistics-v1.webp"),
+        "resources-v1.webp" => include_bytes!("../ui/area-art/resources-v1.webp"),
+        "history-v1.webp" => include_bytes!("../ui/area-art/history-v1.webp"),
+        "campaign-v1.webp" => include_bytes!("../ui/area-art/campaign-v1.webp"),
+        _ => return None,
+    })
+}
+/// Curated historical figures and source records keyed by stable NationId.
+/// Presentation data only: this never enters world state or save files.
+const NATION_FIGURES_JSON: &str = include_str!("../data/nation_figures.json");
+/// One request carries every nation flag used by the selector. Most symbols
+/// come from the MIT-licensed flag-icons set; dated states prefer explicit
+/// period artwork, with every remaining current-flag fallback recorded in
+/// tools/avatars/README.md.
+const NATION_FLAGS_SVG: &str = include_str!("../ui/nation-flags-v1.svg");
+/// Decorative Cabinet illustration; embedded and served locally, with no sim state.
+const CABINET_CITY_SVG: &str = include_str!("../ui/cabinet-city.svg");
+const ARCADE_CSS: &str = include_str!("../ui/arcade.css");
+const ARCADE_OPERATIONS_CSS: &str = include_str!("../ui/arcade-operations.css");
+const ARCADE_DISCOVERY_CSS: &str = include_str!("../ui/arcade-discovery.css");
+const CHRONICLE_CSS: &str = include_str!("../ui/chronicle.css");
+const CHRONICLE_DATA_JS: &str = include_str!("../ui/chronicle-data.js");
+const CHRONICLE_UI_JS: &str = include_str!("../ui/chronicle-ui.js");
+const PROGRAMS_CSS: &str = include_str!("../ui/programs.css");
+const PROGRAMS_UI_JS: &str = include_str!("../ui/programs-ui.js");
+const DECISION_TOOLS_JS: &str = include_str!("../ui/decision-tools.js");
+const TUTORIAL_MODEL_JS: &str = include_str!("../ui/tutorial-model.js");
+const ADVISOR_MODEL_JS: &str = include_str!("../ui/advisor-model.js");
+const GUIDANCE_UI_JS: &str = include_str!("../ui/guidance-ui.js");
+const GUIDANCE_UI_CSS: &str = include_str!("../ui/guidance-ui.css");
+const PERFORMANCE_UI_JS: &str = include_str!("../ui/performance-ui.js");
+const DECISION_TOOLS_CSS: &str = include_str!("../ui/decision-tools.css");
+const PROGRAMS_ART_SVG: &str = include_str!("../ui/programs-art.svg");
+const PROVINCE_ECONOMY_CSS: &str = include_str!("../ui/province-economy.css");
+const PROVINCE_ECONOMY_UI_JS: &str = include_str!("../ui/province-economy-ui.js");
+const AGENCY_CSS: &str = include_str!("../ui/agency.css");
+const AGENCY_UI_JS: &str = include_str!("../ui/agency-ui.js");
+const COMPETITION_CSS: &str = include_str!("../ui/competition.css");
+const COMPETITION_UI_JS: &str = include_str!("../ui/competition-ui.js");
+const INDUSTRY_UI_JS: &str = include_str!("../ui/industry-ui.js");
+const INDUSTRY_CSS: &str = include_str!("../ui/industry-ui.css");
+const CASH_FLOW_UI_JS: &str = include_str!("../ui/cash-flow-ui.js");
+const FISCAL_RECOVERY_UI_JS: &str = include_str!("../ui/fiscal-recovery-ui.js");
+const COMPANIES_UI_JS: &str = include_str!("../ui/companies-ui.js");
+const COMPANIES_CSS: &str = include_str!("../ui/companies.css");
+const CASH_FLOW_CSS: &str = include_str!("../ui/cash-flow-ui.css");
+const PERSON_MODELS_JS: &str = include_str!("../ui/person-models.js");
+const PERSON_3D_JS: &str = include_str!("../ui/person-3d.js");
+const GOVERNMENT_UI_JS: &str = include_str!("../ui/government-ui.js");
+const GOVERNMENT_UI_CSS: &str = include_str!("../ui/government-ui.css");
+const GOVERNMENT_COUNCIL_PNG: &[u8] = include_bytes!("../ui/government-art/council-v1.png");
+const EQUIPMENT_UI_JS: &str = include_str!("../ui/equipment-ui.js");
+const EQUIPMENT_CSS: &str = include_str!("../ui/equipment-ui.css");
+// Claude's 46 catalogue models, imported from 092569227023ff4278a5d699018af46bd39c7c94.
+const ARSENAL_MODELS_JS: &str = include_str!("../ui/arsenal-models.js");
+const ARSENAL3D_JS: &str = include_str!("../ui/arsenal3d.js");
+/// Three candidate procedural surface treatments, spliced into the card
+/// shader by `Arsenal3D.setSurface`. `weathering` is the one installed; the
+/// other two stay served so the choice can be re-judged on the same meshes
+/// in the same frame, which is the only honest way it was made in the first
+/// place. See `the_card_renderer_ships_a_surface_treatment`.
+const SURFACE_GRAIN_JS: &str = include_str!("../ui/surface-grain.js");
+const SURFACE_WEAR_JS: &str = include_str!("../ui/surface-wear.js");
+const SURFACE_MATERIAL_JS: &str = include_str!("../ui/surface-material.js");
+/// Construction-site geometry: thirteen project kinds, five stages each, driven
+/// by recorded server progress and never by a clock. DOM-free, so node checks it.
+const SITE_MESH_JS: &str = include_str!("../ui/site-mesh.js");
+/// The temperate town block kit. Layout varies by a seeded hash of the block id,
+/// never by a random number, so a settlement is the same one every session.
+const TOWN_MESH_JS: &str = include_str!("../ui/town-mesh.js");
+/// The birds-eye city. A town BLOCK on the city card was the wrong asset — one
+/// generic 148x104 m block, picked by hashing the name, so Tokyo and a 90,000-
+/// person town got the same picture. A city cannot be built from blocks either:
+/// a million people is about 40 km2, which is 2,599 blocks and 507 MILLION
+/// triangles. The primitive here is city massing at roughly 100 m cells, and the
+/// whole city costs less than the single block it replaces.
+const CITY_MESH_JS: &str = include_str!("../ui/city-mesh.js");
+/// Puts the birds-eye city into the globe's OWN sphere space, so the map can
+/// draw a city depth-tested against the ground it stands on rather than
+/// pasted over it. It invents nothing: it is a change of coordinates.
+const CITY_LAYER_JS: &str = include_str!("../ui/city-layer.js");
+/// The reverse leg of the art pipeline: glTF back into the runtime mesh shape.
+const EQUIPMENT_IMPORT_JS: &str = include_str!("../ui/equipment-import.js");
+const ARSENAL3D_CSS: &str = include_str!("../ui/arsenal3d.css");
+#[cfg(test)]
+mod arsenal_model_tests;
+const EQUIPMENT_MESH_JS: &str = include_str!("../ui/equipment-mesh.js");
+const EQUIPMENT_MODEL_JS: &str = include_str!("../ui/equipment-model.js");
+const MILITARY_SURFACE_JS: &str = include_str!("../ui/military-surface.js");
+const TANK_SURFACE_JS: &str = include_str!("../ui/tank-surface.js");
+const MILITARY_PAINT_NORMAL: &[u8] = include_bytes!("../ui/military-textures/paint-normal.jpg");
+const MILITARY_PAINT_ROUGHNESS: &[u8] = include_bytes!("../ui/military-textures/paint-roughness.jpg");
+const EQUIPMENT_EXPORT_JS: &str = include_str!("../ui/equipment-export.js");
+const MILITARY_OPERATIONS_JS: &str = include_str!("../ui/operations-ui.js");
+const MILITARY_OPERATIONS_CSS: &str = include_str!("../ui/operations-ui.css");
+const CAMPAIGN_OPERATIONS_JS: &str = include_str!("../ui/campaign-operations-ui.js");
+const CAMPAIGN_OPERATIONS_CSS: &str = include_str!("../ui/campaign-operations-ui.css");
+#[cfg(test)]
+mod campaign_api_tests;
+/// Baked country outlines — see `src/bin/mapgen.rs`.
+const WORLD_JS: &str = include_str!("../ui/world.js");
+/// Baked admin-1 district outlines, same projection and canvas as world.js.
+const DISTRICTS_JS: &str = include_str!("../ui/districts.js");
+/// Immutable admin-1 facts used by the province dossier. Live population and
+/// ownership are served separately from the simulation state.
+const DISTRICT_INFO_JSON: &str = include_str!("../../spheres-sim/data/districts.json");
+/// Baked hillshade underlay, same Robinson canvas — see tools/terrain/. Kept as the
+/// fallback the map falls back to when WebGL2 is unavailable or a context is lost.
+const TERRAIN_PNG: &[u8] = include_bytes!("../ui/terrain.png");
+/// Baked ETOPO elevation: RGB-packed uint16 + sqrt depth — see tools/terrain/make_relief.py.
+const RELIEF_PNG: &[u8] = include_bytes!("../ui/relief.png");
+/// Baked signed coastline distance field, same Robinson canvas — see tools/terrain/make_coast.py.
+const COAST_PNG: &[u8] = include_bytes!("../ui/coast.png");
+/// Baked NE1 vegetation index, half-resolution — see tools/terrain/make_cover.py.
+const COVER_PNG: &[u8] = include_bytes!("../ui/cover.png");
+/// Baked signed lake-shoreline distance field, same Robinson canvas, same encode and same
+/// clip as coast.png — see tools/terrain/make_lakes.py.
+const LAKE_PNG: &[u8] = include_bytes!("../ui/lake.png");
+/// Baked major rivers + lakes, same projection as world.js.
+const RIVERS_JS: &str = include_str!("../ui/rivers.js");
+/// Baked per-district terrain classes + feature names, same ids as
+/// districts.js — see tools/terrain/classify_districts.py.
+const TERRAIN_JS: &str = include_str!("../ui/terrain.js");
+/// Public-domain Natural Earth 1:50m populated places, reduced to the five
+/// fields a label needs. The globe draws these; the flat map never did.
+const CITIES_JS: &str = include_str!("../ui/cities.js");
+/// The globe's camera, input, projection and overlay. Kept out of index.html
+/// because it is the one part of the map that is pure geometry and reads no
+/// game state — and because a 500-line class is easier to follow in its own
+/// file than in the middle of a 10,000-line page.
+const GLOBE3D_JS: &str = include_str!("../ui/globe3d.js");
+/// Baked 1990 resource transcription, same district ids as districts.js — see
+/// tools/resources/. Served whole rather than reduced to a render payload: the
+/// provenance, the confidence bands, the admission rules and the unlocated
+/// producers are the point of the file, and a map that cannot show what is
+/// behind a patch is the map this data was cleaned to avoid. The UI fetches it
+/// lazily, only when the Resources shading is first opened.
+const RESOURCES_JSON: &str = include_str!("../data/district_resources.json");
+
+/// The active view receives a recent dispatch window; the full archive is saved.
+const MAX_LOG: usize = 4000;
+
+struct Game {
+    world: WorldState,
+    // Derived nominal searches belong to this live campaign, not its saved
+    // world or command trials. New/load constructors deliberately start cold.
+    freight_routes: logistics::NominalRoutePool,
+    log: Vec<Event>,
+    history: Vec<Snapshot>,
+    history_epoch: u64,
+    autosaved_month: u32,
+    storage_notice: Option<String>,
+    session_id: String,
+    // One receipt per browser client, not one full snapshot per turn. Older
+    // sequence numbers are refused rather than accidentally replayed.
+    advance_receipts: std::collections::BTreeMap<String, (u64, serde_json::Value, Option<String>)>,
+    command_receipts: std::collections::BTreeMap<String, (u64, String, Vec<String>)>,
+}
+
+fn fresh_session_id() -> String {
+    static NEXT: std::sync::atomic::AtomicU64 = std::sync::atomic::AtomicU64::new(0);
+    format!("{}-{}-{}", std::process::id(),
+        std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap_or_default().as_nanos(),
+        NEXT.fetch_add(1, std::sync::atomic::Ordering::Relaxed))
+}
+
+fn exchange_read_path(path: &str) -> bool {
+    matches!(path, "/api/companies" | "/api/companies-preview" | "/api/equipment" | "/api/equipment-preview" | "/api/competition" | "/api/industry" | "/api/guidance" | "/api/cash-flow" | "/api/goods-quotes" |
+        "/api/industry-module-quotes" | "/api/materials-quote" | "/api/construction-preview")
+}
+
+/// Exchange reads are campaign-scoped even though three of them use POST for
+/// structured quote criteria. Session ids contain only digits and hyphens, so
+/// the GET value needs no percent decoding after the browser encodes it.
+fn exchange_session_matches(method: &Method, url: &str, payload: &serde_json::Value,
+    current_session: &str) -> bool {
+    let requested = if matches!(method, &Method::Get | &Method::Head) {
+        url.split_once('?').and_then(|(_, query)| query.split('&').find_map(|field| {
+            let (key, value) = field.split_once('=')?;
+            (key == "session_id").then_some(value)
+        }))
+    } else {
+        payload.get("session_id").and_then(|value| value.as_str())
+    };
+    requested == Some(current_session)
+}
+
+impl Game {
+    fn new(seed: u64, player: Option<NationId>) -> Game {
+        let rules = GameRules { seed, ..GameRules::default() };
+        let mut world = world_1990(rules);
+        world.player = player;
+        // The derived HAVE cache, built before the first tick so the resource
+        // board reads the ledger on the setup screen's first month. Never
+        // serialized, never hashed; the tick would build the same bytes.
+        resources::warm(&mut world);
+        let mut g = Game { world, freight_routes: Default::default(), log: vec![], history: vec![], history_epoch:0, autosaved_month:0, storage_notice:None, session_id: fresh_session_id(), advance_receipts: Default::default(), command_receipts:Default::default() };
+        g.snapshot();
+        g
+    }
+
+    fn snapshot(&mut self) {
+        if history::record(&mut self.history,&self.world) {self.history_epoch+=1;}
+    }
+
+    fn record_at(&mut self, t: u32, date: String, text: String) {
+        self.log.push(Event {
+            t,
+            date,
+            cat: classify(&text).into(),
+            tags: mentioned(&text),
+            text,
+        });
+    }
+
+    fn record(&mut self, text: String) {
+        self.record_at(
+            month_index(self.world.year, self.world.month),
+            self.world.date_str(),
+            text,
+        );
+    }
+
+    /// Advance up to `days`, stopping early on an event worth reacting to.
+    /// Daily simulation records each day's result. Legacy replay retains one
+    /// snapshot per completed monthly settlement.
+    /// Returns whether it stopped early and why.
+    fn advance_days(&mut self, days: usize, commands: Vec<Command>) -> (bool, Option<String>) {
+        let gone = |g: &Game, me: NationId| !g.world.nation_opt(me).is_some_and(|n| n.alive);
+        let already_gone = self.world.player.is_some_and(|me| gone(self, me));
+        let mut queued = commands;
+        for i in 0..days {
+            let cmds = std::mem::take(&mut queued);
+            let event_t = month_index(self.world.year, self.world.month);
+            let event_date = self.world.date_str();
+            let before_month = (self.world.year, self.world.month);
+            let headlines = spheres_sim::tick_day_with_routes(&mut self.world, &cmds, &mut self.freight_routes);
+            for h in &headlines {
+                self.record_at(event_t, event_date.clone(), h.clone());
+            }
+            if self.world.rules.daily_simulation || (self.world.year, self.world.month) != before_month {
+                self.snapshot();
+            }
+            if !already_gone {
+                if let Some(me) = self.world.player {
+                    if gone(self, me) {
+                        return (true, Some(format!("{} no longer exists.", me.name())));
+                    }
+                }
+            }
+            if let Some(e) = headlines.iter().find(|h| is_major(h, self.world.player)) {
+                // Reported on the LAST day of the span too, and that is the
+                // whole of what changed here (2026-09-04). `i + 1 < days`
+                // used to suppress it, which was harmless while the browser
+                // asked for 7, 30 or 365 days at a time — but HOI4's running
+                // clock posts ONE day and repeats, and for a one-day span the
+                // last day is the only day. The clock would have run straight
+                // through every event it exists to stop for. Measured before
+                // the repair: 3.5 simulated years of browser play at speed 5,
+                // seed 1990 as the USA, with headlines naming the player in
+                // the log and the clock never once pausing.
+                // The flag stays truthful: a span only STOPPED early if days
+                // remained. Nothing decides what is major but `is_major`.
+                return (i + 1 < days, Some(e.clone()));
+            }
+        }
+        (false, None)
+    }
+
+    /// Compatibility path for older clients that still post `{ months: N }`.
+    fn advance_months(&mut self, months: usize, commands: Vec<Command>) -> (bool, Option<String>) {
+        if self.world.rules.daily_simulation || self.world.daily.activate_after_month.is_some() {
+            let mut commands = commands;
+            for _ in 0..months {
+                let remaining = spheres_sim::world::days_in_month(self.world.year, self.world.month)
+                    .saturating_sub(self.world.day.max(1)) + 1;
+                let outcome = self.advance_days(remaining as usize, std::mem::take(&mut commands));
+                if outcome.0 { return outcome; }
+            }
+            return (false, None);
+        }
+        // A destroyed nation interrupts once, not on every later request.
+        let gone = |g: &Game, me: NationId| !g.world.nation_opt(me).is_some_and(|n| n.alive);
+        let already_gone = self.world.player.is_some_and(|me| gone(self, me));
+        let mut queued = commands;
+        for i in 0..months {
+            let cmds = std::mem::take(&mut queued);
+            let event_t = month_index(self.world.year, self.world.month);
+            let event_date = self.world.date_str();
+            let headlines = tick_month(&mut self.world, &cmds);
+            for h in &headlines {
+                self.record_at(event_t, event_date.clone(), h.clone());
+            }
+            self.snapshot();
+            if !already_gone {
+                if let Some(me) = self.world.player {
+                    if gone(self, me) {
+                        return (true, Some(format!("{} no longer exists.", me.name())));
+                    }
+                }
+            }
+            if i + 1 < months {
+                if let Some(e) = headlines.iter().find(|h| is_major(h, self.world.player)) {
+                    return (true, Some(e.clone()));
+                }
+            }
+        }
+        (false, None)
+    }
+
+    /// The inherited web regression tests express their horizons in months.
+    /// Keep that exact test surface while the browser-facing clock uses days.
+    #[cfg(test)]
+    fn advance(&mut self, months: usize, commands: Vec<Command>) -> (bool, Option<String>) {
+        self.advance_months(months, commands)
+    }
+}
+
+fn month_index(year: i32, month: u32) -> u32 {
+    (((year - 1990) * 12) + month as i32 - 1).max(0) as u32
+}
+
+const MONTH_NAMES: [&str; 12] = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+];
+
+fn month_name(month: u32, year: i32) -> String {
+    format!("{} {}", MONTH_NAMES[(month.clamp(1, 12) - 1) as usize], year)
+}
+
+/// Bucket a headline for the event log's filters. Order matters: a nuclear test
+/// that "the world condemns" is politics, not diplomacy.
+///
+/// EXTENDED 2026-09-01, against the corpus rather than against a guess. The four
+/// named buckets between them reached one dispatch in ten: measured over four
+/// seeds and thirty years, **11,285 of 12,552 headlines — 89.9% — landed in
+/// "other"**, and the Economy filter matched **exactly nothing**, so its chip
+/// never appeared on the filter row at all. `classify_corpus` beside this is the
+/// measurement, and re-runs it on demand.
+///
+/// The keywords below are the sim's own vocabulary, read off the `headline`
+/// format strings in spheres-sim rather than invented. The commitment ladder
+/// ("escalates to rung", "steps back to rung") is the single largest unreachable
+/// group at 1,197 of the corpus; then patronage, then the pact and trade
+/// headlines, then election results.
+///
+/// EVERY ADDITION IS STRICTLY A MOVE OUT OF "other". Nothing that already
+/// matched has been moved, reordered or removed, and no added keyword occurs in
+/// any headline a lower-priority bucket was already reaching —
+/// `the_log_filters_reach_the_world_the_sim_writes` pins the whole table so a
+/// later edit cannot quietly steal one bucket's headlines for another.
+///
+/// STILL DELIBERATELY IN "other": `{} is first to field {}`, 339 of the corpus.
+/// A technology milestone is not war, politics, diplomacy or economy, and the
+/// bucket it wants does not exist. Adding one is a change to the filter row in
+/// ui/index.html, which is a UI decision and not this function's to make.
+fn classify(h: &str) -> &'static str {
+    let t = h.to_lowercase();
+    let war = t.starts_with("war:")
+        // Widened from `invades`, which missed "tears up its own guarantee to
+        // {} to invade it" — the one headline where a war opens in the middle
+        // of a sentence about a broken pact.
+        || t.contains("invade")
+        || t.contains("joins the war")
+        || t.contains("enters the war")
+        || t.contains("capitulates")
+        || t.contains("annexed")
+        || t.contains("sues for peace")
+        || t.contains("peace terms")
+        || t.contains("white peace")
+        || t.contains("repels")
+        // The commitment ladder. Every rung headline the sim writes carries the
+        // word: "escalates to rung", "steps back to rung", "publicly rules out
+        // going beyond rung", "falls back to rung".
+        || t.contains("rung")
+        || t.contains("magazines are empty")
+        || t.contains("quits the fight")
+        || t.contains("takes a side against")
+        || t.contains("freezes over")
+        || t.contains("objective is now")
+        || t.contains("defend its own ground");
+    let politics = t.contains("dissolved")
+        || t.contains("revolution")
+        || t.contains("nuclear test")
+        // "{} tests a nuclear device" is the OTHER proliferation headline and
+        // the substring "nuclear test" does not occur in it.
+        || t.contains("nuclear device")
+        || t.contains("weapons programme")
+        || t.contains("republics")
+        || t.contains("regime")
+        || t.contains("coup in")
+        // Election results are written as "{} votes: {Party} ...".
+        || t.contains("votes:")
+        || t.contains("elections")
+        || t.contains("goes to the polls")
+        || t.contains("goes to the country")
+        || t.contains("the government")
+        || t.contains("loses its majority")
+        || t.contains("parliament refuses")
+        || t.contains("its own streets")
+        || t.contains("street protest")
+        || t.contains("gloves off")
+        || t.contains("ends conscription")
+        || t.contains("scandal")
+        // The two dissolution-aftermath lines, which are the only headlines the
+        // sim writes with no `{}` in them at all and were the last strays.
+        || t.contains("inherits the arsenal")
+        || t.contains("remain in belgrade's hands")
+        // The political arm (S3/S4), every stem the sim composes: the levers
+        // ("{} suspends its constitution and rules by decree.", "{} bans {}.",
+        // "{} legalises {}.", "{} declares a {} programme.", "{} convenes a
+        // round table; ..."), the surge latch ("The {bloc} movement in {}
+        // passes a third of the country."), the roads ("COUP IN {}: ...",
+        // "Revolution in {}: the {bloc} movement takes power." — both reach
+        // `coup in` / `revolution` above) and mortality ("{name} dies in
+        // office."). The exposure of a backer, "{} exposes {} backing the {}
+        // movement in {} — the scandal rallies the country", already reaches
+        // this bucket on "scandal", as every exposure did before the arm.
+        || t.contains("suspends its constitution")
+        || t.contains(" bans ")
+        || t.contains(" legalises ")
+        || t.contains(" declares a ")
+        || t.contains("convenes a round table")
+        || t.contains("passes a third of the country")
+        || t.contains("dies in office");
+    let diplomacy = t.contains("sanction")
+        || t.contains("diplomatic hand")
+        || t.contains("defence pact")
+        || t.contains("abandons its pact")
+        || t.contains("guarantee")
+        || t.contains("trade agreement")
+        || t.contains("trade pact")
+        || t.contains("trade talks")
+        || t.contains("trade between")
+        || t.contains("buys the loyalty")
+        || t.contains("basing")
+        || t.contains("overflight")
+        || t.contains("opens its bases")
+        || t.contains("use of its territory")
+        || t.contains("use of its bases")
+        || t.contains("public quarrel")
+        // Covert action, both outcomes: "A covert operation against {} comes to
+        // nothing" and the one that did not, "Separatist fighters in {} turn up
+        // with weapons nobody will account for".
+        || t.contains("covert operation")
+        || t.contains("turn up with weapons")
+        // A `BackBloc` that worked: "Money and organisers reach the {} movement
+        // in {}; nobody can say from where." An exposure is politics above.
+        || t.contains("money and organisers reach")
+        // Patronage, which the sim writes four ways and all of them end in a
+        // sum per year: arms sales, economic aid, raised aid, expanded transfers.
+        || t.contains("arms sales")
+        || t.contains("arms transfers")
+        || t.contains("economic aid")
+        || t.contains("aid to")
+        // "{} cuts off {} to {}" takes AidKind::label(), so the economic arm
+        // already matched on "economic aid" and only the arms arm was adrift.
+        // Deliberately NOT the bare "cuts off", which would take
+        // "{} cuts off oil to {}" out of the economy bucket it already reaches.
+        || t.contains("cuts off arms")
+        // The supply contracts (resources.rs): signing, refusing, tearing up,
+        // force majeure, expiry, and the market closing on a buyer. Diplomacy,
+        // because every one of them is one government's answer to another's
+        // ask; ahead of `economy`, which the oil contract's headline would
+        // otherwise reach on the word "oil" alone.
+        || t.contains(" sign a supply contract")
+        || t.contains(" refuses: ")
+        || t.contains(" tears up its supply contract")
+        || t.contains(" cannot deliver all of its ")
+        || t.contains(" has run its term")
+        || t.contains(" dies with ")
+        || t.contains("nobody will sell ");
+    let economy = t.contains("oil")
+        || t.contains("inflation")
+        || t.contains("recession")
+        || t.contains("economy outward")
+        || t.contains("opens up.")
+        || t.contains("state's industry")
+        || t.contains("frees prices")
+        || t.contains("austerity")
+        || t.contains("external debt")
+        || t.contains("creditors")
+        || t.contains("pegs its currency")
+        || t.contains("industrial plant")
+        // A procurement line delayed for want of an input (resources::Stall):
+        // "{}: {} line delayed - needs {}; every producer refuses." Economy,
+        // because it is a budget that could not be spent.
+        || t.contains(" line delayed - needs ");
+    if war {
+        "war"
+    } else if politics {
+        "politics"
+    } else if diplomacy {
+        "diplomacy"
+    } else if economy {
+        "economy"
+    } else {
+        "other"
+    }
+}
+
+/// Does `hay` NAME this nation, rather than merely contain its letters?
+///
+/// The bare `contains` this replaces reads "Romania" as a mention of **Oman**,
+/// and across the 137-nation roster that is the one collision — checked, not
+/// assumed: no other nation's name is a substring of another's. One is enough.
+/// Measured on the live server, governing Oman on seed 1990 for 300 months, the
+/// player's own "You" filter held **sixteen dispatches, of which fifteen were
+/// about Romania** — its elections, its street protests — and one was about
+/// Oman. The same tags drive the chart's per-nation marks, and the same match
+/// in `is_major` stopped an Omani player's advance for Romanian election
+/// results.
+///
+/// A boundary is "not flanked by a letter", which keeps every real mention:
+/// possessives ("Iraq's magazines"), punctuation ("invades Kuwait!"), and the
+/// hyphenated names on the roster all end at a non-letter.
+fn names_nation(hay_lower: &str, name_lower: &str) -> bool {
+    if name_lower.is_empty() {
+        return false;
+    }
+    let mut from = 0;
+    while let Some(i) = hay_lower[from..].find(name_lower) {
+        let start = from + i;
+        let end = start + name_lower.len();
+        let letter_before =
+            hay_lower[..start].chars().next_back().is_some_and(|c| c.is_alphabetic());
+        let letter_after = hay_lower[end..].chars().next().is_some_and(|c| c.is_alphabetic());
+        if !letter_before && !letter_after {
+            return true;
+        }
+        from = end;
+    }
+    false
+}
+
+/// Which nations a headline is about. The sim writes headlines with `id.name()`,
+/// so matching on the full names is exact rather than a guess — provided the
+/// match respects word boundaries. See [`names_nation`] for the one roster pair
+/// that proves it must.
+fn mentioned(h: &str) -> Vec<NationId> {
+    let hay = h.to_lowercase(); // dissolution headlines shout in capitals
+    let mut out = vec![];
+    for id in all_nations() {
+        if names_nation(&hay, &id.name().to_lowercase()) && !out.contains(id) {
+            out.push(*id);
+        }
+    }
+    out
+}
+
+fn is_major(headline: &str, me: Option<NationId>) -> bool {
+    let h = headline.to_lowercase();
+    let structural = h.starts_with("war:")
+        || h.contains("dissolved")
+        || h.contains("has annexed")
+        || h.contains("capitulates")
+        || h.contains("revolution in")
+        || h.contains("sues for peace")
+        || h.contains("repels")
+        || h.contains("escalates to rung")
+        || h.contains("grants")
+        || h.contains("revokes")
+        // The political arm's event cards (S3/S4): every one of these is a
+        // change of government or a scandal that names two of them, and the
+        // clock stops on it whoever it is about. The sim composes the
+        // sentence; nothing here does.
+        || h.contains("coup in ")
+        || h.contains("suspends its constitution")
+        || h.contains("convenes a round table")
+        || h.contains(" exposes ")
+        || h.contains("passes a third of the country")
+        || h.contains("dies in office");
+    // `names_nation`, not `contains`, for the reason recorded there: the bare
+    // test read every Romanian headline as news about Oman, and stopped an
+    // Omani player's advance for Romanian election results.
+    structural || me.is_some_and(|m| names_nation(&h, &m.name().to_lowercase()))
+}
+
+/// Pull `nation=` out of a query string and percent-decode it.
+///
+/// `NationId::parse` accepts display names, and eight of them contain a space
+/// that a browser sends as `%20`. Reading the raw query means "Saudi Arabia"
+/// arrives as `Saudi%20Arabia` and resolves to nothing — silently, since the
+/// param is optional everywhere it is used.
+fn nation_param(url: &str) -> Option<NationId> {
+    let raw = url.split_once("nation=")?.1.split('&').next()?;
+    let bytes = raw.as_bytes();
+    let mut out = String::with_capacity(raw.len());
+    let mut i = 0;
+    while i < bytes.len() {
+        match bytes[i] {
+            b'+' => {
+                out.push(' ');
+                i += 1;
+            }
+            b'%' if i + 2 < bytes.len() => {
+                match u8::from_str_radix(&raw[i + 1..i + 3], 16) {
+                    Ok(b) => {
+                        out.push(b as char);
+                        i += 3;
+                    }
+                    Err(_) => {
+                        out.push('%');
+                        i += 1;
+                    }
+                }
+            }
+            _ => {
+                let c = raw[i..].chars().next()?;
+                out.push(c);
+                i += c.len_utf8();
+            }
+        }
+    }
+    NationId::parse(&out)
+}
+
+/// The operating areas, and whose consent an outsider needs in each. Sent whole
+/// rather than per-conflict, because the access panel is playable on its own:
+/// a host state that is in nobody's war still wants to see who is asking.
+/// THE BOARD `/api/new` WILL ACTUALLY DEAL, which is not the board `/api/state`
+/// is holding.
+///
+/// The setup screen built its nation cards out of `/api/state` under a caption
+/// that read "JANUARY 1990" as a literal. On a freshly started server those two
+/// agree and the screen is honest; on a server with a game running they do not,
+/// and reloading the page mid-game offered the LIVE world as the opening one.
+/// Measured: a United States world on seed 1, advanced to September 1993, page
+/// reloaded — 156 cards under "JANUARY 1990 · THE WORLD IS UNWRITTEN", the
+/// United States reading $6.4tn / 259m against its transcribed $5.98tn / 250m,
+/// and Russia on the board, a state that did not exist in January 1990 at all.
+/// Picking Russia posts `/api/new`, which seats a fresh 1990 world where Russia
+/// is not seated: since that route learned to refuse, the card was an offer the
+/// server could only answer 400 to.
+///
+/// Built once and cached. It is the same construction `/api/new` runs, so the
+/// screen and the button cannot describe different boards; the rules carry the
+/// default seed because nothing read here — a name, an output, a population —
+/// is drawn from the RNG, which `the_picker_shows_the_board_it_will_deal`
+/// checks across seeds rather than assuming.
+fn roster_1990_json() -> &'static serde_json::Value {
+    static ROSTER: std::sync::OnceLock<serde_json::Value> = std::sync::OnceLock::new();
+    ROSTER.get_or_init(|| {
+        let w = world_1990(GameRules::default());
+        serde_json::json!({
+            "month": w.month,
+            "year": w.year,
+            "date": w.date_str(),
+            "nations": w
+                .nations
+                .iter()
+                .filter(|n| n.alive)
+                .map(|n| serde_json::json!({
+                    "id": format!("{:?}", n.id),
+                    "name": n.id.name(),
+                    "gdp": n.gdp,
+                    "population": n.population,
+                }))
+                .collect::<Vec<_>>(),
+        })
+    })
+}
+
+/// Where one nation's opening figures came from, for the dossier.
+///
+/// `start_1990` is served beside the citations because AN EMPTY `sources` MEANS
+/// TWO COMPLETELY DIFFERENT THINGS and the dossier could not tell them apart,
+/// so it called both a bug. A nation SEATED on 1 January 1990 with no
+/// provenance really is one — `data::every_nation_can_show_its_working` goes red
+/// if one ever appears. A successor has no 1990 data file by design: twenty-
+/// three of the roster's hundred and sixty are successors, they are not on the
+/// board in January, and their opening figures are transcribed and sourced
+/// where the sim seats them — the Soviet and Yugoslav republics as shares of
+/// the federation's own 1990 totals, in `politics.rs`. Every one of those
+/// twenty-three dossiers was telling the player the repo had a bug in it.
+fn sources_json(id: NationId) -> serde_json::Value {
+    serde_json::json!({
+        "id": format!("{:?}", id),
+        "name": id.name(),
+        "sources": spheres_sim::data::sources_for(id),
+        "start_1990": id.def().start_1990,
+    })
+}
+
+fn theatres_json(w: &WorldState) -> Vec<serde_json::Value> {
+    w.theatres
+        .iter()
+        .map(|t| {
+            serde_json::json!({
+                "id": format!("{:?}", t.id),
+                "name": t.id.name(),
+                "home": t.home.iter().map(|n| format!("{:?}", n)).collect::<Vec<_>>(),
+                "hosts": t.access_hosts.iter().map(|n| format!("{:?}", n)).collect::<Vec<_>>(),
+                "host_names": t.access_hosts.iter().map(|n| n.name()).collect::<Vec<_>>(),
+                "rough": t.rough,
+                "urbanisation": t.urbanisation,
+                // Whether the PLAYER can already sustain force here without
+                // anybody's consent — `theatre::needs_no_host`, the two
+                // short-circuits at the top of `has_access`. Served because the
+                // basing panel was selling what those short-circuits already
+                // give: Iraq, home to the Gulf, was offered basing from all
+                // seven Gulf hosts at 6 pc each and Press at 15, and buying one
+                // moved nothing but the treasury and its reputation.
+                "me_needs_no_host": w.player.map(|p| spheres_sim::theatre::needs_no_host(w, p, t.id)),
+            })
+        })
+        .collect()
+}
+
+/// One conflict, with the ladder on it. The legacy keys (`attacker`,
+/// `defender`, `progress`, the two ally lists) are kept byte-for-byte so the
+/// existing war card keeps rendering while the new ones are added beside them.
+/// Every price the conflict sheet quotes, answered by `apply_command`'s own
+/// pricing function rather than by a literal in the page.
+///
+/// Priced FOR THE PLAYER, because that is who the sheet's buttons charge and
+/// because several of these depend on who is asking: `revoke_access` costs 4
+/// ordinarily and 20 while the state you are throwing out is standing at rung 7
+/// or above in your theatre, which the page could not have known.
+fn sheet_prices(w: &WorldState, c: &Conflict) -> serde_json::Value {
+    use spheres_sim::price_of;
+    let Some(me) = w.player else {
+        return serde_json::Value::Null;
+    };
+    let p = |cmd: Command| price_of(w, &cmd);
+    let revoke: serde_json::Map<String, serde_json::Value> = c
+        .posture
+        .iter()
+        .filter(|b| b.nation != me)
+        .filter_map(|b| {
+            p(Command::RevokeAccess { host: me, seeker: b.nation, theatre: c.theatre })
+                .map(|v| (format!("{:?}", b.nation), serde_json::json!(v)))
+        })
+        .collect();
+    serde_json::json!({
+        "objective": p(Command::SetObjective {
+            conflict: c.id, nation: me, objective: spheres_sim::world::Objective::Deny,
+        }),
+        // The one rules-of-engagement setting that is not free, and the two that
+        // are — served as the pair, so the card states both rather than
+        // assuming which is which.
+        "roe_unrestricted": p(Command::SetRoE {
+            conflict: c.id, nation: me, roe: spheres_sim::world::Roe::Unrestricted,
+        }),
+        "roe_other": p(Command::SetRoE {
+            conflict: c.id, nation: me, roe: spheres_sim::world::Roe::Standard,
+        }),
+        "ceiling": p(Command::SetCeiling { conflict: c.id, nation: me, rung: 5 }),
+        "red_line": p(Command::SetRedLine {
+            conflict: c.id, nation: me, resolve_floor: 0.3,
+        }),
+        "join": p(Command::JoinConflict {
+            conflict: c.id, nation: me, side_a: true,
+            objective: spheres_sim::world::Objective::Deny,
+        }),
+        "request_access": p(Command::RequestAccess {
+            seeker: me, host: c.attacker(), theatre: c.theatre,
+        }),
+        "press_access": p(Command::PressForAccess {
+            seeker: me, host: c.attacker(), theatre: c.theatre,
+        }),
+        "grant_access": p(Command::GrantAccess {
+            host: me, seeker: c.attacker(), theatre: c.theatre, grant: true,
+        }),
+        "revoke_access": revoke,
+    })
+}
+
+fn conflict_json(w: &WorldState, c: &Conflict) -> serde_json::Value {
+    let posture: Vec<serde_json::Value> = c
+        .posture
+        .iter()
+        // A nation that no longer exists is not standing on a rung. The sim
+        // keeps a dissolved state's posture for the month it takes the war
+        // systems to notice; see the filter in `state_json` for what was
+        // measured. A three-cornered war can outlive one of its parties, so the
+        // conflict is still served while the row for the dead one is not.
+        .filter(|b| w.nation_opt(b.nation).is_some_and(|n| n.alive))
+        .map(|b| {
+            let disclosed = !spheres_sim::campaign::enabled(w) || w.player==Some(b.nation);
+            let defending = spheres_sim::commitment::defending_home(w, c, b.nation);
+            // THE LADDER, PRICED AND ADJUDICATED BY THE SIM, one entry per rung.
+            //
+            // The browser used to build this itself out of a copy of
+            // `war::ESCALATION_PRICE`, a copy of `theatre::MAX_RUNG_WITHOUT_
+            // ACCESS` and a hand-written pair of refusals — and the copy was
+            // missing `commitment::rung_blocked`'s THIRD branch, the nuclear
+            // taboo, which has no cheap client-side test because it depends on
+            // who else is standing on the other side of the war. So the sheet
+            // sold rungs the world will never sell. Measured live: Iraq on seed
+            // 1990, joined to the Levant conflict against a nuclear Israel and
+            // not home to that theatre, was offered rung 6 at "12 pc" and rung
+            // 7 at "17 pc" as clickable rows, while every one of rungs 6-9
+            // answered "Deterrence holds — they have the bomb and we do not."
+            // Rungs 8 and 9 were marked unavailable, but for the wrong reason:
+            // "you hold 20 political capital; this costs 25", which is
+            // `world_refusal`'s ordering defect (lib.rs) reproduced on screen.
+            //
+            // `blocked` is `rung_blocked`'s own prose, so the sheet cannot
+            // disagree with the queue, and `cost` is `escalation_cost_in` — the
+            // same function `set_commitment` is charged by. Served for every
+            // belligerent rather than only the player: it is the same
+            // information as `rung`, `ceiling` and `objective` beside it, and a
+            // uniform row is what lets the suite check all of them.
+            let rungs: Vec<serde_json::Value> = (1u8..=9)
+                .map(|r| {
+                    serde_json::json!({
+                        "rung": r,
+                        "cost": spheres_sim::commitment::escalation_cost_in(
+                            w, b.nation, b.rung, r, defending,
+                        ),
+                        "blocked": spheres_sim::commitment::rung_blocked(w, c, b.nation, r),
+                    })
+                })
+                .collect();
+            serde_json::json!({
+                "id": format!("{:?}", b.nation),
+                "name": b.nation.name(),
+                "side_a": c.side_of(b.nation) == Some(true),
+                "rung": b.rung,
+                "rung_name": spheres_sim::world::rung_name(b.rung),
+                "ceiling": b.ceiling,
+                "objective": b.objective.label(),
+                "roe": b.roe.label(),
+                "resolve": disclosed.then_some(b.resolve),
+                "red_line": disclosed.then_some(b.red_line),
+                "stake": disclosed.then_some(b.stake),
+                "months_at_rung": b.months_at_rung,
+                "munitions": disclosed.then(|| w.nation_opt(b.nation).map(|n| n.munitions)).flatten(),
+                "deployable": disclosed.then(|| spheres_sim::war::deployable_fraction(w, b.nation)),
+                "access": spheres_sim::theatre::has_access(w, b.nation, c.theatre),
+                "home": spheres_sim::theatre::is_home(w, b.nation, c.theatre),
+                // Whether this belligerent is answering on its own ground, which
+                // is what the escalation discount hangs off. Computed by the sim
+                // so the price the UI quotes and the price the queue charges
+                // cannot drift apart.
+                "defending_home": defending,
+                "committed": disclosed.then(|| spheres_sim::war::committed_force(w, c, b.nation)),
+                "force_share_bp": disclosed.then_some(b.force_share_bp).flatten(),
+                "rungs": rungs,
+            })
+        })
+        .collect();
+    serde_json::json!({
+        "id": c.id,
+        "theatre": format!("{:?}", c.theatre),
+        "theatre_name": c.theatre.name(),
+        "class": format!("{:?}", c.class()),
+        // The two rungs `Conflict::class()` is decided by — the HIGHEST standing
+        // on each side, which is not the highest and lowest in the posture list.
+        // The browser used to read the list and got a different answer whenever
+        // anybody stood below the shooting line on a side whose top was above
+        // it, which is every war a player has just joined: joining enters you at
+        // rung 1. Measured — Egypt joins the Korean war on seed 7 in April 1992,
+        // both Koreas standing at rung 6, and the card read "irregular · they
+        // will not stand where you can hit them" over a conflict the sim was
+        // calling Conventional.
+        "top_rung_a": c.top_rung(true),
+        "top_rung_b": c.top_rung(false),
+        // WHAT EVERY CONTROL ON THE SHEET COSTS, from `apply_command`'s own
+        // pricing function. The sheet used to carry six literals of its own and
+        // no literal at all for the two it had never been given one for:
+        // setting an objective takes 3 political capital and the card said
+        // nothing about it, on a card that prices every other control and
+        // labels the free one "free". Measured — Iraq on seed 7, political
+        // capital 35.28 -> 32.28 for one click of "hold", and 32.28 -> 32.28
+        // for the red line the card calls free.
+        "prices": sheet_prices(w, c),
+        "attacker": c.attacker().name(),
+        "attacker_id": format!("{:?}", c.attacker()),
+        "defender": c.defender().name(),
+        "defender_id": format!("{:?}", c.defender()),
+        // Control is the ground held, -1..+1; the old progress bar was the same
+        // quantity on a scale of a hundred, so the UI needs no arithmetic change.
+        "progress": c.control * 100.0,
+        "control": c.control,
+        // The front: district -> hold, +1 side A / -1 side B, only the
+        // contested ground (deviations plus the base-valued districts along a
+        // hard edge — the sim's canonical map, small by construction). The
+        // aggregate above IS this map area-weighted, so the two never
+        // disagree. Rounded to 2dp; no adjacency ships to the client.
+        "front": c
+            .front
+            .iter()
+            .map(|(d, h)| {
+                (d.clone(), serde_json::json!(((*h as f64) * 100.0).round() / 100.0))
+            })
+            .collect::<serde_json::Map<String, serde_json::Value>>(),
+        // Encircled groups, each a sorted list of district ids.
+        "pockets": c.pockets,
+        "months": c.months,
+        "frozen_since": c.frozen_since.map(|(y, m)| month_name(m, y)),
+        "attacker_allies": c.side_a.iter().skip(1).map(|a| a.name()).collect::<Vec<_>>(),
+        "defender_allies": c.side_b.iter().skip(1).map(|a| a.name()).collect::<Vec<_>>(),
+        "posture": posture,
+        "operation": w.player.and_then(|n|spheres_sim::campaign::view(w,c.id,n)),
+        "peace": w.player.map(|n|spheres_sim::campaign_peace::view(w,c,n)),
+        "start": month_name(c.start_month, c.start_year),
+    })
+}
+
+/// Foreign trade cash flow beside the cabinet budget, in $bn at an annual
+/// run-rate. Every value comes from resources.rs. Active mine capital is
+/// carried separately as a sunk one-time amount and is intentionally excluded
+/// from annual outflow/net figures.
+fn foreign_commitments_json(w: &WorldState, id: NationId) -> serde_json::Value {
+    let contract_imports = resources::contracted_spend(w, id);
+    let export_receipts = resources::contracted_receipts(w, id);
+    // Annualise the actual ledger period, not the month currently on screen:
+    // the January 31 book is still January's daily flow on February 1.
+    let fraction = resources::market_period_fraction(w);
+    let expected_spot_imports = resources::spot_imports_bn(w, id) * 12.0 / fraction;
+    let spot_export_receipts = resources::spot_exports_bn(w, id) * 12.0 / fraction;
+    let mine_investment = resources::mine_investment_bn(w, id);
+    let outflows = contract_imports + expected_spot_imports;
+    let receipts = export_receipts + spot_export_receipts;
+    let spot_settled = w
+        .resources
+        .market
+        .as_ref()
+        .is_some_and(|market| market.last_cleared != i32::MIN);
+    serde_json::json!({
+        "contract_imports_bn": round(contract_imports, 6),
+        "expected_spot_imports_bn": round(expected_spot_imports, 6),
+        "export_receipts_bn": round(export_receipts, 6),
+        "spot_export_receipts_bn": round(spot_export_receipts, 6),
+        "mine_investment_bn": round(mine_investment, 6),
+        "outflows_bn": round(outflows, 6),
+        "receipts_bn": round(receipts, 6),
+        "net_bn": round(outflows - receipts, 6),
+        "spot_settled": spot_settled,
+        "period": "annual_run_rate",
+        "mine_investment_kind": "sunk_one_time",
+    })
+}
+
+fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
+    let me = w.player;
+    let politics = spheres_sim::blocs::politics(w, n.id);
+    let annual_budget = if me == Some(n.id) {
+        let b = n.budget_for(w.year);
+        Some(serde_json::json!({
+            "fiscal_year": b.fiscal_year,
+            "due": n.annual_budget.as_ref().is_none_or(|x| x.fiscal_year != w.year),
+            "health": b.allocations[BUDGET_HEALTH],
+            "education": b.allocations[BUDGET_EDUCATION],
+            "housing": b.allocations[BUDGET_HOUSING],
+            "pensions": b.allocations[BUDGET_PENSIONS],
+            "infrastructure": b.allocations[BUDGET_INFRASTRUCTURE],
+            "industry": b.allocations[BUDGET_INDUSTRY],
+            "science": b.allocations[BUDGET_SCIENCE],
+            "defense": b.allocations[BUDGET_DEFENSE],
+            "security": b.allocations[BUDGET_SECURITY],
+            "diplomacy": b.allocations[BUDGET_DIPLOMACY],
+            "total": b.total(),
+        }))
+    } else {
+        None
+    };
+    let mut out = serde_json::json!({
+        "id": format!("{:?}", n.id),
+        "name": n.id.name(),
+        "alive": n.alive,
+        "gdp": n.gdp,
+        "gdp_pc": if n.population > 0.0 { n.gdp * 1000.0 / n.population } else { 0.0 },
+        "population": n.population,
+        "growth": n.growth_last,
+        "inflation": n.inflation,
+        "rate": n.interest_rate,
+        "tax": n.tax_rate,
+        "mil_spend": n.mil_spend_gdp,
+        "state_invest": n.state_invest_gdp,
+        "social_spend": n.social_spend(),
+        "annual_budget": annual_budget,
+        // Foreign resource commitments sit beside, but never masquerade as,
+        // the ten ministry dials. Only the seated player receives the private
+        // budget ledger.
+        "foreign_commitments": (me == Some(n.id)).then(|| foreign_commitments_json(w, n.id)),
+        "baseline_social_spend": n.baseline_social_spend(),
+        "unemployment": spheres_sim::economy::unemployment_rate(n, w.at_war(n.id)),
+        // The UI's policy readout reproduces the growth arithmetic, and cannot do
+        // it without the two terms the player never sets directly.
+        "priv_invest": n.priv_invest_gdp,
+        "tfp": n.tfp_trend,
+        "debt": n.debt_gdp,
+        // THE TREASURY, and the reason it is served as five keys rather than
+        // recomputed in JavaScript: the sim owns the one definition of what a
+        // state is paying, so the ledger and the budget card cannot disagree
+        // about it (the same argument `GrowthTerms` carries). `treasury` and
+        // `debt_bn` are null while a nation's books are closed, which is every
+        // AI nation and every nation before the player enacts a budget;
+        // `interest_gdp` is 0.0 there, because "this nation does not model debt
+        // service" is what a caller adding it to something needs to read.
+        "treasury": n.treasury_bn,
+        "debt_bn": n.debt_bn,
+        "net_position_bn": n.net_position_bn(),
+        "interest_gdp": spheres_sim::economy::interest_gdp(n),
+        "effective_rate": spheres_sim::economy::effective_interest_rate(
+            n.interest_rate,
+            n.inflation,
+            n.debt_gdp,
+        ),
+        "stability": n.stability,
+        "political_capital": n.political_capital,
+        "separatism": n.separatism,
+        "mil_strength": if spheres_sim::campaign::enabled(w) && me!=Some(n.id) { (n.mil_strength/10.0).round()*10.0 } else {n.mil_strength},
+        "military_estimated": spheres_sim::campaign::enabled(w) && me!=Some(n.id),
+        "war_exhaustion": n.war_exhaustion,
+        "nuclear": n.nuclear,
+        "oil_mbd": n.oil_mbd,
+        "command_economy": n.system == EconomySystem::Command,
+        "authoritarianism": n.authoritarianism,
+        // THE POLITICAL ARM (S1). Six fields, every one computed by blocs.rs —
+        // bloc_shares / ruling_bloc / discontent / takeover_readout — and
+        // every one null while `rules.ideology_blocs` is off. The page reads
+        // them; it derives nothing from them.
+        "ruling_bloc": politics.as_ref().and_then(|p| p.ruling_bloc),
+        "discontent": politics.as_ref().map(|p| p.discontent),
+        "blocs": politics.as_ref().map(|p| &p.blocs),
+        "leader": politics.as_ref().and_then(|p| p.leader.as_ref()),
+        "government_of_the_day": politics.as_ref().and_then(|p| p.government_of_the_day.as_ref()),
+        "takeover": politics.as_ref().map(|p| &p.takeover),
+        "at_war": w.at_war(n.id),
+        "relation": me.map(|m| w.relation(m, n.id)),
+        "sanctioned_by_me": me.is_some_and(|m| w.is_sanctioning(m, n.id)),
+        "sanctioning_me": me.is_some_and(|m| w.is_sanctioning(n.id, m)),
+        // The COUNT is still served, because two readouts legitimately want a
+        // count: the map's ⊘ mark and the dossier's "Sanctioned by N nations".
+        "sanctioned_by_count": w.sanctioned_by_count(n.id),
+        // The DRAG is served because the policy panel wants growth, and a count
+        // has not been how this model prices sanctions since the four channels
+        // were converted to weigh output. The browser was still multiplying the
+        // count by the pre-conversion coefficient; `economy::growth_drag_of_
+        // sanctions` is the sim's own expression and `tick` computes the number
+        // it charges from the same function.
+        "sanction_drag": spheres_sim::economy::growth_drag_of_sanctions(
+            w.sanction_weight(n.id),
+        ),
+        "export_share": if n.oil_mbd > 0.0 { w.oil_export_share(n.id) } else { 1.0 },
+        // Every standing it holds, not just the one with the player — the detail
+        // view is a dossier on that nation, not on your relationship with it.
+        "relations": null,
+    });
+    // Move the completed rows into the object; json! would serialize and
+    // allocate every nested Value again when given the finished Vec.
+    out["relations"] = serde_json::Value::Array(w
+            .nations
+            .iter()
+            .filter(|o| o.alive && o.id != n.id)
+            .map(|o| serde_json::json!({
+                "id": format!("{:?}", o.id),
+                "name": o.id.name(),
+                "value": w.relation(n.id, o.id),
+                "sanctioning": w.is_sanctioning(n.id, o.id),
+                "sanctioned_by": w.is_sanctioning(o.id, n.id),
+            }))
+            .collect());
+    out
+}
+
+/// What the world is offering one government this month, at the price the sim
+/// charges. Availability, the reason, and the cost all come from
+/// `spheres_sim::stratagems` — the server invents none of them, and `affordable`
+/// is only the same comparison `apply_command` makes when it charges, surfaced
+/// early so the button can be honest before it is pressed.
+fn stratagems_json(w: &WorldState, id: NationId) -> serde_json::Value {
+    let held = w.nation_opt(id).map_or(0.0, |n| n.political_capital);
+    let offers: Vec<serde_json::Value> = stratagems::available(w, id)
+        .into_iter()
+        .map(|s| {
+            serde_json::json!({
+                "id": s.id,
+                "name": s.name,
+                "blurb": s.blurb,
+                "because": s.because,
+                "cost": s.cost,
+                "affordable": held >= s.cost,
+                "shortfall": (s.cost - held).max(0.0),
+            })
+        })
+        .collect();
+    serde_json::json!({
+        "nation": format!("{:?}", id),
+        "nation_name": id.name(),
+        "political_capital": held,
+        "offers": offers,
+    })
+}
+
+
+// ===========================================================================
+// THE GOVERNMENT SCREEN (S2 of "The Political Arm of SPHERES"). Every number
+// and every sentence the page prints is built HERE from the sim's own reads —
+// blocs.rs for the shares, the ruling bloc, the discontent gauge and the
+// takeover watch; government.rs for the parties, the pillars, strain and
+// upkeep; `price_of` and `refusal_of` for the actions. The page composes
+// nothing: it holds the five colours and nothing else.
+// ===========================================================================
+
+/// One action on the screen: the command the page would post, the price the
+/// sim would charge, and the sentence it would refuse it with (null where it
+/// would go through). `command` is the exact payload `parse_command` reads.
+fn action_json(
+    w: &WorldState,
+    cmd: &Command,
+    kind: &str,
+    label: String,
+    detail: Option<String>,
+    blurb: Option<&str>,
+    payload: serde_json::Value,
+) -> serde_json::Value {
+    serde_json::json!({
+        "kind": kind,
+        "label": label,
+        "detail": detail,
+        "blurb": blurb,
+        "command": payload,
+        "price": spheres_sim::price_of(w, cmd).unwrap_or(0.0),
+        "affordable": spheres_sim::affordable(w, cmd),
+        "refusal": spheres_sim::refusal_of(w, cmd),
+        "effects": effects_of(w, cmd),
+    })
+}
+
+/// The one-sentence arms a command would charge, from the function that
+/// charges them (iron rule 8): `government::lever_effects` for the five
+/// levers, `statecraft::crackdown_backing_effects` for the Security
+/// Crackdown's gated arm, `statecraft::back_bloc_effects` for a `BackBloc`.
+/// Empty for a command whose arms are not served this way, and empty where
+/// the lever is refused (the refusal is the card then).
+fn effects_of(w: &WorldState, cmd: &Command) -> Vec<String> {
+    if let Some(v) = spheres_sim::government::lever_effects(w, cmd) {
+        return v;
+    }
+    match cmd {
+        Command::EnactStratagem { nation, id } if id == "security_crackdown" => {
+            spheres_sim::statecraft::crackdown_backing_effects(w, *nation)
+        }
+        Command::CovertAction { sponsor, target, op: CovertOp::BackBloc(bloc) } => {
+            spheres_sim::statecraft::back_bloc_effects(w, *sponsor, *target, *bloc)
+        }
+        _ => vec![],
+    }
+}
+
+/// GET /api/covert?nation= — the covert card on the TARGET's dossier: the
+/// three existing operations and "Back a movement" for every bloc present
+/// in the target's polity, each with the sim's price and refusal, and the
+/// two probabilities the sim would roll for this sponsor against this
+/// target — `statecraft::covert_odds`, the function `covert_action` rolls —
+/// served as `works` and `exposed`. The sponsor is the player. Backing a
+/// bloc carries `back_bloc_effects`; nothing here is composed.
+fn covert_json(w: &WorldState, sponsor: NationId, target: NationId) -> serde_json::Value {
+    use spheres_sim::blocs;
+    use spheres_sim::government::Bloc;
+    let held = w.nation_opt(sponsor).map_or(0.0, |n| n.political_capital);
+    let both_alive = w.nation_opt(sponsor).is_some_and(|n| n.alive) && w.nation_opt(target).is_some_and(|n| n.alive);
+    let (works, exposed) = if both_alive && sponsor != target {
+        spheres_sim::statecraft::covert_odds(w, sponsor, target)
+    } else {
+        (0.0, 0.0)
+    };
+    let ruling = blocs::ruling_bloc(w, target);
+    let mut ops: Vec<serde_json::Value> = vec![];
+    let mut push = |op: CovertOp, kind: &str, label: String, detail: Option<String>, opkey: String, bloc: Option<Bloc>| {
+        let cmd = Command::CovertAction { sponsor, target, op };
+        let mut v = action_json(
+            w, &cmd, kind, label, detail, None,
+            serde_json::json!({ "kind": "covert", "target": target.name(), "op": opkey }),
+        );
+        v["op"] = serde_json::json!(opkey);
+        v["bloc"] = serde_json::json!(bloc);
+        ops.push(v);
+    };
+    push(CovertOp::FundOpposition, "fund_opposition", "Fund the opposition".into(),
+         Some("strikes and street protest".into()), "opposition".into(), None);
+    push(CovertOp::StirSeparatists, "stir_separatists", "Arm the separatists".into(),
+         Some("weapons nobody will account for".into()), "separatists".into(), None);
+    push(CovertOp::SabotageIndustry, "sabotage_industry", "Sabotage its industry".into(),
+         Some("a run of accidents".into()), "sabotage".into(), None);
+    if w.rules.ideology_blocs {
+        for b in Bloc::ALL {
+            if !blocs::bloc_present(w, target, b) {
+                continue;
+            }
+            push(
+                CovertOp::BackBloc(b), "back_bloc", format!("Back the {} movement", b.label()),
+                Some(if ruling == Some(b) { "the government's own colour".into() } else { "money and organisers, deniably".into() }),
+                format!("back:{}", b.key()), Some(b),
+            );
+        }
+    }
+    serde_json::json!({
+        "sponsor": format!("{:?}", sponsor),
+        "target": format!("{:?}", target),
+        "target_name": target.name(),
+        "on": w.rules.ideology_blocs,
+        "political_capital": held,
+        "heat": w.covert_heat(sponsor, target),
+        "works": works,
+        "exposed": exposed,
+        "ruling_bloc": ruling,
+        "ops": ops,
+    })
+}
+
+/// GET /api/government?nation= — the polity, the bar, the parties grouped by
+/// bloc or the pillars, strain and upkeep and the next election, the takeover
+/// watch with every road closed and its reason, and the actions with their
+/// prices and refusals. `on` is false while `rules.ideology_blocs` is off,
+/// and the political fields are then null, as they are on /api/state.
+fn government_json(w: &WorldState, id: NationId) -> serde_json::Value {
+    use spheres_sim::blocs;
+    use spheres_sim::government as gov;
+    use spheres_sim::government::Bloc;
+    let pol = gov::polity_in(w, id);
+    let g = gov::state(w, id);
+    let electoral = gov::is_electoral(w, id);
+    let held = w.nation_opt(id).map_or(0.0, |n| n.political_capital);
+    let politics = blocs::politics(w, id);
+    let ruling = politics.as_ref().and_then(|p| p.ruling_bloc);
+    let bloc_of = |party: &str| gov::bloc_of(id, party);
+    // The governing blocs: an electoral nation's are the blocs of its
+    // coalition; a regime's is the one that rules.
+    let governing: Vec<Bloc> = match (electoral, g) {
+        (true, Some(g)) => {
+            let mut v: Vec<Bloc> = g.coalition.iter().map(|p| bloc_of(p)).collect();
+            v.sort();
+            v.dedup();
+            v
+        }
+        _ => ruling.into_iter().collect(),
+    };
+    // Bans are per party (S3); a bloc reads banned when every party of it is.
+    let banned: Vec<String> = g.map_or(vec![], |g| g.banned.clone());
+    // The foreign money behind each bloc (S3): the covert stock entry by
+    // entry, the sponsor NAMED ONLY ONCE EXPOSED — the server never sends an
+    // unexposed sponsor, so the page cannot leak one — and patronage gravity
+    // as one line, a view of the aid flows. `backing` on the row is the
+    // capped F_B the bar hatches; these are its parts.
+    let gravity = blocs::gravity(w, id);
+    let abroad = |b: Bloc| -> Vec<serde_json::Value> {
+        let mut v: Vec<serde_json::Value> = w
+            .statecraft
+            .backing
+            .iter()
+            .filter(|e| e.target == id && e.bloc == b && e.weight > 0.0)
+            .map(|e| {
+                serde_json::json!({
+                    "kind": "covert",
+                    "weight": e.weight,
+                    "exposed": e.exposed,
+                    "sponsor": e.exposed.then(|| e.sponsor.name()),
+                })
+            })
+            .collect();
+        let g = gravity[b as usize].1;
+        if g > 0.0 {
+            v.push(serde_json::json!({ "kind": "patronage", "weight": g, "exposed": true, "sponsor": null }));
+        }
+        v
+    };
+    let bar: Vec<serde_json::Value> = politics
+        .as_ref()
+        .map(|p| {
+            p.blocs
+                .iter()
+                .map(|r| {
+                    serde_json::json!({
+                        "bloc": r.bloc,
+                        "share": r.share,
+                        "backing": r.backing,
+                        "abroad": abroad(r.bloc),
+                        "banned": r.banned,
+                        "governing": governing.contains(&r.bloc),
+                        "ruling": ruling == Some(r.bloc),
+                    })
+                })
+                .collect()
+        })
+        .unwrap_or_default();
+    // The party table grouped by bloc, in enum order, empty groups dropped.
+    let shares = blocs::bloc_shares(w, id);
+    let groups: Vec<serde_json::Value> = Bloc::ALL
+        .iter()
+        .filter_map(|b| {
+            let parties: Vec<serde_json::Value> = pol?
+                .parties
+                .iter()
+                .filter(|s| bloc_of(s.id) == *b)
+                .map(|s| {
+                    serde_json::json!({
+                        "id": s.id,
+                        "name": s.name,
+                        "native": s.native,
+                        "family": s.family.label(),
+                        "bloc": b,
+                        "pariah": s.pariah,
+                        "support": g.map_or(0.0, |g| g.support_of(s.id)),
+                        "seats": g.map_or(0.0, |g| g.seat_share(s.id)),
+                        "in_government": g.is_some_and(|g| g.in_government(s.id)),
+                        "leads": g.and_then(|g| g.leader()) == Some(s.id),
+                        "banned": banned.iter().any(|p| p == s.id),
+                    })
+                })
+                .collect();
+            if parties.is_empty() {
+                return None;
+            }
+            Some(serde_json::json!({
+                "bloc": b,
+                "label": b.label(),
+                "share": shares[*b as usize].1,
+                "banned": blocs::bloc_banned(w, id, *b),
+                "parties": parties,
+            }))
+        })
+        .collect();
+    let pillars: Vec<serde_json::Value> = pol
+        .map(|p| {
+            p.pillars
+                .iter()
+                .map(|s| {
+                    serde_json::json!({
+                        "pillar": s.pillar,
+                        "key": s.pillar.key(),
+                        "name": s.name,
+                        "loyalty": g.map_or(1.0, |g| g.loyalty(s.pillar)),
+                        "bloc": gov::pillar_bloc(id, s.pillar),
+                    })
+                })
+                .collect()
+        })
+        .unwrap_or_default();
+    let next_election = g
+        .filter(|_| electoral)
+        .map(|g| g.next_election)
+        .filter(|(y, m)| *y != 0 || *m != 0)
+        .map(|(y, m)| format!("{:04}-{:02}", y, m));
+
+    // The actions. Electoral: an invitation for every party outside the
+    // cabinet, an expulsion for every partner in it, and the early election.
+    // Regime: a payment for every named institution. Both: the two political
+    // stratagems. Each carries the sim's price and the sim's refusal.
+    let mut actions: Vec<serde_json::Value> = vec![];
+    if let (Some(pol), Some(g)) = (pol, g) {
+        if electoral {
+            for s in pol.parties {
+                let party = s.id.to_string();
+                if g.in_government(s.id) {
+                    if g.leader() != Some(s.id) {
+                        let cmd = Command::ExpelFromGovernment { nation: id, party: party.clone() };
+                        actions.push(action_json(
+                            w, &cmd, "expel", format!("Expel {}", s.name), Some("from the government".into()), None,
+                            serde_json::json!({ "kind": "expel_from_government", "party": party }),
+                        ));
+                    }
+                } else {
+                    let cmd = Command::InviteToGovernment { nation: id, party: party.clone() };
+                    actions.push(action_json(
+                        w, &cmd, "invite", format!("Invite {}", s.name), Some("into the government".into()), None,
+                        serde_json::json!({ "kind": "invite_to_government", "party": party }),
+                    ));
+                }
+            }
+            let cmd = Command::CallElection { nation: id };
+            actions.push(action_json(
+                w, &cmd, "call_election", "Call an election".into(), Some("go to the country early".into()), None,
+                serde_json::json!({ "kind": "call_election" }),
+            ));
+        } else {
+            for s in pol.pillars {
+                let cmd = Command::SecurePillar { nation: id, pillar: s.pillar };
+                actions.push(action_json(
+                    w, &cmd, "secure_pillar", format!("Secure {}", s.name), Some("pay for its loyalty".into()), None,
+                    serde_json::json!({ "kind": "secure_pillar", "pillar": s.pillar.key() }),
+                ));
+            }
+        }
+    }
+    for sid in ["security_crackdown", "liberalisation"] {
+        if let Some(s) = spheres_sim::stratagems::by_id(sid) {
+            let cmd = Command::EnactStratagem { nation: id, id: sid.to_string() };
+            actions.push(action_json(
+                w, &cmd, "stratagem", s.name.to_string(), Some(s.because.to_string()), Some(s.blurb),
+                serde_json::json!({ "kind": "stratagem", "id": sid }),
+            ));
+        }
+    }
+    // The five levers (S3), served with the sim's price, the sim's refusal
+    // and the sim's effects list even while the arm is off (the refusal is
+    // then "This world does not model ideological movements."): a
+    // suspension for a polity that votes, a programme for every present
+    // bloc other than the one that rules and a round table for a regime, and
+    // a ban or a legalisation for every party in the table, dormant or not.
+    if let Some(pol) = pol {
+        if electoral {
+            let cmd = Command::SuspendConstitution { nation: id };
+            actions.push(action_json(
+                w, &cmd, "suspend", "Suspend the constitution".into(), Some("rule by decree".into()), None,
+                serde_json::json!({ "kind": "suspend_constitution" }),
+            ));
+        } else {
+            for b in Bloc::ALL {
+                if ruling == Some(b) || !blocs::bloc_present(w, id, b) {
+                    continue;
+                }
+                let cmd = Command::DeclareProgramme { nation: id, bloc: b };
+                actions.push(action_json(
+                    w, &cmd, "programme", format!("Declare a {} programme", b.label()), Some("change the regime's colour".into()), None,
+                    serde_json::json!({ "kind": "declare_programme", "bloc": b.key() }),
+                ));
+            }
+            let cmd = Command::ConveneRoundTable { nation: id };
+            actions.push(action_json(
+                w, &cmd, "round_table", "Convene a round table".into(), Some("first free elections in six months".into()), None,
+                serde_json::json!({ "kind": "convene_round_table" }),
+            ));
+        }
+        for s in pol.parties {
+            let party = s.id.to_string();
+            if banned.iter().any(|p| p == s.id) {
+                let cmd = Command::LegalizeParty { nation: id, party: party.clone() };
+                actions.push(action_json(
+                    w, &cmd, "legalize", format!("Legalise {}", s.name), Some("lift the ban".into()), None,
+                    serde_json::json!({ "kind": "legalize_party", "party": party }),
+                ));
+            } else {
+                let cmd = Command::BanParty { nation: id, party: party.clone() };
+                actions.push(action_json(
+                    w, &cmd, "ban", format!("Ban {}", s.name), Some("no seats; its voters stay".into()), None,
+                    serde_json::json!({ "kind": "ban_party", "party": party }),
+                ));
+            }
+        }
+    }
+
+    let gotd = politics.as_ref().and_then(|p| p.government_of_the_day.clone());
+    let mut value = serde_json::json!({
+        "nation": format!("{:?}", id),
+        "nation_name": id.name(),
+        "on": w.rules.ideology_blocs,
+        "mine": w.player == Some(id),
+        "electoral": electoral,
+        "system": pol.map(|p| p.system.label()),
+        "term_months": pol.map(|p| p.term_months),
+        "ruling_institution": pol.map(|p| p.ruling),
+        "political_capital": held,
+        "ruling_bloc": ruling,
+        "discontent": politics.as_ref().map(|p| p.discontent),
+        "leader": politics.as_ref().and_then(|p| p.leader.as_ref()),
+        "government_of_the_day": gotd,
+        "government_of_the_day_name": gotd.as_deref().and_then(|p| gov::party_spec(id, p)).map(|s| s.name),
+        "bar": bar,
+        "groups": groups,
+        "pillars": pillars,
+        "coup_pressure": g.map_or(0.0, |g| g.coup_pressure),
+        "strain": gov::strain(w, id),
+        "upkeep": gov::upkeep(w, id),
+        "government_seats": g.map_or(0.0, |g| g.government_seats()),
+        "months_in_office": g.map_or(0, |g| g.months_in_office),
+        "next_election": next_election,
+        "takeover": politics.as_ref().map(|p| &p.takeover),
+        "actions": actions,
+    });
+    government_view::enrich(w, id, &mut value);
+    value
+}
+
+// ===========================================================================
+// THE RESOURCE BOARD (package W1). Twelve lines, three cards a line, talks in
+// three clicks, and the globe's tint — every number and every sentence the
+// page prints is built HERE from the sim's own reads (resources.rs), and the
+// page composes nothing: it holds no coefficient, no price, no rule, and it
+// never sends a free number. A commodity rung is a multiple of this month's
+// need, a money rung a share of output, and the server turns both into the
+// sim's units. `the_board_reads_the_sim` pins the page's side of that.
+// ===========================================================================
+
+/// The board's unit for a line and the factor that takes the table's ANNUAL
+/// figure to it: tonnes a year become kilotonnes a month, kilotonnes and
+/// billion cubic feet a year become the same a month, and oil is already a
+/// rate (kb/d). One table, read by every conversion below.
+fn board_unit(c: Commodity) -> (&'static str, f64) {
+    match c.unit() {
+        "t" => ("kt/mo", 1.0 / 12_000.0),
+        "kt" => ("kt/mo", 1.0 / 12.0),
+        "bcf" => ("bcf/mo", 1.0 / 12.0),
+        "kb/d" => ("kb/d", 1.0),
+        "kg" => ("kg/mo", 1.0 / 12.0),
+        _ => ("a month", 1.0 / 12.0),
+    }
+}
+
+/// A physical pile is a level, not a monthly flow. Keep its label and
+/// conversion separate so an iron warehouse never claims to hold "kt/mo".
+fn stock_unit(c: Commodity) -> (&'static str, f64) {
+    match c.unit() {
+        "t" => ("kt", 1.0 / 1_000.0),
+        "kt" => ("kt", 1.0),
+        "bcf" => ("bcf", 1.0),
+        "kg" => ("kg", 1.0),
+        "kb/d" => ("kb/d", 1.0),
+        unit => (unit, 1.0),
+    }
+}
+
+/// A monthly quantity in the table's units — a draw, a surplus, a contract
+/// leg — on the board. Oil is a rate and is not multiplied.
+fn on_board(c: Commodity, per_month: f64) -> f64 {
+    if c == Commodity::Oil {
+        per_month
+    } else {
+        per_month * 12.0 * board_unit(c).1
+    }
+}
+
+/// An annual quantity in the table's units — a flow — on the board.
+fn annual_on_board(c: Commodity, annual: f64) -> f64 {
+    annual * board_unit(c).1
+}
+
+/// Forecast flows may be quoted per day, but never divide a stock or an
+/// already-settled cargo quantity by the length of the month. Oil is already
+/// a daily rate in the authored data and is deliberately left alone.
+fn daily_board_unit(c: Commodity) -> &'static str {
+    match c.unit() {
+        "t" | "kt" => "kt/day",
+        "bcf" => "bcf/day",
+        "kg" => "kg/day",
+        "kb/d" => "kb/d",
+        _ => "a day",
+    }
+}
+
+fn daily_on_board(w: &WorldState, c: Commodity, monthly: f64) -> f64 {
+    if c == Commodity::Oil { monthly }
+    else { on_board(c, monthly) / spheres_sim::world::days_in_month(w.year, w.month) as f64 }
+}
+
+fn period_board_unit(w: &WorldState, c: Commodity) -> &'static str {
+    if w.rules.daily_simulation { daily_board_unit(c) } else { board_unit(c).0 }
+}
+
+fn period_on_board(w: &WorldState, c: Commodity, monthly: f64) -> f64 {
+    if w.rules.daily_simulation { daily_on_board(w, c, monthly) } else { on_board(c, monthly) }
+}
+
+fn annual_period_on_board(w: &WorldState, c: Commodity, annual: f64) -> f64 {
+    if c == Commodity::Oil { annual }
+    else { period_on_board(w, c, annual / 12.0) }
+}
+
+/// A quantity as a card prints it: thousands separated, no more digits than
+/// the size warrants.
+fn qty(q: f64) -> String {
+    let a = q.abs();
+    if a > 0.0 && a < 0.000001 {
+        return format!("{}{a:.2e}", if q < 0.0 { "−" } else { "" });
+    }
+    let s = if a >= 100.0 {
+        format!("{a:.0}")
+    } else if a >= 10.0 {
+        format!("{a:.1}")
+    } else if a > 0.0 && a < 0.01 {
+        format!("{a:.6}")
+    } else {
+        format!("{a:.2}")
+    };
+    let s = if s.contains('.') { s.trim_end_matches('0').trim_end_matches('.').to_string() } else { s };
+    let (int, frac) = match s.split_once('.') {
+        Some((i, f)) => (i.to_string(), Some(f.to_string())),
+        None => (s, None),
+    };
+    let digits: Vec<char> = int.chars().collect();
+    let mut out = String::new();
+    if q < 0.0 && a > 0.0 {
+        out.push('−');
+    }
+    for (i, ch) in digits.iter().enumerate() {
+        if i > 0 && (digits.len() - i) % 3 == 0 {
+            out.push(',');
+        }
+        out.push(*ch);
+    }
+    match frac {
+        Some(f) => format!("{out}.{f}"),
+        None => out,
+    }
+}
+
+/// Dollars in billions a year, as the cards print them.
+fn bn(v: f64) -> String {
+    if v.abs() >= 0.05 || v == 0.0 {
+        format!("${v:.1}bn")
+    } else {
+        format!("${:.0}m", v * 1000.0)
+    }
+}
+
+/// "a year", "3 years", "10 years".
+fn years_words(months: u32) -> String {
+    match months {
+        12 => "a year".into(),
+        m => format!("{} years", m / 12),
+    }
+}
+
+/// The card word with its first letter up: "Rare earths".
+fn line_name(c: Commodity) -> String {
+    let mut ch = c.name().chars();
+    match ch.next() {
+        Some(f) => f.to_uppercase().collect::<String>() + ch.as_str(),
+        None => String::new(),
+    }
+}
+
+/// `?com=iron` on a URL.
+fn com_param(url: &str) -> Option<Commodity> {
+    let raw = url.split_once("com=")?.1.split('&').next()?;
+    Commodity::parse(raw)
+}
+
+/// One line of one nation, read once: its flow, this month's need, the
+/// pile, and the state word the row prints — `ok` fed from its own ground,
+/// `supplied` fed by a contract or the open market, `short` when this
+/// month's need is not met but the pile is not empty, `stalled` when the
+/// gate would bind (the only red), `idle` when nothing draws on it, `market`
+/// for oil, `presence` for a line with no 1990 figure.
+struct LineRead {
+    c: Commodity,
+    tracked: bool,
+    /// Annual, the table's units.
+    flow: f64,
+    /// This month's need, the table's units.
+    need: f64,
+    cover: f64,
+    supply: Option<resources::Supply>,
+    status: &'static str,
+    reason: Option<&'static str>,
+}
+
+fn read_line(w: &WorldState, id: NationId, c: Commodity, need: f64) -> LineRead {
+    let tracked = c.tracked();
+    let flow = resources::flow(w, id, c);
+    let cover = resources::cover(w, id, c);
+    let (status, supply, reason) = if !tracked {
+        ("presence", None, None)
+    } else if c == Commodity::Oil {
+        ("market", None, None)
+    } else if need <= 0.0 {
+        ("idle", None, None)
+    } else {
+        let s = resources::supply(w, id, c, need);
+        let reason = if resources::refused_all(w, id, c).is_some() {
+            "every producer refuses"
+        } else if s.any_producer {
+            "the market could not fill it"
+        } else {
+            "nobody produces it"
+        };
+        if s.available < need {
+            if resources::action_stalled(w, id, c) {
+                ("stalled", Some(s), Some(reason))
+            } else {
+                ("short", Some(s), Some(reason))
+            }
+        } else if s.own >= need {
+            ("ok", Some(s), None)
+        } else {
+            ("supplied", Some(s), None)
+        }
+    };
+    LineRead { c, tracked, flow, need, cover, supply, status, reason }
+}
+
+/// Who feeds a supplied line: the first contract delivering it, else the
+/// open holder the market read found.
+fn supplier_of(w: &WorldState, id: NationId, c: Commodity, s: &resources::Supply) -> Option<(NationId, &'static str)> {
+    for k in &w.resources.contracts {
+        let (giver, legs) = if k.to == id {
+            (k.from, &k.give)
+        } else if k.from == id {
+            (k.to, &k.take)
+        } else {
+            continue;
+        };
+        if legs.iter().any(|l| matches!(l, Leg::Commodity { c: lc, .. } if *lc == c)) {
+            return Some((giver, "contract"));
+        }
+    }
+    s.holder.map(|h| (h, "open"))
+}
+
+/// Stable browser shape for the commodity market. The fixed-price resource
+/// model already has a factual quote for every priced line, and oil has its
+/// live world quote. Clearing volume, unmet orders and price movement stay
+/// null until a conservation market has actually settled them; null is an
+/// important distinction from a cleared zero.
+fn market_quote_json(w: &WorldState, c: Commodity) -> serde_json::Value {
+    let daily_ledger = w.resources.market.as_ref().is_some_and(|m| m.period_days.is_some());
+    let reference = resources::market_reference_price(w, c);
+    let current = resources::market_current_price(w, c);
+    let previous = resources::market_previous_price(w, c);
+    let settled = c != Commodity::Oil
+        && w.resources
+            .market
+            .as_ref()
+            .is_some_and(|market| market.last_cleared != i32::MIN);
+    // These are presentation bands only; no simulation decision reads them.
+    // The game formula and price limits remain exclusively in resources.rs.
+    let band = if !(reference.is_finite() && reference > 0.0 && current.is_finite()) {
+        None
+    } else {
+        let ratio = current / reference;
+        Some(if ratio < 0.8 {
+            "cheap"
+        } else if ratio < 1.25 {
+            "normal"
+        } else if ratio < 2.0 {
+            "tight"
+        } else {
+            "critical"
+        })
+    };
+    let trend = if !settled {
+        None
+    } else if current > previous {
+        Some("up")
+    } else if current < previous {
+        Some("down")
+    } else {
+        Some("flat")
+    };
+    let cleared = settled.then(|| round(on_board(c, resources::market_cleared_volume(w, c)), 6));
+    let unmet = settled.then(|| round(on_board(c, resources::market_unmet_orders(w, c)), 6));
+    serde_json::json!({
+        "reference_price": (reference.is_finite() && reference > 0.0).then(|| round(reference, 6)),
+        "current_price": (current.is_finite() && current > 0.0).then(|| round(current, 6)),
+        "previous_price": (previous.is_finite() && previous > 0.0).then(|| round(previous, 6)),
+        "price_unit": if c == Commodity::Oil { "USD/bbl".to_string() } else { "USD/".to_string() + c.unit() },
+        "trend": trend,
+        "band": band,
+        "cleared_volume": cleared,
+        "unmet_orders": unmet,
+        "volume_unit": if daily_ledger { daily_board_unit(c) } else { board_unit(c).0 },
+        "volume_period": if daily_ledger { "day" } else { "month" },
+        "settled": settled,
+        "source": if c == Commodity::Oil { "world_oil_price" } else if settled { "spot_market" } else { "1990_reference" },
+    })
+}
+
+/// Stable browser shape for national stock. resources.rs supplies both the
+/// actual physical pile and its derived months; before the opt-in ledger's
+/// first settlement it explicitly identifies the quantity as a legacy-cover
+/// projection. Oil remains financial and therefore has no warehouse pile.
+fn stock_quantity_json(w: &WorldState, id: NationId, c: Commodity) -> serde_json::Value {
+    let physical = c != Commodity::Oil && w.resources.market.is_some();
+    let (unit, factor) = stock_unit(c);
+    serde_json::json!({
+        "quantity": if c == Commodity::Oil { None } else { Some(round(resources::stock_quantity(w, id, c) * factor, 6)) },
+        "unit": unit,
+        "months_cover": if c == Commodity::Oil { None } else { Some(round(resources::stock_months(w, id, c), 2)) },
+        "days_cover": if c == Commodity::Oil { None } else { Some(round(resources::stock_months(w, id, c) * spheres_sim::world::days_in_month(w.year, w.month) as f64, 1)) },
+        "physical": physical,
+        "projected": !physical && c != Commodity::Oil,
+    })
+}
+
+/// One row of the board. `kit` is what procurement would order this month
+/// (designation, class word); the sentence and the second line are Appendix
+/// B's, verbatim; `prov` is the hover — the provenance letter and the served
+/// source string for every figure on the row.
+fn row_json(
+    w: &WorldState,
+    id: NationId,
+    l: &LineRead,
+    kit: Option<(&'static str, &'static str)>,
+) -> serde_json::Value {
+    let c = l.c;
+    let unit = period_board_unit(w, c);
+    let produce = annual_period_on_board(w, c, l.flow);
+    let monthly_need = on_board(c, l.need);
+    // Banked procurement money is a stock: today's actual recipe can exceed a
+    // plain 1/days share. Read the same atomic draw the arsenal will request.
+    let daily_need = on_board(c, resources::tick_draw(w, id)[c.idx()]);
+    let need = if w.rules.daily_simulation { daily_need } else { monthly_need };
+    let period = if w.rules.daily_simulation { "today" } else { "this month" };
+    let cover_days = l.cover * spheres_sim::world::days_in_month(w.year, w.month) as f64;
+    let h = resources::holdings_of(w, id, c);
+    let t = resources::tables();
+    let kit_name = kit.map(|k| k.0).unwrap_or("procurement");
+    let class = kit.map(|k| k.1).unwrap_or("procurement");
+    let sup = l.supply.as_ref().and_then(|s| supplier_of(w, id, c, s));
+    let sentence = match l.status {
+        "presence" => "presence only, no 1990 figure".to_string(),
+        "market" => format!("{} kb/d — settles at the world price, ${:.0} a barrel", qty(produce), w.oil_price),
+        "idle" => {
+            if produce > 0.0 {
+                format!("you make {} {unit} — nothing in this build draws on it", qty(produce))
+            } else {
+                "nothing in this build draws on it".to_string()
+            }
+        }
+        "stalled" => format!("the {kit_name} line stalled {period}"),
+        "short" => if w.rules.daily_simulation { format!("{} days in hand", cover_days.ceil() as i64) } else { format!("{} months in hand", l.cover.ceil() as i64) },
+        "ok" => format!("you make {} {unit}, lines need {}", qty(produce), qty(need)),
+        _ => {
+            if produce > 0.0 {
+                format!("you make {} {unit} — {class} line needs {}", qty(produce), qty(need))
+            } else {
+                format!("you make none — {class} line needs {} {unit}", qty(need))
+            }
+        }
+    };
+    let second = if !l.tracked {
+        Some("no 1990 figure transcribed — presence only".to_string())
+    } else if h.districts > 0 {
+        Some(format!(
+            "{} district{} · apportioned from the 1990 national figure",
+            h.districts,
+            if h.districts == 1 { "" } else { "s" }
+        ))
+    } else if h.unlocated > 0.0 {
+        Some(format!("{} {unit} unlocated — cannot be taken from you", qty(annual_period_on_board(w, c, h.unlocated))))
+    } else {
+        None
+    };
+    let mut prov: Vec<serde_json::Value> = vec![];
+    let mark = |letter: &str, text: String| serde_json::json!({ "letter": letter, "text": text });
+    if l.tracked {
+        match t.file.national_1990.get(c.key()).and_then(|m| m.get(id.code())) {
+            Some(fig) => prov.push(mark("T", format!("{} — 1990 national production, transcribed", fig.source))),
+            None => prov.push(mark("T", "no 1990 national figure — you make none".to_string())),
+        }
+        if h.districts > 0 {
+            prov.push(mark(
+                "D",
+                format!(
+                    "apportioned to your {} located districts — {}",
+                    h.districts,
+                    t.file.meta.rules.get("share").cloned().unwrap_or_default()
+                ),
+            ));
+        }
+        if h.unlocated > 0.0 {
+            prov.push(mark(
+                "D",
+                t.file.meta.rules.get("unlocated").cloned().unwrap_or_else(|| "unlocated".into()),
+            ));
+        }
+        if l.need > 0.0 {
+            prov.push(mark(
+                "M",
+                format!(
+                    "need: the {kit_name} line's budget {period} at the {class} class's coefficient — a mechanic, one platform per number"
+                ),
+            ));
+            prov.push(mark(
+                "M",
+                "cover: BUFFER_MONTHS — a mechanic, twelve months of need in hand; a line binds only when it reaches zero"
+                    .to_string(),
+            ));
+        }
+        if c == Commodity::Oil {
+            prov.push(mark("T", "the world oil price — the sim's own market, live".to_string()));
+        }
+    } else {
+        prov.push(mark("T", "presence only — no 1990 figure transcribed".to_string()));
+    }
+    let present = resources::have(w).presence.get(id.index()).is_some_and(|m| m & c.bit() != 0);
+    // The hover: what is blocked and why, in plain words.
+    let hover = match l.status {
+        "stalled" => format!(
+            "the {kit_name} line asked for {} {unit} {period} and could not get it — {}",
+            qty(need),
+            l.reason.unwrap_or("")
+        ),
+        "short" => format!(
+            "the {kit_name} line needs {} {unit}; {} — {}",
+            qty(need),
+            if w.rules.daily_simulation { format!("{} days in hand", cover_days.ceil() as i64) } else { format!("{} months in hand", l.cover.ceil() as i64) },
+            l.reason.unwrap_or("")
+        ),
+        "supplied" => format!(
+            "the {kit_name} line needs {} {unit}; fed by {}",
+            qty(need),
+            sup.map(|(n, k)| format!("{} ({})", n.name(), k)).unwrap_or_else(|| "the open market".into())
+        ),
+        "ok" => format!("your own ground feeds the {kit_name} line"),
+        "market" => "oil settles at the world price; nothing is stockpiled".to_string(),
+        "presence" => "no 1990 figure — nothing can draw on it and nothing can be contracted".to_string(),
+        _ => "nothing in this build draws on it".to_string(),
+    };
+    serde_json::json!({
+        "id": c.key(),
+        "name": line_name(c),
+        "unit": unit,
+        "monthly_unit": board_unit(c).0,
+        "daily_unit": daily_board_unit(c),
+        "cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
+        "tracked": l.tracked,
+        "produce_per_month": round(annual_on_board(c, l.flow), 3),
+        "need_per_month": round(monthly_need, 3),
+        "produce_per_day": round(if c == Commodity::Oil { l.flow } else { daily_on_board(w, c, l.flow / 12.0) }, 6),
+        "need_per_day": round(if w.rules.daily_simulation { daily_need } else { daily_on_board(w, c, l.need) }, 6),
+        "produce": round(produce, 6),
+        "need": round(need, 6),
+        // The one big ±: what you make less what your lines want, on the board.
+        "net": round(produce - need, 3),
+        "cover_months": round(l.cover, 2),
+        "cover_days": round(cover_days, 1),
+        "status": l.status,
+        "supplier": sup.map(|(n, _)| n.name()),
+        "supplier_id": sup.map(|(n, _)| format!("{:?}", n)),
+        "supplier_kind": sup.map(|(_, k)| k),
+        "reason": l.reason,
+        "needed_by": if l.need > 0.0 { Some(kit_name) } else { None },
+        "apportioned": h.districts > 0,
+        "districts": h.districts,
+        "unlocated_per_month": round(annual_on_board(c, h.unlocated), 3),
+        "unlocated_per_day": round(if c == Commodity::Oil { h.unlocated } else { daily_on_board(w, c, h.unlocated / 12.0) }, 6),
+        "present": present,
+        "price": if c == Commodity::Oil { Some(w.oil_price) } else { None },
+        // Additive market/stock envelopes. Old clients ignore them; the new
+        // arcade strip treats every member as optional so old saves and a
+        // pre-market server remain readable.
+        "market": market_quote_json(w, c),
+        "stock": stock_quantity_json(w, id, c),
+        "sentence": sentence,
+        "second": second,
+        "hover": hover,
+        // Only rows with a need or a drawn-down cover are expanded; the rest
+        // fold into one line the page prints from `folded`.
+        "fold": matches!(l.status, "idle" | "presence"),
+        "prov": prov,
+    })
+}
+
+/// Browser adapter for the simulation's live strategic raw-material forecast.
+/// All horizon arithmetic stays in `economic_ai::raw_supply_forecast`; this
+/// layer only converts the sim's authored physical units into the stock-level
+/// unit already used by the Resources room and supplies plain-language UI
+/// labels. Oil deliberately has no synthetic warehouse quantities.
+fn strategic_quantity(c: Commodity, value: f64) -> Option<f64> {
+    (c != Commodity::Oil).then(|| round(value * stock_unit(c).1, 9))
+}
+
+fn strategic_status(
+    c: Commodity,
+    line: &spheres_sim::economic_ai::RawSupplyLine,
+    horizon: usize,
+) -> &'static str {
+    if c == Commodity::Oil {
+        "market"
+    } else if line.blocked_now {
+        // Red is reserved for a consumer that cannot be fed now.
+        "stalled"
+    } else if line.demand[horizon] <= 1e-9 {
+        "idle"
+    } else if line.shortage[horizon] <= 1e-9 {
+        "secure"
+    } else if line.shortage[0] > 1e-9 {
+        // A gap inside the next strategic review needs action at every view.
+        "action"
+    } else {
+        "watch"
+    }
+}
+
+fn strategic_action_json(status: &str, days: i32) -> serde_json::Value {
+    let (kind, label, detail) = match status {
+        "market" => (
+            "watch_market",
+            "Watch the oil market",
+            "Oil is a priced flow. Use the market and trade controls below; there is no generic oil warehouse to refill.".to_string(),
+        ),
+        "stalled" => (
+            "unblock_now",
+            "Unblock current work",
+            "Compare TRADE with the blocked consumer's priority before advancing. MINE is the slower structural option.".to_string(),
+        ),
+        "action" => (
+            "secure_run",
+            "Secure the next review",
+            "Cover the 30-day gap with available stock, an executable delivery, a contract, or domestic output.".to_string(),
+        ),
+        "watch" => (
+            "prepare_supply",
+            "Prepare supply",
+            format!("Compare MINE and TRADE before the {days}-day gap reaches the RUN window."),
+        ),
+        "secure" => (
+            "hold_course",
+            "Hold course",
+            format!("The served sources cover this {days}-day plan. Keep the routes and contracts in force."),
+        ),
+        _ => (
+            "none",
+            "No action",
+            "No committed consumer draws this material in the selected window.".to_string(),
+        ),
+    };
+    serde_json::json!({
+        "kind": kind,
+        "label": label,
+        "detail": detail,
+    })
+}
+
+fn strategic_resource_json(
+    w: &WorldState,
+    forecast: &spheres_sim::economic_ai::RawSupplyForecast,
+    line: &spheres_sim::economic_ai::RawSupplyLine,
+) -> serde_json::Value {
+    let c = line.commodity;
+    let (unit, factor) = stock_unit(c);
+    let converted = |value: f64| round(value * factor, 9);
+    let mut drivers = Vec::new();
+    let mut driver = |label: &str, value: f64, suffix: &str| {
+        if c != Commodity::Oil && value > 1e-9 {
+            drivers.push(serde_json::json!({
+                "label": label,
+                "value": converted(value),
+                "unit": format!("{unit}{suffix}"),
+            }));
+        }
+    };
+    driver("Civilian operating use", line.civilian_operating_daily, "/day");
+    driver("Military recurring use", line.military_recurring_monthly, "/month");
+    driver("Equipment production and refit remaining", line.equipment_remaining, "");
+    driver("Committed project work remaining", line.project_remaining, "");
+    driver("Mine construction remaining", line.mine_remaining, "");
+    driver("Materials orders remaining", line.materials_remaining, "");
+
+    let horizons = forecast
+        .horizons_days
+        .iter()
+        .enumerate()
+        .map(|(horizon, days)| {
+            let status = strategic_status(c, line, horizon);
+            let gap = strategic_quantity(c, line.shortage[horizon]);
+            let headline = match status {
+                "market" => format!(
+                    "Priced flow at ${:.0} a barrel — oil is not held in the raw-material warehouse.",
+                    w.oil_price
+                ),
+                "stalled" => format!(
+                    "Blocked now — {}",
+                    line.blocker_reason.as_deref().unwrap_or("a current consumer cannot secure this material.")
+                ),
+                "action" => format!(
+                    "Act now: the next review is short {} {unit}.",
+                    qty(converted(line.shortage[0]))
+                ),
+                "watch" => format!(
+                    "Plan ahead: the {days}-day outlook is short {} {unit}.",
+                    qty(gap.unwrap_or(0.0))
+                ),
+                "secure" => format!("The {days}-day need is covered by secured supply."),
+                _ => format!("No committed use is scheduled inside {days} days."),
+            };
+            serde_json::json!({
+                "days": days,
+                "demand": strategic_quantity(c, line.demand[horizon]),
+                "covered": strategic_quantity(c, line.coverage[horizon]),
+                "gap": gap,
+                "status": status,
+                "headline": headline,
+                "reason": line.reason,
+                "recommended_action": strategic_action_json(status, *days),
+                "sources": {
+                    // Only allocable stock contributes to coverage. Full stock
+                    // and prior outbound claims remain visible separately so
+                    // the player can see why arrived material is spoken for.
+                    "stock": strategic_quantity(c, line.allocable_stock[horizon]),
+                    "warehouse_stock": strategic_quantity(c, line.stock),
+                    "prior_claims": strategic_quantity(c, line.prior_claims[horizon]),
+                    "domestic_output": strategic_quantity(c, line.domestic_coverage[horizon]),
+                    "contracted_inbound": strategic_quantity(c, line.contract_coverage[horizon]),
+                    // Paid inbound is only cargo the sim says is due and
+                    // route-executable inside this window, not arrived stock.
+                    "paid_inbound": strategic_quantity(c, line.pending[horizon]),
+                },
+            })
+        })
+        .collect::<Vec<_>>();
+
+    serde_json::json!({
+        "as_of_day": forecast.as_of_day,
+        "quantity_unit": unit,
+        "storable": c != Commodity::Oil,
+        "storage_note": if c == Commodity::Oil {
+            Some("Oil is a priced national flow. It is neither stored in nor cleared through the generic raw-material warehouse; the price and trade cards below remain authoritative.")
+        } else {
+            None
+        },
+        "raw_status": line.status,
+        "immediate_draw": strategic_quantity(c, line.immediate_draw),
+        "immediate_shortage": strategic_quantity(c, line.immediate_shortage),
+        "blocked_now": line.blocked_now,
+        "blocker_reason": line.blocker_reason,
+        "finite_remaining": strategic_quantity(c, line.finite_remaining),
+        "net_domestic_monthly": strategic_quantity(c, line.net_domestic_monthly),
+        "contracted_in_monthly": strategic_quantity(c, line.contracted_in_monthly),
+        "drivers": drivers,
+        "horizons": horizons,
+    })
+}
+
+fn row_json_with_strategic(
+    w: &WorldState,
+    id: NationId,
+    l: &LineRead,
+    kit: Option<(&'static str, &'static str)>,
+    forecast: &spheres_sim::economic_ai::RawSupplyForecast,
+) -> serde_json::Value {
+    let mut row = row_json(w, id, l, kit);
+    if let Some(line) = forecast.lines.iter().find(|line| line.commodity == l.c) {
+        row["strategic"] = strategic_resource_json(w, forecast, line);
+    }
+    row
+}
+
+fn strategic_summary_json(rows: &[serde_json::Value], as_of_day: i32) -> serde_json::Value {
+    let mut attention = rows
+        .iter()
+        .filter_map(|row| {
+            let window = row["strategic"]["horizons"]
+                .as_array()?
+                .iter()
+                .find(|window| window["days"] == 90)?;
+            let status = window["status"].as_str()?;
+            let rank = match status {
+                "stalled" => 0,
+                "action" => 1,
+                "watch" => 2,
+                _ => return None,
+            };
+            Some((rank, serde_json::json!({
+                "id": row["id"],
+                "name": row["name"],
+                "status": status,
+                "headline": window["headline"],
+                "reason": window["reason"],
+                "recommended_action": window["recommended_action"],
+            })))
+        })
+        .collect::<Vec<_>>();
+    // Canonical commodity order is retained within a severity tier.
+    attention.sort_by_key(|(rank, _)| *rank);
+    let attention_count = attention.len();
+    let primary_alert = attention.first().map(|(_, alert)| alert.clone());
+    let attention = attention
+        .into_iter()
+        .take(3)
+        .map(|(_, alert)| alert)
+        .collect::<Vec<_>>();
+
+    // The mission is deliberately count-based. Quantities from different
+    // commodities cannot be added into a meaningful progress bar. Reuse the
+    // already-served 90-day presentation states so this adapter does not
+    // create a second definition of supply or shortage.
+    let mut active_lines = 0usize;
+    let mut secured_lines = 0usize;
+    let mut blocked_lines = 0usize;
+    let mut first_active_id = None;
+    for row in rows {
+        let Some(window) = row["strategic"]["horizons"]
+            .as_array()
+            .and_then(|windows| windows.iter().find(|window| window["days"] == 90))
+        else {
+            continue;
+        };
+        match window["status"].as_str().unwrap_or("idle") {
+            "secure" => {
+                active_lines += 1;
+                secured_lines += 1;
+                first_active_id.get_or_insert_with(|| row["id"].clone());
+            }
+            "watch" | "action" => {
+                active_lines += 1;
+                first_active_id.get_or_insert_with(|| row["id"].clone());
+            }
+            "stalled" => {
+                active_lines += 1;
+                blocked_lines += 1;
+                first_active_id.get_or_insert_with(|| row["id"].clone());
+            }
+            // Idle materials and market-only oil are exploration choices, not
+            // padding in the mission score.
+            _ => {}
+        }
+    }
+    let mission_state = if active_lines == 0 {
+        "idle"
+    } else if blocked_lines > 0 {
+        "blocked"
+    } else if attention_count > 0 {
+        "at_risk"
+    } else {
+        "secure"
+    };
+    let mission_complete = active_lines > 0 && secured_lines == active_lines;
+    let progress_percent = (active_lines > 0).then(|| {
+        ((secured_lines as f64 / active_lines as f64) * 100.0).round() as usize
+    });
+    let progress_label = if active_lines == 0 {
+        "No active material demand yet.".to_string()
+    } else {
+        format!(
+            "{secured_lines} of {active_lines} active material{} secured",
+            if active_lines == 1 { "" } else { "s" }
+        )
+    };
+    let status_label = match mission_state {
+        "blocked" => "WORK STOPPED",
+        "at_risk" => "NEEDS A DECISION",
+        "secure" => "CURRENTLY SECURE",
+        _ => "AWAITING ORDERS",
+    };
+    let primary_action = if let Some(alert) = primary_alert.as_ref() {
+        let name = alert["name"].as_str().unwrap_or("priority material");
+        let status = alert["status"].as_str().unwrap_or("watch");
+        let (severity, label) = match status {
+            "stalled" => ("blocked_now", format!("Unblock {name} now")),
+            "action" => ("run_gap", format!("Secure {name} now")),
+            _ => ("plan_gap", format!("Plan {name} supply")),
+        };
+        serde_json::json!({
+            "kind": "review_resource",
+            "resource_id": alert["id"],
+            "name": alert["name"],
+            "severity": severity,
+            "label": label,
+            "detail": alert["headline"],
+            // This is navigation guidance only. The executable Mine, Trade,
+            // and Take choices remain owned by the selected-resource endpoint.
+            "recommended_action": alert["recommended_action"],
+        })
+    } else {
+        serde_json::json!({
+            "kind": "return_to_map",
+            "resource_id": serde_json::Value::Null,
+            "name": serde_json::Value::Null,
+            "severity": serde_json::Value::Null,
+            "label": if mission_state == "idle" {
+                "Return to command"
+            } else {
+                "Objective secure — return to command"
+            },
+            "detail": if mission_state == "idle" {
+                "Operating factories and equipment lines create supply requirements here. Set construction funding in Economy."
+            } else {
+                "No supply decision is required today. Keep the campaign moving."
+            },
+            "recommended_action": serde_json::Value::Null,
+        })
+    };
+    let headline = if active_lines == 0 {
+        "No active material demand yet.".to_string()
+    } else if attention_count == 0 {
+        "All active 90-day supply lines are covered.".to_string()
+    } else {
+        format!(
+            "{attention_count} strategic supply line{} need{} attention.",
+            if attention_count == 1 { "" } else { "s" },
+            if attention_count == 1 { "s" } else { "" }
+        )
+    };
+    serde_json::json!({
+        "as_of_day": as_of_day,
+        "default_horizon_days": 90,
+        "attention_count": attention_count,
+        "headline": headline,
+        "mission": {
+            "id": "cover_active_supply",
+            "horizon_days": 90,
+            "title": "Protect the next 90 days",
+            "objective": "Keep operating factories and equipment lines supplied.",
+            "state": mission_state,
+            "status_label": status_label,
+            "active_lines": active_lines,
+            "secured_lines": secured_lines,
+            "attention_lines": attention_count,
+            "blocked_lines": blocked_lines,
+            "progress_percent": progress_percent,
+            "progress_label": progress_label,
+            "complete": mission_complete,
+            "focus_resource_id": primary_alert.as_ref().map(|alert| alert["id"].clone()).or(first_active_id),
+        },
+        "primary_action": primary_action,
+        "dock_label": if attention_count == 0 {
+            "supply forecast ready".to_string()
+        } else {
+            format!("{attention_count} supply alert{}", if attention_count == 1 { "" } else { "s" })
+        },
+        "attention": attention,
+    })
+}
+
+/// A leg as the board prints it: board units, never the table's.
+fn leg_words(w: &WorldState, l: &Leg) -> String {
+    match l {
+        Leg::Commodity { c: Commodity::Oil, per_month } => {
+            format!("{} kb/d of oil at the world price", qty(*per_month))
+        }
+        Leg::Commodity { c, per_month } => {
+            format!("{} {} of {}", qty(period_on_board(w, *c, *per_month)), period_board_unit(w, *c), c.name())
+        }
+        Leg::Money { bn_per_year } => format!("{} a year", bn(*bn_per_year)),
+        Leg::District { id } => {
+            format!("the district of {}", spheres_sim::districts::name_of(id).unwrap_or(id))
+        }
+    }
+}
+
+fn legs_words(w: &WorldState, legs: &[Leg]) -> String {
+    if legs.is_empty() {
+        "nothing".to_string()
+    } else {
+        legs.iter().map(|leg| leg_words(w, leg)).collect::<Vec<_>>().join(", ")
+    }
+}
+
+fn first_commodity(legs: &[Leg]) -> Option<Commodity> {
+    legs.iter().find_map(|l| match l {
+        Leg::Commodity { c, .. } => Some(*c),
+        _ => None,
+    })
+}
+
+/// One of the player's contracts, as the board's line under the rows.
+fn contract_json(w: &WorldState, me: NationId, k: &resources::Contract) -> serde_json::Value {
+    let other = k.other(me);
+    let (get, give) = if k.to == me { (&k.give, &k.take) } else { (&k.take, &k.give) };
+    let goods = |legs: &[Leg]| legs.iter().any(|l| !matches!(l, Leg::Money { .. }));
+    let direction = if goods(get) { "in" } else { "out" };
+    let com = first_commodity(get).or_else(|| first_commodity(give));
+    let cancel_pc = spheres_sim::price_of(w, &Command::CancelDeal { nation: me, contract: k.id }).unwrap_or(0.0);
+    let days_left = k.days_left.unwrap_or_else(|| spheres_sim::clock::days_for_months(w, k.months_left));
+    serde_json::json!({
+        "id": k.id,
+        "with": other.name(),
+        "with_id": format!("{:?}", other),
+        "direction": direction,
+        "com": com.map(|c| c.key()),
+        "legs": format!("{} for {}", legs_words(w, get), legs_words(w, give)),
+        "line": format!(
+            "{} {} {} · {}",
+            if direction == "in" { "+" } else { "−" },
+            legs_words(w, get),
+            if direction == "in" { format!("from {}", other.name()) } else { format!("to {}", other.name()) },
+            if w.rules.daily_simulation { format!("{days_left} days left") } else { format!("{} months left", k.months_left) }
+        ),
+        "months_left": k.months_left,
+        "months_total": k.months_total,
+        "days_left": days_left,
+        "cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
+        "depth": round(k.depth, 3),
+        "cancel_pc": cancel_pc,
+        "cancel_note": format!(
+            "they will remember for {}",
+            match resources::GRIEVANCE_MONTHS / 12 { 1 => "a year".to_string(), 3 => "three years".to_string(), y => format!("{y} years") }
+        ),
+    })
+}
+
+/// A standing AI offer to the player (S3 writes them; the page handles
+/// absence).
+fn offer_json(w: &WorldState, me: NationId, o: &resources::Offer, now: i32) -> serde_json::Value {
+    let accept_pc = spheres_sim::price_of(w, &Command::AcceptDeal { nation: me, offer: o.id }).unwrap_or(0.0);
+    serde_json::json!({
+        "id": o.id,
+        "from": o.from.name(),
+        "from_id": format!("{:?}", o.from),
+        "legs": format!("{} asks {} for {}, {} months", o.from.name(), legs_words(w, &o.take), legs_words(w, &o.give), o.months),
+        "expires_in": (o.expires - now).max(0),
+        "expires_in_days": (spheres_sim::clock::date_day(1990 + o.expires.div_euclid(12), o.expires.rem_euclid(12) as u32 + 1, 1) - spheres_sim::clock::absolute_day(w)).max(0),
+        "accept_pc": accept_pc,
+    })
+}
+
+/// Unit-safe roll-up for the strip: counts only. Commodity quantities never
+/// get added across unlike units.
+fn market_summary_json(rows: &[serde_json::Value]) -> serde_json::Value {
+    let quoted = rows
+        .iter()
+        .filter(|row| row["market"]["current_price"].is_number())
+        .count();
+    let settled = rows.iter().filter(|row| row["market"]["settled"] == true).count();
+    let tight = rows
+        .iter()
+        .filter(|row| matches!(row["market"]["band"].as_str(), Some("tight" | "critical")))
+        .count();
+    let critical = rows.iter().filter(|row| row["market"]["band"] == "critical").count();
+    let unmet = rows
+        .iter()
+        .filter(|row| row["market"]["unmet_orders"].as_f64().is_some_and(|v| v > 0.0))
+        .count();
+    serde_json::json!({
+        "quoted": quoted,
+        "settled": settled,
+        "tight": tight,
+        "critical": critical,
+        "unmet_lines": unmet,
+    })
+}
+
+/// The player's board on every state payload.
+fn resources_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let draw = resources::draw(w, me);
+    let kit = resources::needed_by(w, me);
+    // The command room is live. NationPlan keeps the last AI review for audit
+    // history, but the player sees today's ledgers and executable routes.
+    let strategic = spheres_sim::economic_ai::raw_supply_forecast(w, me);
+    let now = resources::month_abs(w);
+    let mut rows = vec![];
+    let mut folded = 0;
+    let mut starved = 0;
+    for c in ALL {
+        let l = read_line(w, me, c, draw[c.idx()]);
+        if strategic
+            .lines
+            .iter()
+            .find(|line| line.commodity == c)
+            .is_some_and(|line| line.blocked_now)
+        {
+            starved += 1;
+        }
+        if matches!(l.status, "idle" | "presence") {
+            folded += 1;
+        }
+        rows.push(row_json_with_strategic(w, me, &l, kit, &strategic));
+    }
+    let contracts: Vec<serde_json::Value> = w
+        .resources
+        .contracts
+        .iter()
+        .filter(|k| k.from == me || k.to == me)
+        .map(|k| contract_json(w, me, k))
+        .collect();
+    let offers: Vec<serde_json::Value> =
+        w.resources.offers.iter().filter(|o| o.to == me).map(|o| offer_json(w, me, o, now)).collect();
+    let refused: Vec<serde_json::Value> = ALL
+        .iter()
+        .filter_map(|c| {
+            let asked = resources::refusals_of(w, me, *c);
+            if asked == 0 {
+                return None;
+            }
+            let all = resources::refused_all(w, me, *c);
+            let target = resources::take_target(w, me, *c);
+            Some(serde_json::json!({
+                "id": c.key(),
+                "asked": asked,
+                "refused": all.map(|(r, _)| r).unwrap_or(asked),
+                "sellers": all.map(|(_, s)| s),
+                "refused_all": all.is_some(),
+                "holder": target.as_ref().map(|(t, _, _)| t.name()),
+                "holder_id": target.as_ref().map(|(t, _, _)| format!("{:?}", t)),
+                "district": target.as_ref().map(|(_, d, _)| d.clone()),
+                "district_name": target.as_ref().and_then(|(_, d, _)| spheres_sim::districts::name_of(d)),
+            }))
+        })
+        .collect();
+    let market_summary = market_summary_json(&rows);
+    let strategic_summary = strategic_summary_json(&rows, strategic.as_of_day);
+    serde_json::json!({
+        "rows": rows,
+        "cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
+        "market_summary": market_summary,
+        "strategic_summary": strategic_summary,
+        "folded": folded,
+        "contracts": contracts,
+        "offers": offers,
+        "refused": refused,
+        "starved": starved,
+        "talks_pc": spheres_sim::price_of(w, &Command::ProposeDeal { from: me, to: me, give: vec![], take: vec![], months: 36 }),
+    })
+}
+
+/// The quantity a one-leg ask is sized at: this month's need, or — when
+/// nothing draws on the line — a typical mine's output (REFERENCE_MINE, D),
+/// so the card can still ask the world a price. The table's monthly units.
+fn ask_basis(w: &WorldState, me: NationId, c: Commodity) -> (f64, &'static str) {
+    let need = resources::draw(w, me)[c.idx()];
+    if need > 0.0 {
+        (need, "need")
+    } else {
+        // Oil's figure is already a rate (kb/d); every other line's is a year.
+        let a = resources::reference_mine(c).unwrap_or(0.0);
+        (if c == Commodity::Oil { a } else { a / 12.0 }, "a typical mine")
+    }
+}
+
+/// "Chile's", "United States'".
+fn possessive(name: &str) -> String {
+    if name.ends_with('s') {
+        format!("{name}'")
+    } else {
+        format!("{name}'s")
+    }
+}
+
+/// One seller's answer to a one-leg ask, from `evaluate` — the same function
+/// `ProposeDeal` reads through, so the rail cannot disagree with the queue.
+struct SellerRead {
+    id: NationId,
+    relation: f64,
+    word: &'static str,
+    ask: f64,
+    because: String,
+    surplus: f64,
+}
+
+fn sellers_of(w: &WorldState, me: NationId, c: Commodity, q: f64) -> Vec<SellerRead> {
+    let mut out = vec![];
+    for s in resources::producers(w, c) {
+        if s == me {
+            continue;
+        }
+        let surplus = resources::surplus(w, s, c);
+        if surplus <= 0.0 {
+            continue;
+        }
+        let give = [Leg::Money { bn_per_year: 0.0 }];
+        let take = [Leg::Commodity { c, per_month: q }];
+        let (word, ask, because) = match resources::evaluate(w, me, s, &give, &take, 36) {
+            Verdict::Accept => ("willing", 0.0, "They will accept.".to_string()),
+            Verdict::Counter { money_bn_per_year, .. } => {
+                ("counter", money_bn_per_year, format!("They will counter: {} a year.", bn(money_bn_per_year)))
+            }
+            Verdict::Refuse(spheres_sim::resources::Reason::NotForThatPrice { bn_per_year }) => {
+                ("priced_out", bn_per_year, spheres_sim::resources::Reason::NotForThatPrice { bn_per_year }.sentence())
+            }
+            Verdict::Refuse(r) => ("refuses", 0.0, r.sentence()),
+        };
+        out.push(SellerRead { id: s, relation: w.relation(me, s), word, ask, because, surplus });
+    }
+    out
+}
+
+fn seller_json(w: &WorldState, c: Commodity, s: &SellerRead) -> serde_json::Value {
+    serde_json::json!({
+        "id": format!("{:?}", s.id),
+        "name": s.id.name(),
+        "relation": round(s.relation, 1),
+        "word": s.word,
+        "ask": round(s.ask, 3),
+        "because": s.because,
+        "surplus": round(period_on_board(w, c, s.surplus), 6),
+        "surplus_per_month": round(on_board(c, s.surplus), 3),
+        "surplus_per_day": round(daily_on_board(w, c, s.surplus), 6),
+        "unit": period_board_unit(w, c),
+        "at_war": w.at_war(s.id),
+    })
+}
+
+/// The bar sentence on a quarrel with `t`, if any: a pact, deterrence, or a
+/// quarrel already open. Appendix B's three.
+fn quarrel_bar(w: &WorldState, me: NationId, t: NationId) -> Option<String> {
+    if w.pact_partners(me).contains(&t) {
+        return Some(format!("A pact binds you to {}", t.name()));
+    }
+    let (mine, theirs) = (w.nation(me), w.nation(t));
+    if theirs.nuclear && !mine.nuclear {
+        return Some(format!("Deterrence holds — {} is nuclear", t.name()));
+    }
+    if w.conflicts.iter().any(|k| k.involves(me) && k.involves(t) && k.side_of(me) != k.side_of(t)) {
+        return Some(format!("you are already in a quarrel with {}", t.name()));
+    }
+    None
+}
+
+/// `GET /api/stock?com=`: the selected row and its three cards.
+fn stock_cards_json(w: &WorldState, me: NationId, c: Commodity) -> serde_json::Value {
+    let draw = resources::draw(w, me);
+    let kit = resources::needed_by(w, me);
+    let l = read_line(w, me, c, draw[c.idx()]);
+    let strategic = spheres_sim::economic_ai::raw_supply_forecast(w, me);
+    let equipment_remaining = strategic.lines.iter().find(|line|line.commodity==c).map_or(0.0,|line|line.equipment_remaining);
+    let row = row_json_with_strategic(w, me, &l, kit, &strategic);
+    let unit = period_board_unit(w, c);
+    let held = w.nation(me).political_capital;
+    let gdp = w.nation(me).gdp.max(1e-9);
+
+    // MINE / DRILL — every target is a mapped deposit under current control.
+    // The presence rank scales the sourced median mine; it never masquerades
+    // as district tonnage. The page chooses a target, while the sim rechecks
+    // ownership, contest, price and duplicate state at the click.
+    let mut mine_options = w
+        .districts
+        .iter()
+        .filter(|&(_, &owner)| owner == me)
+        .filter(|(district, _)| resources::quality_of(district, c) > 0)
+        .map(|(district, _)| {
+            let project = resources::mine_project_at(w, district, c);
+            let developed = resources::mine_at(w, district, c);
+            let refusal = resources::mine_refusal(w, me, district, c);
+            let quality = resources::quality_of(district, c);
+            let eligible = refusal.is_none();
+            let rank = if eligible { 0 } else if project.is_some() { 1 } else if developed.is_some() { 2 } else { 3 };
+            (
+                rank,
+                quality,
+                district.clone(),
+                serde_json::json!({
+                    "district": district,
+                    "district_name": spheres_sim::districts::name_of(district).unwrap_or(district),
+                    "quality": resources::quality_word(quality),
+                    "quality_rank": quality,
+                    "eligible": eligible,
+                    "reason": refusal,
+                    "cost_bn": resources::mine_cost_bn(w, district, c),
+                    "funding_kind": if spheres_sim::clock::is_daily(w) { "daily_construction_budget" } else { "upfront_capital" },
+                    "finance": w.production.industry.mines.get(&spheres_sim::industry::mine_key(district,c)).map(|f|serde_json::json!({
+                        "spent_bn":f.spent_bn,"reason":f.reason,"progress_days":f.progress_days,"total_days":f.total_days,
+                        "department":"Construction budget","available_bn":programs::construction_available_bn(w,me)})),
+                    "output": resources::mine_output(district, c).map(|v| round(annual_period_on_board(w, c, v), 6)),
+                    "active": project.is_some(),
+                    "online": developed.is_some(),
+                    "months_remaining": project.map(|p| p.months_left),
+                    "months_total": project.map_or(resources::MINE_BUILD_MONTHS, |p| p.months_total),
+                    "days_remaining": project.map(|p| p.days_left.unwrap_or_else(|| spheres_sim::clock::days_for_months(w, p.months_left))),
+                    "build_days": spheres_sim::clock::days_for_months(w, resources::MINE_BUILD_MONTHS),
+                }),
+            )
+        })
+        .collect::<Vec<_>>();
+    mine_options.sort_by(|a, b| a.0.cmp(&b.0).then_with(|| b.1.cmp(&a.1)).then_with(|| a.2.cmp(&b.2)));
+    let mine_blocked = mine_options
+        .is_empty()
+        .then(|| format!("No mapped {} deposit is under your control.", c.name()));
+    let typical = resources::reference_mine(c).map(|a| annual_period_on_board(w, c, a));
+    let mine = serde_json::json!({
+        "pc": if spheres_sim::clock::is_daily(w) {0.0} else {resources::MINE_PC_COST},
+        "affordable": spheres_sim::clock::is_daily(w) || held >= resources::MINE_PC_COST,
+        "shortfall": if spheres_sim::clock::is_daily(w) {0.0} else {(resources::MINE_PC_COST - held).max(0.0)},
+        "verb": if matches!(c, Commodity::Oil | Commodity::Gas) { "DRILL" } else { "MINE" },
+        "blurb": "Develop a mapped deposit on ground you control.",
+        "plus": typical.map(|t| format!("+{} {unit} — a typical {} mine", qty(t), c.name()))
+            .unwrap_or_else(|| format!("— no located {} in the 1990 table to size a mine by", c.name())),
+        "minus": format!("− one year to build · investment stays with the province if control changes"),
+        "typical": typical.map(|t| round(t, 3)),
+        "options": mine_options.into_iter().map(|(_, _, _, value)| value).collect::<Vec<_>>(),
+        "blocked": mine_blocked,
+    });
+
+    // TRADE — the sellers, each answered by `evaluate`.
+    let trade = if !l.tracked {
+        serde_json::Value::Null
+    } else {
+        let (q, basis) = ask_basis(w, me, c);
+        let sellers = sellers_of(w, me, c, q);
+        let willing = sellers.iter().filter(|s| matches!(s.word, "willing" | "counter")).count();
+        let refusers = sellers.iter().filter(|s| s.word == "refuses").count();
+        let priced_out = sellers.iter().filter(|s| s.word == "priced_out").count();
+        let best = sellers
+            .iter()
+            .filter(|s| matches!(s.word, "willing" | "counter"))
+            .min_by(|a, b| a.ask.partial_cmp(&b.ask).unwrap_or(std::cmp::Ordering::Equal).then(a.id.cmp(&b.id)));
+        let pc = spheres_sim::price_of(w, &Command::ProposeDeal { from: me, to: me, give: vec![], take: vec![], months: 36 })
+            .unwrap_or(3.0);
+        let plus = if l.need > 0.0 {
+            let kit_name = kit.map(|k| k.0).unwrap_or("procurement");
+            let stalling = if matches!(l.status, "short" | "stalled") {
+                format!(" (stalling in {} months)", l.cover.ceil() as i64)
+            } else {
+                String::new()
+            };
+            format!("+{} {unit} for 36 months — feeds the {kit_name} line{stalling}", qty(period_on_board(w, c, q)))
+        } else if equipment_remaining > 1e-9 {
+            format!("+{} {unit} for 36 months — compare this continuing supply with the finite equipment schedule before committing", qty(period_on_board(w, c, q)))
+        } else {
+            format!("+{} {unit} for 36 months — a typical mine's output; nothing needs it {}", qty(period_on_board(w, c, q)), if w.rules.daily_simulation { "today" } else { "this month" })
+        };
+        let minus = match best {
+            Some(s) if s.ask > 0.0 => {
+                format!("−{} a year at {} ask ({:.2}% of output)", bn(s.ask), possessive(s.id.name()), s.ask / gdp * 100.0)
+            }
+            Some(s) => format!("−nothing: {} would take the terms as they stand", s.id.name()),
+            None => "nobody is asking a price".to_string(),
+        };
+        serde_json::json!({
+            "pc": pc,
+            "affordable": held >= pc,
+            "shortfall": (pc - held).max(0.0),
+            "blurb": if c == Commodity::Oil {
+                format!("Oil is money here — it settles at the world price, ${:.0} a barrel; bundle it to sweeten a deal.", w.oil_price)
+            } else {
+                format!("Buy {} from a nation with a surplus.", c.name())
+            },
+            "plus": plus,
+            "minus": minus,
+            "why": format!(
+                "{} nations hold a surplus · {} would sell · {} refuse you · {} priced out",
+                sellers.len(), willing, refusers, priced_out
+            ),
+            "ask_q": round(period_on_board(w, c, q), 6),
+            "ask_basis": basis,
+            "best_seller": best.map(|s| s.id.name()),
+            "best_seller_id": best.map(|s| format!("{:?}", s.id)),
+            "best_ask": best.map(|s| round(s.ask, 3)),
+            "sellers": sellers.iter().map(|s| seller_json(w, c, s)).collect::<Vec<_>>(),
+            "blocked": serde_json::Value::Null,
+        })
+    };
+
+    // TAKE — greyed until the trade route has closed.
+    let target = resources::take_target(w, me, c);
+    let refused_all = resources::refused_all(w, me, c);
+    let asked = resources::refusals_of(w, me, c);
+    let take = match target {
+        None => serde_json::json!({
+            "open": false,
+            "blurb": format!("nobody in reach holds {}", c.name()),
+            "blocked": format!("nobody in reach holds {}", c.name()),
+            "why": "you have not tried to buy — the world will notice",
+        }),
+        Some((t, d, q)) => {
+            let dname = spheres_sim::districts::name_of(&d).unwrap_or(d.as_str());
+            let open_pc = spheres_sim::price_of(
+                w,
+                &Command::OpenConflict { opener: me, target: t, theatre: spheres_sim::war::theatre_between(w, me, t) },
+            )
+            .unwrap_or(4.0);
+            let war_pc = spheres_sim::price_of(w, &Command::DeclareWar { attacker: me, defender: t }).unwrap_or(30.0);
+            let interveners = w.pact_partners(t).len();
+            let open = refused_all.is_some();
+            serde_json::json!({
+                "pc": open_pc,
+                "war_pc": war_pc,
+                "affordable": held >= open_pc,
+                "nation": t.name(),
+                "nation_id": format!("{:?}", t),
+                "district": d,
+                "district_name": dname,
+                "quality": resources::quality_word(q),
+                "interveners": interveners,
+                "open": open,
+                "blurb": format!("{} ({}) holds it.", dname, t.name()),
+                "plus": format!(
+                    "+ the {} of {} — {} best-sourced district ({} presence)",
+                    c.name(), dname, possessive(t.name()), resources::quality_word(q)
+                ),
+                "minus": format!(
+                    "−{:.0} PC to open · {:.0} PC to declare war · {} of their friends would intervene",
+                    open_pc, war_pc, interveners
+                ),
+                "why": if open {
+                    format!("Nobody will sell — {} asked. {} has it.", asked.max(refused_all.map_or(0, |(_, s)| s)), dname)
+                } else {
+                    "you have not tried to buy — the world will notice".to_string()
+                },
+                "blocked": quarrel_bar(w, me, t),
+            })
+        }
+    };
+
+    // The advisor line, verbatim.
+    let best_seller = trade.get("best_seller").and_then(|v| v.as_str()).map(str::to_string);
+    let advisor = if equipment_remaining > 1e-9 {
+        let (stock_label,factor)=stock_unit(c);
+        format!("Custom equipment has {} {stock_label} of {} work remaining. Compare its funded schedule with domestic output and incoming deliveries in the supply outlook before ordering more.",qty(equipment_remaining*factor),c.name())
+    } else if l.need <= 0.0 {
+        format!("Nothing needs {} {}.", c.name(), if w.rules.daily_simulation { "today" } else { "this month" })
+    } else if let Some(s) = best_seller {
+        if w.rules.daily_simulation {
+            format!("Try buying from {s}. If agreed, dispatch is daily; stock arrives after its route is completed.")
+        } else { format!("Fastest is to buy — next month if {s} agrees.") }
+    } else if let Some(t) = take.get("nation").and_then(|v| v.as_str()) {
+        format!("Nobody will sell; the only {} in reach is {}.", c.name(), possessive(t))
+    } else {
+        format!("Nobody will sell; nobody in reach holds {}.", c.name())
+    };
+
+    serde_json::json!({
+        "com": c.key(),
+        "name": line_name(c),
+        "unit": unit,
+        "row": row,
+        "mine": mine,
+        "trade": trade,
+        "take": take,
+        "advisor": advisor,
+    })
+}
+
+/// `GET /api/stock?nation=`: the dossier's twelve words for any nation, and
+/// — when a player is seated — whether it would sell to them and why.
+fn stock_nation_json(w: &WorldState, me: Option<NationId>, other: NationId) -> serde_json::Value {
+    let draw = resources::draw(w, other);
+    let kit = resources::needed_by(w, other);
+    let rows: Vec<serde_json::Value> = ALL
+        .iter()
+        .map(|c| {
+            let c = *c;
+            let l = read_line(w, other, c, draw[c.idx()]);
+            let surplus = resources::surplus(w, other, c);
+            let status = if l.tracked && c != Commodity::Oil && surplus > 0.0 { "seller" } else { l.status };
+            let unit = period_board_unit(w, c);
+            let to_you = match me {
+                Some(me) if me != other && l.tracked && surplus > 0.0 => {
+                    let (q, _) = ask_basis(w, me, c);
+                    let give = [Leg::Money { bn_per_year: 0.0 }];
+                    let take = [Leg::Commodity { c, per_month: q }];
+                    let (word, because) = match resources::evaluate(w, me, other, &give, &take, 36) {
+                        Verdict::Accept => ("willing", "would take the terms as they stand".to_string()),
+                        Verdict::Counter { money_bn_per_year, .. } => {
+                            ("counter", format!("would want {} a year", bn(money_bn_per_year)))
+                        }
+                        Verdict::Refuse(r) => ("refuses", r.sentence()),
+                    };
+                    Some((word, because))
+                }
+                _ => None,
+            };
+            serde_json::json!({
+                "id": c.key(),
+                "name": line_name(c),
+                "status": status,
+                "surplus": round(period_on_board(w, c, surplus.max(0.0)), 6),
+                "produce_per_month": round(annual_on_board(c, l.flow), 3),
+                "produce_per_day": round(if c == Commodity::Oil { l.flow } else { daily_on_board(w, c, l.flow / 12.0) }, 6),
+                "produce": round(annual_period_on_board(w, c, l.flow), 6),
+                "cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
+                "unit": unit,
+                "needed_by": if l.need > 0.0 { kit.map(|k| k.0) } else { None },
+                "to_you": to_you.as_ref().map(|t| t.0),
+                "because": to_you.as_ref().map(|t| t.1.clone()),
+            })
+        })
+        .collect();
+    let contracts: Vec<serde_json::Value> = match me {
+        Some(me) if me != other => w
+            .resources
+            .contracts
+            .iter()
+            .filter(|k| (k.from == me && k.to == other) || (k.from == other && k.to == me))
+            .map(|k| contract_json(w, me, k))
+            .collect(),
+        _ => vec![],
+    };
+    serde_json::json!({
+        "nation": format!("{:?}", other),
+        "nation_name": other.name(),
+        "rows": rows,
+        "contracts": contracts,
+        "talks_pc": me.and_then(|me| spheres_sim::price_of(
+            w, &Command::ProposeDeal { from: me, to: other, give: vec![], take: vec![], months: 36 })),
+    })
+}
+
+/// A shipment audit is the simulation's answer to one promise or one actual
+/// spot fill. This adapter does not infer demand between a buyer and seller:
+/// spot `requested` is the quantity that really cleared, while a contract's
+/// requested quantity is the leg the contract really promised.
+fn shipment_lane_json(
+    settled_abs: i32,
+    a: &resources::ShipmentAudit,
+    allow_open_contract: bool,
+) -> serde_json::Value {
+    let (source, source_rank) = match &a.source {
+        resources::ShipmentSource::Contract => ("contract", 0u8),
+        resources::ShipmentSource::Spot => ("spot", 1u8),
+    };
+    let (state, reason_code, reason) = match &a.status {
+        resources::ShipmentStatus::Delivered => (
+            "moving",
+            "delivered",
+            "Delivered in full.".to_string(),
+        ),
+        resources::ShipmentStatus::SupplyShort => (
+            "constrained",
+            "supply_short",
+            format!(
+                "{} could not load the full {} shipment.",
+                a.seller.name(),
+                a.commodity.name()
+            ),
+        ),
+        resources::ShipmentStatus::Sanctioned => (
+            "blocked",
+            "sanctioned",
+            a.cause.map_or_else(
+                || "Sanctions closed this lane.".to_string(),
+                |id| format!("{} closed this lane with sanctions.", id.name()),
+            ),
+        ),
+        resources::ShipmentStatus::WarClosed => (
+            "blocked",
+            "war_closed",
+            format!(
+                "War between {} and {} closed this lane.",
+                a.seller.name(),
+                a.buyer.name()
+            ),
+        ),
+        resources::ShipmentStatus::InTransit => (
+            "moving", "in_transit", "Loaded and in transit. It enters the buyer's stockpile on arrival.".to_string(),
+        ),
+        resources::ShipmentStatus::CapacityLimited => (
+            "constrained", "capacity_limited", "The corridor could not carry the full load. Undispatched goods remain with the seller.".to_string(),
+        ),
+        resources::ShipmentStatus::NoRoute => (
+            "blocked", "no_route", "No open route under the buyer's routing policy. No goods or payment moved.".to_string(),
+        ),
+    };
+    let reason = a.route.as_ref().and_then(|r| r.dispatch_note.as_ref())
+        .map_or_else(|| reason.clone(), |note| format!("{reason} {note}"));
+    let (year, month) = absolute_month(settled_abs).unwrap_or((1990, 1));
+    let lane_id = match a.contract {
+        Some(id) => format!(
+            "contract:{id}:{}:{:?}:{:?}",
+            a.commodity.key(),
+            a.seller,
+            a.buyer
+        ),
+        None => format!(
+            "spot:{settled_abs}:{}:{:?}:{:?}",
+            a.commodity.key(),
+            a.seller,
+            a.buyer
+        ),
+    };
+    let requested = a.requested.max(0.0) * stock_unit(a.commodity).1;
+    let delivered = a.delivered.max(0.0) * stock_unit(a.commodity).1;
+    let dispatched = a.dispatched.map(|q| q.max(0.0) * stock_unit(a.commodity).1);
+    let unshipped = (requested - dispatched.unwrap_or(delivered)).max(0.0);
+    let service_ratio = if requested > 0.0 {
+        (dispatched.unwrap_or(delivered) / requested).clamp(0.0, 1.0)
+    } else {
+        1.0
+    };
+    let mut actions = vec![serde_json::json!({
+        "id": "focus",
+        "label": "FOCUS ROUTE",
+    })];
+    if allow_open_contract {
+        let id = a.contract.expect("only contract audits can open a contract");
+        actions.push(serde_json::json!({
+            "id": "open_contract",
+            "label": "OPEN CONTRACT",
+            "contract_id": id,
+        }));
+    }
+    serde_json::json!({
+        "id": lane_id,
+        "month": month_name(month, year),
+        "mode": a.route.as_ref().map_or("abstract", |route| route.mode.as_str()),
+        "route": a.route,
+        "source": source,
+        // Retained as a private sort hint only long enough to build the value;
+        // remove it below so no UI can accidentally turn it into a rule.
+        "_source_rank": source_rank,
+        "contract_id": a.contract,
+        "commodity": a.commodity.key(),
+        "commodity_name": line_name(a.commodity),
+        "from": format!("{:?}", a.seller),
+        "from_name": a.seller.name(),
+        "to": format!("{:?}", a.buyer),
+        "to_name": a.buyer.name(),
+        // Friendly aliases keep the manifest readable without teaching the
+        // page that `from` always means seller in some future aid movement.
+        "seller": format!("{:?}", a.seller),
+        "seller_name": a.seller.name(),
+        "buyer": format!("{:?}", a.buyer),
+        "buyer_name": a.buyer.name(),
+        "requested": round(requested, 3),
+        "delivered": round(delivered, 3),
+        "dispatched": dispatched.map(|q| round(q, 3)),
+        "unshipped": round(unshipped, 3),
+        "service_ratio": round(service_ratio, 4),
+        "unit": stock_unit(a.commodity).0,
+        "unit_price": a.unit_price.map(|v| round(v, 6)),
+        "cost_bn": a.cost_bn.map(|v| round(v, 6)),
+        "state": state,
+        "reason_code": reason_code,
+        "reason": reason,
+        "months_left": a.months_left,
+        "actions": actions,
+    })
+}
+
+/// Cargo is a saved physical consignment, not another promise or a repeated
+/// charge. The last arrival and outstanding pipeline are distinct from this
+/// month's shipment audit, so a late delivery never appears as newly bought.
+fn cargo_json(cargo: &logistics::Cargo, arrived_month: Option<i32>) -> serde_json::Value {
+    serde_json::json!({
+        "id": format!("cargo:{}", cargo.id),
+        "state": if arrived_month.is_some() { "arrived" } else if cargo.hold_reason.is_some() { "held" } else { "in_transit" },
+        "from": format!("{:?}", cargo.seller),
+        "from_name": cargo.seller.name(),
+        "to": format!("{:?}", cargo.buyer),
+        "to_name": cargo.buyer.name(),
+        "commodity": cargo.commodity.key(),
+        "commodity_name": line_name(cargo.commodity),
+        "quantity": round(cargo.quantity * stock_unit(cargo.commodity).1, 3),
+        "unit": stock_unit(cargo.commodity).0,
+        "source": cargo.source,
+        "contract_id": cargo.contract,
+        "route": cargo.route,
+        "dispatched_month": settled_month_json(cargo.dispatched_month),
+        "due_month": settled_month_json(cargo.due_month),
+        "dispatched_day": cargo.dispatched_day.map(settled_day_json),
+        "due_day": cargo.due_day.map(settled_day_json),
+        "arrived_month": arrived_month.map(settled_month_json).unwrap_or(serde_json::Value::Null),
+        "hold_reason": cargo.hold_reason,
+    })
+}
+
+fn logistics_policy_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    serde_json::json!({
+        "selected": logistics::policy_for(w, me),
+        "options": [
+            { "id": "fastest", "label": "Fastest open route", "icon": "↗", "description": "Use land and sea corridors to reach your stockpile sooner." },
+            { "id": "land_only", "label": "Keep it on land", "icon": "▰", "description": "Use connected land corridors only. Overseas suppliers may become unreachable." },
+            { "id": "avoid_chokepoints", "label": "Go the long way", "icon": "↝", "description": "Avoid named sea chokepoints where an open alternative exists." },
+        ],
+        "note": "Applies to your next incoming dispatch. Cargo already loaded keeps its booked route.",
+    })
+}
+
+/// Convert the simulation's January-1990-relative month index back to a
+/// calendar label without consulting today's world date. The audit ledger is
+/// the latest completed settlement and may legitimately trail the daily clock.
+fn absolute_month(abs: i32) -> Option<(i32, u32)> {
+    if abs == i32::MIN {
+        None
+    } else {
+        Some((1990 + abs.div_euclid(12), abs.rem_euclid(12) as u32 + 1))
+    }
+}
+
+fn settled_month_json(abs: i32) -> serde_json::Value {
+    match absolute_month(abs) {
+        Some((year, month)) => serde_json::json!({
+            "year": year,
+            "month": month,
+            "label": month_name(month, year),
+        }),
+        None => serde_json::Value::Null,
+    }
+}
+
+fn settled_day_json(abs: i32) -> serde_json::Value {
+    let (year, month, day) = spheres_sim::clock::date_from_day(abs);
+    serde_json::json!({ "year": year, "month": month, "day": day,
+        "absolute_day": abs, "label": format!("{} {}", day, month_name(month, year)) })
+}
+
+fn latest_settlement_json(w: &WorldState) -> serde_json::Value {
+    w.resources.market.as_ref().map_or(serde_json::Value::Null, |m| {
+        if w.rules.daily_simulation { m.last_cleared_day.map(settled_day_json).unwrap_or(serde_json::Value::Null) }
+        else { settled_month_json(m.last_cleared) }
+    })
+}
+
+/// The latest shipment records, sorted independently of insertion order so a
+/// save/reload or a refactor of the market loops cannot reorder the board.
+/// Hard closures lead, then constrained lanes, then completed movement.
+fn shipment_lanes_json(
+    w: &WorldState,
+    participant: Option<NationId>,
+    commodity: Option<Commodity>,
+) -> Vec<serde_json::Value> {
+    let Some(market) = w.resources.market.as_ref() else {
+        return vec![];
+    };
+    let mut lanes = market
+        .shipment_audits
+        .iter()
+        .filter(|a| participant.is_none_or(|id| a.seller == id || a.buyer == id))
+        .filter(|a| commodity.is_none_or(|c| a.commodity == c))
+        .map(|a| {
+            let allow_open_contract = participant.is_some_and(|player| {
+                a.contract.is_some_and(|contract| {
+                    w.resources.contracts.iter().any(|k| {
+                        k.id == contract && (k.from == player || k.to == player)
+                    })
+                })
+            });
+            let mut lane = shipment_lane_json(market.last_cleared, a, allow_open_contract);
+            lane["settled_day"] = market.last_cleared_day.map(settled_day_json).unwrap_or(serde_json::Value::Null);
+            lane["capacity_period"] = serde_json::json!(if w.rules.daily_simulation { "day" } else { "month" });
+            lane
+        })
+        .collect::<Vec<_>>();
+    lanes.sort_by(|a, b| {
+        let state_rank = |v: &serde_json::Value| match v["state"].as_str() {
+            Some("blocked") => 0,
+            Some("constrained") => 1,
+            _ => 2,
+        };
+        state_rank(a)
+            .cmp(&state_rank(b))
+            .then_with(|| a["commodity"].as_str().cmp(&b["commodity"].as_str()))
+            .then_with(|| a["from"].as_str().cmp(&b["from"].as_str()))
+            .then_with(|| a["to"].as_str().cmp(&b["to"].as_str()))
+            .then_with(|| a["_source_rank"].as_u64().cmp(&b["_source_rank"].as_u64()))
+            .then_with(|| a["contract_id"].as_u64().cmp(&b["contract_id"].as_u64()))
+    });
+    for lane in &mut lanes {
+        lane.as_object_mut().expect("shipment lanes are objects").remove("_source_rank");
+    }
+    lanes
+}
+
+/// Compact counts for `/api/state`, with the first three stable lane ids the
+/// Dispatch Board can fetch from `/api/logistics` when attention is non-zero.
+fn logistics_summary_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let lanes = shipment_lanes_json(w, Some(me), None);
+    let count = |word: &str| lanes.iter().filter(|lane| lane["state"] == word).count();
+    let constrained = count("constrained");
+    let blocked = count("blocked");
+    let held = w.logistics.cargo.iter().filter(|c| (c.seller == me || c.buyer == me) && c.hold_reason.is_some()).count();
+    let settled = w
+        .resources
+        .market
+        .as_ref()
+        .map_or(serde_json::Value::Null, |m| settled_month_json(m.last_cleared));
+    let attention_ids = lanes
+        .iter()
+        .filter(|lane| lane["state"] != "moving")
+        .take(3)
+        .filter_map(|lane| lane["id"].as_str())
+        .collect::<Vec<_>>();
+    serde_json::json!({
+        "settled_month": settled,
+        "settled_day": if w.rules.daily_simulation { latest_settlement_json(w) } else { serde_json::Value::Null },
+        "moving": count("moving"),
+        "constrained": constrained,
+        "blocked": blocked,
+        "held": held,
+        "attention": constrained + blocked + held,
+        "attention_ids": attention_ids,
+        "in_transit": w.logistics.cargo.iter().filter(|c| c.seller == me || c.buyer == me).count(),
+        "arrivals": w.logistics.arrivals.iter().filter(|c| c.seller == me || c.buyer == me).count(),
+    })
+}
+
+/// `GET /api/logistics`: player-related shipment audits for the latest
+/// completed monthly settlement. An optional commodity narrows both counts
+/// and lanes; it never manufactures a requested spot quantity.
+fn logistics_json(w: &WorldState, me: NationId, commodity: Option<Commodity>) -> serde_json::Value {
+    let lanes = shipment_lanes_json(w, Some(me), commodity);
+    let count = |word: &str| lanes.iter().filter(|lane| lane["state"] == word).count();
+    let constrained = count("constrained");
+    let blocked = count("blocked");
+    let held = w.logistics.cargo.iter().filter(|c| (c.seller == me || c.buyer == me)
+        && c.hold_reason.is_some() && commodity.is_none_or(|key| key == c.commodity)).count();
+    let settled = w
+        .resources
+        .market
+        .as_ref()
+        .map_or(serde_json::Value::Null, |m| settled_month_json(m.last_cleared));
+    let attention_ids = lanes
+        .iter()
+        .filter(|lane| lane["state"] != "moving")
+        .take(3)
+        .filter_map(|lane| lane["id"].as_str())
+        .collect::<Vec<_>>();
+    serde_json::json!({
+        "settled_month": settled,
+        "settled_day": if w.rules.daily_simulation { latest_settlement_json(w) } else { serde_json::Value::Null },
+        "cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
+        "physical": w.rules.physical_logistics,
+        "model_note": if w.rules.daily_simulation { "Modeled freight corridors, not surveyed roads or historical port tonnage. Capacity resets daily; cargo reaches stockpiles on its booked arrival day unless held." } else { "Modeled freight corridors, not surveyed roads or historical port tonnage. Legacy monthly settlement." },
+        "policy": logistics_policy_json(w, me),
+        "cargo": w.logistics.cargo.iter()
+            .filter(|c| c.seller == me || c.buyer == me)
+            .filter(|c| commodity.is_none_or(|key| key == c.commodity))
+            .map(|cargo| cargo_json(cargo, None)).collect::<Vec<_>>(),
+        "arrivals": w.logistics.arrivals.iter()
+            .filter(|c| c.seller == me || c.buyer == me)
+            .filter(|c| commodity.is_none_or(|key| key == c.commodity))
+            .map(|cargo| { let mut value = cargo_json(cargo, w.logistics.last_month);
+                value["arrived_day"] = w.logistics.last_day.map(settled_day_json).unwrap_or(serde_json::Value::Null);
+                value }).collect::<Vec<_>>(),
+        "commodity": commodity.map(|c| c.key()),
+        "moving": count("moving"),
+        "constrained": constrained,
+        "blocked": blocked,
+        "held": held,
+        "attention": constrained + blocked + held,
+        "attention_ids": attention_ids,
+        "lanes": lanes,
+    })
+}
+
+// ===========================================================================
+// PRODUCTION & CONSTRUCTION. The simulation owns every price, input, wait and
+// refusal. This layer gives those facts stable browser names and never advances
+// a project itself. Projects live in provinces; the queue belongs to a nation.
+// ===========================================================================
+
+fn ministry_key(index: usize) -> &'static str {
+    match index {
+        BUDGET_HEALTH => "health",
+        BUDGET_EDUCATION => "education",
+        BUDGET_HOUSING => "housing",
+        BUDGET_PENSIONS => "pensions",
+        BUDGET_INFRASTRUCTURE => "infrastructure",
+        BUDGET_INDUSTRY => "industry",
+        BUDGET_SCIENCE => "science",
+        BUDGET_DEFENSE => "defense",
+        BUDGET_SECURITY => "security",
+        BUDGET_DIPLOMACY => "diplomacy",
+        _ => "unknown",
+    }
+}
+
+/// Preserve the original construction portfolio in campaigns that have not
+/// adopted rebuilt industry. The global registry still parses saved kind IDs.
+fn served_construction_catalog(w: &WorldState) -> impl Iterator<Item=production::ProjectSpec> + '_ {
+    let rebuilt=spheres_sim::industry_operations::enabled(w);
+    production::catalog_all().into_iter().filter(move |spec| rebuilt || !matches!(spec.kind,
+        ProjectKind::OfficeDistrict | ProjectKind::Shipyard | ProjectKind::AdvancedIndustry))
+}
+
+/// The simulation supplies all amounts, eligibility and prices. This adapter
+/// groups the fifty ledger rows for the cabinet without creating another model.
+fn programs_json(w: &WorldState, me: NationId, preview: Option<programs::ProgramPreview>) -> serde_json::Value {
+    let p = preview.unwrap_or_else(|| programs::preview(w, me));
+    // Slot 3 and the wire key remain `pensions` for existing budgets and saves.
+    let names = ["Health", "Education", "Housing", "Welfare", "Infrastructure", "Industry & Energy", "Science", "Defense", "Security", "Diplomacy"];
+    let rows = (0..BUDGET_MINISTRIES).map(|m| {
+        let departments = p.rows.iter().filter(|r| r.ministry == m).collect::<Vec<_>>();
+        let editable = matches!(m, BUDGET_INFRASTRUCTURE | BUDGET_INDUSTRY | BUDGET_SCIENCE | BUDGET_DEFENSE);
+        serde_json::json!({"index":m,"key":ministry_key(m),"name":names[m],"editable":editable,
+            "annual_bn":departments.iter().map(|r|r.annual_bn).sum::<f64>(),
+            "daily_bn":departments.iter().map(|r|r.daily_bn).sum::<f64>(),
+            "available_bn":departments.iter().map(|r|r.available_bn).sum::<f64>(),
+            "spent_today_bn":departments.iter().map(|r|r.spent_today_bn).sum::<f64>(),
+            "spent_ytd_bn":departments.iter().map(|r|r.spent_ytd_bn).sum::<f64>(),
+            "carried_bn":departments.iter().map(|r|r.carry_bn).sum::<f64>(),
+            "departments":departments.iter().map(|r|serde_json::json!({
+                "index":r.department,"name":r.name,"kind":if r.capital {"capital"} else {"operating"},
+                "editable":editable,"share_bp":r.share_bp,"annual_bn":r.annual_bn,"daily_bn":r.daily_bn,
+                "available_bn":r.available_bn,"spent_today_bn":r.spent_today_bn,"spent_ytd_bn":r.spent_ytd_bn,
+                "description":if r.capital {"Shared project authorization. Only actual work is charged; unused funds carry within the financial year."} else {"Automatically delivered through the ministry's existing service model; not a separate new simulation."}
+            })).collect::<Vec<_>>()})
+    }).collect::<Vec<_>>();
+    let choices = served_construction_catalog(w).filter(|c| c.funding_ministry == BUDGET_INDUSTRY && c.kind != ProjectKind::StarterIndustry).map(|c| {
+        let enabled = w.districts.iter().any(|(id,owner)| *owner == me && production_start_allowed(w,me,id,c.kind));
+        serde_json::json!({"id":c.kind.key(),"project_kind":c.kind.key(),"department":production::funding_department(c.kind),
+            "name":c.name,"description":c.description,"effect":c.effect,"total_days":c.total_days,"pc_cost":c.political_cost,
+            "work_cost_bn":spheres_sim::industry::work_cost_bn(c.kind),
+            "icon":"◈","tag":"Physical investment","enabled":enabled,"reason":if enabled {""} else {"No eligible province yet. Check standing, budget, technology and built prerequisites on the production board."}})
+    }).chain(std::iter::once(serde_json::json!({"id":"mine","department":2,"name":"Develop a mine","description":"Turn an eligible mapped deposit into national resource production.","effect":"Feeds your physical resource stockpile. Deposit and commodity requirements still apply.","icon":"◆","tag":"Mapped resources","enabled":true}))).collect::<Vec<_>>();
+    serde_json::json!({"enabled":p.enabled,"due":!p.renewed,"fiscal_year":p.fiscal_year,"basis_gdp":p.basis_gdp,
+        "departments":p.departments,"ministryrows":rows,"political_cost":p.political_cost,
+        "annual_authorized_bn":p.annual_authorized_bn,"daily_authorized_bn":p.daily_authorized_bn,
+        "actual_spent_today_bn":p.actual_spent_today_bn,"capital_available_bn":p.capital_available_bn,
+        "expired_authority_bn":p.expired_authority_bn,"note":p.note,"investment_choices":choices,
+        "last_spending_day":p.last_spending_day,"spending_fiscal_year":p.spending_fiscal_year,
+        "defense_force":p.defense_force,"magazine_refill_mult":p.magazine_refill_mult,
+        "industry":spheres_sim::industry::snapshot(w,me)})
+}
+
+/// The sim's current readings and reviewed policy quotes. Browser presentation
+/// never opens accounts, trains workers or operates sites.
+fn connected_economy_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let enabled=spheres_sim::population::active(w)&&w.rules.industry_rebuild&&spheres_sim::fiscal_recovery::enabled(w);
+    let refusal=spheres_sim::connected_economy::enrollment_refusal(w,me);
+    let available=!enabled&&refusal.is_none();
+    let industry=w.rules.industry_rebuild.then(|| {
+        let mut value=serde_json::to_value(spheres_sim::industry_operations::snapshot(w,me)).unwrap();
+        if let Some(rows)=value["facilities"].as_array_mut() {
+            for row in rows {
+                row["recorded_date"]=row["recorded_day"].as_i64()
+                    .and_then(|day|i32::try_from(day).ok())
+                    .map(|day|settled_day_json(day)["label"].clone()).unwrap_or(serde_json::Value::Null);
+            }
+        }
+        value
+    });
+    serde_json::json!({"nation":me,"name":me.name(),"date":w.date_str(),"enabled":enabled,
+        "upgrade":{"available":available,"reason":refusal,"command":available.then(||serde_json::json!({"kind":"enable_connected_economy"})),
+            "effect":"Adopt connected population, industry operation and fiscal recovery for this campaign. Keep current residents, GDP, cash, debt, paid projects and supplier property. Training produces graduates only after its course time. Construction remains funded with money as work progresses; operation still needs workers, power and inputs. Unopened treasuries receive no cash and recognize existing debt. This changes campaign rules and future economic behavior; it grants no factories, equipment or debt relief."},
+        "population":spheres_sim::population::snapshot(w,me),
+        "industry":industry,
+        "recovery":fiscal_recovery_view::view(w,me)})
+}
+
+/// Current stocks and retained public receipts; full-use authority is a forecast.
+fn cash_flow_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let n=w.nation(me);
+    let today=spheres_sim::clock::absolute_day(w);
+    let daily=spheres_sim::clock::is_daily(w);
+    let plan=programs::preview(w,me);
+    let actual=n.program_budget.as_ref();
+    let closed=actual.filter(|p|p.fiscal_staged && p.day.is_some() && p.day==p.settled_day
+        && p.day.is_some_and(|day|day<=today));
+    let terms=spheres_sim::economy::growth_terms(n,n.state_invest_gdp,n.interest_rate,
+        &spheres_sim::economy::Conditions::of(w,me));
+    let fiscal=spheres_sim::economy::Fiscal::of(n,&terms);
+    let revenue=fiscal.revenue_gdp*n.gdp;
+    // Opening a budget seats cash and debt. An off-books policy read cannot
+    // pretend its zero cash-interest arm is the future opening budget's bill.
+    let interest=n.on_the_books().then_some(fiscal.interest_bn);
+    let full_total=interest.map(|cost|plan.annual_authorized_bn+cost);
+    let full_balance=full_total.map(|cost|revenue-cost);
+    let renewed=n.annual_budget.as_ref().is_some_and(|b|b.fiscal_year==w.year)
+        && actual.is_none_or(|p|p.fiscal_year==w.year);
+    let settled=closed.map(|p| {
+        let spent=p.spent_today_bn.iter().flatten().sum::<f64>();
+        let services=(0..BUDGET_MINISTRIES).map(|m|(0..programs::DEPARTMENTS)
+            .filter(|d|!programs::is_project_funded_on(n,m,*d,p.settled_day.unwrap())).map(|d|p.spent_today_bn[m][d]).sum::<f64>()).sum::<f64>();
+        let operating=p.noncapital_spent_today_bn.iter().flatten().sum::<f64>();
+        // These four categories partition ministry spending. Prepaid equipment
+        // is already expensed and is disclosed separately, never added again.
+        let capital=(0..BUDGET_MINISTRIES).map(|m|(0..programs::DEPARTMENTS)
+            .filter(|d|programs::is_project_funded_on(n,m,*d,p.settled_day.unwrap())).map(|d|p.spent_today_bn[m][d]).sum::<f64>()).sum::<f64>();
+        let other_capital=(capital-operating-p.construction_spent_today_bn).max(0.0);
+        let outflow=spent+p.interest_today_bn;
+        let day=p.settled_day.unwrap();
+        serde_json::json!({"day":day,"label":settled_day_json(day)["label"],"fiscal_year":p.authority_year,
+            "revenue_bn":p.revenue_today_bn,"ministry_spend_bn":spent,"interest_bn":p.interest_today_bn,
+            "total_outflow_bn":outflow,"primary_balance_bn":p.revenue_today_bn-spent,"balance_bn":p.revenue_today_bn-outflow,
+            "services_bn":services,"plant_operating_bn":operating,"construction_bn":p.construction_spent_today_bn,
+            "other_capital_bn":other_capital,"prepaid_used_bn":p.prepaid_used_today_bn.iter().flatten().sum::<f64>(),
+            "note":"Revenue minus ministry spending and interest; positive is a surplus. The four spending categories are included once in ministry spending. Prepaid equipment is already paid. Trade and other direct transactions are separate."})
+    });
+    let names=["Health","Education","Housing","Welfare","Infrastructure","Industry & Energy","Science","Defense","Security","Diplomacy"];
+    let ministries:Vec<_>=(0..BUDGET_MINISTRIES).map(|m|{
+        let rows:Vec<_>=plan.rows.iter().filter(|row|row.ministry==m).collect();
+        serde_json::json!({"key":ministry_key(m),"name":names[m],
+            "annual_bn":rows.iter().map(|row|row.annual_bn).sum::<f64>(),
+            "daily_authorized_bn":daily.then(||rows.iter().map(|row|row.daily_bn).sum::<f64>()),
+            "available_bn":rows.iter().map(|row|row.available_bn).sum::<f64>(),
+            "last_spent_bn":closed.map(|p|p.spent_today_bn[m].iter().sum::<f64>()),
+            "spent_ytd_bn":closed.filter(|p|p.authority_year==w.year).map(|p|p.spent_ytd_bn[m].iter().sum::<f64>())})
+    }).collect();
+    let mut construction=construction_budget_json(w,me);
+    // Legacy construction fields carry raw work-ledger readings. On this cash
+    // screen only a closed posting may be labelled recorded spending.
+    construction["spent_today_bn"]=serde_json::json!(closed.map(|p|p.construction_spent_today_bn));
+    construction["spent_day"]=serde_json::json!(closed.and_then(|p|p.settled_day));
+    construction["spent_ytd_bn"]=serde_json::json!(closed.filter(|p|p.authority_year==w.year).map(|p|p.construction_spent_ytd_bn));
+    let available=programs::construction_available_bn(w,me);
+    let cap=programs::construction_daily_budget_bn(w,me);
+    let queued_count=production::projects_for(w,me).count()+w.resources.mine_projects.iter().filter(|p|p.started_by==me).count();
+    let planned=construction["planned_daily_bn"].as_f64().unwrap_or(0.0);
+    let (status,title,detail)=if !daily {("unavailable","Daily construction is not active","This save must finish its transition to daily play before using the construction funding limit.")}
+        else if actual.is_none() {("not_enrolled","Open construction funding","Apply a daily construction limit to use the capital funding in your annual budget.")}
+        else if !renewed {("renewal_due","Renew the annual budget","Capital work needs current-year authorization. Review the annual plan before adding more construction.")}
+        else if cap<=0.0 {("paused","Construction funding is paused","The applied daily limit is zero. Existing projects preserve their progress and receive no new construction funding.")}
+        else if queued_count==0 {("ready","No construction payments are queued","The daily limit is a ceiling. Unused construction authorization is not charged to the treasury.")}
+        else if available<=0.0 {("unfunded","No construction funds are available","Review the daily ceiling and remaining annual capital authority. Increasing the daily limit does not increase the annual budget.")}
+        else if planned<=0.0 {("constrained","Review the construction queue","Funds are available, but no next work is currently planned. The queue shows site, ownership and commissioning constraints.")}
+        else {("funded","Next construction work has funding","The planned next work fits the available construction authority and daily limit. This is a work quote, not a paid receipt or a guaranteed completion date.")};
+    construction["queued_count"]=serde_json::json!(queued_count);
+    construction["affordability"]=serde_json::json!({"status":status,"title":title,"detail":detail});
+    if !daily {
+        // The legacy year_fraction is a month. Do not label its allowance as
+        // a daily quote while the save finishes its open month.
+        for key in ["daily_budget_bn","default_daily_bn","planned_daily_bn"] {
+            construction[key]=serde_json::Value::Null;
+        }
+    }
+    let mut alerts=Vec::new();
+    if !n.on_the_books() {alerts.push(serde_json::json!({"id":"open_books","level":"info","title":"Treasury books are not open","detail":"Current cash and debt balances have not been seated. Review the first annual budget for its opening debt and interest quote.","action":"budget"}));}
+    if !renewed {alerts.push(serde_json::json!({"id":"renew_budget","level":"attention","title":"Annual budget needs review","detail":"The current year has no renewed plan. Standing services continue; new capital authorization requires renewal.","action":"budget"}));}
+    if full_balance.is_some_and(|value|value<0.0) {alerts.push(serde_json::json!({"id":"annual_full_use_gap","level":"attention","title":"Full-use annual plan exceeds estimated revenue","detail":"This comparison assumes every authorized ministry dollar is used. It is separate from the latest settled surplus or deficit; review allocations, taxes and interest.","action":"budget"}));}
+    if queued_count>0&&matches!(status,"paused"|"unfunded"|"constrained") {alerts.push(serde_json::json!({"id":"construction_funding","level":"attention","title":title,"detail":detail,"action":"construction"}));}
+    let mut actions=vec![serde_json::json!({"action":"budget","label":"Review annual budget"}),
+        serde_json::json!({"action":"construction","label":"Manage construction funding"}),
+        serde_json::json!({"action":"industry","label":"Inspect operating industry"}),
+        serde_json::json!({"action":"policy","label":"Review taxes and interest"})];
+    if spheres_sim::commerce::active(w) {actions.push(serde_json::json!({"action":"trade","label":"Review goods cash commitments"}));}
+    let mut view=serde_json::json!({"nation":me,"name":me.name(),"date":w.date_str(),"as_of_day":today,"daily":daily,"on_the_books":n.on_the_books(),
+        "balances":{"treasury_bn":n.treasury_bn,"debt_bn":n.debt_bn,"net_position_bn":n.net_position_bn(),"debt_gdp":n.debt_gdp},
+        "settled":settled,"annual":{"fiscal_year":w.year,"renewed":renewed,"basis_gdp_bn":plan.basis_gdp,
+            "revenue_basis_gdp_bn":n.gdp,"revenue_bn":revenue,"tax_revenue_bn":n.tax_rate*n.gdp,
+            "resource_revenue_bn":terms.budget_oil_revenue*n.gdp,"authorized_spend_bn":plan.annual_authorized_bn,
+            "interest_bn":interest,"total_at_full_use_bn":full_total,"balance_at_full_use_bn":full_balance,
+            "posted_spending_run_rate_bn":actual.filter(|p|p.settled_day.is_some()).map(|p|p.settled_spending_annual_bn),
+            "posted_spending_day":actual.and_then(|p|p.settled_day),
+            "note":"Tax and oil-related revenue are annual estimates using current GDP. Full use means all ministry allocations plus interest. The spending run-rate scales one recorded day's ministry spending to a year; it is not spending so far this year. Review the first budget to see opening debt and interest."},
+        "ministries":ministries,"construction":construction,"alerts":alerts,"actions":actions,
+        "note":"Daily figures cover the government budget. Trade, transfers and other transactions may also change the treasury. Budget surpluses reduce debt before building cash; deficits use cash before adding debt. Available funding is authorization, not a separate cash balance, and can include previously paid equipment."});
+    view["priorities"]=serde_json::Value::Array(cash_flow_priorities(&view));
+    view["connected_economy"]=connected_economy_json(w,me);
+    view["money"]=money_view::view(w,me);
+    view
+}
+
+/// Presentation advice from the already assembled authoritative readings. No
+/// hypothetical rate change, spending cut, runway or future saving is priced.
+fn cash_flow_priorities(view:&serde_json::Value)->Vec<serde_json::Value> {
+    let mut out=Vec::new();
+    let metric=|label:&str,amount:f64,period:&str|serde_json::json!({"label":label,"amount_bn":amount,"period":period});
+    let annual=&view["annual"];
+    if view["on_the_books"]==false {
+        out.push(serde_json::json!({"id":"open_books","level":"attention","title":"Review the opening budget",
+            "detail":"Review the opening treasury, debt and interest quote before choosing your annual funding plan.",
+            "metrics":[],"action":{"action":"budget"}}));
+    } else if annual["renewed"]==false {
+        out.push(serde_json::json!({"id":"renew_budget","level":"attention","title":"Renew this year's budget",
+            "detail":"Standing services continue, but new capital authorization needs a current-year budget.",
+            "metrics":[],"action":{"action":"budget"}}));
+    }
+    let construction=&view["construction"];
+    let funding=&construction["affordability"];
+    if construction["queued_count"].as_u64().unwrap_or(0)>0 && annual["renewed"]==true
+        && matches!(funding["status"].as_str(),Some("paused"|"unfunded"|"not_enrolled")) {
+        let metrics:[(&str,&str);3]=[("Daily construction limit","daily_budget_bn"),
+            ("Available for next work","available_bn"),("Planned next work","planned_daily_bn")];
+        out.push(serde_json::json!({"id":"construction_funding","level":"attention","title":funding["title"],
+            "detail":funding["detail"],"metrics":metrics.into_iter().filter_map(|(label,key)|
+                construction[key].as_f64().map(|amount|metric(label,amount,"Next-work quote"))).collect::<Vec<_>>(),
+            "action":{"action":"construction"}}));
+    }
+    let receipt=&view["settled"];
+    if let (Some(revenue),Some(spent),Some(primary),Some(interest),Some(balance))=(receipt["revenue_bn"].as_f64(),
+        receipt["ministry_spend_bn"].as_f64(),receipt["primary_balance_bn"].as_f64(),
+        receipt["interest_bn"].as_f64(),receipt["balance_bn"].as_f64()) {
+        if balance<0.0 {
+            let period=format!("Settled {}",receipt["label"].as_str().unwrap_or("day"));
+            let mut detail=if primary>=0.0 {
+                "Recorded revenue covered ministry spending. Interest exceeded the remaining amount, leaving the government budget in deficit. Review the debt-service terms alongside the current policy settings.".to_string()
+            } else {
+                format!("Ministry spending exceeded recorded revenue before interest. {} Review the funding plan and the services it supports.",
+                    if interest>0.0 {"Interest then increased the government budget deficit."} else if interest<0.0 {"A net interest credit reduced, but did not eliminate, the government budget deficit."} else {"No interest was charged in this posting."})
+            };
+            let mut metrics=vec![metric("Recorded revenue",revenue,&period),metric("Ministry spending",spent,&period),
+                metric("Balance before interest",primary,&period),metric("Interest",interest,&period),metric("Final budget balance",balance,&period)];
+            if let Some(amount)=receipt["construction_bn"].as_f64() {
+                metrics.push(metric("Construction included in spending",amount,&period));
+                if amount==0.0 { detail.push_str(" No construction was charged in this posting."); }
+                else if amount>0.0&&amount < -balance {
+                    detail.push_str(" Recorded construction was smaller than the deficit and does not account for the whole gap.");
+                }
+            }
+            out.push(serde_json::json!({"id":if primary>=0.0 {"interest_pressure"} else {"primary_deficit"},
+                "level":"attention","title":if primary>=0.0 {"Interest turned the budget negative"} else {"Spending exceeded revenue before interest"},
+                "detail":detail,"metrics":metrics,"action":if primary>=0.0 {
+                    serde_json::json!({"action":"policy","control":"rate"})
+                } else {serde_json::json!({"action":"budget"})}}));
+            if let Some(ministries)=view["ministries"].as_array() {
+                // Stable ministry order breaks an exact tie, not a guess about
+                // which service matters less. These totals include the source
+                // ministry's proportional share of pooled construction bills.
+                let largest=ministries.iter().enumerate().filter_map(|(i,row)|
+                    row["last_spent_bn"].as_f64().filter(|amount|*amount>0.0).map(|amount|(i,row,amount)))
+                    .max_by(|a,b|a.2.total_cmp(&b.2).then_with(||b.0.cmp(&a.0)));
+                if let Some((_,row,amount))=largest {
+                    let name=row["name"].as_str().unwrap_or("Ministry");
+                    let ties=ministries.iter().filter(|row|row["last_spent_bn"].as_f64()==Some(amount)).count();
+                    let mut detail=format!("{name} funded {:.1}% of the recorded ministry spending. This includes its share of pooled construction funding; review the services and allocations before deciding.",if spent>0.0 {amount/spent*100.0} else {0.0});
+                    if ties>1 {detail.push_str(" Other ministries recorded the same amount; the standard ministry order breaks the tie.");}
+                    out.push(serde_json::json!({"id":"largest_ministry","level":"info","title":format!("Largest ministry expense: {name}"),
+                        "detail":detail,"metrics":[metric(name,amount,&period),metric("All ministries",spent,&period)],
+                        "action":{"action":"budget","ministry":row["key"]}}));
+                }
+            }
+        }
+    }
+    if annual["renewed"]==true {
+        if let (Some(revenue),Some(authorized),Some(interest),Some(balance))=(annual["revenue_bn"].as_f64(),
+            annual["authorized_spend_bn"].as_f64(),annual["interest_bn"].as_f64(),annual["balance_at_full_use_bn"].as_f64()) {
+            if balance<0.0 {
+                out.push(serde_json::json!({"id":"annual_full_use_gap","level":"attention","title":"The full-use annual plan exceeds estimated revenue",
+                    "detail":"This estimate assumes every authorized ministry dollar is used, plus interest. It is separate from the dated government budget result. Review allocations and revenue; the construction ceiling does not change annual authorizations.",
+                    "metrics":[metric("Estimated revenue",revenue,"Annual estimate"),metric("Authorized ministry spending",authorized,"Annual estimate"),
+                        metric("Interest",interest,"Annual estimate"),metric("Full-use budget balance",balance,"Annual estimate")],
+                    "action":{"action":"budget"}}));
+            }
+        }
+    }
+    out.truncate(3);
+    out
+}
+
+/// Completed facilities, including support assets, without enabling the AI or
+/// trade pilot. Output is a dated operation receipt, never inferred from a
+/// catalog capacity or from a missing receipt's default zero.
+fn industry_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    use spheres_sim::industry;
+    let snapshot = industry::snapshot(w, me);
+    let today = spheres_sim::clock::absolute_day(w);
+    let mut sites = Vec::new();
+    for site in &snapshot.sites {
+        let kind = site.kind;
+        let spec = production::catalog(kind);
+        let productive = matches!(kind, ProjectKind::ProcessingPlant | ProjectKind::StarterIndustry | ProjectKind::MachineryWorks
+            | ProjectKind::OfficeDistrict | ProjectKind::AdvancedIndustry);
+        let lifecycle = construction_outcomes::for_site(w,me,&site.district,kind);
+        let operation = lifecycle.get("operation").filter(|row|row.is_object());
+        let research = snapshot.research_operations.iter().find(|row|
+            kind == ProjectKind::ResearchCenter && row.district == site.district
+                && row.nation == me && row.day <= today);
+        let receipt_day = operation.and_then(|row|row["day"].as_i64()).map(|day|day as i32);
+        let has_receipt = receipt_day.is_some();
+        let status = operation.and_then(|row| row["status"].as_str())
+            .unwrap_or(if productive { "awaiting_settlement" } else { "ready" });
+        let reason = operation.and_then(|row| row["reason"].as_str()).map(str::to_owned)
+            .or_else(|| (!has_receipt).then(|| if productive {
+                "No operating receipt has settled for this facility yet. Its first daily operation will report output or the exact constraint.".to_string()
+            } else { spec.effect.to_string() }));
+        let output_unit = match kind {
+            ProjectKind::ProcessingPlant | ProjectKind::StarterIndustry => Some("intermediate packs"),
+            ProjectKind::MachineryWorks => Some("capital-goods packs"),
+            ProjectKind::OfficeDistrict => Some("service value added ($bn/day)"),
+            ProjectKind::AdvancedIndustry => Some("advanced components"),
+            _ => None,
+        };
+        let mut actions = vec![serde_json::json!({"action":"province","label":"Inspect province","district":site.district})];
+        let budget = |ministry: &str, department: usize, label: &str| serde_json::json!({
+            "action":"budget","label":label,"ministry":ministry,"department":department});
+        if productive {
+            actions.push(budget("industry", if matches!(kind,ProjectKind::MachineryWorks|ProjectKind::OfficeDistrict|ProjectKind::AdvancedIndustry) {0} else {2}, "Review facility operating funds"));
+            actions.push(budget("industry", 1, "Review energy funding"));
+            actions.push(serde_json::json!({"action":"resources","label":"Inspect raw input supplies"}));
+            if spheres_sim::commerce::active(w) {
+                actions.push(serde_json::json!({"action":"trade","label":"Inspect goods and trade",
+                    "good":if kind == ProjectKind::MachineryWorks {"capital_goods"} else if kind==ProjectKind::AdvancedIndustry {"advanced_components"} else {"intermediates"}}));
+            }
+        } else if kind == ProjectKind::Generation {
+            actions.push(budget("industry", 1, "Review energy funding"));
+            actions.push(serde_json::json!({"action":"resources","label":"Inspect generating fuel"}));
+        } else if kind == ProjectKind::ResearchCenter {
+            actions.push(budget("science", 0, "Review research funding"));
+            actions.push(serde_json::json!({"action":"research","label":"Inspect research projects"}));
+        } else if matches!(kind,ProjectKind::ArmsPlant|ProjectKind::Shipyard) {
+            if kind==ProjectKind::Shipyard {
+                actions.push(budget("industry", 0, "Review dock operating funds"));
+                actions.push(budget("industry", 1, "Review energy funding"));
+                actions.push(serde_json::json!({"action":"resources","label":"Inspect generating fuel"}));
+            }
+            actions.push(budget("defense", 3, "Review equipment funding"));
+            actions.push(serde_json::json!({"action":"manufacture","label":"Manage equipment production","district":site.district}));
+        }
+        actions.push(serde_json::json!({"action":"construction","label":"Review province construction","district":site.district}));
+        let attention = has_receipt && matches!(status, "limited" | "paused" | "blocked");
+        sites.push(serde_json::json!({
+            "id":format!("site:{}:{}",site.district,kind.key()),"district":site.district,
+            "district_name":spheres_sim::districts::name_of(&site.district).unwrap_or(&site.district),
+            "kind":kind.key(),"name":spec.name,"effect":spec.effect,"level":production::level(w,&site.district,kind),
+            "capacity_micros":if kind==ProjectKind::StarterIndustry {w.production.industry.modules.get(&site.district).copied()} else {None},
+            "productive":productive,"status":status,"reason":reason,
+            "has_receipt":has_receipt,"attention":attention,"receipt_day":receipt_day,
+            "receipt_label":receipt_day.map(|day|settled_day_json(day)["label"].clone()),
+            "output_daily":if productive {operation.and_then(|row|row["output"].as_f64())} else {None},
+            "output_unit":output_unit,"power_used_daily":operation.and_then(|row|row["power_used_daily"].as_f64()),
+            "cash_spent_daily_bn":operation.and_then(|row|row["cash_spent_bn"].as_f64()),
+            "research":research.map(|row|serde_json::json!({"day":row.day,"technology_name":row.technology_name,
+                "prototype_credit":row.prototype_credit,"goods_used":row.goods_used})),
+            "actions":actions,"lifecycle":lifecycle,
+        }));
+    }
+    let mut queue: Vec<_> = production::projects_for(w, me)
+        .filter(|project|w.districts.get(&project.district)==Some(&me))
+        .map(|project|serde_json::json!({"id":project.id,"name":production::catalog(project.kind).name,
+            "kind":project.kind.key(),"district":project.district,
+            "district_name":spheres_sim::districts::name_of(&project.district).unwrap_or(&project.district),
+            "progress":(project.progress_days / project.total_days.max(1) as f64).clamp(0.0,1.0),
+            "eta_days":production::estimated_days_left(w,project)})).collect();
+    queue.extend(construction_mine_queue(w,me).into_iter().filter(|row|
+        row["province"]["id"].as_str().is_some_and(|district|w.districts.get(district)==Some(&me)))
+        .map(|row|serde_json::json!({"id":row["id"],"name":row["name"],"kind":"resource_mine",
+            "district":row["province"]["id"],"district_name":row["province"]["name"],
+            "progress":row["progress"],"eta_days":row["eta_days"]})));
+    let daily=spheres_sim::clock::is_daily(w);
+    let settlement_day=sites.iter().filter_map(|site|site["receipt_day"].as_i64()).max();
+    let dated_power:Vec<f64>=sites.iter().filter(|site|site["receipt_day"].as_i64()==settlement_day)
+        .filter_map(|site|site["power_used_daily"].as_f64()).collect();
+    let power_used=(!dated_power.is_empty()).then(||dated_power.iter().sum::<f64>());
+    let mut goods=vec![serde_json::json!({"good":"intermediates","name":"Intermediate packs","stock":snapshot.goods.intermediates,"capacity":snapshot.capacity_each}),
+        serde_json::json!({"good":"capital_goods","name":"Capital-goods packs","stock":snapshot.goods.capital_goods,"capacity":snapshot.capacity_each})];
+    if spheres_sim::industry_operations::enabled(w) {
+        goods.push(serde_json::json!({"good":"advanced_components","name":"Advanced components",
+            "stock":spheres_sim::industry_operations::advanced_component_stock(w,me),
+            "capacity":spheres_sim::industry_operations::advanced_component_capacity(w,me)}));
+    }
+    serde_json::json!({"nation":me,"name":me.name(),"date":w.date_str(),"as_of_day":today,
+        "enabled":daily&&w.rules.production_system&&w.rules.resource_market,"daily":daily,
+        "settlement":settlement_day.map(|day|serde_json::json!({"day":day,"label":settled_day_json(day as i32)["label"]})),
+        "summary":{"facility_count":sites.len(),"attention_count":sites.iter().filter(|row|row["attention"]==true).count(),"queued_count":queue.len()},
+        "sites":sites,"queue":queue,
+        "goods":goods,
+        "power":{"capacity_daily":snapshot.power_capacity_daily,"used_daily":power_used,
+            "receipt_day":settlement_day,"receipt_label":settlement_day.map(|day|settled_day_json(day as i32)["label"].clone()),
+            "recorded_facility_count":dated_power.len(),
+            "note":"Sum of displayed facility power receipts on the stated date only. Excludes earlier receipts and activities without saved power use; this is not total national consumption."},
+        "note":"Completed facilities operate automatically when their inputs, power and operating funds are available. Output and spending are dated receipts; goods are inventory, not treasury cash. Support upgrades provide their stated capabilities and are not separate pack producers. Actual value added is recorded in the province economy, without a second completion or sales bonus. Construction funding and operating purchases remain distinct uses of the annual capital budget."})
+}
+
+/// Read-only assembly: the simulation owns decisions, prices and delivered
+/// output. Economic tiers are descriptive UI bands in billions of 1990 dollars.
+fn competition_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let n=w.nation(me);
+    let rivals=w.nations.iter().filter(|n|n.alive).map(|n| {
+        let tier=if n.gdp<1.0 {"Micro"} else if n.gdp<10.0 {"Small"}
+            else if n.gdp<100.0 {"Medium"} else if n.gdp<1000.0 {"Large"} else {"Major"};
+        serde_json::json!({"nation":n.id,"name":n.id.name(),"gdp_bn":n.gdp,"tier":tier,
+            "is_player":Some(n.id)==w.player,"enrolled":programs::enrolled(w,n.id),
+            "plan":w.economic_ai.nations.get(&n.id),
+            "production":production_summary_json(w,n.id),
+            "project_gdp_bn":spheres_sim::province_economy::project_level(w,n.id).unwrap_or(0.0)})
+    }).collect::<Vec<_>>();
+    serde_json::json!({"enabled":spheres_sim::economic_ai::enabled(w) && spheres_sim::commerce::active(w),"nation":me,"name":me.name(),
+        "date":w.date_str(),"day":spheres_sim::clock::absolute_day(w),
+        "balance":{"gdp_bn":n.gdp,"growth":n.growth_last,"cash_bn":n.treasury_bn,
+            "debt_bn":n.debt_bn,"on_the_books":n.on_the_books(),
+            "project_gdp_bn":spheres_sim::province_economy::project_level(w,me).unwrap_or(0.0)},
+        "industry":spheres_sim::industry::snapshot(w,me),
+        "capacity_plan":spheres_sim::industry_planning::plan(w,me),
+        "supply_forecast":spheres_sim::economic_ai::supply_forecast(w,me),
+        "starting_industry":spheres_sim::starting_industry::snapshot(w,me),
+        "materials":spheres_sim::materials::snapshot(w,me),
+        "module_board":industry_module_board_json(w,me),
+        "industry_settlement":w.production.industry.last_day.map(settled_day_json),
+        "commerce":spheres_sim::commerce::snapshot(w,me),
+        "sphere":spheres_sim::sovereignty::view(w,me),"countries":rivals,
+        "note":"A daily competition model. Physical output contributes value added once; selling stored goods is a cash receipt, not a second GDP award. Economic tiers are current-size game bands, not difficulty ratings."})
+}
+
+fn materials_quote_json(w:&WorldState,me:NationId,payload:&serde_json::Value)->Result<serde_json::Value,String> {
+    let district=payload.get("district").and_then(|v|v.as_str()).ok_or("Choose a province for Materials production.")?;
+    if w.districts.get(district)!=Some(&me) {return Err("Choose a province your government owns.".into());}
+    let quantity=payload.get("quantity").and_then(|v|v.as_f64())
+        .filter(|v|v.is_finite() && *v>=1e-9 && *v<=1_000_000.0).ok_or("Choose a positive quantity up to one million packs.")?;
+    let days=payload.get("delivery_days").and_then(|v|v.as_u64()).and_then(|v|u32::try_from(v).ok())
+        .filter(|v|(7..=365).contains(v)).ok_or("Choose a production window from 7 to 365 days.")?;
+    let q=spheres_sim::materials::quote(w,me,district,quantity,days);
+    let mut value=serde_json::to_value(q).map_err(|e|e.to_string())?;
+    let command=Command::OrderMaterials{nation:me,district:district.into(),quantity,delivery_days:days};
+    let price=spheres_sim::price_of(w,&command).unwrap_or(spheres_sim::materials::ORDER_PC);
+    value["political_cost"]=serde_json::json!(price);
+    value["political_available"]=serde_json::json!(w.nation(me).political_capital);
+    Ok(value)
+}
+
+fn industry_module_quotes_json(w:&WorldState,me:NationId,payload:&serde_json::Value)->Result<serde_json::Value,String> {
+    use spheres_sim::industrial_modules as modules;
+    let district=payload.get("district").and_then(|v|v.as_str()).ok_or("Choose a province for your workshop.")?;
+    if w.districts.get(district)!=Some(&me) { return Err("Choose a province your government owns.".into()); }
+    let recommended=modules::recommended_capacity_micros(w,me);
+    let sizes=if let Some(value)=payload.get("capacity_micros") {
+        let size=value.as_u64().and_then(|v|u32::try_from(v).ok())
+            .filter(|v|(1..=modules::STANDARD_MICROS).contains(v)).ok_or("Choose a whole capacity between 1 and 1,000,000 millionths.")?;
+        vec![("Your custom module",size)]
+    } else {
+        vec![("Pocket workshop",(recommended/2).max(1)),("Budget fit",recommended),
+            ("Room to grow",recommended.saturating_mul(2).min(modules::STANDARD_MICROS))]
+    };
+    let quotes=sizes.into_iter().map(|(label,size)|{
+        let q=modules::quote(w,me,district,size);
+        let command=Command::StartIndustryModule{nation:me,district:district.into(),capacity_micros:size};
+        let price=spheres_sim::price_of(w,&command).unwrap_or(q.political_cost);
+        let reason=q.reason.clone().or_else(||(w.nation(me).political_capital<price)
+            .then(||format!("Needs {price:.1} political capital; {:.1} available.",w.nation(me).political_capital)));
+        let requirements=production_requirements_json(w,me,&q.recipe,None);
+        let mut value=serde_json::to_value(q).expect("finite module quote");
+        value["label"]=serde_json::json!(label);
+        value["district"]=serde_json::json!(district);
+        value["reason"]=serde_json::json!(reason);
+        value["can_start"]=serde_json::json!(reason.is_none());
+        value["requirements"]=serde_json::json!(requirements);
+        value
+    }).collect::<Vec<_>>();
+    Ok(serde_json::json!({"district":district,"quotes":quotes}))
+}
+
+fn industry_module_board_json(w:&WorldState,me:NationId)->serde_json::Value {
+    let provinces=w.districts.iter().filter(|(_,owner)|**owner==me).map(|(id,_)|
+        serde_json::json!({"id":id,"name":spheres_sim::districts::name_of(id).unwrap_or(id),
+            "capacity":spheres_sim::industrial_modules::capacity(w,id)})).collect::<Vec<_>>();
+    let district=provinces.first().and_then(|p|p["id"].as_str());
+    let quotes=district.and_then(|d|industry_module_quotes_json(w,me,&serde_json::json!({"district":d})).ok());
+    let projects=production::projects_for(w,me).filter(|p|p.kind==ProjectKind::StarterIndustry)
+        .map(|p|production_project_json(w,me,p)).collect::<Vec<_>>();
+    let legacy_active=production::projects_for(w,me).filter(|p|p.kind!=ProjectKind::StarterIndustry).count();
+    serde_json::json!({"provinces":provinces,"selection":quotes,"projects":projects,
+        "legacy_active":legacy_active,
+        "note":"One paid module includes an estate, generation, local grid and materials processing at the purchased scale. Raw supplies and operating budgets remain required. Capacity stays fixed until you buy an expansion; it never grows automatically with GDP.",
+        "coverage_reason":if district.is_none(){Some("This country has no mapped province or freight gateway in the current data. Construction and physical manufactured trade need sourced map coverage.")}else{None}})
+}
+
+fn goods_quotes_json(w:&WorldState,me:NationId,payload:&serde_json::Value)->Result<serde_json::Value,String> {
+    let good=payload.get("good").and_then(|g|g.as_str()).and_then(spheres_sim::commerce::Good::parse)
+        .ok_or("Choose intermediate packs or capital goods.")?;
+    let quantity=payload.get("quantity").and_then(|q|q.as_f64())
+        .filter(|q|q.is_finite() && *q>=1e-9 && *q<=1_000_000.0).ok_or("Enter a positive quantity no greater than one million packs.")?;
+    let days=payload.get("delivery_days").and_then(|q|q.as_u64())
+        .filter(|d|(1..=365).contains(d)).ok_or("Choose a dispatch window from 1 to 365 days.")? as u32;
+    Ok(serde_json::json!({"good":good,"requested_quantity":quantity,"delivery_days":days,
+        "quotes":spheres_sim::commerce::market_quotes(w,me,good,quantity,days),
+        "note":"Quotes may be smaller than requested when cash or seller surplus is limited. Cash reserves on acceptance; goods become usable only after arrival."}))
+}
+
+fn program_preview_json(w: &WorldState, me: NationId, payload: &serde_json::Value) -> Result<serde_json::Value,String> {
+    let Some(command @ Command::SetProgramBudget { fiscal_year, .. }) = parse_command(w,payload,me) else {
+        return Err("Expected a complete department budget: ten ministry amounts and ten rows of five whole basis-point shares.".into());
+    };
+    if fiscal_year != w.year { return Err("The budget year must match the current year.".into()); }
+    let policies=match payload.get("policy_commands") {
+        None => Vec::new(),
+        Some(v) => v.as_array().ok_or("Policy orders must be an array.")?.iter()
+            .map(|v|parse_command(w,v,me).ok_or_else(||"Invalid fiscal policy order.".to_string()))
+            .collect::<Result<Vec<_>,_>>()?,
+    };
+    let (p,fiscal)=spheres_sim::fiscal_preview::with_budget(w,me,&policies,&command)?;
+    let mut view=programs_json(w,me,Some(p));
+    view["fiscal"]=serde_json::to_value(fiscal).map_err(|e|e.to_string())?;
+    Ok(view)
+}
+
+fn production_requirements_json(
+    w: &WorldState,
+    me: NationId,
+    recipe: &[f64; 12],
+    project: Option<&Project>,
+) -> Vec<serde_json::Value> {
+    let next_draw = project.map(|p| production::next_resource_draw(w, p)).unwrap_or([0.0; 12]);
+    let shortfalls = project.map(|p| production::input_shortfalls(w, p)).unwrap_or([0.0; 12]);
+    ALL.iter()
+        .enumerate()
+        .filter_map(|(i, c)| {
+            let required = recipe[i];
+            if required <= 1e-12 {
+                return None;
+            }
+            let consumed = project.map_or(0.0, |p| p.resources_used[i]).clamp(0.0, required);
+            let remaining = (required - consumed).max(0.0);
+            let available = resources::stock_quantity(w, me, *c).max(0.0);
+            Some(serde_json::json!({
+                "commodity": c.key(),
+                "name": line_name(*c),
+                "required": round(required, 6),
+                "consumed": round(consumed, 6),
+                "remaining": round(remaining, 6),
+                "next_draw": round(next_draw[i], 6),
+                "stock_available": round(available, 6),
+                "incoming_quantity": round(spheres_sim::logistics::pending(w, me, *c), 6),
+                "incoming_within_30_days": round(spheres_sim::logistics::pending_within_days(w, me, *c, 30), 6),
+                // Completion can be months or years away, so today's pile is
+                // not an honest present-tense shortage against the whole
+                // recipe. This is the sim's current next-atomic-draw gap;
+                // it stays zero when today's inputs are fully supplied or a
+                // non-resource blocker is what stopped the project.
+                "shortfall": round(shortfalls[i], 6),
+                "stock_gap_to_total_recipe": round((remaining - available).max(0.0), 6),
+                "unit": c.unit(),
+            }))
+        })
+        .collect()
+}
+
+fn production_funding_json(
+    w: &WorldState,
+    me: NationId,
+    kind: ProjectKind,
+) -> serde_json::Value {
+    let spec = production::catalog(kind);
+    let allocation = w.nation(me).budget_for(w.year).allocations[spec.funding_ministry];
+    serde_json::json!({
+        "ministry": ministry_key(spec.funding_ministry),
+        "ministry_name": spec.funding_label,
+        "allocation": round(allocation, 6),
+        "required": round(spec.funding_required, 6),
+        "ratio": round(production::funding_ratio(w, me, kind), 4),
+        "department_mode":programs::enrolled(w,me),
+        "department_name":"National construction budget",
+        "work_cost_bn":spheres_sim::industry::work_cost_bn(kind),
+        "available_bn":programs::construction_available_bn(w,me),
+    })
+}
+
+fn capabilities_json(c: &production::ProvinceCapabilities) -> serde_json::Value {
+    serde_json::json!({
+        "infrastructure": c.infrastructure,
+        "civilian_industry": c.civilian_industry,
+        "power_grid": c.power_grid,
+        "research_centers": c.research_centers,
+        "arms_plants": c.arms_plants,
+    })
+}
+
+fn district_capabilities_json(w: &WorldState, district: &str) -> serde_json::Value {
+    let mut result = capabilities_json(&production::province_capabilities(w,district));
+    for kind in served_construction_catalog(w).map(|spec|spec.kind).filter(|kind| spheres_sim::industry::extended(*kind)
+        || matches!(kind,ProjectKind::OfficeDistrict|ProjectKind::Shipyard|ProjectKind::AdvancedIndustry)) {
+        result[kind.key()] = serde_json::json!(production::level(w,district,kind));
+    }
+    result
+}
+
+fn district_capability_total(w: &WorldState, district: &str) -> usize {
+    production::PROJECT_KINDS.into_iter().map(|kind| production::level(w,district,kind) as usize).sum()
+}
+
+fn production_project_json(w: &WorldState, me: NationId, p: &Project) -> serde_json::Value {
+    let spec = production::catalog(p.kind);
+    let planned = spheres_sim::industry::project_plans(w).remove(&p.id);
+    let status = planned.as_ref().map_or(p.status, |plan| {
+        if plan.reason.is_some() { ProjectStatus::Blocked }
+        else if plan.advance_days <= 1e-9 { ProjectStatus::Paused }
+        else if plan.slow_reason.is_some() { ProjectStatus::Slowed }
+        else { ProjectStatus::Building }
+    });
+    let scale=spheres_sim::industrial_modules::scale(p);
+    let recipe=spec.recipe.map(|value|value*scale);
+    let progress = (p.progress_days / p.total_days.max(1) as f64).clamp(0.0, 1.0);
+    let priorities = [Priority::High, Priority::Normal, Priority::Low]
+        .iter()
+        .filter(|priority| **priority != p.priority)
+        .map(|priority| priority.key())
+        .collect::<Vec<_>>();
+    serde_json::json!({
+        "id": p.id,
+        "kind": p.kind.key(),
+        "capacity_micros":p.capacity_micros,
+        "name": spec.name,
+        "description": spec.description,
+        "effect": spec.effect,
+        "outcome_action": construction_outcomes::action(&p.district,p.kind),
+        "province": {
+            "id": p.district,
+            "name": spheres_sim::districts::name_of(&p.district).unwrap_or(&p.district),
+        },
+        "priority": p.priority.key(),
+        "progress_days": round(p.progress_days*scale, 3),
+        "total_days":if p.capacity_micros.is_some(){serde_json::json!(p.total_days as f64*scale)}else{serde_json::json!(p.total_days)},
+        "work_unit":"funded installation days",
+        "progress": round(progress, 4),
+        "status": status.key(),
+        "reason": planned.as_ref().and_then(|plan|plan.reason.clone().or_else(||plan.slow_reason.clone())).or_else(||p.reason.clone()),
+        "eta_days": production::estimated_days_left(w, p),
+        "nominal_work_rate": round(production::nominal_work_rate(w, p), 4),
+        "work_rate_today": round(production::work_rate_today(w, p), 4),
+        "throughput_ratio": round(production::throughput_ratio(w, p), 4),
+        "pc_cost": if spheres_sim::clock::is_daily(w) { 0.0 } else { round(spec.political_cost, 3) },
+        "funding": production_funding_json(w, me, p.kind),
+        "finance": production::project_finance(w,p),
+        "requirements": if spheres_sim::clock::is_daily(w) { vec![] } else { production_requirements_json(w, me, &recipe, Some(p)) },
+        // This endpoint is player-only and `projects_for` filters by nation;
+        // these are therefore actual permissions, not generic button hints.
+        "actions": {
+            "set_priority": priorities,
+            "cancel": true,
+        },
+    })
+}
+
+fn production_summary_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let mut projects = production::projects_for(w, me).collect::<Vec<_>>();
+    projects.sort_by_key(|p| p.id);
+    let count = |status| projects.iter().filter(|p| p.status == status).count();
+    let slowed = count(ProjectStatus::Slowed);
+    let paused = count(ProjectStatus::Paused);
+    let blocked = count(ProjectStatus::Blocked);
+    let completed = w.districts.iter().filter(|(_,owner)| **owner == me)
+        .map(|(id,_)| district_capability_total(w,id))
+        .sum::<usize>();
+    serde_json::json!({
+        "active": projects.len(),
+        "capacity": if spheres_sim::clock::is_daily(w) { None } else { Some(production::MAX_ACTIVE_PROJECTS) },
+        "queue_capacity": if spheres_sim::clock::is_daily(w) { None } else { Some(production::MAX_QUEUED_PROJECTS) },
+        // Workforce metrics describe only the legacy monthly construction path.
+        "construction_capacity_daily": (!spheres_sim::clock::is_daily(w)).then(|| round(production::construction_capacity(w, me), 4)),
+        "nominal_work_daily": (!spheres_sim::clock::is_daily(w)).then(|| round(projects.iter().map(|p| production::nominal_work_rate(w, p)).sum(), 4)),
+        "feasible_work_daily": (!spheres_sim::clock::is_daily(w)).then(|| round(projects.iter().map(|p| production::work_rate_today(w, p)).sum(), 4)),
+        "building": count(ProjectStatus::Building),
+        "slowed": slowed,
+        "paused": paused,
+        "blocked": blocked,
+        "attention": slowed + paused + blocked,
+        "attention_ids": projects.iter()
+            .filter(|p| p.status != ProjectStatus::Building)
+            .take(3)
+            .map(|p| p.id)
+            .collect::<Vec<_>>(),
+        "completed": completed,
+        "module_provinces":w.production.industry.modules.keys().filter(|d|w.districts.get(*d)==Some(&me)).count(),
+        "module_capacity":w.production.industry.modules.iter().filter(|(d,_)|w.districts.get(*d)==Some(&me))
+            .map(|(_,micros)|*micros as f64/1_000_000.0).sum::<f64>(),
+    })
+}
+
+/// The exact conjunction `apply_command` will ask before starting: the
+/// production module's live-world refusal plus the central command price. This
+/// prevents a Build action being advertised to a government that cannot pay.
+fn production_start_allowed(
+    w: &WorldState,
+    me: NationId,
+    district: &str,
+    kind: ProjectKind,
+) -> bool {
+    production_start_refusal(w, me, district, kind).is_none()
+}
+
+fn production_start_refusal(
+    w: &WorldState,
+    me: NationId,
+    district: &str,
+    kind: ProjectKind,
+) -> Option<String> {
+    if let Some(reason) = production::start_project_error(w, me, district, kind) {
+        return Some(reason);
+    }
+    let command = Command::StartProject {
+        nation: me,
+        district: district.to_string(),
+        kind,
+    };
+    match spheres_sim::price_of(w, &command) {
+        Some(price) if w.nation(me).political_capital + 1e-9 >= price => None,
+        Some(price) => Some(format!("This order needs {:.1} political capital; you have {:.1}.",
+            (price * 10.0).ceil() / 10.0, (w.nation(me).political_capital * 10.0).floor() / 10.0)),
+        None => Some("Construction orders are unavailable in this game.".into()),
+    }
+}
+
+/// Player-only production board. The fixed catalog order comes from the sim;
+/// provinces are the ownership BTreeMap's order; projects are sorted by id.
+fn construction_mine_queue(w: &WorldState, me: NationId) -> Vec<serde_json::Value> {
+    let planned: f64 = spheres_sim::industry::project_plans(w).iter()
+        .filter(|(id, _)| w.production.projects.iter().any(|p| p.id == **id && p.nation == me))
+        .map(|(_, plan)| plan.cash_bn).sum();
+    let mut available = (programs::construction_available_bn(w, me) - planned).max(0.0);
+    w.resources.mine_projects.iter().filter(|p| p.started_by == me).map(|p| {
+        let key = spheres_sim::industry::mine_key(&p.district, p.commodity);
+        let finance = w.production.industry.mines.get(&key);
+        let plan = spheres_sim::industry::mine_work_plan(w, p, available);
+        let legacy_blocked = plan.is_none() && (!w.districts.get(&p.district)
+            .and_then(|owner|w.nation_opt(*owner)).is_some_and(|n|n.alive)
+            || resources::district_contested(w,&p.district));
+        let paid = finance.map_or(p.investment_bn, |f| f.spent_bn);
+        let total = finance.map_or_else(|| spheres_sim::clock::days_for_months(w, p.months_total) as f64, |f| f.total_days.max(1) as f64);
+        let remaining_days = finance.map_or_else(|| p.days_left.unwrap_or_else(|| spheres_sim::clock::days_for_months(w,p.months_left)) as f64, |f| (total-f.progress_days).max(0.0));
+        let daily = plan.as_ref().map_or(0.0, |p| p.cash_bn);
+        available = (available-daily).max(0.0);
+        let reason = if legacy_blocked {Some("Paused while this province is contested or has no active government.".to_string())}
+            else {plan.as_ref().and_then(|p| p.reason.clone().or_else(||p.slow_reason.clone()))};
+        let eta = plan.as_ref().map_or((!legacy_blocked).then_some(remaining_days.ceil() as u32), |p|
+            (p.advance_days > 1e-9).then(|| (remaining_days / p.advance_days).ceil() as u32));
+        serde_json::json!({
+            "id":key,"name":format!("{} {}",p.commodity.name(),if matches!(p.commodity,Commodity::Oil|Commodity::Gas){"field"}else{"mine"}),
+            "province":{"id":p.district,"name":spheres_sim::districts::name_of(&p.district).unwrap_or(&p.district)},
+            "progress":(1.0-remaining_days/total.max(1.0)).clamp(0.0,1.0),
+            "status":if legacy_blocked || plan.as_ref().is_some_and(|p|p.reason.is_some()){"blocked"}else if plan.as_ref().is_some_and(|p|p.advance_days<=1e-9){"paused"}else if reason.is_some(){"slowed"}else{"building"},
+            "reason":reason,"eta_days":eta,"legacy_prepaid":finance.is_none(),
+            "finance":{"cost_bn":p.investment_bn,"spent_bn":paid,"remaining_bn":(p.investment_bn-paid).max(0.0),"daily_request_bn":daily}
+        })
+    }).collect()
+}
+
+fn mine_impact_preview_json(w:&WorldState,me:NationId,district:&str,c:Commodity)->serde_json::Value {
+    let reason=resources::mine_refusal(w,me,district,c);
+    let output=resources::mine_output(district,c).unwrap_or(0.0);
+    let cost=resources::mine_cost_bn(w,district,c).unwrap_or(0.0);
+    let days=spheres_sim::clock::days_for_months(w,resources::MINE_BUILD_MONTHS);
+    let mut after=w.clone();
+    let existing=resources::mine_at(w,district,c).map_or(0.0,|m|m.output);
+    let completed_output=resources::mine_at(w,district,c).map_or(output,|m|m.output);
+    let annual_value=resources::mine_output_bn_per_year(w,district,c);
+    let value_for_output=|amount:f64| annual_value.map(|value|if output>0.0 {value*amount/output}else{0.0});
+    if resources::mine_at(w,district,c).is_none() {
+        after.resources.mines.push(resources::Mine {district:district.into(),commodity:c,output,completed:(w.year-1990)*12+w.month as i32-1});
+    }
+    let before_flow=resources::flow_from(&resources::have_table(w),me,c);
+    let after_flow=resources::flow_from(&resources::have_table(&after),me,c);
+    let mut eta=None;
+    if reason.is_none() {
+        let mut queued=w.clone();
+        if resources::start_mine(&mut queued,me,district,c).is_ok() {
+            eta=construction_mine_queue(&queued,me).iter()
+                .find(|p|p["id"]==spheres_sim::industry::mine_key(district,c))
+                .and_then(|p|p["eta_days"].as_u64());
+        }
+    }
+    let unit=period_board_unit(w,c);
+    serde_json::json!({
+        "name":format!("{} {}",c.name(),if matches!(c,Commodity::Oil|Commodity::Gas){"field"}else{"mine"}),
+        "project_kind":"resource_mine","commodity":c.key(),"district":district,"capacity_micros":serde_json::Value::Null,
+        "district_name":spheres_sim::districts::name_of(district).unwrap_or(district),"nation_name":me.name(),
+        "as_of_day":spheres_sim::clock::absolute_day(w),"cost_bn":cost,"minimum_days":days,"eta_days":eta,
+        "can_start":reason.is_none(),"reason":reason,
+        "province_effects":[
+            {"label":"Developed deposit output","before":annual_period_on_board(w,c,existing),"after":annual_period_on_board(w,c,completed_output),"unit":unit,
+                "detail":"Additional extraction at this mapped deposit after construction finishes. Existing provincial production is separate."},
+            {"label":"Annual value of mine output","before":value_for_output(existing),"after":value_for_output(completed_output),"unit":"$bn / year",
+                "detail":"Gross output valued at current model prices. This is not profit, tax revenue or guaranteed sales."}
+        ],
+        "national_effects":[
+            {"label":format!("Domestic {} supply",c.name()),"before":annual_period_on_board(w,c,before_flow),"after":annual_period_on_board(w,c,after_flow),"unit":unit,
+                "detail":"National production with this mine online under today's control conditions. More domestic supply can cover demand or become available for trade."},
+            {"label":"Construction commitment","before":0.0,"after":if reason.is_none(){cost}else{0.0},"after_label":"If queued","unit":"$bn",
+                "detail":"Paid from the shared construction budget as work progresses. No automatic tax or GDP bonus is added at completion."}
+        ],
+        "operating_requirements":[{"label":"Control of the deposit","value":serde_json::Value::Null,"unit":"",
+            "detail":"The province must remain operable. Output follows the current controlling country and can be interrupted by conflict."}],
+        "notes":["Mine size follows the game's sourced deposit and national production data. It is an estimate, not a geological survey.",
+            "The completion estimate includes currently queued buildings and mines at today's funding. No stockpile is required for construction."]
+    })
+}
+
+fn construction_preview_json(w:&WorldState,me:NationId,payload:&serde_json::Value)->Result<serde_json::Value,String> {
+    let district=payload.get("district").and_then(|v|v.as_str()).ok_or("Choose a province to review.")?;
+    if w.districts.get(district)!=Some(&me) { return Err("Choose a province your government owns.".into()); }
+    if payload.get("project_kind").and_then(|v|v.as_str())==Some("resource_mine") {
+        if !spheres_sim::clock::is_daily(w) { return Err("This funding preview requires daily construction.".into()); }
+        if payload.get("capacity_micros").is_some() { return Err("Mine size follows its mapped deposit.".into()); }
+        let commodity=payload.get("commodity").and_then(|v|v.as_str()).and_then(Commodity::parse).ok_or("Choose a known mine resource.")?;
+        return Ok(mine_impact_preview_json(w,me,district,commodity));
+    }
+    let kind=payload.get("project_kind").and_then(|v|v.as_str()).and_then(ProjectKind::parse)
+        .ok_or("Choose a known construction project.")?;
+    let size=match payload.get("capacity_micros") {
+        None=>None,
+        Some(value)=>Some(value.as_u64().and_then(|v|u32::try_from(v).ok())
+            .filter(|v|(1..=spheres_sim::industrial_modules::STANDARD_MICROS).contains(v))
+            .ok_or("Choose a valid whole workshop size.")?),
+    };
+    if (kind==ProjectKind::StarterIndustry)!=size.is_some() {
+        return Err("Choose a workshop size only for a starter workshop.".into());
+    }
+    let preview=spheres_sim::construction_preview::preview(w,me,district,kind,size);
+    let mut value=serde_json::to_value(preview).map_err(|e|e.to_string())?;
+    value["project_kind"]=serde_json::json!(kind.key());
+    value["capacity_micros"]=serde_json::json!(size);
+    value["district_name"]=serde_json::json!(spheres_sim::districts::name_of(district).unwrap_or(district));
+    value["nation_name"]=serde_json::json!(me.name());
+    value["as_of_day"]=serde_json::json!(spheres_sim::clock::absolute_day(w));
+    Ok(value)
+}
+
+fn construction_budget_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let p = w.nation(me).program_budget.as_ref();
+    let budget = programs::construction_daily_budget_bn(w, me);
+    let reason = programs::construction_budget_refusal(w, me, budget);
+    let planned: f64 = spheres_sim::industry::project_plans(w).iter()
+        .filter(|(id, _)| w.production.projects.iter().any(|p| p.id == **id && p.nation == me))
+        .map(|(_, plan)| plan.cash_bn).sum::<f64>() + construction_mine_queue(w,me).iter()
+            .map(|p|p["finance"]["daily_request_bn"].as_f64().unwrap_or(0.0)).sum::<f64>();
+    serde_json::json!({
+        "daily_budget_bn":budget,
+        "default_daily_bn":programs::construction_default_daily_bn(w,me),
+        "available_bn":programs::construction_available_bn(w,me),
+        "authority_bn":programs::construction_authority_bn(w,me),
+        "spent_today_bn":p.map_or(0.0,|p|p.construction_spent_today_bn),
+        "spent_day":p.and_then(|p|p.day),
+        "spent_ytd_bn":p.filter(|p|p.authority_year==w.year).map_or(0.0,|p|p.construction_spent_ytd_bn),
+        "planned_daily_bn":planned,
+        "explicit":p.is_some_and(|p|p.construction_daily_budget_bn.is_some()),
+        "enrolled":p.is_some(),
+        "can_set":reason.is_none(),
+        "reason":reason,
+        "note":"Construction draws from one daily cash budget within civilian capital appropriations. Work is paid as delivered; unused daily budget is not charged. Existing procurement funds stay reserved for equipment."
+    })
+}
+
+fn construction_suggestions_json(w:&WorldState,me:NationId)->serde_json::Value {
+    let suggestions=spheres_sim::construction_suggestions::suggestions(w,me);
+    let items:Vec<_>=suggestions.items.into_iter().filter_map(|suggestion| {
+        let preview=spheres_sim::construction_preview::preview(w,me,&suggestion.district,suggestion.project_kind,suggestion.capacity_micros);
+        if !preview.can_start { return None; }
+        let mut value=serde_json::to_value(&suggestion).expect("serializable construction suggestion");
+        value["project_kind"]=serde_json::json!(suggestion.project_kind.key());
+        value["district_name"]=serde_json::json!(spheres_sim::districts::name_of(&suggestion.district).unwrap_or(&suggestion.district));
+        value["cost_bn"]=serde_json::json!(preview.cost_bn);
+        value["minimum_days"]=serde_json::json!(preview.minimum_days);
+        value["eta_days"]=serde_json::json!(preview.eta_days);
+        Some(value)
+    }).collect();
+    serde_json::json!({"as_of_day":suggestions.as_of_day,"items":items,"note":suggestions.note})
+}
+
+fn production_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let mut projects = production::projects_for(w, me).collect::<Vec<_>>();
+    projects.sort_by_key(|p| p.id);
+    let queue = projects
+        .iter()
+        .map(|p| production_project_json(w, me, p))
+        .collect::<Vec<_>>();
+
+    let owned = w
+        .districts
+        .iter()
+        .filter(|(_, owner)| **owner == me)
+        .map(|(district, _)| district)
+        .collect::<Vec<_>>();
+
+    let catalog = served_construction_catalog(w)
+        .filter(|spec|spec.kind!=ProjectKind::StarterIndustry)
+        .map(|spec| {
+            let eligible = owned
+                .iter()
+                .filter(|district| production_start_allowed(w, me, district, spec.kind))
+                .map(|district| (*district).clone())
+                .collect::<Vec<_>>();
+            let reason = if eligible.is_empty() {
+                let mut counts = BTreeMap::<String, usize>::new();
+                for district in &owned {
+                    if let Some(reason) = production_start_refusal(w, me, district, spec.kind) {
+                        *counts.entry(reason).or_default() += 1;
+                    }
+                }
+                // Show the most widespread requirement, with deterministic ties.
+                // Each province below still carries its exact refusal.
+                counts.into_iter().max_by(|a, b| a.1.cmp(&b.1).then_with(|| b.0.cmp(&a.0)))
+                    .map(|(reason, count)| if count == owned.len() { reason } else {
+                        format!("{reason} Applies to {count} of {} provinces; check a province for its requirements.", owned.len())
+                    }).or_else(|| Some("You need an owned province before starting construction.".into()))
+            } else { None };
+            serde_json::json!({
+                "kind": spec.kind.key(),
+                "name": spec.name,
+                "description": spec.description,
+                "effect": spec.effect,
+                "total_days": spec.total_days,
+                "pc_cost": if spheres_sim::clock::is_daily(w) { 0.0 } else { round(spec.political_cost, 3) },
+                "funding": production_funding_json(w, me, spec.kind),
+                "requirements": if spheres_sim::clock::is_daily(w) { vec![] } else { production_requirements_json(w, me, &spec.recipe, None) },
+                "eligible_provinces": eligible,
+                "reason": reason,
+                "start_reason": reason,
+                "actions": { "start": !eligible.is_empty() },
+            })
+        })
+        .collect::<Vec<_>>();
+
+    let provinces = owned
+        .iter()
+        .map(|district| {
+            let active = projects
+                .iter()
+                .filter(|p| p.district.as_str() == district.as_str())
+                .map(|p| p.id)
+                .collect::<Vec<_>>();
+            let start = served_construction_catalog(w)
+                .filter(|spec| production_start_allowed(w, me, district, spec.kind))
+                .map(|spec| spec.kind.key())
+                .collect::<Vec<_>>();
+            let start_refusals = served_construction_catalog(w)
+                .filter(|spec| spec.kind != ProjectKind::StarterIndustry)
+                .filter_map(|spec| production_start_refusal(w, me, district, spec.kind)
+                    .map(|reason| (spec.kind.key(), reason)))
+                .collect::<BTreeMap<_, _>>();
+            serde_json::json!({
+                "id": district.as_str(),
+                "name": spheres_sim::districts::name_of(district).unwrap_or(district),
+                "capabilities": district_capabilities_json(w,district),
+                "module_capacity": spheres_sim::industrial_modules::capacity(w,district),
+                "active_projects": active,
+                "start_refusals": start_refusals,
+                "actions": { "start": start },
+            })
+        })
+        .collect::<Vec<_>>();
+
+    let completed = owned.iter().filter(|id| district_capability_total(w,id) > 0
+        || spheres_sim::industrial_modules::capacity(w,id) > 0.0)
+        .map(|district| serde_json::json!({
+            "province": {
+                "id": district,
+                "name": spheres_sim::districts::name_of(district).unwrap_or(district),
+            },
+            "capabilities": district_capabilities_json(w,district),
+            "module_capacity": spheres_sim::industrial_modules::capacity(w,district),
+            "outcome_actions":served_construction_catalog(w).filter(|spec|
+                production::level(w,district,spec.kind)>0 || (spec.kind==ProjectKind::StarterIndustry
+                    && spheres_sim::industrial_modules::capacity(w,district)>0.0))
+                .map(|spec|construction_outcomes::action(district,spec.kind)).collect::<Vec<_>>(),
+        }))
+        .collect::<Vec<_>>();
+
+    let markers = owned
+        .iter()
+        .filter_map(|district| {
+            let active = projects
+                .iter()
+                .filter(|p| p.district.as_str() == district.as_str())
+                .collect::<Vec<_>>();
+            if active.is_empty() && district_capability_total(w,district) == 0
+                && spheres_sim::industrial_modules::capacity(w,district) <= 0.0 {
+                return None;
+            }
+            let status = if active.iter().any(|p| p.status == ProjectStatus::Blocked) {
+                Some("blocked")
+            } else if active.iter().any(|p| p.status == ProjectStatus::Paused) {
+                Some("paused")
+            } else if active.iter().any(|p| p.status == ProjectStatus::Slowed) {
+                Some("slowed")
+            } else if active.iter().any(|p| p.status == ProjectStatus::Building) {
+                Some("building")
+            } else {
+                None
+            };
+            Some(serde_json::json!({
+                "district": district.as_str(),
+                "active": active.iter().map(|p| p.id).collect::<Vec<_>>(),
+                "status": status,
+                "capabilities": district_capabilities_json(w,district),
+                "module_capacity": spheres_sim::industrial_modules::capacity(w,district),
+            }))
+        })
+        .collect::<Vec<_>>();
+
+    let can_start = owned.iter().any(|district| {
+        served_construction_catalog(w)
+            .any(|spec| production_start_allowed(w, me, district, spec.kind))
+    });
+
+    let start_reason = if can_start { None } else {
+        let mut counts = BTreeMap::<String, usize>::new();
+        for district in &owned {
+            for spec in served_construction_catalog(w) {
+                if let Some(reason) = production_start_refusal(w, me, district, spec.kind) {
+                    *counts.entry(reason).or_default() += 1;
+                }
+            }
+        }
+        counts.into_iter().max_by(|(ar, ac), (br, bc)| ac.cmp(bc).then_with(|| br.cmp(ar)))
+            .map(|(reason, _)| reason)
+    };
+    serde_json::json!({
+        "mode": "province_projects",
+        "date":w.date_str(),"as_of_day":spheres_sim::clock::absolute_day(w),
+        "preview_notice": if spheres_sim::clock::is_daily(w) { None } else if w.daily.activate_after_month.is_some() {
+            Some("Construction effects reviews need daily play. This older campaign will switch after the current month finishes.")
+        } else { Some("Construction effects reviews need daily play.") },
+        "nation": format!("{:?}", me),
+        "nation_name": me.name(),
+        "capacity": if spheres_sim::clock::is_daily(w) { None } else { Some(production::MAX_ACTIVE_PROJECTS) },
+        "queue_capacity": if spheres_sim::clock::is_daily(w) { None } else { Some(production::MAX_QUEUED_PROJECTS) },
+        "construction_budget": construction_budget_json(w, me),
+        "suggestions": construction_suggestions_json(w, me),
+        "mine_queue": construction_mine_queue(w,me),
+        "summary": production_summary_json(w, me),
+        "catalog": catalog,
+        "queue": queue,
+        "provinces": provinces,
+        "completed": completed,
+        "markers": markers,
+        "actions": {
+            "start": can_start,
+            "start_reason": start_reason,
+        },
+    })
+}
+
+// ===========================================================================
+// MANUFACTURING & PROCUREMENT. Construction leaves arms-plant capability on
+// provinces; this surface turns those exact slots into long-lead equipment
+// lines. The arsenal remains the only equipment ledger and the defense budget
+// remains the only money source. Nothing in this layer manufactures, pays for,
+// delivers or ages a unit.
+// ===========================================================================
+
+fn manufacturing_tech_json(
+    n: &Nation,
+    def: &spheres_sim::arsenal::EquipmentDef,
+) -> serde_json::Value {
+    match def.tech {
+        None => serde_json::Value::Null,
+        Some(id) => match spheres_sim::tech::index_of(id) {
+            Some(index) => {
+                let tech = &spheres_sim::tech::registry()[index as usize];
+                serde_json::json!({
+                    "id": id,
+                    "name": tech.name,
+                    "known": n.tech.knows_index(index),
+                })
+            }
+            None => serde_json::json!({
+                "id": id,
+                "name": id,
+                "known": false,
+            }),
+        },
+    }
+}
+
+fn manufacturing_lock_reason(
+    n: &Nation,
+    def: &spheres_sim::arsenal::EquipmentDef,
+) -> Option<String> {
+    let id = def.tech?;
+    match spheres_sim::tech::index_of(id) {
+        Some(index) if n.tech.knows_index(index) => None,
+        Some(index) => Some(format!(
+            "Research {} first.",
+            spheres_sim::tech::registry()[index as usize].name
+        )),
+        None => Some(format!("Required technology {} is not in this build.", id)),
+    }
+}
+
+/// One equipment recipe in the same compact units as the resource board.
+/// `required` is this line's planned monthly slice, `draw` is what the next
+/// settlement will actually ask for, and `shortfalls` is the sim's present-
+/// tense gap. A whole recipe is never mislabeled as a current shortage.
+fn manufacturing_requirements_json(
+    w: &WorldState,
+    me: NationId,
+    required: &[f64; 12],
+    draw: &[f64; 12],
+    shortfalls: &[f64; 12],
+    consumed: Option<&[f64; 12]>,
+) -> Vec<serde_json::Value> {
+    ALL.iter()
+        .enumerate()
+        .filter_map(|(i, c)| {
+            if required[i] <= 1e-12 && draw[i] <= 1e-12 && shortfalls[i] <= 1e-12 {
+                return None;
+            }
+            let unit = period_board_unit(w, *c);
+            let (stock_unit, stock_factor) = stock_unit(*c);
+            Some(serde_json::json!({
+                "commodity": c.key(),
+                "name": line_name(*c),
+                "required": round(on_board(*c, required[i]), 6),
+                "draw": round(on_board(*c, draw[i]), 6),
+                "priority_available": round(on_board(*c, (draw[i] - shortfalls[i]).max(0.0)), 6),
+                "stock_available": round(resources::stock_quantity(w, me, *c) * stock_factor, 6),
+                "shortfall": round(on_board(*c, shortfalls[i]), 6),
+                "consumed": consumed.map(|used| round(used[i] * stock_factor, 6)),
+                "unit": unit,
+                "stock_unit": stock_unit,
+            }))
+        })
+        .collect()
+}
+
+fn manufacturing_recipe_per_bn_json(kit: u16) -> Vec<serde_json::Value> {
+    // Manufacturing has recipes for legacy programmes too. `kit_need` is the
+    // old automatic-procurement gate and deliberately zeros that legacy tier;
+    // directed lines settle through this separate, complete recipe table.
+    let need = resources::manufacturing_need(kit, 1.0);
+    ALL.iter()
+        .enumerate()
+        .filter_map(|(i, c)| {
+            (need[i] > 1e-12).then(|| serde_json::json!({
+                "commodity": c.key(),
+                "name": line_name(*c),
+                "quantity": round(on_board(*c, need[i]), 6),
+                "unit": stock_unit(*c).0,
+            }))
+        })
+        .collect()
+}
+
+fn manufacturing_delivery_date(w: &WorldState, due_months: u32) -> String {
+    // `due == 1` arrives at this month's settlement, not one month after it.
+    let add = due_months.saturating_sub(1) as i32;
+    let absolute = w.year * 12 + w.month as i32 - 1 + add;
+    let year = absolute.div_euclid(12);
+    let month = absolute.rem_euclid(12) as u32 + 1;
+    month_name(month, year)
+}
+
+fn manufacturing_start_allowed(
+    w: &WorldState,
+    me: NationId,
+    district: &str,
+    kit: &str,
+) -> bool {
+    if spheres_sim::manufacturing::start_line_error(w, me, district, kit).is_some() {
+        return false;
+    }
+    let command = Command::StartManufacturingLine {
+        nation: me,
+        district: district.to_string(),
+        kit: kit.to_string(),
+    };
+    spheres_sim::price_of(w, &command)
+        .is_some_and(|price| w.nation(me).political_capital + 1e-9 >= price)
+}
+
+fn manufacturing_summary_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    use spheres_sim::manufacturing::LineStatus;
+
+    let mut lines = spheres_sim::manufacturing::lines_for(w, me).collect::<Vec<_>>();
+    lines.sort_by_key(|line| line.id);
+    let blocked = lines
+        .iter()
+        .filter(|line| {
+            spheres_sim::manufacturing::line_blocker(w, line).is_some()
+                || line.status == LineStatus::Blocked
+        })
+        .count();
+    let paused = lines
+        .iter()
+        .filter(|line| {
+            spheres_sim::manufacturing::line_blocker(w, line).is_none()
+                && line.status == LineStatus::Paused
+        })
+        .count();
+    let slowed = lines
+        .iter()
+        .filter(|line| {
+            spheres_sim::manufacturing::line_blocker(w, line).is_none()
+                && line.status == LineStatus::Slowed
+        })
+        .count();
+    let producing = lines
+        .iter()
+        .filter(|line| {
+            spheres_sim::manufacturing::line_blocker(w, line).is_none()
+                && line.status == LineStatus::Producing
+        })
+        .count();
+    let owned_plants = w
+        .districts
+        .iter()
+        .filter(|(_, owner)| **owner == me)
+        .map(|(district, _)| spheres_sim::manufacturing::plant_slots(w, district) as usize)
+        .sum::<usize>();
+    let used_slots = w
+        .districts
+        .iter()
+        .filter(|(_, owner)| **owner == me)
+        .map(|(district, _)| spheres_sim::manufacturing::used_slots(w, me, district))
+        .sum::<usize>();
+    let naval_slots=w.districts.iter().filter(|(_,owner)|**owner==me)
+        .map(|(district,_)|spheres_sim::manufacturing::naval_slots(w,district) as usize).sum::<usize>();
+    let used_naval_slots=w.districts.iter().filter(|(_,owner)|**owner==me)
+        .map(|(district,_)|spheres_sim::manufacturing::used_naval_slots(w,me,district)).sum::<usize>();
+    let n = w.nation(me);
+    let pipeline_value = n
+        .arsenal
+        .orders
+        .iter()
+        .filter_map(|order| {
+            spheres_sim::arsenal::registry()
+                .get(order.kit as usize)
+                .map(|def| order.units * order.design_id.as_deref()
+                    .and_then(|id| spheres_sim::equipment::profile(n, id))
+                    .map_or(def.unit_cost, |p| p.unit_cost_bn))
+        })
+        .sum::<f64>();
+    serde_json::json!({
+        "active": lines.len(),
+        "capacity": owned_plants,
+        "used_slots": used_slots,
+        "free_slots": owned_plants.saturating_sub(used_slots),
+        "naval_slots":naval_slots,"used_naval_slots":used_naval_slots,
+        "free_naval_slots":naval_slots.saturating_sub(used_naval_slots),
+        "plants": owned_plants,
+        "producing": producing,
+        "slowed": slowed,
+        "paused": paused,
+        "blocked": blocked,
+        "attention": slowed + paused + blocked,
+        "attention_ids": lines.iter()
+            .filter(|line| {
+                spheres_sim::manufacturing::line_blocker(w, line).is_some()
+                    || line.status != LineStatus::Producing
+            })
+            .take(3)
+            .map(|line| line.id)
+            .collect::<Vec<_>>(),
+        "held_value_bn": round(spheres_sim::arsenal::book_value(n), 3),
+        "pipeline_value_bn": round(pipeline_value, 3),
+        "adequacy": round(spheres_sim::arsenal::adequacy(n), 4),
+    })
+}
+
+fn manufacturing_line_json(
+    w: &WorldState,
+    me: NationId,
+    line: &spheres_sim::manufacturing::ManufacturingLine,
+    plans: &[spheres_sim::manufacturing::LinePlan],
+    monthly_plans: &[spheres_sim::manufacturing::LinePlan],
+) -> serde_json::Value {
+    let priorities = [Priority::High, Priority::Normal, Priority::Low]
+        .iter()
+        .filter(|priority| **priority != line.priority)
+        .map(|priority| priority.key())
+        .collect::<Vec<_>>();
+    let plan = plans.iter().find(|plan| plan.line == line.id);
+    let required = plan.map_or([0.0; 12], |plan| plan.required);
+    let draw = if w.rules.daily_simulation { required }
+        else { spheres_sim::manufacturing::line_resource_draw(w, line.id) };
+    let shortfalls = if w.rules.daily_simulation {
+        spheres_sim::manufacturing::tick_line_shortfalls(w, line.id)
+    } else { spheres_sim::manufacturing::line_shortfalls(w, line.id) };
+    let allocation = plan.map_or(0.0, |plan| plan.budget_bn);
+    let monthly_allocation = monthly_plans.iter().find(|plan| plan.line == line.id).map_or(0.0, |plan| plan.budget_bn);
+    let daily_allocation = if w.rules.daily_simulation { allocation } else { allocation / spheres_sim::world::days_in_month(w.year, w.month) as f64 };
+    let live_blocker = spheres_sim::manufacturing::line_blocker(w, line);
+    let effective_blocked = live_blocker.is_some()
+        || line.status == spheres_sim::manufacturing::LineStatus::Blocked;
+    let effective_reason = live_blocker.or_else(|| line.reason.clone());
+    let status = if effective_blocked { "blocked" } else { line.status.key() };
+    let Some(kit) = spheres_sim::arsenal::index_of(&line.kit) else {
+        return serde_json::json!({
+            "id": line.id,
+            "kit": line.kit,
+            "name": line.kit,
+            "class": "unknown",
+            "province": {
+                "id": line.district,
+                "name": spheres_sim::districts::name_of(&line.district).unwrap_or(&line.district),
+            },
+            "priority": line.priority.key(),
+            "status": "blocked",
+            "reason": format!("BLOCKED: equipment {} is not in this build.", line.kit),
+            "allocation_bn_month": round(monthly_allocation, 6),
+            "allocation_bn_day": round(daily_allocation, 6),
+            "ordered_bn": round(line.ordered_bn, 6),
+            "requirements": manufacturing_requirements_json(
+                w, me, &required, &draw, &shortfalls, Some(&line.resources_used),
+            ),
+            "actions": { "set_priority": priorities, "stop": true },
+        });
+    };
+    let def = &spheres_sim::arsenal::registry()[kit as usize];
+    let output_rate=plan.map_or(1.0,|p|p.company.work_rate/(1.0+p.company.fee_rate));
+    let monthly_output_rate=monthly_plans.iter().find(|p|p.line==line.id)
+        .map_or(1.0,|p|p.company.work_rate/(1.0+p.company.fee_rate));
+    let planned_units_day = daily_allocation * output_rate / def.unit_cost.max(1e-12);
+    let period_days = if w.rules.daily_simulation {
+        1.0
+    } else {
+        spheres_sim::world::days_in_month(w.year, w.month) as f64
+    };
+    let actual_bn_day = if effective_blocked {
+        Some(0.0)
+    } else {
+        line.settled_day.map(|_| line.ordered_today_bn / period_days)
+    };
+    let actual_units_day = if effective_blocked { Some(0.0) }
+        else { line.settled_day.map(|_|line.ordered_today_units/period_days) };
+    let actual_throughput = if effective_blocked {
+        Some(0.0)
+    } else {
+        line.settled_day.map(|_| line.throughput_today)
+    };
+    serde_json::json!({
+        "id": line.id,
+        "kit": def.id,
+        "name": def.name,
+        "class": resources::class_word(def.class),
+        "province": {
+            "id": line.district,
+            "name": spheres_sim::districts::name_of(&line.district).unwrap_or(&line.district),
+        },
+        "priority": line.priority.key(),
+        "status": status,
+        "reason": effective_reason,
+        "allocation_bn_month": round(monthly_allocation, 6),
+        "allocation_bn_day": round(daily_allocation, 6),
+        "ordered_bn": round(line.ordered_bn, 6),
+        "units_ordered_month": round(if effective_blocked { 0.0 } else { monthly_allocation * monthly_output_rate / def.unit_cost.max(1e-12) }, 6),
+        "units_planned_day": round(if effective_blocked { 0.0 } else { planned_units_day }, 6),
+        "units_ordered_day": actual_units_day.map(|value| round(value, 6)),
+        "allocation_bn_actual_day": actual_bn_day.map(|value| round(value, 6)),
+        "throughput_ratio": actual_throughput.map(|value| round(value, 4)),
+        "unit_cost_bn": round(def.unit_cost, 6),
+        "lead_months": def.lead_months,
+        "lead_days": spheres_sim::clock::days_for_months(w, def.lead_months),
+        "service_months": def.service_months,
+        "tech": manufacturing_tech_json(w.nation(me), def),
+        "requirements": manufacturing_requirements_json(
+            w, me, &required, &draw, &shortfalls, Some(&line.resources_used),
+        ),
+        "actions": {
+            "set_priority": priorities,
+            "stop": true,
+        },
+    })
+}
+
+/// Player-only manufacturing board. The catalogue includes locked equipment so
+/// research has a visible destination, but only the sim's current conjunction
+/// of technology, ownership, plant room and political capital produces a Start
+/// action.
+fn manufacturing_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let n = w.nation(me);
+    let mut lines = spheres_sim::manufacturing::lines_for(w, me).collect::<Vec<_>>();
+    lines.sort_by_key(|line| line.id);
+    let plans = spheres_sim::manufacturing::tick_allocations(w, me);
+    let monthly_plans = spheres_sim::manufacturing::planned_allocations(w, me);
+
+    let provinces = w
+        .districts
+        .iter()
+        .filter(|(_, owner)| **owner == me)
+        .filter_map(|(district, _)| {
+            let slots = spheres_sim::manufacturing::plant_slots(w, district) as usize;
+            let naval_slots=spheres_sim::manufacturing::naval_slots(w,district) as usize;
+            if slots == 0 && naval_slots == 0 {
+                return None;
+            }
+            let used = spheres_sim::manufacturing::used_slots(w, me, district);
+            let used_naval=spheres_sim::manufacturing::used_naval_slots(w,me,district);
+            let active = lines
+                .iter()
+                .filter(|line| line.district == *district)
+                .map(|line| line.id)
+                .collect::<Vec<_>>();
+            let start = spheres_sim::arsenal::registry()
+                .iter()
+                .filter(|def| manufacturing_start_allowed(w, me, district, def.id))
+                .map(|def| def.id)
+                .collect::<Vec<_>>();
+            Some(serde_json::json!({
+                "id": district,
+                "name": spheres_sim::districts::name_of(district).unwrap_or(district),
+                "arms_plants": slots,
+                "used_slots": used,
+                "free_slots": slots.saturating_sub(used),
+                "naval_slots":naval_slots,"used_naval_slots":used_naval,
+                "free_naval_slots":naval_slots.saturating_sub(used_naval),
+                "active_lines": active,
+                "actions": { "start": start },
+            }))
+        })
+        .collect::<Vec<_>>();
+
+    let catalog = spheres_sim::arsenal::registry()
+        .iter()
+        .enumerate()
+        .map(|(index, def)| {
+            let eligible = provinces
+                .iter()
+                .filter_map(|province| province["id"].as_str())
+                .filter(|district| manufacturing_start_allowed(w, me, district, def.id))
+                .collect::<Vec<_>>();
+            let command = Command::StartManufacturingLine {
+                nation: me,
+                district: eligible.first().copied().unwrap_or_default().to_string(),
+                kit: def.id.to_string(),
+            };
+            let pc_cost = spheres_sim::price_of(w, &command).unwrap_or(0.0);
+            let lock_reason = manufacturing_lock_reason(n, def);
+            serde_json::json!({
+                "id": def.id,
+                "name": def.name,
+                "class": resources::class_word(def.class),
+                "unlocked": lock_reason.is_none(),
+                "lock_reason": lock_reason,
+                "tech": manufacturing_tech_json(n, def),
+                "quality": round(def.quality, 4),
+                "unit_cost_bn": round(def.unit_cost, 6),
+                "lead_months": def.lead_months,
+                "lead_days": spheres_sim::clock::days_for_months(w, def.lead_months),
+                "service_months": def.service_months,
+                "requirements_per_bn": manufacturing_recipe_per_bn_json(index as u16),
+                "eligible_provinces": eligible,
+                "naval":spheres_sim::manufacturing::is_naval(def.id),
+                "pc_cost": round(pc_cost, 3),
+                "actions": { "start": !eligible.is_empty() },
+            })
+        })
+        .collect::<Vec<_>>();
+
+    let stockpile = n
+        .arsenal
+        .held
+        .iter()
+        .filter_map(|holding| {
+            let def = spheres_sim::arsenal::registry().get(holding.kit as usize)?;
+            let revision = holding.design_id.as_deref()
+                .and_then(|id| n.equipment.as_ref()?.revisions.get(id));
+            let condition = spheres_sim::arsenal::holding_condition(n, holding);
+            let unit_cost = revision.map_or(def.unit_cost, |r| r.profile.unit_cost_bn);
+            Some(serde_json::json!({
+                "kit": def.id,
+                "design_id": holding.design_id,
+                "custom": revision.is_some(),
+                "unit_label": if revision.is_some() { "vehicles" } else { "legacy equivalents" },
+                "name": revision.map_or(def.name, |r| r.name.as_str()),
+                "class": resources::class_word(def.class),
+                "units": round(holding.units, 6),
+                "mean_age_months": round(holding.age, 2),
+                "condition": round(condition, 4),
+                "book_value_bn": round(holding.units * unit_cost * condition, 3),
+            }))
+        })
+        .collect::<Vec<_>>();
+    let orders = n
+        .arsenal
+        .orders
+        .iter()
+        .filter_map(|order| {
+            let def = spheres_sim::arsenal::registry().get(order.kit as usize)?;
+            let revision = order.design_id.as_deref()
+                .and_then(|id| n.equipment.as_ref()?.revisions.get(id));
+            let unit_cost = revision.map_or(def.unit_cost, |r| r.profile.unit_cost_bn);
+            let due_days = order.due_days.unwrap_or_else(|| spheres_sim::clock::days_for_months(w, order.due));
+            let due = spheres_sim::clock::date_from_day(spheres_sim::clock::absolute_day(w) + due_days.saturating_sub(1) as i32);
+            Some(serde_json::json!({
+                "kit": def.id,
+                "name": revision.map_or(def.name, |r| r.name.as_str()),
+                "design_id": order.design_id,
+                "custom": revision.is_some(),
+                "unit_label": if revision.is_some() { "vehicles" } else { "legacy equivalents" },
+                "class": resources::class_word(def.class),
+                "units": round(order.units, 6),
+                "due_months": order.due,
+                "due_days": due_days,
+                "due_date": if w.rules.daily_simulation { format!("{} {}", due.2, month_name(due.1, due.0)) } else { manufacturing_delivery_date(w, order.due) },
+                "value_bn": round(order.units * unit_cost, 3),
+            }))
+        })
+        .collect::<Vec<_>>();
+    let monthly_budget = spheres_sim::manufacturing::budget_bn(w, me);
+    let defense_share = n.budget_for(w.year).allocations[BUDGET_DEFENSE];
+    let summary = manufacturing_summary_json(w, me);
+    let can_start = provinces.iter().any(|province| {
+        province["actions"]["start"]
+            .as_array()
+            .is_some_and(|actions| !actions.is_empty())
+    });
+
+    serde_json::json!({
+        "mode": "province_equipment_lines",
+        "cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
+        "nation": format!("{:?}", me),
+        "nation_name": me.name(),
+        "summary": summary,
+        "finance": {
+            "gdp_bn": round(n.gdp, 3),
+            "defense_share": round(defense_share, 6),
+            "defense_bn_year": round(n.gdp * defense_share, 3),
+            "procurement_share": spheres_sim::arsenal::PROCUREMENT_SHARE,
+            "procurement_budget_bn_month": round(monthly_budget, 6),
+            "procurement_budget_bn_day": round(monthly_budget / spheres_sim::world::days_in_month(w.year, w.month) as f64, 6),
+            "banked_bn": round(n.arsenal.banked, 6),
+        },
+        "lines": lines.iter()
+            .map(|line| manufacturing_line_json(w, me, line, &plans, &monthly_plans))
+            .collect::<Vec<_>>(),
+        "catalog": catalog,
+        "provinces": provinces,
+        "stockpile": stockpile,
+        "orders": orders,
+        "actions": { "start": can_start },
+    })
+}
+
+/// `GET /api/stock/world?com=`: the globe's tint, the legacy contract arcs,
+/// the latest audited lanes, and the aims. `arcs` remains byte-for-shape
+/// compatible with the resource-board API that shipped before logistics.
+fn stock_world_json(w: &WorldState, c: Commodity) -> serde_json::Value {
+    let mut nations = serde_json::Map::new();
+    for n in w.nations.iter().filter(|n| n.alive) {
+        let word = if resources::refused_all(w, n.id, c).is_some() {
+            Some("refused_all")
+        } else {
+            let need = resources::draw(w, n.id)[c.idx()];
+            let l = read_line(w, n.id, c, need);
+            match l.status {
+                "stalled" => Some("stalled"),
+                "short" => Some("short"),
+                _ if c.tracked() && c != Commodity::Oil && resources::surplus(w, n.id, c) > 0.0 => Some("seller"),
+                _ => None,
+            }
+        };
+        if let Some(word) = word {
+            nations.insert(format!("{:?}", n.id), serde_json::Value::String(word.into()));
+        }
+    }
+    let arcs: Vec<serde_json::Value> = w
+        .resources
+        .contracts
+        .iter()
+        .flat_map(|k| {
+            let mut out = vec![];
+            for (giver, receiver, legs) in [(k.from, k.to, &k.give), (k.to, k.from, &k.take)] {
+                if legs.iter().any(|l| matches!(l, Leg::Commodity { c: lc, .. } if *lc == c)) {
+                    out.push(serde_json::json!({
+                        "from": format!("{:?}", giver),
+                        "to": format!("{:?}", receiver),
+                        "months_left": k.months_left,
+                        "contract": k.id,
+                    }));
+                }
+            }
+            out
+        })
+        .collect();
+    let aims: Vec<serde_json::Value> = w
+        .conflicts
+        .iter()
+        .filter_map(|k| {
+            let a = k.aim.as_ref()?;
+            Some(serde_json::json!({
+                "district": a.district,
+                "district_name": spheres_sim::districts::name_of(&a.district),
+                "commodity": a.commodity.key(),
+                "commodity_name": a.commodity.name(),
+                "conflict": k.id,
+                "nation": k.origin_attacker.name(),
+                "nation_id": format!("{:?}", k.origin_attacker),
+                "label": format!("aim of {}'s quarrel — holds {}", k.origin_attacker.name(), a.commodity.name()),
+            }))
+        })
+        .collect();
+    let lanes = shipment_lanes_json(w, None, Some(c));
+    serde_json::json!({ "com": c.key(), "nations": nations, "arcs": arcs, "lanes": lanes, "aims": aims })
+}
+
+// --- Talks: rungs in, the sim's answer out ---------------------------------
+
+/// The money ladder, as shares of the proposer's annual output (M, W1): the
+/// top rung is half of `MAX_CONTRACT_SPEND`, so a ladder can never itself
+/// put a nation over the cap the sim enforces.
+const MONEY_RUNGS: [f64; 5] = [0.0002, 0.0005, 0.001, 0.0025, 0.005];
+/// A commodity asked for: this month's need, twice it, six times it.
+const GET_RUNGS: [f64; 3] = [1.0, 2.0, 6.0];
+/// A commodity offered: a quarter, a half, all of the surplus.
+const GIVE_RUNGS: [f64; 3] = [0.25, 0.5, 1.0];
+
+/// A draft the page sends: `to`, what it asks (`take`), what it offers
+/// (`give`), the term, and the line the talks were opened on.
+struct Draft {
+    to: NationId,
+    give: Vec<Leg>,
+    take: Vec<Leg>,
+    months: u32,
+    com: Option<Commodity>,
+    take_terms: bool,
+}
+
+fn money_rung_bn(w: &WorldState, me: NationId, rung: usize) -> Option<f64> {
+    MONEY_RUNGS.get(rung).map(|s| s * w.nation(me).gdp)
+}
+
+fn get_rung_q(w: &WorldState, me: NationId, c: Commodity, rung: usize) -> Option<f64> {
+    let (base, _) = ask_basis(w, me, c);
+    GET_RUNGS.get(rung).map(|m| base * m)
+}
+
+fn give_rung_q(w: &WorldState, me: NationId, c: Commodity, rung: usize) -> Option<f64> {
+    let s = resources::surplus(w, me, c).max(0.0);
+    GIVE_RUNGS.get(rung).map(|m| s * m)
+}
+
+/// Read a draft. Every field is a rung or a name; a field the server cannot
+/// read is a refusal with its reason, never a default.
+fn draft_from(w: &WorldState, me: NationId, v: &serde_json::Value) -> Result<Draft, String> {
+    let to = v
+        .get("to")
+        .and_then(|x| x.as_str())
+        .and_then(NationId::parse)
+        .ok_or("Talks need a partner.")?;
+    let months = match v.get("months") {
+        None | Some(serde_json::Value::Null) => 36,
+        Some(m) => m.as_u64().ok_or("Terms run 12, 36, 60 or 120 months.")? as u32,
+    };
+    if !resources::TERMS.contains(&months) {
+        return Err("Terms run 12, 36, 60 or 120 months.".into());
+    }
+    let com = v.get("com").and_then(|x| x.as_str()).and_then(Commodity::parse);
+    let rung = |o: &serde_json::Value, key: &str| -> Result<Option<usize>, String> {
+        match o.get(key) {
+            None | Some(serde_json::Value::Null) => Ok(None),
+            Some(r) => r.as_u64().map(|r| Some(r as usize)).ok_or_else(|| format!("{key} must be a rung.")),
+        }
+    };
+    let mut take = vec![];
+    let mut give = vec![];
+    if let Some(g) = v.get("get").filter(|g| !g.is_null()) {
+        if let Some(c) = g.get("commodity").filter(|c| !c.is_null()) {
+            let c = c.as_str().and_then(Commodity::parse).ok_or("No such line.")?;
+            let r = rung(g, "rung")?.unwrap_or(0);
+            let q = get_rung_q(w, me, c, r).ok_or("That rung is not on the ladder.")?;
+            take.push(Leg::Commodity { c, per_month: q });
+        }
+        if let Some(d) = g.get("district").filter(|d| !d.is_null()) {
+            let d = d.as_str().ok_or("No such district.")?;
+            spheres_sim::districts::name_of(d).ok_or("No such district.")?;
+            take.push(Leg::District { id: d.to_string() });
+        }
+    }
+    if let Some(g) = v.get("give").filter(|g| !g.is_null()) {
+        if let Some(r) = rung(g, "money_rung")? {
+            let m = money_rung_bn(w, me, r).ok_or("That rung is not on the ladder.")?;
+            give.push(Leg::Money { bn_per_year: m });
+        }
+        if let Some(c) = g.get("commodity").filter(|c| !c.is_null()) {
+            let id = c.get("id").and_then(|x| x.as_str()).and_then(Commodity::parse).ok_or("No such line.")?;
+            let r = rung(c, "rung")?.unwrap_or(2);
+            let q = give_rung_q(w, me, id, r).ok_or("That rung is not on the ladder.")?;
+            give.push(Leg::Commodity { c: id, per_month: q });
+        }
+        if let Some(d) = g.get("district").filter(|d| !d.is_null()) {
+            let d = d.as_str().ok_or("No such district.")?;
+            spheres_sim::districts::name_of(d).ok_or("No such district.")?;
+            give.push(Leg::District { id: d.to_string() });
+        }
+    }
+    let take_terms = match v.get("take_terms") {
+        None | Some(serde_json::Value::Null) => false,
+        Some(b) => b.as_bool().ok_or("take_terms must be true or false.")?,
+    };
+    Ok(Draft { to, give, take, months, com, take_terms })
+}
+
+/// The counter the sim gives a draft, applied: the proposer's money raised
+/// to the receiver's price and the receiver's legs clipped to its surplus.
+/// Returns the bundle to propose and whether a counter was applied.
+fn apply_counter(w: &WorldState, me: NationId, d: &Draft) -> (Vec<Leg>, Vec<Leg>, bool) {
+    match resources::evaluate(w, me, d.to, &d.give, &d.take, d.months) {
+        Verdict::Counter { money_bn_per_year, take } => {
+            let mut give: Vec<Leg> = d.give.iter().filter(|l| !matches!(l, Leg::Money { .. })).cloned().collect();
+            if money_bn_per_year > 0.0 {
+                give.insert(0, Leg::Money { bn_per_year: money_bn_per_year });
+            }
+            (give, take, true)
+        }
+        _ => (d.give.clone(), d.take.clone(), false),
+    }
+}
+
+/// The ladders the talks sheet offers, every figure served: the money rungs
+/// as dollars, the commodity rungs on the board, the districts population-
+/// ranked (least populous first — the ones a government could part with).
+fn ladders_json(w: &WorldState, me: NationId, to: NationId, com: Option<Commodity>) -> serde_json::Value {
+    let gdp = w.nation(me).gdp;
+    let money: Vec<serde_json::Value> = MONEY_RUNGS
+        .iter()
+        .enumerate()
+        .map(|(i, s)| {
+            serde_json::json!({
+                "rung": i,
+                "bn": round(s * gdp, 4),
+                "label": format!("{} a year", bn(s * gdp)),
+                "share": format!("{:.2}% of output", s * 100.0),
+            })
+        })
+        .collect();
+    let get: Vec<serde_json::Value> = com
+        .map(|c| {
+            let (base, basis) = ask_basis(w, me, c);
+            GET_RUNGS
+                .iter()
+                .enumerate()
+                .map(|(i, m)| {
+                    serde_json::json!({
+                        "rung": i,
+                        "q": round(period_on_board(w, c, base * m), 6),
+                        "label": format!("{} {}", qty(period_on_board(w, c, base * m)), period_board_unit(w, c)),
+                        "word": if i == 0 { basis.to_string() } else { format!("{}×", *m as i64) },
+                    })
+                })
+                .collect()
+        })
+        .unwrap_or_default();
+    let mut give_commodity = serde_json::Map::new();
+    for c in ALL {
+        if !c.tracked() || c == Commodity::Oil {
+            continue;
+        }
+        let s = resources::surplus(w, me, c);
+        if s <= 0.0 {
+            continue;
+        }
+        let rungs: Vec<serde_json::Value> = GIVE_RUNGS
+            .iter()
+            .enumerate()
+            .map(|(i, m)| {
+                let word = ["¼ of your surplus", "½", "all"][i];
+                serde_json::json!({
+                    "rung": i,
+                    "q": round(period_on_board(w, c, s * m), 6),
+                    "label": format!("{} {}", qty(period_on_board(w, c, s * m)), period_board_unit(w, c)),
+                    "word": word,
+                })
+            })
+            .collect();
+        give_commodity.insert(c.key().to_string(), serde_json::json!({ "name": line_name(c), "rungs": rungs }));
+    }
+    let districts_of = |holder: NationId, want: Option<Commodity>| -> Vec<serde_json::Value> {
+        let mut list: Vec<(f64, String)> = w
+            .districts
+            .iter()
+            .filter(|&(_, &o)| o == holder)
+            .filter(|(d, _)| {
+                let p = resources::presence_of(d);
+                match want {
+                    Some(c) => p.contains(&c),
+                    None => !p.is_empty(),
+                }
+            })
+            .map(|(d, _)| (resources::pop_share_of(w, holder, d), d.clone()))
+            .collect();
+        list.sort_by(|a, b| a.0.partial_cmp(&b.0).unwrap_or(std::cmp::Ordering::Equal).then(a.1.cmp(&b.1)));
+        list.into_iter()
+            .take(24)
+            .map(|(share, d)| {
+                serde_json::json!({
+                    "id": d,
+                    "name": spheres_sim::districts::name_of(&d).unwrap_or(&d),
+                    "pop_pct": round(share * 100.0, 2),
+                    "holds": resources::presence_of(&d).iter().map(|c| c.name()).collect::<Vec<_>>(),
+                    "label": format!(
+                        "{} · {:.1}% of {} people · {}",
+                        spheres_sim::districts::name_of(&d).unwrap_or(&d),
+                        share * 100.0,
+                        if holder == me { "your" } else { "their" },
+                        resources::presence_of(&d).iter().map(|c| c.name()).collect::<Vec<_>>().join(", ")
+                    ),
+                })
+            })
+            .collect()
+    };
+    serde_json::json!({
+        "money": money,
+        "get": get,
+        "give_commodity": give_commodity,
+        "my_districts": districts_of(me, None),
+        "their_districts": districts_of(to, com),
+        "months": resources::TERMS,
+    })
+}
+
+/// The pluses and minuses of a draft, served: what it feeds, what it costs,
+/// and how much of a line would come from one partner.
+fn talks_lines(w: &WorldState, me: NationId, to: NationId, give: &[Leg], take: &[Leg], months: u32) -> (Vec<String>, Vec<String>) {
+    let draw = resources::draw(w, me);
+    let kit = resources::needed_by(w, me);
+    let gdp = w.nation(me).gdp.max(1e-9);
+    let mut pluses = vec![];
+    let mut minuses = vec![];
+    for l in take {
+        match l {
+            Leg::Commodity { c, per_month } => {
+                let unit = period_board_unit(w, *c);
+                pluses.push(format!("+ {} {unit} of {} for {} months", qty(period_on_board(w, *c, *per_month)), c.name(), months));
+                if draw[c.idx()] > 0.0 {
+                    let line = read_line(w, me, *c, draw[c.idx()]);
+                    let was = if matches!(line.status, "short" | "stalled") {
+                        format!(" (was stalling in {} months)", line.cover.ceil() as i64)
+                    } else {
+                        String::new()
+                    };
+                    pluses.push(format!("+ feeds your {} line{was}", kit.map(|k| k.0).unwrap_or("procurement")));
+                }
+                if *c != Commodity::Oil {
+                    let own = resources::flow(w, me, *c) / 12.0;
+                    let inn = resources::contracted_in(w, me, *c);
+                    let share = per_month / (own + inn + per_month).max(1e-9);
+                    if share > 0.0 {
+                        minuses.push(format!("− {:.0}% of your {} will come from {}", share * 100.0, c.name(), to.name()));
+                    }
+                }
+            }
+            Leg::Money { bn_per_year } => pluses.push(format!("+ {} a year for {}", bn(*bn_per_year), years_words(months))),
+            Leg::District { id } => pluses.push(format!(
+                "+ the district of {} ({:.1}% of their people)",
+                spheres_sim::districts::name_of(id).unwrap_or(id),
+                resources::pop_share_of(w, to, id) * 100.0
+            )),
+        }
+    }
+    for l in give {
+        match l {
+            Leg::Money { bn_per_year } if *bn_per_year > 0.0 => minuses.push(format!(
+                "− {} a year for {} ({:.2}% of output)",
+                bn(*bn_per_year),
+                years_words(months),
+                bn_per_year / gdp * 100.0
+            )),
+            Leg::Money { .. } => {}
+            Leg::Commodity { c, per_month } => {
+                let unit = period_board_unit(w, *c);
+                let s = resources::surplus(w, me, *c).max(1e-9);
+                minuses.push(format!(
+                    "− {} {unit} of your {} surplus ({:.0}% of it)",
+                    qty(period_on_board(w, *c, *per_month)),
+                    c.name(),
+                    (per_month / s * 100.0).min(100.0)
+                ));
+            }
+            Leg::District { id } => minuses.push(format!(
+                "− the district of {} ({:.1}% of your people)",
+                spheres_sim::districts::name_of(id).unwrap_or(id),
+                resources::pop_share_of(w, me, id) * 100.0
+            )),
+        }
+    }
+    (pluses, minuses)
+}
+
+/// `POST /api/talks`: the sim's answer to a draft — evaluate only. The
+/// verdict, its sentence, the counter if any (as a rung when one holds it),
+/// the price in political capital, and the ladders the sheet is built from.
+fn talks_json(w: &WorldState, me: NationId, v: &serde_json::Value) -> Result<serde_json::Value, String> {
+    let d = draft_from(w, me, v)?;
+    let (give, take, counter_applied) =
+        if d.take_terms { apply_counter(w, me, &d) } else { (d.give.clone(), d.take.clone(), false) };
+    let shape = resources::deal_refusal(w, me, d.to, &give, &take, d.months);
+    let verdict = resources::evaluate(w, me, d.to, &give, &take, d.months);
+    let (word, sentence, counter, reason, priced_out) = match (&verdict, &shape) {
+        (Verdict::Refuse(r), _) => (
+            "refuse",
+            format!("They will refuse: {}", r.sentence()),
+            serde_json::Value::Null,
+            Some(serde_json::to_value(r).ok().and_then(|x| match x {
+                serde_json::Value::String(s) => Some(s),
+                serde_json::Value::Object(m) => m.keys().next().cloned(),
+                _ => None,
+            })),
+            matches!(r, spheres_sim::resources::Reason::NotForThatPrice { .. }),
+        ),
+        (_, Some(s)) => ("refuse", s.clone(), serde_json::Value::Null, Some(Some("shape".to_string())), false),
+        (Verdict::Accept, None) => ("accept", "They will accept.".to_string(), serde_json::Value::Null, None, false),
+        (Verdict::Counter { money_bn_per_year, take: clipped }, None) => {
+            let m = *money_bn_per_year;
+            let rung = MONEY_RUNGS.iter().position(|s| s * w.nation(me).gdp + 1e-9 >= m);
+            (
+                "counter",
+                format!("They will counter: {} a year.", bn(m)),
+                serde_json::json!({
+                    "money_bn": round(m, 4),
+                    "money_rung": rung,
+                    "legs": clipped.iter().map(|leg| leg_words(w, leg)).collect::<Vec<_>>(),
+                }),
+                None,
+                false,
+            )
+        }
+    };
+    let cmd = Command::ProposeDeal { from: me, to: d.to, give: give.clone(), take: take.clone(), months: d.months };
+    let pc = spheres_sim::price_of(w, &cmd).unwrap_or(0.0);
+    let held = w.nation(me).political_capital;
+    let (pluses, minuses) = talks_lines(w, me, d.to, &give, &take, d.months);
+    Ok(serde_json::json!({
+        "to": format!("{:?}", d.to),
+        "to_name": d.to.name(),
+        "com": d.com.map(|c| c.key()),
+        "verdict": word,
+        "sentence": sentence,
+        "counter": counter,
+        "reason": reason.flatten(),
+        "priced_out": priced_out,
+        "pc": pc,
+        "affordable": held >= pc,
+        "shortfall": (pc - held).max(0.0),
+        "pluses": pluses,
+        "minuses": minuses,
+        "ladders": ladders_json(w, me, d.to, d.com),
+        "offer": {
+            "give": give.iter().map(|leg| leg_words(w, leg)).collect::<Vec<_>>(),
+            "take": take.iter().map(|leg| leg_words(w, leg)).collect::<Vec<_>>(),
+            "months": d.months,
+        },
+        "signed_line": format!("{} from {} for {} months", legs_words(w, &take), d.to.name(), d.months),
+        "take_terms": counter_applied,
+        "regards_you": round(w.relation(d.to, me), 1),
+    }))
+}
+
+fn round(v: f64, places: i32) -> f64 {
+    if !v.is_finite() {
+        return 0.0;
+    }
+    let m = 10f64.powi(places);
+    (v * m).round() / m
+}
+
+/// Round to `digits` SIGNIFICANT figures rather than to a fixed decimal place.
+///
+/// For the magnitudes in the history payload there is no decimal place that is
+/// right for the whole roster: the United States opens at $5,800bn and Sao Tome
+/// and Principe at $0.12bn, six orders of magnitude apart in the same array of
+/// the same response. Two places was right for the superpowers and destroyed
+/// everything small — measured on the live server, Sao Tome's ninety-five-month
+/// GDP series came back holding exactly TWO distinct values for an economy that
+/// had moved continuously through a 7% decline.
+///
+/// How many figures is set by what a chart has to resolve, which is the series'
+/// RANGE and not its level. Sao Tome moves 1.3% of its own output across a
+/// decade; six significant figures put roughly sixteen hundred levels inside
+/// that movement, which is more than a chart has pixels, and four would put
+/// only sixteen. Six also leaves the large nations exactly where they were —
+/// `round(5800.123456, 2)` and `round_sig(5800.123456, 6)` are both 5800.12 —
+/// so this is a strict improvement rather than a trade, at a cost of at most
+/// two characters a number.
+///
+/// Not for rates. `growth`, `inflation`, `debt` and `stability` are bounded
+/// quantities where a fixed place IS the right precision and where significant
+/// figures would spend digits on a number near zero; they keep `round`.
+fn round_sig(v: f64, digits: i32) -> f64 {
+    if !v.is_finite() || v == 0.0 {
+        return 0.0;
+    }
+    let magnitude = v.abs().log10().floor() as i32;
+    // Clamped so a denormal cannot ask for 10^300 and come back as an infinity.
+    let places = (digits - 1 - magnitude).clamp(-30, 30);
+    let m = 10f64.powi(places);
+    (v * m).round() / m
+}
+
+/// The recorded time series, column-major. One nation's arrays start at `t0`
+/// (successor states appear late) and simply stop when it dies, so a dead power's
+/// line ends rather than running flat to the end of the game.
+#[cfg(test)]
+fn history_json(g: &Game, only: Option<NationId>) -> serde_json::Value {
+    history::json(&g.history,only.map(|id|std::collections::BTreeSet::from([id])).as_ref())
+}
+
+/// The visual language and the button destination for one domination agenda.
+///
+/// These are presentation decisions, but they still belong on the server side
+/// of the contract: a card should not have to infer that securing resources
+/// opens the resource board, or that a rival conflict belongs in the war room.
+/// Keeping that routing beside the sim read model also means another client can
+/// render the same campaign without copying a six-arm switch from the page.
+fn domination_skin(
+    archetype: &spheres_sim::domination::AgendaArchetype,
+) -> (&'static str, &'static str, &'static str, &'static [&'static str]) {
+    match archetype.key() {
+        "consolidate_economic_base" => (
+            "FORGE THE CORE",
+            "economy",
+            "verdigris",
+            &["Output", "Stability", "Political room"],
+        ),
+        "secure_strategic_resources" => (
+            "CLAIM THE VEINS",
+            "resources",
+            "cobalt",
+            &["Stockpiles", "Trade leverage", "Strategic supply"],
+        ),
+        "build_arsenal" => (
+            "AWAKEN THE FOUNDRIES",
+            "production",
+            "brass",
+            &["Arms plants", "Equipment lines", "Sustained force"],
+        ),
+        "establish_regional_sphere" => (
+            "DRAW THEM INTO ORBIT",
+            "diplomacy",
+            "violet",
+            &["Clients", "Access", "Regional influence"],
+        ),
+        "settle_rival_conflict" => (
+            "BREAK THE DEADLOCK",
+            "war",
+            "ember",
+            &["Escalation", "Resolve", "Regional command"],
+        ),
+        "subjugate_rival" => (
+            "BEND THE RIVAL",
+            "war",
+            "crimson",
+            &["Isolation", "Overmatch", "Submission"],
+        ),
+        _ => (
+            "ADVANCE THE GRAND DESIGN",
+            "world",
+            "pearl",
+            &["Influence", "Power", "Control"],
+        ),
+    }
+}
+
+fn domination_offer_json(
+    offer: &spheres_sim::domination::AgendaOffer,
+    player: NationId,
+    value: Option<f64>,
+    progress: f64,
+    state_reason: String,
+) -> serde_json::Value {
+    let (kicker, route, accent, stakes) = domination_skin(&offer.archetype);
+    let target = offer.target.map(|id| {
+        serde_json::json!({
+            "id": format!("{:?}", id),
+            "name": id.name(),
+        })
+    });
+    serde_json::json!({
+        "id": offer.id,
+        "archetype": offer.archetype.key(),
+        "archetype_label": offer.archetype.label(),
+        "title": offer.title,
+        "kicker": kicker,
+        "description": offer.brief,
+        "progress": progress.clamp(0.0, 1.0),
+        "value": value,
+        "baseline": offer.baseline,
+        "goal": offer.goal,
+        "route": route,
+        "system": route,
+        "stakes": stakes,
+        "state_reason": state_reason,
+        "accent": accent,
+        "target": target,
+        // A target's historical avatar gives a rivalry card a face. A domestic
+        // programme keeps the player's own figure on the card.
+        "figure_nation_id": format!("{:?}", offer.target.unwrap_or(player)),
+    })
+}
+
+/// The complete campaign read model. Every number and every actionable route
+/// is authored here or in `spheres_sim::domination`; the page is deliberately
+/// left with formatting, animation and input only.
+fn domination_json(w: &WorldState, player: NationId) -> serde_json::Value {
+    let campaign = spheres_sim::domination::view(w, player);
+    let global = spheres_sim::domination::status(w, player);
+    let offers = campaign
+        .offers
+        .iter()
+        .map(|offer| {
+            domination_offer_json(
+                offer,
+                player,
+                None,
+                0.0,
+                "Unchosen — select this directive to bind the campaign.".into(),
+            )
+        })
+        .collect::<Vec<_>>();
+
+    let active = campaign.chosen.as_ref().map(|active| {
+        domination_offer_json(
+            &active.offer,
+            player,
+            Some(active.value),
+            active.progress,
+            if active.progress >= 1.0 {
+                "Complete — its mark has entered the national legacy.".into()
+            } else {
+                format!(
+                    "In motion — {:.0}% of the directive is secured.",
+                    active.progress.clamp(0.0, 1.0) * 100.0
+                )
+            },
+        )
+    });
+
+    let milestone_marks = campaign.chosen.as_ref().map_or([false; 4], |a| a.milestones);
+    let milestone_names = ["Foothold", "Momentum", "Ascendancy", "Triumph"];
+    let milestones = milestone_names
+        .iter()
+        .enumerate()
+        .map(|(i, label)| {
+            serde_json::json!({
+                "threshold": (i + 1) as f64 / 4.0,
+                "label": label,
+                "reached": milestone_marks[i],
+            })
+        })
+        .collect::<Vec<_>>();
+
+    let rivals = global
+        .independent_rivals
+        .iter()
+        .map(|id| serde_json::json!({ "id": format!("{:?}", id), "name": id.name() }))
+        .collect::<Vec<_>>();
+    let legacy = campaign
+        .legacy
+        .iter()
+        .map(|entry| {
+            serde_json::json!({
+                "id": entry.id,
+                "title": entry.title,
+                "archetype": entry.archetype.key(),
+                "archetype_label": entry.archetype.label(),
+                "target": entry.target.map(|id| serde_json::json!({
+                    "id": format!("{:?}", id),
+                    "name": id.name(),
+                })),
+                "completed_year": entry.completed_year,
+                "completed_month": entry.completed_month,
+                "completed_date": month_name(entry.completed_month, entry.completed_year),
+            })
+        })
+        .collect::<Vec<_>>();
+
+    let next_action = if global.victory {
+        serde_json::json!({
+            "label": "The World Is Yours",
+            "system": "world",
+            "route": "world",
+            "reason": "No independent rival remains.",
+            "enabled": false,
+        })
+    } else if let Some(active) = campaign.chosen.as_ref() {
+        let (_, route, _, _) = domination_skin(&active.offer.archetype);
+        let label = match route {
+            "economy" => "Enter the Cabinet Room",
+            "resources" => "Open the Resource Board",
+            "production" => "Open the Production Board",
+            "diplomacy" => "Open the Diplomatic Table",
+            "war" => "Enter the War Room",
+            _ => "Return to the World",
+        };
+        serde_json::json!({
+            "label": label,
+            "system": route,
+            "route": route,
+            "reason": active.offer.brief,
+            "enabled": active.progress < 1.0,
+        })
+    } else {
+        serde_json::json!({
+            "label": "Choose the Next Directive",
+            "system": "domination",
+            "route": "domination",
+            "reason": "Three roads are open. Every one bends toward the same world throne.",
+            "enabled": true,
+        })
+    };
+    let blocker = global.incomplete_conditions.first().map(|reason| {
+        let route = campaign
+            .chosen
+            .as_ref()
+            .map(|a| domination_skin(&a.offer.archetype).1)
+            .unwrap_or("domination");
+        serde_json::json!({
+            "reason": reason,
+            "system": route,
+            "route": route,
+        })
+    });
+
+    serde_json::json!({
+        "goal": "Bring every surviving nation under direct rule or into your sphere. No independent rival remains.",
+        "generation": campaign.generation,
+        "progress": global.progress.clamp(0.0, 1.0),
+        "progress_percent": round(global.progress.clamp(0.0, 1.0) * 100.0, 1),
+        "victory": global.victory,
+        "directly_controlled": global.directly_controlled,
+        "subordinate_clients": global.subordinate_clients,
+        "independent_rivals": global.independent_rivals.len(),
+        "rivals": rivals,
+        "incomplete_conditions": global.incomplete_conditions,
+        "offers": offers,
+        "active_agenda": active,
+        "milestones": milestones,
+        "blocker": blocker,
+        "next_action": next_action,
+        "completed_legacy": legacy,
+    })
+}
+
+/// Advice reads the state and construction board from the same locked Game.
+/// No player means a valid setup snapshot with no production board; this read
+/// never selects a nation, opens accounts, submits orders, or advances time.
+fn guidance_json(g: &Game) -> serde_json::Value {
+    serde_json::json!({
+        "state": state_json(g, None),
+        "production": g.world.player.map(|me| production_json(&g.world, me)),
+    })
+}
+
+fn warfare_adoption_json(w: &WorldState, nation: NationId) -> serde_json::Value {
+    let enabled=spheres_sim::campaign::enabled(w);
+    let reason=spheres_sim::operational_warfare::enrollment_refusal(w,nation);
+    serde_json::json!({"enabled":enabled,"available":!enabled&&reason.is_none(),"reason":reason,
+        "effect":"Enable theatre operations, deployment journeys, supply reports and negotiated peace. Existing equipment, supplier stock and paid contracts retain their property. This changes future campaign rules; save a separate slot first if you want to retain the former rules.",
+        "command":{"kind":"enable_operational_warfare"}})
+}
+
+fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
+    let w = &g.world;
+    let nations: Vec<serde_json::Value> = w
+        .nations
+        .iter()
+        .filter(|n| n.alive)
+        .map(|n| nation_json(w, n))
+        .collect();
+    let dead: Vec<serde_json::Value> = w
+        .nations
+        .iter()
+        .filter(|n| !n.alive)
+        .map(|n| serde_json::json!({ "id": format!("{:?}", n.id), "name": n.id.name() }))
+        .collect();
+    // A conflict is a thing BETWEEN parties, so one that no longer has a living
+    // party on each side is not one, and a belligerent that no longer exists is
+    // not standing on a rung. The sim keeps a dissolved state's posture for the
+    // month it takes the war systems to notice, and this payload was serving
+    // that month as fact — the same response listed the Soviet Union under
+    // `dead` and under `wars[].posture` at rung 6, "standoff strike", stake
+    // 0.45. Measured over twelve seeds and thirty years: three occurrences,
+    // each lasting exactly one month, all at the dissolution.
+    //
+    // Filtered HERE and nowhere else. The sim's own conflict list is untouched
+    // and prunes itself on the following tick exactly as it did; this decides
+    // only what the browser is told, which is the half that can be got wrong
+    // without changing what the model asserts about history.
+    let alive = |id: &NationId| w.nation_opt(*id).is_some_and(|n| n.alive);
+    let wars: Vec<serde_json::Value> = w
+        .conflicts
+        .iter()
+        .filter(|c| c.side_a.iter().any(alive) && c.side_b.iter().any(alive))
+        .map(|c| conflict_json(w, c))
+        .collect();
+    // Recent events travel with state; older archive pages are fetched lazily.
+    let log: Vec<serde_json::Value> = g
+        .log
+        .iter()
+        .rev()
+        .take(MAX_LOG)
+        .map(|e| {
+            serde_json::json!({
+                "date": e.date,
+                "t": e.t,
+                "text": e.text,
+                "cat": e.cat,
+                "tags": e.tags.iter().map(|id| format!("{:?}", id)).collect::<Vec<_>>(),
+            })
+        })
+        .collect();
+
+    let mut out = serde_json::json!({
+        "date": w.date_str(),
+        "year": w.year,
+        "month": w.month,
+        "day": w.day,
+        "session_id": g.session_id,
+        "history_epoch":g.history_epoch,
+        "history_cursor":g.history.last().map(|s|s.t),
+        "dispatch_count":g.log.len(),
+        "storage_notice":g.storage_notice,
+        "simulation_cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
+        "connected_economy":w.player.filter(|id|w.nation_opt(*id).is_some_and(|n|n.alive)).map(|id|connected_economy_json(w,id)),
+        "fiscal_recovery_enabled":w.rules.fiscal_recovery,
+        "fiscal_recovery":w.player.and_then(|id|spheres_sim::fiscal_recovery::assessment(w,id)),
+        "population_enabled":spheres_sim::population::active(w),
+        "simulation_transition": w.daily.activate_after_month.map(|closing_month| {
+            let next = closing_month + 1;
+            let year = 1990 + next.div_euclid(12);
+            let month = next.rem_euclid(12) as u32 + 1;
+            let starts_on = format!("1 {}", month_name(month, year));
+            serde_json::json!({
+                "status": "finishing_legacy_month",
+                "starts_on": starts_on,
+                "days_until": (spheres_sim::clock::date_day(year, month, 1) - spheres_sim::clock::absolute_day(w)).max(0),
+                "message": format!("Finishing this save's open month without losing income or production. Daily simulation begins {starts_on}."),
+            })
+        }),
+        "t": month_index(w.year, w.month),
+        "player": w.player.map(|p| format!("{:?}", p)),
+        "player_name": w.player.map(|p| p.name()),
+        // WHO IS RUNNING MONETARY POLICY, which is real, permanent, and was
+        // invisible. `politics::tick` runs the player's central bank on their
+        // behalf until they first issue a rate command, and skips their seat
+        // for the rest of the game afterwards. The interest-rate slider is
+        // therefore a one-way door and looked like every other slider: a player
+        // could not tell whether the rate on screen was their policy or the
+        // bank's, nor that moving it dismisses the bank for good.
+        "player_set_rate": w.player_set_rate,
+        "oil_price": w.oil_price,
+        "build":{"version":env!("CARGO_PKG_VERSION"),"revision":env!("SPHERES_REVISION")},
+        "nations": null,
+        "dead": dead,
+        "wars": wars,
+        "operations": w.player.filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive))
+            .map(|id| spheres_sim::operations::view(w, id)),
+        "warfare_adoption":w.player.filter(|id|w.nation_opt(*id).is_some_and(|n|n.alive)).map(|id|warfare_adoption_json(w,id)),
+        // The sim's held/contested threshold for per-district front control,
+        // served so the browser never re-derives it (its literal is only a
+        // fallback for a server that predates this key).
+        "front_held_band": spheres_sim::front::HELD_BAND,
+        "theatres": theatres_json(w),
+        "access": w.access.iter().map(|a| serde_json::json!({
+            "theatre": format!("{:?}", a.theatre),
+            "host": format!("{:?}", a.host),
+            "host_name": a.host.name(),
+            "seeker": format!("{:?}", a.seeker),
+            "seeker_name": a.seeker.name(),
+            "since": month_name(a.since_month, a.since_year),
+        })).collect::<Vec<_>>(),
+        "log": log,
+        "flags": w.flags,
+        // Delta-encoded: only districts whose owner differs from the 1990
+        // default, keyed by district id, value the owner's nation code.
+        // Usually empty early game; the browser composes default owners from
+        // districts.js grouping and overlays these. Computed sim-side like
+        // everything else here.
+        "districts": spheres_sim::districts::deltas(w).into_iter()
+            .map(|(d, o)| (d, serde_json::Value::String(format!("{:?}", o))))
+            .collect::<serde_json::Map<String, serde_json::Value>>(),
+        // Carried on every state payload rather than fetched separately, because
+        // the offer list changes with the world: a month that breaks the
+        // inflation closes the peg, and the panel must not be a frame behind.
+        "stratagems": w.player.map(|p| stratagems_json(w, p)),
+        "research": w.player.map(|p| research_json(w, p)),
+        // The resource board (package W1): twelve lines, the player's
+        // contracts, offers and refusals, every number and sentence served.
+        "resources": w.player.map(|p| resources_json(w, p)),
+        // Counts only. The daily state stays compact; the complete latest
+        // manifests are fetched when the player opens Logistics.
+        "logistics_summary": w.player.map(|p| logistics_summary_json(w, p)),
+        // Production follows the same compact/full split as Logistics. The
+        // daily clock carries counts; the board fetches province choices,
+        // recipes and authorized actions only when opened.
+        "production_summary": w.player.map(|p| production_summary_json(w, p)),
+        // Manufacturing follows the same compact/full split. The daily state
+        // carries plant/line attention; the 46-item equipment catalogue and
+        // long arsenal ledger are fetched only when its Production tab opens.
+        "manufacturing_summary": w.player.map(|p| manufacturing_summary_json(w, p)),
+        "programs": w.player.map(|p| programs_json(w, p, None)),
+        "economic_competition": w.rules.economic_competition,
+        // One universal campaign objective, with its three deterministic next
+        // directives and every progress/milestone/routing decision already
+        // resolved. The page paints this contract; it does not score conquest.
+        "domination": w.player.map(|p| domination_json(w, p)),
+        "agency": w.player.map(|p| spheres_sim::agency::view(w, p)),
+        "campaign_aims": w.player.map(|p| spheres_sim::campaign_aims::view(w, p)),
+        "policy": w.player.map(|p| policy_json(w, p)),
+        // The budget card (stage 4): the ten dials' named arms, sampled by
+        // the sim over the range a dial can hold, and the money block.
+        "ministries": w.player.map(|p| ministries_json(w, p)),
+        "interrupt": interrupt,
+    });
+    // Each country already owns its completed JSON tree, including relations.
+    out["nations"] = serde_json::Value::Array(nations);
+    out
+}
+
+/// One live province reading. Population is kept out of the large daily state
+/// payload; the globe asks for the selected province and refreshes it as time
+/// advances.
+fn district_population_json(w: &WorldState, district: &str) -> Option<serde_json::Value> {
+    let population = spheres_sim::districts::population_of(w, district)?;
+    let owner = w.districts.get(district).copied();
+    let growth = owner.and_then(|id| spheres_sim::economy::effective_population_growth(w, id));
+    let opening = spheres_sim::districts::population_1990_of(district);
+    let area = spheres_sim::districts::area_of(district);
+    let density = (area > 0.0).then_some(population * 1_000_000.0 / area);
+    let national_share = owner
+        .and_then(|id| w.nation_opt(id))
+        .and_then(|n| (n.population > 0.0).then_some(population / n.population));
+
+    let ahead = |other_id: &str, other_population: f64| {
+        other_population > population
+            || (other_population == population && other_id < district)
+    };
+    let mut world_rank = 1usize;
+    let mut owner_rank = 1usize;
+    let mut owner_count = 0usize;
+    for other_id in w.district_population.keys() {
+        let Some(other_population) = spheres_sim::districts::population_of(w, other_id) else {
+            continue;
+        };
+        if ahead(other_id, other_population) {
+            world_rank += 1;
+        }
+        if owner.is_some() && w.districts.get(other_id).copied() == owner {
+            owner_count += 1;
+            if ahead(other_id, other_population) {
+                owner_rank += 1;
+            }
+        }
+    }
+
+    Some(serde_json::json!({
+        "id": district,
+        "name": spheres_sim::districts::name_of(district),
+        "population": round_sig(population, 8),
+        "opening_population": opening.map(|v| round_sig(v, 8)),
+        "change_since_1990": opening.filter(|v| *v > 0.0)
+            .map(|v| round(population / v - 1.0, 6)),
+        "density_per_sqkm": density.map(|v| round(v, 4)),
+        "national_share": national_share.map(|v| round(v, 6)),
+        "owner_rank": owner.map(|_| owner_rank),
+        "owner_count": owner.map(|_| owner_count),
+        "world_rank": world_rank,
+        "world_count": w.district_population.len(),
+        "owner": owner.map(|id| format!("{:?}", id)),
+        "owner_name": owner.map(|id| id.name()),
+        "starting_industry": spheres_sim::starting_industry::province(w, district),
+        // Same simulation ledger for every owner, not the player's projects
+        // cache. Keep full precision so components reconcile before display.
+        "economy": spheres_sim::province_economy::province(w, district).map(|ledger| {
+            let mut value = serde_json::to_value(ledger).expect("province ledger is serializable");
+            value["receipt_date_label"] = serde_json::json!(economic_receipt_label(w));
+            value
+        }),
+        "annual_growth": growth.map(|g| round(g, 6)),
+        "year": w.year,
+        "month": w.month,
+        "day": w.day,
+    }))
+}
+
+/// Full country composition is fetched on demand. A view never initializes a
+/// ledger or advances the world, and unsupported/dead nation IDs are explicit.
+fn economic_ledger_json(w: &WorldState, id: NationId) -> Option<serde_json::Value> {
+    let n = w.nation_opt(id).filter(|n| n.alive)?;
+    let ledger = spheres_sim::province_economy::snapshot(w, id)?;
+    let mut value = serde_json::to_value(ledger).expect("economic ledger is serializable");
+    value["nation"] = serde_json::json!(format!("{:?}", id));
+    value["name"] = serde_json::json!(n.id.name());
+    value["year"] = serde_json::json!(w.year);
+    value["month"] = serde_json::json!(w.month);
+    value["day"] = serde_json::json!(w.day);
+    value["receipt_date_label"] = serde_json::json!(economic_receipt_label(w));
+    value["starting_industry"] = serde_json::to_value(spheres_sim::starting_industry::snapshot(w, id))
+        .expect("industrial estimates are serializable");
+    Some(value)
+}
+
+fn economic_receipt_label(w: &WorldState) -> String {
+    match w.province_economy.as_ref().and_then(|ledger| ledger.settled_day) {
+        Some(day) => {
+            let (year, month, date) = spheres_sim::clock::date_from_day(day);
+            format!("Work settled {date} {} · not a forecast", month_name(month, year))
+        }
+        None => "Opening baseline · no daily project settlement yet".into(),
+    }
+}
+
+/// The live population surface for the opt-in province population map layer.
+/// Each compact row is [population_m, people/km2].
+fn district_populations_json(w: &WorldState) -> serde_json::Value {
+    let districts = w
+        .district_population
+        .keys()
+        .filter_map(|district| {
+            let population = spheres_sim::districts::population_of(w, district)?;
+            let area = spheres_sim::districts::area_of(district);
+            let density = if area > 0.0 {
+                population * 1_000_000.0 / area
+            } else {
+                0.0
+            };
+            Some((
+                district.clone(),
+                serde_json::json!([round_sig(population, 8), round(density, 4)]),
+            ))
+        })
+        .collect::<serde_json::Map<String, serde_json::Value>>();
+    serde_json::json!({
+        "year": w.year,
+        "month": w.month,
+        "day": w.day,
+        "districts": districts,
+    })
+}
+
+/// Current economic stability contributors, served from the integrator's own terms.
+fn stability_json(w: &WorldState, n: &Nation) -> serde_json::Value {
+    use spheres_sim::economy::{stability_flow, stability_mean_reversion, stability_pressure_terms_of};
+    let t = stability_pressure_terms_of(w, n);
+    let reversion = stability_mean_reversion(n.stability);
+    let total = t.total + reversion;
+    let dt = spheres_sim::clock::month_fraction(w);
+    let terms: Vec<_> = [
+        ("growth", "Growth above or below 1.5%", t.growth, "budget"),
+        ("inflation", "Inflation above 5%", -t.inflation_drag, "decisions"),
+        ("unemployment", "Unemployment above 6%", -t.unemployment_drag, "budget"),
+        ("housing", "Housing budget versus baseline", t.housing, "budget"),
+        ("pensions", "Pensions budget versus baseline", t.pensions, "budget"),
+        ("security", "Security budget versus baseline", t.security, "budget"),
+        ("war_exhaustion", "War exhaustion", -t.war_exhaustion_drag, "world"),
+        ("sanctions", "Sanctioning economies", -t.sanctions_drag, "decisions"),
+        ("command_recession", "Command-economy recession", -t.command_recession_drag, "budget"),
+        ("mean_reversion", "Gradual return toward 60 stability", reversion, ""),
+    ].into_iter().map(|(id, label, pressure, action)| serde_json::json!({
+        "id": id, "label": label, "monthly_points": stability_flow(pressure, 1.0), "action": action,
+    })).collect();
+    serde_json::json!({
+        "current": n.stability,
+        "monthly_points_before_bounds": stability_flow(total, 1.0),
+        "step_points_before_bounds": stability_flow(total, dt),
+        "month_fraction": dt,
+        "terms": terms,
+    })
+}
+
+/// What the policy sliders will actually buy, answered by the sim.
+///
+/// THE ONE THING HERE IS THE FORCE CURVE, and it is a curve rather than a
+/// coefficient because the quantity has no closed form. `war::sustained_force`
+/// is
+///
+///     sqrt(gdp · share · 0.30) · 8 · military_multiplier · adequacy_at(share)
+///       + military_floor
+///
+/// and `adequacy_at` FALLS as the share rises, so the whole thing is not
+/// `k·sqrt(share)` however much it looks like it. The browser was computing
+/// `sqrt(gdp · share · 0.30) · 8` — the first factor only — and printing the
+/// answer as "sustains a force of N" under the military slider. Three of the
+/// four factors were missing: the technology multiplier (0.5x to 4.0x), the
+/// equipment adequacy (0.55x to 1.0x), and the flat floor a modern arsenal
+/// carries whatever the budget. Wrong by -38% to +42% on the first screen a
+/// player sees, with no input from them at all.
+///
+/// SAMPLED, NOT SOLVED. The slider takes values in thousandths, so the sim
+/// evaluates its own function at every thousandth from 0 to [`FORCE_CURVE_MAX`]
+/// and serves the lot. The browser indexes; it does not interpolate and it does
+/// not re-derive. 401 floats for the player's nation alone, on a payload that
+/// already carries a 137x136 relation matrix.
+///
+/// The RANGE is the server's own and is deliberately wider than the slider's
+/// 0..0.35, so this is not a second copy of a UI bound. A page whose slider ever
+/// goes past the last sample clamps to it, and
+/// `the_force_line_is_the_force_the_sim_sustains` asserts the curve covers what
+/// the shipped page can actually ask for.
+fn policy_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    use spheres_sim::economy::{growth_terms, Conditions};
+    let n = w.nation(me);
+    let curve: Vec<f64> = (0..=FORCE_CURVE_STEPS)
+        .map(|i| {
+            let share = i as f64 / FORCE_CURVE_STEPS as f64 * FORCE_CURVE_MAX;
+            round(spheres_sim::war::sustained_force(n, share), 3)
+        })
+        .collect();
+
+    // THE GROWTH FORECAST, ANSWERED BY THE SIM. Sampled exactly the way the
+    // force curve above is, and for the same reason: the panel has to answer
+    // "what would this slider do" before the month is paid for, and neither
+    // quantity has a closed form on the browser's side.
+    //
+    // Two sliders reach growth and they reach different terms — state
+    // investment moves `potential` and nothing else, the interest rate moves
+    // the demand arm and nothing else — so two one-dimensional curves are the
+    // whole surface and no cross term is missing. Everything else is fixed for
+    // the month and is served as a number.
+    let c = Conditions::of(w, me);
+    let now = growth_terms(n, n.state_invest_gdp, n.interest_rate, &c);
+    let potential_curve: Vec<f64> = (0..=POLICY_CURVE_STEPS)
+        .map(|i| {
+            let share = i as f64 / POLICY_CURVE_STEPS as f64 * POLICY_CURVE_MAX;
+            round(growth_terms(n, share, n.interest_rate, &c).potential, 6)
+        })
+        .collect();
+    let books = spheres_sim::economy::Fiscal::of(n, &now);
+    let (revenue_bn, spend_bn, balance_bn) = books.in_billions(n.gdp);
+    let rate_terms: Vec<spheres_sim::economy::GrowthTerms> = (0..=POLICY_CURVE_STEPS)
+        .map(|i| {
+            let rate = i as f64 / POLICY_CURVE_STEPS as f64 * POLICY_CURVE_MAX;
+            growth_terms(n, n.state_invest_gdp, rate, &c)
+        })
+        .collect();
+
+    serde_json::json!({
+        "force_curve": curve,
+        "force_curve_max": FORCE_CURVE_MAX,
+        // What the nation is actually spending buys, so the standing line needs
+        // no lookup at all and cannot be a sample out.
+        "sustained": spheres_sim::war::sustained_force(n, n.mil_spend_gdp),
+
+        "curve_max": POLICY_CURVE_MAX,
+        "potential_curve": potential_curve,
+        // The ungated gap, which is what sets prices, and the gated one, which
+        // is what sets output. They are the same number in a normal cycle and
+        // come apart entirely in a hyperinflation; the browser used to have
+        // only the first and spend it as both.
+        "demand_gap_curve": rate_terms.iter().map(|t| round(t.demand_gap, 6)).collect::<Vec<_>>(),
+        "demand_output_curve": rate_terms.iter().map(|t| round(t.demand_output, 6)).collect::<Vec<_>>(),
+        "inflation_target_curve":
+            rate_terms.iter().map(|t| round(t.target_inflation, 6)).collect::<Vec<_>>(),
+
+        // Fixed for the month: no slider on this panel reaches any of them.
+        "bubble": round(now.bubble, 6),
+        "oil": round(now.oil, 6),
+        "embargo": round(now.embargo, 6),
+        "sanctions": round(now.sanctions, 6),
+        "war": round(now.war, 6),
+        "debt_drag": round(now.debt, 6),
+        "unrest": round(now.unrest, 6),
+        // Oil income as a share of output, CAPPED the way `tick` caps it. The
+        // browser's own copy had no cap, so a wrecked producer's ledger could
+        // print revenue the sim never collects.
+        "oil_revenue_gdp": round(now.oil_revenue_gdp, 6),
+        // `0.17 + (1 - authoritarianism) * 0.05`, which is the one term of the
+        // budget the player does not set with a slider...
+        "social_spend": round(now.social_spend, 6),
+        // ...and what oil puts into it, so the ledger adds the player's own
+        // three sliders to two served numbers and keeps no copy of the rule
+        // about who counts as a producer.
+        "budget_oil_revenue": round(now.budget_oil_revenue, 6),
+        // The floor `tick` puts under a year, transported rather than mirrored —
+        // the same posture `front_held_band` is served under.
+        "growth_floor": now.floor,
+        // What the nation is running right now, so every STANDING figure on the
+        // panel needs no lookup at all and cannot be a sample out — the same
+        // reason `sustained` sits beside the force curve.
+        "growth": round(now.growth, 6),
+        "potential_now": round(now.potential, 6),
+        "demand_gap_now": round(now.demand_gap, 6),
+        "demand_output_now": round(now.demand_output, 6),
+        "inflation_target_now": round(now.target_inflation, 6),
+        "stability": stability_json(w, n),
+
+        // THE MONEY CARD, off ONE `economy::Fiscal`, which is the same object
+        // `economy::tick` charges the month against. Revenue, spending and the
+        // balance are served as a share of GDP AND in billions, so the card
+        // prints both without a multiplication of its own; the balance is
+        // REVENUE LESS SPENDING LESS INTEREST, positive for a surplus, which is
+        // the one sign convention this payload now carries (the browser had
+        // two, four inches apart on the same screen).
+        //
+        // RIDGE'S AMENDMENT is the `interest_*` triple: what debt service costs
+        // in dollars, what it costs as a share of output, and the rate it is
+        // struck at -- which is not the policy rate, because the sovereign
+        // spread rises with the debt ratio.
+        "money": {
+            "on_the_books": n.on_the_books(),
+            "revenue_gdp": round(books.revenue_gdp, 6),
+            "spend_gdp": round(books.spend_gdp, 6),
+            "interest_gdp": round(books.interest_gdp, 6),
+            "balance_gdp": round(books.balance_gdp, 6),
+            "revenue_bn": round(revenue_bn, 3),
+            "spend_bn": round(spend_bn, 3),
+            "interest_bn": round(books.interest_bn, 3),
+            "balance_bn": round(balance_bn, 3),
+            "effective_rate": round(books.effective_rate, 6),
+            "policy_rate": round(n.interest_rate, 6),
+            "real_rate": round(n.interest_rate - n.inflation, 6),
+            "spread": round(books.effective_rate - (n.interest_rate - n.inflation), 6),
+            "treasury_bn": n.treasury_bn.map(|x| round(x, 3)),
+            "debt_bn": n.debt_bn.map(|x| round(x, 3)),
+            "net_position_bn": n.net_position_bn().map(|x| round(x, 3)),
+            "debt_gdp": round(n.debt_gdp, 6),
+        },
+    })
+}
+
+/// What the ten dials buy, answered by the sim over the whole range a dial can
+/// hold.
+///
+/// SAMPLED, NOT SOLVED, exactly as the force curve and the two policy curves
+/// above are, and for the identical reason: the budget card has to answer "what
+/// would this dial buy" before the year is enacted, and the browser must not be
+/// the thing that knows. Every arm is `spheres_sim::ministries`, which is the
+/// same function `economy::tick`, `war`, `tech`, `politics`, `resources` and
+/// `statecraft` call when they charge it -- there is no second copy to drift.
+///
+/// TWO CURVES PER ARM. `curve[i]` is the arm at allocation `i * step`;
+/// `per_point[i]` is what ONE MORE PERCENTAGE POINT OF GDP buys from there,
+/// which is the design's "per-percent sentence". It is served rather than
+/// subtracted in JavaScript because every arm is clamped: past its ceiling the
+/// honest answer is zero, and a page differencing a curve it had guessed the
+/// shape of would print a slope the sim never charges.
+///
+/// The RANGE is the server's own, and `the_budget_card_reads_the_sim` asserts
+/// it covers `BUDGET_CAPS` -- so widening a dial without widening this goes red
+/// rather than silently reading off the end.
+fn ministries_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    use spheres_sim::ministries;
+    let n = w.nation(me);
+    let reference = ministries::reference_of(w, me);
+    let ids = [
+        "health",
+        "education",
+        "housing",
+        "pensions",
+        "infrastructure",
+        "industry",
+        "science",
+        "defense",
+        "security",
+        "diplomacy",
+    ];
+    let names = [
+        "Health",
+        "Education",
+        "Housing",
+        "Welfare",
+        "Infrastructure",
+        "Industry & energy",
+        "Science",
+        "Defense",
+        "Security",
+        "Diplomacy",
+    ];
+    let at = |ministry: usize, share: f64| ministries::arms_at(w, n, ministry, share);
+    // THE GRID IS ANCHORED ON THE REFERENCE, not on zero, and that is not a
+    // detail. Every arm is a function of the GAP, and the dial moves in 0.005
+    // steps FROM whatever the inherited settlement was -- 0.05375 of GDP for
+    // Belgian health, which is not a multiple of anything. Sampled from zero,
+    // the nearest sample to a freshly enacted budget was up to half a step
+    // away, and the card read "+0.004pp of population" for a government that
+    // had changed nothing. Anchored here, sample `MINISTRY_CURVE_ZERO` IS the
+    // enacted settlement, every press lands exactly on a sample, and an unmoved
+    // dial reads exactly zero.
+    let sample = |m: usize, i: usize| {
+        reference[m] + (i as f64 - MINISTRY_CURVE_ZERO as f64) * MINISTRY_CURVE_STEP
+    };
+    let list: Vec<serde_json::Value> = (0..spheres_sim::world::BUDGET_MINISTRIES)
+        .map(|m| {
+            let here = at(m, n.budget_for(w.year).allocations[m]);
+            let arms: Vec<serde_json::Value> = here
+                .iter()
+                .enumerate()
+                .map(|(a, arm)| {
+                    let curve: Vec<f64> = (0..=MINISTRY_CURVE_STEPS)
+                        .map(|i| round(at(m, sample(m, i))[a].value, 6))
+                        .collect();
+                    let per_point: Vec<f64> = (0..=MINISTRY_CURVE_STEPS)
+                        .map(|i| {
+                            let share = sample(m, i);
+                            round(at(m, share + 0.01)[a].value - at(m, share)[a].value, 6)
+                        })
+                        .collect();
+                    serde_json::json!({
+                        "id": arm.id,
+                        "name": arm.name,
+                        "note": arm.note,
+                        "kind": arm.kind.id(),
+                        "curve": curve,
+                        "per_point": per_point,
+                    })
+                })
+                .collect();
+            serde_json::json!({
+                "index": m,
+                "id": ids[m],
+                "name": names[m],
+                "cap": spheres_sim::world::BUDGET_CAPS[m],
+                "reference": round(reference[m], 6),
+                "arms": arms,
+            })
+        })
+        .collect();
+    serde_json::json!({
+        "curve_step": MINISTRY_CURVE_STEP,
+        "curve_steps": MINISTRY_CURVE_STEPS,
+        "curve_zero": MINISTRY_CURVE_ZERO,
+        "ministries": list,
+    })
+}
+
+/// The resolution and reach of the ministry arm curves.
+///
+/// The STEP is the dial's own step -- half a point of GDP a press -- so a
+/// sample lands on every value the buttons can produce. `MINISTRY_CURVE_ZERO`
+/// is the index of the enacted settlement, so the curve runs from 0.20 of GDP
+/// BELOW a ministry's reference to 0.40 above it. Both ends are the server's
+/// own and are deliberately past what a dial can hold: the deepest cut
+/// reachable is `-reference`, which is at most 0.0602 across the whole board,
+/// and the largest raise is `cap - reference`, at most 0.326.
+/// `the_budget_card_reads_the_sim` asserts that against `BUDGET_CAPS` rather
+/// than trusting this comment.
+const MINISTRY_CURVE_STEP: f64 = 0.005;
+const MINISTRY_CURVE_STEPS: usize = 120;
+const MINISTRY_CURVE_ZERO: usize = 40;
+
+/// The widest share the policy curves are served for, and how many samples they
+/// are cut into. The same thousandth-apiece resolution as the force curve, for
+/// the same reason: it is what a range input stepping in thousandths can select.
+///
+/// The RANGE is the server's own and is deliberately wider than either slider's
+/// 0..0.40 — `Command::SetInterestRate` clamps at 0.60 and the AI's Taylor rule
+/// runs to 0.45, so a curve that stopped where the slider stops would read a
+/// hyperinflating nation's STANDING figure off its own end. Zaire opens 1990 at
+/// a 45% policy rate. `the_policy_panel_reads_the_sim` asserts the curve covers
+/// what the sim can hold.
+const POLICY_CURVE_MAX: f64 = 0.60;
+const POLICY_CURVE_STEPS: usize = 600;
+
+/// The widest military share the force curve is served for, and how many samples
+/// it is cut into — a thousandth apiece, which is the resolution a range input
+/// stepping in thousandths can actually select.
+const FORCE_CURVE_MAX: f64 = 0.40;
+const FORCE_CURVE_STEPS: usize = 400;
+
+/// Translate the UI's flat command objects into sim commands.
+/// The research board: what each of the eight domains is working on, how far in,
+/// and what else it could be doing instead.
+///
+/// Everything here is computed sim-side — the cost of a project, the months left
+/// at the current rate, which technologies are startable. The browser renders it
+/// and does no arithmetic of its own, which is the lesson from the growth model
+/// it used to mirror in JavaScript and got wrong three ways.
+/// Calendar-day ETA with the same equal-month appropriation convention as the
+/// scheduler. The research forecast holds today's monthly productivity fixed;
+/// February is not silently treated as a 31-day month. Beyond the existing
+/// projection horizon the answer remains unknown rather than a fake exact date.
+fn research_days_left(w: &WorldState, mut remaining: f64, monthly: f64) -> Option<u32> {
+    if remaining <= 0.0 || monthly <= 1e-9 || !remaining.is_finite() || !monthly.is_finite() {
+        return None;
+    }
+    if (remaining / monthly).ceil() > MAX_ADVANCE as f64 { return None; }
+    let (mut year, mut month, mut day) = (w.year, w.month, w.day.max(1));
+    let mut days = 0;
+    for _ in 0..=MAX_ADVANCE {
+        let count = spheres_sim::world::days_in_month(year, month);
+        let left = count.saturating_sub(day) + 1;
+        let daily = monthly * (1.0 / count as f64);
+        let needed = (remaining / daily).ceil();
+        if needed <= left as f64 { return Some(days + needed.max(1.0) as u32); }
+        remaining -= daily * left as f64;
+        days += left;
+        day = 1;
+        month += 1;
+        if month > 12 { month = 1; year += 1; }
+    }
+    None
+}
+
+fn research_json(w: &WorldState, me: NationId) -> serde_json::Value {
+    let n = w.nation(me);
+    let dev = (n.gdp * 1000.0 / n.population / 24000.0).min(1.0);
+    // THE DECOMPOSITION THE SIM ACTUALLY CHARGES, not a second copy of it. The
+    // seven arms and their product come off one `ResearchTerms`, and `monthly`
+    // is `total()` rather than a separate call, so the card's rows and the
+    // card's headline cannot disagree about the same month.
+    let terms = spheres_sim::tech::research_terms(w, n, dev);
+    let monthly = terms.total();
+    let day_fraction = 1.0 / spheres_sim::world::days_in_month(w.year, w.month) as f64;
+    let daily = monthly * day_fraction;
+    let weights = spheres_sim::tech::domain_weights_of(w, n, dev);
+    let quota = spheres_sim::tech::acquisition_quota_status(w,me);
+
+    let domains: Vec<serde_json::Value> = spheres_sim::tech::DOMAINS
+        .iter()
+        .map(|d| {
+            let di = d.index();
+            let rate = monthly * weights[di];
+            // Same multiplication order as tech::tick: total * dt, then share.
+            let daily_rate = daily * weights[di];
+            let (mut project, mut banked, mut cost, mut fields_in, mut floor) =
+                match spheres_sim::tech::project_of(w, me, *d) {
+                    Some((def, banked, cost)) => (
+                        serde_json::json!({
+                            "id": def.id, "name": def.name, "year": def.earliest_year
+                        }),
+                        banked,
+                        cost,
+                        Some(def.earliest_year),
+                        // Whether this bill is the build floor rather than the
+                        // copying price — the one fact that tells a follower
+                        // its wait will not move when its budget does. Computed
+                        // sim-side like everything else here.
+                        spheres_sim::tech::index_of(def.id)
+                            .is_some_and(|t| spheres_sim::tech::floor_binds(w, me, t)),
+                    ),
+                    None => (serde_json::Value::Null, n.tech.progress[di], 0.0, None, false),
+                };
+            if *d == spheres_sim::tech::Domain::Aerospace {
+                if let Some((state, integration)) = n.equipment.as_ref().and_then(|s|
+                    s.active_research.as_deref().and_then(spheres_sim::equipment::research).map(|r|(s,r))) {
+                    project=serde_json::json!({"id":integration.id,"name":integration.name,"year":integration.earliest_year,"equipment":true});
+                    banked=state.research_progress;cost=integration.points;fields_in=Some(integration.earliest_year);floor=false;
+                }
+            }
+            // A projection, and a projection is only worth serving while its
+            // one assumption holds: that this month's research rate is the rate
+            // for the whole wait. That is fair over a few years and a fiction
+            // over a century — the rate moves with output, development and the
+            // domain weights every single month. Past the horizon the division
+            // does not become imprecise, it becomes meaningless, and the screen
+            // printed the meaninglessness to the month: a microstate's Aerospace
+            // board came back at 626,193 (fifty-two thousand years) and
+            // microstate-04 saw ten digits of it.
+            //
+            // 1200 months is the span this server will already talk about at
+            // once — the cap /api/advance puts on a single request — so it is
+            // the longest wait a player can put a number against. Beyond it the
+            // payload says nothing rather than something false.
+            //
+            // Taken FROM that cap rather than restated beside it. The sentence
+            // above says the two are the same number for the same reason, and a
+            // number two places have to agree on is one that will eventually
+            // stop agreeing.
+            const PROJECTION_HORIZON: f64 = MAX_ADVANCE as f64;
+            let months_left = if cost > banked && rate > 1e-9 {
+                let m = ((cost - banked) / rate).ceil();
+                (m.is_finite() && m <= PROJECTION_HORIZON).then_some(m as i64)
+            } else {
+                None
+            };
+            // WHY THERE IS NO NUMBER, when there is no number. `months_left` was
+            // the whole of what the payload said about a wait, and the browser
+            // rendered every one of its four `null`s as the single word
+            // "stalled". Only one of the four is a stall.
+            //
+            // The one that is simply FALSE is `banked >= cost`: the project is
+            // paid for. It is waiting on the calendar, because the spend loop in
+            // tech::tick will not field a technology before its `earliest_year`
+            // however much is banked against it — and until then the board told
+            // the player the programme they had fully funded had stopped. A
+            // government reading "stalled" moves money to it, and there is
+            // nothing the money can do.
+            //
+            // Served as a REASON rather than as a phrase, so the page keeps the
+            // wording and the server keeps the fact.
+            let wait = if months_left.is_some() {
+                "months"
+            } else if project.is_null() {
+                // No project, so no wait to describe. The board prints "no
+                // project chosen" here and never reaches the eta.
+                "none"
+            } else if banked >= cost {
+                match fields_in {
+                    // Paid for, and the year it can be fielded has not arrived.
+                    Some(y) if y > w.year => "year",
+                    // Paid for, and it lands on the next advance.
+                    _ => "funded",
+                }
+            } else if rate > 1e-9 {
+                // Funded, moving, and further off than this server will project.
+                "beyond"
+            } else {
+                // The only real stall: nothing is reaching this domain at all.
+                "stalled"
+            };
+            let options: Vec<serde_json::Value> = spheres_sim::tech::eligible_projects(n, *d)
+                .iter()
+                .map(|def| serde_json::json!({
+                    "id": def.id, "name": def.name, "year": def.earliest_year,
+                }))
+                .collect();
+            serde_json::json!({
+                "domain": format!("{:?}", d),
+                "name": d.name(),
+                "share": weights[di],
+                "rate": rate,
+                "rate_daily": daily_rate,
+                "project": project,
+                "banked": banked,
+                "cost": cost,
+                "months_left": months_left,
+                "days_left": research_days_left(w, cost - banked, rate),
+                "wait": wait,
+                "fields_in": fields_in,
+                "floor": floor,
+                // The commodity a domain's project is waiting on, once D2 lights
+                // a research gate; `null` until then, and the wait word "input"
+                // beside "year" is the one the page prints for it. Declared in
+                // W1 so the page handles it from birth: a wait for an input is
+                // not a stall (the four-`null` lesson above). Nothing serves
+                // "input" yet, so the wait-word table the tests pin is untouched.
+                "input": serde_json::Value::Null,
+                "known": spheres_sim::tech::registry().iter().enumerate()
+                    .filter(|(i, def)| def.domain == *d && n.tech.knows_index(*i as u16))
+                    .count(),
+                "total": spheres_sim::tech::registry().iter()
+                    .filter(|def| def.domain == *d).count(),
+                "options": options,
+                "acquisitions_remaining": quota.as_ref().map(|q|q.remaining[di]),
+                "acquisition_wait": quota.as_ref().is_some_and(|q|q.remaining[di]==0),
+            })
+        })
+        .collect();
+
+    let mut card = serde_json::json!({
+        "nation": n.id.name(),
+        "monthly": monthly,
+        "daily": daily,
+        "cadence": if w.rules.daily_simulation { "daily" } else { "monthly" },
+        "priority": n.tech.priority.map(|d| format!("{:?}", d)),
+        "priority_multiplier": spheres_sim::tech::PRIORITY_MULTIPLIER,
+        "acquisition_quota": quota,
+        // The chain in the order the sim multiplies it, so the page can lay the
+        // arms out down the card the way the growth decomposition already is.
+        // `kind` says how to print the number and nothing else: the first arm is
+        // a quantity of points, the other six are multipliers on it.
+        "arms": [
+            arm("base", "R&D intensity", "points", terms.base,
+                "what the economy puts into research before any policy"),
+            arm("ministry", "Education", "multiplier", terms.ministry,
+                "the ministry that owns the research multiplier"),
+            arm("tools", "Instruments", "multiplier", terms.tools,
+                "what the nation's own technology is worth to its laboratories"),
+            // NOT called "allocation": the budget shares below the arms are an
+            // allocation too, and two rows on one card meaning different things
+            // by the same word is how a screen starts lying.
+            arm("system", "Central planning", "multiplier", terms.system,
+                "a command economy can order the effort, not the interest"),
+            arm("disorder", "Disorder", "multiplier", terms.disorder,
+                "a state coming apart is not funding anything reliably"),
+            arm("war", "War", "multiplier", terms.war,
+                "a country at war researches what it can"),
+            arm("sanctions", "Sanctions", "multiplier", terms.sanctions,
+                "charged on the sanctioners' share of world output"),
+        ],
+        // The eight shares the government has written down, as it wrote them, or
+        // null where it has left them to be read off the nation's condition. The
+        // NORMALISED shares are the `share` on each domain above and come from
+        // the same function the spend loop uses — this is the raw entry, so a
+        // slider can come back up where the player left it.
+        "allocation": n.tech.allocation.map(|a| a.to_vec()),
+        "domains": domains,
+    });
+    card["arms"][0]["value_daily"] = serde_json::json!(terms.base * day_fraction);
+    card
+}
+
+/// One row of the research decomposition.
+fn arm(key: &str, name: &str, kind: &str, value: f64, note: &str) -> serde_json::Value {
+    serde_json::json!({ "key": key, "name": name, "kind": kind, "value": value, "note": note })
+}
+
+/// One domain's whole tree: every technology in it, what it costs this nation,
+/// what it needs first, and whether that is already held.
+///
+/// Served on its own route rather than on the state payload because it is 30-odd
+/// nodes a domain and the state is polled on every advance. The screen fetches a
+/// domain when it opens one.
+fn tech_tree_json(w: &WorldState, me: NationId, domain: spheres_sim::tech::Domain) -> serde_json::Value {
+    use spheres_sim::tech;
+    let n = w.nation(me);
+    let reg = tech::registry();
+    let focus = n.tech.focus[domain.index()];
+    let component_focus = (domain == tech::Domain::Aerospace).then(||n.equipment.as_ref()).flatten()
+        .filter(|s|s.active_research.is_some());
+    let dev=tech::dev_of(n);
+    let rate=tech::research_output(w,n,dev)*tech::domain_weights_of(w,n,dev)[domain.index()];
+
+    let nodes: Vec<serde_json::Value> = reg
+        .iter()
+        .enumerate()
+        .filter(|(_, def)| def.domain == domain)
+        .map(|(i, def)| {
+            let idx = i as u16;
+            let known = n.tech.knows_index(idx);
+            let pre: Vec<&u16> = tech::prereqs_of(idx).iter().collect();
+            let open = !known && pre.iter().all(|q| n.tech.knows_index(**q));
+            serde_json::json!({
+                "id": def.id,
+                "name": def.name,
+                "year": def.earliest_year,
+                "era": format!("{:?}", def.era),
+                "cost": tech::cost_of(w, me, idx),
+                "list_cost": def.cost,   // static list price; cost < list_cost ⇒ diffusion discount
+                "state": if known { "known" } else if open { "open" } else { "locked" },
+                "focus": component_focus.is_none() && focus == Some(idx),
+                "earliest_available":open && def.earliest_year<=w.year,
+                "floor_binds":tech::floor_binds(w,me,idx),
+                "estimated_days":if known || !open {None} else {
+                    let retained=component_focus.map(|s|s.research_progress*0.5).unwrap_or_else(||
+                        n.tech.progress[domain.index()] * if focus==Some(idx){1.0}else{0.5});
+                    let remaining=(tech::cost_of(w,me,idx)-retained).max(0.0);
+                    let funding=if remaining<=0.0 {Some(1)} else {research_days_left(w,remaining,rate)};
+                    let calendar=(spheres_sim::clock::date_day(def.earliest_year,1,1)-spheres_sim::clock::absolute_day(w)).max(0);
+                    funding.map(|d|d.max(calendar as u32))
+                },
+                // What holding it actually does, and what it opens. Without
+                // these a tree is a list of names with prices on them.
+                "effects": def.effects.iter().map(tech::describe_effect).collect::<Vec<_>>(),
+                "unlocks": tech::unlocked_by(idx).iter().map(|u| {
+                    let d = &reg[*u as usize];
+                    serde_json::json!({
+                        "name": d.name,
+                        "domain": format!("{:?}", d.domain),
+                        "year": d.earliest_year,
+                    })
+                }).collect::<Vec<_>>(),
+                // Prerequisites carry their own domain, because a few cross it
+                // and a node the screen cannot draw still has to be nameable.
+                "prereqs": pre.iter().map(|q| {
+                    let d = &reg[**q as usize];
+                    serde_json::json!({
+                        "id": d.id,
+                        "name": d.name,
+                        "domain": format!("{:?}", d.domain),
+                        "known": n.tech.knows_index(**q),
+                    })
+                }).collect::<Vec<_>>(),
+            })
+        })
+        .collect();
+
+    serde_json::json!({
+        "domain": format!("{:?}", domain),
+        "name": domain.name(),
+        "year": w.year,
+        "priority": n.tech.priority.map(|d| format!("{:?}", d)),
+        "nodes": nodes,
+    })
+}
+
+fn parse_command(w: &WorldState, v: &serde_json::Value, me: NationId) -> Option<Command> {
+    let kind = v.get("kind")?.as_str()?;
+    let num = || v.get("value").and_then(|x| x.as_f64());
+    let target = || {
+        v.get("target")
+            .and_then(|x| x.as_str())
+            .and_then(NationId::parse)
+    };
+    let theatre = || {
+        v.get("theatre")
+            .and_then(|x| x.as_str())
+            .and_then(TheatreId::parse)
+    };
+    let conflict = || {
+        v.get("conflict")
+            .and_then(|x| x.as_u64())
+            .map(|x| x as u32)
+    };
+    let domain = || {
+        v.get("domain")
+            .and_then(|x| x.as_str())
+            .and_then(spheres_sim::tech::Domain::parse)
+    };
+    Some(match kind {
+        "construction_budget" => Command::SetConstructionBudget { nation:me, daily_budget_bn:v.get("daily_budget_bn")?.as_f64()? },
+        "choose_campaign_aim" => Command::ChooseCampaignAim { nation:me,aim:serde_json::from_value(v.get("aim")?.clone()).ok()? },
+        "continue_sandbox" => Command::ContinueSandbox { nation:me },
+        "respond_diplomacy" => Command::RespondDiplomacy { nation:me,offer:v.get("offer")?.as_u64()?,accept:v.get("accept")?.as_bool()? },
+        "set_diplomatic_policy" => Command::SetDiplomaticPolicy { nation:me,policy:serde_json::from_value(v.get("policy")?.clone()).ok()? },
+        "break_currency_peg" => Command::BreakCurrencyPeg { nation:me },
+        "resume_automatic_bank" => Command::ResumeAutomaticBank { nation:me },
+        "enable_economic_competition" => Command::EnableEconomicCompetition { nation:me },
+        "enable_connected_economy" => Command::EnableConnectedEconomy { nation:me },
+        "enable_companies" => Command::EnableCompanies { nation:me },
+        "enable_operational_warfare" => Command::EnableOperationalWarfare { nation:me },
+        "assign_sector_contractor" => Command::AssignSectorContractor { nation:me,
+            company:u32::try_from(v.get("company")?.as_u64()?).ok()?,
+            target:serde_json::from_value(v.get("target")?.clone()).ok()?,
+            quote:v.get("quote")?.as_str().filter(|s|!s.is_empty()&&s.len()<=256)?.to_string() },
+        "unassign_sector_contractor" => Command::UnassignSectorContractor { nation:me,
+            target:serde_json::from_value(v.get("target")?.clone()).ok()?,
+            quote:v.get("quote")?.as_str().filter(|s|!s.is_empty()&&s.len()<=256)?.to_string() },
+        "enable_population" => Command::EnablePopulation { nation:me },
+        "enable_fiscal_recovery" => Command::EnableFiscalRecovery { nation:me },
+        "population_policy" => Command::SetPopulationPolicy { nation:me,
+            policy:spheres_sim::population::Policy::parse(v.get("policy")?.as_str()?)? },
+        "propose_economic_union" => Command::ProposeEconomicUnion { patron:me,partner:target()? },
+        "join_economic_union" => Command::JoinEconomicUnion { nation:me,patron:target()? },
+        "leave_economic_union" => Command::LeaveEconomicUnion { nation:me },
+        "release_subject" => Command::ReleaseSubject { nation:me,subject:target()? },
+        "propose_goods_trade" => Command::ProposeGoodsTrade {
+            buyer:me, seller:target()?,
+            good:v.get("good")?.as_str().and_then(spheres_sim::commerce::Good::parse)?,
+            quantity:v.get("quantity")?.as_f64()?,unit_price_bn:v.get("unit_price_bn")?.as_f64()?,
+            delivery_days:u32::try_from(v.get("delivery_days")?.as_u64()?).ok()?,
+        },
+        "accept_goods_offer" => Command::AcceptGoodsOffer { nation:me,offer:v.get("offer")?.as_u64()? },
+        "cancel_goods_trade" => Command::CancelGoodsTrade { nation:me,contract:v.get("contract")?.as_u64()? },
+        "order_materials" => Command::OrderMaterials {
+            nation:me,district:v.get("district")?.as_str()?.into(),
+            quantity:v.get("quantity")?.as_f64().filter(|v|v.is_finite() && *v>=1e-9 && *v<=1_000_000.0)?,
+            delivery_days:u32::try_from(v.get("delivery_days")?.as_u64()?).ok().filter(|v|(7..=365).contains(v))?,
+        },
+        "cancel_materials_order" => Command::CancelMaterialsOrder {nation:me,order:u32::try_from(v.get("order")?.as_u64()?).ok()?},
+        "set_goods_sale" => Command::SetGoodsSale {
+            nation:me, good:v.get("good")?.as_str().and_then(spheres_sim::commerce::Good::parse)?,
+            reserve:v.get("reserve")?.as_f64()?,ask_multiplier:v.get("ask_multiplier")?.as_f64()?,
+            enabled:v.get("enabled")?.as_bool()?,
+        },
+        // Choosing what a domain's laboratories work on. A missing or empty
+        // "tech" hands the choice back to them.
+        "research_focus" => Command::SetResearchFocus {
+            nation: me,
+            domain: domain()?,
+            tech: v
+                .get("tech")
+                .and_then(|x| x.as_str())
+                .filter(|x| !x.is_empty())
+                .map(|x| x.to_string()),
+        },
+        // Declaring, or standing down, the national programme.
+        "research_priority" => Command::SetResearchPriority { nation: me, domain: domain() },
+        // The eight shares, written down. A missing or null "weights" stands the
+        // allocation down and hands the budget back to the read-off weights,
+        // which is the same shape `research_priority` uses for its own None.
+        // Eight numbers or nothing: a short array is a bug on the page, not a
+        // budget, and it is refused here rather than padded with zeroes.
+        "research_allocation" => Command::SetResearchAllocation {
+            nation: me,
+            weights: match v.get("weights").and_then(|x| x.as_array()) {
+                Some(a) => {
+                    if a.len() != spheres_sim::tech::DOMAIN_COUNT {
+                        return None;
+                    }
+                    let mut out = [0.0f64; spheres_sim::tech::DOMAIN_COUNT];
+                    for (i, x) in a.iter().enumerate() {
+                        out[i] = x.as_f64()?;
+                    }
+                    Some(out)
+                }
+                None => None,
+            },
+        },
+        "rate" => Command::SetInterestRate { nation: me, rate: num()? },
+        "tax" => Command::SetTaxRate { nation: me, rate: num()? },
+        "military" => Command::SetMilSpend { nation: me, share: num()? },
+        "invest" => Command::SetStateInvest { nation: me, share: num()? },
+        "budget" => Command::SetBudget {
+            nation: me,
+            social: v.get("social")?.as_f64()?,
+            investment: v.get("invest")?.as_f64()?,
+            military: v.get("military")?.as_f64()?,
+        },
+        "annual_budget" => Command::SetAnnualBudget {
+            nation: me,
+            fiscal_year: v.get("fiscal_year")?.as_i64()? as i32,
+            allocations: [
+                v.get("health")?.as_f64()?,
+                v.get("education")?.as_f64()?,
+                v.get("housing")?.as_f64()?,
+                v.get("pensions")?.as_f64()?,
+                v.get("infrastructure")?.as_f64()?,
+                v.get("industry")?.as_f64()?,
+                v.get("science")?.as_f64()?,
+                v.get("defense")?.as_f64()?,
+                v.get("security")?.as_f64()?,
+                v.get("diplomacy")?.as_f64()?,
+            ],
+        },
+        "program_budget" => {
+            let fiscal_year = i32::try_from(v.get("fiscal_year")?.as_i64()?).ok()?;
+            let mut allocations = [0.0; BUDGET_MINISTRIES];
+            for (i, amount) in allocations.iter_mut().enumerate() { *amount = v.get(ministry_key(i))?.as_f64()?; }
+            let rows = v.get("departments")?.as_array()?;
+            if rows.len() != BUDGET_MINISTRIES { return None; }
+            let mut departments = [[0u16;5];BUDGET_MINISTRIES];
+            for (i,row) in rows.iter().enumerate() {
+                let values = row.as_array()?;
+                if values.len() != 5 { return None; }
+                for (j,value) in values.iter().enumerate() { departments[i][j] = u16::try_from(value.as_u64()?).ok()?; }
+                if departments[i].iter().map(|x|*x as u32).sum::<u32>() != 10000 { return None; }
+            }
+            Command::SetProgramBudget { nation:me,fiscal_year,allocations,departments }
+        },
+        "sanction" => Command::Sanction { imposer: me, target: target()? },
+        "lift" => Command::LiftSanction { imposer: me, target: target()? },
+        "improve" => Command::ImproveRelations { from: me, to: target()? },
+        "war" => Command::DeclareWar { attacker: me, defender: target()? },
+        // The stratagem carries an id rather than a value or a target; the sim
+        // re-checks availability and charges the political capital itself.
+        "stratagem" => Command::EnactStratagem {
+            nation: me,
+            id: v.get("id")?.as_str()?.to_string(),
+        },
+        // The government screen's four commands (government.rs). A party is
+        // its stable table id, a pillar its key; the sim refuses anything the
+        // polity does not carry, with its own sentence.
+        "invite_to_government" => Command::InviteToGovernment {
+            nation: me,
+            party: v.get("party")?.as_str()?.to_string(),
+        },
+        "expel_from_government" => Command::ExpelFromGovernment {
+            nation: me,
+            party: v.get("party")?.as_str()?.to_string(),
+        },
+        "call_election" => Command::CallElection { nation: me },
+        "secure_pillar" => Command::SecurePillar {
+            nation: me,
+            pillar: spheres_sim::government::Pillar::parse(v.get("pillar")?.as_str()?)?,
+        },
+        // The five levers (S3). A bloc is its stable key ("non_aligned"); an
+        // unreadable one is a refusal, not a guess.
+        "suspend_constitution" => Command::SuspendConstitution { nation: me },
+        "ban_party" => Command::BanParty { nation: me, party: v.get("party")?.as_str()?.to_string() },
+        "legalize_party" => Command::LegalizeParty { nation: me, party: v.get("party")?.as_str()?.to_string() },
+        "declare_programme" => Command::DeclareProgramme {
+            nation: me,
+            bloc: spheres_sim::government::Bloc::parse(v.get("bloc")?.as_str()?)?,
+        },
+        "convene_round_table" => Command::ConveneRoundTable { nation: me },
+        // Covert action from the target's dossier: `op` is what the sim's own
+        // `CovertOp::parse` reads — "opposition", "separatists", "sabotage",
+        // or "back:<bloc>" (S3); the "coup" alias stays on funding the
+        // opposition there, not here.
+        "covert" => Command::CovertAction {
+            sponsor: me,
+            target: target()?,
+            op: CovertOp::parse(v.get("op")?.as_str()?)?,
+        },
+        // The card carries its stable generated id, never its position among
+        // the three offers. Availability and generation are re-checked by the
+        // sim when the command lands, so a stale browser cannot choose a card
+        // from the previous hand.
+        "choose_domination_agenda" => {
+            let agenda = v.get("id")?.as_str()?.trim();
+            if agenda.is_empty() {
+                return None;
+            }
+            Command::ChooseDominationAgenda { nation: me, agenda: agenda.to_string() }
+        }
+
+        // --- Supply contracts (resources.rs). The page sends RUNGS, never a
+        // free number: a money rung is a share of the proposer's output, a
+        // commodity rung a multiple of this month's need or a fraction of
+        // the surplus, and the server turns them into the sim's units. With
+        // `take_terms` the counter the sim just gave is what is proposed —
+        // the receiver's own price and its own clipped legs — so a counter
+        // re-offered is accepted by construction and the page holds no copy
+        // of it. Anything unreadable is a refusal, the `open_conflict` rule.
+        "propose_deal" => {
+            let d = draft_from(w, me, v).ok()?;
+            let (give, take, _) = if d.take_terms { apply_counter(w, me, &d) } else { (d.give, d.take, false) };
+            Command::ProposeDeal { from: me, to: d.to, give, take, months: d.months }
+        }
+        "accept_deal" => Command::AcceptDeal { nation: me, offer: v.get("offer")?.as_u64()? as u32 },
+        "decline_deal" => Command::DeclineDeal { nation: me, offer: v.get("offer")?.as_u64()? as u32 },
+        "cancel_deal" => Command::CancelDeal { nation: me, contract: v.get("contract")?.as_u64()? as u32 },
+        "set_logistics_policy" => Command::SetLogisticsPolicy {
+            nation: me,
+            policy: match v.get("policy")?.as_str()? {
+                "fastest" => RoutePolicy::Fastest,
+                "land_only" => RoutePolicy::LandOnly,
+                "avoid_chokepoints" => RoutePolicy::AvoidChokepoints,
+                _ => return None,
+            },
+        },
+        "develop_resource" => Command::DevelopResource {
+            nation: me,
+            district: v.get("district")?.as_str()?.to_string(),
+            commodity: Commodity::parse(v.get("commodity")?.as_str()?)?,
+        },
+
+        // --- Production & construction. Flat browser values are parsed into
+        // the sim's enums here; ownership, queue room, payment and cancellation
+        // remain `apply_command` decisions and return its own refusal prose.
+        "start_project" => Command::StartProject {
+            nation: me,
+            district: v.get("district")?.as_str()?.to_string(),
+            kind: ProjectKind::parse(v.get("project_kind")?.as_str()?)?,
+        },
+        "start_industry_module" => Command::StartIndustryModule {
+            nation:me,
+            district:v.get("district")?.as_str()?.to_string(),
+            capacity_micros:v.get("capacity_micros")?.as_u64()?.try_into().ok()?,
+        },
+        "set_project_priority" => Command::SetProjectPriority {
+            nation: me,
+            project: v.get("project")?.as_u64()?.try_into().ok()?,
+            priority: Priority::parse(v.get("priority")?.as_str()?)?,
+        },
+        "cancel_project" => Command::CancelProject {
+            nation: me,
+            project: v.get("project")?.as_u64()?.try_into().ok()?,
+        },
+
+        // --- Manufacturing & procurement. Equipment is always carried by its
+        // stable deck id; the session supplies the nation, and the sim owns the
+        // plant, technology, capacity and political-capital checks.
+        "start_manufacturing_line" => Command::StartManufacturingLine {
+            nation: me,
+            district: v.get("district")?.as_str()?.to_string(),
+            kit: v.get("kit")?.as_str()?.to_string(),
+        },
+        "company_establish" | "company_capitalize" | "company_develop" | "company_purchase" | "company_funding" | "company_inventory" | "company_cancel" | "company_ammo_supply" | "company_ammo_inventory" | "company_ammo_purchase" | "company_refit" | "company_refit_cancel" | "company_enable_imports" | "company_import_purchase" | "company_import_cancel" => Command::Company {
+            nation: me,
+            order: equipment_view::parse_company_order(v)?,
+        },
+        "equipment_research" | "equipment_save" | "equipment_develop" | "equipment_produce" | "equipment_refit" | "equipment_retire" | "equipment_maintenance" | "equipment_supply" | "equipment_supply_policy" | "equipment_supply_policy_clear" | "equipment_target" | "equipment_pause" | "equipment_funding" | "equipment_cancel" | "equipment_ammo_order" | "equipment_ammo_activate" | "equipment_ammo_funding" | "equipment_ammo_pause" | "equipment_ammo_cancel" | "equipment_ammo_reserve" | "equipment_ammo_reserve_clear" => {
+            use spheres_sim::EquipmentOrder as E;
+            let string=|key:&str|v.get(key)?.as_str().map(str::to_string);
+            let budget=||v.get("daily_budget_mn")?.as_f64().filter(|n|n.is_finite()).map(|n|n/1000.0);
+            let spec=||serde_json::from_value(serde_json::json!({"platform":v.get("platform"),"components":v.get("components")})).ok();
+            let project=||v.get("project")?.as_u64()?.try_into().ok();
+            let quantity=||v.get("quantity")?.as_u64()?.try_into().ok();
+            let order=match v.get("kind")?.as_str()? {
+                "equipment_research"=>E::Research{component:string("component")?},
+                "equipment_save"=>E::SaveDraft{name:string("name")?,spec:spec()?},
+                "equipment_develop"=>E::Develop{name:string("name")?,spec:spec()?,daily_budget_bn:budget()?},
+                "equipment_produce"=>E::Produce{revision:string("revision")?,district:string("district")?,quantity:quantity()?,daily_budget_bn:budget()?},
+                "equipment_refit"=>E::Refit{source:string("source")?,target:string("target")?,district:string("district")?,quantity:quantity()?,daily_budget_bn:budget()?},
+                "equipment_retire"=>E::Retire{revision:string("revision")?,quantity:quantity()?},
+                "equipment_maintenance"=>E::Maintenance{daily_budget_bn:budget()?},
+                "equipment_supply"=>E::Supply{horizon_days:v.get("horizon_days")?.as_u64()?.try_into().ok()?,spending_cap_bn:v.get("spending_cap_mn")?.as_f64().filter(|n|n.is_finite())?/1000.0},
+                "equipment_supply_policy"=>E::SupplyPolicy{horizon_days:v.get("horizon_days")?.as_u64()?.try_into().ok()?,spending_cap_bn:v.get("spending_cap_mn")?.as_f64().filter(|n|n.is_finite())?/1000.0,cash_floor_bn:v.get("cash_floor_mn")?.as_f64().filter(|n|n.is_finite())?/1000.0,review_interval_days:v.get("review_interval_days")?.as_u64()?.try_into().ok()?,automatic:v.get("automatic")?.as_bool()?},
+                "equipment_supply_policy_clear"=>E::SupplyPolicyClear,
+                "equipment_target"=>E::Target{revision:string("revision")?,quantity:if v.get("quantity")?.is_null(){None}else{Some(quantity()?) }},
+                "equipment_ammo_order"=>E::AmmoOrder{family:string("family")?,district:string("district")?,quantity:quantity()?,daily_budget_bn:budget()?},
+                "equipment_ammo_activate"=>E::AmmoActivate,
+                "equipment_ammo_funding"=>E::AmmoFunding{project:project()?,daily_budget_bn:budget()?},
+                "equipment_ammo_pause"=>E::AmmoPause{project:project()?,paused:v.get("paused")?.as_bool()?},
+                "equipment_ammo_cancel"=>E::AmmoCancel{project:project()?},
+                "equipment_ammo_reserve"=>E::AmmoReserve{family:string("family")?,target_rounds:u32::try_from(v.get("target_rounds")?.as_u64()?).ok()?,district:string("district")?,daily_budget_bn:budget()?,automatic:v.get("automatic")?.as_bool()?},
+                "equipment_ammo_reserve_clear"=>E::AmmoReserveClear{family:string("family")?},
+                "equipment_pause"=>E::Pause{project:project()?,paused:v.get("paused")?.as_bool()?},
+                "equipment_funding"=>E::Funding{project:project()?,daily_budget_bn:budget()?},
+                "equipment_cancel"=>E::Cancel{project:project()?},_=>return None,
+            };
+            Command::Equipment{nation:me,order}
+        },
+        "set_manufacturing_priority" => Command::SetManufacturingPriority {
+            nation: me,
+            line: v.get("line")?.as_u64()?.try_into().ok()?,
+            priority: Priority::parse(v.get("priority")?.as_str()?)?,
+        },
+        "stop_manufacturing_line" => Command::StopManufacturingLine {
+            nation: me,
+            line: v.get("line")?.as_u64()?.try_into().ok()?,
+        },
+
+        // --- The commitment ladder. Flat objects, mapped exactly the way
+        // `rate` and `sanction` are: the UI never constructs a sim type. ---
+        // The theatre is optional here and it is the difference between the
+        // verb being reachable and not: a player picking a quarrel with a
+        // neighbour should not first have to know which operating area the sim
+        // files it under. Left out, it is the one a war between the two would
+        // be fought in — the defender's own ground.
+        "open_conflict" => {
+            let target = target()?;
+            // The TAKE card names the district and the line the quarrel is
+            // for. Absent is the ordinary quarrel; present but unreadable is
+            // a refusal, the theatre's own rule below. A readable aim is
+            // carried onto the conflict by `SetAim` once the quarrel is open
+            // (`apply_orders`), where the sim validates it and says why not.
+            aim_of(v).ok()?;
+            Command::OpenConflict {
+                opener: me,
+                target,
+                // Absent is the documented default the paragraph above
+                // describes. PRESENT BUT UNUSABLE is not the same thing, and it
+                // used to fall into the same branch: `theatre().unwrap_or_else`
+                // could not tell a field that was not carried from one the
+                // server could not read, so a typo took the default silently.
+                // Measured on the live server, all with 200 and `errors: []` —
+                // "Balkans" opened in the Balkans, and "Gluf", "", and 42 all
+                // opened in the Gulf, indistinguishable from asking for it.
+                theatre: match v.get("theatre") {
+                    None | Some(serde_json::Value::Null) => {
+                        spheres_sim::war::theatre_between(w, me, target)
+                    }
+                    Some(x) => TheatreId::parse(x.as_str()?)?,
+                },
+            }
+        }
+        // Both fields split the same way the theatre above does, and for the
+        // same reason: not carrying one is a default, carrying one the server
+        // cannot read is a refusal. Measured before that split, with 200 and
+        // `errors: []` on every line — `side_a: 1` and `side_a: "true"` both
+        // enrolled the player on the side they were asking to fight, and
+        // `objective: "siez"` bought Deny, which is the one objective that
+        // seizes nothing. Fourteen political capital charged either way.
+        "join" => Command::JoinConflict {
+            conflict: conflict()?,
+            nation: me,
+            side_a: match v.get("side_a") {
+                None | Some(serde_json::Value::Null) => false,
+                Some(x) => x.as_bool()?,
+            },
+            objective: match v.get("objective") {
+                None | Some(serde_json::Value::Null) => Objective::Deny,
+                Some(x) => Objective::parse(x.as_str()?)?,
+            },
+        },
+        "commit" => Command::SetCommitment {
+            conflict: conflict()?,
+            nation: me,
+            rung: num()? as u8,
+        },
+        "force_allocation" => Command::SetForceAllocation {
+            conflict: v.get("conflict")?.as_u64()?.try_into().ok()?, nation: me,
+            share_bp: match v.get("share_bp")? {
+                serde_json::Value::Null => None,
+                value => Some(value.as_u64()?.try_into().ok()?),
+            },
+        },
+        "operation" => Command::SetOperation { order: spheres_sim::campaign::OperationOrder {
+            conflict:v.get("conflict")?.as_u64()?.try_into().ok()?, nation:me,
+            target:match v.get("target")? {serde_json::Value::Null=>None,x=>Some(x.as_str()?.to_string())},
+            approach:serde_json::from_value(v.get("approach")?.clone()).ok()?,
+            reserve_bp:v.get("reserve_bp")?.as_u64()?.try_into().ok()?,
+            air:serde_json::from_value(v.get("air")?.clone()).ok()?,
+            naval:serde_json::from_value(v.get("naval")?.clone()).ok()?,
+        }},
+        "war_diplomacy" => Command::WarDiplomacy {nation:me,order:serde_json::from_value(v.get("order")?.clone()).ok()?},
+        "objective" => Command::SetObjective {
+            conflict: conflict()?,
+            nation: me,
+            objective: Objective::parse(v.get("objective")?.as_str()?)?,
+        },
+        "roe" => Command::SetRoE {
+            conflict: conflict()?,
+            nation: me,
+            roe: Roe::parse(v.get("roe")?.as_str()?)?,
+        },
+        "ceiling" => Command::SetCeiling {
+            conflict: conflict()?,
+            nation: me,
+            rung: num()? as u8,
+        },
+        "red_line" => Command::SetRedLine {
+            conflict: conflict()?,
+            nation: me,
+            resolve_floor: num()?,
+        },
+
+        // --- Access. `target` is the other party in every case; who is host
+        // and who is seeker depends on which side of the table you sit. ---
+        "request_access" => Command::RequestAccess {
+            seeker: me,
+            host: target()?,
+            theatre: theatre()?,
+        },
+        "press_access" => Command::PressForAccess {
+            seeker: me,
+            host: target()?,
+            theatre: theatre()?,
+        },
+        "grant_access" => Command::GrantAccess {
+            host: me,
+            seeker: target()?,
+            theatre: theatre()?,
+            grant: v.get("grant").and_then(|x| x.as_bool()).unwrap_or(true),
+        },
+        "revoke_access" => Command::RevokeAccess {
+            host: me,
+            seeker: target()?,
+            theatre: theatre()?,
+        },
+        _ => return None,
+    })
+}
+
+fn json_response(v: serde_json::Value) -> Response<std::io::Cursor<Vec<u8>>> {
+    let body = serde_json::to_string(&v).unwrap_or_else(|_| "{}".into());
+    Response::from_string(body).with_header(
+        Header::from_bytes(&b"Content-Type"[..], &b"application/json; charset=utf-8"[..]).unwrap(),
+    )
+}
+
+/// A refusal. Same JSON shape as every other answer, but carrying the status
+/// code that says the request was the problem — a 200 with an `error` key is a
+/// thing only the browser that wrote it knows how to read.
+fn json_error(code: u16, v: serde_json::Value) -> Response<std::io::Cursor<Vec<u8>>> {
+    json_response(v).with_status_code(code)
+}
+
+/// The body of a POST, or the reason it cannot be used.
+///
+/// A body that is THERE but does not parse is a FAILED request, not an empty
+/// one, and the difference is the whole of this function. It used to be
+/// `from_str(&body).unwrap_or(Value::Null)`, so a truncated or corrupt body
+/// became the same thing as no body at all and every route then read its own
+/// default out of nothing and reported success. Measured on the live server
+/// against a body cut off mid-object:
+///
+///   POST /api/command  -> 200, "errors": []          (having read no commands)
+///   POST /api/advance  -> 200, moved ONE month       (the body asked for sixty)
+///   POST /api/new      -> 200, a fresh 1990 world    (the game in progress gone)
+///
+/// The first of those contradicts this file's own stated intent, written into
+/// the /api/command arm: a command this build cannot parse is reported rather
+/// than dropped, "because from the player's side [that] is a button that does
+/// nothing and says nothing". A body this build cannot parse is the same thing
+/// one level up. The last is the dangerous one — a malformed request silently
+/// destroying the world the player was in.
+///
+/// An ABSENT body still means "no arguments": /api/save is posted empty and is
+/// entitled to be.
+fn parse_body(body: &str) -> Result<serde_json::Value, String> {
+    if body.trim().is_empty() {
+        return Ok(serde_json::Value::Null);
+    }
+    serde_json::from_str(body).map_err(|e| format!("That request body is not JSON: {}", e))
+}
+
+/// The seed the server boots into and the one `/api/new` uses when the request
+/// does not ask for another. Matches `GameRules::default()`.
+const DEFAULT_SEED: u64 = 1990;
+
+/// The seed the request asked for.
+///
+/// "same seed, same history" is printed on the setup screen beside the box, and
+/// it is the whole contract of a deterministic sim — so a seed the server
+/// cannot use has to be said out loud rather than quietly replaced. It was
+/// replaced: `as_u64().unwrap_or(1990)` turned a string, a negative number and
+/// a fraction alike into the default, and the player was handed 1990's history
+/// with no indication it was not theirs.
+///
+/// Measured on the live server by fingerprinting the state six months in:
+///
+///   {"seed":1990,...}    -> 6B60D853FEC58666
+///   {"seed":"12345",...} -> 6B60D853FEC58666   <- asked for 12345
+///   {"seed":-1,...}      -> 6B60D853FEC58666
+///   {"seed":3.5,...}     -> 6B60D853FEC58666
+///   {"seed":12345,...}   -> 3267FEB6F4A4A872   <- what 12345 actually is
+///
+/// Three requests asking for three different worlds, all silently given a
+/// fourth. An ABSENT seed is still the default, because that is a request that
+/// did not ask.
+fn asked_seed(payload: &serde_json::Value) -> Result<u64, String> {
+    match payload.get("seed") {
+        None | Some(serde_json::Value::Null) => Ok(DEFAULT_SEED),
+        Some(v) => v.as_u64().ok_or_else(|| {
+            format!(
+                "{} is not a seed. A seed is a whole number from 0 to {}, \
+                 and the same one always gives the same history.",
+                v,
+                u64::MAX
+            )
+        }),
+    }
+}
+
+/// The longest run of months this server will advance in one request, and the
+/// same span the research board will project a wait across.
+const MAX_ADVANCE: u64 = 1200;
+const MAX_ADVANCE_DAYS: u64 = 36_525;
+
+/// Read the daily browser clock without letting a malformed `days` value fall
+/// through to the legacy monthly route. `None` means an older client did not
+/// ask in days and may still use `months`.
+fn asked_days(payload: &serde_json::Value) -> Result<Option<u64>, String> {
+    match payload.get("days") {
+        None | Some(serde_json::Value::Null) => Ok(None),
+        Some(v) => v
+            .as_u64()
+            .map(|days| Some(days.clamp(1, MAX_ADVANCE_DAYS)))
+            .ok_or_else(|| {
+                format!(
+                    "{} is not a number of days. Days are a whole number from 1 to {}",
+                    v, MAX_ADVANCE_DAYS
+                )
+            }),
+    }
+}
+
+/// How far the request asked the clock to move.
+///
+/// Time is the one thing in this game that cannot be given back — there is no
+/// un-advance — so a request the server cannot read must not be answered by
+/// moving the world some other distance. It was: `as_u64().unwrap_or(1)` turned
+/// every unusable value into one month, and one month is also what a request
+/// that asked for nothing gets, so the two were indistinguishable in the answer.
+///
+/// Measured on the live server, Poland on seed 7, from a fresh 1990 each time:
+///
+///   {"months":12}                     -> Jun 1990   (5, stopped by an event)
+///   {"months":-5}                     -> Feb 1990   (1)
+///   {"months":"12"}                   -> Feb 1990   (1)
+///   {"months":3.5}                    -> Feb 1990   (1)
+///   {"months":999999999999999999999}  -> Feb 1990   (1)
+///   {"months":[12]}                   -> Feb 1990   (1)
+///   {}                                -> Feb 1990   (1)   <- the real default
+///
+/// A client asking for five years and given one month is out by sixty, and the
+/// 200 it gets back looks exactly like success. An ABSENT or null `months` is
+/// still one month, because that is a request that did not ask.
+///
+/// The CLAMP is a different thing and is left alone: a request for more than
+/// [`MAX_ADVANCE`] is answered with [`MAX_ADVANCE`] months of history, which is
+/// a limit on the work rather than a substitution of the question.
+fn asked_months(payload: &serde_json::Value) -> Result<u64, String> {
+    match payload.get("months") {
+        None | Some(serde_json::Value::Null) => Ok(1),
+        Some(v) => v
+            .as_u64()
+            .map(|m| m.min(MAX_ADVANCE))
+            .ok_or_else(|| {
+                format!(
+                    "{} is not a number of months. Months are a whole number \
+                     from 0 to {}, and the clock only moves forwards.",
+                    v, MAX_ADVANCE
+                )
+            }),
+    }
+}
+
+/// Who the request asked to govern.
+///
+/// `Ok(None)` is an OBSERVER, and it is a real answer: the server boots into
+/// exactly that state and the map is worth watching without a seat. But an
+/// observer is what you get when you ASK for nothing — no `nation` key, or an
+/// explicit null. It is not what you should get when you ask for something the
+/// roster does not know.
+///
+/// It was. `payload.get("nation").and_then(as_str).and_then(NationId::parse)`
+/// folds "unknown nation" into "no nation", so POST /api/new
+/// {"nation":"Polnad"} answered 200 and started a game with no player in it:
+/// no dashboard, no research board, no orders, nothing to spend political
+/// capital on, and no word anywhere about why. Measured on the live server —
+/// both "Atlantis" and the far likelier typo "Polnad" left `player` empty.
+///
+/// A refusal here is also the only place a misspelling can be CAUGHT, because
+/// `NationId::parse` already accepts codes, display names and aliases
+/// case-insensitively; anything it rejects is a name no spelling of which is
+/// on the board.
+fn asked_player(payload: &serde_json::Value) -> Result<Option<NationId>, String> {
+    match payload.get("nation") {
+        None | Some(serde_json::Value::Null) => Ok(None),
+        Some(v) => {
+            let asked = v.as_str().unwrap_or_default().trim();
+            NationId::parse(asked).map(Some).ok_or_else(|| {
+                format!(
+                    "There is no nation called {} on the board. \
+                     Names, codes and common aliases all work — try \"Poland\" or \"POL\".",
+                    if asked.is_empty() { v.to_string() } else { format!("\"{asked}\"") }
+                )
+            })
+        }
+    }
+}
+
+/// Start a fresh world for `player`, or refuse and leave `g` alone.
+///
+/// THE REFUSAL IS THE POINT, and it is not hypothetical. `NationId::parse`
+/// resolves every id on the roster, and the roster includes the successor
+/// states that do not exist on the start date — Namibia, and the republics that
+/// only appear if a federation comes apart. `world_1990` does not seat them,
+/// because `data::load_world` rejects a data file for a nation that is not a
+/// starter. Handing one to `Game::new` therefore built a world whose `player`
+/// pointed at nobody, and `state_json` on the very next line asked
+/// `WorldState::nation` for it and hit `expect("nation")` — on the main thread,
+/// which is where tiny-http's request loop lives, so the panic did not fail the
+/// request, it killed the process. Every player on that server lost their game
+/// because one of them clicked the wrong card.
+///
+/// `nation_opt` is the accessor for an id the world may not be holding, and its
+/// own doc comment names this exact case. Ask it before committing, not after:
+/// the guard belongs here, in the route that accepts player input, and NOT in
+/// `WorldState::nation`, whose `expect` is a real invariant everywhere else.
+///
+/// Returns the payload and whether a game was actually started.
+/// Fork F1(b): the browser plays the world with the resource market, truthful
+/// shipment lanes, and player-directed production on, while headless worlds
+/// keep opt-in rules off so old runs stay bit-identical. Set here on every
+/// world adopted by the browser: boot, `/api/new`, and `/api/load`.
+fn play_rules(g: &mut Game) {
+    spheres_sim::clock::enable_daily_play(&mut g.world);
+    g.world.rules.resource_market = true;
+    // The political arm (S0-S2): the lens is on in the browser, the roads to
+    // power (S4) stay off everywhere. `ensure_all` runs the seating pass again
+    // so the leader table is loaded and every regime's movements are seeded
+    // before the first /api/state, not at the first tick; the pass is
+    // idempotent, draws no RNG and writes nothing the model reads.
+    g.world.rules.ideology_blocs = true;
+    g.world.rules.ideology_takeover = false;
+    spheres_sim::government::ensure_all(&mut g.world);
+    g.world.rules.logistics_routes = true;
+    g.world.rules.physical_logistics = true;
+    g.world.rules.military_operations = true;
+    g.world.rules.production_system = true;
+    g.world.rules.manufacturing_system = true;
+    spheres_sim::province_economy::enable(&mut g.world);
+}
+
+/// New campaigns receive the modeled 1990 industrial inheritance and explicitly
+/// adopt the connected economy, company operations and daily operational warfare.
+/// Existing saves keep those upgrades opt-in; loading never grants supplier stock.
+fn fresh_play_rules(g: &mut Game) -> Result<(), String> {
+    spheres_sim::clock::enable_daily_play(&mut g.world);
+    if spheres_sim::starting_industry::enable_new_world(&mut g.world)? {
+        spheres_sim::starting_industry::enrich_new_world(&mut g.world)?;
+    }
+    play_rules(g);
+    spheres_sim::party_leadership::enable_campaign(&mut g.world)?;
+    spheres_sim::connected_economy::enable(&mut g.world)?;
+    // Seat the cover already reported by the market before company enrollment;
+    // this posts no production, purchases, deliveries or simulated day.
+    resources::materialize_opening_market(&mut g.world)?;
+    spheres_sim::company_network::enable(&mut g.world)?;
+    // Supplier programmes must fund their own actual work; enrollment itself
+    // creates neither an arms plant nor finished export stock.
+    spheres_sim::supplier_catalogue::enable(&mut g.world)?;
+    spheres_sim::operational_warfare::enable(&mut g.world)?;
+    Ok(())
+}
+
+#[cfg(test)]
+mod s05_fresh_startup_tests;
+
+/// Retain the established browser migration for logistics, production and
+/// manufacturing before warming a save. Connected economy flags and dated
+/// accounts remain exactly as loaded; this path never adopts the S02 upgrade.
+fn loaded_play_game(w: WorldState) -> Game {
+    let mut g = Game { world: w, freight_routes: Default::default(), log: vec![], history: vec![], history_epoch:0, autosaved_month:0, storage_notice:None, session_id: fresh_session_id(), advance_receipts: Default::default(),command_receipts:Default::default() };
+    play_rules(&mut g);
+    resources::warm(&mut g.world);
+    g.snapshot();
+    g
+}
+
+/// The optional aim on an `open_conflict` order: absent (or null) is no aim,
+/// `Ok(None)`; present and readable — a district the census knows and a line
+/// the sim names — is `Ok(Some)`; present and unreadable is `Err`, and the
+/// order is refused, the theatre's own rule.
+fn aim_of(v: &serde_json::Value) -> Result<Option<(String, Commodity)>, ()> {
+    match v.get("aim") {
+        None | Some(serde_json::Value::Null) => Ok(None),
+        Some(a) => {
+            let d = a.get("district").and_then(|d| d.as_str()).ok_or(())?;
+            spheres_sim::districts::name_of(d).ok_or(())?;
+            let c = a.get("commodity").and_then(|c| c.as_str()).and_then(Commodity::parse).ok_or(())?;
+            Ok(Some((d.to_string(), c)))
+        }
+    }
+}
+
+/// Apply the page's orders now, in order, and say what did not go through. A
+/// command this build cannot parse used to be dropped in silence, which from
+/// the player's side is a button that does nothing and says nothing; it is
+/// an error line instead. A quarrel opened with an aim (the TAKE card) is
+/// followed by `SetAim` on the conflict it opened: the sim validates the
+/// aim, refuses it with its sentence, and charges nothing for it.
+fn apply_orders(w: &mut WorldState, me: NationId, list: &[serde_json::Value]) -> Vec<String> {
+    let mut errors: Vec<String> = vec![];
+    for v in list {
+        match parse_command(w, v, me) {
+            Some(cmd) => {
+                if let Err(e) = apply_command(w, &cmd) {
+                    errors.push(e);
+                    continue;
+                }
+                if let Command::OpenConflict { target, .. } = cmd {
+                    if let Ok(Some((district, commodity))) = aim_of(v) {
+                        if let Some(id) = w.conflict_between(me, target).map(|c| c.id) {
+                            let aim = Command::SetAim { conflict: id, nation: me, district, commodity };
+                            if let Err(e) = apply_command(w, &aim) {
+                                errors.push(e);
+                            }
+                        }
+                    }
+                }
+            }
+            None => errors.push(format!(
+                "That order did not make sense: {}",
+                serde_json::to_string(v).unwrap_or_default()
+            )),
+        }
+    }
+    errors
+}
+
+fn new_game(g: &mut Game, seed: u64, player: Option<NationId>) -> (serde_json::Value, bool) {
+    let mut fresh = Game::new(seed, player);
+    if let Some(id) = player {
+        // Asked of the world that was just built rather than of `start_1990`,
+        // so this stays true if the roster ever seats a nation it does not
+        // today. A world is cheap enough to build and throw away once.
+        if !fresh.world.nation_opt(id).is_some_and(|n| n.alive) {
+            return (
+                serde_json::json!({
+                    "error": format!(
+                        "{} is not on the board in January 1990 — it exists only \
+                         if the state it succeeds comes apart. Choose another nation.",
+                        id.name()
+                    ),
+                }),
+                false,
+            );
+        }
+    }
+    // The first response and history point must use the rules the browser will
+    // actually advance, including daily units and the province ledger.
+    if let Err(error) = fresh_play_rules(&mut fresh) {
+        return (serde_json::json!({"error": error}), false);
+    }
+    resources::warm(&mut fresh.world);
+    fresh.history.clear();
+    fresh.snapshot();
+    *g = fresh;
+    (state_json(g, None), true)
+}
+
+/// Parse the complete batch before any simulation mutation. Semantic refusals
+/// still follow tick_day's documented per-order event log; malformed JSON
+/// commands must never disappear while the calendar moves on.
+fn advance_commands(w: &WorldState, payload: &serde_json::Value) -> Result<Vec<Command>, String> {
+    let list = match payload.get("commands") {
+        None => return Ok(vec![]),
+        Some(value) => value.as_array().ok_or("Commands must be an array. Nothing was enacted and the calendar has not advanced.")?,
+    };
+    if list.is_empty() { return Ok(vec![]); }
+    let me = w.player.ok_or("Choose a nation before submitting orders.")?;
+    list.iter().enumerate().map(|(i, value)| parse_command(w, value, me).ok_or_else(|| {
+        let kind = value.get("kind").and_then(|v| v.as_str()).unwrap_or("unknown");
+        format!("Order {} ({kind}) is invalid. Nothing was enacted and the calendar has not advanced.", i + 1)
+    })).collect()
+}
+
+use transport::{advance_request,immediate_request};
+
+/// The port to listen on. `--port N` on the command line wins; failing that
+/// the `PORT` environment variable, which is what preview tooling sets when it
+/// assigns a free port of its own choosing; failing both, 7777. A value that
+/// does not parse as a port is ignored rather than fatal, so a stray `PORT` in
+/// the environment cannot stop the game from starting.
+fn listen_port(args: &[String], env_port: Option<&str>) -> u16 {
+    args.iter()
+        .position(|a| a == "--port")
+        .and_then(|i| args.get(i + 1))
+        .and_then(|s| s.parse().ok())
+        .or_else(|| env_port.and_then(|s| s.trim().parse().ok()))
+        .unwrap_or(7777)
+}
+
+/// `--no-open` keeps the server from launching the desktop browser. Tooling
+/// that opens its own tab (the preview pane, a headless check) passes it; a
+/// person double-clicking the exe does not, and gets the tab they expect.
+fn wants_browser(args: &[String]) -> bool {
+    !args.iter().any(|a| a == "--no-open")
+}
+
+fn main() {
+    let args: Vec<String> = std::env::args().collect();
+    let env_port = std::env::var("PORT").ok();
+    let port = listen_port(&args, env_port.as_deref());
+
+    // Setup and /api/new adopt the same capabilities before the first response.
+    let mut boot = Game::new(1990, None);
+    fresh_play_rules(&mut boot).expect("fresh 1990 campaign capabilities must validate");
+    let game: Mutex<Game> = Mutex::new(boot);
+
+    let addr = format!("127.0.0.1:{}", port);
+    let server = match Server::http(&addr) {
+        Ok(s) => s,
+        Err(e) => {
+            eprintln!("Could not bind {}: {}", addr, e);
+            eprintln!("Another SPHERES may already be running. Try --port 7778.");
+            std::process::exit(1);
+        }
+    };
+    let url = format!("http://{}", addr);
+    println!("SPHERES is running at {}", url);
+    println!("Press Ctrl-C to stop the server.");
+    if wants_browser(&args) {
+        open_browser(&url);
+    }
+
+    for mut request in server.incoming_requests() {
+        let url_path = request.url().split('?').next().unwrap_or("/").to_string();
+        let method = request.method().clone();
+
+        let mut body = String::new();
+        if method == Method::Post {
+            let _ = request.as_reader().read_to_string(&mut body);
+        }
+        let payload: serde_json::Value = match parse_body(&body) {
+            Ok(v) => v,
+            Err(e) => {
+                let _ = request.respond(json_error(400, serde_json::json!({ "error": e })));
+                continue;
+            }
+        };
+
+        // HEAD is routed like GET: tiny-http suppresses the response body for
+        // HEAD requests on its own, so `curl -I` sees the same status and
+        // headers as a GET instead of falling through to the 404 arm.
+        let route_method = if method == Method::Head { Method::Get } else { method.clone() };
+        // A delayed old tab must not issue orders/save over a replacement
+        // campaign. New/load are explicit replacement actions instead.
+        if method == Method::Post && matches!(url_path.as_str(), "/api/command" | "/api/save") {
+            if let Some(session) = payload.get("session_id") {
+                if session.as_str() != Some(game.lock().unwrap().session_id.as_str()) {
+                    let _ = request.respond(json_error(400, serde_json::json!({"error":"This campaign changed. Continue the current campaign before submitting orders or saving.","requires_review":true,"not_applied":false})));
+                    continue;
+                }
+            }
+        }
+        // Exchange snapshots and quotes are read-only, but they must not cross
+        // campaign boundaries: a second tab may have replaced the server Game
+        // while this tab still displays its old map and drafts.
+        if exchange_read_path(&url_path) && !exchange_session_matches(&method, request.url(), &payload,
+            &game.lock().unwrap().session_id) {
+            let _ = request.respond(json_error(400, serde_json::json!({"error":"This campaign changed. Continue the current campaign before refreshing the Exchange or requesting quotes."})));
+            continue;
+        }
+        let response = match (&route_method, url_path.as_str()) {
+            (Method::Get, "/api/build") => json_response(build_info()),
+            (Method::Get, "/") | (Method::Get, "/index.html") => {
+                let r = Response::from_string(INDEX).with_header(
+                    Header::from_bytes(&b"Content-Type"[..], &b"text/html; charset=utf-8"[..])
+                        .unwrap(),
+                );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/campaign-transport.js") | (Method::Get, "/campaign-ui.js") => {
+                Response::from_string(if url_path == "/campaign-ui.js" {CAMPAIGN_UI_JS}else{CAMPAIGN_TRANSPORT_JS})
+                    .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap())
+            }
+            (Method::Get, "/world.js") => {
+                let r = Response::from_string(WORLD_JS).with_header(
+                    Header::from_bytes(
+                        &b"Content-Type"[..],
+                        &b"application/javascript; charset=utf-8"[..],
+                    )
+                    .unwrap(),
+                );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/operations-ui.js") => {
+                let _ = request.respond(Response::from_string(MILITARY_OPERATIONS_JS)
+                    .with_header(Header::from_bytes("Content-Type", "text/javascript; charset=utf-8").unwrap())
+                    .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()));
+                continue;
+            }
+            (Method::Get, "/campaign-operations-ui.js") => {
+                let _=request.respond(Response::from_string(CAMPAIGN_OPERATIONS_JS)
+                    .with_header(Header::from_bytes("Content-Type","text/javascript; charset=utf-8").unwrap())
+                    .with_header(Header::from_bytes("Cache-Control","no-cache").unwrap()));
+                continue;
+            }
+            (Method::Get, "/campaign-operations-ui.css") => {
+                let _=request.respond(Response::from_string(CAMPAIGN_OPERATIONS_CSS)
+                    .with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap())
+                    .with_header(Header::from_bytes("Cache-Control","no-cache").unwrap()));
+                continue;
+            }
+            (Method::Get, "/operations-ui.css") => {
+                let _ = request.respond(Response::from_string(MILITARY_OPERATIONS_CSS)
+                    .with_header(Header::from_bytes("Content-Type", "text/css; charset=utf-8").unwrap())
+                    .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()));
+                continue;
+            }
+            (Method::Get, "/art/nation-figures-v2.json") => {
+                let r = Response::from_string(NATION_FIGURES_JSON)
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Content-Type"[..],
+                            &b"application/json; charset=utf-8"[..],
+                        )
+                        .unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Cache-Control"[..],
+                            &b"no-cache"[..],
+                        )
+                        .unwrap(),
+                    );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/art/nation-flags-v2.svg") => {
+                let r = Response::from_string(NATION_FLAGS_SVG)
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Content-Type"[..],
+                            &b"image/svg+xml; charset=utf-8"[..],
+                        )
+                        .unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Cache-Control"[..],
+                            &b"no-cache"[..],
+                        )
+                        .unwrap(),
+                    );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/decision-tools.css") => Response::from_string(DECISION_TOOLS_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
+            (Method::Get, "/industry-ui.css") => Response::from_string(INDUSTRY_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
+            (Method::Get, "/industry-ui.js") => Response::from_string(INDUSTRY_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/cash-flow-ui.css") => Response::from_string(CASH_FLOW_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
+            (Method::Get, "/cash-flow-ui.js") => Response::from_string(CASH_FLOW_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/fiscal-recovery-ui.js") => Response::from_string(FISCAL_RECOVERY_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/companies-ui.js") => Response::from_string(COMPANIES_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/companies.css") => Response::from_string(COMPANIES_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
+            (Method::Get, "/arsenal-models.js") => Response::from_string(ARSENAL_MODELS_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/arsenal3d.js") => Response::from_string(ARSENAL3D_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()).with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/surface-grain.js") => Response::from_string(SURFACE_GRAIN_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/surface-wear.js") => Response::from_string(SURFACE_WEAR_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/surface-material.js") => Response::from_string(SURFACE_MATERIAL_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/site-mesh.js") => Response::from_string(SITE_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/town-mesh.js") => Response::from_string(TOWN_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/city-mesh.js") => Response::from_string(CITY_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/city-layer.js") => Response::from_string(CITY_LAYER_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/equipment-import.js") => Response::from_string(EQUIPMENT_IMPORT_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/arsenal3d.css") => Response::from_string(ARSENAL3D_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
+            (Method::Get, path) if path.starts_with("/art/components/") => {
+                if let Some(bytes) = page_art_assets::component_asset(&path["/art/components/".len()..]) {
+                    Response::from_data(bytes).with_header(Header::from_bytes("Content-Type","image/webp").unwrap()).with_header(Header::from_bytes("Cache-Control","public, max-age=31536000, immutable").unwrap())
+                } else { Response::from_string("Not found").with_status_code(404) }
+            },
+            (Method::Get, "/equipment-ui.css") => Response::from_string(EQUIPMENT_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
+            (Method::Get, "/person-models.js") => Response::from_string(PERSON_MODELS_JS).with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap()).with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/person-3d.js") => Response::from_string(PERSON_3D_JS).with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap()).with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/person-model-data.js") => Response::from_string(format!("window.PersonModelData = {};", person_portraits::MODEL_DATA)).with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap()).with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/government-ui.js") => Response::from_string(GOVERNMENT_UI_JS).with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/government-ui.css") => Response::from_string(GOVERNMENT_UI_CSS).with_header(Header::from_bytes("Content-Type", "text/css; charset=utf-8").unwrap()).with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/art/government/council-v1.png") => Response::from_data(GOVERNMENT_COUNCIL_PNG).with_header(Header::from_bytes("Content-Type", "image/png").unwrap()).with_header(Header::from_bytes("Cache-Control", "public, max-age=31536000, immutable").unwrap()),
+            (Method::Get, "/equipment-ui.js") => Response::from_string(EQUIPMENT_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/equipment-mesh.js") => Response::from_string(EQUIPMENT_MESH_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/equipment-model.js") => Response::from_string(EQUIPMENT_MODEL_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/military-surface.js") => Response::from_string(MILITARY_SURFACE_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/tank-surface.js") => Response::from_string(TANK_SURFACE_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/military-textures/paint-normal.jpg") => Response::from_data(MILITARY_PAINT_NORMAL).with_header(Header::from_bytes("Content-Type","image/jpeg").unwrap()),
+            (Method::Get, "/military-textures/paint-roughness.jpg") => Response::from_data(MILITARY_PAINT_ROUGHNESS).with_header(Header::from_bytes("Content-Type","image/jpeg").unwrap()),
+            (Method::Get, "/equipment-export.js") => Response::from_string(EQUIPMENT_EXPORT_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/decision-tools.js") => Response::from_string(DECISION_TOOLS_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/tutorial-model.js") => Response::from_string(TUTORIAL_MODEL_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/advisor-model.js") => Response::from_string(ADVISOR_MODEL_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/guidance-ui.js") => Response::from_string(GUIDANCE_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/guidance-ui.css") => Response::from_string(GUIDANCE_UI_CSS).with_header(Header::from_bytes("Content-Type","text/css; charset=utf-8").unwrap()),
+            (Method::Get, "/performance-ui.js") => Response::from_string(PERFORMANCE_UI_JS).with_header(Header::from_bytes("Content-Type","application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/area-art.js") => Response::from_string(AREA_ART_JS)
+                .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/main-menu.css") => Response::from_string(MAIN_MENU_CSS)
+                .with_header(Header::from_bytes("Content-Type", "text/css; charset=utf-8").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/map-controls.css") => Response::from_string(MAP_CONTROLS_CSS)
+                .with_header(Header::from_bytes("Content-Type", "text/css; charset=utf-8").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/map-controls.js") => Response::from_string(MAP_CONTROLS_JS)
+                .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/terrain-labels.js") => Response::from_string(TERRAIN_LABELS_JS)
+                .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/water-detail.js") => Response::from_string(WATER_DETAIL_JS)
+                .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/height-detail.js") => Response::from_string(HEIGHT_DETAIL_JS)
+                .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/terrain-surface.js") => Response::from_string(TERRAIN_SURFACE_JS)
+                .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/city-detail.js") => Response::from_string(CITY_DETAIL_JS)
+                .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap()),
+            (Method::Get, "/terrain-tiles/manifest.json") => Response::from_string(TERRAIN_TILES_MANIFEST)
+                .with_header(Header::from_bytes("Content-Type", "application/json").unwrap()),
+            (Method::Get, path) if path.starts_with("/terrain-tiles/") => {
+                let response = if let Some(bytes) = terrain_tiles::terrain_tile(&path["/terrain-tiles/".len()..]) {
+                    Response::from_data(bytes.to_vec())
+                        .with_header(Header::from_bytes("Content-Type", "image/png").unwrap())
+                } else { Response::from_data(b"Not found".to_vec()).with_status_code(404) };
+                let _ = request.respond(response.with_chunked_threshold(usize::MAX));
+                continue;
+            }
+            (Method::Get, "/shader-loader.js") => Response::from_string(SHADER_LOADER_JS)
+                .with_header(Header::from_bytes("Content-Type", "application/javascript; charset=utf-8").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/height-detail.png") => Response::from_data(HEIGHT_DETAIL_PNG.to_vec())
+                .with_header(Header::from_bytes("Content-Type", "image/png").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/area-art.css") => Response::from_string(AREA_ART_CSS)
+                .with_header(Header::from_bytes("Content-Type", "text/css; charset=utf-8").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, "/page-art.css") => Response::from_string(page_art_assets::CSS)
+                .with_header(Header::from_bytes("Content-Type", "text/css; charset=utf-8").unwrap())
+                .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()),
+            (Method::Get, path) if path.starts_with("/art/pages/") => {
+                if let Some(bytes) = page_art_assets::asset(&path["/art/pages/".len()..]) {
+                    let _ = request.respond(Response::from_data(bytes.to_vec())
+                        .with_chunked_threshold(usize::MAX)
+                        .with_header(Header::from_bytes("Content-Type", "image/webp").unwrap())
+                        .with_header(Header::from_bytes("Cache-Control", "public, max-age=31536000, immutable").unwrap()));
+                } else {
+                    let _ = request.respond(Response::from_string("Not found").with_status_code(404));
+                }
+                continue;
+            }
+            (Method::Get, path) if path.starts_with("/art/areas/") => {
+                if let Some(bytes) = area_art_asset(&path["/art/areas/".len()..]) {
+                    let _ = request.respond(Response::from_data(bytes.to_vec())
+                        .with_chunked_threshold(usize::MAX)
+                        .with_header(Header::from_bytes("Content-Type", "image/webp").unwrap())
+                        .with_header(Header::from_bytes("Cache-Control", "public, max-age=31536000, immutable").unwrap()));
+                } else {
+                    let _ = request.respond(Response::from_string("Not found").with_status_code(404));
+                }
+                continue;
+            }
+            (Method::Get, path @ ("/arcade.css" | "/arcade-operations.css" | "/arcade-discovery.css" | "/chronicle.css" | "/programs.css" | "/province-economy.css" | "/competition.css" | "/agency.css")) => {
+                let css = match path {
+                    "/arcade-operations.css" => ARCADE_OPERATIONS_CSS,
+                    "/arcade-discovery.css" => ARCADE_DISCOVERY_CSS,
+                    "/chronicle.css" => CHRONICLE_CSS,
+                    "/programs.css" => PROGRAMS_CSS,
+                    "/province-economy.css" => PROVINCE_ECONOMY_CSS,
+                    "/competition.css" => COMPETITION_CSS,
+                    "/agency.css" => AGENCY_CSS,
+                    _ => ARCADE_CSS,
+                };
+                let _ = request.respond(Response::from_string(css)
+                    .with_header(Header::from_bytes("Content-Type", "text/css; charset=utf-8").unwrap())
+                    .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()));
+                continue;
+            }
+            (Method::Get, path @ ("/chronicle-data.js" | "/chronicle-ui.js" | "/programs-ui.js" | "/province-economy-ui.js" | "/competition-ui.js" | "/agency-ui.js")) => {
+                let js = match path { "/chronicle-data.js" => CHRONICLE_DATA_JS, "/programs-ui.js" => PROGRAMS_UI_JS, "/province-economy-ui.js" => PROVINCE_ECONOMY_UI_JS, "/competition-ui.js" => COMPETITION_UI_JS, "/agency-ui.js" => AGENCY_UI_JS, _ => CHRONICLE_UI_JS };
+                let _ = request.respond(Response::from_string(js)
+                    .with_header(Header::from_bytes("Content-Type", "text/javascript; charset=utf-8").unwrap())
+                    .with_header(Header::from_bytes("Cache-Control", "no-cache").unwrap()));
+                continue;
+            }
+            (Method::Get, "/assets/cabinet-city.svg") => {
+                let r = Response::from_string(CABINET_CITY_SVG)
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Content-Type"[..],
+                            &b"image/svg+xml; charset=utf-8"[..],
+                        )
+                        .unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(&b"Cache-Control"[..], &b"no-cache"[..]).unwrap(),
+                    );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, path) if path.starts_with("/art/people/") => {
+                let name = path.trim_start_matches("/art/people/");
+                if let Some(asset) = person_portraits::asset(name) {
+                    let response = Response::from_data(asset.bytes.to_vec())
+                        .with_chunked_threshold(usize::MAX)
+                        .with_header(Header::from_bytes("Content-Type", asset.content_type).unwrap())
+                        .with_header(Header::from_bytes("Cache-Control", "public, max-age=31536000, immutable").unwrap());
+                    let _ = request.respond(response);
+                } else { let _ = request.respond(Response::empty(404)); }
+                continue;
+            }
+            (Method::Get, path) if path.starts_with("/art/portraits/") => {
+                let name = path.trim_start_matches("/art/portraits/");
+                if let Some(asset) = portrait_assets::get(name) {
+                    let r = Response::from_data(asset.bytes.to_vec())
+                        .with_chunked_threshold(usize::MAX)
+                        .with_header(
+                            Header::from_bytes(&b"Content-Type"[..], asset.content_type.as_bytes())
+                                .unwrap(),
+                        )
+                        .with_header(
+                            Header::from_bytes(
+                                &b"Cache-Control"[..],
+                                &b"public, max-age=31536000, immutable"[..],
+                            )
+                            .unwrap(),
+                        );
+                    let _ = request.respond(r);
+                } else {
+                    let _ = request.respond(Response::empty(404));
+                }
+                continue;
+            }
+            (Method::Get, "/districts.js") => {
+                let r = Response::from_string(DISTRICTS_JS).with_header(
+                    Header::from_bytes(
+                        &b"Content-Type"[..],
+                        &b"application/javascript; charset=utf-8"[..],
+                    )
+                    .unwrap(),
+                );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/district-info.json") => {
+                let r = Response::from_string(DISTRICT_INFO_JSON)
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Content-Type"[..],
+                            &b"application/json; charset=utf-8"[..],
+                        )
+                        .unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(&b"Cache-Control"[..], &b"max-age=86400"[..]).unwrap(),
+                    );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/rivers.js") => {
+                let r = Response::from_string(RIVERS_JS).with_header(
+                    Header::from_bytes(
+                        &b"Content-Type"[..],
+                        &b"application/javascript; charset=utf-8"[..],
+                    )
+                    .unwrap(),
+                );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/terrain.js") => {
+                let r = Response::from_string(TERRAIN_JS).with_header(
+                    Header::from_bytes(
+                        &b"Content-Type"[..],
+                        &b"application/javascript; charset=utf-8"[..],
+                    )
+                    .unwrap(),
+                );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/cities.js") => {
+                let r = Response::from_string(CITIES_JS).with_header(
+                    Header::from_bytes(
+                        &b"Content-Type"[..],
+                        &b"application/javascript; charset=utf-8"[..],
+                    )
+                    .unwrap(),
+                );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/globe3d.js") => {
+                let r = Response::from_string(GLOBE3D_JS).with_header(
+                    Header::from_bytes(
+                        &b"Content-Type"[..],
+                        &b"application/javascript; charset=utf-8"[..],
+                    )
+                    .unwrap(),
+                );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/resources.json") => {
+                // Cacheable for a day on the same rationale as the baked
+                // rasters: it is static transcription compiled into this
+                // binary, and the Resources shading should not re-pull it on
+                // every reload.
+                let r = Response::from_string(RESOURCES_JSON)
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Content-Type"[..],
+                            &b"application/json; charset=utf-8"[..],
+                        )
+                        .unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(&b"Cache-Control"[..], &b"max-age=86400"[..]).unwrap(),
+                    );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/terrain.png") => {
+                // Identity encoding so the PNG ships with a Content-Length
+                // (tiny-http otherwise chunks bodies over 32 KiB).
+                //
+                // Cacheable for a day: the underlay is static transcription
+                // baked into this binary, and the UI's retained <image> node
+                // only guards against re-requests within one page's life — a
+                // reload should not pull 600 KB again either.
+                let r = Response::from_data(TERRAIN_PNG.to_vec())
+                    .with_chunked_threshold(usize::MAX)
+                    .with_header(
+                        Header::from_bytes(&b"Content-Type"[..], &b"image/png"[..]).unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Cache-Control"[..],
+                            &b"public, max-age=86400"[..],
+                        )
+                        .unwrap(),
+                    );
+                let _ = request.respond(r);
+                continue;
+            }
+            // The four GL terrain textures, on the same terms as /terrain.png above:
+            // identity encoding for the Content-Length, and a day of cache because they are
+            // static transcription baked into this binary. relief.png carries packed uint16
+            // elevation plus baked sky occlusion, and coast.png and lake.png signed distance
+            // fields, so all three are sampled as NUMBERS rather than looked at — the
+            // generators assert that none ships a gAMA/sRGB/iCCP chunk, because a decoder
+            // that gamma-corrected them would move the terrain and both shorelines.
+            (Method::Get, "/relief.png") => {
+                let r = Response::from_data(RELIEF_PNG.to_vec())
+                    .with_chunked_threshold(usize::MAX)
+                    .with_header(
+                        Header::from_bytes(&b"Content-Type"[..], &b"image/png"[..]).unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Cache-Control"[..],
+                            &b"public, max-age=86400"[..],
+                        )
+                        .unwrap(),
+                    );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/coast.png") => {
+                let r = Response::from_data(COAST_PNG.to_vec())
+                    .with_chunked_threshold(usize::MAX)
+                    .with_header(
+                        Header::from_bytes(&b"Content-Type"[..], &b"image/png"[..]).unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Cache-Control"[..],
+                            &b"public, max-age=86400"[..],
+                        )
+                        .unwrap(),
+                    );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/cover.png") => {
+                let r = Response::from_data(COVER_PNG.to_vec())
+                    .with_chunked_threshold(usize::MAX)
+                    .with_header(
+                        Header::from_bytes(&b"Content-Type"[..], &b"image/png"[..]).unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Cache-Control"[..],
+                            &b"public, max-age=86400"[..],
+                        )
+                        .unwrap(),
+                    );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/lake.png") => {
+                let r = Response::from_data(LAKE_PNG.to_vec())
+                    .with_chunked_threshold(usize::MAX)
+                    .with_header(
+                        Header::from_bytes(&b"Content-Type"[..], &b"image/png"[..]).unwrap(),
+                    )
+                    .with_header(
+                        Header::from_bytes(
+                            &b"Cache-Control"[..],
+                            &b"public, max-age=86400"[..],
+                        )
+                        .unwrap(),
+                    );
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/api/agency") => {
+                let g = game.lock().unwrap();
+                json_response(serde_json::json!(g.world.player.map(|p| spheres_sim::agency::view(&g.world,p))))
+            }
+            (Method::Get, "/api/state") => {
+                let g = game.lock().unwrap();
+                json_response(state_json(&g, None))
+            }
+            (Method::Get, "/api/district-populations") => {
+                let g = game.lock().unwrap();
+                json_response(district_populations_json(&g.world))
+            }
+            (Method::Get, path) if path.starts_with("/api/economic-ledger/") => {
+                let asked = NationId::parse(path.trim_start_matches("/api/economic-ledger/"));
+                let g = game.lock().unwrap();
+                match asked.and_then(|id| economic_ledger_json(&g.world, id)) {
+                    Some(v) => json_response(v),
+                    None => json_error(404, serde_json::json!({
+                        "error": "No economic ledger for this country in the current game."
+                    })),
+                }
+            }
+            (Method::Get, path) if path.starts_with("/api/district-population/") => {
+                let district = path.trim_start_matches("/api/district-population/");
+                let g = game.lock().unwrap();
+                match district_population_json(&g.world, district) {
+                    Some(v) => json_response(v),
+                    None => json_error(
+                        404,
+                        serde_json::json!({ "error": "unknown province or state" }),
+                    ),
+                }
+            }
+            (Method::Get, "/api/stratagems") => {
+                // Defaults to the player; `?nation=Poland` asks what the world is
+                // offering somebody else, which is the same question the map
+                // already answers for every other quantity.
+                let asked = request
+                    .url()
+                    .split_once("nation=")
+                    .and_then(|(_, q)| NationId::parse(q.split('&').next().unwrap_or("")));
+                let g = game.lock().unwrap();
+                let r = match asked.or(g.world.player) {
+                    Some(id) => json_response(stratagems_json(&g.world, id)),
+                    None => json_response(serde_json::json!({
+                        "error": "no nation chosen",
+                        "political_capital": 0.0,
+                        "offers": [],
+                    })),
+                };
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Post, "/api/government/preview") => {
+                let g = game.lock().unwrap();
+                let asked = match payload.get("nation") {
+                    Some(value) => value.as_str().and_then(NationId::parse),
+                    None => g.world.player,
+                };
+                let r = match asked {
+                    Some(id) => {
+                        let mut value = government_view::preview(&g.world, id, &payload["command"]);
+                        value["session_id"] = serde_json::json!(g.session_id);
+                        json_response(value)
+                    }
+                    None => json_error(400, serde_json::json!({"error":"Choose a valid government to review."})),
+                };
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/api/party-leadership") => {
+                let g = game.lock().unwrap();
+                let parameters: Vec<(&str,&str)> = request.url().split_once('?').map(|(_,q)| q.split('&').filter_map(|p|p.split_once('=')).collect()).unwrap_or_default();
+                let asked = parameters.iter().find(|(k,_)| *k == "nation");
+                let nation = asked.and_then(|(_,v)| NationId::parse(v)).or_else(|| if asked.is_none() { g.world.player } else { None });
+                let date = parameters.iter().find(|(k,_)| *k == "date").map(|(_,v)|*v);
+                let result = match (nation,date) {
+                    (Some(id),Some(date)) => person_portraits::reference_view(&g.world,id,date),
+                    (Some(id),None) => Ok(person_portraits::campaign_view(&g.world,id)),
+                    _ => Err("Choose a valid country.".to_string()),
+                };
+                let response = match result { Ok(v) => json_response(v), Err(e) => json_error(400,serde_json::json!({"error":e})) };
+                let _ = request.respond(response);
+                continue;
+            }
+            (Method::Get, path) if path.starts_with("/api/government") => {
+                // The government screen, on the /api/stratagems pattern:
+                // defaults to the player, `?nation=Iraq` asks about somebody
+                // else. The one route that serves the political arm whole.
+                // `path` is the URL with its query stripped; the param is on
+                // the full url, the way /api/stratagems reads it.
+                let asked = nation_param(request.url());
+                let g = game.lock().unwrap();
+                let r = match asked.or(g.world.player) {
+                    Some(id) => json_response(government_json(&g.world, id)),
+                    None => json_error(400, serde_json::json!({ "error": "no nation chosen" })),
+                };
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/api/covert") => {
+                // The covert card on a target's dossier: `?nation=` is the
+                // TARGET, the sponsor is the player. Nothing without a seat.
+                let asked = nation_param(request.url());
+                let g = game.lock().unwrap();
+                let r = match (g.world.player, asked) {
+                    (Some(me), Some(target)) => json_response(covert_json(&g.world, me, target)),
+                    (None, _) => json_error(400, serde_json::json!({ "error": "Choose a nation first." })),
+                    (_, None) => json_error(400, serde_json::json!({ "error": "no target chosen" })),
+                };
+                let _ = request.respond(r);
+                continue;
+            }
+            (Method::Get, "/api/tech") => {
+                let g = game.lock().unwrap();
+                let asked = request
+                    .url()
+                    .split_once("domain=")
+                    .and_then(|(_, q)| {
+                        spheres_sim::tech::Domain::parse(q.split('&').next().unwrap_or(""))
+                    });
+                match (g.world.player, asked) {
+                    (Some(me), Some(d)) => json_response(tech_tree_json(&g.world, me, d)),
+                    _ => json_response(serde_json::json!({ "nodes": [] })),
+                }
+            }
+            // The nations a new game can be started as, and the month it starts
+            // in. Deliberately NOT /api/state: the setup screen is choosing from
+            // the board /api/new will deal, not from whatever world this server
+            // happens to be holding.
+            (Method::Get, "/api/roster") => json_response(roster_1990_json().clone()),
+            // Where a nation's opening figures came from. Static start-of-game
+            // provenance, so it needs neither the lock nor the world — and must
+            // not be served from the live Nation, whose numbers have moved.
+            (Method::Get, "/api/sources") => {
+                let id = nation_param(request.url());
+                match id {
+                    Some(id) => json_response(sources_json(id)),
+                    None => json_response(serde_json::json!({
+                        "error": "unknown nation",
+                    })),
+                }
+            }
+            (Method::Get, "/api/events") => {
+                let g=game.lock().unwrap();
+                json_response(history::events(&g,request.url()))
+            }
+            (Method::Get, "/api/history") => {
+                let g = game.lock().unwrap();
+                json_response(history::request(&g,request.url()))
+            }
+            // The resource board's three cards for one line (`?com=iron`) or
+            // the dossier's twelve words for one nation (`?nation=Chile`).
+            // Both are pure reads; nothing is charged.
+            (Method::Get, "/api/stock") => {
+                let g = game.lock().unwrap();
+                let url = request.url();
+                match (g.world.player, com_param(url), nation_param(url)) {
+                    (Some(me), Some(c), _) => json_response(stock_cards_json(&g.world, me, c)),
+                    (me, None, Some(n)) => json_response(stock_nation_json(&g.world, me, n)),
+                    (None, Some(_), _) => json_error(400, serde_json::json!({ "error": "no nation chosen" })),
+                    _ => json_error(400, serde_json::json!({ "error": "ask ?com=<line> or ?nation=<name>" })),
+                }
+            }
+            // The globe's tint for one line: who holds a surplus, who is
+            // short, who is stalled, whom everyone has refused; the contract
+            // arcs; every conflict's aim.
+            (Method::Get, "/api/stock/world") => {
+                let g = game.lock().unwrap();
+                match com_param(request.url()) {
+                    Some(c) => json_response(stock_world_json(&g.world, c)),
+                    None => json_error(400, serde_json::json!({ "error": "ask ?com=<line>" })),
+                }
+            }
+            // Latest completed settlement only: the compact daily state says
+            // whether anything needs attention, and this route supplies the
+            // stable manifests when Logistics is actually opened.
+            (Method::Get, "/api/logistics") => {
+                let g = game.lock().unwrap();
+                let url = request.url();
+                let asked_for_commodity = url.split_once("com=").is_some();
+                let commodity = com_param(url);
+                match (g.world.player, asked_for_commodity, commodity) {
+                    (None, _, _) => {
+                        json_error(400, serde_json::json!({ "error": "no nation chosen" }))
+                    }
+                    (Some(_), true, None) => {
+                        json_error(400, serde_json::json!({ "error": "unknown commodity" }))
+                    }
+                    (Some(me), _, commodity) => {
+                        json_response(logistics_json(&g.world, me, commodity))
+                    }
+                }
+            }
+            // Full player production board. Province choices and actions are
+            // recomputed against current ownership on every read, so conquest
+            // cannot leave a stale Build button authorized.
+            (Method::Get, "/assets/programs-art.svg") => Response::from_string(PROGRAMS_ART_SVG)
+                .with_header(Header::from_bytes("Content-Type", "image/svg+xml; charset=utf-8").unwrap()),
+            (Method::Get, "/api/programs") => {
+                let g = game.lock().unwrap();
+                match g.world.player { Some(me) => json_response(programs_json(&g.world,me,None)), None => json_error(400,serde_json::json!({"error":"no nation chosen"})) }
+            }
+            (Method::Get, "/api/competition") => {
+                let g=game.lock().unwrap();
+                match g.world.player {Some(me)=>json_response(competition_json(&g.world,me)),None=>json_error(400,serde_json::json!({"error":"Choose a nation first."}))}
+            }
+            (Method::Get, "/api/guidance") => {
+                let g = game.lock().unwrap();
+                json_response(guidance_json(&g))
+            }
+            (Method::Get, "/api/industry") => {
+                let g=game.lock().unwrap();
+                match g.world.player {
+                    Some(me)=>{
+                        let mut value=industry_json(&g.world,me);
+                        value["session_id"]=serde_json::json!(g.session_id);
+                        json_response(value)
+                    }
+                    None=>json_error(400,serde_json::json!({"error":"Choose a nation first."})),
+                }
+            }
+            (Method::Get, "/api/cash-flow") => {
+                let g=game.lock().unwrap();
+                match g.world.player {
+                    Some(me)=>{
+                        let mut value=cash_flow_json(&g.world,me);
+                        value["session_id"]=serde_json::json!(g.session_id);
+                        json_response(value)
+                    }
+                    None=>json_error(400,serde_json::json!({"error":"Choose a nation first."})),
+                }
+            }
+            (Method::Get, "/api/equipment") => {
+                let g=game.lock().unwrap();
+                match g.world.player {Some(me)=>json_response(equipment_view::view(&g.world,me,&g.session_id)),None=>json_error(400,serde_json::json!({"error":"Choose a nation first."}))}
+            }
+            (Method::Get, "/api/companies") => {
+                let g=game.lock().unwrap();
+                match g.world.player {Some(me)=>json_response(companies_view::snapshot(&g.world,me,&g.session_id)),None=>json_error(400,serde_json::json!({"error":"Choose a nation first."}))}
+            }
+            (Method::Post, "/api/companies-preview") => {
+                let g=game.lock().unwrap();
+                match g.world.player {Some(me)=>match companies_view::preview(&g.world,me,&g.session_id,&payload){Ok(v)=>json_response(v),Err(e)=>json_error(400,serde_json::json!({"error":e}))},None=>json_error(400,serde_json::json!({"error":"Choose a nation first."}))}
+            }
+            (Method::Post, "/api/equipment-preview") => {
+                let g=game.lock().unwrap();
+                match g.world.player {Some(me)=>match equipment_view::preview(&g.world,me,&g.session_id,&payload){Ok(v)=>json_response(v),Err(e)=>json_error(400,serde_json::json!({"error":e}))},None=>json_error(400,serde_json::json!({"error":"Choose a nation first."}))}
+            }
+            (Method::Post, "/api/goods-quotes") => {
+                let g=game.lock().unwrap();
+                match g.world.player {
+                    Some(me)=>match goods_quotes_json(&g.world,me,&payload) {Ok(v)=>json_response(v),Err(e)=>json_error(400,serde_json::json!({"error":e}))},
+                    None=>json_error(400,serde_json::json!({"error":"Choose a nation first."})),
+                }
+            }
+            (Method::Post, "/api/industry-module-quotes") => {
+                let g=game.lock().unwrap();
+                match g.world.player {
+                    Some(me)=>match industry_module_quotes_json(&g.world,me,&payload) {Ok(v)=>json_response(v),Err(e)=>json_error(400,serde_json::json!({"error":e}))},
+                    None=>json_error(400,serde_json::json!({"error":"Choose a nation first."})),
+                }
+            }
+            (Method::Post, "/api/construction-preview") => {
+                let g=game.lock().unwrap();
+                match g.world.player {
+                    Some(me)=>match construction_preview_json(&g.world,me,&payload) {Ok(v)=>json_response(v),Err(e)=>json_error(400,serde_json::json!({"error":e}))},
+                    None=>json_error(400,serde_json::json!({"error":"Choose a nation first."})),
+                }
+            }
+            (Method::Post, "/api/materials-quote") => {
+                let g=game.lock().unwrap();
+                match g.world.player {
+                    Some(me)=>match materials_quote_json(&g.world,me,&payload) {Ok(v)=>json_response(v),Err(e)=>json_error(400,serde_json::json!({"error":e}))},
+                    None=>json_error(400,serde_json::json!({"error":"Choose a nation first."})),
+                }
+            }
+            (Method::Post, "/api/program-preview") => {
+                let g = game.lock().unwrap();
+                match g.world.player {
+                    Some(me) => match program_preview_json(&g.world,me,&payload) { Ok(value) => json_response(value), Err(error) => json_error(400,serde_json::json!({"error":error})) },
+                    None => json_error(400,serde_json::json!({"error":"no nation chosen"})),
+                }
+            }
+            (Method::Get, "/api/production") => {
+                let g = game.lock().unwrap();
+                match g.world.player {
+                    Some(me) => {
+                        let mut value=production_json(&g.world,me);
+                        value["session_id"]=serde_json::json!(g.session_id);
+                        json_response(value)
+                    },
+                    None => json_error(
+                        400,
+                        serde_json::json!({ "error": "no nation chosen" }),
+                    ),
+                }
+            }
+            // Full player manufacturing board. All starts are recomputed from
+            // current province ownership, completed arms plants, technology,
+            // free slots and standing; captured factories cannot leave stale
+            // buttons behind.
+            (Method::Get, "/api/manufacturing") => {
+                let g = game.lock().unwrap();
+                match g.world.player {
+                    Some(me) => json_response(manufacturing_json(&g.world, me)),
+                    None => json_error(
+                        400,
+                        serde_json::json!({ "error": "no nation chosen" }),
+                    ),
+                }
+            }
+            // Evaluate only: the sim's answer to a draft, printed BEFORE the
+            // offer is sent. Nothing is charged and nothing is written.
+            (Method::Post, "/api/talks") => {
+                let g = game.lock().unwrap();
+                match g.world.player {
+                    None => json_error(400, serde_json::json!({ "error": "no nation chosen" })),
+                    Some(me) => match talks_json(&g.world, me, &payload) {
+                        Ok(v) => json_response(v),
+                        Err(e) => json_error(400, serde_json::json!({ "error": e })),
+                    },
+                }
+            }
+            (Method::Post, "/api/new") => {
+                let asked = asked_seed(&payload).and_then(|s| Ok((s, asked_player(&payload)?)));
+                let (seed, player) = match asked {
+                    Ok(pair) => pair,
+                    Err(e) => {
+                        let _ =
+                            request.respond(json_error(400, serde_json::json!({ "error": e })));
+                        continue;
+                    }
+                };
+                let mut g = game.lock().unwrap();
+                match new_game(&mut g, seed, player) {
+                    (v, true) => json_response(v),
+                    (v, false) => json_error(400, v),
+                }
+            }
+            (Method::Post, "/api/advance") => {
+                let mut g = game.lock().unwrap();
+                match advance_request(&mut g, &payload) {
+                    Ok(mut value) => {
+                        storage::autosave(std::path::Path::new("."), &mut g);
+                        value["storage_notice"]=serde_json::json!(g.storage_notice);
+                        json_response(value)
+                    },
+                    Err(error) => json_error(400, serde_json::json!({"error":error.message,"not_advanced":!error.requires_review,"requires_review":error.requires_review})),
+                }
+            }
+            (Method::Post, "/api/command") => {
+                let mut g = game.lock().unwrap();
+                match immediate_request(&mut g,&payload) {
+                    Ok(v)=>json_response(v),Err(e)=>json_error(400,serde_json::json!({"error":e.message,"not_applied":!e.requires_review,"requires_review":e.requires_review})),
+                }
+            }
+            (Method::Get, "/api/saves") => json_response(storage::list(std::path::Path::new("."))),
+            (Method::Post, "/api/save") => {
+                let g=game.lock().unwrap();
+                match storage::slot(&payload).and_then(|slot|storage::write(std::path::Path::new("."),slot,&g)) {
+                    Ok(value)=>json_response(value),
+                    Err(error)=>json_error(500,serde_json::json!({"ok":false,"error":error})),
+                }
+            }
+            (Method::Post, "/api/load") => {
+                let mut g=game.lock().unwrap();
+                match storage::slot(&payload).and_then(|slot|storage::read(std::path::Path::new("."),slot,payload["backup"].as_bool().unwrap_or(false))) {
+                    Ok(loaded)=>{*g=loaded;g.autosaved_month=month_index(g.world.year,g.world.month);json_response(state_json(&g,None))},
+                    Err(error)=>json_error(400,serde_json::json!({"error":error})),
+                }
+            }
+            _ => Response::from_string("not found").with_status_code(404),
+        };
+        let _ = request.respond(response);
+    }
+}
+
+fn open_browser(url: &str) {
+    #[cfg(target_os = "windows")]
+    let _ = std::process::Command::new("cmd").args(["/C", "start", "", url]).spawn();
+    #[cfg(target_os = "macos")]
+    let _ = std::process::Command::new("open").arg(url).spawn();
+    #[cfg(all(unix, not(target_os = "macos")))]
+    let _ = std::process::Command::new("xdg-open").arg(url).spawn();
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn s08_moved_nation_arrays_preserve_original_serialized_rows() {
+        let mut g = Game::new(7, None);
+        let ids = [NationId::USA, NationId::France, NationId::Germany];
+        for n in &mut g.world.nations { n.alive = ids.contains(&n.id); }
+        g.world.sanctions.push((NationId::USA, NationId::France));
+        g.world.sanctions.push((NationId::USA, NationId::France));
+        g.world.set_relation(NationId::USA, NationId::France, -0.0);
+        g.world.set_relation(NationId::France, NationId::Germany, f64::NAN);
+        for empty in [false, true] {
+            if empty { for n in &mut g.world.nations { n.alive = false; } }
+            let before = save(&g.world);
+            let w = &g.world;
+            for id in ids {
+                // Original nested json! serialization is the attachment oracle.
+                let original = serde_json::json!({"relations": w.nations.iter()
+                    .filter(|o| o.alive && o.id != id)
+                    .map(|o| serde_json::json!({
+                        "id": format!("{:?}", o.id), "name": o.id.name(),
+                        "value": w.relation(id, o.id),
+                        "sanctioning": w.is_sanctioning(id, o.id),
+                        "sanctioned_by": w.is_sanctioning(o.id, id),
+                    })).collect::<Vec<_>>()});
+                let moved = nation_json(w, w.nation(id));
+                assert_eq!(serde_json::to_vec(&moved["relations"]).unwrap(),
+                    serde_json::to_vec(&original["relations"]).unwrap());
+            }
+            let original = serde_json::json!({"nations": w.nations.iter()
+                .filter(|n| n.alive).map(|n| nation_json(w, n)).collect::<Vec<_>>()});
+            let moved = state_json(&g, None);
+            assert_eq!(serde_json::to_vec(&moved["nations"]).unwrap(),
+                serde_json::to_vec(&original["nations"]).unwrap());
+            assert_eq!(save(&g.world), before, "array attachment is a pure read");
+        }
+    }
+
+    #[test]
+    fn campaign_aim_browser_commands_freeze_and_close_model_targets() {
+        let mut g=Game::new(42,Some(NationId::USA));
+        g.world.rules.daily_simulation=true;
+        let command=parse_command(&g.world,&serde_json::json!({"kind":"choose_campaign_aim","aim":"prosperity"}),NationId::USA).unwrap();
+        apply_command(&mut g.world,&command).unwrap();
+        let target=state_json(&g,None)["campaign_aims"]["active"]["target"].as_f64().unwrap();
+        g.world.nation_mut(NationId::USA).gdp*=1.5;
+        assert_eq!(state_json(&g,None)["campaign_aims"]["active"]["target"],target);
+        let command=parse_command(&g.world,&serde_json::json!({"kind":"continue_sandbox"}),NationId::USA).unwrap();
+        apply_command(&mut g.world,&command).unwrap();
+        let view=state_json(&g,None);
+        assert!(view["campaign_aims"]["active"].is_null());
+        assert_eq!(view["campaign_aims"]["history"][0]["outcome"],"set aside");
+        assert!(parse_command(&g.world,&serde_json::json!({"kind":"choose_campaign_aim","aim":"free_money"}),NationId::USA).is_none());
+    }
+
+    #[test]
+    fn agency_browser_contract_revalidates_and_preserves_pending_decisions() {
+        let mut g = Game::new(42, Some(NationId::USA));
+        g.world.statecraft.pacts.clear();
+        g.world.set_relation(NationId::Kuwait,NationId::USA,100.0);
+        spheres_sim::statecraft::propose_pact(&mut g.world,NationId::Kuwait,NationId::USA).unwrap();
+        let before=save(&g.world);
+        let view=state_json(&g,None);
+        let id=view["agency"]["offers"][0]["id"].as_u64().unwrap();
+        assert_eq!(view["agency"]["policy"]["calls_to_arms"],"review");
+        assert_eq!(save(&g.world),before);
+        let payload=serde_json::json!({"kind":"respond_diplomacy","offer":id,"accept":true});
+        let command=parse_command(&g.world,&payload,NationId::USA).unwrap();
+        apply_command(&mut g.world,&command).unwrap();
+        assert!(g.world.allied(NationId::Kuwait,NationId::USA));
+        assert_eq!(state_json(&g,None)["agency"]["offers"].as_array().unwrap().len(),0);
+        assert!(parse_command(&g.world,&serde_json::json!({"kind":"respond_diplomacy","offer":-1,"accept":true}),NationId::USA).is_none());
+        assert!(parse_command(&g.world,&serde_json::json!({"kind":"set_diplomatic_policy","policy":{"calls_to_arms":"guess"}}),NationId::USA).is_none());
+        assert!(INDEX.contains("renderAgency(S)"));
+        assert!(AGENCY_UI_JS.contains("/api/command"));
+        assert!(AGENCY_CSS.contains("#agencyPanel::backdrop"));
+    }
+
+    #[test]
+    fn competition_browser_reads_are_pure_and_cover_every_starting_economy() {
+        let g = loaded_play_game(Game::new(42, Some(NationId::USA)).world);
+        let before = save(&g.world);
+        let view = competition_json(&g.world, NationId::USA);
+        assert_eq!(view["enabled"], false);
+        assert_eq!(view["countries"].as_array().unwrap().len(), 137);
+        for tier in ["Micro", "Small", "Medium", "Large", "Major"] {
+            assert!(view["countries"].as_array().unwrap().iter().any(|n| n["tier"] == tier));
+        }
+        let query=serde_json::json!({"good":"capital_goods","quantity":10,"delivery_days":90});
+        assert!(goods_quotes_json(&g.world,NationId::USA,&query).is_ok());
+        for (key,value) in [("good",serde_json::json!("oil")),("quantity",serde_json::json!(-1)),
+            ("delivery_days",serde_json::json!(4294967297u64))] {
+            let mut bad=query.clone();bad[key]=value;
+            assert!(goods_quotes_json(&g.world,NationId::USA,&bad).is_err());
+        }
+        assert_eq!(save(&g.world),before,"Viewing the Exchange never opens accounts or grants goods");
+        assert!(INDEX.contains("src=\"/competition-ui.js\""));
+        assert!(INDEX.contains("id=\"competitionRoom\""));
+        assert!(COMPETITION_CSS.contains("#competitionRoom[hidden]"));
+        assert!(COMPETITION_UI_JS.contains("competitionApi(\"/api/competition\")"));
+    }
+
+    #[test]
+    fn exchange_reads_require_the_exact_active_campaign_session() {
+        let current="123-456-7";
+        let empty=serde_json::json!({});
+        for path in ["/api/competition", "/api/goods-quotes",
+            "/api/industry-module-quotes", "/api/materials-quote"] {
+            assert!(exchange_read_path(path), "{path} must stay behind the campaign boundary");
+        }
+        assert!(!exchange_read_path("/api/command"), "command/save retain their existing guard");
+        assert!(exchange_session_matches(&Method::Get,
+            "/api/competition?unused=1&session_id=123-456-7", &empty, current));
+        assert!(exchange_session_matches(&Method::Head,
+            "/api/competition?session_id=123-456-7", &empty, current));
+        assert!(!exchange_session_matches(&Method::Get,
+            "/api/competition", &empty, current), "an unbound read must fail closed");
+        assert!(!exchange_session_matches(&Method::Get,
+            "/api/competition?session_id=another-campaign", &empty, current));
+        assert!(exchange_session_matches(&Method::Post, "/api/goods-quotes",
+            &serde_json::json!({"session_id":current}), current));
+        assert!(!exchange_session_matches(&Method::Post, "/api/goods-quotes",
+            &empty, current), "an unbound quote must fail closed");
+        assert!(!exchange_session_matches(&Method::Post, "/api/goods-quotes",
+            &serde_json::json!({"session_id":"another-campaign"}), current));
+    }
+
+    #[test]
+    fn competition_commands_bind_actor_and_reject_overflow() {
+        let g=Game::new(42,Some(NationId::USA));
+        let mut request=serde_json::json!({"kind":"propose_goods_trade","buyer":"Canada","nation":"Canada",
+            "target":"Canada","good":"capital_goods","quantity":10,"unit_price_bn":0.001,"delivery_days":90});
+        assert!(matches!(parse_command(&g.world,&request,NationId::USA),
+            Some(Command::ProposeGoodsTrade { buyer:NationId::USA,seller:NationId::Canada,delivery_days:90,.. })));
+        request["delivery_days"]=serde_json::json!(4294967297u64);
+        assert!(parse_command(&g.world,&request,NationId::USA).is_none());
+        for kind in ["enable_economic_competition","leave_economic_union","join_economic_union",
+            "propose_economic_union","release_subject"] {
+            assert!(parse_command(&g.world,&serde_json::json!({"kind":kind,"target":"Canada"}),NationId::USA).is_some());
+        }
+    }
+    #[test]
+    fn competition_capacity_plan_is_exact_read_only_and_keeps_fractional_assets() {
+        let mut g=Game::new(42,Some(NationId::USA));
+        let district=g.world.districts.iter().find(|(_,n)|**n==NationId::USA).unwrap().0.clone();
+        g.world.production.industry.modules.insert(district,12_345);
+        let before=save(&g.world);
+        let view=competition_json(&g.world,NationId::USA);
+        assert_eq!(view["capacity_plan"],serde_json::to_value(spheres_sim::industry_planning::plan(&g.world,NationId::USA)).unwrap(),
+            "web must serve the shared plan, not rederive demand or capacity");
+        assert_eq!(view["supply_forecast"],serde_json::to_value(spheres_sim::economic_ai::supply_forecast(&g.world,NationId::USA)).unwrap(),
+            "web must serve the shared supply forecast, not reconstruct coverage in JavaScript");
+        let goods=view["capacity_plan"]["goods"].as_array().unwrap();
+        assert_eq!(goods.len(),2);
+        let materials=goods.iter().find(|g|g["good"]=="intermediates").unwrap();
+        assert_eq!(materials["installed_daily"],0.012345);
+        assert_eq!(materials["committed_daily"],0.0);
+        let machinery=goods.iter().find(|g|g["good"]=="capital_goods").unwrap();
+        assert_eq!(machinery["installed_daily"],0.0);
+        assert!(goods.iter().all(|g|g["status"].is_string()&&g["reason"].is_string()));
+        assert_eq!(save(&g.world),before,"planning reads must not grant stock, authority or capacity");
+    }
+
+    #[test]
+    fn industry_board_is_pure_without_competition_and_never_invents_opening_output() {
+        let mut g=Game::new(42,Some(NationId::USA));
+        let me=NationId::USA;
+        g.world.rules.daily_simulation=true;
+        g.world.rules.production_system=true;
+        g.world.rules.resource_market=true;
+        g.world.rules.economic_competition=false;
+        let district=g.world.districts.iter().find(|(_,owner)|**owner==me).unwrap().0.clone();
+        let foreign=g.world.districts.iter().find(|(_,owner)|**owner==NationId::Canada).unwrap().0.clone();
+        g.world.production.industry.modules.insert(district.clone(),12_345);
+        g.world.production.industry.modules.insert(foreign.clone(),1_000_000);
+        g.world.production.provinces.push(production::ProvinceCapabilities{
+            district:district.clone(),infrastructure:1,civilian_industry:1,power_grid:1,research_centers:1,arms_plants:1});
+        g.world.production.industry.sites.insert(district.clone(),[1;7]);
+        production::start_project(&mut g.world,me,&district,ProjectKind::Infrastructure).unwrap();
+        let before=save(&g.world);
+        let view=industry_json(&g.world,me);
+        assert_eq!(view,industry_json(&g.world,me));
+        assert_eq!(save(&g.world),before);
+        assert_eq!(view["enabled"],true);
+        let sites=view["sites"].as_array().unwrap();
+        assert_eq!(sites.len(),13,"this fixture installs only the thirteen original kinds");
+        assert!(sites.iter().all(|row| !["office_district","shipyard","advanced_industry"].contains(&row["kind"].as_str().unwrap())));
+        assert!(sites.iter().all(|row|row["district"]==district&&row["has_receipt"]==false
+            &&row["output_daily"].is_null()&&row["cash_spent_daily_bn"].is_null()));
+        let module=sites.iter().find(|row|row["kind"]=="starter_industry").unwrap();
+        assert_eq!(module["capacity_micros"],12_345);
+        assert_eq!(module["status"],"awaiting_settlement");
+        assert_eq!(module["output_unit"],"intermediate packs");
+        assert!(sites.iter().filter(|row|row["productive"]==false).all(|row|
+            row["output_unit"].is_null()&&row["status"]=="ready"&&!row["effect"].as_str().unwrap().is_empty()));
+        assert_eq!(view["summary"]["attention_count"],0);
+        assert_eq!(view["summary"]["queued_count"],1);
+        assert_eq!(view["queue"][0]["district"],district);
+        assert_eq!(view["goods"][0]["capacity"],500.0);
+        assert_eq!(view["goods"][1]["capacity"],500.0);
+        assert!(view["power"]["used_daily"].is_null());
+        assert!(view["settlement"].is_null());
+        assert!(sites.iter().flat_map(|row|row["actions"].as_array().unwrap()).all(|action|
+            !action.as_object().unwrap().contains_key("command")&&action["action"]!="trade"));
+
+        // Enabling a catalogue entry does not install a facility or invent a
+        // receipt. Only explicitly completed new levels expand this portfolio.
+        g.world.rules.industry_rebuild=true;
+        assert_eq!(industry_json(&g.world,me)["sites"].as_array().unwrap().len(),13);
+        g.world.production.rebuild_sites.insert(district.clone(),[1,1,1]);
+        let expanded_before=save(&g.world);
+        let expanded=industry_json(&g.world,me);
+        assert_eq!(expanded["sites"].as_array().unwrap().len(),16);
+        for kind in ["office_district","shipyard","advanced_industry"] {
+            let row=expanded["sites"].as_array().unwrap().iter().find(|r|r["kind"]==kind).unwrap();
+            assert_eq!(row["district"],district);assert_eq!(row["level"],1);
+            assert_eq!(row["has_receipt"],false);assert!(row["output_daily"].is_null());
+        }
+        assert_eq!(save(&g.world),expanded_before);
+    }
+
+    #[test]
+    fn industry_board_serves_exact_dated_receipts_and_current_owned_assets() {
+        let mut g=Game::new(42,Some(NationId::USA));
+        let me=NationId::USA;
+        g.world.rules.daily_simulation=true;
+        g.world.rules.production_system=true;
+        g.world.rules.resource_market=true;
+        let district=g.world.districts.iter().find(|(_,owner)|**owner==me).unwrap().0.clone();
+        g.world.production.industry.modules.insert(district.clone(),12_345);
+        let day=spheres_sim::clock::absolute_day(&g.world)-1;
+        g.world.production.industry.last_day=Some(day);
+        g.world.production.industry.operations.push(spheres_sim::industry::SiteStatus{
+            district:district.clone(),kind:ProjectKind::StarterIndustry,level:0,capacity_micros:Some(12_345),
+            operation:None,
+            status:"limited".into(),reason:Some("Iron supply limits output to 50% of the planned line rate.".into()),
+            output_daily:0.0061725,power_used_daily:0.0061725,cash_spent_daily_bn:0.00000007407});
+        let before=save(&g.world);
+        let view=industry_json(&g.world,me);
+        let row=&view["sites"][0];
+        assert_eq!(row["has_receipt"],true);
+        assert_eq!(row["receipt_day"],day);
+        assert_eq!(row["output_daily"],0.0061725);
+        assert_eq!(row["power_used_daily"],0.0061725);
+        assert_eq!(row["cash_spent_daily_bn"],0.00000007407);
+        assert_eq!(row["reason"],g.world.production.industry.operations[0].reason.as_deref().unwrap());
+        assert_eq!(view["summary"]["attention_count"],1);
+        assert_eq!(view["settlement"]["day"],day);
+        assert_eq!(save(&g.world),before);
+        // Newly commissioned capacity is current even while the last actual
+        // operating receipt still describes the smaller, previous-day site.
+        g.world.production.industry.modules.insert(district.clone(),24_690);
+        let expanded=industry_json(&g.world,me);
+        assert_eq!(expanded["sites"][0]["capacity_micros"],24_690);
+        assert_eq!(expanded["sites"][0]["output_daily"],0.0061725);
+        assert_eq!(expanded["sites"][0]["receipt_day"],day);
+        g.world.districts.insert(district.clone(),NationId::Canada);
+        let lost=industry_json(&g.world,me);
+        assert!(lost["sites"].as_array().unwrap().is_empty());
+        assert_eq!(lost["summary"]["attention_count"],0);
+    }
+
+    #[test]
+    fn industry_board_keeps_research_credit_separate_from_factory_output() {
+        let mut g=Game::new(42,Some(NationId::USA));
+        let me=NationId::USA;
+        g.world.rules.daily_simulation=true;g.world.rules.production_system=true;
+        g.world.rules.resource_market=true;g.world.rules.economic_competition=true;
+        let district=g.world.districts.iter().find(|(_,owner)|**owner==me).unwrap().0.clone();
+        g.world.production.provinces.push(production::ProvinceCapabilities{
+            district:district.clone(),infrastructure:0,civilian_industry:0,power_grid:0,research_centers:1,arms_plants:0});
+        let day=spheres_sim::clock::absolute_day(&g.world)-1;
+        g.world.production.industry.research.entry(me).or_default().operations.push(spheres_sim::industry::ResearchOperation{
+            district:district.clone(),nation:me,level:1,day,technology:None,technology_name:Some("Specific prototype".into()),
+            status:"active".into(),reason:"Recorded prototype work.".into(),prototype_credit:0.002,
+            cash_spent_daily_bn:0.00001,goods_used:spheres_sim::industry::Goods{intermediates:0.02,capital_goods:0.005}});
+        let before=save(&g.world);
+        let view=industry_json(&g.world,me);
+        let row=&view["sites"][0];
+        assert_eq!(row["has_receipt"],true);
+        assert_eq!(row["productive"],false);
+        assert!(row["output_daily"].is_null()&&row["output_unit"].is_null()&&row["power_used_daily"].is_null());
+        assert_eq!(row["cash_spent_daily_bn"],0.00001);
+        assert_eq!(row["research"]["prototype_credit"],0.002);
+        assert_eq!(row["research"]["technology_name"],"Specific prototype");
+        assert_eq!(row["research"]["day"],day);
+        assert_eq!(save(&g.world),before);
+        g.world.rules.resource_market=false;
+        assert_eq!(industry_json(&g.world,me)["enabled"],false);
+    }
+
+    #[test]
+    fn industry_board_route_requires_the_current_campaign() {
+        assert!(exchange_read_path("/api/industry"));
+        let empty=serde_json::json!({});
+        assert!(exchange_session_matches(&Method::Get,"/api/industry?session_id=123-456-7",&empty,"123-456-7"));
+        assert!(!exchange_session_matches(&Method::Get,"/api/industry",&empty,"123-456-7"));
+        assert!(!exchange_session_matches(&Method::Get,"/api/industry?session_id=another",&empty,"123-456-7"));
+    }
+
+    #[test]
+    fn guidance_without_a_player_is_a_read_only_setup_snapshot() {
+        let g = Game::new(42, None);
+        let before = save(&g.world);
+        let view = guidance_json(&g);
+        assert_eq!(view["state"], state_json(&g, None));
+        assert_eq!(view["state"]["session_id"], g.session_id);
+        assert!(view["state"]["player"].is_null());
+        assert!(view["production"].is_null());
+        assert_eq!(save(&g.world), before);
+    }
+
+    #[test]
+    fn guidance_route_requires_the_exact_active_campaign_session() {
+        assert!(exchange_read_path("/api/guidance"));
+        let empty = serde_json::json!({});
+        let current = "123-456-7";
+        for method in [Method::Get, Method::Head] {
+            assert!(exchange_session_matches(&method,
+                "/api/guidance?unused=1&session_id=123-456-7", &empty, current));
+            for url in ["/api/guidance", "/api/guidance?session_id=",
+                "/api/guidance?session_id=another", "/api/guidance?session_id=123-456-70"] {
+                assert!(!exchange_session_matches(&method, url, &empty, current),
+                    "unbound or stale guidance must fail closed: {url}");
+            }
+        }
+    }
+
+    #[test]
+    fn guidance_serves_one_players_state_and_production_at_the_same_date_without_orders() {
+        let mut g = Game::new(42, Some(NationId::Japan));
+        g.world.year = 2002;
+        g.world.month = 6;
+        g.world.day = 21;
+        for daily in [false, true] {
+            g.world.rules.daily_simulation = daily;
+            let before = save(&g.world);
+            let view = guidance_json(&g);
+            assert_eq!(view["state"], state_json(&g, None));
+            assert_eq!(view["production"], production_json(&g.world, NationId::Japan));
+            assert_eq!(view["state"]["session_id"], g.session_id);
+            assert_eq!(view["state"]["player"], "Japan");
+            assert_eq!(view["production"]["nation"], view["state"]["player"]);
+            assert_eq!(view["state"]["date"], g.world.date_str());
+            assert_eq!(view["state"]["year"], 2002);
+            assert_eq!(view["state"]["month"], 6);
+            assert_eq!(view["state"]["day"], 21);
+            assert_eq!(view["state"]["t"], month_index(2002, 6));
+            assert_eq!(save(&g.world), before,
+                "Reading advice must not open budgets, settle work, or change the saved world");
+        }
+    }
+
+    fn cash_flow_posted_fixture() -> Game {
+        let mut g=Game::new(42,Some(NationId::USA));
+        let me=NationId::USA;
+        g.world.rules.daily_simulation=true;
+        g.world.rules.production_system=true;
+        g.world.rules.resource_market=true;
+        programs::set_construction_budget(&mut g.world,me,0.001).unwrap();
+        programs::begin_day(&mut g.world);
+        programs::spend_construction(&mut g.world,me,0.0001).unwrap();
+        programs::spend_operating(&mut g.world,me,BUDGET_INDUSTRY,2,0.00001).unwrap();
+        programs::spend(&mut g.world,me,BUDGET_INDUSTRY,4,0.00002).unwrap();
+        g.world.nation_mut(me).program_budget.as_mut().unwrap().prepaid_bn[BUDGET_DEFENSE][3]=0.001;
+        programs::spend(&mut g.world,me,BUDGET_DEFENSE,3,0.001).unwrap();
+        // Deliberately distinct recorded amounts: a reader must not replace
+        // these with Fiscal::of's current annual policy estimates.
+        let p=g.world.nation_mut(me).program_budget.as_mut().unwrap();
+        p.revenue_today_bn=0.123;p.interest_today_bn=0.004;p.fiscal_staged=true;
+        programs::finish_day(&mut g.world);
+        g
+    }
+
+    #[test]
+    fn cash_flow_read_preserves_unknown_opening_balances_and_does_not_enroll() {
+        let mut g=Game::new(42,Some(NationId::USA));
+        g.world.rules.daily_simulation=false;
+        let before=save(&g.world);
+        let view=cash_flow_json(&g.world,NationId::USA);
+        assert_eq!(view,cash_flow_json(&g.world,NationId::USA));
+        assert_eq!(view["on_the_books"],false);
+        assert!(view["balances"]["treasury_bn"].is_null()&&view["balances"]["debt_bn"].is_null());
+        assert!(view["settled"].is_null());
+        assert!(view["annual"]["interest_bn"].is_null()&&view["annual"]["balance_at_full_use_bn"].is_null());
+        assert!(view["annual"]["posted_spending_run_rate_bn"].is_null());
+        assert!(view["ministries"].as_array().unwrap().iter().all(|row|
+            row["last_spent_bn"].is_null()&&row["spent_ytd_bn"].is_null()));
+        assert!(view["construction"]["spent_today_bn"].is_null());
+        assert!(view["construction"]["daily_budget_bn"].is_null());
+        assert!(view["ministries"].as_array().unwrap().iter().all(|row|row["daily_authorized_bn"].is_null()),
+            "A legacy monthly allowance must not be advertised as a daily amount");
+        assert_eq!(save(&g.world),before,"A cash-flow read cannot open books, renew budgets or settle a day");
+    }
+
+    #[test]
+    fn cash_flow_posted_components_reconcile_without_recharging_prepaid_equipment() {
+        let g=cash_flow_posted_fixture();
+        let me=NationId::USA;
+        let before=save(&g.world);
+        let p=g.world.nation(me).program_budget.as_ref().unwrap();
+        let view=cash_flow_json(&g.world,me);
+        let receipt=&view["settled"];
+        let number=|key:&str|receipt[key].as_f64().unwrap();
+        let actual=p.spent_today_bn.iter().flatten().sum::<f64>();
+        assert_eq!(number("revenue_bn"),0.123);
+        assert_eq!(number("interest_bn"),0.004);
+        assert_eq!(number("ministry_spend_bn"),actual);
+        assert_eq!(number("construction_bn"),0.0001);
+        assert!((number("plant_operating_bn")-0.00001).abs()<1e-12);
+        assert!((number("other_capital_bn")-0.00002).abs()<1e-12);
+        assert!((number("services_bn")+number("plant_operating_bn")+number("construction_bn")
+            +number("other_capital_bn")-actual).abs()<1e-12);
+        assert_eq!(number("prepaid_used_bn"),0.001);
+        assert_eq!(number("total_outflow_bn"),actual+0.004);
+        assert_eq!(number("balance_bn"),0.123-(actual+0.004));
+        assert_eq!(receipt["day"],p.settled_day.unwrap());
+        let ministry_sum=view["ministries"].as_array().unwrap().iter()
+            .map(|row|row["last_spent_bn"].as_f64().unwrap()).sum::<f64>();
+        assert!((ministry_sum-actual).abs()<1e-12);
+        assert_eq!(view["construction"]["spent_today_bn"],receipt["construction_bn"]);
+        assert_eq!(view["construction"]["spent_day"],receipt["day"]);
+        assert_eq!(save(&g.world),before);
+    }
+
+    #[test]
+    fn cash_flow_open_day_never_masquerades_as_a_closed_posting() {
+        let mut g=cash_flow_posted_fixture();
+        let me=NationId::USA;
+        let original=cash_flow_json(&g.world,me);
+        g.world.day+=1;
+        programs::begin_day(&mut g.world);
+        let before=save(&g.world);
+        let next=cash_flow_json(&g.world,me);
+        assert!(next["settled"].is_null());
+        assert!(next["construction"]["spent_today_bn"].is_null());
+        assert!(next["ministries"].as_array().unwrap().iter().all(|row|row["last_spent_bn"].is_null()));
+        assert_eq!(next["annual"]["posted_spending_day"],original["annual"]["posted_spending_day"]);
+        assert_eq!(next["annual"]["posted_spending_run_rate_bn"],original["annual"]["posted_spending_run_rate_bn"]);
+        assert_eq!(save(&g.world),before);
+        // Even a staged new-day tax estimate is not a posted receipt.
+        g.world.nation_mut(me).program_budget.as_mut().unwrap().fiscal_staged=true;
+        assert!(cash_flow_json(&g.world,me)["settled"].is_null());
+    }
+
+    #[test]
+    fn cash_flow_annual_estimates_and_construction_quote_reuse_authoritative_sources() {
+        let mut g=cash_flow_posted_fixture();
+        let me=NationId::USA;
+        let n=g.world.nation(me);
+        let terms=spheres_sim::economy::growth_terms(n,n.state_invest_gdp,n.interest_rate,
+            &spheres_sim::economy::Conditions::of(&g.world,me));
+        let fiscal=spheres_sim::economy::Fiscal::of(n,&terms);
+        let plan=programs::preview(&g.world,me);
+        let expected=construction_budget_json(&g.world,me);
+        let view=cash_flow_json(&g.world,me);
+        assert_eq!(view["annual"]["revenue_bn"],fiscal.revenue_gdp*n.gdp);
+        assert_eq!(view["annual"]["tax_revenue_bn"],n.tax_rate*n.gdp);
+        assert_eq!(view["annual"]["resource_revenue_bn"],terms.budget_oil_revenue*n.gdp);
+        assert_eq!(view["annual"]["authorized_spend_bn"],plan.annual_authorized_bn);
+        assert_eq!(view["annual"]["interest_bn"],fiscal.interest_bn);
+        assert_eq!(view["annual"]["balance_at_full_use_bn"],fiscal.revenue_gdp*n.gdp-(plan.annual_authorized_bn+fiscal.interest_bn));
+        for key in ["daily_budget_bn","available_bn","authority_bn","planned_daily_bn"] {
+            assert_eq!(view["construction"][key],expected[key]);
+        }
+        g.world.nation_mut(me).program_budget.as_mut().unwrap().construction_daily_budget_bn=Some(0.0);
+        assert_eq!(cash_flow_json(&g.world,me)["construction"]["affordability"]["status"],"paused");
+        g.world.year+=1;
+        let expired=cash_flow_json(&g.world,me);
+        assert_eq!(expired["annual"]["renewed"],false);
+        assert_eq!(expired["construction"]["affordability"]["status"],"renewal_due");
+        assert!(expired["ministries"].as_array().unwrap().iter().all(|row|row["spent_ytd_bn"].is_null()));
+    }
+
+    #[test]
+    fn cash_flow_route_is_bound_to_the_current_campaign() {
+        assert!(exchange_read_path("/api/cash-flow"));
+        let empty=serde_json::json!({});
+        assert!(exchange_session_matches(&Method::Get,"/api/cash-flow?session_id=123-456-7",&empty,"123-456-7"));
+        assert!(!exchange_session_matches(&Method::Get,"/api/cash-flow",&empty,"123-456-7"));
+        assert!(!exchange_session_matches(&Method::Get,"/api/cash-flow?session_id=another",&empty,"123-456-7"));
+    }
+
+    #[test]
+    fn cash_flow_priorities_decompose_the_same_dated_interest_deficit_without_mutation() {
+        let mut g=cash_flow_posted_fixture();
+        let me=NationId::USA;
+        let p=g.world.nation_mut(me).program_budget.as_mut().unwrap();
+        let spent=p.spent_today_bn.iter().flatten().sum::<f64>();
+        p.revenue_today_bn=spent+0.002;
+        p.interest_today_bn=0.004;
+        let before=save(&g.world);
+        let view=cash_flow_json(&g.world,me);
+        assert!((view["settled"]["primary_balance_bn"].as_f64().unwrap()-0.002).abs()<1e-12);
+        let priorities=view["priorities"].as_array().unwrap();
+        assert!(priorities.len()<=3);
+        let first=&priorities[0];
+        assert_eq!(first["id"],"interest_pressure");
+        assert_eq!(first["action"],serde_json::json!({"action":"policy","control":"rate"}));
+        let metrics=first["metrics"].as_array().unwrap();
+        assert_eq!(metrics.iter().find(|metric|metric["label"]=="Interest").unwrap()["amount_bn"],0.004);
+        assert_eq!(metrics.iter().find(|metric|metric["label"]=="Final budget balance").unwrap()["amount_bn"],view["settled"]["balance_bn"]);
+        assert!(metrics.iter().all(|metric|metric["period"].as_str().unwrap().contains(view["settled"]["label"].as_str().unwrap())));
+        assert!(first["detail"].as_str().unwrap().contains("construction was smaller than the deficit"));
+        assert_eq!(view,cash_flow_json(&g.world,me));
+        assert_eq!(save(&g.world),before,"Advice neither edits the annual plan nor chooses a rate");
+    }
+
+    #[test]
+    fn cash_flow_priorities_explain_a_negative_interest_credit() {
+        let view=serde_json::json!({"on_the_books":true,"annual":{"renewed":true},
+            "settled":{"label":"1990-01-01","revenue_bn":1.0,"ministry_spend_bn":3.0,
+                "primary_balance_bn":-2.0,"interest_bn":-0.5,"balance_bn":-1.5}});
+        let priorities=cash_flow_priorities(&view);
+        assert_eq!(priorities[0]["id"],"primary_deficit");
+        let detail=priorities[0]["detail"].as_str().unwrap();
+        assert!(detail.contains("interest credit reduced"));assert!(!detail.contains("No interest"));
+        assert_eq!(priorities[0]["metrics"][3]["amount_bn"],-0.5);
+    }
+
+    #[test]
+    fn cash_flow_priorities_use_actual_ministry_sources_and_stable_ties() {
+        let mut g=cash_flow_posted_fixture();
+        let me=NationId::USA;
+        let p=g.world.nation_mut(me).program_budget.as_mut().unwrap();
+        p.spent_today_bn=programs::ZERO;
+        p.noncapital_spent_today_bn=programs::ZERO;
+        p.construction_spent_today_bn=0.0;
+        p.spent_today_bn[BUDGET_HEALTH][0]=1.0;
+        p.spent_today_bn[BUDGET_EDUCATION][0]=1.0;
+        p.revenue_today_bn=0.5;
+        p.interest_today_bn=0.0;
+        let before=save(&g.world);
+        let view=cash_flow_json(&g.world,me);
+        let priorities=view["priorities"].as_array().unwrap();
+        assert_eq!(priorities[0]["id"],"primary_deficit");
+        assert!(priorities[0]["detail"].as_str().unwrap().contains("No construction was charged"));
+        assert!(priorities[0]["detail"].as_str().unwrap().contains("No interest was charged"));
+        let largest=priorities.iter().find(|priority|priority["id"]=="largest_ministry").unwrap();
+        assert_eq!(largest["action"],serde_json::json!({"action":"budget","ministry":"health"}));
+        assert_eq!(largest["metrics"][0]["amount_bn"],1.0);
+        assert!(largest["detail"].as_str().unwrap().contains("pooled construction funding"));
+        assert!(largest["detail"].as_str().unwrap().contains("standard ministry order breaks the tie"));
+        assert_eq!(save(&g.world),before);
+    }
+
+    #[test]
+    fn cash_flow_priorities_put_funding_and_renewal_first_and_keep_the_three_item_limit() {
+        let mut g=cash_flow_posted_fixture();
+        let me=NationId::USA;
+        let district=g.world.districts.iter().find(|(_,owner)|**owner==me).unwrap().0.clone();
+        production::start_project(&mut g.world,me,&district,ProjectKind::Infrastructure).unwrap();
+        g.world.nation_mut(me).program_budget.as_mut().unwrap().construction_daily_budget_bn=Some(0.0);
+        let view=cash_flow_json(&g.world,me);
+        let priorities=view["priorities"].as_array().unwrap();
+        assert_eq!(priorities.len(),3);
+        assert_eq!(priorities[0]["id"],"construction_funding");
+        assert_eq!(priorities[0]["action"]["action"],"construction");
+        assert_eq!(priorities[0]["metrics"][0]["amount_bn"],0.0);
+        g.world.year+=1;
+        let renewed=cash_flow_json(&g.world,me);
+        assert_eq!(renewed["priorities"][0]["id"],"renew_budget");
+        assert!(renewed["priorities"].as_array().unwrap().len()<=3);
+    }
+
+    #[test]
+    fn cash_flow_priorities_keep_annual_estimates_separate_from_a_settled_surplus() {
+        let mut g=cash_flow_posted_fixture();
+        let me=NationId::USA;
+        let p=g.world.nation_mut(me).program_budget.as_mut().unwrap();
+        p.revenue_today_bn=p.spent_today_bn.iter().flatten().sum::<f64>()+p.interest_today_bn+1.0;
+        g.world.nation_mut(me).tax_rate=0.0;
+        let view=cash_flow_json(&g.world,me);
+        assert!(view["settled"]["balance_bn"].as_f64().unwrap()>0.0);
+        assert!(view["annual"]["balance_at_full_use_bn"].as_f64().unwrap()<0.0);
+        let priorities=view["priorities"].as_array().unwrap();
+        assert_eq!(priorities.len(),1);
+        assert_eq!(priorities[0]["id"],"annual_full_use_gap");
+        assert!(view["alerts"].as_array().unwrap().iter().any(|alert|alert["id"]==priorities[0]["id"]));
+        assert!(priorities[0]["metrics"].as_array().unwrap().iter().all(|metric|metric["period"]=="Annual estimate"));
+        g.world.day+=1;
+        programs::begin_day(&mut g.world);
+        let open=cash_flow_json(&g.world,me);
+        assert!(open["settled"].is_null());
+        assert!(open["priorities"].as_array().unwrap().iter().all(|priority|
+            priority["id"]!="primary_deficit"&&priority["id"]!="interest_pressure"&&priority["id"]!="largest_ministry"));
+    }
+
+    #[test]
+    fn module_only_province_is_visible_without_rounding_integer_capabilities() {
+        let mut g=Game::new(1990,Some(NationId::USA));
+        let district=g.world.districts.iter().find(|(_,n)|**n==NationId::USA).unwrap().0.clone();
+        g.world.production.industry.modules.insert(district.clone(),12_345);
+        let before=save(&g.world);
+        let board=production_json(&g.world,NationId::USA);
+        let completed=board["completed"].as_array().unwrap().iter()
+            .find(|row|row["province"]["id"]==district).expect("completed workshop must stay visible");
+        assert_eq!(completed["module_capacity"],0.012345);
+        assert!(completed["capabilities"].as_object().unwrap().values().all(|v|v.as_u64()==Some(0)),
+            "fractional workshop must never become integer level one");
+        let marker=board["markers"].as_array().unwrap().iter()
+            .find(|row|row["district"]==district).expect("completed workshop must retain its map marker");
+        assert_eq!(marker["module_capacity"],0.012345);
+        let province=board["provinces"].as_array().unwrap().iter().find(|row|row["id"]==district).unwrap();
+        assert_eq!(province["module_capacity"],0.012345);
+        assert_eq!(board["summary"]["completed"],0);
+        assert_eq!(board["summary"]["module_provinces"],1);
+        assert_eq!(save(&g.world),before,"visibility reads cannot grant assets or change state");
+    }
+
+    #[test]
+    fn module_quotes_are_pure_scaled_actor_bound_and_reject_invalid_capacity() {
+        let mut g=Game::new(42,Some(NationId::Tonga));
+        g.world.rules.economic_competition=true;
+        g.world.rules.daily_simulation=true;
+        let year=g.world.year;
+        let allocations=g.world.nation(NationId::Tonga).budget_for(year).allocations;
+        apply_command(&mut g.world,&Command::SetProgramBudget{nation:NationId::Tonga,fiscal_year:year,
+            allocations,departments:programs::default_departments()}).unwrap();
+        let district=g.world.districts.iter().find(|(_,n)|**n==NationId::Tonga).unwrap().0.clone();
+        let before=save(&g.world);
+        let payload=serde_json::json!({"district":district,"capacity_micros":5000});
+        let view=industry_module_quotes_json(&g.world,NationId::Tonga,&payload).unwrap();
+        let q=&view["quotes"][0];
+        assert!((q["cost_bn"].as_f64().unwrap()-0.0029).abs()<1e-12);
+        assert_eq!(q["capacity_micros"],5000);
+        assert_eq!(q["output_daily"],0.005);
+        assert_eq!(q["minimum_calendar_days"],90);
+        assert!(q["requirements"].as_array().unwrap().is_empty(),"Workshop construction requires cash; operating inputs are separate");
+        assert_eq!(q["political_cost"],0.0);
+        assert_eq!(before,save(&g.world));
+        for bad in [serde_json::json!(0),serde_json::json!(-1),serde_json::json!(1.5),serde_json::json!(1_000_001),serde_json::json!(4294967297u64),serde_json::Value::Null] {
+            let mut p=payload.clone();p["capacity_micros"]=bad;
+            assert!(industry_module_quotes_json(&g.world,NationId::Tonga,&p).is_err());
+        }
+        assert!(industry_module_quotes_json(&g.world,NationId::USA,&payload).is_err());
+        let cmd=serde_json::json!({"kind":"start_industry_module","nation":"USA","district":district,"capacity_micros":5000});
+        assert!(matches!(parse_command(&g.world,&cmd,NationId::Tonga),Some(Command::StartIndustryModule{nation:NationId::Tonga,capacity_micros:5000,..})));
+        for bad in [serde_json::json!(-1),serde_json::json!(1.5),serde_json::json!(4294967297u64)] {
+            let mut p=cmd.clone();p["capacity_micros"]=bad;
+            assert!(parse_command(&g.world,&p,NationId::Tonga).is_none());
+        }
+        let missing=industry_module_board_json(&g.world,NationId::Seychelles);
+        assert!(missing["provinces"].as_array().unwrap().is_empty());
+        assert!(missing["coverage_reason"].as_str().unwrap().contains("freight gateway"));
+        assert_eq!(before,save(&g.world));
+    }
+
+    #[test]
+    fn construction_suggestions_are_read_only_owned_and_match_reviewed_contracts() {
+        let me=NationId::USA;
+        let mut g=loaded_play_game(Game::new(42,Some(me)).world);
+        g.world.rules.economic_competition=false;
+        apply_command(&mut g.world,&Command::SetConstructionBudget {nation:me,daily_budget_bn:0.001}).unwrap();
+        let before=save(&g.world);
+        let board=production_json(&g.world,me);
+        let suggestions=&board["suggestions"];
+        assert_eq!(suggestions["as_of_day"],spheres_sim::clock::absolute_day(&g.world));
+        let items=suggestions["items"].as_array().unwrap();
+        assert!(!items.is_empty() && items.len()<=3,"An eligible first workshop is a development opportunity");
+        for item in items {
+            let district=item["district"].as_str().unwrap();
+            assert_eq!(g.world.districts.get(district),Some(&me));
+            assert!(!item["reason"].as_str().unwrap().trim().is_empty());
+            assert!(!item["evidence"].as_array().unwrap().is_empty());
+            let mut payload=serde_json::json!({"district":district,"project_kind":item["project_kind"]});
+            if let Some(size)=item["capacity_micros"].as_u64() { payload["capacity_micros"]=serde_json::json!(size); }
+            let review=construction_preview_json(&g.world,me,&payload).unwrap();
+            assert_eq!(review["can_start"],true);
+            for key in ["cost_bn","minimum_days","eta_days"] { assert_eq!(review[key],item[key],"{key} must use the same reviewed order"); }
+        }
+        assert_eq!(construction_suggestions_json(&g.world,me),*suggestions);
+        assert_eq!(save(&g.world),before,"Reading advice cannot place orders, spend cash or change policy");
+    }
+
+    #[test]
+    fn construction_impact_preview_is_read_only_scoped_and_validates_the_reviewed_project() {
+        let me=NationId::USA;
+        let mut g=loaded_play_game(Game::new(42,Some(me)).world);
+        apply_command(&mut g.world,&Command::SetConstructionBudget {nation:me,daily_budget_bn:0.002}).unwrap();
+        let district=g.world.districts.iter().find(|(_,owner)|**owner==me).unwrap().0.clone();
+        let payload=serde_json::json!({"district":district,"project_kind":ProjectKind::Generation.key(),"nation":"Japan"});
+        let before=save(&g.world);
+        let view=construction_preview_json(&g.world,me,&payload).unwrap();
+        assert_eq!(view["nation_name"],me.name());
+        assert_eq!(view["district"],district);
+        assert_eq!(view["project_kind"],ProjectKind::Generation.key());
+        assert_eq!(view["cost_bn"],spheres_sim::industry::work_cost_bn(ProjectKind::Generation));
+        assert_eq!(view["minimum_days"],production::catalog(ProjectKind::Generation).total_days);
+        for key in ["province_effects","national_effects","operating_requirements"] {
+            assert!(!view[key].as_array().unwrap().is_empty(),"missing {key}");
+        }
+        assert_eq!(save(&g.world),before,"Reviewing never places, completes, pays for or operates the project");
+        assert!(construction_preview_json(&g.world,NationId::Japan,&payload).is_err());
+        for bad in [serde_json::json!({"district":district,"project_kind":"unknown"}),
+            serde_json::json!({"district":district,"project_kind":"starter_industry","capacity_micros":0}),
+            serde_json::json!({"district":district,"project_kind":ProjectKind::Generation.key(),"capacity_micros":100})] {
+            assert!(construction_preview_json(&g.world,me,&bad).is_err());
+        }
+        let small=construction_preview_json(&g.world,me,&serde_json::json!({"district":district,"project_kind":"starter_industry","capacity_micros":5000})).unwrap();
+        assert_eq!(small["capacity_micros"],5000);
+        assert!((small["cost_bn"].as_f64().unwrap()-0.0029).abs()<1e-12);
+        assert_eq!(save(&g.world),before);
+        assert!(exchange_read_path("/api/construction-preview"));
+        assert!(!exchange_session_matches(&Method::Post,"/api/construction-preview",&serde_json::json!({"session_id":"old-campaign"}),&g.session_id));
+        let (mine_district,commodity)=g.world.districts.iter().filter(|(_,owner)|**owner==me)
+            .find_map(|(d,_)|ALL.iter().find(|c|resources::mine_refusal(&g.world,me,d,**c).is_none()).map(|c|(d.clone(),*c))).unwrap();
+        let mine=construction_preview_json(&g.world,me,&serde_json::json!({"district":mine_district,"project_kind":"resource_mine","commodity":commodity.key()})).unwrap();
+        assert_eq!(mine["commodity"],commodity.key());
+        assert_eq!(mine["can_start"],true);
+        assert!(mine["national_effects"][0]["after"].as_f64().unwrap()>mine["national_effects"][0]["before"].as_f64().unwrap());
+        assert_eq!(save(&g.world),before,"Mine review cannot install a mine or pay for it");
+        let mut online=g.world.clone();
+        online.resources.mines.push(resources::Mine {district:mine_district.clone(),commodity,
+            output:resources::mine_output(&mine_district,commodity).unwrap(),completed:0});
+        let mine_payload=serde_json::json!({"district":mine_district,"project_kind":"resource_mine","commodity":commodity.key()});
+        let existing=construction_preview_json(&online,me,&mine_payload).unwrap();
+        assert_eq!(existing["can_start"],false);
+        for row in existing["province_effects"].as_array().unwrap() { assert_eq!(row["before"],row["after"]); }
+        online.rules.daily_simulation=false;
+        assert!(construction_preview_json(&online,me,&mine_payload).is_err());
+    }
+
+    #[test]
+    fn materials_quote_and_commands_are_pure_bounded_and_actor_bound() {
+        let mut g=Game::new(42,Some(NationId::USA));
+        assert!(new_game(&mut g,42,Some(NationId::USA)).1);
+        g.world.rules.economic_competition=true;
+        g.world.nation_mut(NationId::USA).political_capital=100.0;
+        let department=department_payload(&g.world,NationId::USA);
+        let command=parse_command(&g.world,&department,NationId::USA).unwrap();
+        apply_command(&mut g.world,&command).unwrap();
+        let district=g.world.districts.iter().find(|(_,n)|**n==NationId::USA).unwrap().0.clone();
+        let payload=serde_json::json!({"kind":"order_materials","nation":"Canada","district":district,"quantity":1,"delivery_days":30});
+        let before=save(&g.world);
+        let quote=materials_quote_json(&g.world,NationId::USA,&payload).unwrap();
+        assert_eq!(quote["eligible"],true);
+        assert_eq!(quote["can_start"],true,"Inputs may block delivery, not signing");
+        assert_eq!(quote["political_cost"],spheres_sim::materials::ORDER_PC);
+        assert_eq!(quote["feasible_today"],0.0,"Inherited capacity does not grant usable power");
+        assert!(!quote["requirements"].as_array().unwrap().is_empty());
+        assert!(materials_quote_json(&g.world,NationId::Canada,&payload).is_err());
+        assert!(matches!(parse_command(&g.world,&payload,NationId::USA),Some(Command::OrderMaterials{nation:NationId::USA,delivery_days:30,..})));
+        for (field,bad) in [("quantity",serde_json::json!(0)),("quantity",serde_json::json!(-1)),
+            ("quantity",serde_json::json!(1_000_001)),("quantity",serde_json::Value::Null),
+            ("delivery_days",serde_json::json!(6)),("delivery_days",serde_json::json!(366)),
+            ("delivery_days",serde_json::json!(4294967297u64))] {
+            let mut invalid=payload.clone();invalid[field]=bad;
+            assert!(materials_quote_json(&g.world,NationId::USA,&invalid).is_err(),"{invalid}");
+            assert!(parse_command(&g.world,&invalid,NationId::USA).is_none(),"{invalid}");
+        }
+        let view=competition_json(&g.world,NationId::USA);
+        assert!(view["materials"]["capacity_daily"].as_f64().unwrap()>0.0);
+        assert_eq!(save(&g.world),before,"Quotes and dashboards cannot create stock, contracts or spending");
+        g.world.nation_mut(NationId::USA).political_capital=0.0;
+        assert_eq!(materials_quote_json(&g.world,NationId::USA,&payload).unwrap()["can_start"],false);
+    }
+
+    #[test]
+    fn materials_signing_and_cancellation_receipts_are_once_only_without_free_packs() {
+        let mut g=Game::new(42,Some(NationId::USA));
+        assert!(new_game(&mut g,42,Some(NationId::USA)).1);g.world.rules.economic_competition=true;
+        g.world.nation_mut(NationId::USA).political_capital=100.0;
+        let department=department_payload(&g.world,NationId::USA);
+        let command=parse_command(&g.world,&department,NationId::USA).unwrap();
+        apply_command(&mut g.world,&command).unwrap();
+        let district=g.world.districts.iter().find(|(_,n)|**n==NationId::USA).unwrap().0.clone();
+        let initial_stock=spheres_sim::commerce::stock(&g.world,NationId::USA,spheres_sim::commerce::Good::Intermediates);
+        let initial_gdp=g.world.nation(NationId::USA).gdp;
+        let pc=g.world.nation(NationId::USA).political_capital;
+        let payload=serde_json::json!({"session_id":g.session_id,"client_id":"materials-test","request_seq":1,
+            "commands":[{"kind":"order_materials","district":district,"quantity":1,"delivery_days":30}]});
+        assert_eq!(immediate_request(&mut g,&payload).unwrap()["errors"],serde_json::json!([]));
+        assert_eq!(g.world.materials.as_ref().unwrap().orders.len(),1);
+        assert_eq!(g.world.nation(NationId::USA).political_capital,pc-spheres_sim::materials::ORDER_PC);
+        assert_eq!(g.world.nation(NationId::USA).gdp,initial_gdp);
+        assert_eq!(spheres_sim::commerce::stock(&g.world,NationId::USA,spheres_sim::commerce::Good::Intermediates),initial_stock);
+        let once=save(&g.world);
+        assert_eq!(immediate_request(&mut g,&payload).unwrap()["command_replayed"],true);
+        assert_eq!(save(&g.world),once);
+        let id=g.world.materials.as_ref().unwrap().orders[0].id;
+        let cancellation=serde_json::json!({"session_id":g.session_id,"client_id":"materials-test","request_seq":2,
+            "commands":[{"kind":"cancel_materials_order","order":id}]});
+        assert_eq!(immediate_request(&mut g,&cancellation).unwrap()["errors"],serde_json::json!([]));
+        let cancelled=save(&g.world);
+        assert_eq!(g.world.materials.as_ref().unwrap().orders[0].status,"cancelled");
+        assert_eq!(immediate_request(&mut g,&cancellation).unwrap()["command_replayed"],true);
+        assert_eq!(save(&g.world),cancelled);
+        let mut loaded=loaded_play_game(g.world.clone());
+        let before=save(&loaded.world);
+        assert!(immediate_request(&mut loaded,&cancellation).is_err(),"Old campaign request cannot act on reloaded world");
+        assert_eq!(save(&loaded.world),before);
+        let foreign=serde_json::json!({"kind":"cancel_materials_order","order":id,"nation":"USA"});
+        assert!(matches!(parse_command(&g.world,&foreign,NationId::Canada),Some(Command::CancelMaterialsOrder{nation:NationId::Canada,..})));
+    }
+
+    #[test]
+    fn research_card_discloses_old_midmonth_hold_without_inventing_acquisitions() {
+        let mut g=loaded_play_game(Game::new(42,Some(NationId::USA)).world);
+        g.world.day=15;
+        g.world.nation_mut(NationId::USA).tech.acquisition_quota=None;
+        let before=save(&g.world);
+        let card=research_json(&g.world,NationId::USA);
+        assert_eq!(card["acquisition_quota"]["migration_hold"],true);
+        assert!(card["acquisition_quota"]["acquired"].as_array().unwrap().iter().all(|n|n==0));
+        assert!(card["domains"].as_array().unwrap().iter().all(|n|n["acquisition_wait"]==true));
+        assert_eq!(save(&g.world),before);
+        g.world.rules.daily_simulation=false;
+        let legacy=research_json(&g.world,NationId::USA);
+        assert!(legacy["acquisition_quota"].is_null());
+        assert!(legacy["domains"].as_array().unwrap().iter().all(|n|n["acquisition_wait"]==false));
+    }
+
+    #[test]
+    fn economic_order_receipts_are_once_only_current_and_campaign_bound() {
+        let mut g=loaded_play_game(Game::new(42,Some(NationId::USA)).world);
+        g.world.nation_mut(NationId::USA).political_capital=100.0;
+        let payload=serde_json::json!({"session_id":g.session_id,"client_id":"exchange-test","request_seq":1,
+            "commands":[department_payload(&g.world,NationId::USA)]});
+        let pc=g.world.nation(NationId::USA).political_capital;
+        let response=immediate_request(&mut g,&payload).unwrap();
+        assert_eq!(response["errors"],serde_json::json!([]));
+        assert!(g.world.nation(NationId::USA).political_capital<pc);
+        let settled=save(&g.world);
+        assert_eq!(immediate_request(&mut g,&payload).unwrap()["command_replayed"],true);
+        assert_eq!(save(&g.world),settled,"Retry cannot spend a second political or financial charge");
+        // A receipt confirms the old order but returns the latest world, not a rollback snapshot.
+        g.world.nation_mut(NationId::USA).political_capital+=1.0;
+        let newer=save(&g.world);
+        let replay=immediate_request(&mut g,&payload).unwrap();
+        let current=state_json(&g,None);
+        assert_eq!(replay["nations"],current["nations"]);
+        assert_eq!(save(&g.world),newer);
+        let mut changed=payload.clone();changed["commands"]=serde_json::json!([]);
+        assert!(immediate_request(&mut g,&changed).is_err());
+        changed["request_seq"]=serde_json::json!(2);
+        immediate_request(&mut g,&changed).unwrap();
+        assert!(immediate_request(&mut g,&payload).is_err());
+        let mut loaded=loaded_play_game(g.world.clone());let before=save(&loaded.world);
+        assert!(immediate_request(&mut loaded,&changed).is_err());
+        assert_eq!(save(&loaded.world),before);
+    }
+
+    #[test]
+    fn competition_enable_is_explicit_and_never_grants_money_or_factories() {
+        let mut g=loaded_play_game(Game::new(42,Some(NationId::USA)).world);
+        g.world.rules.resource_gates=false;
+        let totals=g.world.nations.iter().map(|n|(n.id,n.gdp,n.treasury_bn,n.political_capital)).collect::<Vec<_>>();
+        assert!(!g.world.rules.economic_competition);
+        assert!(apply_command(&mut g.world,&Command::EnableEconomicCompetition {nation:NationId::Canada}).is_err());
+        apply_command(&mut g.world,&Command::EnableEconomicCompetition {nation:NationId::USA}).unwrap();
+        assert!(g.world.rules.economic_competition);
+        assert!(spheres_sim::commerce::active(&g.world),"Enable must activate every commerce dependency even on imported saves");
+        assert_eq!(g.world.nations.iter().map(|n|(n.id,n.gdp,n.treasury_bn,n.political_capital)).collect::<Vec<_>>(),totals);
+        assert!(g.world.production.projects.is_empty());
+        let before=save(&g.world);
+        apply_command(&mut g.world,&Command::EnableEconomicCompetition {nation:NationId::USA}).unwrap();
+        assert_eq!(save(&g.world),before,"Repeated enable is inert");
+        g.world.rules.resource_gates=false;
+        assert_eq!(competition_json(&g.world,NationId::USA)["enabled"],false);
+        apply_command(&mut g.world,&Command::EnableEconomicCompetition {nation:NationId::USA}).unwrap();
+        assert!(spheres_sim::commerce::active(&g.world),"An explicit re-enable repairs an incomplete imported configuration");
+    }
+
+    #[test]
+    fn browser_new_snapshot_and_first_history_are_daily() {
+        let mut g = Game::new(1, None);
+        let (view, ok) = new_game(&mut g, 1990, Some(NationId::USA));
+        assert!(ok);
+        assert_eq!(view["simulation_cadence"], "daily");
+        assert_eq!(view, state_json(&g, None), "POST response must already match the next GET");
+        assert_eq!(g.history.len(), 1);
+        assert_eq!(g.history[0].day, Some(1));
+        assert_eq!(view["session_id"], g.session_id);
+    }
+
+    #[test]
+    fn browser_advance_rejects_every_malformed_batch_before_mutation() {
+        let mut g = loaded_play_game(Game::new(1, Some(NationId::USA)).world);
+        let before = save(&g.world);
+        let history = g.history.len();
+        for commands in [
+            serde_json::json!([{"kind":"tax","value":"invalid"}]),
+            serde_json::json!([{"kind":"tax","value":0.3},{"kind":"unknown"}]),
+            serde_json::json!([null]), serde_json::json!({}), serde_json::Value::Null,
+        ] {
+            let result = advance_request(&mut g, &serde_json::json!({"days":1,"commands":commands}));
+            assert!(result.is_err(), "{result:?}");
+            assert_eq!(save(&g.world), before);
+            assert_eq!(g.history.len(), history);
+        }
+    }
+
+    #[test]
+    fn browser_advance_lost_response_retry_is_exactly_once_and_session_bound() {
+        let mut g = loaded_play_game(Game::new(1, Some(NationId::USA)).world);
+        let payload = serde_json::json!({"days":1,"commands":[],"session_id":g.session_id,"client_id":"browser-test","request_seq":1});
+        let first = advance_request(&mut g, &payload).unwrap();
+        let settled = save(&g.world); let history = g.history.len();
+        assert_eq!(advance_request(&mut g, &payload).unwrap(), first);
+        assert_eq!(save(&g.world), settled); assert_eq!(g.history.len(), history);
+        let mut changed = payload.clone(); changed["days"] = serde_json::json!(2);
+        assert!(advance_request(&mut g, &changed).is_err());
+        changed = payload.clone(); changed["request_seq"] = serde_json::json!(2);
+        advance_request(&mut g, &changed).unwrap();
+        assert!(advance_request(&mut g, &payload).is_err(), "old receipts cannot replay after a newer turn");
+        let loaded = loaded_play_game(g.world.clone());
+        assert_ne!(g.session_id, loaded.session_id);
+        g = loaded; let before = save(&g.world);
+        assert!(advance_request(&mut g, &changed).is_err());
+        assert_eq!(save(&g.world), before, "old browser requests cannot mutate a loaded campaign");
+    }
+
+    fn department_payload(w: &WorldState, me: NationId) -> serde_json::Value {
+        let mut payload = serde_json::json!({"kind":"program_budget","fiscal_year":w.year,"departments":programs::default_departments()});
+        for (i,amount) in w.nation(me).budget_for(w.year).allocations.iter().enumerate() { payload[ministry_key(i)] = serde_json::json!(amount); }
+        payload
+    }
+
+    #[test]
+    fn first_budget_quote_includes_opening_debt_and_ordered_policy_without_mutating_world() {
+        let mut g=Game::new(1990,Some(NationId::USA));
+        spheres_sim::clock::enable_daily_play(&mut g.world);
+        let me=NationId::USA;
+        let mut payload=department_payload(&g.world,me);
+        payload["policy_commands"]=serde_json::json!([
+            {"kind":"rate","value":0.12},{"kind":"tax","value":0.30}
+        ]);
+        let before=save(&g.world);
+        let view=program_preview_json(&g.world,me,&payload).unwrap();
+        assert_eq!(save(&g.world),before);
+        assert!(view["fiscal"]["interest_bn"].as_f64().unwrap_or(0.0)>0.0,
+            "the first budget must quote interest on the books it opens");
+        let mut actual=g.world.clone();
+        for input in payload["policy_commands"].as_array().unwrap() {
+            apply_command(&mut actual,&parse_command(&g.world,input,me).unwrap()).unwrap();
+        }
+        apply_command(&mut actual,&parse_command(&g.world,&payload,me).unwrap()).unwrap();
+        let n=actual.nation(me);
+        let t=spheres_sim::economy::growth_terms(n,n.state_invest_gdp,n.interest_rate,&spheres_sim::economy::Conditions::of(&actual,me));
+        let f=spheres_sim::economy::Fiscal::of(n,&t);
+        assert!((view["fiscal"]["interest_bn"].as_f64().unwrap()-f.interest_bn).abs()<1e-9);
+        assert!((view["fiscal"]["revenue_gdp"].as_f64().unwrap()-f.revenue_gdp).abs()<1e-12);
+        payload["policy_commands"]=serde_json::json!([{"kind":"sanction","target":"Iraq"}]);
+        assert!(program_preview_json(&g.world,me,&payload).is_err(),"only fiscal policy belongs in this quote");
+    }
+
+    #[test]
+    fn department_contract_is_strict_read_only_and_has_fifty_rows_and_ten_investments() {
+        let mut g = Game::new(1990,Some(NationId::USA));
+        spheres_sim::clock::enable_daily_play(&mut g.world);
+        g.world.rules.resource_market=true; g.world.rules.production_system=true;
+        let me = NationId::USA;
+        let payload = department_payload(&g.world,me);
+        let before = save(&g.world);
+        let view = program_preview_json(&g.world,me,&payload).unwrap();
+        assert_eq!(save(&g.world),before,"preview must not open the live books");
+        assert_eq!(view["ministryrows"].as_array().unwrap().len(),10);
+        assert_eq!(view["investment_choices"].as_array().unwrap().len(),10);
+        for row in view["ministryrows"].as_array().unwrap() {
+            let children = row["departments"].as_array().unwrap();
+            assert_eq!(children.len(),5);
+            let sum = children.iter().map(|d|d["annual_bn"].as_f64().unwrap()).sum::<f64>();
+            assert!((sum-row["annual_bn"].as_f64().unwrap()).abs()<1e-9);
+            assert_eq!(children.iter().map(|d|d["share_bp"].as_u64().unwrap()).sum::<u64>(),10000);
+        }
+        let cmd = parse_command(&g.world,&payload,me).unwrap();
+        let capital_before = g.world.nation(me).political_capital;
+        apply_command(&mut g.world,&cmd).unwrap();
+        assert!((view["political_cost"].as_f64().unwrap() - (capital_before-g.world.nation(me).political_capital)).abs()<1e-9);
+        let live = programs_json(&g.world,me,None);
+        assert_eq!(live["departments"],view["departments"]);
+        assert!(live["enabled"].as_bool().unwrap());
+        assert!(!live["due"].as_bool().unwrap());
+        for bad in [serde_json::json!(-1),serde_json::json!(65536),serde_json::json!(1.5),serde_json::json!("2000")] {
+            let mut invalid=payload.clone();invalid["departments"][0][0]=bad;
+            assert!(parse_command(&g.world,&invalid,me).is_none());
+        }
+        let mut invalid=payload.clone();invalid["departments"][0]=serde_json::json!([2500,2500,2500,2500]);
+        assert!(parse_command(&g.world,&invalid,me).is_none());
+        invalid=payload.clone();invalid["fiscal_year"]=serde_json::json!(4294969286i64);
+        assert!(parse_command(&g.world,&invalid,me).is_none());
+        invalid=payload.clone();invalid["fiscal_year"]=serde_json::json!(1991);
+        assert!(program_preview_json(&g.world,me,&invalid).is_err());
+
+        let mut expanded=g.world.clone();expanded.rules.industry_rebuild=true;
+        let expanded_before=save(&expanded);let expanded_view=programs_json(&expanded,me,None);
+        let choices=expanded_view["investment_choices"].as_array().unwrap();
+        assert_eq!(choices.len(),12);
+        assert_eq!(choices.iter().filter(|c|["office_district","advanced_industry"].contains(&c["id"].as_str().unwrap()))
+            .map(|c|c["id"].as_str().unwrap()).collect::<Vec<_>>(),vec!["office_district","advanced_industry"]);
+        assert!(!choices.iter().any(|c|c["id"]=="shipyard"),"shipyard remains a Defense investment");
+        let retained=choices.iter().filter(|c|!["office_district","advanced_industry"].contains(&c["id"].as_str().unwrap()))
+            .map(|c|c["id"].clone()).collect::<Vec<_>>();
+        let original=view["investment_choices"].as_array().unwrap().iter().map(|c|c["id"].clone()).collect::<Vec<_>>();
+        assert_eq!(retained,original);assert_eq!(save(&expanded),expanded_before);
+    }
+
+    #[test]
+    fn department_assets_and_snapshot_are_wired_without_enrolling_on_read() {
+        let mut g=Game::new(1990,Some(NationId::USA));
+        spheres_sim::clock::enable_daily_play(&mut g.world);
+        let before=save(&g.world);let view=state_json(&g,None);
+        assert_eq!(view["programs"]["enabled"],false);
+        assert_eq!(save(&g.world),before);
+        for asset in ["/programs.css","/programs-ui.js"] {assert!(INDEX.contains(asset));}
+        assert!(PROGRAMS_UI_JS.contains("/api/program-preview"));
+        assert!(PROGRAMS_ART_SVG.contains("<svg"));
+        assert!(!PROGRAMS_ART_SVG.contains("<script"));
+    }
+
+    #[test]
+    fn room_paintings_are_embedded_webp_and_paths_are_allowlisted() {
+        for name in ["cabinet", "treasury", "production", "research", "diplomacy",
+            "military", "logistics", "resources", "history", "campaign"] {
+            let bytes = area_art_asset(&format!("{name}-v1.webp")).expect("embedded painting");
+            assert!(bytes.len() > 12);
+            assert_eq!(&bytes[..4], b"RIFF");
+            assert_eq!(&bytes[8..12], b"WEBP");
+        }
+        for name in ["../cabinet-v1.webp", "cabinet.webp", "cabinet-v1.webp?x", "", "unknown-v1.webp"] {
+            assert!(area_art_asset(name).is_none());
+        }
+        assert!(INDEX.contains("/area-art.js"));
+        assert!(INDEX.contains("/area-art.css"));
+    }
+
+    #[test]
+    fn cabinet_city_art_is_accessible_embedded_and_served_without_external_assets() {
+        assert!(CABINET_CITY_SVG.contains("viewBox=\"0 0 960 640\""));
+        assert!(CABINET_CITY_SVG.contains("aria-labelledby=\"city-title city-desc\""));
+        assert!(CABINET_CITY_SVG.contains("<title id=\"city-title\">"));
+        assert!(CABINET_CITY_SVG.contains("<desc id=\"city-desc\">"));
+        assert!(!CABINET_CITY_SVG.contains("<script"));
+        assert!(!CABINET_CITY_SVG.contains("<image"));
+        assert!(!CABINET_CITY_SVG.contains("href=\"http"));
+        assert!(include_str!("main.rs").contains("(Method::Get, \"/assets/cabinet-city.svg\")"));
+    }
+
+    /// The listen port and the browser flag, pinned so the preview tooling's
+    /// contract (a free port handed over in `PORT`, `--no-open` honoured) cannot
+    /// silently regress into "always 7777, always pops a tab" — which is what
+    /// the binary did until 2026-09-02, when `--no-open` was accepted on the
+    /// command line and ignored.
+    #[test]
+    fn the_port_and_the_browser_flag_come_from_the_command_line_then_the_environment() {
+        let a = |v: &[&str]| v.iter().map(|s| s.to_string()).collect::<Vec<_>>();
+        assert_eq!(listen_port(&a(&[]), None), 7777, "nothing asked: the default");
+        assert_eq!(listen_port(&a(&["--port", "7790"]), None), 7790, "the flag");
+        assert_eq!(listen_port(&a(&[]), Some("7791")), 7791, "the environment");
+        assert_eq!(listen_port(&a(&[]), Some(" 7792
+")), 7792, "trimmed");
+        assert_eq!(listen_port(&a(&["--port", "7790"]), Some("7791")), 7790, "flag beats environment");
+        assert_eq!(listen_port(&a(&["--port", "seven"]), Some("7791")), 7791, "a bad flag falls through");
+        assert_eq!(listen_port(&a(&[]), Some("not a port")), 7777, "a bad PORT is ignored");
+        assert_eq!(listen_port(&a(&["--port"]), None), 7777, "a dangling flag is ignored");
+        assert!(wants_browser(&a(&[])), "a person launching it gets a tab");
+        assert!(wants_browser(&a(&["--port", "7790"])));
+        assert!(!wants_browser(&a(&["--no-open"])), "tooling that opens its own tab does not");
+        assert!(!wants_browser(&a(&["--port", "7790", "--no-open"])));
+    }
+
+    /// MEASUREMENT INSTRUMENT for TRIAGE F-35 / PLAN step 2, `#[ignore]`d and
+    /// asserting nothing. Prints, for every nation seated in 1990, what the
+    /// browser's own copy of the growth model used to say against what
+    /// `economy::growth_terms` says — the copy transcribed from index.html
+    /// exactly as it stood, so the gap is measured and not argued.
+    ///
+    /// `cargo test --release -p spheres-web browser_growth_model_gap -- --ignored --nocapture`
+    #[test]
+    #[ignore]
+    fn browser_growth_model_gap() {
+        use spheres_sim::economy::{growth_terms, Conditions};
+        let w = world_1990(GameRules::default());
+
+        // index.html's `potentialGrowth`, `demandOf` and `dragsOf`, transcribed.
+        let js_potential = |n: &Nation| {
+            let dev = ((n.gdp * 1000.0 / n.population) / 24000.0).min(1.0);
+            let mut p = n.tfp_trend
+                + (n.state_invest_gdp + n.priv_invest_gdp) * (0.030 + 0.080 * (1.0 - dev))
+                + (1.0 - dev) * 0.020;
+            if n.system == EconomySystem::Command {
+                p -= 0.004 + 0.010 * dev;
+            }
+            p
+        };
+        let js_gap = |n: &Nation| (0.025 - (n.interest_rate - n.inflation)) * 0.55;
+        let js_oil = |w: &WorldState, n: &Nation| {
+            let share = w.oil_export_share(n.id);
+            let rev = n.oil_mbd * share * w.oil_price * 0.365 / n.gdp;
+            if n.oil_mbd > 0.5 {
+                (w.oil_price - 20.0) / 20.0 * rev * 0.5
+            } else {
+                -(w.oil_price - 20.0) / 20.0 * 0.006
+            }
+        };
+
+        let mut rows: Vec<(f64, String)> = vec![];
+        for n in w.nations.iter().filter(|n| n.alive) {
+            let c = Conditions::of(&w, n.id);
+            let t = growth_terms(n, n.state_invest_gdp, n.interest_rate, &c);
+            let js = js_potential(n) + js_gap(n) + js_oil(&w, n);
+            let sim = t.potential + t.demand_output + t.oil;
+            rows.push((
+                (js - sim).abs(),
+                format!(
+                    "{:<20} potential {:+7.4} -> {:+7.4} ({:+6.2}pt)   demand {:+7.4} -> {:+7.4}   \
+                     oil {:+7.4} -> {:+7.4}   THREE-TERM SUM {:+7.4} -> {:+7.4} ({:+6.2}pt)",
+                    n.id.name(),
+                    js_potential(n), t.potential, (t.potential - js_potential(n)) * 100.0,
+                    js_gap(n), t.demand_output,
+                    js_oil(&w, n), t.oil,
+                    js, sim, (sim - js) * 100.0
+                ),
+            ));
+        }
+        rows.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap());
+        println!("\nWORST 20 OF {} SEATED NATIONS, January 1990\n", rows.len());
+        for (_, r) in rows.iter().take(20) {
+            println!("{}", r);
+        }
+        println!("\nTHE SIX MATURE ECONOMIES\n");
+        for name in ["United States", "Japan", "Germany", "France", "United Kingdom", "Italy"] {
+            if let Some((_, r)) = rows.iter().find(|(_, r)| r.starts_with(name)) {
+                println!("{}", r);
+            }
+        }
+        let mean: f64 = rows.iter().map(|(d, _)| *d).sum::<f64>() / rows.len() as f64;
+        println!(
+            "\nmean |gap| on the three terms {:.4} ({:.2} pt/yr) over {} nations",
+            mean,
+            mean * 100.0,
+            rows.len()
+        );
+    }
+
+    /// MEASUREMENT INSTRUMENT for the event log's filters, `#[ignore]`d and
+    /// asserting nothing. Runs a real thirty-year world and prints what fraction
+    /// of its headlines each filter can actually reach, with the commonest
+    /// unreachable ones named so the next session can extend `classify` against
+    /// the corpus rather than against a guess.
+    ///
+    /// `cargo test --release -p spheres-web classify_corpus -- --ignored --nocapture`
+    #[test]
+    #[ignore]
+    fn classify_corpus() {
+        let mut counts: std::collections::BTreeMap<&'static str, usize> = Default::default();
+        let mut other: std::collections::BTreeMap<String, usize> = Default::default();
+        let mut total = 0usize;
+        for seed in [0u64, 7, 42, 1990] {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            for _ in 0..360 {
+                for h in tick_month(&mut w, &[]) {
+                    total += 1;
+                    let cat = classify(&h);
+                    *counts.entry(cat).or_default() += 1;
+                    if cat == "other" {
+                        // Key on the shape, not the nation: the sim writes names
+                        // into every headline and the raw strings never repeat.
+                        let shape: String =
+                            h.split_whitespace().skip(1).take(4).collect::<Vec<_>>().join(" ");
+                        *other.entry(shape).or_default() += 1;
+                    }
+                }
+            }
+        }
+        println!("\n=== {} headlines over four seeds x thirty years ===", total);
+        for (k, v) in &counts {
+            println!("{:>10}  {:>6}  {:>5.1}%", k, v, *v as f64 / total as f64 * 100.0);
+        }
+        println!("\n=== the twenty commonest shapes landing in \"other\" ===");
+        let mut rows: Vec<(usize, String)> = other.into_iter().map(|(k, v)| (v, k)).collect();
+        rows.sort_by(|a, b| b.0.cmp(&a.0));
+        for (n, shape) in rows.iter().take(20) {
+            println!("{:>6}  {}", n, shape);
+        }
+    }
+
+    /// The event log's filter row could reach one dispatch in ten. Measured
+    /// over four seeds and thirty years of real play, 11,285 of 12,552 headlines
+    /// — 89.9% — fell through `classify` into "other", and the Economy filter
+    /// matched EXACTLY NOTHING, so `renderLog`'s "only offer a filter the world
+    /// has actually produced" rule meant its chip never appeared at all. A
+    /// player filtering for Economy could not; a player filtering for War saw
+    /// 85 of the 2,721 war dispatches that world contained.
+    ///
+    /// After: 2.7% in "other", and every one of those is the technology
+    /// milestone this function's comment says is deliberately left there.
+    ///
+    /// TWO ARMS, and they check different things.
+    ///
+    /// The TABLE is the exact one, and it carries every headline that already
+    /// matched before this was extended. That is what makes the additions
+    /// provably additive: `classify` is an ordered if-chain, so a later keyword
+    /// added to `war` can silently steal a headline `diplomacy` was reaching,
+    /// and three rows below exist only to pin that — a defence pact honoured by
+    /// entering a war, a guarantee torn up to invade, and an invasion repelled
+    /// by a regime that totters are war, war and war, though each also carries a
+    /// lower bucket's keyword.
+    ///
+    /// The CORPUS arm is the one that would have caught the original defect. A
+    /// table can only test the headlines whoever wrote it thought of, and the
+    /// reason `classify` rotted is that the sim grew a vocabulary nobody
+    /// re-read it against.
+    #[test]
+    fn the_log_filters_reach_the_world_the_sim_writes() {
+        // Real headline text, with the format arguments filled in as the sim
+        // fills them. Left column is what the filter row must put it under.
+        for (want, headline) in [
+            // --- war, including the three that carry another bucket's keyword
+            ("war", "WAR: Iraq invades Kuwait!"),
+            ("war", "United States joins the war in defense of Kuwait."),
+            ("war", "Iraq has annexed Kuwait."),
+            ("war", "Iran capitulates to Iraq — reparations, disarmament, humiliation."),
+            ("war", "Exhausted, Iran and Iraq sign a white peace."),
+            ("war", "Iran and Iraq agree peace terms — reparations, no territory."),
+            ("war", "Iraq sues for peace, ceding territory to Iran."),
+            ("war", "Iraq escalates to rung 6 — standoff strike."),
+            ("war", "United States steps back to rung 3 — arms to a proxy."),
+            ("war", "Iraq publicly rules out going beyond rung 5 — deniable forces."),
+            ("war", "Iraq cannot sustain a campaign it has no base for and falls back to rung 2."),
+            ("war", "Iraq's magazines are empty. The tempo falls to rung 4."),
+            ("war", "Kuwait quits the fight."),
+            ("war", "United States takes a side against Iraq over Kuwait."),
+            ("war", "The quarrel between India and Pakistan freezes over Kashmir."),
+            ("war", "Iraq's objective is now to deny."),
+            ("war", "Serbia can no longer defend its own ground."),
+            // ...and the three that must not be stolen by a lower bucket.
+            ("war", "Kuwait repels Iraq's invasion — the aggressor's regime totters."),
+            ("war", "France honours its defence pact with Poland and enters the war."),
+            ("war", "Iraq tears up its own guarantee to Kuwait to invade it."),
+            // --- politics
+            ("politics", "THE SOVIET UNION HAS DISSOLVED. Fifteen republics take up their own seats."),
+            ("politics", "Revolution in Romania — the old regime falls."),
+            ("politics", "COUP IN Chile: the junta removes the government."),
+            ("politics", "India conducts nuclear tests. The world condemns; deterrence descends on the subcontinent."),
+            ("politics", "Pakistan tests a nuclear device."),
+            ("politics", "Israel is believed to have begun a weapons programme."),
+            ("politics", "Poland votes: Solidarity takes office with 51% of the seats and no partners."),
+            ("politics", "Poland sets a date for its first free elections."),
+            ("politics", "Cuba does not hold elections."),
+            ("politics", "The government of Moldova falls; the country goes to the polls."),
+            ("politics", "Hungary goes to the country early."),
+            ("politics", "Poland brings the Peasant Party into the government."),
+            ("politics", "Chile moves against its own streets."),
+            ("politics", "Brazil takes the gloves off."),
+            ("politics", "France ends conscription."),
+            ("politics", "Russia inherits the arsenal; Ukraine's warheads go back east under the Budapest assurances."),
+            ("politics", "The JNA's divisions, and its arsenal, remain in Belgrade's hands."),
+            // --- diplomacy
+            ("diplomacy", "United States imposes sanctions on Iraq."),
+            ("diplomacy", "Coalition sanctions slam Iraq."),
+            ("diplomacy", "Sanctions on Iraq are lifted."),
+            ("diplomacy", "France extends a diplomatic hand to Germany."),
+            ("diplomacy", "France and Germany sign a mutual defence pact."),
+            ("diplomacy", "France and Germany sign a trade agreement."),
+            ("diplomacy", "France withdraws from its defence pact with Poland."),
+            ("diplomacy", "Soviet Union buys the loyalty of Cuba."),
+            ("diplomacy", "Turkey grants United States basing and overflight for the Gulf."),
+            ("diplomacy", "Soviet Union commits $3bn a year in economic aid to Cuba."),
+            ("diplomacy", "United States approves $2bn a year in arms sales to Israel."),
+            ("diplomacy", "Soviet Union expands arms transfers to Syria to $4bn a year."),
+            ("diplomacy", "Soviet Union raises its aid to Cuba to $5bn a year."),
+            ("diplomacy", "Soviet Union cuts off arms to Somalia."),
+            ("diplomacy", "A covert operation against Chile comes to nothing."),
+            ("diplomacy", "Separatist fighters in Bosnia turn up with weapons nobody will account for."),
+            // --- economy, the bucket that reached nothing at all
+            ("economy", "Poland frees prices and takes the slump."),
+            ("economy", "Argentina announces an austerity budget."),
+            ("economy", "Brazil restructures its external debt; its creditors take the loss."),
+            ("economy", "United Kingdom sells the state's industry."),
+            ("economy", "China turns its economy outward."),
+            ("economy", "Hungary opens up."),
+            ("economy", "Argentina pegs its currency and imports somebody else's credibility."),
+            ("economy", "A run of accidents wrecks Iraq's industrial plant. The inquiry finds nothing."),
+            // --- and what is deliberately still uncategorised
+            ("other", "United States is first to field integrated circuits."),
+        ] {
+            assert_eq!(
+                classify(headline),
+                want,
+                "the event log would file this under {:?}: {}",
+                classify(headline),
+                headline
+            );
+        }
+
+        // The corpus arm. A table only covers what its author thought of, and
+        // `classify` fell behind precisely because nobody re-read it against the
+        // sim's growing vocabulary. Four seeds and thirty years, ~12.5k
+        // dispatches; measured 2.7% in "other", all of them "is first to field".
+        let mut other = 0usize;
+        let mut economy = 0usize;
+        let mut total = 0usize;
+        let mut stray: Vec<String> = vec![];
+        for seed in [0u64, 7, 42, 1990] {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            for _ in 0..360 {
+                for h in tick_month(&mut w, &[]) {
+                    total += 1;
+                    match classify(&h) {
+                        "other" => {
+                            other += 1;
+                            if !h.contains("is first to field") && stray.len() < 10 {
+                                stray.push(h.clone());
+                            }
+                        }
+                        "economy" => economy += 1,
+                        _ => {}
+                    }
+                }
+            }
+        }
+        assert!(total > 5_000, "only {total} headlines — the corpus arm is not exercising anything");
+        // The bar is 10% against a measured 2.7%, so it is a rot detector and
+        // not a fit: it goes red if a WHOLE CLASS of headline stops being
+        // reachable again, which is the defect this test exists for, and it
+        // does not go red because the sim added one more phrasing.
+        assert!(
+            other * 10 < total,
+            "{} of {} dispatches ({:.1}%) are unreachable from the filter row; \
+             the first few that are not technology milestones: {:?}",
+            other,
+            total,
+            other as f64 / total as f64 * 100.0,
+            stray
+        );
+        // The Economy chip is only drawn when the world has produced an economy
+        // headline, so a zero here is a filter the player can never even see.
+        assert!(economy > 0, "the Economy filter still matches nothing in {total} dispatches");
+    }
+
+    /// The policy panel's ledger printed a sanctions drag the sim does not
+    /// charge, and had done since the four sanction channels were converted from
+    /// counting flags to weighing the coalition's share of world output.
+    /// `dragsOf` in ui/index.html still read `sanctioned_by_count * 0.006`,
+    /// which is the pre-conversion rule and the pre-conversion coefficient.
+    ///
+    /// These are not two estimates of one number. A COUNT is unbounded and
+    /// blind to size — one signature from Luxembourg weighs what one from the
+    /// United States weighs — while a SHARE is bounded by 1 and weighs output.
+    /// So the browser could be an order of magnitude low against a coalition
+    /// that mattered and an order of magnitude high against a crowd of small
+    /// signatories, and its worst readings were outside the range the sim can
+    /// produce at all.
+    #[test]
+    fn the_panel_prices_sanctions_the_way_the_sim_charges_them() {
+        // The old browser rule and the sim's, on the same worlds, so the size of
+        // the divergence is measured here rather than asserted from memory.
+        const OLD_BROWSER_RULE: f64 = 0.006;
+        let mut worst_ratio: f64 = 1.0;
+        let mut worst: String = String::new();
+        let mut compared = 0usize;
+
+        for seed in [0u64, 7, 42] {
+            let mut w = world_1990(GameRules { seed, ..GameRules::default() });
+            for _ in 0..240 {
+                tick_month(&mut w, &[]);
+                for n in w.nations.iter().filter(|n| n.alive) {
+                    let count = w.sanctioned_by_count(n.id);
+                    if count == 0 {
+                        continue;
+                    }
+                    compared += 1;
+                    let served = spheres_sim::economy::growth_drag_of_sanctions(
+                        w.sanction_weight(n.id),
+                    );
+                    // The payload must carry exactly what the sim charges.
+                    let paid = nation_json(&w, n)["sanction_drag"].as_f64().expect("served");
+                    assert_eq!(paid, served, "{:?}: the payload is not the sim's number", n.id);
+
+                    let browser = count as f64 * OLD_BROWSER_RULE;
+                    let ratio = if served > 0.0 { browser / served } else { f64::INFINITY };
+                    if ratio.is_finite() && ratio > worst_ratio {
+                        worst_ratio = ratio;
+                        worst = format!(
+                            "{:?} in {}: {} sanctioners, browser {:.4} vs sim {:.6} ({:.0}x)",
+                            n.id,
+                            w.date_str(),
+                            count,
+                            browser,
+                            served,
+                            ratio
+                        );
+                    }
+                }
+            }
+        }
+        assert!(compared > 500, "only {compared} sanctioned nation-months — nothing was tested");
+        println!("{compared} sanctioned nation-months; worst divergence — {worst}");
+        // The measurement, kept as the evidence: the two rules are not close.
+        assert!(
+            worst_ratio > 10.0,
+            "the count rule and the share rule came within 10x over {compared} \
+             nation-months, so this test is no longer measuring the defect it \
+             was written for (worst seen: {worst})"
+        );
+
+        // And the page must READ the served number rather than recompute it.
+        assert!(
+            INDEX.contains("sanctions: n.sanction_drag"),
+            "the policy panel no longer reads the served sanctions drag"
+        );
+        // Matched on the ASSIGNMENT, not on the bare expression: the comment
+        // that replaced the old line quotes it verbatim, and a check that a
+        // fix's own explanation trips is a check that invites its removal.
+        assert!(
+            !INDEX.contains("sanctions: n.sanctioned_by_count"),
+            "the policy panel is still pricing sanctions by counting flags"
+        );
+        // The count itself is still served and still used — the map's mark and
+        // the dossier line are honest uses of a count — so this must not be
+        // "fixed" by deleting the field.
+        assert!(INDEX.contains("sanctioned_by_count > 0"), "the ⊘ map mark reads the count");
+    }
+
+    /// "sustains a force of N" under the military slider was the browser's own
+    /// arithmetic, and it kept one of `war::sustained_force`'s four factors.
+    /// Missing: the technology multiplier (0.5x-4.0x), the equipment adequacy
+    /// (0.55x-1.0x), and the flat floor a modern arsenal carries whatever the
+    /// budget. Wrong on the FIRST screen with no player input.
+    #[test]
+    fn the_force_line_is_the_force_the_sim_sustains() {
+        // What the page used to compute, kept so the error is measured here and
+        // not remembered from a bug report.
+        let old_browser_rule = |n: &Nation, share: f64| (n.gdp * share * 0.30).sqrt() * 8.0;
+
+        let mut worst = 0.0f64;
+        let mut worst_line = String::new();
+        let mut checked = 0usize;
+        let mut w = world_1990(GameRules::default());
+        for _ in 0..120 {
+            tick_month(&mut w, &[]);
+            for n in w.nations.iter().filter(|n| n.alive) {
+                let truth = spheres_sim::war::sustained_force(n, n.mil_spend_gdp);
+                let guess = old_browser_rule(n, n.mil_spend_gdp);
+                // Only forces big enough for the error to be about the formula
+                // rather than about the last digit of a microstate's militia.
+                // The seeder normalises every nation to 1.0 in January 1990, so
+                // 1.0 is "an army at all" on this scale, not "a small one".
+                if truth < 1.0 {
+                    continue;
+                }
+                checked += 1;
+                let err = (guess / truth - 1.0).abs();
+                if err > worst {
+                    worst = err;
+                    worst_line =
+                        format!("{:?}: page {:.1} against the sim's {:.1}", n.id, guess, truth);
+                }
+            }
+        }
+        assert!(checked > 1_000, "only {checked} nation-months");
+        assert!(
+            worst > 0.20,
+            "the page's old formula came within 20% of the sim everywhere, so \
+             this test no longer measures the defect it was written for ({worst_line})"
+        );
+        println!("worst error of the formula this replaced: {:.1}% — {}", worst * 100.0, worst_line);
+
+        // THE CURVE IS THE SIM'S, sample for sample, at every position the
+        // slider can select. This is the assertion that would have caught the
+        // original defect, and it is exact rather than approximate because the
+        // sampling step and the slider step are the same thousandth.
+        let mut g = Game::new(1990, Some(NationId::USA));
+        for _ in 0..24 {
+            tick_month(&mut g.world, &[]);
+        }
+        let me = g.world.player.expect("seated");
+        let pol = state_json(&g, None)["policy"].clone();
+        let curve = pol["force_curve"].as_array().expect("a curve is served");
+        assert_eq!(curve.len(), FORCE_CURVE_STEPS + 1);
+        let n = g.world.nation(me);
+        for (i, sample) in curve.iter().enumerate() {
+            let share = i as f64 / FORCE_CURVE_STEPS as f64 * FORCE_CURVE_MAX;
+            let want = round(spheres_sim::war::sustained_force(n, share), 3);
+            assert_eq!(
+                sample.as_f64().expect("finite"),
+                want,
+                "the curve disagrees with the sim at share {share:.3}"
+            );
+        }
+        // Every sample is a real force, including at share zero where only the
+        // arsenal's floor remains.
+        assert!(curve.iter().all(|v| v.as_f64().is_some_and(|x| x.is_finite() && x >= 0.0)));
+        assert_eq!(
+            pol["sustained"].as_f64().expect("finite"),
+            spheres_sim::war::sustained_force(n, n.mil_spend_gdp),
+        );
+
+        // The curve has to cover what the shipped Defense ministry can actually
+        // ask for, or the page silently clamps. RE-EXPRESSED, not widened, when
+        // the ministry table stopped carrying its own caps: the bar was "read
+        // the dial's top off the page rather than retyping it", and the dial's
+        // top is now `world::BUDGET_CAPS` itself, served to the page and read
+        // back by `ministryCap`. So this reads the same bound from the place
+        // that is now the only copy of it, and widening the dial without
+        // widening the curve still goes red here.
+        let hi: f64 = spheres_sim::world::BUDGET_CAPS[spheres_sim::world::BUDGET_DEFENSE];
+        assert!(
+            INDEX.contains("ministryCap(i)"),
+            "the page no longer clamps the Defense dial against the cap the sim served"
+        );
+        assert!(
+            hi <= FORCE_CURVE_MAX,
+            "the Defense dial reaches {hi} but the force curve stops at {FORCE_CURVE_MAX}"
+        );
+        // RE-EXPRESSED, not deleted, when the ten dials stopped writing their
+        // own captions. The bar was "the Defense ministry shows the force the
+        // sim sustains", and the page used to make that true by calling
+        // `sustainedForce` itself in the caption. It is now true a stronger
+        // way: DEFENSE's one named arm IS `war::sustained_force`, evaluated in
+        // `ministries::arms_at` and served, so the dial prints the sim's own
+        // number instead of asking the browser for a second opinion.
+        {
+            let g = Game::new(1990, Some(NationId::Brazil));
+            let n = g.world.nation(NationId::Brazil);
+            let mj = ministries_json(&g.world, NationId::Brazil);
+            let arm =
+                &mj["ministries"][spheres_sim::world::BUDGET_DEFENSE]["arms"][0];
+            assert_eq!(arm["id"], "force", "DEFENSE's one arm is the force it sustains");
+            let step = mj["curve_step"].as_f64().unwrap();
+            let zero = mj["curve_zero"].as_u64().unwrap() as f64;
+            let reference =
+                mj["ministries"][spheres_sim::world::BUDGET_DEFENSE]["reference"]
+                    .as_f64()
+                    .unwrap();
+            let curve = arm["curve"].as_array().unwrap();
+            for i in [40usize, 60, 90, 120] {
+                let share = reference + (i as f64 - zero) * step;
+                assert_eq!(
+                    curve[i].as_f64().unwrap(),
+                    round(spheres_sim::war::sustained_force(n, share), 6),
+                    "the Defense dial is not showing the force the sim sustains"
+                );
+            }
+            assert!(
+                INDEX.contains("ministryArmLines(i, b[spec.id])"),
+                "the Defense dial no longer draws the arm the sim served"
+            );
+        }
+
+        // And the page must READ the curve rather than recompute it.
+        assert!(
+            INDEX.contains("function sustainedForce(m, share)"),
+            "the page no longer reads the served force curve"
+        );
+        assert!(
+            !INDEX.contains("const force = Math.sqrt(m.gdp * p.military * 0.30) * 8"),
+            "the page is still computing the sustained force itself"
+        );
+    }
+
+    /// The research board called a fully funded project "stalled". `months_left`
+    /// was the whole of what the payload said about a wait, and the browser
+    /// rendered every one of its four `null`s as that one word — but a project
+    /// whose banked points already cover its cost is not stopped, it is waiting
+    /// on the calendar, because `tech::tick` will not field a technology before
+    /// its `earliest_year` however much is banked against it.
+    ///
+    /// That is the reading that costs the player something. A government told
+    /// its programme has stalled moves money to it, and there is nothing the
+    /// money can do.
+    #[test]
+    fn a_funded_project_is_not_reported_as_stalled() {
+        let mut funded = 0usize;
+        let mut stalled = 0usize;
+        let mut example = String::new();
+
+        for name in ["United States", "Japan", "Sao Tome and Principe", "India"] {
+            let id = NationId::parse(name).expect("on the roster");
+            let mut g = Game::new(1990, Some(id));
+            for _ in 0..180 {
+                tick_month(&mut g.world, &[]);
+                let r = research_json(&g.world, id);
+                for d in r["domains"].as_array().expect("eight domains") {
+                    let wait = d["wait"].as_str().expect("every domain says why");
+                    // The payload's own consistency: a reason and a number are
+                    // exclusive, and every reason is one the page can render.
+                    assert_eq!(
+                        d["months_left"].is_null(),
+                        wait != "months",
+                        "{name}: months_left and wait disagree — {d}"
+                    );
+                    assert!(
+                        ["months", "none", "funded", "year", "beyond", "stalled"].contains(&wait),
+                        "{name}: unrenderable wait reason {wait:?}"
+                    );
+                    match wait {
+                        "funded" | "year" => {
+                            funded += 1;
+                            let banked = d["banked"].as_f64().expect("finite");
+                            let cost = d["cost"].as_f64().expect("finite");
+                            assert!(
+                                banked >= cost,
+                                "{name}: {d} claims to be funded on {banked} of {cost}"
+                            );
+                            if wait == "year" {
+                                let y = d["fields_in"].as_i64().expect("a fielding year");
+                                assert!(
+                                    y > g.world.year as i64,
+                                    "{name}: waiting for {y} in {}",
+                                    g.world.year
+                                );
+                                if example.is_empty() {
+                                    example = format!(
+                                        "{name} {} — {} is {:.0}% funded and fields in {}",
+                                        g.world.date_str(),
+                                        d["project"]["name"],
+                                        banked / cost * 100.0,
+                                        y
+                                    );
+                                }
+                            }
+                        }
+                        "stalled" => stalled += 1,
+                        _ => {}
+                    }
+                }
+            }
+        }
+        // The defect has to be reachable or this test is decoration. Every one
+        // of these used to print the word "stalled".
+        assert!(
+            funded > 0,
+            "no funded-but-unquoted project in 60 years of four very different \
+             economies, so this test is not exercising the case it was written for"
+        );
+        println!("{funded} funded-but-unquoted domain-months (all said \"stalled\" before), \
+                  {stalled} genuinely stalled; e.g. {example}");
+
+        // And the page must say the four apart rather than collapsing them.
+        assert!(INDEX.contains("function etaText(d, tilde)"), "the page lost its eta helper");
+        for phrase in ["lands next day", "fields in", "beyond a century", "nothing is funding"] {
+            assert!(INDEX.contains(phrase), "the board cannot say {phrase:?}");
+        }
+        assert!(
+            !INDEX.contains(r#"months_left == null ? "stalled""#),
+            "the research board still calls every missing number a stall"
+        );
+    }
+
+    /// The interest-rate slider is a ONE-WAY DOOR and looked like every other
+    /// slider. `politics::tick` runs the player's central bank on their behalf
+    /// until they first issue a rate command; `WorldState::player_set_rate`
+    /// latches on that command and the bank is skipped for the rest of the game.
+    /// Nothing on the page said so, so a player could not tell whether the rate
+    /// in front of them was their policy or the bank's, and could not know that
+    /// touching it dismissed the bank permanently.
+    ///
+    /// The latch is pinned by tests in the sim and is NOT touched here. This
+    /// covers only the half that was missing: saying out loud what it does.
+    #[test]
+    fn the_page_can_see_who_is_running_the_central_bank() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        // Before: unlatched, and it stays unlatched across an advance — the
+        // player is idle, not governing.
+        assert_eq!(state_json(&g, None)["player_set_rate"], serde_json::json!(false));
+        for _ in 0..6 {
+            tick_month(&mut g.world, &[]);
+        }
+        assert_eq!(
+            state_json(&g, None)["player_set_rate"],
+            serde_json::json!(false),
+            "advancing time is not governing"
+        );
+        // The bank was actually running the seat, or there is nothing to say.
+        let drifted = g.world.nation(NationId::USA).interest_rate;
+        assert!(
+            (drifted - 0.08).abs() > 1e-9,
+            "the AI bank never moved the rate, so this test is not exercising the \
+             state it describes (still {drifted})"
+        );
+
+        // After one rate command it latches, and the payload says so.
+        let rate = g.world.nation(NationId::USA).interest_rate;
+        apply_command(&mut g.world, &Command::SetInterestRate { nation: NationId::USA, rate })
+            .expect("the player may always set their own rate");
+        assert_eq!(
+            state_json(&g, None)["player_set_rate"],
+            serde_json::json!(true),
+            "re-setting the rate one already had is still governing"
+        );
+        // And it never goes back.
+        for _ in 0..12 {
+            tick_month(&mut g.world, &[]);
+        }
+        assert_eq!(state_json(&g, None)["player_set_rate"], serde_json::json!(true));
+
+        // The page must read it and say both halves out loud.
+        assert!(INDEX.contains("function rateSeat()"), "the page lost its rate-seat line");
+        assert!(INDEX.contains("S.player_set_rate"), "the page does not read the latch");
+        assert!(
+            INDEX.contains(r#"sliderHtml("rate", "Interest rate", m.rate, 0, 0.40, rateSeat())"#),
+            "the rate slider no longer says who is holding it"
+        );
+        assert!(INDEX.contains("the central bank is setting this for you"));
+        assert!(INDEX.contains("takes the wheel for good"), "the door is one-way; say so");
+    }
+
+    /// A headline was read as being about every nation whose NAME'S LETTERS it
+    /// contained. Across the roster that is one pair — "Romania" contains
+    /// "Oman" — and one pair was enough to make an Omani player's personal news
+    /// feed somebody else's.
+    ///
+    /// Measured on the live server, governing Oman on seed 1990 for 300 months:
+    /// the "You" filter held SIXTEEN dispatches, of which FIFTEEN were about
+    /// Romania — its elections, its street protests — and one was about Oman.
+    /// The same tags drive the chart's per-nation event marks, and the same
+    /// match in `is_major` stopped an Omani player's advance to tell them about
+    /// a Romanian election.
+    #[test]
+    fn a_headline_is_only_about_the_nations_it_names() {
+        // The pair this exists for, in both directions.
+        assert_eq!(
+            mentioned("Romania votes: National Salvation Front takes office."),
+            vec![NationId::Romania],
+            "Romania is not news about Oman"
+        );
+        assert_eq!(mentioned("Romania moves against its own streets."), vec![NationId::Romania]);
+        assert!(mentioned("Oman opens up.").contains(&NationId::Oman));
+        assert!(!mentioned("Oman opens up.").contains(&NationId::Romania));
+        assert!(!is_major("Romania moves against its own streets.", Some(NationId::Oman)));
+        assert!(is_major("Oman moves against its own streets.", Some(NationId::Oman)));
+
+        // Every real mention still lands: possessives, punctuation, capitals,
+        // multi-word names, and the hyphenated names on the roster.
+        for (h, want) in [
+            ("Iraq's magazines are empty. The tempo falls to rung 4.", NationId::Iraq),
+            ("WAR: Iraq invades Kuwait!", NationId::Kuwait),
+            ("United States is first to field integrated circuits.", NationId::USA),
+            ("THE SOVIET UNION HAS DISSOLVED.", NationId::USSR),
+            // The roster's one hyphenated name, and the boundary rule has to
+            // let a hyphen close a name the way a space or a full stop does.
+            ("Congo-Brazzaville opens up.", NationId::Congo),
+            ("Equatorial Guinea opens up.", NationId::EquatorialGuinea),
+            ("Oman pegs its currency and imports somebody else's credibility.", NationId::Oman),
+        ] {
+            assert!(mentioned(h).contains(&want), "{want:?} is not read out of {h:?}");
+            assert!(is_major(h, Some(want)), "{want:?} is not told about {h:?}");
+        }
+
+        // THE GENERAL CLAIM, not just the one pair: no nation is ever read out
+        // of a headline that names only some other nation. This is what stops a
+        // future roster addition reopening the defect silently — add "Congo"
+        // beside "Congo-Brazzaville" and this goes red.
+        for a in all_nations() {
+            let h = format!("{} opens up.", a.name());
+            let read = mentioned(&h);
+            assert_eq!(
+                read,
+                vec![*a],
+                "{:?} is read as being about {:?} as well",
+                a,
+                read.iter().filter(|x| *x != a).collect::<Vec<_>>()
+            );
+        }
+
+        // And the boundary rule itself, so its edges are pinned rather than
+        // inferred from the cases above.
+        assert!(names_nation("romania votes", "romania"));
+        assert!(!names_nation("romania votes", "oman"));
+        assert!(names_nation("oman votes", "oman"));
+        assert!(names_nation("it was oman", "oman"));
+        assert!(names_nation("oman's fleet", "oman"));
+        assert!(!names_nation("omani forces", "oman"), "an adjective is not the nation");
+        assert!(!names_nation("", "oman"));
+        assert!(!names_nation("oman", ""), "an empty name matches nothing and must not hang");
+    }
+
+    #[test]
+    fn every_nation_on_the_board_has_somewhere_to_be_drawn() {
+        // Added when Spain became the first nation appended to the extensible
+        // roster, because it exposed the one place where a half-added nation
+        // fails SILENTLY. Everything else is loud: a roster row without a data
+        // file fails `validate`, a data file without a roster row fails to
+        // deserialize its id, a nation without a `Polity` panics
+        // `every_government_is_reachable_in_january_1990`. Forget the entry in
+        // ui/index.html's TERRITORY map and there is no error anywhere — the
+        // nation simply never appears on the map, and its land is drawn as
+        // unaligned scenery. With eighty nations arriving across ten branches
+        // that is a merge resolution nobody would notice for weeks.
+        //
+        // Deliberately a substring check against the served HTML rather than a
+        // JS parse: this file is shipped by `include_str!` and has no build
+        // step, so the thing to assert on is the thing that reaches the
+        // browser.
+        let map = INDEX
+            .split_once("const TERRITORY = {")
+            .expect("ui/index.html still declares a TERRITORY map")
+            .1
+            .split_once("};")
+            .expect("the TERRITORY map is still brace-terminated")
+            .0;
+        for id in spheres_sim::world::all_nations() {
+            let key = format!("{:?}:", id);
+            assert!(
+                map.contains(&key),
+                "{:?} is in the roster but not in TERRITORY in ui/index.html, \
+                 so it would be drawn as unaligned land and nobody would be told",
+                id
+            );
+        }
+    }
+
+    #[test]
+    fn a_nation_with_a_space_in_its_name_survives_the_query_string() {
+        // The failure this catches is silent: an undecoded "Saudi%20Arabia"
+        // parses to None, and every route taking this param treats None as
+        // "no filter" rather than as an error, so the UI would quietly show
+        // the wrong thing instead of nothing.
+        assert_eq!(nation_param("/api/sources?nation=Brazil"), Some(NationId::Brazil));
+        assert_eq!(
+            nation_param("/api/sources?nation=Saudi%20Arabia"),
+            Some(NationId::SaudiArabia)
+        );
+        assert_eq!(
+            nation_param("/api/sources?nation=South+Korea"),
+            Some(NationId::SouthKorea)
+        );
+        assert_eq!(
+            nation_param("/api/history?nation=United%20States&x=1"),
+            Some(NationId::USA)
+        );
+        assert_eq!(nation_param("/api/state"), None);
+        assert_eq!(nation_param("/api/sources?nation=Atlantis"), None);
+    }
+
+    #[test]
+    fn a_nation_can_show_where_its_figures_came_from() {
+        // The branch's whole point is that the provenance survived the move out
+        // of Rust. It only survives as far as somebody can read it.
+        let src = spheres_sim::data::sources_for(NationId::Brazil);
+        assert!(!src.is_empty());
+        assert!(src.join(" ").contains("2948%"));
+    }
+
+    /// The picker can offer a nation the world is not holding — every successor
+    /// state is on the roster from the first tick but seated only when its
+    /// federation comes apart, and the setup grid is built from a live world
+    /// that may already have dissolved one. Handing such an id to `Game::new`
+    /// used to build a world whose `player` pointed at nobody, and the first
+    /// `state_json` after it walked into `WorldState::nation`'s `expect` and
+    /// took the whole server process down with it (exit 101) — the browser saw
+    /// a dropped connection, and every other player on that server lost their
+    /// game too. `/api/new` now refuses the choice and says so, which is why
+    /// this asserts on `new_game` rather than on `Game::new`.
+    #[test]
+    fn a_nation_the_world_is_not_holding_is_refused_not_fatal() {
+        let succ = spheres_sim::world::successor_nations();
+        assert!(
+            !succ.is_empty(),
+            "the roster must still carry successor states for this to mean anything"
+        );
+
+        let mut g = Game::new(1990, None);
+        for id in succ {
+            // The precondition: this is exactly the id the picker can offer and
+            // the world does not hold.
+            assert!(
+                g.world.nation_opt(*id).is_none_or(|n| !n.alive),
+                "{:?} is seated and alive in January 1990",
+                id
+            );
+            let (v, ok) = new_game(&mut g, 1990, Some(*id));
+            assert!(!ok, "{:?} is not on the board and must not be granted", id);
+            assert!(
+                v["error"].as_str().unwrap_or_default().contains(id.name()),
+                "the refusal must name the nation it refused: {}",
+                v
+            );
+            // Refused means refused: the world the player already had is
+            // untouched, and in particular nobody has been made an observer.
+            assert_eq!(g.world.player, None, "a refused choice must not be seated");
+        }
+
+        // The same call with a nation that IS on the board still works, so the
+        // guard is a filter and not a wall.
+        let (v, ok) = new_game(&mut g, 1990, Some(NationId::Poland));
+        assert!(ok, "Poland is seated in 1990 and must be playable: {}", v);
+        assert_eq!(g.world.player, Some(NationId::Poland));
+        assert!(v["research"].is_object(), "a seated player gets a full payload");
+    }
+
+    /// THE CARD AND THE SIM ARE THE SAME MONTH. `research_json` serves seven
+    /// arms and a headline; if the page could multiply the arms and get a
+    /// different number from the headline, the card would be a second model of
+    /// research sitting next to the first — which is exactly what the browser's
+    /// copy of the growth model turned out to be.
+    ///
+    /// Asserted with `to_bits` rather than a tolerance, because the server takes
+    /// both from ONE `ResearchTerms` and there is no rounding between them. A
+    /// tolerance here would admit the very drift the bar exists to forbid.
+    ///
+    /// RED CHECK, run: `monthly` was set back to a second
+    /// `tech::research_output` call and the `ministry` arm was served as
+    /// `terms.ministry * 1.01`, the smallest lie a card could tell. The test
+    /// went red on the product against the headline.
+    #[test]
+    fn the_research_card_and_the_sim_agree_on_the_month() {
+        let mut g = Game::new(1990, Some(NationId::Brazil));
+        let v = research_json(&g.world, NationId::Brazil);
+
+        let arms = v["arms"].as_array().expect("the card serves its arms");
+        assert_eq!(arms.len(), 7, "seven arms, in the order the sim multiplies them");
+        assert_eq!(
+            arms.iter().map(|a| a["key"].as_str().unwrap()).collect::<Vec<_>>(),
+            vec!["base", "ministry", "tools", "system", "disorder", "war", "sanctions"],
+            "the order IS the specification — see ResearchTerms::total"
+        );
+        // The page's own arithmetic, done here so it never has to be done there.
+        let mut out = arms[0]["value"].as_f64().unwrap();
+        for a in &arms[1..] {
+            out *= a["value"].as_f64().unwrap();
+        }
+        assert_eq!(
+            out.max(0.0).to_bits(),
+            v["monthly"].as_f64().unwrap().to_bits(),
+            "the seven arms multiply to something other than the headline"
+        );
+
+        // And the shares on the card are the shares the spend loop uses, taken
+        // from the sim rather than rebuilt here.
+        let dev = {
+            let n = g.world.nation(NationId::Brazil);
+            (n.gdp * 1000.0 / n.population / 24000.0).min(1.0)
+        };
+        let want = spheres_sim::tech::domain_weights_of(
+            &g.world,
+            g.world.nation(NationId::Brazil),
+            dev,
+        );
+        for (i, d) in v["domains"].as_array().unwrap().iter().enumerate() {
+            assert_eq!(d["share"].as_f64().unwrap().to_bits(), want[i].to_bits());
+        }
+        assert!(v["allocation"].is_null(), "a fresh nation has ordered nothing");
+
+        // Now order the eight shares through the page's own command shape, and
+        // the card must report them normalised — and echo the raw entry back, so
+        // a slider comes up where the player left it.
+        g.world.nation_mut(NationId::Brazil).political_capital = 200.0;
+        let cmd = serde_json::json!({
+            "kind": "research_allocation",
+            "weights": [0.0, 0.0, 0.0, 300.0, 0.0, 0.0, 0.0, 100.0],
+        });
+        let c = parse_command(&g.world, &cmd, NationId::Brazil).expect("the page's shape parses");
+        spheres_sim::apply_command(&mut g.world, &c).expect("the allocation is enacted");
+
+        let v = research_json(&g.world, NationId::Brazil);
+        let doms = v["domains"].as_array().unwrap();
+        assert_eq!(doms[3]["share"].as_f64().unwrap(), 0.75);
+        assert_eq!(doms[7]["share"].as_f64().unwrap(), 0.25);
+        assert_eq!(doms[0]["share"].as_f64().unwrap(), 0.0);
+        assert_eq!(
+            v["allocation"].as_array().unwrap()[3].as_f64().unwrap(),
+            300.0,
+            "the raw entry comes back as it was written"
+        );
+    }
+
+    /// THE BUDGET CARD READS THE SIM, and holds no copy of any bound it draws.
+    ///
+    /// Two things go silently wrong when a page keeps its own copy of a sim
+    /// number, and this branch has now seen both: the browser's sanction drag
+    /// was the pre-conversion COEFFICIENT (313x out at its worst) and the
+    /// browser's ministry table was its own copy of the caps. A cap that is too
+    /// low hides a dial's top from the player; one that is too high sends a
+    /// command the sim refuses, and the page shows a range the game does not
+    /// have. So `world::BUDGET_CAPS` is served and `ui/index.html` reads it.
+    #[test]
+    fn new_campaign_industrial_estimates_are_visible_without_reseeding_loaded_saves() {
+        let me = NationId::USA;
+        let mut g = Game::new(1990, Some(me));
+        let opening: Vec<_> = g.world.nations.iter().map(|n| (n.id, n.gdp)).collect();
+        assert!(loaded_play_game(g.world.clone()).world.starting_industry.is_none(),
+            "loading an old campaign cannot retroactively seed 1990 assets");
+        let (_, started) = new_game(&mut g, 1990, Some(me));
+        assert!(started);
+        assert!(g.world.starting_industry.is_some());
+        assert_eq!(opening, g.world.nations.iter().map(|n| (n.id, n.gdp)).collect::<Vec<_>>(),
+            "capacity estimates decompose existing GDP, never increase it");
+        let before = save(&g.world);
+        let view = competition_json(&g.world, me);
+        let expected = serde_json::to_value(spheres_sim::starting_industry::snapshot(&g.world, me)).unwrap();
+        assert!(!expected.is_null());
+        assert_eq!(view["starting_industry"], expected);
+        assert_eq!(economic_ledger_json(&g.world, me).unwrap()["starting_industry"], expected);
+        let district = g.world.districts.iter().find(|(_, n)| **n == me).unwrap().0.clone();
+        assert!(spheres_sim::starting_industry::province(&g.world, &district).is_some());
+        assert_eq!(before, save(&g.world), "all inherited-industry read models are pure");
+        let loaded = loaded_play_game(spheres_sim::load(&before).unwrap());
+        assert_eq!(loaded.world.starting_industry, g.world.starting_industry,
+            "existing estimates and historical capacity survive load unchanged");
+        assert!(g.world.production.industry.goods.is_empty(), "historical estimates do not grant packs");
+    }
+
+    #[test]
+    fn welfare_reuses_pensions_budget_and_save_slot() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        let me = NationId::USA;
+        g.world.nation_mut(me).political_capital = 100.0;
+        // This is the pre-rename browser payload, including the legacy key.
+        let posted = serde_json::json!({
+            "kind": "annual_budget", "fiscal_year": 1990,
+            "health": 0.055, "education": 0.040, "housing": 0.045,
+            "pensions": 0.060, "infrastructure": 0.025, "industry": 0.015,
+            "science": 0.010, "defense": 0.050, "security": 0.015,
+            "diplomacy": 0.005
+        });
+        let command = parse_command(&g.world, &posted, me).expect("legacy budget still parses");
+        apply_command(&mut g.world, &command).unwrap();
+        let before = save(&g.world);
+        let ministries = ministries_json(&g.world, me);
+        let programs = programs_json(&g.world, me, None);
+        assert_eq!(BUDGET_PENSIONS, 3);
+        assert_eq!(ministries["ministries"].as_array().unwrap().len(), 10);
+        assert_eq!(programs["ministryrows"].as_array().unwrap().len(), 10);
+        let welfare = &ministries["ministries"][BUDGET_PENSIONS];
+        let departments = &programs["ministryrows"][BUDGET_PENSIONS];
+        assert_eq!(welfare["name"], "Welfare");
+        assert_eq!(departments["name"], "Welfare");
+        assert_eq!(welfare["id"], "pensions");
+        assert_eq!(departments["key"], "pensions");
+        assert_eq!(welfare["cap"], 0.20);
+        assert_eq!(departments["editable"], false, "the rename does not invent five new models");
+        let rows = departments["departments"].as_array().unwrap();
+        assert_eq!(rows.len(), 5);
+        for (row, expected) in rows.iter().zip([
+            "Retirement benefits", "Disability benefits", "Survivor benefits",
+            "Minimum-income supplements", "Benefits administration",
+        ]) {
+            assert_eq!(row["name"], expected);
+        }
+        assert_eq!(nation_json(&g.world, g.world.nation(me))["annual_budget"]["pensions"], 0.060);
+        assert_eq!(before, save(&g.world), "rendering Welfare must not alter accounts or saves");
+        let loaded = spheres_sim::load(&before).expect("existing budget arrays still load");
+        assert_eq!(save(&loaded), before, "no budget or financial migration is needed");
+        assert_eq!(ministries_json(&loaded, me), ministries);
+        assert_eq!(programs_json(&loaded, me, None), programs);
+    }
+
+    #[test]
+    fn the_budget_card_reads_the_sim() {
+        let g = Game::new(1990, Some(NationId::Brazil));
+        let v = ministries_json(&g.world, NationId::Brazil);
+        let list = v["ministries"].as_array().expect("ten ministries are served");
+        assert_eq!(list.len(), spheres_sim::world::BUDGET_MINISTRIES);
+
+        let step = v["curve_step"].as_f64().unwrap();
+        let steps = v["curve_steps"].as_u64().unwrap() as f64;
+        let zero = v["curve_zero"].as_u64().unwrap() as f64;
+        // Every value a press can produce lands on a sample, so the page's
+        // `Math.round((share - reference) / curve_step) + curve_zero` is exact
+        // rather than near.
+        assert_eq!(step, 0.005, "the dial steps by 0.005 and the curve must too");
+        for (i, m) in list.iter().enumerate() {
+            let cap = m["cap"].as_f64().unwrap();
+            let reference = m["reference"].as_f64().unwrap();
+            assert_eq!(
+                cap,
+                spheres_sim::world::BUDGET_CAPS[i],
+                "ministry {i}'s served cap is not the cap the sim enforces"
+            );
+            // The curve has to cover what the dial can actually hold, in BOTH
+            // directions -- the same bar `the_force_line_is_the_force_the_sim_
+            // sustains` puts on the force curve. Widening a dial without
+            // widening this goes red here rather than reading off the end of an
+            // array in a browser.
+            let lo = reference - zero * step;
+            let hi = reference + (steps - zero) * step;
+            assert!(lo <= 0.0, "ministry {i} cannot be cut to nothing: the curve starts at {lo}");
+            assert!(
+                cap <= hi,
+                "ministry {i} caps at {cap} but the served curve stops at {hi}"
+            );
+            // AND THE ANCHOR IS THE SETTLEMENT. Sample `curve_zero` is the
+            // inherited allocation, which is what makes an unmoved dial read
+            // exactly zero rather than half a press out.
+            for arm in m["arms"].as_array().unwrap() {
+                let here = arm["curve"].as_array().unwrap()[zero as usize].as_f64().unwrap();
+                let neutral = match arm["kind"].as_str().unwrap() {
+                    // A multiplier's do-nothing value is one; force is a level
+                    // and has no do-nothing value at all.
+                    "mult" => 1.0,
+                    "force" => here,
+                    _ => 0.0,
+                };
+                assert_eq!(
+                    here, neutral,
+                    "ministry {i} arm {} reads {here} for a budget nobody has moved",
+                    arm["id"]
+                );
+            }
+        }
+
+        // The page must READ the served cap, not carry one. The old table had
+        // `cap:.15` and nine more like it on the same lines.
+        let table = INDEX
+            .split_once("const MINISTRIES = [")
+            .expect("ui/index.html still declares the ten dials")
+            .1
+            .split_once("];")
+            .expect("the table is still bracket-terminated")
+            .0;
+        assert!(
+            !table.contains("cap:"),
+            "ui/index.html is carrying its own copy of BUDGET_CAPS again"
+        );
+        assert!(
+            INDEX.contains("ministryCap(i)"),
+            "the dial no longer clamps against the cap the sim served"
+        );
+        assert!(
+            INDEX.contains("function ministryAt("),
+            "the page no longer indexes the served arm curves"
+        );
+    }
+
+    /// EVERY NUMBER ON EVERY MINISTRY CARD IS THE SIM'S, SAMPLE FOR SAMPLE.
+    ///
+    /// The design's rule for stage 4 is that the per-percent sentence is
+    /// "computed from the sim's own served numbers and never recomputed in
+    /// JavaScript". This is the bar that makes that checkable: the whole served
+    /// surface -- every ministry, every arm, every sample of both curves -- is
+    /// compared against `spheres_sim::ministries::arms_at`, which is the same
+    /// function `economy::tick`, `war`, `tech`, `politics`, `resources` and
+    /// `statecraft` call when they charge it.
+    #[test]
+    fn every_ministry_arm_on_the_card_is_the_arm_the_sim_charges() {
+        use spheres_sim::ministries;
+        let g = Game::new(1990, Some(NationId::Brazil));
+        let n = g.world.nation(NationId::Brazil);
+        let v = ministries_json(&g.world, NationId::Brazil);
+        let step = v["curve_step"].as_f64().unwrap();
+        let zero = v["curve_zero"].as_u64().unwrap() as f64;
+        let mut checked = 0usize;
+        let mut arms_seen = 0usize;
+
+        for (m, served) in v["ministries"].as_array().unwrap().iter().enumerate() {
+            let reference = served["reference"].as_f64().unwrap();
+            let arms = served["arms"].as_array().unwrap();
+            arms_seen += arms.len();
+            // The sim's own list is the specification of how many arms a
+            // ministry has: DEFENSE has exactly one and it is not a gap arm.
+            assert_eq!(arms.len(), ministries::arms_at(&g.world, n, m, 0.0).len());
+            for (a, arm) in arms.iter().enumerate() {
+                let curve = arm["curve"].as_array().unwrap();
+                let per = arm["per_point"].as_array().unwrap();
+                assert_eq!(curve.len(), per.len());
+                for i in 0..curve.len() {
+                    let share = reference + (i as f64 - zero) * step;
+                    let want = ministries::arms_at(&g.world, n, m, share)[a].value;
+                    assert_eq!(
+                        curve[i].as_f64().unwrap(),
+                        round(want, 6),
+                        "ministry {m} arm {a} at {share:.3} of GDP is not the sim's value"
+                    );
+                    // The per-percent number is a DIFFERENCE THE SIM TOOK. Past
+                    // a clamped arm's ceiling the honest answer is zero, and a
+                    // page differencing a curve whose shape it had assumed
+                    // would print a slope nobody is ever charged.
+                    let ahead = ministries::arms_at(&g.world, n, m, share + 0.01)[a].value;
+                    assert_eq!(
+                        per[i].as_f64().unwrap(),
+                        round(ahead - want, 6),
+                        "ministry {m} arm {a}'s per-point step at {share:.3} is not the sim's"
+                    );
+                    checked += 1;
+                }
+            }
+        }
+        // Measured, so a future session that quietly stops serving an arm is
+        // caught by the count rather than by the loop running zero times.
+        assert_eq!(arms_seen, 16, "sixteen named arms across the ten ministries");
+        assert!(checked > 1900, "only {checked} samples compared");
+        println!("{checked} arm samples across {arms_seen} arms agree with the sim");
+    }
+
+    /// STABILITY IS QUOTED AS A DESTINATION, which is the design's ruling and
+    /// is arithmetic rather than taste.
+    ///
+    /// `economy::tick` integrates stability toward `60 + 100x` for a standing
+    /// contribution `x`, so quoting `x` -- or the first month's `0.25x` -- is
+    /// out by two orders of magnitude, and a player reading it concludes the
+    /// security budget does nothing. This pins the ratio at exactly 100 for all
+    /// three ministries that own a stability arm, and pins that the card is not
+    /// quoting the raw `ds` contribution instead.
+    ///
+    /// RE-EXPRESSED 2026-09-02, intent preserved, nothing widened. `60 + 100x`
+    /// is only half the fixed point: the integrator CLAMPS to 0..100 and stops
+    /// there, so `stability_destination` now differences two bounded
+    /// destinations and the ratio of 100 holds exactly where there is room on
+    /// the scale and honestly falls to zero where there is not. Two changes
+    /// follow, and both are the bar getting stricter rather than looser.
+    ///
+    /// First, the sample. It read `per_point[0]`, which is 0.20 of GDP BELOW the
+    /// reference -- a cut so deep the destination is pinned at the bottom of the
+    /// scale, so it now reads 0 for every ministry. It reads
+    /// `MINISTRY_CURVE_ZERO` instead, which is the enacted settlement itself and
+    /// the only sample a player is actually sitting on.
+    ///
+    /// Second, the nation. Brazil in 1990 settles at EXACTLY 0.000 -- measured
+    /// by running the integrator to its fixed point, its stability pressure is
+    /// -11.756 against hyperinflation -- so no press anywhere on Brazil's dial
+    /// moves the destination at all, and Brazil can no longer witness the ratio.
+    /// The USA settles at 48.933 and has room for all three arms, so it is the
+    /// nation that can. Brazil stays in the test as the other half of the claim.
+    ///
+    /// THE THIRD ARM OF THE BAR IS NEW: past the top of the scale the served
+    /// `per_point` must be exactly zero, which is the condition the page's
+    /// "another point of GDP buys nothing here" branch reads. Before the repair
+    /// it was +16.000000 for security, +14.000000 for housing and +12.000000 for
+    /// pensions AT THE CAP, for Brazil, Belgium and the USA alike, so that branch
+    /// could never fire.
+    ///
+    /// RED CHECK, run 2026-09-02 and reverted: `stability_destination` restored
+    /// to `ds_contribution / MEAN_REVERSION`, the shipped body. RED -- "ministry
+    /// 2 still quotes 14 a point at the top of the dial, where the integrator is
+    /// already pinned at 100", left 14.0 against right 0.0.
+    #[test]
+    fn a_stability_arm_is_quoted_as_where_order_settles() {
+        use spheres_sim::ministries;
+        use spheres_sim::world::{BUDGET_HOUSING, BUDGET_PENSIONS, BUDGET_SECURITY};
+        let arms = [
+            (BUDGET_HOUSING, ministries::housing_stability as fn(f64) -> f64, 14.0),
+            (BUDGET_PENSIONS, ministries::pensions_stability as fn(f64) -> f64, 12.0),
+            (BUDGET_SECURITY, ministries::security_stability as fn(f64) -> f64, 16.0),
+        ];
+        let arm_of = |v: &serde_json::Value, m: usize| {
+            v["ministries"].as_array().unwrap()[m]["arms"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .find(|a| a["id"] == "stability")
+                .unwrap_or_else(|| panic!("ministry {m} still owns a stability arm"))
+                .clone()
+        };
+
+        // A nation with room on the scale: the ratio is exactly 100, which is
+        // the original claim.
+        let g = Game::new(1990, Some(NationId::USA));
+        let v = ministries_json(&g.world, NationId::USA);
+        for (m, ds_of, slope) in arms {
+            let arm = arm_of(&v, m);
+            // The per-point step IS the slope, in points of destination. That is
+            // the whole claim: SECURITY's 16.0 is +16 points of where the nation
+            // settles per point of GDP, not +0.16 of anything.
+            let per =
+                arm["per_point"].as_array().unwrap()[MINISTRY_CURVE_ZERO].as_f64().unwrap();
+            assert!(
+                (per - slope).abs() < 1e-9,
+                "ministry {m} quotes {per} per point of GDP, not the {slope} it settles at"
+            );
+            // And it is a hundred times the raw `ds` contribution, which is the
+            // number a card would print if somebody deleted the destination
+            // conversion. Checked here so that deletion is loud.
+            let ds = ds_of(0.01);
+            assert!(
+                (per / ds - 1.0 / ministries::MEAN_REVERSION).abs() < 1e-6,
+                "ministry {m} is quoting the monthly push, not the destination"
+            );
+            // Past the top of the scale the card charges nothing, because the
+            // integrator pays nothing.
+            let last = arm["per_point"].as_array().unwrap().last().unwrap().as_f64().unwrap();
+            assert_eq!(
+                last, 0.0,
+                "ministry {m} still quotes {last} a point at the top of the dial, where the \
+                 integrator is already pinned at 100"
+            );
+        }
+
+        // And a nation with NO room: Brazil's 1990 hyperinflation puts its
+        // destination on the floor, so every sample of every stability arm is an
+        // honest zero rather than a promise of +168.
+        let g = Game::new(1990, Some(NationId::Brazil));
+        let v = ministries_json(&g.world, NationId::Brazil);
+        for (m, _, _) in arms {
+            for (i, per) in arm_of(&v, m)["per_point"].as_array().unwrap().iter().enumerate() {
+                assert_eq!(
+                    per.as_f64().unwrap(),
+                    0.0,
+                    "Brazil settles at the floor, but ministry {m} sample {i} still charges for \
+                     a press"
+                );
+            }
+        }
+    }
+
+    /// THE MONEY CARD IS ONE SET OF BOOKS, and the browser adds nothing to it.
+    ///
+    /// Ridge's amendment is the interest triple: dollars, share of output, and
+    /// the rate -- which is not the policy rate, because the sovereign spread
+    /// rises with the debt ratio. All three have to come off ONE
+    /// `economy::Fiscal`, the same object `economy::tick` charges the month
+    /// against, or the card and the sim are a month's arithmetic apart.
+    #[test]
+    fn the_money_card_is_one_set_of_books() {
+        let mut g = Game::new(1990, Some(NationId::Brazil));
+
+        // Before a budget, the books are closed and the card says so rather
+        // than inventing a zero treasury.
+        let v = policy_json(&g.world, NationId::Brazil);
+        assert_eq!(v["money"]["on_the_books"], serde_json::json!(false));
+        assert_eq!(v["money"]["interest_gdp"].as_f64().unwrap(), 0.0);
+        assert!(v["money"]["treasury_bn"].is_null());
+
+        // Enact a budget through the page's own command shape: the books open
+        // on the first `SetAnnualBudget` and only there.
+        g.world.nation_mut(NationId::Brazil).political_capital = 200.0;
+        let b = g.world.nation(NationId::Brazil).budget_for(g.world.year);
+        let cmd = serde_json::json!({
+            "kind": "annual_budget",
+            "fiscal_year": g.world.year,
+            "health": b.allocations[0] + 0.005,
+            "education": b.allocations[1],
+            "housing": b.allocations[2],
+            "pensions": b.allocations[3],
+            "infrastructure": b.allocations[4],
+            "industry": b.allocations[5],
+            "science": b.allocations[6],
+            "defense": (b.allocations[7] - 0.005).max(0.0),
+            "security": b.allocations[8],
+            "diplomacy": b.allocations[9],
+        });
+        let c = parse_command(&g.world, &cmd, NationId::Brazil).expect("the page's shape parses");
+        spheres_sim::apply_command(&mut g.world, &c).expect("the budget is enacted");
+
+        let v = policy_json(&g.world, NationId::Brazil);
+        let money = &v["money"];
+        assert_eq!(money["on_the_books"], serde_json::json!(true));
+        let n = g.world.nation(NationId::Brazil);
+        let cond = spheres_sim::economy::Conditions::of(&g.world, NationId::Brazil);
+        let terms =
+            spheres_sim::economy::growth_terms(n, n.state_invest_gdp, n.interest_rate, &cond);
+        let books = spheres_sim::economy::Fiscal::of(n, &terms);
+        for (key, want) in [
+            ("revenue_gdp", books.revenue_gdp),
+            ("spend_gdp", books.spend_gdp),
+            ("interest_gdp", books.interest_gdp),
+            ("balance_gdp", books.balance_gdp),
+            ("effective_rate", books.effective_rate),
+        ] {
+            assert_eq!(
+                money[key].as_f64().unwrap(),
+                round(want, 6),
+                "{key} on the card is not the sim's"
+            );
+        }
+        // THE SIGN, settled: revenue less spending less interest, positive is a
+        // surplus, in shares and in dollars alike. The two used to disagree.
+        let (rev, spend, bal) = books.in_billions(n.gdp);
+        assert_eq!(money["revenue_bn"].as_f64().unwrap(), round(rev, 3));
+        assert_eq!(money["spend_bn"].as_f64().unwrap(), round(spend, 3));
+        assert_eq!(money["balance_bn"].as_f64().unwrap(), round(bal, 3));
+        assert!(
+            (books.balance_gdp - (books.revenue_gdp - books.spend_gdp - books.interest_gdp)).abs()
+                < 1e-12,
+            "the balance is no longer revenue less spending less interest"
+        );
+
+        // The interest triple has to be internally consistent: the rate the
+        // card quotes, applied to the debt the card quotes, is the dollars the
+        // card quotes and the share the card quotes.
+        let debt = money["debt_bn"].as_f64().unwrap();
+        let rate = money["effective_rate"].as_f64().unwrap();
+        let interest_bn = money["interest_bn"].as_f64().unwrap();
+        assert!(debt > 0.0, "Brazil opens 1990 owing money");
+        assert!(
+            (interest_bn - debt * rate).abs() < 0.5,
+            "the interest line ({interest_bn}) is not the rate ({rate}) on the debt ({debt})"
+        );
+        assert!(
+            (money["interest_gdp"].as_f64().unwrap() - interest_bn / n.gdp).abs() < 1e-4,
+            "the share of GDP and the dollars are different months"
+        );
+        // And the rate is not the policy rate: it is real, and it carries a
+        // spread once the ratio is past the knee.
+        assert_eq!(
+            money["real_rate"].as_f64().unwrap(),
+            round(n.interest_rate - n.inflation, 6)
+        );
+        assert!(
+            (money["spread"].as_f64().unwrap() - (rate - money["real_rate"].as_f64().unwrap()))
+                .abs()
+                < 1e-6,
+            "the spread on the card is not the difference it is drawn as"
+        );
+        println!(
+            "Brazil 1990 on the books: debt ${debt:.1}bn at {:.3}%/yr -> ${interest_bn:.2}bn/yr, \
+             {:.3}% of GDP; balance ${bal:.2}bn",
+            rate * 100.0,
+            money["interest_gdp"].as_f64().unwrap() * 100.0
+        );
+    }
+
+    /// ONE BALANCE, ONE SIGN, and the interest row above the ten dials.
+    ///
+    /// The browser computed a balance in two places with opposite signs:
+    /// `ledgerOf` returned `deficit: spend - revenue` and `renderLeft` computed
+    /// `fiscalBalance = revenue - spending`, four inches apart on one screen.
+    /// Neither carried debt service, which `economy::tick` pays out of the same
+    /// till. This pins the repair as text, because there is no build step here
+    /// and the thing to assert on is the thing that reaches the browser.
+    #[test]
+    fn the_browser_computes_one_balance() {
+        assert!(
+            !INDEX.contains("led.deficit"),
+            "the ledger is still reading the old opposite-signed `deficit`"
+        );
+        assert!(
+            !INDEX.contains("deficit: spend - revenue"),
+            "`ledgerOf` still returns the opposite sign to the budget card"
+        );
+        assert!(
+            INDEX.contains("balance: revenue - spend - interest"),
+            "`ledgerOf` no longer returns the settled balance"
+        );
+        // The displayed draft now goes through the shared ledger instead of
+        // keeping a second assembly in renderLeft. Inspect the actual helper,
+        // so unused variables elsewhere cannot satisfy this accounting guard.
+        let summary = INDEX
+            .split_once("function cabinetBudgetSummary(m) {")
+            .expect("the budget has one shared draft summary").1
+            .split_once("\n}")
+            .expect("the summary helper is complete").0;
+        assert_eq!(summary.matches("ledgerOf(m, p.tax, p.social, p.military, p.invest)").count(), 1,
+            "the draft must read the shared revenue/spending/balance ledger once");
+        assert_eq!(summary.matches("fmt.money(led.revenue * m.gdp)").count(), 1,
+            "revenue must be the ledger's revenue, in annual dollars");
+        assert_eq!(summary.matches("fmt.money((led.spend + led.interest) * m.gdp)").count(), 1,
+            "displayed outlays must include ministries and interest exactly once");
+        assert_eq!(summary.matches("led.interest").count(), 1,
+            "the settled balance already includes interest; do not charge it again");
+        assert!(summary.contains("led.balance < 0 ? \"Funding gap\" : \"Surplus\""));
+        assert_eq!(summary.matches("fmt.money(Math.abs(led.balance) * m.gdp)").count(), 1,
+            "the surplus/deficit amount must use the ledger's single sign convention");
+
+        // THE ELEVENTH ROW SITS ABOVE THE TEN, now selectable ministry tiles
+        // and one inspector rather than ten simultaneous controls. Scope this
+        // assertion to the actual budget panel: an obsolete helper or a row in
+        // another tab cannot satisfy the visual-order contract.
+        let budget_panel = INDEX
+            .split_once("<section id=\"cabinet-budget\"")
+            .expect("the yearly budget has its own tabpanel").1
+            .split_once("<section id=\"cabinet-policy\"")
+            .expect("the budget panel ends before policy").0;
+        let row = budget_panel.find("${interestRow(m)}").expect("debt service is drawn in the budget");
+        let tiles = budget_panel.find("${cabinetMinistryTiles(m, fiscal)}").expect("all ten ministries are selectable");
+        let inspector = budget_panel.find("id=\"cabinetInspector\"").expect("a ministry has a focused inspector");
+        assert!(row < tiles && row < inspector, "debt service must remain above both selection and funding controls");
+        assert!(budget_panel.contains("${cabinetBudgetSummary(m)}"),
+            "the budget tab must actually display the shared summary");
+        assert!(
+            !INDEX.contains("data-ministry=\"interest\""),
+            "the interest row has been given a pair of buttons; nobody votes on it"
+        );
+    }
+
+    /// EIGHT SHARES THAT ADD TO A HUNDRED, which is what the research card's
+    /// own heading promises and what the sim actually does.
+    ///
+    /// `tech` normalises the eight raw weights by their own sum, so the shares
+    /// are exactly one before anything is rounded. Rounding each to a tenth
+    /// independently broke that promise on the shipped card: Belgium's opening
+    /// weights printed 100.2%, and a player reading eight numbers that do not
+    /// add up concludes the model does not normalise. `sharesTo100` moves the
+    /// rounding remainder rather than dropping it, and this asserts the
+    /// property on the sim's OWN weights for every nation on the board rather
+    /// than on the one that happened to expose it.
+    #[test]
+    fn the_eight_research_shares_add_to_a_hundred() {
+        assert!(
+            INDEX.contains("function sharesTo100(raw)"),
+            "the card is rounding each share independently again"
+        );
+        assert!(
+            !INDEX.contains("(draft[i] / sum) * 100"),
+            "the card still prints an independently rounded share"
+        );
+        // The property the JavaScript implements, checked here against the
+        // real weights: largest remainder on tenths always totals 1000.
+        let g = Game::new(1990, None);
+        let mut worst = 0i64;
+        for n in g.world.nations.iter().filter(|n| n.alive) {
+            let dev = (n.gdp * 1000.0 / n.population / 24000.0).min(1.0);
+            let w = spheres_sim::tech::domain_weights_of(&g.world, n, dev);
+            let sum: f64 = w.iter().sum();
+            if !(sum > 0.0) {
+                continue;
+            }
+            // What the OLD card printed: eight independent roundings.
+            let naive: i64 =
+                w.iter().map(|x| (x / sum * 1000.0).round() as i64).sum();
+            worst = worst.max((naive - 1000).abs());
+            // What the new one prints: floor plus the largest remainders.
+            let exact: Vec<f64> = w.iter().map(|x| x / sum * 1000.0).collect();
+            let down: Vec<i64> = exact.iter().map(|x| x.floor() as i64).collect();
+            let left = 1000 - down.iter().sum::<i64>();
+            assert!(
+                (0..=8).contains(&left),
+                "{:?}: {left} tenths left over, which largest-remainder cannot place",
+                n.id
+            );
+        }
+        // Measured, so the defect this repairs is on the record rather than
+        // asserted from memory: independent rounding is off by up to this many
+        // tenths of a percent somewhere on the shipped board.
+        assert!(worst > 0, "no nation's shares round badly, so nothing was repaired");
+        println!("independent rounding misses 100% by up to {worst} tenths on the 1990 board");
+    }
+
+    #[test]
+    fn headlines_land_in_the_right_bucket() {
+        assert_eq!(classify("WAR: Iraq invades Kuwait!"), "war");
+        assert_eq!(classify("Kuwait repels Iraq's invasion — the aggressor's regime totters."), "war");
+        assert_eq!(classify("THE SOVIET UNION HAS DISSOLVED. Russia emerges as successor state."), "politics");
+        assert_eq!(classify("Revolution in Poland — the old regime falls."), "politics");
+        assert_eq!(classify("India conducts nuclear tests. The world condemns; deterrence descends on the subcontinent."), "politics");
+        assert_eq!(classify("United States imposes sanctions on Iraq."), "diplomacy");
+        assert_eq!(classify("Sanctions on Iraq are lifted."), "diplomacy");
+    }
+
+    #[test]
+    fn headlines_name_the_nations_they_are_about() {
+        assert_eq!(mentioned("WAR: Iraq invades Kuwait!"), vec![NationId::Iraq, NationId::Kuwait]);
+        // Dissolution headlines shout, and the tag must survive the capitals.
+        assert_eq!(
+            mentioned("THE SOVIET UNION HAS DISSOLVED. Russia emerges as successor state."),
+            vec![NationId::USSR, NationId::Russia]
+        );
+        assert!(mentioned("Oil steadies.").is_empty());
+    }
+
+    /// Outliving your own state is a legitimate ending — you watch the rest of
+    /// the century from the stands. It was not survivable: the interrupt that
+    /// announces it fired again on the first month of EVERY later advance, so
+    /// the clock moved one month per request forever however many were asked
+    /// for. Measured against the live server as the Soviet Union on seed 1990:
+    /// dissolution in Sep 1993, and then advance after advance asking for 120
+    /// months delivered Sep->Oct, Oct->Nov, Nov->Dec ... each repeating
+    /// "Soviet Union no longer exists." Reaching 2020 from there is 315 clicks.
+    ///
+    /// One seed and one nation is enough here, and iron rule 7 says why: this
+    /// is an INVARIANT, not a statistic. The latch either exists or it does
+    /// not, and a single world where the player dies exercises it completely —
+    /// more seeds would buy power against a regression that cannot be
+    /// intermittent. The Soviet Union on seed 1990 is chosen only because it is
+    /// the shortest path to a dead player.
+    #[test]
+    fn the_clock_still_moves_after_your_nation_is_gone() {
+        let mut g = Game::new(1990, Some(NationId::USSR));
+
+        // Run until the Soviet Union goes, and check the news is delivered once
+        // — on the advance it happens.
+        let mut told = 0;
+        let mut guard = 0;
+        loop {
+            let (_, why) = g.advance(12, vec![]);
+            if why.as_deref().is_some_and(|w| w.contains("no longer exists")) {
+                told += 1;
+                break;
+            }
+            guard += 1;
+            assert!(guard < 60, "the Soviet Union outlived sixty years on seed 1990");
+        }
+        assert_eq!(told, 1, "the dissolution must be announced");
+        assert!(
+            !g.world.nation_opt(NationId::USSR).is_some_and(|n| n.alive),
+            "precondition: the player's nation is gone"
+        );
+
+        // From here the player is a spectator, and a spectator can still watch.
+        // Twelve asked for is twelve delivered — unless some OTHER major event
+        // interrupts, which is the ordinary behaviour and not this defect, so
+        // the bar is that the clock moves by more than the single month the
+        // repeated interrupt used to allow.
+        let before = month_index(g.world.year, g.world.month);
+        let (_, why) = g.advance(12, vec![]);
+        let moved = month_index(g.world.year, g.world.month) - before;
+        assert!(
+            why.as_deref().is_none_or(|w| !w.contains("no longer exists")),
+            "the death must not be re-announced on every later advance: {:?}",
+            why
+        );
+        assert!(
+            moved > 1,
+            "asked for 12 months after the player died and got {}",
+            moved
+        );
+
+        // Ten more advances, and the death is never the reason any of them
+        // stops. What DOES stop them is the ordinary major-event interrupt —
+        // measured here as revolutions in Tajikistan and Georgia and half a
+        // dozen escalations across 1994 — which is that interrupt working, not
+        // this defect. The bar is therefore the shape of the defect and not the
+        // pace of the world: before the fix ten advances delivered exactly ten
+        // months, one per call, and no world event could change that number.
+        let before = month_index(g.world.year, g.world.month);
+        for _ in 0..10 {
+            let (_, why) = g.advance(120, vec![]);
+            assert!(
+                why.as_deref().is_none_or(|w| !w.contains("no longer exists")),
+                "a spectator was told again that their nation is gone: {:?}",
+                why
+            );
+        }
+        let moved = month_index(g.world.year, g.world.month) - before;
+        assert!(
+            moved > 10,
+            "ten advances after the player died moved {} months — one per call              is the signature of the interrupt firing every time",
+            moved
+        );
+    }
+
+    #[test]
+    fn month_index_counts_from_january_1990() {
+        assert_eq!(month_index(1990, 1), 0);
+        assert_eq!(month_index(1990, 12), 11);
+        assert_eq!(month_index(1991, 1), 12);
+    }
+
+    #[test]
+    fn browser_clock_advances_daily_and_histories_settle_monthly() {
+        let mut g = Game::new(1990, None);
+        assert_eq!(g.world.date_str(), "1 Jan 1990");
+        assert_eq!(g.history.len(), 1);
+
+        g.advance_days(1, vec![]);
+        assert_eq!(g.world.date_str(), "2 Jan 1990");
+        assert_eq!(g.history.len(), 1);
+
+        g.advance_days(30, vec![]);
+        assert_eq!(g.world.date_str(), "1 Feb 1990");
+        assert_eq!(g.history.len(), 2);
+        assert_eq!(state_json(&g, None)["day"], 1);
+    }
+
+    #[test]
+    fn daily_browser_history_records_real_first_day_progress() {
+        let mut g = Game::new(1990, None);
+        g.world.rules.daily_simulation = true;
+        let opening_gdp = g.world.nation(NationId::USA).gdp;
+        g.advance_days(1, vec![]);
+        assert_eq!(g.world.date_str(), "2 Jan 1990");
+        assert_eq!(g.history.len(), 2);
+        assert!(g.history[1].t > 0.0 && g.history[1].t < 1.0);
+        assert_eq!(g.history[1].day, Some(2));
+        assert_ne!(g.world.nation(NationId::USA).gdp, opening_gdp);
+        assert_eq!(g.history[1].rows.iter().find(|(id, _)| *id == NationId::USA).unwrap().1.gdp,
+            g.world.nation(NationId::USA).gdp);
+    }
+
+    #[test]
+    fn loading_a_legacy_midmonth_save_finishes_its_open_books_before_daily_play() {
+        // This is the prior browser's ruleset, including physical freight; only
+        // its clock predates daily settlement. Fourteen elapsed calendar days
+        // have not yet paid fourteen days of the old monthly economy.
+        let mut legacy = loaded_play_game(Game::new(1990, Some(NationId::USA)).world);
+        legacy.world.rules.daily_simulation = false;
+        for _ in 0..14 { tick_day(&mut legacy.world, &[]); }
+        assert_eq!(legacy.world.date_str(), "15 Jan 1990");
+        let serialized = spheres_sim::save(&legacy.world);
+        let mut expected = spheres_sim::load(&serialized).unwrap();
+        let mut migrated = loaded_play_game(spheres_sim::load(&serialized).unwrap());
+        assert!(!migrated.world.rules.daily_simulation);
+        assert_eq!(migrated.world.daily.activate_after_month, Some(0));
+        let notice = &state_json(&migrated, None)["simulation_transition"];
+        assert_eq!(notice["status"], "finishing_legacy_month");
+        assert_eq!(notice["starts_on"], "1 Feb 1990");
+        assert_eq!(notice["days_until"], 17);
+        let opening_gdp = migrated.world.nation(NationId::USA).gdp;
+
+        // Loading the pending transition again must neither activate it early
+        // nor reset or drop the month still owed to this save.
+        for _ in 0..10 { tick_day(&mut migrated.world, &[]); }
+        assert_eq!(migrated.world.nation(NationId::USA).gdp, opening_gdp);
+        migrated = loaded_play_game(spheres_sim::load(&spheres_sim::save(&migrated.world)).unwrap());
+        assert_eq!(migrated.world.date_str(), "25 Jan 1990");
+        assert!(!migrated.world.rules.daily_simulation);
+        assert_eq!(migrated.world.daily.activate_after_month, Some(0));
+        for _ in 0..7 { tick_day(&mut migrated.world, &[]); }
+        tick_month(&mut expected, &[]);
+        assert_eq!(migrated.world.date_str(), "1 Feb 1990");
+        assert!(migrated.world.rules.daily_simulation);
+        assert_eq!(migrated.world.daily.activate_after_month, None);
+        let mut paid_month = migrated.world.clone();
+        paid_month.rules.daily_simulation = false;
+        assert_eq!(spheres_sim::save(&paid_month), spheres_sim::save(&expected),
+            "the conversion must post the complete legacy month exactly once");
+        assert!(state_json(&migrated, None)["simulation_transition"].is_null());
+        let february_gdp = migrated.world.nation(NationId::USA).gdp;
+        migrated.advance_days(1, vec![]);
+        assert_eq!(migrated.world.date_str(), "2 Feb 1990");
+        assert_ne!(migrated.world.nation(NationId::USA).gdp, february_gdp,
+            "the day after the protected close must genuinely settle daily");
+    }
+
+    #[test]
+    fn daily_quotes_preserve_stock_units_and_the_actual_january_ledger_in_february() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        g.world.rules.daily_simulation = true;
+        g.world.rules.resource_market = true;
+        g.world.rules.resource_gates = true;
+        g.world.day = 31;
+        tick_day(&mut g.world, &[]);
+        assert_eq!(g.world.date_str(), "1 Feb 1990");
+        let market = g.world.resources.market.as_mut().unwrap();
+        assert_eq!(market.period_days, Some(31));
+        market.cleared_volume[Commodity::Iron.idx()] = 31_000.0;
+        market.fills = vec![resources::SpotFill {
+            buyer: NationId::USA, seller: NationId::Canada,
+            commodity: Commodity::Iron, quantity: 31_000.0, unit_price: 1.0, cost_bn: 1.0,
+        }];
+        let quote = market_quote_json(&g.world, Commodity::Iron);
+        assert_eq!(quote["volume_unit"], "kt/day");
+        assert_eq!(quote["cleared_volume"], 31.0, "actual daily tonnes are not divided a second time");
+        assert_eq!(foreign_commitments_json(&g.world, NationId::USA)["expected_spot_imports_bn"], 372.0,
+            "January's book annualises by 31, not February's 28");
+        let row = read_line(&g.world, NationId::USA, Commodity::Iron,
+            resources::draw(&g.world, NationId::USA)[Commodity::Iron.idx()]);
+        let served = row_json(&g.world, NationId::USA, &row, None);
+        assert_eq!(served["unit"], "kt/day");
+        assert_eq!(served["stock"]["unit"], "kt");
+        assert_eq!(served["produce_per_day"], round(annual_on_board(Commodity::Iron, row.flow) / 28.0, 6),
+            "the next-day forecast uses February while the historical book keeps January");
+        assert_eq!(served["stock"]["quantity"], round(resources::stock_quantity(&g.world, NationId::USA, Commodity::Iron) / 1000.0, 6));
+    }
+
+    #[test]
+    fn daily_manufacturing_two_days_stock_shows_no_false_monthly_shortage() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        let me = NationId::USA;
+        g.world.rules.daily_simulation = true;
+        g.world.rules.resource_market = true;
+        g.world.rules.resource_gates = true;
+        g.world.rules.production_system = true;
+        g.world.rules.manufacturing_system = true;
+        g.world.nation_mut(me).political_capital = 100.0;
+        g.world.production.provinces.push(production::ProvinceCapabilities {
+            district: "US-CA".into(), infrastructure: 0, civilian_industry: 0,
+            power_grid: 0, research_centers: 0, arms_plants: 1,
+        });
+        apply_command(&mut g.world, &Command::StartManufacturingLine {
+            nation: me, district: "US-CA".into(), kit: "arm_gen3".into(),
+        }).unwrap();
+        resources::tick(&mut g.world);
+        let plan = spheres_sim::manufacturing::tick_allocations(&g.world, me).remove(0);
+        let market = g.world.resources.market.as_mut().unwrap();
+        for commodity in ALL {
+            let quantity = plan.required[commodity.idx()] * 2.0;
+            if let Some(stock) = market.stocks.iter_mut()
+                .find(|stock| stock.nation == me && stock.commodity == commodity) {
+                stock.quantity = quantity;
+            } else {
+                market.stocks.push(resources::Stock {
+                    nation: me, commodity, quantity, reserve_target: 0.0,
+                });
+            }
+        }
+        market.stocks.sort_by_key(|stock| (stock.nation, stock.commodity));
+        assert!(spheres_sim::manufacturing::line_shortfalls(&g.world, plan.line)
+            .iter().any(|gap| *gap > 1e-12), "the monthly forecast must be short in this fixture");
+        let view = manufacturing_json(&g.world, me);
+        let requirements = view["lines"][0]["requirements"].as_array().unwrap();
+        assert!(!requirements.is_empty());
+        for requirement in requirements {
+            let commodity = Commodity::parse(requirement["commodity"].as_str().unwrap()).unwrap();
+            let required = round(on_board(commodity, plan.required[commodity.idx()]), 6);
+            let (_, stock_factor) = stock_unit(commodity);
+            assert_eq!(requirement["unit"], daily_board_unit(commodity));
+            assert_eq!(requirement["required"], required);
+            assert_eq!(requirement["draw"], required,
+                "the amount labeled per day must not be the whole monthly recipe");
+            assert_eq!(requirement["priority_available"], required);
+            assert_eq!(requirement["shortfall"], 0.0,
+                "two days of stock covers today's actual recipe");
+            assert_eq!(requirement["stock_available"],
+                round(plan.required[commodity.idx()] * 2.0 * stock_factor, 6));
+        }
+    }
+
+    #[test]
+    fn daily_research_and_manufacturing_cards_quote_the_sims_actual_draw() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        let me = NationId::USA;
+        g.world.rules.daily_simulation = true;
+        g.world.rules.resource_market = true;
+        g.world.rules.resource_gates = true;
+        g.world.rules.production_system = true;
+        g.world.rules.manufacturing_system = true;
+        g.world.nation_mut(me).political_capital = 100.0;
+        g.world.nation_mut(me).arsenal.banked = 2.0;
+        g.world.production.provinces.push(production::ProvinceCapabilities {
+            district: "US-CA".into(), infrastructure: 0, civilian_industry: 0,
+            power_grid: 0, research_centers: 0, arms_plants: 1,
+        });
+        apply_command(&mut g.world, &Command::StartManufacturingLine {
+            nation: me, district: "US-CA".into(), kit: "arm_gen3".into(),
+        }).unwrap();
+        let view = manufacturing_json(&g.world, me);
+        let planned = spheres_sim::manufacturing::tick_allocations(&g.world, me);
+        let monthly = spheres_sim::manufacturing::budget_bn(&g.world, me);
+        assert_eq!(view["finance"]["procurement_budget_bn_day"], round(monthly / 31.0, 6));
+        assert_eq!(view["lines"][0]["allocation_bn_day"], round(planned[0].budget_bn, 6));
+        assert!((planned[0].budget_bn - (monthly / 31.0 + 2.0)).abs() < 1e-12,
+            "banked money is a stock, not divided across the month");
+        for requirement in view["lines"][0]["requirements"].as_array().unwrap() {
+            let c = Commodity::parse(requirement["commodity"].as_str().unwrap()).unwrap();
+            assert_eq!(requirement["unit"], daily_board_unit(c));
+            assert_eq!(requirement["required"], round(on_board(c, planned[0].required[c.idx()]), 6));
+        }
+        let research = research_json(&g.world, me);
+        let total = research["monthly"].as_f64().unwrap();
+        assert_eq!(research["daily"].as_f64().unwrap().to_bits(), (total * (1.0 / 31.0)).to_bits());
+        assert_eq!(research["arms"][0]["value_daily"].as_f64().unwrap().to_bits(),
+            (research["arms"][0]["value"].as_f64().unwrap() * (1.0 / 31.0)).to_bits());
+        for domain in research["domains"].as_array().unwrap() {
+            assert_eq!(domain["rate_daily"].as_f64().unwrap().to_bits(),
+                (total * (1.0 / 31.0) * domain["share"].as_f64().unwrap()).to_bits());
+        }
+        g.world.day = 31;
+        assert_eq!(research_days_left(&g.world, 31.0, 31.0), Some(29));
+        g.world.year = 2000;
+        assert_eq!(research_days_left(&g.world, 31.0, 31.0), Some(30));
+    }
+
+    /// The browser posts DAYS, never months. Re-expressed 2026-09-04, when the
+    /// four fixed jump buttons became HOI4's running clock: "+7 DAYS" is gone
+    /// from the page because that button is gone, so this asserts the same
+    /// claim on the surface that replaced it. The single-step control still
+    /// reads "+1 DAY", the runner and the step each ask for exactly one day,
+    /// the post still carries a `days` field, and the queued note still
+    /// promises the next DAY. Nothing on the page asks for months.
+    #[test]
+    fn browser_surface_posts_days_not_months() {
+        assert!(INDEX.contains("+1 DAY"), "the single-day step lost its label");
+        assert!(INDEX.contains("payload: { days, commands: JSON.parse(JSON.stringify(sources))"));
+        assert!(INDEX.contains("api(\"/api/advance\", request.payload)"));
+        assert!(INDEX.contains("st = await advance(1);"), "the clock's runner no longer asks for one day");
+        assert!(INDEX.contains("return advance(1);"), "the single step no longer asks for one day");
+        assert!(!INDEX.contains("{ months"), "something on the page went back to posting months");
+        assert!(INDEX.contains("effect next day"));
+    }
+
+    /// The speed ladder, in real milliseconds between simulated days, read out
+    /// of the page rather than retyped here — so this cannot pass against a
+    /// ladder the runner does not actually wait on.
+    fn page_speed_ladder() -> Vec<u32> {
+        let tail = INDEX
+            .split("const SPEED_DELAY_MS = [")
+            .nth(1)
+            .expect("the page has no SPEED_DELAY_MS ladder");
+        tail.split(']')
+            .next()
+            .unwrap()
+            .split(',')
+            .map(|s| {
+                s.trim()
+                    .parse::<u32>()
+                    .expect("a speed delay that is not a whole number of milliseconds")
+            })
+            .collect()
+    }
+
+    /// HOI4's ladder: five levels, and the wait between days shortens down it
+    /// until speed 5 waits nothing at all and the clock runs exactly as fast as
+    /// the server answers. Every figure a player can read — the pip's own
+    /// attribute, its tooltip, the keyboard card — is asserted against the same
+    /// array the runner waits on, so the page cannot promise one pace and keep
+    /// another.
+    #[test]
+    fn the_speed_ladder_is_five_levels_of_real_milliseconds() {
+        let ladder = page_speed_ladder();
+        assert_eq!(ladder, vec![1000u32, 500, 250, 100, 0], "the speed ladder moved");
+        assert!(INDEX.contains("SPEED_MAX = SPEED_DELAY_MS.length"), "the top of the ladder is retyped somewhere");
+        for (i, ms) in ladder.iter().enumerate() {
+            let level = i + 1;
+            assert!(
+                INDEX.contains(&format!(r#"data-speed="{level}" data-speed-ms="{ms}""#)),
+                "speed {level} has no clickable pip quoting {ms} ms"
+            );
+            // The tooltip a player actually reads. The last rung has no wait at
+            // all, so it says that instead of quoting a zero.
+            if *ms > 0 {
+                assert!(
+                    INDEX.contains(&format!("Speed {level} — one day every {ms} ms")),
+                    "speed {level}'s tooltip does not quote {ms} ms"
+                );
+            } else {
+                assert!(
+                    INDEX.contains(&format!("Speed {level} — no wait at all")),
+                    "the uncapped speed does not say so"
+                );
+            }
+        }
+        // And the keyboard card quotes the ladder itself, not a copy of it.
+        let quoted = ladder.iter().map(|m| m.to_string()).collect::<Vec<_>>().join(" / ");
+        assert!(
+            INDEX.contains(&format!("({quoted} ms a day)")),
+            "the keys card no longer quotes the ladder it is describing"
+        );
+    }
+
+    /// The clock is a pause/play toggle over a speed ladder, and what it SAYS
+    /// is read from what it IS: the button carries the action pressing it would
+    /// take, the readout beside it carries the state the clock is in.
+    #[test]
+    fn the_browser_carries_a_pause_play_toggle_and_a_truthful_readout() {
+        assert!(INDEX.contains(r#"id="playPauseBtn""#), "no pause/play control");
+        assert!(INDEX.contains(r#"id="clockState""#), "no readout of what the clock is doing");
+        assert!(INDEX.contains("function clockToggle()"));
+        assert!(INDEX.contains("function clockPause()"));
+        assert!(INDEX.contains("function clockPlay()"));
+        assert!(INDEX.contains("function setSpeed(n)"));
+        // The readout names both halves of the state — paused or running, and
+        // which speed — from the clock's own fields.
+        assert!(INDEX.contains(r#"(clock.running ? "RUNNING" : "PAUSED") + " · SPEED " + clock.speed"#));
+        assert!(INDEX.contains(r#"(clock.running ? "PAUSE" : "PLAY")"#));
+        // A single-day step survives, usable while paused, with a key and a
+        // button of its own.
+        assert!(INDEX.contains("function stepDay()"));
+        assert!(INDEX.contains(r#"id="stepBtn" data-step="1""#));
+        assert!(INDEX.contains(r##"$("#stepBtn").onclick = stepDay;"##));
+        // The four controls that shared the old bar are still beside it.
+        for id in ["techBtn", "stockBtn", "saveBtn", "keysBtn"] {
+            assert!(INDEX.contains(&format!(r#"id="{id}""#)), "{id} left the header");
+        }
+    }
+
+    /// The text of one top-level function in the page, from its opening line to
+    /// the closing brace in the first column — so an assertion can be made about
+    /// THAT function rather than about the whole file, which is how a guard in
+    /// one place passes for a guard in another.
+    fn page_fn(open_line: &str) -> &'static str {
+        let start = INDEX
+            .find(open_line)
+            .unwrap_or_else(|| panic!("the page has no `{open_line}`"));
+        let rest = &INDEX[start..];
+        let end = rest
+            .find("\n}")
+            .unwrap_or_else(|| panic!("`{open_line}` is never closed at the first column"));
+        &rest[..end]
+    }
+
+    /// One request in flight, always. The runner CHAINS — post a day, await it,
+    /// adopt it, then arm the next — so a server slower than the delay slows
+    /// the clock instead of stacking days behind it. An interval timer or an
+    /// unawaited post would break that, and neither is allowed here.
+    #[test]
+    fn the_clock_never_has_two_days_in_flight() {
+        assert!(INDEX.contains("if (advancing) return null;"), "the single-flight guard is gone");
+        assert!(INDEX.contains("advancing = true;"));
+        assert!(INDEX.contains("advancing = false;"));
+        assert!(INDEX.contains("st = await advance(1);"), "the runner does not await its day");
+        assert!(
+            INDEX.contains("clock.timer = setTimeout(() => clockStep(gen), clockDelayMs());"),
+            "the next day is not armed after the last one landed"
+        );
+        assert!(
+            !INDEX.contains("setInterval(clockStep"),
+            "an interval would post days without waiting for the last to answer"
+        );
+        assert!(
+            INDEX.contains("if (clock.timer !== null) { clearTimeout(clock.timer); clock.timer = null; }"),
+            "pausing must disarm the timer it armed"
+        );
+    }
+
+    /// PAUSE MEANS STOP, including the day already in flight — the defect the
+    /// skeptic pass found and this is the bar that guards the repair. Clearing
+    /// `clock.timer` cannot retire a chain that is sitting in its await, because
+    /// the timer is null for exactly that stretch: pause-then-play left the old
+    /// chain alive beside the new one, and each armed its own next day. Measured
+    /// in the browser before the repair, with one day's answer held six seconds:
+    /// 2 live chains after one pause-then-play, 3 after six presses of Space
+    /// during one in-flight day, peak 7 in a session, and 13 wakeups producing
+    /// 4 days. The repair is a generation token, and every one of its parts is
+    /// asserted here because any one of them missing brings the chains back.
+    #[test]
+    fn pausing_retires_the_day_that_is_already_in_flight() {
+        assert!(
+            INDEX.contains("const clock = { running: false, speed: 3, timer: null, gen: 0 };"),
+            "the clock carries no generation, so nothing can retire a chain mid-await"
+        );
+        assert!(page_fn("function clockPause() {").contains("clock.gen++;"), "pause retires nothing");
+        let play = page_fn("function clockPlay() {");
+        assert!(play.contains("clock.gen++;"), "play does not take a generation of its own");
+        assert!(play.contains("clockStep(clock.gen);"), "the new chain is not told which one it is");
+        let step = page_fn("async function clockStep(gen) {");
+        let (before, after) = step
+            .split_once("await advance(1);")
+            .expect("the runner no longer awaits a single day");
+        assert!(
+            before.contains("if (gen !== clock.gen) return;"),
+            "a retired chain would still start a day"
+        );
+        assert!(
+            after.contains("if (gen !== clock.gen || !clock.running) return;"),
+            "a chain retired while its day was in flight would carry on"
+        );
+        assert!(
+            after.contains("clock.timer = setTimeout(() => clockStep(gen), clockDelayMs());"),
+            "the next day must be armed as the same generation"
+        );
+        assert!(
+            !step.contains("setTimeout(clockStep,"),
+            "a timer armed without a generation outlives the pause that should have killed it"
+        );
+        // A day the single-flight guard REFUSED is not a day: it is asked again
+        // a frame later, never at speed 5's zero delay, which would spin the
+        // event loop for as long as the other post took.
+        assert!(after.contains("if (st === null) {"), "a refused day is read as a landed one");
+        assert!(
+            after.contains("clock.timer = setTimeout(() => clockStep(gen), CLOCK_RETRY_MS);"),
+            "a refused day re-arms at the running speed"
+        );
+        assert!(INDEX.contains("const CLOCK_RETRY_MS = 16;"), "no retry delay to re-arm on");
+        // advance() answers three ways: a state, `null` when the single-flight
+        // guard refused the day, and `false` when the turn was BLOCKED or FAILED
+        // and the page has already banner-ed the reason. The runner must tell
+        // the last two apart — ask again after a refusal, stop after a failure —
+        // and must read both before `st.interrupt`, or a day that never ran arms
+        // the next one and the clock walks on through its own error message.
+        assert!(
+            page_fn("async function advance(days, retry = false) {").contains("return false;"),
+            "advance no longer answers false; re-derive the runner's arms"
+        );
+        let refused = after.find("if (st === null) {").expect("no refused-day arm");
+        let failed = after
+            .find("if (!st) {")
+            .expect("a blocked or failed turn no longer stops the clock");
+        let interrupt = after.find("if (st.interrupt) {").expect("no interrupt arm");
+        assert!(refused < failed, "the failure arm swallows the refusal it should have retried");
+        assert!(failed < interrupt, "a day that never ran is read for an interrupt");
+        let failed_arm = &after[failed..interrupt];
+        assert!(failed_arm.contains("clockPause();"), "a failed day must stop the clock");
+    }
+
+    /// A player must be able to STOP the clock from wherever they are standing.
+    /// The tech screen and the resource board swallow the keyboard while they
+    /// are up — rightly, since both spend the digits on their own work — and
+    /// before this they swallowed pause with it: measured at speed 1, B to open
+    /// the board then Space, Space, 1, 5, and two more days landed behind it.
+    /// The rule now is one of two things for every full-screen surface: let
+    /// Space through, or stop the clock as you open. The two rooms that cannot
+    /// pass it through take the second half — the keys card is above the banner
+    /// so a press there would have no visible answer, and Global Command spends
+    /// Space clicking the focused agenda button.
+    #[test]
+    fn the_pause_key_reaches_the_clock_from_every_screen() {
+        let space = INDEX
+            .find("if (e.key === \" \" && !e.target?.closest?.('button, summary, select, [role=\"tab\"]')) {")
+            .expect("space is not bound ahead of the screens that swallow the keyboard");
+        let tech = INDEX
+            .find("if (tech.open) { techKeys(e); return; }")
+            .expect("the tech dispatch is gone");
+        let stock = INDEX
+            .find("if (stock.open) { stockKeys(e); return; }")
+            .expect("the resource board dispatch is gone");
+        assert!(space < tech, "the tech screen swallows the pause key");
+        assert!(space < stock, "the resource board swallows the pause key");
+        assert!(
+            page_fn("document.addEventListener(\"keydown\", (e) => {").contains("clockToggle();"),
+            "the pause key no longer toggles the clock"
+        );
+        // The board must stop eating a key it no longer receives.
+        assert!(
+            !page_fn("function stockKeys(e) {").contains("k === \" \""),
+            "the board still swallows Space, which now never reaches it"
+        );
+        // Those two screens cover the header readout, so the press says out loud
+        // what it did.
+        assert!(INDEX.contains("if (tech.open || stock.open) {"));
+        assert!(INDEX.contains(
+            "banner(clock.running ? \"The clock is running — speed \" + clock.speed : \"The clock is paused\");"
+        ));
+        // And the two rooms that take the other half of the rule.
+        assert!(
+            page_fn("function setKeysCard(open) {").contains("if (open) clockPause();"),
+            "the keys card leaves the world running behind a modal that swallows pause"
+        );
+        assert!(
+            page_fn("function openDomination() {").contains("clockPause();"),
+            "Global Command claims the simulation is inert while it is open"
+        );
+        // TWO rules, one press. The pause-only rule at the top of the handler
+        // reaches the rooms this dispatch never gets past — the cabinet, the
+        // decision sheet, the competition room — and the full toggle above takes
+        // the two boards that also have to say what happened. They must not
+        // both fire on the same press, so the top rule excludes those two.
+        let room_pause = INDEX
+            .find("if (clock.running && e.key === \" \" && !typing(e)")
+            .expect("nothing pauses the clock from the rooms below the dispatch");
+        let cabinet = INDEX
+            .find("if (cabinetIsOpen()) { cabinetKeys(e); return; }")
+            .expect("the cabinet dispatch is gone");
+        assert!(room_pause < cabinet, "the cabinet swallows the pause key");
+        assert!(
+            INDEX.contains("      && !tech.open && !stock.open\r\n"),
+            "both space rules fire on one press: the top rule no longer stands aside for the two boards"
+        );
+        // Said on the card, both halves.
+        assert!(INDEX.contains(
+            "<span>Pause / run the clock &mdash; pause reaches every screen</span><span><kbd>Space</kbd></span>"
+        ));
+        assert!(INDEX.contains(
+            "<span>Opening this card, or Global Command, pauses the clock</span>"
+        ));
+    }
+
+    /// The keys are HOI4's. Space toggles; 1..5 pick a speed and run at it;
+    /// plus and minus walk the ladder; N steps a single day. The two screens
+    /// that swallow the keyboard still swallow it, and the world map's zoom
+    /// moved to Z rather than being dropped when + and − became the ladder.
+    #[test]
+    fn the_clock_keys_are_hoi4s() {
+        // Space is bound ahead of the screen dispatches rather than inside the
+        // chain below — see the_pause_key_reaches_the_clock_from_every_screen,
+        // which is where that ordering is the claim.
+        assert!(
+            INDEX.contains(r#"if (e.key === " " && !e.target?.closest?.('button, summary, select, [role="tab"]')) {"#),
+            "space no longer toggles"
+        );
+        assert!(INDEX.contains(r#"k >= "1" && k <= "5""#), "the number keys no longer pick a speed");
+        assert!(INDEX.contains("setSpeed(+k); clockPlay();"), "a number key must set the speed and run");
+        assert!(INDEX.contains(r#"else if (k === "+" || k === "=") { e.preventDefault(); setSpeed(clock.speed + 1); }"#));
+        assert!(INDEX.contains(r#"else if (k === "-" || k === "_") { e.preventDefault(); setSpeed(clock.speed - 1); }"#));
+        assert!(INDEX.contains(r#"else if (k === "n" || k === "N") { e.preventDefault(); stepDay(); }"#), "no single-step key");
+        // Every one of them is on the card the player opens with `?`.
+        assert!(INDEX.contains(
+            r#"<span>Pause / run the clock &mdash; pause reaches every screen</span><span><kbd>Space</kbd></span>"#
+        ));
+        assert!(INDEX.contains(r#"<span>Speed up / slow down</span><span><kbd>+</kbd> <kbd>&minus;</kbd></span>"#));
+        assert!(INDEX.contains(r#"<span>Step one day, and pause</span><span><kbd>N</kbd></span>"#));
+        assert!(INDEX.contains("+1 DAY<i>N</i>"), "the step button does not show its key");
+        // The early returns that keep the ADVANCE keys out of the tech screen
+        // and the resource board are the ones that were already there; pause is
+        // the single exception and is bound above them.
+        assert!(INDEX.contains("if (tech.open) { techKeys(e); return; }"));
+        assert!(INDEX.contains("if (stock.open) { stockKeys(e); return; }"));
+        // The map zoom that + and − used to own.
+        assert!(INDEX.contains(r#"else if (k === "z") mapZoom(1.3);"#));
+        assert!(INDEX.contains(r#"else if (k === "Z") mapZoom(1 / 1.3);"#));
+        assert!(
+            INDEX.contains("<kbd>Z</kbd> <kbd>Shift</kbd>+<kbd>Z</kbd>"),
+            "the card still sends a player to + and − for the world map"
+        );
+    }
+
+    /// The point of the whole feature: a major event stops the clock and leaves
+    /// it stopped. Both halves are asserted — the server's, which decides what
+    /// is major and stops the span early with the headline, and the page's,
+    /// which reads that field, pauses, and says so.
+    ///
+    /// The server half is exercised rather than described. Seed 1990 as the USA
+    /// is asked for ten years in one span; it stops early, and the headline it
+    /// stops on is one `is_major` agrees with. This is an INVARIANT, not a
+    /// statistic — the stop either happens on a major headline or it does not —
+    /// so one world exercises it completely (iron rule 7).
+    #[test]
+    fn a_major_event_stops_the_clock_and_the_server_is_what_decides() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        let asked = 3650usize;
+        let before = month_index(g.world.year, g.world.month);
+        let (stopped, why) = g.advance_days(asked, vec![]);
+        assert!(stopped, "ten years passed with nothing worth stopping for");
+        let headline = why.expect("a stop with no headline to show the player");
+        assert!(
+            is_major(&headline, Some(NationId::USA)),
+            "the clock stopped on something the server does not call major: {headline}"
+        );
+        let moved = month_index(g.world.year, g.world.month) - before;
+        assert!(
+            (moved as usize) * 28 < asked,
+            "the span was not cut short: {moved} months of the {asked} days asked for"
+        );
+        // The field that carries it to the browser.
+        assert!(INDEX.contains("if (st.interrupt) banner(st.interrupt);"));
+        // And the page's half: the runner pauses on it and says the clock is
+        // paused, rather than banner-ing and rolling on.
+        assert!(INDEX.contains("if (st.interrupt) {"), "the runner ignores the interrupt");
+        assert!(INDEX.contains("the clock is paused — press Space to resume"));
+        let runner = INDEX
+            .split("async function clockStep(gen)")
+            .nth(1)
+            .expect("no runner");
+        let interrupt_arm = runner
+            .split("if (st.interrupt) {")
+            .nth(1)
+            .expect("the runner has no interrupt arm");
+        let arm = &interrupt_arm[..interrupt_arm.find("  }").expect("unterminated interrupt arm")];
+        assert!(arm.contains("clockPause();"), "a major event must stop the clock");
+        assert!(arm.contains("return;"), "the runner must not arm another day after an interrupt");
+    }
+
+    /// The clock posts ONE day at a time, so the day-at-a-time replay has to
+    /// report the event the clock is supposed to stop on. It did not: the
+    /// early-stop arm was guarded by `i + 1 < days`, and for a one-day span the
+    /// last day is the only day, so `interrupt` came back null every time. This
+    /// was found in the browser, not here — seed 1990 as the USA, speed 5, and
+    /// the clock ran through 1990 into July 1993 without pausing once while the
+    /// event log filled with headlines naming the player.
+    ///
+    /// An INVARIANT, not a statistic (iron rule 7): a day that produces a major
+    /// headline either hands it back or it does not, so one world exercises it.
+    #[test]
+    fn a_one_day_advance_still_reports_the_event_the_clock_must_stop_on() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        let mut told = None;
+        let mut days = 0usize;
+        for _ in 0..3650 {
+            days += 1;
+            let (stopped, why) = g.advance_days(1, vec![]);
+            assert!(!stopped, "a one-day span has no days left to cut short");
+            if let Some(w) = why {
+                told = Some(w);
+                break;
+            }
+        }
+        let headline = told.expect(
+            "ten years posted one day at a time and not one event was handed back —              the running clock has nothing to stop on",
+        );
+        assert!(
+            is_major(&headline, Some(NationId::USA)),
+            "reported something the server does not call major: {headline}"
+        );
+        assert!(days > 1, "the very first day is a suspicious place to stop");
+    }
+
+    /// The clock never runs when there is no game — not on the nation picker,
+    /// not before the first state lands — and it stops before the world under
+    /// it is replaced.
+    #[test]
+    fn the_clock_does_not_run_without_a_game() {
+        // One reader for "is there a game to run", and everything that moves
+        // time asks it: the post itself, the play, the loop between days and the
+        // keyboard.
+        //
+        // It reads the COMPUTED display, and that is the repair of 2026-09-04.
+        // `#app` is hidden by a stylesheet rule, not an inline style, so the
+        // inline read measured "" on the nation picker: the second half of the
+        // conjunction was true there and held nothing back, leaving `!!S` alone
+        // to keep the clock off the picker. Measured on the boot page —
+        // `$("#app").style.display` "" against `getComputedStyle` "none".
+        assert!(INDEX.contains(
+            "function gameIsUp() { return !!S && getComputedStyle($(\"#app\")).display !== \"none\"; }"
+        ), "the no-game guard is gone or has been copied");
+        assert!(
+            !INDEX.contains("$(\"#app\").style.display === \"none\""),
+            "something asks whether the game is up by reading an inline style that is never set"
+        );
+        assert!(INDEX.contains("if (!gameIsUp()) return null;"), "advance would post without a game");
+        assert!(
+            page_fn("function clockPlay() {").contains("if (!gameIsUp()) return;"),
+            "play would start without a game"
+        );
+        assert!(
+            INDEX.contains("if (!gameIsUp()) return;   // the spectator bail: no game, no game keys"),
+            "the keyboard would work a game that is not there"
+        );
+        assert!(
+            INDEX.contains("if (!gameIsUp()) { clockPause(); return; }"),
+            "the loop would keep ticking a game that is gone"
+        );
+        // Starting a new game stops the clock BEFORE the world under it is
+        // replaced: a day in flight would otherwise land on the new world.
+        let start = INDEX
+            .find(r##"$("#startBtn").onclick"##)
+            .expect("no start-game handler");
+        let post = INDEX[start..]
+            .find(r#"api("/api/new""#)
+            .expect("the start handler no longer posts /api/new");
+        assert!(
+            INDEX[start..start + post].contains("clockPause();"),
+            "a new game must stop the clock before it replaces the world"
+        );
+    }
+
+    #[test]
+    fn ten_ministry_budget_reaches_the_atomic_fiscal_command() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        g.world.nation_mut(NationId::USA).political_capital = 100.0;
+        let posted = serde_json::json!({
+            "kind": "annual_budget", "fiscal_year": 1990,
+            "health": 0.055, "education": 0.040, "housing": 0.045,
+            "pensions": 0.060, "infrastructure": 0.025, "industry": 0.015,
+            "science": 0.010, "defense": 0.050, "security": 0.015,
+            "diplomacy": 0.005
+        });
+        let cmd = parse_command(&g.world, &posted, NationId::USA).expect("budget parses");
+        assert!(matches!(cmd, Command::SetAnnualBudget { .. }));
+        apply_command(&mut g.world, &cmd).unwrap();
+        let n = g.world.nation(NationId::USA);
+        let b = n.annual_budget.as_ref().expect("the budget was not enacted");
+        assert_eq!(b.allocations.len(), 10);
+        assert_eq!(b.fiscal_year, 1990);
+        assert_eq!(n.mil_spend_gdp, 0.05);
+        assert_eq!(nation_json(&g.world, n)["annual_budget"]["due"], false);
+        g.world.year = 1991;
+        assert_eq!(
+            nation_json(&g.world, g.world.nation(NationId::USA))["annual_budget"]["due"],
+            true,
+            "a new fiscal year did not ask for a new budget"
+        );
+
+        assert!(INDEX.contains("sliderHtml(\"rate\""));
+        assert!(INDEX.contains("sliderHtml(\"tax\""));
+        for ministry in ["health", "education", "housing", "pensions", "infrastructure",
+                         "industry", "science", "defense", "security", "diplomacy"] {
+            assert!(INDEX.contains(&format!("id:\"{}\"", ministry)), "{} has no dial", ministry);
+        }
+        let ministry_tiles = INDEX
+            .split_once("function cabinetMinistryTiles(m, fiscal) {")
+            .expect("all ministries have selectable cards").1
+            .split_once("\n}")
+            .expect("the ministry renderer is complete").0;
+        assert!(ministry_tiles.contains("MINISTRIES.map(spec =>"), "cards must expose every ministry, not a hand-picked subset");
+        assert!(ministry_tiles.contains("data-cab-ministry=\"${spec.id}\""));
+        assert!(ministry_tiles.contains("aria-controls=\"cabinetInspector\""));
+        assert!(INDEX.contains("CAB.ministry = b.dataset.cabMinistry;"), "selecting a card must change the inspected ministry");
+        assert_eq!(INDEX.matches("${ministryDial(m, fiscal, spec, i)}").count(), 1,
+            "one focused funding control replaces ten simultaneously expanded dials");
+        assert!(INDEX.contains("id=\"cabinetBudgetSummary\""));
+        assert!(INDEX.contains("${cabinetBudgetSummary(m)}"));
+        assert!(INDEX.contains("annualPoliticalCost"));
+        assert!(INDEX.contains("async function cabinetEnact()"));
+        assert!(INDEX.contains("Enact & advance 1 day →"));
+        assert!(INDEX.contains("await advance(1);"));
+        assert!(INDEX.contains("Employment"));
+    }
+
+    /// A power that dies must leave a line that ends, not one that runs flat to
+    /// the end of the game, and a successor must start where it appeared.
+    #[test]
+    fn the_series_ends_when_a_nation_does() {
+        let mut g = Game::new(1990, None);
+        for _ in 0..360 {
+            let hs = tick_month(&mut g.world, &[]);
+            for h in hs {
+                g.record(h);
+            }
+            g.snapshot();
+        }
+        let h = history_json(&g, None);
+        let n = h["nations"].as_object().unwrap();
+        let months = h["t"].as_array().unwrap().len();
+        assert_eq!(h["t"][0],0.0,"the opening snapshot survives compaction");
+        assert_eq!(h["t"][months-1],360.0,"the latest observation survives");
+        let recent:Vec<_>=h["t"].as_array().unwrap().iter().filter_map(|v|v.as_f64().filter(|t|*t>=120.0)).collect();
+        assert_eq!(recent,(120..=360).map(|m|m as f64).collect::<Vec<_>>(),"all monthly observations in the last twenty years remain");
+        for year in 1990..2000 {
+            assert!(g.history.iter().any(|s|s.year==year && s.month==12),"year {year}'s endpoint must survive");
+        }
+
+        let ussr = &n["USSR"];
+        let ussr_end = ussr["t0"].as_u64().unwrap() as usize + ussr["gdp"].as_array().unwrap().len();
+        assert!(ussr_end < months, "the USSR's line should stop when it does");
+
+        let russia = &n["Russia"];
+        assert_eq!(
+            russia["t0"].as_u64().unwrap() as usize,
+            ussr_end,
+            "Russia picks up the month the Union ends"
+        );
+        for id in n.keys() {
+            let s = &n[id];
+            let len = s["gdp"].as_array().unwrap().len();
+            for m in ["growth", "inflation", "debt", "stability", "mil"] {
+                assert_eq!(s[m].as_array().unwrap().len(), len, "{} {} misaligned", id, m);
+            }
+            assert!(s["t0"].as_u64().unwrap() as usize + len <= months);
+        }
+    }
+
+    /// The offer list is the world's, not the server's: put a nation in the state
+    /// that opens a stratagem and it must appear, priced, with the reason
+    /// attached.
+    #[test]
+    fn the_world_offers_the_player_something_and_says_why() {
+        let mut g = Game::new(1990, Some(NationId::Poland));
+        {
+            let n = g.world.nation_mut(NationId::Poland);
+            n.inflation = 0.45;
+            n.political_capital = 90.0;
+        }
+        let j = stratagems_json(&g.world, NationId::Poland);
+        assert_eq!(j["nation_name"], "Poland");
+        assert_eq!(j["political_capital"], 90.0);
+        let offers = j["offers"].as_array().unwrap();
+        let peg = offers
+            .iter()
+            .find(|o| o["id"] == "currency_peg")
+            .expect("inflation above 15% opens the peg");
+        assert_eq!(peg["cost"], 26.0);
+        assert_eq!(peg["affordable"], true);
+        // Every field the panel prints must be non-empty, or the player is asked
+        // to spend a term's standing on a blank card.
+        for k in ["name", "blurb", "because"] {
+            assert!(!peg[k].as_str().unwrap().is_empty(), "{} missing", k);
+        }
+    }
+
+    /// A price the player cannot pay must read as unaffordable *before* they
+    /// press it, and must still be refused if they do.
+    #[test]
+    fn a_price_the_player_cannot_pay_is_marked_and_refused() {
+        let mut g = Game::new(1990, Some(NationId::Poland));
+        {
+            let n = g.world.nation_mut(NationId::Poland);
+            n.inflation = 0.45;
+            n.political_capital = 10.0;
+        }
+        let j = stratagems_json(&g.world, NationId::Poland);
+        let peg = j["offers"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|o| o["id"] == "currency_peg")
+            .unwrap()
+            .clone();
+        assert_eq!(peg["affordable"], false);
+        assert_eq!(peg["shortfall"], 16.0);
+        let cmd = Command::EnactStratagem {
+            nation: NationId::Poland,
+            id: "currency_peg".into(),
+        };
+        assert!(apply_command(&mut g.world, &cmd).is_err(), "it must refuse");
+    }
+
+    /// The verb the panel presses. A mechanic the player cannot reach from their
+    /// seat is not a mechanic: this asserts the whole route, from the flat JSON
+    /// the button posts to the world actually moving and the capital being spent.
+    #[test]
+    fn the_button_reaches_the_sim_through_the_command_route() {
+        let mut g = Game::new(1990, Some(NationId::Poland));
+        {
+            let n = g.world.nation_mut(NationId::Poland);
+            n.inflation = 0.45;
+            n.political_capital = 90.0;
+        }
+        let posted = serde_json::json!({ "kind": "stratagem", "id": "currency_peg" });
+        let cmd = parse_command(&g.world, &posted, NationId::Poland)
+            .expect("the UI's shape must parse");
+        match &cmd {
+            Command::EnactStratagem { nation, id } => {
+                assert_eq!(*nation, NationId::Poland);
+                assert_eq!(id, "currency_peg");
+            }
+            other => panic!("wrong command: {:?}", other),
+        }
+        apply_command(&mut g.world, &cmd).unwrap();
+        let n = g.world.nation(NationId::Poland);
+        assert!(n.inflation <= 0.06, "the peg must break the inflation");
+        assert_eq!(n.political_capital, 64.0, "26 political capital spent");
+        // And having been taken, it is no longer on offer.
+        let after = stratagems_json(&g.world, NationId::Poland);
+        assert!(after["offers"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .all(|o| o["id"] != "currency_peg"));
+    }
+
+    /// Every state payload carries the offers, so the panel cannot lag the world
+    /// by a month after the clock moves.
+    #[test]
+    fn the_state_payload_carries_the_offers() {
+        let mut g = Game::new(1990, Some(NationId::Poland));
+        g.world.nation_mut(NationId::Poland).inflation = 0.45;
+        let s = state_json(&g, None);
+        assert_eq!(s["stratagems"]["nation"], "Poland");
+        assert!(!s["stratagems"]["offers"].as_array().unwrap().is_empty());
+        // A spectator with no nation gets null rather than a fabricated menu.
+        let spectator = Game::new(1990, None);
+        assert!(state_json(&spectator, None)["stratagems"].is_null());
+    }
+
+    /// The domination screen is deliberately a read model, not a second game
+    /// model in JavaScript. This pins every field the artistic surface needs to
+    /// the simulation's own campaign and proves a new game always receives the
+    /// promised hand of three distinct directives.
+    #[test]
+    fn domination_is_a_complete_server_authored_campaign_contract() {
+        let g = Game::new(1990, Some(NationId::Poland));
+        let state = state_json(&g, None);
+        let d = &state["domination"];
+        let sim = spheres_sim::domination::status(&g.world, NationId::Poland);
+
+        assert_eq!(d["progress"], serde_json::json!(sim.progress));
+        assert_eq!(d["victory"], serde_json::json!(sim.victory));
+        assert_eq!(
+            d["independent_rivals"],
+            serde_json::json!(sim.independent_rivals.len()),
+            "the page receives the count; it must not derive it"
+        );
+        assert_eq!(
+            d["rivals"].as_array().expect("named rival list").len(),
+            sim.independent_rivals.len()
+        );
+        assert_eq!(d["directly_controlled"], serde_json::json!(sim.directly_controlled));
+        assert_eq!(d["subordinate_clients"], serde_json::json!(sim.subordinate_clients));
+        assert!(d["goal"].as_str().is_some_and(|s| s.contains("No independent rival")));
+        assert!(d["active_agenda"].is_null());
+        assert!(d["completed_legacy"].as_array().unwrap().is_empty());
+
+        let offers = d["offers"].as_array().expect("three agenda cards");
+        assert_eq!(offers.len(), 3);
+        let ids = offers
+            .iter()
+            .map(|offer| offer["id"].as_str().expect("stable agenda id"))
+            .collect::<std::collections::BTreeSet<_>>();
+        assert_eq!(ids.len(), 3, "the three choices must be distinct");
+        for offer in offers {
+            for field in [
+                "id",
+                "title",
+                "kicker",
+                "description",
+                "route",
+                "state_reason",
+                "accent",
+                "figure_nation_id",
+            ] {
+                assert!(
+                    offer[field].as_str().is_some_and(|s| !s.trim().is_empty()),
+                    "agenda card has no {field}: {offer}"
+                );
+            }
+            assert_eq!(offer["stakes"].as_array().unwrap().len(), 3);
+            assert_eq!(offer["progress"], serde_json::json!(0.0));
+        }
+        let milestones = d["milestones"].as_array().expect("four campaign marks");
+        assert_eq!(milestones.len(), 4);
+        assert!(milestones.iter().all(|m| m["reached"] == false));
+        assert_eq!(d["next_action"]["system"], "domination");
+        assert_eq!(d["next_action"]["enabled"], true);
+        assert!(d["blocker"]["route"].as_str().is_some());
+
+        // Observers have no government and therefore no invented campaign.
+        assert!(state_json(&Game::new(1990, None), None)["domination"].is_null());
+    }
+
+    /// The browser posts the card's stable id. Prove the complete path: flat
+    /// JSON -> command enum -> sim mutation -> active read model. Missing,
+    /// mistyped and empty ids are malformed rather than silently choosing a
+    /// default card.
+    #[test]
+    fn choosing_a_domination_agenda_reaches_the_sim_by_stable_id() {
+        let mut g = Game::new(1990, Some(NationId::Poland));
+        let before = domination_json(&g.world, NationId::Poland);
+        let id = before["offers"][0]["id"].as_str().unwrap().to_string();
+        let posted = serde_json::json!({
+            "kind": "choose_domination_agenda",
+            "id": id,
+        });
+        let command = parse_command(&g.world, &posted, NationId::Poland)
+            .expect("the agenda card's payload parses");
+        match &command {
+            Command::ChooseDominationAgenda { nation, agenda } => {
+                assert_eq!(*nation, NationId::Poland);
+                assert_eq!(agenda, &id);
+            }
+            other => panic!("agenda card produced the wrong command: {other:?}"),
+        }
+        apply_command(&mut g.world, &command).expect("a current offered agenda may be chosen");
+
+        let after = domination_json(&g.world, NationId::Poland);
+        assert_eq!(after["active_agenda"]["id"], id);
+        assert!(after["active_agenda"]["progress"].as_f64().is_some());
+        assert_ne!(after["next_action"]["system"], "domination");
+        assert_eq!(after["milestones"].as_array().unwrap().len(), 4);
+
+        for malformed in [
+            serde_json::json!({ "kind": "choose_domination_agenda" }),
+            serde_json::json!({ "kind": "choose_domination_agenda", "id": "" }),
+            serde_json::json!({ "kind": "choose_domination_agenda", "id": "   " }),
+            serde_json::json!({ "kind": "choose_domination_agenda", "id": 1 }),
+        ] {
+            assert!(
+                parse_command(&g.world, &malformed, NationId::Poland).is_none(),
+                "malformed agenda command parsed: {malformed}"
+            );
+        }
+    }
+
+    /// The surface itself. These strings are the panel's structure: if the markup
+    /// or the wiring is renamed away, this fails rather than shipping a model
+    /// with no verb attached to it.
+    #[test]
+    fn the_panel_exists_and_is_wired_to_the_route() {
+        // The card, one row per offer, and the four things a row must say.
+        assert!(INDEX.contains("function stratagemsHtml"));
+        assert!(INDEX.contains("class=\"strat"));
+        assert!(INDEX.contains("data-strat="));
+        assert!(INDEX.contains("class=\"why\""));
+        // The balance, prominently: in the header and at the head of the panel.
+        assert!(INDEX.contains("id=\"hdrPc\""));
+        assert!(INDEX.contains("class=\"pcbig\""));
+        // The verb, the hand that presses it, and the route it goes down. Match
+        // to the delimiter: `contains("window.enact")` also passes for
+        // `window.enactAnythingElse`, which is a test that cannot fail.
+        assert!(INDEX.contains("window.enact = async"));
+        assert!(INDEX.contains("enact(b.dataset.strat"));
+        assert!(INDEX.contains("kind: \"stratagem\""));
+        assert!(INDEX.contains("/api/command"));
+        // Read from the payload the server actually sends.
+        assert!(INDEX.contains("S.stratagems"));
+        // No CDN, no build step.
+        assert!(!INDEX.contains("https://"), "the UI must stay self-contained");
+    }
+
+    /// Starting a game is the one action with no screen behind it to fall back
+    /// on, so it is the one that must never fail in silence — and it did. `api`
+    /// called `r.json()` without reading the status, so a refusal arrived as an
+    /// ordinary object nothing looked at, and `#startBtn.onclick` had no
+    /// try/catch, so a server that was not there left the handler's promise
+    /// rejected and the setup screen byte-for-byte as it was: same button, same
+    /// caption, no message. Measured before the fix, with the server stopped
+    /// between picking Poland and pressing GOVERN: nothing on screen changed and
+    /// the console carried `Uncaught (in promise) TypeError: Failed to fetch at
+    /// api ... at $.onclick`.
+    ///
+    /// A substring check against the served HTML, for the reason
+    /// `every_nation_on_the_board_has_somewhere_to_be_drawn` gives: this file
+    /// ships by `include_str!` and has no build step, so the thing to assert on
+    /// is the thing that reaches the browser.
+    #[test]
+    fn a_refused_start_says_so_instead_of_freezing_the_setup_screen() {
+        // `api` must read the status before it reads the body, and must carry
+        // the server's own sentence out when there is one.
+        assert!(INDEX.contains("if (!r.ok)"), "api() must check the response status");
+        assert!(
+            INDEX.contains("const error = new Error((data && data.error)") && INDEX.contains("throw error;"),
+            "a refusal must surface the server's own message"
+        );
+        // A dead server is a caught failure, not an unhandled rejection.
+        assert!(
+            INDEX.contains("The SPHERES server is not answering"),
+            "an unreachable server must have a sentence of its own"
+        );
+        // The hand that presses START must catch, say, and give the button back.
+        let start = INDEX
+            .split_once("$(\"#startBtn\").onclick")
+            .expect("the setup screen still has a start button")
+            .1
+            .split_once("\n};")
+            .expect("the start handler is still brace-terminated")
+            .0;
+        assert!(start.contains("catch"), "the start handler must catch");
+        assert!(start.contains("banner("), "and must say what went wrong");
+        assert!(
+            start.contains("b.disabled = false"),
+            "and must hand the button back so the player can try again"
+        );
+        // And the route it calls answers a refusal with a status worth reading —
+        // the half of this that lives in Rust. Poland is on the board; the
+        // successor states are not.
+        let mut g = Game::new(1990, None);
+        let (_, ok) = new_game(&mut g, 1990, Some(NationId::Poland));
+        assert!(ok);
+        let refused = spheres_sim::world::successor_nations()[0];
+        let (v, ok) = new_game(&mut g, 1990, Some(refused));
+        assert!(!ok);
+        assert!(
+            v["error"].is_string(),
+            "the browser reads `error` off the refusal; it must be there"
+        );
+    }
+
+    /// The terrain layer ships baked, like world.js: a real PNG behind
+    /// /terrain.png, the generated river layer behind /rivers.js, and the
+    /// page actually mounting both — all of it local, because the
+    /// self-contained guard above binds every href to this binary.
+    #[test]
+    fn the_map_ships_terrain_and_rivers() {
+        assert!(
+            TERRAIN_PNG.starts_with(b"\x89PNG\r\n\x1a\n"),
+            "terrain.png is not a PNG"
+        );
+        // The four GL terrain textures, baked by tools/terrain/make_relief.py,
+        // make_coast.py, make_cover.py, make_occlusion.py (which repacks relief.png's
+        // B plane on land) and make_lakes.py. Nothing else in this binary would notice a
+        // truncated or absent artifact: the routes serve whatever bytes are included.
+        for (name, bytes) in [
+            ("relief.png", RELIEF_PNG),
+            ("coast.png", COAST_PNG),
+            ("cover.png", COVER_PNG),
+            ("lake.png", LAKE_PNG),
+            ("height-detail.png", HEIGHT_DETAIL_PNG),
+        ] {
+            assert!(bytes.starts_with(b"\x89PNG\r\n\x1a\n"), "{name} is not a PNG");
+            // relief.png, coast.png and lake.png are sampled as numbers, not looked at. A
+            // colour chunk would license a decoder to gamma-correct them, which destroys
+            // the packed uint16 elevation outright and moves both shorelines' zero
+            // crossings.
+            for chunk in [&b"gAMA"[..], &b"sRGB"[..], &b"iCCP"[..]] {
+                assert!(
+                    !bytes.windows(4).any(|w| w == chunk),
+                    "{name} carries a colour-management chunk"
+                );
+            }
+        }
+        assert!(RIVERS_JS.starts_with("// Generated by tools/terrain/make_rivers.py"));
+        assert!(RIVERS_JS.contains("window.RIVERS="));
+        assert!(!RIVERS_JS.contains("https://"), "rivers.js must stay self-contained");
+        // The terrain class layer, baked the same way and read via the same
+        // guard: `window.TERRAIN || { byId: {} }` in the page means a missing
+        // route renders silently, so only this test notices a bad artifact.
+        assert!(TERRAIN_JS.starts_with("// Generated by tools/terrain/classify_districts.py"));
+        assert!(TERRAIN_JS.contains("window.TERRAIN={byId:"));
+        assert!(!TERRAIN_JS.contains("https://"), "terrain.js must stay self-contained");
+        // The page loads the river data and the class layer via the routes. It
+        // no longer MOUNTS them as svg: paintPolitical() draws the rivers, the
+        // lakes and the district mesh into the political texture from the same
+        // arrays, which is why the route matters and #riverg no longer does.
+        assert!(INDEX.contains("src=\"/rivers.js\""));
+        assert!(INDEX.contains("src=\"/terrain.js\""));
+        assert!(
+            INDEX.contains("WaterDetail.paint(ctx, RIVERS.rivers, detail,")
+                && WATER_DETAIL_JS.contains("ctx.stroke(settings.path(entry.path))"),
+            "the rivers no longer reach the map"
+        );
+        assert_eq!(u32::from_be_bytes(HEIGHT_DETAIL_PNG[16..20].try_into().unwrap()), 4800);
+        assert_eq!(u32::from_be_bytes(HEIGHT_DETAIL_PNG[20..24].try_into().unwrap()), 2036);
+        assert_eq!(&HEIGHT_DETAIL_PNG[24..26], &[8, 2], "packed height must stay RGB8");
+        assert!(HEIGHT_DETAIL_JS.contains("/height-detail.png"));
+        for path in ["/terrain-labels.js", "/water-detail.js", "/height-detail.js", "/shader-loader.js", "/terrain-surface.js", "/city-detail.js"] {
+            assert!(INDEX.contains(path), "missing map detail module {path}");
+        }
+        let native: serde_json::Value = serde_json::from_str(TERRAIN_TILES_MANIFEST).unwrap();
+        let tiles = native["tiles"].as_object().unwrap();
+        assert_eq!(tiles.len(), 648, "native terrain must cover every geographic tile");
+        for tile in tiles.values() {
+            if let Some(file) = tile["file"].as_str() {
+                let bytes = terrain_tiles::terrain_tile(file).expect("manifest tile is absent from this binary");
+                assert!(bytes.starts_with(b"\x89PNG\r\n\x1a\n"));
+                assert_eq!(bytes.len() as u64, tile["bytes"].as_u64().unwrap());
+                assert_eq!(u32::from_be_bytes(bytes[16..20].try_into().unwrap()), 602);
+                assert_eq!(u32::from_be_bytes(bytes[20..24].try_into().unwrap()), 602);
+            } else { assert!(tile["constant_code"].as_u64().unwrap() <= 65535); }
+        }
+        assert!(terrain_tiles::terrain_tile("../save.json").is_none());
+        // /terrain.png is DELIBERATELY UNREFERENCED. It was the fallback the GL
+        // layer dropped back to on a lost context, and a sphere has no svg under
+        // it to fall back onto -- so the <image> that fetched 613 KB on every
+        // load to hold a fallback that can no longer be taken was deleted. The
+        // route still serves the file for anything else that wants it; if this
+        // assertion ever fails, someone has re-mounted a flat hillshade on a
+        // globe and it will be stretched over the sphere.
+        // Asserted on the MOUNTING form, not on the string: this file argues in
+        // prose beside the code it is arguing about, and /terrain.png is named
+        // in several comments explaining why it is no longer drawn.
+        assert!(
+            !INDEX.contains("href=\"/terrain.png\""),
+            "the flat PNG underlay is mounted again on a map that is not flat"
+        );
+        // The GL globe samples all four baked textures through these routes. The
+        // page fetches them by literal string, so a renamed route is only caught here.
+        for path in ["/relief.png", "/coast.png", "/cover.png", "/lake.png"] {
+            assert!(INDEX.contains(path), "the GL layer does not reference {path}");
+        }
+        // The globe's own two scripts, likewise fetched by literal string.
+        for path in ["/globe3d.js", "/cities.js"] {
+            assert!(INDEX.contains(path), "the globe does not reference {path}");
+        }
+        // THE POINTER-EVENTS RULE INVERTED WHEN THE MAP BECAME A SPHERE, and
+        // getting it backwards is silent. On the flat map the WebGL canvas sat
+        // UNDER an svg that owned the input, so the canvas had to take no
+        // pointer events. On the globe the canvas IS the map and owns the
+        // camera, so it must take them -- and the 2D overlay stacked over it,
+        // which covers the sphere completely, must not.
+        assert!(
+            INDEX.contains("#glmap { position: absolute; inset: 0;"),
+            "the globe's canvas must fill the stage"
+        );
+        assert!(
+            !INDEX.contains("#glmap { position: absolute; pointer-events: none;"),
+            "the globe's canvas has been made inert -- it owns the camera now, so \
+             this kills drag, zoom, hover and every click on the map"
+        );
+        // `#version 300 es` must be the first bytes of every shader string -- a leading
+        // newline is a silent compile failure, and nothing downstream would report it.
+        let declared=INDEX.matches("const GLSL_").count();
+        let opened=INDEX.matches(" = `#version 300 es").count();
+        assert!(declared>=5,"only {declared} inline GLSL constants found");
+        assert_eq!(opened,declared,"every shader must start at its version directive");
+        // The one failure exit. It no longer reveals a fallback map, because
+        // there is none: it says what happened where the map would have been.
+        assert!(INDEX.contains("function glFail("));
+        assert!(
+            INDEX.contains("class=\"globe-fallback\""),
+            "glFail must leave the player something legible on the stage -- a \
+             globe that cannot draw has no svg underneath to fall back to"
+        );
+
+        // ---- the window the ground shows through. It used to be a handful of
+        // CSS rules on an svg stacked over the canvas; it is now one uniform.
+        // Every line here fails SILENTLY if it is edited away: the map still
+        // renders, it just renders the wrong thing.
+
+        // THE PER-CAMERA RAMP, AND WHERE IT IS APPLIED, which is the part that
+        // is easy to get wrong twice. On the flat map --fop was a custom
+        // property stamped on the <svg> per gesture frame, and it multiplied
+        // into ONE rule: `.nodeg path`'s fill-opacity. It therefore quieted the
+        // nation fills far out and left the graticule, the country outlines,
+        // the district mesh, the rivers and the front seam at their authored
+        // strength.
+        //
+        // Handing it to the shader as a single multiplier over the whole
+        // political texture is the obvious port and it is WRONG: it put
+        // Terrain's rivers at .098 instead of .9 and dimmed every outline on
+        // the map by 10-18%. The ramp belongs in the nation fill's own alpha,
+        // where --w put it, and the texture is composited at full strength.
+        assert!(
+            INDEX.contains("ctx.globalAlpha = op * g.fop;"),
+            "the camera ramp must be painted into the nation fill's own alpha, \
+             not applied to the political texture as a whole"
+        );
+        assert!(
+            INDEX.contains("gl.uniform1f(u.polOp, 1);"),
+            "uPolOp must composite the political texture at full strength -- the \
+             ramp is already in it"
+        );
+        // ...and a ramp baked into a texture has to invalidate that texture
+        // when it moves, or the fills freeze at whatever zoom last repainted.
+        assert!(
+            INDEX.contains("if (Math.abs(fop - POL.fop) > 0.015) POL.dirty = true;"),
+            "a camera move that changes the ramp must dirty the political texture"
+        );
+        assert!(
+            INDEX.contains("col = col * (1.0 - pol.a * uPolOp) + pol.rgb * uPolOp;"),
+            "the shader no longer composites the political layer over the ground"
+        );
+        // The unaligned world is drawn as an OUTLINE AND NOTHING ELSE, and that
+        // is a real change with a reason. The flat map filled it #333c48 and had
+        // the GL ground replace that fill through a CSS window; the shader's own
+        // `legacy` term already IS that exact tone, so a fill here would be
+        // painting #333c48 over #333c48 -- and would hide the physical ground it
+        // was invented to stand in for.
+        assert!(
+            INDEX.contains("if (!claimed[code]) ctx.stroke(p2d(WORLD.countries[code]));"),
+            "the unaligned world has lost the outline GL cannot draw"
+        );
+        // The selection rides ABOVE the ramp. Dimming a highlight with the same
+        // curve that quiets the political layer far out would hide it exactly
+        // when the player is furthest away and needs it most.
+        assert!(
+            INDEX.contains("col = col * (1.0 - sel.a) + sel.rgb;"),
+            "the selection layer must composite at full strength"
+        );
+
+        // Four modes carry a ground and four deliberately do not: the thematic
+        // reads are preserved by the ABSENCE of this key, which is what stands
+        // the whole layer down rather than merely turning it to zero.
+        //
+        // This count was 3 until Resources became its own map mode. Resources is
+        // a reading of the PHYSICAL ground -- where the ore is -- so it earns a
+        // ground block on exactly the same argument Terrain does, and it was
+        // authored with one (a quiet u: [0.30, 0.55] under a wash that must stay
+        // the subject). The number moved because a mode was ADDED, not because a
+        // mode silently lost its ground, which is the failure this assertion
+        // exists to catch: raise it only alongside a new `ground:` block you can
+        // name, and never lower it to make a red test green.
+        assert_eq!(
+            INDEX.matches("\n    ground: {").count(),
+            4,
+            "exactly Political, Fronts, Terrain and Resources may carry a MAP_MODES ground block"
+        );
+        // ...and the four thematic modes must still have none. Asserted as a
+        // total so the count above cannot be satisfied by a thematic mode
+        // gaining a ground while a physical one loses it -- the exact swap a
+        // bare count is blind to.
+        for mode in ["relations", "stability", "growth", "economy"] {
+            let at = INDEX
+                .find(&format!("\n  {mode}: {{"))
+                .unwrap_or_else(|| panic!("MAP_MODES lost its {mode} mode"));
+            // Each MAP_MODES entry closes on a `},` at two-space indent, so that
+            // is the delimiter -- NOT the next "\n  ", which every four-space
+            // line inside the block also matches.
+            let rest = &INDEX[at + 1..];
+            let end = rest.find("\n  },").map(|e| e + 1).unwrap_or(rest.len());
+            assert!(
+                !rest[..end].contains("\n    ground: {"),
+                "{mode} is a thematic mode: colour IS the data, so it must carry no ground"
+            );
+        }
+    }
+
+    #[test]
+    /// The one number that can silently put every click on the wrong country.
+    ///
+    /// globe3d.js and the ground shader are TWO INDEPENDENT implementations of
+    /// mapgen's Robinson projection. The shader inverts it (canvas -> lat/lon,
+    /// for the hillshade metric) and projects it forward (lat/lon -> canvas,
+    /// for the raycast); globe3d.js does both in JS, for picking and for the
+    /// overlay. They read the same two 19-entry tables, and NOTHING AT RUNTIME
+    /// COMPARES THEM: a table edited in one file and not the other gives a map
+    /// that draws correctly and picks the country next door -- worse toward the
+    /// poles, where the tables diverge fastest -- with no error anywhere.
+    ///
+    /// This is that comparison, made once, in the only place that can see both.
+    fn the_globe_and_the_shader_project_the_same_world() {
+        // The two files spell the tables differently -- GLSL needs
+        // `float[19](...)` and JS wants a bare array -- so the numbers are
+        // pulled out and compared as numbers rather than as strings.
+        fn numbers(src: &str, after: &str) -> Vec<f64> {
+            let at = src.find(after).unwrap_or_else(|| panic!("{after} is gone"));
+            let rest = &src[at + after.len()..];
+            let open = rest.find(['(', '[']).expect("no table follows");
+            let shut = if rest.as_bytes()[open] == b'(' { ')' } else { ']' };
+            let close = rest[open..].find(shut).expect("unclosed table") + open;
+            rest[open + 1..close]
+                .split(',')
+                .map(|t| {
+                    let t = t.trim();
+                    t.parse::<f64>().unwrap_or_else(|e| panic!("{after}: {t:?} -> {e}"))
+                })
+                .collect()
+        }
+        for (name, in_js, in_glsl) in [
+            ("RX", "const RX_T =", "const float RX_T[19] = float[19]"),
+            ("RY", "const RY_T =", "const float RY_T[19] = float[19]"),
+        ] {
+            let js = numbers(GLOBE3D_JS, in_js);
+            let gl = numbers(INDEX, in_glsl);
+            assert_eq!(js.len(), 19, "{name} in globe3d.js is not 19 entries");
+            assert_eq!(gl.len(), 19, "{name} in the shader is not 19 entries");
+            for (i, (a, b)) in js.iter().zip(gl.iter()).enumerate() {
+                assert!(
+                    (a - b).abs() < 1e-9,
+                    "{name}[{i}] disagrees: globe3d.js {a} vs the shader {b} -- \
+                     the globe would pick a different country than it draws"
+                );
+            }
+        }
+        // The clip, which decides where the texture stops and the ice starts.
+        assert!(GLOBE3D_JS.contains("const LAT_TOP = 83;"));
+        assert!(GLOBE3D_JS.contains("const LAT_BOTTOM = -58;"));
+        assert!(INDEX.contains("const float LAT_TOP = 83.0;"));
+        assert!(INDEX.contains("const float LAT_BOT = -58.0;"));
+
+        // AND THE WIDTH IS DERIVED, NOT WRITTEN DOWN. globe3d.js was first
+        // written against a 1000-wide bake; this canvas is 2400 wide. A
+        // hard-coded width would have moved every coastline by a factor of 2.4
+        // while the page went on insisting the map was fine.
+        assert!(
+            GLOBE3D_JS.contains("function mapWidth() { return (window.WORLD && window.WORLD.w) || 2400; }"),
+            "globe3d.js must take the canvas width from the live bake"
+        );
+        assert!(
+            GLOBE3D_JS.contains("function radius() { return mapWidth() / (2 * .8487 * PI); }"),
+            "the projection radius must be derived from that width, not written down"
+        );
+    }
+
+    #[test]
+    /// The globe's two files reach the browser, and the page asks for them.
+    fn the_globe_ships_its_camera_and_its_cities() {
+        assert!(
+            GLOBE3D_JS.starts_with("// The globe's camera, input and screen-space overlay."),
+            "globe3d.js is not the file this binary thinks it is"
+        );
+        assert!(GLOBE3D_JS.contains("window.Globe3D = Globe3D;"));
+        assert!(
+            !GLOBE3D_JS.contains("https://"),
+            "globe3d.js must stay self-contained -- no CDN, no build step"
+        );
+        // It must not shade anything. The ground is 680 lines of GLSL in
+        // index.html with its own invariants; a second renderer in here would
+        // be a second opinion about what the world looks like.
+        assert!(
+            !GLOBE3D_JS.contains("getContext(\"webgl"),
+            "globe3d.js has grown its own WebGL context -- the ground belongs to \
+             the page's shader, and two of them will eventually disagree"
+        );
+        assert!(
+            CITIES_JS.starts_with("// Natural Earth 1:50m populated places (public domain)."),
+            "cities.js has lost its provenance line"
+        );
+        assert!(CITIES_JS.contains("window.CITIES=["));
+        assert!(!CITIES_JS.contains("https://"), "cities.js must stay self-contained");
+        // Every field the label pass reads. A city missing one renders as
+        // "undefined" in the middle of the ocean.
+        for field in ["\"name\":", "\"lon\":", "\"lat\":", "\"pop\":", "\"rank\":", "\"capital\":"] {
+            assert!(CITIES_JS.contains(field), "cities.js has lost {field}");
+        }
+        assert!(INDEX.contains("<script src=\"/cities.js\"></script>"));
+        assert!(INDEX.contains("<script src=\"/globe3d.js\"></script>"));
+    }
+
+    #[test]
+    /// EVERY KIT IN THE DECK HAS A MODEL, AND UNDER THE NAME THE DECK GIVES IT.
+    ///
+    /// The deck is edited in Rust and the models are written in JavaScript, so
+    /// they can drift in both directions and neither language would say a word:
+    /// a kit added to `arsenal::DECK` would quietly draw its class's stand-in
+    /// forever, and a model left behind after a kit was removed would sit in
+    /// the payload of every page load with nothing to draw it for. This is the
+    /// only place the two decks are ever compared, so it checks both ways.
+    fn every_kit_in_the_deck_has_a_model() {
+        for def in spheres_sim::arsenal::registry() {
+            assert!(
+                ARSENAL_MODELS_JS.contains(&format!("\n    {}: {{", def.id)),
+                "kit {} is in the deck with no model in arsenal-models.js",
+                def.id
+            );
+            assert!(
+                ARSENAL_MODELS_JS.contains(&format!("name: \"{}\"", def.name)),
+                "kit {}'s model is named something other than {:?}",
+                def.id, def.name
+            );
+        }
+        // The other direction, counted rather than named: one `build` per model.
+        assert_eq!(
+            ARSENAL_MODELS_JS.matches("build(m) {").count(),
+            spheres_sim::arsenal::registry().len(),
+            "arsenal-models.js holds a different number of models than the deck \
+             holds kits -- a model has outlived the kit it was drawn for"
+        );
+        // Six classes, six fallbacks. A browser handed an id from a newer build
+        // than its own must still draw the right KIND of thing.
+        for class in ["infantry", "armour", "air", "naval", "missile", "space"] {
+            assert!(
+                ARSENAL_MODELS_JS.contains(&format!("{class}: \"")),
+                "no fallback model for the {class} class"
+            );
+        }
+    }
+
+    #[test]
+    /// The models reach the cards, and they cost the page nothing it has not
+    /// already agreed to pay.
+    fn the_equipment_models_are_self_contained_and_degrade_to_the_glyph() {
+        for (name, src) in [("arsenal-models.js", ARSENAL_MODELS_JS), ("arsenal3d.js", ARSENAL3D_JS)] {
+            assert!(!src.contains("https://"), "{name} must stay self-contained -- no CDN");
+        }
+        // The split that makes the geometry testable outside a browser: the
+        // model file must not touch the DOM, and the renderer owns exactly one
+        // context for the whole page.
+        assert!(
+            !ARSENAL_MODELS_JS.contains("document.") && !ARSENAL_MODELS_JS.contains("getContext("),
+            "arsenal-models.js has grown a DOM dependency -- it is built and \
+             exported under node by tools/arsenal/export_obj.js and must stay pure"
+        );
+        assert_eq!(
+            ARSENAL3D_JS.matches("getContext(\"webgl2\"").count(), 1,
+            "arsenal3d.js must keep ONE WebGL2 context for the whole panel; a \
+             context per card is dropped by the browser once a grid gets long"
+        );
+        assert!(INDEX.contains("<script src=\"/arsenal-models.js\"></script>"));
+        assert!(INDEX.contains("<script src=\"/arsenal3d.js\"></script>"));
+        assert!(INDEX.contains("<link rel=\"stylesheet\" href=\"/arsenal3d.css\">"));
+        assert!(
+            INDEX.contains("Arsenal3D.scan(body);"),
+            "the manufacturing panel replaces its own innerHTML; without a \
+             re-scan the models are drawn once and never again"
+        );
+        // THE FALLBACK IS THE GLYPH, and it only works while the glyph is still
+        // emitted. arsenal3d.css hides it on a card that got a model; a machine
+        // with no WebGL2 keeps every one of them.
+        assert!(
+            INDEX.contains("const MANU_CLASS_MARK = {")
+                && INDEX.contains("<b class=\"mark\">${manufacturingClassMark(line.class)}</b>"),
+            "the class glyph must stay in the markup -- it is the whole no-WebGL path"
+        );
+        assert!(ARSENAL3D_CSS.contains(".equipment-choice.has-kit3d::before { display: none; }"));
+    }
+
+    #[test]
+    /// The two canvases are RETAINED and re-adopted, never rebuilt.
+    ///
+    /// renderMap writes #pane-map.innerHTML every tick, which detaches every
+    /// child. Rebuilding the WebGL canvas there would throw away the context,
+    /// the compiled shaders, ~30 MB of uploaded texture and every input
+    /// listener the globe bound -- once a month of game time, forever. The flat
+    /// map had exactly this rule, for the same canvas and three svg nodes.
+    fn the_globe_survives_a_tick() {
+        assert!(
+            INDEX.contains("stage.appendChild(GLCV);") && INDEX.contains("stage.appendChild(GLOVL);"),
+            "the globe's canvases must be re-adopted into the fresh stage"
+        );
+        // Constructed once, at module scope, outside any function.
+        assert!(INDEX.contains("const GLOVL = (() => {"));
+        assert!(INDEX.contains("const GLCV = (() => {"));
+        assert!(
+            INDEX.contains("if (GLOBE) return;"),
+            "the globe must be built once -- a second instance binds a second set \
+             of listeners to the same canvas and every drag turns it twice"
+        );
+    }
+
+    #[test]
+    /// A globe that cannot draw says so.
+    ///
+    /// THIS TEST USED TO BE `dropping_gl_on_gives_the_hillshade_back`, and it is
+    /// renamed rather than deleted because what it guarded is gone and
+    /// pretending otherwise would be the worse outcome. While the map was flat
+    /// the WebGL ground was an ENHANCEMENT: a lost context, a driver without
+    /// EXT_color_buffer_float, a failed link -- glFail dropped one CSS class and
+    /// the svg underneath carried the whole map at /terrain.png quality. That
+    /// test policed the cascade which made the fallback exact, because every
+    /// rule in it failed silently.
+    ///
+    /// On a globe the WebGL pass IS the map: the sphere, its ground, its
+    /// political layer and its atmosphere are one fragment shader, and there is
+    /// nothing underneath to reveal. So there is no fallback to police, and a
+    /// test that kept asserting one would be asserting a lie. What replaces it
+    /// is the only honest guarantee left -- the failure is REPORTED, where the
+    /// player is looking, and it stops costing frames.
+    fn a_globe_that_cannot_draw_says_so() {
+        // A silent blank pane is the failure mode this file has spent its whole
+        // life refusing, and losing the fallback must not mean gaining one.
+        let fail = INDEX
+            .split_once("function glFail(")
+            .expect("the GL layer has lost its single failure exit")
+            .1
+            .split_once("\n}")
+            .expect("glFail is still a function")
+            .0;
+        assert!(
+            fail.contains("class = \"globe-fallback\"") || fail.contains("globe-fallback"),
+            "glFail must put something legible on the stage: with no svg under \
+             the sphere, a failure that only writes to the console leaves the \
+             player looking at an empty pane with no idea why"
+        );
+        assert!(
+            fail.contains("GL.reason"),
+            "the message must carry the actual reason -- \"it broke\" is not a \
+             bug report anybody can act on"
+        );
+        // The loops it must stop. A layer that has failed and is still holding a
+        // rAF is burning a frame budget to draw nothing, forever.
+        for stop in ["cancelAnimationFrame(GL.raf)", "cancelAnimationFrame(GL.shimRaf)"] {
+            assert!(
+                fail.contains(stop),
+                "glFail no longer stops {stop} -- a dead layer must not keep \
+                 asking for frames"
+            );
+        }
+        // And the stage carries the rule that makes the message visible at all.
+        let css = INDEX
+            .split_once("<style>")
+            .expect("the page still has a stylesheet")
+            .1
+            .split_once("</style>")
+            .expect("the stylesheet is still closed")
+            .0;
+        assert!(
+            css.contains(".globe-fallback {"),
+            "the fallback notice has no styling, so it will land as unreadable \
+             body text over a black sphere"
+        );
+        // The four thematic modes are the one thing that DID survive intact:
+        // they never had a physical ground, and on the globe they are expressed
+        // by standing it down to zero and letting the shader's own `legacy`
+        // term -- the flat map's #333c48 land and #ocean gradient, reproduced
+        // exactly at uGround = 0 -- carry them.
+        assert!(
+            INDEX.contains("vec3 col = mix(legacy, phys, uGround);"),
+            "the shader has lost the legacy term the thematic modes stand on"
+        );
+        assert!(
+            INDEX.contains("return { ground: 0, sat: 0, shade: 0, sea: 0, haze: 0, ao: 0, glint: 0,"),
+            "a mode with no ground block must stand the physical ground DOWN, \
+             not run it at some quiet default"
+        );
+    }
+    /// A GLOBE THAT COMES BACK CLEARS EVERY MARK OF THE FAILURE.
+    ///
+    /// `glFail` does two things to the DOM: it hides the canvas and it appends
+    /// the `#globeFail` panel. `glBoot` used to remove only the loading status,
+    /// so a restored context drew a perfectly correct globe into a
+    /// `display:none` canvas, underneath a stale panel saying the browser would
+    /// not give it WebGL2 -- every flag reading healthy and nothing on screen
+    /// but the 2D labels floating on the void.
+    ///
+    /// Found by losing AND restoring the context in a live campaign. The
+    /// restore half is what nobody had ever run: `loseContext()` on its own
+    /// never fires `webglcontextrestored`, so testing only the loss looks like
+    /// a renderer that cannot recover and hides the bug that it can.
+    #[test]
+    fn a_globe_that_comes_back_clears_every_mark_of_the_failure() {
+        let body = |name: &str| {
+            INDEX
+                .split_once(&format!("function {name}("))
+                .unwrap_or_else(|| panic!("{name} is gone"))
+                .1
+                .split_once("\n}")
+                .unwrap_or_else(|| panic!("{name} is still a function"))
+                .0
+                .to_string()
+        };
+        let fail = body("glFail");
+        let boot = body("glBoot");
+        // Each pair is (what the failure does, what the boot must undo it with).
+        // If glFail grows a third mark, add its undo here and in glBoot -- that
+        // is the whole point of pairing them in one test.
+        for (mark, undo, what) in [
+            ("GLCV.style.display = \"none\"", "GLCV.style.display = \"\"", "the hidden canvas"),
+            ("id = \"globeFail\"", "getElementById(\"globeFail\")?.remove()", "the failure panel"),
+        ] {
+            assert!(
+                fail.contains(mark),
+                "glFail no longer sets {what} ({mark}) -- if that changed on \
+                 purpose, this test's pairing must change with it"
+            );
+            assert!(
+                boot.contains(undo),
+                "glBoot does not undo {what}: a restored context would draw a \
+                 correct globe that nobody can see"
+            );
+        }
+    }
+
+    /// The map's click handler must resolve its pick from the POINTERDOWN
+    /// target, never from the click's own.
+    ///
+    /// `#pane-map` calls `setPointerCapture` on pointerdown so a fast drag that
+    /// leaves the pane keeps panning. Pointer capture also retargets the
+    /// subsequent `click` at the capture element, so `e.target` in the click
+    /// handler is the pane `<div>` and `e.target.closest(".nodeg")` is always
+    /// null. Measured in the browser: pointerdown landed on a `<circle>` inside
+    /// `.nodeg[data-id=Brazil]`, and the click that followed it targeted
+    /// `DIV#pane-map`. The result was that clicking a nation on the map opened
+    /// nothing — the control the page advertises in three separate places (the
+    /// opening banner, the map legend, and the keyboard card's "click a
+    /// country").
+    ///
+    /// The repair records the press's target and reads the pick off that, so
+    /// this test pins the three `closest` calls to the recorded target rather
+    /// than to `e.target`. Reverting any one of them silently kills that pick
+    /// path again and nothing else in the suite would notice.
+    #[test]
+
+    fn the_map_resolves_a_click_from_the_press_not_the_click() {
+        // THE CLASS OF BUG THIS GUARDS IS GONE RATHER THAN FIXED, and that is
+        // the honest way to say it. The flat map resolved a pick by asking the
+        // DOM what the click landed on. With pointer capture set for the pan,
+        // the browser retargets every event at #pane-map, so the click could not
+        // be read off e.target and the press target had to be recorded and
+        // preferred -- three interacting handlers and a whole test to hold them
+        // together.
+        //
+        // The globe has no DOM to hit. A pick is a ray through a sphere and a
+        // point-in-polygon test on the canvas, so it depends on the pointer's
+        // COORDINATES and on nothing else -- capture cannot retarget a
+        // coordinate. What remains to assert is that a drag is not a pick.
+        assert!(
+            INDEX.contains("function onMapPick(e) {"),
+            "the map has lost its pick handler"
+        );
+        assert!(
+            INDEX.contains("const w = GLOBE && GLOBE.worldAt(e.clientX, e.clientY);"),
+            "a pick must resolve from the pointer's coordinates through the \
+             globe's own ray, not from an event target"
+        );
+        // A drag must never open a dossier. `moved` is set by the same 4px
+        // threshold the flat map used and is the only thing standing between
+        // spinning the globe and opening whatever ends up under the pointer.
+        assert!(
+            GLOBE3D_JS.contains("const wasClick = !cancelled && this.drag && !this.drag.moved"),
+            "a pick must fire only when the press did not turn into a drag -- and \
+             not at all when the browser cancelled the gesture"
+        );
+        assert!(
+            GLOBE3D_JS.contains("this.onPointerCancel = (event) => this.onPointerUp(event, true);"),
+            "pointercancel must be told apart from pointerup: a gesture the \
+             BROWSER tore up is not a click, and treating it as one opens a \
+             dossier nobody asked for"
+        );
+        assert!(
+            GLOBE3D_JS.contains("if (Math.hypot(dx, dy) > 4) this.drag.moved = true;"),
+            "the drag threshold that separates a turn from a click is gone"
+        );
+        // And the ownership rule the pick answers with: whoever governs the
+        // ground, which is the sim's per-district owner where there is one.
+        assert!(
+            INDEX.contains("const id = (d && nationOfDistrict(d.id)) || nationOfCode(code);"),
+            "a click must open the nation that GOVERNS the ground under it, not \
+             the nation whose country code it is"
+        );
+    }
+
+    /// The map's hover must ignore pointer events the pan's capture retargeted,
+    /// or it destroys the node the press is standing on.
+    ///
+    /// Third and worst consequence of the same setPointerCapture. While the pan
+    /// holds the capture, EVERY pointer event is retargeted at #pane-map — the
+    /// pointerover included. onMapHover read that literally: not `.nodeg`, not
+    /// `.rchip`, not `#dhit`, therefore the cursor has left every nation. It set
+    /// hoverNation = null and refreshDistrictDetail() emptied `#dhit`
+    /// — in the middle of a press, on the very press standing on one of those
+    /// paths. A pointerdown target torn out of the document has no connected
+    /// ancestor left to bear the click, so Chrome fired NO CLICK AT ALL.
+    ///
+    /// The effect: at any zoom past ZB2, clicking the ground of the nation you
+    /// were hovering did nothing, and the click handler was never reached, so
+    /// the press-target repair could not help. Traced in the browser at k=6
+    /// over the USA (`#dhit` holding 51 states):
+    ///
+    ///   t+0.0ms  pointerdown  target <path>, inside #dhit
+    ///   t+0.9ms  pointerover  target DIV        <- retargeted by the capture
+    ///   t+1.0ms  rebuild      from onMapHover   <- #dhit emptied under the press
+    ///   t+1.2ms  pointerup    target DIV
+    ///   t+1.8ms  pointerover  target <path>
+    ///   t+1.9ms  rebuild      from onMapHover
+    ///   (no click event, ever)
+    ///
+    /// Verified present on the pre-fix build at 698c148 as well: same trace,
+    /// same two rebuilds, same missing click. It predates the press-target work.
+    ///
+    /// The tech viewport has always guarded its own hover against exactly this,
+    /// and says so in its comment. The map never got the same guard.
+    /// hasPointerCapture is the exact question, so a genuine hover leaving the
+    /// map for the legend below it still clears the nation.
+    #[test]
+
+    fn the_map_hover_ignores_events_the_capture_retargeted() {
+        // Same story as the pick above, and the same conclusion: the hover used
+        // to read e.target.closest(".nodeg"), which pointer capture retargeted
+        // mid-press, which emptied the district hit layer under the very press
+        // that was standing on it -- and Chrome then fired no click at all. The
+        // guard against that was a hasPointerCapture check that had to be the
+        // first thing the handler did.
+        //
+        // The globe resolves a hover from coordinates, so there is nothing for
+        // capture to retarget. What has to stay true is that it goes through the
+        // ray and not through the DOM.
+        assert!(
+            INDEX.contains("const w = GLOBE && GLOBE.worldAt(e.clientX, e.clientY);"),
+            "the hover must resolve from the pointer's coordinates through the \
+             globe's ray"
+        );
+        // Scoped to onMapHover's own body rather than to the whole file: the
+        // comment above that function explains the DOM hit test it replaced and
+        // quotes it, and a test that cannot tell code from prose would fail on
+        // the explanation.
+        let hover = INDEX
+            .split_once("function onMapHover(e) {")
+            .expect("onMapHover is gone")
+            .1
+            .split_once("\n}")
+            .expect("onMapHover is still a function")
+            .0;
+        assert!(
+            !hover.contains("e.target"),
+            "the hover reads the event's target again -- there are no .nodeg \
+             elements on a globe, and if there ever are, pointer capture will \
+             retarget them exactly as it did before"
+        );
+        // A hover that repainted the world would stutter on every border
+        // crossing. It repaints ONE nation onto its own half-resolution layer,
+        // and that split is what makes hovering free.
+        assert!(
+            INDEX.contains("function paintSelection() {"),
+            "the selection layer is gone -- hover would have to repaint the \
+             political texture, which is ~4200 polygons"
+        );
+        assert!(
+            INDEX.contains("if (key === SEL.key && !SEL.dirty) return;"),
+            "the selection layer must be keyed: a pointermove that stays inside \
+             one country has to repaint nothing"
+        );
+    }
+
+    /// `?` must reach the card from the setup screen.
+    ///
+    /// The card's own last row is "This card — ?". On the picker — the first
+    /// screen a player sees — that was false. The keydown handler bails on
+    /// `!S || #app is hidden` before it ever reaches the `?` branch, and the
+    /// picker carries no ? button either, because #keysBtn lives in the app
+    /// header. So the one key the card advertises about itself was the one key
+    /// with nowhere to press it.
+    ///
+    /// The repair is placement, not new behaviour: opening the card is not a
+    /// game control, so it is handled above the bail. That also serves the tech
+    /// screen (the dispatch to techKeys is below the same bail), which is why
+    /// techKeys must no longer carry a `?` branch — a second copy of a toggle
+    /// that can never run is exactly what drifts.
+    ///
+    /// Re-expressed 2026-09-04: the bail was `!S || #app is hidden` read from an
+    /// inline style that is never set, and it now asks `gameIsUp()` — the same
+    /// reader the clock asks, reading the COMPUTED display. Same bail, same
+    /// place, same claim; only the anchor moved.
+    #[test]
+    fn the_shortcut_card_opens_before_a_game_exists() {
+        let at_toggle = INDEX
+            .find("if (isKeysCardToggle(e)) { toggleKeysCard(); return; }")
+            .expect("the card's open branch is gone from the global handler");
+        let at_bail = INDEX
+            .find("if (!gameIsUp()) return;   // the spectator bail: no game, no game keys")
+            .expect("the keydown handler's spectator bail is gone");
+        assert!(
+            at_toggle < at_bail,
+            "opening the card must be handled ABOVE the spectator bail, or ? is \
+             dead on the setup screen again"
+        );
+        // ...but that alone is not enough, because #nationSearch takes focus
+        // when the picker builds and `typing()` then bails one gate EARLIER
+        // still. The search field carries the card's second door.
+        assert!(
+            INDEX.contains(
+                "if (isKeysCardToggle(e)) { e.preventDefault(); e.target.blur(); toggleKeysCard(); return; }"
+            ),
+            "the setup screen's search box must offer the card — it holds focus \
+             from the moment the picker builds, so no other key path is reachable \
+             there"
+        );
+        // The claim that door rests on: `?` costs the search box nothing,
+        // because no nation can be found by typing one. Checked against the
+        // real roster rather than assumed.
+        for id in spheres_sim::world::all_nations() {
+            assert!(
+                !id.name().contains('?'),
+                "{id:?} has a question mark in its name, so the search box can \
+                 no longer afford to spend ? on the keyboard card"
+            );
+        }
+        // Three keyboard toggles and no more: the modal gate, the global open
+        // branch, and the search box. techKeys must not have grown its copy
+        // back — a toggle that can never run is what drifts.
+        assert_eq!(
+            INDEX.matches("toggleKeysCard();").count(),
+            3,
+            "the card's keyboard toggle should exist exactly three times — the \
+             modal gate, the global open branch and the search box"
+        );
+        // The card is a SIBLING of #app, so it can paint over the picker. If it
+        // is ever moved inside, the branch above will open an invisible card.
+        let at_app_open = INDEX.find("<div id=\"app\">").expect("#app is gone");
+        let at_keys = INDEX.find("<div id=\"keys\"").expect("#keys is gone");
+        assert!(INDEX[at_keys..].starts_with("<div id=\"keys\" role=\"dialog\" aria-modal=\"true\""),
+            "the shortcut card must announce itself as a modal dialog");
+        let at_app_close = INDEX.find("<div id=\"sheetbg\">").expect("#sheetbg is gone");
+        assert!(
+            at_keys > at_app_close && at_app_close > at_app_open,
+            "#keys must stay outside #app — inside it, the card is hidden \
+             exactly when the setup screen is showing"
+        );
+    }
+
+    /// O must not be a silently dead key in the one shading where it does
+    /// nothing.
+    ///
+    /// The keyboard card offers "Resource layer over the current shading — O"
+    /// with no conditions. In Resources shading there is nothing to lay it
+    /// over, and toggleResOverlay returned immediately — no state change, no
+    /// message. The mode's own panel does not mention O either, because
+    /// resPanel() replaces the legend line that names it. Measured in the
+    /// browser: ui.mapMode "resources", press O, mapMode "resources",
+    /// resOverlay false, banner display "none".
+    #[test]
+    fn o_says_why_it_does_nothing_in_resources_shading() {
+        assert!(
+            INDEX.contains(
+                "banner(\"Resources is already the whole map. O lays the same \
+                 reading over another shading — press C first.\");"
+            ),
+            "O is a silently dead key again in Resources shading"
+        );
+        // The condition it explains. If Resources ever gains an overlay of its
+        // own this guard goes, and so should the message.
+        assert!(
+            INDEX.contains("  if (ui.mapMode === \"resources\") {"),
+            "toggleResOverlay's Resources guard is gone"
+        );
+    }
+
+    /// Every key `techKeys` wires must be on the card, and the card must not
+    /// claim a key does something it does not.
+    ///
+    /// techKeys binds twelve things. Six were on the card (1-8, 9, /, T, ?, and
+    /// the click). Five were not documented anywhere: `F` and `0` frame the
+    /// full tech map, `+`/`-` zoom it, and the arrows pan it (or scroll the
+    /// stage in a domain view). And one was documented as something ELSE: the
+    /// card said "Previous / next nation in the dashboard - [ ]", but with the
+    /// tech screen open `[` and `]` cycle the DOMAIN TABS and never touch the
+    /// dashboard. Measured in the browser with the screen open: `]` went
+    /// all -> Communications -> Energy, `[` went back to Communications, and
+    /// `selected` stayed null throughout.
+    ///
+    /// This is a documentation repair; no binding changed. The test pins the
+    /// two halves against each other so a future key added to techKeys has to
+    /// bring its row with it.
+    #[test]
+    fn the_tech_screens_keys_are_all_on_the_card() {
+        // The rows added for the five undocumented bindings.
+        for row in [
+            "Frame / zoom the full tech map",
+            "<kbd>F</kbd> <kbd>0</kbd> · <kbd>+</kbd> <kbd>&minus;</kbd>",
+            "Pan the tech map, or scroll a domain view",
+            "arrow keys",
+            "· step <kbd>[</kbd> <kbd>]</kbd>",
+        ] {
+            assert!(INDEX.contains(row), "the keyboard card no longer documents {row:?}");
+        }
+        // The contradiction, corrected. The bare old label must be gone: with
+        // the tech screen open these keys do not touch the dashboard.
+        assert!(
+            !INDEX.contains("Previous / next nation in the dashboard"),
+            "the card is claiming [ ] steps the dashboard again, which is false \
+             while the tech screen is open"
+        );
+        assert!(
+            INDEX.contains("Previous / next nation &mdash; outside the tech screen"),
+            "the [ ] row must say where it applies"
+        );
+        // And the bindings the rows describe are still the ones techKeys has.
+        // These live in techKeys' map-mode branch; if they move or go away the
+        // rows above become the lie this test exists to stop.
+        assert!(INDEX.contains("if (k === \"f\" || k === \"F\" || k === \"0\") techFitAll();"));
+        assert!(INDEX.contains("else if (k === \"+\" || k === \"=\") techZoomBy(1.3);"));
+        assert!(INDEX.contains("else if (k === \"ArrowLeft\") techPanBy(-90, 0);"));
+        assert!(INDEX.contains("if (k === \"ArrowLeft\") w.scrollBy(-90, 0);"));
+        assert!(INDEX.contains("else if (k === \"[\" || k === \"]\") {"));
+    }
+
+    /// The commodity key must not spend the player's first press on the fetch.
+    ///
+    /// The keyboard card offers "Next / previous commodity … X, Shift+X". The
+    /// 1990 resource transcription is 2 MB and fetched lazily, and
+    /// cycleResCommodity used to read
+    /// `if (RESOURCES_STATE !== "ready") { loadResources(); return; }` — so the
+    /// first X of every session started the fetch and returned without doing
+    /// anything the player could see. Measured in the browser from a cold page:
+    ///
+    ///   before      state "cold",  commodity "oil", overlay false
+    ///   press X     state "ready", commodity "oil", overlay FALSE  <- nothing
+    ///   press X     state "ready", commodity "phosphate", overlay true
+    ///
+    /// `fillResourceDash` awaits the same load and always has; this is that.
+    #[test]
+    fn the_commodity_key_does_not_spend_the_first_press_on_the_fetch() {
+        assert!(
+            INDEX.contains("async function cycleResCommodity(dir) {"),
+            "cycleResCommodity must be able to await the resource load"
+        );
+        assert!(
+            INDEX.contains("  if (RESOURCES_STATE === \"cold\") await loadResources();"),
+            "the first press must AWAIT the load and then step, not start it and \
+             return"
+        );
+        // Scoped to the function BODY, because the doc comment above it quotes
+        // the removed line verbatim and a whole-file search would always match.
+        let at = INDEX
+            .find("async function cycleResCommodity(dir) {")
+            .expect("cycleResCommodity is gone");
+        let body = &INDEX[at..];
+        let end = body.find("\r\n}").or_else(|| body.find("\n}")).unwrap_or(body.len());
+        assert!(
+            !body[..end].contains("loadResources(); return;"),
+            "the early return that swallowed the first press is back inside \
+             cycleResCommodity"
+        );
+        // The layer still comes on even when there is no list to step through —
+        // a failed fetch, or a second press during the first one's — so the
+        // panel can say why instead of the key vanishing a second time.
+        assert!(
+            INDEX.contains("  if (ui.mapMode !== \"resources\" && !ui.resOverlay) ui.resOverlay = true;"),
+            "X must still switch the resource layer on"
+        );
+    }
+
+    /// The conflict sheet must be rebuilt every tick, exactly as the nation
+    /// dossier is.
+    ///
+    /// `render()` re-opened the dossier from `selected` on every state change,
+    /// but `openConflict` set `selected = null` and recorded nothing in its
+    /// place, so an open war sheet was built once and then left. Measured in
+    /// the browser, playing USA on seed 1990:
+    ///
+    ///   Oct 1990   open the Gulf sheet. It reads
+    ///              "Iraq rung 1 — rhetoric", "Kuwait rung 1 — rhetoric".
+    ///   Oct 1991   the sim holds Iraq at rung 6 and Kuwait at rung 2.
+    ///              The sheet still reads rung 1 and rung 1.
+    ///   Nov 1992   the war is OVER and gone from S.wars. The sheet is still
+    ///              open, still headed "the Gulf", still says "below the
+    ///              shooting line — nobody has fired", and still offers 16 live
+    ///              buttons. Posting one of them - conflictCmd(1,'join',1) -
+    ///              returns errors: ["No such conflict."].
+    ///
+    /// So the fix has three halves: remember which conflict is in the sheet,
+    /// rebuild it from the new state each tick (keeping the scroll position, or
+    /// the reader is thrown to the top every month), and when the war has ended
+    /// close the sheet and say so rather than leave dead controls up.
+    #[test]
+    fn the_conflict_sheet_is_rebuilt_every_tick() {
+        assert!(
+            INDEX.contains("selectedWar = id;"),
+            "openConflict must record which conflict the sheet is holding, or \
+             render() cannot refresh it"
+        );
+        assert!(
+            INDEX.contains("openConflict(selectedWar, true);"),
+            "render() must rebuild the open conflict sheet from the new state, \
+             keeping the scroll position"
+        );
+        assert!(
+            INDEX.contains("if (S.wars.some((w) => w.id === selectedWar)) {"),
+            "render() must check the conflict still exists before rebuilding it"
+        );
+        assert!(
+            INDEX.contains("window.openConflict = function (id, keepScroll) {"),
+            "openConflict must accept keepScroll — a per-tick rebuild that resets \
+             scrollTop throws the reader to the top every month"
+        );
+        // The sheet holds EITHER a nation or a conflict. Four writes of null:
+        // the declaration, openNation (which takes the sheet over) and
+        // closeSheet, and a replacement campaign. Lose any one and a stale war goes on being refreshed
+        // behind a dossier, or after the sheet is shut.
+        assert_eq!(
+            INDEX.matches("selectedWar = null;").count(),
+            4,
+            "selectedWar must be cleared by campaign reset, openNation and closeSheet as well as \
+             declared — the sheet holds one subject at a time"
+        );
+    }
+
+    /// The shortcut card is a modal and must swallow the keys, the way the tech
+    /// screen already does.
+    ///
+    /// `#keys` dims the page, takes the click that dismisses it, and is the
+    /// first thing Escape closes — every other signal says modal. But the
+    /// keydown handler had no opinion about it at all, so the game ran on
+    /// behind it. Measured in the browser: with the card up, pressing `2`
+    /// advanced the world from Jan 1990 to Mar 1990, invisibly, with the card
+    /// still covering the header that would have shown the date move.
+    ///
+    /// The gate must sit ABOVE the `!S` check and above the tech-screen
+    /// dispatch, so the card wins over both — including when it is opened from
+    /// inside the tech screen, where techKeys also offers `?`.
+    #[test]
+    fn the_shortcut_card_swallows_the_keys_behind_it() {
+        // Asserted line by line: ui/index.html is CRLF in the working copy, so
+        // a literal spanning two of its lines would never match.
+        assert!(
+            INDEX.contains("if (isKeysCardToggle(e)) { e.preventDefault(); toggleKeysCard(); }"),
+            "the shortcut card no longer swallows keys — the game will advance \
+             behind it again"
+        );
+        assert!(
+            INDEX.contains("else if (e.key === \" \" && !e.target?.closest?.('button')) e.preventDefault();"),
+            "Space must not scroll behind the card, but its native Close \
+             button must still be keyboard-operable"
+        );
+        // Ordering is the whole of it. The card's gate must come before the
+        // `!S` bail and before the tech dispatch, or a card opened over either
+        // stops taking keys.
+        let at_gate = INDEX
+            .find("if (isKeysCardToggle(e)) { e.preventDefault(); toggleKeysCard(); }")
+            .expect("the card's keydown gate is gone");
+        // Re-expressed 2026-09-04 with the bail itself: it asks gameIsUp() now,
+        // which reads the computed display instead of an inline style that is
+        // never set. The ordering claim is untouched.
+        let at_bail = INDEX
+            .find("if (!gameIsUp()) return;   // the spectator bail: no game, no game keys")
+            .expect("the keydown handler's spectator bail is gone");
+        let at_tech = INDEX
+            .find("if (tech.open) { techKeys(e); return; }")
+            .expect("the keydown handler's tech dispatch is gone");
+        assert!(
+            at_gate < at_bail && at_gate < at_tech,
+            "the card's gate must be reached before the !S bail and the tech \
+             dispatch, or a card opened over either stops swallowing keys"
+        );
+        // One reader for the open state, so the next edit cannot leave a fifth
+        // copy of the literal behind and out of step. The style attribute in
+        // the markup is not one of these.
+        assert_eq!(
+            INDEX.matches("$(\"#keys\").style.display").count(),
+            2,
+            "the card's display should be read and written only through \
+             keysCardIsOpen()/setKeysCard()"
+        );
+    }
+
+    /// The shortcut gate must ask whether the key is being CONSUMED as text,
+    /// not merely whether the target is an `<input>`.
+    ///
+    /// The policy sliders are `<input type="range">`. A range consumes the
+    /// arrows, Home/End and PageUp/PageDown and nothing else — no letter and no
+    /// digit, and the page binds none of what it does consume. But the old
+    /// `typing()` returned true for every `<input>`, so the global keydown
+    /// handler returned early and EVERY shortcut died while a slider had focus.
+    ///
+    /// The moment that matters: `noteQueued()` writes "… · R to revert" into
+    /// the header only once an order is queued, and the only way to queue one
+    /// with the keyboard-free hand is to move a slider — which leaves that
+    /// slider holding focus. Measured in the browser: after clicking the tax
+    /// slider, `document.activeElement` was `INPUT[range]`, the header read
+    /// "1 order takes effect next month · R to revert", and pressing R changed
+    /// nothing. Escape (which blurs) then R worked.
+    ///
+    /// Escape deliberately keeps the WIDE test — `focused()` — so that
+    /// behaviour is unchanged; only the shortcut gate narrowed.
+    #[test]
+    fn a_focused_slider_does_not_kill_every_shortcut() {
+        assert!(
+            INDEX.contains("const TYPELESS_INPUT = new Set(["),
+            "the shortcut gate no longer distinguishes inputs that consume text \
+             from inputs that do not"
+        );
+        assert!(
+            INDEX.contains("\"range\", \"checkbox\", \"radio\","),
+            "type=range must stay in the set of inputs that are NOT typing — the \
+             policy sliders are ranges and the shortcuts must survive them"
+        );
+        assert!(
+            INDEX.contains("return t.tagName !== \"INPUT\" || !TYPELESS_INPUT.has((t.type || \"text\").toLowerCase());"),
+            "typing() must consult the input's type"
+        );
+        // Escape keeps the wide test. If this flips to typing(), a focused
+        // slider stops being blurrable by keyboard and that is a regression of
+        // its own.
+        assert!(
+            INDEX.contains("if (focused(e)) { e.target.blur(); return; }"),
+            "Escape must still blur any focused control, range included"
+        );
+        // ...and the shortcut gate must be the narrow one.
+        assert!(
+            INDEX.contains("if (typing(e) || e.ctrlKey || e.metaKey || e.altKey) return;"),
+            "the shortcut gate must ask typing(), not focused()"
+        );
+        // The advertisement this defect was breaking.
+        assert!(
+            INDEX.contains("R to revert"),
+            "the header no longer offers R; re-read whether this test still \
+             describes a real promise"
+        );
+    }
+
+    /// The war decoration must never take a pointer event.
+    ///
+    /// Each belligerent gets a `<circle r="34 * PX">` filled with `url(#glow)` —
+    /// 81.6 world units of gradient — plus, for a war with no front to draw, a
+    /// dashed line between the two. Both are scenery: nothing reads them and
+    /// there is nothing to click. But a gradient fill is still a fill, so under
+    /// SVG's default `pointer-events: visiblePainted` the whole disc is a hit
+    /// target regardless of its alpha, and it is painted above the district mesh
+    /// and the ocean.
+    ///
+    /// Measured over the Gulf in Oct 1990: of 441 points sampled inside one
+    /// disc, 134 (30.4%) hit the disc itself rather than anything the map can
+    /// open, and fourteen nation anchors — Iraq, Kuwait, Saudi Arabia, Iran,
+    /// Israel, Turkey, Syria, Jordan, Lebanon, UAE, Qatar, Oman, Bahrain,
+    /// Cyprus — sat under the two discs. A click at CSS (678, 273), squarely on
+    /// Egypt's painted territory, opened nothing.
+    ///
+    /// Asserted as the wrapper because the wrapper is the fix: adding a mark to
+    /// this layer must inherit the rule rather than have to remember it.
+    #[test]
+
+    fn the_war_decoration_takes_no_pointer_events() {
+        // The invariant is unchanged and the mechanism is entirely different.
+        // The war glow is a radial gradient painted over the district mesh, and
+        // a gradient fill is a hit target whatever its alpha: on the flat map it
+        // swallowed 30.4% of the clicks inside its own radius until it was
+        // wrapped in pointer-events:none.
+        //
+        // On the globe it is drawn on the overlay CANVAS, which covers the
+        // sphere completely. There is no per-mark wrapper to get right any more
+        // -- there is one rule, and if it is ever dropped it does not cost 30% of
+        // the clicks in one radius, it costs EVERY click, drag, wheel and hover
+        // on the map at once.
+        let css = INDEX
+            .split_once("<style>")
+            .expect("the page still has a stylesheet")
+            .1
+            .split_once("</style>")
+            .expect("the stylesheet is still closed")
+            .0;
+        let rule = css
+            .split('}')
+            .filter_map(|chunk| chunk.split_once('{'))
+            .find(|(sel, _)| sel.split_whitespace().collect::<Vec<_>>().join(" ") == ".globe-overlay")
+            .expect("the globe's overlay canvas has lost its own rule")
+            .1;
+        assert!(
+            rule.contains("pointer-events: none"),
+            "the overlay canvas must never take pointer events: it covers the \
+             whole sphere, so this one declaration is the difference between a \
+             map you can drag and a dead picture"
+        );
+        // The marks it carries, so a rule left behind over an empty canvas
+        // cannot pass while the glow has been moved back onto something that
+        // does take the pointer.
+        assert!(
+            INDEX.contains("const grad = ctx.createRadialGradient("),
+            "the war glow has left the overlay"
+        );
+        assert!(
+            INDEX.contains("ctx.setLineDash([5 * r, 4 * r]);"),
+            "the dashed war abstraction has left the overlay"
+        );
+    }
+
+    /// The technology graph has the same capture as the map and needs the same
+    /// repair: `#techViewport` sets pointer capture to keep a pan alive, and the
+    /// click that follows is retargeted at the viewport, so
+    /// `e.target.closest("g.node")` is always null and clicking a technology
+    /// does nothing.
+    ///
+    /// This one is louder than the map's, because the graph advertises the
+    /// control on the node itself: the hover tooltip's last line reads
+    /// "click — routes & research". Measured in the browser: pointerdown landed
+    /// on a `<rect>` inside `g.node[data-i="2"]` (GPU Deep Learning), the click
+    /// targeted `DIV#techViewport`, and `#techDock` stayed `display:none` while
+    /// the tooltip was still promising the click would do something.
+    #[test]
+    fn the_tech_graph_resolves_a_click_from_the_press_not_the_click() {
+        assert!(
+            INDEX.contains("st.target = e.target;"),
+            "the tech viewport's pointerdown must record what the press landed on"
+        );
+        assert!(
+            INDEX.contains("const t = st.target && st.target.isConnected ? st.target : e.target;"),
+            "the tech viewport's click handler must prefer the recorded press target"
+        );
+        for pick in ["t.closest(\"g.stub\")", "t.closest(\"g.node\")"] {
+            assert!(
+                INDEX.contains(pick),
+                "the tech viewport's click handler no longer resolves {pick} from \
+                 the press target; with pointer capture set, e.target is \
+                 #techViewport and this pick can never match"
+            );
+        }
+        assert!(
+            INDEX.contains("vp.setPointerCapture(e.pointerId)"),
+            "the tech pan's pointer capture is gone — re-read whether the \
+             press-target indirection is still the right shape before deleting \
+             this test"
+        );
+        // The promise the defect was breaking. If this line ever goes away the
+        // control is no longer advertised, and the argument above needs redoing
+        // rather than quietly weakening.
+        assert!(
+            INDEX.contains("click &mdash; routes &amp; research")
+                || INDEX.contains("click — routes &amp; research"),
+            "the node tooltip no longer offers the click this test protects"
+        );
+    }
+
+    /// The front's occupation rings must stay SYMMETRIC and INDEPENDENT.
+    ///
+    /// The svg drew each side's ring by stroking its binned ground through a
+    /// <mask> that blacked out the region itself, so internal district seams
+    /// vanished and only the perimeter survived. The two masks had to carry
+    /// distinct ids -- `foem<war>a` and `foem<war>b` -- because a merge that
+    /// collapsed the suffixes left one mask shadowing the other and the seam
+    /// rendered one-sided, silently.
+    ///
+    /// Canvas2D says the same thing without ids: a `destination-out` fill after
+    /// the stroke erases the half of it that fell inside the region. The id
+    /// collision cannot happen any more, but the failure it was guarding
+    /// against still can -- one ring drawn instead of two -- so that is what is
+    /// asserted, along with the erase that makes a stroke into a ring at all.
+    #[test]
+    fn the_front_edges_are_two_independent_rings() {
+        let paint = INDEX
+            .split_once("function paintFronts(ctx) {")
+            .expect("the front layer is gone")
+            .1
+            .split_once("\n}")
+            .expect("paintFronts is still a function")
+            .0;
+        assert!(
+            paint.contains("ctx.globalCompositeOperation = \"destination-out\";"),
+            "the occupation ring is a stroke with its inside erased; without the \
+             erase every internal district seam draws and the ring is a mesh"
+        );
+        // Both sides, each with its own colour, and A before B so the loud seam
+        // over the top lands on the same order the svg drew.
+        assert!(
+            paint.contains("ring(dA, \"#e8c87e\", 1.1);") && paint.contains("ring(dB, \"#9fb0c4\", 1.1);"),
+            "the two occupation rings must be drawn independently -- one call \
+             covering both sides renders the front one-sided"
+        );
+        // The seam proper: B's ground stroked through a clip of A's, which is
+        // exactly the shared A|B border and nothing else.
+        assert!(
+            paint.contains("ctx.clip(new Path2D(dA.join(\"\")));"),
+            "the front seam must stay clipped to the opposing side's ground"
+        );
+        assert!(
+            paint.contains("if (dA.length && dB.length && !big)"),
+            "the seam must be gated on BOTH sides having ground and on the \
+             front being under the budget line"
+        );
+    }
+
+    /// The district layer is delta-encoded: an untouched 1990 world sends an
+    /// empty object, and a district moved by the sim shows up keyed by its
+    /// stable id with the new owner's code — which is all the UI needs to
+    /// overlay ownership on the default grouping baked into districts.js.
+    #[test]
+    fn the_state_payload_carries_district_deltas() {
+        let mut g = Game::new(1990, None);
+        let s = state_json(&g, None);
+        let d = s["districts"].as_object().expect("districts is an object");
+        assert!(d.is_empty(), "a fresh 1990 world must send no district deltas");
+        // The held/contested band rides along so the browser's front readouts
+        // use the sim's threshold, not a client-side copy of it.
+        assert_eq!(
+            s["front_held_band"].as_f64(),
+            Some(spheres_sim::front::HELD_BAND),
+            "the state payload must carry the sim's held band"
+        );
+
+        // Move Kuwait's capital governorate to Iraq the way an annexation
+        // would, and the payload must say exactly that and nothing else.
+        spheres_sim::districts::annex_all(&mut g.world, NationId::Iraq, NationId::Kuwait);
+        let s = state_json(&g, None);
+        let d = s["districts"].as_object().unwrap();
+        assert_eq!(d.len(), 6, "all six Kuwaiti governorates moved");
+        assert_eq!(d["KW-KU"], "Iraq");
+    }
+
+    /// The policy ledger printed a debt still falling out of a country that has
+    /// none. Measured in the browser as Poland on seed 5 in January 2015: the
+    /// nation card read "Debt 0% of GDP" and the ledger directly beside it read
+    /// "Debt drift -2.0pp/yr". Not a corner case — 41 of that world's nations
+    /// sat at exactly zero debt, because the sim floors the ratio there.
+    #[test]
+    fn a_nation_with_no_debt_is_not_shown_paying_it_down() {
+        // The page applies the floor. RE-EXPRESSED, not widened, when the
+        // browser's two opposite-signed balances were settled into one:
+        // `led.deficit` (spend - revenue) became `-led.balance` (spend +
+        // interest - revenue), which is the SAME quantity plus the debt service
+        // `economy::tick` pays out of the same till. The floor, which is what
+        // this test exists for, is untouched.
+        assert!(
+            INDEX.contains("Math.max(-led.balance - m.debt * (expected + m.inflation), -m.debt)"),
+            "the drift line no longer carries the sim's floor"
+        );
+
+        // And the sim really does floor it, which is the only thing that makes
+        // the line above true rather than merely tidy. Run a world and assert
+        // the invariant the panel is now allowed to rely on — for every nation,
+        // every month, not for a sampled few (iron rule 7: this is an invariant,
+        // so one world exercises it completely).
+        let mut g = Game::new(5, Some(NationId::Poland));
+        let mut ever_zero = 0usize;
+        for _ in 0..300 {
+            tick_month(&mut g.world, &[]);
+            for n in g.world.nations.iter().filter(|n| n.alive) {
+                assert!(
+                    n.debt_gdp >= 0.0,
+                    "{:?} holds negative debt {}",
+                    n.id,
+                    n.debt_gdp
+                );
+                if n.debt_gdp == 0.0 {
+                    ever_zero += 1;
+                }
+            }
+        }
+        assert!(
+            ever_zero > 0,
+            "no nation reached the floor in 300 months, so this says nothing"
+        );
+    }
+
+    /// "same seed, same history" is printed on the setup screen beside the box,
+    /// and a seed the server could not use was quietly replaced with 1990
+    /// instead of being refused. Measured on the live server by fingerprinting
+    /// the state six months into each run: {"seed":"12345"}, {"seed":-1} and
+    /// {"seed":3.5} all produced 6B60D853FEC58666, byte-identical to
+    /// {"seed":1990}, while {"seed":12345} produced 3267FEB6F4A4A872. Three
+    /// requests asking for three different worlds, all given a fourth.
+    #[test]
+    fn a_seed_the_server_cannot_use_is_refused_not_replaced() {
+        // Not asking is still the default — this is how the server boots.
+        assert_eq!(asked_seed(&serde_json::json!({})), Ok(DEFAULT_SEED));
+        assert_eq!(asked_seed(&serde_json::json!({ "seed": null })), Ok(DEFAULT_SEED));
+        assert_eq!(
+            DEFAULT_SEED,
+            spheres_sim::world::GameRules::default().seed,
+            "the route's default must be the sim's default"
+        );
+
+        // Every seed a player can actually ask for still arrives intact —
+        // including 0, which the browser's own `|| 1990` used to swallow.
+        for s in [0u64, 1, 1990, 12345, u64::MAX] {
+            assert_eq!(asked_seed(&serde_json::json!({ "seed": s })), Ok(s));
+        }
+
+        // And the three measured substitutions.
+        for bad in [
+            serde_json::json!({ "seed": "12345" }),
+            serde_json::json!({ "seed": -1 }),
+            serde_json::json!({ "seed": 3.5 }),
+            serde_json::json!({ "seed": [1990] }),
+        ] {
+            let e = asked_seed(&bad).expect_err("must be refused");
+            assert!(e.contains("is not a seed"), "unhelpful refusal: {e}");
+        }
+
+        // The browser half. Its box used to be `parseInt(v, 10) || 1990`, which
+        // read "12abc" as 12, replaced everything else with 1990, and made 0
+        // unreachable because 0 is falsy.
+        assert!(
+            !INDEX.contains("parseInt($(\"#seed\").value, 10) || 1990"),
+            "the seed box still substitutes a seed the player did not ask for"
+        );
+        assert!(INDEX.contains("function seedFromBox()"));
+        assert!(INDEX.contains("if (!/^\\d+$/.test(raw)) return null;"));
+        assert!(INDEX.contains("Number.isSafeInteger(n) ? n : null"));
+        assert!(
+            INDEX.contains("is not a seed — a seed is a whole number"),
+            "a box that refuses must say why"
+        );
+    }
+
+    /// Asking to govern a nation the roster does not know used to start a game
+    /// with nobody in it. Measured on the live server: POST /api/new
+    /// {"seed":7,"nation":"Polnad"} answered 200, and GET /api/state came back
+    /// with `player` empty — a board with no dashboard, no research, no orders
+    /// and no explanation. "Atlantis" did the same. A typed nation name is the
+    /// one field on the setup screen a player can get wrong, and it was the one
+    /// field that failed silently.
+    #[test]
+    fn a_nation_the_roster_does_not_know_is_refused_not_ignored() {
+        // Not asking is still a legitimate answer — the server boots this way.
+        assert_eq!(asked_player(&serde_json::json!({})), Ok(None));
+        assert_eq!(asked_player(&serde_json::json!({ "nation": null })), Ok(None));
+        assert_eq!(
+            asked_player(&serde_json::json!({ "seed": 7 })),
+            Ok(None),
+            "a body with no nation key is an observer"
+        );
+
+        // Everything NationId::parse accepts still gets through: name, code,
+        // alias, any case, surrounding space.
+        for asked in ["Poland", "POL", "pol", "  Poland  ", "united states", "usa"] {
+            assert!(
+                matches!(asked_player(&serde_json::json!({ "nation": asked })), Ok(Some(_))),
+                "{asked} must still be playable"
+            );
+        }
+
+        // And what used to be silence.
+        for asked in ["Polnad", "Atlantis", "", "   "] {
+            let e = asked_player(&serde_json::json!({ "nation": asked }))
+                .expect_err("must be refused");
+            assert!(e.contains("no nation called"), "unhelpful refusal: {e}");
+        }
+        // A `nation` that is not even a string is a refusal too, not an
+        // observer — as_str() used to swallow it.
+        assert!(asked_player(&serde_json::json!({ "nation": 42 })).is_err());
+        assert!(asked_player(&serde_json::json!({ "nation": ["Poland"] })).is_err());
+    }
+
+    /// A request body that does not parse used to be indistinguishable from no
+    /// body at all, so every route read its own default out of nothing and
+    /// answered 200. Measured on the live server with a body cut off
+    /// mid-object: /api/command answered `errors: []` having read no commands,
+    /// /api/advance moved one month against a body asking for sixty, and
+    /// /api/new threw away the game in progress and started a fresh 1990 world.
+    #[test]
+    fn a_body_that_is_not_json_is_a_failed_request_not_an_empty_one() {
+        // No body is still no arguments — /api/save posts empty on purpose.
+        assert_eq!(parse_body(""), Ok(serde_json::Value::Null));
+        assert_eq!(parse_body("   \n"), Ok(serde_json::Value::Null));
+
+        // Real bodies still arrive intact.
+        assert_eq!(parse_body("{}"), Ok(serde_json::json!({})));
+        assert_eq!(
+            parse_body(r#"{"months":60}"#),
+            Ok(serde_json::json!({ "months": 60 }))
+        );
+
+        // And the three shapes that used to be silently read as `{}`.
+        for bad in [
+            r#"{"commands": [{"kind":"war","target":"Iraq"}"#, // truncated
+            "this is not json",
+            "{",
+        ] {
+            let e = parse_body(bad).expect_err("must be refused");
+            assert!(e.contains("not JSON"), "unhelpful refusal: {e}");
+        }
+
+        // The point of the refusal: a route must never see a default it can
+        // act on. `months` is the one that moved the clock the wrong distance.
+        let refused = parse_body(r#"{"months": 60"#);
+        assert!(refused.is_err());
+        // What the old code handed the route instead, and what it did with it.
+        let old = serde_json::Value::Null;
+        assert_eq!(old.get("months").and_then(|m| m.as_u64()).unwrap_or(1), 1);
+    }
+
+    /// Ten nations on the picker read "$0bn · 0m", and a player who chose one
+    /// governed a country whose every headline figure was zero: measured in the
+    /// browser as Sao Tome and Principe, the header read "GDP $0bn" and the
+    /// dashboard "GDP $0bn / Population 0m" for a transcribed $120m economy of
+    /// 119,000 people. Eighteen more nations read "0m" beside a correct GDP —
+    /// Luxembourg was "$13bn · 0m".
+    ///
+    /// The roster is the reason this cannot be one unit: it spans six orders of
+    /// magnitude, and a formatter with a fixed unit is wrong at one end of it
+    /// whichever end you pick. This test therefore asserts on the DATA, not on
+    /// a list of nations: for every nation seated in 1990, the figures the
+    /// picker card is built from must be ones the formatters can state without
+    /// rounding to nothing — and the served page must carry formatters that
+    /// change unit rather than lose the figure.
+    #[test]
+    fn no_nation_on_the_board_is_shown_as_nothing() {
+        // The formatters the page ships. A substring check, for the reason
+        // every_nation_on_the_board_has_somewhere_to_be_drawn gives.
+        for needle in [
+            // money and its flow twin drop to millions below a billion
+            "return \"$\" + (v * 1000).toFixed(a >= 0.01 ? 0 : 1) + \"m\";",
+            // population drops to thousands below a million
+            "return Math.round(m * 1000) + \"k\";",
+            // and the picker and the dashboards go through them
+            "fmt.pop(n.population)",
+            "statRow(\"Population\", fmt.pop(m.population))",
+            "statRow(\"Population\", fmt.pop(n.population))",
+            // the GDP chart's axis is the same ladder, which is why both of a
+            // microstate's axis labels used to read "0bn"
+            "fmtY: (v) => fmt.money(v).slice(1)",
+        ] {
+            assert!(INDEX.contains(needle), "the page no longer carries: {needle}");
+        }
+        assert!(
+            !INDEX.contains("population.toFixed(0) + \"m\""),
+            "a population is still being printed straight to the nearest million"
+        );
+
+        // And the world the picker is built from. `renderPick` reads /api/state,
+        // so these are exactly the numbers it formats.
+        let g = Game::new(1990, None);
+        let s = state_json(&g, None);
+        let mut zero_money = vec![];
+        let mut zero_pop = vec![];
+        for n in s["nations"].as_array().expect("a roster") {
+            let name = n["name"].as_str().unwrap_or("?").to_string();
+            let gdp = n["gdp"].as_f64().expect("gdp");
+            let pop = n["population"].as_f64().expect("population");
+            assert!(gdp > 0.0 && pop > 0.0, "{name} is seated with nothing");
+            // What the OLD formatters did, kept here as the thing being
+            // guarded against rather than as a description of the fix.
+            if gdp.round() == 0.0 {
+                zero_money.push(name.clone());
+            }
+            if pop.round() == 0.0 {
+                zero_pop.push(name);
+            }
+        }
+        assert!(
+            !zero_money.is_empty() && !zero_pop.is_empty(),
+            "this test is only meaningful while the roster still holds nations \
+             a whole-billion formatter would erase; it holds {} and {}",
+            zero_money.len(),
+            zero_pop.len()
+        );
+        // The count is the measurement this was found by, recorded rather than
+        // asserted on: pinning it would make adding a small nation a red test.
+        println!(
+            "{} nations would read $0bn and {} would read 0m under a fixed unit",
+            zero_money.len(),
+            zero_pop.len()
+        );
+    }
+
+    /// The research board's "N mo" is a projection that holds this month's rate
+    /// constant for the whole wait. That is fair over a few years; over a
+    /// century it is a fiction, and the board printed the fiction to the month.
+    /// Measured on the live server: Equatorial Guinea in January 1991 was shown
+    /// "626193 mo" against its Aerospace project — fifty-two thousand years,
+    /// stated to the month — and Sao Tome "248598 mo" against its own.
+    /// microstate-04 reported ten digits of the same thing.
+    ///
+    /// The bar is the whole roster, because this is an invariant: no nation, in
+    /// any state the sim can put it in, may be handed a schedule longer than the
+    /// span this server will talk about at once.
+    #[test]
+    fn the_research_board_never_quotes_a_schedule_in_millennia() {
+        // Two of the smallest economies on the board, which is where the rate
+        // is small enough for the division to run away.
+        for name in ["Sao Tome and Principe", "Equatorial Guinea"] {
+            let id = NationId::parse(name).expect("on the roster");
+            let mut g = Game::new(1990, Some(id));
+            let mut ever_quoted = false;
+            for _ in 0..36 {
+                tick_month(&mut g.world, &[]);
+                let r = research_json(&g.world, id);
+                for d in r["domains"].as_array().expect("eight domains") {
+                    match d["months_left"].as_i64() {
+                        None => {}
+                        Some(m) => {
+                            ever_quoted = true;
+                            assert!(
+                                (1..=1200).contains(&m),
+                                "{} was quoted {} months ({} years) for {}",
+                                name,
+                                m,
+                                m / 12,
+                                d["name"]
+                            );
+                        }
+                    }
+                }
+            }
+            // And the guard has not simply blanked the board: somewhere in three
+            // years at least one domain still carries a number a player can use.
+            assert!(ever_quoted, "{} was never quoted any schedule at all", name);
+        }
+
+        // The same guard must not touch a nation that can actually finish
+        // things: a superpower's board keeps its numbers.
+        let usa = NationId::parse("United States").expect("on the roster");
+        let mut g = Game::new(1990, Some(usa));
+        for _ in 0..12 {
+            tick_month(&mut g.world, &[]);
+        }
+        let r = research_json(&g.world, usa);
+        let quoted = r["domains"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .filter(|d| d["months_left"].as_i64().is_some())
+            .count();
+        assert!(quoted >= 4, "the United States was quoted only {} schedules", quoted);
+    }
+
+    /// A microstate's chart must be a chart, not a staircase. The history
+    /// payload rounded GDP to two decimal places of a billion — $10m — which is
+    /// a sixty-thousandth of the United States and a sixth of Sao Tome and
+    /// Principe. Measured on the live server before the fix: Sao Tome's
+    /// ninety-five-month GDP series came back holding exactly TWO distinct
+    /// values, 0.11 and 0.12, and its military series four, for a nation whose
+    /// output moved continuously the whole time. Indexed to 100 at the start —
+    /// which is how the comparison chart draws it — that is a two-step
+    /// staircase standing in for a decade of history.
+    ///
+    /// The bar is stated as a share of the series rather than as a count of
+    /// values, so it means the same thing whatever the run length: a series
+    /// that resolves its own movement has many more levels than it has steps.
+    #[test]
+    fn a_microstates_history_is_not_flattened_into_steps() {
+        let small = NationId::parse("Sao Tome and Principe").expect("on the roster");
+        let mut g = Game::new(1990, Some(small));
+        for _ in 0..95 {
+            tick_month(&mut g.world, &[]);
+            g.snapshot();
+        }
+        let h = history_json(&g, Some(small));
+        let series = &h["nations"][format!("{:?}", small)];
+
+        // Precondition: the nation is alive and its output actually moved, so a
+        // flat series would be the payload's fault and not the world's.
+        let live = g.world.nation(small);
+        assert!(live.alive);
+        // 0.12 is its transcribed 1990 GDP. The movement is small in level —
+        // about a sixth of ONE step of the old $10m grid — which is exactly why
+        // the old payload could not show it at all.
+        let moved = (live.gdp - 0.12).abs() / 0.12;
+        assert!(moved > 0.01, "the world must have moved it: {}", live.gdp);
+
+        for metric in ["gdp", "mil"] {
+            let vals: Vec<f64> = series[metric]
+                .as_array()
+                .unwrap_or_else(|| panic!("{} series missing", metric))
+                .iter()
+                .filter_map(|v| v.as_f64())
+                .collect();
+            assert!(vals.len() > 90, "{}: {} points", metric, vals.len());
+            let mut sorted = vals.clone();
+            sorted.sort_by(|a, b| a.partial_cmp(b).unwrap());
+            sorted.dedup();
+            assert!(
+                sorted.len() * 4 > vals.len(),
+                "{} came back as {} distinct values across {} months — the \
+                 series has been rounded away, not compressed",
+                metric,
+                sorted.len(),
+                vals.len()
+            );
+        }
+
+        // And the same precision is still there for a superpower, whose
+        // figures are six orders of magnitude larger in the same response.
+        let usa_id = NationId::parse("United States").expect("on the roster");
+        let h = history_json(&g, Some(usa_id));
+        let usa: Vec<f64> = h["nations"][format!("{:?}", usa_id)]["gdp"]
+            .as_array()
+            .expect("the United States is in the history")
+            .iter()
+            .filter_map(|v| v.as_f64())
+            .collect();
+        let big = g.world.nation(usa_id).gdp;
+        let last = *usa.last().unwrap();
+        assert!(
+            (last - big).abs() / big < 1e-3,
+            "a superpower's last point {} is not its GDP {}",
+            last,
+            big
+        );
+    }
+
+    #[test]
+    fn one_nation_can_be_asked_for_alone() {
+        let mut g = Game::new(1990, None);
+        for _ in 0..24 {
+            tick_month(&mut g.world, &[]);
+            g.snapshot();
+        }
+        let h = history_json(&g, Some(NationId::Japan));
+        let n = h["nations"].as_object().unwrap();
+        assert_eq!(n.len(), 1);
+        assert!(n.contains_key("Japan"));
+        assert_eq!(h["oil"].as_array().unwrap().len(), 25);
+    }
+
+    /// Every tree node carries the static list price beside the per-nation
+    /// cost, so the screen can say "Procurement: 84 pts — list 260" without
+    /// mirroring the registry client-side. The pair only means something under
+    /// two invariants: `list_cost` IS the registry's static cost, identical
+    /// for every nation, and the per-nation `cost` never exceeds it —
+    /// diffusion only ever discounts.
+    #[test]
+    fn the_tree_payload_carries_the_list_price() {
+        use spheres_sim::tech::{self, Domain, DOMAINS};
+
+        let mut g = Game::new(1990, Some(NationId::Poland));
+        let reg = tech::registry();
+
+        // A fresh 1990 world. This used to assert flatly that `cost == list`
+        // for every node, on the premise that "nobody has fielded anything, so
+        // no discount can exist" — a statement about the roster, not about the
+        // payload, and one the 1990 technology endowment falsified: 103 of the
+        // 137 nations now open holding something, so Poland reads a real
+        // diffusion discount on `core_cmos_submicron` and 47 other nodes before
+        // the first tick.
+        //
+        // The claim is therefore asked per node against what the world actually
+        // holds, which is strictly more than the blanket version said: a node
+        // nobody holds must still price at list to the digit, and a node
+        // somebody holds must not price above it. No tolerance and no threshold
+        // is introduced — the condition is read off `w.nations`.
+        //
+        // Every registry node must still ride in exactly one domain's response,
+        // because the screen stitches all eight to cover the whole tree.
+        let mut seen = 0;
+        let mut discounted = 0;
+        for d in DOMAINS {
+            let j = tech_tree_json(&g.world, NationId::Poland, d);
+            for node in j["nodes"].as_array().unwrap() {
+                let id = node["id"].as_str().unwrap();
+                let idx = tech::index_of(id).expect("payload ids are registry ids");
+                let list = node["list_cost"]
+                    .as_f64()
+                    .expect("every node carries list_cost");
+                assert_eq!(list, reg[idx as usize].cost, "{}: list price is the registry's", id);
+                let cost = node["cost"].as_f64().unwrap();
+                assert!(cost <= list, "{}: a discount can only cut, never add", id);
+                let anyone_holds = g.world.nations.iter().any(|n| n.tech.knows_index(idx));
+                if anyone_holds {
+                    discounted += 1;
+                } else {
+                    assert_eq!(cost, list, "{}: nobody holds it, so nothing is discounted", id);
+                }
+                seen += 1;
+            }
+        }
+        assert_eq!(seen, reg.len(), "the eight domain responses must cover the whole registry");
+        assert!(
+            discounted > 0,
+            "no 1990 technology is held by anybody — the endowment has gone, and \
+             the branch above is no longer being exercised"
+        );
+
+        // Hand the United States a root technology and the price Poland reads
+        // must fall below list — the diffusion discount this field exists to
+        // make visible.
+        let root = reg
+            .iter()
+            .enumerate()
+            .find(|(i, t)| t.domain == Domain::Computing && tech::prereqs_of(*i as u16).is_empty())
+            .map(|(i, _)| i as u16)
+            .expect("Computing has a root technology");
+        g.world.nation_mut(NationId::USA).tech.known = vec![root];
+        let j = tech_tree_json(&g.world, NationId::Poland, Domain::Computing);
+        let node = j["nodes"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|n| tech::index_of(n["id"].as_str().unwrap()) == Some(root))
+            .unwrap();
+        let (cost, list) = (node["cost"].as_f64().unwrap(), node["list_cost"].as_f64().unwrap());
+        assert!(
+            cost < list,
+            "once the world holds a technology its per-nation cost must fall below list ({} !< {})",
+            cost,
+            list
+        );
+    }
+
+    /// Opening a quarrel in a theatre the server could not read used to open it
+    /// somewhere else and say nothing. Measured on the live server as Iraq on
+    /// seed 7, POST /api/command {"kind":"open_conflict","target":"Kuwait",
+    /// "theatre":X}, reading back the theatre the conflict actually landed in:
+    ///
+    ///   X = "Balkans"  -> 200, errors [] -> the Balkans
+    ///   X = "Gluf"     -> 200, errors [] -> the Gulf
+    ///   X = "Nonsense" -> 200, errors [] -> the Gulf
+    ///   X = ""         -> 200, errors [] -> the Gulf
+    ///   X = 42         -> 200, errors [] -> the Gulf
+    ///
+    /// A player who asked for one operating area was given another, with the
+    /// same answer they would have got had they been obeyed. The theatre is not
+    /// cosmetic: it decides whose consent the escalation ladder needs above rung
+    /// 5, who is defending home ground and at what discount, and which districts
+    /// the front is fought over.
+    ///
+    /// The cause was that `unwrap_or_else` cannot tell a field that was not
+    /// carried from one that could not be read, and only the first of those is
+    /// a default.
+    #[test]
+    fn a_theatre_the_server_cannot_use_is_refused_not_replaced() {
+        let g = Game::new(7, Some(NationId::Iraq));
+        let me = NationId::Iraq;
+        let theatre_of = |v: &serde_json::Value| match parse_command(&g.world, v, me) {
+            Some(Command::OpenConflict { theatre, .. }) => Ok(theatre),
+            Some(other) => panic!("wrong command: {:?}", other),
+            None => Err(()),
+        };
+
+        // Not carrying the field is still the documented default, and it is the
+        // path the browser itself takes — index.html posts `open_conflict` with
+        // no theatre at all, so this arm must keep working exactly as it did.
+        let asked = serde_json::json!({ "kind": "open_conflict", "target": "Kuwait" });
+        let default = spheres_sim::war::theatre_between(&g.world, me, NationId::Kuwait);
+        assert_eq!(theatre_of(&asked), Ok(default));
+        assert_eq!(
+            theatre_of(&serde_json::json!({
+                "kind": "open_conflict", "target": "Kuwait", "theatre": null
+            })),
+            Ok(default)
+        );
+        assert!(
+            INDEX.contains(r#"{ kind: "open_conflict", target }"#),
+            "the browser must still be posting open_conflict without a theatre, \
+             or the default arm above is no longer the one it uses"
+        );
+
+        // Every theatre a client can name still arrives intact, asked of the
+        // whole table rather than a sample. `conflictCmd` posts `w.theatre`,
+        // which is the Debug spelling the state payload carries, so a strict
+        // parse that rejected any of these would break the war sheet.
+        for t in spheres_sim::theatre::ALL_THEATRES {
+            let debug = format!("{:?}", t);
+            assert_eq!(
+                theatre_of(&serde_json::json!({
+                    "kind": "open_conflict", "target": "Kuwait", "theatre": debug
+                })),
+                Ok(t),
+                "the payload's own spelling of {:?} must parse back",
+                t
+            );
+        }
+
+        // And the four measured substitutions are refused rather than replaced.
+        for bad in [
+            serde_json::json!("Gluf"),
+            serde_json::json!("Nonsense"),
+            serde_json::json!(""),
+            serde_json::json!(42),
+        ] {
+            assert_eq!(
+                theatre_of(&serde_json::json!({
+                    "kind": "open_conflict", "target": "Kuwait", "theatre": bad
+                })),
+                Err(()),
+                "{} was read as a theatre",
+                bad
+            );
+        }
+    }
+
+    /// Taking a side in somebody else's war used to rewrite what you asked for
+    /// rather than refuse it, in both of the two fields that say what joining
+    /// means. Measured on the live server as the United States on seed 7,
+    /// advanced until Iraq/Kuwait was on the board, then POST /api/command
+    /// {"kind":"join","conflict":N,...} — every line 200 with `errors: []`:
+    ///
+    ///   objective "seize" -> seize      side_a true  -> side A
+    ///   objective "siez"  -> DENY       side_a 1     -> side B
+    ///   objective ""      -> DENY       side_a "true"-> side B
+    ///   objective 3       -> DENY
+    ///
+    /// Neither substitution is cosmetic and neither is refundable. Deny is the
+    /// one objective that seizes nothing — a player who asked to take ground
+    /// bought a war fought to stop somebody else having it. `side_a` is worse:
+    /// a client that said `1` instead of `true` was enrolled AGAINST the side it
+    /// asked to fight for. Both cost the same fourteen political capital that
+    /// asking correctly does, and the join is not undoable.
+    #[test]
+    fn a_join_the_server_cannot_read_is_refused_not_rewritten() {
+        let g = Game::new(7, Some(NationId::USA));
+        let me = NationId::USA;
+        let join = |v: &serde_json::Value| match parse_command(&g.world, v, me) {
+            Some(Command::JoinConflict { side_a, objective, .. }) => Ok((side_a, objective)),
+            Some(other) => panic!("wrong command: {:?}", other),
+            None => Err(()),
+        };
+        let asked = |o: serde_json::Value, s: serde_json::Value| {
+            serde_json::json!({ "kind": "join", "conflict": 1, "objective": o, "side_a": s })
+        };
+
+        // What the browser posts must still go through untouched: conflictCmd
+        // sends a literal "deny" and a real boolean.
+        assert!(
+            INDEX.contains(r#"cmd.side_a = value === 1; cmd.objective = "deny";"#),
+            "the browser's join shape has moved; re-measure what it now sends"
+        );
+        assert_eq!(join(&asked("deny".into(), true.into())), Ok((true, Objective::Deny)));
+
+        // Every objective a client can name still arrives intact, asked of the
+        // whole set rather than a sample, in the spelling the state payload
+        // itself uses for them.
+        for o in [
+            Objective::Deny,
+            Objective::Degrade,
+            Objective::Seize,
+            Objective::Hold,
+            Objective::Stabilise,
+            Objective::Withdraw,
+        ] {
+            assert_eq!(
+                join(&asked(o.label().into(), false.into())),
+                Ok((false, o)),
+                "the payload's own spelling of {:?} must parse back",
+                o
+            );
+        }
+
+        // Not carrying a field is left exactly as it was — this commit is about
+        // a value the client DID supply being replaced by another one.
+        assert_eq!(
+            join(&serde_json::json!({ "kind": "join", "conflict": 1 })),
+            Ok((false, Objective::Deny))
+        );
+
+        // And the measured substitutions, in both fields.
+        for bad in [
+            serde_json::json!("siez"),
+            serde_json::json!(""),
+            serde_json::json!("attack"),
+            serde_json::json!(3),
+        ] {
+            assert_eq!(
+                join(&asked(bad.clone(), false.into())),
+                Err(()),
+                "{} was read as an objective",
+                bad
+            );
+        }
+        for bad in [
+            serde_json::json!(1),
+            serde_json::json!(0),
+            serde_json::json!("true"),
+            serde_json::json!("A"),
+        ] {
+            assert_eq!(
+                join(&asked("deny".into(), bad.clone())),
+                Err(()),
+                "{} was read as a side",
+                bad
+            );
+        }
+    }
+
+    /// The payload used to contradict itself for a month after a federation
+    /// dissolved: the same response listed the Soviet Union under `dead` AND
+    /// under `wars[].posture`, standing at rung 6 — "standoff strike" — with a
+    /// stake of 0.45 against a state that no longer existed. Reported by
+    /// yugoslavia-04 as F-18.
+    ///
+    /// Measured before the fix by walking twelve seeds for thirty years and
+    /// cross-checking the two lists in every monthly payload: three
+    /// occurrences, each lasting exactly one month, all at the Soviet
+    /// dissolution in September 1993 —
+    ///
+    ///   seed 1: conflict 4, USSR(dead)@5 vs Poland@1          [Frozen]
+    ///   seed 8: conflict 1, USSR(dead)@1 vs China@1           [Frozen]
+    ///   seed 2: conflict 6, South Africa@6, Mozambique@2,
+    ///           USSR(dead)@6, Angola@6                        [Conventional]
+    ///
+    /// The third is why this is two rules and not one. A three-cornered war
+    /// outlives one of its parties, so the conflict is still real and must
+    /// still be served — it is only the dead row inside it that must go. The
+    /// first two have nobody left on one side, and a conflict with nobody on
+    /// one side of it is not a conflict.
+    ///
+    /// The sim is NOT pruned. It keeps its own conflict list exactly as it did
+    /// and clears these itself on the following tick; this test therefore
+    /// asserts on the payload while asserting that the world behind it is
+    /// unchanged, which is the line between a view fix and a model change.
+    #[test]
+    fn a_dissolved_state_is_not_served_as_a_live_belligerent() {
+        let mut g = Game::new(1, None);
+        let mut checked = 0;
+        let mut wars_seen = 0;
+        let mut sim_held_a_dead_belligerent = 0;
+        for _ in 0..(30 * 12) {
+            tick_month(&mut g.world, &[]);
+            g.snapshot();
+            let s = state_json(&g, None);
+            let dead: std::collections::HashSet<&str> = s["dead"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .map(|d| d["id"].as_str().unwrap())
+                .collect();
+            for war in s["wars"].as_array().unwrap() {
+                wars_seen += 1;
+                let rows = war["posture"].as_array().unwrap();
+                for b in rows {
+                    assert!(
+                        !dead.contains(b["id"].as_str().unwrap()),
+                        "{}: conflict {} is standing {} on rung {} in the same \
+                         payload that lists it as dead",
+                        s["date"].as_str().unwrap(),
+                        war["id"],
+                        b["id"],
+                        b["rung"]
+                    );
+                }
+                // ...and what is left is still a conflict, with somebody on
+                // each side of it. This is the half the row filter alone
+                // cannot give: dropping the dead must not leave a war being
+                // fought by one party.
+                assert!(
+                    rows.iter().any(|b| b["side_a"] == true)
+                        && rows.iter().any(|b| b["side_a"] == false),
+                    "{}: conflict {} is served with nobody on one side of it",
+                    s["date"].as_str().unwrap(),
+                    war["id"]
+                );
+            }
+            // What the sim is holding underneath, this same month. Seed 1 is
+            // one of the three measured worlds, so this counter must not be
+            // zero — if it were, the loop above would be proving nothing and
+            // the test would pass on a world where the defect cannot occur.
+            if g
+                .world
+                .conflicts
+                .iter()
+                .flat_map(|c| c.posture.iter())
+                .any(|b| !g.world.nation_opt(b.nation).is_some_and(|n| n.alive))
+            {
+                sim_held_a_dead_belligerent += 1;
+            }
+            checked += 1;
+        }
+        assert_eq!(checked, 360);
+        assert!(wars_seen > 0, "thirty years produced no conflicts to check");
+        assert!(
+            sim_held_a_dead_belligerent > 0,
+            "the sim never held a dead belligerent in this world, so the filter \
+             above was never exercised and the assertions in it mean nothing"
+        );
+    }
+
+    /// TRIAGE F-19 — the conflict sheet priced four rungs the world will never
+    /// sell, and refused two more for the wrong reason.
+    ///
+    /// SYMPTOM, measured in the browser. Iraq on seed 1990, joined to the
+    /// Levant conflict on Lebanon's side against a nuclear Israel, with the
+    /// sheet open on conflict 3:
+    ///
+    ///   rung 6  "12 pc"  clickable
+    ///   rung 7  "17 pc"  clickable
+    ///   rung 8  "25 pc"  off — "you hold 20 political capital; this costs 25"
+    ///   rung 9  "33 pc"  off — "you hold 20 political capital; this costs 33"
+    ///
+    /// while POST /api/command {"kind":"commit","conflict":3,"value":r} answered
+    /// `Deterrence holds — they have the bomb and we do not.` for every one of
+    /// r = 6, 7, 8, 9, and charged nothing.
+    ///
+    /// CAUSE. index.html decided availability itself, from a copy of
+    /// `war::ESCALATION_PRICE`, a copy of `theatre::MAX_RUNG_WITHOUT_ACCESS` and
+    /// two hand-written refusals — the ceiling and the access cap.
+    /// `commitment::rung_blocked` has THREE branches; the third is the nuclear
+    /// taboo, which depends on who is standing on the far side of the war and so
+    /// has no cheap client-side test. The two that were copied are also the two
+    /// the browser can see, which is exactly why the missing one stayed missing.
+    ///
+    /// FIX. `conflict_json` serves `rungs[]`, one entry per rung, carrying
+    /// `escalation_cost_in` and `rung_blocked` — the same two functions
+    /// `set_commitment` and `world_refusal` use — and the sheet prints them.
+    ///
+    /// This test re-writes the OLD client rule so it can measure what that rule
+    /// missed on a real world, rather than asserting the payload against the
+    /// function that fills it.
+    #[test]
+    fn the_ladder_offers_only_what_the_world_will_sell() {
+        // What index.html decided before this fix: the ceiling, and the access
+        // cap, both read off the same payload row it still reads.
+        fn old_browser_rule(b: &serde_json::Value, rung: u64) -> bool {
+            let ceiling = b["ceiling"].as_u64().unwrap();
+            let capped = !b["home"].as_bool().unwrap() && !b["access"].as_bool().unwrap();
+            rung > ceiling || (capped && rung > 5)
+        }
+
+        // ---- The measured case, rebuilt without leaning on emergent history.
+        // Iraq is not home to the Levant, Israel has the bomb and Iraq does not,
+        // which is the third branch and the whole of it. Every step is a real
+        // command; only the treasury is topped up, so that "you cannot afford
+        // it" is provably not the answer being tested.
+        let mut g = Game::new(1990, Some(NationId::Iraq));
+        g.world.nation_mut(NationId::Iraq).political_capital = 500.0;
+        apply_command(
+            &mut g.world,
+            &Command::OpenConflict {
+                opener: NationId::Iraq,
+                target: NationId::Israel,
+                theatre: TheatreId::Levant,
+            },
+        )
+        .expect("Iraq can open a quarrel with Israel in the Levant");
+        // Jordan says yes, so that the SECOND branch — no consenting host — is
+        // satisfied and out of the way. Without this the access cap answers
+        // first and the taboo is never reached, which is itself the reason the
+        // old browser rule looked adequate for so long.
+        g.world.nation_mut(NationId::Jordan).political_capital = 500.0;
+        apply_command(
+            &mut g.world,
+            &Command::GrantAccess {
+                host: NationId::Jordan,
+                seeker: NationId::Iraq,
+                theatre: TheatreId::Levant,
+                grant: true,
+            },
+        )
+        .expect("Jordan can grant Iraq basing in its own theatre");
+        g.world.nation_mut(NationId::Iraq).political_capital = 500.0;
+        let s = state_json(&g, None);
+        let war = s["wars"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|w| w["theatre"] == "Levant")
+            .expect("the quarrel just opened is served");
+        let iraq = war["posture"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|b| b["id"] == "Iraq")
+            .expect("Iraq is standing in its own quarrel");
+        assert_eq!(iraq["home"], false, "Iraq is not home to the Levant");
+        assert_eq!(iraq["ceiling"], 9, "no ceiling is in the way of this measurement");
+        for r in 1..=9u64 {
+            let o = &iraq["rungs"][(r - 1) as usize];
+            let blocked = o["blocked"].as_str();
+            if r >= 6 {
+                assert_eq!(
+                    blocked,
+                    Some("Deterrence holds — they have the bomb and we do not."),
+                    "rung {} is sold to a non-nuclear expedition against a nuclear power",
+                    r
+                );
+                assert!(
+                    !old_browser_rule(iraq, r),
+                    "rung {} must be one the OLD browser rule thought was for sale, \
+                     or this case is not the one that was measured",
+                    r
+                );
+            } else {
+                assert_eq!(blocked, None, "rung {} is below the shooting line", r);
+            }
+        }
+
+        // ---- And the shape, on real worlds: EVERY belligerent the payload
+        // serves carries a full nine-rung ladder with a price on each rung.
+        // This is an invariant and not a statistic — it is the thing a future
+        // refactor would silently drop, taking the sheet back to guessing.
+        let mut refusals_served = 0usize;
+        let mut rows_checked = 0usize;
+
+        for seed in [0u64, 1, 7, 1990] {
+            let mut g = Game::new(seed, None);
+            for _ in 0..(30 * 12) {
+                tick_month(&mut g.world, &[]);
+                g.snapshot();
+                let s = state_json(&g, None);
+                for war in s["wars"].as_array().unwrap() {
+                    for b in war["posture"].as_array().unwrap() {
+                        let offers = b["rungs"]
+                            .as_array()
+                            .expect("every belligerent is served its own ladder");
+                        assert_eq!(offers.len(), 9, "nine rungs, one entry each");
+                        for (i, o) in offers.iter().enumerate() {
+                            let r = (i + 1) as u64;
+                            assert_eq!(o["rung"].as_u64(), Some(r), "the ladder is an index");
+                            assert!(o["cost"].is_number(), "every rung carries its own price");
+                            rows_checked += 1;
+                            if o["blocked"].as_str().is_some() {
+                                refusals_served += 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        assert!(rows_checked > 0, "four thirty-year worlds produced no belligerents to check");
+        assert!(
+            refusals_served > 0,
+            "no rung was refused anywhere across four thirty-year worlds, so the \
+             `blocked` field was never exercised on a live payload"
+        );
+
+        // And the sheet must actually READ the payload rather than deciding
+        // again. These three are the copies that were deleted; a future session
+        // reintroducing any of them reintroduces the defect.
+        assert!(
+            INDEX.contains("rungWhyNot(") && INDEX.contains("rungCost("),
+            "the conflict sheet must take its refusals and prices from the payload"
+        );
+        assert!(
+            !INDEX.contains("RUNG_PRICE"),
+            "war::ESCALATION_PRICE is mirrored in the browser again"
+        );
+        assert!(
+            !INDEX.contains("MAX_RUNG_NO_ACCESS"),
+            "theatre::MAX_RUNG_WITHOUT_ACCESS is mirrored in the browser again"
+        );
+    }
+
+    /// TRIAGE F-30 — the war sheet sold basing to a nation that already had it
+    /// and could not lose it.
+    ///
+    /// SYMPTOM. Iraq on seed 7 opens a quarrel with Kuwait in the Gulf, its own
+    /// home theatre, and the sheet's access panel offers all seven Gulf hosts:
+    /// "Request · 6 pc" and "Press · 15 pc" on every row. Buying one is a real
+    /// purchase of nothing — political capital 35.28 -> 29.28, `access` True
+    /// before and True after, and the news reads "Oman's parliament refuses
+    /// Iraq the use of its bases", which also costs reputation.
+    ///
+    /// CAUSE. The panel asked only whether THAT host had already granted
+    /// something (`got`), which is a narrower question than whether the player
+    /// can sustain force in the theatre at all. `theatre::has_access`
+    /// short-circuits twice before it ever looks at a grant: a nation home to
+    /// the theatre, and a nation that is itself one of its hosts, need nobody's
+    /// consent. The browser had a copy of that function, `hasAccess`, whose own
+    /// comment said "Mirrors theatre::has_access" — and the panel did not call
+    /// it.
+    ///
+    /// FIX. The two short-circuits are extracted as `theatre::needs_no_host`
+    /// (called by `has_access`, so there is still one definition), served on
+    /// each theatre as `me_needs_no_host`, and the panel gates its buttons on
+    /// it. The browser's copy is deleted; belligerent rows already carry
+    /// `access` from the sim for the host's own half of the panel.
+    #[test]
+    fn the_basing_panel_does_not_sell_what_the_theatre_already_gives() {
+        use spheres_sim::theatre;
+
+        // The invariant the suppression rests on, checked on a world that has
+        // actually issued grants: needing no host IMPLIES having access, so a
+        // row this panel hides is always a row that would have bought nothing.
+        let mut g = Game::new(7, Some(NationId::Iraq));
+        let mut structural = 0usize;
+        let mut granted = 0usize;
+        for _ in 0..(20 * 12) {
+            tick_month(&mut g.world, &[]);
+            for t in g.world.theatres.iter().map(|t| t.id).collect::<Vec<_>>() {
+                for n in g.world.nations.iter().filter(|n| n.alive).map(|n| n.id).collect::<Vec<_>>()
+                {
+                    if theatre::needs_no_host(&g.world, n, t) {
+                        structural += 1;
+                        assert!(
+                            theatre::has_access(&g.world, n, t),
+                            "{:?} needs no host in {:?} and still cannot sustain force there",
+                            n,
+                            t
+                        );
+                    } else if theatre::has_access(&g.world, n, t) {
+                        granted += 1;
+                    }
+                }
+            }
+        }
+        assert!(structural > 0, "no nation was ever structurally in a theatre");
+        assert!(
+            granted > 0,
+            "twenty years produced no granted access, so the OTHER half of \
+             has_access was never exercised and the implication above is vacuous"
+        );
+
+        // And the payload carries it, for the player's own seat, both ways.
+        let s = state_json(&g, None);
+        let th = |id: &str| -> serde_json::Value {
+            s["theatres"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .find(|t| t["id"] == id)
+                .unwrap_or_else(|| panic!("{} is served", id))
+                .clone()
+        };
+        assert_eq!(
+            th("Gulf")["me_needs_no_host"],
+            serde_json::json!(true),
+            "Iraq is home to the Gulf and has nothing to ask anyone for there"
+        );
+        assert_eq!(
+            th("EastAsia")["me_needs_no_host"],
+            serde_json::json!(false),
+            "Iraq is neither home to East Asia nor a host of it"
+        );
+
+        // The panel must gate on the served fact, and the copy must stay gone.
+        assert!(
+            INDEX.contains("me_needs_no_host"),
+            "the basing panel must take the answer from the payload"
+        );
+        assert!(
+            INDEX.contains("noHostNeeded ? \"\" :"),
+            "the Request/Press buttons must be gated on it"
+        );
+        assert!(
+            !INDEX.contains("function hasAccess("),
+            "theatre::has_access is mirrored in the browser again"
+        );
+    }
+
+    /// TRIAGE F-31 — twenty-three dossiers accused the repo of a bug that was
+    /// not there.
+    ///
+    /// SYMPTOM. Play the United States on seed 1 to the Soviet dissolution
+    /// (September 1993), open Russia's dossier: the provenance block reads
+    /// "This nation ships no provenance, which is a bug." GET
+    /// /api/sources?nation=Russia answers `{"sources":[]}`, and so does every
+    /// other successor — the eleven Soviet republics that signed at Alma Ata
+    /// plus Russia and Ukraine, the five Yugoslav successors, Namibia and East
+    /// Timor. Twenty-three of a hundred and sixty.
+    ///
+    /// CAUSE. An empty `sources` list means two different things and the
+    /// payload could not tell them apart. A nation SEATED in 1990 with no
+    /// provenance is a real defect; a successor has no 1990 data file by
+    /// design, because it is not on the board in January and its figures are
+    /// transcribed where the sim seats it instead.
+    ///
+    /// FIX. `/api/sources` serves the roster's own `start_1990` flag, and the
+    /// dossier says which of the two it is looking at. The accusation is kept
+    /// for the case that really would be one.
+    #[test]
+    fn a_successor_is_not_told_it_is_a_bug() {
+        let mut seated = 0usize;
+        let mut successors = 0usize;
+        for id in spheres_sim::nations::all_nations().iter().copied() {
+            let v = sources_json(id);
+            let has_sources = !v["sources"].as_array().unwrap().is_empty();
+            match v["start_1990"].as_bool().expect("the seating flag is served") {
+                true => {
+                    seated += 1;
+                    // The branch the dossier keeps its accusation for must be
+                    // unreachable on the shipped roster, or the accusation is
+                    // being made about something else.
+                    assert!(
+                        has_sources,
+                        "{:?} is seated in 1990 and ships no provenance — the \
+                         dossier's remaining 'which is a bug' branch is now live",
+                        id
+                    );
+                }
+                false => {
+                    successors += 1;
+                    assert!(
+                        !has_sources,
+                        "{:?} is a successor and now ships a 1990 sources block; \
+                         the dossier's two branches need re-reading",
+                        id
+                    );
+                }
+            }
+        }
+        assert_eq!(seated, 137, "the seated roster changed size");
+        assert_eq!(successors, 23, "the successor roster changed size");
+
+        // Spot-checks by name, so a flag flipped the wrong way is legible.
+        assert_eq!(sources_json(NationId::Russia)["start_1990"], serde_json::json!(false));
+        assert_eq!(sources_json(NationId::Poland)["start_1990"], serde_json::json!(true));
+
+        // And the dossier must branch on it rather than accusing everybody.
+        assert!(
+            INDEX.contains("data.start_1990 === false"),
+            "the dossier must ask whether the nation was seated before calling \
+             an empty sources block a bug"
+        );
+    }
+
+    /// The conflict sheet charged 3 political capital for an objective and did
+    /// not say so.
+    ///
+    /// SYMPTOM. The sheet prices five of its seven controls — "unrestricted · 8
+    /// pc", "Escalation ceiling · 4 pc", "Take a side · 14 pc", "Request · 6
+    /// pc", "Press · 15 pc" — and labels a sixth "Red line · free". The
+    /// Objective row carried nothing at all, and `Command::SetObjective` costs
+    /// 3. Measured on the live server, Iraq on seed 7, one click of "hold":
+    ///
+    ///   political capital  35.28 -> 32.28   (objective, quoted nothing)
+    ///   political capital  32.28 -> 32.28   (red line, quoted "free")
+    ///
+    /// The Grant and Revoke buttons carried nothing either, and revoking is the
+    /// one price on this card no literal could have expressed: 4 ordinarily and
+    /// 20 while the state being thrown out is standing at rung 7 or above.
+    ///
+    /// CAUSE. Every price on the sheet was a literal in the page, so a control
+    /// the page had never been given a literal for read as free on a card whose
+    /// own convention is that a control says what it costs.
+    ///
+    /// FIX. `lib::price_of` exposes `apply_command`'s own pricing function,
+    /// `conflict_json` serves the sheet's whole price list through it, and the
+    /// page prints what it is given. No literal is left.
+    #[test]
+    fn the_conflict_sheet_quotes_the_price_the_queue_charges() {
+        let mut g = Game::new(7, Some(NationId::Iraq));
+        g.world.nation_mut(NationId::Iraq).political_capital = 500.0;
+        apply_command(
+            &mut g.world,
+            &Command::OpenConflict {
+                opener: NationId::Iraq,
+                target: NationId::Kuwait,
+                theatre: TheatreId::Gulf,
+            },
+        )
+        .unwrap();
+        let id = g.world.conflict_between(NationId::Iraq, NationId::Kuwait).unwrap().id;
+
+        let s = state_json(&g, None);
+        let prices = s["wars"].as_array().unwrap().iter().find(|w| w["id"] == id).unwrap()
+            ["prices"]
+            .clone();
+
+        // Every quoted price must be the price the queue takes. Charged for
+        // real, one at a time, against a fresh treasury each time — this is the
+        // assertion, and it is what a literal in the page could never make.
+        let cases: Vec<(&str, Command)> = vec![
+            (
+                "objective",
+                Command::SetObjective {
+                    conflict: id,
+                    nation: NationId::Iraq,
+                    objective: spheres_sim::world::Objective::Hold,
+                },
+            ),
+            (
+                "roe_unrestricted",
+                Command::SetRoE {
+                    conflict: id,
+                    nation: NationId::Iraq,
+                    roe: spheres_sim::world::Roe::Unrestricted,
+                },
+            ),
+            (
+                "roe_other",
+                Command::SetRoE {
+                    conflict: id,
+                    nation: NationId::Iraq,
+                    roe: spheres_sim::world::Roe::Restrained,
+                },
+            ),
+            ("ceiling", Command::SetCeiling { conflict: id, nation: NationId::Iraq, rung: 5 }),
+            (
+                "red_line",
+                Command::SetRedLine {
+                    conflict: id,
+                    nation: NationId::Iraq,
+                    resolve_floor: 0.3,
+                },
+            ),
+        ];
+        for (key, cmd) in cases {
+            let quoted = prices[key].as_f64().unwrap_or_else(|| panic!("{} is quoted", key));
+            g.world.nation_mut(NationId::Iraq).political_capital = 500.0;
+            apply_command(&mut g.world, &cmd).unwrap_or_else(|e| panic!("{}: {}", key, e));
+            let charged = 500.0 - g.world.nation(NationId::Iraq).political_capital;
+            assert!(
+                (charged - quoted).abs() < 1e-9,
+                "{} is quoted at {} and charged {}",
+                key,
+                quoted,
+                charged
+            );
+        }
+
+        // The objective really is the one that used to say nothing, and the red
+        // line really is the free one the card's convention was built on.
+        assert_eq!(prices["objective"], serde_json::json!(3.0));
+        assert_eq!(prices["red_line"], serde_json::json!(0.0));
+        // And revoking is per-asker, because its price is not a constant.
+        assert!(
+            prices["revoke_access"]["Kuwait"].is_number(),
+            "the revoke price must be served per nation: it is 4 ordinarily and \
+             20 while the state being thrown out is standing at rung 7 or above"
+        );
+
+        // The page must print what it is given, and keep no literal.
+        assert!(INDEX.contains("function priceTag("), "the sheet must quote served prices");
+        for stale in ["· 6 pc", "· 15 pc", "· 14 pc", "· 8 pc", "· 4 pc</span>"] {
+            assert!(
+                !INDEX.contains(stale),
+                "the conflict sheet is quoting {:?} out of its own pocket again",
+                stale
+            );
+        }
+    }
+
+    /// The war card called a conventional war irregular the moment the player
+    /// joined it.
+    ///
+    /// SYMPTOM. Egypt on seed 7 joins the Korean war in April 1992. Both Koreas
+    /// are standing and fighting at rung 6; joining enters you at rung 1, which
+    /// is what the sheet's own caption says it does. The card then read
+    ///
+    ///   North Korea + Egypt vs South Korea · irregular · they will not stand
+    ///   where you can hit them
+    ///
+    /// over two armies in the open, while the same payload carried
+    /// `"class":"Conventional"`. The flavour clause is worse than the label: it
+    /// is a sentence about an enemy who will not come out of cover, chosen
+    /// because the PLAYER'S OWN rhetoric was the lowest number in the list.
+    ///
+    /// CAUSE. `conflictLine` decided the class again, from the highest and
+    /// lowest rung in the posture array. `Conflict::class()` decides on the
+    /// highest standing on EACH SIDE. The two agree only while nobody stands
+    /// below the shooting line on a side whose top is above it — that is, until
+    /// anybody joins, which is the one war action a player can take from the
+    /// only seat they ever sit in.
+    ///
+    /// FIX. The card reads the served `class`, and `top_rung_a`/`top_rung_b` are
+    /// served so the flavour clause picks its side from the sim's own two
+    /// numbers instead of one opponent's row and a copy of `SHOOTING_RUNG`.
+    #[test]
+    fn the_war_card_takes_its_class_from_the_sim() {
+        // Built with commands rather than found in a world, so the case cannot
+        // wander off with the AI: Iraq and Kuwait both standing at the shooting
+        // rung, and Egypt joining at rung 1 the way a player does.
+        let mut g = Game::new(7, Some(NationId::Egypt));
+        for id in [NationId::Iraq, NationId::Kuwait, NationId::Egypt] {
+            g.world.nation_mut(id).political_capital = 500.0;
+        }
+        apply_command(
+            &mut g.world,
+            &Command::OpenConflict {
+                opener: NationId::Iraq,
+                target: NationId::Kuwait,
+                theatre: TheatreId::Gulf,
+            },
+        )
+        .expect("Iraq opens on Kuwait at home");
+        let id = g.world.conflict_between(NationId::Iraq, NationId::Kuwait).unwrap().id;
+        for who in [NationId::Iraq, NationId::Kuwait] {
+            g.world.nation_mut(who).political_capital = 500.0;
+            apply_command(
+                &mut g.world,
+                &Command::SetCommitment { conflict: id, nation: who, rung: 6 },
+            )
+            .expect("both stand at the shooting rung on their own ground");
+        }
+        g.world.nation_mut(NationId::Egypt).political_capital = 500.0;
+        apply_command(
+            &mut g.world,
+            &Command::JoinConflict {
+                conflict: id,
+                nation: NationId::Egypt,
+                side_a: true,
+                objective: spheres_sim::world::Objective::Deny,
+            },
+        )
+        .expect("a third state can take a side");
+
+        let s = state_json(&g, None);
+        let war = s["wars"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|w| w["id"] == id)
+            .expect("the conflict is served");
+        let rungs: Vec<u64> =
+            war["posture"].as_array().unwrap().iter().map(|b| b["rung"].as_u64().unwrap()).collect();
+        assert!(rungs.contains(&1), "nobody joined at rung 1, so the case is not set up");
+
+        // The sim's answer...
+        assert_eq!(war["class"], "Conventional");
+        assert_eq!(war["top_rung_a"], 6);
+        assert_eq!(war["top_rung_b"], 6);
+        // ...and the answer the browser used to reach from the same payload.
+        let lo = *rungs.iter().min().unwrap();
+        let hi = *rungs.iter().max().unwrap();
+        let old_said_conventional = hi >= 6 && lo >= 6;
+        assert!(
+            !old_said_conventional,
+            "the old rule agreed here, so this is not the case that was measured"
+        );
+
+        // And the browser must be reading the served class rather than the list.
+        assert!(
+            INDEX.contains(r#"w.class === "Conventional""#),
+            "the war card must take its class from the sim"
+        );
+        assert!(
+            !INDEX.contains("Math.min(...w.posture.map"),
+            "the war card is deciding the class from the posture list again"
+        );
+        assert!(
+            INDEX.contains("w.top_rung_a"),
+            "the flavour clause must pick its side from the served tops"
+        );
+    }
+
+    /// TRIAGE F-35 / PLAN step 2 — the browser kept its own growth model, under
+    /// a comment saying it did not.
+    ///
+    /// SYMPTOM, on the first screen a player sees, with no input at all.
+    /// Governing France on seed 1990, January 1990: "Expected growth +0.2%".
+    /// The sim was running France at **-0.01%** — a sign flip. Governing Zaire
+    /// the same month: "Expected growth +23.3%" against the sim's **+10.7%**.
+    /// `browser_growth_model_gap` beside this measures the whole board: a mean
+    /// gap of 1.19 pt/yr across the 137 seated nations, worst -10.78 pt on
+    /// Zaire, and the mature panel out by -0.57 (Japan), -0.56 (Italy), -0.46
+    /// (Germany), -0.45 (the United Kingdom), -0.25 (France).
+    ///
+    /// CAUSE. Four JavaScript functions mirrored economy.rs under the sentence
+    /// "They compute nothing the sim does not". By the time anybody checked,
+    /// the copy was missing the net-of-replacement shape of the capital arm and
+    /// still paying the flat `0.030` that had been DELETED from the sim; the
+    /// labour term entirely; all three gates on the demand arm and
+    /// `MAX_DEMAND_GAP`; `MAX_OIL_SHARE` and `tech::energy_exposure`, the two
+    /// PLAN step 2 names; the bubble; and `WORST_ANNUAL_COLLAPSE`.
+    ///
+    /// FIX. `economy::growth_terms` is the one definition — `tick` charges by
+    /// it — and `policy_json` serves it: two sampled curves for the two sliders
+    /// that reach growth, and a number for every term that is fixed for the
+    /// month.
+    #[test]
+    fn stability_read_model_uses_the_integrators_terms_and_calendar_scale() {
+        use spheres_sim::economy::{stability_flow, stability_mean_reversion, stability_pressure_terms_of};
+        let mut g = Game::new(1990, Some(NationId::USA));
+        for daily in [false, true] {
+            g.world.rules.daily_simulation = daily;
+            for month in [1, 2, 4] {
+                g.world.month = month;
+                let n = g.world.nation_mut(NationId::USA);
+                n.growth_last = -0.04;
+                n.inflation = 0.2;
+                n.war_exhaustion = 0.4;
+                n.stability = 81.0;
+                let before = save(&g.world);
+                for id in [NationId::USA, NationId::USSR] {
+                    let n = g.world.nation(id);
+                    let t = stability_pressure_terms_of(&g.world, n);
+                    let total = t.total + stability_mean_reversion(n.stability);
+                    let s = stability_json(&g.world, n);
+                    let terms = s["terms"].as_array().unwrap();
+                    assert_eq!(s["monthly_points_before_bounds"].as_f64().unwrap(), stability_flow(total, 1.0));
+                    assert_eq!(s["step_points_before_bounds"].as_f64().unwrap(), stability_flow(total, spheres_sim::clock::month_fraction(&g.world)));
+                    let term = |key: &str| terms.iter().find(|v| v["id"] == key).unwrap()["monthly_points"].as_f64().unwrap();
+                    assert_eq!(term("inflation"), stability_flow(-t.inflation_drag, 1.0));
+                    assert_eq!(term("growth"), stability_flow(t.growth, 1.0));
+                    assert_eq!(term("war_exhaustion"), stability_flow(-t.war_exhaustion_drag, 1.0));
+                    if id != NationId::USA {
+                        for key in ["housing", "pensions", "security", "unemployment"] { assert_eq!(term(key), 0.0); }
+                    }
+                    let sum: f64 = terms.iter().map(|v| v["monthly_points"].as_f64().unwrap()).sum();
+                    assert!((sum - stability_flow(total, 1.0)).abs() < 1e-12, "Only floating-point regrouping separates displayed components from total");
+                }
+                assert_eq!(policy_json(&g.world, NationId::USA)["stability"], stability_json(&g.world, g.world.nation(NationId::USA)));
+                assert_eq!(save(&g.world), before, "Reading contributors cannot mutate the world");
+            }
+        }
+    }
+
+    #[test]
+    fn the_policy_panel_reads_the_sim() {
+        // The curves must cover what the SIM can hold, not what the slider can
+        // select. `Command::SetInterestRate` clamps at 0.60 and Zaire opens 1990
+        // at 0.45, past the 0.40 the slider stops at — a curve cut to the
+        // slider would read that nation's standing figure off its own end.
+        assert!(
+            POLICY_CURVE_MAX >= 0.60,
+            "the rate the sim will accept runs past the last sample"
+        );
+        assert_eq!(POLICY_CURVE_STEPS, (POLICY_CURVE_MAX * 1000.0).round() as usize,
+                   "the samples must land on the thousandths a range input steps in");
+
+        let mut g = Game::new(1990, Some(NationId::Zaire));
+        let mut checked = 0usize;
+        let mut gated = 0usize;
+        for month in 0..(20 * 12) {
+            tick_month(&mut g.world, &[]);
+            let s = state_json(&g, None);
+            let pol = &s["policy"];
+            if pol.is_null() {
+                break; // the player's nation is gone
+            }
+            let f = |k: &str| pol[k].as_f64().unwrap_or_else(|| panic!("{} is served", k));
+
+            // THE PANEL'S OWN ASSEMBLY, written out here exactly as index.html
+            // writes it, and required to reproduce the sim's answer. A term
+            // added to `economy::growth_terms` and not to the panel breaks this.
+            let assembled = (f("potential_now") + f("demand_output_now") + f("bubble") + f("oil")
+                - f("sanctions")
+                - f("war")
+                - f("debt_drag")
+                - f("unrest")
+                - f("embargo"))
+            .max(f("growth_floor"));
+            assert!(
+                (assembled - f("growth")).abs() < 1e-5,
+                "month {}: the panel assembles {:.6} where the sim charges {:.6}",
+                month,
+                assembled,
+                f("growth")
+            );
+
+            // The ungated gap and the output arm are DIFFERENT numbers, and the
+            // browser used to have only the first. Count the months where they
+            // come apart, so this test is standing on the case it was written
+            // for rather than on a world where the gates never bite.
+            if (f("demand_gap_now") - f("demand_output_now")).abs() > 0.002 {
+                gated += 1;
+            }
+
+            // A curve read at the nation's own policy must land beside the
+            // standing figure served with it. NOT EQUAL: the AI's Taylor rule
+            // puts a nation's rate anywhere, while the curve is cut at
+            // thousandths, so the nearest sample is up to half a step away —
+            // |d demand / d rate| <= 0.55 and |d potential / d share| <= 0.22, so
+            // half a thousandth is at most 2.8e-4. That is exactly why the panel
+            // reads `*_now` for a standing figure and the curve only for a
+            // slider the player has moved, which does land on thousandths.
+            //
+            // The index being IN RANGE is the load-bearing half: it is the check
+            // that catches a curve cut to the slider's 0.40 rather than to what
+            // the sim will accept, and Zaire is the nation that proves it.
+            const SAMPLING_SLACK: f64 = 1e-3;
+            let n = g.world.nation(NationId::Zaire);
+            let curve = pol["potential_curve"].as_array().unwrap();
+            assert_eq!(curve.len(), POLICY_CURVE_STEPS + 1);
+            let idx = ((n.state_invest_gdp / POLICY_CURVE_MAX) * POLICY_CURVE_STEPS as f64).round()
+                as usize;
+            assert!(idx < curve.len(), "month {}: state investment is past the last sample", month);
+            assert!(
+                (curve[idx].as_f64().unwrap() - f("potential_now")).abs() < SAMPLING_SLACK,
+                "month {}: the potential curve and the standing potential disagree",
+                month
+            );
+            let dcurve = pol["demand_output_curve"].as_array().unwrap();
+            let jdx =
+                ((n.interest_rate / POLICY_CURVE_MAX) * POLICY_CURVE_STEPS as f64).round() as usize;
+            assert!(
+                jdx < dcurve.len(),
+                "month {}: rate {:.3} is past the last sample",
+                month,
+                n.interest_rate
+            );
+            assert!(
+                (dcurve[jdx].as_f64().unwrap() - f("demand_output_now")).abs() < SAMPLING_SLACK,
+                "month {}: the demand curve says {:.6} where the sim says {:.6}",
+                month,
+                dcurve[jdx].as_f64().unwrap(),
+                f("demand_output_now")
+            );
+            checked += 1;
+        }
+        assert!(checked > 100, "only {} months were checked", checked);
+        assert!(
+            gated > 0,
+            "the demand gates never bit in twenty years of Zaire, so the split \
+             this test exists for was never exercised"
+        );
+
+        // And the browser must not be doing any of it itself.
+        assert!(INDEX.contains("policyAt("), "the panel must index the served curves");
+        assert!(
+            !INDEX.contains("function potentialGrowth(") && !INDEX.contains("function demandOf("),
+            "the browser is keeping its own growth model again"
+        );
+        assert!(
+            !INDEX.contains("0.030 + 0.080"),
+            "the capital arm the sim deleted is back in the browser"
+        );
+        assert!(
+            !INDEX.contains("0.025 - (rate"),
+            "the demand gap is being computed in the browser again"
+        );
+        assert!(
+            !INDEX.contains("0.17 + (1 - n.authoritarianism)"),
+            "the social floor is being computed in the browser again"
+        );
+    }
+
+    /// TRIAGE F-05 — the setup screen offered the live world as the opening one,
+    /// under a caption that was a literal.
+    ///
+    /// SYMPTOM. Play the United States on seed 1 to September 1993 and reload
+    /// the page. The picker draws 156 cards under "JANUARY 1990 · THE WORLD IS
+    /// UNWRITTEN"; the United States card reads "$6.4tn · 259m" against its
+    /// transcribed $5.98tn and 250m; and there is a card for Russia, a state
+    /// that did not exist in January 1990. Picking Russia posts /api/new, which
+    /// seats a fresh 1990 world that is not holding it — the route now answers
+    /// 400, so the card was an offer the server could only refuse.
+    ///
+    /// CAUSE. `buildSetup` read /api/state, which is the LIVE world, while the
+    /// caption spelt the start date into the markup. On a freshly started
+    /// server the two agree, which is why this stood.
+    ///
+    /// FIX. /api/roster serves the board /api/new will actually deal — the same
+    /// `world_1990` construction — with the month and year on it, and the
+    /// caption is written from that.
+    #[test]
+    fn the_picker_shows_the_board_it_will_deal() {
+        let r = roster_1990_json();
+        assert_eq!(r["month"], serde_json::json!(1));
+        assert_eq!(r["year"], serde_json::json!(1990));
+
+        let names: std::collections::HashSet<&str> = r["nations"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|n| n["id"].as_str().unwrap())
+            .collect();
+        assert_eq!(
+            names.len(),
+            spheres_sim::nations::start_nations().len(),
+            "the picker must offer exactly the nations seated in 1990"
+        );
+        for id in spheres_sim::nations::successor_nations() {
+            assert!(
+                !names.contains(format!("{:?}", id).as_str()),
+                "{:?} is not seated in 1990 and /api/new refuses it, so it must \
+                 not be on the picker",
+                id
+            );
+        }
+
+        // The figures are the transcribed opening ones, not a world that has
+        // moved. These two are the pair measured on screen.
+        let usa = r["nations"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|n| n["id"] == "USA")
+            .unwrap();
+        assert_eq!(usa["gdp"], serde_json::json!(5980.0), "the 1990 transcription");
+        assert_eq!(usa["population"], serde_json::json!(250.0), "the 1990 transcription");
+
+        // Nothing on this card is drawn from the RNG, so one cached board is
+        // right whatever seed the player types. Checked rather than assumed.
+        for seed in [0u64, 7, 42, 1990] {
+            let w = world_1990(GameRules { seed, ..GameRules::default() });
+            let live: Vec<(String, f64, f64)> = w
+                .nations
+                .iter()
+                .filter(|n| n.alive)
+                .map(|n| (format!("{:?}", n.id), n.gdp, n.population))
+                .collect();
+            let served: Vec<(String, f64, f64)> = r["nations"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .map(|n| {
+                    (
+                        n["id"].as_str().unwrap().to_string(),
+                        n["gdp"].as_f64().unwrap(),
+                        n["population"].as_f64().unwrap(),
+                    )
+                })
+                .collect();
+            assert_eq!(live, served, "seed {} deals a different opening board", seed);
+        }
+
+        // And the screen must read it rather than /api/state, with the date
+        // served rather than spelt into the markup.
+        assert!(
+            INDEX.contains(r#"api("/api/roster")"#),
+            "the picker must build from the board /api/new will deal"
+        );
+        assert!(
+            INDEX.contains("#setupSub"),
+            "the setup caption must be filled from the served date"
+        );
+    }
+
+    /// The opening screen is a playable control surface, not a wall of
+    /// pointer-only divs. Its large showcase may derive ranks and shares, but
+    /// only from the opening roster already served to the picker: it must not
+    /// quietly reach into the live game and contradict the board being dealt.
+    #[test]
+    fn the_picker_is_a_keyboard_playable_full_screen_showcase() {
+        for needle in [
+            "document.createElement(\"button\")",
+            "d.setAttribute(\"aria-pressed\"",
+            "aria-live=\"polite\"",
+            "height: 100dvh",
+            "#pickWrap { min-height: 0; overflow-y: auto",
+            "@media (prefers-reduced-motion: reduce)",
+        ] {
+            assert!(INDEX.contains(needle), "the accessible picker no longer carries: {needle}");
+        }
+
+        let showcase = INDEX
+            .split_once("function renderShowcase(n)")
+            .expect("the selected-nation showcase is gone")
+            .1
+            .split_once("function pickNation")
+            .expect("the showcase is no longer bounded by the picker")
+            .0;
+        assert!(showcase.contains("setupRank(n"), "the showcase must publish opening ranks");
+        assert!(
+            showcase.contains("setupNations.reduce"),
+            "the showcase's world share must come from the served opening roster"
+        );
+        assert!(
+            !showcase.contains("/api/state"),
+            "the showcase must not mix the live world's figures into the opening board"
+        );
+    }
+
+    /// Nation art keys are game identities, not modern ISO guesses. The full
+    /// 160-row check matters even though only 137 cards appear in January 1990:
+    /// a dissolved union must reveal a deliberate successor avatar rather than
+    /// a broken image later in the campaign.
+    #[test]
+    fn every_nation_has_a_historical_figure_and_flag() {
+        let manifest: serde_json::Value =
+            serde_json::from_str(NATION_FIGURES_JSON).expect("nation figure manifest is JSON");
+        let figures = manifest["nations"].as_object().expect("manifest has a nations object");
+        assert_eq!(figures.len(), spheres_sim::nations::ROSTER.len());
+
+        for row in spheres_sim::nations::ROSTER {
+            let figure = figures
+                .get(row.code)
+                .unwrap_or_else(|| panic!("{} has no historical figure", row.code));
+            assert_eq!(figure["display_name"], serde_json::json!(row.name));
+            assert_eq!(figure["start_1990"], serde_json::json!(row.start_1990));
+            assert_eq!(figure["region"], serde_json::json!(row.region));
+            for field in ["figure", "years", "role", "rationale"] {
+                assert!(
+                    figure[field].as_str().is_some_and(|value| !value.trim().is_empty()),
+                    "{} has no {field}",
+                    row.code
+                );
+            }
+            assert!(
+                NATION_FLAGS_SVG.contains(&format!(r#"id="flag-{}""#, row.code)),
+                "{} has no flag symbol",
+                row.code
+            );
+            if let Some(file) = figure["portrait"]
+                .get("asset")
+                .or_else(|| figure["portrait"].get("file"))
+                .and_then(|v| v.as_str())
+            {
+                assert!(
+                    portrait_assets::FILENAMES.contains(&file),
+                    "{} names an unbundled portrait {file}",
+                    row.code
+                );
+            }
+            let file = figure["leader_art"]
+                .get("asset")
+                .and_then(|v| v.as_str())
+                .filter(|value| !value.trim().is_empty())
+                .unwrap_or_else(|| panic!("{} has no cartoon leader art", row.code));
+            assert!(
+                portrait_assets::FILENAMES.contains(&file),
+                "{} names unbundled leader art {file}",
+                row.code
+            );
+        }
+
+        for id in figures.keys() {
+            assert!(
+                spheres_sim::nations::ROSTER.iter().any(|row| row.code == id),
+                "figure manifest contains unknown NationId {id}"
+            );
+        }
+
+        for needle in [
+            "/art/nation-figures-v2.json",
+            "/art/nation-flags-v2.svg#flag-${n.id}",
+            "historical avatar ${spec.figure}",
+            "img.decoding = \"async\"",
+            "setupNationButtons.get(n.id)",
+            "showcasePortrait",
+        ] {
+            assert!(INDEX.contains(needle), "historical picker lost {needle}");
+        }
+    }
+
+    /// Time is the one thing this game cannot give back, and the route that
+    /// spends it was reading its own argument with `unwrap_or(1)`. Every
+    /// `months` the server could not use silently advanced the world by one
+    /// month and answered 200 — the same answer, and the same distance, as a
+    /// request that asked for nothing at all.
+    ///
+    /// Measured on the live server, Poland on seed 7, from a fresh 1990 each
+    /// time. Before:
+    ///
+    ///   {"months":12}                    -> Jun 1990  (5, stopped by an event)
+    ///   {"months":-5}                    -> Feb 1990  (1)
+    ///   {"months":"12"}                  -> Feb 1990  (1)
+    ///   {"months":3.5}                   -> Feb 1990  (1)
+    ///   {"months":999999999999999999999} -> Feb 1990  (1)
+    ///   {"months":[12]}                  -> Feb 1990  (1)
+    ///   {}                               -> Feb 1990  (1)  <- the real default
+    ///
+    /// A client asking for five years and given one month is out by sixty, and
+    /// nothing in the answer says so. This is the last field of the four the
+    /// route family used to substitute — the seed (F-22), the nation (F-23), the
+    /// theatre and the join (F-20, F-21) — and the one the body-parse fix
+    /// (F-17) named in its own test as "the one that moved the clock the wrong
+    /// distance".
+    #[test]
+    fn a_span_the_server_cannot_use_does_not_move_the_clock_some_other_distance() {
+        // Not asking is still one month. This is how the browser's Enact
+        // button and the space bar both behave, so it has to stay.
+        assert_eq!(asked_months(&serde_json::json!({})), Ok(1));
+        assert_eq!(asked_months(&serde_json::json!({ "months": null })), Ok(1));
+
+        // Every span a client can actually ask for arrives intact.
+        for m in [0u64, 1, 6, 12, 60, MAX_ADVANCE] {
+            assert_eq!(asked_months(&serde_json::json!({ "months": m })), Ok(m));
+        }
+        // The browser's own span, read off the page rather than retyped, so
+        // this cannot pass while the page asks for something else.
+        // Re-expressed 2026-09-04: the four fixed jump buttons became HOI4's
+        // running clock, which posts ONE day at a time and repeats. The page's
+        // only remaining data-carrying span is the single-step control, and the
+        // runner's is the literal `advance(1)` beside it — so those are what is
+        // read off the page now. The four spans the route must still parse are
+        // kept below: /api/advance is a public route and older tabs still ask.
+        assert!(
+            INDEX.contains(r#"data-step="1""#),
+            "the page no longer offers a one-day step; re-derive this list"
+        );
+        assert!(
+            INDEX.contains("st = await advance(1);"),
+            "the clock's runner no longer posts a single day; re-derive this list"
+        );
+        assert!(
+            !INDEX.contains("data-adv="),
+            "a fixed jump button is back on the page: assert its span here too"
+        );
+        for span in ["1", "7", "30", "365"] {
+            let days: u64 = span.parse().unwrap();
+            assert_eq!(asked_days(&serde_json::json!({ "days": days })), Ok(Some(days)));
+        }
+
+        // An explicit but unusable daily span is refused. It must never fall
+        // through and move the clock one legacy month instead.
+        for bad in [
+            serde_json::json!(-5),
+            serde_json::json!("7"),
+            serde_json::json!(3.5),
+            serde_json::json!([7]),
+        ] {
+            let e = asked_days(&serde_json::json!({ "days": bad }))
+                .expect_err("must be refused");
+            assert!(e.contains("is not a number of days"), "unhelpful refusal: {e}");
+        }
+        assert_eq!(
+            asked_days(&serde_json::json!({ "days": MAX_ADVANCE_DAYS + 1 })),
+            Ok(Some(MAX_ADVANCE_DAYS))
+        );
+
+        // The clamp is a limit on the work, not a substitution of the question,
+        // and it stays a clamp rather than becoming a refusal.
+        assert_eq!(
+            asked_months(&serde_json::json!({ "months": MAX_ADVANCE + 1 })),
+            Ok(MAX_ADVANCE)
+        );
+        assert_eq!(asked_months(&serde_json::json!({ "months": u64::MAX })), Ok(MAX_ADVANCE));
+
+        // And the five measured substitutions.
+        for bad in [
+            serde_json::json!(-5),
+            serde_json::json!("12"),
+            serde_json::json!(3.5),
+            serde_json::json!(999999999999999999999u128 as f64),
+            serde_json::json!([12]),
+        ] {
+            let e = asked_months(&serde_json::json!({ "months": bad }))
+                .expect_err("must be refused");
+            assert!(e.contains("is not a number of months"), "unhelpful refusal: {e}");
+        }
+    }
+
+    /// The event log used to disappear once the world got busy, and no gesture
+    /// brought it back.
+    ///
+    /// Measured in Chrome at 1280x720 on an Iraq world, seed 1, advanced to May
+    /// 1992 (four live conflicts): `#logList` had a bounding height of **0.0px**
+    /// with a `scrollHeight` of 12042 and 216 `.item` children — every dispatch
+    /// in the game rendered and none of it on screen. `#right` measured 671.5px
+    /// against a `scrollHeight` of 737, so scrolling the column revealed the
+    /// card's heading, chips and filter box and nothing else: a zero-height box
+    /// contributes nothing to scroll through. Reproduced identically at
+    /// 1366x768 and 1024x768.
+    ///
+    /// Cause: `#right .card.feed` carried `flex: 1` — which is `flex-basis: 0%`
+    /// with a shrink factor of 1 — together with `min-height: 0`, which removes
+    /// the automatic minimum that would otherwise stop a flex item shrinking
+    /// past its content. `#warsCard` above it grows one block per live conflict
+    /// (590px at four), so the feed was squeezed to 45.5px, less than its own
+    /// chrome, and `#logList` — the only flexible child — absorbed the whole
+    /// shortfall and resolved to nothing.
+    ///
+    /// The floor is that chrome (heading 34.5 + chips 54 + filter 35 + padding
+    /// 24 + the list's 8px top margin ≈ 158px) plus four typical rows. After,
+    /// same world and viewport: `#logList` 164.5px, three dispatches visible,
+    /// the list's own `overflow-y: auto` reaching all 216, and `#right`
+    /// scrolling 946 against 672 so the rest of the card is reachable too. At
+    /// 1920x1080 the floor does not bind at all and the card still grows to
+    /// fill, exactly as before.
+    #[test]
+    fn the_event_log_cannot_be_squeezed_out_of_existence() {
+        let rule = INDEX
+            .lines()
+            .find(|l| l.trim_start().starts_with("#right .card.feed {"))
+            .expect("the feed card's layout rule is gone");
+        assert!(
+            !rule.contains("min-height: 0"),
+            "the feed card must not be allowed to shrink past its own chrome — \
+             `min-height: 0` under an unbounded #warsCard is what rendered the \
+             event log zero pixels tall: {rule}"
+        );
+        let floor = rule
+            .split_once("min-height:")
+            .and_then(|(_, rest)| rest.split_once("px"))
+            .map(|(n, _)| n.trim().parse::<f64>().expect("the floor is not a length in px"))
+            .expect("the feed card no longer states a min-height floor");
+        // 158px of measured chrome, so anything at or under it leaves the list
+        // at zero again and this test would be passing on a still-broken page.
+        assert!(
+            floor >= 240.0,
+            "a {floor}px floor does not clear the feed card's own chrome (~158px) \
+             with room for dispatches under it"
+        );
+        // The list stays a scroll container: the floor bounds the card, and the
+        // list reaches the rest of the log by scrolling inside it.
+        assert!(
+            INDEX.contains("#logList { overflow-y: auto; flex: 1;"),
+            "the log list must stay a flexible scroll container inside the card"
+        );
+    }
+
+    /// Two of the tech screen's domain tabs used to wear the same label.
+    ///
+    /// Measured in Chrome at 1280x720 on the tech screen: nine tabs divide the
+    /// bar, each 135px wide, and the `.nm` span inside each measured **47px**
+    /// against names needing 46 to 111. Seven of the eight domain names were
+    /// ellipsised, and "Computing" (72px) and "Communications" (111px) both
+    /// rendered as **"Com…"** — two adjacent tabs with an identical face, and
+    /// nothing on either to say which was which without hovering for the title.
+    ///
+    /// Cause: everything sat in one flex row. Of the tab's 111px of content the
+    /// sigil took 22, the two gaps 16 and the count ~26, and `.nm` — the only
+    /// shrinkable item — was left the remainder.
+    ///
+    /// Fix: the name gets a row of its own spanning the whole tab, with the
+    /// sigil, the count and the key hint on the row above. Nothing was removed
+    /// to make room. After, at 1280x720, all nine labels render complete
+    /// (Communications needs 111px and has 119), and the icons-only fallback
+    /// below 1180px is unchanged.
+    #[test]
+    fn no_two_domain_tabs_wear_the_same_label() {
+        // Why the name cannot share a 47px slot, derived rather than asserted:
+        // the tab shows the first word of the domain's name, and two of those
+        // words are identical over the three characters a 47px slot had room
+        // for — which is exactly the "Com…" that was measured on both.
+        let heads: Vec<&str> = spheres_sim::tech::DOMAINS
+            .iter()
+            .map(|d| d.name().split(' ').next().unwrap())
+            .collect();
+        assert!(
+            heads.iter().any(|a| heads.iter().filter(|b| b.get(..3) == a.get(..3)).count() > 1),
+            "no two domain names share a leading stub any more; re-derive what \
+             this test is protecting before relaxing it"
+        );
+        assert!(
+            INDEX.contains(r#"<span class="nm">${escText(d.name.split(" ")[0])}</span>"#),
+            "the tab no longer labels itself with the domain's first word"
+        );
+
+        // The repair: the name owns a row, full width, and is not competing
+        // with the sigil and the count for one line.
+        assert!(
+            INDEX.contains(".dtab .nm { grid-column:1 / -1; grid-row:2; width:100%;"),
+            "the domain name must span the tab on a row of its own — sharing the \
+             sigil's row is what truncated seven of eight names to a stub"
+        );
+        let tab = INDEX
+            .lines()
+            .find(|l| l.trim_start().starts_with(".dtab {"))
+            .expect("the domain tab's layout rule is gone");
+        assert!(
+            !tab.contains("display:flex"),
+            "the tab is a two-row grid; a single flex row is the defect: {tab}"
+        );
+        assert!(
+            INDEX.contains("grid-template-rows:auto auto;"),
+            "the tab needs both rows — the sigil's and the name's"
+        );
+        // And the count keeps clear of the absolutely-positioned key hint that
+        // shares the corner with it.
+        assert!(
+            INDEX.contains(".dtab .cnt { grid-column:3; grid-row:1; margin-left:auto; margin-right:12px;"),
+            "the count must stay clear of the key hint in the same corner"
+        );
+        // The narrow fallback the design already had, still there.
+        assert!(
+            INDEX.contains("@media (max-width:1180px) { .dtab .nm { display:none; }"),
+            "the icons-only bar below 1180px is the tab's own answer to no room \
+             and must survive this repair"
+        );
+    }
+
+    /// The tech survey's ruler used to paint the year on top of an era name.
+    ///
+    /// Measured in Chrome at 1280x720, tech screen, Full map view, on the world
+    /// the FIT camera opens with — no pan, no zoom, no input of any kind:
+    ///
+    ///   .era "Information"   x 19-113, y 106-127
+    ///   .now "1990 · now"    x 43-107, y 106-127
+    ///
+    /// The same 21px band and an x range wholly inside the other's: the amber
+    /// year was drawn straight through the era name and neither could be read.
+    ///
+    /// Cause: `#techRuler .era` and `#techRuler .now` are both positioned
+    /// against the same timeline and both carried `top: 0`, so the two marks
+    /// collide whenever the world year falls near an era boundary — which the
+    /// 1990 start does by construction, 24px from the Information boundary at
+    /// the survey's fit zoom.
+    ///
+    /// Fix: the marker gets a lane of its own beneath the names. After, on the
+    /// same view: era band y 106-127, `.now` y 128-142, zero overlapping era
+    /// labels. It is structural — no camera position can put them back on the
+    /// same line.
+    #[test]
+    fn the_now_marker_does_not_paint_over_an_era_name() {
+        fn rule<'a>(sel: &str) -> &'a str {
+            INDEX
+                .lines()
+                .find(|l| l.trim_start().starts_with(sel))
+                .unwrap_or_else(|| panic!("{sel} is gone from the ruler"))
+        }
+        /// `top:0` and `top:22px` both parse; anything else is a change this
+        /// test wants a human to look at.
+        fn top_px(r: &str) -> f64 {
+            let v = r.split_once("top:").expect("no top in rule").1;
+            let v = v.split(';').next().unwrap().trim();
+            v.strip_suffix("px").unwrap_or(v).parse().expect("top is not a length")
+        }
+        let era_top = top_px(rule("#techRuler .era {"));
+        let now_top = top_px(rule("#techRuler .now {"));
+        assert!(
+            now_top - era_top >= 20.0,
+            "the NOW marker sits {}px below the era names; the era lane measures \
+             21px, so anything under that paints the year through the name",
+            now_top - era_top
+        );
+        // And the ruler is tall enough to show the lane it just made.
+        let h = rule("#techRuler {")
+            .split_once("height:")
+            .and_then(|(_, r)| r.split_once("px"))
+            .map(|(n, _)| n.trim().parse::<f64>().expect("ruler height is not px"))
+            .expect("the ruler no longer states a height");
+        assert!(
+            h >= now_top + 14.0,
+            "the ruler is {h}px tall and clips its own NOW lane at {now_top}px"
+        );
+        // The strip is decoration over the graph and must stay untouchable —
+        // it now covers more of the viewport than it used to.
+        assert!(
+            rule("#techRuler {").contains("pointer-events:none"),
+            "the ruler overlays the tech viewport and must not eat its clicks"
+        );
+    }
+
+    /// The tech survey's legend was painted on nothing.
+    ///
+    /// `#techLegend` is `position:absolute` over `#techViewport` and declared
+    /// no background, so whatever the camera happened to be showing behind it
+    /// showed through the seven marks. Reproduced in Chrome at 1280x720, Full
+    /// map view, panned to the bottom-left of the survey (cam 0.055/0.86 of the
+    /// world, k = 7·fit): the "Micropropagated Plant Stock" card landed under
+    /// the legend and the words "locked", "focus" and "core" were drawn through
+    /// the card's plate, its border and its own "1990 · 15p" line. Neither the
+    /// legend nor the card could be read.
+    ///
+    /// This is not a corner the player has to look for — the survey is 253
+    /// cards under a camera they drive, and the legend is pinned to a fixed
+    /// screen corner, so every pan sweeps cards under it.
+    ///
+    /// Fix: the same translucent plate the other two floating chips on this
+    /// screen already carry.
+    #[test]
+    fn the_tech_legend_is_painted_on_something() {
+        let rule = INDEX
+            .lines()
+            .skip_while(|l| !l.trim_start().starts_with("#techLegend {"))
+            .take(3)
+            .collect::<Vec<_>>()
+            .join(" ");
+        assert!(!rule.is_empty(), "the tech legend's rule is gone");
+        assert!(
+            rule.contains("background:"),
+            "the legend floats over a camera-driven graph and must carry its own \
+             plate; without one the marks mix with whatever card is behind them: {rule}"
+        );
+        assert!(
+            rule.contains("pointer-events:none"),
+            "the legend is a key, not a control — it must not take clicks meant \
+             for the technology under it"
+        );
+        // The screen's other two floating chips, so a future edit can see what
+        // this one was made to match rather than guessing.
+        for other in ["#techPriPill {", "#techFindHint {"] {
+            assert!(INDEX.contains(other), "{other} is gone; re-derive the legend's plate");
+        }
+    }
+
+    /// A dossier figure used to run into the label of the statistic beside it.
+    ///
+    /// Measured in Chrome on Iraq's dashboard, every common width — 1024x768,
+    /// 1280x720, 1366x768, 1920x1080 — the same two cells overflow their track:
+    ///
+    ///   Military spend    "20.0% of GDP"    8px past the cell
+    ///   State investment  "10.0% of GDP"   23px past the cell
+    ///
+    /// The column gap is 18px, so the 23px overrun crossed it and put the value
+    /// hard against the next cell's key. On screen the row read
+    /// "State investment 10.0% of GDPDebt 110% of GDP" — one word where there
+    /// are two statistics.
+    ///
+    /// Cause: `.statgrid` sized its tracks `minmax(150px, 1fr)`. A cell is a
+    /// `.stat`: a key that wraps, pushed left, and a `white-space: nowrap`
+    /// value pushed right. "State investment" cannot get narrower than 76px
+    /// (its longest word) and "10.0% of GDP" cannot get narrower than 91px, so
+    /// with the 8px gap the pair needs 175px and the track gave 153.
+    ///
+    /// Fix: the track minimum becomes 180px — the widest pair the dossier
+    /// states, plus slack. After, on all four widths, no cell overflows its
+    /// track: at 1280 the grid drops from six 153px columns to five 187px ones.
+    #[test]
+    fn a_dossier_figure_stays_inside_its_own_column() {
+        let rule = INDEX
+            .lines()
+            .find(|l| l.trim_start().starts_with(".statgrid {"))
+            .expect("the dossier's stat grid rule is gone");
+        let min = rule
+            .split_once("minmax(")
+            .and_then(|(_, r)| r.split_once("px"))
+            .map(|(n, _)| n.trim().parse::<f64>().expect("the track minimum is not a length"))
+            .expect("the stat grid no longer states a track minimum");
+        assert!(
+            min >= 180.0,
+            "a {min}px track cannot hold the widest pair the dossier states \
+             (\"State investment\" 76px + 8px gap + \"10.0% of GDP\" 91px = 175px); \
+             the value runs across the 18px column gap into the next key"
+        );
+        // The two halves of the measurement, so a wider label or a wider value
+        // shows up here rather than silently overflowing again.
+        assert!(
+            INDEX.contains(r#"statRow("State investment", fmt.pct(n.state_invest, 1) + " of GDP")"#),
+            "the widest pair this track was sized for is gone; re-derive the minimum"
+        );
+        // And why the value cannot simply shrink instead.
+        assert!(
+            INDEX.contains(".stat .v { font-weight: 600; white-space: nowrap; }"),
+            "a dossier figure is nowrap on purpose; if that changed, the track \
+             minimum was derived against a rule that no longer holds"
+        );
+    }
+
+    /// Every map shading chip was cut mid-word on a 1024-wide window.
+    ///
+    /// Measured in Chrome at 1024x768: `main` is `312px 1fr 348px`, so the
+    /// centre column gets 364px and ends at x 676. The `#mapModes` block was
+    /// laid out from x 606 to x 707 — 31px past the column — and `#center`'s
+    /// `overflow: hidden` sliced all nine chips: POLITICA, FRONTS, TERRAIN,
+    /// RESOURCE, RELATION, STABILIT, GROWTH, ECONOMY, RESOUR. Two of the nine
+    /// lost the letter that distinguishes them from the other resource chip.
+    ///
+    /// Cause: `.tabs` is a single non-wrapping flex row. `#mapModes` cannot
+    /// shrink below one whole chip (101px, the widest), so when the row runs
+    /// out of width the block does not wrap or shrink — it overflows, and the
+    /// centre column's clip is what the player sees.
+    ///
+    /// Fix: the row wraps. The chip block drops to its own line with the
+    /// column's full width. After, at 1024x768, no chip crosses the column
+    /// edge and all nine read in full; at 1280 the row is 5px taller and the
+    /// chips move from above the tabs to below them, which is the reading
+    /// order the markup already had.
+    #[test]
+    fn the_map_shading_chips_are_not_sliced_by_a_narrow_column() {
+        let rule = INDEX
+            .lines()
+            .find(|l| l.trim_start().starts_with(".tabs {"))
+            .expect("the map tab bar's rule is gone");
+        assert!(
+            rule.contains("flex-wrap: wrap"),
+            "the tab row must wrap: #mapModes cannot shrink below one whole chip, \
+             so a row that will not wrap overflows the centre column and #center \
+             clips it mid-word: {rule}"
+        );
+        // The clip that turns the overflow into sliced text, so this test says
+        // what the wrap is protecting against rather than just pinning a rule.
+        assert!(
+            INDEX.contains("#center { display: flex; flex-direction: column; overflow: hidden; }"),
+            "#center's clip is half of this defect; if it moved, re-derive"
+        );
+        // The globe now owns the entire board; the former fixed side columns
+        // are drawers laid over it. That removes the 364px centre-column case
+        // entirely while retaining the wrapping protection above.
+        assert!(
+            INDEX.contains("main { position: relative; display: block; min-width: 0; min-height: 0; overflow: hidden; overflow: clip; }"),
+            "the map-first board is no longer full-width"
+        );
+        assert!(
+            INDEX.contains("#center { position: absolute; inset: 0; }"),
+            "the globe no longer fills the board behind the drawers"
+        );
+    }
+
+    /// A dead nation's chart label used to be parked in the live margin.
+    ///
+    /// Measured in Chrome on seed 1 in May 1996, the History workbench's GDP
+    /// chart, 77 monthly samples, with the Soviet Union and Yugoslavia plotted.
+    /// The chart is 960 units wide with a 108-unit right pad:
+    ///
+    ///   Soviet Union  line ends at x 509.8   label drawn at x 860   350 adrift
+    ///   Yugoslavia    line ends at x 292.1   label drawn at x 860   568 adrift
+    ///
+    /// 36% and 59% of the chart's width between a line and its own name. Both
+    /// names sat in the right margin, which is where a series still running at
+    /// the last sample is labelled — so the chart said two states that had been
+    /// gone for years were still going, and gave no way to tell which stub
+    /// belonged to which name.
+    ///
+    /// Cause: `chart()` built one tip per series at `x = W - PADR + 8`,
+    /// unconditionally, from `vals[vals.length - 1]`. It read the last VALUE
+    /// and ignored where that value sat on the axis.
+    ///
+    /// Fix: a series whose last sample is not the chart's last sample is
+    /// labelled at its own endpoint instead. The right-margin group keeps the
+    /// 12-unit vertical spread it always had, and the endpoint group gets the
+    /// same treatment among themselves.
+    ///
+    /// The server side of the same fact is already right and is not touched
+    /// here: `/api/history` ends a nation's series when the nation ends
+    /// (`the_series_ends_when_a_nation_does`). This is the chart drawing that
+    /// truthfully.
+    #[test]
+    fn a_series_that_ends_early_is_labelled_where_it_ends() {
+        assert!(
+            INDEX.contains("if (end >= N - 1) live.push(tip); else { tip.x = X(end) + 6; gone.push(tip); }"),
+            "the chart must split its labels: the right margin is for series \
+             still running at the last sample, and one that stopped earlier is \
+             labelled at its own endpoint"
+        );
+        assert!(
+            !INDEX.contains(r#"s += `<text x="${W - PADR + 8}" y="${(t.y + 3.5).toFixed(1)}""#),
+            "a label is no longer pinned to the right margin unconditionally; \
+             that is the defect this test exists for"
+        );
+        // The de-overlap the old code had, kept rather than lost in the split.
+        assert!(
+            INDEX.contains("if (tips[k].y - tips[k - 1].y < 12) tips[k].y = tips[k - 1].y + 12;"),
+            "the 12-unit vertical spread that stops two labels overprinting is gone"
+        );
+        // And the payload fact the fix reads: a series carries where it starts,
+        // so where it ends is t0 + len - 1 and the chart can see it.
+        assert!(
+            INDEX.contains("const end = se.t0 + se.vals.length - 1;"),
+            "the endpoint must come from the series' own t0 and length"
+        );
+    }
+
+    /// The war card's front line printed "held" twice and named nobody.
+    ///
+    /// Measured in Chrome on seed 1, May 1995, the Conflicts column:
+    ///
+    ///   header  "South Korea vs North Korea + China"
+    ///   front   "front · 0 held / 1 contested / 17 held · 1 pocket cut off"
+    ///
+    /// Two counts wearing the same word. Nothing on the card says which side
+    /// each belongs to: the header lists two coalitions in `attacker + allies`
+    /// order but the front line never claims to follow it, and the ladder above
+    /// is coloured by mine/theirs rather than by attacker/defender. A reader had
+    /// to already know that the first number counts the attacker's districts.
+    ///
+    /// The conflict sheet counts the same band, from the same `w.front`, with
+    /// the same `FRONT_HELD_BAND`, and has always said it properly:
+    /// "front: South Korea holds 0 districts, North Korea holds 17, 1
+    /// contested". So the card was not missing information — it was declining
+    /// to print the two names it already had in hand.
+    ///
+    /// Fix: the card says "front · {attacker} holds {ha} · {cn} contested ·
+    /// {defender} holds {hb}". Measured in the 288px card, that wraps to two
+    /// lines for a long pair of names, which the card's own header already
+    /// does. No count changes.
+    #[test]
+    fn the_war_card_says_which_side_holds_what() {
+        assert!(
+            INDEX.contains("front · ${w.attacker} holds ${ha} · ${cn} contested · ${w.defender} holds ${hb}"),
+            "the war card's front summary must name the side each count belongs to"
+        );
+        assert!(
+            !INDEX.contains("front · ${ha} held / ${cn} contested / ${hb} held"),
+            "two counts labelled `held` with no side named is the defect"
+        );
+        // The sheet's wording, which the card was made to agree with — and the
+        // one band both of them count against, so the two can never disagree
+        // about the numbers while disagreeing about the words.
+        assert!(
+            INDEX.contains(r#"front: ${w.attacker} holds ${"#),
+            "the conflict sheet's front line is the wording this was matched to"
+        );
+        assert_eq!(
+            INDEX.matches("if (c > FRONT_HELD_BAND) ").count(),
+            2,
+            "the card and the sheet must keep counting against the same band"
+        );
+    }
+
+    /// Three Pacific states had their names sliced by the edge of the world.
+    ///
+    /// A nation label is `text-anchor: middle` on its anchor point and the svg
+    /// clips at the viewBox, so an anchor within half a name of x = 0 or
+    /// x = WORLD.w loses the other half — and no gesture recovers it, because
+    /// the frame is where the world ends, not where the camera is.
+    ///
+    /// Measured in Chrome at 1280x720, political shading, the view the map
+    /// opens with (k = 1), five text lines across three nations clipped:
+    ///
+    ///   Fiji            name + "authoritarian"   4.2 world units past the right frame
+    ///   Western Samoa   name + "semi-free"      46.3 units past the left frame
+    ///   Tonga           "authoritarian"          the same way
+    ///
+    /// The same three at 1024x768 and at 1920x1080 — the overhang is in world
+    /// units and does not depend on the window.
+    ///
+    /// Fix: a label whose box crosses the frame anchors inward — `start` at the
+    /// left edge, `end` at the right — so it grows into the world instead of
+    /// out of it. Both lines of a pair take the same anchor and the wider of
+    /// the two decides. After: zero clipped labels, and exactly those three
+    /// groups moved out of 137.
+    ///
+    /// The widths are measured (getBBox), not estimated: a character-count
+    /// estimate runs 14-24% light against the real advance and misses Fiji,
+    /// whose overhang is 4.2 units. getBBox reads the label's own untransformed
+    /// box, so the test is a property of the name and its anchor rather than of
+    /// the camera — a render taken while zoomed in still holds when the player
+    /// zooms out. 274 calls measured at 0.2ms, once per renderMap.
+    #[test]
+
+    fn a_name_at_the_edge_of_the_world_is_not_cut_by_it() {
+        // WHAT THIS TEST PROTECTS SURVIVED THE MAP BECOMING A SPHERE; the shape
+        // of the failure changed. On the flat map a nation label near the frame
+        // overhung the paper and was sliced by it, and anchorEdgeLabels() turned
+        // the label at each end. A globe has no frame to be sliced by -- it has a
+        // HORIZON, and the same label placed on ground turned 85 degrees away is
+        // drawn on two pixels of foreshortened coastline, pointing at nothing.
+        //
+        // Three rules replace the one. Each fails silently: the map still draws,
+        // it just draws an unreadable pile of names, which is precisely what the
+        // pass this replaced existed to prevent.
+        assert!(
+            INDEX.contains("if (face < 0.17) continue;"),
+            "the overlay no longer drops labels on ground turned away from the \
+             camera -- the limb will stack every far-side name into a smear"
+        );
+        assert!(
+            INDEX.contains("const face = globe.facingWorld(a[0], a[1]);"),
+            "the facing cull must be measured from the globe's own rotation, not \
+             guessed from the label's screen position"
+        );
+        // MEASURED, not estimated, exactly as the flat map's pass measured the
+        // real advance width rather than counting characters.
+        assert!(
+            INDEX.contains("const width = ctx.measureText(text).width;"),
+            "the label collision test must measure the real advance width"
+        );
+        // And the priority the collision resolves BY. Without an order the
+        // survivor of a collision is whichever nation happened to be first in
+        // the roster, which is not an answer anybody can predict.
+        assert!(
+            INDEX.contains("const rank = (n) => (m && n.id === m.id ? 1e15 : 0)"),
+            "label collisions must resolve by priority -- you, then the open or \
+             hovered nation, then the largest economies"
+        );
+    }
+
+    /// The tech screen's find hint was amber text painted onto the tab bar.
+    ///
+    /// `#techFindHint` is `position: absolute; top: 44px` — directly on top of
+    /// `#techTabs`, which occupies y 44 to 106 — and declared no background, so
+    /// the hint and the tabs under it shared the same pixels.
+    ///
+    /// Measured in Chrome at 1280x720, tech screen, the Computing domain view,
+    /// with "laser" typed into the find box: the hint reads "0 here — Enter
+    /// opens Communications & Space" and its text box runs x 508-772, y 47-59,
+    /// across the top strip of the Materials, Aerospace and Biotech tabs. The
+    /// key hints sit there at y 55-65 and the sigils at y 56-78, so the amber
+    /// line and the tabs' own marks were drawn through each other.
+    ///
+    /// Honest note on provenance: the collision with the key hints predates
+    /// this session; the sigils joined it when the domain tab became a two-row
+    /// grid (`no_two_domain_tabs_wear_the_same_label`), which moved them up 7px.
+    /// One plate cures both.
+    ///
+    /// Fix: the plate `#techPriPill` already carries, and the hint shrink-wraps
+    /// and centres so it covers as little of the bar as it can. It stays
+    /// `pointer-events: none`, so the tab underneath is still clickable, and it
+    /// is still hidden the moment the query is cleared or the box is blurred.
+    #[test]
+    fn the_find_hint_is_painted_on_something() {
+        let rule = INDEX
+            .lines()
+            .skip_while(|l| !l.trim_start().starts_with("#techFindHint {"))
+            .take(4)
+            .collect::<Vec<_>>()
+            .join(" ");
+        assert!(
+            rule.contains("background:"),
+            "the find hint is drawn on top of the domain tab bar and must carry \
+             its own plate; without one it and the tabs share pixels: {rule}"
+        );
+        assert!(
+            rule.contains("width:max-content"),
+            "the hint must shrink-wrap so it hides as little of the tab bar as it can"
+        );
+        assert!(
+            rule.contains("pointer-events:none"),
+            "the hint is feedback, not a control — the tab under it stays clickable"
+        );
+        // It is drawn over the tab bar by construction: same top, higher z.
+        assert!(
+            INDEX.contains("#techTabs { position:absolute; top:44px;"),
+            "the tab bar's position is why the hint needs a plate; re-derive if it moves"
+        );
+    }
+
+    // =======================================================================
+    // THE RESOURCE BOARD (package W1, spec section 5.9). Every literal the
+    // page must carry is pinned in INDEX; every number it prints is checked
+    // to come from the sim through this server, not from the page.
+    // =======================================================================
+
+    /// The board reads served fields and nothing else: the page holds no
+    /// coefficient of the resource model, and the payload it reads carries
+    /// twelve rows, each with a state word, a sentence and a pile.
+    #[test]
+    fn the_board_reads_the_sim() {
+        for needle in [
+            "S.resources",
+            ".rows",
+            ".status",
+            ".sentence",
+            ".cover_months",
+            "/api/stock?com=",
+            "/api/stock?nation=",
+            "/api/stock/world?com=",
+            "\"/api/talks\"",
+            "function renderStock(",
+            "function openTalks(",
+        ] {
+            assert!(INDEX.contains(needle), "the page no longer reads {needle:?}");
+        }
+        // No coefficient of the model lives in the page. The names are the
+        // sim's own (resources.rs, Appendix A); the page prints served
+        // sentences and served numbers, so none of them has a reason to be
+        // here.
+        for name in [
+            "RELATION_FLOOR",
+            "BUFFER_MONTHS",
+            "SCARCITY",
+            "MARGIN",
+            "RESALE",
+            "STRATEGIC",
+            "SOVEREIGNTY",
+            "LAND_YEARS",
+            "kt/$bn",
+            "MONEY_RUNGS",
+        ] {
+            assert!(!INDEX.contains(name), "the page carries the model's own {name} — that belongs in the sim");
+        }
+
+        // The payload, for a seated player.
+        let g = Game::new(1990, Some(NationId::USA));
+        let st = state_json(&g, None);
+        let res = &st["resources"];
+        let rows = res["rows"].as_array().expect("twelve rows");
+        assert_eq!(rows.len(), 12, "one row per line");
+        let words = ["ok", "supplied", "short", "stalled", "idle", "market", "presence"];
+        for r in rows {
+            let status = r["status"].as_str().expect("a state word");
+            assert!(words.contains(&status), "unknown state word {status:?}");
+            assert!(!r["sentence"].as_str().unwrap_or("").is_empty(), "a row without its sentence: {r}");
+            assert!(r["cover_months"].is_number(), "a row without its pile: {r}");
+            assert!(r["net"].is_number(), "a row without its one big number: {r}");
+            assert_eq!(r["fold"].as_bool(), Some(status == "idle" || status == "presence"));
+        }
+        // January 1990 draws nothing (the legacy tier needs no new ore), so
+        // every mined line is IDLE, oil is MARKET, and nothing is red.
+        let iron = rows.iter().find(|r| r["id"] == "iron").expect("iron");
+        assert_eq!(iron["status"], "idle");
+        assert_eq!(iron["unit"], "kt/mo");
+        assert!(iron["produce_per_month"].as_f64().unwrap() > 4_000.0, "US iron in kt/mo: {iron}");
+        assert!(iron["sentence"].as_str().unwrap().starts_with("you make "), "{iron}");
+        let oil = rows.iter().find(|r| r["id"] == "oil").expect("oil");
+        assert_eq!(oil["status"], "market");
+        assert!(oil["sentence"].as_str().unwrap().contains("settles at the world price"), "{oil}");
+        assert_eq!(res["starved"], 0);
+        assert!(res["folded"].as_u64().unwrap() >= 10, "{}", res["folded"]);
+        assert_eq!(res["contracts"].as_array().unwrap().len(), 0);
+        assert_eq!(res["offers"].as_array().unwrap().len(), 0);
+        assert_eq!(res["refused"].as_array().unwrap().len(), 0);
+        assert_eq!(res["talks_pc"], 3.0);
+        // Nothing is red for anybody at the start: the six mature economies.
+        for id in [NationId::Japan, NationId::Germany, NationId::France, NationId::UK, NationId::Italy, NationId::USSR] {
+            let r = resources_json(&g.world, id);
+            assert_eq!(r["starved"], 0, "{:?} opens 1990 starved: {}", id, r);
+        }
+        // A spectator has no board and the button says so.
+        let spectator = Game::new(1990, None);
+        assert!(state_json(&spectator, None)["resources"].is_null());
+        assert!(INDEX.contains("sb.disabled = !S.resources;"));
+    }
+
+    /// Strategic Supply Command is a read-only projection of the live sim.
+    /// The adapter may convert display units, but it may not invent a horizon,
+    /// add sources in JavaScript, read the AI's stale review snapshot, or turn
+    /// oil into a physical stockpile.
+    #[test]
+    fn strategic_supply_command_serves_the_live_twelve_line_forecast() {
+        let g = Game::new(1990, Some(NationId::USA));
+        let before = save(&g.world);
+        let raw = spheres_sim::economic_ai::raw_supply_forecast(&g.world, NationId::USA);
+        let res = resources_json(&g.world, NationId::USA);
+        assert_eq!(save(&g.world), before, "opening Supply Command mutated the world");
+
+        let rows = res["rows"].as_array().expect("strategic resource rows");
+        assert_eq!(rows.len(), ALL.len());
+        assert_eq!(raw.lines.len(), ALL.len());
+        assert_eq!(res["strategic_summary"]["default_horizon_days"], 90);
+        assert_eq!(res["strategic_summary"]["as_of_day"], raw.as_of_day);
+        let mission = &res["strategic_summary"]["mission"];
+        assert_eq!(mission["id"], "cover_active_supply");
+        assert_eq!(mission["horizon_days"], 90);
+        assert!(matches!(
+            mission["state"].as_str(),
+            Some("idle" | "blocked" | "at_risk" | "secure")
+        ));
+        let allowed = ["market", "idle", "secure", "watch", "action", "stalled"];
+
+        for (commodity, line) in ALL.iter().copied().zip(raw.lines.iter()) {
+            assert_eq!(line.commodity, commodity, "sim forecast lost canonical order");
+            let row = &rows[commodity.idx()];
+            assert_eq!(row["id"], commodity.key());
+            let strategic = &row["strategic"];
+            assert_eq!(strategic["as_of_day"], raw.as_of_day);
+            assert_eq!(strategic["quantity_unit"], stock_unit(commodity).0);
+            assert_eq!(strategic["storable"], commodity != Commodity::Oil);
+            let horizons = strategic["horizons"].as_array().expect("three served windows");
+            assert_eq!(horizons.len(), 3);
+            for (h, window) in horizons.iter().enumerate() {
+                assert_eq!(window["days"], raw.horizons_days[h]);
+                let status = window["status"].as_str().expect("served presentation state");
+                assert!(allowed.contains(&status), "unknown strategic status {status}: {window}");
+                assert!(!window["headline"].as_str().unwrap_or("").is_empty());
+                assert!(!window["reason"].as_str().unwrap_or("").is_empty());
+                for key in ["kind", "label", "detail"] {
+                    assert!(window["recommended_action"].get(key).is_some(), "missing action {key}: {window}");
+                }
+                if commodity == Commodity::Oil {
+                    assert_eq!(status, "market");
+                    for key in ["demand", "covered", "gap"] {
+                        assert!(window[key].is_null(), "oil invented {key}: {window}");
+                    }
+                    for key in ["stock", "warehouse_stock", "prior_claims", "domestic_output", "contracted_inbound", "paid_inbound"] {
+                        assert!(window["sources"][key].is_null(), "oil invented {key}: {window}");
+                    }
+                } else {
+                    let factor = stock_unit(commodity).1;
+                    assert_eq!(window["demand"], round(line.demand[h] * factor, 9));
+                    assert_eq!(window["covered"], round(line.coverage[h] * factor, 9));
+                    assert_eq!(window["gap"], round(line.shortage[h] * factor, 9));
+                    assert_eq!(
+                        window["sources"]["stock"],
+                        round(line.allocable_stock[h] * factor, 9)
+                    );
+                    assert_eq!(window["sources"]["warehouse_stock"], round(line.stock * factor, 9));
+                    assert_eq!(
+                        window["sources"]["prior_claims"],
+                        round(line.prior_claims[h] * factor, 9)
+                    );
+                    assert_eq!(
+                        window["sources"]["domestic_output"],
+                        round(line.domestic_coverage[h] * factor, 9)
+                    );
+                    assert_eq!(
+                        window["sources"]["contracted_inbound"],
+                        round(line.contract_coverage[h] * factor, 9)
+                    );
+                    assert_eq!(window["sources"]["paid_inbound"], round(line.pending[h] * factor, 9));
+                    assert_eq!(status == "stalled", line.blocked_now,
+                        "red must mean an immediate blocked draw: {window}");
+                }
+            }
+        }
+
+        let oil = &rows[Commodity::Oil.idx()]["strategic"];
+        assert_eq!(oil["storable"], false);
+        assert!(oil["storage_note"].as_str().unwrap_or("").contains("priced national flow"));
+
+        let alerts = res["strategic_summary"]["attention"].as_array().expect("ranked alerts");
+        assert!(alerts.len() <= 3, "the map-level brief may show at most three alerts");
+        let rank = |status: &str| match status { "stalled" => 0, "action" => 1, "watch" => 2, _ => 99 };
+        assert!(alerts.windows(2).all(|pair| {
+            rank(pair[0]["status"].as_str().unwrap_or(""))
+                <= rank(pair[1]["status"].as_str().unwrap_or(""))
+        }), "alerts are not severity-ranked: {alerts:?}");
+        for alert in alerts {
+            let row = rows.iter().find(|row| row["id"] == alert["id"]).expect("alert points to a row");
+            let window = row["strategic"]["horizons"].as_array().unwrap()
+                .iter().find(|window| window["days"] == 90).unwrap();
+            assert_eq!(alert["status"], window["status"]);
+            assert_eq!(alert["headline"], window["headline"]);
+            assert_eq!(alert["recommended_action"], window["recommended_action"]);
+        }
+
+        let ninety_day_statuses = rows
+            .iter()
+            .filter_map(|row| {
+                row["strategic"]["horizons"]
+                    .as_array()?
+                    .iter()
+                    .find(|window| window["days"] == 90)?["status"]
+                    .as_str()
+            })
+            .collect::<Vec<_>>();
+        let active = ninety_day_statuses
+            .iter()
+            .filter(|status| matches!(status, &&"secure" | &&"watch" | &&"action" | &&"stalled"))
+            .count();
+        let secured = ninety_day_statuses
+            .iter()
+            .filter(|status| matches!(status, &&"secure"))
+            .count();
+        let blocked = ninety_day_statuses
+            .iter()
+            .filter(|status| matches!(status, &&"stalled"))
+            .count();
+        assert_eq!(mission["active_lines"], active);
+        assert_eq!(mission["secured_lines"], secured);
+        assert_eq!(mission["attention_lines"], active - secured);
+        assert_eq!(mission["blocked_lines"], blocked);
+        assert_eq!(mission["complete"], active > 0 && active == secured);
+        if active == 0 {
+            assert!(mission["progress_percent"].is_null());
+        } else {
+            assert_eq!(
+                mission["progress_percent"],
+                ((secured as f64 / active as f64) * 100.0).round() as usize
+            );
+        }
+
+        let iron = rows.iter().find(|row| row["id"] == "iron").unwrap();
+        let cards = stock_cards_json(&g.world, NationId::USA, Commodity::Iron);
+        assert_eq!(cards["row"]["strategic"], iron["strategic"],
+            "the selected brief disagrees with its twelve-button row");
+        assert_eq!(save(&g.world), before, "reading selected Supply Command cards mutated the world");
+    }
+
+    #[test]
+    fn strategic_supply_red_requires_an_authoritative_recorded_block() {
+        let g = Game::new(1990, Some(NationId::USA));
+        let raw = spheres_sim::economic_ai::raw_supply_forecast(&g.world, NationId::USA);
+        let mut line = raw
+            .lines
+            .iter()
+            .find(|line| line.commodity == Commodity::Iron)
+            .expect("iron forecast")
+            .clone();
+        // Model the dangerous post-success view directly: the next RUN window
+        // has a prospective gap and no pile remains, but no subsystem recorded
+        // a failed consumer. That is amber action, never red.
+        line.demand = [1.0, 1.0, 1.0];
+        line.shortage = [1.0, 1.0, 1.0];
+        line.immediate_draw = 1.0;
+        line.immediate_shortage = 1.0;
+        line.blocked_now = false;
+        line.blocker_reason = None;
+        assert_eq!(strategic_status(Commodity::Iron, &line, 0), "action");
+        assert_eq!(strategic_status(Commodity::Iron, &line, 1), "action");
+
+        line.blocked_now = true;
+        line.blocker_reason = Some("BLOCKED: needs 1 Iron, have 0.".into());
+        assert_eq!(strategic_status(Commodity::Iron, &line, 0), "stalled");
+        assert_eq!(strategic_status(Commodity::Iron, &line, 2), "stalled");
+        let served = strategic_resource_json(&g.world, &raw, &line);
+        assert_eq!(served["blocked_now"], true);
+        assert!(served["horizons"][0]["headline"]
+            .as_str()
+            .unwrap_or("")
+            .contains("BLOCKED: needs 1 Iron"));
+    }
+
+    #[test]
+    fn strategic_supply_mission_has_one_ranked_objective_and_honest_idle_state() {
+        let row = |id: &str, name: &str, ninety: &str, year: &str| {
+            let action = serde_json::json!({
+                "kind": "served_action",
+                "label": format!("Review {name}"),
+                "detail": format!("Served guidance for {name}."),
+            });
+            serde_json::json!({
+                "id": id,
+                "name": name,
+                "strategic": {
+                    "horizons": [
+                        {"days": 30, "status": ninety, "headline": format!("{name} 30."), "reason": "served", "recommended_action": action},
+                        {"days": 90, "status": ninety, "headline": format!("{name} 90."), "reason": "served", "recommended_action": action},
+                        {"days": 365, "status": year, "headline": format!("{name} 365."), "reason": "served", "recommended_action": action},
+                    ]
+                }
+            })
+        };
+
+        let rows = vec![
+            row("oil", "Oil", "market", "market"),
+            row("gold", "Gold", "idle", "idle"),
+            row("copper", "Copper", "watch", "watch"),
+            row("iron", "Iron", "secure", "secure"),
+            row("coal", "Coal", "stalled", "stalled"),
+            row("cobalt", "Cobalt", "action", "action"),
+        ];
+        let summary = strategic_summary_json(&rows, 0);
+        let mission = &summary["mission"];
+        assert_eq!(mission["state"], "blocked");
+        assert_eq!(mission["active_lines"], 4);
+        assert_eq!(mission["secured_lines"], 1);
+        assert_eq!(mission["attention_lines"], 3);
+        assert_eq!(mission["blocked_lines"], 1);
+        assert_eq!(mission["progress_percent"], 25);
+        assert_eq!(mission["complete"], false);
+        assert_eq!(summary["primary_action"]["resource_id"], "coal");
+        assert_eq!(summary["primary_action"]["kind"], "review_resource");
+        assert_eq!(summary["primary_action"]["severity"], "blocked_now");
+        assert_eq!(
+            summary["primary_action"]["recommended_action"],
+            rows[4]["strategic"]["horizons"][1]["recommended_action"]
+        );
+
+        let idle = strategic_summary_json(
+            &[row("oil", "Oil", "market", "market"), row("gold", "Gold", "idle", "idle")],
+            0,
+        );
+        assert_eq!(idle["mission"]["state"], "idle");
+        assert_eq!(idle["mission"]["complete"], false);
+        assert!(idle["mission"]["progress_percent"].is_null());
+        assert_eq!(idle["primary_action"]["kind"], "return_to_map");
+        assert_eq!(idle["headline"], "No active material demand yet.");
+        assert_eq!(idle["primary_action"]["label"], "Return to command");
+
+        let future_only = strategic_summary_json(&[row("iron", "Iron", "secure", "watch")], 0);
+        assert_eq!(future_only["mission"]["state"], "secure");
+        assert_eq!(future_only["mission"]["progress_percent"], 100);
+        assert_eq!(future_only["mission"]["complete"], true);
+        assert_eq!(future_only["primary_action"]["kind"], "return_to_map");
+    }
+
+    /// The market foundation is additive: old row fields remain, while every
+    /// new market/stock value has a stable optional slot. Unknown clearing is
+    /// null rather than a fictional zero, and the page reads served bands and
+    /// totals instead of carrying scarcity or budget formulas.
+    #[test]
+    fn the_arcade_market_strip_and_foreign_ledger_are_served() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        let res = resources_json(&g.world, NationId::USA);
+        let rows = res["rows"].as_array().expect("market rows");
+        assert_eq!(rows.len(), ALL.len());
+        assert_eq!(res["market_summary"]["quoted"], ALL.len());
+        for row in rows {
+            let market = &row["market"];
+            for key in [
+                "reference_price",
+                "current_price",
+                "price_unit",
+                "trend",
+                "band",
+                "cleared_volume",
+                "unmet_orders",
+                "settled",
+            ] {
+                assert!(market.get(key).is_some(), "{key} missing from {market}");
+            }
+            assert!(market["cleared_volume"].is_null(), "an uncleared market invented volume: {market}");
+            assert!(market["unmet_orders"].is_null(), "an uncleared market invented unmet demand: {market}");
+            let stock = &row["stock"];
+            assert!(stock.get("quantity").is_some());
+            if row["id"] == "oil" {
+                assert!(stock["quantity"].is_null());
+                assert!(stock["months_cover"].is_null());
+            } else {
+                assert!(stock["quantity"].is_number());
+                assert!(stock["months_cover"].is_number());
+            }
+            assert_eq!(stock["physical"], false);
+        }
+        let iron = rows.iter().find(|r| r["id"] == "iron").unwrap();
+        assert_eq!(iron["market"]["current_price"], iron["market"]["reference_price"]);
+        assert_eq!(iron["market"]["band"], "normal");
+        assert_eq!(iron["stock"]["unit"], "kt", "a physical pile is not a monthly flow");
+        let oil = rows.iter().find(|r| r["id"] == "oil").unwrap();
+        assert_eq!(oil["market"]["current_price"], g.world.oil_price);
+        assert_eq!(oil["market"]["reference_price"], g.world.oil_price);
+
+        // Once the opt-in market clears, nulls become actual settled zeros or
+        // volumes, and the national pile identifies itself as physical.
+        let mut live = Game::new(1990, Some(NationId::USA));
+        live.world.rules.resource_market = true;
+        tick_month(&mut live.world, &[]);
+        let live_res = resources_json(&live.world, NationId::USA);
+        let live_iron = live_res["rows"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|r| r["id"] == "iron")
+            .unwrap();
+        assert_eq!(live_iron["market"]["settled"], true);
+        assert!(live_iron["market"]["cleared_volume"].is_number());
+        assert!(live_iron["market"]["unmet_orders"].is_number());
+        assert_eq!(live_iron["stock"]["physical"], true);
+        assert!(live_iron["stock"]["quantity"].is_number());
+
+        // Two plain contracts prove that receipts and payments are read in
+        // the correct direction for the seated nation.
+        g.world.resources.contracts.push(resources::Contract {
+            id: 900,
+            from: NationId::Australia,
+            to: NationId::USA,
+            give: vec![Leg::Commodity { c: Commodity::Bauxite, per_month: 1.0 }],
+            take: vec![Leg::Money { bn_per_year: 1.25 }],
+            months_left: 12,
+            months_total: 12,
+            days_left: None,
+            since: 0,
+            depth: 0.0,
+        });
+        g.world.resources.contracts.push(resources::Contract {
+            id: 901,
+            from: NationId::USA,
+            to: NationId::Japan,
+            give: vec![Leg::Commodity { c: Commodity::Iron, per_month: 1.0 }],
+            take: vec![Leg::Money { bn_per_year: 2.0 }],
+            months_left: 12,
+            months_total: 12,
+            days_left: None,
+            since: 0,
+            depth: 0.0,
+        });
+        g.world.resources.mine_projects.push(resources::MineProject {
+            district: "US-CA".into(),
+            commodity: Commodity::Copper,
+            started_by: NationId::USA,
+            months_left: 6,
+            months_total: 12,
+            days_left: None,
+            investment_bn: 9.0,
+            output: 1.0,
+        });
+        let foreign = foreign_commitments_json(&g.world, NationId::USA);
+        assert_eq!(foreign["contract_imports_bn"], 1.25);
+        assert_eq!(foreign["export_receipts_bn"], 2.0);
+        assert_eq!(foreign["net_bn"], -0.75);
+        assert_eq!(foreign["mine_investment_bn"], 9.0);
+        assert_eq!(foreign["mine_investment_kind"], "sunk_one_time");
+        assert_eq!(foreign["outflows_bn"], 1.25, "sunk mine capital is not an annual outflow");
+        assert_eq!(foreign["spot_settled"], false);
+        assert_eq!(nation_json(&g.world, g.world.nation(NationId::USA))["foreign_commitments"], foreign);
+        assert!(nation_json(&g.world, g.world.nation(NationId::Japan))["foreign_commitments"].is_null());
+
+        for needle in [
+            "function marketStripHtml(rows)",
+            "<button type=\"button\" class=\"marketchip",
+            "aria-pressed=\"${r.id === stock.sel}\"",
+            "function marketCardHtml(r)",
+            "function foreignCommitmentsHtml(m)",
+            "m.current_price",
+            "m.cleared_volume",
+            "pile.quantity",
+            "f.net_bn",
+        ] {
+            assert!(INDEX.contains(needle), "the page no longer reads {needle:?}");
+        }
+        assert!(!INDEX.contains("current_price / reference_price"));
+    }
+
+    /// The talks answer is `evaluate`'s, printed before the offer is sent:
+    /// asked twice it is identical; move the relation and it changes; the
+    /// refusal sentence is one of the sim's twelve, verbatim.
+    #[test]
+    fn the_talks_answer_is_the_sims_and_says_why() {
+        let mut g = Game::new(1990, Some(NationId::Japan));
+        let ask = serde_json::json!({
+            "to": "Australia", "com": "bauxite",
+            "get": { "commodity": "bauxite", "rung": 0 },
+            "give": { "money_rung": 0 },
+            "months": 36,
+        });
+        let a = talks_json(&g.world, NationId::Japan, &ask).expect("a readable draft");
+        let b = talks_json(&g.world, NationId::Japan, &ask).expect("a readable draft");
+        assert_eq!(a, b, "the same draft asked twice must get the same answer");
+        let verdict = a["verdict"].as_str().unwrap();
+        assert!(["accept", "counter", "refuse"].contains(&verdict), "{a}");
+        assert!(a["pc"].as_f64().unwrap() >= 3.0);
+        assert!(a["ladders"]["money"].as_array().unwrap().len() == 5);
+        assert!(a["ladders"]["get"].as_array().unwrap().len() == 3);
+        assert_eq!(a["ladders"]["months"], serde_json::json!([12, 36, 60, 120]));
+        // A counter re-offered on its own terms is accepted by construction.
+        if verdict == "counter" {
+            let mut terms = ask.clone();
+            terms["take_terms"] = serde_json::json!(true);
+            let c = talks_json(&g.world, NationId::Japan, &terms).expect("readable");
+            assert_eq!(c["verdict"], "accept", "{c}");
+            assert_eq!(c["take_terms"], true);
+        }
+        // Move the relation below the floor: the answer changes, and says why
+        // in the sim's own words.
+        g.world.shift_relation(NationId::Japan, NationId::Australia, -200.0);
+        let r = talks_json(&g.world, NationId::Japan, &ask).expect("readable");
+        assert_eq!(r["verdict"], "refuse", "{r}");
+        assert_eq!(r["sentence"], "They will refuse: We do not deal with a state we distrust.");
+        let sentences = [
+            "We are at war with you.",
+            "Sanctions bar it.",
+            "You broke your last contract with us.",
+            "We do not deal with a state we distrust.",
+            "We haven't the surplus.",
+            "That ground is being fought over.",
+            "Nobody sells their people.",
+            "We do not sell land to a state we do not trust.",
+            "The government would not survive selling it.",
+            "It is all we have.",
+            "You let our last offer lapse.",
+        ];
+        let said = r["sentence"].as_str().unwrap().trim_start_matches("They will refuse: ");
+        assert!(sentences.contains(&said) || said.starts_with("Not for that price: "), "{said}");
+        // The page prints the served sentence and composes none of its own.
+        assert!(INDEX.contains("talks.eval.sentence") || INDEX.contains("ev.sentence"));
+        for s in sentences {
+            assert!(!INDEX.contains(s), "the page carries the sim's refusal prose {s:?}");
+        }
+        // An unreadable draft is a refusal, never a default.
+        assert!(talks_json(&g.world, NationId::Japan, &serde_json::json!({ "to": "Atlantis" })).is_err());
+        assert!(talks_json(
+            &g.world,
+            NationId::Japan,
+            &serde_json::json!({ "to": "Australia", "get": { "commodity": "bauxite", "rung": "two" } })
+        )
+        .is_err());
+        assert!(talks_json(
+            &g.world,
+            NationId::Japan,
+            &serde_json::json!({ "to": "Australia", "get": { "commodity": "bauxite" }, "months": 40 })
+        )
+        .is_err());
+    }
+
+    /// The page never sends a free number: the deal it posts is built from
+    /// rungs, and with `take_terms` it is the counter the sim itself gave —
+    /// so a counter re-offered is signed, charged once, with the RNG untouched.
+    #[test]
+    fn a_deal_the_page_sends_is_the_sims_own() {
+        let mut g = Game::new(1990, Some(NationId::Japan));
+        let me = NationId::Japan;
+        let asked = serde_json::json!({
+            "kind": "propose_deal", "to": "Australia", "com": "bauxite",
+            "get": { "commodity": "bauxite", "rung": 0 },
+            "give": { "money_rung": 0 },
+            "months": 36, "take_terms": true,
+        });
+        let cmd = parse_command(&g.world, &asked, me).expect("a readable deal");
+        let Command::ProposeDeal { from, to, ref give, ref take, months } = cmd else {
+            panic!("wrong command: {cmd:?}");
+        };
+        assert_eq!((from, to, months), (me, NationId::Australia, 36));
+        assert!(take.iter().any(|l| matches!(l, Leg::Commodity { c: Commodity::Bauxite, per_month } if *per_month > 0.0)));
+        let rng = g.world.rng.state;
+        let pc = g.world.nation(me).political_capital;
+        apply_command(&mut g.world, &cmd).expect("a counter re-offered is accepted");
+        assert_eq!(g.world.rng.state, rng, "a deal consumed a random number");
+        assert!((pc - g.world.nation(me).political_capital - 3.0).abs() < 1e-9, "charged once, three");
+        assert_eq!(g.world.resources.contracts.len(), 1);
+        let _ = give;
+        // The board lists it, on the board's units, with the cancel price.
+        resources::warm(&mut g.world);
+        let res = resources_json(&g.world, me);
+        let k = &res["contracts"][0];
+        assert_eq!(k["direction"], "in");
+        assert_eq!(k["with"], "Australia");
+        assert!(k["line"].as_str().unwrap().contains("kt/mo of bauxite from Australia"), "{k}");
+        assert_eq!(k["cancel_pc"], 10.0);
+        assert_eq!(k["cancel_note"], "they will remember for three years");
+        let bauxite = res["rows"].as_array().unwrap().iter().find(|r| r["id"] == "bauxite").unwrap();
+        assert_eq!(bauxite["status"], "idle", "nothing draws on it yet, so the contract feeds nothing: {bauxite}");
+        // Tearing it up is the sim's own command, never refused.
+        let id = k["id"].as_u64().unwrap();
+        let cancel = parse_command(&g.world, &serde_json::json!({ "kind": "cancel_deal", "contract": id }), me).unwrap();
+        apply_command(&mut g.world, &cancel).expect("never refused");
+        assert!(g.world.resources.contracts.is_empty());
+        // The other three kinds parse, and an unreadable one is refused.
+        assert!(matches!(
+            parse_command(&g.world, &serde_json::json!({ "kind": "accept_deal", "offer": 3 }), me),
+            Some(Command::AcceptDeal { offer: 3, .. })
+        ));
+        assert!(matches!(
+            parse_command(&g.world, &serde_json::json!({ "kind": "decline_deal", "offer": 3 }), me),
+            Some(Command::DeclineDeal { offer: 3, .. })
+        ));
+        assert!(parse_command(&g.world, &serde_json::json!({ "kind": "cancel_deal", "contract": "seven" }), me).is_none());
+        assert!(parse_command(&g.world, &serde_json::json!({ "kind": "propose_deal", "to": "Atlantis" }), me).is_none());
+        // And the page posts exactly these kinds.
+        for kind in ["propose_deal", "cancel_deal", "accept_deal", "decline_deal"] {
+            assert!(INDEX.contains(&format!("kind: \"{kind}\"")), "the page no longer posts {kind}");
+        }
+    }
+
+    /// TAKE is greyed with "you have not tried to buy — the world will notice"
+    /// until every seller has refused twice; then it goes live and names the
+    /// district. The page renders `.off` from the served `open` and prints
+    /// the served `why`.
+    #[test]
+    fn the_take_card_is_greyed_until_the_trade_route_has_closed() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        let me = NationId::USA;
+        let before = stock_cards_json(&g.world, me, Commodity::Iron);
+        let take = &before["take"];
+        assert_eq!(take["open"], false);
+        assert_eq!(take["why"], "you have not tried to buy — the world will notice");
+        assert!(take["nation"].is_string(), "a neighbour holds iron in reach: {take}");
+        assert!(take["blurb"].as_str().unwrap().ends_with(" holds it."), "{take}");
+        assert!(take["plus"].as_str().unwrap().contains("best-sourced district"), "{take}");
+        assert!(!take["plus"].as_str().unwrap().chars().any(|c| c.is_ascii_digit()), "the aim never prints a tonnage: {take}");
+        assert_eq!(take["pc"], 4.0);
+        assert_eq!(take["war_pc"], 30.0);
+        // Every producer refuses twice, hot: the route has closed.
+        let sellers: Vec<NationId> = resources::producers(&g.world, Commodity::Iron).into_iter().filter(|s| *s != me).collect();
+        assert!(sellers.len() > 10);
+        for s in &sellers {
+            g.world.resources.refusals.push(resources::Refusal {
+                buyer: me,
+                seller: *s,
+                c: Commodity::Iron,
+                reason: resources::Reason::Distrust,
+                heat: 1.0,
+                asks: 2,
+            });
+        }
+        let after = stock_cards_json(&g.world, me, Commodity::Iron);
+        let take = &after["take"];
+        assert_eq!(take["open"], true, "{take}");
+        let why = take["why"].as_str().unwrap();
+        assert!(why.starts_with("Nobody will sell — "), "{why}");
+        assert!(why.contains(&format!("{} asked. ", sellers.len())), "{why}");
+        assert!(why.ends_with(" has it."), "{why}");
+        let res = resources_json(&g.world, me);
+        let refused = &res["refused"][0];
+        assert_eq!(refused["id"], "iron");
+        assert_eq!(refused["refused_all"], true);
+        assert_eq!(refused["sellers"], sellers.len());
+        // One ask short of two on one seller: not closed.
+        g.world.resources.refusals[0].asks = 1;
+        assert_eq!(stock_cards_json(&g.world, me, Commodity::Iron)["take"]["open"], false);
+        // The page: `.off` from `open`, the served `why` printed, and the
+        // quarrel posted with its aim.
+        assert!(INDEX.contains(r#"${t.open ? "" : " off"}"#), "the TAKE card no longer greys on the served flag");
+        assert!(INDEX.contains("t.why"), "the TAKE card no longer prints the served why");
+        assert!(!INDEX.contains("you have not tried to buy"), "the page composes the sim's sentence");
+        assert!(INDEX.contains(r#"aim: { district: t.district, commodity: com }"#));
+    }
+
+    /// An aim the server cannot read is refused, not dropped: the quarrel is
+    /// opened only when the district and the line both resolve.
+    #[test]
+    fn an_aim_the_server_cannot_read_is_refused_not_replaced() {
+        let g = Game::new(7, Some(NationId::Iraq));
+        let me = NationId::Iraq;
+        let open = |aim: serde_json::Value| {
+            let mut v = serde_json::json!({ "kind": "open_conflict", "target": "Iran" });
+            v["aim"] = aim;
+            parse_command(&g.world, &v, me).is_some()
+        };
+        assert!(open(serde_json::Value::Null));
+        assert!(open(serde_json::json!({ "district": "IR-10", "commodity": "copper" })));
+        assert!(!open(serde_json::json!({ "district": "Nowhere", "commodity": "copper" })));
+        assert!(!open(serde_json::json!({ "district": "IR-10", "commodity": "spice" })));
+        assert!(!open(serde_json::json!("IR-10")));
+        assert!(!open(serde_json::json!({ "district": 10, "commodity": "copper" })));
+    }
+
+    /// Fork F1(b): the market, audit lanes, construction and manufacturing are on for the
+    /// world the browser deals and off for the one the suite runs. `Game::new` is the
+    /// suite's constructor and carries the defaults; every world adopted by
+    /// the browser receives `play_rules`, including a legacy save on load.
+    #[test]
+    fn the_market_is_on_for_the_browser_and_off_for_the_suite() {
+        let mut g = Game::new(1990, Some(NationId::Iraq));
+        assert!(!g.world.rules.resource_market, "the suite's world must play the market off");
+        assert!(!g.world.rules.logistics_routes, "the suite's world must play logistics off");
+        assert!(!g.world.rules.production_system, "the suite's world must play production off");
+        assert!(!g.world.rules.manufacturing_system, "the suite's world must play manufacturing off");
+        assert!(!spheres_sim::save(&g.world).contains("resource_market"));
+        assert!(!spheres_sim::save(&g.world).contains("logistics_routes"));
+        assert!(!spheres_sim::save(&g.world).contains("production_system"));
+        assert!(!spheres_sim::save(&g.world).contains("manufacturing_system"));
+        play_rules(&mut g);
+        assert!(g.world.rules.resource_market);
+        assert!(g.world.rules.logistics_routes);
+        assert!(g.world.rules.production_system);
+        assert!(g.world.rules.manufacturing_system);
+        assert!(spheres_sim::save(&g.world).contains("\"resource_market\": true"));
+        assert!(spheres_sim::save(&g.world).contains("\"logistics_routes\": true"));
+        assert!(spheres_sim::save(&g.world).contains("\"production_system\": true"));
+        assert!(spheres_sim::save(&g.world).contains("\"manufacturing_system\": true"));
+
+        let mut legacy = Game::new(1990, Some(NationId::Iraq));
+        legacy.world.rules.resource_market = true;
+        legacy.world.rules.logistics_routes = false;
+        legacy.world.rules.production_system = false;
+        legacy.world.rules.manufacturing_system = false;
+        let legacy_save = spheres_sim::save(&legacy.world);
+        assert!(!legacy_save.contains("logistics_routes"));
+        assert!(!legacy_save.contains("production_system"));
+        assert!(!legacy_save.contains("manufacturing_system"));
+        let migrated = loaded_play_game(spheres_sim::load(&legacy_save).unwrap());
+        assert!(migrated.world.rules.resource_market);
+        assert!(migrated.world.rules.logistics_routes);
+        assert!(migrated.world.rules.production_system);
+        assert!(migrated.world.rules.manufacturing_system);
+
+        // Exercise the same factories as boot and /api/new. Counting source
+        // mentions also counted test fixtures and the fresh_play_rules name.
+        let mut boot = Game::new(1990, Some(NationId::Iraq));
+        fresh_play_rules(&mut boot).unwrap();
+        let (_, started) = new_game(&mut g, 1990, Some(NationId::Iraq));
+        assert!(started);
+        for world in [&boot.world, &g.world] {
+            assert!(world.rules.resource_market && world.rules.logistics_routes);
+            assert!(world.rules.production_system && world.rules.manufacturing_system);
+        }
+    }
+
+    /// A quarrel opened from the TAKE card carries its aim: `apply_orders`
+    /// follows a successful open with `SetAim`, the sim validates it, and the
+    /// conflict remembers the district and the line. An aim the sim refuses —
+    /// ground the target does not hold — is an error line with the sim's
+    /// sentence, never a silently aimless quarrel.
+    #[test]
+    fn an_aim_is_carried_onto_the_quarrel_it_opened() {
+        let me = NationId::Iraq;
+        let mut g = Game::new(7, Some(me));
+        g.world.nation_mut(me).political_capital = 100.0;
+        // The district the TAKE card would name: Iran's best-sourced copper
+        // in Iraq's reach, served by the sim, never typed here.
+        let (district, _) = resources::reachable_best_district(&g.world, me, NationId::Iran, Commodity::Copper)
+            .expect("Iran holds copper in Iraq's reach");
+        let order = serde_json::json!({
+            "kind": "open_conflict", "target": "Iran",
+            "aim": { "district": district, "commodity": "copper" }
+        });
+        let errors = apply_orders(&mut g.world, me, &[order]);
+        assert_eq!(errors, Vec::<String>::new());
+        let c = g.world.conflict_between(me, NationId::Iran).expect("the quarrel opened");
+        let aim = c.aim.as_ref().expect("the quarrel carries its aim");
+        assert_eq!((aim.district.as_str(), aim.commodity), (district.as_str(), Commodity::Copper));
+
+        let mut g = Game::new(7, Some(me));
+        g.world.nation_mut(me).political_capital = 100.0;
+        let order = serde_json::json!({
+            "kind": "open_conflict", "target": "Iran",
+            "aim": { "district": "KW-AH", "commodity": "gas" }
+        });
+        let errors = apply_orders(&mut g.world, me, &[order]);
+        assert_eq!(errors.len(), 1, "{errors:?}");
+        assert!(errors[0].contains("does not hold"), "{errors:?}");
+        let c = g.world.conflict_between(me, NationId::Iran).expect("the quarrel still opened");
+        assert!(c.aim.is_none(), "a refused aim must not land");
+    }
+
+    /// MINE is a served, province-bound command: the chosen target reaches the
+    /// sim and the same card returns its construction progress.
+    #[test]
+    fn the_mine_card_develops_a_mapped_province() {
+        let mut g = Game::new(1990, Some(NationId::Australia));
+        g.world.nation_mut(NationId::Australia).political_capital = 100.0;
+        let cards = stock_cards_json(&g.world, NationId::Australia, Commodity::Iron);
+        let mine = &cards["mine"];
+        assert_eq!(mine["pc"], spheres_sim::resources::MINE_PC_COST);
+        let target = mine["options"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|o| o["eligible"] == true)
+            .expect("Australia has an eligible mapped iron deposit");
+        let district = target["district"].as_str().unwrap().to_string();
+        let order = serde_json::json!({
+            "kind": "develop_resource", "commodity": "iron", "district": district
+        });
+        let command = parse_command(&g.world, &order, NationId::Australia).expect("mine command parses");
+        apply_command(&mut g.world, &command).expect("mine starts");
+        assert_eq!(g.world.nation(NationId::Australia).political_capital, 94.0);
+        let after = stock_cards_json(&g.world, NationId::Australia, Commodity::Iron);
+        let project = after["mine"]["options"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|o| o["district"] == district)
+            .unwrap();
+        assert_eq!(project["active"], true);
+        assert_eq!(project["months_remaining"], spheres_sim::resources::MINE_BUILD_MONTHS);
+        let plus = mine["plus"].as_str().unwrap();
+        assert!(plus.starts_with('+') && plus.ends_with("a typical iron mine"), "{plus}");
+        assert!(mine["typical"].as_f64().unwrap() > 0.0);
+        assert!(INDEX.contains("data-mine-target"));
+        assert!(INDEX.contains("constructionReviewMine(com,target.district)"));
+        assert!(INDEX.contains("kind:\"develop_resource\""));
+        // The advisor line is served verbatim.
+        assert!(cards["advisor"].as_str().unwrap().ends_with('.'));
+        assert!(INDEX.contains("c.advisor"), "the advisor line is printed from the payload");
+    }
+
+    #[test]
+    fn economic_ledgers_cover_every_living_country_and_reconcile_without_mutation() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        // Exercise the two simulation entry points directly; do not boot an
+        // extra browser or enact a player's budget just to read its accounts.
+        spheres_sim::clock::enable_daily_play(&mut g.world);
+        spheres_sim::province_economy::enable(&mut g.world);
+        let before = save(&g.world);
+        for n in g.world.nations.iter().filter(|n| n.alive) {
+            let ledger = economic_ledger_json(&g.world, n.id).expect("every living country has an account");
+            let total = ledger["total_gdp_bn"].as_f64().unwrap();
+            assert!((total - n.gdp).abs() <= 1e-9 * n.gdp.max(1.0), "{:?}", n.id);
+            let sector_total: f64 = ledger["sectors"].as_array().unwrap().iter()
+                .map(|s| s["gdp_bn"].as_f64().unwrap()).sum();
+            assert!((sector_total - total).abs() <= 1e-9 * total.max(1.0), "sector sum {:?}", n.id);
+            let located: f64 = ledger["provinces"].as_array().unwrap().iter()
+                .map(|p| p["total_gdp_bn"].as_f64().unwrap()).sum();
+            let unmapped = ledger["unallocated_gdp_bn"].as_f64().unwrap();
+            assert!((located + unmapped - total).abs() <= 1e-9 * total.max(1.0), "province sum {:?}", n.id);
+            assert!(ledger["note"].as_str().unwrap().to_lowercase().contains("model"));
+        }
+        assert_eq!(save(&g.world), before, "viewing economies cannot mutate simulation state");
+    }
+
+    #[test]
+    fn province_economy_api_is_live_for_foreign_owners_and_keeps_population() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        spheres_sim::clock::enable_daily_play(&mut g.world);
+        spheres_sim::province_economy::enable(&mut g.world);
+        let foreign = g.world.districts.iter()
+            .find(|(_, owner)| **owner == NationId::Japan).map(|(id, _)| id.clone()).unwrap();
+        for district in ["US-CA", foreign.as_str()] {
+            let row = district_population_json(&g.world, district).unwrap();
+            assert!(row["population"].as_f64().unwrap() > 0.0);
+            let ledger = &row["economy"];
+            assert!(ledger["total_gdp_bn"].as_f64().unwrap() > 0.0);
+            assert_eq!(ledger["project_gdp_bn"], 0.0);
+            assert!(!ledger["sectors"].as_array().unwrap().is_empty());
+            assert!(ledger["projects"].as_array().unwrap().is_empty());
+        }
+        assert!(district_population_json(&g.world, "not-a-province").is_none());
+        assert!(economic_ledger_json(&g.world, NationId::EastTimor).is_none());
+    }
+
+    #[test]
+    fn province_economy_assets_ship_locally_and_keep_accounting_in_rust() {
+        assert!(INDEX.contains("/province-economy.css"));
+        assert!(INDEX.contains("/province-economy-ui.js"));
+        assert!(PROVINCE_ECONOMY_UI_JS.contains("/api/economic-ledger/"));
+        assert!(PROVINCE_ECONOMY_UI_JS.contains("total_gdp_bn"));
+        assert!(PROVINCE_ECONOMY_CSS.contains("@media"));
+    }
+
+    #[test]
+    fn economic_readings_refresh_daily_and_distinguish_settlement_date() {
+        let mut g = Game::new(1990, Some(NationId::USA));
+        spheres_sim::clock::enable_daily_play(&mut g.world);
+        spheres_sim::province_economy::enable(&mut g.world);
+        let opening = district_population_json(&g.world, "US-CA").unwrap();
+        assert!(opening["economy"]["receipt_date_label"].as_str().unwrap().contains("Opening baseline"));
+        tick_day(&mut g.world, &[]);
+        let current = district_population_json(&g.world, "US-CA").unwrap();
+        assert_eq!(current["day"], 2);
+        assert_ne!(current["economy"]["total_gdp_bn"], opening["economy"]["total_gdp_bn"]);
+        let label = current["economy"]["receipt_date_label"].as_str().unwrap();
+        assert!(label.starts_with("Work settled 1 "), "{label}");
+        let gdp = current["economy"]["total_gdp_bn"].as_f64().unwrap();
+        let start = opening["economy"]["total_gdp_bn"].as_f64().unwrap();
+        assert!((current["economy"]["change_since_opening"].as_f64().unwrap() - (gdp / start - 1.0)).abs() < 1e-12);
+    }
+
+    #[test]
+    fn province_dossier_reads_live_population_and_exact_geometry() {
+        let g = Game::new(1990, Some(NationId::USA));
+        let ca = district_population_json(&g.world, "US-CA").expect("California is mapped");
+        assert_eq!(ca["owner"], "USA");
+        assert_eq!(ca["name"], "California");
+        assert!((30.0..31.0).contains(&ca["population"].as_f64().unwrap()));
+        assert!(ca["density_per_sqkm"].as_f64().unwrap() > 70.0);
+        assert!(ca["annual_growth"].as_f64().is_some());
+
+        let surface = district_populations_json(&g.world);
+        assert!(surface["districts"]["US-CA"].is_array());
+        let raw: serde_json::Value = serde_json::from_str(DISTRICT_INFO_JSON).unwrap();
+        let spec = raw["nations"]["USA"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|d| d["id"] == "US-CA")
+            .unwrap();
+        assert_eq!(spec["name"], "California");
+
+        for hook in [
+            "if (d) { selectProvince(d.id, false); return; }",
+            "api(\"/api/district-population/\"",
+            "fetch(\"/district-info.json\"",
+            "let selectedDistrict = null",
+            "class=\"province-dossier\"",
+            "residents remain with the province",
+            "Strategic deposits",
+        ] {
+            assert!(INDEX.contains(hook), "province layer lost {hook:?}");
+        }
+    }
+
+    /// The hover exists, is styled like the tech tooltip, and has a place
+    /// function that keeps it in the viewport.
+    #[test]
+    fn the_stock_tip_is_painted_on_something() {
+        assert!(INDEX.contains(r#"<div id="stockTip" role="tooltip" aria-hidden="true">"#));
+        assert!(INDEX.contains("#stockTip { position:fixed; z-index:60;"));
+        assert!(INDEX.contains("#stockTip.on { opacity:1; transform:none; }"));
+        assert!(INDEX.contains("function stockTipPlace(tip, clientX, clientY) {"));
+        assert!(INDEX.contains("function stockTipShow("));
+        assert!(INDEX.contains("function stockTipHide()"));
+        // The provenance is printed from the served marks, never composed.
+        assert!(INDEX.contains("r.prov"));
+    }
+
+    /// The board's keys are on the card, and the dispatch line exists.
+    #[test]
+    fn the_board_keys_are_on_the_card() {
+        assert!(INDEX.contains(r#"<div class="row"><span>Resources board</span><span><kbd>B</kbd></span></div>"#));
+        assert!(INDEX.contains(r#"<div class="row"><span>Board: select a line / open talks</span><span>arrows · <kbd>Enter</kbd></span></div>"#));
+        assert!(INDEX.contains(r#"else if (k === "b" || k === "B") toggleStockScreen();"#));
+        assert!(INDEX.contains("if (stock.open) { stockKeys(e); return; }"));
+        assert!(INDEX.contains(r#"<button class="dockbtn" id="stockBtn" title="Resources" aria-controls="stockScreen">"#),
+            "the command dock must expose the resource board as a real button");
+        assert!(INDEX.contains(r##"$("#stockBtn").onclick = toggleStockScreen;"##),
+            "moving the resource button must preserve its board-opening action");
+        assert!(INDEX.contains("function stockKeys(e) {"));
+    }
+
+    /// A line with no 1990 figure prints no number, anywhere on its row.
+    #[test]
+    fn the_six_presence_rows_print_no_number() {
+        let g = Game::new(1990, Some(NationId::USSR));
+        for c in [
+            Commodity::Cobalt,
+            Commodity::Gold,
+            Commodity::Phosphate,
+            Commodity::PlatinumGroup,
+            Commodity::RareEarths,
+            Commodity::Uranium,
+        ] {
+            // The None arm, exercised directly: the table now carries all
+            // twelve lines (fork F3), so the arm is reached only when a
+            // figure is withdrawn — and it must still print no number then.
+            let l = LineRead {
+                c,
+                tracked: false,
+                flow: resources::flow(&g.world, NationId::USSR, c),
+                need: 0.0,
+                cover: 12.0,
+                supply: None,
+                status: "presence",
+                reason: None,
+            };
+            let row = row_json(&g.world, NationId::USSR, &l, None);
+            assert_eq!(row["status"], "presence");
+            assert_eq!(row["fold"], true);
+            // No quantity, ever. The year the missing figure would have been
+            // transcribed for is the one number the copy names.
+            for key in ["sentence", "second", "hover"] {
+                let text = row[key].as_str().unwrap_or("").replace("1990", "");
+                assert!(!text.chars().any(|ch| ch.is_ascii_digit()), "{key} prints a number on a presence row: {text:?}");
+            }
+            assert_eq!(row["sentence"], "presence only, no 1990 figure");
+            assert_eq!(row["second"], "no 1990 figure transcribed — presence only");
+        }
+    }
+
+    /// Every district figure on the board says "apportioned"; an unlocated
+    /// producer's figure says it cannot be taken.
+    #[test]
+    fn every_district_figure_says_apportioned() {
+        let mut seen_apportioned = 0;
+        let mut seen_unlocated = 0;
+        for id in [NationId::USA, NationId::USSR, NationId::Australia, NationId::Brazil, NationId::China] {
+            let g = Game::new(1990, Some(id));
+            let res = resources_json(&g.world, id);
+            for r in res["rows"].as_array().unwrap() {
+                let districts = r["districts"].as_u64().unwrap();
+                let second = r["second"].as_str().unwrap_or("");
+                if districts > 0 {
+                    assert!(second.contains("apportioned"), "{:?} {}: {second:?}", id, r["id"]);
+                    assert_eq!(r["apportioned"], true);
+                    seen_apportioned += 1;
+                } else if r["unlocated_per_month"].as_f64().unwrap() > 0.0 {
+                    assert!(second.contains("unlocated — cannot be taken from you"), "{:?} {}: {second:?}", id, r["id"]);
+                    seen_unlocated += 1;
+                }
+            }
+        }
+        assert!(seen_apportioned > 20, "{seen_apportioned}");
+        assert!(seen_unlocated > 0, "the United States' oil is unlocated and must say so");
+        // The word is printed from the served second line, never composed.
+        assert!(!INDEX.contains("apportioned from the 1990"), "the page composes the sim's second line");
+        assert!(INDEX.contains("r.second"));
+    }
+
+    /// The resource headlines land in the buckets the filter row offers.
+    #[test]
+    fn the_resource_headlines_land_in_the_right_bucket() {
+        for (want, headline) in [
+            ("economy", "France: GBU-24 Paveway III line delayed - needs bauxite; every producer refuses."),
+            ("economy", "Iraq: M1A1 Abrams line delayed - needs iron; nobody produces it."),
+            ("diplomacy", "Australia and Japan sign a supply contract: Australia sends Japan 8,000 t/mo of bauxite for $0.6bn a year, 60 months."),
+            ("diplomacy", "Iraq seeks iron from Turkey; Turkey refuses: We haven't the surplus."),
+            ("diplomacy", "Nobody will sell iron to Iraq — 14 asked."),
+            ("diplomacy", "Japan tears up its supply contract with Australia."),
+            ("diplomacy", "Australia cannot deliver all of its bauxite this month; contracts are filled pro rata."),
+            ("diplomacy", "The oil contract between Kuwait and Japan has run its term."),
+            ("diplomacy", "The bauxite contract between Australia and Japan dies with Australia."),
+            ("war", "WAR: Iraq invades Iran for the copper of Khuzestan — refused by 14 of 14 sellers."),
+        ] {
+            assert_eq!(classify(headline), want, "the event log would file this under {:?}: {}", classify(headline), headline);
+        }
+        // The additions moved nothing: the rows the table test already pins
+        // still land where they did (one from each bucket the additions touch).
+        assert_eq!(classify("France and Germany sign a trade agreement."), "diplomacy");
+        assert_eq!(classify("Kuwait cuts off oil to Iraq."), "economy");
+        assert_eq!(classify("WAR: Iraq invades Kuwait!"), "war");
+    }
+
+    /// The globe's tint names who holds a surplus and who is short, served;
+    /// the dossier's twelve words say whether a nation would sell to you.
+    #[test]
+    fn the_world_tint_and_the_dossier_are_served() {
+        let g = Game::new(1990, Some(NationId::Japan));
+        let world = stock_world_json(&g.world, Commodity::Bauxite);
+        assert_eq!(world["nations"]["Australia"], "seller");
+        assert!(world["nations"].as_object().unwrap().values().all(|v| v != "stalled"), "nothing stalls in January 1990");
+        assert_eq!(world["arcs"].as_array().unwrap().len(), 0);
+        assert_eq!(world["lanes"].as_array().unwrap().len(), 0);
+        assert_eq!(world["aims"].as_array().unwrap().len(), 0);
+        let d = stock_nation_json(&g.world, Some(NationId::Japan), NationId::Australia);
+        let rows = d["rows"].as_array().unwrap();
+        assert_eq!(rows.len(), 12);
+        let bauxite = rows.iter().find(|r| r["id"] == "bauxite").unwrap();
+        assert_eq!(bauxite["status"], "seller");
+        assert!(bauxite["surplus"].as_f64().unwrap() > 0.0);
+        assert!(["willing", "counter", "refuses"].contains(&bauxite["to_you"].as_str().unwrap()), "{bauxite}");
+        assert!(!bauxite["because"].as_str().unwrap().is_empty());
+        assert_eq!(d["talks_pc"], 3.0);
+        // The page reads them and composes nothing.
+        assert!(INDEX.contains("/api/stock/world?com="));
+        assert!(INDEX.contains("function fillStockDash("));
+        assert!(INDEX.contains("r.to_you"));
+        assert!(INDEX.contains("r.because"));
+        // And the legend says where the tint comes from.
+        assert!(INDEX.contains("served by the sim"));
+    }
+
+    /// Logistics stays an opt-in globe reading: one dock button opens a
+    /// non-modal dispatch board, fetches the server's audit, and draws only
+    /// honestly-labelled national-anchor lanes. This is a source guard for the
+    /// complete hand-off from Resources to the overlay; removing any door
+    /// leaves the mechanic present but unreachable.
+    #[test]
+    fn the_logistics_dispatch_board_is_wired_end_to_end() {
+        for needle in [
+            "id=\"logisticsDockBtn\"",
+            "id=\"logisticsPanel\"",
+            "SHOW ROUTES ON GLOBE",
+            "function openLogistics(",
+            "function logisticsFetch(",
+            "api(\"/api/logistics\")",
+            "function drawLogisticsOverlay(",
+            "function logisticsHitAt(",
+            "function logisticsSetPolicy(",
+            "data-logi-policy",
+            "Build corridor capacity",
+            "modeled land and sea",
+            "abstract lanes",
+            "aria-live=\"polite\"",
+        ] {
+            assert!(INDEX.contains(needle), "missing logistics UI wire: {needle}");
+        }
+        assert!(
+            INDEX.contains("if (!LOGI.open || !LOGI.data) return"),
+            "routes must remain absent from the resting globe"
+        );
+        assert!(
+            !INDEX.contains("data-logi-scope=\"world\""),
+            "the current endpoint is player-scoped; do not offer a duplicate World filter"
+        );
+        assert!(INDEX.contains("k === \"g\" || k === \"G\""));
+        assert!(
+            INDEX.contains("main { position: relative; display: block; min-width: 0; min-height: 0; overflow: hidden; overflow: clip; }"),
+            "the game stage must clip without becoming a focus-scroll container; its child panels own scrolling"
+        );
+        assert!(INDEX.contains("cargo.arrived_day || cargo.arrived_month || cargo.due_day || cargo.due_month"),
+            "a held shipment must show its actual arrival settlement, not its original due date");
+    }
+
+    #[test]
+    fn logistics_policy_button_reaches_one_strict_atomic_command() {
+        let g = Game::new(1990, Some(NationId::Japan));
+        assert!(matches!(
+            parse_command(
+                &g.world,
+                &serde_json::json!({ "kind": "set_logistics_policy", "policy": "avoid_chokepoints" }),
+                NationId::Japan,
+            ),
+            Some(Command::SetLogisticsPolicy { nation: NationId::Japan, policy: RoutePolicy::AvoidChokepoints })
+        ));
+        assert!(parse_command(
+            &g.world,
+            &serde_json::json!({ "kind": "set_logistics_policy", "policy": "teleport" }),
+            NationId::Japan,
+        ).is_none());
+        assert!(INDEX.contains("kind: \"set_logistics_policy\""));
+    }
+
+    #[test]
+    fn logistics_cargo_labels_distinguish_in_transit_held_and_actually_arrived() {
+        let g = Game::new(1990, Some(NationId::France));
+        let mut cargo = logistics::Cargo {
+            id: 0, seller: NationId::Germany, buyer: NationId::France,
+            commodity: Commodity::Copper, quantity: 50.0,
+            source: resources::ShipmentSource::Spot, contract: None,
+            route: logistics::plan(&g.world, NationId::Germany, NationId::France).unwrap(),
+            dispatched_month: 0, due_month: 1, hold_reason: None,
+            dispatched_day: None, due_day: None,
+        };
+        let moving = cargo_json(&cargo, None);
+        assert_eq!(moving["state"], "in_transit");
+        assert_eq!(moving["quantity"], 0.05);
+        assert_eq!(moving["unit"], "kt");
+        cargo.hold_reason = Some("Sanctions closed the route.".into());
+        assert_eq!(cargo_json(&cargo, None)["state"], "held");
+        cargo.hold_reason = None;
+        let arrived = cargo_json(&cargo, Some(3));
+        assert_eq!(arrived["state"], "arrived");
+        assert_eq!(arrived["due_month"]["month"], 2);
+        assert_eq!(arrived["arrived_month"]["month"], 4);
+    }
+
+    /// The web layer exposes the simulation's latest shipment audit as a
+    /// stable, arcade-readable manifest without deleting the old contract arc
+    /// surface. Counts are player-relative, the world endpoint is filtered by
+    /// commodity, and a spot fill never grows a fictional requested quantity.
+    #[test]
+    fn logistics_api_is_a_stable_view_of_the_latest_audit() {
+        let mut g = Game::new(1990, Some(NationId::Japan));
+        g.world.rules.resource_market = true;
+        g.world.rules.logistics_routes = true;
+        tick_month(&mut g.world, &[]);
+
+        g.world.resources.contracts.push(resources::Contract {
+            id: 7,
+            from: NationId::Australia,
+            to: NationId::Japan,
+            give: vec![Leg::Commodity { c: Commodity::Bauxite, per_month: 10_000.0 }],
+            take: vec![Leg::Money { bn_per_year: 0.6 }],
+            months_left: 24,
+            months_total: 36,
+            days_left: None,
+            since: 0,
+            depth: 0.0,
+        });
+        let market = g.world.resources.market.as_mut().expect("the market settled");
+        market.shipment_audits = vec![
+            resources::ShipmentAudit {
+                source: resources::ShipmentSource::Contract,
+                contract: Some(7),
+                seller: NationId::Australia,
+                buyer: NationId::Japan,
+                commodity: Commodity::Bauxite,
+                requested: 10_000.0,
+                delivered: 2_500.0,
+                unit_price: None,
+                cost_bn: None,
+                months_left: Some(24),
+                status: resources::ShipmentStatus::SupplyShort,
+                cause: None,
+                route: None,
+                dispatched: None,
+            },
+            resources::ShipmentAudit {
+                source: resources::ShipmentSource::Spot,
+                contract: None,
+                seller: NationId::USA,
+                buyer: NationId::Japan,
+                commodity: Commodity::Iron,
+                requested: 1_000.0,
+                delivered: 1_000.0,
+                unit_price: Some(42.5),
+                cost_bn: Some(0.0000425),
+                months_left: None,
+                status: resources::ShipmentStatus::Delivered,
+                cause: None,
+                route: None,
+                dispatched: None,
+            },
+            resources::ShipmentAudit {
+                source: resources::ShipmentSource::Contract,
+                contract: Some(8),
+                seller: NationId::Japan,
+                buyer: NationId::USA,
+                commodity: Commodity::Copper,
+                requested: 500.0,
+                delivered: 0.0,
+                unit_price: None,
+                cost_bn: None,
+                months_left: Some(12),
+                status: resources::ShipmentStatus::Sanctioned,
+                cause: Some(NationId::USA),
+                route: None,
+                dispatched: None,
+            },
+            resources::ShipmentAudit {
+                source: resources::ShipmentSource::Contract,
+                contract: Some(9),
+                seller: NationId::China,
+                buyer: NationId::Japan,
+                commodity: Commodity::Coal,
+                requested: 12.0,
+                delivered: 0.0,
+                unit_price: None,
+                cost_bn: None,
+                months_left: Some(8),
+                status: resources::ShipmentStatus::WarClosed,
+                cause: Some(NationId::Japan),
+                route: None,
+                dispatched: None,
+            },
+        ];
+
+        let all = logistics_json(&g.world, NationId::Japan, None);
+        assert_eq!(all["moving"], 1);
+        assert_eq!(all["constrained"], 1);
+        assert_eq!(all["blocked"], 2);
+        assert_eq!(all["attention"], 3);
+        assert_eq!(all["attention_ids"].as_array().unwrap().len(), 3);
+        let lanes = all["lanes"].as_array().expect("stable lanes");
+        assert_eq!(lanes.len(), 4);
+        assert_eq!(lanes[0]["state"], "blocked", "attention sorts first");
+        assert_eq!(lanes.last().unwrap()["state"], "moving");
+        assert!(lanes.iter().all(|lane| lane["mode"] == "abstract"));
+        assert!(lanes.iter().all(|lane| lane["id"].as_str().is_some_and(|id| !id.is_empty())));
+        let spot = lanes.iter().find(|lane| lane["source"] == "spot").unwrap();
+        assert_eq!(spot["requested"], spot["delivered"], "a fill is not pair demand");
+        assert_eq!(spot["actions"].as_array().unwrap().len(), 1, "spot has focus, not a fictional contract action");
+        let contract = lanes.iter().find(|lane| lane["contract_id"] == 7).unwrap();
+        assert_eq!(contract["requested"], 10.0, "a shipment is physical kt, not a forecast rate");
+        assert_eq!(contract["delivered"], 2.5);
+        assert_eq!(contract["unshipped"], 7.5);
+        assert_eq!(contract["unit"], "kt");
+        assert!(contract["actions"].as_array().unwrap().iter().any(|a| a["id"] == "open_contract"));
+        let expired = lanes.iter().find(|lane| lane["contract_id"] == 8).unwrap();
+        assert_eq!(
+            expired["actions"].as_array().unwrap().len(),
+            1,
+            "an audit outliving its contract can still focus but cannot open a missing ledger row"
+        );
+
+        let bauxite = logistics_json(&g.world, NationId::Japan, Some(Commodity::Bauxite));
+        assert_eq!(bauxite["lanes"].as_array().unwrap().len(), 1);
+        assert_eq!(bauxite["constrained"], 1);
+        let world = stock_world_json(&g.world, Commodity::Bauxite);
+        assert_eq!(world["arcs"].as_array().unwrap().len(), 1, "legacy contract arcs remain");
+        assert_eq!(world["arcs"][0]["contract"], 7);
+        assert_eq!(world["lanes"].as_array().unwrap().len(), 1);
+        assert_eq!(
+            world["lanes"][0]["actions"].as_array().unwrap().len(),
+            1,
+            "an unscoped world manifest cannot authorize opening another nation's contract"
+        );
+
+        let summary = &state_json(&g, None)["logistics_summary"];
+        assert_eq!(summary["moving"], 1);
+        assert_eq!(summary["attention"], 3);
+        assert!(summary.get("lanes").is_none(), "daily state carries counts, not manifests");
+        assert!(include_str!("main.rs").contains("(Method::Get, \"/api/logistics\")"));
+    }
+
+    /// The production endpoint is a view of the campaign's enabled catalog and
+    /// the seated nation's live queue. It serves exact recipes/funding and
+    /// authorizes starts against current province ownership; the daily state
+    /// carries only compact counts.
+    #[test]
+    fn production_api_is_player_scoped_stable_and_live() {
+        let me = NationId::USA;
+        let mut g = Game::new(1990, Some(me));
+        g.world.rules.resource_market = true;
+        g.world.rules.production_system = true;
+        g.world.nation_mut(me).political_capital = 100.0;
+
+        let opening = production_json(&g.world, me);
+        assert_eq!(opening["mode"], "province_projects");
+        assert_eq!(opening["catalog"].as_array().unwrap().len(), 12);
+        assert!(opening["provinces"].as_array().unwrap().iter().all(|p| ["office_district","shipyard","advanced_industry"].iter().all(|k|
+            p["capabilities"].get(*k).is_none() && p["start_refusals"].get(*k).is_none())));
+        let mut expanded=g.world.clone();expanded.rules.daily_simulation=true;expanded.rules.industry_rebuild=true;
+        let expanded_before=save(&expanded);let expanded_view=production_json(&expanded,me);
+        let expanded_catalog=expanded_view["catalog"].as_array().unwrap();
+        assert_eq!(expanded_catalog.len(),15);
+        assert_eq!(expanded_catalog[..12].iter().map(|c|c["kind"].clone()).collect::<Vec<_>>(),
+            opening["catalog"].as_array().unwrap().iter().map(|c|c["kind"].clone()).collect::<Vec<_>>());
+        assert_eq!(expanded_catalog[12..].iter().map(|c|c["kind"].as_str().unwrap()).collect::<Vec<_>>(),
+            vec!["office_district","shipyard","advanced_industry"]);
+        assert!(expanded_view["provinces"].as_array().unwrap().iter().all(|p| ["office_district","shipyard","advanced_industry"].iter().all(|k|
+            p["capabilities"].get(*k).is_some_and(|v|*v==0))));
+        assert_eq!(save(&expanded),expanded_before);
+
+        assert_eq!(opening["summary"]["active"], 0);
+        assert_eq!(
+            opening["summary"]["queue_capacity"],
+            production::MAX_QUEUED_PROJECTS
+        );
+        assert_eq!(
+            opening["queue_capacity"],
+            production::MAX_QUEUED_PROJECTS
+        );
+        assert!(opening["summary"]["construction_capacity_daily"]
+            .as_f64()
+            .is_some_and(|capacity| capacity > 0.0));
+        assert_eq!(opening["summary"]["nominal_work_daily"], 0.0);
+        assert_eq!(opening["summary"]["feasible_work_daily"], 0.0);
+        assert_eq!(opening["actions"]["start"], true);
+        assert!(opening["actions"]["start_reason"].is_null());
+        assert_eq!(opening["queue"].as_array().unwrap().len(), 0);
+        let provinces = opening["provinces"].as_array().expect("owned provinces");
+        assert!(!provinces.is_empty());
+        assert!(provinces.windows(2).all(|p| p[0]["id"].as_str() < p[1]["id"].as_str()));
+
+        for item in opening["catalog"].as_array().unwrap() {
+            assert!(item["pc_cost"].is_number(), "{item}");
+            assert!(item["funding"]["ministry"].is_string(), "{item}");
+            assert!(item["funding"]["allocation"].is_number(), "{item}");
+            assert!(item["funding"]["required"].is_number(), "{item}");
+            assert!(item["requirements"].is_array(), "{item}");
+        }
+
+        let startable = provinces
+            .iter()
+            .find(|p| !p["actions"]["start"].as_array().unwrap().is_empty())
+            .expect("USA can start one opening project");
+        let district = startable["id"].as_str().unwrap().to_string();
+        let kind = startable["actions"]["start"][0].as_str().unwrap().to_string();
+        let start = serde_json::json!({
+            "kind": "start_project", "project_kind": kind, "district": district,
+            // A browser-supplied nation is ignored; the session owns identity.
+            "nation": "Japan",
+        });
+        let cmd = parse_command(&g.world, &start, me).expect("start command parses");
+        assert!(matches!(cmd, Command::StartProject { nation, .. } if nation == me));
+        apply_command(&mut g.world, &cmd).expect("served action is authorized");
+
+        let active = production_json(&g.world, me);
+        let queue = active["queue"].as_array().unwrap();
+        assert_eq!(queue.len(), 1);
+        assert_eq!(queue[0]["province"]["id"], district);
+        assert_eq!(queue[0]["kind"], kind);
+        assert_eq!(queue[0]["priority"], "normal");
+        assert!(queue[0]["eta_days"].is_number() || queue[0]["eta_days"].is_null());
+        assert!(queue[0]["actions"]["cancel"].as_bool().unwrap());
+        let project = &g.world.production.projects[0];
+        let direct_shortfalls = production::input_shortfalls(&g.world, project);
+        let direct_draw = production::next_resource_draw(&g.world, project);
+        for row in queue[0]["requirements"].as_array().unwrap() {
+            let commodity = Commodity::parse(row["commodity"].as_str().unwrap()).unwrap();
+            assert_eq!(row["shortfall"], round(direct_shortfalls[commodity.idx()], 6));
+            assert_eq!(row["next_draw"], round(direct_draw[commodity.idx()], 6));
+        }
+        assert_eq!(active["summary"]["active"], 1);
+        let compact = &state_json(&g, None)["production_summary"];
+        assert_eq!(compact["active"], 1);
+        assert!(compact.get("queue").is_none(), "daily state carries no project manifest");
+
+        let id = queue[0]["id"].as_u64().unwrap();
+        let priority = serde_json::json!({
+            "kind": "set_project_priority", "project": id, "priority": "high",
+        });
+        let cmd = parse_command(&g.world, &priority, me).expect("priority parses");
+        assert!(matches!(cmd, Command::SetProjectPriority { nation, priority: Priority::High, .. } if nation == me));
+        apply_command(&mut g.world, &cmd).expect("the player owns the project");
+        assert_eq!(production_json(&g.world, me)["queue"][0]["priority"], "high");
+
+        // Ownership is read live. Once this province is no longer ours, its
+        // marker and start permissions disappear rather than becoming stale.
+        g.world.districts.insert(district.clone(), NationId::Japan);
+        let after_loss = production_json(&g.world, me);
+        assert!(!after_loss["provinces"].as_array().unwrap().iter().any(|p| p["id"] == district));
+        assert!(!after_loss["catalog"].as_array().unwrap().iter().any(|item| {
+            item["eligible_provinces"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .any(|d| d.as_str() == Some(district.as_str()))
+        }));
+
+        // Affordability is part of authorization and is read through the same
+        // command price as apply_command, not merely implied by a catalog cost.
+        g.world.nation_mut(me).political_capital = 0.0;
+        let insolvent = production_json(&g.world, me);
+        assert_eq!(insolvent["actions"]["start"], false);
+        assert!(insolvent["actions"]["start_reason"]
+            .as_str()
+            .is_some_and(|reason| reason.contains("political capital")));
+        assert!(insolvent["provinces"].as_array().unwrap().iter().all(|p| {
+            p["actions"]["start"].as_array().unwrap().is_empty()
+        }));
+        assert!(insolvent["provinces"].as_array().unwrap().iter().any(|p|
+            p["start_refusals"]["infrastructure"].as_str().is_some_and(|r| r.contains("political capital"))));
+
+        let cancel = serde_json::json!({ "kind": "cancel_project", "project": id });
+        let cmd = parse_command(&g.world, &cancel, me).expect("cancel parses");
+        assert!(matches!(cmd, Command::CancelProject { nation, project } if nation == me && project == id as u32));
+        apply_command(&mut g.world, &cmd).expect("the player can cancel its stranded work");
+        assert_eq!(production_json(&g.world, me)["summary"]["active"], 0);
+
+        assert!(ProjectKind::parse("space_elevator").is_none());
+        assert!(Priority::parse("urgent").is_none());
+        assert!(include_str!("main.rs").contains("(Method::Get, \"/api/production\")"));
+    }
+
+    #[test]
+    fn construction_requirements_explain_exact_site_refusals_without_mutation() {
+        let me = NationId::USA;
+        let mut g = loaded_play_game(Game::new(1990, Some(me)).world);
+        let district = g.world.districts.iter().find(|(_, owner)| **owner == me).unwrap().0.clone();
+        g.world.nation_mut(me).political_capital = 0.0;
+        let before = save(&g.world);
+        let board = production_json(&g.world, me);
+        assert_eq!(save(&g.world), before);
+        assert!(board["preview_notice"].is_null());
+        for province in board["provinces"].as_array().unwrap() {
+            let id = province["id"].as_str().unwrap();
+            for item in board["catalog"].as_array().unwrap() {
+                let key = item["kind"].as_str().unwrap();
+                let kind = ProjectKind::parse(key).unwrap();
+                let refusal = production_start_refusal(&g.world, me, id, kind);
+                assert_eq!(province["start_refusals"][key], serde_json::json!(refusal));
+                assert_eq!(province["actions"]["start"].as_array().unwrap().contains(&item["kind"]), refusal.is_none());
+                assert_eq!(item["reason"].is_null(), !item["eligible_provinces"].as_array().unwrap().is_empty());
+            }
+        }
+        assert_eq!(production_start_refusal(&g.world, me, &district, ProjectKind::ProcessingPlant).as_deref(),
+            Some("Build an Industrial Estate in this province first."));
+        assert!(production_start_refusal(&g.world, me, &district, ProjectKind::Infrastructure).is_none(),
+            "Daily construction has no political-capital gate");
+        g.world.production.industry.modules.insert(district.clone(), 1_000_000);
+        g.world.nation_mut(me).tech.known.clear();
+        assert_eq!(production_start_refusal(&g.world, me, &district, ProjectKind::Automation).as_deref(),
+            Some("Research Industrial Robot Cells before installing this upgrade."));
+        g.world.districts.retain(|_, owner| *owner != me);
+        let empty = production_json(&g.world, me);
+        assert!(empty["catalog"].as_array().unwrap().iter().all(|item|
+            item["reason"] == "You need an owned province before starting construction."));
+        let mut legacy = Game::new(1990, Some(me));
+        legacy.world.rules.resource_market = true;
+        legacy.world.rules.production_system = true;
+        legacy.world.day = 6;
+        spheres_sim::clock::enable_daily_play(&mut legacy.world);
+        let legacy_board = production_json(&legacy.world, me);
+        assert!(legacy_board["preview_notice"].as_str().unwrap().contains("after the current month"));
+        let command = Command::StartProject { nation: me, district: district.clone(), kind: ProjectKind::Infrastructure };
+        let price = spheres_sim::price_of(&legacy.world, &command).unwrap();
+        legacy.world.nation_mut(me).political_capital = price - 0.04;
+        assert_eq!(production_start_refusal(&legacy.world, me, &district, ProjectKind::Infrastructure),
+            Some(format!("This order needs {:.1} political capital; you have {:.1}.",
+                (price * 10.0).ceil() / 10.0, ((price - 0.04) * 10.0).floor() / 10.0)));
+    }
+
+    #[test]
+    fn funded_construction_api_is_actor_bound_pure_and_quotes_the_shared_cash_limit() {
+        let me = NationId::USA;
+        let mut g = loaded_play_game(Game::new(1990, Some(me)).world);
+        g.world.nation_mut(me).political_capital = 0.0;
+        let payload = serde_json::json!({"kind":"construction_budget","nation":"Japan","daily_budget_bn":0.0002});
+        let command = parse_command(&g.world, &payload, me).unwrap();
+        assert!(matches!(command, Command::SetConstructionBudget { nation, .. } if nation == me));
+        let pc = g.world.nation(me).political_capital;
+        apply_command(&mut g.world, &command).unwrap();
+        assert_eq!(g.world.nation(me).political_capital, pc);
+        let districts = g.world.districts.iter().filter(|(_,owner)| **owner==me)
+            .take(2).map(|(d,_)| d.clone()).collect::<Vec<_>>();
+        for d in districts {
+            apply_command(&mut g.world, &Command::StartProject { nation:me, district:d, kind:ProjectKind::Infrastructure }).unwrap();
+        }
+        let before = save(&g.world);
+        let data = production_json(&g.world,me);
+        assert_eq!(save(&g.world),before,"Viewing the desk cannot release or spend funds");
+        assert!(data["capacity"].is_null());
+        assert_eq!(data["construction_budget"]["daily_budget_bn"],0.0002);
+        assert!(data["construction_budget"]["can_set"].as_bool().unwrap());
+        let rows = data["queue"].as_array().unwrap();
+        assert_eq!(rows.len(),2);
+        assert!(rows.iter().all(|p|p["requirements"].as_array().unwrap().is_empty() && p["pc_cost"]==0.0));
+        let planned = rows.iter().map(|p|p["finance"]["daily_request_bn"].as_f64().unwrap()).sum::<f64>();
+        assert!(planned > 0.0 && planned <= 0.0002);
+        assert_eq!(data["construction_budget"]["planned_daily_bn"].as_f64().unwrap(),planned);
+        assert!(parse_command(&g.world,&serde_json::json!({"kind":"construction_budget","daily_budget_bn":"bad"}),me).is_none());
+        let invalid = parse_command(&g.world,&serde_json::json!({"kind":"construction_budget","daily_budget_bn":-1}),me).unwrap();
+        assert!(apply_command(&mut g.world,&invalid).is_err());
+        assert_eq!(save(&g.world),before);
+        apply_command(&mut g.world,&Command::SetConstructionBudget {nation:me,daily_budget_bn:0.0}).unwrap();
+        let paused = production_json(&g.world,me);
+        assert_eq!(paused["construction_budget"]["planned_daily_bn"],0.0);
+        assert!(paused["queue"].as_array().unwrap().iter().all(|p|p["finance"]["daily_request_bn"]==0.0));
+    }
+
+    #[test]
+    fn production_api_names_the_full_planning_portfolio() {
+        let me = NationId::USA;
+        let mut g = Game::new(1990, Some(me));
+        g.world.rules.resource_market = true;
+        g.world.rules.production_system = true;
+        let districts = g
+            .world
+            .districts
+            .iter()
+            .filter(|(_, owner)| **owner == me)
+            .map(|(district, _)| district.clone())
+            .take(production::MAX_QUEUED_PROJECTS)
+            .collect::<Vec<_>>();
+        assert_eq!(districts.len(), production::MAX_QUEUED_PROJECTS);
+        for district in districts {
+            production::start_project(
+                &mut g.world,
+                me,
+                &district,
+                ProjectKind::Infrastructure,
+            )
+            .unwrap();
+        }
+
+        let full = production_json(&g.world, me);
+        assert_eq!(full["catalog"].as_array().unwrap().len(),12,"legacy queue refusals cover only its original portfolio");
+        assert_eq!(
+            full["summary"]["active"],
+            production::MAX_QUEUED_PROJECTS
+        );
+        assert_eq!(full["actions"]["start"], false);
+        assert!(full["actions"]["start_reason"]
+            .as_str()
+            .is_some_and(|reason| reason.contains("12/12")));
+        assert!(full["catalog"].as_array().unwrap().iter().all(|project| {
+            project["actions"]["start"] == false
+                && project["start_reason"]
+                    .as_str()
+                    .is_some_and(|reason| reason.contains("Planning queue full"))
+        }));
+    }
+
+    /// Manufacturing is a player-scoped view over completed arms plants and
+    /// the existing arsenal. It quotes the sim's one procurement envelope,
+    /// carries stable kit ids through commands, includes locked research
+    /// destinations, and keeps the daily state compact.
+    #[test]
+    fn manufacturing_api_uses_real_plants_budget_arsenal_and_session_identity() {
+        use spheres_sim::manufacturing;
+        use spheres_sim::production::ProvinceCapabilities;
+
+        let me = NationId::USA;
+        let mut g = Game::new(1990, Some(me));
+        g.world.rules.resource_market = true;
+        g.world.rules.production_system = true;
+        g.world.rules.manufacturing_system = true;
+        g.world.nation_mut(me).political_capital = 100.0;
+        let district = g
+            .world
+            .districts
+            .iter()
+            .find_map(|(district, owner)| (*owner == me).then(|| district.clone()))
+            .expect("USA owns a province");
+        g.world.production.provinces.push(ProvinceCapabilities {
+            district: district.clone(),
+            infrastructure: 0,
+            civilian_industry: 0,
+            power_grid: 0,
+            research_centers: 0,
+            arms_plants: 2,
+        });
+        g.world
+            .production
+            .provinces
+            .sort_by(|a, b| a.district.cmp(&b.district));
+
+        let opening = manufacturing_json(&g.world, me);
+        assert_eq!(opening["mode"], "province_equipment_lines");
+        assert_eq!(opening["summary"]["active"], 0);
+        assert_eq!(opening["summary"]["capacity"], 2);
+        assert_eq!(opening["summary"]["free_slots"], 2);
+        assert_eq!(
+            opening["catalog"].as_array().unwrap().len(),
+            spheres_sim::arsenal::registry().len()
+        );
+        assert!(opening["catalog"].as_array().unwrap().iter().any(|item| item["unlocked"] == true));
+        assert!(opening["catalog"].as_array().unwrap().iter().any(|item| item["unlocked"] == false));
+        assert_eq!(
+            opening["finance"]["procurement_budget_bn_month"],
+            round(manufacturing::budget_bn(&g.world, me), 6)
+        );
+        let province = opening["provinces"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|province| province["id"] == district)
+            .expect("completed plant is served");
+        let kit = province["actions"]["start"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .filter_map(|id| id.as_str())
+            .find(|id| *id == "arm_gen3")
+            .expect("a resource-bearing legacy programme is startable")
+            .to_string();
+        let catalog_row = opening["catalog"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|item| item["id"] == kit)
+            .expect("startable kit remains in the catalog");
+        assert!(
+            !catalog_row["requirements_per_bn"].as_array().unwrap().is_empty(),
+            "directed legacy manufacturing has real recipes too"
+        );
+
+        let start = serde_json::json!({
+            "kind": "start_manufacturing_line",
+            "district": district,
+            "kit": kit,
+            // The browser cannot direct another nation through a player route.
+            "nation": "Japan",
+        });
+        let command = parse_command(&g.world, &start, me).expect("manufacturing start parses");
+        assert!(matches!(
+            command,
+            Command::StartManufacturingLine { nation, .. } if nation == me
+        ));
+        apply_command(&mut g.world, &command).expect("served start action is authorized");
+
+        let active = manufacturing_json(&g.world, me);
+        assert_eq!(active["summary"]["active"], 1);
+        assert_eq!(active["summary"]["used_slots"], 1);
+        assert_eq!(active["summary"]["free_slots"], 1);
+        assert_eq!(active["lines"][0]["kit"], kit);
+        assert_eq!(active["lines"][0]["province"]["id"], district);
+        assert_eq!(active["lines"][0]["priority"], "normal");
+        assert_eq!(active["lines"][0]["status"], "producing");
+        assert!(active["lines"][0]["requirements"].is_array());
+        let requirement = active["lines"][0]["requirements"]
+            .as_array()
+            .and_then(|rows| rows.first())
+            .expect("a resource-bearing programme serves its live recipe");
+        assert!(requirement["priority_available"].is_number());
+        assert!(requirement["stock_available"].is_number());
+        assert!(active["lines"][0]["actions"]["stop"].as_bool().unwrap());
+        let served_book = active["stockpile"].as_array().unwrap().iter()
+            .map(|row| row["book_value_bn"].as_f64().unwrap())
+            .sum::<f64>();
+        assert!(
+            (served_book - spheres_sim::arsenal::book_value(g.world.nation(me))).abs() < 0.02,
+            "served rounded holdings close to the arsenal book"
+        );
+
+        let line = active["lines"][0]["id"].as_u64().unwrap();
+        *g.world.districts.get_mut(&district).unwrap() = NationId::Canada;
+        let stranded = manufacturing_json(&g.world, me);
+        assert_eq!(stranded["summary"]["blocked"], 1);
+        assert_eq!(stranded["lines"][0]["status"], "blocked");
+        assert_eq!(stranded["lines"][0]["units_ordered_month"], 0.0);
+        *g.world.districts.get_mut(&district).unwrap() = me;
+
+        let priority = serde_json::json!({
+            "kind": "set_manufacturing_priority", "line": line, "priority": "high",
+        });
+        let command = parse_command(&g.world, &priority, me).expect("priority parses");
+        assert!(matches!(
+            command,
+            Command::SetManufacturingPriority { nation, priority: Priority::High, .. }
+                if nation == me
+        ));
+        apply_command(&mut g.world, &command).expect("player owns line");
+        assert_eq!(manufacturing_json(&g.world, me)["lines"][0]["priority"], "high");
+
+        let compact = &state_json(&g, None)["manufacturing_summary"];
+        assert_eq!(compact["active"], 1);
+        assert!(compact.get("lines").is_none());
+        assert!(compact.get("catalog").is_none());
+
+        let stop = serde_json::json!({ "kind": "stop_manufacturing_line", "line": line });
+        let command = parse_command(&g.world, &stop, me).expect("stop parses");
+        assert!(matches!(
+            command,
+            Command::StopManufacturingLine { nation, line: id } if nation == me && id == line as u32
+        ));
+        apply_command(&mut g.world, &command).expect("player can stop line");
+        assert_eq!(manufacturing_json(&g.world, me)["summary"]["active"], 0);
+
+        assert!(Priority::parse("urgent").is_none());
+        assert!(include_str!("main.rs").contains("(Method::Get, \"/api/manufacturing\")"));
+    }
+
+    /// Source-level reachability guard for the whole browser hand-off. The
+    /// simulation can be perfect and still be absent from the game if the dock,
+    /// fetch, order path or province overlay is removed independently.
+    #[test]
+    fn production_board_is_wired_end_to_end() {
+        for needle in [
+            "id=\"productionDockBtn\"",
+            "id=\"productionPanel\"",
+            "id=\"productionLive\" role=\"status\" aria-live=\"polite\"",
+            "function openProduction()",
+            "function productionFetch()",
+            "api(\"/api/production\")",
+            "kind:\"start_project\"",
+            "function openConstruction(options",
+            "id=\"constructionBudgetForm\"",
+            "kind:\"construction_budget\"",
+            "kind: \"set_project_priority\"",
+            "kind: \"cancel_project\"",
+            "function drawProductionOverlay(",
+            "function productionHitAt(",
+            "data-production-mode=\"manufacture\"",
+            "function manufacturingFetch()",
+            "api(\"/api/manufacturing\")",
+            "kind: \"start_manufacturing_line\"",
+            "kind: \"set_manufacturing_priority\"",
+            "kind: \"stop_manufacturing_line\"",
+            "function drawManufacturingOverlay(",
+        ] {
+            assert!(INDEX.contains(needle), "missing production UI wire: {needle}");
+        }
+        assert!(
+            INDEX.contains("if (!PROD.open) return;")
+                && INDEX.contains("if (!PROD.open || PROD.mode !== \"manufacture\" || !MANU.data) return;"),
+            "province work markers must be absent from the resting globe"
+        );
+        assert!(INDEX.contains("k === \"q\" || k === \"Q\""));
+    }
+
+    // =======================================================================
+    // THE POLITICAL ARM (S1 surface + S2 screen). Every bar below was watched
+    // red before it was watched green; the mutation that reddened it is in
+    // its comment.
+    // =======================================================================
+
+    /// The lens is on in every world the browser plays and off in every world
+    /// it does not: `Game::new` (the headless rules) serves null for all six
+    /// political fields, `play_rules` turns `ideology_blocs` on — and never
+    /// `ideology_takeover` — loads the leader table and serves them. Measured
+    /// this run on seed 7: Poland reads Western under Tadeusz Mazowiecki
+    /// (pl_solidarity, Prime Minister since 1989-08-24) at discontent 0.2917
+    /// — the amber band; Iraq reads Nationalist under Saddam Hussein
+    /// (iq_baath); Jordan reads Non-Aligned (the court) with jo_ikhwan as the
+    /// government of the day; Chile, a REFUSED row, is described as "the
+    /// office-holder" with no name. Every one of the 137 living nations has a
+    /// ruling bloc: 67 Western, 43 Non-Aligned, 17 Communist, 7 Nationalist,
+    /// 3 Islamist. Watched red with `g.world.rules.ideology_blocs = true`
+    /// removed from `play_rules`: `ruling_bloc` came back null.
+    #[test]
+    fn the_political_arm_is_on_in_play_and_null_headless() {
+        let g = Game::new(7, Some(NationId::Poland));
+        assert!(!g.world.rules.ideology_blocs);
+        let off = nation_json(&g.world, g.world.nation(NationId::Poland));
+        for key in ["ruling_bloc", "discontent", "blocs", "leader", "government_of_the_day", "takeover"] {
+            assert!(off[key].is_null(), "{key} is served while the arm is off: {}", off[key]);
+        }
+        // Through the browser's own load path, which is the one that calls
+        // `play_rules` (the call-site count is pinned by the market test).
+        let g = loaded_play_game(g.world);
+        assert!(g.world.rules.ideology_blocs, "play_rules must switch the lens on");
+        assert!(!g.world.rules.ideology_takeover, "the roads are S4 and stay off");
+        assert!(g.world.leadership.is_some(), "the leader table is loaded before the first /api/state");
+        let w = &g.world;
+        let pl = nation_json(w, w.nation(NationId::Poland));
+        assert_eq!(pl["ruling_bloc"], "Western");
+        assert_eq!(pl["leader"]["name"], "Tadeusz Mazowiecki");
+        assert_eq!(pl["leader"]["party"], "pl_solidarity");
+        assert_eq!(pl["leader"]["office"], "Prime Minister of Poland");
+        assert_eq!(pl["leader"]["since"], "1989-08-24");
+        assert!(pl["leader"]["described"].is_null());
+        let disc = pl["discontent"].as_f64().unwrap();
+        assert_eq!(disc, spheres_sim::blocs::discontent(w, NationId::Poland));
+        assert!((0.25..0.50).contains(&disc), "measured 0.2917 this run, read {disc}");
+        let blocs = pl["blocs"].as_array().unwrap();
+        assert_eq!(blocs.len(), 5);
+        let sum: f64 = blocs.iter().map(|b| b["share"].as_f64().unwrap()).sum();
+        assert!((sum - 1.0).abs() < 1e-9);
+        assert_eq!(blocs[0]["bloc"], "Western");
+        assert!((blocs[0]["share"].as_f64().unwrap() - 0.78).abs() < 1e-9, "Solidarity 0.60 + PSL 0.12 + SD 0.06");
+        assert_eq!(blocs[0]["backing"], 0.0, "foreign backing is S3 and reads zero");
+        assert_eq!(blocs[0]["banned"], false);
+        for road in ["coup", "uprising", "round_table", "collapse"] {
+            assert_eq!(pl["takeover"][road]["open"], false, "{road} must read closed with the takeover switch off");
+            assert_eq!(pl["takeover"][road]["reason"], spheres_sim::blocs::CALIBRATION_PENDING);
+            assert!(!pl["takeover"][road]["gauges"].as_array().unwrap().is_empty());
+        }
+        assert!(pl["takeover"]["half_armed"].is_boolean());
+        let iq = nation_json(w, w.nation(NationId::Iraq));
+        assert_eq!(iq["ruling_bloc"], "Nationalist");
+        assert_eq!(iq["leader"]["name"], "Saddam Hussein");
+        assert_eq!(iq["leader"]["party"], "iq_baath");
+        let jo = nation_json(w, w.nation(NationId::Jordan));
+        assert_eq!(jo["ruling_bloc"], "NonAligned", "the monarchy exception: the court rules");
+        assert_eq!(jo["government_of_the_day"], "jo_ikhwan");
+        assert_eq!(jo["leader"]["pillar"], "Party");
+        let cl = nation_json(w, w.nation(NationId::Chile));
+        assert!(cl["leader"]["name"].is_null(), "a refused row names nobody");
+        assert_eq!(cl["leader"]["described"], "the office-holder");
+        assert_eq!(cl["leader"]["since"], "1974-12-17");
+        // Every living nation is coloured, and the tally is the transcribed one.
+        let mut tally = std::collections::BTreeMap::new();
+        let mut alive = 0;
+        for n in w.nations.iter().filter(|n| n.alive) {
+            alive += 1;
+            let v = nation_json(w, n);
+            let b = v["ruling_bloc"].as_str().unwrap_or_else(|| panic!("{:?} has no ruling bloc", n.id));
+            *tally.entry(b.to_string()).or_insert(0) += 1;
+        }
+        assert_eq!(alive, 137);
+        assert_eq!(tally["Western"], 67);
+        assert_eq!(tally["NonAligned"], 43);
+        assert_eq!(tally["Communist"], 17);
+        assert_eq!(tally["Nationalist"], 7);
+        assert_eq!(tally["Islamist"], 3);
+        // A loaded save is played with the lens on too.
+        let loaded = loaded_play_game(Game::new(7, Some(NationId::Poland)).world);
+        assert!(loaded.world.rules.ideology_blocs && !loaded.world.rules.ideology_takeover);
+        assert!(nation_json(&loaded.world, loaded.world.nation(NationId::Poland))["ruling_bloc"].is_string());
+    }
+
+    /// /api/government serves the screen whole, and every price and every
+    /// refusal on it is the sim's: each action's `command` payload parses back
+    /// to a `Command` whose `price_of` and `refusal_of` are the numbers and the
+    /// sentence served beside it. Measured this run, seed 7: Poland's chamber
+    /// has two bloc groups (three Western parties, one Communist), a
+    /// single-party government at strain 0 and upkeep 0 holding 60% of the
+    /// seats, its next election in 1991-10, and six actions — three
+    /// invitations, an early election refused "A government six months old
+    /// cannot go back to the country yet.", and two stratagems refused as "no
+    /// longer open"; Iraq's regime has three named pillars at loyalty 0.65,
+    /// coup pressure 0, three payments at 14.0 and two stratagems open. The
+    /// page reads the served fields by name and divides nothing. Watched red
+    /// with `"price": 0.0` in `action_json`: Poland's early election read 0
+    /// against a `price_of` of 25.0. Watched red again with the page reading
+    /// `g.value / g.trigger` for a gauge bar.
+    #[test]
+    fn the_government_screen_is_served_not_computed() {
+        let g = loaded_play_game(Game::new(7, Some(NationId::Poland)).world);
+        let w = &g.world;
+        let pl = government_json(w, NationId::Poland);
+        assert_eq!(pl["on"], true);
+        assert_eq!(pl["mine"], true);
+        assert_eq!(pl["electoral"], true);
+        assert_eq!(pl["ruling_bloc"], "Western");
+        let bar = pl["bar"].as_array().unwrap();
+        assert_eq!(bar.len(), 5);
+        assert_eq!(bar[0]["bloc"], "Western");
+        assert_eq!(bar[0]["governing"], true);
+        assert_eq!(bar[0]["ruling"], true);
+        assert_eq!(bar[1]["bloc"], "Communist");
+        assert_eq!(bar[1]["governing"], false);
+        let groups = pl["groups"].as_array().unwrap();
+        assert_eq!(groups.len(), 2);
+        assert_eq!(groups[0]["bloc"], "Western");
+        assert_eq!(groups[0]["parties"].as_array().unwrap().len(), 3);
+        assert_eq!(groups[0]["parties"][0]["id"], "pl_solidarity");
+        assert_eq!(groups[0]["parties"][0]["leads"], true);
+        assert_eq!(groups[1]["parties"][0]["id"], "pl_sld");
+        assert_eq!(pl["strain"], spheres_sim::government::strain(w, NationId::Poland));
+        assert_eq!(pl["upkeep"], spheres_sim::government::upkeep(w, NationId::Poland));
+        assert_eq!(pl["strain"], 0.0);
+        assert_eq!(pl["next_election"], "1991-10");
+        assert!((pl["government_seats"].as_f64().unwrap() - 0.6).abs() < 1e-9);
+        assert_eq!(pl["discontent"], spheres_sim::blocs::discontent(w, NationId::Poland));
+        let acts = pl["actions"].as_array().unwrap();
+        // S3: the five levers join the list — for an electoral polity the
+        // suspension and one ban per party of the table, each served with
+        // the sim's price, refusal and effects (the levers' own test reads
+        // them in detail). Re-pinned 2026-09-06 from six to eleven when the
+        // web stage landed; the kinds are pinned in order so a lever that
+        // silently drops out reads red.
+        assert_eq!(acts.len(), 11, "three invitations, the election, two stratagems, the suspension, four bans");
+        let kinds: Vec<&str> = acts.iter().map(|a| a["kind"].as_str().unwrap()).collect();
+        assert_eq!(kinds, ["invite", "invite", "invite", "call_election", "stratagem", "stratagem", "suspend", "ban", "ban", "ban", "ban"]);
+        let election = &acts[3];
+        assert_eq!(election["refusal"], "A government six months old cannot go back to the country yet.");
+        assert_eq!(election["price"], 25.0);
+        assert_eq!(acts[4]["refusal"], "Security Crackdown is no longer open to Poland.");
+        assert!(acts[0]["refusal"].is_null(), "an invitation Poland can afford goes through");
+        // The pass that matters: every served price and refusal IS the sim's,
+        // for the very command the page would post.
+        let check = |v: &serde_json::Value, id: NationId| {
+            for a in v["actions"].as_array().unwrap() {
+                let cmd = parse_command(w, &a["command"], id)
+                    .unwrap_or_else(|| panic!("the page's payload does not parse: {}", a["command"]));
+                assert_eq!(a["price"], spheres_sim::price_of(w, &cmd).unwrap_or(0.0), "{}", a["label"]);
+                assert_eq!(a["refusal"], serde_json::json!(spheres_sim::refusal_of(w, &cmd)), "{}", a["label"]);
+                assert_eq!(a["affordable"], spheres_sim::affordable(w, &cmd), "{}", a["label"]);
+            }
+        };
+        check(&pl, NationId::Poland);
+        let iq = government_json(w, NationId::Iraq);
+        assert_eq!(iq["electoral"], false);
+        assert_eq!(iq["mine"], false);
+        assert_eq!(iq["ruling_bloc"], "Nationalist");
+        assert_eq!(iq["leader"]["name"], "Saddam Hussein");
+        let pillars = iq["pillars"].as_array().unwrap();
+        let names: Vec<&str> = pillars.iter().map(|p| p["name"].as_str().unwrap()).collect();
+        assert_eq!(names, ["the Republican Guard", "the Ba'ath Party apparatus", "the Mukhabarat"]);
+        for p in pillars {
+            assert_eq!(p["loyalty"], 0.65);
+        }
+        assert_eq!(iq["coup_pressure"], 0.0);
+        assert!(iq["next_election"].is_null());
+        let acts = iq["actions"].as_array().unwrap();
+        // S3: a regime carries a programme per present non-ruling bloc (Iraq:
+        // the Non-Aligned colour of the Mukhabarat), the round table and a
+        // ban per party of the table (the Ba'ath). Re-pinned 2026-09-06 from
+        // five to eight, the kinds in order.
+        assert_eq!(acts.len(), 8, "three payments, two stratagems, a programme, the round table, a ban");
+        let kinds: Vec<&str> = acts.iter().map(|a| a["kind"].as_str().unwrap()).collect();
+        assert_eq!(kinds, ["secure_pillar", "secure_pillar", "secure_pillar", "stratagem", "stratagem", "programme", "round_table", "ban"]);
+        assert_eq!(acts[5]["command"], serde_json::json!({ "kind": "declare_programme", "bloc": "non_aligned" }));
+        assert_eq!(acts[7]["command"], serde_json::json!({ "kind": "ban_party", "party": "iq_baath" }));
+        assert_eq!(acts[0]["kind"], "secure_pillar");
+        assert_eq!(acts[0]["price"], 14.0);
+        assert!(acts[0]["refusal"].is_null());
+        assert_eq!(acts[0]["command"], serde_json::json!({ "kind": "secure_pillar", "pillar": "army" }));
+        check(&iq, NationId::Iraq);
+        for road in ["coup", "uprising", "round_table", "collapse"] {
+            assert_eq!(iq["takeover"][road]["open"], false);
+            for gauge in iq["takeover"][road]["gauges"].as_array().unwrap() {
+                assert!(gauge["progress"].is_number(), "the bar is served, not divided on the page");
+                assert!(gauge["met"].is_boolean());
+            }
+        }
+        // Off: the screen says so and serves no political field.
+        let off = Game::new(7, Some(NationId::Poland));
+        let v = government_json(&off.world, NationId::Poland);
+        assert_eq!(v["on"], false);
+        assert!(v["ruling_bloc"].is_null() && v["discontent"].is_null() && v["takeover"].is_null());
+        assert!(v["bar"].as_array().unwrap().is_empty());
+        // The page: one fetch, the served names, and no arithmetic of its own.
+        // The reader captures its nation and campaign before awaiting the
+        // request, so an old reply cannot repopulate a replacement campaign.
+        let reader = page_fn("async function govFetch() {");
+        assert!(reader.contains("nation = gov.nation"));
+        assert!(reader.contains(r#"api("/api/government?nation=" + encodeURIComponent(nation))"#));
+        assert!(reader.contains("S === state && gov.nation === nation"));
+        let host = page_fn("function renderGovernment() {");
+        assert!(host.contains("window.GovernmentUI.render(gov.data"));
+        assert!(INDEX.contains(r#"<script src="/government-ui.js"></script>"#));
+        let screen = GOVERNMENT_UI_JS;
+        for served in ["data.bar", "data.groups", "data.pillars", "data.takeover", "data.actions", "data.strain", "data.upkeep",
+                       "data.next_election", "data.government_seats", "data.coup_pressure", "data.discontent", "data.ruling_bloc",
+                       "item.governing", "item.ruling", "item.banned", "gauge.progress", "gauge.met", "road.half_armed", "road.reason",
+                       "action.price", "action.refusal", "pillar.loyalty"] {
+            assert!(screen.contains(served), "the screen no longer reads the served {served}");
+        }
+        for computed in ["g.value / g.trigger", "g.trigger / g.value", "gauge.value / gauge.trigger", "gauge.trigger / gauge.value", "0.50 *", "RULING_SEED",
+                         "ChristianDemocratic", "SocialDemocratic", "BigTent", "discontent = "] {
+            assert!(!INDEX.contains(computed) && !screen.contains(computed), "the page derives a bloc number of its own: {computed}");
+        }
+    }
+
+    /// The header's DISCONTENT chip and the ruling-bloc swatch: both read
+    /// served fields (`m.discontent`, `m.ruling_bloc`, `m.leader`), the chip
+    /// is banded green under 25, amber 25-49, red at 50 and above, and the
+    /// person comes before the nation — "Tadeusz Mazowiecki / Western ·
+    /// Poland". With the arm off the header falls back to the plain nation
+    /// name it always showed. Watched red with the amber threshold moved from
+    /// 25 to 30 in `discontentBand`.
+    #[test]
+    fn the_header_carries_the_discontent_chip_and_the_ruling_swatch() {
+        assert!(INDEX.contains(r#"<span class="metric" id="hdrDiscontentChip" hidden>DISCONTENT <b id="hdrDiscontent">—</b></span>"#));
+        assert!(INDEX.contains(r#"<i id="hdrBloc" class="blocdot" hidden></i><b id="hdrYou">—</b>"#));
+        assert!(INDEX.contains(
+            r#"function discontentBand(pct) { return pct < 25 ? "green" : pct < 50 ? "amber" : "red"; }"#
+        ));
+        let render = page_fn("function render() {");
+        assert!(render.contains(r##"$("#hdrYou").textContent = `${lead || "—"} / ${blocLabel(m.ruling_bloc)} · ${m.name}`;"##));
+        assert!(render.contains(r##"$("#hdrBloc").style.background = blocColor(m.ruling_bloc);"##));
+        assert!(render.contains("const pct = m.discontent * 100;"));
+        assert!(render.contains(r#"b.className = "band-" + discontentBand(pct);"#));
+        assert!(render.contains(r##"$("#hdrYou").textContent = S.player_name || "—";"##), "the off fallback is gone");
+        assert!(INDEX.contains("function leaderLine(n) { const l = n && n.leader; return l ? (l.name || l.described || null) : null; }"));
+        for band in ["green", "amber", "red"] {
+            assert!(INDEX.contains(&format!(".band-{band} {{ color:var(--{band}) !important; }}")));
+        }
+    }
+
+    /// The ninth map mode. "Ideology" colours a nation by its SERVED ruling
+    /// bloc in the five design colours, hatches one whose served
+    /// `takeover.half_armed` is true, carries no ground block (colour is the
+    /// data), and leaves Political and Stability — and the fronts' own paint
+    /// guard — exactly as they were. Watched red with the hatch block removed
+    /// from `paintPolitical`.
+    #[test]
+    fn the_ideology_map_mode_colours_by_ruling_bloc_and_hatches_the_watch() {
+        let modes = INDEX
+            .split_once("const MAP_MODES = {")
+            .expect("MAP_MODES is gone")
+            .1
+            .split_once("\r\n};")
+            .expect("MAP_MODES is brace-terminated")
+            .0;
+        let entries: Vec<&str> = modes.lines().filter(|l| {
+            let t = l.trim_end();
+            t.starts_with("  ") && !t.starts_with("   ") && t.ends_with(": {")
+        }).collect();
+        assert_eq!(entries.len(), 9, "eight modes plus Ideology: {entries:?}");
+        assert_eq!(entries[8].trim(), "ideology: {");
+        let at = modes.find("\n  ideology: {").expect("no Ideology mode");
+        let block = &modes[at + 1..];
+        let block = &block[..block.find("\n  },").map(|e| e + 1).unwrap_or(block.len())];
+        assert!(block.contains(r#"label: "Ideology","#));
+        assert!(block.contains("color: (n) => blocColor(n.ruling_bloc),"));
+        assert!(!block.contains("\n    ground: {"), "Ideology is thematic: colour IS the data, no ground");
+        assert!(INDEX.contains(
+            r##"const BLOC_COLOR = { Western: "#3465a4", Communist: "#b3261e", Nationalist: "#4a3728", Islamist: "#2e7d32", NonAligned: "#7a7a7a" };"##
+        ));
+        for swatch in [r##"["#3465a4", "Western"]"##, r##"["#b3261e", "Communist"]"##, r##"["#4a3728", "Nationalist"]"##,
+                       r##"["#2e7d32", "Islamist"]"##, r##"["#7a7a7a", "Non-Aligned"]"##] {
+            assert!(block.contains(swatch), "the legend lost {swatch}");
+        }
+        // The hatch, in the ideology mode alone, reading the served flag.
+        let paint = page_fn("function paintPolitical() {");
+        assert!(paint.contains(r#"if (ui.mapMode === "ideology") {"#));
+        assert!(paint.contains("if (!n.takeover || !n.takeover.half_armed) continue;"));
+        assert!(paint.contains("const pat = ctx.createPattern(HATCH, \"repeat\");"));
+        // The two readings the design leaves alone, and the front paint guard.
+        assert!(INDEX.contains("if (ui.mapMode !== \"political\" && ui.mapMode !== \"fronts\") return;"));
+        assert!(INDEX.contains("\n  stability: {\r\n    label: \"Stability\",") || INDEX.contains("\n  stability: {\n    label: \"Stability\","));
+        assert_eq!(INDEX.matches("\n    ground: {").count(), 4, "the ground count is the other test's; it must not have moved");
+    }
+
+    /// The government screen lives on I, a key nothing else takes; Escape
+    /// closes it; Space still reaches the clock from behind it (the board's
+    /// rule) and the advance digits do not; the screen refreshes with every
+    /// render; the dock button and the ? card both point at it. Watched red
+    /// with the `k === "i"` dispatch line removed.
+    #[test]
+    fn the_government_screen_has_its_own_key_and_escape_closes_it() {
+        let handler = page_fn("document.addEventListener(\"keydown\", (e) => {");
+        assert!(handler.contains(r#"else if (k === "i" || k === "I") toggleGovernment();"#));
+        assert_eq!(handler.matches(r#"k === "i" || k === "I""#).count(), 1, "I is bound exactly once");
+        assert!(handler.contains("if (gov.open) { closeGovernment(); return; }"), "Escape does not close the screen");
+        assert!(handler.contains("if (gov.open) { govKeys(e); return; }"), "the screen does not take the keyboard");
+        assert!(handler.contains("      && !gov.open\r\n"), "the pause-only branch must skip the screen, like the board");
+        // Space is bound ahead of the screen's dispatch, so pause reaches the clock.
+        let space = handler
+            .find("if (e.key === \" \" && !e.target?.closest?.('button, summary, select, [role=\"tab\"]')) {")
+            .expect("space is not bound ahead of the screens");
+        let govd = handler.find("if (gov.open) { govKeys(e); return; }").unwrap();
+        assert!(space < govd, "the government screen swallows the pause key");
+        assert!(handler.contains("} else if (gov.open) {"), "the press behind the screen must say what it did");
+        let keys = page_fn("function govKeys(e) {");
+        assert!(keys.contains(r#"if (k === "Escape") { e.preventDefault(); closeGovernment(); return; }"#));
+        assert!(!keys.contains("k === \" \""), "the screen must not swallow Space");
+        assert!(keys.contains(r#"if (k >= "0" && k <= "9") e.preventDefault();"#), "the advance digits leak through the screen");
+        assert!(INDEX.contains("if (gov.open) refreshGovernment();"), "the screen freezes at the month it opened");
+        assert!(INDEX.contains(r##"$("#govBtn").onclick = toggleGovernment;"##));
+        assert!(INDEX.contains(r#"<div class="row"><span>Government &mdash; who holds power, and the takeover watch</span><span><kbd>I</kbd></span></div>"#));
+        assert!(INDEX.contains(r#"<div id="govScreen" role="dialog" aria-modal="true" aria-label="Government" tabindex="-1">"#));
+        assert!(INDEX.contains("function openGovernment(id) {") && INDEX.contains("function closeGovernment() {"));
+    }
+
+    /// The four government commands reach the sim from the page as payloads
+    /// `parse_command` reads — a party by its stable id, a pillar by its key
+    /// — and an unreadable one is a refusal, not a guess. Watched red with the
+    /// `"call_election"` arm removed.
+    #[test]
+    fn the_government_commands_parse_from_the_page() {
+        let g = Game::new(7, Some(NationId::Poland));
+        let w = &g.world;
+        let me = NationId::Poland;
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "invite_to_government", "party": "pl_sld" }), me),
+            Some(Command::InviteToGovernment { nation: me, party: "pl_sld".into() })
+        );
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "expel_from_government", "party": "pl_psl" }), me),
+            Some(Command::ExpelFromGovernment { nation: me, party: "pl_psl".into() })
+        );
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "call_election" }), me),
+            Some(Command::CallElection { nation: me })
+        );
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "secure_pillar", "pillar": "army" }), NationId::Iraq),
+            Some(Command::SecurePillar { nation: NationId::Iraq, pillar: spheres_sim::government::Pillar::Army })
+        );
+        assert_eq!(parse_command(w, &serde_json::json!({ "kind": "secure_pillar", "pillar": "navy" }), me), None);
+        assert_eq!(parse_command(w, &serde_json::json!({ "kind": "invite_to_government" }), me), None);
+    }
+
+    // =======================================================================
+    // S3/S4 — the web surface of the political arm: the levers, the covert
+    // card, the hatched bar, the watch, the chip and the dock, the stems.
+    // =======================================================================
+
+    /// The five levers and the covert card reach the sim from the page as
+    /// payloads `parse_command` reads — a party by its stable id, a bloc by
+    /// its stable key ("non_aligned"), a covert op by the sim's own
+    /// `CovertOp::parse` string ("back:communist") — and an unreadable one
+    /// is a refusal, not a guess. Watched red with the `"covert"` arm
+    /// removed from `parse_command`: the BackBloc line read `None`.
+    #[test]
+    fn the_levers_and_the_covert_kinds_parse_from_the_page() {
+        use spheres_sim::government::Bloc;
+        let g = Game::new(7, Some(NationId::Poland));
+        let w = &g.world;
+        let me = NationId::Poland;
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "suspend_constitution" }), me),
+            Some(Command::SuspendConstitution { nation: me })
+        );
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "ban_party", "party": "pl_sld" }), me),
+            Some(Command::BanParty { nation: me, party: "pl_sld".into() })
+        );
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "legalize_party", "party": "pl_sld" }), me),
+            Some(Command::LegalizeParty { nation: me, party: "pl_sld".into() })
+        );
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "declare_programme", "bloc": "non_aligned" }), NationId::Iraq),
+            Some(Command::DeclareProgramme { nation: NationId::Iraq, bloc: Bloc::NonAligned })
+        );
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "convene_round_table" }), NationId::Iraq),
+            Some(Command::ConveneRoundTable { nation: NationId::Iraq })
+        );
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "covert", "target": "Cuba", "op": "back:communist" }), NationId::USA),
+            Some(Command::CovertAction { sponsor: NationId::USA, target: NationId::Cuba, op: CovertOp::BackBloc(Bloc::Communist) })
+        );
+        assert_eq!(
+            parse_command(w, &serde_json::json!({ "kind": "covert", "target": "Cuba", "op": "opposition" }), NationId::USA),
+            Some(Command::CovertAction { sponsor: NationId::USA, target: NationId::Cuba, op: CovertOp::FundOpposition })
+        );
+        assert_eq!(parse_command(w, &serde_json::json!({ "kind": "declare_programme", "bloc": "monarchist" }), me), None);
+        assert_eq!(parse_command(w, &serde_json::json!({ "kind": "ban_party" }), me), None);
+        assert_eq!(parse_command(w, &serde_json::json!({ "kind": "covert", "target": "Cuba", "op": "back:royalist" }), me), None);
+        assert_eq!(parse_command(w, &serde_json::json!({ "kind": "covert", "op": "sabotage" }), me), None);
+    }
+
+    /// The levers on the government screen are served with the sim's price,
+    /// the sim's refusal and the sim's effects list — `lever_effects`, off
+    /// the same plan the arm writes — for the very command the page would
+    /// post. Measured this run, seed 7 through the browser's load path:
+    /// Poland (electoral, four parties) carries one suspension at 40 PC,
+    /// refused out of crisis, and four bans at 18 PC, Solidarity's refused
+    /// as the party that leads; once `pl_sld` is banned (authoritarianism
+    /// staged to 0.50 first, the ban's own line) its action turns into a
+    /// legalisation at 12 PC with the ban's group flag set. Iraq (a regime)
+    /// carries one programme per present non-ruling bloc, each at 35 PC, and
+    /// a round table at 30 PC refused for want of discontent. Off, every
+    /// lever is still listed and refused "This world does not model
+    /// ideological movements." with an empty effects list. Watched red with
+    /// `"effects": vec![]` in `action_json`: the ban's four sentences read
+    /// as none.
+    #[test]
+    fn the_levers_are_served_with_the_sim_s_price_refusal_and_effects() {
+        use spheres_sim::government as gov;
+        let check = |w: &WorldState, v: &serde_json::Value, id: NationId| {
+            for a in v["actions"].as_array().unwrap() {
+                let cmd = parse_command(w, &a["command"], id)
+                    .unwrap_or_else(|| panic!("the page's payload does not parse: {}", a["command"]));
+                assert_eq!(a["price"], spheres_sim::price_of(w, &cmd).unwrap_or(0.0), "{}", a["label"]);
+                assert_eq!(a["refusal"], serde_json::json!(spheres_sim::refusal_of(w, &cmd)), "{}", a["label"]);
+                assert_eq!(a["affordable"], spheres_sim::affordable(w, &cmd), "{}", a["label"]);
+                assert_eq!(a["effects"], serde_json::json!(effects_of(w, &cmd)), "{}", a["label"]);
+                if let Some(fx) = gov::lever_effects(w, &cmd) {
+                    assert_eq!(a["effects"], serde_json::json!(fx), "{}", a["label"]);
+                }
+            }
+        };
+        let mut g = loaded_play_game(Game::new(7, Some(NationId::Poland)).world);
+        let pl = government_json(&g.world, NationId::Poland);
+        let kinds = |v: &serde_json::Value, k: &str| -> Vec<serde_json::Value> {
+            v["actions"].as_array().unwrap().iter().filter(|a| a["kind"] == k).cloned().collect()
+        };
+        let suspend = kinds(&pl, "suspend");
+        assert_eq!(suspend.len(), 1);
+        assert_eq!(suspend[0]["price"], gov::SUSPEND_PC);
+        assert_eq!(suspend[0]["command"], serde_json::json!({ "kind": "suspend_constitution" }));
+        assert_eq!(suspend[0]["refusal"], serde_json::json!(gov::suspend_refusal(&g.world, NationId::Poland)));
+        assert!(suspend[0]["refusal"].as_str().unwrap().contains("is not in the crisis a suspension needs"));
+        let bans = kinds(&pl, "ban");
+        assert_eq!(bans.len(), 4, "one ban per party of the table");
+        assert!(bans.iter().all(|b| b["price"] == gov::BAN_PC));
+        let lead = bans.iter().find(|b| b["command"]["party"] == "pl_solidarity").unwrap();
+        assert_eq!(lead["refusal"], "A government cannot ban the party that leads it.");
+        assert!(kinds(&pl, "legalize").is_empty() && kinds(&pl, "programme").is_empty() && kinds(&pl, "round_table").is_empty());
+        check(&g.world, &pl, NationId::Poland);
+        // Stage the ban's own line and ban the post-communists: the action
+        // turns into a legalisation, the group reads banned, the effects
+        // list is the sim's.
+        g.world.nation_mut(NationId::Poland).authoritarianism = 0.50;
+        let pl = government_json(&g.world, NationId::Poland);
+        let sld = kinds(&pl, "ban").into_iter().find(|b| b["command"]["party"] == "pl_sld").unwrap();
+        assert!(sld["refusal"].is_null(), "{}", sld["refusal"]);
+        let fx = sld["effects"].as_array().unwrap();
+        assert_eq!(fx.len(), 4, "{fx:?}");
+        assert!(fx[0].as_str().unwrap().starts_with("Democratic Left Alliance holds no seats:"), "{}", fx[0]);
+        gov::ban_party(&mut g.world, NationId::Poland, "pl_sld").unwrap();
+        let pl = government_json(&g.world, NationId::Poland);
+        let legal = kinds(&pl, "legalize");
+        assert_eq!(legal.len(), 1);
+        assert_eq!(legal[0]["price"], gov::LEGALIZE_PC);
+        assert_eq!(legal[0]["command"], serde_json::json!({ "kind": "legalize_party", "party": "pl_sld" }));
+        assert_eq!(kinds(&pl, "ban").len(), 3);
+        let groups = pl["groups"].as_array().unwrap();
+        assert_eq!(groups[1]["bloc"], "Communist");
+        assert_eq!(groups[1]["banned"], true);
+        assert_eq!(groups[1]["parties"][0]["banned"], true);
+        assert_eq!(pl["bar"][1]["banned"], true);
+        check(&g.world, &pl, NationId::Poland);
+        // The regime.
+        let iq = government_json(&g.world, NationId::Iraq);
+        let programmes = kinds(&iq, "programme");
+        let present: Vec<gov::Bloc> = gov::Bloc::ALL
+            .into_iter()
+            .filter(|b| *b != gov::Bloc::Nationalist && spheres_sim::blocs::bloc_present(&g.world, NationId::Iraq, *b))
+            .collect();
+        assert_eq!(programmes.len(), present.len());
+        assert!(!programmes.is_empty());
+        assert!(programmes.iter().all(|p| p["price"] == gov::PROGRAMME_PC));
+        assert_eq!(programmes[0]["command"]["kind"], "declare_programme");
+        let rt = kinds(&iq, "round_table");
+        assert_eq!(rt.len(), 1);
+        assert_eq!(rt[0]["price"], gov::ROUND_TABLE_PC);
+        assert_eq!(rt[0]["refusal"], serde_json::json!(gov::round_table_refusal(&g.world, NationId::Iraq)));
+        assert!(kinds(&iq, "suspend").is_empty());
+        check(&g.world, &iq, NationId::Iraq);
+        // Off: listed, refused in the arm's one sentence, no effects.
+        let off = Game::new(7, Some(NationId::Poland));
+        let v = government_json(&off.world, NationId::Poland);
+        let levers: Vec<&serde_json::Value> = v["actions"].as_array().unwrap().iter()
+            .filter(|a| ["suspend", "ban", "legalize", "programme", "round_table"].contains(&a["kind"].as_str().unwrap()))
+            .collect();
+        assert_eq!(levers.len(), 5, "the suspension and four bans");
+        for a in &levers {
+            assert_eq!(a["refusal"], gov::NO_MOVEMENTS, "{}", a["label"]);
+            assert!(a["effects"].as_array().unwrap().is_empty());
+        }
+        check(&off.world, &v, NationId::Poland);
+        // The page: the levers under their own head, the effects list read
+        // from the served field, nothing composed.
+        let screen = GOVERNMENT_UI_JS;
+        assert!(screen.contains("action.category"));
+        assert!(screen.contains("action.effects.map(effect =>"));
+        assert!(screen.contains("esc(textOf(effect))"));
+        assert!(screen.contains("Governing decisions"));
+        for action in levers {
+            assert_eq!(action["category"], "reform");
+        }
+    }
+
+    /// The covert card on a target's dossier: the three operations and
+    /// "Back a movement" for every bloc present in the target, each with the
+    /// sim's price and refusal, and `works` / `exposed` equal to
+    /// `statecraft::covert_odds` — the function `covert_action` rolls, moved
+    /// out of it verbatim. Measured this run, the USA against Cuba: works
+    /// 0.3300, exposed 0.2380, six operations (three plus the
+    /// blocs present), backing the Communist movement refused
+    /// "You cannot back a government covertly — send aid.", every op 5 PC.
+    /// Off: three ops, the odds still served. Watched red with `works`
+    /// served as 0.0: the equality with `covert_odds` failed.
+    #[test]
+    fn the_back_a_movement_card_quotes_the_odds_the_sim_rolls() {
+        use spheres_sim::government::Bloc;
+        let g = loaded_play_game(Game::new(7, Some(NationId::USA)).world);
+        let w = &g.world;
+        let v = covert_json(w, NationId::USA, NationId::Cuba);
+        assert_eq!(v["on"], true);
+        assert_eq!(v["target_name"], "Cuba");
+        assert_eq!(v["ruling_bloc"], "Communist");
+        let (works, exposed) = spheres_sim::statecraft::covert_odds(w, NationId::USA, NationId::Cuba);
+        assert_eq!(v["works"], works);
+        assert_eq!(v["exposed"], exposed);
+        eprintln!("MEASURED covert_odds USA->Cuba works {works:.4} exposed {exposed:.4} ops {}", v["ops"].as_array().unwrap().len());
+        assert!((0.05..=0.80).contains(&works) && (0.05..=0.85).contains(&exposed), "{works} {exposed}");
+        assert_eq!(v["heat"], 0.0);
+        let ops = v["ops"].as_array().unwrap();
+        let kinds: Vec<&str> = ops.iter().map(|o| o["kind"].as_str().unwrap()).collect();
+        assert_eq!(kinds[..3], ["fund_opposition", "stir_separatists", "sabotage_industry"]);
+        let backs: Vec<&serde_json::Value> = ops.iter().filter(|o| o["kind"] == "back_bloc").collect();
+        let present: Vec<Bloc> = Bloc::ALL.into_iter().filter(|b| spheres_sim::blocs::bloc_present(w, NationId::Cuba, *b)).collect();
+        assert_eq!(backs.len(), present.len());
+        assert!(backs.len() >= 2, "{present:?}");
+        for o in ops {
+            let cmd = parse_command(w, &o["command"], NationId::USA)
+                .unwrap_or_else(|| panic!("the card's payload does not parse: {}", o["command"]));
+            assert!(matches!(cmd, Command::CovertAction { sponsor: NationId::USA, target: NationId::Cuba, .. }));
+            assert_eq!(o["price"], spheres_sim::price_of(w, &cmd).unwrap(), "{}", o["label"]);
+            assert_eq!(o["price"], 5.0);
+            assert_eq!(o["refusal"], serde_json::json!(spheres_sim::refusal_of(w, &cmd)), "{}", o["label"]);
+            assert_eq!(o["effects"], serde_json::json!(effects_of(w, &cmd)), "{}", o["label"]);
+            if let Command::CovertAction { op: CovertOp::BackBloc(b), .. } = cmd {
+                assert_eq!(o["bloc"], serde_json::json!(b));
+                assert_eq!(o["op"], format!("back:{}", b.key()));
+                assert_eq!(o["effects"], serde_json::json!(spheres_sim::statecraft::back_bloc_effects(w, NationId::USA, NationId::Cuba, b)));
+                assert!(o["effects"][0].as_str().unwrap().starts_with("If it works: +0.06 backing"), "{}", o["effects"][0]);
+            }
+        }
+        let ruling = backs.iter().find(|o| o["bloc"] == "Communist").expect("Cuba's Communist row");
+        assert_eq!(ruling["refusal"], "You cannot back a government covertly — send aid.");
+        // Nationalist is present through the Army pillar alone: a movement
+        // with no party, and the one the live check backs.
+        let nat = backs.iter().find(|o| o["bloc"] == "Nationalist").expect("Cuba's Nationalist row");
+        assert!(nat["refusal"].is_null(), "{}", nat["refusal"]);
+        assert_eq!(nat["command"], serde_json::json!({ "kind": "covert", "target": "Cuba", "op": "back:nationalist" }));
+        assert!(backs.iter().all(|o| o["bloc"] != "Western"), "Cuba's table carries no Western party");
+        // Off: the three operations stand, the movements do not.
+        let off = Game::new(7, Some(NationId::USA));
+        let v = covert_json(&off.world, NationId::USA, NationId::Cuba);
+        assert_eq!(v["on"], false);
+        assert_eq!(v["ops"].as_array().unwrap().len(), 3);
+        assert_eq!(v["works"], spheres_sim::statecraft::covert_odds(&off.world, NationId::USA, NationId::Cuba).0);
+        // The page: one fetch on the target, the served names, no formula.
+        assert!(INDEX.contains(r#"api("/api/covert?nation=" + encodeURIComponent(nid))"#));
+        let card = page_fn("async function fillCovertDash(nid) {");
+        for served in ["d.works", "d.exposed", "d.heat", "a.price", "a.refusal", "a.effects", "a.bloc", "d.ops"] {
+            assert!(card.contains(served), "the card no longer reads the served `{served}`");
+        }
+        assert!(INDEX.contains("if (!isMe) fillCovertDash(n.id);"));
+        assert!(INDEX.contains(r#"<div id="covertDash" class="tiny muted">"#));
+        for computed in ["0.12 +", "(60.0 -", "0.0008", "clamp(0.05"] {
+            assert!(!card.contains(computed), "the covert card derives a number of its own: `{computed}`");
+        }
+    }
+
+    /// The bar's foreign row: each bloc's served F_B drawn as a hatch under
+    /// its share, with the parts listed — a covert entry's sponsor NAMED ONLY
+    /// ONCE EXPOSED, and the server never sends an unexposed one. Measured
+    /// this run: the Soviet Union backing Poland's Communist movement puts
+    /// 0.06 on the row with `sponsor: null`; after exposure the entry reads
+    /// 0.03, exposed, "Soviet Union". Watched red with the sponsor served
+    /// unconditionally: the null read "Soviet Union".
+    #[test]
+    fn the_bar_hatches_foreign_backing_and_names_the_sponsor_only_after_exposure() {
+        use spheres_sim::government::Bloc;
+        let mut g = loaded_play_game(Game::new(7, Some(NationId::Poland)).world);
+        let pl = government_json(&g.world, NationId::Poland);
+        for b in pl["bar"].as_array().unwrap() {
+            assert_eq!(b["backing"], 0.0);
+            assert!(b["abroad"].as_array().unwrap().is_empty());
+        }
+        let added = spheres_sim::statecraft::add_backing(&mut g.world, NationId::USSR, NationId::Poland, Bloc::Communist);
+        assert_eq!(added, spheres_sim::statecraft::BACKING_STEP);
+        let pl = government_json(&g.world, NationId::Poland);
+        let row = &pl["bar"][1];
+        assert_eq!(row["bloc"], "Communist");
+        assert_eq!(row["backing"], spheres_sim::blocs::backing(&g.world, NationId::Poland)[Bloc::Communist as usize].1);
+        assert_eq!(row["backing"], 0.06);
+        let abroad = row["abroad"].as_array().unwrap();
+        assert_eq!(abroad.len(), 1);
+        assert_eq!(abroad[0]["kind"], "covert");
+        assert_eq!(abroad[0]["weight"], 0.06);
+        assert_eq!(abroad[0]["exposed"], false);
+        assert!(abroad[0]["sponsor"].is_null(), "an unexposed sponsor was served: {}", abroad[0]);
+        assert!(!serde_json::to_string(&pl).unwrap().contains("Soviet Union"), "the sponsor's name leaked somewhere on the screen");
+        spheres_sim::statecraft::expose_backing(&mut g.world, NationId::USSR, NationId::Poland, Bloc::Communist);
+        let pl = government_json(&g.world, NationId::Poland);
+        let abroad = pl["bar"][1]["abroad"].as_array().unwrap();
+        assert_eq!(abroad[0]["exposed"], true);
+        assert_eq!(abroad[0]["sponsor"], NationId::USSR.name());
+        assert_eq!(abroad[0]["weight"], 0.03);
+        assert_eq!(pl["bar"][1]["backing"], 0.03);
+        // The page: the hatched row reads the served `backing` and names a
+        // sponsor from the served field alone.
+        // Domestic support and foreign backing are separately labelled. Only an
+        // explicitly exposed sponsor can be named by the extracted renderer.
+        let screen = GOVERNMENT_UI_JS;
+        assert!(screen.contains("Foreign backing · separate from domestic support"));
+        assert!(screen.contains("pct(item.backing)"));
+        assert!(screen.contains("entry.exposed && entry.sponsor"));
+        assert!(screen.contains("Covert backing · sponsor undisclosed"));
+    }
+
+    /// The takeover watch reads every road closed with the REAL reason — in
+    /// the browser `rules.ideology_takeover` is off, so "calibration pending"
+    /// on all four — with live gauges and the served `armed` flag beside it;
+    /// the header chip pulses and the dock names the road when any gauge on
+    /// it passes half its trigger, both from the served `half_armed` flags.
+    /// Measured this run, seed 7: Poland's coup road half-armed (discontent
+    /// 0.2917 against a trigger of 0.25 is past half), so the dock reads
+    /// "watch: coup past half" and the chip carries `pulse`. Watched red
+    /// with the `chip.classList.toggle("pulse", ...)` line removed.
+    #[test]
+    fn the_watch_reads_calibration_pending_and_the_dock_names_the_road() {
+        let g = loaded_play_game(Game::new(7, Some(NationId::Poland)).world);
+        let w = &g.world;
+        assert!(!w.rules.ideology_takeover);
+        let pl = government_json(w, NationId::Poland);
+        for road in ["coup", "uprising", "round_table", "collapse"] {
+            let r = &pl["takeover"][road];
+            assert_eq!(r["open"], false, "{road}");
+            assert_eq!(r["reason"], spheres_sim::blocs::CALIBRATION_PENDING, "{road}");
+            assert!(r["armed"].is_boolean() && r["half_armed"].is_boolean(), "{road}");
+            for gauge in r["gauges"].as_array().unwrap() {
+                assert!(gauge["value"].is_number() && gauge["progress"].is_number() && gauge["met"].is_boolean());
+            }
+        }
+        let coup = &pl["takeover"]["coup"];
+        assert_eq!(coup["half_armed"], true, "{coup}");
+        assert_eq!(pl["takeover"]["half_armed"], true);
+        let disc = coup["gauges"][1].clone();
+        assert_eq!(disc["name"], "discontent");
+        assert!(disc["progress"].as_f64().unwrap() >= 1.0, "{disc}");
+        // On /api/state too, which is what the header and the dock read.
+        let n = nation_json(w, w.nation(NationId::Poland));
+        assert_eq!(n["takeover"]["coup"]["half_armed"], true);
+        // The page.
+        let render = page_fn("function render() {");
+        assert!(render.contains(r#"chip.classList.toggle("pulse", !!(m && m.takeover && m.takeover.half_armed));"#));
+        assert!(render.contains(r##"$("#govBtn").classList.toggle("watch", roadsHot.length > 0);"##));
+        assert!(render.contains(r##"$("#dockGovernment").textContent = roadsHot.length ? `watch: ${roadsHot.join(", ")} past half` : "who holds power";"##));
+        assert!(render.contains(".filter(([k]) => m.takeover[k] && m.takeover[k].half_armed)"));
+        assert!(INDEX.contains("@keyframes discontentPulse"));
+        assert!(INDEX.contains("#hdrDiscontentChip.pulse { animation:discontentPulse"));
+        let screen = GOVERNMENT_UI_JS;
+        assert!(screen.contains("road.armed ?"));
+        assert!(screen.contains("All reported conditions met"));
+        assert!(screen.contains("esc(road.reason)"));
+        assert!(screen.contains("Route closed"));
+    }
+
+    /// The political arm's headlines are filed and promoted by the sim's own
+    /// stems: every lever, the surge latch, both roads, an exposure and a
+    /// death in office. `classify` files them (politics; the covert success
+    /// that names no sponsor is diplomacy, as the other covert lines are;
+    /// the exposure was politics already, on "scandal") and `is_major` stops the
+    /// clock on the ones that change a government or name a scandal,
+    /// whoever they are about. Watched red with the `"dies in office"` stem
+    /// removed from `is_major`.
+    #[test]
+    fn the_political_arm_s_headlines_are_filed_and_promoted() {
+        let politics = [
+            "Poland suspends its constitution and rules by decree.",
+            "Poland bans Democratic Left Alliance.",
+            "Poland legalises Democratic Left Alliance.",
+            "China declares a Western programme.",
+            "Indonesia convenes a round table; first free elections in six months.",
+            "The Nationalist movement in China passes a third of the country.",
+            "COUP IN PAKISTAN: the Pakistan Army removes the elected government.",
+            "COUP IN ALGERIA: the army annuls the election Islamic Salvation Front won.",
+            "Revolution in Romania: the Western movement takes power.",
+            "Tadeusz Mazowiecki dies in office.",
+            // Filed on "scandal", the stem every exposure carried before the arm.
+            "Poland exposes United States backing the Communist movement in Poland — the scandal rallies the country behind its government.",
+        ];
+        for h in politics {
+            assert_eq!(classify(h), "politics", "{h}");
+        }
+        let diplomacy = [
+            "Money and organisers reach the Communist movement in Poland; nobody can say from where.",
+        ];
+        for h in diplomacy {
+            assert_eq!(classify(h), "diplomacy", "{h}");
+        }
+        let major = [
+            "Poland suspends its constitution and rules by decree.",
+            "Indonesia convenes a round table; first free elections in six months.",
+            "The Nationalist movement in China passes a third of the country.",
+            "COUP IN PAKISTAN: the Pakistan Army removes the elected government.",
+            "Revolution in Romania: the Western movement takes power.",
+            "Tadeusz Mazowiecki dies in office.",
+            "Poland exposes United States backing the Communist movement in Poland — the scandal rallies the country behind its government.",
+        ];
+        for h in major {
+            assert!(is_major(h, Some(NationId::Oman)), "{h} does not stop the clock for a bystander");
+        }
+        for h in ["Poland bans Democratic Left Alliance.", "China declares a Western programme.",
+                  "Money and organisers reach the Communist movement in Poland; nobody can say from where."] {
+            assert!(!is_major(h, Some(NationId::Oman)), "{h} stops a bystander's clock");
+        }
+    }
+}
+
+#[cfg(test)]
+mod military_operations_api_tests {
+    use super::*;
+
+    #[test]
+    fn allocation_parser_binds_the_player_and_rejects_malformed_numbers() {
+        let g = Game::new(1990, Some(NationId::Iraq));
+        for value in [serde_json::Value::Null, serde_json::json!(0), serde_json::json!(10000)] {
+            let order = serde_json::json!({"kind":"force_allocation", "conflict":7,
+                "nation":"France", "share_bp":value});
+            let c = parse_command(&g.world, &order, NationId::Iraq).unwrap();
+            assert!(matches!(c, Command::SetForceAllocation { nation: NationId::Iraq, conflict: 7, .. }));
+        }
+        for value in [serde_json::json!(-1), serde_json::json!(1.2), serde_json::json!(65536), serde_json::json!("0")] {
+            let order = serde_json::json!({"kind":"force_allocation","conflict":7,"share_bp":value});
+            assert!(parse_command(&g.world, &order, NationId::Iraq).is_none());
+        }
+        for order in [serde_json::json!({"kind":"force_allocation","conflict":7}),
+            serde_json::json!({"kind":"force_allocation","conflict":4294967296u64,"share_bp":0})] {
+            assert!(parse_command(&g.world, &order, NationId::Iraq).is_none());
+        }
+    }
+
+    #[test]
+    fn browser_rules_allocation_command_and_snapshot_agree_across_load() {
+        let mut g = Game::new(1990, Some(NationId::Iraq));
+        assert!(!g.world.rules.military_operations);
+        let enable = play_rules;
+        enable(&mut g);
+        assert!(g.world.rules.military_operations);
+        let th = spheres_sim::war::theatre_between(&g.world, NationId::Iraq, NationId::Iran);
+        let cid = spheres_sim::commitment::open_conflict(&mut g.world, NationId::Iraq, NationId::Iran, th).unwrap();
+        g.world.conflict_mut(cid).unwrap().posture_mut(NationId::Iraq).unwrap().rung = 8;
+        let order = serde_json::json!({"kind":"force_allocation", "conflict":cid, "share_bp":0});
+        let c = parse_command(&g.world, &order, NationId::Iraq).unwrap();
+        apply_command(&mut g.world, &c).unwrap();
+        let snapshot = state_json(&g, None);
+        assert_eq!(snapshot["operations"]["deployed"], 0.0);
+        assert_eq!(snapshot["operations"]["reserve"], snapshot["operations"]["structure"]);
+        assert_eq!(snapshot["operations"]["deployments"][0]["allocation_bp"], 0);
+        let resumed = loaded_play_game(load(&save(&g.world)).unwrap());
+        assert_eq!(state_json(&resumed, None)["operations"], snapshot["operations"]);
+        let invalid = Command::SetForceAllocation { conflict:cid, nation:NationId::Iraq, share_bp:Some(10001) };
+        let before = save(&g.world);
+        assert!(apply_command(&mut g.world, &invalid).is_err());
+        assert_eq!(save(&g.world), before);
+    }
+}
+
+#[cfg(test)]
+mod s02_connected_economy_api_tests {
+    use super::*;
+
+    #[test]
+    fn s02_shipyard_only_province_exposes_naval_start_and_separate_reserved_slots() {
+        // Synthetic completed shipyard, with no arms plant or inherited asset.
+        let mut g=Game::new(1990,Some(NationId::France));play_rules(&mut g);
+        g.world.rules.industry_rebuild=true;g.world.production=Default::default();
+        g.world.nation_mut(NationId::France).political_capital=1000.0;
+        let district=g.world.districts.iter().find(|(_,n)|**n==NationId::France).unwrap().0.clone();
+        g.world.production.rebuild_sites.insert(district.clone(),[0,1,0]);
+        let before=save(&g.world);let view=manufacturing_json(&g.world,NationId::France);
+        assert_eq!(save(&g.world),before);
+        let site=view["provinces"].as_array().unwrap().iter().find(|p|p["id"]==district).unwrap();
+        assert_eq!(site["arms_plants"],0);assert_eq!(site["free_slots"],0);
+        assert_eq!(site["naval_slots"],1);assert_eq!(site["free_naval_slots"],1);
+        let kit=view["catalog"].as_array().unwrap().iter().find(|k|k["id"]=="nav_patrol").unwrap();
+        assert_eq!(kit["naval"],true);assert_eq!(kit["actions"]["start"],true);
+        assert!(kit["eligible_provinces"].as_array().unwrap().iter().any(|d|d==&district));
+        let command=parse_command(&g.world,&serde_json::json!({"kind":"start_manufacturing_line","district":district,"kit":"nav_patrol"}),NationId::France).unwrap();
+        apply_command(&mut g.world,&command).unwrap();
+        let view=manufacturing_json(&g.world,NationId::France);
+        assert_eq!(view["summary"]["used_slots"],0);
+        assert_eq!(view["summary"]["used_naval_slots"],1);assert_eq!(view["summary"]["free_naval_slots"],0);
+    }
+
+    #[test]
+    fn s02_parser_binds_enrollment_and_training_to_the_player() {
+        let g=Game::new(1990,Some(NationId::France));
+        for (kind, expected) in [
+            ("enable_connected_economy",Command::EnableConnectedEconomy{nation:NationId::France}),
+            ("enable_population",Command::EnablePopulation{nation:NationId::France}),
+            ("enable_fiscal_recovery",Command::EnableFiscalRecovery{nation:NationId::France}),
+        ] {
+            let parsed=parse_command(&g.world,&serde_json::json!({"kind":kind,"nation":"Japan"}),NationId::France).unwrap();
+            assert_eq!(parsed,expected);
+        }
+        let parsed=parse_command(&g.world,&serde_json::json!({"kind":"population_policy","nation":"Japan","policy":"trade_schools"}),NationId::France).unwrap();
+        assert!(matches!(parsed,Command::SetPopulationPolicy{nation:NationId::France,policy:spheres_sim::population::Policy::TradeSchools}));
+        for policy in [serde_json::Value::Null,serde_json::json!(1),serde_json::json!("instant_graduates")] {
+            assert!(parse_command(&g.world,&serde_json::json!({"kind":"population_policy","policy":policy}),NationId::France).is_none());
+        }
+    }
+
+    #[test]
+    fn s02_new_campaign_and_loaded_legacy_have_distinct_economy_enrollment() {
+        let legacy=loaded_play_game(Game::new(1990,Some(NationId::France)).world);
+        let before=save(&legacy.world);
+        let view=connected_economy_json(&legacy.world,NationId::France);
+        assert_eq!(view["enabled"],false);
+        assert_eq!(view["upgrade"]["available"],true);
+        assert!(view["population"].is_null());assert!(view["industry"].is_null());
+        assert_eq!(save(&legacy.world),before);
+        let mut fresh=Game::new(1990,Some(NationId::France));fresh_play_rules(&mut fresh).unwrap();
+        let before=save(&fresh.world);let view=connected_economy_json(&fresh.world,NationId::France);
+        assert_eq!(view["enabled"],true);assert_eq!(view["upgrade"]["available"],false);
+        assert_eq!(view["population"]["policies"].as_array().unwrap().len(),4);
+        assert_eq!(view["industry"]["advanced_components_stock"],0.0);
+        assert_eq!(view["recovery"],fiscal_recovery_view::view(&fresh.world,NationId::France));
+        assert_eq!(save(&fresh.world),before);
+        let resumed=loaded_play_game(load(&before).unwrap());
+        assert_eq!(connected_economy_json(&resumed.world,NationId::France),view);
+    }
+
+    #[test]
+    fn s02_connected_reading_is_pure_and_exposes_the_same_snapshot_in_cash_flow_and_state() {
+        let mut g=Game::new(1990,Some(NationId::France));fresh_play_rules(&mut g).unwrap();
+        let fresh=connected_economy_json(&g.world,NationId::France);
+        for _ in 0..3 {spheres_sim::tick_day(&mut g.world,&[]);}
+        let before=save(&g.world);let reading=connected_economy_json(&g.world,NationId::France);
+        assert_eq!(state_json(&g,None)["connected_economy"],reading);
+        assert_eq!(cash_flow_json(&g.world,NationId::France)["connected_economy"],reading);
+        assert_eq!(save(&g.world),before);
+        if let Some(path)=std::env::var_os("SPHERES_S02_UI_FIXTURE") {
+            let legacy=loaded_play_game(Game::new(1990,Some(NationId::France)).world);
+            let evidence=serde_json::json!({"provenance":"Actual deterministic S02 browser rules, France seed 1990; fresh start and three simulated days. No activity is mocked.",
+                "legacy":connected_economy_json(&legacy.world,NationId::France),"fresh":fresh,"after_three_days":reading,
+                "fiscal":fiscal_recovery_view::view(&g.world,NationId::France)});
+            std::fs::write(path,serde_json::to_string_pretty(&evidence).unwrap()).unwrap();
+        }
+    }
+}

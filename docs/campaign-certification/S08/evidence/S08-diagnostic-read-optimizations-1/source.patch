@@ -1,0 +1,275 @@
+diff --git a/spheres-sim/src/fiscal_journal.rs b/spheres-sim/src/fiscal_journal.rs
+index 9b055e0..797a95c 100644
+--- a/spheres-sim/src/fiscal_journal.rs
++++ b/spheres-sim/src/fiscal_journal.rs
+@@ -362,7 +362,8 @@ pub(crate) fn after_policy(w: &mut WorldState, pending: PendingPolicy) {
+ 
+ /// Called after the existing fiscal observer has closed the actual day. This
+ /// updates existing decision evidence only; it cannot start a missing journal.
+-pub(crate) fn finish_day(w: &mut WorldState) {
++#[doc(hidden)]
++pub fn finish_day(w: &mut WorldState) {
+     if !fiscal_recovery::enabled(w) {
+         return;
+     }
+diff --git a/spheres-sim/src/lib.rs b/spheres-sim/src/lib.rs
+index efcd481..6ab0dcc 100644
+--- a/spheres-sim/src/lib.rs
++++ b/spheres-sim/src/lib.rs
+@@ -696,6 +696,10 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
+             => connected_economy::daily_enrollment_refusal(w, *nation),
+         Command::SetPopulationPolicy { nation, policy } => population::policy_quote(w, *nation, *policy).reason,
+         Command::Company { nation, order } => companies::apply(&mut w.clone(), *nation, order).err(),
++        // Research has a complete read-only operation check. Preserve the
++        // world-before-price refusal order without copying unrelated history.
++        Command::Equipment { nation, order: EquipmentOrder::Research { component } }
++            => equipment::research_refusal(w, *nation, component),
+         Command::Equipment { nation, order } => apply_equipment_order(&mut w.clone(), *nation, order).err(),
+         Command::SetInterestRate { nation, .. } if agency::pegged_rate(w,*nation).is_some() => Some("Exit the currency peg before changing its policy rate.".into()),
+         Command::RespondDiplomacy { nation, offer, accept } => agency::response_error(w,*nation,*offer,*accept),
+diff --git a/spheres-web/src/company_ammunition_view.rs b/spheres-web/src/company_ammunition_view.rs
+index a8b224f..c104ea6 100644
+--- a/spheres-web/src/company_ammunition_view.rs
++++ b/spheres-web/src/company_ammunition_view.rs
+@@ -152,9 +152,14 @@ fn company_ammo_rows(w:&WorldState,me:NationId,raw:&Value)->(Vec<Value>,Vec<Valu
+     (products,deliveries)
+ }
+ 
++#[cfg(test)]
+ fn company_ammunition_market(w:&WorldState,me:NationId)->Value {
+-    let raw=companies::view(w,me);let (mut offers,mut deliveries)=company_ammo_rows(w,me,&raw);
++    let raw=companies::view(w,me);
+     let supplier_market=company_supplier_market(w,me);
++    company_ammunition_market_from_reads(w,me,&raw,&supplier_market)
++}
++fn company_ammunition_market_from_reads(w:&WorldState,me:NationId,raw:&Value,supplier_market:&Value)->Value {
++    let (mut offers,mut deliveries)=company_ammo_rows(w,me,raw);
+     offers.extend(supplier_market["offers"].as_array().into_iter().flatten()
+         .filter(|row|row["origin"]=="foreign"&&row["ammunition"]==true).cloned());
+     deliveries.extend(supplier_market["deliveries"].as_array().into_iter().flatten()
+diff --git a/spheres-web/src/company_view.rs b/spheres-web/src/company_view.rs
+index 03ff4af..e857618 100644
+--- a/spheres-web/src/company_view.rs
++++ b/spheres-web/src/company_view.rs
+@@ -517,6 +517,10 @@ fn company_design_costs(p: &eq::CompiledProfile) -> Vec<Value> {
+ 
+ fn company_board(w: &WorldState, me: NationId) -> Value {
+     let raw=companies::view(w,me);
++    let market=company_supplier_market(w,me);
++    company_board_from_reads(w,me,&raw,&market)
++}
++fn company_board_from_reads(w:&WorldState,me:NationId,raw:&Value,market:&Value)->Value {
+     let empty=Vec::new();
+     let firms=raw["companies"].as_array().unwrap_or(&empty);
+     let site_options: Vec<_>=raw["sites"].as_array().unwrap_or(&empty).iter().filter(|s|company_count(s,"slots")>0).map(|s| {
+@@ -640,7 +644,7 @@ fn company_board(w: &WorldState, me: NationId) -> Value {
+             {"label":"Development","value":"Government funds engineering and trials","detail":"The design becomes certified; prototypes do not enter service."},
+             {"label":"Manufacturing","value":"Company funds its own finite stock","detail":"Capacity, cash and inputs constrain restocking."},
+             {"label":"Purchase","value":"Government buys finished equipment and ammunition","detail":"Vehicle purchases use procurement; ammunition uses Maintenance & supply after fleet upkeep. Delivery makes each purchase available."}],
+-        "warnings":warnings,"actions":actions},"firms":firm_rows,"products":product_rows,"deliveries":deliveries,"market":company_supplier_market(w,me),
++        "warnings":warnings,"actions":actions},"firms":firm_rows,"products":product_rows,"deliveries":deliveries,"market":market,
+         "service_overview":company_service_overview(),"services":company_refit_rows(w,me,&raw)})
+ }
+ 
+@@ -866,6 +870,29 @@ mod company_view_tests {
+         (g,company,product)
+     }
+ 
++    #[test]
++    fn s08_request_local_supplier_reads_preserve_both_board_sections() {
++        let (mut g,company,product)=foreign_stock_fixture();
++        for phase in ["stock","purchased"] {
++            if phase=="purchased" {
++                let q=companies::import_purchase_quote(&g.world,NationId::Tonga,ME,company,product,false,1);
++                assert!(q.valid);
++                spheres_sim::apply_command(&mut g.world,&Command::Company {nation:NationId::Tonga,
++                    order:CompanyOrder::ImportPurchase {seller:ME,company,product,ammunition:false,quantity:1,quote:q.token}}).unwrap();
++            }
++            let before=spheres_sim::save(&g.world);
++            for me in [ME,NationId::Tonga] {
++                // Independent standalone reads reconstruct the two former
++                // call paths; the response now shares their inputs once.
++                let independent_company=company_board(&g.world,me);
++                let independent_ammunition=ammunition_board(&g.world,me);
++                let combined=view(&g.world,me,&g.session_id);
++                assert_eq!(combined["companies"],independent_company,"{phase} {me:?}");
++                assert_eq!(combined["ammunition"],independent_ammunition,"{phase} {me:?}");
++            }
++            assert_eq!(spheres_sim::save(&g.world),before,"Shared supplier reads changed {phase}");
++        }
++    }
+     #[test]
+     fn s08_no_factory_country_can_review_import_access_without_any_opening_stock_grant() {
+         let mut g=super::super::Game::new(1990,Some(NationId::Tonga));
+diff --git a/spheres-web/src/equipment_ammunition_view.rs b/spheres-web/src/equipment_ammunition_view.rs
+index d95787e..e746851 100644
+--- a/spheres-web/src/equipment_ammunition_view.rs
++++ b/spheres-web/src/equipment_ammunition_view.rs
+@@ -28,7 +28,11 @@ fn ammo_order_action(w:&WorldState,me:NationId,family:&str,quantity:u32)->Value
+     action
+ }
+ 
++#[cfg(test)]
+ fn ammunition_board(w:&WorldState,me:NationId)->Value {
++    ammunition_board_with_market(w,me,company_ammunition_market(w,me))
++}
++fn ammunition_board_with_market(w:&WorldState,me:NationId,supplier_market:Value)->Value {
+     let n=w.nation(me);let equipment=n.equipment.as_ref();let state=equipment.and_then(|s|s.ammunition.as_ref());
+     let reading=eq::ammunition_overview(w,me);
+     let ground_active=eq::ammunition_active(n,spheres_sim::clock::absolute_day(w));
+@@ -116,7 +120,7 @@ fn ammunition_board(w:&WorldState,me:NationId)->Value {
+     let overview=json!({"title":"National ammunition stores","status":status,
+         "detail":if has_aircraft{"Acquire compatible aircraft mission stores before launching air raids. Aircraft need physical stores from their first deployment; ground ammunition activation is separate. Company purchases and public batches deliver into these exact-family stores. Actual consumption is shared across operations and recorded once."}else if ground_active{"Your custom ground fleet draws from compatible physical stores. Review manufacturer stock and existing public batches as rounds are used. The national plan shares ammunition across operations and records consumption once; fleet upkeep is protected before ammunition purchases."}else{"Acquire compatible stores, then review physical ground ammunition activation when ready. Company purchases and existing public batches add actual rounds only on arrival or completion. Fleet upkeep is protected before ammunition purchases; inherited equipment keeps its existing magazine."},
+         "metrics":overview_metrics,"warnings":warnings,"actions":actions});
+-    json!({"overview":overview,"supplier_market":company_ammunition_market(w,me),"reserves":ammunition_reserve_cards(w,me),"families":families,"orders":orders})
++    json!({"overview":overview,"supplier_market":supplier_market,"reserves":ammunition_reserve_cards(w,me),"families":families,"orders":orders})
+ }
+ 
+ fn ammunition_preview(w:&WorldState,me:NationId,session:&str,command:&Value,order:&EquipmentOrder)->Value {
+diff --git a/spheres-web/src/equipment_view.rs b/spheres-web/src/equipment_view.rs
+index cca76c0..aab8778 100644
+--- a/spheres-web/src/equipment_view.rs
++++ b/spheres-web/src/equipment_view.rs
+@@ -23,7 +23,14 @@ fn nav(label:&str,action:Value)->Value {json!({"label":label,"navigate":action,"
+ fn budget_input(amount:f64)->Value {json!({"key":"daily_budget_mn","label":"Project funding limit","type":"number","value":amount*1000.0,"min":0,"max":1_000_000,"step":0.01,"unit":"$m / day"})}
+ fn checked(w:&WorldState,me:NationId,label:&str,command:Value)->Value {
+     let reason=super::parse_command(w,&command,me).ok_or_else(||"Invalid equipment order.".to_string())
+-        .and_then(|c|spheres_sim::apply_command(&mut w.clone(),&c)).err();
++        .and_then(|c|match c {
++            // These two command families have complete native world-refusal
++            // checks. refusal_of also applies the same political-price gate,
++            // so there is no need to copy the world and dispatch again.
++            Command::Equipment {..}|Command::Company {..} =>
++                spheres_sim::refusal_of(w,&c).map_or(Ok(()),Err),
++            _ => spheres_sim::apply_command(&mut w.clone(),&c),
++        }).err();
+     let detail=(command["kind"]=="equipment_research").then_some("Changing focus costs 6 political capital and retains half the previous Aerospace progress. This uses existing research effort; it creates no vehicle or national military bonus.");
+     json!({"label":label,"command":command,"enabled":reason.is_none(),"reason":reason,"detail":detail})
+ }
+@@ -133,8 +140,15 @@ pub fn view(w:&WorldState,me:NationId,session:&str)->Value {
+     let research=research_board(w,me);
+     let comparison_options=comparison_options(&presets,&designs);
+     let modernization=modernization_board(w,me);
++    // The ammunition and company tabs share one native supplier snapshot for
++    // this response. Never reuse it across days, players or requests.
++    let company_raw=companies::view(w,me);
++    let supplier_market=company_supplier_market(w,me);
++    let ammo_market=company_ammunition_market_from_reads(w,me,&company_raw,&supplier_market);
++    let ammunition=ammunition_board_with_market(w,me,ammo_market);
++    let companies=company_board_from_reads(w,me,&company_raw,&supplier_market);
+     json!({"session_id":session,"nation":me,"name":me.name(),"date":w.date_str(),"enabled":spheres_sim::clock::is_daily(w)&&w.rules.military_operations,"reason":"Equipment programmes require daily time and military operations.",
+-        "platforms":platforms,"components":components,"presets":presets,"designs":designs,"development":development,"production":production,"lots":lots,"research":research,"comparison_options":comparison_options,"modernization":modernization,"supply":supply,"service":equipment_service_board(w,me),"maintenance":maintenance_board(w,me),"targets":targets_board(w,me),"replenishment":replenishment_board(w,me),"supply_automation":supply_automation_board(w,me),"ammunition":ammunition_board(w,me),"aviation":aviation_board(w,me),"companies":company_board(w,me),
++        "platforms":platforms,"components":components,"presets":presets,"designs":designs,"development":development,"production":production,"lots":lots,"research":research,"comparison_options":comparison_options,"modernization":modernization,"supply":supply,"service":equipment_service_board(w,me),"maintenance":maintenance_board(w,me),"targets":targets_board(w,me),"replenishment":replenishment_board(w,me),"supply_automation":supply_automation_board(w,me),"ammunition":ammunition,"aviation":aviation_board(w,me),"companies":companies,
+         "funding":{"metrics":[metric("Development","Defense · Research & development"),metric("Production and refit","Defense · Procurement"),metric("Service support","Defense · Maintenance; see the service plan"),metric("Unused development funds",format!("${:.3}m",spheres_sim::programs::available_bn(w,me,BUDGET_DEFENSE,4)*1000.0)),metric("Unused procurement funds",format!("${:.3}m",spheres_sim::programs::available_bn(w,me,BUDGET_DEFENSE,3)*1000.0))]},
+         "actions":[nav("Development funding",json!({"action":"budget","ministry":"defense","department":4})),nav("Procurement funding",json!({"action":"budget","ministry":"defense","department":3})),nav("Build an arms plant",json!({"action":"construction","kind":"arms_plant"})),nav("Review raw inputs",json!({"action":"resources"}))]})
+ }
+@@ -201,6 +215,54 @@ mod tests {
+     }
+     fn design()->Value {let s=eq::baseline_spec();json!({"name":"Test model","platform":s.platform,"components":s.components})}
+     #[test]
++    fn s08_checked_read_matches_actual_command_refusals_and_price_order() {
++        let me=NationId::USA;
++        let mut base=fixture().world;
++        let prerequisite=spheres_sim::tech::index_of("core_cmos_submicron").unwrap();
++        if !base.nation(me).tech.knows_index(prerequisite) {
++            base.nation_mut(me).tech.known.push(prerequisite);
++            base.nation_mut(me).tech.known.sort();
++        }
++        base.nation_mut(me).political_capital=100.0;
++        let component="tank_fire_control_1990";
++        assert_eq!(eq::research_refusal(&base,me,component),None);
++        for case in ["legal","unaffordable","locked_and_unaffordable","active","known","disabled","dead"] {
++            let mut w=base.clone();
++            match case {
++                "unaffordable"=>w.nation_mut(me).political_capital=0.0,
++                "locked_and_unaffordable"=>{w.nation_mut(me).tech.known.clear();w.nation_mut(me).political_capital=0.0;},
++                "active"=>eq::start_research(&mut w,me,component).unwrap(),
++                "known"=>{eq::save_draft(&mut w,me,"Known-state fixture",eq::baseline_spec()).unwrap();w.nation_mut(me).equipment.as_mut().unwrap().learned.insert(component.into());},
++                "disabled"=>w.rules.military_operations=false,
++                "dead"=>w.nation_mut(me).alive=false,
++                _=>{},
++            }
++            let before=spheres_sim::save(&w);
++            for command in [json!({"kind":"equipment_research","component":component}),
++                json!({"kind":"equipment_research","component":"missing-research"}),
++                json!({"kind":"equipment_ammo_activate"}),json!({"kind":"equipment_pause","project":999,"paused":true}),
++                json!({"kind":"company_enable_imports","quote":"stale"}),json!({"kind":"rate","value":5}),
++                json!({"kind":"not-a-command"})] {
++                // This is the former checked implementation, including its
++                // actual transactional dispatch and malformed-command path.
++                let old_reason=super::super::parse_command(&w,&command,me)
++                    .ok_or_else(||"Invalid equipment order.".to_string())
++                    .and_then(|c|spheres_sim::apply_command(&mut w.clone(),&c)).err();
++                let actual=checked(&w,me,"Review",command.clone());
++                assert_eq!(actual["reason"],json!(old_reason),"{case}: {command}");
++                assert_eq!(actual["enabled"],old_reason.is_none(),"{case}: {command}");
++                assert_eq!(actual["command"],command);
++                if command["kind"]=="equipment_research"&&command["component"]==component {
++                    if case=="legal" {assert_eq!(actual["enabled"],true);}
++                    else {assert_eq!(actual["enabled"],false);}
++                    if case=="unaffordable" {assert!(actual["reason"].as_str().unwrap().contains("standing"));}
++                    if case=="locked_and_unaffordable" {assert_eq!(actual["reason"],json!(eq::research_refusal(&w,me,component)));}
++                }
++            }
++            assert_eq!(spheres_sim::save(&w),before,"Read-only refusal altered {case}");
++        }
++    }
++    #[test]
+     fn equipment_reads_and_order_quotes_are_pure_and_use_simulation_prices() {
+         let g=fixture();let w=&g.world;let before=spheres_sim::save(w);
+         let board=view(w,NationId::USA,&g.session_id);
+diff --git a/spheres-web/src/performance.rs b/spheres-web/src/performance.rs
+index a94b792..56f020c 100644
+--- a/spheres-web/src/performance.rs
++++ b/spheres-web/src/performance.rs
+@@ -12,6 +12,8 @@ use super::*;
+ use serde_json::{json, Value};
+ use std::time::Instant;
+ 
++include!("s08_performance_diagnostics.rs");
++
+ fn ms(start: Instant) -> f64 {
+     start.elapsed().as_secs_f64() * 1000.0
+ }
+@@ -82,6 +84,41 @@ fn profile_command(
+     Ok(())
+ }
+ 
++/// Locate expensive reads without changing the source campaign. This is a
++/// component diagnosis, separate from the predefined acceptance measurements.
++#[test]
++#[ignore = "read-only component diagnosis on an explicit saved campaign; not an acceptance run"]
++fn s08_read_model_diagnosis() {
++    let input=std::path::PathBuf::from(std::env::var("SPHERES_S08_DIAGNOSTIC_INPUT").unwrap());
++    let output=std::path::PathBuf::from(std::env::var("SPHERES_S08_DIAGNOSTIC_OUT").unwrap());
++    assert!(input.is_absolute()&&output.is_absolute()&&!output.exists());
++    let g=storage::decode(&std::fs::read_to_string(&input).unwrap()).unwrap();
++    let w=&g.world;let me=w.player.unwrap();let before=spheres_sim::state_hash(w);let mut rows=Vec::new();
++    macro_rules! measure {($name:literal,$value:expr)=>{{let started=Instant::now();let value=$value;let bytes=serde_json::to_vec(&value).unwrap().len();rows.push(json!({"component":$name,"elapsed_ms":ms(started),"bytes":bytes}));}}}
++    measure!("nations",w.nations.iter().filter(|n|n.alive).map(|n|nation_json(w,n)).collect::<Vec<_>>());
++    measure!("connected_economy",connected_economy_json(w,me));
++    measure!("fiscal_recovery",spheres_sim::fiscal_recovery::assessment(w,me));
++    measure!("operations",spheres_sim::operations::view(w,me));
++    measure!("warfare_adoption",warfare_adoption_json(w,me));
++    measure!("theatres",theatres_json(w));
++    measure!("stratagems",stratagems_json(w,me));
++    measure!("research",research_json(w,me));
++    measure!("resources",resources_json(w,me));
++    measure!("logistics_summary",logistics_summary_json(w,me));
++    measure!("production_summary",production_summary_json(w,me));
++    measure!("manufacturing_summary",manufacturing_summary_json(w,me));
++    measure!("programs",programs_json(w,me,None));
++    measure!("domination",domination_json(w,me));
++    measure!("agency",spheres_sim::agency::view(w,me));
++    measure!("campaign_aims",spheres_sim::campaign_aims::view(w,me));
++    measure!("policy",policy_json(w,me));
++    measure!("ministries",ministries_json(w,me));
++    measure!("whole_state",state_json(&g,None));
++    measure!("equipment",equipment_view::view(w,me,&g.session_id));
++    assert_eq!(spheres_sim::state_hash(w),before,"Diagnosis changed the campaign");
++    std::fs::write(output,serde_json::to_vec_pretty(&json!({"revision":env!("SPHERES_REVISION"),"input":input,"date":w.date_str(),"rows":rows,"pure":true,"scope":"Single read-only diagnostic sample, including serialization; not an acceptance measurement."})).unwrap()).unwrap();
++}
++
+ /// Separate from aged legacy regressions: sample the genuinely earned S08
+ /// supplier world with a paid import in transit. Preparation is not timed.
+ #[test]

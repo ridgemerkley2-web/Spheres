@@ -1,0 +1,185 @@
+{
+  "version": 1,
+  "input": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1\\supplier-v6VJe7\\server\\saves\\s08-preparation-after.json",
+    "bytes": 54641195,
+    "sha256": "1cbec185c965e62f7e749c35f0c8acccf68ede37109b10473d00ecf496f38f1d"
+  },
+  "requested": {
+    "buyer": "Tonga",
+    "revision": null,
+    "seller": null,
+    "company": null,
+    "product": null
+  },
+  "buyer": {
+    "id": "Tonga",
+    "tech_sha256": "ec0db1d58e2adf675e1822c92494fd1c496d6c2110ef2c29e3ba700ac2df1ffa",
+    "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+    "revision_ids": [],
+    "held_by_revision": {},
+    "held_units": 0,
+    "buyer_revision": null,
+    "maintenance_plan": null,
+    "program_budget": {
+      "day": 359,
+      "settled_day": 359,
+      "spent_today_bn": [
+        [
+          0.0000028770320142450026,
+          0.0000028770320142450026,
+          0.0000028770320142450026,
+          0.0000028770320142450026,
+          0.0000028770320142450026
+        ],
+        [
+          0.0000020714630502564015,
+          0.0000020714630502564015,
+          0.0000020714630502564015,
+          0.0000020714630502564015,
+          0.000002071463050256402
+        ],
+        [
+          0.0000023016256113960023,
+          0.0000023016256113960023,
+          0.0000023016256113960023,
+          0.0000023016256113960023,
+          0.000002301625611396003
+        ],
+        [
+          0.0000032222758559544035,
+          0.0000032222758559544035,
+          0.0000032222758559544035,
+          0.0000032222758559544035,
+          0.0000032222758559544027
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0.0000023665908504273417
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0.0000010672860698005657,
+          0.0000010672860698005657,
+          0.0000010672860698005657,
+          0.0000010672860698005657
+        ],
+        [
+          6.125293965811942e-7,
+          6.125293965811942e-7,
+          7.146176293447265e-7,
+          0,
+          0
+        ],
+        [
+          8.055689639886009e-7,
+          8.055689639886009e-7,
+          8.055689639886009e-7,
+          8.055689639886009e-7,
+          8.055689639886007e-7
+        ],
+        [
+          2.3016256113960023e-7,
+          2.3016256113960023e-7,
+          2.3016256113960023e-7,
+          2.3016256113960023e-7,
+          2.301625611396002e-7
+        ]
+      ],
+      "prepaid_used_today_bn": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  "supplier": null,
+  "imports": {
+    "ids": [],
+    "matching": []
+  },
+  "canonical": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1\\supplier-v6VJe7\\archive-audit\\002-s08-preparation-after.canonical",
+    "bytes": 51638534,
+    "sha256": "b8a0ac13a933aa79f2a874dcad1445516153ef64310eb56bcb8382fc71eb1bc3",
+    "format": "s08-typed-canonical-world-v1-js-f64",
+    "ignored_paths": []
+  }
+}

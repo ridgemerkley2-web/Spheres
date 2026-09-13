@@ -1,0 +1,37 @@
+{
+  "seller": "France",
+  "company": 3,
+  "product": 48,
+  "ammunition": false,
+  "supplier_name": "France Export Works",
+  "product_name": "France Armored personnel carrier",
+  "platform": "ground_apc",
+  "family": null,
+  "spec": {
+    "platform": "ground_apc",
+    "components": {
+      "active_protection": "aps_none",
+      "ammunition": "ground_ammo_ball",
+      "armament": "ground_mg_127",
+      "communications": "comms_radio",
+      "fire_control": "fcs_basic",
+      "mobility": "engine_diesel_600",
+      "protection": "ground_armor_light",
+      "sensors": "optics_day",
+      "suspension": "suspension_torsion",
+      "transmission": "transmission_manual",
+      "troop_compartment": "ground_troops_standard",
+      "turret": "ground_station_mg",
+      "wheels": "ground_wheels_standard"
+    }
+  },
+  "ready_stock": 1,
+  "unit_price_bn": 0.0018396366278316358,
+  "purchase_available_bn": 0.0029970862430874017,
+  "protected_maintenance_bn": 0.0,
+  "affordable_quantity": 1,
+  "review_quantity": 1,
+  "delivery_days": 27,
+  "allowed": true,
+  "reason": null
+}

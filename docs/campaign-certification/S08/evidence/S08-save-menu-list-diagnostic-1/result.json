@@ -1,0 +1,453 @@
+{
+  "runtime": "d770592aeead51f1313d507edd26b02d75a69bba",
+  "binary_sha256": "c5852894069c797c1cbf6b15a302f73f85a0f0b4a4edfee63eb1ca6b367f8435",
+  "directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1\\supplier-v6VJe7\\server",
+  "url": "http://127.0.0.1:58765",
+  "started_utc": "2026-09-13T02:25:26.706987+00:00",
+  "scope": "Only GET /api/build and one GET /api/saves against existing disposable files; no save/load/command/advance or source edits.",
+  "before": [
+    {
+      "file": "auto-2.json",
+      "bytes": 133414169,
+      "sha256": "d055be10f3ce660619ed9368d7fdb1ab5d5bbfb2a874f2d80d8779ee0f4c7b0f"
+    },
+    {
+      "file": "s08-cancel-review.json",
+      "bytes": 134334230,
+      "sha256": "98336b1d14cd1174b7768434c2e6071d885d01cd3e82638234dc16b1e258ec6d"
+    },
+    {
+      "file": "s08-delivered.json",
+      "bytes": 131186946,
+      "sha256": "9e6d0a9a5102f21418f05da4d6d7a17f9278b3469910acf222ee76db009d030c"
+    },
+    {
+      "file": "s08-earned-stock.json",
+      "bytes": 134254304,
+      "sha256": "c7cd98c5224a6ae80722ae2d113de8036bf191d7168c7ee2eebfd74917a4a100"
+    },
+    {
+      "file": "s08-import-complete-before.json",
+      "bytes": 131702626,
+      "sha256": "afb2f998d01d6587fad6d84dee51cf9a15e72fde7d0e47f601f66969d3310740"
+    },
+    {
+      "file": "s08-import-complete.json",
+      "bytes": 131702626,
+      "sha256": "6bca205e692690f0765045d6fa3a497e3c927665b204feff89938b7bfedfba09"
+    },
+    {
+      "file": "s08-import-midpoint-after.json",
+      "bytes": 134385684,
+      "sha256": "6526b5705dcb9c90a85c4cb2260b6ef310f78f21c7b6678df9fe5098bd1c141e"
+    },
+    {
+      "file": "s08-import-midpoint-before.json",
+      "bytes": 134385684,
+      "sha256": "56651da3cc2f5fe2f908fa86751f2e5fdf95751a2e14b1be0edf5239e6382b29"
+    },
+    {
+      "file": "s08-import-midpoint.json",
+      "bytes": 134385684,
+      "sha256": "67bdddfe9bc76a5635da533fded1e11e581cbb3577586a1818201120b1644aa4"
+    },
+    {
+      "file": "s08-maintenance-approved.json",
+      "bytes": 131187020,
+      "sha256": "7477804fc1b0b8d356c6c6c230a1a2273ebbc01d708b47cdbdaa2176a8585fec"
+    },
+    {
+      "file": "s08-maintenance-day-1.json",
+      "bytes": 131421031,
+      "sha256": "4b64b06d0e69801d4d78da7db16196a71ce485abee64d5fa21d8300655fc09b2"
+    },
+    {
+      "file": "s08-maintenance-day-2.json",
+      "bytes": 131702626,
+      "sha256": "6c60e7042cde0bf763420c28baf74f4177deabf2dca04caa86bad0f184534e77"
+    },
+    {
+      "file": "s08-maintenance-review.json",
+      "bytes": 131186946,
+      "sha256": "33f26e5c81cc1f3e576448d101a92b3621865afe3293b450c13f1ec7bcb285f0"
+    },
+    {
+      "file": "s08-paid-transit.json",
+      "bytes": 134385684,
+      "sha256": "4856b3f9367d3b5a07335e027b7b57adbff6161fb82923d20494150d73a40855"
+    },
+    {
+      "file": "s08-preparation-after.json",
+      "bytes": 54641195,
+      "sha256": "1cbec185c965e62f7e749c35f0c8acccf68ede37109b10473d00ecf496f38f1d"
+    },
+    {
+      "file": "s08-preparation-before.json",
+      "bytes": 54641195,
+      "sha256": "bef3c0cc1ae97c95e0f9a06f9fc791922b4774d9e0554b53c4f1d8dc7761b419"
+    },
+    {
+      "file": "s08-preparation-input.json",
+      "bytes": 54641195,
+      "sha256": "347e96fc018afd567fef04eb55ab17a0c30a88245db45e2e236842ea3b39c1ab"
+    },
+    {
+      "file": "s08-preview-after.json",
+      "bytes": 134254304,
+      "sha256": "30d6cf2b460cef4912647295a00906e109b1768cdea486d914d304f00364b46e"
+    },
+    {
+      "file": "s08-preview-before.json",
+      "bytes": 134254304,
+      "sha256": "888462493493816d3b7969f87f82d0c01417daa0030e63d7dbd333eaa403ab10"
+    },
+    {
+      "file": "s08-purchase-after.json",
+      "bytes": 134334230,
+      "sha256": "a6cc41ad195766e8d19ad0664f3c6b1a09dd93dd1dd0c3e9b8288d2f88a3b80b"
+    },
+    {
+      "file": "s08-purchase-before.json",
+      "bytes": 134350531,
+      "sha256": "be6b189ae0a370d828e99a30e3adbdf1ceefa95376139c6958f3a6e232aa9888"
+    }
+  ],
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1789263648,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "d770592aeead",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1\\supplier-v6VJe7\\server",
+    "version": "0.6.0"
+  },
+  "list_seconds": 25.18787069999962,
+  "response_sha256": "ee9dc7b0b61053093a5b65b7c651c70f6f99b6e97896e5cd6d947bca54b9d733",
+  "response_bytes": 3689,
+  "response": {
+    "autosave": "At the first advance after a calendar month ends; three rotating slots with backups.",
+    "directory": "\\\\?\\C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1\\supplier-v6VJe7\\server",
+    "slots": [
+      {
+        "autosave": true,
+        "backup": false,
+        "bytes": 133414169,
+        "date": "1 Nov 1995",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "auto-2"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 134334230,
+        "date": "30 Oct 1995",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-cancel-review"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 131186946,
+        "date": "27 Nov 1995",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-delivered"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 134254304,
+        "date": "29 Oct 1995",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-earned-stock"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 131702626,
+        "date": "29 Nov 1995",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-import-complete"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 131702626,
+        "date": "29 Nov 1995",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-import-complete-before"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 134385684,
+        "date": "31 Oct 1995",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-import-midpoint"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 134385684,
+        "date": "31 Oct 1995",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-import-midpoint-after"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 134385684,
+        "date": "31 Oct 1995",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-import-midpoint-before"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 131187020,
+        "date": "27 Nov 1995",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-maintenance-approved"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 131421031,
+        "date": "28 Nov 1995",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-maintenance-day-1"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 131702626,
+        "date": "29 Nov 1995",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-maintenance-day-2"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 131186946,
+        "date": "27 Nov 1995",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-maintenance-review"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 134385684,
+        "date": "31 Oct 1995",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-paid-transit"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 54641195,
+        "date": "27 Dec 1990",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-preparation-after"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 54641195,
+        "date": "27 Dec 1990",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-preparation-before"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 54641195,
+        "date": "27 Dec 1990",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-preparation-input"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 134254304,
+        "date": "29 Oct 1995",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-preview-after"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 134254304,
+        "date": "29 Oct 1995",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-preview-before"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 134334230,
+        "date": "30 Oct 1995",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-purchase-after"
+      },
+      {
+        "autosave": false,
+        "backup": false,
+        "bytes": 134350531,
+        "date": "30 Oct 1995",
+        "legacy": false,
+        "player": "Tonga",
+        "readable": true,
+        "slot": "s08-purchase-before"
+      }
+    ],
+    "slots_directory": "\\\\?\\C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1\\supplier-v6VJe7\\server\\saves"
+  },
+  "after": [
+    {
+      "file": "auto-2.json",
+      "bytes": 133414169,
+      "sha256": "d055be10f3ce660619ed9368d7fdb1ab5d5bbfb2a874f2d80d8779ee0f4c7b0f"
+    },
+    {
+      "file": "s08-cancel-review.json",
+      "bytes": 134334230,
+      "sha256": "98336b1d14cd1174b7768434c2e6071d885d01cd3e82638234dc16b1e258ec6d"
+    },
+    {
+      "file": "s08-delivered.json",
+      "bytes": 131186946,
+      "sha256": "9e6d0a9a5102f21418f05da4d6d7a17f9278b3469910acf222ee76db009d030c"
+    },
+    {
+      "file": "s08-earned-stock.json",
+      "bytes": 134254304,
+      "sha256": "c7cd98c5224a6ae80722ae2d113de8036bf191d7168c7ee2eebfd74917a4a100"
+    },
+    {
+      "file": "s08-import-complete-before.json",
+      "bytes": 131702626,
+      "sha256": "afb2f998d01d6587fad6d84dee51cf9a15e72fde7d0e47f601f66969d3310740"
+    },
+    {
+      "file": "s08-import-complete.json",
+      "bytes": 131702626,
+      "sha256": "6bca205e692690f0765045d6fa3a497e3c927665b204feff89938b7bfedfba09"
+    },
+    {
+      "file": "s08-import-midpoint-after.json",
+      "bytes": 134385684,
+      "sha256": "6526b5705dcb9c90a85c4cb2260b6ef310f78f21c7b6678df9fe5098bd1c141e"
+    },
+    {
+      "file": "s08-import-midpoint-before.json",
+      "bytes": 134385684,
+      "sha256": "56651da3cc2f5fe2f908fa86751f2e5fdf95751a2e14b1be0edf5239e6382b29"
+    },
+    {
+      "file": "s08-import-midpoint.json",
+      "bytes": 134385684,
+      "sha256": "67bdddfe9bc76a5635da533fded1e11e581cbb3577586a1818201120b1644aa4"
+    },
+    {
+      "file": "s08-maintenance-approved.json",
+      "bytes": 131187020,
+      "sha256": "7477804fc1b0b8d356c6c6c230a1a2273ebbc01d708b47cdbdaa2176a8585fec"
+    },
+    {
+      "file": "s08-maintenance-day-1.json",
+      "bytes": 131421031,
+      "sha256": "4b64b06d0e69801d4d78da7db16196a71ce485abee64d5fa21d8300655fc09b2"
+    },
+    {
+      "file": "s08-maintenance-day-2.json",
+      "bytes": 131702626,
+      "sha256": "6c60e7042cde0bf763420c28baf74f4177deabf2dca04caa86bad0f184534e77"
+    },
+    {
+      "file": "s08-maintenance-review.json",
+      "bytes": 131186946,
+      "sha256": "33f26e5c81cc1f3e576448d101a92b3621865afe3293b450c13f1ec7bcb285f0"
+    },
+    {
+      "file": "s08-paid-transit.json",
+      "bytes": 134385684,
+      "sha256": "4856b3f9367d3b5a07335e027b7b57adbff6161fb82923d20494150d73a40855"
+    },
+    {
+      "file": "s08-preparation-after.json",
+      "bytes": 54641195,
+      "sha256": "1cbec185c965e62f7e749c35f0c8acccf68ede37109b10473d00ecf496f38f1d"
+    },
+    {
+      "file": "s08-preparation-before.json",
+      "bytes": 54641195,
+      "sha256": "bef3c0cc1ae97c95e0f9a06f9fc791922b4774d9e0554b53c4f1d8dc7761b419"
+    },
+    {
+      "file": "s08-preparation-input.json",
+      "bytes": 54641195,
+      "sha256": "347e96fc018afd567fef04eb55ab17a0c30a88245db45e2e236842ea3b39c1ab"
+    },
+    {
+      "file": "s08-preview-after.json",
+      "bytes": 134254304,
+      "sha256": "30d6cf2b460cef4912647295a00906e109b1768cdea486d914d304f00364b46e"
+    },
+    {
+      "file": "s08-preview-before.json",
+      "bytes": 134254304,
+      "sha256": "888462493493816d3b7969f87f82d0c01417daa0030e63d7dbd333eaa403ab10"
+    },
+    {
+      "file": "s08-purchase-after.json",
+      "bytes": 134334230,
+      "sha256": "a6cc41ad195766e8d19ad0664f3c6b1a09dd93dd1dd0c3e9b8288d2f88a3b80b"
+    },
+    {
+      "file": "s08-purchase-before.json",
+      "bytes": 134350531,
+      "sha256": "be6b189ae0a370d828e99a30e3adbdf1ceefa95376139c6958f3a6e232aa9888"
+    }
+  ],
+  "files_unchanged": true,
+  "finished_utc": "2026-09-13T02:25:54.087155+00:00"
+}

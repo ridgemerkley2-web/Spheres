@@ -1,0 +1,60 @@
+{
+  "url": "http://127.0.0.1:7846",
+  "pid": 16184,
+  "directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S08-20260912-194129",
+  "runtime_revision": "d770592aeead51f1313d507edd26b02d75a69bba",
+  "executable_sha256": "c5852894069c797c1cbf6b15a302f73f85a0f0b4a4edfee63eb1ca6b367f8435",
+  "date": "29 Nov 1995",
+  "player": "Tonga",
+  "copies": [
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\0000-fresh-before-decisions.campaign.json",
+      "copy": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S08-20260912-194129\\saves\\s08-fresh-tonga.json",
+      "sha256": "953da7d9d23ba58bc5e85d1c4ec91c73867df5e39a1004c6e02c39a15013e385"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-ready-before-purchase.campaign.json",
+      "copy": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S08-20260912-194129\\saves\\s08-tonga-market-ready.json",
+      "sha256": "c7cd98c5224a6ae80722ae2d113de8036bf191d7168c7ee2eebfd74917a4a100"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-purchased.campaign.json",
+      "copy": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S08-20260912-194129\\saves\\s08-tonga-paid-transit.json",
+      "sha256": "73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2155-delivered.campaign.json",
+      "copy": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S08-20260912-194129\\saves\\s08-tonga-delivered.json",
+      "sha256": "0fa5c80cd5c664602e03fa7c83a211bd068e51f2e7e791ae8903131f22b75e93"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-2\\supplier-TDUttg\\server\\saves\\s08-import-complete.json",
+      "copy": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S08-20260912-194129\\saves\\s08-tonga-in-service.json",
+      "sha256": "651b3dd21f0331179b6b117b77d78ca05a6f5a91c16de933701364c12424a7a8"
+    }
+  ],
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1789263648,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "d770592aeead",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S08-20260912-194129",
+    "version": "0.6.0"
+  },
+  "qualification": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-final-binary-route-pool-1.json",
+      "sha256": "d5eb0a8cb0ab3ecd61dcf1ccb89cc517cf2bcbe9684d455dc257cd27848421a8"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\runner-result.json",
+      "sha256": "043e94f59023a48756793b2abaea3a2655cabf972abbe66f8498125e41ed59a8"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-2\\supplier-TDUttg\\result.json",
+      "sha256": "6335596674a375151d8d4243ed6887059f4ac0e231e605f8e2527e1f4710de33"
+    }
+  ],
+  "scope": "Isolated review copy with earned supplier stock, paid imports and browser-proven maintenance; earlier campaigns and servers retained."
+}

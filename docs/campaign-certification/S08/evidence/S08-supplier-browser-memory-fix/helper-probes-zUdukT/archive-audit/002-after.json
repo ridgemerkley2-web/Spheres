@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "input": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-zUdukT\\after.json",
+    "bytes": 315,
+    "sha256": "86eef47f5f4af250499ffdea07ff11470f975c661a2f782e4296f3695d56597c"
+  },
+  "requested": {
+    "buyer": "Tonga",
+    "revision": null,
+    "seller": null,
+    "company": null,
+    "product": null
+  },
+  "buyer": {
+    "id": "Tonga",
+    "tech_sha256": "08133abaf140c90a498ba8546381c1ba2133465c07c4c3853163cf724c889960",
+    "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+    "revision_ids": [],
+    "held_by_revision": {
+      "test-import": 2
+    },
+    "held_units": 0,
+    "buyer_revision": null,
+    "maintenance_plan": {
+      "daily_limit_bn": 0.000002,
+      "from_day": 123
+    },
+    "program_budget": null
+  },
+  "supplier": null,
+  "imports": {
+    "ids": [],
+    "matching": []
+  },
+  "canonical": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-zUdukT\\archive-audit\\002-after.canonical",
+    "bytes": 580,
+    "sha256": "18d92f4557476f7ec5f7f6b69555b2c50ded271e6b9c36ca2f3b5ab3a2ba9e9c",
+    "format": "s08-typed-canonical-world-v1-js-f64",
+    "ignored_paths": []
+  }
+}

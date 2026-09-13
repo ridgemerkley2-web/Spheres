@@ -1,0 +1,8 @@
+{
+  "scope": "Developmental diagnostic provenance clarification; not candidate qualification.",
+  "executed_build": "S08-freight-checks-deferred-quotes-storage-route-allocations-16",
+  "same_binary_record": "../S08-diagnostic-deferred-quotes-storage-route-allocations-feature-5/result.json",
+  "source_at_execution": "The diagnostic runner correctly snapshots the current working source, which also contains one pending, unbuilt report-only change in spheres-web/src/performance.rs.",
+  "pending_change": "After the supplier performance test's measurement loop, include its existing timing vectors in the output JSON. No measured code, gameplay or subsystem diagnostic function was changed by that pending patch.",
+  "interpretation": "This daily diagnosis executes the round-16 binary. It does not establish that the pending raw-sample reporting patch has compiled or run. The next focused build must include that patch. Binary hashes and source snapshots remain in the unmodified runner records."
+}

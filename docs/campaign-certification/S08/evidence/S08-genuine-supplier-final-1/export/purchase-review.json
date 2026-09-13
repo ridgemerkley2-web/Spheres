@@ -1,0 +1,183 @@
+{
+  "actions": [
+    {
+      "command": {
+        "ammunition": false,
+        "company": 3,
+        "kind": "company_import_purchase",
+        "product": 48,
+        "quantity": 1,
+        "quote": "company-v1-c8fbe63a438236da",
+        "seller": "France"
+      },
+      "detail": null,
+      "enabled": true,
+      "label": "Buy this foreign stock lot",
+      "reason": null
+    },
+    {
+      "enabled": true,
+      "label": "Review and activate Defense funding",
+      "navigate": {
+        "action": "budget",
+        "department": 3,
+        "ministry": "defense"
+      }
+    },
+    {
+      "enabled": true,
+      "label": "Review suppliers and deliveries",
+      "navigate": {
+        "action": "equipment",
+        "tab": "companies"
+      }
+    },
+    {
+      "enabled": true,
+      "label": "Review delivered fleet and upkeep",
+      "navigate": {
+        "action": "equipment",
+        "tab": "service"
+      }
+    },
+    {
+      "enabled": true,
+      "label": "Review compatible ammunition",
+      "navigate": {
+        "action": "equipment",
+        "tab": "ammunition"
+      }
+    }
+  ],
+  "as_of_day": 2127,
+  "blockers": [],
+  "costs": [
+    {
+      "amount_bn": 3.67e-7,
+      "label": "Additional fleet maintenance requirement",
+      "period": "per day for the complete lot after delivery; not an advance charge"
+    },
+    {
+      "amount_bn": 0.0018396366278316358,
+      "label": "Quoted supplier unit price",
+      "period": "one finished vehicle, aircraft or ammunition unit"
+    },
+    {
+      "amount_bn": 0.0018396366278316358,
+      "label": "Reviewed lot purchase",
+      "period": "one purchase · Defense procurement"
+    },
+    {
+      "amount_bn": 0.0029970862430874017,
+      "label": "Available purchase authority",
+      "period": "current native spending allowance, not company or Treasury cash"
+    }
+  ],
+  "date": "29 Oct 1995",
+  "detail": "Purchase only the reviewed finished stock. The native contract retains the seller, exact equipment or ammunition, price and delivery terms. Equipment is usable after actual arrival; no component research or domestic manufacturing license is granted.",
+  "metrics": [
+    {
+      "label": "Supplier country",
+      "value": "France"
+    },
+    {
+      "label": "Manufacturer",
+      "value": "France Export Works"
+    },
+    {
+      "label": "Reviewed quantity",
+      "value": 1
+    },
+    {
+      "label": "Finished seller stock",
+      "value": 1
+    },
+    {
+      "label": "Component research granted",
+      "value": 0
+    },
+    {
+      "label": "Exact supplier model",
+      "value": "France Armored personnel carrier"
+    },
+    {
+      "label": "Frozen supplier revision",
+      "value": "France-design-1"
+    },
+    {
+      "label": "Land contribution",
+      "value": "0.895×"
+    },
+    {
+      "label": "Firepower rating",
+      "value": 0.75
+    },
+    {
+      "label": "Protection rating",
+      "value": 0.68
+    },
+    {
+      "label": "Mobility rating",
+      "value": 1.15
+    },
+    {
+      "label": "Observation rating",
+      "value": 1.0
+    },
+    {
+      "label": "Installation load",
+      "value": "13 / 20"
+    },
+    {
+      "label": "Fire support",
+      "value": 0.0
+    },
+    {
+      "label": "Protected mobility",
+      "value": 0.782
+    },
+    {
+      "label": "Reconnaissance support",
+      "value": 0.1
+    },
+    {
+      "label": "Air defense",
+      "value": 0.0
+    },
+    {
+      "label": "Compatible ammunition",
+      "value": "12.7 mm machine gun"
+    }
+  ],
+  "nation": "Tonga",
+  "quote": {
+    "available_units": 1,
+    "company_cash_needed_bn": 0.0,
+    "cost_bn": 0.0018396366278316358,
+    "eta_days": 27,
+    "first_stock_days": null,
+    "maintenance_bn_day": 3.67e-7,
+    "minimum_days": 27,
+    "note": "Buys existing foreign company stock into buyer-owned transit under a fixed price. The buyer's Defense payment settles once into protected import escrow; the seller earns it only when the exact stock arrives. Transit requires continuing route and shipping-province access. Cancel an undelivered lot when the seller has room to receive it: stock and its original cost basis return once, and the settled buyer payment refunds once without recreating authority. Imports grant use and ordinary maintenance rights, never component research or domestic manufacturing rights. Timings and 15% margin are game assumptions.",
+    "protected_maintenance_bn": 0.0,
+    "purchase_available_bn": 0.0029970862430874017,
+    "reason": null,
+    "token": "company-v1-c8fbe63a438236da",
+    "unit_price_bn": 0.0018396366278316358,
+    "valid": true
+  },
+  "requirements": [
+    "Buys existing foreign company stock into buyer-owned transit under a fixed price. The buyer's Defense payment settles once into protected import escrow; the seller earns it only when the exact stock arrives. Transit requires continuing route and shipping-province access. Cancel an undelivered lot when the seller has room to receive it: stock and its original cost basis return once, and the settled buyer payment refunds once without recreating authority. Imports grant use and ordinary maintenance rights, never component research or domestic manufacturing rights. Timings and 15% margin are game assumptions.",
+    "The purchase buys finished equipment use, not the seller's component technologies or manufacturing rights. Compatible stores and normal maintenance remain separate needs; aircraft also require appropriate basing and mission access.",
+    "A stale price, changed stock or changed access requires a new review. A displayed market offer is not a reservation; an accepted contract records the actual purchased lot once.",
+    "Sanctions and access changes can block a new purchase or pause undelivered property. Use the contract's native reviewed cancellation quote for its exact refund timing."
+  ],
+  "session_id": "51908-1789145671774216100-0",
+  "timing": [
+    {
+      "label": "Delivery after settlement",
+      "value": "27 accessible days if access holds"
+    }
+  ],
+  "valid": true
+}

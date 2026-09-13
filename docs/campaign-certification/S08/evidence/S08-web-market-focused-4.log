@@ -1,0 +1,15 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+   Compiling spheres-web v0.6.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-web)
+    Finished `release` profile [optimized] target(s) in 1m 29s
+     Running unittests src\main.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_web-960ae70db4690868.exe)
+
+running 6 tests
+test equipment_view::company_view_tests::s08_fresh_tonga_paid_supplier_market_export ... ignored, Requires an empty SPHERES_S08_SUPPLIER_EXPORT directory; advances up to 3000 real fresh-campaign days
+test equipment_view::company_view_tests::s08_import_parser_keeps_foreign_seller_separate_from_authenticated_buyer ... ok
+test equipment_view::company_view_tests::s08_market_preserves_native_stock_affordability_and_foreign_identity_in_pure_reads ... ok
+test equipment_view::company_view_tests::s08_changed_stock_or_access_cannot_reuse_a_reviewed_import ... ok
+test equipment_view::company_view_tests::s08_import_purchase_and_cancellation_reviews_retain_exact_native_quotes_and_no_research_grant ... ok
+test equipment_view::company_view_tests::s08_no_factory_country_can_review_import_access_without_any_opening_stock_grant ... ok
+
+test result: ok. 5 passed; 0 failed; 1 ignored; 0 measured; 333 filtered out; finished in 0.28s
+

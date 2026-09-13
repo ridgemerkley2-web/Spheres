@@ -1,0 +1,17 @@
+{
+  "workloads": "unchanged three copied checkpoints at ages0/10/30, each run as idle and industry+war (six workloads),31days,explicit connected-economy/company-network/warfare adoption",
+  "simulation_p95_limit_ms": 300,
+  "whole_turn_p95_limit_ms": 400,
+  "whole_turn_max_limit_ms": 750,
+  "sampled_private_memory_limit_bytes": 1073741824,
+  "candidate": "d770592aeead51f1313d507edd26b02d75a69bba",
+  "test_binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+  "test_binary_sha256": "96bb58155a19218d6d37afabfb8d26c83c53d3dbebf5ca116a870fe950c655f7",
+  "declared_plan_sha256": "8d2cb23fe996ba9dc35da0aed5859072a83c2e61b55d4881cf047bc1ac195a28",
+  "declared_utc": "2026-09-11T15:57:21.546117+00:00",
+  "bound_utc": "2026-09-13T01:51:50.251726+00:00",
+  "native_proof": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-final-native-route-pool-1.json",
+  "native_proof_sha256": "544c8e3584d183a736c238a65cf53d30a2e5d3c386a0d08827570e879daa3913",
+  "binding_runner_sha256": "0b348ecfc942d779579fae24c726917a65726d1cd11983efa291f9536504566c",
+  "note": "Bind the original six workloads and unchanged acceptance bars to the clean candidate and completed full native proof before measurement. The genuine supplier case retains its separate original limits."
+}

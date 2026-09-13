@@ -1,0 +1,42 @@
+--- run-s08-linux.py.before
++++ run-s08-linux.py
+@@ -1,8 +1,11 @@
+ import os,sys,pathlib,json,hashlib,subprocess,datetime,time,re
+ source=pathlib.Path('/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration')
+-out=source.parent/'evidence/S08-linux-final'
++pin=sys.argv[1]
++assert re.fullmatch('[0-9a-f]{40}',pin)
++label=sys.argv[2] if len(sys.argv)>2 else 'final'
++assert re.fullmatch('[A-Za-z0-9_-]+',label)
++out=source.parent/('evidence/S08-linux-'+label)
+ out.mkdir(exist_ok=False)
+-pin=sys.argv[1]
+ env=dict(os.environ);env.update({'GIT_DIR':'/mnt/c/Users/ridge/Spheres/.git/worktrees/integration','GIT_WORK_TREE':str(source),'GIT_OPTIONAL_LOCKS':'0','CARGO_BUILD_JOBS':'4','GIT_CONFIG_COUNT':'1','GIT_CONFIG_KEY_0':'core.autocrlf','GIT_CONFIG_VALUE_0':'true'})
+ sha=lambda p:hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()
+ stamp=lambda:datetime.datetime.now(datetime.timezone.utc).isoformat()
+@@ -36,11 +39,14 @@
+   totals=[tuple(map(int,m)) for m in re.findall(r'test result: (?:ok|FAILED)\. (\d+) passed; (\d+) failed; (\d+) ignored;',text)];result['totals']={'passed':sum(t[0] for t in totals),'failed':sum(t[1] for t in totals),'ignored':sum(t[2] for t in totals),'completed_targets':len(totals)}
+  elif name=='node':
+   result['summary_tail']=text[-1800:]
++ else:
++  totals=[tuple(map(int,m)) for m in re.findall(r'test result: (?:ok|FAILED)\. (\d+) passed; (\d+) failed; (\d+) ignored;',text)]
++  result['exact_one_test_passed']=totals==[(1,0,0)]
+  record['checks'].append(result);persist();print('FINISH '+name+' exit='+str(process.returncode)+' seconds='+str(round(result['elapsed_seconds'],2)),flush=True)
+  if process.returncode:print('FAILURE TAIL\n'+text[-3500:],flush=True)
+  return result
+ try:
+- record['source_before']=snapshot('source-before.json');diff=capture(['git','-c','core.longpaths=true','diff','--name-only','041007fbfda48cc027d0c24a1189705a1dcaa89b',pin,'--','*.rs']).splitlines();record['rust_diff_from_full_candidate']=diff;record['fixtures_before']=fixture_snapshot('fixtures-before.json')
++ record['source_before']=snapshot('source-before.json');diff=capture(['git','-c','core.longpaths=true','diff','--name-only','041007fbfda48cc027d0c24a1189705a1dcaa89b',pin,'--','*.rs']).splitlines();record['rust_diff_baseline_revision']='041007fbfda48cc027d0c24a1189705a1dcaa89b';record['rust_diff_from_full_candidate']=diff;record['fixtures_before']=fixture_snapshot('fixtures-before.json')
+  tools='\n'.join(capture(cmd) for cmd in [['uname','-a'],['cat','/etc/os-release'],['rustc','-Vv'],['cargo','-Vv'],['node','-v'],['npm','-v'],[env['CC'],'--version']]);(out/'toolchain-versions.log').write_text(tools,encoding='utf8');record['toolchain_log_sha256']=sha(out/'toolchain-versions.log');persist()
+  run('native',['cargo','test','--locked','--release','--workspace','--no-fail-fast'])
+  native=(out/'native.log').read_text(encoding='utf8',errors='replace');found=re.findall(r'Running unittests src/main\.rs \(([^\r\n)]*/spheres_web-[0-9a-f]+)\)',native);found=list(dict.fromkeys(found))
+@@ -54,6 +60,8 @@
+   for name,test,extra in tests:run(name,[str(binary),test,'--exact','--ignored','--nocapture','--test-threads=1'],extra)
+   record['web_test_binary']['sha256_after']=sha(binary);assert record['web_test_binary']['sha256']==record['web_test_binary']['sha256_after']
+  record['fixtures_after']=fixture_snapshot('fixtures-after.json');assert record['fixtures_before']['items']==record['fixtures_after']['items'];record['source_after']=snapshot('source-after.json')
+- record['status']='passed' if len(record['checks'])==5 and all(x['exit_code']==0 for x in record['checks']) else 'failed';record['finished_utc']=stamp();persist();print('FINAL '+record['status'],flush=True)
++ record['status']='passed' if len(record['checks'])==5 and all(x['exit_code']==0 and x.get('exact_one_test_passed',True) for x in record['checks']) and record['checks'][0].get('totals',{}).get('completed_targets',0)>0 and record['checks'][0]['totals']['failed']==0 else 'failed';record['finished_utc']=stamp();persist();print('FINAL '+record['status'],flush=True)
+ except BaseException as exc:
+  record['status']='runner_error';record['error']=str(exc)[:5000];record['finished_utc']=stamp();persist();print('RUNNER ERROR '+record['error'],flush=True);raise
++
++sys.exit(0 if record['status']=='passed' else 1)

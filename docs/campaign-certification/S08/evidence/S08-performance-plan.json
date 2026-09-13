@@ -1,0 +1,21 @@
+{
+  "declared_utc": "2026-09-11T15:57:21.546117+00:00",
+  "state": "declared before measurements; final candidate/hash will be bound after source freeze",
+  "legacy_regression": {
+    "workloads": "unchanged three copied checkpoints at ages0/10/30, each run as idle and industry+war (six workloads),31days,explicit connected-economy/company-network/warfare adoption",
+    "simulation_p95_limit_ms": 300,
+    "whole_turn_p95_limit_ms": 400,
+    "whole_turn_max_limit_ms": 750,
+    "sampled_private_memory_limit_bytes": 1073741824
+  },
+  "s08_feature_case": {
+    "workload": "31 actual days loaded from fresh-world genuinely purchased foreign-stock campaign, retained supplier work and import transit; no injected property",
+    "simulation_p95_limit_ms": 300,
+    "whole_turn_p95_limit_ms": 400,
+    "whole_turn_max_limit_ms": 750,
+    "equipment_board_read_and_serialization_p95_limit_ms": 300,
+    "purchase_quote_p95_limit_ms": 250,
+    "limits": "Equipment board and quote sampled separately after ordinary state/history whole-turn; no network, disk autosave or browser rendering. Run only after builds and other simulations finish."
+  },
+  "failed_bar_policy": "Retain full result, diagnose and correct material performance issues; do not repeat unchanged merely to select a favorable sample."
+}

@@ -1,0 +1,488 @@
+{
+  "format": "spheres-s08-linux-qualification",
+  "version": 1,
+  "candidate": "e6187df8044556a8262154e7a6c8baa32b283799",
+  "started_utc": "2026-09-11T16:49:49.614110+00:00",
+  "status": "passed",
+  "qualification_scope": "Complete workspace native suite, full Node and three external archive/lifecycle checks on this exact clean runtime candidate. Supplier/import ownership, saves, fiscal settlement and adapters changed; rerun the complete native suite.",
+  "source": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+  "environment": {
+    "GIT_DIR": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+    "GIT_WORK_TREE": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+    "GIT_OPTIONAL_LOCKS": "0",
+    "GIT_CONFIG_COUNT": "1",
+    "GIT_CONFIG_KEY_0": "core.autocrlf",
+    "GIT_CONFIG_VALUE_0": "true",
+    "CARGO_BUILD_JOBS": "4",
+    "CARGO_HOME": "/home/ridge/.cache/spheres-s05-tools/cargo",
+    "RUSTUP_HOME": "/home/ridge/.cache/spheres-s05-tools/rustup",
+    "CARGO_TARGET_DIR": "/home/ridge/.cache/spheres-s05-target",
+    "CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+    "CC": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+    "TMPDIR": "/home/ridge/.cache/spheres-s05-runs/tmp"
+  },
+  "checks": [
+    {
+      "name": "native",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "--workspace",
+        "--no-fail-fast"
+      ],
+      "extra_environment": {},
+      "started_utc": "2026-09-11T16:50:29.987097+00:00",
+      "elapsed_seconds": 584.768286528,
+      "exit_code": 0,
+      "log": "native.log",
+      "log_sha256": "e4305be51239eedb3cd25f69e5c8ef5ebc5e957530ec0a3ebea9fb5fcc687b8b",
+      "source_after": {
+        "captured_utc": "2026-09-11T17:00:14.758935+00:00",
+        "head": "e6187df8044556a8262154e7a6c8baa32b283799",
+        "status_porcelain": "",
+        "git_dir": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+        "git_work_tree": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration"
+      },
+      "totals": {
+        "passed": 1537,
+        "failed": 0,
+        "ignored": 77,
+        "completed_targets": 65
+      }
+    },
+    {
+      "name": "node",
+      "command": [
+        "node",
+        "tools/ui/run-unit.cjs"
+      ],
+      "extra_environment": {},
+      "started_utc": "2026-09-11T17:00:43.485755+00:00",
+      "elapsed_seconds": 121.97224433600002,
+      "exit_code": 0,
+      "log": "node.log",
+      "log_sha256": "0041f4e9253ff71979fa4e5884ed6b0a106b55242d7e8f2ce2ff66e91b44e235",
+      "source_after": {
+        "captured_utc": "2026-09-11T17:02:45.461991+00:00",
+        "head": "e6187df8044556a8262154e7a6c8baa32b283799",
+        "status_porcelain": "",
+        "git_dir": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+        "git_work_tree": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration"
+      },
+      "summary_tail": "nts\nok 1501 - every kind and biome exists in the live scatter-mesh, with its weights and footprints\n  ---\n  duration_ms: 23.578967\n  type: 'test'\n  ...\n# Subtest: a missing sampler degrades to a stated default rather than throwing\nok 1502 - a missing sampler degrades to a stated default rather than throwing\n  ---\n  duration_ms: 18.82499\n  type: 'test'\n  ...\n# Subtest: an extent across the antimeridian works and normalises its longitudes\nok 1503 - an extent across the antimeridian works and normalises its longitudes\n  ---\n  duration_ms: 4.444874\n  type: 'test'\n  ...\n# Subtest: the cell grid is a whole-degree power of two and the stride lattice wraps\nok 1504 - the cell grid is a whole-degree power of two and the stride lattice wraps\n  ---\n  duration_ms: 0.208367\n  type: 'test'\n  ...\n# Subtest: a view too wide for the walk guard thins instead of stalling, and thins stably\nok 1505 - a view too wide for the walk guard thins instead of stalling, and thins stably\n  ---\n  duration_ms: 72.378592\n  type: 'test'\n  ...\n# Subtest: no wall clock, no entropy source and no browser can reach this placement\nok 1506 - no wall clock, no entropy source and no browser can reach this placement\n  ---\n  duration_ms: 0.969811\n  type: 'test'\n  ...\n# Subtest: the browser global exports the same contract and plans the identical field\nok 1507 - the browser global exports the same contract and plans the identical field\n  ---\n  duration_ms: 143.250001\n  type: 'test'\n  ...\n# Subtest: every bar above goes red against a deliberately broken placement engine\nok 1508 - every bar above goes red against a deliberately broken placement engine\n  ---\n  duration_ms: 9835.356759\n  type: 'test'\n  ...\n1..1508\n# tests 1508\n# suites 0\n# pass 1507\n# fail 0\n# cancelled 0\n# skipped 1\n# todo 0\n# duration_ms 121773.821209\n"
+    },
+    {
+      "name": "master-archive",
+      "command": [
+        "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-0c882886cd9a3582",
+        "s05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day",
+        "--exact",
+        "--ignored",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "extra_environment": {
+        "SPHERES_S05_MASTER_ARCHIVE": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-pinned-master/profile-campaigns/saves/profile-industry_and_war-0.json"
+      },
+      "started_utc": "2026-09-11T17:03:11.144124+00:00",
+      "elapsed_seconds": 3.1524630189999243,
+      "exit_code": 0,
+      "log": "master-archive.log",
+      "log_sha256": "63dbab3e7a79cfed4d4052b05800888303dd86378faa6aa74080de33dbf04634",
+      "source_after": {
+        "captured_utc": "2026-09-11T17:03:14.299361+00:00",
+        "head": "e6187df8044556a8262154e7a6c8baa32b283799",
+        "status_porcelain": "",
+        "git_dir": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+        "git_work_tree": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration"
+      },
+      "exact_one_test_passed": true
+    },
+    {
+      "name": "active-fixtures",
+      "command": [
+        "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-0c882886cd9a3582",
+        "s05_active_fixture_tests::original_active_company_stages_preserve_property_across_load_and_explicit_adoption",
+        "--exact",
+        "--ignored",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "extra_environment": {
+        "SPHERES_S05_ACTIVE_FIXTURES": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active"
+      },
+      "started_utc": "2026-09-11T17:03:39.894514+00:00",
+      "elapsed_seconds": 26.903911295999933,
+      "exit_code": 0,
+      "log": "active-fixtures.log",
+      "log_sha256": "aa92a43e4bc495fce00035398a0c113eab0211f7c035f7440cd9723ef7c37df1",
+      "source_after": {
+        "captured_utc": "2026-09-11T17:04:06.801241+00:00",
+        "head": "e6187df8044556a8262154e7a6c8baa32b283799",
+        "status_porcelain": "",
+        "git_dir": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+        "git_work_tree": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration"
+      },
+      "exact_one_test_passed": true
+    },
+    {
+      "name": "party-versions",
+      "command": [
+        "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-0c882886cd9a3582",
+        "s05_save_matrix_tests::standalone_party_v1_preserves_real_supplier_books_for_equipment_versions_2_through_5",
+        "--exact",
+        "--ignored",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "extra_environment": {
+        "SPHERES_S05_ACTIVE_FIXTURES": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active"
+      },
+      "started_utc": "2026-09-11T17:04:32.372212+00:00",
+      "elapsed_seconds": 1.1353154229999518,
+      "exit_code": 0,
+      "log": "party-versions.log",
+      "log_sha256": "b5b4740ac83db0e7dd68ea4b180633e59704a009c463a43e67b5a26a897f4821",
+      "source_after": {
+        "captured_utc": "2026-09-11T17:04:33.510427+00:00",
+        "head": "e6187df8044556a8262154e7a6c8baa32b283799",
+        "status_porcelain": "",
+        "git_dir": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+        "git_work_tree": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration"
+      },
+      "exact_one_test_passed": true
+    }
+  ],
+  "source_before": {
+    "captured_utc": "2026-09-11T16:49:49.614125+00:00",
+    "head": "e6187df8044556a8262154e7a6c8baa32b283799",
+    "status_porcelain": "",
+    "git_dir": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+    "git_work_tree": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration"
+  },
+  "rust_diff_baseline_revision": "041007fbfda48cc027d0c24a1189705a1dcaa89b",
+  "rust_diff_from_full_candidate": [
+    "spheres-sim/src/companies.rs",
+    "spheres-sim/src/companies_ammunition.rs",
+    "spheres-sim/src/companies_imports.rs",
+    "spheres-sim/src/companies_refits.rs",
+    "spheres-sim/src/company_save.rs",
+    "spheres-sim/src/data/mod.rs",
+    "spheres-sim/src/equipment.rs",
+    "spheres-sim/src/equipment_ammunition_production.rs",
+    "spheres-sim/src/fiscal_journal.rs",
+    "spheres-sim/src/lib.rs",
+    "spheres-sim/src/logistics.rs",
+    "spheres-sim/src/supplier_catalogue.rs",
+    "spheres-sim/src/supplier_operations.rs",
+    "spheres-sim/src/world.rs",
+    "spheres-sim/tests/s03_supplier_operations.rs",
+    "spheres-sim/tests/s08_supplier_catalogue.rs",
+    "spheres-sim/tests/s08_supplier_lifecycle.rs",
+    "spheres-web/src/company_ammunition_view.rs",
+    "spheres-web/src/company_refit_view.rs",
+    "spheres-web/src/company_view.rs",
+    "spheres-web/src/main.rs",
+    "spheres-web/src/money_commitments.rs",
+    "spheres-web/src/money_view.rs",
+    "spheres-web/src/performance.rs",
+    "spheres-web/src/s05_fresh_startup_tests.rs"
+  ],
+  "fixtures_before": {
+    "captured_utc": "2026-09-11T16:50:29.485230+00:00",
+    "active_manifest_sha256": "3f897d3bcd3c24664980a026b710d84e5f8d23cddc2d180d0185efc969a1bd4f",
+    "master_generation_sha256": "c5fc55572751ac6fb75e1bf5074f09e2327ceea8d0bae55bceb63019de2f5ec6",
+    "items": [
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/01-eligible.json",
+        "sha256": "be937d77a21e19ba976cce77cb4a9442d91e15e178554ba1ffd58d7d6394952d"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/02-development.json",
+        "sha256": "215bf13811b6cc330619bbedb322b50224a3b5035b7b9307c5548eea9c3ef0ec"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/03-stock.json",
+        "sha256": "e49f1ed26b68e25b9674eb818fd349d63e6c5b2fcab03cbd664fcd0446569396"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/04-transit.json",
+        "sha256": "c2c1c3466292243cb801a9da3f47055d155586416724a5407d9238c99fe4ab66"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/05-arrived.json",
+        "sha256": "ddc818e9bb3137e9663f51b0532a249b38d630434760cbb3b5dd9c72e290be8e"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/06-ground-stock.json",
+        "sha256": "0a70345d4c8a1adad1e44049b1e4910f786371ace622723bc875b0a92ca8ba69"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/07-aircraft-development.json",
+        "sha256": "c83bdf97394c4349aaa77807548df8f4d60aee136cbd261f6de3d6b74f77b649"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/08-mixed-stock.json",
+        "sha256": "6dfc30bdc4e97db7b86cb6834836892e89958028ac199dc3d00ec5b56c5ccdfb"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/09-mixed-transit.json",
+        "sha256": "ac797051b97a9110dc5e3e40ee1e05214c28829b79327d86b6444dea3cfd9eb4"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/10-mixed-arrived.json",
+        "sha256": "e257356f32f7fc0e84e08ae7f59a4847c989121f9895030e96e11dc64156e386"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/ammunition/01-ammunition-stock.json",
+        "sha256": "d5f34853c363ff3ea3a76e154bd58e836197e6eb30ce4131c734815c68dab5ad"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/ammunition/02-ammunition-awaiting-settlement.json",
+        "sha256": "e1906791acbe036928d6cafafd70d4631eb72e3fea6426b17eae9e1632f81532"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/ammunition/03-ammunition-transit.json",
+        "sha256": "0936456996109e5282f0c48af24870f58227f2c9ab57742eb51bd7804a930a70"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/ammunition/04-ammunition-arrived.json",
+        "sha256": "c29152dabebbf018efc69717bb038f08442b0c796beb58097a925da1891a6756"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-01-ready.json",
+        "sha256": "f493c4ec09a638745b5614e81b41ee2e4213c224bc19b4007b7c54c31c3e743c"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-02-awaiting-settlement.json",
+        "sha256": "bdfe6d3d1026fdc3f54ec139a9b8f99ea63c60c6258801d734c1ff3aae84c9b0"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-03-escrow-settled.json",
+        "sha256": "4de50b35c0bb176c64726e27b78971348e2c880a50679559275962cf10ae792c"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-04-active-work.json",
+        "sha256": "1f0eef204247c98db435cba8355e85245ece44649a0a8f725e2ee1131d5dcc33"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-05-partial-cancel.json",
+        "sha256": "9e7a615909e31aa817ae6930b7b37e373f37b726aa4eab5976d6a82700ac7906"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-06-cancelled-remainder-returned.json",
+        "sha256": "872a9263855bb724575f0e8ead6e451e0e226be145ab9f0e28f2a1ed18e3a5ad"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-07-complete.json",
+        "sha256": "ecc5cb47bad6bf14bbcb6d2b4f008637809d7919e6bece1e2f1ab138074d20b0"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-01-ready.json",
+        "sha256": "f670547ade019885f9df6d531b780eee819525190812a988f0b37b15946ae807"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-02-awaiting-settlement.json",
+        "sha256": "babcb0a8afcc27ca18bb768794504bc1a45984a6e6b11cc7e6bea7791b6ed899"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-03-escrow-settled.json",
+        "sha256": "f03469085666551d6ae0d91ad78ff1bad99031a94c36678be4402797d0226325"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-04-active-work.json",
+        "sha256": "b795c8a07b34eb2c3a7739e02af086810d7303ae2b6457f79cfd21a788280fae"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-05-partial-cancel.json",
+        "sha256": "db06b773846fd83ebc16c032b924fd5d2aff4dc0a8f9c22766b396bc70a38efb"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-06-cancelled-remainder-returned.json",
+        "sha256": "02d180d9e69a4aab5c8247c462b918d8171fec0c8a4d5e3204ccf58d8542bdcd"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-07-complete.json",
+        "sha256": "96ab1d6be4644a764461dde54e4f739aee7a0c432621123eecf297bfee1085b1"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/Spheres/company-sim-target/release/deps/companies_integration-b294d37d0a85b120.exe",
+        "sha256": "c937e7d7b227bb220c61b112efe9746175f669ccf203d7cc18e3f77b485438e8"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/Spheres/company-sim-target/release/deps/company_ammunition-1bf48242777f9167.exe",
+        "sha256": "d143625688cc014e9ab99ed860ab2789a8db93343ee2549d5022fb0b335dbc7a"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/Spheres/company-sim-target/release/deps/company_refits-63b8194ed38c206a.exe",
+        "sha256": "1444ce20a27398f9ccf8cc163a6f9bf49bb95124a565cf7fa0606db20d67b9a9"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-pinned-master/profile-campaigns/saves/profile-industry_and_war-0.json",
+        "sha256": "5fba07caf82335609aab312f14a37f775dcac84e4821bddc36ab63a5bf795463"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/master-target/release/deps/spheres_web-08880ad35fc922f5.exe",
+        "sha256": "2bedd29560bed02e157a6953d64c45faf91ee21aeac85083aed78a3e74f4f622"
+      }
+    ],
+    "verification": "Explicit read-only Windows drive to /mnt mapping; recorded fixture/source hashes unchanged."
+  },
+  "toolchain_log_sha256": "c2ec9e62ea80772c7e166b3f708eee3229824e979dbce4d0584c3195379e8aa3",
+  "web_test_binary": {
+    "path": "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-0c882886cd9a3582",
+    "bytes": 342069600,
+    "sha256": "5875894b7d04e7ccbf1b760f32b4c32b790e7ffa521c4da4470bef216fa149ef",
+    "sha256_after": "5875894b7d04e7ccbf1b760f32b4c32b790e7ffa521c4da4470bef216fa149ef"
+  },
+  "fixtures_after": {
+    "captured_utc": "2026-09-11T17:05:01.582840+00:00",
+    "active_manifest_sha256": "3f897d3bcd3c24664980a026b710d84e5f8d23cddc2d180d0185efc969a1bd4f",
+    "master_generation_sha256": "c5fc55572751ac6fb75e1bf5074f09e2327ceea8d0bae55bceb63019de2f5ec6",
+    "items": [
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/01-eligible.json",
+        "sha256": "be937d77a21e19ba976cce77cb4a9442d91e15e178554ba1ffd58d7d6394952d"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/02-development.json",
+        "sha256": "215bf13811b6cc330619bbedb322b50224a3b5035b7b9307c5548eea9c3ef0ec"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/03-stock.json",
+        "sha256": "e49f1ed26b68e25b9674eb818fd349d63e6c5b2fcab03cbd664fcd0446569396"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/04-transit.json",
+        "sha256": "c2c1c3466292243cb801a9da3f47055d155586416724a5407d9238c99fe4ab66"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/05-arrived.json",
+        "sha256": "ddc818e9bb3137e9663f51b0532a249b38d630434760cbb3b5dd9c72e290be8e"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/06-ground-stock.json",
+        "sha256": "0a70345d4c8a1adad1e44049b1e4910f786371ace622723bc875b0a92ca8ba69"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/07-aircraft-development.json",
+        "sha256": "c83bdf97394c4349aaa77807548df8f4d60aee136cbd261f6de3d6b74f77b649"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/08-mixed-stock.json",
+        "sha256": "6dfc30bdc4e97db7b86cb6834836892e89958028ac199dc3d00ec5b56c5ccdfb"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/09-mixed-transit.json",
+        "sha256": "ac797051b97a9110dc5e3e40ee1e05214c28829b79327d86b6444dea3cfd9eb4"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/10-mixed-arrived.json",
+        "sha256": "e257356f32f7fc0e84e08ae7f59a4847c989121f9895030e96e11dc64156e386"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/ammunition/01-ammunition-stock.json",
+        "sha256": "d5f34853c363ff3ea3a76e154bd58e836197e6eb30ce4131c734815c68dab5ad"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/ammunition/02-ammunition-awaiting-settlement.json",
+        "sha256": "e1906791acbe036928d6cafafd70d4631eb72e3fea6426b17eae9e1632f81532"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/ammunition/03-ammunition-transit.json",
+        "sha256": "0936456996109e5282f0c48af24870f58227f2c9ab57742eb51bd7804a930a70"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/ammunition/04-ammunition-arrived.json",
+        "sha256": "c29152dabebbf018efc69717bb038f08442b0c796beb58097a925da1891a6756"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-01-ready.json",
+        "sha256": "f493c4ec09a638745b5614e81b41ee2e4213c224bc19b4007b7c54c31c3e743c"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-02-awaiting-settlement.json",
+        "sha256": "bdfe6d3d1026fdc3f54ec139a9b8f99ea63c60c6258801d734c1ff3aae84c9b0"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-03-escrow-settled.json",
+        "sha256": "4de50b35c0bb176c64726e27b78971348e2c880a50679559275962cf10ae792c"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-04-active-work.json",
+        "sha256": "1f0eef204247c98db435cba8355e85245ece44649a0a8f725e2ee1131d5dcc33"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-05-partial-cancel.json",
+        "sha256": "9e7a615909e31aa817ae6930b7b37e373f37b726aa4eab5976d6a82700ac7906"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-06-cancelled-remainder-returned.json",
+        "sha256": "872a9263855bb724575f0e8ead6e451e0e226be145ab9f0e28f2a1ed18e3a5ad"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-07-complete.json",
+        "sha256": "ecc5cb47bad6bf14bbcb6d2b4f008637809d7919e6bece1e2f1ab138074d20b0"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-01-ready.json",
+        "sha256": "f670547ade019885f9df6d531b780eee819525190812a988f0b37b15946ae807"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-02-awaiting-settlement.json",
+        "sha256": "babcb0a8afcc27ca18bb768794504bc1a45984a6e6b11cc7e6bea7791b6ed899"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-03-escrow-settled.json",
+        "sha256": "f03469085666551d6ae0d91ad78ff1bad99031a94c36678be4402797d0226325"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-04-active-work.json",
+        "sha256": "b795c8a07b34eb2c3a7739e02af086810d7303ae2b6457f79cfd21a788280fae"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-05-partial-cancel.json",
+        "sha256": "db06b773846fd83ebc16c032b924fd5d2aff4dc0a8f9c22766b396bc70a38efb"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-06-cancelled-remainder-returned.json",
+        "sha256": "02d180d9e69a4aab5c8247c462b918d8171fec0c8a4d5e3204ccf58d8542bdcd"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-07-complete.json",
+        "sha256": "96ab1d6be4644a764461dde54e4f739aee7a0c432621123eecf297bfee1085b1"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/Spheres/company-sim-target/release/deps/companies_integration-b294d37d0a85b120.exe",
+        "sha256": "c937e7d7b227bb220c61b112efe9746175f669ccf203d7cc18e3f77b485438e8"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/Spheres/company-sim-target/release/deps/company_ammunition-1bf48242777f9167.exe",
+        "sha256": "d143625688cc014e9ab99ed860ab2789a8db93343ee2549d5022fb0b335dbc7a"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/Spheres/company-sim-target/release/deps/company_refits-63b8194ed38c206a.exe",
+        "sha256": "1444ce20a27398f9ccf8cc163a6f9bf49bb95124a565cf7fa0606db20d67b9a9"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-pinned-master/profile-campaigns/saves/profile-industry_and_war-0.json",
+        "sha256": "5fba07caf82335609aab312f14a37f775dcac84e4821bddc36ab63a5bf795463"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/master-target/release/deps/spheres_web-08880ad35fc922f5.exe",
+        "sha256": "2bedd29560bed02e157a6953d64c45faf91ee21aeac85083aed78a3e74f4f622"
+      }
+    ],
+    "verification": "Explicit read-only Windows drive to /mnt mapping; recorded fixture/source hashes unchanged."
+  },
+  "source_after": {
+    "captured_utc": "2026-09-11T17:05:01.591958+00:00",
+    "head": "e6187df8044556a8262154e7a6c8baa32b283799",
+    "status_porcelain": "",
+    "git_dir": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+    "git_work_tree": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration"
+  },
+  "finished_utc": "2026-09-11T17:05:27.131838+00:00"
+}

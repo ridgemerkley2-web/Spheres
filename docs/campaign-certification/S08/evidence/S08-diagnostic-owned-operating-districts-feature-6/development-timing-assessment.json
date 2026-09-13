@@ -1,0 +1,40 @@
+{
+  "scope": "Developmental comparison only. Dirty-source diagnostic using an older genuine input; does not qualify a replacement campaign or build.",
+  "created_utc": "2026-09-13T00:29:11.882937+00:00",
+  "profile_sha256": "b1330780c772a98f0ce99ff784c8d1707eece98e2aeb55ad902645f11b93365f",
+  "plan_sha256": "8d2cb23fe996ba9dc35da0aed5859072a83c2e61b55d4881cf047bc1ac195a28",
+  "runner_sha256": "408571544a758d73460614479d9ca99d873474d8cfd3f627d6a4b4aae3e006ef",
+  "checks": [
+    {
+      "metric": "simulation_and_history_recording.p95_ms",
+      "actual_ms": 384.8299,
+      "limit_ms": 300,
+      "within_limit": false
+    },
+    {
+      "metric": "whole_server_turn.p95_ms",
+      "actual_ms": 490.20730000000003,
+      "limit_ms": 400,
+      "within_limit": false
+    },
+    {
+      "metric": "whole_server_turn.max_ms",
+      "actual_ms": 639.3023,
+      "limit_ms": 750,
+      "within_limit": true
+    },
+    {
+      "metric": "equipment_market_read_and_serialization.p95_ms",
+      "actual_ms": 101.8542,
+      "limit_ms": 300,
+      "within_limit": true
+    },
+    {
+      "metric": "purchase_quote.p95_ms",
+      "actual_ms": 4.0983,
+      "limit_ms": 250,
+      "within_limit": true
+    }
+  ],
+  "all_timing_limits_met": false
+}

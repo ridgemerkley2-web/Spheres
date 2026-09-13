@@ -1,0 +1,20 @@
+    Finished `release` profile [optimized] target(s) in 0.04s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 13 tests
+test equipment::supply_tests::contractor_opening_quote_stays_frozen_when_an_earlier_job_trains_the_company ... ok
+test equipment::supply_tests::contractor_supply_preview_matches_partial_recipe_and_actual_fee_settlement ... ok
+test equipment::supply_tests::s08_equipment_run_prefix_matches_original_365_project_and_ammunition_bits ... ok
+test equipment::supply_tests::supply_exact_fractional_preflight_does_not_claim_rejected_work ... ok
+test equipment::supply_tests::supply_finished_batch_consumes_its_bill_once_and_reload_preserves_it ... ok
+test equipment::supply_tests::supply_forecast_nets_custom_appropriation_and_never_repeats_procurement_bank ... ok
+test equipment::supply_tests::supply_full_custom_calendar_appropriation_leaves_no_invented_legacy_draw ... ok
+test equipment::supply_tests::supply_horizon_uses_one_shared_funding_pool_and_respects_enacted_year ... ok
+test equipment::supply_tests::supply_national_target_cannot_assign_one_dollar_to_two_stock_blocked_projects ... ok
+test equipment::supply_tests::supply_prepaid_balance_can_fund_work_after_annual_authority_expires ... ok
+test equipment::supply_tests::supply_stock_sharing_matches_atomic_settlement_and_partial_conservation ... ok
+test equipment::supply_tests::supply_tooling_start_dates_and_pauses_are_finite_and_pure ... ok
+test equipment::supply_tests::supply_zero_funding_invalid_sites_and_closed_projects_do_not_create_demand ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 808 filtered out; finished in 0.20s
+

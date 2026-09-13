@@ -1,0 +1,307 @@
+{
+  "scope": "Developmental focused semantic checks; not final candidate qualification.",
+  "before": {
+    "head": "e6187df8044556a8262154e7a6c8baa32b283799",
+    "status": " M docs/campaign-certification/S08/README.md\n M spheres-sim/src/commerce.rs\n M spheres-sim/src/companies.rs\n M spheres-sim/src/economic_ai.rs\n M spheres-sim/src/fiscal_journal.rs\n M spheres-sim/src/freight_routing.rs\n M spheres-sim/src/industry.rs\n M spheres-sim/src/industry_operations.rs\n M spheres-sim/src/industry_planning.rs\n M spheres-sim/src/lib.rs\n M spheres-sim/src/logistics.rs\n M spheres-sim/src/materials.rs\n M spheres-sim/src/resources.rs\n M spheres-web/src/company_ammunition_view.rs\n M spheres-web/src/company_view.rs\n M spheres-web/src/equipment_ammunition_view.rs\n M spheres-web/src/equipment_view.rs\n M spheres-web/src/performance.rs\n M tools/ui/ci-supplier-imports.cjs\n?? spheres-web/src/s08_performance_diagnostics.rs\n?? tools/ui/archive-worker.py\n?? tools/ui/supplier-archive-audit.cjs\n",
+    "files": {
+      "docs/campaign-certification/S08/README.md": "f1b020b52af31eeebeb1d87316384b3da2cbd75f787cd1adcdba8ba962413222",
+      "spheres-sim/src/commerce.rs": "3ef26c83c15882dfedd66b19a95bf0ee4acf018ad5115b30078df8f2c0264ad2",
+      "spheres-sim/src/companies.rs": "45815ae9fd7334361d1814b39b1a460c63acd8597a883b2aec14dea108bf4ecf",
+      "spheres-sim/src/economic_ai.rs": "f00a567ec9d800bab6c32f0282a1dee708d9b9aa82b639df6a24954f476798aa",
+      "spheres-sim/src/fiscal_journal.rs": "b3dbc64bde0a56476e315307320f59457f93c83c1f9b39f10da0349119aff0c9",
+      "spheres-sim/src/freight_routing.rs": "d9fed6f073cd1ba52928028b685a3ebaa4a1edd8fca01610605dcc91fda191e2",
+      "spheres-sim/src/industry.rs": "be6779adc4418f5ad72bf383cbaa9cc7275cdd6344424163a99fe2e48c27328d",
+      "spheres-sim/src/industry_operations.rs": "5210c457d8739274a96801a84651595fe3cd0597108b51e91be817b5fdfacda9",
+      "spheres-sim/src/industry_planning.rs": "d49176e4b0a8c81387f241aefb6d97371980ed0c3abe5c2a7c37195e36ec7a36",
+      "spheres-sim/src/lib.rs": "6918ee6fc31241631ab4331fa7d35c331372fdf913a7423ef2abefac0d413818",
+      "spheres-sim/src/logistics.rs": "fe71ca6de4cd780f1794d36e59eeac9ca265a2d9e18cfc30dcaa658b0f466713",
+      "spheres-sim/src/materials.rs": "86526777f12796a7accccd7b958da5521da3ffe1f79aefab41307a5cb31a5c51",
+      "spheres-sim/src/resources.rs": "678f4d22c193beb0691df6b5a5d06a05718961d74a80aeb1a0460bc3ec66996a",
+      "spheres-web/src/company_ammunition_view.rs": "4c52493d9d1f31ae272a6807ce604ba823efd2d5253ae6322e49f9c1ad074855",
+      "spheres-web/src/company_view.rs": "bf6b7a3314a397bd42cc58cbcbe631f130b734993347687d6b30744b6b3c68ce",
+      "spheres-web/src/equipment_ammunition_view.rs": "6738c86e69ded3a1a1e29bad744e38dc9285f2324a6dc7ebc26786095bc1a802",
+      "spheres-web/src/equipment_view.rs": "197cf81e52b49be8fe8e751f0859f2fb2ed6e14502dbc66f8530485be0367958",
+      "spheres-web/src/performance.rs": "aadbe2eabafe7d41e97763177fe5410917f058dfc62891149af4f5e5f20587b9",
+      "spheres-web/src/s08_performance_diagnostics.rs": "ca72b67132e732ed15ce3b55ca611ec925d36ca73da5a3e6d9573ac9f3204f21",
+      "tools/ui/archive-worker.py": "361b86a8c12623a553ad2f7e54dd0ccded74fa9cf03b51f4d0a3bfdf93530165",
+      "tools/ui/ci-supplier-imports.cjs": "e63b341549f2fda51d317884998287a99218def84c9d267267a6e70a03a44ba7",
+      "tools/ui/supplier-archive-audit.cjs": "3ab1d2e933fe700d74d41dda11e25573ac4d0401ecafe37dd259b1a18173dea7"
+    },
+    "diff_sha256": "064165fed6a719bcfb532ce59fe10c9b08662d985e3c594c5aa52a368cf15d5c"
+  },
+  "runner_sha256": "cc1d20311df84919320443b571c6a7b4f7128510b1a42a1caa67bc699b1afa42",
+  "checks": [
+    {
+      "name": "root-sim",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-sim",
+        "--lib",
+        "s08_",
+        "--",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "started_utc": "2026-09-12T23:00:30.797624+00:00",
+      "exit_code": 0,
+      "totals": [
+        [
+          "18",
+          "0",
+          "0"
+        ]
+      ],
+      "log_sha256": "06d4abed02f8e81b29d9097773e8e22e0acd6a9fad0f31358465fb18205eac5e",
+      "passed": true
+    },
+    {
+      "name": "route-context",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-sim",
+        "--lib",
+        "contract_forecast_context",
+        "--",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "started_utc": "2026-09-12T23:02:15.826584+00:00",
+      "exit_code": 0,
+      "totals": [
+        [
+          "2",
+          "0",
+          "0"
+        ]
+      ],
+      "log_sha256": "7123ca6187edf7fcf7aa398bd23bfefc3e4c169f9b60223bff3982cb06f2edbc",
+      "passed": true
+    },
+    {
+      "name": "market-cargo",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-sim",
+        "--lib",
+        "spot_opening_pending",
+        "--",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "started_utc": "2026-09-12T23:02:16.021277+00:00",
+      "exit_code": 0,
+      "totals": [
+        [
+          "2",
+          "0",
+          "0"
+        ]
+      ],
+      "log_sha256": "781edf7362c7f28e4334bd30f24c0ea2b59620d2cb3b4b890474a44b89885776",
+      "passed": true
+    },
+    {
+      "name": "new-inbound",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-sim",
+        "--lib",
+        "new_inbound_commodity_short_circuit",
+        "--",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "started_utc": "2026-09-12T23:02:16.199629+00:00",
+      "exit_code": 0,
+      "totals": [
+        [
+          "1",
+          "0",
+          "0"
+        ]
+      ],
+      "log_sha256": "75db37eb18e61eb2978ff763a88d104888e6b014aafe6c4eda45c9e05a550dae",
+      "passed": true
+    },
+    {
+      "name": "route-access",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-sim",
+        "--lib",
+        "freight_access_read",
+        "--",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "started_utc": "2026-09-12T23:02:16.367399+00:00",
+      "exit_code": 0,
+      "totals": [
+        [
+          "3",
+          "0",
+          "0"
+        ]
+      ],
+      "log_sha256": "3bd5a75ba6d0d64f25ff444cd3c5c2655d52f63c4f0f4eede9c12de6498dc366",
+      "passed": true
+    },
+    {
+      "name": "clearing-access",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-sim",
+        "--lib",
+        "clearing_access_reuse",
+        "--",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "started_utc": "2026-09-12T23:02:16.554916+00:00",
+      "exit_code": 0,
+      "totals": [
+        [
+          "3",
+          "0",
+          "0"
+        ]
+      ],
+      "log_sha256": "4eaa541489279529db69de7cdd39b62668856293668404c954280ad0550f3bbf",
+      "passed": true
+    },
+    {
+      "name": "commerce",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-sim",
+        "--lib",
+        "commerce_",
+        "--",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "started_utc": "2026-09-12T23:02:16.748276+00:00",
+      "exit_code": 0,
+      "totals": [
+        [
+          "3",
+          "0",
+          "0"
+        ]
+      ],
+      "log_sha256": "4e00ebc0f0d929c1fd1b32c0324b8f197ffe7f88b708dd44919f7638bd6bc41e",
+      "passed": true
+    },
+    {
+      "name": "ai-observer",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-sim",
+        "--lib",
+        "detailed_review_observer",
+        "--",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "started_utc": "2026-09-12T23:02:17.068158+00:00",
+      "exit_code": 0,
+      "totals": [
+        [
+          "1",
+          "0",
+          "0"
+        ]
+      ],
+      "log_sha256": "dc996c0ef595f63dbe14f0897fdf7f3b897debbebf48d876948f8c20570d4e9a",
+      "passed": true
+    },
+    {
+      "name": "web-reads",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-web",
+        "s08_",
+        "--",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "started_utc": "2026-09-12T23:02:17.407600+00:00",
+      "exit_code": 0,
+      "totals": [
+        [
+          "9",
+          "0",
+          "4"
+        ]
+      ],
+      "log_sha256": "7774e88977db89bf9dad5a3447c0785bd220fa863859ec7849e04340b1300d29",
+      "passed": true
+    }
+  ],
+  "after": {
+    "head": "e6187df8044556a8262154e7a6c8baa32b283799",
+    "status": " M docs/campaign-certification/S08/README.md\n M spheres-sim/src/commerce.rs\n M spheres-sim/src/companies.rs\n M spheres-sim/src/economic_ai.rs\n M spheres-sim/src/fiscal_journal.rs\n M spheres-sim/src/freight_routing.rs\n M spheres-sim/src/industry.rs\n M spheres-sim/src/industry_operations.rs\n M spheres-sim/src/industry_planning.rs\n M spheres-sim/src/lib.rs\n M spheres-sim/src/logistics.rs\n M spheres-sim/src/materials.rs\n M spheres-sim/src/resources.rs\n M spheres-web/src/company_ammunition_view.rs\n M spheres-web/src/company_view.rs\n M spheres-web/src/equipment_ammunition_view.rs\n M spheres-web/src/equipment_view.rs\n M spheres-web/src/performance.rs\n M tools/ui/ci-supplier-imports.cjs\n?? spheres-web/src/s08_performance_diagnostics.rs\n?? tools/ui/archive-worker.py\n?? tools/ui/supplier-archive-audit.cjs\n",
+    "files": {
+      "docs/campaign-certification/S08/README.md": "f1b020b52af31eeebeb1d87316384b3da2cbd75f787cd1adcdba8ba962413222",
+      "spheres-sim/src/commerce.rs": "3ef26c83c15882dfedd66b19a95bf0ee4acf018ad5115b30078df8f2c0264ad2",
+      "spheres-sim/src/companies.rs": "45815ae9fd7334361d1814b39b1a460c63acd8597a883b2aec14dea108bf4ecf",
+      "spheres-sim/src/economic_ai.rs": "f00a567ec9d800bab6c32f0282a1dee708d9b9aa82b639df6a24954f476798aa",
+      "spheres-sim/src/fiscal_journal.rs": "b3dbc64bde0a56476e315307320f59457f93c83c1f9b39f10da0349119aff0c9",
+      "spheres-sim/src/freight_routing.rs": "d9fed6f073cd1ba52928028b685a3ebaa4a1edd8fca01610605dcc91fda191e2",
+      "spheres-sim/src/industry.rs": "be6779adc4418f5ad72bf383cbaa9cc7275cdd6344424163a99fe2e48c27328d",
+      "spheres-sim/src/industry_operations.rs": "5210c457d8739274a96801a84651595fe3cd0597108b51e91be817b5fdfacda9",
+      "spheres-sim/src/industry_planning.rs": "d49176e4b0a8c81387f241aefb6d97371980ed0c3abe5c2a7c37195e36ec7a36",
+      "spheres-sim/src/lib.rs": "6918ee6fc31241631ab4331fa7d35c331372fdf913a7423ef2abefac0d413818",
+      "spheres-sim/src/logistics.rs": "fe71ca6de4cd780f1794d36e59eeac9ca265a2d9e18cfc30dcaa658b0f466713",
+      "spheres-sim/src/materials.rs": "86526777f12796a7accccd7b958da5521da3ffe1f79aefab41307a5cb31a5c51",
+      "spheres-sim/src/resources.rs": "678f4d22c193beb0691df6b5a5d06a05718961d74a80aeb1a0460bc3ec66996a",
+      "spheres-web/src/company_ammunition_view.rs": "4c52493d9d1f31ae272a6807ce604ba823efd2d5253ae6322e49f9c1ad074855",
+      "spheres-web/src/company_view.rs": "bf6b7a3314a397bd42cc58cbcbe631f130b734993347687d6b30744b6b3c68ce",
+      "spheres-web/src/equipment_ammunition_view.rs": "6738c86e69ded3a1a1e29bad744e38dc9285f2324a6dc7ebc26786095bc1a802",
+      "spheres-web/src/equipment_view.rs": "197cf81e52b49be8fe8e751f0859f2fb2ed6e14502dbc66f8530485be0367958",
+      "spheres-web/src/performance.rs": "aadbe2eabafe7d41e97763177fe5410917f058dfc62891149af4f5e5f20587b9",
+      "spheres-web/src/s08_performance_diagnostics.rs": "ca72b67132e732ed15ce3b55ca611ec925d36ca73da5a3e6d9573ac9f3204f21",
+      "tools/ui/archive-worker.py": "361b86a8c12623a553ad2f7e54dd0ccded74fa9cf03b51f4d0a3bfdf93530165",
+      "tools/ui/ci-supplier-imports.cjs": "e63b341549f2fda51d317884998287a99218def84c9d267267a6e70a03a44ba7",
+      "tools/ui/supplier-archive-audit.cjs": "3ab1d2e933fe700d74d41dda11e25573ac4d0401ecafe37dd259b1a18173dea7"
+    },
+    "diff_sha256": "064165fed6a719bcfb532ce59fe10c9b08662d985e3c594c5aa52a368cf15d5c"
+  },
+  "passed": true
+}

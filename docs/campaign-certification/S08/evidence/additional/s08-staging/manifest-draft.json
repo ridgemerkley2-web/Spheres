@@ -1,0 +1,250 @@
+{
+  "format": "spheres-s08-qualification-draft",
+  "version": 1,
+  "session": "S08",
+  "status": "verification_pending",
+  "completed_date": null,
+  "runtime_revision": "e6187df8044556a8262154e7a6c8baa32b283799",
+  "baseline_source_revision": "68e863055ee6ddf6c9796547995dccf455557edd",
+  "prepared_utc": "2026-09-11T17:14:34.8262160Z",
+  "publication": "Outside repository draft; final browser, performance, preservation and collector acceptance remain pending.",
+  "binaries": {
+    "windows_game_sha256": "d878f36a4dec2c83cfb7477a49ce678d4579a26388b0b45f2504c974bba2ee90",
+    "windows_test_sha256": "08efa87e668186bddca8a7265c9068578708ebb7ed379b36e51fca22354df2ed",
+    "linux_test_sha256": "5875894b7d04e7ccbf1b760f32b4c32b790e7ffa521c4da4470bef216fa149ef",
+    "source_build_proof": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-final-binary.json",
+      "sha256": "48622adcb21a7d0e5b5f5972e19d61dc439f8e8bbdfce86c77b0ebdb3479aefc"
+    }
+  },
+  "windows_native": {
+    "status": "passed",
+    "counts": {
+      "passed": 1537,
+      "failed": 0,
+      "ignored": 77,
+      "completed_targets": 65
+    },
+    "evidence": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-final-native.json",
+      "sha256": "61d2887fc22c2a53bd9f5f9e94a341a5997d7653ae4d653e334fa3cb482de17a"
+    }
+  },
+  "linux_native": {
+    "status": "passed",
+    "counts": {
+      "passed": 1537,
+      "failed": 0,
+      "ignored": 77,
+      "completed_targets": 65
+    },
+    "evidence": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-linux-final\\runner-result.json",
+      "sha256": "d8ebf19a95397ea5464974290b00cf1f87da90f1d67da316c3b79ea4823e9f84"
+    }
+  },
+  "node": {
+    "windows": {
+      "evidence": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-final-node.json",
+        "sha256": "28dc3de8fbe67e22ca580961261ab9431d80665d5d549677a99eac62bf6353b5"
+      },
+      "skipped": 1,
+      "failed": 0,
+      "tests": 1508,
+      "passed": 1507
+    },
+    "linux": {
+      "log_sha256": "0041f4e9253ff71979fa4e5884ed6b0a106b55242d7e8f2ce2ff66e91b44e235",
+      "skipped": 1,
+      "failed": 0,
+      "tests": 1508,
+      "passed": 1507
+    },
+    "skip": "Optional archived real-API advisor reading"
+  },
+  "external_archives": {
+    "status": "passed",
+    "windows_exact_tests": 3,
+    "linux_exact_tests": 3,
+    "each_test": {
+      "failed": 0,
+      "ignored": 0,
+      "passed": 1
+    },
+    "windows_evidence": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-external-final\\result.json",
+      "sha256": "6ae4c3ed3104ca03aac3a71b322e1d27bc2ed9be57f8037c1ebb41be1fc6bef7"
+    },
+    "linux_evidence": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-linux-final\\runner-result.json",
+      "sha256": "d8ebf19a95397ea5464974290b00cf1f87da90f1d67da316c3b79ea4823e9f84"
+    },
+    "scope": [
+      "Genuine pinned master archive and one next-day continuation",
+      "28 original active supplier lifecycle fixtures, unchanged and explicitly adopted",
+      "Party v1 standalone saves with real nested equipment versions 2 through 5"
+    ]
+  },
+  "genuine_native_journey": {
+    "status": "passed",
+    "evidence": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-final-1\\runner-result.json",
+      "sha256": "45ca7979e1d5e78e5a677638ece942089fbfb7c6e9829ed8477750376517ea5c"
+    },
+    "actual_days_advanced": 2155,
+    "first_stock_and_purchase_observed_date": "29 Oct 1995",
+    "first_stock_and_purchase_day": 2127,
+    "quantity": 1,
+    "unit_price_bn": 0.0018396366278316358,
+    "contract_id": 3694,
+    "native_delivered_day": 2154,
+    "observed_delivered_day": 2155,
+    "observed_delivered_date": "26 Nov 1995",
+    "terminal_escrow_bn": 0.0,
+    "terminal_refunded_bn": 0.0,
+    "decoded_phases": [
+      {
+        "path": "export/2127-first-finished-stock.campaign.json",
+        "sha256": "3beea2a6c5936057c27cb99c7ed09de40d455b5e5ea1e3b6710d85ddd78f1a0d",
+        "bytes": 134254304
+      },
+      {
+        "path": "export/2127-purchased.campaign.json",
+        "sha256": "8b604a139dc824359fcc1206896bc5136538e9064eb55fc07af02ca09706f827",
+        "bytes": 134238603
+      },
+      {
+        "path": "export/2127-ready-before-purchase.campaign.json",
+        "sha256": "d75256d72386842d79279b4fa26ea087d24578ab2a01221b6b4c3efb1a6acb37",
+        "bytes": 134254304
+      },
+      {
+        "path": "export/2155-delivered.campaign.json",
+        "sha256": "58be4b7289213145b40d99eaec1d5eccf620ffe021bb35fb9d47ab218446f4ef",
+        "bytes": 130971637
+      }
+    ],
+    "decoder_assertion": "Each of four named phases uses actual archive decoder and exact canonical native world serialization equality",
+    "full_second_fresh_replay_executed": false,
+    "browser_timeline": "Separate; browser deliberately ages a quote before purchase. Do not copy native dates into browser results."
+  },
+  "reviewed_policy": {
+    "evidence": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-final-1\\export\\declared-funding-policy.json",
+      "sha256": "2e36f24e099cdc00d38c152e0e0bd47beec8330f4baa357381de47e8130a3a3e"
+    },
+    "political_capital_cost": 15.085,
+    "total_spending_before": 0.30900000000000005,
+    "total_spending_after": 0.30900000000000005,
+    "annual_procurement_bn_at_review": 0.0030096,
+    "defense_department_basis_points": [
+      600,
+      600,
+      700,
+      8000,
+      100
+    ],
+    "transfer_gdp_share_from_infrastructure_to_defense": 0.025,
+    "annual_renewal": "Same chosen policy, ordinary commands, no carry-over",
+    "no_immediate_cash_debt_authority_stock_or_research_grant": true,
+    "tradeoff": "Less infrastructure and military research; positive personnel, operations and maintenance appropriations retained."
+  },
+  "synthetic_matrix": {
+    "existing_platforms": 11,
+    "domestic_ammunition_families": 23,
+    "representative_foreign_ammunition": [
+      "mg_127",
+      "air_bomb_guided"
+    ],
+    "fixture_endowments_disclosed": true,
+    "not_fresh_world_all_platform_availability": true,
+    "upkeep_scope": "Eleven-platform imported maintenance acceptance and positive requirement; separate actual paid service receipt is pending browser qualification, not per-platform full-funded service asserted."
+  },
+  "retained_failures": [
+    {
+      "kind": "default-policy developmental campaign",
+      "status": "failed",
+      "evidence": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-development-1\\result.json",
+        "sha256": "5e628de7f5a61fcc76bfbb6840012c6e64a2975317feb4527eb5f07fbc0d8817"
+      },
+      "final_day": 3000,
+      "final_date": "20 Mar 1998",
+      "purchase": null,
+      "seller_apc_stock": 4,
+      "unit_price_bn": 0.0018396365958883887,
+      "affordable_quantity": 0,
+      "source_bound_final": false,
+      "disposition": "Retained default-budget failure; genuine final run uses an explicit paid budget tradeoff, not a grant."
+    },
+    {
+      "kind": "Linux launch 1",
+      "status": "infrastructure_failed_before_tests",
+      "tests_executed": 0,
+      "evidence": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-linux-launch-1-diagnosis.json",
+        "sha256": "d95fcc672468783132aafc7dfa0ec3918e4321ef862a457794deb1bc44fedaea"
+      },
+      "disposition": "Bounded launch2 after Windows compilation passed without WSL/service/config changes; exact original cause unproven."
+    }
+  ],
+  "supplier_browser": {
+    "status": "pending",
+    "evidence": null,
+    "observed_dates": null,
+    "purchase_receipt": null,
+    "paid_maintenance_receipt": null,
+    "save_continue": null,
+    "instructions": "Fill actual browser timeline, one purchase plus one reviewed maintenance command, stale-quote rejection, paid aggregate custom-fleet service and retained first-load harness correction."
+  },
+  "regression_browsers": {
+    "status": "pending_final_association",
+    "general_wrapper": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-final-browser-installed.json",
+      "sha256": "1748f66e87861c2d6c70d35af3cfa05ff23ca965d692ab2bb70f93db01eb7e61"
+    },
+    "money_wrapper": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-final-money-browser.json",
+      "sha256": "feab9c93b69d46ed49b4c7e7b2ebf0902e7936741d06c68386b0c786a20f9570"
+    },
+    "wrapper_exit_codes": [
+      0,
+      0
+    ],
+    "final_results": null
+  },
+  "performance": {
+    "status": "pending",
+    "declared_plan": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-performance-plan.json",
+      "sha256": "8d2cb23fe996ba9dc35da0aed5859072a83c2e61b55d4881cf047bc1ac195a28"
+    },
+    "bound_legacy_protocol": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-performance-protocol.json",
+      "sha256": "214dae00b459795af317f9d4caed1d871ca35adfaf1d854079d90f78e2d311ec"
+    },
+    "legacy_six_workload_result": null,
+    "genuine_supplier_workload_result": null,
+    "limits_unchanged": true
+  },
+  "preservation": {
+    "status": "pending_final_audit",
+    "qualified_start": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-preservation-qualified-start.json",
+      "sha256": "f45744b57a87f4e021def8b5b2b0b2b5dc4b8c86b26ec628214db7a813d84fc4"
+    },
+    "linux_all_33_protected_fixture_and_producer_hashes_unchanged": true,
+    "linux_source_clean_before_and_after": true,
+    "final_original_eight_save_audit": null,
+    "final_collector_manifest": null
+  },
+  "disposition": {
+    "status": "pending",
+    "next_session": "S09",
+    "next_session_status": "planned",
+    "execution_stop": "after S08",
+    "next_session_requires_new_instruction": true,
+    "new_campaign_content_or_release_gate_awarded": false
+  }
+}

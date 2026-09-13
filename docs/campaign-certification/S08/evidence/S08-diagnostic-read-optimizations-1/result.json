@@ -1,0 +1,52 @@
+{
+  "scope": "Developmental diagnostic only; no qualification or threshold decision.",
+  "lane": "build",
+  "source_before": {
+    "head": "e6187df8044556a8262154e7a6c8baa32b283799",
+    "status": " M spheres-sim/src/fiscal_journal.rs\n M spheres-sim/src/lib.rs\n M spheres-web/src/company_ammunition_view.rs\n M spheres-web/src/company_view.rs\n M spheres-web/src/equipment_ammunition_view.rs\n M spheres-web/src/equipment_view.rs\n M spheres-web/src/performance.rs\n?? spheres-web/src/s08_performance_diagnostics.rs\n",
+    "files": {
+      "spheres-sim/src/fiscal_journal.rs": "b3dbc64bde0a56476e315307320f59457f93c83c1f9b39f10da0349119aff0c9",
+      "spheres-sim/src/lib.rs": "c424695c7311fffc3150ba4fceea18c51d3131d5bf953f05989912e9541bbfc1",
+      "spheres-web/src/company_ammunition_view.rs": "4c52493d9d1f31ae272a6807ce604ba823efd2d5253ae6322e49f9c1ad074855",
+      "spheres-web/src/company_view.rs": "bf6b7a3314a397bd42cc58cbcbe631f130b734993347687d6b30744b6b3c68ce",
+      "spheres-web/src/equipment_ammunition_view.rs": "6738c86e69ded3a1a1e29bad744e38dc9285f2324a6dc7ebc26786095bc1a802",
+      "spheres-web/src/equipment_view.rs": "197cf81e52b49be8fe8e751f0859f2fb2ed6e14502dbc66f8530485be0367958",
+      "spheres-web/src/main.rs": "df9d8a6c7c281faf0b01328655e2e4775539d3f90db811553199aacc58b35518",
+      "spheres-web/src/performance.rs": "aadbe2eabafe7d41e97763177fe5410917f058dfc62891149af4f5e5f20587b9",
+      "spheres-web/src/s08_performance_diagnostics.rs": "b95f9be5be0dafc2f36e8b2ea2906f06bf2ee24b59c61d9461f6be1c63be4f92"
+    },
+    "diff_sha256": "7cc4428ac992aec5a5a87f83df96046fd5025a1d88e4aa7619ad9f0d83b96991"
+  },
+  "command": [
+    "cargo",
+    "test",
+    "--locked",
+    "--release",
+    "-p",
+    "spheres-web",
+    "--no-run"
+  ],
+  "started_utc": "2026-09-11T17:39:23.970657+00:00",
+  "runner_sha256": "5d566f830176bb2eac28b3d7b6629b21a3cb4f535918113ea8dd053787f54478",
+  "exit_code": 0,
+  "source_after": {
+    "head": "e6187df8044556a8262154e7a6c8baa32b283799",
+    "status": " M spheres-sim/src/fiscal_journal.rs\n M spheres-sim/src/lib.rs\n M spheres-web/src/company_ammunition_view.rs\n M spheres-web/src/company_view.rs\n M spheres-web/src/equipment_ammunition_view.rs\n M spheres-web/src/equipment_view.rs\n M spheres-web/src/performance.rs\n?? spheres-web/src/s08_performance_diagnostics.rs\n",
+    "files": {
+      "spheres-sim/src/fiscal_journal.rs": "b3dbc64bde0a56476e315307320f59457f93c83c1f9b39f10da0349119aff0c9",
+      "spheres-sim/src/lib.rs": "c424695c7311fffc3150ba4fceea18c51d3131d5bf953f05989912e9541bbfc1",
+      "spheres-web/src/company_ammunition_view.rs": "4c52493d9d1f31ae272a6807ce604ba823efd2d5253ae6322e49f9c1ad074855",
+      "spheres-web/src/company_view.rs": "bf6b7a3314a397bd42cc58cbcbe631f130b734993347687d6b30744b6b3c68ce",
+      "spheres-web/src/equipment_ammunition_view.rs": "6738c86e69ded3a1a1e29bad744e38dc9285f2324a6dc7ebc26786095bc1a802",
+      "spheres-web/src/equipment_view.rs": "197cf81e52b49be8fe8e751f0859f2fb2ed6e14502dbc66f8530485be0367958",
+      "spheres-web/src/main.rs": "df9d8a6c7c281faf0b01328655e2e4775539d3f90db811553199aacc58b35518",
+      "spheres-web/src/performance.rs": "aadbe2eabafe7d41e97763177fe5410917f058dfc62891149af4f5e5f20587b9",
+      "spheres-web/src/s08_performance_diagnostics.rs": "b95f9be5be0dafc2f36e8b2ea2906f06bf2ee24b59c61d9461f6be1c63be4f92"
+    },
+    "diff_sha256": "7cc4428ac992aec5a5a87f83df96046fd5025a1d88e4aa7619ad9f0d83b96991"
+  },
+  "finished_utc": "2026-09-11T17:40:56.333022+00:00",
+  "log_sha256": "56886bd7b12d61293a2d1a227f189131bbf0b2350fd1f84c14099db8fa7c5d2a",
+  "source_unchanged": true,
+  "passed": true
+}

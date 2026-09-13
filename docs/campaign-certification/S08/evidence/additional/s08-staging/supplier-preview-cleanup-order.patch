@@ -1,0 +1,16 @@
+--- a/tools/ui/ci-supplier-imports.cjs
++++ b/tools/ui/ci-supplier-imports.cjs
+@@ -96,10 +96,10 @@
+   }catch(error){failures.push(error);}
+   finally{
+     release();
+-    // Removing this handler leaves unrelated interceptors intact and lets an
+-    // already running handler finish. Await its fetch/fulfill/dispose outcome.
++    // Finish this response before removing the interceptor: Playwright may
++    // otherwise continue the in-flight route while fulfill is still pending.
++    if(started)try{failures.push(...await wait(completed,'finishing the held preview'));}catch(error){failures.push(error);}
+     try{await page.unroute(pattern,handler);}catch(error){failures.push(error);}
+-    if(started)try{failures.push(...await wait(completed,'finishing the held preview'));}catch(error){failures.push(error);}
+   }
+   const errors=[...new Set(failures)];
+   if(errors.length)throw errors.length===1?errors[0]:new AggregateError(errors,'Supplier stale-review request and cleanup failed: '+errors.map(error=>String(error).slice(0,2000)).join(' | '));

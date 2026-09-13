@@ -1,0 +1,31 @@
+{
+  "runtime_revision": "e6187df8044556a8262154e7a6c8baa32b283799",
+  "stage": "WSL VM startup before Python runner",
+  "exit_code": -1,
+  "tests_executed": 0,
+  "error": "Wsl/Service/CreateInstance/CreateVm/HCS_E_CONNECTION_TIMEOUT",
+  "log": "S08-linux-launch.log",
+  "log_sha256": "b37ea3115fb9d7e6de9698362f8d0334a5c6e69505d68cf186adbf13fb765dee",
+  "exit_file": "S08-linux-launch.exit",
+  "first_memory_snapshot_kb": {
+    "total_physical": 32625640,
+    "total_virtual": 51636360,
+    "free_virtual": 8882172,
+    "free_physical": 7651316
+  },
+  "later_memory_snapshot_utc": "2026-09-11T16:49:15.6801013Z",
+  "later_memory_snapshot_kb": {
+    "total_physical": 32625640,
+    "total_virtual": 47279704,
+    "free_virtual": 8655552,
+    "free_physical": 11915512
+  },
+  "wslconfig_exists": false,
+  "observed_distros": {
+    "Ubuntu": "Stopped (version 2)",
+    "docker-desktop": "Stopped (version 2)"
+  },
+  "source_status": "clean before launch and after failed startup",
+  "conclusion": "Infrastructure startup failure; exact cause is unproven. Memory observations do not establish allocation failure.",
+  "actions": "Read-only process/configuration inspection; no global WSL shutdown, service restart, or settings change. Retry waits until Windows compiler has exited."
+}

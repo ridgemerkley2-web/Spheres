@@ -1,0 +1,12 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 3.91s
+     Running tests\s08_supplier_catalogue.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\s08_supplier_catalogue-13c4e9c062328d0f.exe)
+
+running 4 tests
+test old_worlds_and_current_player_are_never_directed ... ok
+test catalogue_adoption_is_metadata_only_and_passive_views_are_pure ... ok
+test scheduled_review_orders_paid_work_once_without_completed_property ... ok
+test malformed_planner_metadata_is_rejected_on_load ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.06s
+

@@ -1,0 +1,12 @@
+{
+  "applied": true,
+  "compiled": false,
+  "tested": false,
+  "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\spheres-sim\\src\\commerce.rs",
+  "source_sha256": "e4f09cc3073869f285c71709629e11df9118eaa858b26d547cac580925d494da",
+  "patch_sha256": "338705c14544abebac7bf9c72b0c336041e7f40d7d037955e6e9f5b850abb9cd",
+  "candidate_sha256": "90985764748f80fef1192122872d96e083e2060d1ddced3d940d9b0d071cf98e",
+  "scope": "Commerce preflight/check reuse and one immutable market-query buyer active-contract scan; original repeated-read arms retained as test oracles. Standalone accept_lot remains unchanged.",
+  "applied_source_sha256": "9b5ff0505ab1a4c3cdb39987251c2ab1134eefe023e2f14dd57689473177e4a5",
+  "standalone_accept_lot_unchanged": true
+}

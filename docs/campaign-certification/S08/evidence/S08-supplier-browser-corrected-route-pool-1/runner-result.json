@@ -1,0 +1,229 @@
+{
+  "format": "spheres-s08-corrected-supplier-browser",
+  "version": 1,
+  "candidate": "d770592aeead51f1313d507edd26b02d75a69bba",
+  "started_utc": "2026-09-13T02:15:48.844471+00:00",
+  "passed": false,
+  "exit_code": 1,
+  "scope": "Explicit corrected test-harness source on the unchanged qualified runtime; not execution of the committed harness bytes.",
+  "runner": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s08-supplier-browser-corrected.py",
+  "runner_sha256": "1ea582bddda76ea31b584afe71719660323391ce88dd3a01214f9cd679d95c65",
+  "overlay_entry": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-supplier-harness-overlay.cjs",
+  "overlay_entry_sha256": "9ae828d6c9c42815e9b8859aa01b33d006903cf391ab229c6ca1c1b12f3e6a73",
+  "output_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1",
+  "proofs": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-final-native-route-pool-1.json",
+      "sha256": "544c8e3584d183a736c238a65cf53d30a2e5d3c386a0d08827570e879daa3913"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-final-binary-route-pool-1.json",
+      "sha256": "d5eb0a8cb0ab3ecd61dcf1ccb89cc517cf2bcbe9684d455dc257cd27848421a8"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\runner-result.json",
+      "sha256": "043e94f59023a48756793b2abaea3a2655cabf972abbe66f8498125e41ed59a8"
+    }
+  ],
+  "phases": [
+    {
+      "file": "2127-ready-before-purchase.campaign.json",
+      "sha256": "c7cd98c5224a6ae80722ae2d113de8036bf191d7168c7ee2eebfd74917a4a100",
+      "bytes": 134254304,
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-ready-before-purchase.campaign.json"
+    },
+    {
+      "file": "0360-progress.campaign.json",
+      "sha256": "347e96fc018afd567fef04eb55ab17a0c30a88245db45e2e236842ea3b39c1ab",
+      "bytes": 54641195,
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\0360-progress.campaign.json"
+    }
+  ],
+  "source_before": {
+    "captured_utc": "2026-09-13T02:15:48.844996+00:00",
+    "revision": "d770592aeead51f1313d507edd26b02d75a69bba",
+    "status_porcelain": ""
+  },
+  "harness_overlay": {
+    "original_filename": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-supplier-imports.cjs",
+    "original_checkout_sha256": "de8a13611ce1617133710b252253cd82e41d6a4b74d39799f7d29eb2b97ce7f1",
+    "original_commit_blob": "e09d0e94757b2203ecc9c316ec8e1a6ee119ad18",
+    "patched_source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\ci-supplier-imports.cleanup-order.cjs",
+    "patched_sha256": "c74f8a8d1f1ee090113179a5a34acfada0ffa28e8689de4e3aba8fa766e21b9c",
+    "executed_snapshot": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1\\executed-supplier-harness.cjs",
+    "executed_sha256": "c74f8a8d1f1ee090113179a5a34acfada0ffa28e8689de4e3aba8fa766e21b9c",
+    "method": "Node Module._compile(exact patched bytes, originalFilename); unchanged relative helpers and runtime",
+    "final_commit_requirement": "Apply the exact executed harness patch transparently in the later test/docs commit; runtime proof remains on this candidate."
+  },
+  "binaries": {
+    "game": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+      "sha256": "c5852894069c797c1cbf6b15a302f73f85a0f0b4a4edfee63eb1ca6b367f8435"
+    },
+    "test": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+      "sha256": "96bb58155a19218d6d37afabfb8d26c83c53d3dbebf5ca116a870fe950c655f7"
+    }
+  },
+  "bound_environment": {
+    "SPHERES_BINARY": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+    "SPHERES_EXPECTED_REVISION": "d770592aeead51f1313d507edd26b02d75a69bba",
+    "SPHERES_BROWSER_CHANNEL": "chrome",
+    "SPHERES_SUPPLIER_SAVE": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-ready-before-purchase.campaign.json",
+    "SPHERES_SUPPLIER_PREPARATION_SAVE": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\0360-progress.campaign.json",
+    "SPHERES_SUPPLIER_PROVENANCE": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\runner-result.json",
+    "SPHERES_SUPPLIER_OUTPUT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1",
+    "SPHERES_SUPPLIER_SLOT": "s08-earned-stock",
+    "SPHERES_SUPPLIER_MAX_DAYS": "120",
+    "SPHERES_AUDIT_PYTHON": "C:\\Users\\ridge\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\\python.exe",
+    "SPHERES_SUPPLIER_OFFER": "supplier:France:3:equipment:48"
+  },
+  "removed_environment_keys": [],
+  "working_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration",
+  "command": [
+    "C:\\Program Files\\nodejs\\node.EXE",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-supplier-harness-overlay.cjs",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-supplier-imports.cjs",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1\\executed-supplier-harness.cjs",
+    "de8a13611ce1617133710b252253cd82e41d6a4b74d39799f7d29eb2b97ce7f1",
+    "c74f8a8d1f1ee090113179a5a34acfada0ffa28e8689de4e3aba8fa766e21b9c",
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1\\overlay-execution.json"
+  ],
+  "overlay_execution": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1\\overlay-execution.json",
+    "sha256": "78025e2eeef205722a8724b2d7e75f19258bba47ed0001aa35105e1ba43a9e84",
+    "record": {
+      "captured_utc": "2026-09-13T02:15:49.915Z",
+      "scope": "Exact bytes loaded for Module._compile; browser acceptance is established only by its actual result and exit status.",
+      "original_filename": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-supplier-imports.cjs",
+      "original_sha256": "de8a13611ce1617133710b252253cd82e41d6a4b74d39799f7d29eb2b97ce7f1",
+      "evaluated_source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1\\executed-supplier-harness.cjs",
+      "evaluated_sha256": "c74f8a8d1f1ee090113179a5a34acfada0ffa28e8689de4e3aba8fa766e21b9c",
+      "module_filename": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-supplier-imports.cjs",
+      "module_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui",
+      "node_executable": "C:\\Program Files\\nodejs\\node.EXE",
+      "node_versions": {
+        "node": "24.12.0",
+        "acorn": "8.15.0",
+        "ada": "3.3.0",
+        "amaro": "1.1.5",
+        "ares": "1.34.5",
+        "brotli": "1.1.0",
+        "cjs_module_lexer": "2.1.0",
+        "cldr": "47.0",
+        "icu": "77.1",
+        "llhttp": "9.3.0",
+        "modules": "137",
+        "napi": "10",
+        "nbytes": "0.1.1",
+        "ncrypto": "0.0.1",
+        "nghttp2": "1.67.1",
+        "openssl": "3.5.4",
+        "simdjson": "4.1.0",
+        "simdutf": "6.4.0",
+        "sqlite": "3.50.4",
+        "tz": "2025b",
+        "undici": "7.16.0",
+        "unicode": "16.0",
+        "uv": "1.51.0",
+        "uvwasi": "0.0.23",
+        "v8": "13.6.233.17-node.37",
+        "zlib": "1.3.1-470d3a2",
+        "zstd": "1.5.7"
+      },
+      "argv": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-supplier-harness-overlay.cjs",
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-supplier-imports.cjs",
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1\\executed-supplier-harness.cjs",
+        "de8a13611ce1617133710b252253cd82e41d6a4b74d39799f7d29eb2b97ce7f1",
+        "c74f8a8d1f1ee090113179a5a34acfada0ffa28e8689de4e3aba8fa766e21b9c",
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1\\overlay-execution.json"
+      ]
+    }
+  },
+  "inner_result_candidates": [
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1\\supplier-v6VJe7\\result.json"
+  ],
+  "inner_result": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1\\supplier-v6VJe7\\result.json",
+    "sha256": "c7b07fe18e106c376223655f99a1fb81bfc4debfc5107caedfae54d8424e7217",
+    "passed": false,
+    "revision": "d770592aeead51f1313d507edd26b02d75a69bba",
+    "binary_sha256": "c5852894069c797c1cbf6b15a302f73f85a0f0b4a4edfee63eb1ca6b367f8435",
+    "failed_stage": "settle positive maintenance for imported equipment",
+    "failure": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#saveSlots option[value=\"s08-import-complete\"]')\u001b[22m\n\n    at saveLoad (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-supplier-imports.cjs:62:62)\n    at async main (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-supplier-imports.cjs:315:69)"
+  },
+  "runner_error": "Actual supplier browser did not complete all assertions successfully",
+  "finished_utc": "2026-09-13T02:22:29.195388+00:00",
+  "wall_seconds": 400.34676390000095,
+  "source_after": {
+    "captured_utc": "2026-09-13T02:22:29.195403+00:00",
+    "revision": "d770592aeead51f1313d507edd26b02d75a69bba",
+    "status_porcelain": ""
+  },
+  "preservation": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-final-native-route-pool-1.json",
+      "expected_sha256": "544c8e3584d183a736c238a65cf53d30a2e5d3c386a0d08827570e879daa3913",
+      "actual_sha256": "544c8e3584d183a736c238a65cf53d30a2e5d3c386a0d08827570e879daa3913"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-final-binary-route-pool-1.json",
+      "expected_sha256": "d5eb0a8cb0ab3ecd61dcf1ccb89cc517cf2bcbe9684d455dc257cd27848421a8",
+      "actual_sha256": "d5eb0a8cb0ab3ecd61dcf1ccb89cc517cf2bcbe9684d455dc257cd27848421a8"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\runner-result.json",
+      "expected_sha256": "043e94f59023a48756793b2abaea3a2655cabf972abbe66f8498125e41ed59a8",
+      "actual_sha256": "043e94f59023a48756793b2abaea3a2655cabf972abbe66f8498125e41ed59a8"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-ready-before-purchase.campaign.json",
+      "expected_sha256": "c7cd98c5224a6ae80722ae2d113de8036bf191d7168c7ee2eebfd74917a4a100",
+      "actual_sha256": "c7cd98c5224a6ae80722ae2d113de8036bf191d7168c7ee2eebfd74917a4a100"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\0360-progress.campaign.json",
+      "expected_sha256": "347e96fc018afd567fef04eb55ab17a0c30a88245db45e2e236842ea3b39c1ab",
+      "actual_sha256": "347e96fc018afd567fef04eb55ab17a0c30a88245db45e2e236842ea3b39c1ab"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+      "expected_sha256": "c5852894069c797c1cbf6b15a302f73f85a0f0b4a4edfee63eb1ca6b367f8435",
+      "actual_sha256": "c5852894069c797c1cbf6b15a302f73f85a0f0b4a4edfee63eb1ca6b367f8435"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+      "expected_sha256": "96bb58155a19218d6d37afabfb8d26c83c53d3dbebf5ca116a870fe950c655f7",
+      "actual_sha256": "96bb58155a19218d6d37afabfb8d26c83c53d3dbebf5ca116a870fe950c655f7"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-supplier-imports.cjs",
+      "expected_sha256": "de8a13611ce1617133710b252253cd82e41d6a4b74d39799f7d29eb2b97ce7f1",
+      "actual_sha256": "de8a13611ce1617133710b252253cd82e41d6a4b74d39799f7d29eb2b97ce7f1"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\ci-supplier-imports.cleanup-order.cjs",
+      "expected_sha256": "c74f8a8d1f1ee090113179a5a34acfada0ffa28e8689de4e3aba8fa766e21b9c",
+      "actual_sha256": "c74f8a8d1f1ee090113179a5a34acfada0ffa28e8689de4e3aba8fa766e21b9c"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-corrected-route-pool-1\\executed-supplier-harness.cjs",
+      "expected_sha256": "c74f8a8d1f1ee090113179a5a34acfada0ffa28e8689de4e3aba8fa766e21b9c",
+      "actual_sha256": "c74f8a8d1f1ee090113179a5a34acfada0ffa28e8689de4e3aba8fa766e21b9c"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-supplier-harness-overlay.cjs",
+      "expected_sha256": "9ae828d6c9c42815e9b8859aa01b33d006903cf391ab229c6ca1c1b12f3e6a73",
+      "actual_sha256": "9ae828d6c9c42815e9b8859aa01b33d006903cf391ab229c6ca1c1b12f3e6a73"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s08-supplier-browser-corrected.py",
+      "expected_sha256": "1ea582bddda76ea31b584afe71719660323391ce88dd3a01214f9cd679d95c65",
+      "actual_sha256": "1ea582bddda76ea31b584afe71719660323391ce88dd3a01214f9cd679d95c65"
+    }
+  ],
+  "integrity_passed": true,
+  "log_sha256": "c584882e1eefdd968d3d2fd9663a0657b49ea4ac4b5c9e1b9c037aeff042e5fd"
+}

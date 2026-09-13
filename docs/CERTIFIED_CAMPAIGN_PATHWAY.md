@@ -1,6 +1,6 @@
 # Spheres — pathway to a certified campaign
 
-**Approved pathway · 10 September 2026 · S01–S07 complete; S08 in progress.**
+**Approved pathway · 10 September 2026 · S01–S08 complete; execution stopped before S09.**
 
 Source baseline: `5f7f355502f17bd6bd8f0383a2d14f0024fa7884`,
 `codex/resume-spheres`. This plan follows the
@@ -60,7 +60,7 @@ deliverables as finished.
 | Marker | Meaning |
 | --- | --- |
 | `S00` | Complete: user approved beginning S01 on 10 September 2026. |
-| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S07 are complete; S08 is in progress; S09–S30 remain planned. Execution will stop after S08. |
+| `S01`–`S30` | Thirty core development, qualification and release work sessions. S01–S08 are complete; S09–S30 remain planned. Execution stopped after S08. |
 | `C01`–`C07` | Character-production workstreams, with uniquely numbered country batches below. |
 | `E01`–`E06` | Retained expansion work after the first certified release. |
 | `G0`–`G5` | Evidence gates joining groups of sessions. |
@@ -450,13 +450,15 @@ Evidence: [S07 construction, staffing and operating outcomes](campaign-certifica
 
 #### S08 — Complete supplier choice and reviewed imports
 
-**Status:** In progress · **Requires:** S05, S07
+**Status:** Complete · **Completed:** 12 September 2026 · **Requires:** S05, S07
 
 **Completion marker:** A useful domestic/foreign supplier market, including a viable path for countries without an arms industry.
 
-- [ ] Complete design → development → stock → purchase → delivery → service across the eleven existing platforms and supported ammunition families using a justified representative matrix.
-- [ ] An affordable imported lot changes seller stock and buyer funds once, without granting component research.
-- [ ] Sanctions, access loss, stale quotes, limited stock and cancellations preserve ownership and explain delays or refunds.
+- [x] Complete design → development → stock → purchase → delivery → service across the eleven existing platforms and supported ammunition families using a justified representative matrix.
+- [x] An affordable imported lot changes seller stock and buyer funds once, without granting component research.
+- [x] Sanctions, access loss, stale quotes, limited stock and cancellations preserve ownership and explain delays or refunds.
+
+Evidence: [S08 qualification and retained limitations](campaign-certification/S08/README.md).
 
 <a id="s09"></a>
 
@@ -898,4 +900,4 @@ Evidence: [S07 construction, staffing and operating outcomes](campaign-certifica
 
 ## Authorized execution boundary
 
-S04 and S05 are complete on the recorded runtime and evidence. G1 decision: **earned**. The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work. Execution stopped after S05 as requested. On 11 September 2026, “Next” authorized S06. S06 is complete on its recorded runtime and evidence. On 11 September 2026, “Next” authorized S07. S07 is complete on its recorded runtime and evidence. A subsequent “Next” authorized S08, which is in progress; execution will stop before S09. S09 and later sessions still require a new instruction. No later campaign, content or release certificate is awarded.
+S04 and S05 are complete on the recorded runtime and evidence. G1 decision: **earned**. The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work. Execution stopped after S05 as requested. On 11 September 2026, “Next” authorized S06. S06 is complete on its recorded runtime and evidence. On 11 September 2026, “Next” authorized S07. S07 is complete on its recorded runtime and evidence. A subsequent “Next” authorized S08, which completed on 12 September 2026 on its recorded runtime and evidence; execution stopped before S09. S09 and later sessions still require a new instruction. No later campaign, content or release certificate is awarded.

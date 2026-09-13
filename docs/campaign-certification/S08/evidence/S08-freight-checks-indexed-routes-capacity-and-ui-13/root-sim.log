@@ -1,0 +1,28 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 1m 31s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 20 tests
+test commerce::tests::s08_best_market_quote_matches_full_first_with_duplicates_cash_and_refusals ... ok
+test commerce::tests::s08_best_market_quote_refreshes_after_purchase_stock_and_route_mutations ... ok
+test companies::tests::s08_disposable_company_trial_preserves_refusals_and_never_settles_live_money ... ok
+test economic_ai::ammunition_forecast_tests::s08_pending_windows_match_independent_reads_at_boundaries_and_closures ... ok
+test economic_ai::s08_industry_read_tests::s08_industry_reads_match_uncached_candidates_forecasts_and_mutated_worlds ... ok
+test economic_ai::s08_industry_read_tests::s08_shared_review_reads_preserve_paid_orders_imports_waits_and_post_command_records ... ok
+test industry::tests::s08_shared_demand_fuel_rate_preserves_exact_recipe_bits ... ok
+test industry_operations::demand_read_tests::s08_operating_demand_reuses_only_immutable_fuel_rate ... ok
+test industry_planning::s08_read_parity_tests::s08_capacity_plan_matches_full_old_allocator_and_delivery_reads ... ok
+test industry_planning::s08_read_parity_tests::s08_delivery_totals_preserve_exact_bits_windows_and_legacy_fallback ... ok
+test logistics::tests::s08_clearing_assembly_reuses_static_segments_and_keeps_terminal_xp_live ... ok
+test logistics::tests::s08_clearing_default_256_matches_old_128_admission_full_world_and_budget ... ok
+test logistics::tests::s08_clearing_owner_permissions_match_every_original_owner_bit ... ok
+test logistics::tests::s08_clearing_tree_lru_evicts_and_revisits_exact_native_routes ... ok
+test logistics::tests::s08_dispatch_clone_reduction_preserves_cache_refusals_and_complete_world ... ok
+test logistics::tests::s08_indexed_traversal_matches_every_original_directed_edge ... ok
+test materials::quote_read_tests::s08_materials_quote_shared_rates_preserve_every_field_and_refusal ... ok
+test resources::tests::s08_forecast_route_reuse_preserves_every_dated_stock_and_receipt ... ok
+test resources::tests::s08_identical_capacity_requests_reuse_only_exact_ordered_quantity_bits ... ok
+test resources::tests::s08_spot_trade_access_reuse_preserves_finite_lots_and_every_closure ... ok
+
+test result: ok. 20 passed; 0 failed; 0 ignored; 0 measured; 780 filtered out; finished in 2.62s
+

@@ -1,0 +1,85 @@
+--- before/run-s08-external.py
++++ after/run-s08-external.py
+@@ -1,7 +1,11 @@
+ """Run original archive checks against the exact successful S08 native test binary."""
+-import os,sys,re,subprocess,json,pathlib,hashlib,datetime,time
+-base=pathlib.Path(__file__).resolve().parent;repo=base/'integration';pin=sys.argv[1]
+-label=sys.argv[2] if len(sys.argv)>2 else 'final'
++import argparse,os,sys,re,subprocess,json,pathlib,hashlib,datetime,time
++parser=argparse.ArgumentParser(description=__doc__)
++parser.add_argument('pin');parser.add_argument('label',nargs='?',default='final')
++parser.add_argument('--native-proof',help='Successful full-native proof for this exact pin; defaults to SPHERES_S08_NATIVE_PROOF or the original final proof.')
++args=parser.parse_args()
++base=pathlib.Path(__file__).resolve().parent;repo=base/'integration';pin=args.pin
++label=args.label
+ assert re.fullmatch('[0-9a-f]{40}',pin) and re.fullmatch('[A-Za-z0-9_-]+',label)
+ out=base/('evidence/S08-external-'+label)
+ def git(*args):return subprocess.check_output(['git','-c','core.longpaths=true',*args],cwd=repo,text=True).strip()
+@@ -9,16 +13,19 @@
+  with pathlib.Path(p).open('rb') as handle:return hashlib.file_digest(handle,'sha256').hexdigest()
+ def stamp():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+ assert git('rev-parse','HEAD')==pin and not git('status','--porcelain')
+-native_file=pathlib.Path(os.environ.get('SPHERES_S08_NATIVE_PROOF',base/'evidence/S08-final-native.json')).resolve()
++native_file=pathlib.Path(args.native_proof or os.environ.get('SPHERES_S08_NATIVE_PROOF',base/'evidence/S08-final-native.json')).resolve()
+ native=json.loads(native_file.read_text(encoding='utf-8-sig'))
+ assert native['exit_code']==0 and native['clean_before'] and native['clean_after']
+ assert native['revision_before']==pin==native['revision_after']
++assert native['passed'] is True and native['preservation_passed'] is True
++assert native['totals']['failed']==0 and native['totals']['completed_targets']>0 and '--workspace' in native['command'],'Require successful full-workspace native qualification, without a fixed historical test count'
++native_hash=sha(native_file)
+ binary=pathlib.Path(native['binary']).resolve();before=sha(binary)
+ assert before==native['binary_sha256'],'Native qualification binary changed'
+ out.mkdir(exist_ok=False)
+ env=os.environ.copy();env['SPHERES_S05_ACTIVE_FIXTURES']=str(base/'fixtures/s05-original-active');env['SPHERES_S05_MASTER_ARCHIVE']=str(base/'fixtures/s05-pinned-master/profile-campaigns/saves/profile-industry_and_war-0.json')
+ checks=['s05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day','s05_active_fixture_tests::original_active_company_stages_preserve_property_across_load_and_explicit_adoption','s05_save_matrix_tests::standalone_party_v1_preserves_real_supplier_books_for_equipment_versions_2_through_5']
+-proof={'candidate':pin,'clean_before':True,'binary':str(binary),'binary_sha256':before,'native_proof':str(native_file),'native_proof_sha256':sha(native_file),'runner_sha256':sha(__file__),'started_utc':stamp(),'checks':[],'passed':False}
++proof={'candidate':pin,'clean_before':True,'binary':str(binary),'binary_sha256':before,'native_proof':str(native_file),'native_proof_sha256':native_hash,'runner_sha256':sha(__file__),'started_utc':stamp(),'checks':[],'passed':False}
+ try:
+  for i,name in enumerate(checks,1):
+   command=[str(binary),name,'--ignored','--exact','--nocapture','--test-threads=1'];start=time.monotonic()
+@@ -31,8 +38,8 @@
+   print(name+': exit '+str(r.returncode),flush=True)
+ except BaseException as error:proof['runner_error']=str(error)
+ finally:
+- proof.update(binary_sha256_after=sha(binary),binary_unchanged=sha(binary)==before,finished_utc=stamp(),candidate_after=git('rev-parse','HEAD'),clean_after=not git('status','--porcelain'))
+- proof['passed']=len(proof['checks'])==3 and all(row['exit_code']==0 and row['exact_one_test_passed'] for row in proof['checks']) and proof['binary_unchanged'] and proof['candidate_after']==pin and proof['clean_after'] and 'runner_error' not in proof
++ proof.update(binary_sha256_after=sha(binary),binary_unchanged=sha(binary)==before,native_proof_sha256_after=sha(native_file),finished_utc=stamp(),candidate_after=git('rev-parse','HEAD'),clean_after=not git('status','--porcelain'))
++ proof['passed']=len(proof['checks'])==3 and all(row['exit_code']==0 and row['exact_one_test_passed'] for row in proof['checks']) and proof['binary_unchanged'] and proof['native_proof_sha256_after']==native_hash and proof['candidate_after']==pin and proof['clean_after'] and 'runner_error' not in proof
+  with (out/'result.json').open('x',encoding='utf-8') as output:json.dump(proof,output,indent=2);output.write('\n')
+  print(json.dumps(proof,indent=2),flush=True)
+ sys.exit(0 if proof['passed'] else 1)
+--- before/accept-s08-performance.py
++++ after/accept-s08-performance.py
+@@ -1,10 +1,20 @@
+-import datetime,hashlib,json,math,pathlib,sys
++import datetime,hashlib,json,math,pathlib,re,sys
+ base=pathlib.Path(__file__).resolve().parent
+ pin=sys.argv[1]
++assert re.fullmatch('[0-9a-f]{40}',pin)
++assert len(sys.argv)<=4,'Use PIN [OUTPUT_DIRECTORY] [PROTOCOL_JSON]'
+ out=pathlib.Path(sys.argv[2]).resolve() if len(sys.argv)>2 else base/'evidence/S08-performance'
+ assert not (out/'acceptance.json').exists(),'Refuse to replace an earlier acceptance result'
+ sha=lambda path:hashlib.sha256(path.read_bytes()).hexdigest()
+-protocol=json.loads((base/'evidence/S08-performance-protocol.json').read_text(encoding='utf-8'))
++protocol_file=pathlib.Path(sys.argv[3]).resolve() if len(sys.argv)>3 else base/'evidence/S08-performance-protocol.json'
++plan_file=base/'evidence/S08-performance-plan.json'
++protocol=json.loads(protocol_file.read_text(encoding='utf-8-sig'))
++plan=json.loads(plan_file.read_text(encoding='utf-8-sig'))
++# This was the declared plan before the first S08 measurement. Rebinding a
++# candidate is not permission to replace that plan or weaken its workload.
++assert sha(plan_file)=='8d2cb23fe996ba9dc35da0aed5859072a83c2e61b55d4881cf047bc1ac195a28','Original S08 performance plan changed'
++assert protocol['declared_plan_sha256']==sha(plan_file),'The candidate protocol must bind the original declared plan bytes'
++assert all(protocol[key]==value for key,value in plan['legacy_regression'].items()),'The rebound protocol changed an original workload or acceptance bar'
+ runner=json.loads((out/'runner-result.json').read_text(encoding='utf-8-sig'))
+ profile=json.loads((out/'profile.json').read_text(encoding='utf-8-sig'))
+ assert protocol['candidate']==pin==runner['candidate_revision']
+@@ -22,7 +32,7 @@
+ memory=runner['memory']['max_sampled_private_bytes']
+ assert isinstance(memory,(int,float)) and not isinstance(memory,bool) and math.isfinite(memory) and memory>0
+ assert runner['memory']['samples']>0
+-result={'protocol_sha256':sha(base/'evidence/S08-performance-protocol.json'),'runner_result_sha256':sha(out/'runner-result.json'),'profile_sha256':sha(out/'profile.json'),'runner_sha256':sha(pathlib.Path(__file__)),'candidate':pin,'evaluated_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'rows':rows,'sampled_private_bytes':memory,'memory_passed':memory<=protocol['sampled_private_memory_limit_bytes'],'runner_passed':runner['passed']}
++result={'protocol':str(protocol_file),'protocol_sha256':sha(protocol_file),'declared_plan':str(plan_file),'declared_plan_sha256':sha(plan_file),'runner_result_sha256':sha(out/'runner-result.json'),'profile_sha256':sha(out/'profile.json'),'runner_sha256':sha(pathlib.Path(__file__)),'candidate':pin,'evaluated_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'rows':rows,'sampled_private_bytes':memory,'memory_passed':memory<=protocol['sampled_private_memory_limit_bytes'],'runner_passed':runner['passed']}
+ result['passed']=result['runner_passed'] and result['memory_passed'] and all(r['passed'] for r in rows)
+-(out/'acceptance.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
++with (out/'acceptance.json').open('x',encoding='utf-8') as output:json.dump(result,output,indent=2);output.write('\n')
+ print(json.dumps(result,indent=2));sys.exit(0 if result['passed'] else 1)

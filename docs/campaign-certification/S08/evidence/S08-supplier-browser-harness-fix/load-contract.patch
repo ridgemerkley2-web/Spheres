@@ -1,0 +1,18 @@
+--- tools/ui/ci-supplier-imports.cjs
++++ tools/ui/ci-supplier-imports.cjs
+@@ -41,8 +41,13 @@
+ }
+ async function loadSlot(page,slot){
+   await campaigns(page);await page.locator('#saveSlots option[value='+q(slot)+']').waitFor({state:'attached'});
+-  await page.locator('#saveSlots').selectOption(slot);await page.locator('#loadBtn').click();
+-  const response=page.waitForResponse(r=>routeIs(r,'/api/load'));await page.locator('#campaignConfirmAccept').click();assert((await response).ok());
++  await page.locator('#saveSlots').selectOption(slot);
++  // The actual host confirms only replacement of an existing live campaign.
++  // Register the response first: an initial load proceeds without a dialog.
++  const replacing=await page.evaluate(()=>!!SESSION.live?.player),response=page.waitForResponse(r=>routeIs(r,'/api/load'));
++  await page.locator('#loadBtn').click();
++  if(replacing){assert((await page.locator('#campaignConfirmMessage').innerText()).includes(slot));await page.locator('#campaignConfirmAccept').click();}
++  assert((await response).ok());
+   await page.locator('#app').waitFor({state:'visible'});await idle(page);
+ }
+ async function archive(page,url,run,slot){

@@ -1,0 +1,37 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 1m 31s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 29 tests
+test commerce::tests::s08_best_market_quote_matches_full_first_with_duplicates_cash_and_refusals ... ok
+test commerce::tests::s08_best_market_quote_refreshes_after_purchase_stock_and_route_mutations ... ok
+test companies::tests::s08_development_working_capital_matches_original_quote_arithmetic_and_token ... ok
+test companies::tests::s08_disposable_company_trial_preserves_refusals_and_never_settles_live_money ... ok
+test companies::tests::s08_retained_company_trial_matches_native_dispatch_and_future_settlement ... ok
+test economic_ai::ammunition_forecast_tests::s08_pending_windows_match_independent_reads_at_boundaries_and_closures ... ok
+test economic_ai::s08_industry_read_tests::s08_industry_reads_match_uncached_candidates_forecasts_and_mutated_worlds ... ok
+test economic_ai::s08_industry_read_tests::s08_raw_forecast_shared_components_and_material_horizons_match_native_rows ... ok
+test economic_ai::s08_industry_read_tests::s08_shared_review_reads_preserve_paid_orders_imports_waits_and_post_command_records ... ok
+test industry::tests::s08_line_energy_reuse_preserves_shortages_pauses_and_editable_assignments ... ok
+test industry::tests::s08_line_energy_reuse_preserves_world_and_live_experience_thresholds ... ok
+test industry::tests::s08_shared_demand_fuel_rate_preserves_exact_recipe_bits ... ok
+test industry_operations::demand_read_tests::s08_operating_demand_reuses_only_immutable_fuel_rate ... ok
+test industry_planning::s08_read_parity_tests::s08_capacity_plan_matches_full_old_allocator_and_delivery_reads ... ok
+test industry_planning::s08_read_parity_tests::s08_delivery_totals_preserve_exact_bits_windows_and_legacy_fallback ... ok
+test logistics::tests::s08_borrowed_capacity_labels_preserve_first_minimum_and_ieee_ties ... ok
+test logistics::tests::s08_clearing_assembly_reuses_static_segments_and_keeps_terminal_xp_live ... ok
+test logistics::tests::s08_clearing_default_256_matches_old_128_admission_full_world_and_budget ... ok
+test logistics::tests::s08_clearing_owner_permissions_match_every_original_owner_bit ... ok
+test logistics::tests::s08_clearing_tree_lru_evicts_and_revisits_exact_native_routes ... ok
+test logistics::tests::s08_dispatch_clone_reduction_preserves_cache_refusals_and_complete_world ... ok
+test logistics::tests::s08_indexed_traversal_matches_every_original_directed_edge ... ok
+test logistics::tests::s08_tree_node_permissions_match_native_transit_under_each_owner_mask ... ok
+test materials::quote_read_tests::s08_materials_quote_shared_rates_preserve_every_field_and_refusal ... ok
+test resources::tests::s08_forecast_route_reuse_preserves_every_dated_stock_and_receipt ... ok
+test resources::tests::s08_identical_capacity_requests_reuse_only_exact_ordered_quantity_bits ... ok
+test resources::tests::s08_lazy_military_routes_match_eager_signings_offers_cooldowns_and_closures ... ok
+test resources::tests::s08_spot_trade_access_reuse_preserves_finite_lots_and_every_closure ... ok
+test supplier_catalogue::tests::s08_deferred_supplier_development_quote_matches_eager_full_world_branches ... ok
+
+test result: ok. 29 passed; 0 failed; 0 ignored; 0 measured; 780 filtered out; finished in 3.19s
+

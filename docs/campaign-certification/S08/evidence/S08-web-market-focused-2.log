@@ -1,0 +1,14 @@
+   Compiling spheres-web v0.6.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-web)
+error: cannot find macro `json` in this scope
+   --> spheres-web\src\performance.rs:126:16
+    |
+126 |     let report=json!({"revision":env!("SPHERES_REVISION"),"input":input,"starting_date":starting_date,
+    |                ^^^^
+
+error: cannot find macro `json` in this scope
+   --> spheres-web\src\performance.rs:121:23
+    |
+121 |         activity.push(json!({"date":g.world.date_str(),"state_bytes":state_bytes,"delta_bytes":delta_bytes,
+    |                       ^^^^
+
+error: could not compile `spheres-web` (bin "spheres-web" test) due to 2 previous errors

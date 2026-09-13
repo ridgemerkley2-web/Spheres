@@ -1,0 +1,12 @@
+PASS all actual callsites map to the closed audit-only inventory
+PASS every audit name preserves exact native bytes outside visible slots
+PASS real slot names and unlisted maintenance days fail before saving or moving
+PASS existing audit-named input cannot be overwritten by the capture POST
+PASS exclusive target collision preserves both evidence and original capture
+PASS escapeSaves is rejected before relocation
+PASS escapeTarget is rejected before relocation
+PASS auditError still retains exact capture in evidence directory
+PASS buyerError still retains exact capture in evidence directory
+PASS disposeError still retains exact capture in evidence directory
+PASS rename failure preserves the original native capture
+PASS failed native save response does not move or inspect a capture

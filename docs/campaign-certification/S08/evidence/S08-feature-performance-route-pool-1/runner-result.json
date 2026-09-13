@@ -1,0 +1,155 @@
+{
+  "format": "spheres-s08-feature-performance-qualification",
+  "version": 1,
+  "candidate": "d770592aeead51f1313d507edd26b02d75a69bba",
+  "source_before": {
+    "captured_utc": "2026-09-13T02:06:57.607350+00:00",
+    "revision": "d770592aeead51f1313d507edd26b02d75a69bba",
+    "status_porcelain": ""
+  },
+  "started_utc": "2026-09-13T02:06:58.946290+00:00",
+  "test_binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+  "executed_copy": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-feature-performance-route-pool-1\\spheres_web-960ae70db4690868.exe",
+  "binary_sha256_before": "96bb58155a19218d6d37afabfb8d26c83c53d3dbebf5ca116a870fe950c655f7",
+  "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\export\\2127-purchased.campaign.json",
+  "input_copy": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-feature-performance-route-pool-1\\purchased.campaign.json",
+  "input_sha256_before": "73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9",
+  "export_proof": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-route-pool-1\\runner-result.json",
+  "export_proof_sha256_before": "043e94f59023a48756793b2abaea3a2655cabf972abbe66f8498125e41ed59a8",
+  "plan": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-performance-plan.json",
+  "plan_sha256_before": "8d2cb23fe996ba9dc35da0aed5859072a83c2e61b55d4881cf047bc1ac195a28",
+  "declared_limits": {
+    "workload": "31 actual days loaded from fresh-world genuinely purchased foreign-stock campaign, retained supplier work and import transit; no injected property",
+    "simulation_p95_limit_ms": 300,
+    "whole_turn_p95_limit_ms": 400,
+    "whole_turn_max_limit_ms": 750,
+    "equipment_board_read_and_serialization_p95_limit_ms": 300,
+    "purchase_quote_p95_limit_ms": 250,
+    "limits": "Equipment board and quote sampled separately after ordinary state/history whole-turn; no network, disk autosave or browser rendering. Run only after builds and other simulations finish."
+  },
+  "runner": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s08-feature-performance.py",
+  "runner_sha256": "f2c71fd6e580f473480124015c890b469af42c15090912229fa3a05206e23e66",
+  "command": [
+    "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-feature-performance-route-pool-1\\spheres_web-960ae70db4690868.exe",
+    "performance::s08_supplier_import_profile",
+    "--ignored",
+    "--exact",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "working_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration",
+  "environment": {
+    "SPHERES_S08_PERFORMANCE_INPUT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-feature-performance-route-pool-1\\purchased.campaign.json",
+    "SPHERES_S08_PERFORMANCE_OUT": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-feature-performance-route-pool-1\\profile.json"
+  },
+  "sanitized_environment_keys": [],
+  "exit_code": 0,
+  "passed": true,
+  "memory": {
+    "requested_interval_ms": 100,
+    "samples": 463,
+    "failed_reads": 0,
+    "note": "Child PID only. Sampled maxima can miss short peaks. OS peak working set is a separate Windows counter, not private-memory peak. No feature-case memory acceptance bar was declared; these observations do not imply throughput or browser performance.",
+    "maximum_private_bytes": 2218074112,
+    "maximum_working_set_bytes": 2133856256,
+    "maximum_os_peak_working_set_bytes": 2134667264,
+    "maximum_observed_interval_ms": 102.76710000471212
+  },
+  "pid": 31488,
+  "test_summaries": [
+    [
+      1,
+      0,
+      0
+    ]
+  ],
+  "acceptance_checks": [
+    {
+      "metric": "simulation_and_history_recording.p95_ms",
+      "measured_ms": 299.4182,
+      "limit_ms": 300,
+      "passed": true
+    },
+    {
+      "metric": "whole_server_turn.p95_ms",
+      "measured_ms": 381.45649999999995,
+      "limit_ms": 400,
+      "passed": true
+    },
+    {
+      "metric": "whole_server_turn.max_ms",
+      "measured_ms": 496.267,
+      "limit_ms": 750,
+      "passed": true
+    },
+    {
+      "metric": "equipment_market_read_and_serialization.p95_ms",
+      "measured_ms": 107.0694,
+      "limit_ms": 300,
+      "passed": true
+    },
+    {
+      "metric": "purchase_quote.p95_ms",
+      "measured_ms": 2.4301,
+      "limit_ms": 250,
+      "passed": true
+    }
+  ],
+  "native_and_thresholds_passed": true,
+  "finished_utc": "2026-09-13T02:07:45.896123+00:00",
+  "wall_seconds": 46.94827300000179,
+  "source_after": {
+    "captured_utc": "2026-09-13T02:07:45.896222+00:00",
+    "revision": "d770592aeead51f1313d507edd26b02d75a69bba",
+    "status_porcelain": ""
+  },
+  "binary_sha256_after": "96bb58155a19218d6d37afabfb8d26c83c53d3dbebf5ca116a870fe950c655f7",
+  "executed_copy_sha256_after": "96bb58155a19218d6d37afabfb8d26c83c53d3dbebf5ca116a870fe950c655f7",
+  "input_sha256_after": "73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9",
+  "input_copy_sha256_after": "73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9",
+  "plan_sha256_after": "8d2cb23fe996ba9dc35da0aed5859072a83c2e61b55d4881cf047bc1ac195a28",
+  "export_proof_sha256_after": "043e94f59023a48756793b2abaea3a2655cabf972abbe66f8498125e41ed59a8",
+  "integrity_passed": true,
+  "files": [
+    {
+      "path": "declared-plan.json",
+      "sha256": "8d2cb23fe996ba9dc35da0aed5859072a83c2e61b55d4881cf047bc1ac195a28",
+      "bytes": 1322
+    },
+    {
+      "path": "launch.json",
+      "sha256": "e974d91a8fa342e579ccfff5552db9ff5cd39b83c996dbd0fff2738f4966cf4b",
+      "bytes": 4158
+    },
+    {
+      "path": "memory.jsonl",
+      "sha256": "72646b62e7ef56afacd59a65d06a3f9712ad2e48582a2734dc554dce7b48c2dc",
+      "bytes": 65477
+    },
+    {
+      "path": "profile.json",
+      "sha256": "7f34b5bb617f66e7a56193efa74f25afd60db815047fbc33e51409bbc4e11150",
+      "bytes": 45743
+    },
+    {
+      "path": "purchased.campaign.json",
+      "sha256": "73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9",
+      "bytes": 134238603
+    },
+    {
+      "path": "spheres_web-960ae70db4690868.exe",
+      "sha256": "96bb58155a19218d6d37afabfb8d26c83c53d3dbebf5ca116a870fe950c655f7",
+      "bytes": 346884033
+    },
+    {
+      "path": "stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "stdout.log",
+      "sha256": "153bb8b7bb99372534da28879ab95c2ae50f81492c013be0063c7a506fd3b460",
+      "bytes": 361
+    }
+  ]
+}

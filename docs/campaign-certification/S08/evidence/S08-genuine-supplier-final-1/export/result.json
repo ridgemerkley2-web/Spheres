@@ -1,0 +1,1627 @@
+{
+  "actual_days_advanced": 2155,
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1789145049,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "e6187df80445",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration",
+    "version": "0.6.0"
+  },
+  "contract": {
+    "ammunition": false,
+    "buyer": "Tonga",
+    "buyer_revision": "import-3-48",
+    "cancelled_day": null,
+    "company": 3,
+    "cost_basis_bn": 0.0015996840242014226,
+    "delivered_day": 2154,
+    "district": "FRA_le-de-france",
+    "due_day": 2154,
+    "escrow_bn": 0.0,
+    "family": null,
+    "id": 3694,
+    "product": 48,
+    "purchased_day": 2127,
+    "quantity": 1,
+    "reason": "The buyer received the exact foreign model or ammunition. Ordinary upkeep and compatibility apply; no research or manufacturing license was granted.",
+    "refunded_bn": 0.0,
+    "refunded_day": null,
+    "route": {
+      "bottleneck": "Réunion freight terminal",
+      "capacity_tonnes": 1451.6129032258063,
+      "chokepoints": [],
+      "distance_km": 13536,
+      "estimated_days": 27,
+      "mode": "sea",
+      "months": 1,
+      "nodes": [
+        {
+          "id": "FRA_r-union",
+          "kind": "district",
+          "lat": -21.11515,
+          "lon": 55.53752,
+          "name": "Réunion"
+        },
+        {
+          "id": "gateway:FRA_r-union",
+          "kind": "gateway",
+          "lat": -21.1019,
+          "lon": 55.781,
+          "name": "Réunion coastal gateway"
+        },
+        {
+          "id": "sea:1225",
+          "kind": "sea",
+          "lat": -25.0,
+          "lon": 57.5,
+          "name": "Open sea"
+        },
+        {
+          "id": "sea:1242",
+          "kind": "sea",
+          "lat": -30.0,
+          "lon": 62.5,
+          "name": "Open sea"
+        },
+        {
+          "id": "sea:1260",
+          "kind": "sea",
+          "lat": -35.0,
+          "lon": 67.5,
+          "name": "Open sea"
+        },
+        {
+          "id": "sea:1276",
+          "kind": "sea",
+          "lat": -40.0,
+          "lon": 72.5,
+          "name": "Open sea"
+        },
+        {
+          "id": "sea:1292",
+          "kind": "sea",
+          "lat": -45.0,
+          "lon": 77.5,
+          "name": "Open sea"
+        },
+        {
+          "id": "sea:1322",
+          "kind": "sea",
+          "lat": -45.0,
+          "lon": 87.5,
+          "name": "Open sea"
+        },
+        {
+          "id": "sea:1398",
+          "kind": "sea",
+          "lat": -45.0,
+          "lon": 97.5,
+          "name": "Open sea"
+        },
+        {
+          "id": "sea:1465",
+          "kind": "sea",
+          "lat": -45.0,
+          "lon": 107.5,
+          "name": "Open sea"
+        },
+        {
+          "id": "sea:1534",
+          "kind": "sea",
+          "lat": -45.0,
+          "lon": 117.5,
+          "name": "Open sea"
+        },
+        {
+          "id": "sea:1609",
+          "kind": "sea",
+          "lat": -45.0,
+          "lon": 127.5,
+          "name": "Open sea"
+        },
+        {
+          "id": "sea:1662",
+          "kind": "sea",
+          "lat": -45.0,
+          "lon": 137.5,
+          "name": "Open sea"
+        },
+        {
+          "id": "sea:1693",
+          "kind": "sea",
+          "lat": -45.0,
+          "lon": 147.5,
+          "name": "Open sea"
+        },
+        {
+          "id": "sea:1733",
+          "kind": "sea",
+          "lat": -45.0,
+          "lon": 157.5,
+          "name": "Open sea"
+        },
+        {
+          "id": "sea:1758",
+          "kind": "sea",
+          "lat": -40.0,
+          "lon": 162.5,
+          "name": "Open sea"
+        },
+        {
+          "id": "sea:1783",
+          "kind": "sea",
+          "lat": -35.0,
+          "lon": 167.5,
+          "name": "Open sea"
+        },
+        {
+          "id": "sea:1810",
+          "kind": "sea",
+          "lat": -30.0,
+          "lon": 172.5,
+          "name": "Open sea"
+        },
+        {
+          "id": "sea:1836",
+          "kind": "sea",
+          "lat": -25.0,
+          "lon": 177.5,
+          "name": "Open sea"
+        },
+        {
+          "id": "sea:0007",
+          "kind": "sea",
+          "lat": -20.0,
+          "lon": -177.5,
+          "name": "Open sea"
+        },
+        {
+          "id": "gateway:TO-02",
+          "kind": "gateway",
+          "lat": -19.71061,
+          "lon": -175.07225,
+          "name": "Ha'apai coastal gateway"
+        },
+        {
+          "id": "TO-02",
+          "kind": "district",
+          "lat": -19.75037,
+          "lon": -175.06803,
+          "name": "Ha'apai"
+        }
+      ],
+      "segments": [
+        "FRA_r-union|gateway:FRA_r-union",
+        "gateway:FRA_r-union|sea:1225",
+        "sea:1225|sea:1242",
+        "sea:1242|sea:1260",
+        "sea:1260|sea:1276",
+        "sea:1276|sea:1292",
+        "sea:1292|sea:1322",
+        "sea:1322|sea:1398",
+        "sea:1398|sea:1465",
+        "sea:1465|sea:1534",
+        "sea:1534|sea:1609",
+        "sea:1609|sea:1662",
+        "sea:1662|sea:1693",
+        "sea:1693|sea:1733",
+        "sea:1733|sea:1758",
+        "sea:1758|sea:1783",
+        "sea:1783|sea:1810",
+        "sea:1810|sea:1836",
+        "sea:0007|sea:1836",
+        "gateway:TO-02|sea:0007",
+        "TO-02|gateway:TO-02"
+      ]
+    },
+    "seller": "France",
+    "settled_day": 2127,
+    "source_revision": {
+      "certified_day": 2027,
+      "created_day": 1260,
+      "id": "France-design-1",
+      "name": "France Armored personnel carrier",
+      "profile": {
+        "component_costs": {
+          "active_protection": 1e-6,
+          "ammunition": 0.000012,
+          "armament": 0.000035,
+          "communications": 0.00008,
+          "fire_control": 0.00008,
+          "mobility": 0.00022,
+          "protection": 0.00016,
+          "sensors": 0.00015,
+          "suspension": 0.00012,
+          "transmission": 0.0001,
+          "troop_compartment": 0.00009,
+          "turret": 0.00006,
+          "wheels": 0.00007
+        },
+        "development_cost_bn": 0.04494,
+        "development_days": 245,
+        "fabrication_cost_bn": 0.001498,
+        "ground_roles": {
+          "air_defense": 0.0,
+          "fire_support": 0.0,
+          "protected_mobility": 0.782,
+          "reconnaissance": 0.1
+        },
+        "installation_capacity": 20,
+        "installation_used": 13,
+        "land": 0.75,
+        "land_factor": 0.895,
+        "maintenance_bn_day": 3.67e-7,
+        "mobility": 1.15,
+        "production_days": 33,
+        "protection": 0.68,
+        "recipe": [
+          0.0,
+          0.025,
+          0.0,
+          0.3,
+          0.0,
+          0.0,
+          15.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "recon": 1.0,
+        "reference_weight_bn": 0.0011,
+        "rules_version": 3,
+        "service_months": 360,
+        "tooling_cost_bn": 0.00749,
+        "tooling_days": 30,
+        "unit_cost_bn": 0.001498
+      },
+      "spec": {
+        "components": {
+          "active_protection": "aps_none",
+          "ammunition": "ground_ammo_ball",
+          "armament": "ground_mg_127",
+          "communications": "comms_radio",
+          "fire_control": "fcs_basic",
+          "mobility": "engine_diesel_600",
+          "protection": "ground_armor_light",
+          "sensors": "optics_day",
+          "suspension": "suspension_torsion",
+          "transmission": "transmission_manual",
+          "troop_compartment": "ground_troops_standard",
+          "turret": "ground_station_mg",
+          "wheels": "ground_wheels_standard"
+        },
+        "platform": "ground_apc"
+      },
+      "specification_key": "v3|10:ground_apc|17:active_protection:8:aps_none|10:ammunition:16:ground_ammo_ball|8:armament:13:ground_mg_127|14:communications:11:comms_radio|12:fire_control:9:fcs_basic|8:mobility:17:engine_diesel_600|10:protection:18:ground_armor_light|7:sensors:10:optics_day|10:suspension:18:suspension_torsion|12:transmission:19:transmission_manual|17:troop_compartment:22:ground_troops_standard|6:turret:17:ground_station_mg|6:wheels:22:ground_wheels_standard"
+    },
+    "status": "delivered",
+    "total_price_bn": 0.0018396366278316358,
+    "transit_days": 27,
+    "unit_price_bn": 0.0018396366278316358
+  },
+  "date": "26 Nov 1995",
+  "funding_policy": {
+    "annual_procurement_bn_at_review": 0.0030096,
+    "chosen_allocations": [
+      0.0465,
+      0.033479999999999996,
+      0.037200000000000004,
+      0.05208,
+      0.03825000000000001,
+      0.0345,
+      0.01725,
+      0.033,
+      0.01302,
+      0.00372
+    ],
+    "chosen_departments": [
+      [
+        2000,
+        2000,
+        2000,
+        2000,
+        2000
+      ],
+      [
+        2000,
+        2000,
+        2000,
+        2000,
+        2000
+      ],
+      [
+        2000,
+        2000,
+        2000,
+        2000,
+        2000
+      ],
+      [
+        2000,
+        2000,
+        2000,
+        2000,
+        2000
+      ],
+      [
+        2000,
+        2000,
+        2000,
+        2000,
+        2000
+      ],
+      [
+        2000,
+        2000,
+        2000,
+        2000,
+        2000
+      ],
+      [
+        2000,
+        2000,
+        2000,
+        2000,
+        2000
+      ],
+      [
+        600,
+        600,
+        700,
+        8000,
+        100
+      ],
+      [
+        2000,
+        2000,
+        2000,
+        2000,
+        2000
+      ],
+      [
+        2000,
+        2000,
+        2000,
+        2000,
+        2000
+      ]
+    ],
+    "command": {
+      "defense": 0.033,
+      "departments": [
+        [
+          2000,
+          2000,
+          2000,
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000,
+          2000,
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000,
+          2000,
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000,
+          2000,
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000,
+          2000,
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000,
+          2000,
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000,
+          2000,
+          2000,
+          2000
+        ],
+        [
+          600,
+          600,
+          700,
+          8000,
+          100
+        ],
+        [
+          2000,
+          2000,
+          2000,
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000,
+          2000,
+          2000,
+          2000
+        ]
+      ],
+      "diplomacy": 0.00372,
+      "education": 0.033479999999999996,
+      "fiscal_year": 1990,
+      "health": 0.0465,
+      "housing": 0.037200000000000004,
+      "industry": 0.0345,
+      "infrastructure": 0.03825000000000001,
+      "kind": "program_budget",
+      "pensions": 0.05208,
+      "science": 0.01725,
+      "security": 0.01302
+    },
+    "native_preview": {
+      "actual_spent_today_bn": 0.0,
+      "annual_authorized_bn": 0.03522600000000001,
+      "basis_gdp": 0.114,
+      "capital_available_bn": 0.000029097580645161292,
+      "daily_authorized_bn": 0.00009469354838709678,
+      "defense_force": 0.07214372767483478,
+      "departments": [
+        [
+          2000,
+          2000,
+          2000,
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000,
+          2000,
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000,
+          2000,
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000,
+          2000,
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000,
+          2000,
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000,
+          2000,
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000,
+          2000,
+          2000,
+          2000
+        ],
+        [
+          600,
+          600,
+          700,
+          8000,
+          100
+        ],
+        [
+          2000,
+          2000,
+          2000,
+          2000,
+          2000
+        ],
+        [
+          2000,
+          2000,
+          2000,
+          2000,
+          2000
+        ]
+      ],
+      "due": false,
+      "enabled": true,
+      "expired_authority_bn": 0.0,
+      "fiscal": {
+        "affordable": true,
+        "authorized_spend_bn": 0.03522600000000001,
+        "balance_at_full_use_bn": -0.011197080000000009,
+        "basis_gdp_bn": 0.114,
+        "effective_rate": 0.020000000000000004,
+        "interest_bn": 0.0010510800000000002,
+        "interest_gdp": 0.009220000000000002,
+        "opening_books": false,
+        "posted_spending_run_rate_bn": 0.0,
+        "revenue_bn": 0.02508,
+        "revenue_gdp": 0.22,
+        "total_at_full_use_bn": 0.03627708000000001,
+        "total_political_cost": 15.085
+      },
+      "fiscal_year": 1990,
+      "industry": {
+        "capacity_each": 250.0,
+        "goods": {
+          "capital_goods": 0.0,
+          "intermediates": 0.0
+        },
+        "goods_unit": "modeled industrial packs",
+        "note": "Goods are inventory, not cash. Actual production less intermediate inputs appears as modeled value added in province GDP. No inferred 1990 factories or power stations.",
+        "power_capacity_daily": 0.00011452914171594986,
+        "power_used_daily": 0.0,
+        "research_operations": [],
+        "settled_day": null,
+        "sites": []
+      },
+      "investment_choices": [
+        {
+          "department": 0,
+          "description": "Factories, machine shops, and construction suppliers.",
+          "effect": "Enables Machinery Works and Materials Processing in this province.",
+          "enabled": true,
+          "icon": "◈",
+          "id": "civilian_industry",
+          "name": "Industrial Estates",
+          "pc_cost": 12.0,
+          "project_kind": "civilian_industry",
+          "reason": "",
+          "tag": "Physical investment",
+          "total_days": 540,
+          "work_cost_bn": 0.18
+        },
+        {
+          "department": 1,
+          "description": "Substations and transmission for new industrial facilities.",
+          "effect": "Delivers 5 modeled power units/day per level to this province; requires national generation.",
+          "enabled": true,
+          "icon": "◈",
+          "id": "power_grid",
+          "name": "Power Grid",
+          "pc_cost": 10.0,
+          "project_kind": "power_grid",
+          "reason": "",
+          "tag": "Physical investment",
+          "total_days": 420,
+          "work_cost_bn": 0.12
+        },
+        {
+          "department": 0,
+          "description": "Tool and machine production for civilian capital projects.",
+          "effect": "Uses intermediate packs, copper and power to produce 0.5 capital-goods packs/day per level.",
+          "enabled": false,
+          "icon": "◈",
+          "id": "machinery_works",
+          "name": "Machinery Works",
+          "pc_cost": 10.0,
+          "project_kind": "machinery_works",
+          "reason": "No eligible province yet. Check standing, budget, technology and built prerequisites on the production board.",
+          "tag": "Physical investment",
+          "total_days": 420,
+          "work_cost_bn": 0.1
+        },
+        {
+          "department": 1,
+          "description": "New dispatchable generation for modeled industrial activity only.",
+          "effect": "Supplies up to 10 modeled power units/day per level; burns coal only when a factory runs.",
+          "enabled": true,
+          "icon": "◈",
+          "id": "generation",
+          "name": "Power Generation",
+          "pc_cost": 10.0,
+          "project_kind": "generation",
+          "reason": "",
+          "tag": "Physical investment",
+          "total_days": 480,
+          "work_cost_bn": 0.16
+        },
+        {
+          "department": 2,
+          "description": "Converts ore and fuel into usable industrial intermediates.",
+          "effect": "Uses iron, bauxite, coal and power to produce 1 intermediate pack/day per level.",
+          "enabled": false,
+          "icon": "◈",
+          "id": "processing_plant",
+          "name": "Materials Processing",
+          "pc_cost": 10.0,
+          "project_kind": "processing_plant",
+          "reason": "No eligible province yet. Check standing, budget, technology and built prerequisites on the production board.",
+          "tag": "Physical investment",
+          "total_days": 360,
+          "work_cost_bn": 0.12
+        },
+        {
+          "department": 3,
+          "description": "An upgrade to a mapped coastal freight gateway.",
+          "effect": "+25% modeled terminal throughput per level, shared by every shipment through this gateway.",
+          "enabled": true,
+          "icon": "◈",
+          "id": "freight_terminal",
+          "name": "Freight Terminal",
+          "pc_cost": 10.0,
+          "project_kind": "freight_terminal",
+          "reason": "",
+          "tag": "Physical investment",
+          "total_days": 360,
+          "work_cost_bn": 0.12
+        },
+        {
+          "department": 3,
+          "description": "Storage for manufactured intermediate and capital-goods packs.",
+          "effect": "+250 storage capacity for each industrial good per level. Full storage pauses its producer; no stock is destroyed.",
+          "enabled": true,
+          "icon": "◈",
+          "id": "warehouse",
+          "name": "Industrial Warehouses",
+          "pc_cost": 10.0,
+          "project_kind": "warehouse",
+          "reason": "",
+          "tag": "Physical investment",
+          "total_days": 240,
+          "work_cost_bn": 0.06
+        },
+        {
+          "department": 4,
+          "description": "Robot cells and controls fitted to a real civilian plant.",
+          "effect": "+20% local civilian line throughput per level, with proportionate inputs, power and cash. Requires Industrial Robot Cells.",
+          "enabled": false,
+          "icon": "◈",
+          "id": "automation",
+          "name": "Factory Automation",
+          "pc_cost": 10.0,
+          "project_kind": "automation",
+          "reason": "No eligible province yet. Check standing, budget, technology and built prerequisites on the production board.",
+          "tag": "Physical investment",
+          "total_days": 300,
+          "work_cost_bn": 0.08
+        },
+        {
+          "department": 4,
+          "description": "Process improvements fitted to a real civilian plant.",
+          "effect": "Cuts new local plant power and generating-fuel use by 10% per level, capped at 50%. Requires Lean Production.",
+          "enabled": false,
+          "icon": "◈",
+          "id": "efficiency",
+          "name": "Energy Efficiency",
+          "pc_cost": 10.0,
+          "project_kind": "efficiency",
+          "reason": "No eligible province yet. Check standing, budget, technology and built prerequisites on the production board.",
+          "tag": "Physical investment",
+          "total_days": 240,
+          "work_cost_bn": 0.06
+        },
+        {
+          "department": 0,
+          "description": "Service businesses and professional employment.",
+          "effect": "Creates service jobs and additional taxable value added when skilled workers, electricity and domestic demand are available. GDP and tax receipts are reported separately.",
+          "enabled": true,
+          "icon": "◈",
+          "id": "office_district",
+          "name": "Office District",
+          "pc_cost": 10.0,
+          "project_kind": "office_district",
+          "reason": "",
+          "tag": "Physical investment",
+          "total_days": 360,
+          "work_cost_bn": 0.16
+        },
+        {
+          "department": 2,
+          "description": "Electronics, precision components, and advanced machine production.",
+          "effect": "Produces advanced component packs for storage and trade. Supplier component contracts are a later integration step; existing equipment orders are unchanged. Needs skilled workers, electricity, intermediate packs, copper, rare earths and operating funds.",
+          "enabled": true,
+          "icon": "◈",
+          "id": "advanced_industry",
+          "name": "Advanced Industry",
+          "pc_cost": 14.0,
+          "project_kind": "advanced_industry",
+          "reason": "",
+          "tag": "Physical investment",
+          "total_days": 660,
+          "work_cost_bn": 0.24
+        },
+        {
+          "department": 2,
+          "description": "Turn an eligible mapped deposit into national resource production.",
+          "effect": "Feeds your physical resource stockpile. Deposit and commodity requirements still apply.",
+          "enabled": true,
+          "icon": "◆",
+          "id": "mine",
+          "name": "Develop a mine",
+          "tag": "Mapped resources"
+        }
+      ],
+      "last_spending_day": null,
+      "magazine_refill_mult": 1.01491,
+      "ministryrows": [
+        {
+          "annual_bn": 0.005301,
+          "available_bn": 0.0,
+          "carried_bn": 0.0,
+          "daily_bn": 0.000014249999999999999,
+          "departments": [
+            {
+              "annual_bn": 0.0010602,
+              "available_bn": 0.0,
+              "daily_bn": 2.85e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 0,
+              "kind": "operating",
+              "name": "Primary care",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0010602,
+              "available_bn": 0.0,
+              "daily_bn": 2.85e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 1,
+              "kind": "operating",
+              "name": "Hospitals",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0010602,
+              "available_bn": 0.0,
+              "daily_bn": 2.85e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 2,
+              "kind": "operating",
+              "name": "Medicines & supplies",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0010602,
+              "available_bn": 0.0,
+              "daily_bn": 2.85e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 3,
+              "kind": "operating",
+              "name": "Prevention",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0010602,
+              "available_bn": 0.0,
+              "daily_bn": 2.85e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 4,
+              "kind": "operating",
+              "name": "Emergency medicine",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            }
+          ],
+          "editable": false,
+          "index": 0,
+          "key": "health",
+          "name": "Health",
+          "spent_today_bn": 0.0,
+          "spent_ytd_bn": 0.0
+        },
+        {
+          "annual_bn": 0.0038167199999999996,
+          "available_bn": 0.0,
+          "carried_bn": 0.0,
+          "daily_bn": 0.000010259999999999998,
+          "departments": [
+            {
+              "annual_bn": 0.0007633439999999999,
+              "available_bn": 0.0,
+              "daily_bn": 2.0519999999999996e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 0,
+              "kind": "operating",
+              "name": "Primary schools",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0007633439999999999,
+              "available_bn": 0.0,
+              "daily_bn": 2.0519999999999996e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 1,
+              "kind": "operating",
+              "name": "Secondary schools",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0007633439999999999,
+              "available_bn": 0.0,
+              "daily_bn": 2.0519999999999996e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 2,
+              "kind": "operating",
+              "name": "Vocational training",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0007633439999999999,
+              "available_bn": 0.0,
+              "daily_bn": 2.0519999999999996e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 3,
+              "kind": "operating",
+              "name": "Universities",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0007633439999999999,
+              "available_bn": 0.0,
+              "daily_bn": 2.0519999999999996e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 4,
+              "kind": "operating",
+              "name": "Teachers & facilities",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            }
+          ],
+          "editable": false,
+          "index": 1,
+          "key": "education",
+          "name": "Education",
+          "spent_today_bn": 0.0,
+          "spent_ytd_bn": 0.0
+        },
+        {
+          "annual_bn": 0.0042408,
+          "available_bn": 0.0,
+          "carried_bn": 0.0,
+          "daily_bn": 0.0000114,
+          "departments": [
+            {
+              "annual_bn": 0.00084816,
+              "available_bn": 0.0,
+              "daily_bn": 2.2799999999999998e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 0,
+              "kind": "operating",
+              "name": "Public housing",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.00084816,
+              "available_bn": 0.0,
+              "daily_bn": 2.2799999999999998e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 1,
+              "kind": "operating",
+              "name": "Home renovation",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.00084816,
+              "available_bn": 0.0,
+              "daily_bn": 2.2799999999999998e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 2,
+              "kind": "operating",
+              "name": "Housing assistance",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.00084816,
+              "available_bn": 0.0,
+              "daily_bn": 2.2799999999999998e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 3,
+              "kind": "operating",
+              "name": "Water & sanitation",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.00084816,
+              "available_bn": 0.0,
+              "daily_bn": 2.2799999999999998e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 4,
+              "kind": "operating",
+              "name": "Urban development",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            }
+          ],
+          "editable": false,
+          "index": 2,
+          "key": "housing",
+          "name": "Housing",
+          "spent_today_bn": 0.0,
+          "spent_ytd_bn": 0.0
+        },
+        {
+          "annual_bn": 0.005937120000000001,
+          "available_bn": 0.0,
+          "carried_bn": 0.0,
+          "daily_bn": 0.00001596,
+          "departments": [
+            {
+              "annual_bn": 0.001187424,
+              "available_bn": 0.0,
+              "daily_bn": 3.192e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 0,
+              "kind": "operating",
+              "name": "Retirement benefits",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.001187424,
+              "available_bn": 0.0,
+              "daily_bn": 3.192e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 1,
+              "kind": "operating",
+              "name": "Disability benefits",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.001187424,
+              "available_bn": 0.0,
+              "daily_bn": 3.192e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 2,
+              "kind": "operating",
+              "name": "Survivor benefits",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.001187424,
+              "available_bn": 0.0,
+              "daily_bn": 3.192e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 3,
+              "kind": "operating",
+              "name": "Minimum-income supplements",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.001187424,
+              "available_bn": 0.0,
+              "daily_bn": 3.192e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 4,
+              "kind": "operating",
+              "name": "Benefits administration",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            }
+          ],
+          "editable": false,
+          "index": 3,
+          "key": "pensions",
+          "name": "Welfare",
+          "spent_today_bn": 0.0,
+          "spent_ytd_bn": 0.0
+        },
+        {
+          "annual_bn": 0.0043605000000000015,
+          "available_bn": 9.377419354838712e-6,
+          "carried_bn": 0.0,
+          "daily_bn": 0.00001172177419354839,
+          "departments": [
+            {
+              "annual_bn": 0.0008721000000000003,
+              "available_bn": 2.344354838709678e-6,
+              "daily_bn": 2.344354838709678e-6,
+              "description": "Shared project authorization. Only actual work is charged; unused funds carry within the financial year.",
+              "editable": true,
+              "index": 0,
+              "kind": "capital",
+              "name": "Roads & bridges",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0008721000000000003,
+              "available_bn": 2.344354838709678e-6,
+              "daily_bn": 2.344354838709678e-6,
+              "description": "Shared project authorization. Only actual work is charged; unused funds carry within the financial year.",
+              "editable": true,
+              "index": 1,
+              "kind": "capital",
+              "name": "Railways",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0008721000000000003,
+              "available_bn": 2.344354838709678e-6,
+              "daily_bn": 2.344354838709678e-6,
+              "description": "Shared project authorization. Only actual work is charged; unused funds carry within the financial year.",
+              "editable": true,
+              "index": 2,
+              "kind": "capital",
+              "name": "Ports",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0008721000000000003,
+              "available_bn": 2.344354838709678e-6,
+              "daily_bn": 2.344354838709678e-6,
+              "description": "Shared project authorization. Only actual work is charged; unused funds carry within the financial year.",
+              "editable": true,
+              "index": 3,
+              "kind": "capital",
+              "name": "Airports",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0008721000000000003,
+              "available_bn": 0.0,
+              "daily_bn": 2.344354838709678e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": true,
+              "index": 4,
+              "kind": "operating",
+              "name": "Network maintenance",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            }
+          ],
+          "editable": true,
+          "index": 4,
+          "key": "infrastructure",
+          "name": "Infrastructure",
+          "spent_today_bn": 0.0,
+          "spent_ytd_bn": 0.0
+        },
+        {
+          "annual_bn": 0.003933000000000001,
+          "available_bn": 0.000010572580645161292,
+          "carried_bn": 0.0,
+          "daily_bn": 0.00001057258064516129,
+          "departments": [
+            {
+              "annual_bn": 0.0007866000000000001,
+              "available_bn": 2.1145161290322586e-6,
+              "daily_bn": 2.114516129032258e-6,
+              "description": "Shared project authorization. Only actual work is charged; unused funds carry within the financial year.",
+              "editable": true,
+              "index": 0,
+              "kind": "capital",
+              "name": "Factories & construction",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0007866000000000001,
+              "available_bn": 2.1145161290322586e-6,
+              "daily_bn": 2.114516129032258e-6,
+              "description": "Shared project authorization. Only actual work is charged; unused funds carry within the financial year.",
+              "editable": true,
+              "index": 1,
+              "kind": "capital",
+              "name": "Energy supply",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0007866000000000001,
+              "available_bn": 2.1145161290322586e-6,
+              "daily_bn": 2.114516129032258e-6,
+              "description": "Shared project authorization. Only actual work is charged; unused funds carry within the financial year.",
+              "editable": true,
+              "index": 2,
+              "kind": "capital",
+              "name": "Minerals & processing",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0007866000000000001,
+              "available_bn": 2.1145161290322586e-6,
+              "daily_bn": 2.114516129032258e-6,
+              "description": "Shared project authorization. Only actual work is charged; unused funds carry within the financial year.",
+              "editable": true,
+              "index": 3,
+              "kind": "capital",
+              "name": "Industrial supply chains",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0007866000000000001,
+              "available_bn": 2.1145161290322578e-6,
+              "daily_bn": 2.114516129032258e-6,
+              "description": "Shared project authorization. Only actual work is charged; unused funds carry within the financial year.",
+              "editable": true,
+              "index": 4,
+              "kind": "capital",
+              "name": "Industrial modernization",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            }
+          ],
+          "editable": true,
+          "index": 5,
+          "key": "industry",
+          "name": "Industry & Energy",
+          "spent_today_bn": 0.0,
+          "spent_ytd_bn": 0.0
+        },
+        {
+          "annual_bn": 0.0019665000000000004,
+          "available_bn": 1.0572580645161293e-6,
+          "carried_bn": 0.0,
+          "daily_bn": 5.286290322580645e-6,
+          "departments": [
+            {
+              "annual_bn": 0.0003933000000000001,
+              "available_bn": 1.0572580645161293e-6,
+              "daily_bn": 1.057258064516129e-6,
+              "description": "Shared project authorization. Only actual work is charged; unused funds carry within the financial year.",
+              "editable": true,
+              "index": 0,
+              "kind": "capital",
+              "name": "Basic research",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0003933000000000001,
+              "available_bn": 0.0,
+              "daily_bn": 1.057258064516129e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": true,
+              "index": 1,
+              "kind": "operating",
+              "name": "Computing & communications",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0003933000000000001,
+              "available_bn": 0.0,
+              "daily_bn": 1.057258064516129e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": true,
+              "index": 2,
+              "kind": "operating",
+              "name": "Materials & energy research",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0003933000000000001,
+              "available_bn": 0.0,
+              "daily_bn": 1.057258064516129e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": true,
+              "index": 3,
+              "kind": "operating",
+              "name": "Life sciences",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0003933000000000001,
+              "available_bn": 0.0,
+              "daily_bn": 1.057258064516129e-6,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": true,
+              "index": 4,
+              "kind": "operating",
+              "name": "Aerospace research",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            }
+          ],
+          "editable": true,
+          "index": 6,
+          "key": "science",
+          "name": "Science",
+          "spent_today_bn": 0.0,
+          "spent_ytd_bn": 0.0
+        },
+        {
+          "annual_bn": 0.0037619999999999997,
+          "available_bn": 8.090322580645161e-6,
+          "carried_bn": 0.0,
+          "daily_bn": 0.000010112903225806452,
+          "departments": [
+            {
+              "annual_bn": 0.00022572,
+              "available_bn": 0.0,
+              "daily_bn": 6.067741935483871e-7,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": true,
+              "index": 0,
+              "kind": "operating",
+              "name": "Personnel & training",
+              "share_bp": 600,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.00022572,
+              "available_bn": 0.0,
+              "daily_bn": 6.067741935483871e-7,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": true,
+              "index": 1,
+              "kind": "operating",
+              "name": "Operations",
+              "share_bp": 600,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.00026334,
+              "available_bn": 0.0,
+              "daily_bn": 7.079032258064515e-7,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": true,
+              "index": 2,
+              "kind": "operating",
+              "name": "Maintenance & supply",
+              "share_bp": 700,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.0030096,
+              "available_bn": 8.090322580645161e-6,
+              "daily_bn": 8.090322580645161e-6,
+              "description": "Shared project authorization. Only actual work is charged; unused funds carry within the financial year.",
+              "editable": true,
+              "index": 3,
+              "kind": "capital",
+              "name": "Equipment procurement",
+              "share_bp": 8000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.00003762,
+              "available_bn": 0.0,
+              "daily_bn": 1.0112903225806451e-7,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": true,
+              "index": 4,
+              "kind": "operating",
+              "name": "Military research",
+              "share_bp": 100,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            }
+          ],
+          "editable": true,
+          "index": 7,
+          "key": "defense",
+          "name": "Defense",
+          "spent_today_bn": 0.0,
+          "spent_ytd_bn": 0.0
+        },
+        {
+          "annual_bn": 0.0014842800000000001,
+          "available_bn": 0.0,
+          "carried_bn": 0.0,
+          "daily_bn": 3.99e-6,
+          "departments": [
+            {
+              "annual_bn": 0.000296856,
+              "available_bn": 0.0,
+              "daily_bn": 7.98e-7,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 0,
+              "kind": "operating",
+              "name": "Policing",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.000296856,
+              "available_bn": 0.0,
+              "daily_bn": 7.98e-7,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 1,
+              "kind": "operating",
+              "name": "Courts & corrections",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.000296856,
+              "available_bn": 0.0,
+              "daily_bn": 7.98e-7,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 2,
+              "kind": "operating",
+              "name": "Border security",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.000296856,
+              "available_bn": 0.0,
+              "daily_bn": 7.98e-7,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 3,
+              "kind": "operating",
+              "name": "Civil protection",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.000296856,
+              "available_bn": 0.0,
+              "daily_bn": 7.98e-7,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 4,
+              "kind": "operating",
+              "name": "Domestic intelligence",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            }
+          ],
+          "editable": false,
+          "index": 8,
+          "key": "security",
+          "name": "Security",
+          "spent_today_bn": 0.0,
+          "spent_ytd_bn": 0.0
+        },
+        {
+          "annual_bn": 0.0004240800000000001,
+          "available_bn": 0.0,
+          "carried_bn": 0.0,
+          "daily_bn": 1.14e-6,
+          "departments": [
+            {
+              "annual_bn": 0.00008481600000000001,
+              "available_bn": 0.0,
+              "daily_bn": 2.28e-7,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 0,
+              "kind": "operating",
+              "name": "Embassies",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.00008481600000000001,
+              "available_bn": 0.0,
+              "daily_bn": 2.28e-7,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 1,
+              "kind": "operating",
+              "name": "Trade diplomacy",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.00008481600000000001,
+              "available_bn": 0.0,
+              "daily_bn": 2.28e-7,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 2,
+              "kind": "operating",
+              "name": "Foreign aid",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.00008481600000000001,
+              "available_bn": 0.0,
+              "daily_bn": 2.28e-7,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 3,
+              "kind": "operating",
+              "name": "International institutions",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            },
+            {
+              "annual_bn": 0.00008481600000000001,
+              "available_bn": 0.0,
+              "daily_bn": 2.28e-7,
+              "description": "Automatically delivered through the ministry's existing service model; not a separate new simulation.",
+              "editable": false,
+              "index": 4,
+              "kind": "operating",
+              "name": "Negotiations & mediation",
+              "share_bp": 2000,
+              "spent_today_bn": 0.0,
+              "spent_ytd_bn": 0.0
+            }
+          ],
+          "editable": false,
+          "index": 9,
+          "key": "diplomacy",
+          "name": "Diplomacy",
+          "spent_today_bn": 0.0,
+          "spent_ytd_bn": 0.0
+        }
+      ],
+      "note": "Services use their standing budgets. Civilian capital appropriations support the shared Construction budget and operating plants. Construction pays only for delivered work; factory inputs and equipment remain separate operating purchases. Annual dollars follow GDP. Realized investment reaches the economy on the following day.",
+      "political_cost": 15.085,
+      "spending_fiscal_year": 1990
+    },
+    "no_immediate_cash_debt_authority_property_or_research_grant": true,
+    "old_allocations": [
+      0.0465,
+      0.033479999999999996,
+      0.037200000000000004,
+      0.05208,
+      0.06325000000000001,
+      0.0345,
+      0.01725,
+      0.008,
+      0.01302,
+      0.00372
+    ],
+    "political_cost": 15.085,
+    "total_after": 0.30900000000000005,
+    "total_before": 0.30900000000000005,
+    "tradeoff": "Transfer 2.5 percentage points of GDP from Infrastructure to Defense, prioritising procurement while preserving absolute personnel, operations and maintenance funding. This deliberately reduces infrastructure appropriations; future authority must accrue through actual days."
+  },
+  "no_synthetic_endowments": true,
+  "note": "Ordinary fresh campaign with a declared fixed-total procurement-priority budget tradeoff, unchanged annual renewals, explicit reviewed import enrollment and purchase; all funds accrue and all supplier facilities, development, inputs and stock are earned through native daily work.",
+  "passed": true,
+  "source": {
+    "build": {
+      "branch": "codex/campaign-certification",
+      "built_at_unix_seconds": 1789145049,
+      "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+      "distribution": "Local offline game server; source and attribution accompany the release",
+      "revision": "e6187df80445",
+      "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration",
+      "version": "0.6.0"
+    },
+    "declared_policy": "Review and enact a fixed-total Tonga budget reallocation from Infrastructure to Defense procurement, preserving absolute personnel, operations and maintenance. Renew the chosen policy unchanged annually; no purchase funds are granted upfront.",
+    "executable": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\runners\\S08-qualified-e6187df80445\\spheres-web-tests.exe",
+    "format": "spheres-s08-genuine-supplier-journey",
+    "maximum_actual_days": 3000,
+    "qualification": "Developmental unless separately bound to a clean recorded candidate and executable hash; no synthetic stock, plant, research or budget grants.",
+    "source_files": [
+      {
+        "git_blob_sha1": "03ff4afa67a4a178f151abd624cc5c11468566ba",
+        "path": "spheres-web/src/company_view.rs"
+      },
+      {
+        "git_blob_sha1": "23cbeb125c343127a3c4d7c68707159018e3922b",
+        "path": "spheres-sim/src/supplier_catalogue.rs"
+      },
+      {
+        "git_blob_sha1": "7a541e830b75b3af9f64fa53b4a17b16f366b8b3",
+        "path": "spheres-sim/src/companies_imports.rs"
+      },
+      {
+        "git_blob_sha1": "72c9a0a85051ccbfd5ceb29795dc86b1cb191c39",
+        "path": "spheres-sim/src/companies.rs"
+      },
+      {
+        "git_blob_sha1": "470528ff2c44d7d5819a183df48d3cd6d501ede6",
+        "path": "spheres-web/src/main.rs"
+      }
+    ],
+    "source_head": "e6187df8044556a8262154e7a6c8baa32b283799",
+    "source_status": ""
+  }
+}

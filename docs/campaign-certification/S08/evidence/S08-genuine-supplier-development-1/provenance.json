@@ -1,0 +1,39 @@
+{
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1789142077,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "68e863055ee6-modified",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration",
+    "version": "0.6.0"
+  },
+  "executable": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+  "format": "spheres-s08-genuine-supplier-journey",
+  "maximum_actual_days": 3000,
+  "qualification": "Developmental unless separately bound to a clean recorded candidate and executable hash; no synthetic stock, plant, research or budget grants.",
+  "source_files": [
+    {
+      "git_blob_sha1": "cc816cea7a4160ece18f18c8d6c16c5321ccdb7c",
+      "path": "spheres-web/src/company_view.rs"
+    },
+    {
+      "git_blob_sha1": "f25e65058320caa6a04c3a1c5be891fd9fcfa138",
+      "path": "spheres-sim/src/supplier_catalogue.rs"
+    },
+    {
+      "git_blob_sha1": "03bedbc46ccfb16a532594cea470a5a7171c2436",
+      "path": "spheres-sim/src/companies_imports.rs"
+    },
+    {
+      "git_blob_sha1": "6166bf32e763067dd14d60db3534a47f07bdc157",
+      "path": "spheres-sim/src/companies.rs"
+    },
+    {
+      "git_blob_sha1": "470528ff2c44d7d5819a183df48d3cd6d501ede6",
+      "path": "spheres-web/src/main.rs"
+    }
+  ],
+  "source_head": "68e863055ee6ddf6c9796547995dccf455557edd",
+  "source_status": "M docs/CERTIFIED_CAMPAIGN_PATHWAY.md\n M docs/planning/campaign-pathway.json\n M spheres-sim/src/companies.rs\n M spheres-sim/src/companies_ammunition.rs\n M spheres-sim/src/companies_refits.rs\n M spheres-sim/src/company_save.rs\n M spheres-sim/src/data/mod.rs\n M spheres-sim/src/equipment.rs\n M spheres-sim/src/equipment_ammunition_production.rs\n M spheres-sim/src/fiscal_journal.rs\n M spheres-sim/src/lib.rs\n M spheres-sim/src/logistics.rs\n M spheres-sim/src/world.rs\n M spheres-web/src/company_ammunition_view.rs\n M spheres-web/src/company_refit_view.rs\n M spheres-web/src/company_view.rs\n M spheres-web/src/main.rs\n M spheres-web/src/money_view.rs\n M spheres-web/src/performance.rs\n M spheres-web/ui/companies-ui.js\n M spheres-web/ui/equipment-ui.css\n M spheres-web/ui/equipment-ui.js\n M spheres-web/ui/index.html\n M tools/ui/check_equipment.cjs\n M tools/ui/ci-integrated.cjs\n?? docs/campaign-certification/S08/\n?? spheres-sim/src/companies_imports.rs\n?? spheres-sim/src/supplier_catalogue.rs\n?? spheres-sim/tests/s08_supplier_catalogue.rs\n?? spheres-sim/tests/s08_supplier_lifecycle.rs\n?? tools/ui/ci-supplier-imports.cjs"
+}

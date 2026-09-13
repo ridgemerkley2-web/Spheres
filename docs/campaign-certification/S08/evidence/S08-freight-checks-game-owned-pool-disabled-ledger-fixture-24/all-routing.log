@@ -1,0 +1,57 @@
+    Finished `release` profile [optimized] target(s) in 0.04s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 50 tests
+test logistics::freight_routing::access_read_tests::clearing_access_reuse_bounded_fallback_keeps_native_answers ... ok
+test logistics::freight_routing::access_read_tests::clearing_access_reuse_checks_changed_paths_and_new_clearing_closures ... ok
+test logistics::freight_routing::access_read_tests::clearing_access_reuse_preserves_dispatches_invalid_cache_and_alternates ... ok
+test logistics::tests::bilateral_sanctions_close_a_route ... ok
+test logistics::tests::built_infrastructure_grows_land_capacity ... ok
+test logistics::tests::clearing_frozen_capacities_preserve_live_usage_and_dispatches ... ok
+test logistics::tests::clearing_tree_exhaustion_preserves_unreachable_and_blocked_results ... ok
+test logistics::tests::clearing_tree_pauses_resumes_and_keeps_first_settled_goal ... ok
+test logistics::tests::clearing_trees_match_original_pair_routes_across_policy_and_ownership ... ok
+test logistics::tests::company_terminal_capacity_and_fees_follow_actual_dispatch ... ok
+test logistics::tests::completed_freight_terminal_increases_only_its_real_gateway_capacity ... ok
+test logistics::tests::contract_forecast_context_preserves_invalid_closed_and_legacy_paths ... ok
+test logistics::tests::contract_forecast_context_preserves_quantities_atomic_order_and_alternates ... ok
+test logistics::tests::daily_capacity_is_prorated_shared_and_resets_on_the_next_day ... ok
+test logistics::tests::daily_cargo_arrives_on_its_exact_day_and_only_once ... ok
+test logistics::tests::daily_cargo_is_held_then_resumes_without_losing_its_paid_quantity ... ok
+test logistics::tests::disabled_world_stays_empty ... ok
+test logistics::tests::every_commodity_shares_the_same_capacity ... ok
+test logistics::tests::freight_access_read_matches_exact_paths_pairs_and_ignored_metadata ... ok
+test logistics::tests::freight_access_read_new_snapshot_observes_closures_and_endpoint_control ... ok
+test logistics::tests::freight_access_read_storage_limit_falls_back_to_native_checks ... ok
+test logistics::tests::held_cargo_survives_save_and_arrives_once_after_reopening ... ok
+test logistics::tests::indexed_lazy_route_search_is_identical_to_original_graph_walk ... ok
+test logistics::tests::land_only_is_a_real_policy ... ok
+test logistics::tests::materials_segment_capacity_profile ... ignored, observer-only Materials freight-capacity microprofile
+test logistics::tests::military_routing_all_search_paths_refuse_a_contested_endpoint ... ok
+test logistics::tests::military_routing_alternates_replay_after_save_and_keep_actual_arrival_dates ... ok
+test logistics::tests::military_routing_contract_forecasts_and_frozen_barter_legs_share_capacity ... ok
+test logistics::tests::military_routing_daily_market_profile ... ignored, bounded observer of the actual daily world; no timing threshold
+test logistics::tests::military_routing_goods_use_alternates_and_an_exhausted_graph_moves_nothing ... ok
+test logistics::tests::military_routing_replans_a_cached_departure_after_endpoint_cession ... ok
+test logistics::tests::military_routing_search_budget_exhaustion_preserves_nominal_capacity ... ok
+test logistics::tests::military_routing_uses_an_alternate_after_the_fastest_corridor_fills ... ok
+test logistics::tests::military_routing_warns_of_a_hold_before_due_without_rebooking_paid_cargo ... ok
+test logistics::tests::network_is_real_and_connected ... ok
+test logistics::tests::ocean_freight_takes_time_and_is_idempotent ... ok
+test logistics::tests::old_monthly_cargo_migrates_its_remaining_term_without_dispatching_again ... ok
+test logistics::tests::overseas_land_only_is_unreachable ... ok
+test logistics::tests::s08_borrowed_capacity_labels_preserve_first_minimum_and_ieee_ties ... ok
+test logistics::tests::s08_clearing_assembly_reuses_static_segments_and_keeps_terminal_xp_live ... ok
+test logistics::tests::s08_clearing_default_256_matches_old_128_admission_full_world_and_budget ... ok
+test logistics::tests::s08_clearing_owner_permissions_match_every_original_owner_bit ... ok
+test logistics::tests::s08_clearing_tree_lru_evicts_and_revisits_exact_native_routes ... ok
+test logistics::tests::s08_dispatch_clone_reduction_preserves_cache_refusals_and_complete_world ... ok
+test logistics::tests::s08_endpoint_guard_reuses_exact_bilateral_access_and_native_refusals ... ok
+test logistics::tests::s08_indexed_traversal_matches_every_original_directed_edge ... ok
+test logistics::tests::s08_nominal_pool_revalidates_exact_world_inputs_and_keeps_native_routes ... ok
+test logistics::tests::s08_retained_heap_diagnostics_preserve_routes_and_count_actual_work ... ok
+test logistics::tests::s08_tree_node_permissions_match_native_transit_under_each_owner_mask ... ok
+test logistics::tree_storage::tests::s08_compact_tree_storage_preserves_native_sentinels_indices_and_rank_bits ... ok
+
+test result: ok. 48 passed; 0 failed; 2 ignored; 0 measured; 771 filtered out; finished in 7.69s
+

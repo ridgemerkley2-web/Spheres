@@ -1,0 +1,426 @@
+--- a/spheres-sim/src/commerce.rs
++++ b/spheres-sim/src/commerce.rs
+@@ -407,52 +407,10 @@
+     c.policies.sort_by_key(|p| (p.nation, p.good));
+     Ok(())
+ }
+-fn check(
+-    w: &WorldState,
+-    buyer: NationId,
+-    seller: NationId,
+-    good: Good,
+-    quantity: f64,
+-    unit_price_bn: f64,
+-    delivery_days: u32,
+-) -> Result<logistics::RoutePlan, String> {
+-    if !active(w) {
+-        return Err("Enable daily economic competition and physical logistics first.".into());
+-    }
+-    if !supported_goods(w).contains(&good) {
+-        return Err("Advanced components require the daily industry rebuild.".into());
+-    }
+-    if buyer == seller {
+-        return Err("An import needs a different seller.".into());
+-    }
+-    government(w, buyer)?;
+-    government(w, seller)?;
+-    if !quantity.is_finite() || !(MIN_LOT..=MAX_LOT).contains(&quantity) {
+-        return Err("A lot must contain between 0.000000001 and one million finite packs.".into());
+-    }
+-    if !unit_price_bn.is_finite()
+-        || unit_price_bn <= 0.0
+-        || unit_price_bn > reference_price_bn(good) * 100.0
+-        || !(quantity * unit_price_bn).is_finite()
+-        || quantity * unit_price_bn <= 0.0
+-    {
+-        return Err(
+-            "Price must be positive, finite and at most 100 times the reference price.".into(),
+-        );
+-    }
+-    if !(1..=365).contains(&delivery_days) {
+-        return Err("The dispatch window must be between one and 365 days.".into());
+-    }
+-    if !sale(w, seller, good).is_some_and(|p| p.enabled) {
+-        return Err("The seller has not consented to export this good.".into());
+-    }
+-    if available_to_sell(w, seller, good) < MIN_LOT {
+-        return Err("The seller has no stock above its export reserve.".into());
+-    }
+-    if w.commerce.as_ref().is_some_and(|c| c.next_id == u64::MAX) {
+-        return Err("Goods ledger identifier capacity reached.".into());
+-    }
+-    if w.commerce.as_ref().is_some_and(|ledger| {
++// The original ordered contract/cargo predicate. A market query may reuse its
++// result for one immutable buyer snapshot; commands still check current state.
++fn active_contract_limit_reached(w: &WorldState, buyer: NationId) -> bool {
++    w.commerce.as_ref().is_some_and(|ledger| {
+         ledger
+             .contracts
+             .iter()
+@@ -463,7 +421,68 @@
+             })
+             .count()
+             >= MAX_ACTIVE
+-    }) {
++    })
++}
++
++fn check(
++    w: &WorldState,
++    buyer: NationId,
++    seller: NationId,
++    good: Good,
++    quantity: f64,
++    unit_price_bn: f64,
++    delivery_days: u32,
++) -> Result<logistics::RoutePlan, String> {
++    check_with_active_limit(w, buyer, seller, good, quantity, unit_price_bn, delivery_days, None)
++}
++
++fn check_with_active_limit(
++    w: &WorldState,
++    buyer: NationId,
++    seller: NationId,
++    good: Good,
++    quantity: f64,
++    unit_price_bn: f64,
++    delivery_days: u32,
++    active_limit: Option<bool>,
++) -> Result<logistics::RoutePlan, String> {
++    if !active(w) {
++        return Err("Enable daily economic competition and physical logistics first.".into());
++    }
++    if !supported_goods(w).contains(&good) {
++        return Err("Advanced components require the daily industry rebuild.".into());
++    }
++    if buyer == seller {
++        return Err("An import needs a different seller.".into());
++    }
++    government(w, buyer)?;
++    government(w, seller)?;
++    if !quantity.is_finite() || !(MIN_LOT..=MAX_LOT).contains(&quantity) {
++        return Err("A lot must contain between 0.000000001 and one million finite packs.".into());
++    }
++    if !unit_price_bn.is_finite()
++        || unit_price_bn <= 0.0
++        || unit_price_bn > reference_price_bn(good) * 100.0
++        || !(quantity * unit_price_bn).is_finite()
++        || quantity * unit_price_bn <= 0.0
++    {
++        return Err(
++            "Price must be positive, finite and at most 100 times the reference price.".into(),
++        );
++    }
++    if !(1..=365).contains(&delivery_days) {
++        return Err("The dispatch window must be between one and 365 days.".into());
++    }
++    if !sale(w, seller, good).is_some_and(|p| p.enabled) {
++        return Err("The seller has not consented to export this good.".into());
++    }
++    if available_to_sell(w, seller, good) < MIN_LOT {
++        return Err("The seller has no stock above its export reserve.".into());
++    }
++    if w.commerce.as_ref().is_some_and(|c| c.next_id == u64::MAX) {
++        return Err("Goods ledger identifier capacity reached.".into());
++    }
++    if active_limit.unwrap_or_else(|| active_contract_limit_reached(w, buyer)) {
+         return Err("Finish or cancel an existing goods order before opening another.".into());
+     }
+     logistics::plan(w, seller, buyer)
+@@ -477,15 +496,35 @@
+     unit_price_bn: f64,
+     delivery_days: u32,
+ ) -> Quote {
+-    let checked = check(
+-        w,
+-        buyer,
+-        seller,
+-        good,
+-        quantity,
+-        unit_price_bn,
+-        delivery_days,
+-    );
++    quote_with_active_limit(w, buyer, seller, good, quantity, unit_price_bn, delivery_days, None)
++}
++
++fn quote_with_active_limit(
++    w: &WorldState,
++    buyer: NationId,
++    seller: NationId,
++    good: Good,
++    quantity: f64,
++    unit_price_bn: f64,
++    delivery_days: u32,
++    active_limit: Option<bool>,
++) -> Quote {
++    let checked = check_with_active_limit(w, buyer, seller, good, quantity, unit_price_bn, delivery_days, active_limit);
++    quote_from_checked(w, buyer, seller, good, quantity, unit_price_bn, delivery_days, checked)
++}
++
++// Pricing arithmetic and refusal precedence are identical to the original
++// quote. Reuse only a check from this same immutable call, never a saved quote.
++fn quote_from_checked(
++    w: &WorldState,
++    buyer: NationId,
++    seller: NationId,
++    good: Good,
++    quantity: f64,
++    unit_price_bn: f64,
++    _delivery_days: u32,
++    checked: Result<logistics::RoutePlan, String>,
++) -> Quote {
+     let available = available_to_sell(w, seller, good);
+     let ask = sale(w, seller, good).map_or(reference_price_bn(good), |p| {
+         reference_price_bn(good) * p.ask_multiplier
+@@ -531,28 +570,29 @@
+     unit_price_bn: f64,
+     delivery_days: u32,
+ ) -> Option<String> {
+-    if let Err(e) = check(
+-        w,
+-        buyer,
+-        seller,
+-        good,
+-        quantity,
+-        unit_price_bn,
+-        delivery_days,
+-    ) {
+-        return Some(e);
+-    }
+-    let q = quote(
+-        w,
+-        buyer,
+-        seller,
+-        good,
+-        quantity,
+-        unit_price_bn,
+-        delivery_days,
+-    );
++    proposal_preflight(w, buyer, seller, good, quantity, unit_price_bn, delivery_days, true).err()
++}
++
++// The false arm retains the original repeated-check path as a test oracle.
++// Both checks precede mutations; standalone accept_lot still revalidates live.
++fn proposal_preflight(
++    w: &WorldState,
++    buyer: NationId,
++    seller: NationId,
++    good: Good,
++    quantity: f64,
++    unit_price_bn: f64,
++    delivery_days: u32,
++    reuse_check: bool,
++) -> Result<Quote, String> {
++    let checked = check(w, buyer, seller, good, quantity, unit_price_bn, delivery_days)?;
++    let q = if reuse_check {
++        quote_from_checked(w, buyer, seller, good, quantity, unit_price_bn, delivery_days, Ok(checked))
++    } else {
++        quote(w, buyer, seller, good, quantity, unit_price_bn, delivery_days)
++    };
+     if w.nation(buyer).treasury_bn.unwrap() < q.total_price_bn {
+-        return Some(q.reason);
++        return Err(q.reason);
+     }
+     if !q.accepted
+         && w.commerce.as_ref().is_some_and(|c| {
+@@ -563,9 +603,9 @@
+                     .any(|o| o.buyer == buyer && o.seller == seller && o.good == good)
+         })
+     {
+-        return Some("Resolve an existing counteroffer before opening another.".into());
+-    }
+-    None
++        return Err("Resolve an existing counteroffer before opening another.".into());
++    }
++    Ok(q)
+ }
+ fn accept_lot(
+     w: &mut WorldState,
+@@ -631,26 +671,25 @@
+     unit_price_bn: f64,
+     delivery_days: u32,
+ ) -> Result<ProposalResult, String> {
+-    if let Some(e) = proposal_refusal(
+-        w,
+-        buyer,
+-        seller,
+-        good,
+-        quantity,
+-        unit_price_bn,
+-        delivery_days,
+-    ) {
+-        return Err(e);
+-    }
+-    let q = quote(
+-        w,
+-        buyer,
+-        seller,
+-        good,
+-        quantity,
+-        unit_price_bn,
+-        delivery_days,
+-    );
++    propose_impl(w, buyer, seller, good, quantity, unit_price_bn, delivery_days, true)
++}
++
++fn propose_impl(
++    w: &mut WorldState,
++    buyer: NationId,
++    seller: NationId,
++    good: Good,
++    quantity: f64,
++    unit_price_bn: f64,
++    delivery_days: u32,
++    reuse_check: bool,
++) -> Result<ProposalResult, String> {
++    let q = if reuse_check {
++        proposal_preflight(w, buyer, seller, good, quantity, unit_price_bn, delivery_days, true)?
++    } else {
++        proposal_preflight(w, buyer, seller, good, quantity, unit_price_bn, delivery_days, false)?;
++        quote(w, buyer, seller, good, quantity, unit_price_bn, delivery_days)
++    };
+     if q.accepted {
+         return Ok(ProposalResult {
+             id: accept_lot(
+@@ -822,11 +861,26 @@
+     quantity: f64,
+     delivery_days: u32,
+ ) -> Vec<Quote> {
++    market_quotes_impl(w, buyer, good, quantity, delivery_days, true)
++}
++
++fn market_quotes_impl(
++    w: &WorldState,
++    buyer: NationId,
++    good: Good,
++    quantity: f64,
++    delivery_days: u32,
++    reuse_active_limit: bool,
++) -> Vec<Quote> {
+     if !active(w) || !supported_goods(w).contains(&good)
+         || !quantity.is_finite() || quantity < MIN_LOT || government(w, buyer).is_err() {
+         return vec![];
+     }
+     let cash = w.nation(buyer).treasury_bn.unwrap();
++    // Each seller sees the same immutable buyer/cargo snapshot. Preserve the
++    // original check location and errors while avoiding its nested rescan.
++    // Populate lazily: an empty/unsupplied market needs no active-order scan.
++    let mut active_limit = None;
+     let mut quotes: Vec<_> = w
+         .commerce
+         .as_ref()
+@@ -847,7 +901,10 @@
+             if qty < MIN_LOT {
+                 return None;
+             }
+-            let q = quote(w, buyer, p.nation, good, qty, price, delivery_days);
++            let cached_active_limit = if reuse_active_limit {
++                Some(*active_limit.get_or_insert_with(|| active_contract_limit_reached(w, buyer)))
++            } else { None };
++            let q = quote_with_active_limit(w, buyer, p.nation, good, qty, price, delivery_days, cached_active_limit);
+             q.accepted.then_some(q)
+         })
+         .collect();
+@@ -1108,6 +1165,102 @@
+                 c.contracts.iter().map(|c| c.escrow_bn).sum::<f64>()
+             })
+     }
++
++    #[test]
++    fn commerce_preflight_reuse_matches_original_refusals_and_full_command_ledgers() {
++        let good=Good::Intermediates;
++        let price=reference_price_bn(good);
++        // Deliberately synthetic boundary states; no earned-campaign claim.
++        for state in ["ready","cash","stock","sanctions","disabled","dead","books","ids","sale"] {
++            let mut opening=world();
++            match state {
++                "cash"=>opening.nation_mut(BUYER).treasury_bn=Some(0.0),
++                "stock"=>change_stock(&mut opening,SELLER,good,-100.0),
++                "sanctions"=>opening.sanctions.push((SELLER,BUYER)),
++                "disabled"=>opening.rules.economic_competition=false,
++                "dead"=>opening.nation_mut(SELLER).alive=false,
++                "books"=>opening.nation_mut(BUYER).treasury_bn=None,
++                "ids"=>opening.commerce.as_mut().unwrap().next_id=u64::MAX,
++                "sale"=>set_sale(&mut opening,SELLER,good,10.0,1.0,false).unwrap(),
++                _=>{},
++            }
++            let before=crate::save(&opening);
++            for (quantity,ask,days) in [(10.0,price,30),(100.0,price,30),(10.0,price*0.5,30),
++                (-0.0,price,30),(MIN_LOT,price,30),(f64::NAN,price,30),
++                (f64::INFINITY,price,30),(10.0,-0.0,30),(10.0,f64::NAN,30),
++                (10.0,f64::INFINITY,30),(10.0,price,0),(10.0,price,366)] {
++                let actual=proposal_preflight(&opening,BUYER,SELLER,good,quantity,ask,days,true);
++                let expected=proposal_preflight(&opening,BUYER,SELLER,good,quantity,ask,days,false);
++                assert_eq!(actual,expected,"{state}: {quantity} / {ask} / {days}");
++                if let (Ok(actual),Ok(expected))=(&actual,&expected) {
++                    for (a,b) in [(actual.quantity,expected.quantity),(actual.available_quantity,expected.available_quantity),
++                        (actual.unit_price_bn,expected.unit_price_bn),(actual.total_price_bn,expected.total_price_bn)] {
++                        assert_eq!(a.to_bits(),b.to_bits(),"quote arithmetic must retain exact float bits");
++                    }
++                }
++            }
++            assert_eq!(crate::save(&opening),before,"preflight cannot mutate any saved state");
++            for (quantity,ask) in [(10.0,price),(100.0,price),(10.0,price*0.5)] {
++                let mut actual=opening.clone(); let mut expected=opening.clone();
++                assert_eq!(propose_impl(&mut actual,BUYER,SELLER,good,quantity,ask,30,true),
++                    propose_impl(&mut expected,BUYER,SELLER,good,quantity,ask,30,false),"{state}");
++                assert_eq!(crate::save(&actual),crate::save(&expected),
++                    "{state}: exact stocks, escrow, offers, counters, cash, debt and IDs");
++            }
++        }
++    }
++
++    #[test]
++    fn commerce_market_read_reuse_matches_original_at_live_contract_and_cargo_limits() {
++        let mut opening=world();
++        let additional=NationId::Germany;
++        opening.nation_mut(additional).treasury_bn=Some(1.0);
++        opening.nation_mut(additional).debt_bn=Some(0.0);
++        for good in GOODS {
++            change_stock(&mut opening,additional,good,100.0);
++            set_sale(&mut opening,additional,good,10.0,1.0,true).unwrap();
++        }
++        let compare=|w:&WorldState| {
++            let before=crate::save(w);
++            for good in [Good::Intermediates,Good::CapitalGoods,Good::AdvancedComponents] {
++                for (quantity,days) in [(-0.0,30),(MIN_LOT,30),(10.0,30),(1000.0,30),
++                    (f64::NAN,30),(f64::INFINITY,30),(10.0,0),(10.0,366)] {
++                    assert_eq!(market_quotes_impl(w,BUYER,good,quantity,days,true),
++                        market_quotes_impl(w,BUYER,good,quantity,days,false),
++                        "same ordered quotes for {good:?}, quantity={quantity}, days={days}");
++                }
++            }
++            assert_eq!(crate::save(w),before);
++        };
++        assert_eq!(market_quotes(&opening,BUYER,Good::Intermediates,1.0,30).len(),2,
++            "both consenting sellers must produce actual quotes");
++        compare(&opening);
++        for _ in 0..MAX_ACTIVE { buy(&mut opening,Good::Intermediates,0.1,30); }
++        assert!(active_contract_limit_reached(&opening,BUYER)); compare(&opening);
++        settle(&mut opening);
++        assert_eq!(opening.commerce.as_ref().unwrap().cargo.len(),MAX_ACTIVE);
++        assert!(opening.commerce.as_ref().unwrap().contracts.iter().all(|c|c.remaining_quantity==0.0));
++        assert!(active_contract_limit_reached(&opening,BUYER)); compare(&opening);
++        // Same contract ID appearing more than once in cargo still consumes one
++        // active contract slot; unrelated paid cargo cannot create buyer slots.
++        let duplicate=opening.commerce.as_ref().unwrap().cargo[0].clone();
++        opening.commerce.as_mut().unwrap().cargo.push(duplicate);
++        compare(&opening);
++        let due=opening.commerce.as_ref().unwrap().cargo.iter().map(|c|c.due_day).max().unwrap();
++        while clock::absolute_day(&opening)<due {next(&mut opening);}
++        assert!(!active_contract_limit_reached(&opening,BUYER)); compare(&opening);
++    }
++
++    #[test]
++    fn commerce_preflight_does_not_replace_live_standalone_acceptance_checks() {
++        let mut w=world(); let good=Good::Intermediates; let price=reference_price_bn(good);
++        assert!(proposal_preflight(&w,BUYER,SELLER,good,10.0,price,30,true).unwrap().accepted);
++        change_stock(&mut w,SELLER,good,-100.0);
++        let before=crate::save(&w);
++        assert!(accept_lot(&mut w,BUYER,SELLER,good,10.0,price,30).is_err());
++        assert_eq!(crate::save(&w),before,"a prior preflight cannot authorize missing stock");
++    }
++
+     #[test]
+     fn manufactured_lot_conserves_cash_stock_and_gdp_through_exact_delivery_once() {
+         for good in GOODS {

@@ -1,0 +1,13 @@
+    Finished `release` profile [optimized] target(s) in 0.08s
+     Running unittests src\main.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_web-960ae70db4690868.exe)
+
+running 6 tests
+test money_commitments::tests::missing_saved_model_terms_are_unknown_and_cancelled_or_certified_work_is_excluded ... ok
+test money_commitments::tests::paid_property_is_separate_from_fresh_bills_and_cargo_does_not_invent_a_price ... ok
+test money_commitments::tests::building_totals_use_frozen_paid_terms_and_include_hidden_paused_projects ... ok
+test money_commitments::tests::unfinished_model_and_public_work_use_saved_base_prices_without_repricing_or_counting_fees_twice ... ok
+test money_commitments::tests::accepted_supplier_invoice_is_not_added_to_fresh_fiscal_cash_or_paid_delivery ... ok
+test money_commitments::tests::imported_commitments_follow_original_payment_escrow_and_release_without_an_extra_bill ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 336 filtered out; finished in 0.03s
+

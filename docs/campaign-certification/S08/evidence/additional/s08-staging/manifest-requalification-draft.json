@@ -1,0 +1,576 @@
+{
+  "format": "spheres-s08-requalification-draft",
+  "version": 2,
+  "session": "S08",
+  "status": "in_progress_requalification_pending",
+  "prepared_utc": "2026-09-12T21:34:51.149250+00:00",
+  "completed_date": null,
+  "publication": "Outside repository only. No source, tracked documentation or pathway markers changed. Fill replacement candidate from actual clean source/results after root qualification.",
+  "supersedes_status_assessment_only": [
+    "README-final-draft.md",
+    "manifest-draft.json",
+    "STATUS_UPDATES.md"
+  ],
+  "baseline_source_revision": "68e863055ee6ddf6c9796547995dccf455557edd",
+  "initial_candidate": {
+    "format": "spheres-s08-qualification-draft",
+    "version": 1,
+    "session": "S08",
+    "status": "acceptance_failed_requalification_required",
+    "completed_date": null,
+    "runtime_revision": "e6187df8044556a8262154e7a6c8baa32b283799",
+    "baseline_source_revision": "68e863055ee6ddf6c9796547995dccf455557edd",
+    "publication": "Preserved initial candidate results only. Full native and regression passes do not erase feature performance failure or incomplete supplier browser.",
+    "binaries": {
+      "windows_game_sha256": "d878f36a4dec2c83cfb7477a49ce678d4579a26388b0b45f2504c974bba2ee90",
+      "windows_test_sha256": "08efa87e668186bddca8a7265c9068578708ebb7ed379b36e51fca22354df2ed",
+      "linux_test_sha256": "5875894b7d04e7ccbf1b760f32b4c32b790e7ffa521c4da4470bef216fa149ef",
+      "source_build_proof": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-final-binary.json",
+        "sha256": "48622adcb21a7d0e5b5f5972e19d61dc439f8e8bbdfce86c77b0ebdb3479aefc"
+      }
+    },
+    "windows_native": {
+      "status": "passed",
+      "counts": {
+        "passed": 1537,
+        "failed": 0,
+        "ignored": 77,
+        "completed_targets": 65
+      },
+      "evidence": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-final-native.json",
+        "sha256": "61d2887fc22c2a53bd9f5f9e94a341a5997d7653ae4d653e334fa3cb482de17a"
+      }
+    },
+    "linux_native": {
+      "status": "passed",
+      "counts": {
+        "passed": 1537,
+        "failed": 0,
+        "ignored": 77,
+        "completed_targets": 65
+      },
+      "evidence": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-linux-final\\runner-result.json",
+        "sha256": "d8ebf19a95397ea5464974290b00cf1f87da90f1d67da316c3b79ea4823e9f84"
+      }
+    },
+    "node": {
+      "windows": {
+        "evidence": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-final-node.json",
+          "sha256": "28dc3de8fbe67e22ca580961261ab9431d80665d5d549677a99eac62bf6353b5"
+        },
+        "skipped": 1,
+        "failed": 0,
+        "tests": 1508,
+        "passed": 1507
+      },
+      "linux": {
+        "log_sha256": "0041f4e9253ff71979fa4e5884ed6b0a106b55242d7e8f2ce2ff66e91b44e235",
+        "skipped": 1,
+        "failed": 0,
+        "tests": 1508,
+        "passed": 1507
+      },
+      "skip": "Optional archived real-API advisor reading"
+    },
+    "external_archives": {
+      "status": "passed",
+      "windows_exact_tests": 3,
+      "linux_exact_tests": 3,
+      "each_test": {
+        "failed": 0,
+        "ignored": 0,
+        "passed": 1
+      },
+      "windows_evidence": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-external-final\\result.json",
+        "sha256": "6ae4c3ed3104ca03aac3a71b322e1d27bc2ed9be57f8037c1ebb41be1fc6bef7"
+      },
+      "linux_evidence": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-linux-final\\runner-result.json",
+        "sha256": "d8ebf19a95397ea5464974290b00cf1f87da90f1d67da316c3b79ea4823e9f84"
+      },
+      "scope": [
+        "Genuine pinned master archive and one next-day continuation",
+        "28 original active supplier lifecycle fixtures, unchanged and explicitly adopted",
+        "Party v1 standalone saves with real nested equipment versions 2 through 5"
+      ]
+    },
+    "genuine_native_journey": {
+      "status": "passed",
+      "evidence": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-final-1\\runner-result.json",
+        "sha256": "45ca7979e1d5e78e5a677638ece942089fbfb7c6e9829ed8477750376517ea5c"
+      },
+      "actual_days_advanced": 2155,
+      "first_stock_and_purchase_observed_date": "29 Oct 1995",
+      "first_stock_and_purchase_day": 2127,
+      "quantity": 1,
+      "unit_price_bn": 0.0018396366278316358,
+      "contract_id": 3694,
+      "native_delivered_day": 2154,
+      "observed_delivered_day": 2155,
+      "observed_delivered_date": "26 Nov 1995",
+      "terminal_escrow_bn": 0.0,
+      "terminal_refunded_bn": 0.0,
+      "decoded_phases": [
+        {
+          "path": "export/2127-first-finished-stock.campaign.json",
+          "sha256": "3beea2a6c5936057c27cb99c7ed09de40d455b5e5ea1e3b6710d85ddd78f1a0d",
+          "bytes": 134254304
+        },
+        {
+          "path": "export/2127-purchased.campaign.json",
+          "sha256": "8b604a139dc824359fcc1206896bc5136538e9064eb55fc07af02ca09706f827",
+          "bytes": 134238603
+        },
+        {
+          "path": "export/2127-ready-before-purchase.campaign.json",
+          "sha256": "d75256d72386842d79279b4fa26ea087d24578ab2a01221b6b4c3efb1a6acb37",
+          "bytes": 134254304
+        },
+        {
+          "path": "export/2155-delivered.campaign.json",
+          "sha256": "58be4b7289213145b40d99eaec1d5eccf620ffe021bb35fb9d47ab218446f4ef",
+          "bytes": 130971637
+        }
+      ],
+      "decoder_assertion": "Each of four named phases uses actual archive decoder and exact canonical native world serialization equality",
+      "full_second_fresh_replay_executed": false,
+      "browser_timeline": "Separate; browser deliberately ages a quote before purchase. Do not copy native dates into browser results.",
+      "phase_hash_note": "The recorded first-stock and ready-before-purchase archive byte hashes differ despite equal lengths. Each named phase passed canonical native roundtrip; no raw byte equality between phases is claimed."
+    },
+    "reviewed_policy": {
+      "evidence": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-final-1\\export\\declared-funding-policy.json",
+        "sha256": "2e36f24e099cdc00d38c152e0e0bd47beec8330f4baa357381de47e8130a3a3e"
+      },
+      "political_capital_cost": 15.085,
+      "total_spending_before": 0.30900000000000005,
+      "total_spending_after": 0.30900000000000005,
+      "annual_procurement_bn_at_review": 0.0030096,
+      "defense_department_basis_points": [
+        600,
+        600,
+        700,
+        8000,
+        100
+      ],
+      "transfer_gdp_share_from_infrastructure_to_defense": 0.025,
+      "annual_renewal": "Same chosen policy, ordinary commands, no carry-over",
+      "no_immediate_cash_debt_authority_stock_or_research_grant": true,
+      "tradeoff": "Less infrastructure and military research; positive personnel, operations and maintenance appropriations retained."
+    },
+    "synthetic_matrix": {
+      "existing_platforms": 11,
+      "domestic_ammunition_families": 23,
+      "representative_foreign_ammunition": [
+        "mg_127",
+        "air_bomb_guided"
+      ],
+      "fixture_endowments_disclosed": true,
+      "not_fresh_world_all_platform_availability": true,
+      "upkeep_scope": "Eleven-platform imported maintenance acceptance and positive requirement; actual imported APC full paid-service browser acceptance remains incomplete."
+    },
+    "retained_failures": [
+      {
+        "kind": "default-policy developmental campaign",
+        "status": "failed",
+        "evidence": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-development-1\\result.json",
+          "sha256": "5e628de7f5a61fcc76bfbb6840012c6e64a2975317feb4527eb5f07fbc0d8817"
+        },
+        "final_day": 3000,
+        "final_date": "20 Mar 1998",
+        "purchase": null,
+        "seller_apc_stock": 4,
+        "unit_price_bn": 0.0018396365958883887,
+        "affordable_quantity": 0,
+        "source_bound_final": false,
+        "disposition": "Retained default-budget failure; genuine final run uses an explicit paid budget tradeoff, not a grant."
+      },
+      {
+        "kind": "Linux launch 1",
+        "status": "infrastructure_failed_before_tests",
+        "tests_executed": 0,
+        "evidence": {
+          "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-linux-launch-1-diagnosis.json",
+          "sha256": "d95fcc672468783132aafc7dfa0ec3918e4321ef862a457794deb1bc44fedaea"
+        },
+        "disposition": "Bounded launch2 after Windows compilation passed without WSL/service/config changes; exact original cause unproven."
+      },
+      {
+        "kind": "supplier browser initial-load harness failure",
+        "status": "failed",
+        "evidence": {
+          "path": "evidence/S08-final-supplier-browser.json",
+          "sha256": "174a9ce0431665ec196c466d2510c5158f4dc7a15f8897480ad8cb0e17f9b2ef",
+          "bytes": 964
+        },
+        "artifact_directory": "integration/artifacts/browser-supplier-imports-ci/supplier-y0aPsr",
+        "exit_code": 1,
+        "started_utc": "2026-09-11T17:11:01.913441+00:00",
+        "finished_utc": "2026-09-11T17:11:36.530007+00:00",
+        "disposition": "Initial campaign loads without replacement confirmation; corrected harness observes actual live player and registers response before click. Original failure retained."
+      },
+      {
+        "kind": "supplier browser load-corrected attempt terminated",
+        "status": "failed",
+        "evidence": {
+          "path": "evidence/S08-final-supplier-browser-load-fix-1.json",
+          "sha256": "ecb642934f1fe6f3966bdc02b2d490839cc9f9f991406e3a90e4e1ac97b38aae",
+          "bytes": 1110
+        },
+        "termination_record": {
+          "path": "integration/artifacts/browser-supplier-imports-ci/supplier-g630Bz/termination-result.json",
+          "sha256": "0216bd9b11e4e6c084861a289ac6773b7b3d7dfc49601569a3761d74a6b21d15",
+          "bytes": 9919
+        },
+        "artifact_directory": "integration/artifacts/browser-supplier-imports-ci/supplier-g630Bz",
+        "exit_code": 3221226505,
+        "exit_hex": "0xc0000409",
+        "started_utc": "2026-09-11T17:13:38.797288+00:00",
+        "finished_utc": "2026-09-11T17:22:18.894107+00:00",
+        "original_result_missing": true,
+        "record_origin": "Post-termination audit, not original runner result",
+        "root_cause": "Unproven; process exit alone does not establish memory pressure",
+        "observed_progress": "Retained artifacts reach purchase, delivery and approved maintenance plan. Final paid-service/Save-Continue assertions were not completed.",
+        "collector_explicit_failed_attempt_required": true
+      },
+      {
+        "kind": "genuine supplier feature performance",
+        "status": "failed",
+        "evidence": {
+          "path": "evidence/S08-feature-performance-final-1/runner-result.json",
+          "sha256": "924435ec00d4c544aed2c055409b5272b047ac15084afdf7a18d3b4287e35119",
+          "bytes": 7340
+        },
+        "native_test_exit_code": 0,
+        "integrity_passed": true,
+        "failed_timing_bars": 4,
+        "passed_timing_bars": 1,
+        "disposition": "Reopen source for measured performance corrections. Retain result, workload and declared limits; no unchanged retry to select a favorable sample."
+      }
+    ],
+    "supplier_browser": {
+      "status": "failed_incomplete",
+      "completed_journey": false,
+      "attempts": 2,
+      "paid_maintenance_receipt": null,
+      "final_save_continue": null,
+      "comparison_after_termination": {
+        "evidence": {
+          "path": "evidence/S08-supplier-browser-memory-fix/diagnostic-2/result.json",
+          "sha256": "5b0bfa1dd906da8c7bdc5484dc7b49d8cb7790952969ca0a06e58d7125a1152a",
+          "bytes": 41793
+        },
+        "started_utc": "2026-09-11T17:34:33.358935+00:00",
+        "finished_utc": "2026-09-11T17:35:03.685399+00:00",
+        "equal": true,
+        "bytes_compared": 121248846,
+        "excluded_path": "Tonga.equipment.maintenance_plan only",
+        "scope": "Exact typed canonical comparison of retained delivered/maintenance-approved worlds; preserves signed zero. Does not complete original interrupted journey."
+      }
+    },
+    "regression_browsers": {
+      "status": "passed",
+      "general_wrapper": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-final-browser-installed.json",
+        "sha256": "1748f66e87861c2d6c70d35af3cfa05ff23ca965d692ab2bb70f93db01eb7e61"
+      },
+      "money_wrapper": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-final-money-browser.json",
+        "sha256": "feab9c93b69d46ed49b4c7e7b2ebf0902e7936741d06c68386b0c786a20f9570"
+      },
+      "wrapper_exit_codes": [
+        0,
+        0
+      ],
+      "final_results": {
+        "general": {
+          "path": "evidence/S08-general-browser-e6187df/result.json",
+          "sha256": "9aa4fb769640d591c920301a3ff3d66a7ba1fc2260b5dd90e1f1e9eeeb320a8a",
+          "bytes": 18947
+        },
+        "money": {
+          "path": "evidence/S08-money-browser-e6187df/result.json",
+          "sha256": "faa16226ab92d8d93815d71a4c710dea5b48336ca860f4168ab1d353f707b671",
+          "bytes": 26258
+        }
+      },
+      "viewports": [
+        {
+          "name": "desktop",
+          "width": 1440,
+          "height": 1000
+        },
+        {
+          "name": "mobile",
+          "width": 390,
+          "height": 844
+        }
+      ],
+      "general_fixture_scope": "Fresh USA technical regression fixture; not added to campaign focus countries.",
+      "money_review": {
+        "country": "France",
+        "before_tax_share": 0.42,
+        "approved_tax_share": 0.425,
+        "date": "1990-01-02",
+        "stale_response_and_save_load_continue": true
+      }
+    },
+    "performance": {
+      "status": "failed",
+      "declared_plan": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-performance-plan.json",
+        "sha256": "8d2cb23fe996ba9dc35da0aed5859072a83c2e61b55d4881cf047bc1ac195a28"
+      },
+      "bound_legacy_protocol": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-performance-protocol.json",
+        "sha256": "214dae00b459795af317f9d4caed1d871ca35adfaf1d854079d90f78e2d311ec"
+      },
+      "legacy_six_workload_result": {
+        "evidence": {
+          "path": "evidence/S08-performance/acceptance.json",
+          "sha256": "92191e039bd56eb11270f24587f615cf1501935383ce33849757b3c06be9ed78",
+          "bytes": 1785
+        },
+        "status": "passed",
+        "rows": [
+          {
+            "scenario": "idle_human",
+            "age": 0,
+            "sim_p95_ms": 34.7549,
+            "whole_p95_ms": 105.9794,
+            "whole_max_ms": 108.67490000000001,
+            "passed": true
+          },
+          {
+            "scenario": "idle_human",
+            "age": 10,
+            "sim_p95_ms": 143.7535,
+            "whole_p95_ms": 237.4924,
+            "whole_max_ms": 247.8784,
+            "passed": true
+          },
+          {
+            "scenario": "idle_human",
+            "age": 30,
+            "sim_p95_ms": 182.0309,
+            "whole_p95_ms": 297.13960000000003,
+            "whole_max_ms": 336.7411,
+            "passed": true
+          },
+          {
+            "scenario": "industry_and_war",
+            "age": 0,
+            "sim_p95_ms": 95.4729,
+            "whole_p95_ms": 160.7303,
+            "whole_max_ms": 290.0448,
+            "passed": true
+          },
+          {
+            "scenario": "industry_and_war",
+            "age": 10,
+            "sim_p95_ms": 202.2967,
+            "whole_p95_ms": 301.85519999999997,
+            "whole_max_ms": 441.10490000000004,
+            "passed": true
+          },
+          {
+            "scenario": "industry_and_war",
+            "age": 30,
+            "sim_p95_ms": 273.28200000000004,
+            "whole_p95_ms": 374.0882,
+            "whole_max_ms": 467.0264,
+            "passed": true
+          }
+        ],
+        "sampled_private_bytes": 426790912,
+        "memory_passed": true
+      },
+      "genuine_supplier_workload_result": {
+        "evidence": {
+          "path": "evidence/S08-feature-performance-final-1/runner-result.json",
+          "sha256": "924435ec00d4c544aed2c055409b5272b047ac15084afdf7a18d3b4287e35119",
+          "bytes": 7340
+        },
+        "status": "failed",
+        "started_utc": "2026-09-11T17:25:31.506248+00:00",
+        "finished_utc": "2026-09-11T17:28:25.963605+00:00",
+        "native_exit_code": 0,
+        "integrity_passed": true,
+        "native_and_thresholds_passed": false,
+        "acceptance_checks": [
+          {
+            "metric": "simulation_and_history_recording.p95_ms",
+            "measured_ms": 3600.9691999999995,
+            "limit_ms": 300,
+            "passed": false
+          },
+          {
+            "metric": "whole_server_turn.p95_ms",
+            "measured_ms": 6324.6655,
+            "limit_ms": 400,
+            "passed": false
+          },
+          {
+            "metric": "whole_server_turn.max_ms",
+            "measured_ms": 7856.5127999999995,
+            "limit_ms": 750,
+            "passed": false
+          },
+          {
+            "metric": "equipment_market_read_and_serialization.p95_ms",
+            "measured_ms": 1996.7904,
+            "limit_ms": 300,
+            "passed": false
+          },
+          {
+            "metric": "purchase_quote.p95_ms",
+            "measured_ms": 1.2574,
+            "limit_ms": 250,
+            "passed": true
+          }
+        ],
+        "input_producer": "e6187df8044556a8262154e7a6c8baa32b283799 genuine exporter",
+        "input_sha256": "8b604a139dc824359fcc1206896bc5136538e9064eb55fc07af02ca09706f827",
+        "memory_observation": {
+          "requested_interval_ms": 100,
+          "samples": 1743,
+          "failed_reads": 0,
+          "note": "Child PID only. Sampled maxima can miss short peaks. OS peak working set is a separate Windows counter, not private-memory peak. No feature-case memory acceptance bar was declared; these observations do not imply throughput or browser performance.",
+          "maximum_private_bytes": 2218061824,
+          "maximum_working_set_bytes": 2133889024,
+          "maximum_os_peak_working_set_bytes": 2134499328,
+          "maximum_observed_interval_ms": 103.16769999917597
+        }
+      },
+      "limits_unchanged": true
+    },
+    "preservation": {
+      "status": "pending_final_audit",
+      "qualified_start": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-preservation-qualified-start.json",
+        "sha256": "f45744b57a87f4e021def8b5b2b0b2b5dc4b8c86b26ec628214db7a813d84fc4"
+      },
+      "linux_all_33_protected_fixture_and_producer_hashes_unchanged": true,
+      "linux_source_clean_before_and_after": true,
+      "final_original_eight_save_audit": null,
+      "final_collector_manifest": null
+    },
+    "disposition": {
+      "status": "not_complete_feature_performance_failed_browser_incomplete",
+      "next_session": "S09",
+      "next_session_status": "planned",
+      "execution_stop": "after S08",
+      "next_session_requires_new_instruction": true,
+      "new_campaign_content_or_release_gate_awarded": false
+    },
+    "original_draft_prepared_utc": "2026-09-11T17:14:34.8262160Z"
+  },
+  "replacement_optimized_candidate": {
+    "status": "pending_source_freeze_and_qualification",
+    "runtime_revision": null,
+    "completed_date": null,
+    "source_diff_review": null,
+    "windows_game_sha256": null,
+    "windows_test_sha256": null,
+    "linux_test_sha256": null,
+    "windows_native": null,
+    "linux_native": null,
+    "windows_node": null,
+    "linux_node": null,
+    "external_archives_both_platforms": null,
+    "genuine_native_journey": null,
+    "supplier_browser": null,
+    "regression_browsers": null,
+    "new_performance_protocol": null,
+    "legacy_performance": null,
+    "feature_performance": null,
+    "final_preservation": null,
+    "collector_inventory": null,
+    "review_launch": null,
+    "git_disposition": null,
+    "rules": [
+      "Initial candidate passes do not automatically qualify changed runtime source.",
+      "Use original performance declaration and unchanged limits.",
+      "Bind actual runtime, executable, runner and campaign input producer for each result.",
+      "Dirty-source or single-sample diagnostics are developmental evidence only.",
+      "Do not copy native exporter dates into browser purchase or service receipts.",
+      "Retain every original failure even after a replacement passes."
+    ]
+  },
+  "unchanged_performance_declaration": {
+    "evidence": {
+      "path": "evidence/S08-performance-plan.json",
+      "sha256": "8d2cb23fe996ba9dc35da0aed5859072a83c2e61b55d4881cf047bc1ac195a28",
+      "bytes": 1322
+    },
+    "declaration": {
+      "declared_utc": "2026-09-11T15:57:21.546117+00:00",
+      "state": "declared before measurements; final candidate/hash will be bound after source freeze",
+      "legacy_regression": {
+        "workloads": "unchanged three copied checkpoints at ages0/10/30, each run as idle and industry+war (six workloads),31days,explicit connected-economy/company-network/warfare adoption",
+        "simulation_p95_limit_ms": 300,
+        "whole_turn_p95_limit_ms": 400,
+        "whole_turn_max_limit_ms": 750,
+        "sampled_private_memory_limit_bytes": 1073741824
+      },
+      "s08_feature_case": {
+        "workload": "31 actual days loaded from fresh-world genuinely purchased foreign-stock campaign, retained supplier work and import transit; no injected property",
+        "simulation_p95_limit_ms": 300,
+        "whole_turn_p95_limit_ms": 400,
+        "whole_turn_max_limit_ms": 750,
+        "equipment_board_read_and_serialization_p95_limit_ms": 300,
+        "purchase_quote_p95_limit_ms": 250,
+        "limits": "Equipment board and quote sampled separately after ordinary state/history whole-turn; no network, disk autosave or browser rendering. Run only after builds and other simulations finish."
+      },
+      "failed_bar_policy": "Retain full result, diagnose and correct material performance issues; do not repeat unchanged merely to select a favorable sample."
+    },
+    "feature_memory_acceptance_bar": null
+  },
+  "current_pathway_markers": {
+    "path": "integration/docs/planning/campaign-pathway.json",
+    "s08_status": "in_progress",
+    "s09_status": "planned",
+    "last_completed_session": "S07",
+    "next_session": "S08",
+    "execution": {
+      "authorized_through": "S08",
+      "stop_boundary": "S08",
+      "status": "in_progress",
+      "next_session_requires_instruction": true
+    }
+  },
+  "required_final_marker_updates": {
+    "only_after_all_required_acceptance": true,
+    "markdown": "integration/docs/CERTIFIED_CAMPAIGN_PATHWAY.md",
+    "json": "integration/docs/planning/campaign-pathway.json",
+    "s08_status": "complete",
+    "last_completed_session": "S08",
+    "next_session": "S09",
+    "execution_status": "stopped",
+    "retain_authorized_through": "S08",
+    "retain_stop_boundary": "S08",
+    "retain_s09_status": "planned",
+    "retain_next_session_requires_instruction": true,
+    "completed_date": "actual acceptance date; not inferred from initial measurement date"
+  },
+  "disposition": {
+    "status": "pending",
+    "execution_stop": "after S08",
+    "next_session": "S09",
+    "next_session_status": "planned",
+    "next_session_requires_new_instruction": true,
+    "new_campaign_content_or_release_gate_awarded": false
+  },
+  "audit_notes": [
+    "No large saves or executables parsed or hashed to prepare this draft; metadata hashes only.",
+    "supplier-g630Bz/postmortem-result.json absent; termination-result.json exists and is explicitly failed.",
+    "The previous status draft omitted the machine-readable pathway updates and assumed completion on the initial runtime/date; this draft does not preserve those assumptions."
+  ]
+}

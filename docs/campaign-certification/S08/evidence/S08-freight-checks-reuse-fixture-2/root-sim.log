@@ -1,0 +1,10 @@
+   Compiling spheres-sim v0.5.0 (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\spheres-sim)
+    Finished `release` profile [optimized] target(s) in 1m 03s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 2 tests
+test economic_ai::ammunition_forecast_tests::s08_pending_windows_match_independent_reads_at_boundaries_and_closures ... ok
+test resources::tests::s08_forecast_route_reuse_preserves_every_dated_stock_and_receipt ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 771 filtered out; finished in 0.80s
+

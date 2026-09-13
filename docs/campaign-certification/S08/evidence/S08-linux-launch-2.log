@@ -1,0 +1,11 @@
+START native
+FINISH native exit=0 seconds=584.77
+START node
+FINISH node exit=0 seconds=121.97
+START master-archive
+FINISH master-archive exit=0 seconds=3.15
+START active-fixtures
+FINISH active-fixtures exit=0 seconds=26.9
+START party-versions
+FINISH party-versions exit=0 seconds=1.14
+FINAL passed

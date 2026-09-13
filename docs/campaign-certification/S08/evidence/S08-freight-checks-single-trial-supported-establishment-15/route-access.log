@@ -1,0 +1,10 @@
+    Finished `release` profile [optimized] target(s) in 0.04s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 3 tests
+test logistics::tests::freight_access_read_matches_exact_paths_pairs_and_ignored_metadata ... ok
+test logistics::tests::freight_access_read_new_snapshot_observes_closures_and_endpoint_control ... ok
+test logistics::tests::freight_access_read_storage_limit_falls_back_to_native_checks ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 803 filtered out; finished in 0.07s
+

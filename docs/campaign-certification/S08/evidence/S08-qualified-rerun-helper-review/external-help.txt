@@ -1,0 +1,15 @@
+usage: run-s08-external.py [-h] [--native-proof NATIVE_PROOF] pin [label]
+
+Run original archive checks against the exact successful S08 native test
+binary.
+
+positional arguments:
+  pin
+  label
+
+options:
+  -h, --help            show this help message and exit
+  --native-proof NATIVE_PROOF
+                        Successful full-native proof for this exact pin;
+                        defaults to SPHERES_S08_NATIVE_PROOF or the original
+                        final proof.

@@ -1,0 +1,119 @@
+{
+  "passed": true,
+  "started_utc": "2026-09-13T02:11:07.819Z",
+  "source": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-supplier-imports.cjs",
+    "sha256": "de8a13611ce1617133710b252253cd82e41d6a4b74d39799f7d29eb2b97ce7f1",
+    "helper_sha256": "4f58723b43215071a4b546596788a6b65320d42a6c6f03d4c8b46fca84cc9aed"
+  },
+  "candidate": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s08-staging\\ci-supplier-imports.cleanup-order.cjs",
+    "sha256": "c74f8a8d1f1ee090113179a5a34acfada0ffa28e8689de4e3aba8fa766e21b9c",
+    "helper_sha256": "4a56f126327a14cc610147e23743aba74d48d43c6b088003f3ba067f04da1995"
+  },
+  "patch_sha256": "1110994d8f2252345a73036940642ad94a22852b408e67128faa392796e6e53f",
+  "verifier_sha256": "593ab3d7613a4709da45a2a202c4c68969ffcadd3173276d7937b7d0ad9b7a79",
+  "playwright_version": "1.58.2",
+  "playwright_sources": [
+    {
+      "name": "lib/client/page.js",
+      "sha256": "409b11561b319e8dfb4d1ec3f8b126fb32ab19e894fae529edbeae57c056ae84"
+    },
+    {
+      "name": "lib/server/dispatchers/pageDispatcher.js",
+      "sha256": "b11d9dd2eb7b0560f95a54cff4aeab9a9b3c76d84d6ae507b396aed2914cb3f4"
+    },
+    {
+      "name": "lib/server/page.js",
+      "sha256": "9cdfc88c5718ddcdc4c8205dabc3cfd68378699d7bef1b5017a28e74eda6b226"
+    },
+    {
+      "name": "lib/server/network.js",
+      "sha256": "679bd2f9566d39b2ac16bba525b6d40c9f250463dc00b84a71fce226a1e41cd0"
+    }
+  ],
+  "tests": [
+    {
+      "name": "frozen original deterministically reproduces last-interceptor double handling",
+      "passed": true,
+      "trace": [
+        "registered",
+        "fetch",
+        "unroute",
+        "server:continued-on-remove",
+        "fulfill:requested",
+        "dispose:start",
+        "dispose:done"
+      ],
+      "expected_original_failure": "Error: route.fulfill: Route is already handled!"
+    },
+    {
+      "name": "candidate finishes held response before exact unroute and continues later matches",
+      "passed": true,
+      "trace": [
+        "registered",
+        "fetch",
+        "continue",
+        "fulfill:requested",
+        "fulfill:done",
+        "dispose:start",
+        "dispose:done",
+        "unroute"
+      ]
+    },
+    {
+      "name": "pending fulfill and pending dispose both keep this interceptor registered",
+      "passed": true,
+      "trace": [
+        "registered",
+        "fetch",
+        "fulfill:requested",
+        "fulfill:done",
+        "dispose:start",
+        "dispose:done",
+        "unroute"
+      ]
+    },
+    {
+      "name": "unrelated page and context handlers retain exact identity",
+      "passed": true
+    },
+    {
+      "name": "fetch failure propagates and does not run the date callback",
+      "passed": true
+    },
+    {
+      "name": "no interception retains the explicit 30-second failure and cleanup",
+      "passed": true
+    },
+    {
+      "name": "fulfillError remains visible and disposes exactly once",
+      "passed": true
+    },
+    {
+      "name": "disposeError remains visible and disposes exactly once",
+      "passed": true
+    },
+    {
+      "name": "failed visible day still releases the hold and preserves both error causes",
+      "passed": true
+    },
+    {
+      "name": "request parse failure is forwarded without a missing-interception wait",
+      "passed": true
+    },
+    {
+      "name": "nonmatching continue errors are not swallowed or claimed as interception",
+      "passed": true
+    },
+    {
+      "name": "completion timeout still removes only this handler and fails explicitly",
+      "passed": true
+    },
+    {
+      "name": "unroute errors remain visible after successful response settlement",
+      "passed": true
+    }
+  ],
+  "finished_utc": "2026-09-13T02:11:07.834Z"
+}

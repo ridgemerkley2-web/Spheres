@@ -1,0 +1,184 @@
+{
+  "format": "spheres-s08-completed-supplier-browser-receipt",
+  "version": 1,
+  "prepared_utc": "2026-09-13T02:44:11.337123+00:00",
+  "scope": "Completed bound browser journey;original full result remains authoritative.",
+  "runtime_candidate": "d770592aeead51f1313d507edd26b02d75a69bba",
+  "runtime_binary_sha256": "c5852894069c797c1cbf6b15a302f73f85a0f0b4a4edfee63eb1ca6b367f8435",
+  "executed_harness_sha256": "cd9c5ab5783d6ca6bf71aa913842436e851311fa00ce4b6a33881a25f3bdc33a",
+  "source_outer": {
+    "path": "evidence/S08-supplier-browser-corrected-route-pool-2/runner-result.json",
+    "sha256": "bb1d59768cdb91c3ed573bcb01de6daf62471f097c8da1d529f402f71187be82"
+  },
+  "source_inner": {
+    "path": "evidence/S08-supplier-browser-corrected-route-pool-2/supplier-TDUttg/result.json",
+    "bytes": 6796163,
+    "sha256": "6335596674a375151d8d4243ed6887059f4ac0e231e605f8e2527e1f4710de33",
+    "hash_origin": "Copied from completed bound outer wrapper;not rehashed by this extraction"
+  },
+  "passed": true,
+  "exit_code": 0,
+  "integrity_passed": true,
+  "finished_utc": "2026-09-13T02:41:08.179336+00:00",
+  "stale_review": {
+    "actual_delayed_response": true,
+    "advanced_visible_day": true,
+    "no_command": true,
+    "discarded": true
+  },
+  "quantity_edit_scope": {
+    "skipped": "Only one unit is within native stock/funding limits; no fabricated second unit or authority"
+  },
+  "contract": {
+    "id": 3695,
+    "buyer": "Tonga",
+    "seller": "France",
+    "company": 3,
+    "product": 48,
+    "quantity": 1,
+    "buyer_revision": "import-3-48",
+    "purchased_day": 2128,
+    "settled_day": 2128,
+    "delivered_day": 2155,
+    "total_price_bn": 0.0018396366278316358,
+    "escrow_bn": 0,
+    "refunded_bn": 0,
+    "status": "delivered"
+  },
+  "purchase_assertions": {
+    "stock_reserved_once": true,
+    "no_component_grant": true,
+    "no_early_service": true
+  },
+  "delivery_assertions": {
+    "exact_revision": true,
+    "exact_quantity": true,
+    "escrow_released": true
+  },
+  "midpoint_save_load": {
+    "slot": "s08-import-midpoint",
+    "date": "31 Oct 1995",
+    "new_session": true,
+    "exact_world": true,
+    "exact_market": true,
+    "cancel_pure": true,
+    "phase": "Paid transit before arrival",
+    "model_not_installed": true
+  },
+  "final_save_load": {
+    "slot": "s08-import-complete",
+    "date": "29 Nov 1995",
+    "new_session": true,
+    "exact_world": true,
+    "exact_market": true,
+    "cancel_pure": true
+  },
+  "final_continue": {
+    "passed": true,
+    "proof_basis": "Full inner passed is written only after actualreload/Continue,exact native archive comparison,and final command/error/inputpreservation assertions in executed cd9 source."
+  },
+  "maintenance": {
+    "recommendation": {
+      "daily_budget_mn": 0.002,
+      "kind": "equipment_maintenance"
+    },
+    "command": {
+      "daily_budget_mn": 0.002,
+      "kind": "equipment_maintenance"
+    },
+    "approved_plan": {
+      "daily_limit_bn": 2e-06,
+      "from_day": 2157,
+      "receipt": null
+    },
+    "preview_pure": true,
+    "no_instant_grant": true,
+    "advances": [
+      {
+        "date": "28 Nov 1995",
+        "session_id": "16112-1789266979509815300-3",
+        "player": "Tonga",
+        "simulation_cadence": "daily"
+      },
+      {
+        "date": "29 Nov 1995",
+        "session_id": "16112-1789266979509815300-3",
+        "player": "Tonga",
+        "simulation_cadence": "daily"
+      }
+    ],
+    "receipt": {
+      "authority_bn": 8.998407463094934e-07,
+      "custom_paid_bn": 2.543259532221702e-07,
+      "custom_required_bn": 3.67e-07,
+      "daily_limit_bn": 2e-06,
+      "day": 2157,
+      "legacy_paid_bn": 6.455147930873232e-07,
+      "legacy_required_bn": 9.314972619255128e-07
+    },
+    "imported_model_requirement_bn": 3.67e-07,
+    "imported_model_support_fraction": 0.6929862485617716,
+    "settled_defense_payment_bn": 8.998407463094934e-07,
+    "note": "The dated custom-fleet invoice includes the imported model and uses existing Defense maintenance authority. Its common support fraction is derived from that aggregate receipt; no separate model payment or full coverage is invented."
+  },
+  "commands": [
+    {
+      "commands": [
+        {
+          "ammunition": false,
+          "company": 3,
+          "kind": "company_import_purchase",
+          "product": 48,
+          "quantity": 1,
+          "quote": "company-v1-1e7417c8f6858aa5",
+          "seller": "France"
+        }
+      ],
+      "session_id": "16112-1789266874340238400-2",
+      "client_id": "7863fc21-14bc-487f-a6ea-45e1a947106f",
+      "request_seq": 2
+    },
+    {
+      "commands": [
+        {
+          "daily_budget_mn": 0.002,
+          "kind": "equipment_maintenance"
+        }
+      ],
+      "session_id": "16112-1789266979509815300-3",
+      "client_id": "7863fc21-14bc-487f-a6ea-45e1a947106f",
+      "request_seq": 31
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "preparation-market-desktop.png",
+    "preparation-programmes-desktop.png",
+    "preparation-market-mobile.png",
+    "preparation-programmes-mobile.png",
+    "market-desktop.png",
+    "programs-desktop.png",
+    "market-mobile.png",
+    "programs-mobile.png",
+    "exact-supplier-model.png",
+    "purchase-review-desktop.png",
+    "purchase-review-mobile.png",
+    "cancellation-review.png",
+    "delivery-day-1.png",
+    "delivery-day-8.png",
+    "delivery-day-15.png",
+    "delivery-day-22.png",
+    "delivered-service-desktop.png",
+    "delivered-service-mobile.png",
+    "maintenance-review.png",
+    "paid-maintenance-desktop.png",
+    "maintained-import-desktop.png",
+    "paid-maintenance-mobile.png",
+    "maintained-import-mobile.png"
+  ],
+  "archive_captures": "Real API-created audit snapshots are preserved byte-identically under run/audit-captures;real named/input save slots remain in run/saves.",
+  "limits": [
+    "One affordable APC;quantity edit correctly skipped when onlyoneunitwithinactualstock/funding.",
+    "Maintenance is an aggregate custom-fleetinvoice;common imported support fraction is not fullcoverage or a separately posted modelpayment."
+  ]
+}

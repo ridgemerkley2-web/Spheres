@@ -1,0 +1,228 @@
+{
+  "passed": true,
+  "synthetic_harness_only": true,
+  "checks": [
+    "null legacy holding retained outside custom totals",
+    "exact full-world mismatch detected",
+    "only selected maintenance plan excluded",
+    "unrelated cash change still fails with a bounded path",
+    "equal canonical files checked byte-for-byte"
+  ],
+  "events": [
+    {
+      "event": "archive-audit-start",
+      "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\before.json",
+      "ignore_plan": false
+    },
+    {
+      "event": "archive-audit-complete",
+      "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\before.json",
+      "input_sha256": "3dcec94148edd078d939d2400c919ee9f87d41c0001ed1b3b7b941c0b63b6353",
+      "canonical_bytes": 488
+    },
+    {
+      "event": "archive-audit-start",
+      "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\after.json",
+      "ignore_plan": false
+    },
+    {
+      "event": "archive-audit-complete",
+      "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\after.json",
+      "input_sha256": "86eef47f5f4af250499ffdea07ff11470f975c661a2f782e4296f3695d56597c",
+      "canonical_bytes": 580
+    },
+    {
+      "event": "archive-audit-start",
+      "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\before.json",
+      "ignore_plan": true
+    },
+    {
+      "event": "archive-audit-complete",
+      "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\before.json",
+      "input_sha256": "3dcec94148edd078d939d2400c919ee9f87d41c0001ed1b3b7b941c0b63b6353",
+      "canonical_bytes": 567
+    },
+    {
+      "event": "archive-audit-start",
+      "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\after.json",
+      "ignore_plan": true
+    },
+    {
+      "event": "archive-audit-complete",
+      "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\after.json",
+      "input_sha256": "86eef47f5f4af250499ffdea07ff11470f975c661a2f782e4296f3695d56597c",
+      "canonical_bytes": 567
+    },
+    {
+      "event": "exact-native-comparison",
+      "message": "Only the reviewed plan changes",
+      "equal": true,
+      "bytes_compared": 567,
+      "left": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\archive-audit\\003-before-except-maintenance-plan.canonical",
+        "bytes": 567,
+        "sha256": "a696ae4a9f3f6a38c0eb9938b537e1eb6867aa80e937b90ce6b108b07ff93484",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": [
+          [
+            "nations",
+            0,
+            "equipment",
+            "maintenance_plan"
+          ]
+        ]
+      },
+      "right": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\archive-audit\\004-after-except-maintenance-plan.canonical",
+        "bytes": 567,
+        "sha256": "a696ae4a9f3f6a38c0eb9938b537e1eb6867aa80e937b90ce6b108b07ff93484",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": [
+          [
+            "nations",
+            0,
+            "equipment",
+            "maintenance_plan"
+          ]
+        ]
+      }
+    },
+    {
+      "event": "exact-native-comparison",
+      "message": "The full worlds differ",
+      "equal": false,
+      "bytes_compared": 0,
+      "left": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\archive-audit\\001-before.canonical",
+        "bytes": 488,
+        "sha256": "fcae0b9e55116386227ad228d2f9a78ecbc07baaae4de48f1629346111b8849c",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": []
+      },
+      "right": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\archive-audit\\002-after.canonical",
+        "bytes": 580,
+        "sha256": "18d92f4557476f7ec5f7f6b69555b2c50ded271e6b9c36ca2f3b5ab3a2ba9e9c",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": []
+      },
+      "first_difference": {
+        "equal": false,
+        "path": [
+          "nations",
+          0,
+          "equipment"
+        ],
+        "kind": "length-or-count",
+        "left": 2,
+        "right": 3,
+        "token_offsets": {
+          "left": 331,
+          "right": 331
+        }
+      }
+    },
+    {
+      "event": "archive-audit-start",
+      "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\unrelated-cash-change.json",
+      "ignore_plan": false
+    },
+    {
+      "event": "archive-audit-complete",
+      "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\unrelated-cash-change.json",
+      "input_sha256": "ddaffe91a9d76941f5f5ee94e7ad7dbf98c33e62a3b33aea8072fcc768cb2e00",
+      "canonical_bytes": 580
+    },
+    {
+      "event": "archive-audit-start",
+      "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\before.json",
+      "ignore_plan": true
+    },
+    {
+      "event": "archive-audit-complete",
+      "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\before.json",
+      "input_sha256": "3dcec94148edd078d939d2400c919ee9f87d41c0001ed1b3b7b941c0b63b6353",
+      "canonical_bytes": 567
+    },
+    {
+      "event": "archive-audit-start",
+      "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\unrelated-cash-change.json",
+      "ignore_plan": true
+    },
+    {
+      "event": "archive-audit-complete",
+      "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\unrelated-cash-change.json",
+      "input_sha256": "ddaffe91a9d76941f5f5ee94e7ad7dbf98c33e62a3b33aea8072fcc768cb2e00",
+      "canonical_bytes": 567
+    },
+    {
+      "event": "exact-native-comparison",
+      "message": "Cash must not change",
+      "equal": false,
+      "bytes_compared": 0,
+      "left": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\archive-audit\\006-before-except-maintenance-plan.canonical",
+        "bytes": 567,
+        "sha256": "a696ae4a9f3f6a38c0eb9938b537e1eb6867aa80e937b90ce6b108b07ff93484",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": [
+          [
+            "nations",
+            0,
+            "equipment",
+            "maintenance_plan"
+          ]
+        ]
+      },
+      "right": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\archive-audit\\007-unrelated-cash-change-except-maintenance-plan.canonical",
+        "bytes": 567,
+        "sha256": "0eecb1f197a26872964d75c84746414ccceb5de6ed8ba515521fddc2329fb53b",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": [
+          [
+            "nations",
+            0,
+            "equipment",
+            "maintenance_plan"
+          ]
+        ]
+      },
+      "first_difference": {
+        "equal": false,
+        "path": [
+          "nations",
+          0,
+          "treasury"
+        ],
+        "kind": "number-binary64",
+        "left": "0000000000000000",
+        "right": "4014000000000000",
+        "token_offsets": {
+          "left": 558,
+          "right": 558
+        }
+      }
+    },
+    {
+      "event": "exact-native-comparison",
+      "message": "Unmodified canonical bytes compare exactly",
+      "equal": true,
+      "bytes_compared": 488,
+      "left": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\archive-audit\\001-before.canonical",
+        "bytes": 488,
+        "sha256": "fcae0b9e55116386227ad228d2f9a78ecbc07baaae4de48f1629346111b8849c",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": []
+      },
+      "right": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-supplier-browser-memory-fix\\helper-probes-0tkMU4\\archive-audit\\001-before.canonical",
+        "bytes": 488,
+        "sha256": "fcae0b9e55116386227ad228d2f9a78ecbc07baaae4de48f1629346111b8849c",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": []
+      }
+    }
+  ]
+}

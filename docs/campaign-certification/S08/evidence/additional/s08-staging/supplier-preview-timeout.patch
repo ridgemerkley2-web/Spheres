@@ -1,0 +1,63 @@
+--- a/tools/ui/ci-supplier-imports.cjs
++++ b/tools/ui/ci-supplier-imports.cjs
+@@ -70,6 +70,40 @@
+ async function day(page,url){
+   await closePanels(page);const response=page.waitForResponse(r=>routeIs(r,'/api/advance'));await page.locator('#stepBtn').click();
+   const r=await response;assert(r.ok());assert.equal(r.request().postDataJSON().days,1);const v=await r.json();assert(!v.advance_pending);await idle(page);const s=await state(page,url);return {date:s.date,session_id:s.session_id,player:s.player,simulation_cadence:s.simulation_cadence};
++}
++// Hold one actual supplier response across a visible day. Manual promises need
++// their own limits: Playwright's locator timeout does not cover awaiting them.
++async function withHeldSupplierPreview(page,trigger,whileHeld){
++  const pattern='**/api/equipment-preview',timeoutMs=30000;
++  let release,intercepted,handled,started=false;
++  const seen=new Promise(resolve=>intercepted=resolve),hold=new Promise(resolve=>release=resolve),completed=new Promise(resolve=>handled=resolve);
++  const wait=async(promise,label)=>{let timer;try{return await Promise.race([promise,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('Supplier stale-review timeout after '+timeoutMs+' ms: '+label)),timeoutMs);})]);}finally{clearTimeout(timer);}};
++  const handler=async route=>{
++    if(started)return route.continue();
++    let kind;try{kind=route.request().postDataJSON()?.command?.kind;}
++    catch(error){started=true;intercepted({ok:false,error});handled([error]);return;}
++    if(kind!=='company_import_purchase')return route.continue();
++    started=true;let response;const failures=[];
++    try{response=await route.fetch({timeout:timeoutMs});intercepted({ok:true});await hold;await route.fulfill({response});}
++    catch(error){failures.push(error);intercepted({ok:false,error});}
++    finally{if(response)try{await response.dispose();}catch(error){failures.push(error);}handled(failures);}
++  };
++  const failures=[];let result;
++  try{
++    await page.route(pattern,handler);await trigger();
++    const arrival=await wait(seen,'waiting for the fetched preview');if(!arrival.ok)throw arrival.error;
++    result=await whileHeld();
++  }catch(error){failures.push(error);}
++  finally{
++    release();
++    // Removing this handler leaves unrelated interceptors intact and lets an
++    // already running handler finish. Await its fetch/fulfill/dispose outcome.
++    try{await page.unroute(pattern,handler);}catch(error){failures.push(error);}
++    if(started)try{failures.push(...await wait(completed,'finishing the held preview'));}catch(error){failures.push(error);}
++  }
++  const errors=[...new Set(failures)];
++  if(errors.length)throw errors.length===1?errors[0]:new AggregateError(errors,'Supplier stale-review request and cleanup failed: '+errors.map(error=>String(error).slice(0,2000)).join(' | '));
++  return result;
+ }
+ async function currentQuote(page){await page.waitForFunction(()=>equipmentReviewQuoteCurrent());return page.evaluate(()=>JSON.parse(JSON.stringify(EQUIP.review.quote)));}
+ async function reviewOffer(page,offer){
+@@ -179,14 +213,12 @@
+     await page.setViewportSize({width:1440,height:1000});audit.compare(await archive(page,url,run,'s08-preview-after'),beforeReview,'Model/quantity review changed property or research');
+     await page.locator('[data-equipment-dismiss]').click();assert.equal(e.commands.length,0,'Review-only controls placed an order');
+     mark('discard delayed review after real date change');
+-    let release,intercepted,handled;const seen=new Promise(r=>intercepted=r),heldResponse=new Promise(r=>release=r),completedResponse=new Promise(r=>handled=r);
+-    await page.route('**/api/equipment-preview',async route=>{
+-      if(route.request().postDataJSON()?.command?.kind!=='company_import_purchase')return route.continue();
+-      const response=await route.fetch();try{intercepted();await heldResponse;await route.fulfill({response});}finally{await response.dispose();handled();}
++    const oldDate=await withHeldSupplierPreview(page,async()=>{
++      const current=await page.evaluate(()=>JSON.parse(JSON.stringify(EQUIP.data))),oi=current.companies.market.offers.findIndex(o=>o.id===offer.id),ai=current.companies.market.offers[oi].actions.findIndex(a=>a.command?.kind==='company_import_purchase');
++      await page.locator('[data-equipment-action='+q('companies.market.offers.'+oi+'.actions.'+ai)+']').click();
++    },async()=>{
++      const date=(await state(page,url)).date;await closePanels(page);e.advances.push(await day(page,url));return date;
+     });
+-    const current=await page.evaluate(()=>JSON.parse(JSON.stringify(EQUIP.data))),oi=current.companies.market.offers.findIndex(o=>o.id===offer.id),ai=current.companies.market.offers[oi].actions.findIndex(a=>a.command?.kind==='company_import_purchase');
+-    await page.locator('[data-equipment-action='+q('companies.market.offers.'+oi+'.actions.'+ai)+']').click();await seen;
+-    const oldDate=(await state(page,url)).date;await closePanels(page);e.advances.push(await day(page,url));release();await completedResponse;await page.unroute('**/api/equipment-preview');
+     await market(page);assert.notEqual((await state(page,url)).date,oldDate);assert.equal(await page.locator('.eq-review').count(),0,'Old-date review survived navigation and real advancement');assert.equal(e.commands.length,0);
+     e.stale_review={actual_delayed_response:true,advanced_visible_day:true,no_command:true,discarded:true};
+     data=await board(page,url);offer=choose(data);assert(offer,'Affordable actual stock disappeared after the stale-review day');audit.select({seller:offer.seller_nation,company:offer.company,product:offer.product});

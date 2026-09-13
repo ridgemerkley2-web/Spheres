@@ -1,0 +1,5668 @@
+{
+  "commands": [],
+  "ending_date": "29 Nov 1995",
+  "ending_owned_work": {
+    "advanced_components": 312.32867164699996,
+    "contractor_assignments": 518,
+    "contractor_roster": 899,
+    "operational_sectors": 0,
+    "operational_supply_buffers": 0,
+    "operational_supply_cargo": 0,
+    "operational_supply_receipt_day": null,
+    "operational_transfers": 0,
+    "supplier_active_refits": 0,
+    "supplier_ammunition_stock": 1800,
+    "supplier_development": 2,
+    "supplier_equipment_stock": 1,
+    "supplier_equipment_wip": 1,
+    "supplier_pending_ammunition_deliveries": 0,
+    "supplier_pending_equipment_deliveries": 0,
+    "supplier_receipt_day": 2157,
+    "supplier_receivables": 0,
+    "supplier_refit_escrow_bn": -0.0,
+    "supplier_refit_locked_capital_bn": -0.0,
+    "supplier_retained_operation_receipts": 2,
+    "suppliers": 7
+  },
+  "input": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S08-genuine-supplier-final-1\\export\\2127-purchased.campaign.json",
+  "input_fingerprint": {
+    "bytes": 134238603,
+    "fnv1a64": "32bac1ed577137dc"
+  },
+  "input_unchanged": true,
+  "requested_days": 31,
+  "revision": "e6187df80445",
+  "rows": [
+    {
+      "actual_bytes": 210933890,
+      "date_after": "30 Oct 1995",
+      "date_before": "29 Oct 1995",
+      "day": 1,
+      "exact_native_world": true,
+      "expected_bytes": 210933890,
+      "first_difference_byte": null,
+      "manual_driver_ms": 645.073,
+      "normal_game_ms": 665.192,
+      "stages": [
+        {
+          "elapsed_ms": 0.0012,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.0322,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0066,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.2491999999999996,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0047,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2653,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 14.935699999999999,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.7146,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 13.8766,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 4.5501,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.09459999999999999,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 27.566,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.3752,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7334,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0087,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.0026,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.36269999999999997,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 508.2717,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0086,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.12300000000000001,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0193,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.05,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 2.0828,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 3.8497000000000003,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 56.956,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.002,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0166,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.0162,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0025,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 1.9627,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.3478,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0166,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.1668,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2922,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0023,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0011,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0107,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0334,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0021,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 210935032,
+      "date_after": "31 Oct 1995",
+      "date_before": "30 Oct 1995",
+      "day": 2,
+      "exact_native_world": true,
+      "expected_bytes": 210935032,
+      "first_difference_byte": null,
+      "manual_driver_ms": 672.1848,
+      "normal_game_ms": 652.7275,
+      "stages": [
+        {
+          "elapsed_ms": 0.0026,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.0282,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0095,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.3847,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0287,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2307,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 13.646099999999999,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 2.1897,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 24.1069,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.0242,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.0944,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 28.0035,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.1701000000000001,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.816,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0076,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.0005,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.3178,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 529.3611000000001,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0029000000000000002,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.0408,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0152,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0361,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 2.0743,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.1544,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 59.6237,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0122,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.0115,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0009,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 2.0189,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.21330000000000002,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.015400000000000002,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.1723,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2838,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0007,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0006,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0101,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0323,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.00009999999999999999,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 210487805,
+      "date_after": "1 Nov 1995",
+      "date_before": "31 Oct 1995",
+      "day": 3,
+      "exact_native_world": true,
+      "expected_bytes": 210487805,
+      "first_difference_byte": null,
+      "manual_driver_ms": 919.6332,
+      "normal_game_ms": 921.3641,
+      "stages": [
+        {
+          "elapsed_ms": 0.0035,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.0303,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.012799999999999999,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.4343,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.027299999999999998,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2358,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 13.7377,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.8002,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 24.5306,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.022699999999999998,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.1082,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 29.7503,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.1591,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.8166,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0034000000000000002,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.00039999999999999996,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.3126,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 522.0253,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0028,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.0418,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.015000000000000001,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0357,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 2.0336999999999996,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.1554,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 306.0482,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.011899999999999999,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.0126,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.001,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 2.0208,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.2436,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0149,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.5774,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 6.0334,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0011,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0005,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.2908,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0313,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 209390829,
+      "date_after": "2 Nov 1995",
+      "date_before": "1 Nov 1995",
+      "day": 4,
+      "exact_native_world": true,
+      "expected_bytes": 209390829,
+      "first_difference_byte": null,
+      "manual_driver_ms": 402.5446,
+      "normal_game_ms": 396.942,
+      "stages": [
+        {
+          "elapsed_ms": 0.0072,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.0222,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.009300000000000001,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.3796,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0277,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2238,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 15.801800000000002,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.6723000000000001,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 23.8516,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.0234,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.1103,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 28.8981,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.1393,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7542,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0036,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 90.4888,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.36910000000000004,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 156.0442,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.003,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.07200000000000001,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0145,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0384,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 2.0257,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.2195,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 60.2381,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0109,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.0118,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 10.2357,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 1.9725,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.0005,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.2521,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0165,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.243,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.27490000000000003,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0009,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.014199999999999999,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0282,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 208462285,
+      "date_after": "3 Nov 1995",
+      "date_before": "2 Nov 1995",
+      "day": 5,
+      "exact_native_world": true,
+      "expected_bytes": 208462285,
+      "first_difference_byte": null,
+      "manual_driver_ms": 280.1698,
+      "normal_game_ms": 276.083,
+      "stages": [
+        {
+          "elapsed_ms": 0.0011,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.022500000000000003,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0078,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.4077,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.029,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2422,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 14.8042,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.7303,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 14.947500000000002,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.0533,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.097,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 29.445700000000002,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.1513,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7096,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0033,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 1.1399,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.3044,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 142.98420000000002,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0025,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.0707,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.011899999999999999,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.035500000000000004,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 1.7669000000000001,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 1.6679,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 61.0249,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0108,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.0102,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.001,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 1.9947,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.24469999999999997,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0117,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 2.8752,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2713,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0007999999999999999,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0095,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0335,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 207594255,
+      "date_after": "4 Nov 1995",
+      "date_before": "3 Nov 1995",
+      "day": 6,
+      "exact_native_world": true,
+      "expected_bytes": 207594255,
+      "first_difference_byte": null,
+      "manual_driver_ms": 282.7271,
+      "normal_game_ms": 278.9683,
+      "stages": [
+        {
+          "elapsed_ms": 0.0013,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.0188,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0089,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.378,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.027100000000000003,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2256,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 13.658,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.7593999999999999,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 14.4814,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.0374,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.1129,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 27.6664,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.2172,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7284,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0035,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.773,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.28650000000000003,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 149.9473,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0029000000000000002,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.0837,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0148,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0389,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 2.0365,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.148,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 59.0481,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0126,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.0129,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0013,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 2.0446,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.3236,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.017499999999999998,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.2391,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2804,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0007999999999999999,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0094,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0371,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 206764320,
+      "date_after": "5 Nov 1995",
+      "date_before": "4 Nov 1995",
+      "day": 7,
+      "exact_native_world": true,
+      "expected_bytes": 206764320,
+      "first_difference_byte": null,
+      "manual_driver_ms": 291.4431,
+      "normal_game_ms": 300.9989,
+      "stages": [
+        {
+          "elapsed_ms": 0.0012,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.0219,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.009000000000000001,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.4129,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0275,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2282,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 13.7744,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.7668,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 15.152199999999999,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.046400000000000004,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.1062,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 28.601000000000003,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.2006000000000001,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7422000000000001,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0038,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.0015999999999999999,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.32239999999999996,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 157.5305,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0024,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.06470000000000001,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0152,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0368,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 1.8003,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.1254999999999997,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 59.6925,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0123,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.0118,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0009,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 2.0744000000000002,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.2762,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.012799999999999999,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.003,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2855,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0007,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.009000000000000001,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0314,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 205962108,
+      "date_after": "6 Nov 1995",
+      "date_before": "5 Nov 1995",
+      "day": 8,
+      "exact_native_world": true,
+      "expected_bytes": 205962108,
+      "first_difference_byte": null,
+      "manual_driver_ms": 289.9238,
+      "normal_game_ms": 288.52909999999997,
+      "stages": [
+        {
+          "elapsed_ms": 0.0025,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.036699999999999997,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.012700000000000001,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.4107,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0297,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2263,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 14.4164,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.9028,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 14.9555,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.030000000000000002,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.1159,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 28.4816,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.1797000000000002,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.8210999999999999,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0036,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.798,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.32989999999999997,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 155.0697,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0029000000000000002,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.0742,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0152,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0387,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 2.0484999999999998,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.2392,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 58.8246,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.012,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.0133,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.001,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 1.9806,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.2652,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.015099999999999999,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.1992000000000003,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2792,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0007999999999999999,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.00039999999999999996,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0087,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0343,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 205115139,
+      "date_after": "7 Nov 1995",
+      "date_before": "6 Nov 1995",
+      "day": 9,
+      "exact_native_world": true,
+      "expected_bytes": 205115139,
+      "first_difference_byte": null,
+      "manual_driver_ms": 380.4073,
+      "normal_game_ms": 377.7092,
+      "stages": [
+        {
+          "elapsed_ms": 0.0012,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.0266,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.009099999999999999,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.5193,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0309,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.231,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 15.2283,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.7668,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 14.4485,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.022099999999999998,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.1257,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 28.0911,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.1689,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.8543,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0031999999999999997,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 89.6294,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.3772,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 158.0155,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0031,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.0691,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.014,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.039,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 2.0909,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.2034,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 57.469300000000004,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0121,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.013,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0009,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 2.0063,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.2541,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0184,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.2027,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.35619999999999996,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0007999999999999999,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.008,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0387,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 204394242,
+      "date_after": "8 Nov 1995",
+      "date_before": "7 Nov 1995",
+      "day": 10,
+      "exact_native_world": true,
+      "expected_bytes": 204394242,
+      "first_difference_byte": null,
+      "manual_driver_ms": 295.13190000000003,
+      "normal_game_ms": 288.5553,
+      "stages": [
+        {
+          "elapsed_ms": 0.0025,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.0236,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.01,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.4362,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0291,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.23470000000000002,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 13.951099999999999,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.6221,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 14.1087,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.0441,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.1099,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 27.3311,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.2319,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7123,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0038,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 1.3888,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.2952,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 162.7411,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0027,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.06830000000000001,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0131,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0365,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 1.9612000000000003,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.4071000000000002,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 58.4934,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.014199999999999999,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.012799999999999999,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0007999999999999999,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 2.0181999999999998,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.24350000000000002,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.015400000000000002,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.1978000000000004,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2764,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0007,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0094,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0347,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 203695577,
+      "date_after": "9 Nov 1995",
+      "date_before": "8 Nov 1995",
+      "day": 11,
+      "exact_native_world": true,
+      "expected_bytes": 203695577,
+      "first_difference_byte": null,
+      "manual_driver_ms": 300.0991,
+      "normal_game_ms": 312.0853,
+      "stages": [
+        {
+          "elapsed_ms": 0.0012,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.0205,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0084,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.3787000000000003,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0285,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.22460000000000002,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 13.8885,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.7179,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 14.3217,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.027,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.1001,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 27.8182,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.2069999999999999,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7308,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0033,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.0007,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.3156,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 169.0295,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0031999999999999997,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.0717,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0157,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0369,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 1.9532,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.0458,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 58.337199999999996,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0115,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.012,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0007999999999999999,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 1.9462,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.24830000000000002,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0147,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.2115,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2868,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0007999999999999999,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.009099999999999999,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.032,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.00009999999999999999,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 203082164,
+      "date_after": "10 Nov 1995",
+      "date_before": "9 Nov 1995",
+      "day": 12,
+      "exact_native_world": true,
+      "expected_bytes": 203082164,
+      "first_difference_byte": null,
+      "manual_driver_ms": 304.3164,
+      "normal_game_ms": 299.98269999999997,
+      "stages": [
+        {
+          "elapsed_ms": 0.0012,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.0219,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0097,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 3.1208,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0285,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2281,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 13.762699999999999,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.7588000000000001,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 13.898499999999999,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.0285,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.1104,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 27.227500000000003,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.2455999999999998,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.719,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0035,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.0005,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.31579999999999997,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 174.5554,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0029000000000000002,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.0703,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.014199999999999999,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0352,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 1.9143999999999999,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.0534,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 57.515299999999996,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.0005,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0107,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.0115,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0011,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 1.9382,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.2595,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0143,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.0705,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2833,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0006,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.00039999999999999996,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0084,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0333,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 202519133,
+      "date_after": "11 Nov 1995",
+      "date_before": "10 Nov 1995",
+      "day": 13,
+      "exact_native_world": true,
+      "expected_bytes": 202519133,
+      "first_difference_byte": null,
+      "manual_driver_ms": 345.61310000000003,
+      "normal_game_ms": 351.845,
+      "stages": [
+        {
+          "elapsed_ms": 0.001,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.019899999999999998,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.009099999999999999,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.3743000000000003,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0298,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.22910000000000003,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 14.154200000000001,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.8384,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 14.3385,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.023200000000000002,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.1081,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 30.092000000000002,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.141,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7283,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0034000000000000002,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.0005,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.3105,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 211.3572,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0029000000000000002,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.068,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.015000000000000001,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0368,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 1.9929999999999999,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 1.8571,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 59.293400000000005,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.012,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.0111,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0007999999999999999,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 1.946,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.247,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0134,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 2.9927,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2789,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0005,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0005,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0081,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.032799999999999996,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.00009999999999999999,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 202024806,
+      "date_after": "12 Nov 1995",
+      "date_before": "11 Nov 1995",
+      "day": 14,
+      "exact_native_world": true,
+      "expected_bytes": 202024806,
+      "first_difference_byte": null,
+      "manual_driver_ms": 312.072,
+      "normal_game_ms": 314.879,
+      "stages": [
+        {
+          "elapsed_ms": 0.0034000000000000002,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.035800000000000005,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0087,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.4188,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.027200000000000002,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2314,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 14.6995,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.7715999999999998,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 14.7858,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.025,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.11120000000000001,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 28.167399999999997,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.1499,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7131000000000001,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0033,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.0006,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.30660000000000004,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 177.8955,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0029000000000000002,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.0691,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0147,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0366,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 1.8005,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.0753999999999997,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 60.098600000000005,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0117,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.011899999999999999,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0009,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 1.9373,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.25339999999999996,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0134,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.0192,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2802,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0006,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0086,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.033,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.00009999999999999999,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 201577013,
+      "date_after": "13 Nov 1995",
+      "date_before": "12 Nov 1995",
+      "day": 15,
+      "exact_native_world": true,
+      "expected_bytes": 201577013,
+      "first_difference_byte": null,
+      "manual_driver_ms": 335.5198,
+      "normal_game_ms": 320.44820000000004,
+      "stages": [
+        {
+          "elapsed_ms": 0.0012,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.019,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.009099999999999999,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.3801,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.030800000000000004,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.23929999999999998,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 14.180399999999999,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.7895999999999999,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 13.887,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.030800000000000004,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.1218,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 31.1157,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.5367,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.9613,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0043,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.0005,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.3828,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 199.54250000000002,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0031,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.0753,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0159,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.036699999999999997,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 2.0718,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.2614,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 58.788199999999996,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.012700000000000001,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.0147,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0011,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 1.9635,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.3014,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0163,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.3205,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.29760000000000003,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0012,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0103,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0365,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.00009999999999999999,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 201145589,
+      "date_after": "14 Nov 1995",
+      "date_before": "13 Nov 1995",
+      "day": 16,
+      "exact_native_world": true,
+      "expected_bytes": 201145589,
+      "first_difference_byte": null,
+      "manual_driver_ms": 344.52270000000004,
+      "normal_game_ms": 345.8871,
+      "stages": [
+        {
+          "elapsed_ms": 0.0033,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.033,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0089,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.3624,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0303,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2342,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 13.4442,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.7241,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 13.756400000000001,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.0446,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.1095,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 28.1839,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.1355,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7374999999999999,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0036,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.00039999999999999996,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.5521,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 214.3025,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0027,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.06820000000000001,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0152,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0361,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 1.9572999999999998,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.0634,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 57.9073,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0117,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.0109,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0007,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 2.0300000000000002,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.24469999999999997,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.013,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.1216999999999997,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2832,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0006,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.008199999999999999,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0326,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.00009999999999999999,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 201478264,
+      "date_after": "15 Nov 1995",
+      "date_before": "14 Nov 1995",
+      "day": 17,
+      "exact_native_world": true,
+      "expected_bytes": 201478264,
+      "first_difference_byte": null,
+      "manual_driver_ms": 704.1779,
+      "normal_game_ms": 695.1863999999999,
+      "stages": [
+        {
+          "elapsed_ms": 0.0011,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.0188,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0086,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.3066,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0282,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2179,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 13.4816,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.597,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 14.3279,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.0222,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.09849999999999999,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 27.359399999999997,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.2044,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7223,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0034000000000000002,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.00039999999999999996,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.3137,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 572.5042,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0024,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.0493,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0148,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.035800000000000005,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 1.9884,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.1765,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 59.7683,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0125,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.012799999999999999,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0007999999999999999,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 2.0322999999999998,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.245,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0148,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.2392,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2811,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0007999999999999999,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0095,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0343,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 201486285,
+      "date_after": "16 Nov 1995",
+      "date_before": "15 Nov 1995",
+      "day": 18,
+      "exact_native_world": true,
+      "expected_bytes": 201486285,
+      "first_difference_byte": null,
+      "manual_driver_ms": 706.9648,
+      "normal_game_ms": 700.4935,
+      "stages": [
+        {
+          "elapsed_ms": 0.0011,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.0213,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0097,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.4051,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0281,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2286,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 13.9924,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.7326,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 18.5402,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.0222,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.11170000000000001,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 29.3499,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.2352999999999998,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7517999999999999,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0040999999999999995,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.0005,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.3272,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 569.647,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0024,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.06889999999999999,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0148,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0352,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 1.9884,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.1578999999999997,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 58.4628,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0129,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.013600000000000001,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0012,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 1.9462,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.2308,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0147,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.2024000000000004,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.3188,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0009,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0092,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0307,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 201571185,
+      "date_after": "17 Nov 1995",
+      "date_before": "16 Nov 1995",
+      "day": 19,
+      "exact_native_world": true,
+      "expected_bytes": 201571185,
+      "first_difference_byte": null,
+      "manual_driver_ms": 445.4288,
+      "normal_game_ms": 434.2918,
+      "stages": [
+        {
+          "elapsed_ms": 0.0013,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.0212,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0095,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.9131,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0279,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2529,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 13.7371,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.7182,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 18.454700000000003,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.0224,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.1081,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 27.9772,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.1477,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7085,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0038,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.0005,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.3103,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 307.98769999999996,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0026,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.0598,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0167,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0356,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 1.9577000000000002,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.1298,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 59.6616,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.011600000000000001,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.011,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0007999999999999999,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 1.9553,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.24580000000000002,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0216,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.5537,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2786,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0007,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0088,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.032,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 201659984,
+      "date_after": "18 Nov 1995",
+      "date_before": "17 Nov 1995",
+      "day": 20,
+      "exact_native_world": true,
+      "expected_bytes": 201659984,
+      "first_difference_byte": null,
+      "manual_driver_ms": 447.0579,
+      "normal_game_ms": 463.0704,
+      "stages": [
+        {
+          "elapsed_ms": 0.0022,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.034100000000000005,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.015400000000000002,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.4464,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0288,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2216,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 13.6556,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.6383999999999999,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 18.939600000000002,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.0408,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.0974,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 27.3954,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.1724,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7398,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0035,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.00039999999999999996,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.3323,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 308.40430000000003,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0031,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.0496,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0147,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0357,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 1.9296,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.3074,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 61.3699,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.00039999999999999996,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0129,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.013600000000000001,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0009,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 2.1713,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.2553,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0156,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.335,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2816,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0007,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0006,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0106,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.034499999999999996,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 201742112,
+      "date_after": "19 Nov 1995",
+      "date_before": "18 Nov 1995",
+      "day": 21,
+      "exact_native_world": true,
+      "expected_bytes": 201742112,
+      "first_difference_byte": null,
+      "manual_driver_ms": 447.48650000000004,
+      "normal_game_ms": 446.1803,
+      "stages": [
+        {
+          "elapsed_ms": 0.0035,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.0242,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0086,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.4583,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.028900000000000002,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2351,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 13.971300000000001,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.6868,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 19.7924,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.0239,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.10160000000000001,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 27.9218,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.1541,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.8172,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0034000000000000002,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.00039999999999999996,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.332,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 310.50169999999997,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0027,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.052,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0147,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0354,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 2.0117999999999996,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.1927000000000003,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 58.211400000000005,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.011899999999999999,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.0121,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0014,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 1.9555000000000002,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.2615,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0157,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.2085999999999997,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.3424,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0006,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0096,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0329,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 201921796,
+      "date_after": "20 Nov 1995",
+      "date_before": "19 Nov 1995",
+      "day": 22,
+      "exact_native_world": true,
+      "expected_bytes": 201921796,
+      "first_difference_byte": null,
+      "manual_driver_ms": 499.4165,
+      "normal_game_ms": 485.64410000000004,
+      "stages": [
+        {
+          "elapsed_ms": 0.001,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.020999999999999998,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.01,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.4290000000000003,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0277,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2186,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 14.2003,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.7819,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 19.7643,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.044,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.1103,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 27.6263,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.2167000000000001,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7921,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0038,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.0005,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.3883,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 362.00890000000004,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0043,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.061099999999999995,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.02,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0406,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 2.0597,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.2717,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 58.2284,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0122,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.0135,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.001,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 2.0198,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.2569,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0158,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.3664,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.3011,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0007,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0098,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0354,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 202137803,
+      "date_after": "21 Nov 1995",
+      "date_before": "20 Nov 1995",
+      "day": 23,
+      "exact_native_world": true,
+      "expected_bytes": 202137803,
+      "first_difference_byte": null,
+      "manual_driver_ms": 464.4932,
+      "normal_game_ms": 460.91720000000004,
+      "stages": [
+        {
+          "elapsed_ms": 0.0011,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.0194,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0088,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.5095,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.028399999999999998,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2655,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 14.3786,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.6414000000000002,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 19.794,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.022500000000000003,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.0944,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 29.8796,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.1888999999999998,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7311000000000001,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0036,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.0005,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.3136,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 324.82840000000004,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0031999999999999997,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.0502,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0152,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.036000000000000004,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 1.9316,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.0896999999999997,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 58.414899999999996,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0117,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.0108,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0023,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 2.0593999999999997,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.202,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0133,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.579,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2739,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0007,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0089,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0393,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 202337704,
+      "date_after": "22 Nov 1995",
+      "date_before": "21 Nov 1995",
+      "day": 24,
+      "exact_native_world": true,
+      "expected_bytes": 202337704,
+      "first_difference_byte": null,
+      "manual_driver_ms": 456.637,
+      "normal_game_ms": 452.41569999999996,
+      "stages": [
+        {
+          "elapsed_ms": 0.0011,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.0212,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0095,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.4234999999999998,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0287,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2179,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 14.0081,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.6985,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 22.1021,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.0255,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.10880000000000001,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 28.2178,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.1820000000000002,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7377,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0038,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.0005,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.3069,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 315.15070000000003,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0029000000000000002,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.053399999999999996,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0145,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.036000000000000004,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 1.965,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.198,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 60.325700000000005,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0123,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.0111,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.001,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 2.0156,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.2078,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0152,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.1763,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.277,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0007,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0085,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0317,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.00009999999999999999,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 202547351,
+      "date_after": "23 Nov 1995",
+      "date_before": "22 Nov 1995",
+      "day": 25,
+      "exact_native_world": true,
+      "expected_bytes": 202547351,
+      "first_difference_byte": null,
+      "manual_driver_ms": 506.7397,
+      "normal_game_ms": 505.94010000000003,
+      "stages": [
+        {
+          "elapsed_ms": 0.0036,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.034,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0088,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.3757,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.027299999999999998,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2188,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 13.7718,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.5891,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 19.3761,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.0216,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.0976,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 27.4621,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.2349999999999999,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7458,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0031999999999999997,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.0005,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.3077,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 371.8334,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.003,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.0513,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0146,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.036399999999999995,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 2.0257,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.15,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 57.499700000000004,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.012,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.0111,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.001,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 2.0302,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.2144,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.013900000000000001,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.1919,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2825,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0007999999999999999,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0088,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0339,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 202807757,
+      "date_after": "24 Nov 1995",
+      "date_before": "23 Nov 1995",
+      "day": 26,
+      "exact_native_world": true,
+      "expected_bytes": 202807757,
+      "first_difference_byte": null,
+      "manual_driver_ms": 479.1816,
+      "normal_game_ms": 478.3669,
+      "stages": [
+        {
+          "elapsed_ms": 0.0029000000000000002,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.028,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0099,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.3756,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.027800000000000002,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.21800000000000003,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 13.8133,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.589,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 22.1097,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.0414,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.0948,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 27.467599999999997,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.1846,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7671,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0035,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.0005,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.3112,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 342.2672,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0035,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.0543,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0148,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0363,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 2.0121,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.1140999999999996,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 56.8928,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0106,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.011600000000000001,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0007999999999999999,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 2.0204,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.20579999999999998,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0155,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.1016,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2888,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0006,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.00039999999999999996,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0084,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.033,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 203160566,
+      "date_after": "25 Nov 1995",
+      "date_before": "24 Nov 1995",
+      "day": 27,
+      "exact_native_world": true,
+      "expected_bytes": 203160566,
+      "first_difference_byte": null,
+      "manual_driver_ms": 488.56870000000004,
+      "normal_game_ms": 476.78900000000004,
+      "stages": [
+        {
+          "elapsed_ms": 0.0026,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.0374,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.01,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.3243,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.026699999999999998,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.21800000000000003,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 14.9114,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.7437,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 21.1634,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.0247,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.09809999999999999,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 26.4036,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.1496,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7211,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.003,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.00039999999999999996,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.3101,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 351.9718,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0031,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.0554,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.015099999999999999,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0353,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 2.0000999999999998,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.2087,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 57.2648,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.0005,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.011300000000000001,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.011300000000000001,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0013,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 2.0657,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.2198,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0149,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.1656,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2791,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.001,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0129,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.032799999999999996,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.00009999999999999999,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 203534201,
+      "date_after": "26 Nov 1995",
+      "date_before": "25 Nov 1995",
+      "day": 28,
+      "exact_native_world": true,
+      "expected_bytes": 203534201,
+      "first_difference_byte": null,
+      "manual_driver_ms": 503.1977,
+      "normal_game_ms": 501.8496,
+      "stages": [
+        {
+          "elapsed_ms": 0.0027,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.038099999999999995,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0157,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.4440999999999997,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.029,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2261,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 15.021700000000001,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.717,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 21.2808,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.026699999999999998,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.1331,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 25.018800000000002,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.1533,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7379,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0036,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.00039999999999999996,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.3233,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 363.641,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0029000000000000002,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.0461,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.013600000000000001,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0353,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 2.0022,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.1633999999999998,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 60.7511,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.012,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.011300000000000001,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0011,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 2.0577,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.20220000000000002,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.014199999999999999,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.7013,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2854,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0007,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0006,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0087,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.031900000000000005,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 203946102,
+      "date_after": "27 Nov 1995",
+      "date_before": "26 Nov 1995",
+      "day": 29,
+      "exact_native_world": true,
+      "expected_bytes": 203946102,
+      "first_difference_byte": null,
+      "manual_driver_ms": 486.02070000000003,
+      "normal_game_ms": 489.1128,
+      "stages": [
+        {
+          "elapsed_ms": 0.0011,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.0195,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0089,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.5362,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0281,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2197,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 14.0368,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.7095,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 21.558799999999998,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.0246,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.0941,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 24.752,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.1677,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.7573000000000001,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0039,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.00039999999999999996,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.3502,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 350.44750000000005,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0033,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.048600000000000004,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.015000000000000001,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0371,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 2.0301,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.1727,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 58.2038,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.00039999999999999996,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0118,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.0106,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.002,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 2.0404,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.2002,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0134,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.1486,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2812,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0009,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.00039999999999999996,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0098,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.0322,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 204404408,
+      "date_after": "28 Nov 1995",
+      "date_before": "27 Nov 1995",
+      "day": 30,
+      "exact_native_world": true,
+      "expected_bytes": 204404408,
+      "first_difference_byte": null,
+      "manual_driver_ms": 2408.487,
+      "normal_game_ms": 2491.5150000000003,
+      "stages": [
+        {
+          "elapsed_ms": 0.0035,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.0339,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0092,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.3615,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0299,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.2187,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 13.8883,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.6976,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 21.9309,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 0.020999999999999998,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.098,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 23.8183,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.1881000000000002,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.776,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.0036,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.00039999999999999996,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.4366,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 374.29420000000005,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.003,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.044199999999999996,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.0146,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0368,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 1.9342000000000001,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.1001000000000003,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 60.214200000000005,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 1897.9327,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.0152,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0014,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 1.9372,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.2121,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0159,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 2.8392999999999997,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.28190000000000004,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0009,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0094,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.034100000000000005,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.0,
+          "name": "postlude.advance_date"
+        }
+      ]
+    },
+    {
+      "actual_bytes": 204950512,
+      "date_after": "29 Nov 1995",
+      "date_before": "28 Nov 1995",
+      "day": 31,
+      "exact_native_world": true,
+      "expected_bytes": 204950512,
+      "first_difference_byte": null,
+      "manual_driver_ms": 503.4928,
+      "normal_game_ms": 494.5947,
+      "stages": [
+        {
+          "elapsed_ms": 0.001,
+          "name": "prelude.headlines_and_reindex"
+        },
+        {
+          "elapsed_ms": 0.019899999999999998,
+          "name": "prelude.company_receivables"
+        },
+        {
+          "elapsed_ms": 0.0084,
+          "name": "prelude.fiscal_prepare"
+        },
+        {
+          "elapsed_ms": 2.3963,
+          "name": "prelude.province_begin"
+        },
+        {
+          "elapsed_ms": 0.0294,
+          "name": "prelude.programs_begin"
+        },
+        {
+          "elapsed_ms": 0.3103,
+          "name": "prelude.production"
+        },
+        {
+          "elapsed_ms": 14.0886,
+          "name": "system.population"
+        },
+        {
+          "elapsed_ms": 1.658,
+          "name": "system.economy"
+        },
+        {
+          "elapsed_ms": 22.8059,
+          "name": "system.resources"
+        },
+        {
+          "elapsed_ms": 2.4494,
+          "name": "system.commerce"
+        },
+        {
+          "elapsed_ms": 0.12129999999999999,
+          "name": "system.industry_support"
+        },
+        {
+          "elapsed_ms": 29.3416,
+          "name": "system.industry"
+        },
+        {
+          "elapsed_ms": 1.1488,
+          "name": "system.industry_operations"
+        },
+        {
+          "elapsed_ms": 0.8425,
+          "name": "system.tech"
+        },
+        {
+          "elapsed_ms": 0.004,
+          "name": "system.equipment"
+        },
+        {
+          "elapsed_ms": 0.00039999999999999996,
+          "name": "system.supplier_catalogue"
+        },
+        {
+          "elapsed_ms": 0.31020000000000003,
+          "name": "system.companies"
+        },
+        {
+          "elapsed_ms": 360.0239,
+          "name": "system.arsenal"
+        },
+        {
+          "elapsed_ms": 0.0031,
+          "name": "system.equipment_support"
+        },
+        {
+          "elapsed_ms": 0.0488,
+          "name": "system.statecraft"
+        },
+        {
+          "elapsed_ms": 0.015000000000000001,
+          "name": "system.stratagems"
+        },
+        {
+          "elapsed_ms": 0.0388,
+          "name": "system.ai_stratagems"
+        },
+        {
+          "elapsed_ms": 2.0319000000000003,
+          "name": "system.war"
+        },
+        {
+          "elapsed_ms": 2.2005000000000003,
+          "name": "system.government"
+        },
+        {
+          "elapsed_ms": 57.476800000000004,
+          "name": "system.politics"
+        },
+        {
+          "elapsed_ms": 0.0006,
+          "name": "system.agency"
+        },
+        {
+          "elapsed_ms": 0.0129,
+          "name": "system.economic_ai"
+        },
+        {
+          "elapsed_ms": 0.014,
+          "name": "system.fiscal_recovery_ai"
+        },
+        {
+          "elapsed_ms": 0.0018,
+          "name": "system.sovereignty"
+        },
+        {
+          "elapsed_ms": 1.9691999999999998,
+          "name": "system.domination"
+        },
+        {
+          "elapsed_ms": 0.00019999999999999998,
+          "name": "system.mortality"
+        },
+        {
+          "elapsed_ms": 0.2675,
+          "name": "postlude.programs_finish"
+        },
+        {
+          "elapsed_ms": 0.0176,
+          "name": "postlude.company_receivables"
+        },
+        {
+          "elapsed_ms": 3.4368,
+          "name": "postlude.province_finish"
+        },
+        {
+          "elapsed_ms": 0.2966,
+          "name": "postlude.sector_contractors"
+        },
+        {
+          "elapsed_ms": 0.0011,
+          "name": "postlude.supply_automation"
+        },
+        {
+          "elapsed_ms": 0.0003,
+          "name": "postlude.campaign_aims"
+        },
+        {
+          "elapsed_ms": 0.0101,
+          "name": "postlude.fiscal_observation"
+        },
+        {
+          "elapsed_ms": 0.037200000000000004,
+          "name": "postlude.fiscal_journal"
+        },
+        {
+          "elapsed_ms": 0.00009999999999999999,
+          "name": "postlude.advance_date"
+        }
+      ]
+    }
+  ],
+  "scope": "Exploratory named daily-system timings on a disposable decoded campaign. The observed driver runs first, then normal Game advance; cache order is not independent. Clone, exact native serialization comparison and report writes are outside subsystem timings. The outer runner supplies cryptographic input/source provenance. No performance acceptance claim.",
+  "starting_date": "29 Oct 1995",
+  "starting_owned_work": {
+    "advanced_components": 302.67367272900003,
+    "contractor_assignments": 517,
+    "contractor_roster": 899,
+    "operational_sectors": 0,
+    "operational_supply_buffers": 0,
+    "operational_supply_cargo": 0,
+    "operational_supply_receipt_day": null,
+    "operational_transfers": 0,
+    "supplier_active_refits": 0,
+    "supplier_ammunition_stock": 1800,
+    "supplier_development": 2,
+    "supplier_equipment_stock": 1,
+    "supplier_equipment_wip": 0,
+    "supplier_pending_ammunition_deliveries": 0,
+    "supplier_pending_equipment_deliveries": 0,
+    "supplier_receipt_day": 2126,
+    "supplier_receivables": 0,
+    "supplier_refit_escrow_bn": -0.0,
+    "supplier_refit_locked_capital_bn": -0.0,
+    "supplier_retained_operation_receipts": 3,
+    "suppliers": 7
+  },
+  "status": "complete",
+  "subsystem_summaries": {
+    "postlude.advance_date": {
+      "max_ms": 0.0021,
+      "median_ms": 0.0,
+      "p95_ms": 0.00019999999999999998,
+      "samples": 31
+    },
+    "postlude.campaign_aims": {
+      "max_ms": 0.0011,
+      "median_ms": 0.0003,
+      "p95_ms": 0.0006,
+      "samples": 31
+    },
+    "postlude.company_receivables": {
+      "max_ms": 0.0216,
+      "median_ms": 0.015099999999999999,
+      "p95_ms": 0.0184,
+      "samples": 31
+    },
+    "postlude.fiscal_journal": {
+      "max_ms": 0.0393,
+      "median_ms": 0.033,
+      "p95_ms": 0.0387,
+      "samples": 31
+    },
+    "postlude.fiscal_observation": {
+      "max_ms": 0.2908,
+      "median_ms": 0.0094,
+      "p95_ms": 0.014199999999999999,
+      "samples": 31
+    },
+    "postlude.programs_finish": {
+      "max_ms": 0.3478,
+      "median_ms": 0.24580000000000002,
+      "p95_ms": 0.3236,
+      "samples": 31
+    },
+    "postlude.province_finish": {
+      "max_ms": 3.7013,
+      "median_ms": 3.1992000000000003,
+      "p95_ms": 3.579,
+      "samples": 31
+    },
+    "postlude.sector_contractors": {
+      "max_ms": 6.0334,
+      "median_ms": 0.2825,
+      "p95_ms": 0.35619999999999996,
+      "samples": 31
+    },
+    "postlude.supply_automation": {
+      "max_ms": 0.0023,
+      "median_ms": 0.0007999999999999999,
+      "p95_ms": 0.0012,
+      "samples": 31
+    },
+    "prelude.company_receivables": {
+      "max_ms": 0.038099999999999995,
+      "median_ms": 0.022500000000000003,
+      "p95_ms": 0.0374,
+      "samples": 31
+    },
+    "prelude.fiscal_prepare": {
+      "max_ms": 0.0157,
+      "median_ms": 0.009099999999999999,
+      "p95_ms": 0.015400000000000002,
+      "samples": 31
+    },
+    "prelude.headlines_and_reindex": {
+      "max_ms": 0.0072,
+      "median_ms": 0.0013,
+      "p95_ms": 0.0036,
+      "samples": 31
+    },
+    "prelude.production": {
+      "max_ms": 0.3103,
+      "median_ms": 0.2282,
+      "p95_ms": 0.2655,
+      "samples": 31
+    },
+    "prelude.programs_begin": {
+      "max_ms": 0.0309,
+      "median_ms": 0.0285,
+      "p95_ms": 0.030800000000000004,
+      "samples": 31
+    },
+    "prelude.province_begin": {
+      "max_ms": 3.1208,
+      "median_ms": 2.4077,
+      "p95_ms": 2.9131,
+      "samples": 31
+    },
+    "system.agency": {
+      "max_ms": 0.002,
+      "median_ms": 0.0003,
+      "p95_ms": 0.0006,
+      "samples": 31
+    },
+    "system.ai_stratagems": {
+      "max_ms": 0.05,
+      "median_ms": 0.036399999999999995,
+      "p95_ms": 0.0406,
+      "samples": 31
+    },
+    "system.arsenal": {
+      "max_ms": 572.5042,
+      "median_ms": 310.50169999999997,
+      "p95_ms": 569.647,
+      "samples": 31
+    },
+    "system.commerce": {
+      "max_ms": 4.5501,
+      "median_ms": 0.0255,
+      "p95_ms": 2.4494,
+      "samples": 31
+    },
+    "system.companies": {
+      "max_ms": 0.5521,
+      "median_ms": 0.31579999999999997,
+      "p95_ms": 0.4366,
+      "samples": 31
+    },
+    "system.domination": {
+      "max_ms": 2.1713,
+      "median_ms": 2.0156,
+      "p95_ms": 2.0744000000000002,
+      "samples": 31
+    },
+    "system.economic_ai": {
+      "max_ms": 1897.9327,
+      "median_ms": 0.012,
+      "p95_ms": 0.0166,
+      "samples": 31
+    },
+    "system.economy": {
+      "max_ms": 2.1897,
+      "median_ms": 1.7182,
+      "p95_ms": 1.9028,
+      "samples": 31
+    },
+    "system.equipment": {
+      "max_ms": 0.0087,
+      "median_ms": 0.0036,
+      "p95_ms": 0.0076,
+      "samples": 31
+    },
+    "system.equipment_support": {
+      "max_ms": 0.0086,
+      "median_ms": 0.0029000000000000002,
+      "p95_ms": 0.0043,
+      "samples": 31
+    },
+    "system.fiscal_recovery_ai": {
+      "max_ms": 0.0162,
+      "median_ms": 0.011899999999999999,
+      "p95_ms": 0.0152,
+      "samples": 31
+    },
+    "system.government": {
+      "max_ms": 3.8497000000000003,
+      "median_ms": 2.1578999999999997,
+      "p95_ms": 2.4071000000000002,
+      "samples": 31
+    },
+    "system.industry": {
+      "max_ms": 31.1157,
+      "median_ms": 27.9772,
+      "p95_ms": 30.092000000000002,
+      "samples": 31
+    },
+    "system.industry_operations": {
+      "max_ms": 1.5367,
+      "median_ms": 1.1797000000000002,
+      "p95_ms": 1.3752,
+      "samples": 31
+    },
+    "system.industry_support": {
+      "max_ms": 0.1331,
+      "median_ms": 0.1081,
+      "p95_ms": 0.1257,
+      "samples": 31
+    },
+    "system.mortality": {
+      "max_ms": 0.0005,
+      "median_ms": 0.00019999999999999998,
+      "p95_ms": 0.0003,
+      "samples": 31
+    },
+    "system.politics": {
+      "max_ms": 306.0482,
+      "median_ms": 58.788199999999996,
+      "p95_ms": 61.3699,
+      "samples": 31
+    },
+    "system.population": {
+      "max_ms": 15.801800000000002,
+      "median_ms": 13.9924,
+      "p95_ms": 15.2283,
+      "samples": 31
+    },
+    "system.resources": {
+      "max_ms": 24.5306,
+      "median_ms": 18.5402,
+      "p95_ms": 24.1069,
+      "samples": 31
+    },
+    "system.sovereignty": {
+      "max_ms": 10.2357,
+      "median_ms": 0.001,
+      "p95_ms": 0.0025,
+      "samples": 31
+    },
+    "system.statecraft": {
+      "max_ms": 0.12300000000000001,
+      "median_ms": 0.061099999999999995,
+      "p95_ms": 0.0837,
+      "samples": 31
+    },
+    "system.stratagems": {
+      "max_ms": 0.02,
+      "median_ms": 0.0148,
+      "p95_ms": 0.0193,
+      "samples": 31
+    },
+    "system.supplier_catalogue": {
+      "max_ms": 90.4888,
+      "median_ms": 0.0005,
+      "p95_ms": 89.6294,
+      "samples": 31
+    },
+    "system.tech": {
+      "max_ms": 0.9613,
+      "median_ms": 0.7398,
+      "p95_ms": 0.8543,
+      "samples": 31
+    },
+    "system.war": {
+      "max_ms": 2.0909,
+      "median_ms": 2.0000999999999998,
+      "p95_ms": 2.0828,
+      "samples": 31
+    }
+  }
+}

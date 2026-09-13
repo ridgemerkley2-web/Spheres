@@ -1,0 +1,19 @@
+    Finished `release` profile [optimized] target(s) in 0.03s
+     Running unittests src\lib.rs (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration-target\release\deps\spheres_sim-de8a2e7790f15db6.exe)
+
+running 2 tests
+test resources::tests::spot_opening_pending_matches_live_scans_through_multicommodity_dispatch ... 
+thread 'resources::tests::spot_opening_pending_matches_live_scans_through_multicommodity_dispatch' (17236) panicked at spheres-sim\src\resources.rs:5919:13:
+fixture must actually settle several commodities
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+test resources::tests::spot_opening_pending_preserves_ordered_bits_and_all_paid_delivery_horizons ... ok
+
+failures:
+
+failures:
+    resources::tests::spot_opening_pending_matches_live_scans_through_multicommodity_dispatch
+
+test result: FAILED. 1 passed; 1 failed; 0 ignored; 0 measured; 771 filtered out; finished in 0.04s
+
+error: test failed, to rerun pass `-p spheres-sim --lib`

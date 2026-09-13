@@ -1,0 +1,40 @@
+{
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1789145049,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "e6187df80445",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration",
+    "version": "0.6.0"
+  },
+  "declared_policy": "Review and enact a fixed-total Tonga budget reallocation from Infrastructure to Defense procurement, preserving absolute personnel, operations and maintenance. Renew the chosen policy unchanged annually; no purchase funds are granted upfront.",
+  "executable": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\runners\\S08-qualified-e6187df80445\\spheres-web-tests.exe",
+  "format": "spheres-s08-genuine-supplier-journey",
+  "maximum_actual_days": 3000,
+  "qualification": "Developmental unless separately bound to a clean recorded candidate and executable hash; no synthetic stock, plant, research or budget grants.",
+  "source_files": [
+    {
+      "git_blob_sha1": "03ff4afa67a4a178f151abd624cc5c11468566ba",
+      "path": "spheres-web/src/company_view.rs"
+    },
+    {
+      "git_blob_sha1": "23cbeb125c343127a3c4d7c68707159018e3922b",
+      "path": "spheres-sim/src/supplier_catalogue.rs"
+    },
+    {
+      "git_blob_sha1": "7a541e830b75b3af9f64fa53b4a17b16f366b8b3",
+      "path": "spheres-sim/src/companies_imports.rs"
+    },
+    {
+      "git_blob_sha1": "72c9a0a85051ccbfd5ceb29795dc86b1cb191c39",
+      "path": "spheres-sim/src/companies.rs"
+    },
+    {
+      "git_blob_sha1": "470528ff2c44d7d5819a183df48d3cd6d501ede6",
+      "path": "spheres-web/src/main.rs"
+    }
+  ],
+  "source_head": "e6187df8044556a8262154e7a6c8baa32b283799",
+  "source_status": ""
+}

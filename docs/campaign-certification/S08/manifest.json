@@ -1,0 +1,1008 @@
+{
+  "format": "spheres-s08-qualification",
+  "version": 1,
+  "session": "S08",
+  "status": "complete",
+  "publication_status": "collected_and_verified",
+  "completed_date": "2026-09-12",
+  "prepared_utc": "2026-09-13T02:44:11.357794+00:00",
+  "runtime_candidate": "d770592aeead51f1313d507edd26b02d75a69bba",
+  "final_test_documentation_commit": {
+    "resolution": "containing_git_commit",
+    "command": "git log -1 --format=%H -- docs/campaign-certification/S08/manifest.json",
+    "scope": "Resolve after the reviewed test/docs commit is created; runtime qualification remains on d770592aeead51f1313d507edd26b02d75a69bba"
+  },
+  "source_path_base": "collected_path is relative to this manifest; original_path remains external provenance",
+  "qualification_scope": "S08 supplier choice/reviewed imports only; no S09 advancement or later campaign/content/release certificate",
+  "runtime_binary": {
+    "sha256": "c5852894069c797c1cbf6b15a302f73f85a0f0b4a4edfee63eb1ca6b367f8435",
+    "identity_source": "windows_game_build",
+    "freshly_hashed_by_this_manifest_builder": false
+  },
+  "test_binaries": {
+    "windows": "96bb58155a19218d6d37afabfb8d26c83c53d3dbebf5ca116a870fe950c655f7",
+    "linux": "68475a571e99c7d234c440a5a3637d2a86a4b46f92a1eebe5b6f14df7ec2c996",
+    "freshly_hashed_by_this_manifest_builder": false
+  },
+  "test_harness_distinction": {
+    "runtime_unchanged": true,
+    "committed_original_proof": "original_supplier_harness",
+    "executed_corrected_source_proof": "corrected_supplier_browser_executed_source",
+    "patch_proof": "supplier_capture_isolation_patch",
+    "vm_proof": "supplier_harness_vm",
+    "runner_proof": "corrected_browser_runner",
+    "overlay_proof": "corrected_browser_overlay",
+    "change": "Two harnessblocks only:bounded fulfillment/disposal before unroute,andexact audit-only captureisolation under checkedexclusivepaths. No runtime/asset/command/timeout/assertionchange.",
+    "final_commit_requirement": "Apply the exact corrected source actually executed,with runtime d770 and test/docs commit distinctly identified.",
+    "next_candidate_proof": "supplier_capture_isolation_candidate",
+    "next_candidate_status": "passed_full_browser",
+    "next_candidate_change": "Only archive evidence is renamed outside visible saves under a closed23-name whitelist;realinput and namedSaveLoad slots retained;existingwaits/assertions unchanged.",
+    "vm_proofs": [
+      "supplier_harness_vm",
+      "supplier_capture_isolation_vm"
+    ],
+    "executed_corrected_browser_proof": "corrected_supplier_browser_passed_outer",
+    "previous_failed_corrected_source_proof": "corrected_supplier_harness"
+  },
+  "completed_checks": {
+    "windows_native": {
+      "passed": 1598,
+      "failed": 0,
+      "ignored": 79,
+      "completed_targets": 65
+    },
+    "linux_native": {
+      "passed": 1598,
+      "failed": 0,
+      "ignored": 79,
+      "completed_targets": 65
+    },
+    "windows_node": {
+      "passed": 1507,
+      "failed": 0,
+      "skipped": 1,
+      "total": 1508,
+      "count_proof": "windows_node_log"
+    },
+    "linux_node": {
+      "passed": 1507,
+      "failed": 0,
+      "skipped": 1,
+      "total": 1508,
+      "count_proof": "linux_qualification"
+    },
+    "external_archives": {
+      "windows_passed_tests": 3,
+      "linux_passed_tests": 3,
+      "scope": "Pinned master;28 active supplier fixtures;party v1/equipment versions2–5",
+      "ignored_suite_tests_count_as_passes": false
+    },
+    "general_browser": {
+      "passed": true,
+      "proof": "general_browser",
+      "inner_proof": "general_browser_inner",
+      "observation_preserved_original_assertions_timeouts_routes": true
+    },
+    "money_browser": {
+      "passed": true,
+      "proof": "money_browser",
+      "inner_proof": "money_browser_inner"
+    },
+    "supplier_browser": {
+      "passed": true,
+      "proof": "corrected_supplier_browser_passed_outer",
+      "inner_proof": "corrected_supplier_browser_passed_inner",
+      "source_proof": "corrected_supplier_browser_executed_source"
+    },
+    "visual_review": {
+      "completed": true,
+      "proof": "visual_review",
+      "scope": "Boundedactualdesktop/mobileframes;interactionassertionsareseparate"
+    }
+  },
+  "genuine_native_journey": {
+    "passed": true,
+    "proof": "genuine_export",
+    "actual_days_advanced": 2155,
+    "post_tick_date": "26 Nov 1995",
+    "contract": {
+      "id": 3694,
+      "buyer": "Tonga",
+      "seller": "France",
+      "company": 3,
+      "product": 48,
+      "quantity": 1,
+      "buyer_revision": "import-3-48",
+      "purchased_day": 2127,
+      "settled_day": 2127,
+      "delivered_day": 2154,
+      "total_price_bn": 0.0018396366278316358,
+      "escrow_bn": 0.0,
+      "refunded_bn": 0.0,
+      "status": "delivered"
+    },
+    "platform": "APC",
+    "purchase_date": "29 Oct 1995",
+    "post_tick_delivered_day": 2155,
+    "budget_policy": "Review and enact a fixed-total Tonga budget reallocation from Infrastructure to Defense procurement; the personnel,operations and maintenance allocation amounts exceed their positive opening amounts. Renew the chosen policy annually; no cash or authority is granted upfront.",
+    "no_synthetic_endowments": true,
+    "archive_inventory": {
+      "count": 11,
+      "hashes_copied_from_completed_export_proof": true,
+      "archives_freshly_hashed_by_this_builder": false,
+      "phases": [
+        {
+          "file": "0000-fresh-before-decisions.campaign.json",
+          "sha256": "953da7d9d23ba58bc5e85d1c4ec91c73867df5e39a1004c6e02c39a15013e385",
+          "bytes": 13148766
+        },
+        {
+          "file": "0000-opening.campaign.json",
+          "sha256": "0db582fe8fb65ba75a8eed7ffde3a1453a8a60ec75233ba7091d5f1149e4ac7c",
+          "bytes": 13155203
+        },
+        {
+          "file": "0360-progress.campaign.json",
+          "sha256": "347e96fc018afd567fef04eb55ab17a0c30a88245db45e2e236842ea3b39c1ab",
+          "bytes": 54641195
+        },
+        {
+          "file": "0720-progress.campaign.json",
+          "sha256": "773bc1fc39662d74656ebff7b5a8bb9ee9d430fa511acdaeab801250cd397ac5",
+          "bytes": 80681849
+        },
+        {
+          "file": "1080-progress.campaign.json",
+          "sha256": "eb3448531f7d1d406662db449a473b870a77fc370d8770bc793c7ba025ebebaf",
+          "bytes": 107076801
+        },
+        {
+          "file": "1440-progress.campaign.json",
+          "sha256": "dd7b338e2732bb0f560b7d0bf51ae84e9f6b14256ee3ca6fed9d10bb35487f83",
+          "bytes": 135742090
+        },
+        {
+          "file": "1800-progress.campaign.json",
+          "sha256": "bde9a23168463245a636deeb562317ceaf8ab119f4fd7b0b5abb4fc734d19c1d",
+          "bytes": 138689111
+        },
+        {
+          "file": "2127-first-finished-stock.campaign.json",
+          "sha256": "f4e4189711fd27a23c85b3b97b3d7d108e957c64748084ddfe01ffd36a6a52fd",
+          "bytes": 134254304
+        },
+        {
+          "file": "2127-purchased.campaign.json",
+          "sha256": "73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9",
+          "bytes": 134238603
+        },
+        {
+          "file": "2127-ready-before-purchase.campaign.json",
+          "sha256": "c7cd98c5224a6ae80722ae2d113de8036bf191d7168c7ee2eebfd74917a4a100",
+          "bytes": 134254304
+        },
+        {
+          "file": "2155-delivered.campaign.json",
+          "sha256": "0fa5c80cd5c664602e03fa7c83a211bd068e51f2e7e791ae8903131f22b75e93",
+          "bytes": 130971637
+        }
+      ]
+    },
+    "budget_policy_prose_note": "Corrected publication wording describes the positive opening-allocation comparison. Earlier raw native proof prose remains immutable."
+  },
+  "performance": {
+    "declared_plan_proof": "performance_plan",
+    "binding_proof": "performance_binding",
+    "limits_unchanged": true,
+    "limits": {
+      "simulation_history_p95_ms": 300,
+      "whole_turn_p95_ms": 400,
+      "whole_turn_max_ms": 750,
+      "legacy_sampled_private_bytes": 1073741824,
+      "supplier_equipment_board_p95_ms": 300,
+      "supplier_purchase_quote_p95_ms": 250,
+      "supplier_memory_limit": null
+    },
+    "legacy": {
+      "passed": true,
+      "proof": "legacy_performance",
+      "days_per_case": 31,
+      "cases": [
+        {
+          "scenario": "idle_human",
+          "age": 0,
+          "sim_p95_ms": 40.5382,
+          "whole_p95_ms": 101.2415,
+          "whole_max_ms": 102.2336,
+          "passed": true
+        },
+        {
+          "scenario": "idle_human",
+          "age": 10,
+          "sim_p95_ms": 86.983,
+          "whole_p95_ms": 174.0694,
+          "whole_max_ms": 177.624,
+          "passed": true
+        },
+        {
+          "scenario": "idle_human",
+          "age": 30,
+          "sim_p95_ms": 138.161,
+          "whole_p95_ms": 235.4813,
+          "whole_max_ms": 268.754,
+          "passed": true
+        },
+        {
+          "scenario": "industry_and_war",
+          "age": 0,
+          "sim_p95_ms": 96.11,
+          "whole_p95_ms": 160.7744,
+          "whole_max_ms": 160.9957,
+          "passed": true
+        },
+        {
+          "scenario": "industry_and_war",
+          "age": 10,
+          "sim_p95_ms": 149.9666,
+          "whole_p95_ms": 228.5337,
+          "whole_max_ms": 280.2912,
+          "passed": true
+        },
+        {
+          "scenario": "industry_and_war",
+          "age": 30,
+          "sim_p95_ms": 239.40529999999998,
+          "whole_p95_ms": 329.3678,
+          "whole_max_ms": 361.8156,
+          "passed": true
+        }
+      ],
+      "sampled_private_bytes": 472342528
+    },
+    "supplier": {
+      "passed": true,
+      "proof": "supplier_performance",
+      "days": 31,
+      "checks": [
+        {
+          "metric": "simulation_and_history_recording.p95_ms",
+          "measured_ms": 299.4182,
+          "limit_ms": 300,
+          "passed": true
+        },
+        {
+          "metric": "whole_server_turn.p95_ms",
+          "measured_ms": 381.45649999999995,
+          "limit_ms": 400,
+          "passed": true
+        },
+        {
+          "metric": "whole_server_turn.max_ms",
+          "measured_ms": 496.267,
+          "limit_ms": 750,
+          "passed": true
+        },
+        {
+          "metric": "equipment_market_read_and_serialization.p95_ms",
+          "measured_ms": 107.0694,
+          "limit_ms": 300,
+          "passed": true
+        },
+        {
+          "metric": "purchase_quote.p95_ms",
+          "measured_ms": 2.4301,
+          "limit_ms": 250,
+          "passed": true
+        }
+      ],
+      "original_purchased_input_sha256": "73a8ed5bd81502bf37d77f374c23f18ed96644a0032ba295317b25a0d01133f9",
+      "profile_sha256": "7f34b5bb617f66e7a56193efa74f25afd60db815047fbc33e51409bbc4e11150",
+      "sampled_private_bytes": 2218074112,
+      "memory_scope": "Observation only;no supplier-memory acceptance limit was declared"
+    },
+    "limits_of_claim": "Finite measured workloads;excludes network,disk autosave and browser rendering; supplier simulation p95 is close to300ms."
+  },
+  "corrected_supplier_browser": {
+    "status": "passed",
+    "passed": true,
+    "outer_proof": "corrected_supplier_browser_passed_outer",
+    "inner_proof": "corrected_supplier_browser_passed_inner",
+    "receipt": "corrected_supplier_browser_complete_receipt",
+    "output_directory": "evidence/S08-supplier-browser-corrected-route-pool-2",
+    "run_directory": "evidence/S08-supplier-browser-corrected-route-pool-2/supplier-TDUttg",
+    "executed_harness_sha256": "cd9c5ab5783d6ca6bf71aa913842436e851311fa00ce4b6a33881a25f3bdc33a",
+    "contract": {
+      "id": 3695,
+      "buyer": "Tonga",
+      "seller": "France",
+      "company": 3,
+      "product": 48,
+      "quantity": 1,
+      "buyer_revision": "import-3-48",
+      "purchased_day": 2128,
+      "settled_day": 2128,
+      "delivered_day": 2155,
+      "total_price_bn": 0.0018396366278316358,
+      "escrow_bn": 0,
+      "refunded_bn": 0,
+      "status": "delivered"
+    },
+    "paid_maintenance": {
+      "verified": true,
+      "receipt": {
+        "authority_bn": 8.998407463094934e-07,
+        "custom_paid_bn": 2.543259532221702e-07,
+        "custom_required_bn": 3.67e-07,
+        "daily_limit_bn": 2e-06,
+        "day": 2157,
+        "legacy_paid_bn": 6.455147930873232e-07,
+        "legacy_required_bn": 9.314972619255128e-07
+      },
+      "imported_requirement_bn": 3.67e-07,
+      "support_fraction": 0.6929862485617716,
+      "settled_defense_payment_bn": 8.998407463094934e-07,
+      "scope": "The dated custom-fleet invoice includes the imported model and uses existing Defense maintenance authority. Its common support fraction is derived from that aggregate receipt; no separate model payment or full coverage is invented."
+    },
+    "save_load_continue": {
+      "midpoint": {
+        "slot": "s08-import-midpoint",
+        "date": "31 Oct 1995",
+        "new_session": true,
+        "exact_world": true,
+        "exact_market": true,
+        "cancel_pure": true,
+        "phase": "Paid transit before arrival",
+        "model_not_installed": true
+      },
+      "final": {
+        "slot": "s08-import-complete",
+        "date": "29 Nov 1995",
+        "new_session": true,
+        "exact_world": true,
+        "exact_market": true,
+        "cancel_pure": true
+      },
+      "final_continue_passed": true
+    },
+    "commands": [
+      {
+        "commands": [
+          {
+            "ammunition": false,
+            "company": 3,
+            "kind": "company_import_purchase",
+            "product": 48,
+            "quantity": 1,
+            "quote": "company-v1-1e7417c8f6858aa5",
+            "seller": "France"
+          }
+        ],
+        "session_id": "16112-1789266874340238400-2",
+        "client_id": "7863fc21-14bc-487f-a6ea-45e1a947106f",
+        "request_seq": 2
+      },
+      {
+        "commands": [
+          {
+            "daily_budget_mn": 0.002,
+            "kind": "equipment_maintenance"
+          }
+        ],
+        "session_id": "16112-1789266979509815300-3",
+        "client_id": "7863fc21-14bc-487f-a6ea-45e1a947106f",
+        "request_seq": 31
+      }
+    ],
+    "errors": [],
+    "screenshots": [
+      "preparation-market-desktop.png",
+      "preparation-programmes-desktop.png",
+      "preparation-market-mobile.png",
+      "preparation-programmes-mobile.png",
+      "market-desktop.png",
+      "programs-desktop.png",
+      "market-mobile.png",
+      "programs-mobile.png",
+      "exact-supplier-model.png",
+      "purchase-review-desktop.png",
+      "purchase-review-mobile.png",
+      "cancellation-review.png",
+      "delivery-day-1.png",
+      "delivery-day-8.png",
+      "delivery-day-15.png",
+      "delivery-day-22.png",
+      "delivered-service-desktop.png",
+      "delivered-service-mobile.png",
+      "maintenance-review.png",
+      "paid-maintenance-desktop.png",
+      "maintained-import-desktop.png",
+      "paid-maintenance-mobile.png",
+      "maintained-import-mobile.png"
+    ],
+    "quantity_edit_scope": {
+      "skipped": "Only one unit is within native stock/funding limits; no fabricated second unit or authority"
+    },
+    "prior_failed_receipt": "corrected_supplier_browser_partial_receipt"
+  },
+  "scope_disclosures": [
+    "Seven opt-in modeled supplier programmes earn their inputs/stock through ordinary decisions;player skipped;no opening-fleet or first-stock-date guarantee.",
+    "Fresh authentic availability evidence is one French APC purchased by Tonga with a disclosed fixed-total budget tradeoff and annual renewal.",
+    "A developmental default-budget run did not produce an affordable purchase within3000days.",
+    "Separate eleven-platform lifecycle matrix uses synthetic opening company capital,plant,raw inputs and buyer appropriation;not fresh availability qualification.",
+    "Domestic ammunition tests cover23recipes;representative foreign branches do not prove genuine availability of all23.",
+    "Imported exact specifications grant no component research or domestic manufacturing licence.",
+    "Current save metadata scans parse every complete file;21 audit-polluted saves took25.1878707s in a retained GET diagnostic. Capture isolation does not fix many-large-save menu performance for ordinary users."
+  ],
+  "retained_failures": {
+    "current_pin_proofs": [
+      "failed_general_1",
+      "failed_general_1_log",
+      "failed_general_2",
+      "failed_general_2_log",
+      "failed_supplier_browser",
+      "failed_supplier_browser_log",
+      "corrected_supplier_browser_failed_outer"
+    ],
+    "general_first_timeout_cause": "unknown",
+    "general_second_failure": "Outside Node preload path spelling;no browser launch",
+    "supplier_first_failure": "Last-interceptor cleanup can continue held route before fulfillment;Route is already handled",
+    "initial_candidate": "e6187df8044556a8262154e7a6c8baa32b283799",
+    "must_retain": [
+      "Initial candidate passes attached only to their source",
+      "evidence/S08-feature-performance-final-1/ failed bars",
+      "Both initial supplier browser attempts,including0xC0000409 and termination-result.json",
+      "All intermediate diagnostics,failed fixtures,source snapshots and superseded drafts"
+    ],
+    "initial_passes_qualify_current_runtime": false
+  },
+  "remaining_publication_gates": {
+    "corrected_supplier_browser": {
+      "status": "passed",
+      "collected_path": "evidence/S08-supplier-browser-corrected-route-pool-2/runner-result.json",
+      "collected_logical_path": "S08-supplier-browser-corrected-route-pool-2/runner-result.json",
+      "inner": {
+        "collected_path": "evidence/browser/supplier/supplier-TDUttg/result.json",
+        "collected_logical_path": "browser/supplier/supplier-TDUttg/result.json"
+      }
+    },
+    "collector_inventory": {
+      "status": "passed",
+      "path": "evidence/inventory.json",
+      "sha256": "ec4a98ff697c0ba9195dff42bffa5c440decd9c0be8a31ad1ee877acdc5fef77",
+      "stored_files_verified": 1977,
+      "reconstruction_verified_by_collector": true
+    },
+    "final_preservation": {
+      "status": "passed",
+      "proof": "final_preservation",
+      "eight_protected_saves": true,
+      "protected_source_heads": 2,
+      "original_fixture_producers": {
+        "status": "passed",
+        "proof": "linux_qualification",
+        "scope": "33protectedfixture/producerartifactsunchangedduringcompleteLinuxqualification"
+      },
+      "collected_path": "evidence/S08-preservation-after.json",
+      "collected_logical_path": "S08-preservation-after.json"
+    },
+    "isolated_review_launch": {
+      "status": "passed_at_recorded_launch",
+      "url": "http://127.0.0.1:7846",
+      "pid": 16184,
+      "runtime_revision": "d770592aeead51f1313d507edd26b02d75a69bba",
+      "binary_sha256": "c5852894069c797c1cbf6b15a302f73f85a0f0b4a4edfee63eb1ca6b367f8435",
+      "save": "s08-tonga-in-service",
+      "date": "29 Nov 1995",
+      "player": "Tonga",
+      "save_sha256": "651b3dd21f0331179b6b117b77d78ca05a6f5a91c16de933701364c12424a7a8",
+      "copies": 5,
+      "proof": "review_launch",
+      "collected_path": "evidence/additional/S08-review-launch.json",
+      "collected_logical_path": "additional/S08-review-launch.json"
+    },
+    "final_test_docs_commit": {
+      "status": "resolve_containing_git_commit",
+      "exact_executed_patch_verified": true
+    },
+    "git_disposition": {
+      "status": "external_transport_record_after_commit",
+      "scope": "No push or bundle success is claimed by this manifest."
+    },
+    "pathways": {
+      "status": "updated",
+      "last_completed_session": "S08",
+      "next_session": "S09",
+      "execution": "stopped"
+    }
+  },
+  "proofs": {
+    "windows_native": {
+      "original_path": "evidence/S08-final-native-route-pool-1.json",
+      "bytes": 1300,
+      "sha256": "544c8e3584d183a736c238a65cf53d30a2e5d3c386a0d08827570e879daa3913",
+      "collected_path": "evidence/S08-final-native-route-pool-1.json",
+      "scope": "Completed full Windows native suite",
+      "outcome": "passed",
+      "collected_logical_path": "S08-final-native-route-pool-1.json"
+    },
+    "windows_native_log": {
+      "original_path": "evidence/S08-final-native-route-pool-1.log",
+      "bytes": 168984,
+      "sha256": "fae93a9bfcfa68e3ba684f462daa3f8eda0193d5cfec387eae4599f03dcdd6c5",
+      "collected_path": "evidence/S08-final-native-route-pool-1.log",
+      "scope": "Original Windows native log",
+      "collected_logical_path": "S08-final-native-route-pool-1.log"
+    },
+    "windows_node": {
+      "original_path": "evidence/S08-final-node-route-pool-1.json",
+      "bytes": 634,
+      "sha256": "20c884e6923bc6cd6051fd376e4c6a87f953de7c3a7fcbe3dbf555dffdbdd472",
+      "collected_path": "evidence/S08-final-node-route-pool-1.json",
+      "scope": "Completed full Windows Node suite",
+      "outcome": "passed",
+      "collected_logical_path": "S08-final-node-route-pool-1.json"
+    },
+    "windows_node_log": {
+      "original_path": "evidence/S08-final-node-route-pool-1.log",
+      "bytes": 149706,
+      "sha256": "05ddfb0ba81d63968a86ac0aad4b8ca261a6225ab4d0bb1e78ed884fc5e72824",
+      "collected_path": "evidence/S08-final-node-route-pool-1.log",
+      "scope": "Node count evidence:1507 passed,0 failed,1 skipped",
+      "collected_logical_path": "S08-final-node-route-pool-1.log"
+    },
+    "linux_qualification": {
+      "original_path": "evidence/S08-linux-route-pool-1/runner-result.json",
+      "bytes": 31740,
+      "sha256": "69c8724b7b68c27edc13ac2b51e18c521e2f851df47b5381e9bcf26049df9eb2",
+      "collected_path": "evidence/S08-linux-route-pool-1/runner-result.json",
+      "scope": "Linux native,Node and three external archive checks",
+      "outcome": "passed",
+      "collected_logical_path": "S08-linux-route-pool-1/runner-result.json"
+    },
+    "windows_external": {
+      "original_path": "evidence/S08-external-route-pool-1/result.json",
+      "bytes": 3525,
+      "sha256": "35b05edb83099419eef3cf9687b752c39fb9127310039d9d215cb5c286616610",
+      "collected_path": "evidence/S08-external-route-pool-1/result.json",
+      "scope": "Three original ignored archive checks explicitly executed",
+      "outcome": "passed",
+      "collected_logical_path": "S08-external-route-pool-1/result.json"
+    },
+    "windows_game_build": {
+      "original_path": "evidence/S08-final-binary-route-pool-1.json",
+      "bytes": 941,
+      "sha256": "d5eb0a8cb0ab3ecd61dcf1ccb89cc517cf2bcbe9684d455dc257cd27848421a8",
+      "collected_path": "evidence/S08-final-binary-route-pool-1.json",
+      "scope": "Clean pinned release game build",
+      "outcome": "passed",
+      "collected_logical_path": "S08-final-binary-route-pool-1.json"
+    },
+    "general_browser": {
+      "original_path": "evidence/S08-final-browser-installed-route-pool-3.json",
+      "bytes": 1063,
+      "sha256": "1479230900fb856dddd1be2e7c2feee30b4bbe392ae13a7e18e7f03980ce3ffe",
+      "collected_path": "evidence/S08-final-browser-installed-route-pool-3.json",
+      "scope": "General browser acceptance with outside observation only",
+      "outcome": "passed",
+      "collected_logical_path": "S08-final-browser-installed-route-pool-3.json"
+    },
+    "general_browser_inner": {
+      "original_path": "evidence/S08-general-browser-d770592/result.json",
+      "bytes": 18947,
+      "sha256": "82ada6dcbb81e3e82cd07f8d0e666f2c2f678d7136ed6df719038526379bf92c",
+      "collected_path": "evidence/S08-general-browser-d770592/result.json",
+      "scope": "Original completed general UI assertions and served assets",
+      "outcome": "passed",
+      "collected_logical_path": "S08-general-browser-d770592/result.json"
+    },
+    "general_observer_metadata": {
+      "original_path": "evidence/S08-general-navigation-observed-route-pool-3/metadata.json",
+      "bytes": 1918,
+      "sha256": "c5c7412f24f247cbdf89e107a9693074eba2455762288c234ba350d93c552dae",
+      "collected_path": "evidence/S08-general-navigation-observed-route-pool-3/metadata.json",
+      "scope": "Executed observational preload and exact source hashes",
+      "collected_logical_path": "S08-general-navigation-observed-route-pool-3/metadata.json"
+    },
+    "general_observer_events": {
+      "original_path": "evidence/S08-general-navigation-observed-route-pool-3/events.jsonl",
+      "bytes": 349783,
+      "sha256": "c0c4a7a8ad82d57a6e0965367d83f46ecbf5e829c29074eeffc4be23a55a70c8",
+      "collected_path": "evidence/S08-general-navigation-observed-route-pool-3/events.jsonl",
+      "scope": "Real request,console and lifecycle timeline",
+      "collected_logical_path": "S08-general-navigation-observed-route-pool-3/events.jsonl"
+    },
+    "general_observer_review": {
+      "original_path": "evidence/S08-general-navigation-observed-route-pool-3-review.md",
+      "bytes": 3901,
+      "sha256": "0c46cfea2aed29f52e5c570ce3a44cacf634ef4f66d730fa545b3469d4480146",
+      "collected_path": "evidence/S08-general-navigation-observed-route-pool-3-review.md",
+      "scope": "Startup,warning and retained failure interpretation",
+      "collected_logical_path": "S08-general-navigation-observed-route-pool-3-review.md"
+    },
+    "money_browser": {
+      "original_path": "evidence/S08-final-money-browser-route-pool-1.json",
+      "bytes": 952,
+      "sha256": "4d15a9e67b61eebd594fd64157cfdfd9ae88a086be923cd4f0758178a38d582a",
+      "collected_path": "evidence/S08-final-money-browser-route-pool-1.json",
+      "scope": "Completed original Money UI assertions",
+      "outcome": "passed",
+      "collected_logical_path": "S08-final-money-browser-route-pool-1.json"
+    },
+    "money_browser_inner": {
+      "original_path": "evidence/S08-money-browser-d770592/result.json",
+      "bytes": 26258,
+      "sha256": "32d901a07f572255385425289586c3f72f40b6de48bc001588ef0cc5df0b1eba",
+      "collected_path": "evidence/S08-money-browser-d770592/result.json",
+      "scope": "Actual Money UI receipt and screenshots",
+      "outcome": "passed",
+      "collected_logical_path": "S08-money-browser-d770592/result.json"
+    },
+    "genuine_export": {
+      "original_path": "evidence/S08-genuine-supplier-route-pool-1/runner-result.json",
+      "bytes": 69813,
+      "sha256": "043e94f59023a48756793b2abaea3a2655cabf972abbe66f8498125e41ed59a8",
+      "collected_path": "evidence/S08-genuine-supplier-route-pool-1/runner-result.json",
+      "scope": "Fresh campaign ordinary paid supplier/APC journey",
+      "outcome": "passed",
+      "collected_logical_path": "S08-genuine-supplier-route-pool-1/runner-result.json"
+    },
+    "genuine_provenance": {
+      "original_path": "evidence/S08-genuine-supplier-route-pool-1/export/provenance.json",
+      "bytes": 1971,
+      "sha256": "7109906c5a418e42aebbf8e20cc571c9f2a5d4fdb4088729a400fed97c38aca5",
+      "collected_path": "evidence/S08-genuine-supplier-route-pool-1/export/provenance.json",
+      "scope": "Native source identity and no-endowment disclosure",
+      "collected_logical_path": "S08-genuine-supplier-route-pool-1/export/provenance.json"
+    },
+    "genuine_native_outcome": {
+      "original_path": "evidence/S08-genuine-supplier-route-pool-1/export/result.json",
+      "bytes": 54974,
+      "sha256": "cd0e68b52964bec615d9decdd9a6b0dbd2d4050e99d4003d47ce41c5c3e54ed8",
+      "collected_path": "evidence/S08-genuine-supplier-route-pool-1/export/result.json",
+      "scope": "Actual native contract and funding record",
+      "outcome": "passed",
+      "collected_logical_path": "S08-genuine-supplier-route-pool-1/export/result.json"
+    },
+    "genuine_purchase_review": {
+      "original_path": "evidence/S08-genuine-supplier-route-pool-1/export/purchase-review.json",
+      "bytes": 6012,
+      "sha256": "94d845278a756107692cf7762811ef28818a142296c6629b47e868a5a957a91c",
+      "collected_path": "evidence/S08-genuine-supplier-route-pool-1/export/purchase-review.json",
+      "scope": "Original exact reviewed purchase",
+      "collected_logical_path": "S08-genuine-supplier-route-pool-1/export/purchase-review.json"
+    },
+    "performance_plan": {
+      "original_path": "evidence/S08-performance-plan.json",
+      "bytes": 1322,
+      "sha256": "8d2cb23fe996ba9dc35da0aed5859072a83c2e61b55d4881cf047bc1ac195a28",
+      "collected_path": "evidence/S08-performance-plan.json",
+      "scope": "Original unchanged declared performance limits",
+      "collected_logical_path": "S08-performance-plan.json"
+    },
+    "performance_binding": {
+      "original_path": "evidence/S08-performance-protocol-route-pool-1.json",
+      "bytes": 1480,
+      "sha256": "0a755a96c5d65cae9625c7fff783e65576a591135da524f7666448bef4b1536c",
+      "collected_path": "evidence/S08-performance-protocol-route-pool-1.json",
+      "scope": "Original declaration rebound to the current qualified test binary",
+      "collected_logical_path": "S08-performance-protocol-route-pool-1.json"
+    },
+    "legacy_performance": {
+      "original_path": "evidence/S08-performance-route-pool-1/acceptance.json",
+      "bytes": 2177,
+      "sha256": "8ed7b746d52c574d6453c65337169be39047e933588010483143704104f9adb1",
+      "collected_path": "evidence/S08-performance-route-pool-1/acceptance.json",
+      "scope": "Six unchanged legacy workloads and memory acceptance",
+      "outcome": "passed",
+      "collected_logical_path": "S08-performance-route-pool-1/acceptance.json"
+    },
+    "legacy_performance_runner": {
+      "original_path": "evidence/S08-performance-route-pool-1/runner-result.json",
+      "bytes": 3719,
+      "sha256": "e69249fea0fd3a358cbe9e750f5f2893751b999dddac4bcf9aa14b1f70b486ef",
+      "collected_path": "evidence/S08-performance-route-pool-1/runner-result.json",
+      "scope": "Original run and executable/source preservation",
+      "outcome": "passed",
+      "collected_logical_path": "S08-performance-route-pool-1/runner-result.json"
+    },
+    "legacy_performance_profile": {
+      "original_path": "evidence/S08-performance-route-pool-1/profile.json",
+      "bytes": 316558,
+      "sha256": "2fe74832d3be2e2f1835f85d4ed287bf4d3e704d335dc97339ac7ba7ab3b29f8",
+      "collected_path": "evidence/S08-performance-route-pool-1/profile.json",
+      "scope": "Measured six-workload profile",
+      "collected_logical_path": "S08-performance-route-pool-1/profile.json"
+    },
+    "supplier_performance": {
+      "original_path": "evidence/S08-feature-performance-route-pool-1/runner-result.json",
+      "bytes": 7395,
+      "sha256": "19af6b9beacfd4d281a5b38344ea62b4096c359c2f6961a05bbd48fd9c130b9a",
+      "collected_path": "evidence/S08-feature-performance-route-pool-1/runner-result.json",
+      "scope": "Fresh same-candidate original purchased input and five fixed bars",
+      "outcome": "passed",
+      "collected_logical_path": "S08-feature-performance-route-pool-1/runner-result.json"
+    },
+    "supplier_performance_profile": {
+      "original_path": "evidence/S08-feature-performance-route-pool-1/profile.json",
+      "bytes": 45743,
+      "sha256": "7f34b5bb617f66e7a56193efa74f25afd60db815047fbc33e51409bbc4e11150",
+      "collected_path": "evidence/S08-feature-performance-route-pool-1/profile.json",
+      "scope": "Measured supplier31-day profile",
+      "collected_logical_path": "S08-feature-performance-route-pool-1/profile.json"
+    },
+    "failed_general_1": {
+      "original_path": "evidence/S08-final-browser-installed-route-pool-1.json",
+      "bytes": 1064,
+      "sha256": "cf65e7a928fceb7a93b726b17b7a5599e35dd758ed4f424a82354afbfd85164d",
+      "collected_path": "evidence/S08-final-browser-installed-route-pool-1.json",
+      "scope": "Original30-second startup timeout; cause unknown",
+      "outcome": "failed",
+      "collected_logical_path": "S08-final-browser-installed-route-pool-1.json"
+    },
+    "failed_general_1_log": {
+      "original_path": "evidence/S08-final-browser-installed-route-pool-1.log",
+      "bytes": 309,
+      "sha256": "e623d1852d361edac3dde50575f8196ecfc46e21eb5d344dc552f2522830a141",
+      "collected_path": "evidence/S08-final-browser-installed-route-pool-1.log",
+      "scope": "Original timeout before UI assertions",
+      "collected_logical_path": "S08-final-browser-installed-route-pool-1.log"
+    },
+    "failed_general_2": {
+      "original_path": "evidence/S08-final-browser-installed-route-pool-2.json",
+      "bytes": 1064,
+      "sha256": "4ee8f4052febf0ce63028577daabf93edea8485d9cf094e312269dbfdeb6e29a",
+      "collected_path": "evidence/S08-final-browser-installed-route-pool-2.json",
+      "scope": "Outside preload path setup error; no browser launch",
+      "outcome": "failed",
+      "collected_logical_path": "S08-final-browser-installed-route-pool-2.json"
+    },
+    "failed_general_2_log": {
+      "original_path": "evidence/S08-final-browser-installed-route-pool-2.log",
+      "bytes": 1033,
+      "sha256": "920fb1f4a189c5bbde817bdfd68fa998c06da4be18d0c5d98694e8200c8a4d4f",
+      "collected_path": "evidence/S08-final-browser-installed-route-pool-2.log",
+      "scope": "Retained MODULE_NOT_FOUND error",
+      "collected_logical_path": "S08-final-browser-installed-route-pool-2.log"
+    },
+    "failed_supplier_browser": {
+      "original_path": "evidence/S08-final-supplier-browser-route-pool-1.json",
+      "bytes": 964,
+      "sha256": "f8031aee7cfd0c623f1cff9046dfa7dafa62bd7e1d9f0a38430c68c005d917c4",
+      "collected_path": "evidence/S08-final-supplier-browser-route-pool-1.json",
+      "scope": "Real supplier journey stopped at stale-review cleanup",
+      "outcome": "failed",
+      "collected_logical_path": "S08-final-supplier-browser-route-pool-1.json"
+    },
+    "failed_supplier_browser_log": {
+      "original_path": "evidence/S08-final-supplier-browser-route-pool-1.log",
+      "bytes": 228,
+      "sha256": "a38c8bd2953fec77d259e361b133a46d5a34655b7d85e5192479a85019e86edc",
+      "collected_path": "evidence/S08-final-supplier-browser-route-pool-1.log",
+      "scope": "Retained already-handled route error",
+      "collected_logical_path": "S08-final-supplier-browser-route-pool-1.log"
+    },
+    "original_supplier_harness": {
+      "original_path": "integration/tools/ui/ci-supplier-imports.cjs",
+      "bytes": 35611,
+      "sha256": "de8a13611ce1617133710b252253cd82e41d6a4b74d39799f7d29eb2b97ce7f1",
+      "collected_path": "evidence/runners/tools/ui/ci-supplier-imports.cjs",
+      "scope": "Frozen committed test source; separate from runtime binary",
+      "collected_logical_path": "runners/tools/ui/ci-supplier-imports.cjs"
+    },
+    "corrected_supplier_harness": {
+      "original_path": "s08-staging/ci-supplier-imports.cleanup-order.cjs",
+      "bytes": 35607,
+      "sha256": "c74f8a8d1f1ee090113179a5a34acfada0ffa28e8689de4e3aba8fa766e21b9c",
+      "collected_path": "evidence/additional/s08-staging/ci-supplier-imports.cleanup-order.cjs",
+      "scope": "Prior failed c74 cleanup-only harness,retainedunchanged",
+      "collected_logical_path": "additional/s08-staging/ci-supplier-imports.cleanup-order.cjs"
+    },
+    "supplier_harness_patch": {
+      "original_path": "s08-staging/supplier-preview-cleanup-order.patch",
+      "bytes": 1055,
+      "sha256": "1110994d8f2252345a73036940642ad94a22852b408e67128faa392796e6e53f",
+      "collected_path": "evidence/additional/s08-staging/supplier-preview-cleanup-order.patch",
+      "scope": "One-block cleanup correction only",
+      "collected_logical_path": "additional/s08-staging/supplier-preview-cleanup-order.patch"
+    },
+    "supplier_harness_vm": {
+      "original_path": "s08-staging/supplier-preview-cleanup-order-vm-evidence.json",
+      "bytes": 3870,
+      "sha256": "349da278fdeff2d31c80e64de62841a0c8d991e574b51fb2fe856e3692bcd43f",
+      "collected_path": "evidence/additional/s08-staging/supplier-preview-cleanup-order-vm-evidence.json",
+      "scope": "13 bounded checks,including required failing original control",
+      "outcome": "passed",
+      "collected_logical_path": "additional/s08-staging/supplier-preview-cleanup-order-vm-evidence.json"
+    },
+    "supplier_harness_vm_log": {
+      "original_path": "s08-staging/supplier-preview-cleanup-order-vm-evidence.log",
+      "bytes": 952,
+      "sha256": "a1e44fd1083438d2d825e4c9151e78cfccf1d24a8049ce226bbd19c9c0e88621",
+      "collected_path": "evidence/additional/s08-staging/supplier-preview-cleanup-order-vm-evidence.log",
+      "scope": "All13 checks retained",
+      "collected_logical_path": "additional/s08-staging/supplier-preview-cleanup-order-vm-evidence.log"
+    },
+    "supplier_harness_vm_source": {
+      "original_path": "s08-staging/verify-supplier-preview-cleanup-order.cjs",
+      "bytes": 13115,
+      "sha256": "593ab3d7613a4709da45a2a202c4c68969ffcadd3173276d7937b7d0ad9b7a79",
+      "collected_path": "evidence/additional/s08-staging/verify-supplier-preview-cleanup-order.cjs",
+      "scope": "Exact VM verifier source",
+      "collected_logical_path": "additional/s08-staging/verify-supplier-preview-cleanup-order.cjs"
+    },
+    "supplier_harness_review": {
+      "original_path": "s08-staging/supplier-preview-cleanup-order-review.md",
+      "bytes": 4742,
+      "sha256": "f57b43697eca779a3caf36db317ca51ce66db0d9344f29b3fb5760818bd6752f",
+      "collected_path": "evidence/additional/s08-staging/supplier-preview-cleanup-order-review.md",
+      "scope": "Local Playwright cause,scope and provenance",
+      "collected_logical_path": "additional/s08-staging/supplier-preview-cleanup-order-review.md"
+    },
+    "corrected_browser_runner": {
+      "original_path": "run-s08-supplier-browser-corrected.py",
+      "bytes": 14888,
+      "sha256": "1ea582bddda76ea31b584afe71719660323391ce88dd3a01214f9cd679d95c65",
+      "collected_path": "evidence/runners/run-s08-supplier-browser-corrected.py",
+      "scope": "Explicit outside runtime/test-harness binding runner",
+      "collected_logical_path": "runners/run-s08-supplier-browser-corrected.py"
+    },
+    "corrected_browser_overlay": {
+      "original_path": "s08-supplier-harness-overlay.cjs",
+      "bytes": 2145,
+      "sha256": "9ae828d6c9c42815e9b8859aa01b33d006903cf391ab229c6ca1c1b12f3e6a73",
+      "collected_path": "evidence/runners/s08-supplier-harness-overlay.cjs",
+      "scope": "Hash-checked Module._compile at original harness filename",
+      "collected_logical_path": "runners/s08-supplier-harness-overlay.cjs"
+    },
+    "corrected_supplier_browser_failed_outer": {
+      "original_path": "evidence/S08-supplier-browser-corrected-route-pool-1/runner-result.json",
+      "bytes": 17050,
+      "sha256": "08dee4c2b6fa5981c7da154c2be9ef0fc609ec4209c9ea09786c8beae266d6b4",
+      "collected_path": "evidence/S08-supplier-browser-corrected-route-pool-1/runner-result.json",
+      "scope": "Corrected c74 harness journey failed at final visible SaveLoad; prior stages retained",
+      "outcome": "full_browser_failed_partial_steps_retained",
+      "collected_logical_path": "S08-supplier-browser-corrected-route-pool-1/runner-result.json"
+    },
+    "corrected_supplier_browser_partial_receipt": {
+      "original_path": "s08-staging/supplier-browser-corrected-route-pool-1-partial-receipt.json",
+      "bytes": 26522,
+      "sha256": "ce4a2f377edfa7b6a74b9b2b9b369e51130c082883b2c0710bde01805f7eb99f",
+      "collected_path": "evidence/additional/s08-staging/supplier-browser-corrected-route-pool-1-partial-receipt.json",
+      "scope": "Extracted actual delivery/paid-maintenance evidence from failed full browser journey",
+      "outcome": "full_browser_failed_partial_steps_retained",
+      "collected_logical_path": "additional/s08-staging/supplier-browser-corrected-route-pool-1-partial-receipt.json"
+    },
+    "save_menu_scan_diagnostic": {
+      "original_path": "evidence/S08-save-menu-list-diagnostic-1/result.json",
+      "bytes": 14484,
+      "sha256": "16a32e37be27729201090aedd23c217a97ad7dbd8e080e6e9977affae1a0bd9a",
+      "collected_path": "evidence/S08-save-menu-list-diagnostic-1/result.json",
+      "scope": "Read-only25.1878707s GET;21 readable unchanged save files including finalslot;not wholequeue timing",
+      "collected_logical_path": "S08-save-menu-list-diagnostic-1/result.json"
+    },
+    "supplier_capture_isolation_candidate": {
+      "original_path": "s08-staging/ci-supplier-imports.audit-capture-isolation.cjs",
+      "bytes": 38003,
+      "sha256": "cd9c5ab5783d6ca6bf71aa913842436e851311fa00ce4b6a33881a25f3bdc33a",
+      "collected_path": "evidence/additional/s08-staging/ci-supplier-imports.audit-capture-isolation.cjs",
+      "scope": "Prepared cd9 source matches the exactexecuted passingfullsupplierharness",
+      "collected_logical_path": "additional/s08-staging/ci-supplier-imports.audit-capture-isolation.cjs"
+    },
+    "supplier_capture_isolation_patch": {
+      "original_path": "s08-staging/supplier-audit-capture-isolation.patch",
+      "bytes": 4367,
+      "sha256": "a3cfcc7a43185fe507aae8ff6f2bb0ec9f151d197a7762a8a9e1401f53769701",
+      "collected_path": "evidence/additional/s08-staging/supplier-audit-capture-isolation.patch",
+      "scope": "Exact two-block correction from committed harness",
+      "collected_logical_path": "additional/s08-staging/supplier-audit-capture-isolation.patch"
+    },
+    "supplier_capture_isolation_incremental_patch": {
+      "original_path": "s08-staging/supplier-audit-capture-isolation.incremental.patch",
+      "bytes": 3389,
+      "sha256": "ea9323659787c1f2b2d8d42650b4e3fdaa43e3039806fb5eb5874e961bd0218d",
+      "collected_path": "evidence/additional/s08-staging/supplier-audit-capture-isolation.incremental.patch",
+      "scope": "Only archive() differs from c74",
+      "collected_logical_path": "additional/s08-staging/supplier-audit-capture-isolation.incremental.patch"
+    },
+    "supplier_capture_isolation_vm": {
+      "original_path": "s08-staging/supplier-audit-capture-isolation-vm-evidence.json",
+      "bytes": 18650,
+      "sha256": "ecf8e925f819dc4297780ed58a30f4b834bea7d5e1fa18e2efc7a0d7a18abd49",
+      "collected_path": "evidence/additional/s08-staging/supplier-audit-capture-isolation-vm-evidence.json",
+      "scope": "12 bounded placement/failure/nativebyte checks;not browser acceptance",
+      "collected_logical_path": "additional/s08-staging/supplier-audit-capture-isolation-vm-evidence.json"
+    },
+    "supplier_capture_isolation_vm_source": {
+      "original_path": "s08-staging/verify-supplier-audit-capture-isolation.cjs",
+      "bytes": 10223,
+      "sha256": "8817690b0e8ef3332a2af77aaf30066113df893dc4f5cdf7507d3907e1b9dcdf",
+      "collected_path": "evidence/additional/s08-staging/verify-supplier-audit-capture-isolation.cjs",
+      "scope": "Exact outside VM/file verifier source",
+      "collected_logical_path": "additional/s08-staging/verify-supplier-audit-capture-isolation.cjs"
+    },
+    "supplier_capture_isolation_review": {
+      "original_path": "s08-staging/supplier-audit-capture-isolation-review.md",
+      "bytes": 4154,
+      "sha256": "edd95af629c3977128fb3308b52999edf07b51cc65e36329b38f3bd8f131472f",
+      "collected_path": "evidence/additional/s08-staging/supplier-audit-capture-isolation-review.md",
+      "scope": "Measured scope,callsite whitelist and preservation review",
+      "collected_logical_path": "additional/s08-staging/supplier-audit-capture-isolation-review.md"
+    },
+    "corrected_supplier_browser_passed_outer": {
+      "original_path": "evidence/S08-supplier-browser-corrected-route-pool-2/runner-result.json",
+      "bytes": 16453,
+      "sha256": "bb1d59768cdb91c3ed573bcb01de6daf62471f097c8da1d529f402f71187be82",
+      "collected_path": "evidence/S08-supplier-browser-corrected-route-pool-2/runner-result.json",
+      "scope": "Completed full supplier journey on unchanged qualified d770 runtime with explicitly bound cd9 harness",
+      "outcome": "passed",
+      "collected_logical_path": "S08-supplier-browser-corrected-route-pool-2/runner-result.json"
+    },
+    "corrected_supplier_browser_complete_receipt": {
+      "original_path": "s08-staging/supplier-browser-corrected-route-pool-2-complete-receipt.json",
+      "bytes": 6272,
+      "sha256": "9b47d102fcd4550f97695ad99126acf4ef21dac0c61003bf0de566360bf5ab1f",
+      "collected_path": "evidence/additional/s08-staging/supplier-browser-corrected-route-pool-2-complete-receipt.json",
+      "scope": "Actual completed contract,maintenance,SaveLoadContinue and disclosedquantityscope",
+      "outcome": "passed",
+      "collected_logical_path": "additional/s08-staging/supplier-browser-corrected-route-pool-2-complete-receipt.json"
+    },
+    "corrected_supplier_browser_execution": {
+      "original_path": "evidence/S08-supplier-browser-corrected-route-pool-2/overlay-execution.json",
+      "bytes": 2709,
+      "sha256": "b9416b4624fc7803b18059d19d2014a6a73e775a31a21747f4b17205e692e130",
+      "collected_path": "evidence/S08-supplier-browser-corrected-route-pool-2/overlay-execution.json",
+      "scope": "Exact corrected harness execution identity",
+      "collected_logical_path": "S08-supplier-browser-corrected-route-pool-2/overlay-execution.json"
+    },
+    "corrected_supplier_browser_executed_source": {
+      "original_path": "evidence/S08-supplier-browser-corrected-route-pool-2/executed-supplier-harness.cjs",
+      "bytes": 38003,
+      "sha256": "cd9c5ab5783d6ca6bf71aa913842436e851311fa00ce4b6a33881a25f3bdc33a",
+      "collected_path": "evidence/S08-supplier-browser-corrected-route-pool-2/executed-supplier-harness.cjs",
+      "scope": "Exact cd9 source executed by passingfulljourney",
+      "collected_logical_path": "S08-supplier-browser-corrected-route-pool-2/executed-supplier-harness.cjs"
+    },
+    "visual_review": {
+      "original_path": "evidence/S08-visual-review-d770.json",
+      "bytes": 4205,
+      "sha256": "dfa7c765f7e3e38a925c10c1bc4b607ebdfa1a565c495d44d91bbb5b16829368",
+      "collected_path": "evidence/S08-visual-review-d770.json",
+      "scope": "Rootboundedinspectionofactualgeneral/Money/supplierdesktopandmobilecaptures",
+      "collected_logical_path": "S08-visual-review-d770.json"
+    },
+    "final_preservation": {
+      "original_path": "evidence/S08-preservation-after.json",
+      "bytes": 3137,
+      "sha256": "511bae57eebaf2561ff487b8aaee06cd1cfe90b200965d8e35b46ebfb7b22281",
+      "collected_path": "evidence/S08-preservation-after.json",
+      "scope": "All8 original savesand2 protectedsourceheads unchanged",
+      "outcome": "passed",
+      "collected_logical_path": "S08-preservation-after.json"
+    },
+    "review_launch": {
+      "original_path": "S08-review-launch.json",
+      "bytes": 4537,
+      "sha256": "22cc2b876d051bf6da0ee21d403222f28d8bbf49bd3d882f5812eab885baa7ff",
+      "collected_path": "evidence/additional/S08-review-launch.json",
+      "scope": "Actual isolated d770 review server with5 byte-identical copiedcampaigns",
+      "collected_logical_path": "additional/S08-review-launch.json"
+    },
+    "corrected_supplier_browser_passed_inner": {
+      "path": "evidence/S08-supplier-browser-corrected-route-pool-2/supplier-TDUttg/result.json",
+      "bytes": 6796163,
+      "sha256": "6335596674a375151d8d4243ed6887059f4ac0e231e605f8e2527e1f4710de33",
+      "hash_origin": "Copied from completed bound outer wrapper;not rehashed by this extraction",
+      "original_path": "evidence/S08-supplier-browser-corrected-route-pool-2/supplier-TDUttg/result.json",
+      "collected_path": "evidence/browser/supplier/supplier-TDUttg/result.json",
+      "scope": "Fullactualsupplierbrowserresult;hash copiedfromboundouterproof,not recalculatedinthis smallproofdraft",
+      "outcome": "passed",
+      "collected_logical_path": "browser/supplier/supplier-TDUttg/result.json"
+    }
+  },
+  "evidence_inventory": {
+    "path": "evidence/inventory.json",
+    "sha256": "ec4a98ff697c0ba9195dff42bffa5c440decd9c0be8a31ad1ee877acdc5fef77",
+    "stored_files_verified": 1977,
+    "reconstruction_verified_by_collector": true
+  }
+}
