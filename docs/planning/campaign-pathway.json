@@ -214,7 +214,7 @@
       "id": "S09",
       "phase": "nation",
       "title": "Make research and design benefits readable",
-      "status": "planned",
+      "status": "in_progress",
       "depends": [
         "S05",
         "S03"
@@ -781,12 +781,12 @@
   "last_completed_session": "S08",
   "next_session": "S09",
   "execution": {
-    "authorized_through": "S08",
-    "stop_boundary": "S08",
-    "status": "stopped",
-    "previous_stop": "S07",
-    "instruction": "Next",
-    "instruction_date": "2026-09-11",
+    "authorized_through": "S09",
+    "stop_boundary": "S09",
+    "status": "in_progress",
+    "previous_stop": "S08",
+    "instruction": "next",
+    "instruction_date": "2026-09-12",
     "next_session_requires_instruction": true
   },
   "gate_decisions": {

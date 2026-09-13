@@ -482,6 +482,14 @@ fn development_stock_terms(w: &WorldState, p: &equipment::CompiledProfile, targe
     (unit_cost * (1.0 + MARGIN), p.tooling_cost_bn + unit_cost * target as f64)
 }
 
+/// Hypothetical unit acquisition price and company tooling/stock capital at
+/// today's input prices, using the same arithmetic as a development quote.
+/// This neither checks affordability nor offers/reserves finished inventory.
+/// Actual stock purchases use their paid cost basis and a fresh native quote.
+pub fn design_cost_estimate(w: &WorldState, p: &equipment::CompiledProfile, target: u32) -> (f64, f64) {
+    development_stock_terms(w, p, target)
+}
+
 /// Funding arithmetic for an already validated immutable design. A supplier
 /// buffer review needs this amount, not an unused development token or ETA.
 pub(crate) fn development_working_capital(w: &WorldState, p: &equipment::CompiledProfile, target: u32) -> f64 {

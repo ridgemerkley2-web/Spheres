@@ -510,7 +510,7 @@ test('late comparison responses cannot price a different baseline or enable its 
 test('modernization gives reasons and tradeoffs and opens a local proposal without issuing an order',async()=>{
   const c=fixture(),proposal={id:'suggestion:7',name:'Sentinel upgrade',status:'Opportunity',detail:'Upgrade the inherited revision.',reason:'The fleet lacks thermal observation.',tradeoff:'Higher maintenance and time in refit.',source_revision:7,spec:{...spec(),components:{...spec().components,sensors:'thermal'}},metrics:[{label:'Vehicles affected',value:3}],actions:[action({label:'Review fleet refit'})]};loaded(c,snapshot({modernization:[proposal],comparison_options:[{id:7,name:'Sentinel 90',platform:'tank_medium'}]}));c.equipmentSelectTab('service');
   for(const text of ['Suggested modernization','Why this helps','The fleet lacks thermal observation.','The tradeoff','Higher maintenance','Review fleet refit'])assert(c.mount.innerHTML.includes(text),text);
-  const source=plain(proposal);assert.equal(c.mount.querySelector('[data-equipment-modernization="0"]').onclick(),true);await tick();assert.equal(c.eq.tab,'designer');assert.equal(c.eq.draft.source_revision,7);assert.equal(c.eq.draft.components.sensors,'thermal');assert.equal(c.eq.comparisonId,7);assert.deepEqual(plain(proposal),source);assert.equal(c.calls.length,0);
+  const source=plain(proposal),draft=plain(c.eq.draft);assert.equal(c.mount.querySelector('[data-equipment-modernization="0"]').onclick(),true);assert.deepEqual(plain(c.eq.draft),draft);assert.equal(c.eq.tab,'service');assert(c.eq.replacement);assert.equal(c.mount.querySelector('[data-equipment-replacement-accept]').onclick(),true);await tick();assert.equal(c.eq.tab,'designer');assert.equal(c.eq.draft.source_revision,7);assert.equal(c.eq.draft.components.sensors,'thermal');assert.equal(c.eq.comparisonId,7);assert.deepEqual(plain(proposal),source);assert.equal(c.calls.length,0);
 });
 
 test('model part events open and focus their specification without repricing or remounting the camera',()=>{
@@ -1144,4 +1144,88 @@ test('company refit bridge retains reviewed fixed-price commands, pending refund
   const cases=[[{kind:'company_refit',company:1,source:'USA-fleet-31',product:11,quantity:2,quote:'fixed-price-token'},/held funds/],[{kind:'company_refit_cancel',company:1,refit:4,quote:'refund-token'},/refund status/]];
   for(const [command,message] of cases){const c=shellFixture();loaded(c,companyRefitSnapshot());c.room.hidden=false;c.eq.tab='companies';c.eq.draft.name='Retained design';c.queued=[{kind:'tax',value:20}];c.api=async(...args)=>{c.requests.push(plain(args));return {session_id:'one',player:'USA'};};c.adopt=async state=>{c.S=state;};const result=await c.equipmentCommand(command);assert.deepEqual(c.requests,[['/api/command',{commands:[command]}]]);assert.match(result.message,message);assert.doesNotMatch(result.message,/refunded immediately|all vehicles returned/i);assert.equal(c.eq.tab,'service');assert.equal(c.eq.draft.name,'Retained design');assert.deepEqual(c.queued,[{kind:'tax',value:20}]);}
   const c=shellFixture();loaded(c);c.room.hidden=false;c.eq.tab='companies';c.api=async()=>({errors:['Refit terms changed. Review the current service quote.']});await assert.rejects(c.equipmentCommand(cases[0][0]),/Refit terms changed/);assert.equal(c.eq.tab,'companies');
+});
+
+function s09Guidance(c){
+  loaded(c,snapshot({comparison_options:[{id:'preset:balanced',name:'Starting configuration',platform:'tank_medium'}]}));
+  c.eq.draft.name='My unfinished model';c.eq.automaticName=null;
+  const guidance={title:'Choose a model for your force',detail:'Known compatible parts; funding remains a separate review.',platform:'tank_medium',
+    recommendations:[{id:'economical',name:'Economical tank',reason:'Lower indicative acquisition cost.',spec:spec(),specification_key:'server:cheap',metrics:[{label:'Protected mobility',value:.42751}],costs:[{label:'Indicative purchase',amount_bn:.0061,period:'per vehicle; reviewed when stock exists'}],conditions:['Development uses shared R&D authority.'],blockers:['No current contractor.']},
+      {id:'advanced',name:'Advanced tank',reason:'Improved observation using known systems.',spec:{...spec(),components:{...spec().components,sensors:'thermal'}},specification_key:'server:advanced',metrics:[{label:'Observation',value:2.365}],costs:[{label:'Later maintenance',amount_bn:.00000081,period:'per delivered vehicle / day'}],conditions:['Support and ammunition are separate.'],blockers:[]}],
+    costs:[{label:'Government programme',amount_bn:.017,period:'paid work, not a vehicle purchase'}],conditions:['Company cash is separate from government funding.']};
+  c.eq.preview=preview({guidance});c.eq.previewKey=c.equipmentDraftKey();c.equipmentRender();return guidance;
+}
+test('s09 guidance displays native conditions and costs and replacement is a cancellable local review',async()=>{
+  const c=fixture(),guidance=s09Guidance(c),original=plain(c.eq.draft),baseline=c.eq.comparisonId,server=plain(guidance);
+  for(const text of ['Choose a model for your force','Lower cost','Advanced capability','$6.1m','$810','No current contractor.','Company cash is separate'])assert(c.mount.innerHTML.includes(text),text);
+  assert.equal(c.mount.querySelector('[data-equipment-recommendation-use="advanced"]').onclick(),true);
+  assert.deepEqual(plain(c.eq.draft),original);assert.equal(c.requests.length,0);assert.equal(c.calls.length,0);
+  assert.equal(c.mount.querySelector('[data-equipment-replacement-cancel]').onclick(),true);assert.equal(c.eq.replacement,null);assert.deepEqual(plain(c.eq.draft),original);
+  c.mount.querySelector('[data-equipment-recommendation-use="advanced"]').onclick();
+  assert.equal(c.mount.querySelector('[data-equipment-replacement-accept]').onclick(),true);assert.equal(c.eq.preview,null);assert.equal(c.eq.previewLoading,true);assert.equal(c.eq.review,null);
+  await tick();assert.equal(c.eq.draft.name,original.name);assert.equal(c.eq.draft.components.sensors,'thermal');assert.equal(c.eq.draft.source_revision,undefined);assert.equal(c.eq.comparisonId,baseline);
+  assert.equal(c.requests.length,1);assert.equal(c.requests[0][0],'/api/equipment-preview');assert.deepEqual(c.requests[0][1].components,guidance.recommendations[1].spec.components);assert.equal(c.calls.length,0);assert.deepEqual(plain(guidance),server);
+});
+test('s09 captured recommendation and replacement controls reject stale campaign, preview and draft identities',()=>{
+  for(const mutation of [c=>{c.eq.stale=true;},c=>{c.S={session_id:'new',player:'USA'};},c=>{c.eq.preview=plain(c.eq.preview);},c=>{c.eq.draft.name='A newer edit';},c=>{c.COMMAND_CHANNEL.pending={};}]){
+    const c=fixture();s09Guidance(c);const use=c.mount.querySelector('[data-equipment-recommendation-use="advanced"]');use.onclick();const accept=c.mount.querySelector('[data-equipment-replacement-accept]');mutation(c);const draft=plain(c.eq.draft);
+    assert.equal(use.onclick(),false);assert.equal(accept.onclick(),false);assert.deepEqual(plain(c.eq.draft),draft);assert.equal(c.calls.length,0);assert.equal(c.requests.length,0);
+  }
+  const c=fixture();s09Guidance(c);c.mount.querySelector('[data-equipment-recommendation-use="advanced"]').onclick();const old=c.mount.querySelector('[data-equipment-replacement-accept]');
+  c.mount.querySelector('[data-equipment-replacement-cancel]').onclick();c.mount.querySelector('[data-equipment-recommendation-use="economical"]').onclick();assert.equal(old.onclick(),false);assert.equal(c.eq.replacement.row.specification_key,undefined);assert.equal(c.eq.replacement.row.spec.components.sensors,'optical');
+});
+test('s09 presets and exact saved library rows ask before discarding an unsaved design',async()=>{
+  const c=fixture();loaded(c);c.eq.draft.name='Keep my edits';c.equipmentRender();const original=plain(c.eq.draft);
+  c.mount.querySelector('[data-equipment-preset="affordable"]').onclick();assert(c.eq.replacement);assert.deepEqual(plain(c.eq.draft),original);c.mount.querySelector('[data-equipment-replacement-cancel]').onclick();
+  c.equipmentSelectTab('library');const edit=c.mount.querySelector('[data-equipment-edit="7"]');assert.equal(edit.onclick(),true);assert.deepEqual(plain(c.eq.draft),original);assert.equal(c.eq.tab,'library');
+  c.mount.querySelector('[data-equipment-replacement-accept]').onclick();await tick();assert.equal(c.eq.draft.source_revision,7);assert.equal(c.eq.draft.name,'Sentinel 90');assert.equal(c.eq.tab,'designer');assert.equal(c.calls.length,0);
+  c.eq.stale=true;assert.equal(edit.onclick(),false);
+});
+test('s09 save status is exact native identity, never a local acknowledgement or automatic save',async()=>{
+  const c=fixture();loaded(c);c.eq.draft.name='Saved concept';const saved={id:'draft:Saved concept',name:'Saved concept',status:'Draft',spec:{platform:'tank_medium',components:Object.fromEntries(Object.entries(spec().components).reverse())}};
+  c.eq.data.designs.push(saved);c.equipmentRender();assert.match(c.mount.innerHTML,/data-equipment-draft-status="saved"/);assert.match(c.mount.innerHTML,/Save the campaign to retain them on disk/);
+  c.eq.draft.components.sensors='thermal';c.equipmentRender();assert.match(c.mount.innerHTML,/data-equipment-draft-status="unsaved"/);assert.match(c.mount.innerHTML,/before loading or reloading/);
+  c.eq.stale=true;c.equipmentRender();assert.match(c.mount.innerHTML,/data-equipment-draft-status="checking"/);c.eq.stale=false;
+  c.eq.draft.name='Refused draft';c.eq.preview=preview({actions:[{label:'Save design draft',command:{kind:'equipment_save',name:'Refused draft',...spec()}}]});c.eq.previewKey=c.equipmentDraftKey();c.equipmentRender();c.equipmentCommand=async()=>false;
+  c.mount.querySelector('[data-equipment-action="actions.0"]').onclick();assert.equal(await c.equipmentConfirm(),false);await tick();assert.match(c.mount.innerHTML,/data-equipment-draft-status="unsaved"/);assert.equal(c.eq.draft.name,'Refused draft');assert.equal(c.calls.length,0);
+});
+test('s09 accepted save becomes saved only when its exact name and specification appear in the refreshed native library',async()=>{
+  const c=fixture();loaded(c);c.eq.draft.name='Campaign model';c.eq.preview=preview({actions:[{label:'Save design draft',command:{kind:'equipment_save',name:'Campaign model',...spec()}}]});c.eq.previewKey=c.equipmentDraftKey();c.equipmentRender();
+  let stored=false;c.equipmentCommand=async command=>{c.calls.push(plain(command));stored=true;return {message:'Design saved'};};
+  c.api=async route=>route.startsWith('/api/equipment?')?snapshot({designs:stored?[{id:'draft:Campaign model',name:'Campaign model',spec:spec(),status:'Draft'}]:[]}):preview();
+  c.mount.querySelector('[data-equipment-action="actions.0"]').onclick();assert.match(c.mount.innerHTML,/data-equipment-draft-status="unsaved"/);assert.equal(c.calls.length,0);
+  assert.equal(await c.equipmentConfirm(),true);await tick();assert.match(c.mount.innerHTML,/data-equipment-draft-status="saved"/);assert.equal(c.calls.length,1);assert.equal(c.calls[0].kind,'equipment_save');
+});
+function s09Research(c){
+  const data=snapshot(),part={id:'thermal',name:'Thermal observation',slot:'sensors',known:false,description:'Find targets in poor visibility.',compatible_platforms:[{id:'tank_medium',name:'Medium tank'}],metrics:[{label:'Observation change',value:.6}],costs:[{label:'Component fabrication',amount_bn:.00021,period:'per vehicle component'}],tradeoffs:['More installation load.']};
+  data.research[0].unlock_components=[part];data.research[0].unlocks=[part.name];loaded(c,data);c.eq.draft.name='Research round trip';c.eq.automaticName=null;c.equipmentSelectTab('research');c.eq.researchBranch='optics';c.equipmentRender();return part;
+}
+test('s09 research effects explore an actual compatible part without teaching it or replacing edits before confirmation',async()=>{
+  const c=fixture(),part=s09Research(c),before=plain(c.eq.draft);
+  for(const text of ['Find targets in poor visibility.','Observation change','$210k','More installation load.','Research needed'])assert(c.mount.innerHTML.includes(text),text);
+  const select=c.mount.querySelector('[data-equipment-unlock-platform="thermal"]');assert.equal(select.value,'tank_medium');
+  assert.equal(c.mount.querySelector('[data-equipment-unlock="thermal"]').onclick(),true);assert.deepEqual(plain(c.eq.draft),before);assert.match(c.mount.innerHTML,/cannot commission an unresearched design/);
+  c.mount.querySelector('[data-equipment-replacement-cancel]').onclick();assert.equal(c.mount.querySelector('[data-equipment-return-draft]').onclick(),true);assert.equal(c.eq.tab,'designer');assert.deepEqual(plain(c.eq.draft),before);assert.equal(c.requests.length,0);
+  c.equipmentSelectTab('research');c.equipmentRender();c.mount.querySelector('[data-equipment-unlock="thermal"]').onclick();c.mount.querySelector('[data-equipment-replacement-accept]').onclick();await tick();
+  assert.equal(c.eq.draft.name,before.name);assert.equal(c.eq.draft.components.sensors,'thermal');assert.equal(c.eq.draft.components.mobility,before.components.mobility);assert.equal(c.eq.selectedSlot,'sensors');assert.equal(part.known,false);assert.equal(c.calls.length,0);assert.equal(c.requests.length,1);
+});
+test('s09 unlock exploration refuses invented compatibility and stale buttons while future preview blockers remain authoritative',async()=>{
+  const c=fixture();s09Research(c);const explore=c.mount.querySelector('[data-equipment-unlock="thermal"]');const before=plain(c.eq.draft);
+  assert.equal(c.equipmentExploreUnlock('thermal','missing-platform'),false);c.eq.data.platforms[0].slots.find(slot=>slot.id==='sensors').components=['optical'];assert.equal(explore.onclick(),false);assert.deepEqual(plain(c.eq.draft),before);
+  c.eq.data.platforms[0].slots.find(slot=>slot.id==='sensors').components.push('thermal');c.eq.stale=true;assert.equal(explore.onclick(),false);c.eq.stale=false;
+  c.api=async()=>preview({valid:false,blockers:['Thermal research and installation prerequisites are unmet.'],actions:[{label:'Save future draft',command:{kind:'equipment_save',name:before.name,...spec()}}]});
+  explore.onclick();c.mount.querySelector('[data-equipment-replacement-accept]').onclick();await tick();assert.match(c.mount.innerHTML,/Thermal research and installation prerequisites are unmet/);assert.equal(c.eq.preview.valid,false);assert.equal(c.calls.length,0);
+});
+test('s09 named saved drafts reopen by actual ID after load while unsaved memory and replacement proposals are cleared',async()=>{
+  const c=fixture();s09Guidance(c);c.mount.querySelector('[data-equipment-recommendation-use="advanced"]').onclick();assert(c.eq.replacement);
+  c.S={session_id:'loaded',player:'USA'};const stored={id:'draft:Portable design',name:'Portable design',status:'Draft',spec:{...spec(),components:{...spec().components,sensors:'thermal'}}};
+  c.api=async route=>route.startsWith('/api/equipment?')?snapshot({session_id:'loaded',designs:[stored]}):preview({session_id:'loaded'});
+  await c.openEquipment({design:'draft:Portable design'});await tick();assert.equal(c.eq.replacement,null);assert.equal(c.eq.draft.name,stored.name);assert.deepEqual(plain(c.eq.draft.components),stored.spec.components);assert.equal(c.eq.draft.source_revision,stored.id);assert.match(c.mount.innerHTML,/data-equipment-draft-status="saved"/);assert.deepEqual(c.calls,['open']);
+  c.eq.draft.name='Unsaved after reopening';await c.openEquipment({design:'draft:Portable design'});await tick();assert.equal(c.eq.draft.name,'Unsaved after reopening');assert(c.eq.replacement);c.equipmentCancelReplacement();assert.equal(c.eq.draft.name,'Unsaved after reopening');
+});
+test('s09 guidance and research details escape supplied text and keep optional older payloads usable',()=>{
+  const c=fixture(),guidance=s09Guidance(c);guidance.title='<script>bad()</script>';guidance.recommendations[0].reason='Unsafe <img onerror=x>';guidance.recommendations[0].conditions=['<iframe>'];c.equipmentRender();assert.doesNotMatch(c.mount.innerHTML,/<script>bad|<img onerror|<iframe>/);assert.match(c.mount.innerHTML,/&lt;script&gt;/);
+  c.eq.preview.guidance=null;c.equipmentRender();assert.doesNotMatch(c.mount.innerHTML,/data-equipment-guidance/);assert.match(c.mount.innerHTML,/Review before|Design review/);
+  const part=s09Research(c);part.description='<svg onload=x>';part.tradeoffs=['<iframe>'];c.equipmentRender();assert.doesNotMatch(c.mount.innerHTML,/<svg onload|<iframe>/);assert.match(c.mount.innerHTML,/&lt;svg onload=x&gt;/);
+  assert.match(css,/eq-guidance-grid[\s\S]*grid-template-columns:1fr/);assert.match(css,/eq-draft-status[\s\S]*min-height:44px/);
 });

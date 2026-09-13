@@ -42,7 +42,7 @@ fn component_in_designer(c:&eq::ComponentDef)->bool {
 fn research_board(w:&WorldState,me:NationId)->Vec<Value> {
     let n=w.nation(me);let state=n.equipment.as_ref();let mut rows=vec![];
     for (branch,name) in [("chassis","Established vehicle platforms"),("engines","Established powertrains"),("weapons","Established weapon systems"),("armor","Established protection"),("optics","Established observation"),("communications","Established communications")] {
-        let parts:Vec<_>=eq::all_components().filter(|c|component_in_designer(c)&&c.research.is_none()&&c.technology.is_none()&&component_branch(c.slot)==branch).map(|c|json!({"id":c.id,"name":c.name,"slot":c.slot})).collect();
+        let parts:Vec<_>=eq::all_components().filter(|c|component_in_designer(c)&&c.research.is_none()&&c.technology.is_none()&&component_branch(c.slot)==branch).map(|c|research_component(w,me,c)).collect();
         rows.push(json!({"id":format!("foundation:{branch}"),"name":name,"branch":branch,"state":"known","status":"Known foundation","detail":"Available starting systems. These are existing design choices, not a new research reward.","prerequisites":[],"unlock_components":parts,"unlocks":parts.iter().filter_map(|p|p["name"].as_str()).collect::<Vec<_>>(),"actions":[]}));
     }
     for r in eq::RESEARCH {
@@ -56,7 +56,7 @@ fn research_board(w:&WorldState,me:NationId)->Vec<Value> {
         for p in prerequisites.iter().filter(|p|p["known"]==false&&p["equipment"]==false) {
             actions.push(nav("Open prerequisite research",json!({"action":"research","id":p["id"],"domain":p["domain"]})));
         }
-        let parts:Vec<_>=eq::all_components().filter(|c|component_in_designer(c)&&c.research==Some(r.id)).map(|c|json!({"id":c.id,"name":c.name,"slot":c.slot})).collect();
+        let parts:Vec<_>=eq::all_components().filter(|c|component_in_designer(c)&&c.research==Some(r.id)).map(|c|research_component(w,me,c)).collect();
         let status=if known{"known"}else if active{"researching"}else if available{"available"}else{"locked"};
         rows.push(json!({"id":r.id,"name":r.name,"branch":eq::research_branch(r.id),"state":status,"status":if known{"Known"}else if active{"Researching"}else if available{"Available integration"}else{"Prerequisites needed"},
             "detail":r.detail,"progress":bank/r.points,"prerequisites":prerequisites,"unlock_components":parts,"unlocks":parts.iter().filter_map(|p|p["name"].as_str()).collect::<Vec<_>>(),
@@ -66,7 +66,7 @@ fn research_board(w:&WorldState,me:NationId)->Vec<Value> {
     for c in eq::all_components().filter(|c|c.technology.is_some()&&component_in_designer(c)) {
         let id=c.technology.unwrap();if !seen.insert(id){continue;}
         let t=spheres_sim::tech::registry().iter().find(|t|t.id==id);let known=n.tech.knows(id);
-        let parts:Vec<_>=eq::all_components().filter(|p|p.technology==Some(id)&&component_in_designer(p)).map(|p|json!({"id":p.id,"name":p.name,"slot":p.slot})).collect();
+        let parts:Vec<_>=eq::all_components().filter(|p|p.technology==Some(id)&&component_in_designer(p)).map(|p|research_component(w,me,p)).collect();
         rows.push(json!({"id":id,"name":t.map(|t|t.name).unwrap_or(c.name),"branch":component_branch(c.slot),"state":if known{"known"}else{"locked"},"status":if known{"Known"}else{"Technology research"},"detail":c.detail,
             "prerequisites":[],"unlock_components":parts,"unlocks":parts.iter().filter_map(|p|p["name"].as_str()).collect::<Vec<_>>(),"actions":[nav("Open technology research",json!({"action":"research","id":id,"domain":"Aerospace"}))]}));
     }
@@ -106,7 +106,9 @@ fn design_comparison(w:&WorldState,me:NationId,input:&Value,target:&eq::DesignSp
     } else {presets.iter().find(|p|p["platform"]==target.platform).and_then(|p|spec(p).ok().map(|s|(format!("preset:{}",p["id"].as_str().unwrap()),p["name"].as_str().unwrap().to_string(),s,None)))};
     let Some((id,name,old_spec,frozen))=baseline else{return json!({"available":false,"detail":"The selected comparison model is no longer available. Choose another baseline."});};
     let Some(old)=frozen.or_else(||eq::design_preview(w,me,&old_spec).profile) else{return json!({"available":false,"detail":"This unfinished baseline cannot yet be priced."});};
-    let old_rows=profile_rows(&old);let new_rows=profile_rows(new);
+    let mut old_rows=profile_rows(&old);let mut new_rows=profile_rows(new);
+    old_rows.push(("acquisition_estimate","Indicative later acquisition",companies::design_cost_estimate(w,&old,1).0,"bn","lower"));
+    new_rows.push(("acquisition_estimate","Indicative later acquisition",companies::design_cost_estimate(w,new,1).0,"bn","lower"));
     let mut keys:Vec<_>=old_rows.iter().map(|r|r.0).collect();for r in &new_rows {if !keys.contains(&r.0){keys.push(r.0);}}
     let rows:Vec<_>=keys.into_iter().map(|key|{
         let before=old_rows.iter().find(|r|r.0==key);let after=new_rows.iter().find(|r|r.0==key);let meta=after.or(before).unwrap();
@@ -117,13 +119,13 @@ fn design_comparison(w:&WorldState,me:NationId,input:&Value,target:&eq::DesignSp
     let label=|id:Option<&String>|id.map(|s|eq::component(s).map(|c|c.name.to_string()).unwrap_or_else(||s.clone())).unwrap_or("Not installed".into());
     let changes:Vec<_>=slots.into_iter().filter(|s|old_spec.components.get(s)!=target.components.get(s)).map(|s|json!({"slot":s,"label":eq::slot_name(&s),"before":label(old_spec.components.get(&s)),"after":label(target.components.get(&s))})).collect();
     let same=eq::platform_role(&old_spec.platform)==eq::platform_role(&target.platform);
-    json!({"available":true,"id":id,"name":name,"same_role":same,"rows":rows,"changes":changes,"detail":if same{"Per-vehicle design ratings and programme costs. These are prospective capabilities; your forces change only after funded development, delivery and support."}else{"Different vehicle roles: compare mission ratings and cost together. A higher rating in one role does not make a vehicle a replacement for another role."}})
+    json!({"available":true,"id":id,"name":name,"same_role":same,"rows":rows,"changes":changes,"conditions":["Acquisition is a hypothetical current-input-price estimate using each profile, including frozen revision figures. It is not the historical purchase price, available company stock or an affordable offer. Actual inventory needs a fresh native quote."],"detail":if same{"Per-vehicle design ratings and programme costs. These are prospective capabilities; your forces change only after funded development, delivery and support."}else{"Different vehicle roles: compare mission ratings and cost together. A higher rating in one role does not make a vehicle a replacement for another role."}})
 }
 
 fn modernization_board(w:&WorldState,me:NationId)->Vec<Value> {
     let n=w.nation(me);let mut rows=vec![];let Some(state)=n.equipment.as_ref() else {
         let s=eq::default_spec("tank_standard");
-        return vec![json!({"id":"start-programme","name":"Establish your first vehicle programme","status":"Starting point","reason":"Your inherited arsenal is in service, but there is no custom vehicle programme yet.","detail":"Start from an affordable general-purpose configuration, compare its bill, then decide whether to fund development.","tradeoff":"A new programme adds development, tooling and ongoing maintenance commitments.","spec":s,"actions":[]})];
+        return vec![json!({"id":"start-programme","name":"Establish your first vehicle programme","status":"Starting point","reason":"Your inherited arsenal is in service, but there is no custom vehicle programme yet.","detail":"Start from a general-purpose configuration, compare its costs and funding requirements, then decide whether to commission development.","tradeoff":"A new programme adds development, tooling and ongoing maintenance commitments.","spec":s,"actions":[]})];
     };
     let held:Vec<_>=n.arsenal.held.iter().filter(|h|h.units>h.refit_reserved as f64&&h.design_id.is_some()).collect();
     if !held.is_empty()&&state.maintenance_fraction<0.95 {

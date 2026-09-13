@@ -2,6 +2,7 @@
 use serde_json::{json, Value};
 use spheres_sim::{equipment as eq, world::*, Command, EquipmentOrder};
 include!("equipment_planning.rs");
+include!("equipment_guidance.rs");
 include!("equipment_supply_view.rs");
 include!("equipment_service_view.rs");
 include!("equipment_maintenance_view.rs");
@@ -199,9 +200,10 @@ pub fn preview(w:&WorldState,me:NationId,session:&str,v:&Value)->Result<Value,St
         metrics.push(metric("Fabrication cost change",format!("{:+.3}m per vehicle",(new.fabrication_cost_bn-old.fabrication_cost_bn)*1000.0)));
     }}
     let comparison=design_comparison(w,me,v,&spec,p.profile.as_ref());
+    let guidance=design_guidance(w,me,&spec,p.profile.as_ref());
     Ok(json!({"session_id":session,"nation":me,"valid":p.valid,"blockers":p.blockers,"metrics":metrics,"costs":p.profile.as_ref().map(|profile|if companies::supported_platform(&spec.platform){company_design_costs(profile)}else{profile_costs(profile)}).unwrap_or_default(),
         "timing":p.profile.as_ref().map(|p|vec![json!({"label":"Development minimum","value":format!("{} days",p.development_days)}),json!({"label":"Per-vehicle production minimum","value":format!("{} days after {} tooling days",p.production_days,p.tooling_days)})]).unwrap_or_default(),
-        "comparison":comparison,"requirements":p.notes,"actions":actions,"detail":if eq::is_aviation_platform(&spec.platform){"Research unlocks components. Paid development certifies this exact aircraft. Only delivered, supported aircraft with compatible mission stores and theatre access contribute to tactical air raids. Figures are game assumptions."}else{"Research unlocks components. Paid development certifies this exact revision. Only delivered vehicles affect the country's land forces."}}))
+        "comparison":comparison,"guidance":guidance,"requirements":p.notes,"actions":actions,"detail":if eq::is_aviation_platform(&spec.platform){"Research unlocks components. Paid development certifies this exact aircraft. Only delivered, supported aircraft with compatible mission stores and theatre access contribute to tactical air raids. Figures are game assumptions."}else{"Research unlocks components. Paid development certifies this exact revision. Only delivered vehicles affect the country's land forces."}}))
 }
 
 #[cfg(test)]
