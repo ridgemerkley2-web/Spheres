@@ -45,6 +45,9 @@ async function readable(locator,label){
 }
 async function inbox(page,agency,width){
   await page.setViewportSize({width,height:width===1440?1000:844});
+  const close=page.locator('#agencyClose');
+  await readable(close,'Close decisions at '+width);
+  assert.equal(await close.evaluate(e=>{const r=document.createRange();r.selectNodeContents(e);return Array.from(r.getClientRects()).filter(r=>r.width&&r.height).length;}),1,'Close must fit on one line at '+width);
   const sorted=agency.offers.slice().sort(deadlineOrder);
   assert.deepEqual(await page.locator('#agencyInbox [data-agency-offer]').evaluateAll(rows=>rows.map(e=>Number(e.dataset.agencyOffer))),sorted.map(o=>o.id));
   assert.equal(await page.locator('#agencyBody > section').first().getAttribute('id'),'agencyInbox','Pending replies must precede campaign aims');
@@ -155,7 +158,10 @@ async function main(){
     assert.equal(await page.locator('#agencyInbox [data-agency-offer='+quoted(manifest.command.offer)+']').count(),0);
     const record=after.agency.history.find(h=>h.offer.id===manifest.command.offer);assert(record&&record.outcome==='accepted');
     assert((await page.locator('#agencyBody').innerText()).includes('Request #'+record.offer.id+': accepted'));
-    assert((await page.locator('#agencyStatus').innerText()).trim());await page.locator('#agencyStatus').scrollIntoViewIfNeeded();await shot('reply-recorded-390');
+    await page.waitForFunction(()=>document.activeElement===document.getElementById('agencyStatus'));
+    assert((await page.locator('#agencyStatus').innerText()).trim());
+    e.settled_notice=await page.locator('#agencyStatus').evaluate(e=>{const r=e.getBoundingClientRect();return {focused:document.activeElement===e,visible:r.top>=0&&r.bottom<=innerHeight&&r.left>=0&&r.right<=innerWidth,text:e.textContent};});
+    assert(e.settled_notice.focused&&e.settled_notice.visible,'Result must receive focus and remain visible without driver scrolling');await shot('reply-recorded-390');
     const afterReply=await capture(page,url,run,'s10d-after-reply');audit.compare(afterReply,nativeExpected,'One UI confirmation equals independently executed native acceptance including exact relation cap, trade depth and reply ledger');
     e.checks.push('Exactly one protected UI order removes its pending offer and records the native accepted result; complete native world equals native exporter execution');
     stage='named Save, cancelled Load, Load and Continue';await page.setViewportSize({width:1440,height:1000});await campaigns(page);await page.locator('#saveName').fill(SAVED);

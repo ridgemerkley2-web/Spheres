@@ -4,6 +4,7 @@
 #agencyPanel { width:min(850px,calc(100vw - 32px)); max-height:88dvh; padding:0; border:1px solid #c8c1d5; border-radius:18px; color:#343044; background:#f7f6fa; box-shadow:0 18px 70px #15102166; overflow:auto; }
 #agencyPanel::backdrop { background:#14102099; }
 #agencyPanel > header { position:sticky; top:0; display:flex; align-items:center; justify-content:space-between; gap:15px; padding:18px 22px; background:#ece8f2; border-bottom:1px solid #d7d1e2; z-index:1; }
+#agencyClose { flex:0 0 auto; white-space:nowrap; }
 #agencyPanel h2 { margin:3px 0; font-size:23px; }
 #agencyPanel h3 { margin:0 0 12px; font-size:18px; }
 #agencyPanel h3 span { font-weight:400; font-size:13px; }
