@@ -51,6 +51,7 @@ fn cartoon_asset(name: &str) -> Option<&'static [u8]> {
         "ruth-hammerbacher-cartoon-1990-v1.png" => Some(include_bytes!("../ui/person-portraits/ruth-hammerbacher-cartoon-1990-v1.png")),
         "s-r-bommai-cartoon-1990-v1.png" => Some(include_bytes!("../ui/person-portraits/s-r-bommai-cartoon-1990-v1.png")),
         "takako-doi-cartoon-1990-v1.png" => Some(include_bytes!("../ui/person-portraits/takako-doi-cartoon-1990-v1.png")),
+        "taufaahau-tupou-iv-cartoon-1990-v1.png" => Some(include_bytes!("../ui/person-portraits/taufaahau-tupou-iv-cartoon-1990-v1.png")),
         "tetsuzo-fuwa-cartoon-1990-v1.png" => Some(include_bytes!("../ui/person-portraits/tetsuzo-fuwa-cartoon-1990-v1.png")),
         "theo-waigel-cartoon-1990-v1.png" => Some(include_bytes!("../ui/person-portraits/theo-waigel-cartoon-1990-v1.png")),
         "theresa-may-cartoon-2016-v1.png" => Some(include_bytes!("../ui/person-portraits/theresa-may-cartoon-2016-v1.png")),

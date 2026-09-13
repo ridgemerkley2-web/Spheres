@@ -15989,7 +15989,7 @@ async function govReview(index) {
     if (current()) {
       review.loading = false; renderGovernment();
       $("#govReviewTitle")?.focus({preventScroll:true});
-      $("#govReviewTitle")?.scrollIntoView({block:"nearest"});
+      $("#govReviewTitle")?.scrollIntoView({block:"start"});
     }
   }
 }
@@ -16015,12 +16015,21 @@ async function govAct(a, review = null) {
     }
     gov.review = null;
     gov.notice = r.errors?.length ? r.errors[0] : label + " — completed. The figures now reflect this decision.";
-    banner(r.errors?.length ? r.errors[0] : label + " — done.");
     await adopt(r, false);
+    if (!gov.open || gov.nation !== nation) banner(r.errors?.length ? r.errors[0] : label + " — done.");
   } catch (e) {
     if (S === state && gov.action === action) { banner(e.message || String(e)); gov.notice = e.message || String(e); govFetch(); }
   } finally {
-    if (gov.action === action) { gov.busy = false; gov.action = null; if (gov.open) renderGovernment(); }
+    if (gov.action === action) {
+      gov.busy = false; gov.action = null;
+      if (gov.open) {
+        renderGovernment();
+        if (gov.nation === nation && S?.session_id === state.session_id && gov.notice) {
+          $("#govNotice")?.focus({preventScroll:true});
+          $("#govNotice")?.scrollIntoView({block:"start"});
+        }
+      }
+    }
   }
 }
 

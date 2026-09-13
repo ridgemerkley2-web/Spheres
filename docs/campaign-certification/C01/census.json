@@ -61,29 +61,23 @@
     "future_seat_policies": 2,
     "existing_lifecycle_records": 23,
     "future_templates": 2556,
-    "historical_manifest_assets": 53,
+    "historical_manifest_assets": 54,
     "fictional_manifest_assets": 4,
-    "historical_art_snapshot_pending_jobs": 705,
+    "historical_art_snapshot_pending_jobs": 704,
     "people_with_unknown_appearance_eligibility": 126,
     "exhaustive_country_censuses": 0,
     "unrepresented_organizations": null,
     "work_orders_by_phase": {
       "fictional_editorial_review": 316,
-      "historical_cartoon_jobs": 184,
+      "historical_cartoon_jobs": 183,
       "institution_and_office_roles": 160,
       "known_historical_chains": 150,
       "organization_census": 160
     }
   },
   "production_snapshot": {
-    "all_declared_inputs_current": false,
-    "stale_inputs": [
-      {
-        "path": "spheres-sim/src/government.rs",
-        "recorded_sha256": "2c29b644b47785063ca62778da60f515ec5b7e265783b5f9405859f0ff6bc9c5",
-        "current_sha256": "eed714f3444c1ef6ecfc16ffd891756c6b4961ec5e87ba8f323487658f6419ce"
-      }
-    ],
+    "all_declared_inputs_current": true,
+    "stale_inputs": [],
     "current_party_rows_match_snapshot_exactly": true,
     "job_person_and_portrait_inputs_current": true,
     "physical_art_revalidated_this_run": false,
@@ -137,8 +131,8 @@
     },
     {
       "path": "spheres-web/data/person_portraits.json",
-      "bytes": 286951,
-      "sha256": "06b549130b3ffd16a22d578ec6aa15ca723970518f9bfb6a19a7ccb6abfc9169"
+      "bytes": 290378,
+      "sha256": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d"
     },
     {
       "path": "spheres-web/data/fictional_portraits.json",
@@ -147,8 +141,8 @@
     },
     {
       "path": "spheres-web/data/leadership_production_2035.json",
-      "bytes": 5982327,
-      "sha256": "dfa5b77f9d4d7c68e7cef00874654e646951969d8e0c0f03f3206b8d051bf6a7"
+      "bytes": 5984743,
+      "sha256": "82301ec66ebcad9589751a746a87659a6be4a0bc1edc23573ae5293a7789d686"
     },
     {
       "path": "tools/avatars/leadership_production.py",

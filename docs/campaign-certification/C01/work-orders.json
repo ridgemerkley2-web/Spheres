@@ -3623,30 +3623,6 @@
     "deliverable": "Separate party leader/chair, parliamentary leader, head of state/government and collective seats; source nomination/appointment and shared-office rules. Existing seed links and gameplay grants do not close historical office chains."
   },
   {
-    "id": "CA-Tonga-B001",
-    "nation": "Tonga",
-    "priority": "certified_first",
-    "phase": "historical_cartoon_jobs",
-    "status": "open",
-    "depends_on": [
-      "C01-Tonga-ORG-001",
-      "C01-Tonga-ROLE-001"
-    ],
-    "members": [
-      {
-        "job_id": "cartoon:taufaahau_tupou_iv:1990-01-01:1990-01-02:v1",
-        "person_id": "taufaahau_tupou_iv",
-        "associated_nations": [
-          "Tonga"
-        ],
-        "from": "1990-01-01",
-        "to": "1990-01-02"
-      }
-    ],
-    "maximum_reviewed_records": 10,
-    "deliverable": "First verify the named person's dated identity/likeness and safe appearance window, then create/review a physical fixed 2D cartoon with provenance. A requested art interval does not extend an office, affiliation or life."
-  },
-  {
     "id": "C01-SaudiArabia-ORG-001",
     "nation": "SaudiArabia",
     "priority": "certified_first",

@@ -1,14 +1,16 @@
 # C01 — worldwide party and institution census
 
-S10.b adds a separate [source-backed discovery intake](research/README.md) and
-[bounded research index](research-index.json). The counts below remain the
-original playable-catalogue baseline; new observations do not imply completed
-leadership histories, new artwork or an exhaustive country census.
+S10.b added a separate [source-backed discovery intake](research/README.md) and
+[bounded research index](research-index.json). S10.c extends France's financial
+discovery register to 635 identities and refreshes the artwork inventory after
+one reviewed Tupou IV cartoon. Discovery observations do not imply completed
+leadership histories or an exhaustive country census.
 
 **Partial inventory recorded; C01 remains incomplete.** This is a reproducible
-prerequisite audit for S10, using the leadership data at
-`872442d7411d9986321248b41ccadf79e2851d1c`. It does not mark S10 or G2 complete.
-No historical records, gameplay, artwork or campaign saves were changed.
+prerequisite audit for S10, originally recorded at
+`872442d7411d9986321248b41ccadf79e2851d1c` and refreshed in S10.c with the new
+portrait manifest. It does not mark S10 or G2 complete. Leadership records,
+gameplay eligibility and campaign saves remain unchanged by this inventory.
 
 The existing research cutoff remains **7 September 2026**, with fictional
 templates beginning **8 September 2026** and ending at the exclusive boundary
@@ -30,18 +32,18 @@ authored gameplay fiction, never forecasts or evidence of actual succession.
 | Institution policy records / historical executive gameplay grants | 12 / 93 | Existing role-policy evidence; neither is a complete institution/office census |
 | Future shared-seat policies | 2 | Separate fictional co-chair rules, not historical collective-office coverage |
 | Lifecycle disclosures | 23 | 19 existing bounded registry records and four continuation disclosures; some overlap |
-| Historical / fictional registered cartoon assets | 53 / 4 | Existing manifest entries; no new physical-image or visual validation in this audit |
-| Historical art jobs / unknown appearance-eligibility people | 705 / 126 | Known backlog only; missing organizations will add work |
+| Historical / fictional registered cartoon assets | 54 / 4 | Includes the separately reviewed S10.c Tupou IV image for 1990; the census itself does not visually validate images |
+| Historical art jobs / unknown appearance-eligibility people | 704 / 126 | Known backlog only; missing organizations will add work |
 | Fictional templates | 2,556 | Exact exported IDs for represented rows/components; templates are not finished characters |
 | Exhaustive all-organization country censuses | 0 | Unrepresented organization counts are **unknown**, not zero |
 
-The old production board's `government.rs` hash is stale. Fresh extraction of
-both `POLITIES` and `D4_POLITIES` matches all 624 stored party identities,
-names, native names and families exactly. Its other four declared inputs still
-match, including the person roster and historical/fictional art manifests.
-[census.json](census.json) records both hashes and this narrower result. The
-705 job IDs are preserved from that source snapshot; the tool does not promote
-the entire older production audit to a fresh qualification.
+The production board has been regenerated against its declared current inputs,
+including the new portrait manifest. Fresh extraction of `POLITIES` and
+`D4_POLITIES` still matches all 624 stored party identities exactly.
+[census.json](census.json) records the current source hashes. The reviewed
+Tupou IV window removes one opening-year art job, leaving 704 known jobs;
+it does not establish any additional historical role or close country coverage.
+The previous 705-job baseline remains preserved in the S10.a/S10.b evidence.
 
 The four byte-hashed Python readers now have explicit LF checkout rules, matching
 the existing JSON and political source conventions. Census source hashes were
@@ -98,7 +100,7 @@ individually reviewed organization IDs and lifespan/relationship records.
 
 ## Numbered work orders
 
-[work-orders.json](work-orders.json) contains **970 open work orders**. They
+[work-orders.json](work-orders.json) contains **969 open work orders**. They
 cover only known work plus initial country discovery assignments, so they are
 not an estimate of all sessions needed to finish the world.
 
@@ -108,7 +110,7 @@ not an estimate of all sessions needed to finish the world.
 | `C01-[nation]-ROLE-001` | 160 | Distinct leader, chair, parliamentary, executive and collective-seat roles and appointment rules |
 | `CH-[nation]-B###` | 150 | Source review of known parent/component leadership chains |
 | `CF-[nation]-B###` | 316 | Review exact fictional identities, biographies, institutions, continuation and physical cartoon art |
-| `CA-[nation]-B###` | 184 | Resolve dated likeness eligibility and complete the 705 existing historical cartoon jobs |
+| `CA-[nation]-B###` | 183 | Resolve dated likeness eligibility and complete the 704 known historical cartoon jobs |
 
 Known-record batches contain at most ten members and follow the certified-first
 country order, then the worldwide roster. A long chain may need further sessions;
@@ -131,7 +133,7 @@ further numbered orders; nothing should overwrite a reviewed historical batch.
 
 C01 establishes the inventory and work assignments. Subsequent character
 sessions finish historical chains, fictional editorial review and artwork.
-Finishing all 705 known art jobs is neither required to perform this census
+Finishing all 704 known art jobs is neither required to perform this census
 nor sufficient to establish worldwide coverage. S10/G2 retain their unchanged
 C01 prerequisite while this census is open.
 

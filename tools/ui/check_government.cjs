@@ -135,7 +135,7 @@ test('missing watch routes report missing readings without inventing conditions'
 });
 test('valid review uses actual cost, exact before/after strings and one confirmation',()=>{
   const html=reviewHtml(fixture()),controls=confirm(html);assert.equal(controls.length,1);assert.match(controls[0],/data-gov-confirm="2"/);assert.doesNotMatch(controls[0],/\bdisabled\b/);
-  assert.match(html,/<dt>Political capital cost<\/dt><dd>3 PC/);assert.match(html,/<dt>Financial cost<\/dt><dd>\$0/);assert.match(html,/<td>51\.4%<\/td><td>43\.9%<\/td>/);assert.match(html,/Only 3 PC is deducted/);assert.match(html,/id="govReviewTitle" tabindex="-1"/);
+  assert.match(html,/<dt>Political capital cost<\/dt><dd>3 PC/);assert.match(html,/<dt>Financial cost<\/dt><dd>\$0/);assert.match(html,/<strong data-change-before>51\.4%<\/strong>/);assert.match(html,/<strong data-change-after>43\.9%<\/strong>/);assert.match(html,/Only 3 PC is deducted/);assert.match(html,/id="govReviewTitle" tabindex="-1"/);
 });
 test('financial preview displays authoritative money units including small actual payments',()=>{
   for(const [amount,label] of [[.008,'$8m'],[1.25,'$1.25bn'],[.0000025,'$2.5k'],[.000000007,'$7'],[1250,'$1.25tn']]){

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8" />
+	<title>Comptes 2024 des partis politiques - publication</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="https://liste.cnccfp.fr/favicon.ico" />
+	
+	<link rel="preconnect" href="https://fonts.gstatic.com" /> 
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=EB+Garamond:400,400i|Open+Sans:400,700;700i&display=swap" rel="stylesheet">
+	
+	<link rel="stylesheet" href="css/jquery-ui.min.css">
+	<link rel="stylesheet" href="js/tablesorter/css/theme.blue.css">
+	<link href="css/comptes_partis-2023.css" rel="stylesheet">
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"> -->
+	<link href="fontawesome-free-5.15.4-web/css/all.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	
+	<script src="js/tablesorter/jquery.tablesorter.js"></script>
+	<script src="js/tablesorter/jquery.tablesorter.widgets.js"></script>
+	<!-- indispensable pour la construction de la table via ajax récupérant du json : -->
+	<script src="js/tablesorter/widgets/widget-build-table.min.js"></script>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+	
+	<script src="js/tipsy/jquery.tipsy.js"></script>
+	
+	<script src="js/comptes_partis-fa.js"></script>
+
+	<link href="js/tipsy/jquery.tipsy.css" rel="stylesheet">
+	
+	<!-- cf. // Cf. https://mottie.github.io/tablesorter/docs/example-widget-build-table.html -->
+<!-- Matomo Tag Manager -->
+<script>
+  var _mtm = window._mtm = window._mtm || [];
+  _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+  (function() {
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='https://cdn.matomo.cloud/cnccfpfr.matomo.cloud/container_m9STpg0N.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Tag Manager -->
+	
+</head>
+
+<body>
+
+<div id="bandeau_3">
+<h1 class="titre" id="nav">
+	<a href="https://www.cnccfp.fr/partis-politiques/" title="Retour à la rubrique Partis politiques"><img src="img/logo_cnccfp_2023.png" alt="CNCCFP" id="logo" />
+	<div id="cnccfp_texte_3">Commission nationale<br />des comptes de campagne<br />et des financements politiques</div></a>
+</h1>
+</div>
+
+
+
+<div class="contenu">
+
+<!-- gestion des publications plus anciennes -->
+<form id="choix_annee" action="#">
+	<fieldset>
+	<legend>Année d'exercice</legend>
+		<select name="annee_exercice" id="annee_exercice">
+		</select>
+    </fieldset>
+</form>
+<!-- gestion des publications plus anciennes -->
+
+<h1 id="titre_page"></h1><!-- BL MAJ -->
+
+
+
+<form id="recherche">
+<span id="notice"><a id="notice_lien" href="" style="text-decoration:none;" target="_blank" title="Fichier PDF"><i class="far fa-file-pdf fa-2x" aria-hidden="true" style="color:red;margin-right:11px;"></i> Notice d’utilisation</a></span><label for="rechercher">Rechercher un parti :</label> <input id="rechercher" type="text" placeholder="Saisir ici le nom ou le numéro du parti">  <span class="tooltip"> <a href="#" id="reset">X</a> <span class="tooltiptext"><em>Annuler la recherche et revenir à la liste de l'ensemble des partis</em></span></span>
+
+</form>
+
+<div id="table_json"></div>
+
+
+<p>   </p>
+
+
+
+</div>
+
+</body>
+</html>

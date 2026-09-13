@@ -23,9 +23,9 @@
   },
   "input_hashes": {
     "spheres-sim/src/nations.rs": "a41cb771eaf84350c4f98fd11454c59247ded92f1eb1ca7cfadb170ad3dca47c",
-    "spheres-sim/src/government.rs": "2c29b644b47785063ca62778da60f515ec5b7e265783b5f9405859f0ff6bc9c5",
+    "spheres-sim/src/government.rs": "eed714f3444c1ef6ecfc16ffd891756c6b4961ec5e87ba8f323487658f6419ce",
     "spheres-sim/data/party_leaders.json": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494",
-    "spheres-web/data/person_portraits.json": "06b549130b3ffd16a22d578ec6aa15ca723970518f9bfb6a19a7ccb6abfc9169",
+    "spheres-web/data/person_portraits.json": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d",
     "spheres-web/data/fictional_portraits.json": "54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c"
   },
   "counts": {
@@ -41,12 +41,12 @@
     "parties_with_declared_history_gaps": 623,
     "known_historical_people": 590,
     "known_party_terms": 393,
-    "validated_cartoon_people": 53,
-    "validated_cartoon_assets": 53,
+    "validated_cartoon_people": 54,
+    "validated_cartoon_assets": 54,
     "validated_fictional_cartoon_people": 4,
     "validated_fictional_cartoon_assets": 4,
-    "validated_cartoon_total_assets": 57,
-    "pending_historical_art_jobs": 705,
+    "validated_cartoon_total_assets": 58,
+    "pending_historical_art_jobs": 704,
     "people_without_researched_eligibility": 126,
     "countries_with_complete_all_party_history": 0,
     "images_generated_by_this_tool": 0
@@ -126300,11 +126300,52 @@
           "note": "The seed confirms identity on 1 January 1990 only; no unsourced office end or later eligibility is inferred."
         }
       ],
-      "validated_cartoon_assets": [],
-      "pending_art_job_ids": [
-        "cartoon:taufaahau_tupou_iv:1990-01-01:1990-01-02:v1"
+      "validated_cartoon_assets": [
+        {
+          "from": "1990-01-01",
+          "to": "1991-01-01",
+          "method": "generated",
+          "style": "cartoon",
+          "status": "illustrated-likeness",
+          "asset": "spheres-web/ui/person-portraits/taufaahau-tupou-iv-cartoon-1990-v1.png",
+          "sha256": "f879c9efa4eb70b622c0bae98da0b67950fbe9aba535b43c2353af052449534f",
+          "width": 1024,
+          "height": 1536,
+          "composition": "full-body",
+          "background_mode": "opaque",
+          "generator": "OpenAI built-in image_gen",
+          "generated_at": "2026-09-13",
+          "license": "generated",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "derivative_license": "CC BY-SA 4.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File:ETH-BIB-Taufa%27ahau_Tupou,_K%C3%B6nig_von_Tonga-Com_LC1500-0777-001.tif",
+          "credit": "Spheres cartoon adaptation generated with OpenAI image_gen from Comet Photo AG (Zurich) / ETH Library, Image Archive, Com_LC1500-0777-001 (1985), CC BY-SA 4.0. Cartoon adaptation and any copyrightable contributions are also offered under CC BY-SA 4.0; https://creativecommons.org/licenses/by-sa/4.0/. Changed to full-body cartoon, simplified shapes and near-1990 age treatment. No endorsement implied.",
+          "era_note": "Near-1990 artistic appearance informed by an inspected 1985 portrait; no exact 1990 photograph established. Conservatively displayed from 1 January 1990 up to but not including 1 January 1991. Standing body, trousers and shoes are artistic extensions of the observed civilian suit. This artwork does not establish reign, party membership, candidate eligibility or later appearance.",
+          "identity_source": {
+            "person_id": "taufaahau_tupou_iv",
+            "kind": "observed_portrait",
+            "source_url": "https://commons.wikimedia.org/wiki/File:ETH-BIB-Taufa%27ahau_Tupou,_K%C3%B6nig_von_Tonga-Com_LC1500-0777-001.tif",
+            "asset": "spheres-web/ui/person-portraits/references/taufaahau-tupou-iv-eth-1985-v1.jpg",
+            "sha256": "f3f86c2cc1e1e7e3daff1e70e5b8e648e9e5291075e1314e0dde35f8abacbc92",
+            "license": "CC BY-SA 4.0",
+            "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+            "credit": "Comet Photo AG (Zurich) / ETH Library, Image Archive, Com_LC1500-0777-001; photograph dated 1985, provided by ETH Library through Wikimedia Commons. Retained as the unchanged 1280-pixel JPEG preview of the archive TIFF."
+          },
+          "prompt_record": "tools/avatars/person-prompts/taufaahau-tupou-iv-cartoon-1990-v1.txt",
+          "generation_record": "Built-in image_gen, 13 September 2026. Exact prompt, input roles, original output location, file hashes, source rights and Codex visual review retained in tools/avatars/person-prompts/taufaahau-tupou-iv-cartoon-1990-v1.json.",
+          "review": {
+            "identity": true,
+            "likeness": true,
+            "era": true,
+            "visual": true,
+            "reviewer": "Codex visual QA; personally inspected source photograph, established style anchor and generated result. Artistic interpretation; no human or user approval claimed.",
+            "reviewed_at": "2026-09-13"
+          },
+          "_index": 0
+        }
       ],
-      "status": "art_pending"
+      "pending_art_job_ids": [],
+      "status": "known_windows_covered"
     },
     {
       "id": "teodoro_obiang_nguema_mbasogo",
@@ -141062,28 +141103,6 @@
       "status": "pending_source_and_visual_review",
       "identity_sources": [
         "https://www.jimin.jp/aboutus/history/"
-      ],
-      "requirements": [
-        "dated likeness reference",
-        "approved cartoon style",
-        "physical image and hash",
-        "identity, era and visual QA"
-      ],
-      "note": "Requested appearance window only; it does not extend an office, affiliation or life."
-    },
-    {
-      "id": "cartoon:taufaahau_tupou_iv:1990-01-01:1990-01-02:v1",
-      "person_id": "taufaahau_tupou_iv",
-      "name": "Taufa'ahau Tupou IV",
-      "from": "1990-01-01",
-      "to": "1990-01-02",
-      "period_kind": "historical",
-      "status": "pending_source_and_visual_review",
-      "identity_sources": [
-        "https://www.worldstatesmen.org/Tonga.html",
-        "https://rulers.org/rult.html",
-        "https://en.wikipedia.org/wiki/T%C4%81ufa%CA%BB%C4%81hau_Tupou_IV",
-        "https://en.wikipedia.org/wiki/George_Tupou_V"
       ],
       "requirements": [
         "dated likeness reference",

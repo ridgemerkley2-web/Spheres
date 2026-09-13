@@ -18,7 +18,7 @@ class ResearchTests(unittest.TestCase):
 
     def test_official_snapshot_is_pinned_and_observations_are_not_terms(self):
         ids = self.valid(self.france)
-        self.assertEqual(len(ids['entries']), 575)
+        self.assertEqual(len(ids['entries']), 635)
         self.assertFalse(ids['roles'])
         self.assertTrue(all(o['lifecycle']['status'] == 'unknown' and not o['represented_party_ids'] for o in self.france['organizations']))
         with self.assertRaisesRegex(ValueError, 'checksum mismatch'):

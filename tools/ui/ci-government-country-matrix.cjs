@@ -3,6 +3,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const cp=require('node:child_process'),net=require('node:net'),crypto=require('node:crypto');
 const {chromium}=require('playwright'),integrated=require('./ci-integrated.cjs'),audit=require('./supplier-archive-audit.cjs');
+const reviewUI=require('./government-review-assertions.cjs');
 const root=path.resolve(__dirname,'../..'),copy=value=>JSON.parse(JSON.stringify(value));
 const hash=bytes=>crypto.createHash('sha256').update(bytes).digest('hex'),quoted=value=>JSON.stringify(String(value));
 const CASES=[
@@ -120,7 +121,7 @@ async function review(page,nation,command){
   const received=await response;assert(received.ok());const quote=await received.json();
   await page.waitForFunction(()=>gov.review&&!gov.review.loading);assert.equal(quote.valid,true);
   assert.equal(quote.nation,nation);assert.deepEqual(quote.command,command);assert(quote.review_token);
-  assert.equal(await page.locator('#govReview [data-gov-confirm]').isEnabled(),true);return quote;
+  assert.equal(await page.locator('#govReview [data-gov-confirm]').isEnabled(),true);await reviewUI.exactChanges(page,'government',quote);return quote;
 }
 async function campaigns(page){
   if(await page.locator('#govScreen').isVisible())await page.locator('#govScreen .tbar .x').click();
@@ -173,6 +174,7 @@ async function runCountry(test,browser,options){
       assert.equal(await page.locator('#govScreen .gov-ui-hero h1').innerText(),test.name);
       assert((await page.locator('#gov-panel-overview').innerText()).includes(data.leader?.name||data.leader?.described||data.ruling_institution),'Actual native officeholder/institution must be visible');
       await withinPanel(page,'#govScreen .gov-ui','Own overview');await shot('overview-desktop','#govScreen .gov-ui');
+      if(test.nation==='Tonga'){e.opening_portrait=await reviewUI.tongaPortrait(page,{url,root,expected,git,board:data});await shot('opening-executive-portrait');}
       await page.locator('#gov-tab-politics').click();assert.equal(await page.locator('#gov-tab-politics').innerText(),test.electoral?'Parliament & parties':'Regime & institutions');
       if(test.electoral)assert(parties(data).length>0);else{
         assert(data.pillars.length>0);const text=await page.locator('#gov-panel-politics').innerText();for(const pillar of data.pillars)assert(text.includes(pillar.name));
@@ -214,7 +216,7 @@ async function runCountry(test,browser,options){
     const cancelled=await timed('legal review and cancellation',async()=>{
       const quote=await review(page,test.nation,command);assert.equal(quote.date_label,initial.date);
       await withinPanel(page,'#govReview','Decision review');await shot('review-desktop','#govReview');
-      await page.setViewportSize({width:390,height:844});await withinPanel(page,'#govReview','Decision review narrow');await shot('review-narrow','#govReview');
+      e.mobile_review=await reviewUI.mobileChanges(page,'government',quote,async width=>{await withinPanel(page,'#govReview','Decision review '+width);await shot(width===390?'review-narrow':'review-narrow-320');});
       await page.locator('#govReview [data-gov-review-close]').last().click();await page.locator('#govReview').waitFor({state:'hidden'});await page.setViewportSize({width:1440,height:1000});
       return quote;
     });
@@ -223,12 +225,15 @@ async function runCountry(test,browser,options){
     e.checks.push('All viewing and review/cancellation preserve every native world field and issue no command');
     const applied=await timed('one exact confirmed native decision',async()=>{
       const quote=await review(page,test.nation,command);assert.deepEqual(quote,cancelled,'Pure cancelled review must remain identical');
+      await page.setViewportSize({width:390,height:844});
       const response=page.waitForResponse(r=>post(r,'/api/command'));await page.locator('#govReview [data-gov-confirm]').click();
       const r=await response;assert(r.ok());const state=await r.json();assert.deepEqual(state.errors,[]);await idle(page);
       const current=await get(page,url,'/api/state'),government=await get(page,url,'/api/government?nation='+test.nation);
       assert.equal(current.date,quote.date_label);assert.equal(current.date,initial.date);assert(current.dispatch_count>initial.dispatch_count);
       const events=current.log.slice(0,current.dispatch_count-initial.dispatch_count);assert(events.length&&events.every(row=>row.date===quote.date_label));
-      await shot('result-desktop','#govScreen .gov-ui');return {quote,state:current,government,events};
+      e.result_visibility=[];
+      for(const width of [390,320,1440]){await page.setViewportSize({width,height:width===1440?1000:844});e.result_visibility.push(await reviewUI.governmentNotice(page));if(width!==1440)await shot('result-narrow-'+width);}
+      await shot('result-desktop');return {quote,state:current,government,events};
     });
     const afterAction=await capture(page,url,run,test.nation,'s10b-after-action'),afterFacts=politicalFacts(afterAction,test.nation);e.archives.after_action=afterAction;
     assert.notEqual(afterAction.canonical.sha256,before.canonical.sha256);verifyOutcome(applied.quote,board,applied.government,beforeFacts,afterFacts);
@@ -246,7 +251,9 @@ async function runCountry(test,browser,options){
       const continued=await get(page,url,'/api/state');assert.equal(continued.date,initial.date);assert.equal(continued.player,test.nation);assert.equal(await page.evaluate(()=>clock.running),false);
       const afterLoad=await capture(page,url,run,test.nation,'s10b-after-load-continue');e.archives.after_load_continue=afterLoad;audit.compare(afterLoad,afterAction,'Named Save/Load/Continue changed complete native '+test.nation+' campaign');
       const resumed=await government(page,test.nation);assert.deepEqual(resumed,applied.government);
-      await page.setViewportSize({width:390,height:844});await withinPanel(page,'#govScreen .gov-ui','Continued overview narrow');await shot('continued-overview-narrow','#govScreen .gov-ui');
+      if(test.nation==='Tonga')e.continued_portrait=await reviewUI.tongaPortrait(page,{url,root,expected,git,board:resumed});
+      e.continued_navigation=[];
+      for(const width of [390,320]){await page.setViewportSize({width,height:844});e.continued_navigation.push(await reviewUI.governmentNavigation(page));await withinPanel(page,'#govScreen .gov-ui','Continued overview '+width);await shot(width===390?'continued-overview-narrow':'continued-overview-narrow-320','#govScreen .gov-ui');}
       e.saved_slot=slot;e.final_state={player:continued.player,date:continued.date,political_capital:resumed.political_capital,leader:resumed.leader};
     });
     assert.equal(e.commands.length,1);assert.deepEqual(e.errors,[]);e.checks.push('Ordinary named Save/Load/Continue retains the complete native campaign, costs and incumbent');e.passed=true;
@@ -275,7 +282,7 @@ async function main(){
   assert(requested.length&&new Set(requested).size===requested.length);for(const nation of requested)assert(CASES.some(row=>row.nation===nation),'Unsupported matrix country: '+nation);
   const selected=CASES.filter(row=>requested.includes(row.nation));
   const base=path.resolve(process.env.SPHERES_COUNTRY_MATRIX_OUTPUT||path.join(root,'artifacts/browser-government-country-matrix-ci'));fs.mkdirSync(base,{recursive:true});
-  const output=fs.mkdtempSync(path.join(base,'matrix-')),source={revision,driver_sha256:hash(fs.readFileSync(__filename)),runtime_source_equal:true};
+  const output=fs.mkdtempSync(path.join(base,'matrix-')),source={revision,driver_sha256:hash(fs.readFileSync(__filename)),review_assertions_sha256:hash(fs.readFileSync(require.resolve('./government-review-assertions.cjs'))),runtime_source_equal:true};
   const result={passed:false,scope:'S10.b ordinary Jan-1990 startup matrix; zero elapsed days; not G2, a long-run campaign or a Russia birth test',runtime_revision:expected,binary_sha256:binaryHash,test_source:source,requested_nations:requested,full_matrix_requested:selected.length===CASES.length,full_eight_country_matrix:false,started_utc:new Date().toISOString(),cases:[]};
   let browser;
   try{

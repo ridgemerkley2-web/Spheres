@@ -3,6 +3,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const cp=require('node:child_process'),net=require('node:net'),crypto=require('node:crypto');
 const {chromium}=require('playwright'),integrated=require('./ci-integrated.cjs'),audit=require('./supplier-archive-audit.cjs');
+const reviewUI=require('./government-review-assertions.cjs');
 const root=path.resolve(__dirname,'../..'),copy=x=>JSON.parse(JSON.stringify(x));
 const hash=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 const quoted=x=>JSON.stringify(String(x));
@@ -33,7 +34,7 @@ async function government(page){
   if(!await page.locator('#govScreen').isVisible())await page.locator('#govBtn').click();
   await page.waitForFunction(()=>gov.open&&gov.data&&gov.dataState===S&&!gov.data.error);
   await page.locator('#gov-tab-decisions').click();
-  return page.evaluate(()=>JSON.parse(JSON.stringify(gov.data)));
+  return page.evaluate(()=>gov.data);
 }
 async function reviewGovernment(page,command){
   const data=await government(page),index=data.actions.findIndex(a=>JSON.stringify(a.command)===JSON.stringify(command));
@@ -44,7 +45,7 @@ async function reviewGovernment(page,command){
   await page.waitForFunction(()=>gov.review&&!gov.review.loading);
   assert.equal(quote.valid,true);assert.deepEqual(quote.command,command);assert.equal(typeof quote.review_token,'string');assert(quote.review_token);
   assert.equal(await page.locator('#govReview [data-gov-confirm]').isEnabled(),true);
-  return quote;
+  await reviewUI.exactChanges(page,'government',quote);return quote;
 }
 async function policyReview(page,policy){
   await page.locator('#agencyBtn').click();await page.locator('#agencyPanel').waitFor({state:'visible'});
@@ -55,7 +56,7 @@ async function policyReview(page,policy){
   await page.waitForFunction(()=>AGENCY.review&&!AGENCY.review.loading);
   assert.equal(quote.valid,true);assert.deepEqual(quote.command,{kind:'set_diplomatic_policy',policy});
   assert.equal(typeof quote.review_token,'string');assert(quote.review_token);
-  assert.equal(await page.locator('#agencyReview [data-agency-confirm]').isEnabled(),true);return quote;
+  assert.equal(await page.locator('#agencyReview [data-agency-confirm]').isEnabled(),true);await reviewUI.exactChanges(page,'agency',quote);return quote;
 }
 async function campaigns(page){
   if(await page.locator('#agencyPanel').isVisible())await page.locator('#agencyClose').click();
@@ -80,7 +81,7 @@ async function main(){
   const server=cp.spawn(binary,['--port',String(port),'--no-open'],{cwd:run,windowsHide:true,stdio:['ignore','pipe','pipe']});
   const log=fs.createWriteStream(path.join(out,'server.log'));server.stdout.pipe(log);server.stderr.pipe(log);
   let browser,page,second,launchError,stage='launch';server.on('error',error=>{launchError=error;});
-  const e={passed:false,run,url,started_utc:new Date().toISOString(),test_source:{revision:driverRevision,driver_sha256:hash(fs.readFileSync(__filename)),runtime_source_equal:true},fixture:'Fresh France through ordinary controls, real same-campaign second tab; no state grants or substituted responses',screenshots:[],commands:[],errors:[],checks:[]};
+  const e={passed:false,run,url,started_utc:new Date().toISOString(),test_source:{revision:driverRevision,driver_sha256:hash(fs.readFileSync(__filename)),review_assertions_sha256:hash(fs.readFileSync(require.resolve('./government-review-assertions.cjs'))),runtime_source_equal:true},fixture:'Fresh France through ordinary controls, real same-campaign second tab; no state grants or substituted responses',screenshots:[],commands:[],errors:[],checks:[]};
   const write=(name,value)=>fs.writeFileSync(path.join(out,name),JSON.stringify(value,null,2)+'\n');
   const telemetry=(event,details)=>fs.appendFileSync(path.join(out,'progress.jsonl'),JSON.stringify({utc:new Date().toISOString(),stage,event,...details})+'\n');
   const observe=(p,label)=>{p.setDefaultTimeout(30000);p.on('pageerror',error=>e.errors.push(label+': '+error.message));p.on('request',request=>{if(new URL(request.url()).pathname==='/api/command'&&request.method()==='POST')e.commands.push({tab:label,payload:request.postDataJSON()});});};
@@ -111,7 +112,7 @@ async function main(){
     const policy={...initial.agency.policy,trade_treaties:initial.agency.policy.trade_treaties==='decline'?'review':'decline'};
     const policyQuote=await policyReview(page,policy);assert.equal(policyQuote.date_label,initial.date);e.cancelled_policy_review=policyQuote;
     await withinPanel(page,'#agencyPanel','Decisions desktop');await shot(page,'policy-review-desktop','#agencyReview');
-    await page.setViewportSize({width:390,height:844});await withinPanel(page,'#agencyPanel','Decisions narrow');await shot(page,'policy-review-narrow','#agencyReview');
+    e.mobile_policy_review=await reviewUI.mobileChanges(page,'agency',policyQuote,async width=>{await withinPanel(page,'#agencyPanel','Decisions '+width);await shot(page,width===390?'policy-review-narrow':'policy-review-narrow-320');});
     await page.locator('#agencyReview [data-agency-review-cancel]').click();await page.locator('#agencyReview').waitFor({state:'hidden'});
     await page.locator('#agencyClose').click();await page.setViewportSize({width:1440,height:1000});
     audit.compare(await captures(page,url,run,'s10-after-cancel'),before,'Policy review and cancellation changed the native campaign');
@@ -144,7 +145,7 @@ async function main(){
     await idle(page);await page.waitForFunction(()=>gov.review===null&&gov.dataState===S);
     assert.deepEqual(await page.evaluate(()=>JSON.parse(JSON.stringify(S.agency.policy))),policy,'First tab must refresh real current figures after rejection');
     assert.match(await page.locator('#govScreen').innerText(),/out of date|review.*again/i);
-    await shot(page,'government-stale-review-refused','#govScreen .gov-ui');
+    e.stale_notice_visibility=await reviewUI.governmentNotice(page);await shot(page,'government-stale-review-refused');
     audit.compare(await captures(page,url,run,'s10-after-stale'),afterPolicy,'Stale government confirmation changed the campaign after tab B');
     assert.equal(e.commands.length,2);e.checks.push('A genuine second-tab policy change invalidates the held government review; refusal has no native effect and refreshes current figures');
     await second.close();second=null;
@@ -153,6 +154,8 @@ async function main(){
     const beforeGovernment=await get(page,url,'/api/government?nation=France'),fresh=await reviewGovernment(page,command);
     assert.notEqual(fresh.review_token,held.review_token);assert.equal(fresh.date_label,initial.date);e.confirmed_government_review=fresh;
     await withinPanel(page,'#govReview','Government immediate review');await shot(page,'government-fresh-review','#govReview');
+    e.mobile_government_review=await reviewUI.mobileChanges(page,'government',fresh,async width=>{await shot(page,'government-fresh-review-'+width);});
+    await page.setViewportSize({width:390,height:844});
     const appliedResponse=page.waitForResponse(r=>route(r,'/api/command'));await page.locator('#govReview [data-gov-confirm]').click();
     const applied=await appliedResponse;assert(applied.ok());const appliedState=await applied.json();assert.deepEqual(appliedState.errors,[]);await idle(page);
     const afterGovernment=await get(page,url,'/api/government?nation=France'),afterState=await get(page,url,'/api/state');
@@ -161,7 +164,9 @@ async function main(){
     const newEvents=afterState.log.slice(0,afterState.dispatch_count-afterPolicyState.dispatch_count);assert(newEvents.length&&newEvents.every(row=>row.date===fresh.date_label));
     e.government_result={command,price_pc:fresh.price_pc,before_pc:beforeGovernment.political_capital,after_pc:afterGovernment.political_capital,date:afterState.date,events:newEvents};
     const afterAction=await captures(page,url,run,'s10-after-government');assert.notEqual(afterAction.canonical.sha256,afterPolicy.canonical.sha256);
-    await shot(page,'government-result-desktop','#govScreen .gov-ui');
+    e.government_notice_visibility=[];
+    for(const width of [390,320,1440]){await page.setViewportSize({width,height:width===1440?1000:844});e.government_notice_visibility.push(await reviewUI.governmentNotice(page));if(width!==1440)await shot(page,'government-result-narrow-'+width);}
+    await shot(page,'government-result-desktop');
     assert.equal(e.commands.length,3);e.checks.push('A fresh government review applies once with the exact reviewed political cost and a dated native result');
 
     stage='named save, cancellation, load and Continue';const slot='s10-government-decisions',beforeLoad=await get(page,url,'/api/state');await campaigns(page);
@@ -176,7 +181,8 @@ async function main(){
     const continued=await get(page,url,'/api/state');assert.deepEqual(continued.agency.policy,policy);assert.equal(continued.date,beforeLoad.date);
     audit.compare(await captures(page,url,run,'s10-after-continue'),afterAction,'Continue changed the complete native campaign');
     const resumedGovernment=await government(page);assert.equal(resumedGovernment.political_capital,afterGovernment.political_capital);assert.deepEqual(resumedGovernment.leader,afterGovernment.leader);
-    await page.setViewportSize({width:390,height:844});await withinPanel(page,'#govScreen .gov-ui','Government continued narrow');await shot(page,'government-continued-narrow','#govScreen .gov-ui');
+    e.continued_navigation=[];
+    for(const width of [390,320]){await page.setViewportSize({width,height:844});e.continued_navigation.push(await reviewUI.governmentNavigation(page));await withinPanel(page,'#govScreen .gov-ui','Government continued '+width);await shot(page,width===390?'government-continued-narrow':'government-continued-narrow-320','#govScreen .gov-ui');}
     e.saved_slot=slot;e.final_state={player:continued.player,date:continued.date,policy:continued.agency.policy,leader:resumedGovernment.leader,political_capital:resumedGovernment.political_capital};
     assert.equal(e.commands.length,3);assert.deepEqual(e.commands.map(x=>x.payload.review_kind),['decisions','government','government']);
     assert.deepEqual(e.commands.map(x=>x.payload.commands),[[{kind:'set_diplomatic_policy',policy}],[command],[command]]);

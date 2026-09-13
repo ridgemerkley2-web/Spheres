@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "person_id": "taufaahau_tupou_iv",
+  "name": "Taufa'ahau Tupou IV",
+  "task": "S10.c exact-person opening-government portrait",
+  "built_in_tool": "OpenAI built-in image_gen",
+  "generated_at": "2026-09-13",
+  "final_art": {
+    "asset": "spheres-web/ui/person-portraits/taufaahau-tupou-iv-cartoon-1990-v1.png",
+    "sha256": "f879c9efa4eb70b622c0bae98da0b67950fbe9aba535b43c2353af052449534f",
+    "bytes": 1655402,
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB"
+  },
+  "prompt": {
+    "asset": "tools/avatars/person-prompts/taufaahau-tupou-iv-cartoon-1990-v1.txt",
+    "sha256": "57b1b2d67d173c719ceabee6411e8566e34330c355e2bfaa47d48a35159d6894",
+    "bytes": 2805
+  },
+  "exact_submitted_prompt": "Use case: style-transfer.\nAsset type: fixed 2D cartoon character portrait for the Spheres historical strategy game, portrait aspect ratio 2:3, 1024 x 1536.\nPrimary request: Transform the identity in reference image 2 into one finished full-body cartoon of Taufa'ahau Tupou IV, the Tongan man who was King of Tonga in 1990. This is the exact person taufaahau_tupou_iv, not his mother Salote Tupou III, his son George Tupou V, or Tupou VI.\nInput images: Image 1 (Margaret Thatcher cartoon) supplies ONLY the established game's linework, simplified cel shading, figure framing and opaque teal background. Do not copy that woman's identity, clothing, hairstyle or bag. Image 2 (Comet Photo / ETH Library, portrait dated 1985) is the identity/likeness and upper-body clothing reference. Preserve this man's recognizable facial structure and heavy build, not the photograph's seated pose, setting or photographic texture.\nSubject and era: Respectful near-1990 artistic appearance of a Tongan man about 71 years old, based on the observed 1985 portrait with only restrained age treatment. Broad rounded face and cheeks, very broad nose, full lower lip, heavy-lidded brown eyes, high receding forehead, short swept-back silver-gray hair with wavy texture, clean shaven, medium warm brown complexion and very broad stocky body. Calm, dignified, slight reserved smile. No glasses.\nClothing: The observed brown civilian suit, ivory shirt and dark brown diagonally light-striped tie; continue the suit into simple matching trousers and polished dark shoes. Standing full-body extension is an illustration, not a claimed documentary view. Hands relaxed and visible at his sides. No crown, medals, sash, badges, scepter, uniform or invented regalia.\nStyle/medium: Clearly drawn 2D cartoon, strong clean dark outlines, graphic cel shading and simplified expressive facial shapes, a slightly enlarged head with about 5 to 5.5-head adult proportions. Match reference 1's visual language while retaining his naturally very broad physique. This is not a photorealistic portrait, 3D render, toy, caricature mockery or painterly photograph.\nComposition: Exactly one man centered, standing in a mild three-quarter pose facing the viewer, complete head, both hands and both shoes fully inside the canvas with comfortable margin. Readable silhouette at small avatar size. Quiet intentionally opaque dark teal backdrop matching reference 1, very subtle ground contact shadow, no scene or furniture.\nConstraints: Preserve reference 2 identity; all facial features should read together as this specific person. No other people, writing, title, border, watermark, royal emblem, photographic grain, checkerboard, weapon or handbag. Do not insert attribution text into the art; attribution is retained separately in the game metadata.",
+  "original_generated_file": "C:\\Users\\ridge\\.codex\\generated_images\\01a09785-b8ba-7c90-821b-f9b4035c88b1\\exec-31972be4-0a6f-4a5d-8528-25db6cb9da57.png",
+  "original_retained": true,
+  "persistence": "Byte-identical copy of built-in output; no pixel edits or recompression.",
+  "inputs": [
+    {
+      "role": "style and composition only; never identity or costume",
+      "asset": "spheres-web/ui/person-portraits/margaret-thatcher-cartoon-1990-v3.png",
+      "sha256": "8fe7d0361e75f80f6e65fbe19f1507d94313e72105a60a42d8f5aa09798258ef",
+      "bytes": 1421494,
+      "width": 1024,
+      "height": 1536,
+      "mode": "RGB"
+    },
+    {
+      "role": "observed exact-person likeness and upper-body civilian clothing; photograph is seated",
+      "asset": "spheres-web/ui/person-portraits/references/taufaahau-tupou-iv-eth-1985-v1.jpg",
+      "sha256": "f3f86c2cc1e1e7e3daff1e70e5b8e648e9e5291075e1314e0dde35f8abacbc92",
+      "bytes": 157903,
+      "width": 1280,
+      "height": 842,
+      "mode": "RGB"
+    }
+  ],
+  "research": [
+    {
+      "url": "https://www.beehive.govt.nz/release/king-taufa%E2%80%99ahau-tupou-iv",
+      "publisher": "New Zealand Government / Prime Minister Helen Clark",
+      "published": "2006-09-11",
+      "read_on": "2026-09-13",
+      "supports": "Identifies King Taufa'ahau Tupou IV, his 1965 accession after his mother Salote Tupou III, and death aged 88 in 2006; no roster edits made."
+    },
+    {
+      "url": "https://collections.tepapa.govt.nz/agent/47674",
+      "publisher": "Museum of New Zealand Te Papa Tongarewa",
+      "read_on": "2026-09-13",
+      "supports": "Exact named person, King of Tonga; Tongan identity, birth year 1918 and death year 2006."
+    },
+    {
+      "url": "https://commons.wikimedia.org/wiki/File:ETH-BIB-Taufa%27ahau_Tupou,_K%C3%B6nig_von_Tonga-Com_LC1500-0777-001.tif",
+      "publisher": "ETH Library image contribution on Wikimedia Commons",
+      "archive_identifier": "Com_LC1500-0777-001",
+      "archive_doi": "https://doi.org/10.3932/ethz-a-001055213",
+      "photographer": "Comet Photo AG (Zurich)",
+      "depiction_date": {
+        "value": "1985",
+        "precision": "year"
+      },
+      "read_on": "2026-09-13",
+      "supports": "Exact-person source image, archive identifier, photographer, 1985 date and explicit CC BY-SA 4.0 permission. Commons file page and its JPEG were inspected; direct E-Pics catalogue fetch did not succeed."
+    }
+  ],
+  "source_image": {
+    "asset": "spheres-web/ui/person-portraits/references/taufaahau-tupou-iv-eth-1985-v1.jpg",
+    "sha256": "f3f86c2cc1e1e7e3daff1e70e5b8e648e9e5291075e1314e0dde35f8abacbc92",
+    "bytes": 157903,
+    "width": 1280,
+    "height": 842,
+    "mode": "RGB",
+    "description_url": "https://commons.wikimedia.org/wiki/File:ETH-BIB-Taufa%27ahau_Tupou,_K%C3%B6nig_von_Tonga-Com_LC1500-0777-001.tif",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/ETH-BIB-Taufa%27ahau_Tupou%2C_K%C3%B6nig_von_Tonga-Com_LC1500-0777-001.tif/lossy-page1-1280px-ETH-BIB-Taufa%27ahau_Tupou%2C_K%C3%B6nig_von_Tonga-Com_LC1500-0777-001.tif.jpg",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "credit": "Comet Photo AG (Zurich) / ETH Library, Image Archive, Com_LC1500-0777-001; photograph dated 1985, provided by ETH Library through Wikimedia Commons. Retained as the unchanged 1280-pixel JPEG preview of the archive TIFF."
+  },
+  "rights": {
+    "pipeline_method_marker": "generated",
+    "adaptation_license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "credit": "Spheres cartoon adaptation generated with OpenAI image_gen from Comet Photo AG (Zurich) / ETH Library, Image Archive, Com_LC1500-0777-001 (1985), CC BY-SA 4.0. Cartoon adaptation and any copyrightable contributions are also offered under CC BY-SA 4.0; https://creativecommons.org/licenses/by-sa/4.0/. Changed to full-body cartoon, simplified shapes and near-1990 age treatment. No endorsement implied.",
+    "changes": "Cartoon redraw, standing full-body extension, simplified anatomy/shading, quiet teal background, restrained age interpretation. No endorsement."
+  },
+  "appearance_window": {
+    "from": "1990-01-01",
+    "to": "1991-01-01",
+    "exclusive_end": true,
+    "basis": "Near-1990 artistic appearance informed by an inspected 1985 portrait; no exact 1990 photograph established. Conservatively displayed from 1 January 1990 up to but not including 1 January 1991. Standing body, trousers and shoes are artistic extensions of the observed civilian suit. This artwork does not establish reign, party membership, candidate eligibility or later appearance.",
+    "coverage_limit": "Does not fill 1991 onward. No future candidates or historical terms changed."
+  },
+  "visual_review": {
+    "reviewer": "Codex",
+    "reviewed_at": "2026-09-13",
+    "inspected": true,
+    "identity_observations": [
+      "Broad face and nose, full cheeks and lips, heavy-lidded brown eyes, high receding forehead and short silver-gray hair retain the observed source likeness.",
+      "Male subject and exact authored ID differ from Salote Tupou III and later Tupou monarchs."
+    ],
+    "style_observations": [
+      "Single full-body 2D cartoon with outlined silhouette and cel shading; opaque quiet teal background.",
+      "Both hands and shoes visible; no cropped extremities, crowns, medals, fabricated insignia, other figures, text or watermark.",
+      "Brown suit, ivory shirt and striped tie follow the source upper-body clothing; standing pose and lower clothing are an artistic extension."
+    ],
+    "limitations": [
+      "Approximate 1990 interpretation from the dated 1985 photograph, not a documentary 1990 pose or costume assertion.",
+      "Asset inspection does not establish browser integration until the root regenerates the native asset allowlist and runs its own qualification.",
+      "No human or user approval is claimed."
+    ]
+  }
+}
