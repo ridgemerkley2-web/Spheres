@@ -8,6 +8,7 @@ const audit=require('./supplier-archive-audit.cjs'),reviewUI=require('./governme
 const root=path.resolve(__dirname,'../..'),quoted=value=>JSON.stringify(String(value));
 const hash=value=>crypto.createHash('sha256').update(value).digest('hex');
 const route=(response,p)=>new URL(response.url()).pathname===p&&response.request().method()==='POST';
+const deadlineOrder=(a,b)=>a.expires<b.expires?-1:a.expires>b.expires?1:a.id-b.id;
 const stableQuote=quote=>{const {session_id,review_token,...stable}=quote;return stable;};
 const SLOT='s10d-authored-inbox',SAVED='s10d-reviewed-inbox';
 const CAPTURES=new Set(['s10d-before-review','s10d-after-cancel','s10d-after-reply','s10d-after-load-cancel','s10d-after-load','s10d-after-continue']);
@@ -44,7 +45,7 @@ async function readable(locator,label){
 }
 async function inbox(page,agency,width){
   await page.setViewportSize({width,height:width===1440?1000:844});
-  const sorted=agency.offers.slice().sort((a,b)=>a.days_remaining-b.days_remaining||a.id-b.id);
+  const sorted=agency.offers.slice().sort(deadlineOrder);
   assert.deepEqual(await page.locator('#agencyInbox [data-agency-offer]').evaluateAll(rows=>rows.map(e=>Number(e.dataset.agencyOffer))),sorted.map(o=>o.id));
   assert.equal(await page.locator('#agencyBody > section').first().getAttribute('id'),'agencyInbox','Pending replies must precede campaign aims');
   assert((await page.locator('#agencyInbox .agency-inbox-summary').innerText()).includes(sorted[0].expires));
@@ -102,7 +103,7 @@ async function main(){
   const beforeFile=nativeFile(fixtureDir,manifest.before_file),expectedFile=nativeFile(fixtureDir,manifest.expected_after_file);
   const fixtureHashes={manifest:audit.fileHash(manifestPath),before:audit.fileHash(beforeFile),expected_after:audit.fileHash(expectedFile)};
   assert.equal(manifest.before_agency.offers.length,3);const sourceOrder=manifest.before_agency.offers.map(o=>o.id);
-  const expectedOrder=manifest.before_agency.offers.slice().sort((a,b)=>a.days_remaining-b.days_remaining||a.id-b.id).map(o=>o.id);
+  const expectedOrder=manifest.before_agency.offers.slice().sort(deadlineOrder).map(o=>o.id);
   assert.notDeepEqual(sourceOrder,expectedOrder,'Fixture must challenge chronological insertion order');
   const output=path.resolve(process.env.SPHERES_INBOX_OUTPUT||path.join(root,'artifacts/browser-diplomatic-inbox-ci'));
   fs.mkdirSync(output,{recursive:true});const out=fs.mkdtempSync(path.join(output,'authored-france-')),run=path.join(out,'server');fs.mkdirSync(run);fs.mkdirSync(path.join(run,'saves'));
