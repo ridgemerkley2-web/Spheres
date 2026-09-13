@@ -94,7 +94,7 @@ async function main(){
       assert(Date.now()<until,'Server startup exceeded 20 seconds');await new Promise(resolve=>setTimeout(resolve,100));
     }
     browser=await chromium.launch({headless:true,args:['--log-net-log='+path.join(out,'chrome-netlog.json')],...(process.env.SPHERES_BROWSER_CHANNEL?{channel:process.env.SPHERES_BROWSER_CHANNEL}:{})});
-    e.browser_version=browser.version();page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});observe(page,'A');
+    e.browser_version=browser.version();const context=await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'reduce'});page=await context.newPage();observe(page,'A');
     e.build=await integrated.verifyBuild({page,url,root,run,binary});
     for(const name of ['agency-ui.js','agency.css']){
       const checkout=fs.readFileSync(path.join(root,'spheres-web/ui',name)),text=checkout.toString('utf8'),committed=git(['show',expected+':spheres-web/ui/'+name]);
@@ -125,7 +125,7 @@ async function main(){
     await shot(page,'government-review-before-second-tab','#govReview');
 
     stage='second tab makes a real policy decision';
-    second=await page.context().newPage();observe(second,'B');await second.goto(url,{waitUntil:'domcontentloaded'});
+    second=await context.newPage();observe(second,'B');await second.goto(url,{waitUntil:'domcontentloaded'});
     await second.locator('#continueBtn').click();await second.locator('#app').waitFor();await idle(second);
     assert.equal(await second.evaluate(()=>S.session_id),initial.session_id,'Second tab must continue the same live campaign');
     const secondQuote=await policyReview(second,policy);e.confirmed_policy_review=secondQuote;
