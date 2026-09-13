@@ -162,7 +162,13 @@ fn decisions(w: &WorldState, nation: NationId, command: &Value) -> Value {
         };
         change(&mut rows,&format!("{} sanctions growth drag",target.name()),drag(w),drag(&after),"Annualized growth drag from all sanctioners at today's output shares, including the target's diplomacy ministry. Future output and other decisions can change it.");
     }
-    for headline in after.headlines.iter().skip(w.headlines.len()) { rows.push(json!({"label":"Dated result","before":"Pending","after":headline,"detail":w.date_str()})); }
+    for headline in after.headlines.iter().skip(w.headlines.len()) {
+        // The old peg narrative names nominal penalties even at a cap; the
+        // numeric rows above are the exact outcome this review must present.
+        if kind != "break_currency_peg" {
+            rows.push(json!({"label":"Dated result","before":"Pending","after":headline,"detail":w.date_str()}));
+        }
+    }
     if kind == "set_diplomatic_policy" && rows.is_empty() { warnings.push("These settings already match your standing policy.".into()); }
     let title = target.map_or_else(|| title.to_string(), |target| format!("{title}: {}",target.name()));
     json!({"valid":true,"reason":null,"title":title,"command":command,"description":description,"changes":rows,"warnings":warnings})
