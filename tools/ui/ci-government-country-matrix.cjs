@@ -110,7 +110,7 @@ async function government(page,nation,tab='overview'){
   if(await page.locator('#govPick').inputValue()!==nation)await page.locator('#govPick').selectOption(nation);
   await page.waitForFunction(id=>gov.nation===id&&gov.data?.nation===id&&gov.dataState===S&&!gov.data.error,nation);
   await page.locator('#gov-tab-'+tab).click();
-  return page.evaluate(()=>JSON.parse(JSON.stringify(gov.data)));
+  return page.evaluate(()=>gov.data);
 }
 async function review(page,nation,command){
   const board=await government(page,nation,'decisions'),index=board.actions.findIndex(a=>JSON.stringify(a.command)===JSON.stringify(command));
