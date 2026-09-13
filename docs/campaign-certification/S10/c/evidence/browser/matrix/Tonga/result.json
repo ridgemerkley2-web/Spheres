@@ -1,0 +1,5473 @@
+{
+  "passed": true,
+  "nation": "Tonga",
+  "name": "Tonga",
+  "run": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\tonga-BtrenE\\server",
+  "url": "http://127.0.0.1:58125",
+  "started_utc": "2026-09-13T21:38:55.121Z",
+  "scope": "Fresh CP1 startup, no elapsed days, no grants, no response substitutions; not a long-run or G2 qualification",
+  "test_source": {
+    "revision": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+    "driver_sha256": "5c365cb696b82b6f5c60645b1d3b56dc624a490de70a05f695ba52f2e2e6339f",
+    "review_assertions_sha256": "96c3626ebc461f3ab8a1a6327a1c889915293b616a1d758451ca28f6f4c8a31a",
+    "runtime_source_equal": true
+  },
+  "commands": [
+    {
+      "commands": [
+        {
+          "kind": "secure_pillar",
+          "pillar": "party"
+        }
+      ],
+      "review_token": "decision-v1-b7aadf5ed546c3fc",
+      "review_kind": "government",
+      "session_id": "4080-1789335537788511700-1",
+      "client_id": "3c2bc958-d628-4d56-bbf7-90dd03c08600",
+      "request_seq": 1
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    {
+      "file": "overview-desktop.png",
+      "sha256": "138308be368cb0b884feaa7df54f933bb4bc7a22f53cd548e442668e4ee4064c",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "file": "opening-executive-portrait.png",
+      "sha256": "16c2d1583f557ea2478ec2963cbce949648e4ed9e692ab5d9a5eb176e3476ea8",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "file": "structure-narrow.png",
+      "sha256": "94d5813f8549d31dd08155a92f248c70c39874551b8b13fd9e726b586569274e",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "file": "leadership-desktop.png",
+      "sha256": "23e884f83d6afb4ce5a46efa104676cbb81757912fd4cbeae5a813bcb44d9d82",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "file": "served-refusal-desktop.png",
+      "sha256": "d845a37da107f1b45648bd7bf005f895566e907299fb81f3aa2b2abf442b8118",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "file": "review-desktop.png",
+      "sha256": "70ac1f0fd37ee3104fab4fc6cf90af08a2eb7abf3b3cdcef42a98a0df79c82f7",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "file": "review-narrow.png",
+      "sha256": "b5e3c957b78a7303165ed34516617027fd25d8829722f8cb126d386b2efbfe2b",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "file": "review-narrow-320.png",
+      "sha256": "ad1a1a4a969da7670f1a20934a59022ac1c61bb4fd06078d9f03c7f3ddab1dbd",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      }
+    },
+    {
+      "file": "result-narrow-390.png",
+      "sha256": "c8994278a5f8640ba88b10f03bcfc3e4a22b004a5e230c90fb394a9a8249add7",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "file": "result-narrow-320.png",
+      "sha256": "5395cd7ea8f107f8460a006fab4089ea1ccdd85ec54dbd2ce1327e1c92f472d3",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      }
+    },
+    {
+      "file": "result-desktop.png",
+      "sha256": "4c6976d9d79f930e946066aa1d281578f347a0a07c520b201381c7bc8705616e",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      }
+    },
+    {
+      "file": "continued-overview-narrow.png",
+      "sha256": "f3125b4d52660c8e4965a94ed3d8ed3106155bdbe108a98cf8a0fbc1b30391d7",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "file": "continued-overview-narrow-320.png",
+      "sha256": "31eab0426a86c90edbe8cb59089c4e1750ee220a7bf15a310f9e9adef128e62e",
+      "viewport": {
+        "width": 320,
+        "height": 844
+      }
+    }
+  ],
+  "checks": [
+    "Own overview and parliamentary or institutional structure match native records",
+    "Historical browsing changes the reference reading while retaining the campaign incumbent",
+    "Foreign actions remain view-only; actual served refusal text and disabled controls agree",
+    "All viewing and review/cancellation preserve every native world field and issue no command",
+    "One reviewed confirmation matches exact native political/financial costs, every quoted effect and a dated result; incumbent retained",
+    "Ordinary named Save/Load/Continue retains the complete native campaign, costs and incumbent"
+  ],
+  "timings_ms": {
+    "launch and exact build": 2138.7168999999994,
+    "ordinary fresh campaign": 914.7796999999991,
+    "own government and authored structure": 815.3207000000111,
+    "party leadership and historical browsing": 235.14680000000226,
+    "foreign inspection and served refusal": 324.8197999999975,
+    "legal review and cancellation": 715.3144999999931,
+    "one exact confirmed native decision": 640.8450000000012,
+    "ordinary named Save Load and Continue": 5893.5246999999945
+  },
+  "build": {
+    "revision": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+    "build": {
+      "branch": "codex/campaign-certification",
+      "built_at_unix_seconds": 1789335288,
+      "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+      "distribution": "Local offline game server; source and attribution accompany the release",
+      "revision": "c6c350fbf5b2",
+      "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\tonga-BtrenE\\server",
+      "version": "0.6.0"
+    },
+    "binary_sha256": "37f8cc24c949925fbaf7f6dcdfc8b23422c6996f2b1dc4e8c3d90fcd9504c199",
+    "assets": {
+      "index.html": {
+        "served_sha256": "8d24200cacdbf89b179f6b90dd7b327f189a7d5d41fcc720e6be3c2301fcb1e9",
+        "served_bytes": 1145068,
+        "checkout_sha256": "8d24200cacdbf89b179f6b90dd7b327f189a7d5d41fcc720e6be3c2301fcb1e9",
+        "checkout_bytes": 1145068,
+        "committed_sha256": "da8fcacd6066be3f2a9703fe75cd31083bacadaa1b837b5840e90a3cf7ad166b",
+        "committed_bytes": 1126331,
+        "canonical_checkout_sha256": "da8fcacd6066be3f2a9703fe75cd31083bacadaa1b837b5840e90a3cf7ad166b",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 18737
+        }
+      },
+      "campaign-transport.js": {
+        "served_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+        "served_bytes": 4775,
+        "checkout_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+        "checkout_bytes": 4775,
+        "committed_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+        "committed_bytes": 4693,
+        "canonical_checkout_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 82
+        }
+      },
+      "campaign-ui.js": {
+        "served_sha256": "20641a249ff5b59589736dd9f36f3cdd7b7ab53df29d107d4cf3feccecbf49ba",
+        "served_bytes": 13683,
+        "checkout_sha256": "20641a249ff5b59589736dd9f36f3cdd7b7ab53df29d107d4cf3feccecbf49ba",
+        "checkout_bytes": 13683,
+        "committed_sha256": "9aa62da51602a3d612312e157d37726cc6d2ed73efd17a7e5f2634386b1be312",
+        "committed_bytes": 13473,
+        "canonical_checkout_sha256": "9aa62da51602a3d612312e157d37726cc6d2ed73efd17a7e5f2634386b1be312",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 210
+        }
+      },
+      "fiscal-recovery-ui.js": {
+        "served_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "served_bytes": 11098,
+        "checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "checkout_bytes": 11098,
+        "committed_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "committed_bytes": 11098,
+        "canonical_checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "cash-flow-ui.js": {
+        "served_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+        "served_bytes": 30198,
+        "checkout_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+        "checkout_bytes": 30198,
+        "committed_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+        "committed_bytes": 29951,
+        "canonical_checkout_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 247
+        }
+      },
+      "companies-ui.js": {
+        "served_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "served_bytes": 32920,
+        "checkout_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "checkout_bytes": 32920,
+        "committed_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "committed_bytes": 32920,
+        "canonical_checkout_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "companies.css": {
+        "served_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+        "served_bytes": 13908,
+        "checkout_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+        "checkout_bytes": 13908,
+        "committed_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+        "committed_bytes": 13798,
+        "canonical_checkout_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 110
+        }
+      },
+      "government-ui.js": {
+        "served_sha256": "661d3162178cff8de0b0c94fa1915b642878bdc12eb4a75b0703216b094883b3",
+        "served_bytes": 50914,
+        "checkout_sha256": "661d3162178cff8de0b0c94fa1915b642878bdc12eb4a75b0703216b094883b3",
+        "checkout_bytes": 50914,
+        "committed_sha256": "661d3162178cff8de0b0c94fa1915b642878bdc12eb4a75b0703216b094883b3",
+        "committed_bytes": 50914,
+        "canonical_checkout_sha256": "661d3162178cff8de0b0c94fa1915b642878bdc12eb4a75b0703216b094883b3",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "government-ui.css": {
+        "served_sha256": "6fdcc3adc0f431128d77667c80cdad632c1db35149dcc7aecfab91accb87542f",
+        "served_bytes": 35931,
+        "checkout_sha256": "6fdcc3adc0f431128d77667c80cdad632c1db35149dcc7aecfab91accb87542f",
+        "checkout_bytes": 35931,
+        "committed_sha256": "ddb0a7f80200be5c1986a90ed770cd989c355cd220e5d45057b6c053f563e1bb",
+        "committed_bytes": 35603,
+        "canonical_checkout_sha256": "ddb0a7f80200be5c1986a90ed770cd989c355cd220e5d45057b6c053f563e1bb",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 328
+        }
+      },
+      "campaign-operations-ui.js": {
+        "served_sha256": "4da1d39397733cad49125c2fd30e3d57175f89b71e5ddcb75ba35c6a0a730c00",
+        "served_bytes": 21110,
+        "checkout_sha256": "4da1d39397733cad49125c2fd30e3d57175f89b71e5ddcb75ba35c6a0a730c00",
+        "checkout_bytes": 21110,
+        "committed_sha256": "ab7ec85f87a44ab316a700a7206a05f7057b8bfabd51d1d4d9dd5ddb5e0a7bf5",
+        "committed_bytes": 20888,
+        "canonical_checkout_sha256": "ab7ec85f87a44ab316a700a7206a05f7057b8bfabd51d1d4d9dd5ddb5e0a7bf5",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 222
+        }
+      },
+      "campaign-operations-ui.css": {
+        "served_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+        "served_bytes": 8447,
+        "checkout_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+        "checkout_bytes": 8447,
+        "committed_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+        "committed_bytes": 8367,
+        "canonical_checkout_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 80
+        }
+      },
+      "map-controls.js": {
+        "served_sha256": "ce7553d9b43a38b00581e67ef66aa23e5f03a8b4abde9c85171f28f3e6bb4e9e",
+        "served_bytes": 10651,
+        "checkout_sha256": "ce7553d9b43a38b00581e67ef66aa23e5f03a8b4abde9c85171f28f3e6bb4e9e",
+        "checkout_bytes": 10651,
+        "committed_sha256": "79b99912a9406b43f22d786ea7063d47fc05d738e432e9749561eb1fdff03fd7",
+        "committed_bytes": 10442,
+        "canonical_checkout_sha256": "79b99912a9406b43f22d786ea7063d47fc05d738e432e9749561eb1fdff03fd7",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 209
+        }
+      },
+      "map-controls.css": {
+        "served_sha256": "07d2f965f3cb90a04095ac7ec3679307548549d4ea9612d299d2a8b75e35527a",
+        "served_bytes": 9732,
+        "checkout_sha256": "07d2f965f3cb90a04095ac7ec3679307548549d4ea9612d299d2a8b75e35527a",
+        "checkout_bytes": 9732,
+        "committed_sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+        "committed_bytes": 9631,
+        "canonical_checkout_sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 101
+        }
+      },
+      "guidance-ui.js": {
+        "served_sha256": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+        "served_bytes": 21247,
+        "checkout_sha256": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+        "checkout_bytes": 21247,
+        "committed_sha256": "39eb68189c78ea74ee89b4bc92ac6153326accfe0d2300ea401ee696bddc38ea",
+        "committed_bytes": 21072,
+        "canonical_checkout_sha256": "39eb68189c78ea74ee89b4bc92ac6153326accfe0d2300ea401ee696bddc38ea",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 175
+        }
+      },
+      "guidance-ui.css": {
+        "served_sha256": "169531e25171ef1448b38b0832050712392c94e74f8bb0f96e8727f77d3a5b2f",
+        "served_bytes": 7496,
+        "checkout_sha256": "169531e25171ef1448b38b0832050712392c94e74f8bb0f96e8727f77d3a5b2f",
+        "checkout_bytes": 7496,
+        "committed_sha256": "4f959346eae6c81209da51b76717fd1d4b04a6bcfe0f0ae84032adc465e288ad",
+        "committed_bytes": 7490,
+        "canonical_checkout_sha256": "4f959346eae6c81209da51b76717fd1d4b04a6bcfe0f0ae84032adc465e288ad",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 6
+        }
+      },
+      "globe3d.js": {
+        "served_sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9",
+        "served_bytes": 36245,
+        "checkout_sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9",
+        "checkout_bytes": 36245,
+        "committed_sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "committed_bytes": 35548,
+        "canonical_checkout_sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 697
+        }
+      },
+      "city-layer.js": {
+        "served_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+        "served_bytes": 12449,
+        "checkout_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+        "checkout_bytes": 12449,
+        "committed_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+        "committed_bytes": 12222,
+        "canonical_checkout_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 227
+        }
+      },
+      "city-mesh.js": {
+        "served_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+        "served_bytes": 87641,
+        "checkout_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+        "checkout_bytes": 87641,
+        "committed_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+        "committed_bytes": 86075,
+        "canonical_checkout_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 1566
+        }
+      },
+      "water-detail.js": {
+        "served_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+        "served_bytes": 11962,
+        "checkout_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+        "checkout_bytes": 11962,
+        "committed_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+        "committed_bytes": 11729,
+        "canonical_checkout_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 233
+        }
+      },
+      "equipment-mesh.js": {
+        "served_sha256": "0a312b09000429d644f369812d1be5a1fab3b545aa3e7301721a19d319f6f361",
+        "served_bytes": 178146,
+        "checkout_sha256": "0a312b09000429d644f369812d1be5a1fab3b545aa3e7301721a19d319f6f361",
+        "checkout_bytes": 178146,
+        "committed_sha256": "74400279143ac848f2b1f51eca03f9350a5020b27eec31fe0e5809eb6bf3b547",
+        "committed_bytes": 175650,
+        "canonical_checkout_sha256": "74400279143ac848f2b1f51eca03f9350a5020b27eec31fe0e5809eb6bf3b547",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 2496
+        }
+      },
+      "equipment-ui.js": {
+        "served_sha256": "af767b4d226a0ccdfae63a89e4864f8c5d8d9f82b37cb729b247729e28d34cb1",
+        "served_bytes": 126201,
+        "checkout_sha256": "af767b4d226a0ccdfae63a89e4864f8c5d8d9f82b37cb729b247729e28d34cb1",
+        "checkout_bytes": 126201,
+        "committed_sha256": "af767b4d226a0ccdfae63a89e4864f8c5d8d9f82b37cb729b247729e28d34cb1",
+        "committed_bytes": 126201,
+        "canonical_checkout_sha256": "af767b4d226a0ccdfae63a89e4864f8c5d8d9f82b37cb729b247729e28d34cb1",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "equipment-ui.css": {
+        "served_sha256": "cb3efe6b42f6c40639384219e6eac40cb1ac9c8804eb273f94be7f2b64206a67",
+        "served_bytes": 36916,
+        "checkout_sha256": "cb3efe6b42f6c40639384219e6eac40cb1ac9c8804eb273f94be7f2b64206a67",
+        "checkout_bytes": 36916,
+        "committed_sha256": "ca8931a3821837aeb68418af2e144de22cd300b44f0591b14ee0cb15a8377d30",
+        "committed_bytes": 36570,
+        "canonical_checkout_sha256": "ca8931a3821837aeb68418af2e144de22cd300b44f0591b14ee0cb15a8377d30",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 346
+        }
+      },
+      "agency-ui.js": {
+        "served_sha256": "166114774f62d59b2b38bb2fd295fe2214e7dd1ef1032780f305c01b9606a5f4",
+        "checkout_sha256": "166114774f62d59b2b38bb2fd295fe2214e7dd1ef1032780f305c01b9606a5f4",
+        "committed_sha256": "166114774f62d59b2b38bb2fd295fe2214e7dd1ef1032780f305c01b9606a5f4",
+        "canonical_checkout_sha256": "166114774f62d59b2b38bb2fd295fe2214e7dd1ef1032780f305c01b9606a5f4",
+        "served_bytes": 16331,
+        "newline_normalization": "CRLF to LF for source comparison only; served bytes equal checkout exactly"
+      },
+      "agency.css": {
+        "served_sha256": "fc6bc7c28740c5c7c06712fb59e6cf4be1945deab82d9a774aed28a6a6e59f1b",
+        "checkout_sha256": "fc6bc7c28740c5c7c06712fb59e6cf4be1945deab82d9a774aed28a6a6e59f1b",
+        "committed_sha256": "fdd1e336a01f173d9ae07a5297269b2fddf85e4d4f34d6e3174b91d840198d30",
+        "canonical_checkout_sha256": "fdd1e336a01f173d9ae07a5297269b2fddf85e4d4f34d6e3174b91d840198d30",
+        "served_bytes": 4131,
+        "newline_normalization": "CRLF to LF for source comparison only; served bytes equal checkout exactly"
+      }
+    }
+  },
+  "capabilities": {
+    "daily": true,
+    "population": true,
+    "fiscal": true,
+    "connected_economy": true,
+    "companies": true,
+    "supplier_operations": true,
+    "operational_warfare": true
+  },
+  "archives": {
+    "before": {
+      "version": 1,
+      "input": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\tonga-BtrenE\\server\\audit-captures\\s10b-before-views-dK12hK\\s10b-before-views.json",
+        "bytes": 13148766,
+        "sha256": "fee187e2209ec74ff36b8de4f01e0ec5d2dc29b5fa4e5dc637c723b414468e45"
+      },
+      "requested": {
+        "buyer": "Tonga",
+        "revision": null,
+        "seller": null,
+        "company": null,
+        "product": null
+      },
+      "buyer": {
+        "id": "Tonga",
+        "tech_sha256": "3bbf756d55189acbce3e84b7a79ac834678f8b011532e70970e4952387f04b33",
+        "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+        "revision_ids": [],
+        "held_by_revision": {},
+        "held_units": 0,
+        "buyer_revision": null,
+        "maintenance_plan": null,
+        "program_budget": null
+      },
+      "supplier": null,
+      "imports": {
+        "ids": [],
+        "matching": []
+      },
+      "canonical": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\tonga-BtrenE\\archive-audit\\021-s10b-before-views.canonical",
+        "bytes": 12116204,
+        "sha256": "ec8c0f6b3c0e24ede7170bb10f6fc6a61e04e9fc5b86c2bb227ff3fa06c716f0",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": []
+      }
+    },
+    "after_cancel": {
+      "version": 1,
+      "input": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\tonga-BtrenE\\server\\audit-captures\\s10b-after-cancel-A5I4My\\s10b-after-cancel.json",
+        "bytes": 13148766,
+        "sha256": "94ad8b2f26ccd1162ecddb063da8e9ab18fb3264237e8c8bf208e5177a76aa77"
+      },
+      "requested": {
+        "buyer": "Tonga",
+        "revision": null,
+        "seller": null,
+        "company": null,
+        "product": null
+      },
+      "buyer": {
+        "id": "Tonga",
+        "tech_sha256": "3bbf756d55189acbce3e84b7a79ac834678f8b011532e70970e4952387f04b33",
+        "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+        "revision_ids": [],
+        "held_by_revision": {},
+        "held_units": 0,
+        "buyer_revision": null,
+        "maintenance_plan": null,
+        "program_budget": null
+      },
+      "supplier": null,
+      "imports": {
+        "ids": [],
+        "matching": []
+      },
+      "canonical": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\tonga-BtrenE\\archive-audit\\022-s10b-after-cancel.canonical",
+        "bytes": 12116204,
+        "sha256": "ec8c0f6b3c0e24ede7170bb10f6fc6a61e04e9fc5b86c2bb227ff3fa06c716f0",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": []
+      }
+    },
+    "after_action": {
+      "version": 1,
+      "input": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\tonga-BtrenE\\server\\audit-captures\\s10b-after-action-9wqiNn\\s10b-after-action.json",
+        "bytes": 13149420,
+        "sha256": "3fda743a36068d0274e32a0b5a637e4ebb00b0ffa8287aca025eae820b2e27a8"
+      },
+      "requested": {
+        "buyer": "Tonga",
+        "revision": null,
+        "seller": null,
+        "company": null,
+        "product": null
+      },
+      "buyer": {
+        "id": "Tonga",
+        "tech_sha256": "3bbf756d55189acbce3e84b7a79ac834678f8b011532e70970e4952387f04b33",
+        "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+        "revision_ids": [],
+        "held_by_revision": {},
+        "held_units": 0,
+        "buyer_revision": null,
+        "maintenance_plan": null,
+        "program_budget": null
+      },
+      "supplier": null,
+      "imports": {
+        "ids": [],
+        "matching": []
+      },
+      "canonical": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\tonga-BtrenE\\archive-audit\\023-s10b-after-action.canonical",
+        "bytes": 12116884,
+        "sha256": "ce7a0903443791651eb36f8e7ecc263ce3ba59f50b917c2e70af70e6e6e06adc",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": []
+      }
+    },
+    "after_load_continue": {
+      "version": 1,
+      "input": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\tonga-BtrenE\\server\\audit-captures\\s10b-after-load-continue-Fbr3kp\\s10b-after-load-continue.json",
+        "bytes": 13149420,
+        "sha256": "c5bd52508fd9a404f83a353ad4f063e0f50a36644d6a826ab152849d2f955b02"
+      },
+      "requested": {
+        "buyer": "Tonga",
+        "revision": null,
+        "seller": null,
+        "company": null,
+        "product": null
+      },
+      "buyer": {
+        "id": "Tonga",
+        "tech_sha256": "3bbf756d55189acbce3e84b7a79ac834678f8b011532e70970e4952387f04b33",
+        "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+        "revision_ids": [],
+        "held_by_revision": {},
+        "held_units": 0,
+        "buyer_revision": null,
+        "maintenance_plan": null,
+        "program_budget": null
+      },
+      "supplier": null,
+      "imports": {
+        "ids": [],
+        "matching": []
+      },
+      "canonical": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\tonga-BtrenE\\archive-audit\\024-s10b-after-load-continue.canonical",
+        "bytes": 12116884,
+        "sha256": "ce7a0903443791651eb36f8e7ecc263ce3ba59f50b917c2e70af70e6e6e06adc",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": []
+      }
+    }
+  },
+  "opening_portrait": {
+    "person_id": "taufaahau_tupou_iv",
+    "manifest_sha256": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d",
+    "asset": "spheres-web/ui/person-portraits/taufaahau-tupou-iv-cartoon-1990-v1.png",
+    "art_window": {
+      "from": "1990-01-01",
+      "to": "1991-01-01"
+    },
+    "served_sha256": "f879c9efa4eb70b622c0bae98da0b67950fbe9aba535b43c2353af052449534f",
+    "committed_sha256": "f879c9efa4eb70b622c0bae98da0b67950fbe9aba535b43c2353af052449534f",
+    "checkout_sha256": "f879c9efa4eb70b622c0bae98da0b67950fbe9aba535b43c2353af052449534f",
+    "served_bytes": 1655402,
+    "image": {
+      "url": "/art/people/taufaahau-tupou-iv-cartoon-1990-v1.png",
+      "complete": true,
+      "width": 1024,
+      "height": 1536,
+      "alt": "Cartoon avatar of Taufa'ahau Tupou IV"
+    }
+  },
+  "opening_government": {
+    "actions": [
+      {
+        "affordable": true,
+        "blurb": null,
+        "category": "institutions",
+        "command": {
+          "kind": "secure_pillar",
+          "pillar": "party"
+        },
+        "detail": "pay for its loyalty",
+        "effects": [],
+        "key": "secure_pillar:party",
+        "kind": "secure_pillar",
+        "label": "Secure the thirty-three hereditary nobles",
+        "price": 14,
+        "refusal": null
+      },
+      {
+        "affordable": true,
+        "blurb": null,
+        "category": "institutions",
+        "command": {
+          "kind": "secure_pillar",
+          "pillar": "clergy"
+        },
+        "detail": "pay for its loyalty",
+        "effects": [],
+        "key": "secure_pillar:clergy",
+        "kind": "secure_pillar",
+        "label": "Secure the Free Wesleyan Church of Tonga",
+        "price": 14,
+        "refusal": null
+      },
+      {
+        "affordable": true,
+        "blurb": null,
+        "category": "institutions",
+        "command": {
+          "kind": "secure_pillar",
+          "pillar": "army"
+        },
+        "detail": "pay for its loyalty",
+        "effects": [],
+        "key": "secure_pillar:army",
+        "kind": "secure_pillar",
+        "label": "Secure the Tonga Defence Services",
+        "price": 14,
+        "refusal": null
+      },
+      {
+        "affordable": true,
+        "blurb": "Put the apparatus on the street. Order returns. Everyone who cares about how you govern stops pretending they do not notice.",
+        "category": "reform",
+        "command": {
+          "id": "security_crackdown",
+          "kind": "stratagem"
+        },
+        "detail": "A restive population and a government willing to coerce it",
+        "effects": [],
+        "key": "stratagem:security_crackdown",
+        "kind": "stratagem",
+        "label": "Security Crackdown",
+        "price": 20,
+        "refusal": "Security Crackdown is no longer open to Tonga."
+      },
+      {
+        "affordable": true,
+        "blurb": "Open it up. The world warms to you and your own people find their voice — including the ones who never wanted to be ruled by you.",
+        "category": "reform",
+        "command": {
+          "id": "liberalisation",
+          "kind": "stratagem"
+        },
+        "detail": "An authoritarian state under pressure it cannot simply crush",
+        "effects": [],
+        "key": "stratagem:liberalisation",
+        "kind": "stratagem",
+        "label": "Political Liberalisation",
+        "price": 28,
+        "refusal": null
+      },
+      {
+        "affordable": true,
+        "blurb": null,
+        "category": "reform",
+        "command": {
+          "bloc": "western",
+          "kind": "declare_programme"
+        },
+        "detail": "change the regime's colour",
+        "effects": [],
+        "key": "declare_programme:western",
+        "kind": "programme",
+        "label": "Declare a Western programme",
+        "price": 35,
+        "refusal": "The Western movement in Tonga is 20% of the country (25% needed), and it is not the colour of the regime's strongest institution."
+      },
+      {
+        "affordable": true,
+        "blurb": null,
+        "category": "reform",
+        "command": {
+          "bloc": "nationalist",
+          "kind": "declare_programme"
+        },
+        "detail": "change the regime's colour",
+        "effects": [],
+        "key": "declare_programme:nationalist",
+        "kind": "programme",
+        "label": "Declare a Nationalist programme",
+        "price": 35,
+        "refusal": "The Nationalist movement in Tonga is 20% of the country (25% needed), and it is not the colour of the regime's strongest institution."
+      },
+      {
+        "affordable": true,
+        "blurb": null,
+        "category": "reform",
+        "command": {
+          "kind": "convene_round_table"
+        },
+        "detail": "first free elections in six months",
+        "effects": [],
+        "key": "convene_round_table",
+        "kind": "round_table",
+        "label": "Convene a round table",
+        "price": 30,
+        "refusal": "Tonga has no parties to seat at a round table."
+      }
+    ],
+    "bar": [
+      {
+        "abroad": [],
+        "backing": 0,
+        "banned": false,
+        "bloc": "Western",
+        "governing": false,
+        "ruling": false,
+        "share": 0.19920318725099603
+      },
+      {
+        "abroad": [],
+        "backing": 0,
+        "banned": false,
+        "bloc": "Communist",
+        "governing": false,
+        "ruling": false,
+        "share": 0.00199203187250996
+      },
+      {
+        "abroad": [],
+        "backing": 0,
+        "banned": false,
+        "bloc": "Nationalist",
+        "governing": false,
+        "ruling": false,
+        "share": 0.19920318725099603
+      },
+      {
+        "abroad": [],
+        "backing": 0,
+        "banned": false,
+        "bloc": "Islamist",
+        "governing": false,
+        "ruling": false,
+        "share": 0.00199203187250996
+      },
+      {
+        "abroad": [],
+        "backing": 0,
+        "banned": false,
+        "bloc": "NonAligned",
+        "governing": true,
+        "ruling": true,
+        "share": 0.5976095617529881
+      }
+    ],
+    "briefing": {
+      "attention": [
+        {
+          "action_index": 0,
+          "detail": "Your least loyal armed institution is at 65.0% loyalty; recorded regime pressure is 0.0. Ordinary regime survival is live. A reviewed loyalty payment costs both political capital and public money.",
+          "id": "institution_pressure",
+          "route": "budget",
+          "title": "Keep the thirty-three hereditary nobles in view",
+          "tone": "info"
+        },
+        {
+          "detail": "Its gauges describe current conditions, but those takeover routes remain closed for calibration. This does not disable ordinary elections, cabinet failures or regime coups.",
+          "id": "ideology_watch",
+          "title": "The ideological takeover watch is inactive",
+          "tone": "info"
+        }
+      ],
+      "date_label": "1 Jan 1990",
+      "drivers": [
+        {
+          "detail": "Inflation changes incumbent support and political standing; business institutions also respond to rising prices.",
+          "id": "prices",
+          "label": "Prices",
+          "route": "budget",
+          "value": "9.7%"
+        },
+        {
+          "detail": "Delivered growth affects incumbent support, political standing and business loyalty. Review construction and the economy behind it.",
+          "id": "growth",
+          "label": "Economic growth",
+          "route": "construction",
+          "value": "0.0%"
+        },
+        {
+          "detail": "Disorder and separatism feed public discontent and the appeal of opposition movements; reforms can change both.",
+          "id": "order",
+          "label": "Order and cohesion",
+          "route": "budget",
+          "value": "68.0 stability · 2.0% separatism"
+        },
+        {
+          "detail": "War exhaustion lowers political standing and army loyalty and shifts support away from the government.",
+          "id": "war",
+          "label": "War exhaustion",
+          "route": "military",
+          "value": "0.0%"
+        }
+      ],
+      "links": [
+        {
+          "detail": "Review defense, pensions and the services behind standing and loyalty.",
+          "id": "budget",
+          "label": "Ministry budgets",
+          "route": "budget"
+        },
+        {
+          "detail": "See the treasury and debt that fund one-time institutional payments.",
+          "id": "cash_flow",
+          "label": "Public finances",
+          "route": "cash_flow"
+        },
+        {
+          "detail": "Review the investments behind the country's economic performance.",
+          "id": "construction",
+          "label": "Construction",
+          "route": "construction"
+        },
+        {
+          "detail": "Political reforms also change relations abroad.",
+          "id": "diplomacy",
+          "label": "Diplomacy",
+          "route": "diplomacy"
+        }
+      ],
+      "stats": [
+        {
+          "detail": "Decisions spend this stock. Growth, stable prices, order, war and your government determine how it recovers.",
+          "key": "political_capital",
+          "label": "Political capital",
+          "value": "51.3 / 100"
+        },
+        {
+          "detail": "Order affects public support, institutional loyalty and the government's survival.",
+          "key": "stability",
+          "label": "National stability",
+          "value": "68.0 / 100"
+        },
+        {
+          "detail": "Reads the same order, price, growth and war pressures that move political support.",
+          "key": "discontent",
+          "label": "Public discontent",
+          "value": "13.3%"
+        },
+        {
+          "detail": "Institutions respond to the country's policies and conditions; a one-time payment does not permanently change their targets.",
+          "key": "loyalty",
+          "label": "Mean institutional loyalty",
+          "value": "65.0%"
+        },
+        {
+          "detail": "Recorded pressure from armed institutions. Ordinary regime coups remain part of the simulation.",
+          "key": "coup_pressure",
+          "label": "Regime pressure",
+          "value": "0.0"
+        },
+        {
+          "detail": "This government rests on institutions rather than an electoral majority.",
+          "key": "office",
+          "label": "Time in office",
+          "value": "0 months"
+        }
+      ],
+      "summary": "the House of Tupou rests on the institutions below. Their loyalty responds to spending, prices, growth, order and war."
+    },
+    "coup_pressure": 0,
+    "discontent": 0.13333333333333336,
+    "electoral": false,
+    "government_of_the_day": null,
+    "government_of_the_day_name": null,
+    "government_seats": 0,
+    "groups": [],
+    "leader": {
+      "also": [
+        {
+          "name": "Prince Fatafehi Tu'ipelehake",
+          "office": "Prime Minister",
+          "party": null,
+          "since": "1965-12-16"
+        }
+      ],
+      "heir": {
+        "name": "Crown Prince Tupouto'a (Siaosi Taufa'ahau Manumataongo)",
+        "office": "Crown Prince",
+        "since": "1966-05-04"
+      },
+      "name": "Taufa'ahau Tupou IV",
+      "native": "Tāufaʻāhau Tupou IV",
+      "office": "King",
+      "pillar": "Party",
+      "pillar_name": "the thirty-three hereditary nobles",
+      "since": "1965-12-16"
+    },
+    "mine": true,
+    "months_in_office": 0,
+    "nation": "Tonga",
+    "nation_name": "Tonga",
+    "next_election": null,
+    "on": true,
+    "party_leadership": {
+      "campaign_date": "1990-01-01",
+      "date": "1990-01-01",
+      "eligibility_context": "campaign",
+      "enabled": true,
+      "executive_mortality_supported": true,
+      "executive_person": {
+        "born": {
+          "kind": "day",
+          "value": "1918-07-04"
+        },
+        "died": null,
+        "id": "taufaahau_tupou_iv",
+        "name": "Taufa'ahau Tupou IV",
+        "native": "Tāufaʻāhau Tupou IV",
+        "portrait": {
+          "composition": "full-body",
+          "credit": "Spheres cartoon adaptation generated with OpenAI image_gen from Comet Photo AG (Zurich) / ETH Library, Image Archive, Com_LC1500-0777-001 (1985), CC BY-SA 4.0. Cartoon adaptation and any copyrightable contributions are also offered under CC BY-SA 4.0; https://creativecommons.org/licenses/by-sa/4.0/. Changed to full-body cartoon, simplified shapes and near-1990 age treatment. No endorsement implied.",
+          "era_note": "Near-1990 artistic appearance informed by an inspected 1985 portrait; no exact 1990 photograph established. Conservatively displayed from 1 January 1990 up to but not including 1 January 1991. Standing body, trousers and shoes are artistic extensions of the observed civilian suit. This artwork does not establish reign, party membership, candidate eligibility or later appearance.",
+          "from": "1990-01-01",
+          "license": "generated",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "method": "generated",
+          "source_credit": "Comet Photo AG (Zurich) / ETH Library, Image Archive, Com_LC1500-0777-001; photograph dated 1985, provided by ETH Library through Wikimedia Commons. Retained as the unchanged 1280-pixel JPEG preview of the archive TIFF.",
+          "source_license": "CC BY-SA 4.0",
+          "source_license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "source_url": "https://commons.wikimedia.org/wiki/File:ETH-BIB-Taufa%27ahau_Tupou,_K%C3%B6nig_von_Tonga-Com_LC1500-0777-001.tif",
+          "status": "illustrated-likeness",
+          "style": "cartoon",
+          "to": "1991-01-01",
+          "url": "/art/people/taufaahau-tupou-iv-cartoon-1990-v1.png"
+        },
+        "sources": [
+          "https://www.worldstatesmen.org/Tonga.html",
+          "https://rulers.org/rult.html",
+          "https://en.wikipedia.org/wiki/T%C4%81ufa%CA%BB%C4%81hau_Tupou_IV",
+          "https://en.wikipedia.org/wiki/George_Tupou_V"
+        ]
+      },
+      "executive_policy": {
+        "applies_to": "new_executive_selections_only",
+        "existing_bindings_preserved": true,
+        "future_executive_role_review_required": false,
+        "historical_default": "party_only",
+        "institution": null,
+        "note": "Party leadership and national office are separate roles. Calendar references and party chairs never schedule a presidency.",
+        "presidential_role_review_required": false,
+        "version": 1
+      },
+      "future_policy": {
+        "assumptions": [
+          "All candidate names, biographies, birthdays, appearances and future careers are invented game content. Coincidental resemblance is unintentional.",
+          "Name pools are authored examples, not an exhaustive or demographic representation of any country; bilingual and multiethnic populations require further editorial review.",
+          "Existing simulation institutions and ideology supply fictional career themes. This does not forecast real institutions or party survival after the research cutoff.",
+          "Four stable candidates per party component become eligible after the cutoff, only through actual gameplay succession. No candidate is a scheduled election winner.",
+          "Historical gaps before the cutoff remain unfilled; no fictional candidate may be presented as a historical leader.",
+          "Names use authored romanized forms; native spellings are not invented."
+        ],
+        "candidate_count": 2556,
+        "candidates_per_component": 4,
+        "eligible": false,
+        "from": "2026-09-08",
+        "historical_reference_through": "2026-09-07",
+        "incumbents_retained": true,
+        "profile_count": 4,
+        "research": [
+          {
+            "applies_to": "Institutional framing only; not evidence for any fictional person or a forecast.",
+            "fact": "Political parties recruit candidates, organize leadership selection, formulate programmes and aggregate interests. Selection institutions differ between parties.",
+            "id": "idea_party_organization",
+            "url": "https://www.idea.int/publications/catalogue/html/political-parties-constitutional-roles-recognition-rights-and"
+          },
+          {
+            "applies_to": "Parliamentary career archetype example; not a universal constitutional rule.",
+            "fact": "Government and opposition parties have distinct parliamentary roles; party leaders and shadow teams organize parliamentary work.",
+            "id": "uk_parliament_party_roles",
+            "url": "https://www.parliament.uk/about/mps-and-lords/members/partysystem/"
+          }
+        ],
+        "scope": "Every current simulation party in POLITIES and D4_POLITIES, including researched coalition components; not every real-world party.",
+        "selection": "actual_succession_events_only",
+        "status": "authored_gameplay_profiles",
+        "until_exclusive": "2036-01-01",
+        "version": 1
+      },
+      "nation": "Tonga",
+      "note": "Historical references end on 7 September 2026. Fictional successor candidates are available from 8 September 2026 through 2035. Saved incumbents change only through actual campaign events; no historical or future election outcome is scheduled.",
+      "parties": [],
+      "reference_from": "1990-01-01",
+      "reference_through": "2026-09-07",
+      "roster_version": 1
+    },
+    "pillars": [
+      {
+        "bloc": "NonAligned",
+        "key": "party",
+        "loyalty": 0.65,
+        "name": "the thirty-three hereditary nobles",
+        "pillar": "Party"
+      },
+      {
+        "bloc": "Western",
+        "key": "clergy",
+        "loyalty": 0.65,
+        "name": "the Free Wesleyan Church of Tonga",
+        "pillar": "Clergy"
+      },
+      {
+        "bloc": "Nationalist",
+        "key": "army",
+        "loyalty": 0.65,
+        "name": "the Tonga Defence Services",
+        "pillar": "Army"
+      }
+    ],
+    "political_capital": 51.3312,
+    "ruling_bloc": "NonAligned",
+    "ruling_institution": "the House of Tupou",
+    "strain": 0,
+    "system": "first past the post",
+    "takeover": {
+      "collapse": {
+        "armed": false,
+        "gauges": [
+          {
+            "met": false,
+            "name": "stability",
+            "progress": 0.36363636363636365,
+            "sense": "Below",
+            "trigger": 12,
+            "value": 68
+          }
+        ],
+        "half_armed": false,
+        "open": false,
+        "reason": "calibration pending"
+      },
+      "coup": {
+        "armed": false,
+        "gauges": [
+          {
+            "met": false,
+            "name": "army loyalty",
+            "progress": 0.5384615384615384,
+            "sense": "Below",
+            "trigger": 0.35,
+            "value": 0.65
+          },
+          {
+            "met": false,
+            "name": "discontent",
+            "progress": 0.5333333333333334,
+            "sense": "Above",
+            "trigger": 0.25,
+            "value": 0.13333333333333336
+          },
+          {
+            "met": false,
+            "name": "coup pressure",
+            "progress": 0,
+            "sense": "Above",
+            "trigger": 1,
+            "value": 0
+          }
+        ],
+        "half_armed": true,
+        "open": false,
+        "reason": "calibration pending"
+      },
+      "half_armed": true,
+      "round_table": {
+        "armed": false,
+        "gauges": [
+          {
+            "met": false,
+            "name": "Western influence",
+            "progress": 0.49800796812749004,
+            "sense": "Above",
+            "trigger": 0.4,
+            "value": 0.19920318725099603
+          },
+          {
+            "met": false,
+            "name": "party loyalty",
+            "progress": 0.7777777777777778,
+            "sense": "Below",
+            "trigger": 0.55,
+            "value": 0.65
+          },
+          {
+            "met": true,
+            "name": "stability",
+            "progress": 1,
+            "sense": "Inside",
+            "trigger": 30,
+            "upper": 70,
+            "value": 68
+          }
+        ],
+        "half_armed": true,
+        "open": false,
+        "reason": "calibration pending"
+      },
+      "uprising": {
+        "armed": false,
+        "gauges": [
+          {
+            "met": false,
+            "name": "discontent",
+            "progress": 0.29629629629629634,
+            "sense": "Above",
+            "trigger": 0.45,
+            "value": 0.13333333333333336
+          },
+          {
+            "bloc": "Nationalist",
+            "met": false,
+            "name": "challenger influence",
+            "progress": 0.4426737494466578,
+            "sense": "Above",
+            "trigger": 0.45,
+            "value": 0.19920318725099603
+          }
+        ],
+        "half_armed": false,
+        "open": false,
+        "reason": "calibration pending"
+      }
+    },
+    "term_months": 36,
+    "upkeep": 0
+  },
+  "historical_reference": {
+    "date": "2000-01-01",
+    "nation": "Tonga"
+  },
+  "foreign_inspection": {
+    "nation": "France",
+    "mine": false,
+    "disabled_review_buttons": 13,
+    "leader": {
+      "also": [
+        {
+          "name": "Michel Rocard",
+          "office": "Prime Minister of France",
+          "party": "fr_ps",
+          "since": "1988-05-10"
+        }
+      ],
+      "name": "Francois Mitterrand",
+      "native": "François Maurice Adrien Marie Mitterrand",
+      "office": "President of the Republic",
+      "party": "fr_ps",
+      "party_name": "Socialist Party",
+      "since": "1981-05-21"
+    }
+  },
+  "served_refusals": [
+    {
+      "index": 3,
+      "label": "Security Crackdown",
+      "command": {
+        "id": "security_crackdown",
+        "kind": "stratagem"
+      },
+      "reason": "Security Crackdown is no longer open to Tonga."
+    },
+    {
+      "index": 5,
+      "label": "Declare a Western programme",
+      "command": {
+        "bloc": "western",
+        "kind": "declare_programme"
+      },
+      "reason": "The Western movement in Tonga is 20% of the country (25% needed), and it is not the colour of the regime's strongest institution."
+    },
+    {
+      "index": 6,
+      "label": "Declare a Nationalist programme",
+      "command": {
+        "bloc": "nationalist",
+        "kind": "declare_programme"
+      },
+      "reason": "The Nationalist movement in Tonga is 20% of the country (25% needed), and it is not the colour of the regime's strongest institution."
+    },
+    {
+      "index": 7,
+      "label": "Convene a round table",
+      "command": {
+        "kind": "convene_round_table"
+      },
+      "reason": "Tonga has no parties to seat at a round table."
+    }
+  ],
+  "mobile_review": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigation": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "labels": [
+          {
+            "id": "gov-tab-overview",
+            "text": "Overview",
+            "rect": {
+              "left": 25,
+              "top": 309,
+              "right": 192.5,
+              "bottom": 353,
+              "width": 167.5,
+              "height": 44
+            },
+            "text_rects": [
+              {
+                "left": 81.09375,
+                "top": 321.90625,
+                "right": 136.390625,
+                "bottom": 338.90625,
+                "width": 55.296875,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-overview",
+                "scrollLeft": 0,
+                "scrollWidth": 166,
+                "clientWidth": 166
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          {
+            "id": "gov-tab-decisions",
+            "text": "Governing decisions",
+            "rect": {
+              "left": 197.5,
+              "top": 309,
+              "right": 365,
+              "bottom": 353,
+              "width": 167.5,
+              "height": 44
+            },
+            "text_rects": [
+              {
+                "left": 221.640625,
+                "top": 321.90625,
+                "right": 340.859375,
+                "bottom": 338.90625,
+                "width": 119.21875,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-decisions",
+                "scrollLeft": 0,
+                "scrollWidth": 166,
+                "clientWidth": 166
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          {
+            "id": "gov-tab-politics",
+            "text": "Regime & institutions",
+            "rect": {
+              "left": 25,
+              "top": 358,
+              "right": 192.5,
+              "bottom": 402,
+              "width": 167.5,
+              "height": 44
+            },
+            "text_rects": [
+              {
+                "left": 45.359375,
+                "top": 370.90625,
+                "right": 172.125,
+                "bottom": 387.90625,
+                "width": 126.765625,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-politics",
+                "scrollLeft": 0,
+                "scrollWidth": 166,
+                "clientWidth": 166
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          {
+            "id": "gov-tab-leadership",
+            "text": "Party leadership",
+            "rect": {
+              "left": 197.5,
+              "top": 358,
+              "right": 365,
+              "bottom": 402,
+              "width": 167.5,
+              "height": 44
+            },
+            "text_rects": [
+              {
+                "left": 233.640625,
+                "top": 370.90625,
+                "right": 328.84375,
+                "bottom": 387.90625,
+                "width": 95.203125,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-leadership",
+                "scrollLeft": 0,
+                "scrollWidth": 166,
+                "clientWidth": 166
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          {
+            "id": "gov-tab-watch",
+            "text": "Takeover watch",
+            "rect": {
+              "left": 25,
+              "top": 407,
+              "right": 365,
+              "bottom": 451,
+              "width": 340,
+              "height": 44
+            },
+            "text_rects": [
+              {
+                "left": 149.671875,
+                "top": 419.90625,
+                "right": 240.3125,
+                "bottom": 436.90625,
+                "width": 90.640625,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-watch",
+                "scrollLeft": 0,
+                "scrollWidth": 338,
+                "clientWidth": 338
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          }
+        ]
+      },
+      "rows": [
+        {
+          "index": 0,
+          "label": "Political capital",
+          "before": {
+            "text": "51.3",
+            "rect": {
+              "left": 58,
+              "top": 472.15625,
+              "right": 180.5,
+              "bottom": 495.34375,
+              "width": 122.5,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 473.15625,
+                "right": 89.953125,
+                "bottom": 494.15625,
+                "width": 31.953125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 123,
+                "clientWidth": 123
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 143,
+                "clientWidth": 143
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "37.3",
+            "rect": {
+              "left": 211.5,
+              "top": 472.15625,
+              "right": 332,
+              "bottom": 495.34375,
+              "width": 120.5,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 211.5,
+                "top": 473.15625,
+                "right": 243.453125,
+                "bottom": 494.15625,
+                "width": 31.953125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 121,
+                "clientWidth": 121
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 141,
+                "clientWidth": 141
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 1,
+          "label": "Public debt",
+          "before": {
+            "text": "$52.55 million",
+            "rect": {
+              "left": 58,
+              "top": 471.953125,
+              "right": 180.5,
+              "bottom": 495.140625,
+              "width": 122.5,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 472.953125,
+                "right": 165.078125,
+                "bottom": 493.953125,
+                "width": 107.078125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 123,
+                "clientWidth": 123
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 143,
+                "clientWidth": 143
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "$53.47 million",
+            "rect": {
+              "left": 211.5,
+              "top": 471.953125,
+              "right": 332,
+              "bottom": 495.140625,
+              "width": 120.5,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 211.5,
+                "top": 472.953125,
+                "right": 318.578125,
+                "bottom": 493.953125,
+                "width": 107.078125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 121,
+                "clientWidth": 121
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 141,
+                "clientWidth": 141
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 2,
+          "label": "Government standing modifier",
+          "before": {
+            "text": "-2.4",
+            "rect": {
+              "left": 58,
+              "top": 461.75,
+              "right": 180.5,
+              "bottom": 484.9375,
+              "width": 122.5,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 462.75,
+                "right": 87.21875,
+                "bottom": 483.75,
+                "width": 29.21875,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 123,
+                "clientWidth": 123
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 143,
+                "clientWidth": 143
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "-0.8",
+            "rect": {
+              "left": 211.5,
+              "top": 461.75,
+              "right": 332,
+              "bottom": 484.9375,
+              "width": 120.5,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 211.5,
+                "top": 462.75,
+                "right": 240.71875,
+                "bottom": 483.75,
+                "width": 29.21875,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 121,
+                "clientWidth": 121
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 141,
+                "clientWidth": 141
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 3,
+          "label": "the thirty-three hereditary nobles loyalty",
+          "before": {
+            "text": "65.0%",
+            "rect": {
+              "left": 58,
+              "top": 462.734375,
+              "right": 180.5,
+              "bottom": 485.921875,
+              "width": 122.5,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 463.734375,
+                "right": 103.828125,
+                "bottom": 484.734375,
+                "width": 45.828125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 123,
+                "clientWidth": 123
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 143,
+                "clientWidth": 143
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "85.0%",
+            "rect": {
+              "left": 211.5,
+              "top": 462.734375,
+              "right": 332,
+              "bottom": 485.921875,
+              "width": 120.5,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 211.5,
+                "top": 463.734375,
+                "right": 257.328125,
+                "bottom": 484.734375,
+                "width": 45.828125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 121,
+                "clientWidth": 121
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 141,
+                "clientWidth": 141
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "navigation": {
+        "viewport": {
+          "width": 320,
+          "height": 844
+        },
+        "labels": [
+          {
+            "id": "gov-tab-overview",
+            "text": "Overview",
+            "rect": {
+              "left": 25,
+              "top": 309,
+              "right": 157.5,
+              "bottom": 369.375,
+              "width": 132.5,
+              "height": 60.375
+            },
+            "text_rects": [
+              {
+                "left": 63.59375,
+                "top": 330.09375,
+                "right": 118.890625,
+                "bottom": 347.09375,
+                "width": 55.296875,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-overview",
+                "scrollLeft": 0,
+                "scrollWidth": 131,
+                "clientWidth": 131
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          {
+            "id": "gov-tab-decisions",
+            "text": "Governing decisions",
+            "rect": {
+              "left": 162.5,
+              "top": 309,
+              "right": 295,
+              "bottom": 369.375,
+              "width": 132.5,
+              "height": 60.375
+            },
+            "text_rects": [
+              {
+                "left": 198.015625,
+                "top": 321,
+                "right": 259.46875,
+                "bottom": 338,
+                "width": 61.453125,
+                "height": 17
+              },
+              {
+                "left": 201.640625,
+                "top": 339.1875,
+                "right": 255.84375,
+                "bottom": 356.1875,
+                "width": 54.203125,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-decisions",
+                "scrollLeft": 0,
+                "scrollWidth": 131,
+                "clientWidth": 131
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          {
+            "id": "gov-tab-politics",
+            "text": "Regime & institutions",
+            "rect": {
+              "left": 25,
+              "top": 374.375,
+              "right": 157.5,
+              "bottom": 434.75,
+              "width": 132.5,
+              "height": 60.375
+            },
+            "text_rects": [
+              {
+                "left": 62.65625,
+                "top": 386.375,
+                "right": 119.84375,
+                "bottom": 403.375,
+                "width": 57.1875,
+                "height": 17
+              },
+              {
+                "left": 58.234375,
+                "top": 404.5625,
+                "right": 124.25,
+                "bottom": 421.5625,
+                "width": 66.015625,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-politics",
+                "scrollLeft": 0,
+                "scrollWidth": 131,
+                "clientWidth": 131
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          {
+            "id": "gov-tab-leadership",
+            "text": "Party leadership",
+            "rect": {
+              "left": 162.5,
+              "top": 374.375,
+              "right": 295,
+              "bottom": 434.75,
+              "width": 132.5,
+              "height": 60.375
+            },
+            "text_rects": [
+              {
+                "left": 181.140625,
+                "top": 395.46875,
+                "right": 276.34375,
+                "bottom": 412.46875,
+                "width": 95.203125,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-leadership",
+                "scrollLeft": 0,
+                "scrollWidth": 131,
+                "clientWidth": 131
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          {
+            "id": "gov-tab-watch",
+            "text": "Takeover watch",
+            "rect": {
+              "left": 25,
+              "top": 439.75,
+              "right": 295,
+              "bottom": 483.75,
+              "width": 270,
+              "height": 44
+            },
+            "text_rects": [
+              {
+                "left": 114.671875,
+                "top": 452.65625,
+                "right": 205.3125,
+                "bottom": 469.65625,
+                "width": 90.640625,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-watch",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          }
+        ]
+      },
+      "rows": [
+        {
+          "index": 0,
+          "label": "Political capital",
+          "before": {
+            "text": "51.3",
+            "rect": {
+              "left": 58,
+              "top": 433.90625,
+              "right": 262,
+              "bottom": 457.09375,
+              "width": 204,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 434.90625,
+                "right": 89.953125,
+                "bottom": 455.90625,
+                "width": 31.953125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 204,
+                "clientWidth": 204
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "37.3",
+            "rect": {
+              "left": 60,
+              "top": 510.234375,
+              "right": 262,
+              "bottom": 533.421875,
+              "width": 202,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 60,
+                "top": 511.234375,
+                "right": 91.953125,
+                "bottom": 532.234375,
+                "width": 31.953125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 202,
+                "clientWidth": 202
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 1,
+          "label": "Public debt",
+          "before": {
+            "text": "$52.55 million",
+            "rect": {
+              "left": 58,
+              "top": 434.03125,
+              "right": 262,
+              "bottom": 457.21875,
+              "width": 204,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 435.03125,
+                "right": 165.078125,
+                "bottom": 456.03125,
+                "width": 107.078125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 204,
+                "clientWidth": 204
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "$53.47 million",
+            "rect": {
+              "left": 60,
+              "top": 510.359375,
+              "right": 262,
+              "bottom": 533.546875,
+              "width": 202,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 60,
+                "top": 511.359375,
+                "right": 167.078125,
+                "bottom": 532.359375,
+                "width": 107.078125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 202,
+                "clientWidth": 202
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 2,
+          "label": "Government standing modifier",
+          "before": {
+            "text": "-2.4",
+            "rect": {
+              "left": 58,
+              "top": 414.15625,
+              "right": 262,
+              "bottom": 437.34375,
+              "width": 204,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 415.15625,
+                "right": 87.21875,
+                "bottom": 436.15625,
+                "width": 29.21875,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 204,
+                "clientWidth": 204
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "-0.8",
+            "rect": {
+              "left": 60,
+              "top": 490.484375,
+              "right": 262,
+              "bottom": 513.671875,
+              "width": 202,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 60,
+                "top": 491.484375,
+                "right": 89.21875,
+                "bottom": 512.484375,
+                "width": 29.21875,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 202,
+                "clientWidth": 202
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 3,
+          "label": "the thirty-three hereditary nobles loyalty",
+          "before": {
+            "text": "65.0%",
+            "rect": {
+              "left": 58,
+              "top": 425.75,
+              "right": 262,
+              "bottom": 448.9375,
+              "width": 204,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 426.75,
+                "right": 103.828125,
+                "bottom": 447.75,
+                "width": 45.828125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 204,
+                "clientWidth": 204
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "85.0%",
+            "rect": {
+              "left": 60,
+              "top": 502.078125,
+              "right": 262,
+              "bottom": 525.265625,
+              "width": 202,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 60,
+                "top": 503.078125,
+                "right": 105.828125,
+                "bottom": 524.078125,
+                "width": 45.828125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 202,
+                "clientWidth": 202
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "cancelled_review": {
+    "changes": [
+      {
+        "after": "37.3",
+        "before": "51.3",
+        "detail": "The actual immediate deduction, after the simulation's limits.",
+        "key": "political_capital",
+        "label": "Political capital"
+      },
+      {
+        "after": "$53.47 million",
+        "before": "$52.55 million",
+        "detail": "Any payment beyond available treasury cash is borrowed.",
+        "key": "debt",
+        "label": "Public debt"
+      },
+      {
+        "after": "-0.8",
+        "before": "-2.4",
+        "detail": "The current composition's contribution to the standing target, including any electoral honeymoon; not a lump-sum PC award.",
+        "key": "composition",
+        "label": "Government standing modifier"
+      },
+      {
+        "after": "85.0%",
+        "before": "65.0%",
+        "detail": "The immediate loyalty change; its underlying policy-dependent target is unchanged unless the decision changes those policies.",
+        "key": "loyalty:party",
+        "label": "the thirty-three hereditary nobles loyalty"
+      }
+    ],
+    "command": {
+      "kind": "secure_pillar",
+      "pillar": "party"
+    },
+    "date_label": "1 Jan 1990",
+    "description": "pay for its loyalty",
+    "effects": [],
+    "kind": "secure_pillar",
+    "money_cost_bn": 0.0009120000000000031,
+    "nation": "Tonga",
+    "price_pc": 14,
+    "reason": null,
+    "review_token": "decision-v1-b7aadf5ed546c3fc",
+    "session_id": "4080-1789335537788511700-1",
+    "title": "Secure the thirty-three hereditary nobles",
+    "valid": true,
+    "warnings": [
+      "This is a one-time public payment. Institutional loyalty continues to respond to budgets and country conditions afterward."
+    ]
+  },
+  "result_visibility": [
+    {
+      "viewport": {
+        "left": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 844
+      },
+      "focused": true,
+      "text": "Secure the thirty-three hereditary nobles — completed. The figures now reflect this decision.",
+      "rect": {
+        "left": 16,
+        "top": 114,
+        "right": 374,
+        "bottom": 193.5,
+        "width": 358,
+        "height": 79.5
+      },
+      "text_rects": [
+        {
+          "left": 35,
+          "top": 131,
+          "right": 322.46875,
+          "bottom": 151,
+          "width": 287.46875,
+          "height": 20
+        },
+        {
+          "left": 35,
+          "top": 155.75,
+          "right": 353.5625,
+          "bottom": 175.75,
+          "width": 318.5625,
+          "height": 20
+        }
+      ],
+      "ancestors": [
+        {
+          "tag": "P",
+          "id": "govNotice",
+          "scrollLeft": 0,
+          "scrollWidth": 356,
+          "clientWidth": 356
+        },
+        {
+          "tag": "DIV",
+          "id": "",
+          "scrollLeft": 0,
+          "scrollWidth": 390,
+          "clientWidth": 390
+        },
+        {
+          "tag": "DIV",
+          "id": "govBody",
+          "scrollLeft": 0,
+          "scrollWidth": 390,
+          "clientWidth": 390
+        },
+        {
+          "tag": "DIV",
+          "id": "govScreen",
+          "scrollLeft": 0,
+          "scrollWidth": 390,
+          "clientWidth": 390
+        }
+      ],
+      "errors": []
+    },
+    {
+      "viewport": {
+        "left": 0,
+        "top": 0,
+        "right": 320,
+        "bottom": 844
+      },
+      "focused": true,
+      "text": "Secure the thirty-three hereditary nobles — completed. The figures now reflect this decision.",
+      "rect": {
+        "left": 16,
+        "top": 113.75,
+        "right": 304,
+        "bottom": 218,
+        "width": 288,
+        "height": 104.25
+      },
+      "text_rects": [
+        {
+          "left": 35,
+          "top": 130.75,
+          "right": 255.3125,
+          "bottom": 150.75,
+          "width": 220.3125,
+          "height": 20
+        },
+        {
+          "left": 35,
+          "top": 155.5,
+          "right": 253.59375,
+          "bottom": 175.5,
+          "width": 218.59375,
+          "height": 20
+        },
+        {
+          "left": 35,
+          "top": 180.25,
+          "right": 198.03125,
+          "bottom": 200.25,
+          "width": 163.03125,
+          "height": 20
+        }
+      ],
+      "ancestors": [
+        {
+          "tag": "P",
+          "id": "govNotice",
+          "scrollLeft": 0,
+          "scrollWidth": 286,
+          "clientWidth": 286
+        },
+        {
+          "tag": "DIV",
+          "id": "",
+          "scrollLeft": 0,
+          "scrollWidth": 320,
+          "clientWidth": 320
+        },
+        {
+          "tag": "DIV",
+          "id": "govBody",
+          "scrollLeft": 0,
+          "scrollWidth": 320,
+          "clientWidth": 320
+        },
+        {
+          "tag": "DIV",
+          "id": "govScreen",
+          "scrollLeft": 0,
+          "scrollWidth": 320,
+          "clientWidth": 320
+        }
+      ],
+      "errors": []
+    },
+    {
+      "viewport": {
+        "left": 0,
+        "top": 0,
+        "right": 1440,
+        "bottom": 1000
+      },
+      "focused": true,
+      "text": "Secure the thirty-three hereditary nobles — completed. The figures now reflect this decision.",
+      "rect": {
+        "left": 54.71875,
+        "top": 158,
+        "right": 1385.28125,
+        "bottom": 212.75,
+        "width": 1330.5625,
+        "height": 54.75
+      },
+      "text_rects": [
+        {
+          "left": 73.71875,
+          "top": 175,
+          "right": 683.859375,
+          "bottom": 195,
+          "width": 610.140625,
+          "height": 20
+        }
+      ],
+      "ancestors": [
+        {
+          "tag": "P",
+          "id": "govNotice",
+          "scrollLeft": 0,
+          "scrollWidth": 1329,
+          "clientWidth": 1329
+        },
+        {
+          "tag": "DIV",
+          "id": "",
+          "scrollLeft": 0,
+          "scrollWidth": 1440,
+          "clientWidth": 1440
+        },
+        {
+          "tag": "DIV",
+          "id": "govBody",
+          "scrollLeft": 0,
+          "scrollWidth": 1440,
+          "clientWidth": 1440
+        },
+        {
+          "tag": "DIV",
+          "id": "govScreen",
+          "scrollLeft": 0,
+          "scrollWidth": 1440,
+          "clientWidth": 1440
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "confirmed_review": {
+    "changes": [
+      {
+        "after": "37.3",
+        "before": "51.3",
+        "detail": "The actual immediate deduction, after the simulation's limits.",
+        "key": "political_capital",
+        "label": "Political capital"
+      },
+      {
+        "after": "$53.47 million",
+        "before": "$52.55 million",
+        "detail": "Any payment beyond available treasury cash is borrowed.",
+        "key": "debt",
+        "label": "Public debt"
+      },
+      {
+        "after": "-0.8",
+        "before": "-2.4",
+        "detail": "The current composition's contribution to the standing target, including any electoral honeymoon; not a lump-sum PC award.",
+        "key": "composition",
+        "label": "Government standing modifier"
+      },
+      {
+        "after": "85.0%",
+        "before": "65.0%",
+        "detail": "The immediate loyalty change; its underlying policy-dependent target is unchanged unless the decision changes those policies.",
+        "key": "loyalty:party",
+        "label": "the thirty-three hereditary nobles loyalty"
+      }
+    ],
+    "command": {
+      "kind": "secure_pillar",
+      "pillar": "party"
+    },
+    "date_label": "1 Jan 1990",
+    "description": "pay for its loyalty",
+    "effects": [],
+    "kind": "secure_pillar",
+    "money_cost_bn": 0.0009120000000000031,
+    "nation": "Tonga",
+    "price_pc": 14,
+    "reason": null,
+    "review_token": "decision-v1-b7aadf5ed546c3fc",
+    "session_id": "4080-1789335537788511700-1",
+    "title": "Secure the thirty-three hereditary nobles",
+    "valid": true,
+    "warnings": [
+      "This is a one-time public payment. Institutional loyalty continues to respond to budgets and country conditions afterward."
+    ]
+  },
+  "native_outcome": {
+    "before": {
+      "nation": {
+        "id": "Tonga",
+        "political_capital": 51.3312,
+        "treasury_bn": 0,
+        "debt_bn": 0.052554000000000003,
+        "debt_gdp": 0.461,
+        "gdp": 0.114,
+        "stability": 68,
+        "authoritarianism": 0.68,
+        "separatism": 0.02
+      },
+      "government": {
+        "coalition": [],
+        "coup_pressure": 0,
+        "elected": false,
+        "months_in_office": 0,
+        "movements": [
+          [
+            "Western",
+            0.19920318725099603
+          ],
+          [
+            "Communist",
+            0.00199203187250996
+          ],
+          [
+            "Nationalist",
+            0.19920318725099603
+          ],
+          [
+            "Islamist",
+            0.00199203187250996
+          ],
+          [
+            "NonAligned",
+            0.5976095617529881
+          ]
+        ],
+        "nation": "Tonga",
+        "next_election": [
+          0,
+          0
+        ],
+        "pillars": [
+          [
+            "Party",
+            0.65
+          ],
+          [
+            "Clergy",
+            0.65
+          ],
+          [
+            "Army",
+            0.65
+          ]
+        ],
+        "regime_bloc": "NonAligned",
+        "seats": [],
+        "support": []
+      }
+    },
+    "after": {
+      "nation": {
+        "id": "Tonga",
+        "political_capital": 37.3312,
+        "treasury_bn": 0,
+        "debt_bn": 0.05346600000000001,
+        "debt_gdp": 0.46900000000000003,
+        "gdp": 0.114,
+        "stability": 68,
+        "authoritarianism": 0.68,
+        "separatism": 0.02
+      },
+      "government": {
+        "coalition": [],
+        "coup_pressure": 0,
+        "elected": false,
+        "months_in_office": 0,
+        "movements": [
+          [
+            "Western",
+            0.19920318725099603
+          ],
+          [
+            "Communist",
+            0.00199203187250996
+          ],
+          [
+            "Nationalist",
+            0.19920318725099603
+          ],
+          [
+            "Islamist",
+            0.00199203187250996
+          ],
+          [
+            "NonAligned",
+            0.5976095617529881
+          ]
+        ],
+        "nation": "Tonga",
+        "next_election": [
+          0,
+          0
+        ],
+        "pillars": [
+          [
+            "Party",
+            0.8500000000000001
+          ],
+          [
+            "Clergy",
+            0.65
+          ],
+          [
+            "Army",
+            0.65
+          ]
+        ],
+        "regime_bloc": "NonAligned",
+        "seats": [],
+        "support": []
+      }
+    },
+    "events": [
+      {
+        "cat": "diplomacy",
+        "date": "1 Jan 1990",
+        "t": 0,
+        "tags": [
+          "Tonga"
+        ],
+        "text": "Tonga buys the loyalty of the thirty-three hereditary nobles."
+      }
+    ],
+    "government": {
+      "actions": [
+        {
+          "affordable": true,
+          "blurb": null,
+          "category": "institutions",
+          "command": {
+            "kind": "secure_pillar",
+            "pillar": "party"
+          },
+          "detail": "pay for its loyalty",
+          "effects": [],
+          "key": "secure_pillar:party",
+          "kind": "secure_pillar",
+          "label": "Secure the thirty-three hereditary nobles",
+          "price": 14,
+          "refusal": null
+        },
+        {
+          "affordable": true,
+          "blurb": null,
+          "category": "institutions",
+          "command": {
+            "kind": "secure_pillar",
+            "pillar": "clergy"
+          },
+          "detail": "pay for its loyalty",
+          "effects": [],
+          "key": "secure_pillar:clergy",
+          "kind": "secure_pillar",
+          "label": "Secure the Free Wesleyan Church of Tonga",
+          "price": 14,
+          "refusal": null
+        },
+        {
+          "affordable": true,
+          "blurb": null,
+          "category": "institutions",
+          "command": {
+            "kind": "secure_pillar",
+            "pillar": "army"
+          },
+          "detail": "pay for its loyalty",
+          "effects": [],
+          "key": "secure_pillar:army",
+          "kind": "secure_pillar",
+          "label": "Secure the Tonga Defence Services",
+          "price": 14,
+          "refusal": null
+        },
+        {
+          "affordable": true,
+          "blurb": "Put the apparatus on the street. Order returns. Everyone who cares about how you govern stops pretending they do not notice.",
+          "category": "reform",
+          "command": {
+            "id": "security_crackdown",
+            "kind": "stratagem"
+          },
+          "detail": "A restive population and a government willing to coerce it",
+          "effects": [],
+          "key": "stratagem:security_crackdown",
+          "kind": "stratagem",
+          "label": "Security Crackdown",
+          "price": 20,
+          "refusal": "Security Crackdown is no longer open to Tonga."
+        },
+        {
+          "affordable": true,
+          "blurb": "Open it up. The world warms to you and your own people find their voice — including the ones who never wanted to be ruled by you.",
+          "category": "reform",
+          "command": {
+            "id": "liberalisation",
+            "kind": "stratagem"
+          },
+          "detail": "An authoritarian state under pressure it cannot simply crush",
+          "effects": [],
+          "key": "stratagem:liberalisation",
+          "kind": "stratagem",
+          "label": "Political Liberalisation",
+          "price": 28,
+          "refusal": null
+        },
+        {
+          "affordable": true,
+          "blurb": null,
+          "category": "reform",
+          "command": {
+            "bloc": "western",
+            "kind": "declare_programme"
+          },
+          "detail": "change the regime's colour",
+          "effects": [],
+          "key": "declare_programme:western",
+          "kind": "programme",
+          "label": "Declare a Western programme",
+          "price": 35,
+          "refusal": "The Western movement in Tonga is 20% of the country (25% needed), and it is not the colour of the regime's strongest institution."
+        },
+        {
+          "affordable": true,
+          "blurb": null,
+          "category": "reform",
+          "command": {
+            "bloc": "nationalist",
+            "kind": "declare_programme"
+          },
+          "detail": "change the regime's colour",
+          "effects": [],
+          "key": "declare_programme:nationalist",
+          "kind": "programme",
+          "label": "Declare a Nationalist programme",
+          "price": 35,
+          "refusal": "The Nationalist movement in Tonga is 20% of the country (25% needed), and it is not the colour of the regime's strongest institution."
+        },
+        {
+          "affordable": true,
+          "blurb": null,
+          "category": "reform",
+          "command": {
+            "kind": "convene_round_table"
+          },
+          "detail": "first free elections in six months",
+          "effects": [],
+          "key": "convene_round_table",
+          "kind": "round_table",
+          "label": "Convene a round table",
+          "price": 30,
+          "refusal": "Tonga has no parties to seat at a round table."
+        }
+      ],
+      "bar": [
+        {
+          "abroad": [],
+          "backing": 0,
+          "banned": false,
+          "bloc": "Western",
+          "governing": false,
+          "ruling": false,
+          "share": 0.19920318725099603
+        },
+        {
+          "abroad": [],
+          "backing": 0,
+          "banned": false,
+          "bloc": "Communist",
+          "governing": false,
+          "ruling": false,
+          "share": 0.00199203187250996
+        },
+        {
+          "abroad": [],
+          "backing": 0,
+          "banned": false,
+          "bloc": "Nationalist",
+          "governing": false,
+          "ruling": false,
+          "share": 0.19920318725099603
+        },
+        {
+          "abroad": [],
+          "backing": 0,
+          "banned": false,
+          "bloc": "Islamist",
+          "governing": false,
+          "ruling": false,
+          "share": 0.00199203187250996
+        },
+        {
+          "abroad": [],
+          "backing": 0,
+          "banned": false,
+          "bloc": "NonAligned",
+          "governing": true,
+          "ruling": true,
+          "share": 0.5976095617529881
+        }
+      ],
+      "briefing": {
+        "attention": [
+          {
+            "action_index": 2,
+            "detail": "Your least loyal armed institution is at 65.0% loyalty; recorded regime pressure is 0.0. Ordinary regime survival is live. A reviewed loyalty payment costs both political capital and public money.",
+            "id": "institution_pressure",
+            "route": "budget",
+            "title": "Keep the Tonga Defence Services in view",
+            "tone": "info"
+          },
+          {
+            "detail": "Its gauges describe current conditions, but those takeover routes remain closed for calibration. This does not disable ordinary elections, cabinet failures or regime coups.",
+            "id": "ideology_watch",
+            "title": "The ideological takeover watch is inactive",
+            "tone": "info"
+          }
+        ],
+        "date_label": "1 Jan 1990",
+        "drivers": [
+          {
+            "detail": "Inflation changes incumbent support and political standing; business institutions also respond to rising prices.",
+            "id": "prices",
+            "label": "Prices",
+            "route": "budget",
+            "value": "9.7%"
+          },
+          {
+            "detail": "Delivered growth affects incumbent support, political standing and business loyalty. Review construction and the economy behind it.",
+            "id": "growth",
+            "label": "Economic growth",
+            "route": "construction",
+            "value": "0.0%"
+          },
+          {
+            "detail": "Disorder and separatism feed public discontent and the appeal of opposition movements; reforms can change both.",
+            "id": "order",
+            "label": "Order and cohesion",
+            "route": "budget",
+            "value": "68.0 stability · 2.0% separatism"
+          },
+          {
+            "detail": "War exhaustion lowers political standing and army loyalty and shifts support away from the government.",
+            "id": "war",
+            "label": "War exhaustion",
+            "route": "military",
+            "value": "0.0%"
+          }
+        ],
+        "links": [
+          {
+            "detail": "Review defense, pensions and the services behind standing and loyalty.",
+            "id": "budget",
+            "label": "Ministry budgets",
+            "route": "budget"
+          },
+          {
+            "detail": "See the treasury and debt that fund one-time institutional payments.",
+            "id": "cash_flow",
+            "label": "Public finances",
+            "route": "cash_flow"
+          },
+          {
+            "detail": "Review the investments behind the country's economic performance.",
+            "id": "construction",
+            "label": "Construction",
+            "route": "construction"
+          },
+          {
+            "detail": "Political reforms also change relations abroad.",
+            "id": "diplomacy",
+            "label": "Diplomacy",
+            "route": "diplomacy"
+          }
+        ],
+        "stats": [
+          {
+            "detail": "Decisions spend this stock. Growth, stable prices, order, war and your government determine how it recovers.",
+            "key": "political_capital",
+            "label": "Political capital",
+            "value": "37.3 / 100"
+          },
+          {
+            "detail": "Order affects public support, institutional loyalty and the government's survival.",
+            "key": "stability",
+            "label": "National stability",
+            "value": "68.0 / 100"
+          },
+          {
+            "detail": "Reads the same order, price, growth and war pressures that move political support.",
+            "key": "discontent",
+            "label": "Public discontent",
+            "value": "13.3%"
+          },
+          {
+            "detail": "Institutions respond to the country's policies and conditions; a one-time payment does not permanently change their targets.",
+            "key": "loyalty",
+            "label": "Mean institutional loyalty",
+            "value": "71.7%"
+          },
+          {
+            "detail": "Recorded pressure from armed institutions. Ordinary regime coups remain part of the simulation.",
+            "key": "coup_pressure",
+            "label": "Regime pressure",
+            "value": "0.0"
+          },
+          {
+            "detail": "This government rests on institutions rather than an electoral majority.",
+            "key": "office",
+            "label": "Time in office",
+            "value": "0 months"
+          }
+        ],
+        "summary": "the House of Tupou rests on the institutions below. Their loyalty responds to spending, prices, growth, order and war."
+      },
+      "coup_pressure": 0,
+      "discontent": 0.13333333333333336,
+      "electoral": false,
+      "government_of_the_day": null,
+      "government_of_the_day_name": null,
+      "government_seats": 0,
+      "groups": [],
+      "leader": {
+        "also": [
+          {
+            "name": "Prince Fatafehi Tu'ipelehake",
+            "office": "Prime Minister",
+            "party": null,
+            "since": "1965-12-16"
+          }
+        ],
+        "heir": {
+          "name": "Crown Prince Tupouto'a (Siaosi Taufa'ahau Manumataongo)",
+          "office": "Crown Prince",
+          "since": "1966-05-04"
+        },
+        "name": "Taufa'ahau Tupou IV",
+        "native": "Tāufaʻāhau Tupou IV",
+        "office": "King",
+        "pillar": "Party",
+        "pillar_name": "the thirty-three hereditary nobles",
+        "since": "1965-12-16"
+      },
+      "mine": true,
+      "months_in_office": 0,
+      "nation": "Tonga",
+      "nation_name": "Tonga",
+      "next_election": null,
+      "on": true,
+      "party_leadership": {
+        "campaign_date": "1990-01-01",
+        "date": "1990-01-01",
+        "eligibility_context": "campaign",
+        "enabled": true,
+        "executive_mortality_supported": true,
+        "executive_person": {
+          "born": {
+            "kind": "day",
+            "value": "1918-07-04"
+          },
+          "died": null,
+          "id": "taufaahau_tupou_iv",
+          "name": "Taufa'ahau Tupou IV",
+          "native": "Tāufaʻāhau Tupou IV",
+          "portrait": {
+            "composition": "full-body",
+            "credit": "Spheres cartoon adaptation generated with OpenAI image_gen from Comet Photo AG (Zurich) / ETH Library, Image Archive, Com_LC1500-0777-001 (1985), CC BY-SA 4.0. Cartoon adaptation and any copyrightable contributions are also offered under CC BY-SA 4.0; https://creativecommons.org/licenses/by-sa/4.0/. Changed to full-body cartoon, simplified shapes and near-1990 age treatment. No endorsement implied.",
+            "era_note": "Near-1990 artistic appearance informed by an inspected 1985 portrait; no exact 1990 photograph established. Conservatively displayed from 1 January 1990 up to but not including 1 January 1991. Standing body, trousers and shoes are artistic extensions of the observed civilian suit. This artwork does not establish reign, party membership, candidate eligibility or later appearance.",
+            "from": "1990-01-01",
+            "license": "generated",
+            "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+            "method": "generated",
+            "source_credit": "Comet Photo AG (Zurich) / ETH Library, Image Archive, Com_LC1500-0777-001; photograph dated 1985, provided by ETH Library through Wikimedia Commons. Retained as the unchanged 1280-pixel JPEG preview of the archive TIFF.",
+            "source_license": "CC BY-SA 4.0",
+            "source_license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+            "source_url": "https://commons.wikimedia.org/wiki/File:ETH-BIB-Taufa%27ahau_Tupou,_K%C3%B6nig_von_Tonga-Com_LC1500-0777-001.tif",
+            "status": "illustrated-likeness",
+            "style": "cartoon",
+            "to": "1991-01-01",
+            "url": "/art/people/taufaahau-tupou-iv-cartoon-1990-v1.png"
+          },
+          "sources": [
+            "https://www.worldstatesmen.org/Tonga.html",
+            "https://rulers.org/rult.html",
+            "https://en.wikipedia.org/wiki/T%C4%81ufa%CA%BB%C4%81hau_Tupou_IV",
+            "https://en.wikipedia.org/wiki/George_Tupou_V"
+          ]
+        },
+        "executive_policy": {
+          "applies_to": "new_executive_selections_only",
+          "existing_bindings_preserved": true,
+          "future_executive_role_review_required": false,
+          "historical_default": "party_only",
+          "institution": null,
+          "note": "Party leadership and national office are separate roles. Calendar references and party chairs never schedule a presidency.",
+          "presidential_role_review_required": false,
+          "version": 1
+        },
+        "future_policy": {
+          "assumptions": [
+            "All candidate names, biographies, birthdays, appearances and future careers are invented game content. Coincidental resemblance is unintentional.",
+            "Name pools are authored examples, not an exhaustive or demographic representation of any country; bilingual and multiethnic populations require further editorial review.",
+            "Existing simulation institutions and ideology supply fictional career themes. This does not forecast real institutions or party survival after the research cutoff.",
+            "Four stable candidates per party component become eligible after the cutoff, only through actual gameplay succession. No candidate is a scheduled election winner.",
+            "Historical gaps before the cutoff remain unfilled; no fictional candidate may be presented as a historical leader.",
+            "Names use authored romanized forms; native spellings are not invented."
+          ],
+          "candidate_count": 2556,
+          "candidates_per_component": 4,
+          "eligible": false,
+          "from": "2026-09-08",
+          "historical_reference_through": "2026-09-07",
+          "incumbents_retained": true,
+          "profile_count": 4,
+          "research": [
+            {
+              "applies_to": "Institutional framing only; not evidence for any fictional person or a forecast.",
+              "fact": "Political parties recruit candidates, organize leadership selection, formulate programmes and aggregate interests. Selection institutions differ between parties.",
+              "id": "idea_party_organization",
+              "url": "https://www.idea.int/publications/catalogue/html/political-parties-constitutional-roles-recognition-rights-and"
+            },
+            {
+              "applies_to": "Parliamentary career archetype example; not a universal constitutional rule.",
+              "fact": "Government and opposition parties have distinct parliamentary roles; party leaders and shadow teams organize parliamentary work.",
+              "id": "uk_parliament_party_roles",
+              "url": "https://www.parliament.uk/about/mps-and-lords/members/partysystem/"
+            }
+          ],
+          "scope": "Every current simulation party in POLITIES and D4_POLITIES, including researched coalition components; not every real-world party.",
+          "selection": "actual_succession_events_only",
+          "status": "authored_gameplay_profiles",
+          "until_exclusive": "2036-01-01",
+          "version": 1
+        },
+        "nation": "Tonga",
+        "note": "Historical references end on 7 September 2026. Fictional successor candidates are available from 8 September 2026 through 2035. Saved incumbents change only through actual campaign events; no historical or future election outcome is scheduled.",
+        "parties": [],
+        "reference_from": "1990-01-01",
+        "reference_through": "2026-09-07",
+        "roster_version": 1
+      },
+      "pillars": [
+        {
+          "bloc": "NonAligned",
+          "key": "party",
+          "loyalty": 0.8500000000000001,
+          "name": "the thirty-three hereditary nobles",
+          "pillar": "Party"
+        },
+        {
+          "bloc": "Western",
+          "key": "clergy",
+          "loyalty": 0.65,
+          "name": "the Free Wesleyan Church of Tonga",
+          "pillar": "Clergy"
+        },
+        {
+          "bloc": "Nationalist",
+          "key": "army",
+          "loyalty": 0.65,
+          "name": "the Tonga Defence Services",
+          "pillar": "Army"
+        }
+      ],
+      "political_capital": 37.3312,
+      "ruling_bloc": "NonAligned",
+      "ruling_institution": "the House of Tupou",
+      "strain": 0,
+      "system": "first past the post",
+      "takeover": {
+        "collapse": {
+          "armed": false,
+          "gauges": [
+            {
+              "met": false,
+              "name": "stability",
+              "progress": 0.36363636363636365,
+              "sense": "Below",
+              "trigger": 12,
+              "value": 68
+            }
+          ],
+          "half_armed": false,
+          "open": false,
+          "reason": "calibration pending"
+        },
+        "coup": {
+          "armed": false,
+          "gauges": [
+            {
+              "met": false,
+              "name": "army loyalty",
+              "progress": 0.5384615384615384,
+              "sense": "Below",
+              "trigger": 0.35,
+              "value": 0.65
+            },
+            {
+              "met": false,
+              "name": "discontent",
+              "progress": 0.5333333333333334,
+              "sense": "Above",
+              "trigger": 0.25,
+              "value": 0.13333333333333336
+            },
+            {
+              "met": false,
+              "name": "coup pressure",
+              "progress": 0,
+              "sense": "Above",
+              "trigger": 1,
+              "value": 0
+            }
+          ],
+          "half_armed": true,
+          "open": false,
+          "reason": "calibration pending"
+        },
+        "half_armed": true,
+        "round_table": {
+          "armed": false,
+          "gauges": [
+            {
+              "met": false,
+              "name": "Western influence",
+              "progress": 0.49800796812749004,
+              "sense": "Above",
+              "trigger": 0.4,
+              "value": 0.19920318725099603
+            },
+            {
+              "met": false,
+              "name": "party loyalty",
+              "progress": 0.33333333333333315,
+              "sense": "Below",
+              "trigger": 0.55,
+              "value": 0.8500000000000001
+            },
+            {
+              "met": true,
+              "name": "stability",
+              "progress": 1,
+              "sense": "Inside",
+              "trigger": 30,
+              "upper": 70,
+              "value": 68
+            }
+          ],
+          "half_armed": false,
+          "open": false,
+          "reason": "calibration pending"
+        },
+        "uprising": {
+          "armed": false,
+          "gauges": [
+            {
+              "met": false,
+              "name": "discontent",
+              "progress": 0.29629629629629634,
+              "sense": "Above",
+              "trigger": 0.45,
+              "value": 0.13333333333333336
+            },
+            {
+              "bloc": "Nationalist",
+              "met": false,
+              "name": "challenger influence",
+              "progress": 0.4426737494466578,
+              "sense": "Above",
+              "trigger": 0.45,
+              "value": 0.19920318725099603
+            }
+          ],
+          "half_armed": false,
+          "open": false,
+          "reason": "calibration pending"
+        }
+      },
+      "term_months": 36,
+      "upkeep": 0
+    }
+  },
+  "continued_portrait": {
+    "person_id": "taufaahau_tupou_iv",
+    "manifest_sha256": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d",
+    "asset": "spheres-web/ui/person-portraits/taufaahau-tupou-iv-cartoon-1990-v1.png",
+    "art_window": {
+      "from": "1990-01-01",
+      "to": "1991-01-01"
+    },
+    "served_sha256": "f879c9efa4eb70b622c0bae98da0b67950fbe9aba535b43c2353af052449534f",
+    "committed_sha256": "f879c9efa4eb70b622c0bae98da0b67950fbe9aba535b43c2353af052449534f",
+    "checkout_sha256": "f879c9efa4eb70b622c0bae98da0b67950fbe9aba535b43c2353af052449534f",
+    "served_bytes": 1655402,
+    "image": {
+      "url": "/art/people/taufaahau-tupou-iv-cartoon-1990-v1.png",
+      "complete": true,
+      "width": 1024,
+      "height": 1536,
+      "alt": "Cartoon avatar of Taufa'ahau Tupou IV"
+    }
+  },
+  "continued_navigation": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "labels": [
+        {
+          "id": "gov-tab-overview",
+          "text": "Overview",
+          "rect": {
+            "left": 25,
+            "top": 408.484375,
+            "right": 192.5,
+            "bottom": 452.484375,
+            "width": 167.5,
+            "height": 44
+          },
+          "text_rects": [
+            {
+              "left": 81.09375,
+              "top": 421.390625,
+              "right": 136.390625,
+              "bottom": 438.390625,
+              "width": 55.296875,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-overview",
+              "scrollLeft": 0,
+              "scrollWidth": 166,
+              "clientWidth": 166
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 356,
+              "clientWidth": 356
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 390,
+            "bottom": 844
+          }
+        },
+        {
+          "id": "gov-tab-decisions",
+          "text": "Governing decisions",
+          "rect": {
+            "left": 197.5,
+            "top": 408.484375,
+            "right": 365,
+            "bottom": 452.484375,
+            "width": 167.5,
+            "height": 44
+          },
+          "text_rects": [
+            {
+              "left": 221.640625,
+              "top": 421.390625,
+              "right": 340.859375,
+              "bottom": 438.390625,
+              "width": 119.21875,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-decisions",
+              "scrollLeft": 0,
+              "scrollWidth": 166,
+              "clientWidth": 166
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 356,
+              "clientWidth": 356
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 390,
+            "bottom": 844
+          }
+        },
+        {
+          "id": "gov-tab-politics",
+          "text": "Regime & institutions",
+          "rect": {
+            "left": 25,
+            "top": 457.484375,
+            "right": 192.5,
+            "bottom": 501.484375,
+            "width": 167.5,
+            "height": 44
+          },
+          "text_rects": [
+            {
+              "left": 45.359375,
+              "top": 470.390625,
+              "right": 172.125,
+              "bottom": 487.390625,
+              "width": 126.765625,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-politics",
+              "scrollLeft": 0,
+              "scrollWidth": 166,
+              "clientWidth": 166
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 356,
+              "clientWidth": 356
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 390,
+            "bottom": 844
+          }
+        },
+        {
+          "id": "gov-tab-leadership",
+          "text": "Party leadership",
+          "rect": {
+            "left": 197.5,
+            "top": 457.484375,
+            "right": 365,
+            "bottom": 501.484375,
+            "width": 167.5,
+            "height": 44
+          },
+          "text_rects": [
+            {
+              "left": 233.640625,
+              "top": 470.390625,
+              "right": 328.84375,
+              "bottom": 487.390625,
+              "width": 95.203125,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-leadership",
+              "scrollLeft": 0,
+              "scrollWidth": 166,
+              "clientWidth": 166
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 356,
+              "clientWidth": 356
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 390,
+            "bottom": 844
+          }
+        },
+        {
+          "id": "gov-tab-watch",
+          "text": "Takeover watch",
+          "rect": {
+            "left": 25,
+            "top": 506.484375,
+            "right": 365,
+            "bottom": 550.484375,
+            "width": 340,
+            "height": 44
+          },
+          "text_rects": [
+            {
+              "left": 149.671875,
+              "top": 519.390625,
+              "right": 240.3125,
+              "bottom": 536.390625,
+              "width": 90.640625,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-watch",
+              "scrollLeft": 0,
+              "scrollWidth": 338,
+              "clientWidth": 338
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 356,
+              "clientWidth": 356
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 390,
+            "bottom": 844
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "labels": [
+        {
+          "id": "gov-tab-overview",
+          "text": "Overview",
+          "rect": {
+            "left": 25,
+            "top": 391.875,
+            "right": 157.5,
+            "bottom": 452.25,
+            "width": 132.5,
+            "height": 60.375
+          },
+          "text_rects": [
+            {
+              "left": 63.59375,
+              "top": 412.96875,
+              "right": 118.890625,
+              "bottom": 429.96875,
+              "width": 55.296875,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-overview",
+              "scrollLeft": 0,
+              "scrollWidth": 131,
+              "clientWidth": 131
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 286,
+              "clientWidth": 286
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 320,
+            "bottom": 844
+          }
+        },
+        {
+          "id": "gov-tab-decisions",
+          "text": "Governing decisions",
+          "rect": {
+            "left": 162.5,
+            "top": 391.875,
+            "right": 295,
+            "bottom": 452.25,
+            "width": 132.5,
+            "height": 60.375
+          },
+          "text_rects": [
+            {
+              "left": 198.015625,
+              "top": 403.875,
+              "right": 259.46875,
+              "bottom": 420.875,
+              "width": 61.453125,
+              "height": 17
+            },
+            {
+              "left": 201.640625,
+              "top": 422.0625,
+              "right": 255.84375,
+              "bottom": 439.0625,
+              "width": 54.203125,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-decisions",
+              "scrollLeft": 0,
+              "scrollWidth": 131,
+              "clientWidth": 131
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 286,
+              "clientWidth": 286
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 320,
+            "bottom": 844
+          }
+        },
+        {
+          "id": "gov-tab-politics",
+          "text": "Regime & institutions",
+          "rect": {
+            "left": 25,
+            "top": 457.25,
+            "right": 157.5,
+            "bottom": 517.625,
+            "width": 132.5,
+            "height": 60.375
+          },
+          "text_rects": [
+            {
+              "left": 62.65625,
+              "top": 469.25,
+              "right": 119.84375,
+              "bottom": 486.25,
+              "width": 57.1875,
+              "height": 17
+            },
+            {
+              "left": 58.234375,
+              "top": 487.4375,
+              "right": 124.25,
+              "bottom": 504.4375,
+              "width": 66.015625,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-politics",
+              "scrollLeft": 0,
+              "scrollWidth": 131,
+              "clientWidth": 131
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 286,
+              "clientWidth": 286
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 320,
+            "bottom": 844
+          }
+        },
+        {
+          "id": "gov-tab-leadership",
+          "text": "Party leadership",
+          "rect": {
+            "left": 162.5,
+            "top": 457.25,
+            "right": 295,
+            "bottom": 517.625,
+            "width": 132.5,
+            "height": 60.375
+          },
+          "text_rects": [
+            {
+              "left": 181.140625,
+              "top": 478.34375,
+              "right": 276.34375,
+              "bottom": 495.34375,
+              "width": 95.203125,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-leadership",
+              "scrollLeft": 0,
+              "scrollWidth": 131,
+              "clientWidth": 131
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 286,
+              "clientWidth": 286
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 320,
+            "bottom": 844
+          }
+        },
+        {
+          "id": "gov-tab-watch",
+          "text": "Takeover watch",
+          "rect": {
+            "left": 25,
+            "top": 522.625,
+            "right": 295,
+            "bottom": 566.625,
+            "width": 270,
+            "height": 44
+          },
+          "text_rects": [
+            {
+              "left": 114.671875,
+              "top": 535.53125,
+              "right": 205.3125,
+              "bottom": 552.53125,
+              "width": 90.640625,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-watch",
+              "scrollLeft": 0,
+              "scrollWidth": 268,
+              "clientWidth": 268
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 286,
+              "clientWidth": 286
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 320,
+            "bottom": 844
+          }
+        }
+      ]
+    }
+  ],
+  "saved_slot": "s10b-tonga-government",
+  "final_state": {
+    "player": "Tonga",
+    "date": "1 Jan 1990",
+    "political_capital": 37.3312,
+    "leader": {
+      "also": [
+        {
+          "name": "Prince Fatafehi Tu'ipelehake",
+          "office": "Prime Minister",
+          "party": null,
+          "since": "1965-12-16"
+        }
+      ],
+      "heir": {
+        "name": "Crown Prince Tupouto'a (Siaosi Taufa'ahau Manumataongo)",
+        "office": "Crown Prince",
+        "since": "1966-05-04"
+      },
+      "name": "Taufa'ahau Tupou IV",
+      "native": "Tāufaʻāhau Tupou IV",
+      "office": "King",
+      "pillar": "Party",
+      "pillar_name": "the thirty-three hereditary nobles",
+      "since": "1965-12-16"
+    }
+  },
+  "owned_server_stopped": true,
+  "finished_utc": "2026-09-13T21:39:10.327Z",
+  "total_ms": 15206.655799999993
+}

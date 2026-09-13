@@ -1,0 +1,46 @@
+{
+  "url": "http://127.0.0.1:7849",
+  "pid": 40168,
+  "directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S10c-20260913-143839",
+  "runtime_revision": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+  "executable_sha256": "37f8cc24c949925fbaf7f6dcdfc8b23422c6996f2b1dc4e8c3d90fcd9504c199",
+  "player": "France",
+  "date": "1 Jan 1990",
+  "policy": {
+    "calls_to_arms": "review",
+    "defense_pacts": "review",
+    "trade_treaties": "decline"
+  },
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1789335288,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "c6c350fbf5b2",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S10c-20260913-143839",
+    "version": "0.6.0"
+  },
+  "save_copy": {
+    "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-c-browser-2\\france-uhJF99\\server\\saves\\s10-government-decisions.json",
+    "copy": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S10c-20260913-143839\\saves\\s10-government-decisions.json",
+    "sha256": "0a785e03a08d8f211888f20b1532287b234295a68cb3860529042acff0bf0c65"
+  },
+  "native_verification": {
+    "canonical_sha256": "065a663fe4332b2c6705d4faab27f2c0c9133b879de9e2b2810c8f4ae8b60697",
+    "bytes": 12116685,
+    "ignored_paths": [],
+    "exact_bytes_match_final_browser": true,
+    "worker_sha256": "361b86a8c12623a553ad2f7e54dd0ccded74fa9cf03b51f4d0a3bfdf93530165"
+  },
+  "evidence": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-c-binary-3.json",
+      "sha256": "550109070d801c03fb875a4a7de088b1335dfc407ad7c2445996f4bc792cdc1c"
+    },
+    {
+      "path": "evidence\\S10-browser-c-browser-2\\france-uhJF99\\result.json",
+      "sha256": "795864e94450b002ace01af413a49f9f21a622845f125b6c0a7d2de43ab5d439"
+    }
+  ],
+  "scope": "Independent review; previous review servers and original campaigns preserved."
+}

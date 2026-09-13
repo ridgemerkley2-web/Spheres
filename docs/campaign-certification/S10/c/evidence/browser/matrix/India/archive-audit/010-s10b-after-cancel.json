@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "input": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\india-MF9whY\\server\\audit-captures\\s10b-after-cancel-R7ftgd\\s10b-after-cancel.json",
+    "bytes": 13148766,
+    "sha256": "387db789138419e60bede4343165cd34b6d5f6336405ad8c0202acc17696a3fd"
+  },
+  "requested": {
+    "buyer": "India",
+    "revision": null,
+    "seller": null,
+    "company": null,
+    "product": null
+  },
+  "buyer": {
+    "id": "India",
+    "tech_sha256": "c6ce0b811ae7d0efdb2e0cf88b2dbc44e1caca44c32c85cfe376cac3b692278f",
+    "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+    "revision_ids": [],
+    "held_by_revision": {},
+    "held_units": 0,
+    "buyer_revision": null,
+    "maintenance_plan": null,
+    "program_budget": null
+  },
+  "supplier": null,
+  "imports": {
+    "ids": [],
+    "matching": []
+  },
+  "canonical": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\india-MF9whY\\archive-audit\\010-s10b-after-cancel.canonical",
+    "bytes": 12116204,
+    "sha256": "2357b7680b5bbbd61c4bad73377e93ce32ad306a8b87e7f34998e20f2a09ba57",
+    "format": "s08-typed-canonical-world-v1-js-f64",
+    "ignored_paths": []
+  }
+}

@@ -1,0 +1,1152 @@
+{
+  "format": "spheres-s10c-increment/v1",
+  "status": "increment_complete_parent_open",
+  "completed_utc": "2026-09-13T21:43:38.276189+00:00",
+  "runtime_revision": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+  "publication_parent_revision": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+  "publication_commit": {
+    "resolution": "git log -1 --format=%H -- docs/campaign-certification/S10/c/manifest.json",
+    "note": "Containing test/documentation commit resolved after commit; Git transport recorded separately."
+  },
+  "complete_runtime_source_equal": true,
+  "unchanged_simulation_baseline": "d361c2d567b0704bdffb5160760c87a336b0c7c9",
+  "simulation_source_unchanged": true,
+  "saved_role_or_gameplay_authorization_changed": false,
+  "c01_complete": false,
+  "s10_complete": false,
+  "g2_earned": false,
+  "s11_started": false,
+  "research_counts": {
+    "country_packets": 3,
+    "countries_without_new_discovery_packet": 157,
+    "organization_observations": 644,
+    "institution_observations": 11,
+    "sources": 31,
+    "source_claims": 1315,
+    "discovery_batches": 67,
+    "exhaustive_country_censuses": 0
+  },
+  "research_index_sha256": "0a1c6996c2ef73c82d4ab4812109df1e86b50e3cda5059ae73266e5e886fa2c7",
+  "art_counts": {
+    "validated_cartoon_assets": 54,
+    "validated_fictional_cartoon_assets": 4,
+    "pending_historical_art_jobs": 704
+  },
+  "production_index_sha256": "82301ec66ebcad9589751a746a87659a6be4a0bc1edc23573ae5293a7789d686",
+  "france_scope": {
+    "filing_exercise": 2024,
+    "obligation_identities": 635,
+    "submitted_accounts_identities": 575,
+    "additional_nonfiling_identities": 60,
+    "all_political_organizations_or_history_complete": false
+  },
+  "portrait_scope": {
+    "person_id": "taufaahau_tupou_iv",
+    "from": "1990-01-01",
+    "until_exclusive": "1991-01-01",
+    "reference_year": 1985,
+    "appearance": "Explicit artistic interpretation near 1990",
+    "derivative_license": "CC BY-SA 4.0"
+  },
+  "qualification": {
+    "windows_web": {
+      "passed": 367,
+      "failed": 0,
+      "ignored": 11,
+      "completed_targets": 2
+    },
+    "windows_node": {
+      "tests": 1533,
+      "pass": 1532,
+      "fail": 0,
+      "skipped": 1
+    },
+    "linux_web": {
+      "passed": 367,
+      "failed": 0,
+      "ignored": 11,
+      "completed_targets": 2
+    },
+    "linux_checks": 9,
+    "content_checks": 8,
+    "browser_countries": 8,
+    "browser_elapsed_days": 0,
+    "binary_sha256": "37f8cc24c949925fbaf7f6dcdfc8b23422c6996f2b1dc4e8c3d90fcd9504c199",
+    "new_performance_claim": false,
+    "full_sim_suite_rerun": false
+  },
+  "proofs": {
+    "web_proof": {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-c-web-3.json",
+      "logical_path": "proofs/web_proof.json",
+      "sha256": "130f81c94fe9f99b668669b2a1c0dc249bd9d423be622ed468d091d46ee82587",
+      "bytes": 1041
+    },
+    "node_proof": {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-c-node-3.json",
+      "logical_path": "proofs/node_proof.json",
+      "sha256": "040ac623a86aa7ff18daa5541a6d7c3fdb851f1d326f2f691dec015bfccbee4d",
+      "bytes": 656
+    },
+    "binary_proof": {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-c-binary-3.json",
+      "logical_path": "proofs/binary_proof.json",
+      "sha256": "550109070d801c03fb875a4a7de088b1335dfc407ad7c2445996f4bc792cdc1c",
+      "bytes": 884
+    },
+    "linux_proof": {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-linux-final-2\\runner-result.json",
+      "logical_path": "proofs/linux_proof.json",
+      "sha256": "5df625a1f1fe9da0e7fcfb80748251c555f11069f9828654f9c3eabeed5b98af",
+      "bytes": 76463
+    },
+    "content_proof": {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-content-final\\result.json",
+      "logical_path": "proofs/content_proof.json",
+      "sha256": "65bb51dc82458c1f6887c19b3e254567faddfc36f87fabba4d050c15a9a129cd",
+      "bytes": 3359
+    },
+    "visual_proof": {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-visual-review.json",
+      "logical_path": "proofs/visual_proof.json",
+      "sha256": "1cb0a573288ef79b3e18efc4caf621b7db9c11641559b42109d688ecec3f70c1",
+      "bytes": 3453
+    },
+    "preservation_proof": {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-preservation-final.json",
+      "logical_path": "proofs/preservation_proof.json",
+      "sha256": "6ce25197999b671f627d61cb1d6375c314f00c6f12ee46c3400efed99cfe274b",
+      "bytes": 3137
+    },
+    "launch_proof": {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\S10c-review-launch.json",
+      "logical_path": "proofs/launch_proof.json",
+      "sha256": "bb3826dcf5efa9b632fe61e6251f9c7c43d69f68df70338c0e736c8eceaac926",
+      "bytes": 2448
+    },
+    "matrix_wrapper": {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-driver-final-2.json",
+      "logical_path": "proofs/matrix_wrapper.json",
+      "sha256": "0e12315ac8b4f3fbe007664b90dac52d0807ef871585bec0222eeb14c9ffcbd4",
+      "bytes": 950
+    },
+    "browser_wrapper": {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-c-browser-2.json",
+      "logical_path": "proofs/browser_wrapper.json",
+      "sha256": "56d5842dbd13e01fad6c14a138d3d81a91d297de1254167babb538ef0ef070c4",
+      "bytes": 943
+    },
+    "matrix_result": {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\result.json",
+      "logical_path": "proofs/matrix_result.json",
+      "sha256": "ab42648639f6a357d49c4a944203b57729f739d65cd1d13a8396fd16535bd850",
+      "bytes": 4095
+    },
+    "browser_result": {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-c-browser-2\\france-uhJF99\\result.json",
+      "logical_path": "proofs/browser_result.json",
+      "sha256": "795864e94450b002ace01af413a49f9f21a622845f125b6c0a7d2de43ab5d439",
+      "bytes": 171442
+    }
+  },
+  "native_audit_chains": {
+    "browser/matrix/France": {
+      "inspections": 4,
+      "exact_comparisons": 2,
+      "ignored_paths": []
+    },
+    "browser/matrix/Japan": {
+      "inspections": 4,
+      "exact_comparisons": 2,
+      "ignored_paths": []
+    },
+    "browser/matrix/India": {
+      "inspections": 4,
+      "exact_comparisons": 2,
+      "ignored_paths": []
+    },
+    "browser/matrix/Brazil": {
+      "inspections": 4,
+      "exact_comparisons": 2,
+      "ignored_paths": []
+    },
+    "browser/matrix/SouthAfrica": {
+      "inspections": 4,
+      "exact_comparisons": 2,
+      "ignored_paths": []
+    },
+    "browser/matrix/Tonga": {
+      "inspections": 4,
+      "exact_comparisons": 2,
+      "ignored_paths": []
+    },
+    "browser/matrix/SaudiArabia": {
+      "inspections": 4,
+      "exact_comparisons": 2,
+      "ignored_paths": []
+    },
+    "browser/matrix/USSR": {
+      "inspections": 4,
+      "exact_comparisons": 2,
+      "ignored_paths": []
+    },
+    "browser/france-policy": {
+      "inspections": 8,
+      "exact_comparisons": 5,
+      "ignored_paths": []
+    }
+  },
+  "screenshot_selection": [
+    {
+      "case": "browser/matrix/France",
+      "file": "overview-desktop.png",
+      "bytes": 749123,
+      "sha256": "767155bb2896a54e794078a3c8889ce95ecd658a5f2af3f1d98fae7ff9d45998",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/France",
+      "file": "structure-narrow.png",
+      "bytes": 53667,
+      "sha256": "29b3ad6fe3ab1e78f447d4478b514a4517d1ff7e219157423014d4d570dc571f",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/France",
+      "file": "leadership-desktop.png",
+      "bytes": 205570,
+      "sha256": "98c0c9c80d81e94bc6cfea100d5619080ada99e50fd3261fa214823eed7351d5",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/France",
+      "file": "served-refusal-desktop.png",
+      "bytes": 362769,
+      "sha256": "9d6e177034ed96995aaad6676a1244efd6c0d3c40d0f2be2fec39a3ffa33b30b",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/France",
+      "file": "review-desktop.png",
+      "bytes": 284676,
+      "sha256": "349da82f8240349f8a7abfb2823cd739a2fd615c51857c73cda77c1ba9e9af25",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/France",
+      "file": "review-narrow.png",
+      "bytes": 84242,
+      "sha256": "10f460271d3761cc9ed53d68c8772f82dd94499586640121061640879ff80e28",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/France",
+      "file": "review-narrow-320.png",
+      "bytes": 62938,
+      "sha256": "c5f0b710bbef53694b2ece1523b371cb191c15e50688718fb3d446ea05906b85",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/France",
+      "file": "result-narrow-390.png",
+      "bytes": 66111,
+      "sha256": "7af279ff73954b658103ce044bbcb35fb2011a7e3ddac098c27aee45f52d27ed",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/France",
+      "file": "result-narrow-320.png",
+      "bytes": 55210,
+      "sha256": "230834d89d7d14783040c953a9bac987093f725a91f891d5779f1074c85b60b2",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/France",
+      "file": "result-desktop.png",
+      "bytes": 188456,
+      "sha256": "196da56b990551aec20c388b473be2123ef58664157b352c89875a714df348d8",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/France",
+      "file": "continued-overview-narrow.png",
+      "bytes": 138874,
+      "sha256": "ac749f8710b69bba3b8b5b9fddd1ee3912a02b7d4cc52dc5f0abf64e4537b7e2",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/France",
+      "file": "continued-overview-narrow-320.png",
+      "bytes": 107359,
+      "sha256": "0cde51b9e0a21c343951403e8d21846bffec169f0e27df2e4f3317844244cabd",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/Japan",
+      "file": "overview-desktop.png",
+      "bytes": 759093,
+      "sha256": "d017e8475bbb968bf7a8a4af1aa4f8fc4143322e0b288c9fc18e942075d0505a",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Japan",
+      "file": "structure-narrow.png",
+      "bytes": 46921,
+      "sha256": "147af2e83f01b79fc3db376570bcf3611350975bed03a3074641ac667f26a2db",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Japan",
+      "file": "leadership-desktop.png",
+      "bytes": 243362,
+      "sha256": "51308da85c7ecf695c44636c30f94fac0c9e45f27ed2c5b5c6fe6003d4b27ab8",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Japan",
+      "file": "served-refusal-desktop.png",
+      "bytes": 191738,
+      "sha256": "8b69b5c7969576eef8f30cca8a50a312004eb29bd96455c416a7a02ff27fd39c",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Japan",
+      "file": "review-desktop.png",
+      "bytes": 281281,
+      "sha256": "9b474f5257c75f20831c3f0315808efbfc28518f2f28f5046786e0a0d8714b47",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Japan",
+      "file": "review-narrow.png",
+      "bytes": 83944,
+      "sha256": "f79701f3b78830425c4c2b687e1d4b1978d0156350ad07553ca635cbe961afba",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Japan",
+      "file": "review-narrow-320.png",
+      "bytes": 62411,
+      "sha256": "e2b4316d851bd9607758e381d3c3b6b3449adc71cebdc5f8511a81de04a6d3a7",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Japan",
+      "file": "result-narrow-390.png",
+      "bytes": 65679,
+      "sha256": "7e07633edaef8ae70526dec84afe90a6dcff6e45a40ecb9e1c9ae0b85ad20ccc",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Japan",
+      "file": "result-narrow-320.png",
+      "bytes": 58051,
+      "sha256": "ca7529f2dcf395f27eb6ce2087f1aef23476231e07ec9b52a00a647ec02d0d08",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Japan",
+      "file": "result-desktop.png",
+      "bytes": 201497,
+      "sha256": "ead807e76bd130ebf15cd910b7ccb3389d610b5a66852af33f370a56fc24d27d",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Japan",
+      "file": "continued-overview-narrow.png",
+      "bytes": 137925,
+      "sha256": "d59107b2eb928fd2f2f510325651169ef241d6ecad6a005f54936292bb5070ed",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Japan",
+      "file": "continued-overview-narrow-320.png",
+      "bytes": 109928,
+      "sha256": "f0fb03bd0a2cb135ff65a21fd3dc4a21e2a6c01c2b65a9e29a1505fd31d14eb0",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/India",
+      "file": "overview-desktop.png",
+      "bytes": 748184,
+      "sha256": "3ac081231e6ad18b182fea0af9a7db3830d13e6f41470a7893289380412aee5b",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/India",
+      "file": "structure-narrow.png",
+      "bytes": 52874,
+      "sha256": "79c96da7c34108a1ec56253617510daf44d8e93f733153e0a05bf0bc3ea38295",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/India",
+      "file": "leadership-desktop.png",
+      "bytes": 234933,
+      "sha256": "0e755552e9ac208d7f541a00de799f529cb2cfce0d22f16839450901f16299bd",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/India",
+      "file": "served-refusal-desktop.png",
+      "bytes": 363117,
+      "sha256": "c05389f290447250cba44eba15bafe21cf2c56e0db6b3d456badc9fbd8e1dc3b",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/India",
+      "file": "review-desktop.png",
+      "bytes": 282276,
+      "sha256": "23781aab314e7004bd80851f512fbe7355f2af5a1748fd8a852389d8e26bc6f3",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/India",
+      "file": "review-narrow.png",
+      "bytes": 83986,
+      "sha256": "b8cafc1d86076a976ee5a7aad4b4b6ccbc2e79fe546f5a1979af59d3dab6f947",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/India",
+      "file": "review-narrow-320.png",
+      "bytes": 62515,
+      "sha256": "d29f09703360250de00157ad85f4a17b17b2aa144fd7d169dca1f65e7aadb24e",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/India",
+      "file": "result-narrow-390.png",
+      "bytes": 65338,
+      "sha256": "d4d34c171d3ee52c2c0dc66f083e075ed3a3b99d1b2af33c39125f6f17693eb0",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/India",
+      "file": "result-narrow-320.png",
+      "bytes": 58215,
+      "sha256": "78b33d0a118bea104d7da597a79b524f5ef5e863d27df528b7f1af14fc918dee",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/India",
+      "file": "result-desktop.png",
+      "bytes": 187417,
+      "sha256": "4e13f9258b8f649b9dcd73b6fd6fbd4356ab5e53472d0f580d4b1950b851eaad",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/India",
+      "file": "continued-overview-narrow.png",
+      "bytes": 138307,
+      "sha256": "c6dc3bdb347cc5b34174e5964f3df343772aa5a2f45a62472127bf26434cbb91",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/India",
+      "file": "continued-overview-narrow-320.png",
+      "bytes": 106803,
+      "sha256": "545a59c932a605514fa97a56599e59f353951ac347faca6c41550c2d19b257c5",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Brazil",
+      "file": "overview-desktop.png",
+      "bytes": 745593,
+      "sha256": "36cc0007b0bffe9dbca8df81b572f1c52547b866c9c86c0be3f5a9178fa1515c",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Brazil",
+      "file": "structure-narrow.png",
+      "bytes": 54254,
+      "sha256": "260e7937547920c338502a67570a09653820017c5a86b40905b2d831e1e02a87",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Brazil",
+      "file": "leadership-desktop.png",
+      "bytes": 249608,
+      "sha256": "9944803729b0d89a2ed312fbb483ec8f0ebfd3236c3c794a717cd5316e883205",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Brazil",
+      "file": "served-refusal-desktop.png",
+      "bytes": 250036,
+      "sha256": "446bb2c16f7594834c37ceabf7c397311ed17919eaa45ad55a0b88f6339dab4b",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Brazil",
+      "file": "review-desktop.png",
+      "bytes": 285867,
+      "sha256": "fff39076c9157434446e7520b60e2f153f5bf381f127297569b971468fa77605",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Brazil",
+      "file": "review-narrow.png",
+      "bytes": 85298,
+      "sha256": "1555941a5e94a1fba77cc71c7316363db0ad9943f0e3828be8d272e6c410bf55",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Brazil",
+      "file": "review-narrow-320.png",
+      "bytes": 61784,
+      "sha256": "6625bb2b7a4715c5b48ab53c71c2e7a3d9ed5ea7f9363303d8f7682479582927",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Brazil",
+      "file": "result-narrow-390.png",
+      "bytes": 35949,
+      "sha256": "058021c005b8f47a2bdf7337b2a0b18c9cab1cf6b8b1a16bc92e50024875a8cc",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Brazil",
+      "file": "result-narrow-320.png",
+      "bytes": 34428,
+      "sha256": "84cb8cdc0c612b38b3aea852afa768b596c619a88b0fe79fe7eaabca94ae6784",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Brazil",
+      "file": "result-desktop.png",
+      "bytes": 142682,
+      "sha256": "036f190725d7c3367ce8d9e74a17e5b083d48201a25e6fa64dea41d159184e54",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Brazil",
+      "file": "continued-overview-narrow.png",
+      "bytes": 136898,
+      "sha256": "ed2931a2db6c7c9548a4bd1b988535cc908432dfce68d934607b39627c047058",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Brazil",
+      "file": "continued-overview-narrow-320.png",
+      "bytes": 105653,
+      "sha256": "d5d376baab951a42f8def8ffe410019a3e29f45d30120ed24d86defc05e51381",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SouthAfrica",
+      "file": "overview-desktop.png",
+      "bytes": 748810,
+      "sha256": "c0288c77f8ae9c2fea6acda7f89ce9f832cc7ab40d36399042b6a01dc8667a48",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SouthAfrica",
+      "file": "structure-narrow.png",
+      "bytes": 75415,
+      "sha256": "a9e60c656e2ee1a94d354ab3f740a87fc9b7724e91a918415dccbcbcf1a7045a",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SouthAfrica",
+      "file": "leadership-desktop.png",
+      "bytes": 245280,
+      "sha256": "252b10763d2f2b9d839129323f12cecf038c4225b3fe51d35ddfae5cc14b68b0",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SouthAfrica",
+      "file": "served-refusal-desktop.png",
+      "bytes": 335607,
+      "sha256": "82e4f0e1193996734fb490808e0e9259522c9dd5bb8e0b219a2abffdd01089bd",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SouthAfrica",
+      "file": "review-desktop.png",
+      "bytes": 292121,
+      "sha256": "12527140894f8105572c4d10e00d3af8b1c1716185c2f0ee97be31847f86a59e",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SouthAfrica",
+      "file": "review-narrow.png",
+      "bytes": 88460,
+      "sha256": "9fd02a97df4b8c06234d7521f46bdf88a46b90007a12bf805bcd5c869511656d",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SouthAfrica",
+      "file": "review-narrow-320.png",
+      "bytes": 66262,
+      "sha256": "02d77adb61756459d83bbd8066a6a1dee7001dccc2a12826d7961503c1edbdcb",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SouthAfrica",
+      "file": "result-narrow-390.png",
+      "bytes": 67169,
+      "sha256": "76f3e73a50d8520e7de5a2be9261943d1c20ac3ea2ab75ae616cfe4444021b7d",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SouthAfrica",
+      "file": "result-narrow-320.png",
+      "bytes": 54790,
+      "sha256": "4f9ab4c6539960d0d6ea6d89488f04af66a5e2af3cea384368eea43f746e4885",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SouthAfrica",
+      "file": "result-desktop.png",
+      "bytes": 190575,
+      "sha256": "a52dcd5e21ff0c7768b2e7d0df10eb8149fc6d48ca9f229f3b8d096c31727825",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SouthAfrica",
+      "file": "continued-overview-narrow.png",
+      "bytes": 137887,
+      "sha256": "5be4c47a88b5650ae70b783b2573c03c5bf272be0c828baaa6a6b420e8e65c91",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SouthAfrica",
+      "file": "continued-overview-narrow-320.png",
+      "bytes": 109629,
+      "sha256": "d71d108f1f3ce8ac5cf7d19edef0825801ac7c1abf7799a0ef196c0523f0ce1c",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/Tonga",
+      "file": "overview-desktop.png",
+      "bytes": 746810,
+      "sha256": "138308be368cb0b884feaa7df54f933bb4bc7a22f53cd548e442668e4ee4064c",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/Tonga",
+      "file": "opening-executive-portrait.png",
+      "bytes": 685658,
+      "sha256": "16c2d1583f557ea2478ec2963cbce949648e4ed9e692ab5d9a5eb176e3476ea8",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/Tonga",
+      "file": "structure-narrow.png",
+      "bytes": 75104,
+      "sha256": "94d5813f8549d31dd08155a92f248c70c39874551b8b13fd9e726b586569274e",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/Tonga",
+      "file": "leadership-desktop.png",
+      "bytes": 349842,
+      "sha256": "23e884f83d6afb4ce5a46efa104676cbb81757912fd4cbeae5a813bcb44d9d82",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/Tonga",
+      "file": "served-refusal-desktop.png",
+      "bytes": 213063,
+      "sha256": "d845a37da107f1b45648bd7bf005f895566e907299fb81f3aa2b2abf442b8118",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/Tonga",
+      "file": "review-desktop.png",
+      "bytes": 290965,
+      "sha256": "70ac1f0fd37ee3104fab4fc6cf90af08a2eb7abf3b3cdcef42a98a0df79c82f7",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/Tonga",
+      "file": "review-narrow.png",
+      "bytes": 87885,
+      "sha256": "b5e3c957b78a7303165ed34516617027fd25d8829722f8cb126d386b2efbfe2b",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/Tonga",
+      "file": "review-narrow-320.png",
+      "bytes": 65498,
+      "sha256": "ad1a1a4a969da7670f1a20934a59022ac1c61bb4fd06078d9f03c7f3ddab1dbd",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/Tonga",
+      "file": "result-narrow-390.png",
+      "bytes": 67171,
+      "sha256": "c8994278a5f8640ba88b10f03bcfc3e4a22b004a5e230c90fb394a9a8249add7",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/Tonga",
+      "file": "result-narrow-320.png",
+      "bytes": 55232,
+      "sha256": "5395cd7ea8f107f8460a006fab4089ea1ccdd85ec54dbd2ce1327e1c92f472d3",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/Tonga",
+      "file": "result-desktop.png",
+      "bytes": 190500,
+      "sha256": "4c6976d9d79f930e946066aa1d281578f347a0a07c520b201381c7bc8705616e",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/Tonga",
+      "file": "continued-overview-narrow.png",
+      "bytes": 136605,
+      "sha256": "f3125b4d52660c8e4965a94ed3d8ed3106155bdbe108a98cf8a0fbc1b30391d7",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/Tonga",
+      "file": "continued-overview-narrow-320.png",
+      "bytes": 109124,
+      "sha256": "31eab0426a86c90edbe8cb59089c4e1750ee220a7bf15a310f9e9adef128e62e",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/matrix/SaudiArabia",
+      "file": "overview-desktop.png",
+      "bytes": 738351,
+      "sha256": "bcc9fff17a4b868980d453e42343d762a94d4dfe06089d0521a9dd292f25b8e0",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SaudiArabia",
+      "file": "structure-narrow.png",
+      "bytes": 76377,
+      "sha256": "0bc66a9dc1c680a29d02b21966288ed577bf31166fa82909497b21f51fa0315a",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SaudiArabia",
+      "file": "leadership-desktop.png",
+      "bytes": 351980,
+      "sha256": "2e563a5f52429f5dfcc182486c970942ee79c41fb554408b5441f705e02d264e",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SaudiArabia",
+      "file": "served-refusal-desktop.png",
+      "bytes": 244984,
+      "sha256": "40c4fd7691c17c2b8bb27e0a10db70420c747cbc49bbb6b1a3adbaf91b3ce731",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SaudiArabia",
+      "file": "review-desktop.png",
+      "bytes": 290121,
+      "sha256": "e7f988c8080d9860009204fbffb121a1d79ff4f1a043454f44435ee57bc14151",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SaudiArabia",
+      "file": "review-narrow.png",
+      "bytes": 87335,
+      "sha256": "dcc0e42e2d3a3f8dc16a5173f233e5305a5ec2e4b28c17363256a8a5f51c213f",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SaudiArabia",
+      "file": "review-narrow-320.png",
+      "bytes": 66820,
+      "sha256": "0292a36d45e4888ddd8fe40bb7a741851b5f6d9ca9d18625b57eae78dc2a9d5e",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SaudiArabia",
+      "file": "result-narrow-390.png",
+      "bytes": 66097,
+      "sha256": "b607c60076273a1c149fc44e85bfd3f3bf481867582cb1ad2a2481d41c3a76cc",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SaudiArabia",
+      "file": "result-narrow-320.png",
+      "bytes": 54552,
+      "sha256": "34b0bf2bc3a1ff4dc3d09f00d25809bb651c410784760288d4defb7be59939dc",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SaudiArabia",
+      "file": "result-desktop.png",
+      "bytes": 218376,
+      "sha256": "f5f81ca61755c3851876cc4d2ffe1a9692319da177f4e7c2c9fb0934fb54aa72",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SaudiArabia",
+      "file": "continued-overview-narrow.png",
+      "bytes": 138259,
+      "sha256": "77752818260800f4cab8679dd175da2f3b8aca94e256275925b7268bd75abcbc",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/SaudiArabia",
+      "file": "continued-overview-narrow-320.png",
+      "bytes": 110135,
+      "sha256": "95248db0622e623398cf311246a0005ce293dcee4197f92415646889f51d9ea5",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/USSR",
+      "file": "overview-desktop.png",
+      "bytes": 742381,
+      "sha256": "fb241ba714553da914a953494e62de9308364a728d9c4f96e1925877ae953bf9",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/USSR",
+      "file": "structure-narrow.png",
+      "bytes": 73112,
+      "sha256": "58ac4bda82948d2526febcdec871aee2fd44cf7660dba6f50c1698abee9229e3",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/USSR",
+      "file": "leadership-desktop.png",
+      "bytes": 208301,
+      "sha256": "8388a2cc60e839685b164011cfd2b30750a0fd6d92aaf8fac9acc4c254012fbf",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/USSR",
+      "file": "served-refusal-desktop.png",
+      "bytes": 288216,
+      "sha256": "4b1a36c7d4e7cf8353ecd38458b07a64d9411f58eccf16b71cbf9367a76b87cf",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/USSR",
+      "file": "review-desktop.png",
+      "bytes": 287701,
+      "sha256": "fc104d38f63b1c878b64876ae81d38c1d237bb691f7ebd86a2efc7a75a8e56fc",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/USSR",
+      "file": "review-narrow.png",
+      "bytes": 88178,
+      "sha256": "8439746828b96f733ed904864617c439816c9b9ecc9e6a88f4a7112aa877bcec",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/USSR",
+      "file": "review-narrow-320.png",
+      "bytes": 66158,
+      "sha256": "f7bad5232e7abc23e4021929bb95b01e344897365bb8d40ac008e798d695b444",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/USSR",
+      "file": "result-narrow-390.png",
+      "bytes": 66435,
+      "sha256": "ffa40d2ff2fa757e36f2e5027c1aec23a7a23ebaf4e8e1c8e21e94e6fd4fd2f0",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/USSR",
+      "file": "result-narrow-320.png",
+      "bytes": 57643,
+      "sha256": "59dda12d52ecb801b91dd276161120ee8e31efab4f6e585a639b5a95613c70af",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/USSR",
+      "file": "result-desktop.png",
+      "bytes": 197023,
+      "sha256": "8fede65a2334e78210a784c02bcb79fe1956b2712accbebfbf6ee388a88076a8",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/USSR",
+      "file": "continued-overview-narrow.png",
+      "bytes": 138569,
+      "sha256": "99177ca212d7df0d965ffa04ab3d09b5c3c8035bf375dd92c0a3be62328a2d51",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/matrix/USSR",
+      "file": "continued-overview-narrow-320.png",
+      "bytes": 106440,
+      "sha256": "66f4d2a121759122096a07b69f3c6864192652802809aa25a66261d6e799e607",
+      "included": false,
+      "reason": "Repetitive other-country screenshots omitted; original result and this hash retained"
+    },
+    {
+      "case": "browser/france-policy",
+      "file": "policy-review-desktop.png",
+      "bytes": 441931,
+      "sha256": "fd87ffa31aee09ea70b92c499b6112a2433b5e35b6ca5c335e69afd19ac6bfce",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/france-policy",
+      "file": "policy-review-narrow.png",
+      "bytes": 93149,
+      "sha256": "44262b75299d0adca474a136cbbadf4ae7a7603abde7eb31d82d1fc69e622e6e",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/france-policy",
+      "file": "policy-review-narrow-320.png",
+      "bytes": 86241,
+      "sha256": "cddb10b9bc60e6eb048d87007db207846e4789d330b1b4626f30e4e5b77a050a",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/france-policy",
+      "file": "government-review-before-second-tab.png",
+      "bytes": 284676,
+      "sha256": "349da82f8240349f8a7abfb2823cd739a2fd615c51857c73cda77c1ba9e9af25",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/france-policy",
+      "file": "second-tab-policy-recorded.png",
+      "bytes": 483253,
+      "sha256": "a83420c4d559d913dc6480520dab78719ce86ae355674ebe5514370e6d8e3fda",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/france-policy",
+      "file": "government-stale-review-refused.png",
+      "bytes": 185798,
+      "sha256": "3addb18ff54a2ba2e3534a7db59502b8989235a646267c053b8f0f7854920966",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/france-policy",
+      "file": "government-fresh-review.png",
+      "bytes": 284676,
+      "sha256": "349da82f8240349f8a7abfb2823cd739a2fd615c51857c73cda77c1ba9e9af25",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/france-policy",
+      "file": "government-fresh-review-390.png",
+      "bytes": 84242,
+      "sha256": "10f460271d3761cc9ed53d68c8772f82dd94499586640121061640879ff80e28",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/france-policy",
+      "file": "government-fresh-review-320.png",
+      "bytes": 62938,
+      "sha256": "c5f0b710bbef53694b2ece1523b371cb191c15e50688718fb3d446ea05906b85",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/france-policy",
+      "file": "government-result-narrow-390.png",
+      "bytes": 66072,
+      "sha256": "21e76f52df1e26dfb06d63f791a051d785136173ac50df37299694b3b40565aa",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/france-policy",
+      "file": "government-result-narrow-320.png",
+      "bytes": 55173,
+      "sha256": "0cbc68107cb48770fb083311fed7ca6c523b62cec4785bfb19f190162ded8df8",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/france-policy",
+      "file": "government-result-desktop.png",
+      "bytes": 184158,
+      "sha256": "652a1c0fb221ce2a82e09d8bc83021d894b64b73ace109fbc62cc12b8f32c24c",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/france-policy",
+      "file": "government-continued-narrow.png",
+      "bytes": 103999,
+      "sha256": "37b3914fa6827d9cfb305d1a6094abe0b3773c41ba947ec5ab70c789fa8b4f74",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    },
+    {
+      "case": "browser/france-policy",
+      "file": "government-continued-narrow-320.png",
+      "bytes": 91870,
+      "sha256": "d65640a493d8aaefcae63fa8deb65723e991434dc3b9983dd4e3ebc19514935c",
+      "included": true,
+      "reason": "Selected France/Tonga/policy visual coverage"
+    }
+  ],
+  "failed_attempts": [
+    {
+      "label": "initial-node",
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-c-node-1.json",
+      "classification": "Failed attempt retained; not passing qualification"
+    },
+    {
+      "label": "initial-linux-superseded",
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-linux-final-1",
+      "classification": "Failed attempt retained; not passing qualification"
+    },
+    {
+      "label": "initial-matrix-wrapper",
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-driver-final-1.json",
+      "classification": "Failed attempt retained; not passing qualification"
+    },
+    {
+      "label": "initial-matrix-results",
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-1\\matrix-RuSiS6\\result.json",
+      "classification": "Failed attempt retained; not passing qualification"
+    },
+    {
+      "label": "initial-france-matrix",
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-1\\matrix-RuSiS6\\france-Gk38XM",
+      "classification": "Failed attempt retained; not passing qualification"
+    },
+    {
+      "label": "initial-policy-wrapper",
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-c-browser-1.json",
+      "classification": "Failed attempt retained; not passing qualification"
+    },
+    {
+      "label": "superseded-web",
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-c-web-2.json",
+      "classification": "Failed attempt retained; not passing qualification"
+    },
+    {
+      "label": "superseded-node",
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-c-node-2.json",
+      "classification": "Failed attempt retained; not passing qualification"
+    },
+    {
+      "label": "initial-policy",
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-c-browser-1\\france-0KK3Xo",
+      "classification": "Failed attempt retained; not passing qualification"
+    }
+  ],
+  "review_url": "http://127.0.0.1:7849",
+  "evidence": {
+    "inventory": "evidence/inventory.json",
+    "inventory_sha256": "c4220ac51c1facd704e548c0b60c5b4f487c1660018285ac66c08a181a1613c2",
+    "logical_files": 326,
+    "stored_bytes": 226942283
+  },
+  "remaining": [
+    "Complete C01 organization censuses, role histories and jurisdiction reconciliation before S10/G2 closure.",
+    "Reconcile sourced historical and fictional eligibility with actual game roles; art counts are not historical completeness.",
+    "Expose the portrait derivative_license separately through public API/UI metadata; full existing attribution already states CC BY-SA 4.0."
+  ],
+  "prompt_checkout_policy": {
+    "path": ".gitattributes",
+    "scope": "Only this submitted prompt is pinned to LF; its original bytes, recorded checksum and Git blob are unchanged."
+  }
+}

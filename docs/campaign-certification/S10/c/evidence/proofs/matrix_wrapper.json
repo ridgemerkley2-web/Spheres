@@ -1,0 +1,20 @@
+{
+  "runtime_revision": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+  "driver_revision": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+  "complete_runtime_source_equal": true,
+  "runner_sha256": "a030647e8a78ec182c6244e8c19acc7621fd21f677dc48de72c184be412f4b1f",
+  "driver_sha256": "5c365cb696b82b6f5c60645b1d3b56dc624a490de70a05f695ba52f2e2e6339f",
+  "binary_sha256_before": "37f8cc24c949925fbaf7f6dcdfc8b23422c6996f2b1dc4e8c3d90fcd9504c199",
+  "command": [
+    "node",
+    "tools/ui/ci-government-country-matrix.cjs"
+  ],
+  "started_utc": "2026-09-13T21:37:34.039203+00:00",
+  "exit_code": 0,
+  "finished_utc": "2026-09-13T21:39:41.607593+00:00",
+  "revision_after": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+  "clean_after": true,
+  "binary_sha256_after": "37f8cc24c949925fbaf7f6dcdfc8b23422c6996f2b1dc4e8c3d90fcd9504c199",
+  "log_sha256": "57074ccdb6eb5849c6184b4dfe48618e7ac318c58a5e0541aab982616a9dbabe",
+  "passed": true
+}

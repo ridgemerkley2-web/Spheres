@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "passed": true,
+  "checked_at": "2026-09-13T21:15:34.763729+00:00",
+  "scope": "Exact-person physical portrait, existing manifest validator, conservative artwork selection and six focused Python regressions; no browser/build qualification claimed.",
+  "person_id": "taufaahau_tupou_iv",
+  "method": "OpenAI built-in image_gen",
+  "art_window": {
+    "from": "1990-01-01",
+    "to": "1991-01-01",
+    "exclusive_end": true
+  },
+  "full_manifest_valid": true,
+  "manifest_errors": [],
+  "manifest_warning_count": 536,
+  "other_person_records_equal_to_head": true,
+  "head": "d361c2d567b0704bdffb5160760c87a336b0c7c9",
+  "tests": {
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools/avatars",
+      "-p",
+      "test_tupou_portrait_s10c.py",
+      "-v"
+    ],
+    "ran": 6,
+    "passed": 6,
+    "failed": 0,
+    "duration_seconds": 0.116,
+    "execution": "Executed once in this task; unittest output reported Ran 6 tests and OK."
+  },
+  "files": [
+    {
+      "path": "spheres-web/data/person_portraits.json",
+      "sha256": "1a73390a88cfd5603d8e5aa3a1fbec5cbe713ce46ec5a3573f7ebb1512fc305d",
+      "bytes": 290378
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/taufaahau-tupou-iv-cartoon-1990-v1.png",
+      "sha256": "f879c9efa4eb70b622c0bae98da0b67950fbe9aba535b43c2353af052449534f",
+      "bytes": 1655402
+    },
+    {
+      "path": "spheres-web/ui/person-portraits/references/taufaahau-tupou-iv-eth-1985-v1.jpg",
+      "sha256": "f3f86c2cc1e1e7e3daff1e70e5b8e648e9e5291075e1314e0dde35f8abacbc92",
+      "bytes": 157903
+    },
+    {
+      "path": "tools/avatars/person-prompts/taufaahau-tupou-iv-cartoon-1990-v1.txt",
+      "sha256": "57b1b2d67d173c719ceabee6411e8566e34330c355e2bfaa47d48a35159d6894",
+      "bytes": 2805
+    },
+    {
+      "path": "tools/avatars/person-prompts/taufaahau-tupou-iv-cartoon-1990-v1.json",
+      "sha256": "10dcdbf5ec386d67134b285ef40e9d5dafa81e3aa55278def16df7e2c8e98d69",
+      "bytes": 9535
+    },
+    {
+      "path": "tools/avatars/test_tupou_portrait_s10c.py",
+      "sha256": "8333dc9be5057c46f0fbcc1eaed5e9594c5c2aa50e87e4906b2334c1b1b9f5f5",
+      "bytes": 4704
+    }
+  ],
+  "pending_integration": "Root must regenerate person_avatar_assets.rs using build_person_avatar_assets.py and qualify served art with the new executable. No Rust edited by this asset task."
+}

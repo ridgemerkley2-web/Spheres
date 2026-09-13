@@ -1,0 +1,1436 @@
+{
+  "format": "spheres-s10c-linux-qualification",
+  "version": 1,
+  "candidate": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+  "started_utc": "2026-09-13T21:34:50.492906+00:00",
+  "status": "passed",
+  "qualification_scope": "Complete web native suite, full Node and three external archive/lifecycle checks on this exact clean runtime candidate. Includes S10 government and agency review tokens, party/executive role separation, pure cancellation and command receipts. Full native and Node execution use Linux tools; source provenance uses Windows git.exe against the same NTFS checkout.",
+  "source": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+  "environment": {
+    "GIT_DIR": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+    "GIT_WORK_TREE": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+    "GIT_OPTIONAL_LOCKS": "0",
+    "GIT_CONFIG_COUNT": "1",
+    "GIT_CONFIG_KEY_0": "core.autocrlf",
+    "GIT_CONFIG_VALUE_0": "true",
+    "CARGO_BUILD_JOBS": "4",
+    "CARGO_HOME": "/home/ridge/.cache/spheres-s05-tools/cargo",
+    "RUSTUP_HOME": "/home/ridge/.cache/spheres-s05-tools/rustup",
+    "CARGO_TARGET_DIR": "/home/ridge/.cache/spheres-s05-target",
+    "CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+    "CC": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+    "TMPDIR": "/home/ridge/.cache/spheres-s05-runs/tmp"
+  },
+  "checks": [
+    {
+      "name": "native",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-web",
+        "--no-fail-fast"
+      ],
+      "extra_environment": {},
+      "started_utc": "2026-09-13T21:34:54.850450+00:00",
+      "elapsed_seconds": 280.511998417,
+      "exit_code": 0,
+      "log": "native.log",
+      "log_sha256": "9aef43c908f6d964436df3d3cc589764552f23607d65f62962fabc6bd80bbe1f",
+      "source_after": {
+        "captured_utc": "2026-09-13T21:39:35.368780+00:00",
+        "head": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+        "status_porcelain": "",
+        "git_dir": "C:/Users/ridge/Spheres/.git/worktrees/integration",
+        "git_work_tree": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+        "source_verification_backend": "Windows git.exe on the shared NTFS checkout; native execution remains Linux",
+        "git_commands": [
+          {
+            "command": [
+              "/mnt/c/Program Files/Git/cmd/git.exe",
+              "-C",
+              "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+              "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "-c",
+              "core.longpaths=true",
+              "rev-parse",
+              "HEAD"
+            ],
+            "started_utc": "2026-09-13T21:39:35.368801+00:00",
+            "elapsed_seconds": 0.059037411000076645,
+            "exit_code": 0,
+            "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+          },
+          {
+            "command": [
+              "/mnt/c/Program Files/Git/cmd/git.exe",
+              "-C",
+              "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+              "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "-c",
+              "core.longpaths=true",
+              "status",
+              "--porcelain"
+            ],
+            "started_utc": "2026-09-13T21:39:35.427869+00:00",
+            "elapsed_seconds": 0.0890681669999367,
+            "exit_code": 0,
+            "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "totals": {
+        "passed": 367,
+        "failed": 0,
+        "ignored": 11,
+        "completed_targets": 2
+      }
+    },
+    {
+      "name": "node",
+      "command": [
+        "node",
+        "tools/ui/run-unit.cjs"
+      ],
+      "extra_environment": {},
+      "started_utc": "2026-09-13T21:39:35.834882+00:00",
+      "elapsed_seconds": 149.18364594900004,
+      "exit_code": 0,
+      "log": "node.log",
+      "log_sha256": "cb9159573d76bd380891a1e3b64a2a98ddc4297edbb8601d189cce32eab0f089",
+      "source_after": {
+        "captured_utc": "2026-09-13T21:42:05.023185+00:00",
+        "head": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+        "status_porcelain": "",
+        "git_dir": "C:/Users/ridge/Spheres/.git/worktrees/integration",
+        "git_work_tree": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+        "source_verification_backend": "Windows git.exe on the shared NTFS checkout; native execution remains Linux",
+        "git_commands": [
+          {
+            "command": [
+              "/mnt/c/Program Files/Git/cmd/git.exe",
+              "-C",
+              "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+              "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "-c",
+              "core.longpaths=true",
+              "rev-parse",
+              "HEAD"
+            ],
+            "started_utc": "2026-09-13T21:42:05.023204+00:00",
+            "elapsed_seconds": 0.053786999000067226,
+            "exit_code": 0,
+            "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+          },
+          {
+            "command": [
+              "/mnt/c/Program Files/Git/cmd/git.exe",
+              "-C",
+              "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+              "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "-c",
+              "core.longpaths=true",
+              "status",
+              "--porcelain"
+            ],
+            "started_utc": "2026-09-13T21:42:05.077019+00:00",
+            "elapsed_seconds": 0.07451237400005084,
+            "exit_code": 0,
+            "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "summary_tail": "ts\nok 1526 - every kind and biome exists in the live scatter-mesh, with its weights and footprints\n  ---\n  duration_ms: 20.132596\n  type: 'test'\n  ...\n# Subtest: a missing sampler degrades to a stated default rather than throwing\nok 1527 - a missing sampler degrades to a stated default rather than throwing\n  ---\n  duration_ms: 21.878223\n  type: 'test'\n  ...\n# Subtest: an extent across the antimeridian works and normalises its longitudes\nok 1528 - an extent across the antimeridian works and normalises its longitudes\n  ---\n  duration_ms: 9.583769\n  type: 'test'\n  ...\n# Subtest: the cell grid is a whole-degree power of two and the stride lattice wraps\nok 1529 - the cell grid is a whole-degree power of two and the stride lattice wraps\n  ---\n  duration_ms: 4.418204\n  type: 'test'\n  ...\n# Subtest: a view too wide for the walk guard thins instead of stalling, and thins stably\nok 1530 - a view too wide for the walk guard thins instead of stalling, and thins stably\n  ---\n  duration_ms: 106.84188\n  type: 'test'\n  ...\n# Subtest: no wall clock, no entropy source and no browser can reach this placement\nok 1531 - no wall clock, no entropy source and no browser can reach this placement\n  ---\n  duration_ms: 1.455596\n  type: 'test'\n  ...\n# Subtest: the browser global exports the same contract and plans the identical field\nok 1532 - the browser global exports the same contract and plans the identical field\n  ---\n  duration_ms: 134.414437\n  type: 'test'\n  ...\n# Subtest: every bar above goes red against a deliberately broken placement engine\nok 1533 - every bar above goes red against a deliberately broken placement engine\n  ---\n  duration_ms: 11633.619693\n  type: 'test'\n  ...\n1..1533\n# tests 1533\n# suites 0\n# pass 1532\n# fail 0\n# cancelled 0\n# skipped 1\n# todo 0\n# duration_ms 148930.52702\n"
+    },
+    {
+      "name": "c01-tests",
+      "command": [
+        "python3",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign*.py"
+      ],
+      "extra_environment": {},
+      "started_utc": "2026-09-13T21:42:05.161121+00:00",
+      "elapsed_seconds": 4.5747186319999855,
+      "exit_code": 0,
+      "log": "c01-tests.log",
+      "log_sha256": "0d8990dbc630ae33cfabc5223025c082ac5e4ec9e0520dbfdcea89b7e14e5d91",
+      "source_after": {
+        "captured_utc": "2026-09-13T21:42:09.738476+00:00",
+        "head": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+        "status_porcelain": "",
+        "git_dir": "C:/Users/ridge/Spheres/.git/worktrees/integration",
+        "git_work_tree": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+        "source_verification_backend": "Windows git.exe on the shared NTFS checkout; native execution remains Linux",
+        "git_commands": [
+          {
+            "command": [
+              "/mnt/c/Program Files/Git/cmd/git.exe",
+              "-C",
+              "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+              "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "-c",
+              "core.longpaths=true",
+              "rev-parse",
+              "HEAD"
+            ],
+            "started_utc": "2026-09-13T21:42:09.738493+00:00",
+            "elapsed_seconds": 0.05711156699999265,
+            "exit_code": 0,
+            "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+          },
+          {
+            "command": [
+              "/mnt/c/Program Files/Git/cmd/git.exe",
+              "-C",
+              "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+              "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "-c",
+              "core.longpaths=true",
+              "status",
+              "--porcelain"
+            ],
+            "started_utc": "2026-09-13T21:42:09.795634+00:00",
+            "elapsed_seconds": 0.08314573899997413,
+            "exit_code": 0,
+            "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "summary_tail": "................\n----------------------------------------------------------------------\nRan 16 tests in 4.078s\n\nOK\n"
+    },
+    {
+      "name": "c01-campaign_census",
+      "command": [
+        "python3",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "extra_environment": {},
+      "started_utc": "2026-09-13T21:42:09.885715+00:00",
+      "elapsed_seconds": 0.6071017500000835,
+      "exit_code": 0,
+      "log": "c01-campaign_census.log",
+      "log_sha256": "d873eac38619ce74718d978bfbdea112bc18b74b44f5b06dba5b9dd3ac8b61e2",
+      "source_after": {
+        "captured_utc": "2026-09-13T21:42:10.496839+00:00",
+        "head": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+        "status_porcelain": "",
+        "git_dir": "C:/Users/ridge/Spheres/.git/worktrees/integration",
+        "git_work_tree": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+        "source_verification_backend": "Windows git.exe on the shared NTFS checkout; native execution remains Linux",
+        "git_commands": [
+          {
+            "command": [
+              "/mnt/c/Program Files/Git/cmd/git.exe",
+              "-C",
+              "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+              "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "-c",
+              "core.longpaths=true",
+              "rev-parse",
+              "HEAD"
+            ],
+            "started_utc": "2026-09-13T21:42:10.496855+00:00",
+            "elapsed_seconds": 0.04750901299985344,
+            "exit_code": 0,
+            "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+          },
+          {
+            "command": [
+              "/mnt/c/Program Files/Git/cmd/git.exe",
+              "-C",
+              "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+              "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "-c",
+              "core.longpaths=true",
+              "status",
+              "--porcelain"
+            ],
+            "started_utc": "2026-09-13T21:42:10.544390+00:00",
+            "elapsed_seconds": 0.07208556099999441,
+            "exit_code": 0,
+            "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "summary_tail": "{\n  \"check\": true,\n  \"status\": \"partial_baseline_recorded_census_open\",\n  \"counts\": {\n    \"nation_identities\": 160,\n    \"starting_nations\": 137,\n    \"successor_nations\": 23,\n    \"represented_party_rows\": 624,\n    \"countries_with_party_rows\": 148,\n    \"countries_without_party_rows\": 12,\n    \"party_row_kind\": {\n      \"coalition\": 3,\n      \"party\": 50,\n      \"unknown\": 571\n    },\n    \"party_history_status\": {\n      \"gap\": 571,\n      \"partial\": 53\n    },\n    \"registered_components_or_name_phases\": 20,\n    \"historical_people\": 590,\n    \"historical_terms\": 393,\n    \"component_term_records\": 65,\n    \"historical_term_kind\": {\n      \"acting\": 44,\n      \"co_leader\": 38,\n      \"leader\": 311\n    },\n    \"executive_seed_observations\": 132,\n    \"institution_policy_records\": 12,\n    \"historical_executive_gameplay_grants\": 93,\n    \"future_seat_policies\": 2,\n    \"existing_lifecycle_records\": 23,\n    \"future_templates\": 2556,\n    \"historical_manifest_assets\": 54,\n    \"fictional_manifest_assets\": 4,\n    \"historical_art_snapshot_pending_jobs\": 704,\n    \"people_with_unknown_appearance_eligibility\": 126,\n    \"exhaustive_country_censuses\": 0,\n    \"unrepresented_organizations\": null,\n    \"work_orders_by_phase\": {\n      \"fictional_editorial_review\": 316,\n      \"historical_cartoon_jobs\": 183,\n      \"institution_and_office_roles\": 160,\n      \"known_historical_chains\": 150,\n      \"organization_census\": 160\n    }\n  }\n}\n"
+    },
+    {
+      "name": "c01-import_cnccfp_census",
+      "command": [
+        "python3",
+        "-X",
+        "utf8",
+        "tools/avatars/import_cnccfp_census.py",
+        "--check"
+      ],
+      "extra_environment": {},
+      "started_utc": "2026-09-13T21:42:10.625469+00:00",
+      "elapsed_seconds": 0.1962397070001316,
+      "exit_code": 0,
+      "log": "c01-import_cnccfp_census.log",
+      "log_sha256": "0dd21cd97317420767faf301d239d5a71f41d8d1b5ff20072ddcccbab8cd8108",
+      "source_after": {
+        "captured_utc": "2026-09-13T21:42:10.825164+00:00",
+        "head": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+        "status_porcelain": "",
+        "git_dir": "C:/Users/ridge/Spheres/.git/worktrees/integration",
+        "git_work_tree": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+        "source_verification_backend": "Windows git.exe on the shared NTFS checkout; native execution remains Linux",
+        "git_commands": [
+          {
+            "command": [
+              "/mnt/c/Program Files/Git/cmd/git.exe",
+              "-C",
+              "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+              "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "-c",
+              "core.longpaths=true",
+              "rev-parse",
+              "HEAD"
+            ],
+            "started_utc": "2026-09-13T21:42:10.825180+00:00",
+            "elapsed_seconds": 0.05062658300016665,
+            "exit_code": 0,
+            "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+          },
+          {
+            "command": [
+              "/mnt/c/Program Files/Git/cmd/git.exe",
+              "-C",
+              "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+              "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "-c",
+              "core.longpaths=true",
+              "status",
+              "--porcelain"
+            ],
+            "started_utc": "2026-09-13T21:42:10.875869+00:00",
+            "elapsed_seconds": 0.07776722499988864,
+            "exit_code": 0,
+            "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "summary_tail": "{\"check\": true, \"reporting_identities\": 635, \"submitted_identities\": 575, \"additional_non_filing_identities\": 60, \"country_census_complete\": false}\n"
+    },
+    {
+      "name": "c01-campaign_research",
+      "command": [
+        "python3",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "extra_environment": {},
+      "started_utc": "2026-09-13T21:42:10.959902+00:00",
+      "elapsed_seconds": 0.6663424289999966,
+      "exit_code": 0,
+      "log": "c01-campaign_research.log",
+      "log_sha256": "53015126c67fa984a10ef73f5baee7c38b038ecdec7a03def6f4fdaa7784fc4d",
+      "source_after": {
+        "captured_utc": "2026-09-13T21:42:11.629025+00:00",
+        "head": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+        "status_porcelain": "",
+        "git_dir": "C:/Users/ridge/Spheres/.git/worktrees/integration",
+        "git_work_tree": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+        "source_verification_backend": "Windows git.exe on the shared NTFS checkout; native execution remains Linux",
+        "git_commands": [
+          {
+            "command": [
+              "/mnt/c/Program Files/Git/cmd/git.exe",
+              "-C",
+              "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+              "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "-c",
+              "core.longpaths=true",
+              "rev-parse",
+              "HEAD"
+            ],
+            "started_utc": "2026-09-13T21:42:11.629046+00:00",
+            "elapsed_seconds": 0.05307467500006169,
+            "exit_code": 0,
+            "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+          },
+          {
+            "command": [
+              "/mnt/c/Program Files/Git/cmd/git.exe",
+              "-C",
+              "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+              "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "-c",
+              "core.longpaths=true",
+              "status",
+              "--porcelain"
+            ],
+            "started_utc": "2026-09-13T21:42:11.682149+00:00",
+            "elapsed_seconds": 0.07614203899993299,
+            "exit_code": 0,
+            "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "summary_tail": "{\"check\": true, \"country_packets\": 3, \"countries_without_new_discovery_packet\": 157, \"organization_observations\": 644, \"institution_observations\": 11, \"sources\": 31, \"source_claims\": 1315, \"discovery_batches\": 67, \"exhaustive_country_censuses\": 0}\n"
+    },
+    {
+      "name": "master-archive",
+      "command": [
+        "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-20279169217b1e37",
+        "s05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day",
+        "--exact",
+        "--ignored",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "extra_environment": {
+        "SPHERES_S05_MASTER_ARCHIVE": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-pinned-master/profile-campaigns/saves/profile-industry_and_war-0.json"
+      },
+      "started_utc": "2026-09-13T21:42:11.764555+00:00",
+      "elapsed_seconds": 3.3405800160001036,
+      "exit_code": 0,
+      "log": "master-archive.log",
+      "log_sha256": "b236470d4fc5f8f8eec481d1f94acc4fa638d85a0f109360a3c352757b01c13d",
+      "source_after": {
+        "captured_utc": "2026-09-13T21:42:15.107858+00:00",
+        "head": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+        "status_porcelain": "",
+        "git_dir": "C:/Users/ridge/Spheres/.git/worktrees/integration",
+        "git_work_tree": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+        "source_verification_backend": "Windows git.exe on the shared NTFS checkout; native execution remains Linux",
+        "git_commands": [
+          {
+            "command": [
+              "/mnt/c/Program Files/Git/cmd/git.exe",
+              "-C",
+              "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+              "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "-c",
+              "core.longpaths=true",
+              "rev-parse",
+              "HEAD"
+            ],
+            "started_utc": "2026-09-13T21:42:15.107878+00:00",
+            "elapsed_seconds": 0.08903808700006266,
+            "exit_code": 0,
+            "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+          },
+          {
+            "command": [
+              "/mnt/c/Program Files/Git/cmd/git.exe",
+              "-C",
+              "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+              "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "-c",
+              "core.longpaths=true",
+              "status",
+              "--porcelain"
+            ],
+            "started_utc": "2026-09-13T21:42:15.196953+00:00",
+            "elapsed_seconds": 0.08431509799993364,
+            "exit_code": 0,
+            "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "exact_one_test_passed": true
+    },
+    {
+      "name": "active-fixtures",
+      "command": [
+        "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-20279169217b1e37",
+        "s05_active_fixture_tests::original_active_company_stages_preserve_property_across_load_and_explicit_adoption",
+        "--exact",
+        "--ignored",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "extra_environment": {
+        "SPHERES_S05_ACTIVE_FIXTURES": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active"
+      },
+      "started_utc": "2026-09-13T21:42:15.291843+00:00",
+      "elapsed_seconds": 30.942681666,
+      "exit_code": 0,
+      "log": "active-fixtures.log",
+      "log_sha256": "e1cbe93d08688ad3a5d9beb093c8d6dfdd0cc93bfc9ba0e35c76316472b0a63a",
+      "source_after": {
+        "captured_utc": "2026-09-13T21:42:46.239964+00:00",
+        "head": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+        "status_porcelain": "",
+        "git_dir": "C:/Users/ridge/Spheres/.git/worktrees/integration",
+        "git_work_tree": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+        "source_verification_backend": "Windows git.exe on the shared NTFS checkout; native execution remains Linux",
+        "git_commands": [
+          {
+            "command": [
+              "/mnt/c/Program Files/Git/cmd/git.exe",
+              "-C",
+              "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+              "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "-c",
+              "core.longpaths=true",
+              "rev-parse",
+              "HEAD"
+            ],
+            "started_utc": "2026-09-13T21:42:46.239985+00:00",
+            "elapsed_seconds": 0.05558030600013808,
+            "exit_code": 0,
+            "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+          },
+          {
+            "command": [
+              "/mnt/c/Program Files/Git/cmd/git.exe",
+              "-C",
+              "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+              "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "-c",
+              "core.longpaths=true",
+              "status",
+              "--porcelain"
+            ],
+            "started_utc": "2026-09-13T21:42:46.295593+00:00",
+            "elapsed_seconds": 0.07589728800007833,
+            "exit_code": 0,
+            "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "exact_one_test_passed": true
+    },
+    {
+      "name": "party-versions",
+      "command": [
+        "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-20279169217b1e37",
+        "s05_save_matrix_tests::standalone_party_v1_preserves_real_supplier_books_for_equipment_versions_2_through_5",
+        "--exact",
+        "--ignored",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "extra_environment": {
+        "SPHERES_S05_ACTIVE_FIXTURES": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active"
+      },
+      "started_utc": "2026-09-13T21:42:46.380883+00:00",
+      "elapsed_seconds": 1.3813935380001112,
+      "exit_code": 0,
+      "log": "party-versions.log",
+      "log_sha256": "8b249f01855fd4402acb14709c68a40277a794161f8c2d3a379671211881361b",
+      "source_after": {
+        "captured_utc": "2026-09-13T21:42:47.765098+00:00",
+        "head": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+        "status_porcelain": "",
+        "git_dir": "C:/Users/ridge/Spheres/.git/worktrees/integration",
+        "git_work_tree": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+        "source_verification_backend": "Windows git.exe on the shared NTFS checkout; native execution remains Linux",
+        "git_commands": [
+          {
+            "command": [
+              "/mnt/c/Program Files/Git/cmd/git.exe",
+              "-C",
+              "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+              "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "-c",
+              "core.longpaths=true",
+              "rev-parse",
+              "HEAD"
+            ],
+            "started_utc": "2026-09-13T21:42:47.765118+00:00",
+            "elapsed_seconds": 0.05686379199983094,
+            "exit_code": 0,
+            "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+          },
+          {
+            "command": [
+              "/mnt/c/Program Files/Git/cmd/git.exe",
+              "-C",
+              "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+              "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+              "-c",
+              "core.longpaths=true",
+              "status",
+              "--porcelain"
+            ],
+            "started_utc": "2026-09-13T21:42:47.822014+00:00",
+            "elapsed_seconds": 0.07896079600004668,
+            "exit_code": 0,
+            "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      "exact_one_test_passed": true
+    }
+  ],
+  "source_verification": {
+    "backend": "Windows Git on NTFS; no source paths excluded from status",
+    "command_prefix": [
+      "/mnt/c/Program Files/Git/cmd/git.exe",
+      "-C",
+      "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+      "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+      "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration"
+    ],
+    "version": "git version 2.51.1.windows.1",
+    "removed_environment_for_git_only": {
+      "GIT_DIR": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+      "GIT_WORK_TREE": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration"
+    },
+    "retained_optional_locks": "0",
+    "retained_autocrlf": "true",
+    "commands": [
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--version"
+        ],
+        "started_utc": "2026-09-13T21:34:50.492926+00:00",
+        "elapsed_seconds": 0.07387284000003547,
+        "exit_code": 0,
+        "output_sha256": "f4ffa38472ab31ed0bfc96b45ada79ba546e767b0051532a34ea3640faf102fa"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "diff",
+          "--name-only",
+          "d361c2d567b0704bdffb5160760c87a336b0c7c9",
+          "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+          "--",
+          "spheres-sim",
+          "spheres-cli",
+          "Cargo.toml",
+          "Cargo.lock"
+        ],
+        "started_utc": "2026-09-13T21:34:50.573080+00:00",
+        "elapsed_seconds": 0.07810977200006164,
+        "exit_code": 0,
+        "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "rev-parse",
+          "HEAD"
+        ],
+        "started_utc": "2026-09-13T21:34:50.651254+00:00",
+        "elapsed_seconds": 0.0738141629999518,
+        "exit_code": 0,
+        "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "status",
+          "--porcelain"
+        ],
+        "started_utc": "2026-09-13T21:34:50.725100+00:00",
+        "elapsed_seconds": 0.11068928800000322,
+        "exit_code": 0,
+        "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "diff",
+          "--name-only",
+          "872442d7411d9986321248b41ccadf79e2851d1c",
+          "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+          "--",
+          "*.rs"
+        ],
+        "started_utc": "2026-09-13T21:34:50.838885+00:00",
+        "elapsed_seconds": 0.11230845800002953,
+        "exit_code": 0,
+        "output_sha256": "0e25d66f352247c54d5c9d0e2787a5c74202558fa7c617e0ce9bf8a26e96e884"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "rev-parse",
+          "HEAD"
+        ],
+        "started_utc": "2026-09-13T21:39:35.368801+00:00",
+        "elapsed_seconds": 0.059037411000076645,
+        "exit_code": 0,
+        "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "status",
+          "--porcelain"
+        ],
+        "started_utc": "2026-09-13T21:39:35.427869+00:00",
+        "elapsed_seconds": 0.0890681669999367,
+        "exit_code": 0,
+        "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "rev-parse",
+          "HEAD"
+        ],
+        "started_utc": "2026-09-13T21:42:05.023204+00:00",
+        "elapsed_seconds": 0.053786999000067226,
+        "exit_code": 0,
+        "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "status",
+          "--porcelain"
+        ],
+        "started_utc": "2026-09-13T21:42:05.077019+00:00",
+        "elapsed_seconds": 0.07451237400005084,
+        "exit_code": 0,
+        "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "rev-parse",
+          "HEAD"
+        ],
+        "started_utc": "2026-09-13T21:42:09.738493+00:00",
+        "elapsed_seconds": 0.05711156699999265,
+        "exit_code": 0,
+        "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "status",
+          "--porcelain"
+        ],
+        "started_utc": "2026-09-13T21:42:09.795634+00:00",
+        "elapsed_seconds": 0.08314573899997413,
+        "exit_code": 0,
+        "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "rev-parse",
+          "HEAD"
+        ],
+        "started_utc": "2026-09-13T21:42:10.496855+00:00",
+        "elapsed_seconds": 0.04750901299985344,
+        "exit_code": 0,
+        "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "status",
+          "--porcelain"
+        ],
+        "started_utc": "2026-09-13T21:42:10.544390+00:00",
+        "elapsed_seconds": 0.07208556099999441,
+        "exit_code": 0,
+        "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "rev-parse",
+          "HEAD"
+        ],
+        "started_utc": "2026-09-13T21:42:10.825180+00:00",
+        "elapsed_seconds": 0.05062658300016665,
+        "exit_code": 0,
+        "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "status",
+          "--porcelain"
+        ],
+        "started_utc": "2026-09-13T21:42:10.875869+00:00",
+        "elapsed_seconds": 0.07776722499988864,
+        "exit_code": 0,
+        "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "rev-parse",
+          "HEAD"
+        ],
+        "started_utc": "2026-09-13T21:42:11.629046+00:00",
+        "elapsed_seconds": 0.05307467500006169,
+        "exit_code": 0,
+        "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "status",
+          "--porcelain"
+        ],
+        "started_utc": "2026-09-13T21:42:11.682149+00:00",
+        "elapsed_seconds": 0.07614203899993299,
+        "exit_code": 0,
+        "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "rev-parse",
+          "HEAD"
+        ],
+        "started_utc": "2026-09-13T21:42:15.107878+00:00",
+        "elapsed_seconds": 0.08903808700006266,
+        "exit_code": 0,
+        "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "status",
+          "--porcelain"
+        ],
+        "started_utc": "2026-09-13T21:42:15.196953+00:00",
+        "elapsed_seconds": 0.08431509799993364,
+        "exit_code": 0,
+        "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "rev-parse",
+          "HEAD"
+        ],
+        "started_utc": "2026-09-13T21:42:46.239985+00:00",
+        "elapsed_seconds": 0.05558030600013808,
+        "exit_code": 0,
+        "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "status",
+          "--porcelain"
+        ],
+        "started_utc": "2026-09-13T21:42:46.295593+00:00",
+        "elapsed_seconds": 0.07589728800007833,
+        "exit_code": 0,
+        "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "rev-parse",
+          "HEAD"
+        ],
+        "started_utc": "2026-09-13T21:42:47.765118+00:00",
+        "elapsed_seconds": 0.05686379199983094,
+        "exit_code": 0,
+        "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "status",
+          "--porcelain"
+        ],
+        "started_utc": "2026-09-13T21:42:47.822014+00:00",
+        "elapsed_seconds": 0.07896079600004668,
+        "exit_code": 0,
+        "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "rev-parse",
+          "HEAD"
+        ],
+        "started_utc": "2026-09-13T21:42:50.148134+00:00",
+        "elapsed_seconds": 0.05475966399990284,
+        "exit_code": 0,
+        "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "status",
+          "--porcelain"
+        ],
+        "started_utc": "2026-09-13T21:42:50.202931+00:00",
+        "elapsed_seconds": 0.07862506999981633,
+        "exit_code": 0,
+        "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "reason": "Avoid cross-OS index stat-cache churn. Every snapshot still runs the real full status and exact HEAD check; commit diff remains real Git. Linux compile/test tools and build-script Git are unchanged."
+  },
+  "runner_sha256": "cac9cda00c8b575d0d72decb3cfba72f35a5bc8f00c23356576f5279ef42cf18",
+  "derived_from": {
+    "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/run-s09-linux-windows-git.py",
+    "sha256": "9c6f1469b3a1ad29d76674ecb93cf9edb7c2aea6cabe34ff5cfe0f4deb7267e6"
+  },
+  "source_before": {
+    "captured_utc": "2026-09-13T21:34:50.651239+00:00",
+    "head": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+    "status_porcelain": "",
+    "git_dir": "C:/Users/ridge/Spheres/.git/worktrees/integration",
+    "git_work_tree": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+    "source_verification_backend": "Windows git.exe on the shared NTFS checkout; native execution remains Linux",
+    "git_commands": [
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "rev-parse",
+          "HEAD"
+        ],
+        "started_utc": "2026-09-13T21:34:50.651254+00:00",
+        "elapsed_seconds": 0.0738141629999518,
+        "exit_code": 0,
+        "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "status",
+          "--porcelain"
+        ],
+        "started_utc": "2026-09-13T21:34:50.725100+00:00",
+        "elapsed_seconds": 0.11068928800000322,
+        "exit_code": 0,
+        "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "rust_diff_baseline_revision": "872442d7411d9986321248b41ccadf79e2851d1c",
+  "rust_diff_from_full_candidate": [
+    "spheres-web/src/decision_review.rs",
+    "spheres-web/src/main.rs",
+    "spheres-web/src/person_avatar_assets.rs",
+    "spheres-web/src/s10_decision_tests.rs",
+    "spheres-web/src/s10_government_tests.rs",
+    "spheres-web/src/transport.rs"
+  ],
+  "fixtures_before": {
+    "captured_utc": "2026-09-13T21:34:54.224298+00:00",
+    "active_manifest_sha256": "3f897d3bcd3c24664980a026b710d84e5f8d23cddc2d180d0185efc969a1bd4f",
+    "master_generation_sha256": "c5fc55572751ac6fb75e1bf5074f09e2327ceea8d0bae55bceb63019de2f5ec6",
+    "items": [
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/01-eligible.json",
+        "sha256": "be937d77a21e19ba976cce77cb4a9442d91e15e178554ba1ffd58d7d6394952d"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/02-development.json",
+        "sha256": "215bf13811b6cc330619bbedb322b50224a3b5035b7b9307c5548eea9c3ef0ec"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/03-stock.json",
+        "sha256": "e49f1ed26b68e25b9674eb818fd349d63e6c5b2fcab03cbd664fcd0446569396"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/04-transit.json",
+        "sha256": "c2c1c3466292243cb801a9da3f47055d155586416724a5407d9238c99fe4ab66"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/05-arrived.json",
+        "sha256": "ddc818e9bb3137e9663f51b0532a249b38d630434760cbb3b5dd9c72e290be8e"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/06-ground-stock.json",
+        "sha256": "0a70345d4c8a1adad1e44049b1e4910f786371ace622723bc875b0a92ca8ba69"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/07-aircraft-development.json",
+        "sha256": "c83bdf97394c4349aaa77807548df8f4d60aee136cbd261f6de3d6b74f77b649"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/08-mixed-stock.json",
+        "sha256": "6dfc30bdc4e97db7b86cb6834836892e89958028ac199dc3d00ec5b56c5ccdfb"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/09-mixed-transit.json",
+        "sha256": "ac797051b97a9110dc5e3e40ee1e05214c28829b79327d86b6444dea3cfd9eb4"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/10-mixed-arrived.json",
+        "sha256": "e257356f32f7fc0e84e08ae7f59a4847c989121f9895030e96e11dc64156e386"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/ammunition/01-ammunition-stock.json",
+        "sha256": "d5f34853c363ff3ea3a76e154bd58e836197e6eb30ce4131c734815c68dab5ad"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/ammunition/02-ammunition-awaiting-settlement.json",
+        "sha256": "e1906791acbe036928d6cafafd70d4631eb72e3fea6426b17eae9e1632f81532"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/ammunition/03-ammunition-transit.json",
+        "sha256": "0936456996109e5282f0c48af24870f58227f2c9ab57742eb51bd7804a930a70"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/ammunition/04-ammunition-arrived.json",
+        "sha256": "c29152dabebbf018efc69717bb038f08442b0c796beb58097a925da1891a6756"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-01-ready.json",
+        "sha256": "f493c4ec09a638745b5614e81b41ee2e4213c224bc19b4007b7c54c31c3e743c"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-02-awaiting-settlement.json",
+        "sha256": "bdfe6d3d1026fdc3f54ec139a9b8f99ea63c60c6258801d734c1ff3aae84c9b0"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-03-escrow-settled.json",
+        "sha256": "4de50b35c0bb176c64726e27b78971348e2c880a50679559275962cf10ae792c"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-04-active-work.json",
+        "sha256": "1f0eef204247c98db435cba8355e85245ece44649a0a8f725e2ee1131d5dcc33"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-05-partial-cancel.json",
+        "sha256": "9e7a615909e31aa817ae6930b7b37e373f37b726aa4eab5976d6a82700ac7906"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-06-cancelled-remainder-returned.json",
+        "sha256": "872a9263855bb724575f0e8ead6e451e0e226be145ab9f0e28f2a1ed18e3a5ad"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-07-complete.json",
+        "sha256": "ecc5cb47bad6bf14bbcb6d2b4f008637809d7919e6bece1e2f1ab138074d20b0"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-01-ready.json",
+        "sha256": "f670547ade019885f9df6d531b780eee819525190812a988f0b37b15946ae807"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-02-awaiting-settlement.json",
+        "sha256": "babcb0a8afcc27ca18bb768794504bc1a45984a6e6b11cc7e6bea7791b6ed899"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-03-escrow-settled.json",
+        "sha256": "f03469085666551d6ae0d91ad78ff1bad99031a94c36678be4402797d0226325"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-04-active-work.json",
+        "sha256": "b795c8a07b34eb2c3a7739e02af086810d7303ae2b6457f79cfd21a788280fae"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-05-partial-cancel.json",
+        "sha256": "db06b773846fd83ebc16c032b924fd5d2aff4dc0a8f9c22766b396bc70a38efb"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-06-cancelled-remainder-returned.json",
+        "sha256": "02d180d9e69a4aab5c8247c462b918d8171fec0c8a4d5e3204ccf58d8542bdcd"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-07-complete.json",
+        "sha256": "96ab1d6be4644a764461dde54e4f739aee7a0c432621123eecf297bfee1085b1"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/Spheres/company-sim-target/release/deps/companies_integration-b294d37d0a85b120.exe",
+        "sha256": "c937e7d7b227bb220c61b112efe9746175f669ccf203d7cc18e3f77b485438e8"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/Spheres/company-sim-target/release/deps/company_ammunition-1bf48242777f9167.exe",
+        "sha256": "d143625688cc014e9ab99ed860ab2789a8db93343ee2549d5022fb0b335dbc7a"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/Spheres/company-sim-target/release/deps/company_refits-63b8194ed38c206a.exe",
+        "sha256": "1444ce20a27398f9ccf8cc163a6f9bf49bb95124a565cf7fa0606db20d67b9a9"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-pinned-master/profile-campaigns/saves/profile-industry_and_war-0.json",
+        "sha256": "5fba07caf82335609aab312f14a37f775dcac84e4821bddc36ab63a5bf795463"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/master-target/release/deps/spheres_web-08880ad35fc922f5.exe",
+        "sha256": "2bedd29560bed02e157a6953d64c45faf91ee21aeac85083aed78a3e74f4f622"
+      }
+    ],
+    "verification": "Explicit read-only Windows drive to /mnt mapping; recorded fixture/source hashes unchanged."
+  },
+  "toolchain_log_sha256": "c2ec9e62ea80772c7e166b3f708eee3229824e979dbce4d0584c3195379e8aa3",
+  "web_test_binary": {
+    "path": "/home/ridge/.cache/spheres-s05-target/release/deps/spheres_web-20279169217b1e37",
+    "bytes": 346448752,
+    "sha256": "382a1188dc37eecd830e1425d91786f3a3b1f5919137e6658e9d64b4777674c4",
+    "sha256_after": "382a1188dc37eecd830e1425d91786f3a3b1f5919137e6658e9d64b4777674c4"
+  },
+  "fixtures_after": {
+    "captured_utc": "2026-09-13T21:42:50.137280+00:00",
+    "active_manifest_sha256": "3f897d3bcd3c24664980a026b710d84e5f8d23cddc2d180d0185efc969a1bd4f",
+    "master_generation_sha256": "c5fc55572751ac6fb75e1bf5074f09e2327ceea8d0bae55bceb63019de2f5ec6",
+    "items": [
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/01-eligible.json",
+        "sha256": "be937d77a21e19ba976cce77cb4a9442d91e15e178554ba1ffd58d7d6394952d"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/02-development.json",
+        "sha256": "215bf13811b6cc330619bbedb322b50224a3b5035b7b9307c5548eea9c3ef0ec"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/03-stock.json",
+        "sha256": "e49f1ed26b68e25b9674eb818fd349d63e6c5b2fcab03cbd664fcd0446569396"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/04-transit.json",
+        "sha256": "c2c1c3466292243cb801a9da3f47055d155586416724a5407d9238c99fe4ab66"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/05-arrived.json",
+        "sha256": "ddc818e9bb3137e9663f51b0532a249b38d630434760cbb3b5dd9c72e290be8e"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/06-ground-stock.json",
+        "sha256": "0a70345d4c8a1adad1e44049b1e4910f786371ace622723bc875b0a92ca8ba69"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/07-aircraft-development.json",
+        "sha256": "c83bdf97394c4349aaa77807548df8f4d60aee136cbd261f6de3d6b74f77b649"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/08-mixed-stock.json",
+        "sha256": "6dfc30bdc4e97db7b86cb6834836892e89958028ac199dc3d00ec5b56c5ccdfb"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/09-mixed-transit.json",
+        "sha256": "ac797051b97a9110dc5e3e40ee1e05214c28829b79327d86b6444dea3cfd9eb4"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/companies/10-mixed-arrived.json",
+        "sha256": "e257356f32f7fc0e84e08ae7f59a4847c989121f9895030e96e11dc64156e386"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/ammunition/01-ammunition-stock.json",
+        "sha256": "d5f34853c363ff3ea3a76e154bd58e836197e6eb30ce4131c734815c68dab5ad"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/ammunition/02-ammunition-awaiting-settlement.json",
+        "sha256": "e1906791acbe036928d6cafafd70d4631eb72e3fea6426b17eae9e1632f81532"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/ammunition/03-ammunition-transit.json",
+        "sha256": "0936456996109e5282f0c48af24870f58227f2c9ab57742eb51bd7804a930a70"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/ammunition/04-ammunition-arrived.json",
+        "sha256": "c29152dabebbf018efc69717bb038f08442b0c796beb58097a925da1891a6756"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-01-ready.json",
+        "sha256": "f493c4ec09a638745b5614e81b41ee2e4213c224bc19b4007b7c54c31c3e743c"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-02-awaiting-settlement.json",
+        "sha256": "bdfe6d3d1026fdc3f54ec139a9b8f99ea63c60c6258801d734c1ff3aae84c9b0"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-03-escrow-settled.json",
+        "sha256": "4de50b35c0bb176c64726e27b78971348e2c880a50679559275962cf10ae792c"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-04-active-work.json",
+        "sha256": "1f0eef204247c98db435cba8355e85245ece44649a0a8f725e2ee1131d5dcc33"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-05-partial-cancel.json",
+        "sha256": "9e7a615909e31aa817ae6930b7b37e373f37b726aa4eab5976d6a82700ac7906"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-06-cancelled-remainder-returned.json",
+        "sha256": "872a9263855bb724575f0e8ead6e451e0e226be145ab9f0e28f2a1ed18e3a5ad"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/ground-07-complete.json",
+        "sha256": "ecc5cb47bad6bf14bbcb6d2b4f008637809d7919e6bece1e2f1ab138074d20b0"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-01-ready.json",
+        "sha256": "f670547ade019885f9df6d531b780eee819525190812a988f0b37b15946ae807"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-02-awaiting-settlement.json",
+        "sha256": "babcb0a8afcc27ca18bb768794504bc1a45984a6e6b11cc7e6bea7791b6ed899"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-03-escrow-settled.json",
+        "sha256": "f03469085666551d6ae0d91ad78ff1bad99031a94c36678be4402797d0226325"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-04-active-work.json",
+        "sha256": "b795c8a07b34eb2c3a7739e02af086810d7303ae2b6457f79cfd21a788280fae"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-05-partial-cancel.json",
+        "sha256": "db06b773846fd83ebc16c032b924fd5d2aff4dc0a8f9c22766b396bc70a38efb"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-06-cancelled-remainder-returned.json",
+        "sha256": "02d180d9e69a4aab5c8247c462b918d8171fec0c8a4d5e3204ccf58d8542bdcd"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-original-active/refits/aircraft-07-complete.json",
+        "sha256": "96ab1d6be4644a764461dde54e4f739aee7a0c432621123eecf297bfee1085b1"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/Spheres/company-sim-target/release/deps/companies_integration-b294d37d0a85b120.exe",
+        "sha256": "c937e7d7b227bb220c61b112efe9746175f669ccf203d7cc18e3f77b485438e8"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/Spheres/company-sim-target/release/deps/company_ammunition-1bf48242777f9167.exe",
+        "sha256": "d143625688cc014e9ab99ed860ab2789a8db93343ee2549d5022fb0b335dbc7a"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/Spheres/company-sim-target/release/deps/company_refits-63b8194ed38c206a.exe",
+        "sha256": "1444ce20a27398f9ccf8cc163a6f9bf49bb95124a565cf7fa0606db20d67b9a9"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/fixtures/s05-pinned-master/profile-campaigns/saves/profile-industry_and_war-0.json",
+        "sha256": "5fba07caf82335609aab312f14a37f775dcac84e4821bddc36ab63a5bf795463"
+      },
+      {
+        "path": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/master-target/release/deps/spheres_web-08880ad35fc922f5.exe",
+        "sha256": "2bedd29560bed02e157a6953d64c45faf91ee21aeac85083aed78a3e74f4f622"
+      }
+    ],
+    "verification": "Explicit read-only Windows drive to /mnt mapping; recorded fixture/source hashes unchanged."
+  },
+  "source_after": {
+    "captured_utc": "2026-09-13T21:42:50.148116+00:00",
+    "head": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+    "status_porcelain": "",
+    "git_dir": "C:/Users/ridge/Spheres/.git/worktrees/integration",
+    "git_work_tree": "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+    "source_verification_backend": "Windows git.exe on the shared NTFS checkout; native execution remains Linux",
+    "git_commands": [
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "rev-parse",
+          "HEAD"
+        ],
+        "started_utc": "2026-09-13T21:42:50.148134+00:00",
+        "elapsed_seconds": 0.05475966399990284,
+        "exit_code": 0,
+        "output_sha256": "552d911965e4b33b2cc9d3824bb45656c1eb72e2800f95f088440a8de8f52b4b"
+      },
+      {
+        "command": [
+          "/mnt/c/Program Files/Git/cmd/git.exe",
+          "-C",
+          "C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "--git-dir=C:/Users/ridge/Spheres/.git/worktrees/integration",
+          "--work-tree=C:/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+          "-c",
+          "core.longpaths=true",
+          "status",
+          "--porcelain"
+        ],
+        "started_utc": "2026-09-13T21:42:50.202931+00:00",
+        "elapsed_seconds": 0.07862506999981633,
+        "exit_code": 0,
+        "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "finished_utc": "2026-09-13T21:42:50.285100+00:00"
+}

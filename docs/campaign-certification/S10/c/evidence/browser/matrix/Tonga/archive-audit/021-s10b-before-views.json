@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "input": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\tonga-BtrenE\\server\\audit-captures\\s10b-before-views-dK12hK\\s10b-before-views.json",
+    "bytes": 13148766,
+    "sha256": "fee187e2209ec74ff36b8de4f01e0ec5d2dc29b5fa4e5dc637c723b414468e45"
+  },
+  "requested": {
+    "buyer": "Tonga",
+    "revision": null,
+    "seller": null,
+    "company": null,
+    "product": null
+  },
+  "buyer": {
+    "id": "Tonga",
+    "tech_sha256": "3bbf756d55189acbce3e84b7a79ac834678f8b011532e70970e4952387f04b33",
+    "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+    "revision_ids": [],
+    "held_by_revision": {},
+    "held_units": 0,
+    "buyer_revision": null,
+    "maintenance_plan": null,
+    "program_budget": null
+  },
+  "supplier": null,
+  "imports": {
+    "ids": [],
+    "matching": []
+  },
+  "canonical": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\tonga-BtrenE\\archive-audit\\021-s10b-before-views.canonical",
+    "bytes": 12116204,
+    "sha256": "ec8c0f6b3c0e24ede7170bb10f6fc6a61e04e9fc5b86c2bb227ff3fa06c716f0",
+    "format": "s08-typed-canonical-world-v1-js-f64",
+    "ignored_paths": []
+  }
+}

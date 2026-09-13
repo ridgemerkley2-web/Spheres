@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "input": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\japan-8LZbpw\\server\\audit-captures\\s10b-after-load-continue-wT5Hc2\\s10b-after-load-continue.json",
+    "bytes": 13148944,
+    "sha256": "e377d00760a7cf550d68ebf632278773a4645f983f93f584f9156f4cb28be16f"
+  },
+  "requested": {
+    "buyer": "Japan",
+    "revision": null,
+    "seller": null,
+    "company": null,
+    "product": null
+  },
+  "buyer": {
+    "id": "Japan",
+    "tech_sha256": "7686e28318b6336adad6e4e00ac24a9760d8df76bf7a9164595644e814b9154c",
+    "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+    "revision_ids": [],
+    "held_by_revision": {},
+    "held_units": 0,
+    "buyer_revision": null,
+    "maintenance_plan": null,
+    "program_budget": null
+  },
+  "supplier": null,
+  "imports": {
+    "ids": [],
+    "matching": []
+  },
+  "canonical": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\japan-8LZbpw\\archive-audit\\008-s10b-after-load-continue.canonical",
+    "bytes": 12116273,
+    "sha256": "fc3988a58792833810bfd995bb1036f8fef7dbe6ce39b3e91daf3690288b8a83",
+    "format": "s08-typed-canonical-world-v1-js-f64",
+    "ignored_paths": []
+  }
+}

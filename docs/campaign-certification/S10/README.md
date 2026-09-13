@@ -1,10 +1,19 @@
 # S10 — Government, succession and diplomacy
 
-Status: **S10.a and S10.b complete; S10 and C01 remain in progress**.
+Status: **S10.a, S10.b and S10.c complete; S10 and C01 remain in progress**.
 The [S10.b report](b/README.md) records source-backed country discoveries,
 Linux qualification and all eight ordinary government browser journeys.
 Parent source: `872442d7411d9986321248b41ccadf79e2851d1c`.
 Latest user instruction: Next. Work is limited to S10; S11 is not started.
+
+## S10.c — Readable reviews and bounded content
+
+The [S10.c report](c/README.md) records desktop and 390/320px decision cards,
+visible completion notices, the source-attributed Tupou IV cartoon for 1990,
+and all 635 identities in the pinned French 2024 filing-obligation universe.
+The complete eight-country startup matrix and two-tab France policy/save
+journey were requalified. These checks advance zero campaign days; C01,
+S10 and G2 remain open. Earlier S10.a/b evidence below remains historical.
 
 ## S10.a — Reviewed political decisions
 

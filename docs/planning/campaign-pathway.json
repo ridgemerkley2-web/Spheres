@@ -255,6 +255,12 @@
           "status": "complete",
           "title": "Source-backed country discovery and government startup matrix",
           "evidence": "docs/campaign-certification/S10/b/manifest.json"
+        },
+        {
+          "id": "S10.c",
+          "status": "complete",
+          "title": "Readable political reviews, sourced Tonga cartoon and France reporting universe",
+          "evidence": "docs/campaign-certification/S10/c/manifest.json"
         }
       ],
       "remaining": [
@@ -802,9 +808,9 @@
   "next_session": "S10",
   "execution": {
     "authorized_through": "S10",
-    "stop_boundary": "S10.b",
+    "stop_boundary": "S10.c",
     "status": "stopped",
-    "previous_stop": "S10.a",
+    "previous_stop": "S10.b",
     "instruction": "Next",
     "instruction_date": "2026-09-13",
     "next_session_requires_instruction": true

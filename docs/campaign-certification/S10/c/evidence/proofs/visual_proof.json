@@ -1,0 +1,44 @@
+{
+  "reviewed": true,
+  "runtime_revision": "c6c350fbf5b22f83b47f4f47997f5a1d0200ab2c",
+  "reviewed_utc": "2026-09-13T21:41:36.742699+00:00",
+  "method": "Root visually inspected these actual final browser screenshots with view_image; automated text, clipping, hit-test and source-byte assertions are retained separately.",
+  "source_results": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\result.json",
+      "sha256": "ab42648639f6a357d49c4a944203b57729f739d65cd1d13a8396fd16535bd850"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-c-browser-2\\france-uhJF99\\result.json",
+      "sha256": "795864e94450b002ace01af413a49f9f21a622845f125b6c0a7d2de43ab5d439"
+    }
+  ],
+  "images": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\france-txXfro\\review-narrow-320.png",
+      "sha256": "c5f0b710bbef53694b2ece1523b371cb191c15e50688718fb3d446ea05906b85",
+      "observation": "Government effects retain complete readable words in stacked Before/After cells at 320px. Screenshot is deliberately scrolled to the checked effect card."
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\france-txXfro\\result-desktop.png",
+      "sha256": "196da56b990551aec20c388b473be2123ef58664157b352c89875a714df348d8",
+      "observation": "Focused completion notice is visible below the toolbar and navigation after actual confirmation and viewport resizing."
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-c-browser-2\\france-uhJF99\\policy-review-narrow-320.png",
+      "sha256": "cddb10b9bc60e6eb048d87007db207846e4789d330b1b4626f30e4e5b77a050a",
+      "observation": "Policy Before/After values are present without horizontal scrolling; the long dated-result prose has narrow wrapping, retained as a visual follow-up."
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\tonga-BtrenE\\opening-executive-portrait.png",
+      "sha256": "16c2d1583f557ea2478ec2963cbce949648e4ed9e692ab5d9a5eb176e3476ea8",
+      "observation": "Tupou IV cartoon appears in the opening government card beside his exact name and office. This is a 1990 illustration, not a later-era grant."
+    }
+  ],
+  "limits": [
+    "Only the listed screenshots received this manual visual review. Eight-country automated geometry and native world checks are separate evidence.",
+    "Long prose in 320px Decisions-room cards still wraps into short lines in its two columns; no quoted values are horizontally clipped. Further typography refinement remains.",
+    "Portrait derivative license is in the full credit and manifest; the separate API artwork-license label is a follow-up.",
+    "No whole-world avatar completion, elapsed campaign qualification, Russia activation, C01 closure or G2 award is established."
+  ]
+}

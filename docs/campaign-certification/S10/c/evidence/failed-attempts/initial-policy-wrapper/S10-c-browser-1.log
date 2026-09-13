@@ -1,0 +1,20 @@
+AssertionError [ERR_ASSERTION]: Settled government result notice: {"text":"Invite French Communist Party — completed. The figures now reflect this decision.","rect":{"left":16,"top":113.75,"right":304,"bottom":218,"width":288,"height":104.25},"text_rects":[{"left":35,"top":130.75,"right":256.015625,"bottom":150.75,"width":221.015625,"height":20},{"left":35,"top":155.5,"right":264.015625,"bottom":175.5,"width":229.015625,"height":20},{"left":35,"top":180.25,"right":120.453125,"bottom":200.25,"width":85.453125,"height":20}],"ancestors":[{"tag":"P","id":"govNotice","scrollLeft":0,"scrollWidth":286,"clientWidth":286},{"tag":"DIV","id":"","scrollLeft":0,"scrollWidth":320,"clientWidth":320},{"tag":"DIV","id":"govBody","scrollLeft":0,"scrollWidth":320,"clientWidth":320},{"tag":"DIV","id":"govScreen","scrollLeft":0,"scrollWidth":320,"clientWidth":320}],"errors":["Text is obscured by banner","Text is obscured by banner","Text is obscured by banner"],"viewport":{"left":0,"top":0,"right":320,"bottom":844}}
++ actual - expected
+
++ [
++   'Text is obscured by banner',
++   'Text is obscured by banner',
++   'Text is obscured by banner'
++ ]
+- []
+
+    at visibleText (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\government-review-assertions.cjs:45:10)
+    at async Object.governmentNotice (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\government-review-assertions.cjs:101:17)
+    at async main (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-government-decisions.cjs:168:141) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [Array],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}

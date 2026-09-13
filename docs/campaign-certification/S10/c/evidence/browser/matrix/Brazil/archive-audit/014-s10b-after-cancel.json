@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "input": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\brazil-NlqdLQ\\server\\audit-captures\\s10b-after-cancel-dPtsC2\\s10b-after-cancel.json",
+    "bytes": 13148768,
+    "sha256": "b1b2129ad0f0aae29bddad53a703ed1b97e02cf5c6cc7790db1110677f6fa727"
+  },
+  "requested": {
+    "buyer": "Brazil",
+    "revision": null,
+    "seller": null,
+    "company": null,
+    "product": null
+  },
+  "buyer": {
+    "id": "Brazil",
+    "tech_sha256": "71f36968da01c68c3f31a69cb487c3a10f0c866073a70c089b002c846bff16b8",
+    "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+    "revision_ids": [],
+    "held_by_revision": {},
+    "held_units": 0,
+    "buyer_revision": null,
+    "maintenance_plan": null,
+    "program_budget": null
+  },
+  "supplier": null,
+  "imports": {
+    "ids": [],
+    "matching": []
+  },
+  "canonical": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10c-matrix-final-2\\matrix-4aP4Fd\\brazil-NlqdLQ\\archive-audit\\014-s10b-after-cancel.canonical",
+    "bytes": 12116205,
+    "sha256": "c3c3a0913ffe531419b49c8f5ecf9d72b239e6fd5915f1c3b0c1dac0e89fe911",
+    "format": "s08-typed-canonical-world-v1-js-f64",
+    "ignored_paths": []
+  }
+}
