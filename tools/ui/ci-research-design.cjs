@@ -53,7 +53,7 @@ async function main(){
   assert.match(process.env.SPHERES_EXPECTED_REVISION||'',/^[a-f0-9]{40}$/);
   const binary=path.resolve(process.env.SPHERES_BINARY);assert(fs.statSync(binary).isFile());
   const output=path.resolve(process.env.SPHERES_RESEARCH_OUTPUT||path.join(root,'artifacts/browser-research-design-ci'));
-  fs.mkdirSync(output,{recursive:true});const out=fs.mkdtempSync(path.join(output,'france-')),run=path.join(out,'server');fs.mkdirSync(run);
+  fs.mkdirSync(output,{recursive:true});const out=fs.mkdtempSync(path.join(output,'france-')),run=path.join(out,'server');fs.mkdirSync(run);fs.mkdirSync(path.join(run,'saves'));
   const port=await freePort(),url='http://127.0.0.1:'+port;
   const server=cp.spawn(binary,['--port',String(port),'--no-open'],{cwd:run,windowsHide:true,stdio:['ignore','pipe','pipe']});
   const log=fs.createWriteStream(path.join(out,'server.log'));server.stdout.pipe(log);server.stderr.pipe(log);
@@ -90,6 +90,7 @@ async function main(){
     }
     const acquisition=guidance.costs.find(row=>/purchase|acquisition/i.test(row.label));assert(acquisition&&Number.isFinite(acquisition.amount_bn)&&acquisition.amount_bn>0,'Native guidance must supply a conditional acquisition estimate');
     assert(guidance.conditions.length>0);write('initial-guidance.json',guidance);
+    const art=await page.request.get(url+'/art/pages/military-research-v1.webp');try{assert(art.ok(),'Existing research background art must be served');await art.body();}finally{await art.dispose();}
     // Declared in the S09 protocol before the first measurement. Sequential
     // full HTTP/JSON reads, no response replacement or cache installation.
     const board=await page.evaluate(()=>JSON.parse(JSON.stringify(EQUIP.data)));
@@ -123,7 +124,8 @@ async function main(){
     await page.locator('[data-equipment-branch='+quoted(compatible.row.branch)+']').click();
     const unlock=page.locator('[data-equipment-unlock='+quoted(compatible.c.id)+']');
     // Expand the real component detail if its natural control is in a details section.
-    const details=unlock.locator('xpath=ancestor::details[1]');if(await details.count()&&await details.getAttribute('open')===null)await details.locator('summary').first().click();
+    const ancestors=await unlock.evaluate(el=>{const keys=[];for(let p=el.parentElement;p;p=p.parentElement)if(p.tagName==='DETAILS')keys.unshift(p.dataset.equipmentDetail);return keys;});
+    for(const key of ancestors){const details=page.locator('details[data-equipment-detail='+quoted(key)+']');if(await details.getAttribute('open')===null)await details.locator(':scope > summary').click();}
     await unlock.click();await page.locator('[data-equipment-replacement]').waitFor();
     assert.deepEqual(await draft(page),edited,'Exploration silently replaced unsaved work');
     await shot('research-part-review','[data-equipment-replacement]');
@@ -134,7 +136,7 @@ async function main(){
     assert(external,'A genuine prerequisite route to the general research screen must be available');
     await page.locator('[data-equipment-tab="research"]').first().click();await page.locator('[data-equipment-branch='+quoted(external.row.branch)+']').click();
     await page.locator('[data-equipment-prerequisite='+quoted(external.index+':'+external.pi)+']').click();
-    await page.waitForFunction(()=>tech.open&&!equipmentActive());assert.deepEqual(await draft(page),edited);
+    await page.waitForFunction(id=>tech.open&&!equipmentActive()&&tech.data?.[tech.sel]?.id===id,external.p.id);assert.deepEqual(await draft(page),edited);
     await page.getByRole('button',{name:'Equipment designer',exact:true}).click();await designer(page);assert.deepEqual(await draft(page),edited);
     e.checks.push('External prerequisite research and return retain the unsaved draft');
 

@@ -1229,3 +1229,19 @@ test('s09 guidance and research details escape supplied text and keep optional o
   const part=s09Research(c);part.description='<svg onload=x>';part.tradeoffs=['<iframe>'];c.equipmentRender();assert.doesNotMatch(c.mount.innerHTML,/<svg onload|<iframe>/);assert.match(c.mount.innerHTML,/&lt;svg onload=x&gt;/);
   assert.match(css,/eq-guidance-grid[\s\S]*grid-template-columns:1fr/);assert.match(css,/eq-draft-status[\s\S]*min-height:44px/);
 });
+
+test('s09 rich research lists disclose five parts first and retain every later component identity and expanded state',()=>{
+  const c=fixture(),part=s09Research(c),row=c.eq.data.research[0];
+  row.unlock_components=Array.from({length:9},(_,i)=>({...plain(part),id:'thermal-'+i,name:'Observation system '+i}));row.unlocks=row.unlock_components.map(p=>p.name);
+  c.eq.data.platforms[0].slots.find(slot=>slot.id==='sensors').components.push(...row.unlock_components.map(p=>p.id));
+  const html=c.equipmentResearchNodeHtml(row,0,0),marker='data-equipment-detail="unlocks:thermal"',boundary=html.indexOf(marker);
+  assert(boundary>0);assert.equal((html.slice(0,boundary).match(/class="eq-unlock-component"/g)||[]).length,5);assert.equal((html.slice(boundary).match(/class="eq-unlock-component"/g)||[]).length,4);assert.match(html,/4 more available systems/);
+  for(const part of row.unlock_components)assert(html.includes('data-equipment-unlock="'+part.id+'"'),part.id);
+  c.eq.details.add('unlocks:thermal');c.eq.details.add('unlock:thermal-8');const expanded=c.equipmentResearchNodeHtml(row,0,0);
+  assert(expanded.includes(marker+' open'));assert(expanded.includes('data-equipment-detail="unlock:thermal-8" open'));
+  const draft=plain(c.eq.draft);assert.equal(c.equipmentExploreUnlock('thermal-8','tank_medium'),true);assert.deepEqual(plain(c.eq.draft),draft);assert.equal(c.eq.replacement.row.spec.components.sensors,'thermal-8');assert.equal(c.calls.length,0);assert.equal(c.requests.length,0);
+});
+test('s09 current-design costs have a separate escaped heading and guidance uses the served art route',()=>{
+  const c=fixture();s09Guidance(c);c.eq.draft.name='<Current model>';const html=c.equipmentGuidanceHtml();
+  assert(html.includes('<h3>Current design · &lt;Current model&gt;</h3>'));assert(html.indexOf('eq-guidance-current')>html.indexOf('data-equipment-recommendation="advanced"'));assert(css.includes("url('/art/pages/military-research-v1.webp')"));assert(!css.includes("url('/page-art/"));
+});
