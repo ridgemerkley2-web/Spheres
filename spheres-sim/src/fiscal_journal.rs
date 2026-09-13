@@ -362,7 +362,8 @@ pub(crate) fn after_policy(w: &mut WorldState, pending: PendingPolicy) {
 
 /// Called after the existing fiscal observer has closed the actual day. This
 /// updates existing decision evidence only; it cannot start a missing journal.
-pub(crate) fn finish_day(w: &mut WorldState) {
+#[doc(hidden)]
+pub fn finish_day(w: &mut WorldState) {
     if !fiscal_recovery::enabled(w) {
         return;
     }

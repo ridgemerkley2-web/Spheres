@@ -408,8 +408,8 @@ pub(crate) fn record_power_dispatch(w: &mut WorldState, nation: NationId, power:
     let generators: Vec<_> = w
         .districts
         .iter()
-        .filter(|(d, _)| {
-            w.districts.get(*d) == Some(&nation) && !resources::district_contested(w, d)
+        .filter(|(d, owner)| {
+            **owner == nation && !resources::district_contested(w, d)
         })
         .filter_map(|(d, _)| {
             let level = crate::industrial_modules::effective_capacity(w, d, K::Generation);

@@ -12,6 +12,8 @@ use super::*;
 use serde_json::{json, Value};
 use std::time::Instant;
 
+include!("s08_performance_diagnostics.rs");
+
 fn ms(start: Instant) -> f64 {
     start.elapsed().as_secs_f64() * 1000.0
 }
@@ -82,6 +84,41 @@ fn profile_command(
     Ok(())
 }
 
+/// Locate expensive reads without changing the source campaign. This is a
+/// component diagnosis, separate from the predefined acceptance measurements.
+#[test]
+#[ignore = "read-only component diagnosis on an explicit saved campaign; not an acceptance run"]
+fn s08_read_model_diagnosis() {
+    let input=std::path::PathBuf::from(std::env::var("SPHERES_S08_DIAGNOSTIC_INPUT").unwrap());
+    let output=std::path::PathBuf::from(std::env::var("SPHERES_S08_DIAGNOSTIC_OUT").unwrap());
+    assert!(input.is_absolute()&&output.is_absolute()&&!output.exists());
+    let g=storage::decode(&std::fs::read_to_string(&input).unwrap()).unwrap();
+    let w=&g.world;let me=w.player.unwrap();let before=spheres_sim::state_hash(w);let mut rows=Vec::new();
+    macro_rules! measure {($name:literal,$value:expr)=>{{let started=Instant::now();let value=$value;let bytes=serde_json::to_vec(&value).unwrap().len();rows.push(json!({"component":$name,"elapsed_ms":ms(started),"bytes":bytes}));}}}
+    measure!("nations",w.nations.iter().filter(|n|n.alive).map(|n|nation_json(w,n)).collect::<Vec<_>>());
+    measure!("connected_economy",connected_economy_json(w,me));
+    measure!("fiscal_recovery",spheres_sim::fiscal_recovery::assessment(w,me));
+    measure!("operations",spheres_sim::operations::view(w,me));
+    measure!("warfare_adoption",warfare_adoption_json(w,me));
+    measure!("theatres",theatres_json(w));
+    measure!("stratagems",stratagems_json(w,me));
+    measure!("research",research_json(w,me));
+    measure!("resources",resources_json(w,me));
+    measure!("logistics_summary",logistics_summary_json(w,me));
+    measure!("production_summary",production_summary_json(w,me));
+    measure!("manufacturing_summary",manufacturing_summary_json(w,me));
+    measure!("programs",programs_json(w,me,None));
+    measure!("domination",domination_json(w,me));
+    measure!("agency",spheres_sim::agency::view(w,me));
+    measure!("campaign_aims",spheres_sim::campaign_aims::view(w,me));
+    measure!("policy",policy_json(w,me));
+    measure!("ministries",ministries_json(w,me));
+    measure!("whole_state",state_json(&g,None));
+    measure!("equipment",equipment_view::view(w,me,&g.session_id));
+    assert_eq!(spheres_sim::state_hash(w),before,"Diagnosis changed the campaign");
+    std::fs::write(output,serde_json::to_vec_pretty(&json!({"revision":env!("SPHERES_REVISION"),"input":input,"date":w.date_str(),"rows":rows,"pure":true,"scope":"Single read-only diagnostic sample, including serialization; not an acceptance measurement."})).unwrap()).unwrap();
+}
+
 /// Separate from aged legacy regressions: sample the genuinely earned S08
 /// supplier world with a paid import in transit. Preparation is not timed.
 #[test]
@@ -128,6 +165,10 @@ fn s08_supplier_import_profile() {
         "ending_date":g.world.date_str(),"starting_owned_work":starting_owned,"initial_imports":initial_imports,
         "simulation_and_history_recording":summary(&simulation),"whole_server_turn":summary(&whole),
         "equipment_market_read_and_serialization":summary(&market),"purchase_quote":if quotes.is_empty(){Value::Null}else{summary(&quotes)},
+        // Preserve the already-measured samples only after the loop. No new
+        // clocks, assertions or reporting work enters a measured turn.
+        "timing_samples_ms":{"simulation":simulation,"whole_server_turn":whole,"equipment_market":market},
+        "timing_sample_order":"Each 31-element array follows sample_activity dates. Summary calculations and all measured work are unchanged.",
         "sample_activity":activity,"source_unchanged":std::fs::read(&input).unwrap()==original,
         "method":"31 consecutive actual one-day advances loaded from the earned S08 purchased campaign. No grants or setup mutations. Ordinary state/history response timing excludes network, disk autosave and browser rendering. Equipment board and purchase quote are separate sequential samples outside whole-turn timing. Run without concurrent compilation or simulations."});
     std::fs::write(&output,serde_json::to_vec_pretty(&report).unwrap()).unwrap();

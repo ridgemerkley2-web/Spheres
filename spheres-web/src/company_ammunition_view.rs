@@ -152,9 +152,14 @@ fn company_ammo_rows(w:&WorldState,me:NationId,raw:&Value)->(Vec<Value>,Vec<Valu
     (products,deliveries)
 }
 
+#[cfg(test)]
 fn company_ammunition_market(w:&WorldState,me:NationId)->Value {
-    let raw=companies::view(w,me);let (mut offers,mut deliveries)=company_ammo_rows(w,me,&raw);
+    let raw=companies::view(w,me);
     let supplier_market=company_supplier_market(w,me);
+    company_ammunition_market_from_reads(w,me,&raw,&supplier_market)
+}
+fn company_ammunition_market_from_reads(w:&WorldState,me:NationId,raw:&Value,supplier_market:&Value)->Value {
+    let (mut offers,mut deliveries)=company_ammo_rows(w,me,raw);
     offers.extend(supplier_market["offers"].as_array().into_iter().flatten()
         .filter(|row|row["origin"]=="foreign"&&row["ammunition"]==true).cloned());
     deliveries.extend(supplier_market["deliveries"].as_array().into_iter().flatten()

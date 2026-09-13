@@ -14,7 +14,9 @@ use spheres_sim::resources::{self, Commodity, Leg, Verdict, ALL};
 use spheres_sim::stratagems;
 use spheres_sim::theatre::TheatreId;
 use spheres_sim::world::*;
-use spheres_sim::{apply_command, load, save, tick_day, tick_month, Command};
+use spheres_sim::{apply_command, load, save, tick_month, Command};
+#[cfg(test)]
+use spheres_sim::tick_day;
 use std::collections::BTreeMap;
 use std::sync::Mutex;
 use tiny_http::{Header, Method, Response, Server};
@@ -42,6 +44,8 @@ mod companies_view;
 mod transport;
 #[cfg(test)]
 mod performance;
+#[cfg(test)]
+mod s08_route_pool_tests;
 use history::{Event, Snapshot};
 
 fn build_info()->serde_json::Value {serde_json::json!({
@@ -222,6 +226,9 @@ const MAX_LOG: usize = 4000;
 
 struct Game {
     world: WorldState,
+    // Derived nominal searches belong to this live campaign, not its saved
+    // world or command trials. New/load constructors deliberately start cold.
+    freight_routes: logistics::NominalRoutePool,
     log: Vec<Event>,
     history: Vec<Snapshot>,
     history_epoch: u64,
@@ -271,7 +278,7 @@ impl Game {
         // board reads the ledger on the setup screen's first month. Never
         // serialized, never hashed; the tick would build the same bytes.
         resources::warm(&mut world);
-        let mut g = Game { world, log: vec![], history: vec![], history_epoch:0, autosaved_month:0, storage_notice:None, session_id: fresh_session_id(), advance_receipts: Default::default(), command_receipts:Default::default() };
+        let mut g = Game { world, freight_routes: Default::default(), log: vec![], history: vec![], history_epoch:0, autosaved_month:0, storage_notice:None, session_id: fresh_session_id(), advance_receipts: Default::default(), command_receipts:Default::default() };
         g.snapshot();
         g
     }
@@ -311,7 +318,7 @@ impl Game {
             let event_t = month_index(self.world.year, self.world.month);
             let event_date = self.world.date_str();
             let before_month = (self.world.year, self.world.month);
-            let headlines = tick_day(&mut self.world, &cmds);
+            let headlines = spheres_sim::tick_day_with_routes(&mut self.world, &cmds, &mut self.freight_routes);
             for h in &headlines {
                 self.record_at(event_t, event_date.clone(), h.clone());
             }
@@ -1034,7 +1041,7 @@ fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
     } else {
         None
     };
-    serde_json::json!({
+    let mut out = serde_json::json!({
         "id": format!("{:?}", n.id),
         "name": n.id.name(),
         "alive": n.alive,
@@ -1116,7 +1123,11 @@ fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
         "export_share": if n.oil_mbd > 0.0 { w.oil_export_share(n.id) } else { 1.0 },
         // Every standing it holds, not just the one with the player — the detail
         // view is a dossier on that nation, not on your relationship with it.
-        "relations": w
+        "relations": null,
+    });
+    // Move the completed rows into the object; json! would serialize and
+    // allocate every nested Value again when given the finished Vec.
+    out["relations"] = serde_json::Value::Array(w
             .nations
             .iter()
             .filter(|o| o.alive && o.id != n.id)
@@ -1127,8 +1138,8 @@ fn nation_json(w: &WorldState, n: &Nation) -> serde_json::Value {
                 "sanctioning": w.is_sanctioning(n.id, o.id),
                 "sanctioned_by": w.is_sanctioning(o.id, n.id),
             }))
-            .collect::<Vec<_>>(),
-    })
+            .collect());
+    out
 }
 
 /// What the world is offering one government this month, at the price the sim
@@ -5577,7 +5588,7 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         })
         .collect();
 
-    serde_json::json!({
+    let mut out = serde_json::json!({
         "date": w.date_str(),
         "year": w.year,
         "month": w.month,
@@ -5617,7 +5628,7 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         "player_set_rate": w.player_set_rate,
         "oil_price": w.oil_price,
         "build":{"version":env!("CARGO_PKG_VERSION"),"revision":env!("SPHERES_REVISION")},
-        "nations": nations,
+        "nations": null,
         "dead": dead,
         "wars": wars,
         "operations": w.player.filter(|id| w.nation_opt(*id).is_some_and(|n| n.alive))
@@ -5678,7 +5689,10 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         // the sim over the range a dial can hold, and the money block.
         "ministries": w.player.map(|p| ministries_json(w, p)),
         "interrupt": interrupt,
-    })
+    });
+    // Each country already owns its completed JSON tree, including relations.
+    out["nations"] = serde_json::Value::Array(nations);
+    out
 }
 
 /// One live province reading. Population is kept out of the large daily state
@@ -7111,7 +7125,7 @@ mod s05_fresh_startup_tests;
 /// manufacturing before warming a save. Connected economy flags and dated
 /// accounts remain exactly as loaded; this path never adopts the S02 upgrade.
 fn loaded_play_game(w: WorldState) -> Game {
-    let mut g = Game { world: w, log: vec![], history: vec![], history_epoch:0, autosaved_month:0, storage_notice:None, session_id: fresh_session_id(), advance_receipts: Default::default(),command_receipts:Default::default() };
+    let mut g = Game { world: w, freight_routes: Default::default(), log: vec![], history: vec![], history_epoch:0, autosaved_month:0, storage_notice:None, session_id: fresh_session_id(), advance_receipts: Default::default(),command_receipts:Default::default() };
     play_rules(&mut g);
     resources::warm(&mut g.world);
     g.snapshot();
@@ -8148,6 +8162,42 @@ fn open_browser(url: &str) {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn s08_moved_nation_arrays_preserve_original_serialized_rows() {
+        let mut g = Game::new(7, None);
+        let ids = [NationId::USA, NationId::France, NationId::Germany];
+        for n in &mut g.world.nations { n.alive = ids.contains(&n.id); }
+        g.world.sanctions.push((NationId::USA, NationId::France));
+        g.world.sanctions.push((NationId::USA, NationId::France));
+        g.world.set_relation(NationId::USA, NationId::France, -0.0);
+        g.world.set_relation(NationId::France, NationId::Germany, f64::NAN);
+        for empty in [false, true] {
+            if empty { for n in &mut g.world.nations { n.alive = false; } }
+            let before = save(&g.world);
+            let w = &g.world;
+            for id in ids {
+                // Original nested json! serialization is the attachment oracle.
+                let original = serde_json::json!({"relations": w.nations.iter()
+                    .filter(|o| o.alive && o.id != id)
+                    .map(|o| serde_json::json!({
+                        "id": format!("{:?}", o.id), "name": o.id.name(),
+                        "value": w.relation(id, o.id),
+                        "sanctioning": w.is_sanctioning(id, o.id),
+                        "sanctioned_by": w.is_sanctioning(o.id, id),
+                    })).collect::<Vec<_>>()});
+                let moved = nation_json(w, w.nation(id));
+                assert_eq!(serde_json::to_vec(&moved["relations"]).unwrap(),
+                    serde_json::to_vec(&original["relations"]).unwrap());
+            }
+            let original = serde_json::json!({"nations": w.nations.iter()
+                .filter(|n| n.alive).map(|n| nation_json(w, n)).collect::<Vec<_>>()});
+            let moved = state_json(&g, None);
+            assert_eq!(serde_json::to_vec(&moved["nations"]).unwrap(),
+                serde_json::to_vec(&original["nations"]).unwrap());
+            assert_eq!(save(&g.world), before, "array attachment is a pure read");
+        }
+    }
 
     #[test]
     fn campaign_aim_browser_commands_freeze_and_close_model_targets() {

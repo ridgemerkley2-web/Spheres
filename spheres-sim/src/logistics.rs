@@ -27,6 +27,10 @@ use crate::resources::{self, Commodity, ShipmentSource};
 use crate::statecraft;
 use crate::world::{NationId, WorldState};
 
+#[path = "logistics_tree.rs"]
+mod tree_storage;
+use tree_storage::{PredecessorRead, Predecessors, SettlementRanks};
+
 pub const EMBEDDED_NETWORK: &str = include_str!("../data/logistics_network.json");
 const EPS: f64 = 1e-9;
 /// Two optional alternate attempts can each settle at most this many nodes.
@@ -203,6 +207,21 @@ struct Edge {
     kind: String,
     chokepoint: Option<String>,
 }
+#[derive(Copy, Clone)]
+struct NodeFlags {
+    district: bool,
+    gateway: bool,
+}
+/// Fixed graph metadata: two directed records per authored edge, in the
+/// original sorted adjacency order (32 bytes each on the x64 target).
+#[derive(Copy, Clone)]
+struct Traversal {
+    edge: usize,
+    next: usize,
+    travel: u64,
+    chokepoint: bool,
+    land_allowed: bool,
+}
 struct Network {
     nodes: Vec<Node>,
     index: BTreeMap<String, usize>,
@@ -213,6 +232,8 @@ struct Network {
     /// tree lookups at every Dijkstra relaxation.
     endpoints: Vec<(usize, usize)>,
     edge_keys: Vec<String>,
+    node_flags: Vec<NodeFlags>,
+    traversal: Vec<Vec<Traversal>>,
 }
 
 fn network() -> &'static Network {
@@ -244,6 +265,17 @@ fn network() -> &'static Network {
         for a in &mut adj {
             a.sort_unstable();
         }
+        let node_flags: Vec<_> = f.nodes.iter().map(|node| NodeFlags {
+            district: node.kind == "district", gateway: node.kind == "gateway",
+        }).collect();
+        let traversal = adj.iter().enumerate().map(|(node, edges)| edges.iter().map(|&ei| {
+            let edge = &f.edges[ei];
+            let (a, b) = endpoints[ei];
+            let next = if a == node { b } else { a };
+            let sea = edge.kind == "sea";
+            Traversal { edge: ei, next, travel: edge.km as u64 * if sea { 3 } else { 4 },
+                chokepoint: edge.chokepoint.is_some(), land_allowed: !sea && !node_flags[next].gateway }
+        }).collect()).collect();
         Network {
             edge_keys: f.edges.iter().map(edge_key).collect(),
             nodes: f.nodes,
@@ -252,6 +284,8 @@ fn network() -> &'static Network {
             edge_index,
             adj,
             endpoints,
+            node_flags,
+            traversal,
         }
     })
 }
@@ -543,18 +577,72 @@ pub fn plan(w: &WorldState, seller: NationId, buyer: NationId) -> Result<RoutePl
     plan_impl(w, seller, buyer, true)
 }
 
-/// Ephemeral search trees for ONE spot clearing only. That caller changes
+/// Memory bound for nominal search reuse, not a gameplay search budget.
+const CLEARING_NOMINAL_TREE_LIMIT: usize = 256;
+#[cfg(test)]
+const LEGACY_NOMINAL_TREE_LIMIT: usize = 128;
+
+/// An explicit game-owned pool of at most 256 pure nominal search trees.
+/// No capacities, cash, route validity, terminal work or gameplay search
+/// budget survives a clearing. This is deliberately neither Clone nor part
+/// of WorldState: loading or creating a game starts with an empty pool.
+#[derive(Default)]
+pub struct NominalRoutePool {
+    cohort: Option<NominalRouteCohort>,
+    trees: BTreeMap<(NationId, RoutePolicy, Vec<bool>), SearchTree>,
+    tree_clock: u64,
+}
+
+struct NominalRouteCohort {
+    owned_nodes: Vec<Vec<usize>>,
+    effective_owners: Vec<Option<NationId>>,
+    military_operations: bool,
+}
+
+impl NominalRoutePool {
+    pub fn is_empty(&self) -> bool { self.trees.is_empty() }
+    pub fn entry_count(&self) -> usize { self.trees.len() }
+}
+
+/// Mutable read context for ONE spot clearing only. That caller changes
 /// freight usage and cash/stock ledgers, never ownership, transit permissions,
-/// infrastructure, route policies or the calendar. Nothing is persisted.
+/// infrastructure, route policies or the calendar. Only pure nominal trees
+/// may be moved to an explicit pool after this context is consumed.
 ///
 /// A tree is shared only for the identical source, policy and complete owner
 /// permission vector. The original heap order and strict relaxation remain
 /// unchanged. The first settled buyer goal is exactly where the pair search
 /// would have stopped; later visits cannot rewrite its predecessor chain.
 pub(crate) struct ClearingRoutes {
+    access: freight_routing::ClearingRouteAccess,
+    trace: Option<ClearingTrace>,
     owned_nodes: Vec<Vec<usize>>,
     effective_owners: Vec<Option<NationId>>,
+    military_operations: bool,
+    /// Endpoint transit decisions stay fixed during this one clearing.
+    owner_access: Vec<Option<Vec<bool>>>,
+    /// One bounded slot per graph edge, filled only for non-terminal edges.
+    /// Terminal company experience changes during dispatch and stays live.
+    assembly_segments: Vec<Option<(f64, String)>>,
+    /// One reusable membership bit per graph node. Clear only the preceding
+    /// goal list; these are scratch inputs for the current immutable request.
+    goal_membership: Vec<bool>,
+    current_goals: Vec<usize>,
     trees: BTreeMap<(NationId, RoutePolicy, Vec<bool>), SearchTree>,
+    tree_clock: u64,
+    /// Exact former admission policy, retained only as a test oracle.
+    #[cfg(test)]
+    retain_first_trees: bool,
+    /// A small nonzero LRU bound for eviction tests; production uses the constant.
+    #[cfg(test)]
+    tree_limit: usize,
+    #[cfg(test)]
+    reuse_pure_plan_reads: bool,
+    #[cfg(test)]
+    reduce_route_clones: bool,
+    /// Literal native vectors retained for compact-storage parity tests.
+    #[cfg(test)]
+    compact_tree_storage: bool,
     /// Infrastructure and calendar cannot change during one spot clearing.
     capacities: Vec<f64>,
     /// A deterministic gameplay search budget for one complete spot clearing.
@@ -562,12 +650,106 @@ pub(crate) struct ClearingRoutes {
     search_nodes_left: usize,
 }
 
+/// Opt-in diagnostic totals, never stored in WorldState or used by routing.
+#[derive(Default)]
+pub(crate) struct ClearingTrace {
+    pub plan: std::time::Duration,
+    pub source_search: std::time::Duration,
+    /// Guards, key/goal preparation, tree initialization and settled-goal lookup.
+    pub source_setup: std::time::Duration,
+    /// Retained-tree heap expansion only; excludes native fallback searches.
+    pub source_traversal: std::time::Duration,
+    pub source_fallback: std::time::Duration,
+    pub assembly: std::time::Duration,
+    pub cache_validity: std::time::Duration,
+    pub select: std::time::Duration,
+    pub terminal: std::time::Duration,
+    pub dispatches: usize,
+    pub searches: usize,
+    pub tree_fallbacks: usize,
+    pub tree_evictions: usize,
+    /// Includes source seeds. Decreases count finite distances improved again.
+    pub tree_heap_pushes: usize,
+    pub tree_heap_decreases: usize,
+    pub tree_heap_pops: usize,
+    pub tree_heap_stale_pops: usize,
+    pub tree_expanded_nodes: usize,
+    /// Adjacency records examined, including rejected permissions/policies.
+    pub tree_examined_edges: usize,
+    /// Largest active-tree queue observed during this trace interval, not the
+    /// combined retained queues or an allocator capacity/peak measurement.
+    pub tree_max_queue_len: usize,
+    /// Snapshot at take_trace, not a historical or allocator peak.
+    pub retained_tree_entries: usize,
+    /// Actual capacities of mask/passable/dist/prev/settled/heap buffers only. Excludes
+    /// BTree nodes, structs, allocator overhead and other clearing caches.
+    pub retained_tree_buffer_bytes: usize,
+    /// Heap-buffer subset of retained_tree_buffer_bytes at the same boundary.
+    pub retained_tree_heap_bytes: usize,
+}
+
 struct SearchTree {
+    /// The complete owner mask in this tree's key fixes every node permission
+    /// for this clearing. Resolve it once rather than at every relaxed edge.
+    passable: Vec<bool>,
     dist: Vec<u64>,
-    prev: Vec<Option<(usize, usize)>>,
-    settled: Vec<usize>,
+    prev: Predecessors,
+    settled: SettlementRanks,
     queue: BinaryHeap<Visit>,
     next_rank: usize,
+    last_used: u64,
+}
+
+impl SearchTree {
+    /// One traversal algorithm with observation chosen once by the caller.
+    /// The quiet specialization compiles out every counter branch/write.
+    fn extend<const OBSERVED: bool>(&mut self, net: &Network, policy: RoutePolicy,
+        goal_membership: &[bool], mut finish: Option<usize>, mut trace: Option<&mut ClearingTrace>) -> Option<usize> {
+        // Expand the stopping goal before pausing so another destination can
+        // resume without losing an outgoing edge or changing settlement rank.
+        while finish.is_none() {
+            let Some(Visit { cost, node }) = self.queue.pop() else { break; };
+            if OBSERVED {
+                trace.as_deref_mut().unwrap().tree_heap_pops += 1;
+            }
+            if cost != self.dist[node] {
+                if OBSERVED { trace.as_deref_mut().unwrap().tree_heap_stale_pops += 1; }
+                continue;
+            }
+            self.settled.set(node, self.next_rank);
+            self.next_rank += 1;
+            if OBSERVED {
+                let trace = trace.as_deref_mut().unwrap();
+                trace.tree_expanded_nodes += 1;
+                trace.tree_examined_edges += net.traversal[node].len();
+            }
+            for step in &net.traversal[node] {
+                let next = step.next;
+                if policy == RoutePolicy::LandOnly && !step.land_allowed { continue; }
+                if !self.passable[next] { continue; }
+                let penalty = if policy == RoutePolicy::AvoidChokepoints && step.chokepoint {
+                    10_000_000
+                } else { 0 };
+                let nc = cost + step.travel + penalty;
+                if nc < self.dist[next] {
+                    if OBSERVED {
+                        let trace = trace.as_deref_mut().unwrap();
+                        trace.tree_heap_pushes += 1;
+                        trace.tree_heap_decreases += usize::from(self.dist[next] != u64::MAX);
+                    }
+                    self.dist[next] = nc;
+                    self.prev.set(next, Some((node, step.edge)));
+                    self.queue.push(Visit { cost: nc, node: next });
+                    if OBSERVED {
+                        let trace = trace.as_deref_mut().unwrap();
+                        trace.tree_max_queue_len = trace.tree_max_queue_len.max(self.queue.len());
+                    }
+                }
+            }
+            if goal_membership[node] { finish = Some(node); }
+        }
+        finish
+    }
 }
 
 impl ClearingRoutes {
@@ -582,80 +764,265 @@ impl ClearingRoutes {
         }
         let effective_owners = net.nodes.iter().map(|n| freight_controller(w, &n.id)).collect();
         let capacities = if w.rules.military_operations { net.edges.iter().map(|e| segment_capacity(w, e).0).collect() } else { vec![] };
-        Self { owned_nodes, effective_owners, trees: BTreeMap::new(), capacities, search_nodes_left: 32_768 }
+        Self { access: Default::default(), trace: None, owned_nodes, effective_owners,
+            military_operations: w.rules.military_operations,
+            owner_access: vec![None; crate::nations::nation_count()], assembly_segments: vec![None; net.edges.len()],
+            goal_membership: vec![false; net.nodes.len()], current_goals: vec![],
+            trees: BTreeMap::new(), tree_clock: 0,
+            #[cfg(test)]
+            retain_first_trees: false,
+            #[cfg(test)]
+            tree_limit: CLEARING_NOMINAL_TREE_LIMIT,
+            #[cfg(test)]
+            reuse_pure_plan_reads: true,
+            #[cfg(test)]
+            reduce_route_clones: true,
+            #[cfg(test)]
+            compact_tree_storage: true,
+            capacities, search_nodes_left: 32_768 }
+    }
+
+    pub(crate) fn with_pool(w: &WorldState, pool: &mut NominalRoutePool) -> Self {
+        // Rebuild live opening capacities, permissions, assembly/validity
+        // caches and the congestion budget before considering retained trees.
+        let mut routes = Self::new(w);
+        let retained = std::mem::take(pool);
+        if retained.cohort.as_ref().is_some_and(|cohort|
+            cohort.military_operations == routes.military_operations
+                && cohort.owned_nodes == routes.owned_nodes
+                && cohort.effective_owners == routes.effective_owners) {
+            // The graph is embedded and immutable for the life of this binary.
+            // Exact vectors, rather than an epoch or hash, cover direct saved
+            // ownership/control changes and alternating unrelated worlds.
+            // Each tree still requires its full freshly resolved permission
+            // mask, source and policy key before it can be read or resumed.
+            routes.trees = retained.trees;
+            routes.tree_clock = retained.tree_clock;
+        }
+        routes
+    }
+
+    pub(crate) fn return_to_pool(self, pool: &mut NominalRoutePool) {
+        *pool = NominalRoutePool {
+            cohort: Some(NominalRouteCohort {
+                owned_nodes: self.owned_nodes,
+                effective_owners: self.effective_owners,
+                military_operations: self.military_operations,
+            }),
+            trees: self.trees,
+            tree_clock: self.tree_clock,
+        };
+        // Every other field is dropped, including capacities, endpoint
+        // permissions, assembly metadata, trace and remaining search budget.
+    }
+
+    pub(crate) fn trace_dispatches(&mut self) { self.trace = Some(ClearingTrace::default()); }
+    pub(crate) fn take_trace(&mut self) -> Option<ClearingTrace> {
+        // Do not walk tree buffers on normal, unobserved settlements.
+        let mut trace = std::mem::take(self.trace.as_mut()?);
+        trace.retained_tree_entries = self.trees.len();
+        for ((_, _, mask), tree) in &self.trees {
+            let heap = tree.queue.capacity() * std::mem::size_of::<Visit>();
+            trace.retained_tree_heap_bytes += heap;
+            trace.retained_tree_buffer_bytes += mask.capacity() * std::mem::size_of::<bool>()
+                + tree.passable.capacity() * std::mem::size_of::<bool>()
+                + tree.dist.capacity() * std::mem::size_of::<u64>()
+                + tree.prev.buffer_bytes() + tree.settled.buffer_bytes() + heap;
+        }
+        Some(trace)
+    }
+
+    fn ensure_owner_access(&mut self, w: &WorldState, endpoint: NationId) {
+        if self.owner_access[endpoint.index()].is_none() {
+            let mut access = vec![false; crate::nations::nation_count()];
+            for &owner in crate::nations::all_nations() {
+                access[owner.index()] = w.nation_opt(owner).is_some_and(|n| n.alive)
+                    && !w.is_sanctioning(owner, endpoint)
+                    && !w.is_sanctioning(endpoint, owner)
+                    && !statecraft::belligerents(w, owner, endpoint);
+            }
+            self.owner_access[endpoint.index()] = Some(access);
+        }
+    }
+
+    fn endpoints_blocked(&mut self, w: &WorldState, seller: NationId, buyer: NationId) -> bool {
+        // These guards retain their precedence and run before indexing either
+        // endpoint. A blocked pair still asks native plan for its exact reason.
+        if seller == buyer || !w.nation_opt(seller).is_some_and(|n| n.alive)
+            || !w.nation_opt(buyer).is_some_and(|n| n.alive) { return true; }
+        #[cfg(not(test))]
+        let reuse = true;
+        #[cfg(test)]
+        let reuse = self.reuse_pure_plan_reads;
+        if reuse {
+            // owner=seller, endpoint=buyer preserves even the argument order
+            // of the original sanctions and belligerency checks. Those inputs
+            // are immutable throughout this one clearing, unlike terminal XP.
+            self.ensure_owner_access(w, buyer);
+            !self.owner_access[buyer.index()].as_ref().unwrap()[seller.index()]
+        } else {
+            w.is_sanctioning(seller, buyer) || w.is_sanctioning(buyer, seller)
+                || statecraft::belligerents(w, seller, buyer)
+        }
+    }
+
+    fn owner_permissions(&mut self, w: &WorldState, seller: NationId, buyer: NationId) -> Vec<bool> {
+        #[cfg(test)]
+        if !self.reuse_pure_plan_reads {
+            let mut permissions = vec![false; crate::nations::nation_count()];
+            for &owner in crate::nations::all_nations() {
+                permissions[owner.index()] = owner_passable(w, owner, seller, buyer);
+            }
+            return permissions;
+        }
+        for endpoint in [seller, buyer] { self.ensure_owner_access(w, endpoint); }
+        let from = self.owner_access[seller.index()].as_ref().unwrap();
+        let to = self.owner_access[buyer.index()].as_ref().unwrap();
+        let mut permissions = vec![false; crate::nations::nation_count()];
+        for &owner in crate::nations::all_nations() {
+            // The original owner_passable grants both endpoints access even
+            // when the owner itself is dead or under bilateral restrictions.
+            permissions[owner.index()] = owner == seller || owner == buyer
+                || (from[owner.index()] && to[owner.index()]);
+        }
+        permissions
     }
 
     fn plan(&mut self, w: &WorldState, seller: NationId, buyer: NationId) -> Result<RoutePlan, String> {
+        let source_started = self.trace.as_ref().map(|_| std::time::Instant::now());
+        #[cfg(not(test))]
+        let tree_limit = CLEARING_NOMINAL_TREE_LIMIT;
+        #[cfg(test)]
+        let tree_limit = if self.retain_first_trees { LEGACY_NOMINAL_TREE_LIMIT } else { self.tree_limit };
+        if let Some(trace) = &mut self.trace { trace.searches += 1; }
         // Keep all endpoint errors, including their precedence, on the
         // original path. This also avoids indexing an invalid nation id.
-        if seller == buyer || !w.nation_opt(seller).is_some_and(|n| n.alive)
-            || !w.nation_opt(buyer).is_some_and(|n| n.alive)
-            || w.is_sanctioning(seller, buyer) || w.is_sanctioning(buyer, seller)
-            || statecraft::belligerents(w, seller, buyer)
-        { return plan(w, seller, buyer); }
+        if self.endpoints_blocked(w, seller, buyer) {
+            let fallback_started = self.trace.as_ref().map(|_| std::time::Instant::now());
+            let result = plan(w, seller, buyer);
+            if let (Some(trace), Some(started), Some(fallback)) = (&mut self.trace, source_started, fallback_started) {
+                let finished = std::time::Instant::now();
+                trace.source_setup += fallback.duration_since(started);
+                trace.source_fallback += finished.duration_since(fallback);
+                trace.source_search += finished.duration_since(started);
+            }
+            return result;
+        }
         let net = network();
         let policy = policy_for(w, buyer);
-        let mut owner_pass = vec![false; crate::nations::nation_count()];
-        for &owner in crate::nations::all_nations() {
-            owner_pass[owner.index()] = owner_passable(w, owner, seller, buyer);
+        // Move the complete mask into its lookup key; hits need no second mask.
+        let key = (seller, policy, self.owner_permissions(w, seller, buyer));
+        let passable = |i: usize| !net.node_flags[i].district
+            || self.effective_owners[i].is_some_and(|owner| key.2[owner.index()]);
+        // Validate empty endpoints on every call, including retained-tree hits,
+        // while allocating the ordered source list only for a new tree.
+        let has_start = self.owned_nodes[seller.index()].iter().copied().any(passable);
+        for goal in self.current_goals.drain(..) { self.goal_membership[goal] = false; }
+        for &goal in &self.owned_nodes[buyer.index()] {
+            if passable(goal) {
+                self.goal_membership[goal] = true;
+                self.current_goals.push(goal);
+            }
         }
-        let passable = |i: usize| net.nodes[i].kind != "district"
-            || self.effective_owners[i].is_some_and(|owner| owner_pass[owner.index()]);
-        let starts: Vec<_> = self.owned_nodes[seller.index()].iter().copied().filter(|&i| passable(i)).collect();
-        let goals: BTreeSet<_> = self.owned_nodes[buyer.index()].iter().copied().filter(|&i| passable(i)).collect();
-        if starts.is_empty() || goals.is_empty() {
+        if !has_start || self.current_goals.is_empty() {
+            if let (Some(trace), Some(started)) = (&mut self.trace, source_started) {
+                let elapsed = started.elapsed();
+                trace.source_setup += elapsed;
+                trace.source_search += elapsed;
+            }
             return Err("No mapped freight gateway exists for one endpoint.".into());
         }
-        let key = (seller, policy, owner_pass.clone());
+        // Preserve recency even if this ephemeral counter ever wraps. Rank
+        // compaction changes no traversal, tree contents or gameplay budget.
+        if self.tree_clock == u64::MAX {
+            let mut ages: Vec<_> = self.trees.iter().map(|(k, t)| (t.last_used, k.clone())).collect();
+            ages.sort_unstable();
+            for (rank, (_, k)) in ages.into_iter().enumerate() {
+                self.trees.get_mut(&k).unwrap().last_used = rank as u64;
+            }
+            self.tree_clock = self.trees.len() as u64;
+        }
+        self.tree_clock += 1;
         if !self.trees.contains_key(&key) {
             // Bound retained source searches, including their resumable heaps.
-            // More distinct masks use the original search, never a world cache.
-            if self.trees.len() >= 128 { return plan(w, seller, buyer); }
+            // Rebuild the least recently used source on demand instead of
+            // permanently excluding later commodities' suppliers. Nominal
+            // traversals never consume the congestion-search budget.
+            if self.trees.len() >= tree_limit {
+                #[cfg(test)]
+                if self.retain_first_trees {
+                    if let Some(trace) = &mut self.trace { trace.tree_fallbacks += 1; }
+                    let fallback_started = self.trace.as_ref().map(|_| std::time::Instant::now());
+                    let result = plan(w, seller, buyer);
+                    if let (Some(trace), Some(started), Some(fallback)) = (&mut self.trace, source_started, fallback_started) {
+                        let finished = std::time::Instant::now();
+                        trace.source_setup += fallback.duration_since(started);
+                        trace.source_fallback += finished.duration_since(fallback);
+                        trace.source_search += finished.duration_since(started);
+                    }
+                    return result;
+                }
+                let oldest = self.trees.iter().min_by_key(|(_, t)| t.last_used)
+                    .map(|(k, _)| k.clone()).unwrap();
+                self.trees.remove(&oldest);
+                if let Some(trace) = &mut self.trace { trace.tree_evictions += 1; }
+            }
+            let starts: Vec<_> = self.owned_nodes[seller.index()].iter().copied().filter(|&i| passable(i)).collect();
             let mut dist = vec![u64::MAX; net.nodes.len()];
             let mut queue = BinaryHeap::new();
             for s in starts { dist[s] = 0; queue.push(Visit { cost: 0, node: s }); }
+            if let Some(trace) = &mut self.trace {
+                trace.tree_heap_pushes += queue.len();
+            }
+            #[cfg(not(test))]
+            let compact_tree_storage = true;
+            #[cfg(test)]
+            let compact_tree_storage = self.compact_tree_storage;
             self.trees.insert(key.clone(), SearchTree {
-                dist, prev: vec![None; net.nodes.len()], settled: vec![usize::MAX; net.nodes.len()],
-                queue, next_rank: 0,
+                passable: (0..net.nodes.len()).map(passable).collect(),
+                dist, prev: Predecessors::new(net.nodes.len(), net.edges.len(), compact_tree_storage),
+                settled: SettlementRanks::new(net.nodes.len(), compact_tree_storage),
+                queue, next_rank: 0, last_used: self.tree_clock,
             });
         }
         let tree = self.trees.get_mut(&key).unwrap();
-        let mut finish = goals.iter().copied().filter(|&i| tree.settled[i] != usize::MAX)
-            .min_by_key(|&i| tree.settled[i]);
-        // Extend precisely the same Dijkstra traversal only as far as this
-        // buyer requires. Already settled goals keep their original rank and
-        // predecessor chain. Expand the stopping goal before pausing so a
-        // later destination can resume without losing any outgoing edge.
-        while finish.is_none() {
-            let Some(Visit { cost, node }) = tree.queue.pop() else { break; };
-            if cost != tree.dist[node] { continue; }
-            tree.settled[node] = tree.next_rank;
-            tree.next_rank += 1;
-            for &ei in &net.adj[node] {
-                let e = &net.edges[ei];
-                let (a, b) = net.endpoints[ei];
-                let next = if a == node { b } else { a };
-                if policy == RoutePolicy::LandOnly
-                    && (e.kind == "sea" || net.nodes[next].kind == "gateway") { continue; }
-                if !passable(next) { continue; }
-                let penalty = if policy == RoutePolicy::AvoidChokepoints && e.chokepoint.is_some() {
-                    10_000_000
-                } else { 0 };
-                let travel = e.km as u64 * if e.kind == "sea" { 3 } else { 4 };
-                let nc = cost + travel + penalty;
-                if nc < tree.dist[next] {
-                    tree.dist[next] = nc;
-                    tree.prev[next] = Some((node, ei));
-                    tree.queue.push(Visit { cost: nc, node: next });
-                }
-            }
-            if goals.contains(&node) { finish = Some(node); }
+        tree.last_used = self.tree_clock;
+        // Settlement ranks are unique, so minimum-rank selection is identical
+        // to the original BTreeSet iteration even in district-name order.
+        let mut finish = self.current_goals.iter().copied().filter(|&i| tree.settled.get(i) != usize::MAX)
+            .min_by_key(|&i| tree.settled.get(i));
+        let traversal_started = self.trace.as_ref().map(|_| std::time::Instant::now());
+        if let (Some(trace), Some(started), Some(traversal)) = (&mut self.trace, source_started, traversal_started) {
+            trace.source_setup += traversal.duration_since(started);
+            trace.tree_max_queue_len = trace.tree_max_queue_len.max(tree.queue.len());
+        }
+        // Dispatch observation once, retaining the exact same traversal and
+        // avoiding an Option branch on every ordinary pop and relaxation.
+        finish = match self.trace.as_mut() {
+            Some(trace) => tree.extend::<true>(net, policy, &self.goal_membership, finish, Some(trace)),
+            None => tree.extend::<false>(net, policy, &self.goal_membership, finish, None),
+        };
+        if let (Some(trace), Some(started), Some(traversal)) = (&mut self.trace, source_started, traversal_started) {
+            let finished = std::time::Instant::now();
+            trace.source_traversal += finished.duration_since(traversal);
+            trace.source_search += finished.duration_since(started);
         }
         let finish = finish.ok_or_else(|| match policy {
                 RoutePolicy::LandOnly => "No open all-land route exists.".to_string(),
                 _ => "No open physical route exists.".to_string(),
             })?;
-        assemble_plan(w, finish, &tree.prev)
+        let assembly_started = self.trace.as_ref().map(|_| std::time::Instant::now());
+        #[cfg(not(test))]
+        let reuse_segments = true;
+        #[cfg(test)]
+        let reuse_segments = self.reuse_pure_plan_reads;
+        let result = if reuse_segments {
+            assemble_plan_with_segments(w, finish, &tree.prev, Some(&mut self.assembly_segments))
+        } else { assemble_plan_with_segments(w, finish, &tree.prev, None) };
+        if let (Some(trace), Some(started)) = (&mut self.trace, assembly_started) {
+            trace.assembly += started.elapsed();
+        }
+        result
     }
 }
 
@@ -790,11 +1157,24 @@ fn plan_search(w: &WorldState, seller: NationId, buyer: NationId, memoize: bool,
     assemble_plan(w, at, &prev)
 }
 
-fn assemble_plan(w: &WorldState, mut at: usize, prev: &[Option<(usize, usize)>]) -> Result<RoutePlan, String> {
+fn assemble_plan(w: &WorldState, at: usize, prev: &[Option<(usize, usize)>]) -> Result<RoutePlan, String> {
+    assemble_plan_with_segments(w, at, prev, None)
+}
+
+fn consider_cached_bottleneck(bottleneck: &mut (f64, String), candidate: &(f64, String)) {
+    // Keep the first strict minimum, including the original IEEE comparison
+    // for NaN and signed-zero ties. Most cached labels never enter the route.
+    if candidate.0 < bottleneck.0 {
+        *bottleneck = (candidate.0, candidate.1.clone());
+    }
+}
+
+fn assemble_plan_with_segments<P: PredecessorRead + ?Sized>(w: &WorldState, mut at: usize, prev: &P,
+    mut segments_read: Option<&mut [Option<(f64, String)>]>) -> Result<RoutePlan, String> {
     let net = network();
     let mut ids = vec![at];
     let mut edge_ids = vec![];
-    while let Some((p, e)) = prev[at] {
+    while let Some((p, e)) = prev.predecessor(at) {
         ids.push(p);
         edge_ids.push(e);
         at = p
@@ -821,17 +1201,27 @@ fn assemble_plan(w: &WorldState, mut at: usize, prev: &[Option<(usize, usize)>])
     let months = ((estimated_days + 29) / 30).max(1);
     let mut bottleneck = (f64::INFINITY, "Unconstrained".to_string());
     let mut chokes = BTreeSet::new();
-    let mut segments = vec![];
+    let mut segments = if segments_read.is_some() { Vec::with_capacity(edge_ids.len()) } else { vec![] };
     for ei in edge_ids {
         let e = &net.edges[ei];
-        let (cap, name) = segment_capacity(w, e);
-        if cap < bottleneck.0 {
-            bottleneck = (cap, name)
+        match segments_read.as_deref_mut() {
+            Some(read) if e.kind != "terminal" => {
+                let candidate = read[ei].get_or_insert_with(|| segment_capacity(w, e));
+                consider_cached_bottleneck(&mut bottleneck, candidate);
+            }
+            _ => {
+                // Native assembly and XP-sensitive terminal reads keep the
+                // original owned result and strict comparison unchanged.
+                let (cap, name) = segment_capacity(w, e);
+                if cap < bottleneck.0 {
+                    bottleneck = (cap, name)
+                }
+            }
         }
         if let Some(c) = &e.chokepoint {
             chokes.insert(c.clone());
         }
-        segments.push(edge_key(e));
+        segments.push(net.edge_keys[ei].clone());
     }
     let nodes = ids
         .into_iter()
@@ -928,6 +1318,39 @@ pub fn freight_route_open(w: &WorldState, seller: NationId, buyer: NationId, rou
     route_open(w, seller, buyer, route)
 }
 
+const FREIGHT_ACCESS_READ_MAX_ROUTES: usize = 4_096;
+const FREIGHT_ACCESS_READ_MAX_NODE_IDS: usize = 131_072;
+
+/// Access checks for one immutable cargo read. A borrowed world and borrowed
+/// node IDs keep this cache local to the snapshot: permissions, ownership and
+/// control cannot change while it is in use. Names and other route metadata do
+/// not affect the boolean returned by `route_open`; every ordered node ID does.
+/// Once bounded storage is full, uncached checks preserve the same answer.
+pub struct FreightAccessRead<'w> {
+    world: &'w WorldState,
+    routes: BTreeMap<(NationId, NationId, Vec<&'w str>), bool>,
+    node_ids: usize,
+}
+
+impl<'w> FreightAccessRead<'w> {
+    pub fn new(world: &'w WorldState) -> Self {
+        Self { world, routes: BTreeMap::new(), node_ids: 0 }
+    }
+
+    pub fn is_open(&mut self, seller: NationId, buyer: NationId, route: &'w RoutePlan) -> bool {
+        let key = (seller, buyer, route.nodes.iter().map(|node| node.id.as_str()).collect::<Vec<_>>());
+        if let Some(open) = self.routes.get(&key) { return *open; }
+        let open = route_open(self.world, seller, buyer, route).is_ok();
+        if self.routes.len() < FREIGHT_ACCESS_READ_MAX_ROUTES
+            && key.2.len() <= FREIGHT_ACCESS_READ_MAX_NODE_IDS.saturating_sub(self.node_ids)
+        {
+            self.node_ids += key.2.len();
+            self.routes.insert(key, open);
+        }
+        open
+    }
+}
+
 pub fn dispatch(
     w: &mut WorldState,
     seller: NationId,
@@ -980,17 +1403,47 @@ fn dispatch_impl(
     let policy = policy_for(w, buyer);
     let key = (seller, buyer, policy);
     let frozen = preplanned.is_some();
-    let route = preplanned.unwrap_or_else(|| w
-        .logistics
-        .route_cache
-        .get(&key)
-        .cloned()
-        .filter(|r| route_open(w, seller, buyer, r).is_ok())
-        .map(Ok)
-        .unwrap_or_else(|| match routes.as_mut() {
-            Some(routes) => routes.plan(w, seller, buyer),
-            None => plan(w, seller, buyer),
-        }));
+    let tracing = routes.as_ref().is_some_and(|routes| routes.trace.is_some());
+    #[cfg(not(test))]
+    let reduce_route_clones = true;
+    #[cfg(test)]
+    let reduce_route_clones = routes.as_ref().is_none_or(|routes| routes.reduce_route_clones);
+    let trace_started = tracing.then(std::time::Instant::now);
+    let mut cache_hit = false;
+    let route = preplanned.unwrap_or_else(|| {
+        let cached = {
+            let mut is_open = |route: &RoutePlan| {
+                let started = tracing.then(std::time::Instant::now);
+                let open = routes.as_mut().map_or_else(|| route_open(w, seller, buyer, route).is_ok(),
+                    |routes| routes.access.is_open(w, seller, buyer, policy, route));
+                if let Some(started) = started {
+                    routes.as_mut().unwrap().trace.as_mut().unwrap().cache_validity += started.elapsed();
+                }
+                open
+            };
+            if reduce_route_clones {
+                w.logistics.route_cache.get(&key).filter(|route| is_open(route)).cloned()
+            } else {
+                // Retain the former clone-before-validation path for exact
+                // dispatch/world parity tests, including invalid saved routes.
+                w.logistics.route_cache.get(&key).cloned().filter(|route| is_open(route))
+            }
+        };
+        if let Some(route) = cached {
+            cache_hit = true;
+            Ok(route)
+        } else {
+            match routes.as_mut() {
+                Some(routes) => routes.plan(w, seller, buyer),
+                None => plan(w, seller, buyer),
+            }
+        }
+    });
+    if let Some(started) = trace_started {
+        let trace = routes.as_mut().unwrap().trace.as_mut().unwrap();
+        trace.plan += started.elapsed();
+        trace.dispatches += 1;
+    }
     let route = match route {
         Ok(route) => route,
         Err(reason) => return Dispatch {
@@ -999,7 +1452,12 @@ fn dispatch_impl(
             reason: Some(reason),
         },
     };
-    if !frozen { w.logistics.route_cache.insert(key, route.clone()); }
+    // A valid cache hit already contains this exact nominal route. Newly
+    // planned or repaired routes must still be stored before any alternate.
+    if !frozen && (!reduce_route_clones || !cache_hit) {
+        w.logistics.route_cache.insert(key, route.clone());
+    }
+    let trace_started = tracing.then(std::time::Instant::now);
     let (route, alternate) = if frozen { (route, false) } else {
         let (capacities, budget) = match routes.as_mut() {
             Some(r) if !r.capacities.is_empty() => (Some(r.capacities.as_slice()), Some(&mut r.search_nodes_left)),
@@ -1008,6 +1466,9 @@ fn dispatch_impl(
         freight_routing::select(w, seller, buyer, route, requested * tonnes_per_unit(commodity), &w.logistics.usage_tonnes,
             capacities, budget)
     };
+    if let Some(started) = trace_started {
+        routes.as_mut().unwrap().trace.as_mut().unwrap().select += started.elapsed();
+    }
     if requested == 0.0 {
         return Dispatch {
             quantity: 0.0,
@@ -1038,7 +1499,11 @@ fn dispatch_impl(
     for s in &route.segments {
         *w.logistics.usage_tonnes.entry(s.clone()).or_default() += tonnes;
     }
+    let trace_started = tracing.then(std::time::Instant::now);
     record_terminal_work(w, &route, tonnes);
+    if let Some(started) = trace_started {
+        routes.as_mut().unwrap().trace.as_mut().unwrap().terminal += started.elapsed();
+    }
     let id = w.logistics.next_id;
     w.logistics.next_id = w.logistics.next_id.saturating_add(1);
     let dispatched_day = crate::clock::is_daily(w).then(|| crate::clock::absolute_day(w));
@@ -1057,17 +1522,12 @@ fn dispatch_impl(
         due_day: dispatched_day.map(|day| day + route.estimated_days.max(1) as i32),
         hold_reason: None,
     });
-    Dispatch {
-        quantity,
-        route: Some(route.clone()),
-        reason: if w.rules.military_operations {
-            freight_routing::dispatch_reason(w, alternate, quantity + EPS < requested, &route)
-        } else if quantity + EPS < requested {
-            Some("The route moved only what its shared freight capacity could carry.".into())
-        } else {
-            None
-        },
-    }
+    let reason = if w.rules.military_operations {
+        freight_routing::dispatch_reason(w, alternate, quantity + EPS < requested, &route)
+    } else if quantity + EPS < requested {
+        Some("The route moved only what its shared freight capacity could carry.".into())
+    } else { None };
+    Dispatch { quantity, route: Some(if reduce_route_clones { route } else { route.clone() }), reason }
 }
 
 /// Execute an atomic contract service fraction against frozen route choices.
@@ -1206,6 +1666,46 @@ pub fn fresh_contract_capacity_ratios(
         result.insert(id, ratio);
     }
     result
+}
+
+/// Pure routing inputs for one multi-date contract forecast. The immutable
+/// world borrow prevents reuse after ownership, policy, access or calendar
+/// changes. Only nominal route results and edge capacities are retained;
+/// quantities, congestion alternatives and each date's usage remain live.
+pub struct ContractForecastRoutes<'w> {
+    world: &'w WorldState,
+    nominal: BTreeMap<(NationId, NationId), Result<RoutePlan, String>>,
+    capacities: Option<Vec<f64>>,
+}
+
+impl<'w> ContractForecastRoutes<'w> {
+    pub fn new(world: &'w WorldState) -> Self {
+        Self { world, nominal: BTreeMap::new(), capacities: None }
+    }
+
+    pub fn plan(&mut self, seller: NationId, buyer: NationId) -> Result<RoutePlan, String> {
+        let world = self.world;
+        self.nominal.entry((seller, buyer))
+            .or_insert_with(|| plan(world, seller, buyer)).clone()
+    }
+
+    pub fn capacity_ratios(
+        &mut self,
+        bundles: &[(u32, Vec<(NationId, NationId, Commodity, f64)>)],
+    ) -> BTreeMap<u32, f64> {
+        if !enabled(self.world) || !self.world.rules.military_operations {
+            return fresh_contract_capacity_ratios(self.world, bundles);
+        }
+        if bundles.is_empty() { return BTreeMap::new(); }
+        // Avoid building capacities at all for an empty forecast. Every edge
+        // uses the identical native formula and the same frozen date as the
+        // uncached forecast, including contractor and control modifiers.
+        if self.capacities.is_none() {
+            self.capacities = Some(network().edges.iter()
+                .map(|edge| segment_capacity(self.world, edge).0).collect());
+        }
+        freight_routing::fresh_contract_ratios_with_context(self, bundles)
+    }
 }
 
 pub fn begin_month(w: &mut WorldState) -> Vec<Cargo> {
@@ -1401,6 +1901,34 @@ mod tests {
             cached_seconds * 1000.0 / repetitions as f64, all_cold_plans_seconds);
     }
     #[test]
+    fn s08_indexed_traversal_matches_every_original_directed_edge() {
+        let net = network();
+        assert_eq!(net.traversal.len(), net.nodes.len());
+        assert_eq!(net.node_flags.len(), net.nodes.len());
+        assert_eq!(net.traversal.iter().map(Vec::len).sum::<usize>(), net.edges.len() * 2,
+            "metadata stays bounded by the fixed authored graph");
+        assert!(std::mem::size_of::<Traversal>() <= 32);
+        assert!(std::mem::size_of::<NodeFlags>() <= 2);
+        for (node, steps) in net.traversal.iter().enumerate() {
+            assert_eq!(net.node_flags[node].district, net.nodes[node].kind == "district");
+            assert_eq!(net.node_flags[node].gateway, net.nodes[node].kind == "gateway");
+            assert_eq!(steps.len(), net.adj[node].len());
+            for (step, &ei) in steps.iter().zip(&net.adj[node]) {
+                let edge = &net.edges[ei];
+                let a = net.index[&edge.a];
+                let b = net.index[&edge.b];
+                let next = if a == node { b } else { a };
+                assert_eq!(step.edge, ei, "never reorder equal-cost authored edges");
+                assert_eq!(step.next, next);
+                assert_eq!(step.travel, edge.km as u64 * if edge.kind == "sea" { 3 } else { 4 });
+                assert_eq!(step.chokepoint, edge.chokepoint.is_some());
+                assert_eq!(step.land_allowed, !(edge.kind == "sea" || net.nodes[next].kind == "gateway"),
+                    "land permission is directional at gateway boundaries");
+            }
+        }
+    }
+
+    #[test]
     fn clearing_tree_pauses_resumes_and_keeps_first_settled_goal() {
         let mut w = world();
         w.rules.military_operations = true;
@@ -1418,22 +1946,119 @@ mod tests {
         let paused_rank = tree.next_rank;
         assert!(paused_rank < network().nodes.len(), "a nearby destination cannot exhaust the whole graph");
         assert!(!tree.queue.is_empty(), "later destinations retain a resumable frontier");
-        let previous = tree.prev.clone();
-        let settled = tree.settled.clone();
+        let previous = tree.prev.to_native();
+        let settled = tree.settled.to_native();
         // Japan forces a resume; USA/France have multiple owned goal nodes;
         // the final Belgium request must return its original earliest goal.
         for buyer in [NationId::Japan, NationId::USA, NationId::France, near] {
             assert_eq!(trees.plan(&w, seller, buyer), plan_impl(&w, seller, buyer, false));
+            let expected_goals: BTreeSet<_> = w.districts.iter().filter(|(_, owner)| **owner == buyer)
+                .filter_map(|(district, _)| network().index.get(district).copied())
+                .filter(|&i| district_passable(&w, &network().nodes[i], seller, buyer)).collect();
+            assert_eq!(trees.current_goals.iter().copied().collect::<BTreeSet<_>>(), expected_goals);
+            for (i, marked) in trees.goal_membership.iter().copied().enumerate() {
+                assert_eq!(marked, expected_goals.contains(&i), "the preceding buyer cannot remain a goal");
+            }
         }
         assert_eq!(trees.trees.len(), 1);
         let tree = trees.trees.values().next().unwrap();
         assert!(tree.next_rank > paused_rank);
         for (i, rank) in settled.into_iter().enumerate().filter(|(_, rank)| *rank != usize::MAX) {
-            assert_eq!(tree.settled[i], rank);
-            assert_eq!(tree.prev[i], previous[i], "resuming cannot rewrite a settled predecessor");
+            assert_eq!(tree.settled.get(i), rank);
+            assert_eq!(tree.prev.predecessor(i), previous[i], "resuming cannot rewrite a settled predecessor");
         }
         assert_eq!(trees.plan(&w, seller, near).unwrap(), first);
         assert_eq!(crate::save(&w), before);
+    }
+
+    #[test]
+    fn s08_nominal_pool_revalidates_exact_world_inputs_and_keeps_native_routes() {
+        let mut base = world();
+        base.rules.daily_simulation = true;
+        base.rules.military_operations = true;
+        base.sanctions.clear();
+        base.conflicts.clear();
+        let mut pool = NominalRoutePool::default();
+        let pairs = [(NationId::Japan, NationId::USA), (NationId::Germany, NationId::France),
+            (NationId::USA, NationId::Kuwait), (NationId::Iraq, NationId::Kuwait),
+            (NationId::Germany, NationId::Germany)];
+        // Alternate independent worlds, rewind/load, both calendar boundaries,
+        // direct ownership edits without epoch updates, and military control.
+        for scenario in 0..15 {
+            let mut w = base.clone();
+            match scenario {
+                1 => { w.year = 1992; w.month = 2; w.day = 29; }
+                2 => { w.year = 1993; w.month = 1; w.day = 1; }
+                3 => {
+                    let d = w.districts.iter().find(|(_, owner)| **owner == NationId::USA).unwrap().0.clone();
+                    production::complete_capability(&mut w, &d, production::ProjectKind::FreightTerminal);
+                }
+                4 => w.sanctions.push((NationId::Germany, NationId::France)),
+                5 => w.sanctions.push((NationId::France, NationId::Germany)),
+                6 => w.sanctions.push((NationId::Belgium, NationId::Germany)),
+                7 => w.nation_mut(NationId::France).alive = false,
+                8 => { w.logistics.policies.insert(NationId::USA, RoutePolicy::AvoidChokepoints);
+                    w.logistics.policies.insert(NationId::Kuwait, RoutePolicy::LandOnly); }
+                9 => {
+                    let d = w.districts.iter().find(|(_, owner)| **owner == NationId::France).unwrap().0.clone();
+                    w.districts.insert(d, NationId::Germany);
+                }
+                10 | 11 => {
+                    crate::war::declare_war(&mut w, NationId::Iraq, NationId::Kuwait).unwrap();
+                    let cid = w.conflict_between(NationId::Iraq, NationId::Kuwait).unwrap().id;
+                    let districts: Vec<_> = w.districts.iter().filter(|(_, owner)| **owner == NationId::Kuwait)
+                        .map(|(district, _)| district.clone()).collect();
+                    for district in districts { w.conflict_mut(cid).unwrap().front.insert(district, if scenario == 10 { 0.0 } else { 1.0 }); }
+                }
+                12 => w.rules.military_operations = false,
+                13 => w = crate::load(&crate::save(&base)).unwrap(),
+                _ => {},
+            }
+            let before = crate::save(&w);
+            let cold = ClearingRoutes::new(&w);
+            let matches = pool.cohort.as_ref().is_some_and(|cohort|
+                cohort.owned_nodes == cold.owned_nodes && cohort.effective_owners == cold.effective_owners
+                    && cohort.military_operations == cold.military_operations);
+            let retained: Vec<_> = pool.trees.iter().map(|(key, tree)|
+                (key.clone(), tree.dist.as_ptr(), tree.next_rank, tree.last_used)).collect();
+            let mut routes = ClearingRoutes::with_pool(&w, &mut pool);
+            assert!(pool.is_empty(), "tree buffers move rather than duplicate into the active clearing");
+            assert_eq!(routes.trees.len(), if matches { retained.len() } else { 0 }, "scenario={scenario}");
+            if matches {
+                for (key, ptr, rank, age) in &retained {
+                    let tree = &routes.trees[key];
+                    assert_eq!(tree.dist.as_ptr(), *ptr, "the graph-sized buffer is moved intact");
+                    assert_eq!((tree.next_rank, tree.last_used), (*rank, *age));
+                }
+            }
+            assert_eq!(routes.capacities.iter().map(|x| x.to_bits()).collect::<Vec<_>>(),
+                cold.capacities.iter().map(|x| x.to_bits()).collect::<Vec<_>>());
+            assert!(routes.assembly_segments.iter().all(Option::is_none));
+            assert!(routes.owner_access.iter().all(Option::is_none));
+            assert!(routes.current_goals.is_empty() && routes.goal_membership.iter().all(|bit| !bit));
+            assert_eq!(routes.search_nodes_left, 32_768);
+            assert!(routes.trace.is_none());
+            routes.trace_dispatches();
+            for &(seller, buyer) in &pairs {
+                for _ in 0..2 {
+                    assert_eq!(routes.plan(&w, seller, buyer), plan_impl(&w, seller, buyer, false),
+                        "scenario={scenario}, {seller:?}->{buyer:?}");
+                }
+            }
+            if matches && matches!(scenario, 1 | 2 | 3 | 14) {
+                assert_eq!(routes.take_trace().unwrap().tree_expanded_nodes, 0,
+                    "a retained destination must actually avoid traversal after date/infra changes");
+            }
+            if scenario == 10 {
+                assert!(routes.plan(&w, NationId::USA, NationId::Kuwait).is_err(),
+                    "the fixture must change effective control to a contested endpoint");
+            }
+            routes.search_nodes_left = 0; // This clearing's budget cannot leak to the next.
+            routes.return_to_pool(&mut pool);
+            assert!(!pool.is_empty());
+            assert!(pool.entry_count() <= CLEARING_NOMINAL_TREE_LIMIT);
+            assert_eq!(crate::save(&w), before, "retention changes no saved world state");
+        }
     }
 
     #[test]
@@ -1530,7 +2155,7 @@ mod tests {
                             total += 1;
                         }
                     }
-                    assert!(trees.trees.len() <= 128);
+                    assert!(trees.trees.len() <= CLEARING_NOMINAL_TREE_LIMIT);
                     assert_eq!(crate::save(&w), before, "route search cannot mutate any saved state");
                 }
             }
@@ -1539,16 +2164,604 @@ mod tests {
     }
 
     #[test]
-    fn clearing_tree_limit_falls_back_without_changing_routes() {
-        let w = world();
-        let mut trees = ClearingRoutes::new(&w);
-        let ids: Vec<_> = crate::nations::all_nations().iter().copied()
-            .filter(|&id| w.nation_opt(id).is_some_and(|n| n.alive)).collect();
-        for seller in ids {
-            let buyer = if seller == NationId::Japan { NationId::USA } else { NationId::Japan };
-            assert_eq!(trees.plan(&w, seller, buyer), plan(&w, seller, buyer));
+    fn s08_endpoint_guard_reuses_exact_bilateral_access_and_native_refusals() {
+        for military in [false, true] {
+            for case in ["open", "seller_sanction", "buyer_sanction", "both_sanctions", "war",
+                "war_and_sanction", "dead_seller", "dead_buyer", "same", "same_dead"] {
+                let mut w = world();
+                w.rules.military_operations = military;
+                w.sanctions.clear();
+                w.conflicts.clear();
+                let (seller, mut buyer) = if matches!(case, "war" | "war_and_sanction") {
+                    (NationId::Iraq, NationId::Kuwait)
+                } else { (NationId::Germany, NationId::France) };
+                match case {
+                    "seller_sanction" => w.sanctions.push((seller, buyer)),
+                    "buyer_sanction" => w.sanctions.push((buyer, seller)),
+                    "both_sanctions" => w.sanctions.extend([(seller, buyer), (buyer, seller)]),
+                    "war" | "war_and_sanction" => {
+                        crate::war::declare_war(&mut w, seller, buyer).unwrap();
+                        if case == "war_and_sanction" { w.sanctions.push((buyer, seller)); }
+                    }
+                    "dead_seller" => w.nation_mut(seller).alive = false,
+                    "dead_buyer" => w.nation_mut(buyer).alive = false,
+                    "same" | "same_dead" => {
+                        buyer = seller;
+                        if case == "same_dead" { w.nation_mut(seller).alive = false; }
+                    }
+                    _ => {}
+                }
+                let before = crate::save(&w);
+                let mut reused = ClearingRoutes::new(&w);
+                let mut original = ClearingRoutes::new(&w);
+                original.reuse_pure_plan_reads = false;
+                let budget = reused.search_nodes_left;
+                for _ in 0..2 {
+                    for (from, to) in [(seller, buyer), (buyer, seller)] {
+                        let blocked = seller == buyer || !w.nation_opt(from).is_some_and(|n| n.alive)
+                            || !w.nation_opt(to).is_some_and(|n| n.alive)
+                            || w.is_sanctioning(from, to) || w.is_sanctioning(to, from)
+                            || statecraft::belligerents(&w, from, to);
+                        assert_eq!(reused.endpoints_blocked(&w, from, to), blocked,
+                            "military={military}, {case}, {from:?}->{to:?}");
+                        let expected = plan_impl(&w, from, to, false);
+                        let actual = reused.plan(&w, from, to);
+                        assert_eq!(actual, expected);
+                        assert_eq!(actual, original.plan(&w, from, to));
+                        assert_eq!(actual.is_ok(), case == "open");
+                        if case == "same_dead" {
+                            assert_eq!(actual.unwrap_err(), "Domestic freight does not need an international route.");
+                        } else if case == "war_and_sanction" {
+                            assert_eq!(actual.unwrap_err(), "Bilateral sanctions closed the route.");
+                        }
+                    }
+                }
+                assert!(original.owner_access.iter().all(Option::is_none), "the false preflight retains its native reads");
+                if seller != buyer && w.nation(seller).alive && w.nation(buyer).alive {
+                    assert!(reused.owner_access[seller.index()].is_some());
+                    assert!(reused.owner_access[buyer.index()].is_some(), "repeated success and refusal use stored endpoint rows");
+                }
+                assert_eq!(reused.trees.len(), original.trees.len());
+                assert_eq!(reused.search_nodes_left, budget);
+                assert_eq!(original.search_nodes_left, budget);
+                assert_eq!(crate::save(&w), before, "pure preflight cannot change state or RNG");
+            }
         }
-        assert_eq!(trees.trees.len(), 128, "fixture reaches bounded-cache fallback");
+    }
+
+    #[test]
+    fn s08_clearing_owner_permissions_match_every_original_owner_bit() {
+        let endpoints = [NationId::USA, NationId::Canada, NationId::Germany, NationId::France,
+            NationId::Japan, NationId::Netherlands, NationId::Belgium, NationId::India,
+            NationId::Brazil, NationId::Iraq, NationId::Kuwait, NationId::Tonga];
+        for scenario in 0..4 {
+            let mut w = world();
+            w.sanctions.clear();
+            w.conflicts.clear();
+            if scenario >= 1 {
+                w.sanctions.extend([(NationId::Canada, NationId::Germany),
+                    (NationId::Germany, NationId::Japan), (NationId::France, NationId::USA)]);
+            }
+            if scenario >= 2 {
+                crate::war::declare_war(&mut w, NationId::Iraq, NationId::Kuwait).unwrap();
+            }
+            if scenario >= 3 { w.nation_mut(NationId::Germany).alive = false; }
+            let before = crate::save(&w);
+            let mut routes = ClearingRoutes::new(&w);
+            // Include same endpoints and dead/restricted endpoints here: the
+            // mask's endpoint exception must exactly match owner_passable,
+            // even though public planning rejects some pairs earlier.
+            for &seller in &endpoints {
+                for &buyer in &endpoints {
+                    let actual = routes.owner_permissions(&w, seller, buyer);
+                    for &owner in crate::nations::all_nations() {
+                        assert_eq!(actual[owner.index()], owner_passable(&w, owner, seller, buyer),
+                            "scenario={scenario} owner={owner:?} {seller:?}->{buyer:?}");
+                    }
+                }
+            }
+            assert_eq!(routes.owner_access.iter().filter(|entry| entry.is_some()).count(), endpoints.len());
+            assert_eq!(crate::save(&w), before);
+        }
+    }
+
+    #[test]
+    fn s08_tree_node_permissions_match_native_transit_under_each_owner_mask() {
+        for military in [false, true] {
+            for restricted in [false, true] {
+                let mut w = world();
+                w.rules.military_operations = military;
+                w.sanctions.clear();
+                w.conflicts.clear();
+                if restricted {
+                    w.sanctions.extend([(NationId::Germany, NationId::Japan),
+                        (NationId::USA, NationId::France)]);
+                    crate::war::declare_war(&mut w, NationId::Iraq, NationId::Kuwait).unwrap();
+                    w.nation_mut(NationId::Canada).alive = false;
+                }
+                let before = crate::save(&w);
+                let mut routes = ClearingRoutes::new(&w);
+                for (seller, buyer) in [(NationId::Japan, NationId::France),
+                    (NationId::France, NationId::Germany), (NationId::Iraq, NationId::Belgium),
+                    (NationId::Japan, NationId::Belgium)] {
+                    assert_eq!(routes.plan(&w, seller, buyer), plan_impl(&w, seller, buyer, false));
+                    let key = (seller, policy_for(&w, buyer), routes.owner_permissions(&w, seller, buyer));
+                    let tree = routes.trees.get(&key).expect("a mapped permitted endpoint must create a tree");
+                    assert_eq!(tree.passable.len(), network().nodes.len());
+                    for (i, node) in network().nodes.iter().enumerate() {
+                        assert_eq!(tree.passable[i], district_passable(&w, node, seller, buyer),
+                            "every cached node must retain exact native transit permissions");
+                    }
+                }
+                assert_eq!(crate::save(&w), before);
+            }
+        }
+    }
+
+    #[test]
+    fn s08_retained_heap_diagnostics_preserve_routes_and_count_actual_work() {
+        for military in [false, true] {
+            let mut w = world();
+            w.rules.military_operations = military;
+            w.sanctions.clear();
+            w.conflicts.clear();
+            let before = crate::save(&w);
+            let mut observed = ClearingRoutes::new(&w);
+            let mut quiet = ClearingRoutes::new(&w);
+            quiet.compact_tree_storage = false;
+            observed.trace_dispatches();
+            for buyer in [NationId::USA, NationId::France, NationId::Germany,
+                NationId::Canada, NationId::Belgium, NationId::USA] {
+                let actual = observed.plan(&w, NationId::Japan, buyer);
+                assert_eq!(actual, quiet.plan(&w, NationId::Japan, buyer));
+                assert_eq!(actual, plan_impl(&w, NationId::Japan, buyer, false));
+                assert!(actual.is_ok(), "real routes must exercise retained heap work");
+            }
+            assert_eq!(observed.trees.len(), quiet.trees.len());
+            for (key, tree) in &observed.trees {
+                let original = &quiet.trees[key];
+                assert_eq!(tree.dist, original.dist);
+                assert_eq!(tree.prev.to_native(), original.prev.to_native());
+                assert_eq!(tree.settled.to_native(), original.settled.to_native());
+                assert_eq!(tree.next_rank, original.next_rank);
+                assert!(matches!(tree.prev, Predecessors::Compact(_)));
+                assert!(matches!(tree.settled, SettlementRanks::Compact(_)));
+                assert!(matches!(original.prev, Predecessors::Native(_)));
+                assert!(matches!(original.settled, SettlementRanks::Native(_)));
+                assert_eq!(tree.prev.buffer_bytes(), network().nodes.len() * std::mem::size_of::<u64>());
+                assert_eq!(tree.settled.buffer_bytes(), network().nodes.len() * std::mem::size_of::<u32>());
+                assert_eq!(original.prev.buffer_bytes(), network().nodes.len() * std::mem::size_of::<Option<(usize, usize)>>());
+                assert_eq!(original.settled.buffer_bytes(), network().nodes.len() * std::mem::size_of::<usize>());
+                let queue = |tree: &SearchTree| tree.queue.clone().into_sorted_vec().into_iter()
+                    .map(|visit| (visit.cost, visit.node)).collect::<Vec<_>>();
+                assert_eq!(queue(tree), queue(original));
+            }
+            let trace = observed.take_trace().unwrap();
+            let queued: usize = observed.trees.values().map(|tree| tree.queue.len()).sum();
+            let discovered: usize = observed.trees.values()
+                .map(|tree| tree.dist.iter().filter(|&&cost| cost != u64::MAX).count()).sum();
+            let expanded: usize = observed.trees.values().map(|tree| tree.next_rank).sum();
+            let edges: usize = observed.trees.values().map(|tree| tree.settled.to_native().iter().enumerate()
+                .filter(|(_, rank)| **rank != usize::MAX)
+                .map(|(i, _)| network().traversal[i].len()).sum::<usize>()).sum();
+            assert_eq!(trace.tree_evictions, 0);
+            assert_eq!(trace.tree_heap_pushes, discovered + trace.tree_heap_decreases);
+            assert_eq!(trace.tree_heap_pushes - trace.tree_heap_pops, queued);
+            assert_eq!(trace.tree_heap_pops, trace.tree_expanded_nodes + trace.tree_heap_stale_pops);
+            assert_eq!(trace.tree_expanded_nodes, expanded);
+            assert_eq!(trace.tree_examined_edges, edges);
+            assert!(trace.tree_heap_decreases > 0, "real weighted routes must include improved queued distances");
+            assert!(trace.tree_heap_stale_pops > 0, "real weighted routes must discard obsolete visits");
+            assert!(trace.tree_max_queue_len > 0);
+            assert!(trace.tree_max_queue_len <= observed.trees.values().map(|tree| tree.queue.capacity()).max().unwrap());
+            assert_eq!(trace.source_search, trace.source_setup + trace.source_traversal + trace.source_fallback);
+            assert!(trace.source_fallback.is_zero());
+            assert_eq!(observed.search_nodes_left, 32_768);
+            assert!(quiet.take_trace().is_none());
+
+            // A repeated settled destination performs setup/assembly but no
+            // heap work, and take_trace resets counters between commodities.
+            observed.plan(&w, NationId::Japan, NationId::USA).unwrap();
+            let hit = observed.take_trace().unwrap();
+            assert_eq!(hit.tree_heap_pushes, 0);
+            assert_eq!(hit.tree_heap_pops, 0);
+            assert_eq!(hit.tree_heap_decreases, 0);
+            assert_eq!(hit.tree_heap_stale_pops, 0);
+            assert_eq!(hit.tree_expanded_nodes, 0);
+            assert_eq!(hit.tree_examined_edges, 0);
+            assert_eq!(hit.source_search, hit.source_setup + hit.source_traversal + hit.source_fallback);
+            assert_eq!(crate::save(&w), before);
+
+            for missing in [NationId::Japan, NationId::USA] {
+                let mut empty = w.clone();
+                empty.districts.retain(|_, owner| *owner != missing);
+                let mut routes = ClearingRoutes::new(&empty);
+                routes.trace_dispatches();
+                for _ in 0..2 {
+                    assert_eq!(routes.plan(&empty, NationId::Japan, NationId::USA),
+                        plan_impl(&empty, NationId::Japan, NationId::USA, false));
+                }
+                assert!(routes.trees.is_empty());
+                let trace = routes.take_trace().unwrap();
+                assert_eq!(trace.tree_heap_pushes, 0);
+                assert_eq!(trace.tree_heap_pops, 0);
+                assert_eq!(trace.source_search, trace.source_setup);
+            }
+        }
+    }
+
+    #[test]
+    fn s08_borrowed_capacity_labels_preserve_first_minimum_and_ieee_ties() {
+        // Test the metadata selector directly; no runtime capacity, graph,
+        // company coefficient or saved-world input needs to be altered.
+        for (capacities, expected, label) in [
+            (vec![100.0, 20.0, 20.0, 50.0], 20.0_f64, "edge-1"),
+            (vec![f64::NAN, 20.0, f64::NAN, 20.0], 20.0, "edge-1"),
+            (vec![0.0, -0.0, f64::NAN], 0.0, "edge-0"),
+            (vec![-0.0, 0.0, f64::NAN], -0.0, "edge-0"),
+            (vec![f64::NAN, f64::INFINITY], f64::INFINITY, "Unconstrained"),
+            (vec![20.0, f64::NEG_INFINITY, f64::NEG_INFINITY], f64::NEG_INFINITY, "edge-1"),
+        ] {
+            let rows: Vec<_> = capacities.into_iter().enumerate()
+                .map(|(i, capacity)| (capacity, format!("edge-{i}"))).collect();
+            let original_bits: Vec<_> = rows.iter().map(|(capacity, name)| (capacity.to_bits(), name.clone())).collect();
+            let mut borrowed = (f64::INFINITY, "Unconstrained".to_string());
+            let mut owned = borrowed.clone();
+            for row in &rows {
+                consider_cached_bottleneck(&mut borrowed, row);
+                // Exact former cached branch, including unconditional clone.
+                let (capacity, name) = row.clone();
+                if capacity < owned.0 { owned = (capacity, name); }
+            }
+            assert_eq!(borrowed.0.to_bits(), expected.to_bits());
+            assert_eq!(borrowed.1, label);
+            assert_eq!((borrowed.0.to_bits(), &borrowed.1), (owned.0.to_bits(), &owned.1));
+            assert_eq!(rows.iter().map(|(capacity, name)| (capacity.to_bits(), name.clone())).collect::<Vec<_>>(), original_bits);
+        }
+    }
+
+    #[test]
+    fn s08_clearing_assembly_reuses_static_segments_and_keeps_terminal_xp_live() {
+        use crate::sector_contractors::{self as companies, CompanySector, CompanyTarget};
+        for boundary in [180.0, 540.0] {
+            let mut cached = world();
+            cached.rules.daily_simulation = true;
+            cached.rules.military_operations = true;
+            cached.sanctions.clear();
+            cached.conflicts.clear();
+            companies::enable(&mut cached);
+            let (seller, buyer) = (NationId::Japan, NationId::USA);
+            let route = plan(&cached, seller, buyer).unwrap();
+            let edge_id = *route.segments.iter().filter_map(|key| network().edge_index.get(key))
+                .find(|&&i| {
+                    let edge = &network().edges[i];
+                    edge.kind == "terminal" && [&edge.a, &edge.b].iter()
+                        .any(|district| cached.districts.get(*district) == Some(&buyer))
+                }).unwrap();
+            let edge = &network().edges[edge_id];
+            let district = [&edge.a, &edge.b].into_iter()
+                .find(|district| cached.districts.get(*district) == Some(&buyer)).unwrap().clone();
+            production::complete_capability(&mut cached, &district, production::ProjectKind::FreightTerminal);
+            let company_id = cached.sector_contractors.roster.iter()
+                .find(|company| company.nation == buyer && company.sector == CompanySector::Logistics).unwrap().id;
+            let target = CompanyTarget::Facility { district: district.clone(), sector: CompanySector::Logistics };
+            companies::assign(&mut cached, buyer, company_id, target).unwrap();
+            // Synthetic boundary fixture: real dispatched work must cross
+            // both existing XP thresholds, with a visible positive bonus.
+            let company = cached.sector_contractors.roster.iter_mut().find(|company| company.id == company_id).unwrap();
+            company.experience = boundary - 0.5;
+            company.experience_day = None;
+            company.experience_today = 0.0;
+            company.work_bonus = 0.20;
+            company.fee_rate = 0.02;
+            begin_month(&mut cached);
+            cached.nation_mut(buyer).treasury_bn = Some(100.0);
+            cached.nation_mut(buyer).debt_bn = Some(0.0);
+            let mut original = cached.clone();
+            let mut cached_routes = ClearingRoutes::new(&cached);
+            let mut original_routes = ClearingRoutes::new(&original);
+            original_routes.reuse_pure_plan_reads = false;
+            original_routes.compact_tree_storage = false;
+            assert_eq!(cached_routes.plan(&cached, seller, buyer), original_routes.plan(&original, seller, buyer));
+            assert_eq!(cached_routes.assembly_segments.len(), network().edges.len(), "cache has exactly one bounded slot per graph edge");
+            assert!(cached_routes.assembly_segments.iter().any(Option::is_some), "real international routes must reuse static edges");
+            // Isolate the real terminal edge in an inspection predecessor
+            // chain so its changing capacity cannot hide behind another
+            // route bottleneck. Dispatch below still uses the full route.
+            let (a, b) = network().endpoints[edge_id];
+            let mut prev = vec![None; network().nodes.len()];
+            prev[b] = Some((a, edge_id));
+            let before = assemble_plan_with_segments(&cached, b, &prev, Some(&mut cached_routes.assembly_segments)).unwrap();
+            assert_eq!(before, assemble_plan(&cached, b, &prev).unwrap());
+            let actual = dispatch_in_clearing(&mut cached, seller, buyer, Commodity::Iron, 100.0, &mut cached_routes);
+            let expected = dispatch_in_clearing(&mut original, seller, buyer, Commodity::Iron, 100.0, &mut original_routes);
+            assert_eq!(actual, expected);
+            assert!(actual.quantity > 0.5, "actual terminal work must cross the XP threshold");
+            let company = cached.sector_contractors.roster.iter().find(|company| company.id == company_id).unwrap();
+            assert!(company.experience >= boundary);
+            assert!(company.total_fees_bn > 0.0, "dispatch must retain actual contractor receipts");
+            let after = assemble_plan_with_segments(&cached, b, &prev, Some(&mut cached_routes.assembly_segments)).unwrap();
+            assert_eq!(after, assemble_plan(&cached, b, &prev).unwrap());
+            assert_eq!(after.capacity_tonnes.to_bits(), segment_capacity(&cached, edge).0.to_bits());
+            assert!(after.capacity_tonnes > before.capacity_tonnes, "assembly must observe live terminal XP");
+            assert_eq!(cached_routes.plan(&cached, seller, buyer), plan(&cached, seller, buyer));
+            assert_eq!(cached_routes.plan(&cached, seller, buyer), original_routes.plan(&original, seller, buyer));
+            assert!(cached_routes.assembly_segments.iter().enumerate().all(|(i, value)| value.is_none() || network().edges[i].kind != "terminal"));
+            assert!(original_routes.assembly_segments.iter().all(Option::is_none));
+            assert_eq!(cached_routes.search_nodes_left, original_routes.search_nodes_left);
+            assert_eq!(crate::save(&cached), crate::save(&original),
+                "assembly reuse must preserve all route, cargo, capacity and contractor state");
+            let mut pool = NominalRoutePool::default();
+            let retained = cached_routes.trees.len();
+            cached_routes.return_to_pool(&mut pool);
+            for world in [&mut cached, &mut original] {
+                crate::clock::advance_date(world);
+                production::complete_capability(world, &district, production::ProjectKind::FreightTerminal);
+                begin_month(world);
+            }
+            let mut resumed = ClearingRoutes::with_pool(&cached, &mut pool);
+            let mut cold = ClearingRoutes::new(&original);
+            cold.reuse_pure_plan_reads = false;
+            cold.compact_tree_storage = false;
+            assert_eq!(resumed.trees.len(), retained, "terminal work and construction do not invalidate pure paths");
+            assert_eq!(resumed.capacities, cold.capacities);
+            assert!(resumed.assembly_segments.iter().all(Option::is_none));
+            for quantity in [-0.0, 0.125, 1e8, 1.0] {
+                assert_eq!(dispatch_in_clearing(&mut cached, seller, buyer, Commodity::Copper, quantity, &mut resumed),
+                    dispatch_in_clearing(&mut original, seller, buyer, Commodity::Copper, quantity, &mut cold));
+                assert_eq!(resumed.search_nodes_left, cold.search_nodes_left);
+                assert_eq!(crate::save(&cached), crate::save(&original));
+            }
+            resumed.return_to_pool(&mut pool);
+        }
+    }
+
+
+    #[test]
+    fn s08_dispatch_clone_reduction_preserves_cache_refusals_and_complete_world() {
+        for (i, edge) in network().edges.iter().enumerate() {
+            assert_eq!(network().edge_keys[i], edge_key(edge), "stored segment keys retain the original exact encoding");
+        }
+        for military in [false, true] {
+            for cache in ["missing", "valid", "invalid", "closed", "preplanned_ok", "preplanned_err"] {
+                let mut cached = world();
+                cached.rules.daily_simulation = true;
+                cached.rules.military_operations = military;
+                cached.sanctions.clear();
+                cached.conflicts.clear();
+                let (seller, buyer) = (NationId::Germany, NationId::France);
+                set_policy(&mut cached, buyer, RoutePolicy::LandOnly).unwrap();
+                begin_month(&mut cached);
+                let nominal = plan(&cached, seller, buyer).unwrap();
+                let key = (seller, buyer, RoutePolicy::LandOnly);
+                if cache != "missing" {
+                    let mut saved = nominal.clone();
+                    if matches!(cache, "invalid" | "preplanned_ok" | "preplanned_err") {
+                        saved.nodes[0].id = "missing-cached-freight-node".into();
+                    }
+                    cached.logistics.route_cache.insert(key, saved);
+                }
+                if cache == "closed" { cached.sanctions.push((seller, buyer)); }
+                if military {
+                    // Keep real nominal congestion and alternate-search
+                    // decisions identical while changing only route copies.
+                    for segment in &nominal.segments {
+                        let capacity = route_segment_capacity(&cached, segment).unwrap();
+                        cached.logistics.usage_tonnes.insert(segment.clone(), capacity);
+                    }
+                }
+                let mut original = cached.clone();
+                let mut cached_routes = ClearingRoutes::new(&cached);
+                let mut original_routes = ClearingRoutes::new(&original);
+                original_routes.reduce_route_clones = false;
+                cached_routes.trace_dispatches();
+                original_routes.trace_dispatches();
+                let preplanned = || match cache {
+                    "preplanned_ok" => Some(Ok(nominal.clone())),
+                    "preplanned_err" => Some(Err("Explicit frozen route refusal.".into())),
+                    _ => None,
+                };
+                let mut diverted = false;
+                let mut shipped = false;
+                for (commodity, quantity) in [(Commodity::Iron, f64::NAN), (Commodity::Iron, -1.0),
+                    (Commodity::Iron, -0.0), (Commodity::Copper, 0.125),
+                    (Commodity::Coal, 100_000.0), (Commodity::Copper, 1.0)] {
+                    let actual = dispatch_impl(&mut cached, seller, buyer, commodity, quantity,
+                        ShipmentSource::Spot, None, Some(&mut cached_routes), preplanned());
+                    let expected = dispatch_impl(&mut original, seller, buyer, commodity, quantity,
+                        ShipmentSource::Spot, None, Some(&mut original_routes), preplanned());
+                    assert_eq!(actual, expected, "military={military}, cache={cache}, quantity={quantity}");
+                    assert_eq!(cached_routes.search_nodes_left, original_routes.search_nodes_left);
+                    assert_eq!(crate::save(&cached), crate::save(&original),
+                        "exact saved routes, cargo, usage, receipts and refusal state");
+                    shipped |= actual.quantity > 0.0;
+                    diverted |= actual.quantity > 0.0
+                        && actual.route.as_ref().is_some_and(|route| route.dispatch_note.is_some());
+                }
+                if matches!(cache, "missing" | "valid" | "invalid") {
+                    assert!(shipped, "the fixture must exercise successful cargo ownership");
+                    if military { assert!(diverted, "the fixture must exercise actual congestion diversion"); }
+                    assert_eq!(cached.logistics.route_cache[&key], nominal,
+                        "repair/store the nominal route, never a selected alternate");
+                } else if matches!(cache, "preplanned_ok" | "preplanned_err") {
+                    assert_eq!(cached.logistics.route_cache[&key].nodes[0].id, "missing-cached-freight-node",
+                        "a frozen plan must not validate or replace the nominal cache");
+                } else { assert!(!shipped, "a closed route may not create cargo"); }
+                let actual_trace = cached_routes.take_trace().unwrap();
+                let expected_trace = original_routes.take_trace().unwrap();
+                assert_eq!(actual_trace.dispatches, expected_trace.dispatches);
+                assert_eq!(actual_trace.searches, expected_trace.searches);
+                assert_eq!(actual_trace.tree_evictions, expected_trace.tree_evictions);
+            }
+        }
+    }
+
+    fn s08_tree_sources(w: &WorldState, routes: &ClearingRoutes, count: usize) -> Vec<NationId> {
+        let mut ids: Vec<_> = crate::nations::all_nations().iter().copied()
+            .filter(|&id| w.nation_opt(id).is_some_and(|n| n.alive)
+                && !routes.owned_nodes[id.index()].is_empty()).collect();
+        // Germany starts cold again after the other sources force eviction.
+        ids.sort_by_key(|&id| (id != NationId::Germany, id));
+        assert!(ids.len() >= count, "the fixture needs enough actual mapped source governments");
+        ids.truncate(count);
+        ids
+    }
+
+    fn s08_tree_buyer(seller: NationId) -> NationId {
+        if seller == NationId::Japan { NationId::USA } else { NationId::Japan }
+    }
+
+    #[test]
+    fn s08_clearing_tree_lru_evicts_and_revisits_exact_native_routes() {
+        for policy in [RoutePolicy::Fastest, RoutePolicy::LandOnly, RoutePolicy::AvoidChokepoints] {
+            let mut w = world();
+            w.rules.daily_simulation = true;
+            w.rules.military_operations = true;
+            w.sanctions.clear();
+            w.conflicts.clear();
+            for &id in crate::nations::all_nations() { w.logistics.policies.insert(id, policy); }
+            let before = crate::save(&w);
+            let mut trees = ClearingRoutes::new(&w);
+            trees.tree_limit = 4;
+            trees.trace_dispatches();
+            let limit = trees.tree_limit;
+            let ids = s08_tree_sources(&w, &trees, limit + 3);
+            let budget = trees.search_nodes_left;
+            for &seller in &ids[..limit + 2] {
+                let buyer = s08_tree_buyer(seller);
+                assert_eq!(trees.plan(&w, seller, buyer), plan_impl(&w, seller, buyer, false),
+                    "first admission {policy:?} {seller:?}");
+                assert!(trees.trees.len() <= limit);
+            }
+            assert_eq!(trees.trees.len(), limit);
+            assert!(!trees.trees.keys().any(|key| key.0 == ids[0] || key.0 == ids[1]));
+            // Touch the oldest survivor, including the counter compaction
+            // boundary: the following insertion must evict ids[3], not ids[2].
+            trees.tree_clock = u64::MAX;
+            let touched = ids[2];
+            assert_eq!(trees.plan(&w, touched, s08_tree_buyer(touched)),
+                plan_impl(&w, touched, s08_tree_buyer(touched), false));
+            let newcomer = ids[limit + 2];
+            assert_eq!(trees.plan(&w, newcomer, s08_tree_buyer(newcomer)),
+                plan_impl(&w, newcomer, s08_tree_buyer(newcomer), false));
+            assert!(trees.trees.keys().any(|key| key.0 == touched));
+            assert!(!trees.trees.keys().any(|key| key.0 == ids[3]));
+            // Rebuild an evicted source and resume it toward another goal.
+            // LandOnly also exercises an exhausted, unreachable tree.
+            for buyer in [s08_tree_buyer(ids[0]), NationId::France, s08_tree_buyer(ids[0])] {
+                assert_eq!(trees.plan(&w, ids[0], buyer), plan_impl(&w, ids[0], buyer, false),
+                    "evicted source revisit {policy:?} {buyer:?}");
+            }
+            assert!(trees.trees.keys().any(|key| key.0 == ids[0]));
+            assert_eq!(trees.trees.len(), limit);
+            assert_eq!(trees.search_nodes_left, budget, "nominal eviction cannot consume congestion searches");
+            let trace = trees.take_trace().unwrap();
+            assert_eq!(trace.tree_evictions, 4);
+            assert_eq!(trace.tree_fallbacks, 0, "LRU admissions are not fallback searches");
+            assert_eq!(crate::save(&w), before, "cache policy cannot mutate any saved state");
+        }
+    }
+
+    #[test]
+    fn s08_clearing_default_256_matches_old_128_admission_full_world_and_budget() {
+        let mut cached = world();
+        cached.rules.daily_simulation = true;
+        cached.rules.military_operations = true;
+        cached.sanctions.clear();
+        cached.conflicts.clear();
+        let (seller, buyer) = (NationId::Germany, NationId::France);
+        for &id in crate::nations::all_nations() {
+            cached.logistics.policies.insert(id, RoutePolicy::LandOnly);
+        }
+        // Two fixed buyer policies yield distinct real tree keys per source.
+        // Ownership and policies never change within either clearing context.
+        for id in [NationId::Japan, NationId::USA] {
+            cached.logistics.policies.insert(id, RoutePolicy::Fastest);
+        }
+        begin_month(&mut cached);
+        let nominal = plan(&cached, seller, buyer).unwrap();
+        // Synthetic congestion uses the real route's exact available capacity;
+        // later dispatches must retain the same alternate search and receipts.
+        for segment in &nominal.segments {
+            let capacity = route_segment_capacity(&cached, segment).unwrap();
+            cached.logistics.usage_tonnes.insert(segment.clone(), capacity);
+        }
+        let mut original = cached.clone();
+        let mut cached_routes = ClearingRoutes::new(&cached);
+        let mut original_routes = ClearingRoutes::new(&original);
+        original_routes.retain_first_trees = true;
+        original_routes.reuse_pure_plan_reads = false;
+        original_routes.compact_tree_storage = false;
+        cached_routes.trace_dispatches();
+        original_routes.trace_dispatches();
+        assert_eq!(CLEARING_NOMINAL_TREE_LIMIT, 256);
+        assert_eq!(cached_routes.tree_limit, CLEARING_NOMINAL_TREE_LIMIT);
+        let ids = s08_tree_sources(&cached, &cached_routes, CLEARING_NOMINAL_TREE_LIMIT / 2 + 3);
+        let mut pool = NominalRoutePool::default();
+        for (index, &source) in ids.iter().enumerate() {
+            let land_buyer = if source == NationId::France { NationId::Germany } else { NationId::France };
+            for target in [s08_tree_buyer(source), land_buyer] {
+                assert_eq!(cached_routes.plan(&cached, source, target), original_routes.plan(&original, source, target));
+                assert!(cached_routes.trees.len() <= CLEARING_NOMINAL_TREE_LIMIT);
+                assert!(original_routes.trees.len() <= LEGACY_NOMINAL_TREE_LIMIT);
+            }
+            if index == 60 {
+                let count = cached_routes.trees.len();
+                cached_routes.return_to_pool(&mut pool);
+                assert_eq!(pool.entry_count(), count);
+                cached_routes = ClearingRoutes::with_pool(&cached, &mut pool);
+                assert_eq!(cached_routes.trees.len(), count);
+                cached_routes.trace_dispatches();
+            }
+        }
+        assert!(ids.len() * 2 > CLEARING_NOMINAL_TREE_LIMIT, "exercise more than 256 actual source/policy combinations");
+        assert_eq!(cached_routes.trees.len(), CLEARING_NOMINAL_TREE_LIMIT);
+        assert_eq!(original_routes.trees.len(), LEGACY_NOMINAL_TREE_LIMIT);
+        assert!(!cached_routes.trees.keys().any(|key| key.0 == seller));
+        assert!(original_routes.trees.keys().any(|key| key.0 == seller));
+        assert_eq!(cached_routes.search_nodes_left, 32_768);
+        assert_eq!(original_routes.search_nodes_left, 32_768);
+        let retained = cached_routes.take_trace().unwrap();
+        assert_eq!(retained.retained_tree_entries, CLEARING_NOMINAL_TREE_LIMIT);
+        assert!(retained.tree_evictions > 0);
+        assert!(retained.retained_tree_buffer_bytes > retained.retained_tree_heap_bytes);
+        let next_boundary = cached_routes.take_trace().unwrap();
+        assert_eq!(next_boundary.searches, 0, "durations and activity reset per commodity boundary");
+        assert_eq!(next_boundary.retained_tree_entries, retained.retained_tree_entries);
+        assert_eq!(next_boundary.retained_tree_buffer_bytes, retained.retained_tree_buffer_bytes,
+            "retained memory is observed at each boundary, not cleared or mislabeled as an interval peak");
+        assert_eq!(next_boundary.retained_tree_heap_bytes, retained.retained_tree_heap_bytes);
+        cached_routes.return_to_pool(&mut pool);
+        assert_eq!(pool.entry_count(), CLEARING_NOMINAL_TREE_LIMIT);
+        cached_routes = ClearingRoutes::with_pool(&cached, &mut pool);
+        assert!(pool.is_empty());
+        cached_routes.trace_dispatches();
+        let transferred = cached_routes.take_trace().unwrap();
+        assert_eq!(transferred.retained_tree_buffer_bytes, retained.retained_tree_buffer_bytes);
+        assert_eq!(transferred.retained_tree_heap_bytes, retained.retained_tree_heap_bytes);
+        let mut diverted = false;
+        for (source, target, commodity, quantity) in [
+            (seller, buyer, Commodity::Copper, 0.125),
+            (seller, NationId::Belgium, Commodity::Iron, 1.0),
+            (*ids.last().unwrap(), s08_tree_buyer(*ids.last().unwrap()), Commodity::Copper, 0.25),
+            (seller, buyer, Commodity::Coal, 100_000.0),
+            (seller, buyer, Commodity::Iron, 0.0),
+        ] {
+            let actual = dispatch_in_clearing(&mut cached, source, target, commodity, quantity, &mut cached_routes);
+            let expected = dispatch_in_clearing(&mut original, source, target, commodity, quantity, &mut original_routes);
+            assert_eq!(actual, expected, "exact route, quantity and refusal after source eviction");
+            assert_eq!(cached_routes.search_nodes_left, original_routes.search_nodes_left,
+                "LRU must retain every congestion-budget decision");
+            assert_eq!(crate::save(&cached), crate::save(&original),
+                "all cargo, routes, usage, cash and receipts must remain exact");
+            diverted |= actual.quantity > 0.0 && actual.route.as_ref().is_some_and(|route| route.dispatch_note.is_some());
+        }
+        assert!(diverted, "the fixture must actually dispatch an alternate route");
+        assert!(cached_routes.search_nodes_left < 32_768, "congestion must consume its unchanged budget");
+        assert!(cached_routes.take_trace().unwrap().tree_evictions > 0);
+        assert!(original_routes.take_trace().unwrap().tree_fallbacks > 0);
+        assert_eq!(cached_routes.trees.len(), CLEARING_NOMINAL_TREE_LIMIT);
+        assert_eq!(original_routes.trees.len(), LEGACY_NOMINAL_TREE_LIMIT);
     }
 
     #[test]
@@ -1587,6 +2800,89 @@ mod tests {
             ..GameRules::default()
         })
     }
+
+    #[test]
+    fn freight_access_read_matches_exact_paths_pairs_and_ignored_metadata() {
+        for modern in [false, true] {
+            let mut w=world(); w.rules.daily_simulation=true; w.rules.military_operations=modern;
+            let (seller,buyer)=(NationId::Germany,NationId::France);
+            let nominal=plan(&w,seller,buyer).unwrap();
+            assert!(freight_route_open(&w,seller,buyer,&nominal).is_ok());
+            let mut renamed=nominal.clone();
+            for node in &mut renamed.nodes { node.name="A different display label".into(); }
+            renamed.segments.clear(); renamed.estimated_days+=50; renamed.capacity_tonnes=0.0;
+            let mut missing=nominal.clone();
+            missing.nodes.insert(1,nominal.nodes[0].clone());
+            missing.nodes[1].id="missing-saved-freight-node".into();
+            let mut repeated=nominal.clone(); repeated.nodes.insert(1,nominal.nodes[0].clone());
+            let mut reversed=nominal.clone(); reversed.nodes.reverse();
+            let mut empty=nominal.clone(); empty.nodes.clear();
+            let before=crate::save(&w);
+            let mut read=FreightAccessRead::new(&w);
+            assert!(read.is_open(seller,buyer,&nominal));
+            assert!(read.is_open(seller,buyer,&renamed));
+            assert_eq!(read.routes.len(),1,"equal IDs share access despite different presentation metadata");
+            for route in [&nominal,&renamed,&missing,&repeated,&reversed,&empty] {
+                for (from,to) in [(seller,buyer),(buyer,seller),(seller,seller)] {
+                    let expected=freight_route_open(&w,from,to,route).is_ok();
+                    assert_eq!(read.is_open(from,to,route),expected,"modern={modern} {from:?}->{to:?}");
+                    assert_eq!(read.is_open(from,to,route),expected,"duplicate rows keep their exact access answer");
+                }
+            }
+            assert!(!read.is_open(seller,buyer,&missing),"missing interior IDs cannot reuse an open path");
+            assert_eq!(crate::save(&w),before,"access reads cannot change cargo, money, policy or control");
+        }
+    }
+
+    #[test]
+    fn freight_access_read_new_snapshot_observes_closures_and_endpoint_control() {
+        let mut w=world(); w.rules.daily_simulation=true; w.rules.military_operations=true;
+        let (seller,buyer)=(NationId::Germany,NationId::France);
+        let route=plan(&w,seller,buyer).unwrap();
+        let check=|world:&WorldState,expected:bool| {
+            let before=crate::save(world);
+            let mut read=FreightAccessRead::new(world);
+            assert_eq!(read.is_open(seller,buyer,&route),expected);
+            assert_eq!(read.is_open(seller,buyer,&route),freight_route_open(world,seller,buyer,&route).is_ok());
+            assert_eq!(crate::save(world),before);
+        };
+        check(&w,true);
+        w.sanctions.push((seller,buyer)); check(&w,false);
+        w.sanctions.pop(); check(&w,true);
+        w.nation_mut(buyer).alive=false; check(&w,false);
+        w.nation_mut(buyer).alive=true; check(&w,true);
+        let endpoint=route.nodes.first().unwrap().id.clone();
+        crate::war::declare_war(&mut w,seller,NationId::Iraq).unwrap();
+        let conflict=w.conflict_between(seller,NationId::Iraq).unwrap().id;
+        // Isolate physical endpoint control from declaration's sanctions and
+        // coalition responses, whose refusals were exercised separately.
+        w.sanctions.clear();
+        let c=w.conflict_mut(conflict).unwrap();
+        c.side_a.retain(|id| *id==seller); c.side_b.retain(|id| *id==NationId::Iraq);
+        c.posture.retain(|p| p.nation==seller || p.nation==NationId::Iraq);
+        w.conflict_mut(conflict).unwrap().front.insert(endpoint.clone(),-1.0);
+        assert_eq!(crate::control::controller(&w,&endpoint),Some(NationId::Iraq));
+        check(&w,false);
+        w.conflict_mut(conflict).unwrap().front.remove(&endpoint); check(&w,true);
+        crate::war::join_side(w.conflict_mut(conflict).unwrap(),buyer,false,8,crate::world::Objective::Deny);
+        check(&w,false);
+    }
+
+    #[test]
+    fn freight_access_read_storage_limit_falls_back_to_native_checks() {
+        let w=world();
+        let mut route=plan(&w,NationId::Germany,NationId::France).unwrap();
+        route.nodes.clear();
+        let mut read=FreightAccessRead::new(&w);
+        let pairs=crate::nations::all_nations().iter().copied().flat_map(|seller|
+            crate::nations::all_nations().iter().copied().map(move |buyer|(seller,buyer)));
+        for (seller,buyer) in pairs.take(FREIGHT_ACCESS_READ_MAX_ROUTES+3) {
+            assert_eq!(read.is_open(seller,buyer,&route),freight_route_open(&w,seller,buyer,&route).is_ok());
+        }
+        assert_eq!(read.routes.len(),FREIGHT_ACCESS_READ_MAX_ROUTES);
+        assert_eq!(read.node_ids,0,"an empty ordered path owns no node-ID entries");
+    }
+
     fn advance_month(w: &mut WorldState) {
         if w.month == 12 {
             w.month = 1;
@@ -1949,6 +3245,73 @@ mod tests {
             else { assert_eq!(arrivals.iter().find(|c| c.id == id).unwrap().route.dispatch_note, saved_note); }
         }
         assert!(begin_month(&mut w).is_empty());
+    }
+
+    #[test]
+    fn contract_forecast_context_preserves_quantities_atomic_order_and_alternates() {
+        let mut w = world();
+        w.rules.daily_simulation = true;
+        w.rules.military_operations = true;
+        set_policy(&mut w, NationId::France, RoutePolicy::LandOnly).unwrap();
+        let seller=NationId::Germany;let buyer=NationId::France;
+        let nominal=plan(&w,seller,buyer).unwrap();
+        // Today's booked freight must not leak into a fresh forecast date.
+        for edge in &nominal.segments {
+            w.logistics.usage_tonnes.insert(edge.clone(),route_segment_capacity(&w,edge).unwrap());
+        }
+        let before=crate::save(&w);
+        let mut context=ContractForecastRoutes::new(&w);
+        assert!(context.capacities.is_none());
+        assert!(context.capacity_ratios(&[]).is_empty());
+        assert!(context.capacities.is_none(),"Empty forecasts build no capacity table");
+        for quantity in [0.0,0.125,1.0,100_000.0,0.25,500_000.0] {
+            let legs=vec![(seller,buyer,Commodity::Iron,quantity),(seller,buyer,Commodity::Copper,quantity*0.5)];
+            let bundles=vec![(3,legs.clone()),(1,legs.clone()),(2,legs)];
+            let expected=fresh_contract_capacity_ratios(&w,&bundles);
+            let actual=context.capacity_ratios(&bundles);
+            assert_eq!(actual,expected,"Exact capacity ratios for changing quantity {quantity}");
+            assert_eq!(context.capacity_ratios(&bundles),expected,"Each call starts a fresh local usage ledger");
+            if quantity==100_000.0 {assert!(actual[&1]>0.0&&actual[&1]<1.0);}
+        }
+        assert_eq!(context.nominal.len(),1,"All dates and commodities share one nominal pair read");
+        assert_eq!(context.capacities.as_ref().unwrap().len(),network().edges.len());
+        let used=w.logistics.usage_tonnes.clone();
+        let legs=[(seller,buyer,Commodity::Iron,1.0)];
+        let uncached=freight_routing::prepare_bundle(&w,&legs,&used);
+        let cached=freight_routing::prepare_bundle_with_context(&w,&legs,&used,Some(&mut context));
+        assert_eq!(cached.routes,uncached.routes,"Alternate route identity and timing remain exact");
+        assert_eq!(cached.demand,uncached.demand);
+        assert_eq!(cached.ratio.to_bits(),uncached.ratio.to_bits());
+        assert!(cached.routes[0].as_ref().unwrap().dispatch_note.is_some(),"The fixture actually requires an alternate");
+        assert_eq!(crate::save(&w),before,"Forecast cache posts no usage, cargo or service payments");
+    }
+
+    #[test]
+    fn contract_forecast_context_preserves_invalid_closed_and_legacy_paths() {
+        for mode in ["modern","sanctioned","dead","legacy","disabled"] {
+            let mut w=world();
+            w.rules.daily_simulation=true;
+            w.rules.military_operations=mode!="legacy";
+            if mode=="disabled" {w.rules.physical_logistics=false;}
+            if mode=="sanctioned" {w.sanctions.push((NationId::Germany,NationId::France));}
+            if mode=="dead" {w.nation_mut(NationId::France).alive=false;}
+            set_policy(&mut w,NationId::USA,RoutePolicy::LandOnly).unwrap();
+            let before=crate::save(&w);
+            let mut context=ContractForecastRoutes::new(&w);
+            for (seller,buyer) in [(NationId::Germany,NationId::France),(NationId::Japan,NationId::USA)] {
+                let expected=plan(&w,seller,buyer);
+                assert_eq!(context.plan(seller,buyer),expected,"{mode}");
+                assert_eq!(context.plan(seller,buyer),expected,"Cached refusal remains identical: {mode}");
+            }
+            for quantity in [0.0,-1.0,f64::NAN,f64::INFINITY,1.0,1_000_000.0] {
+                let bundles=vec![(9,vec![(NationId::Germany,NationId::France,Commodity::Iron,quantity),
+                    (NationId::Japan,NationId::USA,Commodity::Copper,1.0)]),
+                    (2,vec![(NationId::Germany,NationId::France,Commodity::Iron,1.0)])];
+                assert_eq!(context.capacity_ratios(&bundles),fresh_contract_capacity_ratios(&w,&bundles),"{mode} {quantity}");
+            }
+            if mode=="legacy"||mode=="disabled" {assert!(context.capacities.is_none());}
+            assert_eq!(crate::save(&w),before,"{mode} forecast mutated the world");
+        }
     }
 
     #[test]

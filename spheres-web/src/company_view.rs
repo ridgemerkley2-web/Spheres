@@ -517,6 +517,10 @@ fn company_design_costs(p: &eq::CompiledProfile) -> Vec<Value> {
 
 fn company_board(w: &WorldState, me: NationId) -> Value {
     let raw=companies::view(w,me);
+    let market=company_supplier_market(w,me);
+    company_board_from_reads(w,me,&raw,&market)
+}
+fn company_board_from_reads(w:&WorldState,me:NationId,raw:&Value,market:&Value)->Value {
     let empty=Vec::new();
     let firms=raw["companies"].as_array().unwrap_or(&empty);
     let site_options: Vec<_>=raw["sites"].as_array().unwrap_or(&empty).iter().filter(|s|company_count(s,"slots")>0).map(|s| {
@@ -640,7 +644,7 @@ fn company_board(w: &WorldState, me: NationId) -> Value {
             {"label":"Development","value":"Government funds engineering and trials","detail":"The design becomes certified; prototypes do not enter service."},
             {"label":"Manufacturing","value":"Company funds its own finite stock","detail":"Capacity, cash and inputs constrain restocking."},
             {"label":"Purchase","value":"Government buys finished equipment and ammunition","detail":"Vehicle purchases use procurement; ammunition uses Maintenance & supply after fleet upkeep. Delivery makes each purchase available."}],
-        "warnings":warnings,"actions":actions},"firms":firm_rows,"products":product_rows,"deliveries":deliveries,"market":company_supplier_market(w,me),
+        "warnings":warnings,"actions":actions},"firms":firm_rows,"products":product_rows,"deliveries":deliveries,"market":market,
         "service_overview":company_service_overview(),"services":company_refit_rows(w,me,&raw)})
 }
 
@@ -866,6 +870,29 @@ mod company_view_tests {
         (g,company,product)
     }
 
+    #[test]
+    fn s08_request_local_supplier_reads_preserve_both_board_sections() {
+        let (mut g,company,product)=foreign_stock_fixture();
+        for phase in ["stock","purchased"] {
+            if phase=="purchased" {
+                let q=companies::import_purchase_quote(&g.world,NationId::Tonga,ME,company,product,false,1);
+                assert!(q.valid);
+                spheres_sim::apply_command(&mut g.world,&Command::Company {nation:NationId::Tonga,
+                    order:CompanyOrder::ImportPurchase {seller:ME,company,product,ammunition:false,quantity:1,quote:q.token}}).unwrap();
+            }
+            let before=spheres_sim::save(&g.world);
+            for me in [ME,NationId::Tonga] {
+                // Independent standalone reads reconstruct the two former
+                // call paths; the response now shares their inputs once.
+                let independent_company=company_board(&g.world,me);
+                let independent_ammunition=ammunition_board(&g.world,me);
+                let combined=view(&g.world,me,&g.session_id);
+                assert_eq!(combined["companies"],independent_company,"{phase} {me:?}");
+                assert_eq!(combined["ammunition"],independent_ammunition,"{phase} {me:?}");
+            }
+            assert_eq!(spheres_sim::save(&g.world),before,"Shared supplier reads changed {phase}");
+        }
+    }
     #[test]
     fn s08_no_factory_country_can_review_import_access_without_any_opening_stock_grant() {
         let mut g=super::super::Game::new(1990,Some(NationId::Tonga));

@@ -347,8 +347,12 @@ fn production_company(w: &WorldState, nation: NationId, district: &str, kind: K)
     else { crate::sector_contractors::CompanyModifiers::default() }
 }
 pub fn operating_raw_recipe(w: &WorldState, nation: NationId, district: &str, kind: K, work: f64, power: f64) -> [f64; 12] {
-    let company = production_company(w, nation, district, kind);
     let (fuel_rate, _) = industry::energy_company_rates(w, nation);
+    operating_raw_recipe_with_fuel(w, nation, district, kind, work, power, fuel_rate)
+}
+fn operating_raw_recipe_with_fuel(w: &WorldState, nation: NationId, district: &str,
+    kind: K, work: f64, power: f64, fuel_rate: f64) -> [f64; 12] {
+    let company = production_company(w, nation, district, kind);
     raw_recipe(kind, work * company.work_rate * company.input_rate, power * fuel_rate)
 }
 pub fn intermediate_requirement(w: &WorldState, nation: NationId, district: &str, kind: K, work: f64) -> f64 {
@@ -486,17 +490,74 @@ pub fn support_grid_used(w: &WorldState, district: &str) -> f64 {
 }
 
 pub fn demand_daily(w: &WorldState, nation: NationId) -> [f64; 12] {
+    demand_daily_impl(w, nation, true)
+}
+fn demand_daily_impl(w: &WorldState, nation: NationId, reuse_fuel_rate: bool) -> [f64; 12] {
     let mut total = [0.0; 12];
     if !enabled(w) || !programs::enrolled(w, nation) { return total; }
+    // All these recipes read one immutable national grid. Terminal work and
+    // actual operating receipts still resolve their modifiers as they settle.
+    let fuel = reuse_fuel_rate.then(|| industry::energy_company_rates(w, nation).0);
     for (d, owner) in &w.districts {
         if *owner != nation || resources::district_contested(w, d) { continue; }
         for k in [K::Shipyard, K::OfficeDistrict, K::AdvancedIndustry] {
             let count = levels(w, d, k);
-            let raw = operating_raw_recipe(w,nation,d,k,count,count * power_per_level(w,d,k));
+            let power = count * power_per_level(w,d,k);
+            let raw = fuel.map_or_else(|| operating_raw_recipe(w,nation,d,k,count,power),
+                |fuel| operating_raw_recipe_with_fuel(w,nation,d,k,count,power,fuel));
             for i in 0..12 { total[i] += raw[i]; }
         }
     }
     total.map(quantize)
+}
+#[cfg(test)]
+mod demand_read_tests {
+    use super::*;
+    use crate::sector_contractors::{self as companies, CompanySector, CompanyTarget};
+
+    #[test]
+    fn s08_operating_demand_reuses_only_immutable_fuel_rate() {
+        let nation = NationId::USA;
+        let mut w = crate::init::world_1990(crate::world::GameRules {
+            daily_simulation: true, production_system: true, resource_market: true,
+            industry_rebuild: true, ..Default::default()
+        });
+        let year = w.year;
+        programs::install(&mut w, nation, year, programs::default_departments());
+        let districts: Vec<_> = w.districts.iter().filter(|(_, owner)| **owner == nation)
+            .map(|(district, _)| district.clone()).take(3).collect();
+        // Synthetic mixed capacity: contracted and unassigned sites, plus the
+        // country's remaining zero-level provinces and fractional generation.
+        for district in &districts {
+            for kind in [K::Shipyard, K::OfficeDistrict, K::AdvancedIndustry, K::Generation] {
+                production::complete_capability(&mut w, district, kind);
+            }
+        }
+        w.production.industry.modules.insert(districts[1].clone(), 375_000);
+        companies::enable(&mut w);
+        for sector in [CompanySector::Energy, CompanySector::Manufacturing] {
+            let company = w.sector_contractors.roster.iter().find(|company|
+                company.nation == nation && company.sector == sector).unwrap().id;
+            companies::assign(&mut w, nation, company, CompanyTarget::Facility {
+                district: districts[0].clone(), sector }).unwrap();
+        }
+        assert!(demand_daily(&w, nation).iter().any(|value| *value > 0.0));
+        for state in ["contracted", "experience", "unassigned", "disabled", "monthly"] {
+            match state {
+                "experience" => for company in &mut w.sector_contractors.roster { company.experience = 540.0; },
+                "unassigned" => w.sector_contractors.assignments.clear(),
+                "disabled" => w.rules.industry_rebuild = false,
+                "monthly" => { w.rules.industry_rebuild = true; w.rules.daily_simulation = false; },
+                _ => {},
+            }
+            let before = crate::save(&w);
+            for id in crate::nations::all_nations() {
+                assert_eq!(demand_daily_impl(&w, *id, true).map(f64::to_bits),
+                    demand_daily_impl(&w, *id, false).map(f64::to_bits), "{state}: {id:?}");
+            }
+            assert_eq!(crate::save(&w), before);
+        }
+    }
 }
 pub fn intermediate_demand_daily(w: &WorldState, nation: NationId) -> f64 {
     if !enabled(w) { return 0.0; }

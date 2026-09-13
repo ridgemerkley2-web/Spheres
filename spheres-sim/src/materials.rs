@@ -436,9 +436,13 @@ fn feasible(
     power: f64,
     grid: f64,
 ) -> (f64, Vec<String>) {
+    feasible_with_rates(w, nation, district, target, power, grid, None)
+}
+fn feasible_with_rates(w: &WorldState, nation: NationId, district: &str, target: f64,
+    power: f64, grid: f64, energy_rates: Option<(f64, f64)>) -> (f64, Vec<String>) {
     let per_power = industry::power_per_pack(w, district, K::ProcessingPlant);
     let company = industry::manufacturing_company(w, nation, district);
-    let (_, energy_fee) = industry::energy_company_rates(w, nation);
+    let (_, energy_fee) = energy_rates.unwrap_or_else(|| industry::energy_company_rates(w, nation));
     let room = (industry::goods_capacity(w, nation)
         - commerce::stock(w, nation, Good::Intermediates))
     .max(0.0);
@@ -478,7 +482,8 @@ fn feasible(
             blockers.push(message.into());
         }
     }
-    let unit = industry::company_operating_recipe(w, nation, district, K::ProcessingPlant, 1.0, per_power);
+    let unit = energy_rates.map_or_else(|| industry::company_operating_recipe(w, nation, district, K::ProcessingPlant, 1.0, per_power),
+        |(fuel, _)| industry::company_operating_recipe_with_fuel(w, nation, district, K::ProcessingPlant, 1.0, per_power, fuel));
     for c in ALL {
         if unit[c.idx()] > 0.0 {
             let have = resources::stockpile(w, nation, c);
@@ -500,16 +505,23 @@ pub fn quote(
     quantity: f64,
     delivery_days: u32,
 ) -> Quote {
+    quote_impl(w, nation, district, quantity, delivery_days, true)
+}
+fn quote_impl(w: &WorldState, nation: NationId, district: &str, quantity: f64,
+    delivery_days: u32, reuse_rates: bool) -> Quote {
     let refusal = order_refusal(w, nation, district, quantity, delivery_days);
     let capacity = capacity_daily(w, district);
     let company = industry::manufacturing_company(w, nation, district);
-    let (_, energy_fee) = industry::energy_company_rates(w, nation);
+    let energy_rates = industry::energy_company_rates(w, nation);
+    let energy_fee = energy_rates.1;
+    let shared_rates = reuse_rates.then_some(energy_rates);
     let target = (rate(quantity, delivery_days).min(capacity) * company.work_rate).min(sane(quantity));
     let power_per = industry::power_per_pack(w, district, K::ProcessingPlant);
-    let inputs = industry::company_operating_recipe(w, nation, district, K::ProcessingPlant, target, target * power_per);
+    let inputs = shared_rates.map_or_else(|| industry::company_operating_recipe(w, nation, district, K::ProcessingPlant, target, target * power_per),
+        |(fuel, _)| industry::company_operating_recipe_with_fuel(w, nation, district, K::ProcessingPlant, target, target * power_per, fuel));
     let (power, grid) = remaining_power(w, nation, district);
     let (feasible_today, mut blockers) = if w.nation_opt(nation).is_some() {
-        feasible(w, nation, district, target, power, grid)
+        feasible_with_rates(w, nation, district, target, power, grid, shared_rates)
     } else {
         (0.0, vec!["This government is not active.".into()])
     };
@@ -552,6 +564,62 @@ pub fn quote(
         blockers,
         political_cost: ORDER_PC,
         note: NOTE.into(),
+    }
+}
+
+#[cfg(test)]
+mod quote_read_tests {
+    use super::*;
+    use crate::sector_contractors::{self as companies, CompanySector, CompanyTarget};
+
+    #[test]
+    fn s08_materials_quote_shared_rates_preserve_every_field_and_refusal() {
+        let nation = NationId::USA;
+        let mut w = crate::init::world_1990(crate::world::GameRules {
+            daily_simulation: true, economic_competition: true, production_system: true,
+            resource_market: true, physical_logistics: true, logistics_routes: true,
+            industry_rebuild: true, ..Default::default()
+        });
+        crate::starting_industry::enable_new_world(&mut w).unwrap();
+        let district = w.districts.iter().filter(|(_, owner)| **owner == nation)
+            .map(|(district, _)| district).find(|district| capacity_daily(&w, district) > QUANTUM)
+            .expect("the fixture needs real located Materials capacity").clone();
+        for kind in [K::Generation, K::PowerGrid, K::Warehouse] {
+            crate::production::complete_capability(&mut w, &district, kind);
+        }
+        let year = w.year;
+        programs::install(&mut w, nation, year, programs::default_departments());
+        programs::begin_day(&mut w);
+        for commodity in ALL.into_iter().filter(|c| *c != Commodity::Oil) {
+            resources::set_stockpile_for_test(&mut w, nation, commodity, 1000.0);
+        }
+        companies::enable(&mut w);
+        for sector in [CompanySector::Energy, CompanySector::Manufacturing] {
+            let company = w.sector_contractors.roster.iter().find(|c| c.nation == nation && c.sector == sector).unwrap().id;
+            companies::assign(&mut w, nation, company, CompanyTarget::Facility { district: district.clone(), sector }).unwrap();
+        }
+        assert!(quote(&w, nation, &district, QUANTUM, 30).eligible);
+        for state in ["contracted", "experience", "unfunded", "no_contractors", "disabled"] {
+            match state {
+                "experience" => for c in &mut w.sector_contractors.roster { c.experience = 540.0; },
+                "unfunded" => w.nation_mut(nation).program_budget = None,
+                "no_contractors" => w.sector_contractors.enabled = false,
+                "disabled" => w.rules.economic_competition = false,
+                _ => {},
+            }
+            let before = crate::save(&w);
+            for (buyer, site) in [(nation, district.as_str()), (NationId::Tonga, district.as_str()), (nation, "missing-province")] {
+                for (quantity, days) in [(QUANTUM, 30), (0.037_123_457, 7), (1.0, 365),
+                    (-0.0, 30), (f64::NAN, 30), (f64::INFINITY, 30), (1.0, 0), (1.0, 366)] {
+                    let actual = quote_impl(&w, buyer, site, quantity, days, true);
+                    let expected = quote_impl(&w, buyer, site, quantity, days, false);
+                    assert_eq!(serde_json::to_string(&actual).unwrap(), serde_json::to_string(&expected).unwrap(),
+                        "{state}: {buyer:?} / {site} / {quantity} / {days}");
+                    assert_eq!(actual.inputs_daily.map(f64::to_bits), expected.inputs_daily.map(f64::to_bits));
+                }
+            }
+            assert_eq!(crate::save(&w), before);
+        }
     }
 }
 

@@ -207,12 +207,13 @@ pub(crate) fn request(g: &crate::Game, url: &str) -> Value {
     out["epoch"] = g.history_epoch.into();
     out["cursor"] = g.history.last().map(|s| s.t).into();
     out["session_id"] = g.session_id.clone().into();
-    let mut available = BTreeMap::new();
-    for s in &g.history {
-        for (id, _) in &s.rows {
-            available.insert(format!("{id:?}"), id.name());
-        }
-    }
+    // Even a one-day delta lists every nation retained in the archive. Each
+    // ID has one static name, so deduplicate compact IDs before allocating
+    // strings; old/dead nations still come from history, never today's world.
+    let available_ids: BTreeSet<_> = g.history.iter()
+        .flat_map(|s| s.rows.iter().map(|(id, _)| *id)).collect();
+    let available: BTreeMap<_, _> = available_ids.into_iter()
+        .map(|id| (format!("{id:?}"), id.name())).collect();
     out["available"] = json!(available);
     out["retention"] = json!({"daily_years":3,"monthly_years":20,"older":"annual endpoints","milestones":"nation births and endings"});
     out
@@ -302,6 +303,62 @@ mod tests {
         g.history_epoch += 1;
         assert_eq!(request(&g, "/api/history?epoch=0&after=0")["reset"], true);
     }
+    #[test]
+    fn s08_history_available_ids_match_full_row_formatting_on_deltas_and_archive_changes() {
+        let mut g = crate::Game::new(1990, Some(NationId::USA));
+        g.history.clear();
+        g.history_epoch = 7;
+        let row = Row { gdp: 1.25, growth: -0.0, inflation: 0.02, debt: 0.5,
+            stability: 40.0, mil: 2.0 };
+        for state in 0..4 {
+            if state == 1 {
+                // Out-of-order and duplicate rows are intentional. France
+                // exists only in the archived portion, outside later deltas.
+                for (i, ids) in [vec![NationId::USA, NationId::France, NationId::USA],
+                    vec![NationId::Canada, NationId::USA, NationId::Canada],
+                    vec![NationId::Japan, NationId::Canada]].into_iter().enumerate() {
+                    g.history.push(Snapshot { t: i as f64, year: 1990, month: i as u32 + 1,
+                        day: Some(1), oil: 30.0, rows: ids.into_iter().map(|id| (id, row)).collect(), milestone: true });
+                }
+            }
+            if state == 2 {
+                g.history.push(Snapshot { t: 3.0, year: 1990, month: 4, day: Some(1), oil: 30.0,
+                    rows: vec![(NationId::Germany, row), (NationId::Canada, row)], milestone: true });
+            }
+            if state == 3 {
+                // An archive replacement/compaction epoch must not retain an
+                // index of nations that are no longer in the supplied rows.
+                g.history.remove(0);
+                g.history_epoch += 1;
+            }
+            let world_before = spheres_sim::save(&g.world);
+            let history_before = serde_json::to_vec(&g.history).unwrap();
+            // Literal original computation is the oracle, including ordering
+            // by the formatted wire ID rather than the internal NationId.
+            let mut original = BTreeMap::new();
+            for snapshot in &g.history {
+                for (id, _) in &snapshot.rows {
+                    original.insert(format!("{id:?}"), id.name());
+                }
+            }
+            let expected = json!(original);
+            for url in ["/api/history".to_string(), "/api/history?nations=USA".to_string(),
+                format!("/api/history?nations=USA&epoch={}&after=1", g.history_epoch),
+                format!("/api/history?nations=Japan&epoch={}&after=999", g.history_epoch),
+                "/api/history?epoch=0&after=1".to_string()] {
+                let result = request(&g, &url);
+                assert_eq!(serde_json::to_vec(&result["available"]).unwrap(), serde_json::to_vec(&expected).unwrap(),
+                    "state={state}, {url}: selected/empty deltas must carry the exact whole-archive nation list");
+            }
+            if state == 1 || state == 2 {
+                assert!(expected.get("France").is_some(), "a nation outside the delta remains available");
+            }
+            if state == 3 { assert!(expected.get("France").is_none()); }
+            assert_eq!(spheres_sim::save(&g.world), world_before);
+            assert_eq!(serde_json::to_vec(&g.history).unwrap(), history_before);
+        }
+    }
+
     #[test]
     fn event_pages_preserve_the_entire_archive_across_new_dispatches() {
         let mut g = crate::Game::new(1990, Some(NationId::USA));

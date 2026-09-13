@@ -576,8 +576,14 @@ pub fn power_capacity(w: &WorldState, nation: NationId) -> f64 {
 /// Generation serves the shared national grid. Dispatch and its operator fees
 /// are apportioned over installed, uncontested generation by available capacity.
 fn energy_dispatch(w: &WorldState, nation: NationId) -> Vec<(CompanyTarget, f64, companies::CompanyModifiers)> {
-    operating_districts(w).into_iter().filter_map(|district| {
-        if w.districts.get(&district) != Some(&nation) || resources::district_contested(w, &district) { return None; }
+    energy_dispatch_impl(w, nation, true)
+}
+fn energy_dispatch_impl(w: &WorldState, nation: NationId, use_owned_districts: bool)
+    -> Vec<(CompanyTarget, f64, companies::CompanyModifiers)> {
+    let districts = if use_owned_districts { operating_districts_for(w, nation) } else { operating_districts(w) };
+    districts.into_iter().filter_map(|district| {
+        if (!use_owned_districts && w.districts.get(&district) != Some(&nation))
+            || resources::district_contested(w, &district) { return None; }
         let capacity = site_level(w, &district, K::Generation) as f64 * 10.0
             + w.production.industry.modules.get(&district).copied().unwrap_or(0) as f64 / 1_000_000.0 * 10.0;
         if capacity <= 0.0 { return None; }
@@ -634,6 +640,19 @@ fn operating_districts(w:&WorldState)->Vec<String>{
     w.production.industry.sites.keys().chain(w.production.industry.modules.keys()).cloned()
         .collect::<std::collections::BTreeSet<_>>().into_iter().collect()
 }
+/// The same sorted unique district list restricted only by current ownership.
+/// Borrow names through filtering/deduplication so each national read clones
+/// none of the other countries' names. Alive, enrollment and contested checks
+/// deliberately remain with callers, whose rules differ.
+fn operating_districts_for(w: &WorldState, nation: NationId) -> Vec<String> {
+    if w.production.industry.modules.is_empty() {
+        return w.production.industry.sites.keys()
+            .filter(|district| w.districts.get(*district) == Some(&nation)).cloned().collect();
+    }
+    w.production.industry.sites.keys().chain(w.production.industry.modules.keys())
+        .filter(|district| w.districts.get(*district) == Some(&nation))
+        .collect::<std::collections::BTreeSet<_>>().into_iter().cloned().collect()
+}
 pub fn power_per_pack(w: &WorldState, district: &str, kind: K) -> f64 {
     (if is_processing(kind) { 1.0 } else { 2.0 })
         * (1.0 - site_level(w, district, K::Efficiency) as f64 * 0.1).max(0.5)
@@ -653,8 +672,13 @@ pub(crate) fn operating_recipe(kind: K, output: f64, power: f64) -> [f64; 12] {
 /// Keep industrial ingredients and generating fuel separate: a materials
 /// specialist saves ingredients, while the dispatched generators save fuel.
 pub fn company_operating_recipe(w: &WorldState, nation: NationId, district: &str, kind: K, output: f64, power: f64) -> [f64; 12] {
-    let company = manufacturing_company(w, nation, district);
     let (fuel_rate, _) = energy_company_rates(w, nation);
+    company_operating_recipe_with_fuel(w, nation, district, kind, output, power, fuel_rate)
+}
+
+pub(crate) fn company_operating_recipe_with_fuel(w: &WorldState, nation: NationId, district: &str,
+    kind: K, output: f64, power: f64, fuel_rate: f64) -> [f64; 12] {
+    let company = manufacturing_company(w, nation, district);
     if company.input_rate == 1.0 && fuel_rate == 1.0 { return operating_recipe(kind, output, power); }
     let mut raw = operating_recipe(kind, output, 0.0).map(|v| q(v * company.input_rate));
     raw[C::Coal.idx()] = q(raw[C::Coal.idx()] + power * 0.02 * fuel_rate);
@@ -701,21 +725,24 @@ pub fn funded_days_in_horizon(
 /// only committed facilities/projects and cumulative input receipts; it does
 /// not inspect a forecast, market option, or prospective AI project.
 pub fn raw_demand_components(w: &WorldState, nation: NationId) -> RawDemandComponents {
+    raw_demand_components_impl(w, nation, true)
+}
+fn raw_demand_components_impl(w: &WorldState, nation: NationId, reuse_demand_reads: bool) -> RawDemandComponents {
     let mut out = RawDemandComponents::default();
     if programs::enrolled(w, nation) && w.nation_opt(nation).is_some_and(|n| n.alive) {
-        for district in operating_districts(w) {
-            if w.districts.get(&district) != Some(&nation)
+        let fuel_rate = reuse_demand_reads.then(|| energy_company_rates(w, nation).0);
+        let districts = if reuse_demand_reads { operating_districts_for(w, nation) } else { operating_districts(w) };
+        for district in districts {
+            if (!reuse_demand_reads && w.districts.get(&district) != Some(&nation))
                 || resources::district_contested(w, &district)
             {
                 continue;
             }
             for kind in [K::ProcessingPlant, K::StarterIndustry, K::MachineryWorks] {
                 let rate = plant_rate(w, &district, kind);
-                let raw = company_operating_recipe(w, nation, &district,
-                    kind,
-                    rate,
-                    rate * power_per_pack(w, &district, kind),
-                );
+                let power = rate * power_per_pack(w, &district, kind);
+                let raw = fuel_rate.map_or_else(|| company_operating_recipe(w, nation, &district, kind, rate, power),
+                    |fuel| company_operating_recipe_with_fuel(w, nation, &district, kind, rate, power, fuel));
                 for i in 0..12 {
                     out.operating_daily[i] += raw[i];
                 }
@@ -737,17 +764,28 @@ pub fn raw_demand_components(w: &WorldState, nation: NationId) -> RawDemandCompo
 }
 
 fn resource_demand_daily_inner(w: &WorldState, nation: NationId, include_materials: bool) -> [f64; 12] {
+    resource_demand_daily_impl(w, nation, include_materials, true)
+}
+
+fn resource_demand_daily_impl(w: &WorldState, nation: NationId, include_materials: bool,
+    reuse_demand_reads: bool) -> [f64; 12] {
     let mut out = [0.0; 12];
     if !programs::enrolled(w, nation) {
         return out;
     }
-    for d in operating_districts(w) {
-        if w.districts.get(&d) != Some(&nation) {
+    // This immutable nation-wide rate is identical for every plant recipe in
+    // one demand read. Actual dispatch and contractor payments remain live.
+    let fuel_rate = reuse_demand_reads.then(|| energy_company_rates(w, nation).0);
+    let districts = if reuse_demand_reads { operating_districts_for(w, nation) } else { operating_districts(w) };
+    for d in districts {
+        if !reuse_demand_reads && w.districts.get(&d) != Some(&nation) {
             continue;
         }
         for k in [K::ProcessingPlant, K::StarterIndustry, K::MachineryWorks] {
             let rate = plant_rate(w, &d, k);
-            let raw = company_operating_recipe(w, nation, &d, k, rate, rate * power_per_pack(w, &d, k));
+            let power = rate * power_per_pack(w, &d, k);
+            let raw = fuel_rate.map_or_else(|| company_operating_recipe(w, nation, &d, k, rate, power),
+                |fuel| company_operating_recipe_with_fuel(w, nation, &d, k, rate, power, fuel));
             for i in 0..12 {
                 out[i] += raw[i];
             }
@@ -765,6 +803,10 @@ fn resource_demand_daily_inner(w: &WorldState, nation: NationId, include_materia
 /// stable district order. Shared grid/generation capacity and authority are
 /// consumed only by a complete, feasible operating bundle.
 pub fn tick_day(w: &mut WorldState) {
+    tick_day_impl(w, true)
+}
+
+fn tick_day_impl(w: &mut WorldState, reuse_operating_reads: bool) {
     if !clock::is_daily(w)
         || !w.rules.production_system
         || !w.rules.resource_market
@@ -782,10 +824,15 @@ pub fn tick_day(w: &mut WorldState) {
     let sites = operating_districts(w);
     let mut power: BTreeMap<NationId, f64> = BTreeMap::new();
     let mut grids: BTreeMap<String, f64> = BTreeMap::new();
+    // This pass changes stocks, bills and company experience, never warehouse
+    // levels or district ownership. Storage limits are fixed for the pass;
+    // the amount already stored must still be read anew for every line.
+    let mut storage_limits = BTreeMap::new();
     for kind in [K::ProcessingPlant, K::StarterIndustry, K::MachineryWorks] {
         for d in &sites {
             let level = if kind==K::StarterIndustry {0} else {site_level(w, d, kind)};
-            if plant_rate(w,d,kind) <= 0.0 {
+            let opening_target = plant_rate(w,d,kind);
+            if opening_target <= 0.0 {
                 continue;
             }
             let Some(&nation) = w.districts.get(d) else {
@@ -827,7 +874,7 @@ pub fn tick_day(w: &mut WorldState) {
                 .entry(d.clone())
                 .or_insert_with(|| (crate::industry_operations::grid_capacity(w, d) - crate::industry_operations::support_grid_used(w, d)).max(0.0));
             let per_power = power_per_pack(w, d, kind);
-            let target = plant_rate(w, d, kind);
+            let target = if reuse_operating_reads { opening_target } else { plant_rate(w, d, kind) };
             let pile = w
                 .production
                 .industry
@@ -840,10 +887,16 @@ pub fn tick_day(w: &mut WorldState) {
             } else {
                 pile.capital_goods
             };
-            let room = (goods_capacity(w, nation) - stored).max(0.0);
+            let storage_capacity = if reuse_operating_reads {
+                *storage_limits.entry(nation).or_insert_with(|| goods_capacity(w, nation))
+            } else { goods_capacity(w, nation) };
+            let room = (storage_capacity - stored).max(0.0);
             let dept = if is_processing(kind) { 2 } else { 0 };
             let company = manufacturing_company(w, nation, d);
-            let (_, energy_fee) = energy_company_rates(w, nation);
+            // Fee, unit recipe and final bundle are quoted before this line's
+            // first world mutation. Reuse only that immutable read; subsequent
+            // lines and record_energy_work still observe live company XP.
+            let (fuel_rate, energy_fee) = energy_company_rates(w, nation);
             let cash_per_pack = 0.00001 * (1.0 + company.fee_rate);
             let generating_cost_per_power = 0.000002 * (1.0 + energy_fee);
             let staffing = if crate::industry_operations::enabled(w) {
@@ -884,7 +937,9 @@ pub fn tick_day(w: &mut WorldState) {
             }
             // Proportional feasible output, followed by one atomic raw draw. A
             // missing raw component does not consume the others, cash or power.
-            let unit = company_operating_recipe(w, nation, d, kind, 1.0, per_power);
+            let unit = if reuse_operating_reads {
+                company_operating_recipe_with_fuel(w, nation, d, kind, 1.0, per_power, fuel_rate)
+            } else { company_operating_recipe(w, nation, d, kind, 1.0, per_power) };
             let mut raw_limiter: Option<(C, f64)> = None;
             for c in ALL {
                 if unit[c.idx()] > 0.0 {
@@ -925,7 +980,9 @@ pub fn tick_day(w: &mut WorldState) {
                 w.production.industry.operations.push(status);
                 continue;
             }
-            let draw = company_operating_recipe(w, nation, d, kind, output, output * per_power);
+            let draw = if reuse_operating_reads {
+                company_operating_recipe_with_fuel(w, nation, d, kind, output, output * per_power, fuel_rate)
+            } else { company_operating_recipe(w, nation, d, kind, output, output * per_power) };
             if let Err((c, _, _)) = resources::consume_stockpile_atomic(w, nation, &draw) {
                 status.status = "paused".into();
                 status.reason = Some(format!(
@@ -1389,6 +1446,223 @@ mod tests {
         w.sector_contractors.roster.iter().filter(|c| c.nation == USA && c.sector == sector)
             .max_by(|a,b|if saving {a.input_saving.total_cmp(&b.input_saving)}else{a.work_bonus.total_cmp(&b.work_bonus)}).unwrap().id
     }
+    #[test]
+    fn s08_shared_demand_fuel_rate_preserves_exact_recipe_bits() {
+        let mut w = prepared();
+        let sites = districts(&w);
+        for district in sites.iter().take(3) { chain(&mut w, district); }
+        w.production.industry.modules.insert(sites[3].clone(), 375_000);
+        companies::enable(&mut w);
+        let energy = company_for(&w, CompanySector::Energy, true);
+        let factory = company_for(&w, CompanySector::Manufacturing, true);
+        // One contracted plant plus unassigned plants exercises the blended
+        // national fuel rate without inventing company contract capacity.
+        for district in sites.iter().take(1) {
+            companies::assign(&mut w, USA, energy, CompanyTarget::Facility {
+                district: district.clone(), sector: CompanySector::Energy }).unwrap();
+            companies::assign(&mut w, USA, factory, CompanyTarget::Facility {
+                district: district.clone(), sector: CompanySector::Manufacturing }).unwrap();
+        }
+        for disabled in [false, true] {
+            if disabled { w.sector_contractors.enabled = false; }
+            let before = save(&w);
+            for nation in [USA, NationId::Canada, NationId::Tonga] {
+                let optimized = raw_demand_components_impl(&w, nation, true);
+                let original = raw_demand_components_impl(&w, nation, false);
+                assert_eq!(optimized, original);
+                assert_eq!(optimized.operating_daily.map(f64::to_bits), original.operating_daily.map(f64::to_bits));
+                for include in [false, true] {
+                    assert_eq!(resource_demand_daily_impl(&w, nation, include, true).map(f64::to_bits),
+                        resource_demand_daily_impl(&w, nation, include, false).map(f64::to_bits));
+                }
+            }
+            assert_eq!(save(&w), before);
+        }
+    }
+
+    fn s08_line_energy_world(experience: f64) -> (WorldState, u32) {
+        let mut w = prepared();
+        let sites = districts(&w);
+        for district in sites.iter().take(3) { chain(&mut w, district); }
+        companies::enable(&mut w);
+        let energy = company_for(&w, CompanySector::Energy, true);
+        let factory = company_for(&w, CompanySector::Manufacturing, true);
+        companies::assign(&mut w, USA, energy, CompanyTarget::Facility {
+            district: sites[0].clone(), sector: CompanySector::Energy }).unwrap();
+        companies::assign(&mut w, USA, factory, CompanyTarget::Facility {
+            district: sites[0].clone(), sector: CompanySector::Manufacturing }).unwrap();
+        let generator = w.sector_contractors.roster.iter_mut().find(|c| c.id == energy).unwrap();
+        generator.experience = experience;
+        generator.experience_day = None;
+        generator.experience_today = 0.0;
+        generator.input_saving = 0.12;
+        (w, energy)
+    }
+
+    #[test]
+    fn s08_owned_operating_districts_preserve_order_demand_bits_and_energy_dispatch() {
+        let (mut w, _) = s08_line_energy_world(179.5);
+        let owned = districts(&w);
+        let foreign = w.districts.iter().find_map(|(district, owner)|
+            (*owner == NationId::Canada).then(|| district.clone())).unwrap();
+        chain(&mut w, &foreign);
+        w.production.industry.sites.insert(owned[4].clone(), [0; 7]);
+        let year = w.year;
+        programs::install(&mut w, NationId::Canada, year, programs::default_departments());
+        let dispatch_bits = |rows: Vec<(CompanyTarget, f64, companies::CompanyModifiers)>| {
+            rows.into_iter().map(|(target, capacity, modifier)| (target, capacity.to_bits(),
+                modifier.company_id, modifier.work_rate.to_bits(), modifier.input_rate.to_bits(),
+                modifier.fee_rate.to_bits())).collect::<Vec<_>>()
+        };
+        for state in 0..9 {
+            match state {
+                1 => {
+                    // Overlap, modules-only and zero-capacity rows all keep
+                    // their original unique lexical position in the list.
+                    w.production.industry.modules.insert(owned[0].clone(), 375_000);
+                    w.production.industry.modules.insert(owned[3].clone(), 0);
+                    w.production.industry.modules.insert(foreign.clone(), 250_000);
+                }
+                2 => { w.districts.remove(&owned[1]); }
+                3 => { w.districts.insert(owned[0].clone(), NationId::Canada); }
+                4 => {
+                    use crate::world::{Belligerent, Conflict, Objective};
+                    let mut conflict = Conflict {
+                        id: 999, theatre: crate::war::theatre_between(&w, USA, NationId::Canada),
+                        side_a: vec![USA], side_b: vec![NationId::Canada],
+                        posture: vec![Belligerent::new(USA, 8, Objective::Seize),
+                            Belligerent::new(NationId::Canada, 8, Objective::Hold)],
+                        control: 0.0, months: 0, quiet_months: 0, frozen_since: None,
+                        start_year: w.year, start_month: w.month, origin_attacker: USA,
+                        invasion_declared: true, front: Default::default(), pockets: vec![], aim: None,
+                    };
+                    conflict.front.insert(owned[2].clone(), 0.0);
+                    w.conflicts.push(conflict);
+                    assert!(resources::district_contested(&w, &owned[2]));
+                }
+                5 => { w.nation_mut(USA).alive = false; }
+                6 => { w.nation_mut(NationId::Canada).program_budget = None; }
+                7 => { w.production.industry.sites.clear(); }
+                8 => { w.production.industry.modules.clear(); }
+                _ => {}
+            }
+            let before = save(&w);
+            for nation in [USA, NationId::Canada, NationId::Tonga] {
+                let original: Vec<_> = operating_districts(&w).into_iter()
+                    .filter(|district| w.districts.get(district) == Some(&nation)).collect();
+                let actual = operating_districts_for(&w, nation);
+                assert_eq!(actual, original, "state={state}, {nation:?}: exact sorted unique ownership list");
+                assert!(actual.windows(2).all(|pair| pair[0] < pair[1]));
+                assert_eq!(dispatch_bits(energy_dispatch_impl(&w, nation, true)),
+                    dispatch_bits(energy_dispatch_impl(&w, nation, false)),
+                    "state={state}, {nation:?}: energy order, capacities and every modifier bit");
+                let demand = raw_demand_components_impl(&w, nation, true);
+                let native_demand = raw_demand_components_impl(&w, nation, false);
+                assert_eq!(demand, native_demand);
+                assert_eq!(demand.operating_daily.map(f64::to_bits), native_demand.operating_daily.map(f64::to_bits));
+                for include_materials in [false, true] {
+                    assert_eq!(resource_demand_daily_impl(&w, nation, include_materials, true).map(f64::to_bits),
+                        resource_demand_daily_impl(&w, nation, include_materials, false).map(f64::to_bits),
+                        "state={state}, {nation:?}: daily recipes retain their own eligibility rules");
+                }
+                if nation == USA && (state == 4 || state == 5) {
+                    assert!(actual.contains(&owned[2]), "the ownership helper must not exclude contested or dead-nation rows");
+                }
+                if nation == USA && state == 4 {
+                    assert!(resource_demand_daily_impl(&w, nation, false, true)[C::Iron.idx()]
+                        > demand.operating_daily[C::Iron.idx()],
+                        "daily demand retains contested plants while raw components exclude them");
+                }
+            }
+            assert_eq!(save(&w), before, "list/forecast reads cannot change any ledger or RNG");
+        }
+    }
+
+    #[test]
+    fn s08_line_energy_reuse_preserves_world_and_live_experience_thresholds() {
+        for experience in [179.5, 539.5] {
+            let (mut reused, energy) = s08_line_energy_world(experience);
+            let opening_rate = energy_company_rates(&reused, USA).0;
+            let mut native = reused.clone();
+            tick_day(&mut reused);
+            tick_day_impl(&mut native, false);
+            assert_eq!(save(&reused), save(&native), "all stocks, bills, work and XP at {experience}");
+            assert!(reused.production.industry.operations.iter().filter(|o| o.output_daily > 0.0).count() >= 6,
+                "several processing and machinery lines must share the generating fleet");
+            let generator = reused.sector_contractors.roster.iter().find(|c| c.id == energy).unwrap();
+            assert!(generator.experience >= experience + 0.5, "the real work must cross an XP level");
+            assert_ne!(opening_rate.to_bits(), energy_company_rates(&reused, USA).0.to_bits(),
+                "later lines must use the changed rate, not a whole-day snapshot");
+            assert_eq!(ALL.map(|c| resources::stockpile(&reused, USA, c).to_bits()),
+                ALL.map(|c| resources::stockpile(&native, USA, c).to_bits()));
+            let settled = save(&reused);
+            tick_day(&mut reused);
+            assert_eq!(save(&reused), settled, "the daily replay guard remains inert");
+        }
+    }
+
+    #[test]
+    fn s08_line_energy_reuse_preserves_shortages_pauses_and_editable_assignments() {
+        let (base, energy) = s08_line_energy_world(179.5);
+        for case in ["missing_fuel", "partial_raw", "full_storage", "near_full_storage", "closed_budget", "disabled", "cross_sector"] {
+            let mut reused = base.clone();
+            match case {
+                "missing_fuel" => resources::set_stockpile_for_test(&mut reused, USA, C::Coal, 0.0),
+                "partial_raw" => resources::set_stockpile_for_test(&mut reused, USA, C::Iron, 0.25),
+                "full_storage" | "near_full_storage" => {
+                    let capacity = goods_capacity(&reused, USA);
+                    let stored = capacity - if case == "near_full_storage" { 0.25 } else { 0.0 };
+                    reused.production.industry.goods.insert(USA, Goods {
+                        intermediates: stored, capital_goods: stored });
+                }
+                "closed_budget" => reused.nation_mut(USA).program_budget.as_mut().unwrap().day = None,
+                "disabled" => reused.sector_contractors.enabled = false,
+                "cross_sector" => {
+                    // Editable saves can point manufacturing work at an energy
+                    // company. Its XP then changes before record_energy_work,
+                    // which must perform its own live modifier read.
+                    reused.sector_contractors.assignments.iter_mut().find(|a|
+                        a.nation == USA && a.target.sector() == CompanySector::Manufacturing)
+                        .unwrap().company_id = energy;
+                }
+                _ => unreachable!(),
+            }
+            let opening_roster = reused.sector_contractors.roster.clone();
+            let mut native = reused.clone();
+            tick_day(&mut reused);
+            tick_day_impl(&mut native, false);
+            assert_eq!(save(&reused), save(&native), "complete world parity: {case}");
+            let operations = &reused.production.industry.operations;
+            assert!(!operations.is_empty());
+            if matches!(case, "missing_fuel" | "full_storage" | "closed_budget") {
+                assert!(operations.iter().all(|o| o.output_daily == 0.0 && o.cash_spent_daily_bn == 0.0));
+                assert_eq!(reused.sector_contractors.roster, opening_roster, "paused work earns no XP");
+            } else if case == "partial_raw" {
+                assert!(operations.iter().any(|o| o.output_daily > 0.0));
+                assert!(operations.iter().any(|o| o.output_daily == 0.0));
+            } else if case == "cross_sector" {
+                assert!(reused.sector_contractors.roster.iter().find(|c| c.id == energy).unwrap().experience >= 180.0);
+            } else if case == "near_full_storage" {
+                assert!(operations.iter().any(|o| o.output_daily > 0.0));
+                assert!(operations.iter().any(|o| o.status == "paused" && o.reason.as_deref()
+                    .is_some_and(|reason| reason.contains("Storage is full"))));
+                let goods = &reused.production.industry.goods[&USA];
+                assert!(goods.intermediates <= goods_capacity(&reused, USA) + EPS);
+                assert!(goods.capital_goods <= goods_capacity(&reused, USA) + EPS);
+                let previous_capital_goods = goods.capital_goods;
+                let district = districts(&reused)[0].clone();
+                complete_site(&mut reused, &district, K::Warehouse);
+                complete_site(&mut native, &district, K::Warehouse);
+                next_day(&mut reused);
+                next_day(&mut native);
+                tick_day(&mut reused);
+                tick_day_impl(&mut native, false);
+                assert_eq!(save(&reused), save(&native), "a later warehouse expansion must be observed");
+                assert!(reused.production.industry.goods[&USA].capital_goods > previous_capital_goods);
+            }
+        }
+    }
+
     #[test]
     fn company_factories_save_real_inputs_and_missing_inputs_charge_nothing() {
         let mut w = prepared();

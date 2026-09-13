@@ -28,7 +28,11 @@ fn ammo_order_action(w:&WorldState,me:NationId,family:&str,quantity:u32)->Value 
     action
 }
 
+#[cfg(test)]
 fn ammunition_board(w:&WorldState,me:NationId)->Value {
+    ammunition_board_with_market(w,me,company_ammunition_market(w,me))
+}
+fn ammunition_board_with_market(w:&WorldState,me:NationId,supplier_market:Value)->Value {
     let n=w.nation(me);let equipment=n.equipment.as_ref();let state=equipment.and_then(|s|s.ammunition.as_ref());
     let reading=eq::ammunition_overview(w,me);
     let ground_active=eq::ammunition_active(n,spheres_sim::clock::absolute_day(w));
@@ -116,7 +120,7 @@ fn ammunition_board(w:&WorldState,me:NationId)->Value {
     let overview=json!({"title":"National ammunition stores","status":status,
         "detail":if has_aircraft{"Acquire compatible aircraft mission stores before launching air raids. Aircraft need physical stores from their first deployment; ground ammunition activation is separate. Company purchases and public batches deliver into these exact-family stores. Actual consumption is shared across operations and recorded once."}else if ground_active{"Your custom ground fleet draws from compatible physical stores. Review manufacturer stock and existing public batches as rounds are used. The national plan shares ammunition across operations and records consumption once; fleet upkeep is protected before ammunition purchases."}else{"Acquire compatible stores, then review physical ground ammunition activation when ready. Company purchases and existing public batches add actual rounds only on arrival or completion. Fleet upkeep is protected before ammunition purchases; inherited equipment keeps its existing magazine."},
         "metrics":overview_metrics,"warnings":warnings,"actions":actions});
-    json!({"overview":overview,"supplier_market":company_ammunition_market(w,me),"reserves":ammunition_reserve_cards(w,me),"families":families,"orders":orders})
+    json!({"overview":overview,"supplier_market":supplier_market,"reserves":ammunition_reserve_cards(w,me),"families":families,"orders":orders})
 }
 
 fn ammunition_preview(w:&WorldState,me:NationId,session:&str,command:&Value,order:&EquipmentOrder)->Value {

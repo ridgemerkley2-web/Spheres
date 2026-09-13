@@ -474,6 +474,20 @@ pub(crate) fn material_cost(w: &WorldState, recipe: &[f64; 12]) -> f64 {
         .map(|c| recipe[c.idx()] * resources::market_current_price(w, *c) / 1e9)
         .sum()
 }
+
+fn development_stock_terms(w: &WorldState, p: &equipment::CompiledProfile, target: u32) -> (f64, f64) {
+    let raw = material_cost(w, &p.recipe)
+        + crate::supplier_operations::new_refit_inputs_bn(w, p.fabrication_cost_bn, p.production_days);
+    let unit_cost = p.fabrication_cost_bn + raw;
+    (unit_cost * (1.0 + MARGIN), p.tooling_cost_bn + unit_cost * target as f64)
+}
+
+/// Funding arithmetic for an already validated immutable design. A supplier
+/// buffer review needs this amount, not an unused development token or ETA.
+pub(crate) fn development_working_capital(w: &WorldState, p: &equipment::CompiledProfile, target: u32) -> f64 {
+    development_stock_terms(w, p, target).1
+}
+
 pub fn development_quote(
     w: &WorldState,
     n: NationId,
@@ -502,10 +516,7 @@ pub fn development_quote(
         ..Quote::default()
     };
     if let Some(p) = profile {
-        let raw = material_cost(w, &p.recipe) + crate::supplier_operations::new_refit_inputs_bn(w,p.fabrication_cost_bn,p.production_days);
-        q.unit_price_bn = (p.fabrication_cost_bn + raw) * (1.0 + MARGIN);
-        q.company_cash_needed_bn =
-            p.tooling_cost_bn + (p.fabrication_cost_bn + raw) * target as f64;
+        (q.unit_price_bn, q.company_cash_needed_bn) = development_stock_terms(w, &p, target);
         q.maintenance_bn_day = p.maintenance_bn_day;
         q.first_stock_days = q.eta_days.map(|d| {
             d.saturating_add(p.tooling_days)
@@ -627,6 +638,52 @@ fn receipt(
         refit: None,
     });
 }
+/// Execute the exact native order once on an isolated world. The command
+/// dispatcher may commit this result only after its standing check succeeds.
+/// An exceptional refusal drops every partial fiscal or company mutation.
+pub(crate) fn trial(w: &WorldState, n: NationId, order: &CompanyOrder) -> Result<WorldState, String> {
+    let mut staged = w.clone();
+    apply_inner(&mut staged, n, order)?;
+    Ok(staged)
+}
+
+/// Capitalization needs no rollback copy when both global charge hooks are
+/// idle: native validation and department spending refuse before any write,
+/// then only the already-preflighted receipt append remains. Return None
+/// without changing the world whenever settlement or day opening could act.
+pub(crate) fn try_apply_idle_capitalization(
+    w: &mut WorldState, n: NationId, order: &CompanyOrder,
+) -> Option<Result<(), String>> {
+    if !matches!(order, CompanyOrder::Capitalize { .. }) || !clock::is_daily(w) {
+        return None;
+    }
+    let today = clock::absolute_day(w);
+    if w.nations.iter().any(|n| n.alive && n.program_budget.as_ref().is_some_and(|p| p.day != Some(today))) {
+        return None;
+    }
+    if w.companies.imports.contracts.iter().any(|d| {
+        (d.settled_day.is_none() && w.nation_opt(d.buyer)
+            .and_then(|n| n.program_budget.as_ref()).and_then(|p| p.settled_day) == Some(d.purchased_day))
+            || (d.cancelled_day.is_some() && d.settled_day.is_some() && d.refunded_day.is_none())
+    }) {
+        return None;
+    }
+    if w.companies.firms.iter().any(|c| {
+        w.nation_opt(c.nation).and_then(|n| n.program_budget.as_ref()).and_then(|p| p.settled_day)
+            .is_some_and(|day| c.receivables.iter().any(|r| r.day == day))
+    }) {
+        // Include every matching row, even malformed receipt kinds or IDs;
+        // native settlement may change cash before recognizing its kind.
+        return None;
+    }
+    Some(apply_inner(w, n, order))
+}
+
+/// Read-only refusal uses the same execution path, discarding an accepted trial.
+pub(crate) fn refusal(w: &WorldState, n: NationId, order: &CompanyOrder) -> Option<String> {
+    trial(w, n, order).err()
+}
+
 pub fn apply(w: &mut WorldState, n: NationId, order: &CompanyOrder) -> Result<(), String> {
     // Opening a fiscal day itself mutates ledgers. Preserve full atomicity even
     // if an exceptional funding refusal happens after an otherwise valid quote.
@@ -1839,7 +1896,7 @@ pub fn validate_state(w: &WorldState) -> Result<(), String> {
 mod tests {
     use super::*;
     const HOME: NationId = NationId::France;
-    fn supplier_fixture() -> WorldState {
+    fn supplier_pre_establishment_fixture() -> (WorldState, String) {
         let mut w = crate::init::world_1990(crate::world::GameRules {
             daily_simulation: true,
             military_operations: true,
@@ -1877,6 +1934,11 @@ mod tests {
             .as_mut()
             .unwrap()
             .available_bn[BUDGET_DEFENSE][3] = 1.0;
+        (w, district)
+    }
+
+    fn supplier_fixture() -> WorldState {
+        let (mut w, district) = supplier_pre_establishment_fixture();
         let q = establishment_quote(&w, HOME, "Synthetic supplier", &district, 0.01);
         assert!(q.valid, "{:?}", q.reason);
         apply(
@@ -1892,6 +1954,391 @@ mod tests {
         .unwrap();
         w
     }
+
+    fn compare_idle_capitalization(
+        w: &WorldState, order: CompanyOrder, label: &str, fast: bool, succeeds: bool, next_tick: bool,
+    ) -> WorldState {
+        fn financial_bits(a: &WorldState, b: &WorldState) {
+            // JSON collapses non-finite values to null. Compare the exact
+            // financial cells touched by spend/settlement as well as the save.
+            for (a, b) in a.nations.iter().zip(&b.nations) {
+                assert_eq!(a.treasury_bn.map(f64::to_bits), b.treasury_bn.map(f64::to_bits));
+                assert_eq!(a.debt_bn.map(f64::to_bits), b.debt_bn.map(f64::to_bits));
+                if let (Some(a), Some(b)) = (&a.program_budget, &b.program_budget) {
+                    let cells = |p: &programs::ProgramBudget| {
+                        [p.available_bn, p.prepaid_bn, p.prepaid_used_today_bn,
+                            p.spent_today_bn, p.spent_ytd_bn, p.noncapital_spent_today_bn]
+                            .into_iter().flatten().flatten().map(f64::to_bits).collect::<Vec<_>>()
+                    };
+                    assert_eq!(cells(a), cells(b));
+                }
+            }
+            for (a, b) in a.companies.firms.iter().zip(&b.companies.firms) {
+                assert_eq!(a.cash_bn.to_bits(), b.cash_bn.to_bits());
+                assert_eq!(a.capital_received_bn.to_bits(), b.capital_received_bn.to_bits());
+            }
+        }
+        let before = crate::save(w);
+        let mut direct = w.clone();
+        let shortcut = try_apply_idle_capitalization(&mut direct, HOME, &order);
+        assert_eq!(shortcut.is_some(), fast, "{label}: shortcut eligibility");
+        if !fast {
+            assert_eq!(crate::save(&direct), before, "{label}: fallback probe must not write");
+            financial_bits(&direct, w);
+        }
+        let command = crate::Command::Company { nation: HOME, order };
+        let mut actual = w.clone();
+        let mut native = w.clone();
+        let outcome = crate::apply_command_impl(&mut actual, &command, true);
+        assert_eq!(outcome, crate::apply_command_impl(&mut native, &command, false), "{label}: native error precedence");
+        assert_eq!(outcome.is_ok(), succeeds, "{label}: {outcome:?}");
+        assert_eq!(crate::save(&actual), crate::save(&native), "{label}: full-world commit or rollback");
+        financial_bits(&actual, &native);
+        if let Some(shortcut) = shortcut {
+            assert_eq!(outcome, shortcut, "{label}: direct native result");
+            assert_eq!(crate::save(&actual), crate::save(&direct), "{label}: dispatcher bookkeeping");
+            financial_bits(&actual, &direct);
+        }
+        if !succeeds {
+            assert_eq!(crate::save(&actual), before, "{label}: refusal remains atomic");
+            financial_bits(&actual, w);
+        }
+        if next_tick {
+            let mut future = actual.clone();
+            crate::tick_day(&mut future, &[]);
+            crate::tick_day(&mut native, &[]);
+            assert_eq!(crate::save(&future), crate::save(&native), "{label}: later fiscal and company settlement");
+            financial_bits(&future, &native);
+        }
+        assert_eq!(crate::save(w), before, "{label}: immutable fixture");
+        actual
+    }
+
+    fn capitalization_order(w: &WorldState, amount: f64) -> CompanyOrder {
+        let id = w.companies.firms[0].id;
+        let quote = capitalization_quote(w, HOME, id, amount);
+        CompanyOrder::Capitalize { company: id, amount_bn: amount, quote: quote.token }
+    }
+
+    #[test]
+    fn s08_idle_capitalization_matches_native_errors_and_future_settlement() {
+        let base = supplier_fixture();
+        let accepted = compare_idle_capitalization(&base, capitalization_order(&base, 0.001),
+            "ordinary paid capital", true, true, true);
+        assert_eq!(accepted.companies.firms[0].receivables.len(), base.companies.firms[0].receivables.len() + 1);
+        assert_eq!(accepted.companies.firms[0].cash_bn, base.companies.firms[0].cash_bn);
+        let mut stale = capitalization_order(&base, 0.001);
+        if let CompanyOrder::Capitalize { quote, .. } = &mut stale { quote.push_str("-stale"); }
+        compare_idle_capitalization(&base, stale, "stale quote", true, false, false);
+        for amount in [0.0, -1.0, f64::NAN, f64::INFINITY] {
+            compare_idle_capitalization(&base, capitalization_order(&base, amount),
+                "invalid amount", true, false, false);
+        }
+        let mut poor = base.clone();
+        poor.nation_mut(HOME).program_budget.as_mut().unwrap().available_bn[BUDGET_DEFENSE][3] = 0.0;
+        compare_idle_capitalization(&poor, capitalization_order(&poor, 0.001),
+            "exhausted authority", true, false, false);
+        let mut closed = base.clone();
+        closed.companies.firms[0].receivables.clear();
+        let day = clock::absolute_day(&closed);
+        closed.nation_mut(HOME).program_budget.as_mut().unwrap().settled_day = Some(day);
+        assert!(capitalization_quote(&closed, HOME, closed.companies.firms[0].id, 0.001).valid,
+            "fixture must reach the later native spend refusal after quote acceptance");
+        compare_idle_capitalization(&closed, capitalization_order(&closed, 0.001),
+            "settled funding day", true, false, false);
+        let mut exhausted_ids = base.clone();
+        exhausted_ids.companies.next_id = u32::MAX;
+        compare_idle_capitalization(&exhausted_ids, capitalization_order(&exhausted_ids, 0.001),
+            "exhausted transaction IDs", true, false, false);
+        let mut duplicate = base.clone();
+        duplicate.companies.firms.push(duplicate.companies.firms[0].clone());
+        let after = compare_idle_capitalization(&duplicate, capitalization_order(&duplicate, 0.001),
+            "duplicate company IDs retain first-row semantics", true, true, false);
+        assert_eq!(after.companies.firms[1], duplicate.companies.firms[1]);
+        // Malformed signed authority retains the native prepaid/fresh split.
+        let mut signed = base.clone();
+        signed.nation_mut(HOME).program_budget.as_mut().unwrap().prepaid_bn[BUDGET_DEFENSE][3] = -0.001;
+        compare_idle_capitalization(&signed, capitalization_order(&signed, 0.001),
+            "signed prepaid balance", true, true, false);
+        for balance in [f64::from_bits(0x7ff8_0000_0000_1234), f64::INFINITY] {
+            let mut malformed = base.clone();
+            malformed.nation_mut(HOME).program_budget.as_mut().unwrap().available_bn[BUDGET_DEFENSE][3] = balance;
+            compare_idle_capitalization(&malformed, capitalization_order(&malformed, 0.001),
+                "non-finite balance retains native arithmetic bits", true, true, false);
+        }
+        let mut signed_zero = base.clone();
+        let p = signed_zero.nation_mut(HOME).program_budget.as_mut().unwrap();
+        p.available_bn[BUDGET_DEFENSE][3] = -0.0;
+        p.prepaid_bn[BUDGET_DEFENSE][3] = 0.01;
+        compare_idle_capitalization(&signed_zero, capitalization_order(&signed_zero, 0.001),
+            "negative zero fresh balance", true, true, false);
+    }
+
+    #[test]
+    fn s08_idle_capitalization_falls_back_for_global_budget_and_receipt_effects() {
+        let base = supplier_fixture();
+        let day = clock::absolute_day(&base);
+        let mut unopened = base.clone();
+        // Seat the fixture's government for its ordinary enrollment command.
+        unopened.player = Some(NationId::UK);
+        programs::set_construction_budget(&mut unopened, NationId::UK, 0.0).unwrap();
+        unopened.player = Some(HOME);
+        unopened.nation_mut(NationId::UK).program_budget.as_mut().unwrap().day = Some(day - 1);
+        let opened = compare_idle_capitalization(&unopened, capitalization_order(&unopened, 0.001),
+            "another nation's fiscal opening", false, true, true);
+        assert_eq!(opened.nation(NationId::UK).program_budget.as_ref().unwrap().day, Some(day));
+        let mut duplicate = base.clone();
+        let mut second = duplicate.nation(HOME).clone();
+        second.program_budget.as_mut().unwrap().day = Some(day - 1);
+        duplicate.nations.push(second);
+        let opened = compare_idle_capitalization(&duplicate, capitalization_order(&duplicate, 0.001),
+            "duplicate nation row still opens", false, true, false);
+        assert_eq!(opened.nations.last().unwrap().program_budget.as_ref().unwrap().day, Some(day));
+
+        for kind in ["capitalization", "refit_advance", "unrecognized-synthetic-kind"] {
+            let mut due = base.clone();
+            due.nation_mut(HOME).program_budget.as_mut().unwrap().settled_day = Some(day - 1);
+            due.companies.firms[0].receivables[0].day = day - 1;
+            due.companies.firms[0].receivables[0].kind = kind.into();
+            let after = compare_idle_capitalization(&due, capitalization_order(&due, 0.001),
+                kind, false, true, kind == "capitalization");
+            if kind != "refit_advance" {
+                assert!(after.companies.firms[0].cash_bn > due.companies.firms[0].cash_bn,
+                    "native unknown kinds can still affect cash before they are rejected");
+            }
+            // A later spend refusal must roll back that earlier global hook.
+            due.nation_mut(HOME).program_budget.as_mut().unwrap().settled_day = Some(day);
+            due.companies.firms[0].receivables[0].day = day;
+            compare_idle_capitalization(&due, capitalization_order(&due, 0.001),
+                "settlement before closed-day refusal", false, false, false);
+        }
+        let (mut empty, district) = supplier_pre_establishment_fixture();
+        let quote = establishment_quote(&empty, HOME, "Standing-sensitive supplier", &district, 0.01);
+        let order = CompanyOrder::Establish { name: "Standing-sensitive supplier".into(), district,
+            capitalization_bn: 0.01, quote: quote.token };
+        empty.nation_mut(HOME).political_capital = 0.0;
+        // Regenerate after the standing change because it is part of the token.
+        let order = if let CompanyOrder::Establish { name, district, capitalization_bn, .. } = order {
+            let q = establishment_quote(&empty, HOME, &name, &district, capitalization_bn);
+            CompanyOrder::Establish { name, district, capitalization_bn, quote: q.token }
+        } else { unreachable!() };
+        compare_idle_capitalization(&empty, order, "priced establishment retains standing refusal", false, false, false);
+    }
+
+    #[test]
+    fn s08_idle_capitalization_preserves_other_buyers_import_settlement_and_refunds() {
+        let mut base = supplier_fixture();
+        // Enrollment retains the normal directing-government permission.
+        base.player = Some(NationId::UK);
+        programs::set_construction_budget(&mut base, NationId::UK, 0.0).unwrap();
+        base.player = Some(HOME);
+        let day = clock::absolute_day(&base);
+        base.nation_mut(NationId::UK).program_budget.as_mut().unwrap().settled_day = Some(day - 1);
+        let spec = equipment::default_spec("ground_apc");
+        let preview = equipment::design_preview(&base, HOME, &spec);
+        // Synthetic pending-import ledger rows isolate the global settlement
+        // guard. They are not earned stock, delivery or exporter evidence.
+        let imported = ImportContract {
+            id: 10_000, seller: HOME, buyer: NationId::UK, company: base.companies.firms[0].id,
+            product: 10_001, ammunition: false, quantity: 1,
+            district: base.companies.firms[0].district.clone(),
+            source_revision: equipment::DesignRevision {
+                id: "synthetic-settlement-source".into(), name: "Synthetic settlement source".into(),
+                spec, profile: preview.profile.unwrap(), created_day: day - 2,
+                certified_day: Some(day - 2), specification_key: preview.specification_key,
+            },
+            buyer_revision: Some("synthetic-settlement-import".into()), family: None,
+            route: crate::logistics::RoutePlan {
+                mode: "synthetic-settlement-only".into(), nodes: vec![], distance_km: 0,
+                estimated_days: IMPORT_DAYS, months: 1, capacity_tonnes: 1.0,
+                bottleneck: String::new(), chokepoints: vec![], segments: vec![], dispatch_note: None,
+            },
+            transit_days: IMPORT_DAYS, unit_price_bn: 0.002, total_price_bn: 0.002,
+            cost_basis_bn: 0.001, purchased_day: day - 1, settled_day: None, due_day: None,
+            delivered_day: None, cancelled_day: None, refunded_day: None, escrow_bn: 0.0,
+            refunded_bn: 0.0, status: "awaiting_settlement".into(), reason: "Synthetic pending payment".into(),
+        };
+        base.companies.imports.contracts.push(imported);
+        let settled = compare_idle_capitalization(&base, capitalization_order(&base, 0.001),
+            "another buyer's initial escrow settlement", false, true, true);
+        assert_eq!(settled.companies.imports.contracts[0].settled_day, Some(day - 1));
+        assert_eq!(settled.companies.imports.contracts[0].escrow_bn.to_bits(), 0.002_f64.to_bits());
+        let mut refund = settled.clone();
+        refund.companies.imports.contracts[0].cancelled_day = Some(day);
+        let refunded = compare_idle_capitalization(&refund, capitalization_order(&refund, 0.001),
+            "another buyer's cancellation refund", false, true, true);
+        assert_eq!(refunded.companies.imports.contracts[0].refunded_day, Some(day));
+        assert_eq!(refunded.companies.imports.contracts[0].refunded_bn.to_bits(), 0.002_f64.to_bits());
+        compare_idle_capitalization(&refunded, capitalization_order(&refunded, 0.001),
+            "completed refund is now idle", true, true, false);
+        let mut awaiting = base.clone();
+        awaiting.companies.imports.contracts[0].purchased_day = day;
+        programs::begin_day(&mut awaiting);
+        assert!(awaiting.nations.iter().all(|n| !n.alive
+            || n.program_budget.as_ref().is_none_or(|p| p.day == Some(day))),
+            "idle fixture must have no unrelated national budget left to open");
+        let pending = &awaiting.companies.imports.contracts[0];
+        assert!(pending.settled_day.is_none());
+        assert_ne!(awaiting.nation(pending.buyer).program_budget.as_ref().unwrap().settled_day,
+            Some(pending.purchased_day), "the imported payment must not yet be due for settlement");
+        compare_idle_capitalization(&awaiting, capitalization_order(&awaiting, 0.001),
+            "future settlement is idle", true, true, false);
+        let mut closed = base.clone();
+        closed.companies.firms[0].receivables.clear();
+        closed.nation_mut(HOME).program_budget.as_mut().unwrap().settled_day = Some(day);
+        compare_idle_capitalization(&closed, capitalization_order(&closed, 0.001),
+            "other buyer's settlement rolls back after closed funding refusal", false, false, false);
+    }
+
+    #[test]
+    fn s08_development_working_capital_matches_original_quote_arithmetic_and_token() {
+        let template = supplier_fixture();
+        for operations in [false, true] {
+            let mut w = template.clone();
+            // Synthetic read fixture: exercising the enabled cost formula does
+            // not award components, workers, power or qualified campaign stock.
+            if operations { w.supplier_operations.version = crate::supplier_operations::VERSION; }
+            if let Some(market) = w.resources.market.as_mut() {
+                for (i, price) in market.prices.iter_mut().enumerate() {
+                    *price *= 1.137 + i as f64 * 0.071;
+                }
+            }
+            let before = crate::save(&w);
+            let company = w.companies.firms[0].id;
+            for platform in ["ground_apc", "tank_heavy", "air_light_attack"] {
+                let spec = equipment::default_spec(platform);
+                let profile = equipment::design_preview(&w, HOME, &spec).profile.unwrap();
+                for target in [0, 1, MAX_STOCK, MAX_STOCK + 1] {
+                    let name = "Synthetic working capital review";
+                    let budget = 0.01;
+                    let q = development_quote(&w, HOME, company, name, &spec, budget, target);
+                    // Literal pre-refactor arithmetic is the oracle, including
+                    // invalid targets whose public quotes still expose costs.
+                    let raw = material_cost(&w, &profile.recipe)
+                        + crate::supplier_operations::new_refit_inputs_bn(&w,
+                            profile.fabrication_cost_bn, profile.production_days);
+                    let unit_price = (profile.fabrication_cost_bn + raw) * (1.0 + MARGIN);
+                    let needed = profile.tooling_cost_bn
+                        + (profile.fabrication_cost_bn + raw) * target as f64;
+                    assert_eq!(q.unit_price_bn.to_bits(), unit_price.to_bits());
+                    assert_eq!(q.company_cash_needed_bn.to_bits(), needed.to_bits());
+                    assert_eq!(development_working_capital(&w, &profile, target).to_bits(), needed.to_bits());
+                    let mut original = q.clone();
+                    original.unit_price_bn = unit_price;
+                    original.company_cash_needed_bn = needed;
+                    let original = finish_quote(&w, HOME,
+                        serde_json::json!(["develop", company, name, spec, budget, target]), original);
+                    assert_eq!(serde_json::to_string(&q).unwrap(), serde_json::to_string(&original).unwrap());
+                    assert_eq!(q.valid, (1..=MAX_STOCK).contains(&target), "{platform}: {:?}", q.reason);
+                }
+            }
+            assert_eq!(crate::save(&w), before, "cost and quote reads must not change any game state");
+        }
+    }
+
+    #[test]
+    fn s08_disposable_company_trial_preserves_refusals_and_never_settles_live_money() {
+        let mut w = supplier_fixture();
+        let id = w.companies.firms[0].id;
+        let q = capitalization_quote(&w, HOME, id, 0.001);
+        assert!(q.valid, "{:?}", q.reason);
+        let order = CompanyOrder::Capitalize { company: id, amount_bn: 0.001, quote: q.token };
+        for state in 0..4 {
+            match state {
+                1 => crate::clock::advance_date(&mut w),
+                2 => w.nation_mut(HOME).program_budget = None,
+                3 => w.nation_mut(HOME).alive = false,
+                _ => {},
+            }
+            let before = crate::save(&w);
+            let result = refusal(&w, HOME, &order);
+            let mut native = w.clone();
+            assert_eq!(result, apply(&mut native, HOME, &order).err());
+            if state == 0 {
+                assert!(result.is_none());
+                assert_ne!(crate::save(&native), before, "the real accepted order must record a paid obligation");
+            } else {
+                assert!(result.is_some(), "stale or unavailable capital must still be refused");
+                assert_eq!(crate::save(&native), before, "live refusal must retain full rollback");
+            }
+            assert_eq!(crate::save(&w), before, "trial must not settle receivables or open fiscal authority");
+        }
+    }
+
+    #[test]
+    fn s08_retained_company_trial_matches_native_dispatch_and_future_settlement() {
+        fn compare(w: &WorldState, order: CompanyOrder, succeeds: bool) {
+            let command = crate::Command::Company { nation: HOME, order };
+            let before = crate::save(w);
+            let mut retained = w.clone();
+            let mut original = w.clone();
+            let result = crate::apply_command_impl(&mut retained, &command, true);
+            assert_eq!(result, crate::apply_command_impl(&mut original, &command, false));
+            assert_eq!(result.is_ok(), succeeds, "{result:?}");
+            assert_eq!(crate::save(&retained), crate::save(&original));
+            if succeeds {
+                assert_ne!(crate::save(&retained), before);
+                let price = crate::command_price(w, &command).map_or(0.0, |(_, price, _)| price);
+                assert_eq!(retained.nation(HOME).political_capital.to_bits(),
+                    (w.nation(HOME).political_capital - price).max(0.0).to_bits());
+                let receipt_count = |world: &WorldState| world.companies.firms.iter()
+                    .map(|c| c.receivables.len()).sum::<usize>();
+                assert_eq!(receipt_count(&retained), receipt_count(w) + 1,
+                    "one reviewed transfer must create exactly one paid obligation");
+            } else {
+                assert_eq!(crate::save(&retained), before,
+                    "neither world nor standing refusal may commit trial ledgers");
+            }
+            // Exercise derived caches and the real fiscal/company settlement,
+            // not just fields exposed by serialization on the command date.
+            crate::tick_day(&mut retained, &[]);
+            crate::tick_day(&mut original, &[]);
+            assert_eq!(crate::save(&retained), crate::save(&original));
+            assert_eq!(crate::save(w), before);
+        }
+
+        let template = supplier_fixture();
+        let id = template.companies.firms[0].id;
+        let capital_order = |w: &WorldState| {
+            let q = capitalization_quote(w, HOME, id, 0.001);
+            assert!(q.valid, "{:?}", q.reason);
+            CompanyOrder::Capitalize { company: id, amount_bn: 0.001, quote: q.token }
+        };
+        compare(&template, capital_order(&template), true);
+        for case in 0..3 {
+            let mut w = template.clone();
+            let order = capital_order(&w);
+            match case {
+                0 => clock::advance_date(&mut w),
+                1 => w.nation_mut(HOME).program_budget = None,
+                _ => w.nation_mut(HOME).alive = false,
+            }
+            compare(&w, order, false);
+        }
+
+        for standing in [100.0, 0.0] {
+            // The supported rule is one state contractor per country. Start
+            // before its establishment, retaining an actual free plant slot.
+            let (mut w, district) = supplier_pre_establishment_fixture();
+            w.nation_mut(HOME).political_capital = standing;
+            let q = establishment_quote(&w, HOME, "Reviewed synthetic supplier", &district, 0.01);
+            assert!(q.valid, "{:?}", q.reason);
+            let order = CompanyOrder::Establish { name: "Reviewed synthetic supplier".into(),
+                district, capitalization_bn: 0.01, quote: q.token };
+            compare(&w, order.clone(), standing > 0.0);
+            if standing == 0.0 {
+                clock::advance_date(&mut w);
+                let command = crate::Command::Company { nation: HOME, order: order.clone() };
+                let expected = refusal(&w, HOME, &order).expect("dated quote must be stale");
+                let before = crate::save(&w);
+                assert_eq!(crate::apply_command(&mut w, &command), Err(expected),
+                    "world refusal must continue to outrank insufficient standing");
+                assert_eq!(crate::save(&w), before);
+                compare(&w, order, false);
+            }
+        }
+    }
+
     #[test]
     fn ammunition_license_is_sparse_free_of_stock_and_preserves_old_equipment_schema() {
         let mut w = supplier_fixture();

@@ -695,7 +695,11 @@ fn world_refusal(w: &WorldState, c: &Command) -> Option<String> {
         Command::EnablePopulation { nation } | Command::EnableFiscalRecovery { nation }
             => connected_economy::daily_enrollment_refusal(w, *nation),
         Command::SetPopulationPolicy { nation, policy } => population::policy_quote(w, *nation, *policy).reason,
-        Command::Company { nation, order } => companies::apply(&mut w.clone(), *nation, order).err(),
+        Command::Company { nation, order } => companies::refusal(w, *nation, order),
+        // Research has a complete read-only operation check. Preserve the
+        // world-before-price refusal order without copying unrelated history.
+        Command::Equipment { nation, order: EquipmentOrder::Research { component } }
+            => equipment::research_refusal(w, *nation, component),
         Command::Equipment { nation, order } => apply_equipment_order(&mut w.clone(), *nation, order).err(),
         Command::SetInterestRate { nation, .. } if agency::pegged_rate(w,*nation).is_some() => Some("Exit the currency peg before changing its policy rate.".into()),
         Command::RespondDiplomacy { nation, offer, accept } => agency::response_error(w,*nation,*offer,*accept),
@@ -863,6 +867,10 @@ fn standing_refusal(payer: NationId, held: f64, price: f64) -> String {
 }
 
 pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
+    apply_command_impl(w, c, true)
+}
+
+fn apply_command_impl(w: &mut WorldState, c: &Command, retain_company_trial: bool) -> Result<(), String> {
     // Priced before anything happens, so a command that cannot be afforded also
     // cannot take effect — and charged only once the act itself has gone
     // through. A government that asks for something the world refuses it (a
@@ -883,9 +891,36 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
     // did the same: "16.6 needed" where a solvent nation was told "You have
     // publicly bound yourself to rung 2 or below" and "No consenting host
     // within range of North America".
-    if let Some(why) = world_refusal(w, c) {
-        return Err(why);
+    // An idle capitalization has no partial effects on refusal. It can commit
+    // directly only while the actual command has neither a standing bill nor
+    // a policy journal entry; every other case retains the native trial below.
+    if retain_company_trial {
+        if let Command::Company { nation, order: order @ companies::CompanyOrder::Capitalize { .. } } = c {
+            if command_price(w, c).filter(|(_, price, _)| *price > 0.0).is_none()
+                && fiscal_journal::before_policy(w, c).is_none()
+            {
+                if let Some(result) = companies::try_apply_idle_capitalization(w, *nation, order) {
+                    return result;
+                }
+            }
+        }
     }
+    // Company validation already executes the entire order on an isolated
+    // world. Retain that exact result instead of cloning and executing it a
+    // second time. No trial effects reach the live world before the unchanged
+    // standing check below. The false branch preserves the prior dispatcher
+    // as a test oracle, including its atomic live `companies::apply` path.
+    let company_trial = if let Command::Company { nation, order } = c {
+        if retain_company_trial {
+            Some(companies::trial(w, *nation, order)?)
+        } else {
+            if let Some(why) = world_refusal(w, c) { return Err(why); }
+            None
+        }
+    } else {
+        if let Some(why) = world_refusal(w, c) { return Err(why); }
+        None
+    };
     let bill = command_price(w, c).filter(|(_, price, _)| *price > 0.0);
     if let Some((payer, price, refusable)) = bill {
         let held = w.nation(payer).political_capital;
@@ -894,7 +929,12 @@ pub fn apply_command(w: &mut WorldState, c: &Command) -> Result<(), String> {
         }
     }
     let journal_policy = fiscal_journal::before_policy(w, c);
-    let outcome = dispatch(w, c);
+    let outcome = if let Some(staged) = company_trial {
+        *w = staged;
+        Ok(())
+    } else {
+        dispatch(w, c)
+    };
     if outcome.is_ok() {
         if let Some((payer, price, _)) = bill {
             // A government that reneges past the end of its credit does not get
@@ -1498,6 +1538,33 @@ pub fn tick_month(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
 /// `headlines` was stripped). What is RETURNED is only the day's own slice, so
 /// a caller logging each day's return sees every line exactly once.
 pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
+    tick_day_impl(w, commands, None)
+}
+
+/// Advance the same authoritative day with an explicitly owned, derived
+/// nominal-route pool. The pool is not campaign state and never enters command
+/// trials or saves. Callers without a pool retain the cold tick_day path.
+pub fn tick_day_with_routes(w: &mut WorldState, commands: &[Command],
+    routes: &mut logistics::NominalRoutePool) -> Vec<String> {
+    tick_day_impl(w, commands, Some(routes))
+}
+
+fn run_day_systems(w: &mut WorldState, routes: &mut Option<&mut logistics::NominalRoutePool>) {
+    for (name, system) in SYSTEMS {
+        if *name == "arsenal" {
+            if let Some(pool) = routes.as_deref_mut() {
+                // This is the precise original clearing position. Arsenal's
+                // normal entry point remains in the sequence; its repeated
+                // clearing sees the existing settled marker and is a no-op.
+                resources::clear_spot_market_with_pool(w, pool);
+            }
+        }
+        system(w);
+    }
+}
+
+fn tick_day_impl(w: &mut WorldState, commands: &[Command],
+    mut routes: Option<&mut logistics::NominalRoutePool>) -> Vec<String> {
     if w.day <= 1 {
         w.headlines.clear();
     }
@@ -1516,7 +1583,7 @@ pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
     production::tick_day(w);
 
     if clock::is_daily(w) {
-        for (_, system) in SYSTEMS { system(w); }
+        run_day_systems(w, &mut routes);
         programs::finish_day(w);
         companies::settle_receivables(w);
         province_economy::finish_day(w);
@@ -1536,9 +1603,7 @@ pub fn tick_day(w: &mut WorldState, commands: &[Command]) -> Vec<String> {
 
     let last_day = world::days_in_month(w.year, w.month);
     if w.day >= last_day {
-        for (_, system) in SYSTEMS {
-            system(w);
-        }
+        run_day_systems(w, &mut routes);
         w.day = 1;
         w.month += 1;
         if w.month > 12 {

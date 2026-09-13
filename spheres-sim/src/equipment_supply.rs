@@ -251,11 +251,21 @@ pub fn next_work_supply(w: &WorldState, id: NationId) -> NextWorkSupply {
 /// and fresh authority expires with the enacted fiscal year. Previously paid
 /// procurement balances survive that boundary exactly as settlement does.
 pub fn raw_supply_demand(w: &WorldState, id: NationId) -> EquipmentRawDemand {
-    let mut out=equipment_project_raw_supply_demand(w,id);let ammo=ammunition_supply_demand(w,id);
+    raw_supply_demand_through(w, id, crate::economic_ai::RAW_HORIZON_DAYS[2])
+}
+
+/// Only the private civilian RUN decision consumes this prefix. Public reports
+/// retain all three windows; later slots here remain uncomputed and unused.
+pub(crate) fn raw_supply_demand_run(w: &WorldState, id: NationId) -> EquipmentRawDemand {
+    raw_supply_demand_through(w, id, crate::economic_ai::RAW_HORIZON_DAYS[0])
+}
+
+fn raw_supply_demand_through(w: &WorldState, id: NationId, horizon: i32) -> EquipmentRawDemand {
+    let mut out=equipment_project_raw_supply_demand(w,id,horizon);let ammo=ammunition_raw_plan(w,id,horizon);
     for i in 0..12{out.remaining[i]+=ammo.remaining[i];out.next_work[i]+=ammo.next_work[i];for h in 0..3{out.horizons[i][h]+=ammo.horizons[i][h];}}
     out
 }
-fn equipment_project_raw_supply_demand(w: &WorldState, id: NationId) -> EquipmentRawDemand {
+fn equipment_project_raw_supply_demand(w: &WorldState, id: NationId, horizon: i32) -> EquipmentRawDemand {
     let mut out = EquipmentRawDemand::default();
     let Some(n) = w.nation_opt(id).filter(|n|n.alive) else { return out; };
     let Some(state) = &n.equipment else { return out; };
@@ -275,7 +285,7 @@ fn equipment_project_raw_supply_demand(w: &WorldState, id: NationId) -> Equipmen
     let mut used=[0.0;12]; let mut procurement_claim=0.0;let mut procurement_months=0.0;
     let mut prepaid:[f64;5]=std::array::from_fn(|d|budget.prepaid_bn[crate::world::BUDGET_DEFENSE][d]);
     let mut authority_year=clock::date_from_day(start).0;
-    for offset in 0..crate::economic_ai::RAW_HORIZON_DAYS[2] {
+    for offset in 0..horizon {
         let day=start.saturating_add(offset);
         {
             let (year,month,_)=clock::date_from_day(day);
@@ -330,6 +340,79 @@ mod supply_tests {
     use super::*;
     use crate::{init::world_1990, resources::{self, Commodity}, world::{GameRules,BUDGET_DEFENSE}};
     const USA:NationId=NationId::USA;
+    // Literal pre-prefix project projector. Its fixed 365-day loop is kept
+    // independent of the new horizon parameter; ammunition's public full
+    // projector remains unchanged and supplies the independent D2 oracle.
+    fn original_project_365(w: &WorldState, id: NationId) -> EquipmentRawDemand {
+        let mut out = EquipmentRawDemand::default();
+        let Some(n) = w.nation_opt(id).filter(|n|n.alive) else { return out; };
+        let Some(state) = &n.equipment else { return out; };
+        let Some(budget) = &n.program_budget else { return out; };
+        if !clock::is_daily(w) { return out; }
+        let start = supply_start(w,state);
+
+        let mut jobs:Vec<_> = state.projects.iter().filter(|p|supply_static_blocker(w,id,p).is_none()).cloned().collect();
+        jobs.sort_by_key(|p|(p.priority.dispatch_rank(),p.id));
+        for job in &jobs { for (r,q) in out.remaining.iter_mut().zip(company_inputs(supply_remaining(job),work_company(w,id,job))) { *r+=q; } }
+        out.next_work=next_work_supply(w,id).raw;
+        if jobs.is_empty() { return out; }
+        out.procurement_calendar=jobs.iter().any(|p|supply_department(p)==3);
+        let (mut funds,mut carry) = supply_opening_funds(w,id,start);
+        let legacy_buys = crate::arsenal::pick(n).is_some()
+            || crate::manufacturing::lines_for(w,id).next().is_some();
+        let mut used=[0.0;12]; let mut procurement_claim=0.0;let mut procurement_months=0.0;
+        let mut prepaid:[f64;5]=std::array::from_fn(|d|budget.prepaid_bn[crate::world::BUDGET_DEFENSE][d]);
+        let mut authority_year=clock::date_from_day(start).0;
+        for offset in 0..crate::economic_ai::RAW_HORIZON_DAYS[2] {
+            let day=start.saturating_add(offset);
+            {
+                let (year,month,_)=clock::date_from_day(day);
+                if year!=authority_year {
+                    // Unspent annual authority expires. Already-paid balances do
+                    // not, and are still spent before fresh authority.
+                    for d in [3,4] { funds[d]=prepaid[d];carry[d]=prepaid[d]; }
+                    authority_year=year;
+                }
+                if year==budget.fiscal_year { procurement_months+=1.0/crate::world::days_in_month(year,month).max(1) as f64; }
+                supply_accrue(w,id,state,day,&mut funds);
+                for job in &mut jobs {
+                    if supply_ended(job) || day<=job.started_day || day<state.finance_from_day { continue; }
+                    let d=supply_department(job); let terms=work_terms(job);
+                    let company=work_company(w,id,job);let billed_rate=terms.rate*(1.0+company.fee_rate);
+                    let step=company_work_capacity(w,job,company).min(terms.stage_remaining).min(job.daily_budget_bn/billed_rate).min(funds[d]/billed_rate);
+                    if step<=1e-12 { continue; }
+                    let base_payment=supply_payment(job,step);
+                    let payment=base_payment*(1.0+company.fee_rate);
+                    if payment>funds[d] || payment>job.daily_budget_bn+1e-12 { continue; }
+                    let from_prepaid=prepaid[d].min(payment);prepaid[d]-=from_prepaid;
+                    let from_carry=carry[d].min(payment); carry[d]-=from_carry;
+                    if d==3 { procurement_claim+=payment-from_carry; }
+                    funds[d]=(funds[d]-payment).max(0.0);
+                    let nominal=work_inputs(job,step); let raw=company_inputs(nominal,company);
+                    for i in 0..12 { used[i]+=raw[i]; job.resources_used[i]+=raw[i]; job.company_inputs_saved[i]+=nominal[i]-raw[i]; }
+                    job.work_days=(job.work_days+step).min(job.minimum_days as f64);
+                    job.spent_bn+=base_payment; job.company_fees_bn+=payment-base_payment;
+                    if job.kind!=ProjectKind::Development {
+                        let each=job.minimum_days.saturating_sub(job.tooling_days).max(1) as f64/job.quantity.max(1) as f64;
+                        job.completed_units=(((job.work_days-job.tooling_days as f64).max(0.0)/each+1e-9).floor() as u32).min(job.quantity);
+                    }
+                    if job.work_days+1e-9>=job.minimum_days as f64 { job.status=ProjectStatus::Complete; }
+                }
+                // Legacy procurement follows custom projects in the daily schedule.
+                // Its unused appropriation cannot also finance tomorrow's forecast.
+                if legacy_buys { funds[3]=0.0; carry[3]=0.0; prepaid[3]=0.0; }
+            }
+            for (h,days) in crate::economic_ai::RAW_HORIZON_DAYS.iter().enumerate() {
+                if offset+1==*days {
+                    for i in 0..12 { out.horizons[i][h]=used[i].min(out.remaining[i]); }
+                    out.procurement_claim_bn[h]=procurement_claim;
+                    out.procurement_months[h]=procurement_months;
+                }
+            }
+        }
+        out
+    }
+
     fn fixture()->(WorldState,String,String) {
         let mut w=world_1990(GameRules {daily_simulation:true,military_operations:true,
             production_system:true,manufacturing_system:true,resource_market:true,resource_gates:true,..GameRules::default()});
@@ -351,6 +434,124 @@ mod supply_tests {
     fn approx(a:f64,b:f64) { assert!((a-b).abs()<1e-8,"{a} != {b}"); }
     fn job(w:&WorldState,id:u32)->&EquipmentProject { w.nation(USA).equipment.as_ref().unwrap().projects.iter().find(|p|p.id==id).unwrap() }
     fn plan(w:&WorldState,id:u32)->ProjectSupply { supply_plan(w,USA).into_iter().find(|p|p.project_id==id).unwrap() }
+
+    #[test]
+    fn s08_equipment_run_prefix_matches_original_365_project_and_ammunition_bits() {
+        fn compare(w: &WorldState, label: &str) -> EquipmentRawDemand {
+            let before = crate::save(w);
+            let mut original = original_project_365(w, USA);
+            let ammo = ammunition_supply_demand(w, USA);
+            // The unchanged public D2 projection and literal former D3/D4
+            // loop form an independent complete pre-prefix result.
+            for i in 0..12 {
+                original.remaining[i] += ammo.remaining[i];
+                original.next_work[i] += ammo.next_work[i];
+                for h in 0..3 { original.horizons[i][h] += ammo.horizons[i][h]; }
+            }
+            let full = raw_supply_demand(w, USA);
+            assert_eq!(serde_json::to_vec(&full).unwrap(), serde_json::to_vec(&original).unwrap(), "{label}: full public report");
+            for i in 0..12 {
+                assert_eq!(full.horizons[i].map(f64::to_bits), original.horizons[i].map(f64::to_bits));
+            }
+            assert_eq!(full.procurement_claim_bn.map(f64::to_bits), original.procurement_claim_bn.map(f64::to_bits));
+            assert_eq!(full.procurement_months.map(f64::to_bits), original.procurement_months.map(f64::to_bits));
+            let run = raw_supply_demand_run(w, USA);
+            assert_eq!(run.procurement_calendar, original.procurement_calendar, "{label}: D3 calendar ownership");
+            assert_eq!(run.remaining.map(f64::to_bits), original.remaining.map(f64::to_bits));
+            assert_eq!(run.next_work.map(f64::to_bits), original.next_work.map(f64::to_bits));
+            assert_eq!(run.procurement_claim_bn[0].to_bits(), original.procurement_claim_bn[0].to_bits());
+            assert_eq!(run.procurement_months[0].to_bits(), original.procurement_months[0].to_bits());
+            for i in 0..12 {
+                assert_eq!(run.horizons[i][0].to_bits(), original.horizons[i][0].to_bits(), "{label}: raw input {i}");
+                assert_eq!([run.horizons[i][1], run.horizons[i][2]], [0.0; 2], "RUN must stop before later windows");
+            }
+            let full_context = crate::economic_ai::RawSupplyContext::new(w);
+            let run_context = crate::economic_ai::RawSupplyRunContext::new(w);
+            let civilian = crate::industry::raw_demand_components(w, USA);
+            let report = crate::economic_ai::raw_supply_forecast_with_context(w, USA, &full_context);
+            let decision = crate::economic_ai::raw_supply_run_with_civilian(w, USA, &run_context, &civilian);
+            for (line, run) in report.lines.iter().zip(decision) {
+                assert_eq!(line.commodity, run.commodity);
+                assert_eq!([line.civilian_operating_daily, line.coverage[0], line.shortage[0]].map(f64::to_bits),
+                    [run.civilian_operating_daily, run.coverage, run.shortage].map(f64::to_bits), "{label}: RUN decision fields");
+            }
+            assert_eq!(crate::save(w), before, "{label}: no stock, funding, dates or RNG may change");
+            run
+        }
+
+        let (mut base, district, revision) = fixture();
+        crate::production::complete_capability(&mut base, &district, crate::production::ProjectKind::ArmsPlant);
+        let first = start_production(&mut base, USA, &revision, &district, 4, 1.0).unwrap();
+        let second = start_production(&mut base, USA, &revision, &district, 4, 1.0).unwrap();
+        set_project_priority(&mut base, USA, second, Priority::High).unwrap();
+        set_maintenance_plan(&mut base, USA, 0.001).unwrap();
+        let first_ammo = start_ammo_order(&mut base, USA, "mg_127", &district, MAX_AMMO_ORDER, 0.001).unwrap();
+        let second_ammo = start_ammo_order(&mut base, USA, "mg_127", &district, MAX_AMMO_ORDER, 0.001).unwrap();
+        let tooling = job(&base, first).tooling_days;
+        let tooling_read = compare(&base, "tooling and fresh ammunition orders");
+        assert!(tooling_read.horizons.iter().any(|row| row[0] > 0.0), "active ammunition must create first-window input demand");
+        assert!(ammunition_supply_demand(&base, USA).horizons.iter().any(|row| row[1] > row[0]),
+            "the active ammunition fixture must retain work beyond the RUN prefix");
+        for _ in 0..tooling { next(&mut base); }
+        let active = compare(&base, "two priority-ordered production and ammunition jobs");
+        assert!(active.procurement_calendar && active.procurement_claim_bn[0] > 0.0);
+        assert!(original_project_365(&base, USA).horizons.iter().any(|row| row[0] > 0.0),
+            "the production fixture must pass tooling into real material work");
+        let future_year = base.year + 1;
+        let leap_year = ((future_year + 3) / 4) * 4;
+
+        // Explicit synthetic boundary/funding inputs extend the ordinary paid
+        // project fixture; they do not qualify campaign stock or availability.
+        for case in ["no_stock", "paused", "zero_funding", "month_end", "leap_month",
+            "year_end", "expired_authority", "paid_carry", "lost_site"] {
+            let mut w = base.clone();
+            match case {
+                "no_stock" => for c in resources::ALL { if c != Commodity::Oil {
+                    resources::set_stockpile_for_test(&mut w, USA, c, 0.0);
+                } },
+                "paused" => {
+                    for id in [first, second] { set_project_paused(&mut w, USA, id, true).unwrap(); }
+                    for id in [first_ammo, second_ammo] { pause_ammo_order(&mut w, USA, id, true).unwrap(); }
+                }
+                "lost_site" => { w.districts.insert(district.clone(), NationId::Canada); }
+                _ => {
+                    let (year, month, day) = match case {
+                        "month_end" => (future_year, 1, 30), "leap_month" => (leap_year, 2, 28),
+                        "year_end" => (future_year, 12, 31), _ => (future_year, 1, 1),
+                    };
+                    w.year = year; w.month = month; w.day = day;
+                    let today = clock::absolute_day(&w);
+                    let s = w.nation_mut(USA).equipment.as_mut().unwrap();
+                    s.last_tick_day = None;
+                    let a = s.ammunition.as_mut().unwrap(); a.last_work_day = None;
+                    for order in &mut a.orders { order.last_day = None; }
+                    let p = w.nation_mut(USA).program_budget.as_mut().unwrap();
+                    p.day = None; p.settled_day = None;
+                    p.fiscal_year = if matches!(case, "expired_authority" | "paid_carry") { year - 1 } else { year };
+                    p.authority_year = p.fiscal_year;
+                    for department in [2, 3] {
+                        p.available_bn[BUDGET_DEFENSE][department] = 0.0;
+                        p.prepaid_bn[BUDGET_DEFENSE][department] = if case == "paid_carry" { 0.002 } else { 0.0 };
+                        if case == "zero_funding" {
+                            p.departments[BUDGET_DEFENSE][0] += p.departments[BUDGET_DEFENSE][department];
+                            p.departments[BUDGET_DEFENSE][department] = 0;
+                        }
+                    }
+                    assert!(w.nation(USA).equipment.as_ref().unwrap().projects.iter().all(|p| p.started_day < today));
+                }
+            }
+            let actual = compare(&w, case);
+            if matches!(case, "paused" | "zero_funding" | "expired_authority" | "lost_site") {
+                assert!(actual.horizons.iter().all(|row| row[0] == 0.0), "{case}: real absence of funded work");
+            }
+            if case == "no_stock" { assert_eq!(actual.horizons, active.horizons, "missing inputs must not erase their own demand"); }
+            if case == "paid_carry" {
+                assert!(actual.horizons.iter().any(|row| row[0] > 0.0));
+                assert_eq!(actual.procurement_claim_bn[0], 0.0, "already paid carry is not a claim on new authority");
+            }
+        }
+    }
+
     #[test]
     fn supply_tooling_start_dates_and_pauses_are_finite_and_pure() {
         let (mut w,d,r)=fixture();let id=start_production(&mut w,USA,&r,&d,2,1.0).unwrap();

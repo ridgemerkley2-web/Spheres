@@ -23,7 +23,14 @@ fn nav(label:&str,action:Value)->Value {json!({"label":label,"navigate":action,"
 fn budget_input(amount:f64)->Value {json!({"key":"daily_budget_mn","label":"Project funding limit","type":"number","value":amount*1000.0,"min":0,"max":1_000_000,"step":0.01,"unit":"$m / day"})}
 fn checked(w:&WorldState,me:NationId,label:&str,command:Value)->Value {
     let reason=super::parse_command(w,&command,me).ok_or_else(||"Invalid equipment order.".to_string())
-        .and_then(|c|spheres_sim::apply_command(&mut w.clone(),&c)).err();
+        .and_then(|c|match c {
+            // These two command families have complete native world-refusal
+            // checks. refusal_of also applies the same political-price gate,
+            // so there is no need to copy the world and dispatch again.
+            Command::Equipment {..}|Command::Company {..} =>
+                spheres_sim::refusal_of(w,&c).map_or(Ok(()),Err),
+            _ => spheres_sim::apply_command(&mut w.clone(),&c),
+        }).err();
     let detail=(command["kind"]=="equipment_research").then_some("Changing focus costs 6 political capital and retains half the previous Aerospace progress. This uses existing research effort; it creates no vehicle or national military bonus.");
     json!({"label":label,"command":command,"enabled":reason.is_none(),"reason":reason,"detail":detail})
 }
@@ -133,8 +140,15 @@ pub fn view(w:&WorldState,me:NationId,session:&str)->Value {
     let research=research_board(w,me);
     let comparison_options=comparison_options(&presets,&designs);
     let modernization=modernization_board(w,me);
+    // The ammunition and company tabs share one native supplier snapshot for
+    // this response. Never reuse it across days, players or requests.
+    let company_raw=companies::view(w,me);
+    let supplier_market=company_supplier_market(w,me);
+    let ammo_market=company_ammunition_market_from_reads(w,me,&company_raw,&supplier_market);
+    let ammunition=ammunition_board_with_market(w,me,ammo_market);
+    let companies=company_board_from_reads(w,me,&company_raw,&supplier_market);
     json!({"session_id":session,"nation":me,"name":me.name(),"date":w.date_str(),"enabled":spheres_sim::clock::is_daily(w)&&w.rules.military_operations,"reason":"Equipment programmes require daily time and military operations.",
-        "platforms":platforms,"components":components,"presets":presets,"designs":designs,"development":development,"production":production,"lots":lots,"research":research,"comparison_options":comparison_options,"modernization":modernization,"supply":supply,"service":equipment_service_board(w,me),"maintenance":maintenance_board(w,me),"targets":targets_board(w,me),"replenishment":replenishment_board(w,me),"supply_automation":supply_automation_board(w,me),"ammunition":ammunition_board(w,me),"aviation":aviation_board(w,me),"companies":company_board(w,me),
+        "platforms":platforms,"components":components,"presets":presets,"designs":designs,"development":development,"production":production,"lots":lots,"research":research,"comparison_options":comparison_options,"modernization":modernization,"supply":supply,"service":equipment_service_board(w,me),"maintenance":maintenance_board(w,me),"targets":targets_board(w,me),"replenishment":replenishment_board(w,me),"supply_automation":supply_automation_board(w,me),"ammunition":ammunition,"aviation":aviation_board(w,me),"companies":companies,
         "funding":{"metrics":[metric("Development","Defense · Research & development"),metric("Production and refit","Defense · Procurement"),metric("Service support","Defense · Maintenance; see the service plan"),metric("Unused development funds",format!("${:.3}m",spheres_sim::programs::available_bn(w,me,BUDGET_DEFENSE,4)*1000.0)),metric("Unused procurement funds",format!("${:.3}m",spheres_sim::programs::available_bn(w,me,BUDGET_DEFENSE,3)*1000.0))]},
         "actions":[nav("Development funding",json!({"action":"budget","ministry":"defense","department":4})),nav("Procurement funding",json!({"action":"budget","ministry":"defense","department":3})),nav("Build an arms plant",json!({"action":"construction","kind":"arms_plant"})),nav("Review raw inputs",json!({"action":"resources"}))]})
 }
@@ -200,6 +214,54 @@ mod tests {
         g
     }
     fn design()->Value {let s=eq::baseline_spec();json!({"name":"Test model","platform":s.platform,"components":s.components})}
+    #[test]
+    fn s08_checked_read_matches_actual_command_refusals_and_price_order() {
+        let me=NationId::USA;
+        let mut base=fixture().world;
+        let prerequisite=spheres_sim::tech::index_of("core_cmos_submicron").unwrap();
+        if !base.nation(me).tech.knows_index(prerequisite) {
+            base.nation_mut(me).tech.known.push(prerequisite);
+            base.nation_mut(me).tech.known.sort();
+        }
+        base.nation_mut(me).political_capital=100.0;
+        let component="tank_fire_control_1990";
+        assert_eq!(eq::research_refusal(&base,me,component),None);
+        for case in ["legal","unaffordable","locked_and_unaffordable","active","known","disabled","dead"] {
+            let mut w=base.clone();
+            match case {
+                "unaffordable"=>w.nation_mut(me).political_capital=0.0,
+                "locked_and_unaffordable"=>{w.nation_mut(me).tech.known.clear();w.nation_mut(me).political_capital=0.0;},
+                "active"=>eq::start_research(&mut w,me,component).unwrap(),
+                "known"=>{eq::save_draft(&mut w,me,"Known-state fixture",eq::baseline_spec()).unwrap();w.nation_mut(me).equipment.as_mut().unwrap().learned.insert(component.into());},
+                "disabled"=>w.rules.military_operations=false,
+                "dead"=>w.nation_mut(me).alive=false,
+                _=>{},
+            }
+            let before=spheres_sim::save(&w);
+            for command in [json!({"kind":"equipment_research","component":component}),
+                json!({"kind":"equipment_research","component":"missing-research"}),
+                json!({"kind":"equipment_ammo_activate"}),json!({"kind":"equipment_pause","project":999,"paused":true}),
+                json!({"kind":"company_enable_imports","quote":"stale"}),json!({"kind":"rate","value":5}),
+                json!({"kind":"not-a-command"})] {
+                // This is the former checked implementation, including its
+                // actual transactional dispatch and malformed-command path.
+                let old_reason=super::super::parse_command(&w,&command,me)
+                    .ok_or_else(||"Invalid equipment order.".to_string())
+                    .and_then(|c|spheres_sim::apply_command(&mut w.clone(),&c)).err();
+                let actual=checked(&w,me,"Review",command.clone());
+                assert_eq!(actual["reason"],json!(old_reason),"{case}: {command}");
+                assert_eq!(actual["enabled"],old_reason.is_none(),"{case}: {command}");
+                assert_eq!(actual["command"],command);
+                if command["kind"]=="equipment_research"&&command["component"]==component {
+                    if case=="legal" {assert_eq!(actual["enabled"],true);}
+                    else {assert_eq!(actual["enabled"],false);}
+                    if case=="unaffordable" {assert!(actual["reason"].as_str().unwrap().contains("standing"));}
+                    if case=="locked_and_unaffordable" {assert_eq!(actual["reason"],json!(eq::research_refusal(&w,me,component)));}
+                }
+            }
+            assert_eq!(spheres_sim::save(&w),before,"Read-only refusal altered {case}");
+        }
+    }
     #[test]
     fn equipment_reads_and_order_quotes_are_pure_and_use_simulation_prices() {
         let g=fixture();let w=&g.world;let before=spheres_sim::save(w);

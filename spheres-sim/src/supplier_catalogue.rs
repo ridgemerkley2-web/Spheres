@@ -123,6 +123,11 @@ fn ensure_ammunition_support(w:&mut WorldState,n:NationId)->Result<bool,String> 
 }
 
 fn review(w:&mut WorldState,n:NationId,platform:&str,target:u32)->Result<(),String> {
+    review_impl(w,n,platform,target,true)
+}
+
+// The eager arm retains the original complete quote at its original position.
+fn review_impl(w:&mut WorldState,n:NationId,platform:&str,target:u32,defer_development_quote:bool)->Result<(),String> {
     if !programs::enrolled(w,n) || w.nation(n).program_budget.as_ref().is_some_and(|p|p.fiscal_year!=w.year) {
         let daily=programs::construction_daily_budget_bn(w,n);
         crate::apply_command(w,&Command::SetConstructionBudget{nation:n,daily_budget_bn:daily})?;
@@ -166,10 +171,11 @@ fn review(w:&mut WorldState,n:NationId,platform:&str,target:u32)->Result<(),Stri
     if !preview.valid {return Err(preview.blockers.join(" "));}
     let budget=(profile.development_cost_bn/profile.development_days.max(1) as f64).max(0.000001);
     let name=format!("{} {}",n.code(),companies::platform_name(platform));
-    let q=companies::development_quote(w,n,id,&name,&spec,budget,target);
+    let eager_quote=(!defer_development_quote).then(||companies::development_quote(w,n,id,&name,&spec,budget,target));
     // Capitalise a bounded buffer, not an unlimited subsidy. Outstanding
     // receivables are already paid obligations and must not be charged again.
-    let needed=q.company_cash_needed_bn.max(0.0001);
+    let needed=eager_quote.as_ref().map_or_else(
+        ||companies::development_working_capital(w,&profile,target),|q|q.company_cash_needed_bn).max(0.0001);
     let covered=c.cash_bn+c.receivables.iter().filter(|r|r.kind=="capitalization").map(|r|r.amount_bn).sum::<f64>();
     if covered+1e-9<needed && (c.products.is_empty() || c.products.iter().any(|p|p.stock<p.stock_target)) {
         let amount=(needed-covered).min(programs::available_bn(w,n,BUDGET_DEFENSE,3));
@@ -181,6 +187,7 @@ fn review(w:&mut WorldState,n:NationId,platform:&str,target:u32)->Result<(),Stri
         return Ok(());
     }
     if c.products.is_empty() {
+        let q=eager_quote.unwrap_or_else(||companies::development_quote(w,n,id,&name,&spec,budget,target));
         if !q.valid {return Err(q.reason.unwrap_or_default());}
         act(w,n,O::Develop{company:id,name,spec,daily_budget_bn:budget,stock_target:target,quote:q.token})?;
         report(w,n,"development","The exact baseline design is under paid development; no equipment is available until certification, tooling and production finish.");
@@ -262,6 +269,104 @@ pub fn view(w:&WorldState)->serde_json::Value {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn s08_deferred_supplier_development_quote_matches_eager_full_world_branches() {
+        const N: NationId = NationId::France;
+        const PLATFORM: &str = "ground_apc";
+        const TARGET: u32 = 4;
+        fn compare(w: &WorldState, label: &str, target: u32, status: Option<&str>) -> WorldState {
+            let before = crate::save(w);
+            let mut deferred = w.clone();
+            let mut eager = w.clone();
+            let actual = review_impl(&mut deferred, N, PLATFORM, target, true);
+            let original = review_impl(&mut eager, N, PLATFORM, target, false);
+            assert_eq!(actual, original, "{label}: refusal precedence");
+            assert_eq!(crate::save(&deferred), crate::save(&eager), "{label}: complete game state");
+            if let Some(status) = status {
+                assert!(actual.is_ok(), "{label}: {actual:?}");
+                assert_eq!(deferred.supplier_catalogue.plans[&N].status, status, "{label}");
+            } else {
+                assert!(actual.is_err(), "{label}: fixture must reach a refusal");
+            }
+            assert_eq!(crate::save(w), before, "{label}: input and quote reads remain immutable");
+            deferred
+        }
+
+        let mut base = crate::init::world_1990(crate::world::GameRules {
+            daily_simulation: true, military_operations: true, production_system: true,
+            manufacturing_system: true, resource_market: true, economic_competition: true,
+            ..Default::default()
+        });
+        base.player = Some(N);
+        programs::set_construction_budget(&mut base, N, 0.0).unwrap();
+        enable(&mut base).unwrap();
+        let district = base.districts.iter().find(|(_, owner)| **owner == N).unwrap().0.clone();
+        // Synthetic facility and appropriation inputs only. The company,
+        // capital obligations and development are ordinary reviewed commands;
+        // this fixture is not an earned exporter or campaign qualification.
+        base.production.provinces.push(production::ProvinceCapabilities {
+            district: district.clone(), arms_plants: 1, infrastructure: 0,
+            civilian_industry: 0, power_grid: 0, research_centers: 0,
+        });
+        base.production.provinces.sort_by(|a, b| a.district.cmp(&b.district));
+        base.nation_mut(N).program_budget.as_mut().unwrap().available_bn[BUDGET_DEFENSE][3] = 1.0;
+        base.supplier_catalogue.plans.entry(N).or_default().district = Some(district.clone());
+        let established = compare(&base, "establishment", TARGET, Some("capital_settlement"));
+        assert_eq!(established.companies.firms.len(), 1);
+        assert_eq!(established.companies.firms[0].receivables.len(), 1);
+        assert!(established.companies.firms[0].products.is_empty());
+
+        let funded = compare(&established, "working capital", TARGET, Some("capital_settlement"));
+        assert_eq!(funded.companies.firms[0].receivables.len(), 2,
+            "capital review must create exactly one additional paid obligation");
+        assert_eq!(funded.companies.firms[0].cash_bn, 0.0,
+            "unsettled obligations count as covered capital without becoming spendable cash");
+        let developed = compare(&funded, "development order", TARGET, Some("development"));
+        assert_eq!(developed.companies.firms[0].products.len(), 1);
+        assert_eq!(developed.companies.firms[0].products[0].stock, 0);
+        let unchanged = compare(&developed, "existing development", TARGET, Some("development"));
+        assert_eq!(unchanged.companies.firms[0].products.len(), 1);
+        assert_eq!(unchanged.companies.firms[0].receivables.len(), 2);
+
+        let mut blocked = established.clone();
+        blocked.nation_mut(N).program_budget.as_mut().unwrap().available_bn[BUDGET_DEFENSE][3] = 0.0;
+        let refused = compare(&blocked, "exhausted procurement", TARGET, None);
+        assert_eq!(crate::save(&refused), crate::save(&blocked));
+        let mut lost_site = developed.clone();
+        lost_site.districts.insert(district, NationId::UK);
+        compare(&lost_site, "lost original site", TARGET, None);
+        compare(&funded, "invalid empty-catalogue target", 0, None);
+
+        // Explicit synthetic mid-programme states exercise branches without
+        // waiting for, or claiming, real certification and paid production.
+        let mut short_capital = developed.clone();
+        short_capital.companies.firms[0].receivables.clear();
+        let id = short_capital.companies.firms[0].id;
+        let spec = equipment::default_spec(PLATFORM);
+        let q = companies::development_quote(&short_capital, N, id,
+            "Repeated development", &spec, 0.01, TARGET);
+        assert!(!q.valid, "existing development must make the unused eager quote invalid");
+        let recapitalized = compare(&short_capital, "capital precedes unused invalid quote", TARGET, Some("capital_settlement"));
+        assert_eq!(recapitalized.companies.firms[0].receivables.len(), 1);
+
+        let mut stocked = developed.clone();
+        let today = clock::absolute_day(&stocked);
+        let product = &mut stocked.companies.firms[0].products[0];
+        product.certified_day = Some(today);
+        product.stock = 1;
+        product.produced_units = 1;
+        let revision = product.revision_id.clone();
+        stocked.nation_mut(N).equipment.as_mut().unwrap().revisions.get_mut(&revision).unwrap().certified_day = Some(today);
+        let available = compare(&stocked, "existing partial stock", TARGET, Some("stock_available"));
+        assert_eq!(available.companies.firms[0].products[0].stock, 1);
+        stocked.companies.firms[0].products[0].stock = TARGET;
+        stocked.companies.firms[0].products[0].produced_units = TARGET;
+        let upkeep = compare(&stocked, "completed buffer upkeep", TARGET, Some("maintenance_setup"));
+        assert!(upkeep.nation(N).equipment.as_ref().unwrap().maintenance_plan.is_some());
+        assert!(upkeep.companies.firms[0].ammunition_products.is_empty());
+    }
+
     #[test]
     fn supplier_ammunition_support_adopts_only_a_real_next_day_upkeep_plan() {
         let mut w=crate::init::world_1990(crate::world::GameRules {
