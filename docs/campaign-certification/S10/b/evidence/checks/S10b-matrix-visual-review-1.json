@@ -1,0 +1,91 @@
+{
+  "schema": "s10b-matrix-visual-review-v1",
+  "reviewed_utc": "2026-09-13T12:18:33.626688+00:00",
+  "scope": "Six representative actual screenshots from the first matrix attempt; no browser rerun, interaction or source edits.",
+  "status": "observations_only_from_partially_failed_journey",
+  "runtime_revision": "7aaa4517fbcc1c256481c2eefc5ef5e1c4153303",
+  "binary_sha256": "c7eef9f281e7009aac73c722413fcab7587277e77124b9ba56d8ed121b077878",
+  "driver": {
+    "revision": "4643bd97d01864bf6e28c29592088e2daa735052",
+    "driver_sha256": "6dcef6f2b0dc66682241afc73adafbf51ac530b0f14aaf61ca294d8c19f6298a",
+    "runtime_source_equal": true
+  },
+  "matrix_result": {
+    "path": "evidence/S10b-matrix-final-1/matrix-jZgdoC/result.json",
+    "sha256": "6065426301cdb48ba04a0dc947b1ce133901856a8f4aba3076384ca045156a10",
+    "passed": false
+  },
+  "journey_outcome": "Four electoral cases passed. Four institutional cases performed a successful paid native decision but failed the driver composition-reading assertion before their Save/Load/Continue checks. This visual artifact does not qualify the full matrix.",
+  "screenshots": [
+    {
+      "path": "evidence/S10b-matrix-final-1/matrix-jZgdoC/japan-3qSVVB/overview-desktop.png",
+      "nation": "Japan",
+      "sha256": "b7d28b03ecf538806d99cef7e29995f57956c7c0847d02b175e6a3099e3828b2",
+      "bytes": 766737,
+      "width": 1440,
+      "height": 1000,
+      "method": "tools.view_image",
+      "observation": "Desktop overview has readable date, Toshiki Kaifu/Prime Minister, political metrics and navigation over the art. The leadership card contains a visible portrait."
+    },
+    {
+      "path": "evidence/S10b-matrix-final-1/matrix-jZgdoC/japan-3qSVVB/review-narrow.png",
+      "nation": "Japan",
+      "sha256": "7f2063034b37cdac2bdf966ec9d66871c6b21fcfc7b34b51648a7b72101e00e4",
+      "bytes": 93692,
+      "width": 390,
+      "height": 844,
+      "method": "tools.view_image",
+      "observation": "At 390px the cost labels/17.92 PC/$0 are readable. The internal effect table shows Measure and Before while After is offscreen, requiring horizontal scrolling. The long review heading lies above this captured scroll position. A map-help toast occupies the top area."
+    },
+    {
+      "path": "evidence/S10b-matrix-final-1/matrix-jZgdoC/tonga-SFe8dv/overview-desktop.png",
+      "nation": "Tonga",
+      "sha256": "d7729ee5b56daf33907f16659293bbe93cc22e1c9ea63015411c3ed49856ac94",
+      "bytes": 740146,
+      "width": 1440,
+      "height": 1000,
+      "method": "tools.view_image",
+      "observation": "Desktop overview names Taufa\\u0027ahau Tupou IV as King and shows the House of Tupou, mean institutional loyalty and regime pressure. The leadership area displays a TT placeholder rather than an illustrated portrait, so artwork completeness is not established."
+    },
+    {
+      "path": "evidence/S10b-matrix-final-1/matrix-jZgdoC/tonga-SFe8dv/review-desktop.png",
+      "nation": "Tonga",
+      "sha256": "ef0e8f69a20efd170336af4817ef75e149142d2c89e13bc4e490e620f18edca1",
+      "bytes": 368962,
+      "width": 1440,
+      "height": 1000,
+      "method": "tools.view_image",
+      "observation": "The hereditary-nobles review visibly includes 14 PC/$912k, all before/after rows, one-time-payment warning, Confirm decision and Keep considering without horizontal clipping."
+    },
+    {
+      "path": "evidence/S10b-matrix-final-1/matrix-jZgdoC/saudiarabia-QauPYs/structure-narrow.png",
+      "nation": "SaudiArabia",
+      "sha256": "b98d32952338a7c3fede3aa0f4b9d9d073a7f6f338e4dd54e8a58cb0cf152d25",
+      "bytes": 85097,
+      "width": 390,
+      "height": 844,
+      "method": "tools.view_image",
+      "observation": "At 390px the House of Saud card, support legend and first institutional-loyalty card are readable. The sticky tab strip truncates its selected Regime & institutions label; the scrolled section heading is partly behind the strip. Later institution cards are below the viewport."
+    },
+    {
+      "path": "evidence/S10b-matrix-final-1/matrix-jZgdoC/ussr-MXuRDo/review-desktop.png",
+      "nation": "USSR",
+      "sha256": "e70b935aee4673f03c47ae69277ce254ce2f0fedcd91f2104515dae45ad4e947",
+      "bytes": 292915,
+      "width": 1440,
+      "height": 1000,
+      "method": "tools.view_image",
+      "observation": "The Soviet Army review visibly includes 14 PC/$12.8bn, the complete before/after effects table, one-time-payment warning and both decision controls."
+    }
+  ],
+  "usability_limitations": [
+    "Narrow review table needs horizontal scrolling to see After values; the captured viewport does not show both numeric columns at once.",
+    "Sticky/overflowing narrow tabs and the temporary map-help toast obscure some heading/navigation content at captured scroll positions.",
+    "Tonga overview still uses an initial placeholder for its monarch portrait. This is incomplete art, not a missing native incumbent."
+  ],
+  "qualification_limits": [
+    "Screenshots establish only visible content, not complete historical coverage or C01/G2 completion.",
+    "No keyboard, horizontal scrolling interaction or offscreen-content behavior was re-tested.",
+    "The failed first-attempt screenshots and results remain unchanged."
+  ]
+}

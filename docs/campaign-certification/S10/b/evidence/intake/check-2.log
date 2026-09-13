@@ -1,0 +1,49 @@
+{
+  "check": true,
+  "status": "partial_baseline_recorded_census_open",
+  "counts": {
+    "nation_identities": 160,
+    "starting_nations": 137,
+    "successor_nations": 23,
+    "represented_party_rows": 624,
+    "countries_with_party_rows": 148,
+    "countries_without_party_rows": 12,
+    "party_row_kind": {
+      "coalition": 3,
+      "party": 50,
+      "unknown": 571
+    },
+    "party_history_status": {
+      "gap": 571,
+      "partial": 53
+    },
+    "registered_components_or_name_phases": 20,
+    "historical_people": 590,
+    "historical_terms": 393,
+    "component_term_records": 65,
+    "historical_term_kind": {
+      "acting": 44,
+      "co_leader": 38,
+      "leader": 311
+    },
+    "executive_seed_observations": 132,
+    "institution_policy_records": 12,
+    "historical_executive_gameplay_grants": 93,
+    "future_seat_policies": 2,
+    "existing_lifecycle_records": 23,
+    "future_templates": 2556,
+    "historical_manifest_assets": 53,
+    "fictional_manifest_assets": 4,
+    "historical_art_snapshot_pending_jobs": 705,
+    "people_with_unknown_appearance_eligibility": 126,
+    "exhaustive_country_censuses": 0,
+    "unrepresented_organizations": null,
+    "work_orders_by_phase": {
+      "fictional_editorial_review": 316,
+      "historical_cartoon_jobs": 184,
+      "institution_and_office_roles": 160,
+      "known_historical_chains": 150,
+      "organization_census": 160
+    }
+  }
+}

@@ -1,8 +1,10 @@
 # S10 — Government, succession and diplomacy
 
-Status: **S10.a complete; S10 and C01 remain in progress**.
+Status: **S10.a and S10.b complete; S10 and C01 remain in progress**.
+The [S10.b report](b/README.md) records source-backed country discoveries,
+Linux qualification and all eight ordinary government browser journeys.
 Parent source: `872442d7411d9986321248b41ccadf79e2851d1c`.
-User instruction: Continue. Work is limited to S10; S11 is not started.
+Latest user instruction: Next. Work is limited to S10; S11 is not started.
 
 ## S10.a — Reviewed political decisions
 

@@ -1,0 +1,360 @@
+{
+  "source_revision": "4643bd97d01864bf6e28c29592088e2daa735052",
+  "source_path": "integration/tools/ui/ci-government-country-matrix.cjs",
+  "original_sha256": "6dcef6f2b0dc66682241afc73adafbf51ac530b0f14aaf61ca294d8c19f6298a",
+  "patched_source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s10b-staging\\ci-government-country-matrix-institutional.cjs",
+  "patched_sha256": "a1f7a420cd2ecfc7001bc9407fc87b796d9b3bdfd0aecd38b0fd2972c30f989d",
+  "patch": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\s10b-staging\\matrix-institutional-composition.patch",
+  "patch_sha256": "276e8c4773a79b70b30eaf669f1639e9ba9b3d6a33d4b3d5a98b124896db9735",
+  "cause": "Harness-only quotedReading composition parser required the electoral upkeep text for institutional regimes, after the native command succeeded. The game emits a real loyalty-based composition effect for institutional governments.",
+  "proposal": "Use the exact native institutional standing formula from ordered saved pillar values for non-electoral boards; leave electoral prose parsing and every quote-row assertion unchanged.",
+  "native_references": [
+    "spheres-sim/src/government.rs::GovState::mean_loyalty",
+    "spheres-sim/src/government.rs::standing_modifier",
+    "spheres-web/src/government_view.rs::enrich",
+    "spheres-web/src/government_view.rs::preview"
+  ],
+  "failed_evidence": "evidence/S10b-matrix-final-1/matrix-jZgdoC/result.json",
+  "applied": true,
+  "validation": "Staged correction applied only after clean-source Linux qualification passed; full browser rerun follows.",
+  "original_matrix_result": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-1\\matrix-jZgdoC\\result.json",
+    "sha256": "6065426301cdb48ba04a0dc947b1ce133901856a8f4aba3076384ca045156a10",
+    "passed": false,
+    "finished_utc": "2026-09-13T12:15:17.008Z"
+  },
+  "failed_institutional_cases": [
+    {
+      "nation": "SouthAfrica",
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-1\\matrix-jZgdoC\\southafrica-q2KGri\\result.json",
+      "result_sha256": "442df54c0da499718993dd7262ee72ce2fbcad6346d4048c47e3631bee298989",
+      "failed_assertion": "AssertionError [ERR_ASSERTION]: Native composition reading is missing\n    at quotedReading (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:72:73)\n    at verifyOutcome (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:85:18)\n    at runCountry (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:226:75)\n    at async main (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:275:47)",
+      "command_envelopes": [
+        {
+          "commands": [
+            {
+              "kind": "secure_pillar",
+              "pillar": "army"
+            }
+          ],
+          "review_token": "decision-v1-6383d977913a1626",
+          "review_kind": "government",
+          "session_id": "28420-1789301685074271400-1",
+          "client_id": "748a9114-d330-46e1-b625-367493fba1c2",
+          "request_seq": 1
+        }
+      ],
+      "cancelled_then_reconfirmed_quote": {
+        "changes": [
+          {
+            "after": "23.9",
+            "before": "37.9",
+            "detail": "The actual immediate deduction, after the simulation's limits.",
+            "key": "political_capital",
+            "label": "Political capital"
+          },
+          {
+            "after": "$50148.00 million",
+            "before": "$49140.00 million",
+            "detail": "Any payment beyond available treasury cash is borrowed.",
+            "key": "debt",
+            "label": "Public debt"
+          },
+          {
+            "after": "-0.8",
+            "before": "-2.4",
+            "detail": "The current composition's contribution to the standing target, including any electoral honeymoon; not a lump-sum PC award.",
+            "key": "composition",
+            "label": "Government standing modifier"
+          },
+          {
+            "after": "85.0%",
+            "before": "65.0%",
+            "detail": "The immediate loyalty change; its underlying policy-dependent target is unchanged unless the decision changes those policies.",
+            "key": "loyalty:army",
+            "label": "the South African Defence Force loyalty"
+          }
+        ],
+        "command": {
+          "kind": "secure_pillar",
+          "pillar": "army"
+        },
+        "date_label": "1 Jan 1990",
+        "description": "pay for its loyalty",
+        "effects": [],
+        "kind": "secure_pillar",
+        "money_cost_bn": 1.0080000000000027,
+        "nation": "SouthAfrica",
+        "price_pc": 14,
+        "reason": null,
+        "review_token": "decision-v1-6383d977913a1626",
+        "session_id": "28420-1789301685074271400-1",
+        "title": "Secure the South African Defence Force",
+        "valid": true,
+        "warnings": [
+          "This is a one-time public payment. Institutional loyalty continues to respond to budgets and country conditions afterward."
+        ]
+      },
+      "before_native_archive": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-1\\matrix-jZgdoC\\southafrica-q2KGri\\server\\audit-captures\\s10b-before-views-xS9Gaj\\s10b-before-views.json",
+        "bytes": 13148779,
+        "sha256": "3c065dcdaceaa0d69f38a28275835468b8316440ea3b99f67ca36cdc4326630f"
+      },
+      "after_actual_command_native_archive": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-1\\matrix-jZgdoC\\southafrica-q2KGri\\server\\audit-captures\\s10b-after-action-QOFB8U\\s10b-after-action.json",
+        "bytes": 13149402,
+        "sha256": "9b92779f281607cef9dba2aa0fce31b9dc9ab6c0e3d75f5ddb52dd7fcc2d2f53"
+      },
+      "observation": "The driver checked the actual command HTTP response was successful, errors were empty, and dated native events existed before this assertion failed. These are successful individual commands inside a failed journey; Save/Load/Continue was not reached for this case."
+    },
+    {
+      "nation": "Tonga",
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-1\\matrix-jZgdoC\\tonga-SFe8dv\\result.json",
+      "result_sha256": "f6daa7235cc0bf8e2ed2ecf7b6f9f8ed9b465f335677ea295f63537c9c0b0ec9",
+      "failed_assertion": "AssertionError [ERR_ASSERTION]: Native composition reading is missing\n    at quotedReading (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:72:73)\n    at verifyOutcome (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:85:18)\n    at runCountry (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:226:75)\n    at async main (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:275:47)",
+      "command_envelopes": [
+        {
+          "commands": [
+            {
+              "kind": "secure_pillar",
+              "pillar": "party"
+            }
+          ],
+          "review_token": "decision-v1-ddc2edac69c33bc5",
+          "review_kind": "government",
+          "session_id": "28336-1789301693594773600-1",
+          "client_id": "a33a8a95-27e4-4a9f-a254-fcf4b7791f56",
+          "request_seq": 1
+        }
+      ],
+      "cancelled_then_reconfirmed_quote": {
+        "changes": [
+          {
+            "after": "37.3",
+            "before": "51.3",
+            "detail": "The actual immediate deduction, after the simulation's limits.",
+            "key": "political_capital",
+            "label": "Political capital"
+          },
+          {
+            "after": "$53.47 million",
+            "before": "$52.55 million",
+            "detail": "Any payment beyond available treasury cash is borrowed.",
+            "key": "debt",
+            "label": "Public debt"
+          },
+          {
+            "after": "-0.8",
+            "before": "-2.4",
+            "detail": "The current composition's contribution to the standing target, including any electoral honeymoon; not a lump-sum PC award.",
+            "key": "composition",
+            "label": "Government standing modifier"
+          },
+          {
+            "after": "85.0%",
+            "before": "65.0%",
+            "detail": "The immediate loyalty change; its underlying policy-dependent target is unchanged unless the decision changes those policies.",
+            "key": "loyalty:party",
+            "label": "the thirty-three hereditary nobles loyalty"
+          }
+        ],
+        "command": {
+          "kind": "secure_pillar",
+          "pillar": "party"
+        },
+        "date_label": "1 Jan 1990",
+        "description": "pay for its loyalty",
+        "effects": [],
+        "kind": "secure_pillar",
+        "money_cost_bn": 0.0009120000000000031,
+        "nation": "Tonga",
+        "price_pc": 14,
+        "reason": null,
+        "review_token": "decision-v1-ddc2edac69c33bc5",
+        "session_id": "28336-1789301693594773600-1",
+        "title": "Secure the thirty-three hereditary nobles",
+        "valid": true,
+        "warnings": [
+          "This is a one-time public payment. Institutional loyalty continues to respond to budgets and country conditions afterward."
+        ]
+      },
+      "before_native_archive": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-1\\matrix-jZgdoC\\tonga-SFe8dv\\server\\audit-captures\\s10b-before-views-zCa85i\\s10b-before-views.json",
+        "bytes": 13148766,
+        "sha256": "119bde5fb3509d547cd10858e9400a395f53bb725a1b0b1d9e1935f70844ada6"
+      },
+      "after_actual_command_native_archive": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-1\\matrix-jZgdoC\\tonga-SFe8dv\\server\\audit-captures\\s10b-after-action-9LD5vq\\s10b-after-action.json",
+        "bytes": 13149420,
+        "sha256": "6dd5a38c6ea0b37368d6aad260e5d0b322992796350a0a96ea0bb5d8eda5db77"
+      },
+      "observation": "The driver checked the actual command HTTP response was successful, errors were empty, and dated native events existed before this assertion failed. These are successful individual commands inside a failed journey; Save/Load/Continue was not reached for this case."
+    },
+    {
+      "nation": "SaudiArabia",
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-1\\matrix-jZgdoC\\saudiarabia-QauPYs\\result.json",
+      "result_sha256": "901a2159d7b0bacebfc3fc3813be5f569f181df5f2a5b4723ac5f42b7846bcb9",
+      "failed_assertion": "AssertionError [ERR_ASSERTION]: Native composition reading is missing\n    at quotedReading (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:72:73)\n    at verifyOutcome (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:85:18)\n    at runCountry (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:226:75)\n    at async main (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:275:47)",
+      "command_envelopes": [
+        {
+          "commands": [
+            {
+              "kind": "secure_pillar",
+              "pillar": "party"
+            }
+          ],
+          "review_token": "decision-v1-092724494f00e1ac",
+          "review_kind": "government",
+          "session_id": "36460-1789301701673825800-1",
+          "client_id": "a9532233-6950-4e01-abf2-0175e3916a46",
+          "request_seq": 1
+        }
+      ],
+      "cancelled_then_reconfirmed_quote": {
+        "changes": [
+          {
+            "after": "41.6",
+            "before": "55.6",
+            "detail": "The actual immediate deduction, after the simulation's limits.",
+            "key": "political_capital",
+            "label": "Political capital"
+          },
+          {
+            "after": "$41886.00 million",
+            "before": "$40950.00 million",
+            "detail": "Any payment beyond available treasury cash is borrowed.",
+            "key": "debt",
+            "label": "Public debt"
+          },
+          {
+            "after": "-1.2",
+            "before": "-2.4",
+            "detail": "The current composition's contribution to the standing target, including any electoral honeymoon; not a lump-sum PC award.",
+            "key": "composition",
+            "label": "Government standing modifier"
+          },
+          {
+            "after": "85.0%",
+            "before": "65.0%",
+            "detail": "The immediate loyalty change; its underlying policy-dependent target is unchanged unless the decision changes those policies.",
+            "key": "loyalty:party",
+            "label": "the Al Saud family council loyalty"
+          }
+        ],
+        "command": {
+          "kind": "secure_pillar",
+          "pillar": "party"
+        },
+        "date_label": "1 Jan 1990",
+        "description": "pay for its loyalty",
+        "effects": [],
+        "kind": "secure_pillar",
+        "money_cost_bn": 0.9359999999999999,
+        "nation": "SaudiArabia",
+        "price_pc": 14,
+        "reason": null,
+        "review_token": "decision-v1-092724494f00e1ac",
+        "session_id": "36460-1789301701673825800-1",
+        "title": "Secure the Al Saud family council",
+        "valid": true,
+        "warnings": [
+          "This is a one-time public payment. Institutional loyalty continues to respond to budgets and country conditions afterward."
+        ]
+      },
+      "before_native_archive": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-1\\matrix-jZgdoC\\saudiarabia-QauPYs\\server\\audit-captures\\s10b-before-views-BjwvYI\\s10b-before-views.json",
+        "bytes": 13148779,
+        "sha256": "76c878bbe342bd30cff7443597e634d3af4bfc26f7ff7e939cdcd2037c8ca225"
+      },
+      "after_actual_command_native_archive": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-1\\matrix-jZgdoC\\saudiarabia-QauPYs\\server\\audit-captures\\s10b-after-action-MeNWhh\\s10b-after-action.json",
+        "bytes": 13149416,
+        "sha256": "8ef8e83708d19e0fadbddd6de90ddc12d79502cdeda313fb9cb24688a515a98d"
+      },
+      "observation": "The driver checked the actual command HTTP response was successful, errors were empty, and dated native events existed before this assertion failed. These are successful individual commands inside a failed journey; Save/Load/Continue was not reached for this case."
+    },
+    {
+      "nation": "USSR",
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-1\\matrix-jZgdoC\\ussr-MXuRDo\\result.json",
+      "result_sha256": "03e022c549adfc451757e1cfd3c6e609512a8fced2b469208f3d50d0ef1c8363",
+      "failed_assertion": "AssertionError [ERR_ASSERTION]: Native composition reading is missing\n    at quotedReading (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:72:73)\n    at verifyOutcome (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:85:18)\n    at runCountry (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:226:75)\n    at async main (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:275:47)",
+      "command_envelopes": [
+        {
+          "commands": [
+            {
+              "kind": "secure_pillar",
+              "pillar": "army"
+            }
+          ],
+          "review_token": "decision-v1-b01166d20ea15f6a",
+          "review_kind": "government",
+          "session_id": "34904-1789301709713510600-1",
+          "client_id": "a738d1fa-b295-4362-a3e2-b6eb33d27573",
+          "request_seq": 1
+        }
+      ],
+      "cancelled_then_reconfirmed_quote": {
+        "changes": [
+          {
+            "after": "31.3",
+            "before": "45.3",
+            "detail": "The actual immediate deduction, after the simulation's limits.",
+            "key": "political_capital",
+            "label": "Political capital"
+          },
+          {
+            "after": "$732800.00 million",
+            "before": "$720000.00 million",
+            "detail": "Any payment beyond available treasury cash is borrowed.",
+            "key": "debt",
+            "label": "Public debt"
+          },
+          {
+            "after": "-0.8",
+            "before": "-2.4",
+            "detail": "The current composition's contribution to the standing target, including any electoral honeymoon; not a lump-sum PC award.",
+            "key": "composition",
+            "label": "Government standing modifier"
+          },
+          {
+            "after": "85.0%",
+            "before": "65.0%",
+            "detail": "The immediate loyalty change; its underlying policy-dependent target is unchanged unless the decision changes those policies.",
+            "key": "loyalty:army",
+            "label": "the Soviet Army loyalty"
+          }
+        ],
+        "command": {
+          "kind": "secure_pillar",
+          "pillar": "army"
+        },
+        "date_label": "1 Jan 1990",
+        "description": "pay for its loyalty",
+        "effects": [],
+        "kind": "secure_pillar",
+        "money_cost_bn": 12.799999999999955,
+        "nation": "USSR",
+        "price_pc": 14,
+        "reason": null,
+        "review_token": "decision-v1-b01166d20ea15f6a",
+        "session_id": "34904-1789301709713510600-1",
+        "title": "Secure the Soviet Army",
+        "valid": true,
+        "warnings": [
+          "This is a one-time public payment. Institutional loyalty continues to respond to budgets and country conditions afterward."
+        ]
+      },
+      "before_native_archive": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-1\\matrix-jZgdoC\\ussr-MXuRDo\\server\\audit-captures\\s10b-before-views-mH3pCK\\s10b-before-views.json",
+        "bytes": 13148772,
+        "sha256": "afcb14e5125542d73b6afe9a97a98d4e55edbe6aeb34195d387700fc2f0f591a"
+      },
+      "after_actual_command_native_archive": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-1\\matrix-jZgdoC\\ussr-MXuRDo\\server\\audit-captures\\s10b-after-action-Rl7KBX\\s10b-after-action.json",
+        "bytes": 13149367,
+        "sha256": "d5df1b15152853c0572765953116edf57e9496c514ddaa87e2d539f2907bfe0d"
+      },
+      "observation": "The driver checked the actual command HTTP response was successful, errors were empty, and dated native events existed before this assertion failed. These are successful individual commands inside a failed journey; Save/Load/Continue was not reached for this case."
+    }
+  ]
+}

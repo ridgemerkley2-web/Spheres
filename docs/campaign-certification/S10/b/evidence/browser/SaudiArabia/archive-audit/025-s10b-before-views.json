@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "input": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-3\\matrix-9PP1H5\\saudiarabia-FTl1tj\\server\\audit-captures\\s10b-before-views-TYyHrg\\s10b-before-views.json",
+    "bytes": 13148779,
+    "sha256": "bb7ae24c03078a20287e522ed4f6eb93e7c06f95de83741a05fbd696b10bcd1a"
+  },
+  "requested": {
+    "buyer": "SaudiArabia",
+    "revision": null,
+    "seller": null,
+    "company": null,
+    "product": null
+  },
+  "buyer": {
+    "id": "SaudiArabia",
+    "tech_sha256": "6a387f92385ff7672831ad923f89dc3622707def78d79c5b5d613a4f77b09c72",
+    "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+    "revision_ids": [],
+    "held_by_revision": {},
+    "held_units": 0,
+    "buyer_revision": null,
+    "maintenance_plan": null,
+    "program_budget": null
+  },
+  "supplier": null,
+  "imports": {
+    "ids": [],
+    "matching": []
+  },
+  "canonical": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-3\\matrix-9PP1H5\\saudiarabia-FTl1tj\\archive-audit\\025-s10b-before-views.canonical",
+    "bytes": 12116210,
+    "sha256": "870773338f2dc727868710c24fcbe81a9a8376ad3d10ec1a10673b528b251699",
+    "format": "s08-typed-canonical-world-v1-js-f64",
+    "ignored_paths": []
+  }
+}

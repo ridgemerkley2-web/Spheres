@@ -1,0 +1,88 @@
+{
+  "passed": false,
+  "scope": "S10.b ordinary Jan-1990 startup matrix; zero elapsed days; not G2, a long-run campaign or a Russia birth test",
+  "runtime_revision": "7aaa4517fbcc1c256481c2eefc5ef5e1c4153303",
+  "binary_sha256": "c7eef9f281e7009aac73c722413fcab7587277e77124b9ba56d8ed121b077878",
+  "test_source": {
+    "revision": "6352a440893a869f2acc335fd9a2487bda0095c2",
+    "driver_sha256": "a1f7a420cd2ecfc7001bc9407fc87b796d9b3bdfd0aecd38b0fd2972c30f989d",
+    "runtime_source_equal": true
+  },
+  "requested_nations": [
+    "France",
+    "Japan",
+    "India",
+    "Brazil",
+    "SouthAfrica",
+    "Tonga",
+    "SaudiArabia",
+    "USSR"
+  ],
+  "full_matrix_requested": true,
+  "full_eight_country_matrix": false,
+  "started_utc": "2026-09-13T12:25:58.363Z",
+  "cases": [
+    {
+      "nation": "France",
+      "passed": true,
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-2\\matrix-PiF0ym\\france-RlwNty\\result.json",
+      "result_sha256": "38f227d5ad6679f0389b5fc98b77146bb263b6d276980d77439449de63f243a9",
+      "duration_ms": 11840.4777
+    },
+    {
+      "nation": "Japan",
+      "passed": true,
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-2\\matrix-PiF0ym\\japan-Um8pSZ\\result.json",
+      "result_sha256": "118df7040795a150d7316b1ac83209e0f7c55dc89cbdeb7037fea5df1ea95628",
+      "duration_ms": 10851.876400000001
+    },
+    {
+      "nation": "India",
+      "passed": true,
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-2\\matrix-PiF0ym\\india-eRY5kp\\result.json",
+      "result_sha256": "6329ea83103be5bb0f3bda6e31666dd7032a60db77c112ebf6be791037acf58b",
+      "duration_ms": 10658.783700000004
+    },
+    {
+      "nation": "Brazil",
+      "passed": true,
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-2\\matrix-PiF0ym\\brazil-NAmSER\\result.json",
+      "result_sha256": "767d459c2a8004bc0bf6d83e578ea7a94ec2a602daafca8821dfa29afa55caa3",
+      "duration_ms": 11046.519
+    },
+    {
+      "nation": "SouthAfrica",
+      "passed": false,
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-2\\matrix-PiF0ym\\southafrica-vpWjBx\\result.json",
+      "result_sha256": "1a00c44cc40bfc01954404a93bcbaa7b800792e1658206d003c9a82bddea83eb",
+      "duration_ms": 11059.959499999997,
+      "failed_stage": "ordinary named Save Load and Continue"
+    },
+    {
+      "nation": "Tonga",
+      "passed": false,
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-2\\matrix-PiF0ym\\tonga-57JFZk\\result.json",
+      "result_sha256": "8fcee017a305b268cbd5d318170edc311ace79aa8c172313453451e1880d2569",
+      "duration_ms": 10926.8289,
+      "failed_stage": "ordinary named Save Load and Continue"
+    },
+    {
+      "nation": "SaudiArabia",
+      "passed": false,
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-2\\matrix-PiF0ym\\saudiarabia-JSCkSY\\result.json",
+      "result_sha256": "2c24a388d8ac49fbffd0e9bf5c9948f5e721c85643bd261bb36c85c764298792",
+      "duration_ms": 10917.46160000001,
+      "failed_stage": "ordinary named Save Load and Continue"
+    },
+    {
+      "nation": "USSR",
+      "passed": false,
+      "result": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-2\\matrix-PiF0ym\\ussr-b58rCN\\result.json",
+      "result_sha256": "e714019bc3a9d0af37b624cea5f642ebe6bce0c8362ba9d49378e23ae3f24db6",
+      "duration_ms": 12675.73599999999,
+      "failed_stage": "ordinary named Save Load and Continue"
+    }
+  ],
+  "browser_version": "152.0.7977.83",
+  "finished_utc": "2026-09-13T12:27:29.165Z"
+}

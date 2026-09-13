@@ -1,0 +1,194 @@
+{
+  "format": "s10b-driver-diagnosis/v1",
+  "attempt": 2,
+  "runtime_revision": "7aaa4517fbcc1c256481c2eefc5ef5e1c4153303",
+  "binary_sha256": "c7eef9f281e7009aac73c722413fcab7587277e77124b9ba56d8ed121b077878",
+  "driver_before": {
+    "revision": "6352a440893a869f2acc335fd9a2487bda0095c2",
+    "driver_sha256": "a1f7a420cd2ecfc7001bc9407fc87b796d9b3bdfd0aecd38b0fd2972c30f989d",
+    "runtime_source_equal": true
+  },
+  "outer_proof": {
+    "path": "evidence/S10b-matrix-driver-final-2.json",
+    "sha256": "69895d49e4dc0b5544ea6165dce8d5273e3105b7cfe0cedbc1f1ec9df6c4d8a4",
+    "clean_after": true,
+    "exit_code": 1
+  },
+  "inner_proof": {
+    "path": "evidence/S10b-matrix-final-2/matrix-PiF0ym/result.json",
+    "sha256": "b73e962390fe55df114b704903d0a65c75672686866a6c41d3b1b5409cb6a090",
+    "passed": false
+  },
+  "cause": "The government() browser helper JSON-stringified gov.data before Playwright serialization. JSON changes negative zero to positive zero. The expected native HTTP board preserved negative zero, so strict deep equality rejected government_seats after Continue in four institutional cases. Their complete native archive equality had already passed.",
+  "corrective_change": {
+    "path": "tools/ui/ci-government-country-matrix.cjs",
+    "before": "return page.evaluate(()=>JSON.parse(JSON.stringify(gov.data)));",
+    "after": "return page.evaluate(()=>gov.data);",
+    "sha256_after": "b2d457906498a10a21b58fa21639018b42c1fa8063317d2afc5888ed920c6f23",
+    "scope": "One test-helper line; no runtime changes and no field assertion removed."
+  },
+  "installed_playwright_source": [
+    {
+      "path": "tools/ui/node_modules/playwright-core/lib/utils/isomorphic/utilityScriptSerializers.js",
+      "sha256": "5dcac17c30fe7d83c7b279b4293dc624d42fb9cc269bd5e4187183e32f41508b",
+      "source_evidence": "Object.is(value, -0) gets a dedicated serialized value; value.v === \"-0\" is restored as -0."
+    },
+    {
+      "path": "tools/ui/node_modules/playwright-core/lib/protocol/serializers.js",
+      "sha256": "63c1855617a06cd971bf9e3eb1e6fc4d02665c4d870f348c4f2506f3a952a6fa",
+      "source_evidence": "Protocol serialization and parsing preserve the same dedicated negative-zero value."
+    }
+  ],
+  "failed_cases": [
+    {
+      "nation": "SouthAfrica",
+      "result": "evidence/S10b-matrix-final-2/matrix-PiF0ym/southafrica-vpWjBx/result.json",
+      "result_sha256": "1a00c44cc40bfc01954404a93bcbaa7b800792e1658206d003c9a82bddea83eb",
+      "failed_stage": "ordinary named Save Load and Continue",
+      "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  {\n    actions: [\n      {\n        affordable: true,\n        blurb: null,\n...\n    government_of_the_day_name: null,\n+   government_seats: 0,\n-   government_seats: -0,\n    groups: [\n      {\n        banned: false,\n        bloc: 'Western',\n        label: 'Western',\n\n    at C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:248:63\n    at async timed (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:147:84)\n    at async runCountry (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:238:5)\n    at async main (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:283:47)",
+      "actual_confirmed_command": [
+        {
+          "commands": [
+            {
+              "kind": "secure_pillar",
+              "pillar": "army"
+            }
+          ],
+          "review_token": "decision-v1-bc52df6dcdd9deb7",
+          "review_kind": "government",
+          "session_id": "4060-1789302405075250800-1",
+          "client_id": "79761a6a-eed0-430f-9cf6-ba00556e9e2b",
+          "request_seq": 1
+        }
+      ],
+      "whole_native_save_load_continue_equal": true,
+      "canonical_before": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-2\\matrix-PiF0ym\\southafrica-vpWjBx\\archive-audit\\019-s10b-after-action.canonical",
+        "bytes": 12116894,
+        "sha256": "91423c3ecfc83492ac8258325c8d0d50e1c37394bb94ca89e71fdfee23773904",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": []
+      },
+      "canonical_after": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-2\\matrix-PiF0ym\\southafrica-vpWjBx\\archive-audit\\020-s10b-after-load-continue.canonical",
+        "bytes": 12116894,
+        "sha256": "91423c3ecfc83492ac8258325c8d0d50e1c37394bb94ca89e71fdfee23773904",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": []
+      }
+    },
+    {
+      "nation": "Tonga",
+      "result": "evidence/S10b-matrix-final-2/matrix-PiF0ym/tonga-57JFZk/result.json",
+      "result_sha256": "8fcee017a305b268cbd5d318170edc311ace79aa8c172313453451e1880d2569",
+      "failed_stage": "ordinary named Save Load and Continue",
+      "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  {\n    actions: [\n      {\n        affordable: true,\n        blurb: null,\n...\n    government_of_the_day_name: null,\n+   government_seats: 0,\n-   government_seats: -0,\n    groups: [],\n    leader: {\n      also: [\n        {\n          name: \"Prince Fatafehi Tu'ipelehake\",\n\n    at C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:248:63\n    at async timed (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:147:84)\n    at async runCountry (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:238:5)\n    at async main (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:283:47)",
+      "actual_confirmed_command": [
+        {
+          "commands": [
+            {
+              "kind": "secure_pillar",
+              "pillar": "party"
+            }
+          ],
+          "review_token": "decision-v1-dc3b117d4e5026fe",
+          "review_kind": "government",
+          "session_id": "22400-1789302416517902900-1",
+          "client_id": "ed3a603d-af2a-4e43-ba16-9210a0fdb9a6",
+          "request_seq": 1
+        }
+      ],
+      "whole_native_save_load_continue_equal": true,
+      "canonical_before": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-2\\matrix-PiF0ym\\tonga-57JFZk\\archive-audit\\023-s10b-after-action.canonical",
+        "bytes": 12116884,
+        "sha256": "ce7a0903443791651eb36f8e7ecc263ce3ba59f50b917c2e70af70e6e6e06adc",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": []
+      },
+      "canonical_after": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-2\\matrix-PiF0ym\\tonga-57JFZk\\archive-audit\\024-s10b-after-load-continue.canonical",
+        "bytes": 12116884,
+        "sha256": "ce7a0903443791651eb36f8e7ecc263ce3ba59f50b917c2e70af70e6e6e06adc",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": []
+      }
+    },
+    {
+      "nation": "SaudiArabia",
+      "result": "evidence/S10b-matrix-final-2/matrix-PiF0ym/saudiarabia-JSCkSY/result.json",
+      "result_sha256": "2c24a388d8ac49fbffd0e9bf5c9948f5e721c85643bd261bb36c85c764298792",
+      "failed_stage": "ordinary named Save Load and Continue",
+      "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  {\n    actions: [\n      {\n        affordable: true,\n        blurb: null,\n...\n    government_of_the_day_name: null,\n+   government_seats: 0,\n-   government_seats: -0,\n    groups: [],\n    leader: {\n      also: [],\n      heir: {\n        name: 'Abdullah bin Abdulaziz Al Saud',\n\n    at C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:248:63\n    at async timed (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:147:84)\n    at async runCountry (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:238:5)\n    at async main (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:283:47)",
+      "actual_confirmed_command": [
+        {
+          "commands": [
+            {
+              "kind": "secure_pillar",
+              "pillar": "party"
+            }
+          ],
+          "review_token": "decision-v1-b6f027322b1ab5c3",
+          "review_kind": "government",
+          "session_id": "28784-1789302427491164900-1",
+          "client_id": "8938af63-0329-4d89-ae60-883cf16f059b",
+          "request_seq": 1
+        }
+      ],
+      "whole_native_save_load_continue_equal": true,
+      "canonical_before": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-2\\matrix-PiF0ym\\saudiarabia-JSCkSY\\archive-audit\\027-s10b-after-action.canonical",
+        "bytes": 12116889,
+        "sha256": "877266e362c70a9649b47aa5ff1f6445f8df6930315eda7cd3ee738d0c3f2b06",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": []
+      },
+      "canonical_after": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-2\\matrix-PiF0ym\\saudiarabia-JSCkSY\\archive-audit\\028-s10b-after-load-continue.canonical",
+        "bytes": 12116889,
+        "sha256": "877266e362c70a9649b47aa5ff1f6445f8df6930315eda7cd3ee738d0c3f2b06",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": []
+      }
+    },
+    {
+      "nation": "USSR",
+      "result": "evidence/S10b-matrix-final-2/matrix-PiF0ym/ussr-b58rCN/result.json",
+      "result_sha256": "e714019bc3a9d0af37b624cea5f642ebe6bce0c8362ba9d49378e23ae3f24db6",
+      "failed_stage": "ordinary named Save Load and Continue",
+      "failure": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  {\n    actions: [\n      {\n        affordable: true,\n        blurb: null,\n...\n    government_of_the_day_name: null,\n+   government_seats: 0,\n-   government_seats: -0,\n    groups: [\n      {\n        banned: false,\n        bloc: 'Western',\n        label: 'Western',\n\n    at C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:248:63\n    at async timed (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:147:84)\n    at async runCountry (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:238:5)\n    at async main (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\ci-government-country-matrix.cjs:283:47)",
+      "actual_confirmed_command": [
+        {
+          "commands": [
+            {
+              "kind": "secure_pillar",
+              "pillar": "army"
+            }
+          ],
+          "review_token": "decision-v1-2b52faae8d21aa73",
+          "review_kind": "government",
+          "session_id": "34424-1789302438209967600-1",
+          "client_id": "541a93e1-8f19-452d-857e-cce0edee79a8",
+          "request_seq": 1
+        }
+      ],
+      "whole_native_save_load_continue_equal": true,
+      "canonical_before": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-2\\matrix-PiF0ym\\ussr-b58rCN\\archive-audit\\031-s10b-after-action.canonical",
+        "bytes": 12116871,
+        "sha256": "cb748ff2168fbd2f9354a19cc840f9478f367dda345446586e66a401e9bf77bc",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": []
+      },
+      "canonical_after": {
+        "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-2\\matrix-PiF0ym\\ussr-b58rCN\\archive-audit\\032-s10b-after-load-continue.canonical",
+        "bytes": 12116871,
+        "sha256": "cb748ff2168fbd2f9354a19cc840f9478f367dda345446586e66a401e9bf77bc",
+        "format": "s08-typed-canonical-world-v1-js-f64",
+        "ignored_paths": []
+      }
+    }
+  ],
+  "validation": "Read-only evidence and installed-serializer source inspection. No new browser, build or runtime test executed by this reviewer. Corrected full journey remains pending final-3.",
+  "preservation": "Original second-attempt result files, archives and screenshots were not modified."
+}

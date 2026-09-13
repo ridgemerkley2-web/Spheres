@@ -252,13 +252,14 @@
         },
         {
           "id": "S10.b",
-          "status": "in_progress",
-          "title": "Source-backed country discovery and government startup matrix"
+          "status": "complete",
+          "title": "Source-backed country discovery and government startup matrix",
+          "evidence": "docs/campaign-certification/S10/b/manifest.json"
         }
       ],
       "remaining": [
-        "Complete the C01 organization and institution census prerequisite.",
-        "Finish the remaining S10 country/platform qualification before claiming G2."
+        "Complete C01 all-organization censuses, dated leadership histories and jurisdiction reconciliation; the new observations are partial.",
+        "Reconcile sourced country leadership and succession coverage with S10 acceptance before claiming G2."
       ]
     },
     {
@@ -802,11 +803,11 @@
   "execution": {
     "authorized_through": "S10",
     "stop_boundary": "S10.b",
-    "status": "running",
+    "status": "stopped",
     "previous_stop": "S10.a",
     "instruction": "Next",
     "instruction_date": "2026-09-13",
-    "next_session_requires_instruction": false
+    "next_session_requires_instruction": true
   },
   "gate_decisions": {
     "G1": {

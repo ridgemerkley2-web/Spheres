@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "input": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-3\\matrix-9PP1H5\\southafrica-haK77a\\server\\audit-captures\\s10b-after-load-continue-RIoiM1\\s10b-after-load-continue.json",
+    "bytes": 13149402,
+    "sha256": "de6f029520caa0668460cbc24b9df261c5be044e79f8b41edd0a8a5c10d56b61"
+  },
+  "requested": {
+    "buyer": "SouthAfrica",
+    "revision": null,
+    "seller": null,
+    "company": null,
+    "product": null
+  },
+  "buyer": {
+    "id": "SouthAfrica",
+    "tech_sha256": "e1d44ef49c3d27fe2a1f11467c314acb3f682132749654529e668f12f6c48bb6",
+    "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+    "revision_ids": [],
+    "held_by_revision": {},
+    "held_units": 0,
+    "buyer_revision": null,
+    "maintenance_plan": null,
+    "program_budget": null
+  },
+  "supplier": null,
+  "imports": {
+    "ids": [],
+    "matching": []
+  },
+  "canonical": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10b-matrix-final-3\\matrix-9PP1H5\\southafrica-haK77a\\archive-audit\\020-s10b-after-load-continue.canonical",
+    "bytes": 12116894,
+    "sha256": "91423c3ecfc83492ac8258325c8d0d50e1c37394bb94ca89e71fdfee23773904",
+    "format": "s08-typed-canonical-world-v1-js-f64",
+    "ignored_paths": []
+  }
+}

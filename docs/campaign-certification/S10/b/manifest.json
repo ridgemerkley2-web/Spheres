@@ -1,0 +1,52 @@
+{
+  "format": "spheres-s10b-increment/v1",
+  "status": "increment_complete_parent_open",
+  "completed_utc": "2026-09-13T12:36:10.932713+00:00",
+  "runtime_revision": "7aaa4517fbcc1c256481c2eefc5ef5e1c4153303",
+  "research_and_linux_revision": "4643bd97d01864bf6e28c29592088e2daa735052",
+  "browser_driver_revision": "871c7eb3fffd76cfa6c077bd22cd365100a6c478",
+  "publication_parent_revision": "871c7eb3fffd76cfa6c077bd22cd365100a6c478",
+  "complete_runtime_source_equal": true,
+  "runtime_or_roster_changed": false,
+  "c01_complete": false,
+  "s10_complete": false,
+  "g2_earned": false,
+  "s11_started": false,
+  "research_counts": {
+    "country_packets": 3,
+    "countries_without_new_discovery_packet": 157,
+    "organization_observations": 584,
+    "institution_observations": 11,
+    "sources": 26,
+    "source_claims": 615,
+    "discovery_batches": 61,
+    "exhaustive_country_censuses": 0
+  },
+  "research_index_sha256": "0290465d3e99a4ff8a8864791efb7de5c4663c1ef4e60cfc024962399bc083d2",
+  "qualification": {
+    "linux_native": {
+      "passed": 1625,
+      "failed": 0,
+      "ignored": 80,
+      "completed_targets": 66
+    },
+    "linux_checks_passed": 9,
+    "intake_tests": 16,
+    "browser_country_cases": 8,
+    "browser_elapsed_days": 0,
+    "browser_binary_sha256": "c7eef9f281e7009aac73c722413fcab7587277e77124b9ba56d8ed121b077878",
+    "windows_runtime_evidence": "../manifest.json",
+    "preservation": true
+  },
+  "evidence": {
+    "inventory": "evidence/inventory.json",
+    "inventory_sha256": "58c4bbca74effa484ef671c8b544670b7f8c92b5ea3ab84424c62b22af4ee92d",
+    "logical_files": 431,
+    "stored_bytes": 268543474
+  },
+  "remaining": [
+    "Complete C01 all-organization censuses, dated leadership histories and jurisdiction reconciliation; the new observations are partial.",
+    "Reconcile sourced country leadership and succession coverage with S10 acceptance before claiming G2.",
+    "Improve narrow review table presentation: After values require the internal horizontal scroller."
+  ]
+}

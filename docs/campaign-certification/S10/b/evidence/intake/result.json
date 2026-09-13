@@ -1,0 +1,73 @@
+{
+  "revision": "4643bd97d01864bf6e28c29592088e2daa735052",
+  "runner_sha256": "56d7344074270051381efe64a5856e5ed74ca5f58185854697410a62b8719c41",
+  "started_utc": "2026-09-13T12:14:58.146651+00:00",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign*.py"
+      ],
+      "exit_code": 0,
+      "log": "check-1.log",
+      "log_sha256": "f2dadcc1cb3ba2c706f707e4a5a91065257921193edf609f71829fea5e69ceef"
+    },
+    {
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "check-2.log",
+      "log_sha256": "349616b5aebbc6a303563d4a0e55c34ba17f396eb79585bbe22ecd537d0bbf02"
+    },
+    {
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/avatars/import_cnccfp_census.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "check-3.log",
+      "log_sha256": "b05c32b4dd353074947aefbca8b07b935b8e02f737a3c4b22b46fd3e288cb93c"
+    },
+    {
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "check-4.log",
+      "log_sha256": "282a59150628ef6671fb5ba404ad8da025bf1d41312180e6bc5dc9fda41f22b7"
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "tools/ui/ci-government-country-matrix.cjs"
+      ],
+      "exit_code": 0,
+      "log": "check-5.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "finished_utc": "2026-09-13T12:14:59.482168+00:00",
+  "clean_after": true,
+  "passed": true
+}

@@ -1,0 +1,208 @@
+{
+  "schema": "s10b-visual-review-v1",
+  "reviewed": true,
+  "reviewed_utc": "2026-09-13T12:35:09.834499+00:00",
+  "method": "Read-only visual inspection of the listed final-3 screenshots with view_image; small proof and screenshot hashes checked. No additional browser run or runtime modification.",
+  "runtime_revision": "7aaa4517fbcc1c256481c2eefc5ef5e1c4153303",
+  "binary_sha256": "c7eef9f281e7009aac73c722413fcab7587277e77124b9ba56d8ed121b077878",
+  "driver_revision": "871c7eb3fffd76cfa6c077bd22cd365100a6c478",
+  "driver_sha256": "b2d457906498a10a21b58fa21639018b42c1fa8063317d2afc5888ed920c6f23",
+  "complete_runtime_source_equal": true,
+  "outer_matrix": {
+    "path": "evidence/S10b-matrix-driver-final-3.json",
+    "sha256": "187629b445e12cb6fb582b8e700947b361f871833cad28b91ec9f30ed4710d13",
+    "bytes": 950,
+    "passed": true,
+    "clean_after": true,
+    "exit_code": 0
+  },
+  "inner_matrix": {
+    "path": "evidence/S10b-matrix-final-3/matrix-9PP1H5/result.json",
+    "sha256": "1f4fe9e42c7f02b4b17814526237710ab41ef292a19d52d831be69ac18757d24",
+    "bytes": 3996,
+    "passed": true,
+    "full_eight_country_matrix": true,
+    "browser_version": "152.0.7977.83"
+  },
+  "functional_evidence_scope": "S10.b ordinary Jan-1990 startup matrix; zero elapsed days; not G2, a long-run campaign or a Russia birth test",
+  "functional_case_results": [
+    {
+      "nation": "France",
+      "passed": true,
+      "result": {
+        "path": "evidence/S10b-matrix-final-3/matrix-9PP1H5/france-Z6Ukjw/result.json",
+        "sha256": "d5329c8c72392d9d5088bed108983d0593a3f6cb6e424399776b42375d9b49cf",
+        "bytes": 891782
+      }
+    },
+    {
+      "nation": "Japan",
+      "passed": true,
+      "result": {
+        "path": "evidence/S10b-matrix-final-3/matrix-9PP1H5/japan-EfWX9O/result.json",
+        "sha256": "fd4ad6998383f79a725f4129d94b062871ea19af9042e89c79b1dc1dde38f9a8",
+        "bytes": 527150
+      }
+    },
+    {
+      "nation": "India",
+      "passed": true,
+      "result": {
+        "path": "evidence/S10b-matrix-final-3/matrix-9PP1H5/india-Zon6GA/result.json",
+        "sha256": "5e34beec5bf769e582ef968faff3a7bd90567afecee5c4f7f5805dbdf874c68e",
+        "bytes": 333125
+      }
+    },
+    {
+      "nation": "Brazil",
+      "passed": true,
+      "result": {
+        "path": "evidence/S10b-matrix-final-3/matrix-9PP1H5/brazil-32SXnu/result.json",
+        "sha256": "016537a5c89cb8008715bdc35f91fcf3fc828db193d2c0d66b7072936264cdab",
+        "bytes": 405194
+      }
+    },
+    {
+      "nation": "SouthAfrica",
+      "passed": true,
+      "result": {
+        "path": "evidence/S10b-matrix-final-3/matrix-9PP1H5/southafrica-haK77a/result.json",
+        "sha256": "57e78c349d6849446b866a5c172e9045e19196ab3e69f89d8f83a34382fed994",
+        "bytes": 485141
+      }
+    },
+    {
+      "nation": "Tonga",
+      "passed": true,
+      "result": {
+        "path": "evidence/S10b-matrix-final-3/matrix-9PP1H5/tonga-kbJtjt/result.json",
+        "sha256": "c9fee611bc2e024dbbebdd9a8ee145d0e8dcb0c0e33b0a6537e8ec273ea2553f",
+        "bytes": 74653
+      }
+    },
+    {
+      "nation": "SaudiArabia",
+      "passed": true,
+      "result": {
+        "path": "evidence/S10b-matrix-final-3/matrix-9PP1H5/saudiarabia-FTl1tj/result.json",
+        "sha256": "cafefdd6067dd29f0547becd71b0a676e1ec0b16c13b9052b0ddbb8db7f4f7de",
+        "bytes": 76967
+      }
+    },
+    {
+      "nation": "USSR",
+      "passed": true,
+      "result": {
+        "path": "evidence/S10b-matrix-final-3/matrix-9PP1H5/ussr-aqyPY6/result.json",
+        "sha256": "7cfa0912993f68fac7580f0bed1641031466228ab9582496e6651d24412f86b6",
+        "bytes": 196797
+      }
+    }
+  ],
+  "visual_scope": "Seven representative captures from Japan, Tonga and Saudi Arabia at desktop and narrow widths, including actual results and resumed narrow overviews. Functional all-eight success comes from the separately hashed native/browser proofs, not from visual inspection of every country.",
+  "screenshots": [
+    {
+      "nation": "Japan",
+      "path": "evidence/S10b-matrix-final-3/matrix-9PP1H5/japan-EfWX9O/overview-desktop.png",
+      "sha256": "b7d28b03ecf538806d99cef7e29995f57956c7c0847d02b175e6a3099e3828b2",
+      "bytes": 766737,
+      "width": 1440,
+      "height": 1000,
+      "visually_inspected": true,
+      "observations": [
+        "Country, 1 January 1990 date, Toshiki Kaifu and Prime Minister are readable above the actions.",
+        "Artwork, government metrics and the visible illustrated leadership portrait are present; major action labels are readable.",
+        "A temporary map-help toast sits above the page; it does not obscure the hero actions in this capture."
+      ]
+    },
+    {
+      "nation": "Japan",
+      "path": "evidence/S10b-matrix-final-3/matrix-9PP1H5/japan-EfWX9O/review-narrow.png",
+      "sha256": "7f2063034b37cdac2bdf966ec9d66871c6b21fcfc7b34b51648a7b72101e00e4",
+      "bytes": 93692,
+      "width": 390,
+      "height": 844,
+      "visually_inspected": true,
+      "observations": [
+        "The visible 17.92 PC and zero-dollar costs and Close review label are readable.",
+        "The effect table shows Measure and Before; After is outside this narrow captured viewport in the horizontal table region. Cabinet text wraps into short fragments.",
+        "Tabs truncate later labels and a temporary map-help toast overlaps the top region. This screenshot does not establish polished mobile navigation or scrolling."
+      ]
+    },
+    {
+      "nation": "Tonga",
+      "path": "evidence/S10b-matrix-final-3/matrix-9PP1H5/tonga-kbJtjt/overview-desktop.png",
+      "sha256": "d7729ee5b56daf33907f16659293bbe93cc22e1c9ea63015411c3ed49856ac94",
+      "bytes": 740146,
+      "width": 1440,
+      "height": 1000,
+      "visually_inspected": true,
+      "observations": [
+        "Tonga, Taufa'ahau Tupou IV, King, both primary actions and six government metrics are readable over the chamber artwork.",
+        "The visible leadership portrait area contains a TT placeholder rather than an illustrated avatar. This is an outstanding artwork coverage limitation."
+      ]
+    },
+    {
+      "nation": "Tonga",
+      "path": "evidence/S10b-matrix-final-3/matrix-9PP1H5/tonga-kbJtjt/result-desktop.png",
+      "sha256": "a6b3c98aca57f50a2cdd1927d93d9080998b08b187d45a86feb74636217329bf",
+      "bytes": 215510,
+      "width": 1440,
+      "height": 1000,
+      "visually_inspected": true,
+      "observations": [
+        "The completed Secure the thirty-three hereditary nobles toast is visible; institution names, 14 PC prices, Review decision controls and search/filter labels are readable.",
+        "The inline completed-result notice sits partly beneath the sticky tab region. Lower reform cards continue below the captured viewport."
+      ]
+    },
+    {
+      "nation": "Tonga",
+      "path": "evidence/S10b-matrix-final-3/matrix-9PP1H5/tonga-kbJtjt/continued-overview-narrow.png",
+      "sha256": "28b577af1b09342bb8a09e345707d71e366ab069453737e4647dea574e74dd24",
+      "bytes": 176889,
+      "width": 390,
+      "height": 844,
+      "visually_inspected": true,
+      "observations": [
+        "After Continue, Tonga, 1 January 1990, Taufa'ahau Tupou IV, King and both primary actions are readable.",
+        "The two-column metrics show political capital 37.3 and stability 68.0 with readable explanations; subsequent metric cards continue below the viewport.",
+        "The later Regime and institutions tab is horizontally clipped. Further scrolling, keyboard interaction and below-fold portrait rendering were not separately inspected."
+      ]
+    },
+    {
+      "nation": "SaudiArabia",
+      "path": "evidence/S10b-matrix-final-3/matrix-9PP1H5/saudiarabia-FTl1tj/result-desktop.png",
+      "sha256": "c564fc57bd90303e3d21a4b290383aef5b057d35e6d62770ae7ad20dcf67254d",
+      "bytes": 243475,
+      "width": 1440,
+      "height": 1000,
+      "visually_inspected": true,
+      "observations": [
+        "The Secure the Al Saud family council done toast and inline completion text are present. Institution cards show the family council, ulema, National Guard and merchant houses with readable 14 PC and Review decision labels.",
+        "The inline completion notice meets the sticky tab edge; lower reform cards extend below the viewport."
+      ]
+    },
+    {
+      "nation": "SaudiArabia",
+      "path": "evidence/S10b-matrix-final-3/matrix-9PP1H5/saudiarabia-FTl1tj/continued-overview-narrow.png",
+      "sha256": "17bb5ae453db779a4b86706b245144eed5237487487339dcd50068f7b8ffd40d",
+      "bytes": 179734,
+      "width": 390,
+      "height": 844,
+      "visually_inspected": true,
+      "observations": [
+        "After Continue, Saudi Arabia, 1 January 1990, Fahd bin Abdulaziz Al Saud and King and Prime Minister are fully readable.",
+        "Both primary controls and the visible political capital 41.6 and stability 66.0 cards fit the narrow layout; following metrics extend below the viewport.",
+        "The next Regime and institutions tab is horizontally clipped. This capture alone does not qualify mobile scrolling, every tab, or below-fold portrait artwork."
+      ]
+    }
+  ],
+  "limitations": [
+    "This is the ordinary fresh January 1990 zero-elapsed-day startup matrix, not G2 certification, a long-run campaign, Russia activation, or exhaustive historical accuracy/artwork acceptance.",
+    "Narrow tabs and the review table require horizontal access to content beyond the visible viewport; cabinet labels wrap awkwardly. Scrolling and keyboard/accessibility behavior were not independently retested in this read-only review.",
+    "Temporary map-help and success notices remain in some captures; the result notice is close to or partly beneath sticky navigation.",
+    "Tonga still shows a TT portrait placeholder in the inspected desktop overview. This review does not claim complete avatar coverage or polished mobile/art acceptance.",
+    "The first two matrix failures and their diagnoses remain preserved. Their institutional-reading and negative-zero extraction issues were test-driver corrections; this record does not claim a new production runtime fix."
+  ],
+  "conclusion": "The representative final-run screens expose readable country, leader, action and current government information. The complete eight-country functional matrix passed on the unchanged runtime, with the visual limitations above retained for future work."
+}
