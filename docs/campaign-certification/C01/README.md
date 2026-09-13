@@ -10,9 +10,21 @@ S10.d adds a bounded [Japan discovery packet](research/japan.json): 16 submitted
 lists in the July 2025 proportional election and seven separately identified
 House parliamentary groups in February 2026. Four party offices have five dated
 holder observations. These do not establish continuous terms, group-to-party
-mappings or new game candidates. The discovery index now totals four country
-packets, 660 organization and 18 institution observations, 38 sources, 1,344
-claims and 70 work batches. No exhaustive country census is closed.
+mappings or new game candidates.
+
+S10.e adds a bounded [India discovery packet](research/india.json): 82 dated
+recognition observations from ECI notifications of 23 March 2024, officially
+republished in the Kerala Gazette on 28 March 2024. These comprise six national
+rows and 76 state-jurisdiction rows across 26 jurisdictions. They are not 82
+distinct parties or people. Repeated names across states remain separate until
+identity reconciliation; frozen-name and pending-court-order qualifications and
+the source's skipped Kerala row number are retained. Recognition attestation
+does not establish a party's lifespan or present status. This packet adds no
+leader, term, game mapping or avatar.
+
+The discovery index now totals five country packets, 742 organization and 18
+institution observations, 40 sources, 1,426 claims and 79 work batches. No
+exhaustive country census is closed; the research cutoff remains unchanged.
 
 **Partial inventory recorded; C01 remains incomplete.** This is a reproducible
 prerequisite audit for S10, originally recorded at

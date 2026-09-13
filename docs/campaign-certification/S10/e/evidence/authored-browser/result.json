@@ -1,0 +1,37 @@
+{
+  "revision": "99b0b9d4a46a98a2c0cf7886583fe13e568dda64",
+  "driver_revision": "99b0b9d4a46a98a2c0cf7886583fe13e568dda64",
+  "started_utc": "2026-09-13T23:24:00.141536+00:00",
+  "runner_sha256": "b79d87d7035e5ca235206ae6baf9269960cc695239233202faf112988507d0ed",
+  "checks": [
+    {
+      "name": "export",
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+        "s10e_commitment_fixture_tests::s10e_export_disposable_diplomatic_commitment_fixture",
+        "--exact",
+        "--ignored",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "exit_code": 0,
+      "log": "export.log",
+      "log_sha256": "be50ac97a12b1c6c22e9cb51622a0e348541e461c900fda52a864b72949620e2"
+    },
+    {
+      "name": "browser",
+      "command": [
+        "node",
+        "tools/ui/ci-diplomatic-commitments.cjs"
+      ],
+      "exit_code": 0,
+      "log": "browser.log",
+      "log_sha256": "42053e046c7bf433089aa4a81a48f5d9527972a7616715080334288e5f56c7f7"
+    }
+  ],
+  "clean_after": true,
+  "driver_revision_after": "99b0b9d4a46a98a2c0cf7886583fe13e568dda64",
+  "binary_sha256_after": "1e21bcdc78eaf39372a3b50fefbfc7c1a8c6d5e1b4d78aa07942fa3089ebeda1",
+  "passed": true,
+  "finished_utc": "2026-09-13T23:24:36.773238+00:00"
+}

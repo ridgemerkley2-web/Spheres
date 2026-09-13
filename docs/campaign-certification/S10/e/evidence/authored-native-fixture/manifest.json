@@ -1,0 +1,955 @@
+{
+  "after_agency": {
+    "automatic_bank": true,
+    "break_peg_pc": 12.0,
+    "commitments": {
+      "conflicts": [
+        {
+          "allies": [
+            {
+              "alive": true,
+              "id": "Kuwait",
+              "name": "Kuwait"
+            },
+            {
+              "alive": true,
+              "id": "SaudiArabia",
+              "name": "Saudi Arabia"
+            },
+            {
+              "alive": true,
+              "id": "France",
+              "name": "France"
+            }
+          ],
+          "conflict_id": 1,
+          "opponents": [
+            {
+              "alive": true,
+              "id": "Iraq",
+              "name": "Iraq"
+            },
+            {
+              "alive": true,
+              "id": "Jordan",
+              "name": "Jordan"
+            }
+          ],
+          "rung": 2,
+          "rung_name": "sanctions",
+          "shooting": false,
+          "shooting_label": "Below the shooting threshold",
+          "side": "defending",
+          "side_label": "Defending coalition",
+          "started": "1990-01",
+          "theatre": "the Gulf"
+        }
+      ],
+      "defense_pacts": [
+        {
+          "partner": "Brazil",
+          "partner_name": "Brazil",
+          "pending_offer_ids": [],
+          "relationship": 98.0,
+          "since": "1985-06",
+          "status": "in_force",
+          "status_label": "Saved defense pact",
+          "upkeep": {
+            "annual_bn": 3.81,
+            "annual_label": "$3.810bn",
+            "annual_share": 0.003,
+            "cadence": "daily",
+            "count": 1,
+            "next_step_bn": 0.010241935483870968,
+            "next_step_label": "$10.242m per day at today's conditions",
+            "note": "Estimate at today's GDP and current simulation cadence, per signatory. Future GDP, diplomacy and the settlement order can change the bill. This view makes no payment."
+          },
+          "warnings": []
+        },
+        {
+          "partner": "Kuwait",
+          "partner_name": "Kuwait",
+          "pending_offer_ids": [],
+          "relationship": 100.0,
+          "since": "1990-01",
+          "status": "in_force",
+          "status_label": "Saved defense pact",
+          "upkeep": {
+            "annual_bn": 3.81,
+            "annual_label": "$3.810bn",
+            "annual_share": 0.003,
+            "cadence": "daily",
+            "count": 1,
+            "next_step_bn": 0.010241935483870968,
+            "next_step_label": "$10.242m per day at today's conditions",
+            "note": "Estimate at today's GDP and current simulation cadence, per signatory. Future GDP, diplomacy and the settlement order can change the bill. This view makes no payment."
+          },
+          "warnings": []
+        }
+      ],
+      "note": "These are the campaign's saved commitments. Opening this overview neither signs nor cancels an agreement. Calls to arms still follow their own deadline and standing response policy.",
+      "trade_agreements": [
+        {
+          "dependency": 0.3026077097505669,
+          "depth": 0.425,
+          "partner": "Japan",
+          "partner_dependency": 0.12239229024943311,
+          "partner_name": "Japan",
+          "status": "in_force",
+          "status_label": "Saved trade agreement",
+          "warnings": [
+            "Overall dependency also includes supply contracts and delivered goods; it is not solely caused by this treaty."
+          ]
+        }
+      ],
+      "upkeep": {
+        "annual_bn": 7.62,
+        "annual_label": "$7.620bn",
+        "annual_share": 0.006,
+        "cadence": "daily",
+        "count": 2,
+        "next_step_bn": 0.020483870967741936,
+        "next_step_label": "$20.484m per day at today's conditions",
+        "note": "Estimate at today's GDP and current simulation cadence, per signatory. Future GDP, diplomacy and the settlement order can change the bill. This view makes no payment."
+      }
+    },
+    "expiry_rule": "New requests follow the visible standing policy. Review is the default. Reply before the stated date: the reply window closes when that date begins. A still-applicable unanswered request expires as a decline; changed circumstances can close it instead. Existing requests are not automatically answered by a policy change.",
+    "history": [
+      {
+        "date_label": "1990-01-01",
+        "from_name": "Kuwait",
+        "offer": {
+          "expires_day": 7,
+          "from": "Kuwait",
+          "id": 2,
+          "issued_day": 0,
+          "kind": {
+            "attacker": "Iraq",
+            "conflict": 1,
+            "guaranteed": true,
+            "kind": "call_to_arms",
+            "month": 1,
+            "rung": 2,
+            "year": 1990
+          },
+          "to": "France"
+        },
+        "outcome": "accepted",
+        "resolved_day": 0,
+        "title": "Call to arms"
+      }
+    ],
+    "monetary": {
+      "kind": "floating"
+    },
+    "offers": [
+      {
+        "accept_blocked": null,
+        "consequence": "Opens market integration and long-term dependency. Ending the treaty later can damage both economies.",
+        "days_remaining": 30,
+        "expires": "1990-01-31",
+        "from": "India",
+        "from_name": "India",
+        "id": 1,
+        "title": "a trade treaty"
+      }
+    ],
+    "policy": {
+      "calls_to_arms": "review",
+      "defense_pacts": "review",
+      "trade_treaties": "review"
+    }
+  },
+  "after_conflict": {
+    "control": 0.0,
+    "frozen_since": null,
+    "id": 1,
+    "invasion_declared": false,
+    "months": 0,
+    "origin_attacker": "Iraq",
+    "posture": [
+      {
+        "ceiling": 9,
+        "months_at_rung": 0,
+        "nation": "Iraq",
+        "objective": "Deny",
+        "red_line": 0.0,
+        "resolve": 1.0,
+        "roe": "Standard",
+        "rung": 1,
+        "stake": 0.2
+      },
+      {
+        "ceiling": 9,
+        "months_at_rung": 0,
+        "nation": "Kuwait",
+        "objective": "Hold",
+        "red_line": 0.0,
+        "resolve": 1.0,
+        "roe": "Standard",
+        "rung": 1,
+        "stake": 1.0
+      },
+      {
+        "ceiling": 9,
+        "months_at_rung": 0,
+        "nation": "Jordan",
+        "objective": "Deny",
+        "red_line": 0.0,
+        "resolve": 1.0,
+        "roe": "Standard",
+        "rung": 2,
+        "stake": 0.2
+      },
+      {
+        "ceiling": 9,
+        "months_at_rung": 0,
+        "nation": "SaudiArabia",
+        "objective": "Deny",
+        "red_line": 0.0,
+        "resolve": 1.0,
+        "roe": "Standard",
+        "rung": 2,
+        "stake": 0.2
+      },
+      {
+        "ceiling": 9,
+        "months_at_rung": 0,
+        "nation": "France",
+        "objective": "Deny",
+        "red_line": 0.0,
+        "resolve": 1.0,
+        "roe": "Standard",
+        "rung": 2,
+        "stake": 0.2
+      }
+    ],
+    "quiet_months": 0,
+    "side_a": [
+      "Iraq",
+      "Jordan"
+    ],
+    "side_b": [
+      "Kuwait",
+      "SaudiArabia",
+      "France"
+    ],
+    "start_month": 1,
+    "start_year": 1990,
+    "theatre": "Gulf"
+  },
+  "after_date": "1 Jan 1990",
+  "after_dispatch_count": 1,
+  "after_log": [
+    {
+      "cat": "war",
+      "date": "1 Jan 1990",
+      "t": 0,
+      "tags": [
+        "France",
+        "Kuwait"
+      ],
+      "text": "France accepts Kuwait's call and enters the war at rung 2."
+    }
+  ],
+  "authored_preconditions": [
+    "Integrated fresh France, seed 13",
+    "All starting defense pacts, trade agreements, sanctions and conflicts cleared",
+    "France political capital set to 100; relations with Japan, Brazil, Kuwait and India set to 98",
+    "France-Kuwait pact dated January 1990 and France-Brazil pact dated June 1985 authored",
+    "France-Japan trade integration authored at 0.425",
+    "Jordan authored on Iraq's side and Saudi Arabia on Kuwait's side, both at rung 2"
+  ],
+  "before_agency": {
+    "automatic_bank": true,
+    "break_peg_pc": 12.0,
+    "commitments": {
+      "conflicts": [],
+      "defense_pacts": [
+        {
+          "partner": "Brazil",
+          "partner_name": "Brazil",
+          "pending_offer_ids": [],
+          "relationship": 98.0,
+          "since": "1985-06",
+          "status": "in_force",
+          "status_label": "Saved defense pact",
+          "upkeep": {
+            "annual_bn": 3.81,
+            "annual_label": "$3.810bn",
+            "annual_share": 0.003,
+            "cadence": "daily",
+            "count": 1,
+            "next_step_bn": 0.010241935483870968,
+            "next_step_label": "$10.242m per day at today's conditions",
+            "note": "Estimate at today's GDP and current simulation cadence, per signatory. Future GDP, diplomacy and the settlement order can change the bill. This view makes no payment."
+          },
+          "warnings": []
+        },
+        {
+          "partner": "Kuwait",
+          "partner_name": "Kuwait",
+          "pending_offer_ids": [
+            2
+          ],
+          "relationship": 98.0,
+          "since": "1990-01",
+          "status": "in_force",
+          "status_label": "Saved defense pact",
+          "upkeep": {
+            "annual_bn": 3.81,
+            "annual_label": "$3.810bn",
+            "annual_share": 0.003,
+            "cadence": "daily",
+            "count": 1,
+            "next_step_bn": 0.010241935483870968,
+            "next_step_label": "$10.242m per day at today's conditions",
+            "note": "Estimate at today's GDP and current simulation cadence, per signatory. Future GDP, diplomacy and the settlement order can change the bill. This view makes no payment."
+          },
+          "warnings": []
+        }
+      ],
+      "note": "These are the campaign's saved commitments. Opening this overview neither signs nor cancels an agreement. Calls to arms still follow their own deadline and standing response policy.",
+      "trade_agreements": [
+        {
+          "dependency": 0.3026077097505669,
+          "depth": 0.425,
+          "partner": "Japan",
+          "partner_dependency": 0.12239229024943311,
+          "partner_name": "Japan",
+          "status": "in_force",
+          "status_label": "Saved trade agreement",
+          "warnings": [
+            "Overall dependency also includes supply contracts and delivered goods; it is not solely caused by this treaty."
+          ]
+        }
+      ],
+      "upkeep": {
+        "annual_bn": 7.62,
+        "annual_label": "$7.620bn",
+        "annual_share": 0.006,
+        "cadence": "daily",
+        "count": 2,
+        "next_step_bn": 0.020483870967741936,
+        "next_step_label": "$20.484m per day at today's conditions",
+        "note": "Estimate at today's GDP and current simulation cadence, per signatory. Future GDP, diplomacy and the settlement order can change the bill. This view makes no payment."
+      }
+    },
+    "expiry_rule": "New requests follow the visible standing policy. Review is the default. Reply before the stated date: the reply window closes when that date begins. A still-applicable unanswered request expires as a decline; changed circumstances can close it instead. Existing requests are not automatically answered by a policy change.",
+    "history": [],
+    "monetary": {
+      "kind": "floating"
+    },
+    "offers": [
+      {
+        "accept_blocked": null,
+        "consequence": "Opens market integration and long-term dependency. Ending the treaty later can damage both economies.",
+        "days_remaining": 30,
+        "expires": "1990-01-31",
+        "from": "India",
+        "from_name": "India",
+        "id": 1,
+        "title": "a trade treaty"
+      },
+      {
+        "accept_blocked": null,
+        "consequence": "Accept: enter the defending side at rung 2, subject to normal access, nuclear and sphere rules. Decline or expiry can end the pact and reduce reputation and relations if the guarantee still applies. Review the exact current effects before responding.",
+        "days_remaining": 7,
+        "expires": "1990-01-08",
+        "from": "Kuwait",
+        "from_name": "Kuwait",
+        "id": 2,
+        "title": "a call to honor its defense pact"
+      }
+    ],
+    "policy": {
+      "calls_to_arms": "review",
+      "defense_pacts": "review",
+      "trade_treaties": "review"
+    }
+  },
+  "before_conflict": {
+    "control": 0.0,
+    "frozen_since": null,
+    "id": 1,
+    "invasion_declared": false,
+    "months": 0,
+    "origin_attacker": "Iraq",
+    "posture": [
+      {
+        "ceiling": 9,
+        "months_at_rung": 0,
+        "nation": "Iraq",
+        "objective": "Deny",
+        "red_line": 0.0,
+        "resolve": 1.0,
+        "roe": "Standard",
+        "rung": 1,
+        "stake": 0.2
+      },
+      {
+        "ceiling": 9,
+        "months_at_rung": 0,
+        "nation": "Kuwait",
+        "objective": "Hold",
+        "red_line": 0.0,
+        "resolve": 1.0,
+        "roe": "Standard",
+        "rung": 1,
+        "stake": 1.0
+      },
+      {
+        "ceiling": 9,
+        "months_at_rung": 0,
+        "nation": "Jordan",
+        "objective": "Deny",
+        "red_line": 0.0,
+        "resolve": 1.0,
+        "roe": "Standard",
+        "rung": 2,
+        "stake": 0.2
+      },
+      {
+        "ceiling": 9,
+        "months_at_rung": 0,
+        "nation": "SaudiArabia",
+        "objective": "Deny",
+        "red_line": 0.0,
+        "resolve": 1.0,
+        "roe": "Standard",
+        "rung": 2,
+        "stake": 0.2
+      }
+    ],
+    "quiet_months": 0,
+    "side_a": [
+      "Iraq",
+      "Jordan"
+    ],
+    "side_b": [
+      "Kuwait",
+      "SaudiArabia"
+    ],
+    "start_month": 1,
+    "start_year": 1990,
+    "theatre": "Gulf"
+  },
+  "before_dispatch_count": 0,
+  "before_file": "before.json",
+  "before_log": [],
+  "command": {
+    "accept": true,
+    "kind": "respond_diplomacy",
+    "offer": 2
+  },
+  "compiled_revision": "99b0b9d4a46a",
+  "conflict_id": 1,
+  "date": "1 Jan 1990",
+  "day_agency": {
+    "automatic_bank": true,
+    "break_peg_pc": 12.0,
+    "commitments": {
+      "conflicts": [
+        {
+          "allies": [
+            {
+              "alive": true,
+              "id": "Kuwait",
+              "name": "Kuwait"
+            },
+            {
+              "alive": true,
+              "id": "SaudiArabia",
+              "name": "Saudi Arabia"
+            },
+            {
+              "alive": true,
+              "id": "France",
+              "name": "France"
+            }
+          ],
+          "conflict_id": 1,
+          "opponents": [
+            {
+              "alive": true,
+              "id": "Iraq",
+              "name": "Iraq"
+            },
+            {
+              "alive": true,
+              "id": "Jordan",
+              "name": "Jordan"
+            }
+          ],
+          "rung": 2,
+          "rung_name": "sanctions",
+          "shooting": false,
+          "shooting_label": "Below the shooting threshold",
+          "side": "defending",
+          "side_label": "Defending coalition",
+          "started": "1990-01",
+          "theatre": "the Gulf"
+        }
+      ],
+      "defense_pacts": [
+        {
+          "partner": "Brazil",
+          "partner_name": "Brazil",
+          "pending_offer_ids": [],
+          "relationship": 98.0,
+          "since": "1985-06",
+          "status": "in_force",
+          "status_label": "Saved defense pact",
+          "upkeep": {
+            "annual_bn": 3.809956365870123,
+            "annual_label": "$3.810bn",
+            "annual_share": 0.003,
+            "cadence": "daily",
+            "count": 1,
+            "next_step_bn": 0.010241818187822911,
+            "next_step_label": "$10.242m per day at today's conditions",
+            "note": "Estimate at today's GDP and current simulation cadence, per signatory. Future GDP, diplomacy and the settlement order can change the bill. This view makes no payment."
+          },
+          "warnings": []
+        },
+        {
+          "partner": "Kuwait",
+          "partner_name": "Kuwait",
+          "pending_offer_ids": [],
+          "relationship": 100.0,
+          "since": "1990-01",
+          "status": "in_force",
+          "status_label": "Saved defense pact",
+          "upkeep": {
+            "annual_bn": 3.809956365870123,
+            "annual_label": "$3.810bn",
+            "annual_share": 0.003,
+            "cadence": "daily",
+            "count": 1,
+            "next_step_bn": 0.010241818187822911,
+            "next_step_label": "$10.242m per day at today's conditions",
+            "note": "Estimate at today's GDP and current simulation cadence, per signatory. Future GDP, diplomacy and the settlement order can change the bill. This view makes no payment."
+          },
+          "warnings": []
+        }
+      ],
+      "note": "These are the campaign's saved commitments. Opening this overview neither signs nor cancels an agreement. Calls to arms still follow their own deadline and standing response policy.",
+      "trade_agreements": [
+        {
+          "dependency": 0.30289129903656914,
+          "depth": 0.42538709677419356,
+          "partner": "Japan",
+          "partner_dependency": 0.12249579773762444,
+          "partner_name": "Japan",
+          "status": "in_force",
+          "status_label": "Saved trade agreement",
+          "warnings": [
+            "Overall dependency also includes supply contracts and delivered goods; it is not solely caused by this treaty."
+          ]
+        }
+      ],
+      "upkeep": {
+        "annual_bn": 7.619912731740246,
+        "annual_label": "$7.620bn",
+        "annual_share": 0.006,
+        "cadence": "daily",
+        "count": 2,
+        "next_step_bn": 0.020483636375645823,
+        "next_step_label": "$20.484m per day at today's conditions",
+        "note": "Estimate at today's GDP and current simulation cadence, per signatory. Future GDP, diplomacy and the settlement order can change the bill. This view makes no payment."
+      }
+    },
+    "expiry_rule": "New requests follow the visible standing policy. Review is the default. Reply before the stated date: the reply window closes when that date begins. A still-applicable unanswered request expires as a decline; changed circumstances can close it instead. Existing requests are not automatically answered by a policy change.",
+    "history": [
+      {
+        "date_label": "1990-01-01",
+        "from_name": "Kuwait",
+        "offer": {
+          "expires_day": 7,
+          "from": "Kuwait",
+          "id": 2,
+          "issued_day": 0,
+          "kind": {
+            "attacker": "Iraq",
+            "conflict": 1,
+            "guaranteed": true,
+            "kind": "call_to_arms",
+            "month": 1,
+            "rung": 2,
+            "year": 1990
+          },
+          "to": "France"
+        },
+        "outcome": "accepted",
+        "resolved_day": 0,
+        "title": "Call to arms"
+      }
+    ],
+    "monetary": {
+      "kind": "floating"
+    },
+    "offers": [
+      {
+        "accept_blocked": null,
+        "consequence": "Opens market integration and long-term dependency. Ending the treaty later can damage both economies.",
+        "days_remaining": 29,
+        "expires": "1990-01-31",
+        "from": "India",
+        "from_name": "India",
+        "id": 1,
+        "title": "a trade treaty"
+      }
+    ],
+    "policy": {
+      "calls_to_arms": "review",
+      "defense_pacts": "review",
+      "trade_treaties": "review"
+    }
+  },
+  "day_conflict": {
+    "control": 0.0,
+    "frozen_since": null,
+    "id": 1,
+    "invasion_declared": false,
+    "months": 0,
+    "origin_attacker": "Iraq",
+    "posture": [
+      {
+        "ceiling": 9,
+        "months_at_rung": 0,
+        "nation": "Iraq",
+        "objective": "Deny",
+        "red_line": 0.0,
+        "resolve": 1.0,
+        "roe": "Standard",
+        "rung": 1,
+        "stake": 1.0
+      },
+      {
+        "ceiling": 9,
+        "months_at_rung": 0,
+        "nation": "Kuwait",
+        "objective": "Hold",
+        "red_line": 0.0,
+        "resolve": 1.0,
+        "roe": "Standard",
+        "rung": 1,
+        "stake": 1.0
+      },
+      {
+        "ceiling": 9,
+        "months_at_rung": 0,
+        "nation": "Jordan",
+        "objective": "Deny",
+        "red_line": 0.0,
+        "resolve": 1.0,
+        "roe": "Standard",
+        "rung": 2,
+        "stake": 0.2
+      },
+      {
+        "ceiling": 9,
+        "months_at_rung": 0,
+        "nation": "SaudiArabia",
+        "objective": "Deny",
+        "red_line": 0.0,
+        "resolve": 1.0,
+        "roe": "Standard",
+        "rung": 2,
+        "stake": 1.0
+      },
+      {
+        "ceiling": 9,
+        "months_at_rung": 0,
+        "nation": "France",
+        "objective": "Deny",
+        "red_line": 0.0,
+        "resolve": 1.0,
+        "roe": "Standard",
+        "rung": 2,
+        "stake": 0.45
+      }
+    ],
+    "quiet_months": 0,
+    "side_a": [
+      "Iraq",
+      "Jordan"
+    ],
+    "side_b": [
+      "Kuwait",
+      "SaudiArabia",
+      "France"
+    ],
+    "start_month": 1,
+    "start_year": 1990,
+    "theatre": "Gulf"
+  },
+  "day_date": "2 Jan 1990",
+  "day_dispatch_count": 2,
+  "day_log": [
+    {
+      "cat": "other",
+      "date": "1 Jan 1990",
+      "t": 0,
+      "tags": [
+        "Honduras"
+      ],
+      "text": "Honduras is led by a new Liberal Party of Honduras president."
+    },
+    {
+      "cat": "war",
+      "date": "1 Jan 1990",
+      "t": 0,
+      "tags": [
+        "France",
+        "Kuwait"
+      ],
+      "text": "France accepts Kuwait's call and enters the war at rung 2."
+    }
+  ],
+  "days_advanced": 1,
+  "expected_after_file": "expected-after.json",
+  "expected_day_file": "expected-after-day.json",
+  "fixture": "s10e-authored-native-diplomatic-commitments",
+  "native_actions": [
+    "India proposes trade to France through statecraft::propose_trade",
+    "Native Iraq-Kuwait conflict opened and guaranteed rung-2 France call queued through agency::offer_call",
+    "Preview both call replies without mutation",
+    "Accept the call once through protected native review transport",
+    "Save/load complete joined state and independently compare one ordinary subsequent day"
+  ],
+  "player": "France",
+  "quotes": [
+    {
+      "call_context": {
+        "blocked": null,
+        "conflict": {
+          "conflict_id": 1,
+          "current_participation": {
+            "allies": [],
+            "conflict_id": 1,
+            "opponents": [],
+            "rung": null,
+            "rung_name": null,
+            "shooting": false,
+            "shooting_label": "Below the shooting threshold",
+            "side": null,
+            "side_label": "Outside this conflict",
+            "started": "1990-01",
+            "theatre": "the Gulf"
+          },
+          "defenders": [
+            {
+              "alive": true,
+              "id": "Kuwait",
+              "name": "Kuwait"
+            },
+            {
+              "alive": true,
+              "id": "SaudiArabia",
+              "name": "Saudi Arabia"
+            }
+          ],
+          "opponents": [
+            {
+              "alive": true,
+              "id": "Iraq",
+              "name": "Iraq"
+            },
+            {
+              "alive": true,
+              "id": "Jordan",
+              "name": "Jordan"
+            }
+          ],
+          "shooting": false,
+          "started": "1990-01",
+          "theatre": "the Gulf"
+        },
+        "conflict_id": 1,
+        "guaranteed": true,
+        "note": "The requested rung is a proposed posture, not an estimate of future war spending or a promise that every instrument will activate immediately. Only confirmation applies the native response.",
+        "requested_rung": 2,
+        "requested_rung_name": "sanctions",
+        "requester": "Kuwait",
+        "requester_name": "Kuwait",
+        "status": "reviewable",
+        "status_label": "Review the native effects before answering."
+      },
+      "changes": [
+        {
+          "after": "75.0",
+          "before": "70.0",
+          "detail": "Diplomatic credibility, after its native limits.",
+          "label": "Reputation"
+        },
+        {
+          "after": "accepted",
+          "before": "Awaiting your reply",
+          "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+          "label": "Request status"
+        },
+        {
+          "after": "Defending coalition",
+          "before": "Outside this conflict",
+          "detail": "The coalition actually joined by this native response. Conflict participation can begin below the shooting threshold.",
+          "label": "Participation in the Gulf"
+        },
+        {
+          "after": "2 · sanctions",
+          "before": "No commitment",
+          "detail": "The saved native posture after this answer. Further escalation, access and the ongoing cost of operations follow the existing conflict rules.",
+          "label": "Commitment in the Gulf"
+        },
+        {
+          "after": "100.0",
+          "before": "98.0",
+          "detail": "Immediate relationship change.",
+          "label": "Relations with Kuwait"
+        },
+        {
+          "after": "France accepts Kuwait's call and enters the war at rung 2.",
+          "before": "Pending",
+          "detail": "1 Jan 1990",
+          "label": "Dated result"
+        }
+      ],
+      "command": {
+        "accept": true,
+        "kind": "respond_diplomacy",
+        "offer": 2
+      },
+      "date_label": "1 Jan 1990",
+      "description": "Reply before 1990-01-08. 7 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+      "nation": "France",
+      "reason": null,
+      "review_token": "decision-v1-42cd20929f32b3a1",
+      "session_id": "36984-1789341841094718200-1",
+      "title": "Accept a call to honor its defense pact from Kuwait",
+      "valid": true,
+      "warnings": [
+        "Kuwait · reply before 1990-01-08 (7 days remaining). Accept: enter the defending side at rung 2, subject to normal access, nuclear and sphere rules. Decline or expiry can end the pact and reduce reputation and relations if the guarantee still applies. Review the exact current effects before responding."
+      ]
+    },
+    {
+      "call_context": {
+        "blocked": null,
+        "conflict": {
+          "conflict_id": 1,
+          "current_participation": {
+            "allies": [],
+            "conflict_id": 1,
+            "opponents": [],
+            "rung": null,
+            "rung_name": null,
+            "shooting": false,
+            "shooting_label": "Below the shooting threshold",
+            "side": null,
+            "side_label": "Outside this conflict",
+            "started": "1990-01",
+            "theatre": "the Gulf"
+          },
+          "defenders": [
+            {
+              "alive": true,
+              "id": "Kuwait",
+              "name": "Kuwait"
+            },
+            {
+              "alive": true,
+              "id": "SaudiArabia",
+              "name": "Saudi Arabia"
+            }
+          ],
+          "opponents": [
+            {
+              "alive": true,
+              "id": "Iraq",
+              "name": "Iraq"
+            },
+            {
+              "alive": true,
+              "id": "Jordan",
+              "name": "Jordan"
+            }
+          ],
+          "shooting": false,
+          "started": "1990-01",
+          "theatre": "the Gulf"
+        },
+        "conflict_id": 1,
+        "guaranteed": true,
+        "note": "The requested rung is a proposed posture, not an estimate of future war spending or a promise that every instrument will activate immediately. Only confirmation applies the native response.",
+        "requested_rung": 2,
+        "requested_rung_name": "sanctions",
+        "requester": "Kuwait",
+        "requester_name": "Kuwait",
+        "status": "reviewable",
+        "status_label": "Review the native effects before answering."
+      },
+      "changes": [
+        {
+          "after": "45.0",
+          "before": "70.0",
+          "detail": "Diplomatic credibility, after its native limits.",
+          "label": "Reputation"
+        },
+        {
+          "after": "declined",
+          "before": "Awaiting your reply",
+          "detail": "Recorded in the saved diplomatic ledger with its resolution date.",
+          "label": "Request status"
+        },
+        {
+          "after": "$10.242m per day at today's conditions",
+          "before": "$20.484m per day at today's conditions",
+          "detail": "A current-conditions estimate from the same native per-pact charge used by settlement. No upkeep is paid by opening this review or replying; future conditions and settlement order can change the eventual charge.",
+          "label": "Defense pact upkeep estimate"
+        },
+        {
+          "after": "53.0",
+          "before": "98.0",
+          "detail": "Immediate relationship change.",
+          "label": "Relations with Kuwait"
+        },
+        {
+          "after": "false",
+          "before": "true",
+          "detail": "A mutual-defense commitment; a later call to arms follows your response policy.",
+          "label": "Defense pact with Kuwait"
+        },
+        {
+          "after": "90.0",
+          "before": "98.0",
+          "detail": "Immediate relationship change.",
+          "label": "Relations with Brazil"
+        },
+        {
+          "after": "France abandons its pact with Kuwait. The guarantee proves worthless.",
+          "before": "Pending",
+          "detail": "1 Jan 1990",
+          "label": "Dated result"
+        }
+      ],
+      "command": {
+        "accept": false,
+        "kind": "respond_diplomacy",
+        "offer": 2
+      },
+      "date_label": "1 Jan 1990",
+      "description": "Reply before 1990-01-08. 7 days remaining. This answer applies immediately to the selected request. Review its deadline and any continuing obligations.",
+      "nation": "France",
+      "reason": null,
+      "review_token": "decision-v1-d2e67df8bc89a9b6",
+      "session_id": "36984-1789341841094718200-1",
+      "title": "Decline a call to honor its defense pact from Kuwait",
+      "valid": true,
+      "warnings": [
+        "Kuwait · reply before 1990-01-08 (7 days remaining). Accept: enter the defending side at rung 2, subject to normal access, nuclear and sphere rules. Decline or expiry can end the pact and reduce reputation and relations if the guarantee still applies. Review the exact current effects before responding."
+      ]
+    }
+  ],
+  "reply_days_advanced": 0,
+  "scope": "Disposable authored commitments, reply and one-day continuation fixture. Not historical treaties, organically generated offers, a full war or campaign-certification duration evidence.",
+  "version": 1
+}

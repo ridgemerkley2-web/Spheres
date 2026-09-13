@@ -1,0 +1,5925 @@
+{
+  "passed": true,
+  "run": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-e-browser\\france-Hg4tfn\\server",
+  "url": "http://127.0.0.1:60447",
+  "started_utc": "2026-09-13T23:24:01.149Z",
+  "test_source": {
+    "revision": "99b0b9d4a46a98a2c0cf7886583fe13e568dda64",
+    "driver_sha256": "99f68e2016ddbdd7bf1ed8fce85c1b36f88bbaaa49d5f561b55db3f2f87c682f",
+    "review_assertions_sha256": "96c3626ebc461f3ab8a1a6327a1c889915293b616a1d758451ca28f6f4c8a31a",
+    "runtime_source_equal": true
+  },
+  "fixture": "Fresh France through ordinary controls, real same-campaign second tab; no state grants or substituted responses",
+  "screenshots": [
+    "policy-review-desktop.png",
+    "policy-review-narrow.png",
+    "policy-review-narrow-320.png",
+    "government-review-before-second-tab.png",
+    "second-tab-policy-recorded.png",
+    "government-stale-review-refused.png",
+    "government-fresh-review.png",
+    "government-fresh-review-390.png",
+    "government-fresh-review-320.png",
+    "government-result-narrow-390.png",
+    "government-result-narrow-320.png",
+    "government-result-desktop.png",
+    "government-continued-narrow.png",
+    "government-continued-narrow-320.png"
+  ],
+  "commands": [
+    {
+      "tab": "B",
+      "payload": {
+        "commands": [
+          {
+            "kind": "set_diplomatic_policy",
+            "policy": {
+              "defense_pacts": "review",
+              "trade_treaties": "decline",
+              "calls_to_arms": "review"
+            }
+          }
+        ],
+        "review_token": "decision-v1-7b27750bb30cc990",
+        "review_kind": "decisions",
+        "session_id": "27188-1789341844881540500-1",
+        "client_id": "6b95fd45-d8ef-447d-8211-19973eec5d28",
+        "request_seq": 1
+      }
+    },
+    {
+      "tab": "A",
+      "payload": {
+        "commands": [
+          {
+            "kind": "invite_to_government",
+            "party": "fr_pcf"
+          }
+        ],
+        "review_token": "decision-v1-02eb1c2de645b448",
+        "review_kind": "government",
+        "session_id": "27188-1789341844881540500-1",
+        "client_id": "95643e10-ebfe-4142-a956-d58cf4820369",
+        "request_seq": 1
+      }
+    },
+    {
+      "tab": "A",
+      "payload": {
+        "commands": [
+          {
+            "kind": "invite_to_government",
+            "party": "fr_pcf"
+          }
+        ],
+        "review_token": "decision-v1-04a3bef52fb6a986",
+        "review_kind": "government",
+        "session_id": "27188-1789341844881540500-1",
+        "client_id": "95643e10-ebfe-4142-a956-d58cf4820369",
+        "request_seq": 2
+      }
+    }
+  ],
+  "errors": [],
+  "checks": [
+    "Desktop/narrow policy review and cancellation are whole-campaign pure",
+    "A genuine second-tab policy change invalidates the held government review; refusal has no native effect and refreshes current figures",
+    "A fresh government review applies once with the exact reviewed political cost and a dated native result",
+    "Named-save cancellation, actual Load and Continue preserve the exact native campaign, policy and recorded officeholder"
+  ],
+  "browser_version": "152.0.7977.83",
+  "build": {
+    "revision": "99b0b9d4a46a98a2c0cf7886583fe13e568dda64",
+    "build": {
+      "branch": "codex/campaign-certification",
+      "built_at_unix_seconds": 1789341566,
+      "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+      "distribution": "Local offline game server; source and attribution accompany the release",
+      "revision": "99b0b9d4a46a",
+      "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-e-browser\\france-Hg4tfn\\server",
+      "version": "0.6.0"
+    },
+    "binary_sha256": "1e21bcdc78eaf39372a3b50fefbfc7c1a8c6d5e1b4d78aa07942fa3089ebeda1",
+    "assets": {
+      "index.html": {
+        "served_sha256": "8d24200cacdbf89b179f6b90dd7b327f189a7d5d41fcc720e6be3c2301fcb1e9",
+        "served_bytes": 1145068,
+        "checkout_sha256": "8d24200cacdbf89b179f6b90dd7b327f189a7d5d41fcc720e6be3c2301fcb1e9",
+        "checkout_bytes": 1145068,
+        "committed_sha256": "da8fcacd6066be3f2a9703fe75cd31083bacadaa1b837b5840e90a3cf7ad166b",
+        "committed_bytes": 1126331,
+        "canonical_checkout_sha256": "da8fcacd6066be3f2a9703fe75cd31083bacadaa1b837b5840e90a3cf7ad166b",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 18737
+        }
+      },
+      "campaign-transport.js": {
+        "served_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+        "served_bytes": 4775,
+        "checkout_sha256": "6d25271e94ae436d3f700c81a773d8c624731a809541c966a609046ec6861582",
+        "checkout_bytes": 4775,
+        "committed_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+        "committed_bytes": 4693,
+        "canonical_checkout_sha256": "1cbd2407c8822070e860f84e8378976aa1e2624aca7dd234eed8c723ac8acd2c",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 82
+        }
+      },
+      "campaign-ui.js": {
+        "served_sha256": "20641a249ff5b59589736dd9f36f3cdd7b7ab53df29d107d4cf3feccecbf49ba",
+        "served_bytes": 13683,
+        "checkout_sha256": "20641a249ff5b59589736dd9f36f3cdd7b7ab53df29d107d4cf3feccecbf49ba",
+        "checkout_bytes": 13683,
+        "committed_sha256": "9aa62da51602a3d612312e157d37726cc6d2ed73efd17a7e5f2634386b1be312",
+        "committed_bytes": 13473,
+        "canonical_checkout_sha256": "9aa62da51602a3d612312e157d37726cc6d2ed73efd17a7e5f2634386b1be312",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 210
+        }
+      },
+      "fiscal-recovery-ui.js": {
+        "served_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "served_bytes": 11098,
+        "checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "checkout_bytes": 11098,
+        "committed_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "committed_bytes": 11098,
+        "canonical_checkout_sha256": "cfc023689947a33d72c259089a837d945532968756014a482ff183ee076e71ec",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "cash-flow-ui.js": {
+        "served_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+        "served_bytes": 30198,
+        "checkout_sha256": "f08262a2afc1b0ea565f7d4af790b82b2ce35f8c182d80b50d4e0f476bd029bd",
+        "checkout_bytes": 30198,
+        "committed_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+        "committed_bytes": 29951,
+        "canonical_checkout_sha256": "023fee351e029edacd074d5b7056819bd3c81b387dbe13e6a32a541840091107",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 247
+        }
+      },
+      "companies-ui.js": {
+        "served_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "served_bytes": 32920,
+        "checkout_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "checkout_bytes": 32920,
+        "committed_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "committed_bytes": 32920,
+        "canonical_checkout_sha256": "31e13310b447c6fa7a21198b800e8f3e6c6f49948f349869cc6dfaa5d58dc8de",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "companies.css": {
+        "served_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+        "served_bytes": 13908,
+        "checkout_sha256": "a37da57692adf251e2e173ef0c9266a88dfb3cd1d3e4cde5b5d522e2f89c9c92",
+        "checkout_bytes": 13908,
+        "committed_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+        "committed_bytes": 13798,
+        "canonical_checkout_sha256": "958e3d1de86a4c21c5033d06898c478f016d293261b639feff9e77cfa9876724",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 110
+        }
+      },
+      "government-ui.js": {
+        "served_sha256": "0c462497230b04b4ae8407dce0471eb944eaf11451d0cc50f35fcdc4693568f6",
+        "served_bytes": 50984,
+        "checkout_sha256": "0c462497230b04b4ae8407dce0471eb944eaf11451d0cc50f35fcdc4693568f6",
+        "checkout_bytes": 50984,
+        "committed_sha256": "0c462497230b04b4ae8407dce0471eb944eaf11451d0cc50f35fcdc4693568f6",
+        "committed_bytes": 50984,
+        "canonical_checkout_sha256": "0c462497230b04b4ae8407dce0471eb944eaf11451d0cc50f35fcdc4693568f6",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "government-ui.css": {
+        "served_sha256": "6fdcc3adc0f431128d77667c80cdad632c1db35149dcc7aecfab91accb87542f",
+        "served_bytes": 35931,
+        "checkout_sha256": "6fdcc3adc0f431128d77667c80cdad632c1db35149dcc7aecfab91accb87542f",
+        "checkout_bytes": 35931,
+        "committed_sha256": "ddb0a7f80200be5c1986a90ed770cd989c355cd220e5d45057b6c053f563e1bb",
+        "committed_bytes": 35603,
+        "canonical_checkout_sha256": "ddb0a7f80200be5c1986a90ed770cd989c355cd220e5d45057b6c053f563e1bb",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 328
+        }
+      },
+      "campaign-operations-ui.js": {
+        "served_sha256": "4da1d39397733cad49125c2fd30e3d57175f89b71e5ddcb75ba35c6a0a730c00",
+        "served_bytes": 21110,
+        "checkout_sha256": "4da1d39397733cad49125c2fd30e3d57175f89b71e5ddcb75ba35c6a0a730c00",
+        "checkout_bytes": 21110,
+        "committed_sha256": "ab7ec85f87a44ab316a700a7206a05f7057b8bfabd51d1d4d9dd5ddb5e0a7bf5",
+        "committed_bytes": 20888,
+        "canonical_checkout_sha256": "ab7ec85f87a44ab316a700a7206a05f7057b8bfabd51d1d4d9dd5ddb5e0a7bf5",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 222
+        }
+      },
+      "campaign-operations-ui.css": {
+        "served_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+        "served_bytes": 8447,
+        "checkout_sha256": "2178749f5fddb0c18965ff235767917efdefee8e399190d9c6e7669f2ecf0ce7",
+        "checkout_bytes": 8447,
+        "committed_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+        "committed_bytes": 8367,
+        "canonical_checkout_sha256": "8d5d927c4a6ca6c86715c1a04c46a5577b19342841b12604e92d95e948a0bc64",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 80
+        }
+      },
+      "map-controls.js": {
+        "served_sha256": "ce7553d9b43a38b00581e67ef66aa23e5f03a8b4abde9c85171f28f3e6bb4e9e",
+        "served_bytes": 10651,
+        "checkout_sha256": "ce7553d9b43a38b00581e67ef66aa23e5f03a8b4abde9c85171f28f3e6bb4e9e",
+        "checkout_bytes": 10651,
+        "committed_sha256": "79b99912a9406b43f22d786ea7063d47fc05d738e432e9749561eb1fdff03fd7",
+        "committed_bytes": 10442,
+        "canonical_checkout_sha256": "79b99912a9406b43f22d786ea7063d47fc05d738e432e9749561eb1fdff03fd7",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 209
+        }
+      },
+      "map-controls.css": {
+        "served_sha256": "07d2f965f3cb90a04095ac7ec3679307548549d4ea9612d299d2a8b75e35527a",
+        "served_bytes": 9732,
+        "checkout_sha256": "07d2f965f3cb90a04095ac7ec3679307548549d4ea9612d299d2a8b75e35527a",
+        "checkout_bytes": 9732,
+        "committed_sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+        "committed_bytes": 9631,
+        "canonical_checkout_sha256": "5a2f2c2414679f65f8bebbf8e342553c2829e45d9cb506fc7dafd596597a04e6",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 101
+        }
+      },
+      "guidance-ui.js": {
+        "served_sha256": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+        "served_bytes": 21247,
+        "checkout_sha256": "5de0ff7d6e2c9aa7db0027c70517171f5ad4076f75a0c8f019a19f31e02c9e23",
+        "checkout_bytes": 21247,
+        "committed_sha256": "39eb68189c78ea74ee89b4bc92ac6153326accfe0d2300ea401ee696bddc38ea",
+        "committed_bytes": 21072,
+        "canonical_checkout_sha256": "39eb68189c78ea74ee89b4bc92ac6153326accfe0d2300ea401ee696bddc38ea",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 175
+        }
+      },
+      "guidance-ui.css": {
+        "served_sha256": "169531e25171ef1448b38b0832050712392c94e74f8bb0f96e8727f77d3a5b2f",
+        "served_bytes": 7496,
+        "checkout_sha256": "169531e25171ef1448b38b0832050712392c94e74f8bb0f96e8727f77d3a5b2f",
+        "checkout_bytes": 7496,
+        "committed_sha256": "4f959346eae6c81209da51b76717fd1d4b04a6bcfe0f0ae84032adc465e288ad",
+        "committed_bytes": 7490,
+        "canonical_checkout_sha256": "4f959346eae6c81209da51b76717fd1d4b04a6bcfe0f0ae84032adc465e288ad",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 6
+        }
+      },
+      "globe3d.js": {
+        "served_sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9",
+        "served_bytes": 36245,
+        "checkout_sha256": "ee467b58a57a07193e4e39368f13e0d18103ed6289769544187b66c410c682d9",
+        "checkout_bytes": 36245,
+        "committed_sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "committed_bytes": 35548,
+        "canonical_checkout_sha256": "9c634e8320a66702ce78de192573af03f80c625c562376d79cd0125d2a559403",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 697
+        }
+      },
+      "city-layer.js": {
+        "served_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+        "served_bytes": 12449,
+        "checkout_sha256": "5f76629170c97184fb1c61257ea66234cdf4ce7bb112e509ae3326676501ca58",
+        "checkout_bytes": 12449,
+        "committed_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+        "committed_bytes": 12222,
+        "canonical_checkout_sha256": "d4afb63a0cc695cd11bb7c31fa5decd7f4e762ab65091a57e4d83ffaa948c3fc",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 227
+        }
+      },
+      "city-mesh.js": {
+        "served_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+        "served_bytes": 87641,
+        "checkout_sha256": "99c5b116cc4b94857fcad97eb502a694988de56d4ae2cff3262c012198c1f6e7",
+        "checkout_bytes": 87641,
+        "committed_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+        "committed_bytes": 86075,
+        "canonical_checkout_sha256": "59593662fa4f31bd80c99b7e7349f6db18514c428724350b6e81b3adc87d5e26",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 1566
+        }
+      },
+      "water-detail.js": {
+        "served_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+        "served_bytes": 11962,
+        "checkout_sha256": "fb60fabc2dfa9edc47f466d3daf4f8cfde589e91086d28a59765ce26a7abc99a",
+        "checkout_bytes": 11962,
+        "committed_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+        "committed_bytes": 11729,
+        "canonical_checkout_sha256": "0b1bc8e9a4b5116c4c9564f69214ff12b5f5b181c4cf47567acc7e81569361f0",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 233
+        }
+      },
+      "equipment-mesh.js": {
+        "served_sha256": "0a312b09000429d644f369812d1be5a1fab3b545aa3e7301721a19d319f6f361",
+        "served_bytes": 178146,
+        "checkout_sha256": "0a312b09000429d644f369812d1be5a1fab3b545aa3e7301721a19d319f6f361",
+        "checkout_bytes": 178146,
+        "committed_sha256": "74400279143ac848f2b1f51eca03f9350a5020b27eec31fe0e5809eb6bf3b547",
+        "committed_bytes": 175650,
+        "canonical_checkout_sha256": "74400279143ac848f2b1f51eca03f9350a5020b27eec31fe0e5809eb6bf3b547",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 2496
+        }
+      },
+      "equipment-ui.js": {
+        "served_sha256": "af767b4d226a0ccdfae63a89e4864f8c5d8d9f82b37cb729b247729e28d34cb1",
+        "served_bytes": 126201,
+        "checkout_sha256": "af767b4d226a0ccdfae63a89e4864f8c5d8d9f82b37cb729b247729e28d34cb1",
+        "checkout_bytes": 126201,
+        "committed_sha256": "af767b4d226a0ccdfae63a89e4864f8c5d8d9f82b37cb729b247729e28d34cb1",
+        "committed_bytes": 126201,
+        "canonical_checkout_sha256": "af767b4d226a0ccdfae63a89e4864f8c5d8d9f82b37cb729b247729e28d34cb1",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 0
+        }
+      },
+      "equipment-ui.css": {
+        "served_sha256": "cb3efe6b42f6c40639384219e6eac40cb1ac9c8804eb273f94be7f2b64206a67",
+        "served_bytes": 36916,
+        "checkout_sha256": "cb3efe6b42f6c40639384219e6eac40cb1ac9c8804eb273f94be7f2b64206a67",
+        "checkout_bytes": 36916,
+        "committed_sha256": "ca8931a3821837aeb68418af2e144de22cd300b44f0591b14ee0cb15a8377d30",
+        "committed_bytes": 36570,
+        "canonical_checkout_sha256": "ca8931a3821837aeb68418af2e144de22cd300b44f0591b14ee0cb15a8377d30",
+        "newline_normalization": {
+          "rule": "CRLF to LF only for checkout-to-commit comparison; served-to-checkout comparison remains byte-exact",
+          "crlf_pairs": 346
+        }
+      },
+      "agency-ui.js": {
+        "served_sha256": "6c447fe48e0037b221192757dbe75a5ffc23914c533e9c2734d60ff3ae425d45",
+        "checkout_sha256": "6c447fe48e0037b221192757dbe75a5ffc23914c533e9c2734d60ff3ae425d45",
+        "committed_sha256": "6c447fe48e0037b221192757dbe75a5ffc23914c533e9c2734d60ff3ae425d45",
+        "canonical_checkout_sha256": "6c447fe48e0037b221192757dbe75a5ffc23914c533e9c2734d60ff3ae425d45",
+        "served_bytes": 23308,
+        "newline_normalization": "CRLF to LF for source comparison only; served bytes equal checkout exactly"
+      },
+      "agency.css": {
+        "served_sha256": "b90c7855deb5225ad268dd531f261267b974a736e07265c9957c90acab246b2a",
+        "checkout_sha256": "b90c7855deb5225ad268dd531f261267b974a736e07265c9957c90acab246b2a",
+        "committed_sha256": "dea47d82c3017d72140ccc6d1d0a13b2c3c0dfc0f54d3e6a57704f64cc27d923",
+        "canonical_checkout_sha256": "dea47d82c3017d72140ccc6d1d0a13b2c3c0dfc0f54d3e6a57704f64cc27d923",
+        "served_bytes": 5851,
+        "newline_normalization": "CRLF to LF for source comparison only; served bytes equal checkout exactly"
+      }
+    }
+  },
+  "capabilities": {
+    "daily": true,
+    "population": true,
+    "fiscal": true,
+    "connected_economy": true,
+    "companies": true,
+    "supplier_operations": true,
+    "operational_warfare": true
+  },
+  "cancelled_policy_review": {
+    "call_context": null,
+    "changes": [
+      {
+        "after": "Decline",
+        "before": "Ask me",
+        "detail": "Future requests only; pending requests keep their deadline.",
+        "label": "Trade treaties"
+      },
+      {
+        "after": "France updates its standing diplomatic response policy. Existing requests still await their own answer.",
+        "before": "Pending",
+        "detail": "1 Jan 1990",
+        "label": "Dated result"
+      }
+    ],
+    "command": {
+      "kind": "set_diplomatic_policy",
+      "policy": {
+        "calls_to_arms": "review",
+        "defense_pacts": "review",
+        "trade_treaties": "decline"
+      }
+    },
+    "date_label": "1 Jan 1990",
+    "description": "The policy applies to future requests. Existing requests still need their own answer before their deadline.",
+    "nation": "France",
+    "reason": null,
+    "review_token": "decision-v1-7b27750bb30cc990",
+    "session_id": "27188-1789341844881540500-1",
+    "title": "Update standing diplomatic policy",
+    "valid": true,
+    "warnings": []
+  },
+  "mobile_policy_review": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "rows": [
+        {
+          "index": 0,
+          "label": "Trade treaties",
+          "before": {
+            "text": "Ask me",
+            "rect": {
+              "left": 71,
+              "top": 409.640625,
+              "right": 180,
+              "bottom": 433.640625,
+              "width": 109,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 71,
+                "top": 410.640625,
+                "right": 125.96875,
+                "bottom": 431.640625,
+                "width": 54.96875,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 109,
+                "clientWidth": 109
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 129,
+                "clientWidth": 129
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 292,
+                "clientWidth": 292
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 330,
+                "clientWidth": 330
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "Decline",
+            "rect": {
+              "left": 212,
+              "top": 409.640625,
+              "right": 319,
+              "bottom": 433.640625,
+              "width": 107,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 212,
+                "top": 410.640625,
+                "right": 267.5625,
+                "bottom": 431.640625,
+                "width": 55.5625,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 107,
+                "clientWidth": 107
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 127,
+                "clientWidth": 127
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 292,
+                "clientWidth": 292
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 330,
+                "clientWidth": 330
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 1,
+          "label": "Dated result",
+          "before": {
+            "text": "Pending",
+            "rect": {
+              "left": 71,
+              "top": 311.140625,
+              "right": 180,
+              "bottom": 335.140625,
+              "width": 109,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 71,
+                "top": 312.140625,
+                "right": 132.734375,
+                "bottom": 333.140625,
+                "width": 61.734375,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 109,
+                "clientWidth": 109
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 129,
+                "clientWidth": 129
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 292,
+                "clientWidth": 292
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 330,
+                "clientWidth": 330
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "France updates its standing diplomatic response policy. Existing requests still await their own answer.",
+            "rect": {
+              "left": 212,
+              "top": 311.140625,
+              "right": 319,
+              "bottom": 551.140625,
+              "width": 107,
+              "height": 240
+            },
+            "text_rects": [
+              {
+                "left": 212,
+                "top": 312.140625,
+                "right": 261.3125,
+                "bottom": 333.140625,
+                "width": 49.3125,
+                "height": 21
+              },
+              {
+                "left": 212,
+                "top": 336.140625,
+                "right": 294.203125,
+                "bottom": 357.140625,
+                "width": 82.203125,
+                "height": 21
+              },
+              {
+                "left": 212,
+                "top": 360.140625,
+                "right": 277.59375,
+                "bottom": 381.140625,
+                "width": 65.59375,
+                "height": 21
+              },
+              {
+                "left": 212,
+                "top": 384.140625,
+                "right": 292.421875,
+                "bottom": 405.140625,
+                "width": 80.421875,
+                "height": 21
+              },
+              {
+                "left": 212,
+                "top": 408.140625,
+                "right": 279.078125,
+                "bottom": 429.140625,
+                "width": 67.078125,
+                "height": 21
+              },
+              {
+                "left": 212,
+                "top": 432.140625,
+                "right": 260.546875,
+                "bottom": 453.140625,
+                "width": 48.546875,
+                "height": 21
+              },
+              {
+                "left": 212,
+                "top": 456.140625,
+                "right": 271.296875,
+                "bottom": 477.140625,
+                "width": 59.296875,
+                "height": 21
+              },
+              {
+                "left": 212,
+                "top": 480.140625,
+                "right": 306.828125,
+                "bottom": 501.140625,
+                "width": 94.828125,
+                "height": 21
+              },
+              {
+                "left": 212,
+                "top": 504.140625,
+                "right": 292.59375,
+                "bottom": 525.140625,
+                "width": 80.59375,
+                "height": 21
+              },
+              {
+                "left": 212,
+                "top": 528.140625,
+                "right": 304.71875,
+                "bottom": 549.140625,
+                "width": 92.71875,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 107,
+                "clientWidth": 107
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 127,
+                "clientWidth": 127
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 292,
+                "clientWidth": 292
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 330,
+                "clientWidth": 330
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "rows": [
+        {
+          "index": 0,
+          "label": "Trade treaties",
+          "before": {
+            "text": "Ask me",
+            "rect": {
+              "left": 71,
+              "top": 371.640625,
+              "right": 249,
+              "bottom": 395.640625,
+              "width": 178,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 71,
+                "top": 372.640625,
+                "right": 125.96875,
+                "bottom": 393.640625,
+                "width": 54.96875,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 178,
+                "clientWidth": 178
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 260,
+                "clientWidth": 260
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "Decline",
+            "rect": {
+              "left": 73,
+              "top": 448.140625,
+              "right": 249,
+              "bottom": 472.140625,
+              "width": 176,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 73,
+                "top": 449.140625,
+                "right": 128.5625,
+                "bottom": 470.140625,
+                "width": 55.5625,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 176,
+                "clientWidth": 176
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 196,
+                "clientWidth": 196
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 260,
+                "clientWidth": 260
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 1,
+          "label": "Dated result",
+          "before": {
+            "text": "Pending",
+            "rect": {
+              "left": 71,
+              "top": 320.640625,
+              "right": 249,
+              "bottom": 344.640625,
+              "width": 178,
+              "height": 24
+            },
+            "text_rects": [
+              {
+                "left": 71,
+                "top": 321.640625,
+                "right": 132.734375,
+                "bottom": 342.640625,
+                "width": 61.734375,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 178,
+                "clientWidth": 178
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 260,
+                "clientWidth": 260
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "France updates its standing diplomatic response policy. Existing requests still await their own answer.",
+            "rect": {
+              "left": 73,
+              "top": 397.140625,
+              "right": 249,
+              "bottom": 541.140625,
+              "width": 176,
+              "height": 144
+            },
+            "text_rects": [
+              {
+                "left": 73,
+                "top": 398.140625,
+                "right": 208.9375,
+                "bottom": 419.140625,
+                "width": 135.9375,
+                "height": 21
+              },
+              {
+                "left": 73,
+                "top": 422.140625,
+                "right": 223.4375,
+                "bottom": 443.140625,
+                "width": 150.4375,
+                "height": 21
+              },
+              {
+                "left": 73,
+                "top": 446.140625,
+                "right": 193.03125,
+                "bottom": 467.140625,
+                "width": 120.03125,
+                "height": 21
+              },
+              {
+                "left": 73,
+                "top": 470.140625,
+                "right": 231.546875,
+                "bottom": 491.140625,
+                "width": 158.546875,
+                "height": 21
+              },
+              {
+                "left": 73,
+                "top": 494.140625,
+                "right": 190.234375,
+                "bottom": 515.140625,
+                "width": 117.234375,
+                "height": 21
+              },
+              {
+                "left": 73,
+                "top": 518.140625,
+                "right": 129.09375,
+                "bottom": 539.140625,
+                "width": 56.09375,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 176,
+                "clientWidth": 176
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 196,
+                "clientWidth": 196
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 198,
+                "clientWidth": 198
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "SECTION",
+                "id": "agencyReview",
+                "scrollLeft": 0,
+                "scrollWidth": 260,
+                "clientWidth": 260
+              },
+              {
+                "tag": "DIV",
+                "id": "agencyBody",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIALOG",
+                "id": "agencyPanel",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "held_government_review": {
+    "changes": [
+      {
+        "after": "44.9",
+        "before": "62.0",
+        "detail": "The actual immediate deduction, after the simulation's limits.",
+        "key": "political_capital",
+        "label": "Political capital"
+      },
+      {
+        "after": "Socialist Party + French Communist Party",
+        "before": "Socialist Party",
+        "detail": "The seated coalition after the command; a dormant cabinet remains a record in a regime.",
+        "key": "cabinet",
+        "label": "Cabinet"
+      },
+      {
+        "after": "62.4%",
+        "before": "56.5%",
+        "detail": "Seat arithmetic from the actual command. Public support and seats are separate stocks.",
+        "key": "seats",
+        "label": "Government seats"
+      },
+      {
+        "after": "1.8",
+        "before": "0.0",
+        "detail": "Strain determines the cost and standing consequences of holding this cabinet together.",
+        "key": "strain",
+        "label": "Coalition strain"
+      },
+      {
+        "after": "0.4 PC / month",
+        "before": "0.0 PC / month",
+        "detail": "Ongoing upkeep of the resulting cabinet; future country conditions can still change it.",
+        "key": "upkeep",
+        "label": "Coalition upkeep"
+      },
+      {
+        "after": "-3.3",
+        "before": "-0.0",
+        "detail": "The current composition's contribution to the standing target, including any electoral honeymoon; not a lump-sum PC award.",
+        "key": "composition",
+        "label": "Government standing modifier"
+      }
+    ],
+    "command": {
+      "kind": "invite_to_government",
+      "party": "fr_pcf"
+    },
+    "date_label": "1 Jan 1990",
+    "description": "into the government",
+    "effects": [],
+    "kind": "invite",
+    "money_cost_bn": 0,
+    "nation": "France",
+    "price_pc": 17.1386273190299,
+    "reason": null,
+    "review_token": "decision-v1-02eb1c2de645b448",
+    "session_id": "27188-1789341844881540500-1",
+    "title": "Invite French Communist Party",
+    "valid": true,
+    "warnings": []
+  },
+  "confirmed_policy_review": {
+    "call_context": null,
+    "changes": [
+      {
+        "after": "Decline",
+        "before": "Ask me",
+        "detail": "Future requests only; pending requests keep their deadline.",
+        "label": "Trade treaties"
+      },
+      {
+        "after": "France updates its standing diplomatic response policy. Existing requests still await their own answer.",
+        "before": "Pending",
+        "detail": "1 Jan 1990",
+        "label": "Dated result"
+      }
+    ],
+    "command": {
+      "kind": "set_diplomatic_policy",
+      "policy": {
+        "calls_to_arms": "review",
+        "defense_pacts": "review",
+        "trade_treaties": "decline"
+      }
+    },
+    "date_label": "1 Jan 1990",
+    "description": "The policy applies to future requests. Existing requests still need their own answer before their deadline.",
+    "nation": "France",
+    "reason": null,
+    "review_token": "decision-v1-7b27750bb30cc990",
+    "session_id": "27188-1789341844881540500-1",
+    "title": "Update standing diplomatic policy",
+    "valid": true,
+    "warnings": []
+  },
+  "stale_refusal": {
+    "error": "This decision review is out of date or no longer matches. Refresh the campaign and review it again; nothing was applied.",
+    "not_applied": true,
+    "requires_review": true
+  },
+  "stale_notice_visibility": {
+    "viewport": {
+      "left": 0,
+      "top": 0,
+      "right": 1440,
+      "bottom": 1000
+    },
+    "focused": true,
+    "text": "This decision review is out of date or no longer matches. Refresh the campaign and review it again; nothing was applied.",
+    "rect": {
+      "left": 54.71875,
+      "top": 158,
+      "right": 1385.28125,
+      "bottom": 212.75,
+      "width": 1330.5625,
+      "height": 54.75
+    },
+    "text_rects": [
+      {
+        "left": 73.71875,
+        "top": 175,
+        "right": 867.25,
+        "bottom": 195,
+        "width": 793.53125,
+        "height": 20
+      }
+    ],
+    "ancestors": [
+      {
+        "tag": "P",
+        "id": "govNotice",
+        "scrollLeft": 0,
+        "scrollWidth": 1329,
+        "clientWidth": 1329
+      },
+      {
+        "tag": "DIV",
+        "id": "",
+        "scrollLeft": 0,
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      {
+        "tag": "DIV",
+        "id": "govBody",
+        "scrollLeft": 0,
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      },
+      {
+        "tag": "DIV",
+        "id": "govScreen",
+        "scrollLeft": 0,
+        "scrollWidth": 1440,
+        "clientWidth": 1440
+      }
+    ],
+    "errors": []
+  },
+  "confirmed_government_review": {
+    "changes": [
+      {
+        "after": "44.9",
+        "before": "62.0",
+        "detail": "The actual immediate deduction, after the simulation's limits.",
+        "key": "political_capital",
+        "label": "Political capital"
+      },
+      {
+        "after": "Socialist Party + French Communist Party",
+        "before": "Socialist Party",
+        "detail": "The seated coalition after the command; a dormant cabinet remains a record in a regime.",
+        "key": "cabinet",
+        "label": "Cabinet"
+      },
+      {
+        "after": "62.4%",
+        "before": "56.5%",
+        "detail": "Seat arithmetic from the actual command. Public support and seats are separate stocks.",
+        "key": "seats",
+        "label": "Government seats"
+      },
+      {
+        "after": "1.8",
+        "before": "0.0",
+        "detail": "Strain determines the cost and standing consequences of holding this cabinet together.",
+        "key": "strain",
+        "label": "Coalition strain"
+      },
+      {
+        "after": "0.4 PC / month",
+        "before": "0.0 PC / month",
+        "detail": "Ongoing upkeep of the resulting cabinet; future country conditions can still change it.",
+        "key": "upkeep",
+        "label": "Coalition upkeep"
+      },
+      {
+        "after": "-3.3",
+        "before": "-0.0",
+        "detail": "The current composition's contribution to the standing target, including any electoral honeymoon; not a lump-sum PC award.",
+        "key": "composition",
+        "label": "Government standing modifier"
+      }
+    ],
+    "command": {
+      "kind": "invite_to_government",
+      "party": "fr_pcf"
+    },
+    "date_label": "1 Jan 1990",
+    "description": "into the government",
+    "effects": [],
+    "kind": "invite",
+    "money_cost_bn": 0,
+    "nation": "France",
+    "price_pc": 17.1386273190299,
+    "reason": null,
+    "review_token": "decision-v1-04a3bef52fb6a986",
+    "session_id": "27188-1789341844881540500-1",
+    "title": "Invite French Communist Party",
+    "valid": true,
+    "warnings": []
+  },
+  "mobile_government_review": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "navigation": {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "labels": [
+          {
+            "id": "gov-tab-overview",
+            "text": "Overview",
+            "rect": {
+              "left": 25,
+              "top": 309,
+              "right": 192.5,
+              "bottom": 353,
+              "width": 167.5,
+              "height": 44
+            },
+            "text_rects": [
+              {
+                "left": 81.09375,
+                "top": 321.90625,
+                "right": 136.390625,
+                "bottom": 338.90625,
+                "width": 55.296875,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-overview",
+                "scrollLeft": 0,
+                "scrollWidth": 166,
+                "clientWidth": 166
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          {
+            "id": "gov-tab-decisions",
+            "text": "Governing decisions",
+            "rect": {
+              "left": 197.5,
+              "top": 309,
+              "right": 365,
+              "bottom": 353,
+              "width": 167.5,
+              "height": 44
+            },
+            "text_rects": [
+              {
+                "left": 221.640625,
+                "top": 321.90625,
+                "right": 340.859375,
+                "bottom": 338.90625,
+                "width": 119.21875,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-decisions",
+                "scrollLeft": 0,
+                "scrollWidth": 166,
+                "clientWidth": 166
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          {
+            "id": "gov-tab-politics",
+            "text": "Parliament & parties",
+            "rect": {
+              "left": 25,
+              "top": 358,
+              "right": 192.5,
+              "bottom": 402,
+              "width": 167.5,
+              "height": 44
+            },
+            "text_rects": [
+              {
+                "left": 48.84375,
+                "top": 370.90625,
+                "right": 168.65625,
+                "bottom": 387.90625,
+                "width": 119.8125,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-politics",
+                "scrollLeft": 0,
+                "scrollWidth": 166,
+                "clientWidth": 166
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          {
+            "id": "gov-tab-leadership",
+            "text": "Party leadership",
+            "rect": {
+              "left": 197.5,
+              "top": 358,
+              "right": 365,
+              "bottom": 402,
+              "width": 167.5,
+              "height": 44
+            },
+            "text_rects": [
+              {
+                "left": 233.640625,
+                "top": 370.90625,
+                "right": 328.84375,
+                "bottom": 387.90625,
+                "width": 95.203125,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-leadership",
+                "scrollLeft": 0,
+                "scrollWidth": 166,
+                "clientWidth": 166
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          {
+            "id": "gov-tab-watch",
+            "text": "Takeover watch",
+            "rect": {
+              "left": 25,
+              "top": 407,
+              "right": 365,
+              "bottom": 451,
+              "width": 340,
+              "height": 44
+            },
+            "text_rects": [
+              {
+                "left": 149.671875,
+                "top": 419.90625,
+                "right": 240.3125,
+                "bottom": 436.90625,
+                "width": 90.640625,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-watch",
+                "scrollLeft": 0,
+                "scrollWidth": 338,
+                "clientWidth": 338
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          }
+        ]
+      },
+      "rows": [
+        {
+          "index": 0,
+          "label": "Political capital",
+          "before": {
+            "text": "62.0",
+            "rect": {
+              "left": 58,
+              "top": 472.15625,
+              "right": 180.5,
+              "bottom": 495.34375,
+              "width": 122.5,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 473.15625,
+                "right": 89.953125,
+                "bottom": 494.15625,
+                "width": 31.953125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 123,
+                "clientWidth": 123
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 143,
+                "clientWidth": 143
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "44.9",
+            "rect": {
+              "left": 211.5,
+              "top": 472.15625,
+              "right": 332,
+              "bottom": 495.34375,
+              "width": 120.5,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 211.5,
+                "top": 473.15625,
+                "right": 243.453125,
+                "bottom": 494.15625,
+                "width": 31.953125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 121,
+                "clientWidth": 121
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 141,
+                "clientWidth": 141
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 1,
+          "label": "Cabinet",
+          "before": {
+            "text": "Socialist Party",
+            "rect": {
+              "left": 58,
+              "top": 436.953125,
+              "right": 180.5,
+              "bottom": 460.140625,
+              "width": 122.5,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 437.953125,
+                "right": 164.0625,
+                "bottom": 458.953125,
+                "width": 106.0625,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 123,
+                "clientWidth": 123
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 143,
+                "clientWidth": 143
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "Socialist Party + French Communist Party",
+            "rect": {
+              "left": 211.5,
+              "top": 436.953125,
+              "right": 332,
+              "bottom": 529.703125,
+              "width": 120.5,
+              "height": 92.75
+            },
+            "text_rects": [
+              {
+                "left": 211.5,
+                "top": 437.953125,
+                "right": 317.5625,
+                "bottom": 458.953125,
+                "width": 106.0625,
+                "height": 21
+              },
+              {
+                "left": 211.5,
+                "top": 461.140625,
+                "right": 277.5,
+                "bottom": 482.140625,
+                "width": 66,
+                "height": 21
+              },
+              {
+                "left": 211.5,
+                "top": 484.328125,
+                "right": 297.75,
+                "bottom": 505.328125,
+                "width": 86.25,
+                "height": 21
+              },
+              {
+                "left": 211.5,
+                "top": 507.515625,
+                "right": 251.203125,
+                "bottom": 528.515625,
+                "width": 39.703125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 121,
+                "clientWidth": 121
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 141,
+                "clientWidth": 141
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 2,
+          "label": "Government seats",
+          "before": {
+            "text": "56.5%",
+            "rect": {
+              "left": 58,
+              "top": 472.3125,
+              "right": 180.5,
+              "bottom": 495.5,
+              "width": 122.5,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 473.3125,
+                "right": 103.828125,
+                "bottom": 494.3125,
+                "width": 45.828125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 123,
+                "clientWidth": 123
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 143,
+                "clientWidth": 143
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "62.4%",
+            "rect": {
+              "left": 211.5,
+              "top": 472.3125,
+              "right": 332,
+              "bottom": 495.5,
+              "width": 120.5,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 211.5,
+                "top": 473.3125,
+                "right": 257.328125,
+                "bottom": 494.3125,
+                "width": 45.828125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 121,
+                "clientWidth": 121
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 141,
+                "clientWidth": 141
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 3,
+          "label": "Coalition strain",
+          "before": {
+            "text": "0.0",
+            "rect": {
+              "left": 58,
+              "top": 472.109375,
+              "right": 180.5,
+              "bottom": 495.296875,
+              "width": 122.5,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 473.109375,
+                "right": 80.75,
+                "bottom": 494.109375,
+                "width": 22.75,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 123,
+                "clientWidth": 123
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 143,
+                "clientWidth": 143
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "1.8",
+            "rect": {
+              "left": 211.5,
+              "top": 472.109375,
+              "right": 332,
+              "bottom": 495.296875,
+              "width": 120.5,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 211.5,
+                "top": 473.109375,
+                "right": 234.25,
+                "bottom": 494.109375,
+                "width": 22.75,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 121,
+                "clientWidth": 121
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 141,
+                "clientWidth": 141
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 4,
+          "label": "Coalition upkeep",
+          "before": {
+            "text": "0.0 PC / month",
+            "rect": {
+              "left": 58,
+              "top": 471.90625,
+              "right": 180.5,
+              "bottom": 495.09375,
+              "width": 122.5,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 472.90625,
+                "right": 170.875,
+                "bottom": 493.90625,
+                "width": 112.875,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 123,
+                "clientWidth": 123
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 143,
+                "clientWidth": 143
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "0.4 PC / month",
+            "rect": {
+              "left": 211.5,
+              "top": 471.90625,
+              "right": 332,
+              "bottom": 495.09375,
+              "width": 120.5,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 211.5,
+                "top": 472.90625,
+                "right": 324.375,
+                "bottom": 493.90625,
+                "width": 112.875,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 121,
+                "clientWidth": 121
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 141,
+                "clientWidth": 141
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 5,
+          "label": "Government standing modifier",
+          "before": {
+            "text": "-0.0",
+            "rect": {
+              "left": 58,
+              "top": 462.703125,
+              "right": 180.5,
+              "bottom": 485.890625,
+              "width": 122.5,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 463.703125,
+                "right": 87.21875,
+                "bottom": 484.703125,
+                "width": 29.21875,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 123,
+                "clientWidth": 123
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 143,
+                "clientWidth": 143
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "-3.3",
+            "rect": {
+              "left": 211.5,
+              "top": 462.703125,
+              "right": 332,
+              "bottom": 485.890625,
+              "width": 120.5,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 211.5,
+                "top": 463.703125,
+                "right": 240.71875,
+                "bottom": 484.703125,
+                "width": 29.21875,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 121,
+                "clientWidth": 121
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 141,
+                "clientWidth": 141
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 294,
+                "clientWidth": 294
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 322,
+                "clientWidth": 322
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 324,
+                "clientWidth": 324
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 356,
+                "clientWidth": 356
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 390,
+                "clientWidth": 390
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 390,
+              "bottom": 844
+            }
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "navigation": {
+        "viewport": {
+          "width": 320,
+          "height": 844
+        },
+        "labels": [
+          {
+            "id": "gov-tab-overview",
+            "text": "Overview",
+            "rect": {
+              "left": 25,
+              "top": 309,
+              "right": 157.5,
+              "bottom": 369.375,
+              "width": 132.5,
+              "height": 60.375
+            },
+            "text_rects": [
+              {
+                "left": 63.59375,
+                "top": 330.09375,
+                "right": 118.890625,
+                "bottom": 347.09375,
+                "width": 55.296875,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-overview",
+                "scrollLeft": 0,
+                "scrollWidth": 131,
+                "clientWidth": 131
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          {
+            "id": "gov-tab-decisions",
+            "text": "Governing decisions",
+            "rect": {
+              "left": 162.5,
+              "top": 309,
+              "right": 295,
+              "bottom": 369.375,
+              "width": 132.5,
+              "height": 60.375
+            },
+            "text_rects": [
+              {
+                "left": 198.015625,
+                "top": 321,
+                "right": 259.46875,
+                "bottom": 338,
+                "width": 61.453125,
+                "height": 17
+              },
+              {
+                "left": 201.640625,
+                "top": 339.1875,
+                "right": 255.84375,
+                "bottom": 356.1875,
+                "width": 54.203125,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-decisions",
+                "scrollLeft": 0,
+                "scrollWidth": 131,
+                "clientWidth": 131
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          {
+            "id": "gov-tab-politics",
+            "text": "Parliament & parties",
+            "rect": {
+              "left": 25,
+              "top": 374.375,
+              "right": 157.5,
+              "bottom": 434.75,
+              "width": 132.5,
+              "height": 60.375
+            },
+            "text_rects": [
+              {
+                "left": 53.25,
+                "top": 386.375,
+                "right": 129.234375,
+                "bottom": 403.375,
+                "width": 75.984375,
+                "height": 17
+              },
+              {
+                "left": 71.109375,
+                "top": 404.5625,
+                "right": 111.375,
+                "bottom": 421.5625,
+                "width": 40.265625,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-politics",
+                "scrollLeft": 0,
+                "scrollWidth": 131,
+                "clientWidth": 131
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          {
+            "id": "gov-tab-leadership",
+            "text": "Party leadership",
+            "rect": {
+              "left": 162.5,
+              "top": 374.375,
+              "right": 295,
+              "bottom": 434.75,
+              "width": 132.5,
+              "height": 60.375
+            },
+            "text_rects": [
+              {
+                "left": 181.140625,
+                "top": 395.46875,
+                "right": 276.34375,
+                "bottom": 412.46875,
+                "width": 95.203125,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-leadership",
+                "scrollLeft": 0,
+                "scrollWidth": 131,
+                "clientWidth": 131
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          {
+            "id": "gov-tab-watch",
+            "text": "Takeover watch",
+            "rect": {
+              "left": 25,
+              "top": 439.75,
+              "right": 295,
+              "bottom": 483.75,
+              "width": 270,
+              "height": 44
+            },
+            "text_rects": [
+              {
+                "left": 114.671875,
+                "top": 452.65625,
+                "right": 205.3125,
+                "bottom": 469.65625,
+                "width": 90.640625,
+                "height": 17
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "BUTTON",
+                "id": "gov-tab-watch",
+                "scrollLeft": 0,
+                "scrollWidth": 268,
+                "clientWidth": 268
+              },
+              {
+                "tag": "NAV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          }
+        ]
+      },
+      "rows": [
+        {
+          "index": 0,
+          "label": "Political capital",
+          "before": {
+            "text": "62.0",
+            "rect": {
+              "left": 58,
+              "top": 433.90625,
+              "right": 262,
+              "bottom": 457.09375,
+              "width": 204,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 434.90625,
+                "right": 89.953125,
+                "bottom": 455.90625,
+                "width": 31.953125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 204,
+                "clientWidth": 204
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "44.9",
+            "rect": {
+              "left": 60,
+              "top": 510.234375,
+              "right": 262,
+              "bottom": 533.421875,
+              "width": 202,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 60,
+                "top": 511.234375,
+                "right": 91.953125,
+                "bottom": 532.234375,
+                "width": 31.953125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 202,
+                "clientWidth": 202
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 1,
+          "label": "Cabinet",
+          "before": {
+            "text": "Socialist Party",
+            "rect": {
+              "left": 58,
+              "top": 412.03125,
+              "right": 262,
+              "bottom": 435.21875,
+              "width": 204,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 413.03125,
+                "right": 164.0625,
+                "bottom": 434.03125,
+                "width": 106.0625,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 204,
+                "clientWidth": 204
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "Socialist Party + French Communist Party",
+            "rect": {
+              "left": 60,
+              "top": 488.359375,
+              "right": 262,
+              "bottom": 534.734375,
+              "width": 202,
+              "height": 46.375
+            },
+            "text_rects": [
+              {
+                "left": 60,
+                "top": 489.359375,
+                "right": 236.484375,
+                "bottom": 510.359375,
+                "width": 176.484375,
+                "height": 21
+              },
+              {
+                "left": 60,
+                "top": 512.546875,
+                "right": 190.375,
+                "bottom": 533.546875,
+                "width": 130.375,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 202,
+                "clientWidth": 202
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 2,
+          "label": "Government seats",
+          "before": {
+            "text": "56.5%",
+            "rect": {
+              "left": 58,
+              "top": 424.53125,
+              "right": 262,
+              "bottom": 447.71875,
+              "width": 204,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 425.53125,
+                "right": 103.828125,
+                "bottom": 446.53125,
+                "width": 45.828125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 204,
+                "clientWidth": 204
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "62.4%",
+            "rect": {
+              "left": 60,
+              "top": 500.859375,
+              "right": 262,
+              "bottom": 524.046875,
+              "width": 202,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 60,
+                "top": 501.859375,
+                "right": 105.828125,
+                "bottom": 522.859375,
+                "width": 45.828125,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 202,
+                "clientWidth": 202
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 3,
+          "label": "Coalition strain",
+          "before": {
+            "text": "0.0",
+            "rect": {
+              "left": 58,
+              "top": 423.84375,
+              "right": 262,
+              "bottom": 447.03125,
+              "width": 204,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 424.84375,
+                "right": 80.75,
+                "bottom": 445.84375,
+                "width": 22.75,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 204,
+                "clientWidth": 204
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "1.8",
+            "rect": {
+              "left": 60,
+              "top": 500.171875,
+              "right": 262,
+              "bottom": 523.359375,
+              "width": 202,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 60,
+                "top": 501.171875,
+                "right": 82.75,
+                "bottom": 522.171875,
+                "width": 22.75,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 202,
+                "clientWidth": 202
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 4,
+          "label": "Coalition upkeep",
+          "before": {
+            "text": "0.0 PC / month",
+            "rect": {
+              "left": 58,
+              "top": 424.15625,
+              "right": 262,
+              "bottom": 447.34375,
+              "width": 204,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 425.15625,
+                "right": 170.875,
+                "bottom": 446.15625,
+                "width": 112.875,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 204,
+                "clientWidth": 204
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "0.4 PC / month",
+            "rect": {
+              "left": 60,
+              "top": 500.484375,
+              "right": 262,
+              "bottom": 523.671875,
+              "width": 202,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 60,
+                "top": 501.484375,
+                "right": 172.875,
+                "bottom": 522.484375,
+                "width": 112.875,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 202,
+                "clientWidth": 202
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          }
+        },
+        {
+          "index": 5,
+          "label": "Government standing modifier",
+          "before": {
+            "text": "-0.0",
+            "rect": {
+              "left": 58,
+              "top": 414.46875,
+              "right": 262,
+              "bottom": 437.65625,
+              "width": 204,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 58,
+                "top": 415.46875,
+                "right": 87.21875,
+                "bottom": 436.46875,
+                "width": 29.21875,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 204,
+                "clientWidth": 204
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          },
+          "after": {
+            "text": "-3.3",
+            "rect": {
+              "left": 60,
+              "top": 490.796875,
+              "right": 262,
+              "bottom": 513.984375,
+              "width": 202,
+              "height": 23.1875
+            },
+            "text_rects": [
+              {
+                "left": 60,
+                "top": 491.796875,
+                "right": 89.21875,
+                "bottom": 512.796875,
+                "width": 29.21875,
+                "height": 21
+              }
+            ],
+            "ancestors": [
+              {
+                "tag": "STRONG",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 202,
+                "clientWidth": 202
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 222,
+                "clientWidth": 222
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DD",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 224,
+                "clientWidth": 224
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 252,
+                "clientWidth": 252
+              },
+              {
+                "tag": "DL",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 254,
+                "clientWidth": 254
+              },
+              {
+                "tag": "SECTION",
+                "id": "govReview",
+                "scrollLeft": 0,
+                "scrollWidth": 286,
+                "clientWidth": 286
+              },
+              {
+                "tag": "DIV",
+                "id": "",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govBody",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              },
+              {
+                "tag": "DIV",
+                "id": "govScreen",
+                "scrollLeft": 0,
+                "scrollWidth": 320,
+                "clientWidth": 320
+              }
+            ],
+            "errors": [],
+            "viewport": {
+              "left": 0,
+              "top": 0,
+              "right": 320,
+              "bottom": 844
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "government_result": {
+    "command": {
+      "kind": "invite_to_government",
+      "party": "fr_pcf"
+    },
+    "price_pc": 17.1386273190299,
+    "before_pc": 62.02720000000001,
+    "after_pc": 44.88857268097011,
+    "date": "1 Jan 1990",
+    "events": [
+      {
+        "cat": "politics",
+        "date": "1 Jan 1990",
+        "t": 0,
+        "tags": [
+          "France"
+        ],
+        "text": "France brings French Communist Party into the government."
+      }
+    ]
+  },
+  "government_notice_visibility": [
+    {
+      "viewport": {
+        "left": 0,
+        "top": 0,
+        "right": 390,
+        "bottom": 844
+      },
+      "focused": true,
+      "text": "Invite French Communist Party — completed. The figures now reflect this decision.",
+      "rect": {
+        "left": 16,
+        "top": 114,
+        "right": 374,
+        "bottom": 193.5,
+        "width": 358,
+        "height": 79.5
+      },
+      "text_rects": [
+        {
+          "left": 35,
+          "top": 131,
+          "right": 334.0625,
+          "bottom": 151,
+          "width": 299.0625,
+          "height": 20
+        },
+        {
+          "left": 35,
+          "top": 155.75,
+          "right": 275.515625,
+          "bottom": 175.75,
+          "width": 240.515625,
+          "height": 20
+        }
+      ],
+      "ancestors": [
+        {
+          "tag": "P",
+          "id": "govNotice",
+          "scrollLeft": 0,
+          "scrollWidth": 356,
+          "clientWidth": 356
+        },
+        {
+          "tag": "DIV",
+          "id": "",
+          "scrollLeft": 0,
+          "scrollWidth": 390,
+          "clientWidth": 390
+        },
+        {
+          "tag": "DIV",
+          "id": "govBody",
+          "scrollLeft": 0,
+          "scrollWidth": 390,
+          "clientWidth": 390
+        },
+        {
+          "tag": "DIV",
+          "id": "govScreen",
+          "scrollLeft": 0,
+          "scrollWidth": 390,
+          "clientWidth": 390
+        }
+      ],
+      "errors": []
+    },
+    {
+      "viewport": {
+        "left": 0,
+        "top": 0,
+        "right": 320,
+        "bottom": 844
+      },
+      "focused": true,
+      "text": "Invite French Communist Party — completed. The figures now reflect this decision.",
+      "rect": {
+        "left": 16,
+        "top": 113.75,
+        "right": 304,
+        "bottom": 218,
+        "width": 288,
+        "height": 104.25
+      },
+      "text_rects": [
+        {
+          "left": 35,
+          "top": 130.75,
+          "right": 256.015625,
+          "bottom": 150.75,
+          "width": 221.015625,
+          "height": 20
+        },
+        {
+          "left": 35,
+          "top": 155.5,
+          "right": 264.015625,
+          "bottom": 175.5,
+          "width": 229.015625,
+          "height": 20
+        },
+        {
+          "left": 35,
+          "top": 180.25,
+          "right": 120.453125,
+          "bottom": 200.25,
+          "width": 85.453125,
+          "height": 20
+        }
+      ],
+      "ancestors": [
+        {
+          "tag": "P",
+          "id": "govNotice",
+          "scrollLeft": 0,
+          "scrollWidth": 286,
+          "clientWidth": 286
+        },
+        {
+          "tag": "DIV",
+          "id": "",
+          "scrollLeft": 0,
+          "scrollWidth": 320,
+          "clientWidth": 320
+        },
+        {
+          "tag": "DIV",
+          "id": "govBody",
+          "scrollLeft": 0,
+          "scrollWidth": 320,
+          "clientWidth": 320
+        },
+        {
+          "tag": "DIV",
+          "id": "govScreen",
+          "scrollLeft": 0,
+          "scrollWidth": 320,
+          "clientWidth": 320
+        }
+      ],
+      "errors": []
+    },
+    {
+      "viewport": {
+        "left": 0,
+        "top": 0,
+        "right": 1440,
+        "bottom": 1000
+      },
+      "focused": true,
+      "text": "Invite French Communist Party — completed. The figures now reflect this decision.",
+      "rect": {
+        "left": 54.71875,
+        "top": 158,
+        "right": 1385.28125,
+        "bottom": 212.75,
+        "width": 1330.5625,
+        "height": 54.75
+      },
+      "text_rects": [
+        {
+          "left": 73.71875,
+          "top": 175,
+          "right": 617.390625,
+          "bottom": 195,
+          "width": 543.671875,
+          "height": 20
+        }
+      ],
+      "ancestors": [
+        {
+          "tag": "P",
+          "id": "govNotice",
+          "scrollLeft": 0,
+          "scrollWidth": 1329,
+          "clientWidth": 1329
+        },
+        {
+          "tag": "DIV",
+          "id": "",
+          "scrollLeft": 0,
+          "scrollWidth": 1440,
+          "clientWidth": 1440
+        },
+        {
+          "tag": "DIV",
+          "id": "govBody",
+          "scrollLeft": 0,
+          "scrollWidth": 1440,
+          "clientWidth": 1440
+        },
+        {
+          "tag": "DIV",
+          "id": "govScreen",
+          "scrollLeft": 0,
+          "scrollWidth": 1440,
+          "clientWidth": 1440
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "continued_navigation": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "labels": [
+        {
+          "id": "gov-tab-overview",
+          "text": "Overview",
+          "rect": {
+            "left": 25,
+            "top": 309,
+            "right": 192.5,
+            "bottom": 353,
+            "width": 167.5,
+            "height": 44
+          },
+          "text_rects": [
+            {
+              "left": 81.09375,
+              "top": 321.90625,
+              "right": 136.390625,
+              "bottom": 338.90625,
+              "width": 55.296875,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-overview",
+              "scrollLeft": 0,
+              "scrollWidth": 166,
+              "clientWidth": 166
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 356,
+              "clientWidth": 356
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 390,
+            "bottom": 844
+          }
+        },
+        {
+          "id": "gov-tab-decisions",
+          "text": "Governing decisions",
+          "rect": {
+            "left": 197.5,
+            "top": 309,
+            "right": 365,
+            "bottom": 353,
+            "width": 167.5,
+            "height": 44
+          },
+          "text_rects": [
+            {
+              "left": 221.640625,
+              "top": 321.90625,
+              "right": 340.859375,
+              "bottom": 338.90625,
+              "width": 119.21875,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-decisions",
+              "scrollLeft": 0,
+              "scrollWidth": 166,
+              "clientWidth": 166
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 356,
+              "clientWidth": 356
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 390,
+            "bottom": 844
+          }
+        },
+        {
+          "id": "gov-tab-politics",
+          "text": "Parliament & parties",
+          "rect": {
+            "left": 25,
+            "top": 358,
+            "right": 192.5,
+            "bottom": 402,
+            "width": 167.5,
+            "height": 44
+          },
+          "text_rects": [
+            {
+              "left": 48.84375,
+              "top": 370.90625,
+              "right": 168.65625,
+              "bottom": 387.90625,
+              "width": 119.8125,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-politics",
+              "scrollLeft": 0,
+              "scrollWidth": 166,
+              "clientWidth": 166
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 356,
+              "clientWidth": 356
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 390,
+            "bottom": 844
+          }
+        },
+        {
+          "id": "gov-tab-leadership",
+          "text": "Party leadership",
+          "rect": {
+            "left": 197.5,
+            "top": 358,
+            "right": 365,
+            "bottom": 402,
+            "width": 167.5,
+            "height": 44
+          },
+          "text_rects": [
+            {
+              "left": 233.640625,
+              "top": 370.90625,
+              "right": 328.84375,
+              "bottom": 387.90625,
+              "width": 95.203125,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-leadership",
+              "scrollLeft": 0,
+              "scrollWidth": 166,
+              "clientWidth": 166
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 356,
+              "clientWidth": 356
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 390,
+            "bottom": 844
+          }
+        },
+        {
+          "id": "gov-tab-watch",
+          "text": "Takeover watch",
+          "rect": {
+            "left": 25,
+            "top": 407,
+            "right": 365,
+            "bottom": 451,
+            "width": 340,
+            "height": 44
+          },
+          "text_rects": [
+            {
+              "left": 149.671875,
+              "top": 419.90625,
+              "right": 240.3125,
+              "bottom": 436.90625,
+              "width": 90.640625,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-watch",
+              "scrollLeft": 0,
+              "scrollWidth": 338,
+              "clientWidth": 338
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 356,
+              "clientWidth": 356
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 390,
+              "clientWidth": 390
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 390,
+            "bottom": 844
+          }
+        }
+      ]
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 844
+      },
+      "labels": [
+        {
+          "id": "gov-tab-overview",
+          "text": "Overview",
+          "rect": {
+            "left": 25,
+            "top": 309,
+            "right": 157.5,
+            "bottom": 369.375,
+            "width": 132.5,
+            "height": 60.375
+          },
+          "text_rects": [
+            {
+              "left": 63.59375,
+              "top": 330.09375,
+              "right": 118.890625,
+              "bottom": 347.09375,
+              "width": 55.296875,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-overview",
+              "scrollLeft": 0,
+              "scrollWidth": 131,
+              "clientWidth": 131
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 286,
+              "clientWidth": 286
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 320,
+            "bottom": 844
+          }
+        },
+        {
+          "id": "gov-tab-decisions",
+          "text": "Governing decisions",
+          "rect": {
+            "left": 162.5,
+            "top": 309,
+            "right": 295,
+            "bottom": 369.375,
+            "width": 132.5,
+            "height": 60.375
+          },
+          "text_rects": [
+            {
+              "left": 198.015625,
+              "top": 321,
+              "right": 259.46875,
+              "bottom": 338,
+              "width": 61.453125,
+              "height": 17
+            },
+            {
+              "left": 201.640625,
+              "top": 339.1875,
+              "right": 255.84375,
+              "bottom": 356.1875,
+              "width": 54.203125,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-decisions",
+              "scrollLeft": 0,
+              "scrollWidth": 131,
+              "clientWidth": 131
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 286,
+              "clientWidth": 286
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 320,
+            "bottom": 844
+          }
+        },
+        {
+          "id": "gov-tab-politics",
+          "text": "Parliament & parties",
+          "rect": {
+            "left": 25,
+            "top": 374.375,
+            "right": 157.5,
+            "bottom": 434.75,
+            "width": 132.5,
+            "height": 60.375
+          },
+          "text_rects": [
+            {
+              "left": 53.25,
+              "top": 386.375,
+              "right": 129.234375,
+              "bottom": 403.375,
+              "width": 75.984375,
+              "height": 17
+            },
+            {
+              "left": 71.109375,
+              "top": 404.5625,
+              "right": 111.375,
+              "bottom": 421.5625,
+              "width": 40.265625,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-politics",
+              "scrollLeft": 0,
+              "scrollWidth": 131,
+              "clientWidth": 131
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 286,
+              "clientWidth": 286
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 320,
+            "bottom": 844
+          }
+        },
+        {
+          "id": "gov-tab-leadership",
+          "text": "Party leadership",
+          "rect": {
+            "left": 162.5,
+            "top": 374.375,
+            "right": 295,
+            "bottom": 434.75,
+            "width": 132.5,
+            "height": 60.375
+          },
+          "text_rects": [
+            {
+              "left": 181.140625,
+              "top": 395.46875,
+              "right": 276.34375,
+              "bottom": 412.46875,
+              "width": 95.203125,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-leadership",
+              "scrollLeft": 0,
+              "scrollWidth": 131,
+              "clientWidth": 131
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 286,
+              "clientWidth": 286
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 320,
+            "bottom": 844
+          }
+        },
+        {
+          "id": "gov-tab-watch",
+          "text": "Takeover watch",
+          "rect": {
+            "left": 25,
+            "top": 439.75,
+            "right": 295,
+            "bottom": 483.75,
+            "width": 270,
+            "height": 44
+          },
+          "text_rects": [
+            {
+              "left": 114.671875,
+              "top": 452.65625,
+              "right": 205.3125,
+              "bottom": 469.65625,
+              "width": 90.640625,
+              "height": 17
+            }
+          ],
+          "ancestors": [
+            {
+              "tag": "BUTTON",
+              "id": "gov-tab-watch",
+              "scrollLeft": 0,
+              "scrollWidth": 268,
+              "clientWidth": 268
+            },
+            {
+              "tag": "NAV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 286,
+              "clientWidth": 286
+            },
+            {
+              "tag": "DIV",
+              "id": "",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govBody",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            },
+            {
+              "tag": "DIV",
+              "id": "govScreen",
+              "scrollLeft": 0,
+              "scrollWidth": 320,
+              "clientWidth": 320
+            }
+          ],
+          "errors": [],
+          "viewport": {
+            "left": 0,
+            "top": 0,
+            "right": 320,
+            "bottom": 844
+          }
+        }
+      ]
+    }
+  ],
+  "saved_slot": "s10-government-decisions",
+  "final_state": {
+    "player": "France",
+    "date": "1 Jan 1990",
+    "policy": {
+      "calls_to_arms": "review",
+      "defense_pacts": "review",
+      "trade_treaties": "decline"
+    },
+    "leader": {
+      "also": [
+        {
+          "name": "Michel Rocard",
+          "office": "Prime Minister of France",
+          "party": "fr_ps",
+          "since": "1988-05-10"
+        }
+      ],
+      "name": "Francois Mitterrand",
+      "native": "François Maurice Adrien Marie Mitterrand",
+      "office": "President of the Republic",
+      "party": "fr_ps",
+      "party_name": "Socialist Party",
+      "since": "1981-05-21"
+    },
+    "political_capital": 44.88857268097011
+  },
+  "finished_utc": "2026-09-13T23:24:26.120Z"
+}

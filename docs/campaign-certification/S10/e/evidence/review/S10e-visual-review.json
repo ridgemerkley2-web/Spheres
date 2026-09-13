@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "runtime_revision": "99b0b9d4a46a98a2c0cf7886583fe13e568dda64",
+  "method": "Manual inspection of actual browser screenshots, alongside browser element text bounds and hit tests at 1440, 390 and 320 pixels.",
+  "findings": [
+    "Pacts and upkeep use readable cards with separate native facts.",
+    "Call context clearly separates requester, requested rung and the two coalitions.",
+    "Narrow screens stack facts; the conflict card retains its Inspect conflict control and the reply notice remains visible.",
+    "Screenshots are partial scroll positions in the full dialog; automated checks separately scroll and inspect each fact and action."
+  ],
+  "screenshots": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10e-commitments-final\\browser\\authored-france-uX6CGN\\standing-commitments-1440.png",
+      "sha256": "8ceb5857bdd73e0638f543e56b1722686e049e146e2c5c5395576318ee7d1056"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10e-commitments-final\\browser\\authored-france-uX6CGN\\call-context-1440.png",
+      "sha256": "74f3dd48bf1496010bbb6fe8c00f77ba111e22780d100258ca56ad9c8c200a70"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10e-commitments-final\\browser\\authored-france-uX6CGN\\call-context-320.png",
+      "sha256": "88ed4f8cb5f6e776b582e74f07ede8a6c34ff64c3db8c4319839c2c04823c118"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10e-commitments-final\\browser\\authored-france-uX6CGN\\joined-commitments-320.png",
+      "sha256": "eb2f026343e9aa6a92bb6b97a489ab598c81669c287c5d01f7b8c0f2db4d0a29"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10e-commitments-final\\browser\\authored-france-uX6CGN\\reply-recorded-390.png",
+      "sha256": "4ef5ec5a8ba16a45dc62508436a9ee5f362cbd68bc5440ed69de9813c21259ca"
+    }
+  ],
+  "scope": "New commitment overview, native call context and result presentation. Not long campaign qualification."
+}

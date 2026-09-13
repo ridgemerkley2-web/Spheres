@@ -1,0 +1,110 @@
+{
+  "format": "spheres-s10e-increment/v1",
+  "status": "increment_complete_parent_open",
+  "created_utc": "2026-09-13T23:26:35.738786+00:00",
+  "runtime_revision": "99b0b9d4a46a98a2c0cf7886583fe13e568dda64",
+  "logic_revision": "99b0b9d4a46a98a2c0cf7886583fe13e568dda64",
+  "final_delta": [],
+  "binary_sha256": "1e21bcdc78eaf39372a3b50fefbfc7c1a8c6d5e1b4d78aa07942fa3089ebeda1",
+  "c01_complete": false,
+  "s10_complete": false,
+  "g2_earned": false,
+  "s11_started": false,
+  "historical_role_or_gameplay_authorization_changed": false,
+  "browser_elapsed_days": 1,
+  "authored_browser_elapsed_days": 1,
+  "ordinary_browser_elapsed_days": 0,
+  "qualification": {
+    "windows_web": {
+      "passed": 378,
+      "failed": 0,
+      "ignored": 13,
+      "completed_targets": 2
+    },
+    "windows_node": {
+      "tests": 1544,
+      "pass": 1543,
+      "fail": 0,
+      "skipped": 1
+    },
+    "windows_agency": {
+      "passed": 12,
+      "failed": 0,
+      "ignored": 0,
+      "completed_targets": 2
+    },
+    "linux_checks": [
+      {
+        "name": "web",
+        "totals": {
+          "passed": 378,
+          "failed": 0,
+          "ignored": 13,
+          "completed_targets": 2
+        }
+      },
+      {
+        "name": "agency",
+        "totals": {
+          "passed": 12,
+          "failed": 0,
+          "ignored": 0,
+          "completed_targets": 2
+        }
+      }
+    ],
+    "content_tests": 48,
+    "content_test_groups": {
+      "india-tests": 8,
+      "japan-tests": 8,
+      "census-tests": 16,
+      "france-tests": 10,
+      "portrait-tests": 6
+    },
+    "content_commands": 10,
+    "authored_browser": {
+      "inspections": 10,
+      "exact_comparisons": 7,
+      "ignored_paths": []
+    },
+    "ordinary_browser": {
+      "inspections": 8,
+      "exact_comparisons": 5,
+      "ignored_paths": []
+    },
+    "authored_offers": 2,
+    "cancelled_choices": 2,
+    "confirmed_replies": 1,
+    "authored_native_fixture_sha256": {
+      "manifest": "ff67a3c0b1cdd9b1f7f65c833479cd5143435c9bd4ca31b873ccda79e49ab4a5",
+      "before": "e2a00a4f0d8a79946ac8561baad5d918d4876f2c0d363d51537ae3d73da3223e",
+      "expected_after": "20bda18a9e72eaea49b8c8369eb6a134ca24cb697c937b71ceaa29efbb06b899",
+      "expected_day": "3cabbb055f5e2958aeabab887a5af2a185b62a4d8f73dfabd38fdce798eb90fa"
+    },
+    "authored_scope": "Disposable authored commitments, reply and one-day continuation fixture. Not historical treaties, organically generated offers, a full war or campaign-certification duration evidence.",
+    "ordinary_scope": "Fresh France through ordinary controls, real same-campaign second tab; no state grants or substituted responses",
+    "new_long_campaign_or_performance_claim": false,
+    "not_refreshed": [
+      "Full Linux Node",
+      "Eight-country startup matrix",
+      "External old-save fixture matrix",
+      "Long campaign and Russia activation"
+    ]
+  },
+  "research_counts": {
+    "country_packets": 5,
+    "countries_without_new_discovery_packet": 155,
+    "organization_observations": 742,
+    "institution_observations": 18,
+    "sources": 40,
+    "source_claims": 1426,
+    "discovery_batches": 79,
+    "exhaustive_country_censuses": 0
+  },
+  "review_url": "http://127.0.0.1:7851",
+  "evidence": {
+    "inventory_sha256": "fa122849a57d0b0a8e31e05620f8a37ee330b3ef91a9f450bab5433f1f3bdfb1",
+    "logical_files": 137,
+    "stored_bytes": 85978953
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "revision": "99b0b9d4a46a98a2c0cf7886583fe13e568dda64",
+  "started_utc": "2026-09-13T23:19:24.631297+00:00",
+  "runner_sha256": "2359259887e6e6706ecd98709602cd286ba6a9b22320cd9e6fccd6a313a8c97d",
+  "checks": [
+    {
+      "name": "india-tests",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_india_research_s10e.py"
+      ],
+      "exit_code": 0,
+      "log": "india-tests.log",
+      "log_sha256": "aa18d981795e52f9cffeb4c5b30edb46076036d3a30adf159ec222773c2e7443"
+    },
+    {
+      "name": "japan-tests",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_japan_research_s10d.py"
+      ],
+      "exit_code": 0,
+      "log": "japan-tests.log",
+      "log_sha256": "f7c1abebd1ef3b17d2594cc7e04f74d922117a1793f09131c3c0ae002871e197"
+    },
+    {
+      "name": "census-tests",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_campaign*.py"
+      ],
+      "exit_code": 0,
+      "log": "census-tests.log",
+      "log_sha256": "d54948cbcf264a554279164183ba61abdaacc7352484c47d0404a5fe76b7c54e"
+    },
+    {
+      "name": "france-tests",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_import_cnccfp_census.py"
+      ],
+      "exit_code": 0,
+      "log": "france-tests.log",
+      "log_sha256": "66cbd089b280b0799772be7ad7b1cd8a624fb42931a2141333cadcc8827b512f"
+    },
+    {
+      "name": "portrait-tests",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/avatars",
+        "-p",
+        "test_tupou_portrait_s10c.py"
+      ],
+      "exit_code": 0,
+      "log": "portrait-tests.log",
+      "log_sha256": "9d8ac5c2602cd8451b0efbe62635ece921760fd10bffdf48811b2b3870f476f3"
+    },
+    {
+      "name": "production",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/avatars/leadership_production.py",
+        "check"
+      ],
+      "exit_code": 0,
+      "log": "production.log",
+      "log_sha256": "ede01baeaf00d1291e7980acaf67ee41fdc7281b8c9eb0b633122423d2ccea17"
+    },
+    {
+      "name": "build_person_avatar_assets",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/avatars/build_person_avatar_assets.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "build_person_avatar_assets.log",
+      "log_sha256": "fe83b07963d5578e258e3145936198c50445a1a9eec113db8d92b924377e770a"
+    },
+    {
+      "name": "campaign_census",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_census.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "campaign_census.log",
+      "log_sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+    },
+    {
+      "name": "import_cnccfp_census",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/avatars/import_cnccfp_census.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "import_cnccfp_census.log",
+      "log_sha256": "1a0ac4c1a826bf68586e8ddaf1da41f965497fb88d1025cbd839ef9caf2f010e"
+    },
+    {
+      "name": "campaign_research",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "tools/avatars/campaign_research.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "campaign_research.log",
+      "log_sha256": "9a23e9991b22819ff3c174865bdf1f1980b4969b73cdf2daa7726c74c0aa6a1f"
+    }
+  ],
+  "clean_after": true,
+  "revision_after": "99b0b9d4a46a98a2c0cf7886583fe13e568dda64",
+  "passed": true
+}

@@ -1,6 +1,6 @@
 # Source-backed discovery intake
 
-This is additional research for S10.b through S10.d, separate from the C01
+This is additional research for S10.b through S10.e, separate from the C01
 recount of the playable catalogue. These packets record discoveries and
 explicit gaps; they do not change game parties, leader eligibility or artwork.
 The historical cutoff stays **7 September 2026**. Research access dates can be
@@ -60,9 +60,30 @@ inferred term boundaries or national-office eligibility. Two factual extracts
 retain source URLs and downloaded-response hashes. The live upper-house roster
 dated 13 September 2026 was excluded because it exceeds the fixed cutoff.
 
-Together the four packets contain 660 organization observations and 18
-institution observations, supported by 1,344 claims across 38 cited sources.
-The index assigns them to 70 research batches. None establishes an exhaustive
+[India](india.json) adds 82 recognition observations from the ECI's
+23 March 2024 national- and state-party notifications, officially republished in
+[Kerala Gazette No. 1197](https://www.ceo.kerala.gov.in/ceokerala/ceo-cms/uploads/newsupdates/gazette-1197-nationalparties-20240329181824311796.pdf)
+and [No. 1198](https://www.ceo.kerala.gov.in/ceokerala/ceo-cms/uploads/newsupdates/gazette-1198-el7-state-parties-20240329182048526666.pdf)
+on 28 March 2024. All six national rows and 76 state-jurisdiction rows across
+26 jurisdictions were visually reviewed. These are not 82 unique parties or
+people. Repeated names across states remain separate observations pending
+identity reconciliation; no party, alliance or parliamentary group is merged
+by name alone.
+
+The India extracts preserve five frozen-name or pending-court-order
+qualifications and Kerala's printed row numbers 1, 2, 3, 4 and 6. They do not
+invent a missing row 5 or infer a dispute's resolution. Two factual extracts
+retain the source PDF response hashes and page/row locators. Recognition on
+23 March 2024 is an attestation, not a founding date, lifespan or current-status
+claim; later amendments are not consolidated here. Registered unrecognized
+parties, alliances, earlier organizations and separately dated office histories
+remain outside this intake. All game mappings, leadership terms and lifecycle
+boundaries stay unknown. No avatar or portrait eligibility is added, and access
+on 13 September 2026 does not move the historical cutoff.
+
+Together the five packets contain 742 organization observations and 18
+institution observations, supported by 1,426 claims across 40 cited sources.
+The index assigns them to 79 research batches. None establishes an exhaustive
 country roster or supplies a new finished character.
 
 Each source needs a public URL, publisher, access date and individually identified
@@ -85,6 +106,8 @@ python -X utf8 tools/avatars/campaign_research.py
 python -X utf8 tools/avatars/campaign_research.py --check
 python -X utf8 -m unittest discover -s tools/avatars -p "test_campaign*.py"
 python -X utf8 -m unittest discover -s tools/avatars -p "test_import_cnccfp_census.py"
+python -X utf8 -m unittest discover -s tools/avatars -p "test_japan_research_s10d.py"
+python -X utf8 -m unittest discover -s tools/avatars -p "test_india_research_s10e.py"
 ```
 
 Use the importer without `--check` only to reproduce France's packet from the

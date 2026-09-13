@@ -1,10 +1,31 @@
 # S10 — Government, succession and diplomacy
 
-Status: **S10.a through S10.d complete; S10 and C01 remain in progress**.
+Status: **S10.a through S10.e complete; S10 and C01 remain in progress**.
 The [S10.b report](b/README.md) records source-backed country discoveries,
 Linux qualification and all eight ordinary government browser journeys.
 Parent source: `872442d7411d9986321248b41ccadf79e2851d1c`.
 Latest user instruction: Next. Work is limited to S10; S11 is not started.
+
+## S10.e — Understand standing commitments
+
+The [S10.e report](e/README.md) connects saved defense pacts, trade agreements
+and current conflict participation to the Decisions room. The overview shows
+genuine saved pact dates, current treaty depth and overall trade dependency.
+Upkeep estimates use the same native charge as settlement, at current GDP and
+simulation cadence; they are not fixed future bills. Call reviews identify the
+requesting government, theatre and coalitions, then show the actual native
+before/after participation and posture. Below-threshold participation is kept
+distinct from a shooting war. A rung's name does not promise immediate execution
+of every associated instrument.
+
+The disclosed authored browser journey qualifies review/cancel, one confirmed
+call, Save/Load/Continue and one ordinary subsequent campaign day against an
+independently advanced native world. Its treaties and conflict are authored test
+setup, not historical opening obligations or a multi-year campaign result.
+
+The published manifest records 378 passing Windows native web tests, 1,543 passing interface tests and 12 passing agency/succession tests. Linux records 378 passing native web tests and 12 passing agency/succession tests. Content checks pass 48 tests. The authored browser evidence contains 10 native inspections and 7 exact comparisons with no ignored paths. These counts do not imply a new long-campaign or performance qualification.
+
+India adds a bounded recognition-row research packet. The discovery index now contains 5 country packets and 742 organization observations, with 0 exhaustive country censuses completed. Recognition rows do not establish distinct-party totals, leadership histories or new gameplay candidates. S10 and C01 remain in progress, G2 is unearned, and S11 remains planned. Execution stopped after S10.e.
 
 ## S10.d — Clear diplomatic replies
 
@@ -40,7 +61,7 @@ supply immediate changes; standing obligations and offer deadlines stay explicit
 Saved request history receives readable dates and country names in presentation.
 This does not add a parallel simulation or change historical records.
 
-## Verified in this increment
+## Verified in S10.a
 
 - 20 new native tests cover exact outcome, repeat receipt, altered command/batch,
   second-tab changes, date/session replacement, foreign and unaffordable orders,
@@ -79,7 +100,7 @@ bind the checks, screenshots and complete native archives to those sources.
 save. All eight protected originals, two source worktrees and earlier review
 servers were preserved.
 
-## Open dependency and certification limits
+## S10.a certification limits (historical)
 
 C01 is not complete. Its existing production board marks worldwide party research
 as incomplete, and represented simulation rows are not an exhaustive historical

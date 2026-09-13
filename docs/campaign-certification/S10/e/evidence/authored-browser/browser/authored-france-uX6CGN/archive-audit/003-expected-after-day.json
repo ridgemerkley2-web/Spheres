@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "input": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10e-commitments-fixture-2\\expected-after-day.json",
+    "bytes": 13476087,
+    "sha256": "3cabbb055f5e2958aeabab887a5af2a185b62a4d8f73dfabd38fdce798eb90fa"
+  },
+  "requested": {
+    "buyer": "France",
+    "revision": null,
+    "seller": null,
+    "company": null,
+    "product": null
+  },
+  "buyer": {
+    "id": "France",
+    "tech_sha256": "a623af1b6cba9477805ccf6d25aee43f071590dc752266396810800a59d53228",
+    "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+    "revision_ids": [],
+    "held_by_revision": {},
+    "held_units": 0,
+    "buyer_revision": null,
+    "maintenance_plan": null,
+    "program_budget": null
+  },
+  "supplier": null,
+  "imports": {
+    "ids": [],
+    "matching": []
+  },
+  "canonical": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10e-commitments-final\\browser\\authored-france-uX6CGN\\archive-audit\\003-expected-after-day.canonical",
+    "bytes": 12455208,
+    "sha256": "489f5c52a4af2455e8c808c81235f2738e55e5863e0960344e11e0a21bcd6a7f",
+    "format": "s08-typed-canonical-world-v1-js-f64",
+    "ignored_paths": []
+  }
+}

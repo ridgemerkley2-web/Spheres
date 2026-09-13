@@ -267,6 +267,12 @@
           "status": "complete",
           "title": "Deadline-ordered diplomatic replies and bounded Japan discovery",
           "evidence": "docs/campaign-certification/S10/d/manifest.json"
+        },
+        {
+          "id": "S10.e",
+          "status": "complete",
+          "title": "Standing commitments, native call participation and bounded India discovery",
+          "evidence": "docs/campaign-certification/S10/e/manifest.json"
         }
       ],
       "remaining": [
@@ -814,9 +820,9 @@
   "next_session": "S10",
   "execution": {
     "authorized_through": "S10",
-    "stop_boundary": "S10.d",
+    "stop_boundary": "S10.e",
     "status": "stopped",
-    "previous_stop": "S10.c",
+    "previous_stop": "S10.d",
     "instruction": "Next",
     "instruction_date": "2026-09-13",
     "next_session_requires_instruction": true
@@ -828,6 +834,12 @@
       "candidate": "db9d17c8d726aa102aa143ceb3599009c558ffee",
       "evidence": "docs/campaign-certification/S05/manifest.json",
       "reason": "The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work."
+    },
+    "G2": {
+      "status": "not_earned",
+      "date": "2026-09-13",
+      "evidence": "docs/campaign-certification/S10/e/manifest.json",
+      "reason": "S10.e is a bounded commitment-review and one-day authored-browser increment. S10 and C01 remain in progress; it does not certify the national-economy gate or a campaign through 2035."
     }
   }
 }
