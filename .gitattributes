@@ -48,3 +48,5 @@ spheres-web/ui/tank-assets/strv103/License.original.txt -text -whitespace
 # The optional reference viewer is a checksum-verified upstream distribution.
 tools/arsenal/vendor/model-viewer/model-viewer.min.js -text
 tools/arsenal/vendor/model-viewer/*LICENSE -text
+# Retain the submitted portrait prompt's recorded checksum on Windows checkout.
+tools/avatars/person-prompts/taufaahau-tupou-iv-cartoon-1990-v1.txt text eol=lf
