@@ -42,6 +42,11 @@ mod money_view;
 mod construction_outcomes;
 mod companies_view;
 mod transport;
+mod decision_review;
+#[cfg(test)]
+mod s10_government_tests;
+#[cfg(test)]
+mod s10_decision_tests;
 #[cfg(test)]
 mod performance;
 #[cfg(test)]
@@ -250,7 +255,7 @@ fn fresh_session_id() -> String {
 
 fn exchange_read_path(path: &str) -> bool {
     matches!(path, "/api/companies" | "/api/companies-preview" | "/api/equipment" | "/api/equipment-preview" | "/api/competition" | "/api/industry" | "/api/guidance" | "/api/cash-flow" | "/api/goods-quotes" |
-        "/api/industry-module-quotes" | "/api/materials-quote" | "/api/construction-preview")
+        "/api/industry-module-quotes" | "/api/materials-quote" | "/api/construction-preview" | "/api/decisions/preview" | "/api/government/preview")
 }
 
 /// Exchange reads are campaign-scoped even though three of them use POST for
@@ -5682,7 +5687,7 @@ fn state_json(g: &Game, interrupt: Option<String>) -> serde_json::Value {
         // directives and every progress/milestone/routing decision already
         // resolved. The page paints this contract; it does not score conquest.
         "domination": w.player.map(|p| domination_json(w, p)),
-        "agency": w.player.map(|p| spheres_sim::agency::view(w, p)),
+        "agency": w.player.map(|p| decision_review::agency_view(w, p)),
         "campaign_aims": w.player.map(|p| spheres_sim::campaign_aims::view(w, p)),
         "policy": w.player.map(|p| policy_json(w, p)),
         // The budget card (stage 4): the ten dials' named arms, sampled by
@@ -7774,7 +7779,7 @@ fn main() {
             }
             (Method::Get, "/api/agency") => {
                 let g = game.lock().unwrap();
-                json_response(serde_json::json!(g.world.player.map(|p| spheres_sim::agency::view(&g.world,p))))
+                json_response(serde_json::json!(g.world.player.map(|p| decision_review::agency_view(&g.world,p))))
             }
             (Method::Get, "/api/state") => {
                 let g = game.lock().unwrap();
@@ -7825,7 +7830,7 @@ fn main() {
                 let _ = request.respond(r);
                 continue;
             }
-            (Method::Post, "/api/government/preview") => {
+            (Method::Post, "/api/government/preview" | "/api/decisions/preview") => {
                 let g = game.lock().unwrap();
                 let asked = match payload.get("nation") {
                     Some(value) => value.as_str().and_then(NationId::parse),
@@ -7833,8 +7838,8 @@ fn main() {
                 };
                 let r = match asked {
                     Some(id) => {
-                        let mut value = government_view::preview(&g.world, id, &payload["command"]);
-                        value["session_id"] = serde_json::json!(g.session_id);
+                        let kind = if url_path == "/api/government/preview" { "government" } else { "decisions" };
+                        let value = decision_review::preview(&g, id, kind, &payload["command"]);
                         json_response(value)
                     }
                     None => json_error(400, serde_json::json!({"error":"Choose a valid government to review."})),
@@ -8120,13 +8125,13 @@ fn main() {
                         value["storage_notice"]=serde_json::json!(g.storage_notice);
                         json_response(value)
                     },
-                    Err(error) => json_error(400, serde_json::json!({"error":error.message,"not_advanced":!error.requires_review,"requires_review":error.requires_review})),
+                    Err(error) => json_error(400, serde_json::json!({"error":error.message,"not_advanced":error.not_applied,"requires_review":error.requires_review})),
                 }
             }
             (Method::Post, "/api/command") => {
                 let mut g = game.lock().unwrap();
                 match immediate_request(&mut g,&payload) {
-                    Ok(v)=>json_response(v),Err(e)=>json_error(400,serde_json::json!({"error":e.message,"not_applied":!e.requires_review,"requires_review":e.requires_review})),
+                    Ok(v)=>json_response(v),Err(e)=>json_error(400,serde_json::json!({"error":e.message,"not_applied":e.not_applied,"requires_review":e.requires_review})),
                 }
             }
             (Method::Get, "/api/saves") => json_response(storage::list(std::path::Path::new("."))),

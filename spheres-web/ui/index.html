@@ -15074,6 +15074,7 @@ function describe(n) {
 }
 
 window.act = async function (kind, target) {
+  if (["sanction", "lift", "improve"].includes(kind)) return agencyReview({kind, target});
   const r = await api("/api/command", { commands: [{ kind, target }] });
   if (r.errors && r.errors.length) banner(r.errors[0]);
   await adopt(r, false);
@@ -15971,9 +15972,10 @@ async function govReview(index) {
   gov.review = review; gov.notice = ""; govSelectTab("decisions"); renderGovernment();
   const current = () => gov.review === review && gov.open && gov.nation === nation && S === state && gov.data === data;
   try {
-    const result = await api("/api/government/preview", {nation, command});
+    const result = await api("/api/government/preview", {nation, command, session_id:state.session_id});
     if (!current()) return;
     if (result.session_id !== state.session_id) throw new Error("The campaign changed. Refresh this government before reviewing again.");
+    if (result.valid && !result.review_token) throw new Error("This decision needs a fresh review from the current server.");
     if (result.valid && JSON.stringify(result.command) !== JSON.stringify(command)) {
       // JSON object key order is irrelevant; compare canonical object content.
       const canonical = value => JSON.stringify(value, Object.keys(value || {}).sort());
@@ -16003,8 +16005,14 @@ async function govAct(a, review = null) {
   try {
     if (!review && !await campaignConfirm(`${label}?\n\nIt costs ${price.toFixed(1)} political capital and takes effect at once.`, { title: "Government action", confirmLabel: label })) return;
     if (S !== state || gov.action !== action || !gov.open || gov.nation !== nation || gov.data !== data || governmentActionBlocked()) return;
-    const r = await api("/api/command", { commands: [command] });
+    let r = await api("/api/command", { commands: [command], ...(review ? {review_token:review.data.review_token,review_kind:"government"} : {}) });
     if (S !== state || gov.action !== action) return;
+    if (r.errors?.length && !r.command_pending) {
+      const fresh = await api("/api/state");
+      if (S !== state || gov.action !== action) return;
+      if (fresh.session_id !== state.session_id) throw new Error("The campaign changed. Continue the current campaign before reviewing this government.");
+      r = {...fresh, errors:r.errors};
+    }
     gov.review = null;
     gov.notice = r.errors?.length ? r.errors[0] : label + " — completed. The figures now reflect this decision.";
     banner(r.errors?.length ? r.errors[0] : label + " — done.");

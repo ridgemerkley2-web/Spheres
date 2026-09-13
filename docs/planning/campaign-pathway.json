@@ -232,7 +232,7 @@
       "id": "S10",
       "phase": "nation",
       "title": "Qualify government, succession and diplomacy",
-      "status": "planned",
+      "status": "in_progress",
       "depends": [
         "S05",
         "C01"
@@ -575,7 +575,7 @@
       "id": "C01",
       "phase": "content",
       "title": "Freeze the worldwide party and institution census",
-      "status": "planned",
+      "status": "in_progress",
       "depends": [
         "S01"
       ],
@@ -783,11 +783,11 @@
   "last_completed_session": "S09",
   "next_session": "S10",
   "execution": {
-    "authorized_through": "S09",
-    "stop_boundary": "S09",
-    "status": "stopped",
-    "previous_stop": "S08",
-    "instruction": "next",
+    "authorized_through": "S10",
+    "stop_boundary": "S10",
+    "status": "in_progress",
+    "previous_stop": "S09",
+    "instruction": "Continue",
     "instruction_date": "2026-09-12",
     "next_session_requires_instruction": true
   },

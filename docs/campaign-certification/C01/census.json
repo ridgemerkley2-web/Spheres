@@ -1,0 +1,180 @@
+{
+  "format": "spheres-c01-partial-census/v1",
+  "status": "partial_baseline_recorded_census_open",
+  "source_baseline_revision": "872442d7411d9986321248b41ccadf79e2851d1c",
+  "c01_complete": false,
+  "g2_prerequisite_satisfied": false,
+  "historical_from": "1990-01-01",
+  "existing_research_cutoff": "2026-09-07",
+  "fictional_from": "2026-09-08",
+  "until_exclusive": "2036-01-01",
+  "cutoff_note": "Frozen existing data boundary, not new present-day research. Reassess the cutoff before content acceptance; fictional templates are not real-world forecasts.",
+  "certified_country_cases": [
+    "France",
+    "Japan",
+    "India",
+    "Brazil",
+    "SouthAfrica",
+    "Tonga",
+    "SaudiArabia",
+    "USSR -> Russia"
+  ],
+  "certified_identity_ids": [
+    "France",
+    "Japan",
+    "India",
+    "Brazil",
+    "SouthAfrica",
+    "Tonga",
+    "SaudiArabia",
+    "USSR",
+    "Russia"
+  ],
+  "counts": {
+    "nation_identities": 160,
+    "starting_nations": 137,
+    "successor_nations": 23,
+    "represented_party_rows": 624,
+    "countries_with_party_rows": 148,
+    "countries_without_party_rows": 12,
+    "party_row_kind": {
+      "coalition": 3,
+      "party": 50,
+      "unknown": 571
+    },
+    "party_history_status": {
+      "gap": 571,
+      "partial": 53
+    },
+    "registered_components_or_name_phases": 20,
+    "historical_people": 590,
+    "historical_terms": 393,
+    "component_term_records": 65,
+    "historical_term_kind": {
+      "acting": 44,
+      "co_leader": 38,
+      "leader": 311
+    },
+    "executive_seed_observations": 132,
+    "institution_policy_records": 12,
+    "historical_executive_gameplay_grants": 93,
+    "future_seat_policies": 2,
+    "existing_lifecycle_records": 23,
+    "future_templates": 2556,
+    "historical_manifest_assets": 53,
+    "fictional_manifest_assets": 4,
+    "historical_art_snapshot_pending_jobs": 705,
+    "people_with_unknown_appearance_eligibility": 126,
+    "exhaustive_country_censuses": 0,
+    "unrepresented_organizations": null,
+    "work_orders_by_phase": {
+      "fictional_editorial_review": 316,
+      "historical_cartoon_jobs": 184,
+      "institution_and_office_roles": 160,
+      "known_historical_chains": 150,
+      "organization_census": 160
+    }
+  },
+  "production_snapshot": {
+    "all_declared_inputs_current": false,
+    "stale_inputs": [
+      {
+        "path": "spheres-sim/src/government.rs",
+        "recorded_sha256": "2c29b644b47785063ca62778da60f515ec5b7e265783b5f9405859f0ff6bc9c5",
+        "current_sha256": "eed714f3444c1ef6ecfc16ffd891756c6b4961ec5e87ba8f323487658f6419ce"
+      }
+    ],
+    "current_party_rows_match_snapshot_exactly": true,
+    "job_person_and_portrait_inputs_current": true,
+    "physical_art_revalidated_this_run": false,
+    "historical_jobs_are_known_backlog_not_worldwide_total": true
+  },
+  "source_files": [
+    {
+      "path": "spheres-sim/src/nations.rs",
+      "bytes": 214042,
+      "sha256": "a41cb771eaf84350c4f98fd11454c59247ded92f1eb1ca7cfadb170ad3dca47c"
+    },
+    {
+      "path": "spheres-sim/src/government.rs",
+      "bytes": 621338,
+      "sha256": "eed714f3444c1ef6ecfc16ffd891756c6b4961ec5e87ba8f323487658f6419ce"
+    },
+    {
+      "path": "spheres-sim/data/party_leaders.json",
+      "bytes": 1262625,
+      "sha256": "18774ffa08a226e1a9c6b9608d6a4e8adfbab43928092ed925d3c44803cd2494"
+    },
+    {
+      "path": "spheres-sim/data/party_executive_eligibility.json",
+      "bytes": 86656,
+      "sha256": "d4fbdbff29956f5251fc97dc2021b31b4a2a8b423fd6a89e2ce34397b409510d"
+    },
+    {
+      "path": "spheres-sim/data/future_party_leadership.json",
+      "bytes": 26453,
+      "sha256": "96e724b21f59ff7278f1a64625bbf1620b3dca24d3ed7d7f3116684a0a0fec26"
+    },
+    {
+      "path": "spheres-sim/data/future_party_leadership_seats.json",
+      "bytes": 2972,
+      "sha256": "cbf74d65ccd193a3cc86ef686d11ddb2b7f3281b98675d0c7b842e8bea92cd08"
+    },
+    {
+      "path": "spheres-sim/data/future_party_continuation.json",
+      "bytes": 2600,
+      "sha256": "cec3e9d9f49cd27a97229b9741a325952df24f259acbbde092150f4032d24176"
+    },
+    {
+      "path": "spheres-web/data/nation_figures.json",
+      "bytes": 408800,
+      "sha256": "f2fbd1a1a138fb94f55c33a6d058958fa51564bbc60cb7012ab5a27674351962"
+    },
+    {
+      "path": "spheres-web/data/future_candidates_2035.json",
+      "bytes": 3273947,
+      "sha256": "75afd1f5ef49b82b0569feacf025a786f7daf49ca9da7436b6acc677fbedc492"
+    },
+    {
+      "path": "spheres-web/data/person_portraits.json",
+      "bytes": 286951,
+      "sha256": "06b549130b3ffd16a22d578ec6aa15ca723970518f9bfb6a19a7ccb6abfc9169"
+    },
+    {
+      "path": "spheres-web/data/fictional_portraits.json",
+      "bytes": 7666,
+      "sha256": "54a16634b77cb60d4945b541d64504c8c354610d406e3baff00da5b186235d0c"
+    },
+    {
+      "path": "spheres-web/data/leadership_production_2035.json",
+      "bytes": 5982327,
+      "sha256": "dfa5b77f9d4d7c68e7cef00874654e646951969d8e0c0f03f3206b8d051bf6a7"
+    },
+    {
+      "path": "tools/avatars/leadership_production.py",
+      "bytes": 27255,
+      "sha256": "79c59bacc2746bb62af127d1dd68d620957952fc49dfb9ce702fe3c3d68578ab"
+    },
+    {
+      "path": "tools/avatars/person_art_pipeline.py",
+      "bytes": 42307,
+      "sha256": "d6834526111024080f048d97a813338f2aa0f77f3652fac0cfb6dd837ec8bb65"
+    },
+    {
+      "path": "tools/avatars/fictional_art_pipeline.py",
+      "bytes": 14426,
+      "sha256": "b51967d48218cd192c38149eafad0ea6ae9c544641ed7aaf72303505cfd6d8ab"
+    },
+    {
+      "path": "tools/avatars/campaign_census.py",
+      "bytes": 19826,
+      "sha256": "4eda2d0bf01a10d7770f79f9dad964dffc01d5b884d90ea226730e254626207b"
+    }
+  ],
+  "acceptance_remaining": [
+    "Independently enumerate real organizations for every country and jurisdiction period, including unrepresented/minor/dissolved/successor bodies.",
+    "Resolve leaders, chairs, parliamentary and executive offices, coalition components and collective institutions without substituting one role for another.",
+    "Review certified cases first, explicitly track unknowns worldwide, and approve the research cutoff.",
+    "Expand uniquely numbered historical/future work orders with discoveries. C01 inventories the work; subsequent character sessions complete historical chains and physical cartoon art. Neither an artwork count nor this partial recount establishes C01 closure."
+  ]
+}

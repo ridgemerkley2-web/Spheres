@@ -330,7 +330,7 @@ function governmentReviewFixture(){
   vm.runInContext(['govSelectTab','govReview'].map(governmentFunction).join('\n'),c);
   c.api=async(url,body)=>{
     f.calls.push({url,body});
-    return {session_id:c.S.session_id,valid:true,command:JSON.parse(JSON.stringify(body.command)),price_pc:5,money_cost_bn:0,changes:[]};
+    return {session_id:c.S.session_id,valid:true,review_token:'current-government-review',command:JSON.parse(JSON.stringify(body.command)),price_pc:5,money_cost_bn:0,changes:[]};
   };
   return f;
 }
@@ -343,6 +343,9 @@ test('a government review reads exact consequences without sending an order; con
   let finish;c.api=(url,body)=>{f.calls.push({url,body});return new Promise(resolve=>finish=resolve);};
   const review=c.gov.review,pending=c.govAct(f.action,review);
   await c.govAct(f.action,review);assert.equal(f.calls.length,2);assert.equal(f.calls[1].url,'/api/command');
+  assert.equal(f.calls[0].body.session_id,c.S.session_id);
+  assert.equal(f.calls[1].body.review_token,'current-government-review');
+  assert.equal(f.calls[1].body.review_kind,'government');
   finish({session_id:c.S.session_id});await pending;assert.equal(c.adopted.length,1);assert.equal(c.gov.review,null);
 });
 test('government preview confirms the captured command at its original action index after filtering',async()=>{

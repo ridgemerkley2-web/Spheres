@@ -15,7 +15,7 @@
 #agencyPanel button:disabled { opacity:.5; cursor:not-allowed; }
 #agencyPanel :focus-visible { outline:3px solid #7755b9; outline-offset:3px; }
 .agency-offer { border-top:1px solid #ded8e7; padding:16px 0 5px; }
-.agency-actions { display:flex; gap:10px; }
+.agency-actions { display:flex; flex-wrap:wrap; gap:10px; }
 .agency-deadline { font-size:13px; color:#76501c; }
 .agency-refusal { color:#983f3c; }
 .agency-empty { color:#716981; }
@@ -24,6 +24,16 @@
 #agencyPolicy button { grid-column:1 / -1; justify-self:start; }
 #agencyStatus { position:sticky; bottom:0; padding:12px 22px; margin:0!important; background:#ece8f2; }
 #agencyStatus:empty { display:none; }
+#agencyReview { border-color:#8061a6!important; box-shadow:0 0 0 2px #8061a61a; scroll-margin-top:100px; }
+.agency-kicker { color:#67458e; font-size:12px; font-weight:750; text-transform:uppercase; letter-spacing:.06em; }
+.agency-review-scroll { max-width:100%; overflow:auto; margin:14px 0; }
+.agency-review-scroll table { width:100%; border-collapse:collapse; text-align:left; }
+.agency-review-scroll caption { text-align:left; font-weight:700; margin-bottom:10px; }
+.agency-review-scroll th, .agency-review-scroll td { padding:10px 8px; border-bottom:1px solid #ded8e7; vertical-align:top; overflow-wrap:anywhere; }
+.agency-review-scroll th { min-width:90px; }
+.agency-review-scroll small { display:block; font-size:12px; font-weight:400; color:#716981; margin-top:5px; }
+#agencyPanel .agency-confirm { color:#fff; background:#624185; border-color:#624185; }
+#agencyBody section { min-width:0; overflow-wrap:anywhere; }
 @media(max-width:600px) { #agencyBody { padding:12px; } #agencyPanel > header { padding:14px; } #agencyPanel h2 { font-size:19px; } #agencyPolicy { grid-template-columns:1fr; } #agencyBtn { font-size:12px; padding:7px; } }
 
 .agency-aim-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }

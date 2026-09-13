@@ -6,12 +6,16 @@ use crate::*;
 pub(crate) struct AdvanceError {
     pub message: String,
     pub requires_review: bool,
+    /// False when an earlier receipt may have committed in another session.
+    /// A stale review rejected before mutation is known not to have applied.
+    pub not_applied: bool,
 }
 impl From<String> for AdvanceError {
     fn from(message: String) -> Self {
         Self {
             message,
             requires_review: false,
+            not_applied: true,
         }
     }
 }
@@ -26,7 +30,7 @@ pub(crate) fn advance_request(
 ) -> Result<serde_json::Value, AdvanceError> {
     if let Some(session) = payload.get("session_id") {
         if session.as_str() != Some(g.session_id.as_str()) {
-            return Err(AdvanceError { message: "This campaign changed or the server restarted. Review the current campaign; the earlier turn's outcome cannot be inferred here.".into(), requires_review: true });
+            return Err(AdvanceError { message: "This campaign changed or the server restarted. Review the current campaign; the earlier turn's outcome cannot be inferred here.".into(), requires_review: true, not_applied:false });
         }
     }
     let token = match (payload.get("client_id"), payload.get("request_seq")) {
@@ -51,7 +55,7 @@ pub(crate) fn advance_request(
                     return Ok(state_json(g, why.clone()));
                 }
                 if seq < *last {
-                    return Err(AdvanceError { message: "A newer turn from this browser identity was already processed. Review the current state; these earlier orders will not be automatically replayed.".into(), requires_review: true });
+                    return Err(AdvanceError { message: "A newer turn from this browser identity was already processed. Review the current state; these earlier orders will not be automatically replayed.".into(), requires_review: true, not_applied:false });
                 }
             } else if g.advance_receipts.len() >= 256 {
                 return Err(
@@ -97,13 +101,14 @@ pub(crate) fn immediate_request(
         return Err(AdvanceError {
             message: "This campaign changed. Review current state before sending orders.".into(),
             requires_review: true,
+            not_applied: false,
         });
     }
     let list = payload
         .get("commands")
         .and_then(|v| v.as_array())
         .ok_or("Commands must be a list.")?;
-    let fingerprint = serde_json::to_string(list).map_err(|e| e.to_string())?;
+    let fingerprint = serde_json::to_string(&(list, payload.get("review_kind"), payload.get("review_token"))).map_err(|e| e.to_string())?;
     let token = match (payload.get("client_id"), payload.get("request_seq")) {
         (None, None) => None,
         (Some(client), Some(seq)) => {
@@ -125,7 +130,7 @@ pub(crate) fn immediate_request(
             }
             if let Some((last, body, errors)) = g.command_receipts.get(client) {
                 if seq < *last {
-                    return Err(AdvanceError{message:"A newer order was already processed. Review the current state; older orders will not replay.".into(),requires_review:true});
+                    return Err(AdvanceError{message:"A newer order was already processed. Review the current state; older orders will not replay.".into(),requires_review:true,not_applied:false});
                 }
                 if seq == *last {
                     if *body != fingerprint {
@@ -148,6 +153,7 @@ pub(crate) fn immediate_request(
         }
         _ => return Err("Protected orders need both a browser identity and a sequence.".into()),
     };
+    crate::decision_review::validate(g, payload)?;
     // Parse the complete batch first; malformed input cannot half-commit an
     // immediate command list. Gameplay refusals still report per-order errors.
     advance_commands(&g.world, payload)?;
@@ -155,6 +161,9 @@ pub(crate) fn immediate_request(
     let errors = apply_orders(&mut g.world, me, list);
     for headline in g.world.headlines[before..].to_vec() {
         g.record(headline);
+    }
+    if errors.is_empty() && g.world.headlines.len() == before && payload["review_kind"] == "decisions" {
+        g.record(crate::decision_review::receipt_label(me, &list[0]));
     }
     resources::warm(&mut g.world);
     if let Some((client, seq)) = token {
