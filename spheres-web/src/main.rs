@@ -48,6 +48,8 @@ mod s10_government_tests;
 #[cfg(test)]
 mod s10_decision_tests;
 #[cfg(test)]
+mod s10d_inbox_fixture_tests;
+#[cfg(test)]
 mod performance;
 #[cfg(test)]
 mod s08_route_pool_tests;

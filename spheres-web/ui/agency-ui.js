@@ -11,7 +11,7 @@ function agencyPanel() {
   panel = document.createElement("dialog");
   panel.id = "agencyPanel";
   panel.setAttribute("aria-labelledby", "agencyTitle");
-  panel.innerHTML = `<header><div><small>Your government, your decisions</small><h2 id="agencyTitle">Decisions & commitments</h2></div><button type="button" id="agencyClose" aria-label="Close decisions">Close</button></header><div class="agency-room-art">${globalThis.AreaArt?.html("diplomacy", "banner") || ""}</div><div id="agencyBody"></div><p id="agencyStatus" role="status" aria-live="polite"></p>`;
+  panel.innerHTML = `<header><div><small>Your government, your decisions</small><h2 id="agencyTitle">Decisions & commitments</h2></div><button type="button" id="agencyClose" aria-label="Close decisions">Close</button></header><div class="agency-room-art">${globalThis.AreaArt?.html("diplomacy", "banner") || ""}</div><div id="agencyBody"></div><p id="agencyStatus" role="status" aria-live="polite" tabindex="-1"></p>`;
   panel.addEventListener("keydown", event => event.stopPropagation());
   // Escape, backdrop and explicit close all invalidate an unfinished review.
   const clearReview = () => { AGENCY.review = null; AGENCY.notice = ""; };
@@ -112,7 +112,13 @@ async function agencyConfirm(review) {
       } catch (_) { /* Keep the original actionable error visible. */ }
     }
   } finally {
-    if (AGENCY.action === action) { AGENCY.action = null; AGENCY.busy = false; renderAgency(S); }
+    if (AGENCY.action === action) {
+      AGENCY.action = null; AGENCY.busy = false; renderAgency(S);
+      if (AGENCY.notice && S?.session_id === review.session && S?.player === review.nation && review.panel.open) {
+        const status = document.getElementById("agencyStatus");
+        status?.focus({preventScroll:true}); status?.scrollIntoView({block:"nearest"});
+      }
+    }
   }
 }
 function agencyChangeCards(changes) {
@@ -148,7 +154,13 @@ function renderAgency(state) {
   if (!body) return;
   const a = AGENCY.state, esc = agencyEscape;
   if (!a) { body.textContent = "Choose a country to make decisions."; return; }
-  body.innerHTML = `<section><h3>Diplomatic inbox <span>${a.offers.length} pending</span></h3><p>${esc(a.expiry_rule)}</p>${a.offers.length ? a.offers.map(o => `<article class="agency-offer"><h4>${esc(o.from_name)} proposes ${esc(o.title)}</h4><p class="agency-deadline">Reply by ${esc(o.expires)} · ${o.days_remaining} days remaining</p><p>${esc(o.consequence)}</p>${o.accept_blocked ? `<p class="agency-refusal">${esc(o.accept_blocked)}</p>` : ""}<div class="agency-actions"><button type="button" data-agency-accept="${o.id}" ${o.accept_blocked ? "disabled" : ""}>Accept</button><button type="button" data-agency-decline="${o.id}">Decline</button></div></article>`).join("") : '<p class="agency-empty">No requests awaiting your answer.</p>'}</section>
+  // Native ISO deadlines retain their order even when overdue requests all
+  // report zero days remaining after loading an older campaign.
+  const offers = a.offers.slice().sort((left,right) => left.expires < right.expires ? -1 : left.expires > right.expires ? 1 : left.id - right.id);
+  const remaining = offer => offer.days_remaining > 0
+    ? `${esc(offer.days_remaining)} ${offer.days_remaining === 1 ? "day" : "days"} remaining`
+    : "Reply window closed";
+  body.innerHTML = `<section id="agencyInbox" aria-labelledby="agencyInboxTitle"><h3 id="agencyInboxTitle">Diplomatic inbox <span>${offers.length} pending</span></h3>${offers.length ? `<p class="agency-inbox-summary">Nearest deadline: <strong>${esc(offers[0].expires)}</strong> · ${remaining(offers[0])}</p><p>Review the effects, then confirm your reply. Opening a review sends no decision.</p>` : ""}<p>${esc(a.expiry_rule)}</p>${offers.length ? offers.map(o => `<article class="agency-offer" data-agency-offer="${esc(o.id)}"><h4>${esc(o.from_name)} · ${esc(o.title)}</h4><p class="agency-deadline">Reply before <time>${esc(o.expires)}</time> · ${remaining(o)}</p><p>${esc(o.consequence)}</p>${o.accept_blocked ? `<p class="agency-refusal">${esc(o.accept_blocked)}</p>` : ""}<div class="agency-actions"><button type="button" data-agency-accept="${esc(o.id)}" ${o.accept_blocked ? "disabled" : ""}>Review acceptance</button><button type="button" data-agency-decline="${esc(o.id)}">Review decline</button></div></article>`).join("") : '<p class="agency-empty">No requests awaiting your answer.</p>'}</section>
     <section><h3>Standing diplomatic policy</h3><p>Apply automatically to future requests. Existing requests keep their own reply deadline.</p><form id="agencyPolicy">${[["defense_pacts","Defense pacts"],["trade_treaties","Trade treaties"],["calls_to_arms","Calls to arms"]].map(([key,label]) => `<label>${label}<select name="${key}">${[["review","Ask me"],["accept","Accept when legal"],["decline","Decline"]].map(([value,text]) => `<option value="${value}" ${a.policy[key]===value ? "selected" : ""}>${text}</option>`).join("")}</select></label>`).join("")}<button type="submit">Save standing policy</button></form></section>
     <section><h3>Monetary commitment</h3>${a.monetary.kind === "pegged" ? `<p>Your currency is pegged. The policy rate is held at ${(a.monetary.rate*100).toFixed(2)}%. Exit the peg before changing rates.</p><p>Exit cost: ${a.break_peg_pc} political capital, −5 stability, +2 percentage points of inflation. The automatic central bank then resumes.</p><button type="button" id="agencyBreakPeg">Exit currency peg · ${a.break_peg_pc} PC</button>` : `<p>Floating currency · ${a.automatic_bank ? "automatic central bank" : "manual policy rate"}.</p>${a.automatic_bank ? "" : '<button type="button" id="agencyResumeBank">Resume automatic central bank · free</button>'}`}</section>
     <section><h3>Recent decisions</h3>${a.history.length ? `<ul>${a.history.slice().reverse().map(h=>`<li>${h.date_label ? `<time>${esc(h.date_label)}</time> · ` : ""}${h.from_name ? esc(h.from_name) + " · " : ""}${h.title ? esc(h.title) + " · " : ""}Request #${esc(h.offer.id)}: ${esc(h.outcome)}</li>`).join("")}</ul>` : '<p class="agency-empty">Your responses will be recorded here and retained in your save.</p>'}</section>`;
@@ -172,7 +184,7 @@ function renderCampaignAims(aims, body) {
   section.className="agency-aims";
   const title=aim => aims.offers.find(o=>o.aim===aim)?.title || aim;
   section.innerHTML=`<h3>Campaign aims</h3><p>${esc(aims.note)}</p>${active ? `<article class="agency-offer"><h4>${esc(title(active.aim))} ${active.completed_day!==null ? "· Achieved" : "· Active"}</h4><p>Fixed target: ${active.target.toFixed(2)} ${esc(evaluation.metric)}. Current: ${evaluation.value.toFixed(2)}.</p><progress max="1" value="${active.completed_day!==null ? 1 : evaluation.progress}" aria-label="Campaign target progress"></progress><p>${active.held_days} / ${active.hold_days} qualifying days. ${active.completed_day!==null ? "Achievement recorded. The world can keep running." : "Breaking any condition resets the consecutive-day count."}</p>${active.completed_day===null && evaluation.blockers.length ? `<ul>${evaluation.blockers.map(b=>`<li>${esc(b)}</li>`).join("")}</ul>` : ""}<button type="button" data-sandbox>Continue in sandbox${active.completed_day===null ? " · set aim aside" : ""}</button></article>` : `<div class="agency-aim-grid">${aims.offers.map(o=>`<article class="agency-offer"><h4>${esc(o.title)}</h4><p>${esc(o.description)}</p>${o.unavailable ? `<p class="agency-refusal">${esc(o.unavailable)}</p>` : ""}<button type="button" data-campaign-aim="${o.aim}" ${o.unavailable ? "disabled" : ""}>Choose this aim · free</button></article>`).join("")}</div>`}${aims.history.length ? `<details><summary>Campaign record (${aims.history.length})</summary><ul>${aims.history.slice().reverse().map(r=>`<li>${esc(title(r.goal.aim))}: ${esc(r.outcome)} · ${r.goal.held_days} qualifying days</li>`).join("")}</ul></details>` : ""}`;
-  body.prepend(section);
+  body.appendChild(section);
   section.querySelectorAll("[data-campaign-aim]").forEach(b=>b.onclick=()=>agencyCommand({kind:"choose_campaign_aim",aim:b.dataset.campaignAim}));
   const sandbox=section.querySelector("[data-sandbox]");
   if(sandbox) sandbox.onclick=()=>agencyCommand({kind:"continue_sandbox"});

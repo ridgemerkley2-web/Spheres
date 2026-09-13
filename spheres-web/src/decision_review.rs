@@ -118,10 +118,30 @@ fn decisions(w: &WorldState, nation: NationId, command: &Value) -> Value {
         Some(target)
     } else { None };
     let Some(native) = parse_command(w, command, nation) else { return invalid(command, "This decision cannot be read."); };
+    let before_a = agency::view(w, nation);
+    let offer = before_a.offers.iter().find(|o| kind == "respond_diplomacy" && Some(o.id) == command["offer"].as_u64());
+    let mut title = target.map_or_else(|| title.to_string(), |target| format!("{title}: {}",target.name()));
+    let mut description = description.to_string();
+    if let Some(offer) = offer {
+        let answer = if command["accept"] == true { "Accept" } else { "Decline" };
+        title = format!("{answer} {} from {}", offer.title, offer.from_name);
+        let deadline = if offer.days_remaining > 0 {
+            format!("Reply before {}. {} {} remaining.", offer.expires, offer.days_remaining,
+                    if offer.days_remaining == 1 { "day" } else { "days" })
+        } else { format!("The reply window closed on {}.", offer.expires) };
+        description = format!("{deadline} {description}");
+    }
     let mut after = w.clone();
-    if let Err(reason) = spheres_sim::apply_command(&mut after, &native) { return invalid(command, &reason); }
+    if let Err(reason) = spheres_sim::apply_command(&mut after, &native) {
+        // A refused reply still needs its identity and exclusive deadline. It
+        // receives no token and cannot become authority to answer that request.
+        let mut refused = invalid(command, &reason);
+        refused["title"] = json!(title);
+        refused["description"] = json!(description);
+        return refused;
+    }
     let (before_n, after_n) = (w.nation(nation), after.nation(nation));
-    let (before_a, after_a) = (agency::view(w, nation), agency::view(&after, nation));
+    let after_a = agency::view(&after, nation);
     let mut rows = vec![];
     change(&mut rows,"Political capital",format!("{:.1}", before_n.political_capital),format!("{:.1}", after_n.political_capital),"Immediate cost after the native limits.");
     change(&mut rows,"Stability",format!("{:.1}", before_n.stability),format!("{:.1}", after_n.stability),"Immediate national stability.");
@@ -134,8 +154,9 @@ fn decisions(w: &WorldState, nation: NationId, command: &Value) -> Value {
         change(&mut rows,label,policy_label(before),policy_label(next),"Future requests only; pending requests keep their deadline.");
     }
     let mut warnings = vec![];
-    if let Some(offer) = before_a.offers.iter().find(|o| Some(o.id) == command["offer"].as_u64()) {
-        warnings.push(format!("{} · reply by {} ({} days remaining). {}",offer.from_name,offer.expires,offer.days_remaining,offer.consequence));
+    if let Some(offer) = offer {
+        warnings.push(format!("{} · reply before {} ({} {} remaining). {}",offer.from_name,offer.expires,offer.days_remaining,
+            if offer.days_remaining == 1 {"day"} else {"days"},offer.consequence));
         change(&mut rows,"Request status","Awaiting your reply",after.agency.history.iter().find(|h|h.offer.id==offer.id).map_or("Pending",|h|h.outcome.as_str()),"Recorded in the saved diplomatic ledger with its resolution date.");
         change(&mut rows,&format!("Trade integration with {}",offer.from_name),format!("{:.1}%",w.trade_depth(nation,offer.from)*100.0),format!("{:.1}%",after.trade_depth(nation,offer.from)*100.0),"The current treaty depth. Integration develops through subsequent economic settlements.");
     }
@@ -170,7 +191,6 @@ fn decisions(w: &WorldState, nation: NationId, command: &Value) -> Value {
         }
     }
     if kind == "set_diplomatic_policy" && rows.is_empty() { warnings.push("These settings already match your standing policy.".into()); }
-    let title = target.map_or_else(|| title.to_string(), |target| format!("{title}: {}",target.name()));
     json!({"valid":true,"reason":null,"title":title,"command":command,"description":description,"changes":rows,"warnings":warnings})
 }
 
@@ -253,6 +273,142 @@ mod tests {
         assert_eq!(g.log.last().unwrap().date,g.world.date_str());
         crate::transport::immediate_request(&mut g,&payload).unwrap();
         assert_eq!(g.log.len(),before+1);
+    }
+
+    #[test]
+    fn s10d_reply_review_names_the_request_and_refuses_on_its_exclusive_deadline() {
+        let mut g = Game::new(13, Some(NationId::France));
+        g.world.rules.daily_simulation = true;
+        g.world.statecraft.trade.clear();
+        g.world.sanctions.clear();
+        g.world.set_relation(NationId::France, NationId::Japan, 98.0);
+        agency::offer_treaty(&mut g.world, NationId::Japan, NationId::France, agency::OfferKind::TradeTreaty).unwrap();
+        let offer = g.world.agency.offers.last().unwrap().clone();
+        let (y,m,d) = clock::date_from_day(offer.expires_day - 1);
+        g.world.year = y; g.world.month = m; g.world.day = d;
+        let command = json!({"kind":"respond_diplomacy","offer":offer.id,"accept":true});
+        let before = spheres_sim::save(&g.world);
+        let board = agency::view(&g.world, NationId::France);
+        let deadline = &board.offers[0].expires;
+        assert_eq!(board.offers[0].days_remaining, 1);
+        assert!(board.expiry_rule.contains("Reply before the stated date"));
+        let quote = preview(&g, NationId::France, "decisions", &command);
+        assert_eq!(quote["valid"], true, "{quote}");
+        assert_eq!(quote["title"], "Accept a trade treaty from Japan");
+        assert!(quote["description"].as_str().unwrap().starts_with(&format!("Reply before {deadline}. 1 day remaining.")));
+        let payload = json!({"session_id":g.session_id,"client_id":"s10d-deadline","request_seq":1,
+            "commands":[command.clone()],"review_kind":"decisions","review_token":quote["review_token"]});
+        validate(&g, &payload).unwrap();
+        let mut native = g.world.clone();
+        spheres_sim::apply_command(&mut native, &parse_command(&g.world, &command, NationId::France).unwrap()).unwrap();
+        assert_eq!(native.agency.history.last().unwrap().outcome, "accepted");
+        assert_eq!(spheres_sim::save(&g.world), before, "Review and validation leave the request unanswered");
+
+        clock::advance_date(&mut g.world);
+        assert_eq!(clock::absolute_day(&g.world), offer.expires_day);
+        let expired = spheres_sim::save(&g.world);
+        let log = g.log.clone();
+        assert!(crate::transport::immediate_request(&mut g, &payload).unwrap_err().requires_review);
+        assert_eq!(spheres_sim::save(&g.world), expired);
+        assert_eq!(g.log, log);
+        assert!(!g.command_receipts.contains_key("s10d-deadline"));
+        for accept in [true, false] {
+            let refused = preview(&g, NationId::France, "decisions",
+                &json!({"kind":"respond_diplomacy","offer":offer.id,"accept":accept}));
+            assert_eq!(refused["valid"], false);
+            assert!(refused["review_token"].is_null());
+            assert_eq!(refused["title"], format!("{} a trade treaty from Japan", if accept {"Accept"} else {"Decline"}));
+            assert!(refused["description"].as_str().unwrap().starts_with(&format!("The reply window closed on {deadline}.")));
+            assert!(refused["reason"].as_str().unwrap().contains("deadline"));
+        }
+        assert_eq!(agency::view(&g.world, NationId::France).offers[0].days_remaining, 0);
+        assert_eq!(spheres_sim::save(&g.world), expired, "An expired review is also pure");
+    }
+
+    // Authored transaction fixtures, not a historical opening obligation or a
+    // campaign advancement result. The real native command resolves each reply.
+    fn s10d_guaranteed_request() -> (Game, u64) {
+        let mut g = Game::new(13, Some(NationId::France));
+        g.world.rules.daily_simulation = true;
+        g.world.statecraft.pacts.clear();
+        let (a,b) = if NationId::France < NationId::Kuwait {
+            (NationId::France, NationId::Kuwait)
+        } else { (NationId::Kuwait, NationId::France) };
+        g.world.statecraft.pacts.push(spheres_sim::world::Pact {a,b,since_year:1990,since_month:1});
+        let theatre = spheres_sim::war::theatre_between(&g.world, NationId::Iraq, NationId::Kuwait);
+        let cid = spheres_sim::commitment::open_conflict(&mut g.world, NationId::Iraq, NationId::Kuwait, theatre).unwrap();
+        let mut conflict = g.world.conflicts.pop().unwrap();
+        assert_eq!(conflict.id, cid);
+        agency::offer_call(&mut g.world, &mut conflict, NationId::France, 2, true);
+        g.world.conflicts.push(conflict);
+        let id = g.world.agency.offers.last().unwrap().id;
+        (g,id)
+    }
+
+    #[test]
+    fn s10d_guarantee_decline_review_shows_capped_native_losses_and_commits_once() {
+        let (mut g,id) = s10d_guaranteed_request();
+        g.world.set_relation(NationId::France, NationId::Kuwait, -90.0);
+        let reputation = g.world.reputation(NationId::France);
+        g.world.shift_reputation(NationId::France, 3.0 - reputation);
+        let command = json!({"kind":"respond_diplomacy","offer":id,"accept":false});
+        let before = spheres_sim::save(&g.world);
+        let quote = preview(&g, NationId::France, "decisions", &command);
+        assert_eq!(quote["valid"], true, "{quote}");
+        assert_eq!(quote["title"], "Decline a call to honor its defense pact from Kuwait");
+        let rows = quote["changes"].as_array().unwrap();
+        for (label,first,last) in [("Reputation","3.0","0.0"),
+            ("Relations with Kuwait","-90.0","-100.0"),
+            ("Defense pact with Kuwait","true","false"),
+            ("Request status","Awaiting your reply","declined")] {
+            let row = rows.iter().find(|r| r["label"] == label).unwrap();
+            assert_eq!(row["before"], first, "{label}");
+            assert_eq!(row["after"], last, "{label}");
+        }
+        let warning = quote["warnings"].as_array().unwrap().iter().map(|w| w.as_str().unwrap()).collect::<Vec<_>>().join(" ");
+        assert!(warning.contains("if the guarantee still applies"));
+        assert!(!warning.contains("lose 25 reputation"));
+        assert!(!warning.contains("45 relations"));
+        assert_eq!(spheres_sim::save(&g.world), before);
+        let mut native = g.world.clone();
+        spheres_sim::apply_command(&mut native, &parse_command(&g.world, &command, NationId::France).unwrap()).unwrap();
+        let payload = json!({"session_id":g.session_id,"client_id":"s10d-decline","request_seq":1,
+            "commands":[command],"review_kind":"decisions","review_token":quote["review_token"]});
+        assert_eq!(crate::transport::immediate_request(&mut g, &payload).unwrap()["errors"], json!([]));
+        assert_eq!(spheres_sim::save(&g.world), spheres_sim::save(&native));
+        let committed = spheres_sim::save(&g.world);
+        let log = g.log.clone();
+        assert_eq!(crate::transport::immediate_request(&mut g, &payload).unwrap()["command_replayed"], true);
+        assert_eq!(spheres_sim::save(&g.world), committed);
+        assert_eq!(g.log, log);
+        assert_eq!(agency_view(&spheres_sim::load(&committed).unwrap(), NationId::France), agency_view(&g.world, NationId::France));
+    }
+
+    #[test]
+    fn s10d_changed_guarantee_review_closes_without_claiming_abandonment_losses() {
+        let (mut g,id) = s10d_guaranteed_request();
+        g.world.rules.economic_competition = true;
+        spheres_sim::domination::subjugate(&mut g.world, NationId::Iraq, NationId::France);
+        assert!(spheres_sim::sovereignty::hostility_blocked(&g.world, NationId::France, NationId::Iraq));
+        let command = json!({"kind":"respond_diplomacy","offer":id,"accept":false});
+        let before = spheres_sim::save(&g.world);
+        let quote = preview(&g, NationId::France, "decisions", &command);
+        assert_eq!(quote["valid"], true, "{quote}");
+        let rows = quote["changes"].as_array().unwrap();
+        assert_eq!(rows.iter().find(|r| r["label"] == "Request status").unwrap()["after"], "closed: circumstances changed");
+        for label in ["Reputation","Relations with Kuwait","Defense pact with Kuwait"] {
+            assert!(!rows.iter().any(|r| r["label"] == label), "Closing the changed call must not quote a {label} change");
+        }
+        assert!(quote["warnings"].as_array().unwrap().iter().any(|w| w.as_str().unwrap().contains("if the guarantee still applies")));
+        assert_eq!(spheres_sim::save(&g.world), before);
+        let mut native = g.world.clone();
+        spheres_sim::apply_command(&mut native, &parse_command(&g.world, &command, NationId::France).unwrap()).unwrap();
+        let payload = json!({"session_id":g.session_id,"client_id":"s10d-close","request_seq":1,
+            "commands":[command],"review_kind":"decisions","review_token":quote["review_token"]});
+        assert_eq!(crate::transport::immediate_request(&mut g, &payload).unwrap()["errors"], json!([]));
+        assert_eq!(spheres_sim::save(&g.world), spheres_sim::save(&native));
+        assert!(g.world.allied(NationId::France, NationId::Kuwait));
+        assert_eq!(g.world.agency.history.last().unwrap().outcome, "closed: circumstances changed");
     }
 
     #[test]

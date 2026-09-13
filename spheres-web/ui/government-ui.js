@@ -188,7 +188,8 @@
   }
   function avatarAttribution(portrait) {
     const linked = (label,url) => sourceUrl(url) ? `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)}<span class="gov-ui-sr-only"> (opens in a new tab)</span></a>` : esc(label);
-    return `${portrait.era_note ? `<p class="gov-ui-note">${esc(portrait.era_note)}</p>` : ""}${portrait.credit ? `<p class="gov-ui-note">Avatar: ${esc(portrait.credit)}</p>` : ""}${portrait.license && portrait.license !== "generated" ? `<p class="gov-ui-note">Artwork license: ${linked(portrait.license,portrait.license_url)}</p>` : ""}${portrait.source_credit ? `<p class="gov-ui-note">Reference image: ${esc(portrait.source_credit)}</p>` : ""}${portrait.source_license ? `<p class="gov-ui-note">Reference image license: ${linked(portrait.source_license,portrait.source_license_url)}</p>` : ""}`;
+    const artworkLicense = portrait.derivative_license || portrait.license;
+    return `${portrait.era_note ? `<p class="gov-ui-note">${esc(portrait.era_note)}</p>` : ""}${portrait.credit ? `<p class="gov-ui-note">Avatar: ${esc(portrait.credit)}</p>` : ""}${artworkLicense && artworkLicense !== "generated" ? `<p class="gov-ui-note">Artwork license: ${linked(artworkLicense,portrait.license_url)}</p>` : ""}${portrait.source_credit ? `<p class="gov-ui-note">Reference image: ${esc(portrait.source_credit)}</p>` : ""}${portrait.source_license ? `<p class="gov-ui-note">Reference image license: ${linked(portrait.source_license,portrait.source_license_url)}</p>` : ""}`;
   }
   function leadershipPerson(entry, party, context, key) {
     const person = entry?.person;

@@ -306,7 +306,7 @@ pub fn view(w:&WorldState,nation:NationId)->View {
         let consequence=match o.kind {
             OfferKind::DefensePact=>"Both signatories pay 0.3% of GDP annually. A later call to arms needs your response; abandoning a guarantee has diplomatic costs.".into(),
             OfferKind::TradeTreaty=>"Opens market integration and long-term dependency. Ending the treaty later can damage both economies.".into(),
-            OfferKind::CallToArms{rung,guaranteed:true,..}=>format!("Accept: enter the defending side at rung {rung}, subject to normal access, nuclear and sphere rules. Decline or expire: lose 25 reputation and 45 relations and end the pact."),
+            OfferKind::CallToArms{rung,guaranteed:true,..}=>format!("Accept: enter the defending side at rung {rung}, subject to normal access, nuclear and sphere rules. Decline or expiry can end the pact and reduce reputation and relations if the guarantee still applies. Review the exact current effects before responding."),
             OfferKind::CallToArms{rung,..}=>format!("Accept: enter the defending side at rung {rung}, subject to normal access, nuclear and sphere rules. Declining carries no treaty penalty."),
         };
         OfferView{id:o.id,from:o.from,from_name:o.from.name().into(),title:title(o).into(),expires:format!("{y:04}-{m:02}-{d:02}"),
@@ -316,5 +316,5 @@ pub fn view(w:&WorldState,nation:NationId)->View {
     View{policy:policy(w,nation),offers,history:w.agency.history.iter().filter(|h|h.offer.to==nation).cloned().collect(),
         monetary:pegged_rate(w,nation).map_or(MonetaryRegime::Floating,|rate|MonetaryRegime::Pegged{rate}),
         automatic_bank:w.player==Some(nation)&&!w.player_set_rate&&pegged_rate(w,nation).is_none(),
-        break_peg_pc:BREAK_PEG_PC,expiry_rule:"New requests follow the visible standing policy. Review is the default. Unanswered requests decline after their stated deadline; existing requests are not automatically answered by a policy change."}
+        break_peg_pc:BREAK_PEG_PC,expiry_rule:"New requests follow the visible standing policy. Review is the default. Reply before the stated date: the reply window closes when that date begins. A still-applicable unanswered request expires as a decline; changed circumstances can close it instead. Existing requests are not automatically answered by a policy change."}
 }

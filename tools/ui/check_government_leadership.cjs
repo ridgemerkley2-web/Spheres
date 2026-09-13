@@ -237,6 +237,13 @@ test('a supplied artwork license gets its own safe link and unsafe license URLs 
  Object.assign(art,{license:'CC BY 4.0',license_url:'https://creativecommons.org/licenses/by/4.0/',source_license:'Reference terms',source_license_url:'javascript:alert(1)'});
  const html=show(data);assert.match(html,/Artwork license: <a href="https:\/\/creativecommons.org\/licenses\/by\/4.0\/"/);assert.match(html,/Reference image license: Reference terms/);assert.doesNotMatch(html,/href="javascript:/);
 });
+test('generated cartoons expose a separate derivative artwork license without conflating the reference',()=>{
+ const data=fixture(),art=data.party_leadership.parties[0].campaign[0].person.portrait;
+ Object.assign(art,{license:'generated',derivative_license:'CC BY-SA 4.0',license_url:'https://creativecommons.org/licenses/by-sa/4.0/',source_license:'Reference terms',source_license_url:'https://example.org/reference'});
+ const html=show(data);assert.match(html,/Artwork license: <a href="https:\/\/creativecommons.org\/licenses\/by-sa\/4.0\/"[^>]*>CC BY-SA 4.0/);assert.match(html,/Reference image license: <a href="https:\/\/example.org\/reference"[^>]*>Reference terms/);assert.doesNotMatch(html,/Artwork license: generated/);
+ Object.assign(art,{derivative_license:'<Artwork terms>',license_url:'javascript:alert(1)'});
+ const unsafe=show(data);assert.match(unsafe,/Artwork license: &lt;Artwork terms&gt;/);assert.doesNotMatch(unsafe,/href="javascript:|<Artwork terms>/);
+});
 test('uncertain historical people are disclosed separately from verified holders and eligible candidates',()=>{
  const data=fixture(),p=data.party_leadership.parties[2];p.uncertain_historical=[{...record(person('uncertain','Possibly Serving Person'),{from:{kind:'month',value:'1990-02'},until:unknown}),reason:'The two sources disagree on the exact handover day.'}];
  const html=show(data);assert.match(html,/data-gov-detail="leader-uncertain:uk_tiny"/);assert.match(html,/Possibly Serving Person/);assert.match(html,/do not establish an officeholder or an eligible candidate/);assert.match(html,/The two sources disagree/);assert.match(html,/No campaign leader recorded/);assert.match(html,/No verified eligible candidate is supplied/);

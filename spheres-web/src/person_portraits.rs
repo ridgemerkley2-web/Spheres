@@ -65,7 +65,7 @@ pub(crate) fn portrait(person_id: &str, date: &str) -> Value {
     let p = matches[0];
     let Some(name) = p["asset"].as_str().and_then(|s| s.strip_prefix("spheres-web/ui/person-portraits/")) else { return Value::Null };
     if !asset(name).is_some_and(|a| a.content_type == "image/png") { return Value::Null }
-    json!({"url":format!("/art/people/{name}"),"credit":p["credit"],"method":p["method"],"style":p["style"],"status":p["status"],"from":p["from"],"to":p["to"],"source_url":p["source_url"],"license":p["license"],"license_url":p["license_url"],"source_license":p["identity_source"]["license"],"source_license_url":p["identity_source"]["license_url"],"source_credit":p["identity_source"]["credit"],"composition":p["composition"],"era_note":p["era_note"]})
+    json!({"url":format!("/art/people/{name}"),"credit":p["credit"],"method":p["method"],"style":p["style"],"status":p["status"],"from":p["from"],"to":p["to"],"source_url":p["source_url"],"license":p["license"],"license_url":p["license_url"],"derivative_license":p["derivative_license"],"source_license":p["identity_source"]["license"],"source_license_url":p["identity_source"]["license_url"],"source_credit":p["identity_source"]["credit"],"composition":p["composition"],"era_note":p["era_note"]})
 }
 
 fn fictional_portrait_from(manifest: &Value, person_id: &str, date: &str) -> Value {
@@ -169,6 +169,20 @@ pub(crate) fn reference_view(w: &WorldState, nation: NationId, date: &str) -> Re
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn tupou_cartoon_exposes_its_artwork_license_with_exact_person_and_era() {
+        let art=portrait("taufaahau_tupou_iv","1990-01-01");
+        assert_eq!(art["url"],"/art/people/taufaahau-tupou-iv-cartoon-1990-v1.png");
+        assert_eq!(art["method"],"generated");
+        assert_eq!(art["license"],"generated");
+        assert_eq!(art["derivative_license"],"CC BY-SA 4.0");
+        assert_eq!(art["license_url"],"https://creativecommons.org/licenses/by-sa/4.0/");
+        assert_eq!(art["source_license"],"CC BY-SA 4.0");
+        assert_eq!(portrait("taufaahau_tupou_iv","1990-12-31"),art);
+        assert!(portrait("taufaahau_tupou_iv","1989-12-31").is_null());
+        assert!(portrait("taufaahau_tupou_iv","1991-01-01").is_null());
+        assert!(portrait("Tonga","1990-01-01").is_null());
+    }
     #[test]
     fn avatars_are_exact_people_with_half_open_eras_and_no_national_fallback() {
         for (id,file) in [

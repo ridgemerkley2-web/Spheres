@@ -15,14 +15,14 @@ function fixture(){
     appendChild(child){this.children.push(child);return child;}
     prepend(child){this.children.unshift(child);}
     focus(){document.activeElement=this;}
-    scrollIntoView(){}
+    scrollIntoView(options){this.lastScroll=options;}
     showModal(){this.open=true;}
     close(){this.open=false;this.emit('close');}
     cancel(){this.emit('cancel');this.close();}
     getBoundingClientRect(){return {left:0,top:0,right:800,bottom:600};}
     set innerHTML(value){
       this._html=value;this.children=[];
-      for(const m of value.matchAll(/<(button|select|form|h3|p|div|section)\b([^>]*)>/g)){
+      for(const m of value.matchAll(/<(button|select|form|h3|p|div|section|article)\b([^>]*)>/g)){
         const child=new Element(m[1]);
         for(const a of m[2].matchAll(/([\w-]+)(?:="([^"]*)")?/g))child.setAttribute(a[1],a[2]||'');
         this.children.push(child);
@@ -69,6 +69,7 @@ test('one confirmation posts the exact nested command and native token once',asy
   assert.deepEqual(f.requests[1].payload,{commands:[{kind:'set_diplomatic_policy',policy:{calls_to_arms:'decline',trade_treaties:'accept',defense_pacts:'review'}}],review_token:'native-token',review_kind:'decisions'});
   pending.resolve({...f.state,date:'1 Jan 1990',errors:[]});await first;
   assert.equal(f.busy(),false);assert.equal(f.review(),null);assert.equal(f.adoptions.length,1);assert.match(f.node('agencyStatus').textContent,/Decision recorded/);
+  assert.equal(f.document.activeElement,f.node('agencyStatus'));assert.equal(f.node('agencyStatus').lastScroll.block,'nearest');
 });
 
 test('late success and failure cannot revive a cancelled or reopened dialog',async()=>{
@@ -175,4 +176,50 @@ test('dated native history names remain escaped and original request identity is
   const f=fixture();f.state.agency.history=[{offer:{id:4},outcome:'Accepted',date_label:'2 Jan 1990',from_name:'<Japan>',title:'<Treaty>'}];
   f.c.openAgency();const html=f.node('agencyBody').innerHTML;
   assert.match(html,/<time>2 Jan 1990<\/time>/);assert.match(html,/&lt;Japan&gt; · &lt;Treaty&gt; · Request #4: Accepted/);assert.doesNotMatch(html,/<Japan>|<Treaty>/);
+});
+
+test('pending requests precede optional aims and sort by the native deadline without mutating the inbox',()=>{
+  const f=fixture(),offer=f.state.agency.offers[0];
+  f.state.agency.offers=[{...offer,id:8,days_remaining:14},{...offer,id:6,days_remaining:3,expires:'1990-01-04'},{...offer,id:5,days_remaining:3,expires:'1990-01-04'}];
+  f.state.campaign_aims={note:'Optional aims.',active:null,history:[],offers:[]};
+  const before=copy(f.state);f.c.openAgency();f.c.renderAgency(f.state);
+  assert.deepEqual(f.state,before);
+  const body=f.node('agencyBody'),ids=body.querySelectorAll('[data-agency-offer]').map(n=>n.dataset.agencyOffer);
+  assert.deepEqual(ids,['5','6','8']);assert.equal(body.children[0].id,'agencyInbox');
+  assert.equal(body.children.at(-1).className,'agency-aims');
+  assert.match(body.innerHTML,/Nearest deadline: <strong>1990-01-04<\/strong>/);
+  assert.match(body.innerHTML,/Review acceptance/);assert.match(body.innerHTML,/Review decline/);
+  assert.match(body.innerHTML,/Opening a review sends no decision/);assert.equal(f.requests.length,0);
+});
+
+test('reply dates are exclusive, the final day is singular, and closed windows never say today',()=>{
+  const f=fixture(),offer=f.state.agency.offers[0];
+  f.state.agency.expiry_rule='Unanswered requests decline on the recorded deadline.';
+  f.state.agency.offers=[{...offer,id:4,days_remaining:1},{...offer,id:5,days_remaining:0}];f.c.openAgency();
+  const html=f.node('agencyBody').innerHTML;
+  assert.match(html,/Reply before <time>1990-01-15<\/time>/);assert.match(html,/1 day remaining/);
+  assert.match(html,/Reply window closed/);assert.doesNotMatch(html,/Reply by|0 days remaining|1 days remaining|Reply today/);
+});
+
+test('overdue requests retain exact deadline order when native days remaining is clamped to zero',()=>{
+  const f=fixture(),offer=f.state.agency.offers[0];
+  f.state.agency.offers=[{...offer,id:1,days_remaining:0,expires:'1990-01-19'},{...offer,id:2,days_remaining:0,expires:'1990-01-15'}];
+  const before=copy(f.state);f.c.openAgency();
+  assert.deepEqual(f.node('agencyBody').querySelectorAll('[data-agency-offer]').map(n=>n.dataset.agencyOffer),['2','1']);
+  assert.match(f.node('agencyBody').innerHTML,/Nearest deadline: <strong>1990-01-15<\/strong> · Reply window closed/);
+  assert.deepEqual(f.state,before);
+});
+
+test('blocked acceptance retains a decline review and both request and quoted identities remain escaped',async()=>{
+  const f=fixture();Object.assign(f.state.agency.offers[0],{from_name:'<Japan>',title:'<Trade treaty>',accept_blocked:'<Native refusal>',consequence:'<Native consequence>'});
+  const decline={...command,accept:false};
+  f.api((route,payload)=>{assert.equal(route,'/api/decisions/preview');assert.deepEqual(copy(payload.command),decline);return quote(decline,{title:'Decline <Japan> · <Trade treaty>',description:'Reply before <1990-01-15>.'});});
+  f.c.openAgency();const body=f.node('agencyBody');
+  assert.equal(body.querySelector('[data-agency-accept]').disabled,true);assert.equal(body.querySelector('[data-agency-decline]').disabled,false);
+  assert.match(body.innerHTML,/&lt;Japan&gt; · &lt;Trade treaty&gt;/);assert.match(body.innerHTML,/&lt;Native refusal&gt;/);
+  await body.querySelector('[data-agency-decline]').onclick();
+  assert.match(f.node('agencyReview').innerHTML,/Decline &lt;Japan&gt; · &lt;Trade treaty&gt;/);
+  assert.match(f.node('agencyReview').innerHTML,/Reply before &lt;1990-01-15&gt;/);
+  assert.doesNotMatch(f.html(),/<Japan>|<Trade treaty>|<Native refusal>/);
+  assert.equal(f.requests.filter(r=>r.route==='/api/command').length,0);
 });

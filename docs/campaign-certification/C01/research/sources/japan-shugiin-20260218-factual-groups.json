@@ -1,0 +1,46 @@
+{
+  "format": "spheres-c01-derived-factual-table/v1",
+  "source_url": "https://www.shugiin.go.jp/internet/itdb_annai.nsf/html/statics/shiryo/kaiha_m.htm",
+  "accessed_date": "2026-09-13",
+  "observed_heading_date": "令和8年2月18日現在",
+  "source_response_sha256": "1a8d4e9ba0ebd4ff57fd83914132d67c6b41265bc026faf580c8649e2ee9a3a9",
+  "extraction": "Selected factual table fields only; not a raw HTML snapshot. No article text, images or styling reproduced.",
+  "rights": "No source-wide open license asserted. This extraction contains factual names, table locators and membership counts with attribution.",
+  "rows": [
+    {
+      "name": "自由民主党・無所属の会",
+      "member_list_href": "../syu/011kaiha.htm",
+      "members": 316
+    },
+    {
+      "name": "中道改革連合・無所属",
+      "member_list_href": "../syu/020kaiha.htm",
+      "members": 48
+    },
+    {
+      "name": "日本維新の会",
+      "member_list_href": "../syu/030kaiha.htm",
+      "members": 36
+    },
+    {
+      "name": "国民民主党・無所属クラブ",
+      "member_list_href": "../syu/040kaiha.htm",
+      "members": 28
+    },
+    {
+      "name": "参政党",
+      "member_list_href": "../syu/050kaiha.htm",
+      "members": 15
+    },
+    {
+      "name": "チームみらい",
+      "member_list_href": "../syu/060kaiha.htm",
+      "members": 11
+    },
+    {
+      "name": "日本共産党",
+      "member_list_href": "../syu/070kaiha.htm",
+      "members": 4
+    }
+  ]
+}

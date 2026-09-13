@@ -1,6 +1,6 @@
 # Source-backed discovery intake
 
-This is additional research for S10.b and S10.c, separate from the C01
+This is additional research for S10.b through S10.d, separate from the C01
 recount of the playable catalogue. These packets record discoveries and
 explicit gaps; they do not change game parties, leader eligibility or artwork.
 The historical cutoff stays **7 September 2026**. Research access dates can be
@@ -52,9 +52,17 @@ historical opposition group and human-rights associations; these are distinct
 categories, not six newly verified electoral parties. The 2022 prime-minister
 appointment is separated from the King's office and Cabinet-chairing exception.
 
-Together the three packets contain 644 organization observations and 11
-institution observations, supported by 1,315 claims across 31 cited sources.
-The index assigns them to 67 research batches. None establishes an exhaustive
+[Japan](japan.json) adds the 16 party/other-organization lists submitted for the
+July 2025 proportional election and seven House parliamentary groups attested
+in February 2026. The election and parliamentary universes remain distinct even
+when names match. Four party offices carry five dated observations, without
+inferred term boundaries or national-office eligibility. Two factual extracts
+retain source URLs and downloaded-response hashes. The live upper-house roster
+dated 13 September 2026 was excluded because it exceeds the fixed cutoff.
+
+Together the four packets contain 660 organization observations and 18
+institution observations, supported by 1,344 claims across 38 cited sources.
+The index assigns them to 70 research batches. None establishes an exhaustive
 country roster or supplies a new finished character.
 
 Each source needs a public URL, publisher, access date and individually identified

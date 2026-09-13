@@ -5,13 +5,13 @@
   "g2_prerequisite_satisfied": false,
   "runtime_roster_modified": false,
   "counts": {
-    "country_packets": 3,
-    "countries_without_new_discovery_packet": 157,
-    "organization_observations": 644,
-    "institution_observations": 11,
-    "sources": 31,
-    "source_claims": 1315,
-    "discovery_batches": 67,
+    "country_packets": 4,
+    "countries_without_new_discovery_packet": 156,
+    "organization_observations": 660,
+    "institution_observations": 18,
+    "sources": 38,
+    "source_claims": 1344,
+    "discovery_batches": 70,
     "exhaustive_country_censuses": 0
   },
   "interpretation": "Source-backed discovery observations are not verified game parties, complete office histories or permission to create portraits. Reporting years do not establish organization lifespans. Unknown representation is not absence.",
@@ -126,6 +126,53 @@
           ],
           "country_census_complete": false
         }
+      }
+    },
+    {
+      "nation": "Japan",
+      "packet": "docs/campaign-certification/C01/research/japan.json",
+      "organization_observations": 16,
+      "institution_observations": 7,
+      "role_observations": 4,
+      "source_claims": 29,
+      "mapping_pending": 23,
+      "country_census_complete": false,
+      "unrepresented_organization_count": null,
+      "coverage": {
+        "status": "partial_primary_source_inventory",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "exhaustive_organization_register_reviewed": false,
+        "unrepresented_organization_total": null,
+        "art_completion_claim": false,
+        "bounded_registers": [
+          {
+            "source": "jp_tokyo_pr_2025",
+            "kind": "proportional_election_list_submissions",
+            "attested_on": "2025-07-20",
+            "records": 16,
+            "excluded": "Not a nationwide historical party census; constituency-only and local organizations are outside this table."
+          },
+          {
+            "source": "jp_shugiin_groups_20260218",
+            "kind": "named_lower_house_parliamentary_groups",
+            "attested_on": "2026-02-18",
+            "records": 7,
+            "excluded": "The independent-member aggregate, vacancies and totals are not organization identities."
+          }
+        ],
+        "unresolved": [
+          "This packet contains two bounded official lists, not all Japanese political organizations from 1990 to the cutoff. All country-census and art-completion gates remain open.",
+          "The 16 election-list entities are explicitly party-or-other-political-organization identities. Statutory qualification, exact legal registration and relationships to similarly named earlier entities remain unverified.",
+          "The seven lower-house groups are kept as parliamentary institutions, separate from party identities. Constituent links and all game-party mappings remain empty and unknown.",
+          "Japan has constituency-only parties, local/regional organizations, historical mergers, dissolutions and successors outside these observations; a complete official register and historical chronology remain required.",
+          "Only four independently titled party offices and five dated holder observations across three organizations were reviewed. These are not full office terms, biography records, campaign eligibility or portrait authorization.",
+          "Election candidates and independent-member aggregates are not silently promoted into party leaders or fabricated organizations.",
+          "The live upper-house English strength page was dated 13 September 2026 when accessed and was excluded because it exceeds the fixed 7 September cutoff. Search-cache dates were not substituted for the current page.",
+          "Neither the 2025 election nor the February 2026 group list establishes a complete present-day September roster. No observations after the cutoff or fictional successors are populated here."
+        ]
       }
     },
     {
@@ -1721,6 +1768,71 @@
       "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
     },
     {
+      "id": "C01-Japan-DISC-B001",
+      "nation": "Japan",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-Japan-ORG-001",
+        "C01-Japan-ROLE-001"
+      ],
+      "members": [
+        "jp_sangiin_pr_2025_01",
+        "jp_sangiin_pr_2025_02",
+        "jp_sangiin_pr_2025_03",
+        "jp_sangiin_pr_2025_04",
+        "jp_sangiin_pr_2025_05",
+        "jp_sangiin_pr_2025_06",
+        "jp_sangiin_pr_2025_07",
+        "jp_sangiin_pr_2025_08",
+        "jp_sangiin_pr_2025_09",
+        "jp_sangiin_pr_2025_10"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-Japan-DISC-B002",
+      "nation": "Japan",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-Japan-ORG-001",
+        "C01-Japan-ROLE-001"
+      ],
+      "members": [
+        "jp_sangiin_pr_2025_11",
+        "jp_sangiin_pr_2025_12",
+        "jp_sangiin_pr_2025_13",
+        "jp_sangiin_pr_2025_14",
+        "jp_sangiin_pr_2025_15",
+        "jp_sangiin_pr_2025_16",
+        "jp_shugiin_group_20260218_011",
+        "jp_shugiin_group_20260218_020",
+        "jp_shugiin_group_20260218_030",
+        "jp_shugiin_group_20260218_040"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
+      "id": "C01-Japan-DISC-B003",
+      "nation": "Japan",
+      "status": "open",
+      "phase": "discovery_reconciliation",
+      "depends_on": [
+        "C01-Japan-ORG-001",
+        "C01-Japan-ROLE-001"
+      ],
+      "members": [
+        "jp_shugiin_group_20260218_050",
+        "jp_shugiin_group_20260218_060",
+        "jp_shugiin_group_20260218_070"
+      ],
+      "maximum_reviewed_records": 10,
+      "deliverable": "Reconcile exact source identities and jurisdiction; research separately dated party, parliamentary and executive roles. Add sourced history before character or succession eligibility. Empty game mappings remain unknown."
+    },
+    {
       "id": "C01-SaudiArabia-DISC-B001",
       "nation": "SaudiArabia",
       "status": "open",
@@ -1788,6 +1900,11 @@
       "path": "docs/campaign-certification/C01/research/france.json",
       "bytes": 1803439,
       "sha256": "6ac88df4bfc04728352b644ec419355bec519bb3ee8932dcf1df25b2964b112c"
+    },
+    {
+      "path": "docs/campaign-certification/C01/research/japan.json",
+      "bytes": 60293,
+      "sha256": "2aaa46d504ee151f5d92ee25849f7773db9c49ce7597f6ac87f5921b753ed573"
     },
     {
       "path": "docs/campaign-certification/C01/research/saudi-arabia.json",

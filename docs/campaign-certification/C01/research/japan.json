@@ -1,0 +1,1469 @@
+{
+  "version": 1,
+  "nation": "Japan",
+  "research_cutoff": "2026-09-07",
+  "sources": [
+    {
+      "id": "jp_tokyo_pr_2025",
+      "title": "参議院議員選挙（令和7年7月20日執行）（比例代表選出）開票結果（名簿登載者）",
+      "url": "https://www.senkyo.metro.tokyo.lg.jp/election/sanngiin-all/sanngiin-sokuhou2025/hirei-result-meibo",
+      "publisher": "Tokyo Metropolitan Government Election Administration Commission",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_text_read",
+      "rights_note": "Facts paraphrased with attribution. No photographs or article text copied; no open license or portrait reuse permission asserted.",
+      "claims": [
+        {
+          "id": "jp_pr2025_submission_01",
+          "text": "2025 proportional-election submission 1: 日本共産党.",
+          "period": {
+            "from": "2025-07-20",
+            "through": "2025-07-20"
+          },
+          "locator": {
+            "table": "政党別得票状況一覧",
+            "届出番号": "1"
+          },
+          "uncertainty": "Election-list identity only. The number is specific to this election, not a legal organization identifier or evidence of lifespan."
+        },
+        {
+          "id": "jp_pr2025_submission_02",
+          "text": "2025 proportional-election submission 2: 日本維新の会.",
+          "period": {
+            "from": "2025-07-20",
+            "through": "2025-07-20"
+          },
+          "locator": {
+            "table": "政党別得票状況一覧",
+            "届出番号": "2"
+          },
+          "uncertainty": "Election-list identity only. The number is specific to this election, not a legal organization identifier or evidence of lifespan."
+        },
+        {
+          "id": "jp_pr2025_submission_03",
+          "text": "2025 proportional-election submission 3: 無所属連合.",
+          "period": {
+            "from": "2025-07-20",
+            "through": "2025-07-20"
+          },
+          "locator": {
+            "table": "政党別得票状況一覧",
+            "届出番号": "3"
+          },
+          "uncertainty": "Election-list identity only. The number is specific to this election, not a legal organization identifier or evidence of lifespan."
+        },
+        {
+          "id": "jp_pr2025_submission_04",
+          "text": "2025 proportional-election submission 4: 日本保守党.",
+          "period": {
+            "from": "2025-07-20",
+            "through": "2025-07-20"
+          },
+          "locator": {
+            "table": "政党別得票状況一覧",
+            "届出番号": "4"
+          },
+          "uncertainty": "Election-list identity only. The number is specific to this election, not a legal organization identifier or evidence of lifespan."
+        },
+        {
+          "id": "jp_pr2025_submission_05",
+          "text": "2025 proportional-election submission 5: 立憲民主党.",
+          "period": {
+            "from": "2025-07-20",
+            "through": "2025-07-20"
+          },
+          "locator": {
+            "table": "政党別得票状況一覧",
+            "届出番号": "5"
+          },
+          "uncertainty": "Election-list identity only. The number is specific to this election, not a legal organization identifier or evidence of lifespan."
+        },
+        {
+          "id": "jp_pr2025_submission_06",
+          "text": "2025 proportional-election submission 6: 参政党.",
+          "period": {
+            "from": "2025-07-20",
+            "through": "2025-07-20"
+          },
+          "locator": {
+            "table": "政党別得票状況一覧",
+            "届出番号": "6"
+          },
+          "uncertainty": "Election-list identity only. The number is specific to this election, not a legal organization identifier or evidence of lifespan."
+        },
+        {
+          "id": "jp_pr2025_submission_07",
+          "text": "2025 proportional-election submission 7: 国民民主党.",
+          "period": {
+            "from": "2025-07-20",
+            "through": "2025-07-20"
+          },
+          "locator": {
+            "table": "政党別得票状況一覧",
+            "届出番号": "7"
+          },
+          "uncertainty": "Election-list identity only. The number is specific to this election, not a legal organization identifier or evidence of lifespan."
+        },
+        {
+          "id": "jp_pr2025_submission_08",
+          "text": "2025 proportional-election submission 8: チームみらい.",
+          "period": {
+            "from": "2025-07-20",
+            "through": "2025-07-20"
+          },
+          "locator": {
+            "table": "政党別得票状況一覧",
+            "届出番号": "8"
+          },
+          "uncertainty": "Election-list identity only. The number is specific to this election, not a legal organization identifier or evidence of lifespan."
+        },
+        {
+          "id": "jp_pr2025_submission_09",
+          "text": "2025 proportional-election submission 9: 日本誠真会.",
+          "period": {
+            "from": "2025-07-20",
+            "through": "2025-07-20"
+          },
+          "locator": {
+            "table": "政党別得票状況一覧",
+            "届出番号": "9"
+          },
+          "uncertainty": "Election-list identity only. The number is specific to this election, not a legal organization identifier or evidence of lifespan."
+        },
+        {
+          "id": "jp_pr2025_submission_10",
+          "text": "2025 proportional-election submission 10: 社会民主党.",
+          "period": {
+            "from": "2025-07-20",
+            "through": "2025-07-20"
+          },
+          "locator": {
+            "table": "政党別得票状況一覧",
+            "届出番号": "10"
+          },
+          "uncertainty": "Election-list identity only. The number is specific to this election, not a legal organization identifier or evidence of lifespan."
+        },
+        {
+          "id": "jp_pr2025_submission_11",
+          "text": "2025 proportional-election submission 11: れいわ新選組.",
+          "period": {
+            "from": "2025-07-20",
+            "through": "2025-07-20"
+          },
+          "locator": {
+            "table": "政党別得票状況一覧",
+            "届出番号": "11"
+          },
+          "uncertainty": "Election-list identity only. The number is specific to this election, not a legal organization identifier or evidence of lifespan."
+        },
+        {
+          "id": "jp_pr2025_submission_12",
+          "text": "2025 proportional-election submission 12: 日本改革党.",
+          "period": {
+            "from": "2025-07-20",
+            "through": "2025-07-20"
+          },
+          "locator": {
+            "table": "政党別得票状況一覧",
+            "届出番号": "12"
+          },
+          "uncertainty": "Election-list identity only. The number is specific to this election, not a legal organization identifier or evidence of lifespan."
+        },
+        {
+          "id": "jp_pr2025_submission_13",
+          "text": "2025 proportional-election submission 13: 自由民主党.",
+          "period": {
+            "from": "2025-07-20",
+            "through": "2025-07-20"
+          },
+          "locator": {
+            "table": "政党別得票状況一覧",
+            "届出番号": "13"
+          },
+          "uncertainty": "Election-list identity only. The number is specific to this election, not a legal organization identifier or evidence of lifespan."
+        },
+        {
+          "id": "jp_pr2025_submission_14",
+          "text": "2025 proportional-election submission 14: 再生の道.",
+          "period": {
+            "from": "2025-07-20",
+            "through": "2025-07-20"
+          },
+          "locator": {
+            "table": "政党別得票状況一覧",
+            "届出番号": "14"
+          },
+          "uncertainty": "Election-list identity only. The number is specific to this election, not a legal organization identifier or evidence of lifespan."
+        },
+        {
+          "id": "jp_pr2025_submission_15",
+          "text": "2025 proportional-election submission 15: 公明党.",
+          "period": {
+            "from": "2025-07-20",
+            "through": "2025-07-20"
+          },
+          "locator": {
+            "table": "政党別得票状況一覧",
+            "届出番号": "15"
+          },
+          "uncertainty": "Election-list identity only. The number is specific to this election, not a legal organization identifier or evidence of lifespan."
+        },
+        {
+          "id": "jp_pr2025_submission_16",
+          "text": "2025 proportional-election submission 16: ＮＨＫ党.",
+          "period": {
+            "from": "2025-07-20",
+            "through": "2025-07-20"
+          },
+          "locator": {
+            "table": "政党別得票状況一覧",
+            "届出番号": "16"
+          },
+          "uncertainty": "Election-list identity only. The number is specific to this election, not a legal organization identifier or evidence of lifespan."
+        }
+      ],
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-tokyo-pr-2025-factual-register.json",
+        "sha256": "636f4ae4708056d0059c8e3e0da886f3b0b07bb1a21cdad7f7f6e4da1e298340",
+        "bytes": 1859
+      },
+      "scope_note": "The Tokyo results table was finalized at 15:00 on 21 July 2025 and lists 16 submissions. This is a bounded proportional-election list, not the national political-organization register, all constituency candidates, all local parties or all historical parties. No vote totals or national seat counts are imported."
+    },
+    {
+      "id": "jp_shugiin_groups_20260218",
+      "title": "会派名及び会派別所属議員数",
+      "url": "https://www.shugiin.go.jp/internet/itdb_annai.nsf/html/statics/shiryo/kaiha_m.htm",
+      "publisher": "House of Representatives, National Diet of Japan",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_text_read",
+      "rights_note": "Facts paraphrased with attribution. No photographs or article text copied; no open license or portrait reuse permission asserted.",
+      "claims": [
+        {
+          "id": "jp_shugiin_20260218_011",
+          "text": "Lower-house group 自由民主党・無所属の会: 316 members on 18 February 2026.",
+          "attested_on": "2026-02-18",
+          "locator": {
+            "member_list_href": "../syu/011kaiha.htm"
+          },
+          "uncertainty": "House group and dated membership only; neither a party identity nor a group-leadership attestation."
+        },
+        {
+          "id": "jp_shugiin_20260218_020",
+          "text": "Lower-house group 中道改革連合・無所属: 48 members on 18 February 2026.",
+          "attested_on": "2026-02-18",
+          "locator": {
+            "member_list_href": "../syu/020kaiha.htm"
+          },
+          "uncertainty": "House group and dated membership only; neither a party identity nor a group-leadership attestation."
+        },
+        {
+          "id": "jp_shugiin_20260218_030",
+          "text": "Lower-house group 日本維新の会: 36 members on 18 February 2026.",
+          "attested_on": "2026-02-18",
+          "locator": {
+            "member_list_href": "../syu/030kaiha.htm"
+          },
+          "uncertainty": "House group and dated membership only; neither a party identity nor a group-leadership attestation."
+        },
+        {
+          "id": "jp_shugiin_20260218_040",
+          "text": "Lower-house group 国民民主党・無所属クラブ: 28 members on 18 February 2026.",
+          "attested_on": "2026-02-18",
+          "locator": {
+            "member_list_href": "../syu/040kaiha.htm"
+          },
+          "uncertainty": "House group and dated membership only; neither a party identity nor a group-leadership attestation."
+        },
+        {
+          "id": "jp_shugiin_20260218_050",
+          "text": "Lower-house group 参政党: 15 members on 18 February 2026.",
+          "attested_on": "2026-02-18",
+          "locator": {
+            "member_list_href": "../syu/050kaiha.htm"
+          },
+          "uncertainty": "House group and dated membership only; neither a party identity nor a group-leadership attestation."
+        },
+        {
+          "id": "jp_shugiin_20260218_060",
+          "text": "Lower-house group チームみらい: 11 members on 18 February 2026.",
+          "attested_on": "2026-02-18",
+          "locator": {
+            "member_list_href": "../syu/060kaiha.htm"
+          },
+          "uncertainty": "House group and dated membership only; neither a party identity nor a group-leadership attestation."
+        },
+        {
+          "id": "jp_shugiin_20260218_070",
+          "text": "Lower-house group 日本共産党: 4 members on 18 February 2026.",
+          "attested_on": "2026-02-18",
+          "locator": {
+            "member_list_href": "../syu/070kaiha.htm"
+          },
+          "uncertainty": "House group and dated membership only; neither a party identity nor a group-leadership attestation."
+        }
+      ],
+      "snapshot": {
+        "path": "docs/campaign-certification/C01/research/sources/japan-shugiin-20260218-factual-groups.json",
+        "sha256": "3a46b93d0f397f8647f4c0fa5606b1dd67518faac39a16001f16af94019a8b58",
+        "bytes": 1491
+      },
+      "scope_note": "Official Japanese names take precedence over the shortened English labels. All seven named groups are recorded as parliamentary institutions; the separate 無所属 aggregate (seven members) is not an organization. Date is the table attestation, not an asserted publication or group formation date."
+    },
+    {
+      "id": "jp_shugiin_group_definition",
+      "title": "Strength of the In-House Groups in the House of Representatives",
+      "url": "https://www.shugiin.go.jp/internet/itdb_english.nsf/html/statics/english/strength.htm",
+      "publisher": "House of Representatives, National Diet of Japan",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_text_read",
+      "rights_note": "Facts paraphrased with attribution. No photographs or article text copied; no open license or portrait reuse permission asserted.",
+      "claims": [
+        {
+          "id": "jp_house_group_not_party",
+          "text": "A House group organizes joint parliamentary activity and can combine independents, a party with independents, or multiple parties.",
+          "locator": "In-House Group explanatory note below the table dated 18 February 2026",
+          "attested_on": "2026-02-18"
+        }
+      ],
+      "scope_note": "Used only to distinguish the institutional category. Its shortened English group labels are not used to replace exact Japanese identities."
+    },
+    {
+      "id": "jp_ldp_ishiba_elected_2024",
+      "title": "総裁選 第28代総裁に石破茂氏を選出",
+      "url": "https://www.jimin.jp/news/information/209085.html",
+      "publisher": "Liberal Democratic Party of Japan",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_text_read",
+      "rights_note": "Facts paraphrased with attribution. No photographs or article text copied; no open license or portrait reuse permission asserted.",
+      "claims": [
+        {
+          "id": "jp_ishiba_president_20240927",
+          "text": "The LDP reports electing 石破茂 as its 28th party president on 27 September 2024.",
+          "attested_on": "2024-09-27",
+          "locator": "Opening paragraph and paragraph describing formal selection by the joint meeting of members of both Houses",
+          "uncertainty": "Party-office election event only; no prime-minister appointment or complete presidential term inferred."
+        }
+      ],
+      "published_date": "2024-09-27"
+    },
+    {
+      "id": "jp_ldp_takaichi_elected_2025",
+      "title": "高市早苗新総裁を選出 初の女性総裁が党再建への重責担う",
+      "url": "https://www.jimin.jp/news/information/211511.html",
+      "publisher": "Liberal Democratic Party of Japan",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_text_read",
+      "rights_note": "Facts paraphrased with attribution. No photographs or article text copied; no open license or portrait reuse permission asserted.",
+      "claims": [
+        {
+          "id": "jp_takaichi_president_20251004",
+          "text": "The LDP reports electing 高市早苗 as its 29th party president on 4 October 2025.",
+          "attested_on": "2025-10-04",
+          "locator": "Opening paragraph",
+          "uncertainty": "Party-office election event only; no executive office, preceding continuous term or continuity to the cutoff inferred."
+        }
+      ],
+      "published_date": "2025-10-04"
+    },
+    {
+      "id": "jp_jcp_chairs_2024",
+      "title": "希望の政策伝えたい / 田村新委員長が抱負",
+      "url": "https://www.jcp.or.jp/akahata/aik23/2024-01-19/2024011903_01_0.html",
+      "publisher": "Japanese Communist Party, Shimbun Akahata",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_text_read",
+      "rights_note": "Facts paraphrased with attribution. No photographs or article text copied; no open license or portrait reuse permission asserted.",
+      "claims": [
+        {
+          "id": "jp_tamura_executive_chair_20240118",
+          "text": "The party newspaper reports 田村智子 was elected 幹部会委員長 on 18 January 2024.",
+          "attested_on": "2024-01-18",
+          "locator": "Opening paragraph listing officers elected at the 29th Congress",
+          "uncertainty": "A separately titled party office; no complete term or automatic government eligibility inferred."
+        },
+        {
+          "id": "jp_shii_central_chair_20240118",
+          "text": "The same report identifies 志位和夫 as elected 中央委員会議長 on 18 January 2024.",
+          "attested_on": "2024-01-18",
+          "locator": "Opening paragraph listing officers elected at the 29th Congress",
+          "uncertainty": "Central Committee chair is distinct from Executive Committee chair, not a second observation of the same office."
+        }
+      ],
+      "published_date": "2024-01-19"
+    },
+    {
+      "id": "jp_dpfp_tamaki_elected_2026",
+      "title": "国民民主党 新代表会見",
+      "url": "https://new-kokumin.jp/news/business/20260906_2",
+      "publisher": "Democratic Party For the People",
+      "accessed_date": "2026-09-13",
+      "access_method": "official_page_text_read",
+      "rights_note": "Facts paraphrased with attribution. No photographs or article text copied; no open license or portrait reuse permission asserted.",
+      "claims": [
+        {
+          "id": "jp_tamaki_representative_20260906",
+          "text": "The party records 玉木雄一郎 saying he was elected again as 代表 at the 6 September 2026 extraordinary convention.",
+          "attested_on": "2026-09-06",
+          "locator": "Date, introduction and first two paragraphs of the opening statement",
+          "uncertainty": "Dated self-report published by the party. Earlier terms, suspensions, term end and continuity through the cutoff remain unverified."
+        }
+      ],
+      "published_date": "2026-09-06"
+    }
+  ],
+  "organizations": [
+    {
+      "id": "jp_sangiin_pr_2025_01",
+      "name": "日本共産党",
+      "kind": "electoral_list_political_party_or_other_political_organization",
+      "jurisdiction": "Japan; nationwide House of Councillors proportional election, observed in Tokyo returns",
+      "source_identifier": {
+        "kind": "election_list_submission_number",
+        "value": "1",
+        "election_date": "2025-07-20",
+        "note": "A locator within this election only; not a persistent legal ID."
+      },
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "unknown",
+        "from": null,
+        "until": null,
+        "note": "Participation at one election does not establish organization birth, dissolution or continuity."
+      },
+      "roles": [
+        {
+          "id": "jp_jcp_executive_committee_chair",
+          "title": "幹部会委員長 — Executive Committee chair",
+          "kind": "party_chair",
+          "sources": [
+            "jp_jcp_chairs_2024"
+          ],
+          "claim_ids": [
+            "jp_tamura_executive_chair_20240118"
+          ],
+          "holder_claims": [
+            {
+              "name": "田村智子",
+              "attested_on": "2024-01-18",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_jcp_chairs_2024"
+              ],
+              "claim_ids": [
+                "jp_tamura_executive_chair_20240118"
+              ],
+              "note": "Observation of the stated party office on this date only; not a continuous term, biography or likeness authorization."
+            }
+          ],
+          "scope_note": "Distinct from 中央委員会議長. Succession rules and previous/subsequent holders remain unresolved."
+        },
+        {
+          "id": "jp_jcp_central_committee_chair",
+          "title": "中央委員会議長 — Central Committee chair",
+          "kind": "party_chair",
+          "sources": [
+            "jp_jcp_chairs_2024"
+          ],
+          "claim_ids": [
+            "jp_shii_central_chair_20240118"
+          ],
+          "holder_claims": [
+            {
+              "name": "志位和夫",
+              "attested_on": "2024-01-18",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_jcp_chairs_2024"
+              ],
+              "claim_ids": [
+                "jp_shii_central_chair_20240118"
+              ],
+              "note": "Observation of the stated party office on this date only; not a continuous term, biography or likeness authorization."
+            }
+          ],
+          "scope_note": "Distinct from 幹部会委員長. Do not collapse the two chair titles into one leader slot."
+        }
+      ],
+      "sources": [
+        "jp_tokyo_pr_2025",
+        "jp_jcp_chairs_2024"
+      ],
+      "claim_ids": [
+        "jp_pr2025_submission_01",
+        "jp_tamura_executive_chair_20240118",
+        "jp_shii_central_chair_20240118"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Resolve legal registration, exact parent organization, renames, mergers and splits using original records.",
+          "Research all independently dated party, parliamentary and executive office histories before roster or artwork work.",
+          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification."
+        ]
+      }
+    },
+    {
+      "id": "jp_sangiin_pr_2025_02",
+      "name": "日本維新の会",
+      "kind": "electoral_list_political_party_or_other_political_organization",
+      "jurisdiction": "Japan; nationwide House of Councillors proportional election, observed in Tokyo returns",
+      "source_identifier": {
+        "kind": "election_list_submission_number",
+        "value": "2",
+        "election_date": "2025-07-20",
+        "note": "A locator within this election only; not a persistent legal ID."
+      },
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "unknown",
+        "from": null,
+        "until": null,
+        "note": "Participation at one election does not establish organization birth, dissolution or continuity."
+      },
+      "roles": [],
+      "sources": [
+        "jp_tokyo_pr_2025"
+      ],
+      "claim_ids": [
+        "jp_pr2025_submission_02"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Resolve legal registration, exact parent organization, renames, mergers and splits using original records.",
+          "Research all independently dated party, parliamentary and executive office histories before roster or artwork work.",
+          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification."
+        ]
+      }
+    },
+    {
+      "id": "jp_sangiin_pr_2025_03",
+      "name": "無所属連合",
+      "kind": "electoral_list_political_party_or_other_political_organization",
+      "jurisdiction": "Japan; nationwide House of Councillors proportional election, observed in Tokyo returns",
+      "source_identifier": {
+        "kind": "election_list_submission_number",
+        "value": "3",
+        "election_date": "2025-07-20",
+        "note": "A locator within this election only; not a persistent legal ID."
+      },
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "unknown",
+        "from": null,
+        "until": null,
+        "note": "Participation at one election does not establish organization birth, dissolution or continuity."
+      },
+      "roles": [],
+      "sources": [
+        "jp_tokyo_pr_2025"
+      ],
+      "claim_ids": [
+        "jp_pr2025_submission_03"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Resolve legal registration, exact parent organization, renames, mergers and splits using original records.",
+          "Research all independently dated party, parliamentary and executive office histories before roster or artwork work.",
+          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification."
+        ]
+      }
+    },
+    {
+      "id": "jp_sangiin_pr_2025_04",
+      "name": "日本保守党",
+      "kind": "electoral_list_political_party_or_other_political_organization",
+      "jurisdiction": "Japan; nationwide House of Councillors proportional election, observed in Tokyo returns",
+      "source_identifier": {
+        "kind": "election_list_submission_number",
+        "value": "4",
+        "election_date": "2025-07-20",
+        "note": "A locator within this election only; not a persistent legal ID."
+      },
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "unknown",
+        "from": null,
+        "until": null,
+        "note": "Participation at one election does not establish organization birth, dissolution or continuity."
+      },
+      "roles": [],
+      "sources": [
+        "jp_tokyo_pr_2025"
+      ],
+      "claim_ids": [
+        "jp_pr2025_submission_04"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Resolve legal registration, exact parent organization, renames, mergers and splits using original records.",
+          "Research all independently dated party, parliamentary and executive office histories before roster or artwork work.",
+          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification."
+        ]
+      }
+    },
+    {
+      "id": "jp_sangiin_pr_2025_05",
+      "name": "立憲民主党",
+      "kind": "electoral_list_political_party_or_other_political_organization",
+      "jurisdiction": "Japan; nationwide House of Councillors proportional election, observed in Tokyo returns",
+      "source_identifier": {
+        "kind": "election_list_submission_number",
+        "value": "5",
+        "election_date": "2025-07-20",
+        "note": "A locator within this election only; not a persistent legal ID."
+      },
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "unknown",
+        "from": null,
+        "until": null,
+        "note": "Participation at one election does not establish organization birth, dissolution or continuity."
+      },
+      "roles": [],
+      "sources": [
+        "jp_tokyo_pr_2025"
+      ],
+      "claim_ids": [
+        "jp_pr2025_submission_05"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Resolve legal registration, exact parent organization, renames, mergers and splits using original records.",
+          "Research all independently dated party, parliamentary and executive office histories before roster or artwork work.",
+          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification."
+        ]
+      }
+    },
+    {
+      "id": "jp_sangiin_pr_2025_06",
+      "name": "参政党",
+      "kind": "electoral_list_political_party_or_other_political_organization",
+      "jurisdiction": "Japan; nationwide House of Councillors proportional election, observed in Tokyo returns",
+      "source_identifier": {
+        "kind": "election_list_submission_number",
+        "value": "6",
+        "election_date": "2025-07-20",
+        "note": "A locator within this election only; not a persistent legal ID."
+      },
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "unknown",
+        "from": null,
+        "until": null,
+        "note": "Participation at one election does not establish organization birth, dissolution or continuity."
+      },
+      "roles": [],
+      "sources": [
+        "jp_tokyo_pr_2025"
+      ],
+      "claim_ids": [
+        "jp_pr2025_submission_06"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Resolve legal registration, exact parent organization, renames, mergers and splits using original records.",
+          "Research all independently dated party, parliamentary and executive office histories before roster or artwork work.",
+          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification."
+        ]
+      }
+    },
+    {
+      "id": "jp_sangiin_pr_2025_07",
+      "name": "国民民主党",
+      "kind": "electoral_list_political_party_or_other_political_organization",
+      "jurisdiction": "Japan; nationwide House of Councillors proportional election, observed in Tokyo returns",
+      "source_identifier": {
+        "kind": "election_list_submission_number",
+        "value": "7",
+        "election_date": "2025-07-20",
+        "note": "A locator within this election only; not a persistent legal ID."
+      },
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "unknown",
+        "from": null,
+        "until": null,
+        "note": "Participation at one election does not establish organization birth, dissolution or continuity."
+      },
+      "roles": [
+        {
+          "id": "jp_dpfp_representative",
+          "title": "代表 — party representative",
+          "kind": "party_leader",
+          "sources": [
+            "jp_dpfp_tamaki_elected_2026"
+          ],
+          "claim_ids": [
+            "jp_tamaki_representative_20260906"
+          ],
+          "holder_claims": [
+            {
+              "name": "玉木雄一郎",
+              "attested_on": "2026-09-06",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_dpfp_tamaki_elected_2026"
+              ],
+              "claim_ids": [
+                "jp_tamaki_representative_20260906"
+              ],
+              "note": "Observation of the stated party office on this date only; not a continuous term, biography or likeness authorization."
+            }
+          ],
+          "scope_note": "Party office only. No mapping to earlier organizations with the same name or to a House group is asserted."
+        }
+      ],
+      "sources": [
+        "jp_tokyo_pr_2025",
+        "jp_dpfp_tamaki_elected_2026"
+      ],
+      "claim_ids": [
+        "jp_pr2025_submission_07",
+        "jp_tamaki_representative_20260906"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Resolve legal registration, exact parent organization, renames, mergers and splits using original records.",
+          "Research all independently dated party, parliamentary and executive office histories before roster or artwork work.",
+          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification."
+        ]
+      }
+    },
+    {
+      "id": "jp_sangiin_pr_2025_08",
+      "name": "チームみらい",
+      "kind": "electoral_list_political_party_or_other_political_organization",
+      "jurisdiction": "Japan; nationwide House of Councillors proportional election, observed in Tokyo returns",
+      "source_identifier": {
+        "kind": "election_list_submission_number",
+        "value": "8",
+        "election_date": "2025-07-20",
+        "note": "A locator within this election only; not a persistent legal ID."
+      },
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "unknown",
+        "from": null,
+        "until": null,
+        "note": "Participation at one election does not establish organization birth, dissolution or continuity."
+      },
+      "roles": [],
+      "sources": [
+        "jp_tokyo_pr_2025"
+      ],
+      "claim_ids": [
+        "jp_pr2025_submission_08"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Resolve legal registration, exact parent organization, renames, mergers and splits using original records.",
+          "Research all independently dated party, parliamentary and executive office histories before roster or artwork work.",
+          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification."
+        ]
+      }
+    },
+    {
+      "id": "jp_sangiin_pr_2025_09",
+      "name": "日本誠真会",
+      "kind": "electoral_list_political_party_or_other_political_organization",
+      "jurisdiction": "Japan; nationwide House of Councillors proportional election, observed in Tokyo returns",
+      "source_identifier": {
+        "kind": "election_list_submission_number",
+        "value": "9",
+        "election_date": "2025-07-20",
+        "note": "A locator within this election only; not a persistent legal ID."
+      },
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "unknown",
+        "from": null,
+        "until": null,
+        "note": "Participation at one election does not establish organization birth, dissolution or continuity."
+      },
+      "roles": [],
+      "sources": [
+        "jp_tokyo_pr_2025"
+      ],
+      "claim_ids": [
+        "jp_pr2025_submission_09"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Resolve legal registration, exact parent organization, renames, mergers and splits using original records.",
+          "Research all independently dated party, parliamentary and executive office histories before roster or artwork work.",
+          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification."
+        ]
+      }
+    },
+    {
+      "id": "jp_sangiin_pr_2025_10",
+      "name": "社会民主党",
+      "kind": "electoral_list_political_party_or_other_political_organization",
+      "jurisdiction": "Japan; nationwide House of Councillors proportional election, observed in Tokyo returns",
+      "source_identifier": {
+        "kind": "election_list_submission_number",
+        "value": "10",
+        "election_date": "2025-07-20",
+        "note": "A locator within this election only; not a persistent legal ID."
+      },
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "unknown",
+        "from": null,
+        "until": null,
+        "note": "Participation at one election does not establish organization birth, dissolution or continuity."
+      },
+      "roles": [],
+      "sources": [
+        "jp_tokyo_pr_2025"
+      ],
+      "claim_ids": [
+        "jp_pr2025_submission_10"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Resolve legal registration, exact parent organization, renames, mergers and splits using original records.",
+          "Research all independently dated party, parliamentary and executive office histories before roster or artwork work.",
+          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification."
+        ]
+      }
+    },
+    {
+      "id": "jp_sangiin_pr_2025_11",
+      "name": "れいわ新選組",
+      "kind": "electoral_list_political_party_or_other_political_organization",
+      "jurisdiction": "Japan; nationwide House of Councillors proportional election, observed in Tokyo returns",
+      "source_identifier": {
+        "kind": "election_list_submission_number",
+        "value": "11",
+        "election_date": "2025-07-20",
+        "note": "A locator within this election only; not a persistent legal ID."
+      },
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "unknown",
+        "from": null,
+        "until": null,
+        "note": "Participation at one election does not establish organization birth, dissolution or continuity."
+      },
+      "roles": [],
+      "sources": [
+        "jp_tokyo_pr_2025"
+      ],
+      "claim_ids": [
+        "jp_pr2025_submission_11"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Resolve legal registration, exact parent organization, renames, mergers and splits using original records.",
+          "Research all independently dated party, parliamentary and executive office histories before roster or artwork work.",
+          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification."
+        ]
+      }
+    },
+    {
+      "id": "jp_sangiin_pr_2025_12",
+      "name": "日本改革党",
+      "kind": "electoral_list_political_party_or_other_political_organization",
+      "jurisdiction": "Japan; nationwide House of Councillors proportional election, observed in Tokyo returns",
+      "source_identifier": {
+        "kind": "election_list_submission_number",
+        "value": "12",
+        "election_date": "2025-07-20",
+        "note": "A locator within this election only; not a persistent legal ID."
+      },
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "unknown",
+        "from": null,
+        "until": null,
+        "note": "Participation at one election does not establish organization birth, dissolution or continuity."
+      },
+      "roles": [],
+      "sources": [
+        "jp_tokyo_pr_2025"
+      ],
+      "claim_ids": [
+        "jp_pr2025_submission_12"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Resolve legal registration, exact parent organization, renames, mergers and splits using original records.",
+          "Research all independently dated party, parliamentary and executive office histories before roster or artwork work.",
+          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification."
+        ]
+      }
+    },
+    {
+      "id": "jp_sangiin_pr_2025_13",
+      "name": "自由民主党",
+      "kind": "electoral_list_political_party_or_other_political_organization",
+      "jurisdiction": "Japan; nationwide House of Councillors proportional election, observed in Tokyo returns",
+      "source_identifier": {
+        "kind": "election_list_submission_number",
+        "value": "13",
+        "election_date": "2025-07-20",
+        "note": "A locator within this election only; not a persistent legal ID."
+      },
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "unknown",
+        "from": null,
+        "until": null,
+        "note": "Participation at one election does not establish organization birth, dissolution or continuity."
+      },
+      "roles": [
+        {
+          "id": "jp_ldp_party_president",
+          "title": "総裁 — party president",
+          "kind": "party_leader",
+          "sources": [
+            "jp_ldp_ishiba_elected_2024",
+            "jp_ldp_takaichi_elected_2025"
+          ],
+          "claim_ids": [
+            "jp_ishiba_president_20240927",
+            "jp_takaichi_president_20251004"
+          ],
+          "holder_claims": [
+            {
+              "name": "石破茂",
+              "attested_on": "2024-09-27",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_ldp_ishiba_elected_2024"
+              ],
+              "claim_ids": [
+                "jp_ishiba_president_20240927"
+              ],
+              "note": "Observation of the stated party office on this date only; not a continuous term, biography or likeness authorization."
+            },
+            {
+              "name": "高市早苗",
+              "attested_on": "2025-10-04",
+              "from": null,
+              "until": null,
+              "sources": [
+                "jp_ldp_takaichi_elected_2025"
+              ],
+              "claim_ids": [
+                "jp_takaichi_president_20251004"
+              ],
+              "note": "Observation of the stated party office on this date only; not a continuous term, biography or likeness authorization."
+            }
+          ],
+          "scope_note": "Two party election observations. The office is separate from prime minister; no national executive powers imported."
+        }
+      ],
+      "sources": [
+        "jp_tokyo_pr_2025",
+        "jp_ldp_ishiba_elected_2024",
+        "jp_ldp_takaichi_elected_2025"
+      ],
+      "claim_ids": [
+        "jp_pr2025_submission_13",
+        "jp_ishiba_president_20240927",
+        "jp_takaichi_president_20251004"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Resolve legal registration, exact parent organization, renames, mergers and splits using original records.",
+          "Research all independently dated party, parliamentary and executive office histories before roster or artwork work.",
+          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification."
+        ]
+      }
+    },
+    {
+      "id": "jp_sangiin_pr_2025_14",
+      "name": "再生の道",
+      "kind": "electoral_list_political_party_or_other_political_organization",
+      "jurisdiction": "Japan; nationwide House of Councillors proportional election, observed in Tokyo returns",
+      "source_identifier": {
+        "kind": "election_list_submission_number",
+        "value": "14",
+        "election_date": "2025-07-20",
+        "note": "A locator within this election only; not a persistent legal ID."
+      },
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "unknown",
+        "from": null,
+        "until": null,
+        "note": "Participation at one election does not establish organization birth, dissolution or continuity."
+      },
+      "roles": [],
+      "sources": [
+        "jp_tokyo_pr_2025"
+      ],
+      "claim_ids": [
+        "jp_pr2025_submission_14"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Resolve legal registration, exact parent organization, renames, mergers and splits using original records.",
+          "Research all independently dated party, parliamentary and executive office histories before roster or artwork work.",
+          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification."
+        ]
+      }
+    },
+    {
+      "id": "jp_sangiin_pr_2025_15",
+      "name": "公明党",
+      "kind": "electoral_list_political_party_or_other_political_organization",
+      "jurisdiction": "Japan; nationwide House of Councillors proportional election, observed in Tokyo returns",
+      "source_identifier": {
+        "kind": "election_list_submission_number",
+        "value": "15",
+        "election_date": "2025-07-20",
+        "note": "A locator within this election only; not a persistent legal ID."
+      },
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "unknown",
+        "from": null,
+        "until": null,
+        "note": "Participation at one election does not establish organization birth, dissolution or continuity."
+      },
+      "roles": [],
+      "sources": [
+        "jp_tokyo_pr_2025"
+      ],
+      "claim_ids": [
+        "jp_pr2025_submission_15"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Resolve legal registration, exact parent organization, renames, mergers and splits using original records.",
+          "Research all independently dated party, parliamentary and executive office histories before roster or artwork work.",
+          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification."
+        ]
+      }
+    },
+    {
+      "id": "jp_sangiin_pr_2025_16",
+      "name": "ＮＨＫ党",
+      "kind": "electoral_list_political_party_or_other_political_organization",
+      "jurisdiction": "Japan; nationwide House of Councillors proportional election, observed in Tokyo returns",
+      "source_identifier": {
+        "kind": "election_list_submission_number",
+        "value": "16",
+        "election_date": "2025-07-20",
+        "note": "A locator within this election only; not a persistent legal ID."
+      },
+      "represented_party_ids": [],
+      "lifecycle": {
+        "status": "unknown",
+        "from": null,
+        "until": null,
+        "note": "Participation at one election does not establish organization birth, dissolution or continuity."
+      },
+      "roles": [],
+      "sources": [
+        "jp_tokyo_pr_2025"
+      ],
+      "claim_ids": [
+        "jp_pr2025_submission_16"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Resolve legal registration, exact parent organization, renames, mergers and splits using original records.",
+          "Research all independently dated party, parliamentary and executive office histories before roster or artwork work.",
+          "No game-party mapping is asserted; election registration does not establish a parliamentary group or a statutory party qualification."
+        ]
+      }
+    }
+  ],
+  "institutions": [
+    {
+      "id": "jp_shugiin_group_20260218_011",
+      "name": "自由民主党・無所属の会",
+      "kind": "parliamentary_group",
+      "jurisdiction": "Japan, House of Representatives",
+      "source_identifier": {
+        "kind": "house_member_list_locator",
+        "value": "../syu/011kaiha.htm",
+        "note": "Locator observed in the dated roster, not an assumed permanent party identifier."
+      },
+      "represented_party_ids": [],
+      "constituent_organization_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observation",
+        "from": null,
+        "until": null,
+        "attested_on": "2026-02-18"
+      },
+      "roles": [],
+      "sources": [
+        "jp_shugiin_groups_20260218",
+        "jp_shugiin_group_definition"
+      ],
+      "claim_ids": [
+        "jp_shugiin_20260218_011",
+        "jp_house_group_not_party"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Determine exact membership, constituent parties and independently dated parliamentary leadership; matching names alone do not establish identity.",
+          "Group existence, membership and composition at other dates are unresolved. No party lifecycle, party chair or national executive office is inferred."
+        ]
+      }
+    },
+    {
+      "id": "jp_shugiin_group_20260218_020",
+      "name": "中道改革連合・無所属",
+      "kind": "parliamentary_group",
+      "jurisdiction": "Japan, House of Representatives",
+      "source_identifier": {
+        "kind": "house_member_list_locator",
+        "value": "../syu/020kaiha.htm",
+        "note": "Locator observed in the dated roster, not an assumed permanent party identifier."
+      },
+      "represented_party_ids": [],
+      "constituent_organization_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observation",
+        "from": null,
+        "until": null,
+        "attested_on": "2026-02-18"
+      },
+      "roles": [],
+      "sources": [
+        "jp_shugiin_groups_20260218",
+        "jp_shugiin_group_definition"
+      ],
+      "claim_ids": [
+        "jp_shugiin_20260218_020",
+        "jp_house_group_not_party"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Determine exact membership, constituent parties and independently dated parliamentary leadership; matching names alone do not establish identity.",
+          "Group existence, membership and composition at other dates are unresolved. No party lifecycle, party chair or national executive office is inferred."
+        ]
+      }
+    },
+    {
+      "id": "jp_shugiin_group_20260218_030",
+      "name": "日本維新の会",
+      "kind": "parliamentary_group",
+      "jurisdiction": "Japan, House of Representatives",
+      "source_identifier": {
+        "kind": "house_member_list_locator",
+        "value": "../syu/030kaiha.htm",
+        "note": "Locator observed in the dated roster, not an assumed permanent party identifier."
+      },
+      "represented_party_ids": [],
+      "constituent_organization_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observation",
+        "from": null,
+        "until": null,
+        "attested_on": "2026-02-18"
+      },
+      "roles": [],
+      "sources": [
+        "jp_shugiin_groups_20260218",
+        "jp_shugiin_group_definition"
+      ],
+      "claim_ids": [
+        "jp_shugiin_20260218_030",
+        "jp_house_group_not_party"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Determine exact membership, constituent parties and independently dated parliamentary leadership; matching names alone do not establish identity.",
+          "Group existence, membership and composition at other dates are unresolved. No party lifecycle, party chair or national executive office is inferred."
+        ]
+      }
+    },
+    {
+      "id": "jp_shugiin_group_20260218_040",
+      "name": "国民民主党・無所属クラブ",
+      "kind": "parliamentary_group",
+      "jurisdiction": "Japan, House of Representatives",
+      "source_identifier": {
+        "kind": "house_member_list_locator",
+        "value": "../syu/040kaiha.htm",
+        "note": "Locator observed in the dated roster, not an assumed permanent party identifier."
+      },
+      "represented_party_ids": [],
+      "constituent_organization_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observation",
+        "from": null,
+        "until": null,
+        "attested_on": "2026-02-18"
+      },
+      "roles": [],
+      "sources": [
+        "jp_shugiin_groups_20260218",
+        "jp_shugiin_group_definition"
+      ],
+      "claim_ids": [
+        "jp_shugiin_20260218_040",
+        "jp_house_group_not_party"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Determine exact membership, constituent parties and independently dated parliamentary leadership; matching names alone do not establish identity.",
+          "Group existence, membership and composition at other dates are unresolved. No party lifecycle, party chair or national executive office is inferred."
+        ]
+      }
+    },
+    {
+      "id": "jp_shugiin_group_20260218_050",
+      "name": "参政党",
+      "kind": "parliamentary_group",
+      "jurisdiction": "Japan, House of Representatives",
+      "source_identifier": {
+        "kind": "house_member_list_locator",
+        "value": "../syu/050kaiha.htm",
+        "note": "Locator observed in the dated roster, not an assumed permanent party identifier."
+      },
+      "represented_party_ids": [],
+      "constituent_organization_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observation",
+        "from": null,
+        "until": null,
+        "attested_on": "2026-02-18"
+      },
+      "roles": [],
+      "sources": [
+        "jp_shugiin_groups_20260218",
+        "jp_shugiin_group_definition"
+      ],
+      "claim_ids": [
+        "jp_shugiin_20260218_050",
+        "jp_house_group_not_party"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Determine exact membership, constituent parties and independently dated parliamentary leadership; matching names alone do not establish identity.",
+          "Group existence, membership and composition at other dates are unresolved. No party lifecycle, party chair or national executive office is inferred."
+        ]
+      }
+    },
+    {
+      "id": "jp_shugiin_group_20260218_060",
+      "name": "チームみらい",
+      "kind": "parliamentary_group",
+      "jurisdiction": "Japan, House of Representatives",
+      "source_identifier": {
+        "kind": "house_member_list_locator",
+        "value": "../syu/060kaiha.htm",
+        "note": "Locator observed in the dated roster, not an assumed permanent party identifier."
+      },
+      "represented_party_ids": [],
+      "constituent_organization_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observation",
+        "from": null,
+        "until": null,
+        "attested_on": "2026-02-18"
+      },
+      "roles": [],
+      "sources": [
+        "jp_shugiin_groups_20260218",
+        "jp_shugiin_group_definition"
+      ],
+      "claim_ids": [
+        "jp_shugiin_20260218_060",
+        "jp_house_group_not_party"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Determine exact membership, constituent parties and independently dated parliamentary leadership; matching names alone do not establish identity.",
+          "Group existence, membership and composition at other dates are unresolved. No party lifecycle, party chair or national executive office is inferred."
+        ]
+      }
+    },
+    {
+      "id": "jp_shugiin_group_20260218_070",
+      "name": "日本共産党",
+      "kind": "parliamentary_group",
+      "jurisdiction": "Japan, House of Representatives",
+      "source_identifier": {
+        "kind": "house_member_list_locator",
+        "value": "../syu/070kaiha.htm",
+        "note": "Locator observed in the dated roster, not an assumed permanent party identifier."
+      },
+      "represented_party_ids": [],
+      "constituent_organization_ids": [],
+      "lifecycle": {
+        "status": "documented_at_specific_observation",
+        "from": null,
+        "until": null,
+        "attested_on": "2026-02-18"
+      },
+      "roles": [],
+      "sources": [
+        "jp_shugiin_groups_20260218",
+        "jp_shugiin_group_definition"
+      ],
+      "claim_ids": [
+        "jp_shugiin_20260218_070",
+        "jp_house_group_not_party"
+      ],
+      "coverage": {
+        "status": "partial",
+        "period": {
+          "from": "1990-01-01",
+          "through": "2026-09-07"
+        },
+        "unresolved": [
+          "Determine exact membership, constituent parties and independently dated parliamentary leadership; matching names alone do not establish identity.",
+          "Group existence, membership and composition at other dates are unresolved. No party lifecycle, party chair or national executive office is inferred."
+        ]
+      }
+    }
+  ],
+  "coverage": {
+    "status": "partial_primary_source_inventory",
+    "period": {
+      "from": "1990-01-01",
+      "through": "2026-09-07"
+    },
+    "exhaustive_organization_register_reviewed": false,
+    "unrepresented_organization_total": null,
+    "art_completion_claim": false,
+    "bounded_registers": [
+      {
+        "source": "jp_tokyo_pr_2025",
+        "kind": "proportional_election_list_submissions",
+        "attested_on": "2025-07-20",
+        "records": 16,
+        "excluded": "Not a nationwide historical party census; constituency-only and local organizations are outside this table."
+      },
+      {
+        "source": "jp_shugiin_groups_20260218",
+        "kind": "named_lower_house_parliamentary_groups",
+        "attested_on": "2026-02-18",
+        "records": 7,
+        "excluded": "The independent-member aggregate, vacancies and totals are not organization identities."
+      }
+    ],
+    "unresolved": [
+      "This packet contains two bounded official lists, not all Japanese political organizations from 1990 to the cutoff. All country-census and art-completion gates remain open.",
+      "The 16 election-list entities are explicitly party-or-other-political-organization identities. Statutory qualification, exact legal registration and relationships to similarly named earlier entities remain unverified.",
+      "The seven lower-house groups are kept as parliamentary institutions, separate from party identities. Constituent links and all game-party mappings remain empty and unknown.",
+      "Japan has constituency-only parties, local/regional organizations, historical mergers, dissolutions and successors outside these observations; a complete official register and historical chronology remain required.",
+      "Only four independently titled party offices and five dated holder observations across three organizations were reviewed. These are not full office terms, biography records, campaign eligibility or portrait authorization.",
+      "Election candidates and independent-member aggregates are not silently promoted into party leaders or fabricated organizations.",
+      "The live upper-house English strength page was dated 13 September 2026 when accessed and was excluded because it exceeds the fixed 7 September cutoff. Search-cache dates were not substituted for the current page.",
+      "Neither the 2025 election nor the February 2026 group list establishes a complete present-day September roster. No observations after the cutoff or fictional successors are populated here."
+    ]
+  }
+}

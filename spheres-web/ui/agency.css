@@ -17,6 +17,7 @@
 .agency-offer { border-top:1px solid #ded8e7; padding:16px 0 5px; }
 .agency-actions { display:flex; flex-wrap:wrap; gap:10px; }
 .agency-deadline { font-size:13px; color:#76501c; }
+.agency-inbox-summary { padding:12px; border-left:3px solid #a16b2b; border-radius:6px; background:#fff4df; color:#644317; }
 .agency-refusal { color:#983f3c; }
 .agency-empty { color:#716981; }
 #agencyPolicy { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
@@ -38,6 +39,7 @@
 .agency-change-values strong { display:block; font-size:16px; line-height:1.5; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
 .agency-change dd>p { margin:12px 0 0; font-size:12px; line-height:1.6; color:#62556d; }
 @media(max-width:600px) { .agency-change-list { grid-template-columns:minmax(0,1fr); } .agency-change { padding:12px; } }
+@media(max-width:360px) { .agency-change-values { grid-template-columns:minmax(0,1fr); } }
 #agencyPanel .agency-confirm { color:#fff; background:#624185; border-color:#624185; }
 #agencyBody section { min-width:0; overflow-wrap:anywhere; }
 @media(max-width:600px) { #agencyBody { padding:12px; } #agencyPanel > header { padding:14px; } #agencyPanel h2 { font-size:19px; } #agencyPolicy { grid-template-columns:1fr; } #agencyBtn { font-size:12px; padding:7px; } }

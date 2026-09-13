@@ -6,6 +6,14 @@ discovery register to 635 identities and refreshes the artwork inventory after
 one reviewed Tupou IV cartoon. Discovery observations do not imply completed
 leadership histories or an exhaustive country census.
 
+S10.d adds a bounded [Japan discovery packet](research/japan.json): 16 submitted
+lists in the July 2025 proportional election and seven separately identified
+House parliamentary groups in February 2026. Four party offices have five dated
+holder observations. These do not establish continuous terms, group-to-party
+mappings or new game candidates. The discovery index now totals four country
+packets, 660 organization and 18 institution observations, 38 sources, 1,344
+claims and 70 work batches. No exhaustive country census is closed.
+
 **Partial inventory recorded; C01 remains incomplete.** This is a reproducible
 prerequisite audit for S10, originally recorded at
 `872442d7411d9986321248b41ccadf79e2851d1c` and refreshed in S10.c with the new
