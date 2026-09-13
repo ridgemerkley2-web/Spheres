@@ -1,0 +1,71 @@
+{
+  "kind": "deterministic standalone tiny_http TaskPool admission regression",
+  "qualification": false,
+  "started_utc": "2026-09-13T04:09:24.329620+00:00",
+  "upstream_source": "C:\\Users\\ridge\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tiny_http-0.12.0\\src\\util\\task_pool.rs",
+  "upstream_source_sha256": "08e3cc8139d1512bb751f828e9838579d8848607e7172ae41b4033d8ecc46fdb",
+  "fixture_seam": "Only extract the existing queue-locked admission body to spawn_locked; the fixture locks across a burst to force the allowed pre-wakeup scheduling interleaving. Both variants share this seam and test.",
+  "candidate_change": "waiting_tasks == 0 -> waiting_tasks <= queue.len()",
+  "results": {
+    "baseline": {
+      "source_sha256": "91f1e34b2765fc815cf7c52c4d86b676d6f24ae92b1ae14c57a25ca80a46fc21",
+      "compile": {
+        "command": [
+          "rustc",
+          "--edition=2021",
+          "--test",
+          "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-startup-taskpool-regression\\pool-6v_p3vas\\baseline.rs",
+          "-o",
+          "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-startup-taskpool-regression\\pool-6v_p3vas\\baseline.exe"
+        ],
+        "exit_code": 0,
+        "log": "baseline-compile.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "output": ""
+      },
+      "test": {
+        "command": [
+          "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-startup-taskpool-regression\\pool-6v_p3vas\\baseline.exe",
+          "--nocapture",
+          "--test-threads=1"
+        ],
+        "exit_code": 101,
+        "log": "baseline-test.log",
+        "log_sha256": "67d817fa61b7a4bb7cad9d954fa3d3e3d2b66ffca008a7b1b84364b63f1c657e",
+        "output": "\nrunning 1 test\ntest s09_regression::s09_a_burst_must_not_strand_connections_behind_idle_keepalive_workers ... initial_waiters=4 burst=8 started_before_release=4 completed_after_release=8\n\nthread 's09_regression::s09_a_burst_must_not_strand_connections_behind_idle_keepalive_workers' (3112) panicked at C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-startup-taskpool-regression\\pool-6v_p3vas\\baseline.rs:214:9:\nassertion `left == right` failed: queued connections were stranded behind occupied keep-alive workers\n  left: 4\n right: 8\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\nFAILED\n\nfailures:\n\nfailures:\n    s09_regression::s09_a_burst_must_not_strand_connections_behind_idle_keepalive_workers\n\ntest result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.01s\n\n"
+      }
+    },
+    "corrected": {
+      "source_sha256": "7360849ffe673c81a53bfd488093d9823d0dafafc4f88bfc65bf9aad9ab1805a",
+      "compile": {
+        "command": [
+          "rustc",
+          "--edition=2021",
+          "--test",
+          "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-startup-taskpool-regression\\pool-6v_p3vas\\corrected.rs",
+          "-o",
+          "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-startup-taskpool-regression\\pool-6v_p3vas\\corrected.exe"
+        ],
+        "exit_code": 0,
+        "log": "corrected-compile.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "output": ""
+      },
+      "test": {
+        "command": [
+          "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-startup-taskpool-regression\\pool-6v_p3vas\\corrected.exe",
+          "--nocapture",
+          "--test-threads=1"
+        ],
+        "exit_code": 0,
+        "log": "corrected-test.log",
+        "log_sha256": "be6ffaf7adb1f3db118399ac648c6e959421adb55104f175d35135b287e399ea",
+        "output": "\nrunning 1 test\ntest s09_regression::s09_a_burst_must_not_strand_connections_behind_idle_keepalive_workers ... initial_waiters=4 burst=8 started_before_release=8 completed_after_release=8\nok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n"
+      }
+    }
+  },
+  "baseline_reproduced": true,
+  "corrected_passed": true,
+  "passed": true,
+  "finished_utc": "2026-09-13T04:09:26.623439+00:00"
+}

@@ -1,0 +1,18 @@
+
+running 1 test
+test s09_regression::s09_a_burst_must_not_strand_connections_behind_idle_keepalive_workers ... initial_waiters=4 burst=8 started_before_release=4 completed_after_release=8
+
+thread 's09_regression::s09_a_burst_must_not_strand_connections_behind_idle_keepalive_workers' (3112) panicked at C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\evidence\S09-startup-taskpool-regression\pool-6v_p3vas\baseline.rs:214:9:
+assertion `left == right` failed: queued connections were stranded behind occupied keep-alive workers
+  left: 4
+ right: 8
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+
+failures:
+
+failures:
+    s09_regression::s09_a_burst_must_not_strand_connections_behind_idle_keepalive_workers
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.01s
+

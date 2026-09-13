@@ -1,0 +1,456 @@
+{
+  "pid": 32064,
+  "port": 61832,
+  "started_utc": "2026-09-13T03:55:08.635141+00:00",
+  "routes": [
+    {
+      "route": "/arcade.css",
+      "status": 200,
+      "bytes": 25380,
+      "seconds": 0.0010350999946240336
+    },
+    {
+      "route": "/arcade-operations.css",
+      "status": 200,
+      "bytes": 27515,
+      "seconds": 0.0006776999944122508
+    },
+    {
+      "route": "/arcade-discovery.css",
+      "status": 200,
+      "bytes": 39829,
+      "seconds": 0.0016895000007934868
+    },
+    {
+      "route": "/chronicle.css",
+      "status": 200,
+      "bytes": 6431,
+      "seconds": 0.00129420000303071
+    },
+    {
+      "route": "/programs.css",
+      "status": 200,
+      "bytes": 17137,
+      "seconds": 0.0018220999918412417
+    },
+    {
+      "route": "/decision-tools.css",
+      "status": 200,
+      "bytes": 2083,
+      "seconds": 0.0011735000007320195
+    },
+    {
+      "route": "/guidance-ui.css",
+      "status": 200,
+      "bytes": 7496,
+      "seconds": 0.001418500003637746
+    },
+    {
+      "route": "/province-economy.css",
+      "status": 200,
+      "bytes": 7311,
+      "seconds": 0.0018084000039380044
+    },
+    {
+      "route": "/industry-ui.css",
+      "status": 200,
+      "bytes": 9841,
+      "seconds": 0.000658099990687333
+    },
+    {
+      "route": "/companies.css",
+      "status": 200,
+      "bytes": 13908,
+      "seconds": 0.021957000004476868
+    },
+    {
+      "route": "/cash-flow-ui.css",
+      "status": 200,
+      "bytes": 11401,
+      "seconds": 0.00060299999313429
+    },
+    {
+      "route": "/equipment-ui.css",
+      "status": 200,
+      "bytes": 36916,
+      "seconds": 0.0010369999945396557
+    },
+    {
+      "route": "/government-ui.css",
+      "status": 200,
+      "bytes": 34278,
+      "seconds": 0.0009085999918170273
+    },
+    {
+      "route": "/arsenal3d.css",
+      "status": 200,
+      "bytes": 4926,
+      "seconds": 0.020949699988705106
+    },
+    {
+      "route": "/competition.css",
+      "status": 200,
+      "bytes": 20495,
+      "seconds": 0.0013010999973630533
+    },
+    {
+      "route": "/agency.css",
+      "status": 200,
+      "bytes": 2566,
+      "seconds": 0.00043500000901985914
+    },
+    {
+      "route": "/operations-ui.css",
+      "status": 200,
+      "bytes": 1900,
+      "seconds": 0.0004938000056426972
+    },
+    {
+      "route": "/campaign-operations-ui.css",
+      "status": 200,
+      "bytes": 8447,
+      "seconds": 0.0005322000070009381
+    },
+    {
+      "route": "/area-art.css",
+      "status": 200,
+      "bytes": 4359,
+      "seconds": 0.021191000007092953
+    },
+    {
+      "route": "/main-menu.css",
+      "status": 200,
+      "bytes": 22484,
+      "seconds": 0.019930499998736195
+    },
+    {
+      "route": "/map-controls.css",
+      "status": 200,
+      "bytes": 9732,
+      "seconds": 0.01991210000414867
+    },
+    {
+      "route": "/page-art.css",
+      "status": 200,
+      "bytes": 26796,
+      "seconds": 0.02066400001058355
+    },
+    {
+      "route": "/world.js",
+      "status": 200,
+      "bytes": 525549,
+      "seconds": 0.0029312999977264553
+    },
+    {
+      "route": "/districts.js",
+      "status": 200,
+      "bytes": 715895,
+      "seconds": 0.001787100001820363
+    },
+    {
+      "route": "/rivers.js",
+      "status": 200,
+      "bytes": 245187,
+      "seconds": 0.005138500011526048
+    },
+    {
+      "route": "/terrain.js",
+      "status": 200,
+      "bytes": 93007,
+      "seconds": 0.004037999999127351
+    },
+    {
+      "route": "/cities.js",
+      "status": 200,
+      "bytes": 106398,
+      "seconds": 0.0049343999999109656
+    },
+    {
+      "route": "/globe3d.js",
+      "status": 200,
+      "bytes": 36245,
+      "seconds": 0.0023339000035775825
+    },
+    {
+      "route": "/map-controls.js",
+      "status": 200,
+      "bytes": 10651,
+      "seconds": 0.0009971999970730394
+    },
+    {
+      "route": "/terrain-labels.js",
+      "status": 200,
+      "bytes": 7522,
+      "seconds": 0.0009183000074699521
+    },
+    {
+      "route": "/water-detail.js",
+      "status": 200,
+      "bytes": 11962,
+      "seconds": 0.0009592999995220453
+    },
+    {
+      "route": "/height-detail.js",
+      "status": 200,
+      "bytes": 6148,
+      "seconds": 0.0006193000008352101
+    },
+    {
+      "route": "/terrain-surface.js",
+      "status": 200,
+      "bytes": 24750,
+      "seconds": 0.0006864000024506822
+    },
+    {
+      "route": "/city-detail.js",
+      "status": 200,
+      "bytes": 14190,
+      "seconds": 0.0009295000054407865
+    },
+    {
+      "route": "/shader-loader.js",
+      "status": 200,
+      "bytes": 3570,
+      "seconds": 0.0006959000020287931
+    },
+    {
+      "route": "/campaign-transport.js",
+      "status": 200,
+      "bytes": 4775,
+      "seconds": 0.0009465999901294708
+    },
+    {
+      "route": "/area-art.js",
+      "status": 200,
+      "bytes": 1378,
+      "seconds": 0.0006845999887445942
+    },
+    {
+      "route": "/campaign-ui.js",
+      "status": 200,
+      "bytes": 13683,
+      "seconds": 0.0013694999943254516
+    },
+    {
+      "route": "/chronicle-data.js",
+      "status": 200,
+      "bytes": 4513,
+      "seconds": 0.001097699991078116
+    },
+    {
+      "route": "/chronicle-ui.js",
+      "status": 200,
+      "bytes": 16175,
+      "seconds": 0.001055200002156198
+    },
+    {
+      "route": "/programs-ui.js",
+      "status": 200,
+      "bytes": 14422,
+      "seconds": 0.0008667000074638054
+    },
+    {
+      "route": "/decision-tools.js",
+      "status": 200,
+      "bytes": 19122,
+      "seconds": 0.0015305999986594543
+    },
+    {
+      "route": "/tutorial-model.js",
+      "status": 200,
+      "bytes": 11631,
+      "seconds": 0.0010045999952126294
+    },
+    {
+      "route": "/advisor-model.js",
+      "status": 200,
+      "bytes": 19104,
+      "seconds": 0.0007579000084660947
+    },
+    {
+      "route": "/guidance-ui.js",
+      "status": 200,
+      "bytes": 21247,
+      "seconds": 0.0006976000004215166
+    },
+    {
+      "route": "/performance-ui.js",
+      "status": 200,
+      "bytes": 3334,
+      "seconds": 0.0010722000006353483
+    },
+    {
+      "route": "/province-economy-ui.js",
+      "status": 200,
+      "bytes": 23117,
+      "seconds": 0.0012215000024298206
+    },
+    {
+      "route": "/competition-ui.js",
+      "status": 200,
+      "bytes": 60076,
+      "seconds": 0.0014143000007607043
+    },
+    {
+      "route": "/industry-ui.js",
+      "status": 200,
+      "bytes": 27842,
+      "seconds": 0.0007843999919714406
+    },
+    {
+      "route": "/companies-ui.js",
+      "status": 200,
+      "bytes": 32920,
+      "seconds": 0.0015668000123696402
+    },
+    {
+      "route": "/cash-flow-ui.js",
+      "status": 200,
+      "bytes": 30198,
+      "seconds": 0.0014730000111740083
+    },
+    {
+      "route": "/fiscal-recovery-ui.js",
+      "status": 200,
+      "bytes": 11098,
+      "seconds": 0.0008224999910453334
+    },
+    {
+      "route": "/equipment-mesh.js",
+      "status": 200,
+      "bytes": 178146,
+      "seconds": 0.001680000001215376
+    },
+    {
+      "route": "/equipment-export.js",
+      "status": 200,
+      "bytes": 8868,
+      "seconds": 0.0007970999868120998
+    },
+    {
+      "route": "/military-surface.js",
+      "status": 200,
+      "bytes": 10398,
+      "seconds": 0.0013135000044712797
+    },
+    {
+      "route": "/tank-surface.js",
+      "status": 200,
+      "bytes": 13282,
+      "seconds": 0.0017952999914996326
+    },
+    {
+      "route": "/equipment-model.js",
+      "status": 200,
+      "bytes": 46961,
+      "seconds": 0.0020382000075187534
+    },
+    {
+      "route": "/arsenal-models.js",
+      "status": 200,
+      "bytes": 456286,
+      "seconds": 0.003372399994987063
+    },
+    {
+      "route": "/arsenal3d.js",
+      "status": 200,
+      "bytes": 46459,
+      "seconds": 0.00216829999408219
+    },
+    {
+      "route": "/surface-grain.js",
+      "status": 200,
+      "bytes": 20822,
+      "seconds": 0.0010581999958958477
+    },
+    {
+      "route": "/surface-wear.js",
+      "status": 200,
+      "bytes": 26623,
+      "seconds": 0.020632100000511855
+    },
+    {
+      "route": "/surface-material.js",
+      "status": 200,
+      "bytes": 19760,
+      "seconds": 0.0007176999934017658
+    },
+    {
+      "route": "/site-mesh.js",
+      "status": 200,
+      "bytes": 309559,
+      "seconds": 0.0037745000008726493
+    },
+    {
+      "route": "/town-mesh.js",
+      "status": 200,
+      "bytes": 172044,
+      "seconds": 0.0016314000095007941
+    },
+    {
+      "route": "/city-mesh.js",
+      "status": 200,
+      "bytes": 87641,
+      "seconds": 0.00460190000012517
+    },
+    {
+      "route": "/city-layer.js",
+      "status": 200,
+      "bytes": 12449,
+      "seconds": 0.003497899990179576
+    },
+    {
+      "route": "/equipment-import.js",
+      "status": 200,
+      "bytes": 27373,
+      "seconds": 0.0023753999994369224
+    },
+    {
+      "route": "/equipment-ui.js",
+      "status": 200,
+      "bytes": 126201,
+      "seconds": 0.01796279998961836
+    },
+    {
+      "route": "/government-ui.js",
+      "status": 200,
+      "bytes": 51030,
+      "seconds": 0.0012875999964307994
+    },
+    {
+      "route": "/agency-ui.js",
+      "status": 200,
+      "bytes": 8125,
+      "seconds": 0.0007180999964475632
+    },
+    {
+      "route": "/operations-ui.js",
+      "status": 200,
+      "bytes": 4187,
+      "seconds": 0.0005934999935561791
+    },
+    {
+      "route": "/campaign-operations-ui.js",
+      "status": 200,
+      "bytes": 21110,
+      "seconds": 0.0005021999968448654
+    }
+  ],
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1789271025,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "94d2c094b2c6",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-startup-http\\server",
+    "version": "0.6.0"
+  },
+  "root": {
+    "route": "/",
+    "status": 200,
+    "bytes": 1143516,
+    "seconds": 0.01635299999907147
+  },
+  "passed": true,
+  "finished_utc": "2026-09-13T03:55:09.236522+00:00"
+}

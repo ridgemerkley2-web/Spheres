@@ -1,0 +1,224 @@
+{
+  "conditions": [
+    "Acquisition estimates use today's native fabrication, material and operating-input prices plus the modeled company margin. Actual finished stock is priced from its paid cost basis; review its current stock, access and procurement authority before buying.",
+    "Development payments come from government R&D. Company cash funds tooling and inventory. Buying the finished equipment and maintaining delivered units are separate government payments; research and saved drafts create no equipment.",
+    "Current unused Defense authority: $0.000m R&D; $0.000m procurement. These balances do not guarantee future funding or make an indicative price an affordable offer.",
+    "Commissioning still needs native review of the government, departmental budget, company and facility. A zero development limit pauses work. Staffing, power, paid inputs and earlier company work can delay certification or stock.",
+    "No domestic contractor exists. To commission this design, establish one with a free completed Arms Plant slot and separately reviewed capital; foreign finished-stock purchasing is a separate path."
+  ],
+  "costs": [
+    {
+      "amount_bn": 0.10143,
+      "label": "Development and trials",
+      "period": "government R&D · one model, paid as work progresses"
+    },
+    {
+      "amount_bn": 0.016905000000000003,
+      "label": "Manufacturer tooling",
+      "period": "company capital · once per licensed model"
+    },
+    {
+      "amount_bn": 0.0033810000000000003,
+      "label": "Company fabrication",
+      "period": "company cost per unit · purchased inputs separate"
+    },
+    {
+      "amount_bn": 0.004121855722555016,
+      "label": "Indicative later acquisition",
+      "period": "per unit at current input prices · estimate, not a stock offer"
+    },
+    {
+      "amount_bn": 0.020489222367439146,
+      "label": "Company capital for tooling and one unit",
+      "period": "illustrative company working capital · separate from the government purchase"
+    },
+    {
+      "amount_bn": 4.66e-7,
+      "label": "Maintenance requirement",
+      "period": "government support per delivered unit / day · ammunition separate"
+    }
+  ],
+  "detail": "Two deterministic suggestions from a bounded search of known components and compatible packages on this platform. Compare their actual ratings and tradeoffs; neither is a guaranteed best design. Applying one only edits the draft.",
+  "platform": "tank_standard",
+  "recommendations": [
+    {
+      "blockers": [],
+      "conditions": [
+        "Acquisition estimates use today's native fabrication, material and operating-input prices plus the modeled company margin. Actual finished stock is priced from its paid cost basis; review its current stock, access and procurement authority before buying.",
+        "Development payments come from government R&D. Company cash funds tooling and inventory. Buying the finished equipment and maintaining delivered units are separate government payments; research and saved drafts create no equipment.",
+        "Current unused Defense authority: $0.000m R&D; $0.000m procurement. These balances do not guarantee future funding or make an indicative price an affordable offer.",
+        "Commissioning still needs native review of the government, departmental budget, company and facility. A zero development limit pauses work. Staffing, power, paid inputs and earlier company work can delay certification or stock.",
+        "No domestic contractor exists. To commission this design, establish one with a free completed Arms Plant slot and separately reviewed capital; foreign finished-stock purchasing is a separate path."
+      ],
+      "costs": [
+        {
+          "amount_bn": 0.08582999999999999,
+          "label": "Development and trials",
+          "period": "government R&D · one model, paid as work progresses"
+        },
+        {
+          "amount_bn": 0.014304999999999998,
+          "label": "Manufacturer tooling",
+          "period": "company capital · once per licensed model"
+        },
+        {
+          "amount_bn": 0.002861,
+          "label": "Company fabrication",
+          "period": "company cost per unit · purchased inputs separate"
+        },
+        {
+          "amount_bn": 0.003490961453551879,
+          "label": "Indicative later acquisition",
+          "period": "per unit at current input prices · estimate, not a stock offer"
+        },
+        {
+          "amount_bn": 0.017340618655262503,
+          "label": "Company capital for tooling and one unit",
+          "period": "illustrative company working capital · separate from the government purchase"
+        },
+        {
+          "amount_bn": 4.0899999999999997e-7,
+          "label": "Maintenance requirement",
+          "period": "government support per delivered unit / day · ammunition separate"
+        }
+      ],
+      "id": "economical",
+      "metrics": [
+        {
+          "label": "Land contribution",
+          "value": "0.932×"
+        },
+        {
+          "label": "Firepower rating",
+          "value": 0.81
+        },
+        {
+          "label": "Protection rating",
+          "value": 0.96
+        },
+        {
+          "label": "Mobility rating",
+          "value": 0.96
+        },
+        {
+          "label": "Observation rating",
+          "value": 1
+        },
+        {
+          "label": "Installation load",
+          "value": "13 / 20"
+        }
+      ],
+      "name": "Economical researched configuration",
+      "reason": "Prioritizes lower company fabrication cost, then lower maintenance, using known components. Lower costs can mean weaker mission ratings; this is not an affordability claim.",
+      "spec": {
+        "components": {
+          "active_protection": "aps_none",
+          "ammunition": "ammo_support",
+          "armament": "gun_90",
+          "communications": "comms_radio",
+          "fire_control": "fcs_basic",
+          "mobility": "engine_diesel_600",
+          "protection": "protection_standard",
+          "sensors": "optics_day",
+          "suspension": "suspension_torsion",
+          "tracks": "tracks_standard",
+          "transmission": "transmission_manual",
+          "turret": "turret_compact"
+        },
+        "platform": "tank_standard"
+      },
+      "specification_key": "v2|13:tank_standard|17:active_protection:8:aps_none|10:ammunition:12:ammo_support|8:armament:6:gun_90|14:communications:11:comms_radio|12:fire_control:9:fcs_basic|8:mobility:17:engine_diesel_600|10:protection:19:protection_standard|7:sensors:10:optics_day|10:suspension:18:suspension_torsion|6:tracks:15:tracks_standard|12:transmission:19:transmission_manual|6:turret:14:turret_compact"
+    },
+    {
+      "blockers": [],
+      "conditions": [
+        "Acquisition estimates use today's native fabrication, material and operating-input prices plus the modeled company margin. Actual finished stock is priced from its paid cost basis; review its current stock, access and procurement authority before buying.",
+        "Development payments come from government R&D. Company cash funds tooling and inventory. Buying the finished equipment and maintaining delivered units are separate government payments; research and saved drafts create no equipment.",
+        "Current unused Defense authority: $0.000m R&D; $0.000m procurement. These balances do not guarantee future funding or make an indicative price an affordable offer.",
+        "Commissioning still needs native review of the government, departmental budget, company and facility. A zero development limit pauses work. Staffing, power, paid inputs and earlier company work can delay certification or stock.",
+        "No domestic contractor exists. To commission this design, establish one with a free completed Arms Plant slot and separately reviewed capital; foreign finished-stock purchasing is a separate path."
+      ],
+      "costs": [
+        {
+          "amount_bn": 0.13323000000000002,
+          "label": "Development and trials",
+          "period": "government R&D · one model, paid as work progresses"
+        },
+        {
+          "amount_bn": 0.022205000000000003,
+          "label": "Manufacturer tooling",
+          "period": "company capital · once per licensed model"
+        },
+        {
+          "amount_bn": 0.0044410000000000005,
+          "label": "Company fabrication",
+          "period": "company cost per unit · purchased inputs separate"
+        },
+        {
+          "amount_bn": 0.005405798081225864,
+          "label": "Indicative later acquisition",
+          "period": "per unit at current input prices · estimate, not a stock offer"
+        },
+        {
+          "amount_bn": 0.026905693983674667,
+          "label": "Company capital for tooling and one unit",
+          "period": "illustrative company working capital · separate from the government purchase"
+        },
+        {
+          "amount_bn": 6.31e-7,
+          "label": "Maintenance requirement",
+          "period": "government support per delivered unit / day · ammunition separate"
+        }
+      ],
+      "id": "advanced",
+      "metrics": [
+        {
+          "label": "Land contribution",
+          "value": "1.125×"
+        },
+        {
+          "label": "Firepower rating",
+          "value": 1.23
+        },
+        {
+          "label": "Protection rating",
+          "value": 1.06
+        },
+        {
+          "label": "Mobility rating",
+          "value": 1.09
+        },
+        {
+          "label": "Observation rating",
+          "value": 1.12
+        },
+        {
+          "label": "Installation load",
+          "value": "20 / 20"
+        }
+      ],
+      "name": "Advanced researched configuration",
+      "reason": "Prioritizes this platform's supported role rating, then its secondary design ratings, using known components. Additional capability can cost more to develop, acquire and support.",
+      "spec": {
+        "components": {
+          "active_protection": "aps_none",
+          "ammunition": "ammo_mixed",
+          "armament": "gun_120",
+          "communications": "comms_radio",
+          "fire_control": "fcs_basic",
+          "mobility": "engine_diesel_1200",
+          "protection": "protection_standard",
+          "sensors": "optics_night",
+          "suspension": "suspension_torsion",
+          "tracks": "tracks_padded",
+          "transmission": "transmission_manual",
+          "turret": "turret_heavy"
+        },
+        "platform": "tank_standard"
+      },
+      "specification_key": "v2|13:tank_standard|17:active_protection:8:aps_none|10:ammunition:10:ammo_mixed|8:armament:7:gun_120|14:communications:11:comms_radio|12:fire_control:9:fcs_basic|8:mobility:18:engine_diesel_1200|10:protection:19:protection_standard|7:sensors:12:optics_night|10:suspension:18:suspension_torsion|6:tracks:13:tracks_padded|12:transmission:19:transmission_manual|6:turret:12:turret_heavy"
+    }
+  ],
+  "title": "Choose a design direction"
+}

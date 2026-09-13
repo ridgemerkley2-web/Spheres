@@ -1,0 +1,7 @@
+
+running 1 test
+test s09_regression::s09_a_burst_must_not_strand_connections_behind_idle_keepalive_workers ... initial_waiters=4 burst=8 started_before_release=8 completed_after_release=8
+ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

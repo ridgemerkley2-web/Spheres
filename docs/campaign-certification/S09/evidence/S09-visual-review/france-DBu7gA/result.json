@@ -1,0 +1,363 @@
+{
+  "kind": "visual-only-review",
+  "qualification": false,
+  "expected_revision": "94d2c094b2c69a70613af2258acbf49e10d9e871",
+  "run": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-visual-review\\france-DBu7gA\\server",
+  "started_utc": "2026-09-13T03:46:40.612Z",
+  "screenshots": [
+    {
+      "filename": "desktop-designer-top.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "selector": "[data-equipment-draft-status]"
+    },
+    {
+      "filename": "desktop-model.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "selector": "[data-equipment-model]"
+    },
+    {
+      "filename": "desktop-guidance.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "selector": "[data-equipment-recommendation=\"economical\"]"
+    },
+    {
+      "filename": "desktop-current-costs.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "selector": ".eq-guidance-current"
+    },
+    {
+      "filename": "mobile-designer-top.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "selector": "[data-equipment-draft-status]"
+    },
+    {
+      "filename": "mobile-model.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "selector": "[data-equipment-model]"
+    },
+    {
+      "filename": "mobile-lower-cost.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "selector": "[data-equipment-recommendation=\"economical\"]"
+    },
+    {
+      "filename": "mobile-advanced.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "selector": "[data-equipment-recommendation=\"advanced\"]"
+    },
+    {
+      "filename": "mobile-current-costs.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "selector": ".eq-guidance-current"
+    },
+    {
+      "filename": "desktop-research-component.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "selector": "details[data-equipment-detail=\"unlock:optics_day\"]"
+    },
+    {
+      "filename": "mobile-research-component.png",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "selector": "details[data-equipment-detail=\"unlock:optics_day\"]"
+    }
+  ],
+  "page_errors": [],
+  "http_errors": [],
+  "commands": [],
+  "post_paths": [
+    "/api/new",
+    "/api/program-preview",
+    "/api/equipment-preview"
+  ],
+  "observations": [
+    {
+      "label": "desktop designer",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "document": {
+        "scroll": 1440,
+        "client": 1440
+      },
+      "room": {
+        "scroll": 1440,
+        "client": 1440
+      },
+      "overflow": []
+    },
+    {
+      "label": "mobile designer",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": {
+        "scroll": 390,
+        "client": 390
+      },
+      "room": {
+        "scroll": 390,
+        "client": 390
+      },
+      "overflow": [
+        {
+          "tag": "BUTTON",
+          "class": "",
+          "text": "Companies & Procurement",
+          "left": 285.609375,
+          "right": 482.890625
+        },
+        {
+          "tag": "BUTTON",
+          "class": "",
+          "text": "Development",
+          "left": 489.890625,
+          "right": 602.9375
+        },
+        {
+          "tag": "BUTTON",
+          "class": "",
+          "text": "Production",
+          "left": 609.9375,
+          "right": 707.75
+        },
+        {
+          "tag": "BUTTON",
+          "class": "",
+          "text": "Ammunition",
+          "left": 714.75,
+          "right": 821.40625
+        },
+        {
+          "tag": "BUTTON",
+          "class": "",
+          "text": "In service",
+          "left": 828.40625,
+          "right": 915.90625
+        }
+      ]
+    },
+    {
+      "label": "desktop research",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "document": {
+        "scroll": 1440,
+        "client": 1440
+      },
+      "room": {
+        "scroll": 1440,
+        "client": 1440
+      },
+      "overflow": []
+    },
+    {
+      "label": "mobile research",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "document": {
+        "scroll": 390,
+        "client": 390
+      },
+      "room": {
+        "scroll": 390,
+        "client": 390
+      },
+      "overflow": [
+        {
+          "tag": "BUTTON",
+          "class": "",
+          "text": "Companies & Procurement",
+          "left": 285.609375,
+          "right": 482.890625
+        },
+        {
+          "tag": "BUTTON",
+          "class": "",
+          "text": "Development",
+          "left": 489.890625,
+          "right": 602.9375
+        },
+        {
+          "tag": "BUTTON",
+          "class": "",
+          "text": "Production",
+          "left": 609.9375,
+          "right": 707.75
+        },
+        {
+          "tag": "BUTTON",
+          "class": "",
+          "text": "Ammunition",
+          "left": 714.75,
+          "right": 821.40625
+        },
+        {
+          "tag": "BUTTON",
+          "class": "",
+          "text": "In service",
+          "left": 828.40625,
+          "right": 915.90625
+        },
+        {
+          "tag": "SECTION",
+          "class": "eq-research-tier",
+          "text": "Stage 2→LockedTechnology stage 2Ground sensor fusionBuilds on observat",
+          "left": 347,
+          "right": 657
+        },
+        {
+          "tag": "P",
+          "class": "eq-tier-label",
+          "text": "Stage 2→",
+          "left": 347,
+          "right": 657
+        },
+        {
+          "tag": "SPAN",
+          "class": "",
+          "text": "→",
+          "left": 636.09375,
+          "right": 655
+        },
+        {
+          "tag": "ARTICLE",
+          "class": "eq-research-node",
+          "text": "LockedTechnology stage 2Ground sensor fusionBuilds on observation inte",
+          "left": 347,
+          "right": 657
+        },
+        {
+          "tag": "DIV",
+          "class": "eq-research-illustration",
+          "text": "Locked",
+          "left": 348,
+          "right": 656
+        },
+        {
+          "tag": "IMG",
+          "class": "",
+          "text": "",
+          "left": 348,
+          "right": 656
+        },
+        {
+          "tag": "DIV",
+          "class": "eq-research-node-body",
+          "text": "Technology stage 2Ground sensor fusionBuilds on observation integratio",
+          "left": 348,
+          "right": 656
+        },
+        {
+          "tag": "P",
+          "class": "eq-eyebrow",
+          "text": "Technology stage 2",
+          "left": 365,
+          "right": 639
+        },
+        {
+          "tag": "H3",
+          "class": "",
+          "text": "Ground sensor fusion",
+          "left": 365,
+          "right": 639
+        },
+        {
+          "tag": "P",
+          "class": "",
+          "text": "Builds on observation integration to unlock elevated scout sensors and",
+          "left": 365,
+          "right": 639
+        },
+        {
+          "tag": "DL",
+          "class": "eq-metrics",
+          "text": "Research effort0.00 / 34 pointsEarliest completion1,990Focus change6 p",
+          "left": 365,
+          "right": 639
+        },
+        {
+          "tag": "DIV",
+          "class": "",
+          "text": "Research effort0.00 / 34 points",
+          "left": 365,
+          "right": 497
+        },
+        {
+          "tag": "DT",
+          "class": "",
+          "text": "Research effort",
+          "left": 365,
+          "right": 497
+        }
+      ]
+    }
+  ],
+  "url": "http://127.0.0.1:63157",
+  "owned_server_pid": 26332,
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1789271025,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "94d2c094b2c6",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-visual-review\\france-DBu7gA\\server",
+    "version": "0.6.0"
+  },
+  "browser": "152.0.7977.83",
+  "campaign": {
+    "player": "France",
+    "date": "1 Jan 1990",
+    "session_id": "26332-1789271206047269600-1"
+  },
+  "model_status": [
+    "3D model ready. Drag to rotate or use the view controls."
+  ],
+  "guidance_text": "RESEARCH TO A FUNDED MODEL\n\nChoose a design direction\n\nTwo deterministic suggestions from a bounded search of known components and compatible packages on this platform. Compare their actual ratings and tradeoffs; neither is a guaranteed best design. Applying one only edits the draft.\n\nLOWER COST\n\nEconomical researched configuration\n\nPrioritizes lower company fabrication cost, then lower maintenance, using known components. Lower costs can mean weaker mission ratings; this is not an affordability claim.\n\nLand contribution\n0.932×\nFirepower rating\n0.81\nProtection rating\n0.96\nMobility rating\n0.96\nObservation rating\n1\nInstallation load\n13 / 20\nDevelopment and trials\n$85.83m\ngovernment R&D · one model, paid as work progresses\nManufacturer tooling\n$14.3m\ncompany capital · once per licensed model\nCompany fabrication\n$2.861m\ncompany cost per unit · purchased inputs separate\nIndicative later acquisition\n$3.491m\nper unit at current input prices · estimate, not a stock offer\nCompany capital for tooling and one unit\n$17.34m\nillustrative company working capital · separate from the government purchase\nMaintenance requirement\n$409\ngovernment support per delivered unit / day · ammunition separate\nInputs and conditions\nReview this starting design\n\nADVANCED CAPABILITY\n\nAdvanced researched configuration\n\nPrioritizes this platform's supported role rating, then its secondary design ratings, using known components. Additional capability can cost more to develop, acquire and support.\n\nLand contribution\n1.125×\nFirepower rating\n1.23\nProtection rating\n1.06\nMobility rating\n1.09\nObservation rating\n1.12\nInstallation load\n20 / 20\nDevelopment and trials\n$133.2m\ngovernment R&D · one model, paid as work progresses\nManufacturer tooling\n$22.21m\ncompany capital · once per licensed model\nCompany fabrication\n$4.441m\ncompany cost per unit · purchased inputs separate\nIndicative later acquisition\n$5.406m\nper unit at current input prices · estimate, not a stock offer\nCompany capital for tooling and one unit\n$26.91m\nillustrative company working capital · separate from the government purchase\nMaintenance requirement\n$631\ngovernment support per delivered unit / day · ammunition separate\nInputs and conditions\nReview this starting design\nCurrent design · Main battle tank\nDevelopment and trials\n$101.4m\ngovernment R&D · one model, paid as work progresses\nManufacturer tooling\n$16.91m\ncompany capital · once per licensed model\nCompany fabrication\n$3.381m\ncompany cost per unit · purchased inputs separate\nIndicative later acquisition\n$4.122m\nper unit at current input prices · estimate, not a stock offer\nCompany capital for tooling and one unit\n$20.49m\nillustrative company working capital · separate from the government purchase\nMaintenance requirement\n$466\ngovernment support per delivered unit / day · ammunition separate\nInputs and conditions",
+  "component_detail": "unlock:optics_day",
+  "component_text": "Daylight observation optics\nKnown system\n\nBasic observation. Gun control is specified independently.\n\nComponent installation load\n1 points\nComponent fabrication\n$150k\ncompany cost per installed unit · not the complete vehicle price\nComponent maintenance\n$20\nper delivered unit / day · part of the compiled maintenance requirement\nUnlocks a selectable part. Research alone changes no vehicle, stock, delivered fleet or national combat rating.\nInstallation space, compatible companion parts, paid development and continuing support still apply. Component inputs are not universal whole-vehicle gains.\nExample uses the Main battle tank starting configuration with this part and any required companion parts. Other research may be needed; effects depend on the complete configuration and its role.\nExplore this system on\nMain battle tank\nHeavy tank\nLight tank\nTank destroyer\nInfantry fighting vehicle\nArmored personnel carrier\nReconnaissance vehicle\nSelf-propelled artillery\nMobile air defense\nExplore in designer",
+  "review_capture_completed": true,
+  "owned_server_exit": {
+    "exit_code": null,
+    "signal": "SIGTERM"
+  },
+  "finished_utc": "2026-09-13T03:46:49.797Z"
+}

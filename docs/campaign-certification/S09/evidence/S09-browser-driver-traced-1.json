@@ -1,0 +1,21 @@
+{
+  "runtime_revision": "94d2c094b2c69a70613af2258acbf49e10d9e871",
+  "driver_revision": "f6040a8149915fc1202a98c28183cffe32b1b086",
+  "binary_sha256_before": "51268a68b82a81c16d55a6b970baf4db1e9384c101b236fb57c7ee5cbece6bab",
+  "driver_sha256_before": "30e07f796a9cad36a376f8d83f3def922d342d3106f2c42d0cb98d6bad050584",
+  "runtime_source_equal": true,
+  "started_utc": "2026-09-13T03:58:33.325723+00:00",
+  "command": [
+    "node",
+    "tools/ui/ci-research-design.cjs"
+  ],
+  "runner_sha256": "fa49cc809e085d258ed27455f355ae1dc2113926aec3e221121daa3a79626804",
+  "exit_code": 1,
+  "driver_revision_after": "f6040a8149915fc1202a98c28183cffe32b1b086",
+  "clean_after": true,
+  "binary_sha256_after": "51268a68b82a81c16d55a6b970baf4db1e9384c101b236fb57c7ee5cbece6bab",
+  "driver_sha256_after": "30e07f796a9cad36a376f8d83f3def922d342d3106f2c42d0cb98d6bad050584",
+  "log_sha256": "134c3c2788e23491f5626a216fd76ab8e63c870c370ade9a62542ac4f775ade5",
+  "finished_utc": "2026-09-13T03:59:36.014251+00:00",
+  "passed": false
+}

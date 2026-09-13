@@ -1,0 +1,74 @@
+{
+  "candidate": "e5cfd1a0f18e4114073185b6b05352d236462610",
+  "clean_before": true,
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+  "binary_sha256": "de7b5f0b190fce2eb6b0c13c767f8b7e7f419fb641f4ca23a7b456a2c3e3de47",
+  "native_proof": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-final-connection-native.json",
+  "native_proof_sha256": "511f3f0ea66975f3a2fd780c59e4f4eca6d1d6351f8710865c8bd6540b435d5f",
+  "qualification_basis": "exact_pin_full_workspace",
+  "full_windows_native_baseline": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-final-connection-native.json",
+    "sha256": "511f3f0ea66975f3a2fd780c59e4f4eca6d1d6351f8710865c8bd6540b435d5f",
+    "revision": "e5cfd1a0f18e4114073185b6b05352d236462610",
+    "scope": "Complete unfiltered workspace native suite on this exact pin"
+  },
+  "runner_sha256": "363d85edd72cac877df29c21fb50751707817d500abbc45ada84e51f4a7abd52",
+  "started_utc": "2026-09-13T04:20:56.426433+00:00",
+  "checks": [
+    {
+      "test": "s05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day",
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+        "s05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day",
+        "--ignored",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "exit_code": 0,
+      "exact_one_test_passed": true,
+      "wall_seconds": 5.955545200005872,
+      "log": "1.log",
+      "log_sha256": "6b30e997fd5efb8542b856d259aeaa1853fcb432366653198a8f9df6ca805cd7"
+    },
+    {
+      "test": "s05_active_fixture_tests::original_active_company_stages_preserve_property_across_load_and_explicit_adoption",
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+        "s05_active_fixture_tests::original_active_company_stages_preserve_property_across_load_and_explicit_adoption",
+        "--ignored",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "exit_code": 0,
+      "exact_one_test_passed": true,
+      "wall_seconds": 55.394637599994894,
+      "log": "2.log",
+      "log_sha256": "aeeddb31b282438d049aae193242214a47355bd16584ed071e5dbe1d54fc3a57"
+    },
+    {
+      "test": "s05_save_matrix_tests::standalone_party_v1_preserves_real_supplier_books_for_equipment_versions_2_through_5",
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+        "s05_save_matrix_tests::standalone_party_v1_preserves_real_supplier_books_for_equipment_versions_2_through_5",
+        "--ignored",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "exit_code": 0,
+      "exact_one_test_passed": true,
+      "wall_seconds": 2.198272800000268,
+      "log": "3.log",
+      "log_sha256": "94a9e0ab0a491eee89938c794eb9508b1edd377ce8d886677aa99bc52125b977"
+    }
+  ],
+  "passed": true,
+  "binary_sha256_after": "de7b5f0b190fce2eb6b0c13c767f8b7e7f419fb641f4ca23a7b456a2c3e3de47",
+  "binary_unchanged": true,
+  "native_proof_sha256_after": "511f3f0ea66975f3a2fd780c59e4f4eca6d1d6351f8710865c8bd6540b435d5f",
+  "finished_utc": "2026-09-13T04:22:00.521143+00:00",
+  "candidate_after": "e5cfd1a0f18e4114073185b6b05352d236462610",
+  "clean_after": true
+}

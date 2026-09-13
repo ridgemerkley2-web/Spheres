@@ -1,0 +1,17 @@
+{"ms":395.13,"name":"navigate-start"}
+{"ms":398.58,"name":"Page.frameStartedLoading","frameId":"08C42ACE1863527CCED8A6FF5D5306B2"}
+{"ms":407.56,"name":"init","frameId":"08C42ACE1863527CCED8A6FF5D5306B2","loaderId":"64B455A72D932F28E79D2784BD4A410D","timestamp":82545.882317}
+{"ms":408.86,"name":"navigate-commit","url":"http://127.0.0.1:62946/"}
+{"ms":409.84,"name":"Page.frameNavigated","frame":{"id":"08C42ACE1863527CCED8A6FF5D5306B2","loaderId":"64B455A72D932F28E79D2784BD4A410D","url":"http://127.0.0.1:62946/","domainAndRegistry":"","securityOrigin":"http://127.0.0.1:62946","securityOriginDetails":{"isLocalhost":true},"mimeType":"text/html","adFrameStatus":{"adFrameType":"none"},"secureContextType":"SecureLocalhost","crossOriginIsolatedContextType":"NotIsolated","gatedAPIFeatures":[]},"type":"Navigation"}
+{"ms":545.74,"name":"domcontentloaded-observed","url":"http://127.0.0.1:62946/"}
+{"ms":546.3,"name":"Page.domContentEventFired","timestamp":82546.017648}
+{"ms":546.54,"name":"DOMContentLoaded","frameId":"08C42ACE1863527CCED8A6FF5D5306B2","loaderId":"64B455A72D932F28E79D2784BD4A410D","timestamp":82546.017648}
+{"ms":548.86,"name":"Page.loadEventFired","timestamp":82546.019679}
+{"ms":549.42,"name":"load","frameId":"08C42ACE1863527CCED8A6FF5D5306B2","loaderId":"64B455A72D932F28E79D2784BD4A410D","timestamp":82546.019679}
+{"ms":549.68,"name":"Page.frameStoppedLoading","frameId":"08C42ACE1863527CCED8A6FF5D5306B2"}
+{"ms":551.47,"name":"cpu-profile-saved","nodes":19,"samples":82}
+{"ms":900.97,"name":"firstMeaningfulPaintCandidate","frameId":"08C42ACE1863527CCED8A6FF5D5306B2","loaderId":"64B455A72D932F28E79D2784BD4A410D","timestamp":82546.090222}
+{"ms":901.29,"name":"firstContentfulPaint","frameId":"08C42ACE1863527CCED8A6FF5D5306B2","loaderId":"64B455A72D932F28E79D2784BD4A410D","timestamp":82546.090222}
+{"ms":901.45,"name":"firstPaint","frameId":"08C42ACE1863527CCED8A6FF5D5306B2","loaderId":"64B455A72D932F28E79D2784BD4A410D","timestamp":82546.090222}
+{"ms":901.6,"name":"firstImagePaint","frameId":"08C42ACE1863527CCED8A6FF5D5306B2","loaderId":"64B455A72D932F28E79D2784BD4A410D","timestamp":82546.100221}
+{"ms":908.38,"name":"page-close"}

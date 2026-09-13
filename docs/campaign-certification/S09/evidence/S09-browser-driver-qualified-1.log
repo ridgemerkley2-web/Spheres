@@ -1,0 +1,9 @@
+AssertionError [ERR_ASSERTION]: Read performance exceeded the predeclared S09 limits
+    at main (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-research-design.cjs:120:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

@@ -1,0 +1,15 @@
+--- upstream
++++ baseline-fixture
+@@ -68,7 +68,12 @@
+     /// If no thread is available, spawns a new one.
+     pub fn spawn(&self, code: Box<dyn FnMut() + Send>) {
+         let mut queue = self.sharing.todo.lock().unwrap();
++        self.spawn_locked(code, &mut queue);
++    }
+ 
++    // Fixture-only seam: preserve the original admission body while allowing
++    // a deterministic burst under its existing queue lock.
++    fn spawn_locked(&self, code: Box<dyn FnMut() + Send>, queue: &mut VecDeque<Box<dyn FnMut() + Send>>) {
+         if self.sharing.waiting_tasks.load(Ordering::Acquire) == 0 {
+             self.add_thread(Some(code));
+         } else {

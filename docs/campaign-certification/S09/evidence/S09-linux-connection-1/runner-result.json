@@ -1,0 +1,27 @@
+{
+  "format": "spheres-s09-linux-qualification",
+  "version": 1,
+  "candidate": "e5cfd1a0f18e4114073185b6b05352d236462610",
+  "started_utc": "2026-09-13T04:10:46.419825+00:00",
+  "status": "runner_error",
+  "qualification_scope": "Complete workspace native suite, full Node and three external archive/lifecycle checks on this exact clean runtime candidate. Pure equipment guidance, research explanations, and a narrow public company estimate wrapper changed; qualify native read purity and persistence regressions.",
+  "source": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+  "environment": {
+    "GIT_DIR": "/mnt/c/Users/ridge/Spheres/.git/worktrees/integration",
+    "GIT_WORK_TREE": "/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration",
+    "GIT_OPTIONAL_LOCKS": "0",
+    "GIT_CONFIG_COUNT": "1",
+    "GIT_CONFIG_KEY_0": "core.autocrlf",
+    "GIT_CONFIG_VALUE_0": "true",
+    "CARGO_BUILD_JOBS": "4",
+    "CARGO_HOME": "/home/ridge/.cache/spheres-s05-tools/cargo",
+    "RUSTUP_HOME": "/home/ridge/.cache/spheres-s05-tools/rustup",
+    "CARGO_TARGET_DIR": "/home/ridge/.cache/spheres-s05-target",
+    "CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_LINKER": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+    "CC": "/home/ridge/.cache/spheres-s05-tools/bin/cc",
+    "TMPDIR": "/home/ridge/.cache/spheres-s05-runs/tmp"
+  },
+  "checks": [],
+  "error": "{\"captured_utc\": \"2026-09-13T04:10:46.419842+00:00\", \"head\": \"e5cfd1a0f18e4114073185b6b05352d236462610\", \"status_porcelain\": \" M spheres-web/Cargo.toml\\n\", \"git_dir\": \"/mnt/c/Users/ridge/Spheres/.git/worktrees/integration\", \"git_work_tree\": \"/mnt/c/Users/ridge/Documents/Codex/2026-09-05/pick-up-the-spheres-game-on/work/campaign-certification/integration\"}",
+  "finished_utc": "2026-09-13T04:13:01.308639+00:00"
+}

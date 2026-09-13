@@ -1,0 +1,20 @@
+{
+  "revision_before": "94d2c094b2c69a70613af2258acbf49e10d9e871",
+  "clean_before": true,
+  "command": [
+    "node",
+    "tools/ui/ci-research-design.cjs"
+  ],
+  "runner_sha256": "65681f38bba89fb52e0004949023a5ae514422dd1e9bbbe4938360eded5b0610",
+  "binary_sha256_before": "51268a68b82a81c16d55a6b970baf4db1e9384c101b236fb57c7ee5cbece6bab",
+  "started_utc": "2026-09-13T03:52:01.990788+00:00",
+  "exit_code": 1,
+  "finished_utc": "2026-09-13T03:53:04.301756+00:00",
+  "revision_after": "94d2c094b2c69a70613af2258acbf49e10d9e871",
+  "clean_after": true,
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\spheres-web.exe",
+  "binary_sha256": "51268a68b82a81c16d55a6b970baf4db1e9384c101b236fb57c7ee5cbece6bab",
+  "log_sha256": "5fdfe5335c54615cac0d72c54eadf9b5b6e4d18bde147ad6cd0ac069358e9b99",
+  "preservation_passed": true,
+  "passed": false
+}

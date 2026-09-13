@@ -1,0 +1,477 @@
+{
+  "nodes": [
+    {
+      "id": 1,
+      "callFrame": {
+        "functionName": "(root)",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      },
+      "hitCount": 0,
+      "children": [
+        2,
+        3,
+        4,
+        5,
+        7,
+        10,
+        19
+      ]
+    },
+    {
+      "id": 2,
+      "callFrame": {
+        "functionName": "(program)",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      },
+      "hitCount": 45
+    },
+    {
+      "id": 3,
+      "callFrame": {
+        "functionName": "(idle)",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      },
+      "hitCount": 16
+    },
+    {
+      "id": 4,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "8",
+        "url": "http://127.0.0.1:62946/cities.js",
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "hitCount": 1,
+      "positionTicks": [
+        {
+          "line": 3,
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "44",
+        "url": "http://127.0.0.1:62946/site-mesh.js",
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "hitCount": 0,
+      "children": [
+        6
+      ]
+    },
+    {
+      "id": 6,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "44",
+        "url": "http://127.0.0.1:62946/site-mesh.js",
+        "lineNumber": 69,
+        "columnNumber": 10
+      },
+      "hitCount": 1,
+      "positionTicks": [
+        {
+          "line": 71,
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "54",
+        "url": "http://127.0.0.1:62946/",
+        "lineNumber": 3217,
+        "columnNumber": 8
+      },
+      "hitCount": 3,
+      "children": [
+        8,
+        9,
+        11,
+        16,
+        17
+      ],
+      "positionTicks": [
+        {
+          "line": 18707,
+          "ticks": 1
+        },
+        {
+          "line": 9444,
+          "ticks": 1
+        },
+        {
+          "line": 3507,
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "callFrame": {
+        "functionName": "querySelectorAll",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      },
+      "hitCount": 1,
+      "positionTicks": [
+        {
+          "line": 5752,
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "callFrame": {
+        "functionName": "build",
+        "scriptId": "11",
+        "url": "http://127.0.0.1:62946/terrain-labels.js",
+        "lineNumber": 20,
+        "columnNumber": 16
+      },
+      "hitCount": 1,
+      "positionTicks": [
+        {
+          "line": 50,
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "callFrame": {
+        "functionName": "buildLabels",
+        "scriptId": "12",
+        "url": "http://127.0.0.1:62946/water-detail.js",
+        "lineNumber": 104,
+        "columnNumber": 22
+      },
+      "hitCount": 0,
+      "children": [
+        12
+      ]
+    },
+    {
+      "id": 12,
+      "callFrame": {
+        "functionName": "prepare",
+        "scriptId": "12",
+        "url": "http://127.0.0.1:62946/water-detail.js",
+        "lineNumber": 44,
+        "columnNumber": 18
+      },
+      "hitCount": 0,
+      "children": [
+        13,
+        15
+      ]
+    },
+    {
+      "id": 13,
+      "callFrame": {
+        "functionName": "readParts",
+        "scriptId": "12",
+        "url": "http://127.0.0.1:62946/water-detail.js",
+        "lineNumber": 21,
+        "columnNumber": 20
+      },
+      "hitCount": 0,
+      "children": [
+        14
+      ]
+    },
+    {
+      "id": 14,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "12",
+        "url": "http://127.0.0.1:62946/water-detail.js",
+        "lineNumber": 41,
+        "columnNumber": 24
+      },
+      "hitCount": 1,
+      "positionTicks": [
+        {
+          "line": 42,
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "12",
+        "url": "http://127.0.0.1:62946/water-detail.js",
+        "lineNumber": 70,
+        "columnNumber": 42
+      },
+      "hitCount": 0
+    },
+    {
+      "id": 16,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "54",
+        "url": "http://127.0.0.1:62946/",
+        "lineNumber": 11810,
+        "columnNumber": 15
+      },
+      "hitCount": 2,
+      "positionTicks": [
+        {
+          "line": 11817,
+          "ticks": 2
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "54",
+        "url": "http://127.0.0.1:62946/",
+        "lineNumber": 13508,
+        "columnNumber": 14
+      },
+      "hitCount": 1,
+      "children": [
+        18
+      ],
+      "positionTicks": [
+        {
+          "line": 13518,
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "callFrame": {
+        "functionName": "RegExp: -?\\d+(?:\\.\\d+)?",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      },
+      "hitCount": 1
+    },
+    {
+      "id": 10,
+      "callFrame": {
+        "functionName": "(garbage collector)",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      },
+      "hitCount": 4
+    },
+    {
+      "id": 19,
+      "callFrame": {
+        "functionName": "competitionInit",
+        "scriptId": "29",
+        "url": "http://127.0.0.1:62946/competition-ui.js",
+        "lineNumber": 394,
+        "columnNumber": 24
+      },
+      "hitCount": 1,
+      "positionTicks": [
+        {
+          "line": 399,
+          "ticks": 1
+        }
+      ]
+    }
+  ],
+  "startTime": 82545868108,
+  "endTime": 82546023777,
+  "samples": [
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    4,
+    2,
+    6,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    7,
+    8,
+    7,
+    9,
+    10,
+    14,
+    10,
+    10,
+    10,
+    15,
+    16,
+    16,
+    17,
+    17,
+    18,
+    17,
+    7,
+    19,
+    2,
+    2
+  ],
+  "timeDeltas": [
+    870,
+    1806,
+    2457,
+    3948,
+    1045,
+    1537,
+    1515,
+    1540,
+    1604,
+    2482,
+    4268,
+    1879,
+    1558,
+    1550,
+    1540,
+    1538,
+    1548,
+    2649,
+    4907,
+    1051,
+    1523,
+    1544,
+    1626,
+    1541,
+    1539,
+    2739,
+    4461,
+    1557,
+    1541,
+    1608,
+    1824,
+    1391,
+    1656,
+    1235,
+    1553,
+    3229,
+    5182,
+    1352,
+    1538,
+    1542,
+    2311,
+    2932,
+    1661,
+    1548,
+    1546,
+    1515,
+    2578,
+    3473,
+    1034,
+    1538,
+    1546,
+    1536,
+    1610,
+    1559,
+    1649,
+    3749,
+    1771,
+    1594,
+    1537,
+    1668,
+    1570,
+    1650,
+    3274,
+    1048,
+    1544,
+    1550,
+    1723,
+    1326,
+    1586,
+    1779,
+    1672,
+    210,
+    3057,
+    1284,
+    1584,
+    27,
+    1513,
+    356,
+    1208,
+    1656,
+    1603,
+    4406
+  ]
+}

@@ -1,0 +1,603 @@
+{
+  "nodes": [
+    {
+      "id": 1,
+      "callFrame": {
+        "functionName": "(root)",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      },
+      "hitCount": 0,
+      "children": [
+        2,
+        3,
+        4,
+        6,
+        8,
+        11,
+        14
+      ]
+    },
+    {
+      "id": 2,
+      "callFrame": {
+        "functionName": "(program)",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      },
+      "hitCount": 53
+    },
+    {
+      "id": 3,
+      "callFrame": {
+        "functionName": "(idle)",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      },
+      "hitCount": 19
+    },
+    {
+      "id": 4,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "16",
+        "url": "http://127.0.0.1:62245/shader-loader.js",
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "hitCount": 0,
+      "children": [
+        5
+      ]
+    },
+    {
+      "id": 5,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "16",
+        "url": "http://127.0.0.1:62245/shader-loader.js",
+        "lineNumber": 10,
+        "columnNumber": 10
+      },
+      "hitCount": 1,
+      "positionTicks": [
+        {
+          "line": 74,
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "25",
+        "url": "http://127.0.0.1:62245/advisor-model.js",
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "hitCount": 0,
+      "children": [
+        7
+      ]
+    },
+    {
+      "id": 7,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "25",
+        "url": "http://127.0.0.1:62245/advisor-model.js",
+        "lineNumber": 2,
+        "columnNumber": 9
+      },
+      "hitCount": 1,
+      "positionTicks": [
+        {
+          "line": 4,
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "44",
+        "url": "http://127.0.0.1:62245/site-mesh.js",
+        "lineNumber": 0,
+        "columnNumber": 0
+      },
+      "hitCount": 0,
+      "children": [
+        9
+      ]
+    },
+    {
+      "id": 9,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "44",
+        "url": "http://127.0.0.1:62245/site-mesh.js",
+        "lineNumber": 69,
+        "columnNumber": 10
+      },
+      "hitCount": 0,
+      "children": [
+        10
+      ]
+    },
+    {
+      "id": 10,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "44",
+        "url": "http://127.0.0.1:62245/site-mesh.js",
+        "lineNumber": 73,
+        "columnNumber": 67
+      },
+      "hitCount": 1,
+      "positionTicks": [
+        {
+          "line": 74,
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "54",
+        "url": "http://127.0.0.1:62245/",
+        "lineNumber": 3217,
+        "columnNumber": 8
+      },
+      "hitCount": 2,
+      "children": [
+        12,
+        15,
+        17,
+        21,
+        23,
+        24
+      ],
+      "positionTicks": [
+        {
+          "line": 17926,
+          "ticks": 1
+        },
+        {
+          "line": 3218,
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "callFrame": {
+        "functionName": "projectFree",
+        "scriptId": "9",
+        "url": "http://127.0.0.1:62245/globe3d.js",
+        "lineNumber": 93,
+        "columnNumber": 22
+      },
+      "hitCount": 0,
+      "children": [
+        13
+      ]
+    },
+    {
+      "id": 13,
+      "callFrame": {
+        "functionName": "projectIn",
+        "scriptId": "9",
+        "url": "http://127.0.0.1:62245/globe3d.js",
+        "lineNumber": 60,
+        "columnNumber": 20
+      },
+      "hitCount": 1,
+      "positionTicks": [
+        {
+          "line": 65,
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "callFrame": {
+        "functionName": "build",
+        "scriptId": "11",
+        "url": "http://127.0.0.1:62245/terrain-labels.js",
+        "lineNumber": 20,
+        "columnNumber": 16
+      },
+      "hitCount": 0,
+      "children": [
+        16
+      ]
+    },
+    {
+      "id": 16,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "11",
+        "url": "http://127.0.0.1:62245/terrain-labels.js",
+        "lineNumber": 46,
+        "columnNumber": 37
+      },
+      "hitCount": 1,
+      "positionTicks": [
+        {
+          "line": 47,
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "callFrame": {
+        "functionName": "buildLabels",
+        "scriptId": "12",
+        "url": "http://127.0.0.1:62245/water-detail.js",
+        "lineNumber": 104,
+        "columnNumber": 22
+      },
+      "hitCount": 0,
+      "children": [
+        18
+      ]
+    },
+    {
+      "id": 18,
+      "callFrame": {
+        "functionName": "prepare",
+        "scriptId": "12",
+        "url": "http://127.0.0.1:62245/water-detail.js",
+        "lineNumber": 44,
+        "columnNumber": 18
+      },
+      "hitCount": 1,
+      "children": [
+        19,
+        20
+      ],
+      "positionTicks": [
+        {
+          "line": 52,
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "callFrame": {
+        "functionName": "readParts",
+        "scriptId": "12",
+        "url": "http://127.0.0.1:62245/water-detail.js",
+        "lineNumber": 21,
+        "columnNumber": 20
+      },
+      "hitCount": 1,
+      "positionTicks": [
+        {
+          "line": 29,
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "12",
+        "url": "http://127.0.0.1:62245/water-detail.js",
+        "lineNumber": 70,
+        "columnNumber": 42
+      },
+      "hitCount": 0
+    },
+    {
+      "id": 21,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "54",
+        "url": "http://127.0.0.1:62245/",
+        "lineNumber": 9703,
+        "columnNumber": 1
+      },
+      "hitCount": 0,
+      "children": [
+        22
+      ]
+    },
+    {
+      "id": 22,
+      "callFrame": {
+        "functionName": "matchMedia",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      },
+      "hitCount": 1,
+      "positionTicks": [
+        {
+          "line": 9715,
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "callFrame": {
+        "functionName": "",
+        "scriptId": "54",
+        "url": "http://127.0.0.1:62245/",
+        "lineNumber": 13508,
+        "columnNumber": 14
+      },
+      "hitCount": 2,
+      "positionTicks": [
+        {
+          "line": 13525,
+          "ticks": 1
+        },
+        {
+          "line": 13516,
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "callFrame": {
+        "functionName": "mount",
+        "scriptId": "26",
+        "url": "http://127.0.0.1:62245/guidance-ui.js",
+        "lineNumber": 105,
+        "columnNumber": 16
+      },
+      "hitCount": 0,
+      "children": [
+        25
+      ]
+    },
+    {
+      "id": 25,
+      "callFrame": {
+        "functionName": "createSession",
+        "scriptId": "26",
+        "url": "http://127.0.0.1:62245/guidance-ui.js",
+        "lineNumber": 28,
+        "columnNumber": 24
+      },
+      "hitCount": 0,
+      "children": [
+        26
+      ]
+    },
+    {
+      "id": 26,
+      "callFrame": {
+        "functionName": "getItem",
+        "scriptId": "54",
+        "url": "http://127.0.0.1:62245/",
+        "lineNumber": 18698,
+        "columnNumber": 19
+      },
+      "hitCount": 1,
+      "positionTicks": [
+        {
+          "line": 18699,
+          "ticks": 1
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "callFrame": {
+        "functionName": "(garbage collector)",
+        "scriptId": "0",
+        "url": "",
+        "lineNumber": -1,
+        "columnNumber": -1
+      },
+      "hitCount": 3
+    }
+  ],
+  "startTime": 82855715665,
+  "endTime": 82855879634,
+  "samples": [
+    2,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    2,
+    3,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    2,
+    5,
+    7,
+    2,
+    10,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    11,
+    13,
+    14,
+    14,
+    16,
+    18,
+    19,
+    14,
+    20,
+    22,
+    23,
+    23,
+    23,
+    11,
+    26,
+    2,
+    2,
+    2,
+    3,
+    2,
+    2
+  ],
+  "timeDeltas": [
+    1009,
+    1568,
+    1559,
+    1574,
+    1553,
+    2902,
+    1654,
+    1544,
+    1541,
+    1538,
+    1640,
+    1542,
+    1558,
+    2815,
+    3989,
+    1080,
+    1989,
+    1539,
+    1561,
+    1965,
+    3555,
+    1493,
+    1880,
+    1555,
+    1548,
+    1539,
+    2166,
+    2844,
+    1041,
+    1550,
+    1680,
+    3117,
+    1461,
+    1557,
+    1667,
+    1538,
+    2153,
+    4090,
+    1542,
+    1553,
+    1535,
+    1671,
+    1550,
+    1557,
+    3667,
+    1543,
+    1538,
+    1578,
+    1465,
+    1535,
+    1874,
+    3127,
+    1578,
+    1528,
+    1538,
+    1553,
+    1536,
+    2722,
+    3570,
+    1382,
+    1589,
+    1552,
+    1541,
+    1557,
+    1563,
+    2512,
+    3946,
+    1048,
+    1556,
+    1580,
+    1451,
+    1561,
+    2383,
+    2754,
+    1322,
+    1548,
+    1544,
+    1591,
+    1111,
+    426,
+    1625,
+    1983,
+    788,
+    723,
+    1472,
+    1557,
+    1541,
+    1602,
+    1544,
+    1524,
+    1495
+  ]
+}

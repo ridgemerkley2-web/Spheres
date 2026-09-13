@@ -1,0 +1,28 @@
+{
+  "captured_utc": "2026-09-13T03:31:08.835469+00:00",
+  "candidate": "88b0efc6d6d65f8a9b209aff6278f83c7d857362",
+  "findings": [
+    {
+      "issue": "Missing temporary saves directory before first archival capture",
+      "resolution": "Create it inside the new disposable run directory before launch."
+    },
+    {
+      "issue": "Guidance background used an unserved /page-art path",
+      "resolution": "Use existing /art/pages military research art."
+    },
+    {
+      "issue": "Research opening check could return before selecting the requested technology",
+      "resolution": "Await the exact requested technology ID."
+    },
+    {
+      "issue": "Rich research lists lost the five-item disclosure",
+      "resolution": "Restore stateful more-systems disclosure and use all ancestor disclosures in browser journey."
+    },
+    {
+      "issue": "Current draft costs followed two recommendations without a heading",
+      "resolution": "Add an escaped current-design heading."
+    }
+  ],
+  "status": "Corrections prepared outside checkout pending release of the running native source freeze",
+  "scope_interpretation": "Economical design guidance prioritizes fabrication and upkeep. No assertion that hypothetical acquisition costs are an affordable available stock offer. Funding and actual stock always require native review."
+}

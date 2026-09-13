@@ -1,0 +1,229 @@
+{
+  "kind": "read-only vendored dependency review",
+  "candidate": "e5cfd1a0f18e4114073185b6b05352d236462610",
+  "upstream_files_checked": 43,
+  "rows": [
+    {
+      "path": ".cargo_vcs_info.json",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "Cargo.toml",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "Cargo.toml.orig",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "CHANGELOG.md",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "LICENSE-APACHE",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "LICENSE-MIT",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "README.md",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "benches/bench.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "examples/hello-world.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "examples/php-cgi-example.php",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "examples/php-cgi.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "examples/readme-example.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "examples/serve-root.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "examples/ssl-cert.pem",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "examples/ssl-key.pem",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "examples/ssl.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "examples/websockets.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "src/client.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "src/common.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "src/connection.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "src/lib.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "src/request.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "src/response.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "src/ssl.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "src/test.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "tests/input-tests.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "tests/network.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "tests/non-chunked-buffering.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "tests/promptness.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "tests/simple-test.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "tests/unblock-test.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "tests/unix-test.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "tests/support/mod.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "src/ssl/openssl.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "src/ssl/rustls.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "src/util/custom_stream.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "src/util/equal_reader.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "src/util/fused_reader.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "src/util/messages_queue.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "src/util/mod.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "src/util/refined_tcp_stream.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "src/util/sequential.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": true
+    },
+    {
+      "path": "src/util/task_pool.rs",
+      "upstream_hash_matches": true,
+      "copy_identical": false
+    }
+  ],
+  "changed_upstream_files": [
+    "src/util/task_pool.rs"
+  ],
+  "exact_executed_regression_test": true,
+  "workspace_test_compiles_shipped_source": true,
+  "runtime_diff": "--- upstream\n+++ vendored-runtime\n@@ -68,8 +68,13 @@\n     /// If no thread is available, spawns a new one.\n     pub fn spawn(&self, code: Box<dyn FnMut() + Send>) {\n         let mut queue = self.sharing.todo.lock().unwrap();\n+        self.spawn_locked(code, &mut queue);\n+    }\n \n-        if self.sharing.waiting_tasks.load(Ordering::Acquire) == 0 {\n+    // Account for workers already reserved by queued connections. A notified\n+    // worker remains counted as waiting until it reacquires this queue lock.\n+    fn spawn_locked(&self, code: Box<dyn FnMut() + Send>, queue: &mut VecDeque<Box<dyn FnMut() + Send>>) {\n+        if self.sharing.waiting_tasks.load(Ordering::Acquire) <= queue.len() {\n             self.add_thread(Some(code));\n         } else {\n             queue.push_back(code);\n@@ -134,4 +139,4 @@\n             .store(999_999_999, Ordering::Release);\n         self.sharing.condvar.notify_all();\n     }\n-}\n+}",
+  "passed": true
+}

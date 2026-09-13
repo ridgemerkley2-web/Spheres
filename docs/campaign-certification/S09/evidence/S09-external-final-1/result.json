@@ -1,0 +1,82 @@
+{
+  "candidate": "94d2c094b2c69a70613af2258acbf49e10d9e871",
+  "clean_before": true,
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+  "binary_sha256": "0023ddacc39e9bae9c4d23619a0fecac7db69e29ba9dec66c3edf9751bac537f",
+  "native_proof": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-final-final-web.json",
+  "native_proof_sha256": "7f5293daa2c15fd425eaa42632e4bddaaab0972249c2303a6ec999fe8dea85e4",
+  "full_windows_native_baseline": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-final-candidate-1-native.json",
+    "sha256": "4d59b16f2b2dc8b0e831555cdc1a323ddad9eb138c063fd8dbe55097e9fdd868",
+    "revision": "88b0efc6d6d65f8a9b209aff6278f83c7d857362",
+    "native_paths": [
+      "spheres-sim",
+      "spheres-cli",
+      "spheres-web/src",
+      "spheres-web/build.rs",
+      "spheres-web/Cargo.toml",
+      "Cargo.toml",
+      "Cargo.lock"
+    ],
+    "diff": ""
+  },
+  "runner_sha256": "504f044cef79231325f2aef90c605137e085f88631fc7200315aa5e104319321",
+  "started_utc": "2026-09-13T03:37:27.184063+00:00",
+  "checks": [
+    {
+      "test": "s05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day",
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+        "s05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day",
+        "--ignored",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "exit_code": 0,
+      "exact_one_test_passed": true,
+      "wall_seconds": 4.940291399994749,
+      "log": "1.log",
+      "log_sha256": "03b53fd1b2773deaabf40d40152ddffb2d5a27a19677c2fc0ba50cef6f3a8e2d"
+    },
+    {
+      "test": "s05_active_fixture_tests::original_active_company_stages_preserve_property_across_load_and_explicit_adoption",
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+        "s05_active_fixture_tests::original_active_company_stages_preserve_property_across_load_and_explicit_adoption",
+        "--ignored",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "exit_code": 0,
+      "exact_one_test_passed": true,
+      "wall_seconds": 52.039937499997905,
+      "log": "2.log",
+      "log_sha256": "d4afaf8edd0a8c249b6625f6f4ee8fe1a28ec6f0f5bf505e3ee436e9ec487f51"
+    },
+    {
+      "test": "s05_save_matrix_tests::standalone_party_v1_preserves_real_supplier_books_for_equipment_versions_2_through_5",
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+        "s05_save_matrix_tests::standalone_party_v1_preserves_real_supplier_books_for_equipment_versions_2_through_5",
+        "--ignored",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "exit_code": 0,
+      "exact_one_test_passed": true,
+      "wall_seconds": 2.257688199999393,
+      "log": "3.log",
+      "log_sha256": "0826e0d935d7771850f120b15eccebf71dd9e7f4a540a9748dd997ae48d83894"
+    }
+  ],
+  "passed": true,
+  "binary_sha256_after": "0023ddacc39e9bae9c4d23619a0fecac7db69e29ba9dec66c3edf9751bac537f",
+  "binary_unchanged": true,
+  "native_proof_sha256_after": "7f5293daa2c15fd425eaa42632e4bddaaab0972249c2303a6ec999fe8dea85e4",
+  "finished_utc": "2026-09-13T03:38:26.957749+00:00",
+  "candidate_after": "94d2c094b2c69a70613af2258acbf49e10d9e871",
+  "clean_after": true
+}

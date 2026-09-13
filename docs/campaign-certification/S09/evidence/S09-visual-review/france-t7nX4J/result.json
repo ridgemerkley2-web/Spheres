@@ -1,0 +1,35 @@
+{
+  "kind": "visual-only-review",
+  "qualification": false,
+  "expected_revision": "94d2c094b2c69a70613af2258acbf49e10d9e871",
+  "run": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-visual-review\\france-t7nX4J\\server",
+  "started_utc": "2026-09-13T03:41:32.370Z",
+  "screenshots": [],
+  "page_errors": [],
+  "http_errors": [],
+  "commands": [],
+  "post_paths": [],
+  "observations": [],
+  "url": "http://127.0.0.1:63894",
+  "owned_server_pid": 8988,
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1789270415,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "94d2c094b2c6-modified",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-visual-review\\france-t7nX4J\\server",
+    "version": "0.6.0"
+  },
+  "review_capture_completed": false,
+  "failure": {
+    "stage": "startup",
+    "message": "Expected values to be strictly equal:\n+ actual - expected\n\n+ '94d2c094b2c6-modified'\n- '94d2c094b2c6'\n               ^\n",
+    "stack": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ '94d2c094b2c6-modified'\n- '94d2c094b2c6'\n               ^\n\n    at main (C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s09-visual-review.cjs:20:10)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)"
+  },
+  "owned_server_exit": {
+    "exit_code": null,
+    "signal": "SIGTERM"
+  },
+  "finished_utc": "2026-09-13T03:41:33.531Z"
+}

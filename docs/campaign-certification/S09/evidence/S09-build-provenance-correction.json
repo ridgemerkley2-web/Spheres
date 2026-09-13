@@ -1,0 +1,44 @@
+{
+  "utc": "2026-09-13T03:43:45.144016+00:00",
+  "source_revision": "94d2c094b2c69a70613af2258acbf49e10d9e871",
+  "cause": "Windows Git without long-path support falsely reported four existing deeply nested S08 evidence files as deleted. build.rs uses an ordinary Git invocation and cached the resulting modified stamp.",
+  "before": {
+    "command": [
+      "config",
+      "--local",
+      "--get",
+      "core.longpaths"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": ""
+  },
+  "change": {
+    "command": [
+      "config",
+      "--local",
+      "core.longpaths",
+      "true"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "after": {
+    "command": [
+      "config",
+      "--local",
+      "--get",
+      "core.longpaths"
+    ],
+    "exit_code": 0,
+    "stdout": "true\n",
+    "stderr": ""
+  },
+  "ordinary_build_git_status": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "source_files_changed": false
+}

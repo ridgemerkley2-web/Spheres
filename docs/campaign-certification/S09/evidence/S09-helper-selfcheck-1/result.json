@@ -1,0 +1,122 @@
+{
+  "passed": true,
+  "scope": "Pure collector preflight and streaming byte-comparison helpers only. Collector, native archive worker, game and launcher were not executed. No repository writes.",
+  "checks": [
+    {
+      "name": "valid-files",
+      "expected_valid": true,
+      "passed": true,
+      "planned_files": 2
+    },
+    {
+      "name": "nonempty-dir",
+      "expected_valid": true,
+      "passed": true,
+      "planned_files": 3
+    },
+    {
+      "name": "missing",
+      "expected_valid": false,
+      "passed": true,
+      "planned_files": 0,
+      "refusal": "Missing evidence source: C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-helper-selfcheck-1\\fixtures\\absent"
+    },
+    {
+      "name": "empty-selection",
+      "expected_valid": false,
+      "passed": true,
+      "planned_files": 0,
+      "refusal": "Select at least one evidence source"
+    },
+    {
+      "name": "empty-dir",
+      "expected_valid": false,
+      "passed": true,
+      "planned_files": 0,
+      "refusal": "Evidence directory is empty: C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-helper-selfcheck-1\\fixtures\\empty"
+    },
+    {
+      "name": "duplicate",
+      "expected_valid": false,
+      "passed": true,
+      "planned_files": 0,
+      "refusal": "Duplicate destination: proof"
+    },
+    {
+      "name": "windows-case",
+      "expected_valid": false,
+      "passed": true,
+      "planned_files": 0,
+      "refusal": "Duplicate destination: proof"
+    },
+    {
+      "name": "parent-file",
+      "expected_valid": false,
+      "passed": true,
+      "planned_files": 0,
+      "refusal": "Destination parent is a file: proof/child"
+    },
+    {
+      "name": "child-file",
+      "expected_valid": false,
+      "passed": true,
+      "planned_files": 0,
+      "refusal": "Destination replaces a directory: proof"
+    },
+    {
+      "name": "reserved-inventory",
+      "expected_valid": false,
+      "passed": true,
+      "planned_files": 0,
+      "refusal": "Duplicate destination: inventory.json"
+    },
+    {
+      "name": "gzip-collision",
+      "expected_valid": false,
+      "passed": true,
+      "planned_files": 0,
+      "refusal": "Duplicate destination: archive.gz"
+    },
+    {
+      "name": "chunk-collision",
+      "expected_valid": false,
+      "passed": true,
+      "planned_files": 0,
+      "refusal": "Chunk destination collision: archive.gz.part-001"
+    },
+    {
+      "name": "traversal",
+      "expected_valid": false,
+      "passed": true,
+      "planned_files": 0,
+      "refusal": "Invalid logical destination"
+    },
+    {
+      "name": "canonical-equal-across-chunk",
+      "passed": true
+    },
+    {
+      "name": "canonical-late-byte-mismatch",
+      "passed": true
+    },
+    {
+      "name": "canonical-length-mismatch",
+      "passed": true
+    }
+  ],
+  "sources": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\collect-s09-evidence.py",
+      "sha256": "3bb311491bfa40d3c964b7af42c4d00c294dedb98ee4503fd3763a3ee9b22a1a"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s09-launch-review.py",
+      "sha256": "4f5c90735ebdf7d2cf1656b7fae84286a25fc7e6f8d630e15683c4417196762c"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-helper-selfcheck-1\\check.py",
+      "sha256": "62b7c6dcc9f33d3df5cf42bf6a2883e5bb0144203e12733930f7190f9cb8b418"
+    }
+  ],
+  "utc": "2026-09-13T04:11:14.374954+00:00"
+}

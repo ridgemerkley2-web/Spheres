@@ -214,7 +214,7 @@
       "id": "S09",
       "phase": "nation",
       "title": "Make research and design benefits readable",
-      "status": "in_progress",
+      "status": "complete",
       "depends": [
         "S05",
         "S03"
@@ -224,7 +224,9 @@
         "Recommend legal affordable/advanced builds from actually researched components.",
         "Compare acquisition, development, upkeep and role effects before commissioning; estimates retain stated conditions.",
         "Research unlocks parts but never upgrades existing holdings for free; drafts and exact revisions survive navigation and saving."
-      ]
+      ],
+      "completed_date": "2026-09-12",
+      "evidence": "../campaign-certification/S09/README.md"
     },
     {
       "id": "S10",
@@ -778,12 +780,12 @@
     "instruction": "Okay lets begin development with s1",
     "scope_changes": []
   },
-  "last_completed_session": "S08",
-  "next_session": "S09",
+  "last_completed_session": "S09",
+  "next_session": "S10",
   "execution": {
     "authorized_through": "S09",
     "stop_boundary": "S09",
-    "status": "in_progress",
+    "status": "stopped",
     "previous_stop": "S08",
     "instruction": "next",
     "instruction_date": "2026-09-12",

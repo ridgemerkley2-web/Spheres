@@ -1,0 +1,82 @@
+{
+  "candidate": "94d2c094b2c69a70613af2258acbf49e10d9e871",
+  "clean_before": true,
+  "binary": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+  "binary_sha256": "1538c532dbdcc9e7b5eae0735ff50f764232ffc924e05604756ef5deb87a9007",
+  "native_proof": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-final-provenance-web.json",
+  "native_proof_sha256": "d7a1330c6e62f315eadda906657ce18c99b90a2d4bf12aa313cfa427d4888461",
+  "full_windows_native_baseline": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-final-candidate-1-native.json",
+    "sha256": "4d59b16f2b2dc8b0e831555cdc1a323ddad9eb138c063fd8dbe55097e9fdd868",
+    "revision": "88b0efc6d6d65f8a9b209aff6278f83c7d857362",
+    "native_paths": [
+      "spheres-sim",
+      "spheres-cli",
+      "spheres-web/src",
+      "spheres-web/build.rs",
+      "spheres-web/Cargo.toml",
+      "Cargo.toml",
+      "Cargo.lock"
+    ],
+    "diff": ""
+  },
+  "runner_sha256": "504f044cef79231325f2aef90c605137e085f88631fc7200315aa5e104319321",
+  "started_utc": "2026-09-13T03:46:16.994311+00:00",
+  "checks": [
+    {
+      "test": "s05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day",
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+        "s05_master_migration_tests::actual_pinned_master_archive_preserves_property_history_and_next_day",
+        "--ignored",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "exit_code": 0,
+      "exact_one_test_passed": true,
+      "wall_seconds": 4.348206499998923,
+      "log": "1.log",
+      "log_sha256": "844bd71cc83a3b72c83375b027e5121f314673c928aa767b932737c4771f8ad8"
+    },
+    {
+      "test": "s05_active_fixture_tests::original_active_company_stages_preserve_property_across_load_and_explicit_adoption",
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+        "s05_active_fixture_tests::original_active_company_stages_preserve_property_across_load_and_explicit_adoption",
+        "--ignored",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "exit_code": 0,
+      "exact_one_test_passed": true,
+      "wall_seconds": 45.608296100006555,
+      "log": "2.log",
+      "log_sha256": "7ab90301c9c398d4378a1705b46c602a58ce2672c480e6f920f277428857696d"
+    },
+    {
+      "test": "s05_save_matrix_tests::standalone_party_v1_preserves_real_supplier_books_for_equipment_versions_2_through_5",
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-960ae70db4690868.exe",
+        "s05_save_matrix_tests::standalone_party_v1_preserves_real_supplier_books_for_equipment_versions_2_through_5",
+        "--ignored",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "exit_code": 0,
+      "exact_one_test_passed": true,
+      "wall_seconds": 1.9730357000080403,
+      "log": "3.log",
+      "log_sha256": "a53c39240dd32701754901472997c0ff103d751b231743a4debafadc54e043a7"
+    }
+  ],
+  "passed": true,
+  "binary_sha256_after": "1538c532dbdcc9e7b5eae0735ff50f764232ffc924e05604756ef5deb87a9007",
+  "binary_unchanged": true,
+  "native_proof_sha256_after": "d7a1330c6e62f315eadda906657ce18c99b90a2d4bf12aa313cfa427d4888461",
+  "finished_utc": "2026-09-13T03:47:09.388953+00:00",
+  "candidate_after": "94d2c094b2c69a70613af2258acbf49e10d9e871",
+  "clean_after": true
+}

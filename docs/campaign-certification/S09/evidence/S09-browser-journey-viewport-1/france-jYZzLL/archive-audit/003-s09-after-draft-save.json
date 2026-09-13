@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "input": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-browser-journey-viewport-1\\france-jYZzLL\\server\\audit-captures\\s09-after-draft-save-E5JGqZ\\s09-after-draft-save.json",
+    "bytes": 13149659,
+    "sha256": "3c78cde45e4689a34e3454c28480371513fe727d53eb3c545fd6db8348008c87"
+  },
+  "requested": {
+    "buyer": "France",
+    "revision": null,
+    "seller": null,
+    "company": null,
+    "product": null
+  },
+  "buyer": {
+    "id": "France",
+    "tech_sha256": "92e48363954cd665583c86bb80118ba38f0d530080bd932d679d787947b330d6",
+    "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+    "revision_ids": [],
+    "held_by_revision": {},
+    "held_units": 0,
+    "buyer_revision": null,
+    "maintenance_plan": null,
+    "program_budget": null
+  },
+  "supplier": null,
+  "imports": {
+    "ids": [],
+    "matching": []
+  },
+  "canonical": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-browser-journey-viewport-1\\france-jYZzLL\\archive-audit\\003-s09-after-draft-save.canonical",
+    "bytes": 12117475,
+    "sha256": "006a58afa9cdbb80059aa6e51c4475c833337252416a6ebe83c6ad77e785b945",
+    "format": "s08-typed-canonical-world-v1-js-f64",
+    "ignored_paths": []
+  }
+}

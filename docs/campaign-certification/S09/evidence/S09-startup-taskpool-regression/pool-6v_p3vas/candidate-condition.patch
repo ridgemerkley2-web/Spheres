@@ -1,0 +1,11 @@
+--- baseline-fixture
++++ corrected-fixture
+@@ -74,7 +74,7 @@
+     // Fixture-only seam: preserve the original admission body while allowing
+     // a deterministic burst under its existing queue lock.
+     fn spawn_locked(&self, code: Box<dyn FnMut() + Send>, queue: &mut VecDeque<Box<dyn FnMut() + Send>>) {
+-        if self.sharing.waiting_tasks.load(Ordering::Acquire) == 0 {
++        if self.sharing.waiting_tasks.load(Ordering::Acquire) <= queue.len() {
+             self.add_thread(Some(code));
+         } else {
+             queue.push_back(code);

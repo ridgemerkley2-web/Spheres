@@ -1,0 +1,93 @@
+{
+  "url": "http://127.0.0.1:7847",
+  "pid": 8232,
+  "directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S09-20260912-213237",
+  "runtime_revision": "e5cfd1a0f18e4114073185b6b05352d236462610",
+  "executable_sha256": "43b5325b184fa1f3f259cc7df9f0fb3ac769b70c11bd0dd7cd7d75a35915a330",
+  "date": "1 Jan 1990",
+  "player": "France",
+  "saved_draft": {
+    "actions": [],
+    "detail": "Editable concept. No money spent and no vehicles created.",
+    "editable_spec": {
+      "components": {
+        "active_protection": "aps_none",
+        "ammunition": "ammo_mixed",
+        "armament": "gun_120",
+        "communications": "comms_radio",
+        "fire_control": "fcs_basic",
+        "mobility": "engine_diesel_1200",
+        "protection": "protection_standard",
+        "sensors": "optics_night",
+        "suspension": "suspension_torsion",
+        "tracks": "tracks_padded",
+        "transmission": "transmission_manual",
+        "turret": "turret_heavy"
+      },
+      "platform": "tank_standard"
+    },
+    "id": "draft:S09 Atlas",
+    "name": "S09 Atlas",
+    "spec": {
+      "components": {
+        "active_protection": "aps_none",
+        "ammunition": "ammo_mixed",
+        "armament": "gun_120",
+        "communications": "comms_radio",
+        "fire_control": "fcs_basic",
+        "mobility": "engine_diesel_1200",
+        "protection": "protection_standard",
+        "sensors": "optics_night",
+        "suspension": "suspension_torsion",
+        "tracks": "tracks_padded",
+        "transmission": "transmission_manual",
+        "turret": "turret_heavy"
+      },
+      "platform": "tank_standard"
+    },
+    "status": "Draft"
+  },
+  "save_copy": {
+    "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-browser-journey-viewport-1\\france-jYZzLL\\server\\saves\\s09-saved-design.json",
+    "copy": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S09-20260912-213237\\saves\\s09-saved-design.json",
+    "sha256": "4136ba8f053b84e778de0bf21ed6ae9b2030ab0d853c757437aeef43cbab2c78"
+  },
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1789272669,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "e5cfd1a0f18e",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S09-20260912-213237",
+    "version": "0.6.0"
+  },
+  "native_verification": {
+    "browser_audit": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-browser-journey-viewport-1\\france-jYZzLL\\archive-audit\\005-s09-after-continue.json",
+      "sha256": "1d8267b1abec28cc4a764cc8973eedc09b6f8893051d56afdfd548fbb6ffe36a"
+    },
+    "copied_save_audit": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S09-20260912-213237\\native-verification\\copied-save.json",
+      "sha256": "7711d3cd5e6aedec54144da64514b615296ccbc7483d1b8f17af6b149c667daf"
+    },
+    "worker": {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration\\tools\\ui\\archive-worker.py",
+      "sha256": "361b86a8c12623a553ad2f7e54dd0ccded74fa9cf03b51f4d0a3bfdf93530165"
+    },
+    "canonical_bytes": 12117475,
+    "canonical_sha256": "006a58afa9cdbb80059aa6e51c4475c833337252416a6ebe83c6ad77e785b945",
+    "ignored_paths": [],
+    "exact_canonical_bytes_equal": true
+  },
+  "qualification": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-final-connection-binary.json",
+      "sha256": "08c42b80864b35bc26e89a48eec283b0def0a39569aa75550730d88506a10d9f"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S09-browser-journey-viewport-1\\france-jYZzLL\\result.json",
+      "sha256": "b291515644a7f582df18fdb3cef01d12d278531367abddcae07556470b6838eb"
+    }
+  ],
+  "scope": "Separate review with the browser-proven saved design. Existing reviews and original campaigns retained."
+}
