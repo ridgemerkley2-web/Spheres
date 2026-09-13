@@ -251,7 +251,7 @@ function governmentFixture(){
   const f=confirmationFixture(),nodes=new Map(),c=f.c;
   const node=id=>{if(!nodes.has(id))nodes.set(id,{id,style:{},isConnected:true,tabIndex:0,
     classList:{contains:()=>false,remove(){}},getClientRects:()=>[1],closest:()=>null,
-    focus(){f.doc.activeElement=this;},querySelectorAll:()=>[],contains:()=>false});return nodes.get(id);};
+    focus(){f.doc.activeElement=this;},scrollIntoView(options){this.lastScroll=options;},querySelectorAll:()=>[],contains:()=>false});return nodes.get(id);};
   const lookup=c.$;c.$=selector=>lookup(selector)||node(selector.slice(1));
   c.gov={open:true,nation:'USA',data:null,seq:0,lastFocus:null,busy:false,action:null};c.COVERT_ACTION={pending:null};
   c.COMMAND_CHANNEL={busy:false,pending:null};c.selected='France';c.adopted=[];c.renders=0;c.reads=0;
@@ -273,7 +273,11 @@ for(const kind of ['government','covert']){
     f.dialog().querySelector('#campaignConfirmAccept').onclick();await pending;
     assert.equal(f.calls.length,1);assert.equal(f.calls[0].url,'/api/command');
     assert.deepEqual(JSON.parse(JSON.stringify(f.calls[0].body)),{commands:[{kind:'covert',target:'France'}]});
-    assert.equal(f.c.adopted.length,1);assert.match(f.messages[0],/^Reviewed action/);
+    assert.equal(f.c.adopted.length,1);
+    if(kind==='government'){
+      assert.match(f.c.gov.notice,/^Reviewed action/);assert.equal(f.doc.activeElement.id,'govNotice');
+      assert.equal(f.node('govNotice').lastScroll.block,'start');assert.equal(f.messages.length,0);
+    }else assert.match(f.messages[0],/^Reviewed action/);
   });
   test(kind+' refuses a changed campaign, target or pending order after confirmation',async()=>{
     for(const change of [f=>f.c.S={...f.c.S},f=>kind==='government'?f.c.gov.nation='Japan':f.c.selected='Japan',f=>f.c.COMMAND_CHANNEL.pending={}]){

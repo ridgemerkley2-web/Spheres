@@ -15750,6 +15750,9 @@ function closeGovernment() {
 }
 window.openGovernment = openGovernment;
 window.closeGovernment = closeGovernment;
+window.addEventListener("resize", () => {
+  if (gov.open && document.activeElement?.id === "govNotice") $("#govNotice")?.scrollIntoView({block:"start"});
+}, {passive:true});
 function govShow(id) { gov.nation = id; gov.data = null; gov.review = null; gov.tab = "overview"; gov.query = ""; gov.queries = {}; gov.notice = ""; gov.leadershipMode = "campaign"; gov.leadershipDate = null; gov.leadershipQuery = ""; gov.leadershipReference = null; gov.leadershipRequest = null; gov.expandedDetails = new Set(); renderGovernment(); govFetch(); }
 async function govFetch() {
   if (!gov.open || !gov.nation) return;
@@ -16016,6 +16019,10 @@ async function govAct(a, review = null) {
     gov.review = null;
     gov.notice = r.errors?.length ? r.errors[0] : label + " — completed. The figures now reflect this decision.";
     await adopt(r, false);
+    // The same refusal is now retained in the board's focused result.
+    if (gov.open && gov.nation === nation && r.errors?.length && $("#banner")?.textContent === r.errors[0]) {
+      clearTimeout(banner._t); $("#banner").style.display = "none";
+    }
     if (!gov.open || gov.nation !== nation) banner(r.errors?.length ? r.errors[0] : label + " — done.");
   } catch (e) {
     if (S === state && gov.action === action) { banner(e.message || String(e)); gov.notice = e.message || String(e); govFetch(); }
