@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "input": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-2027-term-limit-load-cancelled.json",
+    "bytes": 13149287,
+    "sha256": "741f96eb45bd7bee66b96252b6b04c881ba46786d6bbf97e5948cbebfd77382e"
+  },
+  "requested": {
+    "buyer": "UK",
+    "revision": null,
+    "seller": null,
+    "company": null,
+    "product": null
+  },
+  "buyer": {
+    "id": "UK",
+    "tech_sha256": "851cec93013a28a7a905d580d7e16a6bf0967d2468a91a3b8d07436fa5db30c9",
+    "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+    "revision_ids": [],
+    "held_by_revision": {},
+    "held_units": 0,
+    "buyer_revision": null,
+    "maintenance_plan": null,
+    "program_budget": null
+  },
+  "supplier": null,
+  "imports": {
+    "ids": [],
+    "matching": []
+  },
+  "canonical": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\010-s10f-audit-uk-2027-term-limit-load-cancelled.canonical",
+    "bytes": 12116878,
+    "sha256": "8b2f882381f708e4dcbe3b9fba2dc122c3e2ac8f7fea5cdce271be62b85aedcb",
+    "format": "s08-typed-canonical-world-v1-js-f64",
+    "ignored_paths": []
+  }
+}

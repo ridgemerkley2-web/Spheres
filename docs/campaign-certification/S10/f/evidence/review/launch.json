@@ -1,0 +1,46 @@
+{
+  "url": "http://127.0.0.1:7852",
+  "pid": 39452,
+  "directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S10f-20260913-164852",
+  "runtime_revision": "7d85b9f76a3e787b257613442fb0a3370e90f4c2",
+  "executable_sha256": "b99f84450805a518055eff0b67066ce800cbd30096eeeaf0d96d10b1ba9e118b",
+  "player": "France",
+  "date": "1 Jan 1990",
+  "policy": {
+    "calls_to_arms": "review",
+    "defense_pacts": "review",
+    "trade_treaties": "decline"
+  },
+  "build": {
+    "branch": "codex/campaign-certification",
+    "built_at_unix_seconds": 1789342852,
+    "campaign_format": "versioned world, event archive and retained history; legacy raw worlds remain readable",
+    "distribution": "Local offline game server; source and attribution accompany the release",
+    "revision": "7d85b9f76a3e",
+    "save_directory": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S10f-20260913-164852",
+    "version": "0.6.0"
+  },
+  "save_copy": {
+    "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server\\saves\\s10-government-decisions.json",
+    "copy": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S10f-20260913-164852\\saves\\s10-government-decisions.json",
+    "sha256": "162dba2cbb8439ffdf8ddce5db875da9a49f89670c1a34412a04fa725765914a"
+  },
+  "native_verification": {
+    "canonical_sha256": "065a663fe4332b2c6705d4faab27f2c0c9133b879de9e2b2810c8f4ae8b60697",
+    "bytes": 12116685,
+    "ignored_paths": [],
+    "exact_bytes_match_final_browser": true,
+    "worker_sha256": "361b86a8c12623a553ad2f7e54dd0ccded74fa9cf03b51f4d0a3bfdf93530165"
+  },
+  "evidence": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-binary.json",
+      "sha256": "b52e0da794c37c22445eddb433be265ba6d6e6aab249fba05442ab4b8b9c4bde"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\result.json",
+      "sha256": "9d9db618925771ed1329facf5241528f9407ea5e4cdafae1fe8ad4b2cdb5f768"
+    }
+  ],
+  "scope": "Independent review; previous review servers and original campaigns preserved."
+}

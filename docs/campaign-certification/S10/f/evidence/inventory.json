@@ -1,0 +1,2879 @@
+{
+  "created_utc": "2026-09-13T23:53:57.899791+00:00",
+  "selection_sha256": "8cd9b420130cc82bf0f9f44f796965df3bfbe76b0ba110d2557493028cbd8f6e",
+  "selection": [
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-web.json",
+      "name": "windows/S10-f-web.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-web.log",
+      "name": "windows/S10-f-web.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-node.json",
+      "name": "windows/S10-f-node.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-node.log",
+      "name": "windows/S10-f-node.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-leadership.json",
+      "name": "windows/S10-f-leadership.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-leadership.log",
+      "name": "windows/S10-f-leadership.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-agency.json",
+      "name": "windows/S10-f-agency.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-agency.log",
+      "name": "windows/S10-f-agency.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-binary.json",
+      "name": "windows/S10-f-binary.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-binary.log",
+      "name": "windows/S10-f-binary.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-browser.json",
+      "name": "windows/S10-f-browser.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-browser.log",
+      "name": "windows/S10-f-browser.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-linux-final\\agency.log",
+      "name": "linux/agency.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-linux-final\\leadership.log",
+      "name": "linux/leadership.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-linux-final\\result.json",
+      "name": "linux/result.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-linux-final\\web.log",
+      "name": "linux/web.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\brazil-tests.log",
+      "name": "content/brazil-tests.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\build_person_avatar_assets.log",
+      "name": "content/build_person_avatar_assets.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\campaign_census.log",
+      "name": "content/campaign_census.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\campaign_research.log",
+      "name": "content/campaign_research.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\census-tests.log",
+      "name": "content/census-tests.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\france-tests.log",
+      "name": "content/france-tests.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\import_cnccfp_census.log",
+      "name": "content/import_cnccfp_census.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\india-tests.log",
+      "name": "content/india-tests.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\japan-tests.log",
+      "name": "content/japan-tests.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\portrait-tests.log",
+      "name": "content/portrait-tests.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\production.log",
+      "name": "content/production.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\result.json",
+      "name": "content/result.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-fixture-2\\manifest.json",
+      "name": "authored-native-fixture/manifest.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-fixture-2\\uk-1990-same-day-death.json",
+      "name": "authored-native-fixture/uk-1990-same-day-death.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-fixture-2\\uk-2027-term-limit.json",
+      "name": "authored-native-fixture/uk-2027-term-limit.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\001-uk-1990-same-day-death.canonical",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/001-uk-1990-same-day-death.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\001-uk-1990-same-day-death.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/001-uk-1990-same-day-death.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\002-s10f-audit-uk-1990-same-day-death-loaded.canonical",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/002-s10f-audit-uk-1990-same-day-death-loaded.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\002-s10f-audit-uk-1990-same-day-death-loaded.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/002-s10f-audit-uk-1990-same-day-death-loaded.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\003-s10f-audit-uk-1990-same-day-death-browsed.canonical",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/003-s10f-audit-uk-1990-same-day-death-browsed.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\003-s10f-audit-uk-1990-same-day-death-browsed.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/003-s10f-audit-uk-1990-same-day-death-browsed.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\004-s10f-audit-uk-1990-same-day-death-load-cancelled.canonical",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/004-s10f-audit-uk-1990-same-day-death-load-cancelled.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\004-s10f-audit-uk-1990-same-day-death-load-cancelled.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/004-s10f-audit-uk-1990-same-day-death-load-cancelled.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\005-s10f-audit-uk-1990-same-day-death-reloaded.canonical",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/005-s10f-audit-uk-1990-same-day-death-reloaded.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\005-s10f-audit-uk-1990-same-day-death-reloaded.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/005-s10f-audit-uk-1990-same-day-death-reloaded.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\006-s10f-audit-uk-1990-same-day-death-continued.canonical",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/006-s10f-audit-uk-1990-same-day-death-continued.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\006-s10f-audit-uk-1990-same-day-death-continued.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/006-s10f-audit-uk-1990-same-day-death-continued.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\007-uk-2027-term-limit.canonical",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/007-uk-2027-term-limit.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\007-uk-2027-term-limit.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/007-uk-2027-term-limit.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\008-s10f-audit-uk-2027-term-limit-loaded.canonical",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/008-s10f-audit-uk-2027-term-limit-loaded.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\008-s10f-audit-uk-2027-term-limit-loaded.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/008-s10f-audit-uk-2027-term-limit-loaded.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\009-s10f-audit-uk-2027-term-limit-browsed.canonical",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/009-s10f-audit-uk-2027-term-limit-browsed.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\009-s10f-audit-uk-2027-term-limit-browsed.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/009-s10f-audit-uk-2027-term-limit-browsed.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\010-s10f-audit-uk-2027-term-limit-load-cancelled.canonical",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/010-s10f-audit-uk-2027-term-limit-load-cancelled.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\010-s10f-audit-uk-2027-term-limit-load-cancelled.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/010-s10f-audit-uk-2027-term-limit-load-cancelled.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\011-s10f-audit-uk-2027-term-limit-reloaded.canonical",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/011-s10f-audit-uk-2027-term-limit-reloaded.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\011-s10f-audit-uk-2027-term-limit-reloaded.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/011-s10f-audit-uk-2027-term-limit-reloaded.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\012-s10f-audit-uk-2027-term-limit-continued.canonical",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/012-s10f-audit-uk-2027-term-limit-continued.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\012-s10f-audit-uk-2027-term-limit-continued.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/archive-audit/012-s10f-audit-uk-2027-term-limit-continued.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\progress.jsonl",
+      "name": "authored-browser/browser/authored-uk-wv77jk/progress.jsonl"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\result.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/result.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-1990-same-day-death-browsed.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-1990-same-day-death-browsed.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-1990-same-day-death-continued.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-1990-same-day-death-continued.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-1990-same-day-death-load-cancelled.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-1990-same-day-death-load-cancelled.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-1990-same-day-death-loaded.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-1990-same-day-death-loaded.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-1990-same-day-death-reloaded.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-1990-same-day-death-reloaded.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-2027-term-limit-browsed.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-2027-term-limit-browsed.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-2027-term-limit-continued.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-2027-term-limit-continued.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-2027-term-limit-load-cancelled.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-2027-term-limit-load-cancelled.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-2027-term-limit-loaded.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-2027-term-limit-loaded.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-2027-term-limit-reloaded.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-2027-term-limit-reloaded.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\saves\\s10f-authored-uk-1990-same-day-death.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/server/saves/s10f-authored-uk-1990-same-day-death.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\saves\\s10f-authored-uk-2027-term-limit.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/server/saves/s10f-authored-uk-2027-term-limit.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\saves\\s10f-reviewed-uk-1990-same-day-death.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/server/saves/s10f-reviewed-uk-1990-same-day-death.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\saves\\s10f-reviewed-uk-2027-term-limit.json",
+      "name": "authored-browser/browser/authored-uk-wv77jk/server/saves/s10f-reviewed-uk-2027-term-limit.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server.log",
+      "name": "authored-browser/browser/authored-uk-wv77jk/server.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-1990-same-day-death-campaign-1440.png",
+      "name": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-campaign-1440.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-1990-same-day-death-campaign-320.png",
+      "name": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-campaign-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-1990-same-day-death-campaign-390.png",
+      "name": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-campaign-390.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-1990-same-day-death-continued-320.png",
+      "name": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-continued-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-1990-same-day-death-reference-1440.png",
+      "name": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-reference-1440.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-1990-same-day-death-reference-320.png",
+      "name": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-reference-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-1990-same-day-death-reference-390.png",
+      "name": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-reference-390.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-2027-term-limit-campaign-1440.png",
+      "name": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-campaign-1440.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-2027-term-limit-campaign-320.png",
+      "name": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-campaign-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-2027-term-limit-campaign-390.png",
+      "name": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-campaign-390.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-2027-term-limit-continued-320.png",
+      "name": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-continued-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-2027-term-limit-reference-1440.png",
+      "name": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-reference-1440.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-2027-term-limit-reference-320.png",
+      "name": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-reference-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-2027-term-limit-reference-390.png",
+      "name": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-reference-390.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser.log",
+      "name": "authored-browser/browser.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\result.json",
+      "name": "authored-browser/result.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\001-s10-before-review.canonical",
+      "name": "ordinary-browser/france-Wz0Zio/archive-audit/001-s10-before-review.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\001-s10-before-review.json",
+      "name": "ordinary-browser/france-Wz0Zio/archive-audit/001-s10-before-review.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\002-s10-after-cancel.canonical",
+      "name": "ordinary-browser/france-Wz0Zio/archive-audit/002-s10-after-cancel.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\002-s10-after-cancel.json",
+      "name": "ordinary-browser/france-Wz0Zio/archive-audit/002-s10-after-cancel.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\003-s10-after-second-tab.canonical",
+      "name": "ordinary-browser/france-Wz0Zio/archive-audit/003-s10-after-second-tab.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\003-s10-after-second-tab.json",
+      "name": "ordinary-browser/france-Wz0Zio/archive-audit/003-s10-after-second-tab.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\004-s10-after-stale.canonical",
+      "name": "ordinary-browser/france-Wz0Zio/archive-audit/004-s10-after-stale.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\004-s10-after-stale.json",
+      "name": "ordinary-browser/france-Wz0Zio/archive-audit/004-s10-after-stale.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\005-s10-after-government.canonical",
+      "name": "ordinary-browser/france-Wz0Zio/archive-audit/005-s10-after-government.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\005-s10-after-government.json",
+      "name": "ordinary-browser/france-Wz0Zio/archive-audit/005-s10-after-government.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\006-s10-after-load-cancel.canonical",
+      "name": "ordinary-browser/france-Wz0Zio/archive-audit/006-s10-after-load-cancel.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\006-s10-after-load-cancel.json",
+      "name": "ordinary-browser/france-Wz0Zio/archive-audit/006-s10-after-load-cancel.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\007-s10-after-load.canonical",
+      "name": "ordinary-browser/france-Wz0Zio/archive-audit/007-s10-after-load.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\007-s10-after-load.json",
+      "name": "ordinary-browser/france-Wz0Zio/archive-audit/007-s10-after-load.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\008-s10-after-continue.canonical",
+      "name": "ordinary-browser/france-Wz0Zio/archive-audit/008-s10-after-continue.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\008-s10-after-continue.json",
+      "name": "ordinary-browser/france-Wz0Zio/archive-audit/008-s10-after-continue.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\chrome-netlog.json",
+      "name": "ordinary-browser/france-Wz0Zio/chrome-netlog.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-continued-narrow-320.png",
+      "name": "ordinary-browser/france-Wz0Zio/government-continued-narrow-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-continued-narrow.png",
+      "name": "ordinary-browser/france-Wz0Zio/government-continued-narrow.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-fresh-review-320.png",
+      "name": "ordinary-browser/france-Wz0Zio/government-fresh-review-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-fresh-review-390.png",
+      "name": "ordinary-browser/france-Wz0Zio/government-fresh-review-390.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-fresh-review.png",
+      "name": "ordinary-browser/france-Wz0Zio/government-fresh-review.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-result-desktop.png",
+      "name": "ordinary-browser/france-Wz0Zio/government-result-desktop.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-result-narrow-320.png",
+      "name": "ordinary-browser/france-Wz0Zio/government-result-narrow-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-result-narrow-390.png",
+      "name": "ordinary-browser/france-Wz0Zio/government-result-narrow-390.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-review-before-second-tab.png",
+      "name": "ordinary-browser/france-Wz0Zio/government-review-before-second-tab.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-stale-review-refused.png",
+      "name": "ordinary-browser/france-Wz0Zio/government-stale-review-refused.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\policy-review-desktop.png",
+      "name": "ordinary-browser/france-Wz0Zio/policy-review-desktop.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\policy-review-narrow-320.png",
+      "name": "ordinary-browser/france-Wz0Zio/policy-review-narrow-320.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\policy-review-narrow.png",
+      "name": "ordinary-browser/france-Wz0Zio/policy-review-narrow.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\progress.jsonl",
+      "name": "ordinary-browser/france-Wz0Zio/progress.jsonl"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\result.json",
+      "name": "ordinary-browser/france-Wz0Zio/result.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\second-tab-policy-recorded.png",
+      "name": "ordinary-browser/france-Wz0Zio/second-tab-policy-recorded.png"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server\\audit-captures\\s10-after-cancel-07erIa\\s10-after-cancel.json",
+      "name": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-cancel-07erIa/s10-after-cancel.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server\\audit-captures\\s10-after-continue-9cJSS4\\s10-after-continue.json",
+      "name": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-continue-9cJSS4/s10-after-continue.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server\\audit-captures\\s10-after-government-gjaSkw\\s10-after-government.json",
+      "name": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-government-gjaSkw/s10-after-government.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server\\audit-captures\\s10-after-load-8jhodo\\s10-after-load.json",
+      "name": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-load-8jhodo/s10-after-load.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server\\audit-captures\\s10-after-load-cancel-2Cunsi\\s10-after-load-cancel.json",
+      "name": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-load-cancel-2Cunsi/s10-after-load-cancel.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server\\audit-captures\\s10-after-second-tab-ibkqxW\\s10-after-second-tab.json",
+      "name": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-second-tab-ibkqxW/s10-after-second-tab.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server\\audit-captures\\s10-after-stale-QmcHed\\s10-after-stale.json",
+      "name": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-stale-QmcHed/s10-after-stale.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server\\audit-captures\\s10-before-review-fe3dyV\\s10-before-review.json",
+      "name": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-before-review-fe3dyV/s10-before-review.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server\\saves\\s10-government-decisions.json",
+      "name": "ordinary-browser/france-Wz0Zio/server/saves/s10-government-decisions.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server.log",
+      "name": "ordinary-browser/france-Wz0Zio/server.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-preservation-before.json",
+      "name": "review/S10f-preservation-before.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-preservation-final.json",
+      "name": "review/S10f-preservation-final.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-visual-review.json",
+      "name": "review/S10f-visual-review.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\S10f-review-launch.json",
+      "name": "review/launch.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S10f-20260913-164852\\native-verification\\copied-save.canonical",
+      "name": "review/native-verification/copied-save.canonical"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S10f-20260913-164852\\native-verification\\copied-save.json",
+      "name": "review/native-verification/copied-save.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s10f-check.py",
+      "name": "runners/run-s10f-check.py"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s10f-linux.py",
+      "name": "runners/run-s10f-linux.py"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s10f-content.py",
+      "name": "runners/run-s10f-content.py"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s10f-succession.py",
+      "name": "runners/run-s10f-succession.py"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\launch-s10f-review.py",
+      "name": "runners/launch-s10f-review.py"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\verify-s08-preservation.py",
+      "name": "runners/verify-s08-preservation.py"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\collect-s09-evidence.py",
+      "name": "runners/collect-s09-evidence.py"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\publish-s10f.py",
+      "name": "runners/publish-s10f.py"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\verify-s10f-publication.py",
+      "name": "runners/verify-s10f-publication.py"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-final\\result.json",
+      "name": "development/authored-initial/result.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-final\\browser.log",
+      "name": "development/authored-initial/browser.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-final\\export.log",
+      "name": "development/authored-initial/export.log"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-final\\browser\\authored-uk-M1edZM\\result.json",
+      "name": "development/authored-initial/browser/result.json"
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-final\\browser\\authored-uk-M1edZM\\failure.png",
+      "name": "development/authored-initial/browser/failure.png"
+    }
+  ],
+  "files": [
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-web.json",
+      "logical_path": "windows/S10-f-web.json",
+      "bytes": 1041,
+      "sha256": "259f3aef109167b6cf4a1804220797c6cd7f71cac141c0eab4c91cc3e6a87199",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-f-web.json",
+          "bytes": 1041,
+          "sha256": "259f3aef109167b6cf4a1804220797c6cd7f71cac141c0eab4c91cc3e6a87199"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-web.log",
+      "logical_path": "windows/S10-f-web.log",
+      "bytes": 38489,
+      "sha256": "0fa1c25861b2e7002c01a32485f82f969b812f09b983e58507b670d51257e78b",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-f-web.log",
+          "bytes": 38489,
+          "sha256": "0fa1c25861b2e7002c01a32485f82f969b812f09b983e58507b670d51257e78b"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-node.json",
+      "logical_path": "windows/S10-f-node.json",
+      "bytes": 656,
+      "sha256": "201eff56b28ede749d7b82bb6d6df9e3dd2b96fd15e988bee54b660de2fcea59",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-f-node.json",
+          "bytes": 656,
+          "sha256": "201eff56b28ede749d7b82bb6d6df9e3dd2b96fd15e988bee54b660de2fcea59"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-node.log",
+      "logical_path": "windows/S10-f-node.log",
+      "bytes": 154027,
+      "sha256": "40f382bbba0d8d063822220f3e3e2b094c7e267ff7618f356b3892f2bdd45623",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-f-node.log",
+          "bytes": 154027,
+          "sha256": "40f382bbba0d8d063822220f3e3e2b094c7e267ff7618f356b3892f2bdd45623"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-leadership.json",
+      "logical_path": "windows/S10-f-leadership.json",
+      "bytes": 781,
+      "sha256": "dd14aa462018197bfc447444abe4e78709bbf4d227c1c38d9555b83bd6ac2258",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-f-leadership.json",
+          "bytes": 781,
+          "sha256": "dd14aa462018197bfc447444abe4e78709bbf4d227c1c38d9555b83bd6ac2258"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-leadership.log",
+      "logical_path": "windows/S10-f-leadership.log",
+      "bytes": 6204,
+      "sha256": "d791543f72db1e0bc97ea9c8d0170eef42a79e23abe10e89e87352d64c300182",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-f-leadership.log",
+          "bytes": 6204,
+          "sha256": "d791543f72db1e0bc97ea9c8d0170eef42a79e23abe10e89e87352d64c300182"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-agency.json",
+      "logical_path": "windows/S10-f-agency.json",
+      "bytes": 808,
+      "sha256": "61f9819af0f8bc7301ae4c9789ed86b290dabe5c2ed657ed749a8cc75e746193",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-f-agency.json",
+          "bytes": 808,
+          "sha256": "61f9819af0f8bc7301ae4c9789ed86b290dabe5c2ed657ed749a8cc75e746193"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-agency.log",
+      "logical_path": "windows/S10-f-agency.log",
+      "bytes": 1774,
+      "sha256": "4eda95ba84342358a8e38acce3115592c443d805879089d9e937badc1217b325",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-f-agency.log",
+          "bytes": 1774,
+          "sha256": "4eda95ba84342358a8e38acce3115592c443d805879089d9e937badc1217b325"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-binary.json",
+      "logical_path": "windows/S10-f-binary.json",
+      "bytes": 884,
+      "sha256": "b52e0da794c37c22445eddb433be265ba6d6e6aab249fba05442ab4b8b9c4bde",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-f-binary.json",
+          "bytes": 884,
+          "sha256": "b52e0da794c37c22445eddb433be265ba6d6e6aab249fba05442ab4b8b9c4bde"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-binary.log",
+      "logical_path": "windows/S10-f-binary.log",
+      "bytes": 887,
+      "sha256": "189fb98f304c76bd536392055a70ced13bf21002ce5ab67278ccc2001ec97381",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-f-binary.log",
+          "bytes": 887,
+          "sha256": "189fb98f304c76bd536392055a70ced13bf21002ce5ab67278ccc2001ec97381"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-browser.json",
+      "logical_path": "windows/S10-f-browser.json",
+      "bytes": 943,
+      "sha256": "19097c4ca97123863b56ac5b2b988c0ce7c35ae3beb4e7351450a1a6685b47d3",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-f-browser.json",
+          "bytes": 943,
+          "sha256": "19097c4ca97123863b56ac5b2b988c0ce7c35ae3beb4e7351450a1a6685b47d3"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-f-browser.log",
+      "logical_path": "windows/S10-f-browser.log",
+      "bytes": 194,
+      "sha256": "ba8ec91441cf7575a361496349d23f35cd3a79b100091e372dfaa82cf5432a44",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "windows/S10-f-browser.log",
+          "bytes": 194,
+          "sha256": "ba8ec91441cf7575a361496349d23f35cd3a79b100091e372dfaa82cf5432a44"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-linux-final\\agency.log",
+      "logical_path": "linux/agency.log",
+      "bytes": 1612,
+      "sha256": "b380d010e5c462378129b8cddbc4286017777233a8c08bd8b76b9abd1590ed40",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "linux/agency.log",
+          "bytes": 1612,
+          "sha256": "b380d010e5c462378129b8cddbc4286017777233a8c08bd8b76b9abd1590ed40"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-linux-final\\leadership.log",
+      "logical_path": "linux/leadership.log",
+      "bytes": 6125,
+      "sha256": "9617e3e0e2985e21158990d3f82e2677a1f0a1f83fcb80bede335feb96d2f194",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "linux/leadership.log",
+          "bytes": 6125,
+          "sha256": "9617e3e0e2985e21158990d3f82e2677a1f0a1f83fcb80bede335feb96d2f194"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-linux-final\\result.json",
+      "logical_path": "linux/result.json",
+      "bytes": 2488,
+      "sha256": "e66255f0e96be41e122ffb5307a8dc5cbf0b7fe5e6098b0495f7921d50108144",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "linux/result.json",
+          "bytes": 2488,
+          "sha256": "e66255f0e96be41e122ffb5307a8dc5cbf0b7fe5e6098b0495f7921d50108144"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-linux-final\\web.log",
+      "logical_path": "linux/web.log",
+      "bytes": 38099,
+      "sha256": "3cbd23ae58d15074e16ed3075bcc2d290d482c3bcdefc6a21eafbb638d67146f",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "linux/web.log",
+          "bytes": 38099,
+          "sha256": "3cbd23ae58d15074e16ed3075bcc2d290d482c3bcdefc6a21eafbb638d67146f"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\brazil-tests.log",
+      "logical_path": "content/brazil-tests.log",
+      "bytes": 112,
+      "sha256": "f1f857851115d1ea33645607489b18ff44adde16412aa194a4f58c85b90d2e69",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/brazil-tests.log",
+          "bytes": 112,
+          "sha256": "f1f857851115d1ea33645607489b18ff44adde16412aa194a4f58c85b90d2e69"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\build_person_avatar_assets.log",
+      "logical_path": "content/build_person_avatar_assets.log",
+      "bytes": 49,
+      "sha256": "fe83b07963d5578e258e3145936198c50445a1a9eec113db8d92b924377e770a",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/build_person_avatar_assets.log",
+          "bytes": 49,
+          "sha256": "fe83b07963d5578e258e3145936198c50445a1a9eec113db8d92b924377e770a"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\campaign_census.log",
+      "logical_path": "content/campaign_census.log",
+      "bytes": 1462,
+      "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/campaign_census.log",
+          "bytes": 1462,
+          "sha256": "fa1e8aeda98cab8826fc35355ae3adaee74d5f9820be741945b3cca05443a373"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\campaign_research.log",
+      "logical_path": "content/campaign_research.log",
+      "bytes": 249,
+      "sha256": "e887c732fbfff31a693399c583bcb182fc011f8b0932b368dc91f9a26d26ccdc",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/campaign_research.log",
+          "bytes": 249,
+          "sha256": "e887c732fbfff31a693399c583bcb182fc011f8b0932b368dc91f9a26d26ccdc"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\census-tests.log",
+      "logical_path": "content/census-tests.log",
+      "bytes": 120,
+      "sha256": "64a53416e890f30033764ed496af8c0bebb90d909e672fa596429e9fa028a47d",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/census-tests.log",
+          "bytes": 120,
+          "sha256": "64a53416e890f30033764ed496af8c0bebb90d909e672fa596429e9fa028a47d"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\france-tests.log",
+      "logical_path": "content/france-tests.log",
+      "bytes": 114,
+      "sha256": "77de467b560be64c2a8447b0fb7e035cedaec55f979188439e0ffe2277d555cc",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/france-tests.log",
+          "bytes": 114,
+          "sha256": "77de467b560be64c2a8447b0fb7e035cedaec55f979188439e0ffe2277d555cc"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\import_cnccfp_census.log",
+      "logical_path": "content/import_cnccfp_census.log",
+      "bytes": 149,
+      "sha256": "1a0ac4c1a826bf68586e8ddaf1da41f965497fb88d1025cbd839ef9caf2f010e",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/import_cnccfp_census.log",
+          "bytes": 149,
+          "sha256": "1a0ac4c1a826bf68586e8ddaf1da41f965497fb88d1025cbd839ef9caf2f010e"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\india-tests.log",
+      "logical_path": "content/india-tests.log",
+      "bytes": 111,
+      "sha256": "b9438ea671f988fbcb97bf9716a0123bed129e3f1dbc9ed8f7744a23fc314a46",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/india-tests.log",
+          "bytes": 111,
+          "sha256": "b9438ea671f988fbcb97bf9716a0123bed129e3f1dbc9ed8f7744a23fc314a46"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\japan-tests.log",
+      "logical_path": "content/japan-tests.log",
+      "bytes": 111,
+      "sha256": "236073c94eb1cbe1fe339a3f8c160eccc7d8ed31104dd88463cb11235a85a5dd",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/japan-tests.log",
+          "bytes": 111,
+          "sha256": "236073c94eb1cbe1fe339a3f8c160eccc7d8ed31104dd88463cb11235a85a5dd"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\portrait-tests.log",
+      "logical_path": "content/portrait-tests.log",
+      "bytes": 109,
+      "sha256": "ade50f91ef7ee926285d1d91bd6703427ed5d011fec10449dec6f6e9af3b7290",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/portrait-tests.log",
+          "bytes": 109,
+          "sha256": "ade50f91ef7ee926285d1d91bd6703427ed5d011fec10449dec6f6e9af3b7290"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\production.log",
+      "logical_path": "content/production.log",
+      "bytes": 796,
+      "sha256": "ede01baeaf00d1291e7980acaf67ee41fdc7281b8c9eb0b633122423d2ccea17",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/production.log",
+          "bytes": 796,
+          "sha256": "ede01baeaf00d1291e7980acaf67ee41fdc7281b8c9eb0b633122423d2ccea17"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-content-final\\result.json",
+      "logical_path": "content/result.json",
+      "bytes": 4628,
+      "sha256": "cfe2096a6171307021e584ef1c084c7181d9df6ac026222361d58175d7943911",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "content/result.json",
+          "bytes": 4628,
+          "sha256": "cfe2096a6171307021e584ef1c084c7181d9df6ac026222361d58175d7943911"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-fixture-2\\manifest.json",
+      "logical_path": "authored-native-fixture/manifest.json",
+      "bytes": 1004805,
+      "sha256": "97c48a1aba09b6af0524a88fd0215283636dc080ed8f33ef4c5ea8cea010e94e",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-native-fixture/manifest.json",
+          "bytes": 1004805,
+          "sha256": "97c48a1aba09b6af0524a88fd0215283636dc080ed8f33ef4c5ea8cea010e94e"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-fixture-2\\uk-1990-same-day-death.json",
+      "logical_path": "authored-native-fixture/uk-1990-same-day-death.json",
+      "bytes": 13148743,
+      "sha256": "20ff7725efd244c079e791d95c307db7682348119ceb20602b70ed62dc74b9ef",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-native-fixture/uk-1990-same-day-death.json.gz",
+          "bytes": 2088178,
+          "sha256": "be91ad6c4bb4a26333bcd8c499329dcaca276dc2da4d887e28b939906bc037a1"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-fixture-2\\uk-2027-term-limit.json",
+      "logical_path": "authored-native-fixture/uk-2027-term-limit.json",
+      "bytes": 13149287,
+      "sha256": "6f89373bcc7163c7b605be07bfb48f702e1f0a18375e1217538aa779f228874d",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-native-fixture/uk-2027-term-limit.json.gz",
+          "bytes": 2088381,
+          "sha256": "2962fddb4c6ffce33e219a465f60d09ceb133590c1cdeb1d983986a46147a3b0"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\001-uk-1990-same-day-death.canonical",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/001-uk-1990-same-day-death.canonical",
+      "bytes": 12116133,
+      "sha256": "b6860746d6d605710f03c7b37f6ca5695e571995e9b6a08b8837a58827d09d4b",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/001-uk-1990-same-day-death.canonical.gz",
+          "bytes": 1868985,
+          "sha256": "0f8a297c8b6fec14d6b796e8d5ec813c7fc404bdacbf510115328932b93cd485"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\001-uk-1990-same-day-death.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/001-uk-1990-same-day-death.json",
+      "bytes": 1339,
+      "sha256": "d5f7f5fec70fca20cc4c535bf3a81b30507b72173368c5785cb93ea8b56d71f5",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/001-uk-1990-same-day-death.json",
+          "bytes": 1339,
+          "sha256": "d5f7f5fec70fca20cc4c535bf3a81b30507b72173368c5785cb93ea8b56d71f5"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\002-s10f-audit-uk-1990-same-day-death-loaded.canonical",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/002-s10f-audit-uk-1990-same-day-death-loaded.canonical",
+      "bytes": 12116133,
+      "sha256": "b6860746d6d605710f03c7b37f6ca5695e571995e9b6a08b8837a58827d09d4b",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/002-s10f-audit-uk-1990-same-day-death-loaded.canonical.gz",
+          "bytes": 1868985,
+          "sha256": "0f8a297c8b6fec14d6b796e8d5ec813c7fc404bdacbf510115328932b93cd485"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\002-s10f-audit-uk-1990-same-day-death-loaded.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/002-s10f-audit-uk-1990-same-day-death-loaded.json",
+      "bytes": 1422,
+      "sha256": "c8730a6d41f382d63960128d11db7551fc54f03481143b22044fe631033ea8f4",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/002-s10f-audit-uk-1990-same-day-death-loaded.json",
+          "bytes": 1422,
+          "sha256": "c8730a6d41f382d63960128d11db7551fc54f03481143b22044fe631033ea8f4"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\003-s10f-audit-uk-1990-same-day-death-browsed.canonical",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/003-s10f-audit-uk-1990-same-day-death-browsed.canonical",
+      "bytes": 12116133,
+      "sha256": "b6860746d6d605710f03c7b37f6ca5695e571995e9b6a08b8837a58827d09d4b",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/003-s10f-audit-uk-1990-same-day-death-browsed.canonical.gz",
+          "bytes": 1868985,
+          "sha256": "0f8a297c8b6fec14d6b796e8d5ec813c7fc404bdacbf510115328932b93cd485"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\003-s10f-audit-uk-1990-same-day-death-browsed.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/003-s10f-audit-uk-1990-same-day-death-browsed.json",
+      "bytes": 1424,
+      "sha256": "f540a78b5e206b7b7e0b5b8221e3e349658a5c3fd73ac615419da882089605af",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/003-s10f-audit-uk-1990-same-day-death-browsed.json",
+          "bytes": 1424,
+          "sha256": "f540a78b5e206b7b7e0b5b8221e3e349658a5c3fd73ac615419da882089605af"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\004-s10f-audit-uk-1990-same-day-death-load-cancelled.canonical",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/004-s10f-audit-uk-1990-same-day-death-load-cancelled.canonical",
+      "bytes": 12116133,
+      "sha256": "b6860746d6d605710f03c7b37f6ca5695e571995e9b6a08b8837a58827d09d4b",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/004-s10f-audit-uk-1990-same-day-death-load-cancelled.canonical.gz",
+          "bytes": 1868985,
+          "sha256": "0f8a297c8b6fec14d6b796e8d5ec813c7fc404bdacbf510115328932b93cd485"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\004-s10f-audit-uk-1990-same-day-death-load-cancelled.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/004-s10f-audit-uk-1990-same-day-death-load-cancelled.json",
+      "bytes": 1438,
+      "sha256": "d685a725a34729f836a04bc7c18849c6e6d3437691c8729c0df20f4db42ae291",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/004-s10f-audit-uk-1990-same-day-death-load-cancelled.json",
+          "bytes": 1438,
+          "sha256": "d685a725a34729f836a04bc7c18849c6e6d3437691c8729c0df20f4db42ae291"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\005-s10f-audit-uk-1990-same-day-death-reloaded.canonical",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/005-s10f-audit-uk-1990-same-day-death-reloaded.canonical",
+      "bytes": 12116133,
+      "sha256": "b6860746d6d605710f03c7b37f6ca5695e571995e9b6a08b8837a58827d09d4b",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/005-s10f-audit-uk-1990-same-day-death-reloaded.canonical.gz",
+          "bytes": 1868985,
+          "sha256": "0f8a297c8b6fec14d6b796e8d5ec813c7fc404bdacbf510115328932b93cd485"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\005-s10f-audit-uk-1990-same-day-death-reloaded.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/005-s10f-audit-uk-1990-same-day-death-reloaded.json",
+      "bytes": 1426,
+      "sha256": "49e4dea3b349a58df40ea192076fa0b51eda213ac5522448e8a66b935c189c9d",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/005-s10f-audit-uk-1990-same-day-death-reloaded.json",
+          "bytes": 1426,
+          "sha256": "49e4dea3b349a58df40ea192076fa0b51eda213ac5522448e8a66b935c189c9d"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\006-s10f-audit-uk-1990-same-day-death-continued.canonical",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/006-s10f-audit-uk-1990-same-day-death-continued.canonical",
+      "bytes": 12116133,
+      "sha256": "b6860746d6d605710f03c7b37f6ca5695e571995e9b6a08b8837a58827d09d4b",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/006-s10f-audit-uk-1990-same-day-death-continued.canonical.gz",
+          "bytes": 1868985,
+          "sha256": "0f8a297c8b6fec14d6b796e8d5ec813c7fc404bdacbf510115328932b93cd485"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\006-s10f-audit-uk-1990-same-day-death-continued.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/006-s10f-audit-uk-1990-same-day-death-continued.json",
+      "bytes": 1428,
+      "sha256": "f4d0071a2149b816f0bc61999bc1daeefb2e2b693785c2274fb8ffcc4d04dd49",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/006-s10f-audit-uk-1990-same-day-death-continued.json",
+          "bytes": 1428,
+          "sha256": "f4d0071a2149b816f0bc61999bc1daeefb2e2b693785c2274fb8ffcc4d04dd49"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\007-uk-2027-term-limit.canonical",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/007-uk-2027-term-limit.canonical",
+      "bytes": 12116878,
+      "sha256": "8b2f882381f708e4dcbe3b9fba2dc122c3e2ac8f7fea5cdce271be62b85aedcb",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/007-uk-2027-term-limit.canonical.gz",
+          "bytes": 1869119,
+          "sha256": "8355b892ae4e7f008089f053bc27bc52395042fabc4c28de830c919cf39494f9"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\007-uk-2027-term-limit.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/007-uk-2027-term-limit.json",
+      "bytes": 1331,
+      "sha256": "f8add9b5a03e4b2f1a81f0ec3166bb5c1e89264dd61a1f5bf0e6d4522663c115",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/007-uk-2027-term-limit.json",
+          "bytes": 1331,
+          "sha256": "f8add9b5a03e4b2f1a81f0ec3166bb5c1e89264dd61a1f5bf0e6d4522663c115"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\008-s10f-audit-uk-2027-term-limit-loaded.canonical",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/008-s10f-audit-uk-2027-term-limit-loaded.canonical",
+      "bytes": 12116878,
+      "sha256": "8b2f882381f708e4dcbe3b9fba2dc122c3e2ac8f7fea5cdce271be62b85aedcb",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/008-s10f-audit-uk-2027-term-limit-loaded.canonical.gz",
+          "bytes": 1869119,
+          "sha256": "8355b892ae4e7f008089f053bc27bc52395042fabc4c28de830c919cf39494f9"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\008-s10f-audit-uk-2027-term-limit-loaded.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/008-s10f-audit-uk-2027-term-limit-loaded.json",
+      "bytes": 1414,
+      "sha256": "272e755f27a478193bf05a09cb289f8847e7be5f04a4b9192e55e4c49d597086",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/008-s10f-audit-uk-2027-term-limit-loaded.json",
+          "bytes": 1414,
+          "sha256": "272e755f27a478193bf05a09cb289f8847e7be5f04a4b9192e55e4c49d597086"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\009-s10f-audit-uk-2027-term-limit-browsed.canonical",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/009-s10f-audit-uk-2027-term-limit-browsed.canonical",
+      "bytes": 12116878,
+      "sha256": "8b2f882381f708e4dcbe3b9fba2dc122c3e2ac8f7fea5cdce271be62b85aedcb",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/009-s10f-audit-uk-2027-term-limit-browsed.canonical.gz",
+          "bytes": 1869119,
+          "sha256": "8355b892ae4e7f008089f053bc27bc52395042fabc4c28de830c919cf39494f9"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\009-s10f-audit-uk-2027-term-limit-browsed.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/009-s10f-audit-uk-2027-term-limit-browsed.json",
+      "bytes": 1416,
+      "sha256": "5a62f32f739b78bce3b7cc9b2e652c2f01c091c5a41a6aca9b8be7e781549bbb",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/009-s10f-audit-uk-2027-term-limit-browsed.json",
+          "bytes": 1416,
+          "sha256": "5a62f32f739b78bce3b7cc9b2e652c2f01c091c5a41a6aca9b8be7e781549bbb"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\010-s10f-audit-uk-2027-term-limit-load-cancelled.canonical",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/010-s10f-audit-uk-2027-term-limit-load-cancelled.canonical",
+      "bytes": 12116878,
+      "sha256": "8b2f882381f708e4dcbe3b9fba2dc122c3e2ac8f7fea5cdce271be62b85aedcb",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/010-s10f-audit-uk-2027-term-limit-load-cancelled.canonical.gz",
+          "bytes": 1869119,
+          "sha256": "8355b892ae4e7f008089f053bc27bc52395042fabc4c28de830c919cf39494f9"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\010-s10f-audit-uk-2027-term-limit-load-cancelled.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/010-s10f-audit-uk-2027-term-limit-load-cancelled.json",
+      "bytes": 1430,
+      "sha256": "f90c574acc9065abbb6aa5cba097aa9bfef2fc018af284e78743041fc421274a",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/010-s10f-audit-uk-2027-term-limit-load-cancelled.json",
+          "bytes": 1430,
+          "sha256": "f90c574acc9065abbb6aa5cba097aa9bfef2fc018af284e78743041fc421274a"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\011-s10f-audit-uk-2027-term-limit-reloaded.canonical",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/011-s10f-audit-uk-2027-term-limit-reloaded.canonical",
+      "bytes": 12116878,
+      "sha256": "8b2f882381f708e4dcbe3b9fba2dc122c3e2ac8f7fea5cdce271be62b85aedcb",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/011-s10f-audit-uk-2027-term-limit-reloaded.canonical.gz",
+          "bytes": 1869119,
+          "sha256": "8355b892ae4e7f008089f053bc27bc52395042fabc4c28de830c919cf39494f9"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\011-s10f-audit-uk-2027-term-limit-reloaded.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/011-s10f-audit-uk-2027-term-limit-reloaded.json",
+      "bytes": 1418,
+      "sha256": "dbc00d5037dc19a4834a650d2019527f12a2f594a2f58d1e92b4a0696f4d690a",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/011-s10f-audit-uk-2027-term-limit-reloaded.json",
+          "bytes": 1418,
+          "sha256": "dbc00d5037dc19a4834a650d2019527f12a2f594a2f58d1e92b4a0696f4d690a"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\012-s10f-audit-uk-2027-term-limit-continued.canonical",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/012-s10f-audit-uk-2027-term-limit-continued.canonical",
+      "bytes": 12116878,
+      "sha256": "8b2f882381f708e4dcbe3b9fba2dc122c3e2ac8f7fea5cdce271be62b85aedcb",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/012-s10f-audit-uk-2027-term-limit-continued.canonical.gz",
+          "bytes": 1869119,
+          "sha256": "8355b892ae4e7f008089f053bc27bc52395042fabc4c28de830c919cf39494f9"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\012-s10f-audit-uk-2027-term-limit-continued.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/archive-audit/012-s10f-audit-uk-2027-term-limit-continued.json",
+      "bytes": 1420,
+      "sha256": "f041bf1b003a7d74bfe9491959865da863ae7b5753c6465303294f5d3e2f8fc9",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/archive-audit/012-s10f-audit-uk-2027-term-limit-continued.json",
+          "bytes": 1420,
+          "sha256": "f041bf1b003a7d74bfe9491959865da863ae7b5753c6465303294f5d3e2f8fc9"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\progress.jsonl",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/progress.jsonl",
+      "bytes": 21458,
+      "sha256": "54f6f104204506627b4a2eb079f49865c7a21a278296f609e48f3b1109b9da52",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/progress.jsonl",
+          "bytes": 21458,
+          "sha256": "54f6f104204506627b4a2eb079f49865c7a21a278296f609e48f3b1109b9da52"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\result.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/result.json",
+      "bytes": 1318839,
+      "sha256": "613becbbd381a602bc8251f3716692be893fe0072532ca294fabe2b0d0716078",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/result.json.gz",
+          "bytes": 81851,
+          "sha256": "500f613a464f7097b355ffbeed61aff1bfaa13a4f465467328336486e09cef3c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-1990-same-day-death-browsed.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-1990-same-day-death-browsed.json",
+      "bytes": 13148743,
+      "sha256": "e02572e98f146cd8aa4db89e9a82476fcdadfc8bcab2710c352458d34dbc5161",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-1990-same-day-death-browsed.json.gz",
+          "bytes": 2088178,
+          "sha256": "0b646d48fc6e7b577b3c1940fea1371ad10f34312574830d288274bcd798b945"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-1990-same-day-death-continued.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-1990-same-day-death-continued.json",
+      "bytes": 13148743,
+      "sha256": "38d0a030dd32dc0fbad3aca6d9e92a2b745ef6cc54d1735e330a1b96213c0eb3",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-1990-same-day-death-continued.json.gz",
+          "bytes": 2088178,
+          "sha256": "0a7195252c47a93c4422f3b2fd3ce20f3480f58823fb00aa23c9760f41832b4b"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-1990-same-day-death-load-cancelled.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-1990-same-day-death-load-cancelled.json",
+      "bytes": 13148743,
+      "sha256": "2f084b09270f60c4fcae8cd6ac507da7dff0aef2e7b87b88725b175642ad7820",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-1990-same-day-death-load-cancelled.json.gz",
+          "bytes": 2088178,
+          "sha256": "cd759020db1fb56dd9ea0951f7a47eaae958f2309a9ad10b0f7cc1fafe36f046"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-1990-same-day-death-loaded.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-1990-same-day-death-loaded.json",
+      "bytes": 13148743,
+      "sha256": "c65a44ebef1f54935fc8130ed0480a8da43340e3b05b726a3238a827f0a418b6",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-1990-same-day-death-loaded.json.gz",
+          "bytes": 2088178,
+          "sha256": "0c130819d1cbe18c8199aa806e1ddb8123873e12b524aa6833da7820fa98bb48"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-1990-same-day-death-reloaded.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-1990-same-day-death-reloaded.json",
+      "bytes": 13148743,
+      "sha256": "8387a0aad08953cb68ba6073688134c94b5ec07d2d65446abb50f9b69f9f26b2",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-1990-same-day-death-reloaded.json.gz",
+          "bytes": 2088178,
+          "sha256": "f3407e5eae61365bd0299d128979a8e1ac7a2c7e1c50102bee411a4e74e748ba"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-2027-term-limit-browsed.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-2027-term-limit-browsed.json",
+      "bytes": 13149287,
+      "sha256": "c9fa158fed8221299fb1ca7c1c6fdf9093a1630453a7ef2d8c871053b7b33f51",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-2027-term-limit-browsed.json.gz",
+          "bytes": 2088381,
+          "sha256": "a3aa88ad89c4d47596cccb0b2a85f70899b3396e4d2638c7641d4c256fe55952"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-2027-term-limit-continued.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-2027-term-limit-continued.json",
+      "bytes": 13149287,
+      "sha256": "5e2f486a40e71c11f8f438d2c39121265ff96fe3dcfa1decd517d5832dd4e1a1",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-2027-term-limit-continued.json.gz",
+          "bytes": 2088382,
+          "sha256": "7c30f69b5aa7d11780aa8520607767c9fdbe86b1804dacab86f88c2dbe26dede"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-2027-term-limit-load-cancelled.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-2027-term-limit-load-cancelled.json",
+      "bytes": 13149287,
+      "sha256": "741f96eb45bd7bee66b96252b6b04c881ba46786d6bbf97e5948cbebfd77382e",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-2027-term-limit-load-cancelled.json.gz",
+          "bytes": 2088382,
+          "sha256": "6ff3ca25494a8066c7bd2649c6a7a62d838a5c397b4130772b02b6776ee3e09e"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-2027-term-limit-loaded.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-2027-term-limit-loaded.json",
+      "bytes": 13149287,
+      "sha256": "e8213f595f26bb0cfa68cd6d7e73ea7ea8939bf53f932ed68af81dad95bd3b91",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-2027-term-limit-loaded.json.gz",
+          "bytes": 2088381,
+          "sha256": "8e8a816f9a7dec66e2aa7a1e343f2891c788c2be808ac09e97b44472dab1811a"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-2027-term-limit-reloaded.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-2027-term-limit-reloaded.json",
+      "bytes": 13149287,
+      "sha256": "80c28caa43cc60a552dea092830eeb888e819063aa0e9c255961723f4c7a149d",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/server/captures/s10f-audit-uk-2027-term-limit-reloaded.json.gz",
+          "bytes": 2088381,
+          "sha256": "8e1c1fb618895044f32545daeedea3e1ceb8312149eee0156614cd2fb28efcc9"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\saves\\s10f-authored-uk-1990-same-day-death.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/server/saves/s10f-authored-uk-1990-same-day-death.json",
+      "bytes": 13148743,
+      "sha256": "20ff7725efd244c079e791d95c307db7682348119ceb20602b70ed62dc74b9ef",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/server/saves/s10f-authored-uk-1990-same-day-death.json.gz",
+          "bytes": 2088178,
+          "sha256": "be91ad6c4bb4a26333bcd8c499329dcaca276dc2da4d887e28b939906bc037a1"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\saves\\s10f-authored-uk-2027-term-limit.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/server/saves/s10f-authored-uk-2027-term-limit.json",
+      "bytes": 13149287,
+      "sha256": "6f89373bcc7163c7b605be07bfb48f702e1f0a18375e1217538aa779f228874d",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/server/saves/s10f-authored-uk-2027-term-limit.json.gz",
+          "bytes": 2088381,
+          "sha256": "2962fddb4c6ffce33e219a465f60d09ceb133590c1cdeb1d983986a46147a3b0"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\saves\\s10f-reviewed-uk-1990-same-day-death.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/server/saves/s10f-reviewed-uk-1990-same-day-death.json",
+      "bytes": 13148743,
+      "sha256": "3db27956f435dac483cc40f4b605f0c786a02043be3140a6b9b270d75a1d17fd",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/server/saves/s10f-reviewed-uk-1990-same-day-death.json.gz",
+          "bytes": 2088178,
+          "sha256": "a273b00db61c242fe4dd5ade1fa9442cb264fae53c896936786b5af2ccb84193"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\saves\\s10f-reviewed-uk-2027-term-limit.json",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/server/saves/s10f-reviewed-uk-2027-term-limit.json",
+      "bytes": 13149287,
+      "sha256": "756b3d49de1fcf6ef114cd7a55505507acad419f3ec289c3a62254193be8b65d",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/server/saves/s10f-reviewed-uk-2027-term-limit.json.gz",
+          "bytes": 2088382,
+          "sha256": "6c9e8dc016f7ab15d5ec92e2357ea18f0c8c7f0d8fcab8d13b18b60398aea357"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server.log",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/server.log",
+      "bytes": 78,
+      "sha256": "dcd6861d87b065d0f89b3c4f984ece296cdc303c68b13ccfcf8ecf655412cf74",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/server.log",
+          "bytes": 78,
+          "sha256": "dcd6861d87b065d0f89b3c4f984ece296cdc303c68b13ccfcf8ecf655412cf74"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-1990-same-day-death-campaign-1440.png",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-campaign-1440.png",
+      "bytes": 393094,
+      "sha256": "ab236952c9e543a8d97b0a592d94aca2bedaaed80b7b0fbf423978dc6a9db78e",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-campaign-1440.png",
+          "bytes": 393094,
+          "sha256": "ab236952c9e543a8d97b0a592d94aca2bedaaed80b7b0fbf423978dc6a9db78e"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-1990-same-day-death-campaign-320.png",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-campaign-320.png",
+      "bytes": 90314,
+      "sha256": "5ef473098fb803f762520eddc71aa089c167fffa39b35997810bb3db67f0c34a",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-campaign-320.png",
+          "bytes": 90314,
+          "sha256": "5ef473098fb803f762520eddc71aa089c167fffa39b35997810bb3db67f0c34a"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-1990-same-day-death-campaign-390.png",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-campaign-390.png",
+      "bytes": 108972,
+      "sha256": "9368ff0e2d37d5685250d2cb952f195a52b35bc236bf2d5dd6f63781936063e4",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-campaign-390.png",
+          "bytes": 108972,
+          "sha256": "9368ff0e2d37d5685250d2cb952f195a52b35bc236bf2d5dd6f63781936063e4"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-1990-same-day-death-continued-320.png",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-continued-320.png",
+      "bytes": 92307,
+      "sha256": "8c0806169526edbc1a85f76b05545b873db0e7559830f06b13a28c2bc3aae77f",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-continued-320.png",
+          "bytes": 92307,
+          "sha256": "8c0806169526edbc1a85f76b05545b873db0e7559830f06b13a28c2bc3aae77f"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-1990-same-day-death-reference-1440.png",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-reference-1440.png",
+      "bytes": 219748,
+      "sha256": "43e5ac20c6f0aa3bfc0679059054d82922102de9588919b8bd31a9739126ef92",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-reference-1440.png",
+          "bytes": 219748,
+          "sha256": "43e5ac20c6f0aa3bfc0679059054d82922102de9588919b8bd31a9739126ef92"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-1990-same-day-death-reference-320.png",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-reference-320.png",
+      "bytes": 98908,
+      "sha256": "e14f95c9a4645aa338fa40aeba54174723537a37ecc8011047b7ecae5b3e92bf",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-reference-320.png",
+          "bytes": 98908,
+          "sha256": "e14f95c9a4645aa338fa40aeba54174723537a37ecc8011047b7ecae5b3e92bf"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-1990-same-day-death-reference-390.png",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-reference-390.png",
+      "bytes": 113762,
+      "sha256": "5cb60a3a28c111b2682e49f05d2376d98803178c982a2c77fc3b274c24dd1061",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/uk-1990-same-day-death-reference-390.png",
+          "bytes": 113762,
+          "sha256": "5cb60a3a28c111b2682e49f05d2376d98803178c982a2c77fc3b274c24dd1061"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-2027-term-limit-campaign-1440.png",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-campaign-1440.png",
+      "bytes": 230617,
+      "sha256": "94e23e090a0494efad2df2cd0366c620b2327d80a06adc6bbbebca82cb2cc1a0",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-campaign-1440.png",
+          "bytes": 230617,
+          "sha256": "94e23e090a0494efad2df2cd0366c620b2327d80a06adc6bbbebca82cb2cc1a0"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-2027-term-limit-campaign-320.png",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-campaign-320.png",
+      "bytes": 96192,
+      "sha256": "3bdabed2fd47ee3c215bb2cd2875020badefac3f6700911e92481a65163d70f0",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-campaign-320.png",
+          "bytes": 96192,
+          "sha256": "3bdabed2fd47ee3c215bb2cd2875020badefac3f6700911e92481a65163d70f0"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-2027-term-limit-campaign-390.png",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-campaign-390.png",
+      "bytes": 110889,
+      "sha256": "2611ca1914e4579f552ba8fbb945ed81ed5982561d145c8a23ee9b2c289b1f9a",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-campaign-390.png",
+          "bytes": 110889,
+          "sha256": "2611ca1914e4579f552ba8fbb945ed81ed5982561d145c8a23ee9b2c289b1f9a"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-2027-term-limit-continued-320.png",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-continued-320.png",
+      "bytes": 89012,
+      "sha256": "5bc4acd84e048e3040dcdefee2f0c709d906d8ca8ec1261e5feb964b0ecfdbf0",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-continued-320.png",
+          "bytes": 89012,
+          "sha256": "5bc4acd84e048e3040dcdefee2f0c709d906d8ca8ec1261e5feb964b0ecfdbf0"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-2027-term-limit-reference-1440.png",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-reference-1440.png",
+      "bytes": 205625,
+      "sha256": "99d80fad5371b099bbd2d7d9d7ed0c0e8bb4cf4cb3268531d6f7a2e946889615",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-reference-1440.png",
+          "bytes": 205625,
+          "sha256": "99d80fad5371b099bbd2d7d9d7ed0c0e8bb4cf4cb3268531d6f7a2e946889615"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-2027-term-limit-reference-320.png",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-reference-320.png",
+      "bytes": 92205,
+      "sha256": "62ccb9d76eb050c06860754dfb2d1f7df3a2f9d57de6b9485ff763a99c4b5359",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-reference-320.png",
+          "bytes": 92205,
+          "sha256": "62ccb9d76eb050c06860754dfb2d1f7df3a2f9d57de6b9485ff763a99c4b5359"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-2027-term-limit-reference-390.png",
+      "logical_path": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-reference-390.png",
+      "bytes": 107448,
+      "sha256": "674b4490f9f240dd4bde2832d4f744a56a810af7d1e7ede9b1d4bff3d39daf38",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser/authored-uk-wv77jk/uk-2027-term-limit-reference-390.png",
+          "bytes": 107448,
+          "sha256": "674b4490f9f240dd4bde2832d4f744a56a810af7d1e7ede9b1d4bff3d39daf38"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser.log",
+      "logical_path": "authored-browser/browser.log",
+      "bytes": 212,
+      "sha256": "3d6c2334e88cc16362023eb14aa2888da6e7602c6977058ccf800dfa5d24e293",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/browser.log",
+          "bytes": 212,
+          "sha256": "3d6c2334e88cc16362023eb14aa2888da6e7602c6977058ccf800dfa5d24e293"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\result.json",
+      "logical_path": "authored-browser/result.json",
+      "bytes": 830,
+      "sha256": "0fa3bc5e6ddde00aa743146181bb32e6f500240f326498b5631072239ce66532",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "authored-browser/result.json",
+          "bytes": 830,
+          "sha256": "0fa3bc5e6ddde00aa743146181bb32e6f500240f326498b5631072239ce66532"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\001-s10-before-review.canonical",
+      "logical_path": "ordinary-browser/france-Wz0Zio/archive-audit/001-s10-before-review.canonical",
+      "bytes": 12116205,
+      "sha256": "ac40ee9e516385acba7edc0895f2084d5034722f22ed955bbde0d23fa9bf4f5d",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/archive-audit/001-s10-before-review.canonical.gz",
+          "bytes": 1868964,
+          "sha256": "e3db86025103b54cf5b863d9e52af189383decfd2a762e8baa6f762700e607e0"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\001-s10-before-review.json",
+      "logical_path": "ordinary-browser/france-Wz0Zio/archive-audit/001-s10-before-review.json",
+      "bytes": 1380,
+      "sha256": "cbf8eca33157e1382ff5e781aeb8b90ce506820e690d6317f871ceb6cd942ff8",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/archive-audit/001-s10-before-review.json",
+          "bytes": 1380,
+          "sha256": "cbf8eca33157e1382ff5e781aeb8b90ce506820e690d6317f871ceb6cd942ff8"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\002-s10-after-cancel.canonical",
+      "logical_path": "ordinary-browser/france-Wz0Zio/archive-audit/002-s10-after-cancel.canonical",
+      "bytes": 12116205,
+      "sha256": "ac40ee9e516385acba7edc0895f2084d5034722f22ed955bbde0d23fa9bf4f5d",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/archive-audit/002-s10-after-cancel.canonical.gz",
+          "bytes": 1868964,
+          "sha256": "e3db86025103b54cf5b863d9e52af189383decfd2a762e8baa6f762700e607e0"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\002-s10-after-cancel.json",
+      "logical_path": "ordinary-browser/france-Wz0Zio/archive-audit/002-s10-after-cancel.json",
+      "bytes": 1377,
+      "sha256": "6accf4775c5c8588e6b6c6298b2a9fcc079c2ce83ffc59f1a267ac1b731acdff",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/archive-audit/002-s10-after-cancel.json",
+          "bytes": 1377,
+          "sha256": "6accf4775c5c8588e6b6c6298b2a9fcc079c2ce83ffc59f1a267ac1b731acdff"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\003-s10-after-second-tab.canonical",
+      "logical_path": "ordinary-browser/france-Wz0Zio/archive-audit/003-s10-after-second-tab.canonical",
+      "bytes": 12116604,
+      "sha256": "74593de494745c97cf32541e2de6c06640e49eb92035d6ee744f922d0ec276e1",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/archive-audit/003-s10-after-second-tab.canonical.gz",
+          "bytes": 1869079,
+          "sha256": "141c4fc28bc01af40f465b515bf58af9f987a8fd32187f1d6454e34cd59e016f"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\003-s10-after-second-tab.json",
+      "logical_path": "ordinary-browser/france-Wz0Zio/archive-audit/003-s10-after-second-tab.json",
+      "bytes": 1389,
+      "sha256": "eaebc38ba8382313409ced3b64a1e3167bd66e4cc6b356afd19cafbf74b5b5b6",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/archive-audit/003-s10-after-second-tab.json",
+          "bytes": 1389,
+          "sha256": "eaebc38ba8382313409ced3b64a1e3167bd66e4cc6b356afd19cafbf74b5b5b6"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\004-s10-after-stale.canonical",
+      "logical_path": "ordinary-browser/france-Wz0Zio/archive-audit/004-s10-after-stale.canonical",
+      "bytes": 12116604,
+      "sha256": "74593de494745c97cf32541e2de6c06640e49eb92035d6ee744f922d0ec276e1",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/archive-audit/004-s10-after-stale.canonical.gz",
+          "bytes": 1869079,
+          "sha256": "141c4fc28bc01af40f465b515bf58af9f987a8fd32187f1d6454e34cd59e016f"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\004-s10-after-stale.json",
+      "logical_path": "ordinary-browser/france-Wz0Zio/archive-audit/004-s10-after-stale.json",
+      "bytes": 1374,
+      "sha256": "569dae9c2c00bd32c09f827a37c761bd7cc6d41d037987763e7fbb56498ac799",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/archive-audit/004-s10-after-stale.json",
+          "bytes": 1374,
+          "sha256": "569dae9c2c00bd32c09f827a37c761bd7cc6d41d037987763e7fbb56498ac799"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\005-s10-after-government.canonical",
+      "logical_path": "ordinary-browser/france-Wz0Zio/archive-audit/005-s10-after-government.canonical",
+      "bytes": 12116685,
+      "sha256": "065a663fe4332b2c6705d4faab27f2c0c9133b879de9e2b2810c8f4ae8b60697",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/archive-audit/005-s10-after-government.canonical.gz",
+          "bytes": 1869091,
+          "sha256": "ba827fac81acfbb7c0457ebf7c81b8a391dc68ac3a58796a72602fa13b23e6bd"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\005-s10-after-government.json",
+      "logical_path": "ordinary-browser/france-Wz0Zio/archive-audit/005-s10-after-government.json",
+      "bytes": 1389,
+      "sha256": "d23c434f3b8301ec52b4a8678833f9f2240119611626900c80f224a1b779f37c",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/archive-audit/005-s10-after-government.json",
+          "bytes": 1389,
+          "sha256": "d23c434f3b8301ec52b4a8678833f9f2240119611626900c80f224a1b779f37c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\006-s10-after-load-cancel.canonical",
+      "logical_path": "ordinary-browser/france-Wz0Zio/archive-audit/006-s10-after-load-cancel.canonical",
+      "bytes": 12116685,
+      "sha256": "065a663fe4332b2c6705d4faab27f2c0c9133b879de9e2b2810c8f4ae8b60697",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/archive-audit/006-s10-after-load-cancel.canonical.gz",
+          "bytes": 1869091,
+          "sha256": "ba827fac81acfbb7c0457ebf7c81b8a391dc68ac3a58796a72602fa13b23e6bd"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\006-s10-after-load-cancel.json",
+      "logical_path": "ordinary-browser/france-Wz0Zio/archive-audit/006-s10-after-load-cancel.json",
+      "bytes": 1392,
+      "sha256": "9249e6b0dd73857fd35335fa542ce48faae84dd958dd336cec162c96f7fd7048",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/archive-audit/006-s10-after-load-cancel.json",
+          "bytes": 1392,
+          "sha256": "9249e6b0dd73857fd35335fa542ce48faae84dd958dd336cec162c96f7fd7048"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\007-s10-after-load.canonical",
+      "logical_path": "ordinary-browser/france-Wz0Zio/archive-audit/007-s10-after-load.canonical",
+      "bytes": 12116685,
+      "sha256": "065a663fe4332b2c6705d4faab27f2c0c9133b879de9e2b2810c8f4ae8b60697",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/archive-audit/007-s10-after-load.canonical.gz",
+          "bytes": 1869091,
+          "sha256": "ba827fac81acfbb7c0457ebf7c81b8a391dc68ac3a58796a72602fa13b23e6bd"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\007-s10-after-load.json",
+      "logical_path": "ordinary-browser/france-Wz0Zio/archive-audit/007-s10-after-load.json",
+      "bytes": 1371,
+      "sha256": "88b3199af353506f1611743047b58a11085de2eca0a3d828ef720e79a05dfe3c",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/archive-audit/007-s10-after-load.json",
+          "bytes": 1371,
+          "sha256": "88b3199af353506f1611743047b58a11085de2eca0a3d828ef720e79a05dfe3c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\008-s10-after-continue.canonical",
+      "logical_path": "ordinary-browser/france-Wz0Zio/archive-audit/008-s10-after-continue.canonical",
+      "bytes": 12116685,
+      "sha256": "065a663fe4332b2c6705d4faab27f2c0c9133b879de9e2b2810c8f4ae8b60697",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/archive-audit/008-s10-after-continue.canonical.gz",
+          "bytes": 1869091,
+          "sha256": "ba827fac81acfbb7c0457ebf7c81b8a391dc68ac3a58796a72602fa13b23e6bd"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\archive-audit\\008-s10-after-continue.json",
+      "logical_path": "ordinary-browser/france-Wz0Zio/archive-audit/008-s10-after-continue.json",
+      "bytes": 1383,
+      "sha256": "74da08655a256f6e38ec1360e1332c1e2cdd9a87cc57939ead0453caecc9fc2a",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/archive-audit/008-s10-after-continue.json",
+          "bytes": 1383,
+          "sha256": "74da08655a256f6e38ec1360e1332c1e2cdd9a87cc57939ead0453caecc9fc2a"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\chrome-netlog.json",
+      "logical_path": "ordinary-browser/france-Wz0Zio/chrome-netlog.json",
+      "bytes": 5731314,
+      "sha256": "e981cfd721275dffa1429b5ca423094a71a8c4653038201f10fb21cbd4c6604e",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/chrome-netlog.json.gz",
+          "bytes": 389297,
+          "sha256": "2045cfee1306ec4942de2b71410d88f5299f2c2822811ffa861c14590fbe9eb3"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-continued-narrow-320.png",
+      "logical_path": "ordinary-browser/france-Wz0Zio/government-continued-narrow-320.png",
+      "bytes": 91870,
+      "sha256": "d65640a493d8aaefcae63fa8deb65723e991434dc3b9983dd4e3ebc19514935c",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/government-continued-narrow-320.png",
+          "bytes": 91870,
+          "sha256": "d65640a493d8aaefcae63fa8deb65723e991434dc3b9983dd4e3ebc19514935c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-continued-narrow.png",
+      "logical_path": "ordinary-browser/france-Wz0Zio/government-continued-narrow.png",
+      "bytes": 103999,
+      "sha256": "37b3914fa6827d9cfb305d1a6094abe0b3773c41ba947ec5ab70c789fa8b4f74",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/government-continued-narrow.png",
+          "bytes": 103999,
+          "sha256": "37b3914fa6827d9cfb305d1a6094abe0b3773c41ba947ec5ab70c789fa8b4f74"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-fresh-review-320.png",
+      "logical_path": "ordinary-browser/france-Wz0Zio/government-fresh-review-320.png",
+      "bytes": 62938,
+      "sha256": "c5f0b710bbef53694b2ece1523b371cb191c15e50688718fb3d446ea05906b85",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/government-fresh-review-320.png",
+          "bytes": 62938,
+          "sha256": "c5f0b710bbef53694b2ece1523b371cb191c15e50688718fb3d446ea05906b85"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-fresh-review-390.png",
+      "logical_path": "ordinary-browser/france-Wz0Zio/government-fresh-review-390.png",
+      "bytes": 84242,
+      "sha256": "10f460271d3761cc9ed53d68c8772f82dd94499586640121061640879ff80e28",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/government-fresh-review-390.png",
+          "bytes": 84242,
+          "sha256": "10f460271d3761cc9ed53d68c8772f82dd94499586640121061640879ff80e28"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-fresh-review.png",
+      "logical_path": "ordinary-browser/france-Wz0Zio/government-fresh-review.png",
+      "bytes": 284676,
+      "sha256": "349da82f8240349f8a7abfb2823cd739a2fd615c51857c73cda77c1ba9e9af25",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/government-fresh-review.png",
+          "bytes": 284676,
+          "sha256": "349da82f8240349f8a7abfb2823cd739a2fd615c51857c73cda77c1ba9e9af25"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-result-desktop.png",
+      "logical_path": "ordinary-browser/france-Wz0Zio/government-result-desktop.png",
+      "bytes": 184158,
+      "sha256": "652a1c0fb221ce2a82e09d8bc83021d894b64b73ace109fbc62cc12b8f32c24c",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/government-result-desktop.png",
+          "bytes": 184158,
+          "sha256": "652a1c0fb221ce2a82e09d8bc83021d894b64b73ace109fbc62cc12b8f32c24c"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-result-narrow-320.png",
+      "logical_path": "ordinary-browser/france-Wz0Zio/government-result-narrow-320.png",
+      "bytes": 55173,
+      "sha256": "0cbc68107cb48770fb083311fed7ca6c523b62cec4785bfb19f190162ded8df8",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/government-result-narrow-320.png",
+          "bytes": 55173,
+          "sha256": "0cbc68107cb48770fb083311fed7ca6c523b62cec4785bfb19f190162ded8df8"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-result-narrow-390.png",
+      "logical_path": "ordinary-browser/france-Wz0Zio/government-result-narrow-390.png",
+      "bytes": 66072,
+      "sha256": "21e76f52df1e26dfb06d63f791a051d785136173ac50df37299694b3b40565aa",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/government-result-narrow-390.png",
+          "bytes": 66072,
+          "sha256": "21e76f52df1e26dfb06d63f791a051d785136173ac50df37299694b3b40565aa"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-review-before-second-tab.png",
+      "logical_path": "ordinary-browser/france-Wz0Zio/government-review-before-second-tab.png",
+      "bytes": 284676,
+      "sha256": "349da82f8240349f8a7abfb2823cd739a2fd615c51857c73cda77c1ba9e9af25",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/government-review-before-second-tab.png",
+          "bytes": 284676,
+          "sha256": "349da82f8240349f8a7abfb2823cd739a2fd615c51857c73cda77c1ba9e9af25"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-stale-review-refused.png",
+      "logical_path": "ordinary-browser/france-Wz0Zio/government-stale-review-refused.png",
+      "bytes": 185798,
+      "sha256": "3addb18ff54a2ba2e3534a7db59502b8989235a646267c053b8f0f7854920966",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/government-stale-review-refused.png",
+          "bytes": 185798,
+          "sha256": "3addb18ff54a2ba2e3534a7db59502b8989235a646267c053b8f0f7854920966"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\policy-review-desktop.png",
+      "logical_path": "ordinary-browser/france-Wz0Zio/policy-review-desktop.png",
+      "bytes": 442988,
+      "sha256": "5bcf76148940903996a43ba66955594b1abe9c6a5b6c6bde26e149383db8ab40",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/policy-review-desktop.png",
+          "bytes": 442988,
+          "sha256": "5bcf76148940903996a43ba66955594b1abe9c6a5b6c6bde26e149383db8ab40"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\policy-review-narrow-320.png",
+      "logical_path": "ordinary-browser/france-Wz0Zio/policy-review-narrow-320.png",
+      "bytes": 77681,
+      "sha256": "6975c6751a021f225dcba12cff3ed882a7b842d55dbe93e4702a971fcee777b2",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/policy-review-narrow-320.png",
+          "bytes": 77681,
+          "sha256": "6975c6751a021f225dcba12cff3ed882a7b842d55dbe93e4702a971fcee777b2"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\policy-review-narrow.png",
+      "logical_path": "ordinary-browser/france-Wz0Zio/policy-review-narrow.png",
+      "bytes": 93149,
+      "sha256": "44262b75299d0adca474a136cbbadf4ae7a7603abde7eb31d82d1fc69e622e6e",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/policy-review-narrow.png",
+          "bytes": 93149,
+          "sha256": "44262b75299d0adca474a136cbbadf4ae7a7603abde7eb31d82d1fc69e622e6e"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\progress.jsonl",
+      "logical_path": "ordinary-browser/france-Wz0Zio/progress.jsonl",
+      "bytes": 11675,
+      "sha256": "e49f6e926ab8c8c8a7e2d2b5b01b51b88f3bd3151e1609f534f9d9d7cf2d9ed1",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/progress.jsonl",
+          "bytes": 11675,
+          "sha256": "e49f6e926ab8c8c8a7e2d2b5b01b51b88f3bd3151e1609f534f9d9d7cf2d9ed1"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\result.json",
+      "logical_path": "ordinary-browser/france-Wz0Zio/result.json",
+      "bytes": 169389,
+      "sha256": "9d9db618925771ed1329facf5241528f9407ea5e4cdafae1fe8ad4b2cdb5f768",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/result.json",
+          "bytes": 169389,
+          "sha256": "9d9db618925771ed1329facf5241528f9407ea5e4cdafae1fe8ad4b2cdb5f768"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\second-tab-policy-recorded.png",
+      "logical_path": "ordinary-browser/france-Wz0Zio/second-tab-policy-recorded.png",
+      "bytes": 468748,
+      "sha256": "e8ea7158db0a2779054b865c9185fe89e87f97c696f197b14c1edade1753a71a",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/second-tab-policy-recorded.png",
+          "bytes": 468748,
+          "sha256": "e8ea7158db0a2779054b865c9185fe89e87f97c696f197b14c1edade1753a71a"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server\\audit-captures\\s10-after-cancel-07erIa\\s10-after-cancel.json",
+      "logical_path": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-cancel-07erIa/s10-after-cancel.json",
+      "bytes": 13148768,
+      "sha256": "0eab5df0e168b6c7141ae8fae532ff24004b181012f78543013c74d5e0877093",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-cancel-07erIa/s10-after-cancel.json.gz",
+          "bytes": 2088148,
+          "sha256": "a84db4f2827986dc4ee831656005c47b19cda053f59cd60a5a56061e019ee508"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server\\audit-captures\\s10-after-continue-9cJSS4\\s10-after-continue.json",
+      "logical_path": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-continue-9cJSS4/s10-after-continue.json",
+      "bytes": 13149407,
+      "sha256": "1cb235885a221e335a98a5c4a528e373e19ceb76af92c0bf6920bf31f107390a",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-continue-9cJSS4/s10-after-continue.json.gz",
+          "bytes": 2088505,
+          "sha256": "1d7b4d93786b49c74987053c4ddcd62be9129b7fd5455308c5d113cc87f4f72a"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server\\audit-captures\\s10-after-government-gjaSkw\\s10-after-government.json",
+      "logical_path": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-government-gjaSkw/s10-after-government.json",
+      "bytes": 13149407,
+      "sha256": "84c5d432f2b012bda75ab56c32aa8db43babb5be9efb72948b46559ad01934f3",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-government-gjaSkw/s10-after-government.json.gz",
+          "bytes": 2088505,
+          "sha256": "9b0f1a92b9645eec4751f5d627eaae655fa48d3b4340f848b921f014ecb5ef7f"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server\\audit-captures\\s10-after-load-8jhodo\\s10-after-load.json",
+      "logical_path": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-load-8jhodo/s10-after-load.json",
+      "bytes": 13149407,
+      "sha256": "bddbd93ae35c00816cc67a95d1ed08c56a00f047bce4ea3614a3860c32c6ff29",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-load-8jhodo/s10-after-load.json.gz",
+          "bytes": 2088505,
+          "sha256": "0764663341dd7a43665f310aa4f3726d7afa879d10aa2cb4b39f355e4dfd4bfd"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server\\audit-captures\\s10-after-load-cancel-2Cunsi\\s10-after-load-cancel.json",
+      "logical_path": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-load-cancel-2Cunsi/s10-after-load-cancel.json",
+      "bytes": 13149407,
+      "sha256": "db960b217a3de3e5390842daa228c63369fbe198ffde8b18f1e16bb87afe7da6",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-load-cancel-2Cunsi/s10-after-load-cancel.json.gz",
+          "bytes": 2088505,
+          "sha256": "00943f85da3144dc93708bc3f8a611a96df4320b17e4eb8e5c06d7b4b74c8d10"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server\\audit-captures\\s10-after-second-tab-ibkqxW\\s10-after-second-tab.json",
+      "logical_path": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-second-tab-ibkqxW/s10-after-second-tab.json",
+      "bytes": 13149208,
+      "sha256": "ba66882d55096b0ec1df5c17b0b8e3e0ab983fc48d9f1c9261005313820676a5",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-second-tab-ibkqxW/s10-after-second-tab.json.gz",
+          "bytes": 2088427,
+          "sha256": "c67901a06629a0355b0873f6833db267df4910a9f763fb13a61ba6b96cf081fd"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server\\audit-captures\\s10-after-stale-QmcHed\\s10-after-stale.json",
+      "logical_path": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-stale-QmcHed/s10-after-stale.json",
+      "bytes": 13149208,
+      "sha256": "5c3d55cce4e4df139a66dd5c5d7d3e77f1e44196ec3ea09bca56a09a75896b1c",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-after-stale-QmcHed/s10-after-stale.json.gz",
+          "bytes": 2088427,
+          "sha256": "ac9531fa59a19498943ae46618189e598d5ec3fc427cf6073897b5e2263e89e7"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server\\audit-captures\\s10-before-review-fe3dyV\\s10-before-review.json",
+      "logical_path": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-before-review-fe3dyV/s10-before-review.json",
+      "bytes": 13148768,
+      "sha256": "b9bcc5497396644e76d28372bba28bb02271b4313da0845609f50cdd1a738031",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/server/audit-captures/s10-before-review-fe3dyV/s10-before-review.json.gz",
+          "bytes": 2088148,
+          "sha256": "26edce88a5653d9cc4137d1201b493b1f38f4c12a51c6784b49d953d6ae39300"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server\\saves\\s10-government-decisions.json",
+      "logical_path": "ordinary-browser/france-Wz0Zio/server/saves/s10-government-decisions.json",
+      "bytes": 13149407,
+      "sha256": "162dba2cbb8439ffdf8ddce5db875da9a49f89670c1a34412a04fa725765914a",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/server/saves/s10-government-decisions.json.gz",
+          "bytes": 2088505,
+          "sha256": "1ddaec66e5514f00ccb7ec9ee6cf18e1157299d0562e106e8e9a66f519c909c9"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\server.log",
+      "logical_path": "ordinary-browser/france-Wz0Zio/server.log",
+      "bytes": 78,
+      "sha256": "9fcfcdd7f019eec675dbf1d46955c4f37442562eb0346f3b518b85763574896b",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "ordinary-browser/france-Wz0Zio/server.log",
+          "bytes": 78,
+          "sha256": "9fcfcdd7f019eec675dbf1d46955c4f37442562eb0346f3b518b85763574896b"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-preservation-before.json",
+      "logical_path": "review/S10f-preservation-before.json",
+      "bytes": 3137,
+      "sha256": "dc874e986481bf7176c936726b9dc28a19d8c904561f1fd4a25da6cba8af09d0",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "review/S10f-preservation-before.json",
+          "bytes": 3137,
+          "sha256": "dc874e986481bf7176c936726b9dc28a19d8c904561f1fd4a25da6cba8af09d0"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-preservation-final.json",
+      "logical_path": "review/S10f-preservation-final.json",
+      "bytes": 3137,
+      "sha256": "536c5032365c3b648efd871392abb43992288d7e8f4472613032248d35d5697d",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "review/S10f-preservation-final.json",
+          "bytes": 3137,
+          "sha256": "536c5032365c3b648efd871392abb43992288d7e8f4472613032248d35d5697d"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-visual-review.json",
+      "logical_path": "review/S10f-visual-review.json",
+      "bytes": 4648,
+      "sha256": "0fd2308ebf04a392aa87c3f4903dc81aa57d541bfa5783692bfd7710576a0d6f",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "review/S10f-visual-review.json",
+          "bytes": 4648,
+          "sha256": "0fd2308ebf04a392aa87c3f4903dc81aa57d541bfa5783692bfd7710576a0d6f"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\S10f-review-launch.json",
+      "logical_path": "review/launch.json",
+      "bytes": 2549,
+      "sha256": "e9929b8e7bfbea65ebb858a0802da8b21ac826b4bc51eeef1b0da2eb2ec274fa",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "review/launch.json",
+          "bytes": 2549,
+          "sha256": "e9929b8e7bfbea65ebb858a0802da8b21ac826b4bc51eeef1b0da2eb2ec274fa"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S10f-20260913-164852\\native-verification\\copied-save.canonical",
+      "logical_path": "review/native-verification/copied-save.canonical",
+      "bytes": 12116685,
+      "sha256": "065a663fe4332b2c6705d4faab27f2c0c9133b879de9e2b2810c8f4ae8b60697",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "review/native-verification/copied-save.canonical.gz",
+          "bytes": 1869091,
+          "sha256": "ba827fac81acfbb7c0457ebf7c81b8a391dc68ac3a58796a72602fa13b23e6bd"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\review-S10f-20260913-164852\\native-verification\\copied-save.json",
+      "logical_path": "review/native-verification/copied-save.json",
+      "bytes": 1340,
+      "sha256": "af6b9ab10a8928058e8ef71ae24bec3910c5942efb4598095335d2e718ef4d9d",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "review/native-verification/copied-save.json",
+          "bytes": 1340,
+          "sha256": "af6b9ab10a8928058e8ef71ae24bec3910c5942efb4598095335d2e718ef4d9d"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s10f-check.py",
+      "logical_path": "runners/run-s10f-check.py",
+      "bytes": 4189,
+      "sha256": "d31536a63ccd771ce84a1663ea9edd4f2e0ae27ff844873072c2ae93bd566416",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "runners/run-s10f-check.py",
+          "bytes": 4189,
+          "sha256": "d31536a63ccd771ce84a1663ea9edd4f2e0ae27ff844873072c2ae93bd566416"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s10f-linux.py",
+      "logical_path": "runners/run-s10f-linux.py",
+      "bytes": 3192,
+      "sha256": "8974b2bbd52d573ae846fa906651af23a1b2cada9d90912ee11c324096368aab",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "runners/run-s10f-linux.py",
+          "bytes": 3192,
+          "sha256": "8974b2bbd52d573ae846fa906651af23a1b2cada9d90912ee11c324096368aab"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s10f-content.py",
+      "logical_path": "runners/run-s10f-content.py",
+      "bytes": 2357,
+      "sha256": "1144f871b08242df342eb8d017229295744aec81e6a5cde26933f6b98b413999",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "runners/run-s10f-content.py",
+          "bytes": 2357,
+          "sha256": "1144f871b08242df342eb8d017229295744aec81e6a5cde26933f6b98b413999"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\run-s10f-succession.py",
+      "logical_path": "runners/run-s10f-succession.py",
+      "bytes": 3005,
+      "sha256": "075b376dae487aed07e44b043913b5c0ed1eb3b483d74622054c34d5af41c3b0",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "runners/run-s10f-succession.py",
+          "bytes": 3005,
+          "sha256": "075b376dae487aed07e44b043913b5c0ed1eb3b483d74622054c34d5af41c3b0"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\launch-s10f-review.py",
+      "logical_path": "runners/launch-s10f-review.py",
+      "bytes": 4153,
+      "sha256": "04471ec9bd08d62ec1b7019455b738b6d2b95bb3f616cc9f0b5556270e6f4f32",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "runners/launch-s10f-review.py",
+          "bytes": 4153,
+          "sha256": "04471ec9bd08d62ec1b7019455b738b6d2b95bb3f616cc9f0b5556270e6f4f32"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\verify-s08-preservation.py",
+      "logical_path": "runners/verify-s08-preservation.py",
+      "bytes": 1637,
+      "sha256": "4fc24e55dc7b773844067d52e09bffc88c42458e2adb7cbcdcbb337859afccbd",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "runners/verify-s08-preservation.py",
+          "bytes": 1637,
+          "sha256": "4fc24e55dc7b773844067d52e09bffc88c42458e2adb7cbcdcbb337859afccbd"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\collect-s09-evidence.py",
+      "logical_path": "runners/collect-s09-evidence.py",
+      "bytes": 4786,
+      "sha256": "3bb311491bfa40d3c964b7af42c4d00c294dedb98ee4503fd3763a3ee9b22a1a",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "runners/collect-s09-evidence.py",
+          "bytes": 4786,
+          "sha256": "3bb311491bfa40d3c964b7af42c4d00c294dedb98ee4503fd3763a3ee9b22a1a"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\publish-s10f.py",
+      "logical_path": "runners/publish-s10f.py",
+      "bytes": 20343,
+      "sha256": "39ecd2e9a2174f2b458c2e73e1eeab612d11be1fb5f1982b30c6a99bb24cd9a4",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "runners/publish-s10f.py",
+          "bytes": 20343,
+          "sha256": "39ecd2e9a2174f2b458c2e73e1eeab612d11be1fb5f1982b30c6a99bb24cd9a4"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\verify-s10f-publication.py",
+      "logical_path": "runners/verify-s10f-publication.py",
+      "bytes": 5750,
+      "sha256": "e6868163cde02e8cae7ecf8d9fb89a7276840d3a971a15579eb1eddb4d3a3cfc",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "runners/verify-s10f-publication.py",
+          "bytes": 5750,
+          "sha256": "e6868163cde02e8cae7ecf8d9fb89a7276840d3a971a15579eb1eddb4d3a3cfc"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-final\\result.json",
+      "logical_path": "development/authored-initial/result.json",
+      "bytes": 1407,
+      "sha256": "2ab170022d942af2410fe3ad6469b9672cdb766bfae5c8e256b3d995488fd4ea",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "development/authored-initial/result.json",
+          "bytes": 1407,
+          "sha256": "2ab170022d942af2410fe3ad6469b9672cdb766bfae5c8e256b3d995488fd4ea"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-final\\browser.log",
+      "logical_path": "development/authored-initial/browser.log",
+      "bytes": 1083,
+      "sha256": "e307ae6b1468acb714d709c2912ba042128ad6115d493a1de521d2992f209e4f",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "development/authored-initial/browser.log",
+          "bytes": 1083,
+          "sha256": "e307ae6b1468acb714d709c2912ba042128ad6115d493a1de521d2992f209e4f"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-final\\export.log",
+      "logical_path": "development/authored-initial/export.log",
+      "bytes": 369,
+      "sha256": "24dc1014aa17d1b611dc6e97ab427a76cd4fc9130af21039e1e9f320f065aa69",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "development/authored-initial/export.log",
+          "bytes": 369,
+          "sha256": "24dc1014aa17d1b611dc6e97ab427a76cd4fc9130af21039e1e9f320f065aa69"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-final\\browser\\authored-uk-M1edZM\\result.json",
+      "logical_path": "development/authored-initial/browser/result.json",
+      "bytes": 1091953,
+      "sha256": "2d10fa43e11c3e1865a9e45994f716c4e5243a6261e783673c2692d79e2f900d",
+      "encoding": "gzip",
+      "storage": [
+        {
+          "file": "development/authored-initial/browser/result.json.gz",
+          "bytes": 71457,
+          "sha256": "f01e9e0ca40b3306038c159a2aff0205c1f3a05c7b3a1f7c3075788c2010fce7"
+        }
+      ],
+      "reconstruction_verified": true
+    },
+    {
+      "source": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-final\\browser\\authored-uk-M1edZM\\failure.png",
+      "logical_path": "development/authored-initial/browser/failure.png",
+      "bytes": 226599,
+      "sha256": "6dcc0e8117eb949c5aa21f51b1d920def787bcc782554482d8db51e08fe445e4",
+      "encoding": "raw",
+      "storage": [
+        {
+          "file": "development/authored-initial/browser/failure.png",
+          "bytes": 226599,
+          "sha256": "6dcc0e8117eb949c5aa21f51b1d920def787bcc782554482d8db51e08fe445e4"
+        }
+      ],
+      "reconstruction_verified": true
+    }
+  ],
+  "scope": "Complete selected S10.f native/interface/content logs, two authored succession cases and ordinary France browser archives with exact whole-world comparisons. Both browser journeys advance zero days. Runtime and native/Node/content/ordinary checks use the recorded runtime pin; the qualified authored browser uses a separately recorded driver revision whose only difference is its text-visibility assertion. Initial failed browser reports are development evidence, not qualification. Compiled binaries are identified by SHA and not bundled.",
+  "stored_bytes": 98329370
+}

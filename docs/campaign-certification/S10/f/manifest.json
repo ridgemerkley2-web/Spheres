@@ -1,0 +1,132 @@
+{
+  "format": "spheres-s10f-increment/v1",
+  "status": "increment_complete_parent_open",
+  "created_utc": "2026-09-13T23:53:57.909685+00:00",
+  "runtime_revision": "7d85b9f76a3e787b257613442fb0a3370e90f4c2",
+  "logic_revision": "7d85b9f76a3e787b257613442fb0a3370e90f4c2",
+  "driver_revision": "4a128727bf0917df9bc3f97a3c2c45fa360be0c1",
+  "final_delta": [
+    "tools/ui/ci-succession-context.cjs"
+  ],
+  "binary_sha256": "b99f84450805a518055eff0b67066ce800cbd30096eeeaf0d96d10b1ba9e118b",
+  "c01_complete": false,
+  "s10_complete": false,
+  "g2_earned": false,
+  "s11_started": false,
+  "historical_role_or_gameplay_authorization_changed": false,
+  "browser_elapsed_days": 0,
+  "authored_browser_elapsed_days": 0,
+  "ordinary_browser_elapsed_days": 0,
+  "qualification": {
+    "windows_web": {
+      "passed": 378,
+      "failed": 0,
+      "ignored": 14,
+      "completed_targets": 2
+    },
+    "windows_node": {
+      "tests": 1549,
+      "pass": 1548,
+      "fail": 0,
+      "skipped": 1
+    },
+    "windows_leadership": {
+      "passed": 49,
+      "failed": 0,
+      "ignored": 0,
+      "completed_targets": 1
+    },
+    "windows_agency": {
+      "passed": 12,
+      "failed": 0,
+      "ignored": 0,
+      "completed_targets": 2
+    },
+    "linux_checks": [
+      {
+        "name": "web",
+        "totals": {
+          "passed": 378,
+          "failed": 0,
+          "ignored": 14,
+          "completed_targets": 2
+        }
+      },
+      {
+        "name": "leadership",
+        "totals": {
+          "passed": 49,
+          "failed": 0,
+          "ignored": 0,
+          "completed_targets": 1
+        }
+      },
+      {
+        "name": "agency",
+        "totals": {
+          "passed": 12,
+          "failed": 0,
+          "ignored": 0,
+          "completed_targets": 2
+        }
+      }
+    ],
+    "content_tests": 57,
+    "content_test_groups": {
+      "brazil-tests": 9,
+      "india-tests": 8,
+      "japan-tests": 8,
+      "census-tests": 16,
+      "france-tests": 10,
+      "portrait-tests": 6
+    },
+    "content_commands": 11,
+    "authored_browser": {
+      "inspections": 12,
+      "exact_comparisons": 10,
+      "ignored_paths": []
+    },
+    "ordinary_browser": {
+      "inspections": 8,
+      "exact_comparisons": 5,
+      "ignored_paths": []
+    },
+    "authored_cases": 2,
+    "authored_case_names": [
+      "uk-1990-same-day-death",
+      "uk-2027-term-limit"
+    ],
+    "authored_commands": 0,
+    "authored_previews": 0,
+    "authored_native_fixture_sha256": {
+      "manifest": "97c48a1aba09b6af0524a88fd0215283636dc080ed8f33ef4c5ea8cea010e94e",
+      "uk-1990-same-day-death": "20ff7725efd244c079e791d95c307db7682348119ceb20602b70ed62dc74b9ef",
+      "uk-2027-term-limit": "6f89373bcc7163c7b605be07bfb48f702e1f0a18375e1217538aa779f228874d"
+    },
+    "authored_scope": "Two explicitly authored UK succession presentation fixtures. Ordinary Load, read-only leadership browsing, cancelled Load, Save/Load and Continue must preserve the complete native world. No UI appointments, no browser clock advance, no historical event claim and no campaign-duration certification.",
+    "ordinary_scope": "Fresh France through ordinary controls, real same-campaign second tab; no state grants or substituted responses",
+    "new_long_campaign_or_performance_claim": false,
+    "not_refreshed": [
+      "Full Linux Node",
+      "Eight-country startup matrix",
+      "External old-save fixture matrix",
+      "Long campaign and Russia activation"
+    ]
+  },
+  "research_counts": {
+    "country_packets": 6,
+    "countries_without_new_discovery_packet": 154,
+    "organization_observations": 773,
+    "institution_observations": 18,
+    "sources": 45,
+    "source_claims": 1460,
+    "discovery_batches": 83,
+    "exhaustive_country_censuses": 0
+  },
+  "review_url": "http://127.0.0.1:7852",
+  "evidence": {
+    "inventory_sha256": "d7c4c9dad23247306f6cc5ee3452cefea78d7351d56d17cb6243f8c731a255a3",
+    "logical_files": 151,
+    "stored_bytes": 98329370
+  }
+}

@@ -22,8 +22,19 @@ the source's skipped Kerala row number are retained. Recognition attestation
 does not establish a party's lifespan or present status. This packet adds no
 leader, term, game mapping or avatar.
 
-The discovery index now totals five country packets, 742 organization and 18
-institution observations, 40 sources, 1,426 claims and 79 work batches. No
+S10.f adds a bounded [Brazil discovery packet](research/brazil.json): 31
+organization observations comprising 29 labels in the TSE's 2024 election-funding
+table, a later Missão registration decision and a separate PMB/Democrata naming
+record. These are not 31 distinct parties. The funding table reports 27 dated
+releases and two unknown cells; the June 2024 aggregate announcement does not
+date those later rows. The naming record retains both the original discrepancy
+and the February 2026 rectification. Five primary sources support 34 claims,
+with no new leader, term, game mapping or avatar. Checked-in factual extracts
+are hashed; original HTTP responses and an archived registry snapshot were not
+obtained, so no original-response checksum or registry-as-of claim is made.
+
+The discovery index now totals six country packets, 773 organization and 18
+institution observations, 45 sources, 1,460 claims and 83 work batches. No
 exhaustive country census is closed; the research cutoff remains unchanged.
 
 **Partial inventory recorded; C01 remains incomplete.** This is a reproducible

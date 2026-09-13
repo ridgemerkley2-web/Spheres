@@ -1,6 +1,6 @@
 # Source-backed discovery intake
 
-This is additional research for S10.b through S10.e, separate from the C01
+This is additional research for S10.b through S10.f, separate from the C01
 recount of the playable catalogue. These packets record discoveries and
 explicit gaps; they do not change game parties, leader eligibility or artwork.
 The historical cutoff stays **7 September 2026**. Research access dates can be
@@ -81,9 +81,36 @@ remain outside this intake. All game mappings, leadership terms and lifecycle
 boundaries stay unknown. No avatar or portrait eligibility is added, and access
 on 13 September 2026 does not move the historical cutoff.
 
-Together the five packets contain 742 organization observations and 18
-institution observations, supported by 1,426 claims across 40 cited sources.
-The index assigns them to 79 research batches. None establishes an exhaustive
+[Brazil](brazil.json) adds 31 organization observations, not 31 distinct parties:
+29 exact labels from the [TSE 2024 FEFC table](https://www.tse.jus.br/eleicoes/eleicoes-2024-content/prestacao-de-contas/fundo-especial-de-financiamento-de-campanha-fefc),
+one later Missão registration decision and one separate PMB/Democrata naming
+record. The complete HTML funding table was read. It reports 27 release dates
+in 2024; PCB and PMB show dashes. Those two dates stay unknown, with no inferred
+refusal, nonpayment or inactivity. Labels and process-reference punctuation are
+retained rather than expanded into guessed legal identities. The June 2024
+announcement's aggregate total does not backdate the later release rows.
+
+The naming record preserves the TSE article's Democrata and the initial official
+notice's O DEMOCRATA, followed by the [TRE-RJ notice](https://www.tre-rj.jus.br/servicos-judiciais/comunicados)
+reporting a 12 February 2026 rectification to DEMOCRATA. These are decision
+observations, not automatic name intervals or a merged game identity. The
+underlying decisions, statutory compliance and subsequent status remain to be
+reviewed. Missão's registration and number 14 do not grant an earlier party's
+identity or establish a leader.
+
+Five primary sources support 34 claims. Five derived factual extracts have
+checked-in checksums, while original HTTP-response byte counts and hashes are
+explicitly unknown. Direct downloads were unavailable; no image or linked PDF
+was visually reviewed. Official HTML and indexed article text provide the
+stated observations, not an archived registry as of the cutoff. The live
+leadership registry was not used to backdate officeholders. Access on
+13 September 2026 does not extend the fixed historical cutoff. All game
+mappings, leadership roles, lifecycle boundaries and portrait eligibility stay
+unknown; Brazil's four discovery batches remain open.
+
+Together the six packets contain 773 organization observations and 18
+institution observations, supported by 1,460 claims across 45 cited sources.
+The index assigns them to 83 research batches. None establishes an exhaustive
 country roster or supplies a new finished character.
 
 Each source needs a public URL, publisher, access date and individually identified
@@ -108,6 +135,7 @@ python -X utf8 -m unittest discover -s tools/avatars -p "test_campaign*.py"
 python -X utf8 -m unittest discover -s tools/avatars -p "test_import_cnccfp_census.py"
 python -X utf8 -m unittest discover -s tools/avatars -p "test_japan_research_s10d.py"
 python -X utf8 -m unittest discover -s tools/avatars -p "test_india_research_s10e.py"
+python -X utf8 -m unittest discover -s tools/avatars -p "test_brazil_research_s10f.py"
 ```
 
 Use the importer without `--check` only to reproduce France's packet from the

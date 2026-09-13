@@ -1,10 +1,32 @@
 # S10 — Government, succession and diplomacy
 
-Status: **S10.a through S10.e complete; S10 and C01 remain in progress**.
+Status: **S10.a through S10.f complete; S10 and C01 remain in progress**.
 The [S10.b report](b/README.md) records source-backed country discoveries,
 Linux qualification and all eight ordinary government browser journeys.
 Parent source: `872442d7411d9986321248b41ccadf79e2851d1c`.
 Latest user instruction: Next. Work is limited to S10; S11 is not started.
+
+## S10.f — Campaign succession restrictions and independent historical references
+
+The [S10.f report](f/README.md) separates saved party office, candidate availability
+and national-office restrictions in the Government room. Exact saved campaign
+death and term-limit dates explain why a person cannot receive a new appointment.
+Role permission remains distinct from an actual succession and its unambiguous
+native selection. A term limit on national office preserves the separate party
+office; a date boundary does not replace a saved incumbent.
+
+Historical reference queries use an explicit reference context, including when
+the requested date equals the campaign date. Campaign deaths and exclusions do
+not remove sourced historical candidates or leak saved appointments into those
+references. The two authored UK fixtures exercise a native death and a separate
+fictional succession followed by a term limit, then qualify the actual interface
+and Save/Load/Continue against retained native worlds. The fixture dates and
+succession events are deliberate test setup, not elapsed campaign play or
+predicted historical events.
+
+The published manifest records 378 passing Windows native web tests, 1,548 passing interface tests, 12 passing agency/succession integration tests and 49 passing leadership tests. Linux records 378 passing native web tests, 12 passing agency/succession integration tests and 49 passing leadership tests. Content checks pass 57 tests. The 2 authored browser cases contain 12 native inspections and 10 exact comparisons with no ignored paths. Browser journeys advance zero campaign days. These counts do not imply a new long-campaign or performance qualification.
+
+Brazil adds a bounded election-funding and registration-decision research packet. The matching discovery index contains 6 country packets, 773 organization observations, 18 institution observations, 45 sources, 1,460 source claims and 83 discovery batches. There are 0 completed exhaustive country censuses. These observations do not establish distinct-party totals, complete leadership histories or new gameplay candidates. S10 and C01 remain in progress, G2 is unearned, and S11 remains planned. Execution stopped after S10.f.
 
 ## S10.e — Understand standing commitments
 

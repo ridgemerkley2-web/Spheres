@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "runtime_revision": "7d85b9f76a3e787b257613442fb0a3370e90f4c2",
+  "driver_revision": "4a128727bf0917df9bc3f97a3c2c45fa360be0c1",
+  "method": "Root inspected actual local PNG screenshots with view_image after the qualified browser journey.",
+  "findings": [
+    "Saved party office, national-office exclusion, exact date and explanation are legible at desktop, 390px and 320px.",
+    "The narrow reference card stacks the cartoon portrait above the full-width identity and historical dates.",
+    "Historical cards retain their reference identity without campaign restrictions; absent portraits show an explicit placeholder.",
+    "Ordinary government and policy reviews retain readable before/after values and the existing government art.",
+    "Screenshots include normal scroll crops at sticky headers; automated per-leaf scrolling, actual clipping-boundary and hit-point checks passed for the complete inspected content."
+  ],
+  "screenshots": [
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-result-desktop.png",
+      "sha256": "652a1c0fb221ce2a82e09d8bc83021d894b64b73ace109fbc62cc12b8f32c24c"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-fresh-review-320.png",
+      "sha256": "c5f0b710bbef53694b2ece1523b371cb191c15e50688718fb3d446ea05906b85"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\government-continued-narrow-320.png",
+      "sha256": "d65640a493d8aaefcae63fa8deb65723e991434dc3b9983dd4e3ebc19514935c"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10-browser-f-browser\\france-Wz0Zio\\policy-review-narrow-320.png",
+      "sha256": "6975c6751a021f225dcba12cff3ed882a7b842d55dbe93e4702a971fcee777b2"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-2027-term-limit-campaign-1440.png",
+      "sha256": "94e23e090a0494efad2df2cd0366c620b2327d80a06adc6bbbebca82cb2cc1a0"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-2027-term-limit-campaign-390.png",
+      "sha256": "2611ca1914e4579f552ba8fbb945ed81ed5982561d145c8a23ee9b2c289b1f9a"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-2027-term-limit-campaign-320.png",
+      "sha256": "3bdabed2fd47ee3c215bb2cd2875020badefac3f6700911e92481a65163d70f0"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-1990-same-day-death-reference-320.png",
+      "sha256": "e14f95c9a4645aa338fa40aeba54174723537a37ecc8011047b7ecae5b3e92bf"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-1990-same-day-death-reference-1440.png",
+      "sha256": "43e5ac20c6f0aa3bfc0679059054d82922102de9588919b8bd31a9739126ef92"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-2027-term-limit-reference-320.png",
+      "sha256": "62ccb9d76eb050c06860754dfb2d1f7df3a2f9d57de6b9485ff763a99c4b5359"
+    },
+    {
+      "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\uk-2027-term-limit-continued-320.png",
+      "sha256": "5bc4acd84e048e3040dcdefee2f0c709d906d8ca8ec1261e5feb964b0ecfdbf0"
+    }
+  ],
+  "scope": "Manual sample of 11 actual screenshots plus complete automated desktop/narrow checks. No new artwork or long-campaign qualification."
+}

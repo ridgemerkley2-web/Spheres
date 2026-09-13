@@ -1,0 +1,23 @@
+{
+  "revision": "7d85b9f76a3e787b257613442fb0a3370e90f4c2",
+  "driver_revision": "4a128727bf0917df9bc3f97a3c2c45fa360be0c1",
+  "started_utc": "2026-09-13T23:51:15.333592+00:00",
+  "runner_sha256": "075b376dae487aed07e44b043913b5c0ed1eb3b483d74622054c34d5af41c3b0",
+  "checks": [
+    {
+      "name": "browser",
+      "command": [
+        "node",
+        "tools/ui/ci-succession-context.cjs"
+      ],
+      "exit_code": 0,
+      "log": "browser.log",
+      "log_sha256": "3d6c2334e88cc16362023eb14aa2888da6e7602c6977058ccf800dfa5d24e293"
+    }
+  ],
+  "clean_after": true,
+  "driver_revision_after": "4a128727bf0917df9bc3f97a3c2c45fa360be0c1",
+  "binary_sha256_after": "b99f84450805a518055eff0b67066ce800cbd30096eeeaf0d96d10b1ba9e118b",
+  "passed": true,
+  "finished_utc": "2026-09-13T23:51:44.912568+00:00"
+}

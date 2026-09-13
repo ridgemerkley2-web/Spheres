@@ -1,0 +1,37 @@
+{
+  "revision": "7d85b9f76a3e787b257613442fb0a3370e90f4c2",
+  "driver_revision": "7d85b9f76a3e787b257613442fb0a3370e90f4c2",
+  "started_utc": "2026-09-13T23:46:15.743848+00:00",
+  "runner_sha256": "075b376dae487aed07e44b043913b5c0ed1eb3b483d74622054c34d5af41c3b0",
+  "checks": [
+    {
+      "name": "export",
+      "command": [
+        "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\integration-target\\release\\deps\\spheres_web-55caf82b2dcec446.exe",
+        "s10f_succession_fixture_tests::s10f_export_disposable_succession_fixtures",
+        "--exact",
+        "--ignored",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "exit_code": 0,
+      "log": "export.log",
+      "log_sha256": "24dc1014aa17d1b611dc6e97ab427a76cd4fc9130af21039e1e9f320f065aa69"
+    },
+    {
+      "name": "browser",
+      "command": [
+        "node",
+        "tools/ui/ci-succession-context.cjs"
+      ],
+      "exit_code": 1,
+      "log": "browser.log",
+      "log_sha256": "e307ae6b1468acb714d709c2912ba042128ad6115d493a1de521d2992f209e4f"
+    }
+  ],
+  "clean_after": true,
+  "driver_revision_after": "7d85b9f76a3e787b257613442fb0a3370e90f4c2",
+  "binary_sha256_after": "b99f84450805a518055eff0b67066ce800cbd30096eeeaf0d96d10b1ba9e118b",
+  "passed": false,
+  "finished_utc": "2026-09-13T23:46:30.837765+00:00"
+}

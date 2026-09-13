@@ -1,0 +1,96 @@
+{
+  "format": "spheres-s10f-linux/v1",
+  "revision": "7d85b9f76a3e787b257613442fb0a3370e90f4c2",
+  "started_utc": "2026-09-13T23:41:06.596092+00:00",
+  "scope": "Full native web suite and party-leadership unit and focused native agency/succession integration suites on Linux. No new Linux Node, external old-save or long-campaign qualification is claimed.",
+  "runner_sha256": "8974b2bbd52d573ae846fa906651af23a1b2cada9d90912ee11c324096368aab",
+  "source_before": {
+    "head": "7d85b9f76a3e787b257613442fb0a3370e90f4c2",
+    "status": ""
+  },
+  "checks": [
+    {
+      "name": "web",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-web",
+        "--no-fail-fast"
+      ],
+      "exit_code": 0,
+      "log": "web.log",
+      "log_sha256": "3cbd23ae58d15074e16ed3075bcc2d290d482c3bcdefc6a21eafbb638d67146f",
+      "totals": {
+        "passed": 378,
+        "failed": 0,
+        "ignored": 14,
+        "completed_targets": 2
+      },
+      "source_after": {
+        "head": "7d85b9f76a3e787b257613442fb0a3370e90f4c2",
+        "status": ""
+      }
+    },
+    {
+      "name": "leadership",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-sim",
+        "--lib",
+        "party_leadership::",
+        "--no-fail-fast"
+      ],
+      "exit_code": 0,
+      "log": "leadership.log",
+      "log_sha256": "9617e3e0e2985e21158990d3f82e2677a1f0a1f83fcb80bede335feb96d2f194",
+      "totals": {
+        "passed": 49,
+        "failed": 0,
+        "ignored": 0,
+        "completed_targets": 1
+      },
+      "source_after": {
+        "head": "7d85b9f76a3e787b257613442fb0a3370e90f4c2",
+        "status": ""
+      }
+    },
+    {
+      "name": "agency",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--release",
+        "-p",
+        "spheres-sim",
+        "--test",
+        "agency",
+        "--test",
+        "s02_succession",
+        "--no-fail-fast"
+      ],
+      "exit_code": 0,
+      "log": "agency.log",
+      "log_sha256": "b380d010e5c462378129b8cddbc4286017777233a8c08bd8b76b9abd1590ed40",
+      "totals": {
+        "passed": 12,
+        "failed": 0,
+        "ignored": 0,
+        "completed_targets": 2
+      },
+      "source_after": {
+        "head": "7d85b9f76a3e787b257613442fb0a3370e90f4c2",
+        "status": ""
+      }
+    }
+  ],
+  "passed": true,
+  "finished_utc": "2026-09-13T23:48:14.565612+00:00"
+}

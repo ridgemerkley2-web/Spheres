@@ -513,6 +513,16 @@ campaign behavior. India adds a partial recognition-row discovery packet.
 S10 and C01 remain in progress, G2 is unearned, and S11 remains planned.
 Execution stopped after S10.e.
 
+**S10.f complete:** saved campaign succession restrictions are displayed
+separately from role permissions, with exact death and term-limit dates.
+Historical references remain independent of campaign deaths even on the same
+date. The [S10.f proof](campaign-certification/S10/f/README.md) records two
+authored UK browser fixtures and exact Save/Load/Continue comparisons. Their
+authored dates and succession events do not represent elapsed campaign play;
+the browser journeys advance zero days. Brazil adds a partial primary-source
+research packet. S10 and C01 remain in progress, G2 is unearned, and S11 remains
+planned. Execution stopped after S10.f.
+
 - [ ] Test parliamentary, presidential, authoritarian and monarchical/institutional cases through review, confirmation and dated result.
 - [ ] Preserve saved incumbents; historical browsing and future candidate eligibility do not replace an officeholder automatically.
 - [ ] Validate offers, deadlines, standing policies, sanctions, party/executive roles, unaffordable/stale reviews and foreign inspection.
@@ -938,4 +948,4 @@ not close C01 or the S10/G2 dependency.
 
 ## Authorized execution boundary
 
-S04 and S05 are complete on the recorded runtime and evidence. G1 decision: **earned**. The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work. Execution stopped after S05 as requested. On 11 September 2026, “Next” authorized S06. S06 is complete on its recorded runtime and evidence. On 11 September 2026, “Next” authorized S07. S07 is complete on its recorded runtime and evidence. A subsequent “Next” authorized S08, which completed on 12 September 2026 on its recorded runtime and evidence; execution stopped before S09. On 12 September 2026, “next” authorized S09. S09 is complete on its recorded runtime and evidence; execution stopped before S10. The subsequent Continue authorized S10. S10.a through S10.e are complete as bounded increments; S10 and C01 remain incomplete. Execution stopped after S10.e; S11 and later sessions require a new instruction. No later campaign, content or release certificate is awarded.
+S04 and S05 are complete on the recorded runtime and evidence. G1 decision: **earned**. The pinned integrated build passes both native/Node platforms, original-save and transaction qualification, actual desktop/narrow browser journeys, map review and both predefined performance confirmations. This earns the bounded unified-playset gate locally; full campaign and release certification remain later work. Execution stopped after S05 as requested. On 11 September 2026, “Next” authorized S06. S06 is complete on its recorded runtime and evidence. On 11 September 2026, “Next” authorized S07. S07 is complete on its recorded runtime and evidence. A subsequent “Next” authorized S08, which completed on 12 September 2026 on its recorded runtime and evidence; execution stopped before S09. On 12 September 2026, “next” authorized S09. S09 is complete on its recorded runtime and evidence; execution stopped before S10. The subsequent Continue authorized S10. S10.a through S10.f are complete as bounded increments; S10 and C01 remain incomplete. Execution stopped after S10.f; S11 and later sessions require a new instruction. No later campaign, content or release certificate is awarded.

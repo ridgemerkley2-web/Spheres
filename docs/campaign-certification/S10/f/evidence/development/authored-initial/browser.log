@@ -1,0 +1,19 @@
+AssertionError [ERR_ASSERTION]: Historical identity at 1440: {"text":"Margaret Thatcher","rect":{"left":203.71875,"right":685,"top":565.078125,"bottom":593.125},"errors":["clipped text"]}
++ actual - expected
+
++ [
++   'clipped text'
++ ]
+- []
+
+    at readable (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-succession-context.cjs:34:13)
+    at async readLeaves (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-succession-context.cjs:41:158)
+    at async referenceLayout (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-succession-context.cjs:104:77)
+    at async main (C:\Users\ridge\Documents\Codex\2026-09-05\pick-up-the-spheres-game-on\work\campaign-certification\integration\tools\ui\ci-succession-context.cjs:163:71) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [Array],
+  expected: [],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}

@@ -273,6 +273,12 @@
           "status": "complete",
           "title": "Standing commitments, native call participation and bounded India discovery",
           "evidence": "docs/campaign-certification/S10/e/manifest.json"
+        },
+        {
+          "id": "S10.f",
+          "status": "complete",
+          "title": "Campaign succession restrictions and independent historical references",
+          "evidence": "docs/campaign-certification/S10/f/manifest.json"
         }
       ],
       "remaining": [
@@ -820,9 +826,9 @@
   "next_session": "S10",
   "execution": {
     "authorized_through": "S10",
-    "stop_boundary": "S10.e",
+    "stop_boundary": "S10.f",
     "status": "stopped",
-    "previous_stop": "S10.d",
+    "previous_stop": "S10.e",
     "instruction": "Next",
     "instruction_date": "2026-09-13",
     "next_session_requires_instruction": true
@@ -838,8 +844,8 @@
     "G2": {
       "status": "not_earned",
       "date": "2026-09-13",
-      "evidence": "docs/campaign-certification/S10/e/manifest.json",
-      "reason": "S10.e is a bounded commitment-review and one-day authored-browser increment. S10 and C01 remain in progress; it does not certify the national-economy gate or a campaign through 2035."
+      "evidence": "docs/campaign-certification/S10/f/manifest.json",
+      "reason": "S10.f is a bounded succession-status and historical-reference increment with two authored zero-day browser fixtures. S10 and C01 remain in progress; it does not certify the national-economy gate or a campaign through 2035."
     }
   }
 }

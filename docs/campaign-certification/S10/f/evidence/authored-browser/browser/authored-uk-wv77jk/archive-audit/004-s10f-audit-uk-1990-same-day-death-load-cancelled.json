@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "input": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\server\\captures\\s10f-audit-uk-1990-same-day-death-load-cancelled.json",
+    "bytes": 13148743,
+    "sha256": "2f084b09270f60c4fcae8cd6ac507da7dff0aef2e7b87b88725b175642ad7820"
+  },
+  "requested": {
+    "buyer": "UK",
+    "revision": null,
+    "seller": null,
+    "company": null,
+    "product": null
+  },
+  "buyer": {
+    "id": "UK",
+    "tech_sha256": "851cec93013a28a7a905d580d7e16a6bf0967d2468a91a3b8d07436fa5db30c9",
+    "learned_sha256": "50edc262344620ebd2c9cabf9297150b2175819f0e9ac19b0bb104e61072cba3",
+    "revision_ids": [],
+    "held_by_revision": {},
+    "held_units": 0,
+    "buyer_revision": null,
+    "maintenance_plan": null,
+    "program_budget": null
+  },
+  "supplier": null,
+  "imports": {
+    "ids": [],
+    "matching": []
+  },
+  "canonical": {
+    "path": "C:\\Users\\ridge\\Documents\\Codex\\2026-09-05\\pick-up-the-spheres-game-on\\work\\campaign-certification\\evidence\\S10f-succession-qualified\\browser\\authored-uk-wv77jk\\archive-audit\\004-s10f-audit-uk-1990-same-day-death-load-cancelled.canonical",
+    "bytes": 12116133,
+    "sha256": "b6860746d6d605710f03c7b37f6ca5695e571995e9b6a08b8837a58827d09d4b",
+    "format": "s08-typed-canonical-world-v1-js-f64",
+    "ignored_paths": []
+  }
+}
