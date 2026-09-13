@@ -2,6 +2,7 @@
 // Requires a clean committed release build. No granted research, funds or models.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const cp=require('node:child_process'),net=require('node:net'),crypto=require('node:crypto');
+const {PerformanceObserver}=require('node:perf_hooks');
 const {chromium}=require('playwright'),integrated=require('./ci-integrated.cjs');
 const audit=require('./supplier-archive-audit.cjs');
 const root=path.resolve(__dirname,'../..'),copy=x=>JSON.parse(JSON.stringify(x));
@@ -101,21 +102,24 @@ async function main(){
     // Declared in the S09 protocol before the first measurement. Sequential
     // full HTTP/JSON reads, no response replacement or cache installation.
     const board=await page.evaluate(()=>JSON.parse(JSON.stringify(EQUIP.data)));
-    const timings=[];
+    const timings=[],gc=[];const gcObserver=new PerformanceObserver(list=>gc.push(...list.getEntries().map(x=>({start_ms:x.startTime,duration_ms:x.duration}))));
+    gcObserver.observe({entryTypes:['gc']});
     for(const item of [{id:'board'},...board.presets.map(p=>({id:p.platform,spec:{platform:p.platform,components:p.components}}))]){
-      const samples=[];
+      const samples=[],phases=[];
       for(let i=0;i<24;i++){
-        const start=performance.now();let r;
+        const start=performance.now(),cpu=process.cpuUsage();let r,received,decoded,disposed;
         try{
           r=item.spec?await page.request.post(url+'/api/equipment-preview',{data:{session_id:initial.session_id,name:'Performance read',...item.spec}}):await page.request.get(url+'/api/equipment?session_id='+encodeURIComponent(initial.session_id));
-          assert(r.ok());const value=await r.json();assert.equal(value.session_id,initial.session_id);
+          received=performance.now();assert(r.ok());const value=await r.json();decoded=performance.now();assert.equal(value.session_id,initial.session_id);
         }finally{if(r)await r.dispose();}
-        if(i>=3)samples.push(performance.now()-start);
+        disposed=performance.now();const spent=process.cpuUsage(cpu);
+        if(i>=3){samples.push(disposed-start);phases.push({start_ms:start,response_ms:received-start,json_ms:decoded-received,dispose_ms:disposed-decoded,node_cpu_ms:(spent.user+spent.system)/1000});}
       }
       const sorted=[...samples].sort((a,b)=>a-b),p95=sorted[Math.ceil(sorted.length*.95)-1],max=sorted.at(-1);
-      const row={id:item.id,samples_ms:samples,p95_ms:p95,max_ms:max,p95_limit_ms:item.spec?250:300,max_limit_ms:item.spec?500:750};
+      const row={id:item.id,samples_ms:samples,phases,p95_ms:p95,max_ms:max,p95_limit_ms:item.spec?250:300,max_limit_ms:item.spec?500:750};
       row.passed=p95<=row.p95_limit_ms&&max<=row.max_limit_ms;timings.push(row);write('read-performance.json',{warmups:3,samples:21,rows:timings});
     }
+    gcObserver.disconnect();write('read-runtime-diagnostics.json',{gc});
     assert.equal(new Set(timings.map(r=>r.id)).size,12,'Board and all eleven platform reads');
     assert(timings.every(r=>r.passed),'Read performance exceeded the predeclared S09 limits');e.read_performance=timings.map(({samples_ms,...r})=>r);
     await shot('design-guidance-desktop','[data-equipment-guidance]');
